@@ -1,0 +1,32 @@
+{
+  "name": "@toptal/ui-library",
+  "version": "0.1.0-alpha.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "echo \"Error: no lint specified\" && exit 1",
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "release:alpha": "yarn version --new-version prerelease"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toptal/ui-library.git"
+  },
+  "author": "Toptal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/toptal/ui-library/issues"
+  },
+  "homepage": "https://github.com/toptal/ui-library#readme",
+  "dependencies": {
+    "@material-ui/core": "^3.6.0",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "@storybook/react": "^4.0.9",
+    "babel-loader": "^8.0.4"
+  }
+}
