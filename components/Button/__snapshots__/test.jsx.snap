@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`disabled button renders disabled version 1`] = `
+<div>
+  <button
+    class="MuiButtonBase-root-69 MuiButtonBase-disabled-70 MuiButton-root-43 WithStyles-Button--root-40 MuiButton-text-45 MuiButton-flat-48 MuiButton-disabled-63"
+    disabled=""
+    tabindex="-1"
+    type="button"
+  >
+    <span
+      class="MuiButton-label-44"
+    >
+      Click me!
+    </span>
+  </button>
+</div>
+`;
