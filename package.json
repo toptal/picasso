@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
+    "test:watch": "jest --watchAll",
     "lint": "echo \"Error: no lint specified\" && exit 1",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "release:alpha": "yarn version --new-version prerelease"
@@ -27,6 +28,11 @@
   "devDependencies": {
     "@babel/core": "^7.1.6",
     "@storybook/react": "^4.0.9",
-    "babel-loader": "^8.0.4"
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
+    "babel-loader": "^8.0.4",
+    "jest": "^23.6.0",
+    "react-testing-library": "^5.3.1",
+    "regenerator-runtime": "^0.13.1"
   }
 }
