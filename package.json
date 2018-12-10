@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watchAll",
-    "lint": "echo \"Error: no lint specified\" && exit 1",
+    "lint:path": "eslint --ext=.js,.jsx --color --fix",
+    "lint": "lint:path .",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "release:alpha": "yarn version --new-version prerelease"
   },
@@ -33,6 +34,31 @@
     "babel-loader": "^8.0.4",
     "jest": "^23.6.0",
     "react-testing-library": "^5.3.1",
-    "regenerator-runtime": "^0.13.1"
+    "regenerator-runtime": "^0.13.1",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.9.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-config-standard-jsx": "^6.0.2",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-react": "^7.11.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "husky": "^1.2.0",
+    "lint-staged": "^8.1.0",
+    "prettier-standard": "^8.0.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "prettier-standard",
+      "npm run lint:path",
+      "git add"
+    ]
   }
 }
