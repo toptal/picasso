@@ -1,18 +1,16 @@
 import React from 'react'
 import Button from './index'
-import { render, fireEvent, cleanup, waitForElement } from 'react-testing-library'
+import { render, fireEvent, cleanup } from 'react-testing-library'
 
 const renderButton = (children, props = {}) => {
-  return render(
-    <Button {...props}>{children}</Button>
-  )
+  return render(<Button {...props}>{children}</Button>)
 }
 
 afterEach(cleanup)
 
 test('onClick callback should be fired after clicking the button', () => {
   const onClick = jest.fn()
-  const { getByText, debug, container } = renderButton('Click me!', { onClick })
+  const { getByText } = renderButton('Click me!', { onClick })
 
   fireEvent.click(getByText('Click me!'))
 
