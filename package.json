@@ -7,7 +7,7 @@
     "test": "jest",
     "test:watch": "jest --watchAll",
     "lint:path": "eslint --ext=.js,.jsx --color --fix",
-    "lint": "lint:path .",
+    "lint": "npm run lint:path .",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "release:alpha": "yarn version --new-version prerelease"
   },
@@ -56,8 +56,8 @@
   },
   "lint-staged": {
     "*.{js,jsx}": [
-      "prettier-standard",
       "npm run lint:path",
+      "prettier-standard",
       "git add"
     ]
   }
