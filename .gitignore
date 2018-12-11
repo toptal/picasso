@@ -3,3 +3,5 @@ node_modules
 yarn-error.log
 build/
 
+# Ignore visual regression tests diff output
+__diff_output__
