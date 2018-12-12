@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial project structure
 - Storybook for development purposes until we implement a proper documentation
 - `Button` component with BASE styles for `primary`, `secondary`, `basic` and `flat` variants
+- Added PR template and CODEOWNERS file
 
 ## 0.1.0-alpha.1
 ### TBA
