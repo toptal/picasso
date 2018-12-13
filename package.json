@@ -2,14 +2,21 @@
   "name": "@toptal/ui-library",
   "version": "0.1.0-alpha.0",
   "description": "",
-  "main": "index.js",
+  "main": "build/index.js",
+  "module": "build/es/index.js",
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watchAll",
     "lint:path": "eslint --ext=.js,.jsx --color --fix",
     "lint": "npm run lint:path .",
     "storybook": "start-storybook -p 9001 -c .storybook",
-    "release:alpha": "yarn version --new-version prerelease"
+    "release:alpha": "yarn version --new-version prerelease",
+    "build:es2015": "cross-env NODE_ENV=production ./bin/build --config es2015",
+    "build:es6": "cross-env NODE_ENV=production BABEL_ENV=es ./bin/build --config es",
+    "build:watch": "cross-env BABEL_ENV=es ./bin/build --config dev --watch",
+    "build": "yarn build:es2015 && yarn build:es6",
+    "postinstall": "yarn build",
+    "symlink": "cross-env BABEL_ENV=es ./bin/build --config dev --symlink"
   },
   "repository": {
     "type": "git",
@@ -27,15 +34,18 @@
     "react-dom": "^16.6.3"
   },
   "devDependencies": {
+    "@babel/cli": "^7.2.0",
     "@babel/core": "^7.1.6",
+    "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
+    "@babel/plugin-transform-object-assign": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
     "@storybook/react": "^4.0.9",
     "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
-    "jest": "^23.6.0",
-    "react-testing-library": "^5.3.1",
-    "regenerator-runtime": "^0.13.1",
-    "babel-eslint": "^10.0.1",
+    "chalk": "^2.4.1",
+    "cross-env": "^5.2.0",
     "eslint": "^5.9.0",
     "eslint-config-prettier": "^3.3.0",
     "eslint-config-standard": "^12.0.0",
@@ -45,9 +55,15 @@
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-react": "^7.11.1",
     "eslint-plugin-standard": "^4.0.0",
+    "fs-extra": "^7.0.1",
     "husky": "^1.2.0",
+    "jest": "^23.6.0",
     "lint-staged": "^8.1.0",
-    "prettier-standard": "^8.0.1"
+    "prettier-standard": "^8.0.1",
+    "react-testing-library": "^5.3.1",
+    "regenerator-runtime": "^0.13.1",
+    "rimraf": "^2.6.2",
+    "yargs": "^12.0.5"
   },
   "husky": {
     "hooks": {
