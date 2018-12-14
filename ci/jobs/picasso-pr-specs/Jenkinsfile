@@ -62,6 +62,17 @@ pipeline {
         sh "yarn test"
       } //steps
     }//stage
+
+    stage('Run jest visual') {
+      steps {
+        script {
+          FAILURE_REASON = "jest-visual"
+          ghHelper.notifyPR("yarn:test-visual", "PENDING", "running", "${env.ghprbActualCommit}", "${env.BUILD_URL}", "picasso")
+        }
+        sh "yarn install"
+        sh "yarn test-visual"
+      } //steps
+    }//stage
   }//stages
 
   post {
@@ -71,17 +82,28 @@ pipeline {
       script {
         ghHelper.notifyPR("yarn:lint", "SUCCESS", "Success", "${env.ghprbActualCommit}", "${env.BUILD_URL}", "picasso")
         ghHelper.notifyPR("yarn:test", "SUCCESS", "Success", "${env.ghprbActualCommit}", "${env.BUILD_URL}", "picasso")
+        ghHelper.notifyPR("yarn:test-visual", "SUCCESS", "Success", "${env.ghprbActualCommit}", "${env.BUILD_URL}", "picasso")
       }
     }
 
     failure {
       script {
-        if (FAILURE_REASON == "jest") {
+        if (FAILURE_REASON == "lint") {
+          ghHelper.notifyPR("yarn:lint", "ERROR", "Job failed", "${env.ghprbActualCommit}", "${env.BUILD_URL}", "picasso")
+        } else {
           ghHelper.notifyPR("yarn:lint", "SUCCESS", "Success", "${env.ghprbActualCommit}", "${env.BUILD_URL}", "picasso")
+        }
+
+        if (FAILURE_REASON == "jest") {
           ghHelper.notifyPR("yarn:test", "ERROR", "Job failed", "${env.ghprbActualCommit}", "${env.BUILD_URL}", "picasso")
         } else {
-          ghHelper.notifyPR("yarn:test", "ERROR", "Job failed", "${env.ghprbActualCommit}", "${env.BUILD_URL}", "picasso")
-          ghHelper.notifyPR("yarn:lint", "ERROR", "Job failed", "${env.ghprbActualCommit}", "${env.BUILD_URL}", "picasso")
+          ghHelper.notifyPR("yarn:test", "SUCCESS", "Success", "${env.ghprbActualCommit}", "${env.BUILD_URL}", "picasso")
+        }
+
+        if (FAILURE_REASON == "jest-visual") {
+          ghHelper.notifyPR("yarn:test-visual", "ERROR", "Job failed", "${env.ghprbActualCommit}", "${env.BUILD_URL}", "picasso")
+        } else {
+          ghHelper.notifyPR("yarn:test-visual", "SUCCESS", "Success", "${env.ghprbActualCommit}", "${env.BUILD_URL}", "picasso")
         }
       }
     }

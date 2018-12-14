@@ -7,17 +7,19 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watchAll",
-    "test-visual": "jest --config='./puppeteer/puppeteer.jest.config.js'",
+    "test-visual": "yarn storybook:build && jest --config='./puppeteer/puppeteer.jest.config.js'",
     "test-visual:watch": "jest --config='./puppeteer/puppeteer.jest.config.js' --watchAll",
     "lint:path": "eslint --ext=.js,.jsx --color --fix",
     "lint": "yarn run lint:path .",
     "storybook": "start-storybook -p 9001 -c .storybook",
-    "release:alpha": "yarn version --new-version prerelease",
+    "storybook:build": "build-storybook -c .storybook -o build/storybook",
+    "version:alpha": "yarn version --new-version prerelease",
     "build:es2015": "cross-env NODE_ENV=production ./bin/build --config es2015",
     "build:es6": "cross-env NODE_ENV=production BABEL_ENV=es ./bin/build --config es",
     "build:watch": "cross-env BABEL_ENV=es ./bin/build --config dev --watch",
     "build": "yarn build:es2015 && yarn build:es6",
-    "symlink": "cross-env BABEL_ENV=es ./bin/build --config dev --symlink"
+    "symlink": "cross-env BABEL_ENV=es ./bin/build --config dev --symlink",
+    "publish": "yarn lint && yarn test && yarn test-visual && yarn build && yarn version:alpha"
   },
   "repository": {
     "type": "git",

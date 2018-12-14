@@ -1,18 +1,16 @@
 /* global page */
-
+import path from 'path'
 const PADDING_AROUND_COMPONENT = 8
 
 async function screenshotDOMElement () {
   const dimensions = await page.evaluate(() => {
-    const iFrame = document.querySelector('#storybook-preview-iframe')
-    const component = iFrame.contentDocument.querySelector('#root > *')
+    const component = document.querySelector('#root > *')
 
-    const iFrameRect = iFrame.getBoundingClientRect()
     const componentRect = component.getBoundingClientRect()
 
     return {
-      x: iFrameRect.x + componentRect.x,
-      y: iFrameRect.y + componentRect.y,
+      x: componentRect.x,
+      y: componentRect.y,
       width: componentRect.width,
       height: componentRect.height
     }
@@ -31,7 +29,10 @@ async function screenshotDOMElement () {
 // TODO: Make this more universal when we add more components and their variations
 export const assertVisuals = function (kind, type) {
   return async () => {
-    const url = `http://localhost:9001/?selectedKind=${kind}&selectedStory=${type}`
+    const url = `file:${path.join(
+      __dirname,
+      `../build/storybook/iframe.html?selectedKind=${kind}&selectedStory=${type}`
+    )}`
 
     await page.goto(url)
 
