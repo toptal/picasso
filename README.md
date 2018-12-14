@@ -1,4 +1,4 @@
-# Toptal UI components library (Name TBA)
+# Picasso - Toptal UI components library
 
 ## Installation instructions
 TODO
