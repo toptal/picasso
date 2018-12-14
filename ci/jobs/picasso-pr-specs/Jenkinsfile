@@ -1,0 +1,88 @@
+@Library('globalLibrary@master') _
+
+ghHelper = new helpers.GithubNotifyHelper()
+def FAILURE_REASON
+
+pipeline {
+  agent {
+    docker {
+      image 'gcr.io/compute-engine-1069/platform_tests'
+    }
+  }
+  options {
+    ansiColor('xterm')
+    timestamps()
+    timeout(time: 5, unit: 'MINUTES')
+    skipDefaultCheckout()
+  }
+
+  stages {
+    // Perform this only for PRs
+    stage('Git checkout PR') {
+
+      steps {
+        info "== Checking out Git revision ${env.ghprbActualCommit}"
+        gitCheckout(
+                branches: "${env.ghprbActualCommit}",
+                credentials: [username: 'git', description: 'jenkins/picasso'],
+                url: 'git@github.com:toptal/picasso.git',
+                refspec: "+refs/heads/${env.ghprbTargetBranch}:refs/remotes/origin/${ghprbTargetBranch} +refs/pull/${env.ghprbPullId}/*:refs/remotes/origin/pr/${env.ghprbPullId}/*",
+                additionalBehaviours: [
+                        advancedCheckoutBehaviour: [timeout: 120],
+                        advancedCloneBehaviour   : [depth: 0, noTags: true, reference: '', shallow: false, timeout: 340],
+                        cleanBeforeCheckout      : true,
+                        calculateChangelog       : [compareRemote: 'origin', compareTarget: "${env.ghprbTargetBranch}"],
+                        mergeBeforeBuild         : [mergeRemote: 'origin', mergeTarget: "${env.ghprbTargetBranch}", mergeStrategy: 'DEFAULT', fastForwardMode: 'FF']
+                ])
+
+        info "Git commit: ${gitCommit()}"
+        info "Git branch: ${gitBranch()}"
+        success "Checkout finished"
+      }
+    }//stage
+
+    stage('Run linter') {
+      steps {
+        script {
+          FAILURE_REASON = "lint"
+          ghHelper.notifyPR("yarn:lint", "PENDING", "running", "${env.ghprbActualCommit}", "${env.BUILD_URL}", "picasso")
+        }
+        sh "yarn install"
+        sh "yarn lint"
+      } //steps
+    }//stage
+
+    stage('Run jest') {
+      steps {
+        script {
+          FAILURE_REASON = "jest"
+          ghHelper.notifyPR("yarn:test", "PENDING", "running", "${env.ghprbActualCommit}", "${env.BUILD_URL}", "picasso")
+        }
+        sh "yarn install"
+        sh "yarn test"
+      } //steps
+    }//stage
+  }//stages
+
+  post {
+    success {
+      success 'Build succeeded!'
+
+      script {
+        ghHelper.notifyPR("yarn:lint", "SUCCESS", "Success", "${env.ghprbActualCommit}", "${env.BUILD_URL}", "picasso")
+        ghHelper.notifyPR("yarn:test", "SUCCESS", "Success", "${env.ghprbActualCommit}", "${env.BUILD_URL}", "picasso")
+      }
+    }
+
+    failure {
+      script {
+        if (FAILURE_REASON == "jest") {
+          ghHelper.notifyPR("yarn:lint", "SUCCESS", "Success", "${env.ghprbActualCommit}", "${env.BUILD_URL}", "picasso")
+          ghHelper.notifyPR("yarn:test", "ERROR", "Job failed", "${env.ghprbActualCommit}", "${env.BUILD_URL}", "picasso")
+        } else {
+          ghHelper.notifyPR("yarn:lint", "ERROR", "Job failed", "${env.ghprbActualCommit}", "${env.BUILD_URL}", "picasso")
+        }
+      }
+    }
+  }
+}//pipeline
