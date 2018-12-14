@@ -80,6 +80,7 @@ pipeline {
           ghHelper.notifyPR("yarn:lint", "SUCCESS", "Success", "${env.ghprbActualCommit}", "${env.BUILD_URL}", "picasso")
           ghHelper.notifyPR("yarn:test", "ERROR", "Job failed", "${env.ghprbActualCommit}", "${env.BUILD_URL}", "picasso")
         } else {
+          ghHelper.notifyPR("yarn:test", "ERROR", "Job failed", "${env.ghprbActualCommit}", "${env.BUILD_URL}", "picasso")
           ghHelper.notifyPR("yarn:lint", "ERROR", "Job failed", "${env.ghprbActualCommit}", "${env.BUILD_URL}", "picasso")
         }
       }
