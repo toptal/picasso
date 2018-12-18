@@ -1,0 +1,27 @@
+#!/usr/bin/env node
+
+const exec = require('child_process').execSync
+const fs = require('fs-extra')
+const path = require('path')
+
+exec('yarn release:alpha', {
+  stdio: 'inherit'
+})
+
+const packageJson = JSON.parse(
+  fs.readFileSync(path.resolve(__dirname, '../package.json'), 'utf-8')
+)
+
+exec('git push --tags')
+
+exec('gren r --override', {
+  stdio: 'inherit'
+})
+
+exec('gren c --override', {
+  stdio: 'inherit'
+})
+
+exec('git add CHANGELOG.md package.json')
+exec(`git commit -m "[chore] generate CHANGELOG for ${packageJson.version}" --no-verify`)
+exec('git push')
