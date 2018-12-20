@@ -1,21 +1,24 @@
 # Changelog
-All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+## v0.1.0-alpha.1 (20/12/2018)
 
-## [Unreleased]
+#### Chore
 
-### Added
-- Initial project structure
-- Storybook for development purposes until we implement a proper documentation
-- `Button` component with BASE styles for `primary`, `secondary`, `basic` and `flat` variants
-- Added PR template and CODEOWNERS file
-- Added linting support with `standard`, `react` presets and `prettier` auto formatting on commit
-- Added unit testing support with `jest` and `react-testing-library`
-- Added visual regression tests setup usign `puppeteer`, `jest`
+- [**Chore**] [BASE-61] Add PR template and codeowners file [#8](https://github.com/toptal/picasso/pull/8)
 
-## 0.1.0-alpha.1
-### TBA
+#### Lint
 
+- [**Lint**] Fix lint and test setup [#5](https://github.com/toptal/picasso/pull/5)
+- [**Lint**] [BASE-54] Setup linter [#1](https://github.com/toptal/picasso/pull/1)
 
+#### Test
+
+- [**Test**] [PICAS-1] Implement lint job on jenkins [#9](https://github.com/toptal/picasso/pull/9)
+- [**Test**] [Base-66] Visual regression [#6](https://github.com/toptal/picasso/pull/6)
+- [**Test**] [BASE-55] Setup test runner [#2](https://github.com/toptal/picasso/pull/2)
+
+#### enhancement
+
+- [**enhancement**] [PICAS-27] Add release command [#12](https://github.com/toptal/picasso/pull/12)
+- [**enhancement**] [63] Build dist version [#7](https://github.com/toptal/picasso/pull/7)
+- [**enhancement**] Update CI tasks [#10](https://github.com/toptal/picasso/pull/10)
