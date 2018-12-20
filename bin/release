@@ -14,14 +14,14 @@ const packageJson = JSON.parse(
 
 exec('git push --tags')
 
-exec('gren r --override', {
+exec('./node_modules/.bin/gren r --override', {
   stdio: 'inherit'
 })
 
-exec('gren c --override', {
+exec('./node_modules/.bin/gren c --override', {
   stdio: 'inherit'
 })
 
 exec('git add CHANGELOG.md package.json')
 exec(`git commit -m "[chore] generate CHANGELOG for ${packageJson.version}" --no-verify`)
-exec('git push')
+exec('git push origin HEAD:master')
