@@ -1,0 +1,15 @@
+<html>
+  <title>Diff output</title>
+  <bod>
+    <table frameborder=1>
+        <% images.forEach(function(image) { %>
+          <tr>
+            <td><%= image %></td>
+            <td>
+              <img src="<%= image %>">
+            </td>
+          </tr>
+        <% }); %>
+    </table>
+  </bod>
+</html>
