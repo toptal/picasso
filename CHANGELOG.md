@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.1.0-alpha.3 (21/12/2018)
+*No changelog for this release.*
+
+---
+
 ## v0.1.0-alpha.2 (21/12/2018)
 
 #### Chore
