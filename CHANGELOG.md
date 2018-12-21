@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.1.0-alpha.2 (21/12/2018)
+
+#### Chore
+
+- [**Chore**] Include build folder when publish [#14](https://github.com/toptal/picasso/pull/14)
+
+---
+
 ## v0.1.0-alpha.1 (20/12/2018)
 
 #### Chore
