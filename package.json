@@ -4,6 +4,9 @@
   "description": "",
   "main": "build/index.js",
   "module": "build/es/index.js",
+  "files": [
+    "build"
+  ],
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watchAll",
