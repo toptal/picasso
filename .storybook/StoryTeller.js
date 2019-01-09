@@ -19,8 +19,8 @@ const decorator = story => (
 class Section {
   constructor(title, subtitle, callback = () => {}) {
     this.section = {
-      title, 
-      subtitle, 
+      title,
+      subtitle,
       sectionFn: callback,
       options: {
         showSource: false,
@@ -49,10 +49,7 @@ class Chapter {
     const section = new Section(...args)
     this.chapter = {
       ...this.chapter,
-      sections: [
-        ...this.chapter.sections,
-        section
-      ]
+      sections: [...this.chapter.sections, section]
     }
 
     return this
@@ -71,25 +68,21 @@ class Story {
     this.story = {
       title,
       info,
-      chapters: [],
+      chapters: []
     }
   }
 
   addChapter(...args) {
     const chapter = new Chapter(...args)
     this.story = {
-      ...this.story, 
-      chapters: [
-        ...this.story.chapters,
-        chapter
-      ]
+      ...this.story,
+      chapters: [...this.story.chapters, chapter]
     }
 
     return chapter
   }
 
   toStory() {
-    console.log(this.story)
     return {
       ...this.toJSON(),
       chapters: this.story.chapters.map(chapter => chapter.toJSON())
@@ -107,6 +100,5 @@ class StoryTeller {
     return this.story
   }
 }
-
 
 export default StoryTeller

@@ -1,27 +1,83 @@
-import Button from '@material-ui/core/Button'
-import { withStyles } from '@material-ui/core/styles'
+import React from 'react'
+import PropTypes from 'prop-types'
+import MUIButton from '@material-ui/core/Button'
+import withStyles from '@material-ui/core/styles/withStyles'
 
-export default withStyles({
-  root: {
-    textTransform: 'none',
-    padding: '6px 16px',
-    fontSize: '16px'
-  },
-  containedPrimary: {
-    color: 'white',
-    backgroundColor: '#204ecf',
+import { VARIANTS, createButtonVariant } from './styles'
+import PicassoTheme from '../theme'
 
-    '&:hover': {
-      backgroundColor: '#1542c1'
-    }
-  },
-  outlinedSecondary: {
-    color: '#204ecf',
-    borderColor: '#204ecf',
-
-    '&:hover': {
-      backgroundColor: '#cad5f4',
-      borderColor: '#204ecf'
-    }
+// Register global theme overrides to provider
+PicassoTheme.overrides(({ theme }) => ({
+  MuiButton: {
+    containedPrimary: createButtonVariant(
+      VARIANTS.containedPrimary,
+      theme.pallete.primary.main,
+      theme.pallete.primary.main
+    ),
+    containedSecondary: createButtonVariant(
+      VARIANTS.containedSecondary,
+      theme.pallete.secondary.main,
+      theme.pallete.secondary.main
+    ),
+    outlinedPrimary: createButtonVariant(
+      VARIANTS.outlinedPrimary,
+      theme.pallete.primary.main,
+      theme.pallete.primary.main
+    ),
+    outlinedSecondary: createButtonVariant(
+      VARIANTS.outlinedSecondary,
+      theme.pallete.secondary.main,
+      theme.pallete.secondary.main
+    ),
+    outlined: createButtonVariant(
+      VARIANTS.outlined,
+      theme.pallete.grey[50],
+      theme.pallete.grey[100]
+    ),
+    flat: createButtonVariant(
+      VARIANTS.flat,
+      theme.pallete.grey[100],
+      theme.pallete.grey[100]
+    ),
+    flatPrimary: createButtonVariant(
+      VARIANTS.flat,
+      theme.pallete.primary.main,
+      theme.pallete.primary.main
+    ),
+    flatSecondary: createButtonVariant(
+      VARIANTS.flat,
+      theme.pallete.secondary.main,
+      theme.pallete.secondary.main
+    )
   }
-})(Button)
+}))
+
+const styles = {
+  icon: {
+    fontSize: '1em',
+    paddingRight: '0.75em'
+  }
+}
+
+const Button = props => {
+  const { icon, children, classes, ...rest } = props
+  const finalChildren = [children]
+
+  if (icon) {
+    const iconComponent = React.cloneElement(icon, { className: classes.icon })
+
+    finalChildren.unshift(iconComponent)
+  }
+
+  return <MUIButton {...rest}>{finalChildren}</MUIButton>
+}
+
+Button.propTypes = {
+  icon: PropTypes.node
+}
+
+Button.defaultProps = {
+  icon: null
+}
+
+export default withStyles(styles)(Button)

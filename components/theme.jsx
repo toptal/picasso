@@ -30,29 +30,31 @@ export class PicassoTheme {
     this.theme = picassoTheme
   }
 
-  overrides (cb = () => {}) {
+  overrides (_overrides = () => {}) {
     this.theme = {
       ...this.theme,
       overrides: {
         ...this.theme.overrides,
-        ...cb({ theme: this.theme })
+        ..._overrides({ theme: this.theme })
       }
     }
   }
 }
 
 const adapter = new PicassoTheme()
-const muiTheme = (adapter) => createMuiTheme({
-  ...adapter.theme
-})
+const muiTheme = adapter =>
+  createMuiTheme({
+    ...adapter.theme
+  })
 
-export const withPicasso = (Component) =>
-  (props) => (
+export const withPicasso = Component => {
+  const componentWithPicasso = props => (
     <MuiThemeProvider theme={muiTheme(adapter)}>
       <Component {...props} />
     </MuiThemeProvider>
   )
 
-withPicasso.displayName = 'withPicasso'
+  return componentWithPicasso
+}
 
 export default adapter
