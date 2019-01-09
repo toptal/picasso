@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Icon prop renders icon at the beginning 1`] = `
+<div>
+  <div
+    class="MuiFormControl-root-52"
+  >
+    <div
+      class="MuiInputBase-root-69 MuiFilledInput-root-56 MuiFilledInput-underline-57 MuiInputBase-formControl-70 MuiInputBase-adornedStart-73 MuiFilledInput-adornedStart-60"
+    >
+      <div
+        class="MuiInputAdornment-root-86 MuiInputAdornment-positionStart-88"
+      >
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root-90"
+          focusable="false"
+          role="presentation"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+          />
+          <path
+            d="M0 0h24v24H0z"
+            fill="none"
+          />
+        </svg>
+      </div>
+      <input
+        aria-invalid="false"
+        class="MuiInputBase-input-79 MuiFilledInput-input-64 MuiInputBase-inputAdornedStart-84 MuiFilledInput-inputAdornedStart-67"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Icon prop renders icon at the end 1`] = `
+<div>
+  <div
+    class="MuiFormControl-root-3"
+  >
+    <div
+      class="MuiInputBase-root-20 MuiFilledInput-root-7 MuiFilledInput-underline-8 MuiInputBase-formControl-21 MuiInputBase-adornedEnd-25 MuiFilledInput-adornedEnd-12"
+    >
+      <input
+        aria-invalid="false"
+        class="MuiInputBase-input-30 MuiFilledInput-input-15 MuiInputBase-inputAdornedEnd-36 MuiFilledInput-inputAdornedEnd-19"
+        type="text"
+        value=""
+      />
+      <div
+        class="MuiInputAdornment-root-37 MuiInputAdornment-positionStart-39"
+      >
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root-41"
+          focusable="false"
+          role="presentation"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+          />
+          <path
+            d="M0 0h24v24H0z"
+            fill="none"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+`;

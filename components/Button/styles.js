@@ -1,3 +1,4 @@
+import colors from '../Picasso/colors'
 import color from 'color'
 
 const flatButton = (background, border) => ({
@@ -54,6 +55,60 @@ export const createButtonVariant = (
   variant = VARIANTS.outlined,
   background,
   border
-) => {
-  return variant(background, border)
+) => variant(background, border)
+
+export default {
+  MuiButton: {
+    root: {
+      textTransform: 'none',
+      padding: '6px 16px',
+      fontSize: '16px'
+    },
+    containedPrimary: createButtonVariant(
+      VARIANTS.containedPrimary,
+      colors.primary.main,
+      colors.primary.main
+    ),
+    containedSecondary: createButtonVariant(
+      VARIANTS.containedSecondary,
+      colors.secondary.main,
+      colors.secondary.main
+    ),
+    outlinedPrimary: createButtonVariant(
+      VARIANTS.outlinedPrimary,
+      colors.primary.main,
+      colors.primary.main
+    ),
+    outlinedSecondary: createButtonVariant(
+      VARIANTS.outlinedSecondary,
+      colors.secondary.main,
+      colors.secondary.main
+    ),
+    outlined: createButtonVariant(
+      VARIANTS.outlined,
+      colors.grey[50],
+      colors.grey[100]
+    ),
+    flat: createButtonVariant(
+      VARIANTS.flat,
+      colors.grey[100],
+      colors.grey[100]
+    ),
+    flatPrimary: createButtonVariant(
+      VARIANTS.flat,
+      colors.primary.main,
+      colors.primary.main
+    ),
+    flatSecondary: createButtonVariant(
+      VARIANTS.flat,
+      colors.secondary.main,
+      colors.secondary.main
+    )
+  },
+  Button: {
+    icon: {
+      fontSize: '1em',
+      paddingRight: '0.75em'
+    }
+  }
 }
