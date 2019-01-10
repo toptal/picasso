@@ -34,6 +34,8 @@
   "homepage": "https://github.com/toptal/ui-library#readme",
   "dependencies": {
     "@material-ui/core": "^3.6.0",
+    "@material-ui/icons": "^3.0.2",
+    "color": "^3.1.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3"
   },
@@ -44,6 +46,10 @@
     "@babel/plugin-transform-object-assign": "^7.2.0",
     "@babel/plugin-transform-runtime": "^7.2.0",
     "@babel/preset-env": "^7.2.0",
+    "@storybook/addon-actions": "^4.1.4",
+    "@storybook/addon-knobs": "^4.1.4",
+    "@storybook/addon-links": "^4.1.4",
+    "@storybook/addon-options": "^4.1.4",
     "@storybook/react": "^4.0.9",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
@@ -69,6 +75,7 @@
     "lint-staged": "^8.1.0",
     "prettier-standard": "^8.0.1",
     "puppeteer": "^1.11.0",
+    "react-storybook-addon-chapters": "^3.0.3",
     "react-testing-library": "^5.3.1",
     "regenerator-runtime": "^0.13.1",
     "rimraf": "^2.6.2",

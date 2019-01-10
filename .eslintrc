@@ -12,67 +12,71 @@
     }
   },
   "rules": {
+    "no-console": ["error"],
     "react/jsx-max-props-per-line": ["error", { "when": "multiline" }],
     "react/jsx-one-expression-per-line": 0,
     "react/jsx-no-literals": 0,
     "react/jsx-no-bind": 0,
     "react/jsx-closing-bracket-location": ["error", "line-aligned"],
-    "react/jsx-wrap-multilines": ["error", {
-      "declaration": "parens-new-line",
-      "assignment": "parens-new-line",
-      "return": "parens-new-line",
-      "arrow": "parens-new-line",
-      "condition": "parens-new-line",
-      "logical": "parens-new-line"
-    }],
+    "react/jsx-wrap-multilines": [
+      "error",
+      {
+        "declaration": "parens-new-line",
+        "assignment": "parens-new-line",
+        "return": "parens-new-line",
+        "arrow": "parens-new-line",
+        "condition": "parens-new-line",
+        "logical": "parens-new-line"
+      }
+    ],
     "react/jsx-max-depth": 0,
     "react/no-set-state": 0,
     "react/jsx-child-element-spacing": 0,
     "react/forbid-component-props": 0,
     "react/prefer-stateless-function": 0,
     "react/sort-prop-types": 0,
-    "react/sort-comp": ["error", {
-      "order": [
-        "static-methods",
-        "instance-variables",
-        "lifecycle",
-        "getters",
-        "setters",
-        "/^on.+$/",
-        "/^handle.+$/",
-        "/^(get|set)(?!(InitialState$|DefaultProps$|ChildContext$)).+$/",
-        "instance-methods",
-        "everything-else",
-        "rendering"
-      ],
-      "groups": {
-        "lifecycle": [
-          "displayName",
-          "propTypes",
-          "contextTypes",
-          "childContextTypes",
-          "mixins",
-          "statics",
-          "defaultProps",
-          "constructor",
-          "getDefaultProps",
-          "getInitialState",
-          "state",
-          "getChildContext",
-          "componentWillMount",
-          "componentDidMount",
-          "componentWillReceiveProps",
-          "shouldComponentUpdate",
-          "componentWillUpdate",
-          "componentDidUpdate",
-          "componentWillUnmount"
+    "react/sort-comp": [
+      "error",
+      {
+        "order": [
+          "static-methods",
+          "instance-variables",
+          "lifecycle",
+          "getters",
+          "setters",
+          "/^on.+$/",
+          "/^handle.+$/",
+          "/^(get|set)(?!(InitialState$|DefaultProps$|ChildContext$)).+$/",
+          "instance-methods",
+          "everything-else",
+          "rendering"
         ],
-        "rendering": [
-          "/^render.+$/",
-          "render"
-        ]
+        "groups": {
+          "lifecycle": [
+            "displayName",
+            "propTypes",
+            "contextTypes",
+            "childContextTypes",
+            "mixins",
+            "statics",
+            "defaultProps",
+            "constructor",
+            "getDefaultProps",
+            "getInitialState",
+            "state",
+            "getChildContext",
+            "componentWillMount",
+            "componentDidMount",
+            "componentWillReceiveProps",
+            "shouldComponentUpdate",
+            "componentWillUpdate",
+            "componentDidUpdate",
+            "componentWillUnmount"
+          ],
+          "rendering": ["/^render.+$/", "render"]
+        }
       }
-    }],
+    ],
     "react/forbid-prop-types": ["error", { "checkContextTypes": true }],
     "object-curly-spacing": ["error", "always"],
     "newline-after-var": ["error", "always"]
