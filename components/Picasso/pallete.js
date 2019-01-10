@@ -1,7 +1,7 @@
-const colors = {
+const pallete = {
   primary: {
     main: '#204ecf',
-    darker: '#1542c1'
+    dark: '#1542c1'
   },
   secondary: {
     main: '#00cc83'
@@ -20,4 +20,4 @@ const colors = {
   }
 }
 
-export default colors
+export default pallete

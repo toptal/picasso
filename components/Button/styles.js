@@ -1,5 +1,6 @@
-import colors from '../Picasso/colors'
 import color from 'color'
+
+import { PicassoProvider } from '../Picasso'
 
 const flatButton = (background, border) => ({
   backgroundColor: '#fff',
@@ -57,7 +58,7 @@ export const createButtonVariant = (
   border
 ) => variant(background, border)
 
-export default {
+PicassoProvider.override(({ pallete }) => ({
   MuiButton: {
     root: {
       textTransform: 'none',
@@ -66,45 +67,48 @@ export default {
     },
     containedPrimary: createButtonVariant(
       VARIANTS.containedPrimary,
-      colors.primary.main,
-      colors.primary.main
+      pallete.primary.main,
+      pallete.primary.main
     ),
     containedSecondary: createButtonVariant(
       VARIANTS.containedSecondary,
-      colors.secondary.main,
-      colors.secondary.main
+      pallete.secondary.main,
+      pallete.secondary.main
     ),
     outlinedPrimary: createButtonVariant(
       VARIANTS.outlinedPrimary,
-      colors.primary.main,
-      colors.primary.main
+      pallete.primary.main,
+      pallete.primary.main
     ),
     outlinedSecondary: createButtonVariant(
       VARIANTS.outlinedSecondary,
-      colors.secondary.main,
-      colors.secondary.main
+      pallete.secondary.main,
+      pallete.secondary.main
     ),
     outlined: createButtonVariant(
       VARIANTS.outlined,
-      colors.grey[50],
-      colors.grey[100]
+      pallete.grey[50],
+      pallete.grey[100]
     ),
     flat: createButtonVariant(
       VARIANTS.flat,
-      colors.grey[100],
-      colors.grey[100]
+      pallete.grey[100],
+      pallete.grey[100]
     ),
     flatPrimary: createButtonVariant(
       VARIANTS.flat,
-      colors.primary.main,
-      colors.primary.main
+      pallete.primary.main,
+      pallete.primary.main
     ),
     flatSecondary: createButtonVariant(
       VARIANTS.flat,
-      colors.secondary.main,
-      colors.secondary.main
+      pallete.secondary.main,
+      pallete.secondary.main
     )
-  },
+  }
+}))
+
+export default {
   Button: {
     icon: {
       fontSize: '1em',

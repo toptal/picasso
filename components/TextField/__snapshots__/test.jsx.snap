@@ -3,17 +3,17 @@
 exports[`Icon prop renders icon at the beginning 1`] = `
 <div>
   <div
-    class="MuiFormControl-root-52"
+    class="MuiFormControl-root-50"
   >
     <div
-      class="MuiInputBase-root-69 MuiFilledInput-root-56 MuiFilledInput-underline-57 MuiInputBase-formControl-70 MuiInputBase-adornedStart-73 MuiFilledInput-adornedStart-60"
+      class="MuiInputBase-root-67 MuiFilledInput-root-54 MuiFilledInput-underline-55 MuiInputBase-formControl-68 MuiInputBase-adornedStart-71 MuiFilledInput-adornedStart-58"
     >
       <div
-        class="MuiInputAdornment-root-86 MuiInputAdornment-positionStart-88"
+        class="MuiInputAdornment-root-84 MuiInputAdornment-positionStart-86"
       >
         <svg
           aria-hidden="true"
-          class="MuiSvgIcon-root-90"
+          class="MuiSvgIcon-root-88"
           focusable="false"
           role="presentation"
           viewBox="0 0 24 24"
@@ -29,7 +29,7 @@ exports[`Icon prop renders icon at the beginning 1`] = `
       </div>
       <input
         aria-invalid="false"
-        class="MuiInputBase-input-79 MuiFilledInput-input-64 MuiInputBase-inputAdornedStart-84 MuiFilledInput-inputAdornedStart-67"
+        class="MuiInputBase-input-77 MuiFilledInput-input-62 MuiInputBase-inputAdornedStart-82 MuiFilledInput-inputAdornedStart-65"
         type="text"
         value=""
       />
@@ -41,23 +41,23 @@ exports[`Icon prop renders icon at the beginning 1`] = `
 exports[`Icon prop renders icon at the end 1`] = `
 <div>
   <div
-    class="MuiFormControl-root-3"
+    class="MuiFormControl-root-2"
   >
     <div
-      class="MuiInputBase-root-20 MuiFilledInput-root-7 MuiFilledInput-underline-8 MuiInputBase-formControl-21 MuiInputBase-adornedEnd-25 MuiFilledInput-adornedEnd-12"
+      class="MuiInputBase-root-19 MuiFilledInput-root-6 MuiFilledInput-underline-7 MuiInputBase-formControl-20 MuiInputBase-adornedEnd-24 MuiFilledInput-adornedEnd-11"
     >
       <input
         aria-invalid="false"
-        class="MuiInputBase-input-30 MuiFilledInput-input-15 MuiInputBase-inputAdornedEnd-36 MuiFilledInput-inputAdornedEnd-19"
+        class="MuiInputBase-input-29 MuiFilledInput-input-14 MuiInputBase-inputAdornedEnd-35 MuiFilledInput-inputAdornedEnd-18"
         type="text"
         value=""
       />
       <div
-        class="MuiInputAdornment-root-37 MuiInputAdornment-positionStart-39"
+        class="MuiInputAdornment-root-36 MuiInputAdornment-positionStart-38"
       >
         <svg
           aria-hidden="true"
-          class="MuiSvgIcon-root-41"
+          class="MuiSvgIcon-root-40"
           focusable="false"
           role="presentation"
           viewBox="0 0 24 24"

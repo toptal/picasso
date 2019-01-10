@@ -1,16 +1,16 @@
-import colors from '../Picasso/colors'
+import { PicassoProvider } from '../Picasso'
 
-export default {
+PicassoProvider.override(({ pallete }) => ({
   MuiInputBase: {
     root: {
-      border: 'solid 1px #dfe3e9',
+      border: `solid 1px ${pallete.grey[50]}`,
       borderTopLeftRadius: 0,
       borderTopRightRadius: 0,
       backgroundColor: 'transparent',
       transition: 'color 200ms cubic-bezier(0.0, 0, 0.2, 1) border-color',
 
       '&$focused': {
-        borderColor: colors.primary.main
+        borderColor: pallete.primary.main
       },
 
       '&$focused, &:hover': {
@@ -18,16 +18,19 @@ export default {
       },
 
       '&$error': {
-        borderColor: colors.error.text,
-        color: colors.error.main,
-        backgroundColor: colors.error.background
+        borderColor: pallete.error.text,
+        color: pallete.error.main,
+        backgroundColor: pallete.error.background
       }
     },
     input: {
       fontSize: '18px',
       lineHeight: '1.2em'
     }
-  },
+  }
+}))
+
+PicassoProvider.override(({ pallete }) => ({
   MuiInputLabel: {
     filled: {
       transform: 'translate(0.75em, 1em) scale(1)',
@@ -40,9 +43,60 @@ export default {
     shrink: {},
 
     error: {
-      color: colors.error.text
+      color: pallete.error.text
     }
-  },
+  }
+}))
+
+PicassoProvider.override(({ pallete }) => ({
+  MuiInputLabel: {
+    filled: {
+      transform: 'translate(0.75em, 1em) scale(1)',
+      '&$shrink': {
+        transform: 'translate(0.85em, 0.6em) scale(.75)'
+      }
+    },
+    shrink: {},
+    error: {
+      color: pallete.error.text
+    }
+  }
+}))
+
+PicassoProvider.override(({ pallete }) => ({
+  MuiInputLabel: {
+    filled: {
+      transform: 'translate(0.75em, 1em) scale(1)',
+
+      '&$shrink': {
+        transform: 'translate(0.85em, 0.6em) scale(.75)'
+      }
+    },
+
+    shrink: {},
+
+    error: {
+      color: pallete.error.text
+    }
+  }
+}))
+
+PicassoProvider.override(({ pallete }) => ({
+  MuiInputLabel: {
+    filled: {
+      transform: 'translate(0.75em, 1em) scale(1)',
+      '&$shrink': {
+        transform: 'translate(0.85em, 0.6em) scale(.75)'
+      }
+    },
+    shrink: {},
+    error: {
+      color: pallete.error.text
+    }
+  }
+}))
+
+PicassoProvider.override(({ pallete }) => ({
   MuiFilledInput: {
     root: {
       border: 'solid 1px #dfe3e9',
@@ -50,19 +104,16 @@ export default {
       borderTopRightRadius: 0,
       backgroundColor: 'transparent',
       transition: 'color 200ms cubic-bezier(0.0, 0, 0.2, 1) border-color',
-
       '&$focused': {
-        borderColor: colors.primary.main
+        borderColor: pallete.primary.main
       },
-
       '&$focused, &:hover': {
         backgroundColor: 'transparent'
       },
-
       '&$error': {
-        borderColor: colors.error.text,
-        color: colors.error.main,
-        backgroundColor: colors.error.background
+        borderColor: pallete.error.text,
+        color: pallete.error.main,
+        backgroundColor: pallete.error.background
       }
     },
     input: {
@@ -75,14 +126,20 @@ export default {
     },
     focused: {},
     error: {}
-  },
+  }
+}))
+
+PicassoProvider.override(() => ({
   MuiSelect: {
     select: {
       '&:focus': {
         backgroundColor: 'transparent'
       }
     }
-  },
+  }
+}))
+
+PicassoProvider.override(() => ({
   TextField: {
     iconStart: {
       transform: 'translate(2.8em, 1em) scale(1)',
@@ -91,5 +148,16 @@ export default {
       }
     },
     shrink: {}
+  }
+}))
+
+export default {
+  TextField: {
+    iconStart: {
+      transform: 'translate(2.8em, 1em) scale(1)',
+      '&$shrink': {
+        transform: 'translate(2.8em, 0.6em) scale(.75)'
+      }
+    }
   }
 }

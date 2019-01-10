@@ -20,8 +20,8 @@ const DECORATORS = [
 
 const ADDONS = [chaptersAddon]
 
-DECORATORS.forEach((decorator) => addDecorator(decorator))
-ADDONS.forEach((addon) => setAddon(addon))
+DECORATORS.forEach(decorator => addDecorator(decorator))
+ADDONS.forEach(addon => setAddon(addon))
 
 function loadStories() {
   require('./stories/index.js')
