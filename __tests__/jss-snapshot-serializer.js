@@ -35,7 +35,7 @@ const replaceJssClassNames = elements => {
     // so we simply remove from the snapshots
     const classNameProp = element.className
 
-    if (!classNameProp) return
+    if (!classNameProp || typeof classNameProp !== 'string') return
 
     const deterministicClassNames = classNameProp
       .trim()

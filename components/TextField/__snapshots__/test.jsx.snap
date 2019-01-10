@@ -3,13 +3,13 @@
 exports[`Icon prop renders icon at the beginning 1`] = `
 <div>
   <div
-    class="MuiFormControl-root-50"
+    class="MuiFormControl-root"
   >
     <div
-      class="MuiInputBase-root-67 MuiFilledInput-root-54 MuiFilledInput-underline-55 MuiInputBase-formControl-68 MuiInputBase-adornedStart-71 MuiFilledInput-adornedStart-58"
+      class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-formControl MuiInputBase-adornedStart MuiFilledInput-adornedStart"
     >
       <div
-        class="MuiInputAdornment-root-84 MuiInputAdornment-positionStart-86"
+        class="MuiInputAdornment-root MuiInputAdornment-positionStart"
       >
         <svg
           aria-hidden="true"
@@ -29,7 +29,7 @@ exports[`Icon prop renders icon at the beginning 1`] = `
       </div>
       <input
         aria-invalid="false"
-        class="MuiInputBase-input-77 MuiFilledInput-input-62 MuiInputBase-inputAdornedStart-82 MuiFilledInput-inputAdornedStart-65"
+        class="MuiInputBase-input MuiFilledInput-input MuiInputBase-inputAdornedStart MuiFilledInput-inputAdornedStart"
         type="text"
         value=""
       />
@@ -41,19 +41,19 @@ exports[`Icon prop renders icon at the beginning 1`] = `
 exports[`Icon prop renders icon at the end 1`] = `
 <div>
   <div
-    class="MuiFormControl-root-2"
+    class="MuiFormControl-root"
   >
     <div
-      class="MuiInputBase-root-19 MuiFilledInput-root-6 MuiFilledInput-underline-7 MuiInputBase-formControl-20 MuiInputBase-adornedEnd-24 MuiFilledInput-adornedEnd-11"
+      class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-formControl MuiInputBase-adornedEnd MuiFilledInput-adornedEnd"
     >
       <input
         aria-invalid="false"
-        class="MuiInputBase-input-29 MuiFilledInput-input-14 MuiInputBase-inputAdornedEnd-35 MuiFilledInput-inputAdornedEnd-18"
+        class="MuiInputBase-input MuiFilledInput-input MuiInputBase-inputAdornedEnd MuiFilledInput-inputAdornedEnd"
         type="text"
         value=""
       />
       <div
-        class="MuiInputAdornment-root-36 MuiInputAdornment-positionStart-38"
+        class="MuiInputAdornment-root MuiInputAdornment-positionStart"
       >
         <svg
           aria-hidden="true"
