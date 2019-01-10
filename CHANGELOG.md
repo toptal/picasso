@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.1.0-alpha.4 (10/01/2019)
+
+#### Feature
+
+- [**Feature**] [PICAS-17] Initial components - Button [#15](https://github.com/toptal/picasso/pull/15)
+
+---
+
 ## v0.1.0-alpha.3 (21/12/2018)
 *No changelog for this release.*
 
