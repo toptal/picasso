@@ -24,7 +24,7 @@ class Section {
       sectionFn: callback,
       options: {
         showSource: false,
-        allowSourceToggling: false,
+        allowSourceToggling: true,
         allowPropTablesToggling: false,
         decorator
       }
