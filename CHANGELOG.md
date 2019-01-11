@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.1.0-alpha.5 (11/01/2019)
+
+#### CI
+
+- [**CI**] Fix Jenkins PR job to have NPM_TOKEN [#17](https://github.com/toptal/picasso/pull/17)
+
+#### Feature
+
+- [**Feature**] Introduce Picasso component. Add TextField with an option to render Icon [#16](https://github.com/toptal/picasso/pull/16)
+
+---
+
 ## v0.1.0-alpha.4 (10/01/2019)
 
 #### Feature
