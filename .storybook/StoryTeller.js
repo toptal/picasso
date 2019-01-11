@@ -10,8 +10,7 @@ const decorator = story => (
       padding: '20px',
       justifyContent: 'center',
       borderRadius: '5px'
-    }}
-  >
+    }}>
     {story()}
   </div>
 )

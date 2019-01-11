@@ -1,5 +1,7 @@
 import color from 'color'
 
+import { PicassoProvider } from '../Picasso'
+
 const flatButton = (background, border) => ({
   backgroundColor: '#fff',
   color: background,
@@ -54,6 +56,63 @@ export const createButtonVariant = (
   variant = VARIANTS.outlined,
   background,
   border
-) => {
-  return variant(background, border)
+) => variant(background, border)
+
+PicassoProvider.override(({ pallete }) => ({
+  MuiButton: {
+    root: {
+      textTransform: 'none',
+      padding: '6px 16px',
+      fontSize: '16px'
+    },
+    containedPrimary: createButtonVariant(
+      VARIANTS.containedPrimary,
+      pallete.primary.main,
+      pallete.primary.main
+    ),
+    containedSecondary: createButtonVariant(
+      VARIANTS.containedSecondary,
+      pallete.secondary.main,
+      pallete.secondary.main
+    ),
+    outlinedPrimary: createButtonVariant(
+      VARIANTS.outlinedPrimary,
+      pallete.primary.main,
+      pallete.primary.main
+    ),
+    outlinedSecondary: createButtonVariant(
+      VARIANTS.outlinedSecondary,
+      pallete.secondary.main,
+      pallete.secondary.main
+    ),
+    outlined: createButtonVariant(
+      VARIANTS.outlined,
+      pallete.grey[50],
+      pallete.grey[100]
+    ),
+    flat: createButtonVariant(
+      VARIANTS.flat,
+      pallete.grey[100],
+      pallete.grey[100]
+    ),
+    flatPrimary: createButtonVariant(
+      VARIANTS.flat,
+      pallete.primary.main,
+      pallete.primary.main
+    ),
+    flatSecondary: createButtonVariant(
+      VARIANTS.flat,
+      pallete.secondary.main,
+      pallete.secondary.main
+    )
+  }
+}))
+
+export default {
+  Button: {
+    icon: {
+      fontSize: '1em',
+      paddingRight: '0.75em'
+    }
+  }
 }

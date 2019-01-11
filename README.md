@@ -19,3 +19,21 @@
 `yarn test-visual:watch` - run visual tests in watch mode
 
 `yarn release:alpha` - bump alpha version in `package.json` and create new version git tag
+
+
+## Start using library
+
+```jsx
+import Picasso, { Button } from '@toptal/picasso'
+...
+
+render () {
+  return (
+    <Picasso>
+      <Button>Hello world!</Button>
+    </Picasso>
+  )
+}
+```
+
+`Picasso` component rendered at root level is required for library theme configuration and theme to work properly. 
