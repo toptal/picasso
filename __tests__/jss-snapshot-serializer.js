@@ -2,9 +2,13 @@
 
 const MARKER = '__jss-snapshot-serializer-marker__'
 
+// JSS generates the class names that follow this format:
+// {componentName}-{ruleName}-{jssCounter}
+// the non-deterministic part of it is "-{jssCounter}"
+// https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/styles/createGenerateClassName.js
 const jssClassNameRegexp = /([a-zA-Z0-9]*)-([a-zA-Z0-9]*)-([0-9]*)/
 
-const collectElements = (element, elements = []) => {
+const flatElementsTree = (element, elements = []) => {
   if (typeof element !== 'object') {
     return elements
   }
@@ -13,26 +17,22 @@ const collectElements = (element, elements = []) => {
 
   if (element.children) {
     for (const child of element.children) {
-      collectElements(child, elements)
+      flatElementsTree(child, elements)
     }
   }
 
   return elements
 }
 
-const markElements = nodes =>
+const markElementsProcessed = nodes =>
   nodes.forEach(element => {
     element[MARKER] = true
   })
 
-const replaceJssClassNames = elements => {
+const removeNonDeterministicClassParts = elements => {
   elements.forEach(element => {
     if (!element.className) return
 
-    // JSS generates the class names that follow this format:
-    // {componentName}-{ruleName}-{jssCounter}
-    // the non-deterministic part of it is "-{jssCounter}"
-    // so we simply remove from the snapshots
     const classNameProp = element.className
 
     if (!classNameProp || typeof classNameProp !== 'string') return
@@ -59,21 +59,17 @@ const replaceJssClassNames = elements => {
 
 module.exports = {
   test (value) {
-    // apply the serializer only to react elements that we haven't marked(processed) before
-    return value && !value[MARKER] && value instanceof HTMLElement
+    const isNotProcessed = !value[MARKER]
+    const isHTMLElement = value instanceof HTMLElement
+
+    return value && isNotProcessed && isHTMLElement
   },
 
   print (value, serialize) {
-    // collect all react element nodes in the tree of the value
-    const elements = collectElements(value)
+    const elements = flatElementsTree(value)
 
-    // mark the collected element nodes to avoid processing them several times
-    markElements(elements)
-
-    // remove the non-deterministic part from the JSS class names
-    // to keep the snapshots repeatable
-    replaceJssClassNames(elements)
-
+    markElementsProcessed(elements)
+    removeNonDeterministicClassParts(elements)
     return serialize(value)
   }
 }
