@@ -3,7 +3,8 @@ to: components/<%= h.changeCase.pascalCase(name) %>/test.jsx
 ---
 <%
   Name = h.changeCase.pascalCase(name)
-%>import React from 'react'
+-%>
+import React from 'react'
 import <%= Name %> from './index'
 import { render, fireEvent, cleanup } from 'react-testing-library'
 

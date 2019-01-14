@@ -3,7 +3,8 @@ to: .storybook/stories/<%= h.changeCase.pascalCase(name) %>.jsx
 ---
 <%
   Name = h.changeCase.pascalCase(name)
-%>import React from 'react'
+-%>
+import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { text, select } from '@storybook/addon-knobs'
 
