@@ -1,19 +1,21 @@
 ---
 to: components/<%= h.changeCase.pascalCase(name) %>/test.jsx
 ---
-import React from 'react'
-import <%= h.changeCase.pascalCase(name) %> from './index'
+<%
+  Name = h.changeCase.pascalCase(name)
+%>import React from 'react'
+import <%= Name %> from './index'
 import { render, fireEvent, cleanup } from 'react-testing-library'
 
-const render<%= h.changeCase.pascalCase(name) %> = (children, props = {}) => {
-  return render(<<%= h.changeCase.pascalCase(name) %> {...props}>{children}</<%= h.changeCase.pascalCase(name) %>>)
+const render<%= Name %> = (children, props = {}) => {
+  return render(<<%= Name %> {...props}>{children}</<%= Name %>>)
 }
 
 afterEach(cleanup)
 
 describe('', () => {
   beforeEach(() => {
-    api = render<%= h.changeCase.pascalCase(name) %>()
+    api = render<%= Name %>()
   })
   test('', () => {
     const { container } = api
