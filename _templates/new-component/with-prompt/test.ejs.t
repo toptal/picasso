@@ -6,6 +6,7 @@ to: components/<%= h.changeCase.pascalCase(name) %>/test.jsx
 -%>
 import React from 'react'
 import <%= Name %> from './index'
+/* eslint-disable no-unused-vars */
 import { render, fireEvent, cleanup } from 'react-testing-library'
 
 const render<%= Name %> = (children, props = {}) => {

@@ -6,6 +6,7 @@ to: .storybook/stories/<%= h.changeCase.pascalCase(name) %>.jsx
 -%>
 import React from 'react'
 import { storiesOf } from '@storybook/react'
+/* eslint-disable no-unused-vars */
 import { text, select } from '@storybook/addon-knobs'
 
 import StoryTeller from '../StoryTeller'
