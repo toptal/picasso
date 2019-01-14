@@ -20,6 +20,7 @@
 
 `yarn release:alpha` - bump alpha version in `package.json` and create new version git tag
 
+`yarn generate:new-component` - generate a new component template
 
 ## Start using library
 
