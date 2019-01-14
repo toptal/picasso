@@ -24,10 +24,11 @@ const flatElementsTree = (element, elements = []) => {
   return elements
 }
 
-const markElementsProcessed = nodes =>
-  nodes.forEach(element => {
+const markElementsProcessed = nodes => {
+  return nodes.forEach(element => {
     element[MARKER] = true
   })
+}
 
 const removeNonDeterministicClassParts = elements => {
   elements.forEach(element => {
