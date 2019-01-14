@@ -12,11 +12,11 @@ import <%= Name %> from '../../components/<%= Name %>'
 
 const stories = storiesOf('<%= Name %>', module)
 
-const teller = new StoryTeller('<%= Name %>', '*description*')
+const teller = new StoryTeller('<%= Name %>', '*component description*')
 const chapter = teller.addChapter()
 
 chapter
-  .addSection('*section name*', '*section description*', () => (
+  .addSection('*section header*', '*section description*', () => (
     <div>
       <<%= Name %>></<%= Name %>>
     </div>

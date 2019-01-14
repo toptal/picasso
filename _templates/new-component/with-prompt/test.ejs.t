@@ -14,6 +14,8 @@ const render<%= Name %> = (children, props = {}) => {
 afterEach(cleanup)
 
 describe('', () => {
+  let api
+
   beforeEach(() => {
     api = render<%= Name %>()
   })
