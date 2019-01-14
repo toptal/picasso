@@ -18,12 +18,9 @@ const picasso = {
   }
 }
 
-const createTheme = provider => createMuiTheme(provider.theme)
-
+const PicassoProvider = new Provider(createMuiTheme(picasso))
 const Picasso = ({ children }) => (
-  <MuiThemeProvider theme={createTheme(PicassoProvider)}>
-    {children}
-  </MuiThemeProvider>
+  <MuiThemeProvider theme={PicassoProvider.theme}>{children}</MuiThemeProvider>
 )
 
 Picasso.displayName = Picasso
@@ -31,5 +28,5 @@ Picasso.propTypes = {
   children: PT.node.isRequired
 }
 
-export const PicassoProvider = new Provider(picasso)
+export { PicassoProvider }
 export default Picasso

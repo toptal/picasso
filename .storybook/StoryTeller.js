@@ -10,33 +10,34 @@ const decorator = story => (
       padding: '20px',
       justifyContent: 'center',
       borderRadius: '5px'
-    }}>
+    }}
+  >
     {story()}
   </div>
 )
 
 class Section {
-  constructor(title, subtitle, callback = () => {}) {
+  constructor (title, subtitle, callback = () => {}) {
     this.section = {
       title,
       subtitle,
       sectionFn: callback,
       options: {
         showSource: false,
-        allowSourceToggling: false,
+        allowSourceToggling: true,
         allowPropTablesToggling: false,
         decorator
       }
     }
   }
 
-  toJSON() {
+  toJSON () {
     return this.section
   }
 }
 
 class Chapter {
-  constructor(title, info) {
+  constructor (title, info) {
     this.chapter = {
       title,
       info,
@@ -44,7 +45,7 @@ class Chapter {
     }
   }
 
-  addSection(...args) {
+  addSection (...args) {
     const section = new Section(...args)
     this.chapter = {
       ...this.chapter,
@@ -54,7 +55,7 @@ class Chapter {
     return this
   }
 
-  toJSON() {
+  toJSON () {
     return {
       ...this.chapter,
       sections: this.chapter.sections.map(section => section.toJSON())
@@ -63,7 +64,7 @@ class Chapter {
 }
 
 class Story {
-  constructor(title, info) {
+  constructor (title, info) {
     this.story = {
       title,
       info,
@@ -71,7 +72,7 @@ class Story {
     }
   }
 
-  addChapter(...args) {
+  addChapter (...args) {
     const chapter = new Chapter(...args)
     this.story = {
       ...this.story,
@@ -81,20 +82,20 @@ class Story {
     return chapter
   }
 
-  toStory() {
+  toStory () {
     return {
       ...this.toJSON(),
       chapters: this.story.chapters.map(chapter => chapter.toJSON())
     }
   }
 
-  toJSON() {
+  toJSON () {
     return this.story
   }
 }
 
 class StoryTeller {
-  constructor(title = '', info = '') {
+  constructor (title = '', info = '') {
     this.story = new Story(title, info)
     return this.story
   }
