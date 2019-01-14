@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.1.0-alpha.6 (14/01/2019)
+
+#### Feature
+
+- [**Feature**] Initial components: Radio button [#19](https://github.com/toptal/picasso/pull/19)
+
+#### Specs
+
+- [**Specs**] Add snapshot serializer to remove dynamic parts of classnames from MUI components [#18](https://github.com/toptal/picasso/pull/18)
+
+---
+
 ## v0.1.0-alpha.5 (11/01/2019)
 
 #### CI
