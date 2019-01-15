@@ -21,7 +21,7 @@
     "build:watch": "cross-env BABEL_ENV=es ./bin/build --config dev --watch",
     "build": "yarn build:es2015 && yarn build:es6",
     "symlink": "cross-env BABEL_ENV=es ./bin/build --config dev --symlink",
-    "generate:component": "hygen new-component with-prompt"
+    "generate:component": "hygen new-component new"
   },
   "repository": {
     "type": "git",
