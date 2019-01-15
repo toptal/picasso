@@ -79,7 +79,18 @@
     ],
     "react/forbid-prop-types": ["error", { "checkContextTypes": true }],
     "object-curly-spacing": ["error", "always"],
-    "newline-after-var": ["error", "always"]
+    "newline-after-var": ["error", "always"],
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          ["builtin", "external"],
+          "internal",
+          ["parent", "sibling", "index"]
+        ],
+        "newlines-between": "always"
+      }
+    ]
   },
   "env": {
     "jest": true

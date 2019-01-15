@@ -1,4 +1,5 @@
 const path = require('path')
+
 const config = require('./build.config.js')
 
 module.exports = {

@@ -2,6 +2,7 @@ import React from 'react'
 import MUITextField from '@material-ui/core/TextField'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import { withStyles } from '@material-ui/core/styles'
+
 import styles from './styles'
 
 const TextField = props => {

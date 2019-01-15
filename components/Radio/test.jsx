@@ -1,6 +1,7 @@
 import React from 'react'
-import Radio from './index'
 import { render, fireEvent, cleanup } from 'react-testing-library'
+
+import Radio from './index'
 
 const renderRadio = (props = {}) => {
   return render(<Radio {...props} />)
