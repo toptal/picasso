@@ -1,7 +1,8 @@
 import React from 'react'
-import TextField from './index'
 import { render, cleanup } from 'react-testing-library'
 import SearchIcon from '@material-ui/icons/Search'
+
+import TextField from './index'
 
 const renderTextField = (children, props = {}) => {
   return render(<TextField {...props}>{children}</TextField>)

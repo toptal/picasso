@@ -1,6 +1,7 @@
 import React from 'react'
-import Button from './index'
 import { render, fireEvent, cleanup } from 'react-testing-library'
+
+import Button from './index'
 
 const renderButton = (children, props = {}) => {
   return render(<Button {...props}>{children}</Button>)
