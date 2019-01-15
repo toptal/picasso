@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import MUISelect from '@material-ui/core/Select'
 import { withStyles } from '@material-ui/core/styles'
 
+import OutlinedInput from '../OutlinedInput'
 import MenuItem from '../MenuItem'
 import styles from './styles'
 
@@ -23,10 +24,24 @@ const renderOptions = props => {
 }
 
 const Select = props => {
-  const { children, options, ...rest } = props
+  const { children, options, variant, classes, inputProps, ...rest } = props
+  const { outlinedInput, ...restClasses } = classes
+
+  if (variant === 'outlined') {
+    rest.input = (
+      <OutlinedInput
+        {...inputProps}
+        classes={{
+          input: outlinedInput
+        }}
+      />
+    )
+  }
 
   return (
     <MUISelect
+      classes={restClasses}
+      {...inputProps}
       {...rest}
       MenuProps={{
         anchorOrigin: {

@@ -1,14 +1,13 @@
 import { PicassoProvider } from '../Picasso'
 
-PicassoProvider.override(({ pallete }) => ({
-  MuiSelect: {
-    outlined: {
-      border: `solid 1px ${pallete.grey[50]}`,
-      borderRadius: 0,
-      padding: '0.7em 1.5em 0.7em 0.7em',
+import '../InputBase/styles'
+import '../MenuItem/styles'
+import '../List/styles'
 
-      '&:focus, &:hover': {
-        borderColor: pallete.primary.main,
+PicassoProvider.override(() => ({
+  MuiSelect: {
+    select: {
+      '&:focus': {
         backgroundColor: 'transparent'
       }
     },
@@ -20,4 +19,8 @@ PicassoProvider.override(({ pallete }) => ({
   }
 }))
 
-export default {}
+export default {
+  outlinedInput: {
+    padding: '0.9em 2em 0.9em 0.9em'
+  }
+}

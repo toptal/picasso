@@ -15,17 +15,15 @@ exports[`renders dropdown select 1`] = `
         role="button"
         tabindex="0"
       >
-        <span>
-          ​
-        </span>
+        text1
       </div>
       <input
         type="hidden"
-        value=""
+        value="val1"
       />
       <svg
         aria-hidden="true"
-        class="MuiSvgIcon-root-84 MuiSelect-icon-53"
+        class="MuiSvgIcon-root-86 MuiSelect-icon-55"
         focusable="false"
         role="presentation"
         viewBox="0 0 24 24"
@@ -68,7 +66,7 @@ exports[`renders native select 1`] = `
       </select>
       <svg
         aria-hidden="true"
-        class="MuiSvgIcon-root-38 MuiSelect-icon-7"
+        class="MuiSvgIcon-root-39 MuiSelect-icon-8"
         focusable="false"
         role="presentation"
         viewBox="0 0 24 24"

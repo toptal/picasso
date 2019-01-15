@@ -6,14 +6,28 @@ exports[`Icon prop renders icon at the beginning 1`] = `
     class="MuiFormControl-root"
   >
     <div
-      class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-formControl MuiInputBase-adornedStart MuiFilledInput-adornedStart"
+      class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
     >
+      <fieldset
+        aria-hidden="true"
+        class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+        style="padding-left: 8px;"
+      >
+        <legend
+          class="MuiPrivateNotchedOutline-legend"
+          style="width: 0.01px;"
+        >
+          <span>
+            ​
+          </span>
+        </legend>
+      </fieldset>
       <div
         class="MuiInputAdornment-root MuiInputAdornment-positionStart"
       >
         <svg
           aria-hidden="true"
-          class="MuiSvgIcon-root-90"
+          class="MuiSvgIcon-root-94"
           focusable="false"
           role="presentation"
           viewBox="0 0 24 24"
@@ -29,7 +43,7 @@ exports[`Icon prop renders icon at the beginning 1`] = `
       </div>
       <input
         aria-invalid="false"
-        class="MuiInputBase-input MuiFilledInput-input MuiInputBase-inputAdornedStart MuiFilledInput-inputAdornedStart"
+        class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
         type="text"
         value=""
       />
@@ -44,11 +58,25 @@ exports[`Icon prop renders icon at the end 1`] = `
     class="MuiFormControl-root"
   >
     <div
-      class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-formControl MuiInputBase-adornedEnd MuiFilledInput-adornedEnd"
+      class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
     >
+      <fieldset
+        aria-hidden="true"
+        class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+        style="padding-left: 8px;"
+      >
+        <legend
+          class="MuiPrivateNotchedOutline-legend"
+          style="width: 0.01px;"
+        >
+          <span>
+            ​
+          </span>
+        </legend>
+      </fieldset>
       <input
         aria-invalid="false"
-        class="MuiInputBase-input MuiFilledInput-input MuiInputBase-inputAdornedEnd MuiFilledInput-inputAdornedEnd"
+        class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
         type="text"
         value=""
       />
@@ -57,7 +85,7 @@ exports[`Icon prop renders icon at the end 1`] = `
       >
         <svg
           aria-hidden="true"
-          class="MuiSvgIcon-root-41"
+          class="MuiSvgIcon-root-43"
           focusable="false"
           role="presentation"
           viewBox="0 0 24 24"

@@ -5,7 +5,7 @@ import { render, fireEvent, cleanup } from 'react-testing-library'
 import Select from './index'
 
 const renderSelect = (props = {}) => {
-  return render(<Select {...props} />)
+  return render(<Select {...props} value='val1' />)
 }
 
 const OPTIONS = [
