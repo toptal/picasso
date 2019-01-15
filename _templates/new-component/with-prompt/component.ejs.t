@@ -5,7 +5,6 @@ to: components/<%= h.changeCase.pascalCase(name) %>/<%= h.changeCase.pascalCase(
   Name = h.changeCase.pascalCase(name)
 -%>
 import React from 'react'
-/* eslint-disable no-unused-vars */
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import styles from './styles'
