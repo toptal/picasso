@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders dropdown select 1`] = `
+<div>
+  <div
+    class="MuiInputBase-root MuiInput-root MuiInput-underline"
+  >
+    <div
+      class="MuiSelect-root"
+    >
+      <div
+        aria-haspopup="true"
+        aria-pressed="false"
+        class="MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
+        role="button"
+        tabindex="0"
+      >
+        <span>
+          ​
+        </span>
+      </div>
+      <input
+        type="hidden"
+        value=""
+      />
+      <svg
+        aria-hidden="true"
+        class="MuiSvgIcon-root-84 MuiSelect-icon-53"
+        focusable="false"
+        role="presentation"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M7 10l5 5 5-5z"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders native select 1`] = `
+<div>
+  <div
+    class="MuiInputBase-root MuiInput-root MuiInput-underline"
+  >
+    <div
+      class="MuiSelect-root"
+    >
+      <select
+        class="MuiSelect-select MuiInputBase-input MuiInput-input"
+      >
+        <option
+          value="val1"
+        >
+          text1
+        </option>
+        <option
+          value="val2"
+        >
+          text2
+        </option>
+        <option
+          value="val3"
+        >
+          text3
+        </option>
+      </select>
+      <svg
+        aria-hidden="true"
+        class="MuiSvgIcon-root-38 MuiSelect-icon-7"
+        focusable="false"
+        role="presentation"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M7 10l5 5 5-5z"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+`;
