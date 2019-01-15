@@ -1,0 +1,65 @@
+import React from 'react'
+import PropTypes from 'prop-types'
+import MUISelect from '@material-ui/core/Select'
+import { withStyles } from '@material-ui/core/styles'
+
+import MenuItem from '../MenuItem'
+import styles from './styles'
+
+const renderOptions = props => {
+  const { options, native } = props
+
+  if (!options.length) {
+    return null
+  }
+
+  const OptionComponent = native ? 'option' : MenuItem
+
+  return options.map(({ key, value, text }) => (
+    <OptionComponent key={key || value} value={value}>
+      {text}
+    </OptionComponent>
+  ))
+}
+
+const Select = props => {
+  const { children, options, ...rest } = props
+
+  return (
+    <MUISelect
+      {...rest}
+      MenuProps={{
+        anchorOrigin: {
+          vertical: 'bottom',
+          horizontal: 'left'
+        },
+        transformOrigin: {
+          vertical: 'top',
+          horizontal: 'left'
+        },
+        getContentAnchorEl: undefined // needed to restore default behaviour
+      }}
+    >
+      {renderOptions(props)}
+    </MUISelect>
+  )
+}
+
+Select.propTypes = {
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      key: PropTypes.string,
+      value: PropTypes.string.isRequired,
+      text: PropTypes.oneOfType([PropTypes.node, PropTypes.string]).isRequired
+    })
+  ).isRequired,
+  native: PropTypes.bool,
+  onChange: PropTypes.func
+}
+
+Select.defaultProps = {
+  native: false,
+  onChange: () => {}
+}
+
+export default withStyles(styles)(Select)

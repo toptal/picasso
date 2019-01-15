@@ -11,7 +11,7 @@ const pallete = {
     100: '#686869'
   },
   blue: {
-    light: '#cad5f4'
+    light: 'rgba(32,78,207,.05)'
   },
   error: {
     main: '#9f3a38',

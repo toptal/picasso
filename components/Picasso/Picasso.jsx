@@ -10,6 +10,15 @@ const picasso = {
   props: {
     MuiButtonBase: {
       disableRipple: true
+    },
+    MuiList: {
+      disablePadding: true
+    },
+    MuiPaper: {
+      square: true
+    },
+    MuiSelect: {
+      disableUnderline: true
     }
   },
   shadows: Array.apply(null, Array(25)).map(() => 'none'), // Yest, this is needed as MUI expects 25 elements in array otherwise it raises error

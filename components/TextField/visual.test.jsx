@@ -1,6 +1,6 @@
 import { assertVisuals } from '../../puppeteer'
 
-test('Primary', assertVisuals('TextField', 'text'))
-test('Secondary', assertVisuals('TextField', 'text%20with%20Icon'))
-test('Flat', assertVisuals('TextField', 'select'))
-test('Basic', assertVisuals('TextField', 'textarea'))
+test('Text', assertVisuals('TextField', 'text'))
+test('With icon', assertVisuals('TextField', 'text with Icon'))
+test('Select', assertVisuals('TextField', 'select'))
+test('Textarea', assertVisuals('TextField', 'textarea'))
