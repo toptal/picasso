@@ -3,8 +3,8 @@ import { storiesOf } from '@storybook/react'
 import { text, select } from '@storybook/addon-knobs'
 import IconSend from '@material-ui/icons/Send'
 
-import StoryTeller from '../StoryTeller'
-import Button from '../../components/Button'
+import StoryTeller from '../../.storybook/StoryTeller'
+import Button from './'
 
 const VARIANTS = {
   contained: 'contained',
@@ -26,22 +26,22 @@ const chapter = teller.addChapter()
 chapter
   .addSection('Contained', 'Contained buttons', () => (
     <div>
-      <Button variant="contained">Default</Button>
-      <Button color="primary" variant="contained">
+      <Button variant='contained'>Default</Button>
+      <Button color='primary' variant='contained'>
         Primary
       </Button>
-      <Button color="secondary" variant="contained">
+      <Button color='secondary' variant='contained'>
         Secondary
       </Button>
     </div>
   ))
   .addSection('Outlined', 'Outlined buttons', () => (
     <div>
-      <Button variant="outlined">Default</Button>
-      <Button color="primary" variant="outlined">
+      <Button variant='outlined'>Default</Button>
+      <Button color='primary' variant='outlined'>
         Primary
       </Button>
-      <Button color="secondary" variant="outlined">
+      <Button color='secondary' variant='outlined'>
         Secondary
       </Button>
     </div>
@@ -49,8 +49,8 @@ chapter
   .addSection('Flat', 'Flat buttons', () => (
     <div>
       <Button>Default</Button>
-      <Button color="primary">Primary</Button>
-      <Button color="secondary">Secondary</Button>
+      <Button color='primary'>Primary</Button>
+      <Button color='secondary'>Secondary</Button>
     </div>
   ))
   .addSection(
@@ -58,13 +58,13 @@ chapter
     "Buttons with icons (not supported yet as we don't have icon set",
     () => (
       <div>
-        <Button variant="outlined" icon={<IconSend />}>
+        <Button icon={<IconSend />} variant='outlined'>
           Default
         </Button>
-        <Button color="primary" variant="contained" icon={<IconSend />}>
+        <Button color='primary' icon={<IconSend />} variant='contained'>
           Primary
         </Button>
-        <Button color="secondary" icon={<IconSend />}>
+        <Button color='secondary' icon={<IconSend />}>
           Secondary
         </Button>
       </div>
@@ -74,34 +74,39 @@ chapter
 stories.addWithChapters('Button', teller.toStory())
 
 stories.add('variants', () => (
-  <div className="section-component-container">
+  <div className='section-component-container'>
     <Button
-      color="primary"
-      variant={select('variant', VARIANTS, VARIANTS.contained, 'MUI Props')}>
+      color='primary'
+      variant={select('variant', VARIANTS, VARIANTS.contained, 'MUI Props')}
+    >
       {text('text', 'A Button')}
     </Button>
     <Button
-      color="secondary"
-      variant={select('variant', VARIANTS, VARIANTS.contained, 'MUI Props')}>
+      color='secondary'
+      variant={select('variant', VARIANTS, VARIANTS.contained, 'MUI Props')}
+    >
       {text('text', 'A Button')}
     </Button>
     <Button
-      variant={select('variant', VARIANTS, VARIANTS.contained, 'MUI Props')}>
+      variant={select('variant', VARIANTS, VARIANTS.contained, 'MUI Props')}
+    >
       {text('text', 'A Button')}
     </Button>
   </div>
 ))
 
 stories.add('colors', () => (
-  <div className="section-component-container">
+  <div className='section-component-container'>
     <Button
-      variant="outlined"
-      color={select('color', COLORS, COLORS.primary, 'MUI Props')}>
+      color={select('color', COLORS, COLORS.primary, 'MUI Props')}
+      variant='outlined'
+    >
       {text('text', 'A Button')}
     </Button>
     <Button
-      variant="contained"
-      color={select('color', COLORS, COLORS.primary, 'MUI Props')}>
+      color={select('color', COLORS, COLORS.primary, 'MUI Props')}
+      variant='contained'
+    >
       {text('text', 'A Button')}
     </Button>
     <Button color={select('color', COLORS, COLORS.primary, 'MUI Props')}>
