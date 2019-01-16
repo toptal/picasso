@@ -6,6 +6,9 @@ PicassoProvider.override(() => ({
     root: {
       fontSize: '16px',
       padding: 0
+    },
+    disabled: {
+      opacity: 0.5
     }
   }
 }))
