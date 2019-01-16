@@ -1,118 +1,63 @@
-import color from 'color'
-
 import { PicassoProvider } from '../Picasso'
+import { RENDER_METHODS } from './utils/renderMethods'
 
-const flatButton = (background, border) => ({
-  backgroundColor: '#fff',
-  color: background,
-  '&:hover': {
-    backgroundColor: '#fff',
-    color: border
-  }
+const CONFIGURATION = ({ primary, secondary, grey, error, common }) => ({
+  // contained variants
+  contained: [RENDER_METHODS.contained, grey[50], common.black],
+  containedPrimary: [RENDER_METHODS.contained, primary.main, common.white],
+  containedSecondary: [RENDER_METHODS.contained, secondary.main, common.white],
+  containedNegative: [RENDER_METHODS.contained, error.main, common.white],
+  // outlined variants
+  outlined: [RENDER_METHODS.outlined, grey[50], grey[100]],
+  outlinedPrimary: [RENDER_METHODS.outlined, primary.main, primary.main],
+  outlinedSecondary: [RENDER_METHODS.outlined, secondary.main, secondary.main],
+  outlinedNegative: [RENDER_METHODS.outlined, error.main, error.main],
+  // text (flat legacy) variants
+  text: [RENDER_METHODS.text, grey[100], false],
+  textPrimary: [RENDER_METHODS.text, primary.main, false],
+  textSecondary: [RENDER_METHODS.text, secondary.main, false],
+  textNegative: [RENDER_METHODS.text, error.main, false]
 })
 
-const outlinedButton = (background, border) => ({
-  backgroundColor: '#fff',
-  border: `1px solid ${background}`,
-  color: border,
-  '&:hover': {
-    backgroundColor: '#fff',
-    border: `1px solid ${color(background)
-      .darken(0.3)
-      .hex()}`
-  }
-})
-
-const containedButton = (background, border) => ({
-  backgroundColor: background,
-  border: `1px solid ${border}`,
-  '&:hover': {
-    backgroundColor: color(background)
-      .darken(0.1)
-      .hex(),
-    border: `1px solid ${border}`
-  }
-})
-
-const RENDER_METHODS = {
-  outlined: outlinedButton,
-  contained: containedButton,
-  flat: flatButton
-}
-
-export const VARIANTS = {
-  outlined: RENDER_METHODS.outlined,
-  outlinedPrimary: RENDER_METHODS.outlined,
-  outlinedSecondary: RENDER_METHODS.outlined,
-  contained: RENDER_METHODS.contained,
-  containedPrimary: RENDER_METHODS.contained,
-  containedSecondary: RENDER_METHODS.contained,
-  flat: RENDER_METHODS.flat,
-  flatPrimary: RENDER_METHODS.flat,
-  flatSecondary: RENDER_METHODS.flat
-}
-
-export const createButtonVariant = (
-  variant = VARIANTS.outlined,
-  background,
-  border
-) => variant(background, border)
-
-PicassoProvider.override(({ palette }) => ({
+PicassoProvider.override(({ typography, transitions }) => ({
   MuiButton: {
     root: {
       textTransform: 'none',
-      padding: '6px 16px',
-      fontSize: '16px'
+      fontSize: typography.button.fontSize,
+      padding: '0 1rem',
+      transition: `border ${transitions.duration.short}ms ${
+        transitions.easing.easeOut
+      }, color ${transitions.duration.short}ms ${
+        transitions.easing.easeOut
+      }, background ${transitions.duration.short}ms ${
+        transitions.easing.easeOut
+      }`
     },
-    containedPrimary: createButtonVariant(
-      VARIANTS.containedPrimary,
-      palette.primary.main,
-      palette.primary.main
-    ),
-    containedSecondary: createButtonVariant(
-      VARIANTS.containedSecondary,
-      palette.secondary.main,
-      palette.secondary.main
-    ),
-    outlinedPrimary: createButtonVariant(
-      VARIANTS.outlinedPrimary,
-      palette.primary.main,
-      palette.primary.main
-    ),
-    outlinedSecondary: createButtonVariant(
-      VARIANTS.outlinedSecondary,
-      palette.secondary.main,
-      palette.secondary.main
-    ),
-    outlined: createButtonVariant(
-      VARIANTS.outlined,
-      palette.grey[50],
-      palette.grey[100]
-    ),
-    flat: createButtonVariant(
-      VARIANTS.flat,
-      palette.grey[100],
-      palette.grey[100]
-    ),
-    flatPrimary: createButtonVariant(
-      VARIANTS.flat,
-      palette.primary.main,
-      palette.primary.main
-    ),
-    flatSecondary: createButtonVariant(
-      VARIANTS.flat,
-      palette.secondary.main,
-      palette.secondary.main
-    )
+    label: {}
   }
 }))
 
-export default {
-  Button: {
+export default ({ palette }) => {
+  const commonStyles = {
     icon: {
       fontSize: '1em',
-      paddingRight: '0.75em'
+      paddingRight: '0.45em'
+    },
+    compact: {
+      minWidth: 'auto',
+      '& $icon': {
+        padding: 'initial'
+      }
     }
   }
+
+  const variants = CONFIGURATION(palette)
+
+  for (const variant in variants) {
+    const [renderMethod, primaryColor, secondaryColor] = variants[variant]
+
+    commonStyles[variant] = renderMethod(primaryColor, secondaryColor)
+  }
+
+  return commonStyles
 }

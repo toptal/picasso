@@ -2,11 +2,12 @@ import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles'
 import React from 'react'
 import PT from 'prop-types'
 
-import palette from './palette'
+import { palette, transitions, typography } from './config'
 import Provider from './PicassoProvider'
 
 const picasso = {
   palette,
+  transitions,
   props: {
     MuiButtonBase: {
       disableRipple: true
@@ -27,7 +28,8 @@ const picasso = {
   shadows: Array.apply(null, Array(25)).map(() => 'none'), // Yest, this is needed as MUI expects 25 elements in array otherwise it raises error
   typography: {
     useNextVariants: true,
-    inputSize: '18px'
+    inputSize: '18px',
+    ...typography
   }
 }
 

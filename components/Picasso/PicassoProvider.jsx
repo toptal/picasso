@@ -9,6 +9,10 @@ export class PicassoProvider {
     this.extendThemeOverrides(newOverride)
   }
 
+  withTheme (getWithTheme = () => {}) {
+    return getWithTheme(this.theme)
+  }
+
   extendThemeOverrides (newOverride) {
     const overrides = this.theme.overrides || {}
 
