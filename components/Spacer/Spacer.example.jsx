@@ -3,8 +3,8 @@ import { storiesOf } from '@storybook/react'
 /* eslint-disable no-unused-vars */
 import { text, select } from '@storybook/addon-knobs'
 
-import StoryTeller from '../StoryTeller'
-import Spacer from '../../components/Spacer'
+import StoryTeller from '../../.storybook/StoryTeller'
+import Spacer from '.'
 
 const stories = storiesOf('Spacer', module)
 

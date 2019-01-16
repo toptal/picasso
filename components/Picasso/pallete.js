@@ -1,10 +1,16 @@
 const pallete = {
+  common: {
+    white: '#ffffff'
+  },
   primary: {
     main: '#204ecf',
     dark: '#1542c1'
   },
   secondary: {
     main: '#00cc83'
+  },
+  text: {
+    primary: '#455065'
   },
   grey: {
     50: '#dfe3e9',

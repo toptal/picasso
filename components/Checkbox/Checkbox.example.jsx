@@ -1,27 +1,16 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 /* eslint-disable no-unused-vars */
-import { text, select } from '@storybook/addon-knobs'
+import { text } from '@storybook/addon-knobs'
 
 import StoryTeller from '../../.storybook/StoryTeller'
+import Spacer from '../Spacer'
 import Checkbox from '.'
 
 const stories = storiesOf('Checkbox', module)
 
 const teller = new StoryTeller('Checkbox')
 const chapter = teller.addChapter()
-
-const Spacer = ({ children, top, bottom }) => {
-  return (
-    <div
-      style={{
-        marginTop: top + 'em',
-        marginBottom: bottom + 'em'
-      }}>
-      {children}
-    </div>
-  )
-}
 
 chapter
   .addSection(
@@ -30,7 +19,10 @@ chapter
     () => (
       <div>
         <Spacer bottom={1}>
-          <Checkbox id="checkbox-uncontrolled" label="With label" />
+          <Checkbox
+            id="checkbox-uncontrolled"
+            label={text('label', 'With label')}
+          />
         </Spacer>
         <div>
           <Checkbox />
