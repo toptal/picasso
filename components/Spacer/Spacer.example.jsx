@@ -1,19 +1,22 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-/* eslint-disable no-unused-vars */
-import { text, select } from '@storybook/addon-knobs'
+import { number } from '@storybook/addon-knobs'
 
 import StoryTeller from '../../.storybook/StoryTeller'
 import Spacer from '.'
 
 const stories = storiesOf('Spacer', module)
 
-const teller = new StoryTeller('Spacer', '*component description*')
+const teller = new StoryTeller(
+  'Spacer',
+  'Use Spacer to add space between 2 elements'
+)
 const chapter = teller.addChapter()
 
-chapter.addSection('*section header*', '*section description*', () => (
+chapter.addSection(null, null, () => (
   <div>
-    <Spacer />
+    <Spacer bottom={number('bottom margin', 5)}>Some text</Spacer>
+    <div>Some more text</div>
   </div>
 ))
 
