@@ -1,15 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { withStyles } from '@material-ui/core/styles'
 
-import styles from './styles'
-
-const UncheckedIcon = ({ classes }) => <div className={classes.uncheckedIcon} />
+const UncheckedIcon = ({ className }) => <div className={className} />
 
 UncheckedIcon.propTypes = {
-  classes: PropTypes.shape({
-    uncheckedIcon: PropTypes.string
-  })
+  className: PropTypes.string
 }
 
-export default withStyles(styles)(UncheckedIcon)
+export default UncheckedIcon
