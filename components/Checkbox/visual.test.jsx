@@ -1,4 +1,3 @@
 import { assertVisuals } from '../../puppeteer'
 
-test('', assertVisuals('Checkbox', 'primary'))
-test('', assertVisuals('Checkbox', 'secondary'))
+test('Default', assertVisuals('Checkbox', 'Checkbox'))
