@@ -1,5 +1,5 @@
 ---
-to: .storybook/stories/<%= h.changeCase.pascalCase(name) %>.jsx
+to: components/<%= h.changeCase.pascalCase(name) %>.example.jsx
 ---
 <%
   Name = h.changeCase.pascalCase(name)
@@ -9,8 +9,8 @@ import { storiesOf } from '@storybook/react'
 /* eslint-disable no-unused-vars */
 import { text, select } from '@storybook/addon-knobs'
 
-import StoryTeller from '../StoryTeller'
-import <%= Name %> from '../../components/<%= Name %>'
+import StoryTeller from '../../.storybook/StoryTeller'
+import <%= Name %> from './'
 
 const stories = storiesOf('<%= Name %>', module)
 

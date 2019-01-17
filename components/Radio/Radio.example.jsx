@@ -1,12 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { text, select } from '@storybook/addon-knobs'
-
-import StoryTeller from '../StoryTeller'
-import Radio from '../../components/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import FormControl from '@material-ui/core/FormControl'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
+
+import Radio from './'
+import StoryTeller from '../../.storybook/StoryTeller'
 
 const stories = storiesOf('Radio', module)
 
@@ -15,9 +14,9 @@ const chapter = teller.addChapter()
 
 chapter.addSection('Standalone', 'Standalone radio buttons', () => (
   <div>
-    <Radio color="default" />
-    <Radio color="primary" />
-    <Radio color="secondary" />
+    <Radio color='default' />
+    <Radio color='primary' />
+    <Radio color='secondary' />
   </div>
 ))
 
@@ -25,17 +24,21 @@ class RadioGroupComponent extends React.Component {
   state = {
     value: ''
   }
-  render() {
+  render () {
+    const { value } = this.state
+    const { children } = this.props
+
     return (
       <div>
         <RadioGroup
-          name="name"
-          value={this.state.value}
+          name='name'
           onChange={({ target: { value } }) =>
             this.setState({ value: String(value) })
           }
-          {...this.props}>
-          {this.props.children}
+          value={value}
+          {...this.props}
+        >
+          {children}
         </RadioGroup>
       </div>
     )
@@ -44,35 +47,35 @@ class RadioGroupComponent extends React.Component {
 
 chapter.addSection('RadioGroup', 'Simple radio group', () => (
   <RadioGroupComponent>
-    <Radio color="default" value="default" />
-    <Radio color="primary" value="primary" />
-    <Radio color="secondary" value="secondary" />
+    <Radio color='default' value='default' />
+    <Radio color='primary' value='primary' />
+    <Radio color='secondary' value='secondary' />
   </RadioGroupComponent>
 ))
 
 chapter.addSection('Labels', 'Radio with label', () => (
-  <FormControl component="fieldset">
+  <FormControl component='fieldset'>
     <RadioGroupComponent style={{ flexDirection: 'row' }}>
       <FormControlLabel
-        value="first"
-        control={<Radio color="primary" />}
-        label="First Option"
+        control={<Radio color='primary' />}
+        label='First Option'
+        value='first'
       />
       <FormControlLabel
-        value="second"
-        control={<Radio color="primary" />}
-        label="Second Option"
+        control={<Radio color='primary' />}
+        label='Second Option'
+        value='second'
       />
       <FormControlLabel
-        value="third"
-        control={<Radio color="primary" />}
-        label="Third Option"
+        control={<Radio color='primary' />}
+        label='Third Option'
+        value='third'
       />
 
       <FormControlLabel
-        value="disabled"
-        control={<Radio color="primary" disabled />}
-        label="Disabled Option"
+        control={<Radio color='primary' disabled />}
+        label='Disabled Option'
+        value='disabled'
       />
     </RadioGroupComponent>
   </FormControl>
@@ -80,9 +83,9 @@ chapter.addSection('Labels', 'Radio with label', () => (
 
 chapter.addSection('Disabled', 'Disabled radio buttons', () => (
   <div>
-    <Radio color="default" disabled />
-    <Radio color="primary" disabled />
-    <Radio color="secondary" disabled />
+    <Radio color='default' disabled />
+    <Radio color='primary' disabled />
+    <Radio color='secondary' disabled />
   </div>
 ))
 

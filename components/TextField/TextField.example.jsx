@@ -1,19 +1,21 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import TextField from '../../components/TextField'
 import SearchIcon from '@material-ui/icons/Search'
+
+import TextField from './'
 
 storiesOf('TextField', module)
   .add('text', () => <TextField label='Search...' />)
   .add('text with Icon', () => (
-    <TextField label='Search...' Icon={<SearchIcon />} />
+    <TextField Icon={<SearchIcon />} label='Search...' />
   ))
   .add('select', () => (
     <div style={{ width: '300px' }}>
       <TextField
+        fullWidth
         label='Gender'
         select
-        fullWidth
+        // eslint-disable-next-line react/jsx-sort-props
         SelectProps={{
           native: true
         }}
@@ -25,5 +27,5 @@ storiesOf('TextField', module)
     </div>
   ))
   .add('textarea', () => (
-    <TextField label='Description...' rows={4} multiline />
+    <TextField label='Description...' multiline rows={4} />
   ))

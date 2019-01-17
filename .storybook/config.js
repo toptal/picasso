@@ -23,8 +23,10 @@ const ADDONS = [chaptersAddon]
 DECORATORS.forEach(decorator => addDecorator(decorator))
 ADDONS.forEach(addon => setAddon(addon))
 
+const req = require.context('../components', true, /\.example\.jsx$/)
+
 function loadStories() {
-  require('./stories/index.js')
+  req.keys().forEach(filename => req(filename))
 }
 
 configure(loadStories, module)
