@@ -1,11 +1,9 @@
 import { PicassoProvider } from '../Picasso'
 
-const unit = 8
-
 PicassoProvider.override(({ pallete }) => ({
   MuiFormControlLabel: {
     root: {
-      fontSize: `${2 * unit}px`,
+      fontSize: `${2 * pallete.unit}px`,
       marginLeft: 0,
       marginRight: 0
     },
@@ -14,7 +12,7 @@ PicassoProvider.override(({ pallete }) => ({
       alignItems: 'center',
 
       color: pallete.text.primary,
-      lineHeight: `${2 * unit}px`,
+      lineHeight: `${2 * pallete.unit}px`,
       fontFamily: 'proxima-nova',
       fontWeight: 300,
       fontSize: '1em',

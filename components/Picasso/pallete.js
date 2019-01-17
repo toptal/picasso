@@ -1,4 +1,5 @@
 const pallete = {
+  unit: 8,
   common: {
     black: '#000000',
     white: '#ffffff'
