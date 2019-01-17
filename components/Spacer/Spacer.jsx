@@ -17,11 +17,19 @@ const Spacer = ({ children, top, bottom, left, right }) => {
 }
 
 Spacer.propTypes = {
-  children: PropTypes.node,
-  top: PropTypes.number,
   bottom: PropTypes.number,
+  children: PropTypes.node,
   left: PropTypes.number,
-  right: PropTypes.number
+  right: PropTypes.number,
+  top: PropTypes.number
+}
+
+Spacer.defaultProps = {
+  bottom: 0,
+  children: null,
+  left: 0,
+  right: 0,
+  top: 0
 }
 
 export default Spacer

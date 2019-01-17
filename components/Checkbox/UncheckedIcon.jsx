@@ -7,4 +7,8 @@ UncheckedIcon.propTypes = {
   className: PropTypes.string
 }
 
+UncheckedIcon.defaultProps = {
+  className: null
+}
+
 export default UncheckedIcon

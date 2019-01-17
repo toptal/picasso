@@ -14,4 +14,8 @@ IndeterminateIcon.propTypes = {
   className: PropTypes.string
 }
 
+IndeterminateIcon.defaultProps = {
+  className: null
+}
+
 export default IndeterminateIcon

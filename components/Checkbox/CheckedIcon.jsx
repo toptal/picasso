@@ -14,4 +14,8 @@ CheckedIcon.propTypes = {
   className: PropTypes.string
 }
 
+CheckedIcon.defaultProps = {
+  className: null
+}
+
 export default CheckedIcon
