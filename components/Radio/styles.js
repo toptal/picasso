@@ -20,7 +20,10 @@ const createColorVariant = color => ({
     ...setCircleColor(color)
   },
   '&$disabled': {
-    opacity: '0.5'
+    opacity: '0.5',
+    cursor: 'not-allowed',
+    pointerEvents: 'auto',
+    ...setBorderColor(pallete.grey[100])
   },
   '&:hover': {
     ...setBorderColor(color)
@@ -41,12 +44,7 @@ PicassoProvider.override(({ pallete, transitions }) => ({
       animationDuration: transitions.duration.short,
       animationTimingFunction: transitions.easing.easeIn,
       transitionDuration: transitions.duration.short,
-      transitionTimingFunction: transitions.easing.easeOut,
-
-      '&$disabled': {
-        cursor: 'not-allowed',
-        pointerEvents: 'auto'
-      }
+      transitionTimingFunction: transitions.easing.easeOut
     },
     colorPrimary: createColorVariant(pallete.primary.main),
     colorSecondary: createColorVariant(pallete.primary.main), // secondary is set to primary by purpose

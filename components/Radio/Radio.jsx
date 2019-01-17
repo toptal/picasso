@@ -1,9 +1,9 @@
 import React from 'react'
 import cx from 'classnames'
 import MUIRadio from '@material-ui/core/Radio'
-import MUIFormControlLabel from '@material-ui/core/FormControlLabel'
 import { withStyles } from '@material-ui/core/styles'
 
+import FormControlLabel from '../FormControlLabel'
 import styles from './styles'
 
 const FallbackIcon = () => null
@@ -24,7 +24,7 @@ const Radio = props => {
   )
 
   return label ? (
-    <MUIFormControlLabel control={muiRadio} label={label} />
+    <FormControlLabel control={muiRadio} label={label} />
   ) : (
     muiRadio
   )

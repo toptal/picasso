@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import MUICheckbox from '@material-ui/core/Checkbox'
-import MUIFormControlLabel from '@material-ui/core/FormControlLabel'
 import { withStyles } from '@material-ui/core/styles'
 
+import FormControlLabel from '../FormControlLabel'
 import styles from './styles'
 import CheckedIcon from './CheckedIcon'
 import UncheckedIcon from './UncheckedIcon'
@@ -31,7 +31,7 @@ const Checkbox = props => {
   )
 
   return label ? (
-    <MUIFormControlLabel
+    <FormControlLabel
       classes={rootClasses}
       control={muiCheckbox}
       label={label}
