@@ -1,0 +1,38 @@
+@Library('globalLibrary@master') _
+pipeline {
+  agent { label 'docker' }
+  options {
+    ansiColor('xterm')
+    timestamps()
+    timeout(time: 1, unit: 'HOURS')
+  }
+  stages {
+
+    stage('Git checkout') {
+      steps {
+        checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, userRemoteConfigs: [[credentialsId: 'jenkins/picasso', url: 'git@github.com:toptal/picasso.git']]])
+      }
+    }
+    stage('Build docs') {
+        steps {
+            script {
+                sh """
+                      docker run --tty -e HOME=`pwd` --volume `pwd`:`pwd`:z --user `id -u`:`id -g` \\
+                      --workdir `pwd` node:8-alpine sh -c 'yarn install && yarn storybook:build'
+                   """
+            }//script
+        }//steps
+    }//stage
+    stage('Sync docs to docs server') {
+      steps {
+        script {
+            sh """
+                 rsync -avz --delete -e ssh ./build/storybook docs@docs.staging.toptal.net:~/docs/picasso/ && \\
+                 rm -rf ./build/storybook
+               """
+        }//script
+      }//steps
+    }//stage
+
+  }//stages
+}//pipeline

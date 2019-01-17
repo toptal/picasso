@@ -11,7 +11,7 @@ const withPicasso = story => <Picasso>{story()}</Picasso>
 
 const DECORATORS = [
   withOptions({
-    name: 'Toptal',
+    name: 'Picasso',
     theme: themes.light
   }),
   withKnobs,

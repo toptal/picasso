@@ -10,8 +10,8 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watchAll",
-    "test-visual": "yarn storybook:build && jest --config='./puppeteer/puppeteer.jest.config.js'",
-    "test-visual:watch": "jest --config='./puppeteer/puppeteer.jest.config.js' --watchAll",
+    "test-visual": "./bin/test-visual",
+    "test-visual:docker": "jest --config='./puppeteer/puppeteer.jest.config.js'",
     "lint:path": "eslint --ext=.js,.jsx --color --fix",
     "lint": "yarn run lint:path .",
     "storybook": "start-storybook -p 9001 -c .storybook",
@@ -21,6 +21,7 @@
     "build:es6": "cross-env NODE_ENV=production BABEL_ENV=es ./bin/build --config es",
     "build:watch": "cross-env BABEL_ENV=es ./bin/build --config dev --watch",
     "build": "yarn build:es2015 && yarn build:es6",
+    "build:docker": "docker build -t picasso .",
     "symlink": "cross-env BABEL_ENV=es ./bin/build --config dev --symlink",
     "generate:component": "hygen new-component new"
   },
@@ -77,11 +78,12 @@
     "jest-puppeteer": "^3.6.0",
     "lint-staged": "^8.1.0",
     "prettier-standard": "^8.0.1",
-    "puppeteer": "^1.11.0",
+    "puppeteer": "^1.9.0",
     "react-storybook-addon-chapters": "^3.0.3",
     "react-testing-library": "^5.3.1",
     "regenerator-runtime": "^0.13.1",
     "rimraf": "^2.6.2",
+    "storybook-readme": "^4.0.5",
     "yargs": "^12.0.5"
   },
   "husky": {
