@@ -52,15 +52,11 @@ const uncheckedIcon = {
   border: `1px solid ${pallete.grey[50]}`,
 
   // hover
-  '$root:hover &': {
+  '$root:not($disabled):hover &': {
     border: `1px solid ${pallete.primary.main}`
   },
-  '$label:hover &': {
+  '$label:not($disabled):hover &': {
     border: `1px solid ${pallete.primary.main}`
-  },
-  // disabled
-  '$root$disabled &': {
-    border: `1px solid ${pallete.grey[50]}`
   }
 }
 
