@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import MUIButton from '@material-ui/core/Button'
-import { withStyles } from '@material-ui/core/styles'
 
+import { Button as FButton } from '../../src/mui'
+import { withStyles } from '../../src/utils/jss'
 import styles from './styles'
 
 const Button = props => {
@@ -15,7 +15,7 @@ const Button = props => {
     finalChildren.unshift(iconComponent)
   }
 
-  return <MUIButton {...rest}>{finalChildren}</MUIButton>
+  return <FButton {...rest}>{finalChildren}</FButton>
 }
 
 Button.propTypes = {

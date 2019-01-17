@@ -1,8 +1,8 @@
 import React from 'react'
 import cx from 'classnames'
-import MUIRadio from '@material-ui/core/Radio'
-import { withStyles } from '@material-ui/core/styles'
 
+import { Radio as FRadio } from '../../src/mui'
+import { withStyles } from '../../src/utils/jss'
 import styles from './styles'
 
 const FallbackIcon = () => null
@@ -11,7 +11,7 @@ const Radio = props => {
   const { classes: { root, icon, ...otherClasses } } = props
 
   return (
-    <MUIRadio
+    <FRadio
       {...props}
       checkedIcon={<FallbackIcon />}
       classes={{
