@@ -1,0 +1,76 @@
+@Library('globalLibrary@master') _
+
+ghHelper = new helpers.GithubNotifyHelper()
+def VERSION
+
+pipeline {
+  agent {
+    docker {
+      image 'gcr.io/compute-engine-1069/platform_tests'
+    }
+  }
+  options {
+    ansiColor('xterm')
+    timestamps()
+    timeout(time: 5, unit: 'MINUTES')
+    skipDefaultCheckout()
+  }
+  environment {
+      GREN_GITHUB_TOKEN = credentials('toptal-devbot-token-github-notify')
+      GITHUB_TOKEN = credentials('toptal-devbot-token-github-notify')
+      NPM_TOKEN = credentials('npm-token-for-toptal-private-registry')
+  }
+
+  stages {
+    stage('Git checkout PR') {
+            steps {
+        info "== Checking out master"
+          gitCheckout(
+            branches: "master",
+            credentials: [username: 'git', description: 'jenkins/picasso'],
+            url: 'git@github.com:toptal/picasso.git',
+            refspec: '+refs/heads/master:refs/remotes/origin/master',
+            additionalBehaviours: [
+              cleanBeforeCheckout         : true,
+              advancedCheckoutBehaviour: [timeout: 30],
+              advancedCloneBehaviour   : [depth: 0, noTags: false, reference: '', shallow: false, timeout: 30]
+            ]
+          )
+
+        info "Git commit: ${gitCommit()}"
+        info "Git branch: ${gitBranch()}"
+        success "Checkout finished"
+      }
+    }//stage
+
+    stage('Run release') {
+      steps {
+
+        sshagent (credentials: ['picasso-ssh-deploy-key']) {
+            sh "git config user.email 'bot@toptal.com'"
+            sh "git config user.name 'toptal-bot'"
+            sh "cat package.json"
+            sh "mkdir -p ~/.ssh && ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts"
+            sh "git tag -l"
+            sh "git tag -d \$(git tag)"
+            sh "git tag -l"
+            sh "yarn"
+            sh "./bin/release"
+            sh "yarn build"
+            sh "npm publish"
+        }
+        script {
+            VERSION = sh(returnStdout: true, script: 'cat package.json | jq ".version" -r').trim()
+        }
+      } //steps
+    }//stage
+  }//stages
+  post {
+      success {
+          script {
+            message = ":frontend-experience: New version *${VERSION}* of <https://github.com/toptal/picasso|(toptal/picasso)> has been released <https://github.com/toptal/picasso/releases/tag/v${VERSION}|Release notes)>"
+            slackSend color: 'good', channel: '-frontend-exp-core', message: message
+          }
+      }
+  }
+}//pipeline
