@@ -15,10 +15,11 @@ pipeline {
     timeout(time: 5, unit: 'MINUTES')
     skipDefaultCheckout()
   }
+
   environment {
-      GREN_GITHUB_TOKEN = credentials('toptal-devbot-token-github-notify')
-      GITHUB_TOKEN = credentials('toptal-devbot-token-github-notify')
-      NPM_TOKEN = credentials('npm-token-for-toptal-private-registry')
+    GREN_GITHUB_TOKEN = credentials('toptal-devbot-token-github-notify')
+    GITHUB_TOKEN = credentials('toptal-devbot-token-github-notify')
+    NPM_TOKEN = credentials('npm-token-for-toptal-private-registry')
   }
 
   stages {

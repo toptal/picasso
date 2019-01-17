@@ -15,7 +15,7 @@
     "lint:path": "eslint --ext=.js,.jsx --color --fix",
     "lint": "yarn run lint:path .",
     "storybook": "start-storybook -p 9001 -c .storybook",
-    "storybook:build": "build-storybook -c .storybook -o build/storybook",
+    "build:storybook": "build-storybook -c .storybook -o build/storybook",
     "release:alpha": "yarn version --new-version prerelease",
     "build:es2015": "cross-env NODE_ENV=production ./bin/build --config es2015",
     "build:es6": "cross-env NODE_ENV=production BABEL_ENV=es ./bin/build --config es",

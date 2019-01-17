@@ -76,4 +76,5 @@ docker run -t -i --rm -e -v ${PWD}/components:/app/components NPM_TOKEN=$NPM_TOK
 | **yarn build:docker**         | Build docker image                                                  |
 | **yarn build:es**             | Build ES6 version of library                                        |
 | **yarn build:es2015**         | Build ES2015 version of library                                     |
+| **yarn build:storybook**      | Build Storybook as static website                                   |
 | **yarn symlink**              | Symlink current version of library for development                  |
