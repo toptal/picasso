@@ -1,67 +1,83 @@
 import { PicassoProvider } from '../Picasso'
 import pallete from '../Picasso/pallete'
 
+const unit = 8
+
 PicassoProvider.override(() => ({
+  MuiFormControlLabel: {
+    root: {
+      fontSize: `${2 * unit}px`,
+      marginLeft: 0,
+      marginRight: 0
+    },
+    label: {
+      display: 'inline-flex',
+      alignItems: 'center',
+
+      color: pallete.text.primary,
+      lineHeight: `${2 * unit}px`,
+      fontFamily: 'proxima-nova',
+      fontWeight: 300,
+      fontSize: '1em',
+      marginLeft: '0.5em',
+
+      cursor: 'pointer',
+      userSelect: 'none',
+
+      '&$disabled': {
+        cursor: 'not-allowed',
+        pointerEvents: 'auto'
+      }
+    }
+  },
   MuiCheckbox: {
     root: {
-      fontSize: '16px',
-      padding: 0
+      fontSize: `${2 * unit}px`,
+      lineHeight: `${2 * unit}px`,
+      padding: 0,
+
+      '&$disabled': {
+        cursor: 'not-allowed',
+        pointerEvents: 'auto'
+      }
     },
     disabled: {
-      opacity: 0.5,
-      cursor: 'not-allowed',
-      pointerEvents: 'auto'
+      opacity: 0.5
     }
   }
 }))
 
-const root = {}
-const disabled = {}
+const root = {
+  '&:hover $uncheckedIcon': {
+    border: `1px solid ${pallete.primary.main}`
+  }
+}
 
-const label = {
-  display: 'inline-flex',
-  alignItems: 'center',
-
-  color: pallete.text.primary,
-  lineHeight: '17px',
-  fontFamily: 'proxima-nova',
-  fontWeight: 300,
-
-  cursor: 'pointer',
-  userSelect: 'none',
-
-  '$disabled&': {
-    cursor: 'not-allowed',
-    pointerEvents: 'auto'
+const disabled = {
+  '&:hover $uncheckedIcon': {
+    border: `1px solid ${pallete.grey[50]}`
   }
 }
 
 const checkedIcon = {
-  height: '17px',
-  width: '17px',
+  height: `${2 * unit}px`,
+  width: `${2 * unit}px`,
   transition: 'all .1s ease',
   background: pallete.primary.main,
   border: `1px solid ${pallete.primary.dark}`
 }
 
 const uncheckedIcon = {
-  height: '17px',
-  width: '17px',
+  height: `${2 * unit}px`,
+  width: `${2 * unit}px`,
   transition: 'all .1s ease',
   background: pallete.common.white,
-  border: `1px solid ${pallete.grey[50]}`,
-
-  '$root:not($disabled):hover &': {
-    border: `1px solid ${pallete.primary.main}`
-  },
-  '$label:not($disabled):hover &': {
-    border: `1px solid ${pallete.primary.main}`
-  }
+  border: `1px solid ${pallete.grey[50]}`
 }
 
 const indeterminateIcon = {
-  height: '17px',
-  width: '17px',
+  height: `${2 * unit}px`,
+  width: `${2 * unit}px`,
   transition: 'all .1s ease',
   background: pallete.primary.main,
   border: `1px solid ${pallete.primary.dark}`
@@ -70,7 +86,6 @@ const indeterminateIcon = {
 export default {
   root,
   disabled,
-  label,
   checkedIcon,
   uncheckedIcon,
   indeterminateIcon

@@ -19,7 +19,7 @@ chapter
       <div>
         <Spacer bottom={1}>
           <Checkbox
-            id="checkbox-uncontrolled"
+            id='checkbox-uncontrolled'
             label={text('label', 'With label')}
           />
         </Spacer>
@@ -35,10 +35,10 @@ chapter
     () => (
       <div>
         <Spacer bottom={1}>
-          <Checkbox id="checkbox-unchecked" checked={false} label="Unchecked" />
+          <Checkbox checked={false} id='checkbox-unchecked' label='Unchecked' />
         </Spacer>
         <div>
-          <Checkbox id="checkbox-checked" checked label="Checked" />
+          <Checkbox checked id='checkbox-checked' label='Checked' />
         </div>
       </div>
     )
@@ -47,25 +47,28 @@ chapter
     <div>
       <Spacer bottom={1}>
         <Checkbox
-          id="checkbox-disabled-unchecked"
-          disabled
           checked={false}
-          label="Unchecked"
+          disabled
+          id='checkbox-disabled-unchecked'
+          label='Unchecked'
+        />
+      </Spacer>
+      <Spacer bottom={1}>
+        <Checkbox
+          checked
+          disabled
+          id='checkbox-disabled-checked'
+          label='Checked'
         />
       </Spacer>
       <div>
-        <Checkbox
-          id="checkbox-disabled-checked"
-          disabled
-          checked
-          label="Checked"
-        />
+        <Checkbox disabled id='checkbox-disabled-without-label' />
       </div>
     </div>
   ))
   .addSection('Indeterminate', null, () => (
     <div>
-      <Checkbox id="checkbox-indeterminate" indeterminate label="Select all" />
+      <Checkbox id='checkbox-indeterminate' indeterminate label='Select all' />
     </div>
   ))
 

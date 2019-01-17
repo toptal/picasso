@@ -1,25 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import cx from 'classnames'
 import MUICheckbox from '@material-ui/core/Checkbox'
+import MUIFormControlLabel from '@material-ui/core/FormControlLabel'
 import { withStyles } from '@material-ui/core/styles'
 
 import styles from './styles'
-import Spacer from '../Spacer'
 import CheckedIcon from './CheckedIcon'
 import UncheckedIcon from './UncheckedIcon'
 import IndeterminateIcon from './IndeterminateIcon'
 
 const Checkbox = props => {
   const { label, id, classes, disabled, ...rest } = props
+  const rootClasses = {
+    root: classes.root,
+    disabled: disabled ? classes.disabled : null
+  }
 
   const muiCheckbox = (
     <MUICheckbox
       checkedIcon={<CheckedIcon className={classes.checkedIcon} />}
-      classes={{
-        root: classes.root,
-        disabled: classes.disabled
-      }}
+      classes={rootClasses}
       disabled={disabled}
       icon={<UncheckedIcon className={classes.uncheckedIcon} />}
       id={id}
@@ -31,15 +31,11 @@ const Checkbox = props => {
   )
 
   return label ? (
-    <label
-      className={cx(classes.label, { [classes.disabled]: disabled })}
-      htmlFor={id}
-    >
-      {muiCheckbox}
-      <Spacer left={0.5} top={0.15}>
-        {label}
-      </Spacer>
-    </label>
+    <MUIFormControlLabel
+      classes={rootClasses}
+      control={muiCheckbox}
+      label={label}
+    />
   ) : (
     muiCheckbox
   )
