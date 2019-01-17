@@ -51,7 +51,6 @@ const uncheckedIcon = {
   background: pallete.common.white,
   border: `1px solid ${pallete.grey[50]}`,
 
-  // hover
   '$root:not($disabled):hover &': {
     border: `1px solid ${pallete.primary.main}`
   },
