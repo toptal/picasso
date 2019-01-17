@@ -53,6 +53,12 @@ Checkbox.propTypes = {
   onChange: PropTypes.func
 }
 
-Checkbox.defaultProps = {}
+Checkbox.defaultProps = {
+  checked: undefined,
+  disabled: false,
+  indeterminate: false,
+  label: null,
+  onChange: () => {}
+}
 
 export default withStyles(styles)(Checkbox)
