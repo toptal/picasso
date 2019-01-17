@@ -1,4 +1,5 @@
 import { PicassoProvider } from '../Picasso'
+import pallete from '../Picasso/pallete'
 
 const setBorderColor = borderColor => ({
   '&:before': {
@@ -29,7 +30,7 @@ const createColorVariant = color => ({
 PicassoProvider.override(({ pallete, transitions }) => ({
   MuiRadio: {
     root: {
-      fontSize: '18px',
+      fontSize: '16px',
       position: 'relative',
       width: '1em',
       height: '1em',
@@ -40,7 +41,12 @@ PicassoProvider.override(({ pallete, transitions }) => ({
       animationDuration: transitions.duration.short,
       animationTimingFunction: transitions.easing.easeIn,
       transitionDuration: transitions.duration.short,
-      transitionTimingFunction: transitions.easing.easeOut
+      transitionTimingFunction: transitions.easing.easeOut,
+
+      '&$disabled': {
+        cursor: 'not-allowed',
+        pointerEvents: 'auto'
+      }
     },
     colorPrimary: createColorVariant(pallete.primary.main),
     colorSecondary: createColorVariant(pallete.primary.main), // secondary is set to primary by purpose
@@ -60,7 +66,7 @@ const centeredCircle = {
   transform: 'translate(-50%, -50%)',
   content: '""',
   borderColor: 'inherit',
-  background: '#fff',
+  background: pallete.common.white,
   pointerEvents: 'none',
   transition: 'border-color',
   transitionDuration: 'inherit',
@@ -80,7 +86,7 @@ export default {
     icon: {
       '&:before': {
         ...centeredCircle,
-        border: '1px solid #000'
+        border: `1px solid ${pallete.common.black}`
       },
       '&:after': {
         ...centeredCircle,

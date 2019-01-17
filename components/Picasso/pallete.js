@@ -1,5 +1,6 @@
 const pallete = {
   common: {
+    black: '#000000',
     white: '#ffffff'
   },
   primary: {
