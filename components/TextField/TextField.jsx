@@ -13,6 +13,7 @@ const TextField = props => {
     InputLabelProps = {},
     classes,
     children,
+    variant,
     ...restProps
   } = props
 
@@ -22,7 +23,7 @@ const TextField = props => {
     )
 
     // InputLabelProps.shrink = 'auto' TODO: uncomment when 'auto' PR is merged
-    InputProps.disableUnderline = true
+    InputProps.notched = false
     InputLabelProps.classes = { shrink: classes.shrink }
 
     if (iconPosition === 'end') {
@@ -38,7 +39,7 @@ const TextField = props => {
       InputLabelProps={InputLabelProps}
       InputProps={InputProps}
       {...restProps}
-      variant='filled'
+      variant='outlined'
     >
       {children}
     </MUITextField>

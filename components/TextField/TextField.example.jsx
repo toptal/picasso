@@ -21,11 +21,31 @@ storiesOf('TextField', module)
         }}
       >
         <option value='' />
-        <option value='male'>Male</option>
-        <option value='female'>Female</option>
+        <option value='y'>Yes</option>
+        <option value='n'>No</option>
       </TextField>
     </div>
   ))
   .add('textarea', () => (
     <TextField label='Description...' multiline rows={4} />
+  ))
+  .add('all', () => (
+    <div style={{ width: '300px' }}>
+      <TextField Icon={<SearchIcon />} fullWidth label='Search...' />
+      <div style={{ marginBottom: '1em' }} />
+      <TextField
+        SelectProps={{
+          native: true
+        }}
+        fullWidth
+        label='Gender'
+        select
+      >
+        <option value='' />
+        <option value='y'>Yes</option>
+        <option value='n'>No</option>
+      </TextField>
+      <div style={{ marginBottom: '1em' }} />
+      <TextField fullWidth label='Description...' multiline rows={4} />
+    </div>
   ))
