@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+DOCKER_CMD="docker run -t -i --rm -v ${PWD}/components:/app/components -v ${PWD}/build:/app/build -e NPM_TOKEN=$NPM_TOKEN picasso:latest"
+STORYBOOK_CMD="yarn storybook:build"
+
+echo "Running visual tests inside docker ..."
+$STORYBOOK_CMD
+
+if [[ "$1" == "-u" ]]; then
+  echo "Updating snapshots to a current version ..."
+  $DOCKER_CMD yarn test-visual:docker -u
+else
+  $DOCKER_CMD yarn test-visual:docker
+fi
+

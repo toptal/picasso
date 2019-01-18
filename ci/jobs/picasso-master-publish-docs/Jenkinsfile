@@ -1,0 +1,68 @@
+@Library('globalLibrary@master') _
+pipeline {
+
+  agent { label 'docker' }
+
+  options {
+    ansiColor('xterm')
+    timestamps()
+    timeout(time: 1, unit: 'HOURS')
+  }
+
+  environment {
+    NPM_TOKEN = credentials('npm-token-for-toptal-private-registry')
+  }
+
+  stages {
+    stage('Git checkout master') {
+      steps {
+        info "== Checking out Picasso"
+        gitCheckout(
+                branches: "master",
+                credentials: [username: 'git', description: 'jenkins/picasso'],
+                url: 'git@github.com:toptal/picasso.git',
+                additionalBehaviours: [
+                        cleanBeforeCheckout: true
+                ])
+
+        info "Git commit: ${gitCommit()}"
+        info "Git branch: ${gitBranch()}"
+        success "Checkout finished"
+      }
+    }//stage
+
+    stage('Build docs') {
+        steps {
+            script {
+                sh """
+                      docker run --tty -e NPM_TOKEN=$NPM_TOKEN -e HOME=`pwd` --volume `pwd`:`pwd`:z --user `id -u`:`id -g` \\
+                      --workdir `pwd` node:8-alpine sh -c 'yarn install && yarn build:storybook'
+                   """
+            }//script
+        }//steps
+    }//stage
+    stage('Sync docs to docs server') {
+      steps {
+        script {
+            sh """
+                 rsync -avz --delete -e ssh ./build/storybook/ docs@docs.staging.toptal.net:~/docs/picasso/ && \\
+                 rm -rf ./build
+               """
+        }//script
+        script {
+            VERSION = sh(returnStdout: true, script: 'cat package.json | jq ".version" -r').trim()
+        }
+      }//steps
+    }//stage
+
+  }//stages
+
+  post {
+    success {
+        script {
+          message = ":frontend-experience: New documentation of Picasso *(${VERSION})* is live on <https://picasso.toptal.net|(https://picasso.toptal.net)>"
+          slackSend color: 'good', channel: '-frontend-exp-core', message: message
+        }
+    }
+  }
+}//pipeline
