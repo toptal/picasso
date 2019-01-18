@@ -20,7 +20,7 @@ const createColorVariant = color => ({
     ...setCircleColor(color)
   },
   '&$disabled': {
-    opacity: '0.5',
+    opacity: 0.5,
     cursor: 'not-allowed',
     pointerEvents: 'auto',
     ...setBorderColor(pallete.grey[100])

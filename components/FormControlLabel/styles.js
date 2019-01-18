@@ -3,7 +3,7 @@ import { PicassoProvider } from '../Picasso'
 PicassoProvider.override(({ pallete }) => ({
   MuiFormControlLabel: {
     root: {
-      fontSize: `${2 * pallete.unit}px`,
+      fontSize: '1em',
       marginLeft: 0,
       marginRight: 0
     },
@@ -12,7 +12,7 @@ PicassoProvider.override(({ pallete }) => ({
       alignItems: 'center',
 
       color: pallete.text.primary,
-      lineHeight: `${2 * pallete.unit}px`,
+      lineHeight: '1em',
       fontFamily: 'proxima-nova',
       fontWeight: 300,
       fontSize: '1em',

@@ -4,8 +4,8 @@ import pallete from '../Picasso/pallete'
 PicassoProvider.override(() => ({
   MuiCheckbox: {
     root: {
-      fontSize: `${2 * pallete.unit}px`,
-      lineHeight: `${2 * pallete.unit}px`,
+      fontSize: '1em',
+      lineHeight: '1em',
       padding: 0,
 
       '&$disabled': {
@@ -31,22 +31,22 @@ export default {
     }
   },
   checkedIcon: {
-    height: `${2 * pallete.unit}px`,
-    width: `${2 * pallete.unit}px`,
+    height: '1em',
+    width: '1em',
     transition: 'all .1s ease',
     background: pallete.primary.main,
     border: `1px solid ${pallete.primary.dark}`
   },
   uncheckedIcon: {
-    height: `${2 * pallete.unit}px`,
-    width: `${2 * pallete.unit}px`,
+    height: '1em',
+    width: '1em',
     transition: 'all .1s ease',
     background: pallete.common.white,
     border: `1px solid ${pallete.grey[50]}`
   },
   indeterminateIcon: {
-    height: `${2 * pallete.unit}px`,
-    width: `${2 * pallete.unit}px`,
+    height: '1em',
+    width: '1em',
     transition: 'all .1s ease',
     background: pallete.primary.main,
     border: `1px solid ${pallete.primary.dark}`
