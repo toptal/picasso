@@ -26,5 +26,8 @@ PicassoProvider.override(({ pallete }) => ({
 }))
 
 export default {
-  FormControlLabel: {}
+  FormControlLabel: {
+    root: {},
+    disabled: {}
+  }
 }
