@@ -1,5 +1,4 @@
 import { PicassoProvider } from '../Picasso'
-import pallete from '../Picasso/pallete'
 
 const setBorderColor = borderColor => ({
   '&:before': {
@@ -14,23 +13,23 @@ const setCircleColor = borderColor => ({
   }
 })
 
-const createColorVariant = color => ({
+const createColorVariant = (mainColor, disabledColor) => ({
   '&$checked': {
-    ...setBorderColor(color),
-    ...setCircleColor(color)
+    ...setBorderColor(mainColor),
+    ...setCircleColor(mainColor)
   },
   '&$disabled': {
     opacity: 0.5,
     cursor: 'not-allowed',
     pointerEvents: 'auto',
-    ...setBorderColor(pallete.grey[100])
+    ...setBorderColor(disabledColor)
   },
   '&:hover': {
-    ...setBorderColor(color)
+    ...setBorderColor(mainColor)
   }
 })
 
-PicassoProvider.override(({ pallete, transitions }) => ({
+PicassoProvider.override(({ palette, transitions }) => ({
   MuiRadio: {
     root: {
       fontSize: '16px',
@@ -40,21 +39,21 @@ PicassoProvider.override(({ pallete, transitions }) => ({
       padding: '0',
 
       margin: '0.25em 0.5em',
-      ...createColorVariant(pallete.grey[100]),
+      ...createColorVariant(palette.grey[100], palette.grey[100]),
       animationDuration: transitions.duration.short,
       animationTimingFunction: transitions.easing.easeIn,
       transitionDuration: transitions.duration.short,
       transitionTimingFunction: transitions.easing.easeOut
     },
-    colorPrimary: createColorVariant(pallete.primary.main),
-    colorSecondary: createColorVariant(pallete.primary.main), // secondary is set to primary by purpose
-    disabled: createColorVariant(pallete.grey[100]),
+    colorPrimary: createColorVariant(palette.primary.main, palette.grey[100]),
+    colorSecondary: createColorVariant(palette.primary.main, palette.grey[100]), // secondary is set to primary by purpose
+    disabled: createColorVariant(palette.grey[100], palette.grey[100]),
 
     checked: {}
   }
 }))
 
-const centeredCircle = {
+const centeredCircle = palette => ({
   position: 'absolute',
   width: '100%',
   height: '100%',
@@ -64,39 +63,37 @@ const centeredCircle = {
   transform: 'translate(-50%, -50%)',
   content: '""',
   borderColor: 'inherit',
-  background: pallete.common.white,
+  background: palette.common.white,
   pointerEvents: 'none',
   transition: 'border-color',
   transitionDuration: 'inherit',
   transitionTimingFunction: 'inherit'
-}
+})
 
-export default {
-  Radio: {
-    '@keyframes fade-in': {
-      '0%': {
-        opacity: 0
-      },
-      '100%': {
-        opacity: 1
-      }
+export default ({ palette }) => ({
+  '@keyframes fade-in': {
+    '0%': {
+      opacity: 0
     },
-    icon: {
-      '&:before': {
-        ...centeredCircle,
-        border: `1px solid ${pallete.common.black}`
-      },
-      '&:after': {
-        ...centeredCircle,
-        width: 'initial',
-        height: 'initial',
-        borderWidth: '0.25em',
-        borderStyle: 'solid',
-        display: 'none',
-        animation: 'fade-in',
-        animationDuration: 'inherit',
-        animationTimingFunction: 'inherit'
-      }
+    '100%': {
+      opacity: 1
+    }
+  },
+  icon: {
+    '&:before': {
+      ...centeredCircle(palette),
+      border: `1px solid ${palette.common.black}`
+    },
+    '&:after': {
+      ...centeredCircle(palette),
+      width: 'initial',
+      height: 'initial',
+      borderWidth: '0.25em',
+      borderStyle: 'solid',
+      display: 'none',
+      animation: 'fade-in',
+      animationDuration: 'inherit',
+      animationTimingFunction: 'inherit'
     }
   }
-}
+})
