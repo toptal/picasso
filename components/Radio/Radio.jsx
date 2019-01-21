@@ -30,4 +30,4 @@ const Radio = props => {
   )
 }
 
-export default withStyles(styles.Radio)(Radio)
+export default withStyles(styles)(Radio)

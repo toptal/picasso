@@ -1,4 +1,4 @@
-const pallete = {
+const palette = {
   common: {
     black: '#000000',
     white: '#ffffff'
@@ -27,4 +27,4 @@ const pallete = {
   }
 }
 
-export default pallete
+export default palette

@@ -6,11 +6,9 @@ to: components/<%= h.changeCase.pascalCase(name) %>/styles.js
 -%>
 import { PicassoProvider } from '../Picasso'
 
-PicassoProvider.override(({ pallete }) => ({
+PicassoProvider.override(({ palette }) => ({
 
 }))
 
-export default {
-  <%= Name %>: {
-  }
-}
+export default ({ palette }) => ({
+})

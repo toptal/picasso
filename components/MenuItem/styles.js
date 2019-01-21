@@ -1,9 +1,9 @@
 import { PicassoProvider } from '../Picasso'
 
-PicassoProvider.override(({ pallete }) => ({
+PicassoProvider.override(({ palette }) => ({
   MuiMenuItem: {
     root: {
-      borderTop: `1px solid ${pallete.grey[50]}`,
+      borderTop: `1px solid ${palette.grey[50]}`,
       lineHeight: '1em',
       padding: '0.7em',
       height: 'auto',
@@ -13,17 +13,17 @@ PicassoProvider.override(({ pallete }) => ({
       },
 
       '&:hover': {
-        backgroundColor: pallete.blue.light,
+        backgroundColor: palette.blue.light,
 
         '&$selected': {
-          backgroundColor: pallete.blue.light,
-          color: pallete.primary.main
+          backgroundColor: palette.blue.light,
+          color: palette.primary.main
         }
       },
 
       '&$selected': {
-        backgroundColor: pallete.blue.light,
-        color: pallete.primary.main
+        backgroundColor: palette.blue.light,
+        color: palette.primary.main
       }
     },
     selected: {}

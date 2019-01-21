@@ -20,4 +20,4 @@ const <%= Name %> = props => {
 <%= Name %>.defaultProps = {
 }
 
-export default withStyles(styles.<%= Name %>)(<%= Name %>)
+export default withStyles(styles)(<%= Name %>)

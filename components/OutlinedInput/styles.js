@@ -1,10 +1,10 @@
 import { PicassoProvider } from '../Picasso'
 
-PicassoProvider.override(({ pallete }) => ({
+PicassoProvider.override(({ palette }) => ({
   MuiOutlinedInput: {
     root: {
       '& $notchedOutline': {
-        borderColor: pallete.grey[50],
+        borderColor: palette.grey[50],
         borderRadius: 0
       },
 
@@ -17,7 +17,7 @@ PicassoProvider.override(({ pallete }) => ({
       '&:hover': {
         '&:not($disabled)&:not($focused)&:not($error)': {
           '& $notchedOutline': {
-            borderColor: pallete.primary.main
+            borderColor: palette.primary.main
           }
         }
       }

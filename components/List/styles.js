@@ -1,9 +1,9 @@
 import { PicassoProvider } from '../Picasso'
 
-PicassoProvider.override(({ pallete }) => ({
+PicassoProvider.override(({ palette }) => ({
   MuiList: {
     root: {
-      border: `solid 1px ${pallete.primary.main}`
+      border: `solid 1px ${palette.primary.main}`
     }
   }
 }))

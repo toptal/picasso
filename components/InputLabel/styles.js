@@ -1,6 +1,6 @@
 import { PicassoProvider } from '../Picasso'
 
-PicassoProvider.override(({ pallete }) => ({
+PicassoProvider.override(({ palette }) => ({
   MuiInputLabel: {
     outlined: {
       transform: 'translate(0.75em, 1em) scale(1)',
@@ -13,7 +13,7 @@ PicassoProvider.override(({ pallete }) => ({
     shrink: {},
 
     error: {
-      color: pallete.error.text
+      color: palette.error.text
     }
   }
 }))

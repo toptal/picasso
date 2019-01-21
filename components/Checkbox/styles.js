@@ -1,5 +1,4 @@
 import { PicassoProvider } from '../Picasso'
-import pallete from '../Picasso/pallete'
 
 PicassoProvider.override(() => ({
   MuiCheckbox: {
@@ -20,36 +19,36 @@ PicassoProvider.override(() => ({
   }
 }))
 
-export default {
+export default ({ palette }) => ({
   root: {
     '&:hover $uncheckedIcon': {
-      border: `1px solid ${pallete.primary.main}`
+      border: `1px solid ${palette.primary.main}`
     }
   },
   disabled: {
     '&:hover $uncheckedIcon': {
-      border: `1px solid ${pallete.grey[50]}`
+      border: `1px solid ${palette.grey[50]}`
     }
   },
   checkedIcon: {
     height: '1em',
     width: '1em',
     transition: 'all .1s ease',
-    background: pallete.primary.main,
-    border: `1px solid ${pallete.primary.dark}`
+    background: palette.primary.main,
+    border: `1px solid ${palette.primary.dark}`
   },
   uncheckedIcon: {
     height: '1em',
     width: '1em',
     transition: 'all .1s ease',
-    background: pallete.common.white,
-    border: `1px solid ${pallete.grey[50]}`
+    background: palette.common.white,
+    border: `1px solid ${palette.grey[50]}`
   },
   indeterminateIcon: {
     height: '1em',
     width: '1em',
     transition: 'all .1s ease',
-    background: pallete.primary.main,
-    border: `1px solid ${pallete.primary.dark}`
+    background: palette.primary.main,
+    border: `1px solid ${palette.primary.dark}`
   }
-}
+})

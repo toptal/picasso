@@ -1,6 +1,6 @@
 import { PicassoProvider } from '../Picasso'
 
-PicassoProvider.override(({ pallete }) => ({
+PicassoProvider.override(({ palette }) => ({
   MuiFormControlLabel: {
     root: {
       marginLeft: 0,
@@ -10,7 +10,7 @@ PicassoProvider.override(({ pallete }) => ({
       display: 'inline-flex',
       alignItems: 'center',
 
-      color: pallete.text.primary,
+      color: palette.text.primary,
       lineHeight: '1em',
       fontWeight: 300,
 

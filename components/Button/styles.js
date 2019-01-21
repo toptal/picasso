@@ -58,7 +58,7 @@ export const createButtonVariant = (
   border
 ) => variant(background, border)
 
-PicassoProvider.override(({ pallete }) => ({
+PicassoProvider.override(({ palette }) => ({
   MuiButton: {
     root: {
       textTransform: 'none',
@@ -67,43 +67,43 @@ PicassoProvider.override(({ pallete }) => ({
     },
     containedPrimary: createButtonVariant(
       VARIANTS.containedPrimary,
-      pallete.primary.main,
-      pallete.primary.main
+      palette.primary.main,
+      palette.primary.main
     ),
     containedSecondary: createButtonVariant(
       VARIANTS.containedSecondary,
-      pallete.secondary.main,
-      pallete.secondary.main
+      palette.secondary.main,
+      palette.secondary.main
     ),
     outlinedPrimary: createButtonVariant(
       VARIANTS.outlinedPrimary,
-      pallete.primary.main,
-      pallete.primary.main
+      palette.primary.main,
+      palette.primary.main
     ),
     outlinedSecondary: createButtonVariant(
       VARIANTS.outlinedSecondary,
-      pallete.secondary.main,
-      pallete.secondary.main
+      palette.secondary.main,
+      palette.secondary.main
     ),
     outlined: createButtonVariant(
       VARIANTS.outlined,
-      pallete.grey[50],
-      pallete.grey[100]
+      palette.grey[50],
+      palette.grey[100]
     ),
     flat: createButtonVariant(
       VARIANTS.flat,
-      pallete.grey[100],
-      pallete.grey[100]
+      palette.grey[100],
+      palette.grey[100]
     ),
     flatPrimary: createButtonVariant(
       VARIANTS.flat,
-      pallete.primary.main,
-      pallete.primary.main
+      palette.primary.main,
+      palette.primary.main
     ),
     flatSecondary: createButtonVariant(
       VARIANTS.flat,
-      pallete.secondary.main,
-      pallete.secondary.main
+      palette.secondary.main,
+      palette.secondary.main
     )
   }
 }))

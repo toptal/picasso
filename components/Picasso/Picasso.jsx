@@ -2,11 +2,11 @@ import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles'
 import React from 'react'
 import PT from 'prop-types'
 
-import pallete from './pallete'
+import palette from './palette'
 import Provider from './PicassoProvider'
 
 const picasso = {
-  pallete,
+  palette,
   props: {
     MuiButtonBase: {
       disableRipple: true
