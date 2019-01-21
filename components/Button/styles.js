@@ -39,15 +39,31 @@ PicassoProvider.override(({ typography, transitions }) => ({
 
 export default ({ palette }) => {
   const commonStyles = {
+    root: {
+      position: 'relative'
+    },
     icon: {
       fontSize: '1em',
-      paddingRight: '0.45em'
+      paddingRight: '0.45em',
+      verticalAlign: 'text-top'
     },
     compact: {
       minWidth: 'auto',
       '& $icon': {
         padding: 'initial'
       }
+    },
+    children: {
+      display: 'inline-block'
+    },
+    hidden: {
+      opacity: 0
+    },
+    loader: {
+      position: 'absolute',
+      left: '50%',
+      top: '50%',
+      transform: 'translate(-50%, -50%)'
     }
   }
 

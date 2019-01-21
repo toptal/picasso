@@ -6,14 +6,32 @@ import { withStyles } from '@material-ui/core/styles'
 import { capitalize } from '@material-ui/core/utils/helpers'
 
 import styles from './styles'
+import Loader from '../Loader'
 import Group from '../ButtonGroup'
 
 const Button = props => {
-  const { icon, children, classes, variant, color, compact, ...rest } = props
-  const finalChildren = [children]
+  const {
+    icon,
+    loading,
+    children,
+    classes,
+    variant,
+    color,
+    compact,
+    ...rest
+  } = props
+  const {
+    icon: iconClass,
+    root: rootClass,
+    children: childrenClass,
+    hidden: hiddenClass,
+    loader: loaderClass,
+    ...restClasses
+  } = classes
+  let finalChildren = [children]
 
   if (icon) {
-    const iconComponent = React.cloneElement(icon, { className: classes.icon })
+    const iconComponent = React.cloneElement(icon, { className: iconClass })
 
     finalChildren.unshift(iconComponent)
   }
@@ -23,19 +41,25 @@ const Button = props => {
       [classes[`${variant.toLowerCase()}Negative`]]: color === 'negative',
       [classes.compact]: compact
     },
-    classes[`${variant}${capitalize(color)}`]
+    classes[`${variant}${capitalize(color)}`],
+    rootClass
   )
 
   return (
     <MUIButton
-      {...rest}
       classes={{
-        root: rootClassName
+        root: rootClassName,
+        ...restClasses
       }}
       color={color === 'negative' ? 'default' : color}
       variant={variant}
+      {...rest}
     >
-      {finalChildren}
+      <div className={cx(childrenClass, { [hiddenClass]: loading })}>
+        {finalChildren}
+      </div>
+
+      {loading && <Loader className={loaderClass} inline size='small' />}
     </MUIButton>
   )
 }
@@ -44,13 +68,15 @@ Button.propTypes = {
   color: PropTypes.string,
   compact: PropTypes.bool,
   icon: PropTypes.node,
-  variant: PropTypes.string
+  variant: PropTypes.string,
+  loading: PropTypes.bool
 }
 
 Button.defaultProps = {
   color: 'default',
   compact: false,
   icon: null,
+  loading: false,
   variant: 'outlined'
 }
 

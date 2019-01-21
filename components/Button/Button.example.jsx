@@ -43,6 +43,67 @@ const generateSection = (text, Icon, color = 'primary') => (
 )
 
 chapter
+  .addSection('Contained', 'Contained buttons', () => (
+    <div>
+      <Button variant='contained'>Default</Button>
+      <Button color='primary' variant='contained'>
+        Primary
+      </Button>
+      <Button color='secondary' variant='contained'>
+        Secondary
+      </Button>
+    </div>
+  ))
+  .addSection('Outlined', 'Outlined buttons', () => (
+    <div>
+      <Button variant='outlined'>Default</Button>
+      <Button color='primary' variant='outlined'>
+        Primary
+      </Button>
+      <Button color='secondary' variant='outlined'>
+        Secondary
+      </Button>
+    </div>
+  ))
+  .addSection('Flat', 'Flat buttons', () => (
+    <div>
+      <Button>Default</Button>
+      <Button color='primary'>Primary</Button>
+      <Button color='secondary'>Secondary</Button>
+    </div>
+  ))
+  .addSection(
+    'Icon Button',
+    "Buttons with icons (not supported yet as we don't have icon set",
+    () => (
+      <div>
+        <Button icon={<IconSend />} variant='outlined'>
+          Default
+        </Button>
+        <Button color='primary' icon={<IconSend />} variant='contained'>
+          Primary
+        </Button>
+        <Button color='secondary' icon={<IconSend />}>
+          Secondary
+        </Button>
+      </div>
+    )
+  )
+  .addSection('Loading Button', 'Loading button indicating progress', () => (
+    <div>
+      <Button color='primary' loading variant='contained'>
+        Default
+      </Button>
+
+      <Button color='secondary' loading variant='contained'>
+        Default
+      </Button>
+    </div>
+  ))
+
+stories.addWithChapters('Button', teller.toStory())
+
+chapter
   .addSection(
     'Primary',
     'Primary buttons are representing the primary CTA on page',
