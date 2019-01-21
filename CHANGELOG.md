@@ -1,5 +1,30 @@
 # Changelog
 
+## v0.1.0-alpha.7 (21/01/2019)
+
+#### CI
+
+- [**CI**] Deploy storybook to docs server [#26](https://github.com/toptal/picasso/pull/26)
+
+#### Chore
+
+- [**Chore**] Fix palette name syntax for overriding MUI theme [#29](https://github.com/toptal/picasso/pull/29)
+- [**Chore**] Fix story template for component generator [#28](https://github.com/toptal/picasso/pull/28)
+- [**Chore**] Add component template code generator [#20](https://github.com/toptal/picasso/pull/20)
+- [**Chore**] Split TextField styles [#22](https://github.com/toptal/picasso/pull/22)
+
+#### Feature
+
+- [**Feature**] Initial components: Button.Group [#25](https://github.com/toptal/picasso/pull/25)
+- [**Feature**] Initial components Checkbox [#23](https://github.com/toptal/picasso/pull/23)
+- [**Feature**] Add Select component [#21](https://github.com/toptal/picasso/pull/21)
+
+#### Specs
+
+- [**Specs**] Move all stories to the component folders [#24](https://github.com/toptal/picasso/pull/24)
+
+---
+
 ## v0.1.0-alpha.6 (14/01/2019)
 
 #### Feature
