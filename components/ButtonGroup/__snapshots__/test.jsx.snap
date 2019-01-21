@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonGroup render 1`] = `
+<div>
+  <div
+    class="ButtonGroup-root"
+  >
+    <div />
+    <div />
+    <div />
+  </div>
+</div>
+`;

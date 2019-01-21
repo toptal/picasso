@@ -1,10 +1,15 @@
 import React from 'react'
 import { render, fireEvent, cleanup } from 'react-testing-library'
 
+import Picasso from '../index'
 import Button from './index'
 
 const renderButton = (children, props = {}) => {
-  return render(<Button {...props}>{children}</Button>)
+  return render(
+    <Picasso>
+      <Button {...props}>{children}</Button>
+    </Picasso>
+  )
 }
 
 afterEach(cleanup)

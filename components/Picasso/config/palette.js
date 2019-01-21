@@ -1,8 +1,4 @@
 const palette = {
-  common: {
-    black: '#000000',
-    white: '#ffffff'
-  },
   primary: {
     main: '#204ecf',
     dark: '#1542c1'
@@ -21,9 +17,13 @@ const palette = {
     light: 'rgba(32,78,207,.05)'
   },
   error: {
-    main: '#9f3a38',
+    main: '#cf2020',
     text: '#e0b4b4',
     background: '#fff6f6'
+  },
+  common: {
+    black: '#000',
+    white: '#fff'
   }
 }
 

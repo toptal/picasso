@@ -1,12 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import cx from 'classnames'
 import MUIButton from '@material-ui/core/Button'
 import { withStyles } from '@material-ui/core/styles'
+import { capitalize } from '@material-ui/core/utils/helpers'
 
 import styles from './styles'
+import Group from '../ButtonGroup'
 
 const Button = props => {
-  const { icon, children, classes, ...rest } = props
+  const { icon, children, classes, variant, color, compact, ...rest } = props
   const finalChildren = [children]
 
   if (icon) {
@@ -15,15 +18,42 @@ const Button = props => {
     finalChildren.unshift(iconComponent)
   }
 
-  return <MUIButton {...rest}>{finalChildren}</MUIButton>
+  const rootClassName = cx(
+    {
+      [classes[`${variant.toLowerCase()}Negative`]]: color === 'negative',
+      [classes.compact]: compact
+    },
+    classes[`${variant}${capitalize(color)}`]
+  )
+
+  return (
+    <MUIButton
+      {...rest}
+      classes={{
+        root: rootClassName
+      }}
+      color={color === 'negative' ? 'default' : color}
+      variant={variant}
+    >
+      {finalChildren}
+    </MUIButton>
+  )
 }
 
 Button.propTypes = {
-  icon: PropTypes.node
+  color: PropTypes.string,
+  compact: PropTypes.bool,
+  icon: PropTypes.node,
+  variant: PropTypes.string
 }
 
 Button.defaultProps = {
-  icon: null
+  color: 'default',
+  compact: false,
+  icon: null,
+  variant: 'outlined'
 }
 
-export default withStyles(styles.Button)(Button)
+Button.Group = Group
+
+export default withStyles(styles)(Button)
