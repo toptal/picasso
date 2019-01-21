@@ -26,7 +26,7 @@ ADDONS.forEach(addon => setAddon(addon))
 const req = require.context('../components', true, /\.example\.jsx$/)
 
 function loadStories() {
-  req.keys().forEach(filename => req(filename))
+  require('./stories/Picasso'), req.keys().forEach(filename => req(filename))
 }
 
 configure(loadStories, module)
