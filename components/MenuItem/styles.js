@@ -13,16 +13,16 @@ PicassoProvider.override(({ palette }) => ({
       },
 
       '&:hover': {
-        backgroundColor: palette.blue.light,
+        backgroundColor: palette.blue.lighter,
 
         '&$selected': {
-          backgroundColor: palette.blue.light,
+          backgroundColor: palette.blue.lighter,
           color: palette.primary.main
         }
       },
 
       '&$selected': {
-        backgroundColor: palette.blue.light,
+        backgroundColor: palette.blue.lighter,
         color: palette.primary.main
       }
     },
