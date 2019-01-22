@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`props combo 1`] = `
+<div>
+  <div
+    class="Loader-wrapper"
+  >
+    <div
+      class="MuiCircularProgress-root CircularProgress-root Loader-spinner MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
+      role="progressbar"
+      style="width: 40px; height: 40px;"
+    >
+      <svg
+        class="MuiCircularProgress-svg-11"
+        viewBox="22 22 44 44"
+      >
+        <circle
+          class="MuiCircularProgress-circle-12 MuiCircularProgress-circleIndeterminate-14"
+          cx="44"
+          cy="44"
+          fill="none"
+          r="20.2"
+          stroke-width="3.6"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+`;

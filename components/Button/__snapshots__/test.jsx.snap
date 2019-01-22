@@ -3,14 +3,18 @@
 exports[`contained button renders default contained button 1`] = `
 <div>
   <button
-    class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-raised"
+    class="MuiButtonBase-root MuiButton-root Button-root MuiButton-contained Button-contained MuiButton-raised"
     tabindex="0"
     type="button"
   >
     <span
       class="MuiButton-label"
     >
-      Contained
+      <div
+        class="Button-children"
+      >
+        Contained
+      </div>
     </span>
   </button>
 </div>
@@ -19,14 +23,18 @@ exports[`contained button renders default contained button 1`] = `
 exports[`contained button renders primary contained button 1`] = `
 <div>
   <button
-    class="MuiButtonBase-root MuiButton-root Button-containedPrimary MuiButton-contained MuiButton-containedPrimary MuiButton-raised MuiButton-raisedPrimary"
+    class="MuiButtonBase-root MuiButton-root Button-containedPrimary Button-root MuiButton-contained Button-contained MuiButton-containedPrimary Button-containedPrimary MuiButton-raised MuiButton-raisedPrimary"
     tabindex="0"
     type="button"
   >
     <span
       class="MuiButton-label"
     >
-      Contained
+      <div
+        class="Button-children"
+      >
+        Contained
+      </div>
     </span>
   </button>
 </div>
@@ -35,14 +43,18 @@ exports[`contained button renders primary contained button 1`] = `
 exports[`contained button renders secondary contained button 1`] = `
 <div>
   <button
-    class="MuiButtonBase-root MuiButton-root Button-containedSecondary MuiButton-contained MuiButton-containedSecondary MuiButton-raised MuiButton-raisedSecondary"
+    class="MuiButtonBase-root MuiButton-root Button-containedSecondary Button-root MuiButton-contained Button-contained MuiButton-containedSecondary Button-containedSecondary MuiButton-raised MuiButton-raisedSecondary"
     tabindex="0"
     type="button"
   >
     <span
       class="MuiButton-label"
     >
-      Contained
+      <div
+        class="Button-children"
+      >
+        Contained
+      </div>
     </span>
   </button>
 </div>
@@ -51,7 +63,7 @@ exports[`contained button renders secondary contained button 1`] = `
 exports[`disabled button renders disabled version 1`] = `
 <div>
   <button
-    class="MuiButtonBase-root MuiButtonBase-disabled MuiButton-root MuiButton-outlined MuiButton-disabled"
+    class="MuiButtonBase-root MuiButtonBase-disabled MuiButton-root Button-root MuiButton-outlined Button-outlined MuiButton-disabled"
     disabled=""
     tabindex="-1"
     type="button"
@@ -59,7 +71,11 @@ exports[`disabled button renders disabled version 1`] = `
     <span
       class="MuiButton-label"
     >
-      Click me!
+      <div
+        class="Button-children"
+      >
+        Click me!
+      </div>
     </span>
   </button>
 </div>
@@ -68,14 +84,18 @@ exports[`disabled button renders disabled version 1`] = `
 exports[`flat button renders default flat button 1`] = `
 <div>
   <button
-    class="MuiButtonBase-root MuiButton-root MuiButton-outlined"
+    class="MuiButtonBase-root MuiButton-root Button-root MuiButton-outlined Button-outlined"
     tabindex="0"
     type="button"
   >
     <span
       class="MuiButton-label"
     >
-      Flat
+      <div
+        class="Button-children"
+      >
+        Flat
+      </div>
     </span>
   </button>
 </div>
@@ -84,14 +104,18 @@ exports[`flat button renders default flat button 1`] = `
 exports[`flat button renders primary flat button 1`] = `
 <div>
   <button
-    class="MuiButtonBase-root MuiButton-root Button-outlinedPrimary MuiButton-outlined MuiButton-outlinedPrimary"
+    class="MuiButtonBase-root MuiButton-root Button-outlinedPrimary Button-root MuiButton-outlined Button-outlined MuiButton-outlinedPrimary Button-outlinedPrimary"
     tabindex="0"
     type="button"
   >
     <span
       class="MuiButton-label"
     >
-      Flat
+      <div
+        class="Button-children"
+      >
+        Flat
+      </div>
     </span>
   </button>
 </div>
@@ -100,14 +124,18 @@ exports[`flat button renders primary flat button 1`] = `
 exports[`flat button renders secondary flat button 1`] = `
 <div>
   <button
-    class="MuiButtonBase-root MuiButton-root Button-outlinedSecondary MuiButton-outlined MuiButton-outlinedSecondary"
+    class="MuiButtonBase-root MuiButton-root Button-outlinedSecondary Button-root MuiButton-outlined Button-outlined MuiButton-outlinedSecondary Button-outlinedSecondary"
     tabindex="0"
     type="button"
   >
     <span
       class="MuiButton-label"
     >
-      Flat
+      <div
+        class="Button-children"
+      >
+        Flat
+      </div>
     </span>
   </button>
 </div>
@@ -116,14 +144,18 @@ exports[`flat button renders secondary flat button 1`] = `
 exports[`outlined button renders default outlined button 1`] = `
 <div>
   <button
-    class="MuiButtonBase-root MuiButton-root MuiButton-outlined"
+    class="MuiButtonBase-root MuiButton-root Button-root MuiButton-outlined Button-outlined"
     tabindex="0"
     type="button"
   >
     <span
       class="MuiButton-label"
     >
-      Outlined
+      <div
+        class="Button-children"
+      >
+        Outlined
+      </div>
     </span>
   </button>
 </div>
@@ -132,14 +164,18 @@ exports[`outlined button renders default outlined button 1`] = `
 exports[`outlined button renders primary outlined button 1`] = `
 <div>
   <button
-    class="MuiButtonBase-root MuiButton-root Button-outlinedPrimary MuiButton-outlined MuiButton-outlinedPrimary"
+    class="MuiButtonBase-root MuiButton-root Button-outlinedPrimary Button-root MuiButton-outlined Button-outlined MuiButton-outlinedPrimary Button-outlinedPrimary"
     tabindex="0"
     type="button"
   >
     <span
       class="MuiButton-label"
     >
-      Outlined
+      <div
+        class="Button-children"
+      >
+        Outlined
+      </div>
     </span>
   </button>
 </div>
@@ -148,14 +184,18 @@ exports[`outlined button renders primary outlined button 1`] = `
 exports[`outlined button renders secondary outlined button 1`] = `
 <div>
   <button
-    class="MuiButtonBase-root MuiButton-root Button-outlinedSecondary MuiButton-outlined MuiButton-outlinedSecondary"
+    class="MuiButtonBase-root MuiButton-root Button-outlinedSecondary Button-root MuiButton-outlined Button-outlined MuiButton-outlinedSecondary Button-outlinedSecondary"
     tabindex="0"
     type="button"
   >
     <span
       class="MuiButton-label"
     >
-      Outlined
+      <div
+        class="Button-children"
+      >
+        Outlined
+      </div>
     </span>
   </button>
 </div>
