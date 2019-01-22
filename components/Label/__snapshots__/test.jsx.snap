@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`dismissable label should render dismissable label 1`] = `
+<div>
+  <div
+    class="MuiChip-root Chip-root MuiChip-deletable"
+    role="button"
+    tabindex="0"
+  >
+    <span
+      class="MuiChip-label"
+    />
+    <svg
+      aria-hidden="true"
+      class="MuiSvgIcon-root-151 Label-deleteIcon-124 MuiChip-deleteIcon-146"
+      data-testid="icon-delete"
+      focusable="false"
+      role="presentation"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+      />
+      <path
+        d="M0 0h24v24H0z"
+        fill="none"
+      />
+    </svg>
+  </div>
+</div>
+`;
+
+exports[`renders default variant 1`] = `
+<div>
+  <div
+    class="MuiChip-root Chip-root"
+    role="button"
+    tabindex="-1"
+  >
+    <span
+      class="MuiChip-label"
+    />
+  </div>
+</div>
+`;
+
+exports[`renders error variant 1`] = `
+<div>
+  <div
+    class="MuiChip-root Chip-root Label-error"
+    role="button"
+    tabindex="-1"
+  >
+    <span
+      class="MuiChip-label"
+    />
+  </div>
+</div>
+`;
+
+exports[`renders flat variant 1`] = `
+<div>
+  <div
+    class="MuiChip-root Chip-root Label-flat"
+    role="button"
+    tabindex="-1"
+  >
+    <span
+      class="MuiChip-label"
+    />
+  </div>
+</div>
+`;
+
+exports[`renders success variant 1`] = `
+<div>
+  <div
+    class="MuiChip-root Chip-root Label-success"
+    role="button"
+    tabindex="-1"
+  >
+    <span
+      class="MuiChip-label"
+    />
+  </div>
+</div>
+`;

@@ -13,7 +13,7 @@ PicassoProvider.override(({ palette }) => ({
     shrink: {},
 
     error: {
-      color: palette.error.text
+      color: palette.error.main
     }
   }
 }))

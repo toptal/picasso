@@ -4,6 +4,7 @@ const palette = {
     dark: '#1542c1'
   },
   secondary: {
+    light: '#b3ffe4',
     main: '#00cc83'
   },
   text: {
@@ -11,15 +12,17 @@ const palette = {
   },
   grey: {
     50: '#dfe3e9',
+    75: '#e8e8e8',
     100: '#686869'
   },
   blue: {
-    light: 'rgba(32,78,207,.05)'
+    lighter: 'rgba(32,78,207,.05)',
+    light: '#dbe3f9'
   },
   error: {
-    main: '#cf2020',
-    text: '#e0b4b4',
-    background: '#fff6f6'
+    lighter: '#fff6f6',
+    light: '#f8b1b4',
+    main: '#f05359'
   },
   common: {
     black: '#000',

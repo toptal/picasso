@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render label group with 4 labels 1`] = `
+<div>
+  <div
+    class="LabelGroup-root"
+  >
+    <div
+      class="MuiChip-root Chip-root"
+      role="button"
+      tabindex="-1"
+    >
+      <span
+        class="MuiChip-label"
+      >
+        Angular JS
+      </span>
+    </div>
+    <div
+      class="MuiChip-root Chip-root"
+      role="button"
+      tabindex="-1"
+    >
+      <span
+        class="MuiChip-label"
+      >
+        React JS
+      </span>
+    </div>
+    <div
+      class="MuiChip-root Chip-root"
+      role="button"
+      tabindex="-1"
+    >
+      <span
+        class="MuiChip-label"
+      >
+        Ember JS
+      </span>
+    </div>
+    <div
+      class="MuiChip-root Chip-root"
+      role="button"
+      tabindex="-1"
+    >
+      <span
+        class="MuiChip-label"
+      >
+        Vue JS
+      </span>
+    </div>
+  </div>
+</div>
+`;
