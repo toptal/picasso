@@ -1,0 +1,183 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`controlled version should render collapsed version 1`] = `
+<div>
+  <div
+    class="MuiPaper-root MuiPaper-elevation1 MuiExpansionPanel-root"
+  >
+    <div
+      aria-hidden="true"
+      class="MuiCollapse-container"
+      style="min-height: 0px;"
+    >
+      <div
+        class="MuiCollapse-wrapper"
+      >
+        <div
+          class="MuiCollapse-wrapperInner"
+        >
+          <div
+            class="MuiExpansionPanelDetails-root ExpansionPanelDetails-root"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`controlled version should render expanded version 1`] = `
+<div>
+  <div
+    class="MuiPaper-root MuiPaper-elevation1 MuiExpansionPanel-root MuiExpansionPanel-expanded"
+  >
+    <div
+      class="MuiCollapse-container MuiCollapse-entered"
+      style="min-height: 0px;"
+    >
+      <div
+        class="MuiCollapse-wrapper"
+      >
+        <div
+          class="MuiCollapse-wrapperInner"
+        >
+          <div
+            class="MuiExpansionPanelDetails-root ExpansionPanelDetails-root"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`default version for sections should render default version 1`] = `
+<div>
+  <div
+    class="MuiPaper-root MuiPaper-elevation1 MuiExpansionPanel-root"
+  >
+    <div
+      aria-expanded="false"
+      class="MuiButtonBase-root MuiExpansionPanelSummary-root WithStyles-ExpansionPanelSummary--root Accordion-defaultSummary"
+      data-testid="panel-summary"
+      role="button"
+      tabindex="0"
+    >
+      <div
+        class="MuiExpansionPanelSummary-content"
+      />
+      <div
+        aria-hidden="true"
+        class="MuiButtonBase-root MuiIconButton-root MuiExpansionPanelSummary-expandIcon"
+        role="button"
+        tabindex="-1"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root-50 Accordion-expandIcon-3"
+            focusable="false"
+            role="presentation"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+            />
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+            />
+          </svg>
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </div>
+    </div>
+    <div
+      aria-hidden="true"
+      class="MuiCollapse-container"
+      style="min-height: 0px;"
+    >
+      <div
+        class="MuiCollapse-wrapper"
+      >
+        <div
+          class="MuiCollapse-wrapperInner"
+        >
+          <div
+            class="MuiExpansionPanelDetails-root ExpansionPanelDetails-root Accordion-defaultDetails"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`default version for sections should render expanded version after click on summary 1`] = `
+<div>
+  <div
+    class="MuiPaper-root MuiPaper-elevation1 MuiExpansionPanel-root MuiExpansionPanel-expanded"
+  >
+    <div
+      aria-expanded="true"
+      class="MuiButtonBase-root MuiExpansionPanelSummary-root WithStyles-ExpansionPanelSummary--root Accordion-defaultSummary MuiExpansionPanelSummary-expanded"
+      data-testid="panel-summary"
+      role="button"
+      tabindex="0"
+    >
+      <div
+        class="MuiExpansionPanelSummary-content MuiExpansionPanelSummary-expanded"
+      />
+      <div
+        aria-hidden="true"
+        class="MuiButtonBase-root MuiIconButton-root MuiExpansionPanelSummary-expandIcon MuiExpansionPanelSummary-expanded"
+        role="button"
+        tabindex="-1"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root-121 Accordion-expandIcon-74"
+            focusable="false"
+            role="presentation"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+            />
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+            />
+          </svg>
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </div>
+    </div>
+    <div
+      class="MuiCollapse-container"
+      style="min-height: 0px; height: 0px;"
+    >
+      <div
+        class="MuiCollapse-wrapper"
+      >
+        <div
+          class="MuiCollapse-wrapperInner"
+        >
+          <div
+            class="MuiExpansionPanelDetails-root ExpansionPanelDetails-root Accordion-defaultDetails"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
