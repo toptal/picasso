@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.1.0-alpha.8 (22/01/2019)
+
+#### Feature
+
+- [**Feature**] Add initial component - Label [#31](https://github.com/toptal/picasso/pull/31)
+- [**Feature**] Added Loader component, loading support for Button [#30](https://github.com/toptal/picasso/pull/30)
+
+---
+
 ## v0.1.0-alpha.7 (21/01/2019)
 
 #### CI
