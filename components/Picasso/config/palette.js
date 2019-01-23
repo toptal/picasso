@@ -23,7 +23,8 @@ const palette = {
   error: {
     lighter: '#fff6f6',
     light: '#f8b1b4',
-    main: '#f05359'
+    main: '#f05359',
+    dark: '#9f3a38'
   },
   common: {
     black: '#000',

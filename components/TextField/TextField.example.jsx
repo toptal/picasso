@@ -6,6 +6,7 @@ import TextField from './'
 
 storiesOf('TextField', module)
   .add('text', () => <TextField label='Search...' />)
+  .add('error', () => <TextField error label='Search...' />)
   .add('text with Icon', () => (
     <TextField Icon={<SearchIcon />} label='Search...' />
   ))
