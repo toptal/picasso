@@ -11,11 +11,11 @@ exports[`props combo 1`] = `
       style="width: 40px; height: 40px;"
     >
       <svg
-        class="MuiCircularProgress-svg-11"
+        class="MuiCircularProgress-svg"
         viewBox="22 22 44 44"
       >
         <circle
-          class="MuiCircularProgress-circle-12 MuiCircularProgress-circleIndeterminate-14"
+          class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
           cx="44"
           cy="44"
           fill="none"

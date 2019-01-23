@@ -30,13 +30,32 @@ const markElementsProcessed = nodes => {
   })
 }
 
+const getClassName = element => {
+  // eslint-disable-next-line no-undef
+  if (element.className instanceof SVGAnimatedString) {
+    return element.className.baseVal
+  }
+
+  return element.className
+}
+
+const setClassName = (element, className) => {
+  // eslint-disable-next-line no-undef
+  if (element.className instanceof SVGAnimatedString) {
+    element.className.baseVal = className
+    return
+  }
+
+  element.className = className
+}
+
 const removeNonDeterministicClassParts = elements => {
   elements.forEach(element => {
     if (!element.className) return
 
-    const classNameProp = element.className
+    const classNameProp = getClassName(element)
 
-    if (!classNameProp || typeof classNameProp !== 'string') return
+    if (!classNameProp) return
 
     const deterministicClassNames = classNameProp
       .trim()
@@ -54,7 +73,7 @@ const removeNonDeterministicClassParts = elements => {
         return className.substring(0, secondLastDashPosition)
       })
 
-    element.className = deterministicClassNames.join(' ')
+    setClassName(element, deterministicClassNames.join(' '))
   })
 }
 
