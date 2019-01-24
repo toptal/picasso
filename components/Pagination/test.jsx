@@ -1,5 +1,5 @@
 import React from 'react'
-/* eslint-disable no-unused-vars */
+/* eslint-disable-next-line */
 import { render, fireEvent, cleanup } from 'react-testing-library'
 
 import Pagination from './index'

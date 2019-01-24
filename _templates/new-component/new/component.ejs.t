@@ -1,5 +1,5 @@
 ---
-to: components/<%= h.changeCase.pascalCase(name) %>/<%= h.changeCase.pascalCase(name) %>.jsx
+to: components/<%= h.changeCase.pascalCase(name) %>/<%= h.changeCase.pascalCase(name) %>.tsx
 ---
 <%
   Name = h.changeCase.pascalCase(name)
@@ -10,11 +10,11 @@ import { withStyles } from '@material-ui/core/styles'
 
 import styles from './styles'
 
-const <%= Name %> = props => {
-  return null
+interface Props {
 }
 
-<%= Name %>.propTypes = {
+const <%= Name %>: React.FunctionalComponent<Props> = props => {
+  return null
 }
 
 <%= Name %>.defaultProps = {

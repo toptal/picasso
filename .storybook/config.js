@@ -23,7 +23,7 @@ const ADDONS = [chaptersAddon]
 DECORATORS.forEach(decorator => addDecorator(decorator))
 ADDONS.forEach(addon => setAddon(addon))
 
-const req = require.context('../components', true, /\.example\.jsx$/)
+const req = require.context('../components', true, /\.example\.(tsx|jsx)$/)
 
 function loadStories() {
   require('./stories/Picasso'), req.keys().forEach(filename => req(filename))

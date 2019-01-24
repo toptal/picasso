@@ -1,6 +1,6 @@
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles'
 import React from 'react'
-import PT from 'prop-types'
+import PropTypes from 'prop-types'
 
 import { palette, transitions, typography } from './config'
 import Provider from './PicassoProvider'
@@ -40,7 +40,7 @@ const Picasso = ({ children }) => (
 
 Picasso.displayName = Picasso
 Picasso.propTypes = {
-  children: PT.node.isRequired
+  children: PropTypes.node.isRequired
 }
 
 export { PicassoProvider }

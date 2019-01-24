@@ -1,5 +1,12 @@
 {
-  "parser": "babel-eslint",
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "useJSXTextNode": false
+  },
+  "plugins": ["@typescript-eslint"],
   "extends": [
     "standard",
     "standard-jsx",
@@ -30,6 +37,7 @@
       }
     ],
     "react/jsx-max-depth": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".jsx"] }],
     "react/no-set-state": 0,
     "react/jsx-child-element-spacing": 0,
     "react/forbid-component-props": 0,
@@ -90,7 +98,9 @@
         ],
         "newlines-between": "always"
       }
-    ]
+    ],
+    "no-unused-vars": 0,
+    "@typescript-eslint/no-unused-vars": "error"
   },
   "env": {
     "jest": true

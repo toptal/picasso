@@ -74,7 +74,6 @@ docker run -t -i --rm -e -v ${PWD}/components:/app/components NPM_TOKEN=$NPM_TOK
 | **yarn release:alpha**        | Bump alpha version in `package.json` and create new version git tag |
 | **yarn generate:component**   | Generate a new component template                                   |
 | **yarn build:docker**         | Build docker image                                                  |
-| **yarn build:es**             | Build ES6 version of library                                        |
-| **yarn build:es2015**         | Build ES2015 version of library                                     |
+| **yarn build**                | Build the library                                                   |
 | **yarn build:storybook**      | Build Storybook as static website                                   |
 | **yarn symlink**              | Symlink current version of library for development                  |

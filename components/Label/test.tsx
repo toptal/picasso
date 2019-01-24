@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, fireEvent, cleanup } from 'react-testing-library'
+import { render, fireEvent, cleanup, RenderResult } from 'react-testing-library'
 
 import Label from './index'
 
@@ -34,8 +34,8 @@ test('renders error variant', () => {
 })
 
 describe('dismissable label', () => {
-  let onDelete
-  let api
+  let onDelete: () => void
+  let api: RenderResult
 
   beforeEach(() => {
     onDelete = jest.fn()
