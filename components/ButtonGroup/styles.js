@@ -1,5 +1,7 @@
 export default {
   root: {
+    display: 'inline-block',
+
     '& Button': {
       margin: '0',
       '&:first-child': {
