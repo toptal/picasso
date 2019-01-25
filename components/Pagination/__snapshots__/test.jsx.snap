@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[` 1`] = `
+exports[`renders default 1`] = `
 <div>
   <div
     class="ButtonGroup-root"
@@ -16,21 +16,7 @@ exports[` 1`] = `
         <div
           class="Button-children"
         >
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root-49"
-            focusable="false"
-            role="presentation"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M11 18V6l-8.5 6 8.5 6zm.5-6l8.5 6V6l-8.5 6z"
-            />
-            <path
-              d="M0 0h24v24H0z"
-              fill="none"
-            />
-          </svg>
+          «
         </div>
       </span>
       <span
@@ -48,39 +34,7 @@ exports[` 1`] = `
         <div
           class="Button-children"
         >
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root-49"
-            focusable="false"
-            role="presentation"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"
-            />
-            <path
-              d="M0 0h24v24H0z"
-              fill="none"
-            />
-          </svg>
-        </div>
-      </span>
-      <span
-        class="MuiTouchRipple-root"
-      />
-    </button>
-    <button
-      class="MuiButtonBase-root MuiButton-root Button-root MuiButton-outlined Button-outlined"
-      tabindex="0"
-      type="button"
-    >
-      <span
-        class="MuiButton-label"
-      >
-        <div
-          class="Button-children"
-        >
-          NaN
+          ⟨
         </div>
       </span>
       <span
@@ -115,21 +69,7 @@ exports[` 1`] = `
         <div
           class="Button-children"
         >
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root-49"
-            focusable="false"
-            role="presentation"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
-            />
-            <path
-              d="M0 0h24v24H0z"
-              fill="none"
-            />
-          </svg>
+          ⟩
         </div>
       </span>
     </button>
@@ -145,21 +85,100 @@ exports[` 1`] = `
         <div
           class="Button-children"
         >
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root-49"
-            focusable="false"
-            role="presentation"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"
-            />
-            <path
-              d="M0 0h24v24H0z"
-              fill="none"
-            />
-          </svg>
+          »
+        </div>
+      </span>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`renders disabled 1`] = `
+<div>
+  <div
+    class="ButtonGroup-root"
+  >
+    <button
+      class="MuiButtonBase-root MuiButton-root Button-root MuiButton-outlined Button-outlined"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="MuiButton-label"
+      >
+        <div
+          class="Button-children"
+        >
+          «
+        </div>
+      </span>
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </button>
+    <button
+      class="MuiButtonBase-root MuiButton-root Button-root MuiButton-outlined Button-outlined"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="MuiButton-label"
+      >
+        <div
+          class="Button-children"
+        >
+          ⟨
+        </div>
+      </span>
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </button>
+    <button
+      class="MuiButtonBase-root MuiButton-root Button-containedPrimary Button-root MuiButton-contained Button-contained MuiButton-containedPrimary Button-containedPrimary MuiButton-raised MuiButton-raisedPrimary"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="MuiButton-label"
+      >
+        <div
+          class="Button-children"
+        />
+      </span>
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </button>
+    <button
+      class="MuiButtonBase-root MuiButtonBase-disabled MuiButton-root Button-root MuiButton-outlined Button-outlined MuiButton-disabled"
+      disabled=""
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        class="MuiButton-label"
+      >
+        <div
+          class="Button-children"
+        >
+          ⟩
+        </div>
+      </span>
+    </button>
+    <button
+      class="MuiButtonBase-root MuiButtonBase-disabled MuiButton-root Button-root MuiButton-outlined Button-outlined MuiButton-disabled"
+      disabled=""
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        class="MuiButton-label"
+      >
+        <div
+          class="Button-children"
+        >
+          »
         </div>
       </span>
     </button>

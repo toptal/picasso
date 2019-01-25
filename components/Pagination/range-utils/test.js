@@ -1,6 +1,6 @@
-import { getRange, MORE } from './range-utils'
+import { getRange, ELLIPSIS } from './range-utils'
 
-describe.only('getRange({ activePage, totalPages, siblingCount })', () => {
+describe('getRange({ activePage, totalPages, siblingCount })', () => {
   test('returns proper range 1', () => {
     const range = getRange({
       activePage: 5,
@@ -8,7 +8,7 @@ describe.only('getRange({ activePage, totalPages, siblingCount })', () => {
       siblingCount: 2
     })
 
-    expect(range).toEqual([MORE, 3, 4, 5, 6, 7, MORE])
+    expect(range).toEqual([ELLIPSIS, 3, 4, 5, 6, 7, ELLIPSIS])
   })
 
   test('returns proper range 2', () => {
@@ -48,6 +48,6 @@ describe.only('getRange({ activePage, totalPages, siblingCount })', () => {
       siblingCount: 3
     })
 
-    expect(range).toEqual([MORE, 7, 8, 9, 10])
+    expect(range).toEqual([ELLIPSIS, 7, 8, 9, 10])
   })
 })

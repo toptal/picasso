@@ -1,76 +1,54 @@
 export const FIRST_PAGE = 1
 export const ONE_PAGE = 1
-export const MORE = '+'
+export const ELLIPSIS = '...'
 
-const getAddedSiblingsCount = (actualSiblingCount, siblingCount) => {
-  let addedSiblingsCount = actualSiblingCount
-  let hasMoreSiblings = false
+const addEllipsis = (siblings, page) => {
+  const lastSibling = siblings[siblings.length - 1]
 
-  if (actualSiblingCount >= siblingCount) {
-    addedSiblingsCount = siblingCount
-    hasMoreSiblings = true
+  if (lastSibling && lastSibling !== page) {
+    siblings.push(ELLIPSIS)
+  }
+}
+
+const getPreviousSiblings = (activePage, siblingCount) => {
+  const previousSiblings = []
+  const estimatedLastSibling = activePage - siblingCount
+  let pageNumber = activePage - ONE_PAGE
+
+  for (
+    ;
+    pageNumber >= estimatedLastSibling && pageNumber >= FIRST_PAGE;
+    pageNumber--
+  ) {
+    previousSiblings.push(pageNumber)
   }
 
-  return [addedSiblingsCount, hasMoreSiblings]
+  addEllipsis(previousSiblings, FIRST_PAGE)
+
+  return previousSiblings.reverse()
+}
+
+const getNextSiblings = (activePage, siblingCount, totalPages) => {
+  const nextSiblings = []
+  const estimatedLastSibling = activePage + siblingCount
+  let pageNumber = activePage + ONE_PAGE
+
+  for (
+    ;
+    pageNumber <= estimatedLastSibling && pageNumber <= totalPages;
+    pageNumber++
+  ) {
+    nextSiblings.push(pageNumber)
+  }
+
+  addEllipsis(nextSiblings, totalPages)
+
+  return nextSiblings
 }
 
 export const getRange = ({ activePage, totalPages, siblingCount }) => {
-  let pagesCount = ONE_PAGE
-  let hasMorePreviousSiblings = false
-  let hasMoreNextSiblings = false
+  const previousSiblings = getPreviousSiblings(activePage, siblingCount)
+  const nextSiblings = getNextSiblings(activePage, siblingCount, totalPages)
 
-  let hasPreviousSiblings = activePage !== FIRST_PAGE
-  let hasNextSiblings = activePage !== totalPages
-  let previousSiblingsCount = 0
-  let nextSiblingsCount = 0
-
-  if (hasPreviousSiblings) {
-    let actualSiblingCount = activePage - ONE_PAGE;
-
-    [previousSiblingsCount, hasMorePreviousSiblings] = getAddedSiblingsCount(actualSiblingCount, siblingCount)
-
-    pagesCount = pagesCount + previousSiblingsCount
-
-    if (hasMorePreviousSiblings) {
-      pagesCount = pagesCount + ONE_PAGE
-    }
-  }
-
-  if (hasNextSiblings) {
-    let actualSiblingCount = totalPages - activePage;
-
-    [nextSiblingsCount, hasMoreNextSiblings] = getAddedSiblingsCount(actualSiblingCount, siblingCount)
-
-    pagesCount = pagesCount + nextSiblingsCount
-
-    if (hasMoreNextSiblings) {
-      pagesCount = pagesCount + ONE_PAGE
-    }
-  }
-
-  const range = Array(pagesCount).fill()
-  const lastIndex = range.length - 1
-
-  return range.map((_, index) => {
-    const previousModifier = hasMorePreviousSiblings ? 1 : 0
-    const nextModifier = hasMorePreviousSiblings ? 1 : 0
-
-    if (hasMorePreviousSiblings && index === 0) {
-      return MORE
-    }
-
-    if (hasMoreNextSiblings && index === lastIndex) {
-      return MORE
-    }
-
-    if (index < (previousSiblingsCount + previousModifier)) {
-      return activePage - previousSiblingsCount + index - previousModifier
-    }
-
-    if (index > (previousSiblingsCount + nextModifier)) {
-      return activePage + index - previousSiblingsCount - nextModifier
-    }
-
-    return activePage
-  })
+  return [...previousSiblings, activePage, ...nextSiblings]
 }

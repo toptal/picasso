@@ -1,14 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
-import ChevronLeft from '@material-ui/icons/ChevronLeft'
-import ChevronRight from '@material-ui/icons/ChevronRight'
-import FastRewind from '@material-ui/icons/FastRewind'
-import FastForward from '@material-ui/icons/FastForward'
 
 import styles from './styles'
 import Button from '../Button'
-import { getRange, MORE } from './range-utils'
+import { getRange, ELLIPSIS, FIRST_PAGE, ONE_PAGE } from './range-utils'
 
 const NAVIGATION = {
   FIRST: 'FIRST',
@@ -16,132 +12,116 @@ const NAVIGATION = {
   PREVIOUS: 'PREVIOUS',
   NEXT: 'NEXT'
 }
-const FIRST_PAGE = 1
-const ONE_PAGE = 1
+const SIBLING_COUNT = 3
 
-const renderRange = (props) => {
-  const {
-    totalPages,
-    activePage,
-    siblingCount,
-    EllipsisItem
-  } = props
-
-  const range = getRange({ activePage, totalPages, siblingCount })
-
-  return range.map((pageNumber, index) => {
-    return (
-      <Button
-        color={activePage === pageNumber ? 'primary' : undefined}
-        disabled={pageNumber === MORE}
-        key={pageNumber + index} // eslint-disable-line react/no-array-index-key
-        onClick={() => handleChange(pageNumber, props)}
-        variant={activePage === pageNumber ? 'contained' : 'outlined'}
-      >
-        {pageNumber === MORE && EllipsisItem}
-        {pageNumber !== MORE && pageNumber}
-      </Button>
-    )
-  })
-}
-
-const handleChange = (navigation, props) => {
-  const { onPageChange, totalPages, activePage } = props
-  let page
-
-  switch (navigation) {
-    case NAVIGATION.FIRST:
-      page = FIRST_PAGE
-      break
-    case NAVIGATION.PREVIOUS:
-      page = activePage - ONE_PAGE
-      break
-    case NAVIGATION.NEXT:
-      page = activePage + ONE_PAGE
-      break
-    case NAVIGATION.LAST:
-      page = totalPages
-      break
-    default:
-      page = navigation
+class Pagination extends React.PureComponent {
+  static propTypes = {
+    activePage: PropTypes.number.isRequired,
+    disabled: PropTypes.bool,
+    onPageChange: PropTypes.func.isRequired,
+    totalPages: PropTypes.number.isRequired
   }
 
-  onPageChange(page)
-}
+  static defaultProps = {
+    disabled: false
+  }
 
-const isFirstActive = ({ activePage }) => activePage === 1
-const isLastActive = ({ activePage, totalPages }) => activePage === totalPages
+  handleChange (navigation) {
+    const { onPageChange, totalPages, activePage } = this.props
+    let page
 
-const Pagination = props => {
-  const {
-    FirstItem,
-    LastItem,
-    NextItem,
-    PreviousItem
-  } = props
+    switch (navigation) {
+      case NAVIGATION.FIRST:
+        page = FIRST_PAGE
+        break
+      case NAVIGATION.PREVIOUS:
+        page = activePage - ONE_PAGE
+        break
+      case NAVIGATION.NEXT:
+        page = activePage + ONE_PAGE
+        break
+      case NAVIGATION.LAST:
+        page = totalPages
+        break
+      default:
+        page = navigation
+    }
 
-  return (
-    <Button.Group>
-      <Button
-        color='default'
-        disabled={isFirstActive(props)}
-        onClick={() => handleChange(NAVIGATION.FIRST, props)}
-        variant='outlined'
-      >
-        {FirstItem}
-      </Button>
-      <Button
-        color='default'
-        disabled={isFirstActive(props)}
-        onClick={() => handleChange(NAVIGATION.PREVIOUS, props)}
-        variant='outlined'
-      >
-        {PreviousItem}
-      </Button>
+    onPageChange(page)
+  }
 
-      {renderRange(props)}
+  isFirstActive = activePage => activePage === 1
+  isLastActive = (activePage, totalPages) => activePage === totalPages
 
-      <Button
-        color='default'
-        disabled={isLastActive(props)}
-        onClick={() => handleChange(NAVIGATION.NEXT, props)}
-        variant='outlined'
-      >
-        {NextItem}
-      </Button>
-      <Button
-        color='default'
-        disabled={isLastActive(props)}
-        onClick={() => handleChange(NAVIGATION.LAST, props)}
-        variant='outlined'
-      >
-        {LastItem}
-      </Button>
-    </Button.Group>
-  )
-}
+  renderRange () {
+    const { totalPages, activePage, disabled } = this.props
 
-Pagination.propTypes = {
-  EllipsisItem: PropTypes.node,
-  FirstItem: PropTypes.node,
-  LastItem: PropTypes.node,
-  NextItem: PropTypes.node,
-  PreviousItem: PropTypes.node,
-  activePage: PropTypes.number.isRequired,
-  totalPages: PropTypes.number.isRequired,
-  siblingCount: PropTypes.number,
-  disabled: PropTypes.bool,
-  onPageChange: PropTypes.func.isRequired
-}
+    const range = getRange({
+      activePage,
+      totalPages,
+      siblingCount: SIBLING_COUNT
+    })
 
-Pagination.defaultProps = {
-  EllipsisItem: '...',
-  PreviousItem: <ChevronLeft />,
-  NextItem: <ChevronRight />,
-  FirstItem: <FastRewind />,
-  LastItem: <FastForward />,
-  disabled: false,
-  siblingCount: 1
+    return range.map((pageItemLabel, index) => {
+      return (
+        <Button
+          color={activePage === pageItemLabel ? 'primary' : undefined}
+          disabled={pageItemLabel === ELLIPSIS || disabled}
+          key={pageItemLabel + index} // eslint-disable-line react/no-array-index-key
+          onClick={() => this.handleChange(pageItemLabel)}
+          variant={activePage === pageItemLabel ? 'contained' : 'outlined'}
+        >
+          {pageItemLabel}
+        </Button>
+      )
+    })
+  }
+
+  render () {
+    const { activePage, totalPages, disabled } = this.props
+    const isFirstActive = this.isFirstActive(activePage)
+    const isLastActive = this.isLastActive(activePage, totalPages)
+
+    return (
+      <Button.Group>
+        <Button
+          color='default'
+          disabled={isFirstActive || disabled}
+          onClick={() => this.handleChange(NAVIGATION.FIRST)}
+          variant='outlined'
+        >
+          «
+        </Button>
+        <Button
+          color='default'
+          disabled={isFirstActive || disabled}
+          onClick={() => this.handleChange(NAVIGATION.PREVIOUS)}
+          variant='outlined'
+        >
+          ⟨
+        </Button>
+
+        {this.renderRange()}
+
+        <Button
+          color='default'
+          disabled={isLastActive || disabled}
+          onClick={() => this.handleChange(NAVIGATION.NEXT)}
+          variant='outlined'
+        >
+          ⟩
+        </Button>
+        <Button
+          color='default'
+          disabled={isLastActive || disabled}
+          onClick={() => this.handleChange(NAVIGATION.LAST)}
+          variant='outlined'
+        >
+          »
+        </Button>
+      </Button.Group>
+    )
+  }
 }
 
 export default withStyles(styles)(Pagination)

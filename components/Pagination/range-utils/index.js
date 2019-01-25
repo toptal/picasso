@@ -1,1 +1,1 @@
-export { getRange, MORE } from './range-utils'
+export { getRange, ELLIPSIS, FIRST_PAGE, ONE_PAGE } from './range-utils'
