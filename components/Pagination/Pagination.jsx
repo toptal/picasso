@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { withStyles } from '@material-ui/core/styles'
 
-import styles from './styles'
 import Button from '../Button'
 import { getRange, ELLIPSIS, FIRST_PAGE, ONE_PAGE } from './range-utils'
 
@@ -124,4 +122,4 @@ class Pagination extends React.PureComponent {
   }
 }
 
-export default withStyles(styles)(Pagination)
+export default Pagination
