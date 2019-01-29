@@ -68,8 +68,8 @@ Button.propTypes = {
   color: PropTypes.string,
   compact: PropTypes.bool,
   icon: PropTypes.node,
-  variant: PropTypes.string,
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
+  variant: PropTypes.string
 }
 
 Button.defaultProps = {

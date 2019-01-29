@@ -62,15 +62,15 @@ const Select = props => {
 }
 
 Select.propTypes = {
+  native: PropTypes.bool,
+  onChange: PropTypes.func,
   options: PropTypes.arrayOf(
     PropTypes.shape({
       key: PropTypes.string,
       value: PropTypes.string.isRequired,
       text: PropTypes.oneOfType([PropTypes.node, PropTypes.string]).isRequired
     })
-  ).isRequired,
-  native: PropTypes.bool,
-  onChange: PropTypes.func
+  ).isRequired
 }
 
 Select.defaultProps = {
