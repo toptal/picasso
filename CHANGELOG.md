@@ -1,5 +1,23 @@
 # Changelog
 
+## v0.1.0-alpha.9 (29/01/2019)
+
+#### Chore
+
+- [**Chore**] Truncate svg dynamic classnames parts using jss snapshot serializer [#34](https://github.com/toptal/picasso/pull/34)
+- [**Chore**] Add error state for Text Field component [#33](https://github.com/toptal/picasso/pull/33)
+
+#### Feature
+
+- [**Feature**] Add Pagination component [#35](https://github.com/toptal/picasso/pull/35)
+- [**Feature**] Added Accordion component (collapsable panel) [#32](https://github.com/toptal/picasso/pull/32)
+
+#### closed
+
+- [**closed**] Move to Typescript [#36](https://github.com/toptal/picasso/pull/36)
+
+---
+
 ## v0.1.0-alpha.8 (22/01/2019)
 
 #### Feature

@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/npm-0.1.0--alpha.8-orange.svg)
+![](https://img.shields.io/badge/npm-0.1.0--alpha.9-orange.svg)
 [![#-frontend-exp-core](https://img.shields.io/badge/slack-%23--frontend--exp--core-green.svg)](https://toptal-core.slack.com/app_redirect?channel=CERF5NHT3)
 
 # 🎨 Picasso (a.k.a. Toptal UI components library)
