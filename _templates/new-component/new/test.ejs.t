@@ -1,12 +1,12 @@
 ---
-to: components/<%= h.changeCase.pascalCase(name) %>/test.jsx
+to: components/<%= h.changeCase.pascalCase(name) %>/test.tsx
 ---
 <%
   Name = h.changeCase.pascalCase(name)
 -%>
 import React from 'react'
-/* eslint-disable no-unused-vars */
-import { render, fireEvent, cleanup } from 'react-testing-library'
+/* eslint-disable-next-line */
+import { render, fireEvent, cleanup, RenderResult } from 'react-testing-library'
 
 import <%= Name %> from './index'
 
@@ -17,7 +17,7 @@ const render<%= Name %> = (children, props = {}) => {
 afterEach(cleanup)
 
 describe('', () => {
-  let api
+  let api: RenderResult
 
   beforeEach(() => {
     api = render<%= Name %>()

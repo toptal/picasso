@@ -1,5 +1,8 @@
 module.exports = {
-  testMatch: ['**/(test).js?(x)'],
+  transform: {
+    '.(ts|tsx)': 'ts-jest'
+  },
+  testMatch: ['**/(test).(js|jsx|ts|tsx)'],
   testPathIgnorePatterns: ['/node_modules/', '/build'],
 
   /*
@@ -15,5 +18,6 @@ module.exports = {
   moduleNameMapper: {
     '\\.(jpg|jpeg|png|gif|webp|svg|ttf|woff|woff2)$':
       '<rootDir>/__tests__/fileMock.js'
-  }
+  },
+  moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx']
 }

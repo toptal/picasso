@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "outDir": "./build",
+    "module": "esnext",
+    "target": "es2015",
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "allowJs": true,
+    "jsx": "react",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "experimentalDecorators": true
+  },
+  "include": [
+    "components/**/*"
+  ],
+  "exclude": [
+    "**/test.jsx",
+    "**/test.tsx",
+    "**/*.example.jsx",
+    "**/*.example.tsx",
+    "**/visual.test.jsx",
+    "**/visual.test.tsx"
+  ]
+}

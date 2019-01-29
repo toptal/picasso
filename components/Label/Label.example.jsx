@@ -2,7 +2,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 
 import StoryTeller from '../../.storybook/StoryTeller'
-import Label from './'
+import Label from '.'
 import Spacer from '../Spacer'
 
 const stories = storiesOf('Label', module)
@@ -39,14 +39,14 @@ chapter.addSection('Flat', null, () => (
 ))
 
 chapter.addSection('Statuses', 'Use these to communicate status.', () => (
-  <React.Fragment>
+  <>
     <Spacer right={1}>
       <Label label={`Yay! It's done!`} variant='success' />
     </Spacer>
     <div>
       <Label label='Nope! Please, try one more time' variant='error' />
     </div>
-  </React.Fragment>
+  </>
 ))
 
 stories.addWithChapters('Label', teller.toStory())

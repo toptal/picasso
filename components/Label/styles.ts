@@ -1,4 +1,4 @@
-export default ({ palette }) => ({
+export default ({ palette }: { palette: any }) => ({
   flat: {
     backgroundColor: palette.grey[75],
     color: palette.grey[100]

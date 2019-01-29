@@ -12,17 +12,15 @@
     "test:watch": "jest --watchAll",
     "test-visual": "./bin/test-visual",
     "test-visual:docker": "jest --config='./puppeteer/puppeteer.jest.config.js'",
-    "lint:path": "eslint --ext=.js,.jsx --color --fix",
+    "lint:path": "eslint --ext=.js,.jsx,.ts,.tsx --color --fix",
     "lint": "yarn run lint:path .",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "build:storybook": "build-storybook -c .storybook -o build/storybook",
     "release:alpha": "yarn version --new-version prerelease",
-    "build:es2015": "cross-env NODE_ENV=production ./bin/build --config es2015",
-    "build:es6": "cross-env NODE_ENV=production BABEL_ENV=es ./bin/build --config es",
-    "build:watch": "cross-env BABEL_ENV=es ./bin/build --config dev --watch",
-    "build": "yarn build:es2015 && yarn build:es6",
+    "build": "cross-env NODE_ENV=production ./bin/build",
+    "build:watch": "cross-env ./bin/build --watch",
     "build:docker": "docker build -t picasso .",
-    "symlink": "cross-env BABEL_ENV=es ./bin/build --config dev --symlink",
+    "symlink": "cross-env ./bin/build --symlink",
     "generate:component": "hygen new-component new"
   },
   "repository": {
@@ -35,30 +33,30 @@
     "url": "https://github.com/toptal/ui-library/issues"
   },
   "homepage": "https://github.com/toptal/ui-library#readme",
-  "dependencies": {
-    "@material-ui/core": "^3.6.0",
-    "@material-ui/icons": "^3.0.2",
-    "classnames": "^2.2.6",
-    "color": "^3.1.0",
+  "peerDependencies": {
     "react": "^16.6.3",
     "react-dom": "^16.6.3"
   },
+  "dependencies": {
+    "@material-ui/core": "3.6.0",
+    "@material-ui/icons": "^3.0.2",
+    "classnames": "^2.2.6",
+    "color": "^3.1.0"
+  },
   "devDependencies": {
-    "@babel/cli": "^7.2.0",
-    "@babel/core": "^7.1.6",
-    "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
-    "@babel/plugin-transform-object-assign": "^7.2.0",
-    "@babel/plugin-transform-runtime": "^7.2.0",
-    "@babel/preset-env": "^7.2.0",
     "@storybook/addon-actions": "^4.1.4",
     "@storybook/addon-knobs": "^4.1.4",
     "@storybook/addon-links": "^4.1.4",
     "@storybook/addon-options": "^4.1.4",
     "@storybook/react": "^4.0.9",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-eslint": "^10.0.1",
-    "babel-jest": "^23.6.0",
-    "babel-loader": "^8.0.4",
+    "@types/jest": "^23.3.13",
+    "@types/material-ui": "^0.21.5",
+    "@types/prop-types": "^15.5.8",
+    "@types/react": "^16.7.20",
+    "@types/react-dom": "^16.0.11",
+    "@types/storybook__react": "^4.0.0",
+    "@typescript-eslint/eslint-plugin": "^1.1.0",
+    "@typescript-eslint/parser": "^1.1.0",
     "chalk": "^2.4.1",
     "cross-env": "^5.2.0",
     "eslint": "^5.9.0",
@@ -68,7 +66,7 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-node": "^8.0.0",
     "eslint-plugin-promise": "^4.0.1",
-    "eslint-plugin-react": "^7.11.1",
+    "eslint-plugin-react": "7.11.1",
     "eslint-plugin-standard": "^4.0.0",
     "fs-extra": "^7.0.1",
     "github-release-notes": "^0.17.0",
@@ -79,12 +77,18 @@
     "jest-puppeteer": "^3.6.0",
     "lint-staged": "^8.1.0",
     "prettier-standard": "^8.0.1",
+    "prop-types": "^15.6.2",
     "puppeteer": "^1.9.0",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
     "react-storybook-addon-chapters": "^3.0.3",
     "react-testing-library": "^5.3.1",
     "regenerator-runtime": "^0.13.1",
     "rimraf": "^2.6.2",
     "storybook-readme": "^4.0.5",
+    "ts-jest": "^23.10.5",
+    "ts-loader": "^5.3.3",
+    "typescript": "^3.2.4",
     "yargs": "^12.0.5"
   },
   "husky": {
@@ -93,10 +97,11 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx}": [
+    "*.{js,jsx,ts,tsx}": [
       "npm run lint:path",
       "prettier-standard",
       "git add"
     ]
-  }
+  },
+  "sideEffects": false
 }

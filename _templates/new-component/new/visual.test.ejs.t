@@ -1,5 +1,5 @@
 ---
-to: components/<%= h.changeCase.pascalCase(name) %>/visual.test.jsx
+to: components/<%= h.changeCase.pascalCase(name) %>/visual.test.tsx
 ---
 <%
   Name = h.changeCase.pascalCase(name)

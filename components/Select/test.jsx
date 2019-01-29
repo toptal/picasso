@@ -1,5 +1,5 @@
-/* eslint-disable no-unused-vars */
 import React from 'react'
+/* eslint-disable-next-line */
 import { render, fireEvent, cleanup } from 'react-testing-library'
 
 import Select from './index'

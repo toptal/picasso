@@ -13,7 +13,6 @@ const TextField = props => {
     InputLabelProps = {},
     classes,
     children,
-    variant,
     ...restProps
   } = props
 

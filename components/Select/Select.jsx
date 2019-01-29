@@ -24,6 +24,7 @@ const renderOptions = props => {
 }
 
 const Select = props => {
+  // eslint-disable-next-line
   const { children, options, variant, classes, inputProps, ...rest } = props
   const { outlinedInput, ...restClasses } = classes
 

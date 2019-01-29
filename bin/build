@@ -7,10 +7,9 @@ const yargs = require('yargs').argv
 const rimraf = require('rimraf').sync
 const exec = require('child_process').execSync
 
-const config = require(`./build.${yargs.config}.config.js`)
-const babelPath = path.resolve(__dirname, '../node_modules/.bin/babel')
+const config = require(`../tsconfig.json`)
 const packageJson = require(path.resolve(__dirname, '../package.json'))
-
+const tscPath = path.resolve(__dirname, '../node_modules/.bin/tsc')
 
 // General logging
 const log = function(text, color) {
@@ -18,43 +17,34 @@ const log = function(text, color) {
   console.log(chalk[color](text))
 }
 
-// Babel compiler
-const babel = function(config) {
-  log(`Building ${packageJson.name}:${packageJson.version}`)
-  log(`Setting output to: ${yargs.config}`, 'green')
+const compile = function(config) {
+  const args = []
 
-  const args = [
-    `--config-file ${path.resolve(__dirname, '../babel.config.js')}`,
-    `${config.sourceFiles}`,
-    `--out-dir ${config.outDir}`,
-    `--ignore ${config.ignoredFiles.join(',')}`
-  ]
+  log(`Building ${packageJson.name}:${packageJson.version}`)
 
   function build() {
-    const cmd = `${babelPath} ${args.join(' ')}`
+    const cmd = `${tscPath} -p tsconfig.json ${args.join(' ')}`
     exec(cmd)
-    log(`Build ready in: ${config.outDir}`, 'green')
+    log(`Build ready in: ${config.compilerOptions.outDir}`, 'green')
   }
 
   function clean() {
-    log(`Removing: ${config.outDir}`, 'green')
-    rimraf(config.outDir)
+    log(`Removing: ${config.compilerOptions.outDir}`, 'green')
+    rimraf(config.compilerOptions.outDir)
   }
 
-
-  // Firstly build with babel and run again with watch
   clean()
   build()
 
   if (yargs.config == 'dev') {
-    generatePackageJson(config.outDir)
+    generatePackageJson(config.compilerOptions.outDir)
   }
 
   if (yargs.symlink) {
     log('Symlinking dev package...')
     try {
       exec('yarn unlink', {
-        cwd: config.outDir,
+        cwd: config.compilerOptions.outDir,
         stdio: 'ignore',
         stderr: 'ignore'
       })
@@ -63,15 +53,15 @@ const babel = function(config) {
     }
 
     exec('yarn link', {
-      cwd: config.outDir,
+      cwd: config.compilerOptions.outDir,
       stdio: 'inherit'
     })
   }
 
   if (yargs.watch) {
     args.unshift('--watch')
+    log(`Watching for changes in: ${config.include.join(', ')}`)
     build()
-    log(`Watching for changes in: ${config.sourceFiles}`)
   }
 }
 
@@ -89,4 +79,4 @@ function generatePackageJson(outDir) {
   fs.writeFileSync(out, JSON.stringify(data, null, 2))
 }
 
-babel(config)
+compile(config)
