@@ -40,15 +40,15 @@ const Loader = props => {
 }
 
 Loader.propTypes = {
-  label: PropTypes.string,
-  variant: PropTypes.oneOf(['determinate', 'indeterminate', 'static']),
-  size: PropTypes.oneOf(['small', 'default', 'large']),
-  inline: PropTypes.bool,
+  className: PropTypes.string,
   classes: PropTypes.shape({
     root: PropTypes.string
   }).isRequired,
-  className: PropTypes.string,
-  value: PropTypes.number
+  inline: PropTypes.bool,
+  label: PropTypes.string,
+  size: PropTypes.oneOf(['small', 'default', 'large']),
+  value: PropTypes.number,
+  variant: PropTypes.oneOf(['determinate', 'indeterminate', 'static'])
 }
 
 Loader.defaultProps = {
