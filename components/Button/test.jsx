@@ -6,7 +6,7 @@ import Button from './Button'
 
 const renderButton = (children, props = {}) => {
   return render(
-    <Picasso>
+    <Picasso loadFonts={false}>
       <Button {...props}>{children}</Button>
     </Picasso>
   )

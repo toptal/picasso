@@ -3,51 +3,55 @@
 exports[`should render label group with 4 labels 1`] = `
 <div>
   <div
-    class="LabelGroup-root"
+    class="Picasso-root"
   >
     <div
-      class="MuiChip-root Chip-root"
-      role="button"
-      tabindex="-1"
+      class="LabelGroup-root"
     >
-      <span
-        class="MuiChip-label"
+      <div
+        class="MuiChip-root Chip-root"
+        role="button"
+        tabindex="-1"
       >
-        Angular JS
-      </span>
-    </div>
-    <div
-      class="MuiChip-root Chip-root"
-      role="button"
-      tabindex="-1"
-    >
-      <span
-        class="MuiChip-label"
+        <span
+          class="MuiChip-label"
+        >
+          Angular JS
+        </span>
+      </div>
+      <div
+        class="MuiChip-root Chip-root"
+        role="button"
+        tabindex="-1"
       >
-        React JS
-      </span>
-    </div>
-    <div
-      class="MuiChip-root Chip-root"
-      role="button"
-      tabindex="-1"
-    >
-      <span
-        class="MuiChip-label"
+        <span
+          class="MuiChip-label"
+        >
+          React JS
+        </span>
+      </div>
+      <div
+        class="MuiChip-root Chip-root"
+        role="button"
+        tabindex="-1"
       >
-        Ember JS
-      </span>
-    </div>
-    <div
-      class="MuiChip-root Chip-root"
-      role="button"
-      tabindex="-1"
-    >
-      <span
-        class="MuiChip-label"
+        <span
+          class="MuiChip-label"
+        >
+          Ember JS
+        </span>
+      </div>
+      <div
+        class="MuiChip-root Chip-root"
+        role="button"
+        tabindex="-1"
       >
-        Vue JS
-      </span>
+        <span
+          class="MuiChip-label"
+        >
+          Vue JS
+        </span>
+      </div>
     </div>
   </div>
 </div>

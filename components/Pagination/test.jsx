@@ -6,7 +6,7 @@ import Picasso from '../Picasso'
 
 const renderPagination = (props = {}) => {
   return render(
-    <Picasso>
+    <Picasso loadFonts={false}>
       <Pagination {...props} />
     </Picasso>
   )

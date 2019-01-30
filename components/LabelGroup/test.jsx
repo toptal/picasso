@@ -6,7 +6,7 @@ import Picasso from '../Picasso'
 
 const renderLabelGroup = () => {
   return render(
-    <Picasso>
+    <Picasso loadFonts={false}>
       <Label.Group>
         <Label label='Angular JS' />
         <Label label='React JS' />
