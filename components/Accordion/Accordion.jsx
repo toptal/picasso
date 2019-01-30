@@ -36,8 +36,8 @@ const Accordion = props => {
 }
 
 Accordion.propTypes = {
-  Details: PropTypes.node.isRequired,
-  Summary: PropTypes.node,
+  Details: PropTypes.element.isRequired,
+  Summary: PropTypes.element,
   classes: PropTypes.shape({
     expandIcon: PropTypes.string
   }),
