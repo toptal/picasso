@@ -2,9 +2,14 @@ import React from 'react'
 import { render, fireEvent, cleanup, RenderResult } from 'react-testing-library'
 
 import Label from './index'
+import Picasso from '../Picasso'
 
 const renderLabel = (props = {}) => {
-  return render(<Label {...props} />)
+  return render(
+    <Picasso>
+      <Label {...props} />
+    </Picasso>
+  )
 }
 
 afterEach(cleanup)
