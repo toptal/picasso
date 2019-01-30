@@ -4,8 +4,8 @@ export default ({ palette }: { palette: any }) => ({
     color: palette.grey[100]
   },
   success: {
-    backgroundColor: palette.secondary.light,
-    color: palette.secondary.main
+    backgroundColor: palette.positive.light,
+    color: palette.positive.main
   },
   error: {
     backgroundColor: palette.error.light,
