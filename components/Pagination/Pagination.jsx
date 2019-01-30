@@ -63,11 +63,10 @@ class Pagination extends React.PureComponent {
     return range.map((pageItemLabel, index) => {
       return (
         <Button
-          color={activePage === pageItemLabel ? 'primary' : undefined}
           disabled={pageItemLabel === ELLIPSIS || disabled}
           key={pageItemLabel + index} // eslint-disable-line react/no-array-index-key
           onClick={() => this.handleChange(pageItemLabel)}
-          variant={activePage === pageItemLabel ? 'contained' : 'outlined'}
+          variant={activePage === pageItemLabel ? 'primary' : 'basic'}
         >
           {pageItemLabel}
         </Button>
@@ -83,18 +82,16 @@ class Pagination extends React.PureComponent {
     return (
       <Button.Group>
         <Button
-          color='default'
           disabled={isFirstActive || disabled}
           onClick={() => this.handleChange(NAVIGATION.FIRST)}
-          variant='outlined'
+          variant='basic'
         >
           «
         </Button>
         <Button
-          color='default'
           disabled={isFirstActive || disabled}
           onClick={() => this.handleChange(NAVIGATION.PREVIOUS)}
-          variant='outlined'
+          variant='basic'
         >
           ⟨
         </Button>
@@ -102,18 +99,16 @@ class Pagination extends React.PureComponent {
         {this.renderRange()}
 
         <Button
-          color='default'
           disabled={isLastActive || disabled}
           onClick={() => this.handleChange(NAVIGATION.NEXT)}
-          variant='outlined'
+          variant='basic'
         >
           ⟩
         </Button>
         <Button
-          color='default'
           disabled={isLastActive || disabled}
           onClick={() => this.handleChange(NAVIGATION.LAST)}
-          variant='outlined'
+          variant='basic'
         >
           »
         </Button>

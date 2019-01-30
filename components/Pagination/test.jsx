@@ -3,9 +3,14 @@ import React from 'react'
 import { render, fireEvent, cleanup } from 'react-testing-library'
 
 import Pagination from './index'
+import Picasso from '../Picasso'
 
-const renderPagination = (children, props = {}) => {
-  return render(<Pagination {...props}>{children}</Pagination>)
+const renderPagination = (props = {}) => {
+  return render(
+    <Picasso>
+      <Pagination {...props} />
+    </Picasso>
+  )
 }
 
 afterEach(cleanup)

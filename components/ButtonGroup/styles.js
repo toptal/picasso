@@ -3,7 +3,8 @@ export default {
     display: 'inline-block',
 
     '& Button': {
-      margin: '0',
+      margin: '0 !important',
+
       '&:first-child': {
         borderTopRightRadius: 'unset',
         borderBottomRightRadius: 'unset',

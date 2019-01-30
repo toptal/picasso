@@ -1,58 +1,94 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
-import MUIButton from '@material-ui/core/Button'
 import { withStyles } from '@material-ui/core/styles'
-import { capitalize } from '@material-ui/core/utils/helpers'
+import ButtonBase from '@material-ui/core/ButtonBase'
 
 import styles from './styles'
 import Loader from '../Loader'
 import Group from '../ButtonGroup'
 
+const VARIANTS = {
+  PRIMARY: 'primary',
+  SECONDARY: 'secondary',
+  FLAT: 'flat',
+  BASIC: 'basic',
+  POSITIVE: 'positive',
+  NEGATIVE: 'negative',
+  DEFAULT: 'default'
+}
+const SIZES = {
+  SMALL: 'small',
+  MEDIUM: 'medium',
+  LARGE: 'large'
+}
+const ICON_POSITIONS = {
+  LEFT: 'left',
+  RIGHT: 'right'
+}
+
 const Button = props => {
   const {
     icon,
+    iconPosition,
     loading,
     children,
     classes,
+    fullWidth,
     variant,
-    color,
-    compact,
+    size,
+    focused,
+    hovered,
+    active,
     ...rest
   } = props
   const {
     icon: iconClass,
+    iconLeft: iconLeftClass,
+    iconRight: iconRightClass,
     root: rootClass,
     children: childrenClass,
     hidden: hiddenClass,
-    loader: loaderClass,
-    ...restClasses
+    loader: loaderClass
   } = classes
+
   let finalChildren = [children]
 
   if (icon) {
-    const iconComponent = React.cloneElement(icon, { className: iconClass })
+    const iconComponent = React.cloneElement(icon, {
+      className: cx(iconClass, {
+        [iconLeftClass]: children && iconPosition === ICON_POSITIONS.LEFT,
+        [iconRightClass]: children && iconPosition === ICON_POSITIONS.RIGHT
+      })
+    })
 
-    finalChildren.unshift(iconComponent)
+    if (iconPosition === ICON_POSITIONS.LEFT) {
+      finalChildren.unshift(iconComponent)
+    } else {
+      finalChildren.push(iconComponent)
+    }
   }
+
+  const variantClassName = classes[variant] || ''
+  const sizeClassName = classes[size] || ''
 
   const rootClassName = cx(
     {
-      [classes[`${variant.toLowerCase()}Negative`]]: color === 'negative',
-      [classes.compact]: compact
+      [classes.fullWidth]: fullWidth,
+      [classes.active]: active,
+      [classes.focused]: focused,
+      [classes.hovered]: hovered
     },
-    classes[`${variant}${capitalize(color)}`],
+    variantClassName,
+    sizeClassName,
     rootClass
   )
 
   return (
-    <MUIButton
+    <ButtonBase
       classes={{
-        root: rootClassName,
-        ...restClasses
+        root: rootClassName
       }}
-      color={color === 'negative' ? 'default' : color}
-      variant={variant}
       {...rest}
     >
       <div className={cx(childrenClass, { [hiddenClass]: loading })}>
@@ -60,24 +96,32 @@ const Button = props => {
       </div>
 
       {loading && <Loader className={loaderClass} inline size='small' />}
-    </MUIButton>
+    </ButtonBase>
   )
 }
 
 Button.propTypes = {
-  color: PropTypes.string,
-  compact: PropTypes.bool,
+  active: PropTypes.bool,
+  focused: PropTypes.bool,
+  fullWidth: PropTypes.bool,
+  hovered: PropTypes.bool,
   icon: PropTypes.node,
+  iconPosition: PropTypes.oneOf(Object.values(ICON_POSITIONS)),
   loading: PropTypes.bool,
-  variant: PropTypes.string
+  size: PropTypes.oneOf(Object.values(SIZES)),
+  variant: PropTypes.oneOf(Object.values(VARIANTS))
 }
 
 Button.defaultProps = {
-  color: 'default',
-  compact: false,
+  active: false,
+  focused: false,
+  fullWidth: false,
+  hovered: false,
   icon: null,
+  iconPosition: ICON_POSITIONS.LEFT,
   loading: false,
-  variant: 'outlined'
+  size: VARIANTS.MEDIUM,
+  variant: VARIANTS.DEFAULT
 }
 
 Button.Group = Group

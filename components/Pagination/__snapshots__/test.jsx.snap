@@ -6,88 +6,149 @@ exports[`renders default 1`] = `
     class="ButtonGroup-root"
   >
     <button
-      class="MuiButtonBase-root MuiButton-root Button-root MuiButton-outlined Button-outlined"
+      class="MuiButtonBase-root Button-basic Button-root"
       tabindex="0"
       type="button"
     >
-      <span
-        class="MuiButton-label"
+      <div
+        class="Button-children"
       >
-        <div
-          class="Button-children"
-        >
-          «
-        </div>
-      </span>
-      <span
-        class="MuiTouchRipple-root"
-      />
+        «
+      </div>
     </button>
     <button
-      class="MuiButtonBase-root MuiButton-root Button-root MuiButton-outlined Button-outlined"
+      class="MuiButtonBase-root Button-basic Button-root"
       tabindex="0"
       type="button"
     >
-      <span
-        class="MuiButton-label"
+      <div
+        class="Button-children"
       >
-        <div
-          class="Button-children"
-        >
-          ⟨
-        </div>
-      </span>
-      <span
-        class="MuiTouchRipple-root"
-      />
+        ⟨
+      </div>
     </button>
     <button
-      class="MuiButtonBase-root MuiButton-root Button-containedPrimary Button-root MuiButton-contained Button-contained MuiButton-containedPrimary Button-containedPrimary MuiButton-raised MuiButton-raisedPrimary"
-      tabindex="0"
-      type="button"
-    >
-      <span
-        class="MuiButton-label"
-      >
-        <div
-          class="Button-children"
-        />
-      </span>
-      <span
-        class="MuiTouchRipple-root"
-      />
-    </button>
-    <button
-      class="MuiButtonBase-root MuiButtonBase-disabled MuiButton-root Button-root MuiButton-outlined Button-outlined MuiButton-disabled"
+      class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled"
       disabled=""
       tabindex="-1"
       type="button"
     >
-      <span
-        class="MuiButton-label"
+      <div
+        class="Button-children"
       >
-        <div
-          class="Button-children"
-        >
-          ⟩
-        </div>
-      </span>
+        ...
+      </div>
     </button>
     <button
-      class="MuiButtonBase-root MuiButtonBase-disabled MuiButton-root Button-root MuiButton-outlined Button-outlined MuiButton-disabled"
+      class="MuiButtonBase-root Button-basic Button-root"
+      tabindex="0"
+      type="button"
+    >
+      <div
+        class="Button-children"
+      >
+        2
+      </div>
+    </button>
+    <button
+      class="MuiButtonBase-root Button-basic Button-root"
+      tabindex="0"
+      type="button"
+    >
+      <div
+        class="Button-children"
+      >
+        3
+      </div>
+    </button>
+    <button
+      class="MuiButtonBase-root Button-basic Button-root"
+      tabindex="0"
+      type="button"
+    >
+      <div
+        class="Button-children"
+      >
+        4
+      </div>
+    </button>
+    <button
+      class="MuiButtonBase-root Button-primary Button-root"
+      tabindex="0"
+      type="button"
+    >
+      <div
+        class="Button-children"
+      >
+        5
+      </div>
+    </button>
+    <button
+      class="MuiButtonBase-root Button-basic Button-root"
+      tabindex="0"
+      type="button"
+    >
+      <div
+        class="Button-children"
+      >
+        6
+      </div>
+    </button>
+    <button
+      class="MuiButtonBase-root Button-basic Button-root"
+      tabindex="0"
+      type="button"
+    >
+      <div
+        class="Button-children"
+      >
+        7
+      </div>
+    </button>
+    <button
+      class="MuiButtonBase-root Button-basic Button-root"
+      tabindex="0"
+      type="button"
+    >
+      <div
+        class="Button-children"
+      >
+        8
+      </div>
+    </button>
+    <button
+      class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled"
       disabled=""
       tabindex="-1"
       type="button"
     >
-      <span
-        class="MuiButton-label"
+      <div
+        class="Button-children"
       >
-        <div
-          class="Button-children"
-        >
-          »
-        </div>
-      </span>
+        ...
+      </div>
+    </button>
+    <button
+      class="MuiButtonBase-root Button-basic Button-root"
+      tabindex="0"
+      type="button"
+    >
+      <div
+        class="Button-children"
+      >
+        ⟩
+      </div>
+    </button>
+    <button
+      class="MuiButtonBase-root Button-basic Button-root"
+      tabindex="0"
+      type="button"
+    >
+      <div
+        class="Button-children"
+      >
+        »
+      </div>
     </button>
   </div>
 </div>
@@ -99,88 +160,160 @@ exports[`renders disabled 1`] = `
     class="ButtonGroup-root"
   >
     <button
-      class="MuiButtonBase-root MuiButton-root Button-root MuiButton-outlined Button-outlined"
-      tabindex="0"
-      type="button"
-    >
-      <span
-        class="MuiButton-label"
-      >
-        <div
-          class="Button-children"
-        >
-          «
-        </div>
-      </span>
-      <span
-        class="MuiTouchRipple-root"
-      />
-    </button>
-    <button
-      class="MuiButtonBase-root MuiButton-root Button-root MuiButton-outlined Button-outlined"
-      tabindex="0"
-      type="button"
-    >
-      <span
-        class="MuiButton-label"
-      >
-        <div
-          class="Button-children"
-        >
-          ⟨
-        </div>
-      </span>
-      <span
-        class="MuiTouchRipple-root"
-      />
-    </button>
-    <button
-      class="MuiButtonBase-root MuiButton-root Button-containedPrimary Button-root MuiButton-contained Button-contained MuiButton-containedPrimary Button-containedPrimary MuiButton-raised MuiButton-raisedPrimary"
-      tabindex="0"
-      type="button"
-    >
-      <span
-        class="MuiButton-label"
-      >
-        <div
-          class="Button-children"
-        />
-      </span>
-      <span
-        class="MuiTouchRipple-root"
-      />
-    </button>
-    <button
-      class="MuiButtonBase-root MuiButtonBase-disabled MuiButton-root Button-root MuiButton-outlined Button-outlined MuiButton-disabled"
+      class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled"
       disabled=""
       tabindex="-1"
       type="button"
     >
-      <span
-        class="MuiButton-label"
+      <div
+        class="Button-children"
       >
-        <div
-          class="Button-children"
-        >
-          ⟩
-        </div>
-      </span>
+        «
+      </div>
     </button>
     <button
-      class="MuiButtonBase-root MuiButtonBase-disabled MuiButton-root Button-root MuiButton-outlined Button-outlined MuiButton-disabled"
+      class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled"
       disabled=""
       tabindex="-1"
       type="button"
     >
-      <span
-        class="MuiButton-label"
+      <div
+        class="Button-children"
       >
-        <div
-          class="Button-children"
-        >
-          »
-        </div>
-      </span>
+        ⟨
+      </div>
+    </button>
+    <button
+      class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled"
+      disabled=""
+      tabindex="-1"
+      type="button"
+    >
+      <div
+        class="Button-children"
+      >
+        ...
+      </div>
+    </button>
+    <button
+      class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled"
+      disabled=""
+      tabindex="-1"
+      type="button"
+    >
+      <div
+        class="Button-children"
+      >
+        2
+      </div>
+    </button>
+    <button
+      class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled"
+      disabled=""
+      tabindex="-1"
+      type="button"
+    >
+      <div
+        class="Button-children"
+      >
+        3
+      </div>
+    </button>
+    <button
+      class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled"
+      disabled=""
+      tabindex="-1"
+      type="button"
+    >
+      <div
+        class="Button-children"
+      >
+        4
+      </div>
+    </button>
+    <button
+      class="MuiButtonBase-root Button-primary Button-root MuiButtonBase-disabled"
+      disabled=""
+      tabindex="-1"
+      type="button"
+    >
+      <div
+        class="Button-children"
+      >
+        5
+      </div>
+    </button>
+    <button
+      class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled"
+      disabled=""
+      tabindex="-1"
+      type="button"
+    >
+      <div
+        class="Button-children"
+      >
+        6
+      </div>
+    </button>
+    <button
+      class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled"
+      disabled=""
+      tabindex="-1"
+      type="button"
+    >
+      <div
+        class="Button-children"
+      >
+        7
+      </div>
+    </button>
+    <button
+      class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled"
+      disabled=""
+      tabindex="-1"
+      type="button"
+    >
+      <div
+        class="Button-children"
+      >
+        8
+      </div>
+    </button>
+    <button
+      class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled"
+      disabled=""
+      tabindex="-1"
+      type="button"
+    >
+      <div
+        class="Button-children"
+      >
+        ...
+      </div>
+    </button>
+    <button
+      class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled"
+      disabled=""
+      tabindex="-1"
+      type="button"
+    >
+      <div
+        class="Button-children"
+      >
+        ⟩
+      </div>
+    </button>
+    <button
+      class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled"
+      disabled=""
+      tabindex="-1"
+      type="button"
+    >
+      <div
+        class="Button-children"
+      >
+        »
+      </div>
     </button>
   </div>
 </div>
