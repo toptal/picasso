@@ -1,12 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import checkSvg from '../Icons/check.svg'
+import Icon from '../Icons/Icon'
 
 const CheckedIcon = ({ className }) => (
   <div className={className}>
-    {/* // TODO: Replace with Icon component and remove fill prop from svg */}
-    <img src={checkSvg} />
+    <Icon name='check' width={9} />
   </div>
 )
 

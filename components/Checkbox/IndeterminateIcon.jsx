@@ -1,12 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import minusSvg from '../Icons/minus.svg'
+import Icon from '../Icons/Icon'
 
 const IndeterminateIcon = ({ className }) => (
   <div className={className}>
-    {/* // TODO: Replace with Icon component and remove fill prop from svg */}
-    <img src={minusSvg} />
+    <Icon name='minus' width={10} />
   </div>
 )
 
