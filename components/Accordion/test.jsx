@@ -28,8 +28,8 @@ describe('default version for sections', () => {
 
   beforeEach(() => {
     api = renderAccordion({
-      Details,
-      Summary
+      Details: <Details />,
+      Summary: <Summary />
     })
   })
 
@@ -52,7 +52,7 @@ describe('default version for sections', () => {
 describe('controlled version', () => {
   test('should render expanded version', () => {
     const { container } = renderAccordion({
-      Details,
+      Details: <Details />,
       expanded: true
     })
 
@@ -61,7 +61,7 @@ describe('controlled version', () => {
 
   test('should render collapsed version', () => {
     const { container } = renderAccordion({
-      Details,
+      Details: <Details />,
       expanded: false
     })
 
