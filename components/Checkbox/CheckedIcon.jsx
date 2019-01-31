@@ -1,22 +1,26 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
 
 import CheckSvg from '../Icons/Check'
+import styles from './styles'
 
-const CheckedIcon = ({ className, color }) => (
+const CheckedIcon = ({ className, classes }) => (
   <div className={className}>
-    <CheckSvg fill={color} />
+    <CheckSvg className={classes.icon} />
   </div>
 )
 
 CheckedIcon.propTypes = {
   className: PropTypes.string,
-  color: PropTypes.string
+  classes: PropTypes.shape({
+    root: PropTypes.string
+  })
 }
 
 CheckedIcon.defaultProps = {
   className: null,
-  color: null
+  classes: null
 }
 
-export default CheckedIcon
+export default withStyles(styles)(CheckedIcon)

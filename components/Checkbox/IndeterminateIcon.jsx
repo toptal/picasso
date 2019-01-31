@@ -1,22 +1,26 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
 
 import MinusSvg from '../Icons/Minus'
+import styles from './styles'
 
-const IndeterminateIcon = ({ className, color }) => (
+const IndeterminateIcon = ({ className, classes }) => (
   <div className={className}>
-    <MinusSvg fill={color} />
+    <MinusSvg className={classes.icon} />
   </div>
 )
 
 IndeterminateIcon.propTypes = {
   className: PropTypes.string,
-  color: PropTypes.string
+  classes: PropTypes.shape({
+    root: PropTypes.string
+  })
 }
 
 IndeterminateIcon.defaultProps = {
   className: null,
-  color: null
+  classes: null
 }
 
-export default IndeterminateIcon
+export default withStyles(styles)(IndeterminateIcon)

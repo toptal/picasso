@@ -50,5 +50,8 @@ export default ({ palette }) => ({
     transition: 'all .1s ease',
     background: palette.primary.main,
     border: `1px solid ${palette.primary.dark}`
+  },
+  icon: {
+    fill: palette.common.white
   }
 })
