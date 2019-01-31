@@ -35,7 +35,8 @@ export default ({ palette }) => ({
     width: '1em',
     transition: 'all .1s ease',
     background: palette.primary.main,
-    border: `1px solid ${palette.primary.dark}`
+    border: `1px solid ${palette.primary.dark}`,
+    color: palette.common.white
   },
   uncheckedIcon: {
     height: '1em',
@@ -49,9 +50,7 @@ export default ({ palette }) => ({
     width: '1em',
     transition: 'all .1s ease',
     background: palette.primary.main,
-    border: `1px solid ${palette.primary.dark}`
-  },
-  icon: {
-    fill: palette.common.white
+    border: `1px solid ${palette.primary.dark}`,
+    color: palette.common.white
   }
 })

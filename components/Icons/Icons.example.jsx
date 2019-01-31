@@ -39,7 +39,7 @@ chapter.addSection('Available icons', null, () => (
               }}
             >
               <Suspense fallback={<div>Loading...</div>}>
-                <Icon fill='#204ecf' height={64} width={64} />
+                <Icon height={64} style={{ color: '#204ecf' }} width={64} />
 
                 <Spacer bottom={2} />
 
@@ -57,7 +57,7 @@ chapter.addSection('Available icons', null, () => (
       {`...`} <br />
       {`render() {`} <br />
       {`...`} <br />
-      {`<CheckSvg fill='#204ecf' />`} <br />
+      {`<CheckSvg style={{ color: '#204ecf' }} />`} <br />
       {`...`} <br />
       {`}`} <br />
     </span>
