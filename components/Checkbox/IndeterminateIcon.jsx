@@ -1,21 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import minusSvg from '../Icons/minus.svg'
+import MinusSvg from '../Icons/Minus'
 
-const IndeterminateIcon = ({ className }) => (
+const IndeterminateIcon = ({ className, color }) => (
   <div className={className}>
-    {/* // TODO: Replace with Icon component and remove fill prop from svg */}
-    <img src={minusSvg} />
+    <MinusSvg fill={color} />
   </div>
 )
 
 IndeterminateIcon.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
+  color: PropTypes.string
 }
 
 IndeterminateIcon.defaultProps = {
-  className: null
+  className: null,
+  color: null
 }
 
 export default IndeterminateIcon

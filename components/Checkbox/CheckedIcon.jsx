@@ -1,21 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import checkSvg from '../Icons/check.svg'
+import CheckSvg from '../Icons/Check'
 
-const CheckedIcon = ({ className }) => (
+const CheckedIcon = ({ className, color }) => (
   <div className={className}>
-    {/* // TODO: Replace with Icon component and remove fill prop from svg */}
-    <img src={checkSvg} />
+    <CheckSvg fill={color} />
   </div>
 )
 
 CheckedIcon.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
+  color: PropTypes.string
 }
 
 CheckedIcon.defaultProps = {
-  className: null
+  className: null,
+  color: null
 }
 
 export default CheckedIcon

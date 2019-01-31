@@ -11,5 +11,9 @@ module.exports = (baseConfig, env, config) => {
   })
   config.resolve.extensions.push('.ts', '.tsx')
 
+  config.module.rules[0].use[0].options.plugins.push(
+    require.resolve('@babel/plugin-syntax-dynamic-import')
+  )
+
   return config
 }
