@@ -2,17 +2,21 @@
 
 exports[`disabled button renders disabled version 1`] = `
 <div>
-  <button
-    class="MuiButtonBase-root Button-root MuiButtonBase-disabled"
-    disabled=""
-    tabindex="-1"
-    type="button"
+  <div
+    class="Picasso-root"
   >
-    <div
-      class="Button-children"
+    <button
+      class="MuiButtonBase-root Button-root MuiButtonBase-disabled"
+      disabled=""
+      tabindex="-1"
+      type="button"
     >
-      Click me!
-    </div>
-  </button>
+      <div
+        class="Button-children"
+      >
+        Click me!
+      </div>
+    </button>
+  </div>
 </div>
 `;

@@ -1,9 +1,15 @@
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles'
+import {
+  createMuiTheme,
+  MuiThemeProvider,
+  withStyles
+} from '@material-ui/core/styles'
 import React from 'react'
 import PropTypes from 'prop-types'
 
 import { palette, transitions, typography } from './config'
+import FontsLoader from './FontsLoader'
 import Provider from './PicassoProvider'
+import globalStyles from './styles'
 
 const picasso = {
   palette,
@@ -34,13 +40,25 @@ const picasso = {
 }
 
 const PicassoProvider = new Provider(createMuiTheme(picasso))
-const Picasso = ({ children }) => (
-  <MuiThemeProvider theme={PicassoProvider.theme}>{children}</MuiThemeProvider>
+
+const PicassoGlobalStylesProvider = withStyles(globalStyles, {
+  name: 'Picasso'
+})(({ children, classes }) => <div className={classes.root}>{children}</div>)
+
+const Picasso = ({ loadFonts = true, ...rest }) => (
+  <MuiThemeProvider theme={PicassoProvider.theme}>
+    {loadFonts && <FontsLoader />}
+    <PicassoGlobalStylesProvider {...rest} />
+  </MuiThemeProvider>
 )
 
-Picasso.displayName = Picasso
 Picasso.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
+  loadFonts: PropTypes.bool
+}
+
+Picasso.defaultProps = {
+  loadFonts: true
 }
 
 export { PicassoProvider }

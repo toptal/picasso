@@ -6,7 +6,7 @@ import Picasso from '../Picasso'
 
 const renderLabel = (props = {}) => {
   return render(
-    <Picasso>
+    <Picasso loadFonts={false}>
       <Label {...props} />
     </Picasso>
   )
