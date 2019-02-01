@@ -9,3 +9,5 @@ export const lighten = (inputColor, amount) =>
   color(inputColor)
     .lighten(amount)
     .hex()
+
+export { default as withClasses } from './withClasses'

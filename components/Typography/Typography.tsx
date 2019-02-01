@@ -6,6 +6,7 @@ import MUITypography from '@material-ui/core/Typography'
 import cx from 'classnames'
 
 import styles from './styles'
+import { Classes } from '../styles/types'
 
 type VariantType =
   | 'h1'
@@ -23,8 +24,7 @@ type Weights = 'thin' | 'light' | 'regular' | 'semibold' | 'bold'
 interface Props {
   children: ReactChild
   variant: VariantType
-  // TODO see if there is a better way to specify this
-  classes: Record<string, string>
+  classes: Classes
   align?: PropTypes.Alignment
   weight: Weights
 }
