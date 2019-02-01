@@ -1,5 +1,25 @@
 # Changelog
 
+## v0.1.0-alpha.10 (01/02/2019)
+
+#### Bugfix
+
+- [**Bugfix**] Fix Label style [#40](https://github.com/toptal/picasso/pull/40)
+
+#### Chore
+
+- [**Chore**] Add documentation about how to add new Icon to the Picasso project [#45](https://github.com/toptal/picasso/pull/45)
+- [**Chore**] Fix warnings in unit tests [#41](https://github.com/toptal/picasso/pull/41)
+- [**Chore**] Change eslint rule sort-default-prop-types to sort-prop-types [#37](https://github.com/toptal/picasso/pull/37)
+
+#### Feature
+
+- [**Feature**] Add component Icon and support of svg icons (new API) [#44](https://github.com/toptal/picasso/pull/44)
+- [**Feature**] Add font directly from adobe using link [#39](https://github.com/toptal/picasso/pull/39)
+- [**Feature**] Adjust Button styles, add new props [#38](https://github.com/toptal/picasso/pull/38)
+
+---
+
 ## v0.1.0-alpha.9 (29/01/2019)
 
 #### Chore
