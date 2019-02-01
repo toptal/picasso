@@ -77,3 +77,32 @@ docker run -t -i --rm -e -v ${PWD}/components:/app/components NPM_TOKEN=$NPM_TOK
 | **yarn build**                | Build the library                                                   |
 | **yarn build:storybook**      | Build Storybook as static website                                   |
 | **yarn symlink**              | Symlink current version of library for development                  |
+
+## Icons
+
+### Add Icon
+
+To add a new Icon to Picasso library please follow these steps:
+
+1. Prepare your SVG:
+    - Pass it through the [SVG optimizer service](https://jakearchibald.github.io/svgomg/)
+    - Remove `width, height` attributes from the `<svg>` tag
+    - Remove `fill, stroke` attributes from the `<svg>` tag
+2. Add your SVG file to the Picasso project:
+    > /components/Icons/svg/[your_icon_name].svg
+3. Run the command
+    ```
+    yarn build:svg
+    ```
+    to prepare corresponding react component for your icon
+
+4. Export your just created react component in the index file
+    > /components/Icons/index.ts
+    ```
+    ...
+    export { default as [your_icon_name]} from './[your_icon_name]'
+    ...
+    export { default } from './IconsLibrary'
+    ```
+
+After Picasso will be released with your changes you can start using your Icon as described [here](https://picasso.toptal.net/?selectedKind=Icons&selectedStory=Icons).
