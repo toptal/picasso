@@ -7,6 +7,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { palette, transitions, typography } from './config'
+import './config/icons'
 import FontsLoader from './FontsLoader'
 import Provider from './PicassoProvider'
 import globalStyles from './styles'
