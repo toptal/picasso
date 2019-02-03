@@ -1,3 +1,18 @@
+declare module '@material-ui/core/styles/createPalette' {
+  interface SimplePaletteColorOptions {
+    lighter?: string
+    light?: string
+    main: string
+    dark?: string
+    darker?: string
+  }
+
+  interface Palette {
+    blue: SimplePaletteColorOptions
+    positive: SimplePaletteColorOptions
+  }
+}
+
 const palette = {
   primary: {
     light: '#cad5f4',
@@ -9,8 +24,8 @@ const palette = {
   },
   grey: {
     50: '#dfe3e9',
-    75: '#e8e8e8',
-    100: '#686869',
+    100: '#e8e8e8',
+    200: '#686869',
     500: '#262D3D'
   },
   blue: {

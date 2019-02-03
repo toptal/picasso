@@ -1,7 +1,9 @@
-export default ({ palette }: { palette: any }) => ({
+import { Palette } from '@material-ui/core/styles/createPalette'
+
+export default ({ palette }: { palette: Palette }) => ({
   flat: {
-    backgroundColor: palette.grey[75],
-    color: palette.grey[100]
+    backgroundColor: palette.grey[100],
+    color: palette.grey[200]
   },
   success: {
     backgroundColor: palette.positive.light,

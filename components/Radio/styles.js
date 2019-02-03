@@ -39,15 +39,15 @@ PicassoProvider.override(({ palette, transitions }) => ({
       padding: '0',
 
       margin: '0.25em 0.5em',
-      ...createColorVariant(palette.grey[100], palette.grey[100]),
+      ...createColorVariant(palette.grey[200], palette.grey[200]),
       animationDuration: transitions.duration.short,
       animationTimingFunction: transitions.easing.easeIn,
       transitionDuration: transitions.duration.short,
       transitionTimingFunction: transitions.easing.easeOut
     },
-    colorPrimary: createColorVariant(palette.primary.main, palette.grey[100]),
-    colorSecondary: createColorVariant(palette.primary.main, palette.grey[100]), // secondary is set to primary by purpose
-    disabled: createColorVariant(palette.grey[100], palette.grey[100]),
+    colorPrimary: createColorVariant(palette.primary.main, palette.grey[200]),
+    colorSecondary: createColorVariant(palette.primary.main, palette.grey[200]), // secondary is set to primary by purpose
+    disabled: createColorVariant(palette.grey[200], palette.grey[200]),
 
     checked: {}
   }
