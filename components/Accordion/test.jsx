@@ -10,7 +10,8 @@ const renderAccordion = (props = {}) => {
 
 afterEach(cleanup)
 
-const Summary = () => <div>Fryderyk Chopin</div>
+const summaryHeaderText = 'Fryderyk Chopin'
+const Summary = () => <div>{summaryHeaderText}</div>
 
 const Details = () => (
   <div>
@@ -40,8 +41,8 @@ describe('default version for sections', () => {
   })
 
   test('should render expanded version after click on summary', () => {
-    const { container, getByTestId } = api
-    const summary = getByTestId('panel-summary')
+    const { container, getByText } = api
+    const summary = getByText(summaryHeaderText)
 
     fireEvent.click(summary)
 

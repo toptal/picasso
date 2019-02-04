@@ -43,12 +43,8 @@ describe('checkbox interaction', () => {
     onChange = jest.fn()
     api = renderCheckbox({ onChange, label })
 
-    const { container } = api
-    const checkboxLabel = container.querySelector('label')
-
-    if (!checkboxLabel) {
-      return
-    }
+    const { getByLabelText } = api
+    const checkboxLabel = getByLabelText(label)
 
     fireEvent.click(checkboxLabel)
   })

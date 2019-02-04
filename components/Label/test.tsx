@@ -41,10 +41,11 @@ test('renders error variant', () => {
 describe('dismissable label', () => {
   let onDelete: () => void
   let api: RenderResult
+  const closeIconTestId = 'icon-delete'
 
   beforeEach(() => {
     onDelete = jest.fn()
-    api = renderLabel({ onDelete })
+    api = renderLabel({ onDelete, closeIconTestId })
   })
   test('should render dismissable label', () => {
     const { container } = api
@@ -54,7 +55,7 @@ describe('dismissable label', () => {
 
   test('should fire onDelete event on dismiss action', () => {
     const { getByTestId } = api
-    const deleteIcon = getByTestId('icon-delete')
+    const deleteIcon = getByTestId(closeIconTestId)
 
     fireEvent.click(deleteIcon)
     expect(onDelete).toHaveBeenCalled()
