@@ -1,0 +1,161 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`checkbox interaction should render checked checkbox 1`] = `
+<div>
+  <label
+    class="MuiFormControlLabel-root FormControlLabel-root Checkbox-root"
+  >
+    <span
+      class="MuiButtonBase-root MuiIconButton-root MuiPrivateSwitchBase-root MuiCheckbox-root Checkbox-root MuiCheckbox-colorSecondary MuiPrivateSwitchBase-checked MuiCheckbox-checked"
+    >
+      <span
+        class="MuiIconButton-label"
+      >
+        <div
+          class="Checkbox-checkedIcon"
+        >
+          <svg
+            viewBox="0 -64 1024 1224"
+            width="9"
+          >
+            <path
+              d="M955 333q0 22-16 38L447 863q-16 16-38 16-23 0-39-16L85 578q-16-16-16-39 0-22 16-38l78-78q16-16 39-16t39 16l168 168 374-375q16-16 39-16t39 16l78 78q16 16 16 39z"
+            />
+          </svg>
+        </div>
+        <input
+          class="MuiPrivateSwitchBase-input"
+          data-indeterminate="false"
+          type="checkbox"
+          value=""
+        />
+      </span>
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </span>
+    <span
+      class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label"
+    >
+      Select item
+    </span>
+  </label>
+</div>
+`;
+
+exports[`renders default checkbox without label 1`] = `
+<div>
+  <span
+    class="MuiButtonBase-root MuiIconButton-root MuiPrivateSwitchBase-root MuiCheckbox-root Checkbox-root MuiCheckbox-colorSecondary"
+  >
+    <span
+      class="MuiIconButton-label"
+    >
+      <div
+        class="Checkbox-uncheckedIcon"
+      />
+      <input
+        class="MuiPrivateSwitchBase-input"
+        data-indeterminate="false"
+        type="checkbox"
+        value=""
+      />
+    </span>
+    <span
+      class="MuiTouchRipple-root"
+    />
+  </span>
+</div>
+`;
+
+exports[`renders disabled state 1`] = `
+<div>
+  <span
+    class="MuiButtonBase-root MuiButtonBase-disabled MuiIconButton-root MuiIconButton-disabled MuiPrivateSwitchBase-root MuiCheckbox-root Checkbox-root MuiCheckbox-colorSecondary MuiPrivateSwitchBase-disabled MuiCheckbox-disabled Checkbox-disabled"
+    tabindex="-1"
+  >
+    <span
+      class="MuiIconButton-label"
+    >
+      <div
+        class="Checkbox-uncheckedIcon"
+      />
+      <input
+        class="MuiPrivateSwitchBase-input"
+        data-indeterminate="false"
+        disabled=""
+        type="checkbox"
+        value=""
+      />
+    </span>
+  </span>
+</div>
+`;
+
+exports[`renders indeterminate state 1`] = `
+<div>
+  <span
+    class="MuiButtonBase-root MuiIconButton-root MuiPrivateSwitchBase-root MuiCheckbox-root Checkbox-root MuiCheckbox-colorSecondary MuiCheckbox-indeterminate"
+  >
+    <span
+      class="MuiIconButton-label"
+    >
+      <div
+        class="Checkbox-indeterminateIcon"
+      >
+        <svg
+          viewBox="0 -64 805 1024"
+          width="10"
+        >
+          <path
+            d="M805 430v109q0 23-16 39t-39 16H55q-23 0-39-16T0 539V430q0-23 16-39t39-16h695q23 0 39 16t16 39z"
+          />
+        </svg>
+      </div>
+      <input
+        class="MuiPrivateSwitchBase-input"
+        data-indeterminate="true"
+        type="checkbox"
+        value=""
+      />
+    </span>
+    <span
+      class="MuiTouchRipple-root"
+    />
+  </span>
+</div>
+`;
+
+exports[`should render default checkbox with label 1`] = `
+<div>
+  <label
+    class="MuiFormControlLabel-root FormControlLabel-root Checkbox-root"
+  >
+    <span
+      class="MuiButtonBase-root MuiIconButton-root MuiPrivateSwitchBase-root MuiCheckbox-root Checkbox-root MuiCheckbox-colorSecondary"
+    >
+      <span
+        class="MuiIconButton-label"
+      >
+        <div
+          class="Checkbox-uncheckedIcon"
+        />
+        <input
+          class="MuiPrivateSwitchBase-input"
+          data-indeterminate="false"
+          type="checkbox"
+          value=""
+        />
+      </span>
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </span>
+    <span
+      class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label"
+    >
+      Select item
+    </span>
+  </label>
+</div>
+`;
