@@ -1,6 +1,6 @@
-import { Palette } from '@material-ui/core/styles/createPalette'
+import { Theme } from '@material-ui/core/styles/createMuiTheme'
 
-export default ({ palette }: { palette: Palette }) => ({
+export default ({ palette }: Theme) => ({
   flat: {
     backgroundColor: palette.grey[100],
     color: palette.grey[200]
