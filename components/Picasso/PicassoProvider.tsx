@@ -1,4 +1,5 @@
-import { Theme } from '@material-ui/core/styles/createMuiTheme'
+import { Theme } from '@material-ui/core/styles'
+import { Overrides } from '@material-ui/core/styles/overrides'
 
 export class PicassoProvider {
   theme: Theme
@@ -7,13 +8,13 @@ export class PicassoProvider {
     this.theme = theme
   }
 
-  override (getOverride: (theme: Theme) => Theme) {
+  override (getOverride: (theme: Theme) => Partial<Overrides>) {
     const newOverride = getOverride(this.theme)
 
     this.extendThemeOverrides(newOverride)
   }
 
-  extendThemeOverrides (newOverride: Theme) {
+  extendThemeOverrides (newOverride: Partial<Overrides>) {
     const overrides = this.theme.overrides || {}
 
     Object.assign(overrides, newOverride)

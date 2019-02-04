@@ -10,19 +10,19 @@ import { render, fireEvent, cleanup, RenderResult } from 'react-testing-library'
 
 import <%= Name %> from './index'
 
-const render<%= Name %> = (children, props = {}) => {
+const render<%= Name %> = (children: React.ReactNode, props: any) => {
   return render(<<%= Name %> {...props}>{children}</<%= Name %>>)
 }
 
 afterEach(cleanup)
 
-describe('', () => {
+describe('<%= Name %>', () => {
   let api: RenderResult
 
   beforeEach(() => {
     api = render<%= Name %>()
   })
-  test('', () => {
+  test('default render', () => {
     const { container } = api
 
     expect(container).toMatchSnapshot()

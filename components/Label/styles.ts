@@ -1,4 +1,4 @@
-import { Theme } from '@material-ui/core/styles/createMuiTheme'
+import { Theme } from '@material-ui/core/styles'
 
 export default ({ palette }: Theme) => ({
   flat: {

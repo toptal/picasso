@@ -24,6 +24,7 @@
     "react/jsx-one-expression-per-line": 0,
     "react/jsx-no-literals": 0,
     "react/jsx-no-bind": 0,
+    "react/prop-types": 0,
     "react/jsx-closing-bracket-location": ["error", "line-aligned"],
     "react/jsx-wrap-multilines": [
       "error",
