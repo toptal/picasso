@@ -7,14 +7,10 @@ export class PicassoProvider {
     this.theme = theme
   }
 
-  override (getOverride: (theme: Theme) => any = () => ({})) {
+  override (getOverride: (theme: Theme) => Theme) {
     const newOverride = getOverride(this.theme)
 
     this.extendThemeOverrides(newOverride)
-  }
-
-  withTheme (getWithTheme: (theme: Theme) => any = () => ({})) {
-    return getWithTheme(this.theme)
   }
 
   extendThemeOverrides (newOverride: Theme) {
