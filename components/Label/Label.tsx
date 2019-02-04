@@ -12,7 +12,6 @@ interface Props {
   label?: string
   onDelete?: () => void
   variant?: 'flat' | 'success' | 'error'
-  closeIconTestId?: string
 }
 
 // should be moved to some global interfaces place
@@ -21,7 +20,7 @@ interface GroupFunctionalComponent<T> extends React.FunctionComponent<T> {
 }
 
 const Label: GroupFunctionalComponent<Props> = props => {
-  const { classes, variant, closeIconTestId, ...rest } = props
+  const { classes, variant, ...rest } = props
 
   const rootClass = variant ? classes[variant] : ''
 
@@ -30,8 +29,9 @@ const Label: GroupFunctionalComponent<Props> = props => {
       classes={{ root: rootClass }}
       deleteIcon={
         <CloseIcon
+          aria-label='delete icon'
           className={classes.deleteIcon}
-          data-testid={closeIconTestId}
+          role='button'
         />
       }
       {...rest}
@@ -41,7 +41,6 @@ const Label: GroupFunctionalComponent<Props> = props => {
 
 Label.defaultProps = {
   classes: {},
-  closeIconTestId: undefined,
   label: undefined,
   onDelete: undefined,
   variant: undefined
