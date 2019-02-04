@@ -1,21 +1,23 @@
-export class PicassoProvider {
-  theme: any
+import { Theme } from '@material-ui/core/styles/createMuiTheme'
 
-  constructor (theme = {}) {
+export class PicassoProvider {
+  theme: Theme
+
+  constructor (theme: Theme) {
     this.theme = theme
   }
 
-  override (getOverride: (theme: any) => any = () => ({})) {
+  override (getOverride: (theme: Theme) => any = () => ({})) {
     const newOverride = getOverride(this.theme)
 
     this.extendThemeOverrides(newOverride)
   }
 
-  withTheme (getWithTheme: (theme: any) => any = () => ({})) {
+  withTheme (getWithTheme: (theme: Theme) => any = () => ({})) {
     return getWithTheme(this.theme)
   }
 
-  extendThemeOverrides (newOverride: any) {
+  extendThemeOverrides (newOverride: Theme) {
     const overrides = this.theme.overrides || {}
 
     Object.assign(overrides, newOverride)
