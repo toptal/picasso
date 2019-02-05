@@ -1,15 +1,28 @@
 #!/usr/bin/env bash
 
-DOCKER_CMD="docker run -t -i --rm -v ${PWD}/components:/app/components -v ${PWD}/build:/app/build -e NPM_TOKEN=$NPM_TOKEN picasso:latest"
-STORYBOOK_CMD="yarn storybook:build"
+PICASSO_IMAGE='picasso'
+PKG_VERSION=`node -p "require('./package.json').version"`
+
+if [[ "$(docker images -q $PICASSO_IMAGE:$PKG_VERSION 2> /dev/null)" == "" ]]; then
+  docker build -t $PICASSO_IMAGE:$PKG_VERSION .
+else
+  echo "Docker image found: '$PICASSO_IMAGE:$PKG_VERSION'" 
+fi
+
+DOCKER_CMD="docker run -t -i --rm \
+ -v ${PWD}/components:/app/components \
+ -v ${PWD}/build:/app/build \
+ -v ${PWD}/puppeteer:/app/puppeteer \
+ -e NPM_TOKEN=$NPM_TOKEN $PICASSO_IMAGE:$PKG_VERSION"
 
 echo "Running visual tests inside docker ..."
-$STORYBOOK_CMD
 
 if [[ "$1" == "-u" ]]; then
   echo "Updating snapshots to a current version ..."
-  $DOCKER_CMD yarn test-visual:docker -u
+  $DOCKER_CMD yarn build:storybook && \
+  ./node_modules/.bin/jest --config='./puppeteer/puppeteer.jest.config.js' -u
 else
-  $DOCKER_CMD yarn test-visual:docker
+  $DOCKER_CMD yarn build:storybook && \
+  ./node_modules/.bin/jest --config='./puppeteer/puppeteer.jest.config.js'
 fi
 

@@ -1,7 +1,11 @@
 module.exports = {
   rootDir: '../',
-  testMatch: ['**/(visual.test).js?(x)'],
+  testMatch: ['**/(visual.test).(jsx|tsx)'],
   preset: 'jest-puppeteer',
   testPathIgnorePatterns: ['/node_modules/', '/build'],
-  setupTestFrameworkScriptFile: '<rootDir>/puppeteer/setup.js'
+  setupTestFrameworkScriptFile: '<rootDir>/puppeteer/setup.ts',
+  transform: {
+    '.(ts|tsx)': 'ts-jest'
+  },
+  moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx']
 }

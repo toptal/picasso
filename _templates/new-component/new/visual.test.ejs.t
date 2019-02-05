@@ -6,4 +6,4 @@ to: components/<%= h.changeCase.pascalCase(name) %>/visual.test.tsx
 -%>
 import { assertVisuals } from '../../puppeteer'
 
-test('Default', assertVisuals('<%= Name %>', 'default'))
+test('Default', assertVisuals('<%= Name %>', '<%= Name %>'))
