@@ -67,7 +67,6 @@ exports[`default version for sections should render default version 1`] = `
     <div
       aria-expanded="false"
       class="MuiButtonBase-root MuiExpansionPanelSummary-root WithStyles-ExpansionPanelSummary--root Accordion-defaultSummary"
-      data-testid="panel-summary"
       role="button"
       tabindex="0"
     >
@@ -141,7 +140,6 @@ exports[`default version for sections should render expanded version after click
     <div
       aria-expanded="true"
       class="MuiButtonBase-root MuiExpansionPanelSummary-root WithStyles-ExpansionPanelSummary--root Accordion-defaultSummary MuiExpansionPanelSummary-expanded"
-      data-testid="panel-summary"
       role="button"
       tabindex="0"
     >

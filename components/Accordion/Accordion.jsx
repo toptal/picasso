@@ -20,7 +20,6 @@ const Accordion = props => {
           classes={{
             root: isControlledVariant ? classes.defaultSummary : null
           }}
-          data-testid='panel-summary'
           expandIcon={<ChevronRightIcon className={classes.expandIcon} />}
         >
           {Summary}

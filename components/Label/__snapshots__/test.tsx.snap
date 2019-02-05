@@ -15,10 +15,10 @@ exports[`dismissable label should render dismissable label 1`] = `
       />
       <svg
         aria-hidden="true"
+        aria-label="delete icon"
         class="MuiSvgIcon-root Label-deleteIcon MuiChip-deleteIcon"
-        data-testid="icon-delete"
         focusable="false"
-        role="presentation"
+        role="button"
         viewBox="0 0 24 24"
       >
         <path

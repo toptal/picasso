@@ -28,7 +28,11 @@ const Label: GroupFunctionalComponent<Props> = props => {
     <Chip
       classes={{ root: rootClass }}
       deleteIcon={
-        <CloseIcon className={classes.deleteIcon} data-testid='icon-delete' />
+        <CloseIcon
+          aria-label='delete icon'
+          className={classes.deleteIcon}
+          role='button'
+        />
       }
       {...rest}
     />

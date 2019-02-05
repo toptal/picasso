@@ -53,8 +53,8 @@ describe('dismissable label', () => {
   })
 
   test('should fire onDelete event on dismiss action', () => {
-    const { getByTestId } = api
-    const deleteIcon = getByTestId('icon-delete')
+    const { getByLabelText } = api
+    const deleteIcon = getByLabelText('delete icon')
 
     fireEvent.click(deleteIcon)
     expect(onDelete).toHaveBeenCalled()
