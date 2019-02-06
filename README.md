@@ -32,19 +32,10 @@ render () {
 
 In order to run storybook you need to execute `yarn storybook` which will spin up storybook server on http://localhost:9001
 
-## Docker
-
-Picasso needs `puppeteer` and `chromium` in order to run its visual tests. To have consistency between machines and CI we need to run them inside Docker.
-
-### Building picasso image
-
-`docker build -t picasso .` - Alternatively you can run `yarn docker:build`
-
-ℹ️ **_Note: You can run any yarn command_**
-
 ### Running visual tests
 
-To preserve same visual test results we need to always run/update snapshots inside to docker to have same results on CI.
+To preserve same visual test results we need to always run/update snapshots inside docker to have consistency with CI. Visual tests use `puppeteer` and `chromium`.
+
 In order to run visual tests you need to first build `picasso` docker image.
 
 `yarn test-visual` - Running visual tests
@@ -73,7 +64,6 @@ docker run -t -i --rm -e -v ${PWD}/components:/app/components NPM_TOKEN=$NPM_TOK
 | **yarn storybook**            | Start storybook instance and inspect components                     |
 | **yarn release:alpha**        | Bump alpha version in `package.json` and create new version git tag |
 | **yarn generate:component**   | Generate a new component template                                   |
-| **yarn build:docker**         | Build docker image                                                  |
 | **yarn build**                | Build the library                                                   |
 | **yarn build:storybook**      | Build Storybook as static website                                   |
 | **yarn symlink**              | Symlink current version of library for development                  |

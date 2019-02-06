@@ -1,16 +1,18 @@
-/* global page */
 import { join } from 'path'
+import { Page } from 'puppeteer'
+
+declare var page: Page
 
 const PADDING_AROUND_COMPONENT = 8
 
 async function screenshotDOMElement () {
   const dimensions = await page.evaluate(() => {
     const component = document.querySelector('#root > *')
-    const componentRect = component.getBoundingClientRect()
+    const componentRect: ClientRect = component!.getBoundingClientRect()
 
     return {
-      x: componentRect.x,
-      y: componentRect.y,
+      x: componentRect.left,
+      y: componentRect.top,
       width: componentRect.width,
       height: componentRect.height
     }
@@ -27,7 +29,7 @@ async function screenshotDOMElement () {
 }
 
 // TODO: Make this more universal when we add more components and their variations
-export const assertVisuals = function (kind, type, delay = 0) {
+export const assertVisuals = function (kind: any, type: any, delay = 0) {
   return async () => {
     const encodedType = encodeURI(type)
     const path = join(
@@ -35,6 +37,7 @@ export const assertVisuals = function (kind, type, delay = 0) {
       '/../' +
         `build/storybook/iframe.html?selectedKind=${kind}&selectedStory=${encodedType}`
     )
+
     const url = `file:///${path}`
 
     await page.goto(url)
@@ -42,8 +45,6 @@ export const assertVisuals = function (kind, type, delay = 0) {
 
     const image = await screenshotDOMElement()
 
-    expect(image).toMatchImageSnapshot({
-      customSnapshotIdentifier: `${kind}-${type}`
-    })
+    expect(image).toMatchImageSnapshot()
   }
 }

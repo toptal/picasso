@@ -4,11 +4,7 @@ ghHelper = new helpers.GithubNotifyHelper()
 def FAILURE_REASON
 
 pipeline {
-  agent {
-    docker {
-      image 'gcr.io/compute-engine-1069/platform_tests'
-    }
-  }
+  agent { dockerfile true }
 
   options {
     ansiColor('xterm')
@@ -17,14 +13,13 @@ pipeline {
     skipDefaultCheckout()
   }
 
-   environment {
+  environment {
     NPM_TOKEN = credentials('npm-token-for-toptal-private-registry')
   }
 
   stages {
     // Perform this only for PRs
     stage('Git checkout PR') {
-
       steps {
         info "== Checking out Git revision ${env.ghprbActualCommit}"
         gitCheckout(
@@ -35,36 +30,46 @@ pipeline {
                 additionalBehaviours: [
                         advancedCheckoutBehaviour: [timeout: 120],
                         advancedCloneBehaviour   : [depth: 0, noTags: true, reference: '', shallow: false, timeout: 340],
-                        cleanBeforeCheckout      : true,
+                        cleanBeforeCheckout      : false,
                         calculateChangelog       : [compareRemote: 'origin', compareTarget: "${env.ghprbTargetBranch}"],
                         mergeBeforeBuild         : [mergeRemote: 'origin', mergeTarget: "${env.ghprbTargetBranch}", mergeStrategy: 'DEFAULT', fastForwardMode: 'FF']
                 ])
 
         info "Git commit: ${gitCommit()}"
         info "Git branch: ${gitBranch()}"
-        success "Checkout finished"
+        success 'Checkout finished'
       }
     }//stage
 
     stage('Run linter') {
       steps {
         script {
-          FAILURE_REASON = "lint"
-          ghHelper.notifyPR("yarn:lint", "PENDING", "running", "${env.ghprbActualCommit}", "${env.BUILD_URL}", "picasso")
+          FAILURE_REASON = 'lint'
+          ghHelper.notifyPR('Lint', 'PENDING', 'running', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
         }
-        sh "yarn install"
-        sh "yarn lint"
+        sh 'yarn lint'
       } //steps
     }//stage
 
     stage('Run jest') {
       steps {
         script {
-          FAILURE_REASON = "jest"
-          ghHelper.notifyPR("yarn:test", "PENDING", "running", "${env.ghprbActualCommit}", "${env.BUILD_URL}", "picasso")
+          FAILURE_REASON = 'jest'
+          ghHelper.notifyPR('Jest Tests', 'PENDING', 'running', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
         }
-        sh "yarn install"
-        sh "yarn test"
+        sh 'yarn test'
+      } //steps
+    }//stage
+
+    stage('Run visual tests') {
+      steps {
+        info 'Run visual tests...'
+        script {
+          FAILURE_REASON = 'visual tests'
+          ghHelper.notifyPR('Visual Tests', 'PENDING', 'running', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
+        }
+        sh 'yarn build:storybook'
+        sh "./node_modules/.bin/jest --config='./puppeteer/puppeteer.jest.config.js'"
       } //steps
     }//stage
   }//stages
@@ -74,19 +79,30 @@ pipeline {
       success 'Build succeeded!'
 
       script {
-        ghHelper.notifyPR("yarn:lint", "SUCCESS", "Success", "${env.ghprbActualCommit}", "${env.BUILD_URL}", "picasso")
-        ghHelper.notifyPR("yarn:test", "SUCCESS", "Success", "${env.ghprbActualCommit}", "${env.BUILD_URL}", "picasso")
+        ghHelper.notifyPR('Lint', 'SUCCESS', 'Success', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
+        ghHelper.notifyPR('Jest Tests', 'SUCCESS', 'Success', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
+        ghHelper.notifyPR('Visual Tests', 'SUCCESS', 'Success', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
       }
     }
 
     failure {
       script {
-        if (FAILURE_REASON == "jest") {
-          ghHelper.notifyPR("yarn:lint", "SUCCESS", "Success", "${env.ghprbActualCommit}", "${env.BUILD_URL}", "picasso")
-          ghHelper.notifyPR("yarn:test", "ERROR", "Job failed", "${env.ghprbActualCommit}", "${env.BUILD_URL}", "picasso")
+        if (FAILURE_REASON == 'lint') {
+          ghHelper.notifyPR('Lint', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
+          ghHelper.notifyPR('Jest Tests', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
+          ghHelper.notifyPR('Visual Tests', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
+        } else if (FAILURE_REASON == 'jest') {
+          ghHelper.notifyPR('Lint', 'SUCCESS', 'Success', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
+          ghHelper.notifyPR('Jest Tests', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
+          ghHelper.notifyPR('Visual Tests', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
+        } else if (FAILURE_REASON == 'visual tests') {
+          ghHelper.notifyPR('Lint', 'SUCCESS', 'Success', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
+          ghHelper.notifyPR('Jest Tests', 'SUCCESS', 'Success', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
+          ghHelper.notifyPR('Visual Tests', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
         } else {
-          ghHelper.notifyPR("yarn:test", "ERROR", "Job failed", "${env.ghprbActualCommit}", "${env.BUILD_URL}", "picasso")
-          ghHelper.notifyPR("yarn:lint", "ERROR", "Job failed", "${env.ghprbActualCommit}", "${env.BUILD_URL}", "picasso")
+          ghHelper.notifyPR('Lint', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
+          ghHelper.notifyPR('Jest Tests', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
+          ghHelper.notifyPR('Visual Tests', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
         }
       }
     }
