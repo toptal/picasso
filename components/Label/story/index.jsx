@@ -1,9 +1,8 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 
-import StoryTeller from '../../.storybook/StoryTeller'
-import Label from '.'
-import Spacer from '../Spacer'
+import StoryTeller from '../../../.storybook/StoryTeller'
+import CodeExample from '../../../.storybook/components/CodeExample'
 
 const stories = storiesOf('Label', module)
 
@@ -16,37 +15,30 @@ const teller = new StoryTeller(
 )
 const chapter = teller.addChapter()
 
-function handleDelete () {
-  alert('You clicked the delete icon.') // eslint-disable-line no-undef
-}
+const Container = ({ children }) => <div style={{ flex: 1 }}>{children}</div>
 
 chapter.addSection('Default', null, () => (
-  <div>
-    <Label label='Javascript' />
-  </div>
+  <Container>
+    <CodeExample code='Label/story/Default-example.tsx' />
+  </Container>
 ))
 
 chapter.addSection('Dismissible', null, () => (
-  <div>
-    <Label label='React JS' onDelete={handleDelete} />
-  </div>
+  <Container>
+    <CodeExample code='Label/story/Dismissible-example.tsx' />
+  </Container>
 ))
 
 chapter.addSection('Flat', null, () => (
-  <div>
-    <Label label='Ember JS' variant='flat' />
-  </div>
+  <Container>
+    <CodeExample code='Label/story/Flat-example.tsx' />
+  </Container>
 ))
 
 chapter.addSection('Statuses', 'Use these to communicate status.', () => (
-  <>
-    <Spacer right={1}>
-      <Label label={`Yay! It's done!`} variant='success' />
-    </Spacer>
-    <div>
-      <Label label='Nope! Please, try one more time' variant='error' />
-    </div>
-  </>
+  <Container>
+    <CodeExample code='Label/story/Statuses-example.tsx' />
+  </Container>
 ))
 
 stories.addWithChapters('Label', teller.toStory())

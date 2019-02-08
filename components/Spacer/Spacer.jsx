@@ -1,14 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Spacer = ({ children, top, bottom, left, right }) => {
+const Spacer = ({ children, top, bottom, left, right, type }) => {
   return (
     <div
       style={{
         marginTop: top + 'em',
         marginBottom: bottom + 'em',
         marginLeft: left + 'em',
-        marginRight: right + 'em'
+        marginRight: right + 'em',
+        display: type === 'inline' ? 'inline-block' : null
       }}
     >
       {children}
@@ -21,7 +22,8 @@ Spacer.propTypes = {
   children: PropTypes.node,
   left: PropTypes.number,
   right: PropTypes.number,
-  top: PropTypes.number
+  top: PropTypes.number,
+  type: PropTypes.oneOf(['inline', 'block'])
 }
 
 Spacer.defaultProps = {
@@ -29,7 +31,8 @@ Spacer.defaultProps = {
   children: null,
   left: 0,
   right: 0,
-  top: 0
+  top: 0,
+  type: 'block'
 }
 
 export default Spacer

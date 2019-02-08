@@ -105,5 +105,8 @@
   },
   "env": {
     "jest": true
+  },
+  "globals": {
+    "alert": "on"
   }
 }

@@ -1,8 +1,5 @@
-export default ({ typography }: { typography: any }) => ({
+export default () => ({
   root: {
-    '& *': {
-      fontFamily: typography.fontFamily
-    },
     '& svg': {
       fill: 'currentColor',
       display: 'inline-block',
