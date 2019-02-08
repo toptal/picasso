@@ -1,5 +1,27 @@
 # Changelog
 
+## v0.1.0-alpha.11 (08/02/2019)
+
+#### CI
+
+- [**CI**] Add visual tests in CI pipeline [#50](https://github.com/toptal/picasso/pull/50)
+
+#### Chore
+
+- [**Chore**] Remove usage of data-testid in unit tests [#48](https://github.com/toptal/picasso/pull/48)
+- [**Chore**] Add unit tests for Checkbox component [#47](https://github.com/toptal/picasso/pull/47)
+- [**Chore**] Add Typescript type check for Palette object [#46](https://github.com/toptal/picasso/pull/46)
+
+#### Feature
+
+- [**Feature**] Added Typography component [#49](https://github.com/toptal/picasso/pull/49)
+
+#### closed
+
+- [**closed**] Fix Dockerfile PATH variable [#52](https://github.com/toptal/picasso/pull/52)
+
+---
+
 ## v0.1.0-alpha.10 (01/02/2019)
 
 #### Bugfix
