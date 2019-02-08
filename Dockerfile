@@ -3,7 +3,7 @@ FROM node:10-alpine
 ARG NPM_TOKEN
 ENV NPM_TOKEN ${NPM_TOKEN}
 
-ENV PATH="${PATH}:/node_modules/.bin"
+ENV PATH="${PATH}:/app/node_modules/.bin"
 
 # Installs Chromium (71) package.
 ENV CHROME_BIN /usr/bin/chromium-browser
