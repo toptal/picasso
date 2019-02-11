@@ -1,6 +1,10 @@
 const path = require('path')
 
 module.exports = (baseConfig, env, config) => {
+  if (env === 'PRODUCTION') {
+    config.devtool = false
+  }
+
   config.module.rules.push({
     test: /\.(ts|tsx)$/,
     use: [
