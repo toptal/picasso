@@ -6,14 +6,14 @@ import styles from './styles'
 import Button from '../Button'
 import { withClasses } from '../styles'
 
-const ButtonGroup = (props) => {
+const ButtonGroup = props => {
   const { children, classes } = props
 
   return <div className={classes.root}>{children}</div>
 }
 
 ButtonGroup.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.node,
   classes: PropTypes.shape({
     root: PropTypes.string
   })
@@ -24,6 +24,6 @@ ButtonGroup.defaultProps = {
   classes: {}
 }
 
-export default withStyles(styles)(withClasses((classes) => ([
-  [Button, classes.button]
-]))(ButtonGroup))
+export default withStyles(styles)(
+  withClasses(classes => [[Button, classes.button]])(ButtonGroup)
+)
