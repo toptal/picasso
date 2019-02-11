@@ -3,13 +3,17 @@ import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 
 import styles from './styles'
+import Button from '../Button'
+import { withClasses } from '../styles'
 
-const ButtonGroup = ({ children, classes }) => {
+const ButtonGroup = (props) => {
+  const { children, classes } = props
+
   return <div className={classes.root}>{children}</div>
 }
 
 ButtonGroup.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.node),
+  children: PropTypes.element,
   classes: PropTypes.shape({
     root: PropTypes.string
   })
@@ -20,4 +24,6 @@ ButtonGroup.defaultProps = {
   classes: {}
 }
 
-export default withStyles(styles)(ButtonGroup)
+export default withStyles(styles)(withClasses((classes) => ([
+  [Button, classes.button]
+]))(ButtonGroup))
