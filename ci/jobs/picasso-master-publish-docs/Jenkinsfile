@@ -56,13 +56,4 @@ pipeline {
     }//stage
 
   }//stages
-
-  post {
-    success {
-        script {
-          message = ":frontend-experience: New documentation of Picasso *(${VERSION})* is live on <https://picasso.toptal.net|(https://picasso.toptal.net)>"
-          slackSend color: 'good', channel: '-frontend-exp-core', message: message
-        }
-    }
-  }
 }//pipeline
