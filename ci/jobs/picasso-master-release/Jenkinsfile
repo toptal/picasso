@@ -1,6 +1,9 @@
 @Library('globalLibrary@master') _
 
+helper = new helpers.Helpers()
 ghHelper = new helpers.GithubNotifyHelper()
+
+downStreamBuilds = []
 def VERSION
 
 pipeline {
@@ -12,19 +15,19 @@ pipeline {
   options {
     ansiColor('xterm')
     timestamps()
-    timeout(time: 5, unit: 'MINUTES')
+    timeout(time: 10, unit: 'MINUTES')
     skipDefaultCheckout()
   }
 
   environment {
-    GREN_GITHUB_TOKEN = credentials('toptal-devbot-token-github-notify')
+    GREN_GITHUB_TOKEN = credentials('toptal-devbot-personal-token')
     GITHUB_TOKEN = credentials('toptal-devbot-token-github-notify')
-    NPM_TOKEN = credentials('npm-token-for-toptal-private-registry')
+    NPM_TOKEN = credentials('npm-token-for-toptal-private-registry-publish')
   }
 
   stages {
     stage('Git checkout PR') {
-            steps {
+      steps {
         info "== Checking out master"
           gitCheckout(
             branches: "master",
@@ -50,7 +53,6 @@ pipeline {
         sshagent (credentials: ['picasso-ssh-deploy-key']) {
             sh "git config user.email 'bot@toptal.com'"
             sh "git config user.name 'toptal-bot'"
-            sh "cat package.json"
             sh "mkdir -p ~/.ssh && ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts"
             sh "git tag -l"
             sh "git tag -d \$(git tag)"
@@ -65,12 +67,58 @@ pipeline {
         }
       } //steps
     }//stage
+
+    stage('Deploy documentation') {
+      steps {
+        info "== Deploying docs"
+        script {
+          downStreamBuilds[0] = buildWithParameters(
+            jobName: "picasso-docs",
+            propagate: false,
+            wait: true,
+            parameters: [
+              CI_NODE_INDEX: "0"
+            ]
+          )
+        }
+      }
+    }
+
+    stage('Build results') {
+      steps {
+        script {
+          helper.printBuildsResults([ downStreamBuilds[0] ], "picasso-docs")
+          helper.setBuildStatus(downStreamBuilds)
+        }
+      }
+    }
   }//stages
   post {
       success {
           script {
-            message = ":frontend-experience: New version *${VERSION}* of <https://github.com/toptal/picasso|(toptal/picasso)> has been released <https://github.com/toptal/picasso/releases/tag/v${VERSION}|Release notes)>"
-            slackSend color: 'good', channel: '-frontend-exp-core', message: message
+            // https://api.slack.com/docs/message-attachments
+            data = 
+            '''[
+              {
+                "title": ":frontend-experience: New version {VERSION} of picasso was released",
+                "fallback": "New version {VERSION} of picasso was released",
+                "color": "#36a64f",
+                "fields": [
+                  {
+                    "title": "Documentation",
+                    "value": "<https://picasso.toptal.net|See live documentation>",
+                    "short": "true"
+                  },
+                  {
+                    "title": "Release",
+                    "value": "<https://github.com/toptal/picasso/releases/tag/v{VERSION}|See release v{VERSION}>",
+                    "short": "true"
+                  }
+                ]
+              }
+            ]'''
+            attachments = data.replace('{VERSION}', VERSION)
+            slackSend color: 'good', channel: '-frontend-exp-core', attachments: attachments
           }
       }
   }
