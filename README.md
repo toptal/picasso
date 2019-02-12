@@ -54,8 +54,8 @@ docker run -t -i --rm -e -v ${PWD}/components:/app/components NPM_TOKEN=$NPM_TOK
 
 | Command                       | Description                                                         |
 | ----------------------------- | ------------------------------------------------------------------- |
-| **yarn lint**                 | Lint all files                                                      |
-| **yarn lint:path pathToFile** | Lint specific file                                                  |
+| **yarn lint**                 | Lint all files                                                       |
+| **yarn lint:path pathToFile** | Lint specific file                                                    |
 | **yarn test**                 | Run unit tests                                                      |
 | **yarn test -u**              | Update jest snapshots to current version                            |
 | **yarn test:watch**           | Run unit tests in watch mode                                        |
@@ -64,6 +64,7 @@ docker run -t -i --rm -e -v ${PWD}/components:/app/components NPM_TOKEN=$NPM_TOK
 | **yarn storybook**            | Start storybook instance and inspect components                     |
 | **yarn release:alpha**        | Bump alpha version in `package.json` and create new version git tag |
 | **yarn generate:component**   | Generate a new component template                                   |
+| **yarn generate:example**     | Generate a new component component code example                     |
 | **yarn build**                | Build the library                                                   |
 | **yarn build:storybook**      | Build Storybook as static website                                   |
 | **yarn symlink**              | Symlink current version of library for development                  |
