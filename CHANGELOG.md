@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.1.0-alpha.13 (12/02/2019)
+
+#### Chore
+
+- [**Chore**] Add Userback integration for delivering feedback [#55](https://github.com/toptal/picasso/pull/55)
+
+---
+
 ## v0.1.0-alpha.12 (12/02/2019)
 
 #### CI
