@@ -4,7 +4,11 @@ ghHelper = new helpers.GithubNotifyHelper()
 def FAILURE_REASON
 
 pipeline {
-  agent { dockerfile true }
+  agent {
+      docker {
+          image 'gcr.io/compute-engine-1069/picasso'
+      }
+  }
 
   options {
     ansiColor('xterm')
@@ -39,6 +43,12 @@ pipeline {
         info "Git branch: ${gitBranch()}"
         success 'Checkout finished'
       }
+    }//stage
+
+    stage('Yarn install') {
+      steps {
+        sh 'yarn install'
+      } //steps
     }//stage
 
     stage('Run linter') {

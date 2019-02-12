@@ -47,6 +47,22 @@ pipeline {
       }
     }//stage
 
+    stage('Build new Docker image') {
+      steps {
+        info "== Building new docker image"
+        script {
+          downStreamBuilds[0] = buildWithParameters(
+            jobName: 'picasso-build-image',
+            propagate: false,
+            wait: true,
+            parameters: [
+              BRANCH: 'master'
+            ]
+          )
+        }
+      }
+    }
+
     stage('Run release') {
       steps {
 
@@ -72,7 +88,7 @@ pipeline {
       steps {
         info "== Deploying docs"
         script {
-          downStreamBuilds[0] = buildWithParameters(
+          downStreamBuilds[1] = buildWithParameters(
             jobName: "picasso-docs",
             propagate: false,
             wait: true,
@@ -87,7 +103,8 @@ pipeline {
     stage('Build results') {
       steps {
         script {
-          helper.printBuildsResults([ downStreamBuilds[0] ], "picasso-docs")
+          helper.printBuildsResults([ downStreamBuilds[0] ], "picasso-build-image")
+          helper.printBuildsResults([ downStreamBuilds[1] ], "picasso-docs")
           helper.setBuildStatus(downStreamBuilds)
         }
       }

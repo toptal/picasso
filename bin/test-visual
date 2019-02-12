@@ -19,10 +19,12 @@ echo "Running visual tests inside docker ..."
 
 if [[ "$1" == "-u" ]]; then
   echo "Updating snapshots to a current version ..."
-  $DOCKER_CMD sh -c "yarn build:storybook; \
+  $DOCKER_CMD sh -c "yarn install; \
+  yarn build:storybook; \
   /app/node_modules/.bin/jest --config='./puppeteer/puppeteer.jest.config.js' -u"
 else
-  $DOCKER_CMD sh -c "yarn build:storybook; \
+  $DOCKER_CMD sh -c "yarn install; \
+  yarn build:storybook; \
   /app/node_modules/.bin/jest --config='./puppeteer/puppeteer.jest.config.js'"
 fi
 
