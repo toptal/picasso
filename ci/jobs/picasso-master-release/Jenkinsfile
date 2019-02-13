@@ -15,7 +15,7 @@ pipeline {
   options {
     ansiColor('xterm')
     timestamps()
-    timeout(time: 10, unit: 'MINUTES')
+    timeout(time: 15, unit: 'MINUTES')
     skipDefaultCheckout()
   }
 
@@ -114,7 +114,7 @@ pipeline {
       success {
           script {
             // https://api.slack.com/docs/message-attachments
-            data = 
+            data =
             '''[
               {
                 "title": ":frontend-experience: New version {VERSION} of picasso was released",
