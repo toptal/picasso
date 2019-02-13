@@ -1,0 +1,69 @@
+@Library('globalLibrary@master') _
+
+image = null
+
+pipeline {
+  agent { label 'slave_aws' }
+
+  options {
+    ansiColor('xterm')
+    timestamps()
+    timeout(time: 10, unit: 'MINUTES')
+    buildDiscarder(logRotator(numToKeepStr: '20'))
+    skipDefaultCheckout()
+  }
+
+  parameters {
+    string(name: 'BRANCH', defaultValue: 'master', description: 'Branch or tag to build')
+  }
+
+  environment {
+    GCE_ACCOUNT_KEY = credentials('jenkins-storage-administrator')
+  }
+
+  stages {
+    stage('Git checkout') {
+      steps {
+        info "== Checking out ${params.BRANCH} =="
+        gitCheckout(
+          branches: params.BRANCH,
+          credentials: [username: 'git', description: 'jenkins/picasso'],
+          url: 'git@github.com:toptal/picasso.git',
+          additionalBehaviours: [
+            cleanBeforeCheckout: true
+          ])
+        success "== Checked out ${params.BRANCH} at ${gitCommit()}"
+      }
+    }//checkout
+
+    stage('Build image') {
+      steps {
+        script {
+          version = sh(returnStdout: true, script: 'git describe --tags --always').trim()
+
+          sh "gcloud auth activate-service-account --key-file=$GCE_ACCOUNT_KEY"
+
+          if (!isDockerImagePresentRemotely('gcr.io/compute-engine-1069/picasso', version)) {
+            image = docker.build("compute-engine-1069/picasso:${version}", ".")
+            success "== Built image for version ${version} =="
+          } else {
+            success "== Found image for version ${version} =="
+          }
+        }
+      }
+    }//build image
+
+    stage('Push image') {
+      steps {
+        script {
+          if (image) {
+            docker.withRegistry('https://gcr.io/compute-engine-1069/') {
+              image.push('latest')
+            }
+            success "== Pushed image with tag :latest =="
+          }
+        }
+      }
+    }//push image
+  }
+}

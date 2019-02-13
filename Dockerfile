@@ -32,5 +32,3 @@ RUN chown -R pptruser:pptruser /home/pptruser
 RUN chown -R pptruser:pptruser /app
 
 USER pptruser
-
-RUN yarn install
