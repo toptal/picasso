@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.1.0-alpha.15 (13/02/2019)
+
+#### Feature
+
+- [**Feature**] Add components source code to storybook [#51](https://github.com/toptal/picasso/pull/51)
+
+---
+
 ## v0.1.0-alpha.14 (13/02/2019)
 
 #### Chore
