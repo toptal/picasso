@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.1.0-alpha.17 (13/02/2019)
+
+#### CI
+
+- [**CI**] Install curl in docker [#60](https://github.com/toptal/picasso/pull/60)
+
+---
+
 ## v0.1.0-alpha.16 (13/02/2019)
 *No changelog for this release.*
 
