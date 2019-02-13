@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
+import IconCode from '@material-ui/icons/Code'
 
 import Editor from '../Editor'
 import ComponentRenderer from '../ComponentRenderer'
@@ -57,11 +58,16 @@ class CodeExample extends React.Component<Props, {}> {
     return (
       <div className={classes.root}>
         <div className={classes.component}>
-          <Spacer top={2} bottom={2}>
+          <Spacer className={classes.componentRenderer} top={2} bottom={2}>
             <ComponentRenderer sourceCode={sourceCode} exampleCodePath={src} />
           </Spacer>
-          <Button variant="flat" size="small" onClick={this.handleShowEditor}>
-            Show source code
+          <Button
+            className={classes.sourceCodeButton}
+            variant="basic"
+            size="small"
+            icon={<IconCode />}
+            onClick={this.handleShowEditor}>
+            Edit code
           </Button>
         </div>
         <div>

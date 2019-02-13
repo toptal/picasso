@@ -1,6 +1,5 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { number } from '@storybook/addon-knobs'
 
 import StoryTeller from '../../.storybook/StoryTeller'
 import Spacer from '.'
@@ -15,7 +14,7 @@ const chapter = teller.addChapter()
 
 chapter.addSection(null, null, () => (
   <div>
-    <Spacer bottom={number('bottom margin', 5)}>Some text</Spacer>
+    <Spacer bottom={5}>Some text</Spacer>
     <div>Some more text</div>
   </div>
 ))

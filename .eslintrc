@@ -105,5 +105,14 @@
   },
   "env": {
     "jest": true
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*-example.jsx"],
+      "rules": {
+        "react/no-multi-comp": "off",
+        "react/require-optimization": "off"
+      }
+    }
+  ]
 }
