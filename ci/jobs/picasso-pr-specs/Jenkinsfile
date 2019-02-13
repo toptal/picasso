@@ -1,6 +1,7 @@
 @Library('globalLibrary@master') _
 
 ghHelper = new helpers.GithubNotifyHelper()
+helper = new helpers.Helpers()
 def FAILURE_REASON
 
 pipeline {
@@ -19,6 +20,7 @@ pipeline {
 
   environment {
     NPM_TOKEN = credentials('npm-token-for-toptal-private-registry')
+    GITHUB_TOKEN = credentials('toptal-devbot-token-github-notify')
   }
 
   stages {
@@ -50,6 +52,29 @@ pipeline {
         sh 'yarn install'
       } //steps
     }//stage
+
+    stage('Deploy documentation') {
+      steps {
+        info "== Deploying docs"
+        script {
+          def build = buildWithParameters(
+            //jobName: "picasso-docs",
+            jobName: "picasso-master-build-and-publish",
+            propagate: false,
+            wait: true,
+            parameters: [
+              BRANCH: env.ghprbTargetBranch
+            ]
+          )
+          helper.printBuildsResults([ build ], "picasso-docs")
+
+          if (build.result == "SUCCESS") {
+            def comment = "Successfully deployed demo at https://picasso.toptal.net/${env.ghprbTargetBranch}"
+            gitHubPostComment('picasso', env.ghprbPullId, comment, env.GITHUB_TOKEN)
+          }
+        }
+      }
+    }
 
     stage('Run linter') {
       steps {

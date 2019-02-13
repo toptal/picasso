@@ -9,16 +9,20 @@ pipeline {
     timeout(time: 1, unit: 'HOURS')
   }
 
+  parameters {
+    string(name: 'BRANCH', defaultValue: 'master', description: 'Branch or tag to build')
+  }
+
   environment {
     NPM_TOKEN = credentials('npm-token-for-toptal-private-registry')
   }
 
   stages {
-    stage('Git checkout master') {
+    stage("Git checkout branch") {
       steps {
         info "== Checking out Picasso"
         gitCheckout(
-                branches: "master",
+                branches: params.BRANCH,
                 credentials: [username: 'git', description: 'jenkins/picasso'],
                 url: 'git@github.com:toptal/picasso.git',
                 additionalBehaviours: [
@@ -44,8 +48,13 @@ pipeline {
     stage('Sync docs to docs server') {
       steps {
         script {
+            if (params.BRANCH == 'master') {
+                target = ''
+            } else {
+                target = params.BRANCH
+            }
             sh """
-                 rsync -avz --delete -e ssh ./build/storybook/ docs@docs.staging.toptal.net:~/docs/picasso/ && \\
+                 rsync -avz --delete -e ssh ./build/storybook/ docs@docs.staging.toptal.net:~/docs/picasso/${target} && \\
                  rm -rf ./build
                """
         }//script
