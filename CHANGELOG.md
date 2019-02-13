@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.1.0-alpha.14 (13/02/2019)
+
+#### Chore
+
+- [**Chore**] Add docker image for ci build [#58](https://github.com/toptal/picasso/pull/58)
+
+---
+
 ## v0.1.0-alpha.13 (12/02/2019)
 
 #### Chore
