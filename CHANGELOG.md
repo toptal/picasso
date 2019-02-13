@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.1.0-alpha.19 (13/02/2019)
+*No changelog for this release.*
+
+---
+
 ## v0.1.0-alpha.18 (13/02/2019)
 *No changelog for this release.*
 
