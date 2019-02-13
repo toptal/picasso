@@ -24,9 +24,15 @@ DECORATORS.forEach(decorator => addDecorator(decorator))
 ADDONS.forEach(addon => setAddon(addon))
 
 const req = require.context('../components', true, /\.example\.(tsx|jsx)$/)
+const reqInnerStories = require.context(
+  '../components',
+  true,
+  /story\/index.jsx$/
+)
 
 function loadStories() {
   require('./stories/Picasso'), req.keys().forEach(filename => req(filename))
+  reqInnerStories.keys().forEach(filename => reqInnerStories(filename))
 }
 
 configure(loadStories, module)
