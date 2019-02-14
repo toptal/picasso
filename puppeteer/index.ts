@@ -7,7 +7,7 @@ const PADDING_AROUND_COMPONENT = 8
 
 async function screenshotDOMElement () {
   const dimensions = await page.evaluate(() => {
-    const component = document.querySelector('#root > *')
+    const component = document.querySelector('#root div > *')
     const componentRect: ClientRect = component!.getBoundingClientRect()
 
     return {
