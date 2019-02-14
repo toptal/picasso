@@ -59,13 +59,13 @@ pipeline {
                  rsync -avz --delete -e ssh ./build/storybook/ docs@docs.staging.toptal.net:~/docs/picasso/${target} && \\
                  rm -rf ./build
                """
+            if (params.BRANCH != 'master') {
+                def comment = "Successfully deployed demo at https://picasso.toptal.net/${params.BRANCH}"
+                gitHubPostComment('picasso', params.PR_ID, comment, env.GITHUB_TOKEN)
+            }
         }//script
         script {
             VERSION = sh(returnStdout: true, script: 'cat package.json | jq ".version" -r').trim()
-        }
-        if (params.BRANCH != 'master') {
-          def comment = "Successfully deployed demo at https://picasso.toptal.net/${params.BRANCH}"
-          gitHubPostComment('picasso', params.PR_ID, comment, env.GITHUB_TOKEN)
         }
       }//steps
     }//stage
