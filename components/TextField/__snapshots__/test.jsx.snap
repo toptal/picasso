@@ -43,7 +43,7 @@ exports[`Icon prop renders icon at the beginning 1`] = `
       </div>
       <input
         aria-invalid="false"
-        class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+        class="MuiInputBase-input MuiOutlinedInput-input TextField-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
         type="text"
         value=""
       />
@@ -76,7 +76,7 @@ exports[`Icon prop renders icon at the end 1`] = `
       </fieldset>
       <input
         aria-invalid="false"
-        class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+        class="MuiInputBase-input MuiOutlinedInput-input TextField-input MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
         type="text"
         value=""
       />

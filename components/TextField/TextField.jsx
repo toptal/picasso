@@ -35,8 +35,19 @@ const TextField = props => {
 
   return (
     <MUITextField
-      InputLabelProps={InputLabelProps}
-      InputProps={InputProps}
+      InputLabelProps={{
+        ...InputLabelProps,
+        classes: {
+          root: classes.label,
+          shrink: classes.labelShrink
+        }
+      }}
+      InputProps={{
+        ...InputProps,
+        classes: {
+          input: classes.input
+        }
+      }}
       {...restProps}
       variant='outlined'
     >
@@ -49,4 +60,4 @@ TextField.defaultProps = {
   iconPosition: 'end'
 }
 
-export default withStyles(styles.TextField)(TextField)
+export default withStyles(styles)(TextField)

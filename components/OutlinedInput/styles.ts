@@ -1,6 +1,8 @@
+import { Theme } from '@material-ui/core/styles'
+
 import { PicassoProvider } from '../Picasso'
 
-PicassoProvider.override(({ palette }) => ({
+PicassoProvider.override(({ palette }: Theme) => ({
   MuiOutlinedInput: {
     root: {
       '& $notchedOutline': {
@@ -23,14 +25,16 @@ PicassoProvider.override(({ palette }) => ({
       }
     },
     input: {
-      padding: '1.2em .7em .2em',
       border: 'solid 1px transparent'
     },
     multiline: {
-      fontSize: '18px',
-      padding: '1.2em .7em .2em'
+      padding: 0
     },
-    error: {},
+    error: {
+      '$root& $notchedOutline': {
+        borderColor: palette.error.light
+      }
+    },
     notchedOutline: {},
     adornedEnd: {
       paddingRight: 0
@@ -39,5 +43,5 @@ PicassoProvider.override(({ palette }) => ({
 }))
 
 export default {
-  OutlinedInput: {}
+  input: {}
 }

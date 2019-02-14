@@ -7,6 +7,7 @@ PicassoProvider.override(({ palette }) => ({
       lineHeight: '1em',
       padding: '0.7em',
       height: 'auto',
+      fontSize: 'inherit',
 
       '&:first-child': {
         borderTop: 'none'

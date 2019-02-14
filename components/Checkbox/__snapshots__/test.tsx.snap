@@ -15,6 +15,7 @@ exports[`checkbox interaction should render checked checkbox 1`] = `
           class="Checkbox-checkedIcon"
         >
           <svg
+            class="Icon-root"
             viewBox="0 -64 1024 1224"
             width="9"
           >
@@ -104,6 +105,7 @@ exports[`renders indeterminate state 1`] = `
         class="Checkbox-indeterminateIcon"
       >
         <svg
+          class="Icon-root"
           viewBox="0 -64 805 1024"
           width="10"
         >

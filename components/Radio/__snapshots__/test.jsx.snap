@@ -3,7 +3,7 @@
 exports[`disabled radio button renders disabled version 1`] = `
 <div>
   <span
-    class="MuiButtonBase-root MuiButtonBase-disabled MuiIconButton-root MuiIconButton-disabled MuiPrivateSwitchBase-root MuiRadio-root Radio-icon MuiRadio-colorSecondary MuiPrivateSwitchBase-disabled MuiRadio-disabled"
+    class="MuiButtonBase-root MuiButtonBase-disabled MuiIconButton-root MuiIconButton-disabled MuiPrivateSwitchBase-root MuiRadio-root Radio-icon MuiPrivateSwitchBase-disabled MuiRadio-disabled"
     tabindex="-1"
   >
     <span

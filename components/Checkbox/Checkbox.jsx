@@ -29,14 +29,16 @@ const Checkbox = props => {
     />
   )
 
-  return label ? (
+  if (!label) {
+    return muiCheckbox
+  }
+
+  return (
     <FormControlLabel
       classes={rootClasses}
       control={muiCheckbox}
       label={label}
     />
-  ) : (
-    muiCheckbox
   )
 }
 
