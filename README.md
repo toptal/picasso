@@ -1,7 +1,7 @@
 ![](https://img.shields.io/badge/npm-0.1.0--alpha.20-orange.svg)
 [![#-frontend-exp-core](https://img.shields.io/badge/slack-%23--frontend--exp--core-green.svg)](https://toptal-core.slack.com/app_redirect?channel=CERF5NHT3)
 
-# HOW BOUT NOW MISTER?!
+# Works
 
 # 🎨 Picasso (a.k.a. Toptal UI components library)
 
