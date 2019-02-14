@@ -58,8 +58,7 @@ pipeline {
         info "== Deploying docs"
         script {
           buildWithParameters(
-            //jobName: "picasso-docs",
-            jobName: "picasso-master-build-and-publish",
+            jobName: "picasso-docs",
             propagate: false,
             wait: false,
             parameters: [
