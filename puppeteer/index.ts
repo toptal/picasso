@@ -40,7 +40,7 @@ export const assertVisuals = function (kind: any, type: any, delay = 0) {
 
     const url = `file:///${path}`
 
-    await page.goto(url)
+    await page.goto(url, { waitUntil: 'networkidle0' })
     await page.waitFor(delay)
 
     const image = await screenshotDOMElement()
