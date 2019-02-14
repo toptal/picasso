@@ -11,10 +11,12 @@ pipeline {
 
   parameters {
     string(name: 'BRANCH', defaultValue: 'master', description: 'Branch or tag to build')
+    string(name: 'PR_ID', defaultValue: '1', description: 'Pull request id')
   }
 
   environment {
     NPM_TOKEN = credentials('npm-token-for-toptal-private-registry')
+    GITHUB_TOKEN = credentials('toptal-devbot-token-github-notify')
   }
 
   stages {
@@ -60,6 +62,10 @@ pipeline {
         }//script
         script {
             VERSION = sh(returnStdout: true, script: 'cat package.json | jq ".version" -r').trim()
+        }
+        if (params.BRANCH != 'master') {
+          def comment = "Successfully deployed demo at https://picasso.toptal.net/${params.BRANCH}"
+          gitHubPostComment('picasso', params.PR_ID, comment, env.GITHUB_TOKEN)
         }
       }//steps
     }//stage

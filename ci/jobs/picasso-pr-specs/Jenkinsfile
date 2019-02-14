@@ -61,17 +61,12 @@ pipeline {
             //jobName: "picasso-docs",
             jobName: "picasso-master-build-and-publish",
             propagate: false,
-            wait: true,
             parameters: [
-              BRANCH: env.ghprbTargetBranch
+              BRANCH: env.ghprbTargetBranch,
+              PR_ID: env.ghprbPullId
             ]
           )
           helper.printBuildsResults([ build ], "picasso-docs")
-
-          if (build.result == "SUCCESS") {
-            def comment = "Successfully deployed demo at https://picasso.toptal.net/${env.ghprbTargetBranch}"
-            gitHubPostComment('picasso', env.ghprbPullId, comment, env.GITHUB_TOKEN)
-          }
         }
       }
     }
