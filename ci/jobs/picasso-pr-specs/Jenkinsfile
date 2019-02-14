@@ -57,16 +57,16 @@ pipeline {
       steps {
         info "== Deploying docs"
         script {
-          def build = buildWithParameters(
+          buildWithParameters(
             //jobName: "picasso-docs",
             jobName: "picasso-master-build-and-publish",
             propagate: false,
+            wait: false,
             parameters: [
               BRANCH: env.ghprbTargetBranch,
               PR_ID: env.ghprbPullId
             ]
           )
-          helper.printBuildsResults([ build ], "picasso-docs")
         }
       }
     }
