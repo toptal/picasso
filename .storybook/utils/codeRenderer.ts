@@ -91,9 +91,7 @@ class CodeRenderer {
         const importFromModule = importDeclaration.source.value as string
 
         // remove common modules, included manually
-        if (
-          commonPackages.find(commonModule => commonModule === importFromModule)
-        ) {
+        if (commonPackages.includes(importFromModule)) {
           return
         }
 

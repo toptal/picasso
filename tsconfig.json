@@ -11,7 +11,8 @@
     "jsx": "react",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "lib": ["dom", "es2016"]
   },
   "include": [
     "components/**/*"
