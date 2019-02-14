@@ -1,11 +1,23 @@
 export default {
   root: {
+    position: 'relative' as 'relative',
     width: '100%'
   },
 
   component: {
     display: 'flex',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+
+  componentRenderer: {
+    flex: 1
+  },
+
+  sourceCodeButton: {
+    top: '-36px',
+    right: 0,
+    position: 'absolute' as 'absolute'
   },
 
   editor: {

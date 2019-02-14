@@ -59,7 +59,8 @@ const Button = props => {
       className: cx(iconClass, {
         [iconLeftClass]: children && iconPosition === ICON_POSITIONS.LEFT,
         [iconRightClass]: children && iconPosition === ICON_POSITIONS.RIGHT
-      })
+      }),
+      key: 'button-icon'
     })
 
     if (iconPosition === ICON_POSITIONS.LEFT) {

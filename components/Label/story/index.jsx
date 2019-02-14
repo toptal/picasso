@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react'
 
 import StoryTeller from '../../../.storybook/StoryTeller'
 import CodeExample from '../../../.storybook/components/CodeExample'
+import Container from '../../../.storybook/components/Container'
 
 const stories = storiesOf('Label', module)
 
@@ -15,30 +16,38 @@ const teller = new StoryTeller(
 )
 const chapter = teller.addChapter()
 
-const Container = ({ children }) => <div style={{ flex: 1 }}>{children}</div>
-
 chapter.addSection('Default', null, () => (
   <Container>
-    <CodeExample src='Label/story/Default-example.tsx' />
+    <CodeExample src='Label/story/Default-example.jsx' />
   </Container>
 ))
 
 chapter.addSection('Dismissible', null, () => (
   <Container>
-    <CodeExample src='Label/story/Dismissible-example.tsx' />
+    <CodeExample src='Label/story/Dismissible-example.jsx' />
   </Container>
 ))
 
 chapter.addSection('Flat', null, () => (
   <Container>
-    <CodeExample src='Label/story/Flat-example.tsx' />
+    <CodeExample src='Label/story/Flat-example.jsx' />
   </Container>
 ))
 
-chapter.addSection('Statuses', 'Use these to communicate status.', () => (
+chapter.addSection('Statuses', 'Use these to communicate status', () => (
   <Container>
-    <CodeExample src='Label/story/Statuses-example.tsx' />
+    <CodeExample src='Label/story/Statuses-example.jsx' />
   </Container>
 ))
+
+chapter.addSection(
+  'Label group',
+  'You can combine different variants and styles of the Label inside the group.',
+  () => (
+    <Container>
+      <CodeExample src='Label/story/LabelGroup-example.jsx' />
+    </Container>
+  )
+)
 
 stories.addWithChapters('Label', teller.toStory())
