@@ -9,16 +9,22 @@ pipeline {
     timeout(time: 1, unit: 'HOURS')
   }
 
+  parameters {
+    string(name: 'BRANCH', defaultValue: 'master', description: 'Branch or tag to build')
+    string(name: 'PR_ID', defaultValue: '1', description: 'Pull request id')
+  }
+
   environment {
     NPM_TOKEN = credentials('npm-token-for-toptal-private-registry')
+    GITHUB_TOKEN = credentials('toptal-devbot-token-github-notify')
   }
 
   stages {
-    stage('Git checkout master') {
+    stage("Git checkout branch") {
       steps {
         info "== Checking out Picasso"
         gitCheckout(
-                branches: "master",
+                branches: params.BRANCH,
                 credentials: [username: 'git', description: 'jenkins/picasso'],
                 url: 'git@github.com:toptal/picasso.git',
                 additionalBehaviours: [
@@ -44,10 +50,20 @@ pipeline {
     stage('Sync docs to docs server') {
       steps {
         script {
+            if (params.BRANCH == 'master') {
+                target = ''
+            } else {
+                target = params.BRANCH
+            }
             sh """
-                 rsync -avz --delete -e ssh ./build/storybook/ docs@docs.staging.toptal.net:~/docs/picasso/ && \\
+                 rsync -avz --delete -e ssh ./build/storybook/ docs@docs.staging.toptal.net:~/docs/picasso/${target} && \\
                  rm -rf ./build
                """
+            if (params.BRANCH != 'master') {
+                def url = "https://picasso.toptal.net/${params.BRANCH}"
+                def comment = "Successfully deployed demo at [${url}](${url}?${gitCommit()})"
+                gitHubPostComment('picasso', params.PR_ID, comment, env.GITHUB_TOKEN)
+            }
         }//script
         script {
             VERSION = sh(returnStdout: true, script: 'cat package.json | jq ".version" -r').trim()
