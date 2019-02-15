@@ -62,7 +62,7 @@ pipeline {
             propagate: false,
             wait: false,
             parameters: [
-              BRANCH: env.ghprbTargetBranch,
+              BRANCH: env.ghprbSourceBranch,
               PR_ID: env.ghprbPullId
             ]
           )
