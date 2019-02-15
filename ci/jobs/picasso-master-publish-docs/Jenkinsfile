@@ -60,7 +60,8 @@ pipeline {
                  rm -rf ./build
                """
             if (params.BRANCH != 'master') {
-                def comment = "Successfully deployed demo at https://picasso.toptal.net/${params.BRANCH}?${gitCommit()}"
+                def url = "https://picasso.toptal.net/${params.BRANCH}"
+                def comment = "Successfully deployed demo at [${url}](${url}?${gitCommit()})"
                 gitHubPostComment('picasso', params.PR_ID, comment, env.GITHUB_TOKEN)
             }
         }//script
