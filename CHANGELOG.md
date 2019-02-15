@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.1.0-alpha.20 (15/02/2019)
+
+#### closed
+
+- [**closed**] Unify stories, add source code examples to the stories [#61](https://github.com/toptal/picasso/pull/61)
+- [**closed**] Add array includes method [#63](https://github.com/toptal/picasso/pull/63)
+
+---
+
 ## v0.1.0-alpha.19 (13/02/2019)
 *No changelog for this release.*
 
