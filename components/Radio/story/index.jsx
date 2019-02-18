@@ -1,46 +1,19 @@
-import React from 'react'
-import { storiesOf } from '@storybook/react'
+import PicassoBook from '../../../.storybook/components/PicasoBook'
 
-import StoryTeller from '../../../.storybook/StoryTeller'
-import CodeExample from '../../../.storybook/components/CodeExample'
-import Container from '../../../.storybook/components/Container'
-
-const stories = storiesOf('Radio', module)
-
-const teller = new StoryTeller(
+const page = PicassoBook.createPage(
   'Radio',
-  'Radio buttons are best used when users need to select a single option from a set of unfamiliar choices. Radio buttons surface all the options and allow the user to compare choices before making a selection.'
+  `Radio buttons are best used when users need to select a single option from a set of unfamiliar choices. 
+  Radio buttons surface all the options and allow the user to compare choices before making a selection.`
 )
-const chapter = teller.addChapter()
 
-chapter.addSection('Default', null, () => (
-  <Container>
-    <CodeExample src='Radio/story/Default-example.jsx' />
-  </Container>
-))
-
-chapter.addSection('Types', null, () => (
-  <Container>
-    <CodeExample src='Radio/story/Types-example.jsx' />
-  </Container>
-))
-
-chapter.addSection('Disabled', null, () => (
-  <Container>
-    <CodeExample src='Radio/story/Disabled-example.jsx' />
-  </Container>
-))
-
-chapter.addSection('Radio group vertical', null, () => (
-  <Container>
-    <CodeExample src='Radio/story/RadioGroupVertical-example.jsx' />
-  </Container>
-))
-
-chapter.addSection('Radio group horizontal', null, () => (
-  <Container>
-    <CodeExample src='Radio/story/RadioGroupHorizontal-example.jsx' />
-  </Container>
-))
-
-stories.addWithChapters('Radio', teller.toStory())
+page.addExample('Radio/story/Default-example.jsx', 'Default')
+page.addExample('Radio/story/Types-example.jsx', 'Types')
+page.addExample('Radio/story/Disabled-example.jsx', 'Disabled')
+page.addExample(
+  'Radio/story/RadioGroupVertical-example.jsx',
+  'Radio group vertical'
+)
+page.addExample(
+  'Radio/story/RadioGroupHorizontal-example.jsx',
+  'Radio group horizontal'
+)

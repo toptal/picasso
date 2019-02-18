@@ -5,9 +5,15 @@ declare var page: Page
 
 const PADDING_AROUND_COMPONENT = 8
 
-async function screenshotDOMElement () {
+async function screenshotDOMElement (kind: string, type: string) {
   const dimensions = await page.evaluate(() => {
-    const component = document.querySelector('#root > *')
+    const component = document.querySelector('#root .chapter-container')
+
+    if (!component) {
+      throw new Error(
+        `Rendered story ${type} for component ${kind} was not found!`
+      )
+    }
     const componentRect: ClientRect = component!.getBoundingClientRect()
 
     return {
@@ -29,8 +35,13 @@ async function screenshotDOMElement () {
 }
 
 // TODO: Make this more universal when we add more components and their variations
-export const assertVisuals = function (kind: any, type: any, delay = 0) {
+export const assertVisuals = function (
+  kind: string,
+  type: string,
+  options = { delay: 0 }
+) {
   return async () => {
+    const { delay, ..._opts } = options
     const encodedType = encodeURI(type)
     const path = join(
       __dirname,
@@ -41,10 +52,10 @@ export const assertVisuals = function (kind: any, type: any, delay = 0) {
     const url = `file:///${path}`
 
     await page.goto(url)
-    await page.waitFor(delay)
+    await page.waitFor(delay || 0)
 
-    const image = await screenshotDOMElement()
+    const image = await screenshotDOMElement(kind, type)
 
-    expect(image).toMatchImageSnapshot()
+    expect(image).toMatchImageSnapshot(_opts)
   }
 }

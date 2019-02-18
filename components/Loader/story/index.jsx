@@ -1,52 +1,17 @@
-import React from 'react'
-import { storiesOf } from '@storybook/react'
+import PicassoBook from '../../../.storybook/components/PicasoBook'
 
-import StoryTeller from '../../../.storybook/StoryTeller'
-import CodeExample from '../../../.storybook/components/CodeExample'
-import Container from '../../../.storybook/components/Container'
-
-const stories = storiesOf('Loader', module)
-
-const teller = new StoryTeller(
+const page = PicassoBook.createPage(
   'Loader',
   'Loaders indicate that an action is underway and that the user must wait to proceed until it is finished.'
 )
-const chapter = teller.addChapter()
 
-chapter
-  .addSection('Default', null, () => (
-    <Container>
-      <CodeExample src='Loader/story/Default-example.jsx' />
-    </Container>
-  ))
-  .addSection('With label', null, () => (
-    <Container>
-      <CodeExample src='Loader/story/WithLabel-example.jsx' />
-    </Container>
-  ))
-  .addSection('Inline', 'Place loader inline with content', () => (
-    <Container>
-      <CodeExample src='Loader/story/Inline-example.jsx' />
-    </Container>
-  ))
-  .addSection('Indeterminate', null, () => (
-    <Container>
-      <CodeExample src='Loader/story/Indeterminate-example.jsx' />
-    </Container>
-  ))
-  .addSection('Sizes', null, () => (
-    <Container>
-      <CodeExample src='Loader/story/Sizes-example.jsx' />
-    </Container>
-  ))
-  .addSection(
-    'Controlled value',
-    'Loader with determined or static values',
-    () => (
-      <Container>
-        <CodeExample src='Loader/story/ControlledValue-example.jsx' />
-      </Container>
-    )
-  )
-
-stories.addWithChapters('Loader', teller.toStory())
+page
+  .addExample('Loader/story/Default-example.jsx', 'Default')
+  .addExample('Loader/story/WithLabel-example.jsx', 'With label')
+  .addExample('Loader/story/Inline-example.jsx', 'With inline content')
+  .addExample('Loader/story/Indeterminate-example.jsx', 'Indeterminate')
+  .addExample('Loader/story/Sizes-example.jsx', 'Sizes')
+  .addExample('Loader/story/ControlledValue-example.jsx', {
+    title: 'Controlled value',
+    description: 'Loader with determined or static values'
+  })

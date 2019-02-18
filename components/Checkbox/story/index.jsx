@@ -1,39 +1,15 @@
-import React from 'react'
-import { storiesOf } from '@storybook/react'
+import PicassoBook from '../../../.storybook/components/PicasoBook'
 
-import StoryTeller from '../../../.storybook/StoryTeller'
-import CodeExample from '../../../.storybook/components/CodeExample'
-import Container from '../../../.storybook/components/Container'
+const page = PicassoBook.createPage('Checkbox')
 
-const stories = storiesOf('Checkbox', module)
-
-const teller = new StoryTeller('Checkbox')
-const chapter = teller.addChapter()
-
-chapter
-  .addSection('Uncontrolled', 'Can control its state by itself', () => (
-    <Container>
-      <CodeExample src='Checkbox/story/Uncontrolled-example.jsx' />
-    </Container>
-  ))
-  .addSection(
-    'Controlled',
-    'Stateless checkbox, state should be controlled using prop',
-    () => (
-      <Container>
-        <CodeExample src='Checkbox/story/Controlled-example.jsx' />
-      </Container>
-    )
-  )
-  .addSection('Disabled', null, () => (
-    <Container>
-      <CodeExample src='Checkbox/story/Disabled-example.jsx' />
-    </Container>
-  ))
-  .addSection('Indeterminate', null, () => (
-    <Container>
-      <CodeExample src='Checkbox/story/Indeterminate-example.jsx' />
-    </Container>
-  ))
-
-stories.addWithChapters('Checkbox', teller.toStory())
+page
+  .addExample('Checkbox/story/Uncontrolled-example.jsx', {
+    title: 'Uncontrolled',
+    description: 'Can control its state by itself'
+  })
+  .addExample('Checkbox/story/Controlled-example.jsx', {
+    title: 'Controlled',
+    description: 'Stateless checkbox, state should be controlled using prop'
+  })
+  .addExample('Checkbox/story/Disabled-example.jsx', 'Disabled')
+  .addExample('Checkbox/story/Indeterminate-example.jsx', 'Indeterminate')

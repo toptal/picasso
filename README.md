@@ -54,8 +54,8 @@ docker run -t -i --rm -e -v ${PWD}/components:/app/components NPM_TOKEN=$NPM_TOK
 
 | Command                       | Description                                                         |
 | ----------------------------- | ------------------------------------------------------------------- |
-| **yarn lint**                 | Lint all files                                                       |
-| **yarn lint:path pathToFile** | Lint specific file                                                    |
+| **yarn lint**                 | Lint all files                                                      |
+| **yarn lint:path pathToFile** | Lint specific file                                                  |
 | **yarn test**                 | Run unit tests                                                      |
 | **yarn test -u**              | Update jest snapshots to current version                            |
 | **yarn test:watch**           | Run unit tests in watch mode                                        |
@@ -76,24 +76,26 @@ docker run -t -i --rm -e -v ${PWD}/components:/app/components NPM_TOKEN=$NPM_TOK
 To add a new Icon to Picasso library please follow these steps:
 
 1. Prepare your SVG:
-    - Pass it through the [SVG optimizer service](https://jakearchibald.github.io/svgomg/)
-    - Remove `width, height` attributes from the `<svg>` tag
-    - Remove `fill, stroke` attributes from the `<svg>` tag
+   - Pass it through the [SVG optimizer service](https://jakearchibald.github.io/svgomg/)
+   - Remove `width, height` attributes from the `<svg>` tag
+   - Remove `fill, stroke` attributes from the `<svg>` tag
 2. Add your SVG file to the Picasso project:
-    > /components/Icons/svg/[your_icon_name].svg
+   > /components/Icons/svg/[your_icon_name].svg
 3. Run the command
-    ```
-    yarn build:svg
-    ```
-    to prepare corresponding react component for your icon
+
+   ```
+   yarn build:svg
+   ```
+
+   to prepare corresponding react component for your icon
 
 4. Export your just created react component in the index file
-    > /components/Icons/index.ts
-    ```
-    ...
-    export { default as [your_icon_name]} from './[your_icon_name]'
-    ...
-    export { default } from './IconsLibrary'
-    ```
+   > /components/Icons/index.ts
+   ```
+   ...
+   export { default as [your_icon_name]} from './[your_icon_name]'
+   ...
+   export { default } from './IconsLibrary'
+   ```
 
 After Picasso will be released with your changes you can start using your Icon as described [here](https://picasso.toptal.net/?selectedKind=Icons&selectedStory=Icons).
