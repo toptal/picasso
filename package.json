@@ -10,7 +10,7 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watchAll",
-    "test:visual": "./bin/test-visual",
+    "test:visual": "./bin/run-in-docker ./bin/test-visual",
     "lint:path": "eslint --ext=.js,.jsx,.ts,.tsx --color --fix",
     "lint": "yarn run lint:path .",
     "storybook": "start-storybook -p 9001 -c .storybook",
