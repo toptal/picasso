@@ -1,19 +1,21 @@
+import { Theme } from '@material-ui/core/styles'
+
 import { PicassoProvider } from '../Picasso'
 
-const setBorderColor = borderColor => ({
+const setBorderColor = (borderColor: string) => ({
   '&:before': {
     borderColor
   }
 })
 
-const setCircleColor = borderColor => ({
+const setCircleColor = (borderColor: string) => ({
   '&:after': {
     borderColor,
     display: 'block'
   }
 })
 
-const createColorVariant = (mainColor, disabledColor) => ({
+const createColorVariant = (mainColor: string, disabledColor: string) => ({
   '&$checked': {
     ...setBorderColor(mainColor),
     ...setCircleColor(mainColor)
@@ -21,7 +23,7 @@ const createColorVariant = (mainColor, disabledColor) => ({
   '&$disabled': {
     opacity: 0.5,
     cursor: 'not-allowed',
-    pointerEvents: 'auto',
+    pointerEvents: 'auto' as 'auto',
     ...setBorderColor(disabledColor)
   },
   '&:hover': {
@@ -33,28 +35,27 @@ PicassoProvider.override(({ palette, transitions }) => ({
   MuiRadio: {
     root: {
       fontSize: '16px',
-      position: 'relative',
+      position: 'relative' as 'relative',
       width: '1em',
       height: '1em',
       padding: '0',
 
       margin: '0.25em 0.5em',
-      ...createColorVariant(palette.grey[200], palette.grey[200]),
-      animationDuration: transitions.duration.short,
+      ...createColorVariant(palette.primary.main, palette.grey[200]),
+      animationDuration: `${transitions.duration.short}`,
       animationTimingFunction: transitions.easing.easeIn,
-      transitionDuration: transitions.duration.short,
+      transitionDuration: `${transitions.duration.short}`,
       transitionTimingFunction: transitions.easing.easeOut
     },
-    colorPrimary: createColorVariant(palette.primary.main, palette.grey[200]),
-    colorSecondary: createColorVariant(palette.primary.main, palette.grey[200]), // secondary is set to primary by purpose
+    colorSecondary: createColorVariant(palette.grey[200], palette.grey[200]),
     disabled: createColorVariant(palette.grey[200], palette.grey[200]),
 
     checked: {}
   }
 }))
 
-const centeredCircle = palette => ({
-  position: 'absolute',
+const centeredCircle = (palette: any) => ({
+  position: 'absolute' as 'absolute',
   width: '100%',
   height: '100%',
   top: '50%',
@@ -64,13 +65,13 @@ const centeredCircle = palette => ({
   content: '""',
   borderColor: 'inherit',
   background: palette.common.white,
-  pointerEvents: 'none',
+  pointerEvents: 'none' as 'none',
   transition: 'border-color',
   transitionDuration: 'inherit',
   transitionTimingFunction: 'inherit'
 })
 
-export default ({ palette }) => ({
+export default ({ palette }: Theme) => ({
   '@keyframes fade-in': {
     '0%': {
       opacity: 0

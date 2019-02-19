@@ -3,15 +3,29 @@
 exports[`renders dropdown select 1`] = `
 <div>
   <div
-    class="MuiInputBase-root MuiInput-root MuiInput-underline"
+    class="MuiInputBase-root MuiOutlinedInput-root Select-root"
   >
+    <fieldset
+      aria-hidden="true"
+      class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+      style="padding-left: 8px;"
+    >
+      <legend
+        class="MuiPrivateNotchedOutline-legend"
+        style="width: 0.01px;"
+      >
+        <span>
+          ​
+        </span>
+      </legend>
+    </fieldset>
     <div
       class="MuiSelect-root"
     >
       <div
         aria-haspopup="true"
         aria-pressed="false"
-        class="MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
+        class="MuiSelect-select MuiSelect-selectMenu MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Select-input"
         role="button"
         tabindex="0"
       >
@@ -40,13 +54,27 @@ exports[`renders dropdown select 1`] = `
 exports[`renders native select 1`] = `
 <div>
   <div
-    class="MuiInputBase-root MuiInput-root MuiInput-underline"
+    class="MuiInputBase-root MuiOutlinedInput-root Select-root"
   >
+    <fieldset
+      aria-hidden="true"
+      class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+      style="padding-left: 8px;"
+    >
+      <legend
+        class="MuiPrivateNotchedOutline-legend"
+        style="width: 0.01px;"
+      >
+        <span>
+          ​
+        </span>
+      </legend>
+    </fieldset>
     <div
       class="MuiSelect-root"
     >
       <select
-        class="MuiSelect-select MuiInputBase-input MuiInput-input"
+        class="MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Select-input"
       >
         <option
           value="val1"
