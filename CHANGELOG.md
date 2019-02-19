@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.1.0-alpha.22 (19/02/2019)
+
+#### CI
+
+- [**CI**] Refactor visual tests CI scripts [#69](https://github.com/toptal/picasso/pull/69)
+
+#### closed
+
+- [**closed**] Minor design issues with select [#68](https://github.com/toptal/picasso/pull/68)
+
+---
+
 ## v0.1.0-alpha.21 (19/02/2019)
 
 #### closed
