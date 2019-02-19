@@ -2,14 +2,26 @@ import React from 'react'
 import MUITextField from '@material-ui/core/TextField'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import { withStyles } from '@material-ui/core/styles'
+import { OutlinedInputProps } from '@material-ui/core/OutlinedInput'
+import { InputLabelProps } from '@material-ui/core/InputLabel'
 
+import { Classes } from '../styles/types'
 import styles from './styles'
 
-const TextField = props => {
+interface Props {
+  classes: Classes
+  className?: string
+  iconPosition?: 'start' | 'end'
+  Icon: React.ReactNode
+  InputProps: OutlinedInputProps
+  InputLabelProps: Partial<InputLabelProps>
+}
+
+const TextField: React.FunctionComponent<Props> = props => {
   const {
     Icon,
     iconPosition,
-    InputProps = {},
+    InputProps = {} as OutlinedInputProps,
     InputLabelProps = {},
     classes,
     children,

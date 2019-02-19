@@ -6,7 +6,8 @@ import '../OutlinedInput/styles'
 export default {
   input: {
     fontSize: '18px',
-    padding: '1.2em .7em .2em'
+    padding: '1.2em .7em .33em',
+    height: '1em'
   },
   label: {
     transform: 'translate(.7em, .9em) scale(1)',
