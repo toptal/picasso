@@ -97,8 +97,7 @@ pipeline {
           FAILURE_REASON = 'visual tests'
           ghHelper.notifyPR('Visual Tests', 'PENDING', 'running', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
         }
-        sh 'yarn build:storybook'
-        sh "./node_modules/.bin/jest --config='./puppeteer/puppeteer.jest.config.js'"
+        sh './bin/test-visual'
       } //steps
     }//stage
   }//stages

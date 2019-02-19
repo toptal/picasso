@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+BLUE='\033[0;34m'
+NC='\033[0m'
+PICASSO_IMAGE='picasso'
+PKG_VERSION=`node -p "require('./package.json').version"`
+
+if [[ "$(docker images -q $PICASSO_IMAGE:$PKG_VERSION 2> /dev/null)" == "" ]]; then
+  docker build -t $PICASSO_IMAGE:$PKG_VERSION .
+else
+  echo -e "${BLUE} Docker image found: '$PICASSO_IMAGE:$PKG_VERSION' ${NC}" 
+fi
+
+DOCKER_CMD="docker run -t -i --rm \
+ -v ${PWD}/package.json:/app/package.json \
+ -v ${PWD}/yarn.lock:/app/yarn.lock \
+ -v ${PWD}/components:/app/components \
+ -v ${PWD}/build:/app/build \
+ -v ${PWD}/puppeteer:/app/puppeteer \
+ -v ${PWD}/.storybook:/app/.storybook \
+ -v ${PWD}/bin:/app/bin \
+ -e NPM_TOKEN=$NPM_TOKEN $PICASSO_IMAGE:$PKG_VERSION"
+
+echo -e "${BLUE} Running command inside docker ... ${NC}"
+
+set -x
+$DOCKER_CMD sh -c "$1 $2"
+

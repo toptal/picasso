@@ -1,30 +1,36 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-PICASSO_IMAGE='picasso'
-PKG_VERSION=`node -p "require('./package.json').version"`
+BLUE='\033[0;34m'
+NC='\033[0m'
 
-if [[ "$(docker images -q $PICASSO_IMAGE:$PKG_VERSION 2> /dev/null)" == "" ]]; then
-  docker build -t $PICASSO_IMAGE:$PKG_VERSION .
-else
-  echo "Docker image found: '$PICASSO_IMAGE:$PKG_VERSION'" 
-fi
+CWD="$(dirname "$0")"
+cd "$CWD/../"
+BASE_PATH=$(pwd)
 
-DOCKER_CMD="docker run -t -i --rm \
- -v ${PWD}/components:/app/components \
- -v ${PWD}/build:/app/build \
- -v ${PWD}/puppeteer:/app/puppeteer \
- -e NPM_TOKEN=$NPM_TOKEN $PICASSO_IMAGE:$PKG_VERSION"
+BIN_PATH="$BASE_PATH/node_modules/.bin"
+JEST_ENV="$BASE_PATH/puppeteer/environment.js"
+JEST_CONFIG="$BASE_PATH/puppeteer/puppeteer.jest.config.js"
+JEST_TEST_ENV="visual"
 
-echo "Running visual tests inside docker ..."
+function build_storybook() {
+  echo -e "${BLUE} Building storybook ... ${NC}"
+  set -x
+  TEST_ENV=$JEST_TEST_ENV yarn build:storybook
+  set +x
+}
 
-if [[ "$1" == "-u" ]]; then
-  echo "Updating snapshots to a current version ..."
-  $DOCKER_CMD sh -c "yarn install; \
-  yarn build:storybook; \
-  /app/node_modules/.bin/jest --config='./puppeteer/puppeteer.jest.config.js' -u"
-else
-  $DOCKER_CMD sh -c "yarn install; \
-  yarn build:storybook; \
-  /app/node_modules/.bin/jest --config='./puppeteer/puppeteer.jest.config.js'"
-fi
+function run_jest() {
+  if [[ "$1" == "-u" ]]; then
+    echo -e "${BLUE} Updating snapshots to a current version ... ${NC}"
+  else
+    echo -e "${BLUE} Verifying snapshots with a current version ... ${NC}"
+  fi
 
+  set -x
+  $BIN_PATH/jest --testEnvironment=$JEST_ENV --config=$JEST_CONFIG $1
+  set +x
+}
+
+yarn install
+build_storybook
+run_jest $1
