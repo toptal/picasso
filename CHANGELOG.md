@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.1.0-alpha.21 (19/02/2019)
+
+#### closed
+
+- [**closed**] Unify stories, add source code examples to the stories - part 2 [#64](https://github.com/toptal/picasso/pull/64)
+- [**closed**] Fix jenkins job branch [#66](https://github.com/toptal/picasso/pull/66)
+- [**closed**] Publish storybook on PR commits [#59](https://github.com/toptal/picasso/pull/59)
+
+---
+
 ## v0.1.0-alpha.20 (15/02/2019)
 
 #### closed
