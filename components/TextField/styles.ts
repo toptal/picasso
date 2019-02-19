@@ -1,19 +1,36 @@
+import { Theme } from '@material-ui/core/styles'
+
 import '../FormControl/styles'
 import '../InputBase/styles'
 import '../InputLabel/styles'
 import '../OutlinedInput/styles'
 
-export default {
+export default ({ spacing: { input, inputLabel, borderWidth } }: Theme) => ({
   input: {
     fontSize: '18px',
-    padding: '1.2em .7em .33em',
+    padding: `
+      calc(${input.paddingTop} + ${inputLabel.height})
+      ${input.paddingLeft}
+      calc(${input.paddingBottom} - ${inputLabel.height})
+      ${input.paddingRight}
+    `,
     height: '1em'
   },
   label: {
-    transform: 'translate(.7em, .9em) scale(1)',
+    transform: `
+      translate(
+        calc(${input.paddingLeft} + ${borderWidth}),
+        calc(${input.paddingTop} + ${borderWidth})
+      )
+      scale(1)`,
 
     '&$labelShrink': {
-      transform: 'translate(.7em, .3em) scale(.75)'
+      transform: `
+        translate(
+          calc(${input.paddingLeft} + ${borderWidth}),
+          .3em
+        )
+        scale(.75)`
     },
 
     '&$iconStart': {
@@ -22,4 +39,4 @@ export default {
   },
   labelShrink: {},
   iconStart: {}
-}
+})

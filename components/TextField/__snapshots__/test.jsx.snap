@@ -3,50 +3,54 @@
 exports[`Icon prop renders icon at the beginning 1`] = `
 <div>
   <div
-    class="MuiFormControl-root"
+    class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+      class="MuiFormControl-root"
     >
-      <fieldset
-        aria-hidden="true"
-        class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
-        style="padding-left: 8px;"
-      >
-        <legend
-          class="MuiPrivateNotchedOutline-legend"
-          style="width: 0.01px;"
-        >
-          <span>
-            ​
-          </span>
-        </legend>
-      </fieldset>
       <div
-        class="MuiInputAdornment-root MuiInputAdornment-positionStart"
+        class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
       >
-        <svg
+        <fieldset
           aria-hidden="true"
-          class="MuiSvgIcon-root"
-          focusable="false"
-          role="presentation"
-          viewBox="0 0 24 24"
+          class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+          style="padding-left: 8px;"
         >
-          <path
-            d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
-          />
-          <path
-            d="M0 0h24v24H0z"
-            fill="none"
-          />
-        </svg>
+          <legend
+            class="MuiPrivateNotchedOutline-legend"
+            style="width: 0.01px;"
+          >
+            <span>
+              ​
+            </span>
+          </legend>
+        </fieldset>
+        <div
+          class="MuiInputAdornment-root MuiInputAdornment-positionStart"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root"
+            focusable="false"
+            role="presentation"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+            />
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+            />
+          </svg>
+        </div>
+        <input
+          aria-invalid="false"
+          class="MuiInputBase-input MuiOutlinedInput-input TextField-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+          type="text"
+          value=""
+        />
       </div>
-      <input
-        aria-invalid="false"
-        class="MuiInputBase-input MuiOutlinedInput-input TextField-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
-        type="text"
-        value=""
-      />
     </div>
   </div>
 </div>
@@ -55,49 +59,53 @@ exports[`Icon prop renders icon at the beginning 1`] = `
 exports[`Icon prop renders icon at the end 1`] = `
 <div>
   <div
-    class="MuiFormControl-root"
+    class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+      class="MuiFormControl-root"
     >
-      <fieldset
-        aria-hidden="true"
-        class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
-        style="padding-left: 8px;"
-      >
-        <legend
-          class="MuiPrivateNotchedOutline-legend"
-          style="width: 0.01px;"
-        >
-          <span>
-            ​
-          </span>
-        </legend>
-      </fieldset>
-      <input
-        aria-invalid="false"
-        class="MuiInputBase-input MuiOutlinedInput-input TextField-input MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
-        type="text"
-        value=""
-      />
       <div
-        class="MuiInputAdornment-root MuiInputAdornment-positionStart"
+        class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
       >
-        <svg
+        <fieldset
           aria-hidden="true"
-          class="MuiSvgIcon-root"
-          focusable="false"
-          role="presentation"
-          viewBox="0 0 24 24"
+          class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+          style="padding-left: 8px;"
         >
-          <path
-            d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
-          />
-          <path
-            d="M0 0h24v24H0z"
-            fill="none"
-          />
-        </svg>
+          <legend
+            class="MuiPrivateNotchedOutline-legend"
+            style="width: 0.01px;"
+          >
+            <span>
+              ​
+            </span>
+          </legend>
+        </fieldset>
+        <input
+          aria-invalid="false"
+          class="MuiInputBase-input MuiOutlinedInput-input TextField-input MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+          type="text"
+          value=""
+        />
+        <div
+          class="MuiInputAdornment-root MuiInputAdornment-positionStart"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root"
+            focusable="false"
+            role="presentation"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+            />
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+            />
+          </svg>
+        </div>
       </div>
     </div>
   </div>
