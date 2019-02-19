@@ -113,5 +113,8 @@
       "git add"
     ]
   },
-  "sideEffects": false
+  "sideEffects": [
+    "**/styles.ts",
+    "**/styles.js"
+  ]
 }

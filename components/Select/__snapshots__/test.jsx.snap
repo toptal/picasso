@@ -37,7 +37,7 @@ exports[`renders dropdown select 1`] = `
       />
       <svg
         aria-hidden="true"
-        class="MuiSvgIcon-root MuiSelect-icon"
+        class="MuiSvgIcon-root MuiSelect-icon Select-icon"
         focusable="false"
         role="presentation"
         viewBox="0 0 24 24"
@@ -94,7 +94,7 @@ exports[`renders native select 1`] = `
       </select>
       <svg
         aria-hidden="true"
-        class="MuiSvgIcon-root MuiSelect-icon"
+        class="MuiSvgIcon-root MuiSelect-icon Select-icon"
         focusable="false"
         role="presentation"
         viewBox="0 0 24 24"

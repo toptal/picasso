@@ -83,7 +83,7 @@ const Select: React.FunctionComponent<Props> = props => {
     variant === 'outlined' ? (
       <OutlinedInput
         classes={{
-          input: classes.input
+          input: hasLabel ? classes.inputWithLabel : classes.input
         }}
         fullWidth={fullWidth}
         labelWidth={0}
@@ -91,7 +91,7 @@ const Select: React.FunctionComponent<Props> = props => {
     ) : (
       <Input
         classes={{
-          input: classes.input
+          input: hasLabel ? classes.inputWithLabel : classes.input
         }}
         fullWidth={fullWidth}
       />
@@ -100,9 +100,11 @@ const Select: React.FunctionComponent<Props> = props => {
   const select = (
     <MUISelect
       className={cx(className, {
-        [classes.root]: !fullWidth,
-        [classes.rootWithLabel]: hasLabel
+        [classes.root]: !fullWidth
       })}
+      classes={{
+        icon: classes.icon
+      }}
       displayEmpty
       id={id}
       input={outlinedInput}
@@ -139,7 +141,6 @@ const Select: React.FunctionComponent<Props> = props => {
           shrink: classes.labelShrink
         }}
         htmlFor={id}
-        shrink
         variant={variant}
       >
         {label}
