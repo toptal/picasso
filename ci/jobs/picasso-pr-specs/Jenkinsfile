@@ -134,5 +134,17 @@ pipeline {
         }
       }
     }
+
+    always {
+      script {
+        archiveArtifacts(
+          artifacts: "__diff_output__/**/*",
+          fingerprint: true,
+          allowEmptyArchive: true
+        )
+
+        publishHtmlReports(reportName: "Visual Regression Tests", reportDir: "__diff_output__", reportFiles: 'index.html')
+      }
+    }
   }
 }//pipeline
