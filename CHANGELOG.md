@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.1.0-alpha.23 (20/02/2019)
+
+#### closed
+
+- [**closed**] Fix alignment for the caret icon for Select [#71](https://github.com/toptal/picasso/pull/71)
+- [**closed**] Fix design issues with text fields [#70](https://github.com/toptal/picasso/pull/70)
+
+---
+
 ## v0.1.0-alpha.22 (19/02/2019)
 
 #### CI
