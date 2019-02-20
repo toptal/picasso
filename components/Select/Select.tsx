@@ -99,11 +99,11 @@ const Select: React.FunctionComponent<Props> = props => {
 
   const select = (
     <MUISelect
-      className={cx(className, {
-        [classes.root]: !fullWidth
-      })}
+      className={className}
       classes={{
-        icon: classes.icon
+        root: fullWidth ? classes.rootFullWidth : classes.root,
+        icon: classes.icon,
+        select: classes.select
       }}
       displayEmpty
       id={id}
@@ -127,24 +127,22 @@ const Select: React.FunctionComponent<Props> = props => {
     </MUISelect>
   )
 
-  if (!hasLabel) {
-    return select
-  }
-
   return (
     <FormControl
       className={cx(className, { [classes.rootFullWidth]: fullWidth })}
     >
-      <InputLabel
-        classes={{
-          root: classes.label,
-          shrink: classes.labelShrink
-        }}
-        htmlFor={id}
-        variant={variant}
-      >
-        {label}
-      </InputLabel>
+      {hasLabel && (
+        <InputLabel
+          classes={{
+            root: classes.label,
+            shrink: classes.labelShrink
+          }}
+          htmlFor={id}
+          variant={variant}
+        >
+          {label}
+        </InputLabel>
+      )}
       {select}
     </FormControl>
   )

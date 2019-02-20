@@ -3,6 +3,7 @@ import { Theme } from '@material-ui/core/styles'
 import { PicassoProvider } from '../Picasso'
 import '../FormControl/styles'
 import '../InputLabel/styles'
+import '../InputBase/styles'
 import '../OutlinedInput/styles'
 import '../MenuItem/styles'
 import '../List/styles'
@@ -24,36 +25,45 @@ PicassoProvider.override(() => ({
 const CARRET_ICON_LEFT_PADDING = '.4em'
 
 export default ({ spacing: { borderWidth, input, inputLabel } }: Theme) => ({
-  rootFullWidth: {
-    width: 'auto',
-    display: 'flex',
-    wrap: 'nowrap'
-  },
   root: {
-    width: '14em',
-    fontSize: '18px'
+    height: input.height,
+    width: input.width
+  },
+  rootFullWidth: {
+    height: input.height,
+    width: '100%',
+    display: 'flex'
   },
   input: {
-    fontSize: 'inherit',
+    fontSize: '1.15em',
+    display: 'flex',
+    alignItems: 'center',
+    boxSizing: 'border-box' as 'border-box',
+    height: '100%',
     padding: `
-      ${input.paddingTop}
+      0
       ${input.paddingLeft}
-      ${input.paddingBottom}
+      0
       ${input.paddingRight}
     `,
-    border: `solid ${borderWidth} transparent`,
-    height: '1em'
+    border: `solid ${borderWidth} transparent`
+  },
+  select: {
+    width: '100%'
   },
   inputWithLabel: {
-    fontSize: 'inherit',
+    fontSize: '1.15em',
+    display: 'flex',
+    alignItems: 'center',
+    boxSizing: 'border-box' as 'border-box',
+    height: '100%',
     padding: `
-      calc(${input.paddingTop} + ${inputLabel.height})
+      ${inputLabel.height}
       ${input.paddingLeft}
-      calc(${input.paddingBottom} - ${inputLabel.height})
+      0
       ${input.paddingRight}
     `,
-    border: `solid ${borderWidth} transparent`,
-    height: '1em'
+    border: `solid ${borderWidth} transparent`
   },
   icon: {
     right: `calc(${input.paddingRight} - ${CARRET_ICON_LEFT_PADDING})`
@@ -62,6 +72,8 @@ export default ({ spacing: { borderWidth, input, inputLabel } }: Theme) => ({
     opacity: 0.4
   },
   label: {
+    fontSize: '1.15em',
+
     transform: `
       translate(
         calc(${input.paddingLeft} + ${borderWidth}),
@@ -73,9 +85,9 @@ export default ({ spacing: { borderWidth, input, inputLabel } }: Theme) => ({
       transform: `
         translate(
           calc(${input.paddingLeft} + ${borderWidth}),
-          .3em
+          ${inputLabel.shrinkPaddingTop}
         )
-        scale(.75)`
+        scale(${inputLabel.shrinkScale})`
     }
   },
   labelShrink: {}

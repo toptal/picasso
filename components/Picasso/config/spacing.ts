@@ -2,6 +2,8 @@ declare module '@material-ui/core/styles/spacing' {
   interface Spacing {
     borderWidth: string
     input: {
+      height: string
+      width: string
       paddingTop: string
       paddingRight: string
       paddingBottom: string
@@ -9,6 +11,8 @@ declare module '@material-ui/core/styles/spacing' {
     }
     inputLabel: {
       height: string
+      shrinkPaddingTop: string
+      shrinkScale: number
     }
   }
 }
@@ -16,13 +20,17 @@ declare module '@material-ui/core/styles/spacing' {
 const spacing = {
   borderWidth: '1px',
   input: {
+    height: '3em',
+    width: '17.5em',
     paddingTop: '.8em',
     paddingRight: '.7em',
     paddingBottom: '.8em',
     paddingLeft: '.7em'
   },
   inputLabel: {
-    height: '.4em'
+    height: '.8em',
+    shrinkPaddingTop: '.3em',
+    shrinkScale: 0.75
   }
 }
 
