@@ -1,11 +1,15 @@
 import React from 'react'
-/* eslint-disable-next-line */
-import { render, fireEvent, cleanup } from 'react-testing-library'
+import { render, cleanup } from 'react-testing-library'
 
+import Picasso from '../Picasso'
 import Select from './index'
 
 const renderSelect = (props = {}) => {
-  return render(<Select {...props} value='val1' />)
+  return render(
+    <Picasso loadFonts={false}>
+      <Select {...props} value='val1' />
+    </Picasso>
+  )
 }
 
 const OPTIONS = [

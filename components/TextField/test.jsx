@@ -2,10 +2,15 @@ import React from 'react'
 import { render, cleanup } from 'react-testing-library'
 import SearchIcon from '@material-ui/icons/Search'
 
+import Picasso from '../Picasso'
 import TextField from './index'
 
 const renderTextField = (children, props = {}) => {
-  return render(<TextField {...props}>{children}</TextField>)
+  return render(
+    <Picasso loadFonts={false}>
+      <TextField {...props}>{children}</TextField>
+    </Picasso>
+  )
 }
 
 afterEach(cleanup)

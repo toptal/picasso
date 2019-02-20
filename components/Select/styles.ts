@@ -1,5 +1,6 @@
-import { PicassoProvider } from '../Picasso'
+import { Theme } from '@material-ui/core/styles'
 
+import { PicassoProvider } from '../Picasso'
 import '../FormControl/styles'
 import '../InputLabel/styles'
 import '../OutlinedInput/styles'
@@ -20,7 +21,7 @@ PicassoProvider.override(() => ({
   }
 }))
 
-export default () => ({
+export default ({ spacing: { borderWidth, input, inputLabel } }: Theme) => ({
   rootFullWidth: {
     width: 'auto',
     display: 'flex',
@@ -32,27 +33,47 @@ export default () => ({
   },
   input: {
     fontSize: 'inherit',
-    padding: '.8em .7em .73em',
-    border: 'solid 1px transparent',
+    padding: `
+      ${input.paddingTop}
+      ${input.paddingLeft}
+      ${input.paddingBottom}
+      ${input.paddingRight}
+    `,
+    border: `solid ${borderWidth} transparent`,
     height: '1em'
   },
   inputWithLabel: {
     fontSize: 'inherit',
-    padding: '1.2em .7em .33em',
-    border: 'solid 1px transparent',
+    padding: `
+      calc(${input.paddingTop} + ${inputLabel.height})
+      ${input.paddingLeft}
+      calc(${input.paddingBottom} - ${inputLabel.height})
+      ${input.paddingRight}
+    `,
+    border: `solid ${borderWidth} transparent`,
     height: '1em'
   },
   icon: {
-    right: 'calc(.7em - 10px)'
+    right: `calc(${input.paddingLeft} - 10px)`
   },
   placeholder: {
     opacity: 0.4
   },
   label: {
-    transform: 'translate(.7em, .9em) scale(1)',
+    transform: `
+      translate(
+        calc(${input.paddingLeft} + ${borderWidth}),
+        calc(${input.paddingTop} + ${borderWidth})
+      )
+      scale(1)`,
 
     '&$labelShrink': {
-      transform: 'translate(.7em, .3em) scale(.75)'
+      transform: `
+        translate(
+          calc(${input.paddingLeft} + ${borderWidth}),
+          .3em
+        )
+        scale(.75)`
     }
   },
   labelShrink: {}
