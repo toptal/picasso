@@ -21,6 +21,8 @@ PicassoProvider.override(() => ({
   }
 }))
 
+const CARRET_ICON_LEFT_PADDING = '.4em'
+
 export default ({ spacing: { borderWidth, input, inputLabel } }: Theme) => ({
   rootFullWidth: {
     width: 'auto',
@@ -54,7 +56,7 @@ export default ({ spacing: { borderWidth, input, inputLabel } }: Theme) => ({
     height: '1em'
   },
   icon: {
-    right: `calc(${input.paddingLeft} - 10px)`
+    right: `calc(${input.paddingRight} - ${CARRET_ICON_LEFT_PADDING})`
   },
   placeholder: {
     opacity: 0.4
