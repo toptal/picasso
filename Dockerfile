@@ -15,7 +15,8 @@ RUN apk update && apk upgrade && \
       harfbuzz@edge \
       nss@edge \
       git \
-      curl
+      curl \
+      jq
 
 # Tell Puppeteer to skip installing Chrome. We'll be using the installed package.
 # Puppeteer v1.9.0 works with Chromium 71.
