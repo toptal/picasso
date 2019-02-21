@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.1.0-alpha.25 (21/02/2019)
+
+#### Bugfix
+
+- [**Bugfix**] Move Userback integration into Storybook iframe [#76](https://github.com/toptal/picasso/pull/76)
+
+#### closed
+
+- [**closed**] Fix text field icon padding [#74](https://github.com/toptal/picasso/pull/74)
+
+---
+
 ## v0.1.0-alpha.24 (21/02/2019)
 
 #### Bugfix
