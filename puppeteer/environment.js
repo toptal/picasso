@@ -10,13 +10,10 @@ const config = require('./config')
 class Storyshots extends JestPuppeteer {
   async setup () {
     await super.setup()
+
     const stories = await this.loadStoryShots()
 
     this.global.__STORYSHOTS__ = stories
-  }
-
-  runScript (script) {
-    return super.runScript(script)
   }
 
   loadStoryShots () {

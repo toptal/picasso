@@ -1,7 +1,10 @@
+const SPECIAL_CHARS = /[^\w\s]/gi
+const SPACES = / /g
+
 const normalize = name =>
   name
-    .replace(/[^\w\s]/gi, '')
-    .replace(/ /g, '-')
+    .replace(SPECIAL_CHARS, '')
+    .replace(SPACES, '-')
     .trim()
     .toLowerCase()
 

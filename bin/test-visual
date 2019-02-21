@@ -11,6 +11,7 @@ BIN_PATH="$BASE_PATH/node_modules/.bin"
 JEST_ENV="$BASE_PATH/puppeteer/environment.js"
 JEST_CONFIG="$BASE_PATH/puppeteer/puppeteer.jest.config.js"
 JEST_TEST_ENV="visual"
+DIFF_OUTPUT_PATH="$BASE_PATH/__diff_output__/*"
 
 function build_storybook() {
   echo -e "${BLUE} Building storybook ... ${NC}"
@@ -33,4 +34,7 @@ function run_jest() {
 
 yarn install
 build_storybook
+
+# Cleanup old snapshots on every run
+rm -rf $DIFF_OUTPUT_PATH
 run_jest $1
