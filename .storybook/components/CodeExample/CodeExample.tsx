@@ -57,33 +57,33 @@ class CodeExample extends React.Component<Props, {}> {
       </div>
     )
 
+    /* When we are building storybook for visual tests we want to have
+     * only actual component without source code editor
+     */
     if (TEST_ENV === 'visual') {
       return <ComponentRenderer sourceCode={sourceCode} exampleCodePath={src} />
-    } else {
-      return (
-        <div className={classes.root}>
-          <div className={classes.component}>
-            <Spacer className={classes.componentRenderer} top={2} bottom={2}>
-              <ComponentRenderer
-                sourceCode={sourceCode}
-                exampleCodePath={src}
-              />
-            </Spacer>
-            <Button
-              className={classes.sourceCodeButton}
-              variant="basic"
-              size="small"
-              icon={<IconCode />}
-              onClick={this.handleShowEditor}>
-              Edit code
-            </Button>
-          </div>
-          <div>
-            <Accordion Details={SourceCodeEditor} expanded={isEditorVisible} />
-          </div>
-        </div>
-      )
     }
+
+    return (
+      <div className={classes.root}>
+        <div className={classes.component}>
+          <Spacer className={classes.componentRenderer} top={2} bottom={2}>
+            <ComponentRenderer sourceCode={sourceCode} exampleCodePath={src} />
+          </Spacer>
+          <Button
+            className={classes.sourceCodeButton}
+            variant="basic"
+            size="small"
+            icon={<IconCode />}
+            onClick={this.handleShowEditor}>
+            Edit code
+          </Button>
+        </div>
+        <div>
+          <Accordion Details={SourceCodeEditor} expanded={isEditorVisible} />
+        </div>
+      </div>
+    )
   }
 }
 

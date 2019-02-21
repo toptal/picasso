@@ -18,7 +18,7 @@ class Section extends Base {
   type = 'Section'
 
   constructor(
-    options = {
+    config = {
       title: null,
       subtitle: null,
       info: null,
@@ -27,10 +27,10 @@ class Section extends Base {
     }
   ) {
     super({
-      ...options,
+      ...config,
       options: {
         ...DEFAULT_OPTIONS,
-        ...options.options
+        ...config.options
       }
     })
   }

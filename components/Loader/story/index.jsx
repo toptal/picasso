@@ -1,4 +1,4 @@
-import PicassoBook from '../../../.storybook/components/PicasoBook'
+import PicassoBook from '../../../.storybook/components/PicassoBook'
 
 const page = PicassoBook.createPage(
   'Loader',

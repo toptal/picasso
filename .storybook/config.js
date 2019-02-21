@@ -5,7 +5,7 @@ import { withOptions } from '@storybook/addon-options'
 import { themes } from '@storybook/components'
 
 import Picasso from '../components'
-import PicassoBook from './components/PicasoBook'
+import PicassoBook from './components/PicassoBook'
 
 const loadFonts = TEST_ENV !== 'visual'
 const withPicasso = story => <Picasso loadFonts={loadFonts}>{story()}</Picasso>
