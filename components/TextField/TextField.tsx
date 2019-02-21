@@ -1,17 +1,17 @@
 import React from 'react'
 import MUITextField from '@material-ui/core/TextField'
-import InputAdornment from '@material-ui/core/InputAdornment'
 import { withStyles } from '@material-ui/core/styles'
 import { OutlinedInputProps } from '@material-ui/core/OutlinedInput'
 import { InputLabelProps } from '@material-ui/core/InputLabel'
 
+import InputAdornment from '../InputAdornment'
 import { Classes } from '../styles/types'
 import styles from './styles'
 
 interface Props {
   classes: Classes
   className?: string
-  iconPosition?: 'start' | 'end'
+  iconPosition: 'start' | 'end'
   Icon: React.ReactNode
   InputProps: OutlinedInputProps
   InputLabelProps: Partial<InputLabelProps>
@@ -32,7 +32,12 @@ const TextField: React.FunctionComponent<Props> = props => {
 
   if (Icon) {
     const IconAdornment = (
-      <InputAdornment position='start'>{Icon}</InputAdornment>
+      <InputAdornment
+        className={iconPosition === 'end' ? classes.iconEnd : classes.iconStart}
+        position={iconPosition}
+      >
+        {Icon}
+      </InputAdornment>
     )
 
     // InputLabelProps.shrink = 'auto' TODO: uncomment when 'auto' PR is merged
@@ -43,7 +48,7 @@ const TextField: React.FunctionComponent<Props> = props => {
       InputProps.endAdornment = IconAdornment
     } else {
       InputProps.startAdornment = IconAdornment
-      InputLabelProps.className = classes.iconStart
+      InputLabelProps.className = classes.labelIconStart
     }
   }
 

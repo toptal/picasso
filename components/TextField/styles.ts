@@ -4,17 +4,22 @@ import '../FormControl/styles'
 import '../InputBase/styles'
 import '../InputLabel/styles'
 import '../OutlinedInput/styles'
+import '../InputAdornment/styles'
+
+const ICON_WIDTH = '1em'
 
 export default ({ spacing: { input, inputLabel, borderWidth } }: Theme) => ({
   root: {
     fontSize: 'inherit',
     boxSizing: 'border-box' as 'border-box',
     height: input.height,
-    width: input.width
+    width: input.width,
+    padding: 0
   },
   rootMultiline: {
     height: 'auto',
-    width: input.width
+    width: input.width,
+    padding: 0
   },
   input: {
     fontSize: '1.15em',
@@ -53,10 +58,33 @@ export default ({ spacing: { input, inputLabel, borderWidth } }: Theme) => ({
         scale(${inputLabel.shrinkScale})`
     },
 
-    '&$iconStart': {
-      transform: 'translate(2.77em, .3em) scale(.75)'
+    '&$labelIconStart': {
+      transform: `translate(
+          calc(${input.paddingLeft} + ${input.paddingRight} + ${ICON_WIDTH}),
+          ${inputLabel.shrinkPaddingTop}
+        )
+        scale(${inputLabel.shrinkScale})
+      `
     }
   },
   labelShrink: {},
-  iconStart: {}
+  labelIconStart: {},
+  iconStart: {
+    fontSize: '1.15em',
+    minWidth: ICON_WIDTH,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '1em',
+    marginLeft: input.paddingLeft
+  },
+  iconEnd: {
+    fontSize: '1.15em',
+    minWidth: ICON_WIDTH,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '1em',
+    marginRight: input.paddingRight
+  }
 })
