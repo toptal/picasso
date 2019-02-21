@@ -98,6 +98,11 @@ pipeline {
           ghHelper.notifyPR('Visual Tests', 'PENDING', 'running', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
         }
         sh './bin/test-visual'
+
+        script {
+          TOTAL_TESTS = sh(returnStdout: true, script: 'cat ./__diff_output__/stats.json | jq ".suite.total" -r').trim()
+          FAILED_TESTS = sh(returnStdout: true, script: 'cat ./__diff_output__/stats.json | jq ".suite.failed" -r').trim()
+        }
       } //steps
     }//stage
   }//stages
@@ -109,7 +114,7 @@ pipeline {
       script {
         ghHelper.notifyPR('Lint', 'SUCCESS', 'Success', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
         ghHelper.notifyPR('Jest Tests', 'SUCCESS', 'Success', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
-        ghHelper.notifyPR('Visual Tests', 'SUCCESS', 'Success', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
+        ghHelper.notifyPR('Visual Tests', 'SUCCESS', 'Success', "${env.ghprbActualCommit}", "${env.BUILD_URL}/Visual_20Regression_20Tests/", 'picasso')
       }
     }
 
@@ -124,6 +129,7 @@ pipeline {
           ghHelper.notifyPR('Jest Tests', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
           ghHelper.notifyPR('Visual Tests', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}/Visual_20Regression_20Tests/", 'picasso')
         } else if (FAILURE_REASON == 'visual tests') {
+          messages = "${FAILED_TESTS}/${TOTAL_TESTS} failed"
           ghHelper.notifyPR('Lint', 'SUCCESS', 'Success', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
           ghHelper.notifyPR('Jest Tests', 'SUCCESS', 'Success', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
           ghHelper.notifyPR('Visual Tests', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}/Visual_20Regression_20Tests/", 'picasso')
