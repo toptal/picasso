@@ -36,6 +36,9 @@ PicassoProvider.override(({ palette }: Theme) => ({
       }
     },
     notchedOutline: {},
+    adornedStart: {
+      paddingRight: 0
+    },
     adornedEnd: {
       paddingRight: 0
     }

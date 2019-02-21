@@ -4,17 +4,22 @@ import '../FormControl/styles'
 import '../InputBase/styles'
 import '../InputLabel/styles'
 import '../OutlinedInput/styles'
+import '../InputAdornment/styles'
 
-export default ({ spacing: { input, inputLabel, borderWidth } }: Theme) => ({
+export default ({
+  spacing: { input, inputLabel, inputIcon, borderWidth }
+}: Theme) => ({
   root: {
     fontSize: 'inherit',
     boxSizing: 'border-box' as 'border-box',
     height: input.height,
-    width: input.width
+    width: input.width,
+    padding: 0
   },
   rootMultiline: {
     height: 'auto',
-    width: input.width
+    width: input.width,
+    padding: 0
   },
   input: {
     fontSize: '1.15em',
@@ -53,10 +58,31 @@ export default ({ spacing: { input, inputLabel, borderWidth } }: Theme) => ({
         scale(${inputLabel.shrinkScale})`
     },
 
-    '&$iconStart': {
-      transform: 'translate(2.77em, .3em) scale(.75)'
+    '&$labelIconStart': {
+      transform: `translate(
+          calc(${input.paddingLeft} + ${input.paddingRight} + ${
+    inputIcon.width
+  }),
+          ${inputLabel.shrinkPaddingTop}
+        )
+        scale(${inputLabel.shrinkScale})
+      `
     }
   },
   labelShrink: {},
-  iconStart: {}
+  labelIconStart: {},
+  icon: {
+    fontSize: '1.15em',
+    minWidth: inputIcon.width,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '1em'
+  },
+  iconStart: {
+    marginLeft: input.paddingLeft
+  },
+  iconEnd: {
+    marginRight: input.paddingRight
+  }
 })
