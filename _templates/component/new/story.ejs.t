@@ -1,25 +1,15 @@
 ---
-to: components/<%= h.changeCase.pascalCase(name) %>/<%= h.changeCase.pascalCase(name) %>.example.jsx
+to: components/<%= h.changeCase.pascalCase(name) %>/story/index.jsx
 ---
 <%
   Name = h.changeCase.pascalCase(name)
 -%>
-import React from 'react'
-import { storiesOf } from '@storybook/react'
+import PicassoBook from '../../../.storybook/components/PicasoBook'
 
-import StoryTeller from '../../.storybook/StoryTeller'
-import <%= Name %> from './'
+const page = PicassoBook.createPage(
+  '<%= Name %>',
+  `<-- description -->`
+)
 
-const stories = storiesOf('<%= Name %>', module)
-
-const teller = new StoryTeller('<%= Name %>', '*component description*')
-const chapter = teller.addChapter()
-
-chapter
-  .addSection('*section header*', '*section description*', () => (
-    <div>
-      <<%= Name %>></<%= Name %>>
-    </div>
-  ))
-
-stories.addWithChapters('<%= Name %>', teller.toStory())
+page
+  .addExample('<%= Name %>/story/Default-example.jsx', 'Default')
