@@ -28,8 +28,8 @@ const spacing = {
     paddingLeft: '.7em'
   },
   inputLabel: {
-    height: '.8em',
-    shrinkPaddingTop: '.3em',
+    height: '1em',
+    shrinkPaddingTop: '.4em',
     shrinkScale: 0.75
   }
 }
