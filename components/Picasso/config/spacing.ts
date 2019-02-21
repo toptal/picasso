@@ -14,6 +14,9 @@ declare module '@material-ui/core/styles/spacing' {
       shrinkPaddingTop: string
       shrinkScale: number
     }
+    inputIcon: {
+      width: string
+    }
   }
 }
 
@@ -31,6 +34,9 @@ const spacing = {
     height: '1em',
     shrinkPaddingTop: '.4em',
     shrinkScale: 0.75
+  },
+  inputIcon: {
+    width: '1em'
   }
 }
 

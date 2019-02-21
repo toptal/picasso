@@ -6,9 +6,9 @@ import '../InputLabel/styles'
 import '../OutlinedInput/styles'
 import '../InputAdornment/styles'
 
-const ICON_WIDTH = '1em'
-
-export default ({ spacing: { input, inputLabel, borderWidth } }: Theme) => ({
+export default ({
+  spacing: { input, inputLabel, inputIcon, borderWidth }
+}: Theme) => ({
   root: {
     fontSize: 'inherit',
     boxSizing: 'border-box' as 'border-box',
@@ -60,7 +60,9 @@ export default ({ spacing: { input, inputLabel, borderWidth } }: Theme) => ({
 
     '&$labelIconStart': {
       transform: `translate(
-          calc(${input.paddingLeft} + ${input.paddingRight} + ${ICON_WIDTH}),
+          calc(${input.paddingLeft} + ${input.paddingRight} + ${
+    inputIcon.width
+  }),
           ${inputLabel.shrinkPaddingTop}
         )
         scale(${inputLabel.shrinkScale})
@@ -71,7 +73,7 @@ export default ({ spacing: { input, inputLabel, borderWidth } }: Theme) => ({
   labelIconStart: {},
   iconStart: {
     fontSize: '1.15em',
-    minWidth: ICON_WIDTH,
+    minWidth: inputIcon.width,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -80,7 +82,7 @@ export default ({ spacing: { input, inputLabel, borderWidth } }: Theme) => ({
   },
   iconEnd: {
     fontSize: '1.15em',
-    minWidth: ICON_WIDTH,
+    minWidth: inputIcon.width,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
