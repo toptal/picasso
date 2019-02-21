@@ -118,21 +118,31 @@ pipeline {
         if (FAILURE_REASON == 'lint') {
           ghHelper.notifyPR('Lint', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
           ghHelper.notifyPR('Jest Tests', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
-          ghHelper.notifyPR('Visual Tests', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
+          ghHelper.notifyPR('Visual Tests', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}/Visual_20Regression_20Tests/", 'picasso')
         } else if (FAILURE_REASON == 'jest') {
           ghHelper.notifyPR('Lint', 'SUCCESS', 'Success', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
           ghHelper.notifyPR('Jest Tests', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
-          ghHelper.notifyPR('Visual Tests', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
+          ghHelper.notifyPR('Visual Tests', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}/Visual_20Regression_20Tests/", 'picasso')
         } else if (FAILURE_REASON == 'visual tests') {
           ghHelper.notifyPR('Lint', 'SUCCESS', 'Success', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
           ghHelper.notifyPR('Jest Tests', 'SUCCESS', 'Success', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
-          ghHelper.notifyPR('Visual Tests', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
+          ghHelper.notifyPR('Visual Tests', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}/Visual_20Regression_20Tests/", 'picasso')
         } else {
           ghHelper.notifyPR('Lint', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
           ghHelper.notifyPR('Jest Tests', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
-          ghHelper.notifyPR('Visual Tests', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
+          ghHelper.notifyPR('Visual Tests', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}/Visual_20Regression_20Tests/", 'picasso')
         }
       }
+    }
+
+    always {
+      archiveArtifacts(
+        artifacts: "__diff_output__/*",
+        fingerprint: true,
+        allowEmptyArchive: true
+      )
+
+      publishHtmlReports(reportName: "Visual Regression Tests", reportDir: "__diff_output__", reportFiles: 'index.html')
     }
   }
 }//pipeline
