@@ -6,12 +6,12 @@ const page = PicassoBook.createPage(
 )
 
 page
-  .addExample('Typography/story/Default-example.jsx', 'Normal text')
-  .addExample('Typography/story/Headings-example.jsx', 'Headings')
-  .addExample('Typography/story/Types-example.jsx', {
+  .addExample('Typography/story/Default.example.jsx', 'Normal text')
+  .addExample('Typography/story/Headings.example.jsx', 'Headings')
+  .addExample('Typography/story/Types.example.jsx', {
     title: 'Types',
     description:
       'Long-form text uses a 1.5 ratio to calculate line-height values.'
   })
-  .addExample('Typography/story/Alignment-example.jsx', 'Alignment')
-  .addExample('Typography/story/Weights-example.jsx', 'Weights')
+  .addExample('Typography/story/Alignment.example.jsx', 'Alignment')
+  .addExample('Typography/story/Weights.example.jsx', 'Weights')

@@ -1,5 +1,5 @@
 ---
-to: components/<%= h.changeCase.pascalCase(component) %>/story/<%= h.changeCase.pascalCase(example) %>-example.jsx
+to: components/<%= h.changeCase.pascalCase(component) %>/story/<%= h.changeCase.pascalCase(example) %>.example.jsx
 ---
 <%
   Component = h.changeCase.pascalCase(component)

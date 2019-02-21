@@ -7,4 +7,4 @@ page
     'Group of labels',
     'You can combine different variants and styles of the Label inside the group.'
   )
-  .addExample('LabelGroup/story/LabelGroup-example.jsx', 'Label group')
+  .addExample('LabelGroup/story/LabelGroup.example.jsx', 'Label group')

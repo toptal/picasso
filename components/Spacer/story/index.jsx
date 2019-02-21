@@ -6,5 +6,5 @@ const page = PicassoBook.createPage(
 )
 
 page
-  .addExample('Spacer/story/Default-example.jsx', 'Default')
-  .addExample('Spacer/story/Inline-example.jsx', 'Inline')
+  .addExample('Spacer/story/Default.example.jsx', 'Default')
+  .addExample('Spacer/story/Inline.example.jsx', 'Inline')
