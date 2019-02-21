@@ -1,18 +1,3 @@
 <script>
   document.title = 'Picasso'
 </script>
-<script>
-  Userback = window.Userback || {};
-  // TODO: pull this token from ENV vars once we start using Toptal account
-  Userback.access_token = '4398|5932|Uknj89Fkp4pwTczViVyYJAkX93qZus5EKYlz9ti6zlNsZM9MqF';
-
-  (function(id) {
-    if (document.getElementById(id)) {return;}
-    var s = document.createElement('script');
-    s.id = id;
-    s.async = 1;
-    s.src = 'https://static.userback.io/widget/v1.js';
-    var parent_node = document.head || document.body;
-    parent_node.appendChild(s);
-  })('userback-sdk');
-</script>
