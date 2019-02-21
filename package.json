@@ -3,7 +3,7 @@
   "version": "0.1.0-alpha.26",
   "description": "",
   "main": "build/index.js",
-  "module": "build/es/index.js",
+  "module": "build/index.js",
   "files": [
     "build"
   ],
