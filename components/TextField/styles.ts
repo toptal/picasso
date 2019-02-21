@@ -6,17 +6,37 @@ import '../InputLabel/styles'
 import '../OutlinedInput/styles'
 
 export default ({ spacing: { input, inputLabel, borderWidth } }: Theme) => ({
+  root: {
+    fontSize: 'inherit',
+    boxSizing: 'border-box' as 'border-box',
+    height: input.height,
+    width: input.width
+  },
+  rootMultiline: {
+    height: 'auto',
+    width: input.width
+  },
   input: {
-    fontSize: '18px',
+    fontSize: '1.15em',
+    border: 'none',
     padding: `
-      calc(${input.paddingTop} + ${inputLabel.height})
+      ${inputLabel.height}
       ${input.paddingLeft}
-      calc(${input.paddingBottom} - ${inputLabel.height})
+      0
       ${input.paddingRight}
-    `,
-    height: '1em'
+    `
+  },
+  inputMultiline: {
+    padding: `
+      calc(${inputLabel.shrinkPaddingTop} + 1em * ${inputLabel.shrinkScale})
+      ${input.paddingLeft}
+      0
+      ${input.paddingRight}
+    `
   },
   label: {
+    fontSize: '1.15em',
+
     transform: `
       translate(
         calc(${input.paddingLeft} + ${borderWidth}),
@@ -28,9 +48,9 @@ export default ({ spacing: { input, inputLabel, borderWidth } }: Theme) => ({
       transform: `
         translate(
           calc(${input.paddingLeft} + ${borderWidth}),
-          .3em
+          ${inputLabel.shrinkPaddingTop}
         )
-        scale(.75)`
+        scale(${inputLabel.shrinkScale})`
     },
 
     '&$iconStart': {

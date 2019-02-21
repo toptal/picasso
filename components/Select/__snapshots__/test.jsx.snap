@@ -6,49 +6,53 @@ exports[`renders dropdown select 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root Select-root"
+      class="MuiFormControl-root"
     >
-      <fieldset
-        aria-hidden="true"
-        class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
-        style="padding-left: 8px;"
-      >
-        <legend
-          class="MuiPrivateNotchedOutline-legend"
-          style="width: 0.01px;"
-        >
-          <span>
-            ​
-          </span>
-        </legend>
-      </fieldset>
       <div
-        class="MuiSelect-root"
+        class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl"
       >
-        <div
-          aria-haspopup="true"
-          aria-pressed="false"
-          class="MuiSelect-select MuiSelect-selectMenu MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Select-input"
-          role="button"
-          tabindex="0"
-        >
-          text1
-        </div>
-        <input
-          type="hidden"
-          value="val1"
-        />
-        <svg
+        <fieldset
           aria-hidden="true"
-          class="MuiSvgIcon-root MuiSelect-icon Select-icon"
-          focusable="false"
-          role="presentation"
-          viewBox="0 0 24 24"
+          class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+          style="padding-left: 8px;"
         >
-          <path
-            d="M7 10l5 5 5-5z"
+          <legend
+            class="MuiPrivateNotchedOutline-legend"
+            style="width: 0.01px;"
+          >
+            <span>
+              ​
+            </span>
+          </legend>
+        </fieldset>
+        <div
+          class="MuiSelect-root Select-root"
+        >
+          <div
+            aria-haspopup="true"
+            aria-pressed="false"
+            class="MuiSelect-select Select-select MuiSelect-selectMenu MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Select-input"
+            role="button"
+            tabindex="0"
+          >
+            text1
+          </div>
+          <input
+            type="hidden"
+            value="val1"
           />
-        </svg>
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSelect-icon Select-icon"
+            focusable="false"
+            role="presentation"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M7 10l5 5 5-5z"
+            />
+          </svg>
+        </div>
       </div>
     </div>
   </div>
@@ -61,55 +65,60 @@ exports[`renders native select 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root Select-root"
+      class="MuiFormControl-root"
     >
-      <fieldset
-        aria-hidden="true"
-        class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
-        style="padding-left: 8px;"
-      >
-        <legend
-          class="MuiPrivateNotchedOutline-legend"
-          style="width: 0.01px;"
-        >
-          <span>
-            ​
-          </span>
-        </legend>
-      </fieldset>
       <div
-        class="MuiSelect-root"
+        class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl"
       >
-        <select
-          class="MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Select-input"
-        >
-          <option
-            value="val1"
-          >
-            text1
-          </option>
-          <option
-            value="val2"
-          >
-            text2
-          </option>
-          <option
-            value="val3"
-          >
-            text3
-          </option>
-        </select>
-        <svg
+        <fieldset
           aria-hidden="true"
-          class="MuiSvgIcon-root MuiSelect-icon Select-icon"
-          focusable="false"
-          role="presentation"
-          viewBox="0 0 24 24"
+          class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+          style="padding-left: 8px;"
         >
-          <path
-            d="M7 10l5 5 5-5z"
-          />
-        </svg>
+          <legend
+            class="MuiPrivateNotchedOutline-legend"
+            style="width: 0.01px;"
+          >
+            <span>
+              ​
+            </span>
+          </legend>
+        </fieldset>
+        <div
+          class="MuiSelect-root Select-root"
+        >
+          <select
+            aria-invalid="false"
+            class="MuiSelect-select Select-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Select-input"
+          >
+            <option
+              value="val1"
+            >
+              text1
+            </option>
+            <option
+              value="val2"
+            >
+              text2
+            </option>
+            <option
+              value="val3"
+            >
+              text3
+            </option>
+          </select>
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSelect-icon Select-icon"
+            focusable="false"
+            role="presentation"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M7 10l5 5 5-5z"
+            />
+          </svg>
+        </div>
       </div>
     </div>
   </div>

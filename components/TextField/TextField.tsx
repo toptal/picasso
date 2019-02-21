@@ -15,6 +15,7 @@ interface Props {
   Icon: React.ReactNode
   InputProps: OutlinedInputProps
   InputLabelProps: Partial<InputLabelProps>
+  multiline?: boolean
 }
 
 const TextField: React.FunctionComponent<Props> = props => {
@@ -25,6 +26,7 @@ const TextField: React.FunctionComponent<Props> = props => {
     InputLabelProps = {},
     classes,
     children,
+    multiline,
     ...restProps
   } = props
 
@@ -57,9 +59,12 @@ const TextField: React.FunctionComponent<Props> = props => {
       InputProps={{
         ...InputProps,
         classes: {
-          input: classes.input
+          root: multiline ? classes.rootMultiline : classes.root,
+          input: classes.input,
+          inputMultiline: classes.inputMultiline
         }
       }}
+      multiline={multiline}
       {...restProps}
       variant='outlined'
     >
