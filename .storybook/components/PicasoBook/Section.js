@@ -3,16 +3,7 @@ import React from 'react'
 import Base from './Base'
 
 const decorator = story => (
-  <div
-    style={{
-      border: '1px solid rgba(0, 0, 0, 0.1)',
-      display: 'flex',
-      padding: '20px',
-      justifyContent: 'center',
-      borderRadius: '5px'
-    }}>
-    {story()}
-  </div>
+  <div className="component-section-container">{story()}</div>
 )
 
 const DEFAULT_OPTIONS = {

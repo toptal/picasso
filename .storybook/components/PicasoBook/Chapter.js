@@ -5,9 +5,7 @@ import Section from './Section'
 import CodeExample from '../CodeExample'
 
 const Container = ({ children }) => (
-  <div className="chapter-container" style={{ flex: 1 }}>
-    {children}
-  </div>
+  <div className="chapter-container">{children}</div>
 )
 
 class Chapter extends Base {
