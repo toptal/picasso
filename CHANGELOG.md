@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.1.0-alpha.24 (21/02/2019)
+
+#### Bugfix
+
+- [**Bugfix**] Set precise size of TextFiel and Select components [#72](https://github.com/toptal/picasso/pull/72)
+
+#### CI
+
+- [**CI**] Publish Visual Tests on CI [#73](https://github.com/toptal/picasso/pull/73)
+
+---
+
 ## v0.1.0-alpha.23 (20/02/2019)
 
 #### closed
