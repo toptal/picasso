@@ -1,11 +1,20 @@
 const JestPuppeteer = require('jest-environment-puppeteer')
-const glob = require('glob')
 const path = require('path')
 const fs = require('fs')
 const esprima = require('esprima')
 const walk = require('esprima-walk')
 
+const { asyncGlob } = require('./utils')
+const ast = require('./ast')
 const config = require('./config')
+const STORIES_PATH = path.resolve(process.cwd(), config.storyShotsPattern)
+
+const ESPRIMA_OPTIONS = {
+  loc: true,
+  comment: true,
+  attachComment: true,
+  jsx: true
+}
 
 class Storyshots extends JestPuppeteer {
   async setup () {
@@ -16,85 +25,62 @@ class Storyshots extends JestPuppeteer {
     this.global.__STORYSHOTS__ = stories
   }
 
-  loadStoryShots () {
-    return new Promise((resolve, reject) => {
-      glob(
-        path.resolve(process.cwd(), config.storyShotsPattern),
-        (err, files) => {
-          if (err) {
-            reject(err)
-          }
+  async loadStoryShots () {
+    const files = await asyncGlob(STORIES_PATH)
 
-          const tree = []
+    return files.map(Storyshots.processFile)
+  }
 
-          files.forEach(file => {
-            const currentTest = {
-              tests: [],
-              file
-            }
-            const source = fs.readFileSync(file, 'utf-8')
+  static processFile (file) {
+    const sourceCode = fs.readFileSync(file, 'utf-8')
 
-            try {
-              const program = esprima.parseModule(source, {
-                loc: true,
-                comment: true,
-                attachComment: true,
-                jsx: true
-              })
+    try {
+      const program = Storyshots.parseSourceCode(sourceCode)
+      const output = {
+        ...Storyshots.walk(program),
+        file
+      }
 
-              walk(program, node => {
-                if (
-                  node.type === 'CallExpression' &&
-                  node.callee.type === 'MemberExpression'
-                ) {
-                  if (node.callee.property.name === 'createPage') {
-                    currentTest.name = node.arguments[0].value
-                  }
+      return output
+    } catch (e) {
+      throw new Error(e)
+    }
+  }
 
-                  if (node.callee.property.name === 'lookupPage') {
-                    currentTest.name = node.arguments[0].value
-                  }
+  static parseSourceCode (source) {
+    return esprima.parseModule(source, ESPRIMA_OPTIONS)
+  }
 
-                  if (node.callee.property.name === 'addExample') {
-                    // check if should be skipped
-                    const comment = program.comments.find(
-                      cmnt =>
-                        cmnt.loc.start.line ===
-                          node.callee.property.loc.start.line &&
-                        cmnt.value.includes('picasso-skip-visuals')
-                    )
+  static walk (program) {
+    const output = {
+      name: '',
+      tests: []
+    }
 
-                    if (comment) {
-                      return
-                    }
+    walk(program, node => Storyshots.visitor(node, output, program))
+    return output
+  }
 
-                    const nameArgument = node.arguments[1]
+  static visitor (node, output, program) {
+    if (ast.isMemberExpression(node)) {
+      Storyshots.processAstNode(node, output, program)
+    }
 
-                    if (nameArgument.type === 'Literal') {
-                      currentTest.tests.push(nameArgument.value)
-                    }
+    return output
+  }
 
-                    if (nameArgument.type === 'ObjectExpression') {
-                      const title = nameArgument.properties.find(
-                        property => property.key.name === 'title'
-                      )
+  static processAstNode (node, output, program) {
+    if (ast.isPageExpression(node)) {
+      output.name = ast.getPageName(node)
+    }
 
-                      currentTest.tests.push(title.value.value)
-                    }
-                  }
-                }
-              })
-              tree.push(currentTest)
-            } catch (e) {
-              reject(e)
-              throw new Error(`Failed to parse module '${file}'`)
-            }
-          })
+    if (ast.isCodeExampleExpression(node)) {
+      if (!ast.isNodeSkipped(node, program)) {
+        output.tests.push(ast.getCodeExampleName(node))
+      }
+    }
 
-          resolve(tree)
-        }
-      )
-    })
+    return output
   }
 }
 
