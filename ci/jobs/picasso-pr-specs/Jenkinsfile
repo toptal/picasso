@@ -3,11 +3,13 @@
 ghHelper = new helpers.GithubNotifyHelper()
 helper = new helpers.Helpers()
 def FAILURE_REASON
+def TOTAL_TESTS = 0
+def FAILED_TESTS = 0
 
 pipeline {
   agent {
       docker {
-          image 'gcr.io/compute-engine-1069/picasso'
+          image 'gcr.io/compute-engine-1069/picasso:latest'
       }
   }
 
@@ -97,17 +99,14 @@ pipeline {
           FAILURE_REASON = 'visual tests'
           ghHelper.notifyPR('Visual Tests', 'PENDING', 'running', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
         }
-        sh './bin/test-visual'
 
-        script {
-          TOTAL_TESTS = sh(returnStdout: true, script: 'cat ./__diff_output__/stats.json | jq ".suite.total" -r').trim()
-          FAILED_TESTS = sh(returnStdout: true, script: 'cat ./__diff_output__/stats.json | jq ".suite.failed" -r').trim()
-        }
+        sh './bin/test-visual'
       } //steps
     }//stage
   }//stages
 
   post {
+
     success {
       success 'Build succeeded!'
 
@@ -129,10 +128,12 @@ pipeline {
           ghHelper.notifyPR('Jest Tests', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
           ghHelper.notifyPR('Visual Tests', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}/Visual_20Regression_20Tests/", 'picasso')
         } else if (FAILURE_REASON == 'visual tests') {
-          messages = "${FAILED_TESTS}/${TOTAL_TESTS} failed"
+          TOTAL_TESTS = sh(returnStdout: true, script: 'cat ./__diff_output__/stats.json | jq ".suite.total" -r').trim()
+          FAILED_TESTS = sh(returnStdout: true, script: 'cat ./__diff_output__/stats.json | jq ".suite.failed" -r').trim()
+          message = "${FAILED_TESTS}/${TOTAL_TESTS} snaphosts failed"
           ghHelper.notifyPR('Lint', 'SUCCESS', 'Success', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
           ghHelper.notifyPR('Jest Tests', 'SUCCESS', 'Success', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
-          ghHelper.notifyPR('Visual Tests', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}/Visual_20Regression_20Tests/", 'picasso')
+          ghHelper.notifyPR('Visual Tests', 'ERROR', message, "${env.ghprbActualCommit}", "${env.BUILD_URL}/Visual_20Regression_20Tests/", 'picasso')
         } else {
           ghHelper.notifyPR('Lint', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
           ghHelper.notifyPR('Jest Tests', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
