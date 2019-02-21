@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.1.0-alpha.26 (21/02/2019)
+*No changelog for this release.*
+
+---
+
 ## v0.1.0-alpha.25 (21/02/2019)
 
 #### Bugfix
