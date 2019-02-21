@@ -18,6 +18,7 @@ export default ({ spacing: { input, inputLabel, borderWidth } }: Theme) => ({
   },
   input: {
     fontSize: '1.15em',
+    border: 'none',
     padding: `
       ${inputLabel.height}
       ${input.paddingLeft}

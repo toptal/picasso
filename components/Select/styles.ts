@@ -46,7 +46,7 @@ export default ({ spacing: { borderWidth, input, inputLabel } }: Theme) => ({
       0
       ${input.paddingRight}
     `,
-    border: `solid ${borderWidth} transparent`
+    border: 'none'
   },
   select: {
     width: '100%'
