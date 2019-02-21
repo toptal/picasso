@@ -71,22 +71,18 @@ export default ({
   },
   labelShrink: {},
   labelIconStart: {},
-  iconStart: {
+  icon: {
     fontSize: '1.15em',
     minWidth: inputIcon.width,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    height: '1em',
+    height: '1em'
+  },
+  iconStart: {
     marginLeft: input.paddingLeft
   },
   iconEnd: {
-    fontSize: '1.15em',
-    minWidth: inputIcon.width,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '1em',
     marginRight: input.paddingRight
   }
 })

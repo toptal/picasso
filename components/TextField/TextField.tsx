@@ -1,4 +1,5 @@
 import React from 'react'
+import cx from 'classnames'
 import MUITextField from '@material-ui/core/TextField'
 import { withStyles } from '@material-ui/core/styles'
 import { OutlinedInputProps } from '@material-ui/core/OutlinedInput'
@@ -33,7 +34,10 @@ const TextField: React.FunctionComponent<Props> = props => {
   if (Icon) {
     const IconAdornment = (
       <InputAdornment
-        className={iconPosition === 'end' ? classes.iconEnd : classes.iconStart}
+        className={cx(
+          classes.icon,
+          iconPosition === 'end' ? classes.iconEnd : classes.iconStart
+        )}
         position={iconPosition}
       >
         {Icon}
