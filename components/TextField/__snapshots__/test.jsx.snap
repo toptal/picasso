@@ -26,7 +26,7 @@ exports[`Icon prop renders icon at the beginning 1`] = `
           </legend>
         </fieldset>
         <div
-          class="MuiInputAdornment-root MuiInputAdornment-positionStart TextField-iconStart"
+          class="MuiInputAdornment-root MuiInputAdornment-positionStart TextField-icon TextField-iconStart"
         >
           <svg
             aria-hidden="true"
@@ -88,7 +88,7 @@ exports[`Icon prop renders icon at the end 1`] = `
           value=""
         />
         <div
-          class="MuiInputAdornment-root MuiInputAdornment-positionEnd TextField-iconEnd"
+          class="MuiInputAdornment-root MuiInputAdornment-positionEnd TextField-icon TextField-iconEnd"
         >
           <svg
             aria-hidden="true"
