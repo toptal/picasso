@@ -20,9 +20,8 @@
   "exclude": [
     "**/test.jsx",
     "**/test.tsx",
-    "**/*.example.jsx",
-    "**/*.example.tsx",
     "**/visual.test.jsx",
-    "**/visual.test.tsx"
+    "**/visual.test.tsx",
+    "**/story/index.jsx"
   ]
 }
