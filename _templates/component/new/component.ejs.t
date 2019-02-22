@@ -13,7 +13,7 @@ import styles from './styles'
 interface Props {
 }
 
-const <%= Name %>: React.FunctionalComponent<Props> = props => {
+const <%= Name %>: React.FunctionComponent<Props> = props => {
   return null
 }
 

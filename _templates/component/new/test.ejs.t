@@ -20,7 +20,7 @@ describe('<%= Name %>', () => {
   let api: RenderResult
 
   beforeEach(() => {
-    api = render<%= Name %>()
+    api = render<%= Name %>(null, {})
   })
   test('default render', () => {
     const { container } = api
