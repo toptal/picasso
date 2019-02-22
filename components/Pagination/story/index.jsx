@@ -6,5 +6,5 @@ const page = PicassoBook.createPage(
 )
 
 page
-  .addExample('Pagination/story/Default-example.jsx', 'Default')
-  .addExample('Pagination/story/Disabled-example.jsx', 'Disabled')
+  .addExample('Pagination/story/Default.example.jsx', 'Default')
+  .addExample('Pagination/story/Disabled.example.jsx', 'Disabled')

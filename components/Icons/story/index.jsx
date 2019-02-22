@@ -9,14 +9,18 @@ const page = PicassoBook.createPage(
 )
 
 page
-  .addExample('Icons/story/Icon-example.jsx', {
+  .addExample('Icons/story/Icon.example.jsx', {
     title: 'Icon',
     description: 'Component to mount icon'
   })
-  .addExample('Icons/story/Size-example.jsx', {
+  .addExample('Icons/story/Size.example.jsx', {
     title: 'Size',
     description:
       'Recommended way to use `font-size` to adjust the icon size, but also you can specify `height` and `width` within styles'
   })
-  .addExample('Icons/story/Color-example.jsx', 'Color')
-  .addExample('Icons/story/Available-example.jsx', 'Available Icons') // picasso-skip-visuals
+  .addExample('Icons/story/Color.example.jsx', 'Color')
+
+/*
+ * TODO: Next part is broken because currently we don't support full compilation of examples
+ * page.addExample('Icons/story/Available.example.jsx', 'Available Icons') // picasso-skip-visuals
+ */

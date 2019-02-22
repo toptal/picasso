@@ -9,10 +9,10 @@ const page = PicassoBook.createPage(
 )
 
 page
-  .addExample('Label/story/Default-example.jsx', 'Default')
-  .addExample('Label/story/Dismissible-example.jsx', 'Dismissible')
-  .addExample('Label/story/Flat-example.jsx', 'Flat')
-  .addExample('Label/story/Statuses-example.jsx', {
+  .addExample('Label/story/Default.example.jsx', 'Default')
+  .addExample('Label/story/Dismissible.example.jsx', 'Dismissible')
+  .addExample('Label/story/Flat.example.jsx', 'Flat')
+  .addExample('Label/story/Statuses.example.jsx', {
     title: 'Statuses',
     description: 'Use these to communicate status'
   })
