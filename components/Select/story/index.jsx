@@ -1,66 +1,22 @@
-import React from 'react'
-import { storiesOf } from '@storybook/react'
+import PicassoBook from '../../../.storybook/components/PicassoBook'
 
-import StoryTeller from '../../../.storybook/StoryTeller'
-import CodeExample from '../../../.storybook/components/CodeExample'
-import Container from '../../../.storybook/components/Container'
-
-const stories = storiesOf('Select', module)
-
-const teller = new StoryTeller(
+const page = PicassoBook.createPage(
   'Select',
-  'Selects are interactive elements that prompt users to make selections or take actions from a set of list of available options.'
-)
-const chapter = teller.addChapter()
-
-chapter.addSection('Default', null, () => (
-  <Container>
-    <CodeExample src='Select/story/Default-example.jsx' />
-  </Container>
-))
-
-chapter.addSection('Types', null, () => (
-  <Container>
-    <CodeExample src='Select/story/Types-example.jsx' />
-  </Container>
-))
-
-chapter.addSection('With label', null, () => (
-  <Container>
-    <CodeExample src='Select/story/WithLabel-example.jsx' />
-  </Container>
-))
-
-chapter.addSection('Disabled', null, () => (
-  <Container>
-    <CodeExample src='Select/story/Disabled-example.jsx' />
-  </Container>
-))
-
-chapter.addSection(
-  'Chosen option',
-  'Renders Select component with already chosen one of the options',
-  () => (
-    <Container>
-      <CodeExample src='Select/story/ChosenOption-example.jsx' />
-    </Container>
-  )
+  `Selects are interactive elements that prompt users to make selections 
+  or take actions from a set of list of available options.`
 )
 
-chapter.addSection('Full width', null, () => (
-  <Container>
-    <CodeExample src='Select/story/FullWidth-example.jsx' />
-  </Container>
-))
-
-chapter.addSection(
-  'Custom options',
-  'Options of the Select component could be not only text, but custom components',
-  () => (
-    <Container>
-      <CodeExample src='Select/story/CustomOptions-example.jsx' />
-    </Container>
-  )
-)
-
-stories.addWithChapters('Select', teller.toStory())
+page.addExample('Select/story/Default-example.jsx', 'Default')
+page.addExample('Select/story/Types-example.jsx', 'Types')
+page.addExample('Select/story/WithLabel-example.jsx', 'With label')
+page.addExample('Select/story/Disabled-example.jsx', 'Disabled')
+page.addExample('Select/story/FullWidth-example.jsx', 'Full width')
+page.addExample('Select/story/ChosenOption-example.jsx', {
+  title: 'Chosen option',
+  description: 'Renders Select component with already chosen one of the options'
+})
+page.addExample('Select/story/CustomOptions-example.jsx', {
+  title: 'Custom options',
+  description:
+    'Options of the Select component could be not only text, but custom components'
+})

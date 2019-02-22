@@ -2,6 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Icon from '../Icons/Icon'
+import Check from '../Icons/Check'
+import IconsLibrary from '../Icons/IconsLibrary'
+IconsLibrary.add(Check)
 
 const CheckedIcon = ({ className }) => (
   <div className={className}>

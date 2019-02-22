@@ -2,6 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Icon from '../Icons/Icon'
+import Minus from '../Icons/Minus'
+import IconsLibrary from '../Icons/IconsLibrary'
+IconsLibrary.add(Minus)
 
 const IndeterminateIcon = ({ className }) => (
   <div className={className}>

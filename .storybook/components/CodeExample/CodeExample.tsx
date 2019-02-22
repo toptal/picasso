@@ -1,3 +1,5 @@
+declare var TEST_ENV: string // defined by ENV
+
 import _ from 'lodash'
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
@@ -54,6 +56,13 @@ class CodeExample extends React.Component<Props, {}> {
         />
       </div>
     )
+
+    /* When we are building storybook for visual tests we want to have
+     * only actual component without source code editor
+     */
+    if (TEST_ENV === 'visual') {
+      return <ComponentRenderer sourceCode={sourceCode} exampleCodePath={src} />
+    }
 
     return (
       <div className={classes.root}>

@@ -1,71 +1,22 @@
-import React from 'react'
-import { storiesOf } from '@storybook/react'
+import PicassoBook from '../../../.storybook/components/PicassoBook'
 
-import StoryTeller from '../../../.storybook/StoryTeller'
-import CodeExample from '../../../.storybook/components/CodeExample'
-import Container from '../../../.storybook/components/Container'
-import Spacer from '../../Spacer'
-import * as iconsImports from '../index'
-import Icon from '../Icon'
-
-const { default: IconsLibrary, ...icons } = iconsImports
-
-IconsLibrary.add(...Object.values(icons))
-
-const stories = storiesOf('Icons', module)
-
-const teller = new StoryTeller('Icons')
-const chapter = teller.addChapter()
-
-chapter.addSection('Icon', 'Component to mount icon', () => (
-  <Container>
-    <CodeExample src='Icons/story/Icon-example.jsx' />
-  </Container>
-))
-
-chapter.addSection(
-  'Size',
-  'Recommended way to use `font-size` to adjust the icon size, but also you can specify `height` and `width` within styles',
-  () => (
-    <Container>
-      <CodeExample src='Icons/story/Size-example.jsx' />
-    </Container>
-  )
+const page = PicassoBook.createPage(
+  'Icon',
+  `Labels are used to describe other topics, incluidng textareas,
+  form fields, users, and more. By default, labels are read-only UI elements.
+  They are used to surface important information about a topic. Labels may also
+  be used to convey status, or used within a group to show selection.`
 )
 
-chapter.addSection('Color', null, () => (
-  <Container>
-    <CodeExample src='Icons/story/Color-example.jsx' />
-  </Container>
-))
-
-chapter.addSection('Available icons list', null, () => (
-  <div
-    style={{
-      display: 'flex',
-      flexDirection: 'row',
-      flex: 1
-    }}
-  >
-    {Object.keys(icons).map((icon, index) => {
-      return (
-        // eslint-disable-next-line react/no-array-index-key
-        <Spacer bottom={2} key={index} right={2}>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center'
-            }}
-          >
-            <Icon name={icon} style={{ height: '2em', width: '2em' }} />
-            <Spacer bottom={2} />
-            <span>{icon}</span>
-          </div>
-        </Spacer>
-      )
-    })}
-  </div>
-))
-
-stories.addWithChapters('Icons', teller.toStory())
+page
+  .addExample('Icons/story/Icon-example.jsx', {
+    title: 'Icon',
+    description: 'Component to mount icon'
+  })
+  .addExample('Icons/story/Size-example.jsx', {
+    title: 'Size',
+    description:
+      'Recommended way to use `font-size` to adjust the icon size, but also you can specify `height` and `width` within styles'
+  })
+  .addExample('Icons/story/Color-example.jsx', 'Color')
+  .addExample('Icons/story/Available-example.jsx', 'Available Icons') // picasso-skip-visuals

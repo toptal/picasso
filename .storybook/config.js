@@ -5,8 +5,10 @@ import { withOptions } from '@storybook/addon-options'
 import { themes } from '@storybook/components'
 
 import Picasso from '../components'
+import PicassoBook from './components/PicassoBook'
 
-const withPicasso = story => <Picasso>{story()}</Picasso>
+const loadFonts = TEST_ENV !== 'visual'
+const withPicasso = story => <Picasso loadFonts={loadFonts}>{story()}</Picasso>
 
 const DECORATORS = [
   withOptions({
@@ -29,9 +31,11 @@ const reqInnerStories = require.context(
   /story\/index.jsx$/
 )
 
-function loadStories() {
+const loadStories = () => {
   require('./stories/Picasso'), req.keys().forEach(filename => req(filename))
   reqInnerStories.keys().forEach(filename => reqInnerStories(filename))
+
+  PicassoBook.generate()
 }
 
 configure(loadStories, module)
