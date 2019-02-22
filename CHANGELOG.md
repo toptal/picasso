@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.1.0-alpha.27 (22/02/2019)
+
+#### Bugfix
+
+- [**Bugfix**] Fix Picasso main js [#75](https://github.com/toptal/picasso/pull/75)
+
+---
+
 ## v0.1.0-alpha.26 (21/02/2019)
 *No changelog for this release.*
 
