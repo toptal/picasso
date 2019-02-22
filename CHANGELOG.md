@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.1.0-alpha.28 (22/02/2019)
+
+#### Specs
+
+- [**Specs**] Integrate storybook visual testing [#67](https://github.com/toptal/picasso/pull/67)
+
+---
+
 ## v0.1.0-alpha.27 (22/02/2019)
 
 #### Bugfix
