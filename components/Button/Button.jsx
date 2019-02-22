@@ -103,6 +103,7 @@ const Button = props => {
 
 Button.propTypes = {
   active: PropTypes.bool,
+  children: PropTypes.node,
   focused: PropTypes.bool,
   fullWidth: PropTypes.bool,
   hovered: PropTypes.bool,
@@ -115,6 +116,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
   active: false,
+  children: null,
   focused: false,
   fullWidth: false,
   hovered: false,
