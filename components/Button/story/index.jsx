@@ -60,7 +60,7 @@ const docs = [
       'default'
     ],
     defaultValue: 'default',
-    description: 'The variant to use.'
+    description: 'The variant to use'
   }
 ]
 

@@ -17,6 +17,7 @@ interface Props {
   value?: string | number | boolean
   disabled?: boolean
   checked?: boolean
+  onChange?: (event: object, checked: boolean) => void
 }
 
 // should be moved to some global interfaces place
@@ -25,17 +26,29 @@ interface GroupFunctionalComponent<T> extends React.FunctionComponent<T> {
 }
 
 const Radio: GroupFunctionalComponent<Props> = props => {
-  const { classes: { root, icon, ...otherClasses }, label } = props
+  const {
+    classes: { root, icon, ...otherClasses },
+    label,
+    checked,
+    color,
+    disabled,
+    value,
+    onChange
+  } = props
 
   const muiRadio = (
     <MUIRadio
-      {...props}
+      checked={checked}
       checkedIcon={<FallbackIcon />}
       classes={{
         ...otherClasses,
         root: cx(root, icon)
       }}
+      color={color}
+      disabled={disabled}
       icon={<FallbackIcon />}
+      onChange={onChange}
+      value={value}
     />
   )
 

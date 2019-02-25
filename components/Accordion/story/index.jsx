@@ -5,7 +5,32 @@ const page = PicassoBook.createPage(
   'Accordions store information behind collapsible sections, allowing for more information to be stored in a limited amount of space.'
 )
 
+const docs = [
+  {
+    name: 'Details',
+    type: 'node',
+    description: 'Collapsable content of accordion'
+  },
+  {
+    name: 'Summary',
+    type: 'node',
+    description: 'Always visible part of accordion'
+  },
+  {
+    name: 'expanded',
+    type: 'boolean',
+    description:
+      'Define accordion content state, whether it should be collapsed or displayed'
+  },
+  {
+    name: 'onChange',
+    type: 'function',
+    description: 'Callback called when accordion is toggled'
+  }
+]
+
 page
+  .addDocs(docs)
   .addExample('Accordion/story/Default.example.jsx', {
     title: 'Default',
     description:
