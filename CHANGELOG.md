@@ -1,5 +1,26 @@
 # Changelog
 
+## v0.1.0-alpha.29 (25/02/2019)
+
+#### Bugfix
+
+- [**Bugfix**] Fix userback integration [#79](https://github.com/toptal/picasso/pull/79)
+
+#### Chore
+
+- [**Chore**] Fix hygen component generation template in favor of the new visual tests structure [#77](https://github.com/toptal/picasso/pull/77)
+- [**Chore**][**DO NOT MERGE**] Move -examples to .examples [#78](https://github.com/toptal/picasso/pull/78)
+
+#### Feature
+
+- [**Feature**] Add logo component [#82](https://github.com/toptal/picasso/pull/82)
+
+#### closed
+
+- [**closed**] Fix some issues with component generator template [#81](https://github.com/toptal/picasso/pull/81)
+
+---
+
 ## v0.1.0-alpha.28 (22/02/2019)
 
 #### Specs
