@@ -9,7 +9,7 @@ import { Classes } from '../styles/types'
 interface Props {
   name: string
   classes: Classes
-  className: string
+  className?: string
 }
 
 const SVG_PREFIX = 'Svg'
