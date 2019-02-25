@@ -5,9 +5,7 @@ class IconsLibrary {
     [index: string]: { component: React.ReactNode }
   } = {}
 
-  static add () {
-    const icons = Array.from(arguments)
-
+  static add (...icons: any[]) {
     icons.forEach(icon => {
       this.listOfImportedIcons[icon.name] = icon
     })
