@@ -48,6 +48,11 @@ const docs = [
     description: 'A button can have different sizes'
   },
   {
+    name: 'onClick',
+    type: 'function',
+    description: 'Callback called when component is clicked'
+  },
+  {
     name: 'variant',
     type: 'enum',
     enums: [
