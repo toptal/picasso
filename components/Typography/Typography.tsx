@@ -18,13 +18,15 @@ type VariantType =
   | 'large'
   | 'small'
   | 'caption'
+  | 'body1'
 
 type Weights = 'thin' | 'light' | 'regular' | 'semibold' | 'bold'
 
 interface Props {
   children: ReactChild
-  variant: VariantType
+  variant?: VariantType
   classes: Classes
+  className?: string
   align?: PropTypes.Alignment
   weight: Weights
 }
@@ -59,13 +61,14 @@ const resolveRootClass = (props: Props) => {
 }
 
 const Typography: React.FunctionComponent<Props> = props => {
-  const { variant, children, align } = props
-  const resolvedVariant = VARIANTS[variant]
+  const { variant, children, align, className } = props
+  const resolvedVariant = VARIANTS[variant!]
   const rootClass = resolveRootClass(props)
 
   return (
     <MUITypography
       align={align}
+      className={className}
       classes={{
         root: rootClass
       }}
@@ -77,6 +80,7 @@ const Typography: React.FunctionComponent<Props> = props => {
 }
 
 Typography.defaultProps = {
+  variant: 'body1',
   weight: 'regular'
 }
 
