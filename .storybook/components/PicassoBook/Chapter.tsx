@@ -4,9 +4,7 @@ import Base from './Base'
 import Section from './Section'
 import CodeExample from '../CodeExample'
 
-const Container = ({ children }) => (
-  <div className="chapter-container">{children}</div>
-)
+import PropsTable, { Documentation } from './components/PropsTable'
 
 class Chapter extends Base {
   type = 'Chapter'
@@ -15,25 +13,35 @@ class Chapter extends Base {
     super(options)
   }
 
-  createSection = options => {
+  createSection = (options: any) => {
     const section = new Section(options)
     this.collection.push(section)
 
     return section
   }
 
-  addExample = (source, _options) => {
+  addDocs = (documentation: Documentation) => {
+    const render = () => <PropsTable documentation={documentation} />
+
+    this.createSection({
+      sectionFn: render
+    })
+
+    return this
+  }
+
+  addExample = (source: string, options: any) => {
     const render = () => (
-      <Container>
+      <div className="chapter-container">
         <CodeExample src={source} />
-      </Container>
+      </div>
     )
 
-    let finalOptions = _options
+    let finalOptions = options
 
-    if (typeof _options === 'string') {
+    if (typeof options === 'string') {
       finalOptions = {
-        title: _options
+        title: options
       }
     }
 
