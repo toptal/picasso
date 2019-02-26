@@ -15,19 +15,21 @@ const Header: React.FunctionComponent<Props> = props => {
   const { classes, title, rightContent, ...rest } = props
 
   return (
-    <div className={classes.root} {...rest}>
-      <div className={classes.left}>
-        <Logo variant='white' />
-        <Spacer right={1} />
-        <div className={classes.divider} />
-        <Spacer right={1} />
-        <Typography className={classes.title} weight='light'>
-          {title}
-        </Typography>
-      </div>
+    <header className={classes.root} {...rest}>
+      <div className={classes.content}>
+        <div className={classes.left}>
+          <Logo variant='white' />
+          <Spacer right={1} />
+          <div className={classes.divider} />
+          <Spacer right={1} />
+          <Typography className={classes.title} weight='light'>
+            {title}
+          </Typography>
+        </div>
 
-      <div className={classes.right}>{rightContent}</div>
-    </div>
+        <div className={classes.right}>{rightContent}</div>
+      </div>
+    </header>
   )
 }
 
