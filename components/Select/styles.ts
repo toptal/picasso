@@ -66,7 +66,9 @@ export default ({ spacing: { borderWidth, input, inputLabel } }: Theme) => ({
     border: `solid ${borderWidth} transparent`
   },
   icon: {
-    right: `calc(${input.paddingRight} - ${CARRET_ICON_LEFT_PADDING})`
+    top: 'calc(50% - 0.5em)',
+    right: `calc(${input.paddingRight} - ${CARRET_ICON_LEFT_PADDING})`,
+    fontSize: '1.5em'
   },
   placeholder: {
     opacity: 0.4

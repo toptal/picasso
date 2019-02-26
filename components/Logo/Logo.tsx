@@ -12,22 +12,18 @@ import { Classes } from '../styles/types'
 
 IconsLibrary.add(LogoIcon, LogoEmblemIcon)
 
-enum Variants {
-  DEFAULT = 'default',
-  WHITE = 'white',
-  BLACK = 'black'
-}
+type VariantType = 'default' | 'white' | 'black'
 
 interface Props {
   classes: Classes
-  emblem: boolean
-  variant: Variants
+  emblem?: boolean
+  variant?: VariantType
 }
 
 const Logo: React.FunctionComponent<Props> = props => {
   const { classes, emblem, variant, ...rest } = props
   const rootClass = emblem ? classes.logoEmblem : classes.logo
-  const colorClass = classes[variant]
+  const colorClass = classes[variant!]
 
   return (
     <Icon
@@ -39,7 +35,7 @@ const Logo: React.FunctionComponent<Props> = props => {
 }
 
 Logo.defaultProps = {
-  variant: Variants.DEFAULT
+  variant: 'default'
 }
 
 export default withStyles(styles)(Logo)
