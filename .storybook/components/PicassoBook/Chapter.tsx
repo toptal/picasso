@@ -1,3 +1,5 @@
+declare var TEST_ENV: string // defined by ENV
+
 import React from 'react'
 
 import Base from './Base'
@@ -21,6 +23,10 @@ class Chapter extends Base {
   }
 
   addDocs = (documentation: Documentation) => {
+    if (TEST_ENV === 'visual') {
+      return this
+    }
+
     const render = () => <PropsTable documentation={documentation} />
 
     this.createSection({
