@@ -68,7 +68,8 @@ export default ({ spacing: { borderWidth, input, inputLabel } }: Theme) => ({
   icon: {
     top: 'calc(50% - 0.5em)',
     right: `calc(${input.paddingRight} - ${CARRET_ICON_LEFT_PADDING})`,
-    fontSize: '1.5em'
+    fontSize: '1.5em',
+    color: 'inherit'
   },
   placeholder: {
     opacity: 0.4
