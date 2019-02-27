@@ -3,7 +3,7 @@
 exports[`controlled version should render collapsed version 1`] = `
 <div>
   <div
-    class="MuiPaper-root MuiPaper-elevation1 MuiExpansionPanel-root"
+    class="MuiPaper-root MuiPaper-elevation1 MuiPaper-rounded MuiExpansionPanel-root MuiExpansionPanel-rounded"
   >
     <div
       aria-hidden="true"
@@ -33,7 +33,7 @@ exports[`controlled version should render collapsed version 1`] = `
 exports[`controlled version should render expanded version 1`] = `
 <div>
   <div
-    class="MuiPaper-root MuiPaper-elevation1 MuiExpansionPanel-root MuiExpansionPanel-expanded"
+    class="MuiPaper-root MuiPaper-elevation1 MuiPaper-rounded MuiExpansionPanel-root MuiExpansionPanel-expanded MuiExpansionPanel-rounded"
   >
     <div
       class="MuiCollapse-container MuiCollapse-entered"
@@ -62,7 +62,7 @@ exports[`controlled version should render expanded version 1`] = `
 exports[`default version for sections should render default version 1`] = `
 <div>
   <div
-    class="MuiPaper-root MuiPaper-elevation1 MuiExpansionPanel-root"
+    class="MuiPaper-root MuiPaper-elevation1 MuiPaper-rounded MuiExpansionPanel-root MuiExpansionPanel-rounded"
   >
     <div
       aria-expanded="false"
@@ -135,7 +135,7 @@ exports[`default version for sections should render default version 1`] = `
 exports[`default version for sections should render expanded version after click on summary 1`] = `
 <div>
   <div
-    class="MuiPaper-root MuiPaper-elevation1 MuiExpansionPanel-root MuiExpansionPanel-expanded"
+    class="MuiPaper-root MuiPaper-elevation1 MuiPaper-rounded MuiExpansionPanel-root MuiExpansionPanel-expanded MuiExpansionPanel-rounded"
   >
     <div
       aria-expanded="true"

@@ -36,12 +36,6 @@ const docs = [
   {
     name: 'native',
     type: 'boolean',
-    description:
-      'Whether Select should be rendered as native HTML &lt;select /&gt;'
-  },
-  {
-    name: 'native',
-    type: 'boolean',
     defaultValue: 'false',
     description:
       'Whether Select should be rendered as native HTML &lt;select /&gt;'

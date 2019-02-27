@@ -15,18 +15,7 @@ const docs = [
     name: 'variant',
     type: 'enum',
     description: 'The variant to use',
-    enums: [
-      'h1',
-      'h2',
-      'h3',
-      'h4',
-      'h5',
-      'h6',
-      'large',
-      'small',
-      'large',
-      'caption'
-    ]
+    enums: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'large', 'small', 'caption']
   },
   {
     name: 'align',

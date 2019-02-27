@@ -41,12 +41,6 @@ const docs = [
     defaultValue: 'false',
     description:
       'Whether component should be rendered inline with other components'
-  },
-  {
-    name: 'bottom',
-    type: 'number',
-    defaultValue: '0',
-    description: 'Bottom margin'
   }
 ]
 
