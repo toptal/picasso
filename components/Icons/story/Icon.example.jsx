@@ -1,8 +1,6 @@
 import React from 'react'
-
-import IconsLibrary from '../IconsLibrary'
-import Check from '../Check'
-import Icon from '../Icon'
+import { Icon, IconsLibrary } from '@toptal/picasso'
+import { Check } from '@toptal/picasso/Icons'
 
 const IconExample = () => (
   <div>

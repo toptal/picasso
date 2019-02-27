@@ -1,6 +1,5 @@
 import React from 'react'
-
-import Pagination from '../Pagination'
+import { Pagination } from '@toptal/picasso'
 
 const PaginationDisabledExample = () => (
   <div>

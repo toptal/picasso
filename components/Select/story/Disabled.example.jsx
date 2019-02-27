@@ -1,6 +1,5 @@
 import React from 'react'
-
-import Select from '../Select'
+import { Select } from '@toptal/picasso'
 
 const SelectDisabledExample = () => (
   <div>

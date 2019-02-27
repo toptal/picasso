@@ -1,6 +1,5 @@
 import React from 'react'
-
-import Accordion from '../Accordion'
+import { Accordion } from '@toptal/picasso'
 
 const AccordionAccordionGroupExample = () => (
   <div style={{ width: '430px' }}>

@@ -1,6 +1,5 @@
 import React from 'react'
-
-import Footer from '../Footer'
+import { Footer } from '@toptal/picasso'
 
 const FooterRightContentExample = () => (
   <div>

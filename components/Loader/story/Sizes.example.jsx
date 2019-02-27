@@ -1,7 +1,5 @@
 import React from 'react'
-
-import Loader from '../Loader'
-import Spacer from '../../Spacer'
+import { Loader, Spacer } from '@toptal/picasso'
 
 const LoaderSizesExample = () => (
   <div>

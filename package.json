@@ -38,6 +38,7 @@
     "react-dom": "^16.6.3"
   },
   "dependencies": {
+    "@babel/standalone": "^7.3.4",
     "@material-ui/core": "^3.9.2",
     "@material-ui/icons": "^3.0.2",
     "@types/classnames": "^2.2.7",
@@ -95,6 +96,7 @@
     "react": "^16.8.1",
     "react-ace": "^6.3.2",
     "react-dom": "^16.8.1",
+    "react-source-render": "^2.0.0-beta.6",
     "react-storybook-addon-chapters": "^3.0.3",
     "react-testing-library": "^5.3.1",
     "regenerator-runtime": "^0.13.1",

@@ -1,7 +1,5 @@
 import React from 'react'
-
-import Label from '../Label'
-import Spacer from '../../Spacer'
+import { Label, Spacer } from '@toptal/picasso'
 
 const LabelDefaultExample = () => (
   <div>

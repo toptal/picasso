@@ -1,7 +1,5 @@
 import React from 'react'
-
-import Select from '../Select'
-import Spacer from '../../Spacer'
+import { Select, Spacer } from '@toptal/picasso'
 
 const SelectTypesExample = () => (
   <div>

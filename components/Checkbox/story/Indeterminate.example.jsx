@@ -1,6 +1,5 @@
 import React from 'react'
-
-import Checkbox from '../Checkbox'
+import { Checkbox } from '@toptal/picasso'
 
 const CheckboxIndeterminateExample = () => (
   <div>

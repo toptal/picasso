@@ -1,6 +1,5 @@
 import React from 'react'
-
-import Loader from '../Loader'
+import { Loader } from '@toptal/picasso'
 
 const LoaderDefaultExample = () => (
   <div>

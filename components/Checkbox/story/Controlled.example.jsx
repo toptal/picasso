@@ -1,7 +1,5 @@
 import React from 'react'
-
-import Checkbox from '../Checkbox'
-import Spacer from '../../Spacer'
+import { Checkbox, Spacer } from '@toptal/picasso'
 
 const CheckboxControlledExample = () => (
   <div>

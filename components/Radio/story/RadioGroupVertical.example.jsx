@@ -1,6 +1,5 @@
 import React from 'react'
-
-import Radio from '../Radio'
+import { Radio } from '@toptal/picasso'
 
 const RadioRadioGroupVerticalExample = () => {
   const [value, setValue] = React.useState(null)

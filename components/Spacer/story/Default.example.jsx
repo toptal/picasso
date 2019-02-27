@@ -1,6 +1,5 @@
 import React from 'react'
-
-import Spacer from '../Spacer'
+import { Spacer } from '@toptal/picasso'
 
 const SpacerDefaultExample = () => (
   <div>

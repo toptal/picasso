@@ -4,20 +4,31 @@ import _ from 'lodash'
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import IconCode from '@material-ui/icons/Code'
+import SourceRender from 'react-source-render'
 
-import Editor from '../Editor'
-import ComponentRenderer from '../ComponentRenderer'
+import { RenderResult } from '../../../@types/react-source-render'
 import Spacer from '../../../components/Spacer'
-import { Accordion, Button } from '../../../components'
-import styles from './styles'
 import { Classes } from '../../../components/styles/types'
+import Picasso, { Typography, Button, Accordion } from '../../../components'
+import Editor from '../Editor'
+import styles from './styles'
 
 interface Props {
-  src: string
   classes: Classes
+  src: string
 }
 
-class CodeExample extends React.Component<Props, {}> {
+const imports: {
+  [key: string]: object
+} = {
+  react: React,
+  '@toptal/picasso': require('../../../components'),
+  '@toptal/picasso/Icons': require('../../../components/Icons')
+}
+
+const resolver = (path: string) => imports[path]
+
+class CodeExample extends React.Component<Props> {
   state = {
     sourceCode: '',
     isEditorVisible: false
@@ -38,13 +49,37 @@ class CodeExample extends React.Component<Props, {}> {
     this.setState({ isEditorVisible: !isEditorVisible })
   }
 
-  handleChangeCode = _.debounce((value: string) => {
+  handleChangeCode = _.debounce(value => {
     this.setState({ sourceCode: value })
   }, 400)
 
   render() {
-    const { src, classes } = this.props
+    const { classes } = this.props
     const { sourceCode, isEditorVisible } = this.state
+
+    /* When we are building storybook for visual tests we want to have
+     * only actual component without source code editor
+     */
+    if (TEST_ENV === 'visual') {
+      const renderInTestPicasso = (element: React.ReactNode) => (
+        <Picasso loadFonts={false}>{element}</Picasso>
+      )
+
+      return (
+        <SourceRender
+          render={renderInTestPicasso}
+          resolver={resolver}
+          source={sourceCode}>
+          <SourceRender.Consumer>
+            {({ element }: RenderResult) => element}
+          </SourceRender.Consumer>
+        </SourceRender>
+      )
+    }
+
+    if (!sourceCode) {
+      return null
+    }
 
     const SourceCodeEditor = (
       <div className={classes.editor}>
@@ -57,32 +92,46 @@ class CodeExample extends React.Component<Props, {}> {
       </div>
     )
 
-    /* When we are building storybook for visual tests we want to have
-     * only actual component without source code editor
-     */
-    if (TEST_ENV === 'visual') {
-      return <ComponentRenderer sourceCode={sourceCode} exampleCodePath={src} />
-    }
+    const renderInPicasso = (element: React.ReactNode) => (
+      <Picasso>{element}</Picasso>
+    )
 
     return (
-      <div className={classes.root}>
-        <div className={classes.component}>
-          <Spacer className={classes.componentRenderer} top={2} bottom={2}>
-            <ComponentRenderer sourceCode={sourceCode} exampleCodePath={src} />
-          </Spacer>
-          <Button
-            className={classes.sourceCodeButton}
-            variant="basic"
-            size="small"
-            icon={<IconCode />}
-            onClick={this.handleShowEditor}>
-            Edit code
-          </Button>
+      <SourceRender
+        render={renderInPicasso}
+        resolver={resolver}
+        source={sourceCode}>
+        <div className={classes.root}>
+          <div className={classes.component}>
+            <Spacer className={classes.componentRenderer} top={2} bottom={2}>
+              <SourceRender.Consumer>
+                {({ element }: RenderResult) => element}
+              </SourceRender.Consumer>
+
+              <SourceRender.Consumer>
+                {({ error }: RenderResult) =>
+                  error && (
+                    <Typography weight="regular" variant="large">
+                      {error.toString()}
+                    </Typography>
+                  )
+                }
+              </SourceRender.Consumer>
+            </Spacer>
+            <Button
+              className={classes.sourceCodeButton}
+              variant="basic"
+              size="small"
+              icon={<IconCode />}
+              onClick={this.handleShowEditor}>
+              Edit code
+            </Button>
+          </div>
+          <div>
+            <Accordion Details={SourceCodeEditor} expanded={isEditorVisible} />
+          </div>
         </div>
-        <div>
-          <Accordion Details={SourceCodeEditor} expanded={isEditorVisible} />
-        </div>
-      </div>
+      </SourceRender>
     )
   }
 }

@@ -1,7 +1,5 @@
 import React from 'react'
-
-import Header from '../Header'
-import Select from '../../Select'
+import { Header, Select } from '@toptal/picasso'
 
 const HeaderRightContentExample = () => (
   <div>

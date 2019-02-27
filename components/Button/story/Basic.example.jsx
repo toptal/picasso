@@ -1,11 +1,10 @@
 import React from 'react'
+import { Button } from '@toptal/picasso'
 
-import Button from '../Button'
-
-const ButtonBasicExample = () => (
+const Example = () => (
   <div>
     <Button>Basic</Button>
   </div>
 )
 
-export default ButtonBasicExample
+export default Example

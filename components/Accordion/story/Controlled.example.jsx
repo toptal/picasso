@@ -1,8 +1,5 @@
 import React from 'react'
-
-import Accordion from '../Accordion'
-import Button from '../../Button'
-import Spacer from '../../Spacer'
+import { Accordion, Button, Spacer } from '@toptal/picasso'
 
 const AccordionControlledExample = () => {
   const [expanded, setExpanded] = React.useState(false)

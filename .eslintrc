@@ -111,7 +111,8 @@
       "files": ["*.example.jsx"],
       "rules": {
         "react/no-multi-comp": "off",
-        "react/require-optimization": "off"
+        "react/require-optimization": "off",
+        "import/no-named-default": "off"
       }
     }
   ]
