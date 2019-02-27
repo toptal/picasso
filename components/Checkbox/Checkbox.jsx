@@ -10,7 +10,16 @@ import UncheckedIcon from './UncheckedIcon'
 import IndeterminateIcon from './IndeterminateIcon'
 
 const Checkbox = props => {
-  const { label, id, classes, ...rest } = props
+  const {
+    label,
+    id,
+    classes,
+    disabled,
+    onChange,
+    value,
+    checked,
+    indeterminate
+  } = props
   const rootClasses = {
     root: classes.root,
     disabled: classes.disabled
@@ -18,14 +27,18 @@ const Checkbox = props => {
 
   const muiCheckbox = (
     <MUICheckbox
+      checked={checked}
       checkedIcon={<CheckedIcon className={classes.checkedIcon} />}
       classes={rootClasses}
+      disabled={disabled}
       icon={<UncheckedIcon className={classes.uncheckedIcon} />}
       id={id}
+      indeterminate={indeterminate}
       indeterminateIcon={
         <IndeterminateIcon className={classes.indeterminateIcon} />
       }
-      {...rest}
+      onChange={onChange}
+      value={value}
     />
   )
 
@@ -47,7 +60,8 @@ Checkbox.propTypes = {
   disabled: PropTypes.bool,
   indeterminate: PropTypes.bool,
   label: PropTypes.string,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  value: PropTypes.string
 }
 
 Checkbox.defaultProps = {
@@ -55,7 +69,8 @@ Checkbox.defaultProps = {
   disabled: false,
   indeterminate: false,
   label: null,
-  onChange: () => {}
+  onChange: () => {},
+  value: undefined
 }
 
 export default withStyles(styles)(Checkbox)

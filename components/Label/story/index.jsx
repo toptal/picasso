@@ -8,7 +8,29 @@ const page = PicassoBook.createPage(
   be used to convey status, or used within a group to show selection.`
 )
 
+const docs = [
+  {
+    name: 'label',
+    type: 'string',
+    description: 'Content of the label component'
+  },
+  {
+    name: 'onDelete',
+    type: 'function',
+    description:
+      'Called when delete icon is clicked. If callback is not provided icon is not rendered'
+  },
+  {
+    name: 'variant',
+    type: 'enum',
+    defaultValue: '',
+    description: 'Select different label color theme',
+    enums: ['flat', 'success', 'error']
+  }
+]
+
 page
+  .addDocs(docs)
   .addExample('Label/story/Default.example.jsx', 'Default')
   .addExample('Label/story/Dismissible.example.jsx', 'Dismissible')
   .addExample('Label/story/Flat.example.jsx', 'Flat')

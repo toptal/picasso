@@ -9,12 +9,12 @@ import ExpansionPanelSummary from '../ExpansionPanelSummary'
 import ExpansionPanelDetails from '../ExpansionPanelDetails'
 
 const Accordion = props => {
-  const { classes, Summary, Details, expanded, ...rest } = props
+  const { classes, Summary, Details, expanded, onChange } = props
 
   const isControlledVariant = expanded === undefined
 
   return (
-    <MUIExpansionPanel expanded={expanded} {...rest}>
+    <MUIExpansionPanel expanded={expanded} onChange={onChange}>
       {Summary && (
         <ExpansionPanelSummary
           classes={{

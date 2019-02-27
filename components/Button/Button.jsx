@@ -40,6 +40,7 @@ const Button = props => {
     focused,
     hovered,
     active,
+    onClick,
     ...rest
   } = props
   const {
@@ -90,6 +91,7 @@ const Button = props => {
       classes={{
         root: rootClassName
       }}
+      onClick={onClick}
       {...rest}
     >
       <div className={cx(childrenClass, { [hiddenClass]: loading })}>
@@ -103,24 +105,28 @@ const Button = props => {
 
 Button.propTypes = {
   active: PropTypes.bool,
+  children: PropTypes.node,
   focused: PropTypes.bool,
   fullWidth: PropTypes.bool,
   hovered: PropTypes.bool,
   icon: PropTypes.node,
   iconPosition: PropTypes.oneOf(Object.values(ICON_POSITIONS)),
   loading: PropTypes.bool,
+  onClick: PropTypes.func,
   size: PropTypes.oneOf(Object.values(SIZES)),
   variant: PropTypes.oneOf(Object.values(VARIANTS))
 }
 
 Button.defaultProps = {
   active: false,
+  children: null,
   focused: false,
   fullWidth: false,
   hovered: false,
   icon: null,
   iconPosition: ICON_POSITIONS.LEFT,
   loading: false,
+  onClick: () => {},
   size: VARIANTS.MEDIUM,
   variant: VARIANTS.DEFAULT
 }
