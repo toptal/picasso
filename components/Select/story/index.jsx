@@ -1,4 +1,5 @@
 import PicassoBook from '../../../.storybook/components/PicassoBook'
+import { Select } from '../Select'
 
 const page = PicassoBook.createPage(
   'Select',
@@ -6,81 +7,10 @@ const page = PicassoBook.createPage(
   or take actions from a set of list of available options.`
 )
 
-const docs = [
-  {
-    name: 'disabled',
-    type: 'boolean',
-    description: 'If true, the switch will be disabled'
-  },
-  {
-    name: 'id',
-    type: 'string',
-    description: 'Component id'
-  },
-  {
-    name: 'fullWidth',
-    type: 'boolean',
-    defaultValue: 'false',
-    description: 'Take the full width of a container'
-  },
-  {
-    name: 'label',
-    type: 'string',
-    description: 'Shrinking label'
-  },
-  {
-    name: 'placeholder',
-    type: 'string',
-    description: 'Placeholder option which is selected by default'
-  },
-  {
-    name: 'native',
-    type: 'boolean',
-    defaultValue: 'false',
-    description:
-      'Whether Select should be rendered as native HTML &lt;select /&gt;'
-  },
-  {
-    name: 'onChange',
-    type: 'function',
-    description: `
-      Callback fired when the state is changed.
-      <br />
-      <br />
-      <b>Signature:</b>
-      function(event: object, child: node) => void
-      event: The event source of the callback.
-      child: Child node which was selected by user    
-    `
-  },
-  {
-    name: 'options',
-    type: 'array',
-    description: `
-      [<br/>
-      &nbsp;&nbsp;{ value: '1', text: 'Option 1' },<br/>
-      &nbsp;&nbsp;{ value: '2', text: 'Option 2' },<br/>
-      &nbsp;&nbsp;{ value: '3', text: 'Option 3' },<br/>
-      &nbsp;&nbsp;{ value: '4', text: 'Option 4' }<br/>
-      ]
-    `
-  },
-  {
-    name: 'value',
-    type: 'string | number',
-    description: 'Selected value'
-  },
-  {
-    name: 'variant',
-    type: 'enum',
-    defaultValue: 'outlined',
-    description: 'The variant to use',
-    enums: ['standard', 'outlined']
-  }
-]
-
 page
-  .addDocs(docs)
+  .addComponentDocs(Select, {
+    variant: { type: 'enum', enums: ['standard', 'outlined'] }
+  })
   .addExample('Select/story/Default.example.jsx', 'Default')
   .addExample('Select/story/Types.example.jsx', 'Types')
   .addExample('Select/story/WithLabel.example.jsx', 'With label')

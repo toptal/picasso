@@ -1,4 +1,4 @@
-export default ({}) => ({
+export default ({ palette }) => ({
   root: {
     width: '100%'
   },
@@ -18,6 +18,11 @@ export default ({}) => ({
   propName: {
     fontWeight: 600,
     borderBottom: '1px dashed'
+  },
+  requiredTag: {
+    fontWeight: 600,
+    color: palette.error.main,
+    paddingLeft: '0.25em'
   },
   highlight: {
     backgroundColor: 'rgb(236, 236, 236, 0.5)',

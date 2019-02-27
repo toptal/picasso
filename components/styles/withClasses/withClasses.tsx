@@ -6,7 +6,7 @@ type ReactComponent = ReactElement<any>
 
 type ConfigItem = [ReactComponent, string]
 
-type Config = (classes: Classes) => Array<ConfigItem>
+type Config = (classes: Classes) => ConfigItem[]
 
 const addClass = (Component: ReactComponent, className: string) => {
   return React.cloneElement(Component, { className })

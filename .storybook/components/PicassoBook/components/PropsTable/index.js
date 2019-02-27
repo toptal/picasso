@@ -1,1 +1,1 @@
-export { default, Documentation, PropDocumentation } from './PropsTable'
+export { default } from './PropsTable'

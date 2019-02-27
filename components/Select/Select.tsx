@@ -17,26 +17,51 @@ interface Option {
   value: string | number
 }
 
-interface Props {
+export interface Props {
   classes: Classes
   className?: string
+  /** If true, the switch will be disabled */
   disabled?: boolean
+  /** Component id */
   id?: string
+  /** Take the full width of a container */
   fullWidth?: boolean
+  /** Shrinking label */
   label?: string
+  /** Placeholder option which is selected by default */
   placeholder?: string
+  /** 'Whether Select should be rendered as native HTML &lt;select /&gt; */
   native?: boolean
+  /**
+   *  Callback fired when the state is changed.
+   *   <br />
+   *   <br />
+   *   <b>Signature:</b>
+   *   function(event: object, child: node) => void
+   *   event: The event source of the callback.
+   *   child: Child node which was selected by user
+   */
   onChange?: (
     event: React.ChangeEvent<HTMLSelectElement>,
     child: React.ReactNode
   ) => void
-  options: Array<Option>
+  /**
+   *  [<br/>
+   *  &nbsp;&nbsp;{ value: '1', text: 'Option 1' },<br/>
+   *  &nbsp;&nbsp;{ value: '2', text: 'Option 2' },<br/>
+   *  &nbsp;&nbsp;{ value: '3', text: 'Option 3' },<br/>
+   *  &nbsp;&nbsp;{ value: '4', text: 'Option 4' }<br/>
+   *  ]
+   */
+  options: Option[]
+  /** Selected value */
   value?: string | number
+  /** The variant to use */
   variant?: 'standard' | 'outlined'
 }
 
 const renderOptions = (
-  options: Array<Option>,
+  options: Option[],
   placeholder?: string,
   isNative?: boolean
 ) => {
@@ -65,7 +90,7 @@ const renderOptions = (
   return resultOptions
 }
 
-const Select: React.FunctionComponent<Props> = props => {
+export const Select: React.FunctionComponent<Props> = props => {
   const {
     classes,
     className,

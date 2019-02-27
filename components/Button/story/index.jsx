@@ -1,76 +1,34 @@
 import PicassoBook from '../../../.storybook/components/PicassoBook'
+import { Button } from '../Button'
 
 const page = PicassoBook.createPage(
   'Button',
   'A Button indicates a possible user action'
 )
 
-const docs = [
-  {
-    name: 'active',
-    type: 'boolean',
-    defaultValue: 'false',
-    description: 'Show it currently has active user selection'
-  },
-  {
-    name: 'children',
-    type: 'node',
-    description: 'Content of Button component'
-  },
-  {
-    name: 'fullWidth',
-    type: 'boolean',
-    defaultValue: 'false',
-    description: 'Take the full width of a container'
-  },
-  {
-    name: 'icon',
-    type: 'node',
-    description: 'Add an <Icon /> along Button`s children'
-  },
-  {
-    name: 'iconPosition',
-    type: 'enum',
-    enums: ['left', 'right'],
-    description: 'Icon can be positioned on the left or right'
-  },
-  {
-    name: 'loading',
-    type: 'boolean',
-    defaultValue: 'false',
-    description: 'A button can show a loading indicator'
-  },
-  {
-    name: 'size',
-    type: 'enum',
-    enums: ['small', 'medium', 'large'],
-    defaultValue: 'medium',
-    description: 'A button can have different sizes'
-  },
-  {
-    name: 'onClick',
-    type: 'function',
-    description: 'Callback called when component is clicked'
-  },
-  {
-    name: 'variant',
-    type: 'enum',
-    enums: [
-      'primary',
-      'secondary',
-      'flat',
-      'basic',
-      'positive',
-      'negative',
-      'default'
-    ],
-    defaultValue: 'default',
-    description: 'The variant to use'
-  }
-]
-
 page
-  .addDocs(docs)
+  .addComponentDocs(Button, {
+    variant: {
+      type: 'enum',
+      enums: [
+        'primary',
+        'secondary',
+        'flat',
+        'basic',
+        'positive',
+        'negative',
+        'default'
+      ]
+    },
+    size: {
+      type: 'enum',
+      enums: ['small', 'medium', 'large']
+    },
+    iconPosition: {
+      type: 'enum',
+      enums: ['left', 'right']
+    }
+  })
   .addExample('Button/story/Basic.example.jsx', 'Basic')
   .addExample('Button/story/Variants.example.jsx', 'Variants')
   .addExample('Button/story/States.example.jsx', 'States')

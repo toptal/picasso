@@ -1,12 +1,20 @@
 declare var TEST_ENV: string // defined by ENV
 
-import React from 'react'
+import React, { ReactNode } from 'react'
+import _ from 'lodash'
 
 import Base from './Base'
 import Section from './Section'
 import CodeExample from '../CodeExample'
 
-import PropsTable, { Documentation } from './components/PropsTable'
+import PropsTable from './components/PropsTable'
+import DocumentationGenerator, {
+  PropDocumentation,
+  PropDocumentationMap,
+  Documentable
+} from '../../utils/documentationGenerator'
+
+const componentDocumentation = new DocumentationGenerator()
 
 class Chapter extends Base {
   type = 'Chapter'
@@ -22,12 +30,42 @@ class Chapter extends Base {
     return section
   }
 
-  addDocs = (documentation: Documentation) => {
+  addDocs = (documentation: PropDocumentation[]) => {
     if (TEST_ENV === 'visual') {
       return this
     }
 
     const render = () => <PropsTable documentation={documentation} />
+
+    this.createSection({
+      sectionFn: render
+    })
+
+    return this
+  }
+
+  addComponentDocs = (
+    Component: Documentable,
+    customDocs: PropDocumentationMap = {} as PropDocumentationMap
+  ) => {
+    if (TEST_ENV === 'visual') {
+      return this
+    }
+
+    if (!Component.__docgenInfo && !customDocs) {
+      return this
+    }
+
+    const generatedDocumentation = componentDocumentation.transform(
+      Component.__docgenInfo
+    )
+
+    const documentation = componentDocumentation.merge(
+      generatedDocumentation,
+      customDocs
+    )
+
+    const render = () => <PropsTable documentation={_.toArray(documentation)} />
 
     this.createSection({
       sectionFn: render
