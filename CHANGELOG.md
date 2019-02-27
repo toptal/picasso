@@ -1,5 +1,26 @@
 # Changelog
 
+## v0.1.0-alpha.30 (27/02/2019)
+
+#### Bugfix
+
+- [**Bugfix**] Fix select component caret color [#85](https://github.com/toptal/picasso/pull/85)
+
+#### Chore
+
+- [**Chore**] Picas 71 docs for components [#86](https://github.com/toptal/picasso/pull/86)
+- [**Chore**] Prop types documentation [#80](https://github.com/toptal/picasso/pull/80)
+
+#### Feature
+
+- [**Feature**] Add Header component [#84](https://github.com/toptal/picasso/pull/84)
+
+#### closed
+
+- [**closed**] Fix readme for adding svg to Picasso [#83](https://github.com/toptal/picasso/pull/83)
+
+---
+
 ## v0.1.0-alpha.29 (25/02/2019)
 
 #### Bugfix
