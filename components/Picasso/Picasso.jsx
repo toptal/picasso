@@ -6,7 +6,14 @@ import {
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { palette, transitions, typography, spacing } from './config'
+import {
+  palette,
+  layout,
+  transitions,
+  typography,
+  spacing,
+  breakpoints
+} from './config'
 import './config/icons'
 import FontsLoader from './FontsLoader'
 import Provider from './PicassoProvider'
@@ -14,8 +21,10 @@ import globalStyles from './styles'
 
 const picasso = {
   palette,
+  layout,
   transitions,
   spacing,
+  breakpoints,
   props: {
     MuiButtonBase: {
       disableRipple: true

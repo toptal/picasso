@@ -28,7 +28,7 @@ interface Props {
   classes: Classes
   className?: string
   align?: PropTypes.Alignment
-  weight: Weights
+  weight?: Weights
 }
 
 interface Variants {
@@ -56,7 +56,7 @@ const resolveRootClass = (props: Props) => {
       [classes.large]: variant === 'large',
       [classes.small]: variant === 'small'
     },
-    classes[weight]
+    classes[weight!]
   )
 }
 

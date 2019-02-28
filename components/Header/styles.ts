@@ -1,14 +1,18 @@
 import { Theme } from '@material-ui/core/styles'
 
-export default ({ palette }: Theme) => ({
+export default ({ palette, layout }: Theme) => ({
   root: {
-    height: '3.75em',
+    backgroundColor: palette.primary.main
+  },
+  content: {
     boxSizing: 'border-box' as 'border-box',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: palette.primary.main,
-    padding: '0 1.5em'
+    maxWidth: layout.contentWidth,
+    height: '3.75em',
+    margin: '0 auto',
+    padding: `0 ${layout.contentPaddingHorizontal}`
   },
   left: {
     display: 'flex',
