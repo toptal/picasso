@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.1.0-alpha.32 (01/03/2019)
+
+#### Chore
+
+- [**Chore**] Handle full user like imports in source code examples [#90](https://github.com/toptal/picasso/pull/90)
+
+---
+
 ## v0.1.0-alpha.31 (28/02/2019)
 
 #### Chore
@@ -334,11 +342,3 @@
 
 ## v0.1.0-alpha.3 (21/12/2018)
 *No changelog for this release.*
-
----
-
-## v0.1.0-alpha.2 (21/12/2018)
-
-#### Chore
-
-- [**Chore**] Include build folder when publish [#14](https://github.com/toptal/picasso/pull/14)
