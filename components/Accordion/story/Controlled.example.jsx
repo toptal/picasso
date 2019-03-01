@@ -1,5 +1,5 @@
 import React from 'react'
-import { Accordion, Button, Spacer } from '@toptal/picasso'
+import { Accordion, Button, Container } from '@toptal/picasso'
 
 const AccordionControlledExample = () => {
   const [expanded, setExpanded] = React.useState(false)
@@ -19,11 +19,11 @@ const AccordionControlledExample = () => {
 }
 
 const DetailsDogDefinitionPanel = () => (
-  <Spacer bottom={2} top={2}>
+  <Container bottom={2} top={2}>
     A dog is a type of domesticated animal. Known for its loyalty and
     faithfulness, it can be found as a welcome guest in many households across
     the world.
-  </Spacer>
+  </Container>
 )
 
 export default AccordionControlledExample

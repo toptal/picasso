@@ -1,10 +1,11 @@
 import React from 'react'
-import { Label, Spacer } from '@toptal/picasso'
+import { Label, Container } from '@toptal/picasso'
 
 const LabelDefaultExample = () => (
   <div>
-    <Label label="Yay! It's done!" variant='success' />
-    <Spacer inline right={1} />
+    <Container inline right={1}>
+      <Label label="Yay! It's done!" variant='success' />
+    </Container>
     <Label label='Nope! Please, try one more time' variant='error' />
   </div>
 )

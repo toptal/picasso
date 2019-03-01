@@ -1,7 +1,7 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
-import { Logo, Spacer, Typography } from '../'
+import { Logo, Container, Typography } from '../'
 import styles from './styles'
 import { Classes } from '../styles/types'
 
@@ -18,13 +18,15 @@ const Header: React.FunctionComponent<Props> = props => {
     <header className={classes.root} {...rest}>
       <div className={classes.content}>
         <div className={classes.left}>
-          <Logo variant='white' />
-          <Spacer right={1} />
+          <Container right={1}>
+            <Logo variant='white' />
+          </Container>
           <div className={classes.divider} />
-          <Spacer right={1} />
-          <Typography className={classes.title} weight='light'>
-            {title}
-          </Typography>
+          <Container left={1}>
+            <Typography className={classes.title} weight='light'>
+              {title}
+            </Typography>
+          </Container>
         </div>
 
         <div className={classes.right}>{rightContent}</div>

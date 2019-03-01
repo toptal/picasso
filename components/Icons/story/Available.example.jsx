@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Spacer from '../../Spacer'
+import Container from '../../Container'
 import Icon from '../'
 import * as iconsImports from '../index'
 const { default: IconsLibrary, ...icons } = iconsImports
@@ -18,7 +18,7 @@ const AvailableExample = () => (
     {Object.keys(icons).map((icon, index) => {
       return (
         // eslint-disable-next-line react/no-array-index-key
-        <Spacer bottom={2} key={index} right={2}>
+        <Container bottom={2} key={index} right={2}>
           <div
             style={{
               display: 'flex',
@@ -26,11 +26,12 @@ const AvailableExample = () => (
               alignItems: 'center'
             }}
           >
-            <Icon name={icon} style={{ height: '2em', width: '2em' }} />
-            <Spacer bottom={2} />
+            <Container bottom={2}>
+              <Icon name={icon} style={{ height: '2em', width: '2em' }} />
+            </Container>
             <span>{icon}</span>
           </div>
-        </Spacer>
+        </Container>
       )
     })}
   </div>

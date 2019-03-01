@@ -1,12 +1,14 @@
 import React from 'react'
-import { Select, Spacer } from '@toptal/picasso'
+import { Select, Container } from '@toptal/picasso'
 
 const SelectTypesExample = () => (
   <div>
-    <Select options={OPTIONS} placeholder='Default...' />
-    <Spacer inline right={2} />
-    <Select options={OPTIONS} placeholder='Default...' variant='standard' />
-    <Spacer inline right={2} />
+    <Container inline right={2}>
+      <Select options={OPTIONS} placeholder='Default...' />
+    </Container>
+    <Container inline right={2}>
+      <Select options={OPTIONS} placeholder='Default...' variant='standard' />
+    </Container>
     <Select native options={OPTIONS} placeholder='Native...' />
   </div>
 )

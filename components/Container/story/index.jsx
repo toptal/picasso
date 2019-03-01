@@ -1,8 +1,8 @@
 import PicassoBook from '../../../.storybook/components/PicassoBook'
 
 const page = PicassoBook.createPage(
-  'Spacer',
-  'Use Spacer to add space between 2 elements.'
+  'Container',
+  'Use Container to add space between 2 elements.'
 )
 
 const docs = [
@@ -46,5 +46,5 @@ const docs = [
 
 page
   .addDocs(docs)
-  .addExample('Spacer/story/Default.example.jsx', 'Default')
-  .addExample('Spacer/story/Inline.example.jsx', 'Inline')
+  .addExample('Container/story/Default.example.jsx', 'Default')
+  .addExample('Container/story/Inline.example.jsx', 'Inline')
