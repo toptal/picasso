@@ -26,12 +26,12 @@ exports[`renders dropdown select 1`] = `
           </legend>
         </fieldset>
         <div
-          class="MuiSelect-root Select-root"
+          class="MuiSelect-root Component-root"
         >
           <div
             aria-haspopup="true"
             aria-pressed="false"
-            class="MuiSelect-select Select-select MuiSelect-selectMenu MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Select-input"
+            class="MuiSelect-select Component-select MuiSelect-selectMenu MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Component-input"
             role="button"
             tabindex="0"
           >
@@ -43,7 +43,7 @@ exports[`renders dropdown select 1`] = `
           />
           <svg
             aria-hidden="true"
-            class="MuiSvgIcon-root MuiSelect-icon Select-icon"
+            class="MuiSvgIcon-root MuiSelect-icon Component-icon"
             focusable="false"
             role="presentation"
             viewBox="0 0 24 24"
@@ -85,11 +85,11 @@ exports[`renders native select 1`] = `
           </legend>
         </fieldset>
         <div
-          class="MuiSelect-root Select-root"
+          class="MuiSelect-root Component-root"
         >
           <select
             aria-invalid="false"
-            class="MuiSelect-select Select-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Select-input"
+            class="MuiSelect-select Component-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Component-input"
           >
             <option
               value="val1"
@@ -109,7 +109,7 @@ exports[`renders native select 1`] = `
           </select>
           <svg
             aria-hidden="true"
-            class="MuiSvgIcon-root MuiSelect-icon Select-icon"
+            class="MuiSvgIcon-root MuiSelect-icon Component-icon"
             focusable="false"
             role="presentation"
             viewBox="0 0 24 24"

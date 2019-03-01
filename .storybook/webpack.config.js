@@ -5,8 +5,13 @@ module.exports = (baseConfig, env, config) => {
   config.module.rules.push({
     test: /\.(ts|tsx)$/,
     use: [
+      require.resolve('ts-loader'),
       {
-        loader: require.resolve('ts-loader')
+        loader: require.resolve('react-docgen-typescript-loader'),
+        options: {
+          tsconfigPath: './tsconfig.json',
+          skipPropsWithoutDoc: true
+        }
       }
     ]
   })

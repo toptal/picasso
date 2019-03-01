@@ -27,7 +27,7 @@ const ICON_POSITIONS = {
   RIGHT: 'right'
 }
 
-const Button = props => {
+export const Button = props => {
   const {
     icon,
     iconPosition,
@@ -104,16 +104,27 @@ const Button = props => {
 }
 
 Button.propTypes = {
+  /** Show it currently has active user selection */
   active: PropTypes.bool,
+  /** Content of Button component */
   children: PropTypes.node,
+  /** Is button focused */
   focused: PropTypes.bool,
+  /** Take the full width of a container */
   fullWidth: PropTypes.bool,
+  /** Show it currently has active user selection */
   hovered: PropTypes.bool,
+  /** Add an <Icon /> along Button`s children */
   icon: PropTypes.node,
+  /** 'Icon can be positioned on the left or right */
   iconPosition: PropTypes.oneOf(Object.values(ICON_POSITIONS)),
+  /** A button can show a loading indicator */
   loading: PropTypes.bool,
+  /** 'A button can have different sizes */
   onClick: PropTypes.func,
+  /** Callback called when component is clicked */
   size: PropTypes.oneOf(Object.values(SIZES)),
+  /** The variant to use */
   variant: PropTypes.oneOf(Object.values(VARIANTS))
 }
 

@@ -95,6 +95,7 @@
     "raw-loader": "^1.0.0",
     "react": "^16.8.1",
     "react-ace": "^6.3.2",
+    "react-docgen-typescript-loader": "^3.0.1",
     "react-dom": "^16.8.1",
     "react-source-render": "^2.0.0-beta.6",
     "react-storybook-addon-chapters": "^3.0.3",

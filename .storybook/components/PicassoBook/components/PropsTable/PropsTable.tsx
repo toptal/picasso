@@ -1,34 +1,56 @@
 import { withStyles } from '@material-ui/core/styles'
 
-import React from 'react'
+import React, { Fragment } from 'react'
+import _ from 'lodash'
 
 import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import TableBody from '@material-ui/core/TableBody'
 import Table from '@material-ui/core/Table'
+import Tooltip from '@material-ui/core/Tooltip'
 import { ClassNameMap } from '@material-ui/core/styles/withStyles'
 import cx from 'classnames'
 
+import { PropDocumentation } from '../../../../utils/documentationGenerator'
+import PropTypeTableCell from './PropTypeTableCell'
+import EnumsList from './EnumsList'
 import styles from './styles'
 
-export interface PropDocumentation {
-  name: string
-  type: string
-  defaultValue?: string
-  description: string
-  enums?: Array<string>
-}
-
-export type Documentation = Array<PropDocumentation>
-
 interface Props {
-  documentation: Documentation
+  documentation: PropDocumentation[]
   classes: Partial<ClassNameMap<string>>
 }
 
+function renderRows({ documentation, classes }: Props): JSX.Element {
+  return (
+    <Fragment>
+      {documentation.map(
+        ({ name, type, defaultValue, description, enums, required }) => (
+          <TableRow key={name}>
+            <TableCell>
+              <span className={classes.propName}>{name}</span>
+              <span className={classes.requiredTag}>{required ? '*' : ''}</span>
+            </TableCell>
+            <PropTypeTableCell type={type} />
+            <TableCell>
+              {defaultValue && (
+                <span className={classes.highlight}>{defaultValue}</span>
+              )}
+            </TableCell>
+            <TableCell className={classes.descriptionCell}>
+              <div dangerouslySetInnerHTML={{ __html: description }} />
+              {enums && <EnumsList enums={enums} />}
+            </TableCell>
+          </TableRow>
+        )
+      )}
+    </Fragment>
+  )
+}
+
 const PropsTable: React.FunctionComponent<Props> = props => {
-  const { documentation, classes } = props
+  const { classes } = props
 
   return (
     <div className={classes.root}>
@@ -46,40 +68,7 @@ const PropsTable: React.FunctionComponent<Props> = props => {
             </TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
-          {documentation.map(
-            ({ name, type, defaultValue, description, enums }) => (
-              <TableRow key={name}>
-                <TableCell>
-                  <span className={classes.propName}>{name}</span>
-                </TableCell>
-                <TableCell>{type}</TableCell>
-                <TableCell>
-                  {defaultValue && (
-                    <span className={classes.highlight}>{defaultValue}</span>
-                  )}
-                </TableCell>
-                <TableCell className={classes.descriptionCell}>
-                  <div dangerouslySetInnerHTML={{ __html: description }} />
-
-                  {enums && (
-                    <div className={classes.enums}>
-                      <strong>Enums:</strong>
-
-                      {enums.map(enumValue => (
-                        <span
-                          key={enumValue}
-                          className={cx(classes.highlight, classes.enum)}>
-                          {enumValue}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                </TableCell>
-              </TableRow>
-            )
-          )}
-        </TableBody>
+        <TableBody>{renderRows(props)}</TableBody>
       </Table>
     </div>
   )
