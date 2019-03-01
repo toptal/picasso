@@ -6,7 +6,7 @@ PicassoProvider.override(() => ({
       fontSize: '1em',
       lineHeight: '1em',
       padding: 0,
-      margin: '0.25em 0.5em',
+      margin: '0.25em 0.5em 0.25em 0',
 
       '&$disabled': {
         cursor: 'not-allowed',

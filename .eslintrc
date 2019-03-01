@@ -112,7 +112,8 @@
       "rules": {
         "react/no-multi-comp": "off",
         "react/require-optimization": "off",
-        "import/no-named-default": "off"
+        "import/no-named-default": "off",
+        "no-console": "off"
       }
     }
   ]

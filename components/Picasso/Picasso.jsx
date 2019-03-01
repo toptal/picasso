@@ -38,14 +38,10 @@ const picasso = {
     MuiPaper: {
       square: true
     },
-    MuiSelect: {
-      disableUnderline: true
-    },
     MuiOutlinedInput: {
       notched: false
     }
   },
-  shadows: Array.apply(null, Array(25)).map(() => 'none'), // Yest, this is needed as MUI expects 25 elements in array otherwise it raises error
   typography: {
     useNextVariants: true,
     inputSize: '18px',
