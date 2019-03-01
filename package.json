@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso",
-  "version": "0.1.0-alpha.32",
+  "version": "0.1.0-beta.0",
   "description": "",
   "main": "build/index.js",
   "module": "build/index.js",
@@ -15,7 +15,7 @@
     "lint": "yarn run lint:path .",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "build:storybook": "build-storybook -c .storybook -o build/storybook",
-    "release:alpha": "yarn version --new-version prerelease",
+    "release:pre": "yarn version --new-version prerelease",
     "build": "yarn run build:svg && cross-env NODE_ENV=production ./bin/build",
     "build:svg": "svgr -d components/Icons --ext jsx components/Icons/svg",
     "build:watch": "cross-env ./bin/build --watch",
