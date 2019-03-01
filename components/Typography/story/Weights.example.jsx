@@ -1,7 +1,5 @@
 import React from 'react'
-
-import Typography from '../Typography'
-import Spacer from '../../Spacer'
+import { Typography, Spacer } from '@toptal/picasso'
 
 const TypographyWeightsExample = () => (
   <div>

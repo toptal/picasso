@@ -1,7 +1,5 @@
 import React from 'react'
-
-import Logo from '../Logo'
-import Spacer from '../../Spacer'
+import { Logo, Spacer } from '@toptal/picasso'
 
 const LogoVariantsExample = () => (
   <div>

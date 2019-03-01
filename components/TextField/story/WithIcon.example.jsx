@@ -1,9 +1,6 @@
 import React from 'react'
-
-import TextField from '../TextField'
-import IconsLibrary from '../../Icons/IconsLibrary'
-import Icon from '../../Icons/Icon'
-import Check from '../../Icons/Check'
+import { TextField, IconsLibrary, Icon } from '@toptal/picasso'
+import { Check } from '@toptal/picasso/Icons'
 
 const TextFieldWithIconExample = () => (
   <div>

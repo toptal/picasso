@@ -1,6 +1,5 @@
 import React from 'react'
-
-import Typography from '../Typography'
+import { Typography } from '@toptal/picasso'
 
 const TypographyDefaultExample = () => (
   <div>

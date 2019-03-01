@@ -12,7 +12,12 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "experimentalDecorators": true,
-    "lib": ["dom", "es2016"]
+    "lib": ["dom", "es2016"],
+    "baseUrl": ".",
+    "typeRoots": ["node_modules/@types", "@types"],
+    "paths": {
+      "*": ["@types/*"]
+    }
   },
   "include": [
     "components/**/*"

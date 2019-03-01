@@ -1,6 +1,5 @@
 import React from 'react'
-
-import Label from '../Label'
+import { Label } from '@toptal/picasso'
 
 const LabelDismissibleExample = () => (
   <div>

@@ -1,6 +1,5 @@
 import React from 'react'
-
-import TextField from '../TextField'
+import { TextField } from '@toptal/picasso'
 
 const TextFieldErrorExample = () => (
   <div>
