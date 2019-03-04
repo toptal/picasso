@@ -7,7 +7,7 @@ to: components/<%= h.changeCase.pascalCase(component) %>/story/<%= h.changeCase.
 -%>
 import React from 'react'
 
-import <%= Component %> from '../<%= Component %>'
+import { <%= Component %> } from '@toptal/picasso'
 
 const <%= Component %><%= ExampleName %>Example = () => (
   <div>
