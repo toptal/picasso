@@ -1,52 +1,42 @@
 import React from 'react'
-import { Logo, Spacer } from '@toptal/picasso'
+import { Logo, Container } from '@toptal/picasso'
 
 const LogoVariantsExample = () => (
   <div>
     <div>
-      <Container bgcolor='#ffffff'>
+      <LogoContainer bgcolor='#ffffff' inline right={1}>
         <Logo />
-      </Container>
-      <Spacer inline right={1} />
+      </LogoContainer>
 
-      <Container bgcolor='#204ecf'>
+      <LogoContainer bgcolor='#204ecf' inline right={1}>
         <Logo variant='white' />
-      </Container>
-      <Spacer inline right={1} />
+      </LogoContainer>
 
-      <Container bgcolor='#ffffff'>
+      <LogoContainer bgcolor='#ffffff' inline>
         <Logo variant='black' />
-      </Container>
+      </LogoContainer>
     </div>
 
-    <Spacer top={2}>
-      <Container bgcolor='#ffffff'>
+    <Container top={2}>
+      <LogoContainer bgcolor='#ffffff' inline right={1}>
         <Logo emblem />
-      </Container>
-      <Spacer inline right={1} />
+      </LogoContainer>
 
-      <Container bgcolor='#204ecf'>
+      <LogoContainer bgcolor='#204ecf' inline right={1}>
         <Logo emblem variant='white' />
-      </Container>
-      <Spacer inline right={1} />
+      </LogoContainer>
 
-      <Container bgcolor='#ffffff'>
+      <LogoContainer bgcolor='#ffffff' inline>
         <Logo emblem variant='black' />
-      </Container>
-    </Spacer>
+      </LogoContainer>
+    </Container>
   </div>
 )
 
-const Container = ({ children, bgcolor }) => (
-  <div
-    style={{
-      backgroundColor: bgcolor,
-      display: 'inline-block',
-      padding: '2em'
-    }}
-  >
+const LogoContainer = ({ children, bgcolor, ...rest }) => (
+  <Container {...rest} style={{ backgroundColor: bgcolor, padding: '2em' }}>
     {children}
-  </div>
+  </Container>
 )
 
 export default LogoVariantsExample

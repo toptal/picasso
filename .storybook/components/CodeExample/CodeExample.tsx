@@ -7,9 +7,13 @@ import IconCode from '@material-ui/icons/Code'
 import SourceRender from 'react-source-render'
 
 import { RenderResult } from '../../../@types/react-source-render'
-import Spacer from '../../../components/Spacer'
 import { Classes } from '../../../components/styles/types'
-import Picasso, { Typography, Button, Accordion } from '../../../components'
+import Picasso, {
+  Typography,
+  Button,
+  Accordion,
+  Container
+} from '../../../components'
 import Editor from '../Editor'
 import styles from './styles'
 
@@ -103,7 +107,7 @@ class CodeExample extends React.Component<Props> {
         source={sourceCode}>
         <div className={classes.root}>
           <div className={classes.component}>
-            <Spacer className={classes.componentRenderer} top={2} bottom={2}>
+            <Container className={classes.componentRenderer} top={2} bottom={2}>
               <SourceRender.Consumer>
                 {({ element }: RenderResult) => element}
               </SourceRender.Consumer>
@@ -117,7 +121,7 @@ class CodeExample extends React.Component<Props> {
                   )
                 }
               </SourceRender.Consumer>
-            </Spacer>
+            </Container>
             <Button
               className={classes.sourceCodeButton}
               variant="basic"

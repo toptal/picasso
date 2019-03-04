@@ -1,10 +1,11 @@
 import React from 'react'
-import { Checkbox, Spacer } from '@toptal/picasso'
+import { Checkbox, Container } from '@toptal/picasso'
 
 const CheckboxDisabledExample = () => (
   <div>
-    <Checkbox checked={false} disabled label='Unchecked' />
-    <Spacer bottom={1} />
+    <Container bottom={1}>
+      <Checkbox checked={false} disabled label='Unchecked' />
+    </Container>
     <Checkbox checked disabled label='Checked' />
   </div>
 )
