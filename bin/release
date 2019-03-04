@@ -16,7 +16,7 @@ let packageJson = JSON.parse(
 )
 const previousVersion = parseVersion(packageJson.version)
 
-exec('yarn release:alpha', {
+exec('yarn release:pre', {
   stdio: 'inherit'
 })
 
