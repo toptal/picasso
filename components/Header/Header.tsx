@@ -1,22 +1,35 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { withStyles } from '@material-ui/core/styles'
+import cx from 'classnames'
 
 import { Logo, Container, Typography } from '../'
+import { PageContext, PageContextProps } from '../Page'
 import styles from './styles'
 import { Classes } from '../styles/types'
 
 interface Props {
   classes: Classes
+  /** Title which is displayed along the Logo */
   title: string
+  /** Pass custom components that you want to render on the right side of the header */
   rightContent?: React.ReactNode
 }
 
-const Header: React.FunctionComponent<Props> = props => {
+export const Header: React.FunctionComponent<Props> = props => {
   const { classes, title, rightContent, ...rest } = props
+
+  const { fullWidth } = useContext<PageContextProps>(PageContext)
+
+  const contentClassnames = cx(
+    {
+      [classes.fullWidth]: fullWidth
+    },
+    classes.content
+  )
 
   return (
     <header className={classes.root} {...rest}>
-      <div className={classes.content}>
+      <div className={contentClassnames}>
         <div className={classes.left}>
           <Container right={1}>
             <Logo variant='white' />
@@ -34,7 +47,5 @@ const Header: React.FunctionComponent<Props> = props => {
     </header>
   )
 }
-
-Header.defaultProps = {}
 
 export default withStyles(styles)(Header)

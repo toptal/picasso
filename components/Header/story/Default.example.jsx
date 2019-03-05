@@ -1,9 +1,9 @@
 import React from 'react'
-import { Header } from '@toptal/picasso'
+import { Page } from '@toptal/picasso'
 
 const HeaderDefaultExample = () => (
   <div>
-    <Header title='Onboarding' />
+    <Page.Header title='Onboarding' />
   </div>
 )
 
