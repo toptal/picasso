@@ -1,6 +1,6 @@
 import { Theme } from '@material-ui/core/styles'
 
-export default ({ palette, breakpoints, layout }: Theme) => ({
+export default ({ palette, screens, layout }: Theme) => ({
   root: {
     backgroundColor: palette.grey[500]
   },
@@ -16,7 +16,7 @@ export default ({ palette, breakpoints, layout }: Theme) => ({
     fontSize: '0.875rem',
     lineHeight: '1em',
 
-    [breakpoints.smallScreen()]: {
+    [screens('small', 'medium', 'large')]: {
       flexDirection: 'column' as 'column'
     }
   },
@@ -32,7 +32,7 @@ export default ({ palette, breakpoints, layout }: Theme) => ({
     justifyContent: 'center',
     marginTop: '1rem',
 
-    [breakpoints.smallScreen()]: {
+    [screens('small', 'medium', 'large')]: {
       order: -1
     }
   }
