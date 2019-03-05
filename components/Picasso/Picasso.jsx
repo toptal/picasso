@@ -3,6 +3,7 @@ import {
   MuiThemeProvider,
   withStyles
 } from '@material-ui/core/styles'
+import CssBaseline from '@material-ui/core/CssBaseline'
 import React from 'react'
 import PropTypes from 'prop-types'
 
@@ -56,20 +57,23 @@ const PicassoGlobalStylesProvider = withStyles(globalStyles, {
   name: 'Picasso'
 })(({ children, classes }) => <div className={classes.root}>{children}</div>)
 
-const Picasso = ({ loadFonts = true, ...rest }) => (
+const Picasso = ({ loadFonts = true, reset = true, ...rest }) => (
   <MuiThemeProvider theme={PicassoProvider.theme}>
     {loadFonts && <FontsLoader />}
+    {reset && <CssBaseline />}
     <PicassoGlobalStylesProvider {...rest} />
   </MuiThemeProvider>
 )
 
 Picasso.propTypes = {
   children: PropTypes.node.isRequired,
-  loadFonts: PropTypes.bool
+  loadFonts: PropTypes.bool,
+  reset: PropTypes.bool
 }
 
 Picasso.defaultProps = {
-  loadFonts: true
+  loadFonts: true,
+  reset: true
 }
 
 export { PicassoProvider }
