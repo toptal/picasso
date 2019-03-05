@@ -1,21 +1,21 @@
-[PICAS-NNNN](https://youtrack.toptal.net/youtrack/issue/PICAS-NNNN)
+[FX-NNNN](https://toptal-core.atlassian.net/browse/FX-NNNN)
 
- ### Description
+### Description
 
 Describe the changes and motivations for the pull request, unless evident from the title.
 
- ### How to test
+### How to test
 
 - FIXME: Add the steps describing how to verify your changes
 - ...
 
 ### Screenshots
 
-| Before.                                      | After.                                       |
-| -------------------------------------------- | -------------------------------------------- |
-| Insert screenshots or screen recordings      | Insert screenshots or screen recordings      |
+| Before.                                 | After.                                  |
+| --------------------------------------- | --------------------------------------- |
+| Insert screenshots or screen recordings | Insert screenshots or screen recordings |
 
- ### Review
+### Review
 
 - [ ] `CHANGELOG.md`
 - [ ] `README.md`
