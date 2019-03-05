@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/npm-0.1.0--alpha.32-orange.svg)
+![](https://img.shields.io/badge/npm-0.1.0--beta.1-yellow.svg)
 [![#-frontend-exp-core](https://img.shields.io/badge/slack-%23--frontend--exp--core-green.svg)](https://toptal-core.slack.com/app_redirect?channel=CERF5NHT3)
 
 # 🎨 Picasso (a.k.a. Toptal UI components library)
@@ -52,22 +52,22 @@ docker run -t -i --rm -e -v ${PWD}/components:/app/components NPM_TOKEN=$NPM_TOK
 
 ## Project commands
 
-| Command                       | Description                                                         |
-| ----------------------------- | ------------------------------------------------------------------- |
-| **yarn lint**                 | Lint all files                                                      |
-| **yarn lint:path pathToFile** | Lint specific file                                                  |
-| **yarn test**                 | Run unit tests                                                      |
-| **yarn test -u**              | Update jest snapshots to current version                            |
-| **yarn test:watch**           | Run unit tests in watch mode                                        |
-| **yarn test:visual**          | Run visual regression tests in Docker                               |
-| **yarn test:visual -u**       | Update visual regression snapshots in docker                        |
-| **yarn storybook**            | Start storybook instance and inspect components                     |
+| Command                       | Description                                                               |
+| ----------------------------- | ------------------------------------------------------------------------- |
+| **yarn lint**                 | Lint all files                                                            |
+| **yarn lint:path pathToFile** | Lint specific file                                                        |
+| **yarn test**                 | Run unit tests                                                            |
+| **yarn test -u**              | Update jest snapshots to current version                                  |
+| **yarn test:watch**           | Run unit tests in watch mode                                              |
+| **yarn test:visual**          | Run visual regression tests in Docker                                     |
+| **yarn test:visual -u**       | Update visual regression snapshots in docker                              |
+| **yarn storybook**            | Start storybook instance and inspect components                           |
 | **yarn release:pre**          | Bump pre-release version in `package.json` and create new version git tag |
-| **yarn generate:component**   | Generate a new component template                                   |
-| **yarn generate:example**     | Generate a new component component code example                     |
-| **yarn build**                | Build the library                                                   |
-| **yarn build:storybook**      | Build Storybook as static website                                   |
-| **yarn symlink**              | Symlink current version of library for development                  |
+| **yarn generate:component**   | Generate a new component template                                         |
+| **yarn generate:example**     | Generate a new component component code example                           |
+| **yarn build**                | Build the library                                                         |
+| **yarn build:storybook**      | Build Storybook as static website                                         |
+| **yarn symlink**              | Symlink current version of library for development                        |
 
 ## Icons
 
