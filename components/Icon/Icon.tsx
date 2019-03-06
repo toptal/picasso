@@ -30,4 +30,6 @@ export const Icon: React.FunctionComponent<Props> = props => {
   return <IconComponent {...rest} className={cx(className, classes.root)} />
 }
 
+Icon.displayName = 'Icon'
+
 export default withStyles(styles)(Icon)

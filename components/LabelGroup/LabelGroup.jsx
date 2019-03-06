@@ -25,4 +25,6 @@ LabelGroup.defaultProps = {
   classes: null
 }
 
+LabelGroup.displayName = 'LabelGroup'
+
 export default withStyles(styles)(LabelGroup)

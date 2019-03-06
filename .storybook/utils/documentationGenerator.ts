@@ -19,6 +19,7 @@ export interface PropDocumentationMap {
 }
 
 export interface Documentable {
+  displayName: string
   __docgenInfo: any
 }
 

@@ -17,18 +17,18 @@ page
       enums: Object.keys(icons).map(decapitalizeFirstLetter)
     }
   })
-  .addExample('Icons/story/Icon.example.jsx', {
+  .addExample('Icon/story/Icon.example.jsx', {
     title: 'Icon',
     description: 'Component to mount icon'
   })
-  .addExample('Icons/story/Size.example.jsx', {
+  .addExample('Icon/story/Size.example.jsx', {
     title: 'Size',
     description:
       'Recommended way to use `font-size` to adjust the icon size, but also you can specify `height` and `width` within styles'
   })
-  .addExample('Icons/story/Color.example.jsx', 'Color')
+  .addExample('Icon/story/Color.example.jsx', 'Color')
 
 /*
  * TODO: Next part is broken because currently we don't support full compilation of examples
- * page.addExample('Icons/story/Available.example.jsx', 'Available Icons') // picasso-skip-visuals
+ * page.addExample('Icon/story/Available.example.jsx', 'Available Icons') // picasso-skip-visuals
  */

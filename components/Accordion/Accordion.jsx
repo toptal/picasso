@@ -55,4 +55,6 @@ Accordion.defaultProps = {
   onChange: () => {}
 }
 
+Accordion.displayName = 'Accordion'
+
 export default withStyles(styles)(Accordion)

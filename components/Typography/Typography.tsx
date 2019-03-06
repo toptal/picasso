@@ -23,10 +23,11 @@ type VariantType =
 type Weights = 'thin' | 'light' | 'regular' | 'semibold' | 'bold'
 
 interface Props {
+  /** Font variant inner text */
   variant?: VariantType
   classes: Classes
   className?: string
-  /** Font weight of the inner text */
+  /** Text align of the inner text */
   align?: PropTypes.Alignment
   /** Font weight of the inner text */
   weight?: Weights
@@ -56,7 +57,8 @@ const resolveRootClass = (props: Props) => {
   return cx(
     {
       [classes.large]: variant === 'large',
-      [classes.small]: variant === 'small'
+      [classes.small]: variant === 'small',
+      [classes.body]: variant === 'body'
     },
     classes[weight!]
   )
@@ -85,5 +87,7 @@ Typography.defaultProps = {
   variant: 'body',
   weight: 'regular'
 }
+
+Typography.displayName = 'Typography'
 
 export default withStyles(styles)(Typography)

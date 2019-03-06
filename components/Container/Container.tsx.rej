@@ -1,5 +1,0 @@
-diff a/components/Container/Container.tsx b/components/Container/Container.tsx	(rejected hunks)
-@@ -33 +33,2 @@ export const Container: React.FunctionComponent<Props> = props => {
--      }}>
-+      }}
-+    >

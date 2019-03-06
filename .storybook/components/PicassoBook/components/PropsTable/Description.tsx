@@ -11,15 +11,24 @@ const HIGHLIGHT_REGEXP: RegExp = /(`.*?`)/g
 interface Props {
   description: string
   classes: Partial<ClassNameMap<string>>
+  propName?: string
 }
 
-const Description = ({ description, classes }: Props): JSX.Element => {
+const Description = ({
+  description,
+  classes,
+  propName
+}: Props): JSX.Element => {
+  if (!description) {
+    window.console.warn(`Failed to parse description for '${propName}'`)
+  }
+
   const parts = description.split(HIGHLIGHT_REGEXP)
 
-  const children = parts.map(part => {
+  const children = parts.map((part, i) => {
     if (part.match(HIGHLIGHT_REGEXP)) {
       return (
-        <span className={cx(classes.sourceCode, classes.highlight)}>
+        <span key={i} className={cx(classes.sourceCode, classes.highlight)}>
           {part.replace(/`/g, '')}
         </span>
       )

@@ -48,6 +48,9 @@ Label.defaultProps = {
   onDelete: undefined,
   variant: undefined
 }
+
+Label.displayName = 'Label'
+
 Label.Group = LabelGroup
 
 export default withStyles(styles)(Label)

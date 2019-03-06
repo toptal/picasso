@@ -40,11 +40,10 @@ export const Footer: React.FunctionComponent<Props> = props => {
   )
 }
 
-<<<<<<< HEAD
-=======
 Footer.defaultProps = {
   rightContent: null
 }
 
->>>>>>> 988d087... [FX-42] Migrate manual props docs to auto-generated
+Footer.displayName = 'Footer'
+
 export default withStyles(styles)(Footer)

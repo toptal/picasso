@@ -169,4 +169,6 @@ Select.defaultProps = {
   variant: 'outlined'
 }
 
+Select.displayName = 'Select'
+
 export default withStyles(styles)(Select)

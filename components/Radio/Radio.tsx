@@ -74,6 +74,8 @@ Radio.defaultProps = {
   value: undefined
 }
 
+Radio.displayName = 'Radio'
+
 Radio.Group = RadioGroup
 
 export default withStyles(styles)(Radio)

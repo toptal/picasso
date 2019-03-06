@@ -79,4 +79,6 @@ Checkbox.defaultProps = {
   value: undefined
 }
 
+Checkbox.displayName = 'Checkbox'
+
 export default withStyles(styles)(Checkbox)

@@ -108,11 +108,9 @@ Button.propTypes = {
   active: PropTypes.bool,
   /** Content of Button component */
   children: PropTypes.node,
-  /** Is button focused */
   focused: PropTypes.bool,
   /** Take the full width of a container */
   fullWidth: PropTypes.bool,
-  /** Show button in the hover state (mouse over) */
   hovered: PropTypes.bool,
   /** Add an `<Icon />` along Button`s children */
   icon: PropTypes.node,
@@ -141,6 +139,8 @@ Button.defaultProps = {
   size: VARIANTS.MEDIUM,
   variant: VARIANTS.DEFAULT
 }
+
+Button.displayName = 'Button'
 
 Button.Group = Group
 

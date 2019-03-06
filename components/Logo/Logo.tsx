@@ -6,7 +6,7 @@ import { Icon } from '../'
 import IconsLibrary, {
   Logo as LogoIcon,
   LogoEmblem as LogoEmblemIcon
-} from '../Icons'
+} from '../Icon'
 import styles from './styles'
 import { Classes } from '../styles/types'
 

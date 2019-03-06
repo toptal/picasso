@@ -9,146 +9,146 @@ exports[`renders default 1`] = `
       class="ButtonGroup-root"
     >
       <button
-        class="MuiButtonBase-root Component-basic Component-root ButtonGroup-button"
+        class="MuiButtonBase-root Button-basic Button-root ButtonGroup-button"
         tabindex="0"
         type="button"
       >
         <div
-          class="Component-children"
+          class="Button-children"
         >
           «
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Component-basic Component-root ButtonGroup-button"
+        class="MuiButtonBase-root Button-basic Button-root ButtonGroup-button"
         tabindex="0"
         type="button"
       >
         <div
-          class="Component-children"
+          class="Button-children"
         >
           ⟨
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Component-basic Component-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <div
-          class="Component-children"
+          class="Button-children"
         >
           ...
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Component-basic Component-root ButtonGroup-button"
+        class="MuiButtonBase-root Button-basic Button-root ButtonGroup-button"
         tabindex="0"
         type="button"
       >
         <div
-          class="Component-children"
+          class="Button-children"
         >
           2
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Component-basic Component-root ButtonGroup-button"
+        class="MuiButtonBase-root Button-basic Button-root ButtonGroup-button"
         tabindex="0"
         type="button"
       >
         <div
-          class="Component-children"
+          class="Button-children"
         >
           3
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Component-basic Component-root ButtonGroup-button"
+        class="MuiButtonBase-root Button-basic Button-root ButtonGroup-button"
         tabindex="0"
         type="button"
       >
         <div
-          class="Component-children"
+          class="Button-children"
         >
           4
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Component-primary Component-root ButtonGroup-button"
+        class="MuiButtonBase-root Button-primary Button-root ButtonGroup-button"
         tabindex="0"
         type="button"
       >
         <div
-          class="Component-children"
+          class="Button-children"
         >
           5
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Component-basic Component-root ButtonGroup-button"
+        class="MuiButtonBase-root Button-basic Button-root ButtonGroup-button"
         tabindex="0"
         type="button"
       >
         <div
-          class="Component-children"
+          class="Button-children"
         >
           6
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Component-basic Component-root ButtonGroup-button"
+        class="MuiButtonBase-root Button-basic Button-root ButtonGroup-button"
         tabindex="0"
         type="button"
       >
         <div
-          class="Component-children"
+          class="Button-children"
         >
           7
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Component-basic Component-root ButtonGroup-button"
+        class="MuiButtonBase-root Button-basic Button-root ButtonGroup-button"
         tabindex="0"
         type="button"
       >
         <div
-          class="Component-children"
+          class="Button-children"
         >
           8
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Component-basic Component-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <div
-          class="Component-children"
+          class="Button-children"
         >
           ...
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Component-basic Component-root ButtonGroup-button"
+        class="MuiButtonBase-root Button-basic Button-root ButtonGroup-button"
         tabindex="0"
         type="button"
       >
         <div
-          class="Component-children"
+          class="Button-children"
         >
           ⟩
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Component-basic Component-root ButtonGroup-button"
+        class="MuiButtonBase-root Button-basic Button-root ButtonGroup-button"
         tabindex="0"
         type="button"
       >
         <div
-          class="Component-children"
+          class="Button-children"
         >
           »
         </div>
@@ -167,157 +167,157 @@ exports[`renders disabled 1`] = `
       class="ButtonGroup-root"
     >
       <button
-        class="MuiButtonBase-root Component-basic Component-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <div
-          class="Component-children"
+          class="Button-children"
         >
           «
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Component-basic Component-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <div
-          class="Component-children"
+          class="Button-children"
         >
           ⟨
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Component-basic Component-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <div
-          class="Component-children"
+          class="Button-children"
         >
           ...
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Component-basic Component-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <div
-          class="Component-children"
+          class="Button-children"
         >
           2
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Component-basic Component-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <div
-          class="Component-children"
+          class="Button-children"
         >
           3
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Component-basic Component-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <div
-          class="Component-children"
+          class="Button-children"
         >
           4
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Component-primary Component-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-primary Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <div
-          class="Component-children"
+          class="Button-children"
         >
           5
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Component-basic Component-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <div
-          class="Component-children"
+          class="Button-children"
         >
           6
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Component-basic Component-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <div
-          class="Component-children"
+          class="Button-children"
         >
           7
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Component-basic Component-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <div
-          class="Component-children"
+          class="Button-children"
         >
           8
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Component-basic Component-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <div
-          class="Component-children"
+          class="Button-children"
         >
           ...
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Component-basic Component-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <div
-          class="Component-children"
+          class="Button-children"
         >
           ⟩
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Component-basic Component-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <div
-          class="Component-children"
+          class="Button-children"
         >
           »
         </div>

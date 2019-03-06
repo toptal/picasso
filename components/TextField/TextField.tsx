@@ -121,4 +121,6 @@ TextField.defaultProps = {
   multiline: false
 }
 
+TextField.displayName = 'TextField'
+
 export default withStyles(styles)(TextField)

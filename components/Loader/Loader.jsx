@@ -66,4 +66,6 @@ Loader.defaultProps = {
   variant: 'indeterminate'
 }
 
+Loader.displayName = 'Loader'
+
 export default withStyles(styles)(Loader)

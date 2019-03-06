@@ -49,4 +49,6 @@ export const Header: React.FunctionComponent<Props> = props => {
   )
 }
 
+Header.displayName = 'Header'
+
 export default withStyles(styles)(Header)

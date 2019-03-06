@@ -56,6 +56,12 @@ class Chapter extends Base {
       return this
     }
 
+    if (!Component.__docgenInfo) {
+      throw new Error(
+        `Failed to parse __docgenInfo for '${Component.displayName}'`
+      )
+    }
+
     const generatedDocumentation = componentDocumentation.transform(
       Component.__docgenInfo
     )
@@ -64,8 +70,6 @@ class Chapter extends Base {
       generatedDocumentation,
       customDocs
     )
-
-    console.log(customDocs)
 
     const render = () => <PropsTable documentation={_.toArray(documentation)} />
 

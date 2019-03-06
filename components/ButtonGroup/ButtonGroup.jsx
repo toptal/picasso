@@ -25,6 +25,8 @@ ButtonGroup.defaultProps = {
   classes: {}
 }
 
+ButtonGroup.displayName = 'ButtonGroup'
+
 export default withStyles(styles)(
   withClasses(classes => [[Button, classes.button]])(ButtonGroup)
 )

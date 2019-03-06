@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Icon from '../Icons/Icon'
-import Check from '../Icons/Check'
-import IconsLibrary from '../Icons/IconsLibrary'
+import Icon from '../Icon/Icon'
+import Check from '../Icon/Check'
+import IconsLibrary from '../Icon/IconsLibrary'
 IconsLibrary.add(Check)
 
 const CheckedIcon = ({ className }) => (
