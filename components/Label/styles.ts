@@ -3,7 +3,7 @@ import { Theme } from '@material-ui/core/styles'
 export default ({ palette }: Theme) => ({
   flat: {
     backgroundColor: palette.grey[100],
-    color: palette.grey[200]
+    color: palette.grey[300]
   },
   success: {
     backgroundColor: palette.positive.light,

@@ -3,9 +3,9 @@ import {
   Modal,
   Button,
   TextField,
-  Container,
   Checkbox,
-  Select
+  Select,
+  Form
 } from '@toptal/picasso'
 
 const STATES = [
@@ -45,18 +45,18 @@ const ModalDefaultExample = () => {
       >
         <Modal.Title>Edit address details</Modal.Title>
         <Modal.Content>
-          <Container bottom={1}>
+          <Form.Field>
             <TextField label='City' value='Alabaster' />
-          </Container>
-          <Container bottom={1}>
+          </Form.Field>
+          <Form.Field>
             <TextField label='Street' value='John Fruit' />
-          </Container>
-          <Container bottom={1}>
+          </Form.Field>
+          <Form.Field>
             <Select label='State' options={STATES} value='Alabama' />
-          </Container>
-          <Container>
+          </Form.Field>
+          <Form.Field>
             <Checkbox label='Use shipping address for billing' />
-          </Container>
+          </Form.Field>
         </Modal.Content>
         <Modal.Actions>
           <Button disabled={isLoading} variant='basic'>
