@@ -1,4 +1,5 @@
 import PicassoBook from '../../../.storybook/components/PicassoBook'
+import { Logo } from '../Logo'
 
 const page = PicassoBook.createPage(
   'Logo',
@@ -10,23 +11,13 @@ const page = PicassoBook.createPage(
 `
 )
 
-const docs = [
-  {
-    name: 'emblem',
-    type: 'boolean',
-    description: 'Whether emblem variant should be rendered instead of wordmark'
-  },
-  {
-    name: 'variant',
-    type: 'enum',
-    description: 'Color variant which should be sued',
-    defaultValue: 'default',
-    enums: ['default', 'white', 'black']
-  }
-]
-
 page
-  .addDocs(docs)
+  .addComponentDocs(Logo, {
+    variant: {
+      type: 'enum',
+      enums: ['default', 'white', 'black']
+    }
+  })
   .addExample('Logo/story/Default.example.jsx', 'Default')
   .addExample('Logo/story/Emblem.example.jsx', 'Emblem')
   .addExample('Logo/story/Variants.example.jsx', 'Variants')

@@ -9,7 +9,13 @@ const page = PicassoBook.createPage(
 
 page
   .addComponentDocs(Select, {
-    variant: { type: 'enum', enums: ['standard', 'outlined'] }
+    variant: { type: 'enum', enums: ['standard', 'outlined'] },
+    options: {
+      type: {
+        name: 'Option[]',
+        description: '{ value: string, text: string }: Option'
+      }
+    }
   })
   .addExample('Select/story/Default.example.jsx', 'Default')
   .addExample('Select/story/Types.example.jsx', 'Types')

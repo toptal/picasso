@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles'
 
 import styles from './styles'
 
-const LabelGroup = ({ children, classes, ...rest }) => {
+export const LabelGroup = ({ children, classes, ...rest }) => {
   return (
     <div className={classes.root} {...rest}>
       {children}
@@ -13,6 +13,7 @@ const LabelGroup = ({ children, classes, ...rest }) => {
 }
 
 LabelGroup.propTypes = {
+  /** List of `Label` components which you want to render inside `LabelGroup` */
   children: PropTypes.node,
   classes: PropTypes.shape({
     root: PropTypes.string

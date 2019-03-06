@@ -8,7 +8,12 @@ const page = PicassoBook.createPage(
 )
 
 page
-  .addComponentDocs(TextField)
+  .addComponentDocs(TextField, {
+    iconPosition: {
+      type: 'enum',
+      enums: ['start', 'end']
+    }
+  })
   .addExample('TextField/story/Default.example.jsx', 'Default')
   .addExample('TextField/story/WithIcon.example.jsx', 'With icon')
   .addExample('TextField/story/Error.example.jsx', 'Error')

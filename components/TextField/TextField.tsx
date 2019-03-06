@@ -14,11 +14,11 @@ type IconPosition = 'start' | 'end'
 export interface Props {
   /** Name attribute of the input element */
   name: string
-  /** TextField label */
+  /** Text label for the `TextField` */
   label: string
   /** The value of the component */
   value: string
-  /** Indicate whether TextField is in error state */
+  /** Indicate whether `TextField` is in error state */
   error: boolean
   /** If true, the switch will be disabled */
   disabled?: boolean
@@ -26,26 +26,19 @@ export interface Props {
   className?: string
   /** Take the full width of a container */
   fullWidth?: boolean
-  /** Whether icon should be placed at the begining or end of TextField' */
+  /** Whether icon should be placed at the beginning or end of the `TextField` */
   iconPosition: IconPosition
   /** Specify icon which should be rendered inside TextField */
   Icon: React.ReactNode
   InputProps: OutlinedInputProps
   InputLabelProps: Partial<InputLabelProps>
-  /** Whether TextField should be rendered as TextArea or not */
+  /** Whether `TextField` should be rendered as `TextArea` or not */
   multiline?: boolean
-  /** Specify rows amount for TextArea */
+  /** Specify rows amount for `TextArea` */
   rows?: number
   /** Type attribute of the Input element. It should be a valid HTML5 input type */
   type?: string
-  /**  Callback fired when the state is changed.
-   * <br />
-   * <br />
-   * <b>Signature:</b><br />
-   * function(event: object, checked: boolean) => void<br />
-   *  event: The event source of the callback. You can pull out the new value by accessing event.target.checked.<br />
-   *  checked: The checked value of the switch
-   */
+  /**  Callback invoked when `TextField` changes its state */
   onChange: (
     event: React.ChangeEvent<
     HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement

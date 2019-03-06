@@ -1,16 +1,23 @@
 import React from 'react'
 
 interface Props {
+  /** marginTop for the container calculated as `${top}em` */
   top?: number
+  /** marginBottom for the container calculated as `${bottom}em` */
   bottom?: number
+  /** marginLeft for the container calculated as `${left}em` */
   left?: number
+  /** marginRight for the container calculated as `${right}em` */
   right?: number
+  /** Whether container should act as inline element `display: inline-block` */
   inline?: boolean
+  /** Extra css classes to be passed to `Container` */
   className?: string
+  /** Extra inline styling passed to a component */
   style?: object
 }
 
-const Container: React.FunctionComponent<Props> = props => {
+export const Container: React.FunctionComponent<Props> = props => {
   const { children, className, top, bottom, left, right, inline, style } = props
 
   return (

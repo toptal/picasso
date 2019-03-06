@@ -104,7 +104,7 @@ export const Button = props => {
 }
 
 Button.propTypes = {
-  /** Show it currently has active user selection */
+  /** Show button in the active state (left mouse button down) */
   active: PropTypes.bool,
   /** Content of Button component */
   children: PropTypes.node,
@@ -112,17 +112,17 @@ Button.propTypes = {
   focused: PropTypes.bool,
   /** Take the full width of a container */
   fullWidth: PropTypes.bool,
-  /** Show it currently has active user selection */
+  /** Show button in the hover state (mouse over) */
   hovered: PropTypes.bool,
-  /** Add an <Icon /> along Button`s children */
+  /** Add an `<Icon />` along Button`s children */
   icon: PropTypes.node,
-  /** 'Icon can be positioned on the left or right */
+  /** Icon can be positioned on the left or right */
   iconPosition: PropTypes.oneOf(Object.values(ICON_POSITIONS)),
   /** A button can show a loading indicator */
   loading: PropTypes.bool,
-  /** 'A button can have different sizes */
+  /** Callback invoked when component is clicked */
   onClick: PropTypes.func,
-  /** Callback called when component is clicked */
+  /** A button can have different sizes */
   size: PropTypes.oneOf(Object.values(SIZES)),
   /** The variant to use */
   variant: PropTypes.oneOf(Object.values(VARIANTS))

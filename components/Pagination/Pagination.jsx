@@ -12,11 +12,15 @@ const NAVIGATION = {
 }
 const SIBLING_COUNT = 3
 
-class Pagination extends React.PureComponent {
+export class Pagination extends React.PureComponent {
   static propTypes = {
+    /** Value of the current highlighted page */
     activePage: PropTypes.number.isRequired,
+    /** Shows `Pagination` in disabled state when pages are not changeable */
     disabled: PropTypes.bool,
+    /** Callback invoked when any page number is clicked */
     onPageChange: PropTypes.func.isRequired,
+    /** Value of total pages of the data set used for calculation of page buttons */
     totalPages: PropTypes.number.isRequired
   }
 

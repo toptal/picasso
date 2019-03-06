@@ -65,6 +65,8 @@ class Chapter extends Base {
       customDocs
     )
 
+    console.log(customDocs)
+
     const render = () => <PropsTable documentation={_.toArray(documentation)} />
 
     this.createSection({

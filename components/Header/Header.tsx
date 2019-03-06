@@ -10,9 +10,9 @@ import { Classes } from '../styles/types'
 
 interface Props {
   classes: Classes
-  /** Title which is displayed along the Logo */
+  /** Title which is displayed along the `Logo` */
   title: string
-  /** Pass custom components that you want to render on the right side of the header */
+  /** Content for the right side of the `Header`  */
   rightContent?: React.ReactNode
 }
 

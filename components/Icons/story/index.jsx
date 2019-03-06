@@ -1,29 +1,22 @@
 import PicassoBook from '../../../.storybook/components/PicassoBook'
+import { Icon, decapitalizeFirstLetter } from '../Icon'
+import * as icons from '../index'
 
 const page = PicassoBook.createPage(
   'Icon',
-  `Labels are used to describe other topics, incluidng textareas,
+  `Labels are used to describe other topics, including textareas,
   form fields, users, and more. By default, labels are read-only UI elements.
   They are used to surface important information about a topic. Labels may also
   be used to convey status, or used within a group to show selection.`
 )
 
-const docs = [
-  {
-    name: 'name',
-    type: 'string',
-    description: 'Specify which icon should be used'
-  },
-  {
-    name: 'style',
-    type: 'object',
-    description:
-      'Provide style object for the icon - define size, color, etc...'
-  }
-]
-
 page
-  .addDocs(docs)
+  .addComponentDocs(Icon, {
+    name: {
+      type: 'enum',
+      enums: Object.keys(icons).map(decapitalizeFirstLetter)
+    }
+  })
   .addExample('Icons/story/Icon.example.jsx', {
     title: 'Icon',
     description: 'Component to mount icon'

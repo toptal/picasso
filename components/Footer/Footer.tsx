@@ -9,7 +9,7 @@ import styles from './styles'
 
 interface Props {
   classes: Classes
-  /** Pass custom components that you want to render on the right side of the footer */
+  /** Content for the right side of the `Footer`  */
   rightContent?: React.ReactNode
 }
 
@@ -40,4 +40,11 @@ export const Footer: React.FunctionComponent<Props> = props => {
   )
 }
 
+<<<<<<< HEAD
+=======
+Footer.defaultProps = {
+  rightContent: null
+}
+
+>>>>>>> 988d087... [FX-42] Migrate manual props docs to auto-generated
 export default withStyles(styles)(Footer)
