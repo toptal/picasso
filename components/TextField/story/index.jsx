@@ -12,4 +12,5 @@ page
   .addExample('TextField/story/Default.example.jsx', 'Default')
   .addExample('TextField/story/WithIcon.example.jsx', 'With icon')
   .addExample('TextField/story/Error.example.jsx', 'Error')
+  .addExample('TextField/story/FullWidth.example.jsx', 'Full width')
   .addExample('TextField/story/Multiline.example.jsx', 'Multiline | Textarea')

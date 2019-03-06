@@ -6,7 +6,7 @@ exports[`Icon prop renders icon at the beginning 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiFormControl-root"
+      class="MuiFormControl-root Component-rootFixedWidth"
     >
       <div
         class="MuiInputBase-root MuiOutlinedInput-root Component-root MuiInputBase-formControl MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
@@ -62,7 +62,7 @@ exports[`Icon prop renders icon at the end 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiFormControl-root"
+      class="MuiFormControl-root Component-rootFixedWidth"
     >
       <div
         class="MuiInputBase-root MuiOutlinedInput-root Component-root MuiInputBase-formControl MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
