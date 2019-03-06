@@ -118,6 +118,7 @@ export const Select: React.FunctionComponent<Props> = props => {
         classes={{
           input: hasLabel ? classes.inputWithLabel : classes.input
         }}
+        disableUnderline
         fullWidth={fullWidth}
       />
     )

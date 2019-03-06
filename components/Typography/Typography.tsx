@@ -1,4 +1,4 @@
-import React, { ReactChild } from 'react'
+import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import { ThemeStyle as MUIVariant } from '@material-ui/core/styles/createTypography'
 import { PropTypes } from '@material-ui/core'
@@ -23,7 +23,6 @@ type VariantType =
 type Weights = 'thin' | 'light' | 'regular' | 'semibold' | 'bold'
 
 interface Props {
-  children: ReactChild
   variant?: VariantType
   classes: Classes
   className?: string

@@ -14,7 +14,7 @@ const Accordion = props => {
   const isControlledVariant = expanded === undefined
 
   return (
-    <MUIExpansionPanel expanded={expanded} onChange={onChange}>
+    <MUIExpansionPanel elevation={0} expanded={expanded} onChange={onChange}>
       {Summary && (
         <ExpansionPanelSummary
           classes={{
