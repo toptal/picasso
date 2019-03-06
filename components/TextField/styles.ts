@@ -13,13 +13,16 @@ export default ({
     fontSize: 'inherit',
     boxSizing: 'border-box' as 'border-box',
     height: input.height,
-    width: input.width,
     padding: 0
   },
   rootMultiline: {
-    height: 'auto',
-    width: input.width,
-    padding: 0
+    height: 'auto'
+  },
+  rootFixedWidth: {
+    width: input.width
+  },
+  rootFullWidth: {
+    width: '100%'
   },
   input: {
     fontSize: '1.15em',

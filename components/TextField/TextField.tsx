@@ -24,6 +24,8 @@ export interface Props {
   disabled?: boolean
   classes: Classes
   className?: string
+  /** Take the full width of a container */
+  fullWidth?: boolean
   /** Whether icon should be placed at the begining or end of TextField' */
   iconPosition: IconPosition
   /** Specify icon which should be rendered inside TextField */
@@ -60,6 +62,8 @@ export const TextField: React.FunctionComponent<Props> = props => {
     classes,
     children,
     multiline,
+    fullWidth,
+    className,
     ...restProps
   } = props
 
@@ -100,11 +104,16 @@ export const TextField: React.FunctionComponent<Props> = props => {
       InputProps={{
         ...InputProps,
         classes: {
-          root: multiline ? classes.rootMultiline : classes.root,
+          root: cx(classes.root, {
+            [classes.rootMultiline]: multiline
+          }),
           input: classes.input,
           inputMultiline: classes.inputMultiline
         }
       }}
+      className={cx(classes.rootFixedWidth, className, {
+        [classes.rootFullWidth]: fullWidth
+      })}
       multiline={multiline}
       {...restProps}
       variant='outlined'
