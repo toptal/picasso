@@ -13,7 +13,8 @@ import {
   transitions,
   typography,
   spacing,
-  breakpoints
+  breakpoints,
+  screens
 } from './config'
 import './config/icons'
 import FontsLoader from './FontsLoader'
@@ -26,6 +27,7 @@ const picasso = {
   transitions,
   spacing,
   breakpoints,
+  screens,
   props: {
     MuiButtonBase: {
       disableRipple: true
