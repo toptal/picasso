@@ -1,11 +1,33 @@
-const path = require('path')
 const webpack = require('webpack')
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
+
+// example: /components/Button/Button.tsx
+const COMPONENT_DECLARATION_FILE_REGEXP = /components\/(.*)\/\1.tsx$/
 
 module.exports = (baseConfig, env, config) => {
   config.module.rules.push({
     test: /\.(ts|tsx)$/,
+    exclude: [COMPONENT_DECLARATION_FILE_REGEXP],
     use: [
-      require.resolve('ts-loader'),
+      {
+        loader: require.resolve('ts-loader'),
+        options: {
+          transpileOnly: true
+        }
+      }
+    ]
+  })
+
+  config.module.rules.push({
+    test: /\.(ts|tsx)$/,
+    include: [COMPONENT_DECLARATION_FILE_REGEXP],
+    use: [
+      {
+        loader: require.resolve('ts-loader'),
+        options: {
+          transpileOnly: true
+        }
+      },
       {
         loader: require.resolve('react-docgen-typescript-loader'),
         options: {
@@ -15,12 +37,15 @@ module.exports = (baseConfig, env, config) => {
       }
     ]
   })
+
   config.resolve.extensions.push('.ts', '.tsx')
   config.plugins.push(
     new webpack.DefinePlugin({
       TEST_ENV: JSON.stringify(process.env.TEST_ENV)
     })
   )
+
+  config.plugins.push(new HardSourceWebpackPlugin())
 
   config.node = {
     fs: 'empty',

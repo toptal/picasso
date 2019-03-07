@@ -5,7 +5,7 @@ import Header from '../Header'
 import Footer from '../Footer'
 import { Classes } from '../styles/types'
 import styles from './styles'
-import PageContent from './PageContent'
+import PageContent from '../PageContent'
 
 interface Props {
   /** Component becomes responsive with width 100% and overrides width prop */

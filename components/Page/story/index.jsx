@@ -1,6 +1,5 @@
 import PicassoBook from '../../../.storybook/components/PicassoBook'
 import { Page } from '../Page'
-import { PageContent } from '../PageContent'
 
 const page = PicassoBook.createPage('Page', `A Page component`)
 
@@ -13,11 +12,3 @@ page
   })
   .addExample('Page/story/FullWidth.example.jsx', 'Full width')
   .addExample('Page/story/Scroll.example.jsx', 'Scroll with overflow')
-
-PicassoBook.lookupPage('Page')
-  .createChapter(
-    'Page content',
-    'Use to layout correctly your content in Page '
-  )
-  .addComponentDocs(PageContent)
-  .addExample('Page/story/PageContent.Default.example.jsx', 'Default')
