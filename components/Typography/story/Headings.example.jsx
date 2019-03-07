@@ -10,7 +10,7 @@ const TypographyHeadingsExample = () => (
       <Typography variant='h2'>Heading 2</Typography>
     </Container>
     <Container bottom={1}>
-      <Typography variant='h3'>Heading 3</Typography>
+      <Typography variant='h3'>Headdsading 3</Typography>
     </Container>
     <Container bottom={1}>
       <Typography variant='h4'>Heading 4</Typography>
