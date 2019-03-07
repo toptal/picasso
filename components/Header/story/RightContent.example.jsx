@@ -1,9 +1,9 @@
 import React from 'react'
-import { Header, Select } from '@toptal/picasso'
+import { Page, Select } from '@toptal/picasso'
 
 const HeaderRightContentExample = () => (
   <div>
-    <Header rightContent={<RightContent />} title='Onboarding' />
+    <Page.Header rightContent={<RightContent />} title='Onboarding' />
   </div>
 )
 

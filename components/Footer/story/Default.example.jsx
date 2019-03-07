@@ -1,9 +1,9 @@
 import React from 'react'
-import { Footer } from '@toptal/picasso'
+import { Page } from '@toptal/picasso'
 
 const FooterDefaultExample = () => (
   <div>
-    <Footer />
+    <Page.Footer />
   </div>
 )
 

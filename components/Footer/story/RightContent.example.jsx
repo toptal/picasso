@@ -1,9 +1,9 @@
 import React from 'react'
-import { Footer } from '@toptal/picasso'
+import { Page } from '@toptal/picasso'
 
 const FooterRightContentExample = () => (
   <div>
-    <Footer rightContent={<Links />} />
+    <Page.Footer rightContent={<Links />} />
   </div>
 )
 

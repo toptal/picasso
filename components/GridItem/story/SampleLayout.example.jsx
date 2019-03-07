@@ -1,17 +1,10 @@
 import React from 'react'
-import { Grid, Header, Footer, Typography } from '@toptal/picasso'
+import { Grid, Page, Typography } from '@toptal/picasso'
 
 const GridSampleLayoutExample = () => (
-  <div>
-    <Header title='Onboarding' />
-    <div
-      style={{
-        boxSizing: 'border-box',
-        padding: '0 1rem',
-        maxWidth: '75rem',
-        margin: '0 auto'
-      }}
-    >
+  <Page>
+    <Page.Header title='Onboarding' />
+    <Page.Content>
       <Grid>
         <Grid.Item small={8}>
           <SampleContainer>Main Content</SampleContainer>
@@ -21,9 +14,9 @@ const GridSampleLayoutExample = () => (
           <SampleContainer>Sidebar</SampleContainer>
         </Grid.Item>
       </Grid>
-    </div>
-    <Footer />
-  </div>
+    </Page.Content>
+    <Page.Footer />
+  </Page>
 )
 
 const SampleContainer = ({ children }) => (
