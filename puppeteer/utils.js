@@ -1,4 +1,8 @@
 const glob = require('glob')
+const exec = require('child_process').execSync
+const path = require('path')
+
+const config = require('./config')
 
 const SPECIAL_CHARS = /[^\w\s]/gi
 const SPACES = / /g
@@ -30,10 +34,20 @@ const asyncGlob = pattern => {
   })
 }
 
+const lastCommitHash = () => exec(`git rev-parse --short=8 HEAD`).toString()
+
+const assignOutputDir = () => {
+  const hash = lastCommitHash().trim()
+
+  return path.resolve(config.diffOutputPath, hash)
+}
+
 module.exports = {
   asyncGlob,
   normalize,
   createSnapshotName,
   createHumanName,
-  parseHumanName
+  parseHumanName,
+  lastCommitHash,
+  assignOutputDir: assignOutputDir()
 }

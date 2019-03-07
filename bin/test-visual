@@ -35,6 +35,4 @@ function run_jest() {
 yarn install
 build_storybook
 
-# Cleanup old snapshots on every run
-rm -rf $DIFF_OUTPUT_PATH
 run_jest $1

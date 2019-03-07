@@ -119,6 +119,7 @@ pipeline {
 
     failure {
       script {
+        def lastCommit = sh(returnStdout: true, script: 'git rev-parse --short=8 HEAD').trim()
         if (FAILURE_REASON == 'lint') {
           ghHelper.notifyPR('Lint', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
           ghHelper.notifyPR('Jest Tests', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
@@ -128,8 +129,8 @@ pipeline {
           ghHelper.notifyPR('Jest Tests', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
           ghHelper.notifyPR('Visual Tests', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}/Visual_20Regression_20Tests/", 'picasso')
         } else if (FAILURE_REASON == 'visual tests') {
-          TOTAL_TESTS = sh(returnStdout: true, script: 'cat ./__diff_output__/stats.json | jq ".suite.total" -r').trim()
-          FAILED_TESTS = sh(returnStdout: true, script: 'cat ./__diff_output__/stats.json | jq ".suite.failed" -r').trim()
+          TOTAL_TESTS = sh(returnStdout: true, script: "cat ./__diff_output__/${lastCommit}/stats.json | jq '.suite.total' -r").trim()
+          FAILED_TESTS = sh(returnStdout: true, script: "cat ./__diff_output__/${lastCommit}/stats.json | jq '.suite.failed' -r").trim()
           message = "${FAILED_TESTS}/${TOTAL_TESTS} snaphosts failed"
           ghHelper.notifyPR('Lint', 'SUCCESS', 'Success', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
           ghHelper.notifyPR('Jest Tests', 'SUCCESS', 'Success', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
@@ -143,13 +144,16 @@ pipeline {
     }
 
     always {
-      archiveArtifacts(
-        artifacts: "__diff_output__/*",
-        fingerprint: true,
-        allowEmptyArchive: true
-      )
+      script {
+        def lastCommit = sh(returnStdout: true, script: 'git rev-parse --short=8 HEAD').trim()
+        archiveArtifacts(
+          artifacts: "__diff_output__/${lastCommit}/*",
+          fingerprint: true,
+          allowEmptyArchive: true
+        )
 
-      publishHtmlReports(reportName: "Visual Regression Tests", reportDir: "__diff_output__", reportFiles: 'index.html')
+        publishHtmlReports(reportName: "Visual Regression Tests", reportDir: "__diff_output__/${lastCommit}", reportFiles: 'index.html')
+      }
     }
   }
 }//pipeline
