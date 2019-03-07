@@ -3,7 +3,7 @@ import { Typography } from '@toptal/picasso'
 
 const TypographyDefaultExample = () => (
   <div>
-    <Typography>Just text</Typography>
+    <Typography>Just dsd text</Typography>
   </div>
 )
 

@@ -7,7 +7,7 @@ const TypographyTypesExample = () => (
       <Typography variant='large'>Large paragraph</Typography>
     </Container>
     <Container bottom={1}>
-      <Typography>Paragraph</Typography>
+      <Typography>Paragdsdsraph</Typography>
     </Container>
     <Container bottom={1}>
       <Typography variant='small'>Small paragraph</Typography>
