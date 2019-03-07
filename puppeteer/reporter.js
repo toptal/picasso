@@ -5,7 +5,7 @@ const path = require('path')
 const ejs = require('ejs')
 
 const config = require('./config')
-const { createSnapshotName } = require('./utils')
+const { createSnapshotName, assignOutputDir } = require('./utils')
 
 const DIFF_REGEX_PATTERN = /different/
 
@@ -68,13 +68,18 @@ class ImageReporter {
       process.exit(1)
     }
 
-    const resultsFilePath = path.resolve(config.diffOutputPath, 'index.html')
+    const resultsFilePath = path.resolve(
+      config.diffOutputPath,
+      assignOutputDir,
+      'index.html'
+    )
     fs.writeFileSync(resultsFilePath, output)
   }
 
   writeResultsStats(data) {
     const resultsStatsFilePath = path.resolve(
       config.diffOutputPath,
+      assignOutputDir,
       'stats.json'
     )
 
