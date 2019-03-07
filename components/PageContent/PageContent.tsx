@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
 import { Classes } from '../styles/types'
-import { PageContext, PageContextProps } from './Page'
+import { PageContext, PageContextProps } from '../Page'
 import styles from './styles'
 
 interface Props {
@@ -21,11 +21,11 @@ export const PageContent: React.FunctionComponent<Props> = props => {
     {
       [classes.fullWidth]: fullWidth
     },
-    classes.pageContentInner
+    classes.content
   )
 
   return (
-    <div className={classes.pageContentRoot}>
+    <div className={classes.root}>
       <div className={innerClassName}>{children}</div>
     </div>
   )
