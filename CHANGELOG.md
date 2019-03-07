@@ -1,5 +1,23 @@
 # Changelog
 
+## v0.1.0-beta.2 (07/03/2019)
+
+#### Chore
+
+- [**Chore**][**DO NOT MERGE**] Speed up webpack build [#102](https://github.com/toptal/picasso/pull/102)
+- [**Chore**] [FX-20] Add breakpoints [#98](https://github.com/toptal/picasso/pull/98)
+- [**Chore**] Change PR template, adjust version badge [#97](https://github.com/toptal/picasso/pull/97)
+
+#### Feature
+
+- [**Feature**] [FX-19] Add Page container component [#95](https://github.com/toptal/picasso/pull/95)
+- [**Feature**] [FX-20] Add grid component [#94](https://github.com/toptal/picasso/pull/94)
+- [**Feature**] [FX-18] Add full width option for TextField [#99](https://github.com/toptal/picasso/pull/99)
+- [**Feature**] Add Modal component [#92](https://github.com/toptal/picasso/pull/92)
+- [**Feature**] [FX-48] Add CssBaseline component to provider [#96](https://github.com/toptal/picasso/pull/96)
+
+---
+
 ## v0.1.0-beta.1 (04/03/2019)
 
 #### Chore
@@ -342,11 +360,3 @@
 #### Feature
 
 - [**Feature**] Introduce Picasso component. Add TextField with an option to render Icon [#16](https://github.com/toptal/picasso/pull/16)
-
----
-
-## v0.1.0-alpha.4 (10/01/2019)
-
-#### Feature
-
-- [**Feature**] [PICAS-17] Initial components - Button [#15](https://github.com/toptal/picasso/pull/15)
