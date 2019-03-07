@@ -2,9 +2,6 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 
 export default ({ layout }: Theme) =>
   createStyles({
-    fullWidth: {
-      maxWidth: '100%'
-    },
     root: {
       flex: 1,
       width: '100%',
@@ -16,5 +13,8 @@ export default ({ layout }: Theme) =>
       flexGrow: 1,
       maxWidth: layout.contentWidth,
       padding: '0 1rem'
+    },
+    fullWidth: {
+      maxWidth: '100%'
     }
   })
