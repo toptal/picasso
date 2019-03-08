@@ -17,7 +17,7 @@
     "build:storybook": "build-storybook -c .storybook -o build/storybook",
     "release:pre": "yarn version --new-version prerelease",
     "build": "yarn run build:svg && cross-env NODE_ENV=production ./bin/build",
-    "build:svg": "svgr -d components/Icons --ext jsx components/Icons/svg",
+    "build:svg": "svgr -d components/Icon --ext jsx components/Icon/svg",
     "build:watch": "cross-env ./bin/build --watch",
     "symlink": "cross-env ./bin/build --symlink",
     "generate:component": "hygen component new",
