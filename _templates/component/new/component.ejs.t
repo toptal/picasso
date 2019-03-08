@@ -19,4 +19,6 @@ const <%= Name %>: React.FunctionComponent<Props> = props => {
 <%= Name %>.defaultProps = {
 }
 
+<%= Name %>.displayName = '<%= Name %>'
+
 export default withStyles(styles)(<%= Name %>)

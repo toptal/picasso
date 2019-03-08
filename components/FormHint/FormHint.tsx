@@ -7,9 +7,11 @@ import styles from './styles'
 
 interface Props {
   classes: Classes
+  /** The text of the hint */
+  children: React.ReactNode
 }
 
-const FormHint: React.FunctionComponent<Props> = props => {
+export const FormHint: React.FunctionComponent<Props> = props => {
   const { children, classes, ...rest } = props
 
   return (
@@ -20,5 +22,7 @@ const FormHint: React.FunctionComponent<Props> = props => {
 }
 
 FormHint.defaultProps = {}
+
+FormHint.displayName = 'FormHint'
 
 export default withStyles(styles)(FormHint)

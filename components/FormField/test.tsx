@@ -4,7 +4,11 @@ import { render, cleanup } from 'react-testing-library'
 import FormField from './index'
 
 const renderFormField = () => {
-  return render(<FormField />)
+  return render(
+    <FormField>
+      <input />
+    </FormField>
+  )
 }
 
 afterEach(cleanup)

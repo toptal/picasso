@@ -7,7 +7,10 @@ import styles from './styles'
 
 interface Props {
   classes: Classes
+  /** The text of the hint */
   hint?: string
+  /** The content of the Form.Field */
+  children: React.ReactNode
 }
 
 export const FormField: React.FunctionComponent<Props> = props => {
@@ -22,5 +25,7 @@ export const FormField: React.FunctionComponent<Props> = props => {
 }
 
 FormField.defaultProps = {}
+
+FormField.displayName = 'FormField'
 
 export default withStyles(styles)(FormField)

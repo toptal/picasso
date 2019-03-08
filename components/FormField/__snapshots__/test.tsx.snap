@@ -3,7 +3,9 @@
 exports[`FormField default render 1`] = `
 <div>
   <div
-    class="Component-root"
-  />
+    class="FormField-root"
+  >
+    <input />
+  </div>
 </div>
 `;
