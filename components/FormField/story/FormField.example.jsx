@@ -1,7 +1,7 @@
 import React from 'react'
 import { Form, Grid, Select, TextField, Checkbox } from '@toptal/picasso'
 
-const FormFieldDefaultExample = () => (
+const FormFieldExample = () => (
   <Grid>
     <Grid.Item small={5}>
       <Form>
@@ -32,4 +32,4 @@ const OPTIONS = [
   { value: '4', text: 'Option 4' }
 ]
 
-export default FormFieldDefaultExample
+export default FormFieldExample

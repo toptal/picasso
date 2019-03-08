@@ -1,7 +1,7 @@
 import React from 'react'
 import { Form, Grid, TextField } from '@toptal/picasso'
 
-const FormFormHintExample = () => (
+const FormHintExample = () => (
   <Grid>
     <Grid.Item small={5}>
       <Form>
@@ -21,4 +21,4 @@ const FormFormHintExample = () => (
   </Grid>
 )
 
-export default FormFormHintExample
+export default FormHintExample

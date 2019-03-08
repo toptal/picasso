@@ -10,4 +10,6 @@ Form.Field = FormField
 // @ts-ignore
 Form.Hint = FormHint
 
+Form.displayName = 'Form'
+
 export default Form
