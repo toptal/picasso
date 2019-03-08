@@ -48,6 +48,19 @@ class CodeExample extends React.Component<Props> {
     return require(`!raw-loader!../../../components/${src}`)
   }
 
+  /* This function is needed to avoid memoization of the source code
+   * in SourceRender component (`react-source-code` package). Hot reload
+   * does not work properly if the memoization is happening.
+   * Issue: https://github.com/layershifter/react-source-render/issues/10
+   */
+  avoidSourceCodeMemoization = (sourceCode: string) => {
+    return `
+      ${sourceCode}
+
+      function resetCode() { ${Math.random()} }
+    `
+  }
+
   handleShowEditor = () => {
     const { isEditorVisible } = this.state
     this.setState({ isEditorVisible: !isEditorVisible })
@@ -73,7 +86,7 @@ class CodeExample extends React.Component<Props> {
         <SourceRender
           render={renderInTestPicasso}
           resolver={resolver}
-          source={sourceCode}>
+          source={this.avoidSourceCodeMemoization(sourceCode)}>
           <SourceRender.Consumer>
             {({ element }: RenderResult) => element}
           </SourceRender.Consumer>
@@ -104,7 +117,7 @@ class CodeExample extends React.Component<Props> {
       <SourceRender
         render={renderInPicasso}
         resolver={resolver}
-        source={sourceCode}>
+        source={this.avoidSourceCodeMemoization(sourceCode)}>
         <div className={classes.root}>
           <div className={classes.component}>
             <Container className={classes.componentRenderer} top={2} bottom={2}>
