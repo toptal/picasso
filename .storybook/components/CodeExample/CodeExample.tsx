@@ -27,7 +27,7 @@ const imports: {
 } = {
   react: React,
   '@toptal/picasso': require('../../../components'),
-  '@toptal/picasso/Icons': require('../../../components/Icons')
+  '@toptal/picasso/Icons': require('../../../components/Icon')
 }
 
 const resolver = (path: string) => imports[path]

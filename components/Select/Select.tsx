@@ -19,40 +19,26 @@ interface Option {
 
 export interface Props {
   classes: Classes
+  /** Extra css classes to be passed to `Select` */
   className?: string
   /** If true, the switch will be disabled */
   disabled?: boolean
-  /** Component id */
+  /** Component ID */
   id?: string
   /** Take the full width of a container */
   fullWidth?: boolean
-  /** Shrinking label */
+  /** Inner text label for the `Select` */
   label?: string
   /** Placeholder option which is selected by default */
   placeholder?: string
-  /** 'Whether Select should be rendered as native HTML &lt;select /&gt; */
+  /** Whether `Select` should be rendered as native HTML `<select />` */
   native?: boolean
-  /**
-   *  Callback fired when the state is changed.
-   *   <br />
-   *   <br />
-   *   <b>Signature:</b>
-   *   function(event: object, child: node) => void
-   *   event: The event source of the callback.
-   *   child: Child node which was selected by user
-   */
+  /** Callback invoked when `Select` changes its state. */
   onChange?: (
     event: React.ChangeEvent<HTMLSelectElement>,
     child: React.ReactNode
   ) => void
-  /**
-   *  [<br/>
-   *  &nbsp;&nbsp;{ value: '1', text: 'Option 1' },<br/>
-   *  &nbsp;&nbsp;{ value: '2', text: 'Option 2' },<br/>
-   *  &nbsp;&nbsp;{ value: '3', text: 'Option 3' },<br/>
-   *  &nbsp;&nbsp;{ value: '4', text: 'Option 4' }<br/>
-   *  ]
-   */
+  /** List of options to be rendered as `Select` */
   options: Option[]
   /** Selected value */
   value?: string | number
@@ -175,10 +161,14 @@ export const Select: React.FunctionComponent<Props> = props => {
 }
 
 Select.defaultProps = {
+  disabled: false,
+  fullWidth: false,
   native: false,
   onChange: () => {},
   value: '',
   variant: 'outlined'
 }
+
+Select.displayName = 'Select'
 
 export default withStyles(styles)(Select)

@@ -9,7 +9,7 @@ import styles from './styles'
 
 interface Props {
   classes: Classes
-  /** Pass custom components that you want to render on the right side of the footer */
+  /** Content for the right side of the `Footer`  */
   rightContent?: React.ReactNode
 }
 
@@ -39,5 +39,11 @@ export const Footer: React.FunctionComponent<Props> = props => {
     </footer>
   )
 }
+
+Footer.defaultProps = {
+  rightContent: null
+}
+
+Footer.displayName = 'Footer'
 
 export default withStyles(styles)(Footer)

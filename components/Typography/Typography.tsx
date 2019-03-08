@@ -18,15 +18,18 @@ type VariantType =
   | 'large'
   | 'small'
   | 'caption'
-  | 'body1'
+  | 'body'
 
 type Weights = 'thin' | 'light' | 'regular' | 'semibold' | 'bold'
 
 interface Props {
+  /** Font variant inner text */
   variant?: VariantType
   classes: Classes
   className?: string
+  /** Text align of the inner text */
   align?: PropTypes.Alignment
+  /** Font weight of the inner text */
   weight?: Weights
 }
 
@@ -44,7 +47,8 @@ const VARIANTS: Variants = {
   h6: 'h6',
   caption: 'caption',
   large: 'body1',
-  small: 'body1'
+  small: 'body1',
+  body: 'body1'
 }
 
 const resolveRootClass = (props: Props) => {
@@ -53,13 +57,14 @@ const resolveRootClass = (props: Props) => {
   return cx(
     {
       [classes.large]: variant === 'large',
-      [classes.small]: variant === 'small'
+      [classes.small]: variant === 'small',
+      [classes.body]: variant === 'body'
     },
     classes[weight!]
   )
 }
 
-const Typography: React.FunctionComponent<Props> = props => {
+export const Typography: React.FunctionComponent<Props> = props => {
   const { variant, children, align, className } = props
   const resolvedVariant = VARIANTS[variant!]
   const rootClass = resolveRootClass(props)
@@ -79,8 +84,10 @@ const Typography: React.FunctionComponent<Props> = props => {
 }
 
 Typography.defaultProps = {
-  variant: 'body1',
+  variant: 'body',
   weight: 'regular'
 }
+
+Typography.displayName = 'Typography'
 
 export default withStyles(styles)(Typography)

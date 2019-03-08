@@ -3,7 +3,7 @@
 exports[`Typography default render 1`] = `
 <div>
   <p
-    class="MuiTypography-root Typography-bold MuiTypography-body1 MuiTypography-alignCenter"
+    class="MuiTypography-root Typography-body Typography-bold MuiTypography-body1 MuiTypography-alignCenter"
   >
     Hello world!
   </p>

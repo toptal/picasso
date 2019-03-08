@@ -8,13 +8,13 @@ import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import TableBody from '@material-ui/core/TableBody'
 import Table from '@material-ui/core/Table'
-import Tooltip from '@material-ui/core/Tooltip'
 import { ClassNameMap } from '@material-ui/core/styles/withStyles'
 import cx from 'classnames'
 
 import { PropDocumentation } from '../../../../utils/documentationGenerator'
 import PropTypeTableCell from './PropTypeTableCell'
 import EnumsList from './EnumsList'
+import Description from './Description'
 import styles from './styles'
 
 interface Props {
@@ -23,6 +23,8 @@ interface Props {
 }
 
 function renderRows({ documentation, classes }: Props): JSX.Element {
+  const isEnum = type => type === 'enum' || (type && type.name === 'enum')
+
   return (
     <Fragment>
       {documentation.map(
@@ -32,15 +34,19 @@ function renderRows({ documentation, classes }: Props): JSX.Element {
               <span className={classes.propName}>{name}</span>
               <span className={classes.requiredTag}>{required ? '*' : ''}</span>
             </TableCell>
-            <PropTypeTableCell type={type} />
-            <TableCell>
+            <PropTypeTableCell className={classes.typeCell} type={type} />
+            <TableCell className={classes.defaultValueCell}>
               {defaultValue && (
                 <span className={classes.highlight}>{defaultValue}</span>
               )}
             </TableCell>
             <TableCell className={classes.descriptionCell}>
-              <div dangerouslySetInnerHTML={{ __html: description }} />
-              {enums && <EnumsList enums={enums} />}
+              <Description
+                description={description}
+                classes={classes}
+                propName={name}
+              />
+              {isEnum(type) && <EnumsList type={type} enums={enums} />}
             </TableCell>
           </TableRow>
         )
@@ -57,13 +63,16 @@ const PropsTable: React.FunctionComponent<Props> = props => {
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
-            <TableCell className={classes.header}>Name</TableCell>
+            <TableCell className={cx(classes.header, classes.name)}>
+              Name
+            </TableCell>
             <TableCell className={cx(classes.header, classes.type)}>
               Type
             </TableCell>
-            <TableCell className={classes.header}>Default</TableCell>
-            <TableCell
-              className={cx(classes.header, classes.descriptionHeader)}>
+            <TableCell className={cx(classes.header, classes.defaultValue)}>
+              Default
+            </TableCell>
+            <TableCell className={cx(classes.header, classes.description)}>
               Description
             </TableCell>
           </TableRow>

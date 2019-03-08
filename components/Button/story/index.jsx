@@ -22,11 +22,19 @@ page
     },
     size: {
       type: 'enum',
+      defaultValue: 'medium',
       enums: ['small', 'medium', 'large']
     },
     iconPosition: {
       type: 'enum',
       enums: ['left', 'right']
+    },
+    onClick: {
+      type: {
+        name: 'function',
+        description:
+          '(event: React.MouseEvent<HTMLElement, MouseEvent>) => void | undefined'
+      }
     }
   })
   .addExample('Button/story/Basic.example.jsx', 'Basic')

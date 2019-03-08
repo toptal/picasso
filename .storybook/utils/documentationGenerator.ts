@@ -3,6 +3,8 @@ import _ from 'lodash'
 export interface PropTypeDocumentation {
   name: string
   description?: string
+  enums?: string[]
+  type?: string
 }
 
 export interface PropDocumentation {
@@ -12,6 +14,7 @@ export interface PropDocumentation {
   defaultValue?: string
   description: string
   enums?: string[]
+  value?: any[]
 }
 
 export interface PropDocumentationMap {
@@ -19,10 +22,13 @@ export interface PropDocumentationMap {
 }
 
 export interface Documentable {
+  displayName: string
   __docgenInfo: any
 }
 
 const FUNCTION_TYPE_REGEX = /.+ => .+/
+const ENUM_TYPE_REGEX = /enum/
+const ENUM_VALUES_REGEX = /.*\|.*/
 
 class DocumentationGenerator {
   resolveType(type: any): PropTypeDocumentation {
@@ -37,6 +43,32 @@ class DocumentationGenerator {
       return {
         name: 'function',
         description: typeName
+      }
+    }
+
+    // Enum parsed type
+    if (typeName.match(ENUM_TYPE_REGEX)) {
+      let baseShape = {}
+
+      if (type.value && _.isArray(type.value)) {
+        baseShape = {
+          enums: type.value.map(({ value }) => value)
+        }
+      }
+
+      return {
+        name: typeName,
+        description: '',
+        ...baseShape
+      }
+    }
+
+    // Enum unparsed type
+    if (typeName.match(ENUM_VALUES_REGEX)) {
+      const enums = typeName.split('|').map(value => value.trim())
+      return {
+        name: 'enum',
+        enums
       }
     }
 

@@ -44,6 +44,10 @@ export default () => ({
     fontSize: '0.875rem',
     lineHeight: TEXT_HEIGHT
   },
+  body: {
+    fontSize: '1rem',
+    lineHeight: TEXT_HEIGHT
+  },
   thin: {
     fontWeight: 100
   },

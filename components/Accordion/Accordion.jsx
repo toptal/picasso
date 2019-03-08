@@ -8,7 +8,7 @@ import styles from './styles'
 import ExpansionPanelSummary from '../ExpansionPanelSummary'
 import ExpansionPanelDetails from '../ExpansionPanelDetails'
 
-const Accordion = props => {
+export const Accordion = props => {
   const { classes, Summary, Details, expanded, onChange } = props
 
   const isControlledVariant = expanded === undefined
@@ -35,12 +35,16 @@ const Accordion = props => {
 }
 
 Accordion.propTypes = {
+  /** Collapsible content of `Accordion` */
   Details: PropTypes.element.isRequired,
+  /** Always visible part of accordion */
   Summary: PropTypes.element,
   classes: PropTypes.shape({
     expandIcon: PropTypes.string
   }),
+  /** Define accordion content state, whether it should be collapsed or displayed */
   expanded: PropTypes.bool,
+  /** Callback invoked when `Accordion` item is toggled */
   onChange: PropTypes.func
 }
 
@@ -50,5 +54,7 @@ Accordion.defaultProps = {
   expanded: undefined,
   onChange: () => {}
 }
+
+Accordion.displayName = 'Accordion'
 
 export default withStyles(styles)(Accordion)

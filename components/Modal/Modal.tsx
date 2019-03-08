@@ -23,7 +23,7 @@ interface Props {
   onOpen?: () => void
   /** A node, component instance, or function that returns either. The container will have the portal children appended to it. */
   container?: ContainerValue
-  /** If true, the backdrop is not rendered */
+  /** If `true`, the backdrop is not rendered */
   hideBackdrop?: boolean
   transitionDuration?: number
 }

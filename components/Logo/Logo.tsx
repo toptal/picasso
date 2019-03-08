@@ -6,7 +6,7 @@ import { Icon } from '../'
 import IconsLibrary, {
   Logo as LogoIcon,
   LogoEmblem as LogoEmblemIcon
-} from '../Icons'
+} from '../Icon'
 import styles from './styles'
 import { Classes } from '../styles/types'
 
@@ -16,11 +16,13 @@ type VariantType = 'default' | 'white' | 'black'
 
 interface Props {
   classes: Classes
+  /** Whether logo should be shown as TT emblem or full word mark */
   emblem?: boolean
+  /** Variant of the `Logo` */
   variant?: VariantType
 }
 
-const Logo: React.FunctionComponent<Props> = props => {
+export const Logo: React.FunctionComponent<Props> = props => {
   const { classes, emblem, variant, ...rest } = props
   const rootClass = emblem ? classes.logoEmblem : classes.logo
   const colorClass = classes[variant!]

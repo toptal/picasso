@@ -11,12 +11,12 @@ import styles from './styles'
 interface Props {
   /** Component becomes responsive with width 100% and overrides width prop */
   fullWidth?: boolean
-  /** Define container width in rem */
+  /** Define container width in `rem` */
   width?: number
-  /** Horizontally centers content */
+  /** Horizontally centers the content */
   centered?: boolean
   classes: Classes
-  /** Children components (Page.Header, Page.Content, Page.Footer) */
+  /** Children components (`Page.Header`, `Page.Content`, `Page.Footer`) */
   children: React.ReactNode
 }
 

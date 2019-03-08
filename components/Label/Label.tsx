@@ -9,8 +9,11 @@ import styles from './styles'
 
 interface Props {
   classes: Partial<ClassNameMap<string>>
+  /** Text content of the `Label` component */
   label?: string
+  /** A callback which is invoked after remove `Icon` is clicked. Please note that specifying this callback automatically adds remove `Icon` as children of the `Label` */
   onDelete?: () => void
+  /** Style variant of the label */
   variant?: 'flat' | 'success' | 'error'
 }
 
@@ -19,7 +22,7 @@ interface GroupFunctionalComponent<T> extends React.FunctionComponent<T> {
   Group: React.ReactNode
 }
 
-const Label: GroupFunctionalComponent<Props> = props => {
+export const Label: GroupFunctionalComponent<Props> = props => {
   const { classes, variant, ...rest } = props
 
   const rootClass = variant ? classes[variant] : ''
@@ -45,6 +48,9 @@ Label.defaultProps = {
   onDelete: undefined,
   variant: undefined
 }
+
+Label.displayName = 'Label'
+
 Label.Group = LabelGroup
 
 export default withStyles(styles)(Label)

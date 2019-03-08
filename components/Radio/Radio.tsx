@@ -12,11 +12,17 @@ const FallbackIcon = () => null
 
 interface Props {
   classes: Classes
+  /** Text label for the `Radio` */
   label?: string
+  /** Color variant of the `Radio` */
   color: 'default' | 'secondary'
+  /** Value of the `Radio` component used with conjuction of `Radio.Group` */
   value?: string | number | boolean
+  /** Defines if `Radio` is disabled */
   disabled?: boolean
+  /** Defines if `Radio` is checked by default */
   checked?: boolean
+  /** Callback invoked when `Radio` changes its state */
   onChange?: (event: object, checked: boolean) => void
 }
 
@@ -25,7 +31,7 @@ interface GroupFunctionalComponent<T> extends React.FunctionComponent<T> {
   Group: React.ReactNode
 }
 
-const Radio: GroupFunctionalComponent<Props> = props => {
+export const Radio: GroupFunctionalComponent<Props> = props => {
   const {
     classes: { root, icon, ...otherClasses },
     label,
@@ -67,6 +73,8 @@ Radio.defaultProps = {
   label: undefined,
   value: undefined
 }
+
+Radio.displayName = 'Radio'
 
 Radio.Group = RadioGroup
 

@@ -9,7 +9,7 @@ import CheckedIcon from './CheckedIcon'
 import UncheckedIcon from './UncheckedIcon'
 import IndeterminateIcon from './IndeterminateIcon'
 
-const Checkbox = props => {
+export const Checkbox = props => {
   const {
     label,
     id,
@@ -56,11 +56,17 @@ const Checkbox = props => {
 }
 
 Checkbox.propTypes = {
+  /** Show checkbox initially as checked */
   checked: PropTypes.bool,
+  /** Disable changing `Checkbox` state */
   disabled: PropTypes.bool,
+  /** Checkbox can show indeterminate value instead of boolean */
   indeterminate: PropTypes.bool,
+  /** Text label for the `Checkbox` */
   label: PropTypes.string,
+  /** Callback invoked when `Checkbox` changed its value */
   onChange: PropTypes.func,
+  /** Value of the `Checkbox` (applicable only for controlled component) */
   value: PropTypes.string
 }
 
@@ -72,5 +78,7 @@ Checkbox.defaultProps = {
   onChange: () => {},
   value: undefined
 }
+
+Checkbox.displayName = 'Checkbox'
 
 export default withStyles(styles)(Checkbox)
