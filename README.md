@@ -1,9 +1,9 @@
+<div align="center"><img src="https://user-images.githubusercontent.com/437214/54037817-b4da1800-41c7-11e9-81f5-59ed43e38500.png" height="80px" /></div>
+
+<br/>
+
 ![](https://img.shields.io/badge/npm-0.1.0--beta.4-yellow.svg)
 [![#-frontend-exp-core](https://img.shields.io/badge/slack-%23--frontend--exp--core-green.svg)](https://toptal-core.slack.com/app_redirect?channel=CERF5NHT3)
-
-# 🎨 Picasso (a.k.a. Toptal UI components library)
-
-<div align="center"><img src="https://user-images.githubusercontent.com/324488/51291294-e542d880-1a06-11e9-875d-ad009cb42e3c.png" height="300" /></div>
 
 ## Installation instructions
 
