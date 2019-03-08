@@ -1,5 +1,23 @@
 # Changelog
 
+## v0.1.0-beta.3 (08/03/2019)
+
+#### CI
+
+- [**CI**] Fix jenkins workspace concurrecy [#105](https://github.com/toptal/picasso/pull/105)
+
+#### Chore
+
+- [**Chore**] Add types file in Page folder [#103](https://github.com/toptal/picasso/pull/103)
+- [**Chore**] Fix hot reload [#107](https://github.com/toptal/picasso/pull/107)
+
+#### Feature
+
+- [**Feature**] [FX-42] Migrate manual props docs to auto-generated [#101](https://github.com/toptal/picasso/pull/101)
+- [**Feature**] [FX-18] Add Form.Field and Form.Hint components [#100](https://github.com/toptal/picasso/pull/100)
+
+---
+
 ## v0.1.0-beta.2 (07/03/2019)
 
 #### Chore
@@ -348,15 +366,3 @@
 #### Specs
 
 - [**Specs**] Add snapshot serializer to remove dynamic parts of classnames from MUI components [#18](https://github.com/toptal/picasso/pull/18)
-
----
-
-## v0.1.0-alpha.5 (11/01/2019)
-
-#### CI
-
-- [**CI**] Fix Jenkins PR job to have NPM_TOKEN [#17](https://github.com/toptal/picasso/pull/17)
-
-#### Feature
-
-- [**Feature**] Introduce Picasso component. Add TextField with an option to render Icon [#16](https://github.com/toptal/picasso/pull/16)
