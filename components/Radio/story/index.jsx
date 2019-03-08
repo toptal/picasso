@@ -9,13 +9,8 @@ const page = PicassoBook.createPage(
 
 page
   .addComponentDocs(Radio, {
-    color: {
-      type: 'enum',
-      enums: ['default', 'secondary']
-    },
     onChange: {
       type: {
-        name: 'function',
         description:
           '(event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void'
       }

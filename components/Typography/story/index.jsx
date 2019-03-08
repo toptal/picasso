@@ -7,31 +7,7 @@ const page = PicassoBook.createPage(
 )
 
 page
-  .addComponentDocs(Typography, {
-    variant: {
-      type: 'enum',
-      enums: [
-        'body',
-        'h1',
-        'h2',
-        'h3',
-        'h4',
-        'h5',
-        'h6',
-        'large',
-        'small',
-        'caption'
-      ]
-    },
-    weight: {
-      type: 'enum',
-      enums: ['thin', 'light', 'regular', 'semibold', 'bold']
-    },
-    align: {
-      type: 'enum',
-      enums: ['inherit', 'left', 'center', 'right', 'justify']
-    }
-  })
+  .addComponentDocs(Typography)
   .addExample('Typography/story/Default.example.jsx', 'Normal text')
   .addExample('Typography/story/Headings.example.jsx', 'Headings')
   .addExample('Typography/story/Types.example.jsx', {

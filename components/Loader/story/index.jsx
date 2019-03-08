@@ -7,16 +7,7 @@ const page = PicassoBook.createPage(
 )
 
 page
-  .addComponentDocs(Loader, {
-    size: {
-      type: 'enum',
-      enums: ['small', 'default', 'large']
-    },
-    variant: {
-      type: 'enum',
-      enums: ['determinate', 'indeterminate', 'static']
-    }
-  })
+  .addComponentDocs(Loader)
   .addExample('Loader/story/Default.example.jsx', 'Default')
   .addExample('Loader/story/WithLabel.example.jsx', 'With label')
   .addExample('Loader/story/Inline.example.jsx', 'With inline content')

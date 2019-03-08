@@ -9,23 +9,19 @@ const page = PicassoBook.createPage(
 
 page
   .addComponentDocs(Select, {
-    variant: { type: 'enum', enums: ['standard', 'outlined'] },
     options: {
       type: {
-        name: 'Option[]',
         description: '{ value: string, text: string }: Option'
       }
     },
     label: {
       type: {
-        name: 'string',
         description:
           "Please note that the usage of label is exclusive and can't be used when placeholder is specified"
       }
     },
     placeholder: {
       type: {
-        name: 'string',
         description:
           "Please note that the usage of placeholder is exclusive and can't be used when label is specified"
       }

@@ -11,13 +11,8 @@ const page = PicassoBook.createPage(
 
 page
   .addComponentDocs(Label, {
-    variant: {
-      type: 'enum',
-      enums: ['flat', 'success', 'error']
-    },
     onDelete: {
       type: {
-        name: 'function',
         description: '(event: any) => void | undefined'
       }
     }

@@ -23,6 +23,8 @@ interface Props {
 }
 
 function renderRows({ documentation, classes }: Props): JSX.Element {
+  const isEnum = type => type === 'enum' || (type && type.name === 'enum')
+
   return (
     <Fragment>
       {documentation.map(
@@ -44,7 +46,7 @@ function renderRows({ documentation, classes }: Props): JSX.Element {
                 classes={classes}
                 propName={name}
               />
-              {enums && <EnumsList enums={enums} />}
+              {isEnum(type) && <EnumsList type={type} enums={enums} />}
             </TableCell>
           </TableRow>
         )

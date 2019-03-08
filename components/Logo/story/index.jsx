@@ -12,12 +12,7 @@ const page = PicassoBook.createPage(
 )
 
 page
-  .addComponentDocs(Logo, {
-    variant: {
-      type: 'enum',
-      enums: ['default', 'white', 'black']
-    }
-  })
+  .addComponentDocs(Logo)
   .addExample('Logo/story/Default.example.jsx', 'Default')
   .addExample('Logo/story/Emblem.example.jsx', 'Emblem')
   .addExample('Logo/story/Variants.example.jsx', 'Variants')
