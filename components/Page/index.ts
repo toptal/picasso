@@ -1,1 +1,1 @@
-export { default, PageContext, PageContextProps } from './Page'
+export { default, PageContext } from './Page'

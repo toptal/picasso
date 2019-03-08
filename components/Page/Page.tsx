@@ -3,9 +3,10 @@ import { withStyles } from '@material-ui/core/styles'
 
 import Header from '../Header'
 import Footer from '../Footer'
-import { Classes } from '../styles/types'
-import styles from './styles'
 import PageContent from '../PageContent'
+import { Classes } from '../styles/types'
+import { PageContextProps } from './types'
+import styles from './styles'
 
 interface Props {
   /** Component becomes responsive with width 100% and overrides width prop */
@@ -17,10 +18,6 @@ interface Props {
   classes: Classes
   /** Children components (Page.Header, Page.Content, Page.Footer) */
   children: React.ReactNode
-}
-
-export interface PageContextProps {
-  fullWidth?: boolean
 }
 
 export const PageContext = React.createContext<PageContextProps>(

@@ -3,7 +3,8 @@ import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
 import { Classes } from '../styles/types'
-import { PageContext, PageContextProps } from '../Page'
+import { PageContext } from '../Page'
+import { PageContextProps } from '../Page/types'
 import styles from './styles'
 
 interface Props {
