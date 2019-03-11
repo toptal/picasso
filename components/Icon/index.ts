@@ -1,5 +1,4 @@
-export { default as Check } from './Check'
-export { default as Minus } from './Minus'
 export { default as Logo } from './Logo'
 export { default as LogoEmblem } from './LogoEmblem'
+export { default as Cog } from './Cog'
 export { default } from './IconsLibrary'

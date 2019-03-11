@@ -16,7 +16,6 @@ import {
   breakpoints,
   screens
 } from './config'
-import './config/icons'
 import FontsLoader from './FontsLoader'
 import Provider from './PicassoProvider'
 import globalStyles from './styles'
