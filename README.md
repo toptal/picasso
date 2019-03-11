@@ -68,6 +68,7 @@ docker run -t -i --rm -e -v ${PWD}/components:/app/components NPM_TOKEN=$NPM_TOK
 | **yarn build**                | Build the library                                                         |
 | **yarn build:storybook**      | Build Storybook as static website                                         |
 | **yarn symlink**              | Symlink current version of library for development                        |
+| **yarn symlink:off**          | Un-symlink current version of library for development                     |
 
 ## Icons
 
@@ -100,3 +101,38 @@ To add a new Icon to Picasso library please follow these steps:
    ```
 
 After Picasso will be released with your changes you can start using your Icon as described [here](https://picasso.toptal.net/?selectedKind=Icons&selectedStory=Icons).
+
+## Linking with other projects
+
+In order to develop or debug Picasso in parallel with your project without the need to publish new Picasso versions, you need to link Picasso to your project. And once finished unlink it.
+You will probably notice that linking process links `@toptal/picasso` and `react`. It is due to React restriction of only once instance used in the project [[1]](https://github.com/facebook/react/issues/14257#issuecomment-439967377) [[2]](https://github.com/facebook/react/issues/13991#issuecomment-463486871), so we link to Picasso's `react` version.
+
+### Link
+
+To link Picasso follow these steps:
+
+In Picasso project directory:
+
+1. Checkout Picasso project from [Github](https://github.com/toptal/picasso)
+2. Install Picasso dependencies with `yarn install`
+3. Build Picasso with `yarn build` or `yarn build:watch` if you want to trigger build on file change
+4. Create a link with `yarn symlink` (creates Picasso and React link)
+
+In your project directory:
+
+1. Link Picasso and React with `yarn link @toptal/picasso react`
+2. Start your project and changes in Picasso will be visible in your project!
+
+### Unlink
+
+To unlink Picasso follow these steps:
+
+In your project directory:
+
+1. Unlink Picasso with `yarn unlink @toptal/picasso react`
+2. Re-install dependencies with `yarn install --force`
+
+(Optional) In Picasso project directory:
+
+1. Unlink with `yarn symlink:off`
+2. Re-install dependencies with `yarn install --force`

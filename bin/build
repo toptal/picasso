@@ -40,24 +40,6 @@ const compile = function(config) {
     generatePackageJson(config.compilerOptions.outDir)
   }
 
-  if (yargs.symlink) {
-    log('Symlinking dev package...')
-    try {
-      exec('yarn unlink', {
-        cwd: config.compilerOptions.outDir,
-        stdio: 'ignore',
-        stderr: 'ignore'
-      })
-    } catch (e) {
-      log(`Package ${packageJson.name} not found. Linking new...`)
-    }
-
-    exec('yarn link', {
-      cwd: config.compilerOptions.outDir,
-      stdio: 'inherit'
-    })
-  }
-
   if (yargs.watch) {
     args.unshift('--watch')
     log(`Watching for changes in: ${config.include.join(', ')}`)
