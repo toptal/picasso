@@ -8,10 +8,13 @@ import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import TableBody from '@material-ui/core/TableBody'
 import Table from '@material-ui/core/Table'
-import { ClassNameMap } from '@material-ui/core/styles/withStyles'
 import cx from 'classnames'
 
-import { PropDocumentation } from '../../../../utils/documentationGenerator'
+import { Classes } from '../../../../../components/styles/types'
+import {
+  PropDocumentation,
+  PropTypeDocumentation
+} from '../../../../utils/documentationGenerator'
 import PropTypeTableCell from './PropTypeTableCell'
 import EnumsList from './EnumsList'
 import Description from './Description'
@@ -19,11 +22,12 @@ import styles from './styles'
 
 interface Props {
   documentation: PropDocumentation[]
-  classes: Partial<ClassNameMap<string>>
+  classes: Classes
 }
 
 function renderRows({ documentation, classes }: Props): JSX.Element {
-  const isEnum = type => type === 'enum' || (type && type.name === 'enum')
+  const isEnum = (type: string | PropTypeDocumentation) =>
+    type === 'enum' || (type as PropTypeDocumentation).name === 'enum'
 
   return (
     <Fragment>

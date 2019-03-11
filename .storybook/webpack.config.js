@@ -1,7 +1,10 @@
 const webpack = require('webpack')
+const path = require('path')
 
 // example: /components/Button/Button.tsx
 const COMPONENT_DECLARATION_FILE_REGEXP = /components\/(.*)\/\1.tsx$/
+
+const tsConfigFile = path.join(process.cwd(), './.storybook/tsconfig.json')
 
 module.exports = (baseConfig, env, config) => {
   config.module.rules.push({
@@ -11,7 +14,7 @@ module.exports = (baseConfig, env, config) => {
       {
         loader: require.resolve('ts-loader'),
         options: {
-          transpileOnly: true
+          configFile: tsConfigFile
         }
       }
     ]
@@ -24,13 +27,13 @@ module.exports = (baseConfig, env, config) => {
       {
         loader: require.resolve('ts-loader'),
         options: {
-          transpileOnly: true
+          configFile: tsConfigFile
         }
       },
       {
         loader: require.resolve('react-docgen-typescript-loader'),
         options: {
-          tsconfigPath: './tsconfig.json',
+          tsconfigPath: tsConfigFile,
           skipPropsWithoutDoc: true
         }
       }
