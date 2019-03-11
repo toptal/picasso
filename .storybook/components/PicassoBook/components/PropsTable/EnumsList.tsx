@@ -1,32 +1,32 @@
 import { withStyles } from '@material-ui/core/styles'
 
 import React from 'react'
-import _ from 'lodash'
 
-import { ClassNameMap } from '@material-ui/core/styles/withStyles'
+import { Classes } from '../../../../../components/styles/types'
+import { PropTypeDocumentation } from '../../../../utils/documentationGenerator'
 import cx from 'classnames'
 
 import styles from './styles'
 
 interface Props {
-  enums: string[]
-  classes: Partial<ClassNameMap<string>>
-  type: { enums: string[] }
+  enums?: string[]
+  classes: Classes
+  type: string | PropTypeDocumentation
 }
 
 const trim = (value: string) => String(value).replace(/\'|\"/gi, '')
 
 const EnumsList: React.FunctionComponent<Props> = props => {
   const { enums, classes, type } = props
-  let enumList: string[] = enums
+  let enumList = enums
 
-  if (!_.isArray(enums)) {
-    if (_.isArray(type.enums)) {
-      enumList = type.enums
+  if (!Array.isArray(enums)) {
+    if (Array.isArray((type as PropTypeDocumentation).enums)) {
+      enumList = (type as PropTypeDocumentation).enums
     }
   }
 
-  if (!_.isArray(enumList)) return null
+  if (!Array.isArray(enumList)) return null
 
   return (
     <div className={classes.enums}>

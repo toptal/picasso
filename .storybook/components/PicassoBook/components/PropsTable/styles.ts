@@ -1,6 +1,6 @@
 import { Theme } from '@material-ui/core/styles'
 
-export default ({ palette }: { palette: Theme }) => ({
+export default ({ palette }: Theme) => ({
   root: {
     width: '100%'
   },

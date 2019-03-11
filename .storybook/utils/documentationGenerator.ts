@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import { ComponentDoc, PropItemType } from 'react-docgen-typescript/lib/parser'
 
 export interface PropTypeDocumentation {
   name: string
@@ -31,7 +32,7 @@ const ENUM_TYPE_REGEX = /enum/
 const ENUM_VALUES_REGEX = /.*\|.*/
 
 class DocumentationGenerator {
-  resolveType(type: any): PropTypeDocumentation {
+  resolveType(type: PropItemType): PropTypeDocumentation {
     if (!type) {
       return {} as PropTypeDocumentation
     }
@@ -52,7 +53,7 @@ class DocumentationGenerator {
 
       if (type.value && _.isArray(type.value)) {
         baseShape = {
-          enums: type.value.map(({ value }) => value)
+          enums: type.value.map(({ value }: any) => value)
         }
       }
 
@@ -93,7 +94,7 @@ class DocumentationGenerator {
     return _.merge({} as PropDocumentationMap, ...sources)
   }
 
-  transform(generatedDocumentation: any): PropDocumentationMap {
+  transform(generatedDocumentation: ComponentDoc): PropDocumentationMap {
     const { props: propDocs } = generatedDocumentation
 
     return _.mapValues(propDocs, (propDoc, propName) => {
