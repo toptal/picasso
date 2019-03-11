@@ -1,12 +1,12 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import Dialog from '@material-ui/core/Dialog'
-import { ClassNameMap } from '@material-ui/core/styles/withStyles'
 import CloseIcon from '@material-ui/icons/Close'
 
 import ModalTitle from '../ModalTitle'
 import ModalContent from '../ModalContent'
 import ModalActions from '../ModalActions'
+import { Classes } from '../styles/types'
 import styles from './styles'
 
 type ContainerValue = () => HTMLElement | HTMLElement
@@ -14,7 +14,7 @@ type ContainerValue = () => HTMLElement | HTMLElement
 interface Props {
   /** Whether modal should be displayed */
   open: boolean
-  classes: Partial<ClassNameMap<string>>
+  classes: Classes
   /** Callback executed when backdrop was clicked */
   onBackdropClick?: () => void
   /** Callback executed when attempting to close modal */
