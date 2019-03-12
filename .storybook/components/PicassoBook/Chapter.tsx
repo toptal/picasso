@@ -1,7 +1,7 @@
 declare var TEST_ENV: string // defined by ENV
 
-import React, { ReactNode } from 'react'
-import _ from 'lodash'
+import React from 'react'
+import { toArray } from 'lodash'
 
 import Base from './Base'
 import Section from './Section'
@@ -71,7 +71,7 @@ class Chapter extends Base {
       customDocs
     )
 
-    const render = () => <PropsTable documentation={_.toArray(documentation)} />
+    const render = () => <PropsTable documentation={toArray(documentation)} />
 
     this.createSection({
       sectionFn: render
@@ -82,7 +82,9 @@ class Chapter extends Base {
 
   addExample = (source: string, options: any) => {
     const render = () => (
-      <div className="chapter-container">
+      <div
+        className='chapter-container'
+        style={{ display: TEST_ENV === 'visual' ? 'inline-block' : 'block' }}>
         <CodeExample src={source} />
       </div>
     )

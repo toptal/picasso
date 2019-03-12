@@ -1,6 +1,8 @@
 import { join } from 'path'
 import { Page } from 'puppeteer'
 
+import { normalize } from './utils'
+
 declare var page: Page
 
 const PADDING_AROUND_COMPONENT = 8
@@ -42,11 +44,11 @@ export const assertVisuals = function (
 ) {
   return async () => {
     const { delay, ..._opts } = options
-    const encodedType = encodeURI(type)
+    const encodedKind = normalize(kind)
+    const encodedType = normalize(type)
     const path = join(
       __dirname,
-      '/../' +
-        `build/storybook/iframe.html?selectedKind=${kind}&selectedStory=${encodedType}`
+      '/../' + `build/storybook/iframe.html?id=${encodedKind}--${encodedType}`
     )
 
     const url = `file:///${path}`
