@@ -1,4 +1,4 @@
-import { waitForElement } from '../helpers'
+import { waitForElements } from '../helpers'
 
 const disableClickHandlers = item => {
   item.style = 'pointer-events: none; padding-left: 10px'
@@ -45,6 +45,6 @@ const autoExpandMenu = menuItems => {
 }
 
 export const scheduleWork = async () => {
-  const menuItems = await waitForElement('section > a')
+  const menuItems = await waitForElements('section > a')
   autoExpandMenu(menuItems)
 }

@@ -3,11 +3,16 @@ import { storiesOf } from '@storybook/react'
 import Base from './Base'
 import Chapter from './Chapter'
 
+export const COMPONENTS_FOLDER = 'Components|Folder'
+
 class Page extends Base {
   type = 'Page'
+  title = ''
 
   constructor(options = { title: null, subtitle: null, info: null }) {
     super(options)
+
+    this.title = options.title
   }
 
   setDescription(description = '') {
@@ -16,7 +21,7 @@ class Page extends Base {
   }
 
   createChapter = (title, info, options = {}) => {
-    const chapter = new Chapter({ title, info, ...options })
+    const chapter = new Chapter({ title, info, page: this, ...options })
     this.collection.push(chapter)
 
     return chapter
@@ -39,7 +44,7 @@ class Page extends Base {
 
   generateHumanStories() {
     const page = this.toStoryBook()
-    const stories = storiesOf('Components|Folder', module)
+    const stories = storiesOf(COMPONENTS_FOLDER, module)
     stories.addWithChapters(page.title, page)
   }
 

@@ -1,7 +1,7 @@
 import { join } from 'path'
 import { Page } from 'puppeteer'
 
-import { normalize } from './utils'
+import { generateIframeUrl } from '../utils/urlGenerator'
 
 declare var page: Page
 
@@ -44,14 +44,8 @@ export const assertVisuals = function (
 ) {
   return async () => {
     const { delay, ..._opts } = options
-    const encodedKind = normalize(kind)
-    const encodedType = normalize(type)
-    const path = join(
-      __dirname,
-      '/../' + `build/storybook/iframe.html?id=${encodedKind}--${encodedType}`
-    )
-
-    const url = `file:///${path}`
+    const host = `file:///${join(__dirname, '/../build/storybook/')}`
+    const url = generateIframeUrl({ host, kind, type })
 
     await page.goto(url)
     await page.waitFor(delay || 0)
