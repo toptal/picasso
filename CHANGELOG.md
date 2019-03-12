@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.1.0-beta.6 (12/03/2019)
+
+#### Chore
+
+- [**Chore**] [FX-45] Prepare tsconfig for storybook [#111](https://github.com/toptal/picasso/pull/111)
+- [**Chore**] Add symlink yarn command and document linking [#110](https://github.com/toptal/picasso/pull/110)
+- [**Chore**] Add support info [#112](https://github.com/toptal/picasso/pull/112)
+
+---
+
 ## v0.1.0-beta.5 (11/03/2019)
 
 #### Chore
@@ -338,12 +348,3 @@
 #### closed
 
 - [**closed**] Move to Typescript [#36](https://github.com/toptal/picasso/pull/36)
-
----
-
-## v0.1.0-alpha.8 (22/01/2019)
-
-#### Feature
-
-- [**Feature**] Add initial component - Label [#31](https://github.com/toptal/picasso/pull/31)
-- [**Feature**] Added Loader component, loading support for Button [#30](https://github.com/toptal/picasso/pull/30)
