@@ -19,7 +19,8 @@
     "build": "yarn run build:svg && cross-env NODE_ENV=production ./bin/build",
     "build:svg": "svgr -d components/Icon --ext jsx components/Icon/svg",
     "build:watch": "cross-env ./bin/build --watch",
-    "symlink": "cross-env ./bin/build --symlink",
+    "symlink": "cross-env ./bin/symlink --link",
+    "symlink:off": "cross-env ./bin/symlink --unlink",
     "generate:component": "hygen component new",
     "generate:example": "hygen component example"
   },
@@ -34,8 +35,8 @@
   },
   "homepage": "https://github.com/toptal/ui-library#readme",
   "peerDependencies": {
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3"
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4"
   },
   "dependencies": {
     "@babel/standalone": "^7.3.4",
@@ -93,10 +94,10 @@
     "prop-types": "^15.6.2",
     "puppeteer": "^1.9.0",
     "raw-loader": "^1.0.0",
-    "react": "^16.8.1",
+    "react": "^16.8.4",
     "react-ace": "^6.3.2",
     "react-docgen-typescript-loader": "^3.0.1",
-    "react-dom": "^16.8.1",
+    "react-dom": "^16.8.4",
     "react-source-render": "^2.0.0-beta.6",
     "react-storybook-addon-chapters": "^3.0.3",
     "react-testing-library": "^5.3.1",

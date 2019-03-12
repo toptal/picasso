@@ -1,0 +1,61 @@
+#!/usr/bin/env node
+
+const path = require('path')
+const chalk = require('chalk')
+const yargs = require('yargs').argv
+const exec = require('child_process').execSync
+
+const config = require(`../tsconfig.json`)
+const packageJson = require(path.resolve(__dirname, '../package.json'))
+
+// General logging
+const log = function(text, color) {
+  if (!color) color = 'blue'
+  console.log(chalk[color](text))
+}
+
+const link = function(name, cwd) {
+  log(`Linking ${name}...`)
+  exec('yarn link', {
+    cwd,
+    stdio: 'inherit'
+  })
+}
+
+const unlink = function(name, cwd) {
+  try {
+    log(`Unlinking ${name}...`)
+    exec('yarn unlink', {
+      cwd,
+      stdio: 'ignore',
+      stderr: 'ignore'
+    })
+  } catch (e) {
+    log(`Package ${name} not found. ${e}`)
+  }
+}
+
+const setup = function(config) {
+  if (yargs.link) {
+    log('Linking process started...')
+
+    unlink(packageJson.name, config.compilerOptions.outDir)
+    unlink('react', './node_modules/react')
+
+    link('picasso', config.compilerOptions.outDir)
+    link('react', './node_modules/react')
+
+    log('Linking process finished.')
+  }
+
+  if (yargs.unlink) {
+    log('Unlinking process started...')
+
+    unlink(packageJson.name, config.compilerOptions.outDir)
+    unlink('react', './node_modules/react')
+
+    log('Unlinking process finished.')
+  }
+}
+
+setup(config)
