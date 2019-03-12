@@ -1,14 +1,14 @@
 import React from 'react'
 import { Icon, IconsLibrary } from '@toptal/picasso'
-import { Check } from '@toptal/picasso/Icons'
+import { Cog } from '@toptal/picasso/Icons'
 
 const IconExample = () => (
   <div>
-    <Icon name='check' />
+    <Icon name='cog' />
   </div>
 )
 
 // somewhere in the code
-IconsLibrary.add(Check)
+IconsLibrary.add(Cog)
 
 export default IconExample

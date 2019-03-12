@@ -5,9 +5,6 @@ import { withStyles } from '@material-ui/core/styles'
 
 import FormControlLabel from '../FormControlLabel'
 import styles from './styles'
-import CheckedIcon from './CheckedIcon'
-import UncheckedIcon from './UncheckedIcon'
-import IndeterminateIcon from './IndeterminateIcon'
 
 export const Checkbox = props => {
   const {
@@ -28,15 +25,13 @@ export const Checkbox = props => {
   const muiCheckbox = (
     <MUICheckbox
       checked={checked}
-      checkedIcon={<CheckedIcon className={classes.checkedIcon} />}
+      icon={<div className={classes.uncheckedIcon} />}
+      checkedIcon={<div className={classes.checkedIcon} />}
+      indeterminateIcon={<div className={classes.indeterminateIcon} />}
       classes={rootClasses}
       disabled={disabled}
-      icon={<UncheckedIcon className={classes.uncheckedIcon} />}
       id={id}
       indeterminate={indeterminate}
-      indeterminateIcon={
-        <IndeterminateIcon className={classes.indeterminateIcon} />
-      }
       onChange={onChange}
       value={value}
     />
