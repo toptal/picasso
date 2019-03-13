@@ -11,8 +11,6 @@ import { create } from '@storybook/theming'
 import Picasso from '../components'
 import PicassoBook from './components/PicassoBook'
 
-console.log('OMG RAN')
-
 const loadFonts = TEST_ENV !== 'visual'
 const withPicasso = story => <Picasso loadFonts={loadFonts}>{story()}</Picasso>
 

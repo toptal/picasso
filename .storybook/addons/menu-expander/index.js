@@ -1,4 +1,4 @@
-import { waitForElement } from '../utils'
+import { waitForElement } from '../helpers'
 
 const disableClickHandlers = item => {
   item.style = 'pointer-events: none; padding-left: 10px'
