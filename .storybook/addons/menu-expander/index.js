@@ -1,9 +1,4 @@
-import { STORY_RENDERED } from '@storybook/core-events'
-import addons from '@storybook/addons'
-
-import { waitForElement } from './utils'
-
-const ADDON_ID = 'menu-expand'
+import { waitForElement } from '../utils'
 
 const disableClickHandlers = item => {
   item.style = 'pointer-events: none; padding-left: 10px'
@@ -49,11 +44,7 @@ const autoExpandMenu = menuItems => {
   componentChildren.forEach(child => applyChildrenStyling(child))
 }
 
-const scheduleWork = async () => {
+export const scheduleWork = async () => {
   const menuItems = await waitForElement('section > a')
   autoExpandMenu(menuItems)
 }
-
-addons.register(ADDON_ID, api => {
-  api.on(STORY_RENDERED, scheduleWork)
-})
