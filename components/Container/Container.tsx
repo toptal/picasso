@@ -28,7 +28,7 @@ export const Container: React.FunctionComponent<Props> = props => {
         marginBottom: bottom + 'em',
         marginLeft: left + 'em',
         marginRight: right + 'em',
-        display: inline ? ('inline-block' as 'inline-block') : 'flex',
+        display: inline ? ('inline-block' as 'inline-block') : undefined,
         ...style
       }}
     >
