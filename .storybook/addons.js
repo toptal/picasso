@@ -1,3 +1,3 @@
 import '@storybook/addon-links/register'
-import '@storybook/addon-options/register'
 import 'storybook-readme/register'
+require('./addons/menu-expander/register') // sorry webpack and storybook

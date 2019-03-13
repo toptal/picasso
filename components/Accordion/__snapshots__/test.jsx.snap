@@ -182,7 +182,7 @@ exports[`default version for sections should render expanded version after click
     </div>
     <div
       class="MuiCollapse-container"
-      style="min-height: 0px; height: 0px;"
+      style="min-height: 0px; height: 0px; transition-duration: 0ms;"
     >
       <div
         class="MuiCollapse-wrapper"

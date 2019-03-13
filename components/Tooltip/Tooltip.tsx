@@ -7,8 +7,11 @@ import { Classes } from '../styles/types'
 import styles from './styles'
 
 type VariantType = 'light' | 'dark'
+
 type TriggerType = 'hover' | 'click'
+
 type PlacementType = 'bottom' | 'left' | 'right' | 'top'
+
 type ContentType = string | ReactNode
 
 interface Props {
@@ -95,7 +98,7 @@ export const Tooltip: React.FunctionComponent<Props> = props => {
       placement={placement}
       title={title}
     >
-      {children}
+      {children as React.ReactElement}
     </MUITooltip>
   )
 }

@@ -5,7 +5,7 @@ const path = require('path')
 const config = require('./config')
 
 const SPECIAL_CHARS = /[^\w\s]/gi
-const SPACES = / /g
+const SPACES = /\s+/g
 
 const normalize = name =>
   name
