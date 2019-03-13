@@ -17,6 +17,9 @@
 
 ###### Browsers that are **not tested** (may only be tested during major releases) and are partially maintained (only the critical issues are addressed, minor visual inconsistencies are not ). 
 
+These **stats** are taken from our **Google Analytics** account, filtering users that are coming to `/platform*` or `Portal` projects.
+
+We do not specify supported versions for **evergreen browsers** - **Chrome**, **Firefox** and **EDGE** as it is automatically updated.
 
 Our main strategy is to support only most popular browsers, however having a handful of IE and EDGE users in enterprise scope we must ensure at least non-breaking experience for them.
 
