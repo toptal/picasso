@@ -1,6 +1,8 @@
 import { STORY_RENDERED } from '@storybook/core-events'
 import addons from '@storybook/addons'
 
+import { waitForElement } from './utils'
+
 const ADDON_ID = 'menu-expand'
 
 const disableClickHandlers = item => {
@@ -25,8 +27,7 @@ const applyCategoryStyling = item => {
   item.style = 'text-transform: uppercase;'
 }
 
-const autoExpandMenu = () => {
-  const menuItems = document.querySelectorAll('section > a')
+const autoExpandMenu = menuItems => {
   const componentChildren = []
   menuItems.forEach(item => {
     removeCaret(item)
@@ -48,6 +49,11 @@ const autoExpandMenu = () => {
   componentChildren.forEach(child => applyChildrenStyling(child))
 }
 
+const scheduleWork = async () => {
+  const menuItems = await waitForElement('section > a')
+  autoExpandMenu(menuItems)
+}
+
 addons.register(ADDON_ID, api => {
-  api.on(STORY_RENDERED, autoExpandMenu)
+  api.on(STORY_RENDERED, scheduleWork)
 })
