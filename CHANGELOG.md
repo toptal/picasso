@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.1.0-beta.7 (13/03/2019)
+
+#### Bugfix
+
+- [**Bugfix**] Fix checkbox alignment [#113](https://github.com/toptal/picasso/pull/113)
+
+#### Chore
+
+- [**Chore**] Storybook 5 [#114](https://github.com/toptal/picasso/pull/114)
+
+---
+
 ## v0.1.0-beta.6 (12/03/2019)
 
 #### Chore
@@ -330,21 +342,3 @@
 - [**Feature**] Add component Icon and support of svg icons (new API) [#44](https://github.com/toptal/picasso/pull/44)
 - [**Feature**] Add font directly from adobe using link [#39](https://github.com/toptal/picasso/pull/39)
 - [**Feature**] Adjust Button styles, add new props [#38](https://github.com/toptal/picasso/pull/38)
-
----
-
-## v0.1.0-alpha.9 (29/01/2019)
-
-#### Chore
-
-- [**Chore**] Truncate svg dynamic classnames parts using jss snapshot serializer [#34](https://github.com/toptal/picasso/pull/34)
-- [**Chore**] Add error state for Text Field component [#33](https://github.com/toptal/picasso/pull/33)
-
-#### Feature
-
-- [**Feature**] Add Pagination component [#35](https://github.com/toptal/picasso/pull/35)
-- [**Feature**] Added Accordion component (collapsable panel) [#32](https://github.com/toptal/picasso/pull/32)
-
-#### closed
-
-- [**closed**] Move to Typescript [#36](https://github.com/toptal/picasso/pull/36)
