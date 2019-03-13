@@ -1,3 +1,5 @@
+import { createStyles } from '@material-ui/core'
+
 import { PicassoProvider } from '../Picasso'
 
 PicassoProvider.override(() => ({
@@ -13,4 +15,4 @@ PicassoProvider.override(() => ({
   }
 }))
 
-export default {}
+export default () => createStyles({})

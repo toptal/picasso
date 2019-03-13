@@ -1,5 +1,8 @@
-export default () => ({
-  root: {
-    margin: '2rem'
-  }
-})
+import { createStyles } from '@material-ui/core'
+
+export default () =>
+  createStyles({
+    root: {
+      margin: '2rem'
+    }
+  })

@@ -1,28 +1,31 @@
-export default {
-  root: {
-    position: 'relative' as 'relative',
-    width: '100%'
-  },
+import { createStyles } from '@material-ui/core'
 
-  component: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center'
-  },
+export default () =>
+  createStyles({
+    root: {
+      position: 'relative',
+      width: '100%'
+    },
 
-  componentRenderer: {
-    flex: 1
-  },
+    component: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center'
+    },
 
-  sourceCodeButton: {
-    top: '-36px',
-    right: 0,
-    position: 'absolute' as 'absolute'
-  },
+    componentRenderer: {
+      flex: 1
+    },
 
-  editor: {
-    width: '100%',
-    backgroundColor: '#141414',
-    padding: '1em 0'
-  }
-}
+    sourceCodeButton: {
+      top: '-36px',
+      right: 0,
+      position: 'absolute'
+    },
+
+    editor: {
+      width: '100%',
+      backgroundColor: '#141414',
+      padding: '1em 0'
+    }
+  })
