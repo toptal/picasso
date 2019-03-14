@@ -3,6 +3,7 @@ import React from 'react'
 import { ClassNameMap } from '@material-ui/core/styles/withStyles'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
+import ReactMarkdown from 'react-markdown'
 
 import styles from './styles'
 
@@ -23,21 +24,7 @@ const Description = ({
     window.console.warn(`Failed to parse description for '${propName}'`)
   }
 
-  const parts = description.split(HIGHLIGHT_REGEXP)
-
-  const children = parts.map((part, i) => {
-    if (part.match(HIGHLIGHT_REGEXP)) {
-      return (
-        <span key={i} className={cx(classes.sourceCode, classes.highlight)}>
-          {part.replace(/`/g, '')}
-        </span>
-      )
-    } else {
-      return part
-    }
-  })
-
-  return <div>{children}</div>
+  return <ReactMarkdown className={classes.markdown} source={description} />
 }
 
 export default withStyles(styles)(Description)

@@ -11,7 +11,10 @@ interface Props {
   classes: Partial<ClassNameMap<string>>
   /** Text content of the `Label` component */
   label?: string
-  /** A callback which is invoked after remove `Icon` is clicked. Please note that specifying this callback automatically adds remove `Icon` as children of the `Label` */
+  /** A callback which is invoked after remove `Icon` is clicked
+   *
+   * Please note that specifying this callback automatically adds remove `Icon` as children of the `Label`
+   */
   onDelete?: () => void
   /** Style variant of the label */
   variant?: 'flat' | 'success' | 'error'

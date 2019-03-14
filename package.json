@@ -101,6 +101,7 @@
     "react-ace": "^6.3.2",
     "react-docgen-typescript-loader": "^3.0.1",
     "react-dom": "^16.8.4",
+    "react-markdown": "^4.0.6",
     "react-source-render": "^2.0.0-beta.6",
     "react-storybook-addon-chapters": "^3.0.3",
     "react-testing-library": "^5.3.1",
