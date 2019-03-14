@@ -4,13 +4,11 @@ const path = require('path')
 
 const config = require('./config')
 
-const SPECIAL_CHARS = /[^\w\s]/gi
-const SPACES = /\s+/g
+const SPECIAL_CHARS_OR_SPACES = /[^\w]+/gi
 
 const normalize = name =>
   name
-    .replace(SPECIAL_CHARS, '')
-    .replace(SPACES, '-')
+    .replace(SPECIAL_CHARS_OR_SPACES, '-')
     .trim()
     .toLowerCase()
 

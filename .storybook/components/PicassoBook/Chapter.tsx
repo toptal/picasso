@@ -1,11 +1,12 @@
 declare var TEST_ENV: string // defined by ENV
 
-import React from 'react'
+import React, { Fragment } from 'react'
 import { toArray } from 'lodash'
 
 import Base from './Base'
 import Section from './Section'
 import CodeExample from '../CodeExample'
+import Page, { COMPONENTS_FOLDER } from './Page'
 
 import PropsTable from './components/PropsTable'
 import DocumentationGenerator, {
@@ -13,14 +14,24 @@ import DocumentationGenerator, {
   PropDocumentationMap,
   Documentable
 } from '../../utils/documentationGenerator'
+import { generateUrl, getHost, normalize } from '../../../utils/urlGenerator'
 
 const componentDocumentation = new DocumentationGenerator()
 
+export interface ChapterOptions {
+  title: string
+  info?: string
+  page: Page
+}
+
 class Chapter extends Base {
   type = 'Chapter'
+  page: Page
 
-  constructor(options = {}) {
+  constructor(options: ChapterOptions) {
     super(options)
+
+    this.page = options.page
   }
 
   createSection = (options: any) => {
@@ -81,14 +92,6 @@ class Chapter extends Base {
   }
 
   addExample = (source: string, options: any) => {
-    const render = () => (
-      <div
-        className='chapter-container'
-        style={{ display: TEST_ENV === 'visual' ? 'inline-block' : 'block' }}>
-        <CodeExample src={source} />
-      </div>
-    )
-
     let finalOptions = options
 
     if (typeof options === 'string') {
@@ -96,6 +99,25 @@ class Chapter extends Base {
         title: options
       }
     }
+
+    const sectionLinkId = normalize(finalOptions.title)
+    const permanentLink = generateUrl({
+      host: getHost(),
+      kind: COMPONENTS_FOLDER,
+      type: this.page.title,
+      section: finalOptions.title
+    })
+    const render = () => (
+      <Fragment>
+        <div
+          className='chapter-container'
+          style={{ display: TEST_ENV === 'visual' ? 'inline-block' : 'block' }}
+          id={sectionLinkId}
+        >
+          <CodeExample src={source} permanentLink={permanentLink} />
+        </div>
+      </Fragment>
+    )
 
     this.createSection({
       sectionFn: render,

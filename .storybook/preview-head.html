@@ -9,8 +9,30 @@
   .story-title {
     margin: 0;
   }
+  .section-title {
+    margin: 0.625rem 0 !important;
+  }
   .section-container {
-    margin-bottom: 20px !important;
+    margin-bottom: 1.25rem !important;
+    margin-left: -1rem;
+    margin-right: -1rem;
+    padding: 1rem;
+    background-color: white;
+    border-radius: .5rem;
+  }
+  @keyframes highlight {
+    0% {
+      background: #ffff99;
+    }
+    25% {
+      background: #ffff99;
+    }
+    100% {
+      background: none;
+    }
+  }
+  .section-container--highlight {
+      animation: highlight 3s;
   }
   .section-component-container {
     margin-bottom: 20px !important;
