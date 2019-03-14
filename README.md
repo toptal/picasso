@@ -62,6 +62,7 @@ docker run -t -i --rm -e -v ${PWD}/components:/app/components NPM_TOKEN=$NPM_TOK
 | **yarn test:visual**          | Run visual regression tests in Docker                                     |
 | **yarn test:visual -u**       | Update visual regression snapshots in docker                              |
 | **yarn storybook**            | Start storybook instance and inspect components                           |
+| **storybook:cache**           | Start storybook instance and inspect components with webpack cache        |
 | **yarn release:pre**          | Bump pre-release version in `package.json` and create new version git tag |
 | **yarn generate:component**   | Generate a new component template                                         |
 | **yarn generate:example**     | Generate a new component component code example                           |
