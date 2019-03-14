@@ -1,5 +1,6 @@
 const webpack = require('webpack')
 const path = require('path')
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
 
 // example: /components/Button/Button.tsx
 const COMPONENT_DECLARATION_FILE_REGEXP = /components\/(.*)\/\1.tsx$/
@@ -46,6 +47,9 @@ module.exports = ({ config }) => {
       TEST_ENV: JSON.stringify(process.env.TEST_ENV)
     })
   )
+  if (process.env.CACHE) {
+    config.plugins.push(new HardSourceWebpackPlugin())
+  }
 
   config.node = {
     fs: 'empty',
