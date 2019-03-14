@@ -1,3 +1,5 @@
+import { createStyles } from '@material-ui/core/styles'
+
 import { PicassoProvider } from '../Picasso'
 
 const HEADING_LINE_HEIGHT = '1.25em'
@@ -35,32 +37,33 @@ PicassoProvider.override(() => ({
   }
 }))
 
-export default () => ({
-  large: {
-    fontSize: '1.25rem',
-    lineHeight: TEXT_HEIGHT
-  },
-  small: {
-    fontSize: '0.875rem',
-    lineHeight: TEXT_HEIGHT
-  },
-  body: {
-    fontSize: '1rem',
-    lineHeight: TEXT_HEIGHT
-  },
-  thin: {
-    fontWeight: 100
-  },
-  light: {
-    fontWeight: 300
-  },
-  regular: {
-    fontWeight: 400
-  },
-  semibold: {
-    fontWeight: 600
-  },
-  bold: {
-    fontWeight: 700
-  }
-})
+export default () =>
+  createStyles({
+    large: {
+      fontSize: '1.25rem',
+      lineHeight: TEXT_HEIGHT
+    },
+    small: {
+      fontSize: '0.875rem',
+      lineHeight: TEXT_HEIGHT
+    },
+    body: {
+      fontSize: '1rem',
+      lineHeight: TEXT_HEIGHT
+    },
+    thin: {
+      fontWeight: 100
+    },
+    light: {
+      fontWeight: 300
+    },
+    regular: {
+      fontWeight: 400
+    },
+    semibold: {
+      fontWeight: 600
+    },
+    bold: {
+      fontWeight: 700
+    }
+  })

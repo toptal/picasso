@@ -11,3 +11,5 @@ export const lighten = (inputColor, amount) =>
     .hex()
 
 export { default as withClasses } from './withClasses'
+
+export { createPropertiesStyles } from './createPropertiesStyles'
