@@ -45,11 +45,7 @@ function renderRows({ documentation, classes }: Props): JSX.Element {
               )}
             </TableCell>
             <TableCell className={classes.descriptionCell}>
-              <Description
-                description={description}
-                classes={classes}
-                propName={name}
-              />
+              <Description description={description} propName={name} />
               {isEnum(type) && <EnumsList type={type} enums={enums} />}
             </TableCell>
           </TableRow>
