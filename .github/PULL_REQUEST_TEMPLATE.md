@@ -7,7 +7,6 @@ Describe the changes and motivations for the pull request, unless evident from t
 ### How to test
 
 - FIXME: Add the steps describing how to verify your changes
-- ...
 
 ### Screenshots
 
@@ -17,8 +16,7 @@ Describe the changes and motivations for the pull request, unless evident from t
 
 ### Review
 
-- [ ] `CHANGELOG.md`
-- [ ] `README.md`
-- [ ] Specs
-- [ ] Visual specs
-- [ ] Documentation
+- [ ] Annotate all `props` in component with documentation
+- [ ] Create `examples` for component
+- [ ] Ensure that deployed demo has expected results and good examples
+- [ ] Ensure that visuals specs are green [See the documentation](/README.md#fixing-broken-visual-tests-inside-a-pr)
