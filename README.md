@@ -38,16 +38,27 @@ To preserve same visual test results we need to always run/update snapshots insi
 
 In order to run visual tests you need to first build `picasso` docker image.
 
-`yarn test-visual` - Running visual tests
+`yarn test:visual` - Running visual tests
 
-`yarn test-visual -u` - Updating to current snapshots
+### Fixing broken visual tests inside a PR
+
+In order to have a good tracking on visual changes which were applied in each PR, we run visual snapshot comparision inside each pull request. `Jenkins` is automatically trying to take snapshot of each component and compare the result to a previous state. Logic behind this is similar as running `jest` snapshots, therefore when your PR has failing visual tests you need to update them.
+
+1. Check the report on jenkins which are linked to the PR status.
+2. Manually check the differences by eye and ensure that the current state of the screenshot is the expected state.
+3. After the engineer is sure that the current changes are legitimate run `yarn test:visual -u` on your local machine.
+4. Command should re-generate snapshots which are different against previous version.
+5. Commit generated `.png` files to the PR.
+6. Visual tests job should be green now.
+
+`yarn test:visual -u` - Updating to current snapshots
 
 ### Running yarn commands inside docker image
 
 In order to run `yarn` commands we need to mount current `components` directory to docker, so command will be executed against current working directory not the one built inside image.
 
 ```
-docker run -t -i --rm -e -v ${PWD}/components:/app/components NPM_TOKEN=$NPM_TOKEN picasso:latest yarn lint
+./bin/run-in-docker yarn lint
 ```
 
 ## Project commands
