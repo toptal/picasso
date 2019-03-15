@@ -1,5 +1,21 @@
 # Changelog
 
+## v0.1.0-beta.8 (15/03/2019)
+
+#### Bugfix
+
+- [**Bugfix**] Center Toptal logo vertically in header [#115](https://github.com/toptal/picasso/pull/115)
+
+#### Chore
+
+- [**Chore**] Add markdown prop description support [#120](https://github.com/toptal/picasso/pull/120)
+- [**Chore**] Adjust support info [#118](https://github.com/toptal/picasso/pull/118)
+- [**Chore**] [FX-7] Add story sections anchor link [#117](https://github.com/toptal/picasso/pull/117)
+- [**Chore**] Add hard-source-webpack-plugin to cache for development sources between webpack builds [#119](https://github.com/toptal/picasso/pull/119)
+- [**Chore**] Add createStyles to style files and implement withStyles [#116](https://github.com/toptal/picasso/pull/116)
+
+---
+
 ## v0.1.0-beta.7 (13/03/2019)
 
 #### Bugfix
@@ -322,23 +338,3 @@
 #### closed
 
 - [**closed**] Fix Dockerfile PATH variable [#52](https://github.com/toptal/picasso/pull/52)
-
----
-
-## v0.1.0-alpha.10 (01/02/2019)
-
-#### Bugfix
-
-- [**Bugfix**] Fix Label style [#40](https://github.com/toptal/picasso/pull/40)
-
-#### Chore
-
-- [**Chore**] Add documentation about how to add new Icon to the Picasso project [#45](https://github.com/toptal/picasso/pull/45)
-- [**Chore**] Fix warnings in unit tests [#41](https://github.com/toptal/picasso/pull/41)
-- [**Chore**] Change eslint rule sort-default-prop-types to sort-prop-types [#37](https://github.com/toptal/picasso/pull/37)
-
-#### Feature
-
-- [**Feature**] Add component Icon and support of svg icons (new API) [#44](https://github.com/toptal/picasso/pull/44)
-- [**Feature**] Add font directly from adobe using link [#39](https://github.com/toptal/picasso/pull/39)
-- [**Feature**] Adjust Button styles, add new props [#38](https://github.com/toptal/picasso/pull/38)

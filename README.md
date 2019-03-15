@@ -2,7 +2,7 @@
 
 <br/>
 
-![](https://img.shields.io/badge/npm-0.1.0--beta.7-yellow.svg)
+![](https://img.shields.io/badge/npm-0.1.0--beta.8-yellow.svg)
 [![#-frontend-exp-core](https://img.shields.io/badge/slack-%23--frontend--exp--core-green.svg)](https://toptal-core.slack.com/app_redirect?channel=CERF5NHT3)
 
 ## Installation instructions
