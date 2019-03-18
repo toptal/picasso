@@ -9,4 +9,5 @@ const SvgLogo = props => (
   </svg>
 )
 
+SvgLogo.displayName = 'SvgLogo'
 export default SvgLogo
