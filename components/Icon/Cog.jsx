@@ -7,4 +7,5 @@ const SvgCog = props => (
   </svg>
 )
 
+SvgCog.displayName = 'SvgCog'
 export default SvgCog

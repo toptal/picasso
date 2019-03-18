@@ -7,7 +7,7 @@ class IconsLibrary {
 
   static add (...icons: any[]) {
     icons.forEach(icon => {
-      this.listOfImportedIcons[icon.name] = icon
+      this.listOfImportedIcons[icon.displayName] = icon
     })
   }
 }
