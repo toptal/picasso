@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.1.0-beta.9 (18/03/2019)
+
+#### Bugfix
+
+- [**Bugfix**] [FX-66] Fix Icon mangled names inside prod build [#122](https://github.com/toptal/picasso/pull/122)
+
+#### Chore
+
+- [**Chore**] Update visual tests steps documentation [#121](https://github.com/toptal/picasso/pull/121)
+
+---
+
 ## v0.1.0-beta.8 (15/03/2019)
 
 #### Bugfix
@@ -316,25 +328,3 @@
 #### closed
 
 - [**closed**] Fix for running visual tests inside docker container [#56](https://github.com/toptal/picasso/pull/56)
-
----
-
-## v0.1.0-alpha.11 (08/02/2019)
-
-#### CI
-
-- [**CI**] Add visual tests in CI pipeline [#50](https://github.com/toptal/picasso/pull/50)
-
-#### Chore
-
-- [**Chore**] Remove usage of data-testid in unit tests [#48](https://github.com/toptal/picasso/pull/48)
-- [**Chore**] Add unit tests for Checkbox component [#47](https://github.com/toptal/picasso/pull/47)
-- [**Chore**] Add Typescript type check for Palette object [#46](https://github.com/toptal/picasso/pull/46)
-
-#### Feature
-
-- [**Feature**] Added Typography component [#49](https://github.com/toptal/picasso/pull/49)
-
-#### closed
-
-- [**closed**] Fix Dockerfile PATH variable [#52](https://github.com/toptal/picasso/pull/52)
