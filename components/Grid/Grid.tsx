@@ -26,6 +26,9 @@ export const Grid: React.FunctionComponent<Props> = props => (
 )
 
 Grid.defaultProps = {
+  alignItems: 'flex-start',
+  direction: 'row',
+  justify: 'flex-start',
   spacing: 32
 }
 

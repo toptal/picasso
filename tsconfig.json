@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "outDir": "./build",
-    "module": "esnext",
+    "module": "commonjs",
     "target": "es2015",
     "moduleResolution": "node",
     "skipLibCheck": true,
@@ -19,9 +19,7 @@
       "*": ["@types/*"]
     }
   },
-  "include": [
-    "components/**/*"
-  ],
+  "include": ["components/**/*"],
   "exclude": [
     "**/test.jsx",
     "**/test.tsx",

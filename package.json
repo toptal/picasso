@@ -27,14 +27,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/toptal/ui-library.git"
+    "url": "git+https://github.com/toptal/picasso.git"
   },
   "author": "Toptal",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/toptal/ui-library/issues"
+    "url": "https://github.com/toptal/picasso/issues"
   },
-  "homepage": "https://github.com/toptal/ui-library#readme",
+  "homepage": "https://github.com/toptal/picasso#readme",
   "peerDependencies": {
     "react": "^16.8.4",
     "react-dom": "^16.8.4"
