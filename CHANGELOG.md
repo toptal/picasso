@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.1.0-beta.10 (20/03/2019)
+
+#### closed
+
+- [**closed**] Changes toward davinci standard [#123](https://github.com/toptal/picasso/pull/123)
+
+---
+
 ## v0.1.0-beta.9 (18/03/2019)
 
 #### Bugfix
@@ -308,23 +316,3 @@
 #### Chore
 
 - [**Chore**] Add Userback integration for delivering feedback [#55](https://github.com/toptal/picasso/pull/55)
-
----
-
-## v0.1.0-alpha.12 (12/02/2019)
-
-#### CI
-
-- [**CI**] Finalize publish and docs CI jobs [#54](https://github.com/toptal/picasso/pull/54)
-
-#### Chore
-
-- [**Chore**] Fix prop type warning in specs [#53](https://github.com/toptal/picasso/pull/53)
-
-#### Feature
-
-- [**Feature**] Add withClasses HOC [#43](https://github.com/toptal/picasso/pull/43)
-
-#### closed
-
-- [**closed**] Fix for running visual tests inside docker container [#56](https://github.com/toptal/picasso/pull/56)
