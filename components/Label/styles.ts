@@ -7,8 +7,8 @@ export default ({ palette }: Theme) =>
       color: palette.grey[300]
     },
     success: {
-      backgroundColor: palette.positive.light,
-      color: palette.positive.main
+      backgroundColor: palette.success.light,
+      color: palette.success.main
     },
     error: {
       backgroundColor: palette.error.light,

@@ -9,7 +9,7 @@ declare module '@material-ui/core/styles/createPalette' {
 
   interface Palette {
     blue: SimplePaletteColorOptions
-    positive: SimplePaletteColorOptions
+    success: SimplePaletteColorOptions
   }
 }
 
@@ -39,7 +39,7 @@ const palette = {
     main: '#f05359',
     dark: '#9f3a38'
   },
-  positive: {
+  success: {
     light: '#b3ffe4',
     main: '#00cc83'
   },

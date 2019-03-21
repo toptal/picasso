@@ -15,8 +15,8 @@ page
         'secondary',
         'flat',
         'basic',
-        'positive',
-        'negative',
+        'success',
+        'error',
         'default'
       ]
     },

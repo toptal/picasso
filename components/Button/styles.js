@@ -93,12 +93,12 @@ export default ({ palette, typography, transitions }) => ({
       borderColor: darken(palette.primary.light, 0.25)
     }
   },
-  positive: getFilledButton(
-    palette.positive.main,
-    palette.positive.main,
+  success: getFilledButton(
+    palette.success.main,
+    palette.success.main,
     palette.common.white
   ),
-  negative: getFilledButton(
+  error: getFilledButton(
     palette.error.main,
     palette.error.main,
     palette.common.white
