@@ -13,8 +13,8 @@ const VARIANTS = {
   SECONDARY: 'secondary',
   FLAT: 'flat',
   BASIC: 'basic',
-  POSITIVE: 'positive',
-  NEGATIVE: 'negative',
+  SUCCESS: 'success',
+  ERROR: 'error',
   DEFAULT: 'default'
 }
 const SIZES = {
