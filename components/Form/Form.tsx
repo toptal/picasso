@@ -1,13 +1,24 @@
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 
 import FormField from '../FormField'
 import FormHint from '../FormHint'
 
-const Form: React.FunctionComponent = props => <form {...props} />
+type Props = React.DetailedHTMLProps<
+  React.FormHTMLAttributes<HTMLFormElement>,
+  HTMLFormElement
+>
 
-// @ts-ignore
+interface StaticProps {
+  Field: typeof FormField
+  Hint: typeof FormHint
+}
+
+const Form: FunctionComponent<Props> & StaticProps = props => (
+  <form {...props} />
+)
+
 Form.Field = FormField
-// @ts-ignore
+
 Form.Hint = FormHint
 
 Form.displayName = 'Form'
