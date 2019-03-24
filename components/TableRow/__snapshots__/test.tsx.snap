@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TableRow default render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <table
+      class="MuiTable-root"
+    >
+      <tbody
+        class="MuiTableBody-root"
+      >
+        <tr
+          class="MuiTableRow-root MuiTableRow-hover"
+        >
+          <td
+            class="MuiTableCell-root MuiTableCell-body"
+          >
+            Row test
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
