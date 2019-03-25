@@ -58,7 +58,6 @@ const renderOptions = (
   const OptionComponent = isNative ? 'option' : MenuItem
 
   const resultOptions = options.map(({ key, value, text }) => (
-    // @ts-ignore
     <OptionComponent key={key || value} value={value}>
       {text}
     </OptionComponent>
@@ -66,7 +65,6 @@ const renderOptions = (
 
   if (placeholder) {
     resultOptions.unshift(
-      // @ts-ignore
       <OptionComponent disabled key='placeholder' value=''>
         {placeholder}
       </OptionComponent>

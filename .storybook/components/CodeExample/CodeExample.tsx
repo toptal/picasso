@@ -19,6 +19,12 @@ import Picasso, {
 import Editor from '../Editor'
 import styles from './styles'
 
+/** Define all addition plugins needed for CodeExample rendering */
+// @ts-ignore
+import * as Babel from '@babel/standalone'
+const plugin = require('@babel/plugin-proposal-class-properties')
+Babel.registerPlugin('plugin-proposal-class-properties', plugin.default)
+
 const COPY_LINK_DEFAULT_TEXT = 'Link'
 const COPY_LINK_COPIED_TEXT = 'Copied!'
 
@@ -102,6 +108,9 @@ class CodeExample extends React.Component<Props> {
 
       return (
         <SourceRender
+          babelConfig={{
+            plugins: ['plugin-proposal-class-properties']
+          }}
           render={renderInTestPicasso}
           resolver={resolver}
           source={this.avoidSourceCodeMemoization(sourceCode)}
@@ -134,6 +143,9 @@ class CodeExample extends React.Component<Props> {
 
     return (
       <SourceRender
+        babelConfig={{
+          plugins: ['plugin-proposal-class-properties']
+        }}
         render={renderInPicasso}
         resolver={resolver}
         source={this.avoidSourceCodeMemoization(sourceCode)}
