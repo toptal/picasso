@@ -12,7 +12,7 @@ exports[`TableHead default render 1`] = `
         class="MuiTableHead-root"
       >
         <tr
-          class="MuiTableRow-root MuiTableRow-head MuiTableRow-hover"
+          class="MuiTableRow-root MuiTableRow-head"
         >
           <th
             class="MuiTableCell-root MuiTableCell-head"

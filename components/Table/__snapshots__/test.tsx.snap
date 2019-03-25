@@ -12,7 +12,7 @@ exports[`Table default render 1`] = `
         class="MuiTableHead-root"
       >
         <tr
-          class="MuiTableRow-root MuiTableRow-head MuiTableRow-hover"
+          class="MuiTableRow-root MuiTableRow-head"
         >
           <th
             class="MuiTableCell-root MuiTableCell-head"
@@ -26,7 +26,7 @@ exports[`Table default render 1`] = `
         class="MuiTableBody-root"
       >
         <tr
-          class="MuiTableRow-root MuiTableRow-hover"
+          class="MuiTableRow-root"
         >
           <td
             class="MuiTableCell-root MuiTableCell-body"
