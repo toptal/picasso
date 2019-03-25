@@ -33,7 +33,7 @@ export const TableRow: FunctionComponent<Props> = props => {
 }
 
 TableRow.defaultProps = {
-  hover: true,
+  hover: false,
   selected: false
 }
 

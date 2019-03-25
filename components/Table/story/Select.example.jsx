@@ -29,7 +29,7 @@ class SelectTableExample extends React.Component {
     return selected.indexOf(id) !== -1
   }
 
-  render() {
+  render () {
     return (
       <Table>
         <Table.Head>
@@ -49,6 +49,7 @@ class SelectTableExample extends React.Component {
             return (
               <Table.Row
                 key={n.id}
+                hover
                 selected={isSelected}
                 onClick={event => this.handleClick(event, n.id)}
               >
