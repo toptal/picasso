@@ -1,73 +1,58 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Table, Checkbox } from '@toptal/picasso'
 
-class SelectTableExample extends React.Component {
-  state = {
-    selected: []
-  }
+const SelectTableExample = () => {
+  const [selected, setSelected] = useState([])
 
-  handleClick = (event, id) => {
-    const { selected } = this.state
-    const selectedIndex = selected.indexOf(id)
+  const handleClick = (event, id) => {
     let newSelected = []
 
-    if (selectedIndex === -1) {
-      newSelected = [...selected, id]
+    if (selected.includes(id)) {
+      newSelected = selected.filter(item => item !== id)
     } else {
-      newSelected = [
-        ...selected.slice(0, selectedIndex),
-        ...selected.slice(selectedIndex + 1)
-      ]
+      newSelected = [...selected, id]
     }
 
-    this.setState({ selected: newSelected })
+    setSelected(newSelected)
   }
 
-  isSelected = id => {
-    const { selected } = this.state
+  return (
+    <Table>
+      <Table.Head>
+        <Table.Row>
+          <Table.Cell />
+          <Table.Cell>Name</Table.Cell>
+          <Table.Cell>Talent type</Table.Cell>
+          <Table.Cell>Company</Table.Cell>
+          <Table.Cell>Role</Table.Cell>
+          <Table.Cell>Country</Table.Cell>
+        </Table.Row>
+      </Table.Head>
+      <Table.Body>
+        {data.map(({ id, name, talentType, company, role, country }) => {
+          const isSelected = selected.includes(id)
 
-    return selected.indexOf(id) !== -1
-  }
-
-  render() {
-    return (
-      <Table>
-        <Table.Head>
-          <Table.Row>
-            <Table.Cell />
-            <Table.Cell>Name</Table.Cell>
-            <Table.Cell>Talent type</Table.Cell>
-            <Table.Cell>Company</Table.Cell>
-            <Table.Cell>Role</Table.Cell>
-            <Table.Cell>Country</Table.Cell>
-          </Table.Row>
-        </Table.Head>
-        <Table.Body>
-          {data.map(n => {
-            const isSelected = this.isSelected(n.id)
-
-            return (
-              <Table.Row
-                key={n.id}
-                hover
-                selected={isSelected}
-                onClick={event => this.handleClick(event, n.id)}
-              >
-                <Table.Cell>
-                  <Checkbox checked={isSelected} />
-                </Table.Cell>
-                <Table.Cell>{n.name}</Table.Cell>
-                <Table.Cell>{n.talentType}</Table.Cell>
-                <Table.Cell>{n.company}</Table.Cell>
-                <Table.Cell>{n.role}</Table.Cell>
-                <Table.Cell>{n.country}</Table.Cell>
-              </Table.Row>
-            )
-          })}
-        </Table.Body>
-      </Table>
-    )
-  }
+          return (
+            <Table.Row
+              key={id}
+              hover
+              selected={isSelected}
+              onClick={event => handleClick(event, id)}
+            >
+              <Table.Cell>
+                <Checkbox checked={isSelected} />
+              </Table.Cell>
+              <Table.Cell>{name}</Table.Cell>
+              <Table.Cell>{talentType}</Table.Cell>
+              <Table.Cell>{company}</Table.Cell>
+              <Table.Cell>{role}</Table.Cell>
+              <Table.Cell>{country}</Table.Cell>
+            </Table.Row>
+          )
+        })}
+      </Table.Body>
+    </Table>
+  )
 }
 
 const createData = (id, name, talentType, company, role, country) => {
