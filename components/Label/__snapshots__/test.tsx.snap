@@ -12,7 +12,9 @@ exports[`dismissable label should render dismissable label 1`] = `
     >
       <span
         class="MuiChip-label"
-      />
+      >
+        Label
+      </span>
       <svg
         aria-hidden="true"
         aria-label="delete icon"
@@ -46,7 +48,9 @@ exports[`renders default variant 1`] = `
     >
       <span
         class="MuiChip-label"
-      />
+      >
+        Label
+      </span>
     </div>
   </div>
 </div>
@@ -64,7 +68,9 @@ exports[`renders error variant 1`] = `
     >
       <span
         class="MuiChip-label"
-      />
+      >
+        Label
+      </span>
     </div>
   </div>
 </div>
@@ -82,7 +88,9 @@ exports[`renders flat variant 1`] = `
     >
       <span
         class="MuiChip-label"
-      />
+      >
+        Label
+      </span>
     </div>
   </div>
 </div>
@@ -100,7 +108,9 @@ exports[`renders success variant 1`] = `
     >
       <span
         class="MuiChip-label"
-      />
+      >
+        Label
+      </span>
     </div>
   </div>
 </div>

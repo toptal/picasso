@@ -4,10 +4,10 @@ import { render, fireEvent, cleanup, RenderResult } from 'react-testing-library'
 import Label from './index'
 import Picasso from '../Picasso'
 
-const renderLabel = (props = {}) => {
+const renderLabel = (children: string, props = {}) => {
   return render(
     <Picasso loadFonts={false}>
-      <Label {...props} />
+      <Label {...props}>{children}</Label>
     </Picasso>
   )
 }
@@ -15,25 +15,25 @@ const renderLabel = (props = {}) => {
 afterEach(cleanup)
 
 test('renders default variant', () => {
-  const { container } = renderLabel()
+  const { container } = renderLabel('Label')
 
   expect(container).toMatchSnapshot()
 })
 
 test('renders flat variant', () => {
-  const { container } = renderLabel({ variant: 'flat' })
+  const { container } = renderLabel('Label', { variant: 'flat' })
 
   expect(container).toMatchSnapshot()
 })
 
 test('renders success variant', () => {
-  const { container } = renderLabel({ variant: 'success' })
+  const { container } = renderLabel('Label', { variant: 'success' })
 
   expect(container).toMatchSnapshot()
 })
 
 test('renders error variant', () => {
-  const { container } = renderLabel({ variant: 'error' })
+  const { container } = renderLabel('Label', { variant: 'error' })
 
   expect(container).toMatchSnapshot()
 })
@@ -44,7 +44,7 @@ describe('dismissable label', () => {
 
   beforeEach(() => {
     onDelete = jest.fn()
-    api = renderLabel({ onDelete })
+    api = renderLabel('Label', { onDelete })
   })
   test('should render dismissable label', () => {
     const { container } = api

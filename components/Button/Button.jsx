@@ -107,7 +107,7 @@ Button.propTypes = {
   /** Show button in the active state (left mouse button down) */
   active: PropTypes.bool,
   /** Content of Button component */
-  children: PropTypes.node,
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
   focused: PropTypes.bool,
   /** Take the full width of a container */
   fullWidth: PropTypes.bool,

@@ -26,6 +26,8 @@ interface Props {
   /** Font variant inner text */
   variant?: VariantType
   classes: Classes
+  /** Text content */
+  children?: React.ReactNode
   className?: string
   /** Text align of the inner text */
   align?: PropTypes.Alignment

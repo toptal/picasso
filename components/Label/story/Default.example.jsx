@@ -3,7 +3,7 @@ import { Label } from '@toptal/picasso'
 
 const LabelDefaultExample = () => (
   <div>
-    <Label label='Javascript' />
+    <Label>Javascript</Label>
   </div>
 )
 

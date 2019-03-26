@@ -3,7 +3,7 @@ import { Label } from '@toptal/picasso'
 
 const LabelFlatExample = () => (
   <div>
-    <Label label='Ember JS' variant='flat' />
+    <Label variant='flat'>Ember JS</Label>
   </div>
 )
 

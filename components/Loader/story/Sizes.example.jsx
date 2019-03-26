@@ -4,12 +4,12 @@ import { Loader, Container } from '@toptal/picasso'
 const LoaderSizesExample = () => (
   <div>
     <Container bottom={2}>
-      <Loader label='small' size='small' />
+      <Loader size='small'>small</Loader>
     </Container>
     <Container bottom={2}>
-      <Loader label='default' size='default' />
+      <Loader size='default'>default</Loader>
     </Container>
-    <Loader label='large' size='large' />
+    <Loader size='large'>large</Loader>
   </div>
 )
 

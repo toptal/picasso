@@ -3,7 +3,7 @@ import { Loader } from '@toptal/picasso'
 
 const LoaderWithLabelExample = () => (
   <div>
-    <Loader label='Loading...' />
+    <Loader>Loading...</Loader>
   </div>
 )
 

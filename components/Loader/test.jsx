@@ -10,9 +10,8 @@ const renderLoader = (children, props = {}) => {
 afterEach(cleanup)
 
 test('props combo', () => {
-  const { container } = renderLoader({
+  const { container } = renderLoader('Testing', {
     inline: true,
-    label: 'Testing',
     size: 'large',
     indeterminate: true
   })
