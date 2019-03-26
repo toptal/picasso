@@ -86,7 +86,6 @@ export const Tooltip: React.FunctionComponent<Props> = props => {
   )
 
   return (
-    // @ts-ignore
     <MUITooltip
       PopperProps={getPopperProps(arrow!, arrowRef)}
       classes={getClasses(classes, variant!)}

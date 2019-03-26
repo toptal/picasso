@@ -29,7 +29,7 @@ class SelectTableExample extends React.Component {
     return selected.indexOf(id) !== -1
   }
 
-  render () {
+  render() {
     return (
       <Table>
         <Table.Head>

@@ -1,11 +1,8 @@
-// @ts-ignore TODO: why is it throwing "duplicate identifier error" here?
 import React from 'react'
-// @ts-ignore TODO: why is it throwing "duplicate identifier error" here?
 import { render, cleanup, RenderResult } from 'react-testing-library'
 
 import Button from '../../Button'
 import Picasso from '../../Picasso'
-// @ts-ignore TODO: why is it throwing "duplicate identifier error" here?
 import withClasses from './withClasses'
 
 const TestComponent = (props: any) => {

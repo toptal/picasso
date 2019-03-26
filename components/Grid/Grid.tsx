@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUIGrid, {
   GridSpacing,
@@ -8,7 +8,12 @@ import MUIGrid, {
 } from '@material-ui/core/Grid'
 
 import GridItem from '../GridItem'
+import { Classes } from '../styles/types'
 import styles from './styles'
+
+interface StylesProps {
+  classes: Classes
+}
 
 interface Props {
   /** Defines the space between the type item components */
@@ -21,9 +26,12 @@ interface Props {
   justify?: GridJustification
 }
 
-export const Grid: React.FunctionComponent<Props> = props => (
-  <MUIGrid container {...props} />
-)
+interface StaticProps {
+  Item: typeof GridItem
+}
+
+export const Grid: FunctionComponent<Props & StylesProps> &
+StaticProps = props => <MUIGrid container {...props} />
 
 Grid.defaultProps = {
   alignItems: 'flex-start',
@@ -32,7 +40,7 @@ Grid.defaultProps = {
   spacing: 32
 }
 
-// @ts-ignore
 Grid.Item = GridItem
 
-export default withStyles(styles)(Grid)
+export default withStyles(styles)(Grid) as FunctionComponent<Props> &
+  StaticProps

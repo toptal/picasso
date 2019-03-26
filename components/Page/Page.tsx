@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
 import Header from '../Header'
@@ -8,6 +8,9 @@ import { Classes } from '../styles/types'
 import { PageContextProps } from './types'
 import styles from './styles'
 
+interface StylesProps {
+  classes: Classes
+}
 interface Props {
   /** Component becomes responsive with width 100% and overrides width prop */
   fullWidth?: boolean
@@ -15,16 +18,22 @@ interface Props {
   width?: number
   /** Horizontally centers the content */
   centered?: boolean
-  classes: Classes
   /** Children components (`Page.Header`, `Page.Content`, `Page.Footer`) */
   children: React.ReactNode
+}
+
+interface StaticProps {
+  Header: typeof Header
+  Content: typeof PageContent
+  Footer: typeof Footer
 }
 
 export const PageContext = React.createContext<PageContextProps>(
   {} as PageContextProps
 )
 
-export const Page: React.FunctionComponent<Props> = props => {
+export const Page: FunctionComponent<Props & StylesProps> &
+StaticProps = props => {
   const { children, classes, fullWidth } = props
 
   return (
@@ -40,13 +49,13 @@ Page.defaultProps = {
   fullWidth: false
 }
 
-// @ts-ignore
+Page.displayName = 'Page'
+
 Page.Header = Header
 
-// @ts-ignore
 Page.Content = PageContent
 
-// @ts-ignore
 Page.Footer = Footer
 
-export default withStyles(styles)(Page)
+export default withStyles(styles)(Page) as FunctionComponent<Props> &
+  StaticProps

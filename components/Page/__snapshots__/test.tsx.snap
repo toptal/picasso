@@ -6,7 +6,7 @@ exports[`Page default render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Component-root"
+      class="Page-root"
     >
       <div>
         Test

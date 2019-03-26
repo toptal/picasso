@@ -1,7 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUITable from '@material-ui/core/Table'
-import { Omit } from '@material-ui/core'
 
 import TableCell from '../TableCell'
 import TableBody from '../TableBody'
@@ -10,20 +9,24 @@ import TableHead from '../TableHead'
 import { Classes } from '../styles/types'
 import styles from './styles'
 
-interface Props {
+interface StylesProps {
   classes: Classes
+}
+
+interface Props {
   /** Children components (`Table.Head`, `Table.Body`) */
   children: React.ReactNode
 }
 
-type TableComponentType<C> = FunctionComponent<C> & {
+interface StaticProps {
   Head: typeof TableHead
   Body: typeof TableBody
   Row: typeof TableRow
   Cell: typeof TableCell
 }
 
-export const Table: TableComponentType<Props> = props => {
+export const Table: FunctionComponent<Props & StylesProps> &
+StaticProps = props => {
   const { classes, children } = props
 
   return <MUITable classes={classes}>{children}</MUITable>
@@ -43,6 +46,5 @@ Table.Head = TableHead
 
 Table.Row = TableRow
 
-export default withStyles(styles)(Table) as TableComponentType<
-  Omit<Props, 'classes'>
->
+export default withStyles(styles)(Table) as FunctionComponent<Props> &
+  StaticProps

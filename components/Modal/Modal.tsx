@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import Dialog from '@material-ui/core/Dialog'
 import CloseIcon from '@material-ui/icons/Close'
@@ -11,10 +11,13 @@ import styles from './styles'
 
 type ContainerValue = () => HTMLElement | HTMLElement
 
+interface StylesProps {
+  classes: Classes
+}
+
 interface Props {
   /** Whether modal should be displayed */
   open: boolean
-  classes: Classes
   /** Callback executed when backdrop was clicked */
   onBackdropClick?: () => void
   /** Callback executed when attempting to close modal */
@@ -28,7 +31,14 @@ interface Props {
   transitionDuration?: number
 }
 
-export const Modal: React.FunctionComponent<Props> = props => {
+interface StaticProps {
+  Content: typeof ModalContent
+  Actions: typeof ModalActions
+  Title: typeof ModalTitle
+}
+
+export const Modal: FunctionComponent<Props & StylesProps> &
+StaticProps = props => {
   const {
     children,
     open,
@@ -64,11 +74,11 @@ Modal.defaultProps = {
   transitionDuration: 300
 }
 
-// @ts-ignore
 Modal.Content = ModalContent
-// @ts-ignore
+
 Modal.Actions = ModalActions
-// @ts-ignore
+
 Modal.Title = ModalTitle
 
-export default withStyles(styles)(Modal)
+export default withStyles(styles)(Modal) as FunctionComponent<Props> &
+  StaticProps

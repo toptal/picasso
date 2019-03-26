@@ -32,4 +32,6 @@ export const PageContent: React.FunctionComponent<Props> = props => {
   )
 }
 
+PageContent.displayName = 'PageContent'
+
 export default withStyles(styles)(PageContent)
