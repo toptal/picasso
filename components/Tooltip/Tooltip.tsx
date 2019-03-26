@@ -12,12 +12,12 @@ type TriggerType = 'hover' | 'click'
 
 type PlacementType = 'bottom' | 'left' | 'right' | 'top'
 
-type ContentType = string | ReactNode
-
 interface Props {
   classes: Classes
+  /** Trigger element for tooltip */
+  children: React.ReactNode
   /** Content to be rendered inside tooltip */
-  content?: ContentType
+  content?: React.ReactNode
   /** Whether tooltip should display arrow */
   arrow?: boolean
   /** Select color variant to use */

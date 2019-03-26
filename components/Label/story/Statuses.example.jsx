@@ -4,9 +4,9 @@ import { Label, Container } from '@toptal/picasso'
 const LabelDefaultExample = () => (
   <div>
     <Container inline right={1}>
-      <Label label="Yay! It's done!" variant='success' />
+      <Label variant='success'>Yay! It&#39;s done!</Label>
     </Container>
-    <Label label='Nope! Please, try one more time' variant='error' />
+    <Label variant='error'>Nope! Please, try one more time</Label>
   </div>
 )
 

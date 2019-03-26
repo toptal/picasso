@@ -3,7 +3,7 @@ import { Loader } from '@toptal/picasso'
 
 const LoaderIndeterminateExample = () => (
   <div>
-    <Loader indeterminate label='Loading...' />
+    <Loader indeterminate>Loading...</Loader>
   </div>
 )
 

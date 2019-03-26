@@ -17,7 +17,7 @@ const getSize = size => {
 }
 
 export const Loader = props => {
-  const { label, classes, variant, size, inline, className, value } = props
+  const { children, classes, variant, size, inline, className, value } = props
 
   return (
     <div
@@ -34,12 +34,14 @@ export const Loader = props => {
         variant={variant}
       />
 
-      {label && <div className={classes.label}>{label}</div>}
+      {children && <div className={classes.label}>{children}</div>}
     </div>
   )
 }
 
 Loader.propTypes = {
+  /** Text content for the `Loader` */
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
   /** Extra css classes to be passed to `Loader` */
   className: PropTypes.string,
   classes: PropTypes.shape({
@@ -47,8 +49,6 @@ Loader.propTypes = {
   }).isRequired,
   /** Shows loader as part of other inline elements such as text */
   inline: PropTypes.bool,
-  /** Text label for the `Loader` */
-  label: PropTypes.string,
   /** Size of the `Loader` */
   size: PropTypes.oneOf(['small', 'default', 'large']),
   /** Current value for the `static` or `indeterminate` loaders */
@@ -58,9 +58,9 @@ Loader.propTypes = {
 }
 
 Loader.defaultProps = {
+  children: null,
   className: undefined,
   inline: false,
-  label: null,
   size: 'default',
   value: 0,
   variant: 'indeterminate'
