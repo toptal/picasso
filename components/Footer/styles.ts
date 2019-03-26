@@ -11,7 +11,7 @@ export default ({ palette, screens, layout }: Theme) =>
       display: 'flex',
       justifyContent: 'space-between',
       margin: '0 auto',
-      padding: `0.5rem ${layout.contentPaddingHorizontal} 3.625rem`,
+      padding: `0.5rem ${layout.contentPaddingHorizontal} 1.5rem`,
       maxWidth: layout.contentWidth,
       color: palette.common.white,
       fontSize: '0.875rem',
