@@ -27,6 +27,8 @@ export interface Props {
   id?: string
   /** Take the full width of a container */
   fullWidth?: boolean
+  /** Shrink to minimum width based on content */
+  shrink?: boolean
   /** Inner text label for the `Select` */
   label?: string
   /** Placeholder option which is selected by default */
@@ -79,6 +81,7 @@ export const Select: React.FunctionComponent<Props> = props => {
     classes,
     className,
     fullWidth,
+    shrink,
     id,
     label,
     native,
@@ -111,7 +114,10 @@ export const Select: React.FunctionComponent<Props> = props => {
     <MUISelect
       className={className}
       classes={{
-        root: fullWidth ? classes.rootFullWidth : classes.root,
+        root: cx(classes.root, {
+          [classes.rootFullWidth]: fullWidth,
+          [classes.rootShrink]: shrink
+        }),
         icon: classes.icon,
         select: classes.select
       }}

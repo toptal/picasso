@@ -32,6 +32,7 @@ page
   .addExample('Select/story/WithLabel.example.jsx', 'With label')
   .addExample('Select/story/Disabled.example.jsx', 'Disabled')
   .addExample('Select/story/FullWidth.example.jsx', 'Full width')
+  .addExample('Select/story/Shrink.example.jsx', 'Shrink width')
   .addExample('Select/story/ChosenOption.example.jsx', {
     title: 'Chosen option',
     description:

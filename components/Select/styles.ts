@@ -35,6 +35,14 @@ export default ({ spacing: { borderWidth, input, inputLabel } }: Theme) =>
       width: '100%',
       display: 'flex'
     },
+    rootShrink: {
+      height: input.height,
+      width: '100%',
+      minWidth: '3em',
+      '& $icon': {
+        right: 0
+      }
+    },
     input: {
       fontSize: '1.15em',
       display: 'flex',
