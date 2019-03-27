@@ -1,0 +1,437 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Timesheets default render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <table
+      class="MuiTable-root"
+    >
+      <thead
+        class="MuiTableHead-root"
+      >
+        <tr
+          class="MuiTableRow-root MuiTableRow-head"
+        >
+          <th
+            class="MuiTableCell-root MuiTableCell-head"
+            scope="col"
+          >
+            <p
+              class="MuiTypography-root Typography-body Typography-bold MuiTypography-body1"
+            >
+              Timesheets
+            </p>
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        class="MuiTableBody-root"
+      >
+        <tr
+          class="MuiTableRow-root"
+        >
+          <td
+            class="MuiTableCell-root MuiTableCell-body"
+          >
+            <div
+              class="TimesheetItem-timesheet"
+            >
+              <div
+                class="TimesheetItem-timesheetInfo"
+              >
+                <span
+                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                >
+                  From
+                </span>
+                <span
+                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                >
+                   
+                  Mon, 25 Feb 2019
+                   
+                </span>
+                <span
+                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                >
+                  till
+                </span>
+                <span
+                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                >
+                   
+                  Sun, 10 Mar 2019
+                </span>
+              </div>
+              <div
+                class="TimesheetItem-controls"
+              >
+                <button
+                  class="MuiButtonBase-root Button-small Button-root"
+                  tabindex="0"
+                  type="button"
+                >
+                  <div
+                    class="Button-children"
+                  >
+                    Edit
+                  </div>
+                </button>
+                <button
+                  class="MuiButtonBase-root Button-small Button-root"
+                  tabindex="0"
+                  type="button"
+                >
+                  <div
+                    class="Button-children"
+                  >
+                    View
+                  </div>
+                </button>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="MuiTableRow-root"
+        >
+          <td
+            class="MuiTableCell-root MuiTableCell-body"
+          >
+            <div
+              class="TimesheetItem-timesheet"
+            >
+              <div
+                class="TimesheetItem-timesheetInfo"
+              >
+                <span
+                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                >
+                  From
+                </span>
+                <span
+                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                >
+                   
+                  Mon, 11 Feb 2019
+                   
+                </span>
+                <span
+                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                >
+                  till
+                </span>
+                <span
+                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                >
+                   
+                  Sun, 24 Feb 2019
+                </span>
+              </div>
+              <div
+                class="TimesheetItem-controls"
+              >
+                <button
+                  class="MuiButtonBase-root Button-small Button-root"
+                  tabindex="0"
+                  type="button"
+                >
+                  <div
+                    class="Button-children"
+                  >
+                    Unsubmit Timesheet
+                  </div>
+                </button>
+                <button
+                  class="MuiButtonBase-root Button-small Button-root"
+                  tabindex="0"
+                  type="button"
+                >
+                  <div
+                    class="Button-children"
+                  >
+                    Edit
+                  </div>
+                </button>
+                <button
+                  class="MuiButtonBase-root Button-small Button-root"
+                  tabindex="0"
+                  type="button"
+                >
+                  <div
+                    class="Button-children"
+                  >
+                    View
+                  </div>
+                </button>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="MuiTableRow-root"
+        >
+          <td
+            class="MuiTableCell-root MuiTableCell-body"
+          >
+            <div
+              class="TimesheetItem-timesheet"
+            >
+              <div
+                class="TimesheetItem-timesheetInfo"
+              >
+                <span
+                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                >
+                  From
+                </span>
+                <span
+                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                >
+                   
+                  Mon, 31 Dec 2018
+                   
+                </span>
+                <span
+                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                >
+                  till
+                </span>
+                <span
+                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                >
+                   
+                  Sun, 13 Jan 2019
+                </span>
+              </div>
+              <div
+                class="TimesheetItem-controls"
+              >
+                <button
+                  class="MuiButtonBase-root Button-small Button-root"
+                  tabindex="0"
+                  type="button"
+                >
+                  <div
+                    class="Button-children"
+                  >
+                    View
+                  </div>
+                </button>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="MuiTableRow-root"
+        >
+          <td
+            class="MuiTableCell-root MuiTableCell-body"
+          >
+            <div
+              class="TimesheetItem-timesheet"
+            >
+              <div
+                class="TimesheetItem-timesheetInfo"
+              >
+                <span
+                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                >
+                  From
+                </span>
+                <span
+                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                >
+                   
+                  Mon, 17 Dec 2018
+                   
+                </span>
+                <span
+                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                >
+                  till
+                </span>
+                <span
+                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                >
+                   
+                  Sun, 30 Dec 2018
+                </span>
+              </div>
+              <div
+                class="TimesheetItem-controls"
+              />
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="MuiTableRow-root"
+        >
+          <td
+            class="MuiTableCell-root MuiTableCell-body"
+          >
+            <div
+              class="TimesheetItem-timesheet"
+            >
+              <div
+                class="TimesheetItem-timesheetInfo"
+              >
+                <span
+                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                >
+                  From
+                </span>
+                <span
+                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                >
+                   
+                  Mon, 03 Dec 2018
+                   
+                </span>
+                <span
+                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                >
+                  till
+                </span>
+                <span
+                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                >
+                   
+                  Sun, 16 Dec 2018
+                </span>
+                <span
+                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline TimesheetItem-overdueMessage"
+                >
+                   
+                  (Submission overdue, no automatic processing available)
+                </span>
+              </div>
+              <div
+                class="TimesheetItem-controls"
+              >
+                <button
+                  class="MuiButtonBase-root Button-small Button-root"
+                  tabindex="0"
+                  type="button"
+                >
+                  <div
+                    class="Button-children"
+                  >
+                    Unsubmit Timesheet
+                  </div>
+                </button>
+                <button
+                  class="MuiButtonBase-root Button-small Button-root"
+                  tabindex="0"
+                  type="button"
+                >
+                  <div
+                    class="Button-children"
+                  >
+                    Edit
+                  </div>
+                </button>
+                <button
+                  class="MuiButtonBase-root Button-small Button-root"
+                  tabindex="0"
+                  type="button"
+                >
+                  <div
+                    class="Button-children"
+                  >
+                    View
+                  </div>
+                </button>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="MuiTableRow-root"
+        >
+          <td
+            class="MuiTableCell-root MuiTableCell-body"
+          >
+            <div
+              class="TimesheetItem-timesheet"
+            >
+              <div
+                class="TimesheetItem-timesheetInfo"
+              >
+                <span
+                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                >
+                  From
+                </span>
+                <span
+                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                >
+                   
+                  Mon, 22 Oct 2018
+                   
+                </span>
+                <span
+                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                >
+                  till
+                </span>
+                <span
+                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                >
+                   
+                  Sun, 04 Nov 2018
+                </span>
+                <span
+                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                >
+                   
+                  (Not submitted)
+                </span>
+              </div>
+              <div
+                class="TimesheetItem-controls"
+              >
+                <button
+                  class="MuiButtonBase-root Button-small Button-root"
+                  tabindex="0"
+                  type="button"
+                >
+                  <div
+                    class="Button-children"
+                  >
+                    Unsubmit Timesheet
+                  </div>
+                </button>
+                <button
+                  class="MuiButtonBase-root Button-small Button-root"
+                  tabindex="0"
+                  type="button"
+                >
+                  <div
+                    class="Button-children"
+                  >
+                    Edit
+                  </div>
+                </button>
+                <button
+                  class="MuiButtonBase-root Button-small Button-root"
+                  tabindex="0"
+                  type="button"
+                >
+                  <div
+                    class="Button-children"
+                  >
+                    View
+                  </div>
+                </button>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;

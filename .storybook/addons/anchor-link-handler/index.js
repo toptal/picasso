@@ -31,19 +31,26 @@ export const scheduleWork = async () => {
 
   const iframeWindow = document.getElementById('storybook-preview-iframe')
   const jumpToSectionId = hash.replace('#', '')
-  const [section] = await waitForElements(
-    '#' + jumpToSectionId,
-    5000,
-    iframeWindow.contentDocument
-  )
-
-  if (!section) {
-    console.warn(
-      `Can not find the section to highlight for sectionId - ${jumpToSectionId}`
+  try {
+    const [section] = await waitForElements(
+      '#' + jumpToSectionId,
+      5000,
+      iframeWindow.contentDocument
     )
-    return
-  }
 
-  scrollTo(section, iframeWindow.contentWindow)
-  highlightSection(section)
+    if (!section) {
+      console.warn(
+        `Can not find the section to highlight for sectionId - ${jumpToSectionId}`
+      )
+      return
+    }
+
+    scrollTo(section, iframeWindow.contentWindow)
+    highlightSection(section)
+  } catch (e) {
+    console.warn(
+      `Can not find the section to highlight for sectionId - ${jumpToSectionId}. Error: `,
+      e
+    )
+  }
 }

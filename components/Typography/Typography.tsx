@@ -29,6 +29,8 @@ interface Props {
   /** Text content */
   children?: React.ReactNode
   className?: string
+  /** Controls whether the Typography is inline or not */
+  inline?: boolean
   /** Text align of the inner text */
   align?: PropTypes.Alignment
   /** Font weight of the inner text */
@@ -67,7 +69,7 @@ const resolveRootClass = (props: Props) => {
 }
 
 export const Typography: React.FunctionComponent<Props> = props => {
-  const { variant, children, align, className } = props
+  const { variant, children, align, className, inline } = props
   const resolvedVariant = VARIANTS[variant!]
   const rootClass = resolveRootClass(props)
 
@@ -79,6 +81,7 @@ export const Typography: React.FunctionComponent<Props> = props => {
         root: rootClass
       }}
       variant={resolvedVariant}
+      inline={inline}
     >
       {children}
     </MUITypography>
@@ -86,6 +89,7 @@ export const Typography: React.FunctionComponent<Props> = props => {
 }
 
 Typography.defaultProps = {
+  inline: false,
   variant: 'body',
   weight: 'regular'
 }

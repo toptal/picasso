@@ -61,7 +61,6 @@ export default ({ palette }: Theme) =>
       margin: '0 0.2em'
     },
     tooltip: {
-      backgroundColor: palette.common.black,
       fontWeight: 600,
       fontSize: '0.9em',
       maxWidth: 'none'

@@ -15,8 +15,8 @@ class PicassoBook extends Base {
     return this
   }
 
-  createPage = (title, info) => {
-    const page = new Page({ title, info })
+  createPage = (title, info, section) => {
+    const page = new Page({ title, info, section })
     this.collection.push(page)
 
     return page.createChapter()

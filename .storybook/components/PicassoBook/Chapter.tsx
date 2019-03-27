@@ -6,7 +6,7 @@ import { toArray } from 'lodash'
 import Base from './Base'
 import Section from './Section'
 import CodeExample from '../CodeExample'
-import Page, { COMPONENTS_FOLDER } from './Page'
+import Page from './Page'
 
 import PropsTable from './components/PropsTable'
 import DocumentationGenerator, {
@@ -103,7 +103,7 @@ class Chapter extends Base {
     const sectionLinkId = normalize(finalOptions.title)
     const permanentLink = generateUrl({
       host: getHost(),
-      kind: COMPONENTS_FOLDER,
+      kind: this.page.getPicassoSection(this.page.section),
       type: this.page.title,
       section: finalOptions.title
     })
