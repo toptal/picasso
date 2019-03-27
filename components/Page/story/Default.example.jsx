@@ -1,5 +1,5 @@
 import React from 'react'
-import { Page, Container, Select, Typography } from '@toptal/picasso'
+import { Page, Container, Typography, Dropdown } from '@toptal/picasso'
 
 const PageDefaultExample = () => (
   <div style={{ height: '30rem' }}>
@@ -13,22 +13,20 @@ const PageDefaultExample = () => (
   </div>
 )
 
-const RightContent = () => (
-  <Select
-    options={OPTIONS}
-    placeholder='D. Petrashev'
-    style={{
-      fontSize: '12px',
-      color: 'white'
-    }}
-    variant='standard'
-  />
+const DropdownContent = ({ handleClose }) => (
+  <React.Fragment>
+    <Dropdown.Item onClick={handleClose}>My Account</Dropdown.Item>
+    <Dropdown.Item onClick={() => window.console.log('Log out clicked')}>
+      Log out
+    </Dropdown.Item>
+  </React.Fragment>
 )
 
-const OPTIONS = [
-  { value: '1', text: 'My Account' },
-  { value: '2', text: 'Log Out' }
-]
+const RightContent = () => (
+  <Dropdown style={{ color: 'white' }} content={<DropdownContent />}>
+    P. Picasso
+  </Dropdown>
+)
 
 const Content = () => (
   <Container bottom={1} left={1} right={1} top={1}>

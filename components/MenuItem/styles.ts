@@ -1,6 +1,8 @@
+import { Theme } from '@material-ui/core/styles'
+
 import { PicassoProvider } from '../Picasso'
 
-PicassoProvider.override(({ palette }) => ({
+PicassoProvider.override(({ palette }: Theme) => ({
   MuiMenuItem: {
     root: {
       borderTop: `1px solid ${palette.grey[50]}`,

@@ -4,7 +4,8 @@ import MUIGrid, {
   GridSpacing,
   GridItemsAlignment,
   GridDirection,
-  GridJustification
+  GridJustification,
+  GridProps
 } from '@material-ui/core/Grid'
 
 import GridItem from '../GridItem'
@@ -30,8 +31,8 @@ interface StaticProps {
   Item: typeof GridItem
 }
 
-export const Grid: FunctionComponent<Props & StylesProps> &
-StaticProps = props => <MUIGrid container {...props} />
+export const Grid: FunctionComponent<Props & GridProps> &
+  StaticProps = props => <MUIGrid container {...props} />
 
 Grid.defaultProps = {
   alignItems: 'flex-start',
@@ -42,5 +43,4 @@ Grid.defaultProps = {
 
 Grid.Item = GridItem
 
-export default withStyles(styles)(Grid) as FunctionComponent<Props> &
-  StaticProps
+export default withStyles(styles)(Grid)

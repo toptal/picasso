@@ -117,6 +117,12 @@
         "import/no-named-default": "off",
         "no-console": "off"
       }
+    },
+    {
+      "files": ["test.jsx", "test.tsx"],
+      "rules": {
+        "react/display-name": "off"
+      }
     }
   ]
 }
