@@ -1,5 +1,4 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { ReactNode } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUIExpansionPanel from '@material-ui/core/ExpansionPanel'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
@@ -7,50 +6,48 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import styles from './styles'
 import ExpansionPanelSummary from '../ExpansionPanelSummary'
 import ExpansionPanelDetails from '../ExpansionPanelDetails'
+import { Classes } from '../styles/types'
 
-export const Accordion = props => {
-  const { classes, Summary, Details, expanded, onChange } = props
+interface Props {
+  /** Always visible part of accordion */
+  children?: ReactNode
+  /** Collapsible content of `Accordion` */
+  content: ReactNode
+  /** Define accordion content state, whether it should be collapsed or displayed */
+  expanded?: boolean
+  /** Callback invoked when `Accordion` item is toggled */
+  onChange?: (event: React.ChangeEvent<{}>, expanded: boolean) => void
+  classes: Classes
+}
+
+export const Accordion: React.FunctionComponent<Props> = props => {
+  const { children, content, expanded, onChange, classes } = props
 
   const isControlledVariant = expanded === undefined
 
   return (
     <MUIExpansionPanel elevation={0} expanded={expanded} onChange={onChange}>
-      {Summary && (
+      {children && (
         <ExpansionPanelSummary
           classes={{
-            root: isControlledVariant ? classes.defaultSummary : null
+            root: isControlledVariant ? classes.defaultSummary : ''
           }}
           expandIcon={<ChevronRightIcon className={classes.expandIcon} />}
         >
-          {Summary}
+          {children}
         </ExpansionPanelSummary>
       )}
       <ExpansionPanelDetails
-        classes={{ root: isControlledVariant ? classes.defaultDetails : null }}
+        classes={{ root: isControlledVariant ? classes.defaultDetails : '' }}
       >
-        {Details}
+        {content}
       </ExpansionPanelDetails>
     </MUIExpansionPanel>
   )
 }
 
-Accordion.propTypes = {
-  /** Collapsible content of `Accordion` */
-  Details: PropTypes.element.isRequired,
-  /** Always visible part of accordion */
-  Summary: PropTypes.element,
-  classes: PropTypes.shape({
-    expandIcon: PropTypes.string
-  }),
-  /** Define accordion content state, whether it should be collapsed or displayed */
-  expanded: PropTypes.bool,
-  /** Callback invoked when `Accordion` item is toggled */
-  onChange: PropTypes.func
-}
-
 Accordion.defaultProps = {
-  Summary: null,
-  classes: null,
+  content: null,
   expanded: undefined,
   onChange: () => {}
 }
