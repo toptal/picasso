@@ -45,6 +45,10 @@ const autoExpandMenu = menuItems => {
 }
 
 export const scheduleWork = async () => {
-  const menuItems = await waitForElements('section > a')
-  autoExpandMenu(menuItems)
+  try {
+    const menuItems = await waitForElements('section > a')
+    autoExpandMenu(menuItems)
+  } catch (e) {
+    console.warn('Can not find Picasso menu section items. Error: ', e)
+  }
 }

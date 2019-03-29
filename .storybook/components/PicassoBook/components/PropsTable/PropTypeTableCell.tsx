@@ -3,10 +3,11 @@ import _ from 'lodash'
 
 import { withStyles } from '@material-ui/core/styles'
 import TableCell from '@material-ui/core/TableCell'
-import Tooltip from '@material-ui/core/Tooltip'
+import Tooltip from '../../../../../components/Tooltip'
 import { ClassNameMap } from '@material-ui/core/styles/withStyles'
 
 import styles from './styles'
+import Markdown from '../../../Markdown'
 import { PropTypeDocumentation } from '../../../../utils/documentationGenerator'
 
 interface Props {
@@ -26,8 +27,9 @@ const PropTypeTableCell: React.FunctionComponent<Props> = props => {
     return (
       <TableCell className={className}>
         <Tooltip
-          title={type.description}
-          classes={{ tooltip: classes.tooltip }}>
+          content={<Markdown>{type.description}</Markdown>}
+          classes={{ tooltip: classes.tooltip }}
+        >
           <div>
             <span className={classes.tooltipTarget}>{type.name}</span>
             <sup>?</sup>

@@ -3,16 +3,28 @@ import { storiesOf } from '@storybook/react'
 import Base from './Base'
 import Chapter from './Chapter'
 
-export const COMPONENTS_FOLDER = 'Components|Folder'
+const COMPONENTS_SECTION = 'Components'
 
 class Page extends Base {
   type = 'Page'
   title = ''
+  section = COMPONENTS_SECTION
 
-  constructor(options = { title: null, subtitle: null, info: null }) {
-    super(options)
+  constructor({
+    title = null,
+    subtitle = null,
+    info = null,
+    section = COMPONENTS_SECTION
+  }) {
+    super({
+      title,
+      subtitle,
+      info,
+      section
+    })
 
-    this.title = options.title
+    this.title = title
+    this.section = section
   }
 
   setDescription(description = '') {
@@ -42,9 +54,14 @@ class Page extends Base {
     }
   }
 
+  getPicassoSection(section) {
+    return section + '|Folder'
+  }
+
   generateHumanStories() {
     const page = this.toStoryBook()
-    const stories = storiesOf(COMPONENTS_FOLDER, module)
+    const section = this.getPicassoSection(page.section)
+    const stories = storiesOf(section, module)
     stories.addWithChapters(page.title, page)
   }
 
