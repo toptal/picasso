@@ -17,7 +17,6 @@ page
     }
   })
   .addExample('Radio/story/Default.example.jsx', 'Default')
-  .addExample('Radio/story/Types.example.jsx', 'Types')
   .addExample('Radio/story/Disabled.example.jsx', 'Disabled')
   .addExample(
     'Radio/story/RadioGroupVertical.example.jsx',
