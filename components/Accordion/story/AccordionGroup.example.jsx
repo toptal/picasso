@@ -3,22 +3,18 @@ import { Accordion } from '@toptal/picasso'
 
 const AccordionAccordionGroupExample = () => (
   <div style={{ width: '430px' }}>
-    <Accordion
-      Details={<DetailsDogDefinitionPanel />}
-      Summary={<SummaryDogDefinitionPanel />}
-    />
-    <Accordion
-      Details={<DetailsDogKindPanel />}
-      Summary={<SummaryDogKindPanel />}
-    />
-    <Accordion
-      Details={<DetailsDogAcquirePanel />}
-      Summary={<SummaryDogAcquirePanel />}
-    />
+    <Accordion content={<DetailsDogDefinitionPanel />}>
+      <div>What is a dog?</div>
+    </Accordion>
+    <Accordion content={<DetailsDogKindPanel />}>
+      <div>What kinds of dogs are there?</div>
+    </Accordion>
+    <Accordion content={<DetailsDogAcquirePanel />}>
+      <div>How do you acquire a dog?</div>
+    </Accordion>
   </div>
 )
 
-const SummaryDogDefinitionPanel = () => <div>What is a dog?</div>
 const DetailsDogDefinitionPanel = () => (
   <div>
     A dog is a type of domesticated animal. Known for its loyalty and
@@ -26,7 +22,7 @@ const DetailsDogDefinitionPanel = () => (
     the world.
   </div>
 )
-const SummaryDogKindPanel = () => <div>What kinds of dogs are there?</div>
+
 const DetailsDogKindPanel = () => (
   <div>
     There are many breeds of dogs. Each breed varies in size and temperament.
@@ -34,7 +30,7 @@ const DetailsDogKindPanel = () => (
     their own lifestyle and desires from a companion.
   </div>
 )
-const SummaryDogAcquirePanel = () => <div>How do you acquire a dog?</div>
+
 const DetailsDogAcquirePanel = () => (
   <div>
     Three common ways for a prospective owner to acquire a dog is from pet

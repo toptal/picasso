@@ -10,7 +10,7 @@ const AccordionControlledExample = () => {
 
       <div>
         <Accordion
-          Details={<DetailsDogDefinitionPanel />}
+          content={<DetailsDogDefinitionPanel />}
           expanded={expanded}
         />
       </div>

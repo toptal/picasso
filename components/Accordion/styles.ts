@@ -1,4 +1,6 @@
-export default ({ palette }) => ({
+import { Theme } from '@material-ui/core/styles'
+
+export default ({ palette }: Theme) => ({
   defaultSummary: {
     padding: '0 2.4em',
     color: palette.common.black,

@@ -187,7 +187,7 @@ class CodeExample extends React.Component<Props> {
             </div>
           </div>
           <div>
-            <Accordion Details={SourceCodeEditor} expanded={isEditorVisible} />
+            <Accordion content={SourceCodeEditor} expanded={isEditorVisible} />
           </div>
         </div>
       </SourceRender>
