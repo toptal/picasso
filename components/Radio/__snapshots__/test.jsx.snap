@@ -20,52 +20,10 @@ exports[`disabled radio button renders disabled version 1`] = `
 </div>
 `;
 
-exports[`radio button with color renders default radio button 1`] = `
+exports[`radio button renders default radio button 1`] = `
 <div>
   <span
     class="MuiButtonBase-root MuiIconButton-root MuiPrivateSwitchBase-root MuiRadio-root Radio-icon"
-  >
-    <span
-      class="MuiIconButton-label"
-    >
-      <input
-        class="MuiPrivateSwitchBase-input"
-        type="radio"
-        value=""
-      />
-    </span>
-    <span
-      class="MuiTouchRipple-root"
-    />
-  </span>
-</div>
-`;
-
-exports[`radio button with color renders primary radio button 1`] = `
-<div>
-  <span
-    class="MuiButtonBase-root MuiIconButton-root MuiPrivateSwitchBase-root MuiRadio-root Radio-icon MuiRadio-colorPrimary"
-  >
-    <span
-      class="MuiIconButton-label"
-    >
-      <input
-        class="MuiPrivateSwitchBase-input"
-        type="radio"
-        value=""
-      />
-    </span>
-    <span
-      class="MuiTouchRipple-root"
-    />
-  </span>
-</div>
-`;
-
-exports[`radio button with color renders secondary radio button 1`] = `
-<div>
-  <span
-    class="MuiButtonBase-root MuiIconButton-root MuiPrivateSwitchBase-root MuiRadio-root Radio-icon MuiRadio-colorSecondary"
   >
     <span
       class="MuiIconButton-label"

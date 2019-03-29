@@ -52,7 +52,6 @@ PicassoProvider.override(({ palette, transitions }) => ({
       transitionDuration: `${transitions.duration.short}`,
       transitionTimingFunction: transitions.easing.easeOut
     },
-    colorSecondary: createColorVariant(palette.grey[300], palette.grey[300]),
     disabled: createColorVariant(palette.grey[300], palette.grey[300]),
 
     checked: {}

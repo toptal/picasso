@@ -35,21 +35,9 @@ describe('disabled radio button', () => {
   })
 })
 
-describe('radio button with color', () => {
+describe('radio button', () => {
   test('renders default radio button', () => {
-    const { container } = renderRadio({ color: 'default' })
-
-    expect(container).toMatchSnapshot()
-  })
-
-  test('renders primary radio button', () => {
-    const { container } = renderRadio({ color: 'primary' })
-
-    expect(container).toMatchSnapshot()
-  })
-
-  test('renders secondary radio button', () => {
-    const { container } = renderRadio({ color: 'secondary' })
+    const { container } = renderRadio()
 
     expect(container).toMatchSnapshot()
   })

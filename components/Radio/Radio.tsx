@@ -14,8 +14,6 @@ interface Props {
   classes: Classes
   /** Text label for the `Radio` */
   label?: string
-  /** Color variant of the `Radio` */
-  color: 'default' | 'secondary'
   /** Value of the `Radio` component used with conjuction of `Radio.Group` */
   value?: string | number | boolean
   /** Defines if `Radio` is disabled */
@@ -36,7 +34,6 @@ export const Radio: GroupFunctionalComponent<Props> = props => {
     classes: { root, icon, ...otherClasses },
     label,
     checked,
-    color,
     disabled,
     value,
     onChange
@@ -50,7 +47,7 @@ export const Radio: GroupFunctionalComponent<Props> = props => {
         ...otherClasses,
         root: cx(root, icon)
       }}
-      color={color}
+      color='default'
       disabled={disabled}
       icon={<FallbackIcon />}
       onChange={onChange}
@@ -68,7 +65,6 @@ export const Radio: GroupFunctionalComponent<Props> = props => {
 Radio.defaultProps = {
   checked: undefined,
   classes: {},
-  color: 'default',
   disabled: false,
   label: undefined,
   value: undefined
