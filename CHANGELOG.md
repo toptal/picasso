@@ -1,5 +1,26 @@
 # Changelog
 
+## v0.1.0-beta.11 (29/03/2019)
+
+#### Chore
+
+- [**Chore**] [FX-101] Migrate accordion to TSX [#133](https://github.com/toptal/picasso/pull/133)
+- [**Chore**] Upgrade storybook to 5.0.5 [#134](https://github.com/toptal/picasso/pull/134)
+- [**Chore**] Fix minor issues [#127](https://github.com/toptal/picasso/pull/127)
+- [**Chore**] Selectable table example implemented with hooks [#128](https://github.com/toptal/picasso/pull/128)
+- [**Chore**] [FX-75] Refactor to use children props where possible [#129](https://github.com/toptal/picasso/pull/129)
+- [**Chore**] [FX-114] Migrate MenuItem to TSX [#132](https://github.com/toptal/picasso/pull/132)
+- [**Chore**] [FX-74] Fix positive/negative to success/error copies [#125](https://github.com/toptal/picasso/pull/125)
+
+#### Feature
+
+- [**Feature**] [FX-64] Add Timesheets widget [#131](https://github.com/toptal/picasso/pull/131)
+- [**Feature**] [FX-77] Remove color for Radio [#135](https://github.com/toptal/picasso/pull/135)
+- [**Feature**] Initial Table components [#124](https://github.com/toptal/picasso/pull/124)
+- [**Feature**] [TACT-69] Change footer's paddings [#126](https://github.com/toptal/picasso/pull/126)
+
+---
+
 ## v0.1.0-beta.10 (20/03/2019)
 
 #### closed
@@ -308,11 +329,3 @@
 #### Chore
 
 - [**Chore**] Add docker image for ci build [#58](https://github.com/toptal/picasso/pull/58)
-
----
-
-## v0.1.0-alpha.13 (12/02/2019)
-
-#### Chore
-
-- [**Chore**] Add Userback integration for delivering feedback [#55](https://github.com/toptal/picasso/pull/55)
