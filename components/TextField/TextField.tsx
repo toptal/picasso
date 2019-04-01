@@ -29,9 +29,9 @@ export interface Props {
   /** Whether icon should be placed at the beginning or end of the `TextField` */
   iconPosition: IconPosition
   /** Specify icon which should be rendered inside TextField */
-  Icon: React.ReactNode
-  InputProps: OutlinedInputProps
-  InputLabelProps: Partial<InputLabelProps>
+  icon: React.ReactNode
+  inputProps: OutlinedInputProps
+  inputLabelProps: Partial<InputLabelProps>
   /** Whether `TextField` should be rendered as `TextArea` or not */
   multiline?: boolean
   /** Specify rows amount for `TextArea` */
@@ -48,10 +48,10 @@ export interface Props {
 
 export const TextField: React.FunctionComponent<Props> = props => {
   const {
-    Icon,
+    icon,
     iconPosition,
-    InputProps = {} as OutlinedInputProps,
-    InputLabelProps = {},
+    inputProps = {} as OutlinedInputProps,
+    inputLabelProps = {},
     classes,
     children,
     multiline,
@@ -60,7 +60,7 @@ export const TextField: React.FunctionComponent<Props> = props => {
     ...restProps
   } = props
 
-  if (Icon) {
+  if (icon) {
     const IconAdornment = (
       <InputAdornment
         className={cx(
@@ -69,33 +69,33 @@ export const TextField: React.FunctionComponent<Props> = props => {
         )}
         position={iconPosition}
       >
-        {Icon}
+        {icon}
       </InputAdornment>
     )
 
     // InputLabelProps.shrink = 'auto' TODO: uncomment when 'auto' PR is merged
-    InputProps.notched = false
-    InputLabelProps.classes = { shrink: classes.shrink }
+    inputProps.notched = false
+    inputLabelProps.classes = { shrink: classes.shrink }
 
     if (iconPosition === 'end') {
-      InputProps.endAdornment = IconAdornment
+      inputProps.endAdornment = IconAdornment
     } else {
-      InputProps.startAdornment = IconAdornment
-      InputLabelProps.className = classes.labelIconStart
+      inputProps.startAdornment = IconAdornment
+      inputLabelProps.className = classes.labelIconStart
     }
   }
 
   return (
     <MUITextField
       InputLabelProps={{
-        ...InputLabelProps,
+        ...inputLabelProps,
         classes: {
           root: classes.label,
           shrink: classes.labelShrink
         }
       }}
       InputProps={{
-        ...InputProps,
+        ...inputProps,
         classes: {
           root: cx(classes.root, {
             [classes.rootMultiline]: multiline

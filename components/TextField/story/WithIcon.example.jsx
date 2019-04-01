@@ -4,7 +4,7 @@ import { Cog } from '@toptal/picasso/Icons'
 
 const TextFieldWithIconExample = () => (
   <div>
-    <TextField Icon={<Icon name='cog' />} label='Search...' />
+    <TextField icon={<Icon name='cog' />} label='Search...' />
   </div>
 )
 
