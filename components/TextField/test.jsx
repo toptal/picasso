@@ -18,7 +18,7 @@ afterEach(cleanup)
 describe('Icon prop', () => {
   test('renders icon at the end', () => {
     const { container } = renderTextField(null, {
-      Icon: <SearchIcon />
+      icon: <SearchIcon />
     })
 
     expect(container).toMatchSnapshot()
@@ -26,7 +26,7 @@ describe('Icon prop', () => {
 
   test('renders icon at the beginning', () => {
     const { container } = renderTextField(null, {
-      Icon: <SearchIcon />,
+      icon: <SearchIcon />,
       iconPosition: 'start'
     })
 
