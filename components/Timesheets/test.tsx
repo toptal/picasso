@@ -21,7 +21,7 @@ const renderTimesheets = (props: any) => {
 afterEach(cleanup)
 
 describe('Timesheets', () => {
-  const collapsedCount = 3
+  const initialItemsCount = 3
   const timesheets = [
     {
       id: 1,
@@ -73,8 +73,8 @@ describe('Timesheets', () => {
 
   test('render with less than collasped count timesheets', () => {
     const { container } = renderTimesheets({
-      collapsedCount,
-      timesheets: timesheets.slice(0, collapsedCount - 1),
+      initialItemsCount,
+      timesheets: timesheets.slice(0, initialItemsCount - 1),
       onShowMore: () => {}
     })
 
@@ -83,7 +83,7 @@ describe('Timesheets', () => {
 
   test('render with more than collasped count timesheets', () => {
     const { container } = renderTimesheets({
-      collapsedCount,
+      initialItemsCount,
       timesheets,
       onShowMore: () => {}
     })
@@ -94,7 +94,7 @@ describe('Timesheets', () => {
   describe('when no promise in onShowMore callback specified', () => {
     test('should render all timesheets after click show more', () => {
       const { container, getByText } = renderTimesheets({
-        collapsedCount,
+        initialItemsCount,
         timesheets,
         onShowMore: () => {}
       })
@@ -108,7 +108,7 @@ describe('Timesheets', () => {
 
     test('should render all timesheets in non-collapsable mode', () => {
       const { container } = renderTimesheets({
-        collapsedCount,
+        initialItemsCount,
         timesheets
       })
 
@@ -121,7 +121,7 @@ describe('Timesheets', () => {
       const promise = new Promise(() => {})
 
       const { container, getByText } = renderTimesheets({
-        collapsedCount,
+        initialItemsCount,
         timesheets,
         onShowMore: () => promise
       })
@@ -139,7 +139,7 @@ describe('Timesheets', () => {
       })
 
       const { container, getByText } = renderTimesheets({
-        collapsedCount,
+        initialItemsCount,
         timesheets,
         onShowMore: () => promise
       })

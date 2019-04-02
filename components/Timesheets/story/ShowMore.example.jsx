@@ -17,7 +17,7 @@ const TimesheetsShowMoreExample = () => {
     <div>
       <Timesheets
         timesheets={timesheets}
-        collapsedCount={3}
+        initialItemsCount={3}
         onShowMore={handleShowMore}
         onEdit={id => console.log('Edit timesheet ', id)}
         onView={id => console.log('View timesheet ', id)}

@@ -9,12 +9,12 @@ import Link from '../Link'
 import { Classes } from '../styles/types'
 import styles from './styles'
 
-const MAX_TIMESHEETS_SHOWN_WHEN_COLLAPSED = 3
+const INITIAL_ITEMS_COUNT = 3
 
 interface Props {
   classes: Classes
   /** Number of timesheets records shown when the list is collapsed */
-  collapsedCount: number
+  initialItemsCount: number
   /** Timesheets list */
   timesheets: {
     id: number
@@ -45,7 +45,7 @@ enum State {
 export const Timesheets: React.FunctionComponent<Props> = props => {
   const {
     classes,
-    collapsedCount,
+    initialItemsCount,
     timesheets,
     onEdit,
     onView,
@@ -56,7 +56,7 @@ export const Timesheets: React.FunctionComponent<Props> = props => {
   const [state, setState] = useState(State.Collapsed)
   const timesheetsToShow =
     onShowMore && (state === State.Collapsed || state === State.Loading)
-      ? timesheets.slice(0, collapsedCount)
+      ? timesheets.slice(0, initialItemsCount)
       : timesheets
 
   const handleShowMoreClick = async () => {
@@ -124,7 +124,7 @@ export const Timesheets: React.FunctionComponent<Props> = props => {
 }
 
 Timesheets.defaultProps = {
-  collapsedCount: MAX_TIMESHEETS_SHOWN_WHEN_COLLAPSED,
+  initialItemsCount: INITIAL_ITEMS_COUNT,
   onEdit: () => {},
   onUnsubmit: () => {},
   onView: () => {}
@@ -132,4 +132,4 @@ Timesheets.defaultProps = {
 
 Timesheets.displayName = 'Timesheets'
 
-export default withStyles(styles)(Timesheets)
+export default withStyles(styles)(React.memo(Timesheets))
