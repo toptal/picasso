@@ -42,7 +42,7 @@ enum State {
   Full
 }
 
-export const Timesheets: React.FunctionComponent<Props> = props => {
+export const Timesheets: React.FunctionComponent<Props> = React.memo(props => {
   const {
     classes,
     initialItemsCount,
@@ -121,7 +121,7 @@ export const Timesheets: React.FunctionComponent<Props> = props => {
       )}
     </Fragment>
   )
-}
+})
 
 Timesheets.defaultProps = {
   initialItemsCount: INITIAL_ITEMS_COUNT,
@@ -132,4 +132,4 @@ Timesheets.defaultProps = {
 
 Timesheets.displayName = 'Timesheets'
 
-export default withStyles(styles)(React.memo(Timesheets))
+export default withStyles(styles)(Timesheets)
