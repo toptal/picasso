@@ -11,3 +11,4 @@ const page = PicassoBook.createPage(
 page
   .addComponentDocs(Timesheets)
   .addExample('Timesheets/story/Default.example.jsx', 'Default')
+  .addExample('Timesheets/story/ShowMore.example.jsx', 'Show more')
