@@ -30,11 +30,17 @@ export default ({ spacing: { borderWidth, input, inputLabel } }: Theme) =>
       height: input.height,
       width: input.width
     },
-    rootFullWidth: {
-      height: input.height,
+    rootFull: {
       width: '100%',
       display: 'flex'
     },
+    rootShrink: {
+      width: 'auto',
+      '& $input': {
+        paddingRight: `calc(${input.paddingRight} + 1em)`
+      }
+    },
+    rootAuto: {},
     input: {
       fontSize: '1.15em',
       display: 'flex',
@@ -70,7 +76,8 @@ export default ({ spacing: { borderWidth, input, inputLabel } }: Theme) =>
       top: 'calc(50% - 0.5em)',
       right: `calc(${input.paddingRight} - ${CARRET_ICON_LEFT_PADDING})`,
       fontSize: '1.5em',
-      color: 'inherit'
+      color: 'inherit',
+      width: '1em'
     },
     placeholder: {
       opacity: 0.4

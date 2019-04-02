@@ -3,7 +3,7 @@ import { Select } from '@toptal/picasso'
 
 const SelectChosenOptionExample = () => (
   <div>
-    <Select options={OPTIONS} value={3} />
+    <Select options={OPTIONS} value={3} width='auto' />
   </div>
 )
 

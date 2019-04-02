@@ -16,6 +16,7 @@ const RightContent = () => (
       color: 'white'
     }}
     variant='standard'
+    width='shrink'
   />
 )
 

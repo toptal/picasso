@@ -3,7 +3,7 @@ import { Select } from '@toptal/picasso'
 
 const SelectFullWidthExample = () => (
   <div>
-    <Select fullWidth options={OPTIONS} placeholder='Full width...' />
+    <Select width='full' options={OPTIONS} placeholder='Full width...' />
   </div>
 )
 

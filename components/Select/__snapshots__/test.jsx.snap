@@ -6,10 +6,10 @@ exports[`renders dropdown select 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiFormControl-root"
+      class="MuiFormControl-root Select-rootFull"
     >
       <div
-        class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl"
+        class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
       >
         <fieldset
           aria-hidden="true"
@@ -26,7 +26,7 @@ exports[`renders dropdown select 1`] = `
           </legend>
         </fieldset>
         <div
-          class="MuiSelect-root Select-root"
+          class="MuiSelect-root Select-root Select-rootFull"
         >
           <div
             aria-haspopup="true"
@@ -65,10 +65,10 @@ exports[`renders native select 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiFormControl-root"
+      class="MuiFormControl-root Select-rootFull"
     >
       <div
-        class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl"
+        class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
       >
         <fieldset
           aria-hidden="true"
@@ -85,7 +85,7 @@ exports[`renders native select 1`] = `
           </legend>
         </fieldset>
         <div
-          class="MuiSelect-root Select-root"
+          class="MuiSelect-root Select-root Select-rootFull"
         >
           <select
             aria-invalid="false"

@@ -2,6 +2,7 @@ import React from 'react'
 import cx from 'classnames'
 import MUISelect from '@material-ui/core/Select'
 import { withStyles } from '@material-ui/core/styles'
+import { capitalize } from '@material-ui/core/utils/helpers'
 
 import FormControl from '../FormControl'
 import InputLabel from '../InputLabel'
@@ -25,8 +26,8 @@ export interface Props {
   disabled?: boolean
   /** Component ID */
   id?: string
-  /** Take the full width of a container */
-  fullWidth?: boolean
+  /** Width of the component which will apply `min-width` to the `input` */
+  width: 'full' | 'shrink' | 'auto'
   /** Inner text label for the `Select` */
   label?: string
   /** Placeholder option which is selected by default */
@@ -78,7 +79,7 @@ export const Select: React.FunctionComponent<Props> = props => {
   const {
     classes,
     className,
-    fullWidth,
+    width,
     id,
     label,
     native,
@@ -88,6 +89,8 @@ export const Select: React.FunctionComponent<Props> = props => {
     ...rest
   } = props
   const hasLabel = !!label
+  const fullWidth = width === 'full'
+
   const outlinedInput =
     variant === 'outlined' ? (
       <OutlinedInput
@@ -111,7 +114,7 @@ export const Select: React.FunctionComponent<Props> = props => {
     <MUISelect
       className={className}
       classes={{
-        root: fullWidth ? classes.rootFullWidth : classes.root,
+        root: cx(classes.root, classes[`root${capitalize(width)}`]),
         icon: classes.icon,
         select: classes.select
       }}
@@ -138,9 +141,7 @@ export const Select: React.FunctionComponent<Props> = props => {
   )
 
   return (
-    <FormControl
-      className={cx(className, { [classes.rootFullWidth]: fullWidth })}
-    >
+    <FormControl className={cx(className, { [classes.rootFull]: fullWidth })}>
       {hasLabel && (
         <InputLabel
           classes={{
@@ -160,11 +161,11 @@ export const Select: React.FunctionComponent<Props> = props => {
 
 Select.defaultProps = {
   disabled: false,
-  fullWidth: false,
   native: false,
   onChange: () => {},
   value: '',
-  variant: 'outlined'
+  variant: 'outlined',
+  width: 'full'
 }
 
 Select.displayName = 'Select'
