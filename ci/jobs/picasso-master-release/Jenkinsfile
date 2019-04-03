@@ -103,8 +103,7 @@ pipeline {
     stage('Build results') {
       steps {
         script {
-          helper.printBuildsResults([ downStreamBuilds[0] ], "picasso-build-image")
-          helper.printBuildsResults([ downStreamBuilds[1] ], "picasso-docs")
+          helper.printBuildsResults(downStreamBuilds)
           helper.setBuildStatus(downStreamBuilds)
         }
       }
