@@ -1,10 +1,10 @@
-import React from 'react'
-import { render, fireEvent, cleanup } from 'react-testing-library'
+import React, { ReactNode } from 'react'
+import { render, fireEvent, cleanup, RenderResult } from 'react-testing-library'
 
 import Picasso from '../index'
 import Button from './Button'
 
-const renderButton = (children, props = {}) => {
+const renderButton = (children: ReactNode, props: any = {}) => {
   return render(
     <Picasso loadFonts={false}>
       <Button {...props}>{children}</Button>
@@ -24,8 +24,8 @@ test('onClick callback should be fired after clicking the button', () => {
 })
 
 describe('disabled button', () => {
-  let onClick
-  let api
+  let onClick: () => void
+  let api: RenderResult
 
   beforeEach(() => {
     onClick = jest.fn()

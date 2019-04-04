@@ -11,6 +11,7 @@ import styles from './styles'
 interface StylesProps {
   classes: Classes
 }
+
 interface Props {
   /** Component becomes responsive with width 100% and overrides width prop */
   fullWidth?: boolean
