@@ -6,7 +6,7 @@ const FormFieldExample = () => (
     <Grid.Item small={5}>
       <Form>
         <Form.Field>
-          <Select fullWidth label='Current Country' options={OPTIONS} />
+          <Select label='Current Country' options={OPTIONS} />
         </Form.Field>
 
         <Form.Field>
@@ -14,7 +14,7 @@ const FormFieldExample = () => (
         </Form.Field>
 
         <Form.Field>
-          <Select fullWidth label='Timezone' options={OPTIONS} />
+          <Select label='Timezone' options={OPTIONS} />
         </Form.Field>
 
         <Form.Field>

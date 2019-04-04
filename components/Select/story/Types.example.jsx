@@ -4,12 +4,17 @@ import { Select, Container } from '@toptal/picasso'
 const SelectTypesExample = () => (
   <div>
     <Container inline right={2}>
-      <Select options={OPTIONS} placeholder='Default...' />
+      <Select options={OPTIONS} placeholder='Default...' width='auto' />
     </Container>
     <Container inline right={2}>
-      <Select options={OPTIONS} placeholder='Default...' variant='standard' />
+      <Select
+        options={OPTIONS}
+        placeholder='Default...'
+        variant='standard'
+        width='auto'
+      />
     </Container>
-    <Select native options={OPTIONS} placeholder='Native...' />
+    <Select native options={OPTIONS} placeholder='Native...' width='auto' />
   </div>
 )
 

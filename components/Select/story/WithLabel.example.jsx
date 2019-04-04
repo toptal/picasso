@@ -3,7 +3,7 @@ import { Select } from '@toptal/picasso'
 
 const WithLabelLabelExample = () => (
   <div>
-    <Select label='Choose your main skill:' options={OPTIONS} />
+    <Select label='Choose your main skill:' options={OPTIONS} width='auto' />
   </div>
 )
 
