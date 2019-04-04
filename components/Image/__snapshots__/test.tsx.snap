@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Image circular variant render 1`] = `
+<div>
+  <img
+    class="Image-circular"
+  />
+</div>
+`;
+
+exports[`Image default render 1`] = `
+<div>
+  <img
+    class=""
+  />
+</div>
+`;
