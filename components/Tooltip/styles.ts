@@ -11,7 +11,7 @@ const VERTICAL_POSITION = {
   transform: 'translateX(-50%)'
 }
 
-function arrowGenerator (color: string) {
+function arrowGenerator(color: string) {
   return {
     '&[x-placement*="bottom"] $arrow': {
       top: `-${ARROW_SIZE}`,
@@ -72,32 +72,33 @@ function arrowGenerator (color: string) {
   }
 }
 
-export default ({ palette, shadows }: Theme) => createStyles({
-  tooltip: {
-    backgroundColor: palette.grey[500],
-    color: palette.common.white,
-    boxShadow: shadows[1],
-    fontSize: '0.875rem',
-    lineHeight: '1.5em',
-    padding: '1rem',
-    borderRadius: 0
-  },
-  arrowPopper: arrowGenerator(palette.grey[500]),
-  arrowPopperLight: arrowGenerator(palette.common.white),
-  arrow: {
-    position: 'absolute',
-    fontSize: '0.4rem',
-
-    '&:before, &:after': {
+export default ({ palette }: Theme) =>
+  createStyles({
+    tooltip: {
+      backgroundColor: palette.grey[500],
+      color: palette.common.white,
+      boxShadow: '0 0 4px 0 rgba(0,0,0, 0.24), 0 0px 32px 0 rgba(0,0,0, 0.12)',
+      fontSize: '0.875rem',
+      lineHeight: '1.5em',
+      padding: '1rem',
+      borderRadius: 0
+    },
+    arrowPopper: arrowGenerator(palette.grey[500]),
+    arrowPopperLight: arrowGenerator(palette.common.white),
+    arrow: {
       position: 'absolute',
-      content: '""',
-      margin: 'auto',
-      display: 'block',
-      borderStyle: 'solid'
+      fontSize: '0.4rem',
+
+      '&:before, &:after': {
+        position: 'absolute',
+        content: '""',
+        margin: 'auto',
+        display: 'block',
+        borderStyle: 'solid'
+      }
+    },
+    light: {
+      color: palette.grey[500],
+      backgroundColor: palette.common.white
     }
-  },
-  light: {
-    color: palette.grey[500],
-    backgroundColor: palette.common.white
-  }
-})
+  })

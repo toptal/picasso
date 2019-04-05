@@ -4,7 +4,7 @@ to: components/<%= h.changeCase.pascalCase(name) %>/<%= h.changeCase.pascalCase(
 <%
   Name = h.changeCase.pascalCase(name)
 -%>
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
 import styles from './styles'
@@ -12,7 +12,7 @@ import styles from './styles'
 interface Props {
 }
 
-export const <%= Name %>: React.FunctionComponent<Props> = props => {
+export const <%= Name %>: FunctionComponent<Props> = props => {
   return null
 }
 
