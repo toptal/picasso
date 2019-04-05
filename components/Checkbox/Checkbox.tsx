@@ -1,12 +1,33 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { FunctionComponent } from 'react'
 import MUICheckbox from '@material-ui/core/Checkbox'
 import { withStyles } from '@material-ui/core/styles'
 
 import FormControlLabel from '../FormControlLabel'
+import { Classes } from '../styles/types'
 import styles from './styles'
 
-export const Checkbox = props => {
+interface Props {
+  classes: Classes
+  /** Show checkbox initially as checked */
+  checked?: boolean
+  /** Disable changing `Checkbox` state */
+  disabled?: boolean
+  /** Checkbox can show indeterminate value instead of boolean */
+  indeterminate?: boolean
+  /** Text label for the `Checkbox` */
+  label?: string
+  /** The id of the input element */
+  id?: string
+  /** Callback invoked when `Checkbox` changed its value */
+  onChange?: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    checked: boolean
+  ) => void
+  /** Value of the `Checkbox` (applicable only for controlled component) */
+  value?: string
+}
+
+export const Checkbox: FunctionComponent<Props> = props => {
   const {
     label,
     id,
@@ -50,28 +71,10 @@ export const Checkbox = props => {
   )
 }
 
-Checkbox.propTypes = {
-  /** Show checkbox initially as checked */
-  checked: PropTypes.bool,
-  /** Disable changing `Checkbox` state */
-  disabled: PropTypes.bool,
-  /** Checkbox can show indeterminate value instead of boolean */
-  indeterminate: PropTypes.bool,
-  /** Text label for the `Checkbox` */
-  label: PropTypes.string,
-  /** Callback invoked when `Checkbox` changed its value */
-  onChange: PropTypes.func,
-  /** Value of the `Checkbox` (applicable only for controlled component) */
-  value: PropTypes.string
-}
-
 Checkbox.defaultProps = {
-  checked: undefined,
   disabled: false,
   indeterminate: false,
-  label: null,
-  onChange: () => {},
-  value: undefined
+  onChange: () => {}
 }
 
 Checkbox.displayName = 'Checkbox'

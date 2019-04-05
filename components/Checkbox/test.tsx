@@ -3,7 +3,7 @@ import { render, fireEvent, cleanup, RenderResult } from 'react-testing-library'
 
 import Checkbox from './'
 
-const renderCheckbox = (props = {}) => {
+const renderCheckbox = (props: any = {}) => {
   return render(<Checkbox {...props} />)
 }
 

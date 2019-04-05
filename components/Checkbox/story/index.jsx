@@ -4,15 +4,7 @@ import { Checkbox } from '../Checkbox'
 const page = PicassoBook.createPage('Checkbox')
 
 page
-  .addComponentDocs(Checkbox, {
-    onChange: {
-      type: {
-        name: 'function',
-        description:
-          '(event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void'
-      }
-    }
-  })
+  .addComponentDocs(Checkbox)
   .addExample('Checkbox/story/Uncontrolled.example.jsx', {
     title: 'Uncontrolled',
     description: 'Can control its state by itself'
