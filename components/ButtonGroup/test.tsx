@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { render, cleanup } from 'react-testing-library'
 
 import ButtonGroup from './index'
 
-const renderButtonGroup = (children, props = {}) => {
+const renderButtonGroup = (children: ReactNode, props: any = {}) => {
   return render(<ButtonGroup {...props}>{children}</ButtonGroup>)
 }
 
