@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { CSSProperties } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import { capitalize } from '@material-ui/core/utils/helpers'
@@ -13,6 +13,7 @@ interface Props {
   classes: Classes
   /** Extra css classes to be passed to `Icon` */
   className?: string
+  style?: CSSProperties
 }
 
 const SVG_PREFIX = 'Svg'
@@ -21,12 +22,12 @@ export const decapitalizeFirstLetter = (str: string): string =>
   str.charAt(0).toLowerCase() + str.substring(1)
 
 export const Icon: React.FunctionComponent<Props> = props => {
-  const { name, classes, className, ...rest } = props
+  const { name, classes, className, style } = props
   const iconComponentName = SVG_PREFIX + capitalize(name)
   const IconComponent = IconsLibrary.listOfImportedIcons[iconComponentName]
 
   // @ts-ignore
-  return <IconComponent {...rest} className={cx(className, classes.root)} />
+  return <IconComponent className={cx(className, classes.root)} style={style} />
 }
 
 Icon.displayName = 'Icon'

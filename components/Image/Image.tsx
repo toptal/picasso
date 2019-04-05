@@ -33,6 +33,7 @@ export const Image: React.FunctionComponent<Props> = props => {
         {
           [classes.circular]: variant === 'circular'
         },
+        classes.root,
         className
       )}
       style={style}

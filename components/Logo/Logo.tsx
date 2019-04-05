@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { CSSProperties } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 
@@ -16,22 +16,24 @@ type VariantType = 'default' | 'white' | 'black'
 
 interface Props {
   classes: Classes
+  className?: string
   /** Whether logo should be shown as TT emblem or full word mark */
   emblem?: boolean
   /** Variant of the `Logo` */
   variant?: VariantType
+  style?: CSSProperties
 }
 
 export const Logo: React.FunctionComponent<Props> = props => {
-  const { classes, emblem, variant, ...rest } = props
+  const { classes, emblem, variant, style, className } = props
   const rootClass = emblem ? classes.logoEmblem : classes.logo
   const colorClass = classes[variant!]
 
   return (
     <Icon
-      className={cx(rootClass, colorClass)}
+      className={cx(rootClass, colorClass, className)}
       name={emblem ? 'logoEmblem' : 'logo'}
-      {...rest}
+      style={style}
     />
   )
 }

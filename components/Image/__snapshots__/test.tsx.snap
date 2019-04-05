@@ -3,7 +3,7 @@
 exports[`Image circular variant render 1`] = `
 <div>
   <img
-    class="Image-circular"
+    class="Image-circular Image-root"
   />
 </div>
 `;
@@ -11,7 +11,7 @@ exports[`Image circular variant render 1`] = `
 exports[`Image default render 1`] = `
 <div>
   <img
-    class=""
+    class="Image-root"
   />
 </div>
 `;
