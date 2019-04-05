@@ -14,7 +14,7 @@ exports[`renders default 1`] = `
         type="button"
       >
         <div
-          class="Button-children"
+          class="Button-children ButtonGroup-button"
         >
           «
         </div>
@@ -25,7 +25,7 @@ exports[`renders default 1`] = `
         type="button"
       >
         <div
-          class="Button-children"
+          class="Button-children ButtonGroup-button"
         >
           ⟨
         </div>
@@ -37,7 +37,7 @@ exports[`renders default 1`] = `
         type="button"
       >
         <div
-          class="Button-children"
+          class="Button-children ButtonGroup-button"
         >
           ...
         </div>
@@ -48,7 +48,7 @@ exports[`renders default 1`] = `
         type="button"
       >
         <div
-          class="Button-children"
+          class="Button-children ButtonGroup-button"
         >
           2
         </div>
@@ -59,7 +59,7 @@ exports[`renders default 1`] = `
         type="button"
       >
         <div
-          class="Button-children"
+          class="Button-children ButtonGroup-button"
         >
           3
         </div>
@@ -70,7 +70,7 @@ exports[`renders default 1`] = `
         type="button"
       >
         <div
-          class="Button-children"
+          class="Button-children ButtonGroup-button"
         >
           4
         </div>
@@ -81,7 +81,7 @@ exports[`renders default 1`] = `
         type="button"
       >
         <div
-          class="Button-children"
+          class="Button-children ButtonGroup-button"
         >
           5
         </div>
@@ -92,7 +92,7 @@ exports[`renders default 1`] = `
         type="button"
       >
         <div
-          class="Button-children"
+          class="Button-children ButtonGroup-button"
         >
           6
         </div>
@@ -103,7 +103,7 @@ exports[`renders default 1`] = `
         type="button"
       >
         <div
-          class="Button-children"
+          class="Button-children ButtonGroup-button"
         >
           7
         </div>
@@ -114,7 +114,7 @@ exports[`renders default 1`] = `
         type="button"
       >
         <div
-          class="Button-children"
+          class="Button-children ButtonGroup-button"
         >
           8
         </div>
@@ -126,7 +126,7 @@ exports[`renders default 1`] = `
         type="button"
       >
         <div
-          class="Button-children"
+          class="Button-children ButtonGroup-button"
         >
           ...
         </div>
@@ -137,7 +137,7 @@ exports[`renders default 1`] = `
         type="button"
       >
         <div
-          class="Button-children"
+          class="Button-children ButtonGroup-button"
         >
           ⟩
         </div>
@@ -148,7 +148,7 @@ exports[`renders default 1`] = `
         type="button"
       >
         <div
-          class="Button-children"
+          class="Button-children ButtonGroup-button"
         >
           »
         </div>
@@ -173,7 +173,7 @@ exports[`renders disabled 1`] = `
         type="button"
       >
         <div
-          class="Button-children"
+          class="Button-children ButtonGroup-button"
         >
           «
         </div>
@@ -185,7 +185,7 @@ exports[`renders disabled 1`] = `
         type="button"
       >
         <div
-          class="Button-children"
+          class="Button-children ButtonGroup-button"
         >
           ⟨
         </div>
@@ -197,7 +197,7 @@ exports[`renders disabled 1`] = `
         type="button"
       >
         <div
-          class="Button-children"
+          class="Button-children ButtonGroup-button"
         >
           ...
         </div>
@@ -209,7 +209,7 @@ exports[`renders disabled 1`] = `
         type="button"
       >
         <div
-          class="Button-children"
+          class="Button-children ButtonGroup-button"
         >
           2
         </div>
@@ -221,7 +221,7 @@ exports[`renders disabled 1`] = `
         type="button"
       >
         <div
-          class="Button-children"
+          class="Button-children ButtonGroup-button"
         >
           3
         </div>
@@ -233,7 +233,7 @@ exports[`renders disabled 1`] = `
         type="button"
       >
         <div
-          class="Button-children"
+          class="Button-children ButtonGroup-button"
         >
           4
         </div>
@@ -245,7 +245,7 @@ exports[`renders disabled 1`] = `
         type="button"
       >
         <div
-          class="Button-children"
+          class="Button-children ButtonGroup-button"
         >
           5
         </div>
@@ -257,7 +257,7 @@ exports[`renders disabled 1`] = `
         type="button"
       >
         <div
-          class="Button-children"
+          class="Button-children ButtonGroup-button"
         >
           6
         </div>
@@ -269,7 +269,7 @@ exports[`renders disabled 1`] = `
         type="button"
       >
         <div
-          class="Button-children"
+          class="Button-children ButtonGroup-button"
         >
           7
         </div>
@@ -281,7 +281,7 @@ exports[`renders disabled 1`] = `
         type="button"
       >
         <div
-          class="Button-children"
+          class="Button-children ButtonGroup-button"
         >
           8
         </div>
@@ -293,7 +293,7 @@ exports[`renders disabled 1`] = `
         type="button"
       >
         <div
-          class="Button-children"
+          class="Button-children ButtonGroup-button"
         >
           ...
         </div>
@@ -305,7 +305,7 @@ exports[`renders disabled 1`] = `
         type="button"
       >
         <div
-          class="Button-children"
+          class="Button-children ButtonGroup-button"
         >
           ⟩
         </div>
@@ -317,7 +317,7 @@ exports[`renders disabled 1`] = `
         type="button"
       >
         <div
-          class="Button-children"
+          class="Button-children ButtonGroup-button"
         >
           »
         </div>

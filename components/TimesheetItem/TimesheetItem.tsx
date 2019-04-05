@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
 import Typography from '../Typography'
 import Button from '../Button'
+import Link from '../Link'
 import { Classes } from '../styles/types'
 import styles from './styles'
 
@@ -30,15 +31,18 @@ export class TimesheetItem extends React.Component<Props, {}> {
 
   renderInfo() {
     const {
+      id,
       classes,
       startDate,
       endDate,
       statusMessage,
+      canView,
+      onView,
       isErrorStatus
     } = this.props
 
-    return (
-      <div className={classes.timesheetInfo}>
+    const timesheetInfo = (
+      <Fragment>
         <Typography variant='caption' inline>
           From
         </Typography>
@@ -64,52 +68,39 @@ export class TimesheetItem extends React.Component<Props, {}> {
             {statusMessage}
           </Typography>
         )}
+      </Fragment>
+    )
+
+    return (
+      <div className={classes.timesheetInfo}>
+        {canView ? (
+          <Link
+            underline='none'
+            className={classes.timesheetInfoLink}
+            onClick={() => onView(id)}
+          >
+            {timesheetInfo}
+          </Link>
+        ) : (
+          timesheetInfo
+        )}
       </div>
     )
   }
 
   renderActionButtons() {
-    const {
-      classes,
-      id,
-      canUnsubmit,
-      canEdit,
-      canView,
-      onUnsubmit,
-      onEdit,
-      onView
-    } = this.props
+    const { classes, id, canUnsubmit, canEdit, onUnsubmit, onEdit } = this.props
 
     return (
       <div className={classes.controls}>
         {canUnsubmit && (
-          <Button
-            size='small'
-            onClick={() => {
-              onUnsubmit(id)
-            }}
-          >
+          <Button size='small' onClick={() => onUnsubmit(id)}>
             Unsubmit Timesheet
           </Button>
         )}
         {canEdit && (
-          <Button
-            size='small'
-            onClick={() => {
-              onEdit(id)
-            }}
-          >
+          <Button size='small' onClick={() => onEdit(id)}>
             Edit
-          </Button>
-        )}
-        {canView && (
-          <Button
-            size='small'
-            onClick={() => {
-              onView(id)
-            }}
-          >
-            View
           </Button>
         )}
       </div>

@@ -41,29 +41,33 @@ exports[`Timesheets render with less than collasped count timesheets 1`] = `
               <div
                 class="TimesheetItem-timesheetInfo"
               >
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                <a
+                  class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone TimesheetItem-timesheetInfoLink"
                 >
-                  From
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Mon, 25 Feb 2019
-                   
-                </span>
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
-                >
-                  till
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Sun, 10 Mar 2019
-                </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    From
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Mon, 25 Feb 2019
+                     
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    till
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Sun, 10 Mar 2019
+                  </span>
+                </a>
               </div>
               <div
                 class="TimesheetItem-controls"
@@ -77,17 +81,6 @@ exports[`Timesheets render with less than collasped count timesheets 1`] = `
                     class="Button-children"
                   >
                     Edit
-                  </div>
-                </button>
-                <button
-                  class="MuiButtonBase-root Button-small Button-root"
-                  tabindex="0"
-                  type="button"
-                >
-                  <div
-                    class="Button-children"
-                  >
-                    View
                   </div>
                 </button>
               </div>
@@ -106,29 +99,33 @@ exports[`Timesheets render with less than collasped count timesheets 1`] = `
               <div
                 class="TimesheetItem-timesheetInfo"
               >
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                <a
+                  class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone TimesheetItem-timesheetInfoLink"
                 >
-                  From
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Mon, 11 Feb 2019
-                   
-                </span>
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
-                >
-                  till
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Sun, 24 Feb 2019
-                </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    From
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Mon, 11 Feb 2019
+                     
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    till
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Sun, 24 Feb 2019
+                  </span>
+                </a>
               </div>
               <div
                 class="TimesheetItem-controls"
@@ -155,17 +152,6 @@ exports[`Timesheets render with less than collasped count timesheets 1`] = `
                     Edit
                   </div>
                 </button>
-                <button
-                  class="MuiButtonBase-root Button-small Button-root"
-                  tabindex="0"
-                  type="button"
-                >
-                  <div
-                    class="Button-children"
-                  >
-                    View
-                  </div>
-                </button>
               </div>
             </div>
           </td>
@@ -175,30 +161,36 @@ exports[`Timesheets render with less than collasped count timesheets 1`] = `
     <div
       class="Timesheets-footer"
     >
-      <a
-        class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone Timesheets-showMoreLink"
+      <button
+        class="MuiButtonBase-root Button-flat Button-small Button-root Timesheets-showMoreLink"
+        tabindex="0"
+        type="button"
       >
-        <span
-          class="MuiTypography-root Typography-regular MuiTypography-caption"
+        <div
+          class="Button-children Timesheets-showMoreLink"
         >
-          Show more timesheets
-        </span>
-        <svg
-          aria-hidden="true"
-          class="MuiSvgIcon-root Timesheets-expandMoreIcon"
-          focusable="false"
-          role="presentation"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-          />
-          <path
-            d="M0 0h24v24H0z"
-            fill="none"
-          />
-        </svg>
-      </a>
+          <span
+            class="MuiTypography-root Typography-regular MuiTypography-caption"
+          >
+            Show more timesheets
+          </span>
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root Timesheets-expandMoreIcon"
+            focusable="false"
+            role="presentation"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+            />
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+            />
+          </svg>
+        </div>
+      </button>
     </div>
   </div>
 </div>
@@ -245,29 +237,33 @@ exports[`Timesheets render with more than collasped count timesheets 1`] = `
               <div
                 class="TimesheetItem-timesheetInfo"
               >
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                <a
+                  class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone TimesheetItem-timesheetInfoLink"
                 >
-                  From
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Mon, 25 Feb 2019
-                   
-                </span>
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
-                >
-                  till
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Sun, 10 Mar 2019
-                </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    From
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Mon, 25 Feb 2019
+                     
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    till
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Sun, 10 Mar 2019
+                  </span>
+                </a>
               </div>
               <div
                 class="TimesheetItem-controls"
@@ -281,17 +277,6 @@ exports[`Timesheets render with more than collasped count timesheets 1`] = `
                     class="Button-children"
                   >
                     Edit
-                  </div>
-                </button>
-                <button
-                  class="MuiButtonBase-root Button-small Button-root"
-                  tabindex="0"
-                  type="button"
-                >
-                  <div
-                    class="Button-children"
-                  >
-                    View
                   </div>
                 </button>
               </div>
@@ -310,29 +295,33 @@ exports[`Timesheets render with more than collasped count timesheets 1`] = `
               <div
                 class="TimesheetItem-timesheetInfo"
               >
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                <a
+                  class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone TimesheetItem-timesheetInfoLink"
                 >
-                  From
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Mon, 11 Feb 2019
-                   
-                </span>
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
-                >
-                  till
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Sun, 24 Feb 2019
-                </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    From
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Mon, 11 Feb 2019
+                     
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    till
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Sun, 24 Feb 2019
+                  </span>
+                </a>
               </div>
               <div
                 class="TimesheetItem-controls"
@@ -359,17 +348,6 @@ exports[`Timesheets render with more than collasped count timesheets 1`] = `
                     Edit
                   </div>
                 </button>
-                <button
-                  class="MuiButtonBase-root Button-small Button-root"
-                  tabindex="0"
-                  type="button"
-                >
-                  <div
-                    class="Button-children"
-                  >
-                    View
-                  </div>
-                </button>
               </div>
             </div>
           </td>
@@ -386,45 +364,37 @@ exports[`Timesheets render with more than collasped count timesheets 1`] = `
               <div
                 class="TimesheetItem-timesheetInfo"
               >
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                <a
+                  class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone TimesheetItem-timesheetInfoLink"
                 >
-                  From
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Mon, 31 Dec 2018
-                   
-                </span>
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
-                >
-                  till
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Sun, 13 Jan 2019
-                </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    From
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Mon, 31 Dec 2018
+                     
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    till
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Sun, 13 Jan 2019
+                  </span>
+                </a>
               </div>
               <div
                 class="TimesheetItem-controls"
-              >
-                <button
-                  class="MuiButtonBase-root Button-small Button-root"
-                  tabindex="0"
-                  type="button"
-                >
-                  <div
-                    class="Button-children"
-                  >
-                    View
-                  </div>
-                </button>
-              </div>
+              />
             </div>
           </td>
         </tr>
@@ -433,30 +403,36 @@ exports[`Timesheets render with more than collasped count timesheets 1`] = `
     <div
       class="Timesheets-footer"
     >
-      <a
-        class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone Timesheets-showMoreLink"
+      <button
+        class="MuiButtonBase-root Button-flat Button-small Button-root Timesheets-showMoreLink"
+        tabindex="0"
+        type="button"
       >
-        <span
-          class="MuiTypography-root Typography-regular MuiTypography-caption"
+        <div
+          class="Button-children Timesheets-showMoreLink"
         >
-          Show more timesheets
-        </span>
-        <svg
-          aria-hidden="true"
-          class="MuiSvgIcon-root Timesheets-expandMoreIcon"
-          focusable="false"
-          role="presentation"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-          />
-          <path
-            d="M0 0h24v24H0z"
-            fill="none"
-          />
-        </svg>
-      </a>
+          <span
+            class="MuiTypography-root Typography-regular MuiTypography-caption"
+          >
+            Show more timesheets
+          </span>
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root Timesheets-expandMoreIcon"
+            focusable="false"
+            role="presentation"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+            />
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+            />
+          </svg>
+        </div>
+      </button>
     </div>
   </div>
 </div>
@@ -503,29 +479,33 @@ exports[`Timesheets when no promise in onShowMore callback specified should rend
               <div
                 class="TimesheetItem-timesheetInfo"
               >
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                <a
+                  class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone TimesheetItem-timesheetInfoLink"
                 >
-                  From
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Mon, 25 Feb 2019
-                   
-                </span>
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
-                >
-                  till
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Sun, 10 Mar 2019
-                </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    From
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Mon, 25 Feb 2019
+                     
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    till
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Sun, 10 Mar 2019
+                  </span>
+                </a>
               </div>
               <div
                 class="TimesheetItem-controls"
@@ -539,17 +519,6 @@ exports[`Timesheets when no promise in onShowMore callback specified should rend
                     class="Button-children"
                   >
                     Edit
-                  </div>
-                </button>
-                <button
-                  class="MuiButtonBase-root Button-small Button-root"
-                  tabindex="0"
-                  type="button"
-                >
-                  <div
-                    class="Button-children"
-                  >
-                    View
                   </div>
                 </button>
               </div>
@@ -568,29 +537,33 @@ exports[`Timesheets when no promise in onShowMore callback specified should rend
               <div
                 class="TimesheetItem-timesheetInfo"
               >
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                <a
+                  class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone TimesheetItem-timesheetInfoLink"
                 >
-                  From
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Mon, 11 Feb 2019
-                   
-                </span>
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
-                >
-                  till
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Sun, 24 Feb 2019
-                </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    From
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Mon, 11 Feb 2019
+                     
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    till
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Sun, 24 Feb 2019
+                  </span>
+                </a>
               </div>
               <div
                 class="TimesheetItem-controls"
@@ -617,17 +590,6 @@ exports[`Timesheets when no promise in onShowMore callback specified should rend
                     Edit
                   </div>
                 </button>
-                <button
-                  class="MuiButtonBase-root Button-small Button-root"
-                  tabindex="0"
-                  type="button"
-                >
-                  <div
-                    class="Button-children"
-                  >
-                    View
-                  </div>
-                </button>
               </div>
             </div>
           </td>
@@ -644,45 +606,37 @@ exports[`Timesheets when no promise in onShowMore callback specified should rend
               <div
                 class="TimesheetItem-timesheetInfo"
               >
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                <a
+                  class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone TimesheetItem-timesheetInfoLink"
                 >
-                  From
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Mon, 31 Dec 2018
-                   
-                </span>
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
-                >
-                  till
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Sun, 13 Jan 2019
-                </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    From
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Mon, 31 Dec 2018
+                     
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    till
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Sun, 13 Jan 2019
+                  </span>
+                </a>
               </div>
               <div
                 class="TimesheetItem-controls"
-              >
-                <button
-                  class="MuiButtonBase-root Button-small Button-root"
-                  tabindex="0"
-                  type="button"
-                >
-                  <div
-                    class="Button-children"
-                  >
-                    View
-                  </div>
-                </button>
-              </div>
+              />
             </div>
           </td>
         </tr>
@@ -740,35 +694,39 @@ exports[`Timesheets when no promise in onShowMore callback specified should rend
               <div
                 class="TimesheetItem-timesheetInfo"
               >
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                <a
+                  class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone TimesheetItem-timesheetInfoLink"
                 >
-                  From
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Mon, 03 Dec 2018
-                   
-                </span>
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
-                >
-                  till
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Sun, 16 Dec 2018
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline TimesheetItem-overdueMessage"
-                >
-                   
-                  (Submission overdue, no automatic processing available)
-                </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    From
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Mon, 03 Dec 2018
+                     
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    till
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Sun, 16 Dec 2018
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline TimesheetItem-overdueMessage"
+                  >
+                     
+                    (Submission overdue, no automatic processing available)
+                  </span>
+                </a>
               </div>
               <div
                 class="TimesheetItem-controls"
@@ -793,17 +751,6 @@ exports[`Timesheets when no promise in onShowMore callback specified should rend
                     class="Button-children"
                   >
                     Edit
-                  </div>
-                </button>
-                <button
-                  class="MuiButtonBase-root Button-small Button-root"
-                  tabindex="0"
-                  type="button"
-                >
-                  <div
-                    class="Button-children"
-                  >
-                    View
                   </div>
                 </button>
               </div>
@@ -822,35 +769,39 @@ exports[`Timesheets when no promise in onShowMore callback specified should rend
               <div
                 class="TimesheetItem-timesheetInfo"
               >
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                <a
+                  class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone TimesheetItem-timesheetInfoLink"
                 >
-                  From
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Mon, 22 Oct 2018
-                   
-                </span>
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
-                >
-                  till
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Sun, 04 Nov 2018
-                </span>
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  (Not submitted)
-                </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    From
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Mon, 22 Oct 2018
+                     
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    till
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Sun, 04 Nov 2018
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    (Not submitted)
+                  </span>
+                </a>
               </div>
               <div
                 class="TimesheetItem-controls"
@@ -875,17 +826,6 @@ exports[`Timesheets when no promise in onShowMore callback specified should rend
                     class="Button-children"
                   >
                     Edit
-                  </div>
-                </button>
-                <button
-                  class="MuiButtonBase-root Button-small Button-root"
-                  tabindex="0"
-                  type="button"
-                >
-                  <div
-                    class="Button-children"
-                  >
-                    View
                   </div>
                 </button>
               </div>
@@ -939,29 +879,33 @@ exports[`Timesheets when no promise in onShowMore callback specified should rend
               <div
                 class="TimesheetItem-timesheetInfo"
               >
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                <a
+                  class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone TimesheetItem-timesheetInfoLink"
                 >
-                  From
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Mon, 25 Feb 2019
-                   
-                </span>
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
-                >
-                  till
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Sun, 10 Mar 2019
-                </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    From
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Mon, 25 Feb 2019
+                     
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    till
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Sun, 10 Mar 2019
+                  </span>
+                </a>
               </div>
               <div
                 class="TimesheetItem-controls"
@@ -975,17 +919,6 @@ exports[`Timesheets when no promise in onShowMore callback specified should rend
                     class="Button-children"
                   >
                     Edit
-                  </div>
-                </button>
-                <button
-                  class="MuiButtonBase-root Button-small Button-root"
-                  tabindex="0"
-                  type="button"
-                >
-                  <div
-                    class="Button-children"
-                  >
-                    View
                   </div>
                 </button>
               </div>
@@ -1004,29 +937,33 @@ exports[`Timesheets when no promise in onShowMore callback specified should rend
               <div
                 class="TimesheetItem-timesheetInfo"
               >
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                <a
+                  class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone TimesheetItem-timesheetInfoLink"
                 >
-                  From
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Mon, 11 Feb 2019
-                   
-                </span>
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
-                >
-                  till
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Sun, 24 Feb 2019
-                </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    From
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Mon, 11 Feb 2019
+                     
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    till
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Sun, 24 Feb 2019
+                  </span>
+                </a>
               </div>
               <div
                 class="TimesheetItem-controls"
@@ -1053,17 +990,6 @@ exports[`Timesheets when no promise in onShowMore callback specified should rend
                     Edit
                   </div>
                 </button>
-                <button
-                  class="MuiButtonBase-root Button-small Button-root"
-                  tabindex="0"
-                  type="button"
-                >
-                  <div
-                    class="Button-children"
-                  >
-                    View
-                  </div>
-                </button>
               </div>
             </div>
           </td>
@@ -1080,45 +1006,37 @@ exports[`Timesheets when no promise in onShowMore callback specified should rend
               <div
                 class="TimesheetItem-timesheetInfo"
               >
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                <a
+                  class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone TimesheetItem-timesheetInfoLink"
                 >
-                  From
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Mon, 31 Dec 2018
-                   
-                </span>
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
-                >
-                  till
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Sun, 13 Jan 2019
-                </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    From
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Mon, 31 Dec 2018
+                     
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    till
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Sun, 13 Jan 2019
+                  </span>
+                </a>
               </div>
               <div
                 class="TimesheetItem-controls"
-              >
-                <button
-                  class="MuiButtonBase-root Button-small Button-root"
-                  tabindex="0"
-                  type="button"
-                >
-                  <div
-                    class="Button-children"
-                  >
-                    View
-                  </div>
-                </button>
-              </div>
+              />
             </div>
           </td>
         </tr>
@@ -1176,35 +1094,39 @@ exports[`Timesheets when no promise in onShowMore callback specified should rend
               <div
                 class="TimesheetItem-timesheetInfo"
               >
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                <a
+                  class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone TimesheetItem-timesheetInfoLink"
                 >
-                  From
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Mon, 03 Dec 2018
-                   
-                </span>
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
-                >
-                  till
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Sun, 16 Dec 2018
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline TimesheetItem-overdueMessage"
-                >
-                   
-                  (Submission overdue, no automatic processing available)
-                </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    From
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Mon, 03 Dec 2018
+                     
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    till
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Sun, 16 Dec 2018
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline TimesheetItem-overdueMessage"
+                  >
+                     
+                    (Submission overdue, no automatic processing available)
+                  </span>
+                </a>
               </div>
               <div
                 class="TimesheetItem-controls"
@@ -1229,17 +1151,6 @@ exports[`Timesheets when no promise in onShowMore callback specified should rend
                     class="Button-children"
                   >
                     Edit
-                  </div>
-                </button>
-                <button
-                  class="MuiButtonBase-root Button-small Button-root"
-                  tabindex="0"
-                  type="button"
-                >
-                  <div
-                    class="Button-children"
-                  >
-                    View
                   </div>
                 </button>
               </div>
@@ -1258,35 +1169,39 @@ exports[`Timesheets when no promise in onShowMore callback specified should rend
               <div
                 class="TimesheetItem-timesheetInfo"
               >
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                <a
+                  class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone TimesheetItem-timesheetInfoLink"
                 >
-                  From
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Mon, 22 Oct 2018
-                   
-                </span>
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
-                >
-                  till
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Sun, 04 Nov 2018
-                </span>
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  (Not submitted)
-                </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    From
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Mon, 22 Oct 2018
+                     
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    till
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Sun, 04 Nov 2018
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    (Not submitted)
+                  </span>
+                </a>
               </div>
               <div
                 class="TimesheetItem-controls"
@@ -1311,17 +1226,6 @@ exports[`Timesheets when no promise in onShowMore callback specified should rend
                     class="Button-children"
                   >
                     Edit
-                  </div>
-                </button>
-                <button
-                  class="MuiButtonBase-root Button-small Button-root"
-                  tabindex="0"
-                  type="button"
-                >
-                  <div
-                    class="Button-children"
-                  >
-                    View
                   </div>
                 </button>
               </div>
@@ -1375,29 +1279,33 @@ exports[`Timesheets when promise in onShowMore callback specified should render 
               <div
                 class="TimesheetItem-timesheetInfo"
               >
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                <a
+                  class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone TimesheetItem-timesheetInfoLink"
                 >
-                  From
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Mon, 25 Feb 2019
-                   
-                </span>
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
-                >
-                  till
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Sun, 10 Mar 2019
-                </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    From
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Mon, 25 Feb 2019
+                     
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    till
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Sun, 10 Mar 2019
+                  </span>
+                </a>
               </div>
               <div
                 class="TimesheetItem-controls"
@@ -1411,17 +1319,6 @@ exports[`Timesheets when promise in onShowMore callback specified should render 
                     class="Button-children"
                   >
                     Edit
-                  </div>
-                </button>
-                <button
-                  class="MuiButtonBase-root Button-small Button-root"
-                  tabindex="0"
-                  type="button"
-                >
-                  <div
-                    class="Button-children"
-                  >
-                    View
                   </div>
                 </button>
               </div>
@@ -1440,29 +1337,33 @@ exports[`Timesheets when promise in onShowMore callback specified should render 
               <div
                 class="TimesheetItem-timesheetInfo"
               >
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                <a
+                  class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone TimesheetItem-timesheetInfoLink"
                 >
-                  From
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Mon, 11 Feb 2019
-                   
-                </span>
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
-                >
-                  till
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Sun, 24 Feb 2019
-                </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    From
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Mon, 11 Feb 2019
+                     
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    till
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Sun, 24 Feb 2019
+                  </span>
+                </a>
               </div>
               <div
                 class="TimesheetItem-controls"
@@ -1489,17 +1390,6 @@ exports[`Timesheets when promise in onShowMore callback specified should render 
                     Edit
                   </div>
                 </button>
-                <button
-                  class="MuiButtonBase-root Button-small Button-root"
-                  tabindex="0"
-                  type="button"
-                >
-                  <div
-                    class="Button-children"
-                  >
-                    View
-                  </div>
-                </button>
               </div>
             </div>
           </td>
@@ -1516,45 +1406,37 @@ exports[`Timesheets when promise in onShowMore callback specified should render 
               <div
                 class="TimesheetItem-timesheetInfo"
               >
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                <a
+                  class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone TimesheetItem-timesheetInfoLink"
                 >
-                  From
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Mon, 31 Dec 2018
-                   
-                </span>
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
-                >
-                  till
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Sun, 13 Jan 2019
-                </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    From
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Mon, 31 Dec 2018
+                     
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    till
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Sun, 13 Jan 2019
+                  </span>
+                </a>
               </div>
               <div
                 class="TimesheetItem-controls"
-              >
-                <button
-                  class="MuiButtonBase-root Button-small Button-root"
-                  tabindex="0"
-                  type="button"
-                >
-                  <div
-                    class="Button-children"
-                  >
-                    View
-                  </div>
-                </button>
-              </div>
+              />
             </div>
           </td>
         </tr>
@@ -1563,11 +1445,59 @@ exports[`Timesheets when promise in onShowMore callback specified should render 
     <div
       class="Timesheets-footer"
     >
-      <span
-        class="MuiTypography-root Typography-regular MuiTypography-caption"
+      <button
+        class="MuiButtonBase-root Button-flat Button-small Button-root Timesheets-showMoreLink"
+        tabindex="0"
+        type="button"
       >
-        Loading...
-      </span>
+        <div
+          class="Button-children Timesheets-showMoreLink Button-hidden"
+        >
+          <span
+            class="MuiTypography-root Typography-regular MuiTypography-caption"
+          >
+            Show more timesheets
+          </span>
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root Timesheets-expandMoreIcon"
+            focusable="false"
+            role="presentation"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+            />
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+            />
+          </svg>
+        </div>
+        <div
+          class="Loader-wrapper Button-loader Loader-inline"
+        >
+          <div
+            class="MuiCircularProgress-root CircularProgress-root Loader-spinner MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
+            role="progressbar"
+            style="width: 20px; height: 20px;"
+          >
+            <svg
+              class="MuiCircularProgress-svg"
+              viewBox="22 22 44 44"
+            >
+              <circle
+                class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
+                cx="44"
+                cy="44"
+                fill="none"
+                r="20.2"
+                stroke-width="3.6"
+              />
+            </svg>
+          </div>
+        </div>
+      </button>
     </div>
   </div>
 </div>
@@ -1614,29 +1544,33 @@ exports[`Timesheets when promise in onShowMore callback specified should render 
               <div
                 class="TimesheetItem-timesheetInfo"
               >
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                <a
+                  class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone TimesheetItem-timesheetInfoLink"
                 >
-                  From
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Mon, 25 Feb 2019
-                   
-                </span>
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
-                >
-                  till
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Sun, 10 Mar 2019
-                </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    From
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Mon, 25 Feb 2019
+                     
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    till
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Sun, 10 Mar 2019
+                  </span>
+                </a>
               </div>
               <div
                 class="TimesheetItem-controls"
@@ -1650,17 +1584,6 @@ exports[`Timesheets when promise in onShowMore callback specified should render 
                     class="Button-children"
                   >
                     Edit
-                  </div>
-                </button>
-                <button
-                  class="MuiButtonBase-root Button-small Button-root"
-                  tabindex="0"
-                  type="button"
-                >
-                  <div
-                    class="Button-children"
-                  >
-                    View
                   </div>
                 </button>
               </div>
@@ -1679,29 +1602,33 @@ exports[`Timesheets when promise in onShowMore callback specified should render 
               <div
                 class="TimesheetItem-timesheetInfo"
               >
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                <a
+                  class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone TimesheetItem-timesheetInfoLink"
                 >
-                  From
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Mon, 11 Feb 2019
-                   
-                </span>
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
-                >
-                  till
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Sun, 24 Feb 2019
-                </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    From
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Mon, 11 Feb 2019
+                     
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    till
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Sun, 24 Feb 2019
+                  </span>
+                </a>
               </div>
               <div
                 class="TimesheetItem-controls"
@@ -1728,17 +1655,6 @@ exports[`Timesheets when promise in onShowMore callback specified should render 
                     Edit
                   </div>
                 </button>
-                <button
-                  class="MuiButtonBase-root Button-small Button-root"
-                  tabindex="0"
-                  type="button"
-                >
-                  <div
-                    class="Button-children"
-                  >
-                    View
-                  </div>
-                </button>
               </div>
             </div>
           </td>
@@ -1755,45 +1671,37 @@ exports[`Timesheets when promise in onShowMore callback specified should render 
               <div
                 class="TimesheetItem-timesheetInfo"
               >
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                <a
+                  class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone TimesheetItem-timesheetInfoLink"
                 >
-                  From
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Mon, 31 Dec 2018
-                   
-                </span>
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
-                >
-                  till
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Sun, 13 Jan 2019
-                </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    From
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Mon, 31 Dec 2018
+                     
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    till
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Sun, 13 Jan 2019
+                  </span>
+                </a>
               </div>
               <div
                 class="TimesheetItem-controls"
-              >
-                <button
-                  class="MuiButtonBase-root Button-small Button-root"
-                  tabindex="0"
-                  type="button"
-                >
-                  <div
-                    class="Button-children"
-                  >
-                    View
-                  </div>
-                </button>
-              </div>
+              />
             </div>
           </td>
         </tr>
@@ -1851,35 +1759,39 @@ exports[`Timesheets when promise in onShowMore callback specified should render 
               <div
                 class="TimesheetItem-timesheetInfo"
               >
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                <a
+                  class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone TimesheetItem-timesheetInfoLink"
                 >
-                  From
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Mon, 03 Dec 2018
-                   
-                </span>
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
-                >
-                  till
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Sun, 16 Dec 2018
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline TimesheetItem-overdueMessage"
-                >
-                   
-                  (Submission overdue, no automatic processing available)
-                </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    From
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Mon, 03 Dec 2018
+                     
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    till
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Sun, 16 Dec 2018
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline TimesheetItem-overdueMessage"
+                  >
+                     
+                    (Submission overdue, no automatic processing available)
+                  </span>
+                </a>
               </div>
               <div
                 class="TimesheetItem-controls"
@@ -1904,17 +1816,6 @@ exports[`Timesheets when promise in onShowMore callback specified should render 
                     class="Button-children"
                   >
                     Edit
-                  </div>
-                </button>
-                <button
-                  class="MuiButtonBase-root Button-small Button-root"
-                  tabindex="0"
-                  type="button"
-                >
-                  <div
-                    class="Button-children"
-                  >
-                    View
                   </div>
                 </button>
               </div>
@@ -1933,35 +1834,39 @@ exports[`Timesheets when promise in onShowMore callback specified should render 
               <div
                 class="TimesheetItem-timesheetInfo"
               >
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                <a
+                  class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone TimesheetItem-timesheetInfoLink"
                 >
-                  From
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Mon, 22 Oct 2018
-                   
-                </span>
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
-                >
-                  till
-                </span>
-                <span
-                  class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  Sun, 04 Nov 2018
-                </span>
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
-                >
-                   
-                  (Not submitted)
-                </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    From
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Mon, 22 Oct 2018
+                     
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                    till
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-bold MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    Sun, 04 Nov 2018
+                  </span>
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-inline"
+                  >
+                     
+                    (Not submitted)
+                  </span>
+                </a>
               </div>
               <div
                 class="TimesheetItem-controls"
@@ -1986,17 +1891,6 @@ exports[`Timesheets when promise in onShowMore callback specified should render 
                     class="Button-children"
                   >
                     Edit
-                  </div>
-                </button>
-                <button
-                  class="MuiButtonBase-root Button-small Button-root"
-                  tabindex="0"
-                  type="button"
-                >
-                  <div
-                    class="Button-children"
-                  >
-                    View
                   </div>
                 </button>
               </div>

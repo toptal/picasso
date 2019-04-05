@@ -12,6 +12,9 @@ export default ({ palette }: Theme) =>
     timesheetInfo: {
       paddingRight: '1rem'
     },
+    timesheetInfoLink: {
+      borderBottom: `1px dotted ${palette.grey[200]}`
+    },
     overdueMessage: {
       color: palette.error.main
     },
