@@ -54,6 +54,7 @@
     "@storybook/react": "^5.0.5",
     "@storybook/theming": "^5.0.5",
     "@svgr/cli": "^4.1.0",
+    "@types/color": "^3.0.0",
     "@types/esprima": "^4.0.2",
     "@types/jest": "^23.3.13",
     "@types/jest-image-snapshot": "^2.8.0",

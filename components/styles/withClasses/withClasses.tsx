@@ -4,7 +4,7 @@ import { Classes } from '../types'
 
 type ReactComponent = ReactElement<any>
 
-type ConfigItem = [ReactComponent, string]
+type ConfigItem = [ComponentType, string]
 
 type Config = (classes: Classes) => ConfigItem[]
 

@@ -1,11 +1,11 @@
 import color from 'color'
 
-export const darken = (inputColor, amount) =>
+export const darken = (inputColor: string, amount: number) =>
   color(inputColor)
     .darken(amount)
     .hex()
 
-export const lighten = (inputColor, amount) =>
+export const lighten = (inputColor: string, amount: number) =>
   color(inputColor)
     .lighten(amount)
     .hex()

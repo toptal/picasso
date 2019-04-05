@@ -8,33 +8,8 @@ const page = PicassoBook.createPage(
 
 page
   .addComponentDocs(Button, {
-    variant: {
-      type: 'enum',
-      enums: [
-        'primary',
-        'secondary',
-        'flat',
-        'basic',
-        'success',
-        'error',
-        'default'
-      ]
-    },
-    size: {
-      type: 'enum',
-      defaultValue: 'medium',
-      enums: ['small', 'medium', 'large']
-    },
-    iconPosition: {
-      type: 'enum',
-      enums: ['left', 'right']
-    },
-    onClick: {
-      type: {
-        name: 'function',
-        description:
-          '(event: React.MouseEvent<HTMLElement, MouseEvent>) => void | undefined'
-      }
+    icon: {
+      type: 'ReactElement'
     }
   })
   .addExample('Button/story/Basic.example.jsx', 'Basic')
