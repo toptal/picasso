@@ -36,7 +36,8 @@ export default ({ palette }: Theme) =>
       fontSize: '4.5rem'
     },
     clippedCorner: {
-      clipPath: getClipPathCornerMask('0.3em')
+      clipPath: getClipPathCornerMask('0.3em'),
+      '-webkit-clip-path': getClipPathCornerMask('0.3em')
     },
     textContainer: {
       backgroundColor: palette.grey[200]
