@@ -3,6 +3,8 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 const getClipPathCornerMask = (cornerWidth: string) =>
   `polygon(0 0, 100% 0, 100% 100%, ${cornerWidth} 100%, 0 calc(100% - ${cornerWidth}))`
 
+const CLIPPED_CORNER_SIZE = '0.5em'
+
 export default ({ palette }: Theme) =>
   createStyles({
     root: {
@@ -36,7 +38,10 @@ export default ({ palette }: Theme) =>
       fontSize: '4.5rem'
     },
     clippedCorner: {
-      clipPath: getClipPathCornerMask('0.3em')
+      clipPath: getClipPathCornerMask(CLIPPED_CORNER_SIZE),
+      // we can remove this prefix as soon as this issue will
+      // be resolved - https://github.com/cssinjs/css-vendor/issues/74
+      '-webkit-clip-path': getClipPathCornerMask(CLIPPED_CORNER_SIZE)
     },
     textContainer: {
       backgroundColor: palette.grey[200]
@@ -54,7 +59,7 @@ export default ({ palette }: Theme) =>
       position: 'absolute',
       height: '0.45712em',
       width: '0.4em',
-      bottom: '0.3em',
-      left: '0.3em'
+      bottom: CLIPPED_CORNER_SIZE,
+      left: CLIPPED_CORNER_SIZE
     }
   })
