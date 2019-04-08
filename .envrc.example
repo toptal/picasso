@@ -1,2 +1,5 @@
 export GREN_GITHUB_TOKEN=
 export NPM_TOKEN=
+export DANGER_GITHUB_API_TOKEN=
+export DANGER_FAKE_CI="YEP"
+export DANGER_TEST_REPO='toptal/picasso'

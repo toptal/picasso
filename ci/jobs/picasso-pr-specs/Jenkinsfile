@@ -23,6 +23,7 @@ pipeline {
   environment {
     NPM_TOKEN = credentials('npm-token-for-toptal-private-registry')
     GITHUB_TOKEN = credentials('toptal-devbot-token-github-notify')
+    DANGER_GITHUB_API_TOKEN = credentials('toptal-devbot-personal-token')
   }
 
   stages {
@@ -52,6 +53,12 @@ pipeline {
     stage('Yarn install') {
       steps {
         sh 'yarn install'
+      } //steps
+    }//stage
+
+    stage('Danger checks') {
+      steps {
+        sh 'yarn danger ci'
       } //steps
     }//stage
 
