@@ -1,5 +1,35 @@
 # Changelog
 
+## v0.1.0-beta.12 (08/04/2019)
+
+#### Bugfix
+
+- [**Bugfix**] [FX-121] Add support for Safari with clip-path [#150](https://github.com/toptal/picasso/pull/150)
+- [**Bugfix**] [FX-59] Add custom CssBaseline to add height 100vh to root tags [#141](https://github.com/toptal/picasso/pull/141)
+
+#### CI
+
+- [**CI**] [INF] Improve build status reporting [#139](https://github.com/toptal/picasso/pull/139)
+
+#### Chore
+
+- [**Chore**] [FX-73] Timesheets. Fix link for show more, replace with button [#151](https://github.com/toptal/picasso/pull/151)
+- [**Chore**] Migrate Checkbox to TS [#149](https://github.com/toptal/picasso/pull/149)
+- [**Chore**] Migrate Buttongroup to TS [#148](https://github.com/toptal/picasso/pull/148)
+- [**Chore**] Migrate Button to TS [#145](https://github.com/toptal/picasso/pull/145)
+- [**Chore**] Ugrade to the latest docgen package [#138](https://github.com/toptal/picasso/pull/138)
+- [**Chore**] [FX-81] Make lowercase for subcomponent names [#137](https://github.com/toptal/picasso/pull/137)
+
+#### Feature
+
+- [**Feature**] [FX-121] Add avatar component [#147](https://github.com/toptal/picasso/pull/147)
+- [**Feature**] [FX-13] Add Paper component [#143](https://github.com/toptal/picasso/pull/143)
+- [**Feature**] [FX-61] Add option to make select dynamic in width size [#142](https://github.com/toptal/picasso/pull/142)
+- [**Feature**] [FX-14] Add Image component [#146](https://github.com/toptal/picasso/pull/146)
+- [**Feature**] [FX-73] Add show more to Timesheets [#136](https://github.com/toptal/picasso/pull/136)
+
+---
+
 ## v0.1.0-beta.11 (29/03/2019)
 
 #### Chore
@@ -321,11 +351,3 @@
 #### Feature
 
 - [**Feature**] Add components source code to storybook [#51](https://github.com/toptal/picasso/pull/51)
-
----
-
-## v0.1.0-alpha.14 (13/02/2019)
-
-#### Chore
-
-- [**Chore**] Add docker image for ci build [#58](https://github.com/toptal/picasso/pull/58)
