@@ -2,15 +2,9 @@ import React, { CSSProperties } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 
-import { Icon } from '../'
-import IconsLibrary, {
-  Logo as LogoIcon,
-  LogoEmblem as LogoEmblemIcon
-} from '../Icon'
+import { Logo as LogoIcon, LogoEmblem as LogoEmblemIcon } from '../Icon'
 import styles from './styles'
 import { Classes } from '../styles/types'
-
-IconsLibrary.add(LogoIcon, LogoEmblemIcon)
 
 type VariantType = 'default' | 'white' | 'black'
 
@@ -28,11 +22,11 @@ export const Logo: React.FunctionComponent<Props> = props => {
   const { classes, emblem, variant, style, className } = props
   const rootClass = emblem ? classes.logoEmblem : classes.logo
   const colorClass = classes[variant!]
+  const LogoComponent = emblem ? LogoEmblemIcon : LogoIcon
 
   return (
-    <Icon
+    <LogoComponent
       className={cx(rootClass, colorClass, className)}
-      name={emblem ? 'logoEmblem' : 'logo'}
       style={style}
     />
   )

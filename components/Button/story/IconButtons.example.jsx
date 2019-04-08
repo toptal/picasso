@@ -1,15 +1,13 @@
 import React from 'react'
-import { Button, Icon, IconsLibrary } from '@toptal/picasso'
+import { Button } from '@toptal/picasso'
 import { Cog } from '@toptal/picasso/Icons'
 
 const ButtonIconButtonsExample = () => (
   <div>
-    <Button icon={<Icon name='cog' />} size='small' />
-    <Button icon={<Icon name='cog' />} />
-    <Button icon={<Icon name='cog' />} size='large' />
+    <Button icon={<Cog />} size='small' />
+    <Button icon={<Cog />} />
+    <Button icon={<Cog />} size='large' />
   </div>
 )
-
-IconsLibrary.add(Cog)
 
 export default ButtonIconButtonsExample

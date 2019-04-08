@@ -18,7 +18,7 @@
     "build:storybook": "build-storybook -s ./.storybook/public -c .storybook -o build/storybook",
     "release:pre": "yarn version --new-version prerelease",
     "build": "yarn run build:svg && cross-env NODE_ENV=production ./bin/build",
-    "build:svg": "svgr -d components/Icon --ext jsx --template components/Icon/generatorTemplate.js components/Icon/svg",
+    "build:svg": "svgr -d components/Icon --ext tsx --template components/Icon/generatorTemplate.js --expand-props start components/Icon/svg",
     "build:watch": "cross-env ./bin/build --watch",
     "symlink": "cross-env ./bin/symlink --link",
     "symlink:off": "cross-env ./bin/symlink --unlink",
