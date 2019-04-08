@@ -167,16 +167,12 @@ exports[`Timesheets render with less than collasped count timesheets 1`] = `
         type="button"
       >
         <div
-          class="Button-children Timesheets-showMoreLink"
+          class="Button-children"
         >
-          <span
-            class="MuiTypography-root Typography-regular MuiTypography-caption"
-          >
-            Show more timesheets
-          </span>
+          Show more timesheets
           <svg
             aria-hidden="true"
-            class="MuiSvgIcon-root Timesheets-expandMoreIcon"
+            class="MuiSvgIcon-root Button-icon Button-iconRight"
             focusable="false"
             role="presentation"
             viewBox="0 0 24 24"
@@ -409,16 +405,12 @@ exports[`Timesheets render with more than collasped count timesheets 1`] = `
         type="button"
       >
         <div
-          class="Button-children Timesheets-showMoreLink"
+          class="Button-children"
         >
-          <span
-            class="MuiTypography-root Typography-regular MuiTypography-caption"
-          >
-            Show more timesheets
-          </span>
+          Show more timesheets
           <svg
             aria-hidden="true"
-            class="MuiSvgIcon-root Timesheets-expandMoreIcon"
+            class="MuiSvgIcon-root Button-icon Button-iconRight"
             focusable="false"
             role="presentation"
             viewBox="0 0 24 24"
@@ -1451,16 +1443,12 @@ exports[`Timesheets when promise in onShowMore callback specified should render 
         type="button"
       >
         <div
-          class="Button-children Timesheets-showMoreLink Button-hidden"
+          class="Button-children Button-hidden"
         >
-          <span
-            class="MuiTypography-root Typography-regular MuiTypography-caption"
-          >
-            Show more timesheets
-          </span>
+          Show more timesheets
           <svg
             aria-hidden="true"
-            class="MuiSvgIcon-root Timesheets-expandMoreIcon"
+            class="MuiSvgIcon-root Button-icon Button-iconRight"
             focusable="false"
             role="presentation"
             viewBox="0 0 24 24"

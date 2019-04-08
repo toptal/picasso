@@ -109,9 +109,10 @@ export const Timesheets: React.FunctionComponent<Props> = React.memo(props => {
             onClick={handleShowMoreClick}
             className={classes.showMoreLink}
             loading={state === State.Loading}
+            icon={<ExpandMoreIcon className={classes.expandMoreIcon} />}
+            iconPosition='right'
           >
-            <Typography variant='caption'>Show more timesheets</Typography>
-            <ExpandMoreIcon className={classes.expandMoreIcon} />
+            Show more timesheets
           </Button>
         </div>
       )}

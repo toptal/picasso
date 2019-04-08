@@ -128,7 +128,7 @@ StaticProps = props => {
       className={className}
       {...rest}
     >
-      <div className={cx(childrenClass, className, { [hiddenClass]: loading })}>
+      <div className={cx(childrenClass, { [hiddenClass]: loading })}>
         {finalChildren}
       </div>
 

@@ -10,9 +10,6 @@ export default ({ palette }: Theme) =>
       minHeight: '3rem'
     },
     showMoreLink: {
-      display: 'flex',
-      flexDirection: 'row',
-      alignItems: 'center',
       cursor: 'pointer'
     },
     expandMoreIcon: {
