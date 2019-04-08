@@ -56,6 +56,7 @@ StaticProps = props => {
     <Dialog
       classes={restClasses}
       container={container}
+      PaperProps={{ elevation: 2 }}
       hideBackdrop={hideBackdrop}
       onBackdropClick={onBackdropClick}
       onClose={onClose}
