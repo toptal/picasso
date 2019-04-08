@@ -35,6 +35,7 @@ interface Props {
   active?: boolean
   /** Content of Button component */
   children?: ReactNode
+  className?: string
   focused?: boolean
   /** Take the full width of a container */
   fullWidth?: boolean
@@ -65,6 +66,7 @@ StaticProps = props => {
     loading,
     children,
     classes,
+    className,
     fullWidth,
     variant,
     size,
@@ -123,9 +125,10 @@ StaticProps = props => {
         root: rootClassName
       }}
       onClick={onClick}
+      className={className}
       {...rest}
     >
-      <div className={cx(childrenClass, { [hiddenClass]: loading })}>
+      <div className={cx(childrenClass, className, { [hiddenClass]: loading })}>
         {finalChildren}
       </div>
 

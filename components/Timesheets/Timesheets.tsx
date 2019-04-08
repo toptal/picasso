@@ -5,7 +5,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import Table from '../Table'
 import Typography from '../Typography'
 import TimesheetItem from '../TimesheetItem'
-import Link from '../Link'
+import Button from '../Button'
 import { Classes } from '../styles/types'
 import styles from './styles'
 
@@ -101,22 +101,18 @@ export const Timesheets: React.FunctionComponent<Props> = React.memo(props => {
         </Table.Body>
       </Table>
 
-      {onShowMore && state === State.Collapsed && (
+      {onShowMore && state !== State.Full && (
         <div className={classes.footer}>
-          <Link
+          <Button
+            variant='flat'
+            size='small'
             onClick={handleShowMoreClick}
-            underline='none'
             className={classes.showMoreLink}
+            loading={state === State.Loading}
           >
             <Typography variant='caption'>Show more timesheets</Typography>
             <ExpandMoreIcon className={classes.expandMoreIcon} />
-          </Link>
-        </div>
-      )}
-
-      {onShowMore && state === State.Loading && (
-        <div className={classes.footer}>
-          <Typography variant='caption'>Loading...</Typography>
+          </Button>
         </div>
       )}
     </Fragment>
