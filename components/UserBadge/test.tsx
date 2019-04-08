@@ -1,0 +1,43 @@
+import React from 'react'
+/* eslint-disable-next-line */
+import { render, fireEvent, cleanup, RenderResult } from 'react-testing-library'
+
+import Typography from '../Typography'
+import UserBadge from './index'
+
+const renderUserBadge = (children: React.ReactNode, props: any) => {
+  return render(
+    <UserBadge name='Joe Doe' {...props}>
+      {children}
+    </UserBadge>
+  )
+}
+
+afterEach(cleanup)
+
+describe('UserBadge', () => {
+  test('default render', () => {
+    const { container } = renderUserBadge(
+      <Typography>QA tester</Typography>,
+      null
+    )
+
+    expect(container).toMatchSnapshot()
+  })
+
+  test('small size', () => {
+    const { container } = renderUserBadge(<Typography>QA tester</Typography>, {
+      size: 'small'
+    })
+
+    expect(container).toMatchSnapshot()
+  })
+
+  test('invert render', () => {
+    const { container } = renderUserBadge(<Typography>QA tester</Typography>, {
+      invert: true
+    })
+
+    expect(container).toMatchSnapshot()
+  })
+})
