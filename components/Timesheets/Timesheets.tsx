@@ -112,9 +112,7 @@ export const Timesheets: React.FunctionComponent<Props> = React.memo(props => {
             icon={<ExpandMoreIcon className={classes.expandMoreIcon} />}
             iconPosition='right'
           >
-            <Typography variant='caption' inline>
-              Show more timesheets
-            </Typography>
+            Show more timesheets
           </Button>
         </div>
       )}
