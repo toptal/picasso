@@ -109,7 +109,6 @@ To add a new Icon to Picasso library please follow these steps:
    ...
    export { default as [your_icon_name]} from './[your_icon_name]'
    ...
-   export { default } from './IconsLibrary'
    ```
 
 After Picasso will be released with your changes you can start using your Icon as described [here](https://picasso.toptal.net/?selectedKind=Icons&selectedStory=Icons).
