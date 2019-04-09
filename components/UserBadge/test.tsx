@@ -33,6 +33,28 @@ describe('UserBadge', () => {
     expect(container).toMatchSnapshot()
   })
 
+  test('manual center alignment', () => {
+    const { container } = renderUserBadge(<Typography>QA tester</Typography>, {
+      center: true
+    })
+
+    expect(container).toMatchSnapshot()
+  })
+
+  test('auto center alignment', () => {
+    const { container } = renderUserBadge(null, null)
+
+    expect(container).toMatchSnapshot()
+  })
+
+  test('override auto center alignment', () => {
+    const { container } = renderUserBadge(null, {
+      center: false
+    })
+
+    expect(container).toMatchSnapshot()
+  })
+
   test('invert render', () => {
     const { container } = renderUserBadge(<Typography>QA tester</Typography>, {
       invert: true
