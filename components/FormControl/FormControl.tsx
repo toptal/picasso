@@ -1,11 +1,24 @@
-import React from 'react'
+import React, { FunctionComponent, ReactNode } from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import MUIFormControl, { FormControlProps } from '@material-ui/core/FormControl'
+import MUIFormControl from '@material-ui/core/FormControl'
 
+import { StandardProps } from '../Picasso'
 import styles from './styles'
 
-const FormControl: React.FunctionComponent<FormControlProps> = props => {
-  return <MUIFormControl {...props} />
+interface Props extends StandardProps {
+  /** Content of FormControl */
+  children?: ReactNode
 }
+
+const FormControl: FunctionComponent<Props> = ({
+  children,
+  classes,
+  className,
+  style
+}) => (
+  <MUIFormControl classes={classes} className={className} style={style}>
+    {children}
+  </MUIFormControl>
+)
 
 export default withStyles(styles)(FormControl)

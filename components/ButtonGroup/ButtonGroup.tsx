@@ -1,22 +1,27 @@
 import React, { ReactNode, FunctionComponent } from 'react'
 import { withStyles } from '@material-ui/core/styles'
+import cx from 'classnames'
 
 import Button from '../Button'
+import { StandardProps } from '../Picasso'
 import { withClasses } from '../styles'
-import { Classes } from '../styles/types'
 import styles from './styles'
 
-interface Props {
+interface Props extends StandardProps {
   /** List of `Button` components which you want to render as `ButtonGroup` */
   children?: ReactNode
-  classes: Classes
 }
 
-export const ButtonGroup: FunctionComponent<Props> = props => {
-  const { children, classes } = props
-
-  return <div className={classes.root}>{children}</div>
-}
+export const ButtonGroup: FunctionComponent<Props> = ({
+  children,
+  classes,
+  className,
+  style
+}) => (
+  <div className={cx(classes.root, className)} style={style}>
+    {children}
+  </div>
+)
 
 ButtonGroup.defaultProps = {
   children: null,

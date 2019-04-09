@@ -1,16 +1,16 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, ReactNode } from 'react'
+import { Overwrite } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
-import { ClassNameMap } from '@material-ui/core/styles/withStyles'
 import CloseIcon from '@material-ui/icons/Close'
 
 import Chip from '../Chip'
 import LabelGroup from '../LabelGroup'
+import { StandardProps, JssProps } from '../Picasso'
 import styles from './styles'
 
-interface Props {
-  classes: Partial<ClassNameMap<string>>
+interface Props extends StandardProps {
   /** Text content of the `Label` component */
-  children: React.ReactNode
+  children: ReactNode
   /** A callback which is invoked after remove `Icon` is clicked
    *
    * Please note that specifying this callback automatically adds remove `Icon` as children of the `Label`
@@ -20,18 +20,25 @@ interface Props {
   variant?: 'flat' | 'success' | 'error'
 }
 
-type LabeComponentType<P> = FunctionComponent<P> & {
+interface StaticProps {
   Group: typeof LabelGroup
 }
 
-export const Label: LabeComponentType<Props> = props => {
-  const { classes, variant, children, ...rest } = props
-
+export const Label: FunctionComponent<Props> & StaticProps = ({
+  classes,
+  variant,
+  children,
+  className,
+  style,
+  onDelete
+}) => {
   const rootClass = variant ? classes[variant] : ''
 
   return (
     <Chip
       classes={{ root: rootClass }}
+      className={className}
+      style={style}
       deleteIcon={
         <CloseIcon
           aria-label='delete icon'
@@ -39,15 +46,14 @@ export const Label: LabeComponentType<Props> = props => {
           role='button'
         />
       }
+      onDelete={onDelete}
       label={children}
-      {...rest}
     />
   )
 }
 
 Label.defaultProps = {
   children: '',
-  classes: {},
   onDelete: undefined,
   variant: undefined
 }
@@ -56,4 +62,7 @@ Label.displayName = 'Label'
 
 Label.Group = LabelGroup
 
-export default withStyles(styles)(Label)
+export default withStyles(styles)(Label) as FunctionComponent<
+  Overwrite<Props, Partial<JssProps>>
+> &
+  StaticProps

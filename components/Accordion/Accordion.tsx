@@ -1,14 +1,14 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, FunctionComponent, ChangeEvent } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUIExpansionPanel from '@material-ui/core/ExpansionPanel'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 
-import styles from './styles'
+import { StandardProps } from '../Picasso'
 import ExpansionPanelSummary from '../ExpansionPanelSummary'
 import ExpansionPanelDetails from '../ExpansionPanelDetails'
-import { Classes } from '../styles/types'
+import styles from './styles'
 
-interface Props {
+interface Props extends StandardProps {
   /** Always visible part of accordion */
   children?: ReactNode
   /** Collapsible content of `Accordion` */
@@ -16,17 +16,28 @@ interface Props {
   /** Define accordion content state, whether it should be collapsed or displayed */
   expanded?: boolean
   /** Callback invoked when `Accordion` item is toggled */
-  onChange?: (event: React.ChangeEvent<{}>, expanded: boolean) => void
-  classes: Classes
+  onChange?: (event: ChangeEvent<{}>, expanded: boolean) => void
 }
 
-export const Accordion: React.FunctionComponent<Props> = props => {
-  const { children, content, expanded, onChange, classes } = props
-
+export const Accordion: FunctionComponent<Props> = ({
+  children,
+  content,
+  expanded,
+  className,
+  style,
+  classes,
+  onChange
+}) => {
   const isControlledVariant = expanded === undefined
 
   return (
-    <MUIExpansionPanel elevation={0} expanded={expanded} onChange={onChange}>
+    <MUIExpansionPanel
+      className={className}
+      style={style}
+      elevation={0}
+      expanded={expanded}
+      onChange={onChange}
+    >
       {children && (
         <ExpansionPanelSummary
           classes={{
@@ -47,7 +58,6 @@ export const Accordion: React.FunctionComponent<Props> = props => {
 }
 
 Accordion.defaultProps = {
-  content: null,
   expanded: undefined,
   onChange: () => {}
 }

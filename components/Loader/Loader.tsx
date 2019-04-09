@@ -3,8 +3,7 @@ import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
 import CircularProgress from '../CircularProgress'
-import { SizeType } from '../Picasso'
-import { Classes } from '../styles/types'
+import { StandardProps, SizeType } from '../Picasso'
 import styles from './styles'
 
 enum SIZES {
@@ -15,11 +14,9 @@ enum SIZES {
 
 type VariantType = 'determinate' | 'indeterminate' | 'static'
 
-interface Props {
+interface Props extends StandardProps {
   /** Text content for the `Loader` */
   children?: ReactNode
-  classes: Classes
-  className?: string
   /** Shows loader as part of other inline elements such as text */
   inline?: boolean
   /** Size of the `Loader` */

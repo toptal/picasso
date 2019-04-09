@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { FunctionComponent, ReactNode } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import { ThemeStyle as MUIVariant } from '@material-ui/core/styles/createTypography'
 import { PropTypes } from '@material-ui/core'
 import MUITypography from '@material-ui/core/Typography'
 import cx from 'classnames'
 
+import { StandardProps } from '../Picasso'
 import styles from './styles'
-import { Classes } from '../styles/types'
 
 type VariantType =
   | 'h1'
@@ -20,21 +20,19 @@ type VariantType =
   | 'caption'
   | 'body'
 
-type Weights = 'thin' | 'light' | 'regular' | 'semibold' | 'bold'
+type WeightType = 'thin' | 'light' | 'regular' | 'semibold' | 'bold'
 
-interface Props {
+interface Props extends StandardProps {
   /** Font variant inner text */
   variant?: VariantType
-  classes: Classes
   /** Text content */
-  children?: React.ReactNode
-  className?: string
+  children?: ReactNode
   /** Controls whether the Typography is inline or not */
   inline?: boolean
   /** Text align of the inner text */
   align?: PropTypes.Alignment
   /** Font weight of the inner text */
-  weight?: Weights
+  weight?: WeightType
   /** Invert color */
   invert?: boolean
 }
@@ -71,8 +69,8 @@ const resolveRootClass = (props: Props) => {
   )
 }
 
-export const Typography: React.FunctionComponent<Props> = props => {
-  const { variant, children, align, className, inline } = props
+export const Typography: FunctionComponent<Props> = props => {
+  const { variant, children, align, className, style, inline } = props
   const resolvedVariant = VARIANTS[variant!]
   const rootClass = resolveRootClass(props)
 
@@ -83,6 +81,7 @@ export const Typography: React.FunctionComponent<Props> = props => {
       classes={{
         root: rootClass
       }}
+      style={style}
       variant={resolvedVariant}
       inline={inline}
     >

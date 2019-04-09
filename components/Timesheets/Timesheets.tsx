@@ -1,18 +1,18 @@
-import React, { Fragment, useState } from 'react'
+import React, { memo, Fragment, useState, FunctionComponent } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import cx from 'classnames'
 
 import Table from '../Table'
 import Typography from '../Typography'
 import TimesheetItem from '../TimesheetItem'
 import Button from '../Button'
-import { Classes } from '../styles/types'
+import { StandardProps } from '../Picasso'
 import styles from './styles'
 
 const INITIAL_ITEMS_COUNT = 3
 
-interface Props {
-  classes: Classes
+interface Props extends StandardProps {
   /** Number of timesheets records shown when the list is collapsed */
   initialItemsCount: number
   /** Timesheets list */
@@ -42,9 +42,11 @@ enum State {
   Full
 }
 
-export const Timesheets: React.FunctionComponent<Props> = React.memo(props => {
+export const Timesheets: FunctionComponent<Props> = memo(props => {
   const {
     classes,
+    className,
+    style,
     initialItemsCount,
     timesheets,
     onEdit,
@@ -77,7 +79,7 @@ export const Timesheets: React.FunctionComponent<Props> = React.memo(props => {
 
   return (
     <Fragment>
-      <Table>
+      <Table className={cx(classes.root, className)} style={style}>
         <Table.Head>
           <Table.Row>
             <Table.Cell>

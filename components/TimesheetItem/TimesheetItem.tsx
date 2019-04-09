@@ -1,14 +1,14 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, Component } from 'react'
 import { withStyles } from '@material-ui/core/styles'
+import cx from 'classnames'
 
 import Typography from '../Typography'
 import Button from '../Button'
 import Link from '../Link'
-import { Classes } from '../styles/types'
+import { StandardProps } from '../Picasso'
 import styles from './styles'
 
-interface Props {
-  classes: Classes
+interface Props extends StandardProps {
   id: number
   startDate: string
   endDate: string
@@ -25,7 +25,7 @@ interface Props {
   onUnsubmit: (timesheetId: number) => void
 }
 
-export class TimesheetItem extends React.Component<Props, {}> {
+export class TimesheetItem extends Component<Props, {}> {
   static defaultProps = {}
   static displayName = 'TimesheetItem'
 
@@ -108,10 +108,10 @@ export class TimesheetItem extends React.Component<Props, {}> {
   }
 
   render() {
-    const { classes } = this.props
+    const { classes, className, style } = this.props
 
     return (
-      <div className={classes.timesheet}>
+      <div className={cx(classes.timesheet, className)} style={style}>
         {this.renderInfo()}
         {this.renderActionButtons()}
       </div>

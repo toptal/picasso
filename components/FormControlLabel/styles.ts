@@ -1,6 +1,8 @@
+import { Theme, createStyles } from '@material-ui/core/styles'
+
 import { PicassoProvider } from '../Picasso'
 
-PicassoProvider.override(({ palette }) => ({
+PicassoProvider.override(({ palette }: Theme) => ({
   MuiFormControlLabel: {
     root: {
       marginLeft: 0,
@@ -25,9 +27,7 @@ PicassoProvider.override(({ palette }) => ({
   }
 }))
 
-export default {
-  FormControlLabel: {
-    root: {},
-    disabled: {}
-  }
-}
+export default () =>
+  createStyles({
+    root: {}
+  })

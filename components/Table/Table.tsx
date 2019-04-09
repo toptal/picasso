@@ -1,4 +1,5 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, ReactNode } from 'react'
+import { Overwrite } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import MUITable from '@material-ui/core/Table'
 
@@ -6,16 +7,12 @@ import TableCell from '../TableCell'
 import TableBody from '../TableBody'
 import TableRow from '../TableRow'
 import TableHead from '../TableHead'
-import { Classes } from '../styles/types'
+import { StandardProps, JssProps } from '../Picasso'
 import styles from './styles'
 
-interface StylesProps {
-  classes: Classes
-}
-
-interface Props {
+interface Props extends StandardProps {
   /** Children components (`Table.Head`, `Table.Body`) */
-  children: React.ReactNode
+  children: ReactNode
 }
 
 interface StaticProps {
@@ -25,12 +22,16 @@ interface StaticProps {
   Cell: typeof TableCell
 }
 
-export const Table: FunctionComponent<Props & StylesProps> &
-StaticProps = props => {
-  const { classes, children } = props
-
-  return <MUITable classes={classes}>{children}</MUITable>
-}
+export const Table: FunctionComponent<Props> & StaticProps = ({
+  classes,
+  className,
+  style,
+  children
+}) => (
+  <MUITable classes={classes} className={className} style={style}>
+    {children}
+  </MUITable>
+)
 
 Table.defaultProps = {}
 
@@ -46,5 +47,7 @@ Table.Head = TableHead
 
 Table.Row = TableRow
 
-export default withStyles(styles)(Table) as FunctionComponent<Props> &
+export default withStyles(styles)(Table) as FunctionComponent<
+  Overwrite<Props, Partial<JssProps>>
+> &
   StaticProps

@@ -1,6 +1,5 @@
+import React, { FunctionComponent } from 'react'
 import { withStyles } from '@material-ui/core/styles'
-
-import React from 'react'
 
 import { Classes } from '../../../../../components/styles/types'
 import { PropTypeDocumentation } from '../../../../utils/documentationGenerator'
@@ -16,7 +15,7 @@ interface Props {
 
 const trim = (value: string) => String(value).replace(/\'|\"/gi, '')
 
-const EnumsList: React.FunctionComponent<Props> = props => {
+const EnumsList: FunctionComponent<Props> = props => {
   const { enums, classes, type } = props
   let enumList = enums
 

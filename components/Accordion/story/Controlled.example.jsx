@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Accordion, Button, Container } from '@toptal/picasso'
 
 const AccordionControlledExample = () => {
-  const [expanded, setExpanded] = React.useState(false)
+  const [expanded, setExpanded] = useState(false)
 
   return (
     <div>

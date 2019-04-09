@@ -4,13 +4,13 @@ to: components/<%= h.changeCase.pascalCase(name) %>/test.tsx
 <%
   Name = h.changeCase.pascalCase(name)
 -%>
-import React from 'react'
+import React, { ReactNode } from 'react'
 /* eslint-disable-next-line */
 import { render, fireEvent, cleanup, RenderResult } from 'react-testing-library'
 
 import <%= Name %> from './index'
 
-const render<%= Name %> = (children: React.ReactNode, props: any) => {
+const render<%= Name %> = (children: ReactNode, props: any) => {
   return render(<<%= Name %> {...props}>{children}</<%= Name %>>)
 }
 

@@ -15,7 +15,3 @@ PicassoProvider.override(({ typography, palette }) => ({
     }
   }
 }))
-
-export default {
-  InputBase: {}
-}

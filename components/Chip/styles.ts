@@ -1,6 +1,8 @@
+import { Theme, createStyles } from '@material-ui/core/styles'
+
 import { PicassoProvider } from '../Picasso'
 
-PicassoProvider.override(({ palette }) => ({
+PicassoProvider.override(({ palette }: Theme) => ({
   MuiChip: {
     root: {
       fontSize: '16px',
@@ -20,6 +22,7 @@ PicassoProvider.override(({ palette }) => ({
   }
 }))
 
-export default {
-  root: {}
-}
+export default () =>
+  createStyles({
+    root: {}
+  })

@@ -1,22 +1,19 @@
-import React, { CSSProperties } from 'react'
+import React, { PureComponent } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 
+import { StandardProps, SizeType } from '../Picasso'
 import Image from '../Image'
 import Logo from '../Logo'
 import Typography from '../Typography'
 import getNameInitials from '../utils/getNameInitials'
-import { SizeType } from '../Picasso'
-import { Classes } from '../styles/types'
 import styles from './styles'
 
 type VariantType = 'square' | 'portrait' | 'landscape'
 
-interface Props {
+interface Props extends StandardProps {
   /** Alt text */
   alt?: string
-  classes: Classes
-  className?: string
   /** User full name to display initials on the avatar */
   name: string
   /**
@@ -26,7 +23,6 @@ interface Props {
   size?: SizeType<'xsmall' | 'small' | 'medium' | 'large'>
   /** Photo url */
   src?: string
-  style?: CSSProperties
   /**
    * Variant of the avatar shape
    * @default square
@@ -34,7 +30,7 @@ interface Props {
   variant?: VariantType
 }
 
-export class Avatar extends React.PureComponent<Props> {
+export class Avatar extends PureComponent<Props> {
   static defaultProps: Partial<Props> = {
     size: 'xsmall',
     variant: 'square'

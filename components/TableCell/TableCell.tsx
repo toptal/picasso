@@ -1,25 +1,29 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, ReactNode } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUITableCell from '@material-ui/core/TableCell'
 
-import { Classes } from '../styles/types'
+import { StandardProps } from '../Picasso'
 import styles from './styles'
 
 type AlignType = 'inherit' | 'left' | 'center' | 'right' | 'justify'
 
-interface Props {
+interface Props extends StandardProps {
   /** Set the text-align on the table cell content */
   align?: AlignType
-  classes: Classes
   /** The table cell contents */
-  children: React.ReactNode
+  children: ReactNode
 }
 
 export const TableCell: FunctionComponent<Props> = props => {
-  const { align, classes, children } = props
+  const { align, classes, className, style, children } = props
 
   return (
-    <MUITableCell align={align} classes={classes}>
+    <MUITableCell
+      align={align}
+      classes={classes}
+      className={className}
+      style={style}
+    >
       {children}
     </MUITableCell>
   )

@@ -8,10 +8,10 @@ const renderLabelGroup = () => {
   return render(
     <Picasso loadFonts={false}>
       <Label.Group>
-        <Label label='Angular JS' />
-        <Label label='React JS' />
-        <Label label='Ember JS' />
-        <Label label='Vue JS' />
+        <Label>Angular JS</Label>
+        <Label>React JS</Label>
+        <Label>Ember JS</Label>
+        <Label>Vue JS</Label>
       </Label.Group>
     </Picasso>
   )

@@ -5,14 +5,14 @@ import React, {
   MouseEvent
 } from 'react'
 import cx from 'classnames'
+import { Overwrite } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import ButtonBase from '@material-ui/core/ButtonBase'
 
-import { Classes } from '../styles/types'
 import Loader from '../Loader'
 import Container from '../Container'
 import Group from '../ButtonGroup'
-import { SizeType } from '../Picasso'
+import { StandardProps, JssProps, SizeType } from '../Picasso'
 import styles from './styles'
 
 type VariantType =
@@ -26,16 +26,13 @@ type VariantType =
 
 type IconPositionType = 'left' | 'right'
 
-interface StylesProps {
-  classes: Classes
-}
-
-interface Props {
+interface Props extends StandardProps {
   /** Show button in the active state (left mouse button down) */
   active?: boolean
+  /** Disables button */
+  disabled?: boolean
   /** Content of Button component */
   children?: ReactNode
-  className?: string
   focused?: boolean
   /** Take the full width of a container */
   fullWidth?: boolean
@@ -58,24 +55,23 @@ interface StaticProps {
   Group: typeof Group
 }
 
-export const Button: FunctionComponent<Props & StylesProps> &
-StaticProps = props => {
-  const {
-    icon,
-    iconPosition,
-    loading,
-    children,
-    classes,
-    className,
-    fullWidth,
-    variant,
-    size,
-    focused,
-    hovered,
-    active,
-    onClick,
-    ...rest
-  } = props
+export const Button: FunctionComponent<Props> & StaticProps = ({
+  icon,
+  iconPosition,
+  loading,
+  children,
+  classes,
+  className,
+  style,
+  fullWidth,
+  variant,
+  size,
+  focused,
+  hovered,
+  disabled,
+  active,
+  onClick
+}) => {
   const {
     icon: iconClass,
     iconLeft: iconLeftClass,
@@ -125,7 +121,8 @@ StaticProps = props => {
       }}
       onClick={onClick}
       className={className}
-      {...rest}
+      style={style}
+      disabled={disabled}
     >
       <Container
         inline
@@ -145,6 +142,7 @@ StaticProps = props => {
 Button.defaultProps = {
   active: false,
   children: null,
+  disabled: false,
   focused: false,
   fullWidth: false,
   hovered: false,
@@ -159,5 +157,7 @@ Button.displayName = 'Button'
 
 Button.Group = Group
 
-export default withStyles(styles)(Button) as FunctionComponent<Props> &
+export default withStyles(styles)(Button) as FunctionComponent<
+  Overwrite<Props, Partial<JssProps>>
+> &
   StaticProps

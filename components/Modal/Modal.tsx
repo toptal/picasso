@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from 'react'
+import { Overwrite } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import Dialog from '@material-ui/core/Dialog'
 import CloseIcon from '@material-ui/icons/Close'
@@ -6,16 +7,12 @@ import CloseIcon from '@material-ui/icons/Close'
 import ModalTitle from '../ModalTitle'
 import ModalContent from '../ModalContent'
 import ModalActions from '../ModalActions'
-import { Classes } from '../styles/types'
+import { StandardProps, JssProps } from '../Picasso'
 import styles from './styles'
 
 type ContainerValue = () => HTMLElement | HTMLElement
 
-interface StylesProps {
-  classes: Classes
-}
-
-interface Props {
+interface Props extends StandardProps {
   /** Whether modal should be displayed */
   open: boolean
   /** Callback executed when backdrop was clicked */
@@ -37,8 +34,7 @@ interface StaticProps {
   Title: typeof ModalTitle
 }
 
-export const Modal: FunctionComponent<Props & StylesProps> &
-StaticProps = props => {
+export const Modal: FunctionComponent<Props> & StaticProps = props => {
   const {
     children,
     open,
@@ -46,6 +42,8 @@ StaticProps = props => {
     onClose,
     onOpen,
     classes,
+    className,
+    style,
     container,
     hideBackdrop,
     transitionDuration
@@ -55,6 +53,8 @@ StaticProps = props => {
   return (
     <Dialog
       classes={restClasses}
+      className={className}
+      style={style}
       container={container}
       PaperProps={{ elevation: 2 }}
       hideBackdrop={hideBackdrop}
@@ -81,5 +81,7 @@ Modal.Actions = ModalActions
 
 Modal.Title = ModalTitle
 
-export default withStyles(styles)(Modal) as FunctionComponent<Props> &
+export default withStyles(styles)(Modal) as FunctionComponent<
+  Overwrite<Props, Partial<JssProps>>
+> &
   StaticProps

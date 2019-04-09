@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { ReactNode, FunctionComponent } from 'react'
+
+import { BaseProps } from '../Picasso'
 
 type DirectionType = 'row' | 'column'
 
 type AlignItemsType = 'flex-start' | 'flex-end' | 'center' | 'stretch'
 
-interface Props {
+interface Props extends BaseProps {
   /** marginTop for the container calculated as `${top}em` */
   top?: number
   /** marginBottom for the container calculated as `${bottom}em` */
@@ -15,33 +17,29 @@ interface Props {
   right?: number
   /** Whether container should act as inline element `display: inline-block` */
   inline?: boolean
-  /** Extra css classes to be passed to `Container` */
-  className?: string
-  /** Extra inline styling passed to a component */
-  style?: object
   /** Use flexbox */
   flex?: boolean
   /** Set flex direction */
   direction?: DirectionType
   /** Defines the align-items style property */
   alignItems?: AlignItemsType
+  /** Content of Container */
+  children: ReactNode
 }
 
-export const Container: React.FunctionComponent<Props> = props => {
-  const {
-    children,
-    className,
-    top,
-    bottom,
-    left,
-    right,
-    inline,
-    flex,
-    direction,
-    alignItems,
-    style
-  } = props
-
+export const Container: FunctionComponent<Props> = ({
+  children,
+  className,
+  top,
+  bottom,
+  left,
+  right,
+  inline,
+  flex,
+  direction,
+  alignItems,
+  style
+}) => {
   const display = flex ? 'flex' : 'block'
   const inlineDisplay = flex ? 'inline-flex' : 'inline-block'
 

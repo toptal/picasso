@@ -1,24 +1,27 @@
-import React, { useContext } from 'react'
+import React, { useContext, FunctionComponent, ReactNode } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
 import { Logo, Container, Typography } from '../'
 import { PageContext } from '../Page'
 import { PageContextProps } from '../Page/types'
+import { StandardProps } from '../Picasso'
 import styles from './styles'
-import { Classes } from '../styles/types'
 
-interface Props {
-  classes: Classes
+interface Props extends StandardProps {
   /** Title which is displayed along the `Logo` */
   title: string
   /** Content for the right side of the `Header`  */
-  rightContent?: React.ReactNode
+  rightContent?: ReactNode
 }
 
-export const Header: React.FunctionComponent<Props> = props => {
-  const { classes, title, rightContent, ...rest } = props
-
+export const Header: FunctionComponent<Props> = ({
+  classes,
+  className,
+  style,
+  title,
+  rightContent
+}) => {
   const { fullWidth } = useContext<PageContextProps>(PageContext)
 
   const contentClassnames = cx(
@@ -29,7 +32,7 @@ export const Header: React.FunctionComponent<Props> = props => {
   )
 
   return (
-    <header className={classes.root} {...rest}>
+    <header className={cx(classes.root, className)} style={style}>
       <div className={contentClassnames}>
         <div className={classes.left}>
           <Container right={1} flex direction='row' alignItems='center'>
