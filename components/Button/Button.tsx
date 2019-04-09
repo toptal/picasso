@@ -12,6 +12,7 @@ import { Classes } from '../styles/types'
 import Loader from '../Loader'
 import Container from '../Container'
 import Group from '../ButtonGroup'
+import { SizeType } from '../Picasso'
 import styles from './styles'
 
 type VariantType =
@@ -22,8 +23,6 @@ type VariantType =
   | 'success'
   | 'error'
   | 'default'
-
-type SizeType = 'small' | 'medium' | 'large'
 
 type IconPositionType = 'left' | 'right'
 
@@ -50,7 +49,7 @@ interface Props {
   /** Callback invoked when component is clicked */
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void
   /** A button can have different sizes */
-  size?: SizeType
+  size?: SizeType<'small' | 'medium' | 'large'>
   /** The variant to use */
   variant?: VariantType
 }

@@ -7,7 +7,7 @@ const LoaderSizesExample = () => (
       <Loader size='small'>small</Loader>
     </Container>
     <Container bottom={2}>
-      <Loader size='default'>default</Loader>
+      <Loader size='medium'>medium</Loader>
     </Container>
     <Loader size='large'>large</Loader>
   </div>
