@@ -9,6 +9,8 @@ import styles from './styles'
 
 type SizeType = 'xsmall' | 'small'
 
+type AlignmentType = boolean | 'auto'
+
 interface Props {
   /** User full name to display */
   name: string
@@ -18,8 +20,13 @@ interface Props {
   size?: SizeType
   /** Invert color */
   invert?: boolean
-  /** Center text vertically */
-  center?: boolean
+  /**
+   * Center text vertically
+   *
+   * * auto - if no children is provided text will be centered
+   * * manual - based on `center` prop `boolean` value
+   */
+  center?: AlignmentType
   /** Additional content of UserBadge */
   children?: ReactNode
   classes: Classes
@@ -34,7 +41,9 @@ export const UserBadge: FunctionComponent<Props> = props => {
     <Avatar name={name} size={size} src={avatar as string} />
   )
 
-  const alignItems = center ? 'center' : 'flex-start'
+  // if 'auto' then center if children are null
+  const shouldCenter = center === true || (center === 'auto' && !children)
+  const alignItems = shouldCenter ? 'center' : 'flex-start'
 
   return (
     <Grid spacing={16} alignItems={alignItems}>
@@ -50,7 +59,7 @@ export const UserBadge: FunctionComponent<Props> = props => {
 }
 
 UserBadge.defaultProps = {
-  center: false,
+  center: 'auto',
   invert: false,
   size: 'xsmall'
 }

@@ -13,7 +13,7 @@ const UserBadgeDefaultExample = () => (
         </UserBadge>
       </Grid.Item>
       <Grid.Item>
-        <UserBadge name='Jacqueline Roque' center />
+        <UserBadge name='Jacqueline Roque' />
       </Grid.Item>
     </Grid>
   </div>
