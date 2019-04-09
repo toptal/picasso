@@ -1,4 +1,4 @@
-import { createStyles } from '@material-ui/core/styles'
+import { Theme, createStyles } from '@material-ui/core/styles'
 
 import { PicassoProvider } from '../Picasso'
 
@@ -37,7 +37,7 @@ PicassoProvider.override(() => ({
   }
 }))
 
-export default () =>
+export default ({ palette }: Theme) =>
   createStyles({
     large: {
       fontSize: '1.25rem',
@@ -65,5 +65,8 @@ export default () =>
     },
     bold: {
       fontWeight: 700
+    },
+    invert: {
+      color: palette.common.white
     }
   })

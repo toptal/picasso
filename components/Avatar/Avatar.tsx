@@ -20,12 +20,18 @@ interface Props {
   className?: string
   /** User full name to display initials on the avatar */
   name: string
-  /** Size */
+  /**
+   * Size
+   * @default xsmall
+   */
   size?: SizeType
   /** Photo url */
   src?: string
   style?: CSSProperties
-  /** Variant of the avatar shape */
+  /**
+   * Variant of the avatar shape
+   * @default square
+   */
   variant?: VariantType
 }
 

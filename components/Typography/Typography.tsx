@@ -35,6 +35,8 @@ interface Props {
   align?: PropTypes.Alignment
   /** Font weight of the inner text */
   weight?: Weights
+  /** Invert color */
+  invert?: boolean
 }
 
 interface Variants {
@@ -56,13 +58,14 @@ const VARIANTS: Variants = {
 }
 
 const resolveRootClass = (props: Props) => {
-  const { classes, weight, variant } = props
+  const { classes, weight, variant, invert } = props
 
   return cx(
     {
       [classes.large]: variant === 'large',
       [classes.small]: variant === 'small',
-      [classes.body]: variant === 'body'
+      [classes.body]: variant === 'body',
+      [classes.invert]: invert
     },
     classes[weight!]
   )
