@@ -1,8 +1,11 @@
 const t = require('@babel/types')
 
-function decorateWithClassNameProp(rootSvgTag) {
-  rootSvgTag.attributes = [
-    ...rootSvgTag.attributes,
+/**
+ * Add `className={cx(classes.root, className)}` to the svg tag
+ */
+function decorateWithClassNameProp(svgElement) {
+  svgElement.attributes = [
+    ...svgElement.attributes,
     t.jsxAttribute(
       t.jsxIdentifier('className'),
       t.jsxExpressionContainer(
@@ -19,9 +22,12 @@ function decorateWithClassNameProp(rootSvgTag) {
   ]
 }
 
-function decorateWithStylesProp(rootSvgTag) {
-  rootSvgTag.attributes = [
-    ...rootSvgTag.attributes,
+/**
+ * Add `style={style}` to the svg tag
+ */
+function decorateWithStylesProp(svgElement) {
+  svgElement.attributes = [
+    ...svgElement.attributes,
     t.jsxAttribute(
       t.jsxIdentifier('style'),
       t.jsxExpressionContainer(t.identifier('style'))
@@ -36,7 +42,7 @@ const template = ({ template }, opts, { componentName, jsx }) => {
 
   // add `className={cx(classes.root, className)}` to svg root tag
   decorateWithClassNameProp(svgElement)
-  // add style={style} to svg root tag
+  // add `style={style}` to svg root tag
   decorateWithStylesProp(svgElement)
 
   const typeScriptTpl = template.smart({ plugins: ['typescript'] })
