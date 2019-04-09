@@ -3,12 +3,12 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 export default ({ palette }: Theme) =>
   createStyles({
     logo: {
-      width: '5.875em',
-      height: '1.75em'
+      fontSize: '1.75em',
+      verticalAlign: 'baseline'
     },
     logoEmblem: {
-      width: '1.53125em',
-      height: '1.75em'
+      fontSize: '1.75em',
+      verticalAlign: 'baseline'
     },
     default: {
       color: palette.primary.main

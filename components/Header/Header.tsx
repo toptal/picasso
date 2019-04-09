@@ -32,7 +32,7 @@ export const Header: React.FunctionComponent<Props> = props => {
     <header className={classes.root} {...rest}>
       <div className={contentClassnames}>
         <div className={classes.left}>
-          <Container className={classes.logo} right={1}>
+          <Container right={1} flex direction='row' alignItems='center'>
             <Logo variant='white' />
           </Container>
           <div className={classes.divider} />

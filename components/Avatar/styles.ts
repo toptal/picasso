@@ -3,7 +3,8 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 const getClipPathCornerMask = (cornerWidth: string) =>
   `polygon(0 0, 100% 0, 100% 100%, ${cornerWidth} 100%, 0 calc(100% - ${cornerWidth}))`
 
-const CLIPPED_CORNER_SIZE = '0.5em'
+const CLIPPED_CORNER_SIZE_EM = 0.5
+const LOGO_SIZE_EM = 0.4
 
 export default ({ palette }: Theme) =>
   createStyles({
@@ -38,10 +39,10 @@ export default ({ palette }: Theme) =>
       fontSize: '4.5rem'
     },
     clippedCorner: {
-      clipPath: getClipPathCornerMask(CLIPPED_CORNER_SIZE),
+      clipPath: getClipPathCornerMask(`${CLIPPED_CORNER_SIZE_EM}em`),
       // we can remove this prefix as soon as this issue will
       // be resolved - https://github.com/cssinjs/css-vendor/issues/74
-      '-webkit-clip-path': getClipPathCornerMask(CLIPPED_CORNER_SIZE)
+      '-webkit-clip-path': getClipPathCornerMask(`${CLIPPED_CORNER_SIZE_EM}em`)
     },
     textContainer: {
       backgroundColor: palette.grey[200]
@@ -57,9 +58,8 @@ export default ({ palette }: Theme) =>
     },
     logo: {
       position: 'absolute',
-      height: '0.45712em',
-      width: '0.4em',
-      bottom: CLIPPED_CORNER_SIZE,
-      left: CLIPPED_CORNER_SIZE
+      fontSize: `${LOGO_SIZE_EM}em`,
+      bottom: `${(1 / LOGO_SIZE_EM) * CLIPPED_CORNER_SIZE_EM}em`,
+      left: `${(1 / LOGO_SIZE_EM) * CLIPPED_CORNER_SIZE_EM}em`
     }
   })

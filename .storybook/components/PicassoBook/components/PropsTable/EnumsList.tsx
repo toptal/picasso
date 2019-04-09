@@ -30,7 +30,7 @@ const EnumsList: React.FunctionComponent<Props> = props => {
 
   return (
     <div className={classes.enums}>
-      <strong>Enums:</strong>
+      <strong className={classes.enumLabel}>Enums:</strong>
 
       {enumList.map(enumValue => (
         <span key={enumValue} className={cx(classes.highlight, classes.enum)}>

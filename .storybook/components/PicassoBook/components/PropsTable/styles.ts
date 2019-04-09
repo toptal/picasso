@@ -54,11 +54,19 @@ export default ({ palette }: Theme) =>
       paddingBottom: '1em'
     },
     enums: {
-      marginTop: '1em'
+      marginTop: '1em',
+      display: 'flex',
+      flexWrap: 'wrap',
+      alignItems: 'center'
+    },
+    enumLabel: {
+      marginRight: '0.2em',
+      marginBottom: '0.2em'
     },
     enum: {
       fontSize: '0.8rem',
-      margin: '0 0.2em'
+      marginRight: '0.2em',
+      marginBottom: '0.2em'
     },
     tooltip: {
       fontWeight: 600,

@@ -18,3 +18,4 @@ page
       'Recommended way to use `font-size` to adjust the icon size, but also you can specify `height` and `width` within styles'
   })
   .addExample('Icon/story/Color.example.jsx', 'Color')
+  .addExample('Icon/story/WithText.example.jsx', 'With text')

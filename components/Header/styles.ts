@@ -33,9 +33,6 @@ export default ({ palette, layout }: Theme) =>
       backgroundColor: palette.common.white,
       opacity: 0.8
     },
-    logo: {
-      display: 'flex'
-    },
     title: {
       color: palette.common.white
     }

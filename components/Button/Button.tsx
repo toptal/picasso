@@ -10,6 +10,7 @@ import ButtonBase from '@material-ui/core/ButtonBase'
 
 import { Classes } from '../styles/types'
 import Loader from '../Loader'
+import Container from '../Container'
 import Group from '../ButtonGroup'
 import styles from './styles'
 
@@ -81,7 +82,6 @@ StaticProps = props => {
     iconLeft: iconLeftClass,
     iconRight: iconRightClass,
     root: rootClass,
-    children: childrenClass,
     hidden: hiddenClass,
     loader: loaderClass
   } = classes
@@ -128,9 +128,15 @@ StaticProps = props => {
       className={className}
       {...rest}
     >
-      <div className={cx(childrenClass, { [hiddenClass]: loading })}>
+      <Container
+        inline
+        flex
+        direction='row'
+        alignItems='center'
+        className={cx({ [hiddenClass]: loading })}
+      >
         {finalChildren}
-      </div>
+      </Container>
 
       {loading && <Loader className={loaderClass} inline size='small' />}
     </ButtonBase>
