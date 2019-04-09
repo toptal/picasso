@@ -72,12 +72,12 @@ function arrowGenerator(color: string) {
   }
 }
 
-export default ({ palette }: Theme) =>
+export default ({ palette, shadows }: Theme) =>
   createStyles({
     tooltip: {
       backgroundColor: palette.grey[500],
       color: palette.common.white,
-      boxShadow: '0 0 4px 0 rgba(0,0,0, 0.24), 0 0px 32px 0 rgba(0,0,0, 0.12)',
+      boxShadow: shadows[4],
       fontSize: '0.875rem',
       lineHeight: '1.5em',
       padding: '1rem',

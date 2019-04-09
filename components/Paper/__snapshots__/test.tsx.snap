@@ -3,7 +3,7 @@
 exports[`Paper default render 1`] = `
 <div>
   <div
-    class="MuiPaper-root MuiPaper-elevation2"
+    class="MuiPaper-root MuiPaper-elevation1"
   >
     <p
       class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1"
