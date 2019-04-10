@@ -52,7 +52,7 @@
     "@storybook/addon-actions": "^5.0.5",
     "@storybook/addon-links": "^5.0.5",
     "@storybook/react": "^5.0.5",
-    "@storybook/theming": "^5.0.5",
+    "@storybook/theming": "^5.0.6",
     "@svgr/cli": "^4.1.0",
     "@types/color": "^3.0.0",
     "@types/esprima": "^4.0.2",
