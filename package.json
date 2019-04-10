@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@babel/standalone": "^7.3.4",
-    "@material-ui/core": "^3.9.2",
+    "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "^3.0.2",
     "@types/classnames": "^2.2.7",
     "classnames": "^2.2.6",
