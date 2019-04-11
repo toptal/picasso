@@ -15,12 +15,13 @@
   ],
   "settings": {
     "react": {
-      "version": "16.6"
+      "version": "detect"
     }
   },
   "rules": {
     "no-console": ["error"],
     "space-before-function-paren": 0,
+    "react/jsx-fragments": [1, "element"],
     "react/jsx-max-props-per-line": ["error", { "when": "multiline" }],
     "react/jsx-one-expression-per-line": 0,
     "react/jsx-no-literals": 0,
