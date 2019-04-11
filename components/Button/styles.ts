@@ -135,18 +135,13 @@ export default ({ palette, typography, transitions }: Theme) =>
 
     // Child elements
     icon: {
-      fontSize: '1.2em !important',
-      marginTop: '0.1em',
-      verticalAlign: 'top'
+      fontSize: '1.2em !important'
     },
     iconLeft: {
       marginRight: ICON_SPACING
     },
     iconRight: {
       marginLeft: ICON_SPACING
-    },
-    children: {
-      display: 'inline-block'
     },
     hidden: {
       opacity: 0

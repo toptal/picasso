@@ -1,0 +1,19 @@
+import React from 'react'
+import { Container } from '@toptal/picasso'
+import { Cog } from '@toptal/picasso/Icons'
+
+const IconWithTextExample = () => (
+  <div>
+    <div>
+      <Cog style={{ marginRight: '0.5em' }} />
+      Vertical alignment of the icon with the same height as text
+    </div>
+
+    <Container flex direction='row' alignItems='center' top={1}>
+      <Cog style={{ marginRight: '0.5em', fontSize: '1.5em' }} />
+      Vertical alignment of the icon with bigger height than text
+    </Container>
+  </div>
+)
+
+export default IconWithTextExample

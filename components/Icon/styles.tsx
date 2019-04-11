@@ -6,6 +6,7 @@ export default () =>
       fill: 'currentColor',
       display: 'inline-block',
       fontSize: 'inherit',
-      height: '1em'
+      height: '1em',
+      verticalAlign: '-.125em'
     }
   })

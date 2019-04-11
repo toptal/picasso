@@ -1,5 +1,9 @@
 import React from 'react'
 
+type DirectionType = 'row' | 'column'
+
+type AlignItemsType = 'flex-start' | 'flex-end' | 'center' | 'stretch'
+
 interface Props {
   /** marginTop for the container calculated as `${top}em` */
   top?: number
@@ -15,10 +19,31 @@ interface Props {
   className?: string
   /** Extra inline styling passed to a component */
   style?: object
+  /** Use flexbox */
+  flex?: boolean
+  /** Set flex direction */
+  direction?: DirectionType
+  /** Defines the align-items style property */
+  alignItems?: AlignItemsType
 }
 
 export const Container: React.FunctionComponent<Props> = props => {
-  const { children, className, top, bottom, left, right, inline, style } = props
+  const {
+    children,
+    className,
+    top,
+    bottom,
+    left,
+    right,
+    inline,
+    flex,
+    direction,
+    alignItems,
+    style
+  } = props
+
+  const display = flex ? 'flex' : 'block'
+  const inlineDisplay = flex ? 'inline-flex' : 'inline-block'
 
   return (
     <div
@@ -28,7 +53,9 @@ export const Container: React.FunctionComponent<Props> = props => {
         marginBottom: bottom + 'em',
         marginLeft: left + 'em',
         marginRight: right + 'em',
-        display: inline ? 'inline-block' : undefined,
+        display: inline ? inlineDisplay : display,
+        ...(direction && { flexDirection: direction }),
+        ...(alignItems && { alignItems: alignItems }),
         ...style
       }}
     >

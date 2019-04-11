@@ -78,7 +78,8 @@ exports[`Timesheets render with less than collasped count timesheets 1`] = `
                   type="button"
                 >
                   <div
-                    class="Button-children"
+                    class=""
+                    style="margin: 0em 0em 0em 0em; display: inline-flex; flex-direction: row; align-items: center;"
                   >
                     Edit
                   </div>
@@ -136,7 +137,8 @@ exports[`Timesheets render with less than collasped count timesheets 1`] = `
                   type="button"
                 >
                   <div
-                    class="Button-children"
+                    class=""
+                    style="margin: 0em 0em 0em 0em; display: inline-flex; flex-direction: row; align-items: center;"
                   >
                     Unsubmit Timesheet
                   </div>
@@ -147,7 +149,8 @@ exports[`Timesheets render with less than collasped count timesheets 1`] = `
                   type="button"
                 >
                   <div
-                    class="Button-children"
+                    class=""
+                    style="margin: 0em 0em 0em 0em; display: inline-flex; flex-direction: row; align-items: center;"
                   >
                     Edit
                   </div>
@@ -167,7 +170,8 @@ exports[`Timesheets render with less than collasped count timesheets 1`] = `
         type="button"
       >
         <div
-          class="Button-children"
+          class=""
+          style="margin: 0em 0em 0em 0em; display: inline-flex; flex-direction: row; align-items: center;"
         >
           Show more timesheets
           <svg
@@ -270,7 +274,8 @@ exports[`Timesheets render with more than collasped count timesheets 1`] = `
                   type="button"
                 >
                   <div
-                    class="Button-children"
+                    class=""
+                    style="margin: 0em 0em 0em 0em; display: inline-flex; flex-direction: row; align-items: center;"
                   >
                     Edit
                   </div>
@@ -328,7 +333,8 @@ exports[`Timesheets render with more than collasped count timesheets 1`] = `
                   type="button"
                 >
                   <div
-                    class="Button-children"
+                    class=""
+                    style="margin: 0em 0em 0em 0em; display: inline-flex; flex-direction: row; align-items: center;"
                   >
                     Unsubmit Timesheet
                   </div>
@@ -339,7 +345,8 @@ exports[`Timesheets render with more than collasped count timesheets 1`] = `
                   type="button"
                 >
                   <div
-                    class="Button-children"
+                    class=""
+                    style="margin: 0em 0em 0em 0em; display: inline-flex; flex-direction: row; align-items: center;"
                   >
                     Edit
                   </div>
@@ -405,7 +412,8 @@ exports[`Timesheets render with more than collasped count timesheets 1`] = `
         type="button"
       >
         <div
-          class="Button-children"
+          class=""
+          style="margin: 0em 0em 0em 0em; display: inline-flex; flex-direction: row; align-items: center;"
         >
           Show more timesheets
           <svg
@@ -508,7 +516,8 @@ exports[`Timesheets when no promise in onShowMore callback specified should rend
                   type="button"
                 >
                   <div
-                    class="Button-children"
+                    class=""
+                    style="margin: 0em 0em 0em 0em; display: inline-flex; flex-direction: row; align-items: center;"
                   >
                     Edit
                   </div>
@@ -566,7 +575,8 @@ exports[`Timesheets when no promise in onShowMore callback specified should rend
                   type="button"
                 >
                   <div
-                    class="Button-children"
+                    class=""
+                    style="margin: 0em 0em 0em 0em; display: inline-flex; flex-direction: row; align-items: center;"
                   >
                     Unsubmit Timesheet
                   </div>
@@ -577,7 +587,8 @@ exports[`Timesheets when no promise in onShowMore callback specified should rend
                   type="button"
                 >
                   <div
-                    class="Button-children"
+                    class=""
+                    style="margin: 0em 0em 0em 0em; display: inline-flex; flex-direction: row; align-items: center;"
                   >
                     Edit
                   </div>
@@ -729,7 +740,8 @@ exports[`Timesheets when no promise in onShowMore callback specified should rend
                   type="button"
                 >
                   <div
-                    class="Button-children"
+                    class=""
+                    style="margin: 0em 0em 0em 0em; display: inline-flex; flex-direction: row; align-items: center;"
                   >
                     Unsubmit Timesheet
                   </div>
@@ -740,7 +752,8 @@ exports[`Timesheets when no promise in onShowMore callback specified should rend
                   type="button"
                 >
                   <div
-                    class="Button-children"
+                    class=""
+                    style="margin: 0em 0em 0em 0em; display: inline-flex; flex-direction: row; align-items: center;"
                   >
                     Edit
                   </div>
@@ -804,7 +817,8 @@ exports[`Timesheets when no promise in onShowMore callback specified should rend
                   type="button"
                 >
                   <div
-                    class="Button-children"
+                    class=""
+                    style="margin: 0em 0em 0em 0em; display: inline-flex; flex-direction: row; align-items: center;"
                   >
                     Unsubmit Timesheet
                   </div>
@@ -815,7 +829,8 @@ exports[`Timesheets when no promise in onShowMore callback specified should rend
                   type="button"
                 >
                   <div
-                    class="Button-children"
+                    class=""
+                    style="margin: 0em 0em 0em 0em; display: inline-flex; flex-direction: row; align-items: center;"
                   >
                     Edit
                   </div>
@@ -908,7 +923,8 @@ exports[`Timesheets when no promise in onShowMore callback specified should rend
                   type="button"
                 >
                   <div
-                    class="Button-children"
+                    class=""
+                    style="margin: 0em 0em 0em 0em; display: inline-flex; flex-direction: row; align-items: center;"
                   >
                     Edit
                   </div>
@@ -966,7 +982,8 @@ exports[`Timesheets when no promise in onShowMore callback specified should rend
                   type="button"
                 >
                   <div
-                    class="Button-children"
+                    class=""
+                    style="margin: 0em 0em 0em 0em; display: inline-flex; flex-direction: row; align-items: center;"
                   >
                     Unsubmit Timesheet
                   </div>
@@ -977,7 +994,8 @@ exports[`Timesheets when no promise in onShowMore callback specified should rend
                   type="button"
                 >
                   <div
-                    class="Button-children"
+                    class=""
+                    style="margin: 0em 0em 0em 0em; display: inline-flex; flex-direction: row; align-items: center;"
                   >
                     Edit
                   </div>
@@ -1129,7 +1147,8 @@ exports[`Timesheets when no promise in onShowMore callback specified should rend
                   type="button"
                 >
                   <div
-                    class="Button-children"
+                    class=""
+                    style="margin: 0em 0em 0em 0em; display: inline-flex; flex-direction: row; align-items: center;"
                   >
                     Unsubmit Timesheet
                   </div>
@@ -1140,7 +1159,8 @@ exports[`Timesheets when no promise in onShowMore callback specified should rend
                   type="button"
                 >
                   <div
-                    class="Button-children"
+                    class=""
+                    style="margin: 0em 0em 0em 0em; display: inline-flex; flex-direction: row; align-items: center;"
                   >
                     Edit
                   </div>
@@ -1204,7 +1224,8 @@ exports[`Timesheets when no promise in onShowMore callback specified should rend
                   type="button"
                 >
                   <div
-                    class="Button-children"
+                    class=""
+                    style="margin: 0em 0em 0em 0em; display: inline-flex; flex-direction: row; align-items: center;"
                   >
                     Unsubmit Timesheet
                   </div>
@@ -1215,7 +1236,8 @@ exports[`Timesheets when no promise in onShowMore callback specified should rend
                   type="button"
                 >
                   <div
-                    class="Button-children"
+                    class=""
+                    style="margin: 0em 0em 0em 0em; display: inline-flex; flex-direction: row; align-items: center;"
                   >
                     Edit
                   </div>
@@ -1308,7 +1330,8 @@ exports[`Timesheets when promise in onShowMore callback specified should render 
                   type="button"
                 >
                   <div
-                    class="Button-children"
+                    class=""
+                    style="margin: 0em 0em 0em 0em; display: inline-flex; flex-direction: row; align-items: center;"
                   >
                     Edit
                   </div>
@@ -1366,7 +1389,8 @@ exports[`Timesheets when promise in onShowMore callback specified should render 
                   type="button"
                 >
                   <div
-                    class="Button-children"
+                    class=""
+                    style="margin: 0em 0em 0em 0em; display: inline-flex; flex-direction: row; align-items: center;"
                   >
                     Unsubmit Timesheet
                   </div>
@@ -1377,7 +1401,8 @@ exports[`Timesheets when promise in onShowMore callback specified should render 
                   type="button"
                 >
                   <div
-                    class="Button-children"
+                    class=""
+                    style="margin: 0em 0em 0em 0em; display: inline-flex; flex-direction: row; align-items: center;"
                   >
                     Edit
                   </div>
@@ -1443,7 +1468,8 @@ exports[`Timesheets when promise in onShowMore callback specified should render 
         type="button"
       >
         <div
-          class="Button-children Button-hidden"
+          class="Button-hidden"
+          style="margin: 0em 0em 0em 0em; display: inline-flex; flex-direction: row; align-items: center;"
         >
           Show more timesheets
           <svg
@@ -1569,7 +1595,8 @@ exports[`Timesheets when promise in onShowMore callback specified should render 
                   type="button"
                 >
                   <div
-                    class="Button-children"
+                    class=""
+                    style="margin: 0em 0em 0em 0em; display: inline-flex; flex-direction: row; align-items: center;"
                   >
                     Edit
                   </div>
@@ -1627,7 +1654,8 @@ exports[`Timesheets when promise in onShowMore callback specified should render 
                   type="button"
                 >
                   <div
-                    class="Button-children"
+                    class=""
+                    style="margin: 0em 0em 0em 0em; display: inline-flex; flex-direction: row; align-items: center;"
                   >
                     Unsubmit Timesheet
                   </div>
@@ -1638,7 +1666,8 @@ exports[`Timesheets when promise in onShowMore callback specified should render 
                   type="button"
                 >
                   <div
-                    class="Button-children"
+                    class=""
+                    style="margin: 0em 0em 0em 0em; display: inline-flex; flex-direction: row; align-items: center;"
                   >
                     Edit
                   </div>
@@ -1790,7 +1819,8 @@ exports[`Timesheets when promise in onShowMore callback specified should render 
                   type="button"
                 >
                   <div
-                    class="Button-children"
+                    class=""
+                    style="margin: 0em 0em 0em 0em; display: inline-flex; flex-direction: row; align-items: center;"
                   >
                     Unsubmit Timesheet
                   </div>
@@ -1801,7 +1831,8 @@ exports[`Timesheets when promise in onShowMore callback specified should render 
                   type="button"
                 >
                   <div
-                    class="Button-children"
+                    class=""
+                    style="margin: 0em 0em 0em 0em; display: inline-flex; flex-direction: row; align-items: center;"
                   >
                     Edit
                   </div>
@@ -1865,7 +1896,8 @@ exports[`Timesheets when promise in onShowMore callback specified should render 
                   type="button"
                 >
                   <div
-                    class="Button-children"
+                    class=""
+                    style="margin: 0em 0em 0em 0em; display: inline-flex; flex-direction: row; align-items: center;"
                   >
                     Unsubmit Timesheet
                   </div>
@@ -1876,7 +1908,8 @@ exports[`Timesheets when promise in onShowMore callback specified should render 
                   type="button"
                 >
                   <div
-                    class="Button-children"
+                    class=""
+                    style="margin: 0em 0em 0em 0em; display: inline-flex; flex-direction: row; align-items: center;"
                   >
                     Edit
                   </div>
