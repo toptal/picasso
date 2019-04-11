@@ -7,7 +7,7 @@ const LabelDismissibleExample = () => (
   </div>
 )
 
-function handleDelete () {
+function handleDelete() {
   window.alert('You clicked the delete icon.')
 }
 
