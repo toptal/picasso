@@ -28,7 +28,7 @@ export class Pagination extends React.PureComponent {
     disabled: false
   }
 
-  handleChange (navigation) {
+  handleChange(navigation) {
     const { onPageChange, totalPages, activePage } = this.props
     let page
 
@@ -55,7 +55,7 @@ export class Pagination extends React.PureComponent {
   isFirstActive = activePage => activePage === 1
   isLastActive = (activePage, totalPages) => activePage === totalPages
 
-  renderRange () {
+  renderRange() {
     const { totalPages, activePage, disabled } = this.props
 
     const range = getRange({
@@ -78,7 +78,7 @@ export class Pagination extends React.PureComponent {
     })
   }
 
-  render () {
+  render() {
     const { activePage, totalPages, disabled } = this.props
     const isFirstActive = this.isFirstActive(activePage)
     const isLastActive = this.isLastActive(activePage, totalPages)
