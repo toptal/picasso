@@ -3,7 +3,7 @@ module.exports = {
   testMatch: ['**/(storyshot.test).(jsx|tsx)'],
   preset: 'jest-puppeteer',
   testPathIgnorePatterns: ['/node_modules/', '/build'],
-  setupTestFrameworkScriptFile: '<rootDir>/puppeteer/setup.ts',
+  setupFilesAfterEnv: ['<rootDir>/puppeteer/setup.ts'],
   transform: {
     '.(ts|tsx)': 'ts-jest'
   },
