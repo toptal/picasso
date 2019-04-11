@@ -90,7 +90,7 @@
     "hard-source-webpack-plugin": "^0.13.1",
     "husky": "^1.2.0",
     "hygen": "^2.1.1",
-    "jest": "^23.6.0",
+    "jest": "^24.7.1",
     "jest-environment-puppeteer": "^4.1.0",
     "jest-image-snapshot": "^2.7.0",
     "jest-puppeteer": "^3.9.1",
