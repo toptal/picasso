@@ -107,12 +107,14 @@ class DocumentationGenerator {
   generateObjectDescription(objectType: string): string {
     // the object type is complex if contains props like '{ a: string, b: number}'
     // and not complex if it's just 'string'
-    const isComplexObjectType = objectType.indexOf('{') >= 0
+    const OPENING_BRACKET = /\{\s*/
+    const CLOSING_BRACKET = /\s*\}/
+    const isComplexObjectType = OPENING_BRACKET.test(objectType)
 
     if (isComplexObjectType) {
       const objectTypeWithoutBrackets = objectType
-        .replace(/\{\s*/, '')
-        .replace(/\s*\}/, '')
+        .replace(OPENING_BRACKET, '')
+        .replace(CLOSING_BRACKET, '')
       const objectProps = objectTypeWithoutBrackets.split(';')
       const propsTable = objectProps
         .slice(0, -1)
