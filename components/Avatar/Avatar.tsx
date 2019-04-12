@@ -6,10 +6,9 @@ import Image from '../Image'
 import Logo from '../Logo'
 import Typography from '../Typography'
 import getNameInitials from '../utils/getNameInitials'
+import { SizeType } from '../Picasso'
 import { Classes } from '../styles/types'
 import styles from './styles'
-
-type SizeType = 'xsmall' | 'small' | 'medium' | 'large'
 
 type VariantType = 'square' | 'portrait' | 'landscape'
 
@@ -24,7 +23,7 @@ interface Props {
    * Size
    * @default xsmall
    */
-  size?: SizeType
+  size?: SizeType<'xsmall' | 'small' | 'medium' | 'large'>
   /** Photo url */
   src?: string
   style?: CSSProperties
@@ -36,9 +35,9 @@ interface Props {
 }
 
 export class Avatar extends React.PureComponent<Props> {
-  static defaultProps = {
-    size: 'xsmall' as SizeType,
-    variant: 'square' as VariantType
+  static defaultProps: Partial<Props> = {
+    size: 'xsmall',
+    variant: 'square'
   }
   static displayName = 'Avatar'
 

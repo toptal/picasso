@@ -4,10 +4,9 @@ import { withStyles } from '@material-ui/core/styles'
 import Avatar from '../Avatar'
 import Typography from '../Typography'
 import Grid from '../Grid'
+import { SizeType } from '../Picasso'
 import { Classes } from '../styles/types'
 import styles from './styles'
-
-type SizeType = 'xsmall' | 'small'
 
 type AlignmentType = boolean | 'auto'
 
@@ -17,7 +16,7 @@ interface Props {
   /** Photo url or custom Avatar component */
   avatar?: ReactNode
   /** Size */
-  size?: SizeType
+  size?: SizeType<'xsmall' | 'small'>
   /** Invert color */
   invert?: boolean
   /**
