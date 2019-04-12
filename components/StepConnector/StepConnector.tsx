@@ -9,9 +9,7 @@ interface Props {
   classes: Classes
 }
 
-export const StepConnector: FunctionComponent<Props> = props => {
-  const { classes } = props
-
+export const StepConnector: FunctionComponent<Props> = ({ classes }) => {
   return <ChevronRightIcon className={classes.connectorIcon} />
 }
 

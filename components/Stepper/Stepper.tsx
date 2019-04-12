@@ -6,24 +6,27 @@ import Step from '../Step'
 import StepLabel from '../StepLabel'
 import '../StepIcon'
 import StepConnector from '../StepConnector'
-import { Classes } from '../styles/types'
 import styles from './styles'
 
 interface Props {
   /** The number of the active step */
   active?: number
-  classes: Classes
   className?: string
   /** Array of the step labels */
   steps: string[]
-  styles?: CSSProperties
+  style?: CSSProperties
 }
 
 export const Stepper: FunctionComponent<Props> = props => {
-  const { active, steps } = props
+  const { active, steps, className, style } = props
 
   return (
-    <MUIStepper activeStep={active} connector={<StepConnector />}>
+    <MUIStepper
+      activeStep={active}
+      connector={<StepConnector />}
+      className={className}
+      style={style}
+    >
       {steps.map(label => (
         <Step key={label}>
           <StepLabel>{label}</StepLabel>
