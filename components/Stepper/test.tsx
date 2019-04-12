@@ -1,23 +1,19 @@
 import React from 'react'
-/* eslint-disable-next-line */
-import { render, fireEvent, cleanup, RenderResult } from 'react-testing-library'
+import { render, cleanup } from 'react-testing-library'
 
 import Stepper from './index'
 
-const renderStepper = (children: React.ReactNode, props: any) => {
-  return render(<Stepper {...props}>{children}</Stepper>)
+const renderStepper = (props: any) => {
+  return render(<Stepper {...props} />)
 }
 
 afterEach(cleanup)
 
 describe('Stepper', () => {
-  let api: RenderResult
-
-  beforeEach(() => {
-    api = renderStepper(null, {})
-  })
   test('default render', () => {
-    const { container } = api
+    const steps = ['Step 1', 'Step 2', 'Step 3', 'Step 4']
+    const activeStep = 2
+    const { container } = renderStepper({ steps, active: activeStep })
 
     expect(container).toMatchSnapshot()
   })

@@ -105,24 +105,31 @@ class DocumentationGenerator {
   }
 
   generateObjectDescription(objectType: string): string {
-    const objectTypeWithoutBrackets = objectType
-      .replace(/\{\s*/, '')
-      .replace(/\s*\}/, '')
-    const objectProps = objectTypeWithoutBrackets.split(';')
-    const propsTable = objectProps
-      .slice(0, -1)
-      .map(
-        prop => `| ${prop.split(':')[0]} | ${escapeType(prop.split(':')[1])} |`
-      )
-      .join('\r\n')
+    const isComplexObjectType = objectType.indexOf('{') >= 0
 
-    return `{
+    if (isComplexObjectType) {
+      const objectTypeWithoutBrackets = objectType
+        .replace(/\{\s*/, '')
+        .replace(/\s*\}/, '')
+      const objectProps = objectTypeWithoutBrackets.split(';')
+      const propsTable = objectProps
+        .slice(0, -1)
+        .map(
+          prop =>
+            `| ${prop.split(':')[0]} | ${escapeType(prop.split(':')[1])} |`
+        )
+        .join('\r\n')
+
+      return `{
 
 |                 |         |
 | ----            | ------  |
 ${propsTable}
     
 }`
+    } else {
+      return objectType
+    }
   }
 
   resolveDefaultValue(defaultValue: any): string {
