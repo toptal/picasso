@@ -17,4 +17,12 @@ describe('Stepper', () => {
 
     expect(container).toMatchSnapshot()
   })
+
+  test('render with all steps completed', () => {
+    const steps = ['Step 1', 'Step 2', 'Step 3', 'Step 4']
+    const activeStep = 4
+    const { container } = renderStepper({ steps, active: activeStep })
+
+    expect(container).toMatchSnapshot()
+  })
 })

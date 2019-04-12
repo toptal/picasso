@@ -11,7 +11,8 @@ PicassoProvider.override(() => ({
         display: 'block',
         paddingLeft: '0.5em',
         fontSize: '0.6875em',
-        fontWeight: 600
+        fontWeight: 600,
+        lineHeight: '1em'
       }
     },
     iconContainer: {

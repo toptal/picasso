@@ -105,6 +105,8 @@ class DocumentationGenerator {
   }
 
   generateObjectDescription(objectType: string): string {
+    // the object type is complex if contains props like '{ a: string, b: number}'
+    // and not complex if it's just 'string'
     const isComplexObjectType = objectType.indexOf('{') >= 0
 
     if (isComplexObjectType) {
