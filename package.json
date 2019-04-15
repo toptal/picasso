@@ -110,7 +110,7 @@
     "react-testing-library": "^5.3.1",
     "regenerator-runtime": "^0.13.2",
     "rimraf": "^2.6.2",
-    "storybook-readme": "^4.0.5",
+    "storybook-readme": "^5.0.2",
     "ts-jest": "^23.10.5",
     "ts-loader": "^5.3.3",
     "typescript": "^3.4.3",
