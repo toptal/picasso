@@ -1,14 +1,5 @@
-import { CSSProperties } from '@material-ui/core/styles/withStyles'
-
 declare module '@material-ui/core/styles/createTypography' {
-  export interface FontStyle
-    extends Required<{
-      fontFamily: CSSProperties['fontFamily']
-      fontSize: number
-      fontWeightLight: CSSProperties['fontWeight']
-      fontWeightRegular: CSSProperties['fontWeight']
-      fontWeightMedium: CSSProperties['fontWeight']
-    }> {
+  export interface FontStyle {
     inputSize: string
   }
 }
