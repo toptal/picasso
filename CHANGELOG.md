@@ -1,5 +1,58 @@
 # Changelog
 
+## v0.1.0-beta.13 (15/04/2019)
+
+#### Bugfix
+
+- [**Bugfix**] [FX-62] Fix vertical alignment for icons inline [#160](https://github.com/toptal/picasso/pull/160)
+- [**Bugfix**] Fix Button usage in Timesheets [#153](https://github.com/toptal/picasso/pull/153)
+
+#### Chore
+
+- [**Chore**] Initial change of rest and style, classname props [#161](https://github.com/toptal/picasso/pull/161)
+- [**Chore**] [FX-76] Align size props in between components [#183](https://github.com/toptal/picasso/pull/183)
+- [**Chore**] Add dependency badge to README [#172](https://github.com/toptal/picasso/pull/172)
+- [**Chore**] [FX-67] Use Icons directly, remove IconLibrary [#157](https://github.com/toptal/picasso/pull/157)
+- [**Chore**] Change shadows according to new design specs [#152](https://github.com/toptal/picasso/pull/152)
+
+#### Feature
+
+- [**Feature**] [FX-16] Component stepper [#190](https://github.com/toptal/picasso/pull/190)
+- [**Feature**] [FX-123] Component user badge [#156](https://github.com/toptal/picasso/pull/156)
+
+#### depfu
+
+- [**depfu**] Update jest-environment-puppeteer: 4.1.0 → 4.1.1 (patch) [#192](https://github.com/toptal/picasso/pull/192)
+- [**depfu**] Update jest-puppeteer: 4.1.0 → 4.1.1 (patch) [#191](https://github.com/toptal/picasso/pull/191)
+- [**depfu**] Upgrade prettier-standard: 8.0.1 → 9.1.1 (major) [#189](https://github.com/toptal/picasso/pull/189)
+- [**depfu**] Upgrade jest-puppeteer: 3.9.1 → 4.1.0 (major) [#188](https://github.com/toptal/picasso/pull/188)
+- [**depfu**] Upgrade hygen: 2.1.2 → 4.0.2 (major) [#187](https://github.com/toptal/picasso/pull/187)
+- [**depfu**] Upgrade eslint-config-prettier: 3.6.0 → 4.1.0 (major) [#186](https://github.com/toptal/picasso/pull/186)
+- [**depfu**] Upgrade jest: 23.6.0 → 24.7.1 (major) [#185](https://github.com/toptal/picasso/pull/185)
+- [**depfu**] Upgrade @types/jest: 23.3.14 → 24.0.11 (major) [#184](https://github.com/toptal/picasso/pull/184)
+- [**depfu**] Upgrade eslint-plugin-react: 7.11.1 → 7.12.4 (minor) [#182](https://github.com/toptal/picasso/pull/182)
+- [**depfu**] Update typescript: 3.3.3333 → 3.4.3 (minor) [#181](https://github.com/toptal/picasso/pull/181)
+- [**depfu**] Update regenerator-runtime: 0.13.1 → 0.13.2 (minor) [#180](https://github.com/toptal/picasso/pull/180)
+- [**depfu**] Update puppeteer: 1.13.0 → 1.14.0 (minor) [#179](https://github.com/toptal/picasso/pull/179)
+- [**depfu**] Update jest-environment-puppeteer: 4.0.0 → 4.1.0 (minor) [#178](https://github.com/toptal/picasso/pull/178)
+- [**depfu**] Update eslint-plugin-promise: 4.0.1 → 4.1.1 (minor) [#177](https://github.com/toptal/picasso/pull/177)
+- [**depfu**] Update eslint: 5.15.1 → 5.16.0 (minor) [#176](https://github.com/toptal/picasso/pull/176)
+- [**depfu**] Update copy-to-clipboard: 3.0.8 → 3.1.0 (minor) [#175](https://github.com/toptal/picasso/pull/175)
+- [**depfu**] Update @typescript-eslint/parser: 1.4.2 → 1.6.0 (minor) [#174](https://github.com/toptal/picasso/pull/174)
+- [**depfu**] Update @typescript-eslint/eslint-plugin: 1.4.2 → 1.6.0 (minor) [#173](https://github.com/toptal/picasso/pull/173)
+- [**depfu**] Update @babel/standalone: 7.3.4 → 7.4.3 (minor) [#171](https://github.com/toptal/picasso/pull/171)
+- [**depfu**] Update react-storybook-addon-chapters: 3.1.1 → 3.1.3 (patch) [#170](https://github.com/toptal/picasso/pull/170)
+- [**depfu**] Update @types/puppeteer: 1.12.2 → 1.12.3 (patch) [#158](https://github.com/toptal/picasso/pull/158)
+- [**depfu**] Update all of react: 16.8.4 → 16.8.6 (patch) [#168](https://github.com/toptal/picasso/pull/168)
+- [**depfu**] Update @types/react-dom: 16.8.2 → 16.8.3 (patch) [#162](https://github.com/toptal/picasso/pull/162)
+- [**depfu**] Update @material-ui/core: 3.9.2 → 3.9.3 (patch) [#167](https://github.com/toptal/picasso/pull/167)
+- [**depfu**] Update @types/react: 16.8.8 → 16.8.13 (patch) [#166](https://github.com/toptal/picasso/pull/166)
+- [**depfu**] Update jest-puppeteer: 3.9.0 → 3.9.1 (patch) [#169](https://github.com/toptal/picasso/pull/169)
+- [**depfu**] Update all of storybook: 5.0.5 → 5.0.6 (patch) [#154](https://github.com/toptal/picasso/pull/154)
+- [**depfu**] Update @storybook/theming: 5.0.5 → 5.0.6 (patch) [#155](https://github.com/toptal/picasso/pull/155)
+
+---
+
 ## v0.1.0-beta.12 (08/04/2019)
 
 #### Bugfix
@@ -343,11 +396,3 @@
 
 ## v0.1.0-alpha.16 (13/02/2019)
 *No changelog for this release.*
-
----
-
-## v0.1.0-alpha.15 (13/02/2019)
-
-#### Feature
-
-- [**Feature**] Add components source code to storybook [#51](https://github.com/toptal/picasso/pull/51)
