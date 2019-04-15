@@ -93,7 +93,7 @@ To add a new Icon to Picasso library please follow these steps:
 1. Prepare your SVG:
    - Make sure that it has `viewBox` attribute specified
 2. Add your SVG file to the Picasso project:
-   > /components/Icons/svg/[your_icon_name].svg
+   > /components/Icon/svg/[your_icon_name].svg
 3. Run the command
 
    ```
@@ -101,7 +101,7 @@ To add a new Icon to Picasso library please follow these steps:
    ```
 
    to prepare corresponding react component for your icon
-   and to add export statement to `/components/Icons/index.ts`
+   and to add export statement to `/components/Icon/index.ts`
 
 After Picasso will be released with your changes you can start using your Icon as described [here](https://picasso.toptal.net/?path=/story/components-folder--icon#icon).
 
