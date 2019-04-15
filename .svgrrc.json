@@ -1,0 +1,9 @@
+{
+  "svgoConfig": {
+    "plugins": [{
+      "removeAttrs": {
+        "attrs": "(fill|stroke|width|height)"
+      }
+    }]
+  }
+}
