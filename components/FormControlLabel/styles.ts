@@ -29,5 +29,6 @@ PicassoProvider.override(({ palette }: Theme) => ({
 
 export default () =>
   createStyles({
-    root: {}
+    root: {},
+    disabled: {}
   })
