@@ -23,7 +23,8 @@
     "symlink": "cross-env ./bin/symlink --link",
     "symlink:off": "cross-env ./bin/symlink --unlink",
     "generate:component": "hygen component new",
-    "generate:example": "hygen component example"
+    "generate:example": "hygen component example",
+    "generate:icon": "_(){ (hygen component icon $1 && yarn run build:svg) }; _"
   },
   "repository": {
     "type": "git",
