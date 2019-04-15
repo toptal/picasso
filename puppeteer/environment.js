@@ -17,7 +17,7 @@ const ESPRIMA_OPTIONS = {
 }
 
 class Storyshots extends JestPuppeteer {
-  async setup () {
+  async setup() {
     await super.setup()
 
     const stories = await this.loadStoryShots()
@@ -25,13 +25,13 @@ class Storyshots extends JestPuppeteer {
     this.global.__STORYSHOTS__ = stories
   }
 
-  async loadStoryShots () {
+  async loadStoryShots() {
     const files = await asyncGlob(STORIES_PATH)
 
     return files.map(Storyshots.processFile)
   }
 
-  static processFile (file) {
+  static processFile(file) {
     const sourceCode = fs.readFileSync(file, 'utf-8')
 
     try {
@@ -47,11 +47,11 @@ class Storyshots extends JestPuppeteer {
     }
   }
 
-  static parseSourceCode (source) {
+  static parseSourceCode(source) {
     return esprima.parseModule(source, ESPRIMA_OPTIONS)
   }
 
-  static walk (program) {
+  static walk(program) {
     const output = {
       name: '',
       tests: []
@@ -61,7 +61,7 @@ class Storyshots extends JestPuppeteer {
     return output
   }
 
-  static visitor (node, output, program) {
+  static visitor(node, output, program) {
     if (ast.isMemberExpression(node)) {
       Storyshots.processAstNode(node, output, program)
     }
@@ -69,7 +69,7 @@ class Storyshots extends JestPuppeteer {
     return output
   }
 
-  static processAstNode (node, output, program) {
+  static processAstNode(node, output, program) {
     if (ast.isPageExpression(node)) {
       output.name = ast.getPageName(node)
     }

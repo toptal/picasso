@@ -1,6 +1,6 @@
 import { Breakpoints } from '@material-ui/core/styles/createBreakpoints'
 
-export const screens = function (...sizes: string[]) {
+export const screens = function(...sizes: string[]) {
   const { sm, md, lg } = breakpoints.values!
 
   const mediaQueries: {

@@ -7,7 +7,7 @@ declare var page: Page
 
 const PADDING_AROUND_COMPONENT = 8
 
-async function screenshotDOMElement (kind: string, type: string) {
+async function screenshotDOMElement(kind: string, type: string) {
   const dimensions = await page.evaluate(() => {
     const component = document.querySelector('#root .chapter-container')
 
@@ -37,7 +37,7 @@ async function screenshotDOMElement (kind: string, type: string) {
 }
 
 // TODO: Make this more universal when we add more components and their variations
-export const assertVisuals = function (
+export const assertVisuals = function(
   kind: string,
   type: string,
   options = { delay: 0 }
