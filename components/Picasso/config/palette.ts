@@ -1,3 +1,6 @@
+import { Color } from '@material-ui/core'
+import { CommonColors } from '@material-ui/core/colors/common'
+
 declare module '@material-ui/core/styles/createPalette' {
   interface SimplePaletteColorOptions {
     lighter?: string
@@ -7,9 +10,23 @@ declare module '@material-ui/core/styles/createPalette' {
     darker?: string
   }
 
+  interface PaletteColor {
+    lighter?: string
+    light: string
+    main: string
+    dark: string
+    contrastText: string
+  }
+
   interface Palette {
+    primary: PaletteColor
+    text: TypeText
+    grey: Color
     blue: SimplePaletteColorOptions
+    error: PaletteColor
     success: SimplePaletteColorOptions
+    common: CommonColors
+    background: TypeBackground
   }
 }
 

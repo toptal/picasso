@@ -1,17 +1,17 @@
 import React from 'react'
-import { render, fireEvent, cleanup } from 'react-testing-library'
+import { render, fireEvent, cleanup, RenderResult } from 'react-testing-library'
 
 import Radio from './index'
 
-const renderRadio = (props = {}) => {
+const renderRadio = (props: any = {}) => {
   return render(<Radio {...props} />)
 }
 
 afterEach(cleanup)
 
 describe('disabled radio button', () => {
-  let onChange
-  let api
+  let onChange: () => void
+  let api: RenderResult
 
   beforeEach(() => {
     onChange = jest.fn()
