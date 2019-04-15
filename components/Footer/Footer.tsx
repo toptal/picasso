@@ -1,23 +1,25 @@
-import React, { useContext } from 'react'
+import React, { useContext, FunctionComponent, ReactNode } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
-import { Classes } from '../styles/types'
+import { StandardProps } from '../Picasso'
 import { PageContext } from '../Page'
 import { PageContextProps } from '../Page/types'
 import styles from './styles'
 
-interface Props {
-  classes: Classes
+interface Props extends StandardProps {
   /** Content for the right side of the `Footer`  */
-  rightContent?: React.ReactNode
+  rightContent?: ReactNode
 }
 
 const currentYear = new Date().getFullYear()
 
-export const Footer: React.FunctionComponent<Props> = props => {
-  const { classes, rightContent, ...rest } = props
-
+export const Footer: FunctionComponent<Props> = ({
+  classes,
+  className,
+  style,
+  rightContent
+}) => {
   const { fullWidth } = useContext<PageContextProps>(PageContext)
 
   const contentClassnames = cx(
@@ -28,7 +30,7 @@ export const Footer: React.FunctionComponent<Props> = props => {
   )
 
   return (
-    <footer className={classes.root} {...rest}>
+    <footer className={cx(classes.root, className)} style={style}>
       <div className={contentClassnames}>
         <div className={classes.left}>
           {`© Copyright 2010 – ${currentYear} Toptal, LLC`}

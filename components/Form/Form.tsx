@@ -1,20 +1,30 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, FormEventHandler, ReactNode } from 'react'
 
 import FormField from '../FormField'
 import FormHint from '../FormHint'
+import { BaseProps } from '../Picasso'
 
-type Props = React.DetailedHTMLProps<
-  React.FormHTMLAttributes<HTMLFormElement>,
-  HTMLFormElement
->
+interface Props extends BaseProps {
+  /** Content of Form constructed of Form elements */
+  children?: ReactNode
+  /** Submit handler */
+  onSubmit?: FormEventHandler<HTMLFormElement>
+}
 
 interface StaticProps {
   Field: typeof FormField
   Hint: typeof FormHint
 }
 
-const Form: FunctionComponent<Props> & StaticProps = props => (
-  <form {...props} />
+export const Form: FunctionComponent<Props> & StaticProps = ({
+  onSubmit,
+  className,
+  style,
+  children
+}) => (
+  <form onSubmit={onSubmit} className={className} style={style}>
+    {children}
+  </form>
 )
 
 Form.Field = FormField

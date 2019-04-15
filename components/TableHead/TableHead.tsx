@@ -1,21 +1,25 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, ReactNode } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUITableHead from '@material-ui/core/TableHead'
 
-import { Classes } from '../styles/types'
+import { StandardProps } from '../Picasso'
 import styles from './styles'
 
-interface Props {
-  classes: Classes
+interface Props extends StandardProps {
   /** The content of the component, normally `Table.Row` */
-  children: React.ReactNode
+  children: ReactNode
 }
 
-export const TableHead: FunctionComponent<Props> = props => {
-  const { classes, children } = props
-
-  return <MUITableHead classes={classes}>{children}</MUITableHead>
-}
+export const TableHead: FunctionComponent<Props> = ({
+  classes,
+  className,
+  style,
+  children
+}) => (
+  <MUITableHead classes={classes} className={className} style={style}>
+    {children}
+  </MUITableHead>
+)
 
 TableHead.defaultProps = {}
 

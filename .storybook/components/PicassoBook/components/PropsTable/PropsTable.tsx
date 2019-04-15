@@ -1,6 +1,5 @@
+import React, { Fragment, FunctionComponent } from 'react'
 import { withStyles } from '@material-ui/core/styles'
-
-import React, { Fragment } from 'react'
 import _ from 'lodash'
 
 import TableCell from '@material-ui/core/TableCell'
@@ -55,7 +54,7 @@ function renderRows({ documentation, classes }: Props): JSX.Element {
   )
 }
 
-const PropsTable: React.FunctionComponent<Props> = props => {
+const PropsTable: FunctionComponent<Props> = props => {
   const { classes } = props
 
   return (

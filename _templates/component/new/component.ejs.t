@@ -7,9 +7,10 @@ to: components/<%= h.changeCase.pascalCase(name) %>/<%= h.changeCase.pascalCase(
 import React, { FunctionComponent } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
+import { StandardProps } from '../Picasso'
 import styles from './styles'
 
-interface Props {
+interface Props extends StandardProps {
 }
 
 export const <%= Name %>: FunctionComponent<Props> = props => {

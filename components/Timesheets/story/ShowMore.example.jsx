@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Timesheets } from '@toptal/picasso'
 
 const TimesheetsShowMoreExample = () => {
-  const [timesheets, setTimesheets] = React.useState(initialTimesheets)
+  const [timesheets, setTimesheets] = useState(initialTimesheets)
 
   const handleShowMore = () => {
     return new Promise(resolve => {

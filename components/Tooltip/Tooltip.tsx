@@ -1,9 +1,17 @@
-import React, { Fragment, useState } from 'react'
+import React, {
+  Fragment,
+  useState,
+  FunctionComponent,
+  ReactNode,
+  ReactElement,
+  ChangeEvent
+} from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUITooltip from '@material-ui/core/Tooltip'
 import cx from 'classnames'
 
 import { Classes } from '../styles/types'
+import { StandardProps } from '../Picasso'
 import styles from './styles'
 
 type VariantType = 'light' | 'dark'
@@ -12,12 +20,11 @@ type TriggerType = 'hover' | 'click'
 
 type PlacementType = 'bottom' | 'left' | 'right' | 'top'
 
-interface Props {
-  classes: Classes
+interface Props extends StandardProps {
   /** Trigger element for tooltip */
-  children: React.ReactNode
+  children: ReactNode
   /** Content to be rendered inside tooltip */
-  content?: React.ReactNode
+  content?: ReactNode
   /** Whether tooltip should display arrow */
   arrow?: boolean
   /** Select color variant to use */
@@ -25,9 +32,9 @@ interface Props {
   /** Where should the tooltip be positioned */
   placement?: PlacementType
   /** Called when tooltip is closed */
-  onClose?: (event: React.ChangeEvent<{}>) => void
+  onClose?: (event: ChangeEvent<{}>) => void
   /** Called when tooltip is opened */
-  onOpen?: (event: React.ChangeEvent<{}>) => void
+  onOpen?: (event: ChangeEvent<{}>) => void
   /** Whether user can interact with tooltip content */
   interactive?: boolean
   /** Programatically control tooltip's visibility */
@@ -56,21 +63,21 @@ const getClasses = (classes: Classes, variant: VariantType) => {
   }
 }
 
-export const Tooltip: React.FunctionComponent<Props> = props => {
-  const {
-    content,
-    children,
-    placement,
-    interactive,
-    classes,
-    arrow,
-    open,
-    onClose,
-    onOpen,
-    variant,
-    trigger
-  } = props
-
+export const Tooltip: FunctionComponent<Props> = ({
+  content,
+  children,
+  placement,
+  interactive,
+  classes,
+  className,
+  style,
+  arrow,
+  open,
+  onClose,
+  onOpen,
+  variant,
+  trigger
+}) => {
   const [arrowRef, setArrowRef] = useState(null)
   const title = (
     <Fragment>
@@ -89,6 +96,8 @@ export const Tooltip: React.FunctionComponent<Props> = props => {
     <MUITooltip
       PopperProps={getPopperProps(arrow!, arrowRef)}
       classes={getClasses(classes, variant!)}
+      className={className}
+      style={style}
       disableHoverListener={trigger === 'click'}
       interactive={interactive}
       onClose={onClose}
@@ -97,7 +106,7 @@ export const Tooltip: React.FunctionComponent<Props> = props => {
       placement={placement}
       title={title}
     >
-      {children as React.ReactElement}
+      {children as ReactElement}
     </MUITooltip>
   )
 }

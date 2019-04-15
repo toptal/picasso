@@ -1,7 +1,7 @@
 declare var TEST_ENV: string // defined by ENV
 
 import _ from 'lodash'
-import React from 'react'
+import React, { ReactNode, Component } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import IconCode from '@material-ui/icons/Code'
 import IconLink from '@material-ui/icons/Link'
@@ -44,7 +44,7 @@ const imports: {
 
 const resolver = (path: string) => imports[path]
 
-class CodeExample extends React.Component<Props> {
+class CodeExample extends Component<Props> {
   state = {
     sourceCode: '',
     isEditorVisible: false,
@@ -102,7 +102,7 @@ class CodeExample extends React.Component<Props> {
      * only actual component without source code editor
      */
     if (TEST_ENV === 'visual') {
-      const renderInTestPicasso = (element: React.ReactNode) => (
+      const renderInTestPicasso = (element: ReactNode) => (
         <Picasso loadFonts={false}>{element}</Picasso>
       )
 
@@ -137,9 +137,7 @@ class CodeExample extends React.Component<Props> {
       </div>
     )
 
-    const renderInPicasso = (element: React.ReactNode) => (
-      <Picasso>{element}</Picasso>
-    )
+    const renderInPicasso = (element: ReactNode) => <Picasso>{element}</Picasso>
 
     return (
       <SourceRender

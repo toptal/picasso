@@ -4,7 +4,7 @@ import { render, cleanup } from 'react-testing-library'
 import Picasso from '../Picasso'
 import Select from './index'
 
-const renderSelect = (props = {}) => {
+const renderSelect = (props: any = {}) => {
   return render(
     <Picasso loadFonts={false}>
       <Select {...props} value='val1' />

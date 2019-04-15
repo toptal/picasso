@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 import _ from 'lodash'
 
 import { withStyles } from '@material-ui/core/styles'
@@ -16,7 +16,7 @@ interface Props {
   type: string | PropTypeDocumentation
 }
 
-const PropTypeTableCell: React.FunctionComponent<Props> = props => {
+const PropTypeTableCell: FunctionComponent<Props> = props => {
   const { type, className, classes } = props
 
   if (_.isString(type)) {

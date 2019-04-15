@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FunctionComponent, ChangeEvent, ReactNode } from 'react'
 import cx from 'classnames'
 import MUISelect from '@material-ui/core/Select'
 import { withStyles } from '@material-ui/core/styles'
@@ -9,19 +9,16 @@ import InputLabel from '../InputLabel'
 import Input from '../Input'
 import OutlinedInput from '../OutlinedInput'
 import MenuItem from '../MenuItem'
-import { Classes } from '../styles/types'
+import { StandardProps } from '../Picasso'
 import styles from './styles'
 
 interface Option {
   key: number
-  text: string | React.ReactNode
+  text: string | ReactNode
   value: string | number
 }
 
-export interface Props {
-  classes: Classes
-  /** Extra css classes to be passed to `Select` */
-  className?: string
+export interface Props extends StandardProps {
   /** If true, the switch will be disabled */
   disabled?: boolean
   /** Component ID */
@@ -35,10 +32,7 @@ export interface Props {
   /** Whether `Select` should be rendered as native HTML `<select />` */
   native?: boolean
   /** Callback invoked when `Select` changes its state. */
-  onChange?: (
-    event: React.ChangeEvent<HTMLSelectElement>,
-    child: React.ReactNode
-  ) => void
+  onChange?: (event: ChangeEvent<HTMLSelectElement>, child: ReactNode) => void
   /** List of options to be rendered as `Select` */
   options: Option[]
   /** Selected value */
@@ -75,19 +69,21 @@ const renderOptions = (
   return resultOptions
 }
 
-export const Select: React.FunctionComponent<Props> = props => {
-  const {
-    classes,
-    className,
-    width,
-    id,
-    label,
-    native,
-    options,
-    placeholder,
-    variant,
-    ...rest
-  } = props
+export const Select: FunctionComponent<Props> = ({
+  classes,
+  className,
+  style,
+  width,
+  id,
+  label,
+  native,
+  options,
+  placeholder,
+  variant,
+  disabled,
+  onChange,
+  value
+}) => {
   const hasLabel = !!label
   const fullWidth = width === 'full'
 
@@ -113,6 +109,7 @@ export const Select: React.FunctionComponent<Props> = props => {
   const select = (
     <MUISelect
       className={className}
+      style={style}
       classes={{
         root: cx(classes.root, classes[`root${capitalize(width)}`]),
         icon: classes.icon,
@@ -123,7 +120,8 @@ export const Select: React.FunctionComponent<Props> = props => {
       input={outlinedInput}
       native={native}
       variant={variant}
-      {...rest}
+      disabled={disabled}
+      value={value}
       MenuProps={{
         anchorOrigin: {
           vertical: 'bottom',
@@ -135,6 +133,7 @@ export const Select: React.FunctionComponent<Props> = props => {
         },
         getContentAnchorEl: undefined // needed to restore default behaviour
       }}
+      onChange={onChange}
     >
       {renderOptions(options, placeholder, native)}
     </MUISelect>

@@ -4,7 +4,7 @@ import { render, cleanup } from 'react-testing-library'
 import Pagination from './index'
 import Picasso from '../Picasso'
 
-const renderPagination = (props = {}) => {
+const renderPagination = (props: any) => {
   return render(
     <Picasso loadFonts={false}>
       <Pagination {...props} />

@@ -1,16 +1,15 @@
-import React, { CSSProperties } from 'react'
+import React, { CSSProperties, FunctionComponent } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 
-import { Classes } from '../styles/types'
+import { StandardProps } from '../Picasso'
 import styles from './styles'
 
 type VariantType = 'default' | 'circular'
 
-export interface Props {
+export interface Props extends StandardProps {
   /** Image alt text */
   alt: string
-  classes: Classes
   className?: string
   /** Image url */
   src: string
@@ -21,25 +20,29 @@ export interface Props {
   style?: CSSProperties
 }
 
-export const Image: React.FunctionComponent<Props> = props => {
-  const { src, srcSet, alt, classes, className, variant, style } = props
-
-  return (
-    <img
-      src={src}
-      srcSet={srcSet}
-      alt={alt}
-      className={cx(
-        {
-          [classes.circular]: variant === 'circular'
-        },
-        classes.root,
-        className
-      )}
-      style={style}
-    />
-  )
-}
+export const Image: FunctionComponent<Props> = ({
+  src,
+  srcSet,
+  alt,
+  classes,
+  className,
+  variant,
+  style
+}) => (
+  <img
+    src={src}
+    srcSet={srcSet}
+    alt={alt}
+    className={cx(
+      {
+        [classes.circular]: variant === 'circular'
+      },
+      classes.root,
+      className
+    )}
+    style={style}
+  />
+)
 
 Image.defaultProps = {
   variant: 'default'

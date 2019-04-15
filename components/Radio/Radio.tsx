@@ -1,17 +1,16 @@
-import React from 'react'
+import React, { FunctionComponent, ReactNode } from 'react'
 import cx from 'classnames'
-import MUIRadio from '@material-ui/core/Radio'
+import MUIRadio, { RadioProps } from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import { withStyles } from '@material-ui/core/styles'
 
 import FormControlLabel from '../FormControlLabel'
-import { Classes } from '../styles/types'
+import { StandardProps } from '../Picasso'
 import styles from './styles'
 
 const FallbackIcon = () => null
 
-interface Props {
-  classes: Classes
+interface Props extends StandardProps {
   /** Text label for the `Radio` */
   label?: string
   /** Value of the `Radio` component used with conjuction of `Radio.Group` */
@@ -25,40 +24,43 @@ interface Props {
 }
 
 // should be moved to some global interfaces place
-interface GroupFunctionalComponent<T> extends React.FunctionComponent<T> {
-  Group: React.ReactNode
+interface GroupFunctionalComponent<T> extends FunctionComponent<T> {
+  Group: ReactNode
 }
 
-export const Radio: GroupFunctionalComponent<Props> = props => {
-  const {
-    classes: { root, icon, ...otherClasses },
-    label,
+export const Radio: GroupFunctionalComponent<Props> = ({
+  classes: { root, icon, ...otherClasses },
+  className,
+  style,
+  label,
+  checked,
+  disabled,
+  value,
+  onChange
+}) => {
+  const radioProps: RadioProps = {
     checked,
     disabled,
+    onChange,
     value,
-    onChange
-  } = props
-
-  const muiRadio = (
-    <MUIRadio
-      checked={checked}
-      checkedIcon={<FallbackIcon />}
-      classes={{
-        ...otherClasses,
-        root: cx(root, icon)
-      }}
-      color='default'
-      disabled={disabled}
-      icon={<FallbackIcon />}
-      onChange={onChange}
-      value={value}
-    />
-  )
+    checkedIcon: <FallbackIcon />,
+    icon: <FallbackIcon />,
+    color: 'default',
+    classes: {
+      ...otherClasses,
+      root: cx(root, icon)
+    }
+  }
 
   return label ? (
-    <FormControlLabel control={muiRadio} label={label} />
+    <FormControlLabel
+      control={<MUIRadio {...radioProps} />}
+      className={className}
+      style={style}
+      label={label}
+    />
   ) : (
-    muiRadio
+    <MUIRadio {...radioProps} className={className} style={style} />
   )
 }
 

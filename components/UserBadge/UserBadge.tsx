@@ -4,13 +4,12 @@ import { withStyles } from '@material-ui/core/styles'
 import Avatar from '../Avatar'
 import Typography from '../Typography'
 import Grid from '../Grid'
-import { SizeType } from '../Picasso'
-import { Classes } from '../styles/types'
+import { StandardProps, SizeType } from '../Picasso'
 import styles from './styles'
 
 type AlignmentType = boolean | 'auto'
 
-interface Props {
+interface Props extends StandardProps {
   /** User full name to display */
   name: string
   /** Photo url or custom Avatar component */
@@ -28,12 +27,19 @@ interface Props {
   center?: AlignmentType
   /** Additional content of UserBadge */
   children?: ReactNode
-  classes: Classes
 }
 
-export const UserBadge: FunctionComponent<Props> = props => {
-  const { avatar, name, size, invert, center, children } = props
-
+export const UserBadge: FunctionComponent<Props> = ({
+  avatar,
+  name,
+  size,
+  invert,
+  center,
+  children,
+  classes,
+  className,
+  style
+}) => {
   const UserBadgeAvatar = React.isValidElement(avatar) ? (
     avatar
   ) : (
@@ -45,7 +51,13 @@ export const UserBadge: FunctionComponent<Props> = props => {
   const alignItems = shouldCenter ? 'center' : 'flex-start'
 
   return (
-    <Grid spacing={16} alignItems={alignItems}>
+    <Grid
+      spacing={16}
+      alignItems={alignItems}
+      classes={classes}
+      className={className}
+      style={style}
+    >
       <Grid.Item>{UserBadgeAvatar}</Grid.Item>
       <Grid.Item>
         <Typography invert={invert} weight='semibold'>

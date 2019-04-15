@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { render, cleanup } from 'react-testing-library'
 import SearchIcon from '@material-ui/icons/Search'
 
 import Picasso from '../Picasso'
 import TextField from './index'
 
-const renderTextField = (children, props = {}) => {
+const renderTextField = (children: ReactNode, props: any = {}) => {
   return render(
     <Picasso loadFonts={false}>
       <TextField {...props}>{children}</TextField>

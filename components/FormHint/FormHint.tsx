@@ -1,25 +1,26 @@
-import React from 'react'
+import React, { FunctionComponent, ReactNode } from 'react'
 import { withStyles } from '@material-ui/core/styles'
+import cx from 'classnames'
 
-import { Classes } from '../styles/types'
+import { StandardProps } from '../Picasso'
 import Typography from '../Typography'
 import styles from './styles'
 
-interface Props {
-  classes: Classes
+interface Props extends StandardProps {
   /** The text of the hint */
-  children: React.ReactNode
+  children: ReactNode
 }
 
-export const FormHint: React.FunctionComponent<Props> = props => {
-  const { children, classes, ...rest } = props
-
-  return (
-    <div className={classes.root} {...rest}>
-      <Typography className={classes.hint}>{children}</Typography>
-    </div>
-  )
-}
+export const FormHint: FunctionComponent<Props> = ({
+  children,
+  classes,
+  className,
+  style
+}) => (
+  <div className={cx(classes.root, className)} style={style}>
+    <Typography className={classes.hint}>{children}</Typography>
+  </div>
+)
 
 FormHint.defaultProps = {}
 

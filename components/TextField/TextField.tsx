@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FunctionComponent, ReactNode, ChangeEvent } from 'react'
 import cx from 'classnames'
 import MUITextField from '@material-ui/core/TextField'
 import { withStyles } from '@material-ui/core/styles'
@@ -6,12 +6,12 @@ import { OutlinedInputProps } from '@material-ui/core/OutlinedInput'
 import { InputLabelProps } from '@material-ui/core/InputLabel'
 
 import InputAdornment from '../InputAdornment'
-import { Classes } from '../styles/types'
+import { StandardProps } from '../Picasso'
 import styles from './styles'
 
 type IconPosition = 'start' | 'end'
 
-export interface Props {
+export interface Props extends StandardProps {
   /** Name attribute of the input element */
   name: string
   /** Text label for the `TextField` */
@@ -22,14 +22,12 @@ export interface Props {
   error: boolean
   /** If true, the switch will be disabled */
   disabled?: boolean
-  classes: Classes
-  className?: string
   /** Take the full width of a container */
   fullWidth?: boolean
   /** Whether icon should be placed at the beginning or end of the `TextField` */
   iconPosition: IconPosition
   /** Specify icon which should be rendered inside TextField */
-  icon: React.ReactNode
+  icon: ReactNode
   inputProps: OutlinedInputProps
   inputLabelProps: Partial<InputLabelProps>
   /** Whether `TextField` should be rendered as `TextArea` or not */
@@ -40,26 +38,32 @@ export interface Props {
   type?: string
   /**  Callback invoked when `TextField` changes its state */
   onChange: (
-    event: React.ChangeEvent<
+    event: ChangeEvent<
     HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
     >
   ) => void
 }
 
-export const TextField: React.FunctionComponent<Props> = props => {
-  const {
-    icon,
-    iconPosition,
-    inputProps = {} as OutlinedInputProps,
-    inputLabelProps = {},
-    classes,
-    children,
-    multiline,
-    fullWidth,
-    className,
-    ...restProps
-  } = props
-
+export const TextField: FunctionComponent<Props> = ({
+  name,
+  label,
+  value,
+  error,
+  disabled,
+  icon,
+  iconPosition,
+  inputProps = {} as OutlinedInputProps,
+  inputLabelProps = {},
+  classes,
+  children,
+  multiline,
+  fullWidth,
+  className,
+  style,
+  rows,
+  type,
+  onChange
+}) => {
   if (icon) {
     const IconAdornment = (
       <InputAdornment
@@ -87,6 +91,19 @@ export const TextField: React.FunctionComponent<Props> = props => {
 
   return (
     <MUITextField
+      name={name}
+      label={label}
+      value={value}
+      error={error}
+      disabled={disabled}
+      multiline={multiline}
+      variant='outlined'
+      style={style}
+      rows={rows}
+      type={type}
+      className={cx(classes.rootFixedWidth, className, {
+        [classes.rootFullWidth]: fullWidth
+      })}
       InputLabelProps={{
         ...inputLabelProps,
         classes: {
@@ -104,12 +121,7 @@ export const TextField: React.FunctionComponent<Props> = props => {
           inputMultiline: classes.inputMultiline
         }
       }}
-      className={cx(classes.rootFixedWidth, className, {
-        [classes.rootFullWidth]: fullWidth
-      })}
-      multiline={multiline}
-      {...restProps}
-      variant='outlined'
+      onChange={onChange}
     >
       {children}
     </MUITextField>

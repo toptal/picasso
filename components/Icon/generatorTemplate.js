@@ -23,14 +23,14 @@ function decorateWithClassNameProp(svgElement) {
 }
 
 /**
- * Add `style={style}` to the svg tag
+ * Add `name={value}` to the svg tag
  */
-function decorateWithStylesProp(svgElement) {
+function decorateWithIdentifierProp(svgElement, propName, identifierName) {
   svgElement.attributes = [
     ...svgElement.attributes,
     t.jsxAttribute(
-      t.jsxIdentifier('style'),
-      t.jsxExpressionContainer(t.identifier('style'))
+      t.jsxIdentifier(propName),
+      t.jsxExpressionContainer(t.identifier(identifierName))
     )
   ]
 }
@@ -43,26 +43,29 @@ const template = ({ template }, opts, { componentName, jsx }) => {
   // add `className={cx(classes.root, className)}` to svg root tag
   decorateWithClassNameProp(svgElement)
   // add `style={style}` to svg root tag
-  decorateWithStylesProp(svgElement)
+  decorateWithIdentifierProp(svgElement, 'style', 'style')
+  // add `height={height}` to svg root tag
+  decorateWithIdentifierProp(svgElement, 'height', 'height')
+  // add `width={width}` to svg root tag
+  decorateWithIdentifierProp(svgElement, 'width', 'width')
 
   const typeScriptTpl = template.smart({ plugins: ['typescript'] })
 
   return typeScriptTpl.ast`
-    import React, { CSSProperties } from 'react'
+    import React from 'react'
     import cx from 'classnames'
     import { withStyles } from '@material-ui/core/styles'
 
-    import { Classes } from '../styles/types'
+    import { StandardProps } from '../Picasso'
     import styles from './styles'
-    
-    interface Props {
-      classes: Classes
-      className?: string
-      style?: CSSProperties
+
+    interface Props extends StandardProps {
+      width?: number
+      height?: number
     }
 
     const ${componentName} = (props: Props) => {
-      const { classes, className, style } = props
+      const { classes, className, style, width, height } = props
 
       return (
         ${jsx}

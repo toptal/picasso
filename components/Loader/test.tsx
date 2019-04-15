@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { render, cleanup } from 'react-testing-library'
 
 import Loader from './index'
 
-const renderLoader = (children, props = {}) => {
+const renderLoader = (children: ReactNode, props: any = {}) => {
   return render(<Loader {...props}>{children}</Loader>)
 }
 

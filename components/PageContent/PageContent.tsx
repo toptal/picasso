@@ -1,21 +1,23 @@
-import React, { useContext } from 'react'
+import React, { useContext, FunctionComponent, ReactNode } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
-import { Classes } from '../styles/types'
 import { PageContext } from '../Page'
 import { PageContextProps } from '../Page/types'
+import { StandardProps } from '../Picasso'
 import styles from './styles'
 
-interface Props {
-  classes: Classes
+interface Props extends StandardProps {
   /** Custom components that render content of page */
-  children: React.ReactNode
+  children: ReactNode
 }
 
-export const PageContent: React.FunctionComponent<Props> = props => {
-  const { children, classes } = props
-
+export const PageContent: FunctionComponent<Props> = ({
+  children,
+  classes,
+  className,
+  style
+}) => {
   const { fullWidth } = useContext<PageContextProps>(PageContext)
 
   const innerClassName = cx(
@@ -26,7 +28,7 @@ export const PageContent: React.FunctionComponent<Props> = props => {
   )
 
   return (
-    <div className={classes.root}>
+    <div className={cx(classes.root, className)} style={style}>
       <div className={innerClassName}>{children}</div>
     </div>
   )

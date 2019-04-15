@@ -15,6 +15,5 @@ PicassoProvider.override(({ palette }) => ({
 
 export default () =>
   createStyles({
-    root: {},
-    shrink: {}
+    root: {}
   })

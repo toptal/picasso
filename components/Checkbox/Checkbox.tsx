@@ -3,11 +3,10 @@ import MUICheckbox from '@material-ui/core/Checkbox'
 import { withStyles } from '@material-ui/core/styles'
 
 import FormControlLabel from '../FormControlLabel'
-import { Classes } from '../styles/types'
+import { StandardProps } from '../Picasso'
 import styles from './styles'
 
-interface Props {
-  classes: Classes
+interface Props extends StandardProps {
   /** Show checkbox initially as checked */
   checked?: boolean
   /** Disable changing `Checkbox` state */
@@ -27,17 +26,18 @@ interface Props {
   value?: string
 }
 
-export const Checkbox: FunctionComponent<Props> = props => {
-  const {
-    label,
-    id,
-    classes,
-    disabled,
-    onChange,
-    value,
-    checked,
-    indeterminate
-  } = props
+export const Checkbox: FunctionComponent<Props> = ({
+  label,
+  id,
+  classes,
+  className,
+  style,
+  disabled,
+  onChange,
+  value,
+  checked,
+  indeterminate
+}) => {
   const rootClasses = {
     root: classes.root,
     disabled: classes.disabled
@@ -50,6 +50,8 @@ export const Checkbox: FunctionComponent<Props> = props => {
       checkedIcon={<div className={classes.checkedIcon} />}
       indeterminateIcon={<div className={classes.indeterminateIcon} />}
       classes={rootClasses}
+      className={className}
+      style={style}
       disabled={disabled}
       id={id}
       indeterminate={indeterminate}

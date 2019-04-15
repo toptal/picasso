@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Modal,
   Button,
@@ -20,8 +20,8 @@ const STATES = [
 ]
 
 const ModalDefaultExample = () => {
-  const [open, setOpen] = React.useState(true)
-  const [isLoading, setLoading] = React.useState(false)
+  const [open, setOpen] = useState(true)
+  const [isLoading, setLoading] = useState(false)
   const showDemo = () => {
     setLoading(true)
 
