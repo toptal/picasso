@@ -78,14 +78,14 @@ const removeNonDeterministicClassParts = elements => {
 }
 
 module.exports = {
-  test (value) {
+  test(value) {
     const isNotProcessed = !value[MARKER]
     const isHTMLElement = value instanceof HTMLElement
 
     return value && isNotProcessed && isHTMLElement
   },
 
-  print (value, serialize) {
+  print(value, serialize) {
     const elements = flatElementsTree(value)
 
     markElementsProcessed(elements)
