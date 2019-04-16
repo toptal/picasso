@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+CWD="$(dirname "$0")"
+cd "$CWD/../"
+BASE_PATH=$(pwd)
+ICON_PATH="$BASE_PATH/components/Icon"
+
+echo -e "Prepare index file ... \n\n"
+cat /dev/null > "$ICON_PATH/index.ts"
+
+echo "Converting svg icons into react components ..."
+svgr -d components/Icon --ext tsx --template components/Icon/_generatorTemplate.js --expand-props start components/Icon/svg
+
+for icon in $ICON_PATH/svg/*.svg; do
+  basename=$(basename $icon | sed 's/\.svg$//');
+  echo -e "\n\nAdding export statement for ${YELLOW}[$basename]${NC} ..."
+  yarn hygen component icon $basename
+done
+
+yarn lint:path $ICON_PATH
+yarn prettier-standard $ICON_PATH/**/*.tsx

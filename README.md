@@ -94,16 +94,16 @@ To add a new Icon to Picasso library please follow these steps:
 
 1. Prepare your SVG:
    - Make sure that it has `viewBox` attribute specified
-2. Add your SVG file to the Picasso project:
+2. Add your SVG file(s) to the Picasso project:
    > /components/Icon/svg/[your_icon_name].svg
 3. Run the command
 
    ```
-   yarn generate:icon your_icon_name
+   yarn generate:icons
    ```
 
-   to prepare corresponding react component for your icon
-   and to add export statement to `/components/Icon/index.ts`
+   This command will prepare corresponding react components for your icons
+   and add export statements to `/components/Icon/index.ts`
 
 After Picasso will be released with your changes you can start using your Icon as described in the [Icons section](https://picasso.toptal.net/?path=/story/components-folder--icon#icon).
 

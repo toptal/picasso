@@ -3,7 +3,7 @@ const t = require('@babel/types')
 /**
  * Add `className={cx(classes.root, className)}` to the svg tag
  */
-function decorateWithClassNameProp(svgElement) {
+function decorateWithClassNameProp (svgElement) {
   svgElement.attributes = [
     ...svgElement.attributes,
     t.jsxAttribute(
@@ -25,7 +25,7 @@ function decorateWithClassNameProp(svgElement) {
 /**
  * Add `name={value}` to the svg tag
  */
-function decorateWithIdentifierProp(svgElement, propName, identifierName) {
+function decorateWithIdentifierProp (svgElement, propName, identifierName) {
   svgElement.attributes = [
     ...svgElement.attributes,
     t.jsxAttribute(
