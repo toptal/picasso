@@ -52,14 +52,14 @@ class CodeExample extends Component<Props> {
   }
   copyLinkButtonRef = React.createRef<HTMLElement>()
 
-  componentDidMount() {
+  componentDidMount () {
     const sourceCode = this.getOriginalSourceCode()
     this.setState({ sourceCode })
   }
 
   getOriginalSourceCode = () => {
     const { src } = this.props
-    return require(`!raw-loader!../../../components/${src}`)
+    return require(`!raw-loader!../../../components/${src}`).default
   }
 
   /* This function is needed to avoid memoization of the source code
@@ -94,7 +94,7 @@ class CodeExample extends Component<Props> {
     this.setState({ sourceCode: value })
   }, 400)
 
-  render() {
+  render () {
     const { classes } = this.props
     const { sourceCode, isEditorVisible, copyLinkButtonText } = this.state
 
