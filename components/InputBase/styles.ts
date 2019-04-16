@@ -1,6 +1,8 @@
+import { Theme } from '@material-ui/core/styles'
+
 import { PicassoProvider } from '../Picasso'
 
-PicassoProvider.override(({ typography, palette }) => ({
+PicassoProvider.override(({ typography, palette }: Theme) => ({
   MuiInputBase: {
     root: {
       fontSize: 'unset'

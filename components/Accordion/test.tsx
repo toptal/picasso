@@ -1,10 +1,10 @@
 /* eslint-disable react/no-multi-comp */
-import React from 'react'
-import { render, fireEvent, cleanup } from 'react-testing-library'
+import React, { ReactNode } from 'react'
+import { render, fireEvent, cleanup, RenderResult } from 'react-testing-library'
 
 import Accordion from './index'
 
-const renderAccordion = (props = {}, children) => {
+const renderAccordion = (props: any = {}, children: ReactNode) => {
   return render(<Accordion {...props}>{children}</Accordion>)
 }
 
@@ -25,7 +25,7 @@ const Details = () => (
 )
 
 describe('default version for sections', () => {
-  let api
+  let api: RenderResult
 
   beforeEach(() => {
     api = renderAccordion({ content: <Details /> }, <Summary />)
@@ -49,19 +49,25 @@ describe('default version for sections', () => {
 
 describe('controlled version', () => {
   test('should render expanded version', () => {
-    const { container } = renderAccordion({
-      content: <Details />,
-      expanded: true
-    })
+    const { container } = renderAccordion(
+      {
+        content: <Details />,
+        expanded: true
+      },
+      null
+    )
 
     expect(container).toMatchSnapshot()
   })
 
   test('should render collapsed version', () => {
-    const { container } = renderAccordion({
-      content: <Details />,
-      expanded: false
-    })
+    const { container } = renderAccordion(
+      {
+        content: <Details />,
+        expanded: false
+      },
+      null
+    )
 
     expect(container).toMatchSnapshot()
   })

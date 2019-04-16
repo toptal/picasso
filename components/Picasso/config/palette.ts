@@ -7,6 +7,14 @@ declare module '@material-ui/core/styles/createPalette' {
     darker?: string
   }
 
+  interface PaletteColor {
+    lighter?: string
+    light: string
+    main: string
+    dark: string
+    contrastText: string
+  }
+
   interface Palette {
     blue: SimplePaletteColorOptions
     success: SimplePaletteColorOptions

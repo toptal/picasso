@@ -29,6 +29,7 @@ const picasso = {
   breakpoints,
   screens,
   shadows,
+  typography,
   props: {
     MuiButtonBase: {
       disableRipple: true
@@ -42,11 +43,6 @@ const picasso = {
     MuiOutlinedInput: {
       notched: false
     }
-  },
-  typography: {
-    useNextVariants: true,
-    inputSize: '18px',
-    ...typography
   }
 }
 
