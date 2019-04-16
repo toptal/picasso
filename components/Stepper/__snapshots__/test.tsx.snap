@@ -160,7 +160,7 @@ exports[`Stepper default render 1`] = `
       class="MuiStep-root MuiStep-horizontal"
     >
       <span
-        class="MuiStepLabel-root MuiStepLabel-horizontal MuiStepLabel-disabled"
+        class="MuiStepLabel-root MuiStepLabel-horizontal"
       >
         <span
           class="MuiStepLabel-iconContainer"
