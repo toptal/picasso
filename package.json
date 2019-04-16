@@ -17,13 +17,13 @@
     "storybook:cache": "CACHE=1 start-storybook -p 9001 -s ./.storybook/public -c .storybook",
     "build:storybook": "build-storybook -s ./.storybook/public -c .storybook -o build/storybook",
     "release:pre": "yarn version --new-version prerelease",
-    "build": "yarn run build:svg && cross-env NODE_ENV=production ./bin/build",
-    "build:svg": "svgr -d components/Icon --ext tsx --template components/Icon/generatorTemplate.js --expand-props start components/Icon/svg",
+    "build": "yarn run generate:icons && cross-env NODE_ENV=production ./bin/build",
     "build:watch": "cross-env ./bin/build --watch",
     "symlink": "cross-env ./bin/symlink --link",
     "symlink:off": "cross-env ./bin/symlink --unlink",
     "generate:component": "hygen component new",
-    "generate:example": "hygen component example"
+    "generate:example": "hygen component example",
+    "generate:icons": "./bin/generate-icons"
   },
   "repository": {
     "type": "git",

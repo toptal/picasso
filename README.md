@@ -88,32 +88,24 @@ In order to run `yarn` commands we need to mount current `components` directory 
 
 ### Add Icon
 
+In Picasso, we keep icons in `svg` format and transform them into react components to make usage in react projects easier. This transformation is processed by the [`svgr`](https://github.com/smooth-code/svgr) tool.
+
 To add a new Icon to Picasso library please follow these steps:
 
 1. Prepare your SVG:
-   - Pass it through the [SVG optimizer service](https://jakearchibald.github.io/svgomg/)
-   - Remove `width, height` attributes from the `<svg>` tag
-   - Remove `fill, stroke` attributes from the `<svg>` tag
    - Make sure that it has `viewBox` attribute specified
-2. Add your SVG file to the Picasso project:
-   > /components/Icons/svg/[your_icon_name].svg
+2. Add your SVG file(s) to the Picasso project:
+   > /components/Icon/svg/[your_icon_name].svg
 3. Run the command
 
    ```
-   yarn build:svg
+   yarn generate:icons
    ```
 
-   to prepare corresponding react component for your icon
+   This command will prepare corresponding react components for your icons
+   and add export statements to `/components/Icon/index.ts`
 
-4. Export your just created react component in the index file
-   > /components/Icons/index.ts
-   ```
-   ...
-   export { default as [your_icon_name]} from './[your_icon_name]'
-   ...
-   ```
-
-After Picasso will be released with your changes you can start using your Icon as described [here](https://picasso.toptal.net/?selectedKind=Icons&selectedStory=Icons).
+After Picasso will be released with your changes you can start using your Icon as described in the [Icons section](https://picasso.toptal.net/?path=/story/components-folder--icon#icon).
 
 ## Linking with other projects
 
