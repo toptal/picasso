@@ -1,11 +1,43 @@
 import React, { FunctionComponent } from 'react'
+import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
-import MUIStepLabel, { StepLabelProps } from '@material-ui/core/StepLabel'
+import MUIStepLabel from '@material-ui/core/StepLabel'
 
+import { StandardProps } from '../Picasso'
 import styles from './styles'
 
-export const StepLabel: FunctionComponent<StepLabelProps> = props => {
-  return <MUIStepLabel {...props} />
+interface Props extends StandardProps {
+  hideLabel: boolean
+  children: React.ReactNode
+  active?: boolean
+  completed?: boolean
+  icon?: React.ReactElement
+}
+
+export const StepLabel: FunctionComponent<Props> = ({
+  hideLabel,
+  classes,
+  children,
+  active,
+  completed,
+  icon
+}) => {
+  return (
+    <MUIStepLabel
+      classes={{
+        label: cx({ [classes.hidden]: hideLabel })
+      }}
+      active={active}
+      completed={completed}
+      icon={icon}
+    >
+      {children}
+    </MUIStepLabel>
+  )
+}
+
+StepLabel.defaultProps = {
+  hideLabel: false
 }
 
 StepLabel.displayName = 'StepLabel'
