@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, ReactNode, ReactElement } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import MUIStepLabel from '@material-ui/core/StepLabel'
@@ -8,28 +8,32 @@ import styles from './styles'
 
 interface Props extends StandardProps {
   hideLabel: boolean
-  children: React.ReactNode
+  children: ReactNode
   active?: boolean
   completed?: boolean
-  icon?: React.ReactElement
+  icon?: ReactElement
 }
 
 export const StepLabel: FunctionComponent<Props> = ({
-  hideLabel,
-  classes,
-  children,
   active,
+  classes,
+  className,
+  children,
   completed,
-  icon
+  hideLabel,
+  icon,
+  style
 }) => {
   return (
     <MUIStepLabel
+      active={active}
       classes={{
         label: cx({ [classes.hidden]: hideLabel })
       }}
-      active={active}
+      className={className}
       completed={completed}
       icon={icon}
+      style={style}
     >
       {children}
     </MUIStepLabel>

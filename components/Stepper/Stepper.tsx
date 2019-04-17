@@ -11,7 +11,7 @@ import { StandardProps } from '../Picasso'
 import styles from './styles'
 
 interface Props extends StandardProps {
-  /** The number of the active step */
+  /** The index of the active step */
   active?: number
   /** The component will take up the full width of its container */
   fullWidth?: boolean
