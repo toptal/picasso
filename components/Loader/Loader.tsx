@@ -51,8 +51,7 @@ export const Loader: FunctionComponent<Props> = ({
 
 Loader.defaultProps = {
   inline: false,
-  size: 'medium',
-  value: undefined
+  size: 'medium'
 }
 
 Loader.displayName = 'Loader'
