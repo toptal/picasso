@@ -7,12 +7,14 @@ import './styles'
 type UnderlineType = 'none' | 'hover' | 'always'
 
 interface Props extends BaseProps, Partial<JssProps> {
+  href?: string
   underline?: UnderlineType
   onClick?: (event: MouseEvent<HTMLAnchorElement>) => void
   children: ReactNode
 }
 
 export const Link: FunctionComponent<Props> = ({
+  href,
   underline,
   onClick,
   children,
@@ -21,6 +23,7 @@ export const Link: FunctionComponent<Props> = ({
   style
 }) => (
   <MUILink
+    href={href}
     underline={underline}
     onClick={onClick}
     classes={classes}
