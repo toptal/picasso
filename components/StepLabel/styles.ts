@@ -5,14 +5,13 @@ import { PicassoProvider } from '../Picasso'
 PicassoProvider.override(() => ({
   MuiStepLabel: {
     label: {
-      display: 'none',
+      paddingLeft: '0.5em',
+      fontSize: '0.6875em',
+      fontWeight: 600,
+      lineHeight: '1em',
 
       '&$active': {
-        display: 'block',
-        paddingLeft: '0.5em',
-        fontSize: '0.6875em',
-        fontWeight: 600,
-        lineHeight: '1em'
+        display: 'block'
       }
     },
     iconContainer: {
@@ -21,4 +20,9 @@ PicassoProvider.override(() => ({
   }
 }))
 
-export default () => createStyles({})
+export default () =>
+  createStyles({
+    hidden: {
+      display: 'none'
+    }
+  })

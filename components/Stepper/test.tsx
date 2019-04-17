@@ -25,4 +25,28 @@ describe('Stepper', () => {
 
     expect(container).toMatchSnapshot()
   })
+
+  test('render with hidden labels', () => {
+    const steps = ['Step 1', 'Step 2', 'Step 3', 'Step 4']
+    const activeStep = 4
+    const { container } = renderStepper({
+      steps,
+      active: activeStep,
+      hideLabels: true
+    })
+
+    expect(container).toMatchSnapshot()
+  })
+
+  test('render with full-width', () => {
+    const steps = ['Step 1', 'Step 2', 'Step 3', 'Step 4']
+    const activeStep = 4
+    const { container } = renderStepper({
+      steps,
+      active: activeStep,
+      fullWidth: true
+    })
+
+    expect(container).toMatchSnapshot()
+  })
 })

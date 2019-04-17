@@ -9,3 +9,5 @@ const page = PicassoBook.createPage(
 page
   .addComponentDocs(Stepper)
   .addExample('Stepper/story/Default.example.jsx', 'Default')
+  .addExample('Stepper/story/Variants.example.jsx', 'Variants')
+  .addExample('Stepper/story/FullWidth.example.jsx', 'Full width')

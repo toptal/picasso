@@ -4,4 +4,11 @@ import { PicassoProvider } from '../Picasso'
 
 PicassoProvider.override(() => ({}))
 
-export default () => createStyles({})
+export default () =>
+  createStyles({
+    fullWidth: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between'
+    }
+  })
