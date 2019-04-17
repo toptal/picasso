@@ -8,11 +8,11 @@ import cx from 'classnames'
 import { Overwrite } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import ButtonBase from '@material-ui/core/ButtonBase'
+import Loader from '@components/Loader'
+import Container from '@components/Container'
+import Group from '@components/ButtonGroup'
+import { StandardProps, JssProps, SizeType } from '@components/Picasso'
 
-import Loader from '../Loader'
-import Container from '../Container'
-import Group from '../ButtonGroup'
-import { StandardProps, JssProps, SizeType } from '../Picasso'
 import styles from './styles'
 
 type VariantType =

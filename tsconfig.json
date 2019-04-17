@@ -2,8 +2,9 @@
   "compilerOptions": {
     "outDir": "./build",
     "module": "commonjs",
-    "target": "es2015",
     "moduleResolution": "node",
+
+    "target": "es2015",
     "skipLibCheck": true,
     "esModuleInterop": true,
     "sourceMap": true,
@@ -17,6 +18,9 @@
     "baseUrl": ".",
     "typeRoots": ["node_modules/@types", "@types"],
     "paths": {
+      "@components/*": ["components/*"],
+      "@components": ["components/index.js"],
+      "@local-types/*": ["@types/*"],
       "*": ["@types/*"]
     }
   },

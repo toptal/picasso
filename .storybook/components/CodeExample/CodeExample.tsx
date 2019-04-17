@@ -8,14 +8,9 @@ import IconLink from '@material-ui/icons/Link'
 import SourceRender from 'react-source-render'
 import copy from 'copy-to-clipboard'
 
-import { RenderResult } from '../../../@types/react-source-render'
-import { Classes } from '../../../components/styles/types'
-import Picasso, {
-  Typography,
-  Button,
-  Accordion,
-  Container
-} from '../../../components'
+import { RenderResult } from '@local-types/react-source-render'
+import { Classes } from '@components/styles/types'
+import Picasso, { Typography, Button, Accordion, Container } from '@components'
 import Editor from '../Editor'
 import styles from './styles'
 
@@ -52,7 +47,7 @@ class CodeExample extends Component<Props> {
   }
   copyLinkButtonRef = React.createRef<HTMLElement>()
 
-  componentDidMount () {
+  componentDidMount() {
     const sourceCode = this.getOriginalSourceCode()
     this.setState({ sourceCode })
   }
@@ -94,7 +89,7 @@ class CodeExample extends Component<Props> {
     this.setState({ sourceCode: value })
   }, 400)
 
-  render () {
+  render() {
     const { classes } = this.props
     const { sourceCode, isEditorVisible, copyLinkButtonText } = this.state
 

@@ -42,6 +42,11 @@ module.exports = ({ config }) => {
   })
 
   config.resolve.extensions.push('.ts', '.tsx')
+  config.resolve.alias = {
+    '@components': path.resolve(__dirname, '../components'),
+    '@local-types': path.resolve(__dirname, '../@types')
+  }
+
   config.plugins.push(
     new webpack.DefinePlugin({
       TEST_ENV: JSON.stringify(process.env.TEST_ENV)
