@@ -6,7 +6,7 @@ NC='\033[0m' # No Color
 CWD="$(dirname "$0")"
 cd "$CWD/../"
 BASE_PATH=$(pwd)
-ICON_PATH="components/Icon"
+ICON_PATH="src/components/Icon"
 ICON_FULL_PATH="$BASE_PATH/$ICON_PATH"
 
 echo -e "Prepare index file ... \n\n"

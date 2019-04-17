@@ -1,6 +1,6 @@
 ---
 inject: true
-to: components/Icon/index.ts
+to: src/components/Icon/index.ts
 append: true
 ---
 <%

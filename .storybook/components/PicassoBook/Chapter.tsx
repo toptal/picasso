@@ -3,18 +3,19 @@ declare var TEST_ENV: string // defined by ENV
 import React, { Fragment } from 'react'
 import { toArray } from 'lodash'
 
+import DocumentationGenerator, {
+  PropDocumentation,
+  PropDocumentationMap,
+  Documentable
+} from '.storybook/utils/documentationGenerator'
+import { generateUrl, getHost, normalize } from 'src/utils/urlGenerator'
+
 import Base from './Base'
 import Section from './Section'
 import CodeExample from '../CodeExample'
 import Page from './Page'
 
 import PropsTable from './components/PropsTable'
-import DocumentationGenerator, {
-  PropDocumentation,
-  PropDocumentationMap,
-  Documentable
-} from '../../utils/documentationGenerator'
-import { generateUrl, getHost, normalize } from '../../../utils/urlGenerator'
 
 const componentDocumentation = new DocumentationGenerator()
 

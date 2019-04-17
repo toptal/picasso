@@ -1,5 +1,5 @@
 ---
-to: components/<%= h.changeCase.pascalCase(name) %>/styles.ts
+to: src/components/<%= h.changeCase.pascalCase(name) %>/styles.ts
 ---
 <%
   Name = h.changeCase.pascalCase(name)

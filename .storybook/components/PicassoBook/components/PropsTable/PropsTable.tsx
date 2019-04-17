@@ -9,11 +9,11 @@ import TableBody from '@material-ui/core/TableBody'
 import Table from '@material-ui/core/Table'
 import cx from 'classnames'
 
-import { Classes } from '../../../../../components/styles/types'
+import { Classes } from 'components/styles/types'
 import {
   PropDocumentation,
   PropTypeDocumentation
-} from '../../../../utils/documentationGenerator'
+} from '.storybook/utils/documentationGenerator'
 import PropTypeTableCell from './PropTypeTableCell'
 import EnumsList from './EnumsList'
 import Description from './Description'

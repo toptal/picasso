@@ -43,8 +43,10 @@ module.exports = ({ config }) => {
 
   config.resolve.extensions.push('.ts', '.tsx')
   config.resolve.alias = {
-    '@components': path.resolve(__dirname, '../components'),
-    '@local-types': path.resolve(__dirname, '../@types')
+    src: path.resolve(__dirname, '../src'),
+    components: path.resolve(__dirname, '../src/components'),
+    '.storybook': path.resolve(__dirname, '../.storybook'),
+    '~': path.resolve(__dirname, '..')
   }
 
   config.plugins.push(

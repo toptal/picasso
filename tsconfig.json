@@ -3,7 +3,6 @@
     "outDir": "./build",
     "module": "commonjs",
     "moduleResolution": "node",
-
     "target": "es2015",
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -18,13 +17,15 @@
     "baseUrl": ".",
     "typeRoots": ["node_modules/@types", "@types"],
     "paths": {
-      "@components/*": ["components/*"],
-      "@components": ["components/index.js"],
-      "@local-types/*": ["@types/*"],
+      "src/*": ["src/*"],
+      "components/*": ["src/components/*"],
+      "components": ["src/components/index"],
+      ".storybook/*": [".storybook/*"],
+      "~/*": ["*"],
       "*": ["@types/*"]
     }
   },
-  "include": ["components/**/*"],
+  "include": ["src/components/**/*"],
   "exclude": [
     "**/test.jsx",
     "**/test.tsx",

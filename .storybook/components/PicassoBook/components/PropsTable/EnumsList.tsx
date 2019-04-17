@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
-import { Classes } from '../../../../../components/styles/types'
-import { PropTypeDocumentation } from '../../../../utils/documentationGenerator'
+import { Classes } from 'components/styles/types'
+import { PropTypeDocumentation } from '.storybook/utils/documentationGenerator'
 import cx from 'classnames'
 
 import styles from './styles'
