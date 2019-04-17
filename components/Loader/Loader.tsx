@@ -12,8 +12,6 @@ enum SIZES {
   large = 80
 }
 
-type VariantType = 'determinate' | 'indeterminate' | 'static'
-
 interface Props extends StandardProps {
   /** Text content for the `Loader` */
   children?: ReactNode
@@ -21,16 +19,13 @@ interface Props extends StandardProps {
   inline?: boolean
   /** Size of the `Loader` */
   size?: SizeType<'small' | 'medium' | 'large'>
-  /** Current value for the `static` or `indeterminate` loaders */
+  /** Set the value if want to have static loader with the value specified */
   value?: number
-  /** Variant of the `Loader` */
-  variant?: VariantType
 }
 
 export const Loader: FunctionComponent<Props> = ({
   children,
   classes,
-  variant,
   size,
   inline,
   className,
@@ -47,7 +42,7 @@ export const Loader: FunctionComponent<Props> = ({
       }}
       size={SIZES[size!]}
       value={value}
-      variant={variant}
+      variant={value ? 'static' : 'indeterminate'}
     />
 
     {children && <div className={classes.label}>{children}</div>}
@@ -56,9 +51,7 @@ export const Loader: FunctionComponent<Props> = ({
 
 Loader.defaultProps = {
   inline: false,
-  size: 'medium',
-  value: 0,
-  variant: 'indeterminate'
+  size: 'medium'
 }
 
 Loader.displayName = 'Loader'

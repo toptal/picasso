@@ -12,8 +12,7 @@ afterEach(cleanup)
 test('props combo', () => {
   const { container } = renderLoader('Testing', {
     inline: true,
-    size: 'large',
-    indeterminate: true
+    size: 'large'
   })
 
   expect(container).toMatchSnapshot()
