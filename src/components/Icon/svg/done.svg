@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+    <title>done</title>
+    <desc>Created with Sketch.</desc>
+    <g id="done" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polygon id="Shape" fill="#FFFFFF" fill-rule="nonzero" points="11 13.5857864 7.70710678 10.2928932 6.29289322 11.7071068 11 16.4142136 17.7071068 9.70710678 16.2928932 8.29289322"></polygon>
+        <path d="M24,12 C24,18.6448466 18.6448466,24 12,24 C5.35515338,24 0,18.6448466 0,12 C0,5.35515338 5.35515338,0 12,0 C18.6448466,0 24,5.35515338 24,12 Z M23.5,12 C23.5,5.62931333 18.3706867,0.5 12,0.5 C5.62931333,0.5 0.5,5.62931333 0.5,12 C0.5,18.3706867 5.62931333,23.5 12,23.5 C18.3706867,23.5 23.5,18.3706867 23.5,12 Z" id="Combined-Shape" fill-opacity="0.6" fill="#E6E6E6" fill-rule="nonzero"></path>
+    </g>
+</svg>

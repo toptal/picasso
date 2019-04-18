@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+    <title>clock</title>
+    <desc>Created with Sketch.</desc>
+    <g id="clock" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M21,12 C21,16.983635 16.983635,21 12,21 C7.01636503,21 3,16.983635 3,12 C3,7.01636503 7.01636503,3 12,3 C16.983635,3 21,7.01636503 21,12 Z M20.5,12 C20.5,7.29123159 16.7087684,3.5 12,3.5 C7.29123159,3.5 3.5,7.29123159 3.5,12 C3.5,16.7087684 7.29123159,20.5 12,20.5 C16.7087684,20.5 20.5,16.7087684 20.5,12 Z" id="Combined-Shape" fill="#D8D9DC" fill-rule="nonzero"></path>
+        <polygon id="Shape" fill="#D8D9DC" fill-rule="nonzero" points="11.968 7.5 11.5 7.5 11.5 13 16 13 16 12.4929078 11.968 12.4929078"></polygon>
+    </g>
+</svg>
