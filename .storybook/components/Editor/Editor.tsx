@@ -7,7 +7,7 @@ import 'brace/mode/html'
 import 'brace/theme/twilight'
 
 import styles from './styles'
-import { Classes } from 'components/styles/types'
+import { Classes } from '@components/styles/types'
 
 interface Props {
   id: string

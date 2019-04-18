@@ -43,10 +43,9 @@ module.exports = ({ config }) => {
 
   config.resolve.extensions.push('.ts', '.tsx')
   config.resolve.alias = {
-    src: path.resolve(__dirname, '../src'),
-    components: path.resolve(__dirname, '../src/components'),
-    '.storybook': path.resolve(__dirname, '../.storybook'),
-    '~': path.resolve(__dirname, '..')
+    '~': path.resolve(__dirname, '..'),
+    '@': path.resolve(__dirname, '../src'),
+    '@components': path.resolve(__dirname, '../src/components')
   }
 
   config.plugins.push(

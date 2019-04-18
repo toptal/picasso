@@ -17,11 +17,10 @@
     "baseUrl": ".",
     "typeRoots": ["node_modules/@types", "@types"],
     "paths": {
-      "src/*": ["src/*"],
-      "components/*": ["src/components/*"],
-      "components": ["src/components/index"],
-      ".storybook/*": [".storybook/*"],
       "~/*": ["*"],
+      "@/*": ["src/*"],
+      "@components/*": ["src/components/*"],
+      "@components": ["src/components/index"],
       "*": ["@types/*"]
     }
   },

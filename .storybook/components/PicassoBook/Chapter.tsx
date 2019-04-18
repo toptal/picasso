@@ -7,8 +7,8 @@ import DocumentationGenerator, {
   PropDocumentation,
   PropDocumentationMap,
   Documentable
-} from '.storybook/utils/documentationGenerator'
-import { generateUrl, getHost, normalize } from 'src/utils/urlGenerator'
+} from '~/.storybook/utils/documentationGenerator'
+import { generateUrl, getHost, normalize } from '@/utils/urlGenerator'
 
 import Base from './Base'
 import Section from './Section'

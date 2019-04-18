@@ -1,4 +1,4 @@
-import PicassoBook from '.storybook/components/PicassoBook'
+import PicassoBook from '~/.storybook/components/PicassoBook'
 
 import { Timesheets } from '../Timesheets'
 

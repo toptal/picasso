@@ -4,7 +4,7 @@ to: src/components/<%= h.changeCase.pascalCase(name) %>/story/index.jsx
 <%
   Name = h.changeCase.pascalCase(name)
 -%>
-import PicassoBook from '.storybook/components/PicassoBook'
+import PicassoBook from '~/.storybook/components/PicassoBook'
 import { <%= Name %> } from '../<%= Name %>'
 
 const page = PicassoBook.createPage(

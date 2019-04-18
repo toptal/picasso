@@ -9,8 +9,8 @@ import SourceRender from 'react-source-render'
 import copy from 'copy-to-clipboard'
 
 import { RenderResult } from '~/@types/react-source-render'
-import { Classes } from 'components/styles/types'
-import Picasso, { Typography, Button, Accordion, Container } from 'components'
+import { Classes } from '@components/styles/types'
+import Picasso, { Typography, Button, Accordion, Container } from '@components'
 
 import Editor from '../Editor'
 import styles from './styles'
@@ -34,8 +34,8 @@ const imports: {
   [key: string]: object
 } = {
   react: React,
-  '@toptal/picasso': require('components'),
-  '@toptal/picasso/Icons': require('components/Icon')
+  '@toptal/picasso': require('@components'),
+  '@toptal/picasso/Icons': require('@components/Icon')
 }
 
 const resolver = (path: string) => imports[path]
@@ -55,7 +55,7 @@ class CodeExample extends Component<Props> {
 
   getOriginalSourceCode = () => {
     const { src } = this.props
-    return require(`!raw-loader!src/components/${src}`).default
+    return require(`!raw-loader!@components/${src}`).default
   }
 
   /* This function is needed to avoid memoization of the source code

@@ -1,7 +1,7 @@
 import { join } from 'path'
 import { Page } from 'puppeteer'
 
-import { generateIframeUrl } from '../utils/urlGenerator'
+import { generateIframeUrl } from '../src/utils/urlGenerator'
 
 declare var page: Page
 
@@ -37,7 +37,7 @@ async function screenshotDOMElement(kind: string, type: string) {
 }
 
 // TODO: Make this more universal when we add more components and their variations
-export const assertVisuals = function(
+export const assertVisuals = function (
   kind: string,
   type: string,
   options = { delay: 0 }
