@@ -17,7 +17,10 @@ module.exports = {
   */
   moduleNameMapper: {
     '\\.(jpg|jpeg|png|gif|webp|svg|ttf|woff|woff2)$':
-      '<rootDir>/__tests__/fileMock.js'
+      '<rootDir>/__tests__/fileMock.js',
+    '^~/(.*)': '<rootDir>/$1',
+    '^@/(.*)': '<rootDir>/src/$1',
+    '^@components/(.*)': '<rootDir>/src/components/$1'
   },
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx']
 }

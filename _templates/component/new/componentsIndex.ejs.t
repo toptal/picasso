@@ -1,6 +1,6 @@
 ---
 inject: true
-to: components/index.js
+to: src/components/index.js
 before: export { default } from './Picasso'
 ---
 <%

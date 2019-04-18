@@ -8,7 +8,8 @@ import {
 import chaptersAddon from 'react-storybook-addon-chapters'
 import { create } from '@storybook/theming'
 
-import Picasso from '../components'
+import Picasso from '@components'
+
 import PicassoBook from './components/PicassoBook'
 
 const loadFonts = TEST_ENV !== 'visual'
@@ -33,7 +34,7 @@ const ADDONS = [chaptersAddon]
 DECORATORS.forEach(decorator => addDecorator(decorator))
 ADDONS.forEach(addon => setAddon(addon))
 
-const req = require.context('../components', true, /story\/index.jsx$/)
+const req = require.context('@components', true, /story\/index.jsx$/)
 
 const loadStories = () => {
   require('./stories/Picasso') // markdown pages for README & CHANGELOG

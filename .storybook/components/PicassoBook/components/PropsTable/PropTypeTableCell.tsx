@@ -3,12 +3,12 @@ import _ from 'lodash'
 
 import { withStyles } from '@material-ui/core/styles'
 import TableCell from '@material-ui/core/TableCell'
-import Tooltip from '../../../../../components/Tooltip'
 import { ClassNameMap } from '@material-ui/core/styles/withStyles'
 
+import Tooltip from '@components/Tooltip'
+import Markdown from '~/.storybook/components/Markdown'
+import { PropTypeDocumentation } from '~/.storybook/utils/documentationGenerator'
 import styles from './styles'
-import Markdown from '../../../Markdown'
-import { PropTypeDocumentation } from '../../../../utils/documentationGenerator'
 
 interface Props {
   className?: string
