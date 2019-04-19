@@ -60,7 +60,7 @@
     "@types/jest-image-snapshot": "^2.8.0",
     "@types/lodash": "^4.14.120",
     "@types/material-ui": "^0.21.5",
-    "@types/prop-types": "^15.5.8",
+    "@types/prop-types": "^15.7.1",
     "@types/puppeteer": "^1.12.3",
     "@types/react": "^16.8.13",
     "@types/react-dom": "^16.8.4",
