@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Paper, Typography } from '@toptal/picasso'
+import { Grid, Paper, Typography, Container } from '@toptal/picasso'
 import * as icons from '@toptal/picasso/Icons'
 
 /** We don't want to render internal icons */
@@ -15,12 +15,11 @@ const IconListExample = () => (
         return (
           <Grid.Item key={iconName}>
             <Paper>
-              <div
+              <Container
+                p={1}
+                pb={0.5}
                 style={{
-                  padding: '1rem',
-                  paddingBottom: '0.5rem',
-                  minWidth: '6rem',
-                  height: '5rem'
+                  minWidth: '6rem'
                 }}
               >
                 <Grid alignItems='center' direction='column' spacing={8}>
@@ -31,7 +30,7 @@ const IconListExample = () => (
                     <Typography variant='caption'>{iconName}</Typography>
                   </Grid.Item>
                 </Grid>
-              </div>
+              </Container>
             </Paper>
           </Grid.Item>
         )

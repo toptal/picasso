@@ -3,7 +3,7 @@ import { Checkbox, Container } from '@toptal/picasso'
 
 const CheckboxDisabledExample = () => (
   <div>
-    <Container bottom={1}>
+    <Container mb={1}>
       <Checkbox checked={false} disabled label='Unchecked' />
     </Container>
     <Checkbox checked disabled label='Checked' />

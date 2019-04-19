@@ -3,10 +3,8 @@ import { Grid, Button, Container, Typography } from '@toptal/picasso'
 
 const GridDirectionExample = () => (
   <div>
-    <Container bottom={4}>
-      <Container bottom={1}>
-        <Typography>Row direction</Typography>
-      </Container>
+    <Container mb={4}>
+      <Typography gutterBottom={1}>Row direction</Typography>
 
       <Grid direction='row'>
         <Grid.Item>
@@ -18,9 +16,7 @@ const GridDirectionExample = () => (
       </Grid>
     </Container>
 
-    <Container bottom={1}>
-      <Typography>Column direction</Typography>
-    </Container>
+    <Typography gutterBottom={1}>Column direction</Typography>
 
     <Grid direction='column'>
       <Grid.Item>

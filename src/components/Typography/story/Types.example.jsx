@@ -1,17 +1,15 @@
 import React from 'react'
-import { Typography, Container } from '@toptal/picasso'
+import { Typography } from '@toptal/picasso'
 
 const TypographyTypesExample = () => (
   <div>
-    <Container bottom={1}>
-      <Typography variant='large'>Large paragraph</Typography>
-    </Container>
-    <Container bottom={1}>
-      <Typography>Paragraph</Typography>
-    </Container>
-    <Container bottom={1}>
-      <Typography variant='small'>Small paragraph</Typography>
-    </Container>
+    <Typography variant='large' gutterBottom={1}>
+      Large paragraph
+    </Typography>
+    <Typography gutterBottom={1}>Paragraph</Typography>
+    <Typography variant='small' gutterBottom={1}>
+      Small paragraph
+    </Typography>
     <Typography variant='caption'>Caption</Typography>
   </div>
 )

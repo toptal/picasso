@@ -3,8 +3,8 @@ import { Container } from '@toptal/picasso'
 
 const ContainerDefaultExample = () => (
   <div>
-    <Container bottom={5}>Some text</Container>
-    <Container left={1}>Some more text</Container>
+    <Container mb={5}>Some text</Container>
+    <Container ml={1}>Some more text</Container>
   </div>
 )
 

@@ -10,10 +10,10 @@ const AvatarVariantsExample = () => (
         src='./jacqueline-with-flowers-1954-square.jpg'
       />
     </Container>
-    <Container inline left={1}>
+    <Container inline ml={1}>
       <Avatar size='medium' name='Jacqueline Roque' />
     </Container>
-    <Container inline left={1}>
+    <Container inline ml={1}>
       <Avatar
         variant='portrait'
         size='medium'
@@ -21,7 +21,7 @@ const AvatarVariantsExample = () => (
         src='./jacqueline-with-flowers-1954-square.jpg'
       />
     </Container>
-    <Container inline left={1}>
+    <Container inline ml={1}>
       <Avatar
         variant='landscape'
         size='medium'

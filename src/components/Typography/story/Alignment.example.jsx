@@ -1,14 +1,14 @@
 import React from 'react'
-import { Typography, Container } from '@toptal/picasso'
+import { Typography } from '@toptal/picasso'
 
 const TypographyAlignmentExample = () => (
   <div>
-    <Container bottom={1}>
-      <Typography align='left'>Left</Typography>
-    </Container>
-    <Container bottom={1}>
-      <Typography align='center'>Center</Typography>
-    </Container>
+    <Typography align='left' gutterBottom={1}>
+      Left
+    </Typography>
+    <Typography align='center' gutterBottom={1}>
+      Center
+    </Typography>
     <Typography align='right'>Right</Typography>
   </div>
 )

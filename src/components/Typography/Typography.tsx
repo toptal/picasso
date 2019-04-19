@@ -35,6 +35,8 @@ interface Props extends StandardProps {
   weight?: WeightType
   /** Invert color */
   invert?: boolean
+  /** Adds bottom margin */
+  gutterBottom?: number
 }
 
 interface Variants {
@@ -70,7 +72,15 @@ const resolveRootClass = (props: Props) => {
 }
 
 export const Typography: FunctionComponent<Props> = props => {
-  const { variant, children, align, className, style, inline } = props
+  const {
+    variant,
+    children,
+    align,
+    className,
+    style,
+    inline,
+    gutterBottom
+  } = props
   const resolvedVariant = VARIANTS[variant!]
   const rootClass = resolveRootClass(props)
 
@@ -81,7 +91,10 @@ export const Typography: FunctionComponent<Props> = props => {
       classes={{
         root: rootClass
       }}
-      style={style}
+      style={{
+        ...(gutterBottom && { marginBottom: `${gutterBottom}em` }),
+        ...style
+      }}
       variant={resolvedVariant}
       inline={inline}
     >

@@ -10,12 +10,12 @@ const TooltipArrowExample = () => (
       paddingTop: '3rem'
     }}
   >
-    <Container bottom={3} left={2} right={2} top={3} inline>
+    <Container my={3} mx={2} inline>
       <Tooltip content='Content' open placement='top' variant='light'>
         <Button>Light</Button>
       </Tooltip>
     </Container>
-    <Container bottom={3} left={2} right={2} top={3} inline>
+    <Container my={3} mx={2} inline>
       <Tooltip content='Content' open placement='top' variant='dark'>
         <Button>Dark</Button>
       </Tooltip>

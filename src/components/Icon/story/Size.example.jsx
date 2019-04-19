@@ -4,7 +4,7 @@ import { Cog } from '@toptal/picasso/Icons'
 
 const IconExample = () => (
   <div>
-    <Container inline right={1}>
+    <Container inline mr={1}>
       <Cog size={2} />
     </Container>
     <Cog style={{ width: '3em', height: '3em' }} />

@@ -1,20 +1,20 @@
 import React from 'react'
-import { Typography, Container } from '@toptal/picasso'
+import { Typography } from '@toptal/picasso'
 
 const TypographyWeightsExample = () => (
   <div>
-    <Container bottom={1}>
-      <Typography weight='thin'>Thin</Typography>
-    </Container>
-    <Container bottom={1}>
-      <Typography weight='light'>Light</Typography>
-    </Container>
-    <Container bottom={1}>
-      <Typography weight='regular'>Regular</Typography>
-    </Container>
-    <Container bottom={1}>
-      <Typography weight='semibold'>Semibold</Typography>
-    </Container>
+    <Typography weight='thin' gutterBottom={1}>
+      Thin
+    </Typography>
+    <Typography weight='light' gutterBottom={1}>
+      Light
+    </Typography>
+    <Typography weight='regular' gutterBottom={1}>
+      Regular
+    </Typography>
+    <Typography weight='semibold' gutterBottom={1}>
+      Semibold
+    </Typography>
     <Typography weight='bold'>Bold</Typography>
   </div>
 )
