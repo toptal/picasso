@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
-    <title>done</title>
+    <title>24x24/done</title>
     <desc>Created with Sketch.</desc>
-    <g id="done" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <polygon id="Shape" fill="#FFFFFF" fill-rule="nonzero" points="11 13.5857864 7.70710678 10.2928932 6.29289322 11.7071068 11 16.4142136 17.7071068 9.70710678 16.2928932 8.29289322"></polygon>
-        <path d="M24,12 C24,18.6448466 18.6448466,24 12,24 C5.35515338,24 0,18.6448466 0,12 C0,5.35515338 5.35515338,0 12,0 C18.6448466,0 24,5.35515338 24,12 Z M23.5,12 C23.5,5.62931333 18.3706867,0.5 12,0.5 C5.62931333,0.5 0.5,5.62931333 0.5,12 C0.5,18.3706867 5.62931333,23.5 12,23.5 C18.3706867,23.5 23.5,18.3706867 23.5,12 Z" id="Combined-Shape" fill-opacity="0.6" fill="#E6E6E6" fill-rule="nonzero"></path>
+    <g id="24x24/done" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polygon id="Path-2" fill="#FFFFFF" fill-rule="nonzero" points="11 14.1464466 8.1767767 11.3232233 7.8232233 11.6767767 11 14.8535534 16.6767767 9.1767767 16.3232233 8.8232233"></polygon>
+        <path d="M12,21.25 C17.1086339,21.25 21.25,17.1086339 21.25,12 C21.25,6.89136606 17.1086339,2.75 12,2.75 C6.89136606,2.75 2.75,6.89136606 2.75,12 C2.75,17.1086339 6.89136606,21.25 12,21.25 Z M12,20.75 C7.16750844,20.75 3.25,16.8324916 3.25,12 C3.25,7.16750844 7.16750844,3.25 12,3.25 C16.8324916,3.25 20.75,7.16750844 20.75,12 C20.75,16.8324916 16.8324916,20.75 12,20.75 Z" id="Oval" fill="#FFFFFF" fill-rule="nonzero"></path>
     </g>
 </svg>

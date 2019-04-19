@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
-    <title>rotate</title>
+    <title>16x16/rotate</title>
     <desc>Created with Sketch.</desc>
-    <g id="rotate" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <polygon id="Shape" fill="#D8D9DC" fill-rule="nonzero" points="5.44852814 18.4642641 19.8485281 18.4642641 19.8485281 19.6642641 4.24852814 19.6642641 4.24852814 11.2642641 5.44852814 11.2642641"></polygon>
-        <polygon id="Shape" fill="#D8D9DC" fill-rule="nonzero" points="18.6485281 5.26426407 5.44852814 5.26426407 5.44852814 4.06426407 19.8485281 4.06426407 19.8485281 11.2642641 18.6485281 11.2642641"></polygon>
-        <polygon id="Shape" fill="#D8D9DC" fill-rule="nonzero" points="16.4242641 16.2485281 17.2727922 15.4 20.6970563 18.8242641 17.2727922 22.2485281 16.4242641 21.4 19 18.8242641"></polygon>
-        <polygon id="Shape" fill="#D8D9DC" fill-rule="nonzero" points="8.27279221 7 7.42426407 7.84852814 4 4.42426407 7.42426407 1 8.27279221 1.84852814 5.69705627 4.42426407"></polygon>
+    <g id="16x16/rotate" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polygon id="Path" fill="#FFFFFF" fill-rule="nonzero" points="2.44444444 13.6222222 2.44444444 8.28888889 1.55555556 8.28888889 1.55555556 14.5111111 13.5384615 14.5111111 13.5384615 13.6222222"></polygon>
+        <polygon id="Path" fill="#FFFFFF" fill-rule="nonzero" points="12.6324786 8.28888889 13.5213675 8.28888889 13.5213675 2.95555556 2.46153846 2.95555556 2.46153846 3.84444444 12.6324786 3.84444444"></polygon>
+        <polygon id="Path" fill="#FFFFFF" fill-rule="nonzero" points="10.922484 15.7909688 11.5390544 16.4312534 14.1792022 13.8888889 11.5390544 11.3465243 10.922484 11.986809 12.8977209 13.8888889"></polygon>
+        <polygon id="Path" fill="#FFFFFF" fill-rule="nonzero" points="4.6159775 1.32014232 3.99940711 0.679857683 1.35925932 3.22222222 3.99940711 5.76458676 4.6159775 5.12430213 2.64074068 3.22222222"></polygon>
     </g>
 </svg>

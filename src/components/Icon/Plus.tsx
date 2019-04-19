@@ -19,14 +19,14 @@ const SvgPlus = (props: Props) => {
   return (
     <svg
       {...props}
-      viewBox='0 0 24 24'
+      viewBox='0 0 16 16'
       className={cx(classes.root, className)}
       style={svgStyle}
       color={color}
     >
       <g fillRule='nonzero'>
-        <path d='M11.5 5v14h1V5z' />
-        <path d='M5 12.5h14v-1H5z' />
+        <path d='M8 1v14h1V1z' />
+        <path d='M15.5 7.5h-14v1h14z' />
       </g>
     </svg>
   )
