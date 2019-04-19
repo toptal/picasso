@@ -4,6 +4,10 @@
       "removeAttrs": {
         "attrs": "(fill|stroke|width|height)"
       }
+    }, {
+      "removeViewBox": false
+    }, {
+      "removeDimensions": true
     }]
   }
 }
