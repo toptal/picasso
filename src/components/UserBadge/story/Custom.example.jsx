@@ -15,7 +15,7 @@ const UserBadgeCustomExample = () => (
       }
     >
       <Typography variant='h5'>Worked as</Typography>
-      <Container left={0.5}>
+      <Container left='xsmall'>
         <Typography variant='caption'>UI specialist</Typography>
         <Typography variant='caption'>Painter</Typography>
         <Typography variant='caption'>Student</Typography>

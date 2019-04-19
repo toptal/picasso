@@ -3,13 +3,13 @@ import { Typography, Container } from '@toptal/picasso'
 
 const TypographyTypesExample = () => (
   <div>
-    <Container bottom={1}>
+    <Container bottom='small'>
       <Typography variant='large'>Large paragraph</Typography>
     </Container>
-    <Container bottom={1}>
+    <Container bottom='small'>
       <Typography>Paragraph</Typography>
     </Container>
-    <Container bottom={1}>
+    <Container bottom='small'>
       <Typography variant='small'>Small paragraph</Typography>
     </Container>
     <Typography variant='caption'>Caption</Typography>

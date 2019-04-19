@@ -3,10 +3,10 @@ import { Select, Container } from '@toptal/picasso'
 
 const SelectTypesExample = () => (
   <div>
-    <Container inline right={2}>
+    <Container inline right='large'>
       <Select options={OPTIONS} placeholder='Default...' width='auto' />
     </Container>
-    <Container inline right={2}>
+    <Container inline right='large'>
       <Select
         options={OPTIONS}
         placeholder='Default...'

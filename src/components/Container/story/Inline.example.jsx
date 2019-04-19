@@ -3,7 +3,7 @@ import { Container } from '@toptal/picasso'
 
 const ContainerInlineExample = () => (
   <div>
-    <Container inline right={5}>
+    <Container inline right='large'>
       <span>Some inline text</span>
     </Container>
     <span>Another inline text</span>

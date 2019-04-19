@@ -13,7 +13,7 @@ exports[`disabled button renders disabled version 1`] = `
     >
       <div
         class=""
-        style="margin: 0em 0em 0em 0em; display: inline-flex; flex-direction: row; align-items: center;"
+        style="display: inline-flex; flex-direction: row; align-items: center;"
       >
         Click me!
       </div>

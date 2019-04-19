@@ -10,7 +10,7 @@ const PageContentDefaultExample = () => (
 )
 
 const Content = () => (
-  <Container bottom={1} left={1} right={1} top={1}>
+  <Container top='small' bottom='small' left='small' right='small'>
     <Typography align='center' variant='h1'>
       Default example
     </Typography>

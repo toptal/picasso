@@ -19,7 +19,7 @@ const AccordionControlledExample = () => {
 }
 
 const DetailsDogDefinitionPanel = () => (
-  <Container bottom={2} top={2}>
+  <Container top='large' bottom='large'>
     A dog is a type of domesticated animal. Known for its loyalty and
     faithfulness, it can be found as a welcome guest in many households across
     the world.
