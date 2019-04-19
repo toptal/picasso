@@ -19,12 +19,12 @@ const SvgMinus = (props: Props) => {
   return (
     <svg
       {...props}
-      viewBox='0 0 24 24'
+      viewBox='0 0 16 16'
       className={cx(classes.root, className)}
       style={svgStyle}
       color={color}
     >
-      <path d='M19.96 12.204H4V11h15.96z' fillRule='evenodd' />
+      <path d='M15.5 7.5h-14v1h14z' fillRule='nonzero' />
     </svg>
   )
 }

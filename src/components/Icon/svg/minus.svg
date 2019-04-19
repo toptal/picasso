@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
-    <title>minus</title>
+    <title>16x16/minus</title>
     <desc>Created with Sketch.</desc>
-    <g id="minus" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <polygon id="_" fill="#D8D9DC" points="19.96 12.204 4 12.204 4 11 19.96 11"></polygon>
+    <g id="16x16/minus" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" transform="translate(1.000000, 7.000000)" fill="#FFFFFF" fill-rule="nonzero">
+            <polygon id="Path-6" transform="translate(7.500000, 1.000000) rotate(-270.000000) translate(-7.500000, -1.000000) " points="7 -6 7 8 8 8 8 -6"></polygon>
+        </g>
     </g>
 </svg>
