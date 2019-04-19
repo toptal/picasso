@@ -1,17 +1,32 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-import * as icons from '../index'
-
-const page = PicassoBook.createPage(
-  'Icons',
-  `
-    List of available icons:
-
-    ${Object.keys(icons).join(', ')}
-  `
-)
+const page = PicassoBook.createPage('Icons')
 
 page
+  .addDocs([
+    {
+      name: 'size',
+      type: 'number',
+      defaultValue: 'inherit',
+      description: 'Size of icon in `rem`'
+    },
+    {
+      name: 'color',
+      type: 'string',
+      description: 'Color of icon'
+    },
+    {
+      name: 'className',
+      type: 'string',
+      description: 'Class applied to SVG element'
+    },
+    {
+      name: 'style',
+      type: 'CSSProperties',
+      description: 'Style applied to SVG element'
+    }
+  ])
+  .addExample('Icon/story/List.example.jsx', 'List of all icons')
   .addExample('Icon/story/Default.example.jsx', 'Default')
   .addExample('Icon/story/Size.example.jsx', {
     title: 'Size',

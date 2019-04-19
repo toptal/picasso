@@ -5,21 +5,24 @@ import { withStyles } from '@material-ui/core/styles'
 import { StandardProps } from '../Picasso'
 import styles from './styles'
 interface Props extends StandardProps {
-  width?: number
-  height?: number
+  size?: number
+  color?: string
 }
 
 const SvgDone = (props: Props) => {
-  const { classes, className, style, width, height } = props
+  const { classes, className, style, size, color } = props
+  const svgStyle = {
+    fontSize: size ? `${size}rem` : 'inherit',
+    ...style
+  }
 
   return (
     <svg
       {...props}
       viewBox='0 0 24 24'
       className={cx(classes.root, className)}
-      style={style}
-      height={height}
-      width={width}
+      style={svgStyle}
+      color={color}
     >
       <g fillRule='nonzero'>
         <path d='M11 13.586l-3.293-3.293-1.414 1.414L11 16.414l6.707-6.707-1.414-1.414z' />
