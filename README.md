@@ -3,7 +3,7 @@
 <br/>
 
 
-![](https://img.shields.io/badge/npm-0.1.0--beta.14-yellow.svg)
+![](https://img.shields.io/badge/npm-0.1.0--beta.15-yellow.svg)
 [![Depfu](https://badges.depfu.com/badges/5334b0c5b6255a3e8b0199b2a5411667/count.svg)](https://depfu.com/repos/toptal/picasso?project_id=7646)
 [![#-frontend-exp-core](https://img.shields.io/badge/slack-%23--frontend--exp--core-green.svg)](https://toptal-core.slack.com/app_redirect?channel=CERF5NHT3)
 

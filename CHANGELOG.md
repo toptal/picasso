@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.1.0-beta.15 (19/04/2019)
+
+#### closed
+
+- [**closed**] [FX-134] Add List example and Icon prop docs [#219](https://github.com/toptal/picasso/pull/219)
+
+---
+
 ## v0.1.0-beta.14 (19/04/2019)
 
 #### BREAKING CHANGE
@@ -428,11 +436,3 @@
 
 ## v0.1.0-alpha.18 (13/02/2019)
 *No changelog for this release.*
-
----
-
-## v0.1.0-alpha.17 (13/02/2019)
-
-#### CI
-
-- [**CI**] Install curl in docker [#60](https://github.com/toptal/picasso/pull/60)
