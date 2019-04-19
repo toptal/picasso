@@ -66,7 +66,8 @@ const template = ({ template }, opts, { componentName, jsx }) => {
       const { classes, className, style, size, color } = props
 
       const svgStyle = {
-      fontSize: size ? \`\${size}rem\` : 'inherit',
+      fontSize: size && \`\${size}rem\`,
+
       ...style
       }
 
