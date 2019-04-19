@@ -43,11 +43,9 @@ const template = ({ template }, opts, { componentName, jsx }) => {
   // add `className={cx(classes.root, className)}` to svg root tag
   decorateWithClassNameProp(svgElement)
   // add `style={style}` to svg root tag
-  decorateWithIdentifierProp(svgElement, 'style', 'style')
-  // add `height={height}` to svg root tag
-  decorateWithIdentifierProp(svgElement, 'height', 'height')
-  // add `width={width}` to svg root tag
-  decorateWithIdentifierProp(svgElement, 'width', 'width')
+  decorateWithIdentifierProp(svgElement, 'style', 'svgStyle')
+  // add `color={color}` to svg root tag
+  decorateWithIdentifierProp(svgElement, 'color', 'color')
 
   const typeScriptTpl = template.smart({ plugins: ['typescript'] })
 
@@ -60,12 +58,18 @@ const template = ({ template }, opts, { componentName, jsx }) => {
     import styles from './styles'
 
     interface Props extends StandardProps {
-      width?: number
-      height?: number
+      size?: number
+      color?: string
     }
 
     const ${componentName} = (props: Props) => {
-      const { classes, className, style, width, height } = props
+      const { classes, className, style, size, color } = props
+
+      const svgStyle = {
+      fontSize: size && \`\${size}rem\`,
+
+      ...style
+      }
 
       return (
         ${jsx}

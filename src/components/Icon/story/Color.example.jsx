@@ -1,9 +1,13 @@
 import React from 'react'
+import { Container } from '@toptal/picasso'
 import { Cog } from '@toptal/picasso/Icons'
 
 const IconExample = () => (
   <div>
-    <Cog style={{ color: 'red' }} />
+    <Container inline right={1}>
+      <Cog color='red' />
+    </Container>
+    <Cog style={{ color: 'green' }} />
   </div>
 )
 
