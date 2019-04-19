@@ -1,5 +1,50 @@
 # Changelog
 
+## v0.1.0-beta.14 (19/04/2019)
+
+#### BREAKING CHANGE
+
+- [**BREAKING CHANGE**][**Chore**] [FX-6] Simplify Loader component api [#207](https://github.com/toptal/picasso/pull/207)
+
+#### Bugfix
+
+- [**Bugfix**] Fix root height [#218](https://github.com/toptal/picasso/pull/218)
+
+#### Chore
+
+- [**Chore**] Remove prop-types as we don't use them anymore after move all components to TS [#216](https://github.com/toptal/picasso/pull/216)
+- [**Chore**] [FX-44] Initial alias setup for types and components [#209](https://github.com/toptal/picasso/pull/209)
+- [**Chore**] [FX-9] Automate adding icons process [#199](https://github.com/toptal/picasso/pull/199)
+
+#### Feature
+
+- [**Feature**] [FX-17] Add icons from Talent Onboarding Wizard project [#213](https://github.com/toptal/picasso/pull/213)
+- [**Feature**] [FX-145] Add Stepper variant without labels and full-width [#204](https://github.com/toptal/picasso/pull/204)
+
+#### closed
+
+- [**closed**] Enable TS type definitions in build [#200](https://github.com/toptal/picasso/pull/200)
+
+#### depfu
+
+- [**depfu**] Update all of storybook: 5.0.9 → 5.0.10 (patch) [#217](https://github.com/toptal/picasso/pull/217)
+- [**depfu**] Update @types/prop-types: 15.7.0 → 15.7.1 (patch) [#214](https://github.com/toptal/picasso/pull/214)
+- [**depfu**] Update all of storybook: 5.0.8 → 5.0.9 (patch) [#212](https://github.com/toptal/picasso/pull/212)
+- [**depfu**] Update eslint-plugin-import: 2.17.1 → 2.17.2 (patch) [#211](https://github.com/toptal/picasso/pull/211)
+- [**depfu**] Upgrade yargs: 12.0.5 → 13.2.2 (major) [#206](https://github.com/toptal/picasso/pull/206)
+- [**depfu**] Upgrade ts-jest: 23.10.5 → 24.0.2 (major) [#205](https://github.com/toptal/picasso/pull/205)
+- [**depfu**] Update react-markdown: 4.0.6 → 4.0.8 (patch) [#203](https://github.com/toptal/picasso/pull/203)
+- [**depfu**] Upgrade raw-loader: 1.0.0 → 2.0.0 (major) [#197](https://github.com/toptal/picasso/pull/197)
+- [**depfu**] Update all of storybook: 5.0.7 → 5.0.8 (patch) [#202](https://github.com/toptal/picasso/pull/202)
+- [**depfu**] Update eslint-plugin-import: 2.16.0 → 2.17.1 (minor) [#201](https://github.com/toptal/picasso/pull/201)
+- [**depfu**] Update @svgr/cli: 4.1.0 → 4.2.0 (minor) [#195](https://github.com/toptal/picasso/pull/195)
+- [**depfu**] Upgrade react-testing-library: 5.9.0 → 6.1.2 (major) [#198](https://github.com/toptal/picasso/pull/198)
+- [**depfu**] Upgrade storybook-readme: 4.0.5 → 5.0.2 (major) [#196](https://github.com/toptal/picasso/pull/196)
+- [**depfu**] Update all of storybook: 5.0.6 → 5.0.7 (patch) [#194](https://github.com/toptal/picasso/pull/194)
+- [**depfu**] Update @types/react-dom: 16.8.3 → 16.8.4 (patch) [#193](https://github.com/toptal/picasso/pull/193)
+
+---
+
 ## v0.1.0-beta.13 (15/04/2019)
 
 #### Bugfix
@@ -391,8 +436,3 @@
 #### CI
 
 - [**CI**] Install curl in docker [#60](https://github.com/toptal/picasso/pull/60)
-
----
-
-## v0.1.0-alpha.16 (13/02/2019)
-*No changelog for this release.*
