@@ -1,6 +1,6 @@
 export default ({ typography }: { typography: any }) => ({
   root: {
-    height: '100%',
+    flex: 1,
 
     '& *': {
       fontFamily: typography.fontFamily

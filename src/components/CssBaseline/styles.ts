@@ -4,10 +4,14 @@ export default () =>
   createStyles({
     '@global': {
       body: {
-        height: '100vh'
+        display: 'flex',
+        flexDirection: 'column',
+        minHeight: '100vh'
       },
       '#root': {
-        height: '100%'
+        display: 'flex',
+        flexDirection: 'column',
+        flex: 1
       }
     }
   })
