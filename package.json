@@ -111,7 +111,7 @@
     "storybook-readme": "^5.0.2",
     "ts-jest": "^24.0.2",
     "ts-loader": "^5.3.3",
-    "typescript": "^3.4.3",
+    "typescript": "^3.4.4",
     "yargs": "^13.2.2"
   },
   "husky": {
