@@ -2,7 +2,7 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 import { Footer } from '../Footer'
 
-const page = PicassoBook.createPage('Footer', `A Footer component`)
+const page = PicassoBook.createPage('Footer', `A Footer component`, 'Layout')
 
 page
   .addComponentDocs(Footer)

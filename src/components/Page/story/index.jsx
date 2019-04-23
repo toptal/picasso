@@ -2,7 +2,7 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 import { Page } from '../Page'
 
-const page = PicassoBook.createPage('Page', `A Page component`)
+const page = PicassoBook.createPage('Page', `A Page component`, 'Layout')
 
 page
   .addComponentDocs(Page)
