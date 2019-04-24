@@ -14,7 +14,9 @@ Provide a link to the component for which you need to extend behaviour. (Ex. htt
 A clear and concise description of what the bug is.
 
 **To Reproduce**
-Steps to reproduce the behavior:
+PR: Link to a PR where we can see the unexpected behaviour
+
+**Steps to reproduce**
 1. Go to '...'
 2. Click on '....'
 3. Scroll down to '....'
