@@ -11,11 +11,13 @@
 
 In order to include the library to your project you need to install it from NPM. As Picasso is hosted on private NPM repository you need to have `NPM_TOKEN` present. You can obtain new token on [npmjs.com](https://www.npmjs.com/settings/talbot/tokens) with credentials from LastPass. Then you can use [.envrc](.envrc.example) file in synergy with [direnv](https://direnv.net/) to automatically expose `$NPM_TOKEN` for Picasso.
 
-`yarn add @toptal/picasso`
+```
+yarn add @toptal/picasso
+```
 
 ## Start using library
 
-```jsx
+```
 import Picasso, { Button } from '@toptal/picasso'
 ...
 
@@ -28,7 +30,7 @@ render () {
 }
 ```
 
-ℹ️ **_`Picasso` component rendered at root level is required for library theme configuration and theme to work properly._**
+ℹ️ **_[`Picasso`](/?path=/story/components-folder--picasso) component rendered at root level is required for library theme configuration and theme to work properly._**
 
 ## Running storybook
 
