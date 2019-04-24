@@ -1,5 +1,26 @@
 # Changelog
 
+## v0.1.0-beta.16 (24/04/2019)
+
+#### Chore
+
+- [**Chore**] Update edited icons from Talent Onboarding Wizard [#220](https://github.com/toptal/picasso/pull/220)
+
+#### WIP
+
+- [**WIP**] [FX-52] Add IE11 support for Storybook [#233](https://github.com/toptal/picasso/pull/233)
+
+#### depfu
+
+- [**depfu**] Update ts-loader: 5.3.3 → 5.4.3 (minor) [#234](https://github.com/toptal/picasso/pull/234)
+- [**depfu**] Update react-ace: 6.4.0 → 6.5.0 (minor) [#229](https://github.com/toptal/picasso/pull/229)
+- [**depfu**] Update @typescript-eslint/parser: 1.6.0 → 1.7.0 (minor) [#228](https://github.com/toptal/picasso/pull/228)
+- [**depfu**] Update @typescript-eslint/eslint-plugin: 1.6.0 → 1.7.0 (minor) [#225](https://github.com/toptal/picasso/pull/225)
+- [**depfu**] Update @types/react: 16.8.13 → 16.8.14 (patch) [#224](https://github.com/toptal/picasso/pull/224)
+- [**depfu**] Update typescript: 3.4.3 → 3.4.4 (patch) [#222](https://github.com/toptal/picasso/pull/222)
+
+---
+
 ## v0.1.0-beta.15 (19/04/2019)
 
 #### closed
@@ -430,9 +451,4 @@
 ---
 
 ## v0.1.0-alpha.19 (13/02/2019)
-*No changelog for this release.*
-
----
-
-## v0.1.0-alpha.18 (13/02/2019)
 *No changelog for this release.*
