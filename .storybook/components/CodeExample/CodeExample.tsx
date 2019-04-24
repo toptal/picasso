@@ -15,12 +15,6 @@ import Picasso, { Typography, Button, Accordion, Container } from '@components'
 import Editor from '../Editor'
 import styles from './styles'
 
-/** Define all addition plugins needed for CodeExample rendering */
-// @ts-ignore
-import * as Babel from '@babel/standalone'
-const plugin = require('@babel/plugin-proposal-class-properties')
-Babel.registerPlugin('plugin-proposal-class-properties', plugin.default)
-
 const COPY_LINK_DEFAULT_TEXT = 'Link'
 const COPY_LINK_COPIED_TEXT = 'Copied!'
 
@@ -105,7 +99,7 @@ class CodeExample extends Component<Props> {
       return (
         <SourceRender
           babelConfig={{
-            plugins: ['plugin-proposal-class-properties']
+            presets: ['es2015']
           }}
           render={renderInTestPicasso}
           resolver={resolver}
@@ -138,7 +132,7 @@ class CodeExample extends Component<Props> {
     return (
       <SourceRender
         babelConfig={{
-          plugins: ['plugin-proposal-class-properties']
+          presets: ['es2015']
         }}
         render={renderInPicasso}
         resolver={resolver}

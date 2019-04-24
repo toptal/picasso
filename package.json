@@ -40,6 +40,7 @@
     "react-dom": "^16.8.4"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.4.3",
     "@babel/standalone": "^7.4.3",
     "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "^3.0.2",

@@ -8,6 +8,8 @@ const COMPONENT_DECLARATION_FILE_REGEXP = /components\/(.*)\/\1.tsx$/
 const tsConfigFile = path.join(process.cwd(), './.storybook/tsconfig.json')
 
 module.exports = ({ config }) => {
+  config.entry = ['@babel/polyfill', ...config.entry]
+
   config.module.rules.push({
     test: /\.(ts|tsx)$/,
     exclude: [COMPONENT_DECLARATION_FILE_REGEXP],
