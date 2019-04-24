@@ -1,6 +1,3 @@
-// use named import of polyfill to avoid ignoring
-// by webpack babel-loader in storybook
-import polyfill from '@babel/polyfill'
 import React from 'react'
 import {
   configure,
