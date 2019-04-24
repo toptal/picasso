@@ -1,9 +1,9 @@
 const glob = require('glob')
-const exec = require('child_process').execSync
 const path = require('path')
 
 const config = require('./config')
 
+const { env } = process
 const SPECIAL_CHARS_OR_SPACES = /[^\w]+/gi
 
 const normalize = name =>
@@ -32,7 +32,13 @@ const asyncGlob = pattern => {
   })
 }
 
-const lastCommitHash = () => exec(`git rev-parse --short=8 HEAD`).toString()
+const lastCommitHash = () => {
+  if (env.GIT_SHA) {
+    return env.GIT_SHA.toString()
+  } else {
+    return 'latest'
+  }
+}
 
 const assignOutputDir = () => {
   const hash = lastCommitHash().trim()
