@@ -4,6 +4,7 @@ BLUE='\033[0;34m'
 NC='\033[0m'
 PICASSO_IMAGE='picasso'
 PKG_VERSION=`node -p "require('./package.json').version"`
+GIT_SHA=`git rev-parse --short=8 HEAD`
 
 if [[ "$(docker images -q $PICASSO_IMAGE:$PKG_VERSION 2> /dev/null)" == "" ]]; then
   docker build -t $PICASSO_IMAGE:$PKG_VERSION .
@@ -20,7 +21,9 @@ DOCKER_CMD="docker run -t -i --rm \
  -v ${PWD}/.storybook:/app/.storybook \
  -v ${PWD}/bin:/app/bin \
  -v ${PWD}/__diff_output__:/app/__diff_output__ \
- -e NPM_TOKEN=$NPM_TOKEN $PICASSO_IMAGE:$PKG_VERSION"
+ -e NPM_TOKEN=$NPM_TOKEN \
+ -e GIT_SHA=$GIT_SHA \
+ $PICASSO_IMAGE:$PKG_VERSION"
 
 echo -e "${BLUE} Running command inside docker ... ${NC}"
 

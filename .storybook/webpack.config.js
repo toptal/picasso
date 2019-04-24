@@ -5,41 +5,37 @@ const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
 // example: /components/Button/Button.tsx
 const COMPONENT_DECLARATION_FILE_REGEXP = /components\/(.*)\/\1.tsx$/
 
+const { env } = process
+
 const tsConfigFile = path.join(process.cwd(), './.storybook/tsconfig.json')
+const tsLoader = {
+  loader: require.resolve('ts-loader'),
+  options: {
+    configFile: tsConfigFile
+  }
+}
+const tsDocgenLoader = {
+  loader: require.resolve('react-docgen-typescript-loader'),
+  options: {
+    tsconfigPath: tsConfigFile,
+    skipPropsWithoutDoc: true
+  }
+}
+
+const defaultLoaders =
+  env.TEST_ENV === 'visual' ? [tsLoader] : [tsLoader, tsDocgenLoader]
 
 module.exports = ({ config }) => {
   config.entry = ['@babel/polyfill', ...config.entry]
-
+  
   config.module.rules.push({
     test: /\.(ts|tsx)$/,
-    exclude: [COMPONENT_DECLARATION_FILE_REGEXP],
-    use: [
+    oneOf: [
       {
-        loader: require.resolve('ts-loader'),
-        options: {
-          configFile: tsConfigFile
-        }
-      }
-    ]
-  })
-
-  config.module.rules.push({
-    test: /\.(ts|tsx)$/,
-    include: [COMPONENT_DECLARATION_FILE_REGEXP],
-    use: [
-      {
-        loader: require.resolve('ts-loader'),
-        options: {
-          configFile: tsConfigFile
-        }
+        test: COMPONENT_DECLARATION_FILE_REGEXP,
+        use: defaultLoaders
       },
-      {
-        loader: require.resolve('react-docgen-typescript-loader'),
-        options: {
-          tsconfigPath: tsConfigFile,
-          skipPropsWithoutDoc: true
-        }
-      }
+      { use: [tsLoader] }
     ]
   })
 
@@ -52,10 +48,11 @@ module.exports = ({ config }) => {
 
   config.plugins.push(
     new webpack.DefinePlugin({
-      TEST_ENV: JSON.stringify(process.env.TEST_ENV)
+      TEST_ENV: JSON.stringify(env.TEST_ENV)
     })
   )
-  if (process.env.CACHE) {
+
+  if (env.CACHE) {
     config.plugins.push(new HardSourceWebpackPlugin())
   }
 
@@ -63,6 +60,8 @@ module.exports = ({ config }) => {
     fs: 'empty',
     module: 'empty'
   }
+
+  config.optimization.minimizer = []
 
   return config
 }

@@ -25,13 +25,13 @@ RUN apk update && apk upgrade && \
       jq \
       chromium
 
-# Tell Puppeteer to skip installing Chrome. We'll be using the installed package.
-# Puppeteer v1.9.0 works with Chromium 71.
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
+RUN /usr/bin/chromium-browser --version
 
 # Run everything after as non-privileged user.
 COPY . /app
 WORKDIR /app
+
+RUN ls -la /app
 
 # Add user so we don't need --no-sandbox.
 RUN addgroup -S pptruser
