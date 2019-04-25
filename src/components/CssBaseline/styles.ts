@@ -10,7 +10,6 @@ export default () =>
       },
       '#root': {
         display: 'flex',
-        flexDirection: 'column',
         flex: 1
       }
     }
