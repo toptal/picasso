@@ -2,7 +2,7 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 import { Checkbox } from '../Checkbox'
 
-const page = PicassoBook.createPage('Checkbox')
+const page = PicassoBook.createPage('Checkbox', null, 'Forms')
 
 page
   .addComponentDocs(Checkbox)

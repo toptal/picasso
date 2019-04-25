@@ -2,7 +2,7 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 import { Header } from '../Header'
 
-const page = PicassoBook.createPage('Header', `A Header component`)
+const page = PicassoBook.createPage('Header', `A Header component`, 'Layout')
 
 page
   .addComponentDocs(Header)

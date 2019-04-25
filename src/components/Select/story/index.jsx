@@ -5,7 +5,8 @@ import { Select } from '../Select'
 const page = PicassoBook.createPage(
   'Select',
   `Selects are interactive elements that prompt users to make selections 
-  or take actions from a set of list of available options.`
+  or take actions from a set of list of available options.`,
+  'Forms'
 )
 
 page

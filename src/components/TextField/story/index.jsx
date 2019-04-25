@@ -5,7 +5,8 @@ import { TextField } from '../TextField'
 const page = PicassoBook.createPage(
   'TextField',
   `Input fields are UI elements through which users submit information to the system. 
-  Input fields should be clearly labeled by the topic to ensure users know exactly what is being asked of them.`
+  Input fields should be clearly labeled by the topic to ensure users know exactly what is being asked of them.`,
+  'Forms'
 )
 
 page

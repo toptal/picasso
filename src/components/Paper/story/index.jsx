@@ -2,7 +2,11 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 import { Paper } from '../Paper'
 
-const page = PicassoBook.createPage('Paper', `Elevated container with shadow`)
+const page = PicassoBook.createPage(
+  'Paper',
+  `Elevated container with shadow`,
+  'Layout'
+)
 
 page
   .addComponentDocs(Paper)

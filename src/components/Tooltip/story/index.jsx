@@ -4,7 +4,8 @@ import { Tooltip } from '../Tooltip'
 
 const page = PicassoBook.createPage(
   'Tooltip',
-  'Tooltips display informative text when users hover over, focus on, or tap an element'
+  'Tooltips display informative text when users hover over, focus on, or tap an element',
+  'Overlays'
 )
 
 page
