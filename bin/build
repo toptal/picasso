@@ -14,7 +14,7 @@ const tscPath = path.resolve(__dirname, '../node_modules/.bin/tsc')
 // General logging
 const log = function(text, color) {
   if (!color) color = 'blue'
-  window.console.log(chalk[color](text))
+  console.log(chalk[color](text))
 }
 
 const compile = function(config) {
