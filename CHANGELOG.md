@@ -1,5 +1,26 @@
 # Changelog
 
+## v0.1.0-beta.18 (25/04/2019)
+
+#### Chore
+
+- [**Chore**] chore(docs): Speedup storybook builds on CI [#237](https://github.com/toptal/picasso/pull/237)
+
+---
+
+## v0.1.0-beta.17 (25/04/2019)
+
+#### CI
+
+- [**CI**] Fix docker problems with latest chromium [#240](https://github.com/toptal/picasso/pull/240)
+
+#### Chore
+
+- [**Chore**] Add issue templates for picasso board [#235](https://github.com/toptal/picasso/pull/235)
+- [**Chore**] [FX-147] Group components doc pages by area of usage [#232](https://github.com/toptal/picasso/pull/232)
+
+---
+
 ## v0.1.0-beta.16 (24/04/2019)
 
 #### Chore
@@ -438,17 +459,3 @@
 - [**closed**] Unify stories, add source code examples to the stories - part 2 [#64](https://github.com/toptal/picasso/pull/64)
 - [**closed**] Fix jenkins job branch [#66](https://github.com/toptal/picasso/pull/66)
 - [**closed**] Publish storybook on PR commits [#59](https://github.com/toptal/picasso/pull/59)
-
----
-
-## v0.1.0-alpha.20 (15/02/2019)
-
-#### closed
-
-- [**closed**] Unify stories, add source code examples to the stories [#61](https://github.com/toptal/picasso/pull/61)
-- [**closed**] Add array includes method [#63](https://github.com/toptal/picasso/pull/63)
-
----
-
-## v0.1.0-alpha.19 (13/02/2019)
-*No changelog for this release.*
