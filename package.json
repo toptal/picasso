@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso",
-  "version": "0.1.0-beta.16",
+  "version": "0.1.0-beta.17",
   "description": "",
   "main": "build/index.js",
   "module": "build/index.js",
@@ -15,7 +15,7 @@
     "lint": "yarn run lint:path .",
     "storybook": "start-storybook -p 9001 -s ./.storybook/public -c .storybook",
     "storybook:cache": "CACHE=1 start-storybook -p 9001 -s ./.storybook/public -c .storybook",
-    "build:storybook": "build-storybook -s ./.storybook/public -c .storybook -o build/storybook",
+    "build:storybook": "CACHE=1 build-storybook -s ./.storybook/public -c .storybook -o build/storybook",
     "release:pre": "yarn version --new-version prerelease",
     "build": "yarn run generate:icons && cross-env NODE_ENV=production ./bin/build",
     "build:watch": "cross-env ./bin/build --watch",

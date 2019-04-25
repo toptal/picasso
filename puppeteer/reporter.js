@@ -3,6 +3,7 @@
 const fs = require('fs')
 const path = require('path')
 const ejs = require('ejs')
+const exec = require('child_process').execSync
 
 const config = require('./config')
 const { createSnapshotName, assignOutputDir } = require('./utils')
