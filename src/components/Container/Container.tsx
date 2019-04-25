@@ -5,6 +5,12 @@ import { BaseProps } from '../Picasso'
 type DirectionType = 'row' | 'column'
 
 type AlignItemsType = 'flex-start' | 'flex-end' | 'center' | 'stretch'
+type JustifyContentType =
+  | 'start'
+  | 'center'
+  | 'space-between'
+  | 'space-around'
+  | 'space-evenly'
 
 interface Props extends BaseProps {
   /** marginTop for the container calculated as `${top}em` */
@@ -23,6 +29,8 @@ interface Props extends BaseProps {
   direction?: DirectionType
   /** Defines the align-items style property */
   alignItems?: AlignItemsType
+  /** Defines the justify-content style property */
+  justifyContent?: JustifyContentType
   /** Content of Container */
   children: ReactNode
 }
@@ -38,6 +46,7 @@ export const Container: FunctionComponent<Props> = ({
   flex,
   direction,
   alignItems,
+  justifyContent,
   style
 }) => {
   const display = flex ? 'flex' : 'block'
@@ -54,6 +63,7 @@ export const Container: FunctionComponent<Props> = ({
         display: inline ? inlineDisplay : display,
         ...(direction && { flexDirection: direction }),
         ...(alignItems && { alignItems: alignItems }),
+        ...(justifyContent && { justifyContent: justifyContent }),
         ...style
       }}
     >

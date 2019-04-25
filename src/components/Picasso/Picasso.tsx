@@ -62,7 +62,9 @@ const PicassoGlobalStylesProvider = withStyles(globalStyles, {
 
 interface PicassoProps {
   children?: ReactNode
+  /** Whether to load fonts file to the page */
   loadFonts?: boolean
+  /** Whether to apply Picasso CSS reset */
   reset?: boolean
 }
 
