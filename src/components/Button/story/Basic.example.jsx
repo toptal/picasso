@@ -3,7 +3,7 @@ import { Button } from '@toptal/picasso'
 
 const Example = () => (
   <div>
-    <Button>Basic 2</Button>
+    <Button>Basic 3</Button>
   </div>
 )
 
