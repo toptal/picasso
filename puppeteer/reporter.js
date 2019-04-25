@@ -73,6 +73,7 @@ class ImageReporter {
       assignOutputDir,
       'index.html'
     )
+
     fs.writeFileSync(resultsFilePath, output)
   }
 

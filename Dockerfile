@@ -1,22 +1,29 @@
-FROM node:10-alpine
+FROM node:11-alpine
 
 ARG NPM_TOKEN
 ENV NPM_TOKEN ${NPM_TOKEN}
 
+ARG GIT_SHA
+ENV GIT_SHA ${GIT_SHA}
+
+ARG APK_BRANCH=3.9
+ENV APK_BRANCH ${APK_BRANCH}
+
 ENV PATH="${PATH}:/app/node_modules/.bin"
 
-# Installs Chromium (71) package.
+# Installs Chromium (72) package.
 ENV CHROME_BIN /usr/bin/chromium-browser
+RUN echo $APK_BRANCH
 RUN apk update && apk upgrade && \
-    echo @edge http://nl.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
-    echo @edge http://nl.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories && \
+    echo http://nl.alpinelinux.org/alpine/v$APK_BRANCH/community > /etc/apk/repositories && \
+    echo http://nl.alpinelinux.org/alpine/v$APK_BRANCH/main >> /etc/apk/repositories && \
     apk add --no-cache \
-      chromium@edge \
-      harfbuzz@edge \
-      nss@edge \
+      harfbuzz \
+      nss \
       git \
       curl \
-      jq
+      jq \
+      chromium
 
 # Tell Puppeteer to skip installing Chrome. We'll be using the installed package.
 # Puppeteer v1.9.0 works with Chromium 71.

@@ -16,7 +16,7 @@ DIFF_OUTPUT_PATH="$BASE_PATH/__diff_output__/*"
 function build_storybook() {
   echo -e "${BLUE} Building storybook ... ${NC}"
   set -x
-  TEST_ENV=$JEST_TEST_ENV yarn build:storybook
+  GIT_SHA=$GIT_SHA TEST_ENV=$JEST_TEST_ENV yarn build:storybook
   set +x
 }
 
