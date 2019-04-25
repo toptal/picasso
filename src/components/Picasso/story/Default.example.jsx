@@ -1,4 +1,6 @@
 import React from 'react'
+// In actual application you can simply do
+// import Picasso, { Page, Container } from '@toptal/picasso'
 import { default as Picasso, Page, Container } from '@toptal/picasso'
 
 const App = () => (
