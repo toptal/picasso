@@ -12,7 +12,6 @@ declare module '@material-ui/core/styles/createPalette' {
     light: string
     main: string
     dark: string
-    contrastText: string
   }
 
   interface Palette {
@@ -21,7 +20,7 @@ declare module '@material-ui/core/styles/createPalette' {
   }
 }
 
-const palette = {
+export const colors = {
   primary: {
     light: '#cad5f4',
     main: '#204ecf',
@@ -54,9 +53,16 @@ const palette = {
   common: {
     black: '#000',
     white: '#fff'
-  },
+  }
+}
+
+const palette = {
+  // MUI adds additional colors, like `contrastText` to the
+  // palette. So to prevent changing colors object we should
+  // deep copy it.
+  ...JSON.parse(JSON.stringify(colors)),
   background: {
-    default: 'white'
+    default: colors.common.white
   }
 }
 

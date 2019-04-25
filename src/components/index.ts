@@ -24,4 +24,7 @@ export { default as AccountSelect } from './AccountSelect'
 export * from './Icon'
 export { default as UserBadge } from './UserBadge'
 export { default as Stepper } from './Stepper'
+
+export { colors as palette } from './Picasso/config/palette'
+
 export { default } from './Picasso'

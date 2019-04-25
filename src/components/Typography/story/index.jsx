@@ -4,7 +4,8 @@ import { Typography } from '../Typography'
 
 const page = PicassoBook.createPage(
   'Typography',
-  'Our primary typeface is Proxima Nova, a contemporary font that combines humanist proportions with a geometric appearance—making it the perfect typeface.'
+  'Our primary typeface is Proxima Nova, a contemporary font that combines humanist proportions with a geometric appearance—making it the perfect typeface.',
+  'Foundation'
 )
 
 page
