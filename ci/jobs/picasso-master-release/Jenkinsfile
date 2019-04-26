@@ -20,8 +20,7 @@ pipeline {
   }
 
   environment {
-    GREN_GITHUB_TOKEN = credentials('toptal-devbot-personal-token')
-    GITHUB_TOKEN = credentials('toptal-devbot-token-github-notify')
+    GITHUB_TOKEN = credentials('toptal-devbot-personal-token')
     NPM_TOKEN = credentials('npm-token-for-toptal-private-registry-publish')
   }
 
@@ -70,13 +69,8 @@ pipeline {
             sh "git config user.email 'bot@toptal.com'"
             sh "git config user.name 'toptal-bot'"
             sh "mkdir -p ~/.ssh && ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts"
-            sh "git tag -l"
-            sh "git tag -d \$(git tag)"
-            sh "git tag -l"
             sh "yarn"
-            sh "./bin/release"
-            sh "yarn build"
-            sh "npm publish"
+            sh "yarn release --debug"
         }
         script {
             VERSION = sh(returnStdout: true, script: 'cat package.json | jq ".version" -r').trim()
