@@ -6,7 +6,8 @@ const page = PicassoBook.createPage(
     The Toptal color palette comprises the core brand colors
     plus a range of shades and tints.
   `,
-  'Foundation'
+  'Utils'
 )
 
-page.addExample('foundation/Colors/Default.example.jsx', 'Colors')
+page.addExample('utils/Colors/Default.example.jsx', 'Colors')
+page.addExample('utils/Colors/HowToUse.example.jsx', 'How to use')
