@@ -1,21 +1,33 @@
-import { join } from 'path'
-import { Page } from 'puppeteer'
+/* eslint-disable no-console */
 
-import { generateIframeUrl } from '../src/utils/urlGenerator'
-
-declare var page: Page
+import { MatchImageSnapshotOptions } from 'jest-image-snapshot'
 
 const PADDING_AROUND_COMPONENT = 8
 
-async function screenshotDOMElement(kind: string, type: string) {
-  const dimensions = await page.evaluate(() => {
-    const component = document.querySelector('#root .chapter-container')
+const screenshotDOMElement = async (
+  chromium: any,
+  kind: string,
+  type: string
+) => {
+  const measure = (kind: string, type: string) => {
+    const normalize = (name: string) =>
+      name
+        .replace(/[^\w]+/gi, '-')
+        .trim()
+        .toLowerCase()
+
+    const selector = `[data-story-id=${normalize(kind)}-${normalize(type)}]`
+    const component = document.querySelector(selector)
+
+    console.time(`Locating ${selector} 1`)
 
     if (!component) {
       throw new Error(
-        `Rendered story ${type} for component ${kind} was not found!`
+        `Rendered story ${kind} for ${type} ${selector} was not found!`
       )
     }
+    console.timeEnd(`Locating ${selector} 1`)
+
     const componentRect: ClientRect = component!.getBoundingClientRect()
 
     return {
@@ -24,34 +36,38 @@ async function screenshotDOMElement(kind: string, type: string) {
       width: componentRect.width,
       height: componentRect.height
     }
-  })
+  }
 
-  return page.screenshot({
+  const dimensions = await chromium.evaluate(measure, kind, type)
+
+  console.time('Take screenshot')
+  const image = await chromium.screenshot({
     clip: {
       x: dimensions.x - PADDING_AROUND_COMPONENT,
       y: dimensions.y - PADDING_AROUND_COMPONENT,
       width: dimensions.width + PADDING_AROUND_COMPONENT * 2,
       height: dimensions.height + PADDING_AROUND_COMPONENT * 2
-    }
+    },
+    type: 'png'
   })
+
+  console.timeEnd('Take screenshot')
+  return image
 }
 
 // TODO: Make this more universal when we add more components and their variations
 export const assertVisuals = function (
+  chromium: any,
   kind: string,
   type: string,
-  options = { delay: 0 }
+  options: MatchImageSnapshotOptions
 ) {
   return async () => {
-    const { delay, ..._opts } = options
-    const host = `file:///${join(__dirname, '/../build/storybook/')}`
-    const url = generateIframeUrl({ host, kind, type })
+    console.time(`Evaluating ${kind}:${type}`)
+    const image = await screenshotDOMElement(chromium, kind, type)
 
-    await page.goto(url)
-    await page.waitFor(delay || 0)
+    console.timeEnd(`Evaluating ${kind}:${type}`)
 
-    const image = await screenshotDOMElement(kind, type)
-
-    expect(image).toMatchImageSnapshot(_opts)
+    expect(image).toMatchImageSnapshot(options)
   }
 }

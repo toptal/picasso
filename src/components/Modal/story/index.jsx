@@ -10,4 +10,4 @@ const page = PicassoBook.createPage(
 
 page
   .addComponentDocs(Modal)
-  .addExample('Modal/story/Default.example.jsx', 'Default')
+  .addExample('Modal/story/Default.example.jsx', 'Default') // picasso-skip-visuals

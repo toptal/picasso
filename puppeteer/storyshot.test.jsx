@@ -10,6 +10,7 @@ const {
 } = require('./utils')
 
 const stories = global.__STORYSHOTS__
+const chromium = global.__CHROMIUM__
 const outputPath = assignOutputDir
 
 // Cleanup current output path
@@ -25,7 +26,7 @@ stories.forEach(story => {
 
     test(
       humanName,
-      assertVisuals(story.name, testName, {
+      assertVisuals(chromium, story.name, testName, {
         customSnapshotsDir: snapShotDir(story.file),
         customSnapshotIdentifier: `${createSnapshotName(humanName)}`,
         customDiffDir: outputPath

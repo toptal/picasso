@@ -1,6 +1,6 @@
 module.exports = {
   rootDir: '../',
-  testMatch: ['**/(storyshot.test).(jsx|tsx)'],
+  testMatch: ['**/(storyshot.test).(jsx)'],
   preset: 'jest-puppeteer',
   testPathIgnorePatterns: ['/node_modules/', '/build'],
   setupFilesAfterEnv: ['<rootDir>/puppeteer/setup.ts'],

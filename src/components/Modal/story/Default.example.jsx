@@ -20,7 +20,7 @@ const STATES = [
 ]
 
 const ModalDefaultExample = () => {
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
   const [isLoading, setLoading] = useState(false)
   const showDemo = () => {
     setLoading(true)

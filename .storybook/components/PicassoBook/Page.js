@@ -54,6 +54,10 @@ class Page extends Base {
     }
   }
 
+  serialize() {
+    return this.toStoryBook()
+  }
+
   getPicassoSection(section) {
     return section + '|Folder'
   }
