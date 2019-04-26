@@ -9,7 +9,7 @@ def VERSION
 pipeline {
   agent {
     docker {
-      image 'gcr.io/compute-engine-1069/platform_tests'
+      image 'gcr.io/compute-engine-1069/picasso:latest'
     }
   }
   options {
@@ -20,9 +20,9 @@ pipeline {
   }
 
   environment {
-    GREN_GITHUB_TOKEN = credentials('toptal-devbot-personal-token')
-    GITHUB_TOKEN = credentials('toptal-devbot-token-github-notify')
+    GITHUB_TOKEN = credentials('toptal-devbot-personal-token')
     NPM_TOKEN = credentials('npm-token-for-toptal-private-registry-publish')
+    GIT_BRANCH = 'master'
   }
 
   stages {
@@ -35,6 +35,7 @@ pipeline {
             url: 'git@github.com:toptal/picasso.git',
             refspec: '+refs/heads/master:refs/remotes/origin/master',
             additionalBehaviours: [
+              checkoutToSpecificLocalBranch: [ localBranch: "$GIT_BRANCH" ],
               cleanBeforeCheckout         : true,
               advancedCheckoutBehaviour: [timeout: 30],
               advancedCloneBehaviour   : [depth: 0, noTags: false, reference: '', shallow: false, timeout: 30]
@@ -67,16 +68,13 @@ pipeline {
       steps {
 
         sshagent (credentials: ['picasso-ssh-deploy-key']) {
-            sh "git config user.email 'bot@toptal.com'"
-            sh "git config user.name 'toptal-bot'"
-            sh "mkdir -p ~/.ssh && ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts"
-            sh "git tag -l"
-            sh "git tag -d \$(git tag)"
-            sh "git tag -l"
+            // sh "git config user.email 'bot@toptal.com'"
+            // sh "git config user.name 'toptal-bot'"
+            // sh "mkdir -p ~/.ssh && ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts"
+            sh "git name-rev --name-only HEAD"
+            sh "git branch"
             sh "yarn"
-            sh "./bin/release"
-            sh "yarn build"
-            sh "npm publish"
+            sh "yarn release --debug"
         }
         script {
             VERSION = sh(returnStdout: true, script: 'cat package.json | jq ".version" -r').trim()
