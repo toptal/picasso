@@ -5,7 +5,7 @@ const HowToUseExample = () => (
   <Typography>
     Use the color just directly from Picasso. For example,
     <span style={{ color: palette.primary.main }}>
-      {` I'm painted primary main color`}
+      {` I'm painted by the primary main color`}
     </span>
   </Typography>
 )

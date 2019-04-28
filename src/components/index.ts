@@ -26,6 +26,9 @@ export { default as UserBadge } from './UserBadge'
 export { default as Stepper } from './Stepper'
 
 export { colors as palette } from './Picasso/config/palette'
-export { breakpointValues as breakpoints } from './Picasso/config/breakpoints'
+export {
+  breakpointValues as breakpoints,
+  screens
+} from './Picasso/config/breakpoints'
 
 export { default } from './Picasso'

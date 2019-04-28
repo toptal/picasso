@@ -10,4 +10,17 @@ const page = PicassoBook.createPage(
   'Utils'
 )
 
-page.addExample('utils/Breakpoints/Default.example.jsx', 'Breakpoints')
+page.addExample('utils/Breakpoints/MediaQueries.example.jsx', {
+  title: 'Media queries',
+  description: `
+    Picasso provides a function 'screens' to be able to 
+    easily create media queries based on the given breakpoints
+  `
+})
+page.addExample('utils/Breakpoints/Breakpoints.example.jsx', {
+  title: 'Breakpoints',
+  description: `
+    The list of breakpoint names and pixel-values we use while we design and do layouts
+  `,
+  showEditCode: false
+})

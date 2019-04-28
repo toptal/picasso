@@ -9,5 +9,5 @@ const page = PicassoBook.createPage(
   'Utils'
 )
 
-page.addExample('utils/Colors/Default.example.jsx', 'Colors')
 page.addExample('utils/Colors/HowToUse.example.jsx', 'How to use')
+page.addExample('utils/Colors/Default.example.jsx', 'Colors')
