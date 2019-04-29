@@ -9,5 +9,7 @@ const page = PicassoBook.createPage(
 )
 
 page
-  .addComponentDocs(Paper)
-  .addExample('Paper/story/Default.example.jsx', 'Default')
+  .createTabChapter('Props')
+  .addComponentDocs({ component: Paper, name: 'Paper' })
+
+page.createChapter().addExample('Paper/story/Default.example.jsx', 'Default')

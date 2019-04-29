@@ -5,7 +5,11 @@ import { Checkbox } from '../Checkbox'
 const page = PicassoBook.createPage('Checkbox', null, 'Forms')
 
 page
-  .addComponentDocs(Checkbox)
+  .createTabChapter('Props')
+  .addComponentDocs({ component: Checkbox, name: 'Checkbox' })
+
+page
+  .createChapter()
   .addExample('Checkbox/story/Uncontrolled.example.jsx', {
     title: 'Uncontrolled',
     description: 'Can control its state by itself'

@@ -1,5 +1,7 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
+import gridItemStory from '@components/GridItem/story'
+
 import { Grid } from '../Grid'
 
 const page = PicassoBook.createPage(
@@ -12,6 +14,13 @@ const page = PicassoBook.createPage(
 )
 
 page
-  .addComponentDocs(Grid)
+  .createTabChapter('Props')
+  .addComponentDocs({ component: Grid, name: 'Grid' })
+  .addComponentDocs(gridItemStory.componentDocs)
+
+page
+  .createChapter()
   .addExample('Grid/story/Alignment.example.jsx', 'Alignment')
   .addExample('Grid/story/Direction.example.jsx', 'Direction')
+
+page.connect(gridItemStory.chapter)

@@ -4,9 +4,14 @@ const isMemberExpression = node =>
   node.type === 'CallExpression' && node.callee.type === 'MemberExpression'
 
 const isPageExpression = node =>
-  ['createPage', 'lookupPage'].includes(node.callee.property.name)
+  ['createPage'].includes(node.callee.property.name)
 
 const getPageName = node => node.arguments[0].value
+
+const isChapterExpression = node =>
+  ['createChapter'].includes(node.callee.property.name)
+
+const getChapterName = node => node.arguments[0].value
 
 const isCodeExampleExpression = node =>
   node.callee.property.name === 'addExample'
@@ -39,6 +44,8 @@ module.exports = {
   isMemberExpression,
   isPageExpression,
   getPageName,
+  isChapterExpression,
+  getChapterName,
   isCodeExampleExpression,
   getCodeExampleName,
   isNodeSkipped

@@ -14,7 +14,7 @@ interface Props extends StandardProps {
 
 const currentYear = new Date().getFullYear()
 
-export const Footer: FunctionComponent<Props> = ({
+export const PageFooter: FunctionComponent<Props> = ({
   classes,
   className,
   style,
@@ -42,10 +42,10 @@ export const Footer: FunctionComponent<Props> = ({
   )
 }
 
-Footer.defaultProps = {
+PageFooter.defaultProps = {
   rightContent: null
 }
 
-Footer.displayName = 'Footer'
+PageFooter.displayName = 'PageFooter'
 
-export default withStyles(styles)(Footer)
+export default withStyles(styles)(PageFooter)

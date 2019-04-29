@@ -3,6 +3,7 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 const page = PicassoBook.createPage('Icons')
 
 page
+  .createChapter()
   .addDocs([
     {
       name: 'size',

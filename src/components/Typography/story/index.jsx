@@ -8,7 +8,11 @@ const page = PicassoBook.createPage(
 )
 
 page
-  .addComponentDocs(Typography)
+  .createTabChapter('Props')
+  .addComponentDocs({ component: Typography, name: 'Typography' })
+
+page
+  .createChapter()
   .addExample('Typography/story/Default.example.jsx', 'Normal text')
   .addExample('Typography/story/Headings.example.jsx', 'Headings')
   .addExample('Typography/story/Types.example.jsx', {

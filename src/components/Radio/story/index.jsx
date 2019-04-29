@@ -9,15 +9,21 @@ const page = PicassoBook.createPage(
   'Forms'
 )
 
-page
-  .addComponentDocs(Radio, {
+page.createTabChapter('Props').addComponentDocs({
+  component: Radio,
+  name: 'Radio',
+  additionalDocs: {
     onChange: {
       type: {
         description:
           '(event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void'
       }
     }
-  })
+  }
+})
+
+page
+  .createChapter()
   .addExample('Radio/story/Default.example.jsx', 'Default')
   .addExample('Radio/story/Disabled.example.jsx', 'Disabled')
   .addExample(

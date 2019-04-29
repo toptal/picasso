@@ -19,6 +19,7 @@ const createSnapshotName = name => {
 }
 
 const createHumanName = (component, test) => `${component}:${test}`
+
 const parseHumanName = name => name.split(':')
 
 const asyncGlob = pattern => {

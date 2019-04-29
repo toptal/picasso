@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, ReactNode } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
@@ -6,9 +6,12 @@ import Typography from '../Typography'
 import { StandardProps } from '../Picasso'
 import styles from './styles'
 
-interface Props extends StandardProps {}
+interface Props extends StandardProps {
+  /** Title content */
+  children: ReactNode
+}
 
-const ModalTitle: FunctionComponent<Props> = ({
+export const ModalTitle: FunctionComponent<Props> = ({
   children,
   classes,
   className,
@@ -20,5 +23,7 @@ const ModalTitle: FunctionComponent<Props> = ({
     </Typography>
   </div>
 )
+
+ModalTitle.displayName = 'ModalTitle'
 
 export default withStyles(styles)(ModalTitle)

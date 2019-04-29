@@ -58,6 +58,7 @@ class Storyshots extends JestPuppeteer {
     }
 
     walk(program, node => Storyshots.visitor(node, output, program))
+
     return output
   }
 
@@ -70,10 +71,17 @@ class Storyshots extends JestPuppeteer {
   }
 
   static processAstNode(node, output, program) {
+    // Find main story that creates page
     if (ast.isPageExpression(node)) {
       output.name = ast.getPageName(node)
     }
 
+    // Find sub stories that only create new chapters
+    if (output.name === '' && ast.isChapterExpression(node)) {
+      output.name = ast.getChapterName(node)
+    }
+
+    // Find examples in main and sub stories
     if (ast.isCodeExampleExpression(node)) {
       if (!ast.isNodeSkipped(node, program)) {
         output.tests.push(ast.getCodeExampleName(node))

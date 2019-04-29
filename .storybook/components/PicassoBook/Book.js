@@ -19,18 +19,14 @@ class PicassoBook extends Base {
     const page = new Page({ title, info, section })
     this.collection.push(page)
 
-    return page.createChapter()
+    return page
   }
 
-  lookupPage(title) {
-    const page = this.collection.find(page => page.options.title === title)
-
-    if (!page) {
-      throw new Error(`Couldn't lookup a page '${title}'`)
-    } else {
-      return page
-    }
+  createComponentDocs = (component, name, description, additionalDocs = {}) => {
+    return { component, additionalDocs, name, description }
   }
+
+  connectToPage = connector => page => connector(page)
 
   generate() {
     this.collection.forEach(page => page.generate())

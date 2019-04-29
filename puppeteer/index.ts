@@ -7,14 +7,12 @@ declare var page: Page
 
 const PADDING_AROUND_COMPONENT = 8
 
-async function screenshotDOMElement(kind: string, type: string) {
+async function screenshotDOMElement() {
   const dimensions = await page.evaluate(() => {
     const component = document.querySelector('#root .chapter-container')
 
     if (!component) {
-      throw new Error(
-        `Rendered story ${type} for component ${kind} was not found!`
-      )
+      throw new Error(`Rendered story was not found!`)
     }
     const componentRect: ClientRect = component!.getBoundingClientRect()
 
@@ -50,7 +48,7 @@ export const assertVisuals = function (
     await page.goto(url)
     await page.waitFor(delay || 0)
 
-    const image = await screenshotDOMElement(kind, type)
+    const image = await screenshotDOMElement()
 
     expect(image).toMatchImageSnapshot(_opts)
   }

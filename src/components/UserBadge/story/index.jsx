@@ -8,7 +8,11 @@ const page = PicassoBook.createPage(
 )
 
 page
-  .addComponentDocs(UserBadge)
+  .createTabChapter('Props')
+  .addComponentDocs({ component: UserBadge, name: 'UserBadge' })
+
+page
+  .createChapter()
   .addExample('UserBadge/story/Default.example.jsx', 'Default')
   .addExample('UserBadge/story/Sizes.example.jsx', 'Sizes')
   .addExample('UserBadge/story/Alignment.example.jsx', 'Alignment')

@@ -1,13 +1,16 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, ReactNode } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
 import { StandardProps } from '../Picasso'
 import styles from './styles'
 
-interface Props extends StandardProps {}
+interface Props extends StandardProps {
+  /** Content of Modal */
+  children: ReactNode
+}
 
-const ModalContent: FunctionComponent<Props> = ({
+export const ModalContent: FunctionComponent<Props> = ({
   children,
   classes,
   className,
@@ -17,5 +20,7 @@ const ModalContent: FunctionComponent<Props> = ({
     {children}
   </div>
 )
+
+ModalContent.displayName = 'ModalContent'
 
 export default withStyles(styles)(ModalContent)

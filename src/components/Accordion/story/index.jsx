@@ -7,15 +7,21 @@ const page = PicassoBook.createPage(
   'Accordions store information behind collapsible sections, allowing for more information to be stored in a limited amount of space.'
 )
 
-page
-  .addComponentDocs(Accordion, {
+page.createTabChapter('Props').addComponentDocs({
+  component: Accordion,
+  additionalDocs: {
     onChange: {
       type: {
         name: 'function',
         description: '(event: React.ChangeEvent<{}>, expanded: boolean) => void'
       }
     }
-  })
+  }
+})
+
+page
+  .createChapter()
+
   .addExample('Accordion/story/Default.example.jsx', {
     title: 'Default',
     description:
