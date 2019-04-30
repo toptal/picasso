@@ -27,10 +27,9 @@ const ColorGroup = ({ colors, colorGroupName }) => (
       <Grid.Item key={colorName}>
         <Paper style={{ padding: '1em' }}>
           <ColorRectangle color={color} />
-          <Typography
-            variant='caption'
-            weight='bold'
-          >{`${colorGroupName}.${colorName}`}</Typography>
+          <Typography variant='caption' weight='bold'>
+            {`${colorGroupName}.${colorName}`}
+          </Typography>
           <Typography variant='caption'>{color}</Typography>
         </Paper>
       </Grid.Item>

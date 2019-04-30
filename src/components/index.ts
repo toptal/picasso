@@ -27,7 +27,7 @@ export { default as Stepper } from './Stepper'
 
 export { colors as palette } from './Picasso/config/palette'
 export {
-  breakpointValues as breakpoints,
+  breakpointsList as breakpoints,
   screens
 } from './Picasso/config/breakpoints'
 

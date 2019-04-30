@@ -118,6 +118,12 @@
         "import/no-named-default": "off",
         "no-console": "off"
       }
+    },
+    {
+      "files": ["src/components/**/*.tsx"],
+      "rules": {
+        "no-restricted-imports": ["error", "styled-components"]
+      }
     }
   ]
 }

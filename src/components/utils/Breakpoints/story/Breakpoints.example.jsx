@@ -13,11 +13,11 @@ const breakpointsList = Object.entries(breakpoints)
 const BreakpointsExample = () => (
   <Grid spacing={16}>
     {breakpointsList.map(([breakpointName, breakpointValue], index) => {
-      const nextBreakpoint = breakpointsList[index + 1]
-      let nextBreakpointValue
+      const prevBreakpoint = breakpointsList[index - 1]
+      let prevBreakpointValue
 
-      if (nextBreakpoint) {
-        nextBreakpointValue = nextBreakpoint[1]
+      if (prevBreakpoint) {
+        prevBreakpointValue = prevBreakpoint[1]
       }
 
       const isSmallestBreakpoint = index === 0
@@ -31,11 +31,11 @@ const BreakpointsExample = () => (
                 {breakpointName}
               </Typography>
               <Typography variant='caption'>
-                {isSmallestBreakpoint && `< ${nextBreakpointValue} px`}
-                {isLargestBreakpoint && `> ${breakpointValue} px`}
+                {isSmallestBreakpoint && `< ${breakpointValue} px`}
+                {isLargestBreakpoint && `> ${prevBreakpointValue} px`}
                 {!isSmallestBreakpoint &&
                   !isLargestBreakpoint &&
-                  `${breakpointValue} px < ... < ${nextBreakpointValue} px`}
+                  `${prevBreakpointValue} px < ... < ${breakpointValue} px`}
               </Typography>
               <Container top={1}>
                 <Image

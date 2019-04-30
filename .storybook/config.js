@@ -35,14 +35,9 @@ DECORATORS.forEach(decorator => addDecorator(decorator))
 ADDONS.forEach(addon => setAddon(addon))
 
 const req = require.context('@components', true, /story\/index.jsx$/)
-const reqStories = require.context(
-  '~/.storybook/stories',
-  true,
-  /Picasso.tsx|index.tsx$/
-)
 
 const loadStories = () => {
-  reqStories.keys().forEach(filename => reqStories(filename))
+  require('./stories/Picasso') // markdown pages for README & CHANGELOG
   req.keys().forEach(filename => req(filename))
   PicassoBook.generate()
 }

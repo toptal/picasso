@@ -1,4 +1,4 @@
-import PicassoBook from '../../../components/PicassoBook'
+import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.createPage(
   'Breakpoints',
@@ -10,14 +10,14 @@ const page = PicassoBook.createPage(
   'Utils'
 )
 
-page.addExample('utils/Breakpoints/MediaQueries.example.jsx', {
+page.addExample('utils/Breakpoints/story/MediaQueries.example.jsx', {
   title: 'Media queries',
   description: `
     Picasso provides a function 'screens' to be able to 
     easily create media queries based on the given breakpoints
   `
 })
-page.addExample('utils/Breakpoints/Breakpoints.example.jsx', {
+page.addExample('utils/Breakpoints/story/Breakpoints.example.jsx', {
   title: 'Breakpoints',
   description: `
     The list of breakpoint names and pixel-values we use while we design and do layouts

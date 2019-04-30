@@ -2,6 +2,7 @@ declare var TEST_ENV: string // defined by ENV
 
 import _ from 'lodash'
 import React, { ReactNode, Component } from 'react'
+import styled from 'styled-components'
 import { withStyles } from '@material-ui/core/styles'
 import IconCode from '@material-ui/icons/Code'
 import IconLink from '@material-ui/icons/Link'
@@ -29,6 +30,7 @@ const imports: {
   [key: string]: object
 } = {
   react: React,
+  'styled-components': styled,
   '@toptal/picasso': require('@components'),
   '@toptal/picasso/Icons': require('@components/Icon')
 }
@@ -55,11 +57,7 @@ class CodeExample extends Component<Props> {
 
   getOriginalSourceCode = () => {
     const { src } = this.props
-    try {
-      return require(`!raw-loader!@components/${src}`).default
-    } catch (e) {
-      return require(`!raw-loader!~/.storybook/stories/${src}`).default
-    }
+    return require(`!raw-loader!@components/${src}`).default
   }
 
   /* This function is needed to avoid memoization of the source code
