@@ -62,6 +62,12 @@ pipeline {
       } //steps
     }//stage
 
+    stage('Check build') {
+      steps {
+        sh 'yarn build:dist'
+      } //steps
+    }//stage
+
     stage('Deploy documentation') {
       steps {
         info "== Deploying docs"

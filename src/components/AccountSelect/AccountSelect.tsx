@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import palette from '@components/Picasso/config/palette'
 
+import palette from '../Picasso/config/palette'
 import UserBadge from '../UserBadge'
 import Typography from '../Typography'
 import Paper from '../Paper'
