@@ -2,11 +2,8 @@
   "name": "@toptal/picasso",
   "version": "0.1.0",
   "description": "",
-  "main": "build/index.js",
-  "module": "build/index.js",
-  "files": [
-    "build"
-  ],
+  "main": "index.js",
+  "module": "index.js",
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watchAll",
@@ -16,7 +13,7 @@
     "storybook": "start-storybook -p 9001 -s ./.storybook/public -c .storybook",
     "storybook:cache": "CACHE=1 start-storybook -p 9001 -s ./.storybook/public -c .storybook",
     "build:storybook": "build-storybook -s ./.storybook/public -c .storybook -o build/storybook",
-    "release": "semantic-release",
+    "release": "./bin/release",
     "build:dist": "cross-env NODE_ENV=production ./bin/build",
     "build": "yarn run generate:icons && yarn build:dist",
     "build:watch": "cross-env ./bin/build --watch",
@@ -25,7 +22,7 @@
     "generate:component": "hygen component new",
     "generate:example": "hygen component example",
     "generate:icons": "./bin/generate-icons",
-    "cm": "git-cz"
+    "commit": "git-cz"
   },
   "repository": {
     "type": "git",

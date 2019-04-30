@@ -1,12 +1,6 @@
 import React from 'react'
-import {
-  breakpoints,
-  Grid,
-  Paper,
-  Image,
-  Typography,
-  Container
-} from '@toptal/picasso'
+import { breakpoints } from '@toptal/picasso/utils'
+import { Grid, Paper, Image, Typography, Container } from '@toptal/picasso'
 
 const breakpointsList = Object.entries(breakpoints)
 

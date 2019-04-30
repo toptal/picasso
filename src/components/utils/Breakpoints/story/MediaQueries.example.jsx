@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { screens, palette } from '@toptal/picasso'
+import { screens, palette } from '@toptal/picasso/utils'
 
 const Box = ({ className }) => (
   <div className={className}>

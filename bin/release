@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+cp ./package.json ./build/package.json
+cd ./build
+../node_modules/.bin/semantic-release
