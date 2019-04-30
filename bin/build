@@ -5,13 +5,29 @@ const fs = require('fs-extra')
 const path = require('path')
 const chalk = require('chalk')
 const yargs = require('yargs').argv
-const rimraf = require('rimraf').sync
+const sh = require('shelljs')
 const exec = require('child_process').execSync
 
 const config = require(`../tsconfig.json`)
 const packageJson = require(path.resolve(__dirname, '../package.json'))
 const tscPath = path.resolve(__dirname, '../node_modules/.bin/tsc')
 
+const safeExec = (cmd) => {
+  try {
+    exec(cmd, 
+      { stdio: [process.stdin, process.stdout, process.stderr] }, 
+      (error, stdout, stderr) => {
+      if (error) {
+        process.exit(1)
+      } else {
+        return stdout
+      }
+    })
+  } catch(e) {
+    console.error(e.message)
+    process.exit(1)
+  }
+}
 // General logging
 const log = function(text, color) {
   if (!color) color = 'blue'
@@ -26,13 +42,13 @@ const compile = function(config) {
   function build() {
     const cmd = `${tscPath} -p tsconfig.json ${args.join(' ')}`
 
-    exec(cmd)
+    safeExec(cmd)
     log(`Build ready in: ${config.compilerOptions.outDir}`, 'green')
   }
 
   function clean() {
     log(`Removing: ${config.compilerOptions.outDir}`, 'green')
-    rimraf(config.compilerOptions.outDir)
+    sh.rm('-rf', config.compilerOptions.outDir)
   }
 
   clean()

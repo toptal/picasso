@@ -30,24 +30,26 @@ const accounts = [
 ]
 
 const AccountSelectPageExample = () => (
-  <Page.Content>
-    <Grid justify='center'>
-      <Grid.Item small={5}>
-        <Container flex direction='column' alignItems='center'>
-          <Logo emblem />
-          <Typography weight='semibold' variant='h1'>
-            Select an Account
-          </Typography>
-        </Container>
-        <Container top={2}>
-          <AccountSelect
-            accounts={accounts}
-            onSelect={account => console.log(account)}
-          />
-        </Container>
-      </Grid.Item>
-    </Grid>
-  </Page.Content>
+  <Page>
+    <Page.Content>
+      <Grid justify='center'>
+        <Grid.Item small={5}>
+          <Container flex direction='column' alignItems='center'>
+            <Logo emblem />
+            <Typography weight='semibold' variant='h1'>
+              Select an Account
+            </Typography>
+          </Container>
+          <Container top={2}>
+            <AccountSelect
+              accounts={accounts}
+              onSelect={account => console.log(account)}
+            />
+          </Container>
+        </Grid.Item>
+      </Grid>
+    </Page.Content>
+  </Page>
 )
 
 export default AccountSelectPageExample
