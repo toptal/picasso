@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
 cp ./package.json ./build/package.json
+cp ./.npmrc ./build/.npmrc
 cd ./build
 ../node_modules/.bin/semantic-release
