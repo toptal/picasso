@@ -2,13 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { screens, palette } from '@toptal/picasso/utils'
 
-const Box = ({ className }) => (
-  <div className={className}>
-    Box will become blue on small and medium screen sizes
-  </div>
-)
-
-const StyledBox = styled(Box)`
+const StyledBox = styled.div`
   background-color: ${palette.success.main};
   padding: 2em;
 
@@ -17,4 +11,8 @@ const StyledBox = styled(Box)`
   }
 `
 
-export default StyledBox
+const MediaQueriesExample = () => (
+  <StyledBox>Box will become blue on small and medium screen sizes</StyledBox>
+)
+
+export default MediaQueriesExample
