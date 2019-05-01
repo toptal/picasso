@@ -13,6 +13,8 @@ interface Props extends StandardProps {
    * If anchor specified it automatically displaying the menu.
    */
   anchor?: null | HTMLElement
+  /** Min width of the menu */
+  minWidth: number
   /** Callback fired when the component requests to be closed */
   onClose: () => void
   /** Whether menu should be displayed */
@@ -26,11 +28,21 @@ interface StaticProps {
 export const Menu: FunctionComponent<Props> & StaticProps = ({
   anchor,
   children,
+  minWidth,
   onClose,
   open
 }) => {
   return (
-    <MUIMenu anchorEl={anchor} onClose={onClose} open={open || !!anchor}>
+    <MUIMenu
+      anchorEl={anchor}
+      onClose={onClose}
+      open={open || !!anchor}
+      PaperProps={{
+        style: {
+          minWidth
+        }
+      }}
+    >
       {children}
     </MUIMenu>
   )
