@@ -33,10 +33,8 @@ export const Menu: FunctionComponent<Props> & StaticProps = ({
   onClose,
   open
 }) => {
-  const MenuComponent = onClose ? MUIMenu : MUIMenuList
-
-  return (
-    <MenuComponent
+  return onClose ? (
+    <MUIMenu
       anchorEl={anchor}
       onClose={onClose}
       open={open || !!anchor}
@@ -47,7 +45,9 @@ export const Menu: FunctionComponent<Props> & StaticProps = ({
       }}
     >
       {children}
-    </MenuComponent>
+    </MUIMenu>
+  ) : (
+    <MUIMenuList>{children}</MUIMenuList>
   )
 }
 

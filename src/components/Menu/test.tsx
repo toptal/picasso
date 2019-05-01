@@ -17,12 +17,17 @@ afterEach(cleanup)
 
 describe('Menu', () => {
   test('default render', () => {
-    const { container } = renderMenu({})
+    const { container } = renderMenu({ onClose: () => {} })
 
     expect(container).toMatchSnapshot()
   })
   test('open state render', () => {
-    const { container } = renderMenu({ open: true })
+    const { container } = renderMenu({ open: true, onClose: () => {} })
+
+    expect(container).toMatchSnapshot()
+  })
+  test('list variant render', () => {
+    const { container } = renderMenu({ onClose: null })
 
     expect(container).toMatchSnapshot()
   })

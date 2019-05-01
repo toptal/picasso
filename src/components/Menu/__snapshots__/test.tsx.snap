@@ -2,6 +2,46 @@
 
 exports[`Menu default render 1`] = `<div />`;
 
+exports[`Menu list variant render 1`] = `
+<div>
+  <ul
+    class="MuiList-root MuiList-padding"
+    role="menu"
+  >
+    <li
+      class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
+      role="menuitem"
+      tabindex="-1"
+    >
+      Item 1
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </li>
+    <li
+      class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
+      role="menuitem"
+      tabindex="-1"
+    >
+      Item 2
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </li>
+    <li
+      class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
+      role="menuitem"
+      tabindex="-1"
+    >
+      Item 3
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </li>
+  </ul>
+</div>
+`;
+
 exports[`Menu open state render 1`] = `
 <div
   aria-hidden="true"
