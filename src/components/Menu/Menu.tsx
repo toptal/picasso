@@ -14,11 +14,11 @@ interface Props extends StandardProps {
    */
   anchor?: null | HTMLElement
   /** Min width of the menu */
-  minWidth: number
+  minWidth?: number
   /** Callback fired when the component requests to be closed */
-  onClose: () => void
+  onClose?: () => void
   /** Whether menu should be displayed */
-  open: boolean
+  open?: boolean
 }
 
 interface StaticProps {
@@ -49,6 +49,7 @@ export const Menu: FunctionComponent<Props> & StaticProps = ({
 }
 
 Menu.defaultProps = {
+  onClose: () => {},
   open: false
 }
 
