@@ -2,10 +2,11 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 
 import { PicassoProvider } from '../Picasso'
 
-PicassoProvider.override(({ palette }: Theme) => ({
-  MuiList: {
-    root: {
-      border: `solid 1px ${palette.primary.main}`
+PicassoProvider.override(({ shadows }: Theme) => ({
+  MuiMenu: {
+    paper: {
+      boxShadow: shadows[2],
+      fontSize: '0.8125em'
     }
   }
 }))

@@ -5,15 +5,11 @@ import { PicassoProvider } from '../Picasso'
 PicassoProvider.override(({ palette }: Theme) => ({
   MuiMenuItem: {
     root: {
-      borderTop: `1px solid ${palette.grey[50]}`,
-      lineHeight: '1em',
-      padding: '0.7em',
-      height: 'auto',
+      boxSizing: 'border-box',
+      height: '2.25rem',
+      lineHeight: '1rem',
+      padding: '0.625rem',
       fontSize: 'inherit',
-
-      '&:first-child': {
-        borderTop: 'none'
-      },
 
       '&:hover': {
         backgroundColor: palette.blue.lighter,
@@ -27,8 +23,17 @@ PicassoProvider.override(({ palette }: Theme) => ({
       '&$selected': {
         backgroundColor: palette.blue.lighter,
         color: palette.primary.main
+      },
+
+      '&:focus': {
+        backgroundColor: palette.blue.lighter,
+        color: palette.primary.main
       }
     },
-    selected: {}
+    selected: {},
+    gutters: {
+      paddingLeft: '0.625rem',
+      paddingRight: '0.625rem'
+    }
   }
 }))

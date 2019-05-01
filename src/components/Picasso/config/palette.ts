@@ -37,7 +37,7 @@ export const colors = {
     500: '#262D3D'
   },
   blue: {
-    lighter: 'rgba(32,78,207,.05)',
+    lighter: '#eef1fc',
     light: '#dbe3f9'
   },
   error: {

@@ -6,7 +6,6 @@ import '../InputLabel/styles'
 import '../InputBase/styles'
 import '../OutlinedInput/styles'
 import '../MenuItem/styles'
-import '../List/styles'
 
 PicassoProvider.override(() => ({
   MuiSelect: {

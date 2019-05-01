@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Menu default render 1`] = `<div />`;
+
+exports[`Menu open state render 1`] = `
+<div
+  aria-hidden="true"
+/>
+`;
