@@ -1,8 +1,8 @@
 import React from 'react'
 import { render, cleanup, RenderResult } from 'react-testing-library'
-import Button from '@components/Button'
-import Picasso from '@components/Picasso'
 
+import Button from '../../Button'
+import Picasso from '../../Picasso'
 import withClasses from './withClasses'
 
 const TestComponent = (props: any) => {

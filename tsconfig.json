@@ -17,10 +17,6 @@
     "baseUrl": ".",
     "typeRoots": ["node_modules/@types", "@types"],
     "paths": {
-      "~/*": ["*"],
-      "@/*": ["src/*"],
-      "@components/*": ["src/components/*"],
-      "@components": ["src/components/index"],
       "*": ["@types/*"]
     }
   },
