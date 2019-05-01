@@ -5,6 +5,7 @@ import '../FormControl/styles'
 import '../InputLabel/styles'
 import '../InputBase/styles'
 import '../OutlinedInput/styles'
+import '../Menu/styles'
 import '../MenuItem/styles'
 
 PicassoProvider.override(() => ({

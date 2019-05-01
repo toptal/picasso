@@ -11,3 +11,4 @@ page
   .addComponentDocs(Menu)
   .addExample('Menu/story/Default.example.jsx', 'Default')
   .addExample('Menu/story/FullAnchorWidth.example.jsx', "Full anchor's width")
+  .addExample('Menu/story/List.example.jsx', 'List')

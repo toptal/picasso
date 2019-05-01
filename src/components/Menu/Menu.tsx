@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import MUIMenu from '@material-ui/core/Menu'
+import MUIMenuList from '@material-ui/core/MenuList'
 import { withStyles } from '@material-ui/core/styles'
 import { Overwrite } from '@material-ui/core'
 
@@ -32,8 +33,10 @@ export const Menu: FunctionComponent<Props> & StaticProps = ({
   onClose,
   open
 }) => {
+  const MenuComponent = onClose ? MUIMenu : MUIMenuList
+
   return (
-    <MUIMenu
+    <MenuComponent
       anchorEl={anchor}
       onClose={onClose}
       open={open || !!anchor}
@@ -44,12 +47,11 @@ export const Menu: FunctionComponent<Props> & StaticProps = ({
       }}
     >
       {children}
-    </MUIMenu>
+    </MenuComponent>
   )
 }
 
 Menu.defaultProps = {
-  onClose: () => {},
   open: false
 }
 

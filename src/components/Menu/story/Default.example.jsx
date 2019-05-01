@@ -18,9 +18,9 @@ const MenuDefaultExample = () => {
         Open menu
       </Button>
       <Menu anchor={anchor} onClose={handleClose}>
-        <Menu.Item onClick={handleClose}>Javascript</Menu.Item>
-        <Menu.Item onClick={handleClose}>ReactJS</Menu.Item>
-        <Menu.Item onClick={handleClose}>EmberJS</Menu.Item>
+        <Menu.Item onClick={handleClose}>First item</Menu.Item>
+        <Menu.Item onClick={handleClose}>Second item</Menu.Item>
+        <Menu.Item onClick={handleClose}>Third item</Menu.Item>
       </Menu>
     </div>
   )
