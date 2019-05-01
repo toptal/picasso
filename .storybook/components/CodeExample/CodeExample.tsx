@@ -2,6 +2,7 @@ declare var TEST_ENV: string // defined by ENV
 
 import _ from 'lodash'
 import React, { ReactNode, Component } from 'react'
+import styled from 'styled-components'
 import { withStyles } from '@material-ui/core/styles'
 import IconCode from '@material-ui/icons/Code'
 import IconLink from '@material-ui/icons/Link'
@@ -22,24 +23,32 @@ interface Props {
   classes: Classes
   permanentLink: string
   src: string
+  showEditCode?: boolean
 }
 
 const imports: {
   [key: string]: object
 } = {
   react: React,
+  'styled-components': styled,
   '@toptal/picasso': require('@components'),
+  '@toptal/picasso/utils': require('@components/utils'),
   '@toptal/picasso/Icons': require('@components/Icon')
 }
 
 const resolver = (path: string) => imports[path]
 
 class CodeExample extends Component<Props> {
+  static defaultProps = {
+    showEditCode: true
+  }
+
   state = {
     sourceCode: '',
     isEditorVisible: false,
     copyLinkButtonText: COPY_LINK_DEFAULT_TEXT
   }
+
   copyLinkButtonRef = React.createRef<HTMLElement>()
 
   componentDidMount() {
@@ -85,7 +94,7 @@ class CodeExample extends Component<Props> {
   }, 400)
 
   render() {
-    const { classes } = this.props
+    const { classes, showEditCode } = this.props
     const { sourceCode, isEditorVisible, copyLinkButtonText } = this.state
 
     /* When we are building storybook for visual tests we want to have
@@ -156,14 +165,16 @@ class CodeExample extends Component<Props> {
               </SourceRender.Consumer>
             </Container>
             <div className={classes.buttons}>
-              <Button
-                variant='basic'
-                size='small'
-                icon={<IconCode />}
-                onClick={this.handleShowEditor}
-              >
-                Edit code
-              </Button>
+              {showEditCode && (
+                <Button
+                  variant='basic'
+                  size='small'
+                  icon={<IconCode />}
+                  onClick={this.handleShowEditor}
+                >
+                  Edit code
+                </Button>
+              )}
               <Button
                 variant='basic'
                 size='small'

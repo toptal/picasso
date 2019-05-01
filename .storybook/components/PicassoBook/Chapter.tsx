@@ -115,7 +115,11 @@ class Chapter extends Base {
           style={{ display: TEST_ENV === 'visual' ? 'inline-block' : 'block' }}
           id={sectionLinkId}
         >
-          <CodeExample src={source} permanentLink={permanentLink} />
+          <CodeExample
+            src={source}
+            permanentLink={permanentLink}
+            showEditCode={finalOptions.showEditCode}
+          />
         </div>
       </Fragment>
     )

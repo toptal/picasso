@@ -25,4 +25,11 @@ const breakpoints: Partial<Breakpoints> = {
   }
 }
 
+export const breakpointsList = {
+  small: breakpoints.values!.sm,
+  medium: breakpoints.values!.md,
+  large: breakpoints.values!.lg,
+  'extra-large': breakpoints.values!.xl
+}
+
 export default breakpoints
