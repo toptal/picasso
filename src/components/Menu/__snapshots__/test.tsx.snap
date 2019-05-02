@@ -1,8 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Menu default render 1`] = `<div />`;
-
-exports[`Menu list variant render 1`] = `
+exports[`Menu default render 1`] = `
 <div>
   <ul
     class="MuiList-root MuiList-padding"
@@ -40,10 +38,4 @@ exports[`Menu list variant render 1`] = `
     </li>
   </ul>
 </div>
-`;
-
-exports[`Menu open state render 1`] = `
-<div
-  aria-hidden="true"
-/>
 `;
