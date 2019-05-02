@@ -9,8 +9,10 @@ const page = PicassoBook.createPage(
   'Forms'
 )
 
-page
-  .addComponentDocs(Select, {
+page.createTabChapter('Props').addComponentDocs({
+  component: Select,
+  name: 'Select',
+  additionalDocs: {
     options: {
       type: {
         description: '{ value: string, text: string }: Option'
@@ -28,7 +30,11 @@ page
           "Please note that the usage of placeholder is exclusive and can't be used when label is specified"
       }
     }
-  })
+  }
+})
+
+page
+  .createChapter()
   .addExample('Select/story/Default.example.jsx', 'Default')
   .addExample('Select/story/Types.example.jsx', 'Types')
   .addExample('Select/story/WithLabel.example.jsx', 'With label')

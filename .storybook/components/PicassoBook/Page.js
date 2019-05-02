@@ -1,7 +1,9 @@
 import { storiesOf } from '@storybook/react'
+import { isFunction } from 'lodash'
 
 import Base from './Base'
 import Chapter from './Chapter'
+import TabChapter from './TabChapter'
 
 const COMPONENTS_SECTION = 'Components'
 
@@ -39,6 +41,15 @@ class Page extends Base {
     return chapter
   }
 
+  createTabChapter = (title, info, options = {}) => {
+    const chapter = new TabChapter({ title, info, page: this, ...options })
+    this.collection.push(chapter)
+
+    return chapter
+  }
+
+  connect = toPage => toPage(this)
+
   toStoryBook() {
     return {
       ...this.options,
@@ -67,9 +78,12 @@ class Page extends Base {
 
   generateVisualStories() {
     const page = this.toStoryBook()
-    const stories = storiesOf(page.title, module)
 
     page.chapters.forEach(chapter => {
+      // Support for sub-stories of child components
+      const storyName = chapter.title || page.title
+
+      const stories = storiesOf(storyName, module)
       chapter.sections.forEach(section => {
         stories.add(section.title, section.sectionFn)
       })

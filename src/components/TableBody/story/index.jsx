@@ -2,6 +2,12 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 import { TableBody } from '../TableBody'
 
-PicassoBook.lookupPage('Table')
-  .createChapter('Table.Body', 'Table Body')
-  .addComponentDocs(TableBody)
+const componentDocs = PicassoBook.createComponentDocs(
+  TableBody,
+  'Table.Body',
+  'Table Body component'
+)
+
+export default {
+  componentDocs
+}

@@ -10,6 +10,10 @@ const page = PicassoBook.createPage(
 )
 
 page
-  .addComponentDocs(Timesheets)
+  .createTabChapter('Props')
+  .addComponentDocs({ component: Timesheets, name: 'Timesheets' })
+
+page
+  .createChapter()
   .addExample('Timesheets/story/Default.example.jsx', 'Default')
   .addExample('Timesheets/story/ShowMore.example.jsx', 'Show more')

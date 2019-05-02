@@ -3,8 +3,8 @@ import { Overwrite } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
-import Header from '../Header'
-import Footer from '../Footer'
+import PageHeader from '../PageHeader'
+import PageFooter from '../PageFooter'
 import PageContent from '../PageContent'
 import { StandardProps, JssProps } from '../Picasso'
 import { PageContextProps } from './types'
@@ -22,9 +22,9 @@ interface Props extends StandardProps {
 }
 
 interface StaticProps {
-  Header: typeof Header
+  Header: typeof PageHeader
   Content: typeof PageContent
-  Footer: typeof Footer
+  Footer: typeof PageFooter
 }
 
 export const PageContext = React.createContext<PageContextProps>(
@@ -51,11 +51,11 @@ Page.defaultProps = {
 
 Page.displayName = 'Page'
 
-Page.Header = Header
+Page.Header = PageHeader
 
 Page.Content = PageContent
 
-Page.Footer = Footer
+Page.Footer = PageFooter
 
 export default withStyles(styles)(Page) as FunctionComponent<
   Overwrite<Props, Partial<JssProps>>

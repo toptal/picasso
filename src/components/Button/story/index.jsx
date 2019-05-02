@@ -1,5 +1,7 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
+import buttonGroupStory from '@components/ButtonGroup/story'
+
 import { Button } from '../Button'
 
 const page = PicassoBook.createPage(
@@ -8,11 +10,20 @@ const page = PicassoBook.createPage(
 )
 
 page
-  .addComponentDocs(Button, {
-    icon: {
-      type: 'ReactElement'
-    }
+  .createTabChapter('Props')
+  .addComponentDocs({
+    component: Button,
+    additionalDocs: {
+      icon: {
+        type: 'ReactElement'
+      }
+    },
+    name: 'Button'
   })
+  .addComponentDocs(buttonGroupStory.componentDocs)
+
+page
+  .createChapter()
   .addExample('Button/story/Basic.example.jsx', 'Basic')
   .addExample('Button/story/Variants.example.jsx', 'Variants')
   .addExample('Button/story/States.example.jsx', 'States')
@@ -28,3 +39,5 @@ page
     'Button with text and Icon'
   )
   .addExample('Button/story/Loading.example.jsx', 'Button with loading state')
+
+page.connect(buttonGroupStory.chapter)

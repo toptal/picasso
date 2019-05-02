@@ -8,7 +8,11 @@ const page = PicassoBook.createPage(
 )
 
 page
-  .addComponentDocs(Loader)
+  .createTabChapter('Props')
+  .addComponentDocs({ component: Loader, name: 'Loader' })
+
+page
+  .createChapter()
   .addExample('Loader/story/Default.example.jsx', 'Default')
   .addExample('Loader/story/WithLabel.example.jsx', 'With label')
   .addExample('Loader/story/Inline.example.jsx', 'With inline content')

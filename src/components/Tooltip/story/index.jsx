@@ -8,8 +8,10 @@ const page = PicassoBook.createPage(
   'Overlays'
 )
 
-page
-  .addComponentDocs(Tooltip, {
+page.createTabChapter('Props').addComponentDocs({
+  component: Tooltip,
+  name: 'Timesheets',
+  additionalDocs: {
     placement: {
       type: 'enum',
       enums: ['bottom', 'left', 'right', 'top']
@@ -18,7 +20,11 @@ page
       type: 'enum',
       enums: ['light', 'dark']
     }
-  })
+  }
+})
+
+page
+  .createChapter()
   .addExample('Tooltip/story/Default.example.jsx', 'Default')
   .addExample('Tooltip/story/Placement.example.jsx', 'Placement')
   .addExample('Tooltip/story/Arrow.example.jsx', 'Arrow')

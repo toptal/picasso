@@ -15,8 +15,8 @@ export default () =>
       flex: 1
     },
     buttons: {
-      top: '-2.25rem',
-      right: '0',
+      top: '-.75rem',
+      right: '-1rem',
       position: 'absolute'
     },
     editor: {

@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
+
+import { Paper } from '@components'
 
 import Base from './Base'
 
-const decorator = story => (
-  <div className="component-section-container">{story()}</div>
+const decorator = (story: any) => (
+  <Paper className='component-section-container'>{story()}</Paper>
 )
 
 const DEFAULT_OPTIONS = {
@@ -14,18 +16,18 @@ const DEFAULT_OPTIONS = {
   decorator
 }
 
+export interface SectionConfigType {
+  title?: string
+  subtitle?: string
+  info?: string
+  options?: any
+  sectionFn: () => ReactNode
+}
+
 class Section extends Base {
   type = 'Section'
 
-  constructor(
-    config = {
-      title: null,
-      subtitle: null,
-      info: null,
-      options: {},
-      sectionFn: () => {}
-    }
-  ) {
+  constructor(config: SectionConfigType) {
     super({
       ...config,
       options: {

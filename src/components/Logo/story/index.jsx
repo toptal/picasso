@@ -13,7 +13,11 @@ const page = PicassoBook.createPage(
 )
 
 page
-  .addComponentDocs(Logo)
+  .createTabChapter('Props')
+  .addComponentDocs({ component: Logo, name: 'Logo' })
+
+page
+  .createChapter()
   .addExample('Logo/story/Default.example.jsx', 'Default')
   .addExample('Logo/story/Emblem.example.jsx', 'Emblem')
   .addExample('Logo/story/Variants.example.jsx', 'Variants')

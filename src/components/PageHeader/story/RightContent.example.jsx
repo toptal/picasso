@@ -1,7 +1,7 @@
 import React from 'react'
 import { Page, Select } from '@toptal/picasso'
 
-const HeaderRightContentExample = () => (
+const PageHeaderRightContentExample = () => (
   <div>
     <Page.Header rightContent={<RightContent />} title='Onboarding' />
   </div>
@@ -25,4 +25,4 @@ const OPTIONS = [
   { value: '2', text: 'Log Out' }
 ]
 
-export default HeaderRightContentExample
+export default PageHeaderRightContentExample

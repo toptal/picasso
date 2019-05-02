@@ -1,10 +1,10 @@
 import React from 'react'
 import { Page } from '@toptal/picasso'
 
-const HeaderDefaultExample = () => (
+const PageHeaderDefaultExample = () => (
   <div>
     <Page.Header title='Onboarding' />
   </div>
 )
 
-export default HeaderDefaultExample
+export default PageHeaderDefaultExample

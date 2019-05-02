@@ -1,6 +1,7 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-import { Form } from '../Form'
+import formFieldStory from '@components/FormField/story'
+import formHintStory from '@components/FormHint/story'
 
 const page = PicassoBook.createPage(
   'Form',
@@ -8,4 +9,10 @@ const page = PicassoBook.createPage(
   'Forms'
 )
 
-page.addComponentDocs(Form)
+page
+  .createTabChapter('Props')
+  .addComponentDocs(formFieldStory.componentDocs)
+  .addComponentDocs(formHintStory.componentDocs)
+
+page.connect(formFieldStory.chapter)
+page.connect(formHintStory.chapter)

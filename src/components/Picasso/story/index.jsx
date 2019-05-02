@@ -17,5 +17,7 @@ const page = PicassoBook.createPage(
 )
 
 page
-  .addComponentDocs(Picasso)
-  .addExample('Picasso/story/Default.example.jsx', 'Default')
+  .createTabChapter('Props')
+  .addComponentDocs({ component: Picasso, name: 'Picasso' })
+
+page.createChapter().addExample('Picasso/story/Default.example.jsx', 'Default')

@@ -16,8 +16,16 @@ import CodeExample from '../CodeExample'
 import Page from './Page'
 
 import PropsTable from './components/PropsTable'
+import TabsSection from './components/TabsSection'
 
-const componentDocumentation = new DocumentationGenerator()
+const documentationGenerator = new DocumentationGenerator()
+
+export interface ComponentDocumentation {
+  component: Documentable
+  additionalDocs?: PropDocumentationMap
+  name?: string
+  description?: string
+}
 
 export interface ChapterOptions {
   title: string
@@ -35,8 +43,8 @@ class Chapter extends Base {
     this.page = options.page
   }
 
-  createSection = (options: any) => {
-    const section = new Section(options)
+  createSection = (config: any) => {
+    const section = new Section(config)
     this.collection.push(section)
 
     return section
@@ -56,37 +64,43 @@ class Chapter extends Base {
     return this
   }
 
-  addComponentDocs = (
-    Component: Documentable,
-    customDocs: PropDocumentationMap = {} as PropDocumentationMap
-  ) => {
+  addComponentDocs = (componentDocumentation: ComponentDocumentation) => {
     if (TEST_ENV === 'visual') {
       return this
     }
 
-    if (!Component.__docgenInfo && !customDocs) {
+    const {
+      component,
+      name,
+      description,
+      additionalDocs
+    } = componentDocumentation
+
+    if (!component.__docgenInfo && !additionalDocs) {
       return this
     }
 
-    if (!Component.__docgenInfo) {
+    if (!component.__docgenInfo) {
       throw new Error(
-        `Failed to parse __docgenInfo for '${Component.displayName}'`
+        `Failed to parse __docgenInfo for '${component.displayName}'`
       )
     }
 
-    const generatedDocumentation = componentDocumentation.transform(
-      Component.__docgenInfo
+    const generatedDocumentation = documentationGenerator.transform(
+      component.__docgenInfo
     )
 
-    const documentation = componentDocumentation.merge(
+    const documentation = documentationGenerator.merge(
       generatedDocumentation,
-      customDocs
+      additionalDocs!
     )
 
     const render = () => <PropsTable documentation={toArray(documentation)} />
 
     this.createSection({
-      sectionFn: render
+      sectionFn: render,
+      title: name,
+      subtitle: description
     })
 
     return this
@@ -108,6 +122,7 @@ class Chapter extends Base {
       type: this.page.title,
       section: finalOptions.title
     })
+
     const render = () => (
       <Fragment>
         <div

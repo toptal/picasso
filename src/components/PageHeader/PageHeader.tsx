@@ -15,7 +15,7 @@ interface Props extends StandardProps {
   rightContent?: ReactNode
 }
 
-export const Header: FunctionComponent<Props> = ({
+export const PageHeader: FunctionComponent<Props> = ({
   classes,
   className,
   style,
@@ -52,6 +52,6 @@ export const Header: FunctionComponent<Props> = ({
   )
 }
 
-Header.displayName = 'Header'
+PageHeader.displayName = 'PageHeader'
 
-export default withStyles(styles)(Header)
+export default withStyles(styles)(PageHeader)

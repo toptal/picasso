@@ -15,7 +15,11 @@ const page = PicassoBook.createPage(
 )
 
 page
-  .addComponentDocs(Avatar)
+  .createTabChapter('Props')
+  .addComponentDocs({ component: Avatar, name: 'Avatar' })
+
+page
+  .createChapter()
   .addExample('Avatar/story/Default.example.jsx', 'Default')
   .addExample('Avatar/story/Variants.example.jsx', 'Variants')
   .addExample('Avatar/story/Sizes.example.jsx', 'Sizes')

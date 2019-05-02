@@ -1,5 +1,7 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
+import labelGroupStory from '@components/LabelGroup/story'
+
 import { Label } from '../Label'
 
 const page = PicassoBook.createPage(
@@ -11,13 +13,22 @@ const page = PicassoBook.createPage(
 )
 
 page
-  .addComponentDocs(Label, {
-    onDelete: {
-      type: {
-        description: '(event: any) => void | undefined'
+  .createTabChapter('Props')
+  .addComponentDocs({
+    component: Label,
+    additionalDocs: {
+      onDelete: {
+        type: {
+          description: '(event: any) => void | undefined'
+        }
       }
-    }
+    },
+    name: 'Label'
   })
+  .addComponentDocs(labelGroupStory.componentDocs)
+
+page
+  .createChapter()
   .addExample('Label/story/Default.example.jsx', 'Default')
   .addExample('Label/story/Dismissible.example.jsx', 'Dismissible')
   .addExample('Label/story/Flat.example.jsx', 'Flat')
@@ -25,3 +36,5 @@ page
     title: 'Statuses',
     description: 'Use these to communicate status'
   })
+
+page.connect(labelGroupStory.chapter)

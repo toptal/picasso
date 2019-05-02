@@ -2,7 +2,19 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 import { TableCell } from '../TableCell'
 
-PicassoBook.lookupPage('Table')
-  .createChapter('Table.Cell', 'Cell for table content')
-  .addComponentDocs(TableCell)
-  .addExample('TableCell/story/Default.example.jsx', 'Aligments')
+const componentDocs = PicassoBook.createComponentDocs(
+  TableCell,
+  'Table.Cell',
+  'Cell for table content'
+)
+
+const chapter = PicassoBook.connectToPage(page =>
+  page
+    .createChapter('Table.Cell', 'Cell for table content')
+    .addExample('TableCell/story/Default.example.jsx', 'Aligments')
+)
+
+export default {
+  chapter,
+  componentDocs
+}
