@@ -9,7 +9,7 @@ PicassoProvider.override(({ palette }: Theme) => ({
       height: '2.25rem',
       lineHeight: '1rem',
       padding: '0.625rem',
-      fontSize: 'inherit',
+      fontSize: '0.8125em',
 
       '&:hover': {
         backgroundColor: palette.blue.lighter,

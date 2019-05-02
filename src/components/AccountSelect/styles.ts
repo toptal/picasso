@@ -4,7 +4,7 @@ export default ({ palette }: Theme) =>
   createStyles({
     accountItem: {
       height: 'auto',
-      padding: '1.5em',
+      padding: '1.5rem',
 
       '&+&': {
         borderTop: `1px solid ${palette.grey[50]}`
@@ -12,7 +12,6 @@ export default ({ palette }: Theme) =>
     },
     accountLink: {
       display: 'flex',
-      flexWrap: 'nowrap',
       flex: 1,
       alignItems: 'center'
     }
