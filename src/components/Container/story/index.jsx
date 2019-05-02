@@ -12,3 +12,16 @@ page
   .addComponentDocs(Container)
   .addExample('Container/story/Default.example.jsx', 'Default')
   .addExample('Container/story/Inline.example.jsx', 'Inline')
+  .addExample('Container/story/Spacing.example.jsx', {
+    title: 'Spacing',
+    description: 'Creating inner and outer space for component',
+    extra: `
+Spacing is based on size enum that gets transformed into **em** unit in following manner: 
+- xsmall = 0.5em,
+- small = 1em,
+- medium = 1.5em,
+- large = 2em
+
+For other custom  cases use **number** in em units or **className** to define spacings.
+`
+  })

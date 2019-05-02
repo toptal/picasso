@@ -4,8 +4,8 @@ import { Paper, Typography, Container } from '@toptal/picasso'
 const PaperDefaultExample = () => (
   <div style={{ width: '25rem' }}>
     <Paper>
-      <div style={{ padding: '1rem' }}>
-        <Container bottom={1}>
+      <Container padded='small'>
+        <Container bottom='small'>
           <Typography variant='h3' weight='bold'>
             This is paper
           </Typography>
@@ -14,7 +14,7 @@ const PaperDefaultExample = () => (
           Paper can be used to build surface or other elements for your
           application.
         </Typography>
-      </div>
+      </Container>
     </Paper>
   </div>
 )

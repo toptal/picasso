@@ -10,7 +10,7 @@ const ImageVariantsExample = () => (
         style={{ width: '250px', height: '250px' }}
       />
     </Container>
-    <Container left={1} inline>
+    <Container left='small' inline>
       <Image
         variant='circular'
         alt='Circular image'

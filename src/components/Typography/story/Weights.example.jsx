@@ -3,16 +3,16 @@ import { Typography, Container } from '@toptal/picasso'
 
 const TypographyWeightsExample = () => (
   <div>
-    <Container bottom={1}>
+    <Container bottom='small'>
       <Typography weight='thin'>Thin</Typography>
     </Container>
-    <Container bottom={1}>
+    <Container bottom='small'>
       <Typography weight='light'>Light</Typography>
     </Container>
-    <Container bottom={1}>
+    <Container bottom='small'>
       <Typography weight='regular'>Regular</Typography>
     </Container>
-    <Container bottom={1}>
+    <Container bottom='small'>
       <Typography weight='semibold'>Semibold</Typography>
     </Container>
     <Typography weight='bold'>Bold</Typography>

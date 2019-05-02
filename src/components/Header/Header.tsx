@@ -35,11 +35,11 @@ export const Header: FunctionComponent<Props> = ({
     <header className={cx(classes.root, className)} style={style}>
       <div className={contentClassnames}>
         <div className={classes.left}>
-          <Container right={1} flex direction='row' alignItems='center'>
+          <Container right='small' flex direction='row' alignItems='center'>
             <Logo variant='white' />
           </Container>
           <div className={classes.divider} />
-          <Container left={1}>
+          <Container left='small'>
             <Typography className={classes.title} weight='light'>
               {title}
             </Typography>

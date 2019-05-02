@@ -9,7 +9,7 @@ const IconWithTextExample = () => (
       Vertical alignment of the icon with the same height as text
     </div>
 
-    <Container flex direction='row' alignItems='center' top={1}>
+    <Container flex direction='row' alignItems='center' top='small'>
       <Cog size={1.5} style={{ marginRight: '0.5em' }} />
       Vertical alignment of the icon with bigger height than text
     </Container>

@@ -4,11 +4,11 @@ import { Logo, Container } from '@toptal/picasso'
 const LogoVariantsExample = () => (
   <div>
     <div>
-      <LogoContainer bgcolor='#ffffff' inline right={1}>
+      <LogoContainer bgcolor='#ffffff' inline right='small'>
         <Logo />
       </LogoContainer>
 
-      <LogoContainer bgcolor='#204ecf' inline right={1}>
+      <LogoContainer bgcolor='#204ecf' inline right='small'>
         <Logo variant='white' />
       </LogoContainer>
 
@@ -17,12 +17,12 @@ const LogoVariantsExample = () => (
       </LogoContainer>
     </div>
 
-    <Container top={2}>
-      <LogoContainer bgcolor='#ffffff' inline right={1}>
+    <Container top='large'>
+      <LogoContainer bgcolor='#ffffff' inline right='small'>
         <Logo emblem />
       </LogoContainer>
 
-      <LogoContainer bgcolor='#204ecf' inline right={1}>
+      <LogoContainer bgcolor='#204ecf' inline right='small'>
         <Logo emblem variant='white' />
       </LogoContainer>
 
@@ -34,7 +34,7 @@ const LogoVariantsExample = () => (
 )
 
 const LogoContainer = ({ children, bgcolor, ...rest }) => (
-  <Container {...rest} style={{ backgroundColor: bgcolor, padding: '2em' }}>
+  <Container {...rest} padded='large' style={{ backgroundColor: bgcolor }}>
     {children}
   </Container>
 )

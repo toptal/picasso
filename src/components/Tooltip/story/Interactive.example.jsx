@@ -3,12 +3,12 @@ import { Tooltip, Button, Container } from '@toptal/picasso'
 
 const TooltipArrowExample = () => (
   <div style={{ textAlign: 'center' }}>
-    <Container bottom={3} left={2} right={2} top={3} inline>
+    <Container top='large' bottom='large' left='large' right='large' inline>
       <Tooltip content='You can not hover inside!' placement='top'>
         <Button>Non interactive</Button>
       </Tooltip>
     </Container>
-    <Container bottom={3} left={2} right={2} top={3} inline>
+    <Container top='large' bottom='large' left='large' right='large' inline>
       <Tooltip content='Hover inside' interactive placement='top'>
         <Button>Interactive</Button>
       </Tooltip>

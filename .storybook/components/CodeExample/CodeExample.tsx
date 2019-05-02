@@ -149,7 +149,11 @@ class CodeExample extends Component<Props> {
       >
         <div className={classes.root}>
           <div className={classes.component}>
-            <Container className={classes.componentRenderer} top={2} bottom={2}>
+            <Container
+              className={classes.componentRenderer}
+              top='large'
+              bottom='large'
+            >
               <SourceRender.Consumer>
                 {({ element }: RenderResult) => element}
               </SourceRender.Consumer>

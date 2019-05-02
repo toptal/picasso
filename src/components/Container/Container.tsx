@@ -1,6 +1,6 @@
 import React, { ReactNode, FunctionComponent } from 'react'
 
-import { BaseProps } from '../Picasso'
+import { BaseProps, SizeType } from '../Picasso'
 
 type DirectionType = 'row' | 'column'
 
@@ -12,15 +12,29 @@ type JustifyContentType =
   | 'space-around'
   | 'space-evenly'
 
+type SpacingType = number | SizeType<'xsmall' | 'small' | 'medium' | 'large'>
+
+enum SpacingEnum {
+  xsmall = 0.5,
+  small = 1,
+  medium = 1.5,
+  large = 2
+}
+
+const spacingToEm = (spacing: SpacingType) =>
+  typeof spacing === 'number' ? `${spacing}em` : `${SpacingEnum[spacing]}em`
+
 interface Props extends BaseProps {
-  /** marginTop for the container calculated as `${top}em` */
-  top?: number
-  /** marginBottom for the container calculated as `${bottom}em` */
-  bottom?: number
-  /** marginLeft for the container calculated as `${left}em` */
-  left?: number
-  /** marginRight for the container calculated as `${right}em` */
-  right?: number
+  /** margin-top for the container transformed to `em` */
+  top?: SpacingType
+  /** margin-bottom for the container transformed to `em` */
+  bottom?: SpacingType
+  /** margin-left for the container transformed to `em` */
+  left?: SpacingType
+  /** margin-right for the container transformed to `em` */
+  right?: SpacingType
+  /** padding for the container transformed to `em` */
+  padded?: SpacingType
   /** Whether container should act as inline element `display: inline-block` */
   inline?: boolean
   /** Use flexbox */
@@ -35,6 +49,9 @@ interface Props extends BaseProps {
   children: ReactNode
 }
 
+/**
+ * Container component used for spacing 2 elements
+ */
 export const Container: FunctionComponent<Props> = ({
   children,
   className,
@@ -42,6 +59,7 @@ export const Container: FunctionComponent<Props> = ({
   bottom,
   left,
   right,
+  padded,
   inline,
   flex,
   direction,
@@ -52,14 +70,19 @@ export const Container: FunctionComponent<Props> = ({
   const display = flex ? 'flex' : 'block'
   const inlineDisplay = flex ? 'inline-flex' : 'inline-block'
 
+  const margins = {
+    ...(top && { marginTop: spacingToEm(top) }),
+    ...(bottom && { marginBottom: spacingToEm(bottom) }),
+    ...(left && { marginLeft: spacingToEm(left) }),
+    ...(right && { marginRight: spacingToEm(right) })
+  }
+
   return (
     <div
       className={className}
       style={{
-        marginTop: top + 'em',
-        marginBottom: bottom + 'em',
-        marginLeft: left + 'em',
-        marginRight: right + 'em',
+        ...margins,
+        ...(padded && { padding: spacingToEm(padded) }),
         display: inline ? inlineDisplay : display,
         ...(direction && { flexDirection: direction }),
         ...(alignItems && { alignItems: alignItems }),
@@ -73,11 +96,7 @@ export const Container: FunctionComponent<Props> = ({
 }
 
 Container.defaultProps = {
-  bottom: 0,
-  inline: false,
-  left: 0,
-  right: 0,
-  top: 0
+  inline: false
 }
 
 export default Container
