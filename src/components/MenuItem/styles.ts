@@ -1,4 +1,4 @@
-import { Theme } from '@material-ui/core/styles'
+import { Theme, createStyles } from '@material-ui/core/styles'
 
 import { PicassoProvider } from '../Picasso'
 
@@ -6,10 +6,10 @@ PicassoProvider.override(({ palette }: Theme) => ({
   MuiMenuItem: {
     root: {
       boxSizing: 'border-box',
-      height: '2.25rem',
-      lineHeight: '1rem',
-      padding: '0.625rem',
-      fontSize: '0.8125em',
+      height: '2.25em',
+      lineHeight: '1em',
+      padding: '0.625em',
+      fontSize: 'inherit',
 
       '&:hover': {
         backgroundColor: palette.blue.lighter,
@@ -32,8 +32,15 @@ PicassoProvider.override(({ palette }: Theme) => ({
     },
     selected: {},
     gutters: {
-      paddingLeft: '0.625rem',
-      paddingRight: '0.625rem'
+      paddingLeft: '0.625em',
+      paddingRight: '0.625em'
     }
   }
 }))
+
+export default () =>
+  createStyles({
+    stringContent: {
+      fontSize: '0.8125em'
+    }
+  })

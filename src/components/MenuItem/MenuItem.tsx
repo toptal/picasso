@@ -1,8 +1,10 @@
 import React, { FunctionComponent, ReactNode } from 'react'
+import { withStyles } from '@material-ui/core/styles'
 import MUIMenuItem from '@material-ui/core/MenuItem'
 
 import { BaseProps, JssProps } from '../Picasso'
-import './styles'
+import Typography from '../Typography'
+import styles from './styles'
 
 type MenuItemType = 'li' | 'div' | 'a' | 'button'
 
@@ -18,7 +20,7 @@ interface Props extends BaseProps, Partial<JssProps> {
   value?: string | string[] | number
 }
 
-const MenuItem: FunctionComponent<Props> = ({
+export const MenuItem: FunctionComponent<Props> = ({
   as,
   children,
   classes,
@@ -27,19 +29,26 @@ const MenuItem: FunctionComponent<Props> = ({
   onClick,
   style,
   value
-}) => (
-  <MUIMenuItem
-    component={as}
-    classes={classes}
-    className={className}
-    disabled={disabled}
-    onClick={onClick}
-    style={style}
-    value={value}
-  >
-    {children}
-  </MUIMenuItem>
-)
+}) => {
+  if (typeof children === 'string' || children instanceof String) {
+    children = (
+      <Typography className={classes!.stringContent}>{children}</Typography>
+    )
+  }
+
+  return (
+    <MUIMenuItem
+      component={as}
+      className={className}
+      disabled={disabled}
+      onClick={onClick}
+      style={style}
+      value={value}
+    >
+      {children}
+    </MUIMenuItem>
+  )
+}
 
 MenuItem.defaultProps = {
   as: 'li',
@@ -48,4 +57,4 @@ MenuItem.defaultProps = {
 
 MenuItem.displayName = 'MenuItem'
 
-export default MenuItem
+export default withStyles(styles)(MenuItem)

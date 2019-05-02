@@ -4,7 +4,7 @@ export default ({ palette }: Theme) =>
   createStyles({
     accountItem: {
       height: 'auto',
-      padding: '1.5rem',
+      padding: '1.5em',
 
       '&+&': {
         borderTop: `1px solid ${palette.grey[50]}`

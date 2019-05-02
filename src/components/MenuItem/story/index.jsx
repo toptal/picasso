@@ -1,6 +1,6 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-import MenuItem from '../MenuItem'
+import { MenuItem } from '../MenuItem'
 
 const chapter = PicassoBook.connectToPage(page => page)
 
