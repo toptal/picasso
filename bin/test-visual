@@ -28,7 +28,7 @@ function run_jest() {
   fi
 
   set -x
-  $BIN_PATH/jest --testEnvironment=$JEST_ENV --config=$JEST_CONFIG $1 || exit 1
+  GIT_SHA=$GIT_SHA $BIN_PATH/jest --testEnvironment=$JEST_ENV --config=$JEST_CONFIG $1 || exit 1
   set +x
 }
 
