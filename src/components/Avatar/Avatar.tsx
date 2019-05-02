@@ -55,7 +55,9 @@ export class Avatar extends PureComponent<Props> {
     }
 
     return (
-      <Typography className={classes.text}>{getNameInitials(name)}</Typography>
+      <Typography className={classes.text} invert>
+        {getNameInitials(name)}
+      </Typography>
     )
   }
 

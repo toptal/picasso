@@ -3,13 +3,17 @@
 exports[`Paper default render 1`] = `
 <div>
   <div
-    class="MuiPaper-root MuiPaper-elevation1"
+    class="Picasso-root"
   >
-    <p
-      class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1"
+    <div
+      class="MuiPaper-root MuiPaper-elevation1"
     >
-      This is Paper
-    </p>
+      <p
+        class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1"
+      >
+        This is Paper
+      </p>
+    </div>
   </div>
 </div>
 `;

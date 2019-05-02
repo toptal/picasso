@@ -22,3 +22,4 @@ page
   })
   .addExample('Typography/story/Alignment.example.jsx', 'Alignment')
   .addExample('Typography/story/Weights.example.jsx', 'Weights')
+  .addExample('Typography/story/Colors.example.jsx', 'Colors')

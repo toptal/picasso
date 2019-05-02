@@ -32,8 +32,5 @@ export default ({ palette, layout }: Theme) =>
       height: '1.75em',
       backgroundColor: palette.common.white,
       opacity: 0.8
-    },
-    title: {
-      color: palette.common.white
     }
   })

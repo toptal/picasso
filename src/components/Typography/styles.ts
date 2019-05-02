@@ -68,5 +68,17 @@ export default ({ palette }: Theme) =>
     },
     invert: {
       color: palette.common.white
+    },
+    success: {
+      color: palette.success.main
+    },
+    error: {
+      color: palette.error.main
+    },
+    primary: {
+      color: palette.primary.main
+    },
+    muted: {
+      color: palette.grey[300]
     }
   })

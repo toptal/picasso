@@ -3,13 +3,17 @@
 exports[`FormHint default render 1`] = `
 <div>
   <div
-    class="FormHint-root"
+    class="Picasso-root"
   >
-    <p
-      class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1 FormHint-hint"
+    <div
+      class="FormHint-root"
     >
-      Picasso was born on October 25, 1881 in the city of Malaga, Spain
-    </p>
+      <p
+        class="MuiTypography-root Typography-body Typography-regular Typography-muted MuiTypography-body1 FormHint-hint"
+      >
+        Picasso was born on October 25, 1881 in the city of Malaga, Spain
+      </p>
+    </div>
   </div>
 </div>
 `;

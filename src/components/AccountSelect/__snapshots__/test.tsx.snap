@@ -33,7 +33,7 @@ exports[`AccountSelect default render 1`] = `
                     class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
                   />
                   <p
-                    class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1 Avatar-text"
+                    class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 Avatar-text"
                   >
                     PL
                   </p>
@@ -92,7 +92,7 @@ exports[`AccountSelect default render 1`] = `
                     class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
                   />
                   <p
-                    class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1 Avatar-text"
+                    class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 Avatar-text"
                   >
                     PL
                   </p>

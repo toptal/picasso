@@ -21,6 +21,8 @@ type VariantType =
   | 'body'
 
 type WeightType = 'thin' | 'light' | 'regular' | 'semibold' | 'bold'
+type ColorType = 'primary' | 'success' | 'error' | 'muted'
+type VariantsType = { [key in VariantType]: MUIVariant }
 
 interface Props extends StandardProps {
   /** Font variant inner text */
@@ -35,14 +37,11 @@ interface Props extends StandardProps {
   weight?: WeightType
   /** Invert color */
   invert?: boolean
+  /** Text color */
+  color?: ColorType
 }
 
-interface Variants {
-  // TODO: see if string can be replaced with VariantType
-  [name: string]: MUIVariant
-}
-
-const VARIANTS: Variants = {
+const VARIANTS: VariantsType = {
   h1: 'h1',
   h2: 'h2',
   h3: 'h3',
@@ -56,7 +55,7 @@ const VARIANTS: Variants = {
 }
 
 const resolveRootClass = (props: Props) => {
-  const { classes, weight, variant, invert } = props
+  const { classes, weight, variant, invert, color } = props
 
   return cx(
     {
@@ -65,7 +64,8 @@ const resolveRootClass = (props: Props) => {
       [classes.body]: variant === 'body',
       [classes.invert]: invert
     },
-    classes[weight!]
+    classes[weight!],
+    classes[color!]
   )
 }
 

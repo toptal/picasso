@@ -2,10 +2,14 @@
 
 exports[`Typography default render 1`] = `
 <div>
-  <p
-    class="MuiTypography-root Typography-body Typography-bold MuiTypography-body1 MuiTypography-alignCenter"
+  <div
+    class="Picasso-root"
   >
-    Hello world!
-  </p>
+    <p
+      class="MuiTypography-root Typography-body Typography-bold MuiTypography-body1 MuiTypography-alignCenter"
+    >
+      Hello world!
+    </p>
+  </div>
 </div>
 `;

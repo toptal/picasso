@@ -2,9 +2,14 @@ import React from 'react'
 import { render, cleanup } from 'react-testing-library'
 
 import Avatar from './index'
+import Picasso from '../index'
 
 const renderAvatar = (props: any) => {
-  return render(<Avatar {...props} />)
+  return render(
+    <Picasso loadFonts={false}>
+      <Avatar {...props} />
+    </Picasso>
+  )
 }
 
 afterEach(cleanup)

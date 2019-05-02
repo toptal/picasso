@@ -40,7 +40,7 @@ export const PageHeader: FunctionComponent<Props> = ({
           </Container>
           <div className={classes.divider} />
           <Container left='small'>
-            <Typography className={classes.title} weight='light'>
+            <Typography invert weight='light'>
               {title}
             </Typography>
           </Container>
