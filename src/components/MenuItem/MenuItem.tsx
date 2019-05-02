@@ -9,10 +9,12 @@ type MenuItemType = 'li' | 'div' | 'a' | 'button'
 interface Props extends BaseProps, Partial<JssProps> {
   /** Component name to render the menu item as */
   as?: MenuItemType
+  /** Whether to render disabled item */
   disabled?: boolean
   children?: ReactNode
   /** Callback when menu item is clicked */
   onClick?: () => void
+  /** Value of the item. Can be used when menu item is used inside Select component. */
   value?: string | string[] | number
 }
 
