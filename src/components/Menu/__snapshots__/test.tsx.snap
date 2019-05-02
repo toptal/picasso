@@ -11,7 +11,11 @@ exports[`Menu default render 1`] = `
       role="menuitem"
       tabindex="-1"
     >
-      Item 1
+      <p
+        class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1 MenuItem-stringContent"
+      >
+        Item 1
+      </p>
       <span
         class="MuiTouchRipple-root"
       />
@@ -21,7 +25,11 @@ exports[`Menu default render 1`] = `
       role="menuitem"
       tabindex="-1"
     >
-      Item 2
+      <p
+        class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1 MenuItem-stringContent"
+      >
+        Item 2
+      </p>
       <span
         class="MuiTouchRipple-root"
       />
@@ -31,7 +39,11 @@ exports[`Menu default render 1`] = `
       role="menuitem"
       tabindex="-1"
     >
-      Item 3
+      <p
+        class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1 MenuItem-stringContent"
+      >
+        Item 3
+      </p>
       <span
         class="MuiTouchRipple-root"
       />
