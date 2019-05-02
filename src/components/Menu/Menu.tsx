@@ -13,8 +13,16 @@ interface StaticProps {
   Item: typeof MenuItem
 }
 
-export const Menu: FunctionComponent<Props> & StaticProps = ({ children }) => {
-  return <MUIMenuList>{children}</MUIMenuList>
+export const Menu: FunctionComponent<Props> & StaticProps = ({
+  children,
+  className,
+  style
+}) => {
+  return (
+    <MUIMenuList className={className} style={style}>
+      {children}
+    </MUIMenuList>
+  )
 }
 
 Menu.displayName = 'Menu'

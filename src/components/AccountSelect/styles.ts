@@ -3,12 +3,17 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 export default ({ palette }: Theme) =>
   createStyles({
     accountItem: {
+      height: 'auto',
       padding: '1.5em',
-      display: 'flex',
-      alignItems: 'center',
 
       '&+&': {
         borderTop: `1px solid ${palette.grey[50]}`
       }
+    },
+    accountLink: {
+      display: 'flex',
+      flexWrap: 'nowrap',
+      flex: 1,
+      alignItems: 'center'
     }
   })

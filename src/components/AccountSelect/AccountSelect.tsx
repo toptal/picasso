@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles'
 import palette from '../Picasso/config/palette'
 import UserBadge from '../UserBadge'
 import Typography from '../Typography'
-import Paper from '../Paper'
+import Menu from '../Menu'
 import Link from '../Link'
 import { ChevronRight } from '../Icon'
 import { Classes } from '../styles/types'
@@ -38,22 +38,23 @@ export const AccountSelect: FunctionComponent<Props> = ({
   accounts,
   onSelect
 }) => (
-  <Paper>
+  <Menu>
     {accounts.map(account => (
-      <Link
-        key={`role-${account.id}`}
-        href={account.href}
-        onClick={() => onSelect(account)}
-        className={classes.accountItem}
-        underline='none'
-      >
-        <UserBadge name={account.name} avatar={account.avatar}>
-          <Typography variant='caption'>{account.position}</Typography>
-        </UserBadge>
-        <ChevronRight color={palette.text.primary} />
-      </Link>
+      <Menu.Item className={classes.accountItem} key={`role-${account.id}`}>
+        <Link
+          className={classes.accountLink}
+          href={account.href}
+          onClick={() => onSelect(account)}
+          underline='none'
+        >
+          <UserBadge name={account.name} avatar={account.avatar}>
+            <Typography variant='caption'>{account.position}</Typography>
+          </UserBadge>
+          <ChevronRight color={palette.text.primary} />
+        </Link>
+      </Menu.Item>
     ))}
-  </Paper>
+  </Menu>
 )
 
 AccountSelect.defaultProps = {
