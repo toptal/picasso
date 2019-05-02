@@ -12,6 +12,7 @@ JEST_ENV="$BASE_PATH/puppeteer/environment.js"
 JEST_CONFIG="$BASE_PATH/puppeteer/puppeteer.jest.config.js"
 JEST_TEST_ENV="visual"
 DIFF_OUTPUT_PATH="$BASE_PATH/__diff_output__/*"
+GIT_SHA="git rev-parse --short=8 HEAD"
 
 function build_storybook() {
   echo -e "${BLUE} Building storybook ... ${NC}"

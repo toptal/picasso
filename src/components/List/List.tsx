@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
-import MUIList from '@material-ui/core/List'
 import { withStyles } from '@material-ui/core/styles'
+import MUIList from '@material-ui/core/List'
 
 import { StandardProps } from '../Picasso'
 import styles from './styles'
