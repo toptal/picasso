@@ -74,8 +74,8 @@ pipeline {
       steps {
 
         sshagent (credentials: ['picasso-ssh-deploy-key']) {
-            // sh "git config user.email 'bot@toptal.com'"
-            // sh "git config user.name 'toptal-bot'"
+            sh "git config user.email 'bot@toptal.com'"
+            sh "git config user.name 'toptal-bot'"
             sh "mkdir -p ~/.ssh && ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts"
             sh "git name-rev --name-only HEAD"
             sh "git branch"
