@@ -41,9 +41,9 @@ export const colors = {
     light: '#dbe3f9'
   },
   error: {
-    lighter: '#fff6f6',
+    lighter: '#fbedf1',
     light: '#f8b1b4',
-    main: '#f05359',
+    main: '#d42551',
     dark: '#9f3a38'
   },
   success: {
