@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+set -e
 
 # Add local user
 # Either use the LOCAL_USER_ID if passed in at runtime or
