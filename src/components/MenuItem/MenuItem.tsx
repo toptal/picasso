@@ -1,4 +1,5 @@
 import React, { FunctionComponent, ReactNode } from 'react'
+import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import MUIMenuItem from '@material-ui/core/MenuItem'
 
@@ -32,7 +33,12 @@ export const MenuItem: FunctionComponent<Props> = ({
 }) => {
   if (typeof children === 'string' || children instanceof String) {
     children = (
-      <Typography className={classes!.stringContent}>{children}</Typography>
+      <Typography
+        className={cx(classes!.stringContent, className)}
+        style={style}
+      >
+        {children}
+      </Typography>
     )
   }
 
