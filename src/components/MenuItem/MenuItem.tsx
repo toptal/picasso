@@ -3,13 +3,13 @@ import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import MUIMenuItem from '@material-ui/core/MenuItem'
 
-import { BaseProps, JssProps } from '../Picasso'
+import { StandardProps } from '../Picasso'
 import Typography from '../Typography'
 import styles from './styles'
 
 type MenuItemType = 'li' | 'div' | 'a' | 'button'
 
-interface Props extends BaseProps, Partial<JssProps> {
+interface Props extends StandardProps {
   /** Component name to render the menu item as */
   as?: MenuItemType
   /** Whether to render disabled item */
