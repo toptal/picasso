@@ -8,7 +8,7 @@ PicassoProvider.override(({ palette }: Theme) => ({
       boxSizing: 'border-box',
       height: '2.25em',
       lineHeight: '1em',
-      padding: '0.625em',
+      padding: 0,
       fontSize: 'inherit',
 
       '&:hover': {
@@ -32,6 +32,8 @@ PicassoProvider.override(({ palette }: Theme) => ({
     },
     selected: {},
     gutters: {
+      padding: '0.625em',
+      // to override MUI paddingLeft and paddingRight default values
       paddingLeft: '0.625em',
       paddingRight: '0.625em'
     }

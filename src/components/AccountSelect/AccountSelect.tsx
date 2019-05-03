@@ -6,6 +6,7 @@ import UserBadge from '../UserBadge'
 import Typography from '../Typography'
 import Menu from '../Menu'
 import Link from '../Link'
+import Container from '../Container'
 import { ChevronRight } from '../Icon'
 import { Classes } from '../styles/types'
 import styles from './styles'
@@ -40,17 +41,23 @@ export const AccountSelect: FunctionComponent<Props> = ({
 }) => (
   <Menu>
     {accounts.map(account => (
-      <Menu.Item className={classes.accountItem} key={`role-${account.id}`}>
+      <Menu.Item
+        disableGutters
+        className={classes.accountItem}
+        key={`role-${account.id}`}
+      >
         <Link
           className={classes.accountLink}
           href={account.href}
           onClick={() => onSelect(account)}
           underline='none'
         >
-          <UserBadge name={account.name} avatar={account.avatar}>
-            <Typography variant='caption'>{account.position}</Typography>
-          </UserBadge>
-          <ChevronRight color={palette.text.primary} />
+          <Container padded={1.5} flex direction='row' alignItems='center'>
+            <UserBadge name={account.name} avatar={account.avatar}>
+              <Typography variant='caption'>{account.position}</Typography>
+            </UserBadge>
+            <ChevronRight color={palette.text.primary} />
+          </Container>
         </Link>
       </Menu.Item>
     ))}

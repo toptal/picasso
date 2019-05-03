@@ -14,6 +14,8 @@ interface Props extends BaseProps, Partial<JssProps> {
   as?: MenuItemType
   /** Whether to render disabled item */
   disabled?: boolean
+  /** Whether to render without internal padding */
+  disableGutters?: boolean
   children?: ReactNode
   /** Callback when menu item is clicked */
   onClick?: () => void
@@ -27,6 +29,7 @@ export const MenuItem: FunctionComponent<Props> = ({
   classes,
   className,
   disabled,
+  disableGutters,
   onClick,
   style,
   value
@@ -47,6 +50,7 @@ export const MenuItem: FunctionComponent<Props> = ({
       component={as}
       className={className}
       disabled={disabled}
+      disableGutters={disableGutters}
       onClick={onClick}
       style={style}
       value={value}
