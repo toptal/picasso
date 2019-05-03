@@ -10,7 +10,7 @@ exports[`AccountSelect default render 1`] = `
       role="menu"
     >
       <li
-        class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters AccountSelect-accountItem"
+        class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-button MuiMenuItem-root AccountSelect-accountItem"
         role="menuitem"
         tabindex="-1"
       >
@@ -18,53 +18,57 @@ exports[`AccountSelect default render 1`] = `
           class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone AccountSelect-accountLink"
         >
           <div
-            class="MuiGrid-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-flex-start"
+            style="padding: 1.5em; display: flex; flex-direction: row; align-items: center;"
           >
             <div
-              class="MuiGrid-item"
+              class="MuiGrid-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-flex-start"
             >
               <div
-                class="Avatar-root Avatar-xsmall"
+                class="MuiGrid-item"
               >
                 <div
-                  class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
-                />
-                <p
-                  class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1 Avatar-text"
+                  class="Avatar-root Avatar-xsmall"
                 >
-                  PL
+                  <div
+                    class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
+                  />
+                  <p
+                    class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1 Avatar-text"
+                  >
+                    PL
+                  </p>
+                </div>
+              </div>
+              <div
+                class="MuiGrid-item"
+              >
+                <p
+                  class="MuiTypography-root Typography-body Typography-semibold MuiTypography-body1"
+                >
+                  Phil Leif
                 </p>
+                <span
+                  class="MuiTypography-root Typography-regular MuiTypography-caption"
+                >
+                  Account Owner at Stowaway Cosmetics
+                </span>
               </div>
             </div>
-            <div
-              class="MuiGrid-item"
+            <svg
+              class="SvgChevronRight-root"
+              classes="[object Object]"
+              color="#455065"
+              viewBox="0 0 7 13"
             >
-              <p
-                class="MuiTypography-root Typography-body Typography-semibold MuiTypography-body1"
-              >
-                Phil Leif
-              </p>
-              <span
-                class="MuiTypography-root Typography-regular MuiTypography-caption"
-              >
-                Account Owner at Stowaway Cosmetics
-              </span>
-            </div>
+              <path
+                d="M7 6.5a.43.43 0 0 1-.12.3l-5.604 6.07a.367.367 0 0 1-.277.13.367.367 0 0 1-.277-.13l-.601-.652a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3L4.848 6.5.12 1.381a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3l.602-.65A.368.368 0 0 1 .999 0c.104 0 .196.044.277.13L6.879 6.2A.43.43 0 0 1 7 6.5z"
+              />
+            </svg>
           </div>
-          <svg
-            class="SvgChevronRight-root"
-            classes="[object Object]"
-            color="#455065"
-            viewBox="0 0 7 13"
-          >
-            <path
-              d="M7 6.5a.43.43 0 0 1-.12.3l-5.604 6.07a.367.367 0 0 1-.277.13.367.367 0 0 1-.277-.13l-.601-.652a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3L4.848 6.5.12 1.381a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3l.602-.65A.368.368 0 0 1 .999 0c.104 0 .196.044.277.13L6.879 6.2A.43.43 0 0 1 7 6.5z"
-            />
-          </svg>
         </a>
       </li>
       <li
-        class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters AccountSelect-accountItem"
+        class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-button MuiMenuItem-root AccountSelect-accountItem"
         role="menuitem"
         tabindex="-1"
       >
@@ -73,53 +77,57 @@ exports[`AccountSelect default render 1`] = `
           href="#"
         >
           <div
-            class="MuiGrid-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-flex-start"
+            style="padding: 1.5em; display: flex; flex-direction: row; align-items: center;"
           >
             <div
-              class="MuiGrid-item"
+              class="MuiGrid-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-flex-start"
             >
               <div
-                class="Avatar-root Avatar-xsmall"
+                class="MuiGrid-item"
               >
                 <div
-                  class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
-                />
-                <p
-                  class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1 Avatar-text"
+                  class="Avatar-root Avatar-xsmall"
                 >
-                  PL
+                  <div
+                    class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
+                  />
+                  <p
+                    class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1 Avatar-text"
+                  >
+                    PL
+                  </p>
+                </div>
+              </div>
+              <div
+                class="MuiGrid-item"
+              >
+                <p
+                  class="MuiTypography-root Typography-body Typography-semibold MuiTypography-body1"
+                >
+                  Phil Leif
                 </p>
+                <span
+                  class="MuiTypography-root Typography-regular MuiTypography-caption"
+                >
+                  Company Representative at Marketing Works
+                </span>
               </div>
             </div>
-            <div
-              class="MuiGrid-item"
+            <svg
+              class="SvgChevronRight-root"
+              classes="[object Object]"
+              color="#455065"
+              viewBox="0 0 7 13"
             >
-              <p
-                class="MuiTypography-root Typography-body Typography-semibold MuiTypography-body1"
-              >
-                Phil Leif
-              </p>
-              <span
-                class="MuiTypography-root Typography-regular MuiTypography-caption"
-              >
-                Company Representative at Marketing Works
-              </span>
-            </div>
+              <path
+                d="M7 6.5a.43.43 0 0 1-.12.3l-5.604 6.07a.367.367 0 0 1-.277.13.367.367 0 0 1-.277-.13l-.601-.652a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3L4.848 6.5.12 1.381a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3l.602-.65A.368.368 0 0 1 .999 0c.104 0 .196.044.277.13L6.879 6.2A.43.43 0 0 1 7 6.5z"
+              />
+            </svg>
           </div>
-          <svg
-            class="SvgChevronRight-root"
-            classes="[object Object]"
-            color="#455065"
-            viewBox="0 0 7 13"
-          >
-            <path
-              d="M7 6.5a.43.43 0 0 1-.12.3l-5.604 6.07a.367.367 0 0 1-.277.13.367.367 0 0 1-.277-.13l-.601-.652a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3L4.848 6.5.12 1.381a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3l.602-.65A.368.368 0 0 1 .999 0c.104 0 .196.044.277.13L6.879 6.2A.43.43 0 0 1 7 6.5z"
-            />
-          </svg>
         </a>
       </li>
       <li
-        class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters AccountSelect-accountItem"
+        class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-button MuiMenuItem-root AccountSelect-accountItem"
         role="menuitem"
         tabindex="-1"
       >
@@ -128,46 +136,50 @@ exports[`AccountSelect default render 1`] = `
           href="#"
         >
           <div
-            class="MuiGrid-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-flex-start"
+            style="padding: 1.5em; display: flex; flex-direction: row; align-items: center;"
           >
             <div
-              class="MuiGrid-item"
+              class="MuiGrid-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-flex-start"
             >
               <div
-                class="Avatar-root Avatar-xsmall"
+                class="MuiGrid-item"
               >
-                <img
-                  alt="Phil Leif"
-                  class="Image-root Avatar-image Avatar-square Avatar-xsmall Avatar-clippedCorner"
-                  src="./jacqueline-with-flowers-1954-square.jpg"
-                />
+                <div
+                  class="Avatar-root Avatar-xsmall"
+                >
+                  <img
+                    alt="Phil Leif"
+                    class="Image-root Avatar-image Avatar-square Avatar-xsmall Avatar-clippedCorner"
+                    src="./jacqueline-with-flowers-1954-square.jpg"
+                  />
+                </div>
+              </div>
+              <div
+                class="MuiGrid-item"
+              >
+                <p
+                  class="MuiTypography-root Typography-body Typography-semibold MuiTypography-body1"
+                >
+                  Phil Leif
+                </p>
+                <span
+                  class="MuiTypography-root Typography-regular MuiTypography-caption"
+                >
+                  Talent
+                </span>
               </div>
             </div>
-            <div
-              class="MuiGrid-item"
+            <svg
+              class="SvgChevronRight-root"
+              classes="[object Object]"
+              color="#455065"
+              viewBox="0 0 7 13"
             >
-              <p
-                class="MuiTypography-root Typography-body Typography-semibold MuiTypography-body1"
-              >
-                Phil Leif
-              </p>
-              <span
-                class="MuiTypography-root Typography-regular MuiTypography-caption"
-              >
-                Talent
-              </span>
-            </div>
+              <path
+                d="M7 6.5a.43.43 0 0 1-.12.3l-5.604 6.07a.367.367 0 0 1-.277.13.367.367 0 0 1-.277-.13l-.601-.652a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3L4.848 6.5.12 1.381a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3l.602-.65A.368.368 0 0 1 .999 0c.104 0 .196.044.277.13L6.879 6.2A.43.43 0 0 1 7 6.5z"
+              />
+            </svg>
           </div>
-          <svg
-            class="SvgChevronRight-root"
-            classes="[object Object]"
-            color="#455065"
-            viewBox="0 0 7 13"
-          >
-            <path
-              d="M7 6.5a.43.43 0 0 1-.12.3l-5.604 6.07a.367.367 0 0 1-.277.13.367.367 0 0 1-.277-.13l-.601-.652a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3L4.848 6.5.12 1.381a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3l.602-.65A.368.368 0 0 1 .999 0c.104 0 .196.044.277.13L6.879 6.2A.43.43 0 0 1 7 6.5z"
-            />
-          </svg>
         </a>
       </li>
     </ul>
