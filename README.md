@@ -32,6 +32,7 @@ render () {
 
 ℹ️ **_[`Picasso`](/?path=/story/components-folder--picasso) component rendered at root level is required for library theme configuration and theme to work properly._**
 
+
 ## Running storybook
 
 In order to run storybook you need to execute `yarn storybook` which will spin up storybook server on http://localhost:9001

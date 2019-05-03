@@ -1,6 +1,21 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
+CWD="$(dirname "$0")"
+cd "$CWD/../"
+BASE_PATH=$(pwd)
 
-cp ./package.json ./build/package.json
-cp ./.npmrc ./build/.npmrc
+NODE_MODULES="$BASE_PATH/node_modules/"
+
+cp package.json .npmrc build/
 cd ./build
-../node_modules/.bin/semantic-release
+
+# Safe switch for jenkins if we want to just try out release
+# yarn release [0|1]
+
+if [ "$1" == "0" ]; then
+  echo "=== RUNNING TEST RELEASE. NOTHING WILL BE PUBLISHED ==="
+  $NODE_MODULES/.bin/semantic-release --debug --dry-run
+else
+  echo "=== WARNING RUNNING LIVE RELEASE ==="
+  $NODE_MODULES/.bin/semantic-release --debug
+fi
+

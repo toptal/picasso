@@ -12,6 +12,11 @@ pipeline {
       image 'gcr.io/compute-engine-1069/picasso:latest'
     }
   }
+
+  parameters {
+    string(name: 'RELEASE_AND_PUBLISH', defaultValue: '0', description: 'Run build in dry-run mode which will not release new version')
+  }
+
   options {
     ansiColor('xterm')
     timestamps()
@@ -49,6 +54,7 @@ pipeline {
     }//stage
 
     stage('Build new Docker image') {
+      when { equals expected: "1", actual: params.RELEASE_AND_PUBLISH }
       steps {
         info "== Building new docker image"
         script {
@@ -74,15 +80,17 @@ pipeline {
             sh "git name-rev --name-only HEAD"
             sh "git branch"
             sh "yarn"
-            sh "yarn release --debug"
+            sh "yarn release ${params.RELEASE_AND_PUBLISH}"
         }
         script {
-            VERSION = sh(returnStdout: true, script: 'cat package.json | jq ".version" -r').trim()
+            VERSION = sh(returnStdout: true, script: 'cat build/package.json | jq ".version" -r').trim()
         }
       } //steps
     }//stage
 
     stage('Deploy documentation') {
+      when { equals expected: "1", actual: params.RELEASE_AND_PUBLISH }
+
       steps {
         info "== Deploying docs"
         script {
