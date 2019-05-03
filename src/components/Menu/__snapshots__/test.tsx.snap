@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Menu default render 1`] = `
+<div>
+  <ul
+    class="MuiList-root MuiList-padding"
+    role="menu"
+  >
+    <li
+      class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
+      role="menuitem"
+      tabindex="-1"
+    >
+      <p
+        class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1 MenuItem-stringContent"
+      >
+        Item 1
+      </p>
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </li>
+    <li
+      class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
+      role="menuitem"
+      tabindex="-1"
+    >
+      <p
+        class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1 MenuItem-stringContent"
+      >
+        Item 2
+      </p>
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </li>
+    <li
+      class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
+      role="menuitem"
+      tabindex="-1"
+    >
+      <p
+        class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1 MenuItem-stringContent"
+      >
+        Item 3
+      </p>
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </li>
+  </ul>
+</div>
+`;
