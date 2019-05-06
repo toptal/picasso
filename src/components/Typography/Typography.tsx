@@ -1,8 +1,8 @@
-import React, { FunctionComponent, ReactNode } from 'react'
+import React, { FunctionComponent, ReactNode, ReactType } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import { ThemeStyle as MUIVariant } from '@material-ui/core/styles/createTypography'
 import { PropTypes } from '@material-ui/core'
-import MUITypography from '@material-ui/core/Typography'
+import MUITypography, { TypographyProps } from '@material-ui/core/Typography'
 import cx from 'classnames'
 
 import { StandardProps } from '../Picasso'
@@ -39,6 +39,8 @@ interface Props extends StandardProps {
   invert?: boolean
   /** Text color */
   color?: ColorType
+  /** Rendered HTML markup */
+  as?: ReactType<TypographyProps>
 }
 
 const VARIANTS: VariantsType = {
@@ -70,7 +72,7 @@ const resolveRootClass = (props: Props) => {
 }
 
 export const Typography: FunctionComponent<Props> = props => {
-  const { variant, children, align, className, style, inline } = props
+  const { variant, children, align, className, style, inline, as } = props
   const resolvedVariant = VARIANTS[variant!]
   const rootClass = resolveRootClass(props)
 
@@ -84,6 +86,7 @@ export const Typography: FunctionComponent<Props> = props => {
       style={style}
       variant={resolvedVariant}
       inline={inline}
+      component={as}
     >
       {children}
     </MUITypography>
