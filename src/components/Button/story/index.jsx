@@ -35,6 +35,10 @@ page
   .addExample('Button/story/FullWidth.example.jsx', 'Full width')
   .addExample('Button/story/IconButtons.example.jsx', 'Button with Icon')
   .addExample(
+    'Button/story/CircularIconButton.example.jsx',
+    'Circular Style Button'
+  )
+  .addExample(
     'Button/story/IconButtonsWithText.example.jsx',
     'Button with text and Icon'
   )

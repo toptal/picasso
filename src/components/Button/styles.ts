@@ -132,6 +132,10 @@ export default ({ palette, typography, transitions }: Theme) =>
     hovered: {},
     focused: {},
     active: {},
+    circular: {
+      borderRadius: '50%',
+      padding: '.4em'
+    },
 
     // Child elements
     icon: {

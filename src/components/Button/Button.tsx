@@ -36,6 +36,7 @@ interface Props extends StandardProps {
   focused?: boolean
   /** Take the full width of a container */
   fullWidth?: boolean
+  /** Set hovered style for the button */
   hovered?: boolean
   /** Add an `<Icon />` along Button's children */
   icon?: ReactElement
@@ -49,6 +50,12 @@ interface Props extends StandardProps {
   size?: SizeType<'small' | 'medium' | 'large'>
   /** The variant to use */
   variant?: VariantType
+  /** HTML Value of Button component */
+  value?: string | number
+  /** Circular style of Button component */
+  circular?: boolean
+  /** HTML title of Button component */
+  title?: string
 }
 
 interface StaticProps {
@@ -70,7 +77,10 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
   hovered,
   disabled,
   active,
-  onClick
+  onClick,
+  circular,
+  title,
+  value
 }) => {
   const {
     icon: iconClass,
@@ -107,7 +117,8 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
       [classes.fullWidth]: fullWidth,
       [classes.active]: active,
       [classes.focused]: focused,
-      [classes.hovered]: hovered
+      [classes.hovered]: hovered,
+      [classes.circular]: circular
     },
     variantClassName,
     sizeClassName,
@@ -123,6 +134,8 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
       className={className}
       style={style}
       disabled={disabled}
+      title={title}
+      value={value}
     >
       <Container
         inline
@@ -142,6 +155,7 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
 Button.defaultProps = {
   active: false,
   children: null,
+  circular: false,
   disabled: false,
   focused: false,
   fullWidth: false,
