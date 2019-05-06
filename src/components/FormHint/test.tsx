@@ -2,9 +2,14 @@ import React from 'react'
 import { render, cleanup } from 'react-testing-library'
 
 import FormHint from './index'
+import Picasso from '../index'
 
 const renderFormHint = (text: string) => {
-  return render(<FormHint>{text}</FormHint>)
+  return render(
+    <Picasso loadFonts={false}>
+      <FormHint>{text}</FormHint>
+    </Picasso>
+  )
 }
 
 afterEach(cleanup)

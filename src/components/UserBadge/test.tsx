@@ -1,15 +1,17 @@
 import React from 'react'
-/* eslint-disable-next-line */
-import { render, fireEvent, cleanup, RenderResult } from 'react-testing-library'
+import { render, cleanup } from 'react-testing-library'
 
 import Typography from '../Typography'
 import UserBadge from './index'
+import Picasso from '../index'
 
 const renderUserBadge = (children: React.ReactNode, props: any) => {
   return render(
-    <UserBadge name='Joe Doe' {...props}>
-      {children}
-    </UserBadge>
+    <Picasso loadFonts={false}>
+      <UserBadge name='Joe Doe' {...props}>
+        {children}
+      </UserBadge>
+    </Picasso>
   )
 }
 

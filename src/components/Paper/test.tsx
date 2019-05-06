@@ -3,9 +3,14 @@ import React from 'react'
 import { render, fireEvent, cleanup, RenderResult } from 'react-testing-library'
 import Typography from '../Typography'
 import Paper from './index'
+import Picasso from '../index'
 
 const renderPaper = (children: React.ReactNode, props: any) => {
-  return render(<Paper {...props}>{children}</Paper>)
+  return render(
+    <Picasso loadFonts={false}>
+      <Paper {...props}>{children}</Paper>
+    </Picasso>
+  )
 }
 
 afterEach(cleanup)

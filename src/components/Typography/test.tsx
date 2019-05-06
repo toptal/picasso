@@ -2,9 +2,14 @@ import React from 'react'
 import { render, cleanup, RenderResult } from 'react-testing-library'
 
 import Typography from './index'
+import Picasso from '../index'
 
 const renderTypography = (children: React.ReactNode, props: any) => {
-  return render(<Typography {...props}>{children}</Typography>)
+  return render(
+    <Picasso loadFonts={false}>
+      <Typography {...props}>{children}</Typography>
+    </Picasso>
+  )
 }
 
 afterEach(cleanup)

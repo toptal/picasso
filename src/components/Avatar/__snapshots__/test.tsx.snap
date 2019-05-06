@@ -3,13 +3,17 @@
 exports[`Avatar avatar with photo render 1`] = `
 <div>
   <div
-    class="Avatar-root Avatar-xsmall"
+    class="Picasso-root"
   >
-    <img
-      alt="Photo alt text"
-      class="Image-root Avatar-image Avatar-square Avatar-xsmall Avatar-clippedCorner"
-      src="http://example.png"
-    />
+    <div
+      class="Avatar-root Avatar-xsmall"
+    >
+      <img
+        alt="Photo alt text"
+        class="Image-root Avatar-image Avatar-square Avatar-xsmall Avatar-clippedCorner"
+        src="http://example.png"
+      />
+    </div>
   </div>
 </div>
 `;
@@ -17,16 +21,20 @@ exports[`Avatar avatar with photo render 1`] = `
 exports[`Avatar avatar with text render 1`] = `
 <div>
   <div
-    class="Avatar-root Avatar-xsmall"
+    class="Picasso-root"
   >
     <div
-      class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
-    />
-    <p
-      class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1 Avatar-text"
+      class="Avatar-root Avatar-xsmall"
     >
-      JR
-    </p>
+      <div
+        class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
+      />
+      <p
+        class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 Avatar-text"
+      >
+        JR
+      </p>
+    </div>
   </div>
 </div>
 `;
