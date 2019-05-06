@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Notification default render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="MuiTypography-root MuiTypography-body2 MuiPaper-root MuiPaper-elevation6 MuiSnackbarContent-root Notification-wrapperInfo Notification-wrapper"
+      role="alertdialog"
+    >
+      <div
+        class="MuiSnackbarContent-message"
+      >
+        <div
+          class="Notification-iconWrapper"
+          style="display: block;"
+        >
+          <svg
+            class="SvgClock-root Notification-iconInfo"
+            classes="[object Object]"
+            size="1.25"
+            style="font-size: 1.25rem;"
+            viewBox="0 0 24 24"
+          >
+            <g
+              fill-rule="nonzero"
+            >
+              <path
+                d="M12 21.25a9.25 9.25 0 1 0 0-18.5 9.25 9.25 0 0 0 0 18.5zm0-.5a8.75 8.75 0 1 1 0-17.5 8.75 8.75 0 0 1 0 17.5z"
+              />
+              <path
+                d="M12.25 13.25v-5h-.5v5.5h4.5v-.5z"
+              />
+            </g>
+          </svg>
+        </div>
+        <div
+          class="Notification-contentWrapper"
+          style="display: block;"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

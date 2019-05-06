@@ -17,6 +17,7 @@ declare module '@material-ui/core/styles/createPalette' {
   interface Palette {
     blue: SimplePaletteColorOptions
     success: SimplePaletteColorOptions
+    warning: SimplePaletteColorOptions
   }
 }
 
@@ -32,13 +33,17 @@ export const colors = {
   grey: {
     50: '#dfe3e9',
     100: '#e8e8e8',
-    200: '#C4C6CA',
+    200: '#c4c6ca',
     300: '#686869',
-    500: '#262D3D'
+    500: '#262d3d'
   },
   blue: {
     lighter: '#eef1fc',
     light: '#dbe3f9'
+  },
+  warning: {
+    light: '#fdf5e8',
+    main: '#edad2a'
   },
   error: {
     lighter: '#fbedf1',
@@ -47,6 +52,7 @@ export const colors = {
     dark: '#9f3a38'
   },
   success: {
+    lighter: '#edfbf5',
     light: '#b3ffe4',
     main: '#00cc83'
   },
