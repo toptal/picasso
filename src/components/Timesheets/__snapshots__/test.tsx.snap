@@ -176,7 +176,7 @@ exports[`Timesheets render with less than collasped count timesheets 1`] = `
           Show more timesheets
           <svg
             aria-hidden="true"
-            class="MuiSvgIcon-root Button-icon Button-iconRight"
+            class="MuiSvgIcon-root Button-icon Timesheets-expandMoreIcon Button-iconRight"
             focusable="false"
             role="presentation"
             viewBox="0 0 24 24"
@@ -418,7 +418,7 @@ exports[`Timesheets render with more than collasped count timesheets 1`] = `
           Show more timesheets
           <svg
             aria-hidden="true"
-            class="MuiSvgIcon-root Button-icon Button-iconRight"
+            class="MuiSvgIcon-root Button-icon Timesheets-expandMoreIcon Button-iconRight"
             focusable="false"
             role="presentation"
             viewBox="0 0 24 24"
@@ -1474,7 +1474,7 @@ exports[`Timesheets when promise in onShowMore callback specified should render 
           Show more timesheets
           <svg
             aria-hidden="true"
-            class="MuiSvgIcon-root Button-icon Button-iconRight"
+            class="MuiSvgIcon-root Button-icon Timesheets-expandMoreIcon Button-iconRight"
             focusable="false"
             role="presentation"
             viewBox="0 0 24 24"

@@ -95,7 +95,7 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
 
   if (icon) {
     const iconComponent = React.cloneElement(icon, {
-      className: cx(iconClass, {
+      className: cx(iconClass, icon.props.className, {
         [iconLeftClass]: children && iconPosition === 'left',
         [iconRightClass]: children && iconPosition === 'right'
       }),
