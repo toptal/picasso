@@ -28,7 +28,6 @@
     "react/jsx-no-bind": 0,
     "react/prop-types": 0,
     "react/jsx-closing-bracket-location": ["error", "line-aligned"],
-    "react/jsx-closing-tag-location": 1,
     "react/jsx-wrap-multilines": [
       "error",
       {
@@ -45,8 +44,6 @@
     "react/no-set-state": 0,
     "react/jsx-child-element-spacing": 0,
     "react/forbid-component-props": 0,
-    "react/prefer-es6-class": 1,
-    "react/prefer-stateless-function": 1,
     "react/jsx-sort-props": 0,
     "react/no-multi-comp": ["error", { "ignoreStateless": true }],
     "react/sort-default-prop-types": 0,
@@ -107,10 +104,7 @@
       }
     ],
     "no-unused-vars": 0,
-    "@typescript-eslint/no-unused-vars": "error",
-    "react/jsx-pascal-case": 1,
-    "react/jsx-boolean-value": 1,
-    "react/jsx-curly-spacing": 1
+    "@typescript-eslint/no-unused-vars": "error"
   },
   "env": {
     "jest": true
