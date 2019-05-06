@@ -46,6 +46,7 @@
     "react/forbid-component-props": 0,
     "react/prefer-stateless-function": 0,
     "react/jsx-sort-props": 0,
+    "react/no-multi-comp": ["error", { "ignoreStateless": true }],
     "react/sort-default-prop-types": 0,
     "react/sort-comp": [
       "error",
