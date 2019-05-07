@@ -21,6 +21,7 @@
   "rules": {
     "no-console": ["error"],
     "space-before-function-paren": 0,
+    "camelcase": ["error"],
     "react/jsx-fragments": [1, "element"],
     "react/jsx-max-props-per-line": ["error", { "when": "multiline" }],
     "react/jsx-one-expression-per-line": 0,
@@ -44,7 +45,6 @@
     "react/no-set-state": 0,
     "react/jsx-child-element-spacing": 0,
     "react/forbid-component-props": 0,
-    "react/prefer-stateless-function": 0,
     "react/jsx-sort-props": 0,
     "react/no-multi-comp": ["error", { "ignoreStateless": true }],
     "react/sort-default-prop-types": 0,

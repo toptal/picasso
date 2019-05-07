@@ -64,9 +64,11 @@ export default ({
 
       '&$labelIconStart': {
         transform: `translate(
-          calc(${input.paddingLeft} + ${input.paddingRight} + ${
-          inputIcon.width
-        }),
+          calc(
+            ${input.paddingLeft} +
+            ${input.paddingRight} +
+            ${inputIcon.width}
+          ),
           ${inputLabel.shrinkPaddingTop}
         )
         scale(${inputLabel.shrinkScale})
