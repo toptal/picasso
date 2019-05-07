@@ -70,7 +70,7 @@
     "@types/jest-image-snapshot": "^2.8.0",
     "@types/lodash": "^4.14.120",
     "@types/material-ui": "^0.21.5",
-    "@types/puppeteer": "^1.12.3",
+    "@types/puppeteer": "^1.12.4",
     "@types/react": "^16.8.14",
     "@types/react-dom": "^16.8.4",
     "@types/storybook__react": "^4.0.0",
