@@ -13,6 +13,7 @@ ENV PATH="${PATH}:/app/node_modules/.bin"
 
 # Installs Chromium (72) package.
 ENV CHROME_BIN /usr/bin/chromium-browser
+
 RUN echo $APK_BRANCH
 RUN apk update && apk upgrade && \
     echo http://nl.alpinelinux.org/alpine/v$APK_BRANCH/community > /etc/apk/repositories && \
@@ -23,21 +24,13 @@ RUN apk update && apk upgrade && \
       git \
       curl \
       jq \
-      chromium
+      chromium \
+      su-exec
 
-RUN /usr/bin/chromium-browser --version
-
-# Run everything after as non-privileged user.
 COPY . /app
 WORKDIR /app
 
-RUN ls -la /app
+COPY bin/entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
-# Add user so we don't need --no-sandbox.
-RUN addgroup -S pptruser
-RUN adduser -S -g pptruser pptruser
-RUN mkdir -p /home/pptruser/Downloads
-RUN chown -R pptruser:pptruser /home/pptruser
-RUN chown -R pptruser:pptruser /app
-
-USER pptruser
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
