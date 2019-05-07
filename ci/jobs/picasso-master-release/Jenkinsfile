@@ -10,6 +10,8 @@ pipeline {
   agent {
     docker {
       image 'gcr.io/compute-engine-1069/picasso:latest'
+      alwaysPull true
+      args '-v /etc/passwd:/etc/passwd -v /home/jenkins/.ssh:/home/jenkins/.ssh --entrypoint='
     }
   }
 
@@ -28,6 +30,10 @@ pipeline {
     GITHUB_TOKEN = credentials('toptal-devbot-personal-token')
     NPM_TOKEN = credentials('npm-token-for-toptal-private-registry-publish')
     GIT_BRANCH = 'master'
+    GIT_AUTHOR_NAME = 'toptal-davinci-bot'
+    GIT_COMMITTER_NAME = 'toptal-davinci-bot'
+    GIT_AUTHOR_EMAIL = 'milos.mosovsky+davinci@toptal.com'
+    GIT_COMMITTER_EMAIL = 'milos.mosovsky+davinci@toptal.com'
   }
 
   stages {
@@ -35,7 +41,7 @@ pipeline {
       steps {
         info "== Checking out master"
           gitCheckout(
-            branches: "master",
+            branches: "$GIT_BRANCH",
             credentials: [username: 'git', description: 'jenkins/picasso'],
             url: 'git@github.com:toptal/picasso.git',
             refspec: '+refs/heads/master:refs/remotes/origin/master',
@@ -72,18 +78,17 @@ pipeline {
 
     stage('Run release') {
       steps {
-
-        sshagent (credentials: ['picasso-ssh-deploy-key']) {
-            sh "git config user.email 'bot@toptal.com'"
-            sh "git config user.name 'toptal-bot'"
-            sh "mkdir -p ~/.ssh && ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts"
-            sh "git name-rev --name-only HEAD"
-            sh "git branch"
-            sh "yarn"
-            sh "yarn release ${params.RELEASE_AND_PUBLISH}"
-        }
+          sshagent(credentials: ['picasso-ssh-deploy-key']) { //provbot (jenkins/provbot)
+            sh """
+              git config user.email "$GIT_COMMITTER_EMAIL"
+              git config user.name "$GIT_COMMITTER_NAME"
+              yarn
+              yarn release ${params.RELEASE_AND_PUBLISH}
+            """
+            success "Done."
+          }//sshagent
         script {
-            VERSION = sh(returnStdout: true, script: 'cat build/package.json | jq ".version" -r').trim()
+            VERSION = sh(returnStdout: true, script: 'cat package.json | jq ".version" -r').trim()
         }
       } //steps
     }//stage

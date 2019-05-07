@@ -25,7 +25,10 @@ RUN apk update && apk upgrade && \
       curl \
       jq \
       chromium \
-      su-exec
+      su-exec \
+      openssh-client \
+      bash \
+      sed
 
 COPY . /app
 WORKDIR /app
