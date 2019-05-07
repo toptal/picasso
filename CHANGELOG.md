@@ -1,3 +1,20 @@
+# [0.2.0](https://github.com/toptal/picasso/compare/v0.1.0...v0.2.0) (2019-05-07)
+
+
+### Bug Fixes
+
+* **button:** pass icon.props.className in button component child icon ([#273](https://github.com/toptal/picasso/issues/273)) ([d4bb8bd](https://github.com/toptal/picasso/commit/d4bb8bd))
+* **picasso:** expose types and `link` component ([#280](https://github.com/toptal/picasso/issues/280)) ([5ef3029](https://github.com/toptal/picasso/commit/5ef3029))
+
+
+### Features
+
+* add color property for Typography ([#261](https://github.com/toptal/picasso/issues/261)) ([f253a26](https://github.com/toptal/picasso/commit/f253a26))
+* **button:** add circular style for the component ([#271](https://github.com/toptal/picasso/issues/271)) ([b645323](https://github.com/toptal/picasso/commit/b645323))
+* **icon:** new notification icons ([#274](https://github.com/toptal/picasso/issues/274)) ([a2a3b45](https://github.com/toptal/picasso/commit/a2a3b45))
+* [FX-141] Add Menu component ([#258](https://github.com/toptal/picasso/issues/258)) ([ccb55d4](https://github.com/toptal/picasso/commit/ccb55d4))
+* initialize first semantic release ([d7ef6e4](https://github.com/toptal/picasso/commit/d7ef6e4))
+
 # Changelog
 
 ## v0.1.0-beta.19 (25/04/2019)
