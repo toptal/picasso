@@ -8,11 +8,13 @@
     "test": "jest",
     "test:watch": "jest --watchAll",
     "test:visual": "./bin/run-in-docker ./bin/test-visual",
+    "test:visual:win32": "./bin/run-in-docker.cmd ./bin/test-visual",
     "lint:path": "eslint --ext=.js,.jsx,.ts,.tsx --color --fix",
     "lint": "yarn run lint:path .",
     "storybook": "start-storybook -p 9001 -s ./.storybook/public -c .storybook",
     "storybook:cache": "CACHE=1 start-storybook -p 9001 -s ./.storybook/public -c .storybook",
-    "build:storybook": "build-storybook -s ./.storybook/public -c .storybook -o build/storybook",
+    "build:storybook": "./bin/build-storybook",
+    "build:storybook:win32": "./bin/run-in-docker.cmd ./bin/build-storybook",
     "release": "./bin/release",
     "build:dist": "cross-env NODE_ENV=production ./bin/build",
     "build": "yarn run generate:icons && yarn build:dist",
@@ -21,7 +23,8 @@
     "symlink:off": "cross-env ./bin/symlink --unlink",
     "generate:component": "hygen component new",
     "generate:example": "hygen component example",
-    "generate:icons": "./bin/generate-icons",
+    "generate:icons": "./bin/generate-icons.sh",
+    "generate:icons:win32": "./bin/run-in-docker.cmd ./bin/generate-icons",
     "commit": "git-cz"
   },
   "repository": {
@@ -132,8 +135,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
-      "prepare-commit-msg": "exec < /dev/tty && git cz --hook"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {

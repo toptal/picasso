@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+NODE_MODULES="$BASE_PATH/node_modules/"
+
+$NODE_MODULES/.bin/build-storybook -s ./.storybook/public -c .storybook -o build/storybook

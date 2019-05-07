@@ -81,9 +81,20 @@ class Chapter extends Base {
     }
 
     if (!component.__docgenInfo) {
-      throw new Error(
+      window.console.warn(
         `Failed to parse __docgenInfo for '${component.displayName}'`
       )
+
+      this.createSection({
+        sectionFn: () =>
+          `A problem occurred while parsing AST tree of ${
+            component.displayName
+          }`,
+        title: name,
+        subtitle: description
+      })
+
+      return this
     }
 
     const generatedDocumentation = documentationGenerator.transform(

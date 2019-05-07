@@ -25,7 +25,8 @@ RUN apk update && apk upgrade && \
       curl \
       jq \
       chromium \
-      su-exec
+      su-exec \
+      bash
 
 COPY . /app
 WORKDIR /app
