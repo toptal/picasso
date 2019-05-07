@@ -42,11 +42,15 @@ exports[`AccountSelect default render 1`] = `
               <div
                 class="MuiGrid-item"
               >
-                <p
-                  class="MuiTypography-root Typography-body Typography-semibold MuiTypography-body1"
+                <div
+                  style="margin-bottom: 0.25em; display: block;"
                 >
-                  Phil Leif
-                </p>
+                  <h5
+                    class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+                  >
+                    Phil Leif
+                  </h5>
+                </div>
                 <span
                   class="MuiTypography-root Typography-regular MuiTypography-caption"
                 >
@@ -101,11 +105,15 @@ exports[`AccountSelect default render 1`] = `
               <div
                 class="MuiGrid-item"
               >
-                <p
-                  class="MuiTypography-root Typography-body Typography-semibold MuiTypography-body1"
+                <div
+                  style="margin-bottom: 0.25em; display: block;"
                 >
-                  Phil Leif
-                </p>
+                  <h5
+                    class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+                  >
+                    Phil Leif
+                  </h5>
+                </div>
                 <span
                   class="MuiTypography-root Typography-regular MuiTypography-caption"
                 >
@@ -157,11 +165,15 @@ exports[`AccountSelect default render 1`] = `
               <div
                 class="MuiGrid-item"
               >
-                <p
-                  class="MuiTypography-root Typography-body Typography-semibold MuiTypography-body1"
+                <div
+                  style="margin-bottom: 0.25em; display: block;"
                 >
-                  Phil Leif
-                </p>
+                  <h5
+                    class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+                  >
+                    Phil Leif
+                  </h5>
+                </div>
                 <span
                   class="MuiTypography-root Typography-regular MuiTypography-caption"
                 >

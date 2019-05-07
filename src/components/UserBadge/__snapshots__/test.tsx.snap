@@ -27,11 +27,15 @@ exports[`UserBadge auto center alignment 1`] = `
       <div
         class="MuiGrid-item"
       >
-        <p
-          class="MuiTypography-root Typography-body Typography-semibold MuiTypography-body1"
+        <div
+          style="margin-bottom: 0.25em; display: block;"
         >
-          Joe Doe
-        </p>
+          <h5
+            class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+          >
+            Joe Doe
+          </h5>
+        </div>
       </div>
     </div>
   </div>
@@ -65,11 +69,15 @@ exports[`UserBadge default render 1`] = `
       <div
         class="MuiGrid-item"
       >
-        <p
-          class="MuiTypography-root Typography-body Typography-semibold MuiTypography-body1"
+        <div
+          style="margin-bottom: 0.25em; display: block;"
         >
-          Joe Doe
-        </p>
+          <h5
+            class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+          >
+            Joe Doe
+          </h5>
+        </div>
         <p
           class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1"
         >
@@ -108,11 +116,15 @@ exports[`UserBadge invert render 1`] = `
       <div
         class="MuiGrid-item"
       >
-        <p
-          class="MuiTypography-root Typography-body Typography-invert Typography-semibold MuiTypography-body1"
+        <div
+          style="margin-bottom: 0.25em; display: block;"
         >
-          Joe Doe
-        </p>
+          <h5
+            class="MuiTypography-root Typography-invert Typography-semibold MuiTypography-h5 MuiTypography-inline"
+          >
+            Joe Doe
+          </h5>
+        </div>
         <p
           class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1"
         >
@@ -151,11 +163,15 @@ exports[`UserBadge manual center alignment 1`] = `
       <div
         class="MuiGrid-item"
       >
-        <p
-          class="MuiTypography-root Typography-body Typography-semibold MuiTypography-body1"
+        <div
+          style="margin-bottom: 0.25em; display: block;"
         >
-          Joe Doe
-        </p>
+          <h5
+            class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+          >
+            Joe Doe
+          </h5>
+        </div>
         <p
           class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1"
         >
@@ -194,11 +210,15 @@ exports[`UserBadge override auto center alignment 1`] = `
       <div
         class="MuiGrid-item"
       >
-        <p
-          class="MuiTypography-root Typography-body Typography-semibold MuiTypography-body1"
+        <div
+          style="margin-bottom: 0.25em; display: block;"
         >
-          Joe Doe
-        </p>
+          <h5
+            class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+          >
+            Joe Doe
+          </h5>
+        </div>
       </div>
     </div>
   </div>
@@ -232,11 +252,15 @@ exports[`UserBadge small size 1`] = `
       <div
         class="MuiGrid-item"
       >
-        <p
-          class="MuiTypography-root Typography-body Typography-semibold MuiTypography-body1"
+        <div
+          style="margin-bottom: 0.25em; display: block;"
         >
-          Joe Doe
-        </p>
+          <h5
+            class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+          >
+            Joe Doe
+          </h5>
+        </div>
         <p
           class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1"
         >

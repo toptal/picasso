@@ -2,6 +2,7 @@ import React, { FunctionComponent, ReactNode } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
 import Avatar from '../Avatar'
+import Container from '../Container'
 import Typography from '../Typography'
 import Grid from '../Grid'
 import { StandardProps, SizeType } from '../Picasso'
@@ -16,6 +17,8 @@ interface Props extends StandardProps {
   avatar?: ReactNode
   /** Size */
   size?: SizeType<'xsmall' | 'small'>
+  /** Title that is rendered on the right of name */
+  title?: string
   /** Invert color */
   invert?: boolean
   /**
@@ -33,6 +36,7 @@ export const UserBadge: FunctionComponent<Props> = ({
   avatar,
   name,
   size,
+  title,
   invert,
   center,
   children,
@@ -50,19 +54,29 @@ export const UserBadge: FunctionComponent<Props> = ({
   const shouldCenter = center === true || (center === 'auto' && !children)
   const alignItems = shouldCenter ? 'center' : 'flex-start'
 
+  const { title: titleClass, ...gridClasses } = classes
+  const userTitle = title && (
+    <Typography inline className={titleClass} variant='h5'>
+      {title}
+    </Typography>
+  )
+
   return (
     <Grid
       spacing={16}
       alignItems={alignItems}
-      classes={classes}
+      classes={gridClasses}
       className={className}
       style={style}
     >
       <Grid.Item>{UserBadgeAvatar}</Grid.Item>
       <Grid.Item>
-        <Typography invert={invert} weight='semibold'>
-          {name}
-        </Typography>
+        <Container bottom={0.25}>
+          <Typography inline variant='h5' invert={invert} weight='semibold'>
+            {name}
+          </Typography>
+          {userTitle}
+        </Container>
         {children}
       </Grid.Item>
     </Grid>
