@@ -10,7 +10,7 @@ module.exports = {
     [
       '@semantic-release/exec',
       {
-        prepareCmd: './update-badge.sh ${nextRelease.version}'
+        prepareCmd: './bin/update-readme-badge ${nextRelease.version}'
       }
     ],
     [
