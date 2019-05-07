@@ -97,6 +97,8 @@ To add a new Icon to Picasso library please follow these steps:
 
 1. Prepare your SVG:
    - Make sure that it has `viewBox` attribute specified
+   - Make sure that `viewBox` size is `0 0 16 16` (be careful this isn't just a simple value set!)
+   - Make sure all paths are expanded and strokes are not used
 2. Add your SVG file(s) to the Picasso project:
    > /components/Icon/svg/[your_icon_name].svg
 3. Run the command
