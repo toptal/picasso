@@ -83,12 +83,13 @@ pipeline {
               git config user.email "$GIT_COMMITTER_EMAIL"
               git config user.name "$GIT_COMMITTER_NAME"
               yarn
+              echo "" > VERSION.txt
               yarn release ${params.RELEASE_AND_PUBLISH}
             """
             success "Done."
           }//sshagent
         script {
-            VERSION = sh(returnStdout: true, script: 'cat package.json | jq ".version" -r').trim()
+            NEW_VERSION = sh(returnStdout: true, script: 'cat VERSION.txt').trim()
         }
       } //steps
     }//stage
@@ -123,29 +124,31 @@ pipeline {
   post {
       success {
           script {
-            // https://api.slack.com/docs/message-attachments
-            data =
-            '''[
-              {
-                "title": ":frontend-experience: New version {VERSION} of picasso was released",
-                "fallback": "New version {VERSION} of picasso was released",
-                "color": "#36a64f",
-                "fields": [
-                  {
-                    "title": "Documentation",
-                    "value": "<https://picasso.toptal.net|See live documentation>",
-                    "short": "true"
-                  },
-                  {
-                    "title": "Release",
-                    "value": "<https://github.com/toptal/picasso/releases/tag/v{VERSION}|See release v{VERSION}>",
-                    "short": "true"
-                  }
-                ]
-              }
-            ]'''
-            attachments = data.replace('{VERSION}', VERSION)
-            slackSend color: 'good', channel: '-frontend-exp-core', attachments: attachments
+            if (NEW_VERSION != "") {
+              // https://api.slack.com/docs/message-attachments
+              data =
+              '''[
+                {
+                  "title": ":frontend-experience: New version {VERSION} of picasso was released",
+                  "fallback": "New version {VERSION} of picasso was released",
+                  "color": "#36a64f",
+                  "fields": [
+                    {
+                      "title": "Documentation",
+                      "value": "<https://picasso.toptal.net|See live documentation>",
+                      "short": "true"
+                    },
+                    {
+                      "title": "Release",
+                      "value": "<https://github.com/toptal/picasso/releases/tag/v{VERSION}|See release v{VERSION}>",
+                      "short": "true"
+                    }
+                  ]
+                }
+              ]'''
+              attachments = data.replace('{VERSION}', VERSION)
+              slackSend color: 'good', channel: '-frontend-exp-core', attachments: attachments
+            }
           }
       }
   }
