@@ -25,7 +25,7 @@ const SvgFacebook = (props: Props) => {
       color={color}
     >
       <path
-        d='M12.59 0h-2c-2 0-4 1-4 4v2h-2v3h2v7h3V9h3V6h-3V4l2-1h1V0z'
+        d='M8.49 15.95V8h2.48l.39-2.64H8.5V4.03c0-.7.2-1.35 1.14-1.35h1.86V.05H8.85c-2.22 0-2.83 1.55-2.83 3.7v1.6H4.5v2.64h1.53v7.96H8.5z'
         fillRule='evenodd'
       />
     </svg>
