@@ -1,0 +1,36 @@
+import React from 'react'
+import cx from 'classnames'
+import { withStyles } from '@material-ui/core/styles'
+
+import { StandardProps } from '../Picasso'
+import styles from './styles'
+interface Props extends StandardProps {
+  size?: number
+  color?: string
+}
+
+const SvgInstagram = (props: Props) => {
+  const { classes, className, style, size, color } = props
+  const svgStyle = {
+    fontSize: size && `${size}rem`,
+    ...style
+  }
+
+  return (
+    <svg
+      {...props}
+      viewBox='0 0 21 21'
+      className={cx(classes.root, className)}
+      style={svgStyle}
+      color={color}
+    >
+      <g fillRule='evenodd'>
+        <path d='M18.23 15.2a3.84 3.84 0 0 1-3.75 3.94H5.52a3.84 3.84 0 0 1-3.74-3.94V5.8a3.84 3.84 0 0 1 3.74-3.94h8.96a3.84 3.84 0 0 1 3.74 3.93v9.41zM14.48 0H5.52A5.67 5.67 0 0 0 0 5.8v9.4C0 18.4 2.48 21 5.52 21h8.96c3.04 0 5.52-2.6 5.52-5.8V5.8C20 2.6 17.52 0 14.48 0z' />
+        <path d='M10 14.93A3.94 3.94 0 0 1 6.07 11 3.94 3.94 0 0 1 10 7.06 3.94 3.94 0 0 1 13.93 11 3.94 3.94 0 0 1 10 14.93M10 5a6 6 0 0 0-6 6 6 6 0 0 0 6 6 6 6 0 0 0 6-6 6 6 0 0 0-6-6m4.5-2A1.5 1.5 0 1 0 16 4.5 1.5 1.5 0 0 0 14.5 3' />
+      </g>
+    </svg>
+  )
+}
+
+SvgInstagram.displayName = 'SvgInstagram'
+export default withStyles(styles)(SvgInstagram)
