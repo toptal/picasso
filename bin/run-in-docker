@@ -12,7 +12,7 @@ else
   echo -e "${BLUE} Docker image found: '$PICASSO_IMAGE:$PKG_VERSION' ${NC}" 
 fi
 
-DOCKER_CMD="docker run -t -i --rm \
+DOCKER_CMD="docker run -t -i --rm --name $PICASSO_IMAGE \
  -v ${PWD}/package.json:/app/package.json \
  -v ${PWD}/yarn.lock:/app/yarn.lock \
  -v ${PWD}/src:/app/src \
@@ -28,5 +28,5 @@ DOCKER_CMD="docker run -t -i --rm \
 echo -e "${BLUE} Running command inside docker ... ${NC}"
 
 set -x
-$DOCKER_CMD sh -c "$1 $2"
+$DOCKER_CMD "$@"
 exit $?
