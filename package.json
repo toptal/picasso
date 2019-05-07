@@ -123,7 +123,7 @@
     "regenerator-runtime": "^0.13.2",
     "rimraf": "^2.6.2",
     "semantic-release": "^15.13.3",
-    "storybook-readme": "^5.0.2",
+    "storybook-readme": "^5.0.3",
     "styled-components": "^4.2.0",
     "ts-jest": "^24.0.2",
     "ts-loader": "^5.4.5",
