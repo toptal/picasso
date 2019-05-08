@@ -16,7 +16,7 @@ pipeline {
   }
 
   parameters {
-    string(name: 'RELEASE_AND_PUBLISH', defaultValue: '0', description: 'Run build in dry-run mode which will not release new version')
+    string(name: 'RELEASE_AND_PUBLISH', defaultValue: '1', description: 'Run build in dry-run mode which will not release new version')
   }
 
   options {
