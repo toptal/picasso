@@ -85,6 +85,7 @@ pipeline {
               yarn
               echo "" > VERSION.txt
               yarn release ${params.RELEASE_AND_PUBLISH}
+              cat VERSION.txt
             """
             success "Done."
           }//sshagent
@@ -124,6 +125,7 @@ pipeline {
   post {
       success {
           script {
+
             if (NEW_VERSION != "") {
               // https://api.slack.com/docs/message-attachments
               data =
@@ -146,10 +148,53 @@ pipeline {
                   ]
                 }
               ]'''
-              attachments = data.replace('{VERSION}', VERSION)
+
+              attachments = data.replace('{VERSION}', NEW_VERSION)
               slackSend color: 'good', channel: '-frontend-exp-core', attachments: attachments
+             
+            } else {
+              data =
+              '''[
+                {
+                  "title": "Current master version is ready to be released",
+                  "fallback": "Current master version is ready to be released",
+                  "color": "#e2b201",
+                  "fields": [
+                    {
+                      "title": "This was just a test run",
+                      "short": "true"
+                    },
+                    {
+                      "title": "Nothing was released",
+                      "short": "true"
+                    }
+                  ]
+                }
+              ]'''
+              attachments = data.replace('{VERSION}', NEW_VERSION)
+              slackSend color: 'good', channel: '-frontend-exp-team', attachments: attachments
             }
           }
+      }
+
+      failure {
+        script {
+          data = '''[
+          {
+            "title": "<!here> Current master version is broken",
+            "fallback": "<!here> Current master version is broken",
+            "color": "#e20101",
+            "fields": [
+              {
+                "title": "Release failed",
+                "value": "<{BUILD_URL}/consoleFull|Show build results>"
+              }
+            ]
+          }
+        ]'''
+        attachments = data.replace('{BUILD_URL}', "${env.BUILD_URL}")
+        slackSend color: 'good', channel: '-frontend-exp-team', attachments: attachments
+        }
       }
   }
 }//pipeline

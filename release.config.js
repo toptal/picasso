@@ -5,12 +5,17 @@ module.exports = {
     '@semantic-release/commit-analyzer',
     '@semantic-release/release-notes-generator',
     '@semantic-release/changelog',
-    '@semantic-release/npm',
+    [
+      '@semantic-release/npm',
+      {
+        pkgRoot: 'build'
+      }
+    ],
     '@semantic-release/github',
     [
       '@semantic-release/exec',
       {
-        prepareCmd: './bin/update-readme-badge ${nextRelease.version}'
+        prepareCmd: './bin/bump-version ${nextRelease.version}'
       }
     ],
     [

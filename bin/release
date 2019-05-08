@@ -5,17 +5,17 @@ BASE_PATH=$(pwd)
 
 NODE_MODULES="$BASE_PATH/node_modules/"
 
+yarn build:dist
 cp package.json .npmrc build/
-cd ./build
 
 # Safe switch for jenkins if we want to just try out release
 # yarn release [0|1]
 
-if [ "$1" == "0" ]; then
-  echo "=== RUNNING TEST RELEASE. NOTHING WILL BE PUBLISHED ==="
-  $NODE_MODULES/.bin/semantic-release --debug --dry-run
-else
+if [ "$1" == "1" ]; then
   echo "=== WARNING RUNNING LIVE RELEASE ==="
   $NODE_MODULES/.bin/semantic-release --debug
+else
+  echo "=== RUNNING TEST RELEASE. NOTHING WILL BE PUBLISHED ==="
+  $NODE_MODULES/.bin/semantic-release --debug --dry-run
 fi
 
