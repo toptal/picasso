@@ -1,3 +1,10 @@
+# [0.3.0](https://github.com/toptal/picasso/compare/v0.2.0...v0.3.0) (2019-05-08)
+
+
+### Features
+
+* add title prop to UserBadge ([#267](https://github.com/toptal/picasso/issues/267)) ([247620b](https://github.com/toptal/picasso/commit/247620b))
+
 # [0.2.0](https://github.com/toptal/picasso/compare/v0.1.0...v0.2.0) (2019-05-07)
 
 
