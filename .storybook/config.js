@@ -34,11 +34,17 @@ const ADDONS = [chaptersAddon]
 DECORATORS.forEach(decorator => addDecorator(decorator))
 ADDONS.forEach(addon => setAddon(addon))
 
-const req = require.context('@components', true, /story\/index.jsx$/)
+const reqStorybook = require.context(
+  '~/.storybook/stories',
+  true,
+  /story\/index.jsx$/
+)
+const reqComponents = require.context('@components', true, /story\/index.jsx$/)
 
 const loadStories = () => {
   require('./stories/Picasso') // markdown pages for README & CHANGELOG
-  req.keys().forEach(filename => req(filename))
+  reqStorybook.keys().forEach(filename => reqStorybook(filename))
+  reqComponents.keys().forEach(filename => reqComponents(filename))
   PicassoBook.generate()
 }
 

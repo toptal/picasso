@@ -29,7 +29,7 @@ interface GroupFunctionalComponent<T> extends FunctionComponent<T> {
 }
 
 export const Radio: GroupFunctionalComponent<Props> = ({
-  classes: { root, icon, ...otherClasses },
+  classes: { root, icon, label: labelClass, ...otherClasses },
   className,
   style,
   label,
@@ -55,6 +55,9 @@ export const Radio: GroupFunctionalComponent<Props> = ({
   return label ? (
     <FormControlLabel
       control={<MUIRadio {...radioProps} />}
+      classes={{
+        root: labelClass
+      }}
       className={className}
       style={style}
       label={label}

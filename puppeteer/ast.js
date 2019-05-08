@@ -28,7 +28,19 @@ const getCodeExampleName = node => {
       property => property.key.name === 'title'
     )
 
-    return title.value.value
+    if (title) {
+      return title.value.value
+    }
+
+    const id = nameArgument.properties.find(
+      property => property.key.name === 'id'
+    )
+
+    if (id) {
+      return id.value.value
+    }
+
+    return null
   }
 }
 

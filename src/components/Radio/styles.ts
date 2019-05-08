@@ -45,7 +45,7 @@ PicassoProvider.override(({ palette, transitions }) => ({
       height: '1em',
       padding: '0',
 
-      margin: '0.25em 0.5em',
+      margin: '0.25em 0.5em 0.25em 0',
       ...createColorVariant(palette.primary.main, palette.grey[300]),
       animationDuration: `${transitions.duration.short}`,
       animationTimingFunction: transitions.easing.easeIn,
@@ -102,5 +102,8 @@ export default ({ palette }: Theme) =>
         animationDuration: 'inherit',
         animationTimingFunction: 'inherit'
       }
+    },
+    label: {
+      marginRight: '0.5em'
     }
   })
