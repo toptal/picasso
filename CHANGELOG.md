@@ -1,3 +1,10 @@
+## [0.3.1](https://github.com/toptal/picasso/compare/v0.3.0...v0.3.1) (2019-05-08)
+
+
+### Bug Fixes
+
+* **ci:** fix pkgRoot while publishing to NPM ([d720b2f](https://github.com/toptal/picasso/commit/d720b2f))
+
 # [0.3.0](https://github.com/toptal/picasso/compare/v0.2.0...v0.3.0) (2019-05-08)
 
 
