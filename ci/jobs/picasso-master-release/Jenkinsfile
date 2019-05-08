@@ -153,26 +153,38 @@ pipeline {
               slackSend color: 'good', channel: '-frontend-exp-core', attachments: attachments
              
             } else {
-              data =
-              '''[
-                {
-                  "title": "Current master version is ready to be released",
-                  "fallback": "Current master version is ready to be released",
-                  "color": "#e2b201",
-                  "fields": [
-                    {
-                      "title": "This was just a test run",
-                      "short": "true"
-                    },
-                    {
-                      "title": "Nothing was released",
-                      "short": "true"
-                    }
-                  ]
-                }
-              ]'''
-              attachments = data.replace('{VERSION}', NEW_VERSION)
-              slackSend color: 'good', channel: '-frontend-exp-team', attachments: attachments
+              if (params.RELEASE_AND_PUBLISH == "1") {
+                data = '''[
+                  {
+			              "title": ":nothingtodohere: Have a nice day :wave:"
+      	          }
+                ]'''
+
+                message = "Hey, everything is fine, I wanted to do a release but I didn't find any suitable commits which should trigger a new version."
+                attachments = data.replace('{VERSION}', NEW_VERSION)
+                slackSend color: 'good', channel: '-frontend-exp-team', attachments: attachments, message: message
+              } else {
+                data = '''[
+                  {
+                    "title": "Current master version is ready to be released",
+                    "fallback": "Current master version is ready to be released",
+                    "color": "#e2b201",
+                    "fields": [
+                      {
+                        "title": "This was just a test run",
+                        "short": "true"
+                      },
+                      {
+                        "title": "Nothing was released",
+                        "short": "true"
+                      }
+                    ]
+                  }
+                ]'''
+                attachments = data.replace('{VERSION}', NEW_VERSION)
+                slackSend color: 'good', channel: '-frontend-exp-team', attachments: attachments
+              }
+
             }
           }
       }
