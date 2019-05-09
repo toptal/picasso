@@ -2,7 +2,7 @@ import React from 'react'
 import { Page } from '@toptal/picasso'
 
 const PageHeaderDefaultExample = () => (
-  <div>
+  <div style={{ height: '3.75em' }}>
     <Page.Header title='Onboarding' />
   </div>
 )

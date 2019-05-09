@@ -2,7 +2,7 @@ import React from 'react'
 import { Page, Select } from '@toptal/picasso'
 
 const PageHeaderRightContentExample = () => (
-  <div>
+  <div style={{ height: '3.75em' }}>
     <Page.Header rightContent={<RightContent />} title='Onboarding' />
   </div>
 )

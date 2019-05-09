@@ -12,7 +12,8 @@ export default () =>
       alignItems: 'center'
     },
     componentRenderer: {
-      flex: 1
+      flex: 1,
+      position: 'relative'
     },
     buttons: {
       top: '-.75rem',
