@@ -1,14 +1,15 @@
 const purifyFixedPosition = (exampleContainerElement: HTMLElement) => {
   const elements = exampleContainerElement.getElementsByTagName('*')
 
-  for (let i = 0; i < elements.length; i++) {
-    const element = elements[i] as HTMLElement
-    const style = window.getComputedStyle(element)
-
-    if (style.getPropertyValue('position') === 'fixed') {
-      element.style.position = 'absolute'
-    }
-  }
+  Array.from(elements)
+    .filter(element => {
+      const style = window.getComputedStyle(element)
+      return style.getPropertyValue('position') === 'fixed'
+    })
+    .forEach(element => {
+      const htmlElement = element as HTMLElement
+      htmlElement.style.position = 'absolute'
+    })
 }
 
 export default purifyFixedPosition
