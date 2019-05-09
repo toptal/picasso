@@ -15,20 +15,22 @@ const SidebarItem = ({ icon, children }) => (
 )
 
 const Sidebar = () => (
-  <Grid direction='column' alignItems='stretch' spacing={8}>
-    <Grid.Item>
-      <SidebarItem icon={<Portfolio />}>Overview</SidebarItem>
-    </Grid.Item>
-    <Grid.Item>
-      <SidebarItem icon={<Profile />}>Jobs</SidebarItem>
-    </Grid.Item>
-    <Grid.Item>
-      <SidebarItem icon={<Message />}>Candidates</SidebarItem>
-    </Grid.Item>
-    <Grid.Item>
-      <SidebarItem icon={<Globe />}>Team</SidebarItem>
-    </Grid.Item>
-  </Grid>
+  <Container top='medium'>
+    <Grid direction='column' alignItems='stretch' spacing={8}>
+      <Grid.Item>
+        <SidebarItem icon={<Portfolio />}>Overview</SidebarItem>
+      </Grid.Item>
+      <Grid.Item>
+        <SidebarItem icon={<Profile />}>Jobs</SidebarItem>
+      </Grid.Item>
+      <Grid.Item>
+        <SidebarItem icon={<Message />}>Candidates</SidebarItem>
+      </Grid.Item>
+      <Grid.Item>
+        <SidebarItem icon={<Globe />}>Team</SidebarItem>
+      </Grid.Item>
+    </Grid>
+  </Container>
 )
 
 const LayoutExample = () => (
