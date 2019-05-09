@@ -1,3 +1,15 @@
+# [1.0.0](https://github.com/toptal/picasso/compare/v0.3.1...v1.0.0) (2019-05-09)
+
+
+### chore
+
+* **timesheet:** migrate components into billing frontend ([#268](https://github.com/toptal/picasso/issues/268)) ([40e7583](https://github.com/toptal/picasso/commit/40e7583))
+
+
+### BREAKING CHANGES
+
+* **timesheet:** component removal
+
 ## [0.3.1](https://github.com/toptal/picasso/compare/v0.3.0...v0.3.1) (2019-05-08)
 
 
