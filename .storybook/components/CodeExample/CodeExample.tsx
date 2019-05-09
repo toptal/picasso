@@ -127,7 +127,7 @@ class CodeExample extends Component<Props> {
       )
 
       return (
-        <div ref={this.sourceRendererRef}>
+        <div ref={this.sourceRendererRef} className={classes.componentRenderer}>
           <SourceRender
             babelConfig={{
               presets: ['es2015']
