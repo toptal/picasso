@@ -4,7 +4,11 @@ export default ({ palette, layout }: Theme) =>
   createStyles({
     root: {
       backgroundColor: palette.primary.main,
-      width: '100%'
+      width: '100%',
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0
     },
     content: {
       boxSizing: 'border-box',
