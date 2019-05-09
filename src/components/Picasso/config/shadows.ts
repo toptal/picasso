@@ -10,7 +10,7 @@ const shadows: Shadows = [
     '0 4px 8px 0 rgba(0,0,0, 0.08)',
 
     /** nofication growl */
-    '0 0px 8px 0 rgba(0,0,0, 0.16)',
+    '0 0 8px 0 rgba(0,0,0, 0.16)',
 
     /** tooltip */
     '0 0 4px 0 rgba(0,0,0, 0.24), 0 0 32px 0 rgba(0,0,0, 0.12)'
