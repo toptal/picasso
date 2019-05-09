@@ -18,11 +18,11 @@ page
     Picasso provides a function 'screens' to be able to 
     easily create media queries based on the given breakpoints
   `
-  })
+  }) // picasso-skip-visuals
   .addExample('utils/Breakpoints/story/Breakpoints.example.jsx', {
     title: 'Breakpoints',
     description: `
     The list of breakpoint names and pixel-values we use while we design and do layouts
   `,
     showEditCode: false
-  })
+  }) // picasso-skip-visuals

@@ -17,6 +17,7 @@ import Page from './Page'
 
 import PropsTable from './components/PropsTable'
 import TabsSection from './components/TabsSection'
+import Markdown from '../Markdown'
 
 const documentationGenerator = new DocumentationGenerator()
 
@@ -48,6 +49,26 @@ class Chapter extends Base {
     this.collection.push(section)
 
     return section
+  }
+
+  addTextSection = (text: string, options: any) => {
+    if (TEST_ENV === 'visual') {
+      return this
+    }
+
+    const render = () => <Markdown>{text}</Markdown>
+
+    this.createSection({
+      sectionFn: render,
+      ...options,
+      options: {
+        decorator: (story: any) => (
+          <div className='text-section-container'>{story()}</div>
+        )
+      }
+    })
+
+    return this
   }
 
   addDocs = (documentation: PropDocumentation[]) => {
@@ -115,12 +136,14 @@ class Chapter extends Base {
       }
     }
 
-    const sectionLinkId = normalize(finalOptions.title)
+    const sectionId = finalOptions.title || finalOptions.id
+
+    const sectionLinkId = normalize(sectionId)
     const permanentLink = generateUrl({
       host: getHost(),
       kind: this.page.getPicassoSection(this.page.section),
       type: this.page.title,
-      section: finalOptions.title
+      section: sectionId
     })
 
     const render = () => (

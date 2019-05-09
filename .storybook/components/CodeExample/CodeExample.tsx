@@ -58,7 +58,11 @@ class CodeExample extends Component<Props> {
 
   getOriginalSourceCode = () => {
     const { src } = this.props
-    return require(`!raw-loader!@components/${src}`).default
+    try {
+      return require(`!raw-loader!@components/${src}`).default
+    } catch (e) {
+      return require(`!raw-loader!~/.storybook/stories/${src}`).default
+    }
   }
 
   /* This function is needed to avoid memoization of the source code

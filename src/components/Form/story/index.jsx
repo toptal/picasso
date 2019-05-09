@@ -1,5 +1,7 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
+import { Form } from '../Form'
+
 import formFieldStory from '@components/FormField/story'
 import formHintStory from '@components/FormHint/story'
 
@@ -11,6 +13,7 @@ const page = PicassoBook.createPage(
 
 page
   .createTabChapter('Props')
+  .addComponentDocs({ component: Form, name: 'Form' })
   .addComponentDocs(formFieldStory.componentDocs)
   .addComponentDocs(formHintStory.componentDocs)
 

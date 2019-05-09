@@ -11,5 +11,5 @@ const page = PicassoBook.createPage(
 
 page
   .createChapter()
-  .addExample('utils/Colors/story/HowToUse.example.jsx', 'How to use')
+  .addExample('utils/Colors/story/HowToUse.example.jsx', 'How to use') // picasso-skip-visuals
   .addExample('utils/Colors/story/Default.example.jsx', 'Colors')

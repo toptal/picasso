@@ -85,7 +85,7 @@ class Page extends Base {
 
       const stories = storiesOf(storyName, module)
       chapter.sections.forEach(section => {
-        stories.add(section.title, section.sectionFn)
+        stories.add(section.title || section.id, section.sectionFn)
       })
     })
   }

@@ -4,10 +4,14 @@ import { Stepper, Container, Typography } from '@toptal/picasso'
 const StepperVariantsExample = () => (
   <div>
     <Typography>Default:</Typography>
-    <Stepper steps={['Step 1', 'Step 2', 'Step 3', 'Step 4']} />
+    <Container padded='medium'>
+      <Stepper steps={['Step 1', 'Step 2', 'Step 3', 'Step 4']} />
+    </Container>
     <Container top='small'>
       <Typography>Without labels:</Typography>
-      <Stepper hideLabels steps={['Step 1', 'Step 2', 'Step 3', 'Step 4']} />
+      <Container padded='medium'>
+        <Stepper hideLabels steps={['Step 1', 'Step 2', 'Step 3', 'Step 4']} />
+      </Container>
     </Container>
   </div>
 )
