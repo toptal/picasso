@@ -5,9 +5,13 @@ import Typography from './index'
 import Picasso from '../index'
 
 const renderTypography = (children: React.ReactNode, props: any) => {
+  const { align, weight } = props
+
   return render(
     <Picasso loadFonts={false}>
-      <Typography {...props}>{children}</Typography>
+      <Typography align={align} weight={weight}>
+        {children}
+      </Typography>
     </Picasso>
   )
 }

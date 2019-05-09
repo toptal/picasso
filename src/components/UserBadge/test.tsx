@@ -6,9 +6,11 @@ import UserBadge from './index'
 import Picasso from '../index'
 
 const renderUserBadge = (children: React.ReactNode, props: any) => {
+  const { size, center, invert } = props
+
   return render(
     <Picasso loadFonts={false}>
-      <UserBadge name='Joe Doe' {...props}>
+      <UserBadge name='Joe Doe' size={size} center={center} invert={invert}>
         {children}
       </UserBadge>
     </Picasso>

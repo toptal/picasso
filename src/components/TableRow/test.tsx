@@ -4,12 +4,12 @@ import { render, cleanup, RenderResult } from 'react-testing-library'
 import Picasso from '../Picasso'
 import Table from '../Table'
 
-const renderTableRow = (props: any = {}) => {
+const renderTableRow = () => {
   return render(
     <Picasso loadFonts={false}>
       <Table>
         <Table.Body>
-          <Table.Row {...props}>
+          <Table.Row>
             <Table.Cell>Row test</Table.Cell>
           </Table.Row>
         </Table.Body>

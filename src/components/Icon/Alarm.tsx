@@ -18,7 +18,6 @@ const SvgAlarm = (props: Props) => {
 
   return (
     <svg
-      {...props}
       viewBox='0 0 24 24'
       className={cx(classes.root, className)}
       style={svgStyle}

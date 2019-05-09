@@ -6,9 +6,13 @@ import Picasso from '../Picasso'
 import TextField from './index'
 
 const renderTextField = (children: ReactNode, props: any = {}) => {
+  const { icon, iconPosition } = props
+
   return render(
     <Picasso loadFonts={false}>
-      <TextField {...props}>{children}</TextField>
+      <TextField icon={icon} iconPosition={iconPosition}>
+        {children}
+      </TextField>
     </Picasso>
   )
 }

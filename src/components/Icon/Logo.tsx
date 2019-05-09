@@ -18,7 +18,6 @@ const SvgLogo = (props: Props) => {
 
   return (
     <svg
-      {...props}
       viewBox='0 0 134 40'
       className={cx(classes.root, className)}
       style={svgStyle}

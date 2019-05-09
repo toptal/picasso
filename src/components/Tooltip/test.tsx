@@ -4,7 +4,13 @@ import { render, cleanup, RenderResult } from 'react-testing-library'
 import Tooltip from './index'
 
 const renderTooltip = (children: React.ReactNode, props: any) => {
-  return render(<Tooltip {...props}>{children}</Tooltip>)
+  const { content, trigger, interactive } = props
+
+  return render(
+    <Tooltip content={content} trigger={trigger} interactive={interactive}>
+      {children}
+    </Tooltip>
+  )
 }
 
 afterEach(cleanup)
