@@ -58,6 +58,16 @@ In order to have a good tracking on visual changes which were applied in each PR
 
 `yarn test:visual -u` - Updating to current snapshots
 
+If you want to update only some snapshots with the specific names, run:
+```
+yarn test:visual -u -t *snapshot_name_pattern*
+
+// example
+// will update Typography:Colors, Colors:Colors snapshots
+yarn test:visual -u -t Colors
+
+```
+
 ### Running yarn commands inside docker image
 
 In order to run `yarn` commands we need to mount current `components` directory to docker, so command will be executed against current working directory not the one built inside image.
