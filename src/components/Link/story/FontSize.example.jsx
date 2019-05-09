@@ -1,0 +1,34 @@
+import React from 'react'
+import { Link, Container, Typography } from '@toptal/picasso'
+
+const FontSizeExample = () => {
+  const handleClick = e => {
+    e.preventDefault()
+    window.alert('Click handled just before redirect')
+  }
+
+  return (
+    <div>
+      <Container inline right='large'>
+        <Typography>
+          Please{' '}
+          <Link onClick={handleClick} href='https://toptal.com'>
+            verify
+          </Link>{' '}
+          your email
+        </Typography>
+      </Container>
+      <Container inline right='large'>
+        <Typography variant='h2'>
+          Please{' '}
+          <Link onClick={handleClick} href='https://toptal.com'>
+            verify
+          </Link>{' '}
+          your email
+        </Typography>
+      </Container>
+    </div>
+  )
+}
+
+export default FontSizeExample
