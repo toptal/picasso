@@ -13,7 +13,7 @@ import { Classes } from '@components/styles/types'
 import {
   PropDocumentation,
   PropTypeDocumentation
-} from '~/.storybook/utils/documentationGenerator'
+} from '~/.storybook/utils/documentation-generator'
 import PropTypeTableCell from './PropTypeTableCell'
 import EnumsList from './EnumsList'
 import Description from './Description'

@@ -1,7 +1,7 @@
 import { join } from 'path'
 import { Page } from 'puppeteer'
 
-import { generateIframeUrl } from '../src/utils/urlGenerator'
+import { generateIframeUrl } from '../src/utils/url-generator'
 
 declare var page: Page
 

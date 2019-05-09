@@ -7,7 +7,7 @@ import { ClassNameMap } from '@material-ui/core/styles/withStyles'
 
 import Tooltip from '@components/Tooltip'
 import Markdown from '~/.storybook/components/Markdown'
-import { PropTypeDocumentation } from '~/.storybook/utils/documentationGenerator'
+import { PropTypeDocumentation } from '~/.storybook/utils/documentation-generator'
 import styles from './styles'
 
 interface Props {
