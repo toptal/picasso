@@ -1,11 +1,22 @@
 /* eslint-disable react/no-multi-comp */
 import React, { ReactNode } from 'react'
+import { Overwrite } from '@material-ui/core'
 import { render, fireEvent, cleanup, RenderResult } from 'react-testing-library'
 
-import Accordion from './index'
+import { JssProps } from '../Picasso'
+import Accordion, { Props } from './Accordion'
 
-const renderAccordion = (props: any = {}, children: ReactNode) => {
-  return render(<Accordion {...props}>{children}</Accordion>)
+const renderAccordion = (
+  props: Overwrite<Props, Partial<JssProps>>,
+  children: ReactNode
+) => {
+  const { content, expanded } = props
+
+  return render(
+    <Accordion content={content} expanded={expanded}>
+      {children}
+    </Accordion>
+  )
 }
 
 afterEach(cleanup)

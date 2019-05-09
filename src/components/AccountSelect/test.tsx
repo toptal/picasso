@@ -1,13 +1,21 @@
 import React from 'react'
+import { Overwrite } from '@material-ui/core'
 import { render, cleanup, RenderResult, fireEvent } from 'react-testing-library'
 
-import Picasso from '../Picasso'
-import AccountSelect from './index'
+import Picasso, { JssProps } from '../Picasso'
+import AccountSelect, { Props } from './AccountSelect'
 
-const renderAccountSelect = (children: React.ReactNode, props: any) => {
+const renderAccountSelect = (
+  children: React.ReactNode,
+  props: Overwrite<Props, Partial<JssProps>>
+) => {
+  const { onSelect, accounts } = props
+
   return render(
     <Picasso loadFonts={false}>
-      <AccountSelect {...props}>{children}</AccountSelect>
+      <AccountSelect accounts={accounts} onSelect={onSelect}>
+        {children}
+      </AccountSelect>
     </Picasso>
   )
 }

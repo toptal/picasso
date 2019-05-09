@@ -26,7 +26,7 @@ type Account = {
 
 type Accounts = Account[]
 
-interface Props {
+export interface Props {
   classes: Classes
   /** List of available accounts */
   accounts: Accounts

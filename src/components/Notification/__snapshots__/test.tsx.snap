@@ -18,9 +18,7 @@ exports[`Notification default render 1`] = `
         >
           <svg
             class="SvgInfo-root"
-            classes="[object Object]"
             color="#c4c6ca"
-            size="1.25"
             style="font-size: 1.25rem;"
             viewBox="0 0 24 24"
           >

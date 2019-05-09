@@ -1,11 +1,15 @@
 import React from 'react'
+import { Overwrite } from '@material-ui/core'
 import { render, cleanup } from 'react-testing-library'
 
 import Typography from '../Typography'
-import UserBadge from './index'
-import Picasso from '../index'
+import UserBadge, { Props } from './UserBadge'
+import Picasso, { JssProps } from '../Picasso'
 
-const renderUserBadge = (children: React.ReactNode, props: any) => {
+const renderUserBadge = (
+  children: React.ReactNode,
+  props: Overwrite<Props, Partial<JssProps> & { name?: string }>
+) => {
   const { size, center, invert } = props
 
   return render(
@@ -23,7 +27,7 @@ describe('UserBadge', () => {
   test('default render', () => {
     const { container } = renderUserBadge(
       <Typography>QA tester</Typography>,
-      null
+      {}
     )
 
     expect(container).toMatchSnapshot()
@@ -46,7 +50,7 @@ describe('UserBadge', () => {
   })
 
   test('auto center alignment', () => {
-    const { container } = renderUserBadge(null, null)
+    const { container } = renderUserBadge(null, {})
 
     expect(container).toMatchSnapshot()
   })

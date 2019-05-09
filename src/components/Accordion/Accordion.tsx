@@ -8,7 +8,7 @@ import ExpansionPanelSummary from '../ExpansionPanelSummary'
 import ExpansionPanelDetails from '../ExpansionPanelDetails'
 import styles from './styles'
 
-interface Props extends StandardProps {
+export interface Props extends StandardProps {
   /** Always visible part of accordion */
   children?: ReactNode
   /** Collapsible content of `Accordion` */
