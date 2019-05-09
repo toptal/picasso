@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/toptal/picasso/compare/v1.0.0...v1.1.0) (2019-05-09)
+
+
+### Features
+
+* **notification:** new notification component ([#275](https://github.com/toptal/picasso/issues/275)) ([cd5bc1d](https://github.com/toptal/picasso/commit/cd5bc1d))
+
 # [1.0.0](https://github.com/toptal/picasso/compare/v0.3.1...v1.0.0) (2019-05-09)
 
 
