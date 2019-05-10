@@ -34,7 +34,7 @@ const imports: {
   'styled-components': styled,
   '@toptal/picasso': require('@components'),
   '@toptal/picasso/utils': require('@components/utils'),
-  '@toptal/picasso/Icons': require('@components/Icon')
+  '@toptal/picasso/Icon': require('@components/Icon')
 }
 
 const resolver = (path: string) => imports[path]
