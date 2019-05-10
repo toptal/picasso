@@ -1,10 +1,17 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
+export const headerHeight = '3.75em'
+
 export default ({ palette, layout }: Theme) =>
   createStyles({
     root: {
       backgroundColor: palette.primary.main,
-      width: '100%'
+      width: '100%',
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      zIndex: 1
     },
     content: {
       boxSizing: 'border-box',
@@ -13,7 +20,7 @@ export default ({ palette, layout }: Theme) =>
       margin: '0 auto',
       justifyContent: 'space-between',
       maxWidth: layout.contentWidth,
-      height: '3.75em',
+      height: headerHeight,
       padding: `0 ${layout.contentPaddingHorizontal}`
     },
     fullWidth: {

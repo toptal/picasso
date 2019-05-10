@@ -4,7 +4,7 @@
     background-color: white;
   }
   #root {
-    padding: 20px;
+    padding: 0;
   }
   .story-title {
     margin: 0;
@@ -47,6 +47,7 @@
   }
   .chapter-container {
     flex: 1;
+    width: 100%;
   }
 </style>
 
@@ -90,6 +91,9 @@
       }
 
       root.style = 'padding: 0 !important'
+      // we have left here 10px margin for visual tests
+      // to make prettier screenshots and to avoid hiding
+      // box shadows from the captured screenshots for some components
       document.body.style = 'padding: 0; margin: 10px !important;'
     }
   }

@@ -14,6 +14,7 @@ import { Classes } from '@components/styles/types'
 import Picasso, { Typography, Button, Accordion, Container } from '@components'
 
 import Editor from '../Editor'
+import purifyFixedPosition from '../../utils/purify-fixed-position'
 import styles from './styles'
 
 const COPY_LINK_DEFAULT_TEXT = 'Link'
@@ -49,11 +50,27 @@ class CodeExample extends Component<Props> {
     copyLinkButtonText: COPY_LINK_DEFAULT_TEXT
   }
 
-  copyLinkButtonRef = React.createRef<HTMLElement>()
+  sourceRendererRef = React.createRef<HTMLDivElement>()
 
   componentDidMount() {
     const sourceCode = this.getOriginalSourceCode()
     this.setState({ sourceCode })
+  }
+
+  componentDidUpdate() {
+    this.purifyFixedPositionElements()
+  }
+
+  /* We need this function because of the fixed positioned components
+   * like PageHeader. We want to make them behave like absolute positioned
+   * elements inside the each example, especially when scroll involved.
+   */
+  purifyFixedPositionElements = () => {
+    if (!this.sourceRendererRef.current) {
+      return
+    }
+
+    purifyFixedPosition(this.sourceRendererRef.current)
   }
 
   getOriginalSourceCode = () => {
@@ -110,18 +127,20 @@ class CodeExample extends Component<Props> {
       )
 
       return (
-        <SourceRender
-          babelConfig={{
-            presets: ['es2015']
-          }}
-          render={renderInTestPicasso}
-          resolver={resolver}
-          source={this.avoidSourceCodeMemoization(sourceCode)}
-        >
-          <SourceRender.Consumer>
-            {({ element }: RenderResult) => element}
-          </SourceRender.Consumer>
-        </SourceRender>
+        <div ref={this.sourceRendererRef} className={classes.componentRenderer}>
+          <SourceRender
+            babelConfig={{
+              presets: ['es2015']
+            }}
+            render={renderInTestPicasso}
+            resolver={resolver}
+            source={this.avoidSourceCodeMemoization(sourceCode)}
+          >
+            <SourceRender.Consumer>
+              {({ element }: RenderResult) => element}
+            </SourceRender.Consumer>
+          </SourceRender>
+        </div>
       )
     }
 
@@ -143,61 +162,66 @@ class CodeExample extends Component<Props> {
     const renderInPicasso = (element: ReactNode) => <Picasso>{element}</Picasso>
 
     return (
-      <SourceRender
-        babelConfig={{
-          presets: ['es2015']
-        }}
-        render={renderInPicasso}
-        resolver={resolver}
-        source={this.avoidSourceCodeMemoization(sourceCode)}
-      >
-        <div className={classes.root}>
-          <div className={classes.component}>
-            <Container
-              className={classes.componentRenderer}
-              top='large'
-              bottom='large'
-            >
-              <SourceRender.Consumer>
-                {({ element }: RenderResult) => element}
-              </SourceRender.Consumer>
+      <div ref={this.sourceRendererRef}>
+        <SourceRender
+          babelConfig={{
+            presets: ['es2015']
+          }}
+          render={renderInPicasso}
+          resolver={resolver}
+          source={this.avoidSourceCodeMemoization(sourceCode)}
+        >
+          <div className={classes.root}>
+            <div className={classes.component}>
+              <Container
+                className={classes.componentRenderer}
+                top='large'
+                bottom='large'
+              >
+                <SourceRender.Consumer>
+                  {({ element }: RenderResult) => element}
+                </SourceRender.Consumer>
 
-              <SourceRender.Consumer>
-                {({ error }: RenderResult) =>
-                  error && (
-                    <Typography weight='regular' variant='large'>
-                      {error.toString()}
-                    </Typography>
-                  )
-                }
-              </SourceRender.Consumer>
-            </Container>
-            <div className={classes.buttons}>
-              {showEditCode && (
+                <SourceRender.Consumer>
+                  {({ error }: RenderResult) =>
+                    error && (
+                      <Typography weight='regular' variant='large'>
+                        {error.toString()}
+                      </Typography>
+                    )
+                  }
+                </SourceRender.Consumer>
+              </Container>
+              <div className={classes.buttons}>
+                {showEditCode && (
+                  <Button
+                    variant='flat'
+                    size='small'
+                    icon={<IconCode />}
+                    onClick={this.handleShowEditor}
+                  >
+                    Edit code
+                  </Button>
+                )}
                 <Button
                   variant='flat'
                   size='small'
-                  icon={<IconCode />}
-                  onClick={this.handleShowEditor}
+                  icon={<IconLink />}
+                  onClick={this.handleCopyLink}
                 >
-                  Edit code
+                  {copyLinkButtonText}
                 </Button>
-              )}
-              <Button
-                variant='flat'
-                size='small'
-                icon={<IconLink />}
-                onClick={this.handleCopyLink}
-              >
-                {copyLinkButtonText}
-              </Button>
+              </div>
+            </div>
+            <div>
+              <Accordion
+                content={SourceCodeEditor}
+                expanded={isEditorVisible}
+              />
             </div>
           </div>
-          <div>
-            <Accordion content={SourceCodeEditor} expanded={isEditorVisible} />
-          </div>
-        </div>
-      </SourceRender>
+        </SourceRender>
+      </div>
     )
   }
 }
