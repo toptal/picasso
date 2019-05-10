@@ -9,7 +9,7 @@ export default ({ layout }: Theme) =>
       width: '100%',
       display: 'flex',
       justifyContent: 'center',
-      marginTop: `${headerHeight}em`
+      marginTop: headerHeight
     },
     content: {
       height: '100%',

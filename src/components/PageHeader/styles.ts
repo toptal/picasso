@@ -1,6 +1,6 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
-export const headerHeight = 3.75
+export const headerHeight = '3.75em'
 
 export default ({ palette, layout }: Theme) =>
   createStyles({
@@ -20,7 +20,7 @@ export default ({ palette, layout }: Theme) =>
       margin: '0 auto',
       justifyContent: 'space-between',
       maxWidth: layout.contentWidth,
-      height: `${headerHeight}em`,
+      height: headerHeight,
       padding: `0 ${layout.contentPaddingHorizontal}`
     },
     fullWidth: {
