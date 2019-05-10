@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/toptal/picasso/compare/v1.2.0...v1.2.1) (2019-05-10)
+
+
+### Bug Fixes
+
+* [FX-154] Fix padding after removing padding for root ([#307](https://github.com/toptal/picasso/issues/307)) ([4fd84cb](https://github.com/toptal/picasso/commit/4fd84cb))
+
 # [1.2.0](https://github.com/toptal/picasso/compare/v1.1.0...v1.2.0) (2019-05-10)
 
 
