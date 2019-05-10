@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/toptal/picasso/compare/v1.1.0...v1.2.0) (2019-05-10)
+
+
+### Features
+
+* **page-header:** [FX-154] Make PageHeader sticky ([#301](https://github.com/toptal/picasso/issues/301)) ([20fd7c0](https://github.com/toptal/picasso/commit/20fd7c0))
+
 # [1.1.0](https://github.com/toptal/picasso/compare/v1.0.0...v1.1.0) (2019-05-09)
 
 
