@@ -1,6 +1,6 @@
 import React from 'react'
 import { Grid, Paper, Typography, Container } from '@toptal/picasso'
-import * as icons from '@toptal/picasso/Icons'
+import * as icons from '@toptal/picasso/Icon'
 
 /** We don't want to render internal icons */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

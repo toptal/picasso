@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from '@toptal/picasso'
-import { Cog } from '@toptal/picasso/Icons'
+import { Cog } from '@toptal/picasso/Icon'
 
 const ButtonIconButtonsWithTextExample = () => (
   <div>
