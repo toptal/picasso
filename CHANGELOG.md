@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/toptal/picasso/compare/v1.2.1...v1.2.2) (2019-05-10)
+
+
+### Bug Fixes
+
+* **storybook:** wrong Icon import path ([#309](https://github.com/toptal/picasso/issues/309)) ([b762249](https://github.com/toptal/picasso/commit/b762249)), closes [#308](https://github.com/toptal/picasso/issues/308)
+
 ## [1.2.1](https://github.com/toptal/picasso/compare/v1.2.0...v1.2.1) (2019-05-10)
 
 
