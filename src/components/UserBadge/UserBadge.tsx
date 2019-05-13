@@ -71,13 +71,11 @@ export const UserBadge: FunctionComponent<Props> = ({
     >
       <Grid.Item>{UserBadgeAvatar}</Grid.Item>
       <Grid.Item>
-        <Container bottom={0.25}>
-          <Typography inline variant='h5' invert={invert} weight='semibold'>
-            {name}
-          </Typography>
-          {userTitle}
-        </Container>
-        {children}
+        <Typography inline variant='h5' invert={invert} weight='semibold'>
+          {name}
+        </Typography>
+        {userTitle}
+        {children && <Container top={0.25}>{children}</Container>}
       </Grid.Item>
     </Grid>
   )

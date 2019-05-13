@@ -1,5 +1,4 @@
 import React, { FunctionComponent, ReactNode } from 'react'
-import { Overwrite } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import MUITable from '@material-ui/core/Table'
 
@@ -7,7 +6,7 @@ import TableCell from '../TableCell'
 import TableBody from '../TableBody'
 import TableRow from '../TableRow'
 import TableHead from '../TableHead'
-import { StandardProps, JssProps } from '../Picasso'
+import { StandardProps, PicassoComponent } from '../Picasso'
 import styles from './styles'
 
 interface Props extends StandardProps {
@@ -47,7 +46,4 @@ Table.Head = TableHead
 
 Table.Row = TableRow
 
-export default withStyles(styles)(Table) as FunctionComponent<
-  Overwrite<Props, Partial<JssProps>>
-> &
-  StaticProps
+export default withStyles(styles)(Table) as PicassoComponent<Props, StaticProps>

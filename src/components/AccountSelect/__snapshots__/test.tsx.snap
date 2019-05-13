@@ -42,20 +42,20 @@ exports[`AccountSelect default render 1`] = `
               <div
                 class="MuiGrid-item"
               >
+                <h5
+                  class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+                >
+                  Phil Leif 1
+                </h5>
                 <div
-                  style="margin-bottom: 0.25em; display: block;"
+                  style="margin-top: 0.25em; display: block;"
                 >
-                  <h5
-                    class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption"
                   >
-                    Phil Leif 1
-                  </h5>
+                    Account Owner at Stowaway Cosmetics
+                  </span>
                 </div>
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption"
-                >
-                  Account Owner at Stowaway Cosmetics
-                </span>
               </div>
             </div>
             <svg
@@ -104,20 +104,20 @@ exports[`AccountSelect default render 1`] = `
               <div
                 class="MuiGrid-item"
               >
+                <h5
+                  class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+                >
+                  Phil Leif 2
+                </h5>
                 <div
-                  style="margin-bottom: 0.25em; display: block;"
+                  style="margin-top: 0.25em; display: block;"
                 >
-                  <h5
-                    class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption"
                   >
-                    Phil Leif 2
-                  </h5>
+                    Company Representative at Marketing Works
+                  </span>
                 </div>
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption"
-                >
-                  Company Representative at Marketing Works
-                </span>
               </div>
             </div>
             <svg
@@ -163,20 +163,20 @@ exports[`AccountSelect default render 1`] = `
               <div
                 class="MuiGrid-item"
               >
+                <h5
+                  class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+                >
+                  Phil Leif 3
+                </h5>
                 <div
-                  style="margin-bottom: 0.25em; display: block;"
+                  style="margin-top: 0.25em; display: block;"
                 >
-                  <h5
-                    class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+                  <span
+                    class="MuiTypography-root Typography-regular MuiTypography-caption"
                   >
-                    Phil Leif 3
-                  </h5>
+                    Talent
+                  </span>
                 </div>
-                <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption"
-                >
-                  Talent
-                </span>
               </div>
             </div>
             <svg

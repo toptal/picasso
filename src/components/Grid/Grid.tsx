@@ -1,5 +1,4 @@
 import React, { ReactNode, FunctionComponent } from 'react'
-import { Overwrite } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import MUIGrid, {
   GridSpacing,
@@ -9,7 +8,7 @@ import MUIGrid, {
 } from '@material-ui/core/Grid'
 
 import GridItem from '../GridItem'
-import { StandardProps, JssProps } from '../Picasso'
+import { StandardProps, PicassoComponent } from '../Picasso'
 import styles from './styles'
 
 interface Props extends StandardProps {
@@ -62,7 +61,4 @@ Grid.defaultProps = {
 
 Grid.Item = GridItem
 
-export default withStyles(styles)(Grid) as FunctionComponent<
-  Overwrite<Props, Partial<JssProps>>
-> &
-  StaticProps
+export default withStyles(styles)(Grid) as PicassoComponent<Props, StaticProps>
