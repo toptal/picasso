@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Page, Grid, Container, Typography } from '@toptal/picasso'
-import { Globe, Profile, Portfolio, Message } from '@toptal/picasso/Icons'
+import { Globe, Profile, Portfolio, Message } from '@toptal/picasso/Icon'
 
 const SidebarItem = ({ icon, children }) => (
   <Container padded='xsmall'>
