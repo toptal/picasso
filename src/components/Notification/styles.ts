@@ -58,7 +58,8 @@ export default ({
     iconWrapper: {
       flexBasis: '1.5em',
       marginRight: '1.5em',
-      minWidth: '1.5em'
+      minWidth: '1.5em',
+      height: '1.3125em'
     },
 
     close: {

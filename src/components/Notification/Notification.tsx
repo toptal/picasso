@@ -87,7 +87,7 @@ const renderNotificationContent = (props: Props) => {
 
   return (
     <Fragment>
-      <Container className={iconWrapper}>
+      <Container flex alignItems='center' className={iconWrapper}>
         {renderNotificationIcon(props)}
       </Container>
       <Typography
