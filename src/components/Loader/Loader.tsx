@@ -12,7 +12,7 @@ enum SIZES {
   large = 80
 }
 
-interface Props extends StandardProps {
+export interface Props extends StandardProps {
   /** Text content for the `Loader` */
   children?: ReactNode
   /** Shows loader as part of other inline elements such as text */

@@ -1,9 +1,13 @@
 import React from 'react'
 import { render, cleanup, RenderResult } from 'react-testing-library'
 
-import Tooltip from './index'
+import { UserDefinedProps } from '../Picasso'
+import Tooltip, { Props } from './Tooltip'
 
-const renderTooltip = (children: React.ReactNode, props: any) => {
+const renderTooltip = (
+  children: React.ReactNode,
+  props: UserDefinedProps<Props, 'children'>
+) => {
   const { content, trigger, interactive } = props
 
   return render(

@@ -4,10 +4,10 @@ import { render, cleanup, RenderResult } from 'react-testing-library'
 import Picasso from '../Picasso'
 import Page from './Page'
 
-const renderPage = (children: React.ReactNode, props: any) => {
+const renderPage = (children: React.ReactNode) => {
   return render(
     <Picasso loadFonts={false}>
-      <Page {...props}>{children}</Page>
+      <Page>{children}</Page>
     </Picasso>
   )
 }
@@ -18,7 +18,7 @@ describe('Page', () => {
   let api: RenderResult
 
   beforeEach(() => {
-    api = renderPage(<div>Test</div>, {})
+    api = renderPage(<div>Test</div>)
   })
   test('default render', () => {
     const { container } = api

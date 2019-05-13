@@ -1,13 +1,18 @@
 import React, { ReactNode } from 'react'
 import { render, cleanup, RenderResult, fireEvent } from 'react-testing-library'
 
-import Notification from './index'
-import Picasso from '../index'
+import Picasso, { UserDefinedProps } from '../Picasso'
+import Notification, { Props } from './Notification'
 
-const renderNotification = (children: ReactNode, props: any) => {
+const renderNotification = (
+  children: ReactNode,
+  props: UserDefinedProps<Props, 'children'>
+) => {
+  const { onClose } = props
+
   return render(
     <Picasso loadFonts={false}>
-      <Notification {...props}>{children}</Notification>
+      <Notification onClose={onClose}>{children}</Notification>
     </Picasso>
   )
 }

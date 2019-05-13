@@ -1,13 +1,20 @@
 import React from 'react'
 import { render, cleanup } from 'react-testing-library'
 
-import Pagination from './index'
-import Picasso from '../Picasso'
+import Picasso, { UserDefinedProps } from '../Picasso'
+import Pagination, { Props } from './Pagination'
 
-const renderPagination = (props: any) => {
+const renderPagination = (props: UserDefinedProps<Props>) => {
+  const { activePage, disabled, onPageChange, totalPages } = props
+
   return render(
     <Picasso loadFonts={false}>
-      <Pagination {...props} />
+      <Pagination
+        activePage={activePage}
+        disabled={disabled}
+        onPageChange={onPageChange}
+        totalPages={totalPages}
+      />
     </Picasso>
   )
 }

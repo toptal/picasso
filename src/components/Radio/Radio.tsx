@@ -10,7 +10,7 @@ import styles from './styles'
 
 const FallbackIcon = () => null
 
-interface Props extends StandardProps {
+export interface Props extends StandardProps {
   /** Text label for the `Radio` */
   label?: string
   /** Value of the `Radio` component used with conjuction of `Radio.Group` */
@@ -54,6 +54,7 @@ export const Radio: GroupFunctionalComponent<Props> = ({
 
   return label ? (
     <FormControlLabel
+      // eslint-disable-next-line react/jsx-props-no-spreading
       control={<MUIRadio {...radioProps} />}
       classes={{
         root: labelClass
@@ -63,6 +64,7 @@ export const Radio: GroupFunctionalComponent<Props> = ({
       label={label}
     />
   ) : (
+    // eslint-disable-next-line react/jsx-props-no-spreading
     <MUIRadio {...radioProps} className={className} style={style} />
   )
 }

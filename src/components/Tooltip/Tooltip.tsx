@@ -20,7 +20,7 @@ type TriggerType = 'hover' | 'click'
 
 type PlacementType = 'bottom' | 'left' | 'right' | 'top'
 
-interface Props extends StandardProps {
+export interface Props extends StandardProps {
   /** Trigger element for tooltip */
   children: ReactNode
   /** Content to be rendered inside tooltip */
