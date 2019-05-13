@@ -1,3 +1,10 @@
+## [1.2.3](https://github.com/toptal/picasso/compare/v1.2.2...v1.2.3) (2019-05-13)
+
+
+### Bug Fixes
+
+* **bash:** pascal case on linux ([#306](https://github.com/toptal/picasso/issues/306)) ([be55fb4](https://github.com/toptal/picasso/commit/be55fb4))
+
 ## [1.2.2](https://github.com/toptal/picasso/compare/v1.2.1...v1.2.2) (2019-05-10)
 
 
