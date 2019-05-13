@@ -5,6 +5,7 @@ import MUIStepIcon, { StepIconProps } from '@material-ui/core/StepIcon'
 import styles from './styles'
 
 export const StepIcon: FunctionComponent<StepIconProps> = props => {
+  // eslint-disable-next-line react/jsx-props-no-spreading
   return <MUIStepIcon {...props} />
 }
 
