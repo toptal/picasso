@@ -16,10 +16,7 @@ echo "Converting svg icons into react components ..."
 svgr -d $ICON_PATH --ext tsx --template $ICON_PATH/_generatorTemplate.js --expand-props start $ICON_PATH/svg
 
 function pascalCase () {
-  # Split string to 2 parts with based on first uppercased letter and upcase it
-  first=`echo $1 | cut -c1 | tr [a-z] [A-Z]`
-  second=`echo $1 | cut -c2-`
-  echo "$first$second" | sed 's/[^_]\+/\L\u&/g' # Join both groups after splitting and pascalCase them so upload_icon => UploadIcon
+  echo $1 | perl -pe 's/(^|_)([a-z])/uc($2)/ge'  
 }
 
 for icon in $ICON_FULL_PATH/svg/*.svg; do
