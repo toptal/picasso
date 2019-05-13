@@ -1,16 +1,26 @@
 import React from 'react'
 import { render, fireEvent, cleanup, RenderResult } from 'react-testing-library'
 
-import Checkbox from './'
+import { UserDefinedProps } from '../Picasso'
+import Checkbox, { Props } from './Checkbox'
 
-const renderCheckbox = (props: any = {}) => {
-  return render(<Checkbox {...props} />)
+const renderCheckbox = (props: UserDefinedProps<Props>) => {
+  const { label, disabled, indeterminate, onChange } = props
+
+  return render(
+    <Checkbox
+      disabled={disabled}
+      label={label}
+      indeterminate={indeterminate}
+      onChange={onChange}
+    />
+  )
 }
 
 afterEach(cleanup)
 
 test('renders default checkbox without label', () => {
-  const { container } = renderCheckbox()
+  const { container } = renderCheckbox({})
 
   expect(container).toMatchSnapshot()
 })

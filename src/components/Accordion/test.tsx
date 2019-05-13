@@ -1,13 +1,12 @@
 /* eslint-disable react/no-multi-comp */
 import React, { ReactNode } from 'react'
-import { Overwrite } from '@material-ui/core'
 import { render, fireEvent, cleanup, RenderResult } from 'react-testing-library'
 
-import { JssProps } from '../Picasso'
+import { UserDefinedProps } from '../Picasso'
 import Accordion, { Props } from './Accordion'
 
 const renderAccordion = (
-  props: Overwrite<Props, Partial<JssProps>>,
+  props: UserDefinedProps<Props>,
   children: ReactNode
 ) => {
   const { content, expanded } = props

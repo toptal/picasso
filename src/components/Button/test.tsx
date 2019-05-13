@@ -1,13 +1,17 @@
 import React, { ReactNode } from 'react'
 import { render, fireEvent, cleanup, RenderResult } from 'react-testing-library'
 
-import Picasso from '../index'
-import Button from './Button'
+import Picasso, { UserDefinedProps } from '../Picasso'
+import Button, { Props } from './Button'
 
-const renderButton = (children: ReactNode, props: any = {}) => {
+const renderButton = (children: ReactNode, props: UserDefinedProps<Props>) => {
+  const { disabled, onClick } = props
+
   return render(
     <Picasso loadFonts={false}>
-      <Button {...props}>{children}</Button>
+      <Button disabled={disabled} onClick={onClick}>
+        {children}
+      </Button>
     </Picasso>
   )
 }

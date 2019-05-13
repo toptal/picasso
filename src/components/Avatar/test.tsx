@@ -1,13 +1,15 @@
 import React from 'react'
 import { render, cleanup } from 'react-testing-library'
 
-import Avatar from './index'
-import Picasso from '../index'
+import Picasso, { UserDefinedProps } from '../Picasso'
+import Avatar, { Props } from './Avatar'
 
-const renderAvatar = (props: any) => {
+const renderAvatar = (props: UserDefinedProps<Props>) => {
+  const { alt, name, src } = props
+
   return render(
     <Picasso loadFonts={false}>
-      <Avatar {...props} />
+      <Avatar alt={alt} name={name} src={src} />
     </Picasso>
   )
 }
@@ -24,7 +26,8 @@ describe('Avatar', () => {
   test('avatar with photo render', () => {
     const { container } = renderAvatar({
       alt: 'Photo alt text',
-      src: 'http://example.png'
+      src: 'http://example.png',
+      name: 'Jacqueline Roque'
     })
 
     expect(container).toMatchSnapshot()

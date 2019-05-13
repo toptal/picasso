@@ -11,7 +11,7 @@ import styles from './styles'
 
 type VariantType = 'square' | 'portrait' | 'landscape'
 
-interface Props extends StandardProps {
+export interface Props extends StandardProps {
   /** Alt text */
   alt?: string
   /** User full name to display initials on the avatar */

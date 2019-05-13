@@ -6,6 +6,7 @@ const AvatarDefaultExample = () => (
     <Avatar
       alt='Jacqueline Roque. Pablo Picasso, 1954'
       src='./jacqueline-with-flowers-1954-square.jpg'
+      name='Jacqueline Roque'
     />
   </div>
 )
