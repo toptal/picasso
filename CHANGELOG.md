@@ -1,3 +1,10 @@
+## [1.2.4](https://github.com/toptal/picasso/compare/v1.2.3...v1.2.4) (2019-05-13)
+
+
+### Bug Fixes
+
+* **docs:** fix layout tutorial example ([#310](https://github.com/toptal/picasso/issues/310)) ([82a0cc6](https://github.com/toptal/picasso/commit/82a0cc6))
+
 ## [1.2.3](https://github.com/toptal/picasso/compare/v1.2.2...v1.2.3) (2019-05-13)
 
 
