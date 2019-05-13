@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/toptal/picasso/compare/v1.2.4...v1.3.0) (2019-05-13)
+
+
+### Features
+
+* **link:** adjust Link component and add docs ([#303](https://github.com/toptal/picasso/issues/303)) ([70313a9](https://github.com/toptal/picasso/commit/70313a9))
+
 ## [1.2.4](https://github.com/toptal/picasso/compare/v1.2.3...v1.2.4) (2019-05-13)
 
 
