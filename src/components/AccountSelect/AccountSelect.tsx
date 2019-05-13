@@ -40,7 +40,7 @@ export const AccountSelect: FunctionComponent<Props> = ({
   onSelect,
   style
 }) => (
-  <Menu className={className} style={style}>
+  <Menu classes={classes} className={className} style={style}>
     {accounts.map(account => (
       <Menu.Item
         disableGutters

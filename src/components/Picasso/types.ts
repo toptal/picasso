@@ -15,7 +15,9 @@ export interface JssProps {
 
 export type StandardProps = BaseProps & JssProps
 
-// Take all props, excluding props from JssProps type
+// Take all props, excluding props from JssProps
+// type and other passed props
+//
 // example:
 // UserDefinedProps<Props>
 // UserDefinedProps<Props, 'name' | 'variant'>

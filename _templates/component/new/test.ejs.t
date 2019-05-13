@@ -15,7 +15,7 @@ const render<%= Name %> = (
   children: ReactNode,
   props: UserDefinedProps<Props>
 ) => {
-  const {  } = props
+  const { /* add props you need */ } = props
 
   return render(<<%= Name %>>{children}</<%= Name %>>)
 }
