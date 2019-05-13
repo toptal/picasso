@@ -5,5 +5,8 @@ export {
   JssProps,
   StandardProps,
   SizeType,
-  OmitInternalProps
+  OmitInternalProps,
+  SpacingType,
+  spacingToEm,
+  PicassoComponent
 } from './types'

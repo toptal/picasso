@@ -1,6 +1,6 @@
 import React, { ReactNode, FunctionComponent } from 'react'
 
-import { BaseProps, SizeType } from '../Picasso'
+import { BaseProps, SpacingType, spacingToEm } from '../Picasso'
 
 type DirectionType = 'row' | 'column'
 
@@ -11,18 +11,6 @@ type JustifyContentType =
   | 'space-between'
   | 'space-around'
   | 'space-evenly'
-
-type SpacingType = number | SizeType<'xsmall' | 'small' | 'medium' | 'large'>
-
-enum SpacingEnum {
-  xsmall = 0.5,
-  small = 1,
-  medium = 1.5,
-  large = 2
-}
-
-const spacingToEm = (spacing: SpacingType) =>
-  typeof spacing === 'number' ? `${spacing}em` : `${SpacingEnum[spacing]}em`
 
 interface Props extends BaseProps {
   /** margin-top for the container transformed to `em` */

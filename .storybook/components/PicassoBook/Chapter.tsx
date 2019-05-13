@@ -16,7 +16,6 @@ import CodeExample from '../CodeExample'
 import Page from './Page'
 
 import PropsTable from './components/PropsTable'
-import TabsSection from './components/TabsSection'
 import Markdown from '../Markdown'
 
 const documentationGenerator = new DocumentationGenerator()

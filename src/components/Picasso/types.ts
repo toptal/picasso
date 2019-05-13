@@ -1,4 +1,4 @@
-import { CSSProperties } from 'react'
+import { CSSProperties, FunctionComponent } from 'react'
 
 import { Classes } from '../styles/types'
 
@@ -26,6 +26,25 @@ export type OmitInternalProps<T, K = ''> = Pick<
   Exclude<keyof T, keyof JssProps | K>
 >
 
+export type PicassoComponent<P, S = {}> = FunctionComponent<
+  OmitInternalProps<P> & Partial<JssProps>
+> &
+  S
+
 type Sizes = 'xsmall' | 'small' | 'medium' | 'large'
 
 export type SizeType<T extends Sizes> = T
+
+export type SpacingType =
+  | number
+  | SizeType<'xsmall' | 'small' | 'medium' | 'large'>
+
+enum SpacingEnum {
+  xsmall = 0.5,
+  small = 1,
+  medium = 1.5,
+  large = 2
+}
+
+export const spacingToEm = (spacing: SpacingType) =>
+  typeof spacing === 'number' ? `${spacing}em` : `${SpacingEnum[spacing]}em`

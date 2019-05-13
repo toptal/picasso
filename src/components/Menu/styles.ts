@@ -10,5 +10,4 @@ PicassoProvider.override(({ shadows }: Theme) => ({
     }
   }
 }))
-
 export default () => createStyles({})

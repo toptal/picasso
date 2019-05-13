@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from 'react'
-import { Overwrite } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import Dialog from '@material-ui/core/Dialog'
 import CloseIcon from '@material-ui/icons/Close'
@@ -7,7 +6,7 @@ import CloseIcon from '@material-ui/icons/Close'
 import ModalTitle from '../ModalTitle'
 import ModalContent from '../ModalContent'
 import ModalActions from '../ModalActions'
-import { StandardProps, JssProps } from '../Picasso'
+import { StandardProps, PicassoComponent } from '../Picasso'
 import styles from './styles'
 
 type ContainerValue = () => HTMLElement | HTMLElement
@@ -81,7 +80,4 @@ Modal.Actions = ModalActions
 
 Modal.Title = ModalTitle
 
-export default withStyles(styles)(Modal) as FunctionComponent<
-  Overwrite<Props, Partial<JssProps>>
-> &
-  StaticProps
+export default withStyles(styles)(Modal) as PicassoComponent<Props, StaticProps>

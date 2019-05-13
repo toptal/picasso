@@ -1,11 +1,10 @@
 import React, { FunctionComponent, ReactNode } from 'react'
-import { Overwrite } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import CloseIcon from '@material-ui/icons/Close'
 
 import Chip from '../Chip'
 import LabelGroup from '../LabelGroup'
-import { StandardProps, JssProps } from '../Picasso'
+import { StandardProps, PicassoComponent } from '../Picasso'
 import styles from './styles'
 
 export interface Props extends StandardProps {
@@ -62,7 +61,4 @@ Label.displayName = 'Label'
 
 Label.Group = LabelGroup
 
-export default withStyles(styles)(Label) as FunctionComponent<
-  Overwrite<Props, Partial<JssProps>>
-> &
-  StaticProps
+export default withStyles(styles)(Label) as PicassoComponent<Props, StaticProps>

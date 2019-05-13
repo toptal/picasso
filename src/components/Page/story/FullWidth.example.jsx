@@ -1,5 +1,12 @@
 import React from 'react'
-import { Page, Container, Select, Typography } from '@toptal/picasso'
+import {
+  Page,
+  Container,
+  Dropdown,
+  Menu,
+  UserBadge,
+  Typography
+} from '@toptal/picasso'
 
 const PageFullWidthExample = () => (
   <div style={{ height: '30rem' }}>
@@ -13,23 +20,26 @@ const PageFullWidthExample = () => (
   </div>
 )
 
-const RightContent = () => (
-  <Select
-    options={OPTIONS}
-    placeholder='D. Petrashev'
-    style={{
-      fontSize: '12px',
-      color: 'white'
-    }}
-    variant='standard'
-    width='shrink'
-  />
-)
+const handleClick = () => window.alert('Item clicked')
 
-const OPTIONS = [
-  { value: '1', text: 'My Account' },
-  { value: '2', text: 'Log Out' }
-]
+const RightContent = () => (
+  <Dropdown
+    content={
+      <Menu style={{ width: '15rem' }}>
+        <Menu.Item onClick={handleClick}>My Account</Menu.Item>
+        <Menu.Item onClick={handleClick}>Log Out</Menu.Item>
+      </Menu>
+    }
+    offset={{ top: 'xsmall' }}
+  >
+    <UserBadge
+      name='Jacqueline Roque'
+      avatar='./jacqueline-with-flowers-1954-square.jpg'
+      invert
+    />
+    <Dropdown.Arrow style={{ color: 'white' }} />
+  </Dropdown>
+)
 
 const Content = () => (
   <Container top='small' bottom='small' left='small' right='small'>

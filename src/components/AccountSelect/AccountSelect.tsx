@@ -39,31 +39,39 @@ export const AccountSelect: FunctionComponent<Props> = ({
   accounts,
   onSelect,
   style
-}) => (
-  <Menu classes={classes} className={className} style={style}>
-    {accounts.map(account => (
-      <Menu.Item
-        disableGutters
-        className={classes.accountItem}
-        key={`role-${account.id}`}
-      >
-        <Link
-          className={classes.accountLink}
-          href={account.href}
-          onClick={() => onSelect(account)}
-          underline='none'
+}) => {
+  const {
+    accountItem: accountItemClass,
+    accountLink: accountLinkClass,
+    ...menuClasses
+  } = classes
+
+  return (
+    <Menu classes={menuClasses} className={className} style={style}>
+      {accounts.map(account => (
+        <Menu.Item
+          disableGutters
+          className={accountItemClass}
+          key={`role-${account.id}`}
         >
-          <Container padded='medium' flex direction='row' alignItems='center'>
-            <UserBadge name={account.name} avatar={account.avatar}>
-              <Typography variant='caption'>{account.position}</Typography>
-            </UserBadge>
-            <ChevronRight color={palette.text.primary} />
-          </Container>
-        </Link>
-      </Menu.Item>
-    ))}
-  </Menu>
-)
+          <Link
+            className={accountLinkClass}
+            href={account.href}
+            onClick={() => onSelect(account)}
+            underline='none'
+          >
+            <Container padded='medium' flex direction='row' alignItems='center'>
+              <UserBadge name={account.name} avatar={account.avatar}>
+                <Typography variant='caption'>{account.position}</Typography>
+              </UserBadge>
+              <ChevronRight color={palette.text.primary} />
+            </Container>
+          </Link>
+        </Menu.Item>
+      ))}
+    </Menu>
+  )
+}
 
 AccountSelect.defaultProps = {
   onSelect: () => {}

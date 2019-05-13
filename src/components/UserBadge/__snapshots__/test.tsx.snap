@@ -27,15 +27,11 @@ exports[`UserBadge auto center alignment 1`] = `
       <div
         class="MuiGrid-item"
       >
-        <div
-          style="margin-bottom: 0.25em; display: block;"
+        <h5
+          class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
         >
-          <h5
-            class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
-          >
-            Joe Doe
-          </h5>
-        </div>
+          Joe Doe
+        </h5>
       </div>
     </div>
   </div>
@@ -69,20 +65,20 @@ exports[`UserBadge default render 1`] = `
       <div
         class="MuiGrid-item"
       >
+        <h5
+          class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+        >
+          Joe Doe
+        </h5>
         <div
-          style="margin-bottom: 0.25em; display: block;"
+          style="margin-top: 0.25em; display: block;"
         >
-          <h5
-            class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+          <p
+            class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1"
           >
-            Joe Doe
-          </h5>
+            QA tester
+          </p>
         </div>
-        <p
-          class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1"
-        >
-          QA tester
-        </p>
       </div>
     </div>
   </div>
@@ -116,20 +112,20 @@ exports[`UserBadge invert render 1`] = `
       <div
         class="MuiGrid-item"
       >
+        <h5
+          class="MuiTypography-root Typography-invert Typography-semibold MuiTypography-h5 MuiTypography-inline"
+        >
+          Joe Doe
+        </h5>
         <div
-          style="margin-bottom: 0.25em; display: block;"
+          style="margin-top: 0.25em; display: block;"
         >
-          <h5
-            class="MuiTypography-root Typography-invert Typography-semibold MuiTypography-h5 MuiTypography-inline"
+          <p
+            class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1"
           >
-            Joe Doe
-          </h5>
+            QA tester
+          </p>
         </div>
-        <p
-          class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1"
-        >
-          QA tester
-        </p>
       </div>
     </div>
   </div>
@@ -163,20 +159,20 @@ exports[`UserBadge manual center alignment 1`] = `
       <div
         class="MuiGrid-item"
       >
+        <h5
+          class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+        >
+          Joe Doe
+        </h5>
         <div
-          style="margin-bottom: 0.25em; display: block;"
+          style="margin-top: 0.25em; display: block;"
         >
-          <h5
-            class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+          <p
+            class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1"
           >
-            Joe Doe
-          </h5>
+            QA tester
+          </p>
         </div>
-        <p
-          class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1"
-        >
-          QA tester
-        </p>
       </div>
     </div>
   </div>
@@ -210,15 +206,11 @@ exports[`UserBadge override auto center alignment 1`] = `
       <div
         class="MuiGrid-item"
       >
-        <div
-          style="margin-bottom: 0.25em; display: block;"
+        <h5
+          class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
         >
-          <h5
-            class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
-          >
-            Joe Doe
-          </h5>
-        </div>
+          Joe Doe
+        </h5>
       </div>
     </div>
   </div>
@@ -252,20 +244,20 @@ exports[`UserBadge small size 1`] = `
       <div
         class="MuiGrid-item"
       >
+        <h5
+          class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+        >
+          Joe Doe
+        </h5>
         <div
-          style="margin-bottom: 0.25em; display: block;"
+          style="margin-top: 0.25em; display: block;"
         >
-          <h5
-            class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+          <p
+            class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1"
           >
-            Joe Doe
-          </h5>
+            QA tester
+          </p>
         </div>
-        <p
-          class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1"
-        >
-          QA tester
-        </p>
       </div>
     </div>
   </div>
