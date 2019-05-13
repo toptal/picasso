@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Link default render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <a
+      class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineHover"
+    >
+      Please verify your email
+    </a>
+  </div>
+</div>
+`;
