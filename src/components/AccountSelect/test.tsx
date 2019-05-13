@@ -1,12 +1,12 @@
 import React from 'react'
 import { render, cleanup, RenderResult, fireEvent } from 'react-testing-library'
 
-import Picasso, { UserProps } from '../Picasso'
+import Picasso, { UserDefinedProps } from '../Picasso'
 import AccountSelect, { Props } from './AccountSelect'
 
 const renderAccountSelect = (
   children: React.ReactNode,
-  props: UserProps<Props>
+  props: UserDefinedProps<Props>
 ) => {
   const { onSelect, accounts } = props
 

@@ -16,7 +16,13 @@ export interface JssProps {
 export type StandardProps = BaseProps & JssProps
 
 // Take all props, excluding props from JssProps type
-export type UserProps<T> = Pick<T, Exclude<keyof T, keyof JssProps>>
+// example:
+// UserDefinedProps<Props>
+// UserDefinedProps<Props, 'name' | 'variant'>
+export type UserDefinedProps<T, K = ''> = Pick<
+  T,
+  Exclude<keyof T, keyof JssProps | K>
+>
 
 type Sizes = 'xsmall' | 'small' | 'medium' | 'large'
 
