@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/toptal/picasso/compare/v1.3.0...v1.3.1) (2019-05-14)
+
+
+### Bug Fixes
+
+* Make some props not required for TextField, Select components ([#299](https://github.com/toptal/picasso/issues/299)) ([f97c7ce](https://github.com/toptal/picasso/commit/f97c7ce))
+
 # [1.3.0](https://github.com/toptal/picasso/compare/v1.2.4...v1.3.0) (2019-05-13)
 
 
