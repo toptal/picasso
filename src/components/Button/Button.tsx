@@ -147,7 +147,9 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
         {finalChildren}
       </Container>
 
-      {loading && <Loader className={loaderClass} inline size='small' />}
+      {loading && (
+        <Loader variant='inherit' className={loaderClass} inline size='small' />
+      )}
     </ButtonBase>
   )
 }

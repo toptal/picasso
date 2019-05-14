@@ -17,6 +17,7 @@ page
   .addExample('Loader/story/WithLabel.example.jsx', 'With label')
   .addExample('Loader/story/Inline.example.jsx', 'With inline content')
   .addExample('Loader/story/Sizes.example.jsx', 'Sizes')
+  .addExample('Loader/story/Variants.example.jsx', 'Variants')
   .addExample('Loader/story/ControlledValue.example.jsx', {
     title: 'Controlled value',
     description: 'Loader with determined or static values'
