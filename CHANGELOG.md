@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/toptal/picasso/compare/v1.3.1...v1.4.0) (2019-05-14)
+
+
+### Features
+
+* **loader:** adjust color accordingly with BASE ([#317](https://github.com/toptal/picasso/issues/317)) ([88b4f12](https://github.com/toptal/picasso/commit/88b4f12))
+
 ## [1.3.1](https://github.com/toptal/picasso/compare/v1.3.0...v1.3.1) (2019-05-14)
 
 
