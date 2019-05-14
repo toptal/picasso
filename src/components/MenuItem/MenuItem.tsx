@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from 'react'
+import React, { FunctionComponent, ReactNode, ElementType } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import MUIMenuItem from '@material-ui/core/MenuItem'
@@ -7,11 +7,9 @@ import { StandardProps } from '../Picasso'
 import Typography from '../Typography'
 import styles from './styles'
 
-type MenuItemType = 'li' | 'div' | 'a' | 'button'
-
 interface Props extends StandardProps {
   /** Component name to render the menu item as */
-  as?: MenuItemType
+  as?: ElementType<React.HTMLAttributes<HTMLElement>>
   /** Whether to render disabled item */
   disabled?: boolean
   /** Whether to render without internal padding */
@@ -46,6 +44,8 @@ export const MenuItem: FunctionComponent<Props> = ({
   }
 
   return (
+    // can't find the type for `component` prop
+    // @ts-ignore
     <MUIMenuItem
       component={as}
       className={className}

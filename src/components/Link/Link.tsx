@@ -4,7 +4,7 @@ import React, {
   ReactNode,
   ElementType
 } from 'react'
-import MUILink, { LinkProps } from '@material-ui/core/Link'
+import MUILink from '@material-ui/core/Link'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
@@ -31,7 +31,7 @@ interface Props extends StandardProps {
    * it's already fixed at `4.0.0-beta.2`
    * Please, remove this comment after upgrade
    */
-  as?: ElementType<LinkProps>
+  as?: ElementType<React.HTMLAttributes<HTMLElement>>
 
   /** Either it's a regular link or an _action_ */
   variant?: VariantType
@@ -49,6 +49,8 @@ export const Link: FunctionComponent<Props> = ({
   variant
 }) => {
   return (
+    // can't find the correct type for the `component` prop
+    // @ts-ignore
     <MUILink
       href={href}
       underline={underline}
