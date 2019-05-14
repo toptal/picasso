@@ -14,7 +14,7 @@ exports[`Notification default render 1`] = `
       >
         <div
           class="Notification-iconWrapper"
-          style="display: block;"
+          style="display: flex; align-items: center;"
         >
           <svg
             class="SvgInfo-root"
