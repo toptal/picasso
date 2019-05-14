@@ -6,7 +6,7 @@ exports[`Typography default render 1`] = `
     class="Picasso-root"
   >
     <p
-      class="MuiTypography-root Typography-body Typography-bold MuiTypography-body1 MuiTypography-alignCenter"
+      class="MuiTypography-root Typography-body Typography-bold MuiTypography-body1 MuiTypography-alignCenter MuiTypography-displayBlock"
     >
       Hello world!
     </p>

@@ -6,7 +6,8 @@ exports[`checkbox interaction should render checked checkbox 1`] = `
     class="MuiFormControlLabel-root FormControlLabel-root Checkbox-root"
   >
     <span
-      class="MuiButtonBase-root MuiIconButton-root MuiPrivateSwitchBase-root MuiCheckbox-root Checkbox-root MuiCheckbox-colorSecondary MuiPrivateSwitchBase-checked MuiCheckbox-checked"
+      aria-disabled="false"
+      class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorSecondary PrivateSwitchBase-root MuiCheckbox-root Checkbox-root MuiCheckbox-colorSecondary PrivateSwitchBase-checked Mui-checked"
     >
       <span
         class="MuiIconButton-label"
@@ -15,7 +16,7 @@ exports[`checkbox interaction should render checked checkbox 1`] = `
           class="Checkbox-checkedIcon"
         />
         <input
-          class="MuiPrivateSwitchBase-input"
+          class="PrivateSwitchBase-input"
           data-indeterminate="false"
           type="checkbox"
           value=""
@@ -37,7 +38,8 @@ exports[`checkbox interaction should render checked checkbox 1`] = `
 exports[`renders default checkbox without label 1`] = `
 <div>
   <span
-    class="MuiButtonBase-root MuiIconButton-root MuiPrivateSwitchBase-root MuiCheckbox-root Checkbox-root MuiCheckbox-colorSecondary"
+    aria-disabled="false"
+    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorSecondary PrivateSwitchBase-root MuiCheckbox-root Checkbox-root MuiCheckbox-colorSecondary"
   >
     <span
       class="MuiIconButton-label"
@@ -46,7 +48,7 @@ exports[`renders default checkbox without label 1`] = `
         class="Checkbox-uncheckedIcon"
       />
       <input
-        class="MuiPrivateSwitchBase-input"
+        class="PrivateSwitchBase-input"
         data-indeterminate="false"
         type="checkbox"
         value=""
@@ -62,7 +64,8 @@ exports[`renders default checkbox without label 1`] = `
 exports[`renders disabled state 1`] = `
 <div>
   <span
-    class="MuiButtonBase-root MuiButtonBase-disabled MuiIconButton-root MuiIconButton-disabled MuiPrivateSwitchBase-root MuiCheckbox-root Checkbox-root MuiCheckbox-colorSecondary MuiPrivateSwitchBase-disabled MuiCheckbox-disabled Checkbox-disabled"
+    aria-disabled="true"
+    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorSecondary Mui-disabled PrivateSwitchBase-root MuiCheckbox-root Checkbox-root MuiCheckbox-colorSecondary PrivateSwitchBase-disabled Mui-disabled Checkbox-disabled Mui-disabled"
     tabindex="-1"
   >
     <span
@@ -72,7 +75,7 @@ exports[`renders disabled state 1`] = `
         class="Checkbox-uncheckedIcon"
       />
       <input
-        class="MuiPrivateSwitchBase-input"
+        class="PrivateSwitchBase-input"
         data-indeterminate="false"
         disabled=""
         type="checkbox"
@@ -86,7 +89,8 @@ exports[`renders disabled state 1`] = `
 exports[`renders indeterminate state 1`] = `
 <div>
   <span
-    class="MuiButtonBase-root MuiIconButton-root MuiPrivateSwitchBase-root MuiCheckbox-root Checkbox-root MuiCheckbox-colorSecondary MuiCheckbox-indeterminate"
+    aria-disabled="false"
+    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorSecondary PrivateSwitchBase-root MuiCheckbox-root Checkbox-root MuiCheckbox-colorSecondary MuiCheckbox-indeterminate"
   >
     <span
       class="MuiIconButton-label"
@@ -95,7 +99,7 @@ exports[`renders indeterminate state 1`] = `
         class="Checkbox-indeterminateIcon"
       />
       <input
-        class="MuiPrivateSwitchBase-input"
+        class="PrivateSwitchBase-input"
         data-indeterminate="true"
         type="checkbox"
         value=""
@@ -114,7 +118,8 @@ exports[`should render default checkbox with label 1`] = `
     class="MuiFormControlLabel-root FormControlLabel-root Checkbox-root"
   >
     <span
-      class="MuiButtonBase-root MuiIconButton-root MuiPrivateSwitchBase-root MuiCheckbox-root Checkbox-root MuiCheckbox-colorSecondary"
+      aria-disabled="false"
+      class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorSecondary PrivateSwitchBase-root MuiCheckbox-root Checkbox-root MuiCheckbox-colorSecondary"
     >
       <span
         class="MuiIconButton-label"
@@ -123,7 +128,7 @@ exports[`should render default checkbox with label 1`] = `
           class="Checkbox-uncheckedIcon"
         />
         <input
-          class="MuiPrivateSwitchBase-input"
+          class="PrivateSwitchBase-input"
           data-indeterminate="false"
           type="checkbox"
           value=""

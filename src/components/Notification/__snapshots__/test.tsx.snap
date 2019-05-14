@@ -29,7 +29,7 @@ exports[`Notification default render 1`] = `
           </svg>
         </div>
         <div
-          class="MuiTypography-root Typography-small Typography-regular MuiTypography-body1 Notification-content"
+          class="MuiTypography-root Typography-small Typography-regular MuiTypography-body1 MuiTypography-displayBlock Notification-content"
         >
           test example string
         </div>

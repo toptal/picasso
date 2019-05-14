@@ -6,10 +6,10 @@ exports[`UserBadge auto center alignment 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiGrid-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-center"
+      class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs MuiGrid-align-items-xs"
     >
       <div
-        class="MuiGrid-item"
+        class="MuiGrid-root MuiGrid-item"
       >
         <div
           class="Avatar-root Avatar-xsmall"
@@ -18,20 +18,20 @@ exports[`UserBadge auto center alignment 1`] = `
             class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
           />
           <p
-            class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 Avatar-text"
+            class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 MuiTypography-displayBlock Avatar-text"
           >
             JD
           </p>
         </div>
       </div>
       <div
-        class="MuiGrid-item"
+        class="MuiGrid-root MuiGrid-item"
       >
         <div
           style="margin-bottom: 0.25em; display: block;"
         >
           <h5
-            class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+            class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-displayInline"
           >
             Joe Doe
           </h5>
@@ -48,10 +48,10 @@ exports[`UserBadge default render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiGrid-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-flex-start"
+      class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs MuiGrid-align-items-xs-flex"
     >
       <div
-        class="MuiGrid-item"
+        class="MuiGrid-root MuiGrid-item"
       >
         <div
           class="Avatar-root Avatar-xsmall"
@@ -60,26 +60,26 @@ exports[`UserBadge default render 1`] = `
             class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
           />
           <p
-            class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 Avatar-text"
+            class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 MuiTypography-displayBlock Avatar-text"
           >
             JD
           </p>
         </div>
       </div>
       <div
-        class="MuiGrid-item"
+        class="MuiGrid-root MuiGrid-item"
       >
         <div
           style="margin-bottom: 0.25em; display: block;"
         >
           <h5
-            class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+            class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-displayInline"
           >
             Joe Doe
           </h5>
         </div>
         <p
-          class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1"
+          class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1 MuiTypography-displayBlock"
         >
           QA tester
         </p>
@@ -95,10 +95,10 @@ exports[`UserBadge invert render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiGrid-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-flex-start"
+      class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs MuiGrid-align-items-xs-flex"
     >
       <div
-        class="MuiGrid-item"
+        class="MuiGrid-root MuiGrid-item"
       >
         <div
           class="Avatar-root Avatar-xsmall"
@@ -107,26 +107,26 @@ exports[`UserBadge invert render 1`] = `
             class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
           />
           <p
-            class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 Avatar-text"
+            class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 MuiTypography-displayBlock Avatar-text"
           >
             JD
           </p>
         </div>
       </div>
       <div
-        class="MuiGrid-item"
+        class="MuiGrid-root MuiGrid-item"
       >
         <div
           style="margin-bottom: 0.25em; display: block;"
         >
           <h5
-            class="MuiTypography-root Typography-invert Typography-semibold MuiTypography-h5 MuiTypography-inline"
+            class="MuiTypography-root Typography-invert Typography-semibold MuiTypography-h5 MuiTypography-displayInline"
           >
             Joe Doe
           </h5>
         </div>
         <p
-          class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1"
+          class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1 MuiTypography-displayBlock"
         >
           QA tester
         </p>
@@ -142,10 +142,10 @@ exports[`UserBadge manual center alignment 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiGrid-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-center"
+      class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs MuiGrid-align-items-xs"
     >
       <div
-        class="MuiGrid-item"
+        class="MuiGrid-root MuiGrid-item"
       >
         <div
           class="Avatar-root Avatar-xsmall"
@@ -154,26 +154,26 @@ exports[`UserBadge manual center alignment 1`] = `
             class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
           />
           <p
-            class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 Avatar-text"
+            class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 MuiTypography-displayBlock Avatar-text"
           >
             JD
           </p>
         </div>
       </div>
       <div
-        class="MuiGrid-item"
+        class="MuiGrid-root MuiGrid-item"
       >
         <div
           style="margin-bottom: 0.25em; display: block;"
         >
           <h5
-            class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+            class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-displayInline"
           >
             Joe Doe
           </h5>
         </div>
         <p
-          class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1"
+          class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1 MuiTypography-displayBlock"
         >
           QA tester
         </p>
@@ -189,10 +189,10 @@ exports[`UserBadge override auto center alignment 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiGrid-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-flex-start"
+      class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs MuiGrid-align-items-xs-flex"
     >
       <div
-        class="MuiGrid-item"
+        class="MuiGrid-root MuiGrid-item"
       >
         <div
           class="Avatar-root Avatar-xsmall"
@@ -201,20 +201,20 @@ exports[`UserBadge override auto center alignment 1`] = `
             class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
           />
           <p
-            class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 Avatar-text"
+            class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 MuiTypography-displayBlock Avatar-text"
           >
             JD
           </p>
         </div>
       </div>
       <div
-        class="MuiGrid-item"
+        class="MuiGrid-root MuiGrid-item"
       >
         <div
           style="margin-bottom: 0.25em; display: block;"
         >
           <h5
-            class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+            class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-displayInline"
           >
             Joe Doe
           </h5>
@@ -231,10 +231,10 @@ exports[`UserBadge small size 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiGrid-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-flex-start"
+      class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs MuiGrid-align-items-xs-flex"
     >
       <div
-        class="MuiGrid-item"
+        class="MuiGrid-root MuiGrid-item"
       >
         <div
           class="Avatar-root Avatar-small"
@@ -243,26 +243,26 @@ exports[`UserBadge small size 1`] = `
             class="Avatar-textContainer Avatar-square Avatar-small Avatar-clippedCorner"
           />
           <p
-            class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 Avatar-text"
+            class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 MuiTypography-displayBlock Avatar-text"
           >
             JD
           </p>
         </div>
       </div>
       <div
-        class="MuiGrid-item"
+        class="MuiGrid-root MuiGrid-item"
       >
         <div
           style="margin-bottom: 0.25em; display: block;"
         >
           <h5
-            class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+            class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-displayInline"
           >
             Joe Doe
           </h5>
         </div>
         <p
-          class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1"
+          class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1 MuiTypography-displayBlock"
         >
           QA tester
         </p>

@@ -6,7 +6,7 @@ exports[`Link default render 1`] = `
     class="Picasso-root"
   >
     <a
-      class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineHover"
+      class="MuiTypography-root MuiTypography-colorPrimary MuiLink-root MuiLink-underlineHover"
     >
       Please verify your email
     </a>

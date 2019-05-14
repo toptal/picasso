@@ -13,11 +13,11 @@ exports[`renders dropdown select 1`] = `
       >
         <fieldset
           aria-hidden="true"
-          class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+          class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
           style="padding-left: 8px;"
         >
           <legend
-            class="MuiPrivateNotchedOutline-legend"
+            class="PrivateNotchedOutline-legend"
             style="width: 0.01px;"
           >
             <span>
@@ -72,11 +72,11 @@ exports[`renders native select 1`] = `
       >
         <fieldset
           aria-hidden="true"
-          class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+          class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
           style="padding-left: 8px;"
         >
           <legend
-            class="MuiPrivateNotchedOutline-legend"
+            class="PrivateNotchedOutline-legend"
             style="width: 0.01px;"
           >
             <span>

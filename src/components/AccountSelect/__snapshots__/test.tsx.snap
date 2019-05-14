@@ -8,23 +8,25 @@ exports[`AccountSelect default render 1`] = `
     <ul
       class="MuiList-root"
       role="menu"
+      tabindex="-1"
     >
       <li
-        class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-button MuiMenuItem-root AccountSelect-accountItem"
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiListItem-root MuiListItem-button MuiMenuItem-root AccountSelect-accountItem"
         role="menuitem"
         tabindex="-1"
       >
         <a
-          class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone AccountSelect-accountLink"
+          class="MuiTypography-root MuiTypography-colorPrimary MuiLink-root MuiLink-underlineNone AccountSelect-accountLink"
         >
           <div
             style="padding: 1.5em; display: flex; flex-direction: row; align-items: center;"
           >
             <div
-              class="MuiGrid-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-flex-start"
+              class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs MuiGrid-align-items-xs-flex"
             >
               <div
-                class="MuiGrid-item"
+                class="MuiGrid-root MuiGrid-item"
               >
                 <div
                   class="Avatar-root Avatar-xsmall"
@@ -33,26 +35,26 @@ exports[`AccountSelect default render 1`] = `
                     class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
                   />
                   <p
-                    class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 Avatar-text"
+                    class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 MuiTypography-displayBlock Avatar-text"
                   >
                     PL
                   </p>
                 </div>
               </div>
               <div
-                class="MuiGrid-item"
+                class="MuiGrid-root MuiGrid-item"
               >
                 <div
                   style="margin-bottom: 0.25em; display: block;"
                 >
                   <h5
-                    class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+                    class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-displayInline"
                   >
                     Phil Leif
                   </h5>
                 </div>
                 <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption"
+                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-displayBlock"
                 >
                   Account Owner at Stowaway Cosmetics
                 </span>
@@ -71,22 +73,23 @@ exports[`AccountSelect default render 1`] = `
         </a>
       </li>
       <li
-        class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-button MuiMenuItem-root AccountSelect-accountItem"
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiListItem-root MuiListItem-button MuiMenuItem-root AccountSelect-accountItem"
         role="menuitem"
         tabindex="-1"
       >
         <a
-          class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone AccountSelect-accountLink"
+          class="MuiTypography-root MuiTypography-colorPrimary MuiLink-root MuiLink-underlineNone AccountSelect-accountLink"
           href="#"
         >
           <div
             style="padding: 1.5em; display: flex; flex-direction: row; align-items: center;"
           >
             <div
-              class="MuiGrid-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-flex-start"
+              class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs MuiGrid-align-items-xs-flex"
             >
               <div
-                class="MuiGrid-item"
+                class="MuiGrid-root MuiGrid-item"
               >
                 <div
                   class="Avatar-root Avatar-xsmall"
@@ -95,26 +98,26 @@ exports[`AccountSelect default render 1`] = `
                     class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
                   />
                   <p
-                    class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 Avatar-text"
+                    class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 MuiTypography-displayBlock Avatar-text"
                   >
                     PL
                   </p>
                 </div>
               </div>
               <div
-                class="MuiGrid-item"
+                class="MuiGrid-root MuiGrid-item"
               >
                 <div
                   style="margin-bottom: 0.25em; display: block;"
                 >
                   <h5
-                    class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+                    class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-displayInline"
                   >
                     Phil Leif
                   </h5>
                 </div>
                 <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption"
+                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-displayBlock"
                 >
                   Company Representative at Marketing Works
                 </span>
@@ -133,22 +136,23 @@ exports[`AccountSelect default render 1`] = `
         </a>
       </li>
       <li
-        class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-button MuiMenuItem-root AccountSelect-accountItem"
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiListItem-root MuiListItem-button MuiMenuItem-root AccountSelect-accountItem"
         role="menuitem"
         tabindex="-1"
       >
         <a
-          class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone AccountSelect-accountLink"
+          class="MuiTypography-root MuiTypography-colorPrimary MuiLink-root MuiLink-underlineNone AccountSelect-accountLink"
           href="#"
         >
           <div
             style="padding: 1.5em; display: flex; flex-direction: row; align-items: center;"
           >
             <div
-              class="MuiGrid-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-flex-start"
+              class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs MuiGrid-align-items-xs-flex"
             >
               <div
-                class="MuiGrid-item"
+                class="MuiGrid-root MuiGrid-item"
               >
                 <div
                   class="Avatar-root Avatar-xsmall"
@@ -161,19 +165,19 @@ exports[`AccountSelect default render 1`] = `
                 </div>
               </div>
               <div
-                class="MuiGrid-item"
+                class="MuiGrid-root MuiGrid-item"
               >
                 <div
                   style="margin-bottom: 0.25em; display: block;"
                 >
                   <h5
-                    class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+                    class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-displayInline"
                   >
                     Phil Leif
                   </h5>
                 </div>
                 <span
-                  class="MuiTypography-root Typography-regular MuiTypography-caption"
+                  class="MuiTypography-root Typography-regular MuiTypography-caption MuiTypography-displayBlock"
                 >
                   Talent
                 </span>

@@ -6,18 +6,18 @@ exports[`Icon prop renders icon at the beginning 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiFormControl-root TextField-rootFixedWidth"
+      class="MuiFormControl-root MuiTextField-root TextField-rootFixedWidth"
     >
       <div
         class="MuiInputBase-root MuiOutlinedInput-root TextField-root MuiInputBase-formControl MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
       >
         <fieldset
           aria-hidden="true"
-          class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+          class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
           style="padding-left: 8px;"
         >
           <legend
-            class="MuiPrivateNotchedOutline-legend"
+            class="PrivateNotchedOutline-legend"
             style="width: 0.01px;"
           >
             <span>
@@ -62,18 +62,18 @@ exports[`Icon prop renders icon at the end 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiFormControl-root TextField-rootFixedWidth"
+      class="MuiFormControl-root MuiTextField-root TextField-rootFixedWidth"
     >
       <div
         class="MuiInputBase-root MuiOutlinedInput-root TextField-root MuiInputBase-formControl MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
       >
         <fieldset
           aria-hidden="true"
-          class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+          class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
           style="padding-left: 8px;"
         >
           <legend
-            class="MuiPrivateNotchedOutline-legend"
+            class="PrivateNotchedOutline-legend"
             style="width: 0.01px;"
           >
             <span>

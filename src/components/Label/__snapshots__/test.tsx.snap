@@ -43,8 +43,6 @@ exports[`renders default variant 1`] = `
   >
     <div
       class="MuiChip-root Chip-root"
-      role="button"
-      tabindex="-1"
     >
       <span
         class="MuiChip-label"
@@ -63,8 +61,6 @@ exports[`renders error variant 1`] = `
   >
     <div
       class="MuiChip-root Chip-root Label-error"
-      role="button"
-      tabindex="-1"
     >
       <span
         class="MuiChip-label"
@@ -83,8 +79,6 @@ exports[`renders flat variant 1`] = `
   >
     <div
       class="MuiChip-root Chip-root Label-flat"
-      role="button"
-      tabindex="-1"
     >
       <span
         class="MuiChip-label"
@@ -103,8 +97,6 @@ exports[`renders success variant 1`] = `
   >
     <div
       class="MuiChip-root Chip-root Label-success"
-      role="button"
-      tabindex="-1"
     >
       <span
         class="MuiChip-label"

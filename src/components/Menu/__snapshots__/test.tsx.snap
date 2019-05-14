@@ -8,36 +8,40 @@ exports[`Menu default render 1`] = `
     <ul
       class="MuiList-root"
       role="menu"
+      tabindex="-1"
     >
       <li
-        class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
         role="menuitem"
         tabindex="-1"
       >
         <p
-          class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1 MenuItem-stringContent"
+          class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1 MuiTypography-displayBlock MenuItem-stringContent"
         >
           Item 1
         </p>
       </li>
       <li
-        class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
         role="menuitem"
         tabindex="-1"
       >
         <p
-          class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1 MenuItem-stringContent"
+          class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1 MuiTypography-displayBlock MenuItem-stringContent"
         >
           Item 2
         </p>
       </li>
       <li
-        class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
         role="menuitem"
         tabindex="-1"
       >
         <p
-          class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1 MenuItem-stringContent"
+          class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1 MuiTypography-displayBlock MenuItem-stringContent"
         >
           Item 3
         </p>
