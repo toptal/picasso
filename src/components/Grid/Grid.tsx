@@ -1,5 +1,4 @@
 import React, { ReactNode, FunctionComponent } from 'react'
-import { Overwrite } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import MUIGrid, {
   GridSpacing,
@@ -9,13 +8,13 @@ import MUIGrid, {
 } from '@material-ui/core/Grid'
 
 import GridItem from '../GridItem'
-import { StandardProps, JssProps } from '../Picasso'
+import { StandardProps, JssProps, OmitInternalProps } from '../Picasso'
 import styles from './styles'
 
 interface Props extends StandardProps {
   /** Grid content containing Grid.Item */
   children?: ReactNode
-  /** Defines the space between the type item components */
+  /** Defines the space between the type item components in em units */
   spacing?: GridSpacing
   /** Defines the orientation of the grid */
   direction?: GridDirection
@@ -57,12 +56,12 @@ Grid.defaultProps = {
   alignItems: 'flex-start',
   direction: 'row',
   justify: 'flex-start',
-  spacing: 32
+  spacing: 4
 }
 
 Grid.Item = GridItem
 
 export default withStyles(styles)(Grid) as FunctionComponent<
-  Overwrite<Props, Partial<JssProps>>
+  OmitInternalProps<Props> & Partial<JssProps>
 > &
   StaticProps

@@ -24,7 +24,7 @@ PicassoProvider.override(() => ({
 
 const CARRET_ICON_LEFT_PADDING = '.4em'
 
-export default ({ spacing: { borderWidth, input, inputLabel } }: Theme) =>
+export default ({ shape: { borderWidth, input, inputLabel } }: Theme) =>
   createStyles({
     root: {
       height: input.height,

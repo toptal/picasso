@@ -1,12 +1,11 @@
 import React, { FunctionComponent, ReactNode } from 'react'
-import { Overwrite } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
 import PageHeader from '../PageHeader'
 import PageFooter from '../PageFooter'
 import PageContent from '../PageContent'
-import { StandardProps, JssProps } from '../Picasso'
+import { StandardProps, OmitInternalProps } from '../Picasso'
 import { PageContextProps } from './types'
 import styles from './styles'
 
@@ -58,6 +57,6 @@ Page.Content = PageContent
 Page.Footer = PageFooter
 
 export default withStyles(styles)(Page) as FunctionComponent<
-  Overwrite<Props, Partial<JssProps>>
+  OmitInternalProps<Props>
 > &
   StaticProps

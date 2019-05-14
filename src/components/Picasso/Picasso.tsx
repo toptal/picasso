@@ -11,7 +11,7 @@ import {
   layout,
   transitions,
   typography,
-  spacing,
+  shape,
   breakpoints,
   screens,
   shadows
@@ -25,7 +25,7 @@ const picasso = {
   palette,
   layout,
   transitions,
-  spacing,
+  shape,
   breakpoints,
   screens,
   shadows,

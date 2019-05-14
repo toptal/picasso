@@ -32,7 +32,10 @@ export interface Props extends StandardProps {
   /** Whether `Select` should be rendered as native HTML `<select />` */
   native?: boolean
   /** Callback invoked when `Select` changes its state. */
-  onChange?: (event: ChangeEvent<HTMLSelectElement>, child: ReactNode) => void
+  onChange?: (
+    event: React.ChangeEvent<{ name?: string; value: unknown }>,
+    child: ReactNode
+  ) => void
   /** List of options to be rendered as `Select` */
   options: Option[]
   /** Selected value */

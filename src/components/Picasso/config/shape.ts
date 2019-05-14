@@ -1,5 +1,5 @@
-declare module '@material-ui/core/styles/spacing' {
-  interface Spacing {
+declare module '@material-ui/core/styles/shape' {
+  interface Shape {
     borderWidth: string
     input: {
       height: string
@@ -20,7 +20,7 @@ declare module '@material-ui/core/styles/spacing' {
   }
 }
 
-const spacing = {
+const shape = {
   borderWidth: '1px',
   input: {
     height: '3em',
@@ -40,4 +40,4 @@ const spacing = {
   }
 }
 
-export default spacing
+export default shape

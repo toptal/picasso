@@ -7,7 +7,7 @@ import '../OutlinedInput/styles'
 import '../InputAdornment/styles'
 
 export default ({
-  spacing: { input, inputLabel, inputIcon, borderWidth }
+  shape: { input, inputLabel, inputIcon, borderWidth }
 }: Theme) =>
   createStyles({
     root: {

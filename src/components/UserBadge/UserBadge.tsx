@@ -63,7 +63,7 @@ export const UserBadge: FunctionComponent<Props> = ({
 
   return (
     <Grid
-      spacing={16}
+      spacing={2}
       alignItems={alignItems}
       classes={gridClasses}
       className={className}

@@ -5,14 +5,13 @@ import React, {
   MouseEvent
 } from 'react'
 import cx from 'classnames'
-import { Overwrite } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import ButtonBase from '@material-ui/core/ButtonBase'
 
 import Loader from '../Loader'
 import Container from '../Container'
 import Group from '../ButtonGroup'
-import { StandardProps, JssProps, SizeType } from '../Picasso'
+import { StandardProps, SizeType, OmitInternalProps } from '../Picasso'
 import styles from './styles'
 
 type VariantType =
@@ -172,6 +171,6 @@ Button.displayName = 'Button'
 Button.Group = Group
 
 export default withStyles(styles)(Button) as FunctionComponent<
-  Overwrite<Props, Partial<JssProps>>
+  OmitInternalProps<Props>
 > &
   StaticProps
