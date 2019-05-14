@@ -1,5 +1,6 @@
 import React, { ReactNode, FunctionComponent } from 'react'
 import { withStyles } from '@material-ui/core/styles'
+import { capitalize } from '@material-ui/core/utils/helpers'
 import cx from 'classnames'
 
 import CircularProgress from '../CircularProgress'
@@ -12,6 +13,8 @@ enum SIZES {
   large = 80
 }
 
+type VariantType = 'default' | 'inherit'
+
 export interface Props extends StandardProps {
   /** Text content for the `Loader` */
   children?: ReactNode
@@ -21,6 +24,8 @@ export interface Props extends StandardProps {
   size?: SizeType<'small' | 'medium' | 'large'>
   /** Set the value if want to have static loader with the value specified */
   value?: number
+  /** Set this value if you want loader to inherit color of the parent, primary by default */
+  variant?: VariantType
 }
 
 export const Loader: FunctionComponent<Props> = ({
@@ -29,7 +34,8 @@ export const Loader: FunctionComponent<Props> = ({
   size,
   inline,
   className,
-  value
+  value,
+  variant
 }) => (
   <div
     className={cx(classes.wrapper, className, {
@@ -38,7 +44,7 @@ export const Loader: FunctionComponent<Props> = ({
   >
     <CircularProgress
       classes={{
-        root: classes.spinner
+        root: classes[`spinner${capitalize(variant!)}`]
       }}
       size={SIZES[size!]}
       value={value}
@@ -51,7 +57,8 @@ export const Loader: FunctionComponent<Props> = ({
 
 Loader.defaultProps = {
   inline: false,
-  size: 'medium'
+  size: 'medium',
+  variant: 'default'
 }
 
 Loader.displayName = 'Loader'

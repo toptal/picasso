@@ -6,7 +6,7 @@ exports[`props combo 1`] = `
     class="Loader-wrapper Loader-inline"
   >
     <div
-      class="MuiCircularProgress-root CircularProgress-root Loader-spinner MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
+      class="MuiCircularProgress-root CircularProgress-root Loader-spinnerDefault MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
       role="progressbar"
       style="width: 80px; height: 80px;"
     >
