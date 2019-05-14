@@ -1,10 +1,10 @@
 import React from 'react'
 import { render, cleanup } from 'react-testing-library'
 
-import Picasso, { UserDefinedProps } from '../Picasso'
+import Picasso, { OmitInternalProps } from '../Picasso'
 import Pagination, { Props } from './Pagination'
 
-const renderPagination = (props: UserDefinedProps<Props>) => {
+const renderPagination = (props: OmitInternalProps<Props>) => {
   const { activePage, disabled, onPageChange, totalPages } = props
 
   return render(

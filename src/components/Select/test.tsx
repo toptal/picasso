@@ -1,10 +1,10 @@
 import React from 'react'
 import { render, cleanup } from 'react-testing-library'
 
-import Picasso, { UserDefinedProps } from '../Picasso'
+import Picasso, { OmitInternalProps } from '../Picasso'
 import Select, { Props } from './Select'
 
-const renderSelect = (props: UserDefinedProps<Props>) => {
+const renderSelect = (props: OmitInternalProps<Props>) => {
   const { options, native, value, width } = props
 
   return render(

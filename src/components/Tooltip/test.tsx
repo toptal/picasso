@@ -1,12 +1,12 @@
 import React from 'react'
 import { render, cleanup, RenderResult } from 'react-testing-library'
 
-import { UserDefinedProps } from '../Picasso'
+import { OmitInternalProps } from '../Picasso'
 import Tooltip, { Props } from './Tooltip'
 
 const renderTooltip = (
   children: React.ReactNode,
-  props: UserDefinedProps<Props, 'children'>
+  props: OmitInternalProps<Props, 'children'>
 ) => {
   const { content, trigger, interactive } = props
 

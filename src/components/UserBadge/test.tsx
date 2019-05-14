@@ -2,12 +2,12 @@ import React from 'react'
 import { render, cleanup } from 'react-testing-library'
 
 import Typography from '../Typography'
-import Picasso, { UserDefinedProps } from '../Picasso'
+import Picasso, { OmitInternalProps } from '../Picasso'
 import UserBadge, { Props } from './UserBadge'
 
 const renderUserBadge = (
   children: React.ReactNode,
-  props: UserDefinedProps<Props>
+  props: OmitInternalProps<Props>
 ) => {
   const { size, center, name, invert } = props
 

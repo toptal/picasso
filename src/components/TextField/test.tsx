@@ -2,12 +2,12 @@ import React, { ReactNode } from 'react'
 import { render, cleanup } from 'react-testing-library'
 import SearchIcon from '@material-ui/icons/Search'
 
-import Picasso, { UserDefinedProps } from '../Picasso'
+import Picasso, { OmitInternalProps } from '../Picasso'
 import TextField, { Props } from './TextField'
 
 const renderTextField = (
   children: ReactNode,
-  props: UserDefinedProps<Props>
+  props: OmitInternalProps<Props>
 ) => {
   const { icon, iconPosition } = props
 

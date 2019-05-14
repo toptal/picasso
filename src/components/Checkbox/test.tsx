@@ -1,10 +1,10 @@
 import React from 'react'
 import { render, fireEvent, cleanup, RenderResult } from 'react-testing-library'
 
-import { UserDefinedProps } from '../Picasso'
+import { OmitInternalProps } from '../Picasso'
 import Checkbox, { Props } from './Checkbox'
 
-const renderCheckbox = (props: UserDefinedProps<Props>) => {
+const renderCheckbox = (props: OmitInternalProps<Props>) => {
   const { label, disabled, indeterminate, onChange } = props
 
   return render(

@@ -1,10 +1,10 @@
 import React from 'react'
 import { render, cleanup } from 'react-testing-library'
 
-import { UserDefinedProps } from '../Picasso'
+import { OmitInternalProps } from '../Picasso'
 import Stepper, { Props } from './Stepper'
 
-const renderStepper = (props: UserDefinedProps<Props>) => {
+const renderStepper = (props: OmitInternalProps<Props>) => {
   const { active, fullWidth, hideLabels, steps } = props
 
   return render(

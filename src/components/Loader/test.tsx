@@ -1,10 +1,10 @@
 import React, { ReactNode } from 'react'
 import { render, cleanup } from 'react-testing-library'
 
-import { UserDefinedProps } from '../Picasso'
+import { OmitInternalProps } from '../Picasso'
 import Loader, { Props } from './Loader'
 
-const renderLoader = (children: ReactNode, props: UserDefinedProps<Props>) => {
+const renderLoader = (children: ReactNode, props: OmitInternalProps<Props>) => {
   const { inline, size } = props
 
   return render(

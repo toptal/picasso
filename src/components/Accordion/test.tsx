@@ -2,11 +2,11 @@
 import React, { ReactNode } from 'react'
 import { render, fireEvent, cleanup, RenderResult } from 'react-testing-library'
 
-import { UserDefinedProps } from '../Picasso'
+import { OmitInternalProps } from '../Picasso'
 import Accordion, { Props } from './Accordion'
 
 const renderAccordion = (
-  props: UserDefinedProps<Props>,
+  props: OmitInternalProps<Props>,
   children: ReactNode
 ) => {
   const { content, expanded } = props

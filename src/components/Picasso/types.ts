@@ -19,9 +19,9 @@ export type StandardProps = BaseProps & JssProps
 // type and other passed props
 //
 // example:
-// UserDefinedProps<Props>
-// UserDefinedProps<Props, 'name' | 'variant'>
-export type UserDefinedProps<T, K = ''> = Pick<
+// OmitInternalProps<Props>
+// OmitInternalProps<Props, 'name' | 'variant'>
+export type OmitInternalProps<T, K = ''> = Pick<
   T,
   Exclude<keyof T, keyof JssProps | K>
 >

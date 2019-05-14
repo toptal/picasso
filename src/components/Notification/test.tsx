@@ -1,12 +1,12 @@
 import React, { ReactNode } from 'react'
 import { render, cleanup, RenderResult, fireEvent } from 'react-testing-library'
 
-import Picasso, { UserDefinedProps } from '../Picasso'
+import Picasso, { OmitInternalProps } from '../Picasso'
 import Notification, { Props } from './Notification'
 
 const renderNotification = (
   children: ReactNode,
-  props: UserDefinedProps<Props, 'children'>
+  props: OmitInternalProps<Props, 'children'>
 ) => {
   const { onClose } = props
 

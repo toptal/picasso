@@ -1,10 +1,10 @@
 import React from 'react'
 import { render, cleanup } from 'react-testing-library'
 
-import Picasso, { UserDefinedProps } from '../Picasso'
+import Picasso, { OmitInternalProps } from '../Picasso'
 import Avatar, { Props } from './Avatar'
 
-const renderAvatar = (props: UserDefinedProps<Props>) => {
+const renderAvatar = (props: OmitInternalProps<Props>) => {
   const { alt, name, src } = props
 
   return render(

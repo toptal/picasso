@@ -1,12 +1,12 @@
 import React from 'react'
 import { render, fireEvent, cleanup, RenderResult } from 'react-testing-library'
 
-import Picasso, { UserDefinedProps } from '../Picasso'
+import Picasso, { OmitInternalProps } from '../Picasso'
 import Label, { Props } from './Label'
 
 const renderLabel = (
   children: string,
-  props: UserDefinedProps<Props, 'children'>
+  props: OmitInternalProps<Props, 'children'>
 ) => {
   const { variant, onDelete } = props
 

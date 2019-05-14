@@ -5,5 +5,5 @@ export {
   JssProps,
   StandardProps,
   SizeType,
-  UserDefinedProps
+  OmitInternalProps
 } from './types'

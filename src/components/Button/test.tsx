@@ -1,10 +1,10 @@
 import React, { ReactNode } from 'react'
 import { render, fireEvent, cleanup, RenderResult } from 'react-testing-library'
 
-import Picasso, { UserDefinedProps } from '../Picasso'
+import Picasso, { OmitInternalProps } from '../Picasso'
 import Button, { Props } from './Button'
 
-const renderButton = (children: ReactNode, props: UserDefinedProps<Props>) => {
+const renderButton = (children: ReactNode, props: OmitInternalProps<Props>) => {
   const { disabled, onClick } = props
 
   return render(

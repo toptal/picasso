@@ -1,12 +1,12 @@
 import React from 'react'
 import { render, cleanup, RenderResult } from 'react-testing-library'
 
-import Picasso, { UserDefinedProps } from '../Picasso'
+import Picasso, { OmitInternalProps } from '../Picasso'
 import Typography, { Props } from './Typography'
 
 const renderTypography = (
   children: React.ReactNode,
-  props: UserDefinedProps<Props>
+  props: OmitInternalProps<Props>
 ) => {
   const { align, weight } = props
 

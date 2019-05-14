@@ -8,12 +8,12 @@ import React, { ReactNode } from 'react'
 /* eslint-disable-next-line */
 import { render, fireEvent, cleanup, RenderResult } from 'react-testing-library'
 
-import { UserDefinedProps } from '../Picasso'
+import { OmitInternalProps } from '../Picasso'
 import <%= Name %>, { Props } from './<%= Name %>'
 
 const render<%= Name %> = (
   children: ReactNode,
-  props: UserDefinedProps<Props>
+  props: OmitInternalProps<Props>
 ) => {
   const { /* add props you need */ } = props
 

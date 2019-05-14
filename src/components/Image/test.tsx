@@ -1,10 +1,10 @@
 import React from 'react'
 import { render, cleanup } from 'react-testing-library'
 
-import { UserDefinedProps } from '../Picasso'
+import { OmitInternalProps } from '../Picasso'
 import Image, { Props } from './Image'
 
-const renderImage = (props: UserDefinedProps<Props>) => {
+const renderImage = (props: OmitInternalProps<Props>) => {
   const { variant, alt, src } = props
 
   return render(<Image alt={alt} variant={variant} src={src} />)

@@ -1,10 +1,10 @@
 import React from 'react'
 import { render, fireEvent, cleanup, RenderResult } from 'react-testing-library'
 
-import { UserDefinedProps } from '../Picasso'
+import { OmitInternalProps } from '../Picasso'
 import Radio, { Props } from './Radio'
 
-const renderRadio = (props: UserDefinedProps<Props>) => {
+const renderRadio = (props: OmitInternalProps<Props>) => {
   const { disabled, onChange } = props
 
   return render(<Radio disabled={disabled} onChange={onChange} />)
