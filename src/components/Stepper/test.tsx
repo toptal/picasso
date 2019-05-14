@@ -1,10 +1,20 @@
 import React from 'react'
 import { render, cleanup } from 'react-testing-library'
 
-import Stepper from './index'
+import { OmitInternalProps } from '../Picasso'
+import Stepper, { Props } from './Stepper'
 
-const renderStepper = (props: any) => {
-  return render(<Stepper {...props} />)
+const renderStepper = (props: OmitInternalProps<Props>) => {
+  const { active, fullWidth, hideLabels, steps } = props
+
+  return render(
+    <Stepper
+      active={active}
+      fullWidth={fullWidth}
+      hideLabels={hideLabels}
+      steps={steps}
+    />
+  )
 }
 
 afterEach(cleanup)

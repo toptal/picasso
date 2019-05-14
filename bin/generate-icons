@@ -13,7 +13,7 @@ echo -e "Prepare index file ... \n\n"
 cat /dev/null > "$ICON_FULL_PATH/index.ts"
 
 echo "Converting svg icons into react components ..."
-svgr -d $ICON_PATH --ext tsx --template $ICON_PATH/_generatorTemplate.js --expand-props start $ICON_PATH/svg
+svgr -d $ICON_PATH --ext tsx --template $ICON_PATH/_generatorTemplate.js --expand-props none $ICON_PATH/svg
 
 function pascalCase () {
   echo $1 | perl -pe 's/(^|_)([a-z])/uc($2)/ge'  

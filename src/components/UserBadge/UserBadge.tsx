@@ -10,7 +10,7 @@ import styles from './styles'
 
 type AlignmentType = boolean | 'auto'
 
-interface Props extends StandardProps {
+export interface Props extends StandardProps {
   /** User full name to display */
   name: string
   /** Photo url or custom Avatar component */

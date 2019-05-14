@@ -8,7 +8,7 @@ import LabelGroup from '../LabelGroup'
 import { StandardProps, JssProps } from '../Picasso'
 import styles from './styles'
 
-interface Props extends StandardProps {
+export interface Props extends StandardProps {
   /** Text content of the `Label` component */
   children: ReactNode
   /** A callback which is invoked after remove `Icon` is clicked

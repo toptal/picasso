@@ -1,10 +1,13 @@
 import React from 'react'
 import { render, fireEvent, cleanup, RenderResult } from 'react-testing-library'
 
-import Radio from './index'
+import { OmitInternalProps } from '../Picasso'
+import Radio, { Props } from './Radio'
 
-const renderRadio = (props: any = {}) => {
-  return render(<Radio {...props} />)
+const renderRadio = (props: OmitInternalProps<Props>) => {
+  const { disabled, onChange } = props
+
+  return render(<Radio disabled={disabled} onChange={onChange} />)
 }
 
 afterEach(cleanup)
@@ -37,7 +40,7 @@ describe('disabled radio button', () => {
 
 describe('radio button', () => {
   test('renders default radio button', () => {
-    const { container } = renderRadio()
+    const { container } = renderRadio({})
 
     expect(container).toMatchSnapshot()
   })

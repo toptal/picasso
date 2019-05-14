@@ -7,6 +7,7 @@ const AvatarVariantsExample = () => (
       <Avatar
         size='medium'
         alt='Jacqueline Roque. Pablo Picasso, 1954'
+        name='Jacqueline Roque'
         src='./jacqueline-with-flowers-1954-square.jpg'
       />
     </Container>
@@ -18,6 +19,7 @@ const AvatarVariantsExample = () => (
         variant='portrait'
         size='medium'
         alt='Jacqueline Roque. Pablo Picasso, 1954'
+        name='Jacqueline Roque'
         src='./jacqueline-with-flowers-1954-square.jpg'
       />
     </Container>
@@ -26,6 +28,7 @@ const AvatarVariantsExample = () => (
         variant='landscape'
         size='medium'
         alt='Jacqueline Roque. Pablo Picasso, 1954'
+        name='Jacqueline Roque'
         src='./jacqueline-with-flowers-1954-square.jpg'
       />
     </Container>

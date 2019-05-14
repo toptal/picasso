@@ -6,7 +6,7 @@ import FormControlLabel from '../FormControlLabel'
 import { StandardProps } from '../Picasso'
 import styles from './styles'
 
-interface Props extends StandardProps {
+export interface Props extends StandardProps {
   /** Show checkbox initially as checked */
   checked?: boolean
   /** Disable changing `Checkbox` state */

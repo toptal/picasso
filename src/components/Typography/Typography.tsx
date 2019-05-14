@@ -24,7 +24,7 @@ type WeightType = 'thin' | 'light' | 'regular' | 'semibold' | 'bold'
 type ColorType = 'primary' | 'success' | 'error' | 'muted'
 type VariantsType = { [key in VariantType]: MUIVariant }
 
-interface Props extends StandardProps {
+export interface Props extends StandardProps {
   /** Font variant inner text */
   variant?: VariantType
   /** Text content */

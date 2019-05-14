@@ -10,7 +10,7 @@ import StepConnector from '../StepConnector'
 import { StandardProps } from '../Picasso'
 import styles from './styles'
 
-interface Props extends StandardProps {
+export interface Props extends StandardProps {
   /** The index of the active step */
   active?: number
   /** The component will take up the full width of its container */

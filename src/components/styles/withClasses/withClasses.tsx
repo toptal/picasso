@@ -29,6 +29,7 @@ export default (config: Config) => {
         return childResult
       })
 
+      // eslint-disable-next-line react/jsx-props-no-spreading
       return <Component {...props}>{modifiedChildren}</Component>
     }
 

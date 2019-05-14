@@ -21,7 +21,7 @@ import Typography from '../Typography'
 
 type VariantType = 'error' | 'success' | 'info' | 'warning'
 
-interface Props extends StandardProps {
+export interface Props extends StandardProps {
   /** Main content of the Notification */
   children: ReactNode
   /** Callback invoked when close is clicked */
@@ -59,17 +59,21 @@ const renderNotificationIcon = ({ icon, variant, classes }: Props) => {
   // Missing the following: https://github.com/toptal/picasso/issues/253
   switch (variant) {
     case 'error':
+      // eslint-disable-next-line react/jsx-props-no-spreading
       return <Alert {...iconProps} color={palette.error.main} />
 
     case 'warning':
+      // eslint-disable-next-line react/jsx-props-no-spreading
       return <Alert {...iconProps} color={palette.warning.main} />
 
     case 'success':
+      // eslint-disable-next-line react/jsx-props-no-spreading
       return <Tick {...iconProps} color={palette.success.main} />
 
     default:
       const infoProps = { ...iconProps, color: palette.grey[200] }
 
+      // eslint-disable-next-line react/jsx-props-no-spreading
       return icon ? cloneElement(icon, infoProps) : <Info {...infoProps} />
   }
 }

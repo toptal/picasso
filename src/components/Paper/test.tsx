@@ -5,10 +5,10 @@ import Typography from '../Typography'
 import Paper from './index'
 import Picasso from '../index'
 
-const renderPaper = (children: React.ReactNode, props: any) => {
+const renderPaper = (children: React.ReactNode) => {
   return render(
     <Picasso loadFonts={false}>
-      <Paper {...props}>{children}</Paper>
+      <Paper>{children}</Paper>
     </Picasso>
   )
 }
@@ -19,7 +19,7 @@ describe('Paper', () => {
   let api: RenderResult
 
   beforeEach(() => {
-    api = renderPaper(<Typography>This is Paper</Typography>, {})
+    api = renderPaper(<Typography>This is Paper</Typography>)
   })
   test('default render', () => {
     const { container } = api

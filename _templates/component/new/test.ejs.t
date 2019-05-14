@@ -8,10 +8,16 @@ import React, { ReactNode } from 'react'
 /* eslint-disable-next-line */
 import { render, fireEvent, cleanup, RenderResult } from 'react-testing-library'
 
-import <%= Name %> from './index'
+import { OmitInternalProps } from '../Picasso'
+import <%= Name %>, { Props } from './<%= Name %>'
 
-const render<%= Name %> = (children: ReactNode, props: any) => {
-  return render(<<%= Name %> {...props}>{children}</<%= Name %>>)
+const render<%= Name %> = (
+  children: ReactNode,
+  props: OmitInternalProps<Props>
+) => {
+  const { /* add props you need */ } = props
+
+  return render(<<%= Name %>>{children}</<%= Name %>>)
 }
 
 afterEach(cleanup)

@@ -18,7 +18,6 @@ const SvgAlert = (props: Props) => {
 
   return (
     <svg
-      {...props}
       viewBox='0 0 16 16'
       className={cx(classes.root, className)}
       style={svgStyle}

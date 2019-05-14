@@ -1,13 +1,20 @@
 import React from 'react'
 import { render, fireEvent, cleanup, RenderResult } from 'react-testing-library'
 
-import Label from './index'
-import Picasso from '../Picasso'
+import Picasso, { OmitInternalProps } from '../Picasso'
+import Label, { Props } from './Label'
 
-const renderLabel = (children: string, props = {}) => {
+const renderLabel = (
+  children: string,
+  props: OmitInternalProps<Props, 'children'>
+) => {
+  const { variant, onDelete } = props
+
   return render(
     <Picasso loadFonts={false}>
-      <Label {...props}>{children}</Label>
+      <Label variant={variant} onDelete={onDelete}>
+        {children}
+      </Label>
     </Picasso>
   )
 }
@@ -15,7 +22,7 @@ const renderLabel = (children: string, props = {}) => {
 afterEach(cleanup)
 
 test('renders default variant', () => {
-  const { container } = renderLabel('Label')
+  const { container } = renderLabel('Label', {})
 
   expect(container).toMatchSnapshot()
 })

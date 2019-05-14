@@ -5,7 +5,9 @@ import MUIStepIcon, { StepIconProps } from '@material-ui/core/StepIcon'
 import styles from './styles'
 
 export const StepIcon: FunctionComponent<StepIconProps> = props => {
-  return <MUIStepIcon {...props} />
+  const { icon } = props
+
+  return <MUIStepIcon icon={icon} />
 }
 
 StepIcon.displayName = 'StepIcon'

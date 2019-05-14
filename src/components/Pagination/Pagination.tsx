@@ -8,7 +8,7 @@ type NavigationType = 'first' | 'last' | 'previous' | 'next'
 
 const SIBLING_COUNT = 3
 
-interface Props extends BaseProps {
+export interface Props extends BaseProps {
   /** Value of the current highlighted page */
   activePage: number
   /** Shows `Pagination` in disabled state when pages are not changeable */

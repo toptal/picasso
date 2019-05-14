@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
+import { StandardProps } from '../Picasso'
 import palette from '../Picasso/config/palette'
 import UserBadge from '../UserBadge'
 import Typography from '../Typography'
@@ -8,7 +9,6 @@ import Menu from '../Menu'
 import Link from '../Link'
 import Container from '../Container'
 import { ChevronRight } from '../Icon'
-import { Classes } from '../styles/types'
 import styles from './styles'
 
 type Account = {
@@ -26,8 +26,7 @@ type Account = {
 
 type Accounts = Account[]
 
-interface Props {
-  classes: Classes
+export interface Props extends StandardProps {
   /** List of available accounts */
   accounts: Accounts
   /** Callback invoked when specific role record is clicked in the list */
@@ -36,10 +35,12 @@ interface Props {
 
 export const AccountSelect: FunctionComponent<Props> = ({
   classes,
+  className,
   accounts,
-  onSelect
+  onSelect,
+  style
 }) => (
-  <Menu>
+  <Menu classes={classes} className={className} style={style}>
     {accounts.map(account => (
       <Menu.Item
         disableGutters

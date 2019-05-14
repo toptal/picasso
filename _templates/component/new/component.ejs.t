@@ -10,7 +10,7 @@ import { withStyles } from '@material-ui/core/styles'
 import { StandardProps } from '../Picasso'
 import styles from './styles'
 
-interface Props extends StandardProps {
+export interface Props extends StandardProps {
 }
 
 export const <%= Name %>: FunctionComponent<Props> = props => {

@@ -1,13 +1,20 @@
 import React from 'react'
 import { render, cleanup, RenderResult } from 'react-testing-library'
 
-import Typography from './index'
-import Picasso from '../index'
+import Picasso, { OmitInternalProps } from '../Picasso'
+import Typography, { Props } from './Typography'
 
-const renderTypography = (children: React.ReactNode, props: any) => {
+const renderTypography = (
+  children: React.ReactNode,
+  props: OmitInternalProps<Props>
+) => {
+  const { align, weight } = props
+
   return render(
     <Picasso loadFonts={false}>
-      <Typography {...props}>{children}</Typography>
+      <Typography align={align} weight={weight}>
+        {children}
+      </Typography>
     </Picasso>
   )
 }

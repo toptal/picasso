@@ -93,7 +93,7 @@
     "eslint-plugin-import": "^2.17.2",
     "eslint-plugin-node": "^8.0.0",
     "eslint-plugin-promise": "^4.1.1",
-    "eslint-plugin-react": "7.12.4",
+    "eslint-plugin-react": "7.13.0",
     "eslint-plugin-standard": "^4.0.0",
     "esprima": "^4.0.1",
     "esprima-walk": "^0.1.0",

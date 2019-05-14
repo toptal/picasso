@@ -24,7 +24,7 @@ export interface Props extends StandardProps {
   /** Component ID */
   id?: string
   /** Width of the component which will apply `min-width` to the `input` */
-  width: 'full' | 'shrink' | 'auto'
+  width?: 'full' | 'shrink' | 'auto'
   /** Inner text label for the `Select` */
   label?: string
   /** Placeholder option which is selected by default */
@@ -111,7 +111,7 @@ export const Select: FunctionComponent<Props> = ({
       className={className}
       style={style}
       classes={{
-        root: cx(classes.root, classes[`root${capitalize(width)}`]),
+        root: cx(classes.root, classes[`root${capitalize(width!)}`]),
         icon: classes.icon,
         select: classes.select
       }}

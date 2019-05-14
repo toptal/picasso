@@ -33,8 +33,13 @@ const LogoVariantsExample = () => (
   </div>
 )
 
-const LogoContainer = ({ children, bgcolor, ...rest }) => (
-  <Container {...rest} padded='large' style={{ backgroundColor: bgcolor }}>
+const LogoContainer = ({ children, bgcolor, inline, right }) => (
+  <Container
+    inline={inline}
+    right={right}
+    padded='large'
+    style={{ backgroundColor: bgcolor }}
+  >
     {children}
   </Container>
 )

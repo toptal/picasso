@@ -1,10 +1,10 @@
 import React, { ReactNode } from 'react'
 import { render, cleanup } from 'react-testing-library'
 
-import ButtonGroup from './index'
+import ButtonGroup from './ButtonGroup'
 
-const renderButtonGroup = (children: ReactNode, props: any = {}) => {
-  return render(<ButtonGroup {...props}>{children}</ButtonGroup>)
+const renderButtonGroup = (children: ReactNode) => {
+  return render(<ButtonGroup>{children}</ButtonGroup>)
 }
 
 afterEach(cleanup)

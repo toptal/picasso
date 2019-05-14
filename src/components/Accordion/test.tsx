@@ -2,10 +2,20 @@
 import React, { ReactNode } from 'react'
 import { render, fireEvent, cleanup, RenderResult } from 'react-testing-library'
 
-import Accordion from './index'
+import { OmitInternalProps } from '../Picasso'
+import Accordion, { Props } from './Accordion'
 
-const renderAccordion = (props: any = {}, children: ReactNode) => {
-  return render(<Accordion {...props}>{children}</Accordion>)
+const renderAccordion = (
+  props: OmitInternalProps<Props>,
+  children: ReactNode
+) => {
+  const { content, expanded } = props
+
+  return render(
+    <Accordion content={content} expanded={expanded}>
+      {children}
+    </Accordion>
+  )
 }
 
 afterEach(cleanup)

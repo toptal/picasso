@@ -5,7 +5,13 @@ import MUIStep, { StepProps } from '@material-ui/core/Step'
 import styles from './styles'
 
 export const Step: FunctionComponent<StepProps> = props => {
-  return <MUIStep {...props} />
+  const { active, children, completed, index } = props
+
+  return (
+    <MUIStep active={active} completed={completed} index={index}>
+      {children}
+    </MUIStep>
+  )
 }
 
 Step.displayName = 'Step'

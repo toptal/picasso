@@ -1,13 +1,20 @@
 import React from 'react'
 import { render, cleanup, RenderResult, fireEvent } from 'react-testing-library'
 
-import Picasso from '../Picasso'
-import AccountSelect from './index'
+import Picasso, { OmitInternalProps } from '../Picasso'
+import AccountSelect, { Props } from './AccountSelect'
 
-const renderAccountSelect = (children: React.ReactNode, props: any) => {
+const renderAccountSelect = (
+  children: React.ReactNode,
+  props: OmitInternalProps<Props>
+) => {
+  const { onSelect, accounts } = props
+
   return render(
     <Picasso loadFonts={false}>
-      <AccountSelect {...props}>{children}</AccountSelect>
+      <AccountSelect accounts={accounts} onSelect={onSelect}>
+        {children}
+      </AccountSelect>
     </Picasso>
   )
 }

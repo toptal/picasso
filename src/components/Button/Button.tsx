@@ -26,7 +26,7 @@ type VariantType =
 
 type IconPositionType = 'left' | 'right'
 
-interface Props extends StandardProps {
+export interface Props extends StandardProps {
   /** Show button in the active state (left mouse button down) */
   active?: boolean
   /** Disables button */
