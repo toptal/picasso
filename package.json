@@ -22,7 +22,9 @@
     "generate:component": "hygen component new",
     "generate:example": "hygen component example",
     "generate:icons": "./bin/generate-icons",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "postpublish": "cp -r package.json ../",
+    "prepublishOnly": "cp ../README.md ." 
   },
   "repository": {
     "type": "git",
