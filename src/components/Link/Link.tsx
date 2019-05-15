@@ -35,6 +35,8 @@ interface Props extends StandardProps {
 
   /** Either it's a regular link or an _action_ */
   variant?: VariantType
+  /** Indicates the order of receiving focus. If not set will not receive focus. */
+  tabIndex?: number
 }
 
 export const Link: FunctionComponent<Props> = ({
@@ -46,7 +48,8 @@ export const Link: FunctionComponent<Props> = ({
   className,
   style,
   as,
-  variant
+  variant,
+  tabIndex
 }) => {
   return (
     <MUILink
@@ -58,6 +61,7 @@ export const Link: FunctionComponent<Props> = ({
       })}
       style={style}
       component={as}
+      tabIndex={tabIndex}
     >
       {children}
     </MUILink>
