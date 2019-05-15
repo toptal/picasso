@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/toptal/picasso/compare/v1.4.1...v1.4.2) (2019-05-15)
+
+
+### Bug Fixes
+
+* **ci:** update package.json with correct version after release ([#319](https://github.com/toptal/picasso/issues/319)) ([dbaf6ff](https://github.com/toptal/picasso/commit/dbaf6ff))
+
 ## [1.4.1](https://github.com/toptal/picasso/compare/v1.4.0...v1.4.1) (2019-05-15)
 
 
