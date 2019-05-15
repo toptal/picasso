@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/toptal/picasso/compare/v1.4.0...v1.4.1) (2019-05-15)
+
+
+### Bug Fixes
+
+* icons vertical alignment for Notification component ([#315](https://github.com/toptal/picasso/issues/315)) ([c3d6a7f](https://github.com/toptal/picasso/commit/c3d6a7f))
+
 # [1.4.0](https://github.com/toptal/picasso/compare/v1.3.1...v1.4.0) (2019-05-14)
 
 
