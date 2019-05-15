@@ -66,7 +66,7 @@
     "@svgr/cli": "^4.2.0",
     "@types/color": "^3.0.0",
     "@types/esprima": "^4.0.2",
-    "@types/jest": "^24.0.12",
+    "@types/jest": "^24.0.13",
     "@types/jest-image-snapshot": "^2.8.0",
     "@types/lodash": "^4.14.120",
     "@types/puppeteer": "^1.12.4",
