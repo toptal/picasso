@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso",
-  "version": "0.3.0",
+  "version": "1.5.1",
   "description": "",
   "main": "index.js",
   "module": "index.js",
@@ -24,7 +24,7 @@
     "generate:icons": "./bin/generate-icons",
     "commit": "git-cz",
     "postpublish": "cp -r package.json ../",
-    "prepublishOnly": "cp ../README.md ." 
+    "prepublishOnly": "cp ../README.md ."
   },
   "repository": {
     "type": "git",

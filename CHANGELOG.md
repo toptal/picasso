@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/toptal/picasso/compare/v1.5.0...v1.5.1) (2019-05-15)
+
+
+### Bug Fixes
+
+* **ci:** copy package.json to root and refactor releases ([#334](https://github.com/toptal/picasso/issues/334)) ([7610fd8](https://github.com/toptal/picasso/commit/7610fd8))
+
 # [1.5.0](https://github.com/toptal/picasso/compare/v1.4.1...v1.5.0) (2019-05-15)
 
 
