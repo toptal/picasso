@@ -3043,14 +3043,6 @@
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.126.tgz#47cff3ea014aa083194f8ca3ec351136c3786613"
   integrity sha512-HxQ+wQnBtnL0LszZrVdMqWIlzZNyKuMLUb6swQ3mo6ysPqpAu7gfnapCQIi0B+Mrf0fNLZh8AWgJs2njejVasg==
 
-"@types/material-ui@^0.21.5":
-  version "0.21.6"
-  resolved "https://registry.yarnpkg.com/@types/material-ui/-/material-ui-0.21.6.tgz#047377ac49e623c2dafe47ccdf8713dcb02bd793"
-  integrity sha512-zq0FVny7dwE94CvY0Z7ejKcGD5IYjqHPZNkC2Wb4r8z/K+YuqRWKcIG7YP5flow46vVeOkojBPHDnic7wSv4yw==
-  dependencies:
-    "@types/react" "*"
-    "@types/react-addons-linked-state-mixin" "*"
-
 "@types/minimatch@*":
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
@@ -3082,13 +3074,6 @@
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.1.tgz#48fd98c1561fe718b61733daed46ff115b496e18"
   integrity sha512-eqz8c/0kwNi/OEHQfvIuJVLTst3in0e7uTKeuY+WL/zfKn0xVujOTp42bS/vUUokhK5P2BppLd9JXMOMHcgbjA==
-
-"@types/react-addons-linked-state-mixin@*":
-  version "0.14.20"
-  resolved "https://registry.yarnpkg.com/@types/react-addons-linked-state-mixin/-/react-addons-linked-state-mixin-0.14.20.tgz#5f0cd884ace049d538982a3b254f4807b9395eb6"
-  integrity sha512-17M8ymjR/vvyaQnLNuLSQipxtUrxaIq19phbWKKz1drIXeVQx+AnqMVVVIClno/gPheJWcLVCbf+yXXbbRalIg==
-  dependencies:
-    "@types/react" "*"
 
 "@types/react-dom@^16.8.4":
   version "16.8.4"
