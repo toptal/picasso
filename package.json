@@ -82,7 +82,7 @@
     "brace": "^0.11.1",
     "chalk": "^2.4.1",
     "commitizen": "^3.1.1",
-    "copy-to-clipboard": "^3.1.0",
+    "copy-to-clipboard": "^3.2.0",
     "cross-env": "^5.2.0",
     "cz-conventional-changelog": "2.1.0",
     "danger": "^7.1.4",
