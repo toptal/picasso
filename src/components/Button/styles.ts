@@ -46,8 +46,8 @@ export default ({ palette, spacing, transitions }: Theme) =>
       position: 'relative',
       textTransform: 'none',
       borderRadius: spacing.borderRadius,
-      border: `solid ${spacing.borderWidth} ${palette.grey[100]}`,
-      fontSize: 'inherit',
+      border: `solid ${spacing.borderWidth} ${palette.grey[200]}`,
+      fontSize: '1rem',
       transition: `all ${transitions.duration.short}ms ${
         transitions.easing.easeOut
       }`,
@@ -118,7 +118,7 @@ export default ({ palette, spacing, transitions }: Theme) =>
     blue: color(palette.primary.main),
     green: color(palette.success.main),
     red: color(palette.error.main),
-    disabled: color(palette.grey[100]),
+    disabled: color(palette.grey[200]),
 
     // variants
     primary: primary(palette),
