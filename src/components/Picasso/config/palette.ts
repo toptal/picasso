@@ -31,8 +31,7 @@ export const colors = {
     primary: '#455065'
   },
   grey: {
-    50: '#dfe3e9',
-    100: '#e8e8e8',
+    100: '#d8d9dc',
     200: '#c4c6ca',
     300: '#686869',
     500: '#262d3d'

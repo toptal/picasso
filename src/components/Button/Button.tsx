@@ -16,13 +16,12 @@ import { StandardProps, JssProps, SizeType } from '../Picasso'
 import styles from './styles'
 
 type VariantType =
-  | 'primary'
-  | 'secondary'
+  | 'primary-blue'
+  | 'secondary-blue'
+  | 'primary-red'
+  | 'secondary-red'
+  | 'primary-green'
   | 'flat'
-  | 'basic'
-  | 'success'
-  | 'error'
-  | 'default'
 
 type IconPositionType = 'left' | 'right'
 
@@ -89,9 +88,11 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
     root: rootClass,
     hidden: hiddenClass,
     loader: loaderClass,
-    content: contentClass
+    content: contentClass,
+    disabled: disabledClass
   } = classes
 
+  const [type, color] = variant!.split('-')
   let finalChildren = [children]
 
   if (icon) {
@@ -110,7 +111,8 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
     }
   }
 
-  const variantClassName = classes[variant!]
+  const typeClassName = classes[type]
+  const colorClassName = disabled ? disabledClass : classes[color]
   const sizeClassName = classes[size!]
 
   const rootClassName = cx(
@@ -121,7 +123,8 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
       [classes.hovered]: hovered,
       [classes.circular]: circular
     },
-    variantClassName,
+    typeClassName,
+    colorClassName,
     sizeClassName,
     rootClass
   )
@@ -167,7 +170,7 @@ Button.defaultProps = {
   loading: false,
   onClick: () => {},
   size: 'medium',
-  variant: 'default'
+  variant: 'primary-blue'
 }
 
 Button.displayName = 'Button'

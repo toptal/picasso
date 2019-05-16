@@ -3,12 +3,12 @@ import { Button } from '@toptal/picasso'
 
 const ButtonVariantsExample = () => (
   <div>
-    <Button>Basic</Button>
+    <Button>Primary Blue</Button>
+    <Button variant='secondary-blue'>Secondary Blue</Button>
+    <Button variant='primary-red'>Primary Red</Button>
+    <Button variant='secondary-red'>Secondary Red</Button>
+    <Button variant='primary-green'>Primary Green</Button>
     <Button variant='flat'>Flat</Button>
-    <Button variant='primary'>Primary</Button>
-    <Button variant='secondary'>Secondary</Button>
-    <Button variant='success'>Success</Button>
-    <Button variant='error'>Error</Button>
   </div>
 )
 

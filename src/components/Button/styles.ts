@@ -1,26 +1,43 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
-
-import { darken } from '../styles'
+import { Palette } from '@material-ui/core/styles/createPalette'
 
 const ICON_SPACING = '0.4em'
 
-const getFilledButton = (
-  backgroundColor: string,
-  borderColor: string,
-  color: string
-) => ({
-  backgroundColor,
-  borderColor,
-  color,
+const primary = (palette: Palette) => ({
+  border: 'none',
+  color: palette.common.white,
+  backgroundImage:
+    'linear-gradient(-180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%)',
 
   '&:hover, &$hovered': {
-    backgroundColor: darken(backgroundColor, 0.05)
+    backgroundImage:
+      'linear-gradient(-180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%)'
   },
 
   '&:active, &$active': {
-    backgroundColor: darken(backgroundColor, 0.25),
-    borderColor: darken(backgroundColor, 0.25)
+    backgroundImage:
+      'linear-gradient(-180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%)'
   }
+})
+
+const secondary = () => ({
+  backgroundImage:
+    'linear-gradient(-180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 100%)',
+
+  '&:hover, &$hovered': {
+    backgroundImage:
+      'linear-gradient(-180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.8) 100%)'
+  },
+
+  '&:active, &$active': {
+    backgroundImage:
+      'linear-gradient(-180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.8) 100%)'
+  }
+})
+
+const color = (color: string) => ({
+  backgroundColor: color,
+  color
 })
 
 export default ({ palette, spacing, transitions }: Theme) =>
@@ -29,21 +46,12 @@ export default ({ palette, spacing, transitions }: Theme) =>
       position: 'relative',
       textTransform: 'none',
       borderRadius: spacing.borderRadius,
+      border: `solid ${spacing.borderWidth} ${palette.grey[100]}`,
       fontSize: 'inherit',
       transition: `all ${transitions.duration.short}ms ${
         transitions.easing.easeOut
       }`,
       transitionProperty: 'border, color, background',
-      border: `solid ${spacing.borderWidth} ${palette.grey[50]}`,
-      backgroundColor: palette.grey[50],
-
-      '&:hover, &$hovered': {
-        backgroundColor: darken(palette.grey[50], 0.05)
-      },
-
-      '&[disabled]': {
-        opacity: 0.45
-      },
 
       '&:focus, &$focused': {
         textDecoration: 'underline',
@@ -51,10 +59,6 @@ export default ({ palette, spacing, transitions }: Theme) =>
         '&:active, &$active, &:hover': {
           textDecoration: 'none'
         }
-      },
-
-      '&:active, &$active': {
-        backgroundColor: darken(palette.grey[50], 0.15)
       },
 
       '&+&': {
@@ -110,52 +114,20 @@ export default ({ palette, spacing, transitions }: Theme) =>
       }
     },
 
-    // Variants
-    primary: getFilledButton(
-      palette.primary.main,
-      palette.primary.main,
-      palette.common.white
-    ),
-    secondary: {
-      ...getFilledButton(
-        'transparent',
-        palette.primary.main,
-        palette.primary.main
-      ),
+    // colors
+    blue: color(palette.primary.main),
+    green: color(palette.success.main),
+    red: color(palette.error.main),
+    disabled: color(palette.grey[100]),
 
-      '&:hover, &$hovered': {
-        backgroundColor: palette.primary.light,
-        borderColor: palette.primary.main
-      },
-
-      '&:active, &$active': {
-        backgroundColor: darken(palette.primary.light, 0.25),
-        borderColor: darken(palette.primary.light, 0.25)
-      }
-    },
-    success: getFilledButton(
-      palette.success.main,
-      palette.success.main,
-      palette.common.white
-    ),
-    error: getFilledButton(
-      palette.error.main,
-      palette.error.main,
-      palette.common.white
-    ),
+    // variants
+    primary: primary(palette),
+    secondary: secondary(),
     flat: {
-      ...getFilledButton(
-        palette.common.white,
-        palette.grey[50],
-        palette.text.primary
-      ),
+      ...color(palette.common.black),
+      ...secondary(),
       border: 'none'
     },
-    basic: getFilledButton(
-      palette.common.white,
-      palette.grey[50],
-      palette.text.primary
-    ),
 
     // Other props
     fullWidth: {
