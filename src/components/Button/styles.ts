@@ -23,20 +23,18 @@ const getFilledButton = (
   }
 })
 
-export default ({ palette, typography, transitions }: Theme) =>
+export default ({ palette, spacing, transitions }: Theme) =>
   createStyles({
     root: {
       position: 'relative',
       textTransform: 'none',
-      fontSize: typography.button.fontSize,
-      padding: '.4em 1em',
-      borderRadius: '.25rem',
-      lineHeight: '1.5em',
+      borderRadius: spacing.borderRadius,
+      fontSize: 'inherit',
       transition: `all ${transitions.duration.short}ms ${
         transitions.easing.easeOut
       }`,
       transitionProperty: 'border, color, background',
-      border: `solid 1px ${palette.grey[50]}`,
+      border: `solid ${spacing.borderWidth} ${palette.grey[50]}`,
       backgroundColor: palette.grey[50],
 
       '&:hover, &$hovered': {
@@ -63,6 +61,9 @@ export default ({ palette, typography, transitions }: Theme) =>
         marginLeft: '0.5em'
       }
     },
+    content: {
+      lineHeight: '1.5em'
+    },
     loader: {
       position: 'absolute',
       left: '50%',
@@ -72,10 +73,40 @@ export default ({ palette, typography, transitions }: Theme) =>
 
     // sizes
     small: {
-      fontSize: '0.8rem'
+      height: '1.5em',
+      padding: '0 0.75em',
+
+      '& $content': {
+        fontSize: '0.75em'
+      },
+
+      '&$circular': {
+        width: '1.5em'
+      }
+    },
+    medium: {
+      height: '2.25em',
+      padding: '0 1em',
+
+      '& $content': {
+        fontSize: '0.8125em'
+      },
+
+      '&$circular': {
+        width: '2.25em'
+      }
     },
     large: {
-      fontSize: '1.2rem'
+      height: '3em',
+      padding: '0 3.625em',
+
+      '& $content': {
+        fontSize: '0.9375em'
+      },
+
+      '&$circular': {
+        width: '3em'
+      }
     },
 
     // Variants
@@ -134,7 +165,7 @@ export default ({ palette, typography, transitions }: Theme) =>
     active: {},
     circular: {
       borderRadius: '50%',
-      padding: '.4em'
+      padding: 0
     },
 
     // Child elements

@@ -8,11 +8,7 @@ const typography = {
   useNextVariants: true,
   fontFamily: ['proxima-nova', 'Arial', 'sans-serif'].join(','),
   fontSize: 16,
-  inputSize: '18px',
-
-  button: {
-    fontSize: '16px'
-  }
+  inputSize: '18px'
 }
 
 export default typography

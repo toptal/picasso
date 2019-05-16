@@ -88,7 +88,8 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
     iconRight: iconRightClass,
     root: rootClass,
     hidden: hiddenClass,
-    loader: loaderClass
+    loader: loaderClass,
+    content: contentClass
   } = classes
 
   let finalChildren = [children]
@@ -142,7 +143,7 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
         flex
         direction='row'
         alignItems='center'
-        className={cx({ [hiddenClass]: loading })}
+        className={cx({ [hiddenClass]: loading }, contentClass)}
       >
         {finalChildren}
       </Container>
