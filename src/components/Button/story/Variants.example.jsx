@@ -1,5 +1,6 @@
 import React from 'react'
-import { Button } from '@toptal/picasso'
+import { Button, Container } from '@toptal/picasso'
+import { palette } from '@toptal/picasso/utils'
 
 const ButtonVariantsExample = () => (
   <div>
@@ -9,6 +10,14 @@ const ButtonVariantsExample = () => (
     <Button variant='secondary-red'>Secondary Red</Button>
     <Button variant='primary-green'>Primary Green</Button>
     <Button variant='flat'>Flat</Button>
+    <Container
+      left={0.5}
+      padded={0.5}
+      inline
+      style={{ backgroundColor: palette.primary.main }}
+    >
+      <Button variant='outlined-white'>Outlined White</Button>
+    </Container>
   </div>
 )
 

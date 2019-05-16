@@ -119,6 +119,7 @@ export default ({ palette, spacing, transitions }: Theme) =>
     green: color(palette.success.main),
     red: color(palette.error.main),
     disabled: color(palette.grey[100]),
+    white: color(palette.common.white),
 
     // variants
     primary: primary(palette),
@@ -127,6 +128,22 @@ export default ({ palette, spacing, transitions }: Theme) =>
       ...color(palette.common.black),
       ...secondary(),
       border: 'none'
+    },
+    outlined: {
+      backgroundColor: 'transparent',
+      backgroundImage:
+        'linear-gradient(-180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 100%)',
+      border: `solid ${spacing.borderWidth} rgba(255, 255, 255, 0.32)`,
+
+      '&:hover, &$hovered': {
+        backgroundImage:
+          'linear-gradient(-180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%)'
+      },
+
+      '&:active, &$active': {
+        backgroundImage:
+          'linear-gradient(-180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%)'
+      }
     },
 
     // Other props

@@ -22,6 +22,7 @@ type VariantType =
   | 'secondary-red'
   | 'primary-green'
   | 'flat'
+  | 'outlined-white'
 
 type IconPositionType = 'left' | 'right'
 
