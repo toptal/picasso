@@ -43,6 +43,7 @@ const reqComponents = require.context('@components', true, /story\/index.jsx$/)
 
 const loadStories = () => {
   require('./stories/Picasso') // markdown pages for README & CHANGELOG
+  require('./stories/Contributing') // markdown pages for contribution guide
   reqStorybook.keys().forEach(filename => reqStorybook(filename))
   reqComponents.keys().forEach(filename => reqComponents(filename))
   PicassoBook.generate()

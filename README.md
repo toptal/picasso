@@ -17,7 +17,7 @@ yarn add @toptal/picasso
 
 ## Start using library
 
-```
+```jsx
 import Picasso, { Button } from '@toptal/picasso'
 ...
 
@@ -59,7 +59,7 @@ In order to have a good tracking on visual changes which were applied in each PR
 `yarn test:visual -u` - Updating to current snapshots
 
 If you want to update only some snapshots with the specific names, run:
-```
+```bash
 yarn test:visual -u -t *snapshot_name_pattern*
 
 // example
@@ -72,7 +72,7 @@ yarn test:visual -u -t Colors
 
 In order to run `yarn` commands we need to mount current `components` directory to docker, so command will be executed against current working directory not the one built inside image.
 
-```
+```bash
 ./bin/run-in-docker yarn lint
 ```
 
