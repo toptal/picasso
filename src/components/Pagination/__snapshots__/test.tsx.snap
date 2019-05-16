@@ -9,158 +9,158 @@ exports[`renders default 1`] = `
       class="ButtonGroup-root"
     >
       <button
-        class="MuiButtonBase-root Button-basic Button-root ButtonGroup-button"
+        class="MuiButtonBase-root Button-flat Button-medium Button-root ButtonGroup-button"
         tabindex="0"
         type="button"
       >
         <div
-          class=""
+          class="Button-content"
           style="display: inline-flex; flex-direction: row; align-items: center;"
         >
           «
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-basic Button-root ButtonGroup-button"
+        class="MuiButtonBase-root Button-flat Button-medium Button-root ButtonGroup-button"
         tabindex="0"
         type="button"
       >
         <div
-          class=""
+          class="Button-content"
           style="display: inline-flex; flex-direction: row; align-items: center;"
         >
           ⟨
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-flat Button-disabled Button-medium Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <div
-          class=""
+          class="Button-content"
           style="display: inline-flex; flex-direction: row; align-items: center;"
         >
           ...
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-basic Button-root ButtonGroup-button"
+        class="MuiButtonBase-root Button-flat Button-medium Button-root ButtonGroup-button"
         tabindex="0"
         type="button"
       >
         <div
-          class=""
+          class="Button-content"
           style="display: inline-flex; flex-direction: row; align-items: center;"
         >
           2
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-basic Button-root ButtonGroup-button"
+        class="MuiButtonBase-root Button-flat Button-medium Button-root ButtonGroup-button"
         tabindex="0"
         type="button"
       >
         <div
-          class=""
+          class="Button-content"
           style="display: inline-flex; flex-direction: row; align-items: center;"
         >
           3
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-basic Button-root ButtonGroup-button"
+        class="MuiButtonBase-root Button-flat Button-medium Button-root ButtonGroup-button"
         tabindex="0"
         type="button"
       >
         <div
-          class=""
+          class="Button-content"
           style="display: inline-flex; flex-direction: row; align-items: center;"
         >
           4
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-primary Button-root ButtonGroup-button"
+        class="MuiButtonBase-root Button-primary Button-blue Button-medium Button-root ButtonGroup-button"
         tabindex="0"
         type="button"
       >
         <div
-          class=""
+          class="Button-content"
           style="display: inline-flex; flex-direction: row; align-items: center;"
         >
           5
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-basic Button-root ButtonGroup-button"
+        class="MuiButtonBase-root Button-flat Button-medium Button-root ButtonGroup-button"
         tabindex="0"
         type="button"
       >
         <div
-          class=""
+          class="Button-content"
           style="display: inline-flex; flex-direction: row; align-items: center;"
         >
           6
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-basic Button-root ButtonGroup-button"
+        class="MuiButtonBase-root Button-flat Button-medium Button-root ButtonGroup-button"
         tabindex="0"
         type="button"
       >
         <div
-          class=""
+          class="Button-content"
           style="display: inline-flex; flex-direction: row; align-items: center;"
         >
           7
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-basic Button-root ButtonGroup-button"
+        class="MuiButtonBase-root Button-flat Button-medium Button-root ButtonGroup-button"
         tabindex="0"
         type="button"
       >
         <div
-          class=""
+          class="Button-content"
           style="display: inline-flex; flex-direction: row; align-items: center;"
         >
           8
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-flat Button-disabled Button-medium Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <div
-          class=""
+          class="Button-content"
           style="display: inline-flex; flex-direction: row; align-items: center;"
         >
           ...
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-basic Button-root ButtonGroup-button"
+        class="MuiButtonBase-root Button-flat Button-medium Button-root ButtonGroup-button"
         tabindex="0"
         type="button"
       >
         <div
-          class=""
+          class="Button-content"
           style="display: inline-flex; flex-direction: row; align-items: center;"
         >
           ⟩
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-basic Button-root ButtonGroup-button"
+        class="MuiButtonBase-root Button-flat Button-medium Button-root ButtonGroup-button"
         tabindex="0"
         type="button"
       >
         <div
-          class=""
+          class="Button-content"
           style="display: inline-flex; flex-direction: row; align-items: center;"
         >
           »
@@ -180,169 +180,169 @@ exports[`renders disabled 1`] = `
       class="ButtonGroup-root"
     >
       <button
-        class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-flat Button-disabled Button-medium Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <div
-          class=""
+          class="Button-content"
           style="display: inline-flex; flex-direction: row; align-items: center;"
         >
           «
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-flat Button-disabled Button-medium Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <div
-          class=""
+          class="Button-content"
           style="display: inline-flex; flex-direction: row; align-items: center;"
         >
           ⟨
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-flat Button-disabled Button-medium Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <div
-          class=""
+          class="Button-content"
           style="display: inline-flex; flex-direction: row; align-items: center;"
         >
           ...
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-flat Button-disabled Button-medium Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <div
-          class=""
+          class="Button-content"
           style="display: inline-flex; flex-direction: row; align-items: center;"
         >
           2
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-flat Button-disabled Button-medium Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <div
-          class=""
+          class="Button-content"
           style="display: inline-flex; flex-direction: row; align-items: center;"
         >
           3
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-flat Button-disabled Button-medium Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <div
-          class=""
+          class="Button-content"
           style="display: inline-flex; flex-direction: row; align-items: center;"
         >
           4
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-primary Button-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-primary Button-disabled Button-medium Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <div
-          class=""
+          class="Button-content"
           style="display: inline-flex; flex-direction: row; align-items: center;"
         >
           5
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-flat Button-disabled Button-medium Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <div
-          class=""
+          class="Button-content"
           style="display: inline-flex; flex-direction: row; align-items: center;"
         >
           6
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-flat Button-disabled Button-medium Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <div
-          class=""
+          class="Button-content"
           style="display: inline-flex; flex-direction: row; align-items: center;"
         >
           7
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-flat Button-disabled Button-medium Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <div
-          class=""
+          class="Button-content"
           style="display: inline-flex; flex-direction: row; align-items: center;"
         >
           8
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-flat Button-disabled Button-medium Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <div
-          class=""
+          class="Button-content"
           style="display: inline-flex; flex-direction: row; align-items: center;"
         >
           ...
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-flat Button-disabled Button-medium Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <div
-          class=""
+          class="Button-content"
           style="display: inline-flex; flex-direction: row; align-items: center;"
         >
           ⟩
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-basic Button-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-flat Button-disabled Button-medium Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <div
-          class=""
+          class="Button-content"
           style="display: inline-flex; flex-direction: row; align-items: center;"
         >
           »
