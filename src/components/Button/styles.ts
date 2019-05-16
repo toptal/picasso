@@ -62,7 +62,8 @@ export default ({ palette, spacing, transitions }: Theme) =>
       }
     },
     content: {
-      lineHeight: '1.5em'
+      lineHeight: '1.5em',
+      fontWeight: 600
     },
     loader: {
       position: 'absolute',
