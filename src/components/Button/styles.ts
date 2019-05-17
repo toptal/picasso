@@ -1,34 +1,33 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
-import { Palette } from '@material-ui/core/styles/createPalette'
 
 import { lighten, darken, alpha } from '../styles'
 
 const ICON_SPACING = '0.4em'
 
-const primary = (palette: Palette, color: string) => ({
+const primary = (mainColor: string, secondaryColor: string) => ({
   border: 'none',
-  color: palette.common.white,
-  backgroundColor: color,
+  color: secondaryColor,
+  backgroundColor: mainColor,
 
   '&:hover, &$hovered': {
-    backgroundColor: darken(color, 0.2)
+    backgroundColor: darken(mainColor, 0.2)
   },
 
   '&:active, &$active': {
-    backgroundColor: darken(color, 0.2)
+    backgroundColor: darken(mainColor, 0.2)
   }
 })
 
-const secondary = (palette: Palette, color: string) => ({
-  color,
-  backgroundColor: palette.common.white,
+const secondary = (mainColor: string, secondaryColor: string) => ({
+  color: mainColor,
+  backgroundColor: secondaryColor,
 
   '&:hover, &$hovered': {
-    backgroundColor: lighten(color, 0.8)
+    backgroundColor: lighten(mainColor, 0.8)
   },
 
   '&:active, &$active': {
-    backgroundColor: lighten(color, 0.8)
+    backgroundColor: lighten(mainColor, 0.8)
   }
 })
 
@@ -107,13 +106,13 @@ export default ({ palette, spacing, transitions }: Theme) =>
     },
 
     // variants
-    primaryBlue: primary(palette, palette.primary.main),
-    secondaryBlue: secondary(palette, palette.primary.main),
-    primaryRed: primary(palette, palette.error.main),
-    secondaryRed: secondary(palette, palette.error.main),
-    primaryGreen: primary(palette, palette.success.main),
+    primaryBlue: primary(palette.primary.main, palette.common.white),
+    secondaryBlue: secondary(palette.primary.main, palette.common.white),
+    primaryRed: primary(palette.error.main, palette.common.white),
+    secondaryRed: secondary(palette.error.main, palette.common.white),
+    primaryGreen: primary(palette.success.main, palette.common.white),
     secondaryWhite: {
-      ...secondary(palette, palette.common.white),
+      ...secondary(palette.common.white, palette.common.white),
       backgroundColor: 'transparent',
       border: `solid ${spacing.borderWidth} rgba(255, 255, 255, 0.32)`,
 
@@ -126,13 +125,13 @@ export default ({ palette, spacing, transitions }: Theme) =>
       }
     },
     flat: {
-      ...secondary(palette, palette.common.black),
+      ...secondary(palette.common.black, palette.common.white),
       border: 'none'
     },
-    primaryDisabled: primary(palette, palette.grey[100]),
-    secondaryDisabled: secondary(palette, palette.grey[100]),
+    primaryDisabled: primary(palette.grey[100], palette.common.white),
+    secondaryDisabled: secondary(palette.grey[100], palette.common.white),
     flatDisabled: {
-      ...secondary(palette, palette.grey[100]),
+      ...secondary(palette.grey[100], palette.common.white),
       border: 'none'
     },
 
