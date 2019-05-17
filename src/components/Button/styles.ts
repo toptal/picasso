@@ -112,6 +112,8 @@ export default ({ palette, spacing, transitions }: Theme) =>
     primaryRed: primary(palette, palette.error.main),
     secondaryRed: secondary(palette, palette.error.main),
     primaryGreen: primary(palette, palette.success.main),
+    primaryDisabled: primary(palette, palette.grey[100]),
+    secondaryDisabled: secondary(palette, palette.grey[100]),
     secondaryWhite: {
       ...secondary(palette, palette.common.white),
       backgroundColor: 'transparent',

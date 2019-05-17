@@ -111,7 +111,10 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
     }
   }
 
-  const variantClassName = classes[kebabToCamelCase(variant!)]
+  const [type] = variant!.split('-')
+  const variantClassName = disabled
+    ? classes[`${type}Disabled`]
+    : classes[kebabToCamelCase(variant!)]
   const sizeClassName = classes[size!]
 
   const rootClassName = cx(
