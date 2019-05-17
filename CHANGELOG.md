@@ -1,3 +1,15 @@
+# [1.6.0](https://github.com/toptal/picasso/compare/v1.5.2...v1.6.0) (2019-05-17)
+
+
+### Bug Fixes
+
+* **textfield:** add autoFocus to TextField ([305b99e](https://github.com/toptal/picasso/commit/305b99e))
+
+
+### Features
+
+* **dropdown:** implement dropdown component ([834ef6a](https://github.com/toptal/picasso/commit/834ef6a))
+
 ## [1.5.2](https://github.com/toptal/picasso/compare/v1.5.1...v1.5.2) (2019-05-16)
 
 
