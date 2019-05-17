@@ -1,3 +1,10 @@
+## [1.5.2](https://github.com/toptal/picasso/compare/v1.5.1...v1.5.2) (2019-05-16)
+
+
+### Bug Fixes
+
+* **docs:** add contribution guide ([#277](https://github.com/toptal/picasso/issues/277)) ([f6d322d](https://github.com/toptal/picasso/commit/f6d322d))
+
 ## [1.5.1](https://github.com/toptal/picasso/compare/v1.5.0...v1.5.1) (2019-05-15)
 
 
