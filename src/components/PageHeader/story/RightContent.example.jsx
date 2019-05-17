@@ -1,5 +1,5 @@
 import React from 'react'
-import { Page, Select } from '@toptal/picasso'
+import { Page, Select, Container, Button } from '@toptal/picasso'
 
 const PageHeaderRightContentExample = () => (
   <div style={{ height: '3.75em' }}>
@@ -8,16 +8,21 @@ const PageHeaderRightContentExample = () => (
 )
 
 const RightContent = () => (
-  <Select
-    options={OPTIONS}
-    placeholder='D. Petrashev'
-    style={{
-      fontSize: '12px',
-      color: 'white'
-    }}
-    variant='standard'
-    width='shrink'
-  />
+  <React.Fragment>
+    <Container right='medium'>
+      <Button variant='secondary-white'>Create job</Button>
+    </Container>
+    <Select
+      options={OPTIONS}
+      placeholder='D. Petrashev'
+      style={{
+        fontSize: '12px',
+        color: 'white'
+      }}
+      variant='standard'
+      width='shrink'
+    />
+  </React.Fragment>
 )
 
 const OPTIONS = [
