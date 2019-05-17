@@ -24,6 +24,8 @@ export interface Props extends StandardProps {
   disabled?: boolean
   /** Take the full width of a container */
   fullWidth?: boolean
+  /** Focus during first mount */
+  autoFocus?: boolean
   /** Whether icon should be placed at the beginning or end of the `TextField` */
   iconPosition?: IconPosition
   /** Specify icon which should be rendered inside TextField */
@@ -50,6 +52,7 @@ export const TextField: FunctionComponent<Props> = ({
   value,
   error,
   disabled,
+  autoFocus,
   icon,
   iconPosition,
   inputProps = {} as OutlinedInputProps,
@@ -96,6 +99,7 @@ export const TextField: FunctionComponent<Props> = ({
       value={value}
       error={error}
       disabled={disabled}
+      autoFocus={autoFocus}
       multiline={multiline}
       variant='outlined'
       style={style}
