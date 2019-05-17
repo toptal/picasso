@@ -1,43 +1,35 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 import { Palette } from '@material-ui/core/styles/createPalette'
 
+import { lighten, darken, alpha } from '../styles'
+
 const ICON_SPACING = '0.4em'
 
-const primary = (palette: Palette) => ({
+const primary = (palette: Palette, color: string) => ({
   border: 'none',
   color: palette.common.white,
-  backgroundImage:
-    'linear-gradient(-180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%)',
-
-  '&:hover, &$hovered': {
-    backgroundImage:
-      'linear-gradient(-180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%)'
-  },
-
-  '&:active, &$active': {
-    backgroundImage:
-      'linear-gradient(-180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%)'
-  }
-})
-
-const secondary = () => ({
-  backgroundImage:
-    'linear-gradient(-180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 100%)',
-
-  '&:hover, &$hovered': {
-    backgroundImage:
-      'linear-gradient(-180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.8) 100%)'
-  },
-
-  '&:active, &$active': {
-    backgroundImage:
-      'linear-gradient(-180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.8) 100%)'
-  }
-})
-
-const color = (color: string) => ({
   backgroundColor: color,
-  color
+
+  '&:hover, &$hovered': {
+    backgroundColor: darken(color, 0.2)
+  },
+
+  '&:active, &$active': {
+    backgroundColor: darken(color, 0.2)
+  }
+})
+
+const secondary = (palette: Palette, color: string) => ({
+  color,
+  backgroundColor: palette.common.white,
+
+  '&:hover, &$hovered': {
+    backgroundColor: lighten(color, 0.8)
+  },
+
+  '&:active, &$active': {
+    backgroundColor: lighten(color, 0.8)
+  }
 })
 
 export default ({ palette, spacing, transitions }: Theme) =>
@@ -114,36 +106,28 @@ export default ({ palette, spacing, transitions }: Theme) =>
       }
     },
 
-    // colors
-    blue: color(palette.primary.main),
-    green: color(palette.success.main),
-    red: color(palette.error.main),
-    disabled: color(palette.grey[100]),
-    white: color(palette.common.white),
-
     // variants
-    primary: primary(palette),
-    secondary: secondary(),
-    flat: {
-      ...color(palette.common.black),
-      ...secondary(),
-      border: 'none'
-    },
-    outlined: {
+    primaryBlue: primary(palette, palette.primary.main),
+    secondaryBlue: secondary(palette, palette.primary.main),
+    primaryRed: primary(palette, palette.error.main),
+    secondaryRed: secondary(palette, palette.error.main),
+    primaryGreen: primary(palette, palette.success.main),
+    secondaryWhite: {
+      ...secondary(palette, palette.common.white),
       backgroundColor: 'transparent',
-      backgroundImage:
-        'linear-gradient(-180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 100%)',
       border: `solid ${spacing.borderWidth} rgba(255, 255, 255, 0.32)`,
 
       '&:hover, &$hovered': {
-        backgroundImage:
-          'linear-gradient(-180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%)'
+        backgroundColor: alpha(palette.common.white, 0.8)
       },
 
       '&:active, &$active': {
-        backgroundImage:
-          'linear-gradient(-180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%)'
+        backgroundColor: alpha(palette.common.white, 0.8)
       }
+    },
+    flat: {
+      ...secondary(palette, palette.common.black),
+      border: 'none'
     },
 
     // Other props

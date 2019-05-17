@@ -16,7 +16,7 @@ const ButtonVariantsExample = () => (
       inline
       style={{ backgroundColor: palette.primary.main }}
     >
-      <Button variant='outlined-white'>Outlined White</Button>
+      <Button variant='secondary-white'>Secondary White</Button>
     </Container>
   </div>
 )

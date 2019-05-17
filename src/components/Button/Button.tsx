@@ -12,6 +12,7 @@ import ButtonBase from '@material-ui/core/ButtonBase'
 import Loader from '../Loader'
 import Container from '../Container'
 import Group from '../ButtonGroup'
+import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import { StandardProps, JssProps, SizeType } from '../Picasso'
 import styles from './styles'
 
@@ -22,7 +23,7 @@ type VariantType =
   | 'secondary-red'
   | 'primary-green'
   | 'flat'
-  | 'outlined-white'
+  | 'secondary-white'
 
 type IconPositionType = 'left' | 'right'
 
@@ -89,11 +90,9 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
     root: rootClass,
     hidden: hiddenClass,
     loader: loaderClass,
-    content: contentClass,
-    disabled: disabledClass
+    content: contentClass
   } = classes
 
-  const [type, color] = variant!.split('-')
   let finalChildren = [children]
 
   if (icon) {
@@ -112,8 +111,7 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
     }
   }
 
-  const typeClassName = classes[type]
-  const colorClassName = disabled ? disabledClass : classes[color]
+  const variantClassName = classes[kebabToCamelCase(variant!)]
   const sizeClassName = classes[size!]
 
   const rootClassName = cx(
@@ -124,9 +122,8 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
       [classes.hovered]: hovered,
       [classes.circular]: circular
     },
-    typeClassName,
-    colorClassName,
     sizeClassName,
+    variantClassName,
     rootClass
   )
 
