@@ -48,7 +48,7 @@ exports[`AccountSelect default render 1`] = `
                   <h5
                     class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
                   >
-                    Phil Leif
+                    Phil Leif 1
                   </h5>
                 </div>
                 <span
@@ -110,7 +110,7 @@ exports[`AccountSelect default render 1`] = `
                   <h5
                     class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
                   >
-                    Phil Leif
+                    Phil Leif 2
                   </h5>
                 </div>
                 <span
@@ -154,7 +154,7 @@ exports[`AccountSelect default render 1`] = `
                   class="Avatar-root Avatar-xsmall"
                 >
                   <img
-                    alt="Phil Leif"
+                    alt="Phil Leif 3"
                     class="Image-root Avatar-image Avatar-square Avatar-xsmall Avatar-clippedCorner"
                     src="./jacqueline-with-flowers-1954-square.jpg"
                   />
@@ -169,7 +169,7 @@ exports[`AccountSelect default render 1`] = `
                   <h5
                     class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
                   >
-                    Phil Leif
+                    Phil Leif 3
                   </h5>
                 </div>
                 <span
