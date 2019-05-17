@@ -15,7 +15,7 @@ exports[`UserBadge auto center alignment 1`] = `
           class="Avatar-root Avatar-xsmall"
         >
           <div
-            class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
+            class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
           />
           <p
             class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 Avatar-text"
@@ -53,7 +53,7 @@ exports[`UserBadge default render 1`] = `
           class="Avatar-root Avatar-xsmall"
         >
           <div
-            class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
+            class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
           />
           <p
             class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 Avatar-text"
@@ -100,7 +100,7 @@ exports[`UserBadge invert render 1`] = `
           class="Avatar-root Avatar-xsmall"
         >
           <div
-            class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
+            class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
           />
           <p
             class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 Avatar-text"
@@ -147,7 +147,7 @@ exports[`UserBadge manual center alignment 1`] = `
           class="Avatar-root Avatar-xsmall"
         >
           <div
-            class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
+            class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
           />
           <p
             class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 Avatar-text"
@@ -194,7 +194,7 @@ exports[`UserBadge override auto center alignment 1`] = `
           class="Avatar-root Avatar-xsmall"
         >
           <div
-            class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
+            class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
           />
           <p
             class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 Avatar-text"
@@ -232,7 +232,7 @@ exports[`UserBadge small size 1`] = `
           class="Avatar-root Avatar-small"
         >
           <div
-            class="Avatar-textContainer Avatar-square Avatar-small Avatar-clippedCorner"
+            class="Avatar-textContainer Avatar-square Avatar-small Avatar-clippedCorner UserBadge-avatar"
           />
           <p
             class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 Avatar-text"

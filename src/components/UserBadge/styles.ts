@@ -4,5 +4,6 @@ export default () =>
   createStyles({
     title: {
       marginLeft: '0.5em'
-    }
+    },
+    avatar: {}
   })

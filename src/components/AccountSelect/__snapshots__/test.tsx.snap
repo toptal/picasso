@@ -30,7 +30,7 @@ exports[`AccountSelect default render 1`] = `
                   class="Avatar-root Avatar-xsmall"
                 >
                   <div
-                    class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
+                    class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
                   />
                   <p
                     class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 Avatar-text"
@@ -92,7 +92,7 @@ exports[`AccountSelect default render 1`] = `
                   class="Avatar-root Avatar-xsmall"
                 >
                   <div
-                    class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
+                    class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
                   />
                   <p
                     class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 Avatar-text"
@@ -155,7 +155,7 @@ exports[`AccountSelect default render 1`] = `
                 >
                   <img
                     alt="Phil Leif 3"
-                    class="Image-root Avatar-image Avatar-square Avatar-xsmall Avatar-clippedCorner"
+                    class="Image-root Avatar-image Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
                     src="./jacqueline-with-flowers-1954-square.jpg"
                   />
                 </div>
