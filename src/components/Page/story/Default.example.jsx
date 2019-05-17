@@ -7,6 +7,7 @@ import {
   UserBadge,
   Typography
 } from '@toptal/picasso'
+import styled from 'styled-components'
 
 const PageDefaultExample = () => (
   <div style={{ height: '30rem' }}>
@@ -32,10 +33,9 @@ const RightContent = () => (
     }
     offset={{ top: 'xsmall' }}
   >
-    <UserBadge
+    <HeaderUserBadge
       name='Jacqueline Roque'
       avatar='./jacqueline-with-flowers-1954-square.jpg'
-      invert
     />
     <Dropdown.Arrow style={{ color: 'white' }} />
   </Dropdown>
@@ -57,5 +57,20 @@ const Content = () => (
     </p>
   </Container>
 )
+
+const HeaderUserBadge = styled(({ name, avatar, className }) => (
+  <UserBadge
+    invert
+    size='xsmall'
+    classes={{ avatar: 'avatar' }}
+    className={className}
+    name={name}
+    avatar={avatar}
+  />
+))`
+  & .avatar {
+    font-size: 0.9rem;
+  }
+`
 
 export default PageDefaultExample

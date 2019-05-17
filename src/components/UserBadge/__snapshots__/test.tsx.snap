@@ -18,8 +18,15 @@ exports[`UserBadge auto center alignment 1`] = `
         <p
           class="MuiTypography-root Typography-invert Typography-bodyInherit MuiTypography-body1 Avatar-text"
         >
-          JD
-        </p>
+          <div
+            class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
+          />
+          <p
+            class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 Avatar-text"
+          >
+            JD
+          </p>
+        </div>
       </div>
       <div
         style="margin-left: 1em; display: flex; flex-direction: column;"
@@ -60,8 +67,15 @@ exports[`UserBadge default render 1`] = `
         <p
           class="MuiTypography-root Typography-invert Typography-bodyInherit MuiTypography-body1 Avatar-text"
         >
-          JD
-        </p>
+          <div
+            class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
+          />
+          <p
+            class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 Avatar-text"
+          >
+            JD
+          </p>
+        </div>
       </div>
       <div
         style="margin-left: 1em; display: flex; flex-direction: column;"
@@ -111,8 +125,15 @@ exports[`UserBadge invert render 1`] = `
         <p
           class="MuiTypography-root Typography-invert Typography-bodyInherit MuiTypography-body1 Avatar-text"
         >
-          JD
-        </p>
+          <div
+            class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
+          />
+          <p
+            class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 Avatar-text"
+          >
+            JD
+          </p>
+        </div>
       </div>
       <div
         style="margin-left: 1em; display: flex; flex-direction: column;"
@@ -162,8 +183,15 @@ exports[`UserBadge manual center alignment 1`] = `
         <p
           class="MuiTypography-root Typography-invert Typography-bodyInherit MuiTypography-body1 Avatar-text"
         >
-          JD
-        </p>
+          <div
+            class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
+          />
+          <p
+            class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 Avatar-text"
+          >
+            JD
+          </p>
+        </div>
       </div>
       <div
         style="margin-left: 1em; display: flex; flex-direction: column;"
@@ -213,8 +241,15 @@ exports[`UserBadge override auto center alignment 1`] = `
         <p
           class="MuiTypography-root Typography-invert Typography-bodyInherit MuiTypography-body1 Avatar-text"
         >
-          JD
-        </p>
+          <div
+            class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
+          />
+          <p
+            class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 Avatar-text"
+          >
+            JD
+          </p>
+        </div>
       </div>
       <div
         style="margin-left: 1em; display: flex; flex-direction: column;"
@@ -255,8 +290,15 @@ exports[`UserBadge small size 1`] = `
         <p
           class="MuiTypography-root Typography-invert Typography-bodyInherit MuiTypography-body1 Avatar-text"
         >
-          JD
-        </p>
+          <div
+            class="Avatar-textContainer Avatar-square Avatar-small Avatar-clippedCorner UserBadge-avatar"
+          />
+          <p
+            class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 Avatar-text"
+          >
+            JD
+          </p>
+        </div>
       </div>
       <div
         style="margin-left: 1em; display: flex; flex-direction: column;"

@@ -47,16 +47,20 @@ export const UserBadge: FunctionComponent<Props> = ({
   const UserBadgeAvatar = React.isValidElement(avatar) ? (
     avatar
   ) : (
-    <Avatar name={name} size={size} src={avatar as string} />
+    <Avatar
+      className={classes.avatar}
+      name={name}
+      size={size}
+      src={avatar as string}
+    />
   )
 
   // if 'auto' then center if children are null
   const shouldCenter = center === true || (center === 'auto' && !children)
   const alignItems = shouldCenter ? 'center' : 'flex-start'
 
-  const { title: titleClass } = classes
   const userTitle = title && (
-    <Typography inline className={titleClass}>
+    <Typography inline className={classes.title}>
       {title}
     </Typography>
   )
