@@ -74,7 +74,7 @@ export default ({ palette, spacing, transitions }: Theme) =>
       padding: '0 0.75em',
 
       '& $content': {
-        fontSize: '0.75em'
+        fontSize: '12px'
       },
 
       '&$circular': {
@@ -86,7 +86,7 @@ export default ({ palette, spacing, transitions }: Theme) =>
       padding: '0 1em',
 
       '& $content': {
-        fontSize: '0.8125em'
+        fontSize: '13px'
       },
 
       '&$circular': {
@@ -98,7 +98,7 @@ export default ({ palette, spacing, transitions }: Theme) =>
       padding: '0 3.625em',
 
       '& $content': {
-        fontSize: '0.9375em'
+        fontSize: '15px'
       },
 
       '&$circular': {
@@ -112,8 +112,6 @@ export default ({ palette, spacing, transitions }: Theme) =>
     primaryRed: primary(palette, palette.error.main),
     secondaryRed: secondary(palette, palette.error.main),
     primaryGreen: primary(palette, palette.success.main),
-    primaryDisabled: primary(palette, palette.grey[100]),
-    secondaryDisabled: secondary(palette, palette.grey[100]),
     secondaryWhite: {
       ...secondary(palette, palette.common.white),
       backgroundColor: 'transparent',
@@ -129,6 +127,12 @@ export default ({ palette, spacing, transitions }: Theme) =>
     },
     flat: {
       ...secondary(palette, palette.common.black),
+      border: 'none'
+    },
+    primaryDisabled: primary(palette, palette.grey[100]),
+    secondaryDisabled: secondary(palette, palette.grey[100]),
+    flatDisabled: {
+      ...secondary(palette, palette.grey[100]),
       border: 'none'
     },
 
