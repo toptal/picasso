@@ -33,7 +33,7 @@ exports[`renders default 1`] = `
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-medium Button-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-medium Button-flatDisabled Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
@@ -130,7 +130,7 @@ exports[`renders default 1`] = `
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-medium Button-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-medium Button-flatDisabled Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
@@ -180,7 +180,7 @@ exports[`renders disabled 1`] = `
       class="ButtonGroup-root"
     >
       <button
-        class="MuiButtonBase-root Button-medium Button-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-medium Button-flatDisabled Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
@@ -193,7 +193,7 @@ exports[`renders disabled 1`] = `
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-medium Button-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-medium Button-flatDisabled Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
@@ -206,7 +206,7 @@ exports[`renders disabled 1`] = `
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-medium Button-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-medium Button-flatDisabled Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
@@ -219,7 +219,7 @@ exports[`renders disabled 1`] = `
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-medium Button-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-medium Button-flatDisabled Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
@@ -232,7 +232,7 @@ exports[`renders disabled 1`] = `
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-medium Button-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-medium Button-flatDisabled Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
@@ -245,7 +245,7 @@ exports[`renders disabled 1`] = `
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-medium Button-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-medium Button-flatDisabled Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
@@ -271,7 +271,7 @@ exports[`renders disabled 1`] = `
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-medium Button-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-medium Button-flatDisabled Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
@@ -284,7 +284,7 @@ exports[`renders disabled 1`] = `
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-medium Button-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-medium Button-flatDisabled Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
@@ -297,7 +297,7 @@ exports[`renders disabled 1`] = `
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-medium Button-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-medium Button-flatDisabled Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
@@ -310,7 +310,7 @@ exports[`renders disabled 1`] = `
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-medium Button-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-medium Button-flatDisabled Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
@@ -323,7 +323,7 @@ exports[`renders disabled 1`] = `
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-medium Button-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-medium Button-flatDisabled Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
@@ -336,7 +336,7 @@ exports[`renders disabled 1`] = `
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-medium Button-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-medium Button-flatDisabled Button-root MuiButtonBase-disabled ButtonGroup-button"
         disabled=""
         tabindex="-1"
         type="button"
