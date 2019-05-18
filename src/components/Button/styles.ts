@@ -31,7 +31,7 @@ const secondary = (mainColor: string, secondaryColor: string) => ({
   }
 })
 
-export default ({ palette, spacing, transitions }: Theme) =>
+export default ({ palette, spacing, transitions, typography }: Theme) =>
   createStyles({
     root: {
       position: 'relative',
@@ -73,7 +73,7 @@ export default ({ palette, spacing, transitions }: Theme) =>
       padding: '0 0.75em',
 
       '& $content': {
-        fontSize: '12px'
+        fontSize: typography.buttons.fontSizeSmall
       },
 
       '&$circular': {
@@ -85,7 +85,7 @@ export default ({ palette, spacing, transitions }: Theme) =>
       padding: '0 1em',
 
       '& $content': {
-        fontSize: '13px'
+        fontSize: typography.buttons.fontSizeMedium
       },
 
       '&$circular': {
@@ -97,7 +97,7 @@ export default ({ palette, spacing, transitions }: Theme) =>
       padding: '0 3.625em',
 
       '& $content': {
-        fontSize: '15px'
+        fontSize: typography.buttons.fontSizeLarge
       },
 
       '&$circular': {

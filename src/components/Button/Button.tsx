@@ -63,6 +63,12 @@ interface StaticProps {
   Group: typeof Group
 }
 
+const getType = (variant: VariantType) => {
+  const [type] = variant!.split('-')
+
+  return type
+}
+
 export const Button: FunctionComponent<Props> & StaticProps = ({
   icon,
   iconPosition,
@@ -111,7 +117,7 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
     }
   }
 
-  const [type] = variant!.split('-')
+  const type = getType(variant!)
   const variantClassName = disabled
     ? classes[`${type}Disabled`]
     : classes[kebabToCamelCase(variant!)]
