@@ -12,17 +12,18 @@ import ButtonBase from '@material-ui/core/ButtonBase'
 import Loader from '../Loader'
 import Container from '../Container'
 import Group from '../ButtonGroup'
+import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import { StandardProps, PicassoComponent, SizeType } from '../Picasso'
 import styles from './styles'
 
 type VariantType =
-  | 'primary'
-  | 'secondary'
+  | 'primary-blue'
+  | 'secondary-blue'
+  | 'primary-red'
+  | 'secondary-red'
+  | 'primary-green'
   | 'flat'
-  | 'basic'
-  | 'success'
-  | 'error'
-  | 'default'
+  | 'secondary-white'
 
 type IconPositionType = 'left' | 'right'
 type EventListenerType = (event: SyntheticEvent<HTMLElement>) => void
@@ -73,6 +74,12 @@ interface StaticProps {
   Group: typeof Group
 }
 
+const getVariantType = (variant: VariantType) => {
+  const [type] = variant!.split('-')
+
+  return type
+}
+
 export const Button: FunctionComponent<Props> & StaticProps = ({
   icon,
   iconPosition,
@@ -106,7 +113,8 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
     iconRight: iconRightClass,
     root: rootClass,
     hidden: hiddenClass,
-    loader: loaderClass
+    loader: loaderClass,
+    content: contentClass
   } = classes
 
   let finalChildren = [children]
@@ -127,7 +135,10 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
     }
   }
 
-  const variantClassName = classes[variant!]
+  const variantType = getVariantType(variant!)
+  const variantClassName = disabled
+    ? classes[`${variantType}Disabled`]
+    : classes[kebabToCamelCase(variant!)]
   const sizeClassName = classes[size!]
 
   const rootClassName = cx(
@@ -138,8 +149,8 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
       [classes.hovered]: hovered,
       [classes.circular]: circular
     },
-    variantClassName,
     sizeClassName,
+    variantClassName,
     rootClass
   )
 
@@ -167,7 +178,7 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
         flex
         direction='row'
         alignItems='center'
-        className={cx({ [hiddenClass]: loading })}
+        className={cx({ [hiddenClass]: loading }, contentClass)}
       >
         {finalChildren}
       </Container>
@@ -192,7 +203,7 @@ Button.defaultProps = {
   onClick: () => {},
   size: 'medium',
   type: 'button',
-  variant: 'default'
+  variant: 'primary-blue'
 }
 
 Button.displayName = 'Button'
