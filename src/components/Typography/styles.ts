@@ -2,55 +2,17 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 
 import { PicassoProvider } from '../Picasso'
 
-const HEADING_LINE_HEIGHT = '1.25em'
-const TEXT_HEIGHT = '1.5em'
-
 PicassoProvider.override(() => ({
   MuiTypography: {
-    h1: {
-      fontSize: '2.25rem',
-      lineHeight: HEADING_LINE_HEIGHT
-    },
-    h2: {
-      fontSize: '1.75rem',
-      lineHeight: HEADING_LINE_HEIGHT
-    },
-    h3: {
-      fontSize: '1.25rem',
-      lineHeight: HEADING_LINE_HEIGHT
-    },
-    h4: {
-      fontSize: '1rem',
-      lineHeight: HEADING_LINE_HEIGHT
-    },
-    h5: {
-      fontSize: '0.875rem',
-      lineHeight: HEADING_LINE_HEIGHT
-    },
-    h6: {
-      fontSize: '0.75rem',
-      lineHeight: HEADING_LINE_HEIGHT
-    },
-    caption: {
-      fontSize: '0.75rem'
+    root: {
+      lineHeight: '1.5em !important'
     }
   }
 }))
 
 export default ({ palette }: Theme) =>
   createStyles({
-    large: {
-      fontSize: '1.25rem',
-      lineHeight: TEXT_HEIGHT
-    },
-    small: {
-      fontSize: '0.875rem',
-      lineHeight: TEXT_HEIGHT
-    },
-    body: {
-      fontSize: '1rem',
-      lineHeight: TEXT_HEIGHT
-    },
+    // weight
     thin: {
       fontWeight: 100
     },
@@ -66,19 +28,61 @@ export default ({ palette }: Theme) =>
     bold: {
       fontWeight: 700
     },
+
+    // colors
+    green: {
+      color: palette.success.main
+    },
+    red: {
+      color: palette.error.main
+    },
+    blue: {
+      color: palette.primary.main
+    },
+    grey: {
+      color: palette.text.primary
+    },
+    black: {
+      color: palette.common.black
+    },
     invert: {
       color: palette.common.white
     },
-    success: {
-      color: palette.success.main
+
+    // variants
+    bodySmall: {
+      fontSize: '12px'
     },
-    error: {
+    bodyMedium: {
+      fontSize: '14px'
+    },
+    bodyLarge: {
+      fontSize: '16px'
+    },
+    headerSmall: {
+      fontSize: '14px',
+      fontWeight: 600
+    },
+    headerMedium: {
+      fontSize: '16px',
+      fontWeight: 600
+    },
+    headerLarge: {
+      fontSize: '20px',
+      fontWeight: 600
+    },
+    tableHeadMedium: {
+      fontSize: '12px',
+      fontWeight: 600
+    },
+    tableTextMedium: {
+      fontSize: '13px'
+    },
+    hintMedium: {
+      fontSize: '11px'
+    },
+    errorMedium: {
+      fontSize: '11px',
       color: palette.error.main
-    },
-    primary: {
-      color: palette.primary.main
-    },
-    muted: {
-      color: palette.grey[300]
     }
   })
