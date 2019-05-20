@@ -5,24 +5,21 @@ import { PropTypes } from '@material-ui/core'
 import MUITypography, { TypographyProps } from '@material-ui/core/Typography'
 import cx from 'classnames'
 
+import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import { StandardProps } from '../Picasso'
 import styles from './styles'
 
 type VariantType =
-  | 'h1'
-  | 'h2'
-  | 'h3'
-  | 'h4'
-  | 'h5'
-  | 'h6'
-  | 'large'
-  | 'small'
-  | 'caption'
+  | 'header'
   | 'body'
+  | 'table-head'
+  | 'table-text'
+  | 'hint'
+  | 'error'
+type SizeType = 'small' | 'medium' | 'large'
 
 type WeightType = 'thin' | 'light' | 'regular' | 'semibold' | 'bold'
-type ColorType = 'primary' | 'success' | 'error' | 'muted'
-type VariantsType = { [key in VariantType]: MUIVariant }
+type ColorType = 'blue' | 'green' | 'red' | 'grey' | 'black'
 
 export interface Props extends StandardProps {
   /** Font variant inner text */
@@ -33,6 +30,8 @@ export interface Props extends StandardProps {
   inline?: boolean
   /** Text align of the inner text */
   align?: PropTypes.Alignment
+  /** Size of the inner text */
+  size?: SizeType
   /** Font weight of the inner text */
   weight?: WeightType
   /** Invert color */
@@ -43,37 +42,49 @@ export interface Props extends StandardProps {
   as?: ReactType<TypographyProps>
 }
 
+type VariantsType = { [k in VariantType]: { [l in SizeType]?: MUIVariant } }
 const VARIANTS: VariantsType = {
-  h1: 'h1',
-  h2: 'h2',
-  h3: 'h3',
-  h4: 'h4',
-  h5: 'h5',
-  h6: 'h6',
-  caption: 'caption',
-  large: 'body1',
-  small: 'body1',
-  body: 'body1'
+  header: {
+    small: 'h3',
+    medium: 'h2',
+    large: 'h1'
+  },
+  body: {
+    small: 'body1',
+    medium: 'body1',
+    large: 'body1'
+  },
+  'table-head': {
+    medium: 'body1'
+  },
+  'table-text': {
+    medium: 'body1'
+  },
+  hint: {
+    medium: 'caption'
+  },
+  error: {
+    medium: 'caption'
+  }
 }
 
 const resolveRootClass = (props: Props) => {
-  const { classes, weight, variant, invert, color } = props
+  const { classes, weight, variant, invert, color, size } = props
+  const variantClassName = kebabToCamelCase(`${variant}-${size}`)
 
   return cx(
     {
-      [classes.large]: variant === 'large',
-      [classes.small]: variant === 'small',
-      [classes.body]: variant === 'body',
       [classes.invert]: invert
     },
+    classes[variantClassName],
     classes[weight!],
     classes[color!]
   )
 }
 
 export const Typography: FunctionComponent<Props> = props => {
-  const { variant, children, align, className, style, inline, as } = props
-  const resolvedVariant = VARIANTS[variant!]
+  const { variant, children, size, align, className, style, inline, as } = props
+  const resolvedVariant = VARIANTS[variant!][size!]
   const rootClass = resolveRootClass(props)
 
   return (
@@ -94,7 +105,9 @@ export const Typography: FunctionComponent<Props> = props => {
 }
 
 Typography.defaultProps = {
+  color: 'grey',
   inline: false,
+  size: 'medium',
   variant: 'body',
   weight: 'regular'
 }

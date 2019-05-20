@@ -94,7 +94,6 @@ const renderNotificationContent = (props: Props) => {
         className={cx(content, {
           [contentCloseButton]: onClose
         })}
-        variant='small'
         as='div'
       >
         {children}

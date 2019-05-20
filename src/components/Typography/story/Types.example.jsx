@@ -4,15 +4,24 @@ import { Typography, Container } from '@toptal/picasso'
 const TypographyTypesExample = () => (
   <div>
     <Container bottom='small'>
-      <Typography variant='large'>Large paragraph</Typography>
+      <Typography size='small'>Body Small</Typography>
     </Container>
     <Container bottom='small'>
-      <Typography>Paragraph</Typography>
+      <Typography>Body Medium</Typography>
     </Container>
     <Container bottom='small'>
-      <Typography variant='small'>Small paragraph</Typography>
+      <Typography size='large'>Body Large</Typography>
     </Container>
-    <Typography variant='caption'>Caption</Typography>
+    <Container bottom='small'>
+      <Typography variant='hint'>Hint</Typography>
+    </Container>
+    <Container bottom='small'>
+      <Typography variant='error'>Error</Typography>
+    </Container>
+    <Container bottom='small'>
+      <Typography variant='table-head'>Table Header</Typography>
+    </Container>
+    <Typography variant='table-text'>Table Text</Typography>
   </div>
 )
 

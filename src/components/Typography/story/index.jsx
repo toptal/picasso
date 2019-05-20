@@ -23,4 +23,11 @@ page
   .addExample('Typography/story/Alignment.example.jsx', 'Alignment')
   .addExample('Typography/story/Weights.example.jsx', 'Weights')
   .addExample('Typography/story/Colors.example.jsx', 'Colors')
-  .addExample('Typography/story/As.example.jsx', 'As')
+  .addExample('Typography/story/As.example.jsx', {
+    title: 'As',
+    description: `
+      In some cases you may want to change the default
+      HTML tag used for Typography. In this cases you can 
+      use 'as' property.
+    `
+  })
