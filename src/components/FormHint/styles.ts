@@ -4,8 +4,5 @@ export default () =>
   createStyles({
     root: {
       marginTop: '.25em'
-    },
-    hint: {
-      fontSize: '.75em'
     }
   })

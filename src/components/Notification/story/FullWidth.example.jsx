@@ -4,7 +4,9 @@ import { Notification, Container, Typography } from '@toptal/picasso'
 const NotificationFullWidthExample = () => (
   <div>
     <Container bottom={1}>
-      <Typography variant='h4'>Info</Typography>
+      <Typography variant='header' size='small'>
+        Info
+      </Typography>
     </Container>
     <Notification fullWidth variant='warning'>
       The time zone in your profile is set to (UTC -08:00) America - Los

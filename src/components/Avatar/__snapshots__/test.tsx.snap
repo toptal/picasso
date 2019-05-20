@@ -30,7 +30,7 @@ exports[`Avatar avatar with text render 1`] = `
         class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
       />
       <p
-        class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 Avatar-text"
+        class="MuiTypography-root Typography-invert Typography-bodyMedium Typography-regular Typography-grey MuiTypography-body1 Avatar-text"
       >
         JR
       </p>

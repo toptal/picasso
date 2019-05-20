@@ -19,7 +19,7 @@ const FontSizeExample = () => {
         </Typography>
       </Container>
       <Container inline right='large'>
-        <Typography variant='h2'>
+        <Typography variant='header'>
           Please{' '}
           <Link onClick={handleClick} href='https://toptal.com'>
             verify

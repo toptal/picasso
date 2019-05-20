@@ -20,7 +20,7 @@ const UserBadgeAlignmentExample = () => (
               avatar='./jacqueline-with-flowers-1954-square.jpg'
               size='small'
             >
-              <Typography variant='caption'>UI specialist</Typography>
+              <Typography size='small'>UI specialist</Typography>
             </UserBadge>
           </Grid.Item>
         </Grid>
@@ -43,7 +43,7 @@ const UserBadgeAlignmentExample = () => (
               size='small'
               center
             >
-              <Typography variant='caption'>UI specialist</Typography>
+              <Typography size='small'>UI specialist</Typography>
             </UserBadge>
           </Grid.Item>
         </Grid>
@@ -66,7 +66,7 @@ const UserBadgeAlignmentExample = () => (
               size='small'
               center={false}
             >
-              <Typography variant='caption'>UI specialist</Typography>
+              <Typography size='small'>UI specialist</Typography>
             </UserBadge>
           </Grid.Item>
         </Grid>

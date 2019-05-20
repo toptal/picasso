@@ -56,7 +56,7 @@ export const UserBadge: FunctionComponent<Props> = ({
 
   const { title: titleClass } = classes
   const userTitle = title && (
-    <Typography inline className={titleClass} variant='body'>
+    <Typography inline className={titleClass}>
       {title}
     </Typography>
   )
@@ -73,7 +73,7 @@ export const UserBadge: FunctionComponent<Props> = ({
         <Container>
           <Typography
             inline
-            variant='heading'
+            variant='header'
             size='small'
             invert={invert}
           >

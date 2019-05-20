@@ -7,7 +7,7 @@ const UserBadgeTitleExample = () => (
     title='UI specialist'
     avatar='./jacqueline-with-flowers-1954-square.jpg'
   >
-    <Typography variant='caption'>
+    <Typography size='small'>
       <Link href='#'>Send me an email</Link>
     </Typography>
   </UserBadge>

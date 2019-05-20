@@ -21,8 +21,10 @@ const SpacingsExample = () => (
           bottom='small'
         >
           <Container>
-            <Typography variant='h3'>UX Designer</Typography>
-            <Typography variant='caption'>2 positions Open</Typography>
+            <Typography variant='header' size='small'>
+              UX Designer
+            </Typography>
+            <Typography size='small'>2 positions Open</Typography>
           </Container>
           <Stepper
             hideLabels
@@ -30,7 +32,7 @@ const SpacingsExample = () => (
             steps={['Initial', 'Check', 'Interview', 'Agreement']}
           />
         </Container>
-        <Typography variant='caption'>Candidates</Typography>
+        <Typography size='small'>Candidates</Typography>
         <Container top='small' flex>
           <JobCandidate />
           <JobCandidate />

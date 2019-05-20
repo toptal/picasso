@@ -43,7 +43,7 @@ const RightContent = () => (
 
 const Content = () => (
   <Container top='small' bottom='small' left='small' right='small'>
-    <Typography align='center' variant='h1'>
+    <Typography align='center' variant='header' size='large'>
       FullWidth example
     </Typography>
     <p>

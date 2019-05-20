@@ -14,11 +14,13 @@ const UserBadgeCustomExample = () => (
         />
       }
     >
-      <Typography variant='h5'>Worked as</Typography>
+      <Typography variant='header' size='small'>
+        Worked as
+      </Typography>
       <Container left='xsmall'>
-        <Typography variant='caption'>UI specialist</Typography>
-        <Typography variant='caption'>Painter</Typography>
-        <Typography variant='caption'>Student</Typography>
+        <Typography size='small'>UI specialist</Typography>
+        <Typography size='small'>Painter</Typography>
+        <Typography size='small'>Student</Typography>
       </Container>
     </UserBadge>
   </div>

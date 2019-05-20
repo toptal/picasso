@@ -6,9 +6,7 @@ const PaperDefaultExample = () => (
     <Paper>
       <Container padded='small'>
         <Container bottom='small'>
-          <Typography variant='h3' weight='bold'>
-            This is paper
-          </Typography>
+          <Typography variant='header'>This is paper</Typography>
         </Container>
         <Typography>
           Paper can be used to build surface or other elements for your

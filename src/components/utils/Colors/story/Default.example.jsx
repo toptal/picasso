@@ -9,7 +9,7 @@ const ColorsExample = () => (
     {colorGroups.map(([colorGroupName, colorGroup]) => (
       <Fragment key={colorGroupName}>
         <Container top={2} bottom={1}>
-          <Typography variant='h2' weight='light'>
+          <Typography variant='header' size='large'>
             {colorGroupName}
           </Typography>
         </Container>
@@ -28,10 +28,10 @@ const ColorGroup = ({ colors, colorGroupName }) => (
       <Grid.Item key={colorName}>
         <Paper style={{ padding: '1em' }}>
           <ColorRectangle color={color} />
-          <Typography variant='caption' weight='bold'>
+          <Typography variant='header' size='small'>
             {`${colorGroupName}.${colorName}`}
           </Typography>
-          <Typography variant='caption'>{color}</Typography>
+          <Typography size='small'>{color}</Typography>
         </Paper>
       </Grid.Item>
     ))}
