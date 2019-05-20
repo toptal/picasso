@@ -101,7 +101,7 @@
     "fs-extra": "^7.0.1",
     "glob": "^7.1.4",
     "hard-source-webpack-plugin": "^0.13.1",
-    "husky": "^1.2.0",
+    "husky": "^2.3.0",
     "hygen": "^4.0.2",
     "jest": "^24.8.0",
     "jest-environment-puppeteer": "^4.1.1",
