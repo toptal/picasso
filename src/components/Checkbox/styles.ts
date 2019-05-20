@@ -30,7 +30,7 @@ export default ({ palette }: Theme) =>
     },
     disabled: {
       '&:hover $uncheckedIcon': {
-        border: `1px solid ${palette.grey[50]}`
+        border: `1px solid ${palette.grey[100]}`
       }
     },
     checkedIcon: {
@@ -69,7 +69,7 @@ export default ({ palette }: Theme) =>
       width: '1em',
       transition: 'all .1s ease',
       background: palette.common.white,
-      border: `1px solid ${palette.grey[50]}`
+      border: `1px solid ${palette.grey[100]}`
     },
     indeterminateIcon: {
       position: 'relative',

@@ -6,7 +6,7 @@ PicassoProvider.override(({ palette }: Theme) => ({
   MuiOutlinedInput: {
     root: {
       '& $notchedOutline': {
-        borderColor: palette.grey[50],
+        borderColor: palette.grey[100],
         borderRadius: 0
       },
 

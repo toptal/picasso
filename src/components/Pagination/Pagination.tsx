@@ -71,7 +71,7 @@ export class Pagination extends PureComponent<Props> {
           disabled={pageItemLabel === ELLIPSIS || disabled}
           key={(pageItemLabel as string) + index} // eslint-disable-line react/no-array-index-key
           onClick={() => this.handleChange(pageItemLabel as NavigationType)}
-          variant={activePage === pageItemLabel ? 'primary' : 'basic'}
+          variant={activePage === pageItemLabel ? 'primary-blue' : 'flat'}
         >
           {pageItemLabel}
         </Button>
@@ -89,14 +89,14 @@ export class Pagination extends PureComponent<Props> {
         <Button
           disabled={isFirstActive || disabled}
           onClick={() => this.handleChange('first')}
-          variant='basic'
+          variant='flat'
         >
           «
         </Button>
         <Button
           disabled={isFirstActive || disabled}
           onClick={() => this.handleChange('previous')}
-          variant='basic'
+          variant='flat'
         >
           ⟨
         </Button>
@@ -106,14 +106,14 @@ export class Pagination extends PureComponent<Props> {
         <Button
           disabled={isLastActive || disabled}
           onClick={() => this.handleChange('next')}
-          variant='basic'
+          variant='flat'
         >
           ⟩
         </Button>
         <Button
           disabled={isLastActive || disabled}
           onClick={() => this.handleChange('last')}
-          variant='basic'
+          variant='flat'
         >
           »
         </Button>
