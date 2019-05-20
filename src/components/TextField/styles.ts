@@ -26,10 +26,10 @@ export default ({
       width: '100%'
     },
     input: {
-      fontSize: '1.15em',
+      fontSize: '.8125em',
       border: 'none',
       padding: `
-      ${inputLabel.height}
+      0
       ${input.paddingLeft}
       0
       ${input.paddingRight}

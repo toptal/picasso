@@ -3,9 +3,9 @@ import { TextField } from '@toptal/picasso'
 
 const TextFieldDefaultExample = () => (
   <div>
-    <TextField label='Label' />
-    <TextField value='Text' />
-    <TextField placeholder='Placeholder' />
+    <TextField disabled label='Label' />
+    <TextField disabled value='Text' />
+    <TextField disabled placeholder='Placeholder' />
   </div>
 )
 

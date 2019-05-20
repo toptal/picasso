@@ -18,6 +18,8 @@ export interface Props extends StandardProps {
   label?: string
   /** The value of the component */
   value?: string
+  /** Placeholder for value */
+  placeholder?: string
   /** Indicate whether `TextField` is in error state */
   error?: boolean
   /** If true, the switch will be disabled */
@@ -50,6 +52,7 @@ export const TextField: FunctionComponent<Props> = ({
   name,
   label,
   value,
+  placeholder,
   error,
   disabled,
   autoFocus,
@@ -97,6 +100,7 @@ export const TextField: FunctionComponent<Props> = ({
       name={name}
       label={label}
       value={value}
+      placeholder={placeholder}
       error={error}
       disabled={disabled}
       autoFocus={autoFocus}

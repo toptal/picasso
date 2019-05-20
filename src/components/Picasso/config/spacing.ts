@@ -25,12 +25,12 @@ const spacing = {
   borderWidth: '1px',
   borderRadius: '3px',
   input: {
-    height: '3em',
-    width: '17.5em',
-    paddingTop: '.8em',
-    paddingRight: '.7em',
-    paddingBottom: '.8em',
-    paddingLeft: '.7em'
+    height: '2.25em',
+    width: '18.75em',
+    paddingTop: '0em',
+    paddingRight: '.625em',
+    paddingBottom: '0em',
+    paddingLeft: '.625em'
   },
   inputLabel: {
     height: '1em',

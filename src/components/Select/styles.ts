@@ -42,7 +42,7 @@ export default ({ spacing: { borderWidth, input, inputLabel } }: Theme) =>
     },
     rootAuto: {},
     input: {
-      fontSize: '1.15em',
+      fontSize: '.8125em',
       display: 'flex',
       alignItems: 'center',
       boxSizing: 'border-box',

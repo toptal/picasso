@@ -3,7 +3,7 @@ import { TextField } from '@toptal/picasso'
 
 const TextFieldFullWidthExample = () => (
   <div>
-    <TextField fullWidth label='Search...' />
+    <TextField fullWidth label='Label' />
   </div>
 )
 
