@@ -1,6 +1,7 @@
 declare module '@material-ui/core/styles/spacing' {
   interface Spacing {
     borderWidth: string
+    borderRadius: string
     input: {
       height: string
       width: string
@@ -22,6 +23,7 @@ declare module '@material-ui/core/styles/spacing' {
 
 const spacing = {
   borderWidth: '1px',
+  borderRadius: '3px',
   input: {
     height: '3em',
     width: '17.5em',

@@ -1,51 +1,50 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
-import { darken } from '../styles'
+import { lighten, darken, alpha } from '../styles'
 
 const ICON_SPACING = '0.4em'
 
-const getFilledButton = (
-  backgroundColor: string,
-  borderColor: string,
-  color: string
-) => ({
-  backgroundColor,
-  borderColor,
-  color,
+const primary = (mainColor: string, secondaryColor: string) => ({
+  border: 'none',
+  color: secondaryColor,
+  backgroundColor: mainColor,
 
   '&:hover, &$hovered': {
-    backgroundColor: darken(backgroundColor, 0.05)
+    backgroundColor: darken(mainColor, 0.2)
   },
 
   '&:active, &$active': {
-    backgroundColor: darken(backgroundColor, 0.25),
-    borderColor: darken(backgroundColor, 0.25)
+    backgroundColor: darken(mainColor, 0.2)
   }
 })
 
-export default ({ palette, typography, transitions }: Theme) =>
+const secondary = (mainColor: string, secondaryColor: string) => ({
+  color: mainColor,
+  backgroundColor: secondaryColor,
+
+  '&:hover, &$hovered': {
+    backgroundColor: lighten(mainColor, 0.84),
+    borderColor: mainColor
+  },
+
+  '&:active, &$active': {
+    backgroundColor: lighten(mainColor, 0.84),
+    borderColor: mainColor
+  }
+})
+
+export default ({ palette, spacing, transitions, typography }: Theme) =>
   createStyles({
     root: {
       position: 'relative',
       textTransform: 'none',
-      fontSize: typography.button.fontSize,
-      padding: '.4em 1em',
-      borderRadius: '.25rem',
-      lineHeight: '1.5em',
+      borderRadius: spacing.borderRadius,
+      border: `solid ${spacing.borderWidth} ${palette.grey[100]}`,
+      fontSize: '1rem',
       transition: `all ${transitions.duration.short}ms ${
         transitions.easing.easeOut
       }`,
       transitionProperty: 'border, color, background',
-      border: `solid 1px ${palette.grey[50]}`,
-      backgroundColor: palette.grey[50],
-
-      '&:hover, &$hovered': {
-        backgroundColor: darken(palette.grey[50], 0.05)
-      },
-
-      '&[disabled]': {
-        opacity: 0.45
-      },
 
       '&:focus, &$focused': {
         textDecoration: 'underline',
@@ -55,13 +54,13 @@ export default ({ palette, typography, transitions }: Theme) =>
         }
       },
 
-      '&:active, &$active': {
-        backgroundColor: darken(palette.grey[50], 0.15)
-      },
-
       '&+&': {
         marginLeft: '0.5em'
       }
+    },
+    content: {
+      lineHeight: '1.5em',
+      fontWeight: typography.fontWeights.semibold
     },
     loader: {
       position: 'absolute',
@@ -72,58 +71,74 @@ export default ({ palette, typography, transitions }: Theme) =>
 
     // sizes
     small: {
-      fontSize: '0.8rem'
+      height: '1.5em',
+      padding: '0 0.75em',
+
+      '& $content': {
+        fontSize: typography.buttons.fontSizeSmall
+      },
+
+      '&$circular': {
+        width: '1.5em'
+      }
+    },
+    medium: {
+      height: '2.25em',
+      padding: '0 1em',
+
+      '& $content': {
+        fontSize: typography.buttons.fontSizeMedium
+      },
+
+      '&$circular': {
+        width: '2.25em'
+      }
     },
     large: {
-      fontSize: '1.2rem'
+      height: '3em',
+      padding: '0 3.625em',
+
+      '& $content': {
+        fontSize: typography.buttons.fontSizeLarge,
+        fontWeight: typography.fontWeights.semibold
+      },
+
+      '&$circular': {
+        width: '3em'
+      }
     },
 
-    // Variants
-    primary: getFilledButton(
-      palette.primary.main,
-      palette.primary.main,
-      palette.common.white
-    ),
-    secondary: {
-      ...getFilledButton(
-        'transparent',
-        palette.primary.main,
-        palette.primary.main
-      ),
+    // variants
+    primaryBlue: primary(palette.primary.main, palette.common.white),
+    secondaryBlue: secondary(palette.primary.main, palette.common.white),
+    primaryRed: primary(palette.error.main, palette.common.white),
+    secondaryRed: secondary(palette.error.main, palette.common.white),
+    primaryGreen: primary(palette.success.main, palette.common.white),
+    secondaryWhite: {
+      ...secondary(palette.common.white, palette.common.white),
+      backgroundColor: 'transparent',
+      border: `solid ${spacing.borderWidth} rgba(255, 255, 255, 0.32)`,
 
       '&:hover, &$hovered': {
-        backgroundColor: palette.primary.light,
-        borderColor: palette.primary.main
+        backgroundColor: alpha(palette.common.white, 0.16),
+        borderColor: palette.common.white
       },
 
       '&:active, &$active': {
-        backgroundColor: darken(palette.primary.light, 0.25),
-        borderColor: darken(palette.primary.light, 0.25)
+        backgroundColor: alpha(palette.common.white, 0.16),
+        borderColor: palette.common.white
       }
     },
-    success: getFilledButton(
-      palette.success.main,
-      palette.success.main,
-      palette.common.white
-    ),
-    error: getFilledButton(
-      palette.error.main,
-      palette.error.main,
-      palette.common.white
-    ),
     flat: {
-      ...getFilledButton(
-        palette.common.white,
-        palette.grey[50],
-        palette.text.primary
-      ),
+      ...secondary(palette.common.black, palette.common.white),
       border: 'none'
     },
-    basic: getFilledButton(
-      palette.common.white,
-      palette.grey[50],
-      palette.text.primary
-    ),
+    primaryDisabled: primary(palette.grey[100], palette.common.white),
+    secondaryDisabled: secondary(palette.grey[100], palette.common.white),
+    flatDisabled: {
+      ...secondary(palette.grey[100], palette.common.white),
+      border: 'none'
+    },
 
     // Other props
     fullWidth: {
@@ -134,7 +149,7 @@ export default ({ palette, typography, transitions }: Theme) =>
     active: {},
     circular: {
       borderRadius: '50%',
-      padding: '.4em'
+      padding: 0
     },
 
     // Child elements

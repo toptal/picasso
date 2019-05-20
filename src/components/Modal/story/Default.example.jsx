@@ -59,10 +59,10 @@ const ModalDefaultExample = () => {
           </Form.Field>
         </Modal.Content>
         <Modal.Actions>
-          <Button disabled={isLoading} variant='basic'>
+          <Button disabled={isLoading} variant='flat'>
             Cancel
           </Button>
-          <Button loading={isLoading} onClick={showDemo} variant='primary'>
+          <Button loading={isLoading} onClick={showDemo} variant='primary-blue'>
             Update
           </Button>
         </Modal.Actions>
