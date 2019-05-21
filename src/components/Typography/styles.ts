@@ -19,23 +19,23 @@ PicassoProvider.override(() => ({
   }
 }))
 
-export default ({ palette }: Theme) =>
+export default ({ palette, typography }: Theme) =>
   createStyles({
     // weight
     thin: {
-      fontWeight: 100
+      fontWeight: typography.fontWeights.thin
     },
     light: {
-      fontWeight: 300
+      fontWeight: typography.fontWeights.light
     },
     regular: {
-      fontWeight: 400
+      fontWeight: typography.fontWeights.regular
     },
     semibold: {
-      fontWeight: 600
+      fontWeight: typography.fontWeights.semibold
     },
     bold: {
-      fontWeight: 700
+      fontWeight: typography.fontWeights.bold
     },
 
     // colors
@@ -73,14 +73,14 @@ export default ({ palette }: Theme) =>
     },
     headingSmall: {
       fontSize: '14px',
-      fontWeight: 600
+      fontWeight: typography.fontWeights.semibold
     },
     headingMedium: {
       fontSize: '16px',
-      fontWeight: 600
+      fontWeight: typography.fontWeights.semibold
     },
     headingLarge: {
       fontSize: '20px',
-      fontWeight: 600
+      fontWeight: typography.fontWeights.semibold
     }
   })
