@@ -18,7 +18,7 @@ export const ModalTitle: FunctionComponent<Props> = ({
   style
 }) => (
   <div className={cx(classes.root, className)} style={style}>
-    <Typography variant='heading' color='black'>
+    <Typography variant='heading' size='medium' color='black'>
       {children}
     </Typography>
   </div>

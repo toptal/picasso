@@ -6,7 +6,7 @@ exports[`Typography bold and center aligned render 1`] = `
     class="Picasso-root"
   >
     <p
-      class="MuiTypography-root Typography-bodyMedium Typography-bold Typography-grey MuiTypography-body1 MuiTypography-alignCenter"
+      class="MuiTypography-root Typography-bodyInherit Typography-bold Typography-grey MuiTypography-body1 MuiTypography-alignCenter"
     >
       Bold and center aligned
     </p>
@@ -20,7 +20,7 @@ exports[`Typography default render 1`] = `
     class="Picasso-root"
   >
     <p
-      class="MuiTypography-root Typography-bodyMedium Typography-regular Typography-grey MuiTypography-body1"
+      class="MuiTypography-root Typography-bodyInherit Typography-regular Typography-grey MuiTypography-body1"
     >
       Just Typography
     </p>

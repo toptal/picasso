@@ -9,10 +9,12 @@ const TypographyTypesExample = () => (
       </Typography>
     </Container>
     <Container bottom='small'>
-      <Typography color='black'>Body Medium Black</Typography>
+      <Typography color='black' size='medium'>
+        Body Medium Black
+      </Typography>
     </Container>
     <Container bottom='small'>
-      <Typography>Body Medium Grey</Typography>
+      <Typography size='medium'>Body Medium Grey</Typography>
     </Container>
     <Container bottom='small'>
       <Typography size='small'>Body Small Grey</Typography>

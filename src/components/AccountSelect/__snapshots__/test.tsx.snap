@@ -31,7 +31,7 @@ exports[`AccountSelect default render 1`] = `
                   class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
                 />
                 <p
-                  class="MuiTypography-root Typography-invert Typography-bodyMedium Typography-regular Typography-grey MuiTypography-body1 Avatar-text"
+                  class="MuiTypography-root Typography-invert Typography-bodyInherit Typography-regular Typography-grey MuiTypography-body1 Avatar-text"
                 >
                   PL
                 </p>
@@ -48,7 +48,7 @@ exports[`AccountSelect default render 1`] = `
                     Phil Leif 1
                   </h3>
                   <p
-                    class="MuiTypography-root Typography-bodyMedium Typography-regular Typography-grey MuiTypography-body1 MuiTypography-inline"
+                    class="MuiTypography-root Typography-bodyInherit Typography-regular Typography-grey MuiTypography-body1 MuiTypography-inline"
                   />
                 </div>
                 <div
@@ -97,7 +97,7 @@ exports[`AccountSelect default render 1`] = `
                   class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
                 />
                 <p
-                  class="MuiTypography-root Typography-invert Typography-bodyMedium Typography-regular Typography-grey MuiTypography-body1 Avatar-text"
+                  class="MuiTypography-root Typography-invert Typography-bodyInherit Typography-regular Typography-grey MuiTypography-body1 Avatar-text"
                 >
                   PL
                 </p>
@@ -114,7 +114,7 @@ exports[`AccountSelect default render 1`] = `
                     Phil Leif 2
                   </h3>
                   <p
-                    class="MuiTypography-root Typography-bodyMedium Typography-regular Typography-grey MuiTypography-body1 MuiTypography-inline"
+                    class="MuiTypography-root Typography-bodyInherit Typography-regular Typography-grey MuiTypography-body1 MuiTypography-inline"
                   />
                 </div>
                 <div
@@ -177,7 +177,7 @@ exports[`AccountSelect default render 1`] = `
                     Phil Leif 3
                   </h3>
                   <p
-                    class="MuiTypography-root Typography-bodyMedium Typography-regular Typography-grey MuiTypography-body1 MuiTypography-inline"
+                    class="MuiTypography-root Typography-bodyInherit Typography-regular Typography-grey MuiTypography-body1 MuiTypography-inline"
                   />
                 </div>
                 <div

@@ -9,7 +9,7 @@ const TypographyHeadingsExample = () => (
       </Typography>
     </Container>
     <Container bottom='small'>
-      <Typography variant='heading' color='black'>
+      <Typography variant='heading' size='medium' color='black'>
         Heading Medium
       </Typography>
     </Container>
