@@ -31,7 +31,7 @@ page
   .addExample('Typography/story/Weights.example.jsx', 'Weights')
   .addExample('Typography/story/Colors.example.jsx', 'Colors')
   .addExample('Typography/story/As.example.jsx', {
-    title: 'As',
+    title: 'Augment as another HTML element',
     description: `
       In some cases you may want to change the default
       HTML tag used for Typography. In this cases you can 
