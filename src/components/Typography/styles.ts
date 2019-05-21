@@ -68,6 +68,9 @@ export default ({ palette }: Theme) =>
     bodyLarge: {
       fontSize: '16px'
     },
+    bodyInherit: {
+      fontSize: '1em'
+    },
     headingSmall: {
       fontSize: '14px',
       fontWeight: 600

@@ -10,7 +10,7 @@ import { StandardProps } from '../Picasso'
 import styles from './styles'
 
 type VariantType = 'heading' | 'body'
-type SizeType = 'small' | 'medium' | 'large'
+type SizeType = 'small' | 'medium' | 'large' | 'inherit'
 
 type WeightType = 'thin' | 'light' | 'regular' | 'semibold' | 'bold'
 type ColorType = 'blue' | 'green' | 'red' | 'grey' | 'black'
@@ -46,7 +46,8 @@ const VARIANTS: VariantsType = {
   body: {
     small: 'body1',
     medium: 'body1',
-    large: 'body1'
+    large: 'body1',
+    inherit: 'body1'
   }
 }
 
