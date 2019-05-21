@@ -43,7 +43,7 @@ exports[`AccountSelect default render 1`] = `
                   style="display: block;"
                 >
                   <h3
-                    class="MuiTypography-root Typography-headerSmall Typography-regular Typography-grey MuiTypography-h3 MuiTypography-inline"
+                    class="MuiTypography-root Typography-headingSmall Typography-regular Typography-grey MuiTypography-h3 MuiTypography-inline"
                   >
                     Phil Leif 1
                   </h3>
@@ -109,7 +109,7 @@ exports[`AccountSelect default render 1`] = `
                   style="display: block;"
                 >
                   <h3
-                    class="MuiTypography-root Typography-headerSmall Typography-regular Typography-grey MuiTypography-h3 MuiTypography-inline"
+                    class="MuiTypography-root Typography-headingSmall Typography-regular Typography-grey MuiTypography-h3 MuiTypography-inline"
                   >
                     Phil Leif 2
                   </h3>
@@ -172,7 +172,7 @@ exports[`AccountSelect default render 1`] = `
                   style="display: block;"
                 >
                   <h3
-                    class="MuiTypography-root Typography-headerSmall Typography-regular Typography-grey MuiTypography-h3 MuiTypography-inline"
+                    class="MuiTypography-root Typography-headingSmall Typography-regular Typography-grey MuiTypography-h3 MuiTypography-inline"
                   >
                     Phil Leif 3
                   </h3>

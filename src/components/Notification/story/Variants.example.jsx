@@ -5,7 +5,7 @@ const NotificationVariantsExample = () => (
   <div>
     <Container bottom={1}>
       <Container bottom={1}>
-        <Typography variant='header' size='small'>
+        <Typography variant='heading' size='small'>
           Info
         </Typography>
       </Container>
@@ -16,7 +16,7 @@ const NotificationVariantsExample = () => (
     </Container>
     <Container bottom={1}>
       <Container bottom={1}>
-        <Typography variant='header' size='small'>
+        <Typography variant='heading' size='small'>
           Success
         </Typography>
       </Container>
@@ -26,7 +26,7 @@ const NotificationVariantsExample = () => (
     </Container>
     <Container bottom={1}>
       <Container bottom={1}>
-        <Typography variant='header' size='small'>
+        <Typography variant='heading' size='small'>
           Error
         </Typography>
       </Container>
@@ -34,7 +34,7 @@ const NotificationVariantsExample = () => (
     </Container>
     <Container bottom={1}>
       <Container bottom={1}>
-        <Typography variant='header' size='small'>
+        <Typography variant='heading' size='small'>
           Warning
         </Typography>
       </Container>

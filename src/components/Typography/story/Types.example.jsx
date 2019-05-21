@@ -17,16 +17,6 @@ const TypographyTypesExample = () => (
     <Container bottom='small'>
       <Typography size='small'>Body Small Grey</Typography>
     </Container>
-    <Container bottom='small'>
-      <Typography variant='hint'>Hint</Typography>
-    </Container>
-    <Container bottom='small'>
-      <Typography variant='error'>Error</Typography>
-    </Container>
-    <Container bottom='small'>
-      <Typography variant='table-head'>Table Header</Typography>
-    </Container>
-    <Typography variant='table-text'>Table Text</Typography>
   </div>
 )
 

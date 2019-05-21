@@ -21,7 +21,7 @@ const BreakpointsExample = () => (
         <Grid.Item key={breakpointName} medium={3}>
           <Paper style={{ padding: '2em' }}>
             <Container flex direction='column' alignItems='center'>
-              <Typography variant='header' size='large'>
+              <Typography variant='heading' size='large'>
                 {breakpointName}
               </Typography>
               <Typography size='small'>

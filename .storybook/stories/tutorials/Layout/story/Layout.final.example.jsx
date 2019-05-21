@@ -38,7 +38,7 @@ const MainContent = () => (
   <MainContentContainer padded='medium'>
     <DetailsContainer padded='medium'>
       <Container bottom='small'>
-        <Typography variant='header' size='small'>
+        <Typography variant='heading' size='small'>
           UI/UX Designer
         </Typography>
         <Typography size='small'>Posted at: Nov 24, 2019</Typography>
@@ -47,7 +47,7 @@ const MainContent = () => (
         <Table.Body>
           <Table.Row key='talent'>
             <Table.Cell>
-              <Typography variant='header' size='small'>
+              <Typography variant='heading' size='small'>
                 Talent:
               </Typography>
             </Table.Cell>
@@ -55,7 +55,7 @@ const MainContent = () => (
           </Table.Row>
           <Table.Row key='commitment'>
             <Table.Cell>
-              <Typography variant='header' size='small'>
+              <Typography variant='heading' size='small'>
                 Commitment:
               </Typography>
             </Table.Cell>

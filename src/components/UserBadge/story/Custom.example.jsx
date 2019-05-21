@@ -14,7 +14,7 @@ const UserBadgeCustomExample = () => (
         />
       }
     >
-      <Typography variant='header' size='small'>
+      <Typography variant='heading' size='small'>
         Worked as
       </Typography>
       <Container left='xsmall'>

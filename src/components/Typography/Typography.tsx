@@ -9,13 +9,7 @@ import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import { StandardProps } from '../Picasso'
 import styles from './styles'
 
-type VariantType =
-  | 'header'
-  | 'body'
-  | 'table-head'
-  | 'table-text'
-  | 'hint'
-  | 'error'
+type VariantType = 'heading' | 'body'
 type SizeType = 'small' | 'medium' | 'large'
 
 type WeightType = 'thin' | 'light' | 'regular' | 'semibold' | 'bold'
@@ -44,7 +38,7 @@ export interface Props extends StandardProps {
 
 type VariantsType = { [k in VariantType]: { [l in SizeType]?: MUIVariant } }
 const VARIANTS: VariantsType = {
-  header: {
+  heading: {
     small: 'h3',
     medium: 'h2',
     large: 'h1'
@@ -53,18 +47,6 @@ const VARIANTS: VariantsType = {
     small: 'body1',
     medium: 'body1',
     large: 'body1'
-  },
-  'table-head': {
-    medium: 'body1'
-  },
-  'table-text': {
-    medium: 'body1'
-  },
-  hint: {
-    medium: 'caption'
-  },
-  error: {
-    medium: 'caption'
   }
 }
 

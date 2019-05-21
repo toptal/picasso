@@ -28,7 +28,7 @@ exports[`UserBadge auto center alignment 1`] = `
           style="display: block;"
         >
           <h3
-            class="MuiTypography-root Typography-headerSmall Typography-regular Typography-grey MuiTypography-h3 MuiTypography-inline"
+            class="MuiTypography-root Typography-headingSmall Typography-regular Typography-grey MuiTypography-h3 MuiTypography-inline"
           >
             Joe Doe
           </h3>
@@ -70,7 +70,7 @@ exports[`UserBadge default render 1`] = `
           style="display: block;"
         >
           <h3
-            class="MuiTypography-root Typography-headerSmall Typography-regular Typography-grey MuiTypography-h3 MuiTypography-inline"
+            class="MuiTypography-root Typography-headingSmall Typography-regular Typography-grey MuiTypography-h3 MuiTypography-inline"
           >
             Joe Doe
           </h3>
@@ -121,7 +121,7 @@ exports[`UserBadge invert render 1`] = `
           style="display: block;"
         >
           <h3
-            class="MuiTypography-root Typography-invert Typography-headerSmall Typography-regular Typography-grey MuiTypography-h3 MuiTypography-inline"
+            class="MuiTypography-root Typography-invert Typography-headingSmall Typography-regular Typography-grey MuiTypography-h3 MuiTypography-inline"
           >
             Joe Doe
           </h3>
@@ -172,7 +172,7 @@ exports[`UserBadge manual center alignment 1`] = `
           style="display: block;"
         >
           <h3
-            class="MuiTypography-root Typography-headerSmall Typography-regular Typography-grey MuiTypography-h3 MuiTypography-inline"
+            class="MuiTypography-root Typography-headingSmall Typography-regular Typography-grey MuiTypography-h3 MuiTypography-inline"
           >
             Joe Doe
           </h3>
@@ -223,7 +223,7 @@ exports[`UserBadge override auto center alignment 1`] = `
           style="display: block;"
         >
           <h3
-            class="MuiTypography-root Typography-headerSmall Typography-regular Typography-grey MuiTypography-h3 MuiTypography-inline"
+            class="MuiTypography-root Typography-headingSmall Typography-regular Typography-grey MuiTypography-h3 MuiTypography-inline"
           >
             Joe Doe
           </h3>
@@ -265,7 +265,7 @@ exports[`UserBadge small size 1`] = `
           style="display: block;"
         >
           <h3
-            class="MuiTypography-root Typography-headerSmall Typography-regular Typography-grey MuiTypography-h3 MuiTypography-inline"
+            class="MuiTypography-root Typography-headingSmall Typography-regular Typography-grey MuiTypography-h3 MuiTypography-inline"
           >
             Joe Doe
           </h3>

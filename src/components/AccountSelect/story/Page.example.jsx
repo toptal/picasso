@@ -36,7 +36,7 @@ const AccountSelectPageExample = () => (
         <Grid.Item small={5}>
           <Container flex direction='column' alignItems='center'>
             <Logo emblem />
-            <Typography variant='header' size='large'>
+            <Typography variant='heading' size='large'>
               Select an Account
             </Typography>
           </Container>

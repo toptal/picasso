@@ -4,7 +4,7 @@ import { palette } from '@toptal/picasso/utils'
 
 const ButtonVariantsExample = () => (
   <div>
-    <Typography variant='header' size='small'>
+    <Typography variant='heading' size='small'>
       Primary:
     </Typography>
     <Container top='small' bottom='large'>
@@ -13,7 +13,7 @@ const ButtonVariantsExample = () => (
       <Button variant='primary-green'>Primary Green</Button>
     </Container>
 
-    <Typography variant='header' size='small'>
+    <Typography variant='heading' size='small'>
       Secondary:
     </Typography>
     <Container top='small' bottom='large'>
@@ -29,7 +29,7 @@ const ButtonVariantsExample = () => (
       </Container>
     </Container>
 
-    <Typography variant='header' size='small'>
+    <Typography variant='heading' size='small'>
       Others:
     </Typography>
     <Container top='small'>

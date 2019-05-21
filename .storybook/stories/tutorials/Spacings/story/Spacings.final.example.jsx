@@ -21,7 +21,7 @@ const SpacingsExample = () => (
           bottom='small'
         >
           <Container>
-            <Typography variant='header' size='small'>
+            <Typography variant='heading' size='small'>
               UX Designer
             </Typography>
             <Typography size='small'>2 positions Open</Typography>

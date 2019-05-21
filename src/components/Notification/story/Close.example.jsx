@@ -8,7 +8,7 @@ const mockOnClose = () => {
 const NotificationCloseExample = () => (
   <div>
     <Container bottom={1}>
-      <Typography variant='header' size='small'>
+      <Typography variant='heading' size='small'>
         Info
       </Typography>
     </Container>

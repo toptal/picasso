@@ -8,11 +8,11 @@ exports[`FormHint default render 1`] = `
     <div
       class="FormHint-root"
     >
-      <span
-        class="MuiTypography-root Typography-hintMedium Typography-regular Typography-grey MuiTypography-caption"
+      <p
+        class="MuiTypography-root Typography-bodyMedium Typography-regular Typography-grey MuiTypography-body1 FormHint-hint"
       >
         Picasso was born on October 25, 1881 in the city of Malaga, Spain
-      </span>
+      </p>
     </div>
   </div>
 </div>

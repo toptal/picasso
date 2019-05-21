@@ -4,8 +4,17 @@ import { PicassoProvider } from '../Picasso'
 
 PicassoProvider.override(() => ({
   MuiTypography: {
-    root: {
-      lineHeight: '1.5em !important'
+    h1: {
+      lineHeight: '1.5em'
+    },
+    h2: {
+      lineHeight: '1.5em'
+    },
+    h3: {
+      lineHeight: '1.5em'
+    },
+    body1: {
+      lineHeight: '1.5em'
     }
   }
 }))
@@ -59,30 +68,16 @@ export default ({ palette }: Theme) =>
     bodyLarge: {
       fontSize: '16px'
     },
-    headerSmall: {
+    headingSmall: {
       fontSize: '14px',
       fontWeight: 600
     },
-    headerMedium: {
+    headingMedium: {
       fontSize: '16px',
       fontWeight: 600
     },
-    headerLarge: {
+    headingLarge: {
       fontSize: '20px',
       fontWeight: 600
-    },
-    tableHeadMedium: {
-      fontSize: '12px',
-      fontWeight: 600
-    },
-    tableTextMedium: {
-      fontSize: '13px'
-    },
-    hintMedium: {
-      fontSize: '11px'
-    },
-    errorMedium: {
-      fontSize: '11px',
-      color: palette.error.main
     }
   })

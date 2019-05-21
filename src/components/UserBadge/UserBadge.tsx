@@ -73,7 +73,7 @@ export const UserBadge: FunctionComponent<Props> = ({
         <Container>
           <Typography
             inline
-            variant='header'
+            variant='heading'
             size='small'
             invert={invert}
           >

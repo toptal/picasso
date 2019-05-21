@@ -10,6 +10,6 @@ export default ({ palette }: Theme) =>
       textTransform: 'initial'
     },
     description: {
-      color: palette.grey[300]
+      fontSize: '0.75em'
     }
   })
