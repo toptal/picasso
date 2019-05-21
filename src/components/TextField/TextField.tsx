@@ -120,7 +120,7 @@ export const TextField: FunctionComponent<Props> = ({
 }
 
 TextField.defaultProps = {
-  iconPosition: 'end',
+  iconPosition: 'start',
   multiline: false
 }
 

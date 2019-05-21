@@ -42,7 +42,7 @@ export default ({ spacing: { input, inputIcon } }: Theme) =>
     `
     },
     icon: {
-      fontSize: '1.15em',
+      fontSize: '1em',
       minWidth: inputIcon.width,
       display: 'flex',
       alignItems: 'center',

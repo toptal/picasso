@@ -42,13 +42,14 @@ PicassoProvider.override(({ palette }: Theme) => ({
       border: 'solid 1px transparent',
 
       '&::placeholder': {
-        color: palette.text.primary,
+        color: palette.grey[400],
         opacity: 1
       },
 
       '&$disabled': {
         '&::placeholder': {
-          opacity: 0.48
+          color: alpha(palette.grey[400], 0.48),
+          opacity: 1
         }
       }
     },
@@ -60,10 +61,12 @@ PicassoProvider.override(({ palette }: Theme) => ({
     },
     notchedOutline: {},
     adornedStart: {
-      paddingRight: 0
+      paddingRight: 0,
+      color: palette.grey[400]
     },
     adornedEnd: {
-      paddingRight: 0
+      paddingRight: 0,
+      color: palette.grey[400]
     }
   }
 }))
