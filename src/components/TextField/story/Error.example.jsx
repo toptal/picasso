@@ -3,7 +3,6 @@ import { TextField } from '@toptal/picasso'
 
 const TextFieldErrorExample = () => (
   <div>
-    <TextField error label='Label' />
     <TextField error value='Text' />
     <TextField error placeholder='Placeholder' />
   </div>

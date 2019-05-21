@@ -11,19 +11,19 @@ const FormsExample = () => (
           </Form.Field>
 
           <Form.Field>
-            <TextField fullWidth label='Job title' />
+            <TextField fullWidth placeholder='Job title' />
           </Form.Field>
 
           <Form.Field>
-            <TextField fullWidth label='Full description' />
+            <TextField fullWidth placeholder='Full description' />
           </Form.Field>
 
           <Form.Field>
-            <Select label='Desired Commitment' options={OPTIONS} />
+            <Select placeholder='Desired Commitment' options={OPTIONS} />
           </Form.Field>
 
           <Form.Field hint='A Toptal Director of Engineering ewill work with you to understand you needs and fins you the right talent for you project.'>
-            <Checkbox label='We match you to talent' />
+            <Checkbox placeholder='We match you to talent' />
           </Form.Field>
         </Form>
       </Grid.Item>

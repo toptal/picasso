@@ -27,9 +27,9 @@ const spacing = {
   input: {
     height: '2.25em',
     width: '18.75em',
-    paddingTop: '0em',
+    paddingTop: '.625em',
     paddingRight: '.625em',
-    paddingBottom: '0em',
+    paddingBottom: '.625em',
     paddingLeft: '.625em'
   },
   inputLabel: {

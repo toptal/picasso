@@ -6,9 +6,7 @@ import '../InputLabel/styles'
 import '../OutlinedInput/styles'
 import '../InputAdornment/styles'
 
-export default ({
-  spacing: { input, inputLabel, inputIcon, borderWidth }
-}: Theme) =>
+export default ({ spacing: { input, inputIcon } }: Theme) =>
   createStyles({
     root: {
       fontSize: 'inherit',
@@ -29,50 +27,20 @@ export default ({
       fontSize: '.8125em',
       border: 'none',
       padding: `
-      0
-      ${input.paddingLeft}
-      0
+      ${input.paddingTop}
       ${input.paddingRight}
+      ${input.paddingBottom}
+      ${input.paddingLeft}
     `
     },
     inputMultiline: {
       padding: `
-      calc(${inputLabel.shrinkPaddingTop} + 1em * ${inputLabel.shrinkScale})
-      ${input.paddingLeft}
-      0
+      ${input.paddingTop}
       ${input.paddingRight}
+      ${input.paddingBottom}
+      ${input.paddingLeft}
     `
     },
-    label: {
-      fontSize: '1.15em',
-
-      transform: `
-      translate(
-        calc(${input.paddingLeft} + ${borderWidth}),
-        calc(${input.paddingTop} + ${borderWidth})
-      )
-      scale(1)`,
-
-      '&$labelShrink': {
-        transform: `
-        translate(
-          calc(${input.paddingLeft} + ${borderWidth}),
-          ${inputLabel.shrinkPaddingTop}
-        )
-        scale(${inputLabel.shrinkScale})`
-      },
-
-      '&$labelIconStart': {
-        transform: `translate(
-          ${input.paddingLeft + input.paddingRight + inputIcon.width}),
-          ${inputLabel.shrinkPaddingTop}
-        )
-        scale(${inputLabel.shrinkScale})
-      `
-      }
-    },
-    labelShrink: {},
-    labelIconStart: {},
     icon: {
       fontSize: '1.15em',
       minWidth: inputIcon.width,
