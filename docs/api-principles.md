@@ -4,7 +4,7 @@
 
 To better understand how Picasso is built and to navigate in
 components of the library you should know the principles we follow
-when builing API for new or existsing components.
+when building API for new or existing components.
 
 
 ### Component types
