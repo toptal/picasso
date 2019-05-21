@@ -51,11 +51,24 @@ const VARIANTS: VariantsType = {
   }
 }
 
-const resolveRootClass = (props: Props) => {
-  const { classes, weight, variant, invert, color, size } = props
+export const Typography: FunctionComponent<Props> = props => {
+  const {
+    variant,
+    children,
+    size,
+    align,
+    className,
+    classes,
+    style,
+    inline,
+    as,
+    weight,
+    color,
+    invert
+  } = props
+  const resolvedVariant = VARIANTS[variant!][size!]
   const variantClassName = kebabToCamelCase(`${variant}-${size}`)
-
-  return cx(
+  const rootClass = cx(
     {
       [classes.invert]: invert
     },
@@ -63,12 +76,6 @@ const resolveRootClass = (props: Props) => {
     classes[weight!],
     classes[color!]
   )
-}
-
-export const Typography: FunctionComponent<Props> = props => {
-  const { variant, children, size, align, className, style, inline, as } = props
-  const resolvedVariant = VARIANTS[variant!][size!]
-  const rootClass = resolveRootClass(props)
 
   return (
     <MUITypography
