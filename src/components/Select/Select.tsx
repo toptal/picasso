@@ -5,7 +5,6 @@ import { withStyles } from '@material-ui/core/styles'
 import { capitalize } from '@material-ui/core/utils/helpers'
 
 import FormControl from '../FormControl'
-import InputLabel from '../InputLabel'
 import Input from '../Input'
 import OutlinedInput from '../OutlinedInput'
 import MenuItem from '../MenuItem'
@@ -21,12 +20,11 @@ interface Option {
 export interface Props extends StandardProps {
   /** If true, the switch will be disabled */
   disabled?: boolean
+  error?: boolean
   /** Component ID */
   id?: string
   /** Width of the component which will apply `min-width` to the `input` */
   width?: 'full' | 'shrink' | 'auto'
-  /** Inner text label for the `Select` */
-  label?: string
   /** Placeholder option which is selected by default */
   placeholder?: string
   /** Whether `Select` should be rendered as native HTML `<select />` */
@@ -75,23 +73,22 @@ export const Select: FunctionComponent<Props> = ({
   style,
   width,
   id,
-  label,
   native,
   options,
   placeholder,
   variant,
   disabled,
+  error,
   onChange,
   value
 }) => {
-  const hasLabel = !!label
   const fullWidth = width === 'full'
 
   const outlinedInput =
     variant === 'outlined' ? (
       <OutlinedInput
         classes={{
-          input: hasLabel ? classes.inputWithLabel : classes.input
+          input: classes.input
         }}
         fullWidth={fullWidth}
         labelWidth={0}
@@ -99,7 +96,7 @@ export const Select: FunctionComponent<Props> = ({
     ) : (
       <Input
         classes={{
-          input: hasLabel ? classes.inputWithLabel : classes.input
+          input: classes.input
         }}
         disableUnderline
         fullWidth={fullWidth}
@@ -120,7 +117,6 @@ export const Select: FunctionComponent<Props> = ({
       input={outlinedInput}
       native={native}
       variant={variant}
-      disabled={disabled}
       value={value}
       MenuProps={{
         anchorOrigin: {
@@ -140,19 +136,11 @@ export const Select: FunctionComponent<Props> = ({
   )
 
   return (
-    <FormControl className={cx(className, { [classes.rootFull]: fullWidth })}>
-      {hasLabel && (
-        <InputLabel
-          classes={{
-            root: classes.label,
-            shrink: classes.labelShrink
-          }}
-          htmlFor={id}
-          variant={variant}
-        >
-          {label}
-        </InputLabel>
-      )}
+    <FormControl
+      error={error}
+      disabled={disabled}
+      className={cx(className, { [classes.rootFull]: fullWidth })}
+    >
       {select}
     </FormControl>
   )
@@ -160,6 +148,7 @@ export const Select: FunctionComponent<Props> = ({
 
 Select.defaultProps = {
   disabled: false,
+  error: false,
   native: false,
   onChange: () => {},
   value: '',

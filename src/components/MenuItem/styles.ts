@@ -15,19 +15,16 @@ PicassoProvider.override(({ palette }: Theme) => ({
         backgroundColor: palette.blue.lighter,
 
         '&$selected': {
-          backgroundColor: palette.blue.lighter,
-          color: palette.primary.main
+          backgroundColor: palette.blue.lighter
         }
       },
 
       '&$selected': {
-        backgroundColor: palette.blue.lighter,
-        color: palette.primary.main
+        backgroundColor: palette.blue.lighter
       },
 
       '&:focus': {
-        backgroundColor: palette.blue.lighter,
-        color: palette.primary.main
+        backgroundColor: palette.blue.lighter
       }
     },
     selected: {},
@@ -40,9 +37,10 @@ PicassoProvider.override(({ palette }: Theme) => ({
   }
 }))
 
-export default () =>
+export default ({ palette }: Theme) =>
   createStyles({
     stringContent: {
-      fontSize: '0.8125em'
+      fontSize: '0.8125em',
+      color: palette.common.black
     }
   })
