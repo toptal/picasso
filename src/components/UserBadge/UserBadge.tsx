@@ -74,7 +74,7 @@ export const UserBadge: FunctionComponent<Props> = ({
           <Typography inline variant='heading' size='small' invert={invert}>
             {name}
           </Typography>
-          <Typography inline invert={invert}>
+          <Typography inline invert={invert} size='medium'>
             {userTitle}
           </Typography>
         </Container>
