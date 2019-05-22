@@ -56,7 +56,7 @@ export const UserBadge: FunctionComponent<Props> = ({
 
   const { title: titleClass } = classes
   const userTitle = title && (
-    <Typography inline className={titleClass} variant='h5'>
+    <Typography inline className={titleClass}>
       {title}
     </Typography>
   )
@@ -71,10 +71,10 @@ export const UserBadge: FunctionComponent<Props> = ({
       {UserBadgeAvatar}
       <Container flex direction='column' left='small'>
         <Container>
-          <Typography inline variant='h5' invert={invert} weight='semibold'>
+          <Typography inline variant='heading' size='small' invert={invert}>
             {name}
           </Typography>
-          <Typography inline invert={invert}>
+          <Typography inline invert={invert} size='medium'>
             {userTitle}
           </Typography>
         </Container>

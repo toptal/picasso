@@ -6,17 +6,17 @@ exports[`UserBadge auto center alignment 1`] = `
     class="Picasso-root"
   >
     <div
-      class=""
+      class="UserBadge-root"
       style="display: flex; align-items: center;"
     >
       <div
         class="Avatar-root Avatar-xsmall"
       >
         <div
-          class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
+          class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
         />
         <p
-          class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 Avatar-text"
+          class="MuiTypography-root Typography-invert Typography-bodyInherit MuiTypography-body1 Avatar-text"
         >
           JD
         </p>
@@ -27,14 +27,11 @@ exports[`UserBadge auto center alignment 1`] = `
         <div
           style="display: block;"
         >
-          <h5
-            class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+          <h4
+            class="MuiTypography-root Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name"
           >
             Joe Doe
-          </h5>
-          <p
-            class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1 MuiTypography-inline"
-          />
+          </h4>
         </div>
       </div>
     </div>
@@ -48,17 +45,17 @@ exports[`UserBadge default render 1`] = `
     class="Picasso-root"
   >
     <div
-      class=""
+      class="UserBadge-root"
       style="display: flex; align-items: flex-start;"
     >
       <div
         class="Avatar-root Avatar-xsmall"
       >
         <div
-          class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
+          class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
         />
         <p
-          class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 Avatar-text"
+          class="MuiTypography-root Typography-invert Typography-bodyInherit MuiTypography-body1 Avatar-text"
         >
           JD
         </p>
@@ -69,24 +66,17 @@ exports[`UserBadge default render 1`] = `
         <div
           style="display: block;"
         >
-          <h5
-            class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+          <h4
+            class="MuiTypography-root Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name"
           >
             Joe Doe
-          </h5>
-          <p
-            class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1 MuiTypography-inline"
-          />
+          </h4>
         </div>
-        <div
-          style="display: block;"
+        <p
+          class="MuiTypography-root Typography-bodyInherit MuiTypography-body1"
         >
-          <p
-            class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1"
-          >
-            QA tester
-          </p>
-        </div>
+          QA tester
+        </p>
       </div>
     </div>
   </div>
@@ -99,17 +89,17 @@ exports[`UserBadge invert render 1`] = `
     class="Picasso-root"
   >
     <div
-      class=""
+      class="UserBadge-root"
       style="display: flex; align-items: flex-start;"
     >
       <div
         class="Avatar-root Avatar-xsmall"
       >
         <div
-          class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
+          class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
         />
         <p
-          class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 Avatar-text"
+          class="MuiTypography-root Typography-invert Typography-bodyInherit MuiTypography-body1 Avatar-text"
         >
           JD
         </p>
@@ -120,24 +110,17 @@ exports[`UserBadge invert render 1`] = `
         <div
           style="display: block;"
         >
-          <h5
-            class="MuiTypography-root Typography-invert Typography-semibold MuiTypography-h5 MuiTypography-inline"
+          <h4
+            class="MuiTypography-root Typography-invert Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name"
           >
             Joe Doe
-          </h5>
-          <p
-            class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 MuiTypography-inline"
-          />
+          </h4>
         </div>
-        <div
-          style="display: block;"
+        <p
+          class="MuiTypography-root Typography-bodyInherit MuiTypography-body1"
         >
-          <p
-            class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1"
-          >
-            QA tester
-          </p>
-        </div>
+          QA tester
+        </p>
       </div>
     </div>
   </div>
@@ -150,17 +133,17 @@ exports[`UserBadge manual center alignment 1`] = `
     class="Picasso-root"
   >
     <div
-      class=""
+      class="UserBadge-root"
       style="display: flex; align-items: center;"
     >
       <div
         class="Avatar-root Avatar-xsmall"
       >
         <div
-          class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
+          class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
         />
         <p
-          class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 Avatar-text"
+          class="MuiTypography-root Typography-invert Typography-bodyInherit MuiTypography-body1 Avatar-text"
         >
           JD
         </p>
@@ -171,24 +154,17 @@ exports[`UserBadge manual center alignment 1`] = `
         <div
           style="display: block;"
         >
-          <h5
-            class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+          <h4
+            class="MuiTypography-root Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name"
           >
             Joe Doe
-          </h5>
-          <p
-            class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1 MuiTypography-inline"
-          />
+          </h4>
         </div>
-        <div
-          style="display: block;"
+        <p
+          class="MuiTypography-root Typography-bodyInherit MuiTypography-body1"
         >
-          <p
-            class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1"
-          >
-            QA tester
-          </p>
-        </div>
+          QA tester
+        </p>
       </div>
     </div>
   </div>
@@ -201,17 +177,17 @@ exports[`UserBadge override auto center alignment 1`] = `
     class="Picasso-root"
   >
     <div
-      class=""
+      class="UserBadge-root"
       style="display: flex; align-items: flex-start;"
     >
       <div
         class="Avatar-root Avatar-xsmall"
       >
         <div
-          class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
+          class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
         />
         <p
-          class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 Avatar-text"
+          class="MuiTypography-root Typography-invert Typography-bodyInherit MuiTypography-body1 Avatar-text"
         >
           JD
         </p>
@@ -222,14 +198,11 @@ exports[`UserBadge override auto center alignment 1`] = `
         <div
           style="display: block;"
         >
-          <h5
-            class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+          <h4
+            class="MuiTypography-root Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name"
           >
             Joe Doe
-          </h5>
-          <p
-            class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1 MuiTypography-inline"
-          />
+          </h4>
         </div>
       </div>
     </div>
@@ -243,17 +216,17 @@ exports[`UserBadge small size 1`] = `
     class="Picasso-root"
   >
     <div
-      class=""
+      class="UserBadge-root"
       style="display: flex; align-items: flex-start;"
     >
       <div
         class="Avatar-root Avatar-small"
       >
         <div
-          class="Avatar-textContainer Avatar-square Avatar-small Avatar-clippedCorner"
+          class="Avatar-textContainer Avatar-square Avatar-small Avatar-clippedCorner UserBadge-avatar"
         />
         <p
-          class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 Avatar-text"
+          class="MuiTypography-root Typography-invert Typography-bodyInherit MuiTypography-body1 Avatar-text"
         >
           JD
         </p>
@@ -264,24 +237,17 @@ exports[`UserBadge small size 1`] = `
         <div
           style="display: block;"
         >
-          <h5
-            class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+          <h4
+            class="MuiTypography-root Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name"
           >
             Joe Doe
-          </h5>
-          <p
-            class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1 MuiTypography-inline"
-          />
+          </h4>
         </div>
-        <div
-          style="display: block;"
+        <p
+          class="MuiTypography-root Typography-bodyInherit MuiTypography-body1"
         >
-          <p
-            class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1"
-          >
-            QA tester
-          </p>
-        </div>
+          QA tester
+        </p>
       </div>
     </div>
   </div>

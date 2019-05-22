@@ -15,7 +15,7 @@ const PageScrollExample = () => (
 
 const Content = () => (
   <Container top='small' bottom='small' left='small' right='small'>
-    <Typography align='center' variant='h1'>
+    <Typography align='center' variant='heading' size='large'>
       Scrollable example
     </Typography>
     <p>

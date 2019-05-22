@@ -38,20 +38,26 @@ const MainContent = () => (
   <MainContentContainer padded='medium'>
     <DetailsContainer padded='medium'>
       <Container bottom='small'>
-        <Typography variant='h3'>UI/UX Designer</Typography>
-        <Typography variant='caption'>Posted at: Nov 24, 2019</Typography>
+        <Typography variant='heading' size='small'>
+          UI/UX Designer
+        </Typography>
+        <Typography size='small'>Posted at: Nov 24, 2019</Typography>
       </Container>
       <Table>
         <Table.Body>
           <Table.Row key='talent'>
             <Table.Cell>
-              <Typography weight='semibold'>Talent:</Typography>
+              <Typography variant='heading' size='small'>
+                Talent:
+              </Typography>
             </Table.Cell>
             <Table.Cell>Hugo, John, Dean</Table.Cell>
           </Table.Row>
           <Table.Row key='commitment'>
             <Table.Cell>
-              <Typography weight='semibold'>Commitment:</Typography>
+              <Typography variant='heading' size='small'>
+                Commitment:
+              </Typography>
             </Table.Cell>
             <Table.Cell>Hourly</Table.Cell>
           </Table.Row>
