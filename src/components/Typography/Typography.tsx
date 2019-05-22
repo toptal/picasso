@@ -95,11 +95,9 @@ export const Typography: FunctionComponent<Props> = props => {
 }
 
 Typography.defaultProps = {
-  color: 'grey',
   inline: false,
   size: 'inherit',
-  variant: 'body',
-  weight: 'regular'
+  variant: 'body'
 }
 
 Typography.displayName = 'Typography'

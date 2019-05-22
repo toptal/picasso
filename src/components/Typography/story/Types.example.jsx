@@ -4,9 +4,7 @@ import { Typography, Container } from '@toptal/picasso'
 const TypographyTypesExample = () => (
   <div>
     <Container bottom='small'>
-      <Typography size='large' color='black'>
-        Body Large
-      </Typography>
+      <Typography size='large'>Body Large</Typography>
     </Container>
     <Container bottom='small'>
       <Typography color='black' size='medium'>

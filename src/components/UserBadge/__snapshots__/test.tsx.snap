@@ -16,7 +16,7 @@ exports[`UserBadge auto center alignment 1`] = `
           class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
         />
         <p
-          class="MuiTypography-root Typography-invert Typography-bodyInherit Typography-regular Typography-grey MuiTypography-body1 Avatar-text"
+          class="MuiTypography-root Typography-invert Typography-bodyInherit MuiTypography-body1 Avatar-text"
         >
           JD
         </p>
@@ -28,12 +28,12 @@ exports[`UserBadge auto center alignment 1`] = `
           style="display: block;"
         >
           <h3
-            class="MuiTypography-root Typography-headingSmall Typography-regular Typography-grey MuiTypography-h3 MuiTypography-inline"
+            class="MuiTypography-root Typography-headingSmall MuiTypography-h3 MuiTypography-inline"
           >
             Joe Doe
           </h3>
           <p
-            class="MuiTypography-root Typography-bodyInherit Typography-regular Typography-grey MuiTypography-body1 MuiTypography-inline"
+            class="MuiTypography-root Typography-bodyInherit MuiTypography-body1 MuiTypography-inline"
           />
         </div>
       </div>
@@ -58,7 +58,7 @@ exports[`UserBadge default render 1`] = `
           class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
         />
         <p
-          class="MuiTypography-root Typography-invert Typography-bodyInherit Typography-regular Typography-grey MuiTypography-body1 Avatar-text"
+          class="MuiTypography-root Typography-invert Typography-bodyInherit MuiTypography-body1 Avatar-text"
         >
           JD
         </p>
@@ -70,19 +70,19 @@ exports[`UserBadge default render 1`] = `
           style="display: block;"
         >
           <h3
-            class="MuiTypography-root Typography-headingSmall Typography-regular Typography-grey MuiTypography-h3 MuiTypography-inline"
+            class="MuiTypography-root Typography-headingSmall MuiTypography-h3 MuiTypography-inline"
           >
             Joe Doe
           </h3>
           <p
-            class="MuiTypography-root Typography-bodyInherit Typography-regular Typography-grey MuiTypography-body1 MuiTypography-inline"
+            class="MuiTypography-root Typography-bodyInherit MuiTypography-body1 MuiTypography-inline"
           />
         </div>
         <div
           style="display: block;"
         >
           <p
-            class="MuiTypography-root Typography-bodyInherit Typography-regular Typography-grey MuiTypography-body1"
+            class="MuiTypography-root Typography-bodyInherit MuiTypography-body1"
           >
             QA tester
           </p>
@@ -109,7 +109,7 @@ exports[`UserBadge invert render 1`] = `
           class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
         />
         <p
-          class="MuiTypography-root Typography-invert Typography-bodyInherit Typography-regular Typography-grey MuiTypography-body1 Avatar-text"
+          class="MuiTypography-root Typography-invert Typography-bodyInherit MuiTypography-body1 Avatar-text"
         >
           JD
         </p>
@@ -121,19 +121,19 @@ exports[`UserBadge invert render 1`] = `
           style="display: block;"
         >
           <h3
-            class="MuiTypography-root Typography-invert Typography-headingSmall Typography-regular Typography-grey MuiTypography-h3 MuiTypography-inline"
+            class="MuiTypography-root Typography-invert Typography-headingSmall MuiTypography-h3 MuiTypography-inline"
           >
             Joe Doe
           </h3>
           <p
-            class="MuiTypography-root Typography-invert Typography-bodyInherit Typography-regular Typography-grey MuiTypography-body1 MuiTypography-inline"
+            class="MuiTypography-root Typography-invert Typography-bodyInherit MuiTypography-body1 MuiTypography-inline"
           />
         </div>
         <div
           style="display: block;"
         >
           <p
-            class="MuiTypography-root Typography-bodyInherit Typography-regular Typography-grey MuiTypography-body1"
+            class="MuiTypography-root Typography-bodyInherit MuiTypography-body1"
           >
             QA tester
           </p>
@@ -160,7 +160,7 @@ exports[`UserBadge manual center alignment 1`] = `
           class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
         />
         <p
-          class="MuiTypography-root Typography-invert Typography-bodyInherit Typography-regular Typography-grey MuiTypography-body1 Avatar-text"
+          class="MuiTypography-root Typography-invert Typography-bodyInherit MuiTypography-body1 Avatar-text"
         >
           JD
         </p>
@@ -172,19 +172,19 @@ exports[`UserBadge manual center alignment 1`] = `
           style="display: block;"
         >
           <h3
-            class="MuiTypography-root Typography-headingSmall Typography-regular Typography-grey MuiTypography-h3 MuiTypography-inline"
+            class="MuiTypography-root Typography-headingSmall MuiTypography-h3 MuiTypography-inline"
           >
             Joe Doe
           </h3>
           <p
-            class="MuiTypography-root Typography-bodyInherit Typography-regular Typography-grey MuiTypography-body1 MuiTypography-inline"
+            class="MuiTypography-root Typography-bodyInherit MuiTypography-body1 MuiTypography-inline"
           />
         </div>
         <div
           style="display: block;"
         >
           <p
-            class="MuiTypography-root Typography-bodyInherit Typography-regular Typography-grey MuiTypography-body1"
+            class="MuiTypography-root Typography-bodyInherit MuiTypography-body1"
           >
             QA tester
           </p>
@@ -211,7 +211,7 @@ exports[`UserBadge override auto center alignment 1`] = `
           class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
         />
         <p
-          class="MuiTypography-root Typography-invert Typography-bodyInherit Typography-regular Typography-grey MuiTypography-body1 Avatar-text"
+          class="MuiTypography-root Typography-invert Typography-bodyInherit MuiTypography-body1 Avatar-text"
         >
           JD
         </p>
@@ -223,12 +223,12 @@ exports[`UserBadge override auto center alignment 1`] = `
           style="display: block;"
         >
           <h3
-            class="MuiTypography-root Typography-headingSmall Typography-regular Typography-grey MuiTypography-h3 MuiTypography-inline"
+            class="MuiTypography-root Typography-headingSmall MuiTypography-h3 MuiTypography-inline"
           >
             Joe Doe
           </h3>
           <p
-            class="MuiTypography-root Typography-bodyInherit Typography-regular Typography-grey MuiTypography-body1 MuiTypography-inline"
+            class="MuiTypography-root Typography-bodyInherit MuiTypography-body1 MuiTypography-inline"
           />
         </div>
       </div>
@@ -253,7 +253,7 @@ exports[`UserBadge small size 1`] = `
           class="Avatar-textContainer Avatar-square Avatar-small Avatar-clippedCorner"
         />
         <p
-          class="MuiTypography-root Typography-invert Typography-bodyInherit Typography-regular Typography-grey MuiTypography-body1 Avatar-text"
+          class="MuiTypography-root Typography-invert Typography-bodyInherit MuiTypography-body1 Avatar-text"
         >
           JD
         </p>
@@ -265,19 +265,19 @@ exports[`UserBadge small size 1`] = `
           style="display: block;"
         >
           <h3
-            class="MuiTypography-root Typography-headingSmall Typography-regular Typography-grey MuiTypography-h3 MuiTypography-inline"
+            class="MuiTypography-root Typography-headingSmall MuiTypography-h3 MuiTypography-inline"
           >
             Joe Doe
           </h3>
           <p
-            class="MuiTypography-root Typography-bodyInherit Typography-regular Typography-grey MuiTypography-body1 MuiTypography-inline"
+            class="MuiTypography-root Typography-bodyInherit MuiTypography-body1 MuiTypography-inline"
           />
         </div>
         <div
           style="display: block;"
         >
           <p
-            class="MuiTypography-root Typography-bodyInherit Typography-regular Typography-grey MuiTypography-body1"
+            class="MuiTypography-root Typography-bodyInherit MuiTypography-body1"
           >
             QA tester
           </p>

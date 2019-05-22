@@ -21,6 +21,43 @@ PicassoProvider.override(() => ({
 
 export default ({ palette, typography }: Theme) =>
   createStyles({
+    // variants
+    bodySmall: {
+      fontSize: '12px',
+      fontWeight: typography.fontWeights.regular,
+      color: palette.text.primary
+    },
+    bodyMedium: {
+      fontSize: '14px',
+      fontWeight: typography.fontWeights.regular,
+      color: palette.text.primary
+    },
+    bodyLarge: {
+      fontSize: '16px',
+      fontWeight: typography.fontWeights.regular,
+      color: palette.common.black
+    },
+    bodyInherit: {
+      fontSize: '1em',
+      fontWeight: typography.fontWeights.regular,
+      color: palette.text.primary
+    },
+    headingSmall: {
+      fontSize: '14px',
+      fontWeight: typography.fontWeights.semibold,
+      color: palette.common.black
+    },
+    headingMedium: {
+      fontSize: '16px',
+      fontWeight: typography.fontWeights.semibold,
+      color: palette.common.black
+    },
+    headingLarge: {
+      fontSize: '20px',
+      fontWeight: typography.fontWeights.semibold,
+      color: palette.common.black
+    },
+
     // weight
     thin: {
       fontWeight: typography.fontWeights.thin
@@ -56,31 +93,5 @@ export default ({ palette, typography }: Theme) =>
     },
     invert: {
       color: palette.common.white
-    },
-
-    // variants
-    bodySmall: {
-      fontSize: '12px'
-    },
-    bodyMedium: {
-      fontSize: '14px'
-    },
-    bodyLarge: {
-      fontSize: '16px'
-    },
-    bodyInherit: {
-      fontSize: '1em'
-    },
-    headingSmall: {
-      fontSize: '14px',
-      fontWeight: typography.fontWeights.semibold
-    },
-    headingMedium: {
-      fontSize: '16px',
-      fontWeight: typography.fontWeights.semibold
-    },
-    headingLarge: {
-      fontSize: '20px',
-      fontWeight: typography.fontWeights.semibold
     }
   })

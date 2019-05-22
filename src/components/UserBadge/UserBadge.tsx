@@ -71,12 +71,7 @@ export const UserBadge: FunctionComponent<Props> = ({
       {UserBadgeAvatar}
       <Container flex direction='column' left='small'>
         <Container>
-          <Typography
-            inline
-            variant='heading'
-            size='small'
-            invert={invert}
-          >
+          <Typography inline variant='heading' size='small' invert={invert}>
             {name}
           </Typography>
           <Typography inline invert={invert}>

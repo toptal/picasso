@@ -4,16 +4,16 @@ import { Typography, Container } from '@toptal/picasso'
 const TypographyHeadingsExample = () => (
   <div>
     <Container bottom='small'>
-      <Typography variant='heading' size='small' color='black'>
+      <Typography variant='heading' size='small'>
         Heading Small
       </Typography>
     </Container>
     <Container bottom='small'>
-      <Typography variant='heading' size='medium' color='black'>
+      <Typography variant='heading' size='medium'>
         Heading Medium
       </Typography>
     </Container>
-    <Typography variant='heading' size='large' color='black'>
+    <Typography variant='heading' size='large'>
       Heading Large
     </Typography>
   </div>
