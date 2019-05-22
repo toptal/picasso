@@ -55,7 +55,7 @@ const ModalDefaultExample = () => {
             <Select placeholder='State' options={STATES} value='Alabama' />
           </Form.Field>
           <Form.Field>
-            <Checkbox placeholder='Use shipping address for billing' />
+            <Checkbox label='Use shipping address for billing' />
           </Form.Field>
         </Modal.Content>
         <Modal.Actions>

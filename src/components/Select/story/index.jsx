@@ -24,8 +24,7 @@ page.createTabChapter('Props').addComponentDocs({
 page
   .createChapter()
   .addExample('Select/story/Default.example.jsx', 'Default')
-  .addExample('Select/story/Types.example.jsx', 'Types')
-  .addExample('Select/story/WithPlaceholder.example.jsx', 'With placeholder')
+  .addExample('Select/story/Native.example.jsx', 'Native')
   .addExample('Select/story/Disabled.example.jsx', 'Disabled')
   .addExample('Select/story/Error.example.jsx', 'Error')
   .addExample('Select/story/FullWidth.example.jsx', 'Full width')

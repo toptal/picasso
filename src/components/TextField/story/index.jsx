@@ -22,9 +22,8 @@ page
     }
   })
   .addExample('TextField/story/Default.example.jsx', 'Default')
-  .addExample('TextField/story/WithIcon.example.jsx', 'With icon')
   .addExample('TextField/story/Disabled.example.jsx', 'Disabled')
   .addExample('TextField/story/Error.example.jsx', 'Error')
-  .addExample('TextField/story/Placeholder.example.jsx', 'Placeholder')
+  .addExample('TextField/story/WithIcon.example.jsx', 'With icon')
   .addExample('TextField/story/FullWidth.example.jsx', 'Full width')
   .addExample('TextField/story/Multiline.example.jsx', 'Multiline | Textarea')

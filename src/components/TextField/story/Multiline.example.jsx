@@ -1,15 +1,28 @@
-import React from 'react'
-import { TextField } from '@toptal/picasso'
+import React, { useState } from 'react'
+import { TextField, Container } from '@toptal/picasso'
 
-const TextFieldMultilineExample = () => (
-  <div>
-    <TextField multiline rows={4} />
-    <TextField multiline rows={4} placeholder='Placeholder' />
-    <TextField multiline disabled rows={4} />
-    <TextField multiline disabled rows={4} placeholder='Placeholder' />
-    <TextField multiline error rows={4} />
-    <TextField multiline error rows={4} placeholder='Placeholder' />
-  </div>
-)
+const TextFieldMultilineExample = () => {
+  const [value, setValue] = useState('Multiline text')
+
+  const handleChange = event => {
+    setValue(event.target.value)
+  }
+
+  return (
+    <Container flex inline>
+      <Container right='small'>
+        <TextField
+          multiline
+          rows={4}
+          value={value}
+          handleChange={handleChange}
+        />
+      </Container>
+      <Container right='small'>
+        <TextField multiline rows={4} placeholder='Placeholder' />
+      </Container>
+    </Container>
+  )
+}
 
 export default TextFieldMultilineExample

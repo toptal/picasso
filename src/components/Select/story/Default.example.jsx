@@ -1,15 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Select } from '@toptal/picasso'
 
-const SelectDefaultExample = () => (
-  <div>
+const SelectDefaultExample = () => {
+  const [value, setValue] = useState()
+
+  const handleChange = event => {
+    setValue(event.target.value)
+  }
+
+  return (
     <Select
       onChange={handleChange}
       options={OPTIONS}
-      placeholder='Choose your main skill...'
+      value={value}
+      placeholder='Choose option...'
+      width='auto'
     />
-  </div>
-)
+  )
+}
 
 const OPTIONS = [
   { value: '1', text: 'Option 1' },
@@ -17,9 +25,5 @@ const OPTIONS = [
   { value: '3', text: 'Option 3' },
   { value: '4', text: 'Option 4' }
 ]
-
-const handleChange = e => {
-  window.alert('Value of a chosen option is ' + e.target.value)
-}
 
 export default SelectDefaultExample

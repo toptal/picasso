@@ -1,14 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Select } from '@toptal/picasso'
 
-const SelectCustomOptionsExample = () => (
-  <div>
-    <Select options={OPTIONS} placeholder='Custom options...' width='auto' />
-  </div>
-)
+const SelectCustomOptionExample = () => {
+  const [value, setValue] = useState()
+
+  const handleChange = event => {
+    setValue(event.target.value)
+  }
+
+  return (
+    <Select
+      onChange={handleChange}
+      options={OPTIONS}
+      value={value}
+      placeholder='Choose option...'
+      width='auto'
+    />
+  )
+}
 
 const OPTIONS = [
-  { value: 1, text: 'Option 1' },
+  { value: '1', text: 'Option 1' },
   {
     value: 2,
     text: (
@@ -19,4 +31,4 @@ const OPTIONS = [
   }
 ]
 
-export default SelectCustomOptionsExample
+export default SelectCustomOptionExample

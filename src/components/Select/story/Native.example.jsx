@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Select } from '@toptal/picasso'
 
-const SelectChosenOptionExample = () => {
-  const [value, setValue] = useState(3)
+const SelectNativeExample = () => {
+  const [value, setValue] = useState()
 
   const handleChange = event => {
     setValue(event.target.value)
@@ -10,6 +10,7 @@ const SelectChosenOptionExample = () => {
 
   return (
     <Select
+      native
       onChange={handleChange}
       options={OPTIONS}
       value={value}
@@ -26,4 +27,4 @@ const OPTIONS = [
   { value: '4', text: 'Option 4' }
 ]
 
-export default SelectChosenOptionExample
+export default SelectNativeExample

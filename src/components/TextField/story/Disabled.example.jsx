@@ -1,11 +1,21 @@
-import React from 'react'
-import { TextField } from '@toptal/picasso'
+import React, { useState } from 'react'
+import { TextField, Container } from '@toptal/picasso'
 
-const TextFieldDefaultExample = () => (
-  <div>
-    <TextField disabled value='Text' />
-    <TextField disabled placeholder='Placeholder' />
-  </div>
-)
+const TextFieldDisabledExample = () => {
+  const [value, setValue] = useState('Text')
 
-export default TextFieldDefaultExample
+  const handleChange = event => {
+    setValue(event.target.value)
+  }
+
+  return (
+    <Container flex inline>
+      <Container right='small'>
+        <TextField disabled value={value} onChange={handleChange} />
+      </Container>
+      <TextField disabled placeholder='Placeholder' />
+    </Container>
+  )
+}
+
+export default TextFieldDisabledExample

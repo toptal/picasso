@@ -1,11 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { TextField } from '@toptal/picasso'
 
-const TextFieldDefaultExample = () => (
-  <div>
-    <TextField value='Text' />
-    <TextField placeholder='Placeholder' />
-  </div>
-)
+const TextFieldDefaultExample = () => {
+  const [value, setValue] = useState('Text')
+
+  const handleChange = event => {
+    setValue(event.target.value)
+  }
+
+  return (
+    <TextField
+      value={value}
+      placeholder='Placeholder'
+      onChange={handleChange}
+    />
+  )
+}
 
 export default TextFieldDefaultExample
