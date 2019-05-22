@@ -6,7 +6,7 @@ import Typography from '../Typography'
 import { StandardProps } from '../Picasso'
 import styles from './styles'
 
-interface Props extends StandardProps {
+export interface Props extends StandardProps {
   /** Title content */
   children: ReactNode
 }
