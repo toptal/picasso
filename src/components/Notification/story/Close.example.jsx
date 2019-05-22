@@ -8,7 +8,9 @@ const mockOnClose = () => {
 const NotificationCloseExample = () => (
   <div>
     <Container bottom={1}>
-      <Typography variant='h4'>Info</Typography>
+      <Typography variant='heading' size='small'>
+        Info
+      </Typography>
     </Container>
     <Notification onClose={mockOnClose} variant='warning'>
       The time zone in your profile is set to (UTC -08:00) America - Los

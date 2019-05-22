@@ -68,7 +68,7 @@ export const AccountSelect: FunctionComponent<Props> = ({
               justifyContent='space-between'
             >
               <UserBadge name={account.name} avatar={account.avatar}>
-                <Typography variant='caption'>{account.position}</Typography>
+                <Typography size='small'>{account.position}</Typography>
               </UserBadge>
               <ChevronRight color={palette.text.primary} />
             </Container>

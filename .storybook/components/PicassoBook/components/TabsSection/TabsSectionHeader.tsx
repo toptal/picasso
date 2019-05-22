@@ -39,7 +39,7 @@ const TabsSectionHeader: FunctionComponent<Props> = props => {
         </Tabs>
       </Paper>
       <Container bottom={1}>
-        <Typography variant='h5' className={classes.description}>
+        <Typography weight='semibold' className={classes.description}>
           {tabs[selectedTab].description}
         </Typography>
       </Container>

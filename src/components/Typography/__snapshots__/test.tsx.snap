@@ -1,15 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Typography bold and center aligned render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <p
+      class="MuiTypography-root Typography-bodyInherit Typography-bold MuiTypography-body1 MuiTypography-alignCenter"
+    >
+      Bold and center aligned
+    </p>
+  </div>
+</div>
+`;
+
 exports[`Typography default render 1`] = `
 <div>
   <div
     class="Picasso-root"
   >
     <p
-      class="MuiTypography-root Typography-body Typography-bold MuiTypography-body1 MuiTypography-alignCenter"
+      class="MuiTypography-root Typography-bodyInherit MuiTypography-body1"
     >
-      Hello world!
+      Just Typography
     </p>
+  </div>
+</div>
+`;
+
+exports[`Typography inherit size render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <p
+      class="MuiTypography-root Typography-bodyInherit MuiTypography-body1"
+    >
+      Inherit font size
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Typography variant heading small render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <h3
+      class="MuiTypography-root Typography-headingSmall MuiTypography-h3"
+    >
+      Heading small
+    </h3>
   </div>
 </div>
 `;
