@@ -65,10 +65,6 @@ const renderOptions = (
   return resultOptions
 }
 
-const SelectIcon = ({ className }: { className: string }) => (
-  <DropdownArrows className={className} size={1} />
-)
-
 export const Select: FunctionComponent<Props> = ({
   classes,
   className,
@@ -110,7 +106,14 @@ export const Select: FunctionComponent<Props> = ({
       native={native}
       variant='outlined'
       value={value}
-      IconComponent={SelectIcon}
+      IconComponent={({ className }: { className: string }) => (
+        <DropdownArrows
+          className={cx(className, {
+            [classes.iconDisabled]: disabled
+          })}
+          size={1}
+        />
+      )}
       MenuProps={{
         anchorOrigin: {
           vertical: 'bottom',
