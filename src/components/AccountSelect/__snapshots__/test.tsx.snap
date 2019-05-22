@@ -48,7 +48,7 @@ exports[`AccountSelect default render 1`] = `
                     Phil Leif 1
                   </h3>
                   <p
-                    class="MuiTypography-root Typography-bodyInherit MuiTypography-body1 MuiTypography-inline"
+                    class="MuiTypography-root Typography-bodyMedium MuiTypography-body1 MuiTypography-inline"
                   />
                 </div>
                 <div
@@ -114,7 +114,7 @@ exports[`AccountSelect default render 1`] = `
                     Phil Leif 2
                   </h3>
                   <p
-                    class="MuiTypography-root Typography-bodyInherit MuiTypography-body1 MuiTypography-inline"
+                    class="MuiTypography-root Typography-bodyMedium MuiTypography-body1 MuiTypography-inline"
                   />
                 </div>
                 <div
@@ -177,7 +177,7 @@ exports[`AccountSelect default render 1`] = `
                     Phil Leif 3
                   </h3>
                   <p
-                    class="MuiTypography-root Typography-bodyInherit MuiTypography-body1 MuiTypography-inline"
+                    class="MuiTypography-root Typography-bodyMedium MuiTypography-body1 MuiTypography-inline"
                   />
                 </div>
                 <div

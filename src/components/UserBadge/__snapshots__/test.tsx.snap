@@ -33,7 +33,7 @@ exports[`UserBadge auto center alignment 1`] = `
             Joe Doe
           </h3>
           <p
-            class="MuiTypography-root Typography-bodyInherit MuiTypography-body1 MuiTypography-inline"
+            class="MuiTypography-root Typography-bodyMedium MuiTypography-body1 MuiTypography-inline"
           />
         </div>
       </div>
@@ -75,7 +75,7 @@ exports[`UserBadge default render 1`] = `
             Joe Doe
           </h3>
           <p
-            class="MuiTypography-root Typography-bodyInherit MuiTypography-body1 MuiTypography-inline"
+            class="MuiTypography-root Typography-bodyMedium MuiTypography-body1 MuiTypography-inline"
           />
         </div>
         <div
@@ -126,7 +126,7 @@ exports[`UserBadge invert render 1`] = `
             Joe Doe
           </h3>
           <p
-            class="MuiTypography-root Typography-invert Typography-bodyInherit MuiTypography-body1 MuiTypography-inline"
+            class="MuiTypography-root Typography-invert Typography-bodyMedium MuiTypography-body1 MuiTypography-inline"
           />
         </div>
         <div
@@ -177,7 +177,7 @@ exports[`UserBadge manual center alignment 1`] = `
             Joe Doe
           </h3>
           <p
-            class="MuiTypography-root Typography-bodyInherit MuiTypography-body1 MuiTypography-inline"
+            class="MuiTypography-root Typography-bodyMedium MuiTypography-body1 MuiTypography-inline"
           />
         </div>
         <div
@@ -228,7 +228,7 @@ exports[`UserBadge override auto center alignment 1`] = `
             Joe Doe
           </h3>
           <p
-            class="MuiTypography-root Typography-bodyInherit MuiTypography-body1 MuiTypography-inline"
+            class="MuiTypography-root Typography-bodyMedium MuiTypography-body1 MuiTypography-inline"
           />
         </div>
       </div>
@@ -270,7 +270,7 @@ exports[`UserBadge small size 1`] = `
             Joe Doe
           </h3>
           <p
-            class="MuiTypography-root Typography-bodyInherit MuiTypography-body1 MuiTypography-inline"
+            class="MuiTypography-root Typography-bodyMedium MuiTypography-body1 MuiTypography-inline"
           />
         </div>
         <div

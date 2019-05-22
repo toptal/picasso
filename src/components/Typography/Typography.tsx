@@ -54,21 +54,20 @@ const VARIANTS: VariantsType = {
   }
 }
 
-export const Typography: FunctionComponent<Props> = props => {
-  const {
-    variant,
-    children,
-    size,
-    align,
-    className,
-    classes,
-    style,
-    inline,
-    as,
-    weight,
-    color,
-    invert
-  } = props
+export const Typography: FunctionComponent<Props> = ({
+  variant,
+  children,
+  size,
+  align,
+  className,
+  classes,
+  style,
+  inline,
+  as,
+  weight,
+  color,
+  invert
+}) => {
   const resolvedVariant = VARIANTS[variant!][size!]
   const variantClassName = kebabToCamelCase(`${variant}-${size}`)
   const rootClass = cx(
