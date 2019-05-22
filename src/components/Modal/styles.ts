@@ -5,10 +5,10 @@ export default ({ palette }: Theme) =>
     closeButton: {
       position: 'absolute',
       right: '2rem',
-      top: '2rem',
-      color: palette.grey[500],
+      top: '1.875rem',
+      color: palette.grey[400],
+      fontSize: '1em',
       cursor: 'pointer',
-      fontSize: '1.3rem',
       opacity: 0.3,
 
       '&:hover': {
