@@ -18,44 +18,41 @@ exports[`AccountSelect default render 1`] = `
           class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone AccountSelect-accountLink"
         >
           <div
-            style="padding: 1.5em; display: flex; flex-direction: row; align-items: center;"
+            style="padding: 1.5em; display: flex; flex-direction: row; align-items: center; justify-content: space-between;"
           >
             <div
-              class="MuiGrid-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-flex-start"
+              class="UserBadge-root"
+              style="display: flex; align-items: flex-start;"
             >
               <div
-                class="MuiGrid-item"
+                class="Avatar-root Avatar-xsmall"
               >
                 <div
-                  class="Avatar-root Avatar-xsmall"
+                  class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
+                />
+                <p
+                  class="MuiTypography-root Typography-invert Typography-bodyInherit MuiTypography-body1 Avatar-text"
                 >
-                  <div
-                    class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
-                  />
-                  <p
-                    class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 Avatar-text"
-                  >
-                    PL
-                  </p>
-                </div>
+                  PL
+                </p>
               </div>
               <div
-                class="MuiGrid-item"
+                style="margin-left: 1em; display: flex; flex-direction: column;"
               >
-                <h5
-                  class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
-                >
-                  Phil Leif 1
-                </h5>
                 <div
-                  style="margin-top: 0.25em; display: block;"
+                  style="display: block;"
                 >
-                  <span
-                    class="MuiTypography-root Typography-regular MuiTypography-caption"
+                  <h4
+                    class="MuiTypography-root Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name"
                   >
-                    Account Owner at Stowaway Cosmetics
-                  </span>
+                    Phil Leif 1
+                  </h4>
                 </div>
+                <p
+                  class="MuiTypography-root Typography-bodySmall MuiTypography-body1"
+                >
+                  Account Owner at Stowaway Cosmetics
+                </p>
               </div>
             </div>
             <svg
@@ -80,44 +77,41 @@ exports[`AccountSelect default render 1`] = `
           href="#"
         >
           <div
-            style="padding: 1.5em; display: flex; flex-direction: row; align-items: center;"
+            style="padding: 1.5em; display: flex; flex-direction: row; align-items: center; justify-content: space-between;"
           >
             <div
-              class="MuiGrid-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-flex-start"
+              class="UserBadge-root"
+              style="display: flex; align-items: flex-start;"
             >
               <div
-                class="MuiGrid-item"
+                class="Avatar-root Avatar-xsmall"
               >
                 <div
-                  class="Avatar-root Avatar-xsmall"
+                  class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
+                />
+                <p
+                  class="MuiTypography-root Typography-invert Typography-bodyInherit MuiTypography-body1 Avatar-text"
                 >
-                  <div
-                    class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
-                  />
-                  <p
-                    class="MuiTypography-root Typography-body Typography-invert Typography-regular MuiTypography-body1 Avatar-text"
-                  >
-                    PL
-                  </p>
-                </div>
+                  PL
+                </p>
               </div>
               <div
-                class="MuiGrid-item"
+                style="margin-left: 1em; display: flex; flex-direction: column;"
               >
-                <h5
-                  class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
-                >
-                  Phil Leif 2
-                </h5>
                 <div
-                  style="margin-top: 0.25em; display: block;"
+                  style="display: block;"
                 >
-                  <span
-                    class="MuiTypography-root Typography-regular MuiTypography-caption"
+                  <h4
+                    class="MuiTypography-root Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name"
                   >
-                    Company Representative at Marketing Works
-                  </span>
+                    Phil Leif 2
+                  </h4>
                 </div>
+                <p
+                  class="MuiTypography-root Typography-bodySmall MuiTypography-body1"
+                >
+                  Company Representative at Marketing Works
+                </p>
               </div>
             </div>
             <svg
@@ -142,41 +136,38 @@ exports[`AccountSelect default render 1`] = `
           href="#"
         >
           <div
-            style="padding: 1.5em; display: flex; flex-direction: row; align-items: center;"
+            style="padding: 1.5em; display: flex; flex-direction: row; align-items: center; justify-content: space-between;"
           >
             <div
-              class="MuiGrid-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-flex-start"
+              class="UserBadge-root"
+              style="display: flex; align-items: flex-start;"
             >
               <div
-                class="MuiGrid-item"
+                class="Avatar-root Avatar-xsmall"
               >
-                <div
-                  class="Avatar-root Avatar-xsmall"
-                >
-                  <img
-                    alt="Phil Leif 3"
-                    class="Image-root Avatar-image Avatar-square Avatar-xsmall Avatar-clippedCorner"
-                    src="./jacqueline-with-flowers-1954-square.jpg"
-                  />
-                </div>
+                <img
+                  alt="Phil Leif 3"
+                  class="Image-root Avatar-image Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
+                  src="./jacqueline-with-flowers-1954-square.jpg"
+                />
               </div>
               <div
-                class="MuiGrid-item"
+                style="margin-left: 1em; display: flex; flex-direction: column;"
               >
-                <h5
-                  class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
-                >
-                  Phil Leif 3
-                </h5>
                 <div
-                  style="margin-top: 0.25em; display: block;"
+                  style="display: block;"
                 >
-                  <span
-                    class="MuiTypography-root Typography-regular MuiTypography-caption"
+                  <h4
+                    class="MuiTypography-root Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name"
                   >
-                    Talent
-                  </span>
+                    Phil Leif 3
+                  </h4>
                 </div>
+                <p
+                  class="MuiTypography-root Typography-bodySmall MuiTypography-body1"
+                >
+                  Talent
+                </p>
               </div>
             </div>
             <svg
