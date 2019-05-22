@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, ReactNode } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import Dialog from '@material-ui/core/Dialog'
 import CloseIcon from '@material-ui/icons/Close'
@@ -9,9 +9,11 @@ import ModalActions from '../ModalActions'
 import { StandardProps, PicassoComponent } from '../Picasso'
 import styles from './styles'
 
-type ContainerValue = () => HTMLElement | HTMLElement
+type ContainerValue = HTMLElement | (() => HTMLElement)
 
-interface Props extends StandardProps {
+export interface Props extends StandardProps {
+  /** Content of Modal component */
+  children: ReactNode
   /** Whether modal should be displayed */
   open: boolean
   /** Callback executed when backdrop was clicked */
@@ -75,9 +77,7 @@ Modal.defaultProps = {
 }
 
 Modal.Content = ModalContent
-
 Modal.Actions = ModalActions
-
 Modal.Title = ModalTitle
 
 export default withStyles(styles)(Modal) as PicassoComponent<Props, StaticProps>
