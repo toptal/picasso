@@ -7,8 +7,10 @@ const SpacingsExample = () => (
       <Container padded='medium'>
         <Container flex justifyContent='space-between' alignItems='flex-start'>
           <Container>
-            <Typography variant='h3'>UX Designer</Typography>
-            <Typography variant='caption'>2 positions Open</Typography>
+            <Typography variant='heading' size='small'>
+              UX Designer
+            </Typography>
+            <Typography size='small'>2 positions Open</Typography>
           </Container>
           <Stepper
             hideLabels

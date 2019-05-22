@@ -34,7 +34,7 @@ exports[`Page.Header default render 1`] = `
             style="margin-left: 1em; display: block;"
           >
             <p
-              class="MuiTypography-root Typography-body Typography-invert Typography-light MuiTypography-body1"
+              class="MuiTypography-root Typography-invert Typography-bodyInherit Typography-light MuiTypography-body1"
             >
               Default
             </p>
@@ -88,7 +88,7 @@ exports[`Page.Header render with link 1`] = `
             style="margin-left: 1em; display: block;"
           >
             <p
-              class="MuiTypography-root Typography-body Typography-invert Typography-light MuiTypography-body1"
+              class="MuiTypography-root Typography-invert Typography-bodyInherit Typography-light MuiTypography-body1"
             >
               Something
             </p>

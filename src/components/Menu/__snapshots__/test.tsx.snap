@@ -15,7 +15,7 @@ exports[`Menu default render 1`] = `
         tabindex="-1"
       >
         <p
-          class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1 MenuItem-stringContent"
+          class="MuiTypography-root Typography-bodyInherit MuiTypography-body1 MenuItem-stringContent"
         >
           Item 1
         </p>
@@ -26,7 +26,7 @@ exports[`Menu default render 1`] = `
         tabindex="-1"
       >
         <p
-          class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1 MenuItem-stringContent"
+          class="MuiTypography-root Typography-bodyInherit MuiTypography-body1 MenuItem-stringContent"
         >
           Item 2
         </p>
@@ -37,7 +37,7 @@ exports[`Menu default render 1`] = `
         tabindex="-1"
       >
         <p
-          class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1 MenuItem-stringContent"
+          class="MuiTypography-root Typography-bodyInherit MuiTypography-body1 MenuItem-stringContent"
         >
           Item 3
         </p>

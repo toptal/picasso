@@ -49,7 +49,7 @@ const FormsExample = () => (
 
           <Form.Field>
             <Container bottom='xsmall'>
-              <Typography variant='small'>Estimated length:</Typography>
+              <Typography size='large'>Estimated length:</Typography>
             </Container>
             <HorizontalRadioGroup name='variableName' value='radio1'>
               <Radio label='1-2 months' value='radio1' />
