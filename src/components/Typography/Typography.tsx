@@ -6,11 +6,10 @@ import MUITypography, { TypographyProps } from '@material-ui/core/Typography'
 import cx from 'classnames'
 
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
-import { StandardProps } from '../Picasso'
+import { StandardProps, SizeType } from '../Picasso'
 import styles from './styles'
 
 type VariantType = 'heading' | 'body'
-type SizeType = 'small' | 'medium' | 'large' | 'inherit'
 
 type WeightType = 'thin' | 'light' | 'regular' | 'semibold' | 'bold'
 type ColorType = 'blue' | 'green' | 'red' | 'grey' | 'black'
@@ -25,7 +24,7 @@ export interface Props extends StandardProps {
   /** Text align of the inner text */
   align?: PropTypes.Alignment
   /** Size of the inner text */
-  size?: SizeType
+  size?: SizeType<'small' | 'medium' | 'large'> | 'inherit'
   /** Font weight of the inner text */
   weight?: WeightType
   /** Invert color */
@@ -36,7 +35,11 @@ export interface Props extends StandardProps {
   as?: ReactType<TypographyProps>
 }
 
-type VariantsType = { [k in VariantType]: { [l in SizeType]?: MUIVariant } }
+type VariantsType = {
+  [k in VariantType]: {
+    [l in SizeType<'small' | 'medium' | 'large'> | 'inherit']?: MUIVariant
+  }
+}
 const VARIANTS: VariantsType = {
   heading: {
     small: 'h3',
