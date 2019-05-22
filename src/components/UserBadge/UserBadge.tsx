@@ -1,10 +1,10 @@
 import React, { FunctionComponent, ReactNode } from 'react'
 import { withStyles } from '@material-ui/core/styles'
+import cx from 'classnames'
 
 import Avatar from '../Avatar'
 import Container from '../Container'
 import Typography from '../Typography'
-import Grid from '../Grid'
 import { StandardProps, SizeType } from '../Picasso'
 import styles from './styles'
 
@@ -54,7 +54,7 @@ export const UserBadge: FunctionComponent<Props> = ({
   const shouldCenter = center === true || (center === 'auto' && !children)
   const alignItems = shouldCenter ? 'center' : 'flex-start'
 
-  const { title: titleClass, ...gridClasses } = classes
+  const { title: titleClass } = classes
   const userTitle = title && (
     <Typography inline className={titleClass} variant='h5'>
       {title}
@@ -62,22 +62,25 @@ export const UserBadge: FunctionComponent<Props> = ({
   )
 
   return (
-    <Grid
-      spacing={16}
+    <Container
+      flex
       alignItems={alignItems}
-      classes={gridClasses}
-      className={className}
+      className={cx(classes.root, className)}
       style={style}
     >
-      <Grid.Item>{UserBadgeAvatar}</Grid.Item>
-      <Grid.Item>
-        <Typography inline variant='h5' invert={invert} weight='semibold'>
-          {name}
-        </Typography>
-        {userTitle}
-        {children && <Container top={0.25}>{children}</Container>}
-      </Grid.Item>
-    </Grid>
+      {UserBadgeAvatar}
+      <Container flex direction='column' left='small'>
+        <Container>
+          <Typography inline variant='h5' invert={invert} weight='semibold'>
+            {name}
+          </Typography>
+          <Typography inline invert={invert}>
+            {userTitle}
+          </Typography>
+        </Container>
+        {children && <Container>{children}</Container>}
+      </Container>
+    </Container>
   )
 }
 
