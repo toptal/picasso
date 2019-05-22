@@ -7,7 +7,7 @@ const FormsExample = () => (
       <Grid.Item small={12} medium={8} large={6}>
         <Form>
           <Form.Field>
-            <Select label='Select talent' options={OPTIONS} />
+            <Select placeholder='Select talent' options={OPTIONS} />
           </Form.Field>
 
           <Form.Field>
@@ -18,7 +18,7 @@ const FormsExample = () => (
             <Grid direction='row'>
               <Grid.Item small={6}>
                 <Form.Field>
-                  <Select label='Current Country' options={OPTIONS} />
+                  <Select placeholder='Current Country' options={OPTIONS} />
                 </Form.Field>
               </Grid.Item>
               <Grid.Item small={6}>
@@ -34,7 +34,7 @@ const FormsExample = () => (
           </Form.Field>
 
           <Form.Field>
-            <Select label='Desired Commitment' options={OPTIONS} />
+            <Select placeholder='Desired Commitment' options={OPTIONS} />
           </Form.Field>
 
           <Form.Field hint='A Toptal Director of Engineering ewill work with you to understand you needs and fins you the right talent for you project.'>

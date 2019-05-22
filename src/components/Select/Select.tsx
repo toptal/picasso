@@ -5,7 +5,6 @@ import { withStyles } from '@material-ui/core/styles'
 import { capitalize } from '@material-ui/core/utils/helpers'
 
 import FormControl from '../FormControl'
-import Input from '../Input'
 import OutlinedInput from '../OutlinedInput'
 import MenuItem from '../MenuItem'
 import { StandardProps } from '../Picasso'
@@ -35,8 +34,6 @@ export interface Props extends StandardProps {
   options: Option[]
   /** Selected value */
   value?: string | number
-  /** The variant to use */
-  variant?: 'standard' | 'outlined'
 }
 
 const renderOptions = (
@@ -76,7 +73,6 @@ export const Select: FunctionComponent<Props> = ({
   native,
   options,
   placeholder,
-  variant,
   disabled,
   error,
   onChange,
@@ -84,24 +80,15 @@ export const Select: FunctionComponent<Props> = ({
 }) => {
   const fullWidth = width === 'full'
 
-  const outlinedInput =
-    variant === 'outlined' ? (
-      <OutlinedInput
-        classes={{
-          input: classes.input
-        }}
-        fullWidth={fullWidth}
-        labelWidth={0}
-      />
-    ) : (
-      <Input
-        classes={{
-          input: classes.input
-        }}
-        disableUnderline
-        fullWidth={fullWidth}
-      />
-    )
+  const outlinedInput = (
+    <OutlinedInput
+      classes={{
+        input: classes.input
+      }}
+      fullWidth={fullWidth}
+      labelWidth={0}
+    />
+  )
 
   const select = (
     <MUISelect
@@ -116,7 +103,7 @@ export const Select: FunctionComponent<Props> = ({
       id={id}
       input={outlinedInput}
       native={native}
-      variant={variant}
+      variant='outlined'
       value={value}
       MenuProps={{
         anchorOrigin: {
@@ -152,7 +139,6 @@ Select.defaultProps = {
   native: false,
   onChange: () => {},
   value: '',
-  variant: 'outlined',
   width: 'full'
 }
 

@@ -6,14 +6,6 @@ const SelectTypesExample = () => (
     <Container inline right='large'>
       <Select options={OPTIONS} placeholder='Default...' width='auto' />
     </Container>
-    <Container inline right='large'>
-      <Select
-        options={OPTIONS}
-        placeholder='Default...'
-        variant='standard'
-        width='auto'
-      />
-    </Container>
     <Select native options={OPTIONS} placeholder='Native...' width='auto' />
   </div>
 )

@@ -7,7 +7,7 @@ const FormsExample = () => (
       <Grid.Item small={12} medium={8} large={6}>
         <Form>
           <Form.Field>
-            <Select label='Select talent' options={OPTIONS} />
+            <Select placeholder='Select talent' options={OPTIONS} />
           </Form.Field>
 
           <Form.Field>
