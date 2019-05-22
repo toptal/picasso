@@ -62,7 +62,11 @@ const ModalDefaultExample = () => {
           <Button disabled={isLoading} variant='flat'>
             Cancel
           </Button>
-          <Button loading={isLoading} onClick={showDemo} variant='primary-blue'>
+          <Button
+            loading={isLoading}
+            onClick={showDemo}
+            variant='primary-green'
+          >
             Update
           </Button>
         </Modal.Actions>

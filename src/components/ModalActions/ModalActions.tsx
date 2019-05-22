@@ -5,7 +5,7 @@ import cx from 'classnames'
 import { StandardProps } from '../Picasso'
 import styles from './styles'
 
-interface Props extends StandardProps {
+export interface Props extends StandardProps {
   /** Action content (e.g. Buttons) */
   children: ReactNode
 }
