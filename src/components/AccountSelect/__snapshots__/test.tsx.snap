@@ -28,7 +28,7 @@ exports[`AccountSelect default render 1`] = `
                 class="Avatar-root Avatar-xsmall"
               >
                 <div
-                  class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
+                  class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
                 />
                 <p
                   class="MuiTypography-root Typography-invert Typography-bodyInherit MuiTypography-body1 Avatar-text"
@@ -48,11 +48,15 @@ exports[`AccountSelect default render 1`] = `
                     Phil Leif 1
                   </h4>
                 </div>
-                <p
-                  class="MuiTypography-root Typography-bodySmall MuiTypography-body1"
+                <div
+                  style="display: block;"
                 >
-                  Account Owner at Stowaway Cosmetics
-                </p>
+                  <p
+                    class="MuiTypography-root Typography-bodySmall MuiTypography-body1"
+                  >
+                    Account Owner at Stowaway Cosmetics
+                  </p>
+                </div>
               </div>
             </div>
             <svg
@@ -80,14 +84,14 @@ exports[`AccountSelect default render 1`] = `
             style="padding: 1.5em; display: flex; flex-direction: row; align-items: center; justify-content: space-between;"
           >
             <div
-              class="UserBadge-root"
+              class=""
               style="display: flex; align-items: flex-start;"
             >
               <div
                 class="Avatar-root Avatar-xsmall"
               >
                 <div
-                  class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
+                  class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
                 />
                 <p
                   class="MuiTypography-root Typography-invert Typography-bodyInherit MuiTypography-body1 Avatar-text"
@@ -107,11 +111,15 @@ exports[`AccountSelect default render 1`] = `
                     Phil Leif 2
                   </h4>
                 </div>
-                <p
-                  class="MuiTypography-root Typography-bodySmall MuiTypography-body1"
+                <div
+                  style="display: block;"
                 >
-                  Company Representative at Marketing Works
-                </p>
+                  <p
+                    class="MuiTypography-root Typography-bodySmall MuiTypography-body1"
+                  >
+                    Company Representative at Marketing Works
+                  </p>
+                </div>
               </div>
             </div>
             <svg
@@ -147,7 +155,7 @@ exports[`AccountSelect default render 1`] = `
               >
                 <img
                   alt="Phil Leif 3"
-                  class="Image-root Avatar-image Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
+                  class="Image-root Avatar-image Avatar-square Avatar-xsmall Avatar-clippedCorner"
                   src="./jacqueline-with-flowers-1954-square.jpg"
                 />
               </div>
@@ -163,11 +171,15 @@ exports[`AccountSelect default render 1`] = `
                     Phil Leif 3
                   </h4>
                 </div>
-                <p
-                  class="MuiTypography-root Typography-bodySmall MuiTypography-body1"
+                <div
+                  style="display: block;"
                 >
-                  Talent
-                </p>
+                  <p
+                    class="MuiTypography-root Typography-bodySmall MuiTypography-body1"
+                  >
+                    Talent
+                  </p>
+                </div>
               </div>
             </div>
             <svg

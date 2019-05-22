@@ -18,9 +18,7 @@ export const FormHint: FunctionComponent<Props> = ({
   style
 }) => (
   <div className={cx(classes.root, className)} style={style}>
-    <Typography className={classes.hint} color='muted'>
-      {children}
-    </Typography>
+    <Typography className={classes.hint}>{children}</Typography>
   </div>
 )
 

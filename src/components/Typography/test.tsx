@@ -1,37 +1,58 @@
-import React from 'react'
-import { render, cleanup, RenderResult } from 'react-testing-library'
+import React, { FunctionComponent } from 'react'
+import { render, cleanup } from 'react-testing-library'
 
 import Picasso, { OmitInternalProps } from '../Picasso'
 import Typography, { Props } from './Typography'
 
-const renderTypography = (
-  children: React.ReactNode,
-  props: OmitInternalProps<Props>
-) => {
-  const { align, weight } = props
-
-  return render(
-    <Picasso loadFonts={false}>
-      <Typography align={align} weight={weight}>
-        {children}
-      </Typography>
-    </Picasso>
-  )
-}
+const TestTypography: FunctionComponent<OmitInternalProps<Props>> = ({
+  align,
+  weight,
+  variant,
+  size,
+  children
+}) => (
+  <Picasso loadFonts={false}>
+    <Typography align={align} weight={weight} variant={variant} size={size}>
+      {children}
+    </Typography>
+  </Picasso>
+)
 
 afterEach(cleanup)
 
 describe('Typography', () => {
-  let api: RenderResult
-
-  beforeEach(() => {
-    api = renderTypography('Hello world!', {
-      weight: 'bold',
-      align: 'center'
-    })
-  })
   test('default render', () => {
-    const { container } = api
+    const { container } = render(
+      <TestTypography>Just Typography</TestTypography>
+    )
+
+    expect(container).toMatchSnapshot()
+  })
+
+  test('bold and center aligned render', () => {
+    const { container } = render(
+      <TestTypography weight='bold' align='center'>
+        Bold and center aligned
+      </TestTypography>
+    )
+
+    expect(container).toMatchSnapshot()
+  })
+
+  test('variant heading small render', () => {
+    const { container } = render(
+      <TestTypography variant='heading' size='small'>
+        Heading small
+      </TestTypography>
+    )
+
+    expect(container).toMatchSnapshot()
+  })
+
+  test('inherit size render', () => {
+    const { container } = render(
+      <TestTypography size='inherit'>Inherit font size</TestTypography>
+    )
 
     expect(container).toMatchSnapshot()
   })

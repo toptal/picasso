@@ -91,10 +91,10 @@ const renderNotificationContent = (props: Props) => {
         {renderNotificationIcon(props)}
       </Container>
       <Typography
+        size='medium'
         className={cx(content, {
           [contentCloseButton]: onClose
         })}
-        variant='small'
         as='div'
       >
         {children}

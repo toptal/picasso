@@ -19,7 +19,7 @@ const IconListExample = () => (
                 padded='small'
                 style={{
                   paddingBottom: '0.5em',
-                  minWidth: '6rem',
+                  minWidth: '7rem',
                   height: '5rem'
                 }}
               >
@@ -28,7 +28,7 @@ const IconListExample = () => (
                     <Icon size={2} />
                   </Grid.Item>
                   <Grid.Item>
-                    <Typography variant='caption'>{iconName}</Typography>
+                    <Typography size='small'>{iconName}</Typography>
                   </Grid.Item>
                 </Grid>
               </Container>

@@ -3,9 +3,9 @@ import { createStyles } from '@material-ui/core/styles'
 export default () =>
   createStyles({
     root: {
-      marginTop: '.25em'
+      marginTop: '0.25em'
     },
     hint: {
-      fontSize: '.75em'
+      fontSize: '0.6875em'
     }
   })
