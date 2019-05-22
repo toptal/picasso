@@ -12,10 +12,10 @@ exports[`TableCell default render 1`] = `
         class="MuiTableHead-root"
       >
         <tr
-          class="MuiTableRow-root MuiTableRow-head"
+          class="MuiTableRow-root TableRow-root MuiTableRow-head TableRow-head"
         >
           <th
-            class="MuiTableCell-root MuiTableCell-head"
+            class="MuiTableCell-root TableCell-root MuiTableCell-head TableCell-head"
             scope="col"
           >
             Cell test
@@ -26,10 +26,10 @@ exports[`TableCell default render 1`] = `
         class="MuiTableBody-root"
       >
         <tr
-          class="MuiTableRow-root"
+          class="MuiTableRow-root TableRow-root"
         >
           <td
-            class="MuiTableCell-root MuiTableCell-body"
+            class="MuiTableCell-root TableCell-root MuiTableCell-body TableCell-body"
           >
             Cell test
           </td>
