@@ -60,7 +60,13 @@ export const AccountSelect: FunctionComponent<Props> = ({
             onClick={() => onSelect(account)}
             underline='none'
           >
-            <Container padded='medium' flex direction='row' alignItems='center'>
+            <Container
+              padded='medium'
+              flex
+              direction='row'
+              alignItems='center'
+              justifyContent='space-between'
+            >
               <UserBadge name={account.name} avatar={account.avatar}>
                 <Typography variant='caption'>{account.position}</Typography>
               </UserBadge>
