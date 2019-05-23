@@ -115,6 +115,7 @@ export const TextField: FunctionComponent<Props> = ({
         [classes.rootFullWidth]: fullWidth
       })}
       InputProps={{
+        id,
         ...inputProps,
         classes: {
           root: cx(classes.root, {

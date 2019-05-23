@@ -1,0 +1,203 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormLabel default render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <form>
+      <div
+        class="FormField-root"
+      >
+        <label
+          class="FormLabel-root FormLabel-block"
+        >
+          Label
+        </label>
+        <div
+          class="MuiFormControl-root TextField-rootFixedWidth"
+        >
+          <div
+            class="MuiInputBase-root MuiOutlinedInput-root TextField-root MuiInputBase-formControl"
+          >
+            <fieldset
+              aria-hidden="true"
+              class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+              style="padding-left: 8px;"
+            >
+              <legend
+                class="MuiPrivateNotchedOutline-legend"
+                style="width: 0.01px;"
+              >
+                <span>
+                  ​
+                </span>
+              </legend>
+            </fieldset>
+            <input
+              aria-invalid="false"
+              class="MuiInputBase-input MuiOutlinedInput-input TextField-input"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`FormLabel disabled 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <form>
+      <div
+        class="FormField-root"
+      >
+        <label
+          class="FormLabel-root FormLabel-block FormLabel-disabled"
+        >
+          Label
+        </label>
+        <div
+          class="MuiFormControl-root TextField-rootFixedWidth"
+        >
+          <div
+            class="MuiInputBase-root MuiOutlinedInput-root TextField-root MuiInputBase-formControl"
+          >
+            <fieldset
+              aria-hidden="true"
+              class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+              style="padding-left: 8px;"
+            >
+              <legend
+                class="MuiPrivateNotchedOutline-legend"
+                style="width: 0.01px;"
+              >
+                <span>
+                  ​
+                </span>
+              </legend>
+            </fieldset>
+            <input
+              aria-invalid="false"
+              class="MuiInputBase-input MuiOutlinedInput-input TextField-input"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`FormLabel required 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <form>
+      <div
+        class="FormField-root"
+      >
+        <label
+          class="FormLabel-root FormLabel-block"
+        >
+          <span
+            class="FormLabel-asterisk"
+          >
+            *
+          </span>
+          Label
+        </label>
+        <div
+          class="MuiFormControl-root TextField-rootFixedWidth"
+        >
+          <div
+            class="MuiInputBase-root MuiOutlinedInput-root TextField-root MuiInputBase-formControl"
+          >
+            <fieldset
+              aria-hidden="true"
+              class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+              style="padding-left: 8px;"
+            >
+              <legend
+                class="MuiPrivateNotchedOutline-legend"
+                style="width: 0.01px;"
+              >
+                <span>
+                  ​
+                </span>
+              </legend>
+            </fieldset>
+            <input
+              aria-invalid="false"
+              class="MuiInputBase-input MuiOutlinedInput-input TextField-input"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`FormLabel requried and disabled 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <form>
+      <div
+        class="FormField-root"
+      >
+        <label
+          class="FormLabel-root FormLabel-block FormLabel-disabled"
+        >
+          <span
+            class="FormLabel-asterisk"
+          >
+            *
+          </span>
+          Label
+        </label>
+        <div
+          class="MuiFormControl-root TextField-rootFixedWidth"
+        >
+          <div
+            class="MuiInputBase-root MuiOutlinedInput-root TextField-root MuiInputBase-formControl"
+          >
+            <fieldset
+              aria-hidden="true"
+              class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+              style="padding-left: 8px;"
+            >
+              <legend
+                class="MuiPrivateNotchedOutline-legend"
+                style="width: 0.01px;"
+              >
+                <span>
+                  ​
+                </span>
+              </legend>
+            </fieldset>
+            <input
+              aria-invalid="false"
+              class="MuiInputBase-input MuiOutlinedInput-input TextField-input"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+`;
