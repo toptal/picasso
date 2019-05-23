@@ -22,7 +22,8 @@ PicassoProvider.override(({ palette, transitions }) => ({
 
         // show centered circle inside the radio circle
         '&:after': {
-          opacity: 1
+          opacity: 1,
+          color: palette.primary.main
         }
       },
       '&$disabled': {
@@ -69,6 +70,7 @@ export default ({ palette, spacing, transitions }: Theme) =>
         borderWidth: rem('3px'),
         borderStyle: 'solid',
         opacity: 0,
+        color: palette.common.white,
         transition: `all ${transitions.duration.short}ms ${
           transitions.easing.easeInOut
         }`
