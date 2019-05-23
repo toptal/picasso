@@ -1,64 +1,44 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
-import { Palette } from '@material-ui/core/styles/createPalette'
 
 import { PicassoProvider } from '../Picasso'
 import { createPropertiesStyles } from '../styles'
 
-const setBorderColor = (borderColor: string) =>
-  createPropertiesStyles({
-    '&:before': {
-      borderColor
-    }
-  })
-
-const setCircleColor = (borderColor: string) =>
-  createPropertiesStyles({
-    '&:after': {
-      borderColor,
-      display: 'block'
-    }
-  })
-
-const createColorVariant = (mainColor: string, disabledColor: string) =>
-  createPropertiesStyles({
-    '&$checked': {
-      ...setBorderColor(mainColor),
-      ...setCircleColor(mainColor)
-    },
-    '&$disabled': {
-      opacity: 0.5,
-      cursor: 'not-allowed',
-      pointerEvents: 'auto',
-      ...setBorderColor(disabledColor)
-    },
-    '&:hover': {
-      ...setBorderColor(mainColor)
-    }
-  })
-
 PicassoProvider.override(({ palette, transitions }) => ({
   MuiRadio: {
     root: {
-      fontSize: '16px',
+      color: palette.grey[200],
+      fontSize: '1rem',
       position: 'relative',
       width: '1em',
       height: '1em',
       padding: '0',
-
       margin: '0.25em 0.5em 0.25em 0',
-      ...createColorVariant(palette.primary.main, palette.grey[300]),
       animationDuration: `${transitions.duration.short}`,
       animationTimingFunction: transitions.easing.easeIn,
       transitionDuration: `${transitions.duration.short}`,
-      transitionTimingFunction: transitions.easing.easeOut
-    },
-    disabled: createColorVariant(palette.grey[300], palette.grey[300]),
+      transitionTimingFunction: transitions.easing.easeOut,
 
-    checked: {}
+      '&$checked': {
+        color: palette.primary.main,
+
+        // show centered circle inside the radio circle
+        '&:after': {
+          display: 'block'
+        }
+      },
+      '&$disabled': {
+        opacity: 0.32,
+        cursor: 'not-allowed',
+        pointerEvents: 'auto'
+      },
+      '&:not($disabled):hover': {
+        color: palette.primary.main
+      }
+    }
   }
 }))
 
-const centeredCircle = (palette: Palette) =>
+const centeredCircle = (backgroundColor: string) =>
   createPropertiesStyles({
     position: 'absolute',
     width: '100%',
@@ -69,14 +49,14 @@ const centeredCircle = (palette: Palette) =>
     transform: 'translate(-50%, -50%)',
     content: '""',
     borderColor: 'inherit',
-    background: palette.common.white,
+    background: backgroundColor,
     pointerEvents: 'none',
     transition: 'border-color',
     transitionDuration: 'inherit',
     transitionTimingFunction: 'inherit'
   })
 
-export default ({ palette }: Theme) =>
+export default ({ palette, spacing }: Theme) =>
   createStyles({
     '@keyframes fade-in': {
       '0%': {
@@ -88,14 +68,14 @@ export default ({ palette }: Theme) =>
     },
     icon: {
       '&:before': {
-        ...centeredCircle(palette),
-        border: `1px solid ${palette.common.black}`
+        ...centeredCircle(palette.common.white),
+        border: `${spacing.borderWidth} solid ${palette.grey[200]}`
       },
       '&:after': {
-        ...centeredCircle(palette),
+        ...centeredCircle(palette.common.white),
         width: 'initial',
         height: 'initial',
-        borderWidth: '0.25em',
+        borderWidth: '0.1875em',
         borderStyle: 'solid',
         display: 'none',
         animation: 'fade-in',
