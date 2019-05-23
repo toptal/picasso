@@ -91,7 +91,7 @@ export default ({ palette, spacing, transitions }: Theme) =>
         position: 'absolute',
         background: 'white',
         width: '0.5em',
-        height: spacing.borderWidth,
+        height: '0.125em',
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
