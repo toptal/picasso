@@ -18,8 +18,6 @@ describe('Page.Header', () => {
     expect(container).toMatchSnapshot()
   })
 
-  // this test passes when run as part of `yarn test` but fails when run with `yarn storybook`
-
   test('render with link', () => {
     const { container } = render(
       <Picasso loadFonts={false}>
