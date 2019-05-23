@@ -35,6 +35,10 @@ export const Radio: GroupFunctionalComponent<Props> = ({
   value,
   onChange
 }) => {
+  const rootClasses = {
+    root: classes.root,
+    disabled: classes.disabled
+  }
   const muiRadio = (
     <MUIRadio
       checked={checked}
@@ -44,9 +48,7 @@ export const Radio: GroupFunctionalComponent<Props> = ({
       icon={<div className={classes.uncheckedIcon} />}
       checkedIcon={<div className={classes.checkedIcon} />}
       color='default'
-      classes={{
-        root: classes.root
-      }}
+      classes={rootClasses}
       className={className}
       style={style}
     />
@@ -59,9 +61,7 @@ export const Radio: GroupFunctionalComponent<Props> = ({
   return (
     <FormControlLabel
       control={muiRadio}
-      classes={{
-        root: classes.root
-      }}
+      classes={rootClasses}
       className={className}
       style={style}
       label={label}

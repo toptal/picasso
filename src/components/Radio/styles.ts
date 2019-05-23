@@ -54,6 +54,11 @@ export default ({ palette, spacing, transitions }: Theme) =>
         color: palette.primary.main
       }
     },
+    disabled: {
+      '&:hover $uncheckedIcon': {
+        color: palette.grey[200]
+      }
+    },
     uncheckedIcon: {
       color: palette.grey[200],
       transition: `all ${transitions.duration.short}ms ${
