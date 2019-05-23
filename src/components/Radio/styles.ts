@@ -6,7 +6,7 @@ import { createPropertiesStyles, rem } from '../styles'
 PicassoProvider.override(({ palette, transitions }) => ({
   MuiRadio: {
     root: {
-      color: palette.grey[200],
+      color: palette.common.white,
       fontSize: '1rem',
       position: 'relative',
       width: '1em',
@@ -15,25 +15,16 @@ PicassoProvider.override(({ palette, transitions }) => ({
       margin: '0.25em 0.5em 0.25em 0',
       transition: `all ${transitions.duration.short}ms ${
         transitions.easing.easeInOut
-      }`,
-
-      '&$checked': {
-        color: palette.primary.main,
-
-        // show centered circle inside the radio circle
-        '&:after': {
-          opacity: 1,
-          color: palette.primary.main
-        }
-      },
-      '&$disabled': {
-        opacity: 0.32,
-        cursor: 'not-allowed',
-        pointerEvents: 'auto'
-      },
-      '&:not($disabled):hover': {
-        color: palette.primary.main
-      }
+      }`
+    },
+    disabled: {
+      color: palette.grey[200],
+      opacity: 0.32,
+      cursor: 'not-allowed',
+      pointerEvents: 'auto'
+    },
+    checked: {
+      color: palette.primary.main
     }
   }
 }))
@@ -58,7 +49,16 @@ const centeredCircle = (backgroundColor: string) =>
 
 export default ({ palette, spacing, transitions }: Theme) =>
   createStyles({
-    icon: {
+    root: {
+      '&:hover $uncheckedIcon': {
+        color: palette.primary.main
+      }
+    },
+    uncheckedIcon: {
+      color: palette.grey[200],
+      transition: `all ${transitions.duration.short}ms ${
+        transitions.easing.easeInOut
+      }`,
       '&:before': {
         ...centeredCircle(palette.common.white),
         border: `${spacing.borderWidth} solid ${palette.grey[200]}`
@@ -76,7 +76,25 @@ export default ({ palette, spacing, transitions }: Theme) =>
         }`
       }
     },
-    label: {
-      marginRight: '0.5em'
+    checkedIcon: {
+      color: palette.primary.main,
+      transition: `all ${transitions.duration.short}ms ${
+        transitions.easing.easeInOut
+      }`,
+      '&:before': {
+        ...centeredCircle(palette.common.white),
+        border: `${spacing.borderWidth} solid ${palette.grey[200]}`
+      },
+      '&:after': {
+        ...centeredCircle(palette.common.white),
+        width: 'initial',
+        height: 'initial',
+        borderWidth: rem('3px'),
+        borderStyle: 'solid',
+        opacity: 1,
+        transition: `all ${transitions.duration.short}ms ${
+          transitions.easing.easeInOut
+        }`
+      }
     }
   })
