@@ -29,6 +29,8 @@ export interface Props extends StandardProps {
   iconPosition?: IconPosition
   /** Specify icon which should be rendered inside TextField */
   icon?: ReactNode
+  /** html id for input */
+  id?: string
   inputProps?: OutlinedInputProps
   /** Whether `TextField` should be rendered as `TextArea` or not */
   multiline?: boolean
@@ -45,6 +47,7 @@ export interface Props extends StandardProps {
 }
 
 export const TextField: FunctionComponent<Props> = ({
+  id,
   name,
   value,
   placeholder,
@@ -85,6 +88,8 @@ export const TextField: FunctionComponent<Props> = ({
       inputProps.startAdornment = IconAdornment
     }
   }
+
+  inputProps.id = id
 
   return (
     <MUITextField
