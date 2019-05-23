@@ -13,10 +13,9 @@ PicassoProvider.override(({ palette, transitions }) => ({
       height: '1em',
       padding: '0',
       margin: '0.25em 0.5em 0.25em 0',
-      animationDuration: `${transitions.duration.short}`,
-      animationTimingFunction: transitions.easing.easeIn,
-      transitionDuration: `${transitions.duration.short}`,
-      transitionTimingFunction: transitions.easing.easeOut,
+      transition: `all ${transitions.duration.short} ${
+        transitions.easing.easeInOut
+      }`,
 
       '&$checked': {
         color: palette.primary.main,

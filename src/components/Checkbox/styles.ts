@@ -21,7 +21,7 @@ PicassoProvider.override(() => ({
   }
 }))
 
-export default ({ palette, spacing }: Theme) =>
+export default ({ palette, spacing, transitions }: Theme) =>
   createStyles({
     root: {
       '&:hover $uncheckedIcon': {
@@ -75,7 +75,9 @@ export default ({ palette, spacing }: Theme) =>
       position: 'relative',
       height: '1em',
       width: '1em',
-      transition: 'all .1s ease',
+      transition: `all ${transitions.duration.short} ${
+        transitions.easing.easeInOut
+      }`,
       background: palette.primary.main,
       border: `${spacing.borderWidth} solid ${palette.primary.main}`,
       color: palette.common.white,
