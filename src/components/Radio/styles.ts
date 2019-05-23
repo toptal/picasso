@@ -13,7 +13,7 @@ PicassoProvider.override(({ palette, transitions }) => ({
       height: '1em',
       padding: '0',
       margin: '0.25em 0.5em 0.25em 0',
-      transition: `all ${transitions.duration.short} ${
+      transition: `all ${transitions.duration.short}ms ${
         transitions.easing.easeInOut
       }`,
 

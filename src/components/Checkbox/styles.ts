@@ -75,7 +75,7 @@ export default ({ palette, spacing, transitions }: Theme) =>
       position: 'relative',
       height: '1em',
       width: '1em',
-      transition: `all ${transitions.duration.short} ${
+      transition: `all ${transitions.duration.short}ms ${
         transitions.easing.easeInOut
       }`,
       background: palette.primary.main,
