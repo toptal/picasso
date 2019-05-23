@@ -1,7 +1,7 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
 import { PicassoProvider } from '../Picasso'
-import { createPropertiesStyles } from '../styles'
+import { createPropertiesStyles, rem } from '../styles'
 
 PicassoProvider.override(({ palette, transitions }) => ({
   MuiRadio: {
@@ -75,7 +75,7 @@ export default ({ palette, spacing }: Theme) =>
         ...centeredCircle(palette.common.white),
         width: 'initial',
         height: 'initial',
-        borderWidth: '0.1875em',
+        borderWidth: rem('3px'),
         borderStyle: 'solid',
         display: 'none',
         animation: 'fade-in',
