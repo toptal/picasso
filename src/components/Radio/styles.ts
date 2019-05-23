@@ -15,13 +15,16 @@ PicassoProvider.override(({ palette, transitions }) => ({
       margin: '0.25em 0.5em 0.25em 0',
       transition: `all ${transitions.duration.short}ms ${
         transitions.easing.easeInOut
-      }`
+      }`,
+
+      '&$disabled': {
+        cursor: 'not-allowed',
+        pointerEvents: 'auto'
+      }
     },
     disabled: {
       color: palette.grey[200],
-      opacity: 0.32,
-      cursor: 'not-allowed',
-      pointerEvents: 'auto'
+      opacity: 0.32
     },
     checked: {
       color: palette.primary.main
