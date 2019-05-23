@@ -16,21 +16,21 @@ PicassoProvider.override(() => ({
       }
     },
     disabled: {
-      opacity: 0.5
+      opacity: 0.32
     }
   }
 }))
 
-export default ({ palette }: Theme) =>
+export default ({ palette, spacing }: Theme) =>
   createStyles({
     root: {
       '&:hover $uncheckedIcon': {
-        border: `1px solid ${palette.primary.main}`
+        border: `${spacing.borderWidth} solid ${palette.primary.main}`
       }
     },
     disabled: {
       '&:hover $uncheckedIcon': {
-        border: `1px solid ${palette.grey[100]}`
+        border: `${spacing.borderWidth} solid ${palette.grey[200]}`
       }
     },
     checkedIcon: {
@@ -38,7 +38,7 @@ export default ({ palette }: Theme) =>
       width: '1em',
       transition: 'all .1s ease',
       background: palette.primary.main,
-      border: `1px solid ${palette.primary.dark}`,
+      border: `${spacing.borderWidth} solid ${palette.primary.main}`,
       color: palette.common.white,
 
       '&:before': {
@@ -69,7 +69,7 @@ export default ({ palette }: Theme) =>
       width: '1em',
       transition: 'all .1s ease',
       background: palette.common.white,
-      border: `1px solid ${palette.grey[100]}`
+      border: `${spacing.borderWidth} solid ${palette.grey[200]}`
     },
     indeterminateIcon: {
       position: 'relative',
@@ -77,15 +77,15 @@ export default ({ palette }: Theme) =>
       width: '1em',
       transition: 'all .1s ease',
       background: palette.primary.main,
-      border: `1px solid ${palette.primary.dark}`,
+      border: `${spacing.borderWidth} solid ${palette.primary.main}`,
       color: palette.common.white,
 
       '&:before': {
         content: '""',
         position: 'absolute',
         background: 'white',
-        width: '0.7em',
-        height: '0.2em',
+        width: '0.5em',
+        height: spacing.borderWidth,
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
