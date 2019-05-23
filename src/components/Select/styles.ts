@@ -25,7 +25,7 @@ PicassoProvider.override(() => ({
 
 const CARRET_ICON_LEFT_PADDING = '.4em'
 
-export default ({ spacing: { input }, palette }: Theme) =>
+export default ({ spacing: { input, inputIcon }, palette }: Theme) =>
   createStyles({
     root: {
       height: input.height,
@@ -51,20 +51,47 @@ export default ({ spacing: { input }, palette }: Theme) =>
       padding: input.padding,
       border: 'none'
     },
+    inputPlaceholder: {
+      color: palette.grey[400]
+    },
+    inputPlaceholderDisabled: {
+      color: alpha(palette.grey[400], 0.48)
+    },
     select: {
       width: '100%'
     },
-    icon: {
+    caret: {
       top: 'calc(50% - 0.5em)',
       right: `calc(${input.padding} - ${CARRET_ICON_LEFT_PADDING})`,
       fontSize: '1.5em',
       color: palette.grey[400],
       width: '1em'
     },
-    iconDisabled: {
+    caretDisabled: {
       color: alpha(palette.grey[400], 0.48)
     },
     placeholder: {
       opacity: 0.4
+    },
+    icon: {
+      color: palette.grey[400],
+      fontSize: '16px',
+      minWidth: inputIcon.width,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'flex-start',
+      height: '16px'
+    },
+    iconStart: {
+      marginRight: input.padding
+    },
+    iconEnd: {
+      marginLeft: input.padding,
+      marginRight: `calc(${input.padding} + ${CARRET_ICON_LEFT_PADDING})`,
+      justifyContent: 'flex-end',
+      flexGrow: 1
+    },
+    iconDisabled: {
+      color: alpha(palette.grey[400], 0.48)
     }
   })

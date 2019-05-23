@@ -1,11 +1,18 @@
-import React, { FunctionComponent, ChangeEvent, ReactNode } from 'react'
+import React, {
+  FunctionComponent,
+  ChangeEvent,
+  ReactNode,
+  useMemo
+} from 'react'
 import cx from 'classnames'
 import MUISelect from '@material-ui/core/Select'
+import { MenuProps } from '@material-ui/core/Menu'
 import { withStyles } from '@material-ui/core/styles'
 import { capitalize } from '@material-ui/core/utils/helpers'
 
 import FormControl from '../FormControl'
 import OutlinedInput from '../OutlinedInput'
+import InputAdornment from '../InputAdornment'
 import MenuItem from '../MenuItem'
 import { StandardProps } from '../Picasso'
 import { DropdownArrows } from '../Icon'
@@ -16,6 +23,8 @@ interface Option {
   text: string | ReactNode
   value: string | number
 }
+
+type IconPosition = 'start' | 'end'
 
 export interface Props extends StandardProps {
   /** If true, the 'Select' will be disabled */
@@ -28,6 +37,10 @@ export interface Props extends StandardProps {
   width?: 'full' | 'shrink' | 'auto'
   /** Placeholder option which is selected by default */
   placeholder?: string
+  /** Whether icon should be placed at the beginning or end of the `TextField` */
+  iconPosition?: IconPosition
+  /** Specify icon which should be rendered inside TextField */
+  icon?: ReactNode
   /** Whether `Select` should be rendered as native HTML `<select />` */
   native?: boolean
   /** Callback invoked when `Select` changes its state. */
@@ -72,6 +85,8 @@ export const Select: FunctionComponent<Props> = ({
   style,
   width,
   id,
+  icon,
+  iconPosition,
   native,
   options,
   placeholder,
@@ -81,16 +96,52 @@ export const Select: FunctionComponent<Props> = ({
   value
 }) => {
   const fullWidth = width === 'full'
+  const isPlaceholderSelected = placeholder && value === ''
+
+  const selectedOption = useMemo(
+    () => options.find(option => option.value === value),
+    [value, options]
+  )
 
   const outlinedInput = (
     <OutlinedInput
       classes={{
-        input: classes.input
+        input: cx(classes.input, {
+          [classes.inputPlaceholder]: isPlaceholderSelected,
+          [classes.inputPlaceholderDisabled]: isPlaceholderSelected && disabled
+        })
       }}
       fullWidth={fullWidth}
       labelWidth={0}
     />
   )
+
+  const iconAdornment = icon ? (
+    <InputAdornment
+      className={cx(classes.icon, {
+        [classes.iconDisabled]: disabled,
+        [classes.iconStart]: iconPosition === 'start',
+        [classes.iconEnd]: iconPosition === 'end'
+      })}
+      position={iconPosition!}
+    >
+      {icon}
+    </InputAdornment>
+  ) : (
+    <React.Fragment />
+  )
+
+  const menuProps = {
+    anchorOrigin: {
+      vertical: 'bottom',
+      horizontal: 'left'
+    },
+    transformOrigin: {
+      vertical: 'top',
+      horizontal: 'left'
+    },
+    getContentAnchorEl: undefined // needed to restore default behaviour
+  } as Partial<MenuProps>
 
   const select = (
     <MUISelect
@@ -98,7 +149,7 @@ export const Select: FunctionComponent<Props> = ({
       style={style}
       classes={{
         root: cx(classes.root, classes[`root${capitalize(width!)}`]),
-        icon: classes.icon,
+        icon: classes.caret,
         select: classes.select
       }}
       displayEmpty
@@ -107,25 +158,23 @@ export const Select: FunctionComponent<Props> = ({
       native={native}
       variant='outlined'
       value={value}
+      renderValue={() => (
+        <React.Fragment>
+          {iconPosition === 'start' && iconAdornment}
+          {selectedOption && selectedOption.text}
+          {!selectedOption && placeholder}
+          {iconPosition === 'end' && iconAdornment}
+        </React.Fragment>
+      )}
       IconComponent={({ className }: { className: string }) => (
         <DropdownArrows
           className={cx(className, {
-            [classes.iconDisabled]: disabled
+            [classes.caretDisabled]: disabled
           })}
           size={1}
         />
       )}
-      MenuProps={{
-        anchorOrigin: {
-          vertical: 'bottom',
-          horizontal: 'left'
-        },
-        transformOrigin: {
-          vertical: 'top',
-          horizontal: 'left'
-        },
-        getContentAnchorEl: undefined // needed to restore default behaviour
-      }}
+      MenuProps={menuProps}
       onChange={onChange}
     >
       {renderOptions(options, placeholder, native)}
@@ -146,6 +195,7 @@ export const Select: FunctionComponent<Props> = ({
 Select.defaultProps = {
   disabled: false,
   error: false,
+  iconPosition: 'start',
   native: false,
   onChange: () => {},
   value: '',

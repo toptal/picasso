@@ -42,7 +42,7 @@ exports[`renders dropdown select 1`] = `
             value="val1"
           />
           <svg
-            class="SvgDropdownArrows-root MuiSelect-icon Select-icon"
+            class="SvgDropdownArrows-root MuiSelect-icon Select-caret"
             style="font-size: 1rem;"
             viewBox="0 0 16 16"
           >
@@ -108,7 +108,7 @@ exports[`renders native select 1`] = `
             </option>
           </select>
           <svg
-            class="SvgDropdownArrows-root MuiSelect-icon Select-icon"
+            class="SvgDropdownArrows-root MuiSelect-icon Select-caret"
             style="font-size: 1rem;"
             viewBox="0 0 16 16"
           >
