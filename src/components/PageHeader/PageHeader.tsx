@@ -1,8 +1,10 @@
+/* eslint-disable react/jsx-props-no-spreading */
+
 import React, { useContext, FunctionComponent, ReactNode } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
-import { Link, Logo, Container, Typography } from '../'
+import { Logo, Container, Typography } from '../'
 import { PageContext } from '../Page'
 import { PageContextProps } from '../Page/types'
 import { StandardProps } from '../Picasso'
@@ -11,29 +13,12 @@ import styles from './styles'
 export interface Props extends StandardProps {
   /** Title which is displayed along the `Logo` */
   title: string
-  /** URL of the page the `Logo` link goes to  */
-  logoHref?: string
+  /** Constructor of Link component to wrap `Logo`  */
+  link?: React.ComponentType<object>
+  /** Properties of the `Link` component */
+  linkProps?: object
   /** Content for the right side of the `Header`  */
   rightContent?: ReactNode
-}
-
-interface LinkWrapperProps {
-  href?: string
-  children: ReactNode
-}
-
-const LinkWrapper = (props: LinkWrapperProps) => {
-  const { href, children } = props
-
-  if (href) {
-    return (
-      <Link href={href} underline='none'>
-        {children}
-      </Link>
-    )
-  } else {
-    return <React.Fragment>{children}</React.Fragment>
-  }
 }
 
 export const PageHeader: FunctionComponent<Props> = ({
@@ -41,7 +26,8 @@ export const PageHeader: FunctionComponent<Props> = ({
   className,
   style,
   title,
-  logoHref,
+  link: Link,
+  linkProps,
   rightContent
 }) => {
   const { fullWidth } = useContext<PageContextProps>(PageContext)
@@ -53,14 +39,14 @@ export const PageHeader: FunctionComponent<Props> = ({
     classes.content
   )
 
+  const logo = <Logo variant='white' />
+
   return (
     <header className={cx(classes.root, className)} style={style}>
       <div className={contentClassnames}>
         <div className={classes.left}>
           <Container right='small' flex direction='row' alignItems='center'>
-            <LinkWrapper href={logoHref}>
-              <Logo variant='white' />
-            </LinkWrapper>
+            {Link ? <Link {...linkProps}>{logo}</Link> : logo}
           </Container>
           <div className={classes.divider} />
           <Container left='small'>

@@ -67,8 +67,8 @@ exports[`Page.Header render with link 1`] = `
             style="margin-right: 1em; display: flex; flex-direction: row; align-items: center;"
           >
             <a
-              class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone"
-              href="http://www.example.com"
+              class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineHover"
+              href="https://www.toptal.com"
             >
               <svg
                 class="SvgLogo-root Component-logo Component-white"
