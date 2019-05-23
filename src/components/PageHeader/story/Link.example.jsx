@@ -5,8 +5,7 @@ const PageHeaderLinkExample = () => (
   <div style={{ height: '3.75em' }}>
     <Page.Header
       title='Onboarding'
-      link={Link}
-      linkProps={{ href: 'https://www.toptal.com' }}
+      logoLink={<Link href='https://www.toptal.com' />}
     />
   </div>
 )

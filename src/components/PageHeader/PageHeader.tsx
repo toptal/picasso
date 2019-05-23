@@ -1,6 +1,9 @@
-/* eslint-disable react/jsx-props-no-spreading */
-
-import React, { useContext, FunctionComponent, ReactNode } from 'react'
+import React, {
+  useContext,
+  FunctionComponent,
+  ReactNode,
+  ReactElement
+} from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
@@ -13,10 +16,8 @@ import styles from './styles'
 export interface Props extends StandardProps {
   /** Title which is displayed along the `Logo` */
   title: string
-  /** Constructor of Link component to wrap `Logo`  */
-  link?: React.ComponentType<object>
-  /** Properties of the `Link` component */
-  linkProps?: object
+  /** Link component to wrap `Logo`  */
+  logoLink?: ReactElement
   /** Content for the right side of the `Header`  */
   rightContent?: ReactNode
 }
@@ -26,8 +27,7 @@ export const PageHeader: FunctionComponent<Props> = ({
   className,
   style,
   title,
-  link: Link,
-  linkProps,
+  logoLink,
   rightContent
 }) => {
   const { fullWidth } = useContext<PageContextProps>(PageContext)
@@ -46,7 +46,7 @@ export const PageHeader: FunctionComponent<Props> = ({
       <div className={contentClassnames}>
         <div className={classes.left}>
           <Container right='small' flex direction='row' alignItems='center'>
-            {Link ? <Link {...linkProps}>{logo}</Link> : logo}
+            {logoLink ? React.cloneElement(logoLink, {}, logo) : logo}
           </Container>
           <div className={classes.divider} />
           <Container left='small'>
