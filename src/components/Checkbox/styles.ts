@@ -36,7 +36,9 @@ export default ({ palette, spacing, transitions }: Theme) =>
     checkedIcon: {
       height: '1em',
       width: '1em',
-      transition: 'all .1s ease',
+      transition: `all ${transitions.duration.short}ms ${
+        transitions.easing.easeInOut
+      }`,
       background: palette.primary.main,
       border: `${spacing.borderWidth} solid ${palette.primary.main}`,
       color: palette.common.white,
@@ -67,7 +69,9 @@ export default ({ palette, spacing, transitions }: Theme) =>
     uncheckedIcon: {
       height: '1em',
       width: '1em',
-      transition: 'all .1s ease',
+      transition: `all ${transitions.duration.short}ms ${
+        transitions.easing.easeInOut
+      }`,
       background: palette.common.white,
       border: `${spacing.borderWidth} solid ${palette.grey[200]}`
     },
