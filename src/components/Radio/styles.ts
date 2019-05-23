@@ -22,7 +22,7 @@ PicassoProvider.override(({ palette, transitions }) => ({
 
         // show centered circle inside the radio circle
         '&:after': {
-          display: 'block'
+          opacity: 1
         }
       },
       '&$disabled': {
@@ -55,16 +55,8 @@ const centeredCircle = (backgroundColor: string) =>
     transitionTimingFunction: 'inherit'
   })
 
-export default ({ palette, spacing }: Theme) =>
+export default ({ palette, spacing, transitions }: Theme) =>
   createStyles({
-    '@keyframes fade-in': {
-      '0%': {
-        opacity: 0
-      },
-      '100%': {
-        opacity: 1
-      }
-    },
     icon: {
       '&:before': {
         ...centeredCircle(palette.common.white),
@@ -76,10 +68,10 @@ export default ({ palette, spacing }: Theme) =>
         height: 'initial',
         borderWidth: rem('3px'),
         borderStyle: 'solid',
-        display: 'none',
-        animation: 'fade-in',
-        animationDuration: 'inherit',
-        animationTimingFunction: 'inherit'
+        opacity: 0,
+        transition: `all ${transitions.duration.short}ms ${
+          transitions.easing.easeInOut
+        }`
       }
     },
     label: {
