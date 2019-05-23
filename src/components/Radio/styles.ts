@@ -24,7 +24,7 @@ PicassoProvider.override(({ palette, transitions }) => ({
     },
     disabled: {
       color: palette.grey[200],
-      opacity: 0.32
+      opacity: 0.48
     },
     checked: {
       color: palette.primary.main

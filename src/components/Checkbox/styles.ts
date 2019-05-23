@@ -16,7 +16,7 @@ PicassoProvider.override(() => ({
       }
     },
     disabled: {
-      opacity: 0.32
+      opacity: 0.48
     }
   }
 }))
