@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Select } from '@toptal/picasso'
 
 const SelectChosenOptionExample = () => {
-  const [value, setValue] = useState(3)
+  const [value, setValue] = useState('3')
 
   const handleChange = event => {
     setValue(event.target.value)

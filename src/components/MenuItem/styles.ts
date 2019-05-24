@@ -37,10 +37,9 @@ PicassoProvider.override(({ palette }: Theme) => ({
   }
 }))
 
-export default ({ palette }: Theme) =>
+export default () =>
   createStyles({
     stringContent: {
-      fontSize: '0.8125em',
-      color: palette.common.black
+      fontSize: '0.8125em'
     }
   })

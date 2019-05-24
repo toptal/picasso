@@ -38,7 +38,7 @@ export default ({ spacing: { input }, palette }: Theme) =>
     rootShrink: {
       width: 'auto',
       '& $input': {
-        paddingRight: `calc(${input.paddingRight} + 1em)`
+        paddingRight: `calc(${input.padding} + 1em)`
       }
     },
     rootAuto: {},
@@ -48,12 +48,7 @@ export default ({ spacing: { input }, palette }: Theme) =>
       alignItems: 'center',
       boxSizing: 'border-box',
       height: '100%',
-      padding: `
-      ${input.paddingTop}
-      ${input.paddingRight}
-      ${input.paddingBottom}
-      ${input.paddingLeft}
-    `,
+      padding: input.padding,
       border: 'none'
     },
     select: {
@@ -61,7 +56,7 @@ export default ({ spacing: { input }, palette }: Theme) =>
     },
     icon: {
       top: 'calc(50% - 0.5em)',
-      right: `calc(${input.paddingRight} - ${CARRET_ICON_LEFT_PADDING})`,
+      right: `calc(${input.padding} - ${CARRET_ICON_LEFT_PADDING})`,
       fontSize: '1.5em',
       color: palette.grey[400],
       width: '1em'

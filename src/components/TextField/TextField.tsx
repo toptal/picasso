@@ -19,7 +19,7 @@ export interface Props extends StandardProps {
   placeholder?: string
   /** Indicate whether `TextField` is in error state */
   error?: boolean
-  /** If true, the switch will be disabled */
+  /** If true, the `TextField` will be disabled */
   disabled?: boolean
   /** Take the full width of a container */
   fullWidth?: boolean

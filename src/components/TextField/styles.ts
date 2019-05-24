@@ -26,20 +26,10 @@ export default ({ spacing: { input, inputIcon } }: Theme) =>
     input: {
       fontSize: '.8125em',
       border: 'none',
-      padding: `
-      ${input.paddingTop}
-      ${input.paddingRight}
-      ${input.paddingBottom}
-      ${input.paddingLeft}
-    `
+      padding: input.padding
     },
     inputMultiline: {
-      padding: `
-      ${input.paddingTop}
-      ${input.paddingRight}
-      ${input.paddingBottom}
-      ${input.paddingLeft}
-    `
+      padding: input.padding
     },
     icon: {
       fontSize: '1em',
@@ -50,9 +40,9 @@ export default ({ spacing: { input, inputIcon } }: Theme) =>
       height: '1em'
     },
     iconStart: {
-      marginLeft: input.paddingLeft
+      marginLeft: input.padding
     },
     iconEnd: {
-      marginRight: input.paddingRight
+      marginRight: input.padding
     }
   })

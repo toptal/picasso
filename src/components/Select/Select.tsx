@@ -18,8 +18,9 @@ interface Option {
 }
 
 export interface Props extends StandardProps {
-  /** If true, the switch will be disabled */
+  /** If true, the 'Select' will be disabled */
   disabled?: boolean
+  /** Indicate whether `Select` is in error state */
   error?: boolean
   /** Component ID */
   id?: string

@@ -20,7 +20,7 @@ const SelectCustomOptionExample = () => {
 }
 
 const OPTIONS = [
-  { value: '1', text: 'Option 1' },
+  { value: 1, text: 'Option 1' },
   {
     value: 2,
     text: (

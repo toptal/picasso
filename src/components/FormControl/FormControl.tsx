@@ -8,7 +8,9 @@ import styles from './styles'
 interface Props extends StandardProps {
   /** Content of FormControl */
   children?: ReactNode
+  /** Indicate whether `FormControl` is in error state */
   error?: boolean
+  /** If true, the control will be disabled */
   disabled?: boolean
 }
 

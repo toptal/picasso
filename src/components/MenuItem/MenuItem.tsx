@@ -35,7 +35,11 @@ export const MenuItem: FunctionComponent<Props> = ({
 }) => {
   if (typeof children === 'string' || children instanceof String) {
     children = (
-      <Typography className={classes!.stringContent} style={style}>
+      <Typography
+        className={classes!.stringContent}
+        style={style}
+        color='black'
+      >
         {children}
       </Typography>
     )
