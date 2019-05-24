@@ -1,14 +1,11 @@
 import React, { FunctionComponent, ReactNode } from 'react'
-import cx from 'classnames'
-import MUIRadio, { RadioProps } from '@material-ui/core/Radio'
+import MUIRadio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import { withStyles } from '@material-ui/core/styles'
 
 import FormControlLabel from '../FormControlLabel'
 import { StandardProps } from '../Picasso'
 import styles from './styles'
-
-const FallbackIcon = () => null
 
 export interface Props extends StandardProps {
   /** Text label for the `Radio` */
@@ -29,7 +26,7 @@ interface GroupFunctionalComponent<T> extends FunctionComponent<T> {
 }
 
 export const Radio: GroupFunctionalComponent<Props> = ({
-  classes: { root, icon, label: labelClass, ...otherClasses },
+  classes,
   className,
   style,
   label,
@@ -38,34 +35,37 @@ export const Radio: GroupFunctionalComponent<Props> = ({
   value,
   onChange
 }) => {
-  const radioProps: RadioProps = {
-    checked,
-    disabled,
-    onChange,
-    value,
-    checkedIcon: <FallbackIcon />,
-    icon: <FallbackIcon />,
-    color: 'default',
-    classes: {
-      ...otherClasses,
-      root: cx(root, icon)
-    }
+  const rootClasses = {
+    root: classes.root,
+    disabled: classes.disabled
+  }
+  const muiRadio = (
+    <MUIRadio
+      checked={checked}
+      disabled={disabled}
+      onChange={onChange}
+      value={value}
+      icon={<div className={classes.uncheckedIcon} />}
+      checkedIcon={<div className={classes.checkedIcon} />}
+      color='default'
+      classes={rootClasses}
+      className={className}
+      style={style}
+    />
+  )
+
+  if (!label) {
+    return muiRadio
   }
 
-  return label ? (
+  return (
     <FormControlLabel
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      control={<MUIRadio {...radioProps} />}
-      classes={{
-        root: labelClass
-      }}
+      control={muiRadio}
+      classes={rootClasses}
       className={className}
       style={style}
       label={label}
     />
-  ) : (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <MUIRadio {...radioProps} className={className} style={style} />
   )
 }
 

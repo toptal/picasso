@@ -24,6 +24,12 @@ export const alpha = (inputColor: string, amount: number) => {
     .toString()
 }
 
+export const rem = (px: string, baseFontSize = 16) => {
+  const pxNumber = px.replace('px', '')
+
+  return `${Number.parseInt(pxNumber) / baseFontSize}rem`
+}
+
 export { default as withClasses } from './withClasses'
 
 export { createPropertiesStyles } from './createPropertiesStyles'

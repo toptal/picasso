@@ -3,12 +3,15 @@
 exports[`disabled radio button renders disabled version 1`] = `
 <div>
   <span
-    class="MuiButtonBase-root MuiButtonBase-disabled MuiIconButton-root MuiIconButton-disabled MuiPrivateSwitchBase-root MuiRadio-root Radio-icon MuiPrivateSwitchBase-disabled MuiRadio-disabled"
+    class="MuiButtonBase-root MuiButtonBase-disabled MuiIconButton-root MuiIconButton-disabled MuiPrivateSwitchBase-root MuiRadio-root Radio-root MuiPrivateSwitchBase-disabled MuiRadio-disabled Radio-disabled"
     tabindex="-1"
   >
     <span
       class="MuiIconButton-label"
     >
+      <div
+        class="Radio-uncheckedIcon"
+      />
       <input
         class="MuiPrivateSwitchBase-input"
         disabled=""
@@ -23,11 +26,14 @@ exports[`disabled radio button renders disabled version 1`] = `
 exports[`radio button renders default radio button 1`] = `
 <div>
   <span
-    class="MuiButtonBase-root MuiIconButton-root MuiPrivateSwitchBase-root MuiRadio-root Radio-icon"
+    class="MuiButtonBase-root MuiIconButton-root MuiPrivateSwitchBase-root MuiRadio-root Radio-root"
   >
     <span
       class="MuiIconButton-label"
     >
+      <div
+        class="Radio-uncheckedIcon"
+      />
       <input
         class="MuiPrivateSwitchBase-input"
         type="radio"
