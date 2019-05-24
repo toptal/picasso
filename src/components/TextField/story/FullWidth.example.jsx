@@ -1,10 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { TextField } from '@toptal/picasso'
 
-const TextFieldFullWidthExample = () => (
-  <div>
-    <TextField fullWidth label='Search...' />
-  </div>
-)
+const TextFieldFullWidthExample = () => {
+  const [value, setValue] = useState('Text')
+
+  const handleChange = event => {
+    setValue(event.target.value)
+  }
+
+  return (
+    <TextField
+      fullWidth
+      value={value}
+      placeholder='Placeholder'
+      onChange={handleChange}
+    />
+  )
+}
 
 export default TextFieldFullWidthExample

@@ -6,7 +6,7 @@ const FormHintExample = () => (
     <Grid.Item small={5}>
       <Form>
         <Form.Field>
-          <TextField fullWidth label='Full Name' />
+          <TextField fullWidth placeholder='Full Name' />
           <Form.Hint>
             Your full name as you would like it to appear to clients on your
             profile
@@ -14,7 +14,7 @@ const FormHintExample = () => (
         </Form.Field>
 
         <Form.Field>
-          <TextField fullWidth label='About me' multiline rows={4} />
+          <TextField fullWidth placeholder='About me' multiline rows={4} />
         </Form.Field>
       </Form>
     </Grid.Item>
