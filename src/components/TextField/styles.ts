@@ -12,7 +12,7 @@ export default ({ spacing: { input, inputIcon } }: Theme) =>
       fontSize: 'inherit',
       boxSizing: 'border-box',
       height: input.height,
-      padding: 0
+      padding: input.padding
     },
     rootMultiline: {
       height: 'auto'
@@ -26,10 +26,10 @@ export default ({ spacing: { input, inputIcon } }: Theme) =>
     input: {
       fontSize: '.8125em',
       border: 'none',
-      padding: input.padding
+      padding: 0
     },
     inputMultiline: {
-      padding: input.padding
+      padding: 0
     },
     icon: {
       fontSize: '1em',
@@ -40,9 +40,9 @@ export default ({ spacing: { input, inputIcon } }: Theme) =>
       height: '1em'
     },
     iconStart: {
-      marginLeft: input.padding
+      marginRight: '0.5em'
     },
     iconEnd: {
-      marginRight: input.padding
+      marginLeft: '0.5em'
     }
   })
