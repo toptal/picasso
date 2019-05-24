@@ -1,14 +1,12 @@
 import React, { FunctionComponent } from 'react'
-import cx from 'classnames'
-import MUIRadio, { RadioProps } from '@material-ui/core/Radio'
+import MUIRadio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import { withStyles } from '@material-ui/core/styles'
 
 import FormControlLabel from '../FormControlLabel'
+import Form from '../Form'
 import { PicassoComponent, StandardProps } from '../Picasso'
 import styles from './styles'
-
-const FallbackIcon = () => null
 
 export interface Props extends StandardProps {
   /** Text label for the `Radio` */
@@ -29,7 +27,7 @@ interface StaticProps {
 }
 
 export const Radio: FunctionComponent<Props> & StaticProps = ({
-  classes: { root, icon, label: labelClass, ...otherClasses },
+  classes,
   className,
   style,
   label,
@@ -38,34 +36,37 @@ export const Radio: FunctionComponent<Props> & StaticProps = ({
   value,
   onChange
 }) => {
-  const radioProps: RadioProps = {
-    checked,
-    disabled,
-    onChange,
-    value,
-    checkedIcon: <FallbackIcon />,
-    icon: <FallbackIcon />,
-    color: 'default',
-    classes: {
-      ...otherClasses,
-      root: cx(root, icon)
-    }
+  const rootClasses = {
+    root: classes.root,
+    disabled: classes.disabled
   }
-
-  return label ? (
-    <FormControlLabel
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      control={<MUIRadio {...radioProps} />}
-      classes={{
-        root: labelClass
-      }}
+  const muiRadio = (
+    <MUIRadio
+      checked={checked}
+      disabled={disabled}
+      onChange={onChange}
+      value={value}
+      icon={<div className={classes.uncheckedIcon} />}
+      checkedIcon={<div className={classes.checkedIcon} />}
+      color='default'
+      classes={rootClasses}
       className={className}
       style={style}
-      label={label}
     />
-  ) : (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <MUIRadio {...radioProps} className={className} style={style} />
+  )
+
+  if (!label) {
+    return muiRadio
+  }
+
+  return (
+    <FormControlLabel
+      control={muiRadio}
+      className={classes.label}
+      classes={rootClasses}
+      style={style}
+      label={<Form.Label as='span'>{label}</Form.Label>}
+    />
   )
 }
 

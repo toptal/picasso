@@ -16,29 +16,31 @@ PicassoProvider.override(() => ({
       }
     },
     disabled: {
-      opacity: 0.5
+      opacity: 0.48
     }
   }
 }))
 
-export default ({ palette }: Theme) =>
+export default ({ palette, spacing, transitions }: Theme) =>
   createStyles({
     root: {
       '&:hover $uncheckedIcon': {
-        border: `1px solid ${palette.primary.main}`
+        border: `${spacing.borderWidth} solid ${palette.primary.main}`
       }
     },
     disabled: {
       '&:hover $uncheckedIcon': {
-        border: `1px solid ${palette.grey[100]}`
+        border: `${spacing.borderWidth} solid ${palette.grey[200]}`
       }
     },
     checkedIcon: {
       height: '1em',
       width: '1em',
-      transition: 'all .1s ease',
+      transition: `all ${transitions.duration.short}ms ${
+        transitions.easing.easeInOut
+      }`,
       background: palette.primary.main,
-      border: `1px solid ${palette.primary.dark}`,
+      border: `${spacing.borderWidth} solid ${palette.primary.main}`,
       color: palette.common.white,
 
       '&:before': {
@@ -67,25 +69,29 @@ export default ({ palette }: Theme) =>
     uncheckedIcon: {
       height: '1em',
       width: '1em',
-      transition: 'all .1s ease',
+      transition: `all ${transitions.duration.short}ms ${
+        transitions.easing.easeInOut
+      }`,
       background: palette.common.white,
-      border: `1px solid ${palette.grey[100]}`
+      border: `${spacing.borderWidth} solid ${palette.grey[200]}`
     },
     indeterminateIcon: {
       position: 'relative',
       height: '1em',
       width: '1em',
-      transition: 'all .1s ease',
+      transition: `all ${transitions.duration.short}ms ${
+        transitions.easing.easeInOut
+      }`,
       background: palette.primary.main,
-      border: `1px solid ${palette.primary.dark}`,
+      border: `${spacing.borderWidth} solid ${palette.primary.main}`,
       color: palette.common.white,
 
       '&:before': {
         content: '""',
         position: 'absolute',
         background: 'white',
-        width: '0.7em',
-        height: '0.2em',
+        width: '0.5em',
+        height: '0.125em',
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
