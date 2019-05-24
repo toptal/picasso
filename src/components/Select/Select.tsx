@@ -5,11 +5,10 @@ import { withStyles } from '@material-ui/core/styles'
 import { capitalize } from '@material-ui/core/utils/helpers'
 
 import FormControl from '../FormControl'
-import InputLabel from '../InputLabel'
-import Input from '../Input'
 import OutlinedInput from '../OutlinedInput'
 import MenuItem from '../MenuItem'
 import { StandardProps } from '../Picasso'
+import { DropdownArrows } from '../Icon'
 import styles from './styles'
 
 interface Option {
@@ -19,14 +18,14 @@ interface Option {
 }
 
 export interface Props extends StandardProps {
-  /** If true, the switch will be disabled */
+  /** If true, the 'Select' will be disabled */
   disabled?: boolean
+  /** Indicate whether `Select` is in error state */
+  error?: boolean
   /** Component ID */
   id?: string
   /** Width of the component which will apply `min-width` to the `input` */
   width?: 'full' | 'shrink' | 'auto'
-  /** Inner text label for the `Select` */
-  label?: string
   /** Placeholder option which is selected by default */
   placeholder?: string
   /** Whether `Select` should be rendered as native HTML `<select />` */
@@ -37,8 +36,6 @@ export interface Props extends StandardProps {
   options: Option[]
   /** Selected value */
   value?: string | number
-  /** The variant to use */
-  variant?: 'standard' | 'outlined'
 }
 
 const renderOptions = (
@@ -75,36 +72,25 @@ export const Select: FunctionComponent<Props> = ({
   style,
   width,
   id,
-  label,
   native,
   options,
   placeholder,
-  variant,
   disabled,
+  error,
   onChange,
   value
 }) => {
-  const hasLabel = !!label
   const fullWidth = width === 'full'
 
-  const outlinedInput =
-    variant === 'outlined' ? (
-      <OutlinedInput
-        classes={{
-          input: hasLabel ? classes.inputWithLabel : classes.input
-        }}
-        fullWidth={fullWidth}
-        labelWidth={0}
-      />
-    ) : (
-      <Input
-        classes={{
-          input: hasLabel ? classes.inputWithLabel : classes.input
-        }}
-        disableUnderline
-        fullWidth={fullWidth}
-      />
-    )
+  const outlinedInput = (
+    <OutlinedInput
+      classes={{
+        input: classes.input
+      }}
+      fullWidth={fullWidth}
+      labelWidth={0}
+    />
+  )
 
   const select = (
     <MUISelect
@@ -119,9 +105,16 @@ export const Select: FunctionComponent<Props> = ({
       id={id}
       input={outlinedInput}
       native={native}
-      variant={variant}
-      disabled={disabled}
+      variant='outlined'
       value={value}
+      IconComponent={({ className }: { className: string }) => (
+        <DropdownArrows
+          className={cx(className, {
+            [classes.iconDisabled]: disabled
+          })}
+          size={1}
+        />
+      )}
       MenuProps={{
         anchorOrigin: {
           vertical: 'bottom',
@@ -140,19 +133,11 @@ export const Select: FunctionComponent<Props> = ({
   )
 
   return (
-    <FormControl className={cx(className, { [classes.rootFull]: fullWidth })}>
-      {hasLabel && (
-        <InputLabel
-          classes={{
-            root: classes.label,
-            shrink: classes.labelShrink
-          }}
-          htmlFor={id}
-          variant={variant}
-        >
-          {label}
-        </InputLabel>
-      )}
+    <FormControl
+      error={error}
+      disabled={disabled}
+      className={cx(className, { [classes.rootFull]: fullWidth })}
+    >
       {select}
     </FormControl>
   )
@@ -160,10 +145,10 @@ export const Select: FunctionComponent<Props> = ({
 
 Select.defaultProps = {
   disabled: false,
+  error: false,
   native: false,
   onChange: () => {},
   value: '',
-  variant: 'outlined',
   width: 'full'
 }
 

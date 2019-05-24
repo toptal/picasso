@@ -7,6 +7,7 @@ import '../InputBase/styles'
 import '../OutlinedInput/styles'
 import '../Menu/styles'
 import '../MenuItem/styles'
+import { alpha } from '../styles'
 
 PicassoProvider.override(() => ({
   MuiSelect: {
@@ -24,7 +25,7 @@ PicassoProvider.override(() => ({
 
 const CARRET_ICON_LEFT_PADDING = '.4em'
 
-export default ({ spacing: { borderWidth, input, inputLabel } }: Theme) =>
+export default ({ spacing: { input }, palette }: Theme) =>
   createStyles({
     root: {
       height: input.height,
@@ -37,69 +38,33 @@ export default ({ spacing: { borderWidth, input, inputLabel } }: Theme) =>
     rootShrink: {
       width: 'auto',
       '& $input': {
-        paddingRight: `calc(${input.paddingRight} + 1em)`
+        paddingRight: `calc(${input.padding} + 1em)`
       }
     },
     rootAuto: {},
     input: {
-      fontSize: '1.15em',
+      fontSize: '.8125em',
       display: 'flex',
       alignItems: 'center',
       boxSizing: 'border-box',
       height: '100%',
-      padding: `
-      0
-      ${input.paddingLeft}
-      0
-      ${input.paddingRight}
-    `,
+      padding: input.padding,
       border: 'none'
     },
     select: {
       width: '100%'
     },
-    inputWithLabel: {
-      fontSize: '1.15em',
-      display: 'flex',
-      alignItems: 'center',
-      boxSizing: 'border-box',
-      height: '100%',
-      padding: `
-      ${inputLabel.height}
-      ${input.paddingLeft}
-      0
-      ${input.paddingRight}
-    `,
-      border: `solid ${borderWidth} transparent`
-    },
     icon: {
       top: 'calc(50% - 0.5em)',
-      right: `calc(${input.paddingRight} - ${CARRET_ICON_LEFT_PADDING})`,
+      right: `calc(${input.padding} - ${CARRET_ICON_LEFT_PADDING})`,
       fontSize: '1.5em',
-      color: 'inherit',
+      color: palette.grey[400],
       width: '1em'
+    },
+    iconDisabled: {
+      color: alpha(palette.grey[400], 0.48)
     },
     placeholder: {
       opacity: 0.4
-    },
-    label: {
-      fontSize: '1.15em',
-
-      transform: `
-      translate(
-        calc(${input.paddingLeft} + ${borderWidth}),
-        calc(${input.paddingTop} + ${borderWidth})
-      )
-      scale(1)`,
-
-      '&$labelShrink': {
-        transform: `
-        translate(
-          calc(${input.paddingLeft} + ${borderWidth}),
-          ${inputLabel.shrinkPaddingTop}
-        )
-        scale(${inputLabel.shrinkScale})`
-      }
-    },
-    labelShrink: {}
+    }
   })

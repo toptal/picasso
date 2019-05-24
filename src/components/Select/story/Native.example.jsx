@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Select } from '@toptal/picasso'
 
-const SelectDisabledExample = () => {
+const SelectNativeExample = () => {
   const [value, setValue] = useState()
 
   const handleChange = event => {
@@ -10,7 +10,7 @@ const SelectDisabledExample = () => {
 
   return (
     <Select
-      disabled
+      native
       onChange={handleChange}
       options={OPTIONS}
       value={value}
@@ -27,4 +27,4 @@ const OPTIONS = [
   { value: '4', text: 'Option 4' }
 ]
 
-export default SelectDisabledExample
+export default SelectNativeExample

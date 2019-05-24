@@ -65,7 +65,7 @@ exports[`Icon prop renders icon at the end 1`] = `
       class="MuiFormControl-root TextField-rootFixedWidth"
     >
       <div
-        class="MuiInputBase-root MuiOutlinedInput-root TextField-root MuiInputBase-formControl MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+        class="MuiInputBase-root MuiOutlinedInput-root TextField-root MuiInputBase-formControl MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
       >
         <fieldset
           aria-hidden="true"
@@ -81,14 +81,8 @@ exports[`Icon prop renders icon at the end 1`] = `
             </span>
           </legend>
         </fieldset>
-        <input
-          aria-invalid="false"
-          class="MuiInputBase-input MuiOutlinedInput-input TextField-input MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
-          type="text"
-          value=""
-        />
         <div
-          class="MuiInputAdornment-root MuiInputAdornment-positionEnd TextField-icon TextField-iconEnd"
+          class="MuiInputAdornment-root MuiInputAdornment-positionStart TextField-icon TextField-iconStart"
         >
           <svg
             aria-hidden="true"
@@ -106,6 +100,12 @@ exports[`Icon prop renders icon at the end 1`] = `
             />
           </svg>
         </div>
+        <input
+          aria-invalid="false"
+          class="MuiInputBase-input MuiOutlinedInput-input TextField-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+          type="text"
+          value=""
+        />
       </div>
     </div>
   </div>

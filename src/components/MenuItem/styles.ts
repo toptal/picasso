@@ -15,19 +15,16 @@ PicassoProvider.override(({ palette }: Theme) => ({
         backgroundColor: palette.blue.lighter,
 
         '&$selected': {
-          backgroundColor: palette.blue.lighter,
-          color: palette.primary.main
+          backgroundColor: palette.blue.lighter
         }
       },
 
       '&$selected': {
-        backgroundColor: palette.blue.lighter,
-        color: palette.primary.main
+        backgroundColor: palette.blue.lighter
       },
 
       '&:focus': {
-        backgroundColor: palette.blue.lighter,
-        color: palette.primary.main
+        backgroundColor: palette.blue.lighter
       }
     },
     selected: {},
