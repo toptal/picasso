@@ -3,6 +3,7 @@ import MUICheckbox from '@material-ui/core/Checkbox'
 import { withStyles } from '@material-ui/core/styles'
 
 import FormControlLabel from '../FormControlLabel'
+import Form from '../Form'
 import { StandardProps } from '../Picasso'
 import styles from './styles'
 
@@ -17,6 +18,8 @@ export interface Props extends StandardProps {
   label?: string
   /** The id of the input element */
   id?: string
+  /** Mark field as required */
+  required?: boolean
   /** Callback invoked when `Checkbox` changed its value */
   onChange?: (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -33,6 +36,7 @@ export const Checkbox: FunctionComponent<Props> = ({
   className,
   style,
   disabled,
+  required,
   onChange,
   value,
   checked,
@@ -68,7 +72,11 @@ export const Checkbox: FunctionComponent<Props> = ({
     <FormControlLabel
       classes={rootClasses}
       control={muiCheckbox}
-      label={label}
+      label={
+        <Form.Label required={required} as='span'>
+          {label}
+        </Form.Label>
+      }
     />
   )
 }
