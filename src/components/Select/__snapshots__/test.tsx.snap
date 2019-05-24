@@ -42,15 +42,15 @@ exports[`renders dropdown select 1`] = `
             value="val1"
           />
           <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root MuiSelect-icon Select-icon"
-            focusable="false"
-            role="presentation"
-            viewBox="0 0 24 24"
+            class="SvgDropdownArrows-root MuiSelect-icon Select-icon"
+            style="font-size: 1rem;"
+            viewBox="0 0 16 16"
           >
-            <path
-              d="M7 10l5 5 5-5z"
-            />
+            <g>
+              <path
+                d="M8.429 2.715l2.117 3.528a.5.5 0 0 1-.43.757H5.884a.5.5 0 0 1-.429-.757l2.117-3.528a.5.5 0 0 1 .858 0zM8.429 13.285l2.117-3.528a.5.5 0 0 0-.43-.757H5.884a.5.5 0 0 0-.429.757l2.117 3.528a.5.5 0 0 0 .858 0z"
+              />
+            </g>
           </svg>
         </div>
       </div>
@@ -108,15 +108,15 @@ exports[`renders native select 1`] = `
             </option>
           </select>
           <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root MuiSelect-icon Select-icon"
-            focusable="false"
-            role="presentation"
-            viewBox="0 0 24 24"
+            class="SvgDropdownArrows-root MuiSelect-icon Select-icon"
+            style="font-size: 1rem;"
+            viewBox="0 0 16 16"
           >
-            <path
-              d="M7 10l5 5 5-5z"
-            />
+            <g>
+              <path
+                d="M8.429 2.715l2.117 3.528a.5.5 0 0 1-.43.757H5.884a.5.5 0 0 1-.429-.757l2.117-3.528a.5.5 0 0 1 .858 0zM8.429 13.285l2.117-3.528a.5.5 0 0 0-.43-.757H5.884a.5.5 0 0 0-.429.757l2.117 3.528a.5.5 0 0 0 .858 0z"
+              />
+            </g>
           </svg>
         </div>
       </div>

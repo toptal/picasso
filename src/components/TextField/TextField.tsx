@@ -3,7 +3,6 @@ import cx from 'classnames'
 import MUITextField from '@material-ui/core/TextField'
 import { withStyles } from '@material-ui/core/styles'
 import { OutlinedInputProps } from '@material-ui/core/OutlinedInput'
-import { InputLabelProps } from '@material-ui/core/InputLabel'
 
 import InputAdornment from '../InputAdornment'
 import { StandardProps } from '../Picasso'
@@ -16,13 +15,13 @@ export interface Props extends StandardProps {
   id?: string
   /** Name attribute of the input element */
   name?: string
-  /** Text label for the `TextField` */
-  label?: string
   /** The value of the component */
   value?: string
+  /** Placeholder for value */
+  placeholder?: string
   /** Indicate whether `TextField` is in error state */
   error?: boolean
-  /** If true, the switch will be disabled */
+  /** If true, the `TextField` will be disabled */
   disabled?: boolean
   /** Take the full width of a container */
   fullWidth?: boolean
@@ -35,7 +34,6 @@ export interface Props extends StandardProps {
   /** Specify icon which should be rendered inside TextField */
   icon?: ReactNode
   inputProps?: OutlinedInputProps
-  inputLabelProps?: Partial<InputLabelProps>
   /** Whether `TextField` should be rendered as `TextArea` or not */
   multiline?: boolean
   /** Specify rows amount for `TextArea` */
@@ -55,8 +53,8 @@ export interface Props extends StandardProps {
 export const TextField: FunctionComponent<Props> = ({
   id,
   name,
-  label,
   value,
+  placeholder,
   error,
   disabled,
   autoFocus,
@@ -64,7 +62,6 @@ export const TextField: FunctionComponent<Props> = ({
   icon,
   iconPosition,
   inputProps = {} as OutlinedInputProps,
-  inputLabelProps = {},
   classes,
   children,
   multiline,
@@ -89,15 +86,12 @@ export const TextField: FunctionComponent<Props> = ({
       </InputAdornment>
     )
 
-    // InputLabelProps.shrink = 'auto' TODO: uncomment when 'auto' PR is merged
     inputProps.notched = false
-    inputLabelProps.classes = { shrink: classes.shrink }
 
     if (iconPosition === 'end') {
       inputProps.endAdornment = IconAdornment
     } else {
       inputProps.startAdornment = IconAdornment
-      inputLabelProps.className = classes.labelIconStart
     }
   }
 
@@ -105,8 +99,8 @@ export const TextField: FunctionComponent<Props> = ({
     <MUITextField
       id={id}
       name={name}
-      label={label}
       value={value}
+      placeholder={placeholder}
       error={error}
       disabled={disabled}
       autoFocus={autoFocus}
@@ -120,13 +114,6 @@ export const TextField: FunctionComponent<Props> = ({
       className={cx(classes.rootFixedWidth, className, {
         [classes.rootFullWidth]: fullWidth
       })}
-      InputLabelProps={{
-        ...inputLabelProps,
-        classes: {
-          root: classes.label,
-          shrink: classes.labelShrink
-        }
-      }}
       InputProps={{
         ...inputProps,
         classes: {
@@ -145,7 +132,7 @@ export const TextField: FunctionComponent<Props> = ({
 }
 
 TextField.defaultProps = {
-  iconPosition: 'end',
+  iconPosition: 'start',
   multiline: false
 }
 

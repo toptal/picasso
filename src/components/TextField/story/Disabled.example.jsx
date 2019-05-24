@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { TextField, Container } from '@toptal/picasso'
 
-const TextFieldErrorExample = () => {
+const TextFieldDisabledExample = () => {
   const [value, setValue] = useState('Text')
 
   const handleChange = event => {
@@ -11,11 +11,11 @@ const TextFieldErrorExample = () => {
   return (
     <Container flex inline>
       <Container right='small'>
-        <TextField error value={value} onChange={handleChange} />
+        <TextField disabled value={value} onChange={handleChange} />
       </Container>
-      <TextField error placeholder='Placeholder' />
+      <TextField disabled placeholder='Placeholder' />
     </Container>
   )
 }
 
-export default TextFieldErrorExample
+export default TextFieldDisabledExample

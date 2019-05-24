@@ -6,15 +6,15 @@ const FormFieldExample = () => (
     <Grid.Item small={5}>
       <Form>
         <Form.Field>
-          <Select label='Current Country' options={OPTIONS} />
+          <Select placeholder='Current Country' options={OPTIONS} />
         </Form.Field>
 
         <Form.Field>
-          <TextField fullWidth label='City of Residence' />
+          <TextField fullWidth placeholder='City of Residence' />
         </Form.Field>
 
         <Form.Field>
-          <Select label='Timezone' options={OPTIONS} />
+          <Select placeholder='Timezone' options={OPTIONS} />
         </Form.Field>
 
         <Form.Field>
