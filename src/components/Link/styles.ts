@@ -1,4 +1,4 @@
-import { createStyles } from '@material-ui/core/styles'
+import { Theme, createStyles } from '@material-ui/core/styles'
 
 import { PicassoProvider } from '../Picasso'
 
@@ -10,9 +10,9 @@ PicassoProvider.override(() => ({
   }
 }))
 
-export default () =>
+export default ({ typography }: Theme) =>
   createStyles({
     action: {
-      fontWeight: 600
+      fontWeight: typography.fontWeights.semibold
     }
   })
