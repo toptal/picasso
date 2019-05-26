@@ -7,7 +7,7 @@ import '../InputBase/styles'
 import '../OutlinedInput/styles'
 import '../Menu/styles'
 import '../MenuItem/styles'
-import { alpha } from '../styles'
+import { alpha, em } from '../styles'
 
 PicassoProvider.override(() => ({
   MuiSelect: {
@@ -22,8 +22,6 @@ PicassoProvider.override(() => ({
     }
   }
 }))
-
-const CARRET_ICON_LEFT_PADDING = '.4em'
 
 export default ({ spacing: { input, inputIcon }, palette }: Theme) =>
   createStyles({
@@ -43,13 +41,19 @@ export default ({ spacing: { input, inputIcon }, palette }: Theme) =>
     },
     rootAuto: {},
     input: {
-      fontSize: '.8125em',
+      fontSize: '1em',
       display: 'flex',
       alignItems: 'center',
       boxSizing: 'border-box',
       height: '100%',
       padding: input.padding,
+      paddingRight: `calc(${input.padding} + 1em)`,
       border: 'none'
+    },
+    inputNative: {
+      fontSize: em('13px'), // '.8125em'
+      padding: 0,
+      paddingRight: 0
     },
     inputPlaceholder: {
       color: palette.grey[400]
@@ -57,15 +61,21 @@ export default ({ spacing: { input, inputIcon }, palette }: Theme) =>
     inputPlaceholderDisabled: {
       color: alpha(palette.grey[400], 0.48)
     },
+    inputValue: {
+      fontSize: em('13px') // '.8125em'
+    },
     select: {
       width: '100%'
     },
+    selectNative: {
+      padding: input.padding,
+      paddingRight: `calc(${input.padding} + 1em)`
+    },
     caret: {
       top: 'calc(50% - 0.5em)',
-      right: `calc(${input.padding} - ${CARRET_ICON_LEFT_PADDING})`,
-      fontSize: '1.5em',
+      right: em('5px'), // '.3125em',
       color: palette.grey[400],
-      width: '1em'
+      fontSize: '1em'
     },
     caretDisabled: {
       color: alpha(palette.grey[400], 0.48)
@@ -75,19 +85,17 @@ export default ({ spacing: { input, inputIcon }, palette }: Theme) =>
     },
     icon: {
       color: palette.grey[400],
-      fontSize: '16px',
+      fontSize: '1em',
       minWidth: inputIcon.width,
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'flex-start',
-      height: '16px'
+      justifyContent: 'flex-start'
     },
     iconStart: {
-      marginRight: input.padding
+      marginRight: '0.5em'
     },
     iconEnd: {
-      marginLeft: input.padding,
-      marginRight: `calc(${input.padding} + ${CARRET_ICON_LEFT_PADDING})`,
+      marginLeft: '0.5em',
       justifyContent: 'flex-end',
       flexGrow: 1
     },

@@ -14,6 +14,7 @@ import FormControl from '../FormControl'
 import OutlinedInput from '../OutlinedInput'
 import InputAdornment from '../InputAdornment'
 import MenuItem from '../MenuItem'
+import Typography from '../Typography'
 import { StandardProps } from '../Picasso'
 import { DropdownArrows } from '../Icon'
 import styles from './styles'
@@ -96,7 +97,7 @@ export const Select: FunctionComponent<Props> = ({
   value
 }) => {
   const fullWidth = width === 'full'
-  const isPlaceholderSelected = placeholder && value === ''
+  const isPlaceholderShown = placeholder && value === ''
 
   const selectedOption = useMemo(
     () => options.find(option => option.value === value),
@@ -107,8 +108,9 @@ export const Select: FunctionComponent<Props> = ({
     <OutlinedInput
       classes={{
         input: cx(classes.input, {
-          [classes.inputPlaceholder]: isPlaceholderSelected,
-          [classes.inputPlaceholderDisabled]: isPlaceholderSelected && disabled
+          [classes.inputPlaceholder]: isPlaceholderShown,
+          [classes.inputPlaceholderDisabled]: isPlaceholderShown && disabled,
+          [classes.inputNative]: native
         })
       }}
       fullWidth={fullWidth}
@@ -127,9 +129,7 @@ export const Select: FunctionComponent<Props> = ({
     >
       {icon}
     </InputAdornment>
-  ) : (
-    <React.Fragment />
-  )
+  ) : null
 
   const menuProps = {
     anchorOrigin: {
@@ -148,7 +148,9 @@ export const Select: FunctionComponent<Props> = ({
       className={className}
       style={style}
       classes={{
-        root: cx(classes.root, classes[`root${capitalize(width!)}`]),
+        root: cx(classes.root, classes[`root${capitalize(width!)}`], {
+          [classes.selectNative]: native
+        }),
         icon: classes.caret,
         select: classes.select
       }}
@@ -161,8 +163,10 @@ export const Select: FunctionComponent<Props> = ({
       renderValue={() => (
         <React.Fragment>
           {iconPosition === 'start' && iconAdornment}
-          {selectedOption && selectedOption.text}
-          {!selectedOption && placeholder}
+          <Typography className={classes.inputValue} inline color='inherit'>
+            {selectedOption && selectedOption.text}
+            {!selectedOption && placeholder}
+          </Typography>
           {iconPosition === 'end' && iconAdornment}
         </React.Fragment>
       )}
@@ -171,7 +175,6 @@ export const Select: FunctionComponent<Props> = ({
           className={cx(className, {
             [classes.caretDisabled]: disabled
           })}
-          size={1}
         />
       )}
       MenuProps={menuProps}
