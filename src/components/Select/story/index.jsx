@@ -39,3 +39,7 @@ page
     description:
       'Options of the Select component could be not only text, but custom components'
   })
+  .addExample('Select/story/WithLabel.example.jsx', {
+    title: 'With Label',
+    description: 'An example of usage Select with Form.Label'
+  })

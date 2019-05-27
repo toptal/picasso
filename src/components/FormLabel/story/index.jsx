@@ -9,7 +9,6 @@ const chapter = PicassoBook.connectToPage(page =>
       `Add the <Form.Label> component if you need to add a Label to you input`
     )
     .addExample('FormLabel/story/Default.example.jsx', 'Default')
-    .addExample('FormLabel/story/Error.example.jsx', 'Error')
     .addExample('FormLabel/story/Disabled.example.jsx', 'Disabled')
     .addExample('FormLabel/story/Required.example.jsx', 'Required')
 )

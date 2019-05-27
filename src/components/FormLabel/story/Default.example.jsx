@@ -6,10 +6,8 @@ const DefaultExample = () => (
     <Grid.Item>
       <Form>
         <Form.Field>
-          <Form.Label htmlFor='fullName-1'>
-            This is a label for my awesome field
-          </Form.Label>
-          <TextField id='fullName-1' fullWidth />
+          <Form.Label htmlFor='fullName-1'>Label:</Form.Label>
+          <TextField id='fullName-1' />
         </Form.Field>
       </Form>
     </Grid.Item>
