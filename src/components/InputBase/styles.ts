@@ -12,8 +12,8 @@ PicassoProvider.override(({ typography, palette }: Theme) => ({
       lineHeight: '1.2em'
     },
     error: {
-      color: palette.error.dark,
-      backgroundColor: palette.error.lighter
+      color: palette.red.dark,
+      backgroundColor: palette.red.lighter
     }
   }
 }))

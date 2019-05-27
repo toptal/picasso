@@ -60,15 +60,15 @@ const renderNotificationIcon = ({ icon, variant, classes }: Props) => {
   switch (variant) {
     case 'error':
       // eslint-disable-next-line react/jsx-props-no-spreading
-      return <Alert {...iconProps} color={palette.error.main} />
+      return <Alert {...iconProps} color={palette.red.main} />
 
     case 'warning':
       // eslint-disable-next-line react/jsx-props-no-spreading
-      return <Alert {...iconProps} color={palette.warning.main} />
+      return <Alert {...iconProps} color={palette.yellow.main} />
 
     case 'success':
       // eslint-disable-next-line react/jsx-props-no-spreading
-      return <Tick {...iconProps} color={palette.success.main} />
+      return <Tick {...iconProps} color={palette.green.main} />
 
     default:
       const infoProps = { ...iconProps, color: palette.grey[200] }

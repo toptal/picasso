@@ -108,9 +108,9 @@ export default ({ palette, spacing, transitions, typography }: Theme) =>
     // variants
     primaryBlue: primary(palette.primary.main, palette.common.white),
     secondaryBlue: secondary(palette.primary.main, palette.common.white),
-    primaryRed: primary(palette.error.main, palette.common.white),
-    secondaryRed: secondary(palette.error.main, palette.common.white),
-    primaryGreen: primary(palette.success.main, palette.common.white),
+    primaryRed: primary(palette.red.main, palette.common.white),
+    secondaryRed: secondary(palette.red.main, palette.common.white),
+    primaryGreen: primary(palette.green.main, palette.common.white),
     secondaryWhite: {
       ...secondary(palette.common.white, palette.common.white),
       backgroundColor: 'transparent',

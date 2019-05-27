@@ -13,7 +13,7 @@ PicassoProvider.override(() => ({
 }))
 
 export default ({
-  palette: { error, success, warning, common, text },
+  palette: { red, green, yellow, common, text },
   shadows
 }: Theme) =>
   createStyles({
@@ -31,16 +31,16 @@ export default ({
       boxShadow: shadows[3]
     },
     notificationError: {
-      background: error.lighter
+      background: red.lighter
     },
     notificationSuccess: {
-      background: success.lighter
+      background: green.lighter
     },
     notificationInfo: {
       background: common.white
     },
     notificationWarning: {
-      background: warning.light
+      background: yellow.light
     },
     notificationFullWidth: {
       justifyContent: 'center'

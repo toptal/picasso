@@ -6,13 +6,13 @@ export default ({ palette }: Theme) =>
       backgroundColor: palette.grey[100],
       color: palette.grey[300]
     },
-    success: {
-      backgroundColor: palette.success.light,
-      color: palette.success.main
+    green: {
+      backgroundColor: palette.green.light,
+      color: palette.green.main
     },
-    error: {
-      backgroundColor: palette.error.light,
-      color: palette.error.main
+    red: {
+      backgroundColor: palette.red.light,
+      color: palette.red.main
     },
 
     deleteIcon: {

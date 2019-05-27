@@ -8,7 +8,7 @@ PicassoProvider.override(({ palette }) => ({
       fontSize: 'unset'
     },
     error: {
-      color: palette.error.main
+      color: palette.red.main
     }
   }
 }))

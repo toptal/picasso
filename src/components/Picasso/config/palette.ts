@@ -16,20 +16,13 @@ declare module '@material-ui/core/styles/createPalette' {
 
   interface Palette {
     blue: SimplePaletteColorOptions
-    success: SimplePaletteColorOptions
-    warning: SimplePaletteColorOptions
+    green: SimplePaletteColorOptions
+    yellow: SimplePaletteColorOptions
+    red: SimplePaletteColorOptions
   }
 }
 
 export const colors = {
-  primary: {
-    light: '#cad5f4',
-    main: '#204ecf',
-    dark: '#1542c1'
-  },
-  text: {
-    primary: '#455065'
-  },
   grey: {
     100: '#d8d9dc',
     200: '#c4c6ca',
@@ -39,19 +32,21 @@ export const colors = {
   },
   blue: {
     lighter: '#eef1fc',
-    light: '#dbe3f9'
+    light: '#cad5f4',
+    main: '#204ecf',
+    dark: '#1542c1'
   },
-  warning: {
+  yellow: {
     light: '#fdf5e8',
     main: '#edad2a'
   },
-  error: {
+  red: {
     lighter: '#fbedf1',
     light: '#f8b1b4',
     main: '#d42551',
     dark: '#9f3a38'
   },
-  success: {
+  green: {
     lighter: '#edfbf5',
     light: '#b3ffe4',
     main: '#00cc83'
@@ -67,6 +62,10 @@ const palette = {
   // palette. So to prevent changing colors object we should
   // deep copy it.
   ...JSON.parse(JSON.stringify(colors)),
+  primary: colors.blue,
+  text: {
+    primary: '#455065'
+  },
   background: {
     default: colors.common.white
   }
