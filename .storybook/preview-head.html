@@ -66,7 +66,18 @@
 </style>
 
 <script>
-  if (!window.PICASSO_BOOK || window.PICASSO_BOOK.TEST_ENV !== 'visual') {
+  function disableAnimations() {
+    const style = document.createElement('style')
+    style.type = 'text/css'
+    style.appendChild(
+      document.createTextNode(
+        '* { animation: none !important; transition: none !important; }'
+      )
+    )
+    document.head.appendChild(style)
+  }
+
+  function executeUserbackIntegration() {
     Userback = window.Userback || {}
     // TODO: pull this token from ENV vars once we start using Toptal account
     Userback.access_token =
@@ -83,36 +94,30 @@
       parent_node.appendChild(s)
     })('userback-sdk')
   }
-</script>
-
-<script>
-  function disableAnimations() {
-    const style = document.createElement('style')
-    style.type = 'text/css'
-    style.appendChild(
-      document.createTextNode(
-        '* { animation: none !important; transition: none !important; }'
-      )
-    )
-    document.head.appendChild(style)
-  }
 
   function reset() {
-    if (window.PICASSO_BOOK && window.PICASSO_BOOK.TEST_ENV === 'visual') {
-      const root = document.getElementById('root')
-      disableAnimations()
+    const root = document.getElementById('root')
+    disableAnimations()
 
-      if (!root) {
-        throw new Error('#root element not found! Possible story problem')
-      }
-
-      root.style = 'padding: 0 !important'
-      // we have left here 10px margin for visual tests
-      // to make prettier screenshots and to avoid hiding
-      // box shadows from the captured screenshots for some components
-      document.body.style = 'padding: 0; margin: 10px !important;'
+    if (!root) {
+      throw new Error('#root element not found! Possible story problem')
     }
+
+    root.style = 'padding: 0 !important'
+    // we have left here 10px margin for visual tests
+    // to make prettier screenshots and to avoid hiding
+    // box shadows from the captured screenshots for some components
+    document.body.style = 'padding: 0; margin: 10px !important;'
   }
 
-  document.addEventListener('DOMContentLoaded', reset)
+  function onLoad() {
+    if (window.PICASSO_BOOK && window.PICASSO_BOOK.TEST_ENV === 'visual') {
+      reset()
+      return
+    }
+
+    executeUserbackIntegration()
+  }
+
+  document.addEventListener('DOMContentLoaded', onLoad)
 </script>
