@@ -2,7 +2,6 @@ import React, { FunctionComponent } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
-import InputLabel from '../InputLabel'
 import { StandardProps } from '../Picasso'
 import styles from './styles'
 
@@ -30,7 +29,7 @@ export const FormLabel: FunctionComponent<Props> = ({
   inline
 }) => {
   return (
-    <InputLabel
+    <label
       htmlFor={htmlFor}
       className={cx(
         classes.root,
@@ -44,7 +43,7 @@ export const FormLabel: FunctionComponent<Props> = ({
     >
       {required && <span className={classes.asterisk}>*</span>}
       {children}
-    </InputLabel>
+    </label>
   )
 }
 
