@@ -33,14 +33,14 @@ test('renders flat variant', () => {
   expect(container).toMatchSnapshot()
 })
 
-test('renders success variant', () => {
-  const { container } = renderLabel('Label', { variant: 'success' })
+test('renders green variant', () => {
+  const { container } = renderLabel('Label', { variant: 'green' })
 
   expect(container).toMatchSnapshot()
 })
 
-test('renders error variant', () => {
-  const { container } = renderLabel('Label', { variant: 'error' })
+test('renders red variant', () => {
+  const { container } = renderLabel('Label', { variant: 'red' })
 
   expect(container).toMatchSnapshot()
 })

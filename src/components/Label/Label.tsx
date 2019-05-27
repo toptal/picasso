@@ -16,7 +16,7 @@ export interface Props extends StandardProps {
    */
   onDelete?: () => void
   /** Style variant of the label */
-  variant?: 'flat' | 'success' | 'error'
+  variant?: 'flat' | 'green' | 'red'
 }
 
 interface StaticProps {
