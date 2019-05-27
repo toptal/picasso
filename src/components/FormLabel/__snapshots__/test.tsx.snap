@@ -10,7 +10,7 @@ exports[`FormLabel default render 1`] = `
         class="FormField-root"
       >
         <label
-          class="MuiFormLabel-root MuiInputLabel-root InputLabel-root MuiInputLabel-animated FormLabel-root FormLabel-field"
+          class="MuiFormLabel-root MuiInputLabel-root InputLabel-root MuiInputLabel-animated FormLabel-root"
         >
           Label
         </label>
@@ -58,7 +58,7 @@ exports[`FormLabel disabled 1`] = `
         class="FormField-root"
       >
         <label
-          class="MuiFormLabel-root MuiInputLabel-root InputLabel-root MuiInputLabel-animated FormLabel-root FormLabel-disabled FormLabel-field"
+          class="MuiFormLabel-root MuiInputLabel-root InputLabel-root MuiInputLabel-animated FormLabel-root FormLabel-disabled"
         >
           Label
         </label>
@@ -106,7 +106,7 @@ exports[`FormLabel required 1`] = `
         class="FormField-root"
       >
         <label
-          class="MuiFormLabel-root MuiInputLabel-root InputLabel-root MuiInputLabel-animated FormLabel-root FormLabel-field"
+          class="MuiFormLabel-root MuiInputLabel-root InputLabel-root MuiInputLabel-animated FormLabel-root"
         >
           <span
             class="FormLabel-asterisk"
@@ -159,7 +159,7 @@ exports[`FormLabel requried and disabled 1`] = `
         class="FormField-root"
       >
         <label
-          class="MuiFormLabel-root MuiInputLabel-root InputLabel-root MuiInputLabel-animated FormLabel-root FormLabel-disabled FormLabel-field"
+          class="MuiFormLabel-root MuiInputLabel-root InputLabel-root MuiInputLabel-animated FormLabel-root FormLabel-disabled"
         >
           <span
             class="FormLabel-asterisk"
