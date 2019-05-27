@@ -77,7 +77,7 @@
     document.head.appendChild(style)
   }
 
-  function executeUserbackIntegration() {
+  function injectUserBackIntegration() {
     Userback = window.Userback || {}
     // TODO: pull this token from ENV vars once we start using Toptal account
     Userback.access_token =
@@ -116,7 +116,7 @@
       return
     }
 
-    executeUserbackIntegration()
+    injectUserBackIntegration()
   }
 
   document.addEventListener('DOMContentLoaded', onLoad)
