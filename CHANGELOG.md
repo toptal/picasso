@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/toptal/picasso/compare/v1.6.0...v1.7.0) (2019-05-27)
+
+
+### Features
+
+* **page-header:** add logoLink to PageHeader component ([#360](https://github.com/toptal/picasso/issues/360)) ([14e9a77](https://github.com/toptal/picasso/commit/14e9a77)), closes [#354](https://github.com/toptal/picasso/issues/354)
+
 # [1.6.0](https://github.com/toptal/picasso/compare/v1.5.2...v1.6.0) (2019-05-17)
 
 
