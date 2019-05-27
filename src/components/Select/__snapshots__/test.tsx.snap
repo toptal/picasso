@@ -36,7 +36,7 @@ exports[`renders dropdown select 1`] = `
             tabindex="0"
           >
             <p
-              class="MuiTypography-root Typography-bodyInherit MuiTypography-body1 MuiTypography-inline Select-inputValue"
+              class="MuiTypography-root Typography-bodyInherit Typography-inherit MuiTypography-body1 MuiTypography-inline Select-inputValue"
             >
               text1
             </p>
