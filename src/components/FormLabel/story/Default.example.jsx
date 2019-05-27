@@ -7,7 +7,7 @@ const DefaultExample = () => (
       <Form>
         <Form.Field>
           <Form.Label htmlFor='fullName-1'>Label:</Form.Label>
-          <TextField id='fullName-1' />
+          <TextField htmlId='fullName-1' />
         </Form.Field>
       </Form>
     </Grid.Item>

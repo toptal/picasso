@@ -9,7 +9,7 @@ const DefaultExample = () => (
           <Form.Label htmlFor='fullName-4' required>
             Required Label
           </Form.Label>
-          <TextField id='fullName-4' fullWidth required />
+          <TextField htmlId='fullName-4' fullWidth required />
         </Form.Field>
       </Form>
     </Grid.Item>

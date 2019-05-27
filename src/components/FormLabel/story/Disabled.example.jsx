@@ -9,7 +9,7 @@ const DefaultExample = () => (
           <Form.Label htmlFor='fullName-2' disabled>
             Disabled label:
           </Form.Label>
-          <TextField id='fullName-2' fullWidth disabled />
+          <TextField htmlId='fullName-2' fullWidth disabled />
         </Form.Field>
       </Form>
     </Grid.Item>
@@ -20,7 +20,7 @@ const DefaultExample = () => (
           <Form.Label htmlFor='fullName-2' disabled required>
             Disabled required label:
           </Form.Label>
-          <TextField id='fullName-2' fullWidth disabled />
+          <TextField htmlId='fullName-2' fullWidth disabled />
         </Form.Field>
       </Form>
     </Grid.Item>

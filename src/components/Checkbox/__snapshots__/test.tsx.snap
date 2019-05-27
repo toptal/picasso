@@ -28,11 +28,11 @@ exports[`checkbox interaction should render checked checkbox 1`] = `
     <span
       class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label"
     >
-      <label
+      <span
         class="FormLabel-root FormLabel-inline"
       >
         Select item
-      </label>
+      </span>
     </span>
   </label>
 </div>
@@ -140,11 +140,11 @@ exports[`should render default checkbox with label 1`] = `
     <span
       class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label"
     >
-      <label
+      <span
         class="FormLabel-root FormLabel-inline"
       >
         Select item
-      </label>
+      </span>
     </span>
   </label>
 </div>

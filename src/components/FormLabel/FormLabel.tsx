@@ -5,6 +5,8 @@ import cx from 'classnames'
 import { StandardProps } from '../Picasso'
 import styles from './styles'
 
+type ComponetType = 'label' | 'span'
+
 export interface Props extends StandardProps {
   /** Content of the label */
   children: string
@@ -16,6 +18,8 @@ export interface Props extends StandardProps {
   htmlFor?: string
   /** Whether label should act as inline element `display: inline-block` */
   inline?: boolean
+  /** Component used for the root node */
+  as?: ComponetType
 }
 
 export const FormLabel: FunctionComponent<Props> = ({
@@ -26,10 +30,11 @@ export const FormLabel: FunctionComponent<Props> = ({
   classes,
   className,
   style,
-  inline
+  inline,
+  as: Component = 'label'
 }) => {
   return (
-    <label
+    <Component
       htmlFor={htmlFor}
       className={cx(
         classes.root,
@@ -43,11 +48,12 @@ export const FormLabel: FunctionComponent<Props> = ({
     >
       {required && <span className={classes.asterisk}>*</span>}
       {children}
-    </label>
+    </Component>
   )
 }
 
 FormLabel.defaultProps = {
+  as: 'label',
   inline: false
 }
 
