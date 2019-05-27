@@ -24,6 +24,7 @@ export default ({ palette }: Theme) =>
     },
 
     control: {
-      display: 'inline-block'
+      display: 'inline-block',
+      fontSize: '13px'
     }
   })

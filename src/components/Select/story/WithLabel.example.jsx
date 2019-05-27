@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Select, Form } from '@toptal/picasso'
+import { Select, Form, Container } from '@toptal/picasso'
 
 const SelectDefaultExample = () => {
   const [value, setValue] = useState()
@@ -10,18 +10,50 @@ const SelectDefaultExample = () => {
 
   return (
     <Form>
-      <Form.Field>
-        <Form.Label htmlFor='select'>Label:</Form.Label>
+      <Container bottom='large'>
+        <Form.Field>
+          <Form.Label htmlFor='select-1'>Label:</Form.Label>
 
-        <Select
-          onChange={handleChange}
-          options={OPTIONS}
-          value={value}
-          placeholder='Choose option...'
-          width='full'
-          htmlId='select'
-        />
-      </Form.Field>
+          <Select
+            onChange={handleChange}
+            options={OPTIONS}
+            value={value}
+            placeholder='Choose option...'
+            width='shrink'
+            htmlId='select-1'
+          />
+        </Form.Field>
+      </Container>
+
+      <Container bottom='large'>
+        <Form.Field>
+          <Form.Label htmlFor='select-2'>Label:</Form.Label>
+
+          <Select
+            onChange={handleChange}
+            options={OPTIONS}
+            value={value}
+            placeholder='Choose option...'
+            width='auto'
+            htmlId='select-2'
+          />
+        </Form.Field>
+      </Container>
+
+      <Container bottom='large'>
+        <Form.Field>
+          <Form.Label htmlFor='select-3'>Label:</Form.Label>
+
+          <Select
+            onChange={handleChange}
+            options={OPTIONS}
+            value={value}
+            placeholder='Choose option...'
+            width='full'
+            htmlId='select-3'
+          />
+        </Form.Field>
+      </Container>
     </Form>
   )
 }
