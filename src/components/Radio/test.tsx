@@ -45,3 +45,16 @@ describe('radio button', () => {
     expect(container).toMatchSnapshot()
   })
 })
+
+describe('Radio.Group', () => {
+  test('renders radio in group', () => {
+    const { container }: RenderResult = render(
+      <Radio.Group>
+        <Radio label='LABEL+1' value='VALUE+1' />
+        <Radio label='LABEL+2' value='VALUE+2' />
+      </Radio.Group>
+    )
+
+    expect(container).toMatchSnapshot()
+  })
+})
