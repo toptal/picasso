@@ -5,7 +5,6 @@ import '../InputBase/styles'
 import '../InputLabel/styles'
 import '../OutlinedInput/styles'
 import '../InputAdornment/styles'
-import { em } from '../styles'
 
 export default ({ spacing: { input, inputIcon } }: Theme) =>
   createStyles({
@@ -25,7 +24,7 @@ export default ({ spacing: { input, inputIcon } }: Theme) =>
       width: '100%'
     },
     input: {
-      fontSize: em('13px'),
+      fontSize: '0.8125em',
       border: 'none',
       padding: 0
     },

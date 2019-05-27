@@ -1,7 +1,6 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
 import { PicassoProvider } from '../Picasso'
-import { em } from '../styles'
 
 PicassoProvider.override(({ palette }: Theme) => ({
   MuiMenuItem: {
@@ -30,10 +29,10 @@ PicassoProvider.override(({ palette }: Theme) => ({
     },
     selected: {},
     gutters: {
-      padding: em('10px'),
+      padding: '0.625em',
       // to override MUI paddingLeft and paddingRight default values
-      paddingLeft: em('10px'),
-      paddingRight: em('10px')
+      paddingLeft: '0.625em',
+      paddingRight: '0.625em'
     }
   }
 }))
@@ -41,6 +40,6 @@ PicassoProvider.override(({ palette }: Theme) => ({
 export default () =>
   createStyles({
     stringContent: {
-      fontSize: em('13px')
+      fontSize: '0.8125em'
     }
   })

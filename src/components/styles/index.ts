@@ -30,12 +30,6 @@ export const rem = (px: string, baseFontSize = 16) => {
   return `${Number.parseInt(pxNumber) / baseFontSize}rem`
 }
 
-export const em = (px: string, baseFontSize = 16) => {
-  const remValue = rem(px, baseFontSize)
-
-  return remValue.replace('rem', 'em')
-}
-
 export { default as withClasses } from './withClasses'
 
 export { createPropertiesStyles } from './createPropertiesStyles'

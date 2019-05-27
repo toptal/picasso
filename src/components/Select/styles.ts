@@ -7,7 +7,7 @@ import '../InputBase/styles'
 import '../OutlinedInput/styles'
 import '../Menu/styles'
 import '../MenuItem/styles'
-import { alpha, em } from '../styles'
+import { alpha } from '../styles'
 
 PicassoProvider.override(() => ({
   MuiSelect: {
@@ -51,7 +51,7 @@ export default ({ spacing: { input, inputIcon }, palette }: Theme) =>
       border: 'none'
     },
     inputNative: {
-      fontSize: em('13px'),
+      fontSize: '0.8125em',
       padding: 0,
       paddingRight: 0
     },
@@ -62,7 +62,7 @@ export default ({ spacing: { input, inputIcon }, palette }: Theme) =>
       color: alpha(palette.grey[400], 0.48)
     },
     inputValue: {
-      fontSize: em('13px')
+      fontSize: '0.8125em'
     },
     select: {
       width: '100%'
@@ -73,7 +73,9 @@ export default ({ spacing: { input, inputIcon }, palette }: Theme) =>
     },
     caret: {
       top: 'calc(50% - 0.5em)',
-      right: em('5px'),
+      // in specs right spacing is defined relative to 6px icon width, while we use 16px
+      // so 5px are left instead of 10px when we use wider icon.
+      right: '0.3125em',
       color: palette.grey[400],
       fontSize: '1em'
     },
