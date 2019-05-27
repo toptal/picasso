@@ -16,7 +16,7 @@ type VariantType = 'action' | 'default'
 
 interface Props extends StandardProps {
   /** Content of the component */
-  children: ReactNode
+  children?: ReactNode
   /** Destination the link points to */
   href?: string
   /** Controls when the link should have an underline */
