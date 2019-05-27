@@ -6,7 +6,9 @@ export default ({ palette }: Theme) =>
   createStyles({
     root: {
       fontSize: '14px',
-      color: palette.grey[400]
+      color: palette.grey[400],
+      display: 'block',
+      marginBottom: '8px'
     },
 
     disabled: {
@@ -18,12 +20,7 @@ export default ({ palette }: Theme) =>
       color: palette.error.main
     },
 
-    field: {
-      display: 'block',
-      marginBottom: '8px'
-    },
-
-    control: {
+    inline: {
       display: 'inline-block',
       fontSize: '13px'
     }

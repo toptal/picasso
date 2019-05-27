@@ -12,7 +12,7 @@ const TestFormLabel: FunctionComponent<OmitInternalProps<Props>> = ({
   required,
   disabled,
   htmlFor,
-  variant
+  inline
 }) => (
   <Picasso loadFonts={false}>
     <Form>
@@ -21,7 +21,7 @@ const TestFormLabel: FunctionComponent<OmitInternalProps<Props>> = ({
           required={required}
           disabled={disabled}
           htmlFor={htmlFor}
-          variant={variant}
+          inline={inline}
         >
           {children}
         </FormLabel>

@@ -12,7 +12,7 @@ const SelectDefaultExample = () => {
     <Form>
       <Container bottom='large'>
         <Form.Field>
-          <Form.Label htmlFor='select-1'>Label:</Form.Label>
+          <Form.Label>Label:</Form.Label>
 
           <Select
             onChange={handleChange}
@@ -20,14 +20,13 @@ const SelectDefaultExample = () => {
             value={value}
             placeholder='Choose option...'
             width='shrink'
-            htmlId='select-1'
           />
         </Form.Field>
       </Container>
 
       <Container bottom='large'>
         <Form.Field>
-          <Form.Label htmlFor='select-2'>Label:</Form.Label>
+          <Form.Label>Label:</Form.Label>
 
           <Select
             onChange={handleChange}
@@ -35,14 +34,13 @@ const SelectDefaultExample = () => {
             value={value}
             placeholder='Choose option...'
             width='auto'
-            htmlId='select-2'
           />
         </Form.Field>
       </Container>
 
       <Container bottom='large'>
         <Form.Field>
-          <Form.Label htmlFor='select-3'>Label:</Form.Label>
+          <Form.Label>Label:</Form.Label>
 
           <Select
             onChange={handleChange}
@@ -50,7 +48,6 @@ const SelectDefaultExample = () => {
             value={value}
             placeholder='Choose option...'
             width='full'
-            htmlId='select-3'
           />
         </Form.Field>
       </Container>

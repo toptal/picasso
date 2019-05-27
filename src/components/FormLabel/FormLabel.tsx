@@ -15,8 +15,8 @@ export interface Props extends StandardProps {
   disabled?: boolean
   /** Specifies an id of the input */
   htmlFor?: string
-
-  variant?: 'control' | 'field'
+  /** Whether label should act as inline element `display: inline-block` */
+  inline?: boolean
 }
 
 export const FormLabel: FunctionComponent<Props> = ({
@@ -27,18 +27,18 @@ export const FormLabel: FunctionComponent<Props> = ({
   classes,
   className,
   style,
-  variant
+  inline
 }) => {
   return (
     <InputLabel
       htmlFor={htmlFor}
       className={cx(
-        className,
         classes.root,
         {
-          [classes.disabled]: disabled
+          [classes.disabled]: disabled,
+          [classes.inline]: inline
         },
-        classes[variant!]
+        className
       )}
       style={style}
     >
@@ -49,7 +49,7 @@ export const FormLabel: FunctionComponent<Props> = ({
 }
 
 FormLabel.defaultProps = {
-  variant: 'field'
+  inline: false
 }
 
 FormLabel.displayName = 'FormLabel'

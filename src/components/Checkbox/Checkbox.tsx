@@ -73,7 +73,7 @@ export const Checkbox: FunctionComponent<Props> = ({
       classes={rootClasses}
       control={muiCheckbox}
       label={
-        <Form.Label required={required} variant='control'>
+        <Form.Label required={required} inline>
           {label}
         </Form.Label>
       }
