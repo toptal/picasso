@@ -6,9 +6,7 @@ export default ({ palette }: Theme) =>
   createStyles({
     root: {
       fontSize: '14px',
-      color: palette.grey[400],
-      display: 'block',
-      marginBottom: '8px'
+      color: palette.grey[400]
     },
 
     disabled: {
@@ -18,6 +16,11 @@ export default ({ palette }: Theme) =>
     asterisk: {
       marginRight: '5px',
       color: palette.error.main
+    },
+
+    block: {
+      display: 'block',
+      marginBottom: '8px'
     },
 
     inline: {

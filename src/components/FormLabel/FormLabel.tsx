@@ -34,9 +34,9 @@ export const FormLabel: FunctionComponent<Props> = ({
       htmlFor={htmlFor}
       className={cx(
         classes.root,
+        inline ? classes.inline : classes.block,
         {
-          [classes.disabled]: disabled,
-          [classes.inline]: inline
+          [classes.disabled]: disabled
         },
         className
       )}
