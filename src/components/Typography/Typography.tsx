@@ -12,7 +12,7 @@ import styles from './styles'
 type VariantType = 'heading' | 'body'
 
 type WeightType = 'thin' | 'light' | 'regular' | 'semibold' | 'bold'
-type ColorType = 'blue' | 'green' | 'red' | 'grey' | 'black'
+type ColorType = 'blue' | 'green' | 'red' | 'grey' | 'black' | 'inherit'
 
 export interface Props extends StandardProps {
   /** Font variant inner text */

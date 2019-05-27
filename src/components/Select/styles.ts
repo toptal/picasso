@@ -23,9 +23,7 @@ PicassoProvider.override(() => ({
   }
 }))
 
-const CARRET_ICON_LEFT_PADDING = '.4em'
-
-export default ({ spacing: { input }, palette }: Theme) =>
+export default ({ spacing: { input, inputIcon }, palette }: Theme) =>
   createStyles({
     root: {
       height: input.height,
@@ -43,28 +41,67 @@ export default ({ spacing: { input }, palette }: Theme) =>
     },
     rootAuto: {},
     input: {
-      fontSize: '.8125em',
+      fontSize: '1em',
       display: 'flex',
       alignItems: 'center',
       boxSizing: 'border-box',
       height: '100%',
       padding: input.padding,
+      paddingRight: `calc(${input.padding} + 1em)`,
       border: 'none'
+    },
+    inputNative: {
+      fontSize: '0.8125em',
+      padding: 0,
+      paddingRight: 0
+    },
+    inputPlaceholder: {
+      color: palette.grey[400]
+    },
+    inputPlaceholderDisabled: {
+      color: alpha(palette.grey[400], 0.48)
+    },
+    inputValue: {
+      fontSize: '0.8125em'
     },
     select: {
       width: '100%'
     },
-    icon: {
-      top: 'calc(50% - 0.5em)',
-      right: `calc(${input.padding} - ${CARRET_ICON_LEFT_PADDING})`,
-      fontSize: '1.5em',
-      color: palette.grey[400],
-      width: '1em'
+    selectNative: {
+      padding: input.padding,
+      paddingRight: `calc(${input.padding} + 1em)`
     },
-    iconDisabled: {
+    caret: {
+      top: 'calc(50% - 0.5em)',
+      // in specs right spacing is defined relative to 6px icon width, while we use 16px
+      // so 5px are left instead of 10px when we use wider icon.
+      right: '0.3125em',
+      color: palette.grey[400],
+      fontSize: '1em'
+    },
+    caretDisabled: {
       color: alpha(palette.grey[400], 0.48)
     },
     placeholder: {
       opacity: 0.4
+    },
+    icon: {
+      color: palette.grey[400],
+      fontSize: '1em',
+      minWidth: inputIcon.width,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'flex-start'
+    },
+    iconStart: {
+      marginRight: '0.5em'
+    },
+    iconEnd: {
+      marginLeft: '0.5em',
+      justifyContent: 'flex-end',
+      flexGrow: 1
+    },
+    iconDisabled: {
+      color: alpha(palette.grey[400], 0.48)
     }
   })
