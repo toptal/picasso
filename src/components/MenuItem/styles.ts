@@ -30,10 +30,10 @@ PicassoProvider.override(({ palette }: Theme) => ({
     },
     selected: {},
     gutters: {
-      padding: em('10px'), // '0.625em'
+      padding: em('10px'),
       // to override MUI paddingLeft and paddingRight default values
-      paddingLeft: em('10px'), // '0.625em'
-      paddingRight: em('10px') // '0.625em'
+      paddingLeft: em('10px'),
+      paddingRight: em('10px')
     }
   }
 }))
@@ -41,6 +41,6 @@ PicassoProvider.override(({ palette }: Theme) => ({
 export default () =>
   createStyles({
     stringContent: {
-      fontSize: em('13px') // '0.8125em'
+      fontSize: em('13px')
     }
   })

@@ -51,7 +51,7 @@ export default ({ spacing: { input, inputIcon }, palette }: Theme) =>
       border: 'none'
     },
     inputNative: {
-      fontSize: em('13px'), // '.8125em'
+      fontSize: em('13px'),
       padding: 0,
       paddingRight: 0
     },
@@ -62,7 +62,7 @@ export default ({ spacing: { input, inputIcon }, palette }: Theme) =>
       color: alpha(palette.grey[400], 0.48)
     },
     inputValue: {
-      fontSize: em('13px') // '.8125em'
+      fontSize: em('13px')
     },
     select: {
       width: '100%'
@@ -73,7 +73,7 @@ export default ({ spacing: { input, inputIcon }, palette }: Theme) =>
     },
     caret: {
       top: 'calc(50% - 0.5em)',
-      right: em('5px'), // '.3125em',
+      right: em('5px'),
       color: palette.grey[400],
       fontSize: '1em'
     },

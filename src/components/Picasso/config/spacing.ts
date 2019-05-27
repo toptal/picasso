@@ -22,9 +22,9 @@ const spacing = {
   borderWidth: '1px',
   borderRadius: '3px',
   input: {
-    height: em('36px'), // '2.25em',
-    width: em('300px'), // '18.75em',
-    padding: em('10px') // '.625em'
+    height: em('36px'),
+    width: em('300px'),
+    padding: em('10px')
   },
   inputLabel: {
     height: '1em'
