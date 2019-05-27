@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { Select } from '@toptal/picasso'
+import { Select, Container } from '@toptal/picasso'
+import { Cog } from '@toptal/picasso/Icon'
 
 const SelectDefaultExample = () => {
   const [value, setValue] = useState()
@@ -9,13 +10,27 @@ const SelectDefaultExample = () => {
   }
 
   return (
-    <Select
-      onChange={handleChange}
-      options={OPTIONS}
-      value={value}
-      placeholder='ID'
-      width='shrink'
-    />
+    <Container flex inline>
+      <Container right='small'>
+        <Select
+          onChange={handleChange}
+          options={OPTIONS}
+          value={value}
+          placeholder='ID'
+          width='shrink'
+        />
+      </Container>
+      <Container right='small'>
+        <Select
+          onChange={handleChange}
+          options={OPTIONS}
+          value={value}
+          icon={<Cog />}
+          placeholder='ID'
+          width='shrink'
+        />
+      </Container>
+    </Container>
   )
 }
 

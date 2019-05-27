@@ -35,15 +35,18 @@ exports[`renders dropdown select 1`] = `
             role="button"
             tabindex="0"
           >
-            text1
+            <p
+              class="MuiTypography-root Typography-bodyInherit Typography-inherit MuiTypography-body1 MuiTypography-inline Select-inputValue"
+            >
+              text1
+            </p>
           </div>
           <input
             type="hidden"
             value="val1"
           />
           <svg
-            class="SvgDropdownArrows-root MuiSelect-icon Select-icon"
-            style="font-size: 1rem;"
+            class="SvgDropdownArrows-root MuiSelect-icon Select-caret"
             viewBox="0 0 16 16"
           >
             <g>
@@ -85,11 +88,11 @@ exports[`renders native select 1`] = `
           </legend>
         </fieldset>
         <div
-          class="MuiSelect-root Select-root Select-rootFull"
+          class="MuiSelect-root Select-root Select-rootFull Select-selectNative"
         >
           <select
             aria-invalid="false"
-            class="MuiSelect-select Select-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Select-input"
+            class="MuiSelect-select Select-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Select-input Select-inputNative"
           >
             <option
               value="val1"
@@ -108,8 +111,7 @@ exports[`renders native select 1`] = `
             </option>
           </select>
           <svg
-            class="SvgDropdownArrows-root MuiSelect-icon Select-icon"
-            style="font-size: 1rem;"
+            class="SvgDropdownArrows-root MuiSelect-icon Select-caret"
             viewBox="0 0 16 16"
           >
             <g>
