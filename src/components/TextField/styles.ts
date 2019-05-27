@@ -24,7 +24,7 @@ export default ({ spacing: { input, inputIcon } }: Theme) =>
       width: '100%'
     },
     input: {
-      fontSize: '.8125em',
+      fontSize: '0.8125em',
       border: 'none',
       padding: 0
     },

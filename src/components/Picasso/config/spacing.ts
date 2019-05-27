@@ -9,8 +9,6 @@ declare module '@material-ui/core/styles/spacing' {
     }
     inputLabel: {
       height: string
-      shrinkPaddingTop: string
-      shrinkScale: number
     }
     inputIcon: {
       width: string
@@ -24,12 +22,10 @@ const spacing = {
   input: {
     height: '2.25em',
     width: '18.75em',
-    padding: '.625em'
+    padding: '0.625em'
   },
   inputLabel: {
-    height: '1em',
-    shrinkPaddingTop: '.4em',
-    shrinkScale: 0.75
+    height: '1em'
   },
   inputIcon: {
     width: '1em'

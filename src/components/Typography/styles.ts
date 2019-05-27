@@ -101,5 +101,8 @@ export default ({ palette, typography }: Theme) =>
     },
     invert: {
       color: palette.common.white
+    },
+    inherit: {
+      color: 'inherit'
     }
   })

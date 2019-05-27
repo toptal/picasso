@@ -27,6 +27,7 @@ page
   .addExample('Select/story/Native.example.jsx', 'Native')
   .addExample('Select/story/Disabled.example.jsx', 'Disabled')
   .addExample('Select/story/Error.example.jsx', 'Error')
+  .addExample('Select/story/WithIcon.example.jsx', 'With Icon')
   .addExample('Select/story/FullWidth.example.jsx', 'Full width')
   .addExample('Select/story/ShrinkWidth.example.jsx', 'Shrink width')
   .addExample('Select/story/ChosenOption.example.jsx', {
