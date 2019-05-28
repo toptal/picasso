@@ -33,12 +33,14 @@ export const FormLabel: FunctionComponent<Props> = ({
   inline,
   as: Component = 'label'
 }) => {
+  const isInline = inline || Component === 'span'
+
   return (
     <Component
       htmlFor={htmlFor}
       className={cx(
         classes.root,
-        inline || Component === 'span' ? classes.inline : classes.block,
+        isInline ? classes.inline : classes.block,
         {
           [classes.disabled]: disabled
         },
@@ -47,7 +49,9 @@ export const FormLabel: FunctionComponent<Props> = ({
       style={style}
     >
       {required && <span className={classes.asterisk}>*</span>}
-      {children}
+      <span className={isInline ? classes.inlineText : classes.blockText}>
+        {children}
+      </span>
     </Component>
   )
 }

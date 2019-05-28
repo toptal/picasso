@@ -1,6 +1,6 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
-import { alpha, rem } from '../styles'
+import { alpha } from '../styles'
 
 export default ({ palette }: Theme) =>
   createStyles({
@@ -13,17 +13,25 @@ export default ({ palette }: Theme) =>
     },
 
     asterisk: {
-      marginRight: rem('5px'),
-      color: palette.error.main
+      marginRight: '0.3125em',
+      color: palette.error.main,
+      verticalAlign: 'middle'
     },
 
     block: {
-      fontSize: '0.875em',
       display: 'block',
-      marginBottom: rem('8px')
+      marginBottom: '0.5em'
     },
 
     inline: {
       display: 'inline-block'
+    },
+
+    inlineText: {
+      fontSize: '0.8125em'
+    },
+
+    blockText: {
+      fontSize: '0.875em'
     }
   })
