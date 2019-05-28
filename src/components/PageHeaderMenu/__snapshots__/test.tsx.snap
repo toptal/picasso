@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageHeaderMenu default render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="Dropdown-root"
+    >
+      <div
+        class="Dropdown-anchor"
+      >
+        <div
+          class="MuiGrid-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-center"
+        >
+          <div
+            class="MuiGrid-item"
+          >
+            <div
+              class="Avatar-root Avatar-xsmall"
+            >
+              <img
+                alt="Jacqueline Roque"
+                class="Image-root Avatar-image Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar PageHeaderMenu-avatar"
+                src="./jacqueline-with-flowers-1954-square.jpg"
+              />
+            </div>
+          </div>
+          <div
+            class="MuiGrid-item"
+          >
+            <h5
+              class="MuiTypography-root Typography-invert Typography-semibold MuiTypography-h5 MuiTypography-inline"
+            >
+              Jacqueline Roque
+            </h5>
+          </div>
+        </div>
+        <span
+          class="DropdownArrow-root"
+          style="color: white;"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

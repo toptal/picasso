@@ -3,6 +3,7 @@ import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
 import PageHeader from '../PageHeader'
+import PageHeaderMenu from '../PageHeaderMenu'
 import PageFooter from '../PageFooter'
 import PageContent from '../PageContent'
 import { StandardProps, PicassoComponent } from '../Picasso'
@@ -22,6 +23,7 @@ interface Props extends StandardProps {
 
 interface StaticProps {
   Header: typeof PageHeader
+  HeaderMenu: typeof PageHeaderMenu
   Content: typeof PageContent
   Footer: typeof PageFooter
 }
@@ -51,6 +53,8 @@ Page.defaultProps = {
 Page.displayName = 'Page'
 
 Page.Header = PageHeader
+
+Page.HeaderMenu = PageHeaderMenu
 
 Page.Content = PageContent
 
