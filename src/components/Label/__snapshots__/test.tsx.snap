@@ -56,26 +56,6 @@ exports[`renders default variant 1`] = `
 </div>
 `;
 
-exports[`renders error variant 1`] = `
-<div>
-  <div
-    class="Picasso-root"
-  >
-    <div
-      class="MuiChip-root Chip-root Label-error"
-      role="button"
-      tabindex="-1"
-    >
-      <span
-        class="MuiChip-label"
-      >
-        Label
-      </span>
-    </div>
-  </div>
-</div>
-`;
-
 exports[`renders flat variant 1`] = `
 <div>
   <div
@@ -96,13 +76,33 @@ exports[`renders flat variant 1`] = `
 </div>
 `;
 
-exports[`renders success variant 1`] = `
+exports[`renders green variant 1`] = `
 <div>
   <div
     class="Picasso-root"
   >
     <div
-      class="MuiChip-root Chip-root Label-success"
+      class="MuiChip-root Chip-root Label-green"
+      role="button"
+      tabindex="-1"
+    >
+      <span
+        class="MuiChip-label"
+      >
+        Label
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders red variant 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="MuiChip-root Chip-root Label-red"
       role="button"
       tabindex="-1"
     >
