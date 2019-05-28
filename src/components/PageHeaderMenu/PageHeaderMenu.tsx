@@ -8,9 +8,12 @@ import Dropdown from '../Dropdown'
 import styles from './styles'
 
 export interface Props extends StandardProps {
+  /** User full name to display */
   name: string
-  avatar: string
-  content: ReactNode
+  /** Photo url or custom Avatar component */
+  avatar?: ReactNode
+  /** Menu content */
+  children: ReactNode
 }
 
 export const PageHeaderMenu: FunctionComponent<Props> = ({
@@ -19,13 +22,13 @@ export const PageHeaderMenu: FunctionComponent<Props> = ({
   classes,
   className,
   style,
-  content
+  children
 }) => {
   return (
     <Dropdown
       className={cx(classes.root, className)}
       style={style}
-      content={content}
+      content={children}
       offset={{ top: 'xsmall' }}
     >
       <UserBadge
