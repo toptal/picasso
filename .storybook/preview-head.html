@@ -66,24 +66,6 @@
 </style>
 
 <script>
-  Userback = window.Userback || {}
-  // TODO: pull this token from ENV vars once we start using Toptal account
-  Userback.access_token =
-    '4398|5932|Uknj89Fkp4pwTczViVyYJAkX93qZus5EKYlz9ti6zlNsZM9MqF'
-  ;(function(id) {
-    if (document.getElementById(id)) {
-      return
-    }
-    var s = document.createElement('script')
-    s.id = id
-    s.async = 1
-    s.src = 'https://static.userback.io/widget/v1.js'
-    var parent_node = document.head || document.body
-    parent_node.appendChild(s)
-  })('userback-sdk')
-</script>
-
-<script>
   function disableAnimations() {
     const style = document.createElement('style')
     style.type = 'text/css'
@@ -95,22 +77,47 @@
     document.head.appendChild(style)
   }
 
-  function reset() {
-    if (window.PICASSO_BOOK && window.PICASSO_BOOK.TEST_ENV === 'visual') {
-      const root = document.getElementById('root')
-      disableAnimations()
-
-      if (!root) {
-        throw new Error('#root element not found! Possible story problem')
+  function injectUserBackIntegration() {
+    Userback = window.Userback || {}
+    // TODO: pull this token from ENV vars once we start using Toptal account
+    Userback.access_token =
+      '4398|5932|Uknj89Fkp4pwTczViVyYJAkX93qZus5EKYlz9ti6zlNsZM9MqF'
+    ;(function(id) {
+      if (document.getElementById(id)) {
+        return
       }
-
-      root.style = 'padding: 0 !important'
-      // we have left here 10px margin for visual tests
-      // to make prettier screenshots and to avoid hiding
-      // box shadows from the captured screenshots for some components
-      document.body.style = 'padding: 0; margin: 10px !important;'
-    }
+      var s = document.createElement('script')
+      s.id = id
+      s.async = 1
+      s.src = 'https://static.userback.io/widget/v1.js'
+      var parent_node = document.head || document.body
+      parent_node.appendChild(s)
+    })('userback-sdk')
   }
 
-  document.addEventListener('DOMContentLoaded', reset)
+  function reset() {
+    const root = document.getElementById('root')
+    disableAnimations()
+
+    if (!root) {
+      throw new Error('#root element not found! Possible story problem')
+    }
+
+    root.style = 'padding: 0 !important'
+    // we have left here 10px margin for visual tests
+    // to make prettier screenshots and to avoid hiding
+    // box shadows from the captured screenshots for some components
+    document.body.style = 'padding: 0; margin: 10px !important;'
+  }
+
+  function onLoad() {
+    if (window.PICASSO_BOOK && window.PICASSO_BOOK.TEST_ENV === 'visual') {
+      reset()
+      return
+    }
+
+    injectUserBackIntegration()
+  }
+
+  document.addEventListener('DOMContentLoaded', onLoad)
 </script>
