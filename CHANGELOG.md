@@ -1,3 +1,10 @@
+## [1.7.3](https://github.com/toptal/picasso/compare/v1.7.2...v1.7.3) (2019-05-28)
+
+
+### Bug Fixes
+
+* **textfield:** add missing props ([#388](https://github.com/toptal/picasso/issues/388)) ([dc10b30](https://github.com/toptal/picasso/commit/dc10b30))
+
 ## [1.7.2](https://github.com/toptal/picasso/compare/v1.7.1...v1.7.2) (2019-05-28)
 
 
