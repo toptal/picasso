@@ -40,16 +40,16 @@ export const FormLabel: FunctionComponent<Props> = ({
       htmlFor={htmlFor}
       className={cx(
         classes.root,
-        isInline ? classes.inline : classes.block,
         {
-          [classes.disabled]: disabled
+          [classes.disabled]: disabled,
+          [classes.inline]: isInline
         },
         className
       )}
       style={style}
     >
       {required && <span className={classes.asterisk}>*</span>}
-      <span className={isInline ? classes.inlineText : classes.blockText}>
+      <span className={isInline ? classes.inlineText : classes.text}>
         {children}
       </span>
     </Component>

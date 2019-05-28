@@ -10,9 +10,13 @@ exports[`FormLabel default render 1`] = `
         class="FormField-root"
       >
         <label
-          class="FormLabel-root FormLabel-block"
+          class="FormLabel-root"
         >
-          Label
+          <span
+            class="FormLabel-text"
+          >
+            Label
+          </span>
         </label>
         <div
           class="MuiFormControl-root TextField-rootFixedWidth"
@@ -58,9 +62,13 @@ exports[`FormLabel disabled 1`] = `
         class="FormField-root"
       >
         <label
-          class="FormLabel-root FormLabel-block FormLabel-disabled"
+          class="FormLabel-root FormLabel-disabled"
         >
-          Label
+          <span
+            class="FormLabel-text"
+          >
+            Label
+          </span>
         </label>
         <div
           class="MuiFormControl-root TextField-rootFixedWidth"
@@ -106,14 +114,18 @@ exports[`FormLabel required 1`] = `
         class="FormField-root"
       >
         <label
-          class="FormLabel-root FormLabel-block"
+          class="FormLabel-root"
         >
           <span
             class="FormLabel-asterisk"
           >
             *
           </span>
-          Label
+          <span
+            class="FormLabel-text"
+          >
+            Label
+          </span>
         </label>
         <div
           class="MuiFormControl-root TextField-rootFixedWidth"
@@ -159,14 +171,18 @@ exports[`FormLabel requried and disabled 1`] = `
         class="FormField-root"
       >
         <label
-          class="FormLabel-root FormLabel-block FormLabel-disabled"
+          class="FormLabel-root FormLabel-disabled"
         >
           <span
             class="FormLabel-asterisk"
           >
             *
           </span>
-          Label
+          <span
+            class="FormLabel-text"
+          >
+            Label
+          </span>
         </label>
         <div
           class="MuiFormControl-root TextField-rootFixedWidth"

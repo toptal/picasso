@@ -5,33 +5,31 @@ import { alpha } from '../styles'
 export default ({ palette }: Theme) =>
   createStyles({
     root: {
-      color: palette.grey[400]
+      color: palette.grey[400],
+      display: 'flex',
+      marginBottom: '0.5em',
+      lineHeight: '1em'
     },
 
     disabled: {
       color: alpha(palette.grey[400], 0.48)
     },
 
-    asterisk: {
-      marginRight: '0.3125em',
-      color: palette.error.main,
-      verticalAlign: 'middle'
-    },
-
-    block: {
-      display: 'block',
-      marginBottom: '0.5em'
+    text: {
+      fontSize: '0.875em'
     },
 
     inline: {
-      display: 'inline-block'
+      display: 'inline-flex',
+      marginBottom: 0
     },
 
     inlineText: {
       fontSize: '0.8125em'
     },
 
-    blockText: {
-      fontSize: '0.875em'
+    asterisk: {
+      marginRight: '0.3125em',
+      color: palette.error.main
     }
   })
