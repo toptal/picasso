@@ -1,10 +1,10 @@
-import React, { FunctionComponent, ReactNode } from 'react'
+import React, { FunctionComponent } from 'react'
 import MUIRadio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import { withStyles } from '@material-ui/core/styles'
 
 import FormControlLabel from '../FormControlLabel'
-import { StandardProps } from '../Picasso'
+import { PicassoComponent, StandardProps } from '../Picasso'
 import styles from './styles'
 
 export interface Props extends StandardProps {
@@ -21,11 +21,11 @@ export interface Props extends StandardProps {
 }
 
 // should be moved to some global interfaces place
-interface GroupFunctionalComponent<T> extends FunctionComponent<T> {
-  Group: ReactNode
+interface StaticProps {
+  Group: typeof RadioGroup
 }
 
-export const Radio: GroupFunctionalComponent<Props> = ({
+export const Radio: FunctionComponent<Props> & StaticProps = ({
   classes,
   className,
   style,
@@ -81,4 +81,4 @@ Radio.displayName = 'Radio'
 
 Radio.Group = RadioGroup
 
-export default withStyles(styles)(Radio)
+export default withStyles(styles)(Radio) as PicassoComponent<Props, StaticProps>

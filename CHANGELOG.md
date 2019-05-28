@@ -1,3 +1,10 @@
+## [1.7.2](https://github.com/toptal/picasso/compare/v1.7.1...v1.7.2) (2019-05-28)
+
+
+### Bug Fixes
+
+* **radio:** fix interface definition for radio group ([#383](https://github.com/toptal/picasso/issues/383)) ([20de87c](https://github.com/toptal/picasso/commit/20de87c))
+
 ## [1.7.1](https://github.com/toptal/picasso/compare/v1.7.0...v1.7.1) (2019-05-27)
 
 
