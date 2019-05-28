@@ -1,3 +1,10 @@
+## [1.7.4](https://github.com/toptal/picasso/compare/v1.7.3...v1.7.4) (2019-05-28)
+
+
+### Bug Fixes
+
+* **button:** accept and proxy 'type' prop ([#373](https://github.com/toptal/picasso/issues/373)) ([395295d](https://github.com/toptal/picasso/commit/395295d))
+
 ## [1.7.3](https://github.com/toptal/picasso/compare/v1.7.2...v1.7.3) (2019-05-28)
 
 
