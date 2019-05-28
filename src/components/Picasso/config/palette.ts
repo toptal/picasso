@@ -62,7 +62,8 @@ const palette = {
   // palette. So to prevent changing colors object we should
   // deep copy it.
   ...JSON.parse(JSON.stringify(colors)),
-  primary: colors.blue,
+  primary: JSON.parse(JSON.stringify(colors.blue)),
+  error: JSON.parse(JSON.stringify(colors.red)),
   text: {
     primary: '#455065'
   },
