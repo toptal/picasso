@@ -55,6 +55,8 @@ export interface Props extends StandardProps {
   circular?: boolean
   /** HTML title of Button component */
   title?: string
+  /** HTML type of Button component **/
+  type?: 'button' | 'reset' | 'submit'
 }
 
 interface StaticProps {
@@ -79,7 +81,8 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
   onClick,
   circular,
   title,
-  value
+  value,
+  type
 }) => {
   const {
     icon: iconClass,
@@ -135,6 +138,7 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
       disabled={disabled}
       title={title}
       value={value}
+      type={type}
     >
       <Container
         inline
@@ -165,6 +169,7 @@ Button.defaultProps = {
   loading: false,
   onClick: () => {},
   size: 'medium',
+  type: 'button',
   variant: 'default'
 }
 
