@@ -29,7 +29,7 @@ export default ({ palette, typography, transitions }: Theme) =>
       position: 'relative',
       textTransform: 'none',
       fontSize: typography.button.fontSize,
-      padding: '.4em 1em',
+      padding: '.6em 1em',
       borderRadius: '.25rem',
       lineHeight: '1.5em',
       transition: `all ${transitions.duration.short}ms ${
@@ -119,11 +119,7 @@ export default ({ palette, typography, transitions }: Theme) =>
       ),
       border: 'none'
     },
-    basic: getFilledButton(
-      palette.common.white,
-      palette.grey[50],
-      palette.text.primary
-    ),
+    basic: getFilledButton(palette.common.white, 'red', palette.text.primary),
 
     // Other props
     fullWidth: {
@@ -142,7 +138,7 @@ export default ({ palette, typography, transitions }: Theme) =>
       fontSize: '1.2em !important'
     },
     iconLeft: {
-      marginRight: ICON_SPACING
+      marginRight: '3px'
     },
     iconRight: {
       marginLeft: ICON_SPACING
