@@ -12,6 +12,8 @@ import styles from './styles'
 type IconPosition = 'start' | 'end'
 
 export interface Props extends StandardProps {
+  /** The id of the `input` element. */
+  id?: string
   /** Name attribute of the input element */
   name?: string
   /** Text label for the `TextField` */
@@ -26,6 +28,8 @@ export interface Props extends StandardProps {
   fullWidth?: boolean
   /** Focus during first mount */
   autoFocus?: boolean
+  /** Helps users to fill forms faster */
+  autoComplete?: string
   /** Whether icon should be placed at the beginning or end of the `TextField` */
   iconPosition?: IconPosition
   /** Specify icon which should be rendered inside TextField */
@@ -36,6 +40,8 @@ export interface Props extends StandardProps {
   multiline?: boolean
   /** Specify rows amount for `TextArea` */
   rows?: number
+  /* Maximum number of rows to display when multiline option is set to true. */
+  rowsMax?: number
   /** Type attribute of the Input element. It should be a valid HTML5 input type */
   type?: string
   /**  Callback invoked when `TextField` changes its state */
@@ -47,12 +53,14 @@ export interface Props extends StandardProps {
 }
 
 export const TextField: FunctionComponent<Props> = ({
+  id,
   name,
   label,
   value,
   error,
   disabled,
   autoFocus,
+  autoComplete,
   icon,
   iconPosition,
   inputProps = {} as OutlinedInputProps,
@@ -64,6 +72,7 @@ export const TextField: FunctionComponent<Props> = ({
   className,
   style,
   rows,
+  rowsMax,
   type,
   onChange
 }) => {
@@ -94,16 +103,19 @@ export const TextField: FunctionComponent<Props> = ({
 
   return (
     <MUITextField
+      id={id}
       name={name}
       label={label}
       value={value}
       error={error}
       disabled={disabled}
       autoFocus={autoFocus}
+      autoComplete={autoComplete}
       multiline={multiline}
       variant='outlined'
       style={style}
       rows={rows}
+      rowsMax={rowsMax}
       type={type}
       className={cx(classes.rootFixedWidth, className, {
         [classes.rootFullWidth]: fullWidth
