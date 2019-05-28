@@ -11,10 +11,8 @@ const FormFieldExample = () => (
         </Form.Field>
 
         <Form.Field>
-          <Form.Label required htmlFor='city'>
-            City
-          </Form.Label>
-          <TextField id='city' fullWidth placeholder='e.g., Barcelona' />
+          <Form.Label required>City</Form.Label>
+          <TextField fullWidth placeholder='e.g., Barcelona' />
         </Form.Field>
 
         <Form.Field>
