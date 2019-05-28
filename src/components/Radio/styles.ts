@@ -23,7 +23,7 @@ PicassoProvider.override(({ palette, transitions }) => ({
       }
     },
     disabled: {
-      color: palette.grey[200],
+      color: palette.grey[300],
       opacity: 0.48
     },
     checked: {
@@ -59,17 +59,17 @@ export default ({ palette, spacing, transitions }: Theme) =>
     },
     disabled: {
       '&:hover $uncheckedIcon': {
-        color: palette.grey[200]
+        color: palette.grey[300]
       }
     },
     uncheckedIcon: {
-      color: palette.grey[200],
+      color: palette.grey[300],
       transition: `all ${transitions.duration.short}ms ${
         transitions.easing.easeInOut
       }`,
       '&:before': {
         ...centeredCircle(palette.common.white),
-        border: `${spacing.borderWidth} solid ${palette.grey[200]}`
+        border: `${spacing.borderWidth} solid ${palette.grey[300]}`
       },
       '&:after': {
         ...centeredCircle(palette.common.white),
@@ -91,7 +91,7 @@ export default ({ palette, spacing, transitions }: Theme) =>
       }`,
       '&:before': {
         ...centeredCircle(palette.common.white),
-        border: `${spacing.borderWidth} solid ${palette.grey[200]}`
+        border: `${spacing.borderWidth} solid ${palette.grey[300]}`
       },
       '&:after': {
         ...centeredCircle(palette.common.white),

@@ -9,7 +9,7 @@ PicassoProvider.override(({ palette }: Theme) => ({
       color: palette.common.black,
 
       '& $notchedOutline': {
-        borderColor: palette.grey[100],
+        borderColor: palette.grey[200],
         borderRadius: 0,
         top: 0,
         '& legend': {
@@ -25,7 +25,7 @@ PicassoProvider.override(({ palette }: Theme) => ({
 
       '&$disabled': {
         '& $notchedOutline': {
-          borderColor: alpha(palette.grey[100], 0.48)
+          borderColor: alpha(palette.grey[200], 0.48)
         },
         color: alpha(palette.common.black, 0.48)
       },

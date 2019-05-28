@@ -40,7 +40,7 @@ export default ({
       background: common.white
     },
     notificationYellow: {
-      background: yellow.light
+      background: yellow.lighter
     },
     notificationFullWidth: {
       justifyContent: 'center'

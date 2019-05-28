@@ -22,7 +22,7 @@ const TypographyColorsExample = () => (
     <Container padded='xsmall' style={{ backgroundColor: palette.blue.dark }}>
       <Typography invert>White for inverted backgrounds</Typography>
     </Container>
-    <Container padded='xsmall' style={{ color: palette.grey[200] }}>
+    <Container padded='xsmall' style={{ color: palette.grey[300] }}>
       <Typography color='inherit'>Inherit color</Typography>
     </Container>
   </div>

@@ -8,7 +8,7 @@ PicassoProvider.override(({ palette }: Theme) => ({
       display: 'none'
     },
     root: {
-      border: `1px solid ${palette.grey[200]}`,
+      border: `1px solid ${palette.grey[300]}`,
       borderRadius: '50%',
       color: 'transparent',
 
