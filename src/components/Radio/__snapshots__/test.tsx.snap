@@ -1,5 +1,65 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Radio.Group renders radio in group 1`] = `
+<div>
+  <div
+    class="MuiFormGroup-root"
+    role="radiogroup"
+  >
+    <label
+      class="MuiFormControlLabel-root FormControlLabel-root Radio-label"
+    >
+      <span
+        class="MuiButtonBase-root MuiIconButton-root MuiPrivateSwitchBase-root MuiRadio-root Radio-icon"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <input
+            class="MuiPrivateSwitchBase-input"
+            type="radio"
+            value="VALUE+1"
+          />
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </span>
+      <span
+        class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label"
+      >
+        LABEL+1
+      </span>
+    </label>
+    <label
+      class="MuiFormControlLabel-root FormControlLabel-root Radio-label"
+    >
+      <span
+        class="MuiButtonBase-root MuiIconButton-root MuiPrivateSwitchBase-root MuiRadio-root Radio-icon"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <input
+            class="MuiPrivateSwitchBase-input"
+            type="radio"
+            value="VALUE+2"
+          />
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </span>
+      <span
+        class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label"
+      >
+        LABEL+2
+      </span>
+    </label>
+  </div>
+</div>
+`;
+
 exports[`disabled radio button renders disabled version 1`] = `
 <div>
   <span

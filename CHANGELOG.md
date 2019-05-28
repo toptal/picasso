@@ -1,3 +1,24 @@
+## [1.7.3](https://github.com/toptal/picasso/compare/v1.7.2...v1.7.3) (2019-05-28)
+
+
+### Bug Fixes
+
+* **textfield:** add missing props ([#388](https://github.com/toptal/picasso/issues/388)) ([dc10b30](https://github.com/toptal/picasso/commit/dc10b30))
+
+## [1.7.2](https://github.com/toptal/picasso/compare/v1.7.1...v1.7.2) (2019-05-28)
+
+
+### Bug Fixes
+
+* **radio:** fix interface definition for radio group ([#383](https://github.com/toptal/picasso/issues/383)) ([20de87c](https://github.com/toptal/picasso/commit/20de87c))
+
+## [1.7.1](https://github.com/toptal/picasso/compare/v1.7.0...v1.7.1) (2019-05-27)
+
+
+### Bug Fixes
+
+* **header:** add proper zIndex on Page.Header ([#385](https://github.com/toptal/picasso/issues/385)) ([0d3d9f1](https://github.com/toptal/picasso/commit/0d3d9f1))
+
 # [1.7.0](https://github.com/toptal/picasso/compare/v1.6.0...v1.7.0) (2019-05-27)
 
 

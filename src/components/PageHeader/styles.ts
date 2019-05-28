@@ -2,7 +2,7 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 
 export const headerHeight = '3.75em'
 
-export default ({ palette, layout }: Theme) =>
+export default ({ palette, layout, zIndex }: Theme) =>
   createStyles({
     root: {
       backgroundColor: palette.primary.main,
@@ -11,7 +11,7 @@ export default ({ palette, layout }: Theme) =>
       top: 0,
       left: 0,
       right: 0,
-      zIndex: 1
+      zIndex: zIndex.appBar
     },
     content: {
       boxSizing: 'border-box',
