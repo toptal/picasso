@@ -30,16 +30,16 @@ export default ({
     notificationShadow: {
       boxShadow: shadows[3]
     },
-    notificationError: {
+    notificationRed: {
       background: red.lighter
     },
-    notificationSuccess: {
+    notificationGreen: {
       background: green.lighter
     },
-    notificationInfo: {
+    notificationWhite: {
       background: common.white
     },
-    notificationWarning: {
+    notificationYellow: {
       background: yellow.light
     },
     notificationFullWidth: {
