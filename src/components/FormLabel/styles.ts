@@ -6,7 +6,7 @@ export default ({ palette }: Theme) =>
   createStyles({
     root: {
       color: palette.grey[400],
-      display: 'flex',
+      display: 'block',
       marginBottom: '0.5em',
       lineHeight: '1em'
     },
@@ -19,17 +19,24 @@ export default ({ palette }: Theme) =>
       fontSize: '0.875em'
     },
 
-    inline: {
-      display: 'inline-flex',
-      marginBottom: 0
-    },
-
-    inlineText: {
-      fontSize: '0.8125em'
-    },
-
     asterisk: {
       marginRight: '0.3125em',
-      color: palette.error.main
+      color: palette.error.main,
+      fontSize: '0.875em'
+    },
+
+    inline: {
+      display: 'inline-block',
+      marginBottom: 0,
+
+      '& $text': {
+        fontSize: '0.8125em',
+        verticalAlign: 'top'
+      },
+
+      '& $asterisk': {
+        fontSize: '0.8125em',
+        verticalAlign: 'top'
+      }
     }
   })

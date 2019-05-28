@@ -49,9 +49,7 @@ export const FormLabel: FunctionComponent<Props> = ({
       style={style}
     >
       {required && <span className={classes.asterisk}>*</span>}
-      <span className={isInline ? classes.inlineText : classes.text}>
-        {children}
-      </span>
+      <span className={classes.text}>{children}</span>
     </Component>
   )
 }
