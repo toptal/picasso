@@ -19,7 +19,4 @@ PicassoProvider.override(({ palette, spacing }: Theme) => ({
   }
 }))
 
-export default () =>
-  createStyles({
-    root: {}
-  })
+export default () => createStyles({})

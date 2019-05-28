@@ -8,13 +8,11 @@ const renderLabel = (
   children: string,
   props: OmitInternalProps<Props, 'children'>
 ) => {
-  const { variant, onDelete } = props
+  const { onDelete } = props
 
   return render(
     <Picasso loadFonts={false}>
-      <Label variant={variant} onDelete={onDelete}>
-        {children}
-      </Label>
+      <Label onDelete={onDelete}>{children}</Label>
     </Picasso>
   )
 }
@@ -23,24 +21,6 @@ afterEach(cleanup)
 
 test('renders default variant', () => {
   const { container } = renderLabel('Label', {})
-
-  expect(container).toMatchSnapshot()
-})
-
-test('renders flat variant', () => {
-  const { container } = renderLabel('Label', { variant: 'flat' })
-
-  expect(container).toMatchSnapshot()
-})
-
-test('renders green variant', () => {
-  const { container } = renderLabel('Label', { variant: 'green' })
-
-  expect(container).toMatchSnapshot()
-})
-
-test('renders red variant', () => {
-  const { container } = renderLabel('Label', { variant: 'red' })
 
   expect(container).toMatchSnapshot()
 })

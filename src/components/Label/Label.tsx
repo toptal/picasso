@@ -15,8 +15,6 @@ export interface Props extends StandardProps {
    * Please note that specifying this callback automatically adds remove `Icon` as children of the `Label`
    */
   onDelete?: () => void
-  /** Style variant of the label */
-  variant?: 'flat' | 'green' | 'red'
 }
 
 interface StaticProps {
@@ -25,17 +23,13 @@ interface StaticProps {
 
 export const Label: FunctionComponent<Props> & StaticProps = ({
   classes,
-  variant,
   children,
   className,
   style,
   onDelete
 }) => {
-  const rootClass = variant ? classes[variant] : ''
-
   return (
     <Chip
-      classes={{ root: rootClass }}
       className={className}
       style={style}
       deleteIcon={
@@ -53,8 +47,7 @@ export const Label: FunctionComponent<Props> & StaticProps = ({
 
 Label.defaultProps = {
   children: '',
-  onDelete: undefined,
-  variant: undefined
+  onDelete: undefined
 }
 
 Label.displayName = 'Label'
