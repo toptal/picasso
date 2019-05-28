@@ -17,6 +17,7 @@ PicassoProvider.override(({ palette, typography }: Theme) => ({
       fontWeight: typography.fontWeightRegular,
       fontSize: '13px',
       cursor: 'pointer',
+
       userSelect: 'none',
 
       '&$disabled': {
