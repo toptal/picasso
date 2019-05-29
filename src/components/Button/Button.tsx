@@ -56,13 +56,15 @@ export interface Props extends StandardProps {
   circular?: boolean
   /** HTML title of Button component */
   title?: string
+  /** HTML type of Button component **/
+  type?: 'button' | 'reset' | 'submit'
 }
 
 interface StaticProps {
   Group: typeof Group
 }
 
-const getType = (variant: VariantType) => {
+const getVariantType = (variant: VariantType) => {
   const [type] = variant!.split('-')
 
   return type
@@ -86,7 +88,8 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
   onClick,
   circular,
   title,
-  value
+  value,
+  type
 }) => {
   const {
     icon: iconClass,
@@ -116,9 +119,9 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
     }
   }
 
-  const type = getType(variant!)
+  const variantType = getVariantType(variant!)
   const variantClassName = disabled
-    ? classes[`${type}Disabled`]
+    ? classes[`${variantType}Disabled`]
     : classes[kebabToCamelCase(variant!)]
   const sizeClassName = classes[size!]
 
@@ -146,6 +149,7 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
       disabled={disabled}
       title={title}
       value={value}
+      type={type}
     >
       <Container
         inline
@@ -176,6 +180,7 @@ Button.defaultProps = {
   loading: false,
   onClick: () => {},
   size: 'medium',
+  type: 'button',
   variant: 'primary-blue'
 }
 
