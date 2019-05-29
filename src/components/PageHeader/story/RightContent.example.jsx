@@ -16,6 +16,7 @@ const RightContent = () => (
     </Container>
     <Page.HeaderMenu
       name='Jacqueline Roque'
+      organization='Picasso'
       avatar='./jacqueline-with-flowers-1954-square.jpg'
     >
       <Menu>
