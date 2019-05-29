@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from 'react'
+import React, { FunctionComponent, ReactNode, ReactElement } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import CloseIcon from '@material-ui/icons/Close'
 
@@ -15,6 +15,8 @@ export interface Props extends StandardProps {
    * Please note that specifying this callback automatically adds remove `Icon` as children of the `Label`
    */
   onDelete?: () => void
+  /** Specify the icon which should be rendered inside Label */
+  icon?: ReactElement
 }
 
 interface StaticProps {
@@ -25,6 +27,7 @@ export const Label: FunctionComponent<Props> & StaticProps = ({
   classes,
   children,
   className,
+  icon,
   style,
   onDelete
 }) => {
@@ -41,6 +44,7 @@ export const Label: FunctionComponent<Props> & StaticProps = ({
       }
       onDelete={onDelete}
       label={children}
+      icon={icon}
     />
   )
 }
