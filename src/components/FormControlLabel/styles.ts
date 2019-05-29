@@ -15,8 +15,6 @@ PicassoProvider.override(({ palette, typography }: Theme) => ({
       color: palette.text.primary,
       lineHeight: '1.5em',
       fontWeight: typography.fontWeightRegular,
-      fontSize: '13px',
-
       cursor: 'pointer',
       userSelect: 'none',
 
