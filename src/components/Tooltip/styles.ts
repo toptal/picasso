@@ -75,7 +75,7 @@ function arrowGenerator(color: string) {
 export default ({ palette, shadows }: Theme) =>
   createStyles({
     tooltip: {
-      backgroundColor: palette.grey[500],
+      backgroundColor: palette.grey.darker,
       color: palette.common.white,
       boxShadow: shadows[4],
       fontSize: '0.875rem',
@@ -83,7 +83,7 @@ export default ({ palette, shadows }: Theme) =>
       padding: '1rem',
       borderRadius: 0
     },
-    arrowPopper: arrowGenerator(palette.grey[500]),
+    arrowPopper: arrowGenerator(palette.grey.darker!),
     arrowPopperLight: arrowGenerator(palette.common.white),
     arrow: {
       position: 'absolute',
@@ -98,7 +98,7 @@ export default ({ palette, shadows }: Theme) =>
       }
     },
     light: {
-      color: palette.grey[500],
+      color: palette.grey.darker,
       backgroundColor: palette.common.white
     }
   })

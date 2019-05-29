@@ -37,7 +37,7 @@ export default ({ palette, spacing, transitions, typography }: Theme) =>
       position: 'relative',
       textTransform: 'none',
       borderRadius: spacing.borderRadius,
-      border: `solid ${spacing.borderWidth} ${palette.grey[100]}`,
+      border: `solid ${spacing.borderWidth} ${palette.grey.light}`,
       fontSize: '1rem',
       transition: `all ${transitions.duration.short}ms ${
         transitions.easing.easeOut
@@ -108,9 +108,9 @@ export default ({ palette, spacing, transitions, typography }: Theme) =>
     // variants
     primaryBlue: primary(palette.primary.main, palette.common.white),
     secondaryBlue: secondary(palette.primary.main, palette.common.white),
-    primaryRed: primary(palette.error.main, palette.common.white),
-    secondaryRed: secondary(palette.error.main, palette.common.white),
-    primaryGreen: primary(palette.success.main, palette.common.white),
+    primaryRed: primary(palette.red.main, palette.common.white),
+    secondaryRed: secondary(palette.red.main, palette.common.white),
+    primaryGreen: primary(palette.green.main, palette.common.white),
     secondaryWhite: {
       ...secondary(palette.common.white, palette.common.white),
       backgroundColor: 'transparent',
@@ -128,10 +128,10 @@ export default ({ palette, spacing, transitions, typography }: Theme) =>
       ...secondary(palette.common.black, palette.common.white),
       border: 'none'
     },
-    primaryDisabled: primary(palette.grey[100], palette.common.white),
-    secondaryDisabled: secondary(palette.grey[100], palette.common.white),
+    primaryDisabled: primary(palette.grey.light!, palette.common.white),
+    secondaryDisabled: secondary(palette.grey.light!, palette.common.white),
     flatDisabled: {
-      ...secondary(palette.grey[100], palette.common.white),
+      ...secondary(palette.grey.light!, palette.common.white),
       border: 'none'
     },
 
