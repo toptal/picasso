@@ -23,7 +23,7 @@ const ButtonVariantsExample = () => (
         left={0.5}
         padded={0.5}
         inline
-        style={{ backgroundColor: palette.primary.main }}
+        style={{ backgroundColor: palette.blue.main }}
       >
         <Button variant='secondary-white'>Secondary White</Button>
       </Container>

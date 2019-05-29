@@ -47,7 +47,8 @@ const getCodeExampleName = node => {
 const isNodeSkipped = (node, program) => {
   return program.comments.find(
     comment =>
-      comment.loc.start.line === node.callee.property.loc.start.line &&
+      comment.loc.start.line >= node.callee.property.loc.start.line &&
+      comment.loc.start.line <= node.loc.end.line &&
       comment.value.includes(config.storyShotsIgnoreComment)
   )
 }

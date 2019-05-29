@@ -56,10 +56,10 @@ export default ({ spacing: { input, inputIcon }, palette }: Theme) =>
       paddingRight: 0
     },
     inputPlaceholder: {
-      color: palette.grey[400]
+      color: palette.grey.dark
     },
     inputPlaceholderDisabled: {
-      color: alpha(palette.grey[400], 0.48)
+      color: alpha(palette.grey.dark!, 0.48)
     },
     inputValue: {
       fontSize: '0.8125em'
@@ -76,17 +76,17 @@ export default ({ spacing: { input, inputIcon }, palette }: Theme) =>
       // in specs right spacing is defined relative to 6px icon width, while we use 16px
       // so 5px are left instead of 10px when we use wider icon.
       right: '0.3125em',
-      color: palette.grey[400],
+      color: palette.grey.dark,
       fontSize: '1em'
     },
     caretDisabled: {
-      color: alpha(palette.grey[400], 0.48)
+      color: alpha(palette.grey.dark!, 0.48)
     },
     placeholder: {
       opacity: 0.4
     },
     icon: {
-      color: palette.grey[400],
+      color: palette.grey.dark,
       fontSize: '1em',
       minWidth: inputIcon.width,
       display: 'flex',
@@ -102,6 +102,6 @@ export default ({ spacing: { input, inputIcon }, palette }: Theme) =>
       flexGrow: 1
     },
     iconDisabled: {
-      color: alpha(palette.grey[400], 0.48)
+      color: alpha(palette.grey.dark!, 0.48)
     }
   })

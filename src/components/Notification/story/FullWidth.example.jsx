@@ -8,7 +8,7 @@ const NotificationFullWidthExample = () => (
         Info
       </Typography>
     </Container>
-    <Notification fullWidth variant='warning'>
+    <Notification fullWidth variant='yellow'>
       The time zone in your profile is set to (UTC -08:00) America - Los
       Angeles, but we’ve detected a change to (UTC -03:00) America - Cordoba.
     </Notification>

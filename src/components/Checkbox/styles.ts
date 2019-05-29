@@ -30,7 +30,7 @@ export default ({ palette, spacing, transitions }: Theme) =>
     },
     disabled: {
       '&:hover $uncheckedIcon': {
-        border: `${spacing.borderWidth} solid ${palette.grey[200]}`
+        border: `${spacing.borderWidth} solid ${palette.grey.main}`
       }
     },
     checkedIcon: {
@@ -73,7 +73,7 @@ export default ({ palette, spacing, transitions }: Theme) =>
         transitions.easing.easeInOut
       }`,
       background: palette.common.white,
-      border: `${spacing.borderWidth} solid ${palette.grey[200]}`
+      border: `${spacing.borderWidth} solid ${palette.grey.main}`
     },
     indeterminateIcon: {
       position: 'relative',

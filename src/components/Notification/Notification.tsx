@@ -19,7 +19,7 @@ import Button from '../Button'
 import styles from './styles'
 import Typography from '../Typography'
 
-type VariantType = 'error' | 'success' | 'info' | 'warning'
+type VariantType = 'red' | 'green' | 'white' | 'yellow'
 
 export interface Props extends StandardProps {
   /** Main content of the Notification */
@@ -58,20 +58,20 @@ const renderNotificationIcon = ({ icon, variant, classes }: Props) => {
   // TODO: these are Icons required circular Icon bg color definitions, all Icons should be white on that color
   // Missing the following: https://github.com/toptal/picasso/issues/253
   switch (variant) {
-    case 'error':
+    case 'red':
       // eslint-disable-next-line react/jsx-props-no-spreading
-      return <Alert {...iconProps} color={palette.error.main} />
+      return <Alert {...iconProps} color={palette.red.main} />
 
-    case 'warning':
+    case 'yellow':
       // eslint-disable-next-line react/jsx-props-no-spreading
-      return <Alert {...iconProps} color={palette.warning.main} />
+      return <Alert {...iconProps} color={palette.yellow.main} />
 
-    case 'success':
+    case 'green':
       // eslint-disable-next-line react/jsx-props-no-spreading
-      return <Tick {...iconProps} color={palette.success.main} />
+      return <Tick {...iconProps} color={palette.green.main} />
 
     default:
-      const infoProps = { ...iconProps, color: palette.grey[200] }
+      const infoProps = { ...iconProps, color: palette.grey.main }
 
       // eslint-disable-next-line react/jsx-props-no-spreading
       return icon ? cloneElement(icon, infoProps) : <Info {...infoProps} />
@@ -126,7 +126,7 @@ export const Notification: FunctionComponent<Props> = props => {
 Notification.defaultProps = {
   elevated: false,
   fullWidth: false,
-  variant: 'info'
+  variant: 'white'
 }
 
 Notification.displayName = 'Notification'
