@@ -4,5 +4,8 @@ export default () =>
   createStyles({
     avatar: {
       fontSize: '0.9rem'
+    },
+    content: {
+      width: '15rem'
     }
   })
