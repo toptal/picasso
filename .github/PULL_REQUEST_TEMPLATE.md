@@ -19,4 +19,4 @@ Describe the changes and motivations for the pull request, unless evident from t
 - [ ] Annotate all `props` in component with documentation
 - [ ] Create `examples` for component
 - [ ] Ensure that deployed demo has expected results and good examples
-- [ ] Ensure that visuals specs are green [See the documentation](/README.md#fixing-broken-visual-tests-inside-a-pr)
+- [ ] Ensure that visuals specs are green [See the documentation](https://github.com/toptal/picasso/blob/master/README.md#fixing-broken-visual-tests-inside-a-pr)
