@@ -2,7 +2,6 @@ import React, { FunctionComponent, ReactNode } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
 import Avatar from '../Avatar'
-import Container from '../Container'
 import Typography from '../Typography'
 import Grid from '../Grid'
 import { StandardProps, SizeType } from '../Picasso'
@@ -67,7 +66,7 @@ export const UserBadge: FunctionComponent<Props> = ({
   const alignItems = shouldCenter ? 'center' : 'flex-start'
 
   const userTitle = title && (
-    <Typography inline className={titleClass} variant='h5'>
+    <Typography inline invert={invert} className={titleClass} variant='h5'>
       {title}
     </Typography>
   )
@@ -81,7 +80,7 @@ export const UserBadge: FunctionComponent<Props> = ({
       style={style}
     >
       <Grid.Item>{UserBadgeAvatar}</Grid.Item>
-      <Grid.Item>
+      <Grid.Item className={classes.typographyItem}>
         <Typography
           className={nameClass}
           inline
@@ -92,7 +91,7 @@ export const UserBadge: FunctionComponent<Props> = ({
           {name}
         </Typography>
         {userTitle}
-        {children && <Container>{children}</Container>}
+        {children}
       </Grid.Item>
     </Grid>
   )

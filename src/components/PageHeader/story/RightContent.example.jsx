@@ -11,8 +11,8 @@ const handleClick = () => window.alert('Item clicked')
 
 const RightContent = () => (
   <Page.HeaderMenu
-    name='Jacqueline Roque'
-    organization='Picasso'
+    name='Pablo Diego José Francisco de Paula Juan Nepomuceno María de los Remedios Cipriano de la Santísima Trinidad Ruiz y Picasso'
+    organization='Picasso Picasso Picasso Picasso Picasso Picasso'
     avatar='./jacqueline-with-flowers-1954-square.jpg'
   >
     <Menu>
