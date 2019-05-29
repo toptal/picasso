@@ -3,8 +3,8 @@ import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
 import Avatar from '../Avatar'
-import Container from '../Container'
 import Typography from '../Typography'
+import Container from '../Container'
 import { StandardProps, SizeType } from '../Picasso'
 import styles from './styles'
 
@@ -74,7 +74,7 @@ export const UserBadge: FunctionComponent<Props> = ({
     >
       {UserBadgeAvatar}
       <Container flex direction='column' left='small'>
-        <Container>
+        <Container className={classes.typographyItem}>
           <Typography
             className={classes.name}
             inline

@@ -40,12 +40,17 @@ export const PageHeaderMenu: FunctionComponent<Props> = ({
         invert
         center
         size='xsmall'
-        classes={{ avatar: classes.avatar, name: classes.name }}
+        classes={{
+          container: classes.anchor,
+          avatar: classes.avatar,
+          name: cx(classes.name, classes.truncateText),
+          typographyItem: classes.typographyItem
+        }}
         name={name}
         avatar={avatar}
       >
         {organization && (
-          <Typography invert variant='caption'>
+          <Typography className={classes.truncateText} invert variant='caption'>
             {organization}
           </Typography>
         )}
