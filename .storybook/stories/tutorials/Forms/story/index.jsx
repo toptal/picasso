@@ -88,6 +88,23 @@ spacings and grid columns.
     id: 'forms-3'
   }) // picasso-skip-visuals
 
+/** Fourth step */
+tutorialChapter
+  .addTextSection(
+    `
+In this step we used the same form as in previous example, but replaced placeholders with labels.
+
+The concept stays the same, we wrap each control with \`Form.Field\` , but also add \`Form.Label\` for every input.
+If you'd like to focus \`TextField\` by click on label, you need to specify \`id\` and \`htmlFor\`
+`,
+    {
+      title: 'Fourth step: Use labels instead of placeholders'
+    }
+  )
+  .addExample('tutorials/Forms/story/Forms.4.example.jsx', {
+    id: 'forms-4'
+  }) // picasso-skip-visuals
+
 /** Third step */
 tutorialChapter
   .addTextSection(
@@ -99,9 +116,9 @@ with \`Radio.Group\` to set correct value and get events on select.
 And that's it, we have implemented simple form layout.
   `,
     {
-      title: 'Forth step: Radio group'
+      title: 'Final step: Radio group'
     }
   )
   .addExample('tutorials/Forms/story/Forms.final.example.jsx', {
-    id: 'forms-4'
+    id: 'forms-5'
   }) // picasso-skip-visuals
