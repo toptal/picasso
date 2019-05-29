@@ -5,13 +5,18 @@ export const headerHeight = '3.75em'
 export default ({ palette, layout, zIndex }: Theme) =>
   createStyles({
     root: {
-      backgroundColor: palette.primary.main,
       width: '100%',
       position: 'fixed',
       top: 0,
       left: 0,
       right: 0,
       zIndex: zIndex.appBar
+    },
+    light: {
+      backgroundColor: palette.blue.dark
+    },
+    dark: {
+      backgroundColor: palette.blue.darker
     },
     content: {
       boxSizing: 'border-box',

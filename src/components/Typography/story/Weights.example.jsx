@@ -15,7 +15,6 @@ const TypographyWeightsExample = () => (
     <Container bottom='small'>
       <Typography weight='semibold'>Semibold</Typography>
     </Container>
-    <Typography weight='bold'>Bold</Typography>
   </div>
 )
 
