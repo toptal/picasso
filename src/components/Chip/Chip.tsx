@@ -6,6 +6,8 @@ import { StandardProps } from '../Picasso'
 import styles from './styles'
 
 interface Props extends StandardProps {
+  /** Specify the icon which should be rendered inside Chip */
+  icon?: ReactElement
   /** Text content of the `Chip` component */
   label?: ReactNode
   /** Delete icon component */
@@ -19,6 +21,7 @@ const Chip: FunctionComponent<Props> = ({
   className,
   style,
   deleteIcon,
+  icon,
   label,
   onDelete
 }) => (
@@ -26,7 +29,8 @@ const Chip: FunctionComponent<Props> = ({
     classes={classes}
     className={className}
     style={style}
-    label={label}
+    icon={icon}
+    label={<span className={classes.innerLabel}>{label}</span>}
     deleteIcon={deleteIcon}
     onDelete={onDelete}
   />
