@@ -80,7 +80,7 @@ export const UserBadge: FunctionComponent<Props> = ({
       style={style}
     >
       <Grid.Item>{UserBadgeAvatar}</Grid.Item>
-      <Grid.Item className={classes.typographyItem}>
+      <Grid.Item>
         <Typography
           className={nameClass}
           inline

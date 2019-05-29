@@ -7,6 +7,5 @@ export default () =>
       marginLeft: '0.5em'
     },
     avatar: {},
-    name: {},
-    typographyItem: {}
+    name: {}
   })

@@ -21,7 +21,7 @@ exports[`AccountSelect default render 1`] = `
             style="padding: 1.5em; display: flex; flex-direction: row; align-items: center;"
           >
             <div
-              class="MuiGrid-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-flex-start"
+              class="MuiGrid-container undefined UserBadge-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-flex-start"
             >
               <div
                 class="MuiGrid-item"
@@ -43,19 +43,15 @@ exports[`AccountSelect default render 1`] = `
                 class="MuiGrid-item"
               >
                 <h5
-                  class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+                  class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline UserBadge-name"
                 >
                   Phil Leif 1
                 </h5>
-                <div
-                  style="display: block;"
+                <span
+                  class="MuiTypography-root Typography-regular MuiTypography-caption"
                 >
-                  <span
-                    class="MuiTypography-root Typography-regular MuiTypography-caption"
-                  >
-                    Account Owner at Stowaway Cosmetics
-                  </span>
-                </div>
+                  Account Owner at Stowaway Cosmetics
+                </span>
               </div>
             </div>
             <svg
@@ -83,7 +79,7 @@ exports[`AccountSelect default render 1`] = `
             style="padding: 1.5em; display: flex; flex-direction: row; align-items: center;"
           >
             <div
-              class="MuiGrid-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-flex-start"
+              class="MuiGrid-container undefined UserBadge-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-flex-start"
             >
               <div
                 class="MuiGrid-item"
@@ -105,19 +101,15 @@ exports[`AccountSelect default render 1`] = `
                 class="MuiGrid-item"
               >
                 <h5
-                  class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+                  class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline UserBadge-name"
                 >
                   Phil Leif 2
                 </h5>
-                <div
-                  style="display: block;"
+                <span
+                  class="MuiTypography-root Typography-regular MuiTypography-caption"
                 >
-                  <span
-                    class="MuiTypography-root Typography-regular MuiTypography-caption"
-                  >
-                    Company Representative at Marketing Works
-                  </span>
-                </div>
+                  Company Representative at Marketing Works
+                </span>
               </div>
             </div>
             <svg
@@ -145,7 +137,7 @@ exports[`AccountSelect default render 1`] = `
             style="padding: 1.5em; display: flex; flex-direction: row; align-items: center;"
           >
             <div
-              class="MuiGrid-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-flex-start"
+              class="MuiGrid-container undefined UserBadge-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-flex-start"
             >
               <div
                 class="MuiGrid-item"
@@ -164,19 +156,15 @@ exports[`AccountSelect default render 1`] = `
                 class="MuiGrid-item"
               >
                 <h5
-                  class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+                  class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline UserBadge-name"
                 >
                   Phil Leif 3
                 </h5>
-                <div
-                  style="display: block;"
+                <span
+                  class="MuiTypography-root Typography-regular MuiTypography-caption"
                 >
-                  <span
-                    class="MuiTypography-root Typography-regular MuiTypography-caption"
-                  >
-                    Talent
-                  </span>
-                </div>
+                  Talent
+                </span>
               </div>
             </div>
             <svg

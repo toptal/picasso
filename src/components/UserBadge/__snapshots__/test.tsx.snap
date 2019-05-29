@@ -6,7 +6,7 @@ exports[`UserBadge auto center alignment 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiGrid-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-center"
+      class="MuiGrid-container undefined UserBadge-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-center"
     >
       <div
         class="MuiGrid-item"
@@ -28,7 +28,7 @@ exports[`UserBadge auto center alignment 1`] = `
         class="MuiGrid-item"
       >
         <h5
-          class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+          class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline UserBadge-name"
         >
           Joe Doe
         </h5>
@@ -44,7 +44,7 @@ exports[`UserBadge default render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiGrid-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-flex-start"
+      class="MuiGrid-container undefined UserBadge-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-flex-start"
     >
       <div
         class="MuiGrid-item"
@@ -66,19 +66,15 @@ exports[`UserBadge default render 1`] = `
         class="MuiGrid-item"
       >
         <h5
-          class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+          class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline UserBadge-name"
         >
           Joe Doe
         </h5>
-        <div
-          style="display: block;"
+        <p
+          class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1"
         >
-          <p
-            class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1"
-          >
-            QA tester
-          </p>
-        </div>
+          QA tester
+        </p>
       </div>
     </div>
   </div>
@@ -91,7 +87,7 @@ exports[`UserBadge invert render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiGrid-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-flex-start"
+      class="MuiGrid-container undefined UserBadge-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-flex-start"
     >
       <div
         class="MuiGrid-item"
@@ -113,19 +109,15 @@ exports[`UserBadge invert render 1`] = `
         class="MuiGrid-item"
       >
         <h5
-          class="MuiTypography-root Typography-invert Typography-semibold MuiTypography-h5 MuiTypography-inline"
+          class="MuiTypography-root Typography-invert Typography-semibold MuiTypography-h5 MuiTypography-inline UserBadge-name"
         >
           Joe Doe
         </h5>
-        <div
-          style="display: block;"
+        <p
+          class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1"
         >
-          <p
-            class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1"
-          >
-            QA tester
-          </p>
-        </div>
+          QA tester
+        </p>
       </div>
     </div>
   </div>
@@ -138,7 +130,7 @@ exports[`UserBadge manual center alignment 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiGrid-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-center"
+      class="MuiGrid-container undefined UserBadge-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-center"
     >
       <div
         class="MuiGrid-item"
@@ -160,19 +152,15 @@ exports[`UserBadge manual center alignment 1`] = `
         class="MuiGrid-item"
       >
         <h5
-          class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+          class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline UserBadge-name"
         >
           Joe Doe
         </h5>
-        <div
-          style="display: block;"
+        <p
+          class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1"
         >
-          <p
-            class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1"
-          >
-            QA tester
-          </p>
-        </div>
+          QA tester
+        </p>
       </div>
     </div>
   </div>
@@ -185,7 +173,7 @@ exports[`UserBadge override auto center alignment 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiGrid-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-flex-start"
+      class="MuiGrid-container undefined UserBadge-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-flex-start"
     >
       <div
         class="MuiGrid-item"
@@ -207,7 +195,7 @@ exports[`UserBadge override auto center alignment 1`] = `
         class="MuiGrid-item"
       >
         <h5
-          class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+          class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline UserBadge-name"
         >
           Joe Doe
         </h5>
@@ -223,7 +211,7 @@ exports[`UserBadge small size 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiGrid-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-flex-start"
+      class="MuiGrid-container undefined UserBadge-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-flex-start"
     >
       <div
         class="MuiGrid-item"
@@ -245,19 +233,15 @@ exports[`UserBadge small size 1`] = `
         class="MuiGrid-item"
       >
         <h5
-          class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+          class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline UserBadge-name"
         >
           Joe Doe
         </h5>
-        <div
-          style="display: block;"
+        <p
+          class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1"
         >
-          <p
-            class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1"
-          >
-            QA tester
-          </p>
-        </div>
+          QA tester
+        </p>
       </div>
     </div>
   </div>

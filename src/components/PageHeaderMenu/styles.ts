@@ -2,7 +2,7 @@ import { createStyles } from '@material-ui/core/styles'
 
 export default () =>
   createStyles({
-    anchor: { maxWidth: '16rem', flexWrap: 'nowrap' },
+    anchor: { flexWrap: 'nowrap' },
     avatar: {
       fontSize: '0.9rem'
     },
@@ -14,12 +14,9 @@ export default () =>
       display: 'block'
     },
     truncateText: {
+      maxWidth: '12rem',
       whiteSpace: 'nowrap',
       overflow: 'hidden',
       textOverflow: 'ellipsis'
-    },
-    typographyItem: {
-      flex: 1,
-      minWidth: 0
     }
   })

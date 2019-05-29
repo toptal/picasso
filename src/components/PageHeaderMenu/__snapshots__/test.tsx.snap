@@ -12,7 +12,7 @@ exports[`PageHeaderMenu default render 1`] = `
         class="Dropdown-anchor"
       >
         <div
-          class="MuiGrid-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-center"
+          class="MuiGrid-container undefined UserBadge-container PageHeaderMenu-anchor MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-center"
         >
           <div
             class="MuiGrid-item"
@@ -31,7 +31,7 @@ exports[`PageHeaderMenu default render 1`] = `
             class="MuiGrid-item"
           >
             <h5
-              class="MuiTypography-root Typography-invert Typography-semibold MuiTypography-h5 MuiTypography-inline undefined PageHeaderMenu-name"
+              class="MuiTypography-root Typography-invert Typography-semibold MuiTypography-h5 MuiTypography-inline UserBadge-name PageHeaderMenu-name PageHeaderMenu-truncateText"
             >
               Jacqueline Roque
             </h5>

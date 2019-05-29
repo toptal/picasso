@@ -43,8 +43,7 @@ export const PageHeaderMenu: FunctionComponent<Props> = ({
         classes={{
           container: classes.anchor,
           avatar: classes.avatar,
-          name: cx(classes.name, classes.truncateText),
-          typographyItem: classes.typographyItem
+          name: cx(classes.name, classes.truncateText)
         }}
         name={name}
         avatar={avatar}
