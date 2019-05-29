@@ -13,10 +13,21 @@ PicassoProvider.override(({ palette, spacing }: Theme) => ({
       height: '1.5em'
     },
     label: {
-      fontSize: '.75em',
-      fontWeight: 600
+      paddingLeft: '0.75em',
+      paddingRight: '0.75em'
+    },
+    icon: {
+      marginLeft: '0.75em',
+      marginRight: '-0.25em',
+      color: palette.grey.main
     }
   }
 }))
 
-export default () => createStyles({})
+export default () =>
+  createStyles({
+    innerLabel: {
+      fontSize: '0.75em',
+      fontWeight: 600
+    }
+  })

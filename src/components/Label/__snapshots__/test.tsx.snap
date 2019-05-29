@@ -13,7 +13,11 @@ exports[`dismissable label should render dismissable label 1`] = `
       <span
         class="MuiChip-label"
       >
-        Label
+        <span
+          class="Chip-innerLabel"
+        >
+          Label
+        </span>
       </span>
       <svg
         aria-hidden="true"
@@ -49,7 +53,11 @@ exports[`renders default variant 1`] = `
       <span
         class="MuiChip-label"
       >
-        Label
+        <span
+          class="Chip-innerLabel"
+        >
+          Label
+        </span>
       </span>
     </div>
   </div>
