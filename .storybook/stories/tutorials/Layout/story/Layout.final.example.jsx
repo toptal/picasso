@@ -96,7 +96,7 @@ const PageGridItem = styled(Grid.Item)`
 `
 
 const MainContentContainer = styled(Container)`
-  background-color: ${palette.grey[200]};
+  background-color: ${palette.grey.light};
   height: 100%;
 `
 

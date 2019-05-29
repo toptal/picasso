@@ -45,7 +45,7 @@ export default ({ palette }: Theme) =>
       '-webkit-clip-path': getClipPathCornerMask(`${CLIPPED_CORNER_SIZE_EM}em`)
     },
     textContainer: {
-      backgroundColor: palette.grey[300]
+      backgroundColor: palette.grey.main
     },
     text: {
       fontSize: '1em',

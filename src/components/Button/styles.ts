@@ -37,7 +37,7 @@ export default ({ palette, spacing, transitions, typography }: Theme) =>
       position: 'relative',
       textTransform: 'none',
       borderRadius: spacing.borderRadius,
-      border: `solid ${spacing.borderWidth} ${palette.grey[200]}`,
+      border: `solid ${spacing.borderWidth} ${palette.grey.light}`,
       fontSize: '1rem',
       transition: `all ${transitions.duration.short}ms ${
         transitions.easing.easeOut
@@ -128,10 +128,10 @@ export default ({ palette, spacing, transitions, typography }: Theme) =>
       ...secondary(palette.common.black, palette.common.white),
       border: 'none'
     },
-    primaryDisabled: primary(palette.grey[200], palette.common.white),
-    secondaryDisabled: secondary(palette.grey[200], palette.common.white),
+    primaryDisabled: primary(palette.grey.light!, palette.common.white),
+    secondaryDisabled: secondary(palette.grey.light!, palette.common.white),
     flatDisabled: {
-      ...secondary(palette.grey[200], palette.common.white),
+      ...secondary(palette.grey.light!, palette.common.white),
       border: 'none'
     },
 

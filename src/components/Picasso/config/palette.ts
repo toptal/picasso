@@ -15,6 +15,16 @@ declare module '@material-ui/core/styles/createPalette' {
   }
 }
 
+declare module '@material-ui/core' {
+  interface Color {
+    lighter?: string
+    light?: string
+    main?: string
+    dark?: string
+    darker?: string
+  }
+}
+
 export const colors = {
   grey: {
     lighter: '#ebeced',
@@ -62,7 +72,8 @@ const palette = {
     200: colors.grey.light,
     300: colors.grey.main,
     400: colors.grey.dark,
-    500: colors.grey.darker
+    500: colors.grey.darker,
+    ...colors.grey
   },
   text: {
     primary: colors.grey.dark

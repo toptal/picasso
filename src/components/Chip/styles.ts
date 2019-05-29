@@ -8,7 +8,7 @@ PicassoProvider.override(({ palette, spacing }: Theme) => ({
       fontSize: 'inherit',
       backgroundColor: palette.common.white,
       borderRadius: '6.25em',
-      border: `${spacing.borderWidth} solid ${palette.grey[200]}`,
+      border: `${spacing.borderWidth} solid ${palette.grey.light}`,
       color: palette.primary.main,
       height: '1.5em'
     },
