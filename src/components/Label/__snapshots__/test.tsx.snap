@@ -6,7 +6,7 @@ exports[`dismissable label should render dismissable label 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiChip-root Chip-root MuiChip-deletable"
+      class="MuiChip-root MuiChip-deletable"
       role="button"
       tabindex="0"
     >
@@ -42,67 +42,7 @@ exports[`renders default variant 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiChip-root Chip-root"
-      role="button"
-      tabindex="-1"
-    >
-      <span
-        class="MuiChip-label"
-      >
-        Label
-      </span>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`renders error variant 1`] = `
-<div>
-  <div
-    class="Picasso-root"
-  >
-    <div
-      class="MuiChip-root Chip-root Label-error"
-      role="button"
-      tabindex="-1"
-    >
-      <span
-        class="MuiChip-label"
-      >
-        Label
-      </span>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`renders flat variant 1`] = `
-<div>
-  <div
-    class="Picasso-root"
-  >
-    <div
-      class="MuiChip-root Chip-root Label-flat"
-      role="button"
-      tabindex="-1"
-    >
-      <span
-        class="MuiChip-label"
-      >
-        Label
-      </span>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`renders success variant 1`] = `
-<div>
-  <div
-    class="Picasso-root"
-  >
-    <div
-      class="MuiChip-root Chip-root Label-success"
+      class="MuiChip-root"
       role="button"
       tabindex="-1"
     >

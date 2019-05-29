@@ -5,7 +5,7 @@ import { PicassoProvider } from '../Picasso'
 PicassoProvider.override(({ palette }: Theme) => ({
   MuiCircularProgress: {
     colorPrimary: {
-      color: palette.grey[500]
+      color: palette.grey.darker
     }
   }
 }))
