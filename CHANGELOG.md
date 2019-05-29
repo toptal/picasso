@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/toptal/picasso/compare/v1.7.4...v1.8.0) (2019-05-29)
+
+
+### Features
+
+* **icon:** add extra product icons ([#395](https://github.com/toptal/picasso/issues/395)) ([a5ee200](https://github.com/toptal/picasso/commit/a5ee200))
+
 ## [1.7.4](https://github.com/toptal/picasso/compare/v1.7.3...v1.7.4) (2019-05-28)
 
 
