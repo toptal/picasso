@@ -1,24 +1,41 @@
 import React from 'react'
-import { Form, Grid, Select, TextField, Checkbox } from '@toptal/picasso'
+import { Form, Grid, Select, TextField, Checkbox, Radio } from '@toptal/picasso'
 
 const FormFieldExample = () => (
   <Grid>
     <Grid.Item small={5}>
       <Form>
         <Form.Field>
-          <Select placeholder='Current Country' options={OPTIONS} />
+          <Form.Label>Country</Form.Label>
+          <Select placeholder='e.g., Spain' options={OPTIONS} />
         </Form.Field>
 
         <Form.Field>
-          <TextField fullWidth placeholder='City of Residence' />
+          <Form.Label required htmlFor='city'>
+            City
+          </Form.Label>
+          <TextField id='city' fullWidth placeholder='e.g., Barcelona' />
         </Form.Field>
 
         <Form.Field>
-          <Select placeholder='Timezone' options={OPTIONS} />
+          <Form.Label required>Choose one of the following skills</Form.Label>
+          <Radio.Group name='skills'>
+            <Radio label='Front-End' value='front-end' />
+            <Radio label='Back-End' value='back-end' />
+            <Radio label='Dev Ops' value='dev-ops' />
+          </Radio.Group>
         </Form.Field>
 
         <Form.Field>
-          <Checkbox label='I confirm that I have legal permission from the client to feature this project.' />
+          <Form.Label required>Timezone</Form.Label>
+          <Select placeholder='e.g., UTC+01:00' options={OPTIONS} />
+        </Form.Field>
+
+        <Form.Field>
+          <Checkbox
+            label='I confirm that I have legal permission from the client to feature this project.'
+            required
+          />
         </Form.Field>
       </Form>
     </Grid.Item>

@@ -20,3 +20,4 @@ page
   })
   .addExample('Checkbox/story/Disabled.example.jsx', 'Disabled')
   .addExample('Checkbox/story/Indeterminate.example.jsx', 'Indeterminate')
+  .addExample('Checkbox/story/Required.example.jsx', 'Required')
