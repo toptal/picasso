@@ -79,9 +79,6 @@ export default ({ palette, typography }: Theme) =>
     semibold: {
       fontWeight: typography.fontWeights.semibold
     },
-    bold: {
-      fontWeight: typography.fontWeights.bold
-    },
 
     // colors
     green: {
