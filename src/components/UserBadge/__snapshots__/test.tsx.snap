@@ -71,7 +71,7 @@ exports[`UserBadge default render 1`] = `
           Joe Doe
         </h5>
         <div
-          style="margin-top: 0.25em; display: block;"
+          style="display: block;"
         >
           <p
             class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1"
@@ -118,7 +118,7 @@ exports[`UserBadge invert render 1`] = `
           Joe Doe
         </h5>
         <div
-          style="margin-top: 0.25em; display: block;"
+          style="display: block;"
         >
           <p
             class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1"
@@ -165,7 +165,7 @@ exports[`UserBadge manual center alignment 1`] = `
           Joe Doe
         </h5>
         <div
-          style="margin-top: 0.25em; display: block;"
+          style="display: block;"
         >
           <p
             class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1"
@@ -250,7 +250,7 @@ exports[`UserBadge small size 1`] = `
           Joe Doe
         </h5>
         <div
-          style="margin-top: 0.25em; display: block;"
+          style="display: block;"
         >
           <p
             class="MuiTypography-root Typography-body Typography-regular MuiTypography-body1"

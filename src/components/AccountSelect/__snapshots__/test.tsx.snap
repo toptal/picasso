@@ -48,7 +48,7 @@ exports[`AccountSelect default render 1`] = `
                   Phil Leif 1
                 </h5>
                 <div
-                  style="margin-top: 0.25em; display: block;"
+                  style="display: block;"
                 >
                   <span
                     class="MuiTypography-root Typography-regular MuiTypography-caption"
@@ -110,7 +110,7 @@ exports[`AccountSelect default render 1`] = `
                   Phil Leif 2
                 </h5>
                 <div
-                  style="margin-top: 0.25em; display: block;"
+                  style="display: block;"
                 >
                   <span
                     class="MuiTypography-root Typography-regular MuiTypography-caption"
@@ -169,7 +169,7 @@ exports[`AccountSelect default render 1`] = `
                   Phil Leif 3
                 </h5>
                 <div
-                  style="margin-top: 0.25em; display: block;"
+                  style="display: block;"
                 >
                   <span
                     class="MuiTypography-root Typography-regular MuiTypography-caption"

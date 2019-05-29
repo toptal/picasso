@@ -44,7 +44,12 @@ export const UserBadge: FunctionComponent<Props> = ({
   className,
   style
 }) => {
-  const { title: titleClass, avatar: avatarClass, ...gridClasses } = classes
+  const {
+    title: titleClass,
+    avatar: avatarClass,
+    name: nameClass,
+    ...gridClasses
+  } = classes
 
   const UserBadgeAvatar = React.isValidElement(avatar) ? (
     avatar
@@ -77,11 +82,17 @@ export const UserBadge: FunctionComponent<Props> = ({
     >
       <Grid.Item>{UserBadgeAvatar}</Grid.Item>
       <Grid.Item>
-        <Typography inline variant='h5' invert={invert} weight='semibold'>
+        <Typography
+          className={nameClass}
+          inline
+          variant='h5'
+          invert={invert}
+          weight='semibold'
+        >
           {name}
         </Typography>
         {userTitle}
-        {children && <Container top={0.25}>{children}</Container>}
+        {children && <Container>{children}</Container>}
       </Grid.Item>
     </Grid>
   )

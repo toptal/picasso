@@ -5,11 +5,14 @@ import { withStyles } from '@material-ui/core/styles'
 import { StandardProps } from '../Picasso'
 import UserBadge from '../UserBadge'
 import Dropdown from '../Dropdown'
+import Typography from '../Typography'
 import styles from './styles'
 
 export interface Props extends StandardProps {
   /** User full name to display */
   name: string
+  /** User's organization name */
+  organization?: string
   /** Photo url or custom Avatar component */
   avatar?: ReactNode
   /** Menu content */
@@ -18,6 +21,7 @@ export interface Props extends StandardProps {
 
 export const PageHeaderMenu: FunctionComponent<Props> = ({
   name,
+  organization,
   avatar,
   classes,
   className,
@@ -34,11 +38,18 @@ export const PageHeaderMenu: FunctionComponent<Props> = ({
     >
       <UserBadge
         invert
+        center
         size='xsmall'
-        classes={{ avatar: classes.avatar }}
+        classes={{ avatar: classes.avatar, name: classes.name }}
         name={name}
         avatar={avatar}
-      />
+      >
+        {organization && (
+          <Typography invert variant='caption'>
+            {organization}
+          </Typography>
+        )}
+      </UserBadge>
       <Dropdown.Arrow style={{ color: 'white' }} />
     </Dropdown>
   )

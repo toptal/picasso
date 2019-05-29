@@ -7,5 +7,8 @@ export default () =>
     },
     content: {
       width: '15rem'
+    },
+    name: {
+      fontWeight: 400
     }
   })
