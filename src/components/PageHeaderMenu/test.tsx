@@ -27,7 +27,7 @@ describe('PageHeaderMenu', () => {
         name='Jacqueline Roque'
         avatar='./jacqueline-with-flowers-1954-square.jpg'
       >
-        <Menu style={{ width: '15rem' }}>
+        <Menu>
           <Menu.Item>My Account</Menu.Item>
           <Menu.Item>Log Out</Menu.Item>
         </Menu>

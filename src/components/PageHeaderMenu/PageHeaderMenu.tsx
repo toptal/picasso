@@ -27,6 +27,7 @@ export const PageHeaderMenu: FunctionComponent<Props> = ({
   return (
     <Dropdown
       className={cx(classes.root, className)}
+      classes={{ content: classes.content }}
       style={style}
       content={children}
       offset={{ top: 'xsmall' }}

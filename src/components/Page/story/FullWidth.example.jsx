@@ -20,7 +20,7 @@ const RightContent = () => (
     name='Jacqueline Roque'
     avatar='./jacqueline-with-flowers-1954-square.jpg'
   >
-    <Menu style={{ width: '15rem' }}>
+    <Menu>
       <Menu.Item onClick={handleClick}>My Account</Menu.Item>
       <Menu.Item onClick={handleClick}>Log Out</Menu.Item>
     </Menu>
