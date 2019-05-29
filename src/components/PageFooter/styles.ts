@@ -3,7 +3,7 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 export default ({ palette, screens, layout }: Theme) =>
   createStyles({
     root: {
-      backgroundColor: palette.grey[500],
+      backgroundColor: palette.grey.darker,
       width: '100%'
     },
     content: {

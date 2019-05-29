@@ -6,7 +6,7 @@ export default ({ palette }: Theme) =>
       position: 'absolute',
       right: '2rem',
       top: '1.875rem',
-      color: palette.grey[400],
+      color: palette.grey.dark,
       fontSize: '1em',
       cursor: 'pointer',
       opacity: 0.3,

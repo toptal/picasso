@@ -3,11 +3,11 @@ import styled from 'styled-components'
 import { screens, palette } from '@toptal/picasso/utils'
 
 const StyledBox = styled.div`
-  background-color: ${palette.success.main};
+  background-color: ${palette.green.main};
   padding: 2em;
 
   ${screens('small', 'medium')} {
-    background-color: ${palette.primary.main};
+    background-color: ${palette.blue.main};
   }
 `
 

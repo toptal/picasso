@@ -37,7 +37,7 @@ const Editor: FunctionComponent<Props> = props => {
         showGutter={true}
         showPrintMargin={false}
         tabSize={2}
-        style={null}
+        style={undefined}
         {...rest}
       />
     </div>

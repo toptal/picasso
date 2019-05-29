@@ -8,13 +8,13 @@ PicassoProvider.override(({ palette }: Theme) => ({
       display: 'none'
     },
     root: {
-      border: `1px solid ${palette.grey[200]}`,
+      border: `1px solid ${palette.grey.main}`,
       borderRadius: '50%',
       color: 'transparent',
 
       '&$completed': {
         border: 'none',
-        color: palette.success.main
+        color: palette.green.main
       },
 
       '&$active': {

@@ -34,7 +34,7 @@ export default ({ palette }: Theme) =>
     },
     requiredTag: {
       fontWeight: 600,
-      color: palette.error.main,
+      color: palette.red.main,
       paddingLeft: '0.25em'
     },
     highlight: {

@@ -85,10 +85,10 @@ export default ({ palette, typography }: Theme) =>
 
     // colors
     green: {
-      color: palette.success.main
+      color: palette.green.main
     },
     red: {
-      color: palette.error.main
+      color: palette.red.main
     },
     blue: {
       color: palette.primary.main

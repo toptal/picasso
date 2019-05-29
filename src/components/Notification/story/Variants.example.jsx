@@ -20,7 +20,7 @@ const NotificationVariantsExample = () => (
           Success
         </Typography>
       </Container>
-      <Notification variant='success'>
+      <Notification variant='green'>
         Job has been successfully created.
       </Notification>
     </Container>
@@ -30,7 +30,7 @@ const NotificationVariantsExample = () => (
           Error
         </Typography>
       </Container>
-      <Notification variant='error'>Required field.</Notification>
+      <Notification variant='red'>Required field.</Notification>
     </Container>
     <Container bottom={1}>
       <Container bottom={1}>
@@ -38,7 +38,7 @@ const NotificationVariantsExample = () => (
           Warning
         </Typography>
       </Container>
-      <Notification variant='warning'>
+      <Notification variant='yellow'>
         Before we can schedule a start date for your new team member, we need
         you to sign the agreement that was sent to <strong>Luboš Volkov</strong>{' '}
         at <strong>lubos@mnmalt.com</strong> by RightSignature on Nov 11, 2018.
