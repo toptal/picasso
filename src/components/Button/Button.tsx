@@ -82,7 +82,9 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
   circular,
   title,
   value,
-  type
+  type,
+  // attach event listeners for Tooltip
+  ...eventListeners
 }) => {
   const {
     icon: iconClass,
@@ -139,6 +141,8 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
       title={title}
       value={value}
       type={type}
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...eventListeners}
     >
       <Container
         inline
