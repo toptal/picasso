@@ -25,10 +25,9 @@ const typography = {
   fontSize: 16,
   fontWeights: {
     thin: 100,
-    light: 200,
+    light: 300,
     regular: 400,
-    semibold: 600,
-    bold: 700
+    semibold: 600
   },
   inputSize: '18px',
   buttons: {

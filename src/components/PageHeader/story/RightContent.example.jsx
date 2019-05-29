@@ -9,7 +9,7 @@ import {
 } from '@toptal/picasso'
 
 const PageHeaderRightContentExample = () => (
-  <div style={{ height: '3.75em' }}>
+  <div style={{ height: '4.5em' }}>
     <Page.Header rightContent={<RightContent />} title='Onboarding' />
   </div>
 )
