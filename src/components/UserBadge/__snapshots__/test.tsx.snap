@@ -27,11 +27,11 @@ exports[`UserBadge auto center alignment 1`] = `
         <div
           style="display: block;"
         >
-          <h4
-            class="MuiTypography-root Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name"
+          <h3
+            class="MuiTypography-root Typography-headingSmall MuiTypography-h3 MuiTypography-inline UserBadge-name"
           >
             Joe Doe
-          </h4>
+          </h3>
         </div>
       </div>
     </div>
@@ -66,11 +66,11 @@ exports[`UserBadge default render 1`] = `
         <div
           style="display: block;"
         >
-          <h4
-            class="MuiTypography-root Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name"
+          <h3
+            class="MuiTypography-root Typography-headingSmall MuiTypography-h3 MuiTypography-inline UserBadge-name"
           >
             Joe Doe
-          </h4>
+          </h3>
         </div>
         <p
           class="MuiTypography-root Typography-bodyInherit MuiTypography-body1"
@@ -110,11 +110,11 @@ exports[`UserBadge invert render 1`] = `
         <div
           style="display: block;"
         >
-          <h4
-            class="MuiTypography-root Typography-invert Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name"
+          <h3
+            class="MuiTypography-root Typography-invert Typography-headingSmall MuiTypography-h3 MuiTypography-inline UserBadge-name"
           >
             Joe Doe
-          </h4>
+          </h3>
         </div>
         <p
           class="MuiTypography-root Typography-bodyInherit MuiTypography-body1"
@@ -154,11 +154,11 @@ exports[`UserBadge manual center alignment 1`] = `
         <div
           style="display: block;"
         >
-          <h4
-            class="MuiTypography-root Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name"
+          <h3
+            class="MuiTypography-root Typography-headingSmall MuiTypography-h3 MuiTypography-inline UserBadge-name"
           >
             Joe Doe
-          </h4>
+          </h3>
         </div>
         <p
           class="MuiTypography-root Typography-bodyInherit MuiTypography-body1"
@@ -198,11 +198,11 @@ exports[`UserBadge override auto center alignment 1`] = `
         <div
           style="display: block;"
         >
-          <h4
-            class="MuiTypography-root Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name"
+          <h3
+            class="MuiTypography-root Typography-headingSmall MuiTypography-h3 MuiTypography-inline UserBadge-name"
           >
             Joe Doe
-          </h4>
+          </h3>
         </div>
       </div>
     </div>
@@ -237,11 +237,11 @@ exports[`UserBadge small size 1`] = `
         <div
           style="display: block;"
         >
-          <h4
-            class="MuiTypography-root Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name"
+          <h3
+            class="MuiTypography-root Typography-headingSmall MuiTypography-h3 MuiTypography-inline UserBadge-name"
           >
             Joe Doe
-          </h4>
+          </h3>
         </div>
         <p
           class="MuiTypography-root Typography-bodyInherit MuiTypography-body1"
