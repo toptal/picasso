@@ -12,10 +12,10 @@ const FormsExample = () => (
           </Form.Field>
 
           <Form.Field>
-            <Form.Label required htmlFor='job-title'>
+            <Form.Label required htmlFor='job-title-4'>
               Job title
             </Form.Label>
-            <TextField id='job-title' fullWidth />
+            <TextField id='job-title-4' fullWidth />
           </Form.Field>
 
           <Form.Field>
@@ -28,8 +28,8 @@ const FormsExample = () => (
               </Grid.Item>
               <Grid.Item small={6}>
                 <Form.Field>
-                  <Form.Label htmlFor='city'>City of residence</Form.Label>
-                  <TextField id='city' fullWidth />
+                  <Form.Label htmlFor='city-4'>City of residence</Form.Label>
+                  <TextField id='city-4' fullWidth />
                 </Form.Field>
               </Grid.Item>
             </Grid>
