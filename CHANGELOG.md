@@ -1,3 +1,10 @@
+## [1.8.1](https://github.com/toptal/picasso/compare/v1.8.0...v1.8.1) (2019-05-30)
+
+
+### Bug Fixes
+
+* **container:** add missing values to the `justifyContent` enum ([#409](https://github.com/toptal/picasso/issues/409)) ([b519782](https://github.com/toptal/picasso/commit/b519782))
+
 # [1.8.0](https://github.com/toptal/picasso/compare/v1.7.4...v1.8.0) (2019-05-29)
 
 
