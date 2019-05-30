@@ -43,7 +43,7 @@ exports[`AccountSelect default render 1`] = `
                 class="MuiGrid-item"
               >
                 <h5
-                  class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+                  class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline UserBadge-name"
                 >
                   Phil Leif 1
                 </h5>
@@ -101,7 +101,7 @@ exports[`AccountSelect default render 1`] = `
                 class="MuiGrid-item"
               >
                 <h5
-                  class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+                  class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline UserBadge-name"
                 >
                   Phil Leif 2
                 </h5>
@@ -156,7 +156,7 @@ exports[`AccountSelect default render 1`] = `
                 class="MuiGrid-item"
               >
                 <h5
-                  class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+                  class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline UserBadge-name"
                 >
                   Phil Leif 3
                 </h5>

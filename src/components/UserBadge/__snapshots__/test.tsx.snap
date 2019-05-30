@@ -28,7 +28,7 @@ exports[`UserBadge auto center alignment 1`] = `
         class="MuiGrid-item"
       >
         <h5
-          class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+          class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline UserBadge-name"
         >
           Joe Doe
         </h5>
@@ -66,7 +66,7 @@ exports[`UserBadge default render 1`] = `
         class="MuiGrid-item"
       >
         <h5
-          class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+          class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline UserBadge-name"
         >
           Joe Doe
         </h5>
@@ -109,7 +109,7 @@ exports[`UserBadge invert render 1`] = `
         class="MuiGrid-item"
       >
         <h5
-          class="MuiTypography-root Typography-invert Typography-semibold MuiTypography-h5 MuiTypography-inline"
+          class="MuiTypography-root Typography-invert Typography-semibold MuiTypography-h5 MuiTypography-inline UserBadge-name"
         >
           Joe Doe
         </h5>
@@ -152,7 +152,7 @@ exports[`UserBadge manual center alignment 1`] = `
         class="MuiGrid-item"
       >
         <h5
-          class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+          class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline UserBadge-name"
         >
           Joe Doe
         </h5>
@@ -195,7 +195,7 @@ exports[`UserBadge override auto center alignment 1`] = `
         class="MuiGrid-item"
       >
         <h5
-          class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+          class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline UserBadge-name"
         >
           Joe Doe
         </h5>
@@ -233,7 +233,7 @@ exports[`UserBadge small size 1`] = `
         class="MuiGrid-item"
       >
         <h5
-          class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
+          class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline UserBadge-name"
         >
           Joe Doe
         </h5>

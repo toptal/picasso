@@ -31,7 +31,7 @@ exports[`PageHeaderMenu default render 1`] = `
             class="MuiGrid-item"
           >
             <h5
-              class="MuiTypography-root Typography-invert Typography-semibold MuiTypography-h5 MuiTypography-inline"
+              class="MuiTypography-root Typography-invert Typography-semibold MuiTypography-h5 MuiTypography-inline UserBadge-name PageHeaderMenu-name PageHeaderMenu-truncateText"
             >
               Jacqueline Roque
             </h5>
