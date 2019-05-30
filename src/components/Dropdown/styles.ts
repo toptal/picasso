@@ -8,7 +8,8 @@ export default () =>
     },
     anchor: {
       display: 'inline-flex',
-      alignItems: 'center'
+      alignItems: 'center',
+      cursor: 'pointer'
     },
     content: {
       fontSize: 'inherit'
