@@ -4,9 +4,15 @@ import { BaseProps, SpacingType, spacingToEm } from '../Picasso'
 
 type DirectionType = 'row' | 'column'
 
-type AlignItemsType = 'flex-start' | 'flex-end' | 'center' | 'stretch'
+type AlignItemsType =
+  | 'flex-start'
+  | 'flex-end'
+  | 'center'
+  | 'stretch'
+  | 'baseline'
 type JustifyContentType =
-  | 'start'
+  | 'flex-start'
+  | 'flex-end'
   | 'center'
   | 'space-between'
   | 'space-around'
