@@ -12,7 +12,7 @@ PicassoProvider.override(({ palette, transitions }) => ({
       width: '1em',
       height: '1em',
       padding: '0',
-      margin: '0.25em 0.5em 0.25em 0.5em',
+      margin: '0.25em 0.5em 0.25em 0',
       transition: `all ${transitions.duration.short}ms ${
         transitions.easing.easeInOut
       }`,
@@ -104,5 +104,8 @@ export default ({ palette, spacing, transitions }: Theme) =>
           transitions.easing.easeInOut
         }`
       }
+    },
+    label: {
+      marginRight: '0.5em'
     }
   })

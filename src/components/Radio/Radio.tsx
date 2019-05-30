@@ -4,6 +4,7 @@ import RadioGroup from '@material-ui/core/RadioGroup'
 import { withStyles } from '@material-ui/core/styles'
 
 import FormControlLabel from '../FormControlLabel'
+import Form from '../Form'
 import { PicassoComponent, StandardProps } from '../Picasso'
 import styles from './styles'
 
@@ -61,10 +62,10 @@ export const Radio: FunctionComponent<Props> & StaticProps = ({
   return (
     <FormControlLabel
       control={muiRadio}
+      className={classes.label}
       classes={rootClasses}
-      className={className}
       style={style}
-      label={label}
+      label={<Form.Label as='span'>{label}</Form.Label>}
     />
   )
 }

@@ -18,7 +18,7 @@ export interface Props extends StandardProps {
   label?: string
   /** The id of the input element */
   id?: string
-  /** Mark field required */
+  /** Mark field as required */
   required?: boolean
   /** Callback invoked when `Checkbox` changed its value */
   onChange?: (
