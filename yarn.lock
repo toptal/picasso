@@ -8935,6 +8935,19 @@ jest-dev-server@^4.1.1:
     tree-kill "^1.2.1"
     wait-on "^3.2.0"
 
+jest-dev-server@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/jest-dev-server/-/jest-dev-server-4.2.0.tgz#409c995fead62448a35ee30251dafa36ab366d5c"
+  integrity sha512-Hy4+Y3awthvT3OI7exmqqXmselI6pvYiAQeob2hkHLtvhpsA2rO7GDPbOwxDMjqAVGUEopQOzQm37WjfB5tWdg==
+  dependencies:
+    chalk "^2.4.2"
+    cwd "^0.10.0"
+    find-process "^1.4.1"
+    prompts "^2.0.4"
+    spawnd "^4.0.0"
+    tree-kill "^1.2.1"
+    wait-on "^3.2.0"
+
 jest-diff@^24.8.0:
   version "24.8.0"
   resolved "https://registry.yarnpkg.com/jest-diff/-/jest-diff-24.8.0.tgz#146435e7d1e3ffdf293d53ff97e193f1d1546172"
@@ -8994,6 +9007,16 @@ jest-environment-puppeteer@^4.1.1:
     chalk "^2.4.2"
     cwd "^0.10.0"
     jest-dev-server "^4.1.1"
+    merge-deep "^3.0.2"
+
+jest-environment-puppeteer@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/jest-environment-puppeteer/-/jest-environment-puppeteer-4.2.0.tgz#ec785c792af1b06445b61367759320e5adddbbe0"
+  integrity sha512-i3HC+BsB0l9LR79+wrnyz7ImomZdwgpu1QH/9l1DnOgAuD5tTIwvzbyQp1nX+z5aKUhAVhontDIvHaM4oHRQ0Q==
+  dependencies:
+    chalk "^2.4.2"
+    cwd "^0.10.0"
+    jest-dev-server "^4.2.0"
     merge-deep "^3.0.2"
 
 jest-get-type@^24.8.0:
