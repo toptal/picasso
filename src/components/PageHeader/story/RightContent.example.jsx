@@ -1,12 +1,5 @@
 import React from 'react'
-import {
-  Page,
-  Dropdown,
-  Menu,
-  UserBadge,
-  Container,
-  Button
-} from '@toptal/picasso'
+import { Page, Menu, Container, Button } from '@toptal/picasso'
 
 const PageHeaderRightContentExample = () => (
   <div style={{ height: '3.75em' }}>
@@ -21,22 +14,16 @@ const RightContent = () => (
     <Container right='medium'>
       <Button variant='secondary-white'>Create job</Button>
     </Container>
-    <Dropdown
-      content={
-        <Menu style={{ width: '15rem' }}>
-          <Menu.Item onClick={handleClick}>My Account</Menu.Item>
-          <Menu.Item onClick={handleClick}>Log Out</Menu.Item>
-        </Menu>
-      }
-      offset={{ top: 'xsmall' }}
+    <Page.HeaderMenu
+      name='Pablo Diego José Francisco de Paula Juan Nepomuceno María de los Remedios Cipriano de la Santísima Trinidad Ruiz y Picasso'
+      organization='Picasso Picasso Picasso Picasso Picasso Picasso'
+      avatar='./jacqueline-with-flowers-1954-square.jpg'
     >
-      <UserBadge
-        name='Jacqueline Roque'
-        avatar='./jacqueline-with-flowers-1954-square.jpg'
-        invert
-      />
-      <Dropdown.Arrow style={{ color: 'white' }} />
-    </Dropdown>
+      <Menu>
+        <Menu.Item onClick={handleClick}>My Account</Menu.Item>
+        <Menu.Item onClick={handleClick}>Log Out</Menu.Item>
+      </Menu>
+    </Page.HeaderMenu>
   </React.Fragment>
 )
 
