@@ -43,18 +43,11 @@ export const UserBadge: FunctionComponent<Props> = ({
   className,
   style
 }) => {
-  const {
-    title: titleClass,
-    avatar: avatarClass,
-    name: nameClass,
-    ...gridClasses
-  } = classes
-
   const UserBadgeAvatar = React.isValidElement(avatar) ? (
     avatar
   ) : (
     <Avatar
-      className={avatarClass}
+      className={classes.avatar}
       name={name}
       size={size}
       src={avatar as string}
@@ -66,7 +59,7 @@ export const UserBadge: FunctionComponent<Props> = ({
   const alignItems = shouldCenter ? 'center' : 'flex-start'
 
   const userTitle = title && (
-    <Typography inline invert={invert} className={titleClass} variant='h5'>
+    <Typography inline invert={invert} className={classes.title} variant='h5'>
       {title}
     </Typography>
   )
@@ -75,14 +68,14 @@ export const UserBadge: FunctionComponent<Props> = ({
     <Grid
       spacing={16}
       alignItems={alignItems}
-      classes={gridClasses}
+      classes={{ container: classes.root }}
       className={className}
       style={style}
     >
       <Grid.Item>{UserBadgeAvatar}</Grid.Item>
       <Grid.Item>
         <Typography
-          className={nameClass}
+          className={classes.name}
           inline
           variant='h5'
           invert={invert}

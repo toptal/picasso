@@ -41,7 +41,6 @@ export const PageHeaderMenu: FunctionComponent<Props> = ({
         center
         size='xsmall'
         classes={{
-          container: classes.anchor,
           avatar: classes.avatar,
           name: cx(classes.name, classes.truncateText)
         }}

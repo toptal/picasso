@@ -7,7 +7,7 @@ export default () =>
       fontSize: '0.9rem'
     },
     content: {
-      width: '15rem'
+      width: '15em'
     },
     name: {
       fontWeight: 400,

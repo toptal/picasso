@@ -21,7 +21,7 @@ exports[`AccountSelect default render 1`] = `
             style="padding: 1.5em; display: flex; flex-direction: row; align-items: center;"
           >
             <div
-              class="MuiGrid-container undefined UserBadge-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-flex-start"
+              class="MuiGrid-container Component-container UserBadge-root MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-flex-start"
             >
               <div
                 class="MuiGrid-item"
@@ -43,7 +43,7 @@ exports[`AccountSelect default render 1`] = `
                 class="MuiGrid-item"
               >
                 <h5
-                  class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline UserBadge-name"
+                  class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
                 >
                   Phil Leif 1
                 </h5>
@@ -79,7 +79,7 @@ exports[`AccountSelect default render 1`] = `
             style="padding: 1.5em; display: flex; flex-direction: row; align-items: center;"
           >
             <div
-              class="MuiGrid-container undefined UserBadge-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-flex-start"
+              class="MuiGrid-container Component-container UserBadge-root MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-flex-start"
             >
               <div
                 class="MuiGrid-item"
@@ -101,7 +101,7 @@ exports[`AccountSelect default render 1`] = `
                 class="MuiGrid-item"
               >
                 <h5
-                  class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline UserBadge-name"
+                  class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
                 >
                   Phil Leif 2
                 </h5>
@@ -137,7 +137,7 @@ exports[`AccountSelect default render 1`] = `
             style="padding: 1.5em; display: flex; flex-direction: row; align-items: center;"
           >
             <div
-              class="MuiGrid-container undefined UserBadge-container MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-flex-start"
+              class="MuiGrid-container Component-container UserBadge-root MuiGrid-spacing-xs-16 MuiGrid-align-items-xs-flex-start"
             >
               <div
                 class="MuiGrid-item"
@@ -156,7 +156,7 @@ exports[`AccountSelect default render 1`] = `
                 class="MuiGrid-item"
               >
                 <h5
-                  class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline UserBadge-name"
+                  class="MuiTypography-root Typography-semibold MuiTypography-h5 MuiTypography-inline"
                 >
                   Phil Leif 3
                 </h5>
