@@ -2,7 +2,8 @@ import React, {
   FunctionComponent,
   ReactNode,
   ReactElement,
-  MouseEvent
+  MouseEvent,
+  SyntheticEvent
 } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
@@ -24,6 +25,7 @@ type VariantType =
   | 'default'
 
 type IconPositionType = 'left' | 'right'
+type EventListenerType = (event: SyntheticEvent<HTMLElement>) => void
 
 export interface Props extends StandardProps {
   /** Show button in the active state (left mouse button down) */
@@ -57,6 +59,14 @@ export interface Props extends StandardProps {
   title?: string
   /** HTML type of Button component **/
   type?: 'button' | 'reset' | 'submit'
+
+  // Event listeners for Tooltip
+  onBlur?: EventListenerType
+  onFocus?: EventListenerType
+  onMouseLeave?: EventListenerType
+  onMouseOver?: EventListenerType
+  onTouchEnd?: EventListenerType
+  onTouchStart?: EventListenerType
 }
 
 interface StaticProps {
@@ -82,7 +92,13 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
   circular,
   title,
   value,
-  type
+  type,
+  onBlur,
+  onFocus,
+  onMouseLeave,
+  onMouseOver,
+  onTouchEnd,
+  onTouchStart
 }) => {
   const {
     icon: iconClass,
@@ -139,6 +155,12 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
       title={title}
       value={value}
       type={type}
+      onBlur={onBlur}
+      onFocus={onFocus}
+      onMouseLeave={onMouseLeave}
+      onMouseOver={onMouseOver}
+      onTouchEnd={onTouchEnd}
+      onTouchStart={onTouchStart}
     >
       <Container
         inline
