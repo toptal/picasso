@@ -34,14 +34,14 @@ export const colors = {
     darker: '#262d3d'
   },
   blue: {
-    lighter: '#eef1fc',
+    lighter: '#edf1fd',
     light: '#25a9ef',
     main: '#204ecf',
     dark: '#183a9e',
     darker: '#0f256e'
   },
   yellow: {
-    lighter: '#fdf5e8',
+    lighter: '#fff5e3',
     main: '#e59c01'
   },
   red: {
@@ -49,7 +49,7 @@ export const colors = {
     main: '#d42551'
   },
   green: {
-    lighter: '#edfbf5',
+    lighter: '#eafbf5',
     main: '#00cc83',
     dark: '#03b080',
     darker: '#05947c'
