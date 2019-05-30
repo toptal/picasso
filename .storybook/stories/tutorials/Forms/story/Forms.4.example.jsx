@@ -1,15 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
-import {
-  Container,
-  Typography,
-  Grid,
-  Checkbox,
-  Select,
-  TextField,
-  Radio,
-  Form
-} from '@toptal/picasso'
+import { Grid, Checkbox, Select, TextField, Form } from '@toptal/picasso'
 
 const FormsExample = () => (
   <div>
@@ -22,10 +12,10 @@ const FormsExample = () => (
           </Form.Field>
 
           <Form.Field>
-            <Form.Label required htmlFor='job-title-final'>
+            <Form.Label required htmlFor='job-title-4'>
               Job title
             </Form.Label>
-            <TextField id='job-title-final' fullWidth />
+            <TextField id='job-title-4' fullWidth />
           </Form.Field>
 
           <Form.Field>
@@ -38,20 +28,16 @@ const FormsExample = () => (
               </Grid.Item>
               <Grid.Item small={6}>
                 <Form.Field>
-                  <Form.Label htmlFor='city-final'>
-                    City of residence
-                  </Form.Label>
-                  <TextField id='city-final' fullWidth />
+                  <Form.Label htmlFor='city-4'>City of residence</Form.Label>
+                  <TextField id='city-4' fullWidth />
                 </Form.Field>
               </Grid.Item>
             </Grid>
           </Form.Field>
 
           <Form.Field>
-            <Form.Label htmlFor='description-final'>
-              Full description
-            </Form.Label>
-            <TextField id='description-final' fullWidth />
+            <Form.Label htmlFor='description'>Full description</Form.Label>
+            <TextField id='description' fullWidth />
           </Form.Field>
 
           <Form.Field>
@@ -60,16 +46,11 @@ const FormsExample = () => (
           </Form.Field>
 
           <Form.Field>
-            <Form.Label>Estimated length:</Form.Label>
-            <HorizontalRadioGroup name='variableName' value='radio1'>
-              <Radio label='1-2 months' value='radio1' />
-              <Radio label='2-4 months' value='radio2' />
-              <Radio label='4-12 months' value='radio3' />
-            </HorizontalRadioGroup>
-          </Form.Field>
-
-          <Form.Field hint='A Toptal Director of Engineering ewill work with you to understand you needs and fins you the right talent for you project.'>
             <Checkbox label='We match you to talent' />
+            <Form.Hint>
+              A Toptal Director of Engineering ewill work with you to understand
+              you needs and fins you the right talent for you project.
+            </Form.Hint>
           </Form.Field>
         </Form>
       </Grid.Item>
@@ -83,9 +64,5 @@ const OPTIONS = [
   { value: '3', text: 'Option 3' },
   { value: '4', text: 'Option 4' }
 ]
-
-const HorizontalRadioGroup = styled(Radio.Group)`
-  flex-direction: row;
-`
 
 export default FormsExample
