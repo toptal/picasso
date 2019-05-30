@@ -60,7 +60,7 @@ export const UserBadge: FunctionComponent<Props> = ({
   const alignItems = shouldCenter ? 'center' : 'flex-start'
 
   const userTitle = title && (
-    <Typography inline className={classes.title}>
+    <Typography inline invert={invert} className={classes.title} size='medium'>
       {title}
     </Typography>
   )
@@ -74,7 +74,7 @@ export const UserBadge: FunctionComponent<Props> = ({
     >
       {UserBadgeAvatar}
       <Container flex direction='column' left='small'>
-        <Container className={classes.typographyItem}>
+        <Container>
           <Typography
             className={classes.name}
             inline
@@ -84,11 +84,9 @@ export const UserBadge: FunctionComponent<Props> = ({
           >
             {name}
           </Typography>
-          <Typography inline invert={invert} size='medium'>
-            {userTitle}
-          </Typography>
+          {userTitle}
         </Container>
-        {children && <Container>{children}</Container>}
+        {children}
       </Container>
     </Container>
   )
