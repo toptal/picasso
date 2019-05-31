@@ -15,6 +15,22 @@ const FormFieldExample = () => (
             City
           </Form.Label>
           <TextField id='city' fullWidth placeholder='e.g., Barcelona' />
+          <Form.Hint>Choose city where you would like to live</Form.Hint>
+        </Form.Field>
+
+        <Form.Field
+          error='This field is required'
+          hint='Choose the place where you would like to live'
+        >
+          <Form.Label htmlFor='district' required>
+            District
+          </Form.Label>
+          <TextField
+            id='district'
+            fullWidth
+            placeholder='e.g., Sant Marti'
+            error
+          />
         </Form.Field>
 
         <Form.Field>
@@ -36,6 +52,15 @@ const FormFieldExample = () => (
             label='I confirm that I have legal permission from the client to feature this project.'
             required
           />
+        </Form.Field>
+
+        <Form.Field>
+          <Checkbox
+            label='I confirm that I have legal permission from the client to feature this project.'
+            required
+            error
+          />
+          <Form.Error>This is required</Form.Error>
         </Form.Field>
       </Form>
     </Grid.Item>
