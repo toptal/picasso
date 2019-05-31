@@ -13,8 +13,8 @@ const TestFormError = ({ children }: OmitInternalProps<Props>) => {
         <Form.Field>
           <Form.Label>Label:</Form.Label>
           <TextField />
-          <Form.Hint>This is a hint</Form.Hint>
           <Form.Error>{children}</Form.Error>
+          <Form.Hint>This is a hint</Form.Hint>
         </Form.Field>
       </Form>
     </Picasso>

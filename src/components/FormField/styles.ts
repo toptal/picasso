@@ -5,10 +5,13 @@ export default () =>
     root: {
       '& + &': {
         marginTop: '1em'
+      },
+      '& $error + $hint': {
+        marginTop: 0
       }
     },
 
-    noTopMargin: {
-      marginTop: 0
-    }
+    hint: {},
+
+    error: {}
   })

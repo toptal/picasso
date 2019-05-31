@@ -26,16 +26,8 @@ export const FormField: FunctionComponent<Props> = ({
 }) => (
   <div className={cx(classes.root, className)} style={style}>
     {children}
-    {error && <FormError>{error}</FormError>}
-    {hint && (
-      <FormHint
-        className={cx({
-          [classes.noTopMargin]: error
-        })}
-      >
-        {hint}
-      </FormHint>
-    )}
+    {error && <FormError className={classes.error}>{error}</FormError>}
+    {hint && <FormHint className={classes.hint}>{hint}</FormHint>}
   </div>
 )
 
