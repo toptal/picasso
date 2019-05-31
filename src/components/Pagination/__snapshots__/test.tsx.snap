@@ -6,10 +6,10 @@ exports[`renders default 1`] = `
     class="Picasso-root"
   >
     <div
-      class="ButtonGroup-root"
+      style="display: inline-flex; align-items: center;"
     >
       <button
-        class="MuiButtonBase-root Button-medium Button-flat Button-root ButtonGroup-button"
+        class="MuiButtonBase-root Button-small Button-secondaryBlue Button-root"
         tabindex="0"
         type="button"
       >
@@ -17,11 +17,11 @@ exports[`renders default 1`] = `
           class="Button-content"
           style="display: inline-flex; flex-direction: row; align-items: center;"
         >
-          «
+          Prev
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-medium Button-flat Button-root ButtonGroup-button"
+        class="MuiButtonBase-root Button-small Button-secondaryBlue Button-root Pagination-rangeButton"
         tabindex="0"
         type="button"
       >
@@ -29,48 +29,21 @@ exports[`renders default 1`] = `
           class="Button-content"
           style="display: inline-flex; flex-direction: row; align-items: center;"
         >
-          ⟨
+          1
         </div>
       </button>
-      <button
-        class="MuiButtonBase-root Button-medium Button-flatDisabled Button-root MuiButtonBase-disabled ButtonGroup-button"
-        disabled=""
-        tabindex="-1"
-        type="button"
+      <div
+        class="Pagination-ellipsis"
+        style="display: block;"
       >
-        <div
-          class="Button-content"
-          style="display: inline-flex; flex-direction: row; align-items: center;"
+        <p
+          class="MuiTypography-root Typography-bodySmall Typography-semibold Typography-black MuiTypography-body1"
         >
           ...
-        </div>
-      </button>
+        </p>
+      </div>
       <button
-        class="MuiButtonBase-root Button-medium Button-flat Button-root ButtonGroup-button"
-        tabindex="0"
-        type="button"
-      >
-        <div
-          class="Button-content"
-          style="display: inline-flex; flex-direction: row; align-items: center;"
-        >
-          2
-        </div>
-      </button>
-      <button
-        class="MuiButtonBase-root Button-medium Button-flat Button-root ButtonGroup-button"
-        tabindex="0"
-        type="button"
-      >
-        <div
-          class="Button-content"
-          style="display: inline-flex; flex-direction: row; align-items: center;"
-        >
-          3
-        </div>
-      </button>
-      <button
-        class="MuiButtonBase-root Button-medium Button-flat Button-root ButtonGroup-button"
+        class="MuiButtonBase-root Button-small Button-secondaryBlue Button-root Pagination-rangeButton"
         tabindex="0"
         type="button"
       >
@@ -82,7 +55,7 @@ exports[`renders default 1`] = `
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-medium Button-primaryBlue Button-root ButtonGroup-button"
+        class="MuiButtonBase-root Button-small Button-primaryBlue Button-root Pagination-rangeButton"
         tabindex="0"
         type="button"
       >
@@ -94,7 +67,7 @@ exports[`renders default 1`] = `
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-medium Button-flat Button-root ButtonGroup-button"
+        class="MuiButtonBase-root Button-small Button-secondaryBlue Button-root Pagination-rangeButton"
         tabindex="0"
         type="button"
       >
@@ -105,45 +78,18 @@ exports[`renders default 1`] = `
           6
         </div>
       </button>
-      <button
-        class="MuiButtonBase-root Button-medium Button-flat Button-root ButtonGroup-button"
-        tabindex="0"
-        type="button"
+      <div
+        class="Pagination-ellipsis"
+        style="display: block;"
       >
-        <div
-          class="Button-content"
-          style="display: inline-flex; flex-direction: row; align-items: center;"
-        >
-          7
-        </div>
-      </button>
-      <button
-        class="MuiButtonBase-root Button-medium Button-flat Button-root ButtonGroup-button"
-        tabindex="0"
-        type="button"
-      >
-        <div
-          class="Button-content"
-          style="display: inline-flex; flex-direction: row; align-items: center;"
-        >
-          8
-        </div>
-      </button>
-      <button
-        class="MuiButtonBase-root Button-medium Button-flatDisabled Button-root MuiButtonBase-disabled ButtonGroup-button"
-        disabled=""
-        tabindex="-1"
-        type="button"
-      >
-        <div
-          class="Button-content"
-          style="display: inline-flex; flex-direction: row; align-items: center;"
+        <p
+          class="MuiTypography-root Typography-bodySmall Typography-semibold Typography-black MuiTypography-body1"
         >
           ...
-        </div>
-      </button>
+        </p>
+      </div>
       <button
-        class="MuiButtonBase-root Button-medium Button-flat Button-root ButtonGroup-button"
+        class="MuiButtonBase-root Button-small Button-secondaryBlue Button-root Pagination-rangeButton"
         tabindex="0"
         type="button"
       >
@@ -151,11 +97,11 @@ exports[`renders default 1`] = `
           class="Button-content"
           style="display: inline-flex; flex-direction: row; align-items: center;"
         >
-          ⟩
+          20
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-medium Button-flat Button-root ButtonGroup-button"
+        class="MuiButtonBase-root Button-small Button-secondaryBlue Button-root"
         tabindex="0"
         type="button"
       >
@@ -163,7 +109,7 @@ exports[`renders default 1`] = `
           class="Button-content"
           style="display: inline-flex; flex-direction: row; align-items: center;"
         >
-          »
+          Next
         </div>
       </button>
     </div>
@@ -177,10 +123,10 @@ exports[`renders disabled 1`] = `
     class="Picasso-root"
   >
     <div
-      class="ButtonGroup-root"
+      style="display: inline-flex; align-items: center;"
     >
       <button
-        class="MuiButtonBase-root Button-medium Button-flatDisabled Button-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-small Button-secondaryDisabled Button-root MuiButtonBase-disabled"
         disabled=""
         tabindex="-1"
         type="button"
@@ -189,11 +135,11 @@ exports[`renders disabled 1`] = `
           class="Button-content"
           style="display: inline-flex; flex-direction: row; align-items: center;"
         >
-          «
+          Prev
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-medium Button-flatDisabled Button-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-small Button-secondaryDisabled Button-root MuiButtonBase-disabled Pagination-rangeButton"
         disabled=""
         tabindex="-1"
         type="button"
@@ -202,50 +148,21 @@ exports[`renders disabled 1`] = `
           class="Button-content"
           style="display: inline-flex; flex-direction: row; align-items: center;"
         >
-          ⟨
+          1
         </div>
       </button>
-      <button
-        class="MuiButtonBase-root Button-medium Button-flatDisabled Button-root MuiButtonBase-disabled ButtonGroup-button"
-        disabled=""
-        tabindex="-1"
-        type="button"
+      <div
+        class="Pagination-ellipsis"
+        style="display: block;"
       >
-        <div
-          class="Button-content"
-          style="display: inline-flex; flex-direction: row; align-items: center;"
+        <p
+          class="MuiTypography-root Typography-bodySmall Typography-semibold Typography-black MuiTypography-body1"
         >
           ...
-        </div>
-      </button>
+        </p>
+      </div>
       <button
-        class="MuiButtonBase-root Button-medium Button-flatDisabled Button-root MuiButtonBase-disabled ButtonGroup-button"
-        disabled=""
-        tabindex="-1"
-        type="button"
-      >
-        <div
-          class="Button-content"
-          style="display: inline-flex; flex-direction: row; align-items: center;"
-        >
-          2
-        </div>
-      </button>
-      <button
-        class="MuiButtonBase-root Button-medium Button-flatDisabled Button-root MuiButtonBase-disabled ButtonGroup-button"
-        disabled=""
-        tabindex="-1"
-        type="button"
-      >
-        <div
-          class="Button-content"
-          style="display: inline-flex; flex-direction: row; align-items: center;"
-        >
-          3
-        </div>
-      </button>
-      <button
-        class="MuiButtonBase-root Button-medium Button-flatDisabled Button-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-small Button-secondaryDisabled Button-root MuiButtonBase-disabled Pagination-rangeButton"
         disabled=""
         tabindex="-1"
         type="button"
@@ -258,7 +175,7 @@ exports[`renders disabled 1`] = `
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-medium Button-primaryDisabled Button-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-small Button-primaryDisabled Button-root MuiButtonBase-disabled Pagination-rangeButton"
         disabled=""
         tabindex="-1"
         type="button"
@@ -271,7 +188,7 @@ exports[`renders disabled 1`] = `
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-medium Button-flatDisabled Button-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-small Button-secondaryDisabled Button-root MuiButtonBase-disabled Pagination-rangeButton"
         disabled=""
         tabindex="-1"
         type="button"
@@ -283,47 +200,18 @@ exports[`renders disabled 1`] = `
           6
         </div>
       </button>
-      <button
-        class="MuiButtonBase-root Button-medium Button-flatDisabled Button-root MuiButtonBase-disabled ButtonGroup-button"
-        disabled=""
-        tabindex="-1"
-        type="button"
+      <div
+        class="Pagination-ellipsis"
+        style="display: block;"
       >
-        <div
-          class="Button-content"
-          style="display: inline-flex; flex-direction: row; align-items: center;"
-        >
-          7
-        </div>
-      </button>
-      <button
-        class="MuiButtonBase-root Button-medium Button-flatDisabled Button-root MuiButtonBase-disabled ButtonGroup-button"
-        disabled=""
-        tabindex="-1"
-        type="button"
-      >
-        <div
-          class="Button-content"
-          style="display: inline-flex; flex-direction: row; align-items: center;"
-        >
-          8
-        </div>
-      </button>
-      <button
-        class="MuiButtonBase-root Button-medium Button-flatDisabled Button-root MuiButtonBase-disabled ButtonGroup-button"
-        disabled=""
-        tabindex="-1"
-        type="button"
-      >
-        <div
-          class="Button-content"
-          style="display: inline-flex; flex-direction: row; align-items: center;"
+        <p
+          class="MuiTypography-root Typography-bodySmall Typography-semibold Typography-black MuiTypography-body1"
         >
           ...
-        </div>
-      </button>
+        </p>
+      </div>
       <button
-        class="MuiButtonBase-root Button-medium Button-flatDisabled Button-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-small Button-secondaryDisabled Button-root MuiButtonBase-disabled Pagination-rangeButton"
         disabled=""
         tabindex="-1"
         type="button"
@@ -332,11 +220,11 @@ exports[`renders disabled 1`] = `
           class="Button-content"
           style="display: inline-flex; flex-direction: row; align-items: center;"
         >
-          ⟩
+          20
         </div>
       </button>
       <button
-        class="MuiButtonBase-root Button-medium Button-flatDisabled Button-root MuiButtonBase-disabled ButtonGroup-button"
+        class="MuiButtonBase-root Button-small Button-secondaryDisabled Button-root MuiButtonBase-disabled"
         disabled=""
         tabindex="-1"
         type="button"
@@ -345,10 +233,26 @@ exports[`renders disabled 1`] = `
           class="Button-content"
           style="display: inline-flex; flex-direction: row; align-items: center;"
         >
-          »
+          Next
         </div>
       </button>
     </div>
   </div>
+</div>
+`;
+
+exports[`renders nothing for 0 pages 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  />
+</div>
+`;
+
+exports[`renders nothing for 1 page 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  />
 </div>
 `;
