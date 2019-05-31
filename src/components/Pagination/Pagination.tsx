@@ -1,14 +1,18 @@
 import React, { PureComponent } from 'react'
+import { withStyles } from '@material-ui/core/styles'
 
 import Button from '../Button'
-import { BaseProps } from '../Picasso'
+import Container from '../Container'
+import Typography from '../Typography'
+import { StandardProps } from '../Picasso'
 import { getRange, ELLIPSIS, FIRST_PAGE, ONE_PAGE } from './range-utils'
+import styles from './styles'
 
 type NavigationType = 'first' | 'last' | 'previous' | 'next'
 
-const SIBLING_COUNT = 3
+const SIBLING_COUNT = 1
 
-export interface Props extends BaseProps {
+export interface Props extends StandardProps {
   /** Value of the current highlighted page */
   activePage: number
   /** Shows `Pagination` in disabled state when pages are not changeable */
@@ -61,17 +65,31 @@ export class Pagination extends PureComponent<Props> {
   }
 
   renderRange() {
-    const { totalPages, activePage, disabled } = this.props
+    const { totalPages, activePage, disabled, classes } = this.props
 
     const range = getRange(activePage, totalPages, SIBLING_COUNT)
 
     return range.map((pageItemLabel, index) => {
+      if (pageItemLabel === ELLIPSIS) {
+        return (
+          <Container className={classes.ellipsis}>
+            <Typography size='small' weight='semibold' color='black'>
+              {pageItemLabel}
+            </Typography>
+          </Container>
+        )
+      }
+
       return (
         <Button
-          disabled={pageItemLabel === ELLIPSIS || disabled}
+          className={classes.rangeButton}
+          disabled={disabled}
           key={(pageItemLabel as string) + index} // eslint-disable-line react/no-array-index-key
           onClick={() => this.handleChange(pageItemLabel as NavigationType)}
-          variant={activePage === pageItemLabel ? 'primary-blue' : 'flat'}
+          variant={
+            activePage === pageItemLabel ? 'primary-blue' : 'secondary-blue'
+          }
+          size='small'
         >
           {pageItemLabel}
         </Button>
@@ -80,25 +98,23 @@ export class Pagination extends PureComponent<Props> {
   }
 
   render() {
-    const { disabled } = this.props
+    const { disabled, totalPages } = this.props
     const isFirstActive = this.isFirstActive()
     const isLastActive = this.isLastActive()
 
+    if (totalPages <= ONE_PAGE) {
+      return null
+    }
+
     return (
-      <Button.Group>
-        <Button
-          disabled={isFirstActive || disabled}
-          onClick={() => this.handleChange('first')}
-          variant='flat'
-        >
-          «
-        </Button>
+      <Container flex inline alignItems='center'>
         <Button
           disabled={isFirstActive || disabled}
           onClick={() => this.handleChange('previous')}
-          variant='flat'
+          variant='secondary-blue'
+          size='small'
         >
-          ⟨
+          Prev
         </Button>
 
         {this.renderRange()}
@@ -106,20 +122,14 @@ export class Pagination extends PureComponent<Props> {
         <Button
           disabled={isLastActive || disabled}
           onClick={() => this.handleChange('next')}
-          variant='flat'
+          variant='secondary-blue'
+          size='small'
         >
-          ⟩
+          Next
         </Button>
-        <Button
-          disabled={isLastActive || disabled}
-          onClick={() => this.handleChange('last')}
-          variant='flat'
-        >
-          »
-        </Button>
-      </Button.Group>
+      </Container>
     )
   }
 }
 
-export default Pagination
+export default withStyles(styles)(Pagination)
