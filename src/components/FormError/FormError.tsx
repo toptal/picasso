@@ -1,5 +1,6 @@
 import React, { FunctionComponent, ReactNode } from 'react'
 import { withStyles } from '@material-ui/core/styles'
+import cx from 'classnames'
 
 import { StandardProps } from '../Picasso'
 import styles from './styles'
@@ -10,9 +11,14 @@ export interface Props extends StandardProps {
   children: ReactNode
 }
 
-export const FormError: FunctionComponent<Props> = ({ children, classes }) => {
+export const FormError: FunctionComponent<Props> = ({
+  children,
+  classes,
+  className,
+  style
+}) => {
   return (
-    <div className={classes.root}>
+    <div className={cx(classes.root, className)} style={style}>
       <Typography className={classes.error}>{children}</Typography>
     </div>
   )

@@ -6,5 +6,9 @@ export default () =>
       '& + &': {
         marginTop: '1em'
       }
+    },
+
+    noTopMargin: {
+      marginTop: 0
     }
   })

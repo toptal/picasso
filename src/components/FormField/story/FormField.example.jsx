@@ -15,9 +15,13 @@ const FormFieldExample = () => (
             City
           </Form.Label>
           <TextField id='city' fullWidth placeholder='e.g., Barcelona' />
+          <Form.Hint>Choose city where you would like to live</Form.Hint>
         </Form.Field>
 
-        <Form.Field>
+        <Form.Field
+          error='This field is required'
+          hint='Choose the place where you would like to live'
+        >
           <Form.Label htmlFor='district' required>
             District
           </Form.Label>
@@ -27,7 +31,6 @@ const FormFieldExample = () => (
             placeholder='e.g., Sant Marti'
             error
           />
-          <Form.Error>This field is required</Form.Error>
         </Form.Field>
 
         <Form.Field>

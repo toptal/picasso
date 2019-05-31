@@ -8,7 +8,6 @@ export default ({ palette }: Theme) =>
     error: {
       color: palette.red.main,
       fontSize: '0.6875em',
-      lineHeight: '1em',
       cursor: 'default'
     }
   })
