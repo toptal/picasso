@@ -41,3 +41,25 @@ test('renders disabled', () => {
 
   expect(container).toMatchSnapshot()
 })
+
+test('renders nothing for 1 page', () => {
+  const { container } = renderPagination({
+    activePage: 1,
+    totalPages: 1,
+    disabled: true,
+    onPageChange: () => {}
+  })
+
+  expect(container).toMatchSnapshot()
+})
+
+test('renders nothing for 0 pages', () => {
+  const { container } = renderPagination({
+    activePage: 1,
+    totalPages: 0,
+    disabled: true,
+    onPageChange: () => {}
+  })
+
+  expect(container).toMatchSnapshot()
+})
