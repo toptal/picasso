@@ -102,11 +102,24 @@ const PaginationDefaultExample = () => (
         6 and more pages
       </Typography>
     </Container>
-    <Container>
+    <Container bottom='medium'>
       <Pagination
         activePage={5}
         onPageChange={handlePageChange}
         totalPages={10}
+      />
+    </Container>
+
+    <Container bottom='xsmall'>
+      <Typography variant='heading' size='small'>
+        Big numbers
+      </Typography>
+    </Container>
+    <Container>
+      <Pagination
+        activePage={1234}
+        onPageChange={handlePageChange}
+        totalPages={10000}
       />
     </Container>
   </Container>

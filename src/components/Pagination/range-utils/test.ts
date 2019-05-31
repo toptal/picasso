@@ -114,4 +114,10 @@ describe('getRange({ activePage, totalPages, siblingCount })', () => {
 
     expect(range).toEqual([1, ELLIPSIS, 4, 5])
   })
+
+  test('returns proper range 20', () => {
+    const range = getRange(1234, 10000, 1)
+
+    expect(range).toEqual([1, ELLIPSIS, 1233, 1234, 1235, ELLIPSIS, 10000])
+  })
 })
