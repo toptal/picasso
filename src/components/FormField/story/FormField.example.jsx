@@ -18,6 +18,19 @@ const FormFieldExample = () => (
         </Form.Field>
 
         <Form.Field>
+          <Form.Label htmlFor='district' required>
+            District
+          </Form.Label>
+          <TextField
+            id='district'
+            fullWidth
+            placeholder='e.g., Sant Marti'
+            error
+          />
+          <Form.Error>This field is required</Form.Error>
+        </Form.Field>
+
+        <Form.Field>
           <Form.Label required>Choose one of the following skills</Form.Label>
           <Radio.Group name='skills'>
             <Radio label='Front-End' value='front-end' />
@@ -36,6 +49,15 @@ const FormFieldExample = () => (
             label='I confirm that I have legal permission from the client to feature this project.'
             required
           />
+        </Form.Field>
+
+        <Form.Field>
+          <Checkbox
+            label='I confirm that I have legal permission from the client to feature this project.'
+            required
+            error
+          />
+          <Form.Error>This is required</Form.Error>
         </Form.Field>
       </Form>
     </Grid.Item>
