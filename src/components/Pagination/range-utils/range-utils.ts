@@ -4,30 +4,40 @@ export const ELLIPSIS = '...'
 
 type SibilingsType = (number | string)[]
 
-const addEllipsis = (siblings: SibilingsType, page: number) => {
+const getEllipsis = (siblings: number[], targetPage: number) => {
   const lastSibling = siblings[siblings.length - 1]
 
-  if (lastSibling && lastSibling !== page) {
-    siblings.push(ELLIPSIS)
+  if (!lastSibling) {
+    return []
   }
+
+  // we only want to add ellipsis if relative difference
+  // between sibling and target page is more then one page
+  // otherwise they are neighbours
+  const relativeDiff = Math.abs(lastSibling - targetPage)
+
+  if (lastSibling && relativeDiff > ONE_PAGE) {
+    return [ELLIPSIS]
+  }
+
+  return []
 }
 
 const getPreviousSiblings = (activePage: number, siblingCount: number) => {
-  const previousSiblings = [] as SibilingsType
-  const estimatedLastSibling = activePage - siblingCount
-  let pageNumber = activePage - ONE_PAGE
+  const previousSiblings: number[] = []
+  const lastSibling = activePage - siblingCount
 
   for (
-    ;
-    pageNumber >= estimatedLastSibling && pageNumber >= FIRST_PAGE;
+    let pageNumber = activePage - ONE_PAGE;
+    pageNumber >= lastSibling && pageNumber >= FIRST_PAGE;
     pageNumber--
   ) {
     previousSiblings.push(pageNumber)
   }
 
-  addEllipsis(previousSiblings, FIRST_PAGE)
+  const ellipsis = getEllipsis(previousSiblings, FIRST_PAGE)
 
-  return previousSiblings.reverse()
+  return [...ellipsis, ...previousSiblings.reverse()] as SibilingsType
 }
 
 const getNextSiblings = (
@@ -35,21 +45,40 @@ const getNextSiblings = (
   siblingCount: number,
   totalPages: number
 ) => {
-  const nextSiblings = [] as SibilingsType
-  const estimatedLastSibling = activePage + siblingCount
-  let pageNumber = activePage + ONE_PAGE
+  const nextSiblings = [] as number[]
+  const lastSibling = activePage + siblingCount
 
   for (
-    ;
-    pageNumber <= estimatedLastSibling && pageNumber <= totalPages;
+    let pageNumber = activePage + ONE_PAGE;
+    pageNumber <= lastSibling && pageNumber <= totalPages;
     pageNumber++
   ) {
     nextSiblings.push(pageNumber)
   }
 
-  addEllipsis(nextSiblings, totalPages)
+  const ellipsis = getEllipsis(nextSiblings, totalPages)
 
-  return nextSiblings
+  return [...nextSiblings, ...ellipsis] as SibilingsType
+}
+
+const getFirstPage = (activePage: number, siblingCount: number) => {
+  if (activePage - siblingCount > FIRST_PAGE) {
+    return [FIRST_PAGE] as SibilingsType
+  }
+
+  return [] as SibilingsType
+}
+
+const getLastPage = (
+  activePage: number,
+  siblingCount: number,
+  totalPages: number
+) => {
+  if (activePage + siblingCount < totalPages) {
+    return [totalPages] as SibilingsType
+  }
+
+  return [] as SibilingsType
 }
 
 export const getRange = (
@@ -60,5 +89,14 @@ export const getRange = (
   const previousSiblings = getPreviousSiblings(activePage, siblingCount)
   const nextSiblings = getNextSiblings(activePage, siblingCount, totalPages)
 
-  return [...previousSiblings, activePage, ...nextSiblings]
+  const firstPage = getFirstPage(activePage, siblingCount)
+  const lastPage = getLastPage(activePage, siblingCount, totalPages)
+
+  return [
+    ...firstPage,
+    ...previousSiblings,
+    activePage,
+    ...nextSiblings,
+    ...lastPage
+  ]
 }
