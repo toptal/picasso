@@ -220,3 +220,19 @@ exports[`renders disabled 1`] = `
   </div>
 </div>
 `;
+
+exports[`renders nothing for 0 pages 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  />
+</div>
+`;
+
+exports[`renders nothing for 1 page 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  />
+</div>
+`;
