@@ -16,7 +16,7 @@ pipeline {
 
   environment {
     NPM_TOKEN = credentials('npm-token-for-toptal-private-registry')
-    GITHUB_TOKEN = credentials('toptal-devbot-token-github-notify')
+    GITHUB_TOKEN = credentials('toptal-devbot-personal-token')
   }
 
   stages {
@@ -47,21 +47,27 @@ pipeline {
             }//script
         }//steps
     }//stage
+    
     stage('Sync docs to docs server') {
       steps {
         script {
-            if (params.BRANCH == 'master') {
-                target = ''
-            } else {
-                target = params.BRANCH
+            targetBranch = params.BRANCH.replaceAll('/', '-')
+            existingComments = sh(returnStdout: true, script: "curl -H \"Authorization: token ${GITHUB_TOKEN}\" https://api.github.com/repos/toptal/picasso/issues/${params.PR_ID}/comments | jq -r '.[] | select(.user.login | contains(\"toptal-devbot\")) | select(.body | contains(\"Demo\")) | .id'").split("\n")
+            existingComments.each {
+              if (it != "") {
+                echo "Comment [$it] - Marked for delete"
+                sh "curl -X \"DELETE\" -H \"Authorization: token ${GITHUB_TOKEN}\" https://api.github.com/repos/toptal/picasso/issues/comments/${it}"
+              }
             }
+
             sh """
-                 rsync -avz --delete -e ssh ./build/storybook/ docs@docs.staging.toptal.net:~/docs/picasso/${target} && \\
+                 rsync -avz --delete -e ssh ./build/storybook/ docs@docs.staging.toptal.net:~/docs/picasso/${targetBranch} && \\
                  rm -rf ./build
                """
-            if (params.BRANCH != 'master') {
-                def url = "https://picasso.toptal.net/${params.BRANCH}"
-                def comment = "Successfully deployed demo at [${url}](${url}?${gitCommit()})"
+
+            if (targetBranch != 'master') {
+                def url = "https://picasso.toptal.net/${targetBranch}/"
+                def comment = ":tada: Last commit is successfully deployed :tada: \\n\\nDemo is available on:\\n\\n- [${url}](${url}?${gitCommit()}) \\n\\n Your **[davinci-bot](https://github.com/toptal-davinci-bot)** :rocket:"
                 gitHubPostComment('picasso', params.PR_ID, comment, env.GITHUB_TOKEN)
             }
         }//script
