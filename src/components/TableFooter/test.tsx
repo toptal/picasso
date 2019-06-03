@@ -4,23 +4,13 @@ import { cleanup, render, RenderResult } from 'react-testing-library'
 import Picasso from '../Picasso'
 import Table from '../Table'
 
-const renderTable = () => {
+const renderTableFooter = () => {
   return render(
     <Picasso loadFonts={false}>
       <Table>
-        <Table.Head>
-          <Table.Row>
-            <Table.Cell>Table test</Table.Cell>
-          </Table.Row>
-        </Table.Head>
-        <Table.Body>
-          <Table.Row>
-            <Table.Cell>Table test</Table.Cell>
-          </Table.Row>
-        </Table.Body>
         <Table.Footer>
           <Table.Row>
-            <Table.Cell>Table test</Table.Cell>
+            <Table.Cell>Footer test</Table.Cell>
           </Table.Row>
         </Table.Footer>
       </Table>
@@ -30,11 +20,11 @@ const renderTable = () => {
 
 afterEach(cleanup)
 
-describe('Table', () => {
+describe('TableFooter', () => {
   let api: RenderResult
 
   beforeEach(() => {
-    api = renderTable()
+    api = renderTableFooter()
   })
 
   test('default render', () => {

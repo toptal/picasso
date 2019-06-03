@@ -12,22 +12,28 @@ interface Props extends StandardProps {
   align?: AlignType
   /** The table cell contents */
   children: ReactNode
+  /** Indicates for how many columns the cell extends */
+  colSpan?: number
 }
 
-export const TableCell: FunctionComponent<Props> = props => {
-  const { align, classes, className, style, children } = props
-
-  return (
-    <MUITableCell
-      align={align}
-      classes={classes}
-      className={className}
-      style={style}
-    >
-      {children}
-    </MUITableCell>
-  )
-}
+export const TableCell: FunctionComponent<Props> = ({
+  align,
+  classes,
+  className,
+  style,
+  children,
+  colSpan
+}) => (
+  <MUITableCell
+    align={align}
+    classes={classes}
+    className={className}
+    style={style}
+    colSpan={colSpan}
+  >
+    {children}
+  </MUITableCell>
+)
 
 TableCell.defaultProps = {
   align: 'inherit'

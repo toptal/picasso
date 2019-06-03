@@ -24,6 +24,13 @@ const TableDefaultExample = () => (
           </Table.Row>
         ))}
       </Table.Body>
+      <Table.Footer>
+        <Table.Row>
+          <Table.Cell colSpan={3}>Total</Table.Cell>
+          <Table.Cell>Role</Table.Cell>
+          <Table.Cell>Country</Table.Cell>
+        </Table.Row>
+      </Table.Footer>
     </Table>
   </div>
 )
