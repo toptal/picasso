@@ -35,6 +35,19 @@ exports[`Table default render 1`] = `
           </td>
         </tr>
       </tbody>
+      <tfoot
+        class="MuiTableFooter-root"
+      >
+        <tr
+          class="MuiTableRow-root MuiTableRow-footer"
+        >
+          <td
+            class="MuiTableCell-root MuiTableCell-footer"
+          >
+            Table test
+          </td>
+        </tr>
+      </tfoot>
     </table>
   </div>
 </div>
