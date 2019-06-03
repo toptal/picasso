@@ -12443,16 +12443,17 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.2.7, rc@^1.2.8:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-ace@^6.5.0:
-  version "6.5.0"
-  resolved "https://registry.yarnpkg.com/react-ace/-/react-ace-6.5.0.tgz#8238fff6d1b037c0aef864aab3715a7c60153f8f"
-  integrity sha512-W8iA6669Tf3sfjCsBg8gKs2pUVMy6BroX6O6GZcgadnLN+MTq7jhs6Q2Rsjq3E3SrWjyA9vZgs1Uzjy8XgWX5w==
+react-ace@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/react-ace/-/react-ace-7.0.1.tgz#470628d5861b588249ebe6fcb8e44499556c3348"
+  integrity sha512-79SNgh05mbJDVJcSrhWHMdkU1ChZbq1aw8liEcDwAfOS4+m+RS4++G+ZGZ0AV+EPApqCwLUTA86m49lLeF+niQ==
   dependencies:
+    "@babel/polyfill" "^7.4.4"
     brace "^0.11.1"
     diff-match-patch "^1.0.4"
     lodash.get "^4.4.2"
     lodash.isequal "^4.5.0"
-    prop-types "^15.6.2"
+    prop-types "^15.7.2"
 
 react-addons-create-fragment@^15.5.3:
   version "15.6.2"
