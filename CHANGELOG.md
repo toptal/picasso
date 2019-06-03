@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/toptal/picasso/compare/v1.8.1...v1.9.0) (2019-06-03)
+
+
+### Features
+
+* **amount:** `amount` component to render currencies ([#418](https://github.com/toptal/picasso/issues/418)) ([b485826](https://github.com/toptal/picasso/commit/b485826))
+
 ## [1.8.1](https://github.com/toptal/picasso/compare/v1.8.0...v1.8.1) (2019-05-30)
 
 
