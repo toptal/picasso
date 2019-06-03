@@ -2,7 +2,7 @@ export const FIRST_PAGE = 1
 export const ONE_PAGE = 1
 export const ELLIPSIS = '...'
 
-type SibilingsType = (number | string)[]
+export type SibilingsType = (number | string)[]
 
 const getEllipsis = (siblings: number[], targetPage: number) => {
   const lastSibling = siblings[siblings.length - 1]
