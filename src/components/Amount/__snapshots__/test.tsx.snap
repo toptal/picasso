@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Amount default render 1`] = `
+<div>
+  <span
+    class=""
+  >
+    $1,500.00
+  </span>
+</div>
+`;
