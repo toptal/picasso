@@ -42,11 +42,11 @@ exports[`AccountSelect default render 1`] = `
                 <div
                   style="display: block;"
                 >
-                  <h3
-                    class="MuiTypography-root Typography-headingSmall MuiTypography-h3 MuiTypography-inline UserBadge-name"
+                  <h4
+                    class="MuiTypography-root Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name"
                   >
                     Phil Leif 1
-                  </h3>
+                  </h4>
                 </div>
                 <p
                   class="MuiTypography-root Typography-bodySmall MuiTypography-body1"
@@ -101,11 +101,11 @@ exports[`AccountSelect default render 1`] = `
                 <div
                   style="display: block;"
                 >
-                  <h3
-                    class="MuiTypography-root Typography-headingSmall MuiTypography-h3 MuiTypography-inline UserBadge-name"
+                  <h4
+                    class="MuiTypography-root Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name"
                   >
                     Phil Leif 2
-                  </h3>
+                  </h4>
                 </div>
                 <p
                   class="MuiTypography-root Typography-bodySmall MuiTypography-body1"
@@ -157,11 +157,11 @@ exports[`AccountSelect default render 1`] = `
                 <div
                   style="display: block;"
                 >
-                  <h3
-                    class="MuiTypography-root Typography-headingSmall MuiTypography-h3 MuiTypography-inline UserBadge-name"
+                  <h4
+                    class="MuiTypography-root Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name"
                   >
                     Phil Leif 3
-                  </h3>
+                  </h4>
                 </div>
                 <p
                   class="MuiTypography-root Typography-bodySmall MuiTypography-body1"
