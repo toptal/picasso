@@ -1,0 +1,32 @@
+@Library('globalLibrary@master') _
+pipeline {
+
+  agent { label 'docker' }
+
+  options {
+    ansiColor('xterm')
+    timestamps()
+    timeout(time: 5, unit: 'MINUTES')
+  }
+
+  environment {
+    GITHUB_TOKEN = credentials('toptal-devbot-personal-token')
+  }
+
+  stages {
+    stage('Kill outdated docs') {
+        steps {
+            script {
+                existingReleases = sh(returnStdout: true, script: 'ssh docs@docs.staging.toptal.net "find ~/docs/picasso/ -maxdepth 1 -mindepth 1 -type d | xargs basename -a"').split("\n")
+                openReleases = sh(returnStdout: true, script: "curl -H \"Authorization: token $GITHUB_TOKEN\" https://api.github.com/repos/toptal/picasso/pulls | jq -r '.[] | .head.ref'")
+                releasesToDelete = existingReleases.findAll { it != "master" && !openReleases.contains(it) }
+
+                releasesToDelete.each {
+                  echo "Folder [$it] - Marked for delete"
+                  sh "ssh docs@docs.staging.toptal.net 'rm -rf ~/docs/picasso/${it}'"
+                }
+            }//script
+        }//steps
+    }//stage
+  }//stages
+}//pipeline
