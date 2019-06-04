@@ -13,8 +13,13 @@ const TypographyHeadingsExample = () => (
         Heading Medium
       </Typography>
     </Container>
-    <Typography variant='heading' size='large'>
-      Heading Large
+    <Container bottom='small'>
+      <Typography variant='heading' size='large'>
+        Heading Large
+      </Typography>
+    </Container>
+    <Typography variant='heading' size='xlarge'>
+      Heading Extra Large
     </Typography>
   </div>
 )
