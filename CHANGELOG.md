@@ -1,3 +1,10 @@
+## [1.9.2](https://github.com/toptal/picasso/compare/v1.9.1...v1.9.2) (2019-06-04)
+
+
+### Bug Fixes
+
+* **ci:** post temploy comments only for PRs ([#429](https://github.com/toptal/picasso/issues/429)) ([53dac88](https://github.com/toptal/picasso/commit/53dac88))
+
 ## [1.9.1](https://github.com/toptal/picasso/compare/v1.9.0...v1.9.1) (2019-06-04)
 
 
