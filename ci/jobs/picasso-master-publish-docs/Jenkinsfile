@@ -52,13 +52,6 @@ pipeline {
       steps {
         script {
             targetBranch = params.BRANCH.replaceAll('/', '-')
-            existingComments = sh(returnStdout: true, script: "curl -H \"Authorization: token ${GITHUB_TOKEN}\" https://api.github.com/repos/toptal/picasso/issues/${params.PR_ID}/comments | jq -r '.[] | select(.user.login | contains(\"toptal-devbot\")) | select(.body | contains(\"Demo\")) | .id'").split("\n")
-            existingComments.each {
-              if (it != "") {
-                echo "Comment [$it] - Marked for delete"
-                sh "curl -X \"DELETE\" -H \"Authorization: token ${GITHUB_TOKEN}\" https://api.github.com/repos/toptal/picasso/issues/comments/${it}"
-              }
-            }
 
             sh """
                  rsync -avz --delete -e ssh ./build/storybook/ docs@docs.staging.toptal.net:~/docs/picasso/${targetBranch} && \\
@@ -66,6 +59,14 @@ pipeline {
                """
 
             if (targetBranch != 'master') {
+                existingComments = sh(returnStdout: true, script: "curl -H \"Authorization: token ${GITHUB_TOKEN}\" https://api.github.com/repos/toptal/picasso/issues/${params.PR_ID}/comments | jq -r '.[] | select(.user.login | contains(\"toptal-devbot\")) | select(.body | contains(\"Demo\")) | .id'").split("\n")
+                existingComments.each {
+                  if (it != "") {
+                    echo "Comment [$it] - Marked for delete"
+                    sh "curl -X \"DELETE\" -H \"Authorization: token ${GITHUB_TOKEN}\" https://api.github.com/repos/toptal/picasso/issues/comments/${it}"
+                  }
+                }
+                
                 def url = "https://picasso.toptal.net/${targetBranch}/"
                 def comment = ":tada: Last commit is successfully deployed :tada: \\n\\nDemo is available on:\\n\\n- [${url}](${url}?${gitCommit()}) \\n\\n Your **[davinci-bot](https://github.com/toptal-davinci-bot)** :rocket:"
                 gitHubPostComment('picasso', params.PR_ID, comment, env.GITHUB_TOKEN)
