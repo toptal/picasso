@@ -30,11 +30,11 @@ exports[`renders Modal 1`] = `
         <div
           class="ModalTitle-root"
         >
-          <h2
-            class="MuiTypography-root Typography-headingMedium MuiTypography-h2"
+          <h3
+            class="MuiTypography-root Typography-headingMedium MuiTypography-h3"
           >
             Title
-          </h2>
+          </h3>
         </div>
         <div
           class="ModalContent-root"

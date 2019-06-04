@@ -47,11 +47,11 @@ exports[`Typography variant heading small render 1`] = `
   <div
     class="Picasso-root"
   >
-    <h3
-      class="MuiTypography-root Typography-headingSmall MuiTypography-h3"
+    <h4
+      class="MuiTypography-root Typography-headingSmall MuiTypography-h4"
     >
       Heading small
-    </h3>
+    </h4>
   </div>
 </div>
 `;
