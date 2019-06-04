@@ -1,3 +1,10 @@
+## [1.9.1](https://github.com/toptal/picasso/compare/v1.9.0...v1.9.1) (2019-06-04)
+
+
+### Bug Fixes
+
+* **ci:** change folder structure of picasso docs ([#423](https://github.com/toptal/picasso/issues/423)) ([c9b961d](https://github.com/toptal/picasso/commit/c9b961d))
+
 # [1.9.0](https://github.com/toptal/picasso/compare/v1.8.1...v1.9.0) (2019-06-03)
 
 
