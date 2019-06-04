@@ -30,11 +30,11 @@ exports[`PageHeaderMenu default render 1`] = `
             <div
               style="display: block;"
             >
-              <h3
-                class="MuiTypography-root Typography-invert Typography-headingSmall MuiTypography-h3 MuiTypography-inline UserBadge-name PageHeaderMenu-name PageHeaderMenu-truncateText"
+              <h4
+                class="MuiTypography-root Typography-invert Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name PageHeaderMenu-name PageHeaderMenu-truncateText"
               >
                 Jacqueline Roque
-              </h3>
+              </h4>
             </div>
           </div>
         </div>

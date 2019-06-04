@@ -24,7 +24,7 @@ export interface Props extends StandardProps {
   /** Text align of the inner text */
   align?: PropTypes.Alignment
   /** Size of the inner text */
-  size?: SizeType<'small' | 'medium' | 'large'> | 'inherit'
+  size?: SizeType<'small' | 'medium' | 'large' | 'xlarge'> | 'inherit'
   /** Font weight of the inner text */
   weight?: WeightType
   /** Invert color */
@@ -37,14 +37,17 @@ export interface Props extends StandardProps {
 
 type VariantsType = {
   [k in VariantType]: {
-    [l in SizeType<'small' | 'medium' | 'large'> | 'inherit']?: MUIVariant
+    [l in
+      | SizeType<'small' | 'medium' | 'large' | 'xlarge'>
+      | 'inherit']?: MUIVariant
   }
 }
 const VARIANTS: VariantsType = {
   heading: {
-    small: 'h3',
-    medium: 'h2',
-    large: 'h1'
+    small: 'h4',
+    medium: 'h3',
+    large: 'h2',
+    xlarge: 'h1'
   },
   body: {
     small: 'body1',

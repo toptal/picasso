@@ -13,6 +13,9 @@ PicassoProvider.override(() => ({
     h3: {
       lineHeight: '1.5em'
     },
+    h4: {
+      lineHeight: '1.5em'
+    },
     body1: {
       lineHeight: '1.5em'
     }
@@ -54,6 +57,11 @@ export default ({ palette, typography }: Theme) =>
     },
     headingLarge: {
       fontSize: '20px',
+      fontWeight: typography.fontWeights.semibold,
+      color: palette.common.black
+    },
+    headingXlarge: {
+      fontSize: '28px',
       fontWeight: typography.fontWeights.semibold,
       color: palette.common.black
     },
