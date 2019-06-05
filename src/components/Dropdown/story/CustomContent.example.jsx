@@ -24,7 +24,9 @@ const ComplexContent = () => {
   return (
     <Container padded='medium'>
       <Container bottom='small'>
-        <Typography variant='h3'>Talent</Typography>
+        <Typography variant='heading' size='medium'>
+          Talent
+        </Typography>
       </Container>
       <Form>
         <Form.Field>
