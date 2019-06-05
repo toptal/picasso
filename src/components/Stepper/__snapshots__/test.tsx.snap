@@ -3,200 +3,165 @@
 exports[`Stepper default render 1`] = `
 <div>
   <div
-    class="MuiPaper-root MuiPaper-elevation0 MuiStepper-root MuiStepper-horizontal"
+    class="Picasso-root"
   >
     <div
-      class="MuiStep-root MuiStep-completed"
+      class="MuiPaper-root MuiPaper-elevation0 MuiStepper-root MuiStepper-horizontal"
     >
-      <span
-        class="MuiStepLabel-root MuiStepLabel-horizontal"
+      <div
+        class="MuiStep-root MuiStep-completed"
       >
         <span
-          class="MuiStepLabel-iconContainer"
-        >
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root MuiStepIcon-root MuiStepIcon-completed"
-            focusable="false"
-            role="presentation"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm-2 17l-5-5 1.4-1.4 3.6 3.6 7.6-7.6L19 8l-9 9z"
-            />
-          </svg>
-        </span>
-        <span
-          class="MuiStepLabel-labelContainer"
+          class="MuiStepLabel-root MuiStepLabel-horizontal"
         >
           <span
-            class="MuiTypography-root MuiTypography-body1 MuiStepLabel-label MuiStepLabel-completed"
+            class="MuiStepLabel-iconContainer"
           >
-            Step 1
-          </span>
-        </span>
-      </span>
-    </div>
-    <svg
-      aria-hidden="true"
-      class="MuiSvgIcon-root StepConnector-connectorIcon"
-      focusable="false"
-      role="presentation"
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
-      />
-      <path
-        d="M0 0h24v24H0z"
-        fill="none"
-      />
-    </svg>
-    <div
-      class="MuiStep-root MuiStep-completed"
-    >
-      <span
-        class="MuiStepLabel-root MuiStepLabel-horizontal"
-      >
-        <span
-          class="MuiStepLabel-iconContainer"
-        >
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root MuiStepIcon-root MuiStepIcon-completed"
-            focusable="false"
-            role="presentation"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm-2 17l-5-5 1.4-1.4 3.6 3.6 7.6-7.6L19 8l-9 9z"
-            />
-          </svg>
-        </span>
-        <span
-          class="MuiStepLabel-labelContainer"
-        >
-          <span
-            class="MuiTypography-root MuiTypography-body1 MuiStepLabel-label MuiStepLabel-completed"
-          >
-            Step 2
-          </span>
-        </span>
-      </span>
-    </div>
-    <svg
-      aria-hidden="true"
-      class="MuiSvgIcon-root StepConnector-connectorIcon"
-      focusable="false"
-      role="presentation"
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
-      />
-      <path
-        d="M0 0h24v24H0z"
-        fill="none"
-      />
-    </svg>
-    <div
-      class="MuiStep-root"
-    >
-      <span
-        class="MuiStepLabel-root MuiStepLabel-horizontal"
-      >
-        <span
-          class="MuiStepLabel-iconContainer"
-        >
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root MuiStepIcon-root MuiStepIcon-active"
-            focusable="false"
-            role="presentation"
-            viewBox="0 0 24 24"
-          >
-            <circle
-              cx="12"
-              cy="12"
-              r="12"
-            />
-            <text
-              class="MuiStepIcon-text"
-              text-anchor="middle"
-              x="12"
-              y="16"
+            <div
+              class="StepIcon-root StepIcon-completed"
             >
-              3
-            </text>
-          </svg>
-        </span>
-        <span
-          class="MuiStepLabel-labelContainer"
-        >
+              <svg
+                class="SvgTick-root"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M5.804 9.76L7.085 11 12 6.24 10.72 5 7.085 8.52 5.28 6.771 4 8.012z"
+                />
+              </svg>
+            </div>
+          </span>
           <span
-            class="MuiTypography-root MuiTypography-body1 MuiStepLabel-label MuiStepLabel-active"
+            class="MuiStepLabel-labelContainer StepLabel-root"
           >
-            Step 3
+            <span
+              class="MuiTypography-root MuiTypography-body2 MuiStepLabel-label MuiStepLabel-completed"
+            >
+              <span
+                class="StepLabel-label"
+              >
+                Step 1
+              </span>
+            </span>
           </span>
         </span>
-      </span>
-    </div>
-    <svg
-      aria-hidden="true"
-      class="MuiSvgIcon-root StepConnector-connectorIcon"
-      focusable="false"
-      role="presentation"
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
-      />
-      <path
-        d="M0 0h24v24H0z"
-        fill="none"
-      />
-    </svg>
-    <div
-      class="MuiStep-root"
-    >
-      <span
-        class="MuiStepLabel-root MuiStepLabel-horizontal"
+      </div>
+      <svg
+        class="SvgChevronRight-root StepConnector-connectorIcon"
+        viewBox="0 0 7 13"
+      >
+        <path
+          d="M7 6.5a.43.43 0 0 1-.12.3l-5.604 6.07a.367.367 0 0 1-.277.13.367.367 0 0 1-.277-.13l-.601-.652a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3L4.848 6.5.12 1.381a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3l.602-.65A.368.368 0 0 1 .999 0c.104 0 .196.044.277.13L6.879 6.2A.43.43 0 0 1 7 6.5z"
+        />
+      </svg>
+      <div
+        class="MuiStep-root MuiStep-completed"
       >
         <span
-          class="MuiStepLabel-iconContainer"
-        >
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root MuiStepIcon-root"
-            focusable="false"
-            role="presentation"
-            viewBox="0 0 24 24"
-          >
-            <circle
-              cx="12"
-              cy="12"
-              r="12"
-            />
-            <text
-              class="MuiStepIcon-text"
-              text-anchor="middle"
-              x="12"
-              y="16"
-            >
-              4
-            </text>
-          </svg>
-        </span>
-        <span
-          class="MuiStepLabel-labelContainer"
+          class="MuiStepLabel-root MuiStepLabel-horizontal"
         >
           <span
-            class="MuiTypography-root MuiTypography-body1 MuiStepLabel-label"
+            class="MuiStepLabel-iconContainer"
           >
-            Step 4
+            <div
+              class="StepIcon-root StepIcon-completed"
+            >
+              <svg
+                class="SvgTick-root"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M5.804 9.76L7.085 11 12 6.24 10.72 5 7.085 8.52 5.28 6.771 4 8.012z"
+                />
+              </svg>
+            </div>
+          </span>
+          <span
+            class="MuiStepLabel-labelContainer StepLabel-root"
+          >
+            <span
+              class="MuiTypography-root MuiTypography-body2 MuiStepLabel-label MuiStepLabel-completed"
+            >
+              <span
+                class="StepLabel-label"
+              >
+                Step 2
+              </span>
+            </span>
           </span>
         </span>
-      </span>
+      </div>
+      <svg
+        class="SvgChevronRight-root StepConnector-connectorIcon"
+        viewBox="0 0 7 13"
+      >
+        <path
+          d="M7 6.5a.43.43 0 0 1-.12.3l-5.604 6.07a.367.367 0 0 1-.277.13.367.367 0 0 1-.277-.13l-.601-.652a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3L4.848 6.5.12 1.381a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3l.602-.65A.368.368 0 0 1 .999 0c.104 0 .196.044.277.13L6.879 6.2A.43.43 0 0 1 7 6.5z"
+        />
+      </svg>
+      <div
+        class="MuiStep-root"
+      >
+        <span
+          class="MuiStepLabel-root MuiStepLabel-horizontal"
+        >
+          <span
+            class="MuiStepLabel-iconContainer"
+          >
+            <div
+              class="StepIcon-root StepIcon-active"
+            />
+          </span>
+          <span
+            class="MuiStepLabel-labelContainer StepLabel-root"
+          >
+            <span
+              class="MuiTypography-root MuiTypography-body2 MuiStepLabel-label MuiStepLabel-active"
+            >
+              <span
+                class="StepLabel-label"
+              >
+                Step 3
+              </span>
+            </span>
+          </span>
+        </span>
+      </div>
+      <svg
+        class="SvgChevronRight-root StepConnector-connectorIcon"
+        viewBox="0 0 7 13"
+      >
+        <path
+          d="M7 6.5a.43.43 0 0 1-.12.3l-5.604 6.07a.367.367 0 0 1-.277.13.367.367 0 0 1-.277-.13l-.601-.652a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3L4.848 6.5.12 1.381a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3l.602-.65A.368.368 0 0 1 .999 0c.104 0 .196.044.277.13L6.879 6.2A.43.43 0 0 1 7 6.5z"
+        />
+      </svg>
+      <div
+        class="MuiStep-root"
+      >
+        <span
+          class="MuiStepLabel-root MuiStepLabel-horizontal"
+        >
+          <span
+            class="MuiStepLabel-iconContainer"
+          >
+            <div
+              class="StepIcon-root"
+            />
+          </span>
+          <span
+            class="MuiStepLabel-labelContainer StepLabel-root"
+          >
+            <span
+              class="MuiTypography-root MuiTypography-body2 MuiStepLabel-label"
+            >
+              <span
+                class="StepLabel-label"
+              >
+                Step 4
+              </span>
+            </span>
+          </span>
+        </span>
+      </div>
     </div>
   </div>
 </div>
@@ -205,180 +170,183 @@ exports[`Stepper default render 1`] = `
 exports[`Stepper render with all steps completed 1`] = `
 <div>
   <div
-    class="MuiPaper-root MuiPaper-elevation0 MuiStepper-root MuiStepper-horizontal"
+    class="Picasso-root"
   >
     <div
-      class="MuiStep-root MuiStep-completed"
+      class="MuiPaper-root MuiPaper-elevation0 MuiStepper-root MuiStepper-horizontal"
     >
-      <span
-        class="MuiStepLabel-root MuiStepLabel-horizontal"
+      <div
+        class="MuiStep-root MuiStep-completed"
       >
         <span
-          class="MuiStepLabel-iconContainer"
-        >
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root MuiStepIcon-root MuiStepIcon-completed"
-            focusable="false"
-            role="presentation"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm-2 17l-5-5 1.4-1.4 3.6 3.6 7.6-7.6L19 8l-9 9z"
-            />
-          </svg>
-        </span>
-        <span
-          class="MuiStepLabel-labelContainer"
+          class="MuiStepLabel-root MuiStepLabel-horizontal"
         >
           <span
-            class="MuiTypography-root MuiTypography-body1 MuiStepLabel-label MuiStepLabel-completed"
+            class="MuiStepLabel-iconContainer"
           >
-            Step 1
+            <div
+              class="StepIcon-root StepIcon-completed"
+            >
+              <svg
+                class="SvgTick-root"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M5.804 9.76L7.085 11 12 6.24 10.72 5 7.085 8.52 5.28 6.771 4 8.012z"
+                />
+              </svg>
+            </div>
+          </span>
+          <span
+            class="MuiStepLabel-labelContainer StepLabel-root"
+          >
+            <span
+              class="MuiTypography-root MuiTypography-body2 MuiStepLabel-label MuiStepLabel-completed"
+            >
+              <span
+                class="StepLabel-label"
+              >
+                Step 1
+              </span>
+            </span>
           </span>
         </span>
-      </span>
-    </div>
-    <svg
-      aria-hidden="true"
-      class="MuiSvgIcon-root StepConnector-connectorIcon"
-      focusable="false"
-      role="presentation"
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
-      />
-      <path
-        d="M0 0h24v24H0z"
-        fill="none"
-      />
-    </svg>
-    <div
-      class="MuiStep-root MuiStep-completed"
-    >
-      <span
-        class="MuiStepLabel-root MuiStepLabel-horizontal"
+      </div>
+      <svg
+        class="SvgChevronRight-root StepConnector-connectorIcon"
+        viewBox="0 0 7 13"
+      >
+        <path
+          d="M7 6.5a.43.43 0 0 1-.12.3l-5.604 6.07a.367.367 0 0 1-.277.13.367.367 0 0 1-.277-.13l-.601-.652a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3L4.848 6.5.12 1.381a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3l.602-.65A.368.368 0 0 1 .999 0c.104 0 .196.044.277.13L6.879 6.2A.43.43 0 0 1 7 6.5z"
+        />
+      </svg>
+      <div
+        class="MuiStep-root MuiStep-completed"
       >
         <span
-          class="MuiStepLabel-iconContainer"
-        >
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root MuiStepIcon-root MuiStepIcon-completed"
-            focusable="false"
-            role="presentation"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm-2 17l-5-5 1.4-1.4 3.6 3.6 7.6-7.6L19 8l-9 9z"
-            />
-          </svg>
-        </span>
-        <span
-          class="MuiStepLabel-labelContainer"
+          class="MuiStepLabel-root MuiStepLabel-horizontal"
         >
           <span
-            class="MuiTypography-root MuiTypography-body1 MuiStepLabel-label MuiStepLabel-completed"
+            class="MuiStepLabel-iconContainer"
           >
-            Step 2
+            <div
+              class="StepIcon-root StepIcon-completed"
+            >
+              <svg
+                class="SvgTick-root"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M5.804 9.76L7.085 11 12 6.24 10.72 5 7.085 8.52 5.28 6.771 4 8.012z"
+                />
+              </svg>
+            </div>
+          </span>
+          <span
+            class="MuiStepLabel-labelContainer StepLabel-root"
+          >
+            <span
+              class="MuiTypography-root MuiTypography-body2 MuiStepLabel-label MuiStepLabel-completed"
+            >
+              <span
+                class="StepLabel-label"
+              >
+                Step 2
+              </span>
+            </span>
           </span>
         </span>
-      </span>
-    </div>
-    <svg
-      aria-hidden="true"
-      class="MuiSvgIcon-root StepConnector-connectorIcon"
-      focusable="false"
-      role="presentation"
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
-      />
-      <path
-        d="M0 0h24v24H0z"
-        fill="none"
-      />
-    </svg>
-    <div
-      class="MuiStep-root MuiStep-completed"
-    >
-      <span
-        class="MuiStepLabel-root MuiStepLabel-horizontal"
+      </div>
+      <svg
+        class="SvgChevronRight-root StepConnector-connectorIcon"
+        viewBox="0 0 7 13"
+      >
+        <path
+          d="M7 6.5a.43.43 0 0 1-.12.3l-5.604 6.07a.367.367 0 0 1-.277.13.367.367 0 0 1-.277-.13l-.601-.652a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3L4.848 6.5.12 1.381a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3l.602-.65A.368.368 0 0 1 .999 0c.104 0 .196.044.277.13L6.879 6.2A.43.43 0 0 1 7 6.5z"
+        />
+      </svg>
+      <div
+        class="MuiStep-root MuiStep-completed"
       >
         <span
-          class="MuiStepLabel-iconContainer"
-        >
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root MuiStepIcon-root MuiStepIcon-completed"
-            focusable="false"
-            role="presentation"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm-2 17l-5-5 1.4-1.4 3.6 3.6 7.6-7.6L19 8l-9 9z"
-            />
-          </svg>
-        </span>
-        <span
-          class="MuiStepLabel-labelContainer"
+          class="MuiStepLabel-root MuiStepLabel-horizontal"
         >
           <span
-            class="MuiTypography-root MuiTypography-body1 MuiStepLabel-label MuiStepLabel-completed"
+            class="MuiStepLabel-iconContainer"
           >
-            Step 3
+            <div
+              class="StepIcon-root StepIcon-completed"
+            >
+              <svg
+                class="SvgTick-root"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M5.804 9.76L7.085 11 12 6.24 10.72 5 7.085 8.52 5.28 6.771 4 8.012z"
+                />
+              </svg>
+            </div>
+          </span>
+          <span
+            class="MuiStepLabel-labelContainer StepLabel-root"
+          >
+            <span
+              class="MuiTypography-root MuiTypography-body2 MuiStepLabel-label MuiStepLabel-completed"
+            >
+              <span
+                class="StepLabel-label"
+              >
+                Step 3
+              </span>
+            </span>
           </span>
         </span>
-      </span>
-    </div>
-    <svg
-      aria-hidden="true"
-      class="MuiSvgIcon-root StepConnector-connectorIcon"
-      focusable="false"
-      role="presentation"
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
-      />
-      <path
-        d="M0 0h24v24H0z"
-        fill="none"
-      />
-    </svg>
-    <div
-      class="MuiStep-root MuiStep-completed"
-    >
-      <span
-        class="MuiStepLabel-root MuiStepLabel-horizontal"
+      </div>
+      <svg
+        class="SvgChevronRight-root StepConnector-connectorIcon"
+        viewBox="0 0 7 13"
+      >
+        <path
+          d="M7 6.5a.43.43 0 0 1-.12.3l-5.604 6.07a.367.367 0 0 1-.277.13.367.367 0 0 1-.277-.13l-.601-.652a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3L4.848 6.5.12 1.381a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3l.602-.65A.368.368 0 0 1 .999 0c.104 0 .196.044.277.13L6.879 6.2A.43.43 0 0 1 7 6.5z"
+        />
+      </svg>
+      <div
+        class="MuiStep-root MuiStep-completed"
       >
         <span
-          class="MuiStepLabel-iconContainer"
-        >
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root MuiStepIcon-root MuiStepIcon-completed"
-            focusable="false"
-            role="presentation"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm-2 17l-5-5 1.4-1.4 3.6 3.6 7.6-7.6L19 8l-9 9z"
-            />
-          </svg>
-        </span>
-        <span
-          class="MuiStepLabel-labelContainer"
+          class="MuiStepLabel-root MuiStepLabel-horizontal"
         >
           <span
-            class="MuiTypography-root MuiTypography-body1 MuiStepLabel-label MuiStepLabel-completed"
+            class="MuiStepLabel-iconContainer"
           >
-            Step 4
+            <div
+              class="StepIcon-root StepIcon-completed"
+            >
+              <svg
+                class="SvgTick-root"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M5.804 9.76L7.085 11 12 6.24 10.72 5 7.085 8.52 5.28 6.771 4 8.012z"
+                />
+              </svg>
+            </div>
+          </span>
+          <span
+            class="MuiStepLabel-labelContainer StepLabel-root"
+          >
+            <span
+              class="MuiTypography-root MuiTypography-body2 MuiStepLabel-label MuiStepLabel-completed"
+            >
+              <span
+                class="StepLabel-label"
+              >
+                Step 4
+              </span>
+            </span>
           </span>
         </span>
-      </span>
+      </div>
     </div>
   </div>
 </div>
@@ -387,180 +355,183 @@ exports[`Stepper render with all steps completed 1`] = `
 exports[`Stepper render with full-width 1`] = `
 <div>
   <div
-    class="MuiPaper-root MuiPaper-elevation0 MuiStepper-root MuiStepper-horizontal Stepper-fullWidth"
+    class="Picasso-root"
   >
     <div
-      class="MuiStep-root MuiStep-completed"
+      class="MuiPaper-root MuiPaper-elevation0 MuiStepper-root MuiStepper-horizontal Stepper-fullWidth"
     >
-      <span
-        class="MuiStepLabel-root MuiStepLabel-horizontal"
+      <div
+        class="MuiStep-root MuiStep-completed"
       >
         <span
-          class="MuiStepLabel-iconContainer"
-        >
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root MuiStepIcon-root MuiStepIcon-completed"
-            focusable="false"
-            role="presentation"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm-2 17l-5-5 1.4-1.4 3.6 3.6 7.6-7.6L19 8l-9 9z"
-            />
-          </svg>
-        </span>
-        <span
-          class="MuiStepLabel-labelContainer"
+          class="MuiStepLabel-root MuiStepLabel-horizontal"
         >
           <span
-            class="MuiTypography-root MuiTypography-body1 MuiStepLabel-label MuiStepLabel-completed"
+            class="MuiStepLabel-iconContainer"
           >
-            Step 1
+            <div
+              class="StepIcon-root StepIcon-completed"
+            >
+              <svg
+                class="SvgTick-root"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M5.804 9.76L7.085 11 12 6.24 10.72 5 7.085 8.52 5.28 6.771 4 8.012z"
+                />
+              </svg>
+            </div>
+          </span>
+          <span
+            class="MuiStepLabel-labelContainer StepLabel-root"
+          >
+            <span
+              class="MuiTypography-root MuiTypography-body2 MuiStepLabel-label MuiStepLabel-completed"
+            >
+              <span
+                class="StepLabel-label"
+              >
+                Step 1
+              </span>
+            </span>
           </span>
         </span>
-      </span>
-    </div>
-    <svg
-      aria-hidden="true"
-      class="MuiSvgIcon-root StepConnector-connectorIcon"
-      focusable="false"
-      role="presentation"
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
-      />
-      <path
-        d="M0 0h24v24H0z"
-        fill="none"
-      />
-    </svg>
-    <div
-      class="MuiStep-root MuiStep-completed"
-    >
-      <span
-        class="MuiStepLabel-root MuiStepLabel-horizontal"
+      </div>
+      <svg
+        class="SvgChevronRight-root StepConnector-connectorIcon"
+        viewBox="0 0 7 13"
+      >
+        <path
+          d="M7 6.5a.43.43 0 0 1-.12.3l-5.604 6.07a.367.367 0 0 1-.277.13.367.367 0 0 1-.277-.13l-.601-.652a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3L4.848 6.5.12 1.381a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3l.602-.65A.368.368 0 0 1 .999 0c.104 0 .196.044.277.13L6.879 6.2A.43.43 0 0 1 7 6.5z"
+        />
+      </svg>
+      <div
+        class="MuiStep-root MuiStep-completed"
       >
         <span
-          class="MuiStepLabel-iconContainer"
-        >
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root MuiStepIcon-root MuiStepIcon-completed"
-            focusable="false"
-            role="presentation"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm-2 17l-5-5 1.4-1.4 3.6 3.6 7.6-7.6L19 8l-9 9z"
-            />
-          </svg>
-        </span>
-        <span
-          class="MuiStepLabel-labelContainer"
+          class="MuiStepLabel-root MuiStepLabel-horizontal"
         >
           <span
-            class="MuiTypography-root MuiTypography-body1 MuiStepLabel-label MuiStepLabel-completed"
+            class="MuiStepLabel-iconContainer"
           >
-            Step 2
+            <div
+              class="StepIcon-root StepIcon-completed"
+            >
+              <svg
+                class="SvgTick-root"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M5.804 9.76L7.085 11 12 6.24 10.72 5 7.085 8.52 5.28 6.771 4 8.012z"
+                />
+              </svg>
+            </div>
+          </span>
+          <span
+            class="MuiStepLabel-labelContainer StepLabel-root"
+          >
+            <span
+              class="MuiTypography-root MuiTypography-body2 MuiStepLabel-label MuiStepLabel-completed"
+            >
+              <span
+                class="StepLabel-label"
+              >
+                Step 2
+              </span>
+            </span>
           </span>
         </span>
-      </span>
-    </div>
-    <svg
-      aria-hidden="true"
-      class="MuiSvgIcon-root StepConnector-connectorIcon"
-      focusable="false"
-      role="presentation"
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
-      />
-      <path
-        d="M0 0h24v24H0z"
-        fill="none"
-      />
-    </svg>
-    <div
-      class="MuiStep-root MuiStep-completed"
-    >
-      <span
-        class="MuiStepLabel-root MuiStepLabel-horizontal"
+      </div>
+      <svg
+        class="SvgChevronRight-root StepConnector-connectorIcon"
+        viewBox="0 0 7 13"
+      >
+        <path
+          d="M7 6.5a.43.43 0 0 1-.12.3l-5.604 6.07a.367.367 0 0 1-.277.13.367.367 0 0 1-.277-.13l-.601-.652a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3L4.848 6.5.12 1.381a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3l.602-.65A.368.368 0 0 1 .999 0c.104 0 .196.044.277.13L6.879 6.2A.43.43 0 0 1 7 6.5z"
+        />
+      </svg>
+      <div
+        class="MuiStep-root MuiStep-completed"
       >
         <span
-          class="MuiStepLabel-iconContainer"
-        >
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root MuiStepIcon-root MuiStepIcon-completed"
-            focusable="false"
-            role="presentation"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm-2 17l-5-5 1.4-1.4 3.6 3.6 7.6-7.6L19 8l-9 9z"
-            />
-          </svg>
-        </span>
-        <span
-          class="MuiStepLabel-labelContainer"
+          class="MuiStepLabel-root MuiStepLabel-horizontal"
         >
           <span
-            class="MuiTypography-root MuiTypography-body1 MuiStepLabel-label MuiStepLabel-completed"
+            class="MuiStepLabel-iconContainer"
           >
-            Step 3
+            <div
+              class="StepIcon-root StepIcon-completed"
+            >
+              <svg
+                class="SvgTick-root"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M5.804 9.76L7.085 11 12 6.24 10.72 5 7.085 8.52 5.28 6.771 4 8.012z"
+                />
+              </svg>
+            </div>
+          </span>
+          <span
+            class="MuiStepLabel-labelContainer StepLabel-root"
+          >
+            <span
+              class="MuiTypography-root MuiTypography-body2 MuiStepLabel-label MuiStepLabel-completed"
+            >
+              <span
+                class="StepLabel-label"
+              >
+                Step 3
+              </span>
+            </span>
           </span>
         </span>
-      </span>
-    </div>
-    <svg
-      aria-hidden="true"
-      class="MuiSvgIcon-root StepConnector-connectorIcon"
-      focusable="false"
-      role="presentation"
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
-      />
-      <path
-        d="M0 0h24v24H0z"
-        fill="none"
-      />
-    </svg>
-    <div
-      class="MuiStep-root MuiStep-completed"
-    >
-      <span
-        class="MuiStepLabel-root MuiStepLabel-horizontal"
+      </div>
+      <svg
+        class="SvgChevronRight-root StepConnector-connectorIcon"
+        viewBox="0 0 7 13"
+      >
+        <path
+          d="M7 6.5a.43.43 0 0 1-.12.3l-5.604 6.07a.367.367 0 0 1-.277.13.367.367 0 0 1-.277-.13l-.601-.652a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3L4.848 6.5.12 1.381a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3l.602-.65A.368.368 0 0 1 .999 0c.104 0 .196.044.277.13L6.879 6.2A.43.43 0 0 1 7 6.5z"
+        />
+      </svg>
+      <div
+        class="MuiStep-root MuiStep-completed"
       >
         <span
-          class="MuiStepLabel-iconContainer"
-        >
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root MuiStepIcon-root MuiStepIcon-completed"
-            focusable="false"
-            role="presentation"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm-2 17l-5-5 1.4-1.4 3.6 3.6 7.6-7.6L19 8l-9 9z"
-            />
-          </svg>
-        </span>
-        <span
-          class="MuiStepLabel-labelContainer"
+          class="MuiStepLabel-root MuiStepLabel-horizontal"
         >
           <span
-            class="MuiTypography-root MuiTypography-body1 MuiStepLabel-label MuiStepLabel-completed"
+            class="MuiStepLabel-iconContainer"
           >
-            Step 4
+            <div
+              class="StepIcon-root StepIcon-completed"
+            >
+              <svg
+                class="SvgTick-root"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M5.804 9.76L7.085 11 12 6.24 10.72 5 7.085 8.52 5.28 6.771 4 8.012z"
+                />
+              </svg>
+            </div>
+          </span>
+          <span
+            class="MuiStepLabel-labelContainer StepLabel-root"
+          >
+            <span
+              class="MuiTypography-root MuiTypography-body2 MuiStepLabel-label MuiStepLabel-completed"
+            >
+              <span
+                class="StepLabel-label"
+              >
+                Step 4
+              </span>
+            </span>
           </span>
         </span>
-      </span>
+      </div>
     </div>
   </div>
 </div>
@@ -569,180 +540,183 @@ exports[`Stepper render with full-width 1`] = `
 exports[`Stepper render with hidden labels 1`] = `
 <div>
   <div
-    class="MuiPaper-root MuiPaper-elevation0 MuiStepper-root MuiStepper-horizontal"
+    class="Picasso-root"
   >
     <div
-      class="MuiStep-root MuiStep-completed"
+      class="MuiPaper-root MuiPaper-elevation0 MuiStepper-root MuiStepper-horizontal"
     >
-      <span
-        class="MuiStepLabel-root MuiStepLabel-horizontal"
+      <div
+        class="MuiStep-root MuiStep-completed"
       >
         <span
-          class="MuiStepLabel-iconContainer"
-        >
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root MuiStepIcon-root MuiStepIcon-completed"
-            focusable="false"
-            role="presentation"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm-2 17l-5-5 1.4-1.4 3.6 3.6 7.6-7.6L19 8l-9 9z"
-            />
-          </svg>
-        </span>
-        <span
-          class="MuiStepLabel-labelContainer"
+          class="MuiStepLabel-root MuiStepLabel-horizontal"
         >
           <span
-            class="MuiTypography-root MuiTypography-body1 MuiStepLabel-label StepLabel-hidden MuiStepLabel-completed"
+            class="MuiStepLabel-iconContainer"
           >
-            Step 1
+            <div
+              class="StepIcon-root StepIcon-completed"
+            >
+              <svg
+                class="SvgTick-root"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M5.804 9.76L7.085 11 12 6.24 10.72 5 7.085 8.52 5.28 6.771 4 8.012z"
+                />
+              </svg>
+            </div>
+          </span>
+          <span
+            class="MuiStepLabel-labelContainer StepLabel-root"
+          >
+            <span
+              class="MuiTypography-root MuiTypography-body2 MuiStepLabel-label StepLabel-hidden MuiStepLabel-completed"
+            >
+              <span
+                class="StepLabel-label"
+              >
+                Step 1
+              </span>
+            </span>
           </span>
         </span>
-      </span>
-    </div>
-    <svg
-      aria-hidden="true"
-      class="MuiSvgIcon-root StepConnector-connectorIcon"
-      focusable="false"
-      role="presentation"
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
-      />
-      <path
-        d="M0 0h24v24H0z"
-        fill="none"
-      />
-    </svg>
-    <div
-      class="MuiStep-root MuiStep-completed"
-    >
-      <span
-        class="MuiStepLabel-root MuiStepLabel-horizontal"
+      </div>
+      <svg
+        class="SvgChevronRight-root StepConnector-connectorIcon"
+        viewBox="0 0 7 13"
+      >
+        <path
+          d="M7 6.5a.43.43 0 0 1-.12.3l-5.604 6.07a.367.367 0 0 1-.277.13.367.367 0 0 1-.277-.13l-.601-.652a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3L4.848 6.5.12 1.381a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3l.602-.65A.368.368 0 0 1 .999 0c.104 0 .196.044.277.13L6.879 6.2A.43.43 0 0 1 7 6.5z"
+        />
+      </svg>
+      <div
+        class="MuiStep-root MuiStep-completed"
       >
         <span
-          class="MuiStepLabel-iconContainer"
-        >
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root MuiStepIcon-root MuiStepIcon-completed"
-            focusable="false"
-            role="presentation"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm-2 17l-5-5 1.4-1.4 3.6 3.6 7.6-7.6L19 8l-9 9z"
-            />
-          </svg>
-        </span>
-        <span
-          class="MuiStepLabel-labelContainer"
+          class="MuiStepLabel-root MuiStepLabel-horizontal"
         >
           <span
-            class="MuiTypography-root MuiTypography-body1 MuiStepLabel-label StepLabel-hidden MuiStepLabel-completed"
+            class="MuiStepLabel-iconContainer"
           >
-            Step 2
+            <div
+              class="StepIcon-root StepIcon-completed"
+            >
+              <svg
+                class="SvgTick-root"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M5.804 9.76L7.085 11 12 6.24 10.72 5 7.085 8.52 5.28 6.771 4 8.012z"
+                />
+              </svg>
+            </div>
+          </span>
+          <span
+            class="MuiStepLabel-labelContainer StepLabel-root"
+          >
+            <span
+              class="MuiTypography-root MuiTypography-body2 MuiStepLabel-label StepLabel-hidden MuiStepLabel-completed"
+            >
+              <span
+                class="StepLabel-label"
+              >
+                Step 2
+              </span>
+            </span>
           </span>
         </span>
-      </span>
-    </div>
-    <svg
-      aria-hidden="true"
-      class="MuiSvgIcon-root StepConnector-connectorIcon"
-      focusable="false"
-      role="presentation"
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
-      />
-      <path
-        d="M0 0h24v24H0z"
-        fill="none"
-      />
-    </svg>
-    <div
-      class="MuiStep-root MuiStep-completed"
-    >
-      <span
-        class="MuiStepLabel-root MuiStepLabel-horizontal"
+      </div>
+      <svg
+        class="SvgChevronRight-root StepConnector-connectorIcon"
+        viewBox="0 0 7 13"
+      >
+        <path
+          d="M7 6.5a.43.43 0 0 1-.12.3l-5.604 6.07a.367.367 0 0 1-.277.13.367.367 0 0 1-.277-.13l-.601-.652a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3L4.848 6.5.12 1.381a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3l.602-.65A.368.368 0 0 1 .999 0c.104 0 .196.044.277.13L6.879 6.2A.43.43 0 0 1 7 6.5z"
+        />
+      </svg>
+      <div
+        class="MuiStep-root MuiStep-completed"
       >
         <span
-          class="MuiStepLabel-iconContainer"
-        >
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root MuiStepIcon-root MuiStepIcon-completed"
-            focusable="false"
-            role="presentation"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm-2 17l-5-5 1.4-1.4 3.6 3.6 7.6-7.6L19 8l-9 9z"
-            />
-          </svg>
-        </span>
-        <span
-          class="MuiStepLabel-labelContainer"
+          class="MuiStepLabel-root MuiStepLabel-horizontal"
         >
           <span
-            class="MuiTypography-root MuiTypography-body1 MuiStepLabel-label StepLabel-hidden MuiStepLabel-completed"
+            class="MuiStepLabel-iconContainer"
           >
-            Step 3
+            <div
+              class="StepIcon-root StepIcon-completed"
+            >
+              <svg
+                class="SvgTick-root"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M5.804 9.76L7.085 11 12 6.24 10.72 5 7.085 8.52 5.28 6.771 4 8.012z"
+                />
+              </svg>
+            </div>
+          </span>
+          <span
+            class="MuiStepLabel-labelContainer StepLabel-root"
+          >
+            <span
+              class="MuiTypography-root MuiTypography-body2 MuiStepLabel-label StepLabel-hidden MuiStepLabel-completed"
+            >
+              <span
+                class="StepLabel-label"
+              >
+                Step 3
+              </span>
+            </span>
           </span>
         </span>
-      </span>
-    </div>
-    <svg
-      aria-hidden="true"
-      class="MuiSvgIcon-root StepConnector-connectorIcon"
-      focusable="false"
-      role="presentation"
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
-      />
-      <path
-        d="M0 0h24v24H0z"
-        fill="none"
-      />
-    </svg>
-    <div
-      class="MuiStep-root MuiStep-completed"
-    >
-      <span
-        class="MuiStepLabel-root MuiStepLabel-horizontal"
+      </div>
+      <svg
+        class="SvgChevronRight-root StepConnector-connectorIcon"
+        viewBox="0 0 7 13"
+      >
+        <path
+          d="M7 6.5a.43.43 0 0 1-.12.3l-5.604 6.07a.367.367 0 0 1-.277.13.367.367 0 0 1-.277-.13l-.601-.652a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3L4.848 6.5.12 1.381a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3l.602-.65A.368.368 0 0 1 .999 0c.104 0 .196.044.277.13L6.879 6.2A.43.43 0 0 1 7 6.5z"
+        />
+      </svg>
+      <div
+        class="MuiStep-root MuiStep-completed"
       >
         <span
-          class="MuiStepLabel-iconContainer"
-        >
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root MuiStepIcon-root MuiStepIcon-completed"
-            focusable="false"
-            role="presentation"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm-2 17l-5-5 1.4-1.4 3.6 3.6 7.6-7.6L19 8l-9 9z"
-            />
-          </svg>
-        </span>
-        <span
-          class="MuiStepLabel-labelContainer"
+          class="MuiStepLabel-root MuiStepLabel-horizontal"
         >
           <span
-            class="MuiTypography-root MuiTypography-body1 MuiStepLabel-label StepLabel-hidden MuiStepLabel-completed"
+            class="MuiStepLabel-iconContainer"
           >
-            Step 4
+            <div
+              class="StepIcon-root StepIcon-completed"
+            >
+              <svg
+                class="SvgTick-root"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M5.804 9.76L7.085 11 12 6.24 10.72 5 7.085 8.52 5.28 6.771 4 8.012z"
+                />
+              </svg>
+            </div>
+          </span>
+          <span
+            class="MuiStepLabel-labelContainer StepLabel-root"
+          >
+            <span
+              class="MuiTypography-root MuiTypography-body2 MuiStepLabel-label StepLabel-hidden MuiStepLabel-completed"
+            >
+              <span
+                class="StepLabel-label"
+              >
+                Step 4
+              </span>
+            </span>
           </span>
         </span>
-      </span>
+      </div>
     </div>
   </div>
 </div>
