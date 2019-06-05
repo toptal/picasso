@@ -28,6 +28,7 @@ export const StepLabel: FunctionComponent<Props> = ({
     <MUIStepLabel
       active={active}
       classes={{
+        labelContainer: classes.root,
         label: cx({ [classes.hidden]: hideLabel })
       }}
       className={className}
@@ -35,7 +36,7 @@ export const StepLabel: FunctionComponent<Props> = ({
       icon={icon}
       style={style}
     >
-      {children}
+      <span className={classes.label}>{children}</span>
     </MUIStepLabel>
   )
 }
