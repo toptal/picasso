@@ -1,6 +1,6 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
-export const headerHeight = '3.75em'
+export const headerHeight = '4.5em'
 
 export default ({ palette, layout, zIndex }: Theme) =>
   createStyles({
