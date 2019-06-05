@@ -1,7 +1,9 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
+import { rem } from '../styles'
+
 const shadowColor = 'rgba(0, 0, 0, 0.8)'
-const ARROW_SIZE = '1.5em'
+const ARROW_SIZE = '1.25em'
 const HORIZONTAL_POSITION = {
   top: '50%',
   transform: 'translateY(-50%)'
@@ -78,7 +80,7 @@ export default ({ palette, shadows }: Theme) =>
       backgroundColor: palette.grey.darker,
       color: palette.common.white,
       boxShadow: shadows[4],
-      fontSize: '0.875rem',
+      fontSize: rem('13px'),
       lineHeight: '1.5em',
       padding: '1rem',
       borderRadius: 0
