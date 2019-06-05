@@ -8,9 +8,9 @@ import { StandardProps, SizeType } from '../Picasso'
 import styles from './styles'
 
 enum SIZES {
-  small = 20,
-  medium = 40,
-  large = 80
+  small = 16,
+  medium = 32,
+  large = 64
 }
 
 type VariantType = 'default' | 'inherit'
