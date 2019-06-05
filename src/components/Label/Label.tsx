@@ -4,10 +4,14 @@ import CloseIcon from '@material-ui/icons/Close'
 
 import Chip from '../Chip'
 import LabelGroup from '../LabelGroup'
-import { StandardProps, PicassoComponent } from '../Picasso'
+import {
+  StandardProps,
+  PicassoComponent,
+  TooltipEventListeners
+} from '../Picasso'
 import styles from './styles'
 
-export interface Props extends StandardProps {
+export interface Props extends StandardProps, TooltipEventListeners {
   /** Text content of the `Label` component */
   children: ReactNode
   /** A callback which is invoked after remove `Icon` is clicked
@@ -29,7 +33,13 @@ export const Label: FunctionComponent<Props> & StaticProps = ({
   className,
   icon,
   style,
-  onDelete
+  onDelete,
+  onBlur,
+  onFocus,
+  onMouseLeave,
+  onMouseOver,
+  onTouchEnd,
+  onTouchStart
 }) => {
   return (
     <Chip
@@ -45,6 +55,12 @@ export const Label: FunctionComponent<Props> & StaticProps = ({
       onDelete={onDelete}
       label={children}
       icon={icon}
+      onBlur={onBlur}
+      onFocus={onFocus}
+      onMouseLeave={onMouseLeave}
+      onMouseOver={onMouseOver}
+      onTouchEnd={onTouchEnd}
+      onTouchStart={onTouchStart}
     />
   )
 }
