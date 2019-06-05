@@ -2,26 +2,33 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 
 import { PicassoProvider } from '../Picasso'
 
-PicassoProvider.override(({ palette }: Theme) => ({
+PicassoProvider.override(() => ({
   MuiStepIcon: {
     text: {
       display: 'none'
-    },
-    root: {
-      border: `1px solid ${palette.grey.main}`,
-      borderRadius: '50%',
-      color: 'transparent',
-
-      '&$completed': {
-        border: 'none',
-        color: palette.green.main
-      },
-
-      '&$active': {
-        border: 'none'
-      }
     }
   }
 }))
 
-export default () => createStyles({})
+export default ({ palette, spacing }: Theme) =>
+  createStyles({
+    root: {
+      height: '1.5em',
+      width: '1.5em',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      border: `${spacing.borderWidth} solid ${palette.grey.main}`,
+      borderRadius: '50%',
+      backgroundColor: 'transparent',
+      color: palette.common.white
+    },
+    active: {
+      border: 'none',
+      backgroundColor: palette.blue.main
+    },
+    completed: {
+      border: 'none',
+      backgroundColor: palette.green.main
+    }
+  })

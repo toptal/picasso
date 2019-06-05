@@ -1,8 +1,9 @@
-import React, { FunctionComponent, ReactNode, ReactElement } from 'react'
+import React, { FunctionComponent, ReactNode } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import MUIStepLabel from '@material-ui/core/StepLabel'
 
+import StepIcon from '../StepIcon'
 import { StandardProps } from '../Picasso'
 import styles from './styles'
 
@@ -11,7 +12,6 @@ interface Props extends StandardProps {
   children: ReactNode
   active?: boolean
   completed?: boolean
-  icon?: ReactElement
 }
 
 export const StepLabel: FunctionComponent<Props> = ({
@@ -21,7 +21,6 @@ export const StepLabel: FunctionComponent<Props> = ({
   children,
   completed,
   hideLabel,
-  icon,
   style
 }) => {
   return (
@@ -33,7 +32,7 @@ export const StepLabel: FunctionComponent<Props> = ({
       }}
       className={className}
       completed={completed}
-      icon={icon}
+      icon={<StepIcon active={active} completed={completed} />}
       style={style}
     >
       <span className={classes.label}>{children}</span>
