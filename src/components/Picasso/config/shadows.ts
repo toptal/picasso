@@ -3,6 +3,7 @@ import muiShadows, { Shadows } from '@material-ui/core/styles/shadows'
 const shadows: Shadows = [
   ...[
     'none',
+
     /** notification center, paper */
     '0 0 8px 0 rgba(0,0,0, 0.08)',
 
