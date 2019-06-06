@@ -32,11 +32,16 @@ exports[`renders default 1`] = `
           1
         </div>
       </button>
-      <p
-        class="MuiTypography-root Typography-bodySmall Typography-semibold MuiTypography-body1 Pagination-ellipsis"
+      <div
+        class="Pagination-ellipsis"
+        style="display: block;"
       >
-        ...
-      </p>
+        <p
+          class="MuiTypography-root Typography-bodySmall Typography-semibold Typography-black MuiTypography-body1"
+        >
+          ...
+        </p>
+      </div>
       <button
         class="MuiButtonBase-root Button-small Button-secondaryBlue Button-root Pagination-rangeButton"
         tabindex="0"
@@ -73,11 +78,16 @@ exports[`renders default 1`] = `
           6
         </div>
       </button>
-      <p
-        class="MuiTypography-root Typography-bodySmall Typography-semibold MuiTypography-body1 Pagination-ellipsis"
+      <div
+        class="Pagination-ellipsis"
+        style="display: block;"
       >
-        ...
-      </p>
+        <p
+          class="MuiTypography-root Typography-bodySmall Typography-semibold Typography-black MuiTypography-body1"
+        >
+          ...
+        </p>
+      </div>
       <button
         class="MuiButtonBase-root Button-small Button-secondaryBlue Button-root Pagination-rangeButton"
         tabindex="0"
@@ -141,11 +151,16 @@ exports[`renders disabled 1`] = `
           1
         </div>
       </button>
-      <p
-        class="MuiTypography-root Typography-bodySmall Typography-semibold MuiTypography-body1 Pagination-ellipsis"
+      <div
+        class="Pagination-ellipsis"
+        style="display: block;"
       >
-        ...
-      </p>
+        <p
+          class="MuiTypography-root Typography-bodySmall Typography-semibold Typography-black MuiTypography-body1"
+        >
+          ...
+        </p>
+      </div>
       <button
         class="MuiButtonBase-root Button-small Button-secondaryDisabled Button-root MuiButtonBase-disabled Pagination-rangeButton"
         disabled=""
@@ -185,11 +200,16 @@ exports[`renders disabled 1`] = `
           6
         </div>
       </button>
-      <p
-        class="MuiTypography-root Typography-bodySmall Typography-semibold MuiTypography-body1 Pagination-ellipsis"
+      <div
+        class="Pagination-ellipsis"
+        style="display: block;"
       >
-        ...
-      </p>
+        <p
+          class="MuiTypography-root Typography-bodySmall Typography-semibold Typography-black MuiTypography-body1"
+        >
+          ...
+        </p>
+      </div>
       <button
         class="MuiButtonBase-root Button-small Button-secondaryDisabled Button-root MuiButtonBase-disabled Pagination-rangeButton"
         disabled=""

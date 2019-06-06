@@ -72,13 +72,11 @@ export class Pagination extends PureComponent<Props> {
     return range.map((pageItemLabel, index) => {
       if (pageItemLabel === ELLIPSIS) {
         return (
-          <Typography
-            className={classes.ellipsis}
-            size='small'
-            weight='semibold'
-          >
-            {pageItemLabel}
-          </Typography>
+          <Container className={classes.ellipsis}>
+            <Typography size='small' weight='semibold' color='black'>
+              {pageItemLabel}
+            </Typography>
+          </Container>
         )
       }
 
