@@ -1,13 +1,31 @@
 import React, { FunctionComponent } from 'react'
+import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
-import MUIStepIcon, { StepIconProps } from '@material-ui/core/StepIcon'
 
+import { Tick as TickIcon } from '../Icon'
+import { StandardProps } from '../Picasso'
 import styles from './styles'
 
-export const StepIcon: FunctionComponent<StepIconProps> = props => {
-  const { icon } = props
+interface Props extends StandardProps {
+  active?: boolean
+  completed?: boolean
+}
 
-  return <MUIStepIcon icon={icon} />
+export const StepIcon: FunctionComponent<Props> = ({
+  active,
+  completed,
+  classes
+}) => {
+  return (
+    <div
+      className={cx(classes.root, {
+        [classes.active]: active,
+        [classes.completed]: completed
+      })}
+    >
+      {completed && <TickIcon />}
+    </div>
+  )
 }
 
 StepIcon.displayName = 'StepIcon'

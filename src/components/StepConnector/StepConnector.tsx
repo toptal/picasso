@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 
+import { ChevronRight as ChevronRightIcon } from '../Icon'
 import { Classes } from '../styles/types'
 import styles from './styles'
 
