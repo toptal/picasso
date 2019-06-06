@@ -1,3 +1,10 @@
+## [1.9.3](https://github.com/toptal/picasso/compare/v1.9.2...v1.9.3) (2019-06-06)
+
+
+### Bug Fixes
+
+* **ci:** run kill temploy job with cron ([#440](https://github.com/toptal/picasso/issues/440)) ([6018bae](https://github.com/toptal/picasso/commit/6018bae))
+
 ## [1.9.2](https://github.com/toptal/picasso/compare/v1.9.1...v1.9.2) (2019-06-04)
 
 
