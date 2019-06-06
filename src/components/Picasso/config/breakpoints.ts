@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { Breakpoints } from '@material-ui/core/styles/createBreakpoints'
 
 export const screens = function (...sizes: string[]) {
@@ -15,6 +16,40 @@ export const screens = function (...sizes: string[]) {
   return `@media ${sizes.map(size => mediaQueries[size]).join(', ')}`
 }
 
+export const isScreenSize = function (
+  size: keyof BreakpointsList,
+  currentSize: number
+): boolean {
+  const { sm, md, lg, xl } = breakpoints.values!
+
+  const breakPointBoundaries: {
+    [key: string]: (width: number) => boolean
+  } = {
+    small: (width: number) => width < sm,
+    medium: (width: number) => width >= md && width < lg,
+    large: (width: number) => width >= lg && width < xl,
+    'extra-large': (width: number) => width >= xl
+  }
+
+  return breakPointBoundaries[size](currentSize || window.innerWidth)
+}
+
+export const useScreenSize = () => {
+  const [size, setSize] = useState(window.innerWidth)
+
+  const updateSize = () => setSize(window.innerWidth)
+
+  useEffect(() => {
+    window.onresize = updateSize
+
+    return () => {
+      window.onresize = null
+    }
+  }, [])
+
+  return size
+}
+
 const breakpoints: Partial<Breakpoints> = {
   values: {
     xs: 0,
@@ -25,7 +60,11 @@ const breakpoints: Partial<Breakpoints> = {
   }
 }
 
-export const breakpointsList = {
+type BreakpointsList = {
+  [key: string]: number
+}
+
+export const breakpointsList: BreakpointsList = {
   small: breakpoints.values!.sm,
   medium: breakpoints.values!.md,
   large: breakpoints.values!.lg,
