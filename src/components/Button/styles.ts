@@ -23,11 +23,13 @@ const secondary = (mainColor: string, secondaryColor: string) => ({
   backgroundColor: secondaryColor,
 
   '&:hover, &$hovered': {
-    backgroundColor: lighten(mainColor, 0.8)
+    backgroundColor: lighten(mainColor, 0.84),
+    borderColor: mainColor
   },
 
   '&:active, &$active': {
-    backgroundColor: lighten(mainColor, 0.8)
+    backgroundColor: lighten(mainColor, 0.84),
+    borderColor: mainColor
   }
 })
 
@@ -58,7 +60,7 @@ export default ({ palette, spacing, transitions, typography }: Theme) =>
     },
     content: {
       lineHeight: '1.5em',
-      fontWeight: 600
+      fontWeight: typography.fontWeights.semibold
     },
     loader: {
       position: 'absolute',
@@ -97,7 +99,8 @@ export default ({ palette, spacing, transitions, typography }: Theme) =>
       padding: '0 3.625em',
 
       '& $content': {
-        fontSize: typography.buttons.fontSizeLarge
+        fontSize: typography.buttons.fontSizeLarge,
+        fontWeight: typography.fontWeights.semibold
       },
 
       '&$circular': {
@@ -117,11 +120,13 @@ export default ({ palette, spacing, transitions, typography }: Theme) =>
       border: `solid ${spacing.borderWidth} rgba(255, 255, 255, 0.32)`,
 
       '&:hover, &$hovered': {
-        backgroundColor: alpha(palette.common.white, 0.8)
+        backgroundColor: alpha(palette.common.white, 0.16),
+        borderColor: palette.common.white
       },
 
       '&:active, &$active': {
-        backgroundColor: alpha(palette.common.white, 0.8)
+        backgroundColor: alpha(palette.common.white, 0.16),
+        borderColor: palette.common.white
       }
     },
     flat: {
