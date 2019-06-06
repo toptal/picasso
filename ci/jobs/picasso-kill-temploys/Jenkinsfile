@@ -9,6 +9,10 @@ pipeline {
     timeout(time: 5, unit: 'MINUTES')
   }
 
+  triggers {
+    cron('0 3 * * *')
+  }
+
   environment {
     GITHUB_TOKEN = credentials('toptal-devbot-personal-token')
   }
@@ -20,10 +24,19 @@ pipeline {
                 existingReleases = sh(returnStdout: true, script: 'ssh docs@docs.staging.toptal.net "find ~/docs/picasso/ -maxdepth 1 -mindepth 1 -type d | xargs basename -a"').split("\n")
                 openReleases = sh(returnStdout: true, script: "curl -H \"Authorization: token $GITHUB_TOKEN\" https://api.github.com/repos/toptal/picasso/pulls | jq -r '.[] | .head.ref'")
                 releasesToDelete = existingReleases.findAll { it != "master" && !openReleases.contains(it) }
+                foldersToDelete = releasesToDelete.collect { "'${it}'" }
 
-                releasesToDelete.each {
-                  echo "Folder [$it] - Marked for delete"
-                  sh "ssh docs@docs.staging.toptal.net 'rm -rf ~/docs/picasso/${it}'"
+                foldersToDelete.each {
+                  info "Folder [${it}] marked for removal"
+                }
+
+                if (!foldersToDelete.isEmpty()) {
+                  foldersToDelete = foldersToDelete.join(' ')
+                  sh """
+                    ssh docs@docs.staging.toptal.net "cd ~/docs/picasso && rm -rf ${foldersToDelete}"
+                  """
+                } else {
+                  success "Nothing to remove"
                 }
             }//script
         }//steps
