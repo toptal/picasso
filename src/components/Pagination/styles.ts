@@ -7,6 +7,7 @@ export default () =>
       padding: '0 0.3em'
     },
     ellipsis: {
-      padding: '0 1em'
+      padding: '0 1em',
+      cursor: 'default'
     }
   })
