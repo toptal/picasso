@@ -31,7 +31,7 @@ const ColorGroup = ({ colors, colorGroupName }) => (
           <Typography variant='heading' size='small'>
             {`${colorGroupName}.${colorName}`}
           </Typography>
-          <Typography size='small'>{color}</Typography>
+          <Typography size='small'>{color.toUpperCase()}</Typography>
         </Paper>
       </Grid.Item>
     ))}
