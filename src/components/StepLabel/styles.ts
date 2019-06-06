@@ -6,8 +6,10 @@ import { rem } from '../styles'
 PicassoProvider.override(() => ({
   MuiStepLabel: {
     label: {
+      display: 'flex',
+
       '&$active': {
-        display: 'block'
+        display: 'flex'
       }
     },
     iconContainer: {
