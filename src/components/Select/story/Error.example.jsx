@@ -14,7 +14,7 @@ const SelectErrorExample = () => {
       onChange={handleChange}
       options={OPTIONS}
       value={value}
-      placeholder='Choose option...'
+      placeholder='Choose an option...'
       width='auto'
     />
   )
