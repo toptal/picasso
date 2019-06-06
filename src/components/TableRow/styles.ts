@@ -14,6 +14,6 @@ export default ({ palette, spacing }: Theme) =>
       }
     },
     head: {
-      borderBottom: `${spacing.borderWidth} solid ${palette.grey.light}`
+      borderBottom: `${spacing.borderWidth} solid ${palette.grey.lighter}`
     }
   })
