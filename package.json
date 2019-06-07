@@ -24,7 +24,7 @@
     "commit": "git-cz",
     "postpublish": "cp -r package.json ../",
     "prepublishOnly": "cp ../README.md .",
-    "lint:path": "yarn davinci-syntax lint"
+    "lint:path": "davinci-syntax lint"
   },
   "repository": {
     "type": "git",
