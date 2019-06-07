@@ -1,3 +1,20 @@
 {
-  "extends": "./node_modules/@toptal/davinci-syntax/src/configs/.eslintrc"
+  "extends": "./node_modules/@toptal/davinci-syntax/src/configs/.eslintrc",
+  "overrides": [	
+    {	
+      "files": ["*.example.jsx"],	
+      "rules": {	
+        "react/no-multi-comp": "off",	
+        "react/require-optimization": "off",	
+        "import/no-named-default": "off",	
+        "no-console": "off"	
+      }	
+    },	
+    {	
+      "files": ["src/components/**/*.tsx"],	
+      "rules": {	
+        "no-restricted-imports": ["error", "styled-components"]	
+      }	
+    }	
+  ]
 }
