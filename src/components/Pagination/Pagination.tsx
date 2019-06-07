@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useMemo, useCallback } from 'react'
+import React, { FunctionComponent, useMemo } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
 import Button from '../Button'
@@ -12,17 +12,6 @@ type NavigationType = 'first' | 'last' | 'previous' | 'next' | number
 
 const SIBLING_COUNT = 1
 
-export interface Props extends StandardProps {
-  /** Value of the current highlighted page */
-  activePage: number
-  /** Shows `Pagination` in disabled state when pages are not changeable */
-  disabled?: boolean
-  /** Callback invoked when any page number is clicked */
-  onPageChange: (page: number) => void
-  /** Value of total pages of the data set used for calculation of page buttons */
-  totalPages: number
-}
-
 const PaginationEllipsis: FunctionComponent<JssProps> = ({ classes }) => {
   return (
     <Container className={classes.ellipsis}>
@@ -33,14 +22,20 @@ const PaginationEllipsis: FunctionComponent<JssProps> = ({ classes }) => {
   )
 }
 
-const PaginationPage: FunctionComponent<
-  {
-    activePage: number
-    disabled?: boolean
-    page: number
-    onClick: (page: NavigationType) => void
-  } & JssProps
-> = ({ page, activePage, disabled, classes, onClick }) => {
+export interface PaginationPageProps extends JssProps {
+  activePage: number
+  disabled?: boolean
+  page: number
+  onClick: (page: NavigationType) => void
+}
+
+const PaginationPage: FunctionComponent<PaginationPageProps> = ({
+  page,
+  activePage,
+  disabled,
+  classes,
+  onClick
+}) => {
   return (
     <Button
       className={classes.rangeButton}
@@ -52,6 +47,17 @@ const PaginationPage: FunctionComponent<
       {page}
     </Button>
   )
+}
+
+export interface Props extends StandardProps {
+  /** Value of the current highlighted page */
+  activePage: number
+  /** Shows `Pagination` in disabled state when pages are not changeable */
+  disabled?: boolean
+  /** Callback invoked when any page number is clicked */
+  onPageChange: (page: number) => void
+  /** Value of total pages of the data set used for calculation of page buttons */
+  totalPages: number
 }
 
 export const Pagination: FunctionComponent<Props> = ({
@@ -68,7 +74,7 @@ export const Pagination: FunctionComponent<Props> = ({
     return null
   }
 
-  const handleChange = useCallback((navigation: NavigationType) => {
+  const handleChange = (navigation: NavigationType) => {
     if (navigation === 'first') {
       return onPageChange(FIRST_PAGE)
     }
@@ -86,7 +92,7 @@ export const Pagination: FunctionComponent<Props> = ({
     }
 
     return onPageChange(navigation)
-  }, [])
+  }
 
   const pages = useMemo(() => getRange(activePage, totalPages, SIBLING_COUNT), [
     activePage,
