@@ -2,8 +2,7 @@ import React, {
   FunctionComponent,
   ReactNode,
   ReactElement,
-  MouseEvent,
-  SyntheticEvent
+  MouseEvent
 } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
@@ -13,7 +12,7 @@ import Loader from '../Loader'
 import Container from '../Container'
 import Group from '../ButtonGroup'
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
-import { StandardProps, PicassoComponent, SizeType } from '../Picasso'
+import { StandardProps, PicassoComponent, SizeType, TooltipEventListeners } from '../Picasso'
 import styles from './styles'
 
 type VariantType =
@@ -26,9 +25,8 @@ type VariantType =
   | 'secondary-white'
 
 type IconPositionType = 'left' | 'right'
-type EventListenerType = (event: SyntheticEvent<HTMLElement>) => void
 
-export interface Props extends StandardProps {
+export interface Props extends StandardProps, TooltipEventListeners {
   /** Show button in the active state (left mouse button down) */
   active?: boolean
   /** Disables button */
@@ -60,14 +58,6 @@ export interface Props extends StandardProps {
   title?: string
   /** HTML type of Button component **/
   type?: 'button' | 'reset' | 'submit'
-
-  // Event listeners for Tooltip
-  onBlur?: EventListenerType
-  onFocus?: EventListenerType
-  onMouseLeave?: EventListenerType
-  onMouseOver?: EventListenerType
-  onTouchEnd?: EventListenerType
-  onTouchStart?: EventListenerType
 }
 
 interface StaticProps {

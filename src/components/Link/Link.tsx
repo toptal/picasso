@@ -8,13 +8,13 @@ import MUILink, { LinkProps } from '@material-ui/core/Link'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
-import { StandardProps } from '../Picasso'
+import { StandardProps, TooltipEventListeners } from '../Picasso'
 import styles from './styles'
 
 type UnderlineType = 'none' | 'hover' | 'always'
 type VariantType = 'action' | 'default'
 
-interface Props extends StandardProps {
+interface Props extends StandardProps, TooltipEventListeners {
   /** Content of the component */
   children?: ReactNode
   /** Destination the link points to */
@@ -49,7 +49,13 @@ export const Link: FunctionComponent<Props> = ({
   style,
   as,
   variant,
-  tabIndex
+  tabIndex,
+  onBlur,
+  onFocus,
+  onMouseLeave,
+  onMouseOver,
+  onTouchEnd,
+  onTouchStart
 }) => {
   return (
     <MUILink
@@ -62,6 +68,12 @@ export const Link: FunctionComponent<Props> = ({
       style={style}
       component={as}
       tabIndex={tabIndex}
+      onBlur={onBlur}
+      onFocus={onFocus}
+      onMouseLeave={onMouseLeave}
+      onMouseOver={onMouseOver}
+      onTouchEnd={onTouchEnd}
+      onTouchStart={onTouchStart}
     >
       {children}
     </MUILink>
