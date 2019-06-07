@@ -1,3 +1,169 @@
+# [2.0.0](https://github.com/toptal/picasso/compare/v1.9.3...v2.0.0) (2019-06-07)
+
+
+### Bug Fixes
+
+* **avatar:** change `Avatar` size for the `large` variant ([#416](https://github.com/toptal/picasso/issues/416)) ([68dd6ac](https://github.com/toptal/picasso/commit/68dd6ac))
+* **dropdown:** change dropdown shadow elevation ([#433](https://github.com/toptal/picasso/issues/433)) ([235fba7](https://github.com/toptal/picasso/commit/235fba7))
+* **loader:** change all `Loader` variant sizes ([#435](https://github.com/toptal/picasso/issues/435)) ([8e499cc](https://github.com/toptal/picasso/commit/8e499cc))
+* **modal:** change design of `Modal` ([#343](https://github.com/toptal/picasso/issues/343)) ([8140e51](https://github.com/toptal/picasso/commit/8140e51))
+* **radio:** change design of `Radio` and `Checkbox` components ([#369](https://github.com/toptal/picasso/issues/369)) ([50d8607](https://github.com/toptal/picasso/commit/50d8607))
+* **stepper:** change `Stepper` margins and icon connector ([#437](https://github.com/toptal/picasso/issues/437)) ([b9043d4](https://github.com/toptal/picasso/commit/b9043d4))
+* **table:** change design of `Table` component ([#365](https://github.com/toptal/picasso/issues/365)) ([d9f8090](https://github.com/toptal/picasso/commit/d9f8090))
+* **text-field:** change design of `TextField` component ([#368](https://github.com/toptal/picasso/issues/368)) ([e288baf](https://github.com/toptal/picasso/commit/e288baf))
+* **tooltip:** change size of an arrow and text for `Tooltip` ([#436](https://github.com/toptal/picasso/issues/436)) ([0091c7a](https://github.com/toptal/picasso/commit/0091c7a))
+* **user-badge:** change `UserBadge` outer spacing ([#333](https://github.com/toptal/picasso/issues/333)) ([750e332](https://github.com/toptal/picasso/commit/750e332))
+
+
+### Features
+
+* **button:** add new variants for buttons ([3216787](https://github.com/toptal/picasso/commit/3216787))
+* **colors:** change names and design of all colors ([#387](https://github.com/toptal/picasso/issues/387)) ([496dcdb](https://github.com/toptal/picasso/commit/496dcdb))
+* **form:** add `Form.Error` component ([#410](https://github.com/toptal/picasso/issues/410)) ([cb329d7](https://github.com/toptal/picasso/commit/cb329d7))
+* **form:** add new `Form.Label` component ([#372](https://github.com/toptal/picasso/issues/372)) ([f12e5f9](https://github.com/toptal/picasso/commit/f12e5f9))
+* **label:** add ability to add `Icon` to `Label` component ([#396](https://github.com/toptal/picasso/issues/396)) ([1a10390](https://github.com/toptal/picasso/commit/1a10390))
+* **page-header:** support enterprise variant for header ([#392](https://github.com/toptal/picasso/issues/392)) ([d0f9f61](https://github.com/toptal/picasso/commit/d0f9f61))
+* **page-header-menu:** wrap header Menu to Page.HeaderMenu ([#406](https://github.com/toptal/picasso/issues/406)) ([0df9391](https://github.com/toptal/picasso/commit/0df9391))
+* **pagination:** change design of `Pagination` component ([#412](https://github.com/toptal/picasso/issues/412)) ([989932a](https://github.com/toptal/picasso/commit/989932a))
+* **select:** add ability to add icon to `Select` component ([#371](https://github.com/toptal/picasso/issues/371)) ([8b37458](https://github.com/toptal/picasso/commit/8b37458))
+* **typography:** add new typography variants and colors ([#356](https://github.com/toptal/picasso/issues/356)) ([70dfb17](https://github.com/toptal/picasso/commit/70dfb17))
+
+
+### BREAKING CHANGES
+
+* **stepper:** stepper connector and margins were adjusted to larger
+size.
+
+You can check [Stepper](https://picasso.toptal.net/?path=/story/components-folder--stepper#default) documentation.
+* **tooltip:** font size and pointing arrow size were adjusted for
+`Tooltip` window.
+
+You can check [Tooltip](https://picasso.toptal.net/feature-base-sync/?path=/story/overlays-folder--tooltip#default) documentation.
+* **loader:** all sizes of `Loader` variants were adjusted. If you
+had any static elements counting with size of a `Loader` please adjust
+spacings accordingly.
+
+New size list:
+
+- *Small* `20` => `16`
+- *Medium* `40` => `32`
+- *Large* `80` => `64`
+
+You can check [Loader](https://picasso.toptal.net/?path=/story/components-folder--loader#sizes) documentation.
+* **avatar:** large `Avatar` is now a bit smaller please check your
+layouts if you were directly using this variant.
+
+You can check [Avatar](https://picasso.toptal.net/?path=/story/components-folder--avatar#sizes) documentation.
+* **pagination:** pagination design and layout has been completely
+revamped. Now the layout is much skinner and smaller and using default
+buttons from UI kit. Please check your layouts.
+
+You can check [Pagination](https://picasso.toptal.net/?path=/story/components-folder--pagination#default) documentation.
+* **page-header-menu:** UserBadge children is now wrapped to special component
+which is exported as `Page.HeaderMenu` which accepts aggregated props
+for `UserBadge` component. You should replace direct usage of `UserBadge`
+inside `Header` with this new component.
+* **page-header:** header height has been adjusted and now is larger.
+Check any elements which had fixed positions on layout if they need to
+be adjusted to support new height of `Header`
+
+You can check [Header](https://picasso.toptal.net/?path=/story/layout-folder--page#default) documentation.
+* **colors:** all colors shades which were specified as numbers, were
+dropped and replaced with more semantic names.
+
+New shade list:
+
+`100` => `lighter`
+`200` => `light`
+`300` => `main`
+`400` => `dark`
+`500` => `darker`
+
+You can check [Colors](https://picasso.toptal.net/?path=/story/utils-folder--colors) documentation.
+* **colors:** most of the colors were updated to the correct HEX
+representations. Please use only those colors which are listed inside
+documentation!
+* **text-field:** spacing and size of TextField and Select has been
+changed.
+* **text-field:** `label` prop on `TextField` has been renamed to
+`placeholder`. Achieving form field labels is now done by composing
+field from new `Label` and `Hint` components.
+
+You can check [Form](https://picasso.toptal.net/feature-base-sync/?path=/story/forms-folder--form#form-field) documentation.
+* **table:** decrease font size and paddings inside all `Table`
+components. Layout of whole table is a bit skinnier now.
+
+You can check the full result in [Table](https://picasso.toptal.net/?path=/story/components-folder--table#plain-table) documentation.
+* **modal:** replaced `Title` and `CloseIcon` inside modal window
+which makes layout and spacings a bit smaller now.
+
+You can check result in [Modal](https://picasso.toptal.net/?path=/story/overlays-folder--modal)
+documentation.
+* **typography:** rename old `variant` type and introduce more semantic
+names for every variant.
+
+New variant list:
+
+- `heading`
+- `body`
+
+New size list:
+
+- `small`
+- `medium`
+- `large`
+- `xlarge`
+- `inherit`
+
+You can check all variants inside [Typography](https://picasso.toptal.net/?path=/story/components-folder--typography)
+documentation.
+* **typography:** all old variant names except `body` are now removed
+currently `Typography` styles are achieved with `variant`, `weight` and
+`color` prop.
+* **typography:** remove all old `color` variants and rename them to more
+semantic names.
+
+`primary` => `blue`
+`success` => `green`
+`error` => `red`
+`muted` => `grey`
+*New color:* `black`
+* **user-badge:** UserBadge outer spacing is now reduced, therefore check
+your layouts which are using UserBadge as standalone component.
+* **button:** rename old `variant` type and introduce more semantic
+names for every variant
+
+New variant list:
+
+- `flat`
+- `primary-blue`
+- `primary-red`
+- `primary-green`
+- `secondary-blue`
+- `secondary-red`
+- `secondary-white`
+
+You can check full list of variants in [Button](https://picasso.toptal.net/?path=/story/components-folder--button#variants)
+section of our documentation.
+* **button:** remove `primary` variant and add multiple variants
+with different intents.
+
+`primary` => `primary-blue`
+* **button:** remove `secondary` variant and add multiple variants
+with different intents.
+
+`secondary` => `secondary-blue`
+* **button:** remove `success` variant and combine it with
+primary variant.
+
+`success` => `primary-green`
+* **button:** remove `error` variant and combine it with `primary`
+and `secondary` variant.
+
+`error` => `primary-red`
+*New Variant* - `secondary-red`
+* **button:** remove `basic` variant
+
 ## [1.9.3](https://github.com/toptal/picasso/compare/v1.9.2...v1.9.3) (2019-06-06)
 
 
