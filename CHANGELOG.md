@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/toptal/picasso/compare/v2.0.0...v2.0.1) (2019-06-07)
+
+
+### Bug Fixes
+
+* **docs:** adjust changelog after major upgrade ([#448](https://github.com/toptal/picasso/issues/448)) ([dada27c](https://github.com/toptal/picasso/commit/dada27c))
+
 # [2.0.0](https://github.com/toptal/picasso/compare/v1.9.3...v2.0.0) (2019-06-07)
 
 
