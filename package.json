@@ -8,6 +8,7 @@
     "test": "jest",
     "test:watch": "jest --watchAll",
     "test:visual": "./bin/run-in-docker ./bin/test-visual",
+    "lint:path": "davinci-syntax lint",
     "lint": "yarn lint:path .",
     "storybook": "start-storybook -p 9001 -s ./.storybook/public -c .storybook",
     "storybook:cache": "CACHE=1 start-storybook -p 9001 -s ./.storybook/public -c .storybook",
@@ -23,8 +24,7 @@
     "generate:icons": "./bin/generate-icons",
     "commit": "git-cz",
     "postpublish": "cp -r package.json ../",
-    "prepublishOnly": "cp ../README.md .",
-    "lint:path": "davinci-syntax lint"
+    "prepublishOnly": "cp ../README.md ."
   },
   "repository": {
     "type": "git",
