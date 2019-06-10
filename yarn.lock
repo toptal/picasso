@@ -5301,12 +5301,7 @@ commander@2.17.x, commander@~2.17.1:
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.17.1.tgz#bd77ab7de6de94205ceacc72f1716d29f20a77bf"
   integrity sha512-wPMUt6FnH2yzG95SA6mzjQOEKUU3aLaDEmzs1ti+1E9h+CsrZghRlqEM/EJ4KscsQVG8uNN4uVreUeT8+drlgg==
 
-commander@^2.11.0, commander@^2.14.1, commander@^2.19.0, commander@^2.9.0:
-  version "2.19.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-2.19.0.tgz#f6198aa84e5b83c46054b94ddedbfed5ee9ff12a"
-  integrity sha512-6tvAOO+D6OENvRAh524Dh9jcfKTYDQAqvqezbCW82xj5X0pSrcpxtvRKHLG0yBY6SD7PSDrJaj+0AiOcKVd1Xg==
-
-commander@^2.18.0, commander@^2.20.0:
+commander@^2.11.0, commander@^2.14.1, commander@^2.18.0, commander@^2.19.0, commander@^2.20.0, commander@^2.9.0:
   version "2.20.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.0.tgz#d58bb2b5c1ee8f87b0d340027e9e94e222c5a422"
   integrity sha512-7j2y+40w61zy6YC2iRNpUe/NwhNyoXrYpHMrSunaMG64nRnaf96zO/KMQR4OyN/UnE5KLyEBnKHd4aG3rskjpQ==
@@ -5587,7 +5582,7 @@ cosmiconfig@^4.0.0:
     parse-json "^4.0.0"
     require-from-string "^2.0.1"
 
-cosmiconfig@^5.0.1, cosmiconfig@^5.2.0:
+cosmiconfig@^5.0.1, cosmiconfig@^5.0.5, cosmiconfig@^5.0.7, cosmiconfig@^5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/cosmiconfig/-/cosmiconfig-5.2.0.tgz#45038e4d28a7fe787203aede9c25bca4a08b12c8"
   integrity sha512-nxt+Nfc3JAqf4WIWd0jXLjTJZmsPLrA9DDc4nRw2KFJQJK7DNooqSXrNI7tzLG50CF8axczly5UV929tBmh/7g==
@@ -5595,17 +5590,6 @@ cosmiconfig@^5.0.1, cosmiconfig@^5.2.0:
     import-fresh "^2.0.0"
     is-directory "^0.3.1"
     js-yaml "^3.13.0"
-    parse-json "^4.0.0"
-
-cosmiconfig@^5.0.5, cosmiconfig@^5.0.7:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/cosmiconfig/-/cosmiconfig-5.1.0.tgz#6c5c35e97f37f985061cdf653f114784231185cf"
-  integrity sha512-kCNPvthka8gvLtzAxQXvWo4FxqRB+ftRZyPZNuab5ngvM9Y7yw7hbEysglptLgpkGX9nAOKTBVkHUAe8xtYR6Q==
-  dependencies:
-    import-fresh "^2.0.0"
-    is-directory "^0.3.1"
-    js-yaml "^3.9.0"
-    lodash.get "^4.4.2"
     parse-json "^4.0.0"
 
 create-ecdh@^4.0.0:
@@ -7262,11 +7246,6 @@ find-npm-prefix@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/find-npm-prefix/-/find-npm-prefix-1.0.2.tgz#8d8ce2c78b3b4b9e66c8acc6a37c231eb841cfdf"
   integrity sha512-KEftzJ+H90x6pcKtdXZEPsQse8/y/UnvzRKrOSQFprnrGaFuJ62fVkP34Iu2IYuMvyauCyoLTNkJZgrrGA2wkA==
-
-find-parent-dir@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/find-parent-dir/-/find-parent-dir-0.3.0.tgz#33c44b429ab2b2f0646299c5f9f718f376ff8d54"
-  integrity sha1-M8RLQpqysvBkYpnF+fcY83b/jVQ=
 
 find-pkg@^0.1.2:
   version "0.1.2"
@@ -9997,38 +9976,7 @@ libnpx@10.2.0, libnpx@^10.2.0:
     y18n "^4.0.0"
     yargs "^11.0.0"
 
-lint-staged@^8.1.7:
-  version "8.1.7"
-  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-8.1.7.tgz#a8988bc83bdffa97d04adb09dbc0b1f3a58fa6fc"
-  integrity sha512-egT0goFhIFoOGk6rasPngTFh2qDqxZddM0PwI58oi66RxCDcn5uDwxmiasWIF0qGnchHSYVJ8HPRD5LrFo7TKA==
-  dependencies:
-    chalk "^2.3.1"
-    commander "^2.14.1"
-    cosmiconfig "^5.2.0"
-    debug "^3.1.0"
-    dedent "^0.7.0"
-    del "^3.0.0"
-    execa "^1.0.0"
-    find-parent-dir "^0.3.0"
-    g-status "^2.0.2"
-    is-glob "^4.0.0"
-    is-windows "^1.0.2"
-    listr "^0.14.2"
-    listr-update-renderer "^0.5.0"
-    lodash "^4.17.11"
-    log-symbols "^2.2.0"
-    micromatch "^3.1.8"
-    npm-which "^3.0.1"
-    p-map "^1.1.1"
-    path-is-inside "^1.0.2"
-    pify "^3.0.0"
-    please-upgrade-node "^3.0.2"
-    staged-git-files "1.1.2"
-    string-argv "^0.0.2"
-    stringify-object "^3.2.2"
-    yup "^0.27.0"
-
-lint-staged@^8.2.0:
+lint-staged@^8.1.7, lint-staged@^8.2.0:
   version "8.2.0"
   resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-8.2.0.tgz#3d4149a229580815c955047a7acd8f09054be5a9"
   integrity sha512-DxguyxGOIfb67wZ6EOrqzjAbw6ZH9XK3YS74HO+erJf6+SAQeJJPN//GBOG5xhdt2THeuXjVPaHcCYOWGZwRbA==
