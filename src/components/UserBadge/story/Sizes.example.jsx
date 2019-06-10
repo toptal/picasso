@@ -9,7 +9,7 @@ const UserBadgeSizesExample = () => (
           name='Jacqueline Roque'
           avatar='./jacqueline-with-flowers-1954-square.jpg'
         >
-          <Typography variant='caption'>UI specialist</Typography>
+          <Typography size='small'>UI specialist</Typography>
         </UserBadge>
       </Grid.Item>
       <Grid.Item>
@@ -18,7 +18,7 @@ const UserBadgeSizesExample = () => (
           avatar='./jacqueline-with-flowers-1954-square.jpg'
           size='small'
         >
-          <Typography variant='caption'>UI specialist</Typography>
+          <Typography size='small'>UI specialist</Typography>
         </UserBadge>
       </Grid.Item>
     </Grid>

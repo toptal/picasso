@@ -18,4 +18,4 @@ page
   .addExample('UserBadge/story/Alignment.example.jsx', 'Alignment')
   .addExample('UserBadge/story/Invert.example.jsx', 'Invert')
   .addExample('UserBadge/story/Custom.example.jsx', 'Custom')
-  .addExample('UserBadge/story/Title.example.jsx', 'Title')
+  .addExample('UserBadge/story/Title.example.jsx', 'With Title')

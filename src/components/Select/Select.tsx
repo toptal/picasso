@@ -1,15 +1,22 @@
-import React, { FunctionComponent, ChangeEvent, ReactNode } from 'react'
+import React, {
+  FunctionComponent,
+  ChangeEvent,
+  ReactNode,
+  useMemo
+} from 'react'
 import cx from 'classnames'
 import MUISelect from '@material-ui/core/Select'
+import { MenuProps } from '@material-ui/core/Menu'
 import { withStyles } from '@material-ui/core/styles'
 import { capitalize } from '@material-ui/core/utils/helpers'
 
 import FormControl from '../FormControl'
-import InputLabel from '../InputLabel'
-import Input from '../Input'
 import OutlinedInput from '../OutlinedInput'
+import InputAdornment from '../InputAdornment'
 import MenuItem from '../MenuItem'
+import Typography from '../Typography'
 import { StandardProps } from '../Picasso'
+import { DropdownArrows } from '../Icon'
 import styles from './styles'
 
 interface Option {
@@ -18,17 +25,23 @@ interface Option {
   value: string | number
 }
 
+type IconPosition = 'start' | 'end'
+
 export interface Props extends StandardProps {
-  /** If true, the switch will be disabled */
+  /** If true, the 'Select' will be disabled */
   disabled?: boolean
+  /** Indicate whether `Select` is in error state */
+  error?: boolean
   /** Component ID */
   id?: string
   /** Width of the component which will apply `min-width` to the `input` */
   width?: 'full' | 'shrink' | 'auto'
-  /** Inner text label for the `Select` */
-  label?: string
   /** Placeholder option which is selected by default */
   placeholder?: string
+  /** Whether icon should be placed at the beginning or end of the `TextField` */
+  iconPosition?: IconPosition
+  /** Specify icon which should be rendered inside TextField */
+  icon?: ReactNode
   /** Whether `Select` should be rendered as native HTML `<select />` */
   native?: boolean
   /** Callback invoked when `Select` changes its state. */
@@ -37,8 +50,6 @@ export interface Props extends StandardProps {
   options: Option[]
   /** Selected value */
   value?: string | number
-  /** The variant to use */
-  variant?: 'standard' | 'outlined'
 }
 
 const renderOptions = (
@@ -75,64 +86,98 @@ export const Select: FunctionComponent<Props> = ({
   style,
   width,
   id,
-  label,
+  icon,
+  iconPosition,
   native,
   options,
   placeholder,
-  variant,
   disabled,
+  error,
   onChange,
   value
 }) => {
-  const hasLabel = !!label
   const fullWidth = width === 'full'
+  const isPlaceholderShown = placeholder && value === ''
 
-  const outlinedInput =
-    variant === 'outlined' ? (
-      <OutlinedInput
-        classes={{
-          input: hasLabel ? classes.inputWithLabel : classes.input
-        }}
-        fullWidth={fullWidth}
-        labelWidth={0}
-      />
-    ) : (
-      <Input
-        classes={{
-          input: hasLabel ? classes.inputWithLabel : classes.input
-        }}
-        disableUnderline
-        fullWidth={fullWidth}
-      />
-    )
+  const selectedOption = useMemo(
+    () => options.find(option => option.value === value),
+    [value, options]
+  )
+
+  const outlinedInput = (
+    <OutlinedInput
+      classes={{
+        input: cx(classes.input, {
+          [classes.inputPlaceholder]: isPlaceholderShown,
+          [classes.inputPlaceholderDisabled]: isPlaceholderShown && disabled,
+          [classes.inputNative]: native
+        })
+      }}
+      fullWidth={fullWidth}
+      labelWidth={0}
+    />
+  )
+
+  const iconAdornment = icon ? (
+    <InputAdornment
+      className={cx(classes.icon, {
+        [classes.iconDisabled]: disabled,
+        [classes.iconStart]: iconPosition === 'start',
+        [classes.iconEnd]: iconPosition === 'end'
+      })}
+      position={iconPosition!}
+    >
+      {icon}
+    </InputAdornment>
+  ) : null
+
+  const menuProps = {
+    anchorOrigin: {
+      vertical: 'bottom',
+      horizontal: 'left'
+    },
+    transformOrigin: {
+      vertical: 'top',
+      horizontal: 'left'
+    },
+    getContentAnchorEl: undefined // needed to restore default behaviour
+  } as Partial<MenuProps>
 
   const select = (
     <MUISelect
       className={className}
       style={style}
       classes={{
-        root: cx(classes.root, classes[`root${capitalize(width!)}`]),
-        icon: classes.icon,
+        root: cx(classes.root, classes[`root${capitalize(width!)}`], {
+          [classes.selectNative]: native
+        }),
+        icon: classes.caret,
         select: classes.select
       }}
       displayEmpty
       id={id}
       input={outlinedInput}
       native={native}
-      variant={variant}
-      disabled={disabled}
+      variant='outlined'
       value={value}
-      MenuProps={{
-        anchorOrigin: {
-          vertical: 'bottom',
-          horizontal: 'left'
-        },
-        transformOrigin: {
-          vertical: 'top',
-          horizontal: 'left'
-        },
-        getContentAnchorEl: undefined // needed to restore default behaviour
-      }}
+      renderValue={() => (
+        <React.Fragment>
+          {iconPosition === 'start' && iconAdornment}
+          <Typography className={classes.inputValue} inline color='inherit'>
+            {selectedOption && selectedOption.text}
+            {!selectedOption && placeholder}
+          </Typography>
+          {iconPosition === 'end' && iconAdornment}
+        </React.Fragment>
+      )}
+      IconComponent={({ className }: { className: string }) => (
+        <DropdownArrows
+          className={cx(className, {
+            [classes.caretDisabled]: disabled
+          })}
+        />
+      )}
+      MenuProps={menuProps}
       onChange={onChange}
     >
       {renderOptions(options, placeholder, native)}
@@ -140,19 +185,11 @@ export const Select: FunctionComponent<Props> = ({
   )
 
   return (
-    <FormControl className={cx(className, { [classes.rootFull]: fullWidth })}>
-      {hasLabel && (
-        <InputLabel
-          classes={{
-            root: classes.label,
-            shrink: classes.labelShrink
-          }}
-          htmlFor={id}
-          variant={variant}
-        >
-          {label}
-        </InputLabel>
-      )}
+    <FormControl
+      error={error}
+      disabled={disabled}
+      className={cx(className, { [classes.rootFull]: fullWidth })}
+    >
       {select}
     </FormControl>
   )
@@ -160,10 +197,11 @@ export const Select: FunctionComponent<Props> = ({
 
 Select.defaultProps = {
   disabled: false,
+  error: false,
+  iconPosition: 'start',
   native: false,
   onChange: () => {},
   value: '',
-  variant: 'outlined',
   width: 'full'
 }
 

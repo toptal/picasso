@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Modal 1`] = `
+<div
+  id="modal-root"
+  style="overflow: hidden; padding-right: 0px;"
+>
+  <div
+    aria-hidden="true"
+    class="Picasso-root"
+  />
+  <div
+    class="MuiModal-root MuiDialog-root"
+    role="dialog"
+  >
+    <div
+      aria-hidden="true"
+      class="MuiBackdrop-root"
+      style="opacity: 1; webkit-transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+    />
+    <div
+      class="MuiDialog-container MuiDialog-scrollPaper"
+      role="document"
+      style="opacity: 1; webkit-transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+      tabindex="-1"
+    >
+      <div
+        class="MuiPaper-root MuiPaper-elevation2 MuiDialog-paper MuiDialog-paperScrollPaper MuiDialog-paperWidthSm"
+      >
+        <div
+          class="ModalTitle-root"
+        >
+          <h3
+            class="MuiTypography-root Typography-headingMedium MuiTypography-h3"
+          >
+            Title
+          </h3>
+        </div>
+        <div
+          class="ModalContent-root"
+        >
+          Modal test content
+        </div>
+        <div
+          class="ModalActions-root"
+        >
+          <button
+            class="MuiButtonBase-root Button-medium Button-flat Button-root"
+            tabindex="0"
+            type="button"
+          >
+            <div
+              class="Button-content"
+              style="display: inline-flex; flex-direction: row; align-items: center;"
+            >
+              Cancel
+            </div>
+          </button>
+          <button
+            class="MuiButtonBase-root Button-medium Button-primaryGreen Button-root"
+            tabindex="0"
+            type="button"
+          >
+            <div
+              class="Button-content"
+              style="display: inline-flex; flex-direction: row; align-items: center;"
+            >
+              Update
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

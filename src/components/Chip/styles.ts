@@ -2,27 +2,32 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 
 import { PicassoProvider } from '../Picasso'
 
-PicassoProvider.override(({ palette }: Theme) => ({
+PicassoProvider.override(({ palette, spacing }: Theme) => ({
   MuiChip: {
     root: {
-      fontSize: '16px',
-      backgroundColor: palette.blue.light,
+      fontSize: 'inherit',
+      backgroundColor: palette.common.white,
+      borderRadius: '6.25em',
+      border: `${spacing.borderWidth} solid ${palette.grey.light}`,
       color: palette.primary.main,
       height: '1.5em'
     },
     label: {
-      fontSize: '.75em',
-      fontWeight: 600
+      paddingLeft: '0.75em',
+      paddingRight: '0.75em'
     },
-    deletable: {
-      '&:focus': {
-        backgroundColor: palette.blue.light
-      }
+    icon: {
+      marginLeft: '0.75em',
+      marginRight: '-0.25em',
+      color: palette.grey.main
     }
   }
 }))
 
 export default () =>
   createStyles({
-    root: {}
+    innerLabel: {
+      fontSize: '0.75em',
+      fontWeight: 600
+    }
   })

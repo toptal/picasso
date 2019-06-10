@@ -2,24 +2,11 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 
 export default ({ palette }: Theme) =>
   createStyles({
-    flat: {
-      backgroundColor: palette.grey[100],
-      color: palette.grey[300]
-    },
-    success: {
-      backgroundColor: palette.success.light,
-      color: palette.success.main
-    },
-    error: {
-      backgroundColor: palette.error.light,
-      color: palette.error.main
-    },
-
     deleteIcon: {
       display: 'flex',
       justifyContent: 'center',
 
-      color: palette.primary.main,
+      color: palette.text.primary,
       fontSize: '0.85em',
       margin: '0 0.5em 0 -0.5em',
 
@@ -27,7 +14,7 @@ export default ({ palette }: Theme) =>
 
       '&:hover': {
         opacity: 1,
-        color: palette.primary.main
+        color: palette.text.primary
       }
     }
   })

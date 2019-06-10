@@ -17,18 +17,6 @@ page.createTabChapter('Props').addComponentDocs({
       type: {
         description: '{ value: string, text: string }: Option'
       }
-    },
-    label: {
-      type: {
-        description:
-          "Please note that the usage of label is exclusive and can't be used when placeholder is specified"
-      }
-    },
-    placeholder: {
-      type: {
-        description:
-          "Please note that the usage of placeholder is exclusive and can't be used when label is specified"
-      }
     }
   }
 })
@@ -36,9 +24,10 @@ page.createTabChapter('Props').addComponentDocs({
 page
   .createChapter()
   .addExample('Select/story/Default.example.jsx', 'Default')
-  .addExample('Select/story/Types.example.jsx', 'Types')
-  .addExample('Select/story/WithLabel.example.jsx', 'With label')
+  .addExample('Select/story/Native.example.jsx', 'Native')
   .addExample('Select/story/Disabled.example.jsx', 'Disabled')
+  .addExample('Select/story/Error.example.jsx', 'Error')
+  .addExample('Select/story/WithIcon.example.jsx', 'With Icon')
   .addExample('Select/story/FullWidth.example.jsx', 'Full width')
   .addExample('Select/story/ShrinkWidth.example.jsx', 'Shrink width')
   .addExample('Select/story/ChosenOption.example.jsx', {

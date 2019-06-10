@@ -5,19 +5,25 @@ import { palette } from '@toptal/picasso/utils'
 const TypographyColorsExample = () => (
   <div>
     <Container bottom={1}>
-      <Typography color='primary'>Primary</Typography>
+      <Typography color='blue'>Blue</Typography>
     </Container>
     <Container bottom={1}>
-      <Typography color='success'>Success</Typography>
+      <Typography color='green'>Green</Typography>
     </Container>
     <Container bottom={1}>
-      <Typography color='error'>Error</Typography>
+      <Typography color='red'>Red</Typography>
     </Container>
     <Container bottom={1}>
-      <Typography color='muted'>Muted</Typography>
+      <Typography color='grey'>Grey</Typography>
     </Container>
-    <Container bottom={1} style={{ backgroundColor: palette.primary.dark }}>
+    <Container bottom={1}>
+      <Typography color='black'>Black</Typography>
+    </Container>
+    <Container padded='xsmall' style={{ backgroundColor: palette.blue.dark }}>
       <Typography invert>White for inverted backgrounds</Typography>
+    </Container>
+    <Container padded='xsmall' style={{ color: palette.grey.main }}>
+      <Typography color='inherit'>Inherit color</Typography>
     </Container>
   </div>
 )

@@ -1,13 +1,17 @@
-import React, { FunctionComponent, ReactNode } from 'react'
+import React, { FunctionComponent, ReactNode, ReactElement } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import CloseIcon from '@material-ui/icons/Close'
 
 import Chip from '../Chip'
 import LabelGroup from '../LabelGroup'
-import { StandardProps, PicassoComponent } from '../Picasso'
+import {
+  StandardProps,
+  PicassoComponent,
+  TooltipEventListeners
+} from '../Picasso'
 import styles from './styles'
 
-export interface Props extends StandardProps {
+export interface Props extends StandardProps, TooltipEventListeners {
   /** Text content of the `Label` component */
   children: ReactNode
   /** A callback which is invoked after remove `Icon` is clicked
@@ -15,8 +19,8 @@ export interface Props extends StandardProps {
    * Please note that specifying this callback automatically adds remove `Icon` as children of the `Label`
    */
   onDelete?: () => void
-  /** Style variant of the label */
-  variant?: 'flat' | 'success' | 'error'
+  /** Specify the icon which should be rendered inside Label */
+  icon?: ReactElement
 }
 
 interface StaticProps {
@@ -25,17 +29,20 @@ interface StaticProps {
 
 export const Label: FunctionComponent<Props> & StaticProps = ({
   classes,
-  variant,
   children,
   className,
+  icon,
   style,
-  onDelete
+  onDelete,
+  onBlur,
+  onFocus,
+  onMouseLeave,
+  onMouseOver,
+  onTouchEnd,
+  onTouchStart
 }) => {
-  const rootClass = variant ? classes[variant] : ''
-
   return (
     <Chip
-      classes={{ root: rootClass }}
       className={className}
       style={style}
       deleteIcon={
@@ -47,14 +54,20 @@ export const Label: FunctionComponent<Props> & StaticProps = ({
       }
       onDelete={onDelete}
       label={children}
+      icon={icon}
+      onBlur={onBlur}
+      onFocus={onFocus}
+      onMouseLeave={onMouseLeave}
+      onMouseOver={onMouseOver}
+      onTouchEnd={onTouchEnd}
+      onTouchStart={onTouchStart}
     />
   )
 }
 
 Label.defaultProps = {
   children: '',
-  onDelete: undefined,
-  variant: undefined
+  onDelete: undefined
 }
 
 Label.displayName = 'Label'

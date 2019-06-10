@@ -187,7 +187,8 @@ export const Dropdown: FunctionComponent<Props> & StaticProps = ({
         transformOrigin={transformOrigin}
         disableAutoFocus={disableAutoFocus}
         PaperProps={{
-          style: { ...paperMargins }
+          style: { ...paperMargins },
+          elevation: 2
         }}
       >
         <div

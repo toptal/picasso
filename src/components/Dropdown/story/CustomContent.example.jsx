@@ -24,14 +24,16 @@ const ComplexContent = () => {
   return (
     <Container padded='medium'>
       <Container bottom='small'>
-        <Typography variant='h3'>Talent</Typography>
+        <Typography variant='heading' size='medium'>
+          Talent
+        </Typography>
       </Container>
       <Form>
         <Form.Field>
-          <TextField autoFocus fullWidth label='Job title' />
+          <TextField autoFocus fullWidth placeholder='Job title' />
         </Form.Field>
         <Form.Field>
-          <Select label='Select talent' options={OPTIONS} />
+          <Select placeholder='Select talent' options={OPTIONS} />
         </Form.Field>
       </Form>
       <Container flex top='small' justifyContent='flex-end'>

@@ -1,12 +1,5 @@
 import React from 'react'
-import {
-  Page,
-  Container,
-  Dropdown,
-  Menu,
-  UserBadge,
-  Typography
-} from '@toptal/picasso'
+import { Page, Container, Menu, Typography } from '@toptal/picasso'
 
 const PageDefaultExample = () => (
   <div style={{ height: '30rem' }}>
@@ -23,27 +16,20 @@ const PageDefaultExample = () => (
 const handleClick = () => window.alert('Item clicked')
 
 const RightContent = () => (
-  <Dropdown
-    content={
-      <Menu style={{ width: '15rem' }}>
-        <Menu.Item onClick={handleClick}>My Account</Menu.Item>
-        <Menu.Item onClick={handleClick}>Log Out</Menu.Item>
-      </Menu>
-    }
-    offset={{ top: 'xsmall' }}
+  <Page.HeaderMenu
+    name='Jacqueline Roque'
+    avatar='./jacqueline-with-flowers-1954-square.jpg'
   >
-    <UserBadge
-      name='Jacqueline Roque'
-      avatar='./jacqueline-with-flowers-1954-square.jpg'
-      invert
-    />
-    <Dropdown.Arrow style={{ color: 'white' }} />
-  </Dropdown>
+    <Menu>
+      <Menu.Item onClick={handleClick}>My Account</Menu.Item>
+      <Menu.Item onClick={handleClick}>Log Out</Menu.Item>
+    </Menu>
+  </Page.HeaderMenu>
 )
 
 const Content = () => (
   <Container top='small' bottom='small' left='small' right='small'>
-    <Typography align='center' variant='h1'>
+    <Typography align='center' variant='heading' size='large'>
       Default example
     </Typography>
     <p>

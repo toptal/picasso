@@ -5,7 +5,9 @@ const NotificationVariantsExample = () => (
   <div>
     <Container bottom={1}>
       <Container bottom={1}>
-        <Typography variant='h4'>Info</Typography>
+        <Typography variant='heading' size='small'>
+          Info
+        </Typography>
       </Container>
       <Notification>
         The time zone in your profile is set to (UTC -08:00) America - Los
@@ -14,23 +16,29 @@ const NotificationVariantsExample = () => (
     </Container>
     <Container bottom={1}>
       <Container bottom={1}>
-        <Typography variant='h4'>Success</Typography>
+        <Typography variant='heading' size='small'>
+          Success
+        </Typography>
       </Container>
-      <Notification variant='success'>
+      <Notification variant='green'>
         Job has been successfully created.
       </Notification>
     </Container>
     <Container bottom={1}>
       <Container bottom={1}>
-        <Typography variant='h4'>Error</Typography>
+        <Typography variant='heading' size='small'>
+          Error
+        </Typography>
       </Container>
-      <Notification variant='error'>Required field.</Notification>
+      <Notification variant='red'>Required field.</Notification>
     </Container>
     <Container bottom={1}>
       <Container bottom={1}>
-        <Typography variant='h4'>Warning</Typography>
+        <Typography variant='heading' size='small'>
+          Warning
+        </Typography>
       </Container>
-      <Notification variant='warning'>
+      <Notification variant='yellow'>
         Before we can schedule a start date for your new team member, we need
         you to sign the agreement that was sent to <strong>Luboš Volkov</strong>{' '}
         at <strong>lubos@mnmalt.com</strong> by RightSignature on Nov 11, 2018.

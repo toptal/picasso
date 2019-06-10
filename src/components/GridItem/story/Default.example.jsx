@@ -1,34 +1,99 @@
 import React from 'react'
-import { Grid, Button } from '@toptal/picasso'
+import { Grid, Container, Typography } from '@toptal/picasso'
+import { palette } from '@toptal/picasso/utils'
+
+const ContentContainer = ({ children }) => (
+  <Container padded='small' style={{ backgroundColor: palette.blue.lighter }}>
+    <Typography variant='heading' size='small' align='center'>
+      {children}
+    </Typography>
+  </Container>
+)
 
 const GridDefaultExample = () => (
-  <div>
-    <Grid>
-      <Grid.Item small={12}>
-        <Button fullWidth>width = 12</Button>
-      </Grid.Item>
+  <Grid>
+    <Grid.Item small={1}>
+      <ContentContainer>1</ContentContainer>
+    </Grid.Item>
+    <Grid.Item small={1}>
+      <ContentContainer>1</ContentContainer>
+    </Grid.Item>
+    <Grid.Item small={1}>
+      <ContentContainer>1</ContentContainer>
+    </Grid.Item>
+    <Grid.Item small={1}>
+      <ContentContainer>1</ContentContainer>
+    </Grid.Item>
+    <Grid.Item small={1}>
+      <ContentContainer>1</ContentContainer>
+    </Grid.Item>
+    <Grid.Item small={1}>
+      <ContentContainer>1</ContentContainer>
+    </Grid.Item>
+    <Grid.Item small={1}>
+      <ContentContainer>1</ContentContainer>
+    </Grid.Item>
+    <Grid.Item small={1}>
+      <ContentContainer>1</ContentContainer>
+    </Grid.Item>
+    <Grid.Item small={1}>
+      <ContentContainer>1</ContentContainer>
+    </Grid.Item>
+    <Grid.Item small={1}>
+      <ContentContainer>1</ContentContainer>
+    </Grid.Item>
+    <Grid.Item small={1}>
+      <ContentContainer>1</ContentContainer>
+    </Grid.Item>
+    <Grid.Item small={1}>
+      <ContentContainer>1</ContentContainer>
+    </Grid.Item>
 
-      <Grid.Item small={6}>
-        <Button fullWidth>width = 6</Button>
-      </Grid.Item>
-      <Grid.Item small={6}>
-        <Button fullWidth>width = 6</Button>
-      </Grid.Item>
+    <Grid.Item small={12}>
+      <ContentContainer>12</ContentContainer>
+    </Grid.Item>
 
-      <Grid.Item small={3}>
-        <Button fullWidth>width = 3</Button>
-      </Grid.Item>
-      <Grid.Item small={3}>
-        <Button fullWidth>width = 3</Button>
-      </Grid.Item>
-      <Grid.Item small={3}>
-        <Button fullWidth>width = 3</Button>
-      </Grid.Item>
-      <Grid.Item small={3}>
-        <Button fullWidth>width = 3</Button>
-      </Grid.Item>
-    </Grid>
-  </div>
+    <Grid.Item small={6}>
+      <ContentContainer>6</ContentContainer>
+    </Grid.Item>
+    <Grid.Item small={6}>
+      <ContentContainer>6</ContentContainer>
+    </Grid.Item>
+
+    <Grid.Item small={3}>
+      <ContentContainer>3</ContentContainer>
+    </Grid.Item>
+    <Grid.Item small={3}>
+      <ContentContainer>3</ContentContainer>
+    </Grid.Item>
+    <Grid.Item small={3}>
+      <ContentContainer>3</ContentContainer>
+    </Grid.Item>
+    <Grid.Item small={3}>
+      <ContentContainer>3</ContentContainer>
+    </Grid.Item>
+    <Grid.Item small={3}>
+      <ContentContainer>Sidebar</ContentContainer>
+    </Grid.Item>
+    <Grid.Item small={9}>
+      <ContentContainer>Main Content</ContentContainer>
+    </Grid.Item>
+    <Grid.Item small={9}>
+      <ContentContainer>Main Content</ContentContainer>
+    </Grid.Item>
+    <Grid.Item small={3}>
+      <ContentContainer>Sidebar</ContentContainer>
+    </Grid.Item>
+    <Grid.Item small={3}>
+      <ContentContainer>Sidebar</ContentContainer>
+    </Grid.Item>
+    <Grid.Item small={6}>
+      <ContentContainer>Main Content</ContentContainer>
+    </Grid.Item>
+    <Grid.Item small={3}>
+      <ContentContainer>Sidebar</ContentContainer>
+    </Grid.Item>
+  </Grid>
 )
 
 export default GridDefaultExample

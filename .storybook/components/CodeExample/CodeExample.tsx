@@ -185,9 +185,7 @@ class CodeExample extends Component<Props> {
                 <SourceRender.Consumer>
                   {({ error }: RenderResult) =>
                     error && (
-                      <Typography weight='regular' variant='large'>
-                        {error.toString()}
-                      </Typography>
+                      <Typography color='red'>{error.toString()}</Typography>
                     )
                   }
                 </SourceRender.Consumer>

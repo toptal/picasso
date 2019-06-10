@@ -1,17 +1,17 @@
-import React, { FunctionComponent, ReactNode, ReactElement } from 'react'
+import React, { FunctionComponent } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import MUIStepLabel from '@material-ui/core/StepLabel'
 
+import StepIcon from '../StepIcon'
 import { StandardProps } from '../Picasso'
 import styles from './styles'
 
 interface Props extends StandardProps {
   hideLabel: boolean
-  children: ReactNode
+  children: string
   active?: boolean
   completed?: boolean
-  icon?: ReactElement
 }
 
 export const StepLabel: FunctionComponent<Props> = ({
@@ -21,21 +21,23 @@ export const StepLabel: FunctionComponent<Props> = ({
   children,
   completed,
   hideLabel,
-  icon,
   style
 }) => {
   return (
     <MUIStepLabel
       active={active}
       classes={{
+        labelContainer: cx({
+          [classes.root]: !hideLabel || active
+        }),
         label: cx({ [classes.hidden]: hideLabel })
       }}
       className={className}
       completed={completed}
-      icon={icon}
+      icon={<StepIcon active={active} completed={completed} />}
       style={style}
     >
-      {children}
+      <span className={classes.label}>{children}</span>
     </MUIStepLabel>
   )
 }

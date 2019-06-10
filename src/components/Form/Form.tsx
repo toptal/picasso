@@ -2,6 +2,8 @@ import React, { FunctionComponent, FormEventHandler, ReactNode } from 'react'
 
 import FormField from '../FormField'
 import FormHint from '../FormHint'
+import FormLabel from '../FormLabel'
+import FormError from '../FormError'
 import { BaseProps } from '../Picasso'
 
 interface Props extends BaseProps {
@@ -14,6 +16,8 @@ interface Props extends BaseProps {
 interface StaticProps {
   Field: typeof FormField
   Hint: typeof FormHint
+  Label: typeof FormLabel
+  Error: typeof FormError
 }
 
 export const Form: FunctionComponent<Props> & StaticProps = ({
@@ -28,8 +32,9 @@ export const Form: FunctionComponent<Props> & StaticProps = ({
 )
 
 Form.Field = FormField
-
 Form.Hint = FormHint
+Form.Label = FormLabel
+Form.Error = FormError
 
 Form.displayName = 'Form'
 

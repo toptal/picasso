@@ -1,64 +1,38 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
-import { Palette } from '@material-ui/core/styles/createPalette'
 
 import { PicassoProvider } from '../Picasso'
-import { createPropertiesStyles } from '../styles'
-
-const setBorderColor = (borderColor: string) =>
-  createPropertiesStyles({
-    '&:before': {
-      borderColor
-    }
-  })
-
-const setCircleColor = (borderColor: string) =>
-  createPropertiesStyles({
-    '&:after': {
-      borderColor,
-      display: 'block'
-    }
-  })
-
-const createColorVariant = (mainColor: string, disabledColor: string) =>
-  createPropertiesStyles({
-    '&$checked': {
-      ...setBorderColor(mainColor),
-      ...setCircleColor(mainColor)
-    },
-    '&$disabled': {
-      opacity: 0.5,
-      cursor: 'not-allowed',
-      pointerEvents: 'auto',
-      ...setBorderColor(disabledColor)
-    },
-    '&:hover': {
-      ...setBorderColor(mainColor)
-    }
-  })
+import { createPropertiesStyles, rem } from '../styles'
 
 PicassoProvider.override(({ palette, transitions }) => ({
   MuiRadio: {
     root: {
-      fontSize: '16px',
+      color: palette.common.white,
+      fontSize: '1rem',
       position: 'relative',
       width: '1em',
       height: '1em',
       padding: '0',
-
       margin: '0.25em 0.5em 0.25em 0',
-      ...createColorVariant(palette.primary.main, palette.grey[300]),
-      animationDuration: `${transitions.duration.short}`,
-      animationTimingFunction: transitions.easing.easeIn,
-      transitionDuration: `${transitions.duration.short}`,
-      transitionTimingFunction: transitions.easing.easeOut
-    },
-    disabled: createColorVariant(palette.grey[300], palette.grey[300]),
+      transition: `all ${transitions.duration.short}ms ${
+        transitions.easing.easeInOut
+      }`,
 
-    checked: {}
+      '&$disabled': {
+        cursor: 'not-allowed',
+        pointerEvents: 'auto'
+      }
+    },
+    disabled: {
+      color: palette.grey.main,
+      opacity: 0.48
+    },
+    checked: {
+      color: palette.primary.main
+    }
   }
 }))
 
-const centeredCircle = (palette: Palette) =>
+const centeredCircle = (backgroundColor: string) =>
   createPropertiesStyles({
     position: 'absolute',
     width: '100%',
@@ -69,38 +43,66 @@ const centeredCircle = (palette: Palette) =>
     transform: 'translate(-50%, -50%)',
     content: '""',
     borderColor: 'inherit',
-    background: palette.common.white,
+    background: backgroundColor,
     pointerEvents: 'none',
     transition: 'border-color',
     transitionDuration: 'inherit',
     transitionTimingFunction: 'inherit'
   })
 
-export default ({ palette }: Theme) =>
+export default ({ palette, spacing, transitions }: Theme) =>
   createStyles({
-    '@keyframes fade-in': {
-      '0%': {
-        opacity: 0
-      },
-      '100%': {
-        opacity: 1
+    root: {
+      '&:hover $uncheckedIcon': {
+        color: palette.primary.main
       }
     },
-    icon: {
+    disabled: {
+      '&:hover $uncheckedIcon': {
+        color: palette.grey.main
+      }
+    },
+    uncheckedIcon: {
+      color: palette.grey.main,
+      transition: `all ${transitions.duration.short}ms ${
+        transitions.easing.easeInOut
+      }`,
       '&:before': {
-        ...centeredCircle(palette),
-        border: `1px solid ${palette.common.black}`
+        ...centeredCircle(palette.common.white),
+        border: `${spacing.borderWidth} solid ${palette.grey.main}`
       },
       '&:after': {
-        ...centeredCircle(palette),
+        ...centeredCircle(palette.common.white),
         width: 'initial',
         height: 'initial',
-        borderWidth: '0.25em',
+        borderWidth: rem('3px'),
         borderStyle: 'solid',
-        display: 'none',
-        animation: 'fade-in',
-        animationDuration: 'inherit',
-        animationTimingFunction: 'inherit'
+        opacity: 0,
+        color: palette.common.white,
+        transition: `all ${transitions.duration.short}ms ${
+          transitions.easing.easeInOut
+        }`
+      }
+    },
+    checkedIcon: {
+      color: palette.primary.main,
+      transition: `all ${transitions.duration.short}ms ${
+        transitions.easing.easeInOut
+      }`,
+      '&:before': {
+        ...centeredCircle(palette.common.white),
+        border: `${spacing.borderWidth} solid ${palette.grey.main}`
+      },
+      '&:after': {
+        ...centeredCircle(palette.common.white),
+        width: 'initial',
+        height: 'initial',
+        borderWidth: rem('3px'),
+        borderStyle: 'solid',
+        opacity: 1,
+        transition: `all ${transitions.duration.short}ms ${
+          transitions.easing.easeInOut
+        }`
       }
     },
     label: {

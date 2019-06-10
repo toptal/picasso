@@ -2,7 +2,7 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 
 import { PicassoProvider } from '../Picasso'
 
-PicassoProvider.override(({ palette }: Theme) => ({
+PicassoProvider.override(({ palette, typography }: Theme) => ({
   MuiFormControlLabel: {
     root: {
       marginLeft: 0,
@@ -13,9 +13,8 @@ PicassoProvider.override(({ palette }: Theme) => ({
       alignItems: 'center',
 
       color: palette.text.primary,
-      lineHeight: '1em',
-      fontWeight: 300,
-
+      lineHeight: '1.5em',
+      fontWeight: typography.fontWeightRegular,
       cursor: 'pointer',
       userSelect: 'none',
 

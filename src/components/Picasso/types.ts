@@ -1,4 +1,4 @@
-import { CSSProperties, FunctionComponent } from 'react'
+import { CSSProperties, FunctionComponent, SyntheticEvent } from 'react'
 
 import { Classes } from '../styles/types'
 
@@ -31,7 +31,18 @@ export type PicassoComponent<P, S = {}> = FunctionComponent<
 > &
   S
 
-type Sizes = 'xsmall' | 'small' | 'medium' | 'large'
+type EventListenerType = (event: SyntheticEvent<HTMLElement>) => void
+
+export interface TooltipEventListeners {
+  onBlur?: EventListenerType
+  onFocus?: EventListenerType
+  onMouseLeave?: EventListenerType
+  onMouseOver?: EventListenerType
+  onTouchEnd?: EventListenerType
+  onTouchStart?: EventListenerType
+}
+
+type Sizes = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'
 
 export type SizeType<T extends Sizes> = T
 
@@ -43,7 +54,8 @@ enum SpacingEnum {
   xsmall = 0.5,
   small = 1,
   medium = 1.5,
-  large = 2
+  large = 2,
+  xlarge = 2.5
 }
 
 export const spacingToEm = (spacing: SpacingType) =>

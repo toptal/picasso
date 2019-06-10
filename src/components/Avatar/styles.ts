@@ -4,7 +4,7 @@ const getClipPathCornerMask = (cornerWidth: string) =>
   `polygon(0 0, 100% 0, 100% 100%, ${cornerWidth} 100%, 0 calc(100% - ${cornerWidth}))`
 
 const CLIPPED_CORNER_SIZE_EM = 0.5
-const LOGO_SIZE_EM = 0.4
+const LOGO_SIZE_EM = 0.5
 
 export default ({ palette }: Theme) =>
   createStyles({
@@ -36,7 +36,7 @@ export default ({ palette }: Theme) =>
       fontSize: '3rem'
     },
     large: {
-      fontSize: '4.5rem'
+      fontSize: '4rem'
     },
     clippedCorner: {
       clipPath: getClipPathCornerMask(`${CLIPPED_CORNER_SIZE_EM}em`),
@@ -45,7 +45,7 @@ export default ({ palette }: Theme) =>
       '-webkit-clip-path': getClipPathCornerMask(`${CLIPPED_CORNER_SIZE_EM}em`)
     },
     textContainer: {
-      backgroundColor: palette.grey[200]
+      backgroundColor: palette.grey.main
     },
     text: {
       fontSize: '1em',
@@ -55,10 +55,13 @@ export default ({ palette }: Theme) =>
       transform: 'translate(-50%, -50%)',
       textTransform: 'uppercase'
     },
-    logo: {
+    logoContainer: {
+      display: 'flex',
       position: 'absolute',
-      fontSize: `${LOGO_SIZE_EM}em`,
-      bottom: `${(1 / LOGO_SIZE_EM) * CLIPPED_CORNER_SIZE_EM}em`,
-      left: `${(1 / LOGO_SIZE_EM) * CLIPPED_CORNER_SIZE_EM}em`
+      bottom: `${CLIPPED_CORNER_SIZE_EM * 0.8}em`,
+      left: `${CLIPPED_CORNER_SIZE_EM * 0.8}em`
+    },
+    logo: {
+      fontSize: `${LOGO_SIZE_EM}em`
     }
   })

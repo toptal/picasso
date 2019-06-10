@@ -11,7 +11,7 @@ const UserBadgeInvertExample = () => (
             avatar='./jacqueline-with-flowers-1954-square.jpg'
             invert
           >
-            <Typography invert variant='caption'>
+            <Typography invert size='small'>
               UI specialist
             </Typography>
           </UserBadge>
@@ -25,7 +25,7 @@ const UserBadgeInvertExample = () => (
             size='small'
             invert
           >
-            <Typography invert variant='caption'>
+            <Typography invert size='small'>
               UI specialist
             </Typography>
           </UserBadge>

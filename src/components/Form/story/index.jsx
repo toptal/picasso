@@ -4,6 +4,8 @@ import { Form } from '../Form'
 
 import formFieldStory from '@components/FormField/story'
 import formHintStory from '@components/FormHint/story'
+import formLabelStory from '@components/FormLabel/story'
+import formErrorStory from '@components/FormError/story'
 
 const page = PicassoBook.createPage(
   'Form',
@@ -16,6 +18,7 @@ page
   .addComponentDocs({ component: Form, name: 'Form' })
   .addComponentDocs(formFieldStory.componentDocs)
   .addComponentDocs(formHintStory.componentDocs)
+  .addComponentDocs(formLabelStory.componentDocs)
+  .addComponentDocs(formErrorStory.componentDocs)
 
 page.connect(formFieldStory.chapter)
-page.connect(formHintStory.chapter)

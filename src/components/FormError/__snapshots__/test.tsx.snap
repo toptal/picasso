@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormError default render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <form>
+      <div
+        class="FormField-root"
+      >
+        <label
+          class="FormLabel-root"
+        >
+          <span
+            class="FormLabel-text"
+          >
+            Label:
+          </span>
+        </label>
+        <div
+          class="MuiFormControl-root TextField-rootFixedWidth"
+        >
+          <div
+            class="MuiInputBase-root MuiOutlinedInput-root TextField-root MuiInputBase-formControl"
+          >
+            <fieldset
+              aria-hidden="true"
+              class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+              style="padding-left: 8px;"
+            >
+              <legend
+                class="MuiPrivateNotchedOutline-legend"
+                style="width: 0.01px;"
+              >
+                <span>
+                  ​
+                </span>
+              </legend>
+            </fieldset>
+            <input
+              aria-invalid="false"
+              class="MuiInputBase-input MuiOutlinedInput-input TextField-input"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          class="FormError-root"
+        >
+          <p
+            class="MuiTypography-root Typography-bodyInherit MuiTypography-body1 FormError-error"
+          >
+            My Error
+          </p>
+        </div>
+        <div
+          class="FormHint-root"
+        >
+          <p
+            class="MuiTypography-root Typography-bodyInherit MuiTypography-body1 FormHint-hint"
+          >
+            This is a hint
+          </p>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+`;

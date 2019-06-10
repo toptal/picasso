@@ -6,7 +6,7 @@ import { Button } from '../Button'
 
 const page = PicassoBook.createPage(
   'Button',
-  'A Button indicates a possible user action'
+  'A Button indicates a possible user action.'
 )
 
 page

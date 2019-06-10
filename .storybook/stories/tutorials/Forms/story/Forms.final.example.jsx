@@ -17,40 +17,50 @@ const FormsExample = () => (
       <Grid.Item small={12} medium={8} large={6}>
         <Form>
           <Form.Field>
-            <Select label='Select talent' options={OPTIONS} />
+            <Form.Label>Select talent</Form.Label>
+            <Select options={OPTIONS} />
           </Form.Field>
 
           <Form.Field>
-            <TextField fullWidth label='Job title' />
+            <Form.Label required htmlFor='job-title-final'>
+              Job title
+            </Form.Label>
+            <TextField id='job-title-final' fullWidth />
           </Form.Field>
 
           <Form.Field>
             <Grid direction='row'>
               <Grid.Item small={6}>
                 <Form.Field>
-                  <Select label='Current Country' options={OPTIONS} />
+                  <Form.Label>Current country</Form.Label>
+                  <Select options={OPTIONS} />
                 </Form.Field>
               </Grid.Item>
               <Grid.Item small={6}>
                 <Form.Field>
-                  <TextField fullWidth label='City of Residence' />
+                  <Form.Label htmlFor='city-final'>
+                    City of residence
+                  </Form.Label>
+                  <TextField id='city-final' fullWidth />
                 </Form.Field>
               </Grid.Item>
             </Grid>
           </Form.Field>
 
           <Form.Field>
-            <TextField fullWidth label='Full description' />
+            <Form.Label htmlFor='description-final'>
+              Full description
+            </Form.Label>
+            <TextField id='description-final' fullWidth />
           </Form.Field>
 
           <Form.Field>
-            <Select label='Desired Commitment' options={OPTIONS} />
+            <Form.Label>Desired Commitment</Form.Label>
+            <Select options={OPTIONS} />
           </Form.Field>
 
           <Form.Field>
-            <Container bottom='xsmall'>
-              <Typography variant='small'>Estimated length:</Typography>
-            </Container>
+            <Form.Label>Estimated length:</Form.Label>
             <HorizontalRadioGroup name='variableName' value='radio1'>
               <Radio label='1-2 months' value='radio1' />
               <Radio label='2-4 months' value='radio2' />

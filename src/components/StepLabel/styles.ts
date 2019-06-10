@@ -1,17 +1,15 @@
-import { createStyles } from '@material-ui/core/styles'
+import { Theme, createStyles } from '@material-ui/core/styles'
 
 import { PicassoProvider } from '../Picasso'
+import { rem } from '../styles'
 
 PicassoProvider.override(() => ({
   MuiStepLabel: {
     label: {
-      paddingLeft: '0.5em',
-      fontSize: '0.6875em',
-      fontWeight: 600,
-      lineHeight: '1em',
+      display: 'flex',
 
       '&$active': {
-        display: 'block'
+        display: 'flex'
       }
     },
     iconContainer: {
@@ -20,9 +18,18 @@ PicassoProvider.override(() => ({
   }
 }))
 
-export default () =>
+export default ({ palette }: Theme) =>
   createStyles({
     hidden: {
       display: 'none'
+    },
+    root: {
+      marginLeft: '0.5em'
+    },
+    label: {
+      fontSize: rem('11px'),
+      fontWeight: 600,
+      lineHeight: '1em',
+      color: palette.grey.dark
     }
   })

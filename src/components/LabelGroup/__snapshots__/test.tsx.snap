@@ -9,47 +9,63 @@ exports[`should render label group with 4 labels 1`] = `
       class="LabelGroup-root"
     >
       <div
-        class="MuiChip-root Chip-root"
+        class="MuiChip-root"
         role="button"
         tabindex="-1"
       >
         <span
           class="MuiChip-label"
         >
-          Angular JS
+          <span
+            class="Chip-innerLabel"
+          >
+            Angular JS
+          </span>
         </span>
       </div>
       <div
-        class="MuiChip-root Chip-root"
+        class="MuiChip-root"
         role="button"
         tabindex="-1"
       >
         <span
           class="MuiChip-label"
         >
-          React JS
+          <span
+            class="Chip-innerLabel"
+          >
+            React JS
+          </span>
         </span>
       </div>
       <div
-        class="MuiChip-root Chip-root"
+        class="MuiChip-root"
         role="button"
         tabindex="-1"
       >
         <span
           class="MuiChip-label"
         >
-          Ember JS
+          <span
+            class="Chip-innerLabel"
+          >
+            Ember JS
+          </span>
         </span>
       </div>
       <div
-        class="MuiChip-root Chip-root"
+        class="MuiChip-root"
         role="button"
         tabindex="-1"
       >
         <span
           class="MuiChip-label"
         >
-          Vue JS
+          <span
+            class="Chip-innerLabel"
+          >
+            Vue JS
+          </span>
         </span>
       </div>
     </div>

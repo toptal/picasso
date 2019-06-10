@@ -9,6 +9,11 @@ const chapter = PicassoBook.connectToPage(page =>
       'The element of the Grid. Should be nested inside the Grid element.'
     )
     .addExample('GridItem/story/Default.example.jsx', 'Default')
+    .addExample('GridItem/story/Responsive.example.jsx', {
+      title: 'Responsive',
+      description:
+        'You can try to resize screen, to see how different grid widths are applied.'
+    })
     .addExample('GridItem/story/SampleLayout.example.jsx', 'Sample Layout')
     .addExample('GridItem/story/CenteredLayout.example.jsx', 'Centered Layout')
 )

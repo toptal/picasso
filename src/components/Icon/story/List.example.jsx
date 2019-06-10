@@ -16,11 +16,14 @@ const IconListExample = () => (
           <Grid.Item key={iconName}>
             <Paper>
               <Container
+                flex
+                alignItems='center'
+                justifyContent='center'
                 padded='small'
                 style={{
                   paddingBottom: '0.5em',
-                  minWidth: '6rem',
-                  height: '5rem'
+                  minWidth: '9rem',
+                  height: '7rem'
                 }}
               >
                 <Grid alignItems='center' direction='column' spacing={8}>
@@ -28,7 +31,7 @@ const IconListExample = () => (
                     <Icon size={2} />
                   </Grid.Item>
                   <Grid.Item>
-                    <Typography variant='caption'>{iconName}</Typography>
+                    <Typography size='small'>{iconName}</Typography>
                   </Grid.Item>
                 </Grid>
               </Container>

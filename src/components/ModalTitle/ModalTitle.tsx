@@ -6,7 +6,7 @@ import Typography from '../Typography'
 import { StandardProps } from '../Picasso'
 import styles from './styles'
 
-interface Props extends StandardProps {
+export interface Props extends StandardProps {
   /** Title content */
   children: ReactNode
 }
@@ -18,7 +18,7 @@ export const ModalTitle: FunctionComponent<Props> = ({
   style
 }) => (
   <div className={cx(classes.root, className)} style={style}>
-    <Typography variant='h3' weight='light'>
+    <Typography variant='heading' size='medium'>
       {children}
     </Typography>
   </div>

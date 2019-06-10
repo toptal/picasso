@@ -6,15 +6,13 @@ import '../InputLabel/styles'
 import '../OutlinedInput/styles'
 import '../InputAdornment/styles'
 
-export default ({
-  spacing: { input, inputLabel, inputIcon, borderWidth }
-}: Theme) =>
+export default ({ spacing: { input, inputIcon } }: Theme) =>
   createStyles({
     root: {
       fontSize: 'inherit',
       boxSizing: 'border-box',
       height: input.height,
-      padding: 0
+      padding: input.padding
     },
     rootMultiline: {
       height: 'auto'
@@ -26,55 +24,15 @@ export default ({
       width: '100%'
     },
     input: {
-      fontSize: '1.15em',
+      fontSize: '0.8125em',
       border: 'none',
-      padding: `
-      ${inputLabel.height}
-      ${input.paddingLeft}
-      0
-      ${input.paddingRight}
-    `
+      padding: 0
     },
     inputMultiline: {
-      padding: `
-      calc(${inputLabel.shrinkPaddingTop} + 1em * ${inputLabel.shrinkScale})
-      ${input.paddingLeft}
-      0
-      ${input.paddingRight}
-    `
+      padding: 0
     },
-    label: {
-      fontSize: '1.15em',
-
-      transform: `
-      translate(
-        calc(${input.paddingLeft} + ${borderWidth}),
-        calc(${input.paddingTop} + ${borderWidth})
-      )
-      scale(1)`,
-
-      '&$labelShrink': {
-        transform: `
-        translate(
-          calc(${input.paddingLeft} + ${borderWidth}),
-          ${inputLabel.shrinkPaddingTop}
-        )
-        scale(${inputLabel.shrinkScale})`
-      },
-
-      '&$labelIconStart': {
-        transform: `translate(
-          ${input.paddingLeft + input.paddingRight + inputIcon.width}),
-          ${inputLabel.shrinkPaddingTop}
-        )
-        scale(${inputLabel.shrinkScale})
-      `
-      }
-    },
-    labelShrink: {},
-    labelIconStart: {},
     icon: {
-      fontSize: '1.15em',
+      fontSize: '1em',
       minWidth: inputIcon.width,
       display: 'flex',
       alignItems: 'center',
@@ -82,9 +40,9 @@ export default ({
       height: '1em'
     },
     iconStart: {
-      marginLeft: input.paddingLeft
+      marginRight: '0.5em'
     },
     iconEnd: {
-      marginRight: input.paddingRight
+      marginLeft: '0.5em'
     }
   })

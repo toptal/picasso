@@ -6,7 +6,7 @@ export default ({ palette }: Theme) =>
       height: 'auto',
 
       '&+&': {
-        borderTop: `1px solid ${palette.grey[50]}`
+        borderTop: `1px solid ${palette.grey.light}`
       }
     },
     accountLink: {

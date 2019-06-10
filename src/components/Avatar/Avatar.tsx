@@ -44,7 +44,11 @@ export class Avatar extends PureComponent<Props> {
       return null
     }
 
-    return <Logo emblem variant='white' className={classes.logo} />
+    return (
+      <div className={classes.logoContainer}>
+        <Logo emblem variant='white' className={classes.logo} />
+      </div>
+    )
   }
 
   renderInitials() {

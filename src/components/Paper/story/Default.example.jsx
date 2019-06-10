@@ -6,7 +6,7 @@ const PaperDefaultExample = () => (
     <Paper>
       <Container padded='small'>
         <Container bottom='small'>
-          <Typography variant='h3' weight='bold'>
+          <Typography variant='heading' size='medium'>
             This is paper
           </Typography>
         </Container>
