@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/toptal/picasso/compare/v2.0.2...v2.1.0) (2019-06-10)
+
+
+### Features
+
+* **grid:** add wrap option ([#449](https://github.com/toptal/picasso/issues/449)) ([fa7f5a8](https://github.com/toptal/picasso/commit/fa7f5a8))
+
 ## [2.0.2](https://github.com/toptal/picasso/compare/v2.0.1...v2.0.2) (2019-06-10)
 
 
