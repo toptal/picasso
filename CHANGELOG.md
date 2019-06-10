@@ -1,3 +1,10 @@
+## [2.0.2](https://github.com/toptal/picasso/compare/v2.0.1...v2.0.2) (2019-06-10)
+
+
+### Bug Fixes
+
+* allow using Label and Link with Tooltip ([#432](https://github.com/toptal/picasso/issues/432)) ([d7fe5e7](https://github.com/toptal/picasso/commit/d7fe5e7))
+
 ## [2.0.1](https://github.com/toptal/picasso/compare/v2.0.0...v2.0.1) (2019-06-07)
 
 
