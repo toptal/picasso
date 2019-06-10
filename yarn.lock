@@ -2918,10 +2918,10 @@
     "@svgr/plugin-svgo" "^4.0.3"
     loader-utils "^1.1.0"
 
-"@toptal/davinci-cli-shared@^0.0.2-alpha.3":
-  version "0.0.2-alpha.3"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-cli-shared/-/davinci-cli-shared-0.0.2-alpha.3.tgz#638ef16142ec7bf6cdead5d53d617732f7e43a73"
-  integrity sha512-wAF7o9+SC6KGxUmBMdUKrf0tZluKnX/ChPjlq7r+Lj3UyK6j/APrRiskOkjdV+dUjzSc9GO3zkX3U0csWPIF2A==
+"@toptal/davinci-cli-shared@^0.0.2-alpha.4":
+  version "0.0.2-alpha.4"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-cli-shared/-/davinci-cli-shared-0.0.2-alpha.4.tgz#bf6c2eb04757c7ae75a25d3576ad2baa842643f0"
+  integrity sha512-fM/zMv2/sVFF1kseaW79UgVVwIp/C58Fn5FxNFgOXbmw7CBAf7zfOHWGN0YmxxKgCyWM2SpgA+t9SvlZLQiloA==
   dependencies:
     chalk "^2.4.2"
     execa "^1.0.0"
@@ -2929,12 +2929,12 @@
     npx "^10.2.0"
     vorpal "^1.12.0"
 
-"@toptal/davinci-syntax@^0.0.2-alpha.4":
-  version "0.0.2-alpha.4"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-syntax/-/davinci-syntax-0.0.2-alpha.4.tgz#9ec19377c4efee476ff0afc6bb54d249b8321825"
-  integrity sha512-T4xklWwCkgVUkNinq+S3n1KHOz8z19HaMTLh0Yrl8I98KPHOro/K7Q5aCAoSK66WQQSbv6JoAPYRocoR36cf/g==
+"@toptal/davinci-syntax@^0.0.2-alpha.5":
+  version "0.0.2-alpha.5"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-syntax/-/davinci-syntax-0.0.2-alpha.5.tgz#24da6d763fc774fe2f3816e8fb4ac91b770689e9"
+  integrity sha512-JsBg7PXpGWh7BDFQWujTDDrDmslOpqRC3myBN7M8Og3wqaZgp+VzfFH9BTjTFimcuXoz427KAPnWXOP1rpJMLg==
   dependencies:
-    "@toptal/davinci-cli-shared" "^0.0.2-alpha.3"
+    "@toptal/davinci-cli-shared" "^0.0.2-alpha.4"
     "@typescript-eslint/eslint-plugin" "^1.9.0"
     "@typescript-eslint/parser" "^1.9.0"
     eslint "^5.16.0"
