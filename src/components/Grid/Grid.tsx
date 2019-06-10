@@ -4,7 +4,8 @@ import MUIGrid, {
   GridSpacing,
   GridItemsAlignment,
   GridDirection,
-  GridJustification
+  GridJustification,
+  GridWrap
 } from '@material-ui/core/Grid'
 
 import GridItem from '../GridItem'
@@ -22,6 +23,8 @@ interface Props extends StandardProps {
   alignItems?: GridItemsAlignment
   /** Defines the justify-content style property based on the direction */
   justify?: GridJustification
+  /** Defines the flex-wrap style property based on the direction */
+  wrap?: GridWrap
 }
 
 interface StaticProps {
@@ -34,6 +37,7 @@ export const Grid: FunctionComponent<Props> & StaticProps = ({
   direction,
   alignItems,
   justify,
+  wrap,
   classes,
   className,
   style
@@ -44,6 +48,7 @@ export const Grid: FunctionComponent<Props> & StaticProps = ({
     direction={direction}
     alignItems={alignItems}
     justify={justify}
+    wrap={wrap}
     classes={classes}
     className={className}
     style={style}
@@ -56,6 +61,7 @@ Grid.defaultProps = {
   alignItems: 'flex-start',
   direction: 'row',
   justify: 'flex-start',
+  wrap: 'wrap',
   spacing: 32
 }
 
