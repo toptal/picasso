@@ -57,7 +57,7 @@
 * removed `variant` prop
 * removed `label` prop
 
-> You can check [Select](https://picasso.toptal.net/feature-base-sync/?path=/story/forms-folder--select) documentation.
+> You can check [Select](https://picasso.toptal.net/?path=/story/forms-folder--select) documentation.
 
 #### Stepper
 
