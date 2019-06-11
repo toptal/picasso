@@ -11,7 +11,7 @@ import styles from './styles'
 
 type VariantType = 'heading' | 'body'
 
-type WeightType = 'thin' | 'light' | 'regular' | 'semibold' | 'bold'
+type WeightType = 'thin' | 'light' | 'regular' | 'semibold'
 type ColorType = 'blue' | 'green' | 'red' | 'grey' | 'black' | 'inherit'
 
 export interface Props extends StandardProps {

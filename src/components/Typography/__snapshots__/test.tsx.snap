@@ -1,19 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Typography bold and center aligned render 1`] = `
-<div>
-  <div
-    class="Picasso-root"
-  >
-    <p
-      class="MuiTypography-root Typography-bodyInherit MuiTypography-body1 MuiTypography-alignCenter"
-    >
-      Bold and center aligned
-    </p>
-  </div>
-</div>
-`;
-
 exports[`Typography default render 1`] = `
 <div>
   <div
