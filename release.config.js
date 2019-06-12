@@ -32,7 +32,7 @@ module.exports = {
     [
       '@semantic-release/git',
       {
-        assets: ['CHANGELOG.md', 'README.md', 'package.json'] // Push a release commit and tag, including globed files
+        assets: ['CHANGELOG.md', 'README.md', 'package.json', './build'] // Push a release commit and tag, including globed files
       }
     ]
   ],
