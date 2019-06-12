@@ -1,3 +1,10 @@
+## [2.1.3](https://github.com/toptal/picasso/compare/v2.1.2...v2.1.3) (2019-06-12)
+
+
+### Bug Fixes
+
+* **ci:** fix incorrect generating of package.json ([#460](https://github.com/toptal/picasso/issues/460)) ([69718cb](https://github.com/toptal/picasso/commit/69718cb))
+
 ## [2.1.2](https://github.com/toptal/picasso/compare/v2.1.1...v2.1.2) (2019-06-12)
 
 
