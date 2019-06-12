@@ -1,3 +1,10 @@
+## [2.1.2](https://github.com/toptal/picasso/compare/v2.1.1...v2.1.2) (2019-06-12)
+
+
+### Bug Fixes
+
+* **ci:** allow installing picasso with git reference ([#458](https://github.com/toptal/picasso/issues/458)) ([8e0d7d2](https://github.com/toptal/picasso/commit/8e0d7d2))
+
 ## [2.1.1](https://github.com/toptal/picasso/compare/v2.1.0...v2.1.1) (2019-06-12)
 
 

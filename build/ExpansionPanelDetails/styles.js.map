@@ -1,0 +1,1 @@
+{"version":3,"file":"styles.js","sourceRoot":"","sources":["../../src/components/ExpansionPanelDetails/styles.ts"],"names":[],"mappings":";;AAAA,qDAAuD;AAEvD,wCAA4C;AAE5C,yBAAe,CAAC,QAAQ,CAAC,GAAG,EAAE,CAAC,CAAC;IAC9B,wBAAwB,EAAE;QACxB,IAAI,EAAE;YACJ,OAAO,EAAE,CAAC;SACX;KACF;CACF,CAAC,CAAC,CAAA;AAEH,kBAAe,GAAG,EAAE,CAClB,qBAAY,CAAC;IACX,IAAI,EAAE,EAAE;CACT,CAAC,CAAA"}

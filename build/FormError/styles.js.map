@@ -1,0 +1,1 @@
+{"version":3,"file":"styles.js","sourceRoot":"","sources":["../../src/components/FormError/styles.ts"],"names":[],"mappings":";;AAAA,qDAA8D;AAE9D,kBAAe,CAAC,EAAE,OAAO,EAAS,EAAE,EAAE,CACpC,qBAAY,CAAC;IACX,IAAI,EAAE;QACJ,SAAS,EAAE,QAAQ;KACpB;IACD,KAAK,EAAE;QACL,KAAK,EAAE,OAAO,CAAC,GAAG,CAAC,IAAI;QACvB,QAAQ,EAAE,UAAU;QACpB,MAAM,EAAE,SAAS;KAClB;CACF,CAAC,CAAA"}
