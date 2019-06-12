@@ -2,8 +2,8 @@
   "name": "@toptal/picasso",
   "version": "2.1.0",
   "description": "",
-  "main": "index.js",
-  "module": "index.js",
+  "main": "build/index.js",
+  "module": "build/index.js",
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watchAll",
