@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-cp build/package.json .
-rm .gitignore

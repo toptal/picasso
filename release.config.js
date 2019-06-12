@@ -14,7 +14,7 @@ module.exports = {
     [
       '@semantic-release/exec', // Execute a shell command to bump next version inside README.md
       {
-        prepareCmd: './bin/bump-version ${nextRelease.version}'
+        prepareCmd: './ci/release/bump-version ${nextRelease.version}'
       }
     ],
     [
@@ -24,9 +24,9 @@ module.exports = {
       }
     ],
     [
-      '@semantic-release/exec', // Execute a shell command to copy package.json from build/ directory back to the root
+      '@semantic-release/exec', // Execute a shell command to update package.json to new version
       {
-        prepareCmd: './ci/release/copy-assets'
+        prepareCmd: './ci/release/prepare-assets ${nextRelease.version}'
       }
     ],
     [
