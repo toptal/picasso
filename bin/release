@@ -6,7 +6,7 @@ BASE_PATH=$(pwd)
 NODE_MODULES="$BASE_PATH/node_modules/"
 
 yarn build:dist
-cp package.json .npmrc build/
+cp .npmrc build/
 
 # Safe switch for jenkins if we want to just try out release
 # yarn release [0|1]
