@@ -12,18 +12,20 @@ const config = require(`../tsconfig.json`)
 const packageJson = require(path.resolve(__dirname, '../package.json'))
 const tscPath = path.resolve(__dirname, '../node_modules/.bin/tsc')
 
-const safeExec = (cmd) => {
+const safeExec = cmd => {
   try {
-    exec(cmd, 
-      { stdio: [process.stdin, process.stdout, process.stderr] }, 
+    exec(
+      cmd,
+      { stdio: [process.stdin, process.stdout, process.stderr] },
       (error, stdout, stderr) => {
-      if (error) {
-        process.exit(1)
-      } else {
-        return stdout
+        if (error) {
+          process.exit(1)
+        } else {
+          return stdout
+        }
       }
-    })
-  } catch(e) {
+    )
+  } catch (e) {
     console.error(e.message)
     process.exit(1)
   }
@@ -54,9 +56,7 @@ const compile = function(config) {
   clean()
   build()
 
-  if (String(yargs.config) === 'dev') {
-    generatePackageJson(config.compilerOptions.outDir)
-  }
+  generatePackageJson(config.compilerOptions.outDir)
 
   if (yargs.watch) {
     args.unshift('--watch')
@@ -74,7 +74,7 @@ function generatePackageJson(outDir) {
   const data = {
     ...packageJson,
     main: './index.js',
-    module: './index.js'
+    module: './index.js',
   }
 
   fs.writeFileSync(out, JSON.stringify(data, null, 2))
