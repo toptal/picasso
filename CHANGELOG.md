@@ -1,3 +1,10 @@
+## [2.1.1](https://github.com/toptal/picasso/compare/v2.1.0...v2.1.1) (2019-06-12)
+
+
+### Bug Fixes
+
+* **typography:** remove dropped bold font weight from typing ([#454](https://github.com/toptal/picasso/issues/454)) ([a27fd13](https://github.com/toptal/picasso/commit/a27fd13)), closes [#453](https://github.com/toptal/picasso/issues/453)
+
 # [2.1.0](https://github.com/toptal/picasso/compare/v2.0.2...v2.1.0) (2019-06-10)
 
 
