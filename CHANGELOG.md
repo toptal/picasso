@@ -1,3 +1,10 @@
+## [2.1.4](https://github.com/toptal/picasso/compare/v2.1.3...v2.1.4) (2019-06-12)
+
+
+### Bug Fixes
+
+* **ci:** refactor release scripts ([#461](https://github.com/toptal/picasso/issues/461)) ([ae24f2a](https://github.com/toptal/picasso/commit/ae24f2a))
+
 ## [2.1.3](https://github.com/toptal/picasso/compare/v2.1.2...v2.1.3) (2019-06-12)
 
 
