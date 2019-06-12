@@ -29,16 +29,6 @@ describe('Typography', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('bold and center aligned render', () => {
-    const { container } = render(
-      <TestTypography weight='bold' align='center'>
-        Bold and center aligned
-      </TestTypography>
-    )
-
-    expect(container).toMatchSnapshot()
-  })
-
   test('variant heading small render', () => {
     const { container } = render(
       <TestTypography variant='heading' size='small'>
