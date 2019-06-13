@@ -2,6 +2,7 @@ import React, { FunctionComponent, ReactNode } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import Dialog from '@material-ui/core/Dialog'
 import CloseIcon from '@material-ui/icons/Close'
+import { PaperProps } from '@material-ui/core/Paper'
 
 import ModalTitle from '../ModalTitle'
 import ModalContent from '../ModalContent'
@@ -27,6 +28,7 @@ export interface Props extends StandardProps {
   /** If `true`, the backdrop is not rendered */
   hideBackdrop?: boolean
   transitionDuration?: number
+  paperProps?: PaperProps
 }
 
 interface StaticProps {
@@ -47,7 +49,8 @@ export const Modal: FunctionComponent<Props> & StaticProps = props => {
     style,
     container,
     hideBackdrop,
-    transitionDuration
+    transitionDuration,
+    paperProps
   } = props
   const { closeButton, ...restClasses } = classes
 
@@ -57,7 +60,7 @@ export const Modal: FunctionComponent<Props> & StaticProps = props => {
       className={className}
       style={style}
       container={container}
-      PaperProps={{ elevation: 2 }}
+      PaperProps={{ ...paperProps, elevation: 2 }}
       hideBackdrop={hideBackdrop}
       onBackdropClick={onBackdropClick}
       onClose={onClose}
