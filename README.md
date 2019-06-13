@@ -3,7 +3,7 @@
 <br/>
 
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
-[![](https://img.shields.io/badge/npm-2.1.4-brightgreen.svg)](https://www.npmjs.com/package/@toptal/picasso)
+[![](https://img.shields.io/badge/npm-2.1.5-brightgreen.svg)](https://www.npmjs.com/package/@toptal/picasso)
 [![Depfu](https://badges.depfu.com/badges/5334b0c5b6255a3e8b0199b2a5411667/count.svg)](https://depfu.com/repos/toptal/picasso?project_id=7646)
 [![#-frontend-exp-core](https://img.shields.io/badge/slack-%23--frontend--exp--core-green.svg)](https://toptal-core.slack.com/app_redirect?channel=CERF5NHT3)
 

@@ -1,4 +1,5 @@
 import { FunctionComponent, ReactNode } from 'react';
+import { PaperProps } from '@material-ui/core/Paper';
 import ModalTitle from '../ModalTitle';
 import ModalContent from '../ModalContent';
 import ModalActions from '../ModalActions';
@@ -20,6 +21,7 @@ export interface Props extends StandardProps {
     /** If `true`, the backdrop is not rendered */
     hideBackdrop?: boolean;
     transitionDuration?: number;
+    paperProps?: PaperProps;
 }
 interface StaticProps {
     Content: typeof ModalContent;

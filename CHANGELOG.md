@@ -1,3 +1,10 @@
+## [2.1.5](https://github.com/toptal/picasso/compare/v2.1.4...v2.1.5) (2019-06-13)
+
+
+### Bug Fixes
+
+* **modal:** pass paperProps to enable custom styling of Modal dialog ([#465](https://github.com/toptal/picasso/issues/465)) ([cadcd68](https://github.com/toptal/picasso/commit/cadcd68))
+
 ## [2.1.4](https://github.com/toptal/picasso/compare/v2.1.3...v2.1.4) (2019-06-12)
 
 
