@@ -10,7 +10,7 @@ interface SourceRenderProps {
    *
    * @param {React.Element} A created element.
    */
-  render?: (component: React.ReactNode) => React.ReactNode
+  wrap?: (component: React.ReactNode) => React.ReactNode
 
   /**
    * An option that controls rendering of HTML with ReactDOM server, it allows to omit
@@ -30,6 +30,12 @@ interface SourceRenderProps {
 
   /** A string that contains the source code. */
   source: string
+
+  /**
+   * Fixes hot reload issue to reload the component even
+   * if source code has not been changed
+   * */
+  unstable_hot?: boolean
 }
 
 interface SourceRenderComponent<T> extends React.ComponentClass<T> {

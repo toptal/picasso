@@ -82,19 +82,6 @@ class CodeExample extends Component<Props> {
     }
   }
 
-  /* This function is needed to avoid memoization of the source code
-   * in SourceRender component (`react-source-code` package). Hot reload
-   * does not work properly if the memoization is happening.
-   * Issue: https://github.com/layershifter/react-source-render/issues/10
-   */
-  avoidSourceCodeMemoization = (sourceCode: string) => {
-    return `
-      ${sourceCode}
-
-      function resetCode() { ${Math.random()} }
-    `
-  }
-
   handleShowEditor = () => {
     const { isEditorVisible } = this.state
     this.setState({ isEditorVisible: !isEditorVisible })
@@ -132,13 +119,12 @@ class CodeExample extends Component<Props> {
             babelConfig={{
               presets: ['es2015']
             }}
-            render={renderInTestPicasso}
+            wrap={renderInTestPicasso}
             resolver={resolver}
-            source={this.avoidSourceCodeMemoization(sourceCode)}
+            source={sourceCode}
+            unstable_hot
           >
-            <SourceRender.Consumer>
-              {({ element }: RenderResult) => element}
-            </SourceRender.Consumer>
+            {({ element }: RenderResult) => element}
           </SourceRender>
         </div>
       )
@@ -167,57 +153,53 @@ class CodeExample extends Component<Props> {
           babelConfig={{
             presets: ['es2015']
           }}
-          render={renderInPicasso}
+          wrap={renderInPicasso}
           resolver={resolver}
-          source={this.avoidSourceCodeMemoization(sourceCode)}
+          source={sourceCode}
+          unstable_hot
         >
-          <div className={classes.root}>
-            <div className={classes.component}>
-              <Container
-                className={classes.componentRenderer}
-                top='large'
-                bottom='large'
-              >
-                <SourceRender.Consumer>
-                  {({ element }: RenderResult) => element}
-                </SourceRender.Consumer>
-
-                <SourceRender.Consumer>
-                  {({ error }: RenderResult) =>
-                    error && (
-                      <Typography color='red'>{error.toString()}</Typography>
-                    )
-                  }
-                </SourceRender.Consumer>
-              </Container>
-              <div className={classes.buttons}>
-                {showEditCode && (
+          {({ element, error }: RenderResult) => (
+            <div className={classes.root}>
+              <div className={classes.component}>
+                <Container
+                  className={classes.componentRenderer}
+                  top='large'
+                  bottom='large'
+                >
+                  {element}
+                  {error && (
+                    <Typography color='red'>{error.toString()}</Typography>
+                  )}
+                </Container>
+                <div className={classes.buttons}>
+                  {showEditCode && (
+                    <Button
+                      variant='flat'
+                      size='small'
+                      icon={<IconCode />}
+                      onClick={this.handleShowEditor}
+                    >
+                      Edit code
+                    </Button>
+                  )}
                   <Button
                     variant='flat'
                     size='small'
-                    icon={<IconCode />}
-                    onClick={this.handleShowEditor}
+                    icon={<IconLink />}
+                    onClick={this.handleCopyLink}
                   >
-                    Edit code
+                    {copyLinkButtonText}
                   </Button>
-                )}
-                <Button
-                  variant='flat'
-                  size='small'
-                  icon={<IconLink />}
-                  onClick={this.handleCopyLink}
-                >
-                  {copyLinkButtonText}
-                </Button>
+                </div>
+              </div>
+              <div>
+                <Accordion
+                  content={SourceCodeEditor}
+                  expanded={isEditorVisible}
+                />
               </div>
             </div>
-            <div>
-              <Accordion
-                content={SourceCodeEditor}
-                expanded={isEditorVisible}
-              />
-            </div>
-          </div>
+          )}
         </SourceRender>
       </div>
     )
