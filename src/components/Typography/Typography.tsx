@@ -12,7 +12,15 @@ import styles from './styles'
 type VariantType = 'heading' | 'body'
 
 type WeightType = 'thin' | 'light' | 'regular' | 'semibold'
-type ColorType = 'blue' | 'green' | 'red' | 'grey' | 'black' | 'inherit'
+type ColorType =
+  | 'blue'
+  | 'green'
+  | 'red'
+  | 'yellow'
+  | 'grey'
+  | 'light-grey'
+  | 'black'
+  | 'inherit'
 
 export interface Props extends StandardProps {
   /** Font variant inner text */
@@ -73,13 +81,15 @@ export const Typography: FunctionComponent<Props> = ({
 }) => {
   const resolvedVariant = VARIANTS[variant!][size!]
   const variantClassName = kebabToCamelCase(`${variant}-${size}`)
+  const colorClassName = kebabToCamelCase(`${color}`)
+
   const rootClass = cx(
     {
       [classes.invert]: invert
     },
     classes[variantClassName],
     classes[weight!],
-    classes[color!]
+    classes[colorClassName]
   )
 
   return (

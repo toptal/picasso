@@ -90,8 +90,14 @@ export default ({ palette, typography }: Theme) =>
     blue: {
       color: palette.primary.main
     },
+    yellow: {
+      color: palette.yellow.main
+    },
     grey: {
       color: palette.text.primary
+    },
+    lightGrey: {
+      color: palette.grey.light
     },
     black: {
       color: palette.common.black
