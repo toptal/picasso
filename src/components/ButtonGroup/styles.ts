@@ -3,25 +3,33 @@ import { createStyles } from '@material-ui/core/styles'
 export default () =>
   createStyles({
     root: {
-      display: 'inline-block',
+      display: 'flex',
+      justifyContent: 'flex-start',
 
       '& $button + $button': {
-        margin: '0'
+        marginLeft: '-1px'
       }
     },
     button: {
+      transitionProperty: 'color, background',
+
       '&:first-child': {
         borderTopRightRadius: 'unset',
-        borderBottomRightRadius: 'unset',
-        borderRight: 'none'
+        borderBottomRightRadius: 'unset'
       },
+
+      '&:not(:first-child):not(:last-child)': {
+        borderRadius: 'unset'
+      },
+
       '&:last-child': {
         borderTopLeftRadius: 'unset',
         borderBottomLeftRadius: 'unset'
       },
-      '&:not(:first-child):not(:last-child)': {
-        borderRadius: 'unset',
-        borderRight: 'none'
+
+      '&:active, &$active, &:hover': {
+        zIndex: 1
       }
-    }
+    },
+    active: {}
   })

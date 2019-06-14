@@ -11,7 +11,7 @@ const TestComponent = (props: any) => {
   return children
 }
 
-const DecoratedComponent = withClasses(classes => [[Button, classes.test]])(
+const DecoratedComponent = withClasses(classes => [[Button, { root: classes.test }]])(
   TestComponent
 )
 
@@ -27,7 +27,7 @@ const renderComponent = () => {
 
 afterEach(cleanup)
 
-describe.only('Typography', () => {
+describe('withClasses', () => {
   let api: RenderResult
 
   beforeEach(() => {
