@@ -26,9 +26,10 @@ const VARIANTS = {
 exports.Typography = ({ variant, children, size, align, className, classes, style, inline, as, weight, color, invert }) => {
     const resolvedVariant = VARIANTS[variant][size];
     const variantClassName = kebab_to_camel_case_1.default(`${variant}-${size}`);
+    const colorClassName = kebab_to_camel_case_1.default(`${color}`);
     const rootClass = classnames_1.default({
         [classes.invert]: invert
-    }, classes[variantClassName], classes[weight], classes[color]);
+    }, classes[variantClassName], classes[weight], classes[colorClassName]);
     return (react_1.default.createElement(Typography_1.default, { align: align, className: className, classes: {
             root: rootClass
         }, style: style, variant: resolvedVariant, inline: inline, component: as }, children));

@@ -13,8 +13,8 @@ exports.Grid.defaultProps = {
     alignItems: 'flex-start',
     direction: 'row',
     justify: 'flex-start',
-    wrap: 'wrap',
-    spacing: 32
+    spacing: 32,
+    wrap: 'wrap'
 };
 exports.Grid.Item = GridItem_1.default;
 exports.default = styles_1.withStyles(styles_2.default)(exports.Grid);

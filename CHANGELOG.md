@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/toptal/picasso/compare/v2.1.5...v2.2.0) (2019-06-14)
+
+
+### Features
+
+* **typography:** add yellow and light grey colors ([#467](https://github.com/toptal/picasso/issues/467)) ([56de5e6](https://github.com/toptal/picasso/commit/56de5e6)), closes [#464](https://github.com/toptal/picasso/issues/464)
+
 ## [2.1.5](https://github.com/toptal/picasso/compare/v2.1.4...v2.1.5) (2019-06-13)
 
 

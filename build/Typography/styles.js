@@ -86,8 +86,14 @@ exports.default = ({ palette, typography }) => styles_1.createStyles({
     blue: {
         color: palette.primary.main
     },
+    yellow: {
+        color: palette.yellow.main
+    },
     grey: {
         color: palette.text.primary
+    },
+    lightGrey: {
+        color: palette.grey.light
     },
     black: {
         color: palette.common.black
