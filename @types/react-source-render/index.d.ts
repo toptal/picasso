@@ -35,7 +35,7 @@ interface SourceRenderProps {
    * Fixes hot reload issue to reload the component even
    * if source code has not been changed
    * */
-  unstable_hot?: boolean
+  unstable_hot?: boolean // eslint-disable-line camelcase
 }
 
 interface SourceRenderComponent<T> extends React.ComponentClass<T> {

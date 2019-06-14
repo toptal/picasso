@@ -61,8 +61,8 @@ Grid.defaultProps = {
   alignItems: 'flex-start',
   direction: 'row',
   justify: 'flex-start',
-  wrap: 'wrap',
-  spacing: 32
+  spacing: 32,
+  wrap: 'wrap'
 }
 
 Grid.Item = GridItem
