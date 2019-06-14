@@ -2903,10 +2903,10 @@
     "@svgr/plugin-svgo" "^4.0.3"
     loader-utils "^1.1.0"
 
-"@toptal/davinci-cli-shared@^0.0.2-alpha.4":
-  version "0.0.2-alpha.4"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-cli-shared/-/davinci-cli-shared-0.0.2-alpha.4.tgz#bf6c2eb04757c7ae75a25d3576ad2baa842643f0"
-  integrity sha512-fM/zMv2/sVFF1kseaW79UgVVwIp/C58Fn5FxNFgOXbmw7CBAf7zfOHWGN0YmxxKgCyWM2SpgA+t9SvlZLQiloA==
+"@toptal/davinci-cli-shared@^0.0.2-alpha.8":
+  version "0.0.2-alpha.8"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-cli-shared/-/davinci-cli-shared-0.0.2-alpha.8.tgz#68dcaf266cad1ee7dde7a7a0d3f962e6e2cceae6"
+  integrity sha512-x2Q6KCf+xW+ndKCXelJQ7lmUfBboBAJf2t6xnKpACiKQvljcvNZeo1jwhvfUV5M7ltMMpPtHZxm6GVe+xB1Sfw==
   dependencies:
     chalk "^2.4.2"
     execa "^1.0.0"
@@ -2914,12 +2914,12 @@
     npx "^10.2.0"
     vorpal "^1.12.0"
 
-"@toptal/davinci-syntax@^0.0.2-alpha.5":
-  version "0.0.2-alpha.5"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-syntax/-/davinci-syntax-0.0.2-alpha.5.tgz#24da6d763fc774fe2f3816e8fb4ac91b770689e9"
-  integrity sha512-JsBg7PXpGWh7BDFQWujTDDrDmslOpqRC3myBN7M8Og3wqaZgp+VzfFH9BTjTFimcuXoz427KAPnWXOP1rpJMLg==
+"@toptal/davinci-syntax@^0.0.2-alpha.13":
+  version "0.0.2-alpha.13"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-syntax/-/davinci-syntax-0.0.2-alpha.13.tgz#af8d73845311cc82eae550a8fcda4cf2cf34ace6"
+  integrity sha512-+gC6Seo6o7m53NSU1sV4iR8ABhZkk5OYImUk0MITBt7wZ1p/s8tALw33kGBFJ+XpoS63ph8ugKic+GSSdqjRWQ==
   dependencies:
-    "@toptal/davinci-cli-shared" "^0.0.2-alpha.4"
+    "@toptal/davinci-cli-shared" "^0.0.2-alpha.8"
     "@typescript-eslint/eslint-plugin" "^1.9.0"
     "@typescript-eslint/parser" "^1.9.0"
     eslint "^5.16.0"
@@ -2934,7 +2934,7 @@
     husky "^2.4.0"
     lint-staged "^8.2.0"
     prettier-standard "^9.1.1"
-    typescript "3.3.4000"
+    typescript "3.5.2"
 
 "@types/babel__core@^7.1.0":
   version "7.1.1"
@@ -15588,15 +15588,15 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@3.3.4000:
-  version "3.3.4000"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.3.4000.tgz#76b0f89cfdbf97827e1112d64f283f1151d6adf0"
-  integrity sha512-jjOcCZvpkl2+z7JFn0yBOoLQyLoIkNZAs/fYJkUG6VKy6zLPHJGfQJYFHzibB6GJaF/8QrcECtlQ5cpvRHSMEA==
-
 typescript@3.5.1:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.5.1.tgz#ba72a6a600b2158139c5dd8850f700e231464202"
   integrity sha512-64HkdiRv1yYZsSe4xC1WVgamNigVYjlssIoaH2HcZF0+ijsk5YK2g0G34w9wJkze8+5ow4STd22AynfO6ZYYLw==
+
+typescript@3.5.2:
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.5.2.tgz#a09e1dc69bc9551cadf17dba10ee42cf55e5d56c"
+  integrity sha512-7KxJovlYhTX5RaRbUdkAXN1KUZ8PwWlTzQdHV6xNqvuFOs7+WBo10TQUqT19Q/Jz2hk5v9TQDIhyLhhJY4p5AA==
 
 ua-parser-js@^0.7.18:
   version "0.7.19"
