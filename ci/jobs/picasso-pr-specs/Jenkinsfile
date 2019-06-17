@@ -53,6 +53,7 @@ pipeline {
 
     stage('Yarn install') {
       steps {
+        sh 'rm -rf ./node_modules'
         sh 'yarn install'
       } //steps
     }//stage
