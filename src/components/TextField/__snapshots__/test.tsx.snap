@@ -111,3 +111,49 @@ exports[`Icon prop renders icon at the end 1`] = `
   </div>
 </div>
 `;
+
+exports[`Native html attributes adds native props to the input 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="MuiFormControl-root TextField-rootFixedWidth"
+    >
+      <div
+        class="MuiInputBase-root MuiOutlinedInput-root TextField-root MuiInputBase-disabled MuiOutlinedInput-disabled MuiInputBase-formControl"
+        form="formId"
+        list="listId"
+        required=""
+        tabindex="-1"
+      >
+        <fieldset
+          aria-hidden="true"
+          class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+          style="padding-left: 8px;"
+        >
+          <legend
+            class="MuiPrivateNotchedOutline-legend"
+            style="width: 0.01px;"
+          >
+            <span>
+              ​
+            </span>
+          </legend>
+        </fieldset>
+        <input
+          aria-invalid="false"
+          autocomplete="autocomplete"
+          class="MuiInputBase-input MuiOutlinedInput-input TextField-input MuiInputBase-disabled MuiOutlinedInput-disabled MuiInputBase-inputType"
+          disabled=""
+          name="name"
+          readonly=""
+          required=""
+          type="button"
+          value="value"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
