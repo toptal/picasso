@@ -1,4 +1,9 @@
-import React, { FunctionComponent, ReactNode, ChangeEvent } from 'react'
+import React, {
+  FunctionComponent,
+  ReactNode,
+  ChangeEvent,
+  InputHTMLAttributes
+} from 'react'
 import cx from 'classnames'
 import MUITextField from '@material-ui/core/TextField'
 import { withStyles } from '@material-ui/core/styles'
@@ -9,8 +14,13 @@ import { StandardProps } from '../Picasso'
 import styles from './styles'
 
 type IconPosition = 'start' | 'end'
+/**
+ * Alias for all valid HTML props for `<input>` element.
+ * Does not include React's `ref` or `key`.
+ */
+type HTMLInputProps = InputHTMLAttributes<HTMLInputElement>
 
-export interface Props extends StandardProps {
+export interface Props extends StandardProps, HTMLInputProps {
   /** The id of the `input` element. */
   id?: string
   /** Name attribute of the input element */
@@ -71,7 +81,8 @@ export const TextField: FunctionComponent<Props> = ({
   rows,
   rowsMax,
   type,
-  onChange
+  onChange,
+  ...rest
 }) => {
   if (icon) {
     const IconAdornment = (
@@ -95,6 +106,8 @@ export const TextField: FunctionComponent<Props> = ({
     }
   }
 
+  const { defaultValue, ...inputHtmlProps } = rest
+
   return (
     <MUITextField
       id={id}
@@ -115,6 +128,7 @@ export const TextField: FunctionComponent<Props> = ({
         [classes.rootFullWidth]: fullWidth
       })}
       InputProps={{
+        ...inputHtmlProps,
         ...inputProps,
         classes: {
           root: cx(classes.root, {
@@ -125,6 +139,7 @@ export const TextField: FunctionComponent<Props> = ({
         }
       }}
       onChange={onChange}
+      defaultValue={defaultValue as string}
     >
       {children}
     </MUITextField>

@@ -40,3 +40,27 @@ describe('Icon prop', () => {
     expect(container).toMatchSnapshot()
   })
 })
+
+describe('Native html attributes', () => {
+  test('adds native props to the input', () => {
+    const { container } = render(
+      <Picasso loadFonts={false}>
+        <TextField
+          readOnly
+          required
+          disabled
+          autoFocus
+          tabIndex={-1}
+          type='button'
+          value='value'
+          name='name'
+          list='listId'
+          form='formId'
+          autoComplete='autocomplete'
+        />
+      </Picasso>
+    )
+
+    expect(container).toMatchSnapshot()
+  })
+})

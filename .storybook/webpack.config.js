@@ -14,11 +14,17 @@ const tsLoader = {
     configFile: tsConfigFile
   }
 }
+
+const SKIP_PATTERN = /node_modules\/@types\/react\/index.d.ts/
 const tsDocgenLoader = {
   loader: require.resolve('react-docgen-typescript-loader'),
   options: {
     tsconfigPath: tsConfigFile,
-    skipPropsWithoutDoc: true
+    propFilter: prop => {
+      if (prop.description.length === 0) return false
+
+      return !SKIP_PATTERN.test(prop.parent.fileName)
+    }
   }
 }
 
@@ -27,7 +33,7 @@ const defaultLoaders =
 
 module.exports = ({ config }) => {
   config.entry = ['@babel/polyfill', ...config.entry]
-  
+
   config.module.rules.push({
     test: /\.(ts|tsx)$/,
     oneOf: [
