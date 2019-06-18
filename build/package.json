@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "description": "",
   "main": "./index.js",
   "module": "./index.js",
@@ -75,8 +75,6 @@
     "@types/react-dom": "^16.8.4",
     "@types/storybook__react": "^4.0.0",
     "@types/styled-components": "^4.1.15",
-    "@typescript-eslint/eslint-plugin": "^1.9.0",
-    "@typescript-eslint/parser": "^1.9.0",
     "babel-loader": "^8.0.6",
     "brace": "^0.11.1",
     "chalk": "^2.4.1",

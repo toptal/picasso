@@ -14,5 +14,5 @@ export interface Props extends StandardProps {
     style?: CSSProperties;
 }
 export declare const Image: FunctionComponent<Props>;
-declare const _default: React.ComponentType<Pick<React.PropsWithChildren<Props>, "style" | "children" | "className" | "variant" | "src" | "srcSet" | "alt"> & import("@material-ui/core/styles").StyledComponentProps<"root" | "circular">>;
+declare const _default: React.ComponentType<Pick<React.PropsWithChildren<Props>, "style" | "children" | "className" | "variant" | "alt" | "src" | "srcSet"> & import("@material-ui/core/styles").StyledComponentProps<"root" | "circular">>;
 export default _default;

@@ -1,4 +1,15 @@
 "use strict";
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -9,7 +20,8 @@ const TextField_1 = __importDefault(require("@material-ui/core/TextField"));
 const styles_1 = require("@material-ui/core/styles");
 const InputAdornment_1 = __importDefault(require("../InputAdornment"));
 const styles_2 = __importDefault(require("./styles"));
-exports.TextField = ({ id, name, value, placeholder, error, disabled, autoFocus, autoComplete, icon, iconPosition, inputProps = {}, classes, children, multiline, fullWidth, className, style, rows, rowsMax, type, onChange }) => {
+exports.TextField = (_a) => {
+    var { id, name, value, placeholder, error, disabled, autoFocus, autoComplete, icon, iconPosition, inputProps = {}, classes, children, multiline, fullWidth, className, style, rows, rowsMax, type, onChange } = _a, rest = __rest(_a, ["id", "name", "value", "placeholder", "error", "disabled", "autoFocus", "autoComplete", "icon", "iconPosition", "inputProps", "classes", "children", "multiline", "fullWidth", "className", "style", "rows", "rowsMax", "type", "onChange"]);
     if (icon) {
         const IconAdornment = (react_1.default.createElement(InputAdornment_1.default, { className: classnames_1.default(classes.icon, iconPosition === 'end' ? classes.iconEnd : classes.iconStart), position: iconPosition }, icon));
         inputProps.notched = false;
@@ -20,15 +32,16 @@ exports.TextField = ({ id, name, value, placeholder, error, disabled, autoFocus,
             inputProps.startAdornment = IconAdornment;
         }
     }
+    const { defaultValue } = rest, inputHtmlProps = __rest(rest, ["defaultValue"]);
     return (react_1.default.createElement(TextField_1.default, { id: id, name: name, value: value, placeholder: placeholder, error: error, disabled: disabled, autoFocus: autoFocus, autoComplete: autoComplete, multiline: multiline, variant: 'outlined', style: style, rows: rows, rowsMax: rowsMax, type: type, className: classnames_1.default(classes.rootFixedWidth, className, {
             [classes.rootFullWidth]: fullWidth
-        }), InputProps: Object.assign({}, inputProps, { classes: {
+        }), InputProps: Object.assign({}, inputHtmlProps, inputProps, { classes: {
                 root: classnames_1.default(classes.root, {
                     [classes.rootMultiline]: multiline
                 }),
                 input: classes.input,
                 inputMultiline: classes.inputMultiline
-            } }), onChange: onChange }, children));
+            } }), onChange: onChange, defaultValue: defaultValue }, children));
 };
 exports.TextField.defaultProps = {
     iconPosition: 'start',

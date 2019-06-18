@@ -1,3 +1,10 @@
+# [2.4.0](https://github.com/toptal/picasso/compare/v2.3.0...v2.4.0) (2019-06-18)
+
+
+### Features
+
+* add support of native attributes ([#481](https://github.com/toptal/picasso/issues/481)) ([c2f882c](https://github.com/toptal/picasso/commit/c2f882c))
+
 # [2.3.0](https://github.com/toptal/picasso/compare/v2.2.0...v2.3.0) (2019-06-18)
 
 

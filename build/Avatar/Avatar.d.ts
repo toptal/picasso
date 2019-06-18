@@ -26,5 +26,5 @@ export declare class Avatar extends PureComponent<Props> {
     renderInitials(): JSX.Element | null;
     render(): JSX.Element;
 }
-declare const _default: React.ComponentType<Pick<Pick<Props, never> & Partial<Pick<Props, "size" | "style" | "classes" | "className" | "name" | "variant" | "src" | "alt">> & Partial<Pick<Partial<Props>, never>>, "size" | "style" | "className" | "name" | "variant" | "src" | "alt"> & import("@material-ui/core/styles").StyledComponentProps<"medium" | "text" | "large" | "small" | "square" | "image" | "root" | "xsmall" | "logo" | "portrait" | "landscape" | "clippedCorner" | "textContainer" | "logoContainer">>;
+declare const _default: React.ComponentType<Pick<Pick<Props, never> & Partial<Pick<Props, "size" | "style" | "classes" | "className" | "name" | "variant" | "alt" | "src">> & Partial<Pick<Partial<Props>, never>>, "size" | "style" | "className" | "name" | "variant" | "alt" | "src"> & import("@material-ui/core/styles").StyledComponentProps<"medium" | "text" | "large" | "small" | "square" | "image" | "root" | "xsmall" | "logo" | "portrait" | "landscape" | "clippedCorner" | "textContainer" | "logoContainer">>;
 export default _default;
