@@ -3058,9 +3058,9 @@
     vorpal "^1.12.0"
 
 "@toptal/davinci-syntax@^0.0.2-alpha.13":
-  version "0.0.2-alpha.13"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-syntax/-/davinci-syntax-0.0.2-alpha.13.tgz#af8d73845311cc82eae550a8fcda4cf2cf34ace6"
-  integrity sha512-+gC6Seo6o7m53NSU1sV4iR8ABhZkk5OYImUk0MITBt7wZ1p/s8tALw33kGBFJ+XpoS63ph8ugKic+GSSdqjRWQ==
+  version "0.0.2-alpha.14"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-syntax/-/davinci-syntax-0.0.2-alpha.14.tgz#a8605279c97bf293668a168910895b03704e6825"
+  integrity sha512-5DhaLFQ8tOA45nl6vcpwAZcby49nWAg07lUZXvv4D2kQy2Usy9Szl9ux/NNqFqi4ViQrJrvlrkW5D/5AnJZjnw==
   dependencies:
     "@toptal/davinci-cli-shared" "^0.0.2-alpha.8"
     "@typescript-eslint/eslint-plugin" "^1.9.0"
