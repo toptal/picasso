@@ -2,7 +2,6 @@ import React, { FunctionComponent, ReactNode } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import renamePropsWithWarning from 'react-deprecate'
-import _ from 'lodash'
 
 import { StandardProps } from '../Picasso'
 import UserBadge from '../UserBadge'
@@ -49,7 +48,7 @@ export const PageHeaderMenu: FunctionComponent<Props> = ({
         name={name}
         avatar={avatar}
       >
-        {_.isString(meta) ? (
+        {typeof meta === 'string' ? (
           <Typography className={classes.truncateText} invert size='small'>
             {meta}
           </Typography>
