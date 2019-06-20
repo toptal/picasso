@@ -21,12 +21,38 @@ exports[`Stepper default render 1`] = `
               class="StepIcon-root StepIcon-completed"
             >
               <svg
-                class="SvgTick-root"
-                viewBox="0 0 16 16"
+                class="SvgCheck24-root"
+                style="min-width: 24px; min-height: 24px;"
+                viewBox="0 0 24 24"
               >
-                <path
-                  d="M5.804 9.76L7.085 11 12 6.24 10.72 5 7.085 8.52 5.28 6.771 4 8.012z"
-                />
+                <defs>
+                  <path
+                    d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
+                    id="check24_svg__a"
+                  />
+                </defs>
+                <g
+                  fill-rule="evenodd"
+                >
+                  <mask
+                    id="check24_svg__b"
+                  >
+                    <use
+                      xlink:href="#check24_svg__a"
+                    />
+                  </mask>
+                  <use
+                    fill-rule="nonzero"
+                    xlink:href="#check24_svg__a"
+                  />
+                  <g
+                    mask="url(#check24_svg__b)"
+                  >
+                    <path
+                      d="M0 0h24v24H0z"
+                    />
+                  </g>
+                </g>
               </svg>
             </div>
           </span>
@@ -46,12 +72,38 @@ exports[`Stepper default render 1`] = `
         </span>
       </div>
       <svg
-        class="SvgChevronRight-root StepConnector-connectorIcon"
-        viewBox="0 0 7 13"
+        class="SvgChevronRight16-root StepConnector-connectorIcon"
+        style="min-width: 16px; min-height: 16px;"
+        viewBox="0 0 16 16"
       >
-        <path
-          d="M7 6.5a.43.43 0 0 1-.12.3l-5.604 6.07a.367.367 0 0 1-.277.13.367.367 0 0 1-.277-.13l-.601-.652a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3L4.848 6.5.12 1.381a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3l.602-.65A.368.368 0 0 1 .999 0c.104 0 .196.044.277.13L6.879 6.2A.43.43 0 0 1 7 6.5z"
-        />
+        <defs>
+          <path
+            d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+            id="chevronRight16_svg__a"
+          />
+        </defs>
+        <g
+          fill-rule="evenodd"
+        >
+          <mask
+            id="chevronRight16_svg__b"
+          >
+            <use
+              xlink:href="#chevronRight16_svg__a"
+            />
+          </mask>
+          <use
+            fill-rule="nonzero"
+            xlink:href="#chevronRight16_svg__a"
+          />
+          <g
+            mask="url(#chevronRight16_svg__b)"
+          >
+            <path
+              d="M0 0h16v16H0z"
+            />
+          </g>
+        </g>
       </svg>
       <div
         class="MuiStep-root MuiStep-completed"
@@ -66,12 +118,38 @@ exports[`Stepper default render 1`] = `
               class="StepIcon-root StepIcon-completed"
             >
               <svg
-                class="SvgTick-root"
-                viewBox="0 0 16 16"
+                class="SvgCheck24-root"
+                style="min-width: 24px; min-height: 24px;"
+                viewBox="0 0 24 24"
               >
-                <path
-                  d="M5.804 9.76L7.085 11 12 6.24 10.72 5 7.085 8.52 5.28 6.771 4 8.012z"
-                />
+                <defs>
+                  <path
+                    d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
+                    id="check24_svg__a"
+                  />
+                </defs>
+                <g
+                  fill-rule="evenodd"
+                >
+                  <mask
+                    id="check24_svg__b"
+                  >
+                    <use
+                      xlink:href="#check24_svg__a"
+                    />
+                  </mask>
+                  <use
+                    fill-rule="nonzero"
+                    xlink:href="#check24_svg__a"
+                  />
+                  <g
+                    mask="url(#check24_svg__b)"
+                  >
+                    <path
+                      d="M0 0h24v24H0z"
+                    />
+                  </g>
+                </g>
               </svg>
             </div>
           </span>
@@ -91,12 +169,38 @@ exports[`Stepper default render 1`] = `
         </span>
       </div>
       <svg
-        class="SvgChevronRight-root StepConnector-connectorIcon"
-        viewBox="0 0 7 13"
+        class="SvgChevronRight16-root StepConnector-connectorIcon"
+        style="min-width: 16px; min-height: 16px;"
+        viewBox="0 0 16 16"
       >
-        <path
-          d="M7 6.5a.43.43 0 0 1-.12.3l-5.604 6.07a.367.367 0 0 1-.277.13.367.367 0 0 1-.277-.13l-.601-.652a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3L4.848 6.5.12 1.381a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3l.602-.65A.368.368 0 0 1 .999 0c.104 0 .196.044.277.13L6.879 6.2A.43.43 0 0 1 7 6.5z"
-        />
+        <defs>
+          <path
+            d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+            id="chevronRight16_svg__a"
+          />
+        </defs>
+        <g
+          fill-rule="evenodd"
+        >
+          <mask
+            id="chevronRight16_svg__b"
+          >
+            <use
+              xlink:href="#chevronRight16_svg__a"
+            />
+          </mask>
+          <use
+            fill-rule="nonzero"
+            xlink:href="#chevronRight16_svg__a"
+          />
+          <g
+            mask="url(#chevronRight16_svg__b)"
+          >
+            <path
+              d="M0 0h16v16H0z"
+            />
+          </g>
+        </g>
       </svg>
       <div
         class="MuiStep-root"
@@ -127,12 +231,38 @@ exports[`Stepper default render 1`] = `
         </span>
       </div>
       <svg
-        class="SvgChevronRight-root StepConnector-connectorIcon"
-        viewBox="0 0 7 13"
+        class="SvgChevronRight16-root StepConnector-connectorIcon"
+        style="min-width: 16px; min-height: 16px;"
+        viewBox="0 0 16 16"
       >
-        <path
-          d="M7 6.5a.43.43 0 0 1-.12.3l-5.604 6.07a.367.367 0 0 1-.277.13.367.367 0 0 1-.277-.13l-.601-.652a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3L4.848 6.5.12 1.381a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3l.602-.65A.368.368 0 0 1 .999 0c.104 0 .196.044.277.13L6.879 6.2A.43.43 0 0 1 7 6.5z"
-        />
+        <defs>
+          <path
+            d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+            id="chevronRight16_svg__a"
+          />
+        </defs>
+        <g
+          fill-rule="evenodd"
+        >
+          <mask
+            id="chevronRight16_svg__b"
+          >
+            <use
+              xlink:href="#chevronRight16_svg__a"
+            />
+          </mask>
+          <use
+            fill-rule="nonzero"
+            xlink:href="#chevronRight16_svg__a"
+          />
+          <g
+            mask="url(#chevronRight16_svg__b)"
+          >
+            <path
+              d="M0 0h16v16H0z"
+            />
+          </g>
+        </g>
       </svg>
       <div
         class="MuiStep-root"
@@ -188,12 +318,38 @@ exports[`Stepper render with all steps completed 1`] = `
               class="StepIcon-root StepIcon-completed"
             >
               <svg
-                class="SvgTick-root"
-                viewBox="0 0 16 16"
+                class="SvgCheck24-root"
+                style="min-width: 24px; min-height: 24px;"
+                viewBox="0 0 24 24"
               >
-                <path
-                  d="M5.804 9.76L7.085 11 12 6.24 10.72 5 7.085 8.52 5.28 6.771 4 8.012z"
-                />
+                <defs>
+                  <path
+                    d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
+                    id="check24_svg__a"
+                  />
+                </defs>
+                <g
+                  fill-rule="evenodd"
+                >
+                  <mask
+                    id="check24_svg__b"
+                  >
+                    <use
+                      xlink:href="#check24_svg__a"
+                    />
+                  </mask>
+                  <use
+                    fill-rule="nonzero"
+                    xlink:href="#check24_svg__a"
+                  />
+                  <g
+                    mask="url(#check24_svg__b)"
+                  >
+                    <path
+                      d="M0 0h24v24H0z"
+                    />
+                  </g>
+                </g>
               </svg>
             </div>
           </span>
@@ -213,12 +369,38 @@ exports[`Stepper render with all steps completed 1`] = `
         </span>
       </div>
       <svg
-        class="SvgChevronRight-root StepConnector-connectorIcon"
-        viewBox="0 0 7 13"
+        class="SvgChevronRight16-root StepConnector-connectorIcon"
+        style="min-width: 16px; min-height: 16px;"
+        viewBox="0 0 16 16"
       >
-        <path
-          d="M7 6.5a.43.43 0 0 1-.12.3l-5.604 6.07a.367.367 0 0 1-.277.13.367.367 0 0 1-.277-.13l-.601-.652a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3L4.848 6.5.12 1.381a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3l.602-.65A.368.368 0 0 1 .999 0c.104 0 .196.044.277.13L6.879 6.2A.43.43 0 0 1 7 6.5z"
-        />
+        <defs>
+          <path
+            d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+            id="chevronRight16_svg__a"
+          />
+        </defs>
+        <g
+          fill-rule="evenodd"
+        >
+          <mask
+            id="chevronRight16_svg__b"
+          >
+            <use
+              xlink:href="#chevronRight16_svg__a"
+            />
+          </mask>
+          <use
+            fill-rule="nonzero"
+            xlink:href="#chevronRight16_svg__a"
+          />
+          <g
+            mask="url(#chevronRight16_svg__b)"
+          >
+            <path
+              d="M0 0h16v16H0z"
+            />
+          </g>
+        </g>
       </svg>
       <div
         class="MuiStep-root MuiStep-completed"
@@ -233,12 +415,38 @@ exports[`Stepper render with all steps completed 1`] = `
               class="StepIcon-root StepIcon-completed"
             >
               <svg
-                class="SvgTick-root"
-                viewBox="0 0 16 16"
+                class="SvgCheck24-root"
+                style="min-width: 24px; min-height: 24px;"
+                viewBox="0 0 24 24"
               >
-                <path
-                  d="M5.804 9.76L7.085 11 12 6.24 10.72 5 7.085 8.52 5.28 6.771 4 8.012z"
-                />
+                <defs>
+                  <path
+                    d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
+                    id="check24_svg__a"
+                  />
+                </defs>
+                <g
+                  fill-rule="evenodd"
+                >
+                  <mask
+                    id="check24_svg__b"
+                  >
+                    <use
+                      xlink:href="#check24_svg__a"
+                    />
+                  </mask>
+                  <use
+                    fill-rule="nonzero"
+                    xlink:href="#check24_svg__a"
+                  />
+                  <g
+                    mask="url(#check24_svg__b)"
+                  >
+                    <path
+                      d="M0 0h24v24H0z"
+                    />
+                  </g>
+                </g>
               </svg>
             </div>
           </span>
@@ -258,12 +466,38 @@ exports[`Stepper render with all steps completed 1`] = `
         </span>
       </div>
       <svg
-        class="SvgChevronRight-root StepConnector-connectorIcon"
-        viewBox="0 0 7 13"
+        class="SvgChevronRight16-root StepConnector-connectorIcon"
+        style="min-width: 16px; min-height: 16px;"
+        viewBox="0 0 16 16"
       >
-        <path
-          d="M7 6.5a.43.43 0 0 1-.12.3l-5.604 6.07a.367.367 0 0 1-.277.13.367.367 0 0 1-.277-.13l-.601-.652a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3L4.848 6.5.12 1.381a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3l.602-.65A.368.368 0 0 1 .999 0c.104 0 .196.044.277.13L6.879 6.2A.43.43 0 0 1 7 6.5z"
-        />
+        <defs>
+          <path
+            d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+            id="chevronRight16_svg__a"
+          />
+        </defs>
+        <g
+          fill-rule="evenodd"
+        >
+          <mask
+            id="chevronRight16_svg__b"
+          >
+            <use
+              xlink:href="#chevronRight16_svg__a"
+            />
+          </mask>
+          <use
+            fill-rule="nonzero"
+            xlink:href="#chevronRight16_svg__a"
+          />
+          <g
+            mask="url(#chevronRight16_svg__b)"
+          >
+            <path
+              d="M0 0h16v16H0z"
+            />
+          </g>
+        </g>
       </svg>
       <div
         class="MuiStep-root MuiStep-completed"
@@ -278,12 +512,38 @@ exports[`Stepper render with all steps completed 1`] = `
               class="StepIcon-root StepIcon-completed"
             >
               <svg
-                class="SvgTick-root"
-                viewBox="0 0 16 16"
+                class="SvgCheck24-root"
+                style="min-width: 24px; min-height: 24px;"
+                viewBox="0 0 24 24"
               >
-                <path
-                  d="M5.804 9.76L7.085 11 12 6.24 10.72 5 7.085 8.52 5.28 6.771 4 8.012z"
-                />
+                <defs>
+                  <path
+                    d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
+                    id="check24_svg__a"
+                  />
+                </defs>
+                <g
+                  fill-rule="evenodd"
+                >
+                  <mask
+                    id="check24_svg__b"
+                  >
+                    <use
+                      xlink:href="#check24_svg__a"
+                    />
+                  </mask>
+                  <use
+                    fill-rule="nonzero"
+                    xlink:href="#check24_svg__a"
+                  />
+                  <g
+                    mask="url(#check24_svg__b)"
+                  >
+                    <path
+                      d="M0 0h24v24H0z"
+                    />
+                  </g>
+                </g>
               </svg>
             </div>
           </span>
@@ -303,12 +563,38 @@ exports[`Stepper render with all steps completed 1`] = `
         </span>
       </div>
       <svg
-        class="SvgChevronRight-root StepConnector-connectorIcon"
-        viewBox="0 0 7 13"
+        class="SvgChevronRight16-root StepConnector-connectorIcon"
+        style="min-width: 16px; min-height: 16px;"
+        viewBox="0 0 16 16"
       >
-        <path
-          d="M7 6.5a.43.43 0 0 1-.12.3l-5.604 6.07a.367.367 0 0 1-.277.13.367.367 0 0 1-.277-.13l-.601-.652a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3L4.848 6.5.12 1.381a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3l.602-.65A.368.368 0 0 1 .999 0c.104 0 .196.044.277.13L6.879 6.2A.43.43 0 0 1 7 6.5z"
-        />
+        <defs>
+          <path
+            d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+            id="chevronRight16_svg__a"
+          />
+        </defs>
+        <g
+          fill-rule="evenodd"
+        >
+          <mask
+            id="chevronRight16_svg__b"
+          >
+            <use
+              xlink:href="#chevronRight16_svg__a"
+            />
+          </mask>
+          <use
+            fill-rule="nonzero"
+            xlink:href="#chevronRight16_svg__a"
+          />
+          <g
+            mask="url(#chevronRight16_svg__b)"
+          >
+            <path
+              d="M0 0h16v16H0z"
+            />
+          </g>
+        </g>
       </svg>
       <div
         class="MuiStep-root MuiStep-completed"
@@ -323,12 +609,38 @@ exports[`Stepper render with all steps completed 1`] = `
               class="StepIcon-root StepIcon-completed"
             >
               <svg
-                class="SvgTick-root"
-                viewBox="0 0 16 16"
+                class="SvgCheck24-root"
+                style="min-width: 24px; min-height: 24px;"
+                viewBox="0 0 24 24"
               >
-                <path
-                  d="M5.804 9.76L7.085 11 12 6.24 10.72 5 7.085 8.52 5.28 6.771 4 8.012z"
-                />
+                <defs>
+                  <path
+                    d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
+                    id="check24_svg__a"
+                  />
+                </defs>
+                <g
+                  fill-rule="evenodd"
+                >
+                  <mask
+                    id="check24_svg__b"
+                  >
+                    <use
+                      xlink:href="#check24_svg__a"
+                    />
+                  </mask>
+                  <use
+                    fill-rule="nonzero"
+                    xlink:href="#check24_svg__a"
+                  />
+                  <g
+                    mask="url(#check24_svg__b)"
+                  >
+                    <path
+                      d="M0 0h24v24H0z"
+                    />
+                  </g>
+                </g>
               </svg>
             </div>
           </span>
@@ -373,12 +685,38 @@ exports[`Stepper render with full-width 1`] = `
               class="StepIcon-root StepIcon-completed"
             >
               <svg
-                class="SvgTick-root"
-                viewBox="0 0 16 16"
+                class="SvgCheck24-root"
+                style="min-width: 24px; min-height: 24px;"
+                viewBox="0 0 24 24"
               >
-                <path
-                  d="M5.804 9.76L7.085 11 12 6.24 10.72 5 7.085 8.52 5.28 6.771 4 8.012z"
-                />
+                <defs>
+                  <path
+                    d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
+                    id="check24_svg__a"
+                  />
+                </defs>
+                <g
+                  fill-rule="evenodd"
+                >
+                  <mask
+                    id="check24_svg__b"
+                  >
+                    <use
+                      xlink:href="#check24_svg__a"
+                    />
+                  </mask>
+                  <use
+                    fill-rule="nonzero"
+                    xlink:href="#check24_svg__a"
+                  />
+                  <g
+                    mask="url(#check24_svg__b)"
+                  >
+                    <path
+                      d="M0 0h24v24H0z"
+                    />
+                  </g>
+                </g>
               </svg>
             </div>
           </span>
@@ -398,12 +736,38 @@ exports[`Stepper render with full-width 1`] = `
         </span>
       </div>
       <svg
-        class="SvgChevronRight-root StepConnector-connectorIcon"
-        viewBox="0 0 7 13"
+        class="SvgChevronRight16-root StepConnector-connectorIcon"
+        style="min-width: 16px; min-height: 16px;"
+        viewBox="0 0 16 16"
       >
-        <path
-          d="M7 6.5a.43.43 0 0 1-.12.3l-5.604 6.07a.367.367 0 0 1-.277.13.367.367 0 0 1-.277-.13l-.601-.652a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3L4.848 6.5.12 1.381a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3l.602-.65A.368.368 0 0 1 .999 0c.104 0 .196.044.277.13L6.879 6.2A.43.43 0 0 1 7 6.5z"
-        />
+        <defs>
+          <path
+            d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+            id="chevronRight16_svg__a"
+          />
+        </defs>
+        <g
+          fill-rule="evenodd"
+        >
+          <mask
+            id="chevronRight16_svg__b"
+          >
+            <use
+              xlink:href="#chevronRight16_svg__a"
+            />
+          </mask>
+          <use
+            fill-rule="nonzero"
+            xlink:href="#chevronRight16_svg__a"
+          />
+          <g
+            mask="url(#chevronRight16_svg__b)"
+          >
+            <path
+              d="M0 0h16v16H0z"
+            />
+          </g>
+        </g>
       </svg>
       <div
         class="MuiStep-root MuiStep-completed"
@@ -418,12 +782,38 @@ exports[`Stepper render with full-width 1`] = `
               class="StepIcon-root StepIcon-completed"
             >
               <svg
-                class="SvgTick-root"
-                viewBox="0 0 16 16"
+                class="SvgCheck24-root"
+                style="min-width: 24px; min-height: 24px;"
+                viewBox="0 0 24 24"
               >
-                <path
-                  d="M5.804 9.76L7.085 11 12 6.24 10.72 5 7.085 8.52 5.28 6.771 4 8.012z"
-                />
+                <defs>
+                  <path
+                    d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
+                    id="check24_svg__a"
+                  />
+                </defs>
+                <g
+                  fill-rule="evenodd"
+                >
+                  <mask
+                    id="check24_svg__b"
+                  >
+                    <use
+                      xlink:href="#check24_svg__a"
+                    />
+                  </mask>
+                  <use
+                    fill-rule="nonzero"
+                    xlink:href="#check24_svg__a"
+                  />
+                  <g
+                    mask="url(#check24_svg__b)"
+                  >
+                    <path
+                      d="M0 0h24v24H0z"
+                    />
+                  </g>
+                </g>
               </svg>
             </div>
           </span>
@@ -443,12 +833,38 @@ exports[`Stepper render with full-width 1`] = `
         </span>
       </div>
       <svg
-        class="SvgChevronRight-root StepConnector-connectorIcon"
-        viewBox="0 0 7 13"
+        class="SvgChevronRight16-root StepConnector-connectorIcon"
+        style="min-width: 16px; min-height: 16px;"
+        viewBox="0 0 16 16"
       >
-        <path
-          d="M7 6.5a.43.43 0 0 1-.12.3l-5.604 6.07a.367.367 0 0 1-.277.13.367.367 0 0 1-.277-.13l-.601-.652a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3L4.848 6.5.12 1.381a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3l.602-.65A.368.368 0 0 1 .999 0c.104 0 .196.044.277.13L6.879 6.2A.43.43 0 0 1 7 6.5z"
-        />
+        <defs>
+          <path
+            d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+            id="chevronRight16_svg__a"
+          />
+        </defs>
+        <g
+          fill-rule="evenodd"
+        >
+          <mask
+            id="chevronRight16_svg__b"
+          >
+            <use
+              xlink:href="#chevronRight16_svg__a"
+            />
+          </mask>
+          <use
+            fill-rule="nonzero"
+            xlink:href="#chevronRight16_svg__a"
+          />
+          <g
+            mask="url(#chevronRight16_svg__b)"
+          >
+            <path
+              d="M0 0h16v16H0z"
+            />
+          </g>
+        </g>
       </svg>
       <div
         class="MuiStep-root MuiStep-completed"
@@ -463,12 +879,38 @@ exports[`Stepper render with full-width 1`] = `
               class="StepIcon-root StepIcon-completed"
             >
               <svg
-                class="SvgTick-root"
-                viewBox="0 0 16 16"
+                class="SvgCheck24-root"
+                style="min-width: 24px; min-height: 24px;"
+                viewBox="0 0 24 24"
               >
-                <path
-                  d="M5.804 9.76L7.085 11 12 6.24 10.72 5 7.085 8.52 5.28 6.771 4 8.012z"
-                />
+                <defs>
+                  <path
+                    d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
+                    id="check24_svg__a"
+                  />
+                </defs>
+                <g
+                  fill-rule="evenodd"
+                >
+                  <mask
+                    id="check24_svg__b"
+                  >
+                    <use
+                      xlink:href="#check24_svg__a"
+                    />
+                  </mask>
+                  <use
+                    fill-rule="nonzero"
+                    xlink:href="#check24_svg__a"
+                  />
+                  <g
+                    mask="url(#check24_svg__b)"
+                  >
+                    <path
+                      d="M0 0h24v24H0z"
+                    />
+                  </g>
+                </g>
               </svg>
             </div>
           </span>
@@ -488,12 +930,38 @@ exports[`Stepper render with full-width 1`] = `
         </span>
       </div>
       <svg
-        class="SvgChevronRight-root StepConnector-connectorIcon"
-        viewBox="0 0 7 13"
+        class="SvgChevronRight16-root StepConnector-connectorIcon"
+        style="min-width: 16px; min-height: 16px;"
+        viewBox="0 0 16 16"
       >
-        <path
-          d="M7 6.5a.43.43 0 0 1-.12.3l-5.604 6.07a.367.367 0 0 1-.277.13.367.367 0 0 1-.277-.13l-.601-.652a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3L4.848 6.5.12 1.381a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3l.602-.65A.368.368 0 0 1 .999 0c.104 0 .196.044.277.13L6.879 6.2A.43.43 0 0 1 7 6.5z"
-        />
+        <defs>
+          <path
+            d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+            id="chevronRight16_svg__a"
+          />
+        </defs>
+        <g
+          fill-rule="evenodd"
+        >
+          <mask
+            id="chevronRight16_svg__b"
+          >
+            <use
+              xlink:href="#chevronRight16_svg__a"
+            />
+          </mask>
+          <use
+            fill-rule="nonzero"
+            xlink:href="#chevronRight16_svg__a"
+          />
+          <g
+            mask="url(#chevronRight16_svg__b)"
+          >
+            <path
+              d="M0 0h16v16H0z"
+            />
+          </g>
+        </g>
       </svg>
       <div
         class="MuiStep-root MuiStep-completed"
@@ -508,12 +976,38 @@ exports[`Stepper render with full-width 1`] = `
               class="StepIcon-root StepIcon-completed"
             >
               <svg
-                class="SvgTick-root"
-                viewBox="0 0 16 16"
+                class="SvgCheck24-root"
+                style="min-width: 24px; min-height: 24px;"
+                viewBox="0 0 24 24"
               >
-                <path
-                  d="M5.804 9.76L7.085 11 12 6.24 10.72 5 7.085 8.52 5.28 6.771 4 8.012z"
-                />
+                <defs>
+                  <path
+                    d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
+                    id="check24_svg__a"
+                  />
+                </defs>
+                <g
+                  fill-rule="evenodd"
+                >
+                  <mask
+                    id="check24_svg__b"
+                  >
+                    <use
+                      xlink:href="#check24_svg__a"
+                    />
+                  </mask>
+                  <use
+                    fill-rule="nonzero"
+                    xlink:href="#check24_svg__a"
+                  />
+                  <g
+                    mask="url(#check24_svg__b)"
+                  >
+                    <path
+                      d="M0 0h24v24H0z"
+                    />
+                  </g>
+                </g>
               </svg>
             </div>
           </span>
@@ -558,12 +1052,38 @@ exports[`Stepper render with hidden labels 1`] = `
               class="StepIcon-root StepIcon-completed"
             >
               <svg
-                class="SvgTick-root"
-                viewBox="0 0 16 16"
+                class="SvgCheck24-root"
+                style="min-width: 24px; min-height: 24px;"
+                viewBox="0 0 24 24"
               >
-                <path
-                  d="M5.804 9.76L7.085 11 12 6.24 10.72 5 7.085 8.52 5.28 6.771 4 8.012z"
-                />
+                <defs>
+                  <path
+                    d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
+                    id="check24_svg__a"
+                  />
+                </defs>
+                <g
+                  fill-rule="evenodd"
+                >
+                  <mask
+                    id="check24_svg__b"
+                  >
+                    <use
+                      xlink:href="#check24_svg__a"
+                    />
+                  </mask>
+                  <use
+                    fill-rule="nonzero"
+                    xlink:href="#check24_svg__a"
+                  />
+                  <g
+                    mask="url(#check24_svg__b)"
+                  >
+                    <path
+                      d="M0 0h24v24H0z"
+                    />
+                  </g>
+                </g>
               </svg>
             </div>
           </span>
@@ -583,12 +1103,38 @@ exports[`Stepper render with hidden labels 1`] = `
         </span>
       </div>
       <svg
-        class="SvgChevronRight-root StepConnector-connectorIcon"
-        viewBox="0 0 7 13"
+        class="SvgChevronRight16-root StepConnector-connectorIcon"
+        style="min-width: 16px; min-height: 16px;"
+        viewBox="0 0 16 16"
       >
-        <path
-          d="M7 6.5a.43.43 0 0 1-.12.3l-5.604 6.07a.367.367 0 0 1-.277.13.367.367 0 0 1-.277-.13l-.601-.652a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3L4.848 6.5.12 1.381a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3l.602-.65A.368.368 0 0 1 .999 0c.104 0 .196.044.277.13L6.879 6.2A.43.43 0 0 1 7 6.5z"
-        />
+        <defs>
+          <path
+            d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+            id="chevronRight16_svg__a"
+          />
+        </defs>
+        <g
+          fill-rule="evenodd"
+        >
+          <mask
+            id="chevronRight16_svg__b"
+          >
+            <use
+              xlink:href="#chevronRight16_svg__a"
+            />
+          </mask>
+          <use
+            fill-rule="nonzero"
+            xlink:href="#chevronRight16_svg__a"
+          />
+          <g
+            mask="url(#chevronRight16_svg__b)"
+          >
+            <path
+              d="M0 0h16v16H0z"
+            />
+          </g>
+        </g>
       </svg>
       <div
         class="MuiStep-root MuiStep-completed"
@@ -603,12 +1149,38 @@ exports[`Stepper render with hidden labels 1`] = `
               class="StepIcon-root StepIcon-completed"
             >
               <svg
-                class="SvgTick-root"
-                viewBox="0 0 16 16"
+                class="SvgCheck24-root"
+                style="min-width: 24px; min-height: 24px;"
+                viewBox="0 0 24 24"
               >
-                <path
-                  d="M5.804 9.76L7.085 11 12 6.24 10.72 5 7.085 8.52 5.28 6.771 4 8.012z"
-                />
+                <defs>
+                  <path
+                    d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
+                    id="check24_svg__a"
+                  />
+                </defs>
+                <g
+                  fill-rule="evenodd"
+                >
+                  <mask
+                    id="check24_svg__b"
+                  >
+                    <use
+                      xlink:href="#check24_svg__a"
+                    />
+                  </mask>
+                  <use
+                    fill-rule="nonzero"
+                    xlink:href="#check24_svg__a"
+                  />
+                  <g
+                    mask="url(#check24_svg__b)"
+                  >
+                    <path
+                      d="M0 0h24v24H0z"
+                    />
+                  </g>
+                </g>
               </svg>
             </div>
           </span>
@@ -628,12 +1200,38 @@ exports[`Stepper render with hidden labels 1`] = `
         </span>
       </div>
       <svg
-        class="SvgChevronRight-root StepConnector-connectorIcon"
-        viewBox="0 0 7 13"
+        class="SvgChevronRight16-root StepConnector-connectorIcon"
+        style="min-width: 16px; min-height: 16px;"
+        viewBox="0 0 16 16"
       >
-        <path
-          d="M7 6.5a.43.43 0 0 1-.12.3l-5.604 6.07a.367.367 0 0 1-.277.13.367.367 0 0 1-.277-.13l-.601-.652a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3L4.848 6.5.12 1.381a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3l.602-.65A.368.368 0 0 1 .999 0c.104 0 .196.044.277.13L6.879 6.2A.43.43 0 0 1 7 6.5z"
-        />
+        <defs>
+          <path
+            d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+            id="chevronRight16_svg__a"
+          />
+        </defs>
+        <g
+          fill-rule="evenodd"
+        >
+          <mask
+            id="chevronRight16_svg__b"
+          >
+            <use
+              xlink:href="#chevronRight16_svg__a"
+            />
+          </mask>
+          <use
+            fill-rule="nonzero"
+            xlink:href="#chevronRight16_svg__a"
+          />
+          <g
+            mask="url(#chevronRight16_svg__b)"
+          >
+            <path
+              d="M0 0h16v16H0z"
+            />
+          </g>
+        </g>
       </svg>
       <div
         class="MuiStep-root MuiStep-completed"
@@ -648,12 +1246,38 @@ exports[`Stepper render with hidden labels 1`] = `
               class="StepIcon-root StepIcon-completed"
             >
               <svg
-                class="SvgTick-root"
-                viewBox="0 0 16 16"
+                class="SvgCheck24-root"
+                style="min-width: 24px; min-height: 24px;"
+                viewBox="0 0 24 24"
               >
-                <path
-                  d="M5.804 9.76L7.085 11 12 6.24 10.72 5 7.085 8.52 5.28 6.771 4 8.012z"
-                />
+                <defs>
+                  <path
+                    d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
+                    id="check24_svg__a"
+                  />
+                </defs>
+                <g
+                  fill-rule="evenodd"
+                >
+                  <mask
+                    id="check24_svg__b"
+                  >
+                    <use
+                      xlink:href="#check24_svg__a"
+                    />
+                  </mask>
+                  <use
+                    fill-rule="nonzero"
+                    xlink:href="#check24_svg__a"
+                  />
+                  <g
+                    mask="url(#check24_svg__b)"
+                  >
+                    <path
+                      d="M0 0h24v24H0z"
+                    />
+                  </g>
+                </g>
               </svg>
             </div>
           </span>
@@ -673,12 +1297,38 @@ exports[`Stepper render with hidden labels 1`] = `
         </span>
       </div>
       <svg
-        class="SvgChevronRight-root StepConnector-connectorIcon"
-        viewBox="0 0 7 13"
+        class="SvgChevronRight16-root StepConnector-connectorIcon"
+        style="min-width: 16px; min-height: 16px;"
+        viewBox="0 0 16 16"
       >
-        <path
-          d="M7 6.5a.43.43 0 0 1-.12.3l-5.604 6.07a.367.367 0 0 1-.277.13.367.367 0 0 1-.277-.13l-.601-.652a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3L4.848 6.5.12 1.381a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3l.602-.65A.368.368 0 0 1 .999 0c.104 0 .196.044.277.13L6.879 6.2A.43.43 0 0 1 7 6.5z"
-        />
+        <defs>
+          <path
+            d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+            id="chevronRight16_svg__a"
+          />
+        </defs>
+        <g
+          fill-rule="evenodd"
+        >
+          <mask
+            id="chevronRight16_svg__b"
+          >
+            <use
+              xlink:href="#chevronRight16_svg__a"
+            />
+          </mask>
+          <use
+            fill-rule="nonzero"
+            xlink:href="#chevronRight16_svg__a"
+          />
+          <g
+            mask="url(#chevronRight16_svg__b)"
+          >
+            <path
+              d="M0 0h16v16H0z"
+            />
+          </g>
+        </g>
       </svg>
       <div
         class="MuiStep-root MuiStep-completed"
@@ -693,12 +1343,38 @@ exports[`Stepper render with hidden labels 1`] = `
               class="StepIcon-root StepIcon-completed"
             >
               <svg
-                class="SvgTick-root"
-                viewBox="0 0 16 16"
+                class="SvgCheck24-root"
+                style="min-width: 24px; min-height: 24px;"
+                viewBox="0 0 24 24"
               >
-                <path
-                  d="M5.804 9.76L7.085 11 12 6.24 10.72 5 7.085 8.52 5.28 6.771 4 8.012z"
-                />
+                <defs>
+                  <path
+                    d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
+                    id="check24_svg__a"
+                  />
+                </defs>
+                <g
+                  fill-rule="evenodd"
+                >
+                  <mask
+                    id="check24_svg__b"
+                  >
+                    <use
+                      xlink:href="#check24_svg__a"
+                    />
+                  </mask>
+                  <use
+                    fill-rule="nonzero"
+                    xlink:href="#check24_svg__a"
+                  />
+                  <g
+                    mask="url(#check24_svg__b)"
+                  >
+                    <path
+                      d="M0 0h24v24H0z"
+                    />
+                  </g>
+                </g>
               </svg>
             </div>
           </span>

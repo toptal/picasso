@@ -6,7 +6,7 @@ page
   .createChapter()
   .addDocs([
     {
-      name: 'size',
+      name: 'size [DEPRECATED]',
       type: 'number',
       defaultValue: 'inherit',
       description: 'Size of icon in `rem`'
@@ -25,6 +25,12 @@ page
       name: 'style',
       type: 'CSSProperties',
       description: 'Style applied to SVG element'
+    },
+    {
+      name: 'scale',
+      type: 'enum',
+      description: 'scale of the icon',
+      enums: [1, 2, 3, 4]
     }
   ])
   .addTextSection(
@@ -32,12 +38,15 @@ page
   Didn't find a required Icon? Feel free to add it yourself - [how to add icon](https://github.com/toptal/picasso#add-icon)
   `
   )
-  .addExample('Icon/story/List.example.jsx', 'List of all icons')
+  .addExample('Icon/story/List.example.jsx', {
+    title: 'List of all icons',
+    showEditCode: false
+  }) // picasso-skip-visuals
   .addExample('Icon/story/Default.example.jsx', 'Default')
-  .addExample('Icon/story/Size.example.jsx', {
-    title: 'Size',
+  .addExample('Icon/story/Scale.example.jsx', {
+    title: 'Scale',
     description:
-      'Recommended way to use `font-size` to adjust the icon size, but also you can specify `height` and `width` within styles'
+      'Recommended way is to use `scale` property to adjust the icon scale, you should avoid scaling icons with either `font-size` or `width` and `height` because our icons are pixel perfect and designed for a specific size. When scaling of this icon occurs, it is breaking our visual guidelines'
   })
   .addExample('Icon/story/Color.example.jsx', 'Color')
   .addExample('Icon/story/WithText.example.jsx', 'With text')

@@ -1,12 +1,12 @@
 import React from 'react'
 import { Button } from '@toptal/picasso'
-import { Cog } from '@toptal/picasso/Icon'
+import { Settings16, Settings24 } from '@toptal/picasso/Icon'
 
 const ButtonIconButtonsExample = () => (
   <div>
-    <Button icon={<Cog />} size='small' />
-    <Button icon={<Cog />} />
-    <Button icon={<Cog />} size='large' />
+    <Button icon={<Settings16 />} size='small' />
+    <Button icon={<Settings16 />} />
+    <Button icon={<Settings24 />} size='large' />
   </div>
 )
 

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>4840b699-a2fe-4c7f-8b6c-5866b9850fb9@1.00x</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M3.20710678,12.5 L8.20710678,17.5 L7.5,18.2071068 L2.5,13.2071068 L1.79289322,12.5 L7.5,6.79289322 L8.20710678,7.5 L3.20710678,12.5 Z M21.5,11.7928932 L22.2071068,12.5 L16.5,18.2071068 L15.7928932,17.5 L20.7928932,12.5 L15.7928932,7.5 L16.5,6.79289322 L21.5,11.7928932 Z M-2.27373675e-13,3 L1,3 L1,22 L-2.27373675e-13,22 L-2.27373675e-13,3 Z M23,3 L24,3 L24,22 L23,22 L23,3 Z" id="path-1"></path>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons-/-General-/-24-/-Length">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Combined-Shape" fill="#000000" xlink:href="#path-1"></use>
+            <g id="Colors-/-Black" mask="url(#mask-2)" fill="#000000">
+                <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

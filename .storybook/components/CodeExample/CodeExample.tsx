@@ -9,6 +9,8 @@ import IconLink from '@material-ui/icons/Link'
 import SourceRender from 'react-source-render'
 import copy from 'copy-to-clipboard'
 
+import { Code16 } from '@components/Icon'
+
 import { RenderResult } from '~/@types/react-source-render'
 import { Classes } from '@components/styles/types'
 import Picasso, { Typography, Button, Accordion, Container } from '@components'
@@ -176,7 +178,7 @@ class CodeExample extends Component<Props> {
                     <Button
                       variant='flat'
                       size='small'
-                      icon={<IconCode />}
+                      icon={<Code16 />}
                       onClick={this.handleShowEditor}
                     >
                       Edit code

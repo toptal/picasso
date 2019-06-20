@@ -19,22 +19,46 @@ exports[`dismissable label should render dismissable label 1`] = `
           Label
         </span>
       </span>
-      <svg
-        aria-hidden="true"
+      <span
         aria-label="delete icon"
-        class="MuiSvgIcon-root Label-deleteIcon MuiChip-deleteIcon"
-        focusable="false"
+        class="Label-deleteIcon MuiChip-deleteIcon"
         role="button"
-        viewBox="0 0 24 24"
       >
-        <path
-          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-        />
-        <path
-          d="M0 0h24v24H0z"
-          fill="none"
-        />
-      </svg>
+        <svg
+          class="SvgCloseMinor16-root"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
+        >
+          <defs>
+            <path
+              d="M8.707 8l3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5z"
+              id="closeMinor16_svg__a"
+            />
+          </defs>
+          <g
+            fill-rule="evenodd"
+          >
+            <mask
+              id="closeMinor16_svg__b"
+            >
+              <use
+                xlink:href="#closeMinor16_svg__a"
+              />
+            </mask>
+            <use
+              fill-rule="nonzero"
+              xlink:href="#closeMinor16_svg__a"
+            />
+            <g
+              mask="url(#closeMinor16_svg__b)"
+            >
+              <path
+                d="M0 0h16v16H0z"
+              />
+            </g>
+          </g>
+        </svg>
+      </span>
     </div>
   </div>
 </div>

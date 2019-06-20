@@ -35,8 +35,20 @@ function decorateWithIdentifierProp(svgElement, propName, identifierName) {
   ]
 }
 
+const BASE_SIZES = [16, 24, 32]
+
+function getBaseSize(componentName = '') {
+  for (const size of BASE_SIZES) {
+    if (componentName.includes(size)) {
+      return Number(size)
+    }
+  }
+  return 16
+}
+
 const template = ({ template }, opts, { componentName, jsx }) => {
   const displayName = `'${componentName.name}'`
+  const baseSize = `${getBaseSize(displayName)}`
 
   const svgElement = jsx.openingElement
 
@@ -57,18 +69,35 @@ const template = ({ template }, opts, { componentName, jsx }) => {
     import { StandardProps } from '../Picasso'
     import styles from './styles'
 
-    interface Props extends StandardProps {
+    const BASE_SIZE = ${baseSize}
+
+    type ScaleType = 
+      | 1
+      | 2
+      | 3
+      | 4
+
+    export interface Props extends StandardProps {
       size?: number
-      color?: string
+      scale?: ScaleType
+      color?: string,
+      base?: number
     }
 
     const ${componentName} = (props: Props) => {
-      const { classes, className, style, size, color } = props
+      const { classes, className, style = {}, color, scale, size, base } = props
+
+      if (size) {
+        const name = '${componentName.name}'
+        window.console.warn(\`\${name}: size' prop will be removed in the next major release of Picasso. Please use 'scale' to maintain pixel perfect icons\`)
+      }
+
+      const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
 
       const svgStyle = {
-      fontSize: size && \`\${size}rem\`,
-
-      ...style
+        minWidth: \`\${scaledSize}px\`,
+        minHeight: \`\${scaledSize}px\`,
+        ...style
       }
 
       return (
@@ -77,6 +106,7 @@ const template = ({ template }, opts, { componentName, jsx }) => {
     }
 
     ${componentName}.displayName = ${displayName}
+
     export default withStyles(styles)(${componentName})
   `
 }

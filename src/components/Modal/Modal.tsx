@@ -1,9 +1,9 @@
 import React, { FunctionComponent, ReactNode } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import Dialog from '@material-ui/core/Dialog'
-import CloseIcon from '@material-ui/icons/Close'
 import { PaperProps } from '@material-ui/core/Paper'
 
+import { CloseMinor16 } from '../Icon'
 import ModalTitle from '../ModalTitle'
 import ModalContent from '../ModalContent'
 import ModalActions from '../ModalActions'
@@ -68,7 +68,11 @@ export const Modal: FunctionComponent<Props> & StaticProps = props => {
       open={open}
       transitionDuration={transitionDuration}
     >
-      {onClose && <CloseIcon className={closeButton} onClick={onClose} />}
+      {onClose && (
+        <span onClick={onClose}>
+          <CloseMinor16 className={closeButton} />
+        </span>
+      )}
       {children}
     </Dialog>
   )

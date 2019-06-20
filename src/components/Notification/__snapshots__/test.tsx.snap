@@ -17,15 +17,38 @@ exports[`Notification default render 1`] = `
           style="align-items: center;"
         >
           <svg
-            class="SvgInfo-root"
+            class="SvgInfo16-root"
             color="#c4c6ca"
-            style="font-size: 1.25rem;"
-            viewBox="0 0 24 24"
+            style="min-width: 16px; min-height: 16px;"
+            viewBox="0 0 16 16"
           >
-            <path
-              d="M24 12c0 6.625-5.375 12-12 12S0 18.625 0 12 5.375 0 12 0s12 5.375 12 12zm-8 7.5V17c0-.281-.219-.5-.5-.5H14v-8c0-.281-.219-.5-.5-.5h-5c-.281 0-.5.219-.5.5V11c0 .281.219.5.5.5H10v5H8.5c-.281 0-.5.219-.5.5v2.5c0 .281.219.5.5.5h7c.281 0 .5-.219.5-.5zm-2-14V3c0-.281-.219-.5-.5-.5h-3c-.281 0-.5.219-.5.5v2.5c0 .281.219.5.5.5h3c.281 0 .5-.219.5-.5z"
+            <defs>
+              <path
+                d="M7.5 15a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15zm0-1a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13zM7 6h1v6H7V6zm0-3h1v1H7V3z"
+                id="info16_svg__a"
+              />
+            </defs>
+            <g
               fill-rule="evenodd"
-            />
+            >
+              <mask
+                id="info16_svg__b"
+              >
+                <use
+                  xlink:href="#info16_svg__a"
+                />
+              </mask>
+              <use
+                xlink:href="#info16_svg__a"
+              />
+              <g
+                mask="url(#info16_svg__b)"
+              >
+                <path
+                  d="M0 0h16v16H0z"
+                />
+              </g>
+            </g>
           </svg>
         </div>
         <div

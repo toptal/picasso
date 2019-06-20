@@ -58,13 +58,39 @@ exports[`AccountSelect default render 1`] = `
               </div>
             </div>
             <svg
-              class="SvgChevronRight-root"
+              class="SvgChevronRight16-root"
               color="#455065"
-              viewBox="0 0 7 13"
+              style="min-width: 16px; min-height: 16px;"
+              viewBox="0 0 16 16"
             >
-              <path
-                d="M7 6.5a.43.43 0 0 1-.12.3l-5.604 6.07a.367.367 0 0 1-.277.13.367.367 0 0 1-.277-.13l-.601-.652a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3L4.848 6.5.12 1.381a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3l.602-.65A.368.368 0 0 1 .999 0c.104 0 .196.044.277.13L6.879 6.2A.43.43 0 0 1 7 6.5z"
-              />
+              <defs>
+                <path
+                  d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+                  id="chevronRight16_svg__a"
+                />
+              </defs>
+              <g
+                fill-rule="evenodd"
+              >
+                <mask
+                  id="chevronRight16_svg__b"
+                >
+                  <use
+                    xlink:href="#chevronRight16_svg__a"
+                  />
+                </mask>
+                <use
+                  fill-rule="nonzero"
+                  xlink:href="#chevronRight16_svg__a"
+                />
+                <g
+                  mask="url(#chevronRight16_svg__b)"
+                >
+                  <path
+                    d="M0 0h16v16H0z"
+                  />
+                </g>
+              </g>
             </svg>
           </div>
         </a>
@@ -119,13 +145,39 @@ exports[`AccountSelect default render 1`] = `
               </div>
             </div>
             <svg
-              class="SvgChevronRight-root"
+              class="SvgChevronRight16-root"
               color="#455065"
-              viewBox="0 0 7 13"
+              style="min-width: 16px; min-height: 16px;"
+              viewBox="0 0 16 16"
             >
-              <path
-                d="M7 6.5a.43.43 0 0 1-.12.3l-5.604 6.07a.367.367 0 0 1-.277.13.367.367 0 0 1-.277-.13l-.601-.652a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3L4.848 6.5.12 1.381a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3l.602-.65A.368.368 0 0 1 .999 0c.104 0 .196.044.277.13L6.879 6.2A.43.43 0 0 1 7 6.5z"
-              />
+              <defs>
+                <path
+                  d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+                  id="chevronRight16_svg__a"
+                />
+              </defs>
+              <g
+                fill-rule="evenodd"
+              >
+                <mask
+                  id="chevronRight16_svg__b"
+                >
+                  <use
+                    xlink:href="#chevronRight16_svg__a"
+                  />
+                </mask>
+                <use
+                  fill-rule="nonzero"
+                  xlink:href="#chevronRight16_svg__a"
+                />
+                <g
+                  mask="url(#chevronRight16_svg__b)"
+                >
+                  <path
+                    d="M0 0h16v16H0z"
+                  />
+                </g>
+              </g>
             </svg>
           </div>
         </a>
@@ -177,13 +229,39 @@ exports[`AccountSelect default render 1`] = `
               </div>
             </div>
             <svg
-              class="SvgChevronRight-root"
+              class="SvgChevronRight16-root"
               color="#455065"
-              viewBox="0 0 7 13"
+              style="min-width: 16px; min-height: 16px;"
+              viewBox="0 0 16 16"
             >
-              <path
-                d="M7 6.5a.43.43 0 0 1-.12.3l-5.604 6.07a.367.367 0 0 1-.277.13.367.367 0 0 1-.277-.13l-.601-.652a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3L4.848 6.5.12 1.381a.43.43 0 0 1-.121-.3.43.43 0 0 1 .12-.3l.602-.65A.368.368 0 0 1 .999 0c.104 0 .196.044.277.13L6.879 6.2A.43.43 0 0 1 7 6.5z"
-              />
+              <defs>
+                <path
+                  d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+                  id="chevronRight16_svg__a"
+                />
+              </defs>
+              <g
+                fill-rule="evenodd"
+              >
+                <mask
+                  id="chevronRight16_svg__b"
+                >
+                  <use
+                    xlink:href="#chevronRight16_svg__a"
+                  />
+                </mask>
+                <use
+                  fill-rule="nonzero"
+                  xlink:href="#chevronRight16_svg__a"
+                />
+                <g
+                  mask="url(#chevronRight16_svg__b)"
+                >
+                  <path
+                    d="M0 0h16v16H0z"
+                  />
+                </g>
+              </g>
             </svg>
           </div>
         </a>
