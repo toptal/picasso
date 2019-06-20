@@ -28,9 +28,9 @@ declare module 'react-deprecate' {
 
   export type WarningFn = (args: WarningArgs) => string
 
-  export default function renamePropsWithWarning(
-    WrappedComponent: React.ComponentType<any>,
+  export default function renamePropsWithWarning<Props>(
+    WrappedComponent: React.ComponentType<Props>,
     deprecatedProps?: DeprecatedProps,
     warningMessage?: WarningFn
-  ): React.ComponentType<any>
+  ): React.ComponentType<Props>
 }

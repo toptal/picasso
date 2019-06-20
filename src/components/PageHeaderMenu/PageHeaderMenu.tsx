@@ -13,7 +13,8 @@ export interface Props extends StandardProps {
   /** User full name to display */
   name: string
   /** Additional content of PageHeaderMenu */
-  meta?: ReactNode | string
+  meta?: ReactNode
+  organization?: string // deprecated in favor of `meta`
   /** Photo url or custom Avatar component */
   avatar?: ReactNode
   /** Menu content */
@@ -29,6 +30,15 @@ export const PageHeaderMenu: FunctionComponent<Props> = ({
   style,
   children
 }) => {
+  const metaContent =
+    typeof meta === 'string' ? (
+      <Typography className={classes.truncateText} invert size='small'>
+        {meta}
+      </Typography>
+    ) : (
+      meta
+    )
+
   return (
     <Dropdown
       className={cx(classes.root, className)}
@@ -48,13 +58,7 @@ export const PageHeaderMenu: FunctionComponent<Props> = ({
         name={name}
         avatar={avatar}
       >
-        {typeof meta === 'string' ? (
-          <Typography className={classes.truncateText} invert size='small'>
-            {meta}
-          </Typography>
-        ) : (
-          meta
-        )}
+        {meta && metaContent}
       </UserBadge>
       <Dropdown.Arrow style={{ color: 'white' }} />
     </Dropdown>
