@@ -8,8 +8,7 @@
     "test": "jest",
     "test:watch": "jest --watchAll",
     "test:visual": "./bin/run-in-docker ./bin/test-visual",
-    "lint:path": "davinci-syntax lint",
-    "lint": "yarn lint:path .",
+    "lint": "davinci syntax lint code .",
     "storybook": "start-storybook -p 9001 -s ./.storybook/public -c .storybook",
     "storybook:cache": "CACHE=1 start-storybook -p 9001 -s ./.storybook/public -c .storybook",
     "build:storybook": "build-storybook -s ./.storybook/public -c .storybook -o build/storybook",
@@ -63,7 +62,7 @@
     "@storybook/react": "^5.0.11",
     "@storybook/theming": "^5.0.11",
     "@svgr/cli": "^4.3.0",
-    "@toptal/davinci-syntax": "^0.0.2-alpha.13",
+    "@toptal/davinci": "^0.1.0-alpha.13",
     "@types/classnames": "^2.2.8",
     "@types/color": "^3.0.0",
     "@types/esprima": "^4.0.2",
@@ -125,7 +124,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "npm run lint:path",
+      "davinci syntax lint code",
       "prettier-standard",
       "git add"
     ]
