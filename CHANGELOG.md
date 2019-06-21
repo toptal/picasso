@@ -1,3 +1,10 @@
+# [2.6.0](https://github.com/toptal/picasso/compare/v2.5.0...v2.6.0) (2019-06-21)
+
+
+### Features
+
+* **accordion:** sync styles ([#473](https://github.com/toptal/picasso/issues/473)) ([b984bca](https://github.com/toptal/picasso/commit/b984bca))
+
 # [2.5.0](https://github.com/toptal/picasso/compare/v2.4.0...v2.5.0) (2019-06-21)
 
 

@@ -5,7 +5,7 @@ const Picasso_1 = require("../Picasso");
 Picasso_1.PicassoProvider.override(() => ({
     MuiExpansionPanelDetails: {
         root: {
-            padding: 0
+            padding: '0 0 0.625em'
         }
     }
 }));

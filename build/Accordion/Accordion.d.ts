@@ -11,5 +11,5 @@ export interface Props extends StandardProps {
     onChange?: (event: ChangeEvent<{}>, expanded: boolean) => void;
 }
 export declare const Accordion: FunctionComponent<Props>;
-declare const _default: React.ComponentType<Pick<React.PropsWithChildren<Props>, "content" | "style" | "expanded" | "children" | "className" | "onChange"> & import("@material-ui/core/styles").StyledComponentProps<"expandIcon" | "defaultSummary" | "defaultDetails">>;
+declare const _default: React.ComponentType<Pick<React.PropsWithChildren<Props>, "content" | "style" | "expanded" | "children" | "className" | "onChange"> & import("@material-ui/core/styles").StyledComponentProps<"expanded" | "root" | "expandIcon" | "defaultSummary" | "defaultDetails" | "controlledDetails" | "detailsContent">>;
 export default _default;

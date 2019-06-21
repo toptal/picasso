@@ -12,11 +12,19 @@ const ExpansionPanelDetails_1 = __importDefault(require("../ExpansionPanelDetail
 const styles_2 = __importDefault(require("./styles"));
 exports.Accordion = ({ children, content, expanded, className, style, classes, onChange }) => {
     const isControlledVariant = expanded === undefined;
-    return (react_1.default.createElement(ExpansionPanel_1.default, { className: className, style: style, elevation: 0, expanded: expanded, onChange: onChange },
+    return (react_1.default.createElement(ExpansionPanel_1.default, { classes: {
+            root: children ? classes.root : '',
+            expanded: classes.expanded
+        }, className: className, style: style, elevation: 0, expanded: expanded, onChange: onChange },
         children && (react_1.default.createElement(ExpansionPanelSummary_1.default, { classes: {
                 root: isControlledVariant ? classes.defaultSummary : ''
             }, expandIcon: react_1.default.createElement(ChevronRight_1.default, { className: classes.expandIcon }) }, children)),
-        react_1.default.createElement(ExpansionPanelDetails_1.default, { classes: { root: isControlledVariant ? classes.defaultDetails : '' } }, content)));
+        react_1.default.createElement(ExpansionPanelDetails_1.default, { classes: {
+                root: isControlledVariant
+                    ? classes.defaultDetails
+                    : classes.controlledDetails
+            } },
+            react_1.default.createElement("div", { className: classes.detailsContent }, content))));
 };
 exports.Accordion.defaultProps = {
     expanded: undefined,
