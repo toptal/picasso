@@ -32,5 +32,6 @@ export { default as TableFooter } from './TableFooter';
 export { default as Amount } from './Amount';
 export { default as FormLabel } from './FormLabel';
 export { default as FormError } from './FormError';
+export { default as Tabs } from './Tabs';
 export { default } from './Picasso';
 export { StandardProps } from './Picasso/types';

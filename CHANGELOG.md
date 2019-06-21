@@ -1,3 +1,10 @@
+# [2.5.0](https://github.com/toptal/picasso/compare/v2.4.0...v2.5.0) (2019-06-21)
+
+
+### Features
+
+* **tabs:** add tabs component ([#478](https://github.com/toptal/picasso/issues/478)) ([479755d](https://github.com/toptal/picasso/commit/479755d))
+
 # [2.4.0](https://github.com/toptal/picasso/compare/v2.3.0...v2.4.0) (2019-06-18)
 
 
