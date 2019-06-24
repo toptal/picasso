@@ -29,26 +29,20 @@ export default ({ palette, typography }: Theme) => {
     expanded: {
       margin: 0
     },
-    defaultSummary: {
+    summary: {
       color: palette.common.black
-    },
-    defaultDetails: {
-      color: palette.text.primary
-    },
-    controlledDetails: {
-      marginTop: '0.75em',
-      marginBottom: '0.75em'
     },
     expandIcon: {
       fontSize: '0.7em',
       color: palette.primary.main
     },
-    detailsContent: {
+    details: {
       padding: 0,
       lineHeight: '1.5em',
       color: palette.grey.darker,
       fontSize: '0.875em',
-      fontWeight: typography.fontWeights.regular
+      fontWeight: typography.fontWeights.regular,
+      marginBottom: '0.75em'
     }
   }
 }
