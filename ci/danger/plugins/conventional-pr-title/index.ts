@@ -7,7 +7,7 @@ declare var danger: DangerDSLType
 
 export declare function fail(message: string): void
 
-const WHITELISTED_USERS = ['depfu[bot]']
+const WHITELISTED_USERS = ['dependabot-preview[bot]']
 
 const conventionalPRTitle = async () => {
   if (WHITELISTED_USERS.includes(danger.github.pr.user.login)) {
