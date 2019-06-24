@@ -28,8 +28,6 @@ export const Accordion: FunctionComponent<Props> = ({
   classes,
   onChange
 }) => {
-  const isControlledVariant = expanded === undefined
-
   return (
     <MUIExpansionPanel
       classes={{
@@ -45,7 +43,7 @@ export const Accordion: FunctionComponent<Props> = ({
       {children && (
         <ExpansionPanelSummary
           classes={{
-            root: isControlledVariant ? classes.defaultSummary : ''
+            root: classes.summary
           }}
           expandIcon={<ChevronRightIcon className={classes.expandIcon} />}
         >
@@ -54,12 +52,10 @@ export const Accordion: FunctionComponent<Props> = ({
       )}
       <ExpansionPanelDetails
         classes={{
-          root: isControlledVariant
-            ? classes.defaultDetails
-            : classes.controlledDetails
+          root: classes.details
         }}
       >
-        <div className={classes.detailsContent}>{content}</div>
+        {content}
       </ExpansionPanelDetails>
     </MUIExpansionPanel>
   )

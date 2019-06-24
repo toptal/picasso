@@ -31,3 +31,7 @@ page
     title: 'Group',
     description: 'Accordions with styled sections in a group'
   })
+  .addExample('Accordion/story/Controlled.example.jsx', {
+    title: 'Controlled state',
+    description: 'Accordions with controlled expanded property'
+  })
