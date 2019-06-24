@@ -26,5 +26,5 @@ for icon in $ICON_FULL_PATH/svg/*.svg; do
   echo "export { default as $name } from './$name'" >> src/components/Icon/index.ts
 done
 
-yarn lint:path $ICON_FULL_PATH
+davinci syntax lint code $ICON_FULL_PATH
 yarn prettier-standard $ICON_FULL_PATH/**/*.tsx
