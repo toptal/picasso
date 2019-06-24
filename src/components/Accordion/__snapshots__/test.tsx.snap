@@ -3,32 +3,24 @@
 exports[`controlled version should render collapsed version 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="MuiPaper-root MuiPaper-elevation0 MuiPaper-rounded MuiExpansionPanel-root MuiExpansionPanel-rounded"
   >
     <div
-      class="MuiPaper-root MuiPaper-elevation0 MuiPaper-rounded MuiExpansionPanel-root MuiExpansionPanel-rounded"
+      aria-hidden="true"
+      class="MuiCollapse-container"
+      style="min-height: 0px;"
     >
       <div
-        aria-hidden="true"
-        class="MuiCollapse-container"
-        style="min-height: 0px;"
+        class="MuiCollapse-wrapper"
       >
         <div
-          class="MuiCollapse-wrapper"
+          class="MuiCollapse-wrapperInner"
         >
           <div
-            class="MuiCollapse-wrapperInner"
+            class="MuiExpansionPanelDetails-root ExpansionPanelDetails-root"
           >
-            <div
-              class="MuiExpansionPanelDetails-root ExpansionPanelDetails-root Accordion-controlledDetails"
-            >
-              <div
-                class="Accordion-detailsContent"
-              >
-                <div>
-                  Fryderyk Chopin was born in Żelazowa Wola, 46 kilometres west of Warsaw, in what was then the Duchy of Warsaw, a Polish state established by Napoleon. The parish baptismal record gives his birthday as 22 February 1810, and cites his given names in the Latin form Fridericus Franciscus (in Polish, he was Fryderyk Franciszek). However, the composer and his family used the birthdate 1 March, which is now generally accepted as the correct date.
-                </div>
-              </div>
+            <div>
+              Fryderyk Chopin was born in Żelazowa Wola, 46 kilometres west of Warsaw, in what was then the Duchy of Warsaw, a Polish state established by Napoleon. The parish baptismal record gives his birthday as 22 February 1810, and cites his given names in the Latin form Fridericus Franciscus (in Polish, he was Fryderyk Franciszek). However, the composer and his family used the birthdate 1 March, which is now generally accepted as the correct date.
             </div>
           </div>
         </div>
@@ -41,31 +33,23 @@ exports[`controlled version should render collapsed version 1`] = `
 exports[`controlled version should render expanded version 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="MuiPaper-root MuiPaper-elevation0 MuiPaper-rounded MuiExpansionPanel-root MuiExpansionPanel-expanded MuiExpansionPanel-rounded"
   >
     <div
-      class="MuiPaper-root MuiPaper-elevation0 MuiPaper-rounded MuiExpansionPanel-root MuiExpansionPanel-expanded Accordion-expanded MuiExpansionPanel-rounded"
+      class="MuiCollapse-container MuiCollapse-entered"
+      style="min-height: 0px;"
     >
       <div
-        class="MuiCollapse-container MuiCollapse-entered"
-        style="min-height: 0px;"
+        class="MuiCollapse-wrapper"
       >
         <div
-          class="MuiCollapse-wrapper"
+          class="MuiCollapse-wrapperInner"
         >
           <div
-            class="MuiCollapse-wrapperInner"
+            class="MuiExpansionPanelDetails-root ExpansionPanelDetails-root"
           >
-            <div
-              class="MuiExpansionPanelDetails-root ExpansionPanelDetails-root Accordion-controlledDetails"
-            >
-              <div
-                class="Accordion-detailsContent"
-              >
-                <div>
-                  Fryderyk Chopin was born in Żelazowa Wola, 46 kilometres west of Warsaw, in what was then the Duchy of Warsaw, a Polish state established by Napoleon. The parish baptismal record gives his birthday as 22 February 1810, and cites his given names in the Latin form Fridericus Franciscus (in Polish, he was Fryderyk Franciszek). However, the composer and his family used the birthdate 1 March, which is now generally accepted as the correct date.
-                </div>
-              </div>
+            <div>
+              Fryderyk Chopin was born in Żelazowa Wola, 46 kilometres west of Warsaw, in what was then the Duchy of Warsaw, a Polish state established by Napoleon. The parish baptismal record gives his birthday as 22 February 1810, and cites his given names in the Latin form Fridericus Franciscus (in Polish, he was Fryderyk Franciszek). However, the composer and his family used the birthdate 1 March, which is now generally accepted as the correct date.
             </div>
           </div>
         </div>
@@ -78,72 +62,67 @@ exports[`controlled version should render expanded version 1`] = `
 exports[`default version for sections should render default version 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="MuiPaper-root MuiPaper-elevation0 MuiPaper-rounded MuiExpansionPanel-root MuiExpansionPanel-rounded"
   >
     <div
-      class="MuiPaper-root MuiPaper-elevation0 MuiPaper-rounded MuiExpansionPanel-root Accordion-root MuiExpansionPanel-rounded"
+      aria-expanded="false"
+      class="MuiButtonBase-root MuiExpansionPanelSummary-root WithStyles-ExpansionPanelSummary--root Accordion-defaultSummary"
+      role="button"
+      tabindex="0"
     >
       <div
-        aria-expanded="false"
-        class="MuiButtonBase-root MuiExpansionPanelSummary-root WithStyles-ExpansionPanelSummary--root Accordion-defaultSummary"
-        role="button"
-        tabindex="0"
+        class="MuiExpansionPanelSummary-content"
       >
-        <div
-          class="MuiExpansionPanelSummary-content"
-        >
-          <div>
-            Fryderyk Chopin
-          </div>
-        </div>
-        <div
-          aria-hidden="true"
-          class="MuiButtonBase-root MuiIconButton-root MuiExpansionPanelSummary-expandIcon"
-          role="button"
-          tabindex="-1"
-        >
-          <span
-            class="MuiIconButton-label"
-          >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root Accordion-expandIcon"
-              focusable="false"
-              role="presentation"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
-              />
-              <path
-                d="M0 0h24v24H0z"
-                fill="none"
-              />
-            </svg>
-          </span>
+        <div>
+          Fryderyk Chopin
         </div>
       </div>
       <div
         aria-hidden="true"
-        class="MuiCollapse-container"
-        style="min-height: 0px;"
+        class="MuiButtonBase-root MuiIconButton-root MuiExpansionPanelSummary-expandIcon"
+        role="button"
+        tabindex="-1"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root Accordion-expandIcon"
+            focusable="false"
+            role="presentation"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+            />
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+            />
+          </svg>
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </div>
+    </div>
+    <div
+      aria-hidden="true"
+      class="MuiCollapse-container"
+      style="min-height: 0px;"
+    >
+      <div
+        class="MuiCollapse-wrapper"
       >
         <div
-          class="MuiCollapse-wrapper"
+          class="MuiCollapse-wrapperInner"
         >
           <div
-            class="MuiCollapse-wrapperInner"
+            class="MuiExpansionPanelDetails-root ExpansionPanelDetails-root Accordion-defaultDetails"
           >
-            <div
-              class="MuiExpansionPanelDetails-root ExpansionPanelDetails-root Accordion-defaultDetails"
-            >
-              <div
-                class="Accordion-detailsContent"
-              >
-                <div>
-                  Fryderyk Chopin was born in Żelazowa Wola, 46 kilometres west of Warsaw, in what was then the Duchy of Warsaw, a Polish state established by Napoleon. The parish baptismal record gives his birthday as 22 February 1810, and cites his given names in the Latin form Fridericus Franciscus (in Polish, he was Fryderyk Franciszek). However, the composer and his family used the birthdate 1 March, which is now generally accepted as the correct date.
-                </div>
-              </div>
+            <div>
+              Fryderyk Chopin was born in Żelazowa Wola, 46 kilometres west of Warsaw, in what was then the Duchy of Warsaw, a Polish state established by Napoleon. The parish baptismal record gives his birthday as 22 February 1810, and cites his given names in the Latin form Fridericus Franciscus (in Polish, he was Fryderyk Franciszek). However, the composer and his family used the birthdate 1 March, which is now generally accepted as the correct date.
             </div>
           </div>
         </div>
@@ -156,71 +135,66 @@ exports[`default version for sections should render default version 1`] = `
 exports[`default version for sections should render expanded version after click on summary 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="MuiPaper-root MuiPaper-elevation0 MuiPaper-rounded MuiExpansionPanel-root MuiExpansionPanel-expanded MuiExpansionPanel-rounded"
   >
     <div
-      class="MuiPaper-root MuiPaper-elevation0 MuiPaper-rounded MuiExpansionPanel-root Accordion-root MuiExpansionPanel-expanded Accordion-expanded MuiExpansionPanel-rounded"
+      aria-expanded="true"
+      class="MuiButtonBase-root MuiExpansionPanelSummary-root WithStyles-ExpansionPanelSummary--root Accordion-defaultSummary MuiExpansionPanelSummary-expanded"
+      role="button"
+      tabindex="0"
     >
       <div
-        aria-expanded="true"
-        class="MuiButtonBase-root MuiExpansionPanelSummary-root WithStyles-ExpansionPanelSummary--root Accordion-defaultSummary MuiExpansionPanelSummary-expanded"
-        role="button"
-        tabindex="0"
+        class="MuiExpansionPanelSummary-content MuiExpansionPanelSummary-expanded"
       >
-        <div
-          class="MuiExpansionPanelSummary-content MuiExpansionPanelSummary-expanded"
-        >
-          <div>
-            Fryderyk Chopin
-          </div>
-        </div>
-        <div
-          aria-hidden="true"
-          class="MuiButtonBase-root MuiIconButton-root MuiExpansionPanelSummary-expandIcon MuiExpansionPanelSummary-expanded"
-          role="button"
-          tabindex="-1"
-        >
-          <span
-            class="MuiIconButton-label"
-          >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root Accordion-expandIcon"
-              focusable="false"
-              role="presentation"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
-              />
-              <path
-                d="M0 0h24v24H0z"
-                fill="none"
-              />
-            </svg>
-          </span>
+        <div>
+          Fryderyk Chopin
         </div>
       </div>
       <div
-        class="MuiCollapse-container"
-        style="min-height: 0px; height: 0px; transition-duration: 0ms;"
+        aria-hidden="true"
+        class="MuiButtonBase-root MuiIconButton-root MuiExpansionPanelSummary-expandIcon MuiExpansionPanelSummary-expanded"
+        role="button"
+        tabindex="-1"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root Accordion-expandIcon"
+            focusable="false"
+            role="presentation"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+            />
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+            />
+          </svg>
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </div>
+    </div>
+    <div
+      class="MuiCollapse-container"
+      style="min-height: 0px; height: 0px; transition-duration: 0ms;"
+    >
+      <div
+        class="MuiCollapse-wrapper"
       >
         <div
-          class="MuiCollapse-wrapper"
+          class="MuiCollapse-wrapperInner"
         >
           <div
-            class="MuiCollapse-wrapperInner"
+            class="MuiExpansionPanelDetails-root ExpansionPanelDetails-root Accordion-defaultDetails"
           >
-            <div
-              class="MuiExpansionPanelDetails-root ExpansionPanelDetails-root Accordion-defaultDetails"
-            >
-              <div
-                class="Accordion-detailsContent"
-              >
-                <div>
-                  Fryderyk Chopin was born in Żelazowa Wola, 46 kilometres west of Warsaw, in what was then the Duchy of Warsaw, a Polish state established by Napoleon. The parish baptismal record gives his birthday as 22 February 1810, and cites his given names in the Latin form Fridericus Franciscus (in Polish, he was Fryderyk Franciszek). However, the composer and his family used the birthdate 1 March, which is now generally accepted as the correct date.
-                </div>
-              </div>
+            <div>
+              Fryderyk Chopin was born in Żelazowa Wola, 46 kilometres west of Warsaw, in what was then the Duchy of Warsaw, a Polish state established by Napoleon. The parish baptismal record gives his birthday as 22 February 1810, and cites his given names in the Latin form Fridericus Franciscus (in Polish, he was Fryderyk Franciszek). However, the composer and his family used the birthdate 1 March, which is now generally accepted as the correct date.
             </div>
           </div>
         </div>

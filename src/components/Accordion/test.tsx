@@ -2,7 +2,7 @@
 import React, { ReactNode } from 'react'
 import { render, fireEvent, cleanup, RenderResult } from 'react-testing-library'
 
-import Picasso, { OmitInternalProps } from '../Picasso'
+import { OmitInternalProps } from '../Picasso'
 import Accordion, { Props } from './Accordion'
 
 const renderAccordion = (
@@ -12,11 +12,9 @@ const renderAccordion = (
   const { content, expanded } = props
 
   return render(
-    <Picasso loadFonts={false}>
-      <Accordion content={content} expanded={expanded}>
-        {children}
-      </Accordion>
-    </Picasso>
+    <Accordion content={content} expanded={expanded}>
+      {children}
+    </Accordion>
   )
 }
 

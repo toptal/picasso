@@ -1,31 +1,19 @@
-import { Theme, createStyles } from '@material-ui/core/styles'
+import { createStyles } from '@material-ui/core/styles'
 
 import { PicassoProvider } from '../Picasso'
 
-PicassoProvider.override(({ typography }: Theme) => ({
+PicassoProvider.override(() => ({
   MuiExpansionPanelSummary: {
     root: {
-      fontSize: '1em',
-      padding: '0.625em 0 0.5em',
-      fontWeight: typography.fontWeights.semibold,
-      minHeight: '2.45em',
-      '&$expanded': {
-        minHeight: '2.45em'
-      }
+      padding: 0
     },
     expandIcon: {
-      padding: 0,
-      right: 0,
       transform: 'translateY(-50%) rotate(90deg)',
+      left: 0,
+      right: 'unset',
+
       '&$expanded': {
-        transform: 'translateY(-50%) rotate(-90deg)'
-      }
-    },
-    content: {
-      fontSize: '0.875em',
-      margin: 0,
-      '&$expanded': {
-        margin: '0'
+        transform: 'translateY(-50%) rotate(0deg)'
       }
     }
   }

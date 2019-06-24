@@ -32,10 +32,6 @@ export const Accordion: FunctionComponent<Props> = ({
 
   return (
     <MUIExpansionPanel
-      classes={{
-        root: children ? classes.root : '',
-        expanded: classes.expanded
-      }}
       className={className}
       style={style}
       elevation={0}
@@ -53,13 +49,9 @@ export const Accordion: FunctionComponent<Props> = ({
         </ExpansionPanelSummary>
       )}
       <ExpansionPanelDetails
-        classes={{
-          root: isControlledVariant
-            ? classes.defaultDetails
-            : classes.controlledDetails
-        }}
+        classes={{ root: isControlledVariant ? classes.defaultDetails : '' }}
       >
-        <div className={classes.detailsContent}>{content}</div>
+        {content}
       </ExpansionPanelDetails>
     </MUIExpansionPanel>
   )

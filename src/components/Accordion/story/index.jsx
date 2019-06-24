@@ -27,6 +27,11 @@ page
     description:
       'Styled sections is a default behaviour of Accordion when `expanded` prop is not specified (uncontrolled)'
   })
+  .addExample('Accordion/story/Controlled.example.jsx', {
+    title: 'Controlled',
+    description:
+      'You can control of expansion or collapsing of the Details panel by passing `expanded` prop'
+  })
   .addExample('Accordion/story/AccordionGroup.example.jsx', {
     title: 'Group',
     description: 'Accordions with styled sections in a group'
