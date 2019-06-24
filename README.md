@@ -81,7 +81,6 @@ In order to run `yarn` commands we need to mount current `components` directory 
 | Command                       | Description                                                               |
 | ----------------------------- | ------------------------------------------------------------------------- |
 | **yarn lint**                 | Lint all files                                                            |
-| **yarn lint:path pathToFile** | Lint specific file                                                        |
 | **yarn test**                 | Run unit tests                                                            |
 | **yarn test -u**              | Update jest snapshots to current version                                  |
 | **yarn test:watch**           | Run unit tests in watch mode                                              |
