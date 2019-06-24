@@ -1,7 +1,7 @@
 import React from 'react'
-import { Page, Menu, Container, Button } from '@toptal/picasso'
+import { Page, Menu, Container, Button, Label } from '@toptal/picasso'
 
-const PageHeaderRightContentExample = () => (
+const PageHeaderExtraMenuContentExample = () => (
   <div style={{ height: '4.5em' }}>
     <Page.Header rightContent={<RightContent />} title='Onboarding' />
   </div>
@@ -16,7 +16,7 @@ const RightContent = () => (
     </Container>
     <Page.HeaderMenu
       name='Pablo Diego José Francisco de Paula Juan Nepomuceno María de los Remedios Cipriano de la Santísima Trinidad Ruiz y Picasso'
-      meta='Picasso Picasso Picasso Picasso Picasso Picasso'
+      meta={<Label>Extra content</Label>}
       avatar='./jacqueline-with-flowers-1954-square.jpg'
     >
       <Menu>
@@ -27,4 +27,4 @@ const RightContent = () => (
   </React.Fragment>
 )
 
-export default PageHeaderRightContentExample
+export default PageHeaderExtraMenuContentExample

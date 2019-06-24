@@ -1,6 +1,7 @@
 import React, { FunctionComponent, ReactNode } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
+import renamePropsWithWarning from 'react-deprecate'
 
 import { StandardProps } from '../Picasso'
 import UserBadge from '../UserBadge'
@@ -11,8 +12,9 @@ import styles from './styles'
 export interface Props extends StandardProps {
   /** User full name to display */
   name: string
-  /** User's organization name */
-  organization?: string
+  /** Additional content of PageHeaderMenu */
+  meta?: ReactNode
+  organization?: string // deprecated in favor of `meta`
   /** Photo url or custom Avatar component */
   avatar?: ReactNode
   /** Menu content */
@@ -21,13 +23,22 @@ export interface Props extends StandardProps {
 
 export const PageHeaderMenu: FunctionComponent<Props> = ({
   name,
-  organization,
+  meta,
   avatar,
   classes,
   className,
   style,
   children
 }) => {
+  const metaContent =
+    typeof meta === 'string' ? (
+      <Typography className={classes.truncateText} invert size='small'>
+        {meta}
+      </Typography>
+    ) : (
+      meta
+    )
+
   return (
     <Dropdown
       className={cx(classes.root, className)}
@@ -47,11 +58,7 @@ export const PageHeaderMenu: FunctionComponent<Props> = ({
         name={name}
         avatar={avatar}
       >
-        {organization && (
-          <Typography className={classes.truncateText} invert size='small'>
-            {organization}
-          </Typography>
-        )}
+        {meta && metaContent}
       </UserBadge>
       <Dropdown.Arrow style={{ color: 'white' }} />
     </Dropdown>
@@ -62,4 +69,6 @@ PageHeaderMenu.defaultProps = {}
 
 PageHeaderMenu.displayName = 'PageHeaderMenu'
 
-export default withStyles(styles)(PageHeaderMenu)
+export default renamePropsWithWarning(withStyles(styles)(PageHeaderMenu), {
+  organization: 'meta'
+})
