@@ -1,3 +1,10 @@
+# [2.7.0](https://github.com/toptal/picasso/compare/v2.6.0...v2.7.0) (2019-06-24)
+
+
+### Features
+
+* **page-header-menu:** replace organization property with meta ([#487](https://github.com/toptal/picasso/issues/487)) ([de3882f](https://github.com/toptal/picasso/commit/de3882f))
+
 # [2.6.0](https://github.com/toptal/picasso/compare/v2.5.0...v2.6.0) (2019-06-21)
 
 
