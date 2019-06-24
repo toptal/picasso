@@ -1,3 +1,10 @@
+## [2.7.1](https://github.com/toptal/picasso/compare/v2.7.0...v2.7.1) (2019-06-24)
+
+
+### Bug Fixes
+
+* **accordion:** fix accordion styles and editor docs ([#495](https://github.com/toptal/picasso/issues/495)) ([9adad1e](https://github.com/toptal/picasso/commit/9adad1e))
+
 # [2.7.0](https://github.com/toptal/picasso/compare/v2.6.0...v2.7.0) (2019-06-24)
 
 

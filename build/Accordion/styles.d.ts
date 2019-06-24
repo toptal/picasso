@@ -1490,26 +1490,20 @@ declare const _default: ({ palette, typography }: Theme) => {
     expanded: {
         margin: number;
     };
-    defaultSummary: {
+    summary: {
         color: string;
-    };
-    defaultDetails: {
-        color: string;
-    };
-    controlledDetails: {
-        marginTop: string;
-        marginBottom: string;
     };
     expandIcon: {
         fontSize: string;
         color: string;
     };
-    detailsContent: {
+    details: {
         padding: number;
         lineHeight: string;
         color: string | undefined;
         fontSize: string;
         fontWeight: number;
+        marginBottom: string;
     };
 };
 export default _default;
