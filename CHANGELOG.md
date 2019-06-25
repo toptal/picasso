@@ -1,3 +1,10 @@
+## [2.7.2](https://github.com/toptal/picasso/compare/v2.7.1...v2.7.2) (2019-06-25)
+
+
+### Bug Fixes
+
+* pass native props correctly in TextField ([#500](https://github.com/toptal/picasso/issues/500)) ([738cf93](https://github.com/toptal/picasso/commit/738cf93))
+
 ## [2.7.1](https://github.com/toptal/picasso/compare/v2.7.0...v2.7.1) (2019-06-24)
 
 

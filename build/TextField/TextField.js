@@ -32,16 +32,19 @@ exports.TextField = (_a) => {
             inputProps.startAdornment = IconAdornment;
         }
     }
-    const { defaultValue } = rest, inputHtmlProps = __rest(rest, ["defaultValue"]);
     return (react_1.default.createElement(TextField_1.default, { id: id, name: name, value: value, placeholder: placeholder, error: error, disabled: disabled, autoFocus: autoFocus, autoComplete: autoComplete, multiline: multiline, variant: 'outlined', style: style, rows: rows, rowsMax: rowsMax, type: type, className: classnames_1.default(classes.rootFixedWidth, className, {
             [classes.rootFullWidth]: fullWidth
-        }), InputProps: Object.assign({}, inputHtmlProps, inputProps, { classes: {
+        }), 
+        // html attributes
+        inputProps: rest, 
+        // props that are not html attributes
+        InputProps: Object.assign({}, inputProps, { classes: {
                 root: classnames_1.default(classes.root, {
                     [classes.rootMultiline]: multiline
                 }),
                 input: classes.input,
                 inputMultiline: classes.inputMultiline
-            } }), onChange: onChange, defaultValue: defaultValue }, children));
+            } }), onChange: onChange }, children));
 };
 exports.TextField.defaultProps = {
     iconPosition: 'start',
