@@ -6,7 +6,7 @@ const yargs = require('yargs').argv
 const sh = require('shelljs')
 const exec = require('child_process').execSync
 
-const { log, generatePackageJson } = require('./utils')
+const { log } = require('./utils')
 const config = require(`../tsconfig.json`)
 const packageJson = require(path.resolve(__dirname, '../package.json'))
 const tscPath = path.resolve(__dirname, '../node_modules/.bin/tsc')
@@ -49,8 +49,6 @@ const compile = function (config) {
 
   clean()
   build()
-
-  generatePackageJson(packageJson, config.compilerOptions.outDir)
 
   if (yargs.watch) {
     args.unshift('--watch')

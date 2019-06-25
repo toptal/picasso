@@ -4,6 +4,9 @@
   "description": "",
   "main": "./build/index.js",
   "module": "./build/index.js",
+  "files": [
+    "build"
+  ],
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watchAll",
@@ -21,8 +24,7 @@
     "generate:component": "hygen component new",
     "generate:example": "hygen component example",
     "generate:icons": "./bin/generate-icons",
-    "commit": "git-cz",
-    "prepublishOnly": "cp ../README.md ."
+    "commit": "git-cz"
   },
   "repository": {
     "type": "git",

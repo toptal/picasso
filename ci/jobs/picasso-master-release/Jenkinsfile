@@ -83,14 +83,13 @@ pipeline {
               git config user.email "$GIT_COMMITTER_EMAIL"
               git config user.name "$GIT_COMMITTER_NAME"
               yarn
-              echo "" > VERSION.txt
+              echo "" > .version
               yarn release ${params.RELEASE_AND_PUBLISH}
-              cat VERSION.txt
             """
             success "Done."
           }//sshagent
         script {
-            NEW_VERSION = sh(returnStdout: true, script: 'cat VERSION.txt').trim()
+            NEW_VERSION = sh(returnStdout: true, script: 'cat .version').trim()
         }
       } //steps
     }//stage
