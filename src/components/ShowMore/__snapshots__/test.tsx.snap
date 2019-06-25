@@ -1,0 +1,441 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ShowMore default render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <p
+      class="MuiTypography-root Typography-bodyMedium Typography-grey MuiTypography-body1"
+    >
+      <span
+        width="0"
+      >
+        <span />
+        <span>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?
+        </span>
+        <span
+          style="position: fixed; visibility: hidden; top: 0px; left: 0px;"
+        >
+          …
+        </span>
+      </span>
+    </p>
+    <a
+      class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone ShowMore-toggleText"
+    >
+      <p
+        class="MuiTypography-root Typography-bodyMedium Typography-blue MuiTypography-body1"
+      >
+        Show more
+      </p>
+      <svg
+        class="SvgChevronRight16-root ShowMore-icon"
+        style="min-width: 16px; min-height: 16px;"
+        viewBox="0 0 16 16"
+      >
+        <defs>
+          <path
+            d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+            id="chevronRight16_svg__a"
+          />
+        </defs>
+        <g
+          fill-rule="evenodd"
+        >
+          <mask
+            id="chevronRight16_svg__b"
+          >
+            <use
+              xlink:href="#chevronRight16_svg__a"
+            />
+          </mask>
+          <use
+            fill-rule="nonzero"
+            xlink:href="#chevronRight16_svg__a"
+          />
+          <g
+            mask="url(#chevronRight16_svg__b)"
+          >
+            <path
+              d="M0 0h16v16H0z"
+            />
+          </g>
+        </g>
+      </svg>
+    </a>
+  </div>
+</div>
+`;
+
+exports[`ShowMore when custom lessText text is specified should render with custom action link 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <p
+      class="MuiTypography-root Typography-bodyMedium Typography-grey MuiTypography-body1"
+    >
+      <span
+        width="0"
+      >
+        <span />
+        <span>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?
+        </span>
+        <span
+          style="position: fixed; visibility: hidden; top: 0px; left: 0px;"
+        >
+          …
+        </span>
+      </span>
+    </p>
+    <a
+      class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone ShowMore-toggleText"
+    >
+      <p
+        class="MuiTypography-root Typography-bodyMedium Typography-blue MuiTypography-body1"
+      >
+        Show more
+      </p>
+      <svg
+        class="SvgChevronRight16-root ShowMore-icon"
+        style="min-width: 16px; min-height: 16px;"
+        viewBox="0 0 16 16"
+      >
+        <defs>
+          <path
+            d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+            id="chevronRight16_svg__a"
+          />
+        </defs>
+        <g
+          fill-rule="evenodd"
+        >
+          <mask
+            id="chevronRight16_svg__b"
+          >
+            <use
+              xlink:href="#chevronRight16_svg__a"
+            />
+          </mask>
+          <use
+            fill-rule="nonzero"
+            xlink:href="#chevronRight16_svg__a"
+          />
+          <g
+            mask="url(#chevronRight16_svg__b)"
+          >
+            <path
+              d="M0 0h16v16H0z"
+            />
+          </g>
+        </g>
+      </svg>
+    </a>
+  </div>
+</div>
+`;
+
+exports[`ShowMore when custom showMore text is specified should render with custom action link 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <p
+      class="MuiTypography-root Typography-bodyMedium Typography-grey MuiTypography-body1"
+    >
+      <span
+        width="0"
+      >
+        <span />
+        <span>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?
+        </span>
+        <span
+          style="position: fixed; visibility: hidden; top: 0px; left: 0px;"
+        >
+          …
+        </span>
+      </span>
+    </p>
+    <a
+      class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone ShowMore-toggleText"
+    >
+      <p
+        class="MuiTypography-root Typography-bodyMedium Typography-blue MuiTypography-body1"
+      >
+        Display everything
+      </p>
+      <svg
+        class="SvgChevronRight16-root ShowMore-icon"
+        style="min-width: 16px; min-height: 16px;"
+        viewBox="0 0 16 16"
+      >
+        <defs>
+          <path
+            d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+            id="chevronRight16_svg__a"
+          />
+        </defs>
+        <g
+          fill-rule="evenodd"
+        >
+          <mask
+            id="chevronRight16_svg__b"
+          >
+            <use
+              xlink:href="#chevronRight16_svg__a"
+            />
+          </mask>
+          <use
+            fill-rule="nonzero"
+            xlink:href="#chevronRight16_svg__a"
+          />
+          <g
+            mask="url(#chevronRight16_svg__b)"
+          >
+            <path
+              d="M0 0h16v16H0z"
+            />
+          </g>
+        </g>
+      </svg>
+    </a>
+  </div>
+</div>
+`;
+
+exports[`ShowMore when disableToggle prop is true should render version without action link 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <p
+      class="MuiTypography-root Typography-bodyMedium Typography-grey MuiTypography-body1"
+    >
+      <span
+        width="0"
+      >
+        <span />
+        <span>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?
+        </span>
+        <span
+          style="position: fixed; visibility: hidden; top: 0px; left: 0px;"
+        >
+          …
+        </span>
+      </span>
+    </p>
+  </div>
+</div>
+`;
+
+exports[`ShowMore when initialExpanded prop is true should render expanded version 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <p
+      class="MuiTypography-root Typography-bodyMedium Typography-grey MuiTypography-body1"
+    >
+      <span
+        width="0"
+      >
+        <span />
+        <span>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?
+        </span>
+        <span
+          style="position: fixed; visibility: hidden; top: 0px; left: 0px;"
+        >
+          …
+        </span>
+      </span>
+    </p>
+    <a
+      class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone ShowMore-toggleText"
+    >
+      <p
+        class="MuiTypography-root Typography-bodyMedium Typography-blue MuiTypography-body1"
+      >
+        Show less
+      </p>
+      <svg
+        class="SvgChevronRight16-root ShowMore-icon ShowMore-expandedIcon"
+        style="min-width: 16px; min-height: 16px;"
+        viewBox="0 0 16 16"
+      >
+        <defs>
+          <path
+            d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+            id="chevronRight16_svg__a"
+          />
+        </defs>
+        <g
+          fill-rule="evenodd"
+        >
+          <mask
+            id="chevronRight16_svg__b"
+          >
+            <use
+              xlink:href="#chevronRight16_svg__a"
+            />
+          </mask>
+          <use
+            fill-rule="nonzero"
+            xlink:href="#chevronRight16_svg__a"
+          />
+          <g
+            mask="url(#chevronRight16_svg__b)"
+          >
+            <path
+              d="M0 0h16v16H0z"
+            />
+          </g>
+        </g>
+      </svg>
+    </a>
+  </div>
+</div>
+`;
+
+exports[`ShowMore when initialExpanded prop is true when show less link is clicked should render collapsed version 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <p
+      class="MuiTypography-root Typography-bodyMedium Typography-grey MuiTypography-body1"
+    >
+      <span
+        width="0"
+      >
+        <span />
+        <span>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?
+        </span>
+        <span
+          style="position: fixed; visibility: hidden; top: 0px; left: 0px;"
+        >
+          …
+        </span>
+      </span>
+    </p>
+    <a
+      class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone ShowMore-toggleText"
+    >
+      <p
+        class="MuiTypography-root Typography-bodyMedium Typography-blue MuiTypography-body1"
+      >
+        Show more
+      </p>
+      <svg
+        class="SvgChevronRight16-root ShowMore-icon"
+        style="min-width: 16px; min-height: 16px;"
+        viewBox="0 0 16 16"
+      >
+        <defs>
+          <path
+            d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+            id="chevronRight16_svg__a"
+          />
+        </defs>
+        <g
+          fill-rule="evenodd"
+        >
+          <mask
+            id="chevronRight16_svg__b"
+          >
+            <use
+              xlink:href="#chevronRight16_svg__a"
+            />
+          </mask>
+          <use
+            fill-rule="nonzero"
+            xlink:href="#chevronRight16_svg__a"
+          />
+          <g
+            mask="url(#chevronRight16_svg__b)"
+          >
+            <path
+              d="M0 0h16v16H0z"
+            />
+          </g>
+        </g>
+      </svg>
+    </a>
+  </div>
+</div>
+`;
+
+exports[`ShowMore when show more link is clicked should render expanded version 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <p
+      class="MuiTypography-root Typography-bodyMedium Typography-grey MuiTypography-body1"
+    >
+      <span
+        width="0"
+      >
+        <span />
+        <span>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?
+        </span>
+        <span
+          style="position: fixed; visibility: hidden; top: 0px; left: 0px;"
+        >
+          …
+        </span>
+      </span>
+    </p>
+    <a
+      class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone ShowMore-toggleText"
+    >
+      <p
+        class="MuiTypography-root Typography-bodyMedium Typography-blue MuiTypography-body1"
+      >
+        Show less
+      </p>
+      <svg
+        class="SvgChevronRight16-root ShowMore-icon ShowMore-expandedIcon"
+        style="min-width: 16px; min-height: 16px;"
+        viewBox="0 0 16 16"
+      >
+        <defs>
+          <path
+            d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+            id="chevronRight16_svg__a"
+          />
+        </defs>
+        <g
+          fill-rule="evenodd"
+        >
+          <mask
+            id="chevronRight16_svg__b"
+          >
+            <use
+              xlink:href="#chevronRight16_svg__a"
+            />
+          </mask>
+          <use
+            fill-rule="nonzero"
+            xlink:href="#chevronRight16_svg__a"
+          />
+          <g
+            mask="url(#chevronRight16_svg__b)"
+          >
+            <path
+              d="M0 0h16v16H0z"
+            />
+          </g>
+        </g>
+      </svg>
+    </a>
+  </div>
+</div>
+`;
