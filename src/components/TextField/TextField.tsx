@@ -106,8 +106,6 @@ export const TextField: FunctionComponent<Props> = ({
     }
   }
 
-  const { defaultValue, ...inputHtmlProps } = rest
-
   return (
     <MUITextField
       id={id}
@@ -127,8 +125,10 @@ export const TextField: FunctionComponent<Props> = ({
       className={cx(classes.rootFixedWidth, className, {
         [classes.rootFullWidth]: fullWidth
       })}
+      // html attributes
+      inputProps={rest}
+      // props that are not html attributes
       InputProps={{
-        ...inputHtmlProps,
         ...inputProps,
         classes: {
           root: cx(classes.root, {
@@ -139,7 +139,6 @@ export const TextField: FunctionComponent<Props> = ({
         }
       }}
       onChange={onChange}
-      defaultValue={defaultValue as string}
     >
       {children}
     </MUITextField>
