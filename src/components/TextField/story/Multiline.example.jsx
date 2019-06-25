@@ -11,12 +11,7 @@ const TextFieldMultilineExample = () => {
   return (
     <Container flex inline>
       <Container right='small'>
-        <TextField
-          multiline
-          rows={4}
-          value={value}
-          handleChange={handleChange}
-        />
+        <TextField multiline rows={4} value={value} onChange={handleChange} />
       </Container>
       <Container right='small'>
         <TextField multiline rows={4} placeholder='Placeholder' />

@@ -122,10 +122,6 @@ exports[`Native html attributes adds native props to the input 1`] = `
     >
       <div
         class="MuiInputBase-root MuiOutlinedInput-root TextField-root MuiInputBase-disabled MuiOutlinedInput-disabled MuiInputBase-formControl"
-        form="formId"
-        list="listId"
-        required=""
-        tabindex="-1"
       >
         <fieldset
           aria-hidden="true"
@@ -146,9 +142,12 @@ exports[`Native html attributes adds native props to the input 1`] = `
           autocomplete="autocomplete"
           class="MuiInputBase-input MuiOutlinedInput-input TextField-input MuiInputBase-disabled MuiOutlinedInput-disabled MuiInputBase-inputType"
           disabled=""
+          form="formId"
+          list="listId"
           name="name"
           readonly=""
           required=""
+          tabindex="-1"
           type="button"
           value="value"
         />
