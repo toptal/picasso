@@ -1,5 +1,6 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
+import { alpha } from '../styles'
 import { PicassoProvider } from '../Picasso'
 
 PicassoProvider.override(() => ({}))
@@ -10,10 +11,17 @@ export default ({ palette, spacing }: Theme) =>
       height: 'auto',
 
       '&:nth-of-type(even)': {
-        background: '#f8f9f9'
+        background: alpha(palette.grey.lighter!, 0.32)
+      },
+
+      '&$hover:hover': {
+        backgroundColor: palette.blue.lighter
       }
     },
+
     head: {
       borderBottom: `${spacing.borderWidth} solid ${palette.grey.lighter}`
-    }
+    },
+
+    hover: {}
   })
