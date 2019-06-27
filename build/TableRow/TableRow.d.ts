@@ -11,5 +11,5 @@ interface Props extends StandardProps {
     onClick?: (event: MouseEvent<HTMLTableRowElement>) => void;
 }
 export declare const TableRow: FunctionComponent<Props>;
-declare const _default: React.ComponentType<Pick<React.PropsWithChildren<Props>, "style" | "children" | "selected" | "hover" | "className" | "onClick"> & import("@material-ui/core/styles").StyledComponentProps<"head" | "root">>;
+declare const _default: React.ComponentType<Pick<React.PropsWithChildren<Props>, "style" | "children" | "selected" | "hover" | "className" | "onClick"> & import("@material-ui/core/styles").StyledComponentProps<"head" | "root" | "hover">>;
 export default _default;

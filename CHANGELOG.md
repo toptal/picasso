@@ -1,3 +1,10 @@
+## [2.7.4](https://github.com/toptal/picasso/compare/v2.7.3...v2.7.4) (2019-06-27)
+
+
+### Bug Fixes
+
+* **Table:** sync styles with base ([#504](https://github.com/toptal/picasso/issues/504)) ([aa8e710](https://github.com/toptal/picasso/commit/aa8e710))
+
 ## [2.7.3](https://github.com/toptal/picasso/compare/v2.7.2...v2.7.3) (2019-06-27)
 
 
