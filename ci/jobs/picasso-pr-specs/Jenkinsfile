@@ -25,6 +25,7 @@ pipeline {
     NPM_TOKEN = credentials('npm-token-for-toptal-private-registry')
     GITHUB_TOKEN = credentials('toptal-devbot-token-github-notify')
     DANGER_GITHUB_API_TOKEN = credentials('toptal-devbot-personal-token')
+    PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
   }
 
   stages {
@@ -54,7 +55,7 @@ pipeline {
     stage('Yarn install') {
       steps {
         sh 'rm -rf ./node_modules'
-        sh 'yarn install'
+        sh 'yarn install --frozen-lockfile'
       } //steps
     }//stage
 
