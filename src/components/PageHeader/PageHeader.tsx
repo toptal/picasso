@@ -48,7 +48,7 @@ export const PageHeader: FunctionComponent<Props> = ({
 
   return (
     <header
-      className={cx(classes.root, classes[variant!], className)}
+      className={cx('mui-fixed', classes.root, classes[variant!], className)}
       style={style}
     >
       <div className={contentClassnames}>

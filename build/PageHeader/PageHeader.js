@@ -22,7 +22,7 @@ exports.PageHeader = ({ classes, className, style, title, logoLink, rightContent
         [classes.fullWidth]: fullWidth
     }, classes.content);
     const logo = react_1.default.createElement(__1.Logo, { variant: 'white' });
-    return (react_1.default.createElement("header", { className: classnames_1.default(classes.root, classes[variant], className), style: style },
+    return (react_1.default.createElement("header", { className: classnames_1.default('mui-fixed', classes.root, classes[variant], className), style: style },
         react_1.default.createElement("div", { className: contentClassnames },
             react_1.default.createElement("div", { className: classes.left },
                 react_1.default.createElement(__1.Container, { right: 'small', flex: true, direction: 'row', alignItems: 'center' }, logoLink ? react_1.default.cloneElement(logoLink, {}, logo) : logo),
