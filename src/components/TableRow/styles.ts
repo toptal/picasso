@@ -5,7 +5,7 @@ import { PicassoProvider } from '../Picasso'
 
 PicassoProvider.override(() => ({}))
 
-export default ({ palette, spacing }: Theme) =>
+export default ({ palette, spacing, transitions }: Theme) =>
   createStyles({
     root: {
       height: 'auto',
@@ -23,5 +23,9 @@ export default ({ palette, spacing }: Theme) =>
       borderBottom: `${spacing.borderWidth} solid ${palette.grey.lighter}`
     },
 
-    hover: {}
+    hover: {
+      transition: transitions.create('background-color', {
+        duration: transitions.duration.shortest
+      })
+    }
   })
