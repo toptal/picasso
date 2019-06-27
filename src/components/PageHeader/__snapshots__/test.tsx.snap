@@ -6,7 +6,7 @@ exports[`Page.Header default render 1`] = `
     class="Picasso-root"
   >
     <header
-      class="PageHeader-root PageHeader-light"
+      class="mui-fixed PageHeader-root PageHeader-light"
     >
       <div
         class="PageHeader-content"
@@ -55,7 +55,7 @@ exports[`Page.Header render with link 1`] = `
     class="Picasso-root"
   >
     <header
-      class="PageHeader-root PageHeader-light"
+      class="mui-fixed PageHeader-root PageHeader-light"
     >
       <div
         class="PageHeader-content"
