@@ -1,3 +1,10 @@
+## [2.7.3](https://github.com/toptal/picasso/compare/v2.7.2...v2.7.3) (2019-06-27)
+
+
+### Bug Fixes
+
+* **page-header:** prevent header from moving when dropdown is open ([#506](https://github.com/toptal/picasso/issues/506)) ([ed7337a](https://github.com/toptal/picasso/commit/ed7337a)), closes [#505](https://github.com/toptal/picasso/issues/505)
+
 ## [2.7.2](https://github.com/toptal/picasso/compare/v2.7.1...v2.7.2) (2019-06-25)
 
 
