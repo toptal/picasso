@@ -6,7 +6,8 @@ exports[`renders default 1`] = `
     class="Picasso-root"
   >
     <div
-      style="display: inline-flex; align-items: center;"
+      class="Component-flex Component-inline"
+      style="align-items: center;"
     >
       <button
         class="MuiButtonBase-root Button-small Button-secondaryBlue Button-root"
@@ -14,8 +15,8 @@ exports[`renders default 1`] = `
         type="button"
       >
         <div
-          class="Button-content"
-          style="display: inline-flex; flex-direction: row; align-items: center;"
+          class="Component-flex Component-inline Button-content"
+          style="flex-direction: row; align-items: center;"
         >
           Prev
         </div>
@@ -26,15 +27,14 @@ exports[`renders default 1`] = `
         type="button"
       >
         <div
-          class="Button-content"
-          style="display: inline-flex; flex-direction: row; align-items: center;"
+          class="Component-flex Component-inline Button-content"
+          style="flex-direction: row; align-items: center;"
         >
           1
         </div>
       </button>
       <div
         class="Pagination-ellipsis"
-        style="display: block;"
       >
         <p
           class="MuiTypography-root Typography-bodySmall Typography-semibold Typography-black MuiTypography-body1"
@@ -48,8 +48,8 @@ exports[`renders default 1`] = `
         type="button"
       >
         <div
-          class="Button-content"
-          style="display: inline-flex; flex-direction: row; align-items: center;"
+          class="Component-flex Component-inline Button-content"
+          style="flex-direction: row; align-items: center;"
         >
           4
         </div>
@@ -60,8 +60,8 @@ exports[`renders default 1`] = `
         type="button"
       >
         <div
-          class="Button-content"
-          style="display: inline-flex; flex-direction: row; align-items: center;"
+          class="Component-flex Component-inline Button-content"
+          style="flex-direction: row; align-items: center;"
         >
           5
         </div>
@@ -72,15 +72,14 @@ exports[`renders default 1`] = `
         type="button"
       >
         <div
-          class="Button-content"
-          style="display: inline-flex; flex-direction: row; align-items: center;"
+          class="Component-flex Component-inline Button-content"
+          style="flex-direction: row; align-items: center;"
         >
           6
         </div>
       </button>
       <div
         class="Pagination-ellipsis"
-        style="display: block;"
       >
         <p
           class="MuiTypography-root Typography-bodySmall Typography-semibold Typography-black MuiTypography-body1"
@@ -94,8 +93,8 @@ exports[`renders default 1`] = `
         type="button"
       >
         <div
-          class="Button-content"
-          style="display: inline-flex; flex-direction: row; align-items: center;"
+          class="Component-flex Component-inline Button-content"
+          style="flex-direction: row; align-items: center;"
         >
           20
         </div>
@@ -106,8 +105,8 @@ exports[`renders default 1`] = `
         type="button"
       >
         <div
-          class="Button-content"
-          style="display: inline-flex; flex-direction: row; align-items: center;"
+          class="Component-flex Component-inline Button-content"
+          style="flex-direction: row; align-items: center;"
         >
           Next
         </div>
@@ -123,7 +122,8 @@ exports[`renders disabled 1`] = `
     class="Picasso-root"
   >
     <div
-      style="display: inline-flex; align-items: center;"
+      class="Component-flex Component-inline"
+      style="align-items: center;"
     >
       <button
         class="MuiButtonBase-root Button-small Button-secondaryDisabled Button-root MuiButtonBase-disabled"
@@ -132,8 +132,8 @@ exports[`renders disabled 1`] = `
         type="button"
       >
         <div
-          class="Button-content"
-          style="display: inline-flex; flex-direction: row; align-items: center;"
+          class="Component-flex Component-inline Button-content"
+          style="flex-direction: row; align-items: center;"
         >
           Prev
         </div>
@@ -145,15 +145,14 @@ exports[`renders disabled 1`] = `
         type="button"
       >
         <div
-          class="Button-content"
-          style="display: inline-flex; flex-direction: row; align-items: center;"
+          class="Component-flex Component-inline Button-content"
+          style="flex-direction: row; align-items: center;"
         >
           1
         </div>
       </button>
       <div
         class="Pagination-ellipsis"
-        style="display: block;"
       >
         <p
           class="MuiTypography-root Typography-bodySmall Typography-semibold Typography-black MuiTypography-body1"
@@ -168,8 +167,8 @@ exports[`renders disabled 1`] = `
         type="button"
       >
         <div
-          class="Button-content"
-          style="display: inline-flex; flex-direction: row; align-items: center;"
+          class="Component-flex Component-inline Button-content"
+          style="flex-direction: row; align-items: center;"
         >
           4
         </div>
@@ -181,8 +180,8 @@ exports[`renders disabled 1`] = `
         type="button"
       >
         <div
-          class="Button-content"
-          style="display: inline-flex; flex-direction: row; align-items: center;"
+          class="Component-flex Component-inline Button-content"
+          style="flex-direction: row; align-items: center;"
         >
           5
         </div>
@@ -194,15 +193,14 @@ exports[`renders disabled 1`] = `
         type="button"
       >
         <div
-          class="Button-content"
-          style="display: inline-flex; flex-direction: row; align-items: center;"
+          class="Component-flex Component-inline Button-content"
+          style="flex-direction: row; align-items: center;"
         >
           6
         </div>
       </button>
       <div
         class="Pagination-ellipsis"
-        style="display: block;"
       >
         <p
           class="MuiTypography-root Typography-bodySmall Typography-semibold Typography-black MuiTypography-body1"
@@ -217,8 +215,8 @@ exports[`renders disabled 1`] = `
         type="button"
       >
         <div
-          class="Button-content"
-          style="display: inline-flex; flex-direction: row; align-items: center;"
+          class="Component-flex Component-inline Button-content"
+          style="flex-direction: row; align-items: center;"
         >
           20
         </div>
@@ -230,8 +228,8 @@ exports[`renders disabled 1`] = `
         type="button"
       >
         <div
-          class="Button-content"
-          style="display: inline-flex; flex-direction: row; align-items: center;"
+          class="Component-flex Component-inline Button-content"
+          style="flex-direction: row; align-items: center;"
         >
           Next
         </div>

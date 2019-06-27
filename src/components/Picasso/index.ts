@@ -9,5 +9,6 @@ export {
   OmitInternalProps,
   SpacingType,
   spacingToEm,
-  PicassoComponent
+  PicassoComponent,
+  SpacingEnum
 } from './types'

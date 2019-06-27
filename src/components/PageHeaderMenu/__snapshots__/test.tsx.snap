@@ -12,8 +12,8 @@ exports[`PageHeaderMenu default render 1`] = `
         class="Dropdown-anchor"
       >
         <div
-          class="UserBadge-root"
-          style="display: flex; align-items: center;"
+          class="Component-flex UserBadge-root"
+          style="align-items: center;"
         >
           <div
             class="Avatar-root Avatar-xsmall"
@@ -25,10 +25,11 @@ exports[`PageHeaderMenu default render 1`] = `
             />
           </div>
           <div
-            style="margin-left: 1em; display: flex; flex-direction: column;"
+            class="Component-flex"
+            style="margin-left: 1em; flex-direction: column;"
           >
             <div
-              style="display: block;"
+              class=""
             >
               <h4
                 class="MuiTypography-root Typography-invert Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name PageHeaderMenu-name PageHeaderMenu-truncateText"

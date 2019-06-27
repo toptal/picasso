@@ -18,11 +18,12 @@ exports[`AccountSelect default render 1`] = `
           class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone AccountSelect-accountLink"
         >
           <div
-            style="padding: 1.5em; display: flex; flex-direction: row; align-items: center; justify-content: space-between;"
+            class="Component-mediumPadding Component-flex"
+            style="flex-direction: row; align-items: center; justify-content: space-between;"
           >
             <div
-              class="UserBadge-root"
-              style="display: flex; align-items: flex-start;"
+              class="Component-flex UserBadge-root"
+              style="align-items: flex-start;"
             >
               <div
                 class="Avatar-root Avatar-xsmall"
@@ -37,10 +38,11 @@ exports[`AccountSelect default render 1`] = `
                 </p>
               </div>
               <div
-                style="margin-left: 1em; display: flex; flex-direction: column;"
+                class="Component-flex"
+                style="margin-left: 1em; flex-direction: column;"
               >
                 <div
-                  style="display: block;"
+                  class=""
                 >
                   <h4
                     class="MuiTypography-root Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name"
@@ -77,11 +79,12 @@ exports[`AccountSelect default render 1`] = `
           href="#"
         >
           <div
-            style="padding: 1.5em; display: flex; flex-direction: row; align-items: center; justify-content: space-between;"
+            class="Component-mediumPadding Component-flex"
+            style="flex-direction: row; align-items: center; justify-content: space-between;"
           >
             <div
-              class="UserBadge-root"
-              style="display: flex; align-items: flex-start;"
+              class="Component-flex UserBadge-root"
+              style="align-items: flex-start;"
             >
               <div
                 class="Avatar-root Avatar-xsmall"
@@ -96,10 +99,11 @@ exports[`AccountSelect default render 1`] = `
                 </p>
               </div>
               <div
-                style="margin-left: 1em; display: flex; flex-direction: column;"
+                class="Component-flex"
+                style="margin-left: 1em; flex-direction: column;"
               >
                 <div
-                  style="display: block;"
+                  class=""
                 >
                   <h4
                     class="MuiTypography-root Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name"
@@ -136,11 +140,12 @@ exports[`AccountSelect default render 1`] = `
           href="#"
         >
           <div
-            style="padding: 1.5em; display: flex; flex-direction: row; align-items: center; justify-content: space-between;"
+            class="Component-mediumPadding Component-flex"
+            style="flex-direction: row; align-items: center; justify-content: space-between;"
           >
             <div
-              class="UserBadge-root"
-              style="display: flex; align-items: flex-start;"
+              class="Component-flex UserBadge-root"
+              style="align-items: flex-start;"
             >
               <div
                 class="Avatar-root Avatar-xsmall"
@@ -152,10 +157,11 @@ exports[`AccountSelect default render 1`] = `
                 />
               </div>
               <div
-                style="margin-left: 1em; display: flex; flex-direction: column;"
+                class="Component-flex"
+                style="margin-left: 1em; flex-direction: column;"
               >
                 <div
-                  style="display: block;"
+                  class=""
                 >
                   <h4
                     class="MuiTypography-root Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name"
