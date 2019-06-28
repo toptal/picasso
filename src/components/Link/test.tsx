@@ -20,4 +20,20 @@ describe('Link', () => {
 
     expect(container).toMatchSnapshot()
   })
+
+  test('renders native attributes', () => {
+    const { container } = render(
+      <Picasso loadFonts={false}>
+        <Link
+          onBlur={() => window.alert('onBlur')}
+          rel='noopener'
+          target='_blank'
+        >
+          Please verify your email
+        </Link>
+      </Picasso>
+    )
+
+    expect(container).toMatchSnapshot()
+  })
 })

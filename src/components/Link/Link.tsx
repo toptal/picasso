@@ -2,19 +2,20 @@ import React, {
   MouseEvent,
   FunctionComponent,
   ReactNode,
-  ElementType
+  ElementType,
+  AnchorHTMLAttributes
 } from 'react'
 import MUILink, { LinkProps } from '@material-ui/core/Link'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
-import { StandardProps, TooltipEventListeners } from '../Picasso'
+import { StandardProps } from '../Picasso'
 import styles from './styles'
 
 type UnderlineType = 'none' | 'hover' | 'always'
 type VariantType = 'action' | 'default'
 
-interface Props extends StandardProps, TooltipEventListeners {
+interface Props extends StandardProps, AnchorHTMLAttributes<HTMLAnchorElement> {
   /** Content of the component */
   children?: ReactNode
   /** Destination the link points to */
@@ -50,15 +51,15 @@ export const Link: FunctionComponent<Props> = ({
   as,
   variant,
   tabIndex,
-  onBlur,
-  onFocus,
-  onMouseLeave,
-  onMouseOver,
-  onTouchEnd,
-  onTouchStart
+  ...rest
 }) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { color, ...nativeHTMLAttributes } = rest
+
   return (
     <MUILink
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...nativeHTMLAttributes}
       href={href}
       underline={underline}
       onClick={onClick}
@@ -68,12 +69,6 @@ export const Link: FunctionComponent<Props> = ({
       style={style}
       component={as}
       tabIndex={tabIndex}
-      onBlur={onBlur}
-      onFocus={onFocus}
-      onMouseLeave={onMouseLeave}
-      onMouseOver={onMouseOver}
-      onTouchEnd={onTouchEnd}
-      onTouchStart={onTouchStart}
     >
       {children}
     </MUILink>
