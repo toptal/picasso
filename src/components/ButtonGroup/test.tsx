@@ -2,9 +2,15 @@ import React, { ReactNode } from 'react'
 import { render, cleanup } from 'react-testing-library'
 
 import ButtonGroup from './ButtonGroup'
+import Button from '../Button'
+import Picasso from '../Picasso/Picasso'
 
 const renderButtonGroup = (children: ReactNode) => {
-  return render(<ButtonGroup>{children}</ButtonGroup>)
+  return render(
+    <Picasso loadFonts={false}>
+      <ButtonGroup>{children}</ButtonGroup>
+    </Picasso>
+  )
 }
 
 afterEach(cleanup)
@@ -12,9 +18,9 @@ afterEach(cleanup)
 describe('ButtonGroup', () => {
   test('render', () => {
     const { container } = renderButtonGroup([
-      <div key='1' />,
-      <div key='2' />,
-      <div key='3' />
+      <Button key='1' />,
+      <Button key='2' active />,
+      <Button key='3' />
     ])
 
     expect(container).toMatchSnapshot()
