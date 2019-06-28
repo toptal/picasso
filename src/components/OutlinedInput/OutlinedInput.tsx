@@ -22,6 +22,10 @@ export interface Props extends StandardProps {
   inputComponent?: ReactType<InputBaseComponentProps>
   inputProps?: InputBaseComponentProps
   value?: ValueType
+  /** Type attribute of the Input element. It should be a valid HTML5 input type */
+  type?: string
+  /** If true, the input will indicate an error. */
+  error?: boolean
   onChange?: ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>
 }
 
@@ -35,6 +39,8 @@ const OutlinedInput: FunctionComponent<Props> = ({
   inputComponent,
   inputProps,
   value,
+  type,
+  error,
   onChange
 }) => {
   return (
@@ -48,6 +54,7 @@ const OutlinedInput: FunctionComponent<Props> = ({
       inputComponent={inputComponent}
       inputProps={inputProps}
       value={value}
+      type={type}
       onChange={onChange}
     />
   )

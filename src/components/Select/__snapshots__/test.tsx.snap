@@ -9,7 +9,7 @@ exports[`renders dropdown select 1`] = `
       class="MuiFormControl-root Select-rootFull"
     >
       <div
-        class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
       >
         <fieldset
           aria-hidden="true"
@@ -72,7 +72,7 @@ exports[`renders native select 1`] = `
       class="MuiFormControl-root Select-rootFull"
     >
       <div
-        class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
       >
         <fieldset
           aria-hidden="true"

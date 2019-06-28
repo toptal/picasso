@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FileInput default render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="MuiFormControl-root"
+    >
+      <div
+        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root FileInput-root MuiInputBase-formControl"
+      >
+        <fieldset
+          aria-hidden="true"
+          class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+          style="padding-left: 8px;"
+        >
+          <legend
+            class="MuiPrivateNotchedOutline-legend"
+            style="width: 0.01px;"
+          >
+            <span>
+              ​
+            </span>
+          </legend>
+        </fieldset>
+        <div
+          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input FileInput-input FileInput-inputPlaceholder MuiInputBase-inputType"
+          style="display: inline-flex; justify-content: space-between;"
+        >
+          <p
+            class="MuiTypography-root Typography-bodyInherit Typography-inherit MuiTypography-body1 MuiTypography-inline Component-inputValue"
+          >
+            No file uploaded.
+          </p>
+          <button
+            class="MuiButtonBase-root Button-small Button-primaryBlue Button-root Component-button"
+            tabindex="0"
+            type="button"
+          >
+            <div
+              class="Button-content"
+              style="display: inline-flex; flex-direction: row; align-items: center;"
+            >
+              Choose File
+            </div>
+          </button>
+          <input
+            class="Component-nativeInput"
+            type="file"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

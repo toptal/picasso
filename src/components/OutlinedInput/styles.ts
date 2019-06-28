@@ -72,5 +72,6 @@ PicassoProvider.override(({ palette }: Theme) => ({
 }))
 
 export default {
+  root: {},
   input: {}
 }

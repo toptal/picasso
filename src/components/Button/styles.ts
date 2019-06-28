@@ -60,7 +60,8 @@ export default ({ palette, spacing, transitions, typography }: Theme) =>
     },
     content: {
       lineHeight: '1.5em',
-      fontWeight: typography.fontWeights.semibold
+      fontWeight: typography.fontWeights.semibold,
+      whiteSpace: 'nowrap'
     },
     loader: {
       position: 'absolute',
