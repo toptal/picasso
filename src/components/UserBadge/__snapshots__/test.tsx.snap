@@ -6,8 +6,8 @@ exports[`UserBadge auto center alignment 1`] = `
     class="Picasso-root"
   >
     <div
-      class="UserBadge-root"
-      style="display: flex; align-items: center;"
+      class="Component-flex UserBadge-root"
+      style="align-items: center;"
     >
       <div
         class="Avatar-root Avatar-xsmall"
@@ -22,10 +22,11 @@ exports[`UserBadge auto center alignment 1`] = `
         </p>
       </div>
       <div
-        style="margin-left: 1em; display: flex; flex-direction: column;"
+        class="Component-flex"
+        style="margin-left: 1em; flex-direction: column;"
       >
         <div
-          style="display: block;"
+          class=""
         >
           <h4
             class="MuiTypography-root Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name"
@@ -45,8 +46,8 @@ exports[`UserBadge default render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="UserBadge-root"
-      style="display: flex; align-items: flex-start;"
+      class="Component-flex UserBadge-root"
+      style="align-items: flex-start;"
     >
       <div
         class="Avatar-root Avatar-xsmall"
@@ -61,10 +62,11 @@ exports[`UserBadge default render 1`] = `
         </p>
       </div>
       <div
-        style="margin-left: 1em; display: flex; flex-direction: column;"
+        class="Component-flex"
+        style="margin-left: 1em; flex-direction: column;"
       >
         <div
-          style="display: block;"
+          class=""
         >
           <h4
             class="MuiTypography-root Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name"
@@ -89,8 +91,8 @@ exports[`UserBadge invert render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="UserBadge-root"
-      style="display: flex; align-items: flex-start;"
+      class="Component-flex UserBadge-root"
+      style="align-items: flex-start;"
     >
       <div
         class="Avatar-root Avatar-xsmall"
@@ -105,10 +107,11 @@ exports[`UserBadge invert render 1`] = `
         </p>
       </div>
       <div
-        style="margin-left: 1em; display: flex; flex-direction: column;"
+        class="Component-flex"
+        style="margin-left: 1em; flex-direction: column;"
       >
         <div
-          style="display: block;"
+          class=""
         >
           <h4
             class="MuiTypography-root Typography-invert Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name"
@@ -133,8 +136,8 @@ exports[`UserBadge manual center alignment 1`] = `
     class="Picasso-root"
   >
     <div
-      class="UserBadge-root"
-      style="display: flex; align-items: center;"
+      class="Component-flex UserBadge-root"
+      style="align-items: center;"
     >
       <div
         class="Avatar-root Avatar-xsmall"
@@ -149,10 +152,11 @@ exports[`UserBadge manual center alignment 1`] = `
         </p>
       </div>
       <div
-        style="margin-left: 1em; display: flex; flex-direction: column;"
+        class="Component-flex"
+        style="margin-left: 1em; flex-direction: column;"
       >
         <div
-          style="display: block;"
+          class=""
         >
           <h4
             class="MuiTypography-root Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name"
@@ -177,8 +181,8 @@ exports[`UserBadge override auto center alignment 1`] = `
     class="Picasso-root"
   >
     <div
-      class="UserBadge-root"
-      style="display: flex; align-items: flex-start;"
+      class="Component-flex UserBadge-root"
+      style="align-items: flex-start;"
     >
       <div
         class="Avatar-root Avatar-xsmall"
@@ -193,10 +197,11 @@ exports[`UserBadge override auto center alignment 1`] = `
         </p>
       </div>
       <div
-        style="margin-left: 1em; display: flex; flex-direction: column;"
+        class="Component-flex"
+        style="margin-left: 1em; flex-direction: column;"
       >
         <div
-          style="display: block;"
+          class=""
         >
           <h4
             class="MuiTypography-root Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name"
@@ -216,8 +221,8 @@ exports[`UserBadge small size 1`] = `
     class="Picasso-root"
   >
     <div
-      class="UserBadge-root"
-      style="display: flex; align-items: flex-start;"
+      class="Component-flex UserBadge-root"
+      style="align-items: flex-start;"
     >
       <div
         class="Avatar-root Avatar-small"
@@ -232,10 +237,11 @@ exports[`UserBadge small size 1`] = `
         </p>
       </div>
       <div
-        style="margin-left: 1em; display: flex; flex-direction: column;"
+        class="Component-flex"
+        style="margin-left: 1em; flex-direction: column;"
       >
         <div
-          style="display: block;"
+          class=""
         >
           <h4
             class="MuiTypography-root Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name"

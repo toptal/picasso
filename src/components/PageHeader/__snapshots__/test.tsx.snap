@@ -15,7 +15,8 @@ exports[`Page.Header default render 1`] = `
           class="PageHeader-left"
         >
           <div
-            style="margin-right: 1em; display: flex; flex-direction: row; align-items: center;"
+            class="Component-flex"
+            style="margin-right: 1em; flex-direction: row; align-items: center;"
           >
             <svg
               class="SvgLogo-root Component-logo Component-white"
@@ -31,7 +32,8 @@ exports[`Page.Header default render 1`] = `
             class="PageHeader-divider"
           />
           <div
-            style="margin-left: 1em; display: block;"
+            class=""
+            style="margin-left: 1em;"
           >
             <p
               class="MuiTypography-root Typography-invert Typography-bodyInherit Typography-light MuiTypography-body1"
@@ -64,7 +66,8 @@ exports[`Page.Header render with link 1`] = `
           class="PageHeader-left"
         >
           <div
-            style="margin-right: 1em; display: flex; flex-direction: row; align-items: center;"
+            class="Component-flex"
+            style="margin-right: 1em; flex-direction: row; align-items: center;"
           >
             <a
               class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineHover"
@@ -85,7 +88,8 @@ exports[`Page.Header render with link 1`] = `
             class="PageHeader-divider"
           />
           <div
-            style="margin-left: 1em; display: block;"
+            class=""
+            style="margin-left: 1em;"
           >
             <p
               class="MuiTypography-root Typography-invert Typography-bodyInherit Typography-light MuiTypography-body1"

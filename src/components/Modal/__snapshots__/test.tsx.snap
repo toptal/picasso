@@ -50,8 +50,8 @@ exports[`renders Modal 1`] = `
             type="button"
           >
             <div
-              class="Button-content"
-              style="display: inline-flex; flex-direction: row; align-items: center;"
+              class="Component-flex Component-inline Button-content"
+              style="flex-direction: row; align-items: center;"
             >
               Cancel
             </div>
@@ -62,8 +62,8 @@ exports[`renders Modal 1`] = `
             type="button"
           >
             <div
-              class="Button-content"
-              style="display: inline-flex; flex-direction: row; align-items: center;"
+              class="Component-flex Component-inline Button-content"
+              style="flex-direction: row; align-items: center;"
             >
               Update
             </div>

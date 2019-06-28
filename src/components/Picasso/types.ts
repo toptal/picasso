@@ -48,9 +48,9 @@ export type SizeType<T extends Sizes> = T
 
 export type SpacingType =
   | number
-  | SizeType<'xsmall' | 'small' | 'medium' | 'large'>
+  | SizeType<'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'>
 
-enum SpacingEnum {
+export enum SpacingEnum {
   xsmall = 0.5,
   small = 1,
   medium = 1.5,

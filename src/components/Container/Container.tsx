@@ -1,6 +1,9 @@
 import React, { ReactNode, FunctionComponent } from 'react'
+import { withStyles } from '@material-ui/core/styles'
+import cx from 'classnames'
 
-import { BaseProps, SpacingType, spacingToEm } from '../Picasso'
+import { StandardProps, SpacingType, spacingToEm } from '../Picasso'
+import styles from './styles'
 
 type DirectionType = 'row' | 'column'
 
@@ -18,7 +21,9 @@ type JustifyContentType =
   | 'space-around'
   | 'space-evenly'
 
-interface Props extends BaseProps {
+interface Props extends StandardProps {
+  /** Content of Container */
+  children: ReactNode
   /** margin-top for the container transformed to `em` */
   top?: SpacingType
   /** margin-bottom for the container transformed to `em` */
@@ -39,8 +44,8 @@ interface Props extends BaseProps {
   alignItems?: AlignItemsType
   /** Defines the justify-content style property */
   justifyContent?: JustifyContentType
-  /** Content of Container */
-  children: ReactNode
+  /** Whether container has border or not */
+  bordered?: boolean
 }
 
 /**
@@ -59,11 +64,10 @@ export const Container: FunctionComponent<Props> = ({
   direction,
   alignItems,
   justifyContent,
-  style
+  style,
+  bordered = false,
+  classes
 }) => {
-  const display = flex ? 'flex' : 'block'
-  const inlineDisplay = flex ? 'inline-flex' : 'inline-block'
-
   const margins = {
     ...(top && { marginTop: spacingToEm(top) }),
     ...(bottom && { marginBottom: spacingToEm(bottom) }),
@@ -73,14 +77,21 @@ export const Container: FunctionComponent<Props> = ({
 
   return (
     <div
-      className={className}
+      className={cx(
+        {
+          [classes[`${padded}Padding`]]: typeof padded === 'string',
+          [classes.bordered]: bordered,
+          [classes.flex]: flex,
+          [classes.inline]: inline
+        },
+        className
+      )}
       style={{
         ...margins,
-        ...(padded && { padding: spacingToEm(padded) }),
-        display: inline ? inlineDisplay : display,
         ...(direction && { flexDirection: direction }),
-        ...(alignItems && { alignItems: alignItems }),
-        ...(justifyContent && { justifyContent: justifyContent }),
+        ...(alignItems && { alignItems }),
+        ...(justifyContent && { justifyContent }),
+        ...(typeof padded === 'number' && { padding: spacingToEm(padded) }),
         ...style
       }}
     >
@@ -93,4 +104,4 @@ Container.defaultProps = {
   inline: false
 }
 
-export default Container
+export default withStyles(styles)(Container)
