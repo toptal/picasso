@@ -1,3 +1,10 @@
+# [2.8.0](https://github.com/toptal/picasso/compare/v2.7.5...v2.8.0) (2019-06-28)
+
+
+### Features
+
+* **Container:** add bordered prop ([#512](https://github.com/toptal/picasso/issues/512)) ([1d881fd](https://github.com/toptal/picasso/commit/1d881fd))
+
 ## [2.7.5](https://github.com/toptal/picasso/compare/v2.7.4...v2.7.5) (2019-06-28)
 
 

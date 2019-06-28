@@ -23,6 +23,13 @@ export interface TooltipEventListeners {
 }
 declare type Sizes = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
 export declare type SizeType<T extends Sizes> = T;
-export declare type SpacingType = number | SizeType<'xsmall' | 'small' | 'medium' | 'large'>;
+export declare type SpacingType = number | SizeType<'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'>;
+export declare enum SpacingEnum {
+    xsmall = 0.5,
+    small = 1,
+    medium = 1.5,
+    large = 2,
+    xlarge = 2.5
+}
 export declare const spacingToEm: (spacing: SpacingType) => string;
 export {};

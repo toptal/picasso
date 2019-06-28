@@ -1,9 +1,11 @@
-import { ReactNode, FunctionComponent } from 'react';
-import { BaseProps, SpacingType } from '../Picasso';
+import React, { ReactNode, FunctionComponent } from 'react';
+import { StandardProps, SpacingType } from '../Picasso';
 declare type DirectionType = 'row' | 'column';
 declare type AlignItemsType = 'flex-start' | 'flex-end' | 'center' | 'stretch' | 'baseline';
 declare type JustifyContentType = 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
-interface Props extends BaseProps {
+interface Props extends StandardProps {
+    /** Content of Container */
+    children: ReactNode;
     /** margin-top for the container transformed to `em` */
     top?: SpacingType;
     /** margin-bottom for the container transformed to `em` */
@@ -24,11 +26,12 @@ interface Props extends BaseProps {
     alignItems?: AlignItemsType;
     /** Defines the justify-content style property */
     justifyContent?: JustifyContentType;
-    /** Content of Container */
-    children: ReactNode;
+    /** Whether container has border or not */
+    bordered?: boolean;
 }
 /**
  * Container component used for spacing 2 elements
  */
 export declare const Container: FunctionComponent<Props>;
-export default Container;
+declare const _default: React.ComponentType<Pick<React.PropsWithChildren<Props>, "alignItems" | "bottom" | "direction" | "justifyContent" | "left" | "right" | "top" | "flex" | "style" | "inline" | "children" | "className" | "bordered" | "padded"> & import("@material-ui/core/styles").StyledComponentProps<string>>;
+export default _default;
