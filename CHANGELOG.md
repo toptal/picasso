@@ -1,3 +1,10 @@
+## [2.7.5](https://github.com/toptal/picasso/compare/v2.7.4...v2.7.5) (2019-06-28)
+
+
+### Bug Fixes
+
+* **button.group:** fix button style for secondary variant ([#475](https://github.com/toptal/picasso/issues/475)) ([a70c9ad](https://github.com/toptal/picasso/commit/a70c9ad))
+
 ## [2.7.4](https://github.com/toptal/picasso/compare/v2.7.3...v2.7.4) (2019-06-27)
 
 
