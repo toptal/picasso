@@ -4,8 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
-const addClass = (Component, className) => {
-    return react_1.default.cloneElement(Component, { className });
+const addClass = (Component, classes) => {
+    return react_1.default.cloneElement(Component, { classes });
 };
 exports.default = (config) => {
     return (Component) => {
@@ -13,9 +13,9 @@ exports.default = (config) => {
             const { children, classes } = props;
             const modifiedChildren = react_1.default.Children.map(children, childNode => {
                 let childResult = childNode;
-                config(classes).forEach(([ComponentType, className]) => {
+                config(classes).forEach(([ComponentType, classes]) => {
                     if (childNode.type === ComponentType) {
-                        childResult = addClass(childNode, className);
+                        childResult = addClass(childNode, classes);
                     }
                 });
                 return childResult;

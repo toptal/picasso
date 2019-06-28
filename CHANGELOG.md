@@ -1,3 +1,10 @@
+## [2.7.5](https://github.com/toptal/picasso/compare/v2.7.4...v2.7.5) (2019-06-28)
+
+
+### Bug Fixes
+
+* **button.group:** fix button style for secondary variant ([#475](https://github.com/toptal/picasso/issues/475)) ([a70c9ad](https://github.com/toptal/picasso/commit/a70c9ad))
+
 ## [2.7.4](https://github.com/toptal/picasso/compare/v2.7.3...v2.7.4) (2019-06-27)
 
 
@@ -17,14 +24,14 @@
 
 ### Bug Fixes
 
-* pass native props correctly in TextField ([#500](https://github.com/toptal/picasso/issues/500)) ([738cf93](https://github.com/toptal/picasso/commit/738cf93))
+* **TextField** pass native attributes correctly to the input ([#500](https://github.com/toptal/picasso/issues/500)) ([738cf93](https://github.com/toptal/picasso/commit/738cf93))
 
 ## [2.7.1](https://github.com/toptal/picasso/compare/v2.7.0...v2.7.1) (2019-06-24)
 
 
 ### Bug Fixes
 
-* **accordion:** fix accordion styles and editor docs ([#495](https://github.com/toptal/picasso/issues/495)) ([9adad1e](https://github.com/toptal/picasso/commit/9adad1e))
+* **accordion:** fix styles and editor docs ([#495](https://github.com/toptal/picasso/issues/495)) ([9adad1e](https://github.com/toptal/picasso/commit/9adad1e))
 
 # [2.7.0](https://github.com/toptal/picasso/compare/v2.6.0...v2.7.0) (2019-06-24)
 
@@ -38,7 +45,7 @@
 
 ### Features
 
-* **accordion:** sync styles ([#473](https://github.com/toptal/picasso/issues/473)) ([b984bca](https://github.com/toptal/picasso/commit/b984bca))
+* **accordion:** update styles accordingly with base ([#473](https://github.com/toptal/picasso/issues/473)) ([b984bca](https://github.com/toptal/picasso/commit/b984bca))
 
 # [2.5.0](https://github.com/toptal/picasso/compare/v2.4.0...v2.5.0) (2019-06-21)
 
@@ -52,7 +59,7 @@
 
 ### Features
 
-* add support of native attributes ([#481](https://github.com/toptal/picasso/issues/481)) ([c2f882c](https://github.com/toptal/picasso/commit/c2f882c))
+* **TextField** add support of native input attributes ([#481](https://github.com/toptal/picasso/issues/481)) ([c2f882c](https://github.com/toptal/picasso/commit/c2f882c))
 
 # [2.3.0](https://github.com/toptal/picasso/compare/v2.2.0...v2.3.0) (2019-06-18)
 

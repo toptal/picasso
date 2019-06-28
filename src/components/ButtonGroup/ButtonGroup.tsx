@@ -24,12 +24,19 @@ export const ButtonGroup: FunctionComponent<Props> = ({
 )
 
 ButtonGroup.defaultProps = {
-  children: null,
   classes: {}
 }
 
 ButtonGroup.displayName = 'ButtonGroup'
 
 export default withStyles(styles)(
-  withClasses(classes => [[Button, classes.button]])(ButtonGroup)
+  withClasses(classes => [
+    [
+      Button,
+      {
+        root: classes.button,
+        active: classes.active
+      }
+    ]
+  ])(ButtonGroup)
 )

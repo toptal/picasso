@@ -4,12 +4,12 @@ import { Classes } from '../types'
 
 type ReactComponent = ReactElement<any>
 
-type ConfigItem = [ComponentType, string]
+type ConfigItem = [ComponentType, Classes]
 
 type Config = (classes: Classes) => ConfigItem[]
 
-const addClass = (Component: ReactComponent, className: string) => {
-  return React.cloneElement(Component, { className })
+const addClass = (Component: ReactComponent, classes: Classes) => {
+  return React.cloneElement(Component, { classes })
 }
 
 export default (config: Config) => {
@@ -20,9 +20,9 @@ export default (config: Config) => {
       const modifiedChildren = React.Children.map(children, childNode => {
         let childResult = childNode
 
-        config(classes).forEach(([ComponentType, className]) => {
+        config(classes).forEach(([ComponentType, classes]) => {
           if (childNode.type === ComponentType) {
-            childResult = addClass(childNode, className)
+            childResult = addClass(childNode, classes)
           }
         })
 

@@ -3,25 +3,29 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const styles_1 = require("@material-ui/core/styles");
 exports.default = () => styles_1.createStyles({
     root: {
-        display: 'inline-block',
+        display: 'flex',
+        justifyContent: 'flex-start',
         '& $button + $button': {
-            margin: '0'
+            marginLeft: '-1px'
         }
     },
     button: {
+        transitionProperty: 'color, background',
         '&:first-child': {
             borderTopRightRadius: 'unset',
-            borderBottomRightRadius: 'unset',
-            borderRight: 'none'
+            borderBottomRightRadius: 'unset'
+        },
+        '&:not(:first-child):not(:last-child)': {
+            borderRadius: 'unset'
         },
         '&:last-child': {
             borderTopLeftRadius: 'unset',
             borderBottomLeftRadius: 'unset'
         },
-        '&:not(:first-child):not(:last-child)': {
-            borderRadius: 'unset',
-            borderRight: 'none'
+        '&:active, &$active, &:hover': {
+            zIndex: 1
         }
-    }
+    },
+    active: {}
 });
 //# sourceMappingURL=styles.js.map

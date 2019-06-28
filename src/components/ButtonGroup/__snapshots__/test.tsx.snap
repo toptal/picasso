@@ -3,11 +3,42 @@
 exports[`ButtonGroup render 1`] = `
 <div>
   <div
-    class="ButtonGroup-root"
+    class="Picasso-root"
   >
-    <div />
-    <div />
-    <div />
+    <div
+      class="ButtonGroup-root"
+    >
+      <button
+        class="MuiButtonBase-root Button-medium Button-primaryBlue Button-root ButtonGroup-button"
+        tabindex="0"
+        type="button"
+      >
+        <div
+          class="Button-content"
+          style="display: inline-flex; flex-direction: row; align-items: center;"
+        />
+      </button>
+      <button
+        class="MuiButtonBase-root Button-active ButtonGroup-active Button-medium Button-primaryBlue Button-root ButtonGroup-button"
+        tabindex="0"
+        type="button"
+      >
+        <div
+          class="Button-content"
+          style="display: inline-flex; flex-direction: row; align-items: center;"
+        />
+      </button>
+      <button
+        class="MuiButtonBase-root Button-medium Button-primaryBlue Button-root ButtonGroup-button"
+        tabindex="0"
+        type="button"
+      >
+        <div
+          class="Button-content"
+          style="display: inline-flex; flex-direction: row; align-items: center;"
+        />
+      </button>
+    </div>
   </div>
 </div>
 `;

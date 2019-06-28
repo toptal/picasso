@@ -5,5 +5,5 @@ interface Props extends StandardProps {
     children?: ReactNode;
 }
 export declare const ButtonGroup: FunctionComponent<Props>;
-declare const _default: React.ComponentType<Pick<any, string | number | symbol> & import("@material-ui/core/styles").StyledComponentProps<"button" | "root">>;
+declare const _default: React.ComponentType<Pick<any, string | number | symbol> & import("@material-ui/core/styles").StyledComponentProps<"button" | "active" | "root">>;
 export default _default;
