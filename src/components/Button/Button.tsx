@@ -12,7 +12,12 @@ import Loader from '../Loader'
 import Container from '../Container'
 import Group from '../ButtonGroup'
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
-import { StandardProps, PicassoComponent, SizeType, TooltipEventListeners } from '../Picasso'
+import {
+  StandardProps,
+  PicassoComponent,
+  SizeType,
+  TooltipEventListeners
+} from '../Picasso'
 import styles from './styles'
 
 type VariantType =
@@ -101,6 +106,7 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
     icon: iconClass,
     iconLeft: iconLeftClass,
     iconRight: iconRightClass,
+    iconSmall: iconSmallClass,
     root: rootClass,
     hidden: hiddenClass,
     loader: loaderClass,
@@ -113,9 +119,11 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
     const iconComponent = React.cloneElement(icon, {
       className: cx(iconClass, icon.props.className, {
         [iconLeftClass]: children && iconPosition === 'left',
-        [iconRightClass]: children && iconPosition === 'right'
+        [iconRightClass]: children && iconPosition === 'right',
+        [iconSmallClass]: size === 'small'
       }),
-      key: 'button-icon'
+      key: 'button-icon',
+      base: size === 'small' ? '12' : undefined
     })
 
     if (iconPosition === 'left') {

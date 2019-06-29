@@ -1,16 +1,16 @@
 import React from 'react'
 import { Container } from '@toptal/picasso'
-import { Cog } from '@toptal/picasso/Icon'
+import { Settings16, Settings24 } from '@toptal/picasso/Icon'
 
 const IconWithTextExample = () => (
   <div>
     <div>
-      <Cog style={{ marginRight: '0.5em' }} />
+      <Settings16 style={{ marginRight: '0.5em' }} />
       Vertical alignment of the icon with the same height as text
     </div>
 
     <Container flex direction='row' alignItems='center' top='small'>
-      <Cog size={1.5} style={{ marginRight: '0.5em' }} />
+      <Settings24 style={{ marginRight: '0.5em' }} />
       Vertical alignment of the icon with bigger height than text
     </Container>
   </div>

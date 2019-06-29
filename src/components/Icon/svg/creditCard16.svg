@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 54.1 (76490) - https://sketchapp.com -->
+    <title>c110961b-5d05-4595-b864-a1686f61289a@1.00x</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M15,5 L15,3 L1,3 L1,5 L15,5 Z M15,6 L1,6 L1,13 L15,13 L15,6 Z M1,2 L15,2 C15.5522847,2 16,2.44771525 16,3 L16,13 C16,13.5522847 15.5522847,14 15,14 L1,14 C0.44771525,14 6.76353751e-17,13.5522847 0,13 L0,3 C-6.76353751e-17,2.44771525 0.44771525,2 1,2 Z M2,8 L7,8 L7,9 L2,9 L2,8 Z M2,10 L5,10 L5,11 L2,11 L2,10 Z M11,8 L14,8 L14,9 L11,9 L11,8 Z" id="path-1"></path>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons-/-Billing-/-16-/-Credit-Card">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Combined-Shape" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+            <g id="Colors-/-Black" mask="url(#mask-2)" fill="#000000">
+                <rect id="Rectangle" x="0" y="0" width="16" height="16"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

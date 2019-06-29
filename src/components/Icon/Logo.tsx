@@ -4,15 +4,31 @@ import { withStyles } from '@material-ui/core/styles'
 
 import { StandardProps } from '../Picasso'
 import styles from './styles'
-interface Props extends StandardProps {
+const BASE_SIZE = 16
+
+type ScaleType = 1 | 2 | 3 | 4
+export interface Props extends StandardProps {
   size?: number
+  scale?: ScaleType
   color?: string
+  base?: number
 }
 
 const SvgLogo = (props: Props) => {
-  const { classes, className, style, size, color } = props
+  const { classes, className, style = {}, color, scale, size, base } = props
+
+  if (size) {
+    const name = 'SvgLogo'
+
+    window.console.warn(
+      `${name}: size' prop will be removed in the next major release of Picasso. Please use 'scale' to maintain pixel perfect icons`
+    )
+  }
+
+  const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
   const svgStyle = {
-    fontSize: size && `${size}rem`,
+    minWidth: `${scaledSize}px`,
+    minHeight: `${scaledSize}px`,
     ...style
   }
 

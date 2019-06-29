@@ -12,7 +12,12 @@ import cx from 'classnames'
 import { capitalize } from '@material-ui/core/utils/helpers'
 
 import palette from '../Picasso/config/palette'
-import { Close, Alert, Tick, Info } from '../Icon'
+import {
+  Close,
+  Exclamation16 as Alert,
+  CheckMinor16 as Tick,
+  Info16 as Info
+} from '../Icon'
 import { StandardProps } from '../Picasso'
 import Container from '../Container'
 import Button from '../Button'
@@ -45,14 +50,13 @@ const renderNotificationCloseButton = ({
     onClick={onClose}
     className={close}
     title='Close Notification'
-    icon={<Close className={closeIcon} size={0.8} />}
+    icon={<Close className={closeIcon} />}
   />
 )
 
 const renderNotificationIcon = ({ icon, variant, classes }: Props) => {
   const iconProps = {
-    className: classes.icon,
-    size: 1.25
+    className: classes.icon
   }
 
   // TODO: these are Icons required circular Icon bg color definitions, all Icons should be white on that color

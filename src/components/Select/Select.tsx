@@ -16,7 +16,7 @@ import InputAdornment from '../InputAdornment'
 import MenuItem from '../MenuItem'
 import Typography from '../Typography'
 import { StandardProps } from '../Picasso'
-import { DropdownArrows } from '../Icon'
+import { DropdownArrows16 } from '../Icon'
 import styles from './styles'
 
 interface Option {
@@ -171,7 +171,7 @@ export const Select: FunctionComponent<Props> = ({
         </React.Fragment>
       )}
       IconComponent={({ className }: { className: string }) => (
-        <DropdownArrows
+        <DropdownArrows16
           className={cx(className, {
             [classes.caretDisabled]: disabled
           })}

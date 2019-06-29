@@ -1,7 +1,7 @@
 import React, { FunctionComponent, ReactNode, ReactElement } from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import CloseIcon from '@material-ui/icons/Close'
 
+import { CloseMinor16 } from '../Icon'
 import Chip from '../Chip'
 import LabelGroup from '../LabelGroup'
 import {
@@ -46,11 +46,13 @@ export const Label: FunctionComponent<Props> & StaticProps = ({
       className={className}
       style={style}
       deleteIcon={
-        <CloseIcon
+        <span
           aria-label='delete icon'
-          className={classes.deleteIcon}
           role='button'
-        />
+          className={classes.deleteIcon}
+        >
+          <CloseMinor16 />
+        </span>
       }
       onDelete={onDelete}
       label={children}

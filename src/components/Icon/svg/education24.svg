@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 54.1 (76490) - https://sketchapp.com -->
+    <title>85bbc49e-4686-43c4-a27a-5a14004e1712@1.00x</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M16.9962158,19.7939453 L19,23 L14,23 L15.9962158,19.8060547 L15.9962158,9.79400472 L11.3199863,7.19251641 L11.8061408,6.31864354 L16.9962158,9.20599528 L16.9962158,19.7939453 Z M17.9962158,16.5582235 L17.9962158,15.4401895 L19,14.9382975 L19,9.05633145 L17.9962158,9.55822354 L17.9962158,8.61798585 L17.8278994,8.52434776 L20.882845,6.99687496 L12.0244412,2.55895724 L3.1193913,6.99799311 L12,11.4382975 L14.5779488,10.1493231 L14.9962158,10.3820142 L14.9962158,11.0582235 L12,12.5563314 L5,9.05633145 L5,14.9382975 L12,18.4382975 L14.9962158,16.9401895 L14.9962158,18.0582235 L12,19.5563314 L4,15.5563314 L4,8.55633145 L0.880608695,6.9966358 L12.0255588,1.44104276 L23.117155,6.99775395 L20,8.55633145 L20,15.5563314 L17.9962158,16.5582235 Z M15.8042476,22 L17.1957524,22 L16.5,20.8867962 L15.8042476,22 Z" id="path-1"></path>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons-/-Resume-Builder-/-24-/-Education">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Combined-Shape" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+            <g id="Colors-/-Black" mask="url(#mask-2)" fill="#000000">
+                <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

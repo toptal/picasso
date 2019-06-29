@@ -162,6 +162,9 @@ export default ({ palette, spacing, transitions, typography }: Theme) =>
     iconRight: {
       marginLeft: ICON_SPACING
     },
+    iconSmall: {
+      height: `${typography.buttons.fontSizeSmall} !important`
+    },
     hidden: {
       opacity: 0
     }

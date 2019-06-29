@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 54.1 (76490) - https://sketchapp.com -->
+    <title>3cf6327c-378f-47a6-98d1-70d77f421604@1.00x</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M11,23 L11,19.9835977 C7.09098409,19.7263047 4,16.4741213 4,12.5 L5,12.5 C5,16.0898509 7.91014913,19 11.5,19 C15.0898509,19 18,16.0898509 18,12.5 L19,12.5 C19,16.4741213 15.9090159,19.7263047 12,19.9835977 L12,23 L17,23 L17,24 L6,24 L6,23 L11,23 Z M11.5,0 C13.9852814,-4.56538782e-16 16,2.01471863 16,4.5 L16,12.5 C16,14.9852814 13.9852814,17 11.5,17 C9.01471863,17 7,14.9852814 7,12.5 L7,4.5 C7,2.01471863 9.01471863,4.56538782e-16 11.5,0 Z M11.5,1 C9.56700338,1 8,2.56700338 8,4.5 L8,12.5 C8,14.4329966 9.56700338,16 11.5,16 C13.4329966,16 15,14.4329966 15,12.5 L15,4.5 C15,2.56700338 13.4329966,1 11.5,1 Z" id="path-1"></path>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons-/-Video-Call-/-24-/-Microphone-On">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Combined-Shape" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+            <g id="Colors-/-Black" mask="url(#mask-2)" fill="#000000">
+                <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

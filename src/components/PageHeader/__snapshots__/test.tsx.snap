@@ -20,6 +20,7 @@ exports[`Page.Header default render 1`] = `
           >
             <svg
               class="SvgLogo-root Component-logo Component-white"
+              style="min-width: 16px; min-height: 16px;"
               viewBox="0 0 134 40"
             >
               <path
@@ -75,6 +76,7 @@ exports[`Page.Header render with link 1`] = `
             >
               <svg
                 class="SvgLogo-root Component-logo Component-white"
+                style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 134 40"
               >
                 <path
