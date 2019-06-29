@@ -5,12 +5,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
 const styles_1 = require("@material-ui/core/styles");
-const Close_1 = __importDefault(require("@material-ui/icons/Close"));
+const Icon_1 = require("../Icon");
 const Chip_1 = __importDefault(require("../Chip"));
 const LabelGroup_1 = __importDefault(require("../LabelGroup"));
 const styles_2 = __importDefault(require("./styles"));
 exports.Label = ({ classes, children, className, icon, style, onDelete, onBlur, onFocus, onMouseLeave, onMouseOver, onTouchEnd, onTouchStart }) => {
-    return (react_1.default.createElement(Chip_1.default, { className: className, style: style, deleteIcon: react_1.default.createElement(Close_1.default, { "aria-label": 'delete icon', className: classes.deleteIcon, role: 'button' }), onDelete: onDelete, label: children, icon: icon, onBlur: onBlur, onFocus: onFocus, onMouseLeave: onMouseLeave, onMouseOver: onMouseOver, onTouchEnd: onTouchEnd, onTouchStart: onTouchStart }));
+    return (react_1.default.createElement(Chip_1.default, { className: className, style: style, deleteIcon: react_1.default.createElement("span", { "aria-label": 'delete icon', role: 'button', className: classes.deleteIcon },
+            react_1.default.createElement(Icon_1.CloseMinor16, null)), onDelete: onDelete, label: children, icon: icon, onBlur: onBlur, onFocus: onFocus, onMouseLeave: onMouseLeave, onMouseOver: onMouseOver, onTouchEnd: onTouchEnd, onTouchStart: onTouchStart }));
 };
 exports.Label.defaultProps = {
     children: '',

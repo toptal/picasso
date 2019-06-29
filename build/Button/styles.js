@@ -125,6 +125,9 @@ exports.default = ({ palette, spacing, transitions, typography }) => styles_1.cr
     iconRight: {
         marginLeft: ICON_SPACING
     },
+    iconSmall: {
+        height: `${typography.buttons.fontSizeSmall} !important`
+    },
     hidden: {
         opacity: 0
     }

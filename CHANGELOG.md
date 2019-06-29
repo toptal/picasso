@@ -1,3 +1,10 @@
+# [2.9.0](https://github.com/toptal/picasso/compare/v2.8.0...v2.9.0) (2019-06-29)
+
+
+### Features
+
+* **icon:** update whole icon library ([#491](https://github.com/toptal/picasso/issues/491)) ([1a224fd](https://github.com/toptal/picasso/commit/1a224fd))
+
 # [2.8.0](https://github.com/toptal/picasso/compare/v2.7.5...v2.8.0) (2019-06-28)
 
 

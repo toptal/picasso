@@ -71,7 +71,7 @@ exports.Select = ({ classes, className, style, width, id, icon, iconPosition, na
             react_1.default.createElement(Typography_1.default, { className: classes.inputValue, inline: true, color: 'inherit' },
                 selectedOption && selectedOption.text,
                 !selectedOption && placeholder),
-            iconPosition === 'end' && iconAdornment)), IconComponent: ({ className }) => (react_1.default.createElement(Icon_1.DropdownArrows, { className: classnames_1.default(className, {
+            iconPosition === 'end' && iconAdornment)), IconComponent: ({ className }) => (react_1.default.createElement(Icon_1.DropdownArrows16, { className: classnames_1.default(className, {
                 [classes.caretDisabled]: disabled
             }) })), MenuProps: menuProps, onChange: onChange }, renderOptions(options, placeholder, native)));
     return (react_1.default.createElement(FormControl_1.default, { error: error, disabled: disabled, className: classnames_1.default(className, { [classes.rootFull]: fullWidth }) }, select));

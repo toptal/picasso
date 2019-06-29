@@ -1,8 +1,3 @@
-import React from 'react';
-import { StandardProps } from '../Picasso';
-interface Props extends StandardProps {
-    size?: number;
-    color?: string;
-}
-declare const _default: React.ComponentType<Pick<Props, "color" | "size" | "style" | "className"> & import("@material-ui/core/styles").StyledComponentProps<"root">>;
+/// <reference types="react" />
+declare const _default: import("react").ComponentType<Pick<import("./WorkExperience16").Props, "color" | "scale" | "size" | "style" | "base" | "className"> & import("@material-ui/core").StyledComponentProps<"root">>;
 export default _default;

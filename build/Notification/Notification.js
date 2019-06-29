@@ -21,28 +21,27 @@ const Container_1 = __importDefault(require("../Container"));
 const Button_1 = __importDefault(require("../Button"));
 const styles_2 = __importDefault(require("./styles"));
 const Typography_1 = __importDefault(require("../Typography"));
-const renderNotificationCloseButton = ({ onClose, classes: { close, closeIcon } }) => (react_1.default.createElement(Button_1.default, { circular: true, onClick: onClose, className: close, title: 'Close Notification', icon: react_1.default.createElement(Icon_1.Close, { className: closeIcon, size: 0.8 }) }));
+const renderNotificationCloseButton = ({ onClose, classes: { close, closeIcon } }) => (react_1.default.createElement(Button_1.default, { circular: true, onClick: onClose, className: close, title: 'Close Notification', icon: react_1.default.createElement(Icon_1.Close, { className: closeIcon }) }));
 const renderNotificationIcon = ({ icon, variant, classes }) => {
     const iconProps = {
-        className: classes.icon,
-        size: 1.25
+        className: classes.icon
     };
     // TODO: these are Icons required circular Icon bg color definitions, all Icons should be white on that color
     // Missing the following: https://github.com/toptal/picasso/issues/253
     switch (variant) {
         case 'red':
             // eslint-disable-next-line react/jsx-props-no-spreading
-            return react_1.default.createElement(Icon_1.Alert, Object.assign({}, iconProps, { color: palette_1.default.red.main }));
+            return react_1.default.createElement(Icon_1.Exclamation16, Object.assign({}, iconProps, { color: palette_1.default.red.main }));
         case 'yellow':
             // eslint-disable-next-line react/jsx-props-no-spreading
-            return react_1.default.createElement(Icon_1.Alert, Object.assign({}, iconProps, { color: palette_1.default.yellow.main }));
+            return react_1.default.createElement(Icon_1.Exclamation16, Object.assign({}, iconProps, { color: palette_1.default.yellow.main }));
         case 'green':
             // eslint-disable-next-line react/jsx-props-no-spreading
-            return react_1.default.createElement(Icon_1.Tick, Object.assign({}, iconProps, { color: palette_1.default.green.main }));
+            return react_1.default.createElement(Icon_1.CheckMinor16, Object.assign({}, iconProps, { color: palette_1.default.green.main }));
         default:
             const infoProps = Object.assign({}, iconProps, { color: palette_1.default.grey.main });
             // eslint-disable-next-line react/jsx-props-no-spreading
-            return icon ? react_1.cloneElement(icon, infoProps) : react_1.default.createElement(Icon_1.Info, Object.assign({}, infoProps));
+            return icon ? react_1.cloneElement(icon, infoProps) : react_1.default.createElement(Icon_1.Info16, Object.assign({}, infoProps));
     }
 };
 const renderNotificationContent = (props) => {

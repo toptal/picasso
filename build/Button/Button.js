@@ -17,15 +17,17 @@ const getVariantType = (variant) => {
     return type;
 };
 exports.Button = ({ icon, iconPosition, loading, children, classes, className, style, fullWidth, variant, size, focused, hovered, disabled, active, onClick, circular, title, value, type, onBlur, onFocus, onMouseLeave, onMouseOver, onTouchEnd, onTouchStart }) => {
-    const { icon: iconClass, iconLeft: iconLeftClass, iconRight: iconRightClass, root: rootClass, hidden: hiddenClass, loader: loaderClass, content: contentClass } = classes;
+    const { icon: iconClass, iconLeft: iconLeftClass, iconRight: iconRightClass, iconSmall: iconSmallClass, root: rootClass, hidden: hiddenClass, loader: loaderClass, content: contentClass } = classes;
     let finalChildren = [children];
     if (icon) {
         const iconComponent = react_1.default.cloneElement(icon, {
             className: classnames_1.default(iconClass, icon.props.className, {
                 [iconLeftClass]: children && iconPosition === 'left',
-                [iconRightClass]: children && iconPosition === 'right'
+                [iconRightClass]: children && iconPosition === 'right',
+                [iconSmallClass]: size === 'small'
             }),
-            key: 'button-icon'
+            key: 'button-icon',
+            base: size === 'small' ? '12' : undefined
         });
         if (iconPosition === 'left') {
             finalChildren.unshift(iconComponent);

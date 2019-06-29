@@ -17,7 +17,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
 const styles_1 = require("@material-ui/core/styles");
 const Dialog_1 = __importDefault(require("@material-ui/core/Dialog"));
-const Close_1 = __importDefault(require("@material-ui/icons/Close"));
+const Icon_1 = require("../Icon");
 const ModalTitle_1 = __importDefault(require("../ModalTitle"));
 const ModalContent_1 = __importDefault(require("../ModalContent"));
 const ModalActions_1 = __importDefault(require("../ModalActions"));
@@ -26,7 +26,8 @@ exports.Modal = props => {
     const { children, open, onBackdropClick, onClose, onOpen, classes, className, style, container, hideBackdrop, transitionDuration, paperProps } = props;
     const { closeButton } = classes, restClasses = __rest(classes, ["closeButton"]);
     return (react_1.default.createElement(Dialog_1.default, { classes: restClasses, className: className, style: style, container: container, PaperProps: Object.assign({}, paperProps, { elevation: 2 }), hideBackdrop: hideBackdrop, onBackdropClick: onBackdropClick, onClose: onClose, onEnter: onOpen, open: open, transitionDuration: transitionDuration },
-        onClose && react_1.default.createElement(Close_1.default, { className: closeButton, onClick: onClose }),
+        onClose && (react_1.default.createElement("span", { onClick: onClose },
+            react_1.default.createElement(Icon_1.CloseMinor16, { className: closeButton }))),
         children));
 };
 exports.Modal.defaultProps = {
