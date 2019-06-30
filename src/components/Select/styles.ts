@@ -25,10 +25,6 @@ PicassoProvider.override(() => ({
 
 export default ({ spacing: { input, inputIcon }, palette }: Theme) =>
   createStyles({
-    root: {
-      height: input.height,
-      width: input.width
-    },
     rootFull: {
       width: '100%',
       display: 'flex'
@@ -41,14 +37,7 @@ export default ({ spacing: { input, inputIcon }, palette }: Theme) =>
     },
     rootAuto: {},
     input: {
-      fontSize: '1em',
-      display: 'flex',
-      alignItems: 'center',
-      boxSizing: 'border-box',
-      height: '100%',
-      padding: input.padding,
-      paddingRight: `calc(${input.padding} + 1em)`,
-      border: 'none'
+      paddingRight: `calc(${input.padding} + 1em)`
     },
     inputNative: {
       fontSize: '0.8125em',

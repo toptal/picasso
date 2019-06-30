@@ -7,6 +7,7 @@ import React, {
 import { withStyles } from '@material-ui/core/styles'
 import MUIOutlinedInput from '@material-ui/core/OutlinedInput'
 import { InputBaseComponentProps } from '@material-ui/core/InputBase'
+import cx from 'classnames'
 
 import { StandardProps } from '../Picasso'
 import styles from './styles'
@@ -55,9 +56,16 @@ const OutlinedInput: FunctionComponent<Props> = ({
   endAdornment,
   onChange
 }) => {
+  const { root, rootFull, ...otherClasses } = classes
+
   return (
     <MUIOutlinedInput
-      classes={classes}
+      classes={{
+        root: cx(classes.root, {
+          [classes.rootFull]: fullWidth
+        }),
+        ...otherClasses
+      }}
       className={className}
       style={style}
       labelWidth={labelWidth}

@@ -5,19 +5,11 @@ import { alpha } from '../styles'
 export default ({ palette, spacing: { input } }: Theme) =>
   createStyles({
     root: {
-      height: input.height,
-      width: input.width,
       cursor: 'default',
       padding: `${input.padding} 0.375em`
     },
     input: {
-      fontSize: '1em',
-      display: 'flex',
-      alignItems: 'center',
-      boxSizing: 'border-box',
-      height: '100%',
-      padding: 0,
-      border: 'none'
+      padding: 0
     },
     inputStatus: {
       color: palette.grey.dark

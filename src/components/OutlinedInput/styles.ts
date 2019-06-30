@@ -1,11 +1,13 @@
-import { Theme } from '@material-ui/core/styles'
+import { Theme, createStyles } from '@material-ui/core/styles'
 
 import { PicassoProvider } from '../Picasso'
 import { alpha } from '../styles'
 
-PicassoProvider.override(({ palette }: Theme) => ({
+PicassoProvider.override(({ palette, spacing: { input } }: Theme) => ({
   MuiOutlinedInput: {
     root: {
+      height: input.height,
+      width: input.width,
       color: palette.common.black,
 
       '& $notchedOutline': {
@@ -39,7 +41,13 @@ PicassoProvider.override(({ palette }: Theme) => ({
       }
     },
     input: {
-      border: 'solid 1px transparent',
+      fontSize: '1em',
+      display: 'flex',
+      alignItems: 'center',
+      boxSizing: 'border-box',
+      height: '100%',
+      padding: input.padding,
+      border: 'none',
 
       '&::placeholder': {
         color: palette.grey.dark,
@@ -71,7 +79,12 @@ PicassoProvider.override(({ palette }: Theme) => ({
   }
 }))
 
-export default {
-  root: {},
-  input: {}
-}
+export default () =>
+  createStyles({
+    root: {},
+    rootFull: {
+      width: '100%',
+      display: 'flex'
+    },
+    input: {}
+  })

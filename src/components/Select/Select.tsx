@@ -143,17 +143,19 @@ export const Select: FunctionComponent<Props> = ({
     getContentAnchorEl: undefined // needed to restore default behaviour
   } as Partial<MenuProps>
 
-  const select = (
+  return (
     <MUISelect
       className={className}
       style={style}
       classes={{
-        root: cx(classes.root, classes[`root${capitalize(width!)}`], {
+        root: cx(classes[`root${capitalize(width!)}`], {
           [classes.selectNative]: native
         }),
         icon: classes.caret,
         select: classes.select
       }}
+      error={error}
+      disabled={disabled}
       displayEmpty
       id={id}
       input={outlinedInput}
@@ -182,16 +184,6 @@ export const Select: FunctionComponent<Props> = ({
     >
       {renderOptions(options, placeholder, native)}
     </MUISelect>
-  )
-
-  return (
-    <FormControl
-      error={error}
-      disabled={disabled}
-      className={cx(className, { [classes.rootFull]: fullWidth })}
-    >
-      {select}
-    </FormControl>
   )
 }
 
