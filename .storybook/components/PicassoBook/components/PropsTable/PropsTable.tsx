@@ -1,12 +1,7 @@
 import React, { Fragment, FunctionComponent } from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import _ from 'lodash'
 
-import TableCell from '@material-ui/core/TableCell'
-import TableHead from '@material-ui/core/TableHead'
-import TableRow from '@material-ui/core/TableRow'
-import TableBody from '@material-ui/core/TableBody'
-import Table from '@material-ui/core/Table'
+import { Table } from '@components'
 import cx from 'classnames'
 
 import { Classes } from '@components/styles/types'
@@ -32,22 +27,22 @@ function renderRows({ documentation, classes }: Props): JSX.Element {
     <Fragment>
       {documentation.map(
         ({ name, type, defaultValue, description, enums, required }) => (
-          <TableRow key={name}>
-            <TableCell>
+          <Table.Row key={name}>
+            <Table.Cell>
               <span className={classes.propName}>{name}</span>
               <span className={classes.requiredTag}>{required ? '*' : ''}</span>
-            </TableCell>
+            </Table.Cell>
             <PropTypeTableCell className={classes.typeCell} type={type} />
-            <TableCell className={classes.defaultValueCell}>
+            <Table.Cell className={classes.defaultValueCell}>
               {defaultValue && (
                 <span className={classes.highlight}>{defaultValue}</span>
               )}
-            </TableCell>
-            <TableCell className={classes.descriptionCell}>
+            </Table.Cell>
+            <Table.Cell className={classes.descriptionCell}>
               <Description description={description} propName={name} />
               {isEnum(type) && <EnumsList type={type} enums={enums} />}
-            </TableCell>
-          </TableRow>
+            </Table.Cell>
+          </Table.Row>
         )
       )}
     </Fragment>
@@ -60,23 +55,19 @@ const PropsTable: FunctionComponent<Props> = props => {
   return (
     <div className={classes.root}>
       <Table className={classes.table}>
-        <TableHead>
-          <TableRow>
-            <TableCell className={cx(classes.header, classes.name)}>
-              Name
-            </TableCell>
-            <TableCell className={cx(classes.header, classes.type)}>
-              Type
-            </TableCell>
-            <TableCell className={cx(classes.header, classes.defaultValue)}>
+        <Table.Head>
+          <Table.Row>
+            <Table.Cell className={cx(classes.name)}>Name</Table.Cell>
+            <Table.Cell className={cx(classes.type)}>Type</Table.Cell>
+            <Table.Cell className={cx(classes.defaultValue)}>
               Default
-            </TableCell>
-            <TableCell className={cx(classes.header, classes.description)}>
+            </Table.Cell>
+            <Table.Cell className={cx(classes.description)}>
               Description
-            </TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>{renderRows(props)}</TableBody>
+            </Table.Cell>
+          </Table.Row>
+        </Table.Head>
+        <Table.Body>{renderRows(props)}</Table.Body>
       </Table>
     </div>
   )
