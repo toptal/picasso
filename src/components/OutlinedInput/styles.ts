@@ -87,7 +87,6 @@ export default () =>
     root: {},
     rootFull: {
       width: '100%'
-      //display: 'flex'
     },
     rootShrink: {
       width: 'auto'

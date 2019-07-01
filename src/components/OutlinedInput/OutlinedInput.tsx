@@ -79,7 +79,6 @@ const OutlinedInput: FunctionComponent<Props> = ({
   onChange
 }) => {
   const { root, rootFull, ...otherClasses } = classes
-  const fullWidth = width === 'full'
 
   return (
     <MUIOutlinedInput
@@ -90,7 +89,8 @@ const OutlinedInput: FunctionComponent<Props> = ({
       className={className}
       style={style}
       labelWidth={0}
-      fullWidth={fullWidth}
+      fullWidth={width === 'full'}
+      notched={notched}
       disabled={disabled}
       error={error}
       inputComponent={inputComponent}
