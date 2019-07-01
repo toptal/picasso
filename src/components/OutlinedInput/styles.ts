@@ -61,6 +61,9 @@ PicassoProvider.override(({ palette, spacing: { input } }: Theme) => ({
         }
       }
     },
+    inputMultiline: {
+      padding: 0
+    },
     multiline: {
       padding: 0
     },
@@ -83,8 +86,12 @@ export default () =>
   createStyles({
     root: {},
     rootFull: {
-      width: '100%',
-      display: 'flex'
+      width: '100%'
+      //display: 'flex'
     },
-    input: {}
+    rootShrink: {
+      width: 'auto'
+    },
+    input: {},
+    inputMultiline: {}
   })

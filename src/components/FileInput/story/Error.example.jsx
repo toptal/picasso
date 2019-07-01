@@ -3,7 +3,7 @@ import { FileInput } from '@toptal/picasso'
 
 const FileInputErrorExample = () => (
   <div>
-    <FileInput error status='Upload failed.' />
+    <FileInput error status='Upload failed.' width='auto' />
   </div>
 )
 

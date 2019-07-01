@@ -9,26 +9,16 @@ import '../InputAdornment/styles'
 export default ({ spacing: { input, inputIcon } }: Theme) =>
   createStyles({
     root: {
-      fontSize: 'inherit',
-      boxSizing: 'border-box',
-      height: input.height,
       padding: input.padding
     },
     rootMultiline: {
       height: 'auto'
-    },
-    rootFixedWidth: {
-      width: input.width
     },
     rootFullWidth: {
       width: '100%'
     },
     input: {
       fontSize: '0.8125em',
-      border: 'none',
-      padding: 0
-    },
-    inputMultiline: {
       padding: 0
     },
     icon: {

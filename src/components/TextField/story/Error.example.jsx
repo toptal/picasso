@@ -11,9 +11,9 @@ const TextFieldErrorExample = () => {
   return (
     <Container flex inline>
       <Container right='small'>
-        <TextField error value={value} onChange={handleChange} />
+        <TextField error value={value} width='auto' onChange={handleChange} />
       </Container>
-      <TextField error placeholder='Placeholder' />
+      <TextField error placeholder='Placeholder' width='auto' />
     </Container>
   )
 }

@@ -5,11 +5,11 @@ import React, {
   InputHTMLAttributes
 } from 'react'
 import cx from 'classnames'
-import MUITextField from '@material-ui/core/TextField'
 import { withStyles } from '@material-ui/core/styles'
 import { OutlinedInputProps } from '@material-ui/core/OutlinedInput'
 
 import InputAdornment from '../InputAdornment'
+import OutlinedInput from '../OutlinedInput'
 import { StandardProps } from '../Picasso'
 import styles from './styles'
 
@@ -33,8 +33,8 @@ export interface Props extends StandardProps, HTMLInputProps {
   error?: boolean
   /** If true, the `TextField` will be disabled */
   disabled?: boolean
-  /** Take the full width of a container */
-  fullWidth?: boolean
+  /** Width of the component which will apply `min-width` to the `input` */
+  width?: 'full' | 'shrink' | 'auto'
   /** Focus during first mount */
   autoFocus?: boolean
   /** Helps users to fill forms faster */
@@ -43,7 +43,6 @@ export interface Props extends StandardProps, HTMLInputProps {
   iconPosition?: IconPosition
   /** Specify icon which should be rendered inside TextField */
   icon?: ReactNode
-  inputProps?: OutlinedInputProps
   /** Whether `TextField` should be rendered as `TextArea` or not */
   multiline?: boolean
   /** Specify rows amount for `TextArea` */
@@ -71,11 +70,10 @@ export const TextField: FunctionComponent<Props> = ({
   autoComplete,
   icon,
   iconPosition,
-  inputProps = {} as OutlinedInputProps,
   classes,
   children,
   multiline,
-  fullWidth,
+  width,
   className,
   style,
   rows,
@@ -84,30 +82,26 @@ export const TextField: FunctionComponent<Props> = ({
   onChange,
   ...rest
 }) => {
-  if (icon) {
-    const IconAdornment = (
-      <InputAdornment
-        className={cx(
-          classes.icon,
-          iconPosition === 'end' ? classes.iconEnd : classes.iconStart
-        )}
-        position={iconPosition!}
-      >
-        {icon}
-      </InputAdornment>
-    )
-
-    inputProps.notched = false
-
-    if (iconPosition === 'end') {
-      inputProps.endAdornment = IconAdornment
-    } else {
-      inputProps.startAdornment = IconAdornment
-    }
-  }
+  const IconAdornment = icon && (
+    <InputAdornment
+      className={cx(
+        classes.icon,
+        iconPosition === 'end' ? classes.iconEnd : classes.iconStart
+      )}
+      position={iconPosition!}
+    >
+      {icon}
+    </InputAdornment>
+  )
 
   return (
-    <MUITextField
+    <OutlinedInput
+      classes={{
+        root: cx(classes.root, {
+          [classes.rootMultiline]: multiline
+        }),
+        input: classes.input
+      }}
       id={id}
       name={name}
       value={value}
@@ -117,37 +111,27 @@ export const TextField: FunctionComponent<Props> = ({
       autoFocus={autoFocus}
       autoComplete={autoComplete}
       multiline={multiline}
-      variant='outlined'
       style={style}
       rows={rows}
       rowsMax={rowsMax}
       type={type}
-      className={cx(classes.rootFixedWidth, className, {
-        [classes.rootFullWidth]: fullWidth
-      })}
+      width={width}
       // html attributes
       inputProps={rest}
-      // props that are not html attributes
-      InputProps={{
-        ...inputProps,
-        classes: {
-          root: cx(classes.root, {
-            [classes.rootMultiline]: multiline
-          }),
-          input: classes.input,
-          inputMultiline: classes.inputMultiline
-        }
-      }}
+      notched={!icon}
+      endAdornment={iconPosition === 'end' && IconAdornment}
+      startAdornment={iconPosition === 'start' && IconAdornment}
       onChange={onChange}
     >
       {children}
-    </MUITextField>
+    </OutlinedInput>
   )
 }
 
 TextField.defaultProps = {
   iconPosition: 'start',
-  multiline: false
+  multiline: false,
+  width: 'full'
 }
 
 TextField.displayName = 'TextField'

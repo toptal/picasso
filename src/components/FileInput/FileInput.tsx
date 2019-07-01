@@ -5,7 +5,6 @@ import { InputBaseComponentProps } from '@material-ui/core/InputBase'
 
 import { StandardProps } from '../Picasso'
 import palette from '../Picasso/config/palette'
-import FormControl from '../FormControl'
 import OutlinedInput from '../OutlinedInput'
 import InputAdornment from '../InputAdornment'
 import Button from '../Button'
@@ -32,8 +31,8 @@ export interface Props extends StandardProps {
   progress?: number | boolean
   /** Status message indicating various states during upload or error */
   status?: string
-  /** Take the full width of a container */
-  fullWidth?: boolean
+  /** Width of the component which will apply `min-width` to the `input` */
+  width?: 'full' | 'shrink' | 'auto'
   /** Descriptor containing file name and location */
   value?: FileInfo
   /** Callback invoked when `FileInput` changes its state by selecting new files. */
@@ -90,7 +89,7 @@ export const FileInput: FunctionComponent<Props> = ({
   classes,
   className,
   style,
-  fullWidth,
+  width,
   accept,
   progress,
   error,
@@ -149,48 +148,44 @@ export const FileInput: FunctionComponent<Props> = ({
   )
 
   return (
-    <FormControl
-      error={error}
-      disabled={disabled}
-      fullWidth={fullWidth}
+    <OutlinedInput
       className={className}
       style={style}
-    >
-      <OutlinedInput
-        classes={{
-          root: classes.root,
-          input: cx(classes.input, {
-            [classes.inputStatus]: !value,
-            [classes.inputStatusDisabled]: !value && disabled
-          })
-        }}
-        type='file'
-        // MUIv3 doesn't provide generic way to change type of component and props
-        // that would be extensions of input component
-        // https://github.com/mui-org/material-ui/blob/v3.x/packages/material-ui/src/InputBase/InputBase.d.ts#L18
-        // @ts-ignore
-        inputComponent={FileInputContent}
-        // @ts-ignore
-        inputProps={{
-          error,
-          disabled,
-          progress,
-          value,
-          onChange,
-          accept,
-          status
-        }}
-        inputRef={nativeInput}
-        startAdornment={startAdornment}
-        endAdornment={endAdornment}
-        labelWidth={0}
-      />
-    </FormControl>
+      classes={{
+        root: classes.root,
+        input: cx(classes.input, {
+          [classes.inputStatus]: !value,
+          [classes.inputStatusDisabled]: !value && disabled
+        })
+      }}
+      error={error}
+      disabled={disabled}
+      width={width}
+      type='file'
+      // MUIv3 doesn't provide generic way to change type of component and props
+      // that would be extensions of input component
+      // https://github.com/mui-org/material-ui/blob/v3.x/packages/material-ui/src/InputBase/InputBase.d.ts#L18
+      // @ts-ignore
+      inputComponent={FileInputContent}
+      // @ts-ignore
+      inputProps={{
+        progress,
+        error,
+        disabled,
+        value,
+        onChange,
+        accept,
+        status
+      }}
+      inputRef={nativeInput}
+      startAdornment={startAdornment}
+      endAdornment={endAdornment}
+    />
   )
 }
 
 FileInput.defaultProps = {
-  fullWidth: false
+  width: 'auto'
 }
 
 FileInput.displayName = 'FileInput'

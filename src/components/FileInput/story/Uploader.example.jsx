@@ -73,6 +73,7 @@ const FileInputUploaderExample = () => {
           error={error}
           progress={progress}
           status={status}
+          width='auto'
           onChange={upload}
         />
       </Form.Field>

@@ -10,7 +10,6 @@ import { MenuProps } from '@material-ui/core/Menu'
 import { withStyles } from '@material-ui/core/styles'
 import { capitalize } from '@material-ui/core/utils/helpers'
 
-import FormControl from '../FormControl'
 import OutlinedInput from '../OutlinedInput'
 import InputAdornment from '../InputAdornment'
 import MenuItem from '../MenuItem'
@@ -96,7 +95,6 @@ export const Select: FunctionComponent<Props> = ({
   onChange,
   value
 }) => {
-  const fullWidth = width === 'full'
   const isPlaceholderShown = placeholder && value === ''
 
   const selectedOption = useMemo(
@@ -113,8 +111,7 @@ export const Select: FunctionComponent<Props> = ({
           [classes.inputNative]: native
         })
       }}
-      fullWidth={fullWidth}
-      labelWidth={0}
+      width={width}
     />
   )
 
