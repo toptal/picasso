@@ -5,7 +5,7 @@ import cx from 'classnames'
 import { StandardProps } from '../Picasso'
 import styles from './styles'
 
-type ComponetType = 'label' | 'span'
+type ComponentType = 'label' | 'span'
 
 export interface Props extends StandardProps {
   /** Content of the label */
@@ -19,7 +19,7 @@ export interface Props extends StandardProps {
   /** Whether label should act as inline element `display: inline-block` */
   inline?: boolean
   /** Component used for the root node */
-  as?: ComponetType
+  as?: ComponentType
 }
 
 export const FormLabel: FunctionComponent<Props> = ({

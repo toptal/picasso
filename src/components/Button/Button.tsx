@@ -172,6 +172,7 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
       onTouchStart={onTouchStart}
     >
       <Container
+        as='span'
         inline
         flex
         direction='row'

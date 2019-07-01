@@ -49,24 +49,24 @@ exports[`renders Modal 1`] = `
             tabindex="0"
             type="button"
           >
-            <div
+            <span
               class="Component-flex Component-inline Button-content"
               style="flex-direction: row; align-items: center;"
             >
               Cancel
-            </div>
+            </span>
           </button>
           <button
             class="MuiButtonBase-root Button-medium Button-primaryGreen Button-root"
             tabindex="0"
             type="button"
           >
-            <div
+            <span
               class="Component-flex Component-inline Button-content"
               style="flex-direction: row; align-items: center;"
             >
               Update
-            </div>
+            </span>
           </button>
         </div>
       </div>

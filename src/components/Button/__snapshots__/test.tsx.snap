@@ -11,12 +11,12 @@ exports[`disabled button renders disabled version 1`] = `
       tabindex="-1"
       type="button"
     >
-      <div
+      <span
         class="Component-flex Component-inline Button-content"
         style="flex-direction: row; align-items: center;"
       >
         Click me!
-      </div>
+      </span>
     </button>
   </div>
 </div>
