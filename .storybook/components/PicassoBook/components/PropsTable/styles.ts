@@ -5,10 +5,6 @@ export default ({ palette }: Theme) =>
     root: {
       width: '100%'
     },
-    header: {
-      fontWeight: 600,
-      fontSize: '1.2rem'
-    },
     table: {
       width: '100%'
     },

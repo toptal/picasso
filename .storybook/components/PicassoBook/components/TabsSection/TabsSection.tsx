@@ -1,11 +1,8 @@
 import React, { Fragment, FunctionComponent, ReactNode } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
-import Tabs from '@material-ui/core/Tabs'
-import Tab from '@material-ui/core/Tab'
-
 import { Classes } from '@components/styles/types'
-import { Paper } from '@components'
+import { Paper, Container } from '@components'
 
 import TabsSectionHeader from './TabsSectionHeader'
 
@@ -31,23 +28,21 @@ const TabsSection: FunctionComponent<Props> = props => {
   const hasMultiple = tabs.length > 1
 
   return (
-    <Fragment>
-      {hasMultiple && (
-        <TabsSectionHeader
-          tabs={tabs}
-          selectedTab={selectedTab}
-          onChange={handleChange}
-        />
-      )}
-      {tabs.map(
-        (tab, index) =>
-          index === selectedTab && (
-            <Paper key={tab.name} className='component-section-container'>
-              {tab.content}
-            </Paper>
-          )
-      )}
-    </Fragment>
+    <Paper>
+      <Container padded='medium'>
+        {hasMultiple && (
+          <TabsSectionHeader
+            tabs={tabs}
+            selectedTab={selectedTab}
+            onChange={handleChange}
+          />
+        )}
+        {tabs.map(
+          (tab, index) =>
+            index === selectedTab && <div key={tab.name}>{tab.content}</div>
+        )}
+      </Container>
+    </Paper>
   )
 }
 

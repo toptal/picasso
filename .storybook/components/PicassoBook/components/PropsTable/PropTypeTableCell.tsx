@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react'
 import _ from 'lodash'
 
 import { withStyles } from '@material-ui/core/styles'
-import TableCell from '@material-ui/core/TableCell'
+import { Table } from '@components'
 import { ClassNameMap } from '@material-ui/core/styles/withStyles'
 
 import Tooltip from '@components/Tooltip'
@@ -20,12 +20,12 @@ const PropTypeTableCell: FunctionComponent<Props> = props => {
   const { type, className, classes } = props
 
   if (_.isString(type)) {
-    return <TableCell>{type}</TableCell>
+    return <Table.Cell>{type}</Table.Cell>
   }
 
   if (type.description) {
     return (
-      <TableCell className={className}>
+      <Table.Cell className={className}>
         <Tooltip
           content={<Markdown>{type.description}</Markdown>}
           classes={{ tooltip: classes.tooltip }}
@@ -35,14 +35,14 @@ const PropTypeTableCell: FunctionComponent<Props> = props => {
             <sup>?</sup>
           </div>
         </Tooltip>
-      </TableCell>
+      </Table.Cell>
     )
   }
 
   return (
-    <TableCell className={className}>
+    <Table.Cell className={className}>
       <span>{type.name}</span>
-    </TableCell>
+    </Table.Cell>
   )
 }
 
