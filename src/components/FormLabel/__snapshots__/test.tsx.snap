@@ -19,32 +19,27 @@ exports[`FormLabel default render 1`] = `
           </span>
         </label>
         <div
-          class="MuiFormControl-root TextField-rootFixedWidth"
+          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root TextField-root OutlinedInput-rootFull MuiInputBase-fullWidth"
         >
-          <div
-            class="MuiInputBase-root MuiOutlinedInput-root TextField-root MuiInputBase-formControl"
+          <fieldset
+            aria-hidden="true"
+            class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+            style="padding-left: 8px;"
           >
-            <fieldset
-              aria-hidden="true"
-              class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
-              style="padding-left: 8px;"
+            <legend
+              class="MuiPrivateNotchedOutline-legend"
+              style="width: 0px;"
             >
-              <legend
-                class="MuiPrivateNotchedOutline-legend"
-                style="width: 0.01px;"
-              >
-                <span>
-                  ​
-                </span>
-              </legend>
-            </fieldset>
-            <input
-              aria-invalid="false"
-              class="MuiInputBase-input MuiOutlinedInput-input TextField-input"
-              type="text"
-              value=""
-            />
-          </div>
+              <span>
+                ​
+              </span>
+            </legend>
+          </fieldset>
+          <input
+            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input TextField-input"
+            type="text"
+            value=""
+          />
         </div>
       </div>
     </form>
@@ -71,32 +66,27 @@ exports[`FormLabel disabled 1`] = `
           </span>
         </label>
         <div
-          class="MuiFormControl-root TextField-rootFixedWidth"
+          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root TextField-root OutlinedInput-rootFull MuiInputBase-fullWidth"
         >
-          <div
-            class="MuiInputBase-root MuiOutlinedInput-root TextField-root MuiInputBase-formControl"
+          <fieldset
+            aria-hidden="true"
+            class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+            style="padding-left: 8px;"
           >
-            <fieldset
-              aria-hidden="true"
-              class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
-              style="padding-left: 8px;"
+            <legend
+              class="MuiPrivateNotchedOutline-legend"
+              style="width: 0px;"
             >
-              <legend
-                class="MuiPrivateNotchedOutline-legend"
-                style="width: 0.01px;"
-              >
-                <span>
-                  ​
-                </span>
-              </legend>
-            </fieldset>
-            <input
-              aria-invalid="false"
-              class="MuiInputBase-input MuiOutlinedInput-input TextField-input"
-              type="text"
-              value=""
-            />
-          </div>
+              <span>
+                ​
+              </span>
+            </legend>
+          </fieldset>
+          <input
+            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input TextField-input"
+            type="text"
+            value=""
+          />
         </div>
       </div>
     </form>
@@ -128,32 +118,27 @@ exports[`FormLabel required 1`] = `
           </span>
         </label>
         <div
-          class="MuiFormControl-root TextField-rootFixedWidth"
+          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root TextField-root OutlinedInput-rootFull MuiInputBase-fullWidth"
         >
-          <div
-            class="MuiInputBase-root MuiOutlinedInput-root TextField-root MuiInputBase-formControl"
+          <fieldset
+            aria-hidden="true"
+            class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+            style="padding-left: 8px;"
           >
-            <fieldset
-              aria-hidden="true"
-              class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
-              style="padding-left: 8px;"
+            <legend
+              class="MuiPrivateNotchedOutline-legend"
+              style="width: 0px;"
             >
-              <legend
-                class="MuiPrivateNotchedOutline-legend"
-                style="width: 0.01px;"
-              >
-                <span>
-                  ​
-                </span>
-              </legend>
-            </fieldset>
-            <input
-              aria-invalid="false"
-              class="MuiInputBase-input MuiOutlinedInput-input TextField-input"
-              type="text"
-              value=""
-            />
-          </div>
+              <span>
+                ​
+              </span>
+            </legend>
+          </fieldset>
+          <input
+            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input TextField-input"
+            type="text"
+            value=""
+          />
         </div>
       </div>
     </form>
@@ -185,32 +170,27 @@ exports[`FormLabel requried and disabled 1`] = `
           </span>
         </label>
         <div
-          class="MuiFormControl-root TextField-rootFixedWidth"
+          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root TextField-root OutlinedInput-rootFull MuiInputBase-fullWidth"
         >
-          <div
-            class="MuiInputBase-root MuiOutlinedInput-root TextField-root MuiInputBase-formControl"
+          <fieldset
+            aria-hidden="true"
+            class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+            style="padding-left: 8px;"
           >
-            <fieldset
-              aria-hidden="true"
-              class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
-              style="padding-left: 8px;"
+            <legend
+              class="MuiPrivateNotchedOutline-legend"
+              style="width: 0px;"
             >
-              <legend
-                class="MuiPrivateNotchedOutline-legend"
-                style="width: 0.01px;"
-              >
-                <span>
-                  ​
-                </span>
-              </legend>
-            </fieldset>
-            <input
-              aria-invalid="false"
-              class="MuiInputBase-input MuiOutlinedInput-input TextField-input"
-              type="text"
-              value=""
-            />
-          </div>
+              <span>
+                ​
+              </span>
+            </legend>
+          </fieldset>
+          <input
+            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input TextField-input"
+            type="text"
+            value=""
+          />
         </div>
       </div>
     </form>

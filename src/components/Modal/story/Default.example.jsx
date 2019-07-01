@@ -46,13 +46,18 @@ const ModalDefaultExample = () => {
         <Modal.Title>Edit address details</Modal.Title>
         <Modal.Content>
           <Form.Field>
-            <TextField placeholder='City' value='Alabaster' />
+            <TextField placeholder='City' value='Alabaster' width='auto' />
           </Form.Field>
           <Form.Field>
-            <TextField placeholder='Street' value='John Fruit' />
+            <TextField placeholder='Street' value='John Fruit' width='auto' />
           </Form.Field>
           <Form.Field>
-            <Select placeholder='State' options={STATES} value='Alabama' />
+            <Select
+              placeholder='State'
+              options={STATES}
+              value='Alabama'
+              width='auto'
+            />
           </Form.Field>
           <Form.Field>
             <Checkbox label='Use shipping address for billing' />
