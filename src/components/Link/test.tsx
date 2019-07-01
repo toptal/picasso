@@ -28,6 +28,8 @@ describe('Link', () => {
           onBlur={() => window.alert('onBlur')}
           rel='noopener'
           target='_blank'
+          download='filename'
+          href='https://toptal.com/filename.txt'
         >
           Please verify your email
         </Link>

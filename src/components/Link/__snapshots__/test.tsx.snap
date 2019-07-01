@@ -21,6 +21,8 @@ exports[`Link renders native attributes 1`] = `
   >
     <a
       class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineHover"
+      download="filename"
+      href="https://toptal.com/filename.txt"
       rel="noopener"
       target="_blank"
     >
