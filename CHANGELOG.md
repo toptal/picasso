@@ -1,3 +1,10 @@
+## [2.9.1](https://github.com/toptal/picasso/compare/v2.9.0...v2.9.1) (2019-07-01)
+
+
+### Bug Fixes
+
+* **button:** invalid markup ([#518](https://github.com/toptal/picasso/issues/518)) ([fd3d48d](https://github.com/toptal/picasso/commit/fd3d48d))
+
 # [2.9.0](https://github.com/toptal/picasso/compare/v2.8.0...v2.9.0) (2019-06-29)
 
 

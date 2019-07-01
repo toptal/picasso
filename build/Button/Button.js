@@ -51,7 +51,7 @@ exports.Button = ({ icon, iconPosition, loading, children, classes, className, s
     return (react_1.default.createElement(ButtonBase_1.default, { classes: {
             root: rootClassName
         }, onClick: onClick, className: className, style: style, disabled: disabled, title: title, value: value, type: type, onBlur: onBlur, onFocus: onFocus, onMouseLeave: onMouseLeave, onMouseOver: onMouseOver, onTouchEnd: onTouchEnd, onTouchStart: onTouchStart },
-        react_1.default.createElement(Container_1.default, { inline: true, flex: true, direction: 'row', alignItems: 'center', className: classnames_1.default({ [hiddenClass]: loading }, contentClass) }, finalChildren),
+        react_1.default.createElement(Container_1.default, { as: 'span', inline: true, flex: true, direction: 'row', alignItems: 'center', className: classnames_1.default({ [hiddenClass]: loading }, contentClass) }, finalChildren),
         loading && (react_1.default.createElement(Loader_1.default, { variant: 'inherit', className: loaderClass, inline: true, size: 'small' }))));
 };
 exports.Button.defaultProps = {

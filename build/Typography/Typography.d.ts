@@ -26,5 +26,5 @@ export interface Props extends StandardProps {
     as?: ReactType<TypographyProps>;
 }
 export declare const Typography: FunctionComponent<Props>;
-declare const _default: React.ComponentType<Pick<React.PropsWithChildren<Props>, "color" | "size" | "style" | "inline" | "weight" | "invert" | "children" | "className" | "variant" | "align" | "as"> & import("@material-ui/core").StyledComponentProps<"inherit" | "black" | "blue" | "green" | "grey" | "red" | "yellow" | "thin" | "invert" | "light" | "regular" | "bodySmall" | "bodyMedium" | "bodyLarge" | "bodyInherit" | "headingSmall" | "headingMedium" | "headingLarge" | "headingXlarge" | "semibold" | "lightGrey">>;
+declare const _default: React.ComponentType<Pick<React.PropsWithChildren<Props>, "color" | "size" | "style" | "inline" | "weight" | "invert" | "children" | "className" | "variant" | "as" | "align"> & import("@material-ui/core").StyledComponentProps<"inherit" | "black" | "blue" | "green" | "grey" | "red" | "yellow" | "thin" | "invert" | "light" | "regular" | "bodySmall" | "bodyMedium" | "bodyLarge" | "bodyInherit" | "headingSmall" | "headingMedium" | "headingLarge" | "headingXlarge" | "semibold" | "lightGrey">>;
 export default _default;
