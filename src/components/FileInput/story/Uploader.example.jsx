@@ -5,6 +5,7 @@ const useUploader = config => {
   const [error, setError] = useState(null)
   const [progress, setProgress] = useState(false)
   const [file, setFile] = useState(config.file)
+  const [status, setStatus] = useState('No file uploaded.')
 
   const upload = event => {
     setError(null)
@@ -16,22 +17,30 @@ const useUploader = config => {
     const newFile = event.target.files[0]
 
     if (config.maxSize && newFile.size > config.maxSize * 1024 * 1024) {
-      return setError(`File size exceeds the ${config.maxSize}MB limit.`)
+      setError(`File size exceeds the ${config.maxSize}MB limit.`)
+      setStatus('Upload failed.')
+
+      return
     }
 
     setProgress(true)
+    setStatus('File uploading in progress...')
 
     setTimeout(() => {
       setProgress(false)
 
       if (Math.random() < 0.5) {
-        return setError('Timout exceeded.')
+        setError('Timout exceeded.')
+        setStatus('Upload failed.')
+
+        return
       }
 
       setFile({
         name: newFile.name,
         location: `https://picsum.photos/${Math.round(Math.random() * 1000)}`
       })
+      setStatus('Success.')
     }, 2000)
   }
 
@@ -39,6 +48,7 @@ const useUploader = config => {
     error,
     progress,
     upload,
+    status,
     file
   }
 }
@@ -46,19 +56,26 @@ const useUploader = config => {
 const FileInputUploaderExample = () => {
   const MAX_SIZE = 2
 
-  const { error, progress, file, upload } = useUploader({
+  const { error, progress, file, status, upload } = useUploader({
     file: { name: 'initial-file.png', location: 'https://picsum.photos/200' },
     maxSize: MAX_SIZE
+    /*statusOptions: {
+      empty: 'No file uploaded.',
+      progress: 'File uploading in progress...',
+      error: 'Upload failed.',
+      success: 'Upload completed.'
+    }*/
   })
 
   return (
     <div>
       <Form.Field hint={`Max file size: ${MAX_SIZE}MB.`} error={error}>
         <FileInput
-          file={file}
+          value={file}
           accept='image/*'
           error={error}
           progress={progress}
+          status={status}
           onChange={upload}
         />
       </Form.Field>

@@ -1,4 +1,9 @@
-import React, { FunctionComponent, ChangeEventHandler, ReactType } from 'react'
+import React, {
+  FunctionComponent,
+  ChangeEventHandler,
+  ReactType,
+  ReactNode
+} from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUIOutlinedInput from '@material-ui/core/OutlinedInput'
 import { InputBaseComponentProps } from '@material-ui/core/InputBase'
@@ -21,11 +26,15 @@ export interface Props extends StandardProps {
   disabled?: boolean
   inputComponent?: ReactType<InputBaseComponentProps>
   inputProps?: InputBaseComponentProps
+  inputRef?: React.Ref<any> | React.RefObject<any>
   value?: ValueType
   /** Type attribute of the Input element. It should be a valid HTML5 input type */
   type?: string
   /** If true, the input will indicate an error. */
   error?: boolean
+  startAdornment?: ReactNode
+  endAdornment?: ReactNode
+  notched?: boolean
   onChange?: ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>
 }
 
@@ -38,9 +47,13 @@ const OutlinedInput: FunctionComponent<Props> = ({
   disabled,
   inputComponent,
   inputProps,
+  inputRef,
   value,
   type,
   error,
+  startAdornment,
+  endAdornment,
+  notched,
   onChange
 }) => {
   return (
@@ -51,10 +64,15 @@ const OutlinedInput: FunctionComponent<Props> = ({
       labelWidth={labelWidth}
       fullWidth={fullWidth}
       disabled={disabled}
+      error={error}
       inputComponent={inputComponent}
       inputProps={inputProps}
+      inputRef={inputRef}
       value={value}
       type={type}
+      startAdornment={startAdornment}
+      endAdornment={endAdornment}
+      notched={notched}
       onChange={onChange}
     />
   )

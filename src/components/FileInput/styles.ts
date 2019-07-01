@@ -1,12 +1,13 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 import { alpha } from '../styles'
 
-export default ({ palette, spacing: { input } }: Theme) =>
+export default ({ palette, spacing: { input, inputIcon } }: Theme) =>
   createStyles({
     root: {
       height: input.height,
       width: input.width,
-      cursor: 'pointer'
+      cursor: 'pointer',
+      padding: `${input.padding} 0.375em`
     },
     input: {
       fontSize: '1em',
@@ -14,7 +15,7 @@ export default ({ palette, spacing: { input } }: Theme) =>
       alignItems: 'center',
       boxSizing: 'border-box',
       height: '100%',
-      padding: input.padding,
+      padding: 0,
       border: 'none'
     },
     inputStatus: {
@@ -34,5 +35,30 @@ export default ({ palette, spacing: { input } }: Theme) =>
     },
     button: {
       marginLeft: '0.5em'
+    },
+    icon: {
+      color: palette.grey.dark,
+      fontSize: '1em',
+      minWidth: inputIcon.width,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'flex-start'
+    },
+    iconStart: {
+      marginRight: '0.25em'
+    },
+    iconEnd: {
+      marginLeft: '0.5em',
+      justifyContent: 'flex-end',
+      flexGrow: 1
+    },
+    iconDisabled: {
+      color: alpha(palette.grey.dark!, 0.48)
+    },
+    loader: {
+      marginRight: '0.25em'
+    },
+    upload: {
+      margin: '0 0.25em'
     }
   })

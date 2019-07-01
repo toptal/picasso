@@ -4,12 +4,12 @@ import { FileInput, Container } from '@toptal/picasso'
 const FileInputDefaultExample = () => (
   <div>
     <Container bottom='small'>
-      <FileInput />
+      <FileInput status='No file uploaded.' />
     </Container>
 
     <Container>
       <FileInput
-        file={{ name: 'image.png', location: 'https://picsum.photos/200' }}
+        value={{ name: 'image.png', location: 'https://picsum.photos/200' }}
       />
     </Container>
   </div>

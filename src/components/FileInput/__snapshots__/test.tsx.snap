@@ -9,7 +9,7 @@ exports[`FileInput default render 1`] = `
       class="MuiFormControl-root"
     >
       <div
-        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root FileInput-root MuiInputBase-formControl"
+        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root FileInput-root MuiInputBase-formControl MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
       >
         <fieldset
           aria-hidden="true"
@@ -26,16 +26,55 @@ exports[`FileInput default render 1`] = `
           </legend>
         </fieldset>
         <div
-          class="Component-flex Component-inline MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input FileInput-input FileInput-inputStatus MuiInputBase-inputType"
-          style="justify-content: space-between;"
+          class="MuiInputAdornment-root MuiInputAdornment-positionStart FileInput-icon FileInput-iconStart"
         >
-          <p
-            class="MuiTypography-root Typography-bodyInherit Typography-inherit MuiTypography-body1 MuiTypography-inline Component-inputValue"
+          <svg
+            class="SvgUploadDocument16-root FileInput-upload"
+            style="min-width: 16px; min-height: 16px;"
+            viewBox="0 0 16 16"
           >
-            No file uploaded.
-          </p>
+            <defs>
+              <path
+                d="M1 15h7v1H0V0h13v8h-1V1H1v14zm12-3.293V16h-1v-4.293l-1.5 1.5-.707-.707L12.5 9.793l.707.707 2 2-.707.707-1.5-1.5zM3 4h7v1H3V4zm0 2h7v1H3V6zm0 2h3v1H3V8z"
+                id="uploadDocument16_svg__a"
+              />
+            </defs>
+            <g
+              fill-rule="evenodd"
+            >
+              <mask
+                id="uploadDocument16_svg__b"
+              >
+                <use
+                  xlink:href="#uploadDocument16_svg__a"
+                />
+              </mask>
+              <use
+                fill-rule="nonzero"
+                xlink:href="#uploadDocument16_svg__a"
+              />
+              <g
+                mask="url(#uploadDocument16_svg__b)"
+              >
+                <path
+                  d="M0 0h16v16H0z"
+                />
+              </g>
+            </g>
+          </svg>
+        </div>
+        <p
+          class="MuiTypography-root Typography-bodyInherit Typography-inherit MuiTypography-body1 MuiTypography-inline Component-inputValue"
+        />
+        <input
+          class="Component-nativeInput"
+          type="file"
+        />
+        <div
+          class="MuiInputAdornment-root MuiInputAdornment-positionEnd FileInput-icon FileInput-iconEnd"
+        >
           <button
-            class="MuiButtonBase-root Button-small Button-primaryBlue Button-root Component-button"
+            class="MuiButtonBase-root Button-small Button-primaryBlue Button-root FileInput-button"
             tabindex="0"
             type="button"
           >
@@ -46,10 +85,6 @@ exports[`FileInput default render 1`] = `
               Choose File
             </div>
           </button>
-          <input
-            class="Component-nativeInput"
-            type="file"
-          />
         </div>
       </div>
     </div>

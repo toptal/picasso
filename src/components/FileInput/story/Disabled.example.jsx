@@ -4,13 +4,13 @@ import { FileInput, Container } from '@toptal/picasso'
 const FileInputDisabledExample = () => (
   <div>
     <Container bottom='small'>
-      <FileInput disabled />
+      <FileInput disabled status='No file uploaded.' />
     </Container>
 
     <Container>
       <FileInput
         disabled
-        file={{ name: 'image.png', location: 'https://picsum.photos/200' }}
+        value={{ name: 'image.png', location: 'https://picsum.photos/200' }}
       />
     </Container>
   </div>
