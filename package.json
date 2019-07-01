@@ -44,7 +44,8 @@
     "classnames": "^2.2.6",
     "color": "^3.1.1",
     "react-deprecate": "^0.1.0",
-    "react-truncate": "^2.4.0"
+    "react-truncate": "^2.4.0",
+    "downshift": "^3.2.10"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.4.4",
