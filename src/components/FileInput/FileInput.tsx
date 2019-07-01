@@ -11,6 +11,7 @@ import Button from '../Button'
 import Loader from '../Loader'
 import Link from '../Link'
 import Typography from '../Typography'
+import { isNumber, isString } from '../utils'
 
 import styles from './styles'
 
@@ -42,18 +43,6 @@ const FileInputContent = withStyles(styles)(
   }: Props) => {
     const nativeInput = createRef<HTMLInputElement>()
 
-    const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
-      if (!event.target || !event.target.files || !event.target.files.length) {
-        return null
-      }
-
-      // transform FileList to array
-      const selectedFile = Array.from(event.target.files)[0]
-
-      // @ts-ignore
-      onChange && onChange(selectedFile)
-    }
-
     const calculateFilename = () => {
       if (error) {
         return 'Upload failed.'
@@ -74,8 +63,10 @@ const FileInputContent = withStyles(styles)(
       return 'No file uploaded.'
     }
 
+    const isNumericalProgress = isNumber(progress)
+
     const inProgress =
-      (typeof progress === 'number' && progress <= 100) ||
+      (isNumericalProgress && progress! <= 100) ||
       (typeof progress === 'boolean' && progress)
 
     const uploadButtonVariant =
@@ -83,7 +74,7 @@ const FileInputContent = withStyles(styles)(
     const uploadButtonTitle =
       file || error ? 'Choose different file' : 'Choose File'
 
-    const loaderValue = typeof progress === 'number' ? progress : undefined
+    const loaderValue = isNumericalProgress ? (progress as number) : undefined
 
     return (
       <Container
@@ -95,8 +86,9 @@ const FileInputContent = withStyles(styles)(
         <Typography className={classes.inputValue} inline color='inherit'>
           {calculateFilename()}
         </Typography>
-        {inProgress && <Loader size='small' value={loaderValue} />}
-        {!inProgress && (
+        {inProgress ? (
+          <Loader size='small' value={loaderValue} />
+        ) : (
           <Button
             className={classes.button}
             size='small'
@@ -112,7 +104,7 @@ const FileInputContent = withStyles(styles)(
           className={classes.nativeInput}
           ref={nativeInput}
           accept={accept}
-          onChange={handleFileSelect}
+          onChange={onChange}
         />
       </Container>
     )

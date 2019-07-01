@@ -6,10 +6,16 @@ const useUploader = config => {
   const [progress, setProgress] = useState(false)
   const [file, setFile] = useState(config.file)
 
-  const upload = fileInfo => {
+  const upload = event => {
     setError(null)
 
-    if (config.maxSize && fileInfo.size > config.maxSize * 1024 * 1024) {
+    if (!event.target || !event.target.files || !event.target.files.length) {
+      return null
+    }
+
+    const newFile = event.target.files[0]
+
+    if (config.maxSize && newFile.size > config.maxSize * 1024 * 1024) {
       return setError(`File size exceeds the ${config.maxSize}MB limit.`)
     }
 
@@ -23,7 +29,7 @@ const useUploader = config => {
       }
 
       setFile({
-        name: fileInfo.name,
+        name: newFile.name,
         location: `https://picsum.photos/${Math.round(Math.random() * 1000)}`
       })
     }, 2000)

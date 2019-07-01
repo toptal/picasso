@@ -26,8 +26,8 @@ exports[`FileInput default render 1`] = `
           </legend>
         </fieldset>
         <div
-          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input FileInput-input FileInput-inputPlaceholder MuiInputBase-inputType"
-          style="display: inline-flex; justify-content: space-between;"
+          class="Component-flex Component-inline MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input FileInput-input FileInput-inputStatus MuiInputBase-inputType"
+          style="justify-content: space-between;"
         >
           <p
             class="MuiTypography-root Typography-bodyInherit Typography-inherit MuiTypography-body1 MuiTypography-inline Component-inputValue"
@@ -40,8 +40,8 @@ exports[`FileInput default render 1`] = `
             type="button"
           >
             <div
-              class="Button-content"
-              style="display: inline-flex; flex-direction: row; align-items: center;"
+              class="Component-flex Component-inline Button-content"
+              style="flex-direction: row; align-items: center;"
             >
               Choose File
             </div>

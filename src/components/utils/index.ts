@@ -5,3 +5,7 @@ export {
   isScreenSize,
   useScreenSize
 } from '../Picasso/config/breakpoints'
+
+export { default as isString } from './isString'
+
+export { default as isNumber } from './isNumber'

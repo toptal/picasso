@@ -5,7 +5,8 @@ export default ({ palette, spacing: { input } }: Theme) =>
   createStyles({
     root: {
       height: input.height,
-      width: input.width
+      width: input.width,
+      cursor: 'pointer'
     },
     input: {
       fontSize: '1em',

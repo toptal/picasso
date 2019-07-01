@@ -12,7 +12,7 @@ const FileInputAllowedExtensionsExample = () => (
     </Form.Field>
 
     <Form.Field hint='Accept *.js files'>
-      <FileInput accept='.js' />{' '}
+      <FileInput accept='.js' />
     </Form.Field>
 
     <Form.Field hint='Accept pdf files'>

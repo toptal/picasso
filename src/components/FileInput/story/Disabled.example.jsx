@@ -4,7 +4,7 @@ import { FileInput, Container } from '@toptal/picasso'
 const FileInputDisabledExample = () => (
   <div>
     <Container bottom='small'>
-      <FileInput disabled />{' '}
+      <FileInput disabled />
     </Container>
 
     <Container>
