@@ -14,7 +14,7 @@ exports[`ButtonGroup render 1`] = `
         type="button"
       >
         <div
-          class="Component-flex Component-inline Button-content"
+          class="Component-flex Component-inline Button-blockPointerEvent Button-content"
           style="flex-direction: row; align-items: center;"
         />
       </button>
@@ -24,7 +24,7 @@ exports[`ButtonGroup render 1`] = `
         type="button"
       >
         <div
-          class="Component-flex Component-inline Button-content"
+          class="Component-flex Component-inline Button-blockPointerEvent Button-content"
           style="flex-direction: row; align-items: center;"
         />
       </button>
@@ -34,7 +34,7 @@ exports[`ButtonGroup render 1`] = `
         type="button"
       >
         <div
-          class="Component-flex Component-inline Button-content"
+          class="Component-flex Component-inline Button-blockPointerEvent Button-content"
           style="flex-direction: row; align-items: center;"
         />
       </button>

@@ -50,7 +50,7 @@ exports[`renders Modal 1`] = `
             type="button"
           >
             <div
-              class="Component-flex Component-inline Button-content"
+              class="Component-flex Component-inline Button-blockPointerEvent Button-content"
               style="flex-direction: row; align-items: center;"
             >
               Cancel
@@ -62,7 +62,7 @@ exports[`renders Modal 1`] = `
             type="button"
           >
             <div
-              class="Component-flex Component-inline Button-content"
+              class="Component-flex Component-inline Button-blockPointerEvent Button-content"
               style="flex-direction: row; align-items: center;"
             >
               Update

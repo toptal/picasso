@@ -167,5 +167,9 @@ export default ({ palette, spacing, transitions, typography }: Theme) =>
     },
     hidden: {
       opacity: 0
+    },
+
+    blockPointerEvent: {
+      pointerEvents: 'none'
     }
   })

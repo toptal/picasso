@@ -110,14 +110,15 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
     root: rootClass,
     hidden: hiddenClass,
     loader: loaderClass,
-    content: contentClass
+    content: contentClass,
+    blockPointerEvent: pointerEventBlockClass
   } = classes
 
   let finalChildren = [children]
 
   if (icon) {
     const iconComponent = React.cloneElement(icon, {
-      className: cx(iconClass, icon.props.className, {
+      className: cx(iconClass, pointerEventBlockClass, icon.props.className, {
         [iconLeftClass]: children && iconPosition === 'left',
         [iconRightClass]: children && iconPosition === 'right',
         [iconSmallClass]: size === 'small'
@@ -176,13 +177,22 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
         flex
         direction='row'
         alignItems='center'
-        className={cx({ [hiddenClass]: loading }, contentClass)}
+        className={cx(
+          { [hiddenClass]: loading },
+          pointerEventBlockClass,
+          contentClass
+        )}
       >
         {finalChildren}
       </Container>
 
       {loading && (
-        <Loader variant='inherit' className={loaderClass} inline size='small' />
+        <Loader
+          variant='inherit'
+          className={cx(pointerEventBlockClass, loaderClass)}
+          inline
+          size='small'
+        />
       )}
     </ButtonBase>
   )

@@ -15,7 +15,7 @@ exports[`renders default 1`] = `
         type="button"
       >
         <div
-          class="Component-flex Component-inline Button-content"
+          class="Component-flex Component-inline Button-blockPointerEvent Button-content"
           style="flex-direction: row; align-items: center;"
         >
           Prev
@@ -27,7 +27,7 @@ exports[`renders default 1`] = `
         type="button"
       >
         <div
-          class="Component-flex Component-inline Button-content"
+          class="Component-flex Component-inline Button-blockPointerEvent Button-content"
           style="flex-direction: row; align-items: center;"
         >
           1
@@ -48,7 +48,7 @@ exports[`renders default 1`] = `
         type="button"
       >
         <div
-          class="Component-flex Component-inline Button-content"
+          class="Component-flex Component-inline Button-blockPointerEvent Button-content"
           style="flex-direction: row; align-items: center;"
         >
           4
@@ -60,7 +60,7 @@ exports[`renders default 1`] = `
         type="button"
       >
         <div
-          class="Component-flex Component-inline Button-content"
+          class="Component-flex Component-inline Button-blockPointerEvent Button-content"
           style="flex-direction: row; align-items: center;"
         >
           5
@@ -72,7 +72,7 @@ exports[`renders default 1`] = `
         type="button"
       >
         <div
-          class="Component-flex Component-inline Button-content"
+          class="Component-flex Component-inline Button-blockPointerEvent Button-content"
           style="flex-direction: row; align-items: center;"
         >
           6
@@ -93,7 +93,7 @@ exports[`renders default 1`] = `
         type="button"
       >
         <div
-          class="Component-flex Component-inline Button-content"
+          class="Component-flex Component-inline Button-blockPointerEvent Button-content"
           style="flex-direction: row; align-items: center;"
         >
           20
@@ -105,7 +105,7 @@ exports[`renders default 1`] = `
         type="button"
       >
         <div
-          class="Component-flex Component-inline Button-content"
+          class="Component-flex Component-inline Button-blockPointerEvent Button-content"
           style="flex-direction: row; align-items: center;"
         >
           Next
@@ -132,7 +132,7 @@ exports[`renders disabled 1`] = `
         type="button"
       >
         <div
-          class="Component-flex Component-inline Button-content"
+          class="Component-flex Component-inline Button-blockPointerEvent Button-content"
           style="flex-direction: row; align-items: center;"
         >
           Prev
@@ -145,7 +145,7 @@ exports[`renders disabled 1`] = `
         type="button"
       >
         <div
-          class="Component-flex Component-inline Button-content"
+          class="Component-flex Component-inline Button-blockPointerEvent Button-content"
           style="flex-direction: row; align-items: center;"
         >
           1
@@ -167,7 +167,7 @@ exports[`renders disabled 1`] = `
         type="button"
       >
         <div
-          class="Component-flex Component-inline Button-content"
+          class="Component-flex Component-inline Button-blockPointerEvent Button-content"
           style="flex-direction: row; align-items: center;"
         >
           4
@@ -180,7 +180,7 @@ exports[`renders disabled 1`] = `
         type="button"
       >
         <div
-          class="Component-flex Component-inline Button-content"
+          class="Component-flex Component-inline Button-blockPointerEvent Button-content"
           style="flex-direction: row; align-items: center;"
         >
           5
@@ -193,7 +193,7 @@ exports[`renders disabled 1`] = `
         type="button"
       >
         <div
-          class="Component-flex Component-inline Button-content"
+          class="Component-flex Component-inline Button-blockPointerEvent Button-content"
           style="flex-direction: row; align-items: center;"
         >
           6
@@ -215,7 +215,7 @@ exports[`renders disabled 1`] = `
         type="button"
       >
         <div
-          class="Component-flex Component-inline Button-content"
+          class="Component-flex Component-inline Button-blockPointerEvent Button-content"
           style="flex-direction: row; align-items: center;"
         >
           20
@@ -228,7 +228,7 @@ exports[`renders disabled 1`] = `
         type="button"
       >
         <div
-          class="Component-flex Component-inline Button-content"
+          class="Component-flex Component-inline Button-blockPointerEvent Button-content"
           style="flex-direction: row; align-items: center;"
         >
           Next
