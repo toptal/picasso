@@ -14,24 +14,24 @@ exports[`renders default 1`] = `
         tabindex="0"
         type="button"
       >
-        <div
+        <span
           class="Component-flex Component-inline Button-content"
           style="flex-direction: row; align-items: center;"
         >
           Prev
-        </div>
+        </span>
       </button>
       <button
         class="MuiButtonBase-root Button-small Button-secondaryBlue Button-root Pagination-rangeButton"
         tabindex="0"
         type="button"
       >
-        <div
+        <span
           class="Component-flex Component-inline Button-content"
           style="flex-direction: row; align-items: center;"
         >
           1
-        </div>
+        </span>
       </button>
       <div
         class="Pagination-ellipsis"
@@ -47,36 +47,36 @@ exports[`renders default 1`] = `
         tabindex="0"
         type="button"
       >
-        <div
+        <span
           class="Component-flex Component-inline Button-content"
           style="flex-direction: row; align-items: center;"
         >
           4
-        </div>
+        </span>
       </button>
       <button
         class="MuiButtonBase-root Button-small Button-primaryBlue Button-root Pagination-rangeButton"
         tabindex="0"
         type="button"
       >
-        <div
+        <span
           class="Component-flex Component-inline Button-content"
           style="flex-direction: row; align-items: center;"
         >
           5
-        </div>
+        </span>
       </button>
       <button
         class="MuiButtonBase-root Button-small Button-secondaryBlue Button-root Pagination-rangeButton"
         tabindex="0"
         type="button"
       >
-        <div
+        <span
           class="Component-flex Component-inline Button-content"
           style="flex-direction: row; align-items: center;"
         >
           6
-        </div>
+        </span>
       </button>
       <div
         class="Pagination-ellipsis"
@@ -92,24 +92,24 @@ exports[`renders default 1`] = `
         tabindex="0"
         type="button"
       >
-        <div
+        <span
           class="Component-flex Component-inline Button-content"
           style="flex-direction: row; align-items: center;"
         >
           20
-        </div>
+        </span>
       </button>
       <button
         class="MuiButtonBase-root Button-small Button-secondaryBlue Button-root"
         tabindex="0"
         type="button"
       >
-        <div
+        <span
           class="Component-flex Component-inline Button-content"
           style="flex-direction: row; align-items: center;"
         >
           Next
-        </div>
+        </span>
       </button>
     </div>
   </div>
@@ -131,12 +131,12 @@ exports[`renders disabled 1`] = `
         tabindex="-1"
         type="button"
       >
-        <div
+        <span
           class="Component-flex Component-inline Button-content"
           style="flex-direction: row; align-items: center;"
         >
           Prev
-        </div>
+        </span>
       </button>
       <button
         class="MuiButtonBase-root Button-small Button-secondaryDisabled Button-root MuiButtonBase-disabled Pagination-rangeButton"
@@ -144,12 +144,12 @@ exports[`renders disabled 1`] = `
         tabindex="-1"
         type="button"
       >
-        <div
+        <span
           class="Component-flex Component-inline Button-content"
           style="flex-direction: row; align-items: center;"
         >
           1
-        </div>
+        </span>
       </button>
       <div
         class="Pagination-ellipsis"
@@ -166,12 +166,12 @@ exports[`renders disabled 1`] = `
         tabindex="-1"
         type="button"
       >
-        <div
+        <span
           class="Component-flex Component-inline Button-content"
           style="flex-direction: row; align-items: center;"
         >
           4
-        </div>
+        </span>
       </button>
       <button
         class="MuiButtonBase-root Button-small Button-primaryDisabled Button-root MuiButtonBase-disabled Pagination-rangeButton"
@@ -179,12 +179,12 @@ exports[`renders disabled 1`] = `
         tabindex="-1"
         type="button"
       >
-        <div
+        <span
           class="Component-flex Component-inline Button-content"
           style="flex-direction: row; align-items: center;"
         >
           5
-        </div>
+        </span>
       </button>
       <button
         class="MuiButtonBase-root Button-small Button-secondaryDisabled Button-root MuiButtonBase-disabled Pagination-rangeButton"
@@ -192,12 +192,12 @@ exports[`renders disabled 1`] = `
         tabindex="-1"
         type="button"
       >
-        <div
+        <span
           class="Component-flex Component-inline Button-content"
           style="flex-direction: row; align-items: center;"
         >
           6
-        </div>
+        </span>
       </button>
       <div
         class="Pagination-ellipsis"
@@ -214,12 +214,12 @@ exports[`renders disabled 1`] = `
         tabindex="-1"
         type="button"
       >
-        <div
+        <span
           class="Component-flex Component-inline Button-content"
           style="flex-direction: row; align-items: center;"
         >
           20
-        </div>
+        </span>
       </button>
       <button
         class="MuiButtonBase-root Button-small Button-secondaryDisabled Button-root MuiButtonBase-disabled"
@@ -227,12 +227,12 @@ exports[`renders disabled 1`] = `
         tabindex="-1"
         type="button"
       >
-        <div
+        <span
           class="Component-flex Component-inline Button-content"
           style="flex-direction: row; align-items: center;"
         >
           Next
-        </div>
+        </span>
       </button>
     </div>
   </div>

@@ -5,6 +5,8 @@ import cx from 'classnames'
 import { StandardProps, SpacingType, spacingToEm } from '../Picasso'
 import styles from './styles'
 
+type ContainerType = 'div' | 'span'
+
 type DirectionType = 'row' | 'column'
 
 type AlignItemsType =
@@ -46,6 +48,8 @@ interface Props extends StandardProps {
   justifyContent?: JustifyContentType
   /** Whether container has border or not */
   bordered?: boolean
+  /** Component used for the root node */
+  as?: ContainerType
 }
 
 /**
@@ -66,7 +70,8 @@ export const Container: FunctionComponent<Props> = ({
   justifyContent,
   style,
   bordered = false,
-  classes
+  classes,
+  as: Component = 'div'
 }) => {
   const margins = {
     ...(top && { marginTop: spacingToEm(top) }),
@@ -76,7 +81,7 @@ export const Container: FunctionComponent<Props> = ({
   }
 
   return (
-    <div
+    <Component
       className={cx(
         {
           [classes[`${padded}Padding`]]: typeof padded === 'string',
@@ -96,11 +101,12 @@ export const Container: FunctionComponent<Props> = ({
       }}
     >
       {children}
-    </div>
+    </Component>
   )
 }
 
 Container.defaultProps = {
+  as: 'div',
   inline: false
 }
 
