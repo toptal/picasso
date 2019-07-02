@@ -21,32 +21,32 @@ exports[`Stepper default render 1`] = `
               class="StepIcon-root StepIcon-completed"
             >
               <svg
-                class="SvgCheck24-root"
+                class="SvgCheckMinor24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
                 <defs>
                   <path
                     d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
-                    id="check24_svg__a"
+                    id="checkMinor24_svg__a"
                   />
                 </defs>
                 <g
                   fill-rule="evenodd"
                 >
                   <mask
-                    id="check24_svg__b"
+                    id="checkMinor24_svg__b"
                   >
                     <use
-                      xlink:href="#check24_svg__a"
+                      xlink:href="#checkMinor24_svg__a"
                     />
                   </mask>
                   <use
                     fill-rule="nonzero"
-                    xlink:href="#check24_svg__a"
+                    xlink:href="#checkMinor24_svg__a"
                   />
                   <g
-                    mask="url(#check24_svg__b)"
+                    mask="url(#checkMinor24_svg__b)"
                   >
                     <path
                       d="M0 0h24v24H0z"
@@ -118,32 +118,32 @@ exports[`Stepper default render 1`] = `
               class="StepIcon-root StepIcon-completed"
             >
               <svg
-                class="SvgCheck24-root"
+                class="SvgCheckMinor24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
                 <defs>
                   <path
                     d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
-                    id="check24_svg__a"
+                    id="checkMinor24_svg__a"
                   />
                 </defs>
                 <g
                   fill-rule="evenodd"
                 >
                   <mask
-                    id="check24_svg__b"
+                    id="checkMinor24_svg__b"
                   >
                     <use
-                      xlink:href="#check24_svg__a"
+                      xlink:href="#checkMinor24_svg__a"
                     />
                   </mask>
                   <use
                     fill-rule="nonzero"
-                    xlink:href="#check24_svg__a"
+                    xlink:href="#checkMinor24_svg__a"
                   />
                   <g
-                    mask="url(#check24_svg__b)"
+                    mask="url(#checkMinor24_svg__b)"
                   >
                     <path
                       d="M0 0h24v24H0z"
@@ -318,32 +318,32 @@ exports[`Stepper render with all steps completed 1`] = `
               class="StepIcon-root StepIcon-completed"
             >
               <svg
-                class="SvgCheck24-root"
+                class="SvgCheckMinor24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
                 <defs>
                   <path
                     d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
-                    id="check24_svg__a"
+                    id="checkMinor24_svg__a"
                   />
                 </defs>
                 <g
                   fill-rule="evenodd"
                 >
                   <mask
-                    id="check24_svg__b"
+                    id="checkMinor24_svg__b"
                   >
                     <use
-                      xlink:href="#check24_svg__a"
+                      xlink:href="#checkMinor24_svg__a"
                     />
                   </mask>
                   <use
                     fill-rule="nonzero"
-                    xlink:href="#check24_svg__a"
+                    xlink:href="#checkMinor24_svg__a"
                   />
                   <g
-                    mask="url(#check24_svg__b)"
+                    mask="url(#checkMinor24_svg__b)"
                   >
                     <path
                       d="M0 0h24v24H0z"
@@ -415,32 +415,32 @@ exports[`Stepper render with all steps completed 1`] = `
               class="StepIcon-root StepIcon-completed"
             >
               <svg
-                class="SvgCheck24-root"
+                class="SvgCheckMinor24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
                 <defs>
                   <path
                     d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
-                    id="check24_svg__a"
+                    id="checkMinor24_svg__a"
                   />
                 </defs>
                 <g
                   fill-rule="evenodd"
                 >
                   <mask
-                    id="check24_svg__b"
+                    id="checkMinor24_svg__b"
                   >
                     <use
-                      xlink:href="#check24_svg__a"
+                      xlink:href="#checkMinor24_svg__a"
                     />
                   </mask>
                   <use
                     fill-rule="nonzero"
-                    xlink:href="#check24_svg__a"
+                    xlink:href="#checkMinor24_svg__a"
                   />
                   <g
-                    mask="url(#check24_svg__b)"
+                    mask="url(#checkMinor24_svg__b)"
                   >
                     <path
                       d="M0 0h24v24H0z"
@@ -512,32 +512,32 @@ exports[`Stepper render with all steps completed 1`] = `
               class="StepIcon-root StepIcon-completed"
             >
               <svg
-                class="SvgCheck24-root"
+                class="SvgCheckMinor24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
                 <defs>
                   <path
                     d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
-                    id="check24_svg__a"
+                    id="checkMinor24_svg__a"
                   />
                 </defs>
                 <g
                   fill-rule="evenodd"
                 >
                   <mask
-                    id="check24_svg__b"
+                    id="checkMinor24_svg__b"
                   >
                     <use
-                      xlink:href="#check24_svg__a"
+                      xlink:href="#checkMinor24_svg__a"
                     />
                   </mask>
                   <use
                     fill-rule="nonzero"
-                    xlink:href="#check24_svg__a"
+                    xlink:href="#checkMinor24_svg__a"
                   />
                   <g
-                    mask="url(#check24_svg__b)"
+                    mask="url(#checkMinor24_svg__b)"
                   >
                     <path
                       d="M0 0h24v24H0z"
@@ -609,32 +609,32 @@ exports[`Stepper render with all steps completed 1`] = `
               class="StepIcon-root StepIcon-completed"
             >
               <svg
-                class="SvgCheck24-root"
+                class="SvgCheckMinor24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
                 <defs>
                   <path
                     d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
-                    id="check24_svg__a"
+                    id="checkMinor24_svg__a"
                   />
                 </defs>
                 <g
                   fill-rule="evenodd"
                 >
                   <mask
-                    id="check24_svg__b"
+                    id="checkMinor24_svg__b"
                   >
                     <use
-                      xlink:href="#check24_svg__a"
+                      xlink:href="#checkMinor24_svg__a"
                     />
                   </mask>
                   <use
                     fill-rule="nonzero"
-                    xlink:href="#check24_svg__a"
+                    xlink:href="#checkMinor24_svg__a"
                   />
                   <g
-                    mask="url(#check24_svg__b)"
+                    mask="url(#checkMinor24_svg__b)"
                   >
                     <path
                       d="M0 0h24v24H0z"
@@ -685,32 +685,32 @@ exports[`Stepper render with full-width 1`] = `
               class="StepIcon-root StepIcon-completed"
             >
               <svg
-                class="SvgCheck24-root"
+                class="SvgCheckMinor24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
                 <defs>
                   <path
                     d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
-                    id="check24_svg__a"
+                    id="checkMinor24_svg__a"
                   />
                 </defs>
                 <g
                   fill-rule="evenodd"
                 >
                   <mask
-                    id="check24_svg__b"
+                    id="checkMinor24_svg__b"
                   >
                     <use
-                      xlink:href="#check24_svg__a"
+                      xlink:href="#checkMinor24_svg__a"
                     />
                   </mask>
                   <use
                     fill-rule="nonzero"
-                    xlink:href="#check24_svg__a"
+                    xlink:href="#checkMinor24_svg__a"
                   />
                   <g
-                    mask="url(#check24_svg__b)"
+                    mask="url(#checkMinor24_svg__b)"
                   >
                     <path
                       d="M0 0h24v24H0z"
@@ -782,32 +782,32 @@ exports[`Stepper render with full-width 1`] = `
               class="StepIcon-root StepIcon-completed"
             >
               <svg
-                class="SvgCheck24-root"
+                class="SvgCheckMinor24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
                 <defs>
                   <path
                     d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
-                    id="check24_svg__a"
+                    id="checkMinor24_svg__a"
                   />
                 </defs>
                 <g
                   fill-rule="evenodd"
                 >
                   <mask
-                    id="check24_svg__b"
+                    id="checkMinor24_svg__b"
                   >
                     <use
-                      xlink:href="#check24_svg__a"
+                      xlink:href="#checkMinor24_svg__a"
                     />
                   </mask>
                   <use
                     fill-rule="nonzero"
-                    xlink:href="#check24_svg__a"
+                    xlink:href="#checkMinor24_svg__a"
                   />
                   <g
-                    mask="url(#check24_svg__b)"
+                    mask="url(#checkMinor24_svg__b)"
                   >
                     <path
                       d="M0 0h24v24H0z"
@@ -879,32 +879,32 @@ exports[`Stepper render with full-width 1`] = `
               class="StepIcon-root StepIcon-completed"
             >
               <svg
-                class="SvgCheck24-root"
+                class="SvgCheckMinor24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
                 <defs>
                   <path
                     d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
-                    id="check24_svg__a"
+                    id="checkMinor24_svg__a"
                   />
                 </defs>
                 <g
                   fill-rule="evenodd"
                 >
                   <mask
-                    id="check24_svg__b"
+                    id="checkMinor24_svg__b"
                   >
                     <use
-                      xlink:href="#check24_svg__a"
+                      xlink:href="#checkMinor24_svg__a"
                     />
                   </mask>
                   <use
                     fill-rule="nonzero"
-                    xlink:href="#check24_svg__a"
+                    xlink:href="#checkMinor24_svg__a"
                   />
                   <g
-                    mask="url(#check24_svg__b)"
+                    mask="url(#checkMinor24_svg__b)"
                   >
                     <path
                       d="M0 0h24v24H0z"
@@ -976,32 +976,32 @@ exports[`Stepper render with full-width 1`] = `
               class="StepIcon-root StepIcon-completed"
             >
               <svg
-                class="SvgCheck24-root"
+                class="SvgCheckMinor24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
                 <defs>
                   <path
                     d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
-                    id="check24_svg__a"
+                    id="checkMinor24_svg__a"
                   />
                 </defs>
                 <g
                   fill-rule="evenodd"
                 >
                   <mask
-                    id="check24_svg__b"
+                    id="checkMinor24_svg__b"
                   >
                     <use
-                      xlink:href="#check24_svg__a"
+                      xlink:href="#checkMinor24_svg__a"
                     />
                   </mask>
                   <use
                     fill-rule="nonzero"
-                    xlink:href="#check24_svg__a"
+                    xlink:href="#checkMinor24_svg__a"
                   />
                   <g
-                    mask="url(#check24_svg__b)"
+                    mask="url(#checkMinor24_svg__b)"
                   >
                     <path
                       d="M0 0h24v24H0z"
@@ -1052,32 +1052,32 @@ exports[`Stepper render with hidden labels 1`] = `
               class="StepIcon-root StepIcon-completed"
             >
               <svg
-                class="SvgCheck24-root"
+                class="SvgCheckMinor24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
                 <defs>
                   <path
                     d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
-                    id="check24_svg__a"
+                    id="checkMinor24_svg__a"
                   />
                 </defs>
                 <g
                   fill-rule="evenodd"
                 >
                   <mask
-                    id="check24_svg__b"
+                    id="checkMinor24_svg__b"
                   >
                     <use
-                      xlink:href="#check24_svg__a"
+                      xlink:href="#checkMinor24_svg__a"
                     />
                   </mask>
                   <use
                     fill-rule="nonzero"
-                    xlink:href="#check24_svg__a"
+                    xlink:href="#checkMinor24_svg__a"
                   />
                   <g
-                    mask="url(#check24_svg__b)"
+                    mask="url(#checkMinor24_svg__b)"
                   >
                     <path
                       d="M0 0h24v24H0z"
@@ -1149,32 +1149,32 @@ exports[`Stepper render with hidden labels 1`] = `
               class="StepIcon-root StepIcon-completed"
             >
               <svg
-                class="SvgCheck24-root"
+                class="SvgCheckMinor24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
                 <defs>
                   <path
                     d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
-                    id="check24_svg__a"
+                    id="checkMinor24_svg__a"
                   />
                 </defs>
                 <g
                   fill-rule="evenodd"
                 >
                   <mask
-                    id="check24_svg__b"
+                    id="checkMinor24_svg__b"
                   >
                     <use
-                      xlink:href="#check24_svg__a"
+                      xlink:href="#checkMinor24_svg__a"
                     />
                   </mask>
                   <use
                     fill-rule="nonzero"
-                    xlink:href="#check24_svg__a"
+                    xlink:href="#checkMinor24_svg__a"
                   />
                   <g
-                    mask="url(#check24_svg__b)"
+                    mask="url(#checkMinor24_svg__b)"
                   >
                     <path
                       d="M0 0h24v24H0z"
@@ -1246,32 +1246,32 @@ exports[`Stepper render with hidden labels 1`] = `
               class="StepIcon-root StepIcon-completed"
             >
               <svg
-                class="SvgCheck24-root"
+                class="SvgCheckMinor24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
                 <defs>
                   <path
                     d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
-                    id="check24_svg__a"
+                    id="checkMinor24_svg__a"
                   />
                 </defs>
                 <g
                   fill-rule="evenodd"
                 >
                   <mask
-                    id="check24_svg__b"
+                    id="checkMinor24_svg__b"
                   >
                     <use
-                      xlink:href="#check24_svg__a"
+                      xlink:href="#checkMinor24_svg__a"
                     />
                   </mask>
                   <use
                     fill-rule="nonzero"
-                    xlink:href="#check24_svg__a"
+                    xlink:href="#checkMinor24_svg__a"
                   />
                   <g
-                    mask="url(#check24_svg__b)"
+                    mask="url(#checkMinor24_svg__b)"
                   >
                     <path
                       d="M0 0h24v24H0z"
@@ -1343,32 +1343,32 @@ exports[`Stepper render with hidden labels 1`] = `
               class="StepIcon-root StepIcon-completed"
             >
               <svg
-                class="SvgCheck24-root"
+                class="SvgCheckMinor24-root"
                 style="min-width: 24px; min-height: 24px;"
                 viewBox="0 0 24 24"
               >
                 <defs>
                   <path
                     d="M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z"
-                    id="check24_svg__a"
+                    id="checkMinor24_svg__a"
                   />
                 </defs>
                 <g
                   fill-rule="evenodd"
                 >
                   <mask
-                    id="check24_svg__b"
+                    id="checkMinor24_svg__b"
                   >
                     <use
-                      xlink:href="#check24_svg__a"
+                      xlink:href="#checkMinor24_svg__a"
                     />
                   </mask>
                   <use
                     fill-rule="nonzero"
-                    xlink:href="#check24_svg__a"
+                    xlink:href="#checkMinor24_svg__a"
                   />
                   <g
-                    mask="url(#check24_svg__b)"
+                    mask="url(#checkMinor24_svg__b)"
                   >
                     <path
                       d="M0 0h24v24H0z"

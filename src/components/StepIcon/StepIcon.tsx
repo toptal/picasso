@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 
-import { Check24 as TickIcon } from '../Icon'
+import { CheckMinor24 as TickIcon } from '../Icon'
 import { StandardProps } from '../Picasso'
 import styles from './styles'
 
