@@ -2,7 +2,7 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 
 import { alpha } from '../styles'
 
-export default ({ palette, spacing: { input, inputIcon } }: Theme) =>
+export default ({ palette, spacing: { input } }: Theme) =>
   createStyles({
     root: {
       height: input.height,
@@ -37,16 +37,9 @@ export default ({ palette, spacing: { input, inputIcon } }: Theme) =>
     button: {
       marginLeft: '0.5em'
     },
-    adornment: {
-      color: palette.grey.dark,
-      fontSize: '1em',
-      minWidth: inputIcon.width,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'flex-start'
-    },
     adornmentStart: {
-      marginRight: '0.25em'
+      marginRight: '0.5em',
+      marginLeft: '0.25em'
     },
     adornmentEnd: {
       marginLeft: '0.5em',
@@ -58,8 +51,5 @@ export default ({ palette, spacing: { input, inputIcon } }: Theme) =>
     },
     loader: {
       marginRight: '0.25em'
-    },
-    upload: {
-      margin: '0 0.25em'
     }
   })

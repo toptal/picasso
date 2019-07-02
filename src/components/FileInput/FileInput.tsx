@@ -12,7 +12,7 @@ import Button from '../Button'
 import Loader from '../Loader'
 import Link from '../Link'
 import Typography from '../Typography'
-import { Check24, UploadDocument16 } from '../Icon'
+import { Check16, UploadDocument16 } from '../Icon'
 import { isNumber, isBoolean } from '../utils'
 import styles from './styles'
 
@@ -107,24 +107,21 @@ export const FileInput: FunctionComponent<Props> = ({
 
   const startAdornment = (
     <InputAdornment
-      className={cx(classes.adornment, classes.adornmentStart, {
+      className={cx(classes.adornmentStart, {
         [classes.adornmentDisabled]: disabled
       })}
       position='start'
     >
       {value ? (
-        <Check24 color={!disabled && palette.green.main} />
+        <Check16 color={!disabled && palette.green.main} />
       ) : (
-        <UploadDocument16 className={classes.upload} />
+        <UploadDocument16 />
       )}
     </InputAdornment>
   )
 
   const endAdornment = (
-    <InputAdornment
-      className={cx(classes.adornment, classes.adornmentEnd)}
-      position='end'
-    >
+    <InputAdornment className={classes.adornmentEnd} position='end'>
       {inProgress ? (
         <Loader
           className={classes.loader}
