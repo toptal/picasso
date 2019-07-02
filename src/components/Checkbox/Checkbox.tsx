@@ -57,6 +57,7 @@ export const Checkbox: FunctionComponent<Props> = ({
     root: classes.root,
     disabled: classes.disabled
   }
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { color, ...checkboxAttributes } = rest
 
   const muiCheckbox = (

@@ -12,12 +12,10 @@ export const DropdownArrow: FunctionComponent<Props> = ({
   className,
   style,
   ...rest
-}) => {
+}) => (
   // eslint-disable-next-line react/jsx-props-no-spreading
-  return (
-    <span {...rest} className={cx(classes.root, className)} style={style} />
-  )
-}
+  <span {...rest} className={cx(classes.root, className)} style={style} />
+)
 
 DropdownArrow.displayName = 'DropdownArrow'
 
