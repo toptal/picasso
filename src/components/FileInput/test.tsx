@@ -1,6 +1,5 @@
-import React, { ReactNode, FunctionComponent } from 'react'
-/* eslint-disable-next-line */
-import { render, fireEvent, cleanup, RenderResult } from 'react-testing-library'
+import React, { FunctionComponent } from 'react'
+import { render, cleanup } from 'react-testing-library'
 
 import Picasso, { OmitInternalProps } from '../Picasso'
 import FileInput, { Props } from './FileInput'

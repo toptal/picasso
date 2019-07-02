@@ -1,4 +1,5 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
+
 import { alpha } from '../styles'
 
 export default ({ palette, spacing: { input, inputIcon } }: Theme) =>

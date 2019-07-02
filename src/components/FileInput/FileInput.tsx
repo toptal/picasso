@@ -14,7 +14,6 @@ import Link from '../Link'
 import Typography from '../Typography'
 import { Check24, UploadDocument16 } from '../Icon'
 import { isNumber, isBoolean } from '../utils'
-
 import styles from './styles'
 
 export interface FileDescription {
@@ -31,7 +30,7 @@ export interface Props extends StandardProps, InputBaseComponentProps {
   status?: string
   /** Take the full width of a container */
   fullWidth?: boolean
-  /** Descriptor describing file name and file location*/
+  /** Descriptor describing file name and file location */
   value?: FileDescription
 }
 

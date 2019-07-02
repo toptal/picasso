@@ -59,12 +59,12 @@ const FileInputUploaderExample = () => {
   const { error, progress, file, status, upload } = useUploader({
     file: { name: 'initial-file.png', location: 'https://picsum.photos/200' },
     maxSize: MAX_SIZE
-    /*statusOptions: {
+    /* statusOptions: {
       empty: 'No file uploaded.',
       progress: 'File uploading in progress...',
       error: 'Upload failed.',
       success: 'Upload completed.'
-    }*/
+    } */
   })
 
   return (

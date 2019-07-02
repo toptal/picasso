@@ -1,1 +1,1 @@
-export default (value: any): boolean => typeof value == 'number'
+export default (value: any): boolean => typeof value === 'number'
