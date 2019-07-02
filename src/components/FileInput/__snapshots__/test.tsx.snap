@@ -26,10 +26,10 @@ exports[`FileInput default render 1`] = `
           </legend>
         </fieldset>
         <div
-          class="MuiInputAdornment-root MuiInputAdornment-positionStart FileInput-adornment FileInput-adornmentStart"
+          class="MuiInputAdornment-root MuiInputAdornment-positionStart FileInput-adornmentStart"
         >
           <svg
-            class="SvgUploadDocument16-root FileInput-upload"
+            class="SvgUploadDocument16-root"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
@@ -71,7 +71,7 @@ exports[`FileInput default render 1`] = `
           type="file"
         />
         <div
-          class="MuiInputAdornment-root MuiInputAdornment-positionEnd FileInput-adornment FileInput-adornmentEnd"
+          class="MuiInputAdornment-root MuiInputAdornment-positionEnd FileInput-adornmentEnd"
         >
           <button
             class="MuiButtonBase-root Button-small Button-primaryBlue Button-root FileInput-button"
