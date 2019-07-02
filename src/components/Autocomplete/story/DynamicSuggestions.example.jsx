@@ -19,6 +19,7 @@ const loadSuggestions = inputValue => {
     const filteredSuggestions = remoteSuggestions.filter(s =>
       s.label.toLowerCase().includes(inputValue)
     )
+
     setTimeout(() => resolve(filteredSuggestions), 1000)
   })
 }
@@ -29,8 +30,10 @@ const AutocompleteDynamicSuggestionsExample = () => {
 
   const handleChange = useCallback(async value => {
     const inputValue = value.trim().toLowerCase()
+
     setLoading(true)
     const suggestions = await loadSuggestions(inputValue)
+
     setLoading(false)
     setSuggestions(suggestions)
   }, [])

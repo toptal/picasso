@@ -47,6 +47,7 @@ export interface Props
 
 const isSubstring = (value: string | null, result: Item) => {
   const inputValue = (value || '').trim().toLowerCase()
+
   return result.label.toLowerCase().includes(inputValue)
 }
 
@@ -62,6 +63,7 @@ const getMostRelevantSuggestion = (
   }
 
   const filteredSuggestions = getFilteredSuggestions(suggestions, value)
+
   if (
     filteredSuggestions &&
     filteredSuggestions.length &&
@@ -107,6 +109,7 @@ export const Autocomplete: FunctionComponent<Props> = ({
               suggestions,
               inputValue
             )
+
             if (suggestion) {
               selectItem(suggestion.label)
             }
@@ -152,6 +155,7 @@ export const Autocomplete: FunctionComponent<Props> = ({
               iconPosition='end'
             />
 
+            {/* eslint-disable-next-line react/jsx-props-no-spreading */}
             <div {...getMenuProps()}>
               {isOpen ? (
                 <Menu className={classes.menu}>
@@ -161,6 +165,7 @@ export const Autocomplete: FunctionComponent<Props> = ({
                         key={suggestion.label}
                         selected={highlightedIndex === index}
                         component='div'
+                        // eslint-disable-next-line react/jsx-props-no-spreading
                         {...getItemProps({ item: suggestion.label })}
                       >
                         {suggestion.label}
