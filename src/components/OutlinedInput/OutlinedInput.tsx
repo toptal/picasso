@@ -1,4 +1,9 @@
-import React, { FunctionComponent, ChangeEventHandler, ReactType } from 'react'
+import React, {
+  FunctionComponent,
+  ChangeEventHandler,
+  ReactType,
+  InputHTMLAttributes
+} from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUIOutlinedInput from '@material-ui/core/OutlinedInput'
 import { InputBaseComponentProps } from '@material-ui/core/InputBase'
@@ -13,7 +18,9 @@ type ValueType =
   | boolean
   | object
 
-export interface Props extends StandardProps {
+export interface Props
+  extends StandardProps,
+    Omit<InputHTMLAttributes<HTMLInputElement>, 'value'> {
   /** The width of the legend */
   labelWidth: number
   /** If true, the input will take up the full width of its container */
@@ -35,7 +42,8 @@ const OutlinedInput: FunctionComponent<Props> = ({
   inputComponent,
   inputProps,
   value,
-  onChange
+  onChange,
+  ...rest
 }) => {
   return (
     <MUIOutlinedInput
@@ -46,7 +54,10 @@ const OutlinedInput: FunctionComponent<Props> = ({
       fullWidth={fullWidth}
       disabled={disabled}
       inputComponent={inputComponent}
-      inputProps={inputProps}
+      inputProps={{
+        ...rest,
+        ...inputProps
+      }}
       value={value}
       onChange={onChange}
     />
