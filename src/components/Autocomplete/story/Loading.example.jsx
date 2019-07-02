@@ -9,14 +9,14 @@ const suggestions = [
   { label: 'Ukraine' }
 ]
 
-const AutocompleteFullWidthExample = () => (
+const AutocompleteLoadingExample = () => (
   <div>
     <Autocomplete
-      placeholder='Start typing country...'
+      placeholder='Loading state...'
       suggestions={suggestions}
-      fullWidth
+      loading
     />
   </div>
 )
 
-export default AutocompleteFullWidthExample
+export default AutocompleteLoadingExample

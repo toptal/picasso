@@ -1,7 +1,7 @@
 import React from 'react'
 import { Autocomplete } from '@toptal/picasso'
 
-const results = [
+const suggestions = [
   { label: 'Belarus' },
   { label: 'Croatia' },
   { label: 'Lithuania' },
@@ -11,7 +11,12 @@ const results = [
 
 const AutocompleteDefaultExample = () => (
   <div>
-    <Autocomplete results={results} />
+    <Autocomplete
+      placeholder='Start typing country...'
+      suggestions={suggestions}
+      onSelect={item => console.log('onSelect value:', item)}
+      onChange={value => console.log('onChange value:', value)}
+    />
   </div>
 )
 

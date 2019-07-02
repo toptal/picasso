@@ -16,3 +16,8 @@ page
   .createChapter()
   .addExample('Autocomplete/story/Default.example.jsx', 'Default')
   .addExample('Autocomplete/story/FullWidth.example.jsx', 'Full width')
+  .addExample('Autocomplete/story/Loading.example.jsx', 'Loading')
+  .addExample(
+    'Autocomplete/story/DynamicSuggestions.example.jsx',
+    'Dynamic suggestions'
+  )

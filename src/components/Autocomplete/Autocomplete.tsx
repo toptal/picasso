@@ -1,58 +1,94 @@
-import React, { FunctionComponent, FormEvent, ChangeEvent } from 'react'
+import React, {
+  FunctionComponent,
+  FormEvent,
+  ChangeEvent,
+  InputHTMLAttributes
+} from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import Downshift from 'downshift'
+import debounce from 'debounce'
 
 import { StandardProps } from '../Picasso'
 import TextField from '../TextField'
 import Menu from '../Menu'
 import MenuItem from '../MenuItem'
+import Loader from '../Loader'
 import styles from './styles'
 
-export interface Props extends StandardProps {
+type Item = {
+  label: string
+}
+
+/**
+ * Alias for all valid HTML props for `<input>` element.
+ * Does not include React's `ref` or `key`.
+ */
+type HTMLInputProps = InputHTMLAttributes<HTMLInputElement>
+
+export interface Props
+  extends StandardProps,
+    Omit<HTMLInputProps, 'onChange' | 'onSelect'> {
   /** Placeholder for value */
   placeholder?: string
   /** Take the full width of a container */
   fullWidth?: boolean
-  /** Initial results (suggestions) */
-  results?: {
+  /** Shows the loading icon when suggestions are loading */
+  loading?: boolean
+  /** List of suggestions */
+  suggestions?: {
     label: string
-  }[]
+  }[] // original type: Item[]
+  /**  Callback invoked when item is selected */
+  onSelect?: (item: Item | null) => void
+  /**  Callback invoked when typing value is changed */
+  onChange?: (value: string) => void
 }
 
-const isSubstring = (value: string | null, result: { label: string }) => {
+const isSubstring = (value: string | null, result: Item) => {
   const inputValue = (value || '').trim().toLowerCase()
-  const inputLength = inputValue.length
-  return result.label.slice(0, inputLength).toLowerCase() === inputValue
+  return result.label.toLowerCase().includes(inputValue)
 }
 
-const getFilteredResults = (
-  results: { label: string }[],
+const getFilteredSuggestions = (suggestions: Item[], value: string | null) =>
+  suggestions.filter(suggestion => isSubstring(value, suggestion))
+
+const getMostRelevantSuggestion = (
+  suggestions: Item[],
   value: string | null
-) => {
-  let count = 0
+): Item | null => {
+  if (!value || !value.trim().length) {
+    return null
+  }
 
-  return results.filter(result => {
-    const keep = count < 5 && isSubstring(value, result)
+  const filteredSuggestions = getFilteredSuggestions(suggestions, value)
+  if (
+    filteredSuggestions &&
+    filteredSuggestions.length &&
+    isSubstring(value, filteredSuggestions[0])
+  ) {
+    return filteredSuggestions[0]
+  }
 
-    if (keep) {
-      count += 1
-    }
-
-    return keep
-  })
+  return null
 }
 
 export const Autocomplete: FunctionComponent<Props> = ({
   classes,
   className,
   fullWidth = false,
+  loading = false,
   placeholder,
-  results = [],
-  style
+  suggestions = [],
+  style,
+  onSelect = () => {},
+  onChange = () => {},
+  ...rest
 }) => {
+  const onChangeDebounced = debounce(onChange, 300)
+
   return (
-    <Downshift>
+    <Downshift onSelect={onSelect}>
       {({
         clearSelection,
         getInputProps,
@@ -64,31 +100,31 @@ export const Autocomplete: FunctionComponent<Props> = ({
         openMenu,
         selectItem
       }) => {
-        const { onBlur, onFocus, onChange, onKeyDown, value } = getInputProps({
+        const inputProps = getInputProps({
           onFocus: openMenu,
           onBlur: () => {
-            if (!inputValue || !inputValue.trim().length) {
-              return
-            }
-
-            const filteredResults = getFilteredResults(results, inputValue)
-            if (
-              filteredResults &&
-              filteredResults.length &&
-              isSubstring(inputValue, filteredResults[0])
-            ) {
-              selectItem(filteredResults[0].label)
+            const suggestion = getMostRelevantSuggestion(
+              suggestions,
+              inputValue
+            )
+            if (suggestion) {
+              selectItem(suggestion.label)
             }
           },
           onChange: (e: ChangeEvent<HTMLInputElement>) => {
             if (e.target.value === '') {
               clearSelection()
             }
+
+            onChangeDebounced(e.target.value)
           },
           placeholder
         })
 
-        const filteredSuggestions = getFilteredResults(results, inputValue)
+        const filteredSuggestions = getFilteredSuggestions(
+          suggestions,
+          inputValue
+        )
 
         return (
           <div
@@ -99,35 +135,40 @@ export const Autocomplete: FunctionComponent<Props> = ({
           >
             <TextField
               inputProps={{
-                onBlur,
-                onFocus,
-                labelWidth: 0
+                labelWidth: 0,
+                ...inputProps,
+                ...rest
               }}
               onChange={e => {
                 if (!e) {
                   return
                 }
 
-                onChange(e as FormEvent<HTMLInputElement>)
+                inputProps.onChange(e as FormEvent<HTMLInputElement>)
               }}
-              onKeyDown={onKeyDown}
-              value={value as string}
+              value={inputProps.value as string}
               fullWidth={fullWidth}
+              icon={loading ? <Loader size='small' /> : null}
+              iconPosition='end'
             />
 
             <div {...getMenuProps()}>
               {isOpen ? (
                 <Menu className={classes.menu}>
-                  {filteredSuggestions.map((result, index) => (
-                    <MenuItem
-                      key={result.label}
-                      selected={highlightedIndex === index}
-                      component='div'
-                      {...getItemProps({ item: result.label })}
-                    >
-                      {result.label}
-                    </MenuItem>
-                  ))}
+                  {filteredSuggestions.length ? (
+                    filteredSuggestions.map((suggestion, index) => (
+                      <MenuItem
+                        key={suggestion.label}
+                        selected={highlightedIndex === index}
+                        component='div'
+                        {...getItemProps({ item: suggestion.label })}
+                      >
+                        {suggestion.label}
+                      </MenuItem>
+                    ))
+                  ) : inputValue !== '' ? (
+                    <MenuItem disabled>No options</MenuItem>
+                  ) : null}
                 </Menu>
               ) : null}
             </div>
@@ -137,8 +178,6 @@ export const Autocomplete: FunctionComponent<Props> = ({
     </Downshift>
   )
 }
-
-Autocomplete.defaultProps = {}
 
 Autocomplete.displayName = 'Autocomplete'
 

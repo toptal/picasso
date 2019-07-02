@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Autocomplete default render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      aria-expanded="false"
+      aria-haspopup="listbox"
+      aria-labelledby="downshift-0-label"
+      class="Autocomplete-root Autocomplete-rootFixedWidth"
+      role="combobox"
+    >
+      <div
+        class="MuiFormControl-root TextField-rootFixedWidth"
+      >
+        <div
+          aria-autocomplete="list"
+          aria-labelledby="downshift-0-label"
+          class="MuiInputBase-root MuiOutlinedInput-root TextField-root MuiInputBase-formControl"
+        >
+          <fieldset
+            aria-hidden="true"
+            class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+            style="padding-left: 8px;"
+          >
+            <legend
+              class="MuiPrivateNotchedOutline-legend"
+              style="width: 0.01px;"
+            >
+              <span>
+                ​
+              </span>
+            </legend>
+          </fieldset>
+          <input
+            aria-invalid="false"
+            autocomplete="off"
+            class="MuiInputBase-input MuiOutlinedInput-input TextField-input"
+            id="downshift-0-input"
+            placeholder="Start typing here..."
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        aria-labelledby="downshift-0-label"
+        id="downshift-0-menu"
+        role="listbox"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Autocomplete render suggestions when start typing 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      aria-expanded="true"
+      aria-haspopup="listbox"
+      aria-labelledby="downshift-1-label"
+      aria-owns="downshift-1-menu"
+      class="Autocomplete-root Autocomplete-rootFixedWidth"
+      role="combobox"
+    >
+      <div
+        class="MuiFormControl-root TextField-rootFixedWidth"
+      >
+        <div
+          aria-autocomplete="list"
+          aria-controls="downshift-1-menu"
+          aria-labelledby="downshift-1-label"
+          class="MuiInputBase-root MuiOutlinedInput-root TextField-root MuiInputBase-formControl"
+        >
+          <fieldset
+            aria-hidden="true"
+            class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+            style="padding-left: 8px;"
+          >
+            <legend
+              class="MuiPrivateNotchedOutline-legend"
+              style="width: 0.01px;"
+            >
+              <span>
+                ​
+              </span>
+            </legend>
+          </fieldset>
+          <input
+            aria-invalid="false"
+            autocomplete="off"
+            class="MuiInputBase-input MuiOutlinedInput-input TextField-input"
+            id="downshift-1-input"
+            placeholder="Start typing here..."
+            type="text"
+            value="t"
+          />
+        </div>
+      </div>
+      <div
+        aria-labelledby="downshift-1-label"
+        id="downshift-1-menu"
+        role="listbox"
+      >
+        <ul
+          class="MuiList-root Autocomplete-menu"
+          role="menu"
+        >
+          <li
+            class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
+            role="menuitem"
+            tabindex="-1"
+          >
+            <p
+              class="MuiTypography-root Typography-bodyInherit Typography-black MuiTypography-body1 MenuItem-stringContent"
+            >
+              Croatia
+            </p>
+          </li>
+          <li
+            class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
+            role="menuitem"
+            tabindex="-1"
+          >
+            <p
+              class="MuiTypography-root Typography-bodyInherit Typography-black MuiTypography-body1 MenuItem-stringContent"
+            >
+              Lithuania
+            </p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+`;

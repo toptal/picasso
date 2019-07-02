@@ -16,6 +16,8 @@ export default ({ spacing: { input }, palette }: Theme) =>
       right: 0,
       zIndex: 1,
       position: 'absolute',
-      backgroundColor: palette.common.white
+      backgroundColor: palette.common.white,
+      maxHeight: '10.125em', // 4.5 lines of menu to show
+      overflowY: 'scroll'
     }
   })
