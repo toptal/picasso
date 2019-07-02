@@ -47,9 +47,9 @@ const useUploader = config => {
   return {
     error,
     progress,
-    upload,
     status,
-    file
+    file,
+    upload
   }
 }
 
@@ -57,19 +57,13 @@ const FileInputUploaderExample = () => {
   const MAX_SIZE = 2
 
   const { error, progress, file, status, upload } = useUploader({
-    file: { name: 'initial-file.png', location: 'https://picsum.photos/200' },
     maxSize: MAX_SIZE
-    /* statusOptions: {
-      empty: 'No file uploaded.',
-      progress: 'File uploading in progress...',
-      error: 'Upload failed.',
-      success: 'Upload completed.'
-    } */
   })
 
   return (
     <div>
       <Form.Field hint={`Max file size: ${MAX_SIZE}MB.`} error={error}>
+        <Form.Label>Profile picture</Form.Label>
         <FileInput
           value={file}
           accept='image/*'

@@ -1,4 +1,4 @@
-import React, { FunctionComponent, createRef, Fragment } from 'react'
+import React, { FunctionComponent, useRef, Fragment } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { InputBaseComponentProps } from '@material-ui/core/InputBase'
@@ -93,7 +93,7 @@ export const FileInput: FunctionComponent<Props> = ({
   status,
   onChange
 }) => {
-  const nativeInput = createRef<HTMLInputElement>()
+  const nativeInput = useRef<HTMLInputElement>()
 
   const inProgress =
     (isNumber(progress) && progress! <= 100) ||
@@ -107,8 +107,8 @@ export const FileInput: FunctionComponent<Props> = ({
 
   const startAdornment = (
     <InputAdornment
-      className={cx(classes.icon, classes.iconStart, {
-        [classes.iconDisabled]: disabled
+      className={cx(classes.adornment, classes.adornmentStart, {
+        [classes.adornmentDisabled]: disabled
       })}
       position='start'
     >
@@ -122,7 +122,7 @@ export const FileInput: FunctionComponent<Props> = ({
 
   const endAdornment = (
     <InputAdornment
-      className={cx(classes.icon, classes.iconEnd)}
+      className={cx(classes.adornment, classes.adornmentEnd)}
       position='end'
     >
       {inProgress ? (

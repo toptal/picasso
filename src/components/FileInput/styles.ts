@@ -7,7 +7,7 @@ export default ({ palette, spacing: { input, inputIcon } }: Theme) =>
     root: {
       height: input.height,
       width: input.width,
-      cursor: 'pointer',
+      cursor: 'default',
       padding: `${input.padding} 0.375em`
     },
     input: {
@@ -37,7 +37,7 @@ export default ({ palette, spacing: { input, inputIcon } }: Theme) =>
     button: {
       marginLeft: '0.5em'
     },
-    icon: {
+    adornment: {
       color: palette.grey.dark,
       fontSize: '1em',
       minWidth: inputIcon.width,
@@ -45,15 +45,15 @@ export default ({ palette, spacing: { input, inputIcon } }: Theme) =>
       alignItems: 'center',
       justifyContent: 'flex-start'
     },
-    iconStart: {
+    adornmentStart: {
       marginRight: '0.25em'
     },
-    iconEnd: {
+    adornmentEnd: {
       marginLeft: '0.5em',
       justifyContent: 'flex-end',
       flexGrow: 1
     },
-    iconDisabled: {
+    adornmentDisabled: {
       color: alpha(palette.grey.dark!, 0.48)
     },
     loader: {

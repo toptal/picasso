@@ -26,7 +26,7 @@ exports[`FileInput default render 1`] = `
           </legend>
         </fieldset>
         <div
-          class="MuiInputAdornment-root MuiInputAdornment-positionStart FileInput-icon FileInput-iconStart"
+          class="MuiInputAdornment-root MuiInputAdornment-positionStart FileInput-adornment FileInput-adornmentStart"
         >
           <svg
             class="SvgUploadDocument16-root FileInput-upload"
@@ -71,19 +71,19 @@ exports[`FileInput default render 1`] = `
           type="file"
         />
         <div
-          class="MuiInputAdornment-root MuiInputAdornment-positionEnd FileInput-icon FileInput-iconEnd"
+          class="MuiInputAdornment-root MuiInputAdornment-positionEnd FileInput-adornment FileInput-adornmentEnd"
         >
           <button
             class="MuiButtonBase-root Button-small Button-primaryBlue Button-root FileInput-button"
             tabindex="0"
             type="button"
           >
-            <div
+            <span
               class="Component-flex Component-inline Button-content"
               style="flex-direction: row; align-items: center;"
             >
               Choose File
-            </div>
+            </span>
           </button>
         </div>
       </div>

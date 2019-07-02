@@ -53,7 +53,6 @@ const OutlinedInput: FunctionComponent<Props> = ({
   error,
   startAdornment,
   endAdornment,
-  notched,
   onChange
 }) => {
   return (
@@ -72,7 +71,6 @@ const OutlinedInput: FunctionComponent<Props> = ({
       type={type}
       startAdornment={startAdornment}
       endAdornment={endAdornment}
-      notched={notched}
       onChange={onChange}
     />
   )
