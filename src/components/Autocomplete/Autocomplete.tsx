@@ -20,6 +20,8 @@ type Item = {
   label: string
 }
 
+type Value = string | null
+
 /**
  * Alias for all valid HTML props for `<input>` element.
  * Does not include React's `ref` or `key`.
@@ -45,30 +47,26 @@ export interface Props
   onChange?: (value: string) => void
 }
 
-const isSubstring = (value: string | null, result: Item) => {
+const isSubstring = (value: Value, result: Item) => {
   const inputValue = (value || '').trim().toLowerCase()
 
   return result.label.toLowerCase().includes(inputValue)
 }
 
-const getFilteredSuggestions = (suggestions: Item[], value: string | null) =>
+const getFilteredSuggestions = (suggestions: Item[], value: Value) =>
   suggestions.filter(suggestion => isSubstring(value, suggestion))
 
-const getMostRelevantSuggestion = (
+const getRelevantSuggestions = (
   suggestions: Item[],
-  value: string | null
+  value: Value
 ): Item | null => {
   if (!value || !value.trim().length) {
     return null
   }
 
-  const filteredSuggestions = getFilteredSuggestions(suggestions, value)
+  const filteredSuggestions = getFilteredSuggestions(suggestions, value) || []
 
-  if (
-    filteredSuggestions &&
-    filteredSuggestions.length &&
-    isSubstring(value, filteredSuggestions[0])
-  ) {
+  if (isSubstring(value, filteredSuggestions[0])) {
     return filteredSuggestions[0]
   }
 
@@ -105,21 +103,18 @@ export const Autocomplete: FunctionComponent<Props> = ({
         const inputProps = getInputProps({
           onFocus: openMenu,
           onBlur: () => {
-            const suggestion = getMostRelevantSuggestion(
-              suggestions,
-              inputValue
-            )
+            const suggestion = getRelevantSuggestions(suggestions, inputValue)
 
             if (suggestion) {
               selectItem(suggestion.label)
             }
           },
-          onChange: (e: ChangeEvent<HTMLInputElement>) => {
-            if (e.target.value === '') {
+          onChange: (event: ChangeEvent<HTMLInputElement>) => {
+            if (event.target.value === '') {
               clearSelection()
             }
 
-            onChangeDebounced(e.target.value)
+            onChangeDebounced(event.target.value)
           },
           placeholder
         })
