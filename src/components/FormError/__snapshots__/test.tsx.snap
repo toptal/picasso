@@ -28,7 +28,7 @@ exports[`FormError default render 1`] = `
           >
             <legend
               class="MuiPrivateNotchedOutline-legend"
-              style="width: 0px;"
+              style="width: 0.01px;"
             >
               <span>
                 ​

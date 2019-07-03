@@ -23,7 +23,7 @@ PicassoProvider.override(() => ({
   }
 }))
 
-export default ({ spacing: { input, inputIcon }, palette }: Theme) =>
+export default ({ spacing: { input }, palette }: Theme) =>
   createStyles({
     rootFull: {
       width: '100%',
@@ -73,22 +73,6 @@ export default ({ spacing: { input, inputIcon }, palette }: Theme) =>
     },
     placeholder: {
       opacity: 0.4
-    },
-    icon: {
-      color: palette.grey.dark,
-      fontSize: '1em',
-      minWidth: inputIcon.width,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'flex-start'
-    },
-    iconStart: {
-      marginRight: '0.5em'
-    },
-    iconEnd: {
-      marginLeft: '0.5em',
-      justifyContent: 'flex-end',
-      flexGrow: 1
     },
     iconDisabled: {
       color: alpha(palette.grey.dark!, 0.48)

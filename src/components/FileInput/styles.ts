@@ -30,13 +30,7 @@ export default ({ palette, spacing: { input } }: Theme) =>
       marginLeft: '0.5em'
     },
     adornmentStart: {
-      marginRight: '0.5em',
       marginLeft: '0.25em'
-    },
-    adornmentEnd: {
-      marginLeft: '0.5em',
-      justifyContent: 'flex-end',
-      flexGrow: 1
     },
     adornmentDisabled: {
       color: alpha(palette.grey.dark!, 0.48)

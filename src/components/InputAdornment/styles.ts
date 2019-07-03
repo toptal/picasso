@@ -2,15 +2,15 @@ import { createStyles } from '@material-ui/core'
 
 import { PicassoProvider } from '../Picasso'
 
-PicassoProvider.override(() => ({
+PicassoProvider.override(({ palette }) => ({
   MuiInputAdornment: {
-    positionStart: {
-      marginLeft: 0,
-      marginRight: 0
+    root: {
+      //color: palette.grey.dark
     },
+    positionStart: {},
     positionEnd: {
-      marginLeft: 0,
-      marginRight: 0
+      justifyContent: 'flex-end',
+      flexGrow: 1
     }
   }
 }))

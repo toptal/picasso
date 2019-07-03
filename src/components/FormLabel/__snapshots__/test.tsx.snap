@@ -28,7 +28,7 @@ exports[`FormLabel default render 1`] = `
           >
             <legend
               class="MuiPrivateNotchedOutline-legend"
-              style="width: 0px;"
+              style="width: 0.01px;"
             >
               <span>
                 ​
@@ -75,7 +75,7 @@ exports[`FormLabel disabled 1`] = `
           >
             <legend
               class="MuiPrivateNotchedOutline-legend"
-              style="width: 0px;"
+              style="width: 0.01px;"
             >
               <span>
                 ​
@@ -127,7 +127,7 @@ exports[`FormLabel required 1`] = `
           >
             <legend
               class="MuiPrivateNotchedOutline-legend"
-              style="width: 0px;"
+              style="width: 0.01px;"
             >
               <span>
                 ​
@@ -179,7 +179,7 @@ exports[`FormLabel requried and disabled 1`] = `
           >
             <legend
               class="MuiPrivateNotchedOutline-legend"
-              style="width: 0px;"
+              style="width: 0.01px;"
             >
               <span>
                 ​

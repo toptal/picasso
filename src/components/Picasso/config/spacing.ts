@@ -7,12 +7,6 @@ declare module '@material-ui/core/styles/spacing' {
       width: string
       padding: string
     }
-    inputLabel: {
-      height: string
-    }
-    inputIcon: {
-      width: string
-    }
   }
 }
 
@@ -23,12 +17,6 @@ const spacing = {
     height: '2.25em',
     width: '18.75em',
     padding: '0.625em'
-  },
-  inputLabel: {
-    height: '1em'
-  },
-  inputIcon: {
-    width: '1em'
   }
 }
 

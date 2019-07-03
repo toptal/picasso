@@ -12,7 +12,6 @@ const TextFieldDefaultExample = () => {
     <TextField
       value={value}
       placeholder='Placeholder'
-      width='auto'
       onChange={handleChange}
     />
   )

@@ -117,10 +117,8 @@ export const Select: FunctionComponent<Props> = ({
 
   const iconAdornment = icon ? (
     <InputAdornment
-      className={cx(classes.icon, {
-        [classes.iconDisabled]: disabled,
-        [classes.iconStart]: iconPosition === 'start',
-        [classes.iconEnd]: iconPosition === 'end'
+      className={cx({
+        [classes.iconDisabled]: disabled
       })}
       position={iconPosition!}
     >

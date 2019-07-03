@@ -4,20 +4,11 @@ import { FileInput, Container } from '@toptal/picasso'
 const FileInputUploadingExample = () => (
   <div>
     <Container bottom='small'>
-      <FileInput
-        progress={42}
-        status='File uploading in progress...'
-        width='auto'
-      />
+      <FileInput progress={42} status='File uploading in progress...' />
     </Container>
 
     <Container>
-      <FileInput
-        maxSize={2}
-        progress
-        status='File uploading in progress...'
-        width='auto'
-      />
+      <FileInput maxSize={2} progress status='File uploading in progress...' />
     </Container>
   </div>
 )

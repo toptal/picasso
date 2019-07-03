@@ -117,7 +117,7 @@ exports[`Native html attributes adds native props to the input 1`] = `
       >
         <legend
           class="MuiPrivateNotchedOutline-legend"
-          style="width: 0px;"
+          style="width: 0.01px;"
         >
           <span>
             ​

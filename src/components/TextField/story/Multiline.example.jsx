@@ -11,16 +11,10 @@ const TextFieldMultilineExample = () => {
   return (
     <Container flex inline>
       <Container right='small'>
-        <TextField
-          multiline
-          rows={4}
-          value={value}
-          width='auto'
-          onChange={handleChange}
-        />
+        <TextField multiline rows={4} value={value} onChange={handleChange} />
       </Container>
       <Container right='small'>
-        <TextField multiline rows={4} placeholder='Placeholder' width='auto' />
+        <TextField multiline rows={4} placeholder='Placeholder' />
       </Container>
     </Container>
   )

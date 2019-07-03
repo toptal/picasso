@@ -31,7 +31,6 @@ export interface Props extends StandardProps {
   autoFocus?: boolean
   /** Helps users to fill forms faster */
   autoComplete?: string
-  notched?: boolean
   /** Width of the component which will apply `min-width` to the `input` */
   width?: 'full' | 'shrink' | 'auto'
   disabled?: boolean
@@ -77,44 +76,40 @@ const OutlinedInput: FunctionComponent<Props> = ({
   startAdornment,
   endAdornment,
   onChange
-}) => {
-  const { root, rootFull, ...otherClasses } = classes
-
-  return (
-    <MUIOutlinedInput
-      classes={{
-        root: cx(classes.root, classes[`root${capitalize(width!)}`]),
-        ...otherClasses
-      }}
-      className={className}
-      style={style}
-      labelWidth={0}
-      fullWidth={width === 'full'}
-      notched={notched}
-      disabled={disabled}
-      error={error}
-      inputComponent={inputComponent}
-      inputProps={inputProps}
-      inputRef={inputRef}
-      value={value}
-      type={type}
-      startAdornment={startAdornment}
-      endAdornment={endAdornment}
-      id={id}
-      name={name}
-      placeholder={placeholder}
-      autoFocus={autoFocus}
-      autoComplete={autoComplete}
-      multiline={multiline}
-      rows={rows}
-      rowsMax={rowsMax}
-      onChange={onChange}
-    />
-  )
-}
+}) => (
+  <MUIOutlinedInput
+    classes={{
+      root: cx(classes.root, classes[`root${capitalize(width!)}`]),
+      input: classes.input,
+      inputMultiline: classes.inputMultiline
+    }}
+    className={className}
+    style={style}
+    labelWidth={0}
+    fullWidth={width === 'full'}
+    disabled={disabled}
+    error={error}
+    inputComponent={inputComponent}
+    inputProps={inputProps}
+    inputRef={inputRef}
+    value={value}
+    type={type}
+    startAdornment={startAdornment}
+    endAdornment={endAdornment}
+    id={id}
+    name={name}
+    placeholder={placeholder}
+    autoFocus={autoFocus}
+    autoComplete={autoComplete}
+    multiline={multiline}
+    rows={rows}
+    rowsMax={rowsMax}
+    onChange={onChange}
+  />
+)
 
 OutlinedInput.defaultProps = {
-  width: 'full'
+  width: 'auto'
 }
 
 export default withStyles(styles)(OutlinedInput)

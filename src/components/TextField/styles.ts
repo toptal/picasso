@@ -6,7 +6,7 @@ import '../InputLabel/styles'
 import '../OutlinedInput/styles'
 import '../InputAdornment/styles'
 
-export default ({ spacing: { input, inputIcon } }: Theme) =>
+export default ({ spacing: { input } }: Theme) =>
   createStyles({
     root: {
       padding: input.padding
@@ -20,19 +20,5 @@ export default ({ spacing: { input, inputIcon } }: Theme) =>
     input: {
       fontSize: '0.8125em',
       padding: 0
-    },
-    icon: {
-      fontSize: '1em',
-      minWidth: inputIcon.width,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      height: '1em'
-    },
-    iconStart: {
-      marginRight: '0.5em'
-    },
-    iconEnd: {
-      marginLeft: '0.5em'
     }
   })

@@ -70,15 +70,7 @@ PicassoProvider.override(({ palette, spacing: { input } }: Theme) => ({
     error: {
       backgroundColor: palette.common.white
     },
-    notchedOutline: {},
-    adornedStart: {
-      paddingRight: 0,
-      color: palette.grey.dark
-    },
-    adornedEnd: {
-      paddingRight: 0,
-      color: palette.grey.dark
-    }
+    notchedOutline: {}
   }
 }))
 
@@ -91,6 +83,7 @@ export default () =>
     rootShrink: {
       width: 'auto'
     },
+    rootAuto: {},
     input: {},
     inputMultiline: {}
   })

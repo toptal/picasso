@@ -11,14 +11,9 @@ const TextFieldDisabledExample = () => {
   return (
     <Container flex inline>
       <Container right='small'>
-        <TextField
-          disabled
-          value={value}
-          width='auto'
-          onChange={handleChange}
-        />
+        <TextField disabled value={value} onChange={handleChange} />
       </Container>
-      <TextField disabled placeholder='Placeholder' width='auto' />
+      <TextField disabled placeholder='Placeholder' />
     </Container>
   )
 }

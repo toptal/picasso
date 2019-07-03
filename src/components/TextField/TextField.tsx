@@ -6,7 +6,6 @@ import React, {
 } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
-import { OutlinedInputProps } from '@material-ui/core/OutlinedInput'
 
 import InputAdornment from '../InputAdornment'
 import OutlinedInput from '../OutlinedInput'
@@ -33,6 +32,8 @@ export interface Props extends StandardProps, HTMLInputProps {
   error?: boolean
   /** If true, the `TextField` will be disabled */
   disabled?: boolean
+  /** Take the full width of a container */
+  fullWidth?: boolean
   /** Width of the component which will apply `min-width` to the `input` */
   width?: 'full' | 'shrink' | 'auto'
   /** Focus during first mount */
@@ -73,6 +74,7 @@ export const TextField: FunctionComponent<Props> = ({
   classes,
   children,
   multiline,
+  fullWidth,
   width,
   className,
   style,
@@ -83,15 +85,7 @@ export const TextField: FunctionComponent<Props> = ({
   ...rest
 }) => {
   const IconAdornment = icon && (
-    <InputAdornment
-      className={cx(
-        classes.icon,
-        iconPosition === 'end' ? classes.iconEnd : classes.iconStart
-      )}
-      position={iconPosition!}
-    >
-      {icon}
-    </InputAdornment>
+    <InputAdornment position={iconPosition!}>{icon}</InputAdornment>
   )
 
   return (
@@ -115,10 +109,9 @@ export const TextField: FunctionComponent<Props> = ({
       rows={rows}
       rowsMax={rowsMax}
       type={type}
-      width={width}
+      width={fullWidth ? 'full' : width}
       // html attributes
       inputProps={rest}
-      notched={!icon}
       endAdornment={iconPosition === 'end' && IconAdornment}
       startAdornment={iconPosition === 'start' && IconAdornment}
       onChange={onChange}
@@ -130,8 +123,7 @@ export const TextField: FunctionComponent<Props> = ({
 
 TextField.defaultProps = {
   iconPosition: 'start',
-  multiline: false,
-  width: 'full'
+  multiline: false
 }
 
 TextField.displayName = 'TextField'

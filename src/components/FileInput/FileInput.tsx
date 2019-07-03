@@ -126,7 +126,7 @@ export const FileInput: FunctionComponent<Props> = ({
   )
 
   const endAdornment = (
-    <InputAdornment className={classes.adornmentEnd} position='end'>
+    <InputAdornment position='end'>
       {inProgress ? (
         <Loader
           className={classes.loader}
