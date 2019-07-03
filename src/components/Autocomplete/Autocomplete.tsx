@@ -12,7 +12,6 @@ import debounce from 'debounce'
 import { StandardProps } from '../Picasso'
 import TextField from '../TextField'
 import Menu from '../Menu'
-import MenuItem from '../MenuItem'
 import Loader from '../Loader'
 import styles from './styles'
 
@@ -48,6 +47,10 @@ export interface Props
 }
 
 const isSubstring = (value: Value, result: Item) => {
+  if (!result) {
+    return false
+  }
+
   const inputValue = (value || '').trim().toLowerCase()
 
   return result.label.toLowerCase().includes(inputValue)
@@ -156,7 +159,7 @@ export const Autocomplete: FunctionComponent<Props> = ({
                 <Menu className={classes.menu}>
                   {filteredSuggestions.length ? (
                     filteredSuggestions.map((suggestion, index) => (
-                      <MenuItem
+                      <Menu.Item
                         key={suggestion.label}
                         selected={highlightedIndex === index}
                         component='div'
@@ -164,10 +167,10 @@ export const Autocomplete: FunctionComponent<Props> = ({
                         {...getItemProps({ item: suggestion.label })}
                       >
                         {suggestion.label}
-                      </MenuItem>
+                      </Menu.Item>
                     ))
                   ) : inputValue !== '' ? (
-                    <MenuItem disabled>No options</MenuItem>
+                    <Menu.Item disabled>No options</Menu.Item>
                   ) : null}
                 </Menu>
               ) : null}
