@@ -12,7 +12,7 @@ exports.StepIcon = ({ active, completed, classes }) => {
     return (react_1.default.createElement("div", { className: classnames_1.default(classes.root, {
             [classes.active]: active,
             [classes.completed]: completed
-        }) }, completed && react_1.default.createElement(Icon_1.Check24, null)));
+        }) }, completed && react_1.default.createElement(Icon_1.CheckMinor24, null)));
 };
 exports.StepIcon.displayName = 'StepIcon';
 exports.default = styles_1.withStyles(styles_2.default)(exports.StepIcon);

@@ -47,7 +47,8 @@ exports.default = ({ palette, spacing, transitions, typography }) => styles_1.cr
     },
     content: {
         lineHeight: '1.5em',
-        fontWeight: typography.fontWeights.semibold
+        fontWeight: typography.fontWeights.semibold,
+        whiteSpace: 'nowrap'
     },
     loader: {
         position: 'absolute',

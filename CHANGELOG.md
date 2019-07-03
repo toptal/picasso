@@ -1,3 +1,15 @@
+# [2.10.0](https://github.com/toptal/picasso/compare/v2.9.1...v2.10.0) (2019-07-03)
+
+
+### Bug Fixes
+
+* **icon:** update svg for Check icon ([#524](https://github.com/toptal/picasso/issues/524)) ([a7dfb40](https://github.com/toptal/picasso/commit/a7dfb40))
+
+
+### Features
+
+* **FileInput:** implement FileInput component ([#513](https://github.com/toptal/picasso/issues/513)) ([dd04ed0](https://github.com/toptal/picasso/commit/dd04ed0))
+
 ## [2.9.1](https://github.com/toptal/picasso/compare/v2.9.0...v2.9.1) (2019-07-01)
 
 

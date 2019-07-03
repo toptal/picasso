@@ -18,7 +18,7 @@ const SvgCheck24 = (props) => {
     const svgStyle = Object.assign({ minWidth: `${scaledSize}px`, minHeight: `${scaledSize}px` }, style);
     return (react_1.default.createElement("svg", { viewBox: '0 0 24 24', className: classnames_1.default(classes.root, className), style: svgStyle, color: color },
         react_1.default.createElement("defs", null,
-            react_1.default.createElement("path", { d: 'M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z', id: 'check24_svg__a' })),
+            react_1.default.createElement("path", { d: 'M7.5 18.793l14-14 .707.707-14 14-.707.707L1.793 14.5l.707-.707 5 5z', id: 'check24_svg__a' })),
         react_1.default.createElement("g", { fillRule: 'evenodd' },
             react_1.default.createElement("mask", { id: 'check24_svg__b' },
                 react_1.default.createElement("use", { xlinkHref: '#check24_svg__a' })),

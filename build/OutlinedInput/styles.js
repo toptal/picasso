@@ -64,6 +64,7 @@ Picasso_1.PicassoProvider.override(({ palette }) => ({
     }
 }));
 exports.default = {
+    root: {},
     input: {}
 };
 //# sourceMappingURL=styles.js.map

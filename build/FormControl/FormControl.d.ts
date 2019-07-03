@@ -7,6 +7,8 @@ interface Props extends StandardProps {
     error?: boolean;
     /** If true, the control will be disabled */
     disabled?: boolean;
+    /** Take the full width of a container */
+    fullWidth?: boolean;
 }
-declare const _default: React.ComponentType<Pick<React.PropsWithChildren<Props>, "style" | "disabled" | "children" | "error" | "className"> & import("@material-ui/core/styles").StyledComponentProps<never>>;
+declare const _default: React.ComponentType<Pick<React.PropsWithChildren<Props>, "style" | "disabled" | "children" | "fullWidth" | "error" | "className"> & import("@material-ui/core/styles").StyledComponentProps<never>>;
 export default _default;
