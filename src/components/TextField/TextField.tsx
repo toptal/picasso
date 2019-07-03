@@ -85,7 +85,9 @@ export const TextField: FunctionComponent<Props> = ({
   ...rest
 }) => {
   const IconAdornment = icon && (
-    <InputAdornment position={iconPosition!}>{icon}</InputAdornment>
+    <InputAdornment position={iconPosition!} disabled={disabled}>
+      {icon}
+    </InputAdornment>
   )
 
   return (

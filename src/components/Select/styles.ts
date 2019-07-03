@@ -73,8 +73,5 @@ export default ({ spacing: { input }, palette }: Theme) =>
     },
     placeholder: {
       opacity: 0.4
-    },
-    iconDisabled: {
-      color: alpha(palette.grey.dark!, 0.48)
     }
   })

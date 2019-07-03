@@ -6,7 +6,7 @@ exports[`Icon prop renders icon at the beginning 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root TextField-root OutlinedInput-rootFull MuiInputBase-fullWidth MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+      class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root TextField-root OutlinedInput-rootAuto MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
     >
       <fieldset
         aria-hidden="true"
@@ -23,7 +23,7 @@ exports[`Icon prop renders icon at the beginning 1`] = `
         </legend>
       </fieldset>
       <div
-        class="MuiInputAdornment-root MuiInputAdornment-positionStart TextField-icon TextField-iconStart"
+        class="MuiInputAdornment-root InputAdornment-root MuiInputAdornment-positionStart"
       >
         <svg
           aria-hidden="true"
@@ -57,7 +57,7 @@ exports[`Icon prop renders icon at the end 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root TextField-root OutlinedInput-rootFull MuiInputBase-fullWidth MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+      class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root TextField-root OutlinedInput-rootAuto MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
     >
       <fieldset
         aria-hidden="true"
@@ -74,7 +74,7 @@ exports[`Icon prop renders icon at the end 1`] = `
         </legend>
       </fieldset>
       <div
-        class="MuiInputAdornment-root MuiInputAdornment-positionStart TextField-icon TextField-iconStart"
+        class="MuiInputAdornment-root InputAdornment-root MuiInputAdornment-positionStart"
       >
         <svg
           aria-hidden="true"
@@ -108,7 +108,7 @@ exports[`Native html attributes adds native props to the input 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root TextField-root OutlinedInput-rootFull MuiInputBase-disabled MuiOutlinedInput-disabled MuiInputBase-fullWidth"
+      class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root TextField-root OutlinedInput-rootAuto MuiInputBase-disabled MuiOutlinedInput-disabled"
     >
       <fieldset
         aria-hidden="true"

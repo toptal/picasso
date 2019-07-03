@@ -15,6 +15,7 @@ const SelectErrorExample = () => {
       options={OPTIONS}
       value={value}
       placeholder='Choose an option...'
+      width='auto'
     />
   )
 }

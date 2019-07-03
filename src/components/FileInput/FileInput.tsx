@@ -69,7 +69,12 @@ const FileInputContent = withStyles(styles)(
 
     return (
       <Fragment>
-        <Typography className={classes.inputValue} inline color='inherit'>
+        <Typography
+          className={cx(classes.inputValue, {
+            [classes.inputValueDisabled]: disabled
+          })}
+          inline
+        >
           {getFilename()}
         </Typography>
 
@@ -112,9 +117,8 @@ export const FileInput: FunctionComponent<Props> = ({
 
   const startAdornment = (
     <InputAdornment
-      className={cx(classes.adornmentStart, {
-        [classes.adornmentDisabled]: disabled
-      })}
+      className={classes.adornmentStart}
+      disabled={disabled}
       position='start'
     >
       {value ? (
@@ -153,10 +157,7 @@ export const FileInput: FunctionComponent<Props> = ({
       style={style}
       classes={{
         root: classes.root,
-        input: cx(classes.input, {
-          [classes.inputStatus]: !value,
-          [classes.inputStatusDisabled]: !value && disabled
-        })
+        input: classes.input
       }}
       error={error}
       disabled={disabled}
@@ -182,10 +183,6 @@ export const FileInput: FunctionComponent<Props> = ({
       endAdornment={endAdornment}
     />
   )
-}
-
-FileInput.defaultProps = {
-  width: 'auto'
 }
 
 FileInput.displayName = 'FileInput'

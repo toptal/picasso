@@ -19,7 +19,7 @@ exports[`FormError default render 1`] = `
           </span>
         </label>
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root TextField-root OutlinedInput-rootFull MuiInputBase-fullWidth"
+          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root TextField-root OutlinedInput-rootAuto"
         >
           <fieldset
             aria-hidden="true"

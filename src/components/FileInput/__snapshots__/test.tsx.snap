@@ -6,7 +6,7 @@ exports[`FileInput default render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root FileInput-root OutlinedInput-rootFull MuiInputBase-fullWidth MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+      class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root FileInput-root OutlinedInput-rootAuto MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
     >
       <fieldset
         aria-hidden="true"
@@ -23,7 +23,7 @@ exports[`FileInput default render 1`] = `
         </legend>
       </fieldset>
       <div
-        class="MuiInputAdornment-root MuiInputAdornment-positionStart FileInput-adornmentStart"
+        class="MuiInputAdornment-root InputAdornment-root MuiInputAdornment-positionStart FileInput-adornmentStart"
       >
         <svg
           class="SvgUploadDocument16-root"
@@ -61,14 +61,14 @@ exports[`FileInput default render 1`] = `
         </svg>
       </div>
       <p
-        class="MuiTypography-root Typography-bodyInherit Typography-inherit MuiTypography-body1 MuiTypography-inline Component-inputValue"
+        class="MuiTypography-root Typography-bodyInherit MuiTypography-body1 MuiTypography-inline Component-inputValue"
       />
       <input
         class="Component-nativeInput"
         type="file"
       />
       <div
-        class="MuiInputAdornment-root MuiInputAdornment-positionEnd FileInput-adornmentEnd"
+        class="MuiInputAdornment-root InputAdornment-root MuiInputAdornment-positionEnd"
       >
         <button
           class="MuiButtonBase-root Button-small Button-primaryBlue Button-root FileInput-button"

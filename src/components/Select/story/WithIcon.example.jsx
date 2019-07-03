@@ -18,6 +18,7 @@ const SelectWithIconExample = () => {
           value={value}
           icon={<Cog />}
           placeholder='Choose an option...'
+          width='auto'
         />
       </Container>
       <Container bottom='small'>
@@ -28,6 +29,7 @@ const SelectWithIconExample = () => {
           iconPosition='end'
           icon={<Cog />}
           placeholder='Choose an option...'
+          width='auto'
         />
       </Container>
       <Container bottom='small'>
@@ -38,6 +40,7 @@ const SelectWithIconExample = () => {
           value={value}
           icon={<Cog />}
           placeholder='Choose an option...'
+          width='auto'
         />
       </Container>
     </Container>

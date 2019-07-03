@@ -11,17 +11,15 @@ export default ({ palette, spacing: { input } }: Theme) =>
     input: {
       padding: 0
     },
-    inputStatus: {
-      color: palette.grey.dark
-    },
-    inputStatusDisabled: {
-      color: alpha(palette.grey.dark!, 0.48)
-    },
     inputValue: {
       fontSize: '0.8125em',
       textOverflow: 'ellipsis',
       whiteSpace: 'nowrap',
-      overflow: 'hidden'
+      overflow: 'hidden',
+      color: palette.grey.dark
+    },
+    inputValueDisabled: {
+      color: alpha(palette.grey.dark!, 0.48)
     },
     nativeInput: {
       display: 'none'
@@ -31,9 +29,6 @@ export default ({ palette, spacing: { input } }: Theme) =>
     },
     adornmentStart: {
       marginLeft: '0.25em'
-    },
-    adornmentDisabled: {
-      color: alpha(palette.grey.dark!, 0.48)
     },
     loader: {
       marginRight: '0.25em'

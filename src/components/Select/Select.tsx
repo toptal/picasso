@@ -116,12 +116,7 @@ export const Select: FunctionComponent<Props> = ({
   )
 
   const iconAdornment = icon ? (
-    <InputAdornment
-      className={cx({
-        [classes.iconDisabled]: disabled
-      })}
-      position={iconPosition!}
-    >
+    <InputAdornment disabled={disabled} position={iconPosition!}>
       {icon}
     </InputAdornment>
   ) : null
