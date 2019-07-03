@@ -7,8 +7,18 @@ import styles from './styles'
 
 interface Props extends StandardProps {}
 
-const List: FunctionComponent<Props> = ({ classes, className, style }) => (
-  <MUIList classes={classes} className={className} style={style} />
+const List: FunctionComponent<Props> = ({
+  classes,
+  className,
+  style,
+  elementSelector
+}) => (
+  <MUIList
+    classes={classes}
+    className={className}
+    style={style}
+    data-qa={elementSelector}
+  />
 )
 
 export default withStyles(styles)(List)

@@ -31,6 +31,7 @@ export const FormLabel: FunctionComponent<Props> = ({
   className,
   style,
   inline,
+  elementSelector,
   as: Component = 'label'
 }) => {
   const isInline = inline || Component === 'span'
@@ -47,6 +48,7 @@ export const FormLabel: FunctionComponent<Props> = ({
         className
       )}
       style={style}
+      data-qa={elementSelector}
     >
       {required && <span className={classes.asterisk}>*</span>}
       <span className={classes.text}>{children}</span>

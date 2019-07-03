@@ -17,7 +17,8 @@ const InputAdornment: FunctionComponent<Props> = ({
   className,
   style,
   children,
-  position
+  position,
+  elementSelector
 }) => {
   return (
     <MUIInputAdornment
@@ -25,6 +26,7 @@ const InputAdornment: FunctionComponent<Props> = ({
       className={className}
       style={style}
       position={position}
+      data-qa={elementSelector}
     >
       {children}
     </MUIInputAdornment>

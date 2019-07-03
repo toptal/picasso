@@ -35,7 +35,8 @@ const OutlinedInput: FunctionComponent<Props> = ({
   inputComponent,
   inputProps,
   value,
-  onChange
+  onChange,
+  elementSelector
 }) => {
   return (
     <MUIOutlinedInput
@@ -49,6 +50,7 @@ const OutlinedInput: FunctionComponent<Props> = ({
       inputProps={inputProps}
       value={value}
       onChange={onChange}
+      data-qa={elementSelector}
     />
   )
 }

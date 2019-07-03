@@ -21,7 +21,8 @@ export const StepLabel: FunctionComponent<Props> = ({
   children,
   completed,
   hideLabel,
-  style
+  style,
+  elementSelector
 }) => {
   return (
     <MUIStepLabel
@@ -36,6 +37,7 @@ export const StepLabel: FunctionComponent<Props> = ({
       completed={completed}
       icon={<StepIcon active={active} completed={completed} />}
       style={style}
+      data-qa={elementSelector}
     >
       <span className={classes.label}>{children}</span>
     </MUIStepLabel>

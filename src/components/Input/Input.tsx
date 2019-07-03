@@ -35,7 +35,8 @@ const Input: FunctionComponent<Props> = ({
   inputComponent,
   inputProps,
   value,
-  onChange
+  onChange,
+  elementSelector
 }) => {
   return (
     <MUIInput
@@ -49,6 +50,7 @@ const Input: FunctionComponent<Props> = ({
       inputProps={inputProps}
       value={value}
       onChange={onChange}
+      data-qa={elementSelector}
     />
   )
 }

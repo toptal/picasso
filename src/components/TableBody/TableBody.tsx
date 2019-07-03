@@ -14,9 +14,15 @@ export const TableBody: FunctionComponent<Props> = ({
   classes,
   className,
   style,
-  children
+  children,
+  elementSelector
 }) => (
-  <MUITableBody classes={classes} className={className} style={style}>
+  <MUITableBody
+    classes={classes}
+    className={className}
+    style={style}
+    data-qa={elementSelector}
+  >
     {children}
   </MUITableBody>
 )

@@ -15,10 +15,15 @@ export const FormError: FunctionComponent<Props> = ({
   children,
   classes,
   className,
-  style
+  style,
+  elementSelector
 }) => {
   return (
-    <div className={cx(classes.root, className)} style={style}>
+    <div
+      className={cx(classes.root, className)}
+      style={style}
+      data-qa={elementSelector}
+    >
       <Typography className={classes.error}>{children}</Typography>
     </div>
   )

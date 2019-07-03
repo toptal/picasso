@@ -14,9 +14,15 @@ export const TableFooter: FunctionComponent<Props> = ({
   classes,
   className,
   style,
-  children
+  children,
+  elementSelector
 }) => (
-  <MUITableFooter classes={classes} className={className} style={style}>
+  <MUITableFooter
+    classes={classes}
+    className={className}
+    style={style}
+    data-qa={elementSelector}
+  >
     {children}
   </MUITableFooter>
 )

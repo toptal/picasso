@@ -26,7 +26,8 @@ export const Accordion: FunctionComponent<Props> = ({
   className,
   style,
   classes,
-  onChange
+  onChange,
+  elementSelector
 }) => {
   return (
     <MUIExpansionPanel
@@ -39,6 +40,7 @@ export const Accordion: FunctionComponent<Props> = ({
       elevation={0}
       expanded={expanded}
       onChange={onChange}
+      data-qa={elementSelector}
     >
       {children && (
         <ExpansionPanelSummary

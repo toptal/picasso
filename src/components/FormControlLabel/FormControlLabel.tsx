@@ -16,7 +16,8 @@ const FormControlLabel: FunctionComponent<Props> = ({
   label,
   classes,
   className,
-  style
+  style,
+  elementSelector
 }) => (
   <MUIFormControlLabel
     control={control}
@@ -24,6 +25,7 @@ const FormControlLabel: FunctionComponent<Props> = ({
     classes={classes}
     className={className}
     style={style}
+    data-qa={elementSelector}
   />
 )
 

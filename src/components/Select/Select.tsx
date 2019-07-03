@@ -94,7 +94,8 @@ export const Select: FunctionComponent<Props> = ({
   disabled,
   error,
   onChange,
-  value
+  value,
+  elementSelector
 }) => {
   const fullWidth = width === 'full'
   const isPlaceholderShown = placeholder && value === ''
@@ -189,6 +190,7 @@ export const Select: FunctionComponent<Props> = ({
       error={error}
       disabled={disabled}
       className={cx(className, { [classes.rootFull]: fullWidth })}
+      elementSelector={elementSelector}
     >
       {select}
     </FormControl>

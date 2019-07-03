@@ -14,9 +14,15 @@ export const TableHead: FunctionComponent<Props> = ({
   classes,
   className,
   style,
-  children
+  children,
+  elementSelector
 }) => (
-  <MUITableHead classes={classes} className={className} style={style}>
+  <MUITableHead
+    classes={classes}
+    className={className}
+    style={style}
+    data-qa={elementSelector}
+  >
     {children}
   </MUITableHead>
 )

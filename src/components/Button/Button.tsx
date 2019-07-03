@@ -100,7 +100,8 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
   onMouseLeave,
   onMouseOver,
   onTouchEnd,
-  onTouchStart
+  onTouchStart,
+  elementSelector
 }) => {
   const {
     icon: iconClass,
@@ -170,6 +171,7 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
       onMouseOver={onMouseOver}
       onTouchEnd={onTouchEnd}
       onTouchStart={onTouchStart}
+      data-qa={elementSelector}
     >
       <Container
         as='span'

@@ -40,7 +40,8 @@ export const Checkbox: FunctionComponent<Props> = ({
   onChange,
   value,
   checked,
-  indeterminate
+  indeterminate,
+  elementSelector
 }) => {
   const rootClasses = {
     root: classes.root,
@@ -61,6 +62,7 @@ export const Checkbox: FunctionComponent<Props> = ({
       indeterminate={indeterminate}
       onChange={onChange}
       value={value}
+      data-qa={elementSelector}
     />
   )
 

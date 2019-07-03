@@ -27,9 +27,15 @@ export const Table: FunctionComponent<Props> & StaticProps = ({
   classes,
   className,
   style,
-  children
+  children,
+  elementSelector
 }) => (
-  <MUITable classes={classes} className={className} style={style}>
+  <MUITable
+    classes={classes}
+    className={className}
+    style={style}
+    data-qa={elementSelector}
+  >
     {children}
   </MUITable>
 )

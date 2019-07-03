@@ -31,7 +31,8 @@ export const MenuItem: FunctionComponent<Props> = ({
   disableGutters,
   onClick,
   style,
-  value
+  value,
+  elementSelector
 }) => {
   if (typeof children === 'string' || children instanceof String) {
     children = (
@@ -54,6 +55,7 @@ export const MenuItem: FunctionComponent<Props> = ({
       onClick={onClick}
       style={style}
       value={value}
+      data-qa={elementSelector}
     >
       {children}
     </MUIMenuItem>

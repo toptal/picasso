@@ -16,7 +16,8 @@ export const PageContent: FunctionComponent<Props> = ({
   children,
   classes,
   className,
-  style
+  style,
+  elementSelector
 }) => {
   const { fullWidth } = useContext<PageContextProps>(PageContext)
 
@@ -28,7 +29,11 @@ export const PageContent: FunctionComponent<Props> = ({
   )
 
   return (
-    <div className={cx(classes.root, className)} style={style}>
+    <div
+      className={cx(classes.root, className)}
+      style={style}
+      data-qa={elementSelector}
+    >
       <div className={innerClassName}>{children}</div>
     </div>
   )

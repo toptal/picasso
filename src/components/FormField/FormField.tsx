@@ -22,9 +22,14 @@ export const FormField: FunctionComponent<Props> = ({
   style,
   hint,
   children,
-  error
+  error,
+  elementSelector
 }) => (
-  <div className={cx(classes.root, className)} style={style}>
+  <div
+    className={cx(classes.root, className)}
+    style={style}
+    data-qa={elementSelector}
+  >
     {children}
     {error && <FormError className={classes.error}>{error}</FormError>}
     {hint && <FormHint className={classes.hint}>{hint}</FormHint>}

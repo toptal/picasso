@@ -36,7 +36,8 @@ export const Tab: FunctionComponent<Props> = ({
   label,
   selected,
   onChange,
-  onClick
+  onClick,
+  elementSelector
 }) => (
   <MUITab
     disabled={disabled}
@@ -45,6 +46,7 @@ export const Tab: FunctionComponent<Props> = ({
     selected={selected}
     onChange={onChange}
     onClick={onClick}
+    data-qa={elementSelector}
   />
 )
 

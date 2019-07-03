@@ -20,7 +20,8 @@ const InputLabel: FunctionComponent<Props> = ({
   classes,
   className,
   style,
-  children
+  children,
+  elementSelector
 }) => (
   <MUIInputLabel
     variant={variant}
@@ -28,6 +29,7 @@ const InputLabel: FunctionComponent<Props> = ({
     classes={classes}
     className={className}
     style={style}
+    data-qa={elementSelector}
   >
     {children}
   </MUIInputLabel>

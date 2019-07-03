@@ -39,7 +39,8 @@ export const Label: FunctionComponent<Props> & StaticProps = ({
   onMouseLeave,
   onMouseOver,
   onTouchEnd,
-  onTouchStart
+  onTouchStart,
+  elementSelector
 }) => {
   return (
     <Chip
@@ -63,6 +64,7 @@ export const Label: FunctionComponent<Props> & StaticProps = ({
       onMouseOver={onMouseOver}
       onTouchEnd={onTouchEnd}
       onTouchStart={onTouchStart}
+      data-qa={elementSelector}
     />
   )
 }

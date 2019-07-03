@@ -23,7 +23,8 @@ export const GridItem: FunctionComponent<Props> = ({
   large,
   classes,
   className,
-  style
+  style,
+  elementSelector
 }) => (
   <MUIGrid
     item
@@ -33,6 +34,7 @@ export const GridItem: FunctionComponent<Props> = ({
     classes={classes}
     className={className}
     style={style}
+    data-qa={elementSelector}
   >
     {children}
   </MUIGrid>

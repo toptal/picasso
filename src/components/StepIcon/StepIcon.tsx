@@ -14,7 +14,8 @@ interface Props extends StandardProps {
 export const StepIcon: FunctionComponent<Props> = ({
   active,
   completed,
-  classes
+  classes,
+  elementSelector
 }) => {
   return (
     <div
@@ -22,6 +23,7 @@ export const StepIcon: FunctionComponent<Props> = ({
         [classes.active]: active,
         [classes.completed]: completed
       })}
+      data-qa={elementSelector}
     >
       {completed && <TickIcon />}
     </div>

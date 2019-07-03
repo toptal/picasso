@@ -65,7 +65,8 @@ export const Pagination: FunctionComponent<Props> = ({
   classes,
   disabled,
   totalPages,
-  onPageChange
+  onPageChange,
+  elementSelector
 }) => {
   const isFirstActive = activePage === 1
   const isLastActive = activePage === totalPages
@@ -100,7 +101,12 @@ export const Pagination: FunctionComponent<Props> = ({
   ])
 
   return (
-    <Container flex inline alignItems='center'>
+    <Container
+      flex
+      inline
+      alignItems='center'
+      elementSelector={elementSelector}
+    >
       <Button
         disabled={isFirstActive || disabled}
         onClick={() => handleChange('previous')}

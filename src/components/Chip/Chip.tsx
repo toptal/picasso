@@ -29,7 +29,8 @@ const Chip: FunctionComponent<Props> = ({
   onMouseLeave,
   onMouseOver,
   onTouchEnd,
-  onTouchStart
+  onTouchStart,
+  elementSelector
 }) => (
   <MUIChip
     classes={classes}
@@ -45,6 +46,7 @@ const Chip: FunctionComponent<Props> = ({
     onMouseOver={onMouseOver}
     onTouchEnd={onTouchEnd}
     onTouchStart={onTouchStart}
+    data-qa={elementSelector}
   />
 )
 

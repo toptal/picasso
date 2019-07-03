@@ -74,14 +74,18 @@ export class Avatar extends PureComponent<Props> {
       name,
       size,
       style,
-      variant
+      variant,
+      elementSelector
     } = this.props
 
     const sizeClassName = classes[size!]
     const variantClassName = classes[variant!]
 
     return (
-      <div className={cx(classes.root, sizeClassName)}>
+      <div
+        className={cx(classes.root, sizeClassName)}
+        data-qa={elementSelector}
+      >
         {src ? (
           <Image
             alt={alt || name}

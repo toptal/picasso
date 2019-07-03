@@ -109,7 +109,14 @@ const renderNotificationContent = (props: Props) => {
 }
 
 export const Notification: FunctionComponent<Props> = props => {
-  const { className, classes, variant, elevated, fullWidth } = props
+  const {
+    className,
+    classes,
+    variant,
+    elevated,
+    fullWidth,
+    elementSelector
+  } = props
 
   return (
     <SnackbarContent
@@ -123,6 +130,7 @@ export const Notification: FunctionComponent<Props> = props => {
         className
       )}
       message={renderNotificationContent(props)}
+      data-qa={elementSelector}
     />
   )
 }

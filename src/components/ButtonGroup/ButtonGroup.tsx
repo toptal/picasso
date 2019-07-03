@@ -16,9 +16,14 @@ export const ButtonGroup: FunctionComponent<Props> = ({
   children,
   classes,
   className,
-  style
+  style,
+  elementSelector
 }) => (
-  <div className={cx(classes.root, className)} style={style}>
+  <div
+    className={cx(classes.root, className)}
+    style={style}
+    data-qa={elementSelector}
+  >
     {children}
   </div>
 )

@@ -18,7 +18,8 @@ export const PageFooter: FunctionComponent<Props> = ({
   classes,
   className,
   style,
-  rightContent
+  rightContent,
+  elementSelector
 }) => {
   const { fullWidth } = useContext<PageContextProps>(PageContext)
 
@@ -30,7 +31,11 @@ export const PageFooter: FunctionComponent<Props> = ({
   )
 
   return (
-    <footer className={cx(classes.root, className)} style={style}>
+    <footer
+      className={cx(classes.root, className)}
+      style={style}
+      data-qa={elementSelector}
+    >
       <div className={contentClassnames}>
         <div className={classes.left}>
           {`© Copyright 2010 – ${currentYear} Toptal, LLC`}

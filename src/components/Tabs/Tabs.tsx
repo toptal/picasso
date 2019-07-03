@@ -24,9 +24,10 @@ interface StaticProps {
 export const Tabs: FunctionComponent<Props> & StaticProps = ({
   children,
   onChange,
-  value
+  value,
+  elementSelector
 }) => (
-  <MUITabs onChange={onChange} value={value}>
+  <MUITabs onChange={onChange} value={value} data-qa={elementSelector}>
     {children}
   </MUITabs>
 )

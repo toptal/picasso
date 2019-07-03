@@ -29,7 +29,8 @@ export const Stepper: FunctionComponent<Props> = props => {
     hideLabels,
     classes,
     className,
-    style
+    style,
+    elementSelector
   } = props
 
   return (
@@ -43,6 +44,7 @@ export const Stepper: FunctionComponent<Props> = props => {
         className
       )}
       style={style}
+      data-qa={elementSelector}
     >
       {steps.map(label => (
         <Step key={label}>

@@ -23,7 +23,8 @@ export const TableRow: FunctionComponent<Props> = ({
   children,
   hover,
   selected,
-  onClick
+  onClick,
+  elementSelector
 }) => (
   <MUITableRow
     classes={classes}
@@ -32,6 +33,7 @@ export const TableRow: FunctionComponent<Props> = ({
     hover={hover}
     selected={selected}
     onClick={onClick}
+    data-qa={elementSelector}
   >
     {children}
   </MUITableRow>

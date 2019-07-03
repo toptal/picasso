@@ -74,7 +74,8 @@ export const Dropdown: FunctionComponent<Props> & StaticProps = ({
   transformOrigin,
   anchorOrigin,
   disableAutoClose,
-  disableAutoFocus
+  disableAutoFocus,
+  elementSelector
 }) => {
   const contentRef = useRef<HTMLElement>()
 
@@ -171,7 +172,11 @@ export const Dropdown: FunctionComponent<Props> & StaticProps = ({
   )
 
   return (
-    <div className={cx(classes.root, className)} style={style}>
+    <div
+      className={cx(classes.root, className)}
+      style={style}
+      data-qa={elementSelector}
+    >
       <div className={classes.anchor} onClick={handleAnchorClick}>
         {children}
       </div>

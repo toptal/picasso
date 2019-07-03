@@ -27,7 +27,8 @@ export const Image: FunctionComponent<Props> = ({
   classes,
   className,
   variant,
-  style
+  style,
+  elementSelector
 }) => (
   <img
     src={src}
@@ -41,6 +42,7 @@ export const Image: FunctionComponent<Props> = ({
       className
     )}
     style={style}
+    data-qa={elementSelector}
   />
 )
 

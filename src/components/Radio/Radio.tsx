@@ -34,7 +34,8 @@ export const Radio: FunctionComponent<Props> & StaticProps = ({
   checked,
   disabled,
   value,
-  onChange
+  onChange,
+  elementSelector
 }) => {
   const rootClasses = {
     root: classes.root,
@@ -66,6 +67,7 @@ export const Radio: FunctionComponent<Props> & StaticProps = ({
       classes={rootClasses}
       style={style}
       label={<Form.Label as='span'>{label}</Form.Label>}
+      elementSelector={elementSelector}
     />
   )
 }

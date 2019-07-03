@@ -15,7 +15,16 @@ export interface Props extends StandardProps {
 }
 
 const SvgCrosshair16 = (props: Props) => {
-  const { classes, className, style = {}, color, scale, size, base } = props
+  const {
+    classes,
+    className,
+    style = {},
+    color,
+    scale,
+    size,
+    base,
+    elementSelector
+  } = props
 
   if (size) {
     const name = 'SvgCrosshair16'
@@ -42,6 +51,7 @@ const SvgCrosshair16 = (props: Props) => {
       className={cx(classes.root, className)}
       style={svgStyle}
       color={color}
+      data-qa={elementSelector}
     >
       <g fillRule='nonzero'>
         <path d='M8 14.88A6.88 6.88 0 1 0 8 1.12a6.88 6.88 0 1 0 0 13.76zm0-.8A6.08 6.08 0 1 1 8 1.92a6.08 6.08 0 0 1 0 12.16z' />

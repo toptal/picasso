@@ -15,9 +15,14 @@ export const FormHint: FunctionComponent<Props> = ({
   children,
   classes,
   className,
-  style
+  style,
+  elementSelector
 }) => (
-  <div className={cx(classes.root, className)} style={style}>
+  <div
+    className={cx(classes.root, className)}
+    style={style}
+    data-qa={elementSelector}
+  >
     <Typography className={classes.hint}>{children}</Typography>
   </div>
 )

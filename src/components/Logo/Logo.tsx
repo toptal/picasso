@@ -21,7 +21,8 @@ export const Logo: FunctionComponent<Props> = ({
   emblem,
   variant,
   style,
-  className
+  className,
+  elementSelector
 }) => {
   const rootClass = emblem ? classes.logoEmblem : classes.logo
   const colorClass = classes[variant!]
@@ -31,6 +32,7 @@ export const Logo: FunctionComponent<Props> = ({
     <LogoComponent
       className={cx(rootClass, colorClass, className)}
       style={style}
+      data-qa={elementSelector}
     />
   )
 }

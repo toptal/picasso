@@ -71,6 +71,7 @@ export const Container: FunctionComponent<Props> = ({
   style,
   bordered = false,
   classes,
+  elementSelector,
   as: Component = 'div'
 }) => {
   const margins = {
@@ -99,6 +100,7 @@ export const Container: FunctionComponent<Props> = ({
         ...(typeof padded === 'number' && { padding: spacingToEm(padded) }),
         ...style
       }}
+      data-qa={elementSelector}
     >
       {children}
     </Component>

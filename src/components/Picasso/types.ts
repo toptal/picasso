@@ -9,11 +9,16 @@ export interface BaseProps {
   style?: CSSProperties
 }
 
+export interface ExtendElementProps {
+  /** QA helper tag to target the element in e2e tests */
+  elementSelector?: string
+}
+
 export interface JssProps {
   classes: Classes
 }
 
-export type StandardProps = BaseProps & JssProps
+export type StandardProps = BaseProps & JssProps & ExtendElementProps
 
 // Take all props, excluding props from JssProps
 // type and other passed props

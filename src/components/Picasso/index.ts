@@ -10,5 +10,6 @@ export {
   SpacingType,
   spacingToEm,
   PicassoComponent,
-  SpacingEnum
+  SpacingEnum,
+  ExtendElementProps
 } from './types'

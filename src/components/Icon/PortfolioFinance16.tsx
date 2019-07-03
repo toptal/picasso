@@ -15,7 +15,16 @@ export interface Props extends StandardProps {
 }
 
 const SvgPortfolioFinance16 = (props: Props) => {
-  const { classes, className, style = {}, color, scale, size, base } = props
+  const {
+    classes,
+    className,
+    style = {},
+    color,
+    scale,
+    size,
+    base,
+    elementSelector
+  } = props
 
   if (size) {
     const name = 'SvgPortfolioFinance16'
@@ -38,6 +47,7 @@ const SvgPortfolioFinance16 = (props: Props) => {
       className={cx(classes.root, className)}
       style={svgStyle}
       color={color}
+      data-qa={elementSelector}
     >
       <defs>
         <path

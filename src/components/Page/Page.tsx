@@ -37,9 +37,14 @@ export const Page: FunctionComponent<Props> & StaticProps = ({
   classes,
   className,
   style,
-  fullWidth
+  fullWidth,
+  elementSelector
 }) => (
-  <div className={cx(classes.root, className)} style={style}>
+  <div
+    className={cx(classes.root, className)}
+    style={style}
+    data-qa={elementSelector}
+  >
     <PageContext.Provider value={{ fullWidth }}>
       {children}
     </PageContext.Provider>

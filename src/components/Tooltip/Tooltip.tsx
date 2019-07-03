@@ -76,7 +76,8 @@ export const Tooltip: FunctionComponent<Props> = ({
   onClose,
   onOpen,
   variant,
-  trigger
+  trigger,
+  elementSelector
 }) => {
   const [arrowRef, setArrowRef] = useState(null)
   const title = (
@@ -105,6 +106,7 @@ export const Tooltip: FunctionComponent<Props> = ({
       open={open}
       placement={placement}
       title={title}
+      data-qa={elementSelector}
     >
       {children as ReactElement}
     </MUITooltip>

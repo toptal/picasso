@@ -40,7 +40,8 @@ export const Grid: FunctionComponent<Props> & StaticProps = ({
   wrap,
   classes,
   className,
-  style
+  style,
+  elementSelector
 }) => (
   <MUIGrid
     container
@@ -52,6 +53,7 @@ export const Grid: FunctionComponent<Props> & StaticProps = ({
     classes={classes}
     className={className}
     style={style}
+    data-qa={elementSelector}
   >
     {children}
   </MUIGrid>

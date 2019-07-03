@@ -35,12 +35,14 @@ export const Loader: FunctionComponent<Props> = ({
   inline,
   className,
   value,
-  variant
+  variant,
+  elementSelector
 }) => (
   <div
     className={cx(classes.wrapper, className, {
       [classes.inline]: inline
     })}
+    data-qa={elementSelector}
   >
     <CircularProgress
       classes={{

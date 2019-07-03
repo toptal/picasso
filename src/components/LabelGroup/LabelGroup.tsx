@@ -9,8 +9,14 @@ interface Props extends StandardProps {
   children: ReactNode
 }
 
-export const LabelGroup: FunctionComponent<Props> = ({ children, classes }) => (
-  <div className={classes.root}>{children}</div>
+export const LabelGroup: FunctionComponent<Props> = ({
+  children,
+  classes,
+  elementSelector
+}) => (
+  <div className={classes.root} data-qa={elementSelector}>
+    {children}
+  </div>
 )
 
 LabelGroup.defaultProps = {

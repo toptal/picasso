@@ -22,7 +22,8 @@ export const TableCell: FunctionComponent<Props> = ({
   className,
   style,
   children,
-  colSpan
+  colSpan,
+  elementSelector
 }) => (
   <MUITableCell
     align={align}
@@ -30,6 +31,7 @@ export const TableCell: FunctionComponent<Props> = ({
     className={className}
     style={style}
     colSpan={colSpan}
+    data-qa={elementSelector}
   >
     {children}
   </MUITableCell>

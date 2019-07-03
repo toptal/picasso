@@ -15,7 +15,16 @@ export interface Props extends StandardProps {
 }
 
 const SvgPlus16 = (props: Props) => {
-  const { classes, className, style = {}, color, scale, size, base } = props
+  const {
+    classes,
+    className,
+    style = {},
+    color,
+    scale,
+    size,
+    base,
+    elementSelector
+  } = props
 
   if (size) {
     const name = 'SvgPlus16'
@@ -38,6 +47,7 @@ const SvgPlus16 = (props: Props) => {
       className={cx(classes.root, className)}
       style={svgStyle}
       color={color}
+      data-qa={elementSelector}
     >
       <defs>
         <path d='M8 7h5v1H8v5H7V8H2V7h5V2h1v5z' id='plus16_svg__a' />

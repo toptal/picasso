@@ -58,6 +58,8 @@ const template = ({ template }, opts, { componentName, jsx }) => {
   decorateWithIdentifierProp(svgElement, 'style', 'svgStyle')
   // add `color={color}` to svg root tag
   decorateWithIdentifierProp(svgElement, 'color', 'color')
+  // add `data-qa={elementSelector}` to svg root tag
+  decorateWithIdentifierProp(svgElement, 'data-qa', 'elementSelector')
 
   const typeScriptTpl = template.smart({ plugins: ['typescript'] })
 
@@ -85,7 +87,7 @@ const template = ({ template }, opts, { componentName, jsx }) => {
     }
 
     const ${componentName} = (props: Props) => {
-      const { classes, className, style = {}, color, scale, size, base } = props
+      const { classes, className, style = {}, color, scale, size, base, elementSelector } = props
 
       if (size) {
         const name = '${componentName.name}'

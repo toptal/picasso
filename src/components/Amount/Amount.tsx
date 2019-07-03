@@ -14,14 +14,16 @@ export interface Props extends StandardProps {
 /** Currency List: https://www.currency-iso.org/en/home/tables/table-a1.html */
 
 export const Amount: FunctionComponent<Props> = memo(
-  ({ amount, className, classes, currency }) => {
+  ({ amount, className, classes, currency, elementSelector }) => {
     const formattedAmount = Intl.NumberFormat('en-US', {
       style: 'currency',
       currency
     }).format(amount)
 
     return (
-      <span className={cx(classes.root, className)}>{formattedAmount}</span>
+      <span className={cx(classes.root, className)} data-qa={elementSelector}>
+        {formattedAmount}
+      </span>
     )
   }
 )

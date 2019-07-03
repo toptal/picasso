@@ -77,7 +77,8 @@ export const Typography: FunctionComponent<Props> = ({
   as,
   weight,
   color,
-  invert
+  invert,
+  elementSelector
 }) => {
   const resolvedVariant = VARIANTS[variant!][size!]
   const variantClassName = kebabToCamelCase(`${variant}-${size}`)
@@ -103,6 +104,7 @@ export const Typography: FunctionComponent<Props> = ({
       variant={resolvedVariant}
       inline={inline}
       component={as}
+      data-qa={elementSelector}
     >
       {children}
     </MUITypography>

@@ -28,7 +28,8 @@ export const PageHeaderMenu: FunctionComponent<Props> = ({
   classes,
   className,
   style,
-  children
+  children,
+  elementSelector
 }) => {
   const metaContent =
     typeof meta === 'string' ? (
@@ -46,6 +47,7 @@ export const PageHeaderMenu: FunctionComponent<Props> = ({
       style={style}
       content={children}
       offset={{ top: 'xsmall' }}
+      elementSelector={elementSelector}
     >
       <UserBadge
         invert

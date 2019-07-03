@@ -50,7 +50,8 @@ export const Modal: FunctionComponent<Props> & StaticProps = props => {
     container,
     hideBackdrop,
     transitionDuration,
-    paperProps
+    paperProps,
+    elementSelector
   } = props
   const { closeButton, ...restClasses } = classes
 
@@ -67,6 +68,7 @@ export const Modal: FunctionComponent<Props> & StaticProps = props => {
       onEnter={onOpen}
       open={open}
       transitionDuration={transitionDuration}
+      data-qa={elementSelector}
     >
       {onClose && (
         <span onClick={onClose}>

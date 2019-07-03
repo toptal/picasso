@@ -55,7 +55,8 @@ export const Link: FunctionComponent<Props> = ({
   onMouseLeave,
   onMouseOver,
   onTouchEnd,
-  onTouchStart
+  onTouchStart,
+  elementSelector
 }) => {
   return (
     <MUILink
@@ -74,6 +75,7 @@ export const Link: FunctionComponent<Props> = ({
       onMouseOver={onMouseOver}
       onTouchEnd={onTouchEnd}
       onTouchStart={onTouchStart}
+      data-qa={elementSelector}
     >
       {children}
     </MUILink>

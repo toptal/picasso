@@ -38,7 +38,8 @@ export const AccountSelect: FunctionComponent<Props> = ({
   className,
   accounts,
   onSelect,
-  style
+  style,
+  elementSelector
 }) => {
   const {
     accountItem: accountItemClass,
@@ -47,7 +48,12 @@ export const AccountSelect: FunctionComponent<Props> = ({
   } = classes
 
   return (
-    <Menu classes={menuClasses} className={className} style={style}>
+    <Menu
+      classes={menuClasses}
+      className={className}
+      style={style}
+      data-qa={elementSelector}
+    >
       {accounts.map(account => (
         <Menu.Item
           disableGutters

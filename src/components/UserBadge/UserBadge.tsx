@@ -42,7 +42,8 @@ export const UserBadge: FunctionComponent<Props> = ({
   children,
   classes,
   className,
-  style
+  style,
+  elementSelector
 }) => {
   const UserBadgeAvatar = React.isValidElement(avatar) ? (
     avatar
@@ -71,6 +72,7 @@ export const UserBadge: FunctionComponent<Props> = ({
       alignItems={alignItems}
       className={cx(classes.root, className)}
       style={style}
+      elementSelector={elementSelector}
     >
       {UserBadgeAvatar}
       <Container flex direction='column' left='small'>

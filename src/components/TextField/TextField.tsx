@@ -82,6 +82,7 @@ export const TextField: FunctionComponent<Props> = ({
   rowsMax,
   type,
   onChange,
+  elementSelector,
   ...rest
 }) => {
   if (icon) {
@@ -139,6 +140,7 @@ export const TextField: FunctionComponent<Props> = ({
         }
       }}
       onChange={onChange}
+      data-qa={elementSelector}
     >
       {children}
     </MUITextField>

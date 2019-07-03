@@ -16,10 +16,16 @@ export const Menu: FunctionComponent<Props> & StaticProps = ({
   children,
   className,
   classes,
-  style
+  style,
+  elementSelector
 }) => {
   return (
-    <MUIMenuList className={className} style={style} classes={classes}>
+    <MUIMenuList
+      className={className}
+      style={style}
+      classes={classes}
+      data-qa={elementSelector}
+    >
       {children}
     </MUIMenuList>
   )

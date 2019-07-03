@@ -14,7 +14,8 @@ export const Paper: FunctionComponent<Props> = ({
   classes,
   className,
   style,
-  children
+  children,
+  elementSelector
 }) => (
   <MUIPaper
     classes={classes}
@@ -22,6 +23,7 @@ export const Paper: FunctionComponent<Props> = ({
     style={style}
     elevation={1}
     square
+    data-qa={elementSelector}
   >
     {children}
   </MUIPaper>

@@ -33,7 +33,8 @@ export const PageHeader: FunctionComponent<Props> = ({
   title,
   logoLink,
   rightContent,
-  variant
+  variant,
+  elementSelector
 }) => {
   const { fullWidth } = useContext<PageContextProps>(PageContext)
 
@@ -50,6 +51,7 @@ export const PageHeader: FunctionComponent<Props> = ({
     <header
       className={cx('mui-fixed', classes.root, classes[variant!], className)}
       style={style}
+      data-qa={elementSelector}
     >
       <div className={contentClassnames}>
         <div className={classes.left}>

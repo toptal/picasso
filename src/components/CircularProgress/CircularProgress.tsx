@@ -21,7 +21,8 @@ const CircularProgress: FunctionComponent<Props> = ({
   style,
   size,
   value,
-  variant
+  variant,
+  elementSelector
 }) => (
   <MUICircularProgress
     classes={classes}
@@ -30,6 +31,7 @@ const CircularProgress: FunctionComponent<Props> = ({
     size={size}
     value={value}
     variant={variant}
+    data-qa={elementSelector}
   />
 )
 
