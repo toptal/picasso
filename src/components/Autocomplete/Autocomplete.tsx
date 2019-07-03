@@ -141,10 +141,6 @@ export const Autocomplete: FunctionComponent<Props> = ({
                 ...rest
               }}
               onChange={e => {
-                if (!e) {
-                  return
-                }
-
                 inputProps.onChange(e as FormEvent<HTMLInputElement>)
               }}
               value={inputProps.value as string}
@@ -162,7 +158,7 @@ export const Autocomplete: FunctionComponent<Props> = ({
                       <Menu.Item
                         key={suggestion.label}
                         selected={highlightedIndex === index}
-                        component='div'
+                        as='div'
                         // eslint-disable-next-line react/jsx-props-no-spreading
                         {...getItemProps({ item: suggestion.label })}
                       >
