@@ -11,7 +11,7 @@ const FormsExample = () => (
           </Form.Field>
 
           <Form.Field>
-            <TextField fullWidth placeholder='Job title' />
+            <TextField width='full' placeholder='Job title' />
           </Form.Field>
 
           <Form.Field>
@@ -23,14 +23,14 @@ const FormsExample = () => (
               </Grid.Item>
               <Grid.Item small={6}>
                 <Form.Field>
-                  <TextField fullWidth placeholder='City of Residence' />
+                  <TextField width='full' placeholder='City of Residence' />
                 </Form.Field>
               </Grid.Item>
             </Grid>
           </Form.Field>
 
           <Form.Field>
-            <TextField fullWidth placeholder='Full description' />
+            <TextField width='full' placeholder='Full description' />
           </Form.Field>
 
           <Form.Field>

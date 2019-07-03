@@ -3,7 +3,7 @@ import { Button } from '@toptal/picasso'
 
 const ButtonFullWidthExample = () => (
   <div>
-    <Button fullWidth>Full width</Button>
+    <Button width='auto'>Full width</Button>
   </div>
 )
 

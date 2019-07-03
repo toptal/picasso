@@ -1,7 +1,6 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
 import { PicassoProvider } from '../Picasso'
-import '../FormControl/styles'
 import '../InputLabel/styles'
 import '../InputBase/styles'
 import '../OutlinedInput/styles'

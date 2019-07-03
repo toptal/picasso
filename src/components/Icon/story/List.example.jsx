@@ -22,7 +22,7 @@ const IconListExample = () => {
           <Container flex>
             <TextField
               icon={<listIcons.Search16 />}
-              fullWidth
+              width='auto'
               placeholder='Filter icons...'
               onChange={handleFilter}
             />

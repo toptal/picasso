@@ -1,6 +1,5 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
-import '../FormControl/styles'
 import '../InputBase/styles'
 import '../InputLabel/styles'
 import '../OutlinedInput/styles'
