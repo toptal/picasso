@@ -158,7 +158,6 @@ export const Autocomplete: FunctionComponent<Props> = ({
                       <Menu.Item
                         key={suggestion.label}
                         selected={highlightedIndex === index}
-                        as='div'
                         // eslint-disable-next-line react/jsx-props-no-spreading
                         {...getItemProps({ item: suggestion.label })}
                       >
