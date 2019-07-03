@@ -92,6 +92,8 @@ export const TextField: FunctionComponent<Props> = ({
 
   return (
     <OutlinedInput
+      className={className}
+      style={style}
       classes={{
         root: cx(classes.root, {
           [classes.rootMultiline]: multiline
@@ -107,7 +109,6 @@ export const TextField: FunctionComponent<Props> = ({
       autoFocus={autoFocus}
       autoComplete={autoComplete}
       multiline={multiline}
-      style={style}
       rows={rows}
       rowsMax={rowsMax}
       type={type}
