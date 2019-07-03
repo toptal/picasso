@@ -12,6 +12,8 @@ interface Props extends StandardProps {
   error?: boolean
   /** If true, the control will be disabled */
   disabled?: boolean
+  /** Take the full width of a container */
+  fullWidth?: boolean
 }
 
 const FormControl: FunctionComponent<Props> = ({
@@ -20,7 +22,8 @@ const FormControl: FunctionComponent<Props> = ({
   className,
   error,
   disabled,
-  style
+  style,
+  fullWidth
 }) => (
   <MUIFormControl
     classes={classes}
@@ -28,6 +31,7 @@ const FormControl: FunctionComponent<Props> = ({
     style={style}
     error={error}
     disabled={disabled}
+    fullWidth={fullWidth}
   >
     {children}
   </MUIFormControl>
