@@ -16,6 +16,9 @@ const useUploader = config => {
 
     const newFile = event.target.files[0]
 
+    // reset input
+    event.target.value = ''
+
     if (config.maxSize && newFile.size > config.maxSize * 1024 * 1024) {
       setError(`File size exceeds the ${config.maxSize}MB limit.`)
       setStatus('Upload failed.')

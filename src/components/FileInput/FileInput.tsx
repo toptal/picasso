@@ -16,22 +16,28 @@ import { Check16, UploadDocument16 } from '../Icon'
 import { isNumber, isBoolean } from '../utils'
 import styles from './styles'
 
-export interface FileDescription {
+export interface FileInfo {
   name: string
   location: string
 }
 
-export interface Props extends StandardProps, InputBaseComponentProps {
+export interface Props extends StandardProps {
+  /** If true, the 'FileInput' will be disabled */
+  disabled?: boolean
+  /** Indicate whether `FileInput` is in error state */
+  error?: boolean
   /** A string that defines the file types the file input should accept. */
   accept?: string
   /** Current progress of upload */
   progress?: number | boolean
-  /** Status of file */
+  /** Status message indicating various states during upload or error */
   status?: string
   /** Take the full width of a container */
   fullWidth?: boolean
-  /** Descriptor describing file name and file location */
-  value?: FileDescription
+  /** Descriptor containing file name and location */
+  value?: FileInfo
+  /** Callback invoked when `FileInput` changes its state by selecting new files. */
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const FileInputContent = withStyles(styles)(
@@ -45,7 +51,7 @@ const FileInputContent = withStyles(styles)(
     error,
     progress,
     inputRef
-  }: Props) => {
+  }: Props & InputBaseComponentProps) => {
     const getFilename = () => {
       if (error || progress) {
         return status
@@ -113,7 +119,7 @@ export const FileInput: FunctionComponent<Props> = ({
       position='start'
     >
       {value ? (
-        <Check16 color={!disabled && palette.green.main} />
+        <Check16 color={!disabled ? palette.green.main : undefined} />
       ) : (
         <UploadDocument16 />
       )}
@@ -126,7 +132,7 @@ export const FileInput: FunctionComponent<Props> = ({
         <Loader
           className={classes.loader}
           size='small'
-          value={loaderValue as number}
+          value={isNumber(progress) ? (loaderValue as number) : undefined}
         />
       ) : (
         <Button
@@ -159,6 +165,9 @@ export const FileInput: FunctionComponent<Props> = ({
           })
         }}
         type='file'
+        // MUIv3 doesn't provide generic way to change type of component and props
+        // that would be extensions of input component
+        // https://github.com/mui-org/material-ui/blob/v3.x/packages/material-ui/src/InputBase/InputBase.d.ts#L18
         // @ts-ignore
         inputComponent={FileInputContent}
         // @ts-ignore
