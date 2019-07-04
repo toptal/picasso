@@ -96,6 +96,8 @@ export const TextField: FunctionComponent<Props> = ({
 
   return (
     <OutlinedInput
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...inputProps}
       className={className}
       style={style}
       classes={{
@@ -122,8 +124,6 @@ export const TextField: FunctionComponent<Props> = ({
       endAdornment={iconPosition === 'end' && IconAdornment}
       startAdornment={iconPosition === 'start' && IconAdornment}
       onChange={onChange}
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...inputProps}
     >
       {children}
     </OutlinedInput>
