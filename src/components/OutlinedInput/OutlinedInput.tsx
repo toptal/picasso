@@ -75,9 +75,12 @@ const OutlinedInput: FunctionComponent<Props> = ({
   error,
   startAdornment,
   endAdornment,
-  onChange
+  onChange,
+  ...rest
 }) => (
   <MUIOutlinedInput
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    {...rest}
     classes={{
       root: cx(classes.root, classes[`root${capitalize(width!)}`]),
       input: classes.input,
