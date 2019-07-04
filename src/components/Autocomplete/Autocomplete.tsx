@@ -1,6 +1,5 @@
 import React, {
   FunctionComponent,
-  FormEvent,
   ChangeEvent,
   InputHTMLAttributes
 } from 'react'
@@ -13,6 +12,7 @@ import { StandardProps } from '../Picasso'
 import TextField from '../TextField'
 import Menu from '../Menu'
 import Loader from '../Loader'
+import ScrollMenu from '../ScrollMenu'
 import styles from './styles'
 
 type Item = {
@@ -103,6 +103,11 @@ export const Autocomplete: FunctionComponent<Props> = ({
         openMenu,
         selectItem
       }) => {
+        const filteredSuggestions = getFilteredSuggestions(
+          suggestions,
+          inputValue
+        )
+
         const inputProps = getInputProps({
           onFocus: openMenu,
           onBlur: () => {
@@ -122,10 +127,24 @@ export const Autocomplete: FunctionComponent<Props> = ({
           placeholder
         })
 
-        const filteredSuggestions = getFilteredSuggestions(
-          suggestions,
-          inputValue
-        )
+        const renderSuggestions = (suggestions: Item[], inputValue: Value) => {
+          if (!suggestions.length) {
+            return inputValue !== '' ? (
+              <Menu.Item disabled>No options</Menu.Item>
+            ) : null
+          }
+
+          return suggestions.map((suggestion, index) => (
+            <Menu.Item
+              key={suggestion.label}
+              selected={highlightedIndex === index}
+              // eslint-disable-next-line react/jsx-props-no-spreading
+              {...getItemProps({ item: suggestion.label })}
+            >
+              {suggestion.label}
+            </Menu.Item>
+          ))
+        }
 
         return (
           <div
@@ -140,10 +159,6 @@ export const Autocomplete: FunctionComponent<Props> = ({
                 ...inputProps,
                 ...rest
               }}
-              onChange={e => {
-                inputProps.onChange(e as FormEvent<HTMLInputElement>)
-              }}
-              value={inputProps.value as string}
               fullWidth={fullWidth}
               icon={loading ? <Loader size='small' /> : null}
               iconPosition='end'
@@ -152,22 +167,9 @@ export const Autocomplete: FunctionComponent<Props> = ({
             {/* eslint-disable-next-line react/jsx-props-no-spreading */}
             <div {...getMenuProps()}>
               {isOpen ? (
-                <Menu className={classes.menu}>
-                  {filteredSuggestions.length ? (
-                    filteredSuggestions.map((suggestion, index) => (
-                      <Menu.Item
-                        key={suggestion.label}
-                        selected={highlightedIndex === index}
-                        // eslint-disable-next-line react/jsx-props-no-spreading
-                        {...getItemProps({ item: suggestion.label })}
-                      >
-                        {suggestion.label}
-                      </Menu.Item>
-                    ))
-                  ) : inputValue !== '' ? (
-                    <Menu.Item disabled>No options</Menu.Item>
-                  ) : null}
-                </Menu>
+                <ScrollMenu selectedIndex={highlightedIndex}>
+                  {renderSuggestions(filteredSuggestions, inputValue)}
+                </ScrollMenu>
               ) : null}
             </div>
           </div>
