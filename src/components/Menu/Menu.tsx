@@ -6,10 +6,10 @@ import MenuItem from '../MenuItem'
 import { StandardProps, PicassoComponent } from '../Picasso'
 import styles from './styles'
 
-type ListAttributes = HTMLAttributes<HTMLUListElement> &
+export type ListNativeProps = HTMLAttributes<HTMLUListElement> &
   Pick<MenuListProps, 'onKeyDown'>
 
-interface Props extends StandardProps, ListAttributes {}
+interface Props extends StandardProps, ListNativeProps {}
 
 interface StaticProps {
   Item: typeof MenuItem

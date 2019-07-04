@@ -6,7 +6,7 @@ import palette from '../Picasso/config/palette'
 import UserBadge from '../UserBadge'
 import Typography from '../Typography'
 import Menu from '../Menu'
-import { ListAttributes } from '../Menu/Menu'
+import { ListNativeProps } from '../Menu/Menu'
 import Link from '../Link'
 import Container from '../Container'
 import { ChevronRight } from '../Icon'
@@ -25,7 +25,9 @@ type Account = {
   avatar?: string
 }
 
-export interface Props extends StandardProps, Omit<ListAttributes, 'onSelect'> {
+export interface Props
+  extends StandardProps,
+    Omit<ListNativeProps, 'onSelect'> {
   /** List of available accounts */
   accounts: Account[]
   /** Callback invoked when specific role record is clicked in the list */
