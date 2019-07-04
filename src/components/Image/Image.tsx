@@ -1,4 +1,4 @@
-import React, { CSSProperties, FunctionComponent } from 'react'
+import React, { FunctionComponent, ImgHTMLAttributes } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 
@@ -7,17 +7,17 @@ import styles from './styles'
 
 type VariantType = 'default' | 'circular'
 
-export interface Props extends StandardProps {
+export interface Props
+  extends StandardProps,
+    ImgHTMLAttributes<HTMLImageElement> {
   /** Image alt text */
   alt: string
-  className?: string
   /** Image url */
   src: string
   /** A set of image sources */
   srcSet?: string
   /** Image shape type */
   variant?: VariantType
-  style?: CSSProperties
 }
 
 export const Image: FunctionComponent<Props> = ({
@@ -27,9 +27,12 @@ export const Image: FunctionComponent<Props> = ({
   classes,
   className,
   variant,
-  style
+  style,
+  ...rest
 }) => (
   <img
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    {...rest}
     src={src}
     srcSet={srcSet}
     alt={alt}

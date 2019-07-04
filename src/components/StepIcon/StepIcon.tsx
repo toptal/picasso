@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, HTMLAttributes } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 
@@ -6,7 +6,7 @@ import { CheckMinor24 as TickIcon } from '../Icon'
 import { StandardProps } from '../Picasso'
 import styles from './styles'
 
-interface Props extends StandardProps {
+interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   active?: boolean
   completed?: boolean
 }
@@ -14,10 +14,13 @@ interface Props extends StandardProps {
 export const StepIcon: FunctionComponent<Props> = ({
   active,
   completed,
-  classes
+  classes,
+  ...rest
 }) => {
   return (
     <div
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
       className={cx(classes.root, {
         [classes.active]: active,
         [classes.completed]: completed

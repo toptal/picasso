@@ -1,4 +1,4 @@
-import React, { ReactNode, FunctionComponent } from 'react'
+import React, { ReactNode, FunctionComponent, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUIInputAdornment from '@material-ui/core/InputAdornment'
 import cx from 'classnames'
@@ -8,7 +8,7 @@ import styles from './styles'
 
 type PositionType = 'start' | 'end'
 
-interface Props extends StandardProps {
+interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   children: ReactNode
   position: PositionType
   disabled?: boolean
@@ -20,10 +20,13 @@ const InputAdornment: FunctionComponent<Props> = ({
   style,
   children,
   position,
-  disabled
+  disabled,
+  ...rest
 }) => {
   return (
     <MUIInputAdornment
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
       classes={{
         root: cx(classes.root, {
           [classes.rootDisabled]: disabled

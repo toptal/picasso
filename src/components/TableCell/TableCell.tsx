@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from 'react'
+import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUITableCell from '@material-ui/core/TableCell'
 
@@ -7,7 +7,7 @@ import styles from './styles'
 
 type AlignType = 'inherit' | 'left' | 'center' | 'right' | 'justify'
 
-interface Props extends StandardProps {
+interface Props extends StandardProps, HTMLAttributes<HTMLTableCellElement> {
   /** Set the text-align on the table cell content */
   align?: AlignType
   /** The table cell contents */
@@ -22,9 +22,12 @@ export const TableCell: FunctionComponent<Props> = ({
   className,
   style,
   children,
-  colSpan
+  colSpan,
+  ...rest
 }) => (
   <MUITableCell
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    {...rest}
     align={align}
     classes={classes}
     className={className}

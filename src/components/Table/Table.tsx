@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from 'react'
+import React, { FunctionComponent, ReactNode, TableHTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUITable from '@material-ui/core/Table'
 
@@ -10,7 +10,7 @@ import TableFooter from '../TableFooter'
 import { StandardProps, PicassoComponent } from '../Picasso'
 import styles from './styles'
 
-interface Props extends StandardProps {
+interface Props extends StandardProps, TableHTMLAttributes<HTMLTableElement> {
   /** Children components (`Table.Head`, `Table.Body`, `Table.Footer`) */
   children: ReactNode
 }
@@ -27,9 +27,11 @@ export const Table: FunctionComponent<Props> & StaticProps = ({
   classes,
   className,
   style,
-  children
+  children,
+  ...rest
 }) => (
-  <MUITable classes={classes} className={className} style={style}>
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  <MUITable {...rest} classes={classes} className={className} style={style}>
     {children}
   </MUITable>
 )

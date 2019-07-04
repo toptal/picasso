@@ -4,7 +4,8 @@ import React, {
   MouseEvent,
   ReactElement,
   Fragment,
-  cloneElement
+  cloneElement,
+  HTMLAttributes
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import SnackbarContent from '@material-ui/core/SnackbarContent'
@@ -26,7 +27,7 @@ import Typography from '../Typography'
 
 type VariantType = 'red' | 'green' | 'white' | 'yellow'
 
-export interface Props extends StandardProps {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Main content of the Notification */
   children: ReactNode
   /** Callback invoked when close is clicked */
@@ -109,10 +110,12 @@ const renderNotificationContent = (props: Props) => {
 }
 
 export const Notification: FunctionComponent<Props> = props => {
-  const { className, classes, variant, elevated, fullWidth } = props
+  const { className, classes, variant, elevated, fullWidth, ...rest } = props
 
   return (
     <SnackbarContent
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
       className={cx(
         classes[`notification${capitalize(variant as string)}`],
         {

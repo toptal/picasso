@@ -2,10 +2,11 @@ import { ReactNode } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUIExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
 
+import { ButtonOrAnchorAttributes } from '../Button/Button'
 import styles from './styles'
 import { StandardProps, PicassoComponent } from '../Picasso'
 
-interface Props extends StandardProps {
+interface Props extends StandardProps, ButtonOrAnchorAttributes {
   expandIcon?: ReactNode
   children?: ReactNode
 }

@@ -1,4 +1,9 @@
-import React, { FunctionComponent, ReactNode, ReactType } from 'react'
+import React, {
+  FunctionComponent,
+  ReactNode,
+  ReactType,
+  HTMLAttributes
+} from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import { ThemeStyle as MUIVariant } from '@material-ui/core/styles/createTypography'
 import { PropTypes } from '@material-ui/core'
@@ -22,7 +27,7 @@ type ColorType =
   | 'black'
   | 'inherit'
 
-export interface Props extends StandardProps {
+export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
   /** Font variant inner text */
   variant?: VariantType
   /** Text content */
@@ -77,7 +82,8 @@ export const Typography: FunctionComponent<Props> = ({
   as,
   weight,
   color,
-  invert
+  invert,
+  ...rest
 }) => {
   const resolvedVariant = VARIANTS[variant!][size!]
   const variantClassName = kebabToCamelCase(`${variant}-${size}`)
@@ -94,6 +100,8 @@ export const Typography: FunctionComponent<Props> = ({
 
   return (
     <MUITypography
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
       align={align}
       className={className}
       classes={{

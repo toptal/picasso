@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, HTMLAttributes } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import MUIStepLabel from '@material-ui/core/StepLabel'
@@ -7,7 +7,7 @@ import StepIcon from '../StepIcon'
 import { StandardProps } from '../Picasso'
 import styles from './styles'
 
-interface Props extends StandardProps {
+interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   hideLabel: boolean
   children: string
   active?: boolean
@@ -21,10 +21,13 @@ export const StepLabel: FunctionComponent<Props> = ({
   children,
   completed,
   hideLabel,
-  style
+  style,
+  ...rest
 }) => {
   return (
     <MUIStepLabel
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
       active={active}
       classes={{
         labelContainer: cx({

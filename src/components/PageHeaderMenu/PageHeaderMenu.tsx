@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from 'react'
+import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import renamePropsWithWarning from 'react-deprecate'
@@ -9,7 +9,7 @@ import Dropdown from '../Dropdown'
 import Typography from '../Typography'
 import styles from './styles'
 
-export interface Props extends StandardProps {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** User full name to display */
   name: string
   /** Additional content of PageHeaderMenu */
@@ -28,7 +28,8 @@ export const PageHeaderMenu: FunctionComponent<Props> = ({
   classes,
   className,
   style,
-  children
+  children,
+  ...rest
 }) => {
   const metaContent =
     typeof meta === 'string' ? (
@@ -41,6 +42,8 @@ export const PageHeaderMenu: FunctionComponent<Props> = ({
 
   return (
     <Dropdown
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
       className={cx(classes.root, className)}
       classes={{ content: classes.content }}
       style={style}

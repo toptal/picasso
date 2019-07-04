@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, HTMLAttributes } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 
@@ -11,7 +11,7 @@ import styles from './styles'
 
 type VariantType = 'square' | 'portrait' | 'landscape'
 
-export interface Props extends StandardProps {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Alt text */
   alt?: string
   /** User full name to display initials on the avatar */
@@ -74,14 +74,16 @@ export class Avatar extends PureComponent<Props> {
       name,
       size,
       style,
-      variant
+      variant,
+      ...rest
     } = this.props
 
     const sizeClassName = classes[size!]
     const variantClassName = classes[variant!]
 
     return (
-      <div className={cx(classes.root, sizeClassName)}>
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      <div {...rest} className={cx(classes.root, sizeClassName)}>
         {src ? (
           <Image
             alt={alt || name}

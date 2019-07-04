@@ -5,7 +5,6 @@ export {
   JssProps,
   StandardProps,
   SizeType,
-  TooltipEventListeners,
   OmitInternalProps,
   SpacingType,
   spacingToEm,

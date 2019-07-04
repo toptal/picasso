@@ -1,4 +1,4 @@
-import React, { ReactNode, FunctionComponent } from 'react'
+import React, { ReactNode, FunctionComponent, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
@@ -23,7 +23,9 @@ type JustifyContentType =
   | 'space-around'
   | 'space-evenly'
 
-interface Props extends StandardProps {
+interface Props
+  extends StandardProps,
+    HTMLAttributes<HTMLDivElement | HTMLSpanElement> {
   /** Content of Container */
   children: ReactNode
   /** margin-top for the container transformed to `em` */
@@ -71,7 +73,8 @@ export const Container: FunctionComponent<Props> = ({
   style,
   bordered = false,
   classes,
-  as: Component = 'div'
+  as: Component = 'div',
+  ...rest
 }) => {
   const margins = {
     ...(top && { marginTop: spacingToEm(top) }),
@@ -82,6 +85,8 @@ export const Container: FunctionComponent<Props> = ({
 
   return (
     <Component
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
       className={cx(
         {
           [classes[`${padded}Padding`]]: typeof padded === 'string',

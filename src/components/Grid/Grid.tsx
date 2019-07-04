@@ -1,4 +1,4 @@
-import React, { ReactNode, FunctionComponent } from 'react'
+import React, { ReactNode, FunctionComponent, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUIGrid, {
   GridSpacing,
@@ -12,7 +12,7 @@ import GridItem from '../GridItem'
 import { StandardProps, PicassoComponent } from '../Picasso'
 import styles from './styles'
 
-interface Props extends StandardProps {
+interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
   /** Grid content containing Grid.Item */
   children?: ReactNode
   /** Defines the space between the type item components */
@@ -40,9 +40,12 @@ export const Grid: FunctionComponent<Props> & StaticProps = ({
   wrap,
   classes,
   className,
-  style
+  style,
+  ...rest
 }) => (
   <MUIGrid
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    {...rest}
     container
     spacing={spacing}
     direction={direction}

@@ -1,4 +1,4 @@
-import { CSSProperties, FunctionComponent, SyntheticEvent } from 'react'
+import { CSSProperties, FunctionComponent } from 'react'
 
 import { Classes } from '../styles/types'
 
@@ -30,17 +30,6 @@ export type PicassoComponent<P, S = {}> = FunctionComponent<
   OmitInternalProps<P> & Partial<JssProps>
 > &
   S
-
-type EventListenerType = (event: SyntheticEvent<HTMLElement>) => void
-
-export interface TooltipEventListeners {
-  onBlur?: EventListenerType
-  onFocus?: EventListenerType
-  onMouseLeave?: EventListenerType
-  onMouseOver?: EventListenerType
-  onTouchEnd?: EventListenerType
-  onTouchStart?: EventListenerType
-}
 
 type Sizes = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'
 

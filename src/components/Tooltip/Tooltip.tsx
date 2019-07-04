@@ -4,7 +4,8 @@ import React, {
   FunctionComponent,
   ReactNode,
   ReactElement,
-  ChangeEvent
+  ChangeEvent,
+  HTMLAttributes
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUITooltip from '@material-ui/core/Tooltip'
@@ -20,7 +21,7 @@ type TriggerType = 'hover' | 'click'
 
 type PlacementType = 'bottom' | 'left' | 'right' | 'top'
 
-export interface Props extends StandardProps {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Trigger element for tooltip */
   children: ReactNode
   /** Content to be rendered inside tooltip */
@@ -76,7 +77,8 @@ export const Tooltip: FunctionComponent<Props> = ({
   onClose,
   onOpen,
   variant,
-  trigger
+  trigger,
+  ...rest
 }) => {
   const [arrowRef, setArrowRef] = useState(null)
   const title = (
@@ -94,6 +96,8 @@ export const Tooltip: FunctionComponent<Props> = ({
 
   return (
     <MUITooltip
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
       PopperProps={getPopperProps(arrow!, arrowRef)}
       classes={getClasses(classes, variant!)}
       className={className}

@@ -1,4 +1,9 @@
-import React, { FunctionComponent, FormEventHandler, ReactNode } from 'react'
+import React, {
+  FunctionComponent,
+  FormEventHandler,
+  ReactNode,
+  FormHTMLAttributes
+} from 'react'
 
 import FormField from '../FormField'
 import FormHint from '../FormHint'
@@ -6,7 +11,7 @@ import FormLabel from '../FormLabel'
 import FormError from '../FormError'
 import { BaseProps } from '../Picasso'
 
-interface Props extends BaseProps {
+interface Props extends BaseProps, FormHTMLAttributes<HTMLFormElement> {
   /** Content of Form constructed of Form elements */
   children?: ReactNode
   /** Submit handler */
@@ -24,9 +29,11 @@ export const Form: FunctionComponent<Props> & StaticProps = ({
   onSubmit,
   className,
   style,
-  children
+  children,
+  ...rest
 }) => (
-  <form onSubmit={onSubmit} className={className} style={style}>
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  <form {...rest} onSubmit={onSubmit} className={className} style={style}>
     {children}
   </form>
 )

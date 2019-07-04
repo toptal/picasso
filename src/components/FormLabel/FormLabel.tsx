@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
@@ -7,7 +7,9 @@ import styles from './styles'
 
 type ComponentType = 'label' | 'span'
 
-export interface Props extends StandardProps {
+export interface Props
+  extends StandardProps,
+    HTMLAttributes<HTMLLabelElement | HTMLSpanElement> {
   /** Content of the label */
   children: string
   /** Adds asteriks if true */
@@ -31,12 +33,15 @@ export const FormLabel: FunctionComponent<Props> = ({
   className,
   style,
   inline,
-  as: Component = 'label'
+  as: Component = 'label',
+  ...rest
 }) => {
   const isInline = inline || Component === 'span'
 
   return (
     <Component
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
       htmlFor={htmlFor}
       className={cx(
         classes.root,

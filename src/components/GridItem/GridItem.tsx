@@ -1,11 +1,11 @@
-import React, { ReactNode, FunctionComponent } from 'react'
+import React, { ReactNode, FunctionComponent, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUIGrid, { GridSize } from '@material-ui/core/Grid'
 
 import styles from './styles'
 import { StandardProps } from '../Picasso'
 
-interface Props extends StandardProps {
+interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
   /** Content of Grid.Item */
   children?: ReactNode
   /** Defines the number of grids the component is going to use. It's applied for all the screen sizes with the lowest priority */
@@ -23,9 +23,12 @@ export const GridItem: FunctionComponent<Props> = ({
   large,
   classes,
   className,
-  style
+  style,
+  ...rest
 }) => (
   <MUIGrid
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    {...rest}
     item
     lg={large}
     md={medium}

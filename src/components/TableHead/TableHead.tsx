@@ -1,11 +1,11 @@
-import React, { FunctionComponent, ReactNode } from 'react'
+import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUITableHead from '@material-ui/core/TableHead'
 
 import { StandardProps } from '../Picasso'
 import styles from './styles'
 
-interface Props extends StandardProps {
+interface Props extends StandardProps, HTMLAttributes<HTMLTableSectionElement> {
   /** The content of the component, normally `Table.Row` */
   children: ReactNode
 }
@@ -14,9 +14,11 @@ export const TableHead: FunctionComponent<Props> = ({
   classes,
   className,
   style,
-  children
+  children,
+  ...rest
 }) => (
-  <MUITableHead classes={classes} className={className} style={style}>
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  <MUITableHead {...rest} classes={classes} className={className} style={style}>
     {children}
   </MUITableHead>
 )

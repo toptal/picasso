@@ -1,4 +1,8 @@
-import React, { FunctionComponent } from 'react'
+import React, {
+  FunctionComponent,
+  AnchorHTMLAttributes,
+  ButtonHTMLAttributes
+} from 'react'
 import MUIRadio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import { withStyles } from '@material-ui/core/styles'
@@ -8,7 +12,13 @@ import Form from '../Form'
 import { PicassoComponent, StandardProps } from '../Picasso'
 import styles from './styles'
 
-export interface Props extends StandardProps {
+export interface Props
+  extends StandardProps,
+    Omit<
+      AnchorHTMLAttributes<HTMLAnchorElement> &
+        ButtonHTMLAttributes<HTMLButtonElement>,
+      'onChange' | 'value'
+    > {
   /** Text label for the `Radio` */
   label?: string
   /** Value of the `Radio` component used with conjuction of `Radio.Group` */
@@ -34,7 +44,8 @@ export const Radio: FunctionComponent<Props> & StaticProps = ({
   checked,
   disabled,
   value,
-  onChange
+  onChange,
+  ...rest
 }) => {
   const rootClasses = {
     root: classes.root,
@@ -42,6 +53,8 @@ export const Radio: FunctionComponent<Props> & StaticProps = ({
   }
   const muiRadio = (
     <MUIRadio
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
       checked={checked}
       disabled={disabled}
       onChange={onChange}
@@ -71,11 +84,8 @@ export const Radio: FunctionComponent<Props> & StaticProps = ({
 }
 
 Radio.defaultProps = {
-  checked: undefined,
   classes: {},
-  disabled: false,
-  label: undefined,
-  value: undefined
+  disabled: false
 }
 
 Radio.displayName = 'Radio'

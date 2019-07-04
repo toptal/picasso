@@ -4,7 +4,8 @@ import React, {
   useState,
   useContext,
   useMemo,
-  ReactNode
+  ReactNode,
+  HTMLAttributes
 } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
@@ -20,7 +21,7 @@ import {
 import DropdownArrow from '../DropdownArrow'
 import styles from './styles'
 
-export interface Props extends StandardProps {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Anchor element that opens content on click */
   children: ReactNode
   /** Content element that opens when anchor is clicked */
@@ -74,7 +75,8 @@ export const Dropdown: FunctionComponent<Props> & StaticProps = ({
   transformOrigin,
   anchorOrigin,
   disableAutoClose,
-  disableAutoFocus
+  disableAutoFocus,
+  ...rest
 }) => {
   const contentRef = useRef<HTMLElement>()
 
@@ -171,7 +173,8 @@ export const Dropdown: FunctionComponent<Props> & StaticProps = ({
   )
 
   return (
-    <div className={cx(classes.root, className)} style={style}>
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <div {...rest} className={cx(classes.root, className)} style={style}>
       <div className={classes.anchor} onClick={handleAnchorClick}>
         {children}
       </div>

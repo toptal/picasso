@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from 'react'
+import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
@@ -10,7 +10,7 @@ import styles from './styles'
 
 type AlignmentType = boolean | 'auto'
 
-export interface Props extends StandardProps {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** User full name to display */
   name: string
   /** Photo url or custom Avatar component */
@@ -42,7 +42,8 @@ export const UserBadge: FunctionComponent<Props> = ({
   children,
   classes,
   className,
-  style
+  style,
+  ...rest
 }) => {
   const UserBadgeAvatar = React.isValidElement(avatar) ? (
     avatar
@@ -67,6 +68,8 @@ export const UserBadge: FunctionComponent<Props> = ({
 
   return (
     <Container
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
       flex
       alignItems={alignItems}
       className={cx(classes.root, className)}

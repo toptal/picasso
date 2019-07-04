@@ -13,3 +13,21 @@ exports[`Link default render 1`] = `
   </div>
 </div>
 `;
+
+exports[`Link renders native attributes 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <a
+      class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineHover"
+      download="filename"
+      href="https://toptal.com/filename.txt"
+      rel="noopener"
+      target="_blank"
+    >
+      Please verify your email
+    </a>
+  </div>
+</div>
+`;

@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useMemo } from 'react'
+import React, { FunctionComponent, useMemo, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
 import Button from '../Button'
@@ -49,7 +49,7 @@ const PaginationPage: FunctionComponent<PaginationPageProps> = ({
   )
 }
 
-export interface Props extends StandardProps {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Value of the current highlighted page */
   activePage: number
   /** Shows `Pagination` in disabled state when pages are not changeable */
@@ -65,7 +65,8 @@ export const Pagination: FunctionComponent<Props> = ({
   classes,
   disabled,
   totalPages,
-  onPageChange
+  onPageChange,
+  ...rest
 }) => {
   const isFirstActive = activePage === 1
   const isLastActive = activePage === totalPages
@@ -100,7 +101,8 @@ export const Pagination: FunctionComponent<Props> = ({
   ])
 
   return (
-    <Container flex inline alignItems='center'>
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <Container {...rest} flex inline alignItems='center'>
       <Button
         disabled={isFirstActive || disabled}
         onClick={() => handleChange('previous')}
