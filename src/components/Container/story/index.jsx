@@ -17,6 +17,7 @@ page
   .addExample('Container/story/Default.example.jsx', 'Default')
   .addExample('Container/story/Inline.example.jsx', 'Inline')
   .addExample('Container/story/Bordered.example.jsx', 'With border')
+  .addExample('Container/story/Variant.example.jsx', 'Variants')
   .addExample('Container/story/Spacing.example.jsx', {
     title: 'Spacing',
     description: 'Creating inner and outer space for component',
