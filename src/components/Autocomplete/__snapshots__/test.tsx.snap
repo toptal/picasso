@@ -9,41 +9,32 @@ exports[`Autocomplete default render 1`] = `
       aria-expanded="false"
       aria-haspopup="listbox"
       aria-labelledby="downshift-0-label"
-      class="Autocomplete-root Autocomplete-rootFixedWidth"
+      class="Autocomplete-root Autocomplete-rootAuto"
       role="combobox"
     >
       <div
-        class="MuiFormControl-root TextField-rootFixedWidth"
+        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root TextField-root OutlinedInput-rootAuto"
       >
-        <div
-          aria-autocomplete="list"
-          aria-labelledby="downshift-0-label"
-          class="MuiInputBase-root MuiOutlinedInput-root TextField-root MuiInputBase-formControl"
+        <fieldset
+          aria-hidden="true"
+          class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+          style="padding-left: 8px;"
         >
-          <fieldset
-            aria-hidden="true"
-            class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
-            style="padding-left: 8px;"
+          <legend
+            class="MuiPrivateNotchedOutline-legend"
+            style="width: 0.01px;"
           >
-            <legend
-              class="MuiPrivateNotchedOutline-legend"
-              style="width: 0.01px;"
-            >
-              <span>
-                ​
-              </span>
-            </legend>
-          </fieldset>
-          <input
-            aria-invalid="false"
-            autocomplete="off"
-            class="MuiInputBase-input MuiOutlinedInput-input TextField-input"
-            id="downshift-0-input"
-            placeholder="Start typing here..."
-            type="text"
-            value=""
-          />
-        </div>
+            <span>
+              ​
+            </span>
+          </legend>
+        </fieldset>
+        <input
+          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input TextField-input"
+          placeholder="Start typing here..."
+          type="text"
+          value=""
+        />
       </div>
       <div
         aria-labelledby="downshift-0-label"
@@ -55,7 +46,7 @@ exports[`Autocomplete default render 1`] = `
 </div>
 `;
 
-exports[`Autocomplete render suggestions when start typing 1`] = `
+exports[`Autocomplete render options when start typing 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -65,42 +56,32 @@ exports[`Autocomplete render suggestions when start typing 1`] = `
       aria-haspopup="listbox"
       aria-labelledby="downshift-1-label"
       aria-owns="downshift-1-menu"
-      class="Autocomplete-root Autocomplete-rootFixedWidth"
+      class="Autocomplete-root Autocomplete-rootAuto"
       role="combobox"
     >
       <div
-        class="MuiFormControl-root TextField-rootFixedWidth"
+        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root TextField-root OutlinedInput-rootAuto"
       >
-        <div
-          aria-autocomplete="list"
-          aria-controls="downshift-1-menu"
-          aria-labelledby="downshift-1-label"
-          class="MuiInputBase-root MuiOutlinedInput-root TextField-root MuiInputBase-formControl"
+        <fieldset
+          aria-hidden="true"
+          class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+          style="padding-left: 8px;"
         >
-          <fieldset
-            aria-hidden="true"
-            class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
-            style="padding-left: 8px;"
+          <legend
+            class="MuiPrivateNotchedOutline-legend"
+            style="width: 0.01px;"
           >
-            <legend
-              class="MuiPrivateNotchedOutline-legend"
-              style="width: 0.01px;"
-            >
-              <span>
-                ​
-              </span>
-            </legend>
-          </fieldset>
-          <input
-            aria-invalid="false"
-            autocomplete="off"
-            class="MuiInputBase-input MuiOutlinedInput-input TextField-input"
-            id="downshift-1-input"
-            placeholder="Start typing here..."
-            type="text"
-            value="t"
-          />
-        </div>
+            <span>
+              ​
+            </span>
+          </legend>
+        </fieldset>
+        <input
+          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input TextField-input"
+          placeholder="Start typing here..."
+          type="text"
+          value="t"
+        />
       </div>
       <div
         aria-labelledby="downshift-1-label"
@@ -108,31 +89,36 @@ exports[`Autocomplete render suggestions when start typing 1`] = `
         role="listbox"
       >
         <ul
-          class="MuiList-root Autocomplete-menu"
+          class="MuiList-root ScrollMenu-menu"
           role="menu"
         >
-          <li
-            class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
-            role="menuitem"
-            tabindex="-1"
+          <div
+            class="ScrollMenu-scrollView"
+            tabindex="0"
           >
-            <p
-              class="MuiTypography-root Typography-bodyInherit Typography-black MuiTypography-body1 MenuItem-stringContent"
+            <li
+              class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
+              role="menuitem"
+              tabindex="-1"
             >
-              Croatia
-            </p>
-          </li>
-          <li
-            class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
-            role="menuitem"
-            tabindex="-1"
-          >
-            <p
-              class="MuiTypography-root Typography-bodyInherit Typography-black MuiTypography-body1 MenuItem-stringContent"
+              <p
+                class="MuiTypography-root Typography-bodyInherit Typography-black MuiTypography-body1 MenuItem-stringContent"
+              >
+                Croatia
+              </p>
+            </li>
+            <li
+              class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
+              role="menuitem"
+              tabindex="-1"
             >
-              Lithuania
-            </p>
-          </li>
+              <p
+                class="MuiTypography-root Typography-bodyInherit Typography-black MuiTypography-body1 MenuItem-stringContent"
+              >
+                Lithuania
+              </p>
+            </li>
+          </div>
         </ul>
       </div>
     </div>

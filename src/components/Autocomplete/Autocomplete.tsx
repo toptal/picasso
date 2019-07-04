@@ -1,9 +1,11 @@
 import React, {
   FunctionComponent,
   ChangeEvent,
-  InputHTMLAttributes
+  InputHTMLAttributes,
+  FormEvent
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
+import { capitalize } from '@material-ui/core/utils/helpers'
 import cx from 'classnames'
 import Downshift from 'downshift'
 import debounce from 'debounce'
@@ -32,8 +34,8 @@ export interface Props
     Omit<HTMLInputProps, 'onChange' | 'onSelect'> {
   /** Placeholder for value */
   placeholder?: string
-  /** Take the full width of a container */
-  fullWidth?: boolean
+  /** Width of the component which will apply `min-width` to the `input` */
+  width?: 'full' | 'shrink' | 'auto'
   /** Shows the loading icon when options are loading */
   loading?: boolean
   /** List of options */
@@ -90,12 +92,12 @@ const isMatchingMinLengthCondition = (value: Value, minLength?: number) =>
 export const Autocomplete: FunctionComponent<Props> = ({
   classes,
   className,
-  fullWidth,
   loading,
   minLength,
   placeholder,
   options,
   style,
+  width,
   onSelect,
   onChange,
   ...rest
@@ -159,20 +161,27 @@ export const Autocomplete: FunctionComponent<Props> = ({
 
         return (
           <div
-            className={cx(classes.root, classes.rootFixedWidth, className, {
-              [classes.rootFullWidth]: fullWidth
-            })}
+            className={cx(
+              classes.root,
+              className,
+              classes[`root${capitalize(width!)}`]
+            )}
             style={style}
           >
             <TextField
-              inputProps={{
-                labelWidth: 0,
-                ...inputProps,
-                ...rest
-              }}
-              fullWidth={fullWidth}
               icon={loading ? <Loader size='small' /> : null}
               iconPosition='end'
+              onChange={event => {
+                inputProps.onChange(event as FormEvent<HTMLInputElement>)
+              }}
+              // @ts-ignore
+              value={inputProps.value}
+              width={width}
+              onBlur={inputProps.onBlur}
+              onFocus={inputProps.onFocus}
+              onKeyDown={inputProps.onKeyDown}
+              placeholder={placeholder}
+              {...rest}
             />
 
             {/* eslint-disable-next-line react/jsx-props-no-spreading */}
@@ -193,11 +202,11 @@ export const Autocomplete: FunctionComponent<Props> = ({
 }
 
 Autocomplete.defaultProps = {
-  fullWidth: false,
   loading: false,
   onChange: () => {},
   onSelect: () => {},
-  options: []
+  options: [],
+  width: 'auto'
 }
 
 Autocomplete.displayName = 'Autocomplete'
