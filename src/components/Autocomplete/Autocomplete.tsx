@@ -177,7 +177,9 @@ export const Autocomplete: FunctionComponent<Props> = ({
 
             {/* eslint-disable-next-line react/jsx-props-no-spreading */}
             <div {...getMenuProps()}>
-              {isOpen && isMatchingMinLengthCondition(inputValue, minLength) ? (
+              {isOpen &&
+              isMatchingMinLengthCondition(inputValue, minLength) &&
+              !loading ? (
                 <ScrollMenu selectedIndex={highlightedIndex}>
                   {renderOptions(filteredOptions, inputValue)}
                 </ScrollMenu>
@@ -193,9 +195,9 @@ export const Autocomplete: FunctionComponent<Props> = ({
 Autocomplete.defaultProps = {
   fullWidth: false,
   loading: false,
-  options: [],
+  onChange: () => {},
   onSelect: () => {},
-  onChange: () => {}
+  options: []
 }
 
 Autocomplete.displayName = 'Autocomplete'
