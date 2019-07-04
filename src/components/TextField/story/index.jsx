@@ -15,6 +15,9 @@ page
     component: TextField,
     name: 'TextField',
     additionalDocs: {
+      fullWidth: {
+        name: 'fullWidth [DEPRECATED]'
+      },
       iconPosition: {
         type: 'enum',
         enums: ['start', 'end']

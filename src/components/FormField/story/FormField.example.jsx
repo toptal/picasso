@@ -14,7 +14,7 @@ const FormFieldExample = () => (
           <Form.Label required htmlFor='city'>
             City
           </Form.Label>
-          <TextField id='city' fullWidth placeholder='e.g., Barcelona' />
+          <TextField id='city' width='full' placeholder='e.g., Barcelona' />
           <Form.Hint>Choose city where you would like to live</Form.Hint>
         </Form.Field>
 
@@ -27,7 +27,7 @@ const FormFieldExample = () => (
           </Form.Label>
           <TextField
             id='district'
-            fullWidth
+            width='full'
             placeholder='e.g., Sant Marti'
             error
           />

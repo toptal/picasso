@@ -5,15 +5,16 @@ import React, {
   InputHTMLAttributes
 } from 'react'
 import cx from 'classnames'
-import MUITextField from '@material-ui/core/TextField'
 import { withStyles } from '@material-ui/core/styles'
 import { OutlinedInputProps } from '@material-ui/core/OutlinedInput'
 
 import InputAdornment from '../InputAdornment'
+import OutlinedInput from '../OutlinedInput'
 import { StandardProps } from '../Picasso'
 import styles from './styles'
 
 type IconPosition = 'start' | 'end'
+
 /**
  * Alias for all valid HTML props for `<input>` element.
  * Does not include React's `ref` or `key`.
@@ -35,6 +36,8 @@ export interface Props extends StandardProps, HTMLInputProps {
   disabled?: boolean
   /** Take the full width of a container */
   fullWidth?: boolean
+  /** Width of the component which will apply `min-width` to the `input` */
+  width?: 'full' | 'shrink' | 'auto'
   /** Focus during first mount */
   autoFocus?: boolean
   /** Helps users to fill forms faster */
@@ -43,13 +46,13 @@ export interface Props extends StandardProps, HTMLInputProps {
   iconPosition?: IconPosition
   /** Specify icon which should be rendered inside TextField */
   icon?: ReactNode
-  inputProps?: OutlinedInputProps
+  inputProps?: OutlinedInputProps // DEPRECATED: remove in v3
   /** Whether `TextField` should be rendered as `TextArea` or not */
   multiline?: boolean
   /** Specify rows amount for `TextArea` */
-  rows?: number
+  rows?: string | number
   /* Maximum number of rows to display when multiline option is set to true. */
-  rowsMax?: number
+  rowsMax?: string | number
   /** Type attribute of the Input element. It should be a valid HTML5 input type */
   type?: string
   /**  Callback invoked when `TextField` changes its state */
@@ -71,43 +74,36 @@ export const TextField: FunctionComponent<Props> = ({
   autoComplete,
   icon,
   iconPosition,
-  inputProps = {} as OutlinedInputProps,
   classes,
   children,
   multiline,
   fullWidth,
+  width,
   className,
   style,
   rows,
   rowsMax,
   type,
   onChange,
+  inputProps,
   ...rest
 }) => {
-  if (icon) {
-    const IconAdornment = (
-      <InputAdornment
-        className={cx(
-          classes.icon,
-          iconPosition === 'end' ? classes.iconEnd : classes.iconStart
-        )}
-        position={iconPosition!}
-      >
-        {icon}
-      </InputAdornment>
-    )
-
-    inputProps.notched = false
-
-    if (iconPosition === 'end') {
-      inputProps.endAdornment = IconAdornment
-    } else {
-      inputProps.startAdornment = IconAdornment
-    }
-  }
+  const IconAdornment = icon && (
+    <InputAdornment position={iconPosition!} disabled={disabled}>
+      {icon}
+    </InputAdornment>
+  )
 
   return (
-    <MUITextField
+    <OutlinedInput
+      className={className}
+      style={style}
+      classes={{
+        root: cx(classes.root, {
+          [classes.rootMultiline]: multiline
+        }),
+        input: classes.input
+      }}
       id={id}
       name={name}
       value={value}
@@ -117,31 +113,20 @@ export const TextField: FunctionComponent<Props> = ({
       autoFocus={autoFocus}
       autoComplete={autoComplete}
       multiline={multiline}
-      variant='outlined'
-      style={style}
       rows={rows}
       rowsMax={rowsMax}
       type={type}
-      className={cx(classes.rootFixedWidth, className, {
-        [classes.rootFullWidth]: fullWidth
-      })}
+      width={fullWidth ? 'full' : width}
       // html attributes
       inputProps={rest}
-      // props that are not html attributes
-      InputProps={{
-        ...inputProps,
-        classes: {
-          root: cx(classes.root, {
-            [classes.rootMultiline]: multiline
-          }),
-          input: classes.input,
-          inputMultiline: classes.inputMultiline
-        }
-      }}
+      endAdornment={iconPosition === 'end' && IconAdornment}
+      startAdornment={iconPosition === 'start' && IconAdornment}
       onChange={onChange}
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...inputProps}
     >
       {children}
-    </MUITextField>
+    </OutlinedInput>
   )
 }
 

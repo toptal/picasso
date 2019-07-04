@@ -10,7 +10,6 @@ import { MenuProps } from '@material-ui/core/Menu'
 import { withStyles } from '@material-ui/core/styles'
 import { capitalize } from '@material-ui/core/utils/helpers'
 
-import FormControl from '../FormControl'
 import OutlinedInput from '../OutlinedInput'
 import InputAdornment from '../InputAdornment'
 import MenuItem from '../MenuItem'
@@ -96,7 +95,6 @@ export const Select: FunctionComponent<Props> = ({
   onChange,
   value
 }) => {
-  const fullWidth = width === 'full'
   const isPlaceholderShown = placeholder && value === ''
 
   const selectedOption = useMemo(
@@ -113,20 +111,12 @@ export const Select: FunctionComponent<Props> = ({
           [classes.inputNative]: native
         })
       }}
-      fullWidth={fullWidth}
-      labelWidth={0}
+      width={width}
     />
   )
 
   const iconAdornment = icon ? (
-    <InputAdornment
-      className={cx(classes.icon, {
-        [classes.iconDisabled]: disabled,
-        [classes.iconStart]: iconPosition === 'start',
-        [classes.iconEnd]: iconPosition === 'end'
-      })}
-      position={iconPosition!}
-    >
+    <InputAdornment disabled={disabled} position={iconPosition!}>
       {icon}
     </InputAdornment>
   ) : null
@@ -143,17 +133,19 @@ export const Select: FunctionComponent<Props> = ({
     getContentAnchorEl: undefined // needed to restore default behaviour
   } as Partial<MenuProps>
 
-  const select = (
+  return (
     <MUISelect
       className={className}
       style={style}
       classes={{
-        root: cx(classes.root, classes[`root${capitalize(width!)}`], {
+        root: cx(classes[`root${capitalize(width!)}`], {
           [classes.selectNative]: native
         }),
         icon: classes.caret,
         select: classes.select
       }}
+      error={error}
+      disabled={disabled}
       displayEmpty
       id={id}
       input={outlinedInput}
@@ -182,16 +174,6 @@ export const Select: FunctionComponent<Props> = ({
     >
       {renderOptions(options, placeholder, native)}
     </MUISelect>
-  )
-
-  return (
-    <FormControl
-      error={error}
-      disabled={disabled}
-      className={cx(className, { [classes.rootFull]: fullWidth })}
-    >
-      {select}
-    </FormControl>
   )
 }
 

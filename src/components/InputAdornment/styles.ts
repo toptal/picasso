@@ -1,18 +1,25 @@
-import { createStyles } from '@material-ui/core'
+import { Theme, createStyles } from '@material-ui/core'
 
 import { PicassoProvider } from '../Picasso'
+import { alpha } from '../styles'
 
-PicassoProvider.override(() => ({
+PicassoProvider.override(({ palette }) => ({
   MuiInputAdornment: {
-    positionStart: {
-      marginLeft: 0,
-      marginRight: 0
+    root: {
+      color: palette.grey.dark
     },
+    positionStart: {},
     positionEnd: {
-      marginLeft: 0,
-      marginRight: 0
+      justifyContent: 'flex-end',
+      flexGrow: 1
     }
   }
 }))
 
-export default () => createStyles({})
+export default ({ palette }: Theme) =>
+  createStyles({
+    root: {},
+    rootDisabled: {
+      color: alpha(palette.grey.dark!, 0.48)
+    }
+  })

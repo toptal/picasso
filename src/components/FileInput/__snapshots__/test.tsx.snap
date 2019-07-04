@@ -6,86 +6,82 @@ exports[`FileInput default render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiFormControl-root"
+      class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root FileInput-root OutlinedInput-rootAuto MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
     >
-      <div
-        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root FileInput-root MuiInputBase-formControl MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+      <fieldset
+        aria-hidden="true"
+        class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+        style="padding-left: 8px;"
       >
-        <fieldset
-          aria-hidden="true"
-          class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
-          style="padding-left: 8px;"
+        <legend
+          class="MuiPrivateNotchedOutline-legend"
+          style="width: 0.01px;"
         >
-          <legend
-            class="MuiPrivateNotchedOutline-legend"
-            style="width: 0.01px;"
-          >
-            <span>
-              ​
-            </span>
-          </legend>
-        </fieldset>
-        <div
-          class="MuiInputAdornment-root MuiInputAdornment-positionStart FileInput-adornmentStart"
+          <span>
+            ​
+          </span>
+        </legend>
+      </fieldset>
+      <div
+        class="MuiInputAdornment-root InputAdornment-root MuiInputAdornment-positionStart FileInput-adornmentStart"
+      >
+        <svg
+          class="SvgUploadDocument16-root"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
         >
-          <svg
-            class="SvgUploadDocument16-root"
-            style="min-width: 16px; min-height: 16px;"
-            viewBox="0 0 16 16"
+          <defs>
+            <path
+              d="M1 15h7v1H0V0h13v8h-1V1H1v14zm12-3.293V16h-1v-4.293l-1.5 1.5-.707-.707L12.5 9.793l.707.707 2 2-.707.707-1.5-1.5zM3 4h7v1H3V4zm0 2h7v1H3V6zm0 2h3v1H3V8z"
+              id="uploadDocument16_svg__a"
+            />
+          </defs>
+          <g
+            fill-rule="evenodd"
           >
-            <defs>
-              <path
-                d="M1 15h7v1H0V0h13v8h-1V1H1v14zm12-3.293V16h-1v-4.293l-1.5 1.5-.707-.707L12.5 9.793l.707.707 2 2-.707.707-1.5-1.5zM3 4h7v1H3V4zm0 2h7v1H3V6zm0 2h3v1H3V8z"
-                id="uploadDocument16_svg__a"
-              />
-            </defs>
-            <g
-              fill-rule="evenodd"
+            <mask
+              id="uploadDocument16_svg__b"
             >
-              <mask
-                id="uploadDocument16_svg__b"
-              >
-                <use
-                  xlink:href="#uploadDocument16_svg__a"
-                />
-              </mask>
               <use
-                fill-rule="nonzero"
                 xlink:href="#uploadDocument16_svg__a"
               />
-              <g
-                mask="url(#uploadDocument16_svg__b)"
-              >
-                <path
-                  d="M0 0h16v16H0z"
-                />
-              </g>
-            </g>
-          </svg>
-        </div>
-        <p
-          class="MuiTypography-root Typography-bodyInherit Typography-inherit MuiTypography-body1 MuiTypography-inline Component-inputValue"
-        />
-        <input
-          class="Component-nativeInput"
-          type="file"
-        />
-        <div
-          class="MuiInputAdornment-root MuiInputAdornment-positionEnd FileInput-adornmentEnd"
-        >
-          <button
-            class="MuiButtonBase-root Button-small Button-primaryBlue Button-root FileInput-button"
-            tabindex="0"
-            type="button"
-          >
-            <span
-              class="Component-flex Component-inline Button-content"
-              style="flex-direction: row; align-items: center;"
+            </mask>
+            <use
+              fill-rule="nonzero"
+              xlink:href="#uploadDocument16_svg__a"
+            />
+            <g
+              mask="url(#uploadDocument16_svg__b)"
             >
-              Choose File
-            </span>
-          </button>
-        </div>
+              <path
+                d="M0 0h16v16H0z"
+              />
+            </g>
+          </g>
+        </svg>
+      </div>
+      <p
+        class="MuiTypography-root Typography-bodyInherit MuiTypography-body1 MuiTypography-inline Component-inputValue"
+      />
+      <input
+        class="Component-nativeInput"
+        type="file"
+      />
+      <div
+        class="MuiInputAdornment-root InputAdornment-root MuiInputAdornment-positionEnd"
+      >
+        <button
+          class="MuiButtonBase-root Button-small Button-primaryBlue Button-root FileInput-button"
+          tabindex="0"
+          type="button"
+        >
+          <span
+            class="Component-flex Component-inline Button-content"
+            style="flex-direction: row; align-items: center;"
+          >
+            Choose File
+          </span>
+        </button>
       </div>
     </div>
   </div>

@@ -7,7 +7,7 @@ const FormsExample = () => (
       <Grid.Item small={12} medium={8} large={6}>
         <Form>
           <Form.Field>
-            <TextField fullWidth placeholder='Job title' />
+            <TextField width='full' placeholder='Job title' />
           </Form.Field>
         </Form>
       </Grid.Item>

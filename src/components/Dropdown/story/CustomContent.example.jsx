@@ -30,7 +30,7 @@ const ComplexContent = () => {
       </Container>
       <Form>
         <Form.Field>
-          <TextField autoFocus fullWidth placeholder='Job title' />
+          <TextField autoFocus width='full' placeholder='Job title' />
         </Form.Field>
         <Form.Field>
           <Select placeholder='Select talent' options={OPTIONS} />

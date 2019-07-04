@@ -10,7 +10,7 @@ const TextFieldFullWidthExample = () => {
 
   return (
     <TextField
-      fullWidth
+      width='full'
       value={value}
       placeholder='Placeholder'
       onChange={handleChange}

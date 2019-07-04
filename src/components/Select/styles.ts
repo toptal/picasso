@@ -1,7 +1,6 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
 import { PicassoProvider } from '../Picasso'
-import '../FormControl/styles'
 import '../InputLabel/styles'
 import '../InputBase/styles'
 import '../OutlinedInput/styles'
@@ -23,12 +22,8 @@ PicassoProvider.override(() => ({
   }
 }))
 
-export default ({ spacing: { input, inputIcon }, palette }: Theme) =>
+export default ({ spacing: { input }, palette }: Theme) =>
   createStyles({
-    root: {
-      height: input.height,
-      width: input.width
-    },
     rootFull: {
       width: '100%',
       display: 'flex'
@@ -41,14 +36,7 @@ export default ({ spacing: { input, inputIcon }, palette }: Theme) =>
     },
     rootAuto: {},
     input: {
-      fontSize: '1em',
-      display: 'flex',
-      alignItems: 'center',
-      boxSizing: 'border-box',
-      height: '100%',
-      padding: input.padding,
-      paddingRight: `calc(${input.padding} + 1em)`,
-      border: 'none'
+      paddingRight: `calc(${input.padding} + 1em)`
     },
     inputNative: {
       fontSize: '0.8125em',
@@ -84,24 +72,5 @@ export default ({ spacing: { input, inputIcon }, palette }: Theme) =>
     },
     placeholder: {
       opacity: 0.4
-    },
-    icon: {
-      color: palette.grey.dark,
-      fontSize: '1em',
-      minWidth: inputIcon.width,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'flex-start'
-    },
-    iconStart: {
-      marginRight: '0.5em'
-    },
-    iconEnd: {
-      marginLeft: '0.5em',
-      justifyContent: 'flex-end',
-      flexGrow: 1
-    },
-    iconDisabled: {
-      color: alpha(palette.grey.dark!, 0.48)
     }
   })
