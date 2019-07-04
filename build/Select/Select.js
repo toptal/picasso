@@ -15,7 +15,6 @@ const classnames_1 = __importDefault(require("classnames"));
 const Select_1 = __importDefault(require("@material-ui/core/Select"));
 const styles_1 = require("@material-ui/core/styles");
 const helpers_1 = require("@material-ui/core/utils/helpers");
-const FormControl_1 = __importDefault(require("../FormControl"));
 const OutlinedInput_1 = __importDefault(require("../OutlinedInput"));
 const InputAdornment_1 = __importDefault(require("../InputAdornment"));
 const MenuItem_1 = __importDefault(require("../MenuItem"));
@@ -34,7 +33,6 @@ const renderOptions = (options, placeholder, isNative) => {
     return resultOptions;
 };
 exports.Select = ({ classes, className, style, width, id, icon, iconPosition, native, options, placeholder, disabled, error, onChange, value }) => {
-    const fullWidth = width === 'full';
     const isPlaceholderShown = placeholder && value === '';
     const selectedOption = react_1.useMemo(() => options.find(option => option.value === value), [value, options]);
     const outlinedInput = (react_1.default.createElement(OutlinedInput_1.default, { classes: {
@@ -43,12 +41,8 @@ exports.Select = ({ classes, className, style, width, id, icon, iconPosition, na
                 [classes.inputPlaceholderDisabled]: isPlaceholderShown && disabled,
                 [classes.inputNative]: native
             })
-        }, fullWidth: fullWidth, labelWidth: 0 }));
-    const iconAdornment = icon ? (react_1.default.createElement(InputAdornment_1.default, { className: classnames_1.default(classes.icon, {
-            [classes.iconDisabled]: disabled,
-            [classes.iconStart]: iconPosition === 'start',
-            [classes.iconEnd]: iconPosition === 'end'
-        }), position: iconPosition }, icon)) : null;
+        }, width: width }));
+    const iconAdornment = icon ? (react_1.default.createElement(InputAdornment_1.default, { disabled: disabled, position: iconPosition }, icon)) : null;
     const menuProps = {
         anchorOrigin: {
             vertical: 'bottom',
@@ -60,13 +54,13 @@ exports.Select = ({ classes, className, style, width, id, icon, iconPosition, na
         },
         getContentAnchorEl: undefined // needed to restore default behaviour
     };
-    const select = (react_1.default.createElement(Select_1.default, { className: className, style: style, classes: {
-            root: classnames_1.default(classes.root, classes[`root${helpers_1.capitalize(width)}`], {
+    return (react_1.default.createElement(Select_1.default, { className: className, style: style, classes: {
+            root: classnames_1.default(classes[`root${helpers_1.capitalize(width)}`], {
                 [classes.selectNative]: native
             }),
             icon: classes.caret,
             select: classes.select
-        }, displayEmpty: true, id: id, input: outlinedInput, native: native, variant: 'outlined', value: value, renderValue: () => (react_1.default.createElement(react_1.default.Fragment, null,
+        }, error: error, disabled: disabled, displayEmpty: true, id: id, input: outlinedInput, native: native, variant: 'outlined', value: value, renderValue: () => (react_1.default.createElement(react_1.default.Fragment, null,
             iconPosition === 'start' && iconAdornment,
             react_1.default.createElement(Typography_1.default, { className: classes.inputValue, inline: true, color: 'inherit' },
                 selectedOption && selectedOption.text,
@@ -74,7 +68,6 @@ exports.Select = ({ classes, className, style, width, id, icon, iconPosition, na
             iconPosition === 'end' && iconAdornment)), IconComponent: ({ className }) => (react_1.default.createElement(Icon_1.DropdownArrows16, { className: classnames_1.default(className, {
                 [classes.caretDisabled]: disabled
             }) })), MenuProps: menuProps, onChange: onChange }, renderOptions(options, placeholder, native)));
-    return (react_1.default.createElement(FormControl_1.default, { error: error, disabled: disabled, className: classnames_1.default(className, { [classes.rootFull]: fullWidth }) }, select));
 };
 exports.Select.defaultProps = {
     disabled: false,

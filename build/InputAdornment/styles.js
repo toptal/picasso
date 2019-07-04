@@ -2,17 +2,23 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@material-ui/core");
 const Picasso_1 = require("../Picasso");
-Picasso_1.PicassoProvider.override(() => ({
+const styles_1 = require("../styles");
+Picasso_1.PicassoProvider.override(({ palette }) => ({
     MuiInputAdornment: {
-        positionStart: {
-            marginLeft: 0,
-            marginRight: 0
+        root: {
+            color: palette.grey.dark
         },
+        positionStart: {},
         positionEnd: {
-            marginLeft: 0,
-            marginRight: 0
+            justifyContent: 'flex-end',
+            flexGrow: 1
         }
     }
 }));
-exports.default = () => core_1.createStyles({});
+exports.default = ({ palette }) => core_1.createStyles({
+    root: {},
+    rootDisabled: {
+        color: styles_1.alpha(palette.grey.dark, 0.48)
+    }
+});
 //# sourceMappingURL=styles.js.map

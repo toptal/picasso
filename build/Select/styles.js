@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const styles_1 = require("@material-ui/core/styles");
 const Picasso_1 = require("../Picasso");
-require("../FormControl/styles");
 require("../InputLabel/styles");
 require("../InputBase/styles");
 require("../OutlinedInput/styles");
@@ -22,11 +21,7 @@ Picasso_1.PicassoProvider.override(() => ({
         }
     }
 }));
-exports.default = ({ spacing: { input, inputIcon }, palette }) => styles_1.createStyles({
-    root: {
-        height: input.height,
-        width: input.width
-    },
+exports.default = ({ spacing: { input }, palette }) => styles_1.createStyles({
     rootFull: {
         width: '100%',
         display: 'flex'
@@ -39,14 +34,7 @@ exports.default = ({ spacing: { input, inputIcon }, palette }) => styles_1.creat
     },
     rootAuto: {},
     input: {
-        fontSize: '1em',
-        display: 'flex',
-        alignItems: 'center',
-        boxSizing: 'border-box',
-        height: '100%',
-        padding: input.padding,
-        paddingRight: `calc(${input.padding} + 1em)`,
-        border: 'none'
+        paddingRight: `calc(${input.padding} + 1em)`
     },
     inputNative: {
         fontSize: '0.8125em',
@@ -82,25 +70,6 @@ exports.default = ({ spacing: { input, inputIcon }, palette }) => styles_1.creat
     },
     placeholder: {
         opacity: 0.4
-    },
-    icon: {
-        color: palette.grey.dark,
-        fontSize: '1em',
-        minWidth: inputIcon.width,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'flex-start'
-    },
-    iconStart: {
-        marginRight: '0.5em'
-    },
-    iconEnd: {
-        marginLeft: '0.5em',
-        justifyContent: 'flex-end',
-        flexGrow: 1
-    },
-    iconDisabled: {
-        color: styles_2.alpha(palette.grey.dark, 0.48)
     }
 });
 //# sourceMappingURL=styles.js.map

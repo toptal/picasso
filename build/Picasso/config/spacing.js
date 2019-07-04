@@ -7,12 +7,6 @@ const spacing = {
         height: '2.25em',
         width: '18.75em',
         padding: '0.625em'
-    },
-    inputLabel: {
-        height: '1em'
-    },
-    inputIcon: {
-        width: '1em'
     }
 };
 exports.default = spacing;

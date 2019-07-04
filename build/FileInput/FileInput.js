@@ -14,7 +14,6 @@ const react_1 = __importStar(require("react"));
 const styles_1 = require("@material-ui/core/styles");
 const classnames_1 = __importDefault(require("classnames"));
 const palette_1 = __importDefault(require("../Picasso/config/palette"));
-const FormControl_1 = __importDefault(require("../FormControl"));
 const OutlinedInput_1 = __importDefault(require("../OutlinedInput"));
 const InputAdornment_1 = __importDefault(require("../InputAdornment"));
 const Button_1 = __importDefault(require("../Button"));
@@ -38,46 +37,39 @@ const FileInputContent = styles_1.withStyles(styles_2.default)(({ classes, accep
         return status;
     };
     return (react_1.default.createElement(react_1.Fragment, null,
-        react_1.default.createElement(Typography_1.default, { className: classes.inputValue, inline: true, color: 'inherit' }, getFilename()),
+        react_1.default.createElement(Typography_1.default, { className: classnames_1.default(classes.inputValue, {
+                [classes.inputValueDisabled]: disabled
+            }), inline: true }, getFilename()),
         react_1.default.createElement("input", { type: 'file', className: classes.nativeInput, ref: inputRef, accept: accept, onChange: onChange })));
 });
-exports.FileInput = ({ classes, className, style, fullWidth, accept, progress, error, disabled, value, status, onChange }) => {
+exports.FileInput = ({ classes, className, style, width, accept, progress, error, disabled, value, status, onChange }) => {
     const nativeInput = react_1.useRef();
     const inProgress = (utils_1.isNumber(progress) && progress <= 100) ||
         (utils_1.isBoolean(progress) && progress);
     const uploadButtonVariant = value || error ? 'secondary-blue' : 'primary-blue';
     const uploadButtonTitle = value || error ? 'Choose different file' : 'Choose File';
     const loaderValue = utils_1.isNumber(progress) && progress;
-    const startAdornment = (react_1.default.createElement(InputAdornment_1.default, { className: classnames_1.default(classes.adornmentStart, {
-            [classes.adornmentDisabled]: disabled
-        }), position: 'start' }, value ? (react_1.default.createElement(Icon_1.Check16, { color: !disabled ? palette_1.default.green.main : undefined })) : (react_1.default.createElement(Icon_1.UploadDocument16, null))));
-    const endAdornment = (react_1.default.createElement(InputAdornment_1.default, { className: classes.adornmentEnd, position: 'end' }, inProgress ? (react_1.default.createElement(Loader_1.default, { className: classes.loader, size: 'small', value: utils_1.isNumber(progress) ? loaderValue : undefined })) : (react_1.default.createElement(Button_1.default, { className: classes.button, size: 'small', variant: uploadButtonVariant, disabled: disabled, onClick: () => nativeInput.current && nativeInput.current.click() }, uploadButtonTitle))));
-    return (react_1.default.createElement(FormControl_1.default, { error: error, disabled: disabled, fullWidth: fullWidth, className: className, style: style },
-        react_1.default.createElement(OutlinedInput_1.default, { classes: {
-                root: classes.root,
-                input: classnames_1.default(classes.input, {
-                    [classes.inputStatus]: !value,
-                    [classes.inputStatusDisabled]: !value && disabled
-                })
-            }, type: 'file', 
-            // MUIv3 doesn't provide generic way to change type of component and props
-            // that would be extensions of input component
-            // https://github.com/mui-org/material-ui/blob/v3.x/packages/material-ui/src/InputBase/InputBase.d.ts#L18
-            // @ts-ignore
-            inputComponent: FileInputContent, 
-            // @ts-ignore
-            inputProps: {
-                error,
-                disabled,
-                progress,
-                value,
-                onChange,
-                accept,
-                status
-            }, inputRef: nativeInput, startAdornment: startAdornment, endAdornment: endAdornment, labelWidth: 0 })));
-};
-exports.FileInput.defaultProps = {
-    fullWidth: false
+    const startAdornment = (react_1.default.createElement(InputAdornment_1.default, { className: classes.adornmentStart, disabled: disabled, position: 'start' }, value ? (react_1.default.createElement(Icon_1.Check16, { color: !disabled ? palette_1.default.green.main : undefined })) : (react_1.default.createElement(Icon_1.UploadDocument16, null))));
+    const endAdornment = (react_1.default.createElement(InputAdornment_1.default, { position: 'end' }, inProgress ? (react_1.default.createElement(Loader_1.default, { className: classes.loader, size: 'small', value: utils_1.isNumber(progress) ? loaderValue : undefined })) : (react_1.default.createElement(Button_1.default, { className: classes.button, size: 'small', variant: uploadButtonVariant, disabled: disabled, onClick: () => nativeInput.current && nativeInput.current.click() }, uploadButtonTitle))));
+    return (react_1.default.createElement(OutlinedInput_1.default, { className: className, style: style, classes: {
+            root: classes.root,
+            input: classes.input
+        }, error: error, disabled: disabled, width: width, type: 'file', 
+        // MUIv3 doesn't provide generic way to change type of component and props
+        // that would be extensions of input component
+        // https://github.com/mui-org/material-ui/blob/v3.x/packages/material-ui/src/InputBase/InputBase.d.ts#L18
+        // @ts-ignore
+        inputComponent: FileInputContent, 
+        // @ts-ignore
+        inputProps: {
+            progress,
+            error,
+            disabled,
+            value,
+            onChange,
+            accept,
+            status
+        }, inputRef: nativeInput, startAdornment: startAdornment, endAdornment: endAdornment }));
 };
 exports.FileInput.displayName = 'FileInput';
 exports.default = styles_1.withStyles(styles_2.default)(exports.FileInput);

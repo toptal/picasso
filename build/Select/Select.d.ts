@@ -31,5 +31,5 @@ export interface Props extends StandardProps {
     value?: string | number;
 }
 export declare const Select: FunctionComponent<Props>;
-declare const _default: React.ComponentType<Pick<React.PropsWithChildren<Props>, "width" | "style" | "icon" | "disabled" | "children" | "error" | "className" | "id" | "placeholder" | "onChange" | "value" | "iconPosition" | "native" | "options"> & import("@material-ui/core/styles").StyledComponentProps<"icon" | "caret" | "input" | "select" | "root" | "placeholder" | "iconStart" | "iconEnd" | "rootFull" | "rootShrink" | "rootAuto" | "inputNative" | "inputPlaceholder" | "inputPlaceholderDisabled" | "inputValue" | "selectNative" | "caretDisabled" | "iconDisabled">>;
+declare const _default: React.ComponentType<Pick<React.PropsWithChildren<Props>, "width" | "style" | "icon" | "disabled" | "children" | "error" | "className" | "id" | "placeholder" | "onChange" | "value" | "iconPosition" | "native" | "options"> & import("@material-ui/core/styles").StyledComponentProps<"caret" | "input" | "select" | "placeholder" | "rootFull" | "rootShrink" | "rootAuto" | "inputNative" | "inputPlaceholder" | "inputPlaceholderDisabled" | "inputValue" | "selectNative" | "caretDisabled">>;
 export default _default;

@@ -1,3 +1,10 @@
+## [2.10.1](https://github.com/toptal/picasso/compare/v2.10.0...v2.10.1) (2019-07-04)
+
+
+### Bug Fixes
+
+* **OutlinedInput:** spread props for TextField support ([#528](https://github.com/toptal/picasso/issues/528)) ([e4a8967](https://github.com/toptal/picasso/commit/e4a8967))
+
 # [2.10.0](https://github.com/toptal/picasso/compare/v2.9.1...v2.10.0) (2019-07-03)
 
 

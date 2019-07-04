@@ -15,13 +15,13 @@ export interface Props extends StandardProps {
     progress?: number | boolean;
     /** Status message indicating various states during upload or error */
     status?: string;
-    /** Take the full width of a container */
-    fullWidth?: boolean;
+    /** Width of the component which will apply `min-width` to the `input` */
+    width?: 'full' | 'shrink' | 'auto';
     /** Descriptor containing file name and location */
     value?: FileInfo;
     /** Callback invoked when `FileInput` changes its state by selecting new files. */
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 export declare const FileInput: FunctionComponent<Props>;
-declare const _default: React.ComponentType<Pick<React.PropsWithChildren<Props>, "style" | "progress" | "disabled" | "children" | "fullWidth" | "error" | "className" | "onChange" | "value" | "accept" | "status"> & import("@material-ui/core/styles").StyledComponentProps<"button" | "input" | "root" | "loader" | "inputValue" | "inputStatus" | "inputStatusDisabled" | "nativeInput" | "adornmentStart" | "adornmentEnd" | "adornmentDisabled">>;
+declare const _default: React.ComponentType<Pick<React.PropsWithChildren<Props>, "width" | "style" | "progress" | "disabled" | "children" | "error" | "className" | "onChange" | "value" | "accept" | "status"> & import("@material-ui/core/styles").StyledComponentProps<"button" | "input" | "root" | "loader" | "inputValue" | "inputValueDisabled" | "nativeInput" | "adornmentStart">>;
 export default _default;

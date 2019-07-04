@@ -16,35 +16,23 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
 const classnames_1 = __importDefault(require("classnames"));
-const TextField_1 = __importDefault(require("@material-ui/core/TextField"));
 const styles_1 = require("@material-ui/core/styles");
 const InputAdornment_1 = __importDefault(require("../InputAdornment"));
+const OutlinedInput_1 = __importDefault(require("../OutlinedInput"));
 const styles_2 = __importDefault(require("./styles"));
 exports.TextField = (_a) => {
-    var { id, name, value, placeholder, error, disabled, autoFocus, autoComplete, icon, iconPosition, inputProps = {}, classes, children, multiline, fullWidth, className, style, rows, rowsMax, type, onChange } = _a, rest = __rest(_a, ["id", "name", "value", "placeholder", "error", "disabled", "autoFocus", "autoComplete", "icon", "iconPosition", "inputProps", "classes", "children", "multiline", "fullWidth", "className", "style", "rows", "rowsMax", "type", "onChange"]);
-    if (icon) {
-        const IconAdornment = (react_1.default.createElement(InputAdornment_1.default, { className: classnames_1.default(classes.icon, iconPosition === 'end' ? classes.iconEnd : classes.iconStart), position: iconPosition }, icon));
-        inputProps.notched = false;
-        if (iconPosition === 'end') {
-            inputProps.endAdornment = IconAdornment;
-        }
-        else {
-            inputProps.startAdornment = IconAdornment;
-        }
-    }
-    return (react_1.default.createElement(TextField_1.default, { id: id, name: name, value: value, placeholder: placeholder, error: error, disabled: disabled, autoFocus: autoFocus, autoComplete: autoComplete, multiline: multiline, variant: 'outlined', style: style, rows: rows, rowsMax: rowsMax, type: type, className: classnames_1.default(classes.rootFixedWidth, className, {
-            [classes.rootFullWidth]: fullWidth
-        }), 
+    var { id, name, value, placeholder, error, disabled, autoFocus, autoComplete, icon, iconPosition, classes, children, multiline, fullWidth, width, className, style, rows, rowsMax, type, onChange, inputProps } = _a, rest = __rest(_a, ["id", "name", "value", "placeholder", "error", "disabled", "autoFocus", "autoComplete", "icon", "iconPosition", "classes", "children", "multiline", "fullWidth", "width", "className", "style", "rows", "rowsMax", "type", "onChange", "inputProps"]);
+    const IconAdornment = icon && (react_1.default.createElement(InputAdornment_1.default, { position: iconPosition, disabled: disabled }, icon));
+    return (react_1.default.createElement(OutlinedInput_1.default
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    , Object.assign({}, inputProps, { className: className, style: style, classes: {
+            root: classnames_1.default(classes.root, {
+                [classes.rootMultiline]: multiline
+            }),
+            input: classes.input
+        }, id: id, name: name, value: value, placeholder: placeholder, error: error, disabled: disabled, autoFocus: autoFocus, autoComplete: autoComplete, multiline: multiline, rows: rows, rowsMax: rowsMax, type: type, width: fullWidth ? 'full' : width, 
         // html attributes
-        inputProps: rest, 
-        // props that are not html attributes
-        InputProps: Object.assign({}, inputProps, { classes: {
-                root: classnames_1.default(classes.root, {
-                    [classes.rootMultiline]: multiline
-                }),
-                input: classes.input,
-                inputMultiline: classes.inputMultiline
-            } }), onChange: onChange }, children));
+        inputProps: rest, endAdornment: iconPosition === 'end' && IconAdornment, startAdornment: iconPosition === 'start' && IconAdornment, onChange: onChange }), children));
 };
 exports.TextField.defaultProps = {
     iconPosition: 'start',
