@@ -61,7 +61,7 @@ export const MenuItem: FunctionComponent<Props> = ({
       {...rest}
       // TODO: -1 is added to keep backward compatibility e.g. for AccountSelect component
       // Should be fixed during https://toptal-core.atlassian.net/browse/FX-310
-      tabIndex={-1}
+      tabIndex={-1} // DEPRECATED: remove explicit value in v3 and use passed one from props
       component={as}
       className={className}
       disabled={disabled}
