@@ -159,6 +159,9 @@ export const Autocomplete: FunctionComponent<Props> = ({
           ))
         }
 
+        const isAllowedToOpen =
+          isMatchingMinLengthCondition(inputValue, minLength) && !loading
+
         return (
           <div
             className={cx(
@@ -190,9 +193,7 @@ export const Autocomplete: FunctionComponent<Props> = ({
 
             {/* eslint-disable-next-line react/jsx-props-no-spreading */}
             <div {...getMenuProps()}>
-              {isOpen &&
-              isMatchingMinLengthCondition(inputValue, minLength) &&
-              !loading ? (
+              {isOpen && isAllowedToOpen ? (
                 <ScrollMenu selectedIndex={highlightedIndex}>
                   {renderOptions(filteredOptions, inputValue)}
                 </ScrollMenu>
