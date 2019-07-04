@@ -9,7 +9,7 @@ const page = PicassoBook.createPage(
 )
 
 page
-  .createChapter()
+  .createTabChapter('Props')
   .addComponentDocs({ component: Autocomplete, name: 'Autocomplete' })
   .addTextSection(
     `Autocomplete supports all the default HTML native props, as TextField supports.`

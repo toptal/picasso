@@ -14,5 +14,5 @@ const page = PicassoBook.createPage(
 )
 
 page
-  .createChapter()
+  .createTabChapter('Props')
   .addComponentDocs({ component: <%= Name %>, name: '<%= Name %>' })
