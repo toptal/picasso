@@ -1,3 +1,10 @@
+# [2.11.0](https://github.com/toptal/picasso/compare/v2.10.1...v2.11.0) (2019-07-04)
+
+
+### Features
+
+* **showmore:** add showmore component ([#502](https://github.com/toptal/picasso/issues/502)) ([7fa5db4](https://github.com/toptal/picasso/commit/7fa5db4))
+
 ## [2.10.1](https://github.com/toptal/picasso/compare/v2.10.0...v2.10.1) (2019-07-04)
 
 
