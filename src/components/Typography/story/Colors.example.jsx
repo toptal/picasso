@@ -17,10 +17,13 @@ const TypographyColorsExample = () => (
       <Typography color='yellow'>Yellow</Typography>
     </Container>
     <Container bottom={1}>
+      <Typography color='light-grey'>Light Grey</Typography>
+    </Container>
+    <Container bottom={1}>
       <Typography color='grey'>Grey</Typography>
     </Container>
     <Container bottom={1}>
-      <Typography color='light-grey'>Light Grey</Typography>
+      <Typography color='dark-grey'>Dark Grey</Typography>
     </Container>
     <Container bottom={1}>
       <Typography color='black'>Black</Typography>

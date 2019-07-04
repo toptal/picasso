@@ -25,7 +25,7 @@ export const HelpboxContent: FunctionComponent<Props> = ({
     style={style}
     variant='body'
     size='medium'
-    color='grey'
+    color='dark-grey'
   >
     {children}
   </Typography>

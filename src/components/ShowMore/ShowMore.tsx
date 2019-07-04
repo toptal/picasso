@@ -40,7 +40,7 @@ export const ShowMore: FunctionComponent<Props> = ({
 
   return (
     <React.Fragment>
-      <Typography size='medium' color='grey'>
+      <Typography size='medium' color='dark-grey'>
         <Truncate lines={!shownMore && rows}>{children}</Truncate>
       </Typography>
       {!disableToggle && (
