@@ -14,7 +14,7 @@ const AutocompleteFullWidthExample = () => (
     <Autocomplete
       placeholder='Start typing country...'
       options={options}
-      fullWidth
+      width='full'
     />
   </div>
 )
