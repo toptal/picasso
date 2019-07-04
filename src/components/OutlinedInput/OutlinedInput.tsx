@@ -41,9 +41,9 @@ export interface Props extends StandardProps {
   /** Whether `TextField` should be rendered as `TextArea` or not */
   multiline?: boolean
   /** Specify rows amount for `TextArea` */
-  rows?: number
+  rows?: string | number
   /* Maximum number of rows to display when multiline option is set to true. */
-  rowsMax?: number
+  rowsMax?: string | number
   /** Type attribute of the Input element. It should be a valid HTML5 input type */
   type?: string
   /** If true, the input will indicate an error. */

@@ -6,6 +6,7 @@ import React, {
 } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
+import { OutlinedInputProps } from '@material-ui/core/OutlinedInput'
 
 import InputAdornment from '../InputAdornment'
 import OutlinedInput from '../OutlinedInput'
@@ -13,6 +14,7 @@ import { StandardProps } from '../Picasso'
 import styles from './styles'
 
 type IconPosition = 'start' | 'end'
+
 /**
  * Alias for all valid HTML props for `<input>` element.
  * Does not include React's `ref` or `key`.
@@ -44,12 +46,13 @@ export interface Props extends StandardProps, HTMLInputProps {
   iconPosition?: IconPosition
   /** Specify icon which should be rendered inside TextField */
   icon?: ReactNode
+  inputProps?: OutlinedInputProps // DEPRECATED: remove in v3
   /** Whether `TextField` should be rendered as `TextArea` or not */
   multiline?: boolean
   /** Specify rows amount for `TextArea` */
-  rows?: number
+  rows?: string | number
   /* Maximum number of rows to display when multiline option is set to true. */
-  rowsMax?: number
+  rowsMax?: string | number
   /** Type attribute of the Input element. It should be a valid HTML5 input type */
   type?: string
   /**  Callback invoked when `TextField` changes its state */
@@ -82,6 +85,7 @@ export const TextField: FunctionComponent<Props> = ({
   rowsMax,
   type,
   onChange,
+  inputProps,
   ...rest
 }) => {
   const IconAdornment = icon && (
@@ -118,6 +122,8 @@ export const TextField: FunctionComponent<Props> = ({
       endAdornment={iconPosition === 'end' && IconAdornment}
       startAdornment={iconPosition === 'start' && IconAdornment}
       onChange={onChange}
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...inputProps}
     >
       {children}
     </OutlinedInput>
