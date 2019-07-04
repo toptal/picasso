@@ -1,7 +1,7 @@
 import React from 'react'
 import { Autocomplete } from '@toptal/picasso'
 
-const suggestions = [
+const options = [
   { label: 'Belarus' },
   { label: 'Croatia' },
   { label: 'Lithuania' },
@@ -11,11 +11,7 @@ const suggestions = [
 
 const AutocompleteLoadingExample = () => (
   <div>
-    <Autocomplete
-      placeholder='Loading state...'
-      suggestions={suggestions}
-      loading
-    />
+    <Autocomplete placeholder='Loading state...' options={options} loading />
   </div>
 )
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Autocomplete } from '@toptal/picasso'
 
-const suggestions = [
+const options = [
   { label: 'Belarus' },
   { label: 'Croatia' },
   { label: 'Lithuania' },
@@ -13,7 +13,7 @@ const AutocompleteFullWidthExample = () => (
   <div>
     <Autocomplete
       placeholder='Start typing country...'
-      suggestions={suggestions}
+      options={options}
       fullWidth
     />
   </div>

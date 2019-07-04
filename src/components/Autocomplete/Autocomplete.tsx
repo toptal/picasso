@@ -34,12 +34,14 @@ export interface Props
   placeholder?: string
   /** Take the full width of a container */
   fullWidth?: boolean
-  /** Shows the loading icon when suggestions are loading */
+  /** Shows the loading icon when options are loading */
   loading?: boolean
-  /** List of suggestions */
-  suggestions?: {
+  /** List of options */
+  options?: {
     label: string
   }[] // original type: Item[]
+  /** The minimum number of characters a user must type before a search is performed */
+  minLength?: number
   /**  Callback invoked when item is selected */
   onSelect?: (item: Item | null) => void
   /**  Callback invoked when typing value is changed */
@@ -56,39 +58,49 @@ const isSubstring = (value: Value, result: Item) => {
   return result.label.toLowerCase().includes(inputValue)
 }
 
-const getFilteredSuggestions = (suggestions: Item[], value: Value) =>
-  suggestions.filter(suggestion => isSubstring(value, suggestion))
+const getFilteredOptions = (
+  options: Item[],
+  value: Value,
+  minLength?: number
+) => {
+  if (!isMatchingMinLengthCondition(value, minLength)) {
+    return options
+  }
 
-const getRelevantSuggestions = (
-  suggestions: Item[],
-  value: Value
-): Item | null => {
+  return options.filter(option => isSubstring(value, option))
+}
+
+const getRelevantOption = (options: Item[], value: Value): Item | null => {
   if (!value || !value.trim().length) {
     return null
   }
 
-  const filteredSuggestions = getFilteredSuggestions(suggestions, value) || []
+  const filteredOptions = getFilteredOptions(options, value) || []
 
-  if (isSubstring(value, filteredSuggestions[0])) {
-    return filteredSuggestions[0]
+  if (isSubstring(value, filteredOptions[0])) {
+    return filteredOptions[0]
   }
 
   return null
 }
 
+const isMatchingMinLengthCondition = (value: Value, minLength?: number) =>
+  !minLength || (minLength && value && value.length >= minLength)
+
 export const Autocomplete: FunctionComponent<Props> = ({
   classes,
   className,
-  fullWidth = false,
-  loading = false,
+  fullWidth,
+  loading,
+  minLength,
   placeholder,
-  suggestions = [],
+  options,
   style,
-  onSelect = () => {},
-  onChange = () => {},
+  onSelect,
+  onChange,
   ...rest
 }) => {
-  const onChangeDebounced = debounce(onChange, 300)
+  const onChangeDebounced = debounce(onChange!, 300)
 
   return (
     <Downshift onSelect={onSelect}>
@@ -103,18 +115,15 @@ export const Autocomplete: FunctionComponent<Props> = ({
         openMenu,
         selectItem
       }) => {
-        const filteredSuggestions = getFilteredSuggestions(
-          suggestions,
-          inputValue
-        )
+        const filteredOptions = getFilteredOptions(options!, inputValue)
 
         const inputProps = getInputProps({
           onFocus: openMenu,
           onBlur: () => {
-            const suggestion = getRelevantSuggestions(suggestions, inputValue)
+            const option = getRelevantOption(options!, inputValue)
 
-            if (suggestion) {
-              selectItem(suggestion.label)
+            if (option) {
+              selectItem(option.label)
             }
           },
           onChange: (event: ChangeEvent<HTMLInputElement>) => {
@@ -122,26 +131,28 @@ export const Autocomplete: FunctionComponent<Props> = ({
               clearSelection()
             }
 
-            onChangeDebounced(event.target.value)
+            if (isMatchingMinLengthCondition(event.target.value, minLength)) {
+              onChangeDebounced(event.target.value)
+            }
           },
           placeholder
         })
 
-        const renderSuggestions = (suggestions: Item[], inputValue: Value) => {
-          if (!suggestions.length) {
+        const renderOptions = (options: Item[], inputValue: Value) => {
+          if (!options.length) {
             return inputValue !== '' ? (
               <Menu.Item disabled>No options</Menu.Item>
             ) : null
           }
 
-          return suggestions.map((suggestion, index) => (
+          return options.map((option, index) => (
             <Menu.Item
-              key={suggestion.label}
+              key={option.label}
               selected={highlightedIndex === index}
               // eslint-disable-next-line react/jsx-props-no-spreading
-              {...getItemProps({ item: suggestion.label })}
+              {...getItemProps({ item: option.label })}
             >
-              {suggestion.label}
+              {option.label}
             </Menu.Item>
           ))
         }
@@ -166,9 +177,9 @@ export const Autocomplete: FunctionComponent<Props> = ({
 
             {/* eslint-disable-next-line react/jsx-props-no-spreading */}
             <div {...getMenuProps()}>
-              {isOpen ? (
+              {isOpen && isMatchingMinLengthCondition(inputValue, minLength) ? (
                 <ScrollMenu selectedIndex={highlightedIndex}>
-                  {renderSuggestions(filteredSuggestions, inputValue)}
+                  {renderOptions(filteredOptions, inputValue)}
                 </ScrollMenu>
               ) : null}
             </div>
@@ -177,6 +188,14 @@ export const Autocomplete: FunctionComponent<Props> = ({
       }}
     </Downshift>
   )
+}
+
+Autocomplete.defaultProps = {
+  fullWidth: false,
+  loading: false,
+  options: [],
+  onSelect: () => {},
+  onChange: () => {}
 }
 
 Autocomplete.displayName = 'Autocomplete'

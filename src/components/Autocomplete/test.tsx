@@ -4,7 +4,7 @@ import { render, fireEvent, cleanup, RenderResult } from 'react-testing-library'
 import Picasso, { OmitInternalProps } from '../Picasso'
 import Autocomplete, { Props } from './Autocomplete'
 
-const suggestions = [
+const options = [
   { label: 'Belarus' },
   { label: 'Croatia' },
   { label: 'Lithuania' },
@@ -16,11 +16,11 @@ const renderAutocomplete = (
   children: ReactNode,
   props: OmitInternalProps<Props>
 ) => {
-  const { placeholder, suggestions } = props
+  const { placeholder, options } = props
 
   return render(
     <Picasso loadFonts={false}>
-      <Autocomplete placeholder={placeholder} suggestions={suggestions}>
+      <Autocomplete placeholder={placeholder} options={options}>
         {children}
       </Autocomplete>
     </Picasso>
@@ -35,7 +35,7 @@ describe('Autocomplete', () => {
   beforeEach(() => {
     api = renderAutocomplete(null, {
       placeholder: 'Start typing here...',
-      suggestions
+      options
     })
   })
   test('default render', () => {
@@ -43,7 +43,7 @@ describe('Autocomplete', () => {
 
     expect(container).toMatchSnapshot()
   })
-  test('render suggestions when start typing', () => {
+  test('render options when start typing', () => {
     const input = api.getByPlaceholderText('Start typing here...')
 
     // should show only Croatia and Lithuania

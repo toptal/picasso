@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react'
 import { Autocomplete } from '@toptal/picasso'
 
-const remoteSuggestions = [
+const remoteOptions = [
   { label: 'Belarus' },
   { label: 'Croatia' },
   { label: 'Lithuania' },
@@ -14,40 +14,41 @@ const remoteSuggestions = [
   { label: 'Finland' }
 ]
 
-const loadSuggestions = inputValue => {
+const loadOptions = inputValue => {
   return new Promise(resolve => {
-    const filteredSuggestions = remoteSuggestions.filter(s =>
+    const filteredOptions = remoteOptions.filter(s =>
       s.label.toLowerCase().includes(inputValue)
     )
 
-    setTimeout(() => resolve(filteredSuggestions), 1000)
+    setTimeout(() => resolve(filteredOptions), 1000)
   })
 }
 
-const AutocompleteDynamicSuggestionsExample = () => {
-  const [suggestions, setSuggestions] = useState([])
+const AutocompleteDynamicOptionsExample = () => {
+  const [options, setOptions] = useState([])
   const [loading, setLoading] = useState(false)
 
   const handleChange = useCallback(async value => {
     const inputValue = value.trim().toLowerCase()
 
     setLoading(true)
-    const suggestions = await loadSuggestions(inputValue)
+    const options = await loadOptions(inputValue)
 
     setLoading(false)
-    setSuggestions(suggestions)
+    setOptions(options)
   }, [])
 
   return (
     <div>
       <Autocomplete
         onChange={handleChange}
-        suggestions={suggestions}
+        options={options}
         loading={loading}
+        minLength={2}
         placeholder='Start typing Sweden...'
       />
     </div>
   )
 }
 
-export default AutocompleteDynamicSuggestionsExample
+export default AutocompleteDynamicOptionsExample
