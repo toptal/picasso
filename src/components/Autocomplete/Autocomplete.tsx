@@ -177,10 +177,14 @@ export const Autocomplete: FunctionComponent<Props> = ({
               // @ts-ignore
               value={inputProps.value}
               width={width}
+              // eslint-disable-next-line react/jsx-handler-names
               onBlur={inputProps.onBlur}
+              // eslint-disable-next-line react/jsx-handler-names
               onFocus={inputProps.onFocus}
+              // eslint-disable-next-line react/jsx-handler-names
               onKeyDown={inputProps.onKeyDown}
               placeholder={placeholder}
+              // eslint-disable-next-line react/jsx-props-no-spreading
               {...rest}
             />
 
