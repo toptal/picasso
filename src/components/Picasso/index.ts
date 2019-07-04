@@ -9,5 +9,6 @@ export {
   SpacingType,
   spacingToEm,
   PicassoComponent,
-  SpacingEnum
+  SpacingEnum,
+  ButtonOrAnchorProps
 } from './types'

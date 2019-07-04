@@ -7,15 +7,14 @@ import React, {
 import { withStyles } from '@material-ui/core/styles'
 import MUIMenuItem from '@material-ui/core/MenuItem'
 
-import { StandardProps } from '../Picasso'
+import { StandardProps, ButtonOrAnchorProps } from '../Picasso'
 import Typography from '../Typography'
 import styles from './styles'
-import { ButtonOrAnchorAttributes } from '../Button/Button'
 
 type MenuItemType = 'li' | 'div' | 'a' | 'button'
 type MenuItemAttributes = LiHTMLAttributes<HTMLLIElement> &
   HTMLAttributes<HTMLDivElement> &
-  ButtonOrAnchorAttributes
+  ButtonOrAnchorProps
 
 interface Props extends StandardProps, MenuItemAttributes {
   /** Component name to render the menu item as */

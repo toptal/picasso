@@ -1,4 +1,9 @@
-import { CSSProperties, FunctionComponent } from 'react'
+import {
+  CSSProperties,
+  FunctionComponent,
+  AnchorHTMLAttributes,
+  ButtonHTMLAttributes
+} from 'react'
 
 import { Classes } from '../styles/types'
 
@@ -49,3 +54,6 @@ export enum SpacingEnum {
 
 export const spacingToEm = (spacing: SpacingType) =>
   typeof spacing === 'number' ? `${spacing}em` : `${SpacingEnum[spacing]}em`
+
+export type ButtonOrAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> &
+  ButtonHTMLAttributes<HTMLButtonElement>

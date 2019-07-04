@@ -2,13 +2,12 @@ import React, { FunctionComponent, ReactNode } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUITab from '@material-ui/core/Tab'
 
-import { StandardProps } from '../Picasso'
-import { ButtonOrAnchorAttributes } from '../Button/Button'
+import { StandardProps, ButtonOrAnchorProps } from '../Picasso'
 import styles from './styles'
 
 export interface Props
   extends StandardProps,
-    Omit<ButtonOrAnchorAttributes, 'onChange'> {
+    Omit<ButtonOrAnchorProps, 'onChange'> {
   /**
    * If true, the tab will be disabled
    * @default false

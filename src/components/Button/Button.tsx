@@ -2,9 +2,7 @@ import React, {
   FunctionComponent,
   ReactNode,
   ReactElement,
-  MouseEvent,
-  ButtonHTMLAttributes,
-  AnchorHTMLAttributes
+  MouseEvent
 } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
@@ -14,7 +12,12 @@ import Loader from '../Loader'
 import Container from '../Container'
 import Group from '../ButtonGroup'
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
-import { StandardProps, PicassoComponent, SizeType } from '../Picasso'
+import {
+  StandardProps,
+  PicassoComponent,
+  SizeType,
+  ButtonOrAnchorProps
+} from '../Picasso'
 import styles from './styles'
 
 type VariantType =
@@ -27,10 +30,8 @@ type VariantType =
   | 'secondary-white'
 
 type IconPositionType = 'left' | 'right'
-export type ButtonOrAnchorAttributes = AnchorHTMLAttributes<HTMLAnchorElement> &
-  ButtonHTMLAttributes<HTMLButtonElement>
 
-export interface Props extends StandardProps, ButtonOrAnchorAttributes {
+export interface Props extends StandardProps, ButtonOrAnchorProps {
   /** Show button in the active state (left mouse button down) */
   active?: boolean
   /** Disables button */

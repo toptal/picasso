@@ -3,13 +3,16 @@ import { withStyles } from '@material-ui/core/styles'
 import MUITabs from '@material-ui/core/Tabs'
 
 import Tab from '../Tab'
-import { ButtonOrAnchorAttributes } from '../Button/Button'
-import { StandardProps, PicassoComponent } from '../Picasso'
+import {
+  ButtonOrAnchorProps,
+  StandardProps,
+  PicassoComponent
+} from '../Picasso'
 import styles from './styles'
 
 export interface Props
   extends StandardProps,
-    Omit<ButtonOrAnchorAttributes, 'onChange'> {
+    Omit<ButtonOrAnchorProps, 'onChange'> {
   /** Tabs content containing Tab components */
   children: ReactNode
 
