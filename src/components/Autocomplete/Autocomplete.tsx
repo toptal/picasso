@@ -68,7 +68,7 @@ const getRelevantOption = (options: Item[], value: Value): Item | null => {
     return null
   }
 
-  const filteredOptions = getFilteredOptions(options, value) || []
+  const filteredOptions = getFilteredOptions(options, value)
 
   return (
     filteredOptions.find(option => isSubstring(value, option.label)) || null
