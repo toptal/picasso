@@ -69,6 +69,7 @@ const getRelevantOption = (options: Item[], value: Value): Item | null => {
   }
 
   const filteredOptions = getFilteredOptions(options, value) || []
+
   return (
     filteredOptions.find(option => isSubstring(value, option.label)) || null
   )
@@ -110,28 +111,6 @@ export const Autocomplete: FunctionComponent<Props> = ({
       }) => {
         const filteredOptions = getFilteredOptions(options!, inputValue)
 
-        const inputProps = getInputProps({
-          onFocus: openMenu,
-          onBlur: () => {
-            const option = getRelevantOption(options!, inputValue)
-
-            if (option) {
-              selectItem(option.label)
-            }
-          },
-          onChange: (event: ChangeEvent<HTMLInputElement>) => {
-            if (event.target.value === '') {
-              clearSelection()
-            }
-
-            if (isMatchingMinLengthCondition(event.target.value, minLength)) {
-              event.persist()
-              onChangeDebounced(event)
-            }
-          },
-          placeholder
-        })
-
         const startTyping = Boolean(inputValue)
         const hasOptions = Boolean(filteredOptions.length)
 
@@ -160,6 +139,33 @@ export const Autocomplete: FunctionComponent<Props> = ({
           </ScrollMenu>
         )
 
+        const {
+          onBlur: handleBlur,
+          onFocus: handleFocus,
+          onKeyDown: handleKeyDown,
+          onChange: handleChange,
+          value
+        } = getInputProps({
+          onFocus: openMenu,
+          onBlur: () => {
+            const option = getRelevantOption(options!, inputValue)
+
+            if (option) {
+              selectItem(option.label)
+            }
+          },
+          onChange: (event: ChangeEvent<HTMLInputElement>) => {
+            if (event.target.value === '') {
+              clearSelection()
+            }
+
+            if (isMatchingMinLengthCondition(event.target.value, minLength)) {
+              event.persist()
+              onChangeDebounced(event)
+            }
+          }
+        })
+
         return (
           <div
             className={cx(
@@ -173,17 +179,14 @@ export const Autocomplete: FunctionComponent<Props> = ({
               icon={loading ? <Loader size='small' /> : null}
               iconPosition='end'
               onChange={event => {
-                inputProps.onChange(event as FormEvent<HTMLInputElement>)
+                handleChange(event as FormEvent<HTMLInputElement>)
               }}
               // @ts-ignore
-              value={inputProps.value}
+              value={value}
               width={width}
-              // eslint-disable-next-line react/jsx-handler-names
-              onBlur={inputProps.onBlur}
-              // eslint-disable-next-line react/jsx-handler-names
-              onFocus={inputProps.onFocus}
-              // eslint-disable-next-line react/jsx-handler-names
-              onKeyDown={inputProps.onKeyDown}
+              onBlur={handleBlur}
+              onFocus={handleFocus}
+              onKeyDown={handleKeyDown}
               placeholder={placeholder}
               // eslint-disable-next-line react/jsx-props-no-spreading
               {...rest}
