@@ -153,6 +153,25 @@ export const Autocomplete: FunctionComponent<Props> = ({
           !loading &&
           (hasOptions || startTyping)
 
+        const optionsMenu = (
+          <ScrollMenu selectedIndex={highlightedIndex}>
+            {!hasOptions ? (
+              <Menu.Item disabled>No options</Menu.Item>
+            ) : (
+              filteredOptions.map((option, index) => (
+                <Menu.Item
+                  key={option.label}
+                  selected={highlightedIndex === index}
+                  // eslint-disable-next-line react/jsx-props-no-spreading
+                  {...getItemProps({ item: option.label })}
+                >
+                  {option.label}
+                </Menu.Item>
+              ))
+            )}
+          </ScrollMenu>
+        )
+
         return (
           <div
             className={cx(
@@ -183,26 +202,7 @@ export const Autocomplete: FunctionComponent<Props> = ({
             />
 
             {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-            <div {...getMenuProps()}>
-              {canOpen ? (
-                <ScrollMenu selectedIndex={highlightedIndex}>
-                  {!hasOptions ? (
-                    <Menu.Item disabled>No options</Menu.Item>
-                  ) : (
-                    filteredOptions.map((option, index) => (
-                      <Menu.Item
-                        key={option.label}
-                        selected={highlightedIndex === index}
-                        // eslint-disable-next-line react/jsx-props-no-spreading
-                        {...getItemProps({ item: option.label })}
-                      >
-                        {option.label}
-                      </Menu.Item>
-                    ))
-                  )}
-                </ScrollMenu>
-              ) : null}
-            </div>
+            <div {...getMenuProps()}>{canOpen ? optionsMenu : null}</div>
           </div>
         )
       }}
