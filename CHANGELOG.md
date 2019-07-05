@@ -1,3 +1,10 @@
+# [2.13.0](https://github.com/toptal/picasso/compare/v2.12.0...v2.13.0) (2019-07-05)
+
+
+### Features
+
+* **Autocomplete:** [FX-143] Add Autocomplete component ([#525](https://github.com/toptal/picasso/issues/525)) ([7f46aff](https://github.com/toptal/picasso/commit/7f46aff))
+
 # [2.12.0](https://github.com/toptal/picasso/compare/v2.11.0...v2.12.0) (2019-07-05)
 
 

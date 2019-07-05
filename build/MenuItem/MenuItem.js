@@ -20,7 +20,7 @@ const MenuItem_1 = __importDefault(require("@material-ui/core/MenuItem"));
 const Typography_1 = __importDefault(require("../Typography"));
 const styles_2 = __importDefault(require("./styles"));
 exports.MenuItem = (_a) => {
-    var { as, children, classes, className, disabled, disableGutters, onClick, style, value } = _a, rest = __rest(_a, ["as", "children", "classes", "className", "disabled", "disableGutters", "onClick", "style", "value"]);
+    var { as, children, classes, className, disabled, disableGutters, onClick, selected, style, value } = _a, rest = __rest(_a, ["as", "children", "classes", "className", "disabled", "disableGutters", "onClick", "selected", "style", "value"]);
     if (typeof children === 'string' || children instanceof String) {
         children = (react_1.default.createElement(Typography_1.default, { className: classes.stringContent, style: style, color: 'black' }, children));
     }
@@ -29,7 +29,7 @@ exports.MenuItem = (_a) => {
     , Object.assign({}, rest, { 
         // TODO: -1 is added to keep backward compatibility e.g. for AccountSelect component
         // Should be fixed during https://toptal-core.atlassian.net/browse/FX-310
-        tabIndex: -1, component: as, className: className, disabled: disabled, disableGutters: disableGutters, onClick: onClick, style: style, value: value }), children));
+        tabIndex: -1, component: as, className: className, disabled: disabled, disableGutters: disableGutters, onClick: onClick, style: style, value: value, selected: selected }), children));
 };
 exports.MenuItem.defaultProps = {
     as: 'li',
