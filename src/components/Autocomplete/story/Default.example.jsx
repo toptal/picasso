@@ -15,7 +15,7 @@ const AutocompleteDefaultExample = () => (
       placeholder='Start typing country...'
       options={options}
       onSelect={item => console.log('onSelect value:', item)}
-      onChange={value => console.log('onChange value:', value)}
+      onChange={e => console.log('onChange value:', e.target.value)}
     />
   </div>
 )

@@ -47,7 +47,7 @@ export interface Props
   /**  Callback invoked when item is selected */
   onSelect?: (item: Item | null) => void
   /**  Callback invoked when typing value is changed */
-  onChange?: (value: string) => void
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
 const isSubstring = (value: Value, result: Item) => {
@@ -137,7 +137,8 @@ export const Autocomplete: FunctionComponent<Props> = ({
             }
 
             if (isMatchingMinLengthCondition(event.target.value, minLength)) {
-              onChangeDebounced(event.target.value)
+              event.persist()
+              onChangeDebounced(event)
             }
           },
           placeholder
