@@ -18,6 +18,8 @@ import ScrollMenu from '../ScrollMenu'
 import isSubstring from '../utils/isSubstring'
 import styles from './styles'
 
+const DEBOUNCE_TIME = 300
+
 type Item = {
   label: string
 }
@@ -35,6 +37,8 @@ export interface Props
     Omit<HTMLInputProps, 'onChange' | 'onSelect'> {
   /** Placeholder for value */
   placeholder?: string
+  /** Debounce time for onChange event handler */
+  debounceTime?: number
   /** Width of the component which will apply `min-width` to the `input` */
   width?: 'full' | 'shrink' | 'auto'
   /** Shows the loading icon when options are loading */
@@ -84,6 +88,7 @@ const isMatchingMinLengthCondition = (value: Value, minLength?: number) => {
 export const Autocomplete: FunctionComponent<Props> = ({
   classes,
   className,
+  debounceTime,
   loading,
   minLength,
   placeholder,
@@ -94,7 +99,7 @@ export const Autocomplete: FunctionComponent<Props> = ({
   onChange,
   ...rest
 }) => {
-  const onChangeDebounced = debounce(onChange!, 300)
+  const onChangeDebounced = debounce(onChange!, debounceTime)
 
   return (
     <Downshift onSelect={onSelect}>
@@ -202,6 +207,7 @@ export const Autocomplete: FunctionComponent<Props> = ({
 }
 
 Autocomplete.defaultProps = {
+  debounceTime: DEBOUNCE_TIME,
   loading: false,
   onChange: () => {},
   onSelect: () => {},
