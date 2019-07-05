@@ -15,7 +15,7 @@ import TextField from '../TextField'
 import Menu from '../Menu'
 import Loader from '../Loader'
 import ScrollMenu from '../ScrollMenu'
-import isSubstring from '../utils/isSubstring'
+import { isSubstring } from '../utils'
 import styles from './styles'
 
 const DEBOUNCE_TIME = 300
