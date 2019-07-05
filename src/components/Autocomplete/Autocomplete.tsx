@@ -68,7 +68,7 @@ const getFilteredOptions = (
 }
 
 const getRelevantOption = (options: Item[], value: Value): Item | null => {
-  if (!value || !value.trim().length) {
+  if (!value || !value.trim()) {
     return null
   }
 
@@ -182,6 +182,8 @@ export const Autocomplete: FunctionComponent<Props> = ({
             style={style}
           >
             <TextField
+              // eslint-disable-next-line react/jsx-props-no-spreading
+              {...rest}
               icon={loading ? <Loader size='small' /> : null}
               iconPosition='end'
               onChange={event => {
@@ -194,8 +196,6 @@ export const Autocomplete: FunctionComponent<Props> = ({
               onFocus={handleFocus}
               onKeyDown={handleKeyDown}
               placeholder={placeholder}
-              // eslint-disable-next-line react/jsx-props-no-spreading
-              {...rest}
             />
 
             {/* eslint-disable-next-line react/jsx-props-no-spreading */}
