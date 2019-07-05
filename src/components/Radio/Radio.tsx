@@ -1,24 +1,20 @@
-import React, {
-  FunctionComponent,
-  AnchorHTMLAttributes,
-  ButtonHTMLAttributes
-} from 'react'
+import React, { FunctionComponent } from 'react'
 import MUIRadio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import { withStyles } from '@material-ui/core/styles'
 
 import FormControlLabel from '../FormControlLabel'
 import Form from '../Form'
-import { PicassoComponent, StandardProps } from '../Picasso'
+import {
+  PicassoComponent,
+  StandardProps,
+  ButtonOrAnchorProps
+} from '../Picasso'
 import styles from './styles'
 
 export interface Props
   extends StandardProps,
-    Omit<
-      AnchorHTMLAttributes<HTMLAnchorElement> &
-        ButtonHTMLAttributes<HTMLButtonElement>,
-      'onChange' | 'value'
-    > {
+    Omit<ButtonOrAnchorProps, 'onChange' | 'value'> {
   /** Text label for the `Radio` */
   label?: string
   /** Value of the `Radio` component used with conjuction of `Radio.Group` */

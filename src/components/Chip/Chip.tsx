@@ -33,16 +33,17 @@ const Chip: FunctionComponent<Props> = ({
 }) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { color, ...htmlAttributes } = rest
+  const { innerLabel, ...restClasses } = classes
 
   return (
     <MUIChip
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...htmlAttributes}
-      classes={classes}
+      classes={restClasses}
       className={className}
       style={style}
       icon={icon}
-      label={<span className={classes.innerLabel}>{label}</span>}
+      label={<span className={innerLabel}>{label}</span>}
       deleteIcon={deleteIcon}
       onDelete={onDelete}
     />

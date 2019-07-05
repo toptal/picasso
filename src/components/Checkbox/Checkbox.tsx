@@ -1,23 +1,15 @@
-import React, {
-  FunctionComponent,
-  AnchorHTMLAttributes,
-  ButtonHTMLAttributes
-} from 'react'
+import React, { FunctionComponent } from 'react'
 import MUICheckbox from '@material-ui/core/Checkbox'
 import { withStyles } from '@material-ui/core/styles'
 
 import FormControlLabel from '../FormControlLabel'
 import Form from '../Form'
-import { StandardProps } from '../Picasso'
+import { StandardProps, ButtonOrAnchorProps } from '../Picasso'
 import styles from './styles'
 
 export interface Props
   extends StandardProps,
-    Omit<
-      AnchorHTMLAttributes<HTMLAnchorElement> &
-        ButtonHTMLAttributes<HTMLButtonElement>,
-      'onChange'
-    > {
+    Omit<ButtonOrAnchorProps, 'onChange'> {
   /** Show checkbox initially as checked */
   checked?: boolean
   /** Disable changing `Checkbox` state */
