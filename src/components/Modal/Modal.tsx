@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from 'react'
+import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import Dialog from '@material-ui/core/Dialog'
 import { PaperProps } from '@material-ui/core/Paper'
@@ -12,7 +12,7 @@ import styles from './styles'
 
 type ContainerValue = HTMLElement | (() => HTMLElement)
 
-export interface Props extends StandardProps {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Content of Modal component */
   children: ReactNode
   /** Whether modal should be displayed */
@@ -50,12 +50,15 @@ export const Modal: FunctionComponent<Props> & StaticProps = props => {
     container,
     hideBackdrop,
     transitionDuration,
-    paperProps
+    paperProps,
+    ...rest
   } = props
   const { closeButton, ...restClasses } = classes
 
   return (
     <Dialog
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
       classes={restClasses}
       className={className}
       style={style}

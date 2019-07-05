@@ -2,10 +2,12 @@ import React, { FunctionComponent, ReactNode } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUITab from '@material-ui/core/Tab'
 
-import { StandardProps } from '../Picasso'
+import { StandardProps, ButtonOrAnchorProps } from '../Picasso'
 import styles from './styles'
 
-export interface Props extends StandardProps {
+export interface Props
+  extends StandardProps,
+    Omit<ButtonOrAnchorProps, 'onChange'> {
   /**
    * If true, the tab will be disabled
    * @default false
@@ -36,9 +38,12 @@ export const Tab: FunctionComponent<Props> = ({
   label,
   selected,
   onChange,
-  onClick
+  onClick,
+  ...rest
 }) => (
   <MUITab
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    {...rest}
     disabled={disabled}
     label={label}
     value={value}

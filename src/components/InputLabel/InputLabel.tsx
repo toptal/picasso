@@ -1,4 +1,4 @@
-import React, { ReactNode, FunctionComponent } from 'react'
+import React, { ReactNode, FunctionComponent, LabelHTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUIInputLabel from '@material-ui/core/InputLabel'
 
@@ -7,7 +7,9 @@ import styles from './styles'
 
 type VariantType = 'standard' | 'outlined' | 'filled'
 
-export interface Props extends StandardProps {
+export interface Props
+  extends StandardProps,
+    LabelHTMLAttributes<HTMLLabelElement> {
   variant?: VariantType
   htmlFor?: string
   /** Label content */
@@ -20,9 +22,12 @@ const InputLabel: FunctionComponent<Props> = ({
   classes,
   className,
   style,
-  children
+  children,
+  ...rest
 }) => (
   <MUIInputLabel
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    {...rest}
     variant={variant}
     htmlFor={htmlFor}
     classes={classes}

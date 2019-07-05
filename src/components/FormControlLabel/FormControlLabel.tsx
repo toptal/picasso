@@ -1,11 +1,23 @@
-import React, { FunctionComponent, ReactElement, ReactNode } from 'react'
-import MUIFormControlLabel from '@material-ui/core/FormControlLabel'
+import React, {
+  FunctionComponent,
+  ReactElement,
+  ReactNode,
+  LabelHTMLAttributes
+} from 'react'
+import MUIFormControlLabel, {
+  FormControlLabelProps
+} from '@material-ui/core/FormControlLabel'
 import { withStyles } from '@material-ui/core/styles'
 
 import { StandardProps } from '../Picasso'
 import styles from './styles'
 
-interface Props extends StandardProps {
+export type FormControlLabelAttributesType = LabelHTMLAttributes<
+  HTMLLabelElement
+> &
+  Pick<FormControlLabelProps, 'onChange'>
+
+interface Props extends StandardProps, FormControlLabelAttributesType {
   /** A control element. For instance, it can be be a Radio, a Switch or a Checkbox */
   control: ReactElement
   /** The text to be used in an enclosing label element */
@@ -16,9 +28,12 @@ const FormControlLabel: FunctionComponent<Props> = ({
   label,
   classes,
   className,
-  style
+  style,
+  ...rest
 }) => (
   <MUIFormControlLabel
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    {...rest}
     control={control}
     label={label}
     classes={classes}

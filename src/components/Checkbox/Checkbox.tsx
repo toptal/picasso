@@ -4,10 +4,12 @@ import { withStyles } from '@material-ui/core/styles'
 
 import FormControlLabel from '../FormControlLabel'
 import Form from '../Form'
-import { StandardProps } from '../Picasso'
+import { StandardProps, ButtonOrAnchorProps } from '../Picasso'
 import styles from './styles'
 
-export interface Props extends StandardProps {
+export interface Props
+  extends StandardProps,
+    Omit<ButtonOrAnchorProps, 'onChange'> {
   /** Show checkbox initially as checked */
   checked?: boolean
   /** Disable changing `Checkbox` state */
@@ -40,15 +42,20 @@ export const Checkbox: FunctionComponent<Props> = ({
   onChange,
   value,
   checked,
-  indeterminate
+  indeterminate,
+  ...rest
 }) => {
   const rootClasses = {
     root: classes.root,
     disabled: classes.disabled
   }
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { color, ...checkboxAttributes } = rest
 
   const muiCheckbox = (
     <MUICheckbox
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...checkboxAttributes}
       checked={checked}
       icon={<div className={classes.uncheckedIcon} />}
       checkedIcon={<div className={classes.checkedIcon} />}

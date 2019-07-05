@@ -15,13 +15,9 @@ import styles from './styles'
 
 type IconPosition = 'start' | 'end'
 
-/**
- * Alias for all valid HTML props for `<input>` element.
- * Does not include React's `ref` or `key`.
- */
-type HTMLInputProps = InputHTMLAttributes<HTMLInputElement>
-
-export interface Props extends StandardProps, HTMLInputProps {
+export interface Props
+  extends StandardProps,
+    InputHTMLAttributes<HTMLInputElement> {
   /** The id of the `input` element. */
   id?: string
   /** Name attribute of the input element */

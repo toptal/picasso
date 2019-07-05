@@ -1,4 +1,9 @@
-import React, { useContext, FunctionComponent, ReactNode } from 'react'
+import React, {
+  useContext,
+  FunctionComponent,
+  ReactNode,
+  HTMLAttributes
+} from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
@@ -7,7 +12,7 @@ import { PageContext } from '../Page'
 import { PageContextProps } from '../Page/types'
 import styles from './styles'
 
-interface Props extends StandardProps {
+interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
   /** Content for the right side of the `Footer`  */
   rightContent?: ReactNode
 }
@@ -18,7 +23,8 @@ export const PageFooter: FunctionComponent<Props> = ({
   classes,
   className,
   style,
-  rightContent
+  rightContent,
+  ...rest
 }) => {
   const { fullWidth } = useContext<PageContextProps>(PageContext)
 
@@ -30,7 +36,8 @@ export const PageFooter: FunctionComponent<Props> = ({
   )
 
   return (
-    <footer className={cx(classes.root, className)} style={style}>
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <footer {...rest} className={cx(classes.root, className)} style={style}>
       <div className={contentClassnames}>
         <div className={classes.left}>
           {`© Copyright 2010 – ${currentYear} Toptal, LLC`}

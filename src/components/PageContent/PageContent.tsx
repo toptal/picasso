@@ -1,4 +1,9 @@
-import React, { useContext, FunctionComponent, ReactNode } from 'react'
+import React, {
+  useContext,
+  FunctionComponent,
+  ReactNode,
+  HTMLAttributes
+} from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
@@ -7,7 +12,7 @@ import { PageContextProps } from '../Page/types'
 import { StandardProps } from '../Picasso'
 import styles from './styles'
 
-interface Props extends StandardProps {
+interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Custom components that render content of page */
   children: ReactNode
 }
@@ -16,7 +21,8 @@ export const PageContent: FunctionComponent<Props> = ({
   children,
   classes,
   className,
-  style
+  style,
+  ...rest
 }) => {
   const { fullWidth } = useContext<PageContextProps>(PageContext)
 
@@ -28,7 +34,8 @@ export const PageContent: FunctionComponent<Props> = ({
   )
 
   return (
-    <div className={cx(classes.root, className)} style={style}>
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <div {...rest} className={cx(classes.root, className)} style={style}>
       <div className={innerClassName}>{children}</div>
     </div>
   )

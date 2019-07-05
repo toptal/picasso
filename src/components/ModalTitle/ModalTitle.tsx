@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from 'react'
+import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
@@ -6,7 +6,7 @@ import Typography from '../Typography'
 import { StandardProps } from '../Picasso'
 import styles from './styles'
 
-export interface Props extends StandardProps {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Title content */
   children: ReactNode
 }
@@ -15,9 +15,11 @@ export const ModalTitle: FunctionComponent<Props> = ({
   children,
   classes,
   className,
-  style
+  style,
+  ...rest
 }) => (
-  <div className={cx(classes.root, className)} style={style}>
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  <div {...rest} className={cx(classes.root, className)} style={style}>
     <Typography variant='heading' size='medium'>
       {children}
     </Typography>

@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from 'react'
+import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
@@ -10,7 +10,7 @@ import { StandardProps, PicassoComponent } from '../Picasso'
 import { PageContextProps } from './types'
 import styles from './styles'
 
-interface Props extends StandardProps {
+interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Component becomes responsive with width 100% and overrides width prop */
   fullWidth?: boolean
   /** Define container width in `rem` */
@@ -37,9 +37,11 @@ export const Page: FunctionComponent<Props> & StaticProps = ({
   classes,
   className,
   style,
-  fullWidth
+  fullWidth,
+  ...rest
 }) => (
-  <div className={cx(classes.root, className)} style={style}>
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  <div {...rest} className={cx(classes.root, className)} style={style}>
     <PageContext.Provider value={{ fullWidth }}>
       {children}
     </PageContext.Provider>

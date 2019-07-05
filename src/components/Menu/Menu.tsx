@@ -1,12 +1,15 @@
-import React, { FunctionComponent } from 'react'
-import MUIMenuList from '@material-ui/core/MenuList'
+import React, { FunctionComponent, HTMLAttributes } from 'react'
+import MUIMenuList, { MenuListProps } from '@material-ui/core/MenuList'
 import { withStyles } from '@material-ui/core/styles'
 
 import MenuItem from '../MenuItem'
 import { StandardProps, PicassoComponent } from '../Picasso'
 import styles from './styles'
 
-interface Props extends StandardProps {}
+export type ListNativeProps = HTMLAttributes<HTMLUListElement> &
+  Pick<MenuListProps, 'onKeyDown'>
+
+interface Props extends StandardProps, ListNativeProps {}
 
 interface StaticProps {
   Item: typeof MenuItem
@@ -16,10 +19,17 @@ export const Menu: FunctionComponent<Props> & StaticProps = ({
   children,
   className,
   classes,
-  style
+  style,
+  ...rest
 }) => {
   return (
-    <MUIMenuList className={className} style={style} classes={classes}>
+    <MUIMenuList
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
+      className={className}
+      style={style}
+      classes={classes}
+    >
       {children}
     </MUIMenuList>
   )

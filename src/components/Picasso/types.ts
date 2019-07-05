@@ -1,4 +1,9 @@
-import { CSSProperties, FunctionComponent, SyntheticEvent } from 'react'
+import {
+  CSSProperties,
+  FunctionComponent,
+  AnchorHTMLAttributes,
+  ButtonHTMLAttributes
+} from 'react'
 
 import { Classes } from '../styles/types'
 
@@ -31,17 +36,6 @@ export type PicassoComponent<P, S = {}> = FunctionComponent<
 > &
   S
 
-type EventListenerType = (event: SyntheticEvent<HTMLElement>) => void
-
-export interface TooltipEventListeners {
-  onBlur?: EventListenerType
-  onFocus?: EventListenerType
-  onMouseLeave?: EventListenerType
-  onMouseOver?: EventListenerType
-  onTouchEnd?: EventListenerType
-  onTouchStart?: EventListenerType
-}
-
 type Sizes = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'
 
 export type SizeType<T extends Sizes> = T
@@ -60,3 +54,6 @@ export enum SpacingEnum {
 
 export const spacingToEm = (spacing: SpacingType) =>
   typeof spacing === 'number' ? `${spacing}em` : `${SpacingEnum[spacing]}em`
+
+export type ButtonOrAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> &
+  ButtonHTMLAttributes<HTMLButtonElement>

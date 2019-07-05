@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from 'react'
+import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
@@ -7,7 +7,7 @@ import FormError from '../FormError'
 import { StandardProps } from '../Picasso'
 import styles from './styles'
 
-interface Props extends StandardProps {
+interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** The text of the hint */
   hint?: string
   /** The text of the error */
@@ -22,9 +22,11 @@ export const FormField: FunctionComponent<Props> = ({
   style,
   hint,
   children,
-  error
+  error,
+  ...rest
 }) => (
-  <div className={cx(classes.root, className)} style={style}>
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  <div {...rest} className={cx(classes.root, className)} style={style}>
     {children}
     {error && <FormError className={classes.error}>{error}</FormError>}
     {hint && <FormHint className={classes.hint}>{hint}</FormHint>}

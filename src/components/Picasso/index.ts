@@ -5,10 +5,10 @@ export {
   JssProps,
   StandardProps,
   SizeType,
-  TooltipEventListeners,
   OmitInternalProps,
   SpacingType,
   spacingToEm,
   PicassoComponent,
-  SpacingEnum
+  SpacingEnum,
+  ButtonOrAnchorProps
 } from './types'

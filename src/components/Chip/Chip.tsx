@@ -1,11 +1,16 @@
-import React, { FunctionComponent, ReactElement, ReactNode } from 'react'
+import React, {
+  FunctionComponent,
+  ReactElement,
+  ReactNode,
+  HTMLAttributes
+} from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUIChip from '@material-ui/core/Chip'
 
-import { StandardProps, TooltipEventListeners } from '../Picasso'
+import { StandardProps } from '../Picasso'
 import styles from './styles'
 
-interface Props extends StandardProps, TooltipEventListeners {
+interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Specify the icon which should be rendered inside Chip */
   icon?: ReactElement
   /** Text content of the `Chip` component */
@@ -24,28 +29,25 @@ const Chip: FunctionComponent<Props> = ({
   icon,
   label,
   onDelete,
-  onBlur,
-  onFocus,
-  onMouseLeave,
-  onMouseOver,
-  onTouchEnd,
-  onTouchStart
-}) => (
-  <MUIChip
-    classes={classes}
-    className={className}
-    style={style}
-    icon={icon}
-    label={<span className={classes.innerLabel}>{label}</span>}
-    deleteIcon={deleteIcon}
-    onDelete={onDelete}
-    onBlur={onBlur}
-    onFocus={onFocus}
-    onMouseLeave={onMouseLeave}
-    onMouseOver={onMouseOver}
-    onTouchEnd={onTouchEnd}
-    onTouchStart={onTouchStart}
-  />
-)
+  ...rest
+}) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { color, ...htmlAttributes } = rest
+  const { innerLabel, ...restClasses } = classes
+
+  return (
+    <MUIChip
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...htmlAttributes}
+      classes={restClasses}
+      className={className}
+      style={style}
+      icon={icon}
+      label={<span className={innerLabel}>{label}</span>}
+      deleteIcon={deleteIcon}
+      onDelete={onDelete}
+    />
+  )
+}
 
 export default withStyles(styles)(Chip)

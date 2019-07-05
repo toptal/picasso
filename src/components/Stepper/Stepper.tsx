@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, HTMLAttributes } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import MUIStepper from '@material-ui/core/Stepper'
@@ -10,7 +10,7 @@ import StepConnector from '../StepConnector'
 import { StandardProps } from '../Picasso'
 import styles from './styles'
 
-export interface Props extends StandardProps {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** The index of the active step */
   active?: number
   /** The component will take up the full width of its container */
@@ -29,11 +29,14 @@ export const Stepper: FunctionComponent<Props> = props => {
     hideLabels,
     classes,
     className,
-    style
+    style,
+    ...rest
   } = props
 
   return (
     <MUIStepper
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
       activeStep={active}
       connector={<StepConnector />}
       className={cx(

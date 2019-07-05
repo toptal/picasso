@@ -2,7 +2,8 @@ import React, {
   FunctionComponent,
   ChangeEvent,
   ReactNode,
-  useMemo
+  useMemo,
+  HTMLAttributes
 } from 'react'
 import cx from 'classnames'
 import MUISelect from '@material-ui/core/Select'
@@ -26,7 +27,9 @@ interface Option {
 
 type IconPosition = 'start' | 'end'
 
-export interface Props extends StandardProps {
+export interface Props
+  extends StandardProps,
+    Omit<HTMLAttributes<HTMLInputElement>, 'onChange'> {
   /** If true, the 'Select' will be disabled */
   disabled?: boolean
   /** Indicate whether `Select` is in error state */
@@ -93,7 +96,8 @@ export const Select: FunctionComponent<Props> = ({
   disabled,
   error,
   onChange,
-  value
+  value,
+  ...rest
 }) => {
   const isPlaceholderShown = placeholder && value === ''
 
@@ -104,6 +108,8 @@ export const Select: FunctionComponent<Props> = ({
 
   const outlinedInput = (
     <OutlinedInput
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
       classes={{
         input: cx(classes.input, {
           [classes.inputPlaceholder]: isPlaceholderShown,

@@ -3,10 +3,16 @@ import { withStyles } from '@material-ui/core/styles'
 import MUITabs from '@material-ui/core/Tabs'
 
 import Tab from '../Tab'
-import { StandardProps, PicassoComponent } from '../Picasso'
+import {
+  ButtonOrAnchorProps,
+  StandardProps,
+  PicassoComponent
+} from '../Picasso'
 import styles from './styles'
 
-export interface Props extends StandardProps {
+export interface Props
+  extends StandardProps,
+    Omit<ButtonOrAnchorProps, 'onChange'> {
   /** Tabs content containing Tab components */
   children: ReactNode
 
@@ -24,9 +30,11 @@ interface StaticProps {
 export const Tabs: FunctionComponent<Props> & StaticProps = ({
   children,
   onChange,
-  value
+  value,
+  ...rest
 }) => (
-  <MUITabs onChange={onChange} value={value}>
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  <MUITabs {...rest} onChange={onChange} value={value}>
     {children}
   </MUITabs>
 )

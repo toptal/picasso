@@ -6,6 +6,7 @@ import palette from '../Picasso/config/palette'
 import UserBadge from '../UserBadge'
 import Typography from '../Typography'
 import Menu from '../Menu'
+import { ListNativeProps } from '../Menu/Menu'
 import Link from '../Link'
 import Container from '../Container'
 import { ChevronRight } from '../Icon'
@@ -24,11 +25,11 @@ type Account = {
   avatar?: string
 }
 
-type Accounts = Account[]
-
-export interface Props extends StandardProps {
+export interface Props
+  extends StandardProps,
+    Omit<ListNativeProps, 'onSelect'> {
   /** List of available accounts */
-  accounts: Accounts
+  accounts: Account[]
   /** Callback invoked when specific role record is clicked in the list */
   onSelect: (account: Account) => void
 }
@@ -38,7 +39,8 @@ export const AccountSelect: FunctionComponent<Props> = ({
   className,
   accounts,
   onSelect,
-  style
+  style,
+  ...rest
 }) => {
   const {
     accountItem: accountItemClass,
@@ -47,7 +49,8 @@ export const AccountSelect: FunctionComponent<Props> = ({
   } = classes
 
   return (
-    <Menu classes={menuClasses} className={className} style={style}>
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <Menu {...rest} classes={menuClasses} className={className} style={style}>
       {accounts.map(account => (
         <Menu.Item
           disableGutters

@@ -3,9 +3,13 @@ import { withStyles } from '@material-ui/core/styles'
 import MUIExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
 
 import styles from './styles'
-import { StandardProps, PicassoComponent } from '../Picasso'
+import {
+  StandardProps,
+  PicassoComponent,
+  ButtonOrAnchorProps
+} from '../Picasso'
 
-interface Props extends StandardProps {
+interface Props extends StandardProps, ButtonOrAnchorProps {
   expandIcon?: ReactNode
   children?: ReactNode
 }

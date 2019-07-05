@@ -2,7 +2,8 @@ import React, {
   FunctionComponent,
   ChangeEventHandler,
   ReactType,
-  ReactNode
+  ReactNode,
+  InputHTMLAttributes
 } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
@@ -20,7 +21,9 @@ type ValueType =
   | boolean
   | object
 
-export interface Props extends StandardProps {
+export interface Props
+  extends StandardProps,
+    Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'defaultValue'> {
   /** The id of the `input` element. */
   id?: string
   /** Name attribute of the input element */

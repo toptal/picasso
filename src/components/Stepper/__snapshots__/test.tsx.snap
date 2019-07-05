@@ -9,7 +9,7 @@ exports[`Stepper default render 1`] = `
       class="MuiPaper-root MuiPaper-elevation0 MuiStepper-root MuiStepper-horizontal"
     >
       <div
-        class="MuiStep-root MuiStep-completed"
+        class="MuiStep-root MuiStep-horizontal MuiStep-completed"
       >
         <span
           class="MuiStepLabel-root MuiStepLabel-horizontal"
@@ -106,7 +106,7 @@ exports[`Stepper default render 1`] = `
         </g>
       </svg>
       <div
-        class="MuiStep-root MuiStep-completed"
+        class="MuiStep-root MuiStep-horizontal MuiStep-completed"
       >
         <span
           class="MuiStepLabel-root MuiStepLabel-horizontal"
@@ -203,7 +203,7 @@ exports[`Stepper default render 1`] = `
         </g>
       </svg>
       <div
-        class="MuiStep-root"
+        class="MuiStep-root MuiStep-horizontal"
       >
         <span
           class="MuiStepLabel-root MuiStepLabel-horizontal"
@@ -265,10 +265,10 @@ exports[`Stepper default render 1`] = `
         </g>
       </svg>
       <div
-        class="MuiStep-root"
+        class="MuiStep-root MuiStep-horizontal"
       >
         <span
-          class="MuiStepLabel-root MuiStepLabel-horizontal"
+          class="MuiStepLabel-root MuiStepLabel-horizontal MuiStepLabel-disabled"
         >
           <span
             class="MuiStepLabel-iconContainer"
@@ -306,7 +306,7 @@ exports[`Stepper render with all steps completed 1`] = `
       class="MuiPaper-root MuiPaper-elevation0 MuiStepper-root MuiStepper-horizontal"
     >
       <div
-        class="MuiStep-root MuiStep-completed"
+        class="MuiStep-root MuiStep-horizontal MuiStep-completed"
       >
         <span
           class="MuiStepLabel-root MuiStepLabel-horizontal"
@@ -403,7 +403,7 @@ exports[`Stepper render with all steps completed 1`] = `
         </g>
       </svg>
       <div
-        class="MuiStep-root MuiStep-completed"
+        class="MuiStep-root MuiStep-horizontal MuiStep-completed"
       >
         <span
           class="MuiStepLabel-root MuiStepLabel-horizontal"
@@ -500,7 +500,7 @@ exports[`Stepper render with all steps completed 1`] = `
         </g>
       </svg>
       <div
-        class="MuiStep-root MuiStep-completed"
+        class="MuiStep-root MuiStep-horizontal MuiStep-completed"
       >
         <span
           class="MuiStepLabel-root MuiStepLabel-horizontal"
@@ -597,7 +597,7 @@ exports[`Stepper render with all steps completed 1`] = `
         </g>
       </svg>
       <div
-        class="MuiStep-root MuiStep-completed"
+        class="MuiStep-root MuiStep-horizontal MuiStep-completed"
       >
         <span
           class="MuiStepLabel-root MuiStepLabel-horizontal"
@@ -673,7 +673,7 @@ exports[`Stepper render with full-width 1`] = `
       class="MuiPaper-root MuiPaper-elevation0 MuiStepper-root MuiStepper-horizontal Stepper-fullWidth"
     >
       <div
-        class="MuiStep-root MuiStep-completed"
+        class="MuiStep-root MuiStep-horizontal MuiStep-completed"
       >
         <span
           class="MuiStepLabel-root MuiStepLabel-horizontal"
@@ -770,7 +770,7 @@ exports[`Stepper render with full-width 1`] = `
         </g>
       </svg>
       <div
-        class="MuiStep-root MuiStep-completed"
+        class="MuiStep-root MuiStep-horizontal MuiStep-completed"
       >
         <span
           class="MuiStepLabel-root MuiStepLabel-horizontal"
@@ -867,7 +867,7 @@ exports[`Stepper render with full-width 1`] = `
         </g>
       </svg>
       <div
-        class="MuiStep-root MuiStep-completed"
+        class="MuiStep-root MuiStep-horizontal MuiStep-completed"
       >
         <span
           class="MuiStepLabel-root MuiStepLabel-horizontal"
@@ -964,7 +964,7 @@ exports[`Stepper render with full-width 1`] = `
         </g>
       </svg>
       <div
-        class="MuiStep-root MuiStep-completed"
+        class="MuiStep-root MuiStep-horizontal MuiStep-completed"
       >
         <span
           class="MuiStepLabel-root MuiStepLabel-horizontal"
@@ -1040,7 +1040,7 @@ exports[`Stepper render with hidden labels 1`] = `
       class="MuiPaper-root MuiPaper-elevation0 MuiStepper-root MuiStepper-horizontal"
     >
       <div
-        class="MuiStep-root MuiStep-completed"
+        class="MuiStep-root MuiStep-horizontal MuiStep-completed"
       >
         <span
           class="MuiStepLabel-root MuiStepLabel-horizontal"
@@ -1137,7 +1137,7 @@ exports[`Stepper render with hidden labels 1`] = `
         </g>
       </svg>
       <div
-        class="MuiStep-root MuiStep-completed"
+        class="MuiStep-root MuiStep-horizontal MuiStep-completed"
       >
         <span
           class="MuiStepLabel-root MuiStepLabel-horizontal"
@@ -1234,7 +1234,7 @@ exports[`Stepper render with hidden labels 1`] = `
         </g>
       </svg>
       <div
-        class="MuiStep-root MuiStep-completed"
+        class="MuiStep-root MuiStep-horizontal MuiStep-completed"
       >
         <span
           class="MuiStepLabel-root MuiStepLabel-horizontal"
@@ -1331,7 +1331,7 @@ exports[`Stepper render with hidden labels 1`] = `
         </g>
       </svg>
       <div
-        class="MuiStep-root MuiStep-completed"
+        class="MuiStep-root MuiStep-horizontal MuiStep-completed"
       >
         <span
           class="MuiStepLabel-root MuiStepLabel-horizontal"

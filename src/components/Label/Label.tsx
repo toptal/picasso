@@ -1,17 +1,18 @@
-import React, { FunctionComponent, ReactNode, ReactElement } from 'react'
+import React, {
+  FunctionComponent,
+  ReactNode,
+  ReactElement,
+  HTMLAttributes
+} from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
 import { CloseMinor16 } from '../Icon'
 import Chip from '../Chip'
 import LabelGroup from '../LabelGroup'
-import {
-  StandardProps,
-  PicassoComponent,
-  TooltipEventListeners
-} from '../Picasso'
+import { StandardProps, PicassoComponent } from '../Picasso'
 import styles from './styles'
 
-export interface Props extends StandardProps, TooltipEventListeners {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Text content of the `Label` component */
   children: ReactNode
   /** A callback which is invoked after remove `Icon` is clicked
@@ -34,15 +35,12 @@ export const Label: FunctionComponent<Props> & StaticProps = ({
   icon,
   style,
   onDelete,
-  onBlur,
-  onFocus,
-  onMouseLeave,
-  onMouseOver,
-  onTouchEnd,
-  onTouchStart
+  ...rest
 }) => {
   return (
     <Chip
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
       className={className}
       style={style}
       deleteIcon={
@@ -57,19 +55,12 @@ export const Label: FunctionComponent<Props> & StaticProps = ({
       onDelete={onDelete}
       label={children}
       icon={icon}
-      onBlur={onBlur}
-      onFocus={onFocus}
-      onMouseLeave={onMouseLeave}
-      onMouseOver={onMouseOver}
-      onTouchEnd={onTouchEnd}
-      onTouchStart={onTouchStart}
     />
   )
 }
 
 Label.defaultProps = {
-  children: '',
-  onDelete: undefined
+  children: ''
 }
 
 Label.displayName = 'Label'

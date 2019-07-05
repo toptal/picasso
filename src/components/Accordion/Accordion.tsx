@@ -1,4 +1,9 @@
-import React, { ReactNode, FunctionComponent, ChangeEvent } from 'react'
+import React, {
+  ReactNode,
+  FunctionComponent,
+  ChangeEvent,
+  HTMLAttributes
+} from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUIExpansionPanel from '@material-ui/core/ExpansionPanel'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
@@ -8,7 +13,9 @@ import ExpansionPanelSummary from '../ExpansionPanelSummary'
 import ExpansionPanelDetails from '../ExpansionPanelDetails'
 import styles from './styles'
 
-export interface Props extends StandardProps {
+export interface Props
+  extends StandardProps,
+    Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
   /** Always visible part of accordion */
   children?: ReactNode
   /** Collapsible content of `Accordion` */
@@ -26,10 +33,13 @@ export const Accordion: FunctionComponent<Props> = ({
   className,
   style,
   classes,
-  onChange
+  onChange,
+  ...rest
 }) => {
   return (
     <MUIExpansionPanel
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
       classes={{
         root: children ? classes.root : '',
         expanded: classes.expanded

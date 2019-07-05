@@ -1,4 +1,4 @@
-import React, { ReactNode, FunctionComponent } from 'react'
+import React, { ReactNode, FunctionComponent, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import { capitalize } from '@material-ui/core/utils/helpers'
 import cx from 'classnames'
@@ -15,7 +15,7 @@ enum SIZES {
 
 type VariantType = 'default' | 'inherit'
 
-export interface Props extends StandardProps {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Text content for the `Loader` */
   children?: ReactNode
   /** Shows loader as part of other inline elements such as text */
@@ -35,9 +35,12 @@ export const Loader: FunctionComponent<Props> = ({
   inline,
   className,
   value,
-  variant
+  variant,
+  ...rest
 }) => (
   <div
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    {...rest}
     className={cx(classes.wrapper, className, {
       [classes.inline]: inline
     })}

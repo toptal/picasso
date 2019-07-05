@@ -2,7 +2,8 @@ import React, {
   useContext,
   FunctionComponent,
   ReactNode,
-  ReactElement
+  ReactElement,
+  HTMLAttributes
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
@@ -15,7 +16,7 @@ import styles from './styles'
 
 type VariantType = 'dark' | 'light'
 
-export interface Props extends StandardProps {
+export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
   /** Title which is displayed along the `Logo` */
   title: string
   /** Link component to wrap `Logo`  */
@@ -33,7 +34,8 @@ export const PageHeader: FunctionComponent<Props> = ({
   title,
   logoLink,
   rightContent,
-  variant
+  variant,
+  ...rest
 }) => {
   const { fullWidth } = useContext<PageContextProps>(PageContext)
 
@@ -48,6 +50,8 @@ export const PageHeader: FunctionComponent<Props> = ({
 
   return (
     <header
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
       className={cx('mui-fixed', classes.root, classes[variant!], className)}
       style={style}
     >

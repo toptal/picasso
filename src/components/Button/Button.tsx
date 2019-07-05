@@ -16,7 +16,7 @@ import {
   StandardProps,
   PicassoComponent,
   SizeType,
-  TooltipEventListeners
+  ButtonOrAnchorProps
 } from '../Picasso'
 import styles from './styles'
 
@@ -31,13 +31,14 @@ type VariantType =
 
 type IconPositionType = 'left' | 'right'
 
-export interface Props extends StandardProps, TooltipEventListeners {
+export interface Props extends StandardProps, ButtonOrAnchorProps {
   /** Show button in the active state (left mouse button down) */
   active?: boolean
   /** Disables button */
   disabled?: boolean
   /** Content of Button component */
   children?: ReactNode
+  // TODO: should it be exposed?
   focused?: boolean
   /** Take the full width of a container */
   fullWidth?: boolean
@@ -50,7 +51,7 @@ export interface Props extends StandardProps, TooltipEventListeners {
   /** A button can show a loading indicator */
   loading?: boolean
   /** Callback invoked when component is clicked */
-  onClick?: (event: MouseEvent<HTMLButtonElement>) => void
+  onClick?: (event: MouseEvent<HTMLButtonElement & HTMLAnchorElement>) => void
   /** A button can have different sizes */
   size?: SizeType<'small' | 'medium' | 'large'>
   /** The variant to use */
@@ -95,12 +96,7 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
   title,
   value,
   type,
-  onBlur,
-  onFocus,
-  onMouseLeave,
-  onMouseOver,
-  onTouchEnd,
-  onTouchStart
+  ...rest
 }) => {
   const {
     icon: iconClass,
@@ -154,6 +150,8 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
 
   return (
     <ButtonBase
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
       classes={{
         root: rootClassName
       }}
@@ -164,12 +162,6 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
       title={title}
       value={value}
       type={type}
-      onBlur={onBlur}
-      onFocus={onFocus}
-      onMouseLeave={onMouseLeave}
-      onMouseOver={onMouseOver}
-      onTouchEnd={onTouchEnd}
-      onTouchStart={onTouchStart}
     >
       <Container
         as='span'
