@@ -44,7 +44,7 @@ export interface Props
   /** Shows the loading icon when options are loading */
   loading?: boolean
   /** Label to show when no options were found */
-  noOptionsLabel?: string
+  noOptionsText?: string
   /** List of options */
   options?: Item[]
   /** The minimum number of characters a user must type before a search is performed */
@@ -92,7 +92,7 @@ export const Autocomplete: FunctionComponent<Props> = ({
   loading,
   minLength,
   placeholder,
-  noOptionsLabel,
+  noOptionsText,
   options,
   style,
   width,
@@ -129,7 +129,7 @@ export const Autocomplete: FunctionComponent<Props> = ({
         const optionsMenu = (
           <ScrollMenu selectedIndex={highlightedIndex}>
             {!hasOptions ? (
-              <Menu.Item disabled>{noOptionsLabel}</Menu.Item>
+              <Menu.Item disabled>{noOptionsText}</Menu.Item>
             ) : (
               filteredOptions.map((option, index) => (
                 <Menu.Item
@@ -210,7 +210,7 @@ export const Autocomplete: FunctionComponent<Props> = ({
 Autocomplete.defaultProps = {
   debounceTime: DEBOUNCE_TIME,
   loading: false,
-  noOptionsLabel: 'No options',
+  noOptionsText: 'No options',
   onChange: () => {},
   onSelect: () => {},
   options: [],
