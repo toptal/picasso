@@ -1,4 +1,10 @@
-import React, { useEffect, FunctionComponent } from 'react'
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  createRef,
+  FunctionComponent
+} from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import RootRef from '@material-ui/core/RootRef'
 
@@ -20,11 +26,9 @@ const ScrollMenu: FunctionComponent<Props> = ({
   classes,
   children
 }) => {
-  const menuRef = React.useRef<HTMLDivElement | null>(null)
-  const firstItemRef = React.createRef<HTMLElement>()
-  const [prevSelectedIndex, setPrevSelectedIndex] = React.useState(
-    selectedIndex
-  )
+  const menuRef = useRef<HTMLDivElement | null>(null)
+  const firstItemRef = createRef<HTMLElement>()
+  const [prevSelectedIndex, setPrevSelectedIndex] = useState(selectedIndex)
 
   const renderChildren = React.Children.map(children, (child, index) => {
     if (index === 0) {

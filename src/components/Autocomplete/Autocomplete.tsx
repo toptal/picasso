@@ -86,8 +86,10 @@ const getRelevantOption = (options: Item[], value: Value): Item | null => {
   return null
 }
 
-const isMatchingMinLengthCondition = (value: Value, minLength?: number) =>
-  !minLength || (minLength && value && value.length >= minLength)
+const isMatchingMinLengthCondition = (value: Value, minLength?: number) => {
+  const inputValue = value || ''
+  return !minLength || (minLength && inputValue.length >= minLength)
+}
 
 export const Autocomplete: FunctionComponent<Props> = ({
   classes,
@@ -159,7 +161,7 @@ export const Autocomplete: FunctionComponent<Props> = ({
           ))
         }
 
-        const isAllowedToOpen =
+        const canOpen =
           isMatchingMinLengthCondition(inputValue, minLength) && !loading
 
         return (
@@ -193,7 +195,7 @@ export const Autocomplete: FunctionComponent<Props> = ({
 
             {/* eslint-disable-next-line react/jsx-props-no-spreading */}
             <div {...getMenuProps()}>
-              {isOpen && isAllowedToOpen ? (
+              {isOpen && canOpen ? (
                 <ScrollMenu selectedIndex={highlightedIndex}>
                   {renderOptions(filteredOptions, inputValue)}
                 </ScrollMenu>
