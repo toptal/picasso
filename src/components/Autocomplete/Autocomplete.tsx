@@ -114,14 +114,14 @@ export const Autocomplete: FunctionComponent<Props> = ({
       }) => {
         const filteredOptions = getFilteredOptions(options!, inputValue)
 
-        const startTyping = Boolean(inputValue)
+        const isTyping = Boolean(inputValue)
         const hasOptions = Boolean(filteredOptions.length)
 
         const canOpen =
           isOpen &&
           isMatchingMinLengthCondition(inputValue, minLength) &&
           !loading &&
-          (hasOptions || startTyping)
+          (hasOptions || isTyping)
 
         const optionsMenu = (
           <ScrollMenu selectedIndex={highlightedIndex}>
