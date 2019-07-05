@@ -24,7 +24,13 @@ page.createTabChapter('Props').addComponentDocs({
 page
   .createChapter()
   .addTextSection(
-    `Autocomplete supports all the default HTML native props, as TextField supports.`
+    `
+Autocomplete supports all the default HTML native props, as TextField supports.
+
+You also may want to disable standard browser autofill and autocomplete
+for this component. This you can achieve by adding corresponding attributes:
+\`autoComplete='nope' autofill='off'\`
+    `
   )
   .addExample('Autocomplete/story/Default.example.jsx', 'Default')
   .addExample('Autocomplete/story/FullWidth.example.jsx', 'Full width')
