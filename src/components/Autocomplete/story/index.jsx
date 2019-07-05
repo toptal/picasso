@@ -8,9 +8,18 @@ const page = PicassoBook.createPage(
   'Forms'
 )
 
-page
-  .createTabChapter('Props')
-  .addComponentDocs({ component: Autocomplete, name: 'Autocomplete' })
+page.createTabChapter('Props').addComponentDocs({
+  component: Autocomplete,
+  name: 'Autocomplete',
+  additionalDocs: {
+    options: {
+      type: {
+        name: '[]',
+        description: '{ label: string }'
+      }
+    }
+  }
+})
 
 page
   .createChapter()

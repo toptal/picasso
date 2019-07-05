@@ -44,9 +44,7 @@ export interface Props
   /** Shows the loading icon when options are loading */
   loading?: boolean
   /** List of options */
-  options?: {
-    label: string
-  }[] // original type: Item[]
+  options?: Item[]
   /** The minimum number of characters a user must type before a search is performed */
   minLength?: number
   /**  Callback invoked when item is selected */
