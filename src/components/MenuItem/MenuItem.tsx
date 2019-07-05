@@ -26,6 +26,8 @@ interface Props extends StandardProps, MenuItemAttributes {
   children?: ReactNode
   /** Callback when menu item is clicked */
   onClick?: () => void
+  /** Highlights the item as selected */
+  selected?: boolean
   /** Value of the item. Can be used when menu item is used inside Select component. */
   value?: string | string[] | number
 }
@@ -38,6 +40,7 @@ export const MenuItem: FunctionComponent<Props> = ({
   disabled,
   disableGutters,
   onClick,
+  selected,
   style,
   value,
   ...rest
@@ -68,6 +71,7 @@ export const MenuItem: FunctionComponent<Props> = ({
       onClick={onClick}
       style={style}
       value={value}
+      selected={selected}
     >
       {children}
     </MUIMenuItem>
