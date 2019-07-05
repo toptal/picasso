@@ -11,6 +11,6 @@ export default ({ palette, zIndex }: Theme) =>
     },
     scrollView: {
       maxHeight: '10.125em', // 4.5 lines of menu to show
-      overflowY: 'scroll'
+      overflowY: 'auto'
     }
   })
