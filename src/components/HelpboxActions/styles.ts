@@ -3,6 +3,8 @@ import { createStyles } from '@material-ui/core/styles'
 export default () =>
   createStyles({
     root: {
-      position: 'relative'
+      position: 'absolute',
+      right: '2em',
+      top: '2em'
     }
   })

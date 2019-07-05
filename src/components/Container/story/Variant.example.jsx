@@ -1,38 +1,52 @@
 import React from 'react'
-import { Container } from '@toptal/picasso'
+import { Container, Typography } from '@toptal/picasso'
 
 const ContainerDefaultExample = () => (
-  <div>
-    <Container bordered padded='large'>
-      Default white
-    </Container>
-    <Container bordered variant='red' padded='large'>
-      Red
-    </Container>
-    <Container bordered variant='yellow' padded='large'>
-      Yellow
-    </Container>
-    <Container bordered variant='green' padded='large'>
-      Green
-    </Container>
-    <Container bordered variant='blue' padded='large'>
-      Blue
+  <Container flex direction='column'>
+    <Container bottom='medium'>
+      <Typography variant='heading' size='medium'>
+        Bordered
+      </Typography>
+
+      <Container bordered padded='large' bottom='small' top='small'>
+        White
+      </Container>
+      <Container bordered variant='red' padded='large' bottom='small'>
+        Red
+      </Container>
+      <Container bordered variant='yellow' padded='large' bottom='small'>
+        Yellow
+      </Container>
+      <Container bordered variant='green' padded='large' bottom='small'>
+        Green
+      </Container>
+      <Container bordered variant='blue' padded='large'>
+        Blue
+      </Container>
     </Container>
 
-    <Container padded='large'>Default white</Container>
-    <Container variant='red' padded='large'>
-      Red
+    <Container>
+      <Typography bottom='medium' variant='heading' size='medium'>
+        Non-bordered
+      </Typography>
+
+      <Container padded='large' bottom='small' top='small'>
+        White
+      </Container>
+      <Container variant='red' padded='large' bottom='small'>
+        Red
+      </Container>
+      <Container variant='yellow' padded='large' bottom='small'>
+        Yellow
+      </Container>
+      <Container variant='green' padded='large' bottom='small'>
+        Green
+      </Container>
+      <Container variant='blue' padded='large'>
+        Blue
+      </Container>
     </Container>
-    <Container variant='yellow' padded='large'>
-      Yellow
-    </Container>
-    <Container variant='green' padded='large'>
-      Green
-    </Container>
-    <Container variant='blue' padded='large'>
-      Blue
-    </Container>
-  </div>
+  </Container>
 )
 
 export default ContainerDefaultExample

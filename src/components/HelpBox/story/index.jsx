@@ -1,11 +1,21 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-import { HelpBox } from '../HelpBox'
+import helpboxTitleStory from '@components/HelpboxTitle/story'
+import helpboxContentStory from '@components/HelpboxContent/story'
+import helpboxActionsStory from '@components/HelpboxActions/story'
 
-const page = PicassoBook.createPage('HelpBox', `<-- description -->`)
+import { Helpbox } from '../Helpbox'
+
+const page = PicassoBook.createPage(
+  'Helpbox',
+  `Container specialized for rendering suggestions`
+)
 
 page
   .createTabChapter('Props')
-  .addComponentDocs({ component: HelpBox, name: 'HelpBox' })
+  .addComponentDocs({ component: Helpbox, name: 'Helpbox' })
+  .addComponentDocs(helpboxTitleStory.componentDocs)
+  .addComponentDocs(helpboxContentStory.componentDocs)
+  .addComponentDocs(helpboxActionsStory.componentDocs)
 
-page.createChapter().addExample('HelpBox/story/Default.example.jsx', 'Default')
+page.createChapter().addExample('Helpbox/story/Default.example.jsx', 'Default')

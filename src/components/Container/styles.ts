@@ -1,7 +1,6 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
 import { SpacingEnum, SpacingType, spacingToEm } from '../Picasso'
-import { white } from 'color-name'
 import { alpha } from '../styles'
 
 const spacingVariants = Object.keys(SpacingEnum).filter(variant =>

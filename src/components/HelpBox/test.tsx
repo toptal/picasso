@@ -1,31 +1,29 @@
-import React, { ReactNode } from 'react'
-/* eslint-disable-next-line */
-import { render, fireEvent, cleanup, RenderResult } from 'react-testing-library'
+import React, { FunctionComponent } from 'react'
+import { render, cleanup } from 'react-testing-library'
+import { Button } from '@toptal/picasso'
 
-import { OmitInternalProps } from '../Picasso'
-import HelpBox, { Props } from './HelpBox'
+import Picasso, { OmitInternalProps } from '../Picasso'
+import Helpbox, { Props } from './Helpbox'
 
-const renderHelpBox = (
-  children: ReactNode,
-  props: OmitInternalProps<Props>
-) => {
-  const {
-    /* add props you need */
-  } = props
-
-  return render(<HelpBox>{children}</HelpBox>)
-}
+const TestHelpbox: FunctionComponent<OmitInternalProps<Props>> = ({
+  children
+}) => (
+  <Picasso loadFonts={false}>
+    <Helpbox>
+      <Helpbox.Title>Title</Helpbox.Title>
+      <Helpbox.Content>{children}</Helpbox.Content>
+      <Helpbox.Actions>
+        <Button>Button</Button>
+      </Helpbox.Actions>
+    </Helpbox>
+  </Picasso>
+)
 
 afterEach(cleanup)
 
-describe('HelpBox', () => {
-  let api: RenderResult
-
-  beforeEach(() => {
-    api = renderHelpBox(null, {})
-  })
+describe('Helpbox', () => {
   test('default render', () => {
-    const { container } = api
+    const { container } = render(<TestHelpbox>Test</TestHelpbox>)
 
     expect(container).toMatchSnapshot()
   })

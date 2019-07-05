@@ -1,1 +1,1 @@
-export { default } from './HelpBox'
+export { default } from './Helpbox'
