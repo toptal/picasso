@@ -43,6 +43,8 @@ export interface Props
   width?: 'full' | 'shrink' | 'auto'
   /** Shows the loading icon when options are loading */
   loading?: boolean
+  /** Label to show when no options were found */
+  noOptionsLabel?: string
   /** List of options */
   options?: Item[]
   /** The minimum number of characters a user must type before a search is performed */
@@ -58,7 +60,7 @@ const getFilteredOptions = (
   value: Value,
   minLength?: number
 ) => {
-  if (!isMatchingMinLengthCondition(value, minLength)) {
+  if (!isMatchingMinLength(value, minLength)) {
     return options
   }
 
@@ -77,7 +79,7 @@ const getRelevantOption = (options: Item[], value: Value): Item | null => {
   )
 }
 
-const isMatchingMinLengthCondition = (value: Value, minLength?: number) => {
+const isMatchingMinLength = (value: Value, minLength?: number) => {
   const inputValue = value || ''
 
   return !minLength || inputValue.length >= minLength
@@ -90,6 +92,7 @@ export const Autocomplete: FunctionComponent<Props> = ({
   loading,
   minLength,
   placeholder,
+  noOptionsLabel,
   options,
   style,
   width,
@@ -119,14 +122,14 @@ export const Autocomplete: FunctionComponent<Props> = ({
 
         const canOpen =
           isOpen &&
-          isMatchingMinLengthCondition(inputValue, minLength) &&
+          isMatchingMinLength(inputValue, minLength) &&
           !loading &&
           (hasOptions || isTyping)
 
         const optionsMenu = (
           <ScrollMenu selectedIndex={highlightedIndex}>
             {!hasOptions ? (
-              <Menu.Item disabled>No options</Menu.Item>
+              <Menu.Item disabled>{noOptionsLabel}</Menu.Item>
             ) : (
               filteredOptions.map((option, index) => (
                 <Menu.Item
@@ -162,7 +165,7 @@ export const Autocomplete: FunctionComponent<Props> = ({
               clearSelection()
             }
 
-            if (isMatchingMinLengthCondition(event.target.value, minLength)) {
+            if (isMatchingMinLength(event.target.value, minLength)) {
               event.persist()
               onChangeDebounced(event)
             }
@@ -207,6 +210,7 @@ export const Autocomplete: FunctionComponent<Props> = ({
 Autocomplete.defaultProps = {
   debounceTime: DEBOUNCE_TIME,
   loading: false,
+  noOptionsLabel: 'No options',
   onChange: () => {},
   onSelect: () => {},
   options: [],
