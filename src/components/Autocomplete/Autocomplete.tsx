@@ -15,6 +15,7 @@ import TextField from '../TextField'
 import Menu from '../Menu'
 import Loader from '../Loader'
 import ScrollMenu from '../ScrollMenu'
+import isSubstring from '../utils/isSubstring'
 import styles from './styles'
 
 type Item = {
@@ -50,16 +51,6 @@ export interface Props
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
-const isSubstring = (value: Value, result: Item) => {
-  if (!result) {
-    return false
-  }
-
-  const inputValue = (value || '').trim().toLowerCase()
-
-  return result.label.toLowerCase().includes(inputValue)
-}
-
 const getFilteredOptions = (
   options: Item[],
   value: Value,
@@ -69,7 +60,7 @@ const getFilteredOptions = (
     return options
   }
 
-  return options.filter(option => isSubstring(value, option))
+  return options.filter(option => isSubstring(value, option.label))
 }
 
 const getRelevantOption = (options: Item[], value: Value): Item | null => {
@@ -78,12 +69,9 @@ const getRelevantOption = (options: Item[], value: Value): Item | null => {
   }
 
   const filteredOptions = getFilteredOptions(options, value) || []
-
-  if (isSubstring(value, filteredOptions[0])) {
-    return filteredOptions[0]
-  }
-
-  return null
+  return (
+    filteredOptions.find(option => isSubstring(value, option.label)) || null
+  )
 }
 
 const isMatchingMinLengthCondition = (value: Value, minLength?: number) => {
