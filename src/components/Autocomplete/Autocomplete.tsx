@@ -88,7 +88,8 @@ const getRelevantOption = (options: Item[], value: Value): Item | null => {
 
 const isMatchingMinLengthCondition = (value: Value, minLength?: number) => {
   const inputValue = value || ''
-  return !minLength || (minLength && inputValue.length >= minLength)
+
+  return !minLength || inputValue.length >= minLength
 }
 
 export const Autocomplete: FunctionComponent<Props> = ({
@@ -142,7 +143,11 @@ export const Autocomplete: FunctionComponent<Props> = ({
           placeholder
         })
 
-        const renderOptions = (options: Item[], inputValue: Value) => {
+        const renderOptions = (
+          options: Item[],
+          selectedIndex: number | null,
+          inputValue: Value
+        ) => {
           if (!options.length) {
             return inputValue !== '' ? (
               <Menu.Item disabled>No options</Menu.Item>
@@ -152,7 +157,7 @@ export const Autocomplete: FunctionComponent<Props> = ({
           return options.map((option, index) => (
             <Menu.Item
               key={option.label}
-              selected={highlightedIndex === index}
+              selected={selectedIndex === index}
               // eslint-disable-next-line react/jsx-props-no-spreading
               {...getItemProps({ item: option.label })}
             >
@@ -197,7 +202,7 @@ export const Autocomplete: FunctionComponent<Props> = ({
             <div {...getMenuProps()}>
               {isOpen && canOpen ? (
                 <ScrollMenu selectedIndex={highlightedIndex}>
-                  {renderOptions(filteredOptions, inputValue)}
+                  {renderOptions(filteredOptions, highlightedIndex, inputValue)}
                 </ScrollMenu>
               ) : null}
             </div>
