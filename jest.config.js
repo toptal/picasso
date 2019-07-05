@@ -1,4 +1,7 @@
 module.exports = {
+  globals: {
+    NODE_ENV: process.env.NODE_ENV
+  },
   transform: {
     '.(ts|tsx)': 'ts-jest'
   },
