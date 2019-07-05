@@ -26,4 +26,4 @@ page
         you should always specify \`minLength\` prop to make less number of 
         requests to the server and to show more relevant suggestions to 
         your users.`
-  })
+  }) // picasso-skip-visuals
