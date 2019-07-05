@@ -143,31 +143,14 @@ export const Autocomplete: FunctionComponent<Props> = ({
           placeholder
         })
 
-        const renderOptions = (
-          options: Item[],
-          selectedIndex: number | null,
-          inputValue: Value
-        ) => {
-          if (!options.length) {
-            return inputValue !== '' ? (
-              <Menu.Item disabled>No options</Menu.Item>
-            ) : null
-          }
-
-          return options.map((option, index) => (
-            <Menu.Item
-              key={option.label}
-              selected={selectedIndex === index}
-              // eslint-disable-next-line react/jsx-props-no-spreading
-              {...getItemProps({ item: option.label })}
-            >
-              {option.label}
-            </Menu.Item>
-          ))
-        }
+        const startTyping = Boolean(inputValue)
+        const hasOptions = Boolean(filteredOptions.length)
 
         const canOpen =
-          isMatchingMinLengthCondition(inputValue, minLength) && !loading
+          isOpen &&
+          isMatchingMinLengthCondition(inputValue, minLength) &&
+          !loading &&
+          (hasOptions || startTyping)
 
         return (
           <div
@@ -200,9 +183,22 @@ export const Autocomplete: FunctionComponent<Props> = ({
 
             {/* eslint-disable-next-line react/jsx-props-no-spreading */}
             <div {...getMenuProps()}>
-              {isOpen && canOpen ? (
+              {canOpen ? (
                 <ScrollMenu selectedIndex={highlightedIndex}>
-                  {renderOptions(filteredOptions, highlightedIndex, inputValue)}
+                  {!hasOptions ? (
+                    <Menu.Item disabled>No options</Menu.Item>
+                  ) : (
+                    filteredOptions.map((option, index) => (
+                      <Menu.Item
+                        key={option.label}
+                        selected={highlightedIndex === index}
+                        // eslint-disable-next-line react/jsx-props-no-spreading
+                        {...getItemProps({ item: option.label })}
+                      >
+                        {option.label}
+                      </Menu.Item>
+                    ))
+                  )}
                 </ScrollMenu>
               ) : null}
             </div>
