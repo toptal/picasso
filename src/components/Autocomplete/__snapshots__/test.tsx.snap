@@ -97,8 +97,10 @@ exports[`Autocomplete render options when start typing 1`] = `
             tabindex="0"
           >
             <li
+              aria-selected="false"
               class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
-              role="menuitem"
+              id="downshift-1-item-0"
+              role="option"
               tabindex="-1"
             >
               <p
@@ -108,8 +110,10 @@ exports[`Autocomplete render options when start typing 1`] = `
               </p>
             </li>
             <li
+              aria-selected="false"
               class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
-              role="menuitem"
+              id="downshift-1-item-1"
+              role="option"
               tabindex="-1"
             >
               <p
