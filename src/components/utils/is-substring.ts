@@ -1,5 +1,3 @@
-export default (value: string | null, str: string) => {
-  const query = (value || '').trim().toLowerCase()
-
-  return str.toLowerCase().includes(query)
+export default (value: string, str: string) => {
+  return str.toLowerCase().includes(value.trim().toLowerCase())
 }

@@ -60,7 +60,7 @@ const getFilteredOptions = (
   value: Value,
   minLength?: number
 ) => {
-  if (!isMatchingMinLength(value, minLength)) {
+  if (!isMatchingMinLength(value, minLength) || !value) {
     return options
   }
 
