@@ -57,7 +57,7 @@ export const PageHeader: FunctionComponent<Props> = ({
     >
       <div className={contentClassnames}>
         <div className={classes.left}>
-          <Container right='small' flex direction='row' alignItems='center'>
+          <Container right='small' flex alignItems='center'>
             {logoLink ? React.cloneElement(logoLink, {}, logo) : logo}
           </Container>
           {title && (

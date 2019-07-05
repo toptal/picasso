@@ -27,6 +27,7 @@ Spacing is based on size enum that gets transformed into **em** unit in followin
 - small = 1em,
 - medium = 1.5em,
 - large = 2em
+- xlarge = 2.5em
 
 For other custom  cases use **number** in em units or **className** to define spacings.
 `

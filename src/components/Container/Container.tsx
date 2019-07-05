@@ -79,7 +79,7 @@ export const Container: FunctionComponent<Props> = ({
   bordered = false,
   variant,
   classes,
-  as: Component = 'div',
+  as: Component = inline ? 'span' : 'div',
   ...rest
 }) => {
   const margins = {
@@ -99,13 +99,13 @@ export const Container: FunctionComponent<Props> = ({
           [classes[`${padded}Padding`]]: typeof padded === 'string',
           [classes.bordered]: bordered,
           [classes.flex]: flex,
-          [classes.inline]: inline
+          [classes.inline]: inline,
+          [classes.column]: flex && direction === 'column'
         },
         className
       )}
       style={{
         ...margins,
-        ...(direction && { flexDirection: direction }),
         ...(alignItems && { alignItems }),
         ...(justifyContent && { justifyContent }),
         ...(typeof padded === 'number' && { padding: spacingToEm(padded) }),

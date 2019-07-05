@@ -16,7 +16,7 @@ exports[`renders default 1`] = `
       >
         <span
           class="Component-flex Component-inline Button-content"
-          style="flex-direction: row; align-items: center;"
+          style="align-items: center;"
         >
           Prev
         </span>
@@ -28,7 +28,7 @@ exports[`renders default 1`] = `
       >
         <span
           class="Component-flex Component-inline Button-content"
-          style="flex-direction: row; align-items: center;"
+          style="align-items: center;"
         >
           1
         </span>
@@ -49,7 +49,7 @@ exports[`renders default 1`] = `
       >
         <span
           class="Component-flex Component-inline Button-content"
-          style="flex-direction: row; align-items: center;"
+          style="align-items: center;"
         >
           4
         </span>
@@ -61,7 +61,7 @@ exports[`renders default 1`] = `
       >
         <span
           class="Component-flex Component-inline Button-content"
-          style="flex-direction: row; align-items: center;"
+          style="align-items: center;"
         >
           5
         </span>
@@ -73,7 +73,7 @@ exports[`renders default 1`] = `
       >
         <span
           class="Component-flex Component-inline Button-content"
-          style="flex-direction: row; align-items: center;"
+          style="align-items: center;"
         >
           6
         </span>
@@ -94,7 +94,7 @@ exports[`renders default 1`] = `
       >
         <span
           class="Component-flex Component-inline Button-content"
-          style="flex-direction: row; align-items: center;"
+          style="align-items: center;"
         >
           20
         </span>
@@ -106,7 +106,7 @@ exports[`renders default 1`] = `
       >
         <span
           class="Component-flex Component-inline Button-content"
-          style="flex-direction: row; align-items: center;"
+          style="align-items: center;"
         >
           Next
         </span>
@@ -133,7 +133,7 @@ exports[`renders disabled 1`] = `
       >
         <span
           class="Component-flex Component-inline Button-content"
-          style="flex-direction: row; align-items: center;"
+          style="align-items: center;"
         >
           Prev
         </span>
@@ -146,7 +146,7 @@ exports[`renders disabled 1`] = `
       >
         <span
           class="Component-flex Component-inline Button-content"
-          style="flex-direction: row; align-items: center;"
+          style="align-items: center;"
         >
           1
         </span>
@@ -168,7 +168,7 @@ exports[`renders disabled 1`] = `
       >
         <span
           class="Component-flex Component-inline Button-content"
-          style="flex-direction: row; align-items: center;"
+          style="align-items: center;"
         >
           4
         </span>
@@ -181,7 +181,7 @@ exports[`renders disabled 1`] = `
       >
         <span
           class="Component-flex Component-inline Button-content"
-          style="flex-direction: row; align-items: center;"
+          style="align-items: center;"
         >
           5
         </span>
@@ -194,7 +194,7 @@ exports[`renders disabled 1`] = `
       >
         <span
           class="Component-flex Component-inline Button-content"
-          style="flex-direction: row; align-items: center;"
+          style="align-items: center;"
         >
           6
         </span>
@@ -216,7 +216,7 @@ exports[`renders disabled 1`] = `
       >
         <span
           class="Component-flex Component-inline Button-content"
-          style="flex-direction: row; align-items: center;"
+          style="align-items: center;"
         >
           20
         </span>
@@ -229,7 +229,7 @@ exports[`renders disabled 1`] = `
       >
         <span
           class="Component-flex Component-inline Button-content"
-          style="flex-direction: row; align-items: center;"
+          style="align-items: center;"
         >
           Next
         </span>

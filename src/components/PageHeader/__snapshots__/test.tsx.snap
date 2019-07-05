@@ -16,7 +16,7 @@ exports[`Page.Header default render 1`] = `
         >
           <div
             class="Component-flex"
-            style="margin-right: 1em; flex-direction: row; align-items: center;"
+            style="margin-right: 1em; align-items: center;"
           >
             <svg
               class="SvgLogo-root Component-logo Component-white"
@@ -68,7 +68,7 @@ exports[`Page.Header render with link 1`] = `
         >
           <div
             class="Component-flex"
-            style="margin-right: 1em; flex-direction: row; align-items: center;"
+            style="margin-right: 1em; align-items: center;"
           >
             <a
               class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineHover"

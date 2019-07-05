@@ -19,7 +19,7 @@ exports[`AccountSelect default render 1`] = `
         >
           <div
             class="Component-mediumPadding Component-flex"
-            style="flex-direction: row; align-items: center; justify-content: space-between;"
+            style="align-items: center; justify-content: space-between;"
           >
             <div
               class="Component-flex UserBadge-root"
@@ -38,8 +38,8 @@ exports[`AccountSelect default render 1`] = `
                 </p>
               </div>
               <div
-                class="Component-flex"
-                style="margin-left: 1em; flex-direction: column;"
+                class="Component-flex Component-column"
+                style="margin-left: 1em;"
               >
                 <div
                   class=""
@@ -106,7 +106,7 @@ exports[`AccountSelect default render 1`] = `
         >
           <div
             class="Component-mediumPadding Component-flex"
-            style="flex-direction: row; align-items: center; justify-content: space-between;"
+            style="align-items: center; justify-content: space-between;"
           >
             <div
               class="Component-flex UserBadge-root"
@@ -125,8 +125,8 @@ exports[`AccountSelect default render 1`] = `
                 </p>
               </div>
               <div
-                class="Component-flex"
-                style="margin-left: 1em; flex-direction: column;"
+                class="Component-flex Component-column"
+                style="margin-left: 1em;"
               >
                 <div
                   class=""
@@ -193,7 +193,7 @@ exports[`AccountSelect default render 1`] = `
         >
           <div
             class="Component-mediumPadding Component-flex"
-            style="flex-direction: row; align-items: center; justify-content: space-between;"
+            style="align-items: center; justify-content: space-between;"
           >
             <div
               class="Component-flex UserBadge-root"
@@ -209,8 +209,8 @@ exports[`AccountSelect default render 1`] = `
                 />
               </div>
               <div
-                class="Component-flex"
-                style="margin-left: 1em; flex-direction: column;"
+                class="Component-flex Component-column"
+                style="margin-left: 1em;"
               >
                 <div
                   class=""

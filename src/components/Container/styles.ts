@@ -43,6 +43,9 @@ export default ({ palette }: Theme) =>
         display: 'inline-flex'
       }
     },
+    column: {
+      flexDirection: 'column'
+    },
     inline: {
       display: 'inline-block'
     },
