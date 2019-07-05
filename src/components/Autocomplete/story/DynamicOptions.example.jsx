@@ -16,8 +16,8 @@ const remoteOptions = [
 
 const loadOptions = inputValue => {
   return new Promise(resolve => {
-    const filteredOptions = remoteOptions.filter(s =>
-      s.label.toLowerCase().includes(inputValue)
+    const filteredOptions = remoteOptions.filter(({ label }) =>
+      label.toLowerCase().includes(inputValue)
     )
 
     setTimeout(() => resolve(filteredOptions), 1000)

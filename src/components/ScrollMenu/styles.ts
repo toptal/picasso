@@ -1,11 +1,11 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
-export default ({ palette }: Theme) =>
+export default ({ palette, zIndex }: Theme) =>
   createStyles({
     menu: {
       left: 0,
       right: 0,
-      zIndex: 1,
+      zIndex: zIndex.drawer,
       position: 'absolute',
       backgroundColor: palette.common.white
     },
