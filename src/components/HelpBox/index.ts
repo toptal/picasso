@@ -1,1 +1,1 @@
-export { default } from './Helpbox'
+export { default, HelpboxContext } from './Helpbox'

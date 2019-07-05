@@ -1,10 +1,12 @@
-import React, { ReactNode, FunctionComponent } from 'react'
+import React, { ReactNode, FunctionComponent, useContext } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
 import { StandardProps } from '../Picasso'
 import Container from '../Container'
 import styles from './styles'
+import { HelpboxContext } from '../Helpbox'
+import { HelpboxContextProps } from '../Helpbox/types'
 
 export interface Props extends StandardProps {
   /** Actions part of Helpbox */
@@ -16,16 +18,26 @@ export const HelpboxActions: FunctionComponent<Props> = ({
   className,
   style,
   children
-}) => (
-  <Container
-    className={cx(classes.root, className)}
-    style={style}
-    flex
-    alignItems='center'
-  >
-    {children}
-  </Container>
-)
+}) => {
+  const { closeable } = useContext<HelpboxContextProps>(HelpboxContext)
+
+  return (
+    <Container
+      className={cx(
+        classes.root,
+        {
+          [classes.rootCloseable]: closeable
+        },
+        className
+      )}
+      style={style}
+      flex
+      alignItems='center'
+    >
+      {children}
+    </Container>
+  )
+}
 
 HelpboxActions.defaultProps = {}
 

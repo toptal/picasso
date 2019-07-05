@@ -1,19 +1,11 @@
 import React from 'react'
-import { Helpbox, Container, Button, Close16 } from '@toptal/picasso'
-import { palette } from '@toptal/picasso/utils'
+import { Helpbox, Container } from '@toptal/picasso'
 
 const HelpboxDefaultExample = () => (
   <Container>
     <Container bottom='small'>
       <Helpbox>
         <Helpbox.Title>Heading Small</Helpbox.Title>
-        <Helpbox.Actions>
-          <Button size='small' variant='secondary-blue'>
-            Button1
-          </Button>
-          <Button size='small'>Button2</Button>
-          <Close16 color={palette.grey.dark} />
-        </Helpbox.Actions>
         <Helpbox.Content>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -28,13 +20,6 @@ const HelpboxDefaultExample = () => (
     <Container bottom='small'>
       <Helpbox variant='red'>
         <Helpbox.Title>Heading Small</Helpbox.Title>
-        <Helpbox.Actions>
-          <Button size='small' variant='secondary-blue'>
-            Button1
-          </Button>
-          <Button size='small'>Button2</Button>
-          <Close16 color={palette.grey.dark} />
-        </Helpbox.Actions>
         <Helpbox.Content>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -49,13 +34,6 @@ const HelpboxDefaultExample = () => (
     <Container bottom='small'>
       <Helpbox variant='yellow'>
         <Helpbox.Title>Heading Small</Helpbox.Title>
-        <Helpbox.Actions>
-          <Button size='small' variant='secondary-blue'>
-            Button1
-          </Button>
-          <Button size='small'>Button2</Button>
-          <Close16 color={palette.grey.dark} />
-        </Helpbox.Actions>
         <Helpbox.Content>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -70,13 +48,6 @@ const HelpboxDefaultExample = () => (
     <Container bottom='small'>
       <Helpbox variant='green'>
         <Helpbox.Title>Heading Small</Helpbox.Title>
-        <Helpbox.Actions>
-          <Button size='small' variant='secondary-blue'>
-            Button1
-          </Button>
-          <Button size='small'>Button2</Button>
-          <Close16 color={palette.grey.dark} />
-        </Helpbox.Actions>
         <Helpbox.Content>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -91,13 +62,6 @@ const HelpboxDefaultExample = () => (
     <Container>
       <Helpbox variant='blue'>
         <Helpbox.Title>Heading Small</Helpbox.Title>
-        <Helpbox.Actions>
-          <Button size='small' variant='secondary-blue'>
-            Button1
-          </Button>
-          <Button size='small'>Button2</Button>
-          <Close16 color={palette.grey.dark} />
-        </Helpbox.Actions>
         <Helpbox.Content>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad

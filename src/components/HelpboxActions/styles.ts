@@ -6,5 +6,8 @@ export default () =>
       position: 'absolute',
       right: '2em',
       top: '2em'
+    },
+    rootCloseable: {
+      right: '4em'
     }
   })

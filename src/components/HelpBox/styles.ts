@@ -1,8 +1,20 @@
-import { createStyles } from '@material-ui/core/styles'
+import { Theme, createStyles } from '@material-ui/core/styles'
 
-export default () =>
+export default ({ palette }: Theme) =>
   createStyles({
     root: {
       position: 'relative'
+    },
+    closeButton: {
+      position: 'absolute',
+      top: '1.625em',
+      right: '1.25em',
+      background: 'transparent',
+      border: 0,
+      padding: 0,
+
+      '&:hover': {
+        background: 'transparent'
+      }
     }
   })

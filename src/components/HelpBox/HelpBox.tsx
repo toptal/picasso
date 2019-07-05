@@ -3,11 +3,15 @@ import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
 import { StandardProps, PicassoComponent } from '../Picasso'
+import { palette } from '../utils'
 import styles from './styles'
 import Container from '../Container'
 import HelpboxTitle from '../HelpboxTitle'
 import HelpboxContent from '../HelpboxContent'
 import HelpboxActions from '../HelpboxActions'
+import { Close16 } from '../Icon'
+import Button from '../Button'
+import { HelpboxContextProps } from './types'
 
 type VariantType = 'red' | 'green' | 'white' | 'yellow' | 'blue'
 
@@ -16,6 +20,8 @@ export interface Props extends StandardProps {
   variant?: VariantType
   /** Children components (`Helpbox.Title`, `Helpbox.Content`, `Hdlpbox.Actions`) */
   children: ReactNode
+  /** Callback invoked when close is clicked */
+  onClose?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
 }
 
 interface StaticProps {
@@ -24,12 +30,17 @@ interface StaticProps {
   Actions: typeof HelpboxActions
 }
 
+export const HelpboxContext = React.createContext<HelpboxContextProps>(
+  {} as HelpboxContextProps
+)
+
 export const Helpbox: FunctionComponent<Props> & StaticProps = ({
   classes,
   className,
   style,
   children,
-  variant
+  variant,
+  onClose
 }) => (
   <Container
     className={cx(classes.root, className)}
@@ -38,7 +49,17 @@ export const Helpbox: FunctionComponent<Props> & StaticProps = ({
     variant={variant}
     padded='large'
   >
-    {children}
+    <HelpboxContext.Provider value={{ closeable: !!onClose }}>
+      {children}
+    </HelpboxContext.Provider>
+    {onClose && (
+      <Button
+        className={classes.closeButton}
+        circular
+        onClick={onClose}
+        icon={<Close16 color={palette.grey.dark} />}
+      />
+    )}
   </Container>
 )
 

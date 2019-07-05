@@ -18,4 +18,8 @@ page
   .addComponentDocs(helpboxContentStory.componentDocs)
   .addComponentDocs(helpboxActionsStory.componentDocs)
 
-page.createChapter().addExample('Helpbox/story/Default.example.jsx', 'Default')
+page
+  .createChapter()
+  .addExample('Helpbox/story/Default.example.jsx', 'Default')
+  .addExample('Helpbox/story/Actions.example.jsx', 'With actions')
+  .addExample('Helpbox/story/Closeable.example.jsx', 'Closeable')
