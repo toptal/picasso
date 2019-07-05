@@ -14,15 +14,14 @@ const remoteOptions = [
   { label: 'Finland' }
 ]
 
-const loadOptions = inputValue => {
-  return new Promise(resolve => {
+const loadOptions = inputValue =>
+  new Promise(resolve => {
     const filteredOptions = remoteOptions.filter(({ label }) =>
       label.toLowerCase().includes(inputValue)
     )
 
     setTimeout(() => resolve(filteredOptions), 1000)
   })
-}
 
 const AutocompleteDynamicOptionsExample = () => {
   const [options, setOptions] = useState([])
