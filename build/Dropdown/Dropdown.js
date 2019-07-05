@@ -1,4 +1,15 @@
 "use strict";
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
@@ -26,7 +37,8 @@ function useDropdownContext() {
     }
     return context;
 }
-exports.Dropdown = ({ classes, className, style, children, content, offset, transformOrigin, anchorOrigin, disableAutoClose, disableAutoFocus }) => {
+exports.Dropdown = (_a) => {
+    var { classes, className, style, children, content, offset, transformOrigin, anchorOrigin, disableAutoClose, disableAutoFocus } = _a, rest = __rest(_a, ["classes", "className", "style", "children", "content", "offset", "transformOrigin", "anchorOrigin", "disableAutoClose", "disableAutoFocus"]);
     const contentRef = react_1.useRef();
     const [anchorEl, setAnchorEl] = react_1.useState(undefined);
     const open = Boolean(anchorEl);
@@ -86,7 +98,9 @@ exports.Dropdown = ({ classes, className, style, children, content, offset, tran
     const context = react_1.useMemo(() => ({
         close: () => close(true)
     }), [close]);
-    return (react_1.default.createElement("div", { className: classnames_1.default(classes.root, className), style: style },
+    return (
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    react_1.default.createElement("div", Object.assign({}, rest, { className: classnames_1.default(classes.root, className), style: style }),
         react_1.default.createElement("div", { className: classes.anchor, onClick: handleAnchorClick }, children),
         react_1.default.createElement(Popover_1.default, { open: open, anchorEl: anchorEl, 
             // MUI has a wrong typing for onClose prop without `reason` argument

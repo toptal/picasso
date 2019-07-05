@@ -1,4 +1,15 @@
 "use strict";
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
@@ -16,12 +27,15 @@ const classnames_1 = __importDefault(require("classnames"));
 const Page_1 = require("../Page");
 const styles_2 = __importDefault(require("./styles"));
 const currentYear = new Date().getFullYear();
-exports.PageFooter = ({ classes, className, style, rightContent }) => {
+exports.PageFooter = (_a) => {
+    var { classes, className, style, rightContent } = _a, rest = __rest(_a, ["classes", "className", "style", "rightContent"]);
     const { fullWidth } = react_1.useContext(Page_1.PageContext);
     const contentClassnames = classnames_1.default({
         [classes.fullWidth]: fullWidth
     }, classes.content);
-    return (react_1.default.createElement("footer", { className: classnames_1.default(classes.root, className), style: style },
+    return (
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    react_1.default.createElement("footer", Object.assign({}, rest, { className: classnames_1.default(classes.root, className), style: style }),
         react_1.default.createElement("div", { className: contentClassnames },
             react_1.default.createElement("div", { className: classes.left }, `© Copyright 2010 – ${currentYear} Toptal, LLC`),
             react_1.default.createElement("div", { className: classes.right }, rightContent))));

@@ -1,4 +1,15 @@
 "use strict";
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -16,7 +27,8 @@ const getVariantType = (variant) => {
     const [type] = variant.split('-');
     return type;
 };
-exports.Button = ({ icon, iconPosition, loading, children, classes, className, style, fullWidth, variant, size, focused, hovered, disabled, active, onClick, circular, title, value, type, onBlur, onFocus, onMouseLeave, onMouseOver, onTouchEnd, onTouchStart }) => {
+exports.Button = (_a) => {
+    var { icon, iconPosition, loading, children, classes, className, style, fullWidth, variant, size, focused, hovered, disabled, active, onClick, circular, title, value, type } = _a, rest = __rest(_a, ["icon", "iconPosition", "loading", "children", "classes", "className", "style", "fullWidth", "variant", "size", "focused", "hovered", "disabled", "active", "onClick", "circular", "title", "value", "type"]);
     const { icon: iconClass, iconLeft: iconLeftClass, iconRight: iconRightClass, iconSmall: iconSmallClass, root: rootClass, hidden: hiddenClass, loader: loaderClass, content: contentClass } = classes;
     let finalChildren = [children];
     if (icon) {
@@ -48,9 +60,11 @@ exports.Button = ({ icon, iconPosition, loading, children, classes, className, s
         [classes.hovered]: hovered,
         [classes.circular]: circular
     }, sizeClassName, variantClassName, rootClass);
-    return (react_1.default.createElement(ButtonBase_1.default, { classes: {
+    return (react_1.default.createElement(ButtonBase_1.default
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    , Object.assign({}, rest, { classes: {
             root: rootClassName
-        }, onClick: onClick, className: className, style: style, disabled: disabled, title: title, value: value, type: type, onBlur: onBlur, onFocus: onFocus, onMouseLeave: onMouseLeave, onMouseOver: onMouseOver, onTouchEnd: onTouchEnd, onTouchStart: onTouchStart },
+        }, onClick: onClick, className: className, style: style, disabled: disabled, title: title, value: value, type: type }),
         react_1.default.createElement(Container_1.default, { as: 'span', inline: true, flex: true, direction: 'row', alignItems: 'center', className: classnames_1.default({ [hiddenClass]: loading }, contentClass) }, finalChildren),
         loading && (react_1.default.createElement(Loader_1.default, { variant: 'inherit', className: loaderClass, inline: true, size: 'small' }))));
 };

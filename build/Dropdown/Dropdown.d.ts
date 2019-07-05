@@ -1,8 +1,8 @@
-import { FunctionComponent, ReactNode } from 'react';
+import { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
 import { PopoverOrigin } from '@material-ui/core/Popover';
 import { StandardProps, SpacingType, PicassoComponent } from '../Picasso';
 import DropdownArrow from '../DropdownArrow';
-export interface Props extends StandardProps {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
     /** Anchor element that opens content on click */
     children: ReactNode;
     /** Content element that opens when anchor is clicked */

@@ -1,4 +1,15 @@
 "use strict";
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
@@ -16,13 +27,14 @@ const classnames_1 = __importDefault(require("classnames"));
 const __1 = require("../");
 const Page_1 = require("../Page");
 const styles_2 = __importDefault(require("./styles"));
-exports.PageHeader = ({ classes, className, style, title, logoLink, rightContent, variant }) => {
+exports.PageHeader = (_a) => {
+    var { classes, className, style, title, logoLink, rightContent, variant } = _a, rest = __rest(_a, ["classes", "className", "style", "title", "logoLink", "rightContent", "variant"]);
     const { fullWidth } = react_1.useContext(Page_1.PageContext);
     const contentClassnames = classnames_1.default({
         [classes.fullWidth]: fullWidth
     }, classes.content);
     const logo = react_1.default.createElement(__1.Logo, { variant: 'white' });
-    return (react_1.default.createElement("header", { className: classnames_1.default('mui-fixed', classes.root, classes[variant], className), style: style },
+    return (react_1.default.createElement("header", Object.assign({}, rest, { className: classnames_1.default('mui-fixed', classes.root, classes[variant], className), style: style }),
         react_1.default.createElement("div", { className: contentClassnames },
             react_1.default.createElement("div", { className: classes.left },
                 react_1.default.createElement(__1.Container, { right: 'small', flex: true, direction: 'row', alignItems: 'center' }, logoLink ? react_1.default.cloneElement(logoLink, {}, logo) : logo),

@@ -1,4 +1,15 @@
 "use strict";
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
@@ -25,7 +36,8 @@ const PaginationEllipsis = ({ classes }) => {
 const PaginationPage = ({ page, activePage, disabled, classes, onClick }) => {
     return (react_1.default.createElement(Button_1.default, { className: classes.rangeButton, disabled: disabled, onClick: () => onClick(page), variant: activePage === page ? 'primary-blue' : 'secondary-blue', size: 'small' }, page));
 };
-exports.Pagination = ({ activePage, classes, disabled, totalPages, onPageChange }) => {
+exports.Pagination = (_a) => {
+    var { activePage, classes, disabled, totalPages, onPageChange } = _a, rest = __rest(_a, ["activePage", "classes", "disabled", "totalPages", "onPageChange"]);
     const isFirstActive = activePage === 1;
     const isLastActive = activePage === totalPages;
     if (totalPages <= range_utils_1.ONE_PAGE) {
@@ -50,7 +62,9 @@ exports.Pagination = ({ activePage, classes, disabled, totalPages, onPageChange 
         activePage,
         totalPages
     ]);
-    return (react_1.default.createElement(Container_1.default, { flex: true, inline: true, alignItems: 'center' },
+    return (
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    react_1.default.createElement(Container_1.default, Object.assign({}, rest, { flex: true, inline: true, alignItems: 'center' }),
         react_1.default.createElement(Button_1.default, { disabled: isFirstActive || disabled, onClick: () => handleChange('previous'), variant: 'secondary-blue', size: 'small' }, "Prev"),
         pages.map((page, index) => {
             if (page === range_utils_1.ELLIPSIS) {

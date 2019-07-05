@@ -1,8 +1,8 @@
-import { ReactNode, FunctionComponent } from 'react';
+import { ReactNode, FunctionComponent, HTMLAttributes } from 'react';
 import { GridSpacing, GridItemsAlignment, GridDirection, GridJustification, GridWrap } from '@material-ui/core/Grid';
 import GridItem from '../GridItem';
 import { StandardProps, PicassoComponent } from '../Picasso';
-interface Props extends StandardProps {
+interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
     /** Grid content containing Grid.Item */
     children?: ReactNode;
     /** Defines the space between the type item components */

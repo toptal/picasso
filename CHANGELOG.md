@@ -1,3 +1,10 @@
+# [2.12.0](https://github.com/toptal/picasso/compare/v2.11.0...v2.12.0) (2019-07-05)
+
+
+### Features
+
+* spread native attributes ([#526](https://github.com/toptal/picasso/issues/526)) ([c0fe629](https://github.com/toptal/picasso/commit/c0fe629))
+
 # [2.11.0](https://github.com/toptal/picasso/compare/v2.10.1...v2.11.0) (2019-07-04)
 
 

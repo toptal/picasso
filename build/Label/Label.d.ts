@@ -1,7 +1,7 @@
-import { FunctionComponent, ReactNode, ReactElement } from 'react';
+import { FunctionComponent, ReactNode, ReactElement, HTMLAttributes } from 'react';
 import LabelGroup from '../LabelGroup';
-import { StandardProps, PicassoComponent, TooltipEventListeners } from '../Picasso';
-export interface Props extends StandardProps, TooltipEventListeners {
+import { StandardProps, PicassoComponent } from '../Picasso';
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
     /** Text content of the `Label` component */
     children: ReactNode;
     /** A callback which is invoked after remove `Icon` is clicked

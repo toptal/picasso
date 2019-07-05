@@ -1,11 +1,11 @@
-import React, { FunctionComponent, ReactNode } from 'react';
+import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
 import PageHeader from '../PageHeader';
 import PageHeaderMenu from '../PageHeaderMenu';
 import PageFooter from '../PageFooter';
 import PageContent from '../PageContent';
 import { StandardProps, PicassoComponent } from '../Picasso';
 import { PageContextProps } from './types';
-interface Props extends StandardProps {
+interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
     /** Component becomes responsive with width 100% and overrides width prop */
     fullWidth?: boolean;
     /** Define container width in `rem` */

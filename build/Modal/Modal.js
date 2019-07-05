@@ -23,9 +23,11 @@ const ModalContent_1 = __importDefault(require("../ModalContent"));
 const ModalActions_1 = __importDefault(require("../ModalActions"));
 const styles_2 = __importDefault(require("./styles"));
 exports.Modal = props => {
-    const { children, open, onBackdropClick, onClose, onOpen, classes, className, style, container, hideBackdrop, transitionDuration, paperProps } = props;
+    const { children, open, onBackdropClick, onClose, onOpen, classes, className, style, container, hideBackdrop, transitionDuration, paperProps } = props, rest = __rest(props, ["children", "open", "onBackdropClick", "onClose", "onOpen", "classes", "className", "style", "container", "hideBackdrop", "transitionDuration", "paperProps"]);
     const { closeButton } = classes, restClasses = __rest(classes, ["closeButton"]);
-    return (react_1.default.createElement(Dialog_1.default, { classes: restClasses, className: className, style: style, container: container, PaperProps: Object.assign({}, paperProps, { elevation: 2 }), hideBackdrop: hideBackdrop, onBackdropClick: onBackdropClick, onClose: onClose, onEnter: onOpen, open: open, transitionDuration: transitionDuration },
+    return (react_1.default.createElement(Dialog_1.default
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    , Object.assign({}, rest, { classes: restClasses, className: className, style: style, container: container, PaperProps: Object.assign({}, paperProps, { elevation: 2 }), hideBackdrop: hideBackdrop, onBackdropClick: onBackdropClick, onClose: onClose, onEnter: onOpen, open: open, transitionDuration: transitionDuration }),
         onClose && (react_1.default.createElement("span", { onClick: onClose },
             react_1.default.createElement(Icon_1.CloseMinor16, { className: closeButton }))),
         children));

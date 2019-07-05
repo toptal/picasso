@@ -24,9 +24,12 @@ const Link_1 = __importDefault(require("../Link"));
 const Container_1 = __importDefault(require("../Container"));
 const Icon_1 = require("../Icon");
 const styles_2 = __importDefault(require("./styles"));
-exports.AccountSelect = ({ classes, className, accounts, onSelect, style }) => {
+exports.AccountSelect = (_a) => {
+    var { classes, className, accounts, onSelect, style } = _a, rest = __rest(_a, ["classes", "className", "accounts", "onSelect", "style"]);
     const { accountItem: accountItemClass, accountLink: accountLinkClass } = classes, menuClasses = __rest(classes, ["accountItem", "accountLink"]);
-    return (react_1.default.createElement(Menu_1.default, { classes: menuClasses, className: className, style: style }, accounts.map(account => (react_1.default.createElement(Menu_1.default.Item, { disableGutters: true, className: accountItemClass, key: `role-${account.id}` },
+    return (
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    react_1.default.createElement(Menu_1.default, Object.assign({}, rest, { classes: menuClasses, className: className, style: style }), accounts.map(account => (react_1.default.createElement(Menu_1.default.Item, { disableGutters: true, className: accountItemClass, key: `role-${account.id}` },
         react_1.default.createElement(Link_1.default, { className: accountLinkClass, href: account.href, onClick: () => onSelect(account), underline: 'none' },
             react_1.default.createElement(Container_1.default, { padded: 'medium', flex: true, direction: 'row', alignItems: 'center', justifyContent: 'space-between' },
                 react_1.default.createElement(UserBadge_1.default, { name: account.name, avatar: account.avatar },

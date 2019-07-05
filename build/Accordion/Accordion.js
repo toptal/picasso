@@ -1,4 +1,15 @@
 "use strict";
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -10,11 +21,14 @@ const ChevronRight_1 = __importDefault(require("@material-ui/icons/ChevronRight"
 const ExpansionPanelSummary_1 = __importDefault(require("../ExpansionPanelSummary"));
 const ExpansionPanelDetails_1 = __importDefault(require("../ExpansionPanelDetails"));
 const styles_2 = __importDefault(require("./styles"));
-exports.Accordion = ({ children, content, expanded, className, style, classes, onChange }) => {
-    return (react_1.default.createElement(ExpansionPanel_1.default, { classes: {
+exports.Accordion = (_a) => {
+    var { children, content, expanded, className, style, classes, onChange } = _a, rest = __rest(_a, ["children", "content", "expanded", "className", "style", "classes", "onChange"]);
+    return (react_1.default.createElement(ExpansionPanel_1.default
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    , Object.assign({}, rest, { classes: {
             root: children ? classes.root : '',
             expanded: classes.expanded
-        }, className: className, style: style, elevation: 0, expanded: expanded, onChange: onChange },
+        }, className: className, style: style, elevation: 0, expanded: expanded, onChange: onChange }),
         children && (react_1.default.createElement(ExpansionPanelSummary_1.default, { classes: {
                 root: classes.summary
             }, expandIcon: react_1.default.createElement(ChevronRight_1.default, { className: classes.expandIcon }) }, children)),

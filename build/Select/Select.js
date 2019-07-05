@@ -1,4 +1,15 @@
 "use strict";
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
@@ -32,16 +43,19 @@ const renderOptions = (options, placeholder, isNative) => {
     }
     return resultOptions;
 };
-exports.Select = ({ classes, className, style, width, id, icon, iconPosition, native, options, placeholder, disabled, error, onChange, value }) => {
+exports.Select = (_a) => {
+    var { classes, className, style, width, id, icon, iconPosition, native, options, placeholder, disabled, error, onChange, value } = _a, rest = __rest(_a, ["classes", "className", "style", "width", "id", "icon", "iconPosition", "native", "options", "placeholder", "disabled", "error", "onChange", "value"]);
     const isPlaceholderShown = placeholder && value === '';
     const selectedOption = react_1.useMemo(() => options.find(option => option.value === value), [value, options]);
-    const outlinedInput = (react_1.default.createElement(OutlinedInput_1.default, { classes: {
+    const outlinedInput = (react_1.default.createElement(OutlinedInput_1.default
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    , Object.assign({}, rest, { classes: {
             input: classnames_1.default(classes.input, {
                 [classes.inputPlaceholder]: isPlaceholderShown,
                 [classes.inputPlaceholderDisabled]: isPlaceholderShown && disabled,
                 [classes.inputNative]: native
             })
-        }, width: width }));
+        }, width: width })));
     const iconAdornment = icon ? (react_1.default.createElement(InputAdornment_1.default, { disabled: disabled, position: iconPosition }, icon)) : null;
     const menuProps = {
         anchorOrigin: {

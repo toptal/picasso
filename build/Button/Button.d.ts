@@ -1,9 +1,9 @@
 import { FunctionComponent, ReactNode, ReactElement, MouseEvent } from 'react';
 import Group from '../ButtonGroup';
-import { StandardProps, PicassoComponent, SizeType, TooltipEventListeners } from '../Picasso';
+import { StandardProps, PicassoComponent, SizeType, ButtonOrAnchorProps } from '../Picasso';
 declare type VariantType = 'primary-blue' | 'secondary-blue' | 'primary-red' | 'secondary-red' | 'primary-green' | 'flat' | 'secondary-white';
 declare type IconPositionType = 'left' | 'right';
-export interface Props extends StandardProps, TooltipEventListeners {
+export interface Props extends StandardProps, ButtonOrAnchorProps {
     /** Show button in the active state (left mouse button down) */
     active?: boolean;
     /** Disables button */
@@ -22,7 +22,7 @@ export interface Props extends StandardProps, TooltipEventListeners {
     /** A button can show a loading indicator */
     loading?: boolean;
     /** Callback invoked when component is clicked */
-    onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
+    onClick?: (event: MouseEvent<HTMLButtonElement & HTMLAnchorElement>) => void;
     /** A button can have different sizes */
     size?: SizeType<'small' | 'medium' | 'large'>;
     /** The variant to use */

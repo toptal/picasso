@@ -1,11 +1,11 @@
-import { FunctionComponent, ReactNode } from 'react';
+import { FunctionComponent, ReactNode, TableHTMLAttributes } from 'react';
 import TableCell from '../TableCell';
 import TableBody from '../TableBody';
 import TableRow from '../TableRow';
 import TableHead from '../TableHead';
 import TableFooter from '../TableFooter';
 import { StandardProps, PicassoComponent } from '../Picasso';
-interface Props extends StandardProps {
+interface Props extends StandardProps, TableHTMLAttributes<HTMLTableElement> {
     /** Children components (`Table.Head`, `Table.Body`, `Table.Footer`) */
     children: ReactNode;
 }

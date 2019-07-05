@@ -1,11 +1,11 @@
-import { FunctionComponent, ReactNode } from 'react';
+import { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
 import { PaperProps } from '@material-ui/core/Paper';
 import ModalTitle from '../ModalTitle';
 import ModalContent from '../ModalContent';
 import ModalActions from '../ModalActions';
 import { StandardProps, PicassoComponent } from '../Picasso';
 declare type ContainerValue = HTMLElement | (() => HTMLElement);
-export interface Props extends StandardProps {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
     /** Content of Modal component */
     children: ReactNode;
     /** Whether modal should be displayed */

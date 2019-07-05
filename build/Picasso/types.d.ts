@@ -1,4 +1,4 @@
-import { CSSProperties, FunctionComponent, SyntheticEvent } from 'react';
+import { CSSProperties, FunctionComponent, AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react';
 import { Classes } from '../styles/types';
 export interface BaseProps {
     /** Classnames applied to root element */
@@ -12,15 +12,6 @@ export interface JssProps {
 export declare type StandardProps = BaseProps & JssProps;
 export declare type OmitInternalProps<T, K = ''> = Pick<T, Exclude<keyof T, keyof JssProps | K>>;
 export declare type PicassoComponent<P, S = {}> = FunctionComponent<OmitInternalProps<P> & Partial<JssProps>> & S;
-declare type EventListenerType = (event: SyntheticEvent<HTMLElement>) => void;
-export interface TooltipEventListeners {
-    onBlur?: EventListenerType;
-    onFocus?: EventListenerType;
-    onMouseLeave?: EventListenerType;
-    onMouseOver?: EventListenerType;
-    onTouchEnd?: EventListenerType;
-    onTouchStart?: EventListenerType;
-}
 declare type Sizes = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
 export declare type SizeType<T extends Sizes> = T;
 export declare type SpacingType = number | SizeType<'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'>;
@@ -32,4 +23,5 @@ export declare enum SpacingEnum {
     xlarge = 2.5
 }
 export declare const spacingToEm: (spacing: SpacingType) => string;
+export declare type ButtonOrAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> & ButtonHTMLAttributes<HTMLButtonElement>;
 export {};
