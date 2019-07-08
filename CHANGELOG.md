@@ -1,3 +1,10 @@
+# [2.14.0](https://github.com/toptal/picasso/compare/v2.13.0...v2.14.0) (2019-07-08)
+
+
+### Features
+
+* **Helpbox:** implement Helpbox component ([#530](https://github.com/toptal/picasso/issues/530)) ([5afe038](https://github.com/toptal/picasso/commit/5afe038))
+
 # [2.13.0](https://github.com/toptal/picasso/compare/v2.12.0...v2.13.0) (2019-07-05)
 
 

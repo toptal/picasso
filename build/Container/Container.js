@@ -23,11 +23,11 @@ const styles_2 = __importDefault(require("./styles"));
  * Container component used for spacing 2 elements
  */
 exports.Container = (_a) => {
-    var { children, className, top, bottom, left, right, padded, inline, flex, direction, alignItems, justifyContent, style, bordered = false, classes, as: Component = 'div' } = _a, rest = __rest(_a, ["children", "className", "top", "bottom", "left", "right", "padded", "inline", "flex", "direction", "alignItems", "justifyContent", "style", "bordered", "classes", "as"]);
+    var { children, className, top, bottom, left, right, padded, inline, flex, direction, alignItems, justifyContent, style, bordered = false, variant, classes, as: Component = 'div' } = _a, rest = __rest(_a, ["children", "className", "top", "bottom", "left", "right", "padded", "inline", "flex", "direction", "alignItems", "justifyContent", "style", "bordered", "variant", "classes", "as"]);
     const margins = Object.assign({}, (top && { marginTop: Picasso_1.spacingToEm(top) }), (bottom && { marginBottom: Picasso_1.spacingToEm(bottom) }), (left && { marginLeft: Picasso_1.spacingToEm(left) }), (right && { marginRight: Picasso_1.spacingToEm(right) }));
     return (react_1.default.createElement(Component
     // eslint-disable-next-line react/jsx-props-no-spreading
-    , Object.assign({}, rest, { className: classnames_1.default({
+    , Object.assign({}, rest, { className: classnames_1.default(classes[`${variant}Variant`], {
             [classes[`${padded}Padding`]]: typeof padded === 'string',
             [classes.bordered]: bordered,
             [classes.flex]: flex,
