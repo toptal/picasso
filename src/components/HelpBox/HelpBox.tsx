@@ -5,7 +5,7 @@ import cx from 'classnames'
 import { StandardProps, PicassoComponent } from '../Picasso'
 import { palette } from '../utils'
 import styles from './styles'
-import Container from '../Container'
+import Container, { VariantType as ContainerVariantType } from '../Container'
 import HelpboxTitle from '../HelpboxTitle'
 import HelpboxContent from '../HelpboxContent'
 import HelpboxActions from '../HelpboxActions'
@@ -13,13 +13,11 @@ import { Close16 } from '../Icon'
 import Button from '../Button'
 import { HelpboxContextProps } from './types'
 
-type VariantType = 'red' | 'green' | 'white' | 'yellow' | 'blue'
-
 export interface Props extends StandardProps {
-  /** Color variant of Helpbox */
-  variant?: VariantType
   /** Children components (`Helpbox.Title`, `Helpbox.Content`, `Hdlpbox.Actions`) */
   children: ReactNode
+  /** Color variant of Helpbox */
+  variant?: ContainerVariantType
   /** Callback invoked when close is clicked */
   onClose?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
 }
@@ -49,7 +47,7 @@ export const Helpbox: FunctionComponent<Props> & StaticProps = ({
     variant={variant}
     padded='large'
   >
-    <HelpboxContext.Provider value={{ closeable: !!onClose }}>
+    <HelpboxContext.Provider value={{ closeable: Boolean(onClose) }}>
       {children}
     </HelpboxContext.Provider>
     {onClose && (
