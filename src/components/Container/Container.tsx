@@ -100,7 +100,7 @@ export const Container: FunctionComponent<Props> = ({
           [classes.bordered]: bordered,
           [classes.flex]: flex,
           [classes.inline]: inline,
-          [classes.column]: flex && direction === 'column'
+          [classes.column]: direction === 'column'
         },
         className
       )}
