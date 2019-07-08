@@ -4,7 +4,6 @@ import cx from 'classnames'
 
 import { StandardProps, PicassoComponent } from '../Picasso'
 import { palette } from '../utils'
-import styles from './styles'
 import Container, { VariantType as ContainerVariantType } from '../Container'
 import HelpboxTitle from '../HelpboxTitle'
 import HelpboxContent from '../HelpboxContent'
@@ -12,6 +11,7 @@ import HelpboxActions from '../HelpboxActions'
 import { Close16 } from '../Icon'
 import Button from '../Button'
 import { HelpboxContextProps } from './types'
+import styles from './styles'
 
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Children components (`Helpbox.Title`, `Helpbox.Content`, `Hdlpbox.Actions`) */

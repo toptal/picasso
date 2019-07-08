@@ -21,10 +21,9 @@ const colorVariant = (color?: string) => {
   }
 
   return createPropertiesStyles({
-    backgroundColor: color,
+    backgroundColor: alpha(color, 0.04),
 
     '&$bordered': {
-      backgroundColor: alpha(color, 0.04),
       borderColor: color
     }
   })

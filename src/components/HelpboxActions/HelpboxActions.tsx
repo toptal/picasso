@@ -1,4 +1,9 @@
-import React, { ReactNode, FunctionComponent, useContext } from 'react'
+import React, {
+  ReactNode,
+  FunctionComponent,
+  useContext,
+  HTMLAttributes
+} from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
@@ -8,7 +13,7 @@ import styles from './styles'
 import { HelpboxContext } from '../Helpbox'
 import { HelpboxContextProps } from '../Helpbox/types'
 
-export interface Props extends StandardProps {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Actions part of Helpbox */
   children: ReactNode
 }
@@ -17,12 +22,17 @@ export const HelpboxActions: FunctionComponent<Props> = ({
   classes,
   className,
   style,
-  children
+  children,
+  ...rest
 }) => {
-  const { closeable } = useContext<HelpboxContextProps>(HelpboxContext)
+  const { closeable } = HelpboxContext
+    ? useContext<HelpboxContextProps>(HelpboxContext)
+    : ({} as HelpboxContextProps)
 
   return (
     <Container
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
       className={cx(
         classes.root,
         {

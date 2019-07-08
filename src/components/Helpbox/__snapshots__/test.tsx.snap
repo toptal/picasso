@@ -23,6 +23,23 @@ exports[`Helpbox default render 1`] = `
       >
         Test
       </p>
+      <div
+        class="Component-flex HelpboxActions-root"
+        style="align-items: center;"
+      >
+        <button
+          class="MuiButtonBase-root Button-medium Button-primaryBlue Button-root"
+          tabindex="0"
+          type="button"
+        >
+          <div
+            class="Button-content"
+            style="display: inline-flex; flex-direction: row; align-items: center;"
+          >
+            Button
+          </div>
+        </button>
+      </div>
     </div>
   </div>
 </div>
