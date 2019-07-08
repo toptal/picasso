@@ -1,3 +1,4 @@
-export default (subStr: string, str: string) => {
-  return str.toLowerCase().includes(subStr.trim().toLowerCase())
-}
+const isSubstring = (subStr: string, str: string) =>
+  str.toLowerCase().includes(subStr.trim().toLowerCase())
+
+export default isSubstring
