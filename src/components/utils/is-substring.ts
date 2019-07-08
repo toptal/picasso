@@ -1,3 +1,3 @@
-export default (value: string, str: string) => {
-  return str.toLowerCase().includes(value.trim().toLowerCase())
+export default (subStr: string, str: string) => {
+  return str.toLowerCase().includes(subStr.trim().toLowerCase())
 }
