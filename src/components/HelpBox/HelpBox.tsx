@@ -1,4 +1,4 @@
-import React, { ReactNode, FunctionComponent } from 'react'
+import React, { ReactNode, FunctionComponent, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
@@ -13,7 +13,7 @@ import { Close16 } from '../Icon'
 import Button from '../Button'
 import { HelpboxContextProps } from './types'
 
-export interface Props extends StandardProps {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Children components (`Helpbox.Title`, `Helpbox.Content`, `Hdlpbox.Actions`) */
   children: ReactNode
   /** Color variant of Helpbox */
@@ -38,9 +38,12 @@ export const Helpbox: FunctionComponent<Props> & StaticProps = ({
   style,
   children,
   variant,
-  onClose
+  onClose,
+  ...rest
 }) => (
   <Container
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    {...rest}
     className={cx(classes.root, className)}
     style={style}
     bordered
