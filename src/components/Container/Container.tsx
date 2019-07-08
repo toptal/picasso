@@ -15,6 +15,7 @@ type AlignItemsType =
   | 'center'
   | 'stretch'
   | 'baseline'
+
 type JustifyContentType =
   | 'flex-start'
   | 'flex-end'
@@ -22,6 +23,8 @@ type JustifyContentType =
   | 'space-between'
   | 'space-around'
   | 'space-evenly'
+
+export type VariantType = 'red' | 'green' | 'white' | 'yellow' | 'blue'
 
 interface Props
   extends StandardProps,
@@ -50,6 +53,8 @@ interface Props
   justifyContent?: JustifyContentType
   /** Whether container has border or not */
   bordered?: boolean
+  /** Style variant of Notification */
+  variant?: VariantType
   /** Component used for the root node */
   as?: ContainerType
 }
@@ -72,6 +77,7 @@ export const Container: FunctionComponent<Props> = ({
   justifyContent,
   style,
   bordered = false,
+  variant,
   classes,
   as: Component = 'div',
   ...rest
@@ -88,6 +94,7 @@ export const Container: FunctionComponent<Props> = ({
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       className={cx(
+        classes[`${variant}Variant`],
         {
           [classes[`${padded}Padding`]]: typeof padded === 'string',
           [classes.bordered]: bordered,

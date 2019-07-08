@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Helpbox default render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="Component-largePadding Component-bordered Component-root"
+    >
+      <div
+        class=""
+        style="margin-bottom: 1.5em;"
+      >
+        <h4
+          class="MuiTypography-root Typography-headingSmall MuiTypography-h4"
+        >
+          Title
+        </h4>
+      </div>
+      <p
+        class="MuiTypography-root Typography-bodyMedium Typography-grey MuiTypography-body1"
+      >
+        Test
+      </p>
+      <div
+        class="Component-flex HelpboxActions-root"
+        style="align-items: center;"
+      >
+        <button
+          class="MuiButtonBase-root Button-medium Button-primaryBlue Button-root"
+          tabindex="0"
+          type="button"
+        >
+          <div
+            class="Button-content"
+            style="display: inline-flex; flex-direction: row; align-items: center;"
+          >
+            Button
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
