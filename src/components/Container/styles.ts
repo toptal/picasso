@@ -1,7 +1,8 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
+import { SimplePaletteColorOptions } from '@material-ui/core/styles/createPalette'
 
 import { SpacingEnum, SpacingType, spacingToEm } from '../Picasso'
-import { alpha, createPropertiesStyles } from '../styles'
+import { createPropertiesStyles } from '../styles'
 
 const spacingVariants = Object.keys(SpacingEnum).filter(variant =>
   Number.isNaN(Number(variant))
@@ -15,16 +16,16 @@ const paddings = spacingVariants.reduce((acc, variant) => {
   return acc
 }, Object.create(null))
 
-const colorVariant = (color?: string) => {
-  if (!color) {
+const colorVariant = (colorOptions?: SimplePaletteColorOptions) => {
+  if (!colorOptions) {
     return {}
   }
 
   return createPropertiesStyles({
-    backgroundColor: alpha(color, 0.04),
+    backgroundColor: colorOptions.lighter,
 
     '&$bordered': {
-      borderColor: color
+      borderColor: colorOptions.main
     }
   })
 }
@@ -48,13 +49,13 @@ export default ({ palette }: Theme) =>
 
     whiteVariant: colorVariant(),
 
-    redVariant: colorVariant(palette.red.main),
+    redVariant: colorVariant(palette.red),
 
-    greenVariant: colorVariant(palette.green.main),
+    greenVariant: colorVariant(palette.green),
 
-    yellowVariant: colorVariant(palette.yellow.main),
+    yellowVariant: colorVariant(palette.yellow),
 
-    blueVariant: colorVariant(palette.blue.main),
+    blueVariant: colorVariant(palette.blue),
 
     ...paddings
   })
