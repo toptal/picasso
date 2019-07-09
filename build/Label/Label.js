@@ -16,15 +16,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
 const styles_1 = require("@material-ui/core/styles");
+const classnames_1 = __importDefault(require("classnames"));
 const Icon_1 = require("../Icon");
 const Chip_1 = __importDefault(require("../Chip"));
 const LabelGroup_1 = __importDefault(require("../LabelGroup"));
 const styles_2 = __importDefault(require("./styles"));
 exports.Label = (_a) => {
-    var { classes, children, className, icon, style, onDelete } = _a, rest = __rest(_a, ["classes", "children", "className", "icon", "style", "onDelete"]);
+    var { children, classes, style, className, icon, disabled, onDelete } = _a, rest = __rest(_a, ["children", "classes", "style", "className", "icon", "disabled", "onDelete"]);
     return (react_1.default.createElement(Chip_1.default
     // eslint-disable-next-line react/jsx-props-no-spreading
-    , Object.assign({}, rest, { className: className, style: style, deleteIcon: react_1.default.createElement("span", { "aria-label": 'delete icon', role: 'button', className: classes.deleteIcon },
+    , Object.assign({}, rest, { classes: {
+            root: classnames_1.default(classes.root, { [classes.disabled]: disabled })
+        }, className: className, style: style, deleteIcon: react_1.default.createElement("span", { "aria-label": 'delete icon', role: 'button' },
             react_1.default.createElement(Icon_1.CloseMinor16, null)), onDelete: onDelete, label: children, icon: icon })));
 };
 exports.Label.defaultProps = {

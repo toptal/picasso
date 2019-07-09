@@ -37,7 +37,7 @@ exports.PageHeader = (_a) => {
     return (react_1.default.createElement("header", Object.assign({}, rest, { className: classnames_1.default('mui-fixed', classes.root, classes[variant], className), style: style }),
         react_1.default.createElement("div", { className: contentClassnames },
             react_1.default.createElement("div", { className: classes.left },
-                react_1.default.createElement(__1.Container, { right: 'small', flex: true, direction: 'row', alignItems: 'center' }, logoLink ? react_1.default.cloneElement(logoLink, {}, logo) : logo),
+                react_1.default.createElement(__1.Container, { right: 'small', flex: true, alignItems: 'center' }, logoLink ? react_1.default.cloneElement(logoLink, {}, logo) : logo),
                 title && (react_1.default.createElement(react_1.default.Fragment, null,
                     react_1.default.createElement("div", { className: classes.divider }),
                     react_1.default.createElement(__1.Container, { left: 'small' },

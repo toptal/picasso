@@ -28,6 +28,8 @@ exports.default = ({ palette }) => styles_1.createStyles(Object.assign({ bordere
         '&$inline': {
             display: 'inline-flex'
         }
+    }, column: {
+        flexDirection: 'column'
     }, inline: {
         display: 'inline-block'
     }, whiteVariant: colorVariant(), redVariant: colorVariant(palette.red), greenVariant: colorVariant(palette.green), yellowVariant: colorVariant(palette.yellow), blueVariant: colorVariant(palette.blue) }, paddings));

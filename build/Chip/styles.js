@@ -5,11 +5,11 @@ const Picasso_1 = require("../Picasso");
 Picasso_1.PicassoProvider.override(({ palette, spacing }) => ({
     MuiChip: {
         root: {
-            fontSize: 'inherit',
+            fontSize: '1em',
+            color: palette.grey.dark,
             backgroundColor: palette.common.white,
             borderRadius: '6.25em',
             border: `${spacing.borderWidth} solid ${palette.grey.light}`,
-            color: palette.primary.main,
             height: '1.5em'
         },
         label: {
@@ -19,11 +19,28 @@ Picasso_1.PicassoProvider.override(({ palette, spacing }) => ({
         icon: {
             marginLeft: '0.75em',
             marginRight: '-0.25em',
-            color: palette.grey.main
+            color: 'inherit'
+        },
+        deletable: {
+            '&:focus': {
+                backgroundColor: 'inherit'
+            }
+        },
+        deleteIcon: {
+            display: 'flex',
+            justifyContent: 'center',
+            color: 'inherit',
+            margin: '0 0.5em 0 -0.5em',
+            '&:hover': {
+                color: 'inherit'
+            }
         }
     }
 }));
 exports.default = () => styles_1.createStyles({
+    root: {},
+    icon: {},
+    deleteIcon: {},
     innerLabel: {
         fontSize: '0.75em',
         fontWeight: 600

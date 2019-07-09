@@ -1,3 +1,10 @@
+# [2.15.0](https://github.com/toptal/picasso/compare/v2.14.0...v2.15.0) (2019-07-09)
+
+
+### Features
+
+* **Label:** update colors and add disabled state ([#536](https://github.com/toptal/picasso/issues/536)) ([371ac62](https://github.com/toptal/picasso/commit/371ac62))
+
 # [2.14.0](https://github.com/toptal/picasso/compare/v2.13.0...v2.14.0) (2019-07-08)
 
 
