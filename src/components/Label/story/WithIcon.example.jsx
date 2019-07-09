@@ -4,7 +4,7 @@ import { Cog } from '@toptal/picasso/Icon'
 
 const LabelDefaultExample = () => (
   <div>
-    <Label icon={<Cog />}>Javascript</Label>
+    <Label icon={<Cog />}>Label</Label>
   </div>
 )
 
