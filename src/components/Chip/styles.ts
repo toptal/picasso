@@ -5,11 +5,11 @@ import { PicassoProvider } from '../Picasso'
 PicassoProvider.override(({ palette, spacing }: Theme) => ({
   MuiChip: {
     root: {
-      fontSize: 'inherit',
+      fontSize: '1em',
+      color: palette.grey.dark,
       backgroundColor: palette.common.white,
       borderRadius: '6.25em',
       border: `${spacing.borderWidth} solid ${palette.grey.light}`,
-      color: palette.primary.main,
       height: '1.5em'
     },
     label: {
@@ -19,13 +19,31 @@ PicassoProvider.override(({ palette, spacing }: Theme) => ({
     icon: {
       marginLeft: '0.75em',
       marginRight: '-0.25em',
-      color: palette.grey.main
+      color: 'inherit'
+    },
+    deletable: {
+      '&:focus': {
+        backgroundColor: 'inherit'
+      }
+    },
+    deleteIcon: {
+      display: 'flex',
+      justifyContent: 'center',
+      color: 'inherit',
+      margin: '0 0.5em 0 -0.5em',
+
+      '&:hover': {
+        color: 'inherit'
+      }
     }
   }
 }))
 
 export default () =>
   createStyles({
+    root: {},
+    icon: {},
+    deleteIcon: {},
     innerLabel: {
       fontSize: '0.75em',
       fontWeight: 600

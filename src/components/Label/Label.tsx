@@ -16,13 +16,15 @@ import styles from './styles'
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Text content of the `Label` component */
   children: ReactNode
+  /** Specify the icon which should be rendered inside Label */
+  icon?: ReactElement
+  /** Defines if `Label` is disabled */
+  disabled?: boolean
   /** A callback which is invoked after remove `Icon` is clicked
    *
    * Please note that specifying this callback automatically adds remove `Icon` as children of the `Label`
    */
   onDelete?: () => void
-  /** Specify the icon which should be rendered inside Label */
-  icon?: ReactElement
 }
 
 interface StaticProps {
@@ -30,29 +32,48 @@ interface StaticProps {
 }
 
 export const Label: FunctionComponent<Props> & StaticProps = ({
-  classes,
   children,
+  classes,
+  style,
   className,
   icon,
-  style,
+  disabled,
   onDelete,
   ...rest
-}) => (
-  <Chip
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    {...rest}
-    className={cx(classes.root, className)}
-    style={style}
-    deleteIcon={
-      <span aria-label='delete icon' role='button'>
-        <CloseMinor16 />
-      </span>
+}) => {
+  const handleDelete = () => {
+    if (disabled) {
+      return
     }
-    onDelete={onDelete}
-    label={children}
-    icon={icon}
-  />
-)
+
+    if (onDelete) {
+      onDelete()
+    }
+  }
+
+  return (
+    <Chip
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
+      classes={{
+        root: cx(classes.root, { [classes.rootDisabled]: disabled }),
+        deleteIcon: cx({
+          [classes.deleteIconDisabled]: disabled
+        })
+      }}
+      className={className}
+      style={style}
+      deleteIcon={
+        <span aria-label='delete icon' role='button'>
+          <CloseMinor16 />
+        </span>
+      }
+      onDelete={onDelete ? handleDelete : undefined}
+      label={children}
+      icon={icon}
+    />
+  )
+}
 
 Label.defaultProps = {
   children: ''

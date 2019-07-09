@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, fireEvent, cleanup, RenderResult } from 'react-testing-library'
+import { render, fireEvent, cleanup } from 'react-testing-library'
 
 import Picasso, { OmitInternalProps } from '../Picasso'
 import Label, { Props } from './Label'
@@ -8,11 +8,13 @@ const renderLabel = (
   children: string,
   props: OmitInternalProps<Props, 'children'>
 ) => {
-  const { onDelete } = props
+  const { onDelete, disabled } = props
 
   return render(
     <Picasso loadFonts={false}>
-      <Label onDelete={onDelete}>{children}</Label>
+      <Label onDelete={onDelete} disabled={disabled}>
+        {children}
+      </Label>
     </Picasso>
   )
 }
@@ -27,23 +29,32 @@ test('renders default variant', () => {
 
 describe('dismissable label', () => {
   let onDelete: () => void
-  let api: RenderResult
 
   beforeEach(() => {
     onDelete = jest.fn()
-    api = renderLabel('Label', { onDelete })
   })
   test('should render dismissable label', () => {
-    const { container } = api
+    const { container } = renderLabel('Label', { onDelete })
 
     expect(container).toMatchSnapshot()
   })
 
   test('should fire onDelete event on dismiss action', () => {
-    const { getByLabelText } = api
+    const { getByLabelText } = renderLabel('Label', { onDelete })
     const deleteIcon = getByLabelText('delete icon')
 
     fireEvent.click(deleteIcon)
     expect(onDelete).toHaveBeenCalled()
+  })
+
+  test('should not fire onDelete event on dismiss action when disabled', () => {
+    const { getByLabelText } = renderLabel('Label', {
+      onDelete,
+      disabled: true
+    })
+    const deleteIcon = getByLabelText('delete icon')
+
+    fireEvent.click(deleteIcon)
+    expect(onDelete).not.toHaveBeenCalled()
   })
 })
