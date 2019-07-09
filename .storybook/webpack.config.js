@@ -2,6 +2,7 @@ const webpack = require('webpack')
 const path = require('path')
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+const ForkTsCheckerNotifierWebpackPlugin = require('fork-ts-checker-notifier-webpack-plugin')
 
 // example: /components/Button/Button.tsx
 const COMPONENT_DECLARATION_FILE_REGEXP = /components\/(.*)\/\1.tsx$/
@@ -59,7 +60,13 @@ module.exports = ({ config }) => {
     new webpack.DefinePlugin({
       TEST_ENV: JSON.stringify(env.TEST_ENV)
     }),
-    new ForkTsCheckerWebpackPlugin()
+    new ForkTsCheckerWebpackPlugin(),
+    new ForkTsCheckerNotifierWebpackPlugin({
+      title: 'Picasso',
+      excludeWarnings: true,
+      skipSuccessful: true,
+      skipFirstNotification: true
+    })
   )
 
   if (env.CACHE) {
