@@ -3,11 +3,9 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 export default ({ palette }: Theme) =>
   createStyles({
     root: {},
-    rootDisabled: {
+    disabled: {
       borderColor: palette.grey.lighter,
-      color: palette.grey.main
-    },
-    deleteIconDisabled: {
-      cursor: 'default'
+      color: palette.grey.main,
+      pointerEvents: 'none'
     }
   })

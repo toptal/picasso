@@ -46,15 +46,4 @@ describe('dismissable label', () => {
     fireEvent.click(deleteIcon)
     expect(onDelete).toHaveBeenCalled()
   })
-
-  test('should not fire onDelete event on dismiss action when disabled', () => {
-    const { getByLabelText } = renderLabel('Label', {
-      onDelete,
-      disabled: true
-    })
-    const deleteIcon = getByLabelText('delete icon')
-
-    fireEvent.click(deleteIcon)
-    expect(onDelete).not.toHaveBeenCalled()
-  })
 })

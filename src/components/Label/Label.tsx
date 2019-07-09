@@ -40,40 +40,25 @@ export const Label: FunctionComponent<Props> & StaticProps = ({
   disabled,
   onDelete,
   ...rest
-}) => {
-  const handleDelete = () => {
-    if (disabled) {
-      return
+}) => (
+  <Chip
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    {...rest}
+    classes={{
+      root: cx(classes.root, { [classes.disabled]: disabled })
+    }}
+    className={className}
+    style={style}
+    deleteIcon={
+      <span aria-label='delete icon' role='button'>
+        <CloseMinor16 />
+      </span>
     }
-
-    if (onDelete) {
-      onDelete()
-    }
-  }
-
-  return (
-    <Chip
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...rest}
-      classes={{
-        root: cx(classes.root, { [classes.rootDisabled]: disabled }),
-        deleteIcon: cx({
-          [classes.deleteIconDisabled]: disabled
-        })
-      }}
-      className={className}
-      style={style}
-      deleteIcon={
-        <span aria-label='delete icon' role='button'>
-          <CloseMinor16 />
-        </span>
-      }
-      onDelete={onDelete ? handleDelete : undefined}
-      label={children}
-      icon={icon}
-    />
-  )
-}
+    onDelete={onDelete}
+    label={children}
+    icon={icon}
+  />
+)
 
 Label.defaultProps = {
   children: ''
