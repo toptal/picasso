@@ -15,7 +15,7 @@ import TextField from '../TextField'
 import Menu from '../Menu'
 import Loader from '../Loader'
 import ScrollMenu from '../ScrollMenu'
-import isSubstring from '../utils/isSubstring'
+import { isSubstring } from '../utils'
 import styles from './styles'
 
 const DEBOUNCE_TIME = 300
@@ -23,8 +23,6 @@ const DEBOUNCE_TIME = 300
 type Item = {
   label: string
 }
-
-type Value = string | null
 
 /**
  * Alias for all valid HTML props for `<input>` element.
@@ -55,35 +53,8 @@ export interface Props
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
-const getFilteredOptions = (
-  options: Item[],
-  value: Value,
-  minLength?: number
-) => {
-  if (!isMatchingMinLength(value, minLength)) {
-    return options
-  }
-
-  return options.filter(option => isSubstring(value, option.label))
-}
-
-const getRelevantOption = (options: Item[], value: Value): Item | null => {
-  if (!value || !value.trim().length) {
-    return null
-  }
-
-  const filteredOptions = getFilteredOptions(options, value)
-
-  return (
-    filteredOptions.find(option => isSubstring(value, option.label)) || null
-  )
-}
-
-const isMatchingMinLength = (value: Value, minLength?: number) => {
-  const inputValue = value || ''
-
-  return !minLength || inputValue.length >= minLength
-}
+const isMatchingMinLength = (value: string, minLength?: number) =>
+  !minLength || value.length >= minLength
 
 export const Autocomplete: FunctionComponent<Props> = ({
   classes,
@@ -115,14 +86,17 @@ export const Autocomplete: FunctionComponent<Props> = ({
         openMenu,
         selectItem
       }) => {
-        const filteredOptions = getFilteredOptions(options!, inputValue)
+        const trimmedValue = (inputValue || '').trim()
+        const filteredOptions = options!.filter(({ label }) =>
+          isSubstring(trimmedValue, label)
+        )
 
-        const isTyping = Boolean(inputValue)
+        const isTyping = Boolean(trimmedValue)
         const hasOptions = Boolean(filteredOptions.length)
 
         const canOpen =
           isOpen &&
-          isMatchingMinLength(inputValue, minLength) &&
+          isMatchingMinLength(trimmedValue, minLength) &&
           !loading &&
           (hasOptions || isTyping)
 
@@ -154,10 +128,14 @@ export const Autocomplete: FunctionComponent<Props> = ({
         } = getInputProps({
           onFocus: openMenu,
           onBlur: () => {
-            const option = getRelevantOption(options!, inputValue)
+            if (!trimmedValue.length || !filteredOptions.length) {
+              return
+            }
 
-            if (option) {
-              selectItem(option.label)
+            const firstOption = filteredOptions[0]
+
+            if (firstOption) {
+              selectItem(firstOption.label)
             }
           },
           onChange: (event: ChangeEvent<HTMLInputElement>) => {
@@ -165,10 +143,12 @@ export const Autocomplete: FunctionComponent<Props> = ({
               clearSelection()
             }
 
-            if (isMatchingMinLength(event.target.value, minLength)) {
-              event.persist()
-              onChangeDebounced(event)
+            if (!isMatchingMinLength(event.target.value, minLength)) {
+              return
             }
+
+            event.persist()
+            onChangeDebounced(event)
           }
         })
 
@@ -182,6 +162,8 @@ export const Autocomplete: FunctionComponent<Props> = ({
             style={style}
           >
             <TextField
+              // eslint-disable-next-line react/jsx-props-no-spreading
+              {...rest}
               icon={loading ? <Loader size='small' /> : null}
               iconPosition='end'
               onChange={event => {
@@ -194,8 +176,6 @@ export const Autocomplete: FunctionComponent<Props> = ({
               onFocus={handleFocus}
               onKeyDown={handleKeyDown}
               placeholder={placeholder}
-              // eslint-disable-next-line react/jsx-props-no-spreading
-              {...rest}
             />
 
             {/* eslint-disable-next-line react/jsx-props-no-spreading */}
