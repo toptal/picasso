@@ -5,6 +5,7 @@ import React, {
   HTMLAttributes
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
+import cx from 'classnames'
 
 import { CloseMinor16 } from '../Icon'
 import Chip from '../Chip'
@@ -36,28 +37,22 @@ export const Label: FunctionComponent<Props> & StaticProps = ({
   style,
   onDelete,
   ...rest
-}) => {
-  return (
-    <Chip
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...rest}
-      className={className}
-      style={style}
-      deleteIcon={
-        <span
-          aria-label='delete icon'
-          role='button'
-          className={classes.deleteIcon}
-        >
-          <CloseMinor16 />
-        </span>
-      }
-      onDelete={onDelete}
-      label={children}
-      icon={icon}
-    />
-  )
-}
+}) => (
+  <Chip
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    {...rest}
+    className={cx(classes.root, className)}
+    style={style}
+    deleteIcon={
+      <span aria-label='delete icon' role='button'>
+        <CloseMinor16 />
+      </span>
+    }
+    onDelete={onDelete}
+    label={children}
+    icon={icon}
+  />
+)
 
 Label.defaultProps = {
   children: ''

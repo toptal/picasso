@@ -6,7 +6,7 @@ exports[`dismissable label should render dismissable label 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiChip-root MuiChip-deletable"
+      class="MuiChip-root MuiChip-deletable Label-root"
       role="button"
       tabindex="0"
     >
@@ -21,7 +21,7 @@ exports[`dismissable label should render dismissable label 1`] = `
       </span>
       <span
         aria-label="delete icon"
-        class="Label-deleteIcon MuiChip-deleteIcon"
+        class="MuiChip-deleteIcon"
         role="button"
       >
         <svg
@@ -70,7 +70,7 @@ exports[`renders default variant 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiChip-root"
+      class="MuiChip-root Label-root"
       role="button"
       tabindex="-1"
     >
