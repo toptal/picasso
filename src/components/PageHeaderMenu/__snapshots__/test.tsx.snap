@@ -25,8 +25,8 @@ exports[`PageHeaderMenu default render 1`] = `
             />
           </div>
           <div
-            class="Component-flex"
-            style="margin-left: 1em; flex-direction: column;"
+            class="Component-flex Component-column"
+            style="margin-left: 1em;"
           >
             <div
               class=""

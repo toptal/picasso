@@ -15,7 +15,7 @@ exports[`ButtonGroup render 1`] = `
       >
         <span
           class="Component-flex Component-inline Button-content"
-          style="flex-direction: row; align-items: center;"
+          style="align-items: center;"
         />
       </button>
       <button
@@ -25,7 +25,7 @@ exports[`ButtonGroup render 1`] = `
       >
         <span
           class="Component-flex Component-inline Button-content"
-          style="flex-direction: row; align-items: center;"
+          style="align-items: center;"
         />
       </button>
       <button
@@ -35,7 +35,7 @@ exports[`ButtonGroup render 1`] = `
       >
         <span
           class="Component-flex Component-inline Button-content"
-          style="flex-direction: row; align-items: center;"
+          style="align-items: center;"
         />
       </button>
     </div>
