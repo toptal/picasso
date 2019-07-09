@@ -10,9 +10,13 @@ PicassoProvider.override(() => ({
   }
 }))
 
-export default ({ typography }: Theme) =>
+export default ({ typography, palette }: Theme) =>
   createStyles({
     action: {
       fontWeight: typography.fontWeights.semibold
+    },
+
+    invert: {
+      color: palette.common.white
     }
   })
