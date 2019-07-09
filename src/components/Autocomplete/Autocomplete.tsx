@@ -87,8 +87,8 @@ export const Autocomplete: FunctionComponent<Props> = ({
         selectItem
       }) => {
         const val = (inputValue || '').trim()
-        const filteredOptions = options!.filter(option =>
-          isSubstring(val, option.label)
+        const filteredOptions = options!.filter(({ label }) =>
+          isSubstring(val, label)
         )
 
         const isTyping = Boolean(val)
