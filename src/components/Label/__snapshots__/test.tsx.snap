@@ -14,14 +14,14 @@ exports[`dismissable label should render dismissable label 1`] = `
         class="MuiChip-label"
       >
         <span
-          class="Chip-innerLabel"
+          class="Label-innerLabel"
         >
           Label
         </span>
       </span>
       <span
         aria-label="delete icon"
-        class="MuiChip-deleteIcon Chip-deleteIcon"
+        class="MuiChip-deleteIcon"
         role="button"
       >
         <svg
@@ -98,7 +98,7 @@ exports[`renders \`white\` variant 1`] = `
         class="MuiChip-label"
       >
         <span
-          class="Chip-innerLabel"
+          class="Label-innerLabel"
         >
           Label
         </span>

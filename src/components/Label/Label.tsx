@@ -7,8 +7,8 @@ import React, {
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
-import { CloseMinor16 } from '../Icon'
 import Chip from '../Chip'
+import { CloseMinor16 } from '../Icon'
 import LabelGroup from '../LabelGroup'
 import {
   StandardProps,
@@ -54,10 +54,22 @@ export const Label = forwardRef<HTMLDivElement, Props>(function Label(
   },
   ref
 ) {
+  const handleDelete = () => {
+    if (disabled) {
+      return
+    }
+
+    if (onDelete) {
+      onDelete()
+    }
+  }
+
+  const { color, ...htmlAttributes } = rest
+
   return (
     <Chip
       // eslint-disable-next-line react/jsx-props-no-spreading
-      {...rest}
+      {...htmlAttributes}
       ref={ref}
       classes={{
         root: cx(classes[variant!], {
@@ -66,14 +78,14 @@ export const Label = forwardRef<HTMLDivElement, Props>(function Label(
       }}
       className={className}
       style={style}
+      icon={icon}
+      label={<span className={classes.innerLabel}>{children}</span>}
       deleteIcon={
         <span aria-label='delete icon' role='button'>
           <CloseMinor16 />
         </span>
       }
-      onDelete={onDelete}
-      label={children}
-      icon={icon}
+      onDelete={onDelete ? handleDelete : undefined}
     />
   )
 }) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
