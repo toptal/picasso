@@ -86,17 +86,17 @@ export const Autocomplete: FunctionComponent<Props> = ({
         openMenu,
         selectItem
       }) => {
-        const val = (inputValue || '').trim()
+        const trimmedValue = (inputValue || '').trim()
         const filteredOptions = options!.filter(({ label }) =>
-          isSubstring(val, label)
+          isSubstring(trimmedValue, label)
         )
 
-        const isTyping = Boolean(val)
+        const isTyping = Boolean(trimmedValue)
         const hasOptions = Boolean(filteredOptions.length)
 
         const canOpen =
           isOpen &&
-          isMatchingMinLength(val, minLength) &&
+          isMatchingMinLength(trimmedValue, minLength) &&
           !loading &&
           (hasOptions || isTyping)
 
@@ -128,7 +128,7 @@ export const Autocomplete: FunctionComponent<Props> = ({
         } = getInputProps({
           onFocus: openMenu,
           onBlur: () => {
-            if (!val.length || !filteredOptions.length) {
+            if (!trimmedValue.length || !filteredOptions.length) {
               return
             }
 
