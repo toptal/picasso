@@ -41,6 +41,10 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   disableAutoFocus?: boolean
   /** Disable close on generic close events */
   disableAutoClose?: boolean
+  /** Callback invoked when component is opened */
+  onOpen?(): void
+  /** Callback invoked when component is closed */
+  onClose?(): void
 }
 
 interface StaticProps {
@@ -76,6 +80,8 @@ export const Dropdown: FunctionComponent<Props> & StaticProps = ({
   anchorOrigin,
   disableAutoClose,
   disableAutoFocus,
+  onOpen,
+  onClose,
   ...rest
 }) => {
   const contentRef = useRef<HTMLElement>()
@@ -87,7 +93,10 @@ export const Dropdown: FunctionComponent<Props> & StaticProps = ({
 
   const handleAnchorClick = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
-  ) => setAnchorEl(event.currentTarget)
+  ) => {
+    setAnchorEl(event.currentTarget)
+    onOpen!()
+  }
 
   const handlePopoverEntering = () => focus()
 
@@ -129,6 +138,7 @@ export const Dropdown: FunctionComponent<Props> & StaticProps = ({
     }
 
     setAnchorEl(undefined)
+    onClose!()
   }
 
   const focus = () => {
@@ -216,6 +226,8 @@ Dropdown.defaultProps = {
   disableAutoClose: false,
   disableAutoFocus: false,
   offset: {},
+  onClose: () => {},
+  onOpen: () => {},
   transformOrigin: {
     vertical: 'top',
     horizontal: 'right'
