@@ -18,7 +18,7 @@ const ChevronRight_1 = __importDefault(require("../Icon/ChevronRight"));
 const Typography_1 = __importDefault(require("../Typography"));
 const Link_1 = __importDefault(require("../Link"));
 const styles_2 = __importDefault(require("./styles"));
-exports.ShowMore = ({ children, rows = 4, initialExpanded = false, disableToggle = false, classes: { expandedIcon, icon, toggleText }, moreText = 'Show more', lessText = 'Show less', onToggle = () => { } }) => {
+exports.ShowMore = ({ children, rows = 4, initialExpanded = false, disableToggle = false, classes: { expandedIcon, icon, toggleText, iconWrapper }, moreText = 'Show more', lessText = 'Show less', onToggle = () => { } }) => {
     const [shownMore, setShownMore] = react_1.useState(initialExpanded);
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement(Typography_1.default, { size: 'medium', color: 'grey' },
@@ -28,9 +28,10 @@ exports.ShowMore = ({ children, rows = 4, initialExpanded = false, disableToggle
                 onToggle();
             }, className: toggleText, underline: 'none' },
             react_1.default.createElement(Typography_1.default, { size: 'medium', color: 'blue' }, shownMore ? lessText : moreText),
-            react_1.default.createElement(ChevronRight_1.default, { className: classnames_1.default(icon, {
-                    [expandedIcon]: shownMore
-                }) })))));
+            react_1.default.createElement("div", { className: iconWrapper },
+                react_1.default.createElement(ChevronRight_1.default, { className: classnames_1.default(icon, {
+                        [expandedIcon]: shownMore
+                    }) }))))));
 };
 exports.ShowMore.displayName = 'ShowMore';
 exports.default = styles_1.withStyles(styles_2.default)(exports.ShowMore);

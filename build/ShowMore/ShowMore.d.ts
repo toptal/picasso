@@ -17,5 +17,5 @@ export interface Props extends StandardProps {
     onToggle?: () => void;
 }
 export declare const ShowMore: FunctionComponent<Props>;
-declare const _default: React.ComponentType<Pick<React.PropsWithChildren<Props>, "style" | "children" | "className" | "rows" | "initialExpanded" | "disableToggle" | "moreText" | "lessText" | "onToggle"> & import("@material-ui/core/styles").StyledComponentProps<"icon" | "toggleText" | "expandedIcon">>;
+declare const _default: React.ComponentType<Pick<React.PropsWithChildren<Props>, "style" | "children" | "className" | "rows" | "initialExpanded" | "disableToggle" | "moreText" | "lessText" | "onToggle"> & import("@material-ui/core/styles").StyledComponentProps<"icon" | "iconWrapper" | "toggleText" | "expandedIcon">>;
 export default _default;

@@ -38,11 +38,14 @@ function useDropdownContext() {
     return context;
 }
 exports.Dropdown = (_a) => {
-    var { classes, className, style, children, content, offset, transformOrigin, anchorOrigin, disableAutoClose, disableAutoFocus } = _a, rest = __rest(_a, ["classes", "className", "style", "children", "content", "offset", "transformOrigin", "anchorOrigin", "disableAutoClose", "disableAutoFocus"]);
+    var { classes, className, style, children, content, offset, transformOrigin, anchorOrigin, disableAutoClose, disableAutoFocus, onOpen, onClose } = _a, rest = __rest(_a, ["classes", "className", "style", "children", "content", "offset", "transformOrigin", "anchorOrigin", "disableAutoClose", "disableAutoFocus", "onOpen", "onClose"]);
     const contentRef = react_1.useRef();
     const [anchorEl, setAnchorEl] = react_1.useState(undefined);
     const open = Boolean(anchorEl);
-    const handleAnchorClick = (event) => setAnchorEl(event.currentTarget);
+    const handleAnchorClick = (event) => {
+        setAnchorEl(event.currentTarget);
+        onOpen();
+    };
     const handlePopoverEntering = () => focus();
     const handlePopoverClose = (_, reason) => {
         // Always close menu regardless of disableAutoClose
@@ -74,6 +77,7 @@ exports.Dropdown = (_a) => {
             return;
         }
         setAnchorEl(undefined);
+        onClose();
     };
     const focus = () => {
         if (disableAutoFocus) {
@@ -121,6 +125,8 @@ exports.Dropdown.defaultProps = {
     disableAutoClose: false,
     disableAutoFocus: false,
     offset: {},
+    onClose: () => { },
+    onOpen: () => { },
     transformOrigin: {
         vertical: 'top',
         horizontal: 'right'

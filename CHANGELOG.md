@@ -1,3 +1,15 @@
+# [2.17.0](https://github.com/toptal/picasso/compare/v2.16.1...v2.17.0) (2019-07-10)
+
+
+### Bug Fixes
+
+* **ShowMore:** remove icon leftover after its rotation ([#541](https://github.com/toptal/picasso/issues/541)) ([db912fd](https://github.com/toptal/picasso/commit/db912fd))
+
+
+### Features
+
+* **Dropdown:** add `onOpen` and `onClose` event handlers ([#538](https://github.com/toptal/picasso/issues/538)) ([cb4d055](https://github.com/toptal/picasso/commit/cb4d055))
+
 ## [2.16.1](https://github.com/toptal/picasso/compare/v2.16.0...v2.16.1) (2019-07-10)
 
 
