@@ -7,13 +7,15 @@ export default ({ palette }: Theme) =>
       alignItems: 'center',
       marginTop: '0.5em'
     },
-    icon: {
+    iconWrapper: {
+      transform: 'rotate(90deg)',
       fontSize: '0.6em',
-      marginLeft: '1em',
-      color: palette.primary.main,
-      transform: 'rotate(90deg)'
+      marginLeft: '1em'
+    },
+    icon: {
+      color: palette.primary.main
     },
     expandedIcon: {
-      transform: 'rotate(-90deg)'
+      transform: 'rotate(180deg)'
     }
   })

@@ -30,40 +30,44 @@ exports[`ShowMore default render 1`] = `
       >
         Show more
       </p>
-      <svg
-        class="SvgChevronRight16-root ShowMore-icon"
-        style="min-width: 16px; min-height: 16px;"
-        viewBox="0 0 16 16"
+      <div
+        class="ShowMore-iconWrapper"
       >
-        <defs>
-          <path
-            d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
-            id="chevronRight16_svg__a"
-          />
-        </defs>
-        <g
-          fill-rule="evenodd"
+        <svg
+          class="SvgChevronRight16-root ShowMore-icon"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
         >
-          <mask
-            id="chevronRight16_svg__b"
+          <defs>
+            <path
+              d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+              id="chevronRight16_svg__a"
+            />
+          </defs>
+          <g
+            fill-rule="evenodd"
           >
+            <mask
+              id="chevronRight16_svg__b"
+            >
+              <use
+                xlink:href="#chevronRight16_svg__a"
+              />
+            </mask>
             <use
+              fill-rule="nonzero"
               xlink:href="#chevronRight16_svg__a"
             />
-          </mask>
-          <use
-            fill-rule="nonzero"
-            xlink:href="#chevronRight16_svg__a"
-          />
-          <g
-            mask="url(#chevronRight16_svg__b)"
-          >
-            <path
-              d="M0 0h16v16H0z"
-            />
+            <g
+              mask="url(#chevronRight16_svg__b)"
+            >
+              <path
+                d="M0 0h16v16H0z"
+              />
+            </g>
           </g>
-        </g>
-      </svg>
+        </svg>
+      </div>
     </a>
   </div>
 </div>
@@ -99,40 +103,44 @@ exports[`ShowMore when custom lessText text is specified should render with cust
       >
         Show more
       </p>
-      <svg
-        class="SvgChevronRight16-root ShowMore-icon"
-        style="min-width: 16px; min-height: 16px;"
-        viewBox="0 0 16 16"
+      <div
+        class="ShowMore-iconWrapper"
       >
-        <defs>
-          <path
-            d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
-            id="chevronRight16_svg__a"
-          />
-        </defs>
-        <g
-          fill-rule="evenodd"
+        <svg
+          class="SvgChevronRight16-root ShowMore-icon"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
         >
-          <mask
-            id="chevronRight16_svg__b"
+          <defs>
+            <path
+              d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+              id="chevronRight16_svg__a"
+            />
+          </defs>
+          <g
+            fill-rule="evenodd"
           >
+            <mask
+              id="chevronRight16_svg__b"
+            >
+              <use
+                xlink:href="#chevronRight16_svg__a"
+              />
+            </mask>
             <use
+              fill-rule="nonzero"
               xlink:href="#chevronRight16_svg__a"
             />
-          </mask>
-          <use
-            fill-rule="nonzero"
-            xlink:href="#chevronRight16_svg__a"
-          />
-          <g
-            mask="url(#chevronRight16_svg__b)"
-          >
-            <path
-              d="M0 0h16v16H0z"
-            />
+            <g
+              mask="url(#chevronRight16_svg__b)"
+            >
+              <path
+                d="M0 0h16v16H0z"
+              />
+            </g>
           </g>
-        </g>
-      </svg>
+        </svg>
+      </div>
     </a>
   </div>
 </div>
@@ -168,40 +176,44 @@ exports[`ShowMore when custom showMore text is specified should render with cust
       >
         Display everything
       </p>
-      <svg
-        class="SvgChevronRight16-root ShowMore-icon"
-        style="min-width: 16px; min-height: 16px;"
-        viewBox="0 0 16 16"
+      <div
+        class="ShowMore-iconWrapper"
       >
-        <defs>
-          <path
-            d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
-            id="chevronRight16_svg__a"
-          />
-        </defs>
-        <g
-          fill-rule="evenodd"
+        <svg
+          class="SvgChevronRight16-root ShowMore-icon"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
         >
-          <mask
-            id="chevronRight16_svg__b"
+          <defs>
+            <path
+              d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+              id="chevronRight16_svg__a"
+            />
+          </defs>
+          <g
+            fill-rule="evenodd"
           >
+            <mask
+              id="chevronRight16_svg__b"
+            >
+              <use
+                xlink:href="#chevronRight16_svg__a"
+              />
+            </mask>
             <use
+              fill-rule="nonzero"
               xlink:href="#chevronRight16_svg__a"
             />
-          </mask>
-          <use
-            fill-rule="nonzero"
-            xlink:href="#chevronRight16_svg__a"
-          />
-          <g
-            mask="url(#chevronRight16_svg__b)"
-          >
-            <path
-              d="M0 0h16v16H0z"
-            />
+            <g
+              mask="url(#chevronRight16_svg__b)"
+            >
+              <path
+                d="M0 0h16v16H0z"
+              />
+            </g>
           </g>
-        </g>
-      </svg>
+        </svg>
+      </div>
     </a>
   </div>
 </div>
@@ -263,40 +275,44 @@ exports[`ShowMore when initialExpanded prop is true should render expanded versi
       >
         Show less
       </p>
-      <svg
-        class="SvgChevronRight16-root ShowMore-icon ShowMore-expandedIcon"
-        style="min-width: 16px; min-height: 16px;"
-        viewBox="0 0 16 16"
+      <div
+        class="ShowMore-iconWrapper"
       >
-        <defs>
-          <path
-            d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
-            id="chevronRight16_svg__a"
-          />
-        </defs>
-        <g
-          fill-rule="evenodd"
+        <svg
+          class="SvgChevronRight16-root ShowMore-icon ShowMore-expandedIcon"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
         >
-          <mask
-            id="chevronRight16_svg__b"
+          <defs>
+            <path
+              d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+              id="chevronRight16_svg__a"
+            />
+          </defs>
+          <g
+            fill-rule="evenodd"
           >
+            <mask
+              id="chevronRight16_svg__b"
+            >
+              <use
+                xlink:href="#chevronRight16_svg__a"
+              />
+            </mask>
             <use
+              fill-rule="nonzero"
               xlink:href="#chevronRight16_svg__a"
             />
-          </mask>
-          <use
-            fill-rule="nonzero"
-            xlink:href="#chevronRight16_svg__a"
-          />
-          <g
-            mask="url(#chevronRight16_svg__b)"
-          >
-            <path
-              d="M0 0h16v16H0z"
-            />
+            <g
+              mask="url(#chevronRight16_svg__b)"
+            >
+              <path
+                d="M0 0h16v16H0z"
+              />
+            </g>
           </g>
-        </g>
-      </svg>
+        </svg>
+      </div>
     </a>
   </div>
 </div>
@@ -332,40 +348,44 @@ exports[`ShowMore when initialExpanded prop is true when show less link is click
       >
         Show more
       </p>
-      <svg
-        class="SvgChevronRight16-root ShowMore-icon"
-        style="min-width: 16px; min-height: 16px;"
-        viewBox="0 0 16 16"
+      <div
+        class="ShowMore-iconWrapper"
       >
-        <defs>
-          <path
-            d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
-            id="chevronRight16_svg__a"
-          />
-        </defs>
-        <g
-          fill-rule="evenodd"
+        <svg
+          class="SvgChevronRight16-root ShowMore-icon"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
         >
-          <mask
-            id="chevronRight16_svg__b"
+          <defs>
+            <path
+              d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+              id="chevronRight16_svg__a"
+            />
+          </defs>
+          <g
+            fill-rule="evenodd"
           >
+            <mask
+              id="chevronRight16_svg__b"
+            >
+              <use
+                xlink:href="#chevronRight16_svg__a"
+              />
+            </mask>
             <use
+              fill-rule="nonzero"
               xlink:href="#chevronRight16_svg__a"
             />
-          </mask>
-          <use
-            fill-rule="nonzero"
-            xlink:href="#chevronRight16_svg__a"
-          />
-          <g
-            mask="url(#chevronRight16_svg__b)"
-          >
-            <path
-              d="M0 0h16v16H0z"
-            />
+            <g
+              mask="url(#chevronRight16_svg__b)"
+            >
+              <path
+                d="M0 0h16v16H0z"
+              />
+            </g>
           </g>
-        </g>
-      </svg>
+        </svg>
+      </div>
     </a>
   </div>
 </div>
@@ -401,40 +421,44 @@ exports[`ShowMore when show more link is clicked should render expanded version 
       >
         Show less
       </p>
-      <svg
-        class="SvgChevronRight16-root ShowMore-icon ShowMore-expandedIcon"
-        style="min-width: 16px; min-height: 16px;"
-        viewBox="0 0 16 16"
+      <div
+        class="ShowMore-iconWrapper"
       >
-        <defs>
-          <path
-            d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
-            id="chevronRight16_svg__a"
-          />
-        </defs>
-        <g
-          fill-rule="evenodd"
+        <svg
+          class="SvgChevronRight16-root ShowMore-icon ShowMore-expandedIcon"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
         >
-          <mask
-            id="chevronRight16_svg__b"
+          <defs>
+            <path
+              d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+              id="chevronRight16_svg__a"
+            />
+          </defs>
+          <g
+            fill-rule="evenodd"
           >
+            <mask
+              id="chevronRight16_svg__b"
+            >
+              <use
+                xlink:href="#chevronRight16_svg__a"
+              />
+            </mask>
             <use
+              fill-rule="nonzero"
               xlink:href="#chevronRight16_svg__a"
             />
-          </mask>
-          <use
-            fill-rule="nonzero"
-            xlink:href="#chevronRight16_svg__a"
-          />
-          <g
-            mask="url(#chevronRight16_svg__b)"
-          >
-            <path
-              d="M0 0h16v16H0z"
-            />
+            <g
+              mask="url(#chevronRight16_svg__b)"
+            >
+              <path
+                d="M0 0h16v16H0z"
+              />
+            </g>
           </g>
-        </g>
-      </svg>
+        </svg>
+      </div>
     </a>
   </div>
 </div>
