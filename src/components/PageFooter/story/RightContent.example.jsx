@@ -1,5 +1,5 @@
 import React from 'react'
-import { Page } from '@toptal/picasso'
+import { Page, Link, Container } from '@toptal/picasso'
 
 const FooterRightContentExample = () => (
   <div>
@@ -8,38 +8,27 @@ const FooterRightContentExample = () => (
 )
 
 const Links = () => (
-  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-    <a
-      href='#'
-      style={{ textDecoration: 'none', color: 'white', marginLeft: '2.5em' }}
-    >
+  <Container flex justifyContent='space-between'>
+    <Link href='#' underline='none' invert style={{ marginLeft: '2.5em' }}>
       +1.888.604.3188
-    </a>
-    <a
-      href='#'
-      style={{ textDecoration: 'none', color: 'white', marginLeft: '2.5em' }}
-    >
+    </Link>
+
+    <Link href='#' underline='none' invert style={{ marginLeft: '2.5em' }}>
       Contact Us
-    </a>
-    <a
-      href='#'
-      style={{ textDecoration: 'none', color: 'white', marginLeft: '2.5em' }}
-    >
+    </Link>
+
+    <Link href='#' underline='none' invert style={{ marginLeft: '2.5em' }}>
       Privacy Policy
-    </a>
-    <a
-      href='#'
-      style={{ textDecoration: 'none', color: 'white', marginLeft: '2.5em' }}
-    >
+    </Link>
+
+    <Link href='#' underline='none' invert style={{ marginLeft: '2.5em' }}>
       Portal Agreement
-    </a>
-    <a
-      href='#'
-      style={{ textDecoration: 'none', color: 'white', marginLeft: '2.5em' }}
-    >
+    </Link>
+
+    <Link href='#' underline='none' invert style={{ marginLeft: '2.5em' }}>
       Toptal Training
-    </a>
-  </div>
+    </Link>
+  </Container>
 )
 
 export default FooterRightContentExample

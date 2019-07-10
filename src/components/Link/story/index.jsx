@@ -17,3 +17,4 @@ page
   .addExample('Link/story/Action.example.jsx', 'Action')
   .addExample('Link/story/Underline.example.jsx', 'Underline')
   .addExample('Link/story/FontSize.example.jsx', 'Font Size')
+  .addExample('Link/story/Invert.example.jsx', 'Invert')

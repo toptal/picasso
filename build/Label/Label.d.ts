@@ -4,13 +4,15 @@ import { StandardProps, PicassoComponent } from '../Picasso';
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
     /** Text content of the `Label` component */
     children: ReactNode;
+    /** Specify the icon which should be rendered inside Label */
+    icon?: ReactElement;
+    /** Defines if `Label` is disabled */
+    disabled?: boolean;
     /** A callback which is invoked after remove `Icon` is clicked
      *
      * Please note that specifying this callback automatically adds remove `Icon` as children of the `Label`
      */
     onDelete?: () => void;
-    /** Specify the icon which should be rendered inside Label */
-    icon?: ReactElement;
 }
 interface StaticProps {
     Group: typeof LabelGroup;

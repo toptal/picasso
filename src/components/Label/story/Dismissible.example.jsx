@@ -3,7 +3,7 @@ import { Label } from '@toptal/picasso'
 
 const LabelDismissibleExample = () => (
   <div>
-    <Label onDelete={handleDelete}>React JS</Label>
+    <Label onDelete={handleDelete}>Label</Label>
   </div>
 )
 

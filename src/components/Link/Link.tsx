@@ -38,6 +38,8 @@ interface Props extends StandardProps, AnchorHTMLAttributes<HTMLAnchorElement> {
   variant?: VariantType
   /** Indicates the order of receiving focus. If not set will not receive focus. */
   tabIndex?: number
+  /** Uses white text color for dark background */
+  invert?: boolean
 }
 
 export const Link: FunctionComponent<Props> = ({
@@ -51,6 +53,7 @@ export const Link: FunctionComponent<Props> = ({
   as,
   variant,
   tabIndex,
+  invert,
   ...rest
 }) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -64,7 +67,8 @@ export const Link: FunctionComponent<Props> = ({
       underline={underline}
       onClick={onClick}
       className={cx(classes.root, className, {
-        [classes.action]: variant === 'action'
+        [classes.action]: variant === 'action',
+        [classes.invert]: invert
       })}
       style={style}
       component={as}
