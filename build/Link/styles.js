@@ -9,9 +9,12 @@ Picasso_1.PicassoProvider.override(() => ({
         }
     }
 }));
-exports.default = ({ typography }) => styles_1.createStyles({
+exports.default = ({ typography, palette }) => styles_1.createStyles({
     action: {
         fontWeight: typography.fontWeights.semibold
+    },
+    invert: {
+        color: palette.common.white
     }
 });
 //# sourceMappingURL=styles.js.map

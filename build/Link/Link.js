@@ -20,13 +20,14 @@ const styles_1 = require("@material-ui/core/styles");
 const classnames_1 = __importDefault(require("classnames"));
 const styles_2 = __importDefault(require("./styles"));
 exports.Link = (_a) => {
-    var { href, underline, onClick, children, classes, className, style, as, variant, tabIndex } = _a, rest = __rest(_a, ["href", "underline", "onClick", "children", "classes", "className", "style", "as", "variant", "tabIndex"]);
+    var { href, underline, onClick, children, classes, className, style, as, variant, tabIndex, invert } = _a, rest = __rest(_a, ["href", "underline", "onClick", "children", "classes", "className", "style", "as", "variant", "tabIndex", "invert"]);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { color } = rest, nativeHTMLAttributes = __rest(rest, ["color"]);
     return (react_1.default.createElement(Link_1.default
     // eslint-disable-next-line react/jsx-props-no-spreading
     , Object.assign({}, nativeHTMLAttributes, { href: href, underline: underline, onClick: onClick, className: classnames_1.default(classes.root, className, {
-            [classes.action]: variant === 'action'
+            [classes.action]: variant === 'action',
+            [classes.invert]: invert
         }), style: style, component: as, tabIndex: tabIndex }), children));
 };
 exports.Link.defaultProps = {

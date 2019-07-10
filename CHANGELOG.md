@@ -1,3 +1,10 @@
+# [2.16.0](https://github.com/toptal/picasso/compare/v2.15.0...v2.16.0) (2019-07-10)
+
+
+### Features
+
+* **Link:** add invert prop ([#535](https://github.com/toptal/picasso/issues/535)) ([d5ae4ee](https://github.com/toptal/picasso/commit/d5ae4ee))
+
 # [2.15.0](https://github.com/toptal/picasso/compare/v2.14.0...v2.15.0) (2019-07-09)
 
 
