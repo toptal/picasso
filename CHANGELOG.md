@@ -1,3 +1,10 @@
+## [2.16.1](https://github.com/toptal/picasso/compare/v2.16.0...v2.16.1) (2019-07-10)
+
+
+### Bug Fixes
+
+* **notification:** close icon margin ([#540](https://github.com/toptal/picasso/issues/540)) ([93b5669](https://github.com/toptal/picasso/commit/93b5669))
+
 # [2.16.0](https://github.com/toptal/picasso/compare/v2.15.0...v2.16.0) (2019-07-10)
 
 
