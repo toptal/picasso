@@ -45,7 +45,7 @@ exports.default = ({ palette: { red, green, yellow, common, text }, shadows }) =
         color: text.primary
     },
     contentCloseButton: {
-        paddingRight: '.5em'
+        paddingRight: '1.5em'
     },
     // Content Icon
     iconWrapper: {

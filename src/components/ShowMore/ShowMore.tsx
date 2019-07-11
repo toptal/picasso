@@ -31,7 +31,7 @@ export const ShowMore: FunctionComponent<Props> = ({
   rows = 4,
   initialExpanded = false,
   disableToggle = false,
-  classes: { expandedIcon, icon, toggleText },
+  classes: { expandedIcon, icon, toggleText, iconWrapper },
   moreText = 'Show more',
   lessText = 'Show less',
   onToggle = () => {}
@@ -55,11 +55,13 @@ export const ShowMore: FunctionComponent<Props> = ({
           <Typography size='medium' color='blue'>
             {shownMore ? lessText : moreText}
           </Typography>
-          <ChevronRightIcon
-            className={cx(icon, {
-              [expandedIcon]: shownMore
-            })}
-          />
+          <div className={iconWrapper}>
+            <ChevronRightIcon
+              className={cx(icon, {
+                [expandedIcon]: shownMore
+              })}
+            />
+          </div>
         </Link>
       )}
     </React.Fragment>

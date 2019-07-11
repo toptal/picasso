@@ -9,10 +9,17 @@ import Dropdown, { Props } from './Dropdown'
 const TestDropdown: FunctionComponent<OmitInternalProps<Props>> = ({
   content,
   disableAutoFocus,
-  children
+  children,
+  onOpen,
+  onClose
 }) => (
   <Picasso loadFonts={false}>
-    <Dropdown content={content} disableAutoFocus={disableAutoFocus}>
+    <Dropdown
+      content={content}
+      disableAutoFocus={disableAutoFocus}
+      onOpen={onOpen}
+      onClose={onClose}
+    >
       {children}
     </Dropdown>
   </Picasso>
@@ -88,6 +95,42 @@ describe('Dropdown', () => {
     expect(document.activeElement === item).toBeFalsy()
 
     expect(container).toMatchSnapshot()
+
+    unmount()
+  })
+
+  test('should trigger `onOpen`, `onClose` callbacks', () => {
+    const onOpen = jest.fn()
+    const onClose = jest.fn()
+    const { getByText, unmount } = render(
+      <TestDropdown
+        content={
+          <Menu>
+            <Menu.Item>Item1</Menu.Item>
+            <Menu.Item>Item2</Menu.Item>
+            <Menu.Item>Item3</Menu.Item>
+          </Menu>
+        }
+        onOpen={onOpen}
+        onClose={onClose}
+      >
+        Open Dropdown <Dropdown.Arrow />
+      </TestDropdown>,
+      // We need to take snapshot of overlay rendered with Portal
+      { container: document.body }
+    )
+
+    const trigger = getByText('Open Dropdown')
+
+    fireEvent.click(trigger)
+
+    expect(onOpen).toHaveBeenCalledTimes(1)
+    expect(onOpen).toHaveBeenCalledWith()
+
+    fireEvent.click(getByText('Item1'))
+
+    expect(onClose).toHaveBeenCalledTimes(1)
+    expect(onClose).toHaveBeenCalledWith()
 
     unmount()
   })

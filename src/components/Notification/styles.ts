@@ -1,4 +1,4 @@
-import { Theme, createStyles } from '@material-ui/core/styles'
+import { createStyles, Theme } from '@material-ui/core/styles'
 
 import { PicassoProvider } from '../Picasso'
 
@@ -51,7 +51,7 @@ export default ({
       color: text.primary
     },
     contentCloseButton: {
-      paddingRight: '.5em'
+      paddingRight: '1.5em'
     },
 
     // Content Icon
