@@ -22,8 +22,9 @@ type ColorType =
   | 'green'
   | 'red'
   | 'yellow'
-  | 'grey'
   | 'light-grey'
+  | 'grey'
+  | 'dark-grey'
   | 'black'
   | 'inherit'
 

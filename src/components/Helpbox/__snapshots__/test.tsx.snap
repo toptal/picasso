@@ -19,7 +19,7 @@ exports[`Helpbox default render 1`] = `
         </h4>
       </div>
       <p
-        class="MuiTypography-root Typography-bodyMedium Typography-grey MuiTypography-body1"
+        class="MuiTypography-root Typography-bodyMedium Typography-darkGrey MuiTypography-body1"
       >
         Test
       </p>
