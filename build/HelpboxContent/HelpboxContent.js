@@ -22,7 +22,7 @@ exports.HelpboxContent = (_a) => {
     var { classes, className, style, children } = _a, rest = __rest(_a, ["classes", "className", "style", "children"]);
     return (react_1.default.createElement(Typography_1.default
     // eslint-disable-next-line react/jsx-props-no-spreading
-    , Object.assign({}, rest, { classes: classes, className: className, style: style, variant: 'body', size: 'medium', color: 'grey' }), children));
+    , Object.assign({}, rest, { classes: classes, className: className, style: style, variant: 'body', size: 'medium', color: 'dark-grey' }), children));
 };
 exports.HelpboxContent.defaultProps = {};
 exports.HelpboxContent.displayName = 'HelpboxContent';

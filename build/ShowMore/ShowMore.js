@@ -21,7 +21,7 @@ const styles_2 = __importDefault(require("./styles"));
 exports.ShowMore = ({ children, rows = 4, initialExpanded = false, disableToggle = false, classes: { expandedIcon, icon, toggleText, iconWrapper }, moreText = 'Show more', lessText = 'Show less', onToggle = () => { } }) => {
     const [shownMore, setShownMore] = react_1.useState(initialExpanded);
     return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement(Typography_1.default, { size: 'medium', color: 'grey' },
+        react_1.default.createElement(Typography_1.default, { size: 'medium', color: 'dark-grey' },
             react_1.default.createElement(react_truncate_1.default, { lines: !shownMore && rows }, children)),
         !disableToggle && (react_1.default.createElement(Link_1.default, { onClick: () => {
                 setShownMore(!shownMore);

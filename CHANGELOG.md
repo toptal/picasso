@@ -1,3 +1,10 @@
+# [2.18.0](https://github.com/toptal/picasso/compare/v2.17.0...v2.18.0) (2019-07-15)
+
+
+### Features
+
+* **typography:** add dark-grey color ([#510](https://github.com/toptal/picasso/issues/510)) ([b316dbe](https://github.com/toptal/picasso/commit/b316dbe))
+
 # [2.17.0](https://github.com/toptal/picasso/compare/v2.16.1...v2.17.0) (2019-07-10)
 
 
