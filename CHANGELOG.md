@@ -1,3 +1,10 @@
+## [2.18.1](https://github.com/toptal/picasso/compare/v2.18.0...v2.18.1) (2019-07-16)
+
+
+### Bug Fixes
+
+* **Accordion:** adjust accordion styles for single item ([#551](https://github.com/toptal/picasso/issues/551)) ([11bd998](https://github.com/toptal/picasso/commit/11bd998))
+
 # [2.18.0](https://github.com/toptal/picasso/compare/v2.17.0...v2.18.0) (2019-07-15)
 
 

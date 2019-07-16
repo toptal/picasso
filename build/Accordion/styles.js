@@ -14,11 +14,20 @@ exports.default = ({ palette, typography }) => {
     });
     return {
         root: {
-            '&:first-child:before, &:before': Object.assign({}, separatorStyles),
+            '&:first-child:before': Object.assign({}, separatorStyles),
+            '&:before': {
+                background: 'transparent'
+            },
+            '&:after': Object.assign({}, separatorStyles),
+            '&:nth-child(1):nth-last-child(1)': {
+                '&:before, &:after': {
+                    display: 'none'
+                }
+            },
             '&$expanded + &:before': {
                 display: 'block'
             },
-            '&:after': Object.assign({}, separatorStyles)
+            background: 'transparent'
         },
         expanded: {
             margin: 0
@@ -26,6 +35,9 @@ exports.default = ({ palette, typography }) => {
         summary: {
             color: palette.common.black
         },
+        summaryFontWeightInherit: styles_1.createPropertiesStyles({
+            fontWeight: 'inherit'
+        }),
         expandIcon: {
             fontSize: '0.7em',
             color: palette.primary.main

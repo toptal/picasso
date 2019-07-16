@@ -1,7 +1,7 @@
 import { Theme } from '@material-ui/core/styles';
 declare const _default: ({ palette, typography }: Theme) => {
     root: {
-        '&:first-child:before, &:before': {
+        '&:first-child:before': {
             [x: string]: string | number | import("@material-ui/core/styles/withStyles").CSSProperties | undefined;
             alignContent?: string | undefined;
             alignItems?: string | undefined;
@@ -742,8 +742,8 @@ declare const _default: ({ palette, typography }: Theme) => {
             textAnchor?: "-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "end" | "start" | "middle" | undefined;
             vectorEffect?: "-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "none" | "non-scaling-stroke" | undefined;
         };
-        '&$expanded + &:before': {
-            display: string;
+        '&:before': {
+            background: string;
         };
         '&:after': {
             [x: string]: string | number | import("@material-ui/core/styles/withStyles").CSSProperties | undefined;
@@ -1486,6 +1486,15 @@ declare const _default: ({ palette, typography }: Theme) => {
             textAnchor?: "-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "end" | "start" | "middle" | undefined;
             vectorEffect?: "-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "none" | "non-scaling-stroke" | undefined;
         };
+        '&:nth-child(1):nth-last-child(1)': {
+            '&:before, &:after': {
+                display: string;
+            };
+        };
+        '&$expanded + &:before': {
+            display: string;
+        };
+        background: string;
     };
     expanded: {
         margin: number;
@@ -1493,6 +1502,7 @@ declare const _default: ({ palette, typography }: Theme) => {
     summary: {
         color: string;
     };
+    summaryFontWeightInherit: import("@material-ui/core/styles/withStyles").CSSProperties;
     expandIcon: {
         fontSize: string;
         color: string;
