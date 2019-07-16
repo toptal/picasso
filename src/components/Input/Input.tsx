@@ -47,6 +47,8 @@ export interface Props
   rowsMax?: string | number
   /** Type attribute of the Input element. It should be a valid HTML5 input type */
   type?: string
+  /** Start InputAdornment - can't be used in combination with `iconPosition: start` */
+  startAdornment?: ReactNode
   /**  Callback invoked when `Input` changes its state */
   onChange?: (
     event: ChangeEvent<
@@ -76,6 +78,7 @@ export const Input: FunctionComponent<Props> = ({
   rowsMax,
   type,
   onChange,
+  startAdornment,
   ...rest
 }) => {
   const IconAdornment = icon && (
@@ -83,6 +86,8 @@ export const Input: FunctionComponent<Props> = ({
       {icon}
     </InputAdornment>
   )
+  const usedStartAdornment =
+    icon && iconPosition === 'start' ? IconAdornment : startAdornment
 
   return (
     <OutlinedInput
@@ -110,7 +115,7 @@ export const Input: FunctionComponent<Props> = ({
       // html attributes
       inputProps={rest}
       endAdornment={iconPosition === 'end' && IconAdornment}
-      startAdornment={iconPosition === 'start' && IconAdornment}
+      startAdornment={usedStartAdornment}
       onChange={onChange}
     >
       {children}
