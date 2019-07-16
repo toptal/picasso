@@ -16,15 +16,24 @@ export default ({ palette, typography }: Theme) => {
 
   return {
     root: {
-      '&:first-child:before, &:before': {
+      '&:first-child:before': {
         ...separatorStyles
+      },
+      '&:before': {
+        background: 'transparent'
+      },
+      '&:after': {
+        ...separatorStyles
+      },
+      '&:nth-child(1):nth-last-child(1)': {
+        '&:before, &:after': {
+          display: 'none'
+        }
       },
       '&$expanded + &:before': {
         display: 'block'
       },
-      '&:after': {
-        ...separatorStyles
-      }
+      background: 'transparent'
     },
     expanded: {
       margin: 0
@@ -32,6 +41,9 @@ export default ({ palette, typography }: Theme) => {
     summary: {
       color: palette.common.black
     },
+    summaryFontWeightInherit: createPropertiesStyles({
+      fontWeight: 'inherit'
+    }),
     expandIcon: {
       fontSize: '0.7em',
       color: palette.primary.main
