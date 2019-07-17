@@ -3,6 +3,9 @@ import { createStyles } from '@material-ui/core/styles'
 export default () =>
   createStyles({
     '@global': {
+      html: {
+        boxSizing: 'initial'
+      },
       body: {
         display: 'flex',
         flexDirection: 'column',
@@ -11,6 +14,10 @@ export default () =>
       '#root': {
         display: 'flex',
         flex: 1
+      },
+      '#picasso-portal': {
+        boxSizing: 'border-box',
+        fontFamily: 'proxima-nova,Arial,sans-serif'
       }
     }
   })
