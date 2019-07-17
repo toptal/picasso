@@ -20,7 +20,7 @@ import { DropdownArrows16 } from '../Icon'
 import styles from './styles'
 
 interface Option {
-  key: number
+  key?: number
   text: string | ReactNode
   value: string | number
 }
@@ -28,8 +28,7 @@ interface Option {
 type IconPosition = 'start' | 'end'
 
 export interface Props
-  extends StandardProps,
-    Omit<HTMLAttributes<HTMLInputElement>, 'onChange'> {
+  extends Omit<HTMLAttributes<HTMLInputElement>, 'onChange'> {
   /** If true, the 'Select' will be disabled */
   disabled?: boolean
   /** Indicate whether `Select` is in error state */
@@ -82,7 +81,9 @@ const renderOptions = (
   return resultOptions
 }
 
-export const Select: FunctionComponent<Props> = ({
+interface InternalProps extends Props, StandardProps {}
+
+export const Select: FunctionComponent<InternalProps> = ({
   classes,
   className,
   style,

@@ -35,6 +35,7 @@ const imports: {
   react: React,
   'styled-components': styled,
   '@toptal/picasso': require('@components'),
+  '@toptal/picasso/lab': require('@components/lab'),
   '@toptal/picasso/utils': require('@components/utils'),
   '@toptal/picasso/Icon': require('@components/Icon')
 }

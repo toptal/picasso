@@ -1,0 +1,18 @@
+import PicassoBook from '~/.storybook/components/PicassoBook'
+
+import { MonthSelect } from '../MonthSelect'
+
+const page = PicassoBook.createPage(
+  'MonthSelect',
+  'Month selector',
+  'Lab Components'
+)
+
+page
+  .createTabChapter('Props')
+  .addComponentDocs({ component: MonthSelect, name: 'MonthSelect' })
+
+page
+  .createChapter()
+  .addExample('lab/MonthSelect/story/Default.example.jsx', 'Default')
+  .addExample('lab/MonthSelect/story/Filter.example.jsx', 'Filter months') // picasso-skip-visuals

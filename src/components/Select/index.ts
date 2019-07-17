@@ -1,1 +1,1 @@
-export { default } from './Select'
+export { default, Props } from './Select'

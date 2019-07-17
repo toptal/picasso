@@ -1,9 +1,9 @@
 import React, { FunctionComponent } from 'react'
 import { render, cleanup } from 'react-testing-library'
-import { Button } from '@toptal/picasso'
 
 import Picasso, { OmitInternalProps } from '../Picasso'
 import Helpbox, { Props } from './Helpbox'
+import Button from '../Button'
 
 const TestHelpbox: FunctionComponent<OmitInternalProps<Props>> = ({
   children

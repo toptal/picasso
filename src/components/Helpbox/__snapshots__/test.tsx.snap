@@ -32,12 +32,12 @@ exports[`Helpbox default render 1`] = `
           tabindex="0"
           type="button"
         >
-          <div
-            class="Button-content"
-            style="display: inline-flex; flex-direction: row; align-items: center;"
+          <span
+            class="Component-flex Component-inline Button-content"
+            style="align-items: center;"
           >
             Button
-          </div>
+          </span>
         </button>
       </div>
     </div>

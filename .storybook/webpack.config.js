@@ -4,6 +4,7 @@ const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
 
 // example: /components/Button/Button.tsx
 const COMPONENT_DECLARATION_FILE_REGEXP = /components\/(.*)\/\1.tsx$/
+const LAB_COMPONENT_DECLARATION_FILE_REGEXP = /components\/lab\/(.*)\/\1.tsx$/
 
 const { env } = process
 
@@ -39,6 +40,10 @@ module.exports = ({ config }) => {
     oneOf: [
       {
         test: COMPONENT_DECLARATION_FILE_REGEXP,
+        use: defaultLoaders
+      },
+      {
+        test: LAB_COMPONENT_DECLARATION_FILE_REGEXP,
         use: defaultLoaders
       },
       { use: [tsLoader] }
