@@ -51,7 +51,9 @@ const getPopperProps = (arrow: boolean, arrowRef: null | HTMLElement) => ({
         element: arrowRef
       }
     }
-  }
+  },
+  container: document.getElementById('picasso-portal-root'),
+  className: 'test123'
 })
 const getClasses = (classes: Classes, variant: VariantType) => {
   const isLight = variant === 'light'

@@ -4,6 +4,7 @@ import {
   withStyles
 } from '@material-ui/core/styles'
 import React, { FunctionComponent, ReactNode, Fragment } from 'react'
+import { createPortal } from 'react-dom'
 
 import CssBaseline from '../CssBaseline'
 import {
@@ -51,14 +52,19 @@ const PicassoProvider = new Provider(createMuiTheme(picasso))
 interface PicassoGlobalStylesProviderProps extends JssProps {
   children?: ReactNode
   root?: boolean
+  id?: string
 }
 
 const PicassoGlobalStylesProvider = withStyles(globalStyles, {
   name: 'Picasso'
 })((props: PicassoGlobalStylesProviderProps) => {
-  const { classes, children } = props
+  const { classes, children, id } = props
 
-  return <div className={classes.root}>{children}</div>
+  return (
+    <div id={id} className={classes.root}>
+      {children}
+    </div>
+  )
 })
 
 interface PicassoProps {
@@ -73,17 +79,9 @@ interface PicassoProps {
 const Picasso: FunctionComponent<PicassoProps> = ({
   loadFonts,
   reset,
-  root,
   children
 }) => {
-  const bodyEl = document.body
-
-  if (bodyEl && root) {
-    const picassoPortalEl = document.createElement('div')
-    picassoPortalEl.id = 'picasso-portal'
-
-    bodyEl.appendChild(picassoPortalEl)
-  }
+  const portalEl = document.getElementById('picasso-portal-root')
 
   return (
     <Fragment>
@@ -92,6 +90,8 @@ const Picasso: FunctionComponent<PicassoProps> = ({
         {reset && <CssBaseline />}
         <PicassoGlobalStylesProvider>{children}</PicassoGlobalStylesProvider>
       </MuiThemeProvider>
+      {!portalEl &&
+        createPortal(<div id='picasso-portal-root' />, document.body)}
     </Fragment>
   )
 }

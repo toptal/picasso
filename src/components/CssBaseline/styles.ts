@@ -15,9 +15,10 @@ export default () =>
         display: 'flex',
         flex: 1
       },
-      '#picasso-portal': {
+      '#picasso-portal-root': {
         boxSizing: 'border-box',
-        fontFamily: 'proxima-nova,Arial,sans-serif'
+        fontFamily: 'proxima-nova,Arial,sans-serif',
+        position: 'fixed'
       }
     }
   })
