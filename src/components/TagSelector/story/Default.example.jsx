@@ -20,13 +20,13 @@ const TagSelectorDefaultExample = () => (
   <div>
     <TagSelector
       options={options}
-      selectedTags={['AF']}
+      preselectedItems={['AF']}
       placeholder='Start typing...'
-      onAdd={(value, selectedTags) =>
-        console.log('onAdd: ', value, selectedTags)
+      onAdd={(value, selectedItems) =>
+        console.log('onAdd: ', value, selectedItems)
       }
-      onRemove={(value, selectedTags) =>
-        console.log('onRemove: ', value, selectedTags)
+      onRemove={(value, selectedItems) =>
+        console.log('onRemove: ', value, selectedItems)
       }
       action={Action}
     />

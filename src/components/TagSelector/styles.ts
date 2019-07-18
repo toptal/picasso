@@ -1,5 +1,6 @@
-import { PicassoProvider } from '../Picasso'
 import { Theme, createStyles } from '@material-ui/core/styles'
+
+import { PicassoProvider } from '../Picasso'
 
 PicassoProvider.override(({ palette }: Theme) => ({}))
 

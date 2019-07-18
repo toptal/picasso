@@ -1,21 +1,14 @@
-import React, {
-  FunctionComponent,
-  KeyboardEvent,
-  ChangeEvent,
-  ReactNode
-} from 'react'
+import React, { FunctionComponent, KeyboardEvent, ChangeEvent } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import Downshift from 'downshift'
-import { deburr } from 'lodash'
+
 import { StandardProps } from '../Picasso'
 import { isSubstring } from '../utils'
-
 import Label from '../Label'
 import Loader from '../Loader'
 import Menu from '../Menu'
 import ScrollMenu from '../ScrollMenu'
 import TextField from '../TextField'
-
 import styles from './styles'
 
 type Item = {
@@ -35,8 +28,8 @@ export interface Props extends StandardProps {
   loading?: boolean
   /** List of options */
   options?: Item[]
-  /** List of pre-selected tag values */
-  selectedTags?: []
+  /** List of pre-selected items values */
+  preselectedItems?: []
   /**  Callback invoked when item is selected */
   onAdd?: (itemValue: string, selectedOptions: string[]) => void
   /**  Callback invoked when item is removed */
@@ -49,15 +42,15 @@ export const TagSelector: FunctionComponent<Props> = ({
   placeholder = '',
   loading = false,
   options = [],
-  selectedTags = [],
+  preselectedItems = [],
   onAdd = () => {},
   onRemove = () => {},
   action = () => {}
 }) => {
-  const [inputValue, setInputValue] = React.useState('' as string)
-  const [selectedItems, setSelectedItems] = React.useState<string[]>([
-    ...selectedTags
-  ])
+  const [inputValue, setInputValue] = React.useState<string>('')
+  const [selectedItems, setSelectedItems] = React.useState<string[]>(
+    preselectedItems
+  )
 
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     if (
@@ -76,7 +69,8 @@ export const TagSelector: FunctionComponent<Props> = ({
   const handleChange = (itemValue: string) => {
     if (!itemValue) return null
     let selectedItemsClone = [...selectedItems]
-    if (selectedItemsClone.indexOf(itemValue) === -1) {
+
+    if (!selectedItemsClone.includes(itemValue)) {
       selectedItemsClone = [...selectedItemsClone, itemValue]
     }
     setInputValue('')
@@ -85,8 +79,12 @@ export const TagSelector: FunctionComponent<Props> = ({
   }
 
   const handleDelete = (itemValue: string) => {
-    const selectedItemsClone = [...selectedItems]
-    selectedItemsClone.splice(selectedItemsClone.indexOf(itemValue), 1)
+    const index = selectedItems.indexOf(itemValue)
+    const selectedItemsClone = [
+      ...selectedItems.slice(0, index),
+      ...selectedItems.slice(index + 1)
+    ]
+
     setSelectedItems(selectedItemsClone)
     onRemove(itemValue, selectedItemsClone)
   }
@@ -120,7 +118,7 @@ export const TagSelector: FunctionComponent<Props> = ({
 
         const trimmedValue = (inputValue || '').trim()
         const filteredOptions = options.filter(({ label }) =>
-          isSubstring(deburr(trimmedValue).toLowerCase(), label)
+          isSubstring(trimmedValue.toLowerCase(), label)
         )
 
         const isTyping = Boolean(trimmedValue)
@@ -156,14 +154,14 @@ export const TagSelector: FunctionComponent<Props> = ({
               iconPosition='end'
             />
             <div {...getMenuProps()}>
-              {canOpen ? (
+              {canOpen && (
                 <ScrollMenu selectedIndex={highlightedIndex}>
                   {filteredOptions.map((option, index) => (
                     <Menu.Item
                       key={option.value}
                       selected={
                         highlightedIndex === index ||
-                        (selectedItems || '').indexOf(option.value) > -1
+                        (selectedItems || '').includes(option.value)
                       }
                       {...getItemProps({ item: option.value })}
                     >
@@ -172,7 +170,7 @@ export const TagSelector: FunctionComponent<Props> = ({
                   ))}
                   {action && action({ inputValue, selectedItems })}
                 </ScrollMenu>
-              ) : null}
+              )}
             </div>
           </div>
         )

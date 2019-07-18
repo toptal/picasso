@@ -49,6 +49,8 @@ export interface Props
   type?: string
   /** Start InputAdornment - can't be used in combination with `iconPosition: start` */
   startAdornment?: ReactNode
+  /** End InputAdornment - can't be used in combination with `iconPosition: end` */
+  endAdornment?: ReactNode
   /**  Callback invoked when `Input` changes its state */
   onChange?: (
     event: ChangeEvent<
@@ -79,6 +81,7 @@ export const Input: FunctionComponent<Props> = ({
   type,
   onChange,
   startAdornment,
+  endAdornment,
   ...rest
 }) => {
   const IconAdornment = icon && (
@@ -88,6 +91,8 @@ export const Input: FunctionComponent<Props> = ({
   )
   const usedStartAdornment =
     icon && iconPosition === 'start' ? IconAdornment : startAdornment
+  const usedEndAdornment =
+    icon && iconPosition === 'end' ? IconAdornment : endAdornment
 
   return (
     <OutlinedInput
@@ -114,7 +119,7 @@ export const Input: FunctionComponent<Props> = ({
       width={width}
       // html attributes
       inputProps={rest}
-      endAdornment={iconPosition === 'end' && IconAdornment}
+      endAdornment={usedEndAdornment}
       startAdornment={usedStartAdornment}
       onChange={onChange}
     >
