@@ -3,8 +3,7 @@ import {
   MuiThemeProvider,
   withStyles
 } from '@material-ui/core/styles'
-import React, { FunctionComponent, ReactNode, Fragment } from 'react'
-import { createPortal } from 'react-dom'
+import React, { FunctionComponent, ReactNode } from 'react'
 
 import CssBaseline from '../CssBaseline'
 import {
@@ -51,7 +50,6 @@ const PicassoProvider = new Provider(createMuiTheme(picasso))
 
 interface PicassoGlobalStylesProviderProps extends JssProps {
   children?: ReactNode
-  root?: boolean
   id?: string
 }
 
@@ -69,7 +67,6 @@ const PicassoGlobalStylesProvider = withStyles(globalStyles, {
 
 interface PicassoProps {
   children?: ReactNode
-  root?: boolean
   /** Whether to load fonts file to the page */
   loadFonts?: boolean
   /** Whether to apply Picasso CSS reset */
@@ -90,8 +87,7 @@ const Picasso: FunctionComponent<PicassoProps> = ({
 
 Picasso.defaultProps = {
   loadFonts: true,
-  reset: true,
-  root: false
+  reset: true
 }
 
 export { PicassoProvider }
