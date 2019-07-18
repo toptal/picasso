@@ -14,11 +14,6 @@ export default () =>
       '#root': {
         display: 'flex',
         flex: 1
-      },
-      '#picasso-portal-root': {
-        boxSizing: 'border-box',
-        fontFamily: 'proxima-nova,Arial,sans-serif',
-        position: 'fixed'
       }
     }
   })

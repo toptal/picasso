@@ -203,6 +203,7 @@ export const Dropdown: FunctionComponent<Props> & StaticProps = ({
           style: { ...paperMargins },
           elevation: 2
         }}
+        container={document.getElementById('picasso-root')}
       >
         <div
           className={classes.content}

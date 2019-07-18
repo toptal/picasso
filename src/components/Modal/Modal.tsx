@@ -62,7 +62,7 @@ export const Modal: FunctionComponent<Props> & StaticProps = props => {
       classes={restClasses}
       className={className}
       style={style}
-      container={container}
+      container={container || document.getElementById('picasso-root')}
       PaperProps={{ ...paperProps, elevation: 2 }}
       hideBackdrop={hideBackdrop}
       onBackdropClick={onBackdropClick}

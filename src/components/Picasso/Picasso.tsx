@@ -58,10 +58,10 @@ interface PicassoGlobalStylesProviderProps extends JssProps {
 const PicassoGlobalStylesProvider = withStyles(globalStyles, {
   name: 'Picasso'
 })((props: PicassoGlobalStylesProviderProps) => {
-  const { classes, children, id } = props
+  const { classes, children } = props
 
   return (
-    <div id={id} className={classes.root}>
+    <div id='picasso-root' className={classes.root}>
       {children}
     </div>
   )
@@ -80,21 +80,13 @@ const Picasso: FunctionComponent<PicassoProps> = ({
   loadFonts,
   reset,
   children
-}) => {
-  const portalEl = document.getElementById('picasso-portal-root')
-
-  return (
-    <Fragment>
-      <MuiThemeProvider theme={PicassoProvider.theme}>
-        {loadFonts && <FontsLoader />}
-        {reset && <CssBaseline />}
-        <PicassoGlobalStylesProvider>{children}</PicassoGlobalStylesProvider>
-      </MuiThemeProvider>
-      {!portalEl &&
-        createPortal(<div id='picasso-portal-root' />, document.body)}
-    </Fragment>
-  )
-}
+}) => (
+  <MuiThemeProvider theme={PicassoProvider.theme}>
+    {loadFonts && <FontsLoader />}
+    {reset && <CssBaseline />}
+    <PicassoGlobalStylesProvider>{children}</PicassoGlobalStylesProvider>
+  </MuiThemeProvider>
+)
 
 Picasso.defaultProps = {
   loadFonts: true,
