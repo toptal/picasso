@@ -45,8 +45,8 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
 
 const getPopperProps = (
   arrow: boolean,
-  arrowRef: null | HTMLElement,
-  container: null | HTMLElement
+  arrowRef: HTMLElement | null,
+  container: HTMLElement | null
 ) => ({
   container,
   popperOptions: {

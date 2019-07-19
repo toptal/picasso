@@ -10,6 +10,7 @@ export default ({ typography }: { typography: any }) =>
         fontFamily: typography.fontFamily
       },
 
+      // https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
       '& *, & *::before, & *::after': {
         boxSizing: 'inherit'
       }

@@ -183,6 +183,8 @@ export const Dropdown: FunctionComponent<Props> & StaticProps = ({
     [close]
   )
 
+  const container = usePicassoRoot()
+
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
     <div {...rest} className={cx(classes.root, className)} style={style}>
@@ -204,7 +206,7 @@ export const Dropdown: FunctionComponent<Props> & StaticProps = ({
           style: { ...paperMargins },
           elevation: 2
         }}
-        container={usePicassoRoot()}
+        container={container}
       >
         <div
           className={classes.content}
