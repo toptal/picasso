@@ -2,7 +2,7 @@ import React, {
   MouseEvent,
   FunctionComponent,
   ReactNode,
-  ElementType,
+  ReactType,
   AnchorHTMLAttributes
 } from 'react'
 import MUILink, { LinkProps } from '@material-ui/core/Link'
@@ -32,7 +32,7 @@ interface Props extends StandardProps, AnchorHTMLAttributes<HTMLAnchorElement> {
    * it's already fixed at `4.0.0-beta.2`
    * Please, remove this comment after upgrade
    */
-  as?: ElementType<LinkProps>
+  as?: ReactType<LinkProps>
 
   /** Either it's a regular link or an _action_ */
   variant?: VariantType
