@@ -22,14 +22,13 @@ exports[`Dropdown default render 1`] = `
 `;
 
 exports[`Dropdown should render menu 1`] = `
-<body
-  style="overflow: hidden; padding-right: 0px;"
->
+<body>
   <div
-    aria-hidden="true"
     class="Picasso-root"
+    style="overflow: hidden; padding-right: 0px;"
   >
     <div
+      aria-hidden="true"
       class="Dropdown-root"
     >
       <div
@@ -41,63 +40,63 @@ exports[`Dropdown should render menu 1`] = `
         />
       </div>
     </div>
-  </div>
-  <div
-    class="MuiModal-root"
-    role="presentation"
-  >
     <div
-      aria-hidden="true"
-      class="MuiBackdrop-root MuiBackdrop-invisible"
-      style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
-    />
-    <div
-      class="MuiPaper-root MuiPaper-elevation2 MuiPopover-paper"
-      role="document"
-      style="opacity: 1; transform: scale(1, 1); transition: opacity 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; top: 16px; left: 16px; transform-origin: -16px -16px;"
-      tabindex="-1"
+      class="MuiModal-root"
+      role="presentation"
     >
       <div
-        class="Dropdown-content"
+        aria-hidden="true"
+        class="MuiBackdrop-root MuiBackdrop-invisible"
+        style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+      />
+      <div
+        class="MuiPaper-root MuiPaper-elevation2 MuiPopover-paper"
+        role="document"
+        style="opacity: 1; transform: scale(1, 1); transition: opacity 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; top: 16px; left: 16px; transform-origin: -16px -16px;"
+        tabindex="-1"
       >
-        <ul
-          class="MuiList-root"
-          role="menu"
+        <div
+          class="Dropdown-content"
         >
-          <li
-            class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
-            role="menuitem"
-            tabindex="-1"
+          <ul
+            class="MuiList-root"
+            role="menu"
           >
-            <p
-              class="MuiTypography-root Typography-bodyInherit Typography-black MuiTypography-body1 MenuItem-stringContent"
+            <li
+              class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
+              role="menuitem"
+              tabindex="-1"
             >
-              Item1
-            </p>
-          </li>
-          <li
-            class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
-            role="menuitem"
-            tabindex="-1"
-          >
-            <p
-              class="MuiTypography-root Typography-bodyInherit Typography-black MuiTypography-body1 MenuItem-stringContent"
+              <p
+                class="MuiTypography-root Typography-bodyInherit Typography-black MuiTypography-body1 MenuItem-stringContent"
+              >
+                Item1
+              </p>
+            </li>
+            <li
+              class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
+              role="menuitem"
+              tabindex="-1"
             >
-              Item2
-            </p>
-          </li>
-          <li
-            class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
-            role="menuitem"
-            tabindex="-1"
-          >
-            <p
-              class="MuiTypography-root Typography-bodyInherit Typography-black MuiTypography-body1 MenuItem-stringContent"
+              <p
+                class="MuiTypography-root Typography-bodyInherit Typography-black MuiTypography-body1 MenuItem-stringContent"
+              >
+                Item2
+              </p>
+            </li>
+            <li
+              class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
+              role="menuitem"
+              tabindex="-1"
             >
-              Item3
-            </p>
-          </li>
-        </ul>
+              <p
+                class="MuiTypography-root Typography-bodyInherit Typography-black MuiTypography-body1 MenuItem-stringContent"
+              >
+                Item3
+              </p>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -105,14 +104,13 @@ exports[`Dropdown should render menu 1`] = `
 `;
 
 exports[`Dropdown should render menu without focus 1`] = `
-<body
-  style="padding-right: 0px; overflow: hidden;"
->
+<body>
   <div
-    aria-hidden="true"
     class="Picasso-root"
+    style="overflow: hidden; padding-right: 0px;"
   >
     <div
+      aria-hidden="true"
       class="Dropdown-root"
     >
       <div
@@ -124,63 +122,63 @@ exports[`Dropdown should render menu without focus 1`] = `
         />
       </div>
     </div>
-  </div>
-  <div
-    class="MuiModal-root"
-    role="presentation"
-  >
     <div
-      aria-hidden="true"
-      class="MuiBackdrop-root MuiBackdrop-invisible"
-      style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
-    />
-    <div
-      class="MuiPaper-root MuiPaper-elevation2 MuiPopover-paper"
-      role="document"
-      style="opacity: 1; transform: scale(1, 1); transition: opacity 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; top: 16px; left: 16px; transform-origin: -16px -16px;"
-      tabindex="-1"
+      class="MuiModal-root"
+      role="presentation"
     >
       <div
-        class="Dropdown-content"
+        aria-hidden="true"
+        class="MuiBackdrop-root MuiBackdrop-invisible"
+        style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+      />
+      <div
+        class="MuiPaper-root MuiPaper-elevation2 MuiPopover-paper"
+        role="document"
+        style="opacity: 1; transform: scale(1, 1); transition: opacity 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; top: 16px; left: 16px; transform-origin: -16px -16px;"
+        tabindex="-1"
       >
-        <ul
-          class="MuiList-root"
-          role="menu"
+        <div
+          class="Dropdown-content"
         >
-          <li
-            class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
-            role="menuitem"
-            tabindex="-1"
+          <ul
+            class="MuiList-root"
+            role="menu"
           >
-            <p
-              class="MuiTypography-root Typography-bodyInherit Typography-black MuiTypography-body1 MenuItem-stringContent"
+            <li
+              class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
+              role="menuitem"
+              tabindex="-1"
             >
-              Item1
-            </p>
-          </li>
-          <li
-            class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
-            role="menuitem"
-            tabindex="-1"
-          >
-            <p
-              class="MuiTypography-root Typography-bodyInherit Typography-black MuiTypography-body1 MenuItem-stringContent"
+              <p
+                class="MuiTypography-root Typography-bodyInherit Typography-black MuiTypography-body1 MenuItem-stringContent"
+              >
+                Item1
+              </p>
+            </li>
+            <li
+              class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
+              role="menuitem"
+              tabindex="-1"
             >
-              Item2
-            </p>
-          </li>
-          <li
-            class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
-            role="menuitem"
-            tabindex="-1"
-          >
-            <p
-              class="MuiTypography-root Typography-bodyInherit Typography-black MuiTypography-body1 MenuItem-stringContent"
+              <p
+                class="MuiTypography-root Typography-bodyInherit Typography-black MuiTypography-body1 MenuItem-stringContent"
+              >
+                Item2
+              </p>
+            </li>
+            <li
+              class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
+              role="menuitem"
+              tabindex="-1"
             >
-              Item3
-            </p>
-          </li>
-        </ul>
+              <p
+                class="MuiTypography-root Typography-bodyInherit Typography-black MuiTypography-body1 MenuItem-stringContent"
+              >
+                Item3
+              </p>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
