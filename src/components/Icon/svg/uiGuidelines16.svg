@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>167fcaef-0f5b-4bae-aa19-09ef74c3363b@1.00x</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M15,2 L10,2 L10,14 L15,14 L15,2 Z M16,2 L16,14 L16,15 L9,15 L9,14 L9,2 L9,1 L16,1 L16,2 Z M0,3 L7,3 L7,4 L0,4 L0,3 Z M0,6 L7,6 L7,7 L0,7 L0,6 Z M0,9 L7,9 L7,10 L0,10 L0,9 Z M0,12 L7,12 L7,13 L0,13 L0,12 Z" id="path-1"></path>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons-/-Top-Team-/-16-/-UI-Guidelines">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <path stroke="#979797" d="M9.5,1.5 L15.5,1.5 L15.5,14.5 L9.5,14.5 L9.5,1.5 Z M15.5,1.5 L9.5,1.5 L9.5,14.5 L15.5,14.5 L15.5,1.5 Z M3.5,3.5 L7,3.5 L6.5,3 L6.5,4 L7,3.5 L3.5,3.5 Z M3.5,3.5 L0,3.5 L0.5,4 L0.5,3 L0,3.5 L3.5,3.5 Z M3.5,6.5 L7,6.5 L6.5,6 L6.5,7 L7,6.5 L3.5,6.5 Z M3.5,6.5 L0,6.5 L0.5,7 L0.5,6 L0,6.5 L3.5,6.5 Z M3.5,9.5 L7,9.5 L6.5,9 L6.5,10 L7,9.5 L3.5,9.5 Z M3.5,9.5 L0,9.5 L0.5,10 L0.5,9 L0,9.5 L3.5,9.5 Z M3.5,12.5 L7,12.5 L6.5,12 L6.5,13 L7,12.5 L3.5,12.5 Z M3.5,12.5 L0,12.5 L0.5,13 L0.5,12 L0,12.5 L3.5,12.5 Z"></path>
+            <g id="Colors-/-13-Dark-Grey" mask="url(#mask-2)" fill="#455065">
+                <rect id="Rectangle" x="0" y="0" width="16" height="16"></rect>
+            </g>
+        </g>
+    </g>
+</svg>
