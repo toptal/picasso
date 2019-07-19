@@ -102,6 +102,7 @@ exports.Dropdown = (_a) => {
     const context = react_1.useMemo(() => ({
         close: () => close(true)
     }), [close]);
+    const container = Picasso_1.usePicassoRoot();
     return (
     // eslint-disable-next-line react/jsx-props-no-spreading
     react_1.default.createElement("div", Object.assign({}, rest, { className: classnames_1.default(classes.root, className), style: style }),
@@ -112,7 +113,7 @@ exports.Dropdown = (_a) => {
             onClose: handlePopoverClose, onEntering: handlePopoverEntering, anchorOrigin: anchorOrigin, transformOrigin: transformOrigin, disableAutoFocus: disableAutoFocus, PaperProps: {
                 style: Object.assign({}, paperMargins),
                 elevation: 2
-            } },
+            }, container: container },
             react_1.default.createElement("div", { className: classes.content, onClick: handleContentClick, onKeyDown: handleContentKeyDown },
                 react_1.default.createElement(DropdownContext.Provider, { value: context },
                     react_1.default.createElement(RootRef_1.default, { rootRef: contentRef }, content))))));

@@ -21,13 +21,15 @@ const Icon_1 = require("../Icon");
 const ModalTitle_1 = __importDefault(require("../ModalTitle"));
 const ModalContent_1 = __importDefault(require("../ModalContent"));
 const ModalActions_1 = __importDefault(require("../ModalActions"));
+const Picasso_1 = require("../Picasso");
 const styles_2 = __importDefault(require("./styles"));
 exports.Modal = props => {
     const { children, open, onBackdropClick, onClose, onOpen, classes, className, style, container, hideBackdrop, transitionDuration, paperProps } = props, rest = __rest(props, ["children", "open", "onBackdropClick", "onClose", "onOpen", "classes", "className", "style", "container", "hideBackdrop", "transitionDuration", "paperProps"]);
     const { closeButton } = classes, restClasses = __rest(classes, ["closeButton"]);
+    const picassoRootContainer = Picasso_1.usePicassoRoot();
     return (react_1.default.createElement(Dialog_1.default
     // eslint-disable-next-line react/jsx-props-no-spreading
-    , Object.assign({}, rest, { classes: restClasses, className: className, style: style, container: container, PaperProps: Object.assign({}, paperProps, { elevation: 2 }), hideBackdrop: hideBackdrop, onBackdropClick: onBackdropClick, onClose: onClose, onEnter: onOpen, open: open, transitionDuration: transitionDuration }),
+    , Object.assign({}, rest, { classes: restClasses, className: className, style: style, container: container || picassoRootContainer, PaperProps: Object.assign({}, paperProps, { elevation: 2 }), hideBackdrop: hideBackdrop, onBackdropClick: onBackdropClick, onClose: onClose, onEnter: onOpen, open: open, transitionDuration: transitionDuration }),
         onClose && (react_1.default.createElement("span", { onClick: onClose },
             react_1.default.createElement(Icon_1.CloseMinor16, { className: closeButton }))),
         children));

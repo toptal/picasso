@@ -1,3 +1,10 @@
+## [2.18.2](https://github.com/toptal/picasso/compare/v2.18.1...v2.18.2) (2019-07-19)
+
+
+### Bug Fixes
+
+* **Picasso:** refactor reset styles and portal destination ([#556](https://github.com/toptal/picasso/issues/556)) ([7138341](https://github.com/toptal/picasso/commit/7138341))
+
 ## [2.18.1](https://github.com/toptal/picasso/compare/v2.18.0...v2.18.1) (2019-07-16)
 
 

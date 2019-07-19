@@ -25,8 +25,10 @@ const react_1 = __importStar(require("react"));
 const styles_1 = require("@material-ui/core/styles");
 const Tooltip_1 = __importDefault(require("@material-ui/core/Tooltip"));
 const classnames_1 = __importDefault(require("classnames"));
+const Picasso_1 = require("../Picasso");
 const styles_2 = __importDefault(require("./styles"));
-const getPopperProps = (arrow, arrowRef) => ({
+const getPopperProps = (arrow, arrowRef, container) => ({
+    container,
     popperOptions: {
         modifiers: {
             arrow: {
@@ -48,6 +50,7 @@ const getClasses = (classes, variant) => {
 exports.Tooltip = (_a) => {
     var { content, children, placement, interactive, classes, className, style, arrow, open, onClose, onOpen, variant, trigger } = _a, rest = __rest(_a, ["content", "children", "placement", "interactive", "classes", "className", "style", "arrow", "open", "onClose", "onOpen", "variant", "trigger"]);
     const [arrowRef, setArrowRef] = react_1.useState(null);
+    const container = Picasso_1.usePicassoRoot();
     const title = (react_1.default.createElement(react_1.Fragment, null,
         content,
         arrow && (react_1.default.createElement("span", { className: classes.arrow, 
@@ -55,7 +58,7 @@ exports.Tooltip = (_a) => {
             ref: setArrowRef }))));
     return (react_1.default.createElement(Tooltip_1.default
     // eslint-disable-next-line react/jsx-props-no-spreading
-    , Object.assign({}, rest, { PopperProps: getPopperProps(arrow, arrowRef), classes: getClasses(classes, variant), className: className, style: style, disableHoverListener: trigger === 'click', interactive: interactive, onClose: onClose, onOpen: onOpen, open: open, placement: placement, title: title }), children));
+    , Object.assign({}, rest, { PopperProps: getPopperProps(arrow, arrowRef, container), classes: getClasses(classes, variant), className: className, style: style, disableHoverListener: trigger === 'click', interactive: interactive, onClose: onClose, onOpen: onOpen, open: open, placement: placement, title: title }), children));
 };
 exports.Tooltip.defaultProps = {
     arrow: true,
