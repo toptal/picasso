@@ -55,6 +55,8 @@ export const Modal: FunctionComponent<Props> & StaticProps = props => {
   } = props
   const { closeButton, ...restClasses } = classes
 
+  const picassoRootContainer = usePicassoRoot()
+
   return (
     <Dialog
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -62,7 +64,7 @@ export const Modal: FunctionComponent<Props> & StaticProps = props => {
       classes={restClasses}
       className={className}
       style={style}
-      container={container || usePicassoRoot()}
+      container={container || picassoRootContainer}
       PaperProps={{ ...paperProps, elevation: 2 }}
       hideBackdrop={hideBackdrop}
       onBackdropClick={onBackdropClick}
