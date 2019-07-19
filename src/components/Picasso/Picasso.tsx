@@ -3,7 +3,13 @@ import {
   MuiThemeProvider,
   withStyles
 } from '@material-ui/core/styles'
-import React, { FunctionComponent, ReactNode } from 'react'
+import React, {
+  FunctionComponent,
+  ReactNode,
+  createRef,
+  RefObject,
+  useContext
+} from 'react'
 
 import CssBaseline from '../CssBaseline'
 import {
@@ -48,6 +54,14 @@ const picasso = {
 
 const PicassoProvider = new Provider(createMuiTheme(picasso))
 
+const RootContext = React.createContext<RefObject<HTMLDivElement> | null>(null)
+
+export const usePicassoRoot = () => {
+  const context = useContext(RootContext)
+
+  return context ? context.current : null
+}
+
 interface PicassoGlobalStylesProviderProps extends JssProps {
   children?: ReactNode
 }
@@ -57,7 +71,13 @@ const PicassoGlobalStylesProvider = withStyles(globalStyles, {
 })((props: PicassoGlobalStylesProviderProps) => {
   const { classes, children } = props
 
-  return <div className={classes.root}>{children}</div>
+  const rootRef = createRef<HTMLDivElement>()
+
+  return (
+    <div ref={rootRef} className={classes.root}>
+      <RootContext.Provider value={rootRef}>{children}</RootContext.Provider>
+    </div>
+  )
 })
 
 interface PicassoProps {

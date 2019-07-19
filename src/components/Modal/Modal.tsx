@@ -7,7 +7,7 @@ import { CloseMinor16 } from '../Icon'
 import ModalTitle from '../ModalTitle'
 import ModalContent from '../ModalContent'
 import ModalActions from '../ModalActions'
-import { StandardProps, PicassoComponent } from '../Picasso'
+import { StandardProps, PicassoComponent, usePicassoRoot } from '../Picasso'
 import styles from './styles'
 
 type ContainerValue = HTMLElement | (() => HTMLElement)
@@ -55,6 +55,8 @@ export const Modal: FunctionComponent<Props> & StaticProps = props => {
   } = props
   const { closeButton, ...restClasses } = classes
 
+  const picassoRootContainer = usePicassoRoot()
+
   return (
     <Dialog
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -62,7 +64,7 @@ export const Modal: FunctionComponent<Props> & StaticProps = props => {
       classes={restClasses}
       className={className}
       style={style}
-      container={container}
+      container={container || picassoRootContainer}
       PaperProps={{ ...paperProps, elevation: 2 }}
       hideBackdrop={hideBackdrop}
       onBackdropClick={onBackdropClick}
