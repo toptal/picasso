@@ -1,4 +1,4 @@
-export { default, PicassoProvider } from './Picasso'
+export { default, PicassoProvider, usePicassoRoot } from './Picasso'
 
 export {
   BaseProps,

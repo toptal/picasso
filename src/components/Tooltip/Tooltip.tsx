@@ -12,7 +12,7 @@ import MUITooltip from '@material-ui/core/Tooltip'
 import cx from 'classnames'
 
 import { Classes } from '../styles/types'
-import { StandardProps } from '../Picasso'
+import { StandardProps, usePicassoRoot } from '../Picasso'
 import styles from './styles'
 
 type VariantType = 'light' | 'dark'
@@ -43,7 +43,12 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   trigger?: TriggerType
 }
 
-const getPopperProps = (arrow: boolean, arrowRef: null | HTMLElement) => ({
+const getPopperProps = (
+  arrow: boolean,
+  arrowRef: null | HTMLElement,
+  container: null | HTMLElement
+) => ({
+  container,
   popperOptions: {
     modifiers: {
       arrow: {
@@ -51,8 +56,7 @@ const getPopperProps = (arrow: boolean, arrowRef: null | HTMLElement) => ({
         element: arrowRef
       }
     }
-  },
-  container: document.getElementById('picasso-root')
+  }
 })
 const getClasses = (classes: Classes, variant: VariantType) => {
   const isLight = variant === 'light'
@@ -82,6 +86,8 @@ export const Tooltip: FunctionComponent<Props> = ({
   ...rest
 }) => {
   const [arrowRef, setArrowRef] = useState(null)
+  const container = usePicassoRoot()
+
   const title = (
     <Fragment>
       {content}
@@ -99,7 +105,7 @@ export const Tooltip: FunctionComponent<Props> = ({
     <MUITooltip
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
-      PopperProps={getPopperProps(arrow!, arrowRef)}
+      PopperProps={getPopperProps(arrow!, arrowRef, container)}
       classes={getClasses(classes, variant!)}
       className={className}
       style={style}

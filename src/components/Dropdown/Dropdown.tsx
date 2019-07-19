@@ -16,7 +16,8 @@ import {
   StandardProps,
   SpacingType,
   spacingToEm,
-  PicassoComponent
+  PicassoComponent,
+  usePicassoRoot
 } from '../Picasso'
 import DropdownArrow from '../DropdownArrow'
 import styles from './styles'
@@ -203,7 +204,7 @@ export const Dropdown: FunctionComponent<Props> & StaticProps = ({
           style: { ...paperMargins },
           elevation: 2
         }}
-        container={document.getElementById('picasso-root')}
+        container={usePicassoRoot()}
       >
         <div
           className={classes.content}

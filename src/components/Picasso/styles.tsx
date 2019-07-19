@@ -4,11 +4,14 @@ export default ({ typography }: { typography: any }) =>
   createStyles({
     root: {
       flex: 1,
+      boxSizing: 'border-box',
 
       '& *': {
         fontFamily: typography.fontFamily
       },
 
-      boxSizing: 'border-box'
+      '& *, & *::before, & *::after': {
+        boxSizing: 'inherit'
+      }
     }
   })
