@@ -2,23 +2,23 @@ import React, {
   FunctionComponent,
   ReactNode,
   LiHTMLAttributes,
-  HTMLAttributes
+  HTMLAttributes,
+  ReactType
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import MUIMenuItem from '@material-ui/core/MenuItem'
+import MUIMenuItem, { MenuItemProps } from '@material-ui/core/MenuItem'
 
 import { StandardProps, ButtonOrAnchorProps } from '../Picasso'
 import Typography from '../Typography'
 import styles from './styles'
 
-type MenuItemType = 'li' | 'div' | 'a' | 'button'
 type MenuItemAttributes = LiHTMLAttributes<HTMLLIElement> &
   HTMLAttributes<HTMLDivElement> &
   ButtonOrAnchorProps
 
 interface Props extends StandardProps, MenuItemAttributes {
   /** Component name to render the menu item as */
-  as?: MenuItemType
+  as?: ReactType<MenuItemProps>
   /** Whether to render disabled item */
   disabled?: boolean
   /** Whether to render without internal padding */
