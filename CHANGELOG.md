@@ -1,3 +1,10 @@
+## [2.18.3](https://github.com/toptal/picasso/compare/v2.18.2...v2.18.3) (2019-07-19)
+
+
+### Bug Fixes
+
+* **MenuItem:** allow to use MenuItem as react-router link ([#558](https://github.com/toptal/picasso/issues/558)) ([da4f7fe](https://github.com/toptal/picasso/commit/da4f7fe))
+
 ## [2.18.2](https://github.com/toptal/picasso/compare/v2.18.1...v2.18.2) (2019-07-19)
 
 
