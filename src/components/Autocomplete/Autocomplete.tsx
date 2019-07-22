@@ -5,14 +5,16 @@ import React, {
   FormEvent,
   useState,
   useEffect,
-  KeyboardEvent
+  KeyboardEvent,
+  ReactNode
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import { capitalize } from '@material-ui/core/utils/helpers'
 import cx from 'classnames'
 import Downshift, {
   StateChangeOptions,
-  ControllerStateAndHelpers
+  ControllerStateAndHelpers,
+  Actions
 } from 'downshift'
 import debounce from 'debounce'
 
@@ -41,7 +43,7 @@ type HTMLInputProps = InputHTMLAttributes<HTMLInputElement>
 
 export interface Props
   extends StandardProps,
-    Omit<HTMLInputProps, 'onChange' | 'onSelect'> {
+    Omit<HTMLInputProps, 'onChange' | 'onSelect' | 'onKeyDown'> {
   /** Placeholder for value */
   placeholder?: string
   /** Debounce time for onChange event handler */
@@ -59,9 +61,16 @@ export interface Props
   /** The minimum number of characters a user must type before a search is performed */
   minLength?: number
   /**  Callback invoked when item is selected */
-  onSelect?: (item: Maybe<Item>) => void
+  onSelect?: (item: Maybe<Item>, stateAndHelpers: Actions<string>) => void
   /**  Callback invoked when typing value is changed */
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void
+  /**  Callback invoked when key is pressed */
+  onKeyDown?: (
+    event: KeyboardEvent<HTMLInputElement>,
+    inputValue: string
+  ) => void
+  /** ReactNode for labels that will be used as start InputAdornment - */
+  startAdornment?: ReactNode
 }
 
 const isMatchingMinLength = (value: string, minLength?: number) =>
@@ -94,6 +103,7 @@ export const Autocomplete: FunctionComponent<Props> = ({
   onSelect = () => {},
   value,
   onChange,
+  onKeyDown,
   ...rest
 }) => {
   const [inputValue, setInputValue] = useState<string | null>(null)
@@ -312,6 +322,7 @@ Autocomplete.defaultProps = {
   noOptionsText: 'No options',
   onChange: () => {},
   onSelect: () => {},
+  onKeyDown: () => {},
   options: [],
   width: 'auto'
 }
