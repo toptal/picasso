@@ -49,7 +49,7 @@ const SvgUiGuidelines24 = (props: Props) => {
         <mask id='uiGuidelines24_svg__b'>
           <use xlinkHref='#uiGuidelines24_svg__a' />
         </mask>
-        <path d='M13.5 1.5h10v21h-10v-21zm10 0h-10v21h10v-21zM5 4.5h5L9.5 4v1l.5-.5H5zm0 0H0l.5.5V4l-.5.5h5zm0 5h5L9.5 9v1l.5-.5H5zm0 0H0l.5.5V9l-.5.5h5zm0 5h5l-.5-.5v1l.5-.5H5zm0 0H0l.5.5v-1l-.5.5h5zm0 5h5l-.5-.5v1l.5-.5H5zm0 0H0l.5.5v-1l-.5.5h5z' />
+        <use xlinkHref='#uiGuidelines24_svg__a' />
         <g mask='url(#uiGuidelines24_svg__b)'>
           <path d='M0 0h24v24H0z' />
         </g>
