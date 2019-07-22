@@ -1,3 +1,10 @@
+# [2.19.0](https://github.com/toptal/picasso/compare/v2.18.3...v2.19.0) (2019-07-22)
+
+
+### Features
+
+* **icon:** add ui guidelines and performance icons ([#559](https://github.com/toptal/picasso/issues/559)) ([0f3e7be](https://github.com/toptal/picasso/commit/0f3e7be))
+
 ## [2.18.3](https://github.com/toptal/picasso/compare/v2.18.2...v2.18.3) (2019-07-19)
 
 
