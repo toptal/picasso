@@ -3,10 +3,10 @@ import React, { FunctionComponent, ChangeEvent, useMemo } from 'react'
 import Select, { Props as SelectProps } from '../../Select'
 
 export interface Props extends Omit<SelectProps, 'onChange' | 'options'> {
-  /** a number or stringified number select starts from. e.g. 5 for May */
-  from?: number | string
-  /** a number or stringified number select ends at. e.g. 11 for November */
-  to?: number | string
+  /** a number of month select starts from. e.g. 5 for May */
+  from?: number
+  /** a number of month select ends at. e.g. 11 for November */
+  to?: number
   /** Callback invoked when picker changes its state. */
   onChange: (event: ChangeEvent<HTMLSelectElement>) => void
 }
@@ -26,11 +26,8 @@ const OPTIONS = [
   { value: 12, text: 'December' }
 ]
 
-function getFilteredOptions(from: number | string, to: number | string) {
-  const numberifiedFrom = Number(from)
-  const numberifiedTo = Number(to)
-
-  return OPTIONS.slice(numberifiedFrom - 1, numberifiedTo)
+function getFilteredOptions(from: number, to: number) {
+  return OPTIONS.slice(from - 1, to)
 }
 
 export const MonthSelect: FunctionComponent<Props> = ({

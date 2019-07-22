@@ -2,11 +2,11 @@ import React, { FunctionComponent, useMemo, ChangeEvent } from 'react'
 
 import Select, { Props as SelectProps } from '../../Select'
 
-function generateOptions(from: string | number, to: string | number) {
-  const length = Number(to) - Number(from) + 1
+function generateOptions(from: number, to: number) {
+  const length = to - from + 1
 
   return Array.from({ length }).map((_, index) => {
-    const value = index + Number(from)
+    const value = index + from
 
     return {
       value,
@@ -16,10 +16,10 @@ function generateOptions(from: string | number, to: string | number) {
 }
 
 export interface Props extends Omit<SelectProps, 'onChange' | 'options'> {
-  /** a number or stringified number select starts from. e.g. 2017 */
-  from: number | string
-  /** a number or stringified number select ends at. e.g. 2019 */
-  to: number | string
+  /** a year select starts from. e.g. 2017 */
+  from: number
+  /** a year select ends at. e.g. 2019 */
+  to: number
   /** Callback invoked when picker changes its state. */
   onChange: (event: ChangeEvent<HTMLSelectElement>) => void
 }

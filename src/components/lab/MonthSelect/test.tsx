@@ -10,7 +10,7 @@ describe('MonthSelect', () => {
   test('default render', () => {
     const { container } = render(
       <Picasso loadFonts={false}>
-        <MonthSelect onChange={() => {}} from='1' to='12' />
+        <MonthSelect onChange={() => {}} from={1} to={12} />
       </Picasso>
     )
 

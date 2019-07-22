@@ -10,7 +10,7 @@ describe('YearSelect', () => {
   test('default render', () => {
     const { container } = render(
       <Picasso loadFonts={false}>
-        <YearSelect from='2001' to='2005' onChange={() => {}} />
+        <YearSelect from={2001} to={2005} onChange={() => {}} />
       </Picasso>
     )
 

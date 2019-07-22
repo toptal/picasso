@@ -17,7 +17,7 @@ const DefaultExample = () => {
       onChange={onChange}
       value={year}
       from={2017}
-      to='2019'
+      to={2019}
     />
   )
 }

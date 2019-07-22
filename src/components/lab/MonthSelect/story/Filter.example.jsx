@@ -15,8 +15,8 @@ const FilterExample = () => {
           width='auto'
           placeholder='Select month'
           onChange={onChange}
-          from='5'
-          to='12'
+          from={5}
+          to={12}
         />
       </Container>
 
@@ -26,7 +26,7 @@ const FilterExample = () => {
           width='auto'
           placeholder='Select month'
           onChange={onChange}
-          to='5'
+          to={5}
         />
       </Container>
       <Container>
@@ -35,7 +35,7 @@ const FilterExample = () => {
           width='auto'
           placeholder='Select month'
           onChange={onChange}
-          from='8'
+          from={12}
         />
       </Container>
     </div>
