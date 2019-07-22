@@ -51,7 +51,7 @@ export const TagSelector: FunctionComponent<Props> = ({
     }
   }
 
-  const handleChange = (item: string, stateAndHelpers: Actions<string>) => {
+  const handleSelect = (item: string, stateAndHelpers: Actions<string>) => {
     if (!item) return null
     const selection = options.find(x => x.label === item)
     const itemValue = selection!.value
@@ -93,7 +93,7 @@ export const TagSelector: FunctionComponent<Props> = ({
     <Autocomplete
       placeholder={placeholder}
       options={filteredOptions}
-      onSelect={handleChange}
+      onSelect={handleSelect}
       onKeyDown={handleKeyDown}
       startAdornment={labels}
     />
