@@ -104,6 +104,7 @@ export const Autocomplete: FunctionComponent<Props> = ({
   value,
   onChange,
   onKeyDown,
+  startAdornment,
   ...rest
 }) => {
   const [inputValue, setInputValue] = useState<string | null>(null)
@@ -305,6 +306,8 @@ export const Autocomplete: FunctionComponent<Props> = ({
               onChange={event => {
                 onChange(event as FormEvent<HTMLInputElement>)
               }}
+              // @ts-ignore
+              startAdornment={startAdornment}
             />
             {/* eslint-disable-next-line react/jsx-props-no-spreading */}
             <div {...getMenuProps()}>{canOpen ? optionsMenu : null}</div>
