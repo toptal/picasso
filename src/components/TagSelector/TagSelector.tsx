@@ -23,16 +23,19 @@ export interface Props extends StandardProps {
   preselectedItems?: []
   /**  Callback invoked when item is selected */
   onChange?: (selectedOptions: string[]) => void
-  /**  Action component */
-  action?: (inputValue: string) => void
+  /**  Text of custom action option */
+  actionText?: string
+  /**  Callback invoked when custom action is selected */
+  onAdd?: (inputValue?: string) => void
 }
 
 export const TagSelector: FunctionComponent<Props> = ({
+  actionText,
   placeholder = '',
   options = [],
   preselectedItems = [],
   onChange = () => {},
-  action = () => {}
+  onAdd = () => {}
 }) => {
   const [selectedItems, setSelectedItems] = React.useState<string[]>(
     preselectedItems
@@ -54,6 +57,11 @@ export const TagSelector: FunctionComponent<Props> = ({
   const handleSelect = (item: string, stateAndHelpers: Actions<string>) => {
     if (!item) return null
     const selection = options.find(x => x.label === item)
+    if (!selection) {
+      onAdd(item)
+      stateAndHelpers.clearSelection()
+      return null
+    }
     const itemValue = selection!.value
     let selectedItemsClone = [...selectedItems]
 
@@ -96,6 +104,8 @@ export const TagSelector: FunctionComponent<Props> = ({
       onSelect={handleSelect}
       onKeyDown={handleKeyDown}
       startAdornment={labels}
+      actionText={actionText}
+      onAdd={onAdd}
     />
   )
 }

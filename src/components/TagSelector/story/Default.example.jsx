@@ -7,15 +7,6 @@ const options = [
   { value: 'ALB', label: 'Albania' },
   { value: 'ALG', label: 'Algeria' }
 ]
-// const Action = (inputValue) => (
-//   <Menu.Item
-//     onClick={() => {
-//       console.log('custom action: ', inputValue)
-//     }}
-//   >
-//     Custom Action
-//   </Menu.Item>
-// )
 
 const TagSelectorDefaultExample = () => (
   <div>
@@ -23,9 +14,9 @@ const TagSelectorDefaultExample = () => (
       options={options}
       preselectedItems={['AF']}
       placeholder='Start typing...'
-      onChange={(value, selectedItems) =>
-        console.log('onChange: ', value, selectedItems)
-      }
+      onChange={value => console.log('onChange: ', value)}
+      actionText='Add new option'
+      onAdd={value => console.log('onAdd: ', value)}
     />
   </div>
 )
