@@ -2,11 +2,11 @@ import React from 'react'
 import { Autocomplete } from '@toptal/picasso'
 
 const options = [
-  { label: 'Belarus' },
-  { label: 'Croatia' },
-  { label: 'Lithuania' },
-  { label: 'Slovakia' },
-  { label: 'Ukraine' }
+  { text: 'Belarus', value: 'BY' },
+  { text: 'Croatia', value: 'HR' },
+  { text: 'Lithuania', value: 'LU' },
+  { text: 'Slovakia', value: 'SK' },
+  { text: 'Ukraine', value: 'UA' }
 ]
 
 const AutocompleteLoadingExample = () => (
