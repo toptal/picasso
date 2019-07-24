@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso",
-  "version": "2.19.0",
+  "version": "2.19.1",
   "description": "",
   "main": "./build/index.js",
   "module": "./build/index.js",
@@ -149,5 +149,5 @@
     "lodash": "^4.17.12",
     "**/marksy/marked": "^0.6.0",
     "**/npx/npm": "^5.7.1"
-  }  
+  }
 }

@@ -1,3 +1,10 @@
+## [2.19.1](https://github.com/toptal/picasso/compare/v2.19.0...v2.19.1) (2019-07-24)
+
+
+### Bug Fixes
+
+* update vulnerable dependencies to the latest versions ([#553](https://github.com/toptal/picasso/issues/553)) ([a47a89f](https://github.com/toptal/picasso/commit/a47a89f))
+
 # [2.19.0](https://github.com/toptal/picasso/compare/v2.18.3...v2.19.0) (2019-07-22)
 
 
