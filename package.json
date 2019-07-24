@@ -144,5 +144,10 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "resolutions": {
+    "lodash": "^4.17.12",
+    "**/marksy/marked": "^0.6.0",
+    "**/npx/npm": "^5.7.1"
+  }  
 }
