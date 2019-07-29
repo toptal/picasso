@@ -6,7 +6,7 @@ to: src/components/<%= h.changeCase.pascalCase(name) %>/test.tsx
 -%>
 import React, { ReactNode } from 'react'
 /* eslint-disable-next-line */
-import { render, fireEvent, cleanup, RenderResult } from 'react-testing-library'
+import { render, fireEvent, cleanup, RenderResult } from '@testing-library/react'
 
 import { OmitInternalProps } from '../Picasso'
 import <%= Name %>, { Props } from './<%= Name %>'

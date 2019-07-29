@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, cleanup } from 'react-testing-library'
+import { render, cleanup } from '@testing-library/react'
 
 import Typography from '../Typography'
 import Picasso, { OmitInternalProps } from '../Picasso'

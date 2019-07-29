@@ -1,5 +1,10 @@
 import React from 'react'
-import { render, cleanup, RenderResult, fireEvent } from 'react-testing-library'
+import {
+  render,
+  cleanup,
+  RenderResult,
+  fireEvent
+} from '@testing-library/react'
 
 import Picasso, { OmitInternalProps } from '../Picasso'
 import AccountSelect, { Props } from './AccountSelect'

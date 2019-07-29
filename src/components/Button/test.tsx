@@ -1,5 +1,10 @@
 import React, { ReactNode } from 'react'
-import { render, fireEvent, cleanup, RenderResult } from 'react-testing-library'
+import {
+  render,
+  fireEvent,
+  cleanup,
+  RenderResult
+} from '@testing-library/react'
 
 import Picasso, { OmitInternalProps } from '../Picasso'
 import Button, { Props } from './Button'

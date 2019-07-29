@@ -1,5 +1,5 @@
 import React from 'react'
-import { cleanup, render, RenderResult } from 'react-testing-library'
+import { cleanup, render, RenderResult } from '@testing-library/react'
 
 import Picasso from '../Picasso'
 import Table from '../Table'

@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react'
-import { render, fireEvent, cleanup } from 'react-testing-library'
+import { render, fireEvent, cleanup } from '@testing-library/react'
 
 import Picasso from '../Picasso'
 import { OmitInternalProps } from '../Picasso/types'
