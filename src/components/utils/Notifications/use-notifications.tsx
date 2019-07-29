@@ -8,13 +8,13 @@ import { SnackbarOrigin } from '@material-ui/core/Snackbar'
 
 import Notification, { VariantType } from '../../Notification'
 
-const defaultNotificationsPosition: SnackbarOrigin = {
+const defaultPosition: SnackbarOrigin = {
   vertical: 'top',
   horizontal: 'right'
 }
 
 export const useNotifications = (
-  notificationsPosition: SnackbarOrigin = defaultNotificationsPosition
+  position: SnackbarOrigin = defaultPosition
 ) => {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
 
@@ -24,7 +24,7 @@ export const useNotifications = (
   ) =>
     enqueueSnackbar('', {
       variant: type,
-      anchorOrigin: notificationsPosition,
+      anchorOrigin: position,
       // eslint-disable-next-line react/display-name
       children: (key: string) => (
         <Notification variant={variant} elevated key={key}>
