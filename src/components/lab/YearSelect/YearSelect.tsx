@@ -34,6 +34,12 @@ export const YearSelect: FunctionComponent<Props> = ({
     onChange(event)
   }
 
+  if (!to || !from || to < from) {
+    throw new Error(
+      `Please check the values you have passed: from: ${from}, to: ${to}`
+    )
+  }
+
   const options = useMemo(() => generateOptions(from, to), [from, to])
 
   // eslint-disable-next-line react/jsx-props-no-spreading

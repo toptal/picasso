@@ -30,14 +30,29 @@ function getFilteredOptions(from: number, to: number) {
   return OPTIONS.slice(from - 1, to)
 }
 
+const FIRST_MONTH = 1
+const LAST_MONTH = 12
+
 export const MonthSelect: FunctionComponent<Props> = ({
-  from = 1,
-  to = 12,
+  from = FIRST_MONTH,
+  to = LAST_MONTH,
   onChange,
   ...rest
 }) => {
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
     onChange(event)
+  }
+
+  if (
+    from < FIRST_MONTH ||
+    from > LAST_MONTH ||
+    to < FIRST_MONTH ||
+    to > LAST_MONTH ||
+    to < from
+  ) {
+    throw new Error(
+      `Please check the values you have passed: from: ${from}, to: ${to}`
+    )
   }
 
   const options = useMemo(() => getFilteredOptions(from, to), [from, to])

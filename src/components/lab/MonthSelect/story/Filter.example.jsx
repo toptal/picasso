@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Grid, Form, Container } from '@toptal/picasso'
+import { Grid, Form } from '@toptal/picasso'
 import { MonthSelect, YearSelect } from '@toptal/picasso/lab'
 
 const FilterExample = () => {
@@ -27,13 +27,13 @@ const FilterExample = () => {
   }
 
   return (
-    <Grid direction='row'>
-      <Grid.Item small={4}>
-        <Form.Field>
-          <Form.Label>Start date</Form.Label>
-          <Container bottom='small'>
+    <div>
+      <Form.Field>
+        <Form.Label>From</Form.Label>
+        <Grid>
+          <Grid.Item small={2}>
             <MonthSelect
-              width='auto'
+              width='full'
               onChange={handleStartMonthChange}
               value={startMonth}
               to={
@@ -43,22 +43,25 @@ const FilterExample = () => {
               }
               placeholder='Month'
             />
-          </Container>
+          </Grid.Item>
 
-          <YearSelect
-            placeholder='Year'
-            width='auto'
-            value={startYear}
-            onChange={handleStartYearChange}
-            from={START_YEAR}
-            to={endYear || CURRENT_YEAR}
-          />
-        </Form.Field>
-      </Grid.Item>
-      <Grid.Item small={4}>
-        <Form.Field>
-          <Form.Label>End date</Form.Label>
-          <Container bottom='small'>
+          <Grid.Item small={2}>
+            <YearSelect
+              placeholder='Year'
+              width='full'
+              value={startYear}
+              onChange={handleStartYearChange}
+              from={START_YEAR}
+              to={endYear || CURRENT_YEAR}
+            />
+          </Grid.Item>
+        </Grid>
+      </Form.Field>
+
+      <Form.Field>
+        <Form.Label>To</Form.Label>
+        <Grid>
+          <Grid.Item small={2}>
             <MonthSelect
               value={endMonth}
               onChange={handleEndMonthChange}
@@ -67,21 +70,24 @@ const FilterExample = () => {
                   ? startMonth
                   : undefined
               }
-              width='auto'
+              width='full'
               placeholder='Month'
             />
-          </Container>
-          <YearSelect
-            placeholder='Year'
-            value={endYear}
-            onChange={handleEndYearChange}
-            width='auto'
-            from={startYear || START_YEAR}
-            to={CURRENT_YEAR}
-          />
-        </Form.Field>
-      </Grid.Item>
-    </Grid>
+          </Grid.Item>
+
+          <Grid.Item small={2}>
+            <YearSelect
+              placeholder='Year'
+              value={endYear}
+              onChange={handleEndYearChange}
+              width='full'
+              from={startYear || START_YEAR}
+              to={CURRENT_YEAR}
+            />
+          </Grid.Item>
+        </Grid>
+      </Form.Field>
+    </div>
   )
 }
 
