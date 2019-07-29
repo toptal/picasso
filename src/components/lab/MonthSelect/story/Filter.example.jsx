@@ -19,11 +19,27 @@ const FilterExample = () => {
   }
 
   const handleStartYearChange = e => {
-    setStartYear(e.target.value)
+    const newStartYear = e.target.value
+
+    setStartYear(newStartYear)
+
+    if (newStartYear && endYear && newStartYear === endYear) {
+      if (startMonth && endMonth && endMonth < startMonth) {
+        setEndMonth(startMonth)
+      }
+    }
   }
 
   const handleEndYearChange = e => {
-    setEndYear(e.target.value)
+    const newEndYear = e.target.value
+
+    setEndYear(newEndYear)
+
+    if (startYear && newEndYear && startYear === newEndYear) {
+      if (startMonth && endMonth && endMonth < startMonth) {
+        setEndMonth(startMonth)
+      }
+    }
   }
 
   return (
