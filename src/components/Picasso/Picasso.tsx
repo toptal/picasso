@@ -87,10 +87,13 @@ interface PicassoProps {
   loadFonts?: boolean
   /** Whether to apply Picasso CSS reset */
   reset?: boolean
+  /** Max number of notification messages in the stream */
+  maxNotificationMessages?: number
 }
 
 const Picasso: FunctionComponent<PicassoProps> = ({
   loadFonts,
+  maxNotificationMessages,
   reset,
   children
 }) => (
@@ -98,13 +101,16 @@ const Picasso: FunctionComponent<PicassoProps> = ({
     {loadFonts && <FontsLoader />}
     {reset && <CssBaseline />}
     <PicassoGlobalStylesProvider>
-      <SnackbarProvider maxSnack={5}>{children}</SnackbarProvider>
+      <SnackbarProvider maxSnack={maxNotificationMessages}>
+        {children}
+      </SnackbarProvider>
     </PicassoGlobalStylesProvider>
   </MuiThemeProvider>
 )
 
 Picasso.defaultProps = {
   loadFonts: true,
+  maxNotificationMessages: 5,
   reset: true
 }
 
