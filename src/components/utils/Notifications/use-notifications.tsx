@@ -1,10 +1,12 @@
 import React from 'react'
-import { useSnackbar, OptionsObject, VariantType } from 'notistack'
+import {
+  useSnackbar,
+  OptionsObject,
+  VariantType as NotificationType
+} from 'notistack'
 import { SnackbarOrigin } from '@material-ui/core/Snackbar'
 
-import Notification, {
-  VariantType as NotificationVariantType
-} from '../../Notification'
+import Notification, { VariantType } from '../../Notification'
 
 const defaultNotificationsPosition: SnackbarOrigin = {
   vertical: 'top',
@@ -14,12 +16,12 @@ const defaultNotificationsPosition: SnackbarOrigin = {
 export const useNotifications = (
   notificationsPosition: SnackbarOrigin = defaultNotificationsPosition
 ) => {
-  const { enqueueSnackbar } = useSnackbar()
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar()
 
-  const getNotification = (
-    type: VariantType,
-    variant?: NotificationVariantType
-  ) => (text: string, options?: OptionsObject) =>
+  const getNotification = (type: NotificationType, variant?: VariantType) => (
+    text: string,
+    options?: OptionsObject
+  ) =>
     enqueueSnackbar('', {
       variant: type,
       anchorOrigin: notificationsPosition,
@@ -36,6 +38,7 @@ export const useNotifications = (
     showError: getNotification('error', 'red'),
     showInformation: getNotification('info'),
     showWarning: getNotification('warning', 'yellow'),
-    showSuccess: getNotification('success', 'green')
+    showSuccess: getNotification('success', 'green'),
+    closeNotification: closeSnackbar
   }
 }

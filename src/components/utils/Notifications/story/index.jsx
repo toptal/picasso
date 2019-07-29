@@ -31,10 +31,9 @@ operating easily the most common notifications types, like 'info', 'error',
 'useNotifications' hook is providing the list of methods to show the notifications
 of the corresponding type:
 
-- showError
-- showInformation
-- showSuccess
-- showWarning
+\`\`\`javascript
+const { showError, showInformation, showSuccess, showWarning } = useNotifications()
+\`\`\`
 
 Each of them has this list of props:
     `
@@ -61,6 +60,7 @@ Each of them has this list of props:
         description: 'Options of the single notification.'
       }
     ])
+    .addExample('utils/Notifications/story/Options.example.jsx', 'Options')
 )
 
 export default {
