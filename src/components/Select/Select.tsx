@@ -20,7 +20,7 @@ import { DropdownArrows16 } from '../Icon'
 import styles from './styles'
 
 interface Option {
-  key: number
+  key?: number
   text: string | ReactNode
   value: string | number
 }
