@@ -1,7 +1,7 @@
 import React, { FunctionComponent, ChangeEvent, ReactNode, HTMLAttributes } from 'react';
 import { StandardProps } from '../Picasso';
 interface Option {
-    key: number;
+    key?: number;
     text: string | ReactNode;
     value: string | number;
 }

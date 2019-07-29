@@ -1,3 +1,10 @@
+# [2.20.0](https://github.com/toptal/picasso/compare/v2.19.1...v2.20.0) (2019-07-29)
+
+
+### Features
+
+* add MonthSelect and YearSelect components ([#557](https://github.com/toptal/picasso/issues/557)) ([0809c99](https://github.com/toptal/picasso/commit/0809c99))
+
 ## [2.19.1](https://github.com/toptal/picasso/compare/v2.19.0...v2.19.1) (2019-07-24)
 
 
