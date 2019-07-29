@@ -26,6 +26,7 @@ operating easily the most common notifications types, like 'info', 'error',
       }
     ])
     .addExample('utils/Notifications/story/Default.example.jsx', 'Default')
+    .addExample('utils/Notifications/story/Position.example.jsx', 'Position')
     .addTextSection(
       `
 'useNotifications' hook is providing the list of methods to show the notifications
@@ -50,7 +51,6 @@ Each of them has this list of props:
           name: 'OptionsObject',
           description: `
 {\n
-  persist?: boolean\n
   preventDuplicate?: boolean\n
   onClose?: (event: React.SyntheticEvent<any>, reason: string) => void\n
   autoHideDuration?: number\n

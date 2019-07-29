@@ -9,7 +9,7 @@ const NotificationOptionsExample = () => {
     <Button
       variant='flat'
       onClick={() => {
-        showError('Some error text is here', {
+        showError('Error message with custom options', {
           onClose: () => {
             console.log('Error notification closed!')
           },
@@ -17,7 +17,7 @@ const NotificationOptionsExample = () => {
         })
       }}
     >
-      Show error
+      Show error with custom options
     </Button>
   )
 }
