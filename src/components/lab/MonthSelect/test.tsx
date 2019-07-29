@@ -32,7 +32,7 @@ describe('MonthSelect', () => {
     let from: number, to: number
 
     const errorMessage = () =>
-      `Please check the values you have passed: from: ${from}, to: ${to}`
+      `Invalid range. Please check the values you have passed: from: ${from}, to: ${to}`
     const tryRender = () =>
       render(
         <Picasso loadFonts={false}>

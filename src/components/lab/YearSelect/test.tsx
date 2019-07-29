@@ -33,7 +33,7 @@ describe('YearSelect', () => {
     let from: number | null, to: number | null
 
     const errorMessage = () =>
-      `Please check the values you have passed: from: ${from}, to: ${to}`
+      `Invalid range. Please check the values you have passed: from: ${from}, to: ${to}`
 
     // casting is needed to trick typescript and pass null
     const tryRender = () =>

@@ -51,7 +51,7 @@ export const MonthSelect: FunctionComponent<Props> = ({
     to < from
   ) {
     throw new Error(
-      `Please check the values you have passed: from: ${from}, to: ${to}`
+      `Invalid range. Please check the values you have passed: from: ${from}, to: ${to}`
     )
   }
 
