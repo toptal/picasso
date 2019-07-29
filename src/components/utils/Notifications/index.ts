@@ -1,1 +1,1 @@
-export { useNotifications } from './notifications'
+export { useNotifications } from './use-notifications'

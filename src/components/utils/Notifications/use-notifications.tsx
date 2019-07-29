@@ -6,13 +6,13 @@ import Notification, {
   VariantType as NotificationVariantType
 } from '../../Notification'
 
-const defaultNotificationPosition: SnackbarOrigin = {
+const defaultNotificationsPosition: SnackbarOrigin = {
   vertical: 'top',
   horizontal: 'right'
 }
 
 export const useNotifications = (
-  notificationPosition: SnackbarOrigin = defaultNotificationPosition
+  notificationsPosition: SnackbarOrigin = defaultNotificationsPosition
 ) => {
   const { enqueueSnackbar } = useSnackbar()
 
@@ -22,7 +22,8 @@ export const useNotifications = (
   ) => (text: string, options?: OptionsObject) =>
     enqueueSnackbar('', {
       variant: type,
-      anchorOrigin: notificationPosition,
+      anchorOrigin: notificationsPosition,
+      // eslint-disable-next-line react/display-name
       children: (key: string) => (
         <Notification variant={variant} elevated key={key}>
           {text}
