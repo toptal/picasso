@@ -1,4 +1,4 @@
-import React, { FunctionComponent, KeyboardEvent } from 'react'
+import React, { FunctionComponent, KeyboardEvent, ChangeEvent } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import { Actions } from 'downshift'
 
@@ -20,43 +20,48 @@ export interface Props extends StandardProps {
   /** List of options with unique labels */
   options?: Item[]
   /** List of pre-selected items values */
-  preselectedItems?: []
+  value?: []
   /**  Callback invoked when item is selected */
   onChange?: (selectedOptions: string[]) => void
   /**  Text of custom action option */
   actionText?: string
   /**  Callback invoked when custom action is selected */
   onAdd?: (inputValue?: string) => void
+  /**  Callback invoked when typing value is changed */
+  onInputChange?: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
 export const TagSelector: FunctionComponent<Props> = ({
   actionText,
   placeholder = '',
   options = [],
-  preselectedItems = [],
+  value = [],
   onChange = () => {},
-  onAdd = () => {}
+  onAdd = () => {},
+  onInputChange = () => {}
 }) => {
-  const [selectedItems, setSelectedItems] = React.useState<string[]>(
-    preselectedItems
-  )
+  const [selectedItems, setSelectedItems] = React.useState<string[]>(value)
+
+  const updateValue = (value: string[]) => {
+    setSelectedItems(value)
+    onChange(value)
+  }
 
   const handleKeyDown = (
     event: KeyboardEvent<HTMLInputElement>,
     inputValue: string
   ) => {
-    if (
-      selectedItems.length &&
-      !inputValue.length &&
-      event.key === 'Backspace'
-    ) {
+    const hasSelection = selectedItems.length
+    const hasValue = inputValue.length
+    const isDeleting = event.key === 'Backspace'
+    if (hasSelection && !hasValue && isDeleting) {
       handleDelete(selectedItems[selectedItems.length - 1])
     }
   }
 
   const handleSelect = (item: string, stateAndHelpers: Actions<string>) => {
     if (!item) return null
-    const selection = options.find(x => x.label === item)
+    const selection = options.find(option => option.label === item)
     if (!selection) {
       onAdd(item)
       stateAndHelpers.clearSelection()
@@ -69,8 +74,7 @@ export const TagSelector: FunctionComponent<Props> = ({
       selectedItemsClone = [...selectedItemsClone, itemValue]
     }
 
-    setSelectedItems(selectedItemsClone)
-    onChange(selectedItemsClone)
+    updateValue(selectedItemsClone)
     stateAndHelpers.clearSelection()
   }
 
@@ -81,8 +85,7 @@ export const TagSelector: FunctionComponent<Props> = ({
       ...selectedItems.slice(index + 1)
     ]
 
-    setSelectedItems(selectedItemsClone)
-    onChange(selectedItemsClone)
+    updateValue(selectedItemsClone)
   }
 
   const filteredOptions = options!.filter(
@@ -106,6 +109,7 @@ export const TagSelector: FunctionComponent<Props> = ({
       startAdornment={labels}
       actionText={actionText}
       onAdd={onAdd}
+      onChange={onInputChange}
     />
   )
 }

@@ -197,7 +197,7 @@ export const Autocomplete: FunctionComponent<Props> = ({
           (hasOptions || isTyping)
 
         const optionsMenu = (
-          <ScrollMenu>
+          <ScrollMenu selectedIndex={highlightedIndex}>
             {!hasOptions ? (
               <Menu.Item disabled>{noOptionsText}</Menu.Item>
             ) : (
