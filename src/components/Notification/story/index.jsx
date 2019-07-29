@@ -20,3 +20,7 @@ page
   .addExample('Notification/story/BoxShadow.example.jsx', 'Elevated')
   .addExample('Notification/story/FullWidth.example.jsx', 'Full width')
   .addExample('Notification/story/Icon.example.jsx', 'Custom Icon')
+  .addExample(
+    'Notification/story/Snackbars.example.jsx',
+    'Notification feed (Snackbars)'
+  )

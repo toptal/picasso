@@ -10,6 +10,7 @@ import React, {
   RefObject,
   useContext
 } from 'react'
+import { SnackbarProvider } from 'notistack'
 
 import CssBaseline from '../CssBaseline'
 import {
@@ -96,7 +97,9 @@ const Picasso: FunctionComponent<PicassoProps> = ({
   <MuiThemeProvider theme={PicassoProvider.theme}>
     {loadFonts && <FontsLoader />}
     {reset && <CssBaseline />}
-    <PicassoGlobalStylesProvider>{children}</PicassoGlobalStylesProvider>
+    <PicassoGlobalStylesProvider>
+      <SnackbarProvider maxSnack={5}>{children}</SnackbarProvider>
+    </PicassoGlobalStylesProvider>
   </MuiThemeProvider>
 )
 
