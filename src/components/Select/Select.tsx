@@ -28,7 +28,8 @@ interface Option {
 type IconPosition = 'start' | 'end'
 
 export interface Props
-  extends Omit<HTMLAttributes<HTMLInputElement>, 'onChange'> {
+  extends StandardProps,
+    Omit<HTMLAttributes<HTMLInputElement>, 'onChange'> {
   /** If true, the 'Select' will be disabled */
   disabled?: boolean
   /** Indicate whether `Select` is in error state */
@@ -81,9 +82,7 @@ const renderOptions = (
   return resultOptions
 }
 
-interface InternalProps extends Props, StandardProps {}
-
-export const Select: FunctionComponent<InternalProps> = ({
+export const Select: FunctionComponent<Props> = ({
   classes,
   className,
   style,

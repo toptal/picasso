@@ -1,8 +1,14 @@
 import React, { FunctionComponent, ChangeEvent, useMemo } from 'react'
 
 import Select, { Props as SelectProps } from '../../Select'
+import { JssProps, OmitInternalProps } from '../../Picasso'
 
-export interface Props extends Omit<SelectProps, 'onChange' | 'options'> {
+type AdjustedSelectProps = OmitInternalProps<
+  Omit<SelectProps, 'onChange' | 'options'>
+> &
+  Partial<JssProps>
+
+export interface Props extends AdjustedSelectProps {
   /** a number of month select starts from. e.g. 5 for May */
   from?: number
   /** a number of month select ends at. e.g. 11 for November */

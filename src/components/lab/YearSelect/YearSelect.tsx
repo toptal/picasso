@@ -1,6 +1,21 @@
 import React, { FunctionComponent, useMemo, ChangeEvent } from 'react'
 
 import Select, { Props as SelectProps } from '../../Select'
+import { JssProps, OmitInternalProps } from '../../Picasso'
+
+type AdjustedSelectProps = OmitInternalProps<
+  Omit<SelectProps, 'onChange' | 'options'>
+> &
+  Partial<JssProps>
+
+export interface Props extends AdjustedSelectProps {
+  /** a year select starts from. e.g. 2017 */
+  from: number
+  /** a year select ends at. e.g. 2019 */
+  to: number
+  /** Callback invoked when picker changes its state. */
+  onChange: (event: ChangeEvent<HTMLSelectElement>) => void
+}
 
 function generateOptions(from: number, to: number) {
   const length = to - from + 1
@@ -13,15 +28,6 @@ function generateOptions(from: number, to: number) {
       text: value.toString()
     }
   })
-}
-
-export interface Props extends Omit<SelectProps, 'onChange' | 'options'> {
-  /** a year select starts from. e.g. 2017 */
-  from: number
-  /** a year select ends at. e.g. 2019 */
-  to: number
-  /** Callback invoked when picker changes its state. */
-  onChange: (event: ChangeEvent<HTMLSelectElement>) => void
 }
 
 export const YearSelect: FunctionComponent<Props> = ({
