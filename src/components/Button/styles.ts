@@ -116,8 +116,7 @@ export default ({ palette, spacing, transitions, typography }: Theme) =>
     secondaryRed: secondary(palette.red.main, palette.common.white),
     primaryGreen: primary(palette.green.main, palette.common.white),
     secondaryWhite: {
-      ...secondary(palette.common.white, palette.common.white),
-      backgroundColor: 'transparent',
+      color: palette.common.white,
       border: `solid ${spacing.borderWidth} rgba(255, 255, 255, 0.32)`,
 
       '&:hover, &$hovered': {
@@ -133,6 +132,16 @@ export default ({ palette, spacing, transitions, typography }: Theme) =>
     flat: {
       ...secondary(palette.common.black, palette.common.white),
       border: 'none'
+    },
+    flatWhite: {
+      color: palette.common.white,
+      border: 'none',
+      '&:hover, &$hovered': {
+        backgroundColor: alpha(palette.common.white, 0.16)
+      },
+      '&:active, &$active': {
+        backgroundColor: alpha(palette.common.white, 0.16)
+      }
     },
     primaryDisabled: primary(palette.grey.light!, palette.common.white),
     secondaryDisabled: secondary(palette.grey.light!, palette.common.white),

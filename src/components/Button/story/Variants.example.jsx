@@ -34,6 +34,14 @@ const ButtonVariantsExample = () => (
     </Typography>
     <Container top='small'>
       <Button variant='flat'>Flat</Button>
+      <Container
+        left={0.5}
+        padded={0.5}
+        inline
+        style={{ backgroundColor: palette.blue.main }}
+      >
+        <Button variant='flat-white'>Flat White</Button>
+      </Container>
     </Container>
   </div>
 )
