@@ -42,9 +42,7 @@ const StyledNotification = withStyles(styles)(
   )
 )
 
-export const useNotifications = (
-  position: SnackbarOrigin = defaultPosition
-) => {
+export const useNotifications = () => {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
 
   const getNotification = (type: NotificationType, variant?: VariantType) => (
@@ -54,7 +52,7 @@ export const useNotifications = (
     const { dismissible = true, ...restOptions } = options
     const notificationId = enqueueSnackbar('', {
       variant: type,
-      anchorOrigin: position,
+      anchorOrigin: defaultPosition,
       // eslint-disable-next-line react/display-name
       children: (key: string) => (
         <StyledNotification

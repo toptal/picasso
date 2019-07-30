@@ -10,23 +10,7 @@ operating easily the most common notifications types, like 'info', 'error',
 'warning', 'success' in a single stream of messages.`
     )
     .addTextSection(`### useNotifications`)
-    .addDocs([
-      {
-        name: 'position',
-        type: {
-          name: 'SnackbarOrigin',
-          description: `
-{\n
-  horizontal: 'left' | 'center' | 'right'\n
-  vertical: 'top' | 'bottom'\n
-}
-          `
-        },
-        description: 'The position of the notification messages to appear.'
-      }
-    ])
     .addExample('utils/Notifications/story/Default.example.jsx', 'Default')
-    .addExample('utils/Notifications/story/Position.example.jsx', 'Position')
     .addTextSection(`### How to use`)
     .addTextSection(
       `
