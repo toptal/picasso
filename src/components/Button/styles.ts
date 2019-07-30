@@ -134,6 +134,16 @@ export default ({ palette, spacing, transitions, typography }: Theme) =>
       ...secondary(palette.common.black, palette.common.white),
       border: 'none'
     },
+    flatWhite: {
+      color: palette.common.white,
+      border: 'none',
+      '&:hover, &$hovered': {
+        backgroundColor: alpha(palette.common.white, 0.16)
+      },
+      '&:active, &$active': {
+        backgroundColor: alpha(palette.common.white, 0.16)
+      }
+    },
     primaryDisabled: primary(palette.grey.light!, palette.common.white),
     secondaryDisabled: secondary(palette.grey.light!, palette.common.white),
     flatDisabled: {
