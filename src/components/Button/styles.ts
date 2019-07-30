@@ -116,8 +116,7 @@ export default ({ palette, spacing, transitions, typography }: Theme) =>
     secondaryRed: secondary(palette.red.main, palette.common.white),
     primaryGreen: primary(palette.green.main, palette.common.white),
     secondaryWhite: {
-      ...secondary(palette.common.white, palette.common.white),
-      backgroundColor: 'transparent',
+      color: palette.common.white,
       border: `solid ${spacing.borderWidth} rgba(255, 255, 255, 0.32)`,
 
       '&:hover, &$hovered': {
