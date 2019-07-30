@@ -64,8 +64,8 @@ export default ({
 
     close: {
       position: 'absolute',
-      right: '.75em',
-      top: '.75em',
+      right: '.25em',
+      top: '.25em',
       background: 'transparent',
       border: 0,
       padding: 0,

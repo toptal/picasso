@@ -3,7 +3,7 @@ import { Button } from '@toptal/picasso'
 import { useNotifications } from '@toptal/picasso/utils'
 
 const NotificationPositionExample = () => {
-  const { showInformation } = useNotifications({
+  const { showInfo } = useNotifications({
     horizontal: 'left',
     vertical: 'top'
   })
@@ -11,7 +11,7 @@ const NotificationPositionExample = () => {
   return (
     <Button
       variant='flat'
-      onClick={() => showInformation('Left top corner notification message')}
+      onClick={() => showInfo('Left top corner notification message')}
     >
       Show error left top corner
     </Button>

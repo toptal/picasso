@@ -1,17 +1,46 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import {
   useSnackbar,
   OptionsObject,
   VariantType as NotificationType
 } from 'notistack'
+import { withStyles } from '@material-ui/core/styles'
 import { SnackbarOrigin } from '@material-ui/core/Snackbar'
 
 import Notification, { VariantType } from '../../Notification'
+import { Classes } from '../../styles/types'
+import styles from './styles'
 
 const defaultPosition: SnackbarOrigin = {
   vertical: 'top',
   horizontal: 'right'
 }
+
+type Options = OptionsObject & {
+  dismissible?: boolean
+}
+
+interface Props {
+  key: string
+  content: string | ReactNode
+  classes: Classes
+  onClose?: () => void
+  variant?: VariantType
+}
+
+const StyledNotification = withStyles(styles)(
+  ({ content, key, onClose, variant, classes }: Props) => (
+    <Notification
+      variant={variant}
+      elevated
+      key={key}
+      onClose={onClose}
+      className={classes.notification}
+    >
+      {content}
+    </Notification>
+  )
+)
 
 export const useNotifications = (
   position: SnackbarOrigin = defaultPosition
@@ -19,24 +48,37 @@ export const useNotifications = (
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
 
   const getNotification = (type: NotificationType, variant?: VariantType) => (
-    text: string,
-    options?: OptionsObject
-  ) =>
-    enqueueSnackbar('', {
+    content: string | ReactNode,
+    options: Options = {}
+  ) => {
+    const { dismissible = true, ...restOptions } = options
+    const notificationId = enqueueSnackbar('', {
       variant: type,
       anchorOrigin: position,
       // eslint-disable-next-line react/display-name
       children: (key: string) => (
-        <Notification variant={variant} elevated key={key}>
-          {text}
-        </Notification>
+        <StyledNotification
+          content={content}
+          key={key}
+          variant={variant}
+          onClose={
+            dismissible
+              ? () => {
+                  notificationId && closeSnackbar(notificationId)
+                }
+              : undefined
+          }
+        />
       ),
-      ...options
+      ...restOptions
     })
+
+    return notificationId
+  }
 
   return {
     showError: getNotification('error', 'red'),
-    showInformation: getNotification('info'),
+    showInfo: getNotification('info'),
     showWarning: getNotification('warning', 'yellow'),
     showSuccess: getNotification('success', 'green'),
     closeNotification: closeSnackbar

@@ -8,6 +8,7 @@ afterEach(cleanup)
 
 // Mock console error since toThrow() outputs the error message with stacktrace
 let mockedConsoleError: any
+
 beforeEach(() => {
   mockedConsoleError = jest.spyOn(console, 'error')
   mockedConsoleError.mockImplementation(() => {})

@@ -3,7 +3,7 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 const chapter = PicassoBook.connectToPage(page =>
   page
     .createChapter(
-      'Notifications stream (Snackbars)',
+      'Notifications stream',
       `In most cases, Notifications shouldn't be used in isolation.
 The 'useNotifications' hook is providing the set of tools for
 operating easily the most common notifications types, like 'info', 'error',
@@ -55,6 +55,8 @@ Each of them has this list of props:
   preventDuplicate?: boolean\n
   onClose?: (event: React.SyntheticEvent<any>, reason: string) => void\n
   autoHideDuration?: number\n
+  persist?: boolean\n
+  dismissible?: boolean\n
 }
           `
         },
@@ -62,6 +64,16 @@ Each of them has this list of props:
       }
     ])
     .addExample('utils/Notifications/story/Options.example.jsx', 'Options')
+    .addExample('utils/Notifications/story/Persistent.example.jsx', {
+      title: 'Persistent',
+      description:
+        'If you need to wait until the user will close the notification message manually.'
+    })
+    .addExample('utils/Notifications/story/CustomActions.example.jsx', {
+      title: 'Custom Actions',
+      description:
+        'If you need to have custom actions inside the notification which can close the notification.'
+    })
 )
 
 export default {

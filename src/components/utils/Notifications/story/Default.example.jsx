@@ -3,12 +3,7 @@ import { Button, Container } from '@toptal/picasso'
 import { useNotifications } from '@toptal/picasso/utils'
 
 const NotificationDefaultExample = () => {
-  const {
-    showError,
-    showInformation,
-    showWarning,
-    showSuccess
-  } = useNotifications()
+  const { showError, showInfo, showWarning, showSuccess } = useNotifications()
 
   return (
     <Container flex>
@@ -24,7 +19,7 @@ const NotificationDefaultExample = () => {
         <Button
           variant='flat'
           onClick={() =>
-            showInformation(
+            showInfo(
               "That's one small step for a man, one giant leap for mankind."
             )
           }
