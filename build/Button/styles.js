@@ -94,14 +94,29 @@ exports.default = ({ palette, spacing, transitions, typography }) => styles_1.cr
     primaryRed: primary(palette.red.main, palette.common.white),
     secondaryRed: secondary(palette.red.main, palette.common.white),
     primaryGreen: primary(palette.green.main, palette.common.white),
-    secondaryWhite: Object.assign({}, secondary(palette.common.white, palette.common.white), { backgroundColor: 'transparent', border: `solid ${spacing.borderWidth} rgba(255, 255, 255, 0.32)`, '&:hover, &$hovered': {
+    secondaryWhite: {
+        color: palette.common.white,
+        border: `solid ${spacing.borderWidth} rgba(255, 255, 255, 0.32)`,
+        '&:hover, &$hovered': {
             backgroundColor: styles_2.alpha(palette.common.white, 0.16),
             borderColor: palette.common.white
-        }, '&:active, &$active': {
+        },
+        '&:active, &$active': {
             backgroundColor: styles_2.alpha(palette.common.white, 0.16),
             borderColor: palette.common.white
-        } }),
+        }
+    },
     flat: Object.assign({}, secondary(palette.common.black, palette.common.white), { border: 'none' }),
+    flatWhite: {
+        color: palette.common.white,
+        border: 'none',
+        '&:hover, &$hovered': {
+            backgroundColor: styles_2.alpha(palette.common.white, 0.16)
+        },
+        '&:active, &$active': {
+            backgroundColor: styles_2.alpha(palette.common.white, 0.16)
+        }
+    },
     primaryDisabled: primary(palette.grey.light, palette.common.white),
     secondaryDisabled: secondary(palette.grey.light, palette.common.white),
     flatDisabled: Object.assign({}, secondary(palette.grey.light, palette.common.white), { border: 'none' }),

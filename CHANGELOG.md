@@ -1,3 +1,10 @@
+# [2.21.0](https://github.com/toptal/picasso/compare/v2.20.0...v2.21.0) (2019-07-30)
+
+
+### Features
+
+* **Button:** add flat-white variant ([#565](https://github.com/toptal/picasso/issues/565)) ([ebcb4d5](https://github.com/toptal/picasso/commit/ebcb4d5))
+
 # [2.20.0](https://github.com/toptal/picasso/compare/v2.19.1...v2.20.0) (2019-07-29)
 
 

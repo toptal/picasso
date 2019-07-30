@@ -1,7 +1,7 @@
 import { FunctionComponent, ReactNode, ReactElement, MouseEvent } from 'react';
 import Group from '../ButtonGroup';
 import { StandardProps, PicassoComponent, SizeType, ButtonOrAnchorProps } from '../Picasso';
-declare type VariantType = 'primary-blue' | 'secondary-blue' | 'primary-red' | 'secondary-red' | 'primary-green' | 'flat' | 'secondary-white';
+declare type VariantType = 'primary-blue' | 'secondary-blue' | 'primary-red' | 'secondary-red' | 'primary-green' | 'flat' | 'flat-white' | 'secondary-white';
 declare type IconPositionType = 'left' | 'right';
 export interface Props extends StandardProps, ButtonOrAnchorProps {
     /** Show button in the active state (left mouse button down) */
