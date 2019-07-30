@@ -71,10 +71,6 @@ export interface Props
   ) => void
   /** ReactNode for labels that will be used as start InputAdornment - */
   startAdornment?: ReactNode
-  /**  Text of custom action option */
-  actionText?: string
-  /**  Callback invoked when custom action is selected */
-  onAdd?: (inputValue?: string) => void
 }
 
 const isMatchingMinLength = (value: string, minLength?: number) =>
@@ -109,8 +105,6 @@ export const Autocomplete: FunctionComponent<Props> = ({
   onChange,
   onKeyDown,
   startAdornment,
-  onAdd,
-  actionText,
   ...rest
 }) => {
   const [inputValue, setInputValue] = useState<string | null>(null)
@@ -212,22 +206,6 @@ export const Autocomplete: FunctionComponent<Props> = ({
                   {getItemLabel(option)}
                 </Menu.Item>
               ))
-            )}
-            {actionText && (
-              <Menu.Item
-                className={classes.actionMenuItem}
-                selected={highlightedIndex === filteredOptions.length}
-                {...getItemProps({
-                  item: trimmedValue,
-                  index: filteredOptions.length
-                })}
-                onClick={() => {
-                  onAdd!(trimmedValue)
-                  clearSelection()
-                }}
-              >
-                {actionText}
-              </Menu.Item>
             )}
           </ScrollMenu>
         )
@@ -345,10 +323,9 @@ Autocomplete.defaultProps = {
   debounceTime: DEBOUNCE_TIME,
   loading: false,
   noOptionsText: 'No options',
-  onAdd: () => {},
   onChange: () => {},
-  onSelect: () => {},
   onKeyDown: () => {},
+  onSelect: () => {},
   options: [],
   width: 'auto'
 }

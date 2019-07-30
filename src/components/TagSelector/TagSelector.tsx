@@ -17,34 +17,43 @@ export interface Props extends StandardProps {
   placeholder?: string
   /** Shows the loading icon when options are loading */
   loading?: boolean
+  /** Text prefix for new option */
+  newItemPrefix?: string
   /** List of options with unique labels */
   options?: Item[]
   /** List of pre-selected items values */
   value?: []
   /**  Callback invoked when item is selected */
   onChange?: (selectedOptions: string[]) => void
-  /**  Text of custom action option */
-  actionText?: string
-  /**  Callback invoked when custom action is selected */
-  onAdd?: (inputValue?: string) => void
   /**  Callback invoked when typing value is changed */
   onInputChange?: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
 export const TagSelector: FunctionComponent<Props> = ({
-  actionText,
   placeholder = '',
   options = [],
   value = [],
+  newItemPrefix = 'Add new option: ',
   onChange = () => {},
-  onAdd = () => {},
   onInputChange = () => {}
 }) => {
   const [selectedItems, setSelectedItems] = React.useState<string[]>(value)
+  const [availableOptions, setAvailableOptions] = React.useState<Item[]>(
+    options
+  )
+  const [inputBoxValue, setInputBoxValue] = React.useState('')
 
   const updateValue = (value: string[]) => {
     setSelectedItems(value)
     onChange(value)
+  }
+
+  const getUniqueValue = (value: string) =>
+    `${value.replace(/\s+/g, '-').toLowerCase()}-${new Date().getTime()}`
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setInputBoxValue((e.target.value || '').trim())
+    onInputChange(e)
   }
 
   const handleKeyDown = (
@@ -54,6 +63,7 @@ export const TagSelector: FunctionComponent<Props> = ({
     const hasSelection = selectedItems.length
     const hasValue = inputValue.length
     const isDeleting = event.key === 'Backspace'
+
     if (hasSelection && !hasValue && isDeleting) {
       handleDelete(selectedItems[selectedItems.length - 1])
     }
@@ -61,13 +71,24 @@ export const TagSelector: FunctionComponent<Props> = ({
 
   const handleSelect = (item: string, stateAndHelpers: Actions<string>) => {
     if (!item) return null
-    const selection = options.find(option => option.label === item)
+    let itemValue
+    const selection = availableOptions.find(option => option.label === item)
+
     if (!selection) {
-      onAdd(item)
-      stateAndHelpers.clearSelection()
-      return null
+      const uniqueValue = getUniqueValue(inputBoxValue)
+
+      itemValue = uniqueValue
+      const newAvailableOptions = [
+        ...availableOptions,
+        { value: uniqueValue, label: inputBoxValue }
+      ]
+
+      setAvailableOptions(newAvailableOptions)
+      setInputBoxValue('')
+    } else {
+      itemValue = selection!.value
     }
-    const itemValue = selection!.value
+
     let selectedItemsClone = [...selectedItems]
 
     if (!selectedItemsClone.includes(itemValue)) {
@@ -88,11 +109,18 @@ export const TagSelector: FunctionComponent<Props> = ({
     updateValue(selectedItemsClone)
   }
 
-  const filteredOptions = options!.filter(
+  const filteredOptions = availableOptions!.filter(
     item => !selectedItems.includes(item.value)
   )
 
-  const labels = options
+  if (inputBoxValue.length) {
+    filteredOptions.push({
+      value: '',
+      label: `${newItemPrefix}${inputBoxValue}`
+    })
+  }
+
+  const labels = availableOptions
     .filter(x => selectedItems.includes(x.value))
     .map(item => (
       <Label key={item.value} onDelete={() => handleDelete(item.value)}>
@@ -107,9 +135,8 @@ export const TagSelector: FunctionComponent<Props> = ({
       onSelect={handleSelect}
       onKeyDown={handleKeyDown}
       startAdornment={labels}
-      actionText={actionText}
-      onAdd={onAdd}
-      onChange={onInputChange}
+      onChange={handleInputChange}
+      debounceTime={0}
     />
   )
 }

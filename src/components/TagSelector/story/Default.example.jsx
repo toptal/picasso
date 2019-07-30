@@ -15,8 +15,6 @@ const TagSelectorDefaultExample = () => (
       value={['AF']}
       placeholder='Start typing...'
       onChange={value => console.log('onChange: ', value)}
-      actionText='Add new option'
-      onAdd={value => console.log('onAdd: ', value)}
       onInputChange={event => console.log('onInputChange: ', event)}
     />
   </div>
