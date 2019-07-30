@@ -88,11 +88,11 @@ interface PicassoProps {
   /** Whether to apply Picasso CSS reset */
   reset?: boolean
   /** Whether to apply additional margin for Notifications stream if Page.Header is used */
-  isNotificationsHeaderMargin?: boolean
+  hasNotificationsHeaderMargin?: boolean
 }
 
 const Picasso: FunctionComponent<PicassoProps> = ({
-  isNotificationsHeaderMargin,
+  hasNotificationsHeaderMargin,
   loadFonts,
   reset,
   children
@@ -101,7 +101,7 @@ const Picasso: FunctionComponent<PicassoProps> = ({
     {loadFonts && <FontsLoader />}
     {reset && <CssBaseline />}
     <PicassoGlobalStylesProvider>
-      <NotificationsProvider isHeaderMargin={isNotificationsHeaderMargin}>
+      <NotificationsProvider hasHeaderMargin={hasNotificationsHeaderMargin}>
         {children}
       </NotificationsProvider>
     </PicassoGlobalStylesProvider>
@@ -109,7 +109,7 @@ const Picasso: FunctionComponent<PicassoProps> = ({
 )
 
 Picasso.defaultProps = {
-  isNotificationsHeaderMargin: true,
+  hasNotificationsHeaderMargin: true,
   loadFonts: true,
   reset: true
 }

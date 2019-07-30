@@ -6,23 +6,23 @@ import { headerHeight } from '../../PageHeader/styles'
 const MAX_NOTIFICATION_MESSAGES = 5
 
 interface Props {
-  isHeaderMargin?: boolean
+  hasHeaderMargin?: boolean
 }
 
 const NotificationsProvider: FunctionComponent<Props> = ({
   children,
-  isHeaderMargin
+  hasHeaderMargin
 }) => (
   <SnackbarProvider
     maxSnack={MAX_NOTIFICATION_MESSAGES}
-    style={isHeaderMargin ? { marginTop: headerHeight } : undefined}
+    style={hasHeaderMargin ? { marginTop: headerHeight } : undefined}
   >
     {children}
   </SnackbarProvider>
 )
 
 NotificationsProvider.defaultProps = {
-  isHeaderMargin: true
+  hasHeaderMargin: true
 }
 
 export default NotificationsProvider
