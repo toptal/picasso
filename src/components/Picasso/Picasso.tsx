@@ -10,7 +10,6 @@ import React, {
   RefObject,
   useContext
 } from 'react'
-import { SnackbarProvider } from 'notistack'
 
 import CssBaseline from '../CssBaseline'
 import {
@@ -25,10 +24,9 @@ import {
 } from './config'
 import FontsLoader from './FontsLoader'
 import Provider from './PicassoProvider'
+import NotificationsProvider from '../utils/Notifications/NotificationsProvider'
 import globalStyles from './styles'
 import { JssProps } from './types'
-
-const MAX_NOTIFICATION_MESSAGES = 5
 
 const picasso = {
   palette,
@@ -89,9 +87,12 @@ interface PicassoProps {
   loadFonts?: boolean
   /** Whether to apply Picasso CSS reset */
   reset?: boolean
+  /** Whether to apply additional margin for Notifications stream if Page.Header is used */
+  isNotificationsHeaderMargin?: boolean
 }
 
 const Picasso: FunctionComponent<PicassoProps> = ({
+  isNotificationsHeaderMargin,
   loadFonts,
   reset,
   children
@@ -100,14 +101,15 @@ const Picasso: FunctionComponent<PicassoProps> = ({
     {loadFonts && <FontsLoader />}
     {reset && <CssBaseline />}
     <PicassoGlobalStylesProvider>
-      <SnackbarProvider maxSnack={MAX_NOTIFICATION_MESSAGES}>
+      <NotificationsProvider isHeaderMargin={isNotificationsHeaderMargin}>
         {children}
-      </SnackbarProvider>
+      </NotificationsProvider>
     </PicassoGlobalStylesProvider>
   </MuiThemeProvider>
 )
 
 Picasso.defaultProps = {
+  isNotificationsHeaderMargin: true,
   loadFonts: true,
   reset: true
 }

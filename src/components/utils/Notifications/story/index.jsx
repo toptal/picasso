@@ -58,6 +58,20 @@ Each of them has this list of props:
       description:
         'If you need to have custom actions inside the notification which can close the notification.'
     })
+    .addTextSection(
+      `
+Also, the Notifiications stream by default has an additional top margin to step out
+from the Page.Header. If you don't use the header or you don't need to have that additional
+margin you can remove it by setting the \`isNotificationsHeaderMargin\` prop for the root
+\`Picasso\` component:
+
+\`\`\`javascript
+<Picasso isNotificationsHeaderMargin={false}>
+  <App />
+</Picasso>
+\`\`\`
+`
+    )
 )
 
 export default {
