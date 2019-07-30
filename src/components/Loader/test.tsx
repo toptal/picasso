@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import { render, cleanup } from 'react-testing-library'
+import { render, cleanup } from '@testing-library/react'
 
 import { OmitInternalProps } from '../Picasso'
 import Loader, { Props } from './Loader'

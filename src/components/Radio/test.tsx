@@ -1,5 +1,10 @@
 import React from 'react'
-import { render, fireEvent, cleanup, RenderResult } from 'react-testing-library'
+import {
+  render,
+  fireEvent,
+  cleanup,
+  RenderResult
+} from '@testing-library/react'
 
 import { OmitInternalProps } from '../Picasso'
 import Radio, { Props } from './Radio'

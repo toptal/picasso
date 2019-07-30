@@ -1,6 +1,6 @@
 import React from 'react'
-import { render } from 'react-testing-library'
-import 'react-testing-library/cleanup-after-each'
+import { render } from '@testing-library/react'
+import '@testing-library/react/cleanup-after-each'
 
 import Picasso from '../Picasso'
 import Button from '../Button'

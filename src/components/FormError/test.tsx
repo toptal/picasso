@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, cleanup, RenderResult } from 'react-testing-library'
+import { render, cleanup, RenderResult } from '@testing-library/react'
 
 import Picasso, { OmitInternalProps } from '../Picasso'
 import { Props } from './FormError'

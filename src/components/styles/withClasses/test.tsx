@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, cleanup, RenderResult } from 'react-testing-library'
+import { render, cleanup, RenderResult } from '@testing-library/react'
 
 import Button from '../../Button'
 import Picasso from '../../Picasso'
@@ -11,9 +11,9 @@ const TestComponent = (props: any) => {
   return children
 }
 
-const DecoratedComponent = withClasses(classes => [[Button, { root: classes.test }]])(
-  TestComponent
-)
+const DecoratedComponent = withClasses(classes => [
+  [Button, { root: classes.test }]
+])(TestComponent)
 
 const renderComponent = () => {
   return render(
