@@ -28,6 +28,8 @@ import Provider from './PicassoProvider'
 import globalStyles from './styles'
 import { JssProps } from './types'
 
+const MAX_NOTIFICATION_MESSAGES = 5
+
 const picasso = {
   palette,
   layout,
@@ -87,13 +89,10 @@ interface PicassoProps {
   loadFonts?: boolean
   /** Whether to apply Picasso CSS reset */
   reset?: boolean
-  /** Max number of notification messages in the stream */
-  maxNotificationMessages?: number
 }
 
 const Picasso: FunctionComponent<PicassoProps> = ({
   loadFonts,
-  maxNotificationMessages,
   reset,
   children
 }) => (
@@ -101,7 +100,7 @@ const Picasso: FunctionComponent<PicassoProps> = ({
     {loadFonts && <FontsLoader />}
     {reset && <CssBaseline />}
     <PicassoGlobalStylesProvider>
-      <SnackbarProvider maxSnack={maxNotificationMessages}>
+      <SnackbarProvider maxSnack={MAX_NOTIFICATION_MESSAGES}>
         {children}
       </SnackbarProvider>
     </PicassoGlobalStylesProvider>
@@ -110,7 +109,6 @@ const Picasso: FunctionComponent<PicassoProps> = ({
 
 Picasso.defaultProps = {
   loadFonts: true,
-  maxNotificationMessages: 5,
   reset: true
 }
 

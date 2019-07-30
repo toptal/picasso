@@ -25,18 +25,6 @@ operating easily the most common notifications types, like 'info', 'error',
         description: 'The position of the notification messages to appear.'
       }
     ])
-    .addTextSection(
-      `
-Also, to set the max number of notification messages you have to set the corresponding
-prop at the \`Picasso\` root component:
-
-\`\`\`javascript
-<Picasso maxNotificationMessages={10}>
-  <App />
-</Picasso>
-\`\`\`
-`
-    )
     .addExample('utils/Notifications/story/Default.example.jsx', 'Default')
     .addExample('utils/Notifications/story/Position.example.jsx', 'Position')
     .addTextSection(`### How to use`)
