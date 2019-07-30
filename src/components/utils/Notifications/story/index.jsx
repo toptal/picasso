@@ -10,7 +10,7 @@ operating easily the most common notifications types, like 'info', 'error',
 'warning', 'success' in a single stream of messages.`
     )
     .addTextSection(`### useNotifications`)
-    .addExample('utils/Notifications/story/Default.example.jsx', 'Default')
+    .addExample('utils/Notifications/story/Default.example.jsx', 'Default') // picasso-skip-visuals
     .addTextSection(`### How to use`)
     .addTextSection(
       `
@@ -47,17 +47,17 @@ Each of them has this list of props:
         description: 'Options of the single notification.'
       }
     ])
-    .addExample('utils/Notifications/story/Options.example.jsx', 'Options')
+    .addExample('utils/Notifications/story/Options.example.jsx', 'Options') // picasso-skip-visuals
     .addExample('utils/Notifications/story/Persistent.example.jsx', {
       title: 'Persistent',
       description:
         'If you need to wait until the user will close the notification message manually.'
-    })
+    }) // picasso-skip-visuals
     .addExample('utils/Notifications/story/CustomActions.example.jsx', {
       title: 'Custom Actions',
       description:
         'If you need to have custom actions inside the notification which can close the notification.'
-    })
+    }) // picasso-skip-visuals
     .addTextSection(
       `
 Also, the Notifiications stream by default has an additional top margin to step out
