@@ -22,7 +22,7 @@ type Options = OptionsObject & {
 
 interface Props {
   key: string
-  content: string | ReactNode
+  content: ReactNode
   classes: Classes
   onClose?: () => void
   variant?: VariantType
@@ -46,7 +46,7 @@ export const useNotifications = () => {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
 
   const getNotification = (type: NotificationType, variant?: VariantType) => (
-    content: string | ReactNode,
+    content: ReactNode,
     options: Options = {}
   ) => {
     const { dismissible = true, ...restOptions } = options
