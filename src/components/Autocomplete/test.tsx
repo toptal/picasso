@@ -10,11 +10,11 @@ import Picasso, { OmitInternalProps } from '../Picasso'
 import Autocomplete, { Props } from './Autocomplete'
 
 const options = [
-  { label: 'Belarus' },
-  { label: 'Croatia' },
-  { label: 'Lithuania' },
-  { label: 'Slovakia' },
-  { label: 'Ukraine' }
+  { text: 'Belarus', value: 'BY' },
+  { text: 'Croatia', value: 'HR' },
+  { text: 'Lithuania', value: 'LU' },
+  { text: 'Slovakia', value: 'SK' },
+  { text: 'Ukraine', value: 'UA' }
 ]
 
 const renderAutocomplete = (

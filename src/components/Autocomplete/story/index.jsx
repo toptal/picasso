@@ -15,7 +15,7 @@ page.createTabChapter('Props').addComponentDocs({
     options: {
       type: {
         name: '[]',
-        description: '{ label: string }'
+        description: '{ text?: string, value?: string }'
       }
     }
   }
@@ -33,6 +33,19 @@ for this component. This you can achieve by adding corresponding attributes:
     `
   )
   .addExample('Autocomplete/story/Default.example.jsx', 'Default')
+  .addExample('Autocomplete/story/AllowAnyDisabled.example.jsx', {
+    title: 'Any value disabled',
+    description: `By default Autocomplete allows to enter any input value by user,
+        you can set allowAny={false} prop to allow values only from the suggestion list`
+  })
+  .addExample(
+    'Autocomplete/story/InitialSelectedItem.example.jsx',
+    'Initially selected item'
+  )
+  .addExample(
+    'Autocomplete/story/Controlled.example.jsx',
+    'Controlled selection'
+  )
   .addExample('Autocomplete/story/FullWidth.example.jsx', 'Full width')
   .addExample('Autocomplete/story/Loading.example.jsx', 'Loading')
   .addExample('Autocomplete/story/DynamicOptions.example.jsx', {

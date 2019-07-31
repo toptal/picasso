@@ -2,12 +2,18 @@ import React, {
   FunctionComponent,
   ChangeEvent,
   InputHTMLAttributes,
-  FormEvent
+  FormEvent,
+  useState,
+  useEffect,
+  KeyboardEvent
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import { capitalize } from '@material-ui/core/utils/helpers'
 import cx from 'classnames'
-import Downshift from 'downshift'
+import Downshift, {
+  StateChangeOptions,
+  ControllerStateAndHelpers
+} from 'downshift'
 import debounce from 'debounce'
 
 import { StandardProps } from '../Picasso'
@@ -15,13 +21,16 @@ import TextField from '../TextField'
 import Menu from '../Menu'
 import Loader from '../Loader'
 import ScrollMenu from '../ScrollMenu'
-import { isSubstring } from '../utils'
+import { isSubstring, Maybe } from '../utils'
 import styles from './styles'
 
 const DEBOUNCE_TIME = 300
+const EMPTY_VALUE = ''
 
 type Item = {
-  label: string
+  label?: string
+  value?: string
+  text?: string
 }
 
 /**
@@ -41,6 +50,8 @@ export interface Props
   width?: 'full' | 'shrink' | 'auto'
   /** Shows the loading icon when options are loading */
   loading?: boolean
+  /** Allow to input any value which is not in the list of `options` */
+  allowAny?: boolean
   /** Label to show when no options were found */
   noOptionsText?: string
   /** List of options */
@@ -48,7 +59,7 @@ export interface Props
   /** The minimum number of characters a user must type before a search is performed */
   minLength?: number
   /**  Callback invoked when item is selected */
-  onSelect?: (item: Item | null) => void
+  onSelect?: (item: Maybe<Item>) => void
   /**  Callback invoked when typing value is changed */
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void
 }
@@ -56,94 +67,199 @@ export interface Props
 const isMatchingMinLength = (value: string, minLength?: number) =>
   !minLength || value.length >= minLength
 
+const getItemLabel = (item: Maybe<Item>) => {
+  if (!item) return EMPTY_VALUE
+
+  return item.label || item.text || EMPTY_VALUE
+}
+
+const getItemValue = (item: Maybe<Item>) => {
+  if (!item) return EMPTY_VALUE
+
+  return item.value || getItemLabel(item)
+}
+
 export const Autocomplete: FunctionComponent<Props> = ({
   classes,
   className,
   debounceTime,
   loading,
   minLength,
-  placeholder,
+  placeholder: initialPlaceholder,
   noOptionsText,
-  options,
+  options: initialOptions,
   style,
   width,
-  onSelect,
+  allowAny,
+  onSelect = () => {},
+  value,
   onChange,
   ...rest
 }) => {
+  const [inputValue, setInputValue] = useState<string | null>(null)
+  const [filter, setFilter] = useState(EMPTY_VALUE)
+  const [placeholder, setPlaceholder] = useState(initialPlaceholder)
+  const [selectedItem, setSelectedItem] = useState<Maybe<Item>>(null)
   const onChangeDebounced = debounce(onChange!, debounceTime)
 
+  const selectItem = (item: Maybe<Item>) => {
+    if (item === undefined) return
+
+    setInputValue(getItemLabel(item))
+    setSelectedItem(item)
+
+    if (item !== null) {
+      setPlaceholder(getItemLabel(item))
+    } else {
+      setPlaceholder(initialPlaceholder)
+    }
+
+    onSelect(item)
+  }
+  const handleStateChange = (props: StateChangeOptions<Item>) => {
+    const { selectedItem } = props
+
+    selectItem(selectedItem)
+  }
+
+  const options = initialOptions!.filter(item =>
+    isSubstring(filter || EMPTY_VALUE, getItemLabel(item))
+  )
+
+  const isSelected = (item: Item, selectedItem: Item) =>
+    getItemValue(item) === getItemValue(selectedItem)
+
+  const handleChange = (
+    item: Item,
+    helpers: ControllerStateAndHelpers<Item>
+  ) => {
+    const { setHighlightedIndex } = helpers
+    const currentIndex = options ? options.indexOf(item) : 0
+
+    setHighlightedIndex(currentIndex)
+  }
+
+  useEffect(() => {
+    const selectedItem =
+      value === null
+        ? null
+        : initialOptions!.find(option => getItemValue(option) === value)
+
+    selectItem(selectedItem)
+  }, [value])
+
   return (
-    <Downshift onSelect={onSelect}>
+    <Downshift
+      itemToString={item => getItemLabel(item)}
+      onStateChange={handleStateChange}
+      onChange={handleChange}
+      inputValue={inputValue}
+      selectedItem={selectedItem}
+    >
       {({
-        clearSelection,
+        getMenuProps,
         getInputProps,
         getItemProps,
-        getMenuProps,
-        highlightedIndex,
-        inputValue,
         isOpen,
+        selectedItem,
+        highlightedIndex,
         openMenu,
-        selectItem
+        selectItem: downshiftSelectItem,
+        setHighlightedIndex,
+        reset
       }) => {
-        const trimmedValue = (inputValue || '').trim()
-        const filteredOptions = options!.filter(({ label }) =>
-          isSubstring(trimmedValue, label)
-        )
-
-        const isTyping = Boolean(trimmedValue)
-        const hasOptions = Boolean(filteredOptions.length)
-
+        const isTyping = Boolean(inputValue)
+        const hasOptions = Boolean(options.length)
         const canOpen =
           isOpen &&
-          isMatchingMinLength(trimmedValue, minLength) &&
+          isMatchingMinLength(inputValue || EMPTY_VALUE, minLength) &&
           !loading &&
           (hasOptions || isTyping)
 
         const optionsMenu = (
-          <ScrollMenu selectedIndex={highlightedIndex}>
+          <ScrollMenu>
             {!hasOptions ? (
               <Menu.Item disabled>{noOptionsText}</Menu.Item>
             ) : (
-              filteredOptions.map((option, index) => (
+              options.map((option, index) => (
                 <Menu.Item
-                  key={option.label}
+                  key={getItemValue(option)}
                   selected={highlightedIndex === index}
-                  // eslint-disable-next-line react/jsx-props-no-spreading
-                  {...getItemProps({ item: option.label })}
+                  disabled={isSelected(option, selectedItem)}
+                  /* eslint-disable-next-line react/jsx-props-no-spreading */
+                  {...getItemProps({ item: option })}
                 >
-                  {option.label}
+                  {getItemLabel(option)}
                 </Menu.Item>
               ))
             )}
           </ScrollMenu>
         )
 
+        const selectItem = (item: Maybe<Item>) => {
+          downshiftSelectItem(item)
+          setPlaceholder(initialPlaceholder)
+          setFilter(EMPTY_VALUE)
+        }
+
         const {
-          onBlur: handleBlur,
-          onFocus: handleFocus,
-          onKeyDown: handleKeyDown,
-          onChange: handleChange,
-          value
+          onBlur,
+          onKeyDown,
+          onFocus,
+          onChange = () => {}
         } = getInputProps({
-          onFocus: openMenu,
+          onFocus: () => {
+            openMenu()
+            if (!selectedItem) return
+
+            const currentIndex = options ? options.indexOf(selectedItem) : 0
+
+            setPlaceholder(getItemLabel(selectedItem))
+            setInputValue(EMPTY_VALUE)
+            setHighlightedIndex(currentIndex)
+          },
           onBlur: () => {
-            if (!trimmedValue.length || !filteredOptions.length) {
+            if (options.length === 1) {
+              const firstOption = options[0]
+
+              selectItem(firstOption)
+            }
+
+            if (!options.length && !allowAny) {
+              reset()
+              setInputValue(EMPTY_VALUE)
+              setPlaceholder(initialPlaceholder)
+              setFilter(EMPTY_VALUE)
               return
             }
 
-            const firstOption = filteredOptions[0]
+            if (!selectedItem) return
 
-            if (firstOption) {
-              selectItem(firstOption.label)
+            if (allowAny && getItemLabel(selectedItem) !== inputValue) {
+              if (inputValue !== EMPTY_VALUE) {
+                setSelectedItem(null)
+                setPlaceholder(initialPlaceholder)
+              }
+            }
+
+            setInputValue(getItemLabel(selectedItem))
+          },
+          onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => {
+            if (event.key === 'Backspace' && inputValue === EMPTY_VALUE) {
+              selectItem(null)
+            }
+
+            if (rest.onKeyDown) {
+              rest.onKeyDown(event)
             }
           },
           onChange: (event: ChangeEvent<HTMLInputElement>) => {
-            if (event.target.value === '') {
-              clearSelection()
-            }
+            const { value } = event.target
 
-            if (!isMatchingMinLength(event.target.value, minLength)) {
+            setFilter((value || EMPTY_VALUE).trim())
+            setInputValue(value)
+
+            if (!isMatchingMinLength(value, minLength)) {
               return
             }
 
@@ -162,22 +278,21 @@ export const Autocomplete: FunctionComponent<Props> = ({
             style={style}
           >
             <TextField
-              // eslint-disable-next-line react/jsx-props-no-spreading
+              /* eslint-disable-next-line react/jsx-props-no-spreading */
               {...rest}
               icon={loading ? <Loader size='small' /> : null}
               iconPosition='end'
-              onChange={event => {
-                handleChange(event as FormEvent<HTMLInputElement>)
-              }}
-              // @ts-ignore
-              value={value}
-              width={width}
-              onBlur={handleBlur}
-              onFocus={handleFocus}
-              onKeyDown={handleKeyDown}
+              value={inputValue || EMPTY_VALUE}
+              onBlur={onBlur}
+              onKeyDown={onKeyDown}
+              onFocus={onFocus}
+              onClick={onFocus}
               placeholder={placeholder}
+              width={width}
+              onChange={event => {
+                onChange(event as FormEvent<HTMLInputElement>)
+              }}
             />
-
             {/* eslint-disable-next-line react/jsx-props-no-spreading */}
             <div {...getMenuProps()}>{canOpen ? optionsMenu : null}</div>
           </div>
@@ -188,6 +303,7 @@ export const Autocomplete: FunctionComponent<Props> = ({
 }
 
 Autocomplete.defaultProps = {
+  allowAny: true,
   debounceTime: DEBOUNCE_TIME,
   loading: false,
   noOptionsText: 'No options',

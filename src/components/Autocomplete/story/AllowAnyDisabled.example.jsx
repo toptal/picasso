@@ -9,15 +9,16 @@ const options = [
   { text: 'Ukraine', value: 'UA' }
 ]
 
-const AutocompleteDefaultExample = () => (
+const AutocompleteAllowAnyDisabledExample = () => (
   <div>
     <Autocomplete
       placeholder='Start typing country...'
       options={options}
       onSelect={item => console.log('onSelect value:', item)}
       onChange={e => console.log('onChange value:', e.target.value)}
+      allowAny={false}
     />
   </div>
 )
 
-export default AutocompleteDefaultExample
+export default AutocompleteAllowAnyDisabledExample
