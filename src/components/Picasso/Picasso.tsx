@@ -8,7 +8,8 @@ import React, {
   ReactNode,
   createRef,
   RefObject,
-  useContext
+  useContext,
+  useState
 } from 'react'
 
 import CssBaseline from '../CssBaseline'
@@ -55,12 +56,30 @@ const picasso = {
 
 const PicassoProvider = new Provider(createMuiTheme(picasso))
 
-const RootContext = React.createContext<RefObject<HTMLDivElement> | null>(null)
+interface RootContextProps {
+  rootRef: RefObject<HTMLDivElement> | null
+  hasPageHeader: boolean
+  setHasPageHeader: (value: boolean) => void
+}
+const RootContext = React.createContext<RootContextProps>({
+  rootRef: null,
+  hasPageHeader: false,
+  setHasPageHeader: () => {}
+})
 
 export const usePicassoRoot = () => {
   const context = useContext(RootContext)
 
-  return context ? context.current : null
+  return context && context.rootRef ? context.rootRef.current : null
+}
+
+export const useHasPageHeader = () => {
+  const context = useContext(RootContext)
+
+  return {
+    hasPageHeader: context.hasPageHeader,
+    setHasPageHeader: context.setHasPageHeader
+  }
 }
 
 interface PicassoGlobalStylesProviderProps extends JssProps {
@@ -73,10 +92,21 @@ const PicassoGlobalStylesProvider = withStyles(globalStyles, {
   const { classes, children } = props
 
   const rootRef = createRef<HTMLDivElement>()
+  const [contextValue, setContextValue] = useState({
+    rootRef,
+    hasPageHeader: false,
+    setHasPageHeader: (value: boolean) =>
+      setContextValue({
+        ...contextValue,
+        hasPageHeader: value
+      })
+  })
 
   return (
     <div ref={rootRef} className={classes.root}>
-      <RootContext.Provider value={rootRef}>{children}</RootContext.Provider>
+      <RootContext.Provider value={contextValue}>
+        {children}
+      </RootContext.Provider>
     </div>
   )
 })
@@ -87,12 +117,9 @@ interface PicassoProps {
   loadFonts?: boolean
   /** Whether to apply Picasso CSS reset */
   reset?: boolean
-  /** Whether to apply additional margin for Notifications stream if Page.Header is used */
-  hasNotificationsHeaderMargin?: boolean
 }
 
 const Picasso: FunctionComponent<PicassoProps> = ({
-  hasNotificationsHeaderMargin,
   loadFonts,
   reset,
   children
@@ -101,15 +128,12 @@ const Picasso: FunctionComponent<PicassoProps> = ({
     {loadFonts && <FontsLoader />}
     {reset && <CssBaseline />}
     <PicassoGlobalStylesProvider>
-      <NotificationsProvider hasHeaderMargin={hasNotificationsHeaderMargin}>
-        {children}
-      </NotificationsProvider>
+      <NotificationsProvider>{children}</NotificationsProvider>
     </PicassoGlobalStylesProvider>
   </MuiThemeProvider>
 )
 
 Picasso.defaultProps = {
-  hasNotificationsHeaderMargin: true,
   loadFonts: true,
   reset: true
 }

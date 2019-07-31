@@ -56,7 +56,7 @@ exports[`useNotifications error notification render 1`] = `
     <div
       class="MuiSnackbar-root SnackbarItem-root MuiSnackbar-anchorOriginTopRight SnackbarItem-anchorOriginTopRight"
       height="0"
-      style="margin-top: 4.5em; top: 20px; transition: all 200ms; transition-delay: 150ms;"
+      style="top: 20px; transition: all 200ms; transition-delay: 150ms;"
     >
       <div
         class="MuiTypography-root MuiTypography-body2 MuiPaper-root MuiPaper-elevation6 MuiSnackbarContent-root Notification-notificationRed Notification-notificationShadow Notification-notification Component-notification"
@@ -219,7 +219,7 @@ exports[`useNotifications info notification render 1`] = `
     <div
       class="MuiSnackbar-root SnackbarItem-root MuiSnackbar-anchorOriginTopRight SnackbarItem-anchorOriginTopRight"
       height="0"
-      style="margin-top: 4.5em; top: 20px; transition: all 200ms; transition-delay: 150ms;"
+      style="top: 20px; transition: all 200ms; transition-delay: 150ms;"
     >
       <div
         class="MuiTypography-root MuiTypography-body2 MuiPaper-root MuiPaper-elevation6 MuiSnackbarContent-root Notification-notificationWhite Notification-notificationShadow Notification-notification Component-notification"
@@ -382,7 +382,7 @@ exports[`useNotifications success notification render 1`] = `
     <div
       class="MuiSnackbar-root SnackbarItem-root MuiSnackbar-anchorOriginTopRight SnackbarItem-anchorOriginTopRight"
       height="0"
-      style="margin-top: 4.5em; top: 20px; transition: all 200ms; transition-delay: 150ms;"
+      style="top: 20px; transition: all 200ms; transition-delay: 150ms;"
     >
       <div
         class="MuiTypography-root MuiTypography-body2 MuiPaper-root MuiPaper-elevation6 MuiSnackbarContent-root Notification-notificationGreen Notification-notificationShadow Notification-notification Component-notification"
@@ -546,7 +546,7 @@ exports[`useNotifications warning notification render 1`] = `
     <div
       class="MuiSnackbar-root SnackbarItem-root MuiSnackbar-anchorOriginTopRight SnackbarItem-anchorOriginTopRight"
       height="0"
-      style="margin-top: 4.5em; top: 20px; transition: all 200ms; transition-delay: 150ms;"
+      style="top: 20px; transition: all 200ms; transition-delay: 150ms;"
     >
       <div
         class="MuiTypography-root MuiTypography-body2 MuiPaper-root MuiPaper-elevation6 MuiSnackbarContent-root Notification-notificationYellow Notification-notificationShadow Notification-notification Component-notification"

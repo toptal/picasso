@@ -1,5 +1,6 @@
 import React, {
   useContext,
+  useEffect,
   FunctionComponent,
   ReactNode,
   ReactElement,
@@ -11,7 +12,7 @@ import cx from 'classnames'
 import { Logo, Container, Typography } from '../'
 import { PageContext } from '../Page'
 import { PageContextProps } from '../Page/types'
-import { StandardProps } from '../Picasso'
+import { StandardProps, useHasPageHeader } from '../Picasso'
 import styles from './styles'
 
 type VariantType = 'dark' | 'light'
@@ -37,6 +38,12 @@ export const PageHeader: FunctionComponent<Props> = ({
   variant,
   ...rest
 }) => {
+  const { setHasPageHeader } = useHasPageHeader()
+
+  useEffect(() => {
+    setHasPageHeader(true)
+  }, [])
+
   const { fullWidth } = useContext<PageContextProps>(PageContext)
 
   const contentClassnames = cx(
