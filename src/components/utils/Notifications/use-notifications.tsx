@@ -1,4 +1,4 @@
-import React, { ReactNode, ReactElement, ComponentType } from 'react'
+import React, { ReactNode, ReactElement } from 'react'
 import cx from 'classnames'
 import { useSnackbar, OptionsObject } from 'notistack'
 import { withStyles } from '@material-ui/core/styles'
