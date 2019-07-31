@@ -1,9 +1,5 @@
 import React, { ReactNode } from 'react'
-import {
-  useSnackbar,
-  OptionsObject,
-  VariantType as NotificationType
-} from 'notistack'
+import { useSnackbar, OptionsObject } from 'notistack'
 import { withStyles } from '@material-ui/core/styles'
 import { SnackbarOrigin } from '@material-ui/core/Snackbar'
 
@@ -45,13 +41,12 @@ const StyledNotification = withStyles(styles)(
 export const useNotifications = () => {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
 
-  const getNotification = (type: NotificationType, variant?: VariantType) => (
+  const getNotification = (variant?: VariantType) => (
     content: ReactNode,
     options: Options = {}
   ) => {
     const { dismissible = true, ...restOptions } = options
     const notificationId = enqueueSnackbar('', {
-      variant: type,
       anchorOrigin: defaultPosition,
       // eslint-disable-next-line react/display-name
       children: (key: string) => (
@@ -62,7 +57,11 @@ export const useNotifications = () => {
           onClose={
             dismissible
               ? () => {
-                  notificationId && closeSnackbar(notificationId)
+                  if (!notificationId) {
+                    return
+                  }
+
+                  closeSnackbar(notificationId)
                 }
               : undefined
           }
@@ -75,10 +74,10 @@ export const useNotifications = () => {
   }
 
   return {
-    showError: getNotification('error', 'red'),
-    showInfo: getNotification('info'),
-    showWarning: getNotification('warning', 'yellow'),
-    showSuccess: getNotification('success', 'green'),
+    showError: getNotification('red'),
+    showInfo: getNotification(),
+    showWarning: getNotification('yellow'),
+    showSuccess: getNotification('green'),
     closeNotification: closeSnackbar
   }
 }
