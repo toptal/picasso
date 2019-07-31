@@ -46,6 +46,13 @@ export const useNotifications = () => {
     options: Options = {}
   ) => {
     const { dismissible = true, ...restOptions } = options
+    const closeNotification = () => {
+      if (!notificationId) {
+        return
+      }
+
+      closeSnackbar(notificationId)
+    }
     const notificationId = enqueueSnackbar('', {
       anchorOrigin: defaultPosition,
       // eslint-disable-next-line react/display-name
@@ -54,17 +61,7 @@ export const useNotifications = () => {
           content={content}
           key={key}
           variant={variant}
-          onClose={
-            dismissible
-              ? () => {
-                  if (!notificationId) {
-                    return
-                  }
-
-                  closeSnackbar(notificationId)
-                }
-              : undefined
-          }
+          onClose={dismissible ? closeNotification : undefined}
         />
       ),
       ...restOptions
