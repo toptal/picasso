@@ -6,7 +6,7 @@ import { useNotifications } from './use-notifications'
 import Button from '../../Button'
 
 const TestComponent = () => {
-  const { showError, showInfo, showSuccess, showWarning } = useNotifications()
+  const { showError, showInfo, showSuccess } = useNotifications()
 
   return (
     <Fragment>
@@ -14,9 +14,6 @@ const TestComponent = () => {
       <Button onClick={() => showInfo('Info message')}>Show Info</Button>
       <Button onClick={() => showSuccess('Success message')}>
         Show Success
-      </Button>
-      <Button onClick={() => showWarning('Warning message')}>
-        Show Warning
       </Button>
     </Fragment>
   )
@@ -56,15 +53,6 @@ describe('useNotifications', () => {
     const showSuccessButton = getByText('Show Success')
 
     fireEvent.click(showSuccessButton)
-
-    expect(container).toMatchSnapshot()
-  })
-
-  test('warning notification render', () => {
-    const { getByText, container } = renderNotification()
-    const showWarningButton = getByText('Show Warning')
-
-    fireEvent.click(showWarningButton)
 
     expect(container).toMatchSnapshot()
   })

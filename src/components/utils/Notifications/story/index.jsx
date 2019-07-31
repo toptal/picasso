@@ -1,77 +1,109 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const chapter = PicassoBook.connectToPage(page =>
-  page
-    .createChapter(
-      'Notifications stream',
-      `In most cases, Notifications shouldn't be used in isolation.
+const chapter = PicassoBook.connectToPage(
+  page =>
+    page
+      .createChapter(
+        'Notifications stream',
+        `In most cases, Notifications shouldn't be used in isolation.
 The 'useNotifications' hook is providing the set of tools for
 operating easily the most common notifications types, like 'info', 'error',
 'warning', 'success' in a single stream of messages.`
-    )
-    .addTextSection(`### useNotifications`)
-    .addExample('utils/Notifications/story/Default.example.jsx', 'Default') // picasso-skip-visuals
-    .addTextSection(`### How to use`)
-    .addTextSection(
-      `
+      )
+      .addTextSection(`### How to use`)
+      .addTextSection(
+        `
 'useNotifications' hook is providing the list of methods to show the notifications
 of the corresponding type:
 
 \`\`\`javascript
-const { showError, showInformation, showSuccess, showWarning } = useNotifications()
+const { showInfo, showError, showSuccess } = useNotifications()
 \`\`\`
 
 Each of them has this list of props:
     `
-    )
-    .addDocs([
-      {
-        name: 'text',
-        type: 'string',
-        description: 'The text of notification message'
-      },
-      {
-        name: 'options',
-        type: {
-          name: 'OptionsObject',
-          description: `
+      )
+      .addDocs([
+        {
+          name: 'content',
+          type: 'string | ReactNode',
+          description: 'The content of notification message'
+        },
+        {
+          name: 'icon',
+          type: 'ReactElement',
+          description: 'The icon for the general notification'
+        },
+        {
+          name: 'options',
+          type: {
+            name: 'OptionsObject',
+            description: `
 {\n
   preventDuplicate?: boolean\n
   onClose?: (event: React.SyntheticEvent<any>, reason: string) => void\n
   autoHideDuration?: number\n
   persist?: boolean\n
-  dismissible?: boolean\n
 }
           `
-        },
-        description: 'Options of the single notification.'
-      }
-    ])
-    .addExample('utils/Notifications/story/Options.example.jsx', 'Options') // picasso-skip-visuals
-    .addExample('utils/Notifications/story/Persistent.example.jsx', {
-      title: 'Persistent',
-      description:
-        'If you need to wait until the user will close the notification message manually.'
-    }) // picasso-skip-visuals
-    .addExample('utils/Notifications/story/CustomActions.example.jsx', {
-      title: 'Custom Actions',
-      description:
-        'If you need to have custom actions inside the notification which can close the notification.'
-    }) // picasso-skip-visuals
-    .addTextSection(
-      `
-Also, the Notifiications stream by default has an additional top margin to step out
-from the Page.Header. If you don't use the header or you don't need to have that additional
-margin you can remove it by setting the \`isNotificationsHeaderMargin\` prop for the root
-\`Picasso\` component:
+          },
+          description: 'Options of the single notification.'
+        }
+      ])
+      .addExample('utils/Notifications/story/Default.example.jsx', 'Default') // picasso-skip-visuals
+      .addExample('utils/Notifications/story/Variants.example.jsx', 'Variants') // picasso-skip-visuals
+      .addExample(
+        'utils/Notifications/story/GeneralNotifications.example.jsx',
+        'General Notifications'
+      ) // picasso-skip-visuals
+      .addExample('utils/Notifications/story/Options.example.jsx', 'Options') // picasso-skip-visuals
+      .addTextSection(
+        `
+Additionally for custom notifications 'useNotifications' hook is providing the special methods:
 
 \`\`\`javascript
-<Picasso isNotificationsHeaderMargin={false}>
-  <App />
-</Picasso>
+const { showCustomNotification, closeNotification } = useNotifications()
 \`\`\`
-`
-    )
+
+With the list of props:
+      `
+      )
+      .addDocs([
+        {
+          name: 'Content',
+          type: 'ReactElement',
+          description: 'The custom notification component'
+        },
+        {
+          name: 'position',
+          type: {
+            name: 'SnackbarOrigin',
+            description: `
+{\n
+  horizontal: 'left' | 'center' | 'right'\n
+  vertical: 'top' | 'bottom'\n
+}
+            `
+          },
+          description: 'Position of the single notification.'
+        },
+        {
+          name: 'options',
+          type: {
+            name: 'OptionsObject',
+            description: `
+{\n
+  preventDuplicate?: boolean\n
+  onClose?: (event: React.SyntheticEvent<any>, reason: string) => void\n
+  autoHideDuration?: number\n
+  persist?: boolean\n
+}
+          `
+          },
+          description: 'Options of the single notification.'
+        }
+      ])
+      .addExample('utils/Notifications/story/Custom.example.jsx', 'Custom') // picasso-skip-visuals
 )
 
 export default {

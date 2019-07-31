@@ -1,4 +1,5 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, ReactElement, ComponentType } from 'react'
+import cx from 'classnames'
 import { useSnackbar, OptionsObject } from 'notistack'
 import { withStyles } from '@material-ui/core/styles'
 import { SnackbarOrigin } from '@material-ui/core/Snackbar'
@@ -12,26 +13,27 @@ const defaultPosition: SnackbarOrigin = {
   horizontal: 'right'
 }
 
-type Options = OptionsObject & {
-  dismissible?: boolean
-}
-
 interface Props {
   key: string
   content: ReactNode
+  icon?: ReactElement
   classes: Classes
   onClose?: () => void
   variant?: VariantType
 }
 
 const StyledNotification = withStyles(styles)(
-  ({ content, key, onClose, variant, classes }: Props) => (
+  ({ content, icon, key, onClose, variant = 'white', classes }: Props) => (
     <Notification
       variant={variant}
       elevated
+      icon={icon}
       key={key}
       onClose={onClose}
-      className={classes.notification}
+      className={cx({
+        [classes.generalNotification]: variant === 'white',
+        [classes.formNotification]: variant !== 'white'
+      })}
     >
       {content}
     </Notification>
@@ -43,9 +45,9 @@ export const useNotifications = () => {
 
   const getNotification = (variant?: VariantType) => (
     content: ReactNode,
-    options: Options = {}
+    icon?: ReactElement,
+    options?: OptionsObject
   ) => {
-    const { dismissible = true, ...restOptions } = options
     const closeNotification = () => {
       if (!notificationId) {
         return
@@ -59,22 +61,35 @@ export const useNotifications = () => {
       children: (key: string) => (
         <StyledNotification
           content={content}
+          icon={icon}
           key={key}
           variant={variant}
-          onClose={dismissible ? closeNotification : undefined}
+          onClose={closeNotification}
         />
       ),
-      ...restOptions
+      ...options
     })
 
     return notificationId
   }
 
+  const showCustomNotification = (
+    Content: ReactElement,
+    position?: SnackbarOrigin,
+    options?: OptionsObject
+  ) =>
+    enqueueSnackbar('', {
+      anchorOrigin: position || defaultPosition,
+      // eslint-disable-next-line react/display-name
+      children: (key: string) => React.cloneElement(Content, { key }),
+      ...options
+    })
+
   return {
     showError: getNotification('red'),
     showInfo: getNotification(),
-    showWarning: getNotification('yellow'),
     showSuccess: getNotification('green'),
+    showCustomNotification: showCustomNotification,
     closeNotification: closeSnackbar
   }
 }

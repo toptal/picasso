@@ -1,4 +1,5 @@
 export { colors as palette } from '../Picasso/config/palette'
+export { default as shadows } from '../Picasso/config/shadows'
 export {
   breakpointsList as breakpoints,
   screens,
