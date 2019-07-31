@@ -1,3 +1,10 @@
+# [2.22.0](https://github.com/toptal/picasso/compare/v2.21.0...v2.22.0) (2019-07-31)
+
+
+### Features
+
+* **Autocomplete:** update autocomplete to accept Select options ([#562](https://github.com/toptal/picasso/issues/562)) ([493eac0](https://github.com/toptal/picasso/commit/493eac0))
+
 # [2.21.0](https://github.com/toptal/picasso/compare/v2.20.0...v2.21.0) (2019-07-30)
 
 
