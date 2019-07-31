@@ -73,7 +73,7 @@ export const usePicassoRoot = () => {
   return context && context.rootRef ? context.rootRef.current : null
 }
 
-export const useHasPageHeader = () => {
+export const usePageHeader = () => {
   const context = useContext(RootContext)
 
   return {
@@ -95,10 +95,10 @@ const PicassoGlobalStylesProvider = withStyles(globalStyles, {
   const [contextValue, setContextValue] = useState({
     rootRef,
     hasPageHeader: false,
-    setHasPageHeader: (value: boolean) =>
+    setHasPageHeader: (hasPageHeader: boolean) =>
       setContextValue({
         ...contextValue,
-        hasPageHeader: value
+        hasPageHeader
       })
   })
 

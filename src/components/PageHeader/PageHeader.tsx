@@ -12,7 +12,7 @@ import cx from 'classnames'
 import { Logo, Container, Typography } from '../'
 import { PageContext } from '../Page'
 import { PageContextProps } from '../Page/types'
-import { StandardProps, useHasPageHeader } from '../Picasso'
+import { StandardProps, usePageHeader } from '../Picasso'
 import styles from './styles'
 
 type VariantType = 'dark' | 'light'
@@ -38,10 +38,14 @@ export const PageHeader: FunctionComponent<Props> = ({
   variant,
   ...rest
 }) => {
-  const { setHasPageHeader } = useHasPageHeader()
+  const { setHasPageHeader } = usePageHeader()
 
   useEffect(() => {
     setHasPageHeader(true)
+
+    return function cleanup() {
+      setHasPageHeader(false)
+    }
   }, [])
 
   const { fullWidth } = useContext<PageContextProps>(PageContext)

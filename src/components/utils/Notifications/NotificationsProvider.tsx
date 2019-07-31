@@ -1,13 +1,13 @@
 import React, { FunctionComponent } from 'react'
 import { SnackbarProvider } from 'notistack'
 
-import { useHasPageHeader } from '../../Picasso'
+import { usePageHeader } from '../../Picasso'
 import { headerHeight } from '../../PageHeader/styles'
 
 const MAX_NOTIFICATION_MESSAGES = 5
 
 const NotificationsProvider: FunctionComponent = ({ children }) => {
-  const { hasPageHeader } = useHasPageHeader()
+  const { hasPageHeader } = usePageHeader()
 
   return (
     <SnackbarProvider
