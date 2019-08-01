@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso",
-  "version": "2.23.0",
+  "version": "2.23.1",
   "description": "",
   "main": "./index.js",
   "module": "./index.js",
@@ -93,6 +93,8 @@
     "ejs": "^2.6.1",
     "esprima": "^4.0.1",
     "esprima-walk": "^0.1.0",
+    "fork-ts-checker-notifier-webpack-plugin": "^1.0.2",
+    "fork-ts-checker-webpack-plugin": "^1.4.3",
     "fs-extra": "^8.0.1",
     "glob": "^7.1.4",
     "hard-source-webpack-plugin": "^0.13.1",

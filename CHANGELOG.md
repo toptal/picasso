@@ -1,3 +1,10 @@
+## [2.23.1](https://github.com/toptal/picasso/compare/v2.23.0...v2.23.1) (2019-08-01)
+
+
+### Performance Improvements
+
+* use transpileOnly for ts-loader ([#567](https://github.com/toptal/picasso/issues/567)) ([842245e](https://github.com/toptal/picasso/commit/842245e))
+
 # [2.23.0](https://github.com/toptal/picasso/compare/v2.22.0...v2.23.0) (2019-08-01)
 
 
