@@ -6,7 +6,7 @@ import { StandardProps, SizeType } from '../Picasso'
 import Image from '../Image'
 import Logo from '../Logo'
 import Typography from '../Typography'
-import getNameInitials from '../utils/getNameInitials'
+import getNameInitials from '../utils/get-name-initials'
 import styles from './styles'
 
 type VariantType = 'square' | 'portrait' | 'landscape'

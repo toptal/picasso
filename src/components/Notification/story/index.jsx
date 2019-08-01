@@ -1,5 +1,6 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
+import notificationsStreamStory from '../../utils/Notifications/story'
 import { Notification } from '../Notification'
 
 const page = PicassoBook.createPage(
@@ -20,3 +21,5 @@ page
   .addExample('Notification/story/BoxShadow.example.jsx', 'Elevated')
   .addExample('Notification/story/FullWidth.example.jsx', 'Full width')
   .addExample('Notification/story/Icon.example.jsx', 'Custom Icon')
+
+page.connect(notificationsStreamStory.chapter)

@@ -11,8 +11,15 @@ page.createTabChapter('Props').addComponentDocs({
       name: 'accounts',
       type: {
         name: '[]',
-        description:
-          '{ id: string, href?: string, name: string, position: string, avatar?: string }'
+        description: `
+{\n
+  id: string\n
+  href?: string\n
+  name: string\n
+  position: string\n
+  avatar?: string\n
+}
+        `
       }
     }
   }

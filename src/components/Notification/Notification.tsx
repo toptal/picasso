@@ -25,7 +25,7 @@ import Button from '../Button'
 import styles from './styles'
 import Typography from '../Typography'
 
-type VariantType = 'red' | 'green' | 'white' | 'yellow'
+export type VariantType = 'red' | 'green' | 'white' | 'yellow'
 
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Main content of the Notification */

@@ -8,7 +8,8 @@ import React, {
   ReactNode,
   createRef,
   RefObject,
-  useContext
+  useContext,
+  useState
 } from 'react'
 
 import CssBaseline from '../CssBaseline'
@@ -24,6 +25,7 @@ import {
 } from './config'
 import FontsLoader from './FontsLoader'
 import Provider from './PicassoProvider'
+import NotificationsProvider from '../utils/Notifications/NotificationsProvider'
 import globalStyles from './styles'
 import { JssProps } from './types'
 
@@ -54,12 +56,30 @@ const picasso = {
 
 const PicassoProvider = new Provider(createMuiTheme(picasso))
 
-const RootContext = React.createContext<RefObject<HTMLDivElement> | null>(null)
+interface RootContextProps {
+  rootRef: RefObject<HTMLDivElement> | null
+  hasPageHeader: boolean
+  setHasPageHeader: (value: boolean) => void
+}
+const RootContext = React.createContext<RootContextProps>({
+  rootRef: null,
+  hasPageHeader: false,
+  setHasPageHeader: () => {}
+})
 
 export const usePicassoRoot = () => {
   const context = useContext(RootContext)
 
-  return context ? context.current : null
+  return context && context.rootRef ? context.rootRef.current : null
+}
+
+export const usePageHeader = () => {
+  const context = useContext(RootContext)
+
+  return {
+    hasPageHeader: context.hasPageHeader,
+    setHasPageHeader: context.setHasPageHeader
+  }
 }
 
 interface PicassoGlobalStylesProviderProps extends JssProps {
@@ -72,10 +92,21 @@ const PicassoGlobalStylesProvider = withStyles(globalStyles, {
   const { classes, children } = props
 
   const rootRef = createRef<HTMLDivElement>()
+  const [contextValue, setContextValue] = useState({
+    rootRef,
+    hasPageHeader: false,
+    setHasPageHeader: (hasPageHeader: boolean) =>
+      setContextValue({
+        ...contextValue,
+        hasPageHeader
+      })
+  })
 
   return (
     <div ref={rootRef} className={classes.root}>
-      <RootContext.Provider value={rootRef}>{children}</RootContext.Provider>
+      <RootContext.Provider value={contextValue}>
+        {children}
+      </RootContext.Provider>
     </div>
   )
 })
@@ -96,7 +127,9 @@ const Picasso: FunctionComponent<PicassoProps> = ({
   <MuiThemeProvider theme={PicassoProvider.theme}>
     {loadFonts && <FontsLoader />}
     {reset && <CssBaseline />}
-    <PicassoGlobalStylesProvider>{children}</PicassoGlobalStylesProvider>
+    <PicassoGlobalStylesProvider>
+      <NotificationsProvider>{children}</NotificationsProvider>
+    </PicassoGlobalStylesProvider>
   </MuiThemeProvider>
 )
 

@@ -15,7 +15,13 @@ page.createTabChapter('Props').addComponentDocs({
     options: {
       type: {
         name: '[]',
-        description: '{ text?: string, value?: string }'
+        description:
+        `
+{\n
+  text?: string\n
+  value?: string\n
+}
+        `
       }
     }
   }
