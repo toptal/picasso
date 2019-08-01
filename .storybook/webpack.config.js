@@ -1,18 +1,23 @@
 const webpack = require('webpack')
 const path = require('path')
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+const ForkTsCheckerNotifierWebpackPlugin = require('fork-ts-checker-notifier-webpack-plugin')
 
 // example: /components/Button/Button.tsx
 const COMPONENT_DECLARATION_FILE_REGEXP = /components\/(.*)\/\1.tsx$/
 const LAB_COMPONENT_DECLARATION_FILE_REGEXP = /components\/lab\/(.*)\/\1.tsx$/
 
 const { env } = process
+const isDevelopment = env.NODE_ENV !== 'production' && env.NODE_ENV !== 'test'
 
 const tsConfigFile = path.join(process.cwd(), './.storybook/tsconfig.json')
 const tsLoader = {
   loader: require.resolve('ts-loader'),
   options: {
-    configFile: tsConfigFile
+    configFile: tsConfigFile,
+    transpileOnly: isDevelopment,
+    experimentalWatchApi: isDevelopment
   }
 }
 
@@ -62,6 +67,18 @@ module.exports = ({ config }) => {
       TEST_ENV: JSON.stringify(env.TEST_ENV)
     })
   )
+
+  if (isDevelopment) {
+    config.plugins.push(
+      new ForkTsCheckerWebpackPlugin(),
+      new ForkTsCheckerNotifierWebpackPlugin({
+        title: 'Picasso',
+        excludeWarnings: true,
+        skipSuccessful: true,
+        skipFirstNotification: true
+      })
+    )
+  }
 
   if (env.CACHE) {
     config.plugins.push(new HardSourceWebpackPlugin())
