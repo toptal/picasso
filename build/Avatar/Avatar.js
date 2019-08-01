@@ -27,7 +27,7 @@ const styles_1 = require("@material-ui/core/styles");
 const Image_1 = __importDefault(require("../Image"));
 const Logo_1 = __importDefault(require("../Logo"));
 const Typography_1 = __importDefault(require("../Typography"));
-const getNameInitials_1 = __importDefault(require("../utils/getNameInitials"));
+const get_name_initials_1 = __importDefault(require("../utils/get-name-initials"));
 const styles_2 = __importDefault(require("./styles"));
 class Avatar extends react_1.PureComponent {
     renderLogo() {
@@ -43,7 +43,7 @@ class Avatar extends react_1.PureComponent {
         if (src || !name) {
             return null;
         }
-        return (react_1.default.createElement(Typography_1.default, { className: classes.text, invert: true }, getNameInitials_1.default(name)));
+        return (react_1.default.createElement(Typography_1.default, { className: classes.text, invert: true }, get_name_initials_1.default(name)));
     }
     render() {
         const _a = this.props, { alt, src, classes, className, name, size, style, variant } = _a, rest = __rest(_a, ["alt", "src", "classes", "className", "name", "size", "style", "variant"]);

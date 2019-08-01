@@ -11,4 +11,4 @@ exports.default = (fullName) => {
     })
         .join('');
 };
-//# sourceMappingURL=getNameInitials.js.map
+//# sourceMappingURL=get-name-initials.js.map

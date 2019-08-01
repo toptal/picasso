@@ -16,6 +16,7 @@ const CssBaseline_1 = __importDefault(require("../CssBaseline"));
 const config_1 = require("./config");
 const FontsLoader_1 = __importDefault(require("./FontsLoader"));
 const PicassoProvider_1 = __importDefault(require("./PicassoProvider"));
+const NotificationsProvider_1 = __importDefault(require("../utils/Notifications/NotificationsProvider"));
 const styles_2 = __importDefault(require("./styles"));
 const picasso = {
     palette: config_1.palette,
@@ -43,23 +44,40 @@ const picasso = {
 };
 const PicassoProvider = new PicassoProvider_1.default(styles_1.createMuiTheme(picasso));
 exports.PicassoProvider = PicassoProvider;
-const RootContext = react_1.default.createContext(null);
+const RootContext = react_1.default.createContext({
+    rootRef: null,
+    hasPageHeader: false,
+    setHasPageHeader: () => { }
+});
 exports.usePicassoRoot = () => {
     const context = react_1.useContext(RootContext);
-    return context ? context.current : null;
+    return context && context.rootRef ? context.rootRef.current : null;
+};
+exports.usePageHeader = () => {
+    const context = react_1.useContext(RootContext);
+    return {
+        hasPageHeader: context.hasPageHeader,
+        setHasPageHeader: context.setHasPageHeader
+    };
 };
 const PicassoGlobalStylesProvider = styles_1.withStyles(styles_2.default, {
     name: 'Picasso'
 })((props) => {
     const { classes, children } = props;
     const rootRef = react_1.createRef();
+    const [contextValue, setContextValue] = react_1.useState({
+        rootRef,
+        hasPageHeader: false,
+        setHasPageHeader: (hasPageHeader) => setContextValue(Object.assign({}, contextValue, { hasPageHeader }))
+    });
     return (react_1.default.createElement("div", { ref: rootRef, className: classes.root },
-        react_1.default.createElement(RootContext.Provider, { value: rootRef }, children)));
+        react_1.default.createElement(RootContext.Provider, { value: contextValue }, children)));
 });
 const Picasso = ({ loadFonts, reset, children }) => (react_1.default.createElement(styles_1.MuiThemeProvider, { theme: PicassoProvider.theme },
     loadFonts && react_1.default.createElement(FontsLoader_1.default, null),
     reset && react_1.default.createElement(CssBaseline_1.default, null),
-    react_1.default.createElement(PicassoGlobalStylesProvider, null, children)));
+    react_1.default.createElement(PicassoGlobalStylesProvider, null,
+        react_1.default.createElement(NotificationsProvider_1.default, null, children))));
 Picasso.defaultProps = {
     loadFonts: true,
     reset: true

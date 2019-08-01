@@ -1,3 +1,10 @@
+# [2.23.0](https://github.com/toptal/picasso/compare/v2.22.0...v2.23.0) (2019-08-01)
+
+
+### Features
+
+* **Notification:** [FX-349] Add notifications stream ([#564](https://github.com/toptal/picasso/issues/564)) ([49e3b79](https://github.com/toptal/picasso/commit/49e3b79))
+
 # [2.22.0](https://github.com/toptal/picasso/compare/v2.21.0...v2.22.0) (2019-07-31)
 
 

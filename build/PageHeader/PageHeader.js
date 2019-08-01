@@ -26,9 +26,17 @@ const styles_1 = require("@material-ui/core/styles");
 const classnames_1 = __importDefault(require("classnames"));
 const __1 = require("../");
 const Page_1 = require("../Page");
+const Picasso_1 = require("../Picasso");
 const styles_2 = __importDefault(require("./styles"));
 exports.PageHeader = (_a) => {
     var { classes, className, style, title, logoLink, rightContent, variant } = _a, rest = __rest(_a, ["classes", "className", "style", "title", "logoLink", "rightContent", "variant"]);
+    const { setHasPageHeader } = Picasso_1.usePageHeader();
+    react_1.useEffect(() => {
+        setHasPageHeader(true);
+        return function cleanup() {
+            setHasPageHeader(false);
+        };
+    }, []);
     const { fullWidth } = react_1.useContext(Page_1.PageContext);
     const contentClassnames = classnames_1.default({
         [classes.fullWidth]: fullWidth

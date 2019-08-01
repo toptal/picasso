@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso",
-  "version": "2.22.0",
+  "version": "2.23.0",
   "description": "",
   "main": "./index.js",
   "module": "./index.js",
@@ -45,6 +45,7 @@
     "color": "^3.1.1",
     "debounce": "^1.2.0",
     "downshift": "^3.2.10",
+    "notistack": "^0.8.9",
     "react-deprecate": "^0.1.0",
     "react-truncate": "^2.4.0"
   },

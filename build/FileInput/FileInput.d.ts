@@ -23,5 +23,5 @@ export interface Props extends StandardProps {
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 export declare const FileInput: FunctionComponent<Props>;
-declare const _default: React.ComponentType<Pick<React.PropsWithChildren<Props>, "width" | "style" | "progress" | "disabled" | "children" | "error" | "className" | "onChange" | "value" | "accept" | "status"> & import("@material-ui/core/styles").StyledComponentProps<"button" | "input" | "root" | "loader" | "inputValue" | "inputValueDisabled" | "nativeInput" | "adornmentStart">>;
+declare const _default: React.ComponentType<Pick<React.PropsWithChildren<Props>, "width" | "style" | "progress" | "disabled" | "children" | "error" | "value" | "className" | "onChange" | "accept" | "status"> & import("@material-ui/core/styles").StyledComponentProps<"button" | "input" | "root" | "loader" | "inputValue" | "inputValueDisabled" | "nativeInput" | "adornmentStart">>;
 export default _default;

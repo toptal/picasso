@@ -2,6 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var palette_1 = require("../Picasso/config/palette");
 exports.palette = palette_1.colors;
+var shadows_1 = require("../Picasso/config/shadows");
+exports.shadows = shadows_1.default;
 var breakpoints_1 = require("../Picasso/config/breakpoints");
 exports.breakpoints = breakpoints_1.breakpointsList;
 exports.screens = breakpoints_1.screens;
@@ -15,4 +17,6 @@ var is_boolean_1 = require("./is-boolean");
 exports.isBoolean = is_boolean_1.default;
 var is_substring_1 = require("./is-substring");
 exports.isSubstring = is_substring_1.default;
+var Notifications_1 = require("./Notifications");
+exports.useNotifications = Notifications_1.useNotifications;
 //# sourceMappingURL=index.js.map
