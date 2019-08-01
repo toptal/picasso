@@ -12,7 +12,9 @@ const tsConfigFile = path.join(process.cwd(), './.storybook/tsconfig.json')
 const tsLoader = {
   loader: require.resolve('ts-loader'),
   options: {
-    configFile: tsConfigFile
+    configFile: tsConfigFile,
+    transpileOnly: true,
+    experimentalWatchApi: true
   }
 }
 
@@ -60,6 +62,13 @@ module.exports = ({ config }) => {
   config.plugins.push(
     new webpack.DefinePlugin({
       TEST_ENV: JSON.stringify(env.TEST_ENV)
+    }),
+    new ForkTsCheckerWebpackPlugin(),
+    new ForkTsCheckerNotifierWebpackPlugin({
+      title: 'Picasso',
+      excludeWarnings: true,
+      skipSuccessful: true,
+      skipFirstNotification: true
     })
   )
 
