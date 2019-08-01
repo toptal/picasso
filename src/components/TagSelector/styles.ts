@@ -1,7 +1,19 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
-import { PicassoProvider } from '../Picasso'
-
-PicassoProvider.override(({ palette }: Theme) => ({}))
-
-export default ({ palette }: Theme) => createStyles({})
+export default ({ spacing: { input } }: Theme) =>
+  createStyles({
+    tag: {
+      marginRight: input.padding
+    },
+    autocompleteWrapper: {
+      '& > div': {
+        flexWrap: 'wrap',
+        height: 'auto'
+      },
+      '& input': {
+        width: 'auto',
+        display: 'flex',
+        flex: 1
+      }
+    }
+  })

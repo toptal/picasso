@@ -18,7 +18,7 @@ export interface Props extends StandardProps {
   /** Shows the loading icon when options are loading */
   loading?: boolean
   /** Text prefix for new option */
-  newItemPrefix?: string
+  newOptionLabel?: string
   /** List of options with unique labels */
   options?: Item[]
   /** List of pre-selected items values */
@@ -33,9 +33,10 @@ export const TagSelector: FunctionComponent<Props> = ({
   placeholder = '',
   options = [],
   value = [],
-  newItemPrefix = 'Add new option: ',
+  newOptionLabel = 'Add new option: ',
   onChange = () => {},
-  onInputChange = () => {}
+  onInputChange = () => {},
+  classes
 }) => {
   const [selectedItems, setSelectedItems] = React.useState<string[]>(value)
   const [availableOptions, setAvailableOptions] = React.useState<Item[]>(
@@ -116,14 +117,18 @@ export const TagSelector: FunctionComponent<Props> = ({
   if (inputBoxValue.length) {
     filteredOptions.push({
       value: '',
-      label: `${newItemPrefix}${inputBoxValue}`
+      label: `${newOptionLabel}${inputBoxValue}`
     })
   }
 
   const labels = availableOptions
     .filter(x => selectedItems.includes(x.value))
     .map(item => (
-      <Label key={item.value} onDelete={() => handleDelete(item.value)}>
+      <Label
+        className={classes.tag}
+        key={item.value}
+        onDelete={() => handleDelete(item.value)}
+      >
         {item.label}
       </Label>
     ))
@@ -137,6 +142,7 @@ export const TagSelector: FunctionComponent<Props> = ({
       startAdornment={labels}
       onChange={handleInputChange}
       debounceTime={0}
+      className={classes.autocompleteWrapper}
     />
   )
 }
