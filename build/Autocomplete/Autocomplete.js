@@ -78,10 +78,13 @@ exports.Autocomplete = (_a) => {
         setHighlightedIndex(currentIndex);
     };
     react_1.useEffect(() => {
-        const selectedItem = value === null
-            ? null
-            : initialOptions.find(option => getItemValue(option) === value);
-        selectItem(selectedItem);
+        const selectedItem = initialOptions.find(option => getItemValue(option) === value);
+        if (!selectedItem && allowAny && value !== undefined) {
+            setInputValue(String(value));
+        }
+        else {
+            selectItem(selectedItem);
+        }
     }, [value]);
     return (react_1.default.createElement(downshift_1.default, { itemToString: item => getItemLabel(item), onStateChange: handleStateChange, onChange: handleChange, inputValue: inputValue, selectedItem: selectedItem }, ({ getMenuProps, getInputProps, getItemProps, isOpen, selectedItem, highlightedIndex, openMenu, selectItem: downshiftSelectItem, setHighlightedIndex, reset }) => {
         const isTyping = Boolean(inputValue);

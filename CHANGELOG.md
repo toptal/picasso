@@ -1,3 +1,10 @@
+## [2.23.2](https://github.com/toptal/picasso/compare/v2.23.1...v2.23.2) (2019-08-02)
+
+
+### Bug Fixes
+
+* **Autocomplete:** allow to pass any value to Autocomplete ([#568](https://github.com/toptal/picasso/issues/568)) ([c2c04d8](https://github.com/toptal/picasso/commit/c2c04d8))
+
 ## [2.23.1](https://github.com/toptal/picasso/compare/v2.23.0...v2.23.1) (2019-08-01)
 
 
