@@ -140,12 +140,15 @@ export const Autocomplete: FunctionComponent<Props> = ({
   }
 
   useEffect(() => {
-    const selectedItem =
-      value === null
-        ? null
-        : initialOptions!.find(option => getItemValue(option) === value)
+    const selectedItem = initialOptions!.find(
+      option => getItemValue(option) === value
+    )
 
-    selectItem(selectedItem)
+    if (!selectedItem && allowAny && value !== undefined) {
+      setInputValue(String(value))
+    } else {
+      selectItem(selectedItem)
+    }
   }, [value])
 
   return (
