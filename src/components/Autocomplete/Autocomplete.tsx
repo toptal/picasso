@@ -13,8 +13,7 @@ import { capitalize } from '@material-ui/core/utils/helpers'
 import cx from 'classnames'
 import Downshift, {
   StateChangeOptions,
-  ControllerStateAndHelpers,
-  Actions
+  ControllerStateAndHelpers
 } from 'downshift'
 import debounce from 'debounce'
 
@@ -61,7 +60,7 @@ export interface Props
   /** The minimum number of characters a user must type before a search is performed */
   minLength?: number
   /**  Callback invoked when item is selected */
-  onSelect?: (item: Maybe<Item>, stateAndHelpers: Actions<string>) => void
+  onSelect?: (item: Maybe<Item>, helpers: { resetInput: () => void }) => void
   /**  Callback invoked when typing value is changed */
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void
   /**  Callback invoked when key is pressed */
@@ -101,9 +100,9 @@ export const Autocomplete: FunctionComponent<Props> = ({
   width,
   allowAny,
   onSelect = () => {},
+  onKeyDown = () => {},
   value,
   onChange,
-  onKeyDown,
   startAdornment,
   ...rest
 }) => {
@@ -114,8 +113,6 @@ export const Autocomplete: FunctionComponent<Props> = ({
   const onChangeDebounced = debounce(onChange!, debounceTime)
 
   const selectItem = (item: Maybe<Item>) => {
-    if (item === undefined) return
-
     setInputValue(getItemLabel(item))
     setSelectedItem(item)
 
@@ -124,13 +121,24 @@ export const Autocomplete: FunctionComponent<Props> = ({
     } else {
       setPlaceholder(initialPlaceholder)
     }
-
-    onSelect(item)
   }
+
+  const handleSelectItem = (item: Maybe<Item>) => {
+    if (item === undefined) return
+    const internalHelpers = {
+      resetInput: () => {
+        selectItem(null)
+      }
+    }
+
+    selectItem(item)
+    onSelect(item, internalHelpers)
+  }
+
   const handleStateChange = (props: StateChangeOptions<Item>) => {
     const { selectedItem } = props
 
-    selectItem(selectedItem)
+    handleSelectItem(selectedItem)
   }
 
   const options = initialOptions!.filter(item =>
@@ -158,7 +166,7 @@ export const Autocomplete: FunctionComponent<Props> = ({
     if (!selectedItem && allowAny && value !== undefined) {
       setInputValue(String(value))
     } else {
-      selectItem(selectedItem)
+      handleSelectItem(selectedItem)
     }
   }, [value])
 
@@ -201,7 +209,7 @@ export const Autocomplete: FunctionComponent<Props> = ({
                   selected={highlightedIndex === index}
                   disabled={isSelected(option, selectedItem)}
                   /* eslint-disable-next-line react/jsx-props-no-spreading */
-                  {...getItemProps({ item: option })}
+                  {...getItemProps({ item: option, index: index })}
                 >
                   {getItemLabel(option)}
                 </Menu.Item>
@@ -218,7 +226,7 @@ export const Autocomplete: FunctionComponent<Props> = ({
 
         const {
           onBlur,
-          onKeyDown,
+          onKeyDown: handleOnKeyDown,
           onFocus,
           onChange = () => {}
         } = getInputProps({
@@ -263,8 +271,8 @@ export const Autocomplete: FunctionComponent<Props> = ({
               selectItem(null)
             }
 
-            if (rest.onKeyDown) {
-              rest.onKeyDown(event)
+            if (onKeyDown) {
+              onKeyDown(event, inputValue!)
             }
           },
           onChange: (event: ChangeEvent<HTMLInputElement>) => {
@@ -298,7 +306,7 @@ export const Autocomplete: FunctionComponent<Props> = ({
               iconPosition='end'
               value={inputValue || EMPTY_VALUE}
               onBlur={onBlur}
-              onKeyDown={onKeyDown}
+              onKeyDown={handleOnKeyDown}
               onFocus={onFocus}
               onClick={onFocus}
               placeholder={placeholder}
@@ -324,7 +332,6 @@ Autocomplete.defaultProps = {
   loading: false,
   noOptionsText: 'No options',
   onChange: () => {},
-  onKeyDown: () => {},
   onSelect: () => {},
   options: [],
   width: 'auto'

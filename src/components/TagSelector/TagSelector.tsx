@@ -1,15 +1,22 @@
 import React, { FunctionComponent, KeyboardEvent, ChangeEvent } from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import { Actions } from 'downshift'
 
+import { Maybe } from '../utils'
 import { StandardProps } from '../Picasso'
 import Label from '../Label'
+import LabelGroup from '../LabelGroup'
 import Autocomplete from '../Autocomplete'
 import styles from './styles'
 
 type Item = {
   value: string
   label: string
+}
+
+type ReturnItem = {
+  label?: string
+  value?: string
+  text?: string
 }
 
 export interface Props extends StandardProps {
@@ -22,7 +29,7 @@ export interface Props extends StandardProps {
   /** List of options with unique labels */
   options?: Item[]
   /** List of pre-selected items values */
-  value?: []
+  value?: string[]
   /**  Callback invoked when item is selected */
   onChange?: (selectedOptions: string[]) => void
   /**  Callback invoked when typing value is changed */
@@ -30,6 +37,7 @@ export interface Props extends StandardProps {
 }
 
 export const TagSelector: FunctionComponent<Props> = ({
+  loading = false,
   placeholder = '',
   options = [],
   value = [],
@@ -62,7 +70,7 @@ export const TagSelector: FunctionComponent<Props> = ({
     inputValue: string
   ) => {
     const hasSelection = selectedItems.length
-    const hasValue = inputValue.length
+    const hasValue = inputValue && inputValue.length
     const isDeleting = event.key === 'Backspace'
 
     if (hasSelection && !hasValue && isDeleting) {
@@ -70,34 +78,34 @@ export const TagSelector: FunctionComponent<Props> = ({
     }
   }
 
-  const handleSelect = (item: string, stateAndHelpers: Actions<string>) => {
-    if (!item) return null
-    let itemValue
-    const selection = availableOptions.find(option => option.label === item)
+  const handleSelect = (
+    item: Maybe<ReturnItem>,
+    helpers: { resetInput: () => void }
+  ) => {
+    if (!item || !item.value) return null
 
-    if (!selection) {
-      const uniqueValue = getUniqueValue(inputBoxValue)
-
-      itemValue = uniqueValue
-      const newAvailableOptions = [
-        ...availableOptions,
-        { value: uniqueValue, label: inputBoxValue }
-      ]
-
-      setAvailableOptions(newAvailableOptions)
-      setInputBoxValue('')
-    } else {
-      itemValue = selection!.value
-    }
+    const isAtOptions = availableOptions.find(
+      option => option.value === item!.value
+    )
 
     let selectedItemsClone = [...selectedItems]
 
-    if (!selectedItemsClone.includes(itemValue)) {
-      selectedItemsClone = [...selectedItemsClone, itemValue]
+    if (!selectedItemsClone.includes(item.value)) {
+      selectedItemsClone = [...selectedItemsClone, item.value]
+    }
+
+    if (!isAtOptions) {
+      const newAvailableOptions = [
+        ...availableOptions,
+        { value: item.value, label: inputBoxValue }
+      ]
+
+      setAvailableOptions(newAvailableOptions)
     }
 
     updateValue(selectedItemsClone)
-    stateAndHelpers.clearSelection()
+    setInputBoxValue('')
+    helpers.resetInput()
   }
 
   const handleDelete = (itemValue: string) => {
@@ -116,22 +124,22 @@ export const TagSelector: FunctionComponent<Props> = ({
 
   if (inputBoxValue.length) {
     filteredOptions.push({
-      value: '',
+      value: getUniqueValue(inputBoxValue),
       label: `${newOptionLabel}${inputBoxValue}`
     })
   }
 
-  const labels = availableOptions
-    .filter(x => selectedItems.includes(x.value))
-    .map(item => (
-      <Label
-        className={classes.tag}
-        key={item.value}
-        onDelete={() => handleDelete(item.value)}
-      >
-        {item.label}
-      </Label>
-    ))
+  const labels = (
+    <LabelGroup>
+      {availableOptions
+        .filter(x => selectedItems.includes(x.value))
+        .map(item => (
+          <Label key={item.value} onDelete={() => handleDelete(item.value)}>
+            {item.label}
+          </Label>
+        ))}
+    </LabelGroup>
+  )
 
   return (
     <Autocomplete
@@ -143,6 +151,7 @@ export const TagSelector: FunctionComponent<Props> = ({
       onChange={handleInputChange}
       debounceTime={0}
       className={classes.autocompleteWrapper}
+      loading={loading}
     />
   )
 }

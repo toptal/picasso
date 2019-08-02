@@ -1,6 +1,6 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
-export default ({ palette, sizes: { borderWidth, input } }: Theme) =>
+export default ({ sizes: { input } }: Theme) =>
   createStyles({
     root: {
       position: 'relative',
@@ -12,8 +12,5 @@ export default ({ palette, sizes: { borderWidth, input } }: Theme) =>
     rootShrink: {
       width: 'auto'
     },
-    rootAuto: {},
-    actionMenuItem: {
-      borderTop: `${borderWidth} solid ${palette.grey.light}`
-    }
+    rootAuto: {}
   })

@@ -1,0 +1,255 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TagSelector default render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      aria-expanded="false"
+      aria-haspopup="listbox"
+      aria-labelledby="downshift-0-label"
+      class="Autocomplete-root TagSelector-autocompleteWrapper Autocomplete-rootAuto"
+      role="combobox"
+    >
+      <div
+        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root TextField-root OutlinedInput-rootAuto MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+      >
+        <fieldset
+          aria-hidden="true"
+          class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+          style="padding-left: 8px;"
+        >
+          <legend
+            class="MuiPrivateNotchedOutline-legend"
+            style="width: 0.01px;"
+          >
+            <span>
+              ​
+            </span>
+          </legend>
+        </fieldset>
+        <div
+          class="LabelGroup-root"
+        />
+        <input
+          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input TextField-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+          placeholder="Please select..."
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        aria-labelledby="downshift-0-label"
+        id="downshift-0-menu"
+        role="listbox"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TagSelector renders available options when start typing 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      aria-expanded="true"
+      aria-haspopup="listbox"
+      aria-labelledby="downshift-1-label"
+      aria-owns="downshift-1-menu"
+      class="Autocomplete-root TagSelector-autocompleteWrapper Autocomplete-rootAuto"
+      role="combobox"
+    >
+      <div
+        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root TextField-root OutlinedInput-rootAuto MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+      >
+        <fieldset
+          aria-hidden="true"
+          class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+          style="padding-left: 8px;"
+        >
+          <legend
+            class="MuiPrivateNotchedOutline-legend"
+            style="width: 0.01px;"
+          >
+            <span>
+              ​
+            </span>
+          </legend>
+        </fieldset>
+        <div
+          class="LabelGroup-root"
+        />
+        <input
+          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input TextField-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+          placeholder="Please select..."
+          type="text"
+          value="Al"
+        />
+      </div>
+      <div
+        aria-labelledby="downshift-1-label"
+        id="downshift-1-menu"
+        role="listbox"
+      >
+        <ul
+          class="MuiList-root ScrollMenu-menu"
+          role="menu"
+        >
+          <div
+            class="ScrollMenu-scrollView"
+            tabindex="0"
+          >
+            <li
+              aria-selected="false"
+              class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
+              id="downshift-1-item-0"
+              role="option"
+              tabindex="-1"
+            >
+              <p
+                class="MuiTypography-root Typography-bodyInherit Typography-black MuiTypography-body1 MenuItem-stringContent"
+              >
+                Aland Islands
+              </p>
+            </li>
+            <li
+              aria-selected="false"
+              class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
+              id="downshift-1-item-1"
+              role="option"
+              tabindex="-1"
+            >
+              <p
+                class="MuiTypography-root Typography-bodyInherit Typography-black MuiTypography-body1 MenuItem-stringContent"
+              >
+                Albania
+              </p>
+            </li>
+            <li
+              aria-selected="false"
+              class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
+              id="downshift-1-item-2"
+              role="option"
+              tabindex="-1"
+            >
+              <p
+                class="MuiTypography-root Typography-bodyInherit Typography-black MuiTypography-body1 MenuItem-stringContent"
+              >
+                Algeria
+              </p>
+            </li>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TagSelector renders with preselected value 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      aria-expanded="false"
+      aria-haspopup="listbox"
+      aria-labelledby="downshift-3-label"
+      class="Autocomplete-root TagSelector-autocompleteWrapper Autocomplete-rootAuto"
+      role="combobox"
+    >
+      <div
+        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root TextField-root OutlinedInput-rootAuto MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+      >
+        <fieldset
+          aria-hidden="true"
+          class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+          style="padding-left: 8px;"
+        >
+          <legend
+            class="MuiPrivateNotchedOutline-legend"
+            style="width: 0.01px;"
+          >
+            <span>
+              ​
+            </span>
+          </legend>
+        </fieldset>
+        <div
+          class="LabelGroup-root"
+        >
+          <div
+            class="MuiChip-root Chip-root Label-root MuiChip-deletable"
+            role="button"
+            tabindex="0"
+          >
+            <span
+              class="MuiChip-label"
+            >
+              <span
+                class="Chip-innerLabel"
+              >
+                Afghanistan
+              </span>
+            </span>
+            <span
+              aria-label="delete icon"
+              class="MuiChip-deleteIcon Chip-deleteIcon"
+              role="button"
+            >
+              <svg
+                class="SvgCloseMinor16-root"
+                style="min-width: 16px; min-height: 16px;"
+                viewBox="0 0 16 16"
+              >
+                <defs>
+                  <path
+                    d="M8.707 8l3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5z"
+                    id="closeMinor16_svg__a"
+                  />
+                </defs>
+                <g
+                  fill-rule="evenodd"
+                >
+                  <mask
+                    id="closeMinor16_svg__b"
+                  >
+                    <use
+                      xlink:href="#closeMinor16_svg__a"
+                    />
+                  </mask>
+                  <use
+                    fill-rule="nonzero"
+                    xlink:href="#closeMinor16_svg__a"
+                  />
+                  <g
+                    mask="url(#closeMinor16_svg__b)"
+                  >
+                    <path
+                      d="M0 0h16v16H0z"
+                    />
+                  </g>
+                </g>
+              </svg>
+            </span>
+          </div>
+        </div>
+        <input
+          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input TextField-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+          placeholder="Please select..."
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        aria-labelledby="downshift-3-label"
+        id="downshift-3-menu"
+        role="listbox"
+      />
+    </div>
+  </div>
+</div>
+`;

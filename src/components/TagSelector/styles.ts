@@ -2,9 +2,6 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 
 export default ({ spacing: { input } }: Theme) =>
   createStyles({
-    tag: {
-      marginRight: input.padding
-    },
     autocompleteWrapper: {
       '& > div': {
         flexWrap: 'wrap',
@@ -13,7 +10,8 @@ export default ({ spacing: { input } }: Theme) =>
       '& input': {
         width: 'auto',
         display: 'flex',
-        flex: 1
+        flex: 1,
+        paddingLeft: input.padding
       }
     }
   })
