@@ -24,6 +24,7 @@ pipeline {
     timestamps()
     timeout(time: 15, unit: 'MINUTES')
     skipDefaultCheckout()
+    disableConcurrentBuilds()
   }
 
   environment {
