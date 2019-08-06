@@ -44,10 +44,10 @@ export default ({ spacing: { input }, palette }: Theme) =>
       paddingRight: 0
     },
     inputPlaceholder: {
-      color: palette.grey.dark
+      color: palette.grey.main2
     },
     inputPlaceholderDisabled: {
-      color: alpha(palette.grey.dark!, 0.48)
+      color: alpha(palette.grey.main2!, 0.48)
     },
     inputValue: {
       fontSize: '0.8125em'
