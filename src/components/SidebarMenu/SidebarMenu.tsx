@@ -1,0 +1,33 @@
+import React, { FunctionComponent } from 'react'
+import { withStyles } from '@material-ui/core/styles'
+import cx from 'classnames'
+
+import { StandardProps } from '../Picasso'
+import Menu from '../Menu'
+import styles from './styles'
+
+export interface Props extends StandardProps {
+  bottom: boolean
+}
+
+export const SidebarMenu: FunctionComponent<Props> = ({
+  bottom,
+  classes,
+  style,
+  className,
+  ...rest
+}) => {
+  return (
+    <Menu
+      {...rest}
+      style={style}
+      className={cx(classes.root, { [classes.bottom]: bottom }, className)}
+    />
+  )
+}
+
+SidebarMenu.defaultProps = {}
+
+SidebarMenu.displayName = 'SidebarMenu'
+
+export default withStyles(styles)(SidebarMenu)
