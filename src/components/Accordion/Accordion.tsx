@@ -2,7 +2,8 @@ import React, {
   ReactNode,
   FunctionComponent,
   ChangeEvent,
-  HTMLAttributes
+  HTMLAttributes,
+  ReactElement
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUIExpansionPanel from '@material-ui/core/ExpansionPanel'
@@ -22,6 +23,8 @@ export interface Props
   content: ReactNode
   /** Define accordion content state, whether it should be collapsed or displayed */
   expanded?: boolean
+  /** Customize icon indicating expanded status*/
+  expandIcon?: ReactElement
   /** Callback invoked when `Accordion` item is toggled */
   onChange?: (event: ChangeEvent<{}>, expanded: boolean) => void
 }
@@ -30,6 +33,7 @@ export const Accordion: FunctionComponent<Props> = ({
   children,
   content,
   expanded,
+  expandIcon,
   className,
   style,
   classes,
@@ -53,9 +57,16 @@ export const Accordion: FunctionComponent<Props> = ({
       {children && (
         <ExpansionPanelSummary
           classes={{
-            root: classes.summary
+            root: classes.summary,
+            content: classes.content
           }}
-          expandIcon={<ChevronRightIcon className={classes.expandIcon} />}
+          expandIcon={
+            expandIcon ? (
+              expandIcon
+            ) : (
+              <ChevronRightIcon className={classes.expandIcon} />
+            )
+          }
         >
           {children}
         </ExpansionPanelSummary>

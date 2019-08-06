@@ -3,6 +3,7 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 export default ({ palette }: Theme) =>
   createStyles({
     root: {
+      width: '100%',
       height: '3em',
       padding: '0 1.5em',
 
@@ -33,6 +34,25 @@ export default ({ palette }: Theme) =>
       marginLeft: '0.875em'
     },
     labelContent: {
-      fontSize: '0.875em'
+      fontSize: '0.875em',
+      lineHeight: '1.5em'
+    },
+    accordion: {
+      '&:before, &:after, &:first-child:before': {
+        display: 'none'
+      }
+    },
+    summary: {
+      padding: 0
+    },
+    details: {
+      fontSize: 'inherit',
+      marginBottom: '0'
+    },
+    content: {
+      fontSize: 'inherit'
+    },
+    expandIcon: {
+      margin: '0.25em'
     }
   })

@@ -55,6 +55,7 @@ export default ({ palette, typography }: Theme) => {
       fontSize: '0.875em',
       fontWeight: typography.fontWeights.regular,
       marginBottom: '0.75em'
-    }
+    },
+    content: {}
   }
 }

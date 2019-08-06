@@ -1,8 +1,9 @@
-import { Theme, createStyles } from '@material-ui/core/styles'
+import { createStyles } from '@material-ui/core/styles'
 
-export default ({ palette }: Theme) =>
+export default () =>
   createStyles({
     root: {
+      width: '100%',
       boxShadow: 'none',
       order: 1
     },

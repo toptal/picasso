@@ -25,7 +25,7 @@ interface Props extends StandardProps, MenuItemAttributes {
   disableGutters?: boolean
   children?: ReactNode
   /** Callback when menu item is clicked */
-  onClick?: () => void
+  onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
   /** Highlights the item as selected */
   selected?: boolean
   /** Value of the item. Can be used when menu item is used inside Select component. */
