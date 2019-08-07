@@ -23,7 +23,7 @@ export interface Props
   content: ReactNode
   /** Define accordion content state, whether it should be collapsed or displayed */
   expanded?: boolean
-  /** Customize icon indicating expanded status*/
+  /** Customize icon indicating expanded status */
   expandIcon?: ReactElement
   /** Callback invoked when `Accordion` item is toggled */
   onChange?: (event: ChangeEvent<{}>, expanded: boolean) => void
@@ -61,11 +61,7 @@ export const Accordion: FunctionComponent<Props> = ({
             content: classes.content
           }}
           expandIcon={
-            expandIcon ? (
-              expandIcon
-            ) : (
-              <ChevronRightIcon className={classes.expandIcon} />
-            )
+            expandIcon || <ChevronRightIcon className={classes.expandIcon} />
           }
         >
           {children}

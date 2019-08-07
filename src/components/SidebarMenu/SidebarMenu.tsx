@@ -20,6 +20,7 @@ export const SidebarMenu: FunctionComponent<Props> = ({
 }) => {
   return (
     <Menu
+      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       style={style}
       className={cx(classes.root, { [classes.bottom]: bottom }, className)}

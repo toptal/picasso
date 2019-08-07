@@ -50,6 +50,7 @@ export const SidebarItem: FunctionComponent<Props> = ({
 
   const menuItem = (
     <MenuItem
+      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       style={style}
       className={cx(classes.root, { [classes.selected]: selected }, className)}
@@ -92,8 +93,8 @@ export const SidebarItem: FunctionComponent<Props> = ({
 }
 
 SidebarItem.defaultProps = {
-  selected: false,
-  collapsible: false
+  collapsible: false,
+  selected: false
 }
 
 SidebarItem.displayName = 'SidebarItem'
