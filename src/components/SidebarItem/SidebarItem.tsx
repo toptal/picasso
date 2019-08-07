@@ -101,8 +101,8 @@ export const SidebarItem: FunctionComponent<Props> = ({
 
 SidebarItem.defaultProps = {
   collapsible: false,
-  selected: false,
-  onClick: () => {}
+  onClick: () => {},
+  selected: false
 }
 
 SidebarItem.displayName = 'SidebarItem'

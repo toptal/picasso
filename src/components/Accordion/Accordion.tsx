@@ -92,8 +92,8 @@ export const Accordion: FunctionComponent<Props> = ({
 }
 
 Accordion.defaultProps = {
-  expanded: undefined,
   bordered: true,
+  expanded: undefined,
   onChange: () => {}
 }
 
