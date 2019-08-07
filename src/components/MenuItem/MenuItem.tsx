@@ -12,7 +12,7 @@ import { StandardProps, ButtonOrAnchorProps } from '../Picasso'
 import Typography from '../Typography'
 import styles from './styles'
 
-type MenuItemAttributes = LiHTMLAttributes<HTMLLIElement> &
+export type MenuItemAttributes = LiHTMLAttributes<HTMLLIElement> &
   HTMLAttributes<HTMLDivElement> &
   ButtonOrAnchorProps
 
@@ -50,7 +50,7 @@ export const MenuItem: FunctionComponent<Props> = ({
       <Typography
         className={classes!.stringContent}
         style={style}
-        color='black'
+        color='inherit'
       >
         {children}
       </Typography>

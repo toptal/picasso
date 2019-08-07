@@ -20,19 +20,17 @@ export const Sidebar: FunctionComponent<Props> & StaticProps = ({
   className,
   style,
   classes
-}) => {
-  return (
-    <Container
-      flex
-      direction='column'
-      style={style}
-      className={cx(classes.root, className)}
-    >
-      <div className={classes.spacer} />
-      {children}
-    </Container>
-  )
-}
+}) => (
+  <Container
+    flex
+    direction='column'
+    style={style}
+    className={cx(classes.root, className)}
+  >
+    <div className={classes.spacer} />
+    {children}
+  </Container>
+)
 
 Sidebar.defaultProps = {}
 

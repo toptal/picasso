@@ -1,5 +1,5 @@
 import React from 'react'
-import { Sidebar, Label } from '@toptal/picasso'
+import { Sidebar, Label, Logo, Container } from '@toptal/picasso'
 import {
   Jobs16,
   Overview16,
@@ -17,12 +17,15 @@ import {
 const SidebarDefaultExample = () => (
   <div
     style={{
-      height: '56em',
-      maxHeight: '56em',
+      height: '58em',
+      maxHeight: '58em',
       overflowY: 'scroll'
     }}
   >
     <Sidebar>
+      <Container bottom='small' left='medium'>
+        <Logo />
+      </Container>
       <Sidebar.Menu>
         <Sidebar.Item icon={<Overview16 />} selected>
           Overview
@@ -49,7 +52,6 @@ const SidebarDefaultExample = () => (
             </Sidebar.Menu>
           }
           collapsible
-          onClick={() => window.alert('You selected Referrals')}
         >
           Referrals
         </Sidebar.Item>

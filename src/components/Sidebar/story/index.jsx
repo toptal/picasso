@@ -17,4 +17,7 @@ page
   .addComponentDocs(sidebarMenuStory.componentDocs)
   .addComponentDocs(sidebarItemStory.componentDocs)
 
-page.createChapter().addExample('Sidebar/story/Default.example.jsx', 'Default')
+page
+  .createChapter()
+  .addExample('Sidebar/story/Default.example.jsx', 'Default')
+  .addExample('Sidebar/story/Links.example.jsx', 'Links')

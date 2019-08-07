@@ -4,11 +4,12 @@ import cx from 'classnames'
 
 import { StandardProps } from '../Picasso'
 import Container from '../Container'
-import MenuItem from '../MenuItem'
+import MenuItem, { MenuItemAttributes } from '../MenuItem/MenuItem'
 import Accordion from '../Accordion'
+import { ArrowDropDown16 } from '../Icon'
 import styles from './styles'
 
-export interface Props extends StandardProps {
+export interface Props extends StandardProps, MenuItemAttributes {
   /** Pass icon to be used as part of item */
   icon?: ReactElement
   /** Highlights the item as selected */
@@ -19,7 +20,7 @@ export interface Props extends StandardProps {
   collapsible?: boolean
   /** Renders nested sidebar menu */
   menu?: ReactElement
-  /** Callback when menu item is clicked */
+  /** Callback when item is clicked */
   onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
 }
 
@@ -41,11 +42,9 @@ export const SidebarItem: FunctionComponent<Props> = ({
   const handleMenuItemClick = (
     event: React.MouseEvent<HTMLElement, MouseEvent>
   ) => {
-    if (onClick) {
-      onClick(event)
+    if (!hasMenu) {
+      onClick!(event)
     }
-
-    event.stopPropagation()
   }
 
   const menuItem = (
@@ -53,8 +52,13 @@ export const SidebarItem: FunctionComponent<Props> = ({
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       style={style}
-      className={cx(classes.root, { [classes.selected]: selected }, className)}
+      className={cx(
+        classes.root,
+        { [classes.selected]: !hasMenu && selected },
+        className
+      )}
       onClick={handleMenuItemClick}
+      selected={!hasMenu && selected}
     >
       <Container inline flex alignItems='center'>
         {icon}
@@ -78,6 +82,9 @@ export const SidebarItem: FunctionComponent<Props> = ({
           expandIcon: classes.expandIcon
         }}
         content={menu}
+        bordered={false}
+        // @ts-ignore
+        expandIcon={ArrowDropDown16}
       >
         {menuItem}
       </Accordion>
@@ -94,7 +101,8 @@ export const SidebarItem: FunctionComponent<Props> = ({
 
 SidebarItem.defaultProps = {
   collapsible: false,
-  selected: false
+  selected: false,
+  onClick: () => {}
 }
 
 SidebarItem.displayName = 'SidebarItem'

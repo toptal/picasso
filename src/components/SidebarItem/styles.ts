@@ -6,23 +6,14 @@ export default ({ palette }: Theme) =>
       width: '100%',
       height: '3em',
       padding: '0 1.5em',
+      color: palette.grey.dark,
 
       '&:hover': {
         color: palette.blue.main,
-        backgroundColor: 'initial',
-
-        '&$selected': {
-          backgroundColor: palette.blue.lighter
-        }
-      },
-
-      '&$selected': {
-        color: palette.blue.main,
-        backgroundColor: palette.blue.lighter
+        backgroundColor: 'initial'
       },
 
       '&:focus': {
-        color: palette.blue.main,
         backgroundColor: 'initial'
       }
     },
@@ -37,11 +28,6 @@ export default ({ palette }: Theme) =>
       fontSize: '0.875em',
       lineHeight: '1.5em'
     },
-    accordion: {
-      '&:before, &:after, &:first-child:before': {
-        display: 'none'
-      }
-    },
     summary: {
       padding: 0
     },
@@ -53,6 +39,8 @@ export default ({ palette }: Theme) =>
       fontSize: 'inherit'
     },
     expandIcon: {
-      margin: '0.25em'
+      margin: '0.8em',
+      fontSize: '0.6em',
+      color: 'inherit'
     }
   })
