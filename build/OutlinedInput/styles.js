@@ -45,12 +45,12 @@ Picasso_1.PicassoProvider.override(({ palette, spacing: { input } }) => ({
             padding: input.padding,
             border: 'none',
             '&::placeholder': {
-                color: palette.grey.dark,
+                color: palette.grey.main2,
                 opacity: 1
             },
             '&$disabled': {
                 '&::placeholder': {
-                    color: styles_2.alpha(palette.grey.dark, 0.48),
+                    color: styles_2.alpha(palette.grey.main2, 0.48),
                     opacity: 1
                 }
             }

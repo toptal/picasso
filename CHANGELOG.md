@@ -1,3 +1,10 @@
+## [2.23.3](https://github.com/toptal/picasso/compare/v2.23.2...v2.23.3) (2019-08-07)
+
+
+### Bug Fixes
+
+* **textfield:** add new placeholder color to palette ([#573](https://github.com/toptal/picasso/issues/573)) ([b18bea4](https://github.com/toptal/picasso/commit/b18bea4))
+
 ## [2.23.2](https://github.com/toptal/picasso/compare/v2.23.1...v2.23.2) (2019-08-02)
 
 

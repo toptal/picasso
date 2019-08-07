@@ -42,10 +42,10 @@ exports.default = ({ spacing: { input }, palette }) => styles_1.createStyles({
         paddingRight: 0
     },
     inputPlaceholder: {
-        color: palette.grey.dark
+        color: palette.grey.main2
     },
     inputPlaceholderDisabled: {
-        color: styles_2.alpha(palette.grey.dark, 0.48)
+        color: styles_2.alpha(palette.grey.main2, 0.48)
     },
     inputValue: {
         fontSize: '0.8125em'

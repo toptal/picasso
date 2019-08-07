@@ -18,6 +18,7 @@ declare module '@material-ui/core' {
         lighter?: string;
         light?: string;
         main?: string;
+        main2?: string;
         dark?: string;
         darker?: string;
     }
@@ -27,6 +28,7 @@ export declare const colors: {
         lighter: string;
         light: string;
         main: string;
+        main2: string;
         dark: string;
         darker: string;
     };

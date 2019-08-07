@@ -5,6 +5,7 @@ exports.colors = {
         lighter: '#ebeced',
         light: '#d8d9dc',
         main: '#c4c6ca',
+        main2: '#84888e',
         dark: '#455065',
         darker: '#262d3d'
     },
