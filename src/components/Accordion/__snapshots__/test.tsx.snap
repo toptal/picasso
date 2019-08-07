@@ -82,7 +82,7 @@ exports[`default version for sections should render default version 1`] = `
         tabindex="0"
       >
         <div
-          class="MuiExpansionPanelSummary-content"
+          class="MuiExpansionPanelSummary-content WithStyles-ExpansionPanelSummary--content Accordion-content"
         >
           <div>
             Fryderyk Chopin
@@ -156,7 +156,7 @@ exports[`default version for sections should render expanded version after click
         tabindex="0"
       >
         <div
-          class="MuiExpansionPanelSummary-content MuiExpansionPanelSummary-expanded"
+          class="MuiExpansionPanelSummary-content WithStyles-ExpansionPanelSummary--content Accordion-content MuiExpansionPanelSummary-expanded"
         >
           <div>
             Fryderyk Chopin

@@ -17,8 +17,8 @@ import {
 const SidebarDefaultExample = () => (
   <div
     style={{
-      height: '51.75em',
-      maxHeight: '51.75em',
+      height: '56em',
+      maxHeight: '56em',
       overflowY: 'scroll'
     }}
   >

@@ -9,10 +9,17 @@ import Accordion from '../Accordion'
 import styles from './styles'
 
 export interface Props extends StandardProps {
+  /** Pass icon to be used as part of item */
   icon?: ReactElement
+  /** Highlights the item as selected */
   selected?: boolean
+  /** Whether to render disabled item */
+  disabled?: boolean
+  /** If item has menu defines can menu be collapsed */
   collapsible?: boolean
+  /** Renders nested sidebar menu */
   menu?: ReactElement
+  /** Callback when menu item is clicked */
   onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
 }
 
@@ -53,7 +60,7 @@ export const SidebarItem: FunctionComponent<Props> = ({
         <Container
           className={cx(classes.label, { [classes.withIcon]: hasIcon })}
         >
-          <Container className={cx(classes.labelContent)}>{children}</Container>
+          <Container className={classes.labelContent}>{children}</Container>
         </Container>
       </Container>
     </MenuItem>
@@ -84,7 +91,10 @@ export const SidebarItem: FunctionComponent<Props> = ({
   )
 }
 
-SidebarItem.defaultProps = {}
+SidebarItem.defaultProps = {
+  selected: false,
+  collapsible: false
+}
 
 SidebarItem.displayName = 'SidebarItem'
 

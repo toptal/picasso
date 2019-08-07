@@ -1,36 +1,86 @@
-import React, { ReactNode } from 'react'
+import React, { FunctionComponent } from 'react'
 /* eslint-disable-next-line */
-import {
-  render,
-  fireEvent,
-  cleanup,
-  RenderResult
-} from '@testing-library/react'
+import { render, cleanup } from '@testing-library/react'
 
-import { OmitInternalProps } from '../Picasso'
+import Picasso, { OmitInternalProps } from '../Picasso'
+import { Candidates16 } from '../Icon'
+import SidebarMenu from '../SidebarMenu'
 import SidebarItem, { Props } from './SidebarItem'
 
-const renderSidebarItem = (
-  children: ReactNode,
-  props: OmitInternalProps<Props>
-) => {
-  const {
-    /* add props you need */
-  } = props
-
-  return render(<SidebarItem>{children}</SidebarItem>)
-}
+const TestSidebarItem: FunctionComponent<OmitInternalProps<Props>> = ({
+  children,
+  icon,
+  selected,
+  collapsible,
+  menu
+}) => (
+  <Picasso loadFonts={false}>
+    <SidebarItem
+      icon={icon}
+      selected={selected}
+      collapsible={collapsible}
+      menu={menu}
+    >
+      {children}
+    </SidebarItem>
+  </Picasso>
+)
 
 afterEach(cleanup)
 
 describe('SidebarItem', () => {
-  let api: RenderResult
-
-  beforeEach(() => {
-    api = renderSidebarItem(null, {})
-  })
   test('default render', () => {
-    const { container } = api
+    const { container } = render(<TestSidebarItem>Test item</TestSidebarItem>)
+
+    expect(container).toMatchSnapshot()
+  })
+
+  test('with icon', () => {
+    const { container } = render(
+      <TestSidebarItem icon={<Candidates16 />}>Test item</TestSidebarItem>
+    )
+
+    expect(container).toMatchSnapshot()
+  })
+
+  test('is selected', () => {
+    const { container } = render(
+      <TestSidebarItem icon={<Candidates16 />} selected>
+        Test item
+      </TestSidebarItem>
+    )
+
+    expect(container).toMatchSnapshot()
+  })
+
+  test('use accordion for collapsible with menu', () => {
+    const menu = (
+      <SidebarMenu>
+        <SidebarItem>Menu item</SidebarItem>
+      </SidebarMenu>
+    )
+
+    const { container } = render(
+      <TestSidebarItem icon={<Candidates16 />} menu={menu} collapsible>
+        Test item
+      </TestSidebarItem>
+    )
+
+    expect(container).toMatchSnapshot()
+  })
+
+  test("don't use accordion for non-collapsible with menu", () => {
+    const menu = (
+      <SidebarMenu>
+        <SidebarItem>Menu item</SidebarItem>
+      </SidebarMenu>
+    )
+
+    const { container } = render(
+      <TestSidebarItem icon={<Candidates16 />} menu={menu}>
+        Test item
+      </TestSidebarItem>
+    )
 
     expect(container).toMatchSnapshot()
   })

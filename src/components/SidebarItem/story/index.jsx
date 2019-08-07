@@ -2,10 +2,11 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 import { SidebarItem } from '../SidebarItem'
 
-const page = PicassoBook.createPage('SidebarItem', `<-- description -->`)
+const componentDocs = PicassoBook.createComponentDocs(
+  SidebarItem,
+  'Sidebar.Item'
+)
 
-page
-  .createTabChapter('Props')
-  .addComponentDocs({ component: SidebarItem, name: 'SidebarItem' })
-
-page.createChapter()
+export default {
+  componentDocs
+}

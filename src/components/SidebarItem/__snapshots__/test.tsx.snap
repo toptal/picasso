@@ -1,0 +1,391 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SidebarItem default render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <li
+      class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters SidebarItem-root"
+      role="menuitem"
+      tabindex="-1"
+    >
+      <div
+        class="Component-flex Component-inline"
+        style="align-items: center;"
+      >
+        <div
+          class="SidebarItem-label"
+        >
+          <div
+            class="SidebarItem-labelContent"
+          >
+            Test item
+          </div>
+        </div>
+      </div>
+    </li>
+  </div>
+</div>
+`;
+
+exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <li
+      class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters SidebarItem-root"
+      role="menuitem"
+      tabindex="-1"
+    >
+      <div
+        class="Component-flex Component-inline"
+        style="align-items: center;"
+      >
+        <svg
+          class="SvgCandidates16-root"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
+        >
+          <defs>
+            <path
+              d="M16 11H7v4l-7-4V1h16v10zm-1-9H1v8.42l5 2.857V10h9V2z"
+              id="candidates16_svg__a"
+            />
+          </defs>
+          <g
+            fill-rule="evenodd"
+          >
+            <mask
+              id="candidates16_svg__b"
+            >
+              <use
+                xlink:href="#candidates16_svg__a"
+              />
+            </mask>
+            <use
+              fill-rule="nonzero"
+              xlink:href="#candidates16_svg__a"
+            />
+            <g
+              mask="url(#candidates16_svg__b)"
+            >
+              <path
+                d="M0 0h16v16H0z"
+              />
+            </g>
+          </g>
+        </svg>
+        <div
+          class="SidebarItem-label SidebarItem-withIcon"
+        >
+          <div
+            class="SidebarItem-labelContent"
+          >
+            Test item
+          </div>
+        </div>
+      </div>
+    </li>
+    <ul
+      class="MuiList-root SidebarMenu-root"
+      role="menu"
+    >
+      <li
+        class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters SidebarItem-root"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <div
+          class="Component-flex Component-inline"
+          style="align-items: center;"
+        >
+          <div
+            class="SidebarItem-label"
+          >
+            <div
+              class="SidebarItem-labelContent"
+            >
+              Menu item
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+`;
+
+exports[`SidebarItem is selected 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <li
+      class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters SidebarItem-root SidebarItem-selected"
+      role="menuitem"
+      tabindex="-1"
+    >
+      <div
+        class="Component-flex Component-inline"
+        style="align-items: center;"
+      >
+        <svg
+          class="SvgCandidates16-root"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
+        >
+          <defs>
+            <path
+              d="M16 11H7v4l-7-4V1h16v10zm-1-9H1v8.42l5 2.857V10h9V2z"
+              id="candidates16_svg__a"
+            />
+          </defs>
+          <g
+            fill-rule="evenodd"
+          >
+            <mask
+              id="candidates16_svg__b"
+            >
+              <use
+                xlink:href="#candidates16_svg__a"
+              />
+            </mask>
+            <use
+              fill-rule="nonzero"
+              xlink:href="#candidates16_svg__a"
+            />
+            <g
+              mask="url(#candidates16_svg__b)"
+            >
+              <path
+                d="M0 0h16v16H0z"
+              />
+            </g>
+          </g>
+        </svg>
+        <div
+          class="SidebarItem-label SidebarItem-withIcon"
+        >
+          <div
+            class="SidebarItem-labelContent"
+          >
+            Test item
+          </div>
+        </div>
+      </div>
+    </li>
+  </div>
+</div>
+`;
+
+exports[`SidebarItem use accordion for collapsible with menu 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="MuiPaper-root MuiPaper-elevation0 MuiPaper-rounded MuiExpansionPanel-root Accordion-root MuiExpansionPanel-rounded SidebarItem-accordion"
+    >
+      <div
+        aria-expanded="false"
+        class="MuiButtonBase-root MuiExpansionPanelSummary-root WithStyles-ExpansionPanelSummary--root Accordion-summary SidebarItem-summary"
+        role="button"
+        tabindex="0"
+      >
+        <div
+          class="MuiExpansionPanelSummary-content WithStyles-ExpansionPanelSummary--content Accordion-content SidebarItem-content"
+        >
+          <li
+            class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters SidebarItem-root"
+            role="menuitem"
+            tabindex="-1"
+          >
+            <div
+              class="Component-flex Component-inline"
+              style="align-items: center;"
+            >
+              <svg
+                class="SvgCandidates16-root"
+                style="min-width: 16px; min-height: 16px;"
+                viewBox="0 0 16 16"
+              >
+                <defs>
+                  <path
+                    d="M16 11H7v4l-7-4V1h16v10zm-1-9H1v8.42l5 2.857V10h9V2z"
+                    id="candidates16_svg__a"
+                  />
+                </defs>
+                <g
+                  fill-rule="evenodd"
+                >
+                  <mask
+                    id="candidates16_svg__b"
+                  >
+                    <use
+                      xlink:href="#candidates16_svg__a"
+                    />
+                  </mask>
+                  <use
+                    fill-rule="nonzero"
+                    xlink:href="#candidates16_svg__a"
+                  />
+                  <g
+                    mask="url(#candidates16_svg__b)"
+                  >
+                    <path
+                      d="M0 0h16v16H0z"
+                    />
+                  </g>
+                </g>
+              </svg>
+              <div
+                class="SidebarItem-label SidebarItem-withIcon"
+              >
+                <div
+                  class="SidebarItem-labelContent"
+                >
+                  Test item
+                </div>
+              </div>
+            </div>
+          </li>
+        </div>
+        <div
+          aria-hidden="true"
+          class="MuiButtonBase-root MuiIconButton-root MuiExpansionPanelSummary-expandIcon"
+          role="button"
+          tabindex="-1"
+        >
+          <span
+            class="MuiIconButton-label"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root Accordion-expandIcon SidebarItem-expandIcon"
+              focusable="false"
+              role="presentation"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+              />
+              <path
+                d="M0 0h24v24H0z"
+                fill="none"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+      <div
+        aria-hidden="true"
+        class="MuiCollapse-container"
+        style="min-height: 0px;"
+      >
+        <div
+          class="MuiCollapse-wrapper"
+        >
+          <div
+            class="MuiCollapse-wrapperInner"
+          >
+            <div
+              class="MuiExpansionPanelDetails-root ExpansionPanelDetails-root Accordion-details SidebarItem-details"
+            >
+              <ul
+                class="MuiList-root SidebarMenu-root"
+                role="menu"
+              >
+                <li
+                  class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters SidebarItem-root"
+                  role="menuitem"
+                  tabindex="-1"
+                >
+                  <div
+                    class="Component-flex Component-inline"
+                    style="align-items: center;"
+                  >
+                    <div
+                      class="SidebarItem-label"
+                    >
+                      <div
+                        class="SidebarItem-labelContent"
+                      >
+                        Menu item
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`SidebarItem with icon 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <li
+      class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters SidebarItem-root"
+      role="menuitem"
+      tabindex="-1"
+    >
+      <div
+        class="Component-flex Component-inline"
+        style="align-items: center;"
+      >
+        <svg
+          class="SvgCandidates16-root"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
+        >
+          <defs>
+            <path
+              d="M16 11H7v4l-7-4V1h16v10zm-1-9H1v8.42l5 2.857V10h9V2z"
+              id="candidates16_svg__a"
+            />
+          </defs>
+          <g
+            fill-rule="evenodd"
+          >
+            <mask
+              id="candidates16_svg__b"
+            >
+              <use
+                xlink:href="#candidates16_svg__a"
+              />
+            </mask>
+            <use
+              fill-rule="nonzero"
+              xlink:href="#candidates16_svg__a"
+            />
+            <g
+              mask="url(#candidates16_svg__b)"
+            >
+              <path
+                d="M0 0h16v16H0z"
+              />
+            </g>
+          </g>
+        </svg>
+        <div
+          class="SidebarItem-label SidebarItem-withIcon"
+        >
+          <div
+            class="SidebarItem-labelContent"
+          >
+            Test item
+          </div>
+        </div>
+      </div>
+    </li>
+  </div>
+</div>
+`;

@@ -7,7 +7,8 @@ import Menu from '../Menu'
 import styles from './styles'
 
 export interface Props extends StandardProps {
-  bottom: boolean
+  /** Defines is sidebar menu pushed to bottom of sidebar */
+  bottom?: boolean
 }
 
 export const SidebarMenu: FunctionComponent<Props> = ({
@@ -26,7 +27,9 @@ export const SidebarMenu: FunctionComponent<Props> = ({
   )
 }
 
-SidebarMenu.defaultProps = {}
+SidebarMenu.defaultProps = {
+  bottom: false
+}
 
 SidebarMenu.displayName = 'SidebarMenu'
 

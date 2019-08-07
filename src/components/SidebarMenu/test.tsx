@@ -1,36 +1,30 @@
-import React, { ReactNode } from 'react'
+import React, { FunctionComponent } from 'react'
 /* eslint-disable-next-line */
-import {
-  render,
-  fireEvent,
-  cleanup,
-  RenderResult
-} from '@testing-library/react'
+import { render, cleanup } from '@testing-library/react'
 
-import { OmitInternalProps } from '../Picasso'
+import Picasso, { OmitInternalProps } from '../Picasso'
 import SidebarMenu, { Props } from './SidebarMenu'
 
-const renderSidebarMenu = (
-  children: ReactNode,
-  props: OmitInternalProps<Props>
-) => {
-  const {
-    /* add props you need */
-  } = props
-
-  return render(<SidebarMenu>{children}</SidebarMenu>)
-}
+const TestSidebarMenu: FunctionComponent<OmitInternalProps<Props>> = ({
+  children,
+  bottom
+}) => (
+  <Picasso loadFonts={false}>
+    <SidebarMenu bottom={bottom}>{children}</SidebarMenu>
+  </Picasso>
+)
 
 afterEach(cleanup)
 
 describe('SidebarMenu', () => {
-  let api: RenderResult
-
-  beforeEach(() => {
-    api = renderSidebarMenu(null, {})
-  })
   test('default render', () => {
-    const { container } = api
+    const { container } = render(<TestSidebarMenu />)
+
+    expect(container).toMatchSnapshot()
+  })
+
+  test('with bottom', () => {
+    const { container } = render(<TestSidebarMenu bottom />)
 
     expect(container).toMatchSnapshot()
   })

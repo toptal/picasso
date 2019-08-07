@@ -33,5 +33,6 @@ PicassoProvider.override(({ typography }: Theme) => ({
 
 export default () =>
   createStyles({
-    root: {}
+    root: {},
+    content: {}
   })
