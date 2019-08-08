@@ -11,6 +11,7 @@ import { MenuProps } from '@material-ui/core/Menu'
 import { withStyles } from '@material-ui/core/styles'
 import { capitalize } from '@material-ui/core/utils/helpers'
 
+import { Classes } from '../styles/types'
 import OutlinedInput from '../OutlinedInput'
 import InputAdornment from '../InputAdornment'
 import MenuItem from '../MenuItem'
@@ -56,6 +57,7 @@ export interface Props
 
 const renderOptions = (
   options: Option[],
+  classes: Classes,
   placeholder?: string,
   isNative?: boolean
 ) => {
@@ -73,7 +75,12 @@ const renderOptions = (
 
   if (placeholder) {
     resultOptions.unshift(
-      <OptionComponent disabled key='placeholder' value=''>
+      <OptionComponent
+        className={classes.placeholderOption}
+        disabled
+        key='placeholder'
+        value=''
+      >
         {placeholder}
       </OptionComponent>
     )
@@ -178,7 +185,7 @@ export const Select: FunctionComponent<Props> = ({
       MenuProps={menuProps}
       onChange={onChange}
     >
-      {renderOptions(options, placeholder, native)}
+      {renderOptions(options, classes, placeholder, native)}
     </MUISelect>
   )
 }
