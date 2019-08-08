@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: sketchtool 56.3 (101010) - https://sketch.com -->
-    <title>56d0c33e-3633-40c5-a50e-7f481b000a37@1.00x</title>
+    <title>9e6aaaa1-80ad-44ec-bf84-f0ede6cca5ff@1.00x</title>
     <desc>Created with sketchtool.</desc>
     <defs>
-        <path d="M11.3722534,7.78468323 C11.7189483,7.35131465 12.2847242,7.35590529 12.6277466,7.78468323 L19.3722534,16.2153168 C19.7189483,16.6486854 19.5553691,17 18.9991283,17 L5.00087166,17 C4.4481055,17 4.28472424,16.6440947 4.62774658,16.2153168 L11.3722534,7.78468323 Z" id="path-1"></path>
+        <path d="M11.3722534,16.2153168 L4.62774658,7.78468323 C4.28472424,7.35590529 4.4481055,7 5.00087166,7 L18.9991283,7 C19.5553691,7 19.7189483,7.35131465 19.3722534,7.78468323 L12.6277466,16.2153168 C12.2847242,16.6440947 11.7189483,16.6486854 11.3722534,16.2153168 Z" id="path-1"></path>
     </defs>
     <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="Icons-/-General-/-24-/-Arrow-Drop-Down">
             <mask id="mask-2" fill="white">
                 <use xlink:href="#path-1"></use>
             </mask>
-            <use id="Arrow" fill="#455065" transform="translate(12.000000, 12.000000) scale(1, -1) translate(-12.000000, -12.000000) " xlink:href="#path-1"></use>
+            <use id="Arrow" fill="#455065" xlink:href="#path-1"></use>
             <g id="Colors-/-305-Dark-Grey" mask="url(#mask-2)" fill="#455065">
                 <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
             </g>

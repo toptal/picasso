@@ -41,7 +41,7 @@ const SvgArrowDropDown24 = (props: Props) => {
     >
       <defs>
         <path
-          d='M11.372 7.785c.347-.434.913-.43 1.256 0l6.744 8.43c.347.434.183.785-.373.785H5.001c-.553 0-.716-.356-.373-.785l6.744-8.43z'
+          d='M11.372 16.215l-6.744-8.43C4.285 7.355 4.448 7 5 7h13.998c.556 0 .72.351.373.785l-6.744 8.43c-.343.43-.91.434-1.256 0z'
           id='arrowDropDown24_svg__a'
         />
       </defs>
@@ -49,10 +49,7 @@ const SvgArrowDropDown24 = (props: Props) => {
         <mask id='arrowDropDown24_svg__b'>
           <use xlinkHref='#arrowDropDown24_svg__a' />
         </mask>
-        <use
-          transform='matrix(1 0 0 -1 0 24)'
-          xlinkHref='#arrowDropDown24_svg__a'
-        />
+        <use xlinkHref='#arrowDropDown24_svg__a' />
         <g mask='url(#arrowDropDown24_svg__b)'>
           <path d='M0 0h24v24H0z' />
         </g>
