@@ -39,8 +39,6 @@ export const SidebarItem: FunctionComponent<Props> = ({
 }) => {
   const hasIcon = Boolean(icon)
   const hasMenu = Boolean(menu)
-  const isChildrenString =
-    typeof children === 'string' || children instanceof String
 
   const handleMenuItemClick = (
     event: React.MouseEvent<HTMLElement, MouseEvent>
@@ -50,18 +48,19 @@ export const SidebarItem: FunctionComponent<Props> = ({
     }
   }
 
-  const resolvedChildren = isChildrenString ? (
-    <Typography
-      className={classes.labelContent}
-      color='inherit'
-      size='medium'
-      noWrap
-    >
-      {children}
-    </Typography>
-  ) : (
-    children
-  )
+  const resolvedChildren =
+    typeof children === 'string' ? (
+      <Typography
+        className={classes.labelContent}
+        color='inherit'
+        size='medium'
+        noWrap
+      >
+        {children}
+      </Typography>
+    ) : (
+      children
+    )
 
   const menuItem = (
     <MenuItem
