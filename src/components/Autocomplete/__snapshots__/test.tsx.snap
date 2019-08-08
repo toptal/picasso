@@ -104,7 +104,7 @@ exports[`Autocomplete render options when start typing 1`] = `
               tabindex="-1"
             >
               <p
-                class="MuiTypography-root Typography-bodyInherit Typography-black MuiTypography-body1 MenuItem-stringContent"
+                class="MuiTypography-root Typography-bodyInherit Typography-inherit MuiTypography-body1 MenuItem-stringContent"
               >
                 Croatia
               </p>
@@ -117,7 +117,7 @@ exports[`Autocomplete render options when start typing 1`] = `
               tabindex="-1"
             >
               <p
-                class="MuiTypography-root Typography-bodyInherit Typography-black MuiTypography-body1 MenuItem-stringContent"
+                class="MuiTypography-root Typography-bodyInherit Typography-inherit MuiTypography-body1 MenuItem-stringContent"
               >
                 Lithuania
               </p>

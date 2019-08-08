@@ -6,22 +6,23 @@ exports[`SidebarItem default render 1`] = `
     class="Picasso-root"
   >
     <li
-      class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters SidebarItem-root"
+      class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters SidebarItem-root SidebarItem-noWrap"
       role="menuitem"
       tabindex="-1"
     >
       <div
-        class="Component-flex Component-inline"
+        class="Component-flex Component-inline SidebarItem-noWrap"
         style="align-items: center;"
       >
         <div
-          class="SidebarItem-label"
+          class="Component-flex SidebarItem-label SidebarItem-noWrap"
+          style="align-items: center;"
         >
-          <div
-            class="SidebarItem-labelContent"
+          <p
+            class="MuiTypography-root Typography-bodyMedium Typography-inherit MuiTypography-body1 MuiTypography-noWrap"
           >
             Test item
-          </div>
+          </p>
         </div>
       </div>
     </li>
@@ -35,12 +36,12 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
     class="Picasso-root"
   >
     <li
-      class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters SidebarItem-root"
+      class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters SidebarItem-root SidebarItem-noWrap"
       role="menuitem"
       tabindex="-1"
     >
       <div
-        class="Component-flex Component-inline"
+        class="Component-flex Component-inline SidebarItem-noWrap"
         style="align-items: center;"
       >
         <svg
@@ -78,13 +79,14 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
           </g>
         </svg>
         <div
-          class="SidebarItem-label SidebarItem-withIcon"
+          class="Component-flex SidebarItem-label SidebarItem-noWrap SidebarItem-withIcon"
+          style="align-items: center;"
         >
-          <div
-            class="SidebarItem-labelContent"
+          <p
+            class="MuiTypography-root Typography-bodyMedium Typography-inherit MuiTypography-body1 MuiTypography-noWrap"
           >
             Test item
-          </div>
+          </p>
         </div>
       </div>
     </li>
@@ -93,22 +95,23 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
       role="menu"
     >
       <li
-        class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters SidebarItem-root"
+        class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters SidebarItem-root SidebarItem-noWrap"
         role="menuitem"
         tabindex="-1"
       >
         <div
-          class="Component-flex Component-inline"
+          class="Component-flex Component-inline SidebarItem-noWrap"
           style="align-items: center;"
         >
           <div
-            class="SidebarItem-label"
+            class="Component-flex SidebarItem-label SidebarItem-noWrap"
+            style="align-items: center;"
           >
-            <div
-              class="SidebarItem-labelContent"
+            <p
+              class="MuiTypography-root Typography-bodyMedium Typography-inherit MuiTypography-body1 MuiTypography-noWrap"
             >
               Menu item
-            </div>
+            </p>
           </div>
         </div>
       </li>
@@ -123,12 +126,12 @@ exports[`SidebarItem is selected 1`] = `
     class="Picasso-root"
   >
     <li
-      class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters SidebarItem-root SidebarItem-selected"
+      class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiListItem-selected MuiMenuItem-root MuiMenuItem-selected MuiMenuItem-gutters SidebarItem-root SidebarItem-noWrap SidebarItem-selected"
       role="menuitem"
       tabindex="-1"
     >
       <div
-        class="Component-flex Component-inline"
+        class="Component-flex Component-inline SidebarItem-noWrap"
         style="align-items: center;"
       >
         <svg
@@ -166,13 +169,14 @@ exports[`SidebarItem is selected 1`] = `
           </g>
         </svg>
         <div
-          class="SidebarItem-label SidebarItem-withIcon"
+          class="Component-flex SidebarItem-label SidebarItem-noWrap SidebarItem-withIcon"
+          style="align-items: center;"
         >
-          <div
-            class="SidebarItem-labelContent"
+          <p
+            class="MuiTypography-root Typography-bodyMedium Typography-inherit MuiTypography-body1 MuiTypography-noWrap"
           >
             Test item
-          </div>
+          </p>
         </div>
       </div>
     </li>
@@ -186,7 +190,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiPaper-elevation0 MuiPaper-rounded MuiExpansionPanel-root Accordion-root MuiExpansionPanel-rounded SidebarItem-accordion"
+      class="MuiPaper-root MuiPaper-elevation0 MuiPaper-rounded MuiExpansionPanel-root Accordion-root MuiExpansionPanel-rounded"
     >
       <div
         aria-expanded="false"
@@ -198,12 +202,12 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
           class="MuiExpansionPanelSummary-content WithStyles-ExpansionPanelSummary--content Accordion-content SidebarItem-content"
         >
           <li
-            class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters SidebarItem-root"
+            class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters SidebarItem-root SidebarItem-noWrap"
             role="menuitem"
             tabindex="-1"
           >
             <div
-              class="Component-flex Component-inline"
+              class="Component-flex Component-inline SidebarItem-noWrap"
               style="align-items: center;"
             >
               <svg
@@ -241,13 +245,14 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
                 </g>
               </svg>
               <div
-                class="SidebarItem-label SidebarItem-withIcon"
+                class="Component-flex SidebarItem-label SidebarItem-noWrap SidebarItem-withIcon"
+                style="align-items: center;"
               >
-                <div
-                  class="SidebarItem-labelContent"
+                <p
+                  class="MuiTypography-root Typography-bodyMedium Typography-inherit MuiTypography-body1 MuiTypography-noWrap"
                 >
                   Test item
-                </div>
+                </p>
               </div>
             </div>
           </li>
@@ -262,19 +267,37 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
             class="MuiIconButton-label"
           >
             <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root Accordion-expandIcon SidebarItem-expandIcon"
-              focusable="false"
-              role="presentation"
-              viewBox="0 0 24 24"
+              class="SvgArrowDropDown16-root Accordion-expandIcon SidebarItem-expandIcon"
+              style="min-width: 16px; min-height: 16px;"
+              viewBox="0 0 16 16"
             >
-              <path
-                d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
-              />
-              <path
-                d="M0 0h24v24H0z"
-                fill="none"
-              />
+              <defs>
+                <path
+                  d="M7.357 10.228L3.643 5.772C3.283 5.34 3.446 5 3.995 5h8.01c.54 0 .707.346.352.772l-3.714 4.456c-.36.432-.931.426-1.286 0z"
+                  id="arrowDropDown16_svg__a"
+                />
+              </defs>
+              <g
+                fill-rule="evenodd"
+              >
+                <mask
+                  id="arrowDropDown16_svg__b"
+                >
+                  <use
+                    xlink:href="#arrowDropDown16_svg__a"
+                  />
+                </mask>
+                <use
+                  xlink:href="#arrowDropDown16_svg__a"
+                />
+                <g
+                  mask="url(#arrowDropDown16_svg__b)"
+                >
+                  <path
+                    d="M0 0h16v16H0z"
+                  />
+                </g>
+              </g>
             </svg>
           </span>
         </div>
@@ -298,22 +321,23 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
                 role="menu"
               >
                 <li
-                  class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters SidebarItem-root"
+                  class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters SidebarItem-root SidebarItem-noWrap"
                   role="menuitem"
                   tabindex="-1"
                 >
                   <div
-                    class="Component-flex Component-inline"
+                    class="Component-flex Component-inline SidebarItem-noWrap"
                     style="align-items: center;"
                   >
                     <div
-                      class="SidebarItem-label"
+                      class="Component-flex SidebarItem-label SidebarItem-noWrap"
+                      style="align-items: center;"
                     >
-                      <div
-                        class="SidebarItem-labelContent"
+                      <p
+                        class="MuiTypography-root Typography-bodyMedium Typography-inherit MuiTypography-body1 MuiTypography-noWrap"
                       >
                         Menu item
-                      </div>
+                      </p>
                     </div>
                   </div>
                 </li>
@@ -333,12 +357,12 @@ exports[`SidebarItem with icon 1`] = `
     class="Picasso-root"
   >
     <li
-      class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters SidebarItem-root"
+      class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters SidebarItem-root SidebarItem-noWrap"
       role="menuitem"
       tabindex="-1"
     >
       <div
-        class="Component-flex Component-inline"
+        class="Component-flex Component-inline SidebarItem-noWrap"
         style="align-items: center;"
       >
         <svg
@@ -376,13 +400,14 @@ exports[`SidebarItem with icon 1`] = `
           </g>
         </svg>
         <div
-          class="SidebarItem-label SidebarItem-withIcon"
+          class="Component-flex SidebarItem-label SidebarItem-noWrap SidebarItem-withIcon"
+          style="align-items: center;"
         >
-          <div
-            class="SidebarItem-labelContent"
+          <p
+            class="MuiTypography-root Typography-bodyMedium Typography-inherit MuiTypography-body1 MuiTypography-noWrap"
           >
             Test item
-          </div>
+          </p>
         </div>
       </div>
     </li>
