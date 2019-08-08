@@ -5,10 +5,10 @@ export default ({ palette }: Theme) =>
     root: {
       height: '3em',
       padding: '0 1.5em',
-      color: palette.grey.dark,
+      color: palette.grey.main,
 
       '&:hover': {
-        color: palette.blue.main,
+        color: palette.common.white,
         backgroundColor: 'initial'
       },
 
@@ -36,7 +36,7 @@ export default ({ palette }: Theme) =>
     expandIcon: {
       margin: '0.8em',
       fontSize: '0.6em',
-      color: 'inherit'
+      color: palette.grey.main
     },
     noWrap: {
       flex: 1,

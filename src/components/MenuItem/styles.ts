@@ -10,29 +10,29 @@ PicassoProvider.override(({ palette }: Theme) => ({
       lineHeight: '1em',
       padding: 0,
       fontSize: 'inherit',
-      color: palette.common.black,
+      color: palette.grey.main,
 
       '&:hover': {
-        backgroundColor: palette.blue.lighter,
+        backgroundColor: palette.grey.dark,
 
         '&$selected': {
-          color: palette.blue.main,
-          backgroundColor: palette.blue.lighter
+          color: palette.common.white,
+          backgroundColor: palette.grey.dark
         }
       },
 
       '&$selected': {
-        color: palette.blue.main,
-        backgroundColor: palette.blue.lighter
+        color: palette.common.white,
+        backgroundColor: palette.grey.dark
       },
 
       '&:focus': {
-        color: palette.blue.main,
-        backgroundColor: palette.blue.lighter,
+        color: palette.common.white,
+        backgroundColor: palette.grey.dark,
 
         '&$selected': {
-          color: palette.blue.main,
-          backgroundColor: palette.blue.lighter
+          color: palette.common.white,
+          backgroundColor: palette.grey.dark
         }
       }
     },

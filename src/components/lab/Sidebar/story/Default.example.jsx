@@ -24,7 +24,7 @@ const SidebarDefaultExample = () => (
   >
     <Sidebar>
       <Container bottom='small' left='medium'>
-        <Logo />
+        <Logo variant='white' />
       </Container>
       <Sidebar.Menu>
         <Sidebar.Item icon={<Overview16 />} selected>
