@@ -1,5 +1,5 @@
 import React from 'react'
-import { Sidebar, Label, Logo, Container } from '@toptal/picasso'
+import { Sidebar, Label, Logo, Container, Typography } from '@toptal/picasso'
 import {
   Jobs16,
   Overview16,
@@ -38,7 +38,12 @@ const SidebarDefaultExample = () => (
           Billing
         </Sidebar.Item>
         <Sidebar.Item icon={<LegalInfo16 />}>
-          Legal Info <Label>5</Label>
+          <Typography size='medium' color='inherit'>
+            Legal Info
+          </Typography>
+          <Container left='medium'>
+            <Label>5</Label>
+          </Container>
         </Sidebar.Item>
         <Sidebar.Item
           icon={<Referrals16 />}

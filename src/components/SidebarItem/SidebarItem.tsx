@@ -4,6 +4,7 @@ import cx from 'classnames'
 
 import { StandardProps } from '../Picasso'
 import Container from '../Container'
+import Typography from '../Typography'
 import MenuItem, { MenuItemAttributes } from '../MenuItem/MenuItem'
 import Accordion from '../Accordion'
 import { ArrowDropDown16 } from '../Icon'
@@ -38,6 +39,8 @@ export const SidebarItem: FunctionComponent<Props> = ({
 }) => {
   const hasIcon = Boolean(icon)
   const hasMenu = Boolean(menu)
+  const isChildrenString =
+    typeof children === 'string' || children instanceof String
 
   const handleMenuItemClick = (
     event: React.MouseEvent<HTMLElement, MouseEvent>
@@ -47,6 +50,19 @@ export const SidebarItem: FunctionComponent<Props> = ({
     }
   }
 
+  const resolvedChildren = isChildrenString ? (
+    <Typography
+      className={classes.labelContent}
+      color='inherit'
+      size='medium'
+      noWrap
+    >
+      {children}
+    </Typography>
+  ) : (
+    children
+  )
+
   const menuItem = (
     <MenuItem
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -54,18 +70,23 @@ export const SidebarItem: FunctionComponent<Props> = ({
       style={style}
       className={cx(
         classes.root,
+        classes.noWrap,
         { [classes.selected]: !hasMenu && selected },
         className
       )}
       onClick={handleMenuItemClick}
       selected={!hasMenu && selected}
     >
-      <Container inline flex alignItems='center'>
+      <Container className={classes.noWrap} inline flex alignItems='center'>
         {icon}
         <Container
-          className={cx(classes.label, { [classes.withIcon]: hasIcon })}
+          className={cx(classes.label, classes.noWrap, {
+            [classes.withIcon]: hasIcon
+          })}
+          flex
+          alignItems='center'
         >
-          <Container className={classes.labelContent}>{children}</Container>
+          {resolvedChildren}
         </Container>
       </Container>
     </MenuItem>

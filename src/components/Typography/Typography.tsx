@@ -45,6 +45,8 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
   invert?: boolean
   /** Text color */
   color?: ColorType
+  /** Enable ellipse of text overflow */
+  noWrap?: boolean
   /** Rendered HTML markup */
   as?: ReactType<TypographyProps>
 }
@@ -84,6 +86,7 @@ export const Typography: FunctionComponent<Props> = ({
   weight,
   color,
   invert,
+  noWrap,
   ...rest
 }) => {
   const resolvedVariant = VARIANTS[variant!][size!]
@@ -112,6 +115,7 @@ export const Typography: FunctionComponent<Props> = ({
       variant={resolvedVariant}
       inline={inline}
       component={as}
+      noWrap={noWrap}
     >
       {children}
     </MUITypography>
@@ -120,6 +124,7 @@ export const Typography: FunctionComponent<Props> = ({
 
 Typography.defaultProps = {
   inline: false,
+  noWrap: false,
   size: 'inherit',
   variant: 'body'
 }
