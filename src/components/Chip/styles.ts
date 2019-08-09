@@ -2,14 +2,14 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 
 import { PicassoProvider } from '../Picasso'
 
-PicassoProvider.override(({ palette, spacing }: Theme) => ({
+PicassoProvider.override(({ palette, sizes }: Theme) => ({
   MuiChip: {
     root: {
       fontSize: '1em',
       color: palette.grey.dark,
       backgroundColor: palette.common.white,
       borderRadius: '6.25em',
-      border: `${spacing.borderWidth} solid ${palette.grey.light}`,
+      border: `${sizes.borderWidth} solid ${palette.grey.light}`,
       height: '1.5em'
     },
     label: {

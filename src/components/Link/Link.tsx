@@ -2,10 +2,10 @@ import React, {
   MouseEvent,
   FunctionComponent,
   ReactNode,
-  ReactType,
+  ElementType,
   AnchorHTMLAttributes
 } from 'react'
-import MUILink, { LinkProps } from '@material-ui/core/Link'
+import MUILink from '@material-ui/core/Link'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
@@ -32,7 +32,7 @@ interface Props extends StandardProps, AnchorHTMLAttributes<HTMLAnchorElement> {
    * it's already fixed at `4.0.0-beta.2`
    * Please, remove this comment after upgrade
    */
-  as?: ReactType<LinkProps>
+  as?: ElementType
 
   /** Either it's a regular link or an _action_ */
   variant?: VariantType
@@ -71,7 +71,7 @@ export const Link: FunctionComponent<Props> = ({
         [classes.invert]: invert
       })}
       style={style}
-      component={as}
+      component={as!}
       tabIndex={tabIndex}
     >
       {children}
