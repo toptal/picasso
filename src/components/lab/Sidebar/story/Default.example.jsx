@@ -23,7 +23,7 @@ const SidebarDefaultExample = () => (
     }}
   >
     <Sidebar>
-      <Container bottom='small' left='medium'>
+      <Container bottom='small' left='medium' flex alignItems='center'>
         <Logo />
       </Container>
       <Sidebar.Menu>
@@ -46,6 +46,7 @@ const SidebarDefaultExample = () => (
           </Container>
         </Sidebar.Item>
         <Sidebar.Item
+          collapsible
           icon={<Referrals16 />}
           menu={
             <Sidebar.Menu>
@@ -56,7 +57,6 @@ const SidebarDefaultExample = () => (
               <Sidebar.Item>Expected Commisions</Sidebar.Item>
             </Sidebar.Menu>
           }
-          collapsible
         >
           Referrals
         </Sidebar.Item>

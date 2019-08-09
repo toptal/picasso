@@ -20,7 +20,7 @@ const Link = ({ to, children, ...rest }) => (
 const SidebarDefaultExample = () => (
   <div>
     <Sidebar>
-      <Container bottom='small' left='medium'>
+      <Container bottom='small' left='medium' flex alignItems='center'>
         <Logo />
       </Container>
       <Sidebar.Menu>

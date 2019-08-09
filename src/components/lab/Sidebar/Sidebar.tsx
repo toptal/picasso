@@ -10,6 +10,7 @@ import styles from './styles'
 import { SidebarContextProps, VariantType } from './types'
 
 export interface Props extends StandardProps {
+  /** Style variant of Sidebar and subcomponents */
   variant?: VariantType
 }
 

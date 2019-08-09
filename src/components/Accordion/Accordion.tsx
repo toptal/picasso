@@ -24,6 +24,8 @@ export interface Props
   content: ReactNode
   /** Define accordion content state, whether it should be collapsed or displayed */
   expanded?: boolean
+  /** Disables accordion */
+  disabled?: boolean
   /** Customize icon indicating expanded status */
   expandIcon?: ComponentType<IconProps>
   /** Defines if the horizontal borders show */
@@ -38,6 +40,7 @@ export const Accordion: FunctionComponent<Props> = ({
   expanded,
   expandIcon,
   bordered,
+  disabled,
   className,
   style,
   classes,
@@ -60,6 +63,7 @@ export const Accordion: FunctionComponent<Props> = ({
       style={style}
       elevation={0}
       expanded={expanded}
+      disabled={disabled}
       onChange={onChange}
     >
       {children && (
@@ -93,6 +97,7 @@ export const Accordion: FunctionComponent<Props> = ({
 
 Accordion.defaultProps = {
   bordered: true,
+  disabled: false,
   expanded: undefined,
   onChange: () => {}
 }

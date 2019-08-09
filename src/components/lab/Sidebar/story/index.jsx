@@ -20,5 +20,10 @@ page
 page
   .createChapter()
   .addExample('lab/Sidebar/story/Default.example.jsx', 'Default')
-  .addExample('lab/Sidebar/story/Links.example.jsx', 'Links')
+  .addExample('lab/Sidebar/story/Links.example.jsx', 'With Links')
   .addExample('lab/Sidebar/story/Variants.example.jsx', 'Variants')
+  .addExample('lab/Sidebar/story/Menu.example.jsx', {
+    title: 'Item Menu',
+    description:
+      'Sidebar.Item has capability to render nested Sidebar.Menu with collapsible prop'
+  })

@@ -38,6 +38,7 @@ export const SidebarItem: FunctionComponent<Props> = ({
   selected,
   collapsible,
   menu,
+  disabled,
   classes,
   className,
   style,
@@ -46,6 +47,7 @@ export const SidebarItem: FunctionComponent<Props> = ({
 }) => {
   const hasIcon = Boolean(icon)
   const hasMenu = Boolean(menu)
+  const resolvedMenu = hasMenu ? React.cloneElement(menu!, { disabled }) : menu
 
   const { variant } = useContext<SidebarContextProps>(SidebarContext)
 
@@ -85,6 +87,7 @@ export const SidebarItem: FunctionComponent<Props> = ({
       )}
       onClick={handleMenuItemClick}
       selected={!hasMenu && selected}
+      disabled={disabled}
       variant={variant}
     >
       <Container className={classes.noWrap} inline flex alignItems='center'>
@@ -112,8 +115,9 @@ export const SidebarItem: FunctionComponent<Props> = ({
           content: classes.content,
           expandIcon: classes.expandIcon
         }}
-        content={menu}
+        content={resolvedMenu}
         bordered={false}
+        disabled={disabled}
         // @ts-ignore
         expandIcon={ArrowDropDown16}
       >
@@ -125,7 +129,7 @@ export const SidebarItem: FunctionComponent<Props> = ({
   return (
     <Fragment>
       {menuItem}
-      {menu}
+      {resolvedMenu}
     </Fragment>
   )
 }
