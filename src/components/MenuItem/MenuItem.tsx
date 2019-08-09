@@ -12,7 +12,7 @@ import { StandardProps, ButtonOrAnchorProps } from '../Picasso'
 import Typography from '../Typography'
 import styles from './styles'
 
-type MenuItemAttributes = LiHTMLAttributes<HTMLLIElement> &
+export type MenuItemAttributes = LiHTMLAttributes<HTMLLIElement> &
   HTMLAttributes<HTMLDivElement> &
   ButtonOrAnchorProps
 
@@ -25,7 +25,7 @@ interface Props extends StandardProps, MenuItemAttributes {
   disableGutters?: boolean
   children?: ReactNode
   /** Callback when menu item is clicked */
-  onClick?: () => void
+  onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
   /** Highlights the item as selected */
   selected?: boolean
   /** Value of the item. Can be used when menu item is used inside Select component. */
@@ -45,12 +45,12 @@ export const MenuItem: FunctionComponent<Props> = ({
   value,
   ...rest
 }) => {
-  if (typeof children === 'string' || children instanceof String) {
+  if (typeof children === 'string') {
     children = (
       <Typography
         className={classes!.stringContent}
         style={style}
-        color='black'
+        color='inherit'
       >
         {children}
       </Typography>

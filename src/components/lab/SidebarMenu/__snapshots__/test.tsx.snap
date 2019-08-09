@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SidebarMenu default render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <ul
+      class="MuiList-root SidebarMenu-root"
+      role="menu"
+    />
+  </div>
+</div>
+`;
+
+exports[`SidebarMenu with bottom 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <ul
+      class="MuiList-root SidebarMenu-root SidebarMenu-bottom"
+      role="menu"
+    />
+  </div>
+</div>
+`;

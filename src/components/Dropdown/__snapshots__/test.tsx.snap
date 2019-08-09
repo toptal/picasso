@@ -68,7 +68,7 @@ exports[`Dropdown should render menu 1`] = `
               tabindex="-1"
             >
               <p
-                class="MuiTypography-root Typography-bodyInherit Typography-black MuiTypography-body1 MenuItem-stringContent"
+                class="MuiTypography-root Typography-bodyInherit Typography-inherit MuiTypography-body1 MenuItem-stringContent"
               >
                 Item1
               </p>
@@ -79,7 +79,7 @@ exports[`Dropdown should render menu 1`] = `
               tabindex="-1"
             >
               <p
-                class="MuiTypography-root Typography-bodyInherit Typography-black MuiTypography-body1 MenuItem-stringContent"
+                class="MuiTypography-root Typography-bodyInherit Typography-inherit MuiTypography-body1 MenuItem-stringContent"
               >
                 Item2
               </p>
@@ -90,7 +90,7 @@ exports[`Dropdown should render menu 1`] = `
               tabindex="-1"
             >
               <p
-                class="MuiTypography-root Typography-bodyInherit Typography-black MuiTypography-body1 MenuItem-stringContent"
+                class="MuiTypography-root Typography-bodyInherit Typography-inherit MuiTypography-body1 MenuItem-stringContent"
               >
                 Item3
               </p>
@@ -150,7 +150,7 @@ exports[`Dropdown should render menu without focus 1`] = `
               tabindex="-1"
             >
               <p
-                class="MuiTypography-root Typography-bodyInherit Typography-black MuiTypography-body1 MenuItem-stringContent"
+                class="MuiTypography-root Typography-bodyInherit Typography-inherit MuiTypography-body1 MenuItem-stringContent"
               >
                 Item1
               </p>
@@ -161,7 +161,7 @@ exports[`Dropdown should render menu without focus 1`] = `
               tabindex="-1"
             >
               <p
-                class="MuiTypography-root Typography-bodyInherit Typography-black MuiTypography-body1 MenuItem-stringContent"
+                class="MuiTypography-root Typography-bodyInherit Typography-inherit MuiTypography-body1 MenuItem-stringContent"
               >
                 Item2
               </p>
@@ -172,7 +172,7 @@ exports[`Dropdown should render menu without focus 1`] = `
               tabindex="-1"
             >
               <p
-                class="MuiTypography-root Typography-bodyInherit Typography-black MuiTypography-body1 MenuItem-stringContent"
+                class="MuiTypography-root Typography-bodyInherit Typography-inherit MuiTypography-body1 MenuItem-stringContent"
               >
                 Item3
               </p>

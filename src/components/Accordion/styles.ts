@@ -16,6 +16,16 @@ export default ({ palette, typography }: Theme) => {
 
   return {
     root: {
+      background: 'transparent',
+
+      '&:before': {
+        display: 'none'
+      }
+    },
+    expanded: {
+      margin: 0
+    },
+    bordered: {
       '&:first-child:before': {
         ...separatorStyles
       },
@@ -32,11 +42,7 @@ export default ({ palette, typography }: Theme) => {
       },
       '&$expanded + &:before': {
         display: 'block'
-      },
-      background: 'transparent'
-    },
-    expanded: {
-      margin: 0
+      }
     },
     summary: {
       color: palette.common.black
@@ -55,6 +61,7 @@ export default ({ palette, typography }: Theme) => {
       fontSize: '0.875em',
       fontWeight: typography.fontWeights.regular,
       marginBottom: '0.75em'
-    }
+    },
+    content: {}
   }
 }

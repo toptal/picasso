@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sidebar default render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="Component-flex Component-column Sidebar-root"
+    >
+      <div
+        class="Sidebar-spacer"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Sidebar with menu  1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="Component-flex Component-column Sidebar-root"
+    >
+      <div
+        class="Sidebar-spacer"
+      />
+      <ul
+        class="MuiList-root SidebarMenu-root"
+        role="menu"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Sidebar with one normal and one bottom menu  1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="Component-flex Component-column Sidebar-root"
+    >
+      <div
+        class="Sidebar-spacer"
+      />
+      <ul
+        class="MuiList-root SidebarMenu-root"
+        role="menu"
+      />
+      <ul
+        class="MuiList-root SidebarMenu-root SidebarMenu-bottom"
+        role="menu"
+      />
+    </div>
+  </div>
+</div>
+`;
