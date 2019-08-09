@@ -23,11 +23,11 @@ exports[`FormError default render 1`] = `
         >
           <fieldset
             aria-hidden="true"
-            class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
             style="padding-left: 8px;"
           >
             <legend
-              class="MuiPrivateNotchedOutline-legend"
+              class="PrivateNotchedOutline-legend"
               style="width: 0.01px;"
             >
               <span>
@@ -45,7 +45,7 @@ exports[`FormError default render 1`] = `
           class="FormError-root"
         >
           <p
-            class="MuiTypography-root Typography-bodyInherit MuiTypography-body1 FormError-error"
+            class="MuiTypography-root Typography-bodyInherit FormError-error MuiTypography-body1"
           >
             My Error
           </p>
@@ -54,7 +54,7 @@ exports[`FormError default render 1`] = `
           class="FormHint-root"
         >
           <p
-            class="MuiTypography-root Typography-bodyInherit MuiTypography-body1 FormHint-hint"
+            class="MuiTypography-root Typography-bodyInherit FormHint-hint MuiTypography-body1"
           >
             This is a hint
           </p>

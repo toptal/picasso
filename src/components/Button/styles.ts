@@ -33,13 +33,13 @@ const secondary = (mainColor: string, secondaryColor: string) => ({
   }
 })
 
-export default ({ palette, spacing, transitions, typography }: Theme) =>
+export default ({ palette, sizes, transitions, typography }: Theme) =>
   createStyles({
     root: {
       position: 'relative',
       textTransform: 'none',
-      borderRadius: spacing.borderRadius,
-      border: `solid ${spacing.borderWidth} ${palette.grey.light}`,
+      borderRadius: sizes.borderRadius,
+      border: `solid ${sizes.borderWidth} ${palette.grey.light}`,
       fontSize: '1rem',
       transition: `all ${transitions.duration.short}ms ${
         transitions.easing.easeOut
@@ -117,7 +117,7 @@ export default ({ palette, spacing, transitions, typography }: Theme) =>
     primaryGreen: primary(palette.green.main, palette.common.white),
     secondaryWhite: {
       color: palette.common.white,
-      border: `solid ${spacing.borderWidth} rgba(255, 255, 255, 0.32)`,
+      border: `solid ${sizes.borderWidth} rgba(255, 255, 255, 0.32)`,
 
       '&:hover, &$hovered': {
         backgroundColor: alpha(palette.common.white, 0.16),

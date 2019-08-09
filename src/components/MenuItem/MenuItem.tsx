@@ -3,7 +3,7 @@ import React, {
   ReactNode,
   LiHTMLAttributes,
   HTMLAttributes,
-  ReactType
+  ElementType
 } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
@@ -21,7 +21,7 @@ export type MenuItemAttributes = LiHTMLAttributes<HTMLLIElement> &
 
 interface Props extends StandardProps, MenuItemAttributes {
   /** Component name to render the menu item as */
-  as?: ReactType<MenuItemProps>
+  as?: ElementType<MenuItemProps>
   /** Whether to render disabled item */
   disabled?: boolean
   /** Whether to render without internal padding */
@@ -69,7 +69,7 @@ export const MenuItem: FunctionComponent<Props> = ({
       // TODO: -1 is added to keep backward compatibility e.g. for AccountSelect component
       // Should be fixed during https://toptal-core.atlassian.net/browse/FX-310
       tabIndex={-1} // DEPRECATED: remove explicit value in v3 and use passed one from props
-      component={as}
+      component={as!}
       classes={restClasses}
       className={cx(classes[variant!], className)}
       disabled={disabled}

@@ -22,7 +22,7 @@ PicassoProvider.override(() => ({
   }
 }))
 
-export default ({ spacing: { input }, palette }: Theme) =>
+export default ({ sizes: { input }, palette }: Theme) =>
   createStyles({
     rootFull: {
       width: '100%',

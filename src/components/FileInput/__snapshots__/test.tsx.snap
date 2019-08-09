@@ -10,11 +10,11 @@ exports[`FileInput default render 1`] = `
     >
       <fieldset
         aria-hidden="true"
-        class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
         style="padding-left: 8px;"
       >
         <legend
-          class="MuiPrivateNotchedOutline-legend"
+          class="PrivateNotchedOutline-legend"
           style="width: 0.01px;"
         >
           <span>
@@ -23,7 +23,7 @@ exports[`FileInput default render 1`] = `
         </legend>
       </fieldset>
       <div
-        class="MuiInputAdornment-root InputAdornment-root MuiInputAdornment-positionStart FileInput-adornmentStart"
+        class="MuiInputAdornment-root InputAdornment-root FileInput-adornmentStart MuiInputAdornment-positionStart"
       >
         <svg
           class="SvgUploadDocument16-root"
@@ -61,7 +61,7 @@ exports[`FileInput default render 1`] = `
         </svg>
       </div>
       <p
-        class="MuiTypography-root Typography-bodyInherit MuiTypography-body1 MuiTypography-inline Component-inputValue"
+        class="MuiTypography-root Typography-bodyInherit Component-inputValue MuiTypography-body1 MuiTypography-displayInline"
       />
       <input
         class="Component-nativeInput"

@@ -60,7 +60,7 @@ exports[`Stepper default render 1`] = `
             class="MuiStepLabel-labelContainer StepLabel-root"
           >
             <span
-              class="MuiTypography-root MuiTypography-body2 MuiStepLabel-label MuiStepLabel-completed"
+              class="MuiTypography-root MuiStepLabel-label MuiStepLabel-completed MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
                 class="StepLabel-label"
@@ -157,7 +157,7 @@ exports[`Stepper default render 1`] = `
             class="MuiStepLabel-labelContainer StepLabel-root"
           >
             <span
-              class="MuiTypography-root MuiTypography-body2 MuiStepLabel-label MuiStepLabel-completed"
+              class="MuiTypography-root MuiStepLabel-label MuiStepLabel-completed MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
                 class="StepLabel-label"
@@ -219,7 +219,7 @@ exports[`Stepper default render 1`] = `
             class="MuiStepLabel-labelContainer StepLabel-root"
           >
             <span
-              class="MuiTypography-root MuiTypography-body2 MuiStepLabel-label MuiStepLabel-active"
+              class="MuiTypography-root MuiStepLabel-label MuiStepLabel-active MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
                 class="StepLabel-label"
@@ -268,7 +268,7 @@ exports[`Stepper default render 1`] = `
         class="MuiStep-root MuiStep-horizontal"
       >
         <span
-          class="MuiStepLabel-root MuiStepLabel-horizontal MuiStepLabel-disabled"
+          class="MuiStepLabel-root MuiStepLabel-horizontal Mui-disabled"
         >
           <span
             class="MuiStepLabel-iconContainer"
@@ -281,7 +281,7 @@ exports[`Stepper default render 1`] = `
             class="MuiStepLabel-labelContainer StepLabel-root"
           >
             <span
-              class="MuiTypography-root MuiTypography-body2 MuiStepLabel-label"
+              class="MuiTypography-root MuiStepLabel-label MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
                 class="StepLabel-label"
@@ -357,7 +357,7 @@ exports[`Stepper render with all steps completed 1`] = `
             class="MuiStepLabel-labelContainer StepLabel-root"
           >
             <span
-              class="MuiTypography-root MuiTypography-body2 MuiStepLabel-label MuiStepLabel-completed"
+              class="MuiTypography-root MuiStepLabel-label MuiStepLabel-completed MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
                 class="StepLabel-label"
@@ -454,7 +454,7 @@ exports[`Stepper render with all steps completed 1`] = `
             class="MuiStepLabel-labelContainer StepLabel-root"
           >
             <span
-              class="MuiTypography-root MuiTypography-body2 MuiStepLabel-label MuiStepLabel-completed"
+              class="MuiTypography-root MuiStepLabel-label MuiStepLabel-completed MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
                 class="StepLabel-label"
@@ -551,7 +551,7 @@ exports[`Stepper render with all steps completed 1`] = `
             class="MuiStepLabel-labelContainer StepLabel-root"
           >
             <span
-              class="MuiTypography-root MuiTypography-body2 MuiStepLabel-label MuiStepLabel-completed"
+              class="MuiTypography-root MuiStepLabel-label MuiStepLabel-completed MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
                 class="StepLabel-label"
@@ -648,7 +648,7 @@ exports[`Stepper render with all steps completed 1`] = `
             class="MuiStepLabel-labelContainer StepLabel-root"
           >
             <span
-              class="MuiTypography-root MuiTypography-body2 MuiStepLabel-label MuiStepLabel-completed"
+              class="MuiTypography-root MuiStepLabel-label MuiStepLabel-completed MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
                 class="StepLabel-label"
@@ -724,7 +724,7 @@ exports[`Stepper render with full-width 1`] = `
             class="MuiStepLabel-labelContainer StepLabel-root"
           >
             <span
-              class="MuiTypography-root MuiTypography-body2 MuiStepLabel-label MuiStepLabel-completed"
+              class="MuiTypography-root MuiStepLabel-label MuiStepLabel-completed MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
                 class="StepLabel-label"
@@ -821,7 +821,7 @@ exports[`Stepper render with full-width 1`] = `
             class="MuiStepLabel-labelContainer StepLabel-root"
           >
             <span
-              class="MuiTypography-root MuiTypography-body2 MuiStepLabel-label MuiStepLabel-completed"
+              class="MuiTypography-root MuiStepLabel-label MuiStepLabel-completed MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
                 class="StepLabel-label"
@@ -918,7 +918,7 @@ exports[`Stepper render with full-width 1`] = `
             class="MuiStepLabel-labelContainer StepLabel-root"
           >
             <span
-              class="MuiTypography-root MuiTypography-body2 MuiStepLabel-label MuiStepLabel-completed"
+              class="MuiTypography-root MuiStepLabel-label MuiStepLabel-completed MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
                 class="StepLabel-label"
@@ -1015,7 +1015,7 @@ exports[`Stepper render with full-width 1`] = `
             class="MuiStepLabel-labelContainer StepLabel-root"
           >
             <span
-              class="MuiTypography-root MuiTypography-body2 MuiStepLabel-label MuiStepLabel-completed"
+              class="MuiTypography-root MuiStepLabel-label MuiStepLabel-completed MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
                 class="StepLabel-label"
@@ -1091,7 +1091,7 @@ exports[`Stepper render with hidden labels 1`] = `
             class="MuiStepLabel-labelContainer"
           >
             <span
-              class="MuiTypography-root MuiTypography-body2 MuiStepLabel-label StepLabel-hidden MuiStepLabel-completed"
+              class="MuiTypography-root MuiStepLabel-label StepLabel-hidden MuiStepLabel-completed MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
                 class="StepLabel-label"
@@ -1188,7 +1188,7 @@ exports[`Stepper render with hidden labels 1`] = `
             class="MuiStepLabel-labelContainer"
           >
             <span
-              class="MuiTypography-root MuiTypography-body2 MuiStepLabel-label StepLabel-hidden MuiStepLabel-completed"
+              class="MuiTypography-root MuiStepLabel-label StepLabel-hidden MuiStepLabel-completed MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
                 class="StepLabel-label"
@@ -1285,7 +1285,7 @@ exports[`Stepper render with hidden labels 1`] = `
             class="MuiStepLabel-labelContainer"
           >
             <span
-              class="MuiTypography-root MuiTypography-body2 MuiStepLabel-label StepLabel-hidden MuiStepLabel-completed"
+              class="MuiTypography-root MuiStepLabel-label StepLabel-hidden MuiStepLabel-completed MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
                 class="StepLabel-label"
@@ -1382,7 +1382,7 @@ exports[`Stepper render with hidden labels 1`] = `
             class="MuiStepLabel-labelContainer"
           >
             <span
-              class="MuiTypography-root MuiTypography-body2 MuiStepLabel-label StepLabel-hidden MuiStepLabel-completed"
+              class="MuiTypography-root MuiStepLabel-label StepLabel-hidden MuiStepLabel-completed MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
                 class="StepLabel-label"
