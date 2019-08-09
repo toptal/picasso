@@ -3,7 +3,7 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 import { PicassoProvider } from '../Picasso'
 import { alpha } from '../styles'
 
-PicassoProvider.override(({ palette, spacing: { input } }: Theme) => ({
+PicassoProvider.override(({ palette, sizes: { input } }: Theme) => ({
   MuiOutlinedInput: {
     root: {
       height: input.height,

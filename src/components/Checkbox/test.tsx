@@ -6,19 +6,21 @@ import {
   RenderResult
 } from '@testing-library/react'
 
-import { OmitInternalProps } from '../Picasso'
+import Picasso, { OmitInternalProps } from '../Picasso'
 import Checkbox, { Props } from './Checkbox'
 
 const renderCheckbox = (props: OmitInternalProps<Props>) => {
   const { label, disabled, indeterminate, onChange } = props
 
   return render(
-    <Checkbox
-      disabled={disabled}
-      label={label}
-      indeterminate={indeterminate}
-      onChange={onChange}
-    />
+    <Picasso loadFonts={false}>
+      <Checkbox
+        disabled={disabled}
+        label={label}
+        indeterminate={indeterminate}
+        onChange={onChange}
+      />
+    </Picasso>
   )
 }
 

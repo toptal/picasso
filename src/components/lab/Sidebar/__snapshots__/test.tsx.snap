@@ -30,6 +30,7 @@ exports[`Sidebar with menu  1`] = `
       <ul
         class="MuiList-root SidebarMenu-root"
         role="menu"
+        tabindex="-1"
       />
     </div>
   </div>
@@ -50,10 +51,12 @@ exports[`Sidebar with one normal and one bottom menu  1`] = `
       <ul
         class="MuiList-root SidebarMenu-root"
         role="menu"
+        tabindex="-1"
       />
       <ul
         class="MuiList-root SidebarMenu-root SidebarMenu-bottom"
         role="menu"
+        tabindex="-1"
       />
     </div>
   </div>

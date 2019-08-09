@@ -1,6 +1,7 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
 import { PicassoProvider } from '../Picasso'
+import { rem } from '../styles'
 
 PicassoProvider.override(({ breakpoints, palette, typography }: Theme) => ({
   MuiTab: {
@@ -10,6 +11,11 @@ PicassoProvider.override(({ breakpoints, palette, typography }: Theme) => ({
       minWidth: 0,
       lineHeight: 1,
       textTransform: 'none',
+      padding: `${rem('11px')} 0 ${rem('9px')}`,
+
+      [breakpoints.up('md')]: {
+        padding: undefined
+      },
 
       color: palette.grey.dark,
 
@@ -27,15 +33,9 @@ PicassoProvider.override(({ breakpoints, palette, typography }: Theme) => ({
       }
     },
     selected: {},
-    labelContainer: {
-      padding: '0.625em 0',
-
-      [breakpoints.up('md')]: {
-        padding: undefined
-      }
-    },
-    label: {
-      fontSize: '0.8125em'
+    wrapper: {
+      fontSize: rem('13px'),
+      lineHeight: '1rem'
     }
   }
 }))

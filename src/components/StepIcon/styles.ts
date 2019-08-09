@@ -10,7 +10,7 @@ PicassoProvider.override(() => ({
   }
 }))
 
-export default ({ palette, spacing }: Theme) =>
+export default ({ palette, sizes }: Theme) =>
   createStyles({
     root: {
       height: '1.5em',
@@ -18,7 +18,7 @@ export default ({ palette, spacing }: Theme) =>
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      border: `${spacing.borderWidth} solid ${palette.grey.main}`,
+      border: `${sizes.borderWidth} solid ${palette.grey.main}`,
       borderRadius: '50%',
       backgroundColor: 'transparent',
       color: palette.common.white

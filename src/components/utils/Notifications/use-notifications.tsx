@@ -1,4 +1,4 @@
-import React, { ReactNode, ReactElement } from 'react'
+import React, { ReactNode, ReactElement, Ref } from 'react'
 import cx from 'classnames'
 import { useSnackbar, OptionsObject } from 'notistack'
 import { withStyles } from '@material-ui/core/styles'
@@ -23,20 +23,27 @@ interface Props {
 }
 
 const StyledNotification = withStyles(styles)(
-  ({ content, icon, key, onClose, variant = 'white', classes }: Props) => (
-    <Notification
-      variant={variant}
-      elevated
-      icon={icon}
-      key={key}
-      onClose={onClose}
-      className={cx({
-        [classes.generalNotification]: variant === 'white',
-        [classes.formNotification]: variant !== 'white'
-      })}
-    >
-      {content}
-    </Notification>
+  // eslint-disable-next-line react/display-name
+  React.forwardRef(
+    (
+      { content, icon, key, onClose, variant = 'white', classes }: Props,
+      ref: Ref<Notification>
+    ) => (
+      <Notification
+        variant={variant}
+        elevated
+        icon={icon}
+        key={key}
+        onClose={onClose}
+        className={cx({
+          [classes.generalNotification]: variant === 'white',
+          [classes.formNotification]: variant !== 'white'
+        })}
+        ref={ref}
+      >
+        {content}
+      </Notification>
+    )
   )
 )
 

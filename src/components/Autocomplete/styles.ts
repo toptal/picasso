@@ -1,6 +1,6 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
-export default ({ spacing: { input } }: Theme) =>
+export default ({ sizes: { input } }: Theme) =>
   createStyles({
     root: {
       position: 'relative',

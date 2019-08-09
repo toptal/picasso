@@ -23,11 +23,11 @@ exports[`FormLabel default render 1`] = `
         >
           <fieldset
             aria-hidden="true"
-            class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
             style="padding-left: 8px;"
           >
             <legend
-              class="MuiPrivateNotchedOutline-legend"
+              class="PrivateNotchedOutline-legend"
               style="width: 0.01px;"
             >
               <span>
@@ -70,11 +70,11 @@ exports[`FormLabel disabled 1`] = `
         >
           <fieldset
             aria-hidden="true"
-            class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
             style="padding-left: 8px;"
           >
             <legend
-              class="MuiPrivateNotchedOutline-legend"
+              class="PrivateNotchedOutline-legend"
               style="width: 0.01px;"
             >
               <span>
@@ -122,11 +122,11 @@ exports[`FormLabel required 1`] = `
         >
           <fieldset
             aria-hidden="true"
-            class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
             style="padding-left: 8px;"
           >
             <legend
-              class="MuiPrivateNotchedOutline-legend"
+              class="PrivateNotchedOutline-legend"
               style="width: 0.01px;"
             >
               <span>
@@ -174,11 +174,11 @@ exports[`FormLabel requried and disabled 1`] = `
         >
           <fieldset
             aria-hidden="true"
-            class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
             style="padding-left: 8px;"
           >
             <legend
-              class="MuiPrivateNotchedOutline-legend"
+              class="PrivateNotchedOutline-legend"
               style="width: 0.01px;"
             >
               <span>
