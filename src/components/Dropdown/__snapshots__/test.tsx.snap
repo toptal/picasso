@@ -63,7 +63,7 @@ exports[`Dropdown should render menu 1`] = `
             role="menu"
           >
             <li
-              class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
+              class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters MenuItem-light"
               role="menuitem"
               tabindex="-1"
             >
@@ -74,7 +74,7 @@ exports[`Dropdown should render menu 1`] = `
               </p>
             </li>
             <li
-              class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
+              class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters MenuItem-light"
               role="menuitem"
               tabindex="-1"
             >
@@ -85,7 +85,7 @@ exports[`Dropdown should render menu 1`] = `
               </p>
             </li>
             <li
-              class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
+              class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters MenuItem-light"
               role="menuitem"
               tabindex="-1"
             >
@@ -145,7 +145,7 @@ exports[`Dropdown should render menu without focus 1`] = `
             role="menu"
           >
             <li
-              class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
+              class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters MenuItem-light"
               role="menuitem"
               tabindex="-1"
             >
@@ -156,7 +156,7 @@ exports[`Dropdown should render menu without focus 1`] = `
               </p>
             </li>
             <li
-              class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
+              class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters MenuItem-light"
               role="menuitem"
               tabindex="-1"
             >
@@ -167,7 +167,7 @@ exports[`Dropdown should render menu without focus 1`] = `
               </p>
             </li>
             <li
-              class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters"
+              class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters MenuItem-light"
               role="menuitem"
               tabindex="-1"
             >

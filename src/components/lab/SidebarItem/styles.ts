@@ -5,15 +5,27 @@ export default ({ palette }: Theme) =>
     root: {
       height: '3em',
       padding: '0 1.5em',
-      color: palette.grey.main,
 
       '&:hover': {
-        color: palette.common.white,
         backgroundColor: 'initial'
       },
 
       '&:focus': {
         backgroundColor: 'initial'
+      }
+    },
+    light: {
+      color: palette.grey.dark,
+
+      '&:hover': {
+        color: palette.blue.main
+      }
+    },
+    dark: {
+      color: palette.grey.main,
+
+      '&:hover': {
+        color: palette.common.white
       }
     },
     selected: {},
@@ -22,6 +34,16 @@ export default ({ palette }: Theme) =>
     },
     withIcon: {
       marginLeft: '0.875em'
+    },
+    lightAccordion: {
+      '& $expandIcon': {
+        color: palette.grey.dark
+      }
+    },
+    darkAccordion: {
+      '& $expandIcon': {
+        color: palette.grey.main
+      }
     },
     summary: {
       padding: 0
@@ -35,8 +57,7 @@ export default ({ palette }: Theme) =>
     },
     expandIcon: {
       margin: '0.8em',
-      fontSize: '0.6em',
-      color: palette.grey.main
+      fontSize: '0.6em'
     },
     noWrap: {
       flex: 1,

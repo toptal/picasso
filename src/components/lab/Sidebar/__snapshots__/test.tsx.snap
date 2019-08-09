@@ -6,7 +6,7 @@ exports[`Sidebar default render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Component-flex Component-column Sidebar-root"
+      class="Component-flex Component-column Sidebar-root Sidebar-light"
     >
       <div
         class="Sidebar-spacer"
@@ -22,7 +22,7 @@ exports[`Sidebar with menu  1`] = `
     class="Picasso-root"
   >
     <div
-      class="Component-flex Component-column Sidebar-root"
+      class="Component-flex Component-column Sidebar-root Sidebar-light"
     >
       <div
         class="Sidebar-spacer"
@@ -42,7 +42,7 @@ exports[`Sidebar with one normal and one bottom menu  1`] = `
     class="Picasso-root"
   >
     <div
-      class="Component-flex Component-column Sidebar-root"
+      class="Component-flex Component-column Sidebar-root Sidebar-light"
     >
       <div
         class="Sidebar-spacer"

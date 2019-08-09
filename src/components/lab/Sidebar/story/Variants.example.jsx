@@ -14,7 +14,7 @@ import {
   Help16
 } from '@toptal/picasso/Icon'
 
-const SidebarDefaultExample = () => (
+const SidebarVariantsExample = () => (
   <div
     style={{
       height: '58em',
@@ -22,9 +22,9 @@ const SidebarDefaultExample = () => (
       overflowY: 'scroll'
     }}
   >
-    <Sidebar>
+    <Sidebar variant='dark'>
       <Container bottom='small' left='medium'>
-        <Logo />
+        <Logo variant='white' />
       </Container>
       <Sidebar.Menu>
         <Sidebar.Item icon={<Overview16 />} selected>
@@ -46,7 +46,6 @@ const SidebarDefaultExample = () => (
           </Container>
         </Sidebar.Item>
         <Sidebar.Item
-          disabled
           icon={<Referrals16 />}
           menu={
             <Sidebar.Menu>
@@ -73,4 +72,4 @@ const SidebarDefaultExample = () => (
   </div>
 )
 
-export default SidebarDefaultExample
+export default SidebarVariantsExample
