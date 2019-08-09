@@ -2,8 +2,8 @@ import React, { FunctionComponent } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
-import { StandardProps } from '../Picasso'
-import Menu, { ListNativeProps } from '../Menu/Menu'
+import { StandardProps } from '../../Picasso'
+import Menu, { ListNativeProps } from '../../Menu/Menu'
 import styles from './styles'
 
 export interface Props extends StandardProps, ListNativeProps {

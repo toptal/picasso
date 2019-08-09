@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react'
 /* eslint-disable-next-line */
 import { render, cleanup } from '@testing-library/react'
 
-import Picasso, { OmitInternalProps } from '../Picasso'
+import Picasso, { OmitInternalProps } from '../../Picasso'
 import Sidebar, { Props } from './Sidebar'
 
 const TestSidebar: FunctionComponent<OmitInternalProps<Props>> = ({

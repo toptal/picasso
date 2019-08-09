@@ -2,12 +2,12 @@ import React, { FunctionComponent, ReactElement, Fragment } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
-import { StandardProps } from '../Picasso'
-import Container from '../Container'
-import Typography from '../Typography'
-import MenuItem, { MenuItemAttributes } from '../MenuItem/MenuItem'
-import Accordion from '../Accordion'
-import { ArrowDropDown16 } from '../Icon'
+import { StandardProps } from '../../Picasso'
+import Container from '../../Container'
+import Typography from '../../Typography'
+import MenuItem, { MenuItemAttributes } from '../../MenuItem/MenuItem'
+import Accordion from '../../Accordion'
+import { ArrowDropDown16 } from '../../Icon'
 import styles from './styles'
 
 export interface Props extends StandardProps, MenuItemAttributes {

@@ -2,8 +2,8 @@ import React, { FunctionComponent } from 'react'
 /* eslint-disable-next-line */
 import { render, cleanup } from '@testing-library/react'
 
-import Picasso, { OmitInternalProps } from '../Picasso'
-import { Candidates16 } from '../Icon'
+import Picasso, { OmitInternalProps } from '../../Picasso'
+import { Candidates16 } from '../../Icon'
 import SidebarMenu from '../SidebarMenu'
 import SidebarItem, { Props } from './SidebarItem'
 
