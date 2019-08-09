@@ -16,9 +16,9 @@ Picasso_1.PicassoProvider.override(({ typography }) => ({
         expandIcon: {
             padding: 0,
             right: 0,
-            transform: 'translateY(-50%) rotate(90deg)',
+            transform: 'translateY(-50%)',
             '&$expanded': {
-                transform: 'translateY(-50%) rotate(-90deg)'
+                transform: 'translateY(-50%) rotate(180deg)'
             }
         },
         content: {
@@ -31,6 +31,7 @@ Picasso_1.PicassoProvider.override(({ typography }) => ({
     }
 }));
 exports.default = () => styles_1.createStyles({
-    root: {}
+    root: {},
+    content: {}
 });
 //# sourceMappingURL=styles.js.map

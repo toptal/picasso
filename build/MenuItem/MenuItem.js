@@ -21,8 +21,8 @@ const Typography_1 = __importDefault(require("../Typography"));
 const styles_2 = __importDefault(require("./styles"));
 exports.MenuItem = (_a) => {
     var { as, children, classes, className, disabled, disableGutters, onClick, selected, style, value } = _a, rest = __rest(_a, ["as", "children", "classes", "className", "disabled", "disableGutters", "onClick", "selected", "style", "value"]);
-    if (typeof children === 'string' || children instanceof String) {
-        children = (react_1.default.createElement(Typography_1.default, { className: classes.stringContent, style: style, color: 'black' }, children));
+    if (typeof children === 'string') {
+        children = (react_1.default.createElement(Typography_1.default, { className: classes.stringContent, style: style, color: 'inherit' }, children));
     }
     return (react_1.default.createElement(MenuItem_1.default
     // eslint-disable-next-line react/jsx-props-no-spreading

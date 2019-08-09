@@ -1,6 +1,15 @@
 import { Theme } from '@material-ui/core/styles';
 declare const _default: ({ palette, typography }: Theme) => {
     root: {
+        background: string;
+        '&:before': {
+            display: string;
+        };
+    };
+    expanded: {
+        margin: number;
+    };
+    bordered: {
         '&:first-child:before': {
             [x: string]: string | number | import("@material-ui/core/styles/withStyles").CSSProperties | undefined;
             alignContent?: string | undefined;
@@ -1494,10 +1503,6 @@ declare const _default: ({ palette, typography }: Theme) => {
         '&$expanded + &:before': {
             display: string;
         };
-        background: string;
-    };
-    expanded: {
-        margin: number;
     };
     summary: {
         color: string;
@@ -1515,5 +1520,6 @@ declare const _default: ({ palette, typography }: Theme) => {
         fontWeight: number;
         marginBottom: string;
     };
+    content: {};
 };
 export default _default;

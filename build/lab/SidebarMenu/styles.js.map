@@ -1,0 +1,1 @@
+{"version":3,"file":"styles.js","sourceRoot":"","sources":["../../../src/components/lab/SidebarMenu/styles.ts"],"names":[],"mappings":";;AAAA,qDAAuD;AAEvD,kBAAe,GAAG,EAAE,CAClB,qBAAY,CAAC;IACX,IAAI,EAAE;QACJ,IAAI,EAAE,CAAC;QACP,SAAS,EAAE,MAAM;QACjB,KAAK,EAAE,CAAC;KACT;IACD,MAAM,EAAE;QACN,KAAK,EAAE,EAAE;KACV;CACF,CAAC,CAAA"}

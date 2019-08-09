@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso",
-  "version": "2.23.3",
+  "version": "2.24.0",
   "description": "",
   "main": "./build/index.js",
   "module": "./build/index.js",

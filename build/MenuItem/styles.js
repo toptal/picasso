@@ -10,17 +10,25 @@ Picasso_1.PicassoProvider.override(({ palette }) => ({
             lineHeight: '1em',
             padding: 0,
             fontSize: 'inherit',
+            color: palette.common.black,
             '&:hover': {
                 backgroundColor: palette.blue.lighter,
                 '&$selected': {
+                    color: palette.blue.main,
                     backgroundColor: palette.blue.lighter
                 }
             },
             '&$selected': {
+                color: palette.blue.main,
                 backgroundColor: palette.blue.lighter
             },
             '&:focus': {
-                backgroundColor: palette.blue.lighter
+                color: palette.blue.main,
+                backgroundColor: palette.blue.lighter,
+                '&$selected': {
+                    color: palette.blue.main,
+                    backgroundColor: palette.blue.lighter
+                }
             }
         },
         selected: {},

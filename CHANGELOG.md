@@ -1,3 +1,10 @@
+# [2.24.0](https://github.com/toptal/picasso/compare/v2.23.3...v2.24.0) (2019-08-09)
+
+
+### Features
+
+* **Sidebar:** implement Sidebar component ([#574](https://github.com/toptal/picasso/issues/574)) ([80f0add](https://github.com/toptal/picasso/commit/80f0add))
+
 ## [2.23.3](https://github.com/toptal/picasso/compare/v2.23.2...v2.23.3) (2019-08-07)
 
 

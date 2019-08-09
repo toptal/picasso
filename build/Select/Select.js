@@ -32,14 +32,14 @@ const MenuItem_1 = __importDefault(require("../MenuItem"));
 const Typography_1 = __importDefault(require("../Typography"));
 const Icon_1 = require("../Icon");
 const styles_2 = __importDefault(require("./styles"));
-const renderOptions = (options, placeholder, isNative) => {
+const renderOptions = (options, classes, placeholder, isNative) => {
     if (!options.length) {
         return null;
     }
     const OptionComponent = isNative ? 'option' : MenuItem_1.default;
     const resultOptions = options.map(({ key, value, text }) => (react_1.default.createElement(OptionComponent, { key: key || value, value: value }, text)));
     if (placeholder) {
-        resultOptions.unshift(react_1.default.createElement(OptionComponent, { disabled: true, key: 'placeholder', value: '' }, placeholder));
+        resultOptions.unshift(react_1.default.createElement(OptionComponent, { className: classes.placeholderOption, disabled: true, key: 'placeholder', value: '' }, placeholder));
     }
     return resultOptions;
 };
@@ -81,7 +81,7 @@ exports.Select = (_a) => {
                 !selectedOption && placeholder),
             iconPosition === 'end' && iconAdornment)), IconComponent: ({ className }) => (react_1.default.createElement(Icon_1.DropdownArrows16, { className: classnames_1.default(className, {
                 [classes.caretDisabled]: disabled
-            }) })), MenuProps: menuProps, onChange: onChange }, renderOptions(options, placeholder, native)));
+            }) })), MenuProps: menuProps, onChange: onChange }, renderOptions(options, classes, placeholder, native)));
 };
 exports.Select.defaultProps = {
     disabled: false,

@@ -14,6 +14,15 @@ exports.default = ({ palette, typography }) => {
     });
     return {
         root: {
+            background: 'transparent',
+            '&:before': {
+                display: 'none'
+            }
+        },
+        expanded: {
+            margin: 0
+        },
+        bordered: {
             '&:first-child:before': Object.assign({}, separatorStyles),
             '&:before': {
                 background: 'transparent'
@@ -26,11 +35,7 @@ exports.default = ({ palette, typography }) => {
             },
             '&$expanded + &:before': {
                 display: 'block'
-            },
-            background: 'transparent'
-        },
-        expanded: {
-            margin: 0
+            }
         },
         summary: {
             color: palette.common.black
@@ -49,7 +54,8 @@ exports.default = ({ palette, typography }) => {
             fontSize: '0.875em',
             fontWeight: typography.fontWeights.regular,
             marginBottom: '0.75em'
-        }
+        },
+        content: {}
     };
 };
 //# sourceMappingURL=styles.js.map

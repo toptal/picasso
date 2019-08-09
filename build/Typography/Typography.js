@@ -35,7 +35,7 @@ const VARIANTS = {
     }
 };
 exports.Typography = (_a) => {
-    var { variant, children, size, align, className, classes, style, inline, as, weight, color, invert } = _a, rest = __rest(_a, ["variant", "children", "size", "align", "className", "classes", "style", "inline", "as", "weight", "color", "invert"]);
+    var { variant, children, size, align, className, classes, style, inline, as, weight, color, invert, noWrap } = _a, rest = __rest(_a, ["variant", "children", "size", "align", "className", "classes", "style", "inline", "as", "weight", "color", "invert", "noWrap"]);
     const resolvedVariant = VARIANTS[variant][size];
     const variantClassName = kebab_to_camel_case_1.default(`${variant}-${size}`);
     const colorClassName = kebab_to_camel_case_1.default(`${color}`);
@@ -46,10 +46,11 @@ exports.Typography = (_a) => {
     // eslint-disable-next-line react/jsx-props-no-spreading
     , Object.assign({}, rest, { align: align, className: className, classes: {
             root: rootClass
-        }, style: style, variant: resolvedVariant, inline: inline, component: as }), children));
+        }, style: style, variant: resolvedVariant, inline: inline, component: as, noWrap: noWrap }), children));
 };
 exports.Typography.defaultProps = {
     inline: false,
+    noWrap: false,
     size: 'inherit',
     variant: 'body'
 };

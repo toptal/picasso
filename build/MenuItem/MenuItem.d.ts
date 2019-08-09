@@ -1,7 +1,7 @@
 import React, { FunctionComponent, ReactNode, LiHTMLAttributes, HTMLAttributes, ReactType } from 'react';
 import { MenuItemProps } from '@material-ui/core/MenuItem';
 import { StandardProps, ButtonOrAnchorProps } from '../Picasso';
-declare type MenuItemAttributes = LiHTMLAttributes<HTMLLIElement> & HTMLAttributes<HTMLDivElement> & ButtonOrAnchorProps;
+export declare type MenuItemAttributes = LiHTMLAttributes<HTMLLIElement> & HTMLAttributes<HTMLDivElement> & ButtonOrAnchorProps;
 interface Props extends StandardProps, MenuItemAttributes {
     /** Component name to render the menu item as */
     as?: ReactType<MenuItemProps>;
@@ -11,7 +11,7 @@ interface Props extends StandardProps, MenuItemAttributes {
     disableGutters?: boolean;
     children?: ReactNode;
     /** Callback when menu item is clicked */
-    onClick?: () => void;
+    onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
     /** Highlights the item as selected */
     selected?: boolean;
     /** Value of the item. Can be used when menu item is used inside Select component. */

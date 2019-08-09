@@ -70,6 +70,16 @@ exports.default = ({ spacing: { input }, palette }) => styles_1.createStyles({
     },
     placeholder: {
         opacity: 0.4
+    },
+    placeholderOption: {
+        '&[data-value=""]': {
+            backgroundColor: 'initial',
+            color: 'initial',
+            '&:hover, &:focus': {
+                backgroundColor: 'initial',
+                color: 'initial'
+            }
+        }
     }
 });
 //# sourceMappingURL=styles.js.map
