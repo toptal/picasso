@@ -16,7 +16,7 @@ interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
   /** Grid content containing Grid.Item */
   children?: ReactNode
   /** Defines the space between the type item components */
-  spacing?: GridSpacing
+  spacing?: 0 | 8 | 16 | 32 | 64
   /** Defines the orientation of the grid */
   direction?: GridDirection
   /** Defines the align-items style property based on the direction */
@@ -47,7 +47,7 @@ export const Grid: FunctionComponent<Props> & StaticProps = ({
     // eslint-disable-next-line react/jsx-props-no-spreading
     {...rest}
     container
-    spacing={spacing}
+    spacing={(spacing! / 4) as GridSpacing}
     direction={direction}
     alignItems={alignItems}
     justify={justify}

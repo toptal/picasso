@@ -14,7 +14,9 @@ export interface Props extends AdjustedSelectProps {
   /** a number of month select ends at. e.g. 11 for November */
   to?: number
   /** Callback invoked when picker changes its state. */
-  onChange: (event: ChangeEvent<HTMLSelectElement>) => void
+  onChange: (
+    event: ChangeEvent<{ name?: string | undefined; value: unknown }>
+  ) => void
 }
 
 const OPTIONS = [
@@ -45,7 +47,9 @@ export const MonthSelect: FunctionComponent<Props> = ({
   onChange,
   ...rest
 }) => {
-  const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
+  const handleChange = (
+    event: ChangeEvent<{ name?: string | undefined; value: unknown }>
+  ) => {
     onChange(event)
   }
 

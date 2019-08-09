@@ -14,7 +14,9 @@ export interface Props extends AdjustedSelectProps {
   /** a year select ends at. e.g. 2019 */
   to: number
   /** Callback invoked when picker changes its state. */
-  onChange: (event: ChangeEvent<HTMLSelectElement>) => void
+  onChange: (
+    event: ChangeEvent<{ name?: string | undefined; value: unknown }>
+  ) => void
 }
 
 function generateOptions(from: number, to: number) {
@@ -36,7 +38,9 @@ export const YearSelect: FunctionComponent<Props> = ({
   onChange,
   ...rest
 }) => {
-  const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
+  const handleChange = (
+    event: ChangeEvent<{ name?: string | undefined; value: unknown }>
+  ) => {
     onChange(event)
   }
 

@@ -1,13 +1,8 @@
-import React, {
-  FunctionComponent,
-  ReactNode,
-  ReactType,
-  HTMLAttributes
-} from 'react'
+import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import { ThemeStyle as MUIVariant } from '@material-ui/core/styles/createTypography'
 import { PropTypes } from '@material-ui/core'
-import MUITypography, { TypographyProps } from '@material-ui/core/Typography'
+import MUITypography from '@material-ui/core/Typography'
 import cx from 'classnames'
 
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
@@ -48,7 +43,7 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
   /** Enable ellipse of text overflow */
   noWrap?: boolean
   /** Rendered HTML markup */
-  as?: ReactType<TypographyProps>
+  as?: React.ElementType<React.HTMLAttributes<HTMLElement>>
 }
 
 type VariantsType = {
@@ -113,8 +108,8 @@ export const Typography: FunctionComponent<Props> = ({
       }}
       style={style}
       variant={resolvedVariant}
-      inline={inline}
-      component={as}
+      display={inline ? 'inline' : 'initial'}
+      component={as!}
       noWrap={noWrap}
     >
       {children}
