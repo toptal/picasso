@@ -46,7 +46,6 @@ const SidebarDefaultExample = () => (
           </Container>
         </Sidebar.Item>
         <Sidebar.Item
-          disabled
           icon={<Referrals16 />}
           menu={
             <Sidebar.Menu>
