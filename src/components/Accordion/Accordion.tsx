@@ -26,7 +26,7 @@ export interface Props
   expanded?: boolean
   /** Customize icon indicating expanded status */
   expandIcon?: ComponentType<IconProps>
-  /** Defines will horizontal borders will be shown */
+  /** Defines if the horizontal borders show */
   bordered?: boolean
   /** Callback invoked when `Accordion` item is toggled */
   onChange?: (event: ChangeEvent<{}>, expanded: boolean) => void
