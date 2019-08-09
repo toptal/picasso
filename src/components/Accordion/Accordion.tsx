@@ -61,7 +61,7 @@ export const Accordion: FunctionComponent<Props> = ({
     disabled={disabled}
     onChange={onChange}
   >
-    {children && (
+    {children ? (
       <ExpansionPanelSummary
         classes={{
           root: classes.summary,
@@ -73,6 +73,8 @@ export const Accordion: FunctionComponent<Props> = ({
       >
         {children}
       </ExpansionPanelSummary>
+    ) : (
+      <React.Fragment />
     )}
     <ExpansionPanelDetails
       classes={{
