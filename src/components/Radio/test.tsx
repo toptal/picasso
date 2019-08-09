@@ -6,13 +6,17 @@ import {
   RenderResult
 } from '@testing-library/react'
 
-import { OmitInternalProps } from '../Picasso'
+import Picasso, { OmitInternalProps } from '../Picasso'
 import Radio, { Props } from './Radio'
 
 const renderRadio = (props: OmitInternalProps<Props>) => {
   const { disabled, onChange } = props
 
-  return render(<Radio disabled={disabled} onChange={onChange} />)
+  return render(
+    <Picasso loadFonts={false}>
+      <Radio disabled={disabled} onChange={onChange} />
+    </Picasso>
+  )
 }
 
 afterEach(cleanup)
@@ -54,10 +58,12 @@ describe('radio button', () => {
 describe('Radio.Group', () => {
   test('renders radio in group', () => {
     const { container }: RenderResult = render(
-      <Radio.Group>
-        <Radio label='LABEL+1' value='VALUE+1' />
-        <Radio label='LABEL+2' value='VALUE+2' />
-      </Radio.Group>
+      <Picasso loadFonts={false}>
+        <Radio.Group>
+          <Radio label='LABEL+1' value='VALUE+1' />
+          <Radio label='LABEL+2' value='VALUE+2' />
+        </Radio.Group>
+      </Picasso>
     )
 
     expect(container).toMatchSnapshot()

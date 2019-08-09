@@ -5,7 +5,7 @@ import '../InputLabel/styles'
 import '../OutlinedInput/styles'
 import '../InputAdornment/styles'
 
-export default ({ spacing: { input } }: Theme) =>
+export default ({ sizes: { input } }: Theme) =>
   createStyles({
     root: {
       padding: input.padding

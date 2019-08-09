@@ -32,7 +32,7 @@ exports[`PageHeaderMenu default render 1`] = `
               class=""
             >
               <h4
-                class="MuiTypography-root Typography-invert Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name PageHeaderMenu-name PageHeaderMenu-truncateText"
+                class="MuiTypography-root Typography-invert Typography-headingSmall UserBadge-name PageHeaderMenu-name PageHeaderMenu-truncateText MuiTypography-h4 MuiTypography-displayInline"
               >
                 Jacqueline Roque
               </h4>

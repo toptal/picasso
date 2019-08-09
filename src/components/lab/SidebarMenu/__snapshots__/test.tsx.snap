@@ -8,6 +8,7 @@ exports[`SidebarMenu default render 1`] = `
     <ul
       class="MuiList-root SidebarMenu-root"
       role="menu"
+      tabindex="-1"
     />
   </div>
 </div>
@@ -21,6 +22,7 @@ exports[`SidebarMenu with bottom 1`] = `
     <ul
       class="MuiList-root SidebarMenu-root SidebarMenu-bottom"
       role="menu"
+      tabindex="-1"
     />
   </div>
 </div>

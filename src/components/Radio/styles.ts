@@ -50,7 +50,7 @@ const centeredCircle = (backgroundColor: string) =>
     transitionTimingFunction: 'inherit'
   })
 
-export default ({ palette, spacing, transitions }: Theme) =>
+export default ({ palette, sizes, transitions }: Theme) =>
   createStyles({
     root: {
       '&:hover $uncheckedIcon': {
@@ -69,7 +69,7 @@ export default ({ palette, spacing, transitions }: Theme) =>
       }`,
       '&:before': {
         ...centeredCircle(palette.common.white),
-        border: `${spacing.borderWidth} solid ${palette.grey.main}`
+        border: `${sizes.borderWidth} solid ${palette.grey.main}`
       },
       '&:after': {
         ...centeredCircle(palette.common.white),
@@ -91,7 +91,7 @@ export default ({ palette, spacing, transitions }: Theme) =>
       }`,
       '&:before': {
         ...centeredCircle(palette.common.white),
-        border: `${spacing.borderWidth} solid ${palette.grey.main}`
+        border: `${sizes.borderWidth} solid ${palette.grey.main}`
       },
       '&:after': {
         ...centeredCircle(palette.common.white),

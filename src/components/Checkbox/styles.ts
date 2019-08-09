@@ -22,16 +22,16 @@ PicassoProvider.override(() => ({
   }
 }))
 
-export default ({ palette, spacing, transitions }: Theme) =>
+export default ({ palette, sizes, transitions }: Theme) =>
   createStyles({
     root: {
       '&:hover $uncheckedIcon': {
-        border: `${spacing.borderWidth} solid ${palette.primary.main}`
+        border: `${sizes.borderWidth} solid ${palette.primary.main}`
       }
     },
     disabled: {
       '&:hover $uncheckedIcon': {
-        border: `${spacing.borderWidth} solid ${palette.grey.main}`
+        border: `${sizes.borderWidth} solid ${palette.grey.main}`
       }
     },
     checkedIcon: {
@@ -41,7 +41,7 @@ export default ({ palette, spacing, transitions }: Theme) =>
         transitions.easing.easeInOut
       }`,
       background: palette.primary.main,
-      border: `${spacing.borderWidth} solid ${palette.primary.main}`,
+      border: `${sizes.borderWidth} solid ${palette.primary.main}`,
       color: palette.common.white,
 
       '&:before': {
@@ -74,7 +74,7 @@ export default ({ palette, spacing, transitions }: Theme) =>
         transitions.easing.easeInOut
       }`,
       background: palette.common.white,
-      border: `${spacing.borderWidth} solid ${palette.grey.main}`
+      border: `${sizes.borderWidth} solid ${palette.grey.main}`
     },
     indeterminateIcon: {
       position: 'relative',
@@ -84,7 +84,7 @@ export default ({ palette, spacing, transitions }: Theme) =>
         transitions.easing.easeInOut
       }`,
       background: palette.primary.main,
-      border: `${spacing.borderWidth} solid ${palette.primary.main}`,
+      border: `${sizes.borderWidth} solid ${palette.primary.main}`,
       color: palette.common.white,
 
       '&:before': {
