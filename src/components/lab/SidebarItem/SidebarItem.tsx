@@ -47,7 +47,6 @@ export const SidebarItem: FunctionComponent<Props> = ({
 }) => {
   const hasIcon = Boolean(icon)
   const hasMenu = Boolean(menu)
-  const resolvedMenu = hasMenu ? React.cloneElement(menu!, { disabled }) : menu
 
   const { variant } = useContext<SidebarContextProps>(SidebarContext)
 
@@ -115,7 +114,7 @@ export const SidebarItem: FunctionComponent<Props> = ({
           content: classes.content,
           expandIcon: classes.expandIcon
         }}
-        content={resolvedMenu}
+        content={menu}
         bordered={false}
         disabled={disabled}
         // @ts-ignore
@@ -129,7 +128,7 @@ export const SidebarItem: FunctionComponent<Props> = ({
   return (
     <Fragment>
       {menuItem}
-      {resolvedMenu}
+      {menu}
     </Fragment>
   )
 }

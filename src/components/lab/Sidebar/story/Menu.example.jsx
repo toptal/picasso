@@ -90,11 +90,11 @@ const SidebarVariantsExample = () => (
             icon={<Referrals16 />}
             menu={
               <Sidebar.Menu>
-                <Sidebar.Item>Share Online</Sidebar.Item>
-                <Sidebar.Item>Referred Users</Sidebar.Item>
-                <Sidebar.Item>Commisions</Sidebar.Item>
-                <Sidebar.Item>Payment Options</Sidebar.Item>
-                <Sidebar.Item>Expected Commisions</Sidebar.Item>
+                <Sidebar.Item disabled>Share Online</Sidebar.Item>
+                <Sidebar.Item disabled>Referred Users</Sidebar.Item>
+                <Sidebar.Item disabled>Commisions</Sidebar.Item>
+                <Sidebar.Item disabled>Payment Options</Sidebar.Item>
+                <Sidebar.Item disabled>Expected Commisions</Sidebar.Item>
               </Sidebar.Menu>
             }
           >
