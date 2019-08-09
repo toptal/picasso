@@ -108,6 +108,7 @@ export const SidebarItem: FunctionComponent<Props> = ({
     return (
       <Accordion
         classes={{
+          disabled: classes.accordionDisabled,
           summary: classes.summary,
           details: classes.details,
           content: classes.content,

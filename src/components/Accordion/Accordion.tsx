@@ -58,7 +58,8 @@ export const Accordion: FunctionComponent<Props> = ({
         root: children
           ? cx(classes.root, { [classes.bordered]: bordered })
           : '',
-        expanded: classes.expanded
+        expanded: classes.expanded,
+        disabled: classes.disabled
       }}
       className={className}
       style={style}
@@ -76,7 +77,7 @@ export const Accordion: FunctionComponent<Props> = ({
           expandIcon={
             expandIcon ? (
               React.cloneElement(expandIcon, {
-                className: cx(classes.expandIcon, expandIcon.props.className)
+                className: classes.expandIcon
               })
             ) : (
               <ArrowDownMinor16 className={classes.expandIcon} />

@@ -23,9 +23,9 @@ const SidebarDefaultExample = () => (
     }}
   >
     <Sidebar>
-      <Container bottom='small' left='medium' flex alignItems='center'>
+      <Sidebar.Logo>
         <Logo />
-      </Container>
+      </Sidebar.Logo>
       <Sidebar.Menu>
         <Sidebar.Item icon={<Overview16 />} selected>
           Overview

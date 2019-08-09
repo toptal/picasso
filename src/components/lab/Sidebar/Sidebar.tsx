@@ -6,6 +6,7 @@ import { StandardProps, PicassoComponent } from '../../Picasso'
 import Container from '../../Container'
 import SidebarMenu from '../SidebarMenu'
 import SidebarItem from '../SidebarItem'
+import SidebarLogo from '../SidebarLogo'
 import styles from './styles'
 import { SidebarContextProps, VariantType } from './types'
 
@@ -17,6 +18,7 @@ export interface Props extends StandardProps {
 interface StaticProps {
   Menu: typeof SidebarMenu
   Item: typeof SidebarItem
+  Logo: typeof SidebarLogo
 }
 
 export const SidebarContext = React.createContext<SidebarContextProps>(
@@ -52,6 +54,8 @@ Sidebar.displayName = 'Sidebar'
 Sidebar.Menu = SidebarMenu
 
 Sidebar.Item = SidebarItem
+
+Sidebar.Logo = SidebarLogo
 
 export default withStyles(styles)(Sidebar) as PicassoComponent<
   Props,

@@ -2,6 +2,7 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 import sidebarMenuStory from '@components/lab/SidebarMenu/story'
 import sidebarItemStory from '@components/lab/SidebarItem/story'
+import sidebarLogoStory from '@components/lab/SidebarLogo/story'
 
 import { Sidebar } from '../Sidebar'
 
@@ -16,6 +17,7 @@ page
   .addComponentDocs({ component: Sidebar, name: 'Sidebar' })
   .addComponentDocs(sidebarMenuStory.componentDocs)
   .addComponentDocs(sidebarItemStory.componentDocs)
+  .addComponentDocs(sidebarLogoStory.componentDocs)
 
 page
   .createChapter()
