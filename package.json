@@ -41,6 +41,7 @@
   "dependencies": {
     "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "^3.0.2",
+    "@material-ui/lab": "^3.0.0-alpha.30",
     "classnames": "^2.2.6",
     "color": "^3.1.1",
     "debounce": "^1.2.0",
