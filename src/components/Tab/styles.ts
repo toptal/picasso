@@ -10,6 +10,11 @@ PicassoProvider.override(({ breakpoints, palette, typography }: Theme) => ({
       minWidth: 0,
       lineHeight: 1,
       textTransform: 'none',
+      padding: '0.4375em 0',
+
+      [breakpoints.up('md')]: {
+        padding: undefined
+      },
 
       color: palette.grey.dark,
 
@@ -27,14 +32,7 @@ PicassoProvider.override(({ breakpoints, palette, typography }: Theme) => ({
       }
     },
     selected: {},
-    labelContainer: {
-      padding: '0.625em 0',
-
-      [breakpoints.up('md')]: {
-        padding: undefined
-      }
-    },
-    label: {
+    wrapper: {
       fontSize: '0.8125em'
     }
   }
