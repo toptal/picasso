@@ -51,15 +51,12 @@ export const MenuItem: FunctionComponent<Props> = ({
   variant,
   ...rest
 }) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { stringContent, light, dark, ...restClasses } = classes
 
   if (typeof children === 'string') {
     children = (
-      <Typography
-        className={classes!.stringContent}
-        style={style}
-        color='inherit'
-      >
+      <Typography className={stringContent} style={style} color='inherit'>
         {children}
       </Typography>
     )

@@ -2,7 +2,7 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 
 import { PicassoProvider } from '../Picasso'
 
-PicassoProvider.override(({ palette }: Theme) => ({
+PicassoProvider.override(() => ({
   MuiMenuItem: {
     root: {
       boxSizing: 'border-box',
