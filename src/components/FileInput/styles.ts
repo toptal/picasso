@@ -2,7 +2,7 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 
 import { alpha } from '../styles'
 
-export default ({ palette, spacing: { input } }: Theme) =>
+export default ({ palette, sizes: { input } }: Theme) =>
   createStyles({
     root: {
       cursor: 'default',
