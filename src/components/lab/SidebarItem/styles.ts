@@ -35,16 +35,7 @@ export default ({ palette }: Theme) =>
     withIcon: {
       marginLeft: '0.875em'
     },
-    lightAccordion: {
-      '& $expandIcon': {
-        color: palette.grey.dark
-      }
-    },
-    darkAccordion: {
-      '& $expandIcon': {
-        color: palette.grey.main
-      }
-    },
+
     summary: {
       padding: 0
     },
@@ -58,6 +49,12 @@ export default ({ palette }: Theme) =>
     expandIcon: {
       margin: '0.8em',
       fontSize: '0.6em'
+    },
+    lightExpandIcon: {
+      color: palette.grey.dark
+    },
+    darkExpandIcon: {
+      color: palette.grey.main
     },
     noWrap: {
       flex: 1,

@@ -107,18 +107,17 @@ export const SidebarItem: FunctionComponent<Props> = ({
   if (hasMenu && collapsible) {
     return (
       <Accordion
-        className={classes[`${variant}Accordion`]}
         classes={{
           summary: classes.summary,
           details: classes.details,
           content: classes.content,
-          expandIcon: classes.expandIcon
+          expandIcon: cx(classes.expandIcon, classes[`${variant}ExpandIcon`])
         }}
         content={menu}
         bordered={false}
         disabled={disabled}
         // @ts-ignore
-        expandIcon={ArrowDropDown16}
+        expandIcon={<ArrowDropDown16 />}
       >
         {menuItem}
       </Accordion>

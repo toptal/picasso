@@ -3,7 +3,8 @@ import React, {
   FunctionComponent,
   ChangeEvent,
   HTMLAttributes,
-  ComponentType
+  ComponentType,
+  ReactElement
 } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
@@ -27,7 +28,7 @@ export interface Props
   /** Disables accordion */
   disabled?: boolean
   /** Customize icon indicating expanded status */
-  expandIcon?: ComponentType<IconProps>
+  expandIcon?: ReactElement
   /** Defines if the horizontal borders show */
   bordered?: boolean
   /** Callback invoked when `Accordion` item is toggled */
@@ -74,8 +75,9 @@ export const Accordion: FunctionComponent<Props> = ({
           }}
           expandIcon={
             expandIcon ? (
-              // @ts-ignore
-              <ExpandIcon className={classes.expandIcon} />
+              React.cloneElement(expandIcon, {
+                className: cx(classes.expandIcon, expandIcon.props.className)
+              })
             ) : (
               <ArrowDownMinor16 className={classes.expandIcon} />
             )
