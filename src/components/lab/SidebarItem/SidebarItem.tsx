@@ -1,4 +1,9 @@
-import React, { FunctionComponent, ReactElement, Fragment } from 'react'
+import React, {
+  FunctionComponent,
+  ReactElement,
+  Fragment,
+  useContext
+} from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
@@ -8,6 +13,8 @@ import Typography from '../../Typography'
 import MenuItem, { MenuItemAttributes } from '../../MenuItem/MenuItem'
 import Accordion from '../../Accordion'
 import { ArrowDropDown16 } from '../../Icon'
+import { SidebarContext } from '../Sidebar'
+import { SidebarContextProps } from '../Sidebar/types'
 import styles from './styles'
 
 export interface Props extends StandardProps, MenuItemAttributes {
@@ -31,6 +38,7 @@ export const SidebarItem: FunctionComponent<Props> = ({
   selected,
   collapsible,
   menu,
+  disabled,
   classes,
   className,
   style,
@@ -39,6 +47,8 @@ export const SidebarItem: FunctionComponent<Props> = ({
 }) => {
   const hasIcon = Boolean(icon)
   const hasMenu = Boolean(menu)
+
+  const { variant } = useContext<SidebarContextProps>(SidebarContext)
 
   const handleMenuItemClick = (
     event: React.MouseEvent<HTMLElement, MouseEvent>
@@ -70,11 +80,14 @@ export const SidebarItem: FunctionComponent<Props> = ({
       className={cx(
         classes.root,
         classes.noWrap,
+        classes[variant!],
         { [classes.selected]: !hasMenu && selected },
         className
       )}
       onClick={handleMenuItemClick}
       selected={!hasMenu && selected}
+      disabled={disabled}
+      variant={variant}
     >
       <Container className={classes.noWrap} inline flex alignItems='center'>
         {icon}
@@ -94,17 +107,22 @@ export const SidebarItem: FunctionComponent<Props> = ({
   if (hasMenu && collapsible) {
     return (
       <Accordion
-        className={classes.accordion}
         classes={{
           summary: classes.summary,
           details: classes.details,
-          content: classes.content,
-          expandIcon: classes.expandIcon
+          content: classes.content
         }}
         content={menu}
         bordered={false}
+        disabled={disabled}
         // @ts-ignore
-        expandIcon={ArrowDropDown16}
+        expandIcon={
+          <ArrowDropDown16
+            className={cx(classes.expandIcon, classes[`${variant}ExpandIcon`], {
+              [classes.expandIconDisabled]: disabled
+            })}
+          />
+        }
       >
         {menuItem}
       </Accordion>

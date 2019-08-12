@@ -5,12 +5,15 @@ import React, {
   HTMLAttributes,
   ReactType
 } from 'react'
+import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import MUIMenuItem, { MenuItemProps } from '@material-ui/core/MenuItem'
 
 import { StandardProps, ButtonOrAnchorProps } from '../Picasso'
 import Typography from '../Typography'
 import styles from './styles'
+
+export type VariantType = 'light' | 'dark'
 
 export type MenuItemAttributes = LiHTMLAttributes<HTMLLIElement> &
   HTMLAttributes<HTMLDivElement> &
@@ -30,6 +33,8 @@ interface Props extends StandardProps, MenuItemAttributes {
   selected?: boolean
   /** Value of the item. Can be used when menu item is used inside Select component. */
   value?: string | string[] | number
+  /** Variant of colors */
+  variant?: VariantType
 }
 
 export const MenuItem: FunctionComponent<Props> = ({
@@ -43,15 +48,15 @@ export const MenuItem: FunctionComponent<Props> = ({
   selected,
   style,
   value,
+  variant,
   ...rest
 }) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { stringContent, light, dark, ...restClasses } = classes
+
   if (typeof children === 'string') {
     children = (
-      <Typography
-        className={classes!.stringContent}
-        style={style}
-        color='inherit'
-      >
+      <Typography className={stringContent} style={style} color='inherit'>
         {children}
       </Typography>
     )
@@ -65,7 +70,8 @@ export const MenuItem: FunctionComponent<Props> = ({
       // Should be fixed during https://toptal-core.atlassian.net/browse/FX-310
       tabIndex={-1} // DEPRECATED: remove explicit value in v3 and use passed one from props
       component={as}
-      className={className}
+      classes={restClasses}
+      className={cx(classes[variant!], className)}
       disabled={disabled}
       disableGutters={disableGutters}
       onClick={onClick}
@@ -80,7 +86,8 @@ export const MenuItem: FunctionComponent<Props> = ({
 
 MenuItem.defaultProps = {
   as: 'li',
-  onClick: () => {}
+  onClick: () => {},
+  variant: 'light'
 }
 
 MenuItem.displayName = 'MenuItem'

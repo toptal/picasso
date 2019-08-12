@@ -1,5 +1,5 @@
 import React from 'react'
-import { Sidebar, Logo, Container } from '@toptal/picasso'
+import { Sidebar, Logo } from '@toptal/picasso'
 import {
   Jobs16,
   Overview16,
@@ -20,9 +20,9 @@ const Link = ({ to, children, ...rest }) => (
 const SidebarDefaultExample = () => (
   <div>
     <Sidebar>
-      <Container bottom='small' left='medium'>
+      <Sidebar.Logo>
         <Logo />
-      </Container>
+      </Sidebar.Logo>
       <Sidebar.Menu>
         <Sidebar.Item icon={<Overview16 />} as={Link} to='/#overview' selected>
           Overview

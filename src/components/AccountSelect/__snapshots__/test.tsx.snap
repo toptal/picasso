@@ -10,7 +10,7 @@ exports[`AccountSelect default render 1`] = `
       role="menu"
     >
       <li
-        class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-button MuiMenuItem-root AccountSelect-accountItem"
+        class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-button MuiMenuItem-root MenuItem-light AccountSelect-accountItem"
         role="menuitem"
         tabindex="-1"
       >
@@ -96,7 +96,7 @@ exports[`AccountSelect default render 1`] = `
         </a>
       </li>
       <li
-        class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-button MuiMenuItem-root AccountSelect-accountItem"
+        class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-button MuiMenuItem-root MenuItem-light AccountSelect-accountItem"
         role="menuitem"
         tabindex="-1"
       >
@@ -183,7 +183,7 @@ exports[`AccountSelect default render 1`] = `
         </a>
       </li>
       <li
-        class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-button MuiMenuItem-root AccountSelect-accountItem"
+        class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-button MuiMenuItem-root MenuItem-light AccountSelect-accountItem"
         role="menuitem"
         tabindex="-1"
       >

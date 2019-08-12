@@ -2,6 +2,7 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 import sidebarMenuStory from '@components/lab/SidebarMenu/story'
 import sidebarItemStory from '@components/lab/SidebarItem/story'
+import sidebarLogoStory from '@components/lab/SidebarLogo/story'
 
 import { Sidebar } from '../Sidebar'
 
@@ -16,8 +17,15 @@ page
   .addComponentDocs({ component: Sidebar, name: 'Sidebar' })
   .addComponentDocs(sidebarMenuStory.componentDocs)
   .addComponentDocs(sidebarItemStory.componentDocs)
+  .addComponentDocs(sidebarLogoStory.componentDocs)
 
 page
   .createChapter()
   .addExample('lab/Sidebar/story/Default.example.jsx', 'Default')
-  .addExample('lab/Sidebar/story/Links.example.jsx', 'Links')
+  .addExample('lab/Sidebar/story/Links.example.jsx', 'With Links')
+  .addExample('lab/Sidebar/story/Variants.example.jsx', 'Variants')
+  .addExample('lab/Sidebar/story/Menu.example.jsx', {
+    title: 'Item Menu',
+    description:
+      'Sidebar.Item has capability to render nested Sidebar.Menu with collapsible prop'
+  })
