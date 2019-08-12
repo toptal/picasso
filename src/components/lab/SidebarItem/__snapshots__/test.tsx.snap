@@ -267,7 +267,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
             class="MuiIconButton-label"
           >
             <svg
-              class="SvgArrowDropDown16-root Accordion-expandIcon SidebarItem-expandIcon"
+              class="SvgArrowDropDown16-root SidebarItem-expandIcon"
               style="min-width: 16px; min-height: 16px;"
               viewBox="0 0 16 16"
             >
