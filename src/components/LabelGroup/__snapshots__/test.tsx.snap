@@ -10,8 +10,6 @@ exports[`should render label group with 4 labels 1`] = `
     >
       <div
         class="MuiChip-root Chip-root Label-root"
-        role="button"
-        tabindex="-1"
       >
         <span
           class="MuiChip-label"
@@ -25,8 +23,6 @@ exports[`should render label group with 4 labels 1`] = `
       </div>
       <div
         class="MuiChip-root Chip-root Label-root"
-        role="button"
-        tabindex="-1"
       >
         <span
           class="MuiChip-label"
@@ -40,8 +36,6 @@ exports[`should render label group with 4 labels 1`] = `
       </div>
       <div
         class="MuiChip-root Chip-root Label-root"
-        role="button"
-        tabindex="-1"
       >
         <span
           class="MuiChip-label"
@@ -55,8 +49,6 @@ exports[`should render label group with 4 labels 1`] = `
       </div>
       <div
         class="MuiChip-root Chip-root Label-root"
-        role="button"
-        tabindex="-1"
       >
         <span
           class="MuiChip-label"
