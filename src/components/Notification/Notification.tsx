@@ -40,7 +40,7 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   elevated?: boolean
   /** Take the full width of a container */
   fullWidth?: boolean
-  ref: React.Ref<Notification>
+  ref?: React.Ref<Notification>
 }
 
 const renderNotificationCloseButton = ({
