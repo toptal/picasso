@@ -23,21 +23,27 @@ interface Props {
 }
 
 const StyledNotification = withStyles(styles)(
-  ({ content, icon, key, onClose, variant = 'white', classes }: Props) => (
-    <Notification
-      variant={variant}
-      elevated
-      icon={icon}
-      key={key}
-      onClose={onClose}
-      className={cx({
-        [classes.generalNotification]: variant === 'white',
-        [classes.formNotification]: variant !== 'white'
-      })}
-    >
-      {content}
-    </Notification>
-  )
+  // eslint-disable-next-line react/display-name
+  React.forwardRef((props: Props, ref: React.Ref<Notification>) => {
+    const { content, icon, key, onClose, variant = 'white', classes } = props
+
+    return (
+      <Notification
+        variant={variant}
+        elevated
+        icon={icon}
+        key={key}
+        onClose={onClose}
+        className={cx({
+          [classes.generalNotification]: variant === 'white',
+          [classes.formNotification]: variant !== 'white'
+        })}
+        ref={ref}
+      >
+        {content}
+      </Notification>
+    )
+  })
 )
 
 export const useNotifications = () => {

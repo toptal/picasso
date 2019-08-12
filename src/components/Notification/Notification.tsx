@@ -40,6 +40,7 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   elevated?: boolean
   /** Take the full width of a container */
   fullWidth?: boolean
+  ref: React.Ref<Notification>
 }
 
 const renderNotificationCloseButton = ({
@@ -109,26 +110,29 @@ const renderNotificationContent = (props: Props) => {
   )
 }
 
-export const Notification: FunctionComponent<Props> = props => {
-  const { className, classes, variant, elevated, fullWidth, ...rest } = props
+export const Notification: FunctionComponent<Props> = React.forwardRef(
+  (props: Props, ref: React.Ref<Notification>) => {
+    const { className, classes, variant, elevated, fullWidth, ...rest } = props
 
-  return (
-    <SnackbarContent
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...rest}
-      className={cx(
-        classes[`notification${capitalize(variant as string)}`],
-        {
-          [classes.notificationShadow]: elevated,
-          [classes.notificationFullWidth]: fullWidth
-        },
-        classes.notification,
-        className
-      )}
-      message={renderNotificationContent(props)}
-    />
-  )
-}
+    return (
+      <SnackbarContent
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...rest}
+        className={cx(
+          classes[`notification${capitalize(variant as string)}`],
+          {
+            [classes.notificationShadow]: elevated,
+            [classes.notificationFullWidth]: fullWidth
+          },
+          classes.notification,
+          className
+        )}
+        message={renderNotificationContent(props)}
+        ref={ref}
+      />
+    )
+  }
+)
 
 Notification.defaultProps = {
   elevated: false,
