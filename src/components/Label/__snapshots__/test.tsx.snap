@@ -71,8 +71,6 @@ exports[`renders default variant 1`] = `
   >
     <div
       class="MuiChip-root Chip-root Label-root"
-      role="button"
-      tabindex="-1"
     >
       <span
         class="MuiChip-label"
