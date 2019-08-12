@@ -1,3 +1,10 @@
+# [2.25.0](https://github.com/toptal/picasso/compare/v2.24.0...v2.25.0) (2019-08-12)
+
+
+### Features
+
+* **Sidebar:** add dark variant ([#575](https://github.com/toptal/picasso/issues/575)) ([41744a9](https://github.com/toptal/picasso/commit/41744a9))
+
 # [2.24.0](https://github.com/toptal/picasso/compare/v2.23.3...v2.24.0) (2019-08-09)
 
 

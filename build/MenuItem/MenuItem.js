@@ -15,25 +15,29 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
+const classnames_1 = __importDefault(require("classnames"));
 const styles_1 = require("@material-ui/core/styles");
 const MenuItem_1 = __importDefault(require("@material-ui/core/MenuItem"));
 const Typography_1 = __importDefault(require("../Typography"));
 const styles_2 = __importDefault(require("./styles"));
 exports.MenuItem = (_a) => {
-    var { as, children, classes, className, disabled, disableGutters, onClick, selected, style, value } = _a, rest = __rest(_a, ["as", "children", "classes", "className", "disabled", "disableGutters", "onClick", "selected", "style", "value"]);
+    var { as, children, classes, className, disabled, disableGutters, onClick, selected, style, value, variant } = _a, rest = __rest(_a, ["as", "children", "classes", "className", "disabled", "disableGutters", "onClick", "selected", "style", "value", "variant"]);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { stringContent, light, dark } = classes, restClasses = __rest(classes, ["stringContent", "light", "dark"]);
     if (typeof children === 'string') {
-        children = (react_1.default.createElement(Typography_1.default, { className: classes.stringContent, style: style, color: 'inherit' }, children));
+        children = (react_1.default.createElement(Typography_1.default, { className: stringContent, style: style, color: 'inherit' }, children));
     }
     return (react_1.default.createElement(MenuItem_1.default
     // eslint-disable-next-line react/jsx-props-no-spreading
     , Object.assign({}, rest, { 
         // TODO: -1 is added to keep backward compatibility e.g. for AccountSelect component
         // Should be fixed during https://toptal-core.atlassian.net/browse/FX-310
-        tabIndex: -1, component: as, className: className, disabled: disabled, disableGutters: disableGutters, onClick: onClick, style: style, value: value, selected: selected }), children));
+        tabIndex: -1, component: as, classes: restClasses, className: classnames_1.default(classes[variant], className), disabled: disabled, disableGutters: disableGutters, onClick: onClick, style: style, value: value, selected: selected }), children));
 };
 exports.MenuItem.defaultProps = {
     as: 'li',
-    onClick: () => { }
+    onClick: () => { },
+    variant: 'light'
 };
 exports.MenuItem.displayName = 'MenuItem';
 exports.default = styles_1.withStyles(styles_2.default)(exports.MenuItem);

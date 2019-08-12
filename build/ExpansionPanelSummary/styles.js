@@ -11,6 +11,9 @@ Picasso_1.PicassoProvider.override(({ typography }) => ({
             minHeight: '2.45em',
             '&$expanded': {
                 minHeight: '2.45em'
+            },
+            '&$disabled': {
+                opacity: 1
             }
         },
         expandIcon: {

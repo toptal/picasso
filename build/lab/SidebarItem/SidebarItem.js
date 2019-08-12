@@ -29,11 +29,13 @@ const Typography_1 = __importDefault(require("../../Typography"));
 const MenuItem_1 = __importDefault(require("../../MenuItem/MenuItem"));
 const Accordion_1 = __importDefault(require("../../Accordion"));
 const Icon_1 = require("../../Icon");
+const Sidebar_1 = require("../Sidebar");
 const styles_2 = __importDefault(require("./styles"));
 exports.SidebarItem = (_a) => {
-    var { children, icon, selected, collapsible, menu, classes, className, style, onClick } = _a, rest = __rest(_a, ["children", "icon", "selected", "collapsible", "menu", "classes", "className", "style", "onClick"]);
+    var { children, icon, selected, collapsible, menu, disabled, classes, className, style, onClick } = _a, rest = __rest(_a, ["children", "icon", "selected", "collapsible", "menu", "disabled", "classes", "className", "style", "onClick"]);
     const hasIcon = Boolean(icon);
     const hasMenu = Boolean(menu);
+    const { variant } = react_1.useContext(Sidebar_1.SidebarContext);
     const handleMenuItemClick = (event) => {
         if (!hasMenu) {
             onClick(event);
@@ -42,21 +44,22 @@ exports.SidebarItem = (_a) => {
     const resolvedChildren = typeof children === 'string' ? (react_1.default.createElement(Typography_1.default, { className: classes.labelContent, color: 'inherit', size: 'medium', noWrap: true }, children)) : (children);
     const menuItem = (react_1.default.createElement(MenuItem_1.default
     // eslint-disable-next-line react/jsx-props-no-spreading
-    , Object.assign({}, rest, { style: style, className: classnames_1.default(classes.root, classes.noWrap, { [classes.selected]: !hasMenu && selected }, className), onClick: handleMenuItemClick, selected: !hasMenu && selected }),
+    , Object.assign({}, rest, { style: style, className: classnames_1.default(classes.root, classes.noWrap, classes[variant], { [classes.selected]: !hasMenu && selected }, className), onClick: handleMenuItemClick, selected: !hasMenu && selected, disabled: disabled, variant: variant }),
         react_1.default.createElement(Container_1.default, { className: classes.noWrap, inline: true, flex: true, alignItems: 'center' },
             icon,
             react_1.default.createElement(Container_1.default, { className: classnames_1.default(classes.label, classes.noWrap, {
                     [classes.withIcon]: hasIcon
                 }), flex: true, alignItems: 'center' }, resolvedChildren))));
     if (hasMenu && collapsible) {
-        return (react_1.default.createElement(Accordion_1.default, { className: classes.accordion, classes: {
+        return (react_1.default.createElement(Accordion_1.default, { classes: {
                 summary: classes.summary,
                 details: classes.details,
-                content: classes.content,
-                expandIcon: classes.expandIcon
-            }, content: menu, bordered: false, 
+                content: classes.content
+            }, content: menu, bordered: false, disabled: disabled, 
             // @ts-ignore
-            expandIcon: Icon_1.ArrowDropDown16 }, menuItem));
+            expandIcon: react_1.default.createElement(Icon_1.ArrowDropDown16, { className: classnames_1.default(classes.expandIcon, classes[`${variant}ExpandIcon`], {
+                    [classes.expandIconDisabled]: disabled
+                }) }) }, menuItem));
     }
     return (react_1.default.createElement(react_1.Fragment, null,
         menuItem,

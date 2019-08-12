@@ -5,13 +5,23 @@ exports.default = ({ palette }) => styles_1.createStyles({
     root: {
         height: '3em',
         padding: '0 1.5em',
-        color: palette.grey.dark,
         '&:hover': {
-            color: palette.blue.main,
             backgroundColor: 'initial'
         },
         '&:focus': {
             backgroundColor: 'initial'
+        }
+    },
+    light: {
+        color: palette.grey.dark,
+        '&:hover': {
+            color: palette.blue.main
+        }
+    },
+    dark: {
+        color: palette.grey.main,
+        '&:hover': {
+            color: palette.common.white
         }
     },
     selected: {},
@@ -33,8 +43,16 @@ exports.default = ({ palette }) => styles_1.createStyles({
     },
     expandIcon: {
         margin: '0.8em',
-        fontSize: '0.6em',
-        color: 'inherit'
+        fontSize: '0.6em'
+    },
+    lightExpandIcon: {
+        color: palette.grey.dark
+    },
+    darkExpandIcon: {
+        color: palette.grey.main
+    },
+    expandIconDisabled: {
+        color: palette.grey.main
     },
     noWrap: {
         flex: 1,

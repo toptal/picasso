@@ -2,36 +2,15 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const styles_1 = require("@material-ui/core/styles");
 const Picasso_1 = require("../Picasso");
-Picasso_1.PicassoProvider.override(({ palette }) => ({
+Picasso_1.PicassoProvider.override(() => ({
     MuiMenuItem: {
         root: {
             boxSizing: 'border-box',
             height: '2.25em',
             lineHeight: '1em',
             padding: 0,
-            fontSize: 'inherit',
-            color: palette.common.black,
-            '&:hover': {
-                backgroundColor: palette.blue.lighter,
-                '&$selected': {
-                    color: palette.blue.main,
-                    backgroundColor: palette.blue.lighter
-                }
-            },
-            '&$selected': {
-                color: palette.blue.main,
-                backgroundColor: palette.blue.lighter
-            },
-            '&:focus': {
-                color: palette.blue.main,
-                backgroundColor: palette.blue.lighter,
-                '&$selected': {
-                    color: palette.blue.main,
-                    backgroundColor: palette.blue.lighter
-                }
-            }
+            fontSize: 'inherit'
         },
-        selected: {},
         gutters: {
             padding: '0.625em',
             // to override MUI paddingLeft and paddingRight default values
@@ -40,7 +19,52 @@ Picasso_1.PicassoProvider.override(({ palette }) => ({
         }
     }
 }));
-exports.default = () => styles_1.createStyles({
+exports.default = ({ palette }) => styles_1.createStyles({
+    light: {
+        color: palette.common.black,
+        '&:hover': {
+            backgroundColor: palette.blue.lighter,
+            '&$selected': {
+                color: palette.blue.main,
+                backgroundColor: palette.blue.lighter
+            }
+        },
+        '&$selected': {
+            color: palette.blue.main,
+            backgroundColor: palette.blue.lighter
+        },
+        '&:focus': {
+            color: palette.blue.main,
+            backgroundColor: palette.blue.lighter,
+            '&$selected': {
+                color: palette.blue.main,
+                backgroundColor: palette.blue.lighter
+            }
+        }
+    },
+    dark: {
+        color: palette.grey.main,
+        '&:hover': {
+            backgroundColor: palette.grey.dark,
+            '&$selected': {
+                color: palette.common.white,
+                backgroundColor: palette.grey.dark
+            }
+        },
+        '&$selected': {
+            color: palette.common.white,
+            backgroundColor: palette.grey.dark
+        },
+        '&:focus': {
+            color: palette.common.white,
+            backgroundColor: palette.grey.dark,
+            '&$selected': {
+                color: palette.common.white,
+                backgroundColor: palette.grey.dark
+            }
+        }
+    },
+    selected: {},
     stringContent: {
         fontSize: '0.8125em'
     }

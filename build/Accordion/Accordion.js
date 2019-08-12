@@ -18,33 +18,29 @@ const react_1 = __importDefault(require("react"));
 const classnames_1 = __importDefault(require("classnames"));
 const styles_1 = require("@material-ui/core/styles");
 const ExpansionPanel_1 = __importDefault(require("@material-ui/core/ExpansionPanel"));
-const ArrowDownMinor16_1 = __importDefault(require("../Icon/ArrowDownMinor16"));
+const Icon_1 = require("../Icon");
 const ExpansionPanelSummary_1 = __importDefault(require("../ExpansionPanelSummary"));
 const ExpansionPanelDetails_1 = __importDefault(require("../ExpansionPanelDetails"));
 const styles_2 = __importDefault(require("./styles"));
 exports.Accordion = (_a) => {
-    var { children, content, expanded, expandIcon, bordered, className, style, classes, onChange } = _a, rest = __rest(_a, ["children", "content", "expanded", "expandIcon", "bordered", "className", "style", "classes", "onChange"]);
-    const ExpandIcon = expandIcon;
+    var { children, content, expanded, expandIcon, bordered, disabled, className, style, classes, onChange } = _a, rest = __rest(_a, ["children", "content", "expanded", "expandIcon", "bordered", "disabled", "className", "style", "classes", "onChange"]);
     return (react_1.default.createElement(ExpansionPanel_1.default
     // eslint-disable-next-line react/jsx-props-no-spreading
     , Object.assign({}, rest, { classes: {
-            root: children
-                ? classnames_1.default(classes.root, { [classes.bordered]: bordered })
-                : '',
+            root: children ? classnames_1.default(classes.root, { [classes.bordered]: bordered }) : '',
             expanded: classes.expanded
-        }, className: className, style: style, elevation: 0, expanded: expanded, onChange: onChange }),
+        }, className: className, style: style, elevation: 0, expanded: expanded, disabled: disabled, onChange: onChange }),
         children && (react_1.default.createElement(ExpansionPanelSummary_1.default, { classes: {
                 root: classes.summary,
                 content: classes.content
-            }, expandIcon: expandIcon ? (
-            // @ts-ignore
-            react_1.default.createElement(ExpandIcon, { className: classes.expandIcon })) : (react_1.default.createElement(ArrowDownMinor16_1.default, { className: classes.expandIcon })) }, children)),
+            }, expandIcon: expandIcon || react_1.default.createElement(Icon_1.ArrowDownMinor16, { className: classes.expandIcon }) }, children)),
         react_1.default.createElement(ExpansionPanelDetails_1.default, { classes: {
                 root: classes.details
             } }, content)));
 };
 exports.Accordion.defaultProps = {
     bordered: true,
+    disabled: false,
     expanded: undefined,
     onChange: () => { }
 };
