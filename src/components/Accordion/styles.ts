@@ -22,7 +22,6 @@ export default ({ palette, typography }: Theme) => {
         display: 'none'
       }
     },
-    disabled: {},
     expanded: {
       margin: 0
     },

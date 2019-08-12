@@ -35,14 +35,6 @@ export default ({ palette }: Theme) =>
     withIcon: {
       marginLeft: '0.875em'
     },
-    accordionDisabled: {
-      '& $summary': {
-        opacity: 1
-      },
-      '& $expandIcon': {
-        color: palette.grey.main
-      }
-    },
     summary: {
       padding: 0
     },
@@ -61,6 +53,9 @@ export default ({ palette }: Theme) =>
       color: palette.grey.dark
     },
     darkExpandIcon: {
+      color: palette.grey.main
+    },
+    expandIconDisabled: {
       color: palette.grey.main
     },
     noWrap: {

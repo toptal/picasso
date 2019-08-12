@@ -24,7 +24,7 @@ export interface Props
   content: ReactNode
   /** Define accordion content state, whether it should be collapsed or displayed */
   expanded?: boolean
-  /** Disables accordion */
+  /** Whether the Accordion is disabled */
   disabled?: boolean
   /** Customize icon indicating expanded status */
   expandIcon?: ReactElement
@@ -52,8 +52,7 @@ export const Accordion: FunctionComponent<Props> = ({
     {...rest}
     classes={{
       root: children ? cx(classes.root, { [classes.bordered]: bordered }) : '',
-      expanded: classes.expanded,
-      disabled: classes.disabled
+      expanded: classes.expanded
     }}
     className={className}
     style={style}
@@ -69,13 +68,7 @@ export const Accordion: FunctionComponent<Props> = ({
           content: classes.content
         }}
         expandIcon={
-          expandIcon ? (
-            React.cloneElement(expandIcon, {
-              className: classes.expandIcon
-            })
-          ) : (
-            <ArrowDownMinor16 className={classes.expandIcon} />
-          )
+          expandIcon || <ArrowDownMinor16 className={classes.expandIcon} />
         }
       >
         {children}

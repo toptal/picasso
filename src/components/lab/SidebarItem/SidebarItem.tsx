@@ -108,17 +108,21 @@ export const SidebarItem: FunctionComponent<Props> = ({
     return (
       <Accordion
         classes={{
-          disabled: classes.accordionDisabled,
           summary: classes.summary,
           details: classes.details,
-          content: classes.content,
-          expandIcon: cx(classes.expandIcon, classes[`${variant}ExpandIcon`])
+          content: classes.content
         }}
         content={menu}
         bordered={false}
         disabled={disabled}
         // @ts-ignore
-        expandIcon={<ArrowDropDown16 />}
+        expandIcon={
+          <ArrowDropDown16
+            className={cx(classes.expandIcon, classes[`${variant}ExpandIcon`], {
+              [classes.expandIconDisabled]: disabled
+            })}
+          />
+        }
       >
         {menuItem}
       </Accordion>
