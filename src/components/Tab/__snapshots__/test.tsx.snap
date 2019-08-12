@@ -11,15 +11,7 @@ exports[`Tab default render 1`] = `
     <span
       class="MuiTab-wrapper"
     >
-      <span
-        class="MuiTab-labelContainer"
-      >
-        <span
-          class="MuiTab-label"
-        >
-          Tab Label
-        </span>
-      </span>
+      Tab Label
     </span>
     <span
       class="MuiTouchRipple-root"
@@ -31,7 +23,7 @@ exports[`Tab default render 1`] = `
 exports[`Tab disabled tab 1`] = `
 <div>
   <button
-    class="MuiButtonBase-root MuiButtonBase-disabled MuiTab-root MuiTab-textColorInherit MuiTab-disabled"
+    class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit Mui-disabled Mui-disabled"
     disabled=""
     role="tab"
     tabindex="-1"
@@ -40,15 +32,7 @@ exports[`Tab disabled tab 1`] = `
     <span
       class="MuiTab-wrapper"
     >
-      <span
-        class="MuiTab-labelContainer"
-      >
-        <span
-          class="MuiTab-label"
-        >
-          Tab Label
-        </span>
-      </span>
+      Tab Label
     </span>
   </button>
 </div>
