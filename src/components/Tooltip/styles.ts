@@ -83,7 +83,8 @@ export default ({ palette, shadows }: Theme) =>
       fontSize: rem('13px'),
       lineHeight: '1.5em',
       padding: '1rem',
-      borderRadius: 0
+      borderRadius: 0,
+      position: 'relative'
     },
     arrowPopper: arrowGenerator(palette.grey.darker!),
     arrowPopperLight: arrowGenerator(palette.common.white),

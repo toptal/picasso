@@ -12,11 +12,11 @@ exports[`SidebarItem default render 1`] = `
       tabindex="-1"
     >
       <div
-        class="Component-flex Component-inline SidebarItem-noWrap"
+        class="Container-flex Container-inline SidebarItem-noWrap"
         style="align-items: center;"
       >
         <div
-          class="Component-flex SidebarItem-label SidebarItem-noWrap"
+          class="Container-flex SidebarItem-label SidebarItem-noWrap"
           style="align-items: center;"
         >
           <p
@@ -43,7 +43,7 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
       tabindex="-1"
     >
       <div
-        class="Component-flex Component-inline SidebarItem-noWrap"
+        class="Container-flex Container-inline SidebarItem-noWrap"
         style="align-items: center;"
       >
         <svg
@@ -81,7 +81,7 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
           </g>
         </svg>
         <div
-          class="Component-flex SidebarItem-label SidebarItem-noWrap SidebarItem-withIcon"
+          class="Container-flex SidebarItem-label SidebarItem-noWrap SidebarItem-withIcon"
           style="align-items: center;"
         >
           <p
@@ -104,11 +104,11 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
         tabindex="-1"
       >
         <div
-          class="Component-flex Component-inline SidebarItem-noWrap"
+          class="Container-flex Container-inline SidebarItem-noWrap"
           style="align-items: center;"
         >
           <div
-            class="Component-flex SidebarItem-label SidebarItem-noWrap"
+            class="Container-flex SidebarItem-label SidebarItem-noWrap"
             style="align-items: center;"
           >
             <p
@@ -136,7 +136,7 @@ exports[`SidebarItem is selected 1`] = `
       tabindex="-1"
     >
       <div
-        class="Component-flex Component-inline SidebarItem-noWrap"
+        class="Container-flex Container-inline SidebarItem-noWrap"
         style="align-items: center;"
       >
         <svg
@@ -174,7 +174,7 @@ exports[`SidebarItem is selected 1`] = `
           </g>
         </svg>
         <div
-          class="Component-flex SidebarItem-label SidebarItem-noWrap SidebarItem-withIcon"
+          class="Container-flex SidebarItem-label SidebarItem-noWrap SidebarItem-withIcon"
           style="align-items: center;"
         >
           <p
@@ -214,7 +214,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
             tabindex="-1"
           >
             <div
-              class="Component-flex Component-inline SidebarItem-noWrap"
+              class="Container-flex Container-inline SidebarItem-noWrap"
               style="align-items: center;"
             >
               <svg
@@ -252,7 +252,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
                 </g>
               </svg>
               <div
-                class="Component-flex SidebarItem-label SidebarItem-noWrap SidebarItem-withIcon"
+                class="Container-flex SidebarItem-label SidebarItem-noWrap SidebarItem-withIcon"
                 style="align-items: center;"
               >
                 <p
@@ -338,11 +338,11 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
                     tabindex="-1"
                   >
                     <div
-                      class="Component-flex Component-inline SidebarItem-noWrap"
+                      class="Container-flex Container-inline SidebarItem-noWrap"
                       style="align-items: center;"
                     >
                       <div
-                        class="Component-flex SidebarItem-label SidebarItem-noWrap"
+                        class="Container-flex SidebarItem-label SidebarItem-noWrap"
                         style="align-items: center;"
                       >
                         <p
@@ -376,7 +376,7 @@ exports[`SidebarItem with icon 1`] = `
       tabindex="-1"
     >
       <div
-        class="Component-flex Component-inline SidebarItem-noWrap"
+        class="Container-flex Container-inline SidebarItem-noWrap"
         style="align-items: center;"
       >
         <svg
@@ -414,7 +414,7 @@ exports[`SidebarItem with icon 1`] = `
           </g>
         </svg>
         <div
-          class="Component-flex SidebarItem-label SidebarItem-noWrap SidebarItem-withIcon"
+          class="Container-flex SidebarItem-label SidebarItem-noWrap SidebarItem-withIcon"
           style="align-items: center;"
         >
           <p

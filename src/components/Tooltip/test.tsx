@@ -1,36 +1,28 @@
 import React from 'react'
-import { render, cleanup, RenderResult } from '@testing-library/react'
+import { render, cleanup } from '@testing-library/react'
 
-import { OmitInternalProps } from '../Picasso'
-import Tooltip, { Props } from './Tooltip'
-
-const renderTooltip = (
-  children: React.ReactNode,
-  props: OmitInternalProps<Props, 'children'>
-) => {
-  const { content, trigger, interactive } = props
-
-  return render(
-    <Tooltip content={content} trigger={trigger} interactive={interactive}>
-      {children}
-    </Tooltip>
-  )
-}
+import { ClickAwayListener } from '../utils'
+import Container from '../Container'
+import Tooltip from './Tooltip'
 
 afterEach(cleanup)
 
 describe('Tooltip', () => {
-  let api: RenderResult
-
-  beforeEach(() => {
-    api = renderTooltip(<span>Test</span>, {
-      content: 'Content goes here...',
-      trigger: 'click',
-      interactive: true
-    })
-  })
   test('default render', () => {
-    const { container } = api
+    // If you don't provide `id` prop, it falls back to a randomly generated id.
+    const { container } = render(
+      <ClickAwayListener onClickAway={() => {}}>
+        <Container>
+          <Tooltip
+            id='aria-describedby-id-mock'
+            content='Content goes here...'
+            open
+          >
+            <span>Test</span>
+          </Tooltip>
+        </Container>
+      </ClickAwayListener>
+    )
 
     expect(container).toMatchSnapshot()
   })
