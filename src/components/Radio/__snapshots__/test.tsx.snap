@@ -3,128 +3,135 @@
 exports[`Radio.Group renders radio in group 1`] = `
 <div>
   <div
-    class="MuiFormGroup-root"
-    role="radiogroup"
+    class="Picasso-root"
   >
-    <label
-      class="MuiFormControlLabel-root FormControlLabel-root Radio-root Radio-label"
+    <div
+      class="MuiFormGroup-root"
+      role="radiogroup"
     >
-      <span
-        class="MuiButtonBase-root MuiIconButton-root MuiPrivateSwitchBase-root MuiRadio-root Radio-root"
+      <label
+        class="MuiFormControlLabel-root FormControlLabel-root Radio-root Radio-label"
       >
         <span
-          class="MuiIconButton-label"
-        >
-          <div
-            class="Radio-uncheckedIcon"
-          />
-          <input
-            class="MuiPrivateSwitchBase-input"
-            type="radio"
-            value="VALUE+1"
-          />
-        </span>
-        <span
-          class="MuiTouchRipple-root"
-        />
-      </span>
-      <span
-        class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label"
-      >
-        <span
-          class="FormLabel-root FormLabel-inline"
+          aria-disabled="false"
+          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root"
         >
           <span
-            class="FormLabel-text"
+            class="MuiIconButton-label"
           >
-            LABEL+1
+            <div
+              class="Radio-uncheckedIcon"
+            />
+            <input
+              class="PrivateSwitchBase-input"
+              type="radio"
+              value="VALUE+1"
+            />
           </span>
         </span>
-      </span>
-    </label>
-    <label
-      class="MuiFormControlLabel-root FormControlLabel-root Radio-root Radio-label"
-    >
-      <span
-        class="MuiButtonBase-root MuiIconButton-root MuiPrivateSwitchBase-root MuiRadio-root Radio-root"
-      >
         <span
-          class="MuiIconButton-label"
-        >
-          <div
-            class="Radio-uncheckedIcon"
-          />
-          <input
-            class="MuiPrivateSwitchBase-input"
-            type="radio"
-            value="VALUE+2"
-          />
-        </span>
-        <span
-          class="MuiTouchRipple-root"
-        />
-      </span>
-      <span
-        class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label"
-      >
-        <span
-          class="FormLabel-root FormLabel-inline"
+          class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
         >
           <span
-            class="FormLabel-text"
+            class="FormLabel-root FormLabel-inline"
           >
-            LABEL+2
+            <span
+              class="FormLabel-text"
+            >
+              LABEL+1
+            </span>
           </span>
         </span>
-      </span>
-    </label>
+      </label>
+      <label
+        class="MuiFormControlLabel-root FormControlLabel-root Radio-root Radio-label"
+      >
+        <span
+          aria-disabled="false"
+          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root"
+        >
+          <span
+            class="MuiIconButton-label"
+          >
+            <div
+              class="Radio-uncheckedIcon"
+            />
+            <input
+              class="PrivateSwitchBase-input"
+              type="radio"
+              value="VALUE+2"
+            />
+          </span>
+        </span>
+        <span
+          class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+        >
+          <span
+            class="FormLabel-root FormLabel-inline"
+          >
+            <span
+              class="FormLabel-text"
+            >
+              LABEL+2
+            </span>
+          </span>
+        </span>
+      </label>
+    </div>
   </div>
 </div>
 `;
 
 exports[`disabled radio button renders disabled version 1`] = `
 <div>
-  <span
-    class="MuiButtonBase-root MuiButtonBase-disabled MuiIconButton-root MuiIconButton-disabled MuiPrivateSwitchBase-root MuiRadio-root Radio-root MuiPrivateSwitchBase-disabled MuiRadio-disabled Radio-disabled"
-    tabindex="-1"
+  <div
+    class="Picasso-root"
   >
     <span
-      class="MuiIconButton-label"
+      aria-disabled="true"
+      class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root PrivateSwitchBase-disabled Mui-disabled Radio-disabled Mui-disabled Mui-disabled"
+      tabindex="-1"
     >
-      <div
-        class="Radio-uncheckedIcon"
-      />
-      <input
-        class="MuiPrivateSwitchBase-input"
-        disabled=""
-        type="radio"
-        value=""
-      />
+      <span
+        class="MuiIconButton-label"
+      >
+        <div
+          class="Radio-uncheckedIcon"
+        />
+        <input
+          class="PrivateSwitchBase-input"
+          disabled=""
+          type="radio"
+          value=""
+        />
+      </span>
     </span>
-  </span>
+  </div>
 </div>
 `;
 
 exports[`radio button renders default radio button 1`] = `
 <div>
-  <span
-    class="MuiButtonBase-root MuiIconButton-root MuiPrivateSwitchBase-root MuiRadio-root Radio-root"
+  <div
+    class="Picasso-root"
   >
     <span
-      class="MuiIconButton-label"
+      aria-disabled="false"
+      class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root"
     >
-      <div
-        class="Radio-uncheckedIcon"
-      />
-      <input
-        class="MuiPrivateSwitchBase-input"
-        type="radio"
-        value=""
-      />
+      <span
+        class="MuiIconButton-label"
+      >
+        <div
+          class="Radio-uncheckedIcon"
+        />
+        <input
+          class="PrivateSwitchBase-input"
+          type="radio"
+          value=""
+        />
+      </span>
     </span>
-    <span
-      class="MuiTouchRipple-root"
-    />
-  </span>
+  </div>
 </div>
 `;

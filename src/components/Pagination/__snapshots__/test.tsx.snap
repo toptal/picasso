@@ -126,7 +126,7 @@ exports[`renders disabled 1`] = `
       style="align-items: center;"
     >
       <button
-        class="MuiButtonBase-root Button-small Button-secondaryDisabled Button-root MuiButtonBase-disabled"
+        class="MuiButtonBase-root Button-small Button-secondaryDisabled Button-root Mui-disabled"
         disabled=""
         tabindex="-1"
         type="button"
@@ -139,7 +139,7 @@ exports[`renders disabled 1`] = `
         </span>
       </button>
       <button
-        class="MuiButtonBase-root Button-small Button-secondaryDisabled Button-root MuiButtonBase-disabled Pagination-rangeButton"
+        class="MuiButtonBase-root Button-small Button-secondaryDisabled Button-root Pagination-rangeButton Mui-disabled"
         disabled=""
         tabindex="-1"
         type="button"
@@ -161,7 +161,7 @@ exports[`renders disabled 1`] = `
         </p>
       </div>
       <button
-        class="MuiButtonBase-root Button-small Button-secondaryDisabled Button-root MuiButtonBase-disabled Pagination-rangeButton"
+        class="MuiButtonBase-root Button-small Button-secondaryDisabled Button-root Pagination-rangeButton Mui-disabled"
         disabled=""
         tabindex="-1"
         type="button"
@@ -174,7 +174,7 @@ exports[`renders disabled 1`] = `
         </span>
       </button>
       <button
-        class="MuiButtonBase-root Button-small Button-primaryDisabled Button-root MuiButtonBase-disabled Pagination-rangeButton"
+        class="MuiButtonBase-root Button-small Button-primaryDisabled Button-root Pagination-rangeButton Mui-disabled"
         disabled=""
         tabindex="-1"
         type="button"
@@ -187,7 +187,7 @@ exports[`renders disabled 1`] = `
         </span>
       </button>
       <button
-        class="MuiButtonBase-root Button-small Button-secondaryDisabled Button-root MuiButtonBase-disabled Pagination-rangeButton"
+        class="MuiButtonBase-root Button-small Button-secondaryDisabled Button-root Pagination-rangeButton Mui-disabled"
         disabled=""
         tabindex="-1"
         type="button"
@@ -209,7 +209,7 @@ exports[`renders disabled 1`] = `
         </p>
       </div>
       <button
-        class="MuiButtonBase-root Button-small Button-secondaryDisabled Button-root MuiButtonBase-disabled Pagination-rangeButton"
+        class="MuiButtonBase-root Button-small Button-secondaryDisabled Button-root Pagination-rangeButton Mui-disabled"
         disabled=""
         tabindex="-1"
         type="button"
@@ -222,7 +222,7 @@ exports[`renders disabled 1`] = `
         </span>
       </button>
       <button
-        class="MuiButtonBase-root Button-small Button-secondaryDisabled Button-root MuiButtonBase-disabled"
+        class="MuiButtonBase-root Button-small Button-secondaryDisabled Button-root Mui-disabled"
         disabled=""
         tabindex="-1"
         type="button"

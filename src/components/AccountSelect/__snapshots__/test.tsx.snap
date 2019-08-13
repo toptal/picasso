@@ -8,14 +8,16 @@ exports[`AccountSelect default render 1`] = `
     <ul
       class="MuiList-root"
       role="menu"
+      tabindex="-1"
     >
       <li
-        class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-button MuiMenuItem-root MenuItem-light AccountSelect-accountItem"
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light AccountSelect-accountItem MuiListItem-button"
         role="menuitem"
         tabindex="-1"
       >
         <a
-          class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone AccountSelect-accountLink"
+          class="MuiTypography-root MuiLink-root MuiLink-underlineNone AccountSelect-accountLink MuiTypography-colorPrimary"
         >
           <div
             class="Component-mediumPadding Component-flex"
@@ -32,7 +34,7 @@ exports[`AccountSelect default render 1`] = `
                   class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
                 />
                 <p
-                  class="MuiTypography-root Typography-invert Typography-bodyInherit MuiTypography-body1 Avatar-text"
+                  class="MuiTypography-root Typography-invert Typography-bodyInherit Avatar-text MuiTypography-body1"
                 >
                   PL
                 </p>
@@ -45,7 +47,7 @@ exports[`AccountSelect default render 1`] = `
                   class=""
                 >
                   <h4
-                    class="MuiTypography-root Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name"
+                    class="MuiTypography-root Typography-headingSmall UserBadge-name MuiTypography-h4 MuiTypography-displayInline"
                   >
                     Phil Leif 1
                   </h4>
@@ -96,12 +98,13 @@ exports[`AccountSelect default render 1`] = `
         </a>
       </li>
       <li
-        class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-button MuiMenuItem-root MenuItem-light AccountSelect-accountItem"
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light AccountSelect-accountItem MuiListItem-button"
         role="menuitem"
         tabindex="-1"
       >
         <a
-          class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone AccountSelect-accountLink"
+          class="MuiTypography-root MuiLink-root MuiLink-underlineNone AccountSelect-accountLink MuiTypography-colorPrimary"
           href="#"
         >
           <div
@@ -119,7 +122,7 @@ exports[`AccountSelect default render 1`] = `
                   class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
                 />
                 <p
-                  class="MuiTypography-root Typography-invert Typography-bodyInherit MuiTypography-body1 Avatar-text"
+                  class="MuiTypography-root Typography-invert Typography-bodyInherit Avatar-text MuiTypography-body1"
                 >
                   PL
                 </p>
@@ -132,7 +135,7 @@ exports[`AccountSelect default render 1`] = `
                   class=""
                 >
                   <h4
-                    class="MuiTypography-root Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name"
+                    class="MuiTypography-root Typography-headingSmall UserBadge-name MuiTypography-h4 MuiTypography-displayInline"
                   >
                     Phil Leif 2
                   </h4>
@@ -183,12 +186,13 @@ exports[`AccountSelect default render 1`] = `
         </a>
       </li>
       <li
-        class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-button MuiMenuItem-root MenuItem-light AccountSelect-accountItem"
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light AccountSelect-accountItem MuiListItem-button"
         role="menuitem"
         tabindex="-1"
       >
         <a
-          class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone AccountSelect-accountLink"
+          class="MuiTypography-root MuiLink-root MuiLink-underlineNone AccountSelect-accountLink MuiTypography-colorPrimary"
           href="#"
         >
           <div
@@ -216,7 +220,7 @@ exports[`AccountSelect default render 1`] = `
                   class=""
                 >
                   <h4
-                    class="MuiTypography-root Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name"
+                    class="MuiTypography-root Typography-headingSmall UserBadge-name MuiTypography-h4 MuiTypography-displayInline"
                   >
                     Phil Leif 3
                   </h4>
