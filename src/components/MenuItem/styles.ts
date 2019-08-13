@@ -12,7 +12,8 @@ PicassoProvider.override(() => ({
       // to override MUI paddingTop and paddingBottom default values
       paddingTop: 0,
       paddingBottom: 0,
-      fontSize: 'inherit'
+      fontSize: 'inherit',
+      minHeight: 'unset'
     },
     gutters: {
       padding: '0.625em',
