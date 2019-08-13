@@ -41,7 +41,7 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   elevated?: boolean
   /** Take the full width of a container */
   fullWidth?: boolean
-  ref?: React.Ref<Notification>
+  ref?: Ref<Notification>
 }
 
 const renderNotificationCloseButton = ({
@@ -112,7 +112,7 @@ const renderNotificationContent = (props: Props) => {
 }
 
 export const Notification: FunctionComponent<Props> = React.forwardRef(
-  (props: Props, ref: Ref<Notification>) => {
+  function Notification(props: Props, ref: Ref<Notification>) {
     const { className, classes, variant, elevated, fullWidth, ...rest } = props
 
     return (

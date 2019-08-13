@@ -24,10 +24,11 @@ interface Props {
 
 const StyledNotification = withStyles(styles)(
   // eslint-disable-next-line react/display-name
-  React.forwardRef((props: Props, ref: Ref<Notification>) => {
-    const { content, icon, key, onClose, variant = 'white', classes } = props
-
-    return (
+  React.forwardRef(
+    (
+      { content, icon, key, onClose, variant = 'white', classes }: Props,
+      ref: Ref<Notification>
+    ) => (
       <Notification
         variant={variant}
         elevated
@@ -43,7 +44,7 @@ const StyledNotification = withStyles(styles)(
         {content}
       </Notification>
     )
-  })
+  )
 )
 
 export const useNotifications = () => {
