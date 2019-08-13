@@ -6,70 +6,50 @@ exports[`Tabs default render 1`] = `
     class="MuiTabs-root"
   >
     <div
-      class="MuiTabs-flexContainer"
+      class="MuiTabs-scroller MuiTabs-fixed"
+      style="overflow: hidden;"
     >
       <div
-        class="MuiTabs-scroller MuiTabs-fixed"
+        class="MuiTabs-flexContainer"
         role="tablist"
-        style="margin-bottom: 0px;"
       >
-        <div
-          class="MuiTabs-flexContainer"
+        <button
+          aria-selected="false"
+          class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit"
+          role="tab"
+          tabindex="0"
+          type="button"
         >
-          <button
-            aria-selected="false"
-            class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit"
-            role="tab"
-            tabindex="0"
-            type="button"
+          <span
+            class="MuiTab-wrapper"
           >
-            <span
-              class="MuiTab-wrapper"
-            >
-              <span
-                class="MuiTab-labelContainer"
-              >
-                <span
-                  class="MuiTab-label"
-                >
-                  Tab 1
-                </span>
-              </span>
-            </span>
-            <span
-              class="MuiTouchRipple-root"
-            />
-          </button>
-          <button
-            aria-selected="false"
-            class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit"
-            role="tab"
-            tabindex="0"
-            type="button"
+            Tab 1
+          </span>
+          <span
+            class="MuiTouchRipple-root"
+          />
+        </button>
+        <button
+          aria-selected="false"
+          class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit"
+          role="tab"
+          tabindex="0"
+          type="button"
+        >
+          <span
+            class="MuiTab-wrapper"
           >
-            <span
-              class="MuiTab-wrapper"
-            >
-              <span
-                class="MuiTab-labelContainer"
-              >
-                <span
-                  class="MuiTab-label"
-                >
-                  Tab 2
-                </span>
-              </span>
-            </span>
-            <span
-              class="MuiTouchRipple-root"
-            />
-          </button>
-        </div>
-        <span
-          class="MuiPrivateTabIndicator-root MuiPrivateTabIndicator-colorSecondary MuiTabs-indicator"
-          style="left: 0px; width: 0px;"
-        />
+            Tab 2
+          </span>
+          <span
+            class="MuiTouchRipple-root"
+          />
+        </button>
       </div>
+      <span
+        class="PrivateTabIndicator-root PrivateTabIndicator-colorSecondary MuiTabs-indicator"
+        style="left: 0px; width: 0px;"
+      />
     </div>
   </div>
 </div>
@@ -81,70 +61,50 @@ exports[`Tabs with preselected option 1`] = `
     class="MuiTabs-root"
   >
     <div
-      class="MuiTabs-flexContainer"
+      class="MuiTabs-scroller MuiTabs-fixed"
+      style="overflow: hidden;"
     >
       <div
-        class="MuiTabs-scroller MuiTabs-fixed"
+        class="MuiTabs-flexContainer"
         role="tablist"
-        style="margin-bottom: 0px;"
       >
-        <div
-          class="MuiTabs-flexContainer"
+        <button
+          aria-selected="false"
+          class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit"
+          role="tab"
+          tabindex="0"
+          type="button"
         >
-          <button
-            aria-selected="false"
-            class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit"
-            role="tab"
-            tabindex="0"
-            type="button"
+          <span
+            class="MuiTab-wrapper"
           >
-            <span
-              class="MuiTab-wrapper"
-            >
-              <span
-                class="MuiTab-labelContainer"
-              >
-                <span
-                  class="MuiTab-label"
-                >
-                  Tab 1
-                </span>
-              </span>
-            </span>
-            <span
-              class="MuiTouchRipple-root"
-            />
-          </button>
-          <button
-            aria-selected="true"
-            class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-selected"
-            role="tab"
-            tabindex="0"
-            type="button"
+            Tab 1
+          </span>
+          <span
+            class="MuiTouchRipple-root"
+          />
+        </button>
+        <button
+          aria-selected="true"
+          class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit Mui-selected"
+          role="tab"
+          tabindex="0"
+          type="button"
+        >
+          <span
+            class="MuiTab-wrapper"
           >
-            <span
-              class="MuiTab-wrapper"
-            >
-              <span
-                class="MuiTab-labelContainer"
-              >
-                <span
-                  class="MuiTab-label"
-                >
-                  Tab 2
-                </span>
-              </span>
-            </span>
-            <span
-              class="MuiTouchRipple-root"
-            />
-          </button>
-        </div>
-        <span
-          class="MuiPrivateTabIndicator-root MuiPrivateTabIndicator-colorSecondary MuiTabs-indicator"
-          style="left: 0px; width: 0px;"
-        />
+            Tab 2
+          </span>
+          <span
+            class="MuiTouchRipple-root"
+          />
+        </button>
       </div>
+      <span
+        class="PrivateTabIndicator-root PrivateTabIndicator-colorSecondary MuiTabs-indicator"
+        style="left: 0px; width: 0px;"
+      />
     </div>
   </div>
 </div>
@@ -156,70 +116,50 @@ exports[`Tabs with preselected option using custom value 1`] = `
     class="MuiTabs-root"
   >
     <div
-      class="MuiTabs-flexContainer"
+      class="MuiTabs-scroller MuiTabs-fixed"
+      style="overflow: hidden;"
     >
       <div
-        class="MuiTabs-scroller MuiTabs-fixed"
+        class="MuiTabs-flexContainer"
         role="tablist"
-        style="margin-bottom: 0px;"
       >
-        <div
-          class="MuiTabs-flexContainer"
+        <button
+          aria-selected="true"
+          class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit Mui-selected"
+          role="tab"
+          tabindex="0"
+          type="button"
         >
-          <button
-            aria-selected="true"
-            class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-selected"
-            role="tab"
-            tabindex="0"
-            type="button"
+          <span
+            class="MuiTab-wrapper"
           >
-            <span
-              class="MuiTab-wrapper"
-            >
-              <span
-                class="MuiTab-labelContainer"
-              >
-                <span
-                  class="MuiTab-label"
-                >
-                  Tab 1
-                </span>
-              </span>
-            </span>
-            <span
-              class="MuiTouchRipple-root"
-            />
-          </button>
-          <button
-            aria-selected="false"
-            class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit"
-            role="tab"
-            tabindex="0"
-            type="button"
+            Tab 1
+          </span>
+          <span
+            class="MuiTouchRipple-root"
+          />
+        </button>
+        <button
+          aria-selected="false"
+          class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit"
+          role="tab"
+          tabindex="0"
+          type="button"
+        >
+          <span
+            class="MuiTab-wrapper"
           >
-            <span
-              class="MuiTab-wrapper"
-            >
-              <span
-                class="MuiTab-labelContainer"
-              >
-                <span
-                  class="MuiTab-label"
-                >
-                  Tab 2
-                </span>
-              </span>
-            </span>
-            <span
-              class="MuiTouchRipple-root"
-            />
-          </button>
-        </div>
-        <span
-          class="MuiPrivateTabIndicator-root MuiPrivateTabIndicator-colorSecondary MuiTabs-indicator"
-          style="left: 0px; width: 0px;"
-        />
+            Tab 2
+          </span>
+          <span
+            class="MuiTouchRipple-root"
+          />
+        </button>
       </div>
+      <span
+        class="PrivateTabIndicator-root PrivateTabIndicator-colorSecondary MuiTabs-indicator"
+        style="left: 0px; width: 0px;"
+      />
     </div>
   </div>
 </div>

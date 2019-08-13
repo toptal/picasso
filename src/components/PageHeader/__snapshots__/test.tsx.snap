@@ -71,7 +71,7 @@ exports[`Page.Header render with link 1`] = `
             style="margin-right: 1em; align-items: center;"
           >
             <a
-              class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineHover"
+              class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
               href="https://www.toptal.com"
             >
               <svg

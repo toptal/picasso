@@ -6,7 +6,8 @@ exports[`SidebarItem default render 1`] = `
     class="Picasso-root"
   >
     <li
-      class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters MenuItem-light SidebarItem-root SidebarItem-noWrap"
+      aria-disabled="false"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light SidebarItem-root SidebarItem-noWrap MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="menuitem"
       tabindex="-1"
     >
@@ -36,7 +37,8 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
     class="Picasso-root"
   >
     <li
-      class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters MenuItem-light SidebarItem-root SidebarItem-noWrap"
+      aria-disabled="false"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light SidebarItem-root SidebarItem-noWrap MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="menuitem"
       tabindex="-1"
     >
@@ -93,9 +95,11 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
     <ul
       class="MuiList-root SidebarMenu-root"
       role="menu"
+      tabindex="-1"
     >
       <li
-        class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters MenuItem-light SidebarItem-root SidebarItem-noWrap"
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light SidebarItem-root SidebarItem-noWrap MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
         tabindex="-1"
       >
@@ -126,7 +130,8 @@ exports[`SidebarItem is selected 1`] = `
     class="Picasso-root"
   >
     <li
-      class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiListItem-selected MuiMenuItem-root MuiMenuItem-selected MenuItem-selected MuiMenuItem-gutters MenuItem-light SidebarItem-root SidebarItem-noWrap SidebarItem-selected"
+      aria-disabled="false"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light SidebarItem-root SidebarItem-noWrap SidebarItem-selected Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
       role="menuitem"
       tabindex="-1"
     >
@@ -190,19 +195,21 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiPaper-elevation0 MuiPaper-rounded MuiExpansionPanel-root Accordion-root MuiExpansionPanel-rounded"
+      class="MuiPaper-root MuiPaper-elevation0 MuiExpansionPanel-root Accordion-root MuiExpansionPanel-rounded MuiPaper-rounded"
     >
       <div
+        aria-disabled="false"
         aria-expanded="false"
-        class="MuiButtonBase-root MuiExpansionPanelSummary-root WithStyles-ExpansionPanelSummary--root Accordion-summary SidebarItem-summary"
+        class="MuiButtonBase-root MuiExpansionPanelSummary-root WithStyles(ForwardRef(ExpansionPanelSummary))-root Accordion-summary SidebarItem-summary"
         role="button"
         tabindex="0"
       >
         <div
-          class="MuiExpansionPanelSummary-content WithStyles-ExpansionPanelSummary--content Accordion-content SidebarItem-content"
+          class="MuiExpansionPanelSummary-content WithStyles(ForwardRef(ExpansionPanelSummary))-content Accordion-content SidebarItem-content"
         >
           <li
-            class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters MenuItem-light SidebarItem-root SidebarItem-noWrap"
+            aria-disabled="false"
+            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light SidebarItem-root SidebarItem-noWrap MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
             role="menuitem"
             tabindex="-1"
           >
@@ -258,8 +265,9 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
           </li>
         </div>
         <div
+          aria-disabled="false"
           aria-hidden="true"
-          class="MuiButtonBase-root MuiIconButton-root MuiExpansionPanelSummary-expandIcon"
+          class="MuiButtonBase-root MuiIconButton-root MuiExpansionPanelSummary-expandIcon MuiIconButton-edgeEnd"
           role="button"
           tabindex="-1"
         >
@@ -303,8 +311,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
         </div>
       </div>
       <div
-        aria-hidden="true"
-        class="MuiCollapse-container"
+        class="MuiCollapse-container MuiCollapse-hidden"
         style="min-height: 0px;"
       >
         <div
@@ -314,34 +321,40 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
             class="MuiCollapse-wrapperInner"
           >
             <div
-              class="MuiExpansionPanelDetails-root ExpansionPanelDetails-root Accordion-details SidebarItem-details"
+              role="region"
             >
-              <ul
-                class="MuiList-root SidebarMenu-root"
-                role="menu"
+              <div
+                class="MuiExpansionPanelDetails-root ExpansionPanelDetails-root Accordion-details SidebarItem-details"
               >
-                <li
-                  class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters MenuItem-light SidebarItem-root SidebarItem-noWrap"
-                  role="menuitem"
+                <ul
+                  class="MuiList-root SidebarMenu-root"
+                  role="menu"
                   tabindex="-1"
                 >
-                  <div
-                    class="Component-flex Component-inline SidebarItem-noWrap"
-                    style="align-items: center;"
+                  <li
+                    aria-disabled="false"
+                    class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light SidebarItem-root SidebarItem-noWrap MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+                    role="menuitem"
+                    tabindex="-1"
                   >
                     <div
-                      class="Component-flex SidebarItem-label SidebarItem-noWrap"
+                      class="Component-flex Component-inline SidebarItem-noWrap"
                       style="align-items: center;"
                     >
-                      <p
-                        class="MuiTypography-root Typography-bodyMedium Typography-inherit MuiTypography-body1 MuiTypography-noWrap"
+                      <div
+                        class="Component-flex SidebarItem-label SidebarItem-noWrap"
+                        style="align-items: center;"
                       >
-                        Menu item
-                      </p>
+                        <p
+                          class="MuiTypography-root Typography-bodyMedium Typography-inherit MuiTypography-body1 MuiTypography-noWrap"
+                        >
+                          Menu item
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                </li>
-              </ul>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -357,7 +370,8 @@ exports[`SidebarItem with icon 1`] = `
     class="Picasso-root"
   >
     <li
-      class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters MenuItem-light SidebarItem-root SidebarItem-noWrap"
+      aria-disabled="false"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light SidebarItem-root SidebarItem-noWrap MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="menuitem"
       tabindex="-1"
     >

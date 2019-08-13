@@ -17,11 +17,11 @@ exports[`Autocomplete default render 1`] = `
       >
         <fieldset
           aria-hidden="true"
-          class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+          class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
           style="padding-left: 8px;"
         >
           <legend
-            class="MuiPrivateNotchedOutline-legend"
+            class="PrivateNotchedOutline-legend"
             style="width: 0.01px;"
           >
             <span>
@@ -64,11 +64,11 @@ exports[`Autocomplete render options when start typing 1`] = `
       >
         <fieldset
           aria-hidden="true"
-          class="MuiPrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+          class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
           style="padding-left: 8px;"
         >
           <legend
-            class="MuiPrivateNotchedOutline-legend"
+            class="PrivateNotchedOutline-legend"
             style="width: 0.01px;"
           >
             <span>
@@ -91,33 +91,35 @@ exports[`Autocomplete render options when start typing 1`] = `
         <ul
           class="MuiList-root ScrollMenu-menu"
           role="menu"
+          tabindex="-1"
         >
           <div
             class="ScrollMenu-scrollView"
-            tabindex="0"
           >
             <li
+              aria-disabled="false"
               aria-selected="false"
-              class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters MenuItem-light"
+              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
               id="downshift-1-item-0"
               role="option"
               tabindex="-1"
             >
               <p
-                class="MuiTypography-root Typography-bodyInherit Typography-inherit MuiTypography-body1 MenuItem-stringContent"
+                class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
               >
                 Croatia
               </p>
             </li>
             <li
+              aria-disabled="false"
               aria-selected="false"
-              class="MuiButtonBase-root MuiListItem-root MuiListItem-default MuiListItem-gutters MuiListItem-button MuiMenuItem-root MuiMenuItem-gutters MenuItem-light"
+              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
               id="downshift-1-item-1"
               role="option"
               tabindex="-1"
             >
               <p
-                class="MuiTypography-root Typography-bodyInherit Typography-inherit MuiTypography-body1 MenuItem-stringContent"
+                class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
               >
                 Lithuania
               </p>
