@@ -1,3 +1,10 @@
+# [2.26.0](https://github.com/toptal/picasso/compare/v2.25.0...v2.26.0) (2019-08-13)
+
+
+### Features
+
+* **Slider:** add Slider component ([#576](https://github.com/toptal/picasso/issues/576)) ([c5d70f6](https://github.com/toptal/picasso/commit/c5d70f6))
+
 # [2.25.0](https://github.com/toptal/picasso/compare/v2.24.0...v2.25.0) (2019-08-12)
 
 
