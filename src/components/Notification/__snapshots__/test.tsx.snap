@@ -6,7 +6,7 @@ exports[`Notification default render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiTypography-root MuiTypography-body2 MuiPaper-root MuiPaper-elevation6 MuiSnackbarContent-root Notification-notificationWhite Notification-notification"
+      class="MuiTypography-root MuiPaper-root MuiPaper-elevation6 MuiSnackbarContent-root Notification-notificationWhite Notification-notification MuiTypography-body2"
       role="alertdialog"
     >
       <div
@@ -52,7 +52,7 @@ exports[`Notification default render 1`] = `
           </svg>
         </div>
         <div
-          class="MuiTypography-root Typography-bodyMedium MuiTypography-body1 Notification-content"
+          class="MuiTypography-root Typography-bodyMedium Notification-content MuiTypography-body1"
         >
           test example string
         </div>

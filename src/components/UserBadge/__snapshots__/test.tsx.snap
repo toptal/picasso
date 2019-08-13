@@ -16,7 +16,7 @@ exports[`UserBadge auto center alignment 1`] = `
           class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
         />
         <p
-          class="MuiTypography-root Typography-invert Typography-bodyInherit MuiTypography-body1 Avatar-text"
+          class="MuiTypography-root Typography-invert Typography-bodyInherit Avatar-text MuiTypography-body1"
         >
           JD
         </p>
@@ -29,7 +29,7 @@ exports[`UserBadge auto center alignment 1`] = `
           class=""
         >
           <h4
-            class="MuiTypography-root Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name"
+            class="MuiTypography-root Typography-headingSmall UserBadge-name MuiTypography-h4 MuiTypography-displayInline"
           >
             Joe Doe
           </h4>
@@ -56,7 +56,7 @@ exports[`UserBadge default render 1`] = `
           class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
         />
         <p
-          class="MuiTypography-root Typography-invert Typography-bodyInherit MuiTypography-body1 Avatar-text"
+          class="MuiTypography-root Typography-invert Typography-bodyInherit Avatar-text MuiTypography-body1"
         >
           JD
         </p>
@@ -69,7 +69,7 @@ exports[`UserBadge default render 1`] = `
           class=""
         >
           <h4
-            class="MuiTypography-root Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name"
+            class="MuiTypography-root Typography-headingSmall UserBadge-name MuiTypography-h4 MuiTypography-displayInline"
           >
             Joe Doe
           </h4>
@@ -101,7 +101,7 @@ exports[`UserBadge invert render 1`] = `
           class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
         />
         <p
-          class="MuiTypography-root Typography-invert Typography-bodyInherit MuiTypography-body1 Avatar-text"
+          class="MuiTypography-root Typography-invert Typography-bodyInherit Avatar-text MuiTypography-body1"
         >
           JD
         </p>
@@ -114,7 +114,7 @@ exports[`UserBadge invert render 1`] = `
           class=""
         >
           <h4
-            class="MuiTypography-root Typography-invert Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name"
+            class="MuiTypography-root Typography-invert Typography-headingSmall UserBadge-name MuiTypography-h4 MuiTypography-displayInline"
           >
             Joe Doe
           </h4>
@@ -146,7 +146,7 @@ exports[`UserBadge manual center alignment 1`] = `
           class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
         />
         <p
-          class="MuiTypography-root Typography-invert Typography-bodyInherit MuiTypography-body1 Avatar-text"
+          class="MuiTypography-root Typography-invert Typography-bodyInherit Avatar-text MuiTypography-body1"
         >
           JD
         </p>
@@ -159,7 +159,7 @@ exports[`UserBadge manual center alignment 1`] = `
           class=""
         >
           <h4
-            class="MuiTypography-root Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name"
+            class="MuiTypography-root Typography-headingSmall UserBadge-name MuiTypography-h4 MuiTypography-displayInline"
           >
             Joe Doe
           </h4>
@@ -191,7 +191,7 @@ exports[`UserBadge override auto center alignment 1`] = `
           class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
         />
         <p
-          class="MuiTypography-root Typography-invert Typography-bodyInherit MuiTypography-body1 Avatar-text"
+          class="MuiTypography-root Typography-invert Typography-bodyInherit Avatar-text MuiTypography-body1"
         >
           JD
         </p>
@@ -204,7 +204,7 @@ exports[`UserBadge override auto center alignment 1`] = `
           class=""
         >
           <h4
-            class="MuiTypography-root Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name"
+            class="MuiTypography-root Typography-headingSmall UserBadge-name MuiTypography-h4 MuiTypography-displayInline"
           >
             Joe Doe
           </h4>
@@ -231,7 +231,7 @@ exports[`UserBadge small size 1`] = `
           class="Avatar-textContainer Avatar-square Avatar-small Avatar-clippedCorner UserBadge-avatar"
         />
         <p
-          class="MuiTypography-root Typography-invert Typography-bodyInherit MuiTypography-body1 Avatar-text"
+          class="MuiTypography-root Typography-invert Typography-bodyInherit Avatar-text MuiTypography-body1"
         >
           JD
         </p>
@@ -244,7 +244,7 @@ exports[`UserBadge small size 1`] = `
           class=""
         >
           <h4
-            class="MuiTypography-root Typography-headingSmall MuiTypography-h4 MuiTypography-inline UserBadge-name"
+            class="MuiTypography-root Typography-headingSmall UserBadge-name MuiTypography-h4 MuiTypography-displayInline"
           >
             Joe Doe
           </h4>

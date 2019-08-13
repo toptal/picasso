@@ -23,7 +23,7 @@ exports[`ShowMore default render 1`] = `
       </span>
     </p>
     <a
-      class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone ShowMore-toggleText"
+      class="MuiTypography-root MuiLink-root MuiLink-underlineNone ShowMore-toggleText MuiTypography-colorPrimary"
     >
       <p
         class="MuiTypography-root Typography-bodyMedium Typography-blue MuiTypography-body1"
@@ -96,7 +96,7 @@ exports[`ShowMore when custom lessText text is specified should render with cust
       </span>
     </p>
     <a
-      class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone ShowMore-toggleText"
+      class="MuiTypography-root MuiLink-root MuiLink-underlineNone ShowMore-toggleText MuiTypography-colorPrimary"
     >
       <p
         class="MuiTypography-root Typography-bodyMedium Typography-blue MuiTypography-body1"
@@ -169,7 +169,7 @@ exports[`ShowMore when custom showMore text is specified should render with cust
       </span>
     </p>
     <a
-      class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone ShowMore-toggleText"
+      class="MuiTypography-root MuiLink-root MuiLink-underlineNone ShowMore-toggleText MuiTypography-colorPrimary"
     >
       <p
         class="MuiTypography-root Typography-bodyMedium Typography-blue MuiTypography-body1"
@@ -268,7 +268,7 @@ exports[`ShowMore when initialExpanded prop is true should render expanded versi
       </span>
     </p>
     <a
-      class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone ShowMore-toggleText"
+      class="MuiTypography-root MuiLink-root MuiLink-underlineNone ShowMore-toggleText MuiTypography-colorPrimary"
     >
       <p
         class="MuiTypography-root Typography-bodyMedium Typography-blue MuiTypography-body1"
@@ -341,7 +341,7 @@ exports[`ShowMore when initialExpanded prop is true when show less link is click
       </span>
     </p>
     <a
-      class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone ShowMore-toggleText"
+      class="MuiTypography-root MuiLink-root MuiLink-underlineNone ShowMore-toggleText MuiTypography-colorPrimary"
     >
       <p
         class="MuiTypography-root Typography-bodyMedium Typography-blue MuiTypography-body1"
@@ -414,7 +414,7 @@ exports[`ShowMore when show more link is clicked should render expanded version 
       </span>
     </p>
     <a
-      class="MuiTypography-root MuiTypography-colorPrimary MuiTypography-inline MuiLink-root MuiLink-underlineNone ShowMore-toggleText"
+      class="MuiTypography-root MuiLink-root MuiLink-underlineNone ShowMore-toggleText MuiTypography-colorPrimary"
     >
       <p
         class="MuiTypography-root Typography-bodyMedium Typography-blue MuiTypography-body1"
