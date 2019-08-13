@@ -1,5 +1,5 @@
 import React from 'react'
-import { Slider, Grid } from '@toptal/picasso'
+import { Slider, Container } from '@toptal/picasso'
 
 const SelectDefaultExample = () => {
   const handleChange = (event, value) => {
@@ -7,11 +7,9 @@ const SelectDefaultExample = () => {
   }
 
   return (
-    <Grid>
-      <Grid.Item small={12}>
-        <Slider onChange={handleChange} />
-      </Grid.Item>
-    </Grid>
+    <Container>
+      <Slider onChange={handleChange} />
+    </Container>
   )
 }
 

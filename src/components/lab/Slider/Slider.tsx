@@ -28,18 +28,18 @@ export interface Props extends StandardProps {
 export const Slider: FunctionComponent<Props> = ({
   classes,
   onChange = () => {},
-  min = 0,
-  max = 100,
-  value: initialValue = 0,
-  step = 1,
+  min,
+  max,
+  value: initialValue,
+  step,
   disabled
 }) => {
-  const [value, setValue] = useState<number>(initialValue)
+  const [value, setValue] = useState<number>(initialValue!)
 
   const getNormalizedValue = (value: number) => {
     let currentValue = value < 0 ? 0 : value
 
-    currentValue = currentValue > max ? max : currentValue
+    currentValue = (currentValue > max! ? max : currentValue) as number
     return currentValue
   }
 
@@ -51,7 +51,7 @@ export const Slider: FunctionComponent<Props> = ({
   }
 
   useEffect(() => {
-    const currentValue = getNormalizedValue(initialValue)
+    const currentValue = getNormalizedValue(initialValue!)
 
     setValue(currentValue)
   }, [initialValue])
