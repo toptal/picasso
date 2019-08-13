@@ -16,7 +16,7 @@ interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
   /** Grid content containing Grid.Item */
   children?: ReactNode
   /** Defines the space between the type item components */
-  spacing?: 0 | 8 | 16 | 32 | 64
+  spacing?: 0 | 8 | 16 | 32 | 64 | 72 | 80
   /** Defines the orientation of the grid */
   direction?: GridDirection
   /** Defines the align-items style property based on the direction */
@@ -29,6 +29,11 @@ interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
 
 interface StaticProps {
   Item: typeof GridItem
+}
+
+const humanToMUISpacing = (spacing: number) => {
+  /** Material Design margins and columns follow an 8px square baseline grid */
+  return (spacing / 8) as GridSpacing
 }
 
 export const Grid: FunctionComponent<Props> & StaticProps = ({
@@ -47,7 +52,7 @@ export const Grid: FunctionComponent<Props> & StaticProps = ({
     // eslint-disable-next-line react/jsx-props-no-spreading
     {...rest}
     container
-    spacing={(spacing! / 4) as GridSpacing}
+    spacing={humanToMUISpacing(spacing!)}
     direction={direction}
     alignItems={alignItems}
     justify={justify}
