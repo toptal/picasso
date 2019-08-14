@@ -15,6 +15,7 @@ const VERTICAL_POSITION = {
 
 function arrowGenerator(color: string) {
   return {
+    opacity: 0.9,
     '&[x-placement*="bottom"] $arrow': {
       top: `-${ARROW_SIZE}`,
 
