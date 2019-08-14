@@ -20,11 +20,11 @@ exports[`AccountSelect default render 1`] = `
           class="MuiTypography-root MuiLink-root MuiLink-underlineNone AccountSelect-accountLink MuiTypography-colorPrimary"
         >
           <div
-            class="Component-mediumPadding Component-flex"
+            class="Container-mediumPadding Container-flex"
             style="align-items: center; justify-content: space-between;"
           >
             <div
-              class="Component-flex UserBadge-root"
+              class="Container-flex UserBadge-root"
               style="align-items: flex-start;"
             >
               <div
@@ -40,7 +40,7 @@ exports[`AccountSelect default render 1`] = `
                 </p>
               </div>
               <div
-                class="Component-flex Component-column"
+                class="Container-flex Container-column"
                 style="margin-left: 1em;"
               >
                 <div
@@ -108,11 +108,11 @@ exports[`AccountSelect default render 1`] = `
           href="#"
         >
           <div
-            class="Component-mediumPadding Component-flex"
+            class="Container-mediumPadding Container-flex"
             style="align-items: center; justify-content: space-between;"
           >
             <div
-              class="Component-flex UserBadge-root"
+              class="Container-flex UserBadge-root"
               style="align-items: flex-start;"
             >
               <div
@@ -128,7 +128,7 @@ exports[`AccountSelect default render 1`] = `
                 </p>
               </div>
               <div
-                class="Component-flex Component-column"
+                class="Container-flex Container-column"
                 style="margin-left: 1em;"
               >
                 <div
@@ -196,11 +196,11 @@ exports[`AccountSelect default render 1`] = `
           href="#"
         >
           <div
-            class="Component-mediumPadding Component-flex"
+            class="Container-mediumPadding Container-flex"
             style="align-items: center; justify-content: space-between;"
           >
             <div
-              class="Component-flex UserBadge-root"
+              class="Container-flex UserBadge-root"
               style="align-items: flex-start;"
             >
               <div
@@ -213,7 +213,7 @@ exports[`AccountSelect default render 1`] = `
                 />
               </div>
               <div
-                class="Component-flex Component-column"
+                class="Container-flex Container-column"
                 style="margin-left: 1em;"
               >
                 <div

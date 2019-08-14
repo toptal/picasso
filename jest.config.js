@@ -2,7 +2,7 @@ module.exports = {
   transform: {
     '.(ts|tsx)': 'ts-jest'
   },
-  setupFiles: ['jest-canvas-mock'],
+  setupFiles: ['jest-canvas-mock', './jest-setup-dom.js'],
   testMatch: ['**/(test).(js|jsx|ts|tsx)'],
   testPathIgnorePatterns: ['/node_modules/', '/build'],
 
