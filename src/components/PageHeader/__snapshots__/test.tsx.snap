@@ -15,7 +15,7 @@ exports[`Page.Header default render 1`] = `
           class="PageHeader-left"
         >
           <div
-            class="Component-flex"
+            class="Container-flex"
             style="margin-right: 1em; align-items: center;"
           >
             <svg
@@ -67,7 +67,7 @@ exports[`Page.Header render with link 1`] = `
           class="PageHeader-left"
         >
           <div
-            class="Component-flex"
+            class="Container-flex"
             style="margin-right: 1em; align-items: center;"
           >
             <a

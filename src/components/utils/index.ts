@@ -7,6 +7,10 @@ export {
   useScreenSize
 } from '../Picasso/config/breakpoints'
 
+export {
+  default as ClickAwayListener
+} from '@material-ui/core/ClickAwayListener'
+
 export { default as isString } from './is-string'
 export { default as isNumber } from './is-number'
 export { default as isBoolean } from './is-boolean'

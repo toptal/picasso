@@ -1,9 +1,4 @@
-import React, {
-  FunctionComponent,
-  ReactNode,
-  ReactElement,
-  MouseEvent
-} from 'react'
+import React, { ReactNode, ReactElement, MouseEvent } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import ButtonBase from '@material-ui/core/ButtonBase'
@@ -77,28 +72,38 @@ const getVariantType = (variant: VariantType) => {
   return type
 }
 
-export const Button: FunctionComponent<Props> & StaticProps = ({
-  icon,
-  iconPosition,
-  loading,
-  children,
-  classes,
-  className,
-  style,
-  fullWidth,
-  variant,
-  size,
-  focused,
-  hovered,
-  disabled,
-  active,
-  onClick,
-  circular,
-  title,
-  value,
-  type,
-  ...rest
-}) => {
+export interface CompoundedComponent
+  extends React.ForwardRefExoticComponent<
+    Props & React.RefAttributes<HTMLButtonElement>
+  > {
+  Group: typeof Group
+}
+
+export const Button = React.forwardRef(function Button(
+  {
+    icon,
+    iconPosition,
+    loading,
+    children,
+    classes,
+    className,
+    style,
+    fullWidth,
+    variant,
+    size,
+    focused,
+    hovered,
+    disabled,
+    active,
+    onClick,
+    circular,
+    title,
+    value,
+    type,
+    ...rest
+  }: Props,
+  ref: React.Ref<HTMLButtonElement>
+) {
   const {
     icon: iconClass,
     iconLeft: iconLeftClass,
@@ -163,6 +168,7 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
       title={title}
       value={value}
       type={type}
+      ref={ref}
     >
       <Container
         as='span'
@@ -180,7 +186,7 @@ export const Button: FunctionComponent<Props> & StaticProps = ({
       )}
     </ButtonBase>
   )
-}
+}) as CompoundedComponent
 
 Button.defaultProps = {
   active: false,
