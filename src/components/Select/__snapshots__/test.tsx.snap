@@ -60,7 +60,7 @@ exports[`renders native select 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootFull MuiInputBase-fullWidth"
+      class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root Select-inputRootNative OutlinedInput-rootFull MuiInputBase-fullWidth"
     >
       <fieldset
         aria-hidden="true"
@@ -78,7 +78,7 @@ exports[`renders native select 1`] = `
       </fieldset>
       <select
         aria-invalid="false"
-        class="MuiSelect-root Select-rootFull Select-selectNative MuiSelect-select Select-select MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Select-input Select-inputNative MuiInputBase-inputSelect MuiOutlinedInput-inputSelect MuiSelect-outlined"
+        class="MuiSelect-root Select-rootFull MuiSelect-select Select-select MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Select-input Select-inputNative MuiInputBase-inputSelect MuiOutlinedInput-inputSelect MuiSelect-outlined"
       >
         <option
           value="val1"

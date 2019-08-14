@@ -121,6 +121,9 @@ export const Select: FunctionComponent<Props> = ({
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       classes={{
+        root: cx({
+          [classes.inputRootNative]: native
+        }),
         input: cx(classes.input, {
           [classes.inputPlaceholder]: isPlaceholderShown,
           [classes.inputPlaceholderDisabled]: isPlaceholderShown && disabled,
@@ -154,9 +157,7 @@ export const Select: FunctionComponent<Props> = ({
       className={className}
       style={style}
       classes={{
-        root: cx(classes[`root${capitalize(width!)}`], {
-          [classes.selectNative]: native
-        }),
+        root: classes[`root${capitalize(width!)}`],
         icon: classes.caret,
         select: classes.select
       }}
