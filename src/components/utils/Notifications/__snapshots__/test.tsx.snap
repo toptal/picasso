@@ -11,7 +11,7 @@ exports[`useNotifications error notification render 1`] = `
       type="button"
     >
       <span
-        class="Component-flex Component-inline Button-content"
+        class="Container-flex Container-inline Button-content"
         style="align-items: center;"
       >
         Show Error
@@ -23,7 +23,7 @@ exports[`useNotifications error notification render 1`] = `
       type="button"
     >
       <span
-        class="Component-flex Component-inline Button-content"
+        class="Container-flex Container-inline Button-content"
         style="align-items: center;"
       >
         Show Info
@@ -35,7 +35,7 @@ exports[`useNotifications error notification render 1`] = `
       type="button"
     >
       <span
-        class="Component-flex Component-inline Button-content"
+        class="Container-flex Container-inline Button-content"
         style="align-items: center;"
       >
         Show Success
@@ -55,7 +55,7 @@ exports[`useNotifications error notification render 1`] = `
           class="MuiSnackbarContent-message"
         >
           <div
-            class="Component-flex Notification-iconWrapper"
+            class="Container-flex Notification-iconWrapper"
             style="align-items: center;"
           >
             <svg
@@ -105,7 +105,7 @@ exports[`useNotifications error notification render 1`] = `
             type="button"
           >
             <span
-              class="Component-flex Component-inline Button-content"
+              class="Container-flex Container-inline Button-content"
               style="align-items: center;"
             >
               <svg
@@ -162,7 +162,7 @@ exports[`useNotifications info notification render 1`] = `
       type="button"
     >
       <span
-        class="Component-flex Component-inline Button-content"
+        class="Container-flex Container-inline Button-content"
         style="align-items: center;"
       >
         Show Error
@@ -174,7 +174,7 @@ exports[`useNotifications info notification render 1`] = `
       type="button"
     >
       <span
-        class="Component-flex Component-inline Button-content"
+        class="Container-flex Container-inline Button-content"
         style="align-items: center;"
       >
         Show Info
@@ -186,7 +186,7 @@ exports[`useNotifications info notification render 1`] = `
       type="button"
     >
       <span
-        class="Component-flex Component-inline Button-content"
+        class="Container-flex Container-inline Button-content"
         style="align-items: center;"
       >
         Show Success
@@ -206,7 +206,7 @@ exports[`useNotifications info notification render 1`] = `
           class="MuiSnackbarContent-message"
         >
           <div
-            class="Component-flex Notification-iconWrapper"
+            class="Container-flex Notification-iconWrapper"
             style="align-items: center;"
           >
             <svg
@@ -256,7 +256,7 @@ exports[`useNotifications info notification render 1`] = `
             type="button"
           >
             <span
-              class="Component-flex Component-inline Button-content"
+              class="Container-flex Container-inline Button-content"
               style="align-items: center;"
             >
               <svg
@@ -313,7 +313,7 @@ exports[`useNotifications success notification render 1`] = `
       type="button"
     >
       <span
-        class="Component-flex Component-inline Button-content"
+        class="Container-flex Container-inline Button-content"
         style="align-items: center;"
       >
         Show Error
@@ -325,7 +325,7 @@ exports[`useNotifications success notification render 1`] = `
       type="button"
     >
       <span
-        class="Component-flex Component-inline Button-content"
+        class="Container-flex Container-inline Button-content"
         style="align-items: center;"
       >
         Show Info
@@ -337,7 +337,7 @@ exports[`useNotifications success notification render 1`] = `
       type="button"
     >
       <span
-        class="Component-flex Component-inline Button-content"
+        class="Container-flex Container-inline Button-content"
         style="align-items: center;"
       >
         Show Success
@@ -357,7 +357,7 @@ exports[`useNotifications success notification render 1`] = `
           class="MuiSnackbarContent-message"
         >
           <div
-            class="Component-flex Notification-iconWrapper"
+            class="Container-flex Notification-iconWrapper"
             style="align-items: center;"
           >
             <svg
@@ -408,7 +408,7 @@ exports[`useNotifications success notification render 1`] = `
             type="button"
           >
             <span
-              class="Component-flex Component-inline Button-content"
+              class="Container-flex Container-inline Button-content"
               style="align-items: center;"
             >
               <svg

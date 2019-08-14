@@ -12,7 +12,7 @@ exports[`PageHeaderMenu default render 1`] = `
         class="Dropdown-anchor"
       >
         <div
-          class="Component-flex UserBadge-root"
+          class="Container-flex UserBadge-root"
           style="align-items: center;"
         >
           <div
@@ -25,7 +25,7 @@ exports[`PageHeaderMenu default render 1`] = `
             />
           </div>
           <div
-            class="Component-flex Component-column"
+            class="Container-flex Container-column"
             style="margin-left: 1em;"
           >
             <div

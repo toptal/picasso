@@ -15,6 +15,7 @@ const VERTICAL_POSITION = {
 
 function arrowGenerator(color: string) {
   return {
+    opacity: 0.9,
     '&[x-placement*="bottom"] $arrow': {
       top: `-${ARROW_SIZE}`,
 
@@ -83,7 +84,8 @@ export default ({ palette, shadows }: Theme) =>
       fontSize: rem('13px'),
       lineHeight: '1.5em',
       padding: '1rem',
-      borderRadius: 0
+      borderRadius: 0,
+      position: 'relative'
     },
     arrowPopper: arrowGenerator(palette.grey.darker!),
     arrowPopperLight: arrowGenerator(palette.common.white),
