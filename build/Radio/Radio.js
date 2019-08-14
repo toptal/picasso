@@ -33,7 +33,7 @@ exports.Radio = (_a) => {
     if (!label) {
         return muiRadio;
     }
-    return (react_1.default.createElement(FormControlLabel_1.default, { control: muiRadio, className: classes.label, classes: rootClasses, style: style, label: react_1.default.createElement(Form_1.default.Label, { as: 'span' }, label) }));
+    return (react_1.default.createElement(FormControlLabel_1.default, { control: muiRadio, className: classes.label, classes: rootClasses, style: style, label: react_1.default.createElement(Form_1.default.Label, { disabled: disabled, as: 'span' }, label) }));
 };
 exports.Radio.defaultProps = {
     classes: {},
