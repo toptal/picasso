@@ -22,12 +22,10 @@ interface Props extends StandardProps, FormControlLabelAttributesType {
   control: ReactElement
   /** The text to be used in an enclosing label element */
   label?: ReactNode
-  disabled?: boolean
 }
 const FormControlLabel: FunctionComponent<Props> = ({
   control,
   label,
-  disabled,
   classes,
   className,
   style,
@@ -40,7 +38,6 @@ const FormControlLabel: FunctionComponent<Props> = ({
     label={label}
     classes={classes}
     className={className}
-    disabled={disabled}
     style={style}
   />
 )
