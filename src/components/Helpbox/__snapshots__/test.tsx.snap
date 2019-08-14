@@ -6,7 +6,7 @@ exports[`Helpbox default render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Component-largePadding Component-bordered Component-root"
+      class="Container-largePadding Container-bordered Component-root"
     >
       <div
         class=""
@@ -24,7 +24,7 @@ exports[`Helpbox default render 1`] = `
         Test
       </p>
       <div
-        class="Component-flex HelpboxActions-root"
+        class="Container-flex HelpboxActions-root"
         style="align-items: center;"
       >
         <button
@@ -33,7 +33,7 @@ exports[`Helpbox default render 1`] = `
           type="button"
         >
           <span
-            class="Component-flex Component-inline Button-content"
+            class="Container-flex Container-inline Button-content"
             style="align-items: center;"
           >
             Button
