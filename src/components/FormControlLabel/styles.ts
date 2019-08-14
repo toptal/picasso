@@ -12,6 +12,7 @@ PicassoProvider.override(({ palette, typography }: Theme) => ({
       display: 'inline-flex',
       alignItems: 'center',
 
+      fontSize: '1em',
       color: palette.text.primary,
       lineHeight: '1.5em',
       fontWeight: typography.fontWeightRegular,

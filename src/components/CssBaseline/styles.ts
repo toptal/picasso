@@ -9,7 +9,8 @@ export default () =>
       body: {
         display: 'flex',
         flexDirection: 'column',
-        minHeight: '100vh'
+        minHeight: '100vh',
+        color: '#000'
       },
       '#root': {
         display: 'flex',
