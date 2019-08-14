@@ -1,3 +1,10 @@
+## [2.26.1](https://github.com/toptal/picasso/compare/v2.26.0...v2.26.1) (2019-08-14)
+
+
+### Bug Fixes
+
+* [FX-370] Fix disabled label opacity for Radio and Checkbox ([#588](https://github.com/toptal/picasso/issues/588)) ([661bb1f](https://github.com/toptal/picasso/commit/661bb1f))
+
 # [2.26.0](https://github.com/toptal/picasso/compare/v2.25.0...v2.26.0) (2019-08-13)
 
 

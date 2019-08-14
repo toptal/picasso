@@ -34,7 +34,7 @@ exports.Checkbox = (_a) => {
     if (!label) {
         return muiCheckbox;
     }
-    return (react_1.default.createElement(FormControlLabel_1.default, { classes: rootClasses, control: muiCheckbox, label: react_1.default.createElement(Form_1.default.Label, { required: required, as: 'span' }, label) }));
+    return (react_1.default.createElement(FormControlLabel_1.default, { classes: rootClasses, control: muiCheckbox, label: react_1.default.createElement(Form_1.default.Label, { required: required, disabled: disabled, as: 'span' }, label) }));
 };
 exports.Checkbox.defaultProps = {
     disabled: false,
