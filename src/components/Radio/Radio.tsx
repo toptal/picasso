@@ -74,7 +74,11 @@ export const Radio: FunctionComponent<Props> & StaticProps = ({
       className={classes.label}
       classes={rootClasses}
       style={style}
-      label={<Form.Label as='span'>{label}</Form.Label>}
+      label={
+        <Form.Label disabled={disabled} as='span'>
+          {label}
+        </Form.Label>
+      }
     />
   )
 }

@@ -16,7 +16,7 @@ const tsLoader = {
   loader: require.resolve('ts-loader'),
   options: {
     configFile: tsConfigFile,
-    transpileOnly: isDevelopment,
+    transpileOnly: isDevelopment || env.TEST_ENV === 'visual',
     experimentalWatchApi: isDevelopment
   }
 }
