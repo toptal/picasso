@@ -22,10 +22,6 @@ PicassoProvider.override(({ palette, transitions }) => ({
         pointerEvents: 'auto'
       }
     },
-    disabled: {
-      color: palette.grey.main,
-      opacity: 0.48
-    },
     checked: {
       color: palette.primary.main
     }
@@ -58,6 +54,8 @@ export default ({ palette, sizes, transitions }: Theme) =>
       }
     },
     disabled: {
+      opacity: 0.48,
+
       '&:hover $uncheckedIcon': {
         color: palette.grey.main
       }

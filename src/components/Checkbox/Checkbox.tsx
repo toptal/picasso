@@ -45,10 +45,6 @@ export const Checkbox: FunctionComponent<Props> = ({
   indeterminate,
   ...rest
 }) => {
-  const rootClasses = {
-    root: classes.root,
-    disabled: classes.disabled
-  }
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { color, ...checkboxAttributes } = rest
 
@@ -60,7 +56,10 @@ export const Checkbox: FunctionComponent<Props> = ({
       icon={<div className={classes.uncheckedIcon} />}
       checkedIcon={<div className={classes.checkedIcon} />}
       indeterminateIcon={<div className={classes.indeterminateIcon} />}
-      classes={rootClasses}
+      classes={{
+        root: classes.root,
+        disabled: classes.disabled
+      }}
       className={className}
       style={style}
       disabled={disabled}
@@ -77,7 +76,9 @@ export const Checkbox: FunctionComponent<Props> = ({
 
   return (
     <FormControlLabel
-      classes={rootClasses}
+      classes={{
+        root: classes.root
+      }}
       control={muiCheckbox}
       label={
         <Form.Label required={required} disabled={disabled} as='span'>
