@@ -76,7 +76,7 @@ exports[`FileInput default render 1`] = `
           type="button"
         >
           <span
-            class="Component-flex Component-inline Button-content"
+            class="Container-flex Container-inline Button-content"
             style="align-items: center;"
           >
             Choose File

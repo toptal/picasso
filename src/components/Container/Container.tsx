@@ -1,4 +1,4 @@
-import React, { ReactNode, FunctionComponent, HTMLAttributes } from 'react'
+import React, { ReactNode, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
@@ -62,26 +62,29 @@ interface Props
 /**
  * Container component used for spacing 2 elements
  */
-export const Container: FunctionComponent<Props> = ({
-  children,
-  className,
-  top,
-  bottom,
-  left,
-  right,
-  padded,
-  inline,
-  flex,
-  direction,
-  alignItems,
-  justifyContent,
-  style,
-  bordered = false,
-  variant,
-  classes,
-  as: Component = inline ? 'span' : 'div',
-  ...rest
-}) => {
+export const Container = React.forwardRef(function Container(
+  {
+    children,
+    className,
+    top,
+    bottom,
+    left,
+    right,
+    padded,
+    inline,
+    flex,
+    direction,
+    alignItems,
+    justifyContent,
+    style,
+    bordered = false,
+    variant,
+    classes,
+    as: Component = inline ? 'span' : 'div',
+    ...rest
+  }: Props,
+  ref: React.Ref<HTMLDivElement>
+) {
   const margins = {
     ...(top && { marginTop: spacingToEm(top) }),
     ...(bottom && { marginBottom: spacingToEm(bottom) }),
@@ -93,6 +96,7 @@ export const Container: FunctionComponent<Props> = ({
     <Component
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
+      ref={ref}
       className={cx(
         classes[`${variant}Variant`],
         {
@@ -115,7 +119,9 @@ export const Container: FunctionComponent<Props> = ({
       {children}
     </Component>
   )
-}
+})
+
+Container.displayName = 'Container'
 
 Container.defaultProps = {
   as: 'div',

@@ -6,7 +6,7 @@ exports[`UserBadge auto center alignment 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Component-flex UserBadge-root"
+      class="Container-flex UserBadge-root"
       style="align-items: center;"
     >
       <div
@@ -22,7 +22,7 @@ exports[`UserBadge auto center alignment 1`] = `
         </p>
       </div>
       <div
-        class="Component-flex Component-column"
+        class="Container-flex Container-column"
         style="margin-left: 1em;"
       >
         <div
@@ -46,7 +46,7 @@ exports[`UserBadge default render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Component-flex UserBadge-root"
+      class="Container-flex UserBadge-root"
       style="align-items: flex-start;"
     >
       <div
@@ -62,7 +62,7 @@ exports[`UserBadge default render 1`] = `
         </p>
       </div>
       <div
-        class="Component-flex Component-column"
+        class="Container-flex Container-column"
         style="margin-left: 1em;"
       >
         <div
@@ -91,7 +91,7 @@ exports[`UserBadge invert render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Component-flex UserBadge-root"
+      class="Container-flex UserBadge-root"
       style="align-items: flex-start;"
     >
       <div
@@ -107,7 +107,7 @@ exports[`UserBadge invert render 1`] = `
         </p>
       </div>
       <div
-        class="Component-flex Component-column"
+        class="Container-flex Container-column"
         style="margin-left: 1em;"
       >
         <div
@@ -136,7 +136,7 @@ exports[`UserBadge manual center alignment 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Component-flex UserBadge-root"
+      class="Container-flex UserBadge-root"
       style="align-items: center;"
     >
       <div
@@ -152,7 +152,7 @@ exports[`UserBadge manual center alignment 1`] = `
         </p>
       </div>
       <div
-        class="Component-flex Component-column"
+        class="Container-flex Container-column"
         style="margin-left: 1em;"
       >
         <div
@@ -181,7 +181,7 @@ exports[`UserBadge override auto center alignment 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Component-flex UserBadge-root"
+      class="Container-flex UserBadge-root"
       style="align-items: flex-start;"
     >
       <div
@@ -197,7 +197,7 @@ exports[`UserBadge override auto center alignment 1`] = `
         </p>
       </div>
       <div
-        class="Component-flex Component-column"
+        class="Container-flex Container-column"
         style="margin-left: 1em;"
       >
         <div
@@ -221,7 +221,7 @@ exports[`UserBadge small size 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Component-flex UserBadge-root"
+      class="Container-flex UserBadge-root"
       style="align-items: flex-start;"
     >
       <div
@@ -237,7 +237,7 @@ exports[`UserBadge small size 1`] = `
         </p>
       </div>
       <div
-        class="Component-flex Component-column"
+        class="Container-flex Container-column"
         style="margin-left: 1em;"
       >
         <div

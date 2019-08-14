@@ -11,13 +11,10 @@ import { withStyles } from '@material-ui/core/styles'
 import MUITooltip from '@material-ui/core/Tooltip'
 import cx from 'classnames'
 
-import { Classes } from '../styles/types'
 import { StandardProps, usePicassoRoot } from '../Picasso'
 import styles from './styles'
 
 type VariantType = 'light' | 'dark'
-
-type TriggerType = 'hover' | 'click'
 
 type PlacementType = 'bottom' | 'left' | 'right' | 'top'
 
@@ -40,33 +37,6 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   interactive?: boolean
   /** Programatically control tooltip's visibility */
   open?: boolean
-  trigger?: TriggerType
-}
-
-const getPopperProps = (
-  arrow: boolean,
-  arrowRef: HTMLElement | null,
-  container: HTMLElement | null
-) => ({
-  container,
-  popperOptions: {
-    modifiers: {
-      arrow: {
-        enabled: arrow,
-        element: arrowRef
-      }
-    }
-  }
-})
-const getClasses = (classes: Classes, variant: VariantType) => {
-  const isLight = variant === 'light'
-
-  return {
-    popper: isLight ? classes.arrowPopperLight : classes.arrowPopper,
-    tooltip: cx(classes.tooltip, {
-      [classes.light]: isLight
-    })
-  }
 }
 
 export const Tooltip: FunctionComponent<Props> = ({
@@ -82,22 +52,15 @@ export const Tooltip: FunctionComponent<Props> = ({
   onClose,
   onOpen,
   variant,
-  trigger,
   ...rest
 }) => {
-  const [arrowRef, setArrowRef] = useState(null)
+  const [arrowRef, setArrowRef] = useState<HTMLSpanElement | null>(null)
   const container = usePicassoRoot()
 
   const title = (
     <Fragment>
       {content}
-      {arrow && (
-        <span
-          className={classes.arrow}
-          // @ts-ignore
-          ref={setArrowRef}
-        />
-      )}
+      {arrow && <span className={classes.arrow} ref={setArrowRef} />}
     </Fragment>
   )
 
@@ -105,11 +68,26 @@ export const Tooltip: FunctionComponent<Props> = ({
     <MUITooltip
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
-      PopperProps={getPopperProps(arrow!, arrowRef, container)}
-      classes={getClasses(classes, variant!)}
+      PopperProps={{
+        container,
+        popperOptions: {
+          modifiers: {
+            arrow: {
+              enabled: Boolean(arrowRef),
+              element: arrowRef
+            }
+          }
+        }
+      }}
+      classes={{
+        popper:
+          variant === 'light' ? classes.arrowPopperLight : classes.arrowPopper,
+        tooltip: cx(classes.tooltip, {
+          [classes.light]: variant === 'light'
+        })
+      }}
       className={className}
       style={style}
-      disableHoverListener={trigger === 'click'}
       interactive={interactive}
       onClose={onClose}
       onOpen={onOpen}
@@ -125,7 +103,6 @@ export const Tooltip: FunctionComponent<Props> = ({
 Tooltip.defaultProps = {
   arrow: true,
   placement: 'top',
-  trigger: 'hover',
   variant: 'dark'
 }
 
