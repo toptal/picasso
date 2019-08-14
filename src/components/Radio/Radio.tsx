@@ -43,6 +43,10 @@ export const Radio: FunctionComponent<Props> & StaticProps = ({
   onChange,
   ...rest
 }) => {
+  const rootClasses = {
+    root: classes.root,
+    disabled: classes.disabled
+  }
   const muiRadio = (
     <MUIRadio
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -54,10 +58,7 @@ export const Radio: FunctionComponent<Props> & StaticProps = ({
       icon={<div className={classes.uncheckedIcon} />}
       checkedIcon={<div className={classes.checkedIcon} />}
       color='default'
-      classes={{
-        root: classes.root,
-        disabled: classes.disabled
-      }}
+      classes={rootClasses}
       className={className}
       style={style}
     />
@@ -71,9 +72,7 @@ export const Radio: FunctionComponent<Props> & StaticProps = ({
     <FormControlLabel
       control={muiRadio}
       className={classes.label}
-      classes={{
-        root: classes.root
-      }}
+      classes={rootClasses}
       style={style}
       label={
         <Form.Label disabled={disabled} as='span'>
