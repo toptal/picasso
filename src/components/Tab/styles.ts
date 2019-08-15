@@ -10,7 +10,7 @@ PicassoProvider.override(({ breakpoints, palette, typography }: Theme) => ({
       minWidth: 0,
       lineHeight: 1,
       textTransform: 'none',
-      padding: '0.4375em 0',
+      padding: '0.625em 0',
 
       [breakpoints.up('md')]: {
         padding: undefined
