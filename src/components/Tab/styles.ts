@@ -8,9 +8,9 @@ PicassoProvider.override(({ breakpoints, palette, typography }: Theme) => ({
       fontWeight: typography.fontWeights.semibold,
       minHeight: 0,
       minWidth: 0,
-      lineHeight: '1em',
+      lineHeight: 1,
       textTransform: 'none',
-      padding: '0.625em 0',
+      padding: '0.6875em 0 0.5625em',
 
       [breakpoints.up('md')]: {
         padding: undefined
@@ -33,7 +33,8 @@ PicassoProvider.override(({ breakpoints, palette, typography }: Theme) => ({
     },
     selected: {},
     wrapper: {
-      fontSize: '0.8125em'
+      fontSize: '0.8125em',
+      lineHeight: '1rem'
     }
   }
 }))
