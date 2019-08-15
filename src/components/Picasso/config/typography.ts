@@ -20,7 +20,6 @@ declare module '@material-ui/core/styles/createTypography' {
 }
 
 const typography = {
-  useNextVariants: true,
   fontFamily: ['proxima-nova', 'Arial', 'sans-serif'].join(','),
   fontSize: 16,
   fontWeights: {
