@@ -1,9 +1,6 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
-import { PicassoProvider } from '../Picasso'
 import { rem } from '../styles'
-
-PicassoProvider.override(() => ({}))
 
 export default ({ palette, typography }: Theme) =>
   createStyles({
@@ -11,7 +8,11 @@ export default ({ palette, typography }: Theme) =>
       padding: '0.5rem 1rem',
       height: '2.5rem',
       lineHeight: '1.5rem',
-      borderBottom: 'none'
+      borderBottom: 'none',
+
+      '&:last-child': {
+        paddingRight: '1.5rem'
+      }
     },
     head: {
       fontSize: rem('12px'),
