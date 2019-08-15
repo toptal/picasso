@@ -11,7 +11,11 @@ export default ({ palette, typography }: Theme) =>
       padding: '0.5rem 1rem',
       height: '2.5rem',
       lineHeight: '1.5rem',
-      borderBottom: 'none'
+      borderBottom: 'none',
+
+      '&:last-child': {
+        paddingRight: rem('24px')
+      }
     },
     head: {
       fontSize: rem('12px'),
