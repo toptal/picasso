@@ -12,12 +12,10 @@ PicassoProvider.override(() => ({
       alignSelf: 'flex-start',
 
       '&$disabled': {
+        opacity: 0.48,
         cursor: 'not-allowed',
         pointerEvents: 'auto'
       }
-    },
-    disabled: {
-      opacity: 0.48
     }
   }
 }))
