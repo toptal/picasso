@@ -11,12 +11,10 @@ PicassoProvider.override(() => ({
       margin: '0.25em 0.5em 0.25em 0',
 
       '&$disabled': {
+        opacity: 0.48,
         cursor: 'not-allowed',
         pointerEvents: 'auto'
       }
-    },
-    disabled: {
-      opacity: 0.48
     }
   }
 }))
