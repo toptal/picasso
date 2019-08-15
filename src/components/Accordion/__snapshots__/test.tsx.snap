@@ -43,7 +43,7 @@ exports[`controlled version should render expanded version 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiPaper-elevation0 MuiExpansionPanel-root Mui-expanded Accordion-expanded MuiExpansionPanel-rounded MuiPaper-rounded"
+      class="MuiPaper-root MuiPaper-elevation0 MuiExpansionPanel-root Mui-expanded MuiExpansionPanel-rounded MuiPaper-rounded"
     >
       <div
         class="MuiCollapse-container MuiCollapse-entered"
@@ -178,7 +178,7 @@ exports[`default version for sections should render expanded version after click
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiPaper-elevation0 MuiExpansionPanel-root Accordion-root Accordion-bordered Mui-expanded Accordion-expanded MuiExpansionPanel-rounded MuiPaper-rounded"
+      class="MuiPaper-root MuiPaper-elevation0 MuiExpansionPanel-root Accordion-root Accordion-bordered Mui-expanded MuiExpansionPanel-rounded MuiPaper-rounded"
     >
       <div
         aria-disabled="false"

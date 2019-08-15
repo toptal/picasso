@@ -51,8 +51,7 @@ export const Accordion: FunctionComponent<Props> = ({
     // eslint-disable-next-line react/jsx-props-no-spreading
     {...rest}
     classes={{
-      root: children ? cx(classes.root, { [classes.bordered]: bordered }) : '',
-      expanded: classes.expanded
+      root: children ? cx(classes.root, { [classes.bordered]: bordered }) : ''
     }}
     className={className}
     style={style}
