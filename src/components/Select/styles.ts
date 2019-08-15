@@ -38,6 +38,10 @@ export default ({ sizes: { input }, palette }: Theme) =>
     input: {
       paddingRight: `calc(${input.padding} + 1em)`
     },
+    inputRootNative: {
+      paddingLeft: input.padding,
+      paddingRight: `calc(${input.padding} + 1em)`
+    },
     inputNative: {
       fontSize: '0.8125em',
       padding: 0,
@@ -54,10 +58,6 @@ export default ({ sizes: { input }, palette }: Theme) =>
     },
     select: {
       width: '100%'
-    },
-    selectNative: {
-      padding: input.padding,
-      paddingRight: `calc(${input.padding} + 1em)`
     },
     caret: {
       top: 'calc(50% - 0.5em)',
