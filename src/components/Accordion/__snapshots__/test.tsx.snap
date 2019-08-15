@@ -6,69 +6,8 @@ exports[`controlled version should render collapsed version 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiPaper-elevation0 MuiExpansionPanel-root Accordion-root Accordion-bordered MuiExpansionPanel-rounded MuiPaper-rounded"
+      class="MuiPaper-root MuiPaper-elevation0 MuiExpansionPanel-root MuiExpansionPanel-rounded MuiPaper-rounded"
     >
-      <div
-        aria-disabled="false"
-        aria-expanded="false"
-        class="MuiButtonBase-root MuiExpansionPanelSummary-root WithStyles(ForwardRef(ExpansionPanelSummary))-root Accordion-summary"
-        role="button"
-        tabindex="0"
-      >
-        <div
-          class="MuiExpansionPanelSummary-content WithStyles(ForwardRef(ExpansionPanelSummary))-content Accordion-content"
-        >
-          <div>
-            Fryderyk Chopin
-          </div>
-        </div>
-        <div
-          aria-disabled="false"
-          aria-hidden="true"
-          class="MuiButtonBase-root MuiIconButton-root MuiExpansionPanelSummary-expandIcon MuiIconButton-edgeEnd"
-          role="button"
-          tabindex="-1"
-        >
-          <span
-            class="MuiIconButton-label"
-          >
-            <svg
-              class="SvgArrowDownMinor16-root Accordion-expandIcon"
-              style="min-width: 16px; min-height: 16px;"
-              viewBox="0 0 16 16"
-            >
-              <defs>
-                <path
-                  d="M6.793 9.5l-4-4 .707-.707 4 4 4-4 .707.707L7.5 10.207 6.793 9.5z"
-                  id="arrowDownMinor16_svg__a"
-                />
-              </defs>
-              <g
-                fill-rule="evenodd"
-              >
-                <mask
-                  id="arrowDownMinor16_svg__b"
-                >
-                  <use
-                    xlink:href="#arrowDownMinor16_svg__a"
-                  />
-                </mask>
-                <use
-                  fill-rule="nonzero"
-                  xlink:href="#arrowDownMinor16_svg__a"
-                />
-                <g
-                  mask="url(#arrowDownMinor16_svg__b)"
-                >
-                  <path
-                    d="M0 0h16v16H0z"
-                  />
-                </g>
-              </g>
-            </svg>
-          </span>
-        </div>
-      </div>
       <div
         class="MuiCollapse-container MuiCollapse-hidden"
         style="min-height: 0px;"
@@ -104,69 +43,8 @@ exports[`controlled version should render expanded version 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiPaper-elevation0 MuiExpansionPanel-root Accordion-root Accordion-bordered Mui-expanded MuiExpansionPanel-rounded MuiPaper-rounded"
+      class="MuiPaper-root MuiPaper-elevation0 MuiExpansionPanel-root Mui-expanded MuiExpansionPanel-rounded MuiPaper-rounded"
     >
-      <div
-        aria-disabled="false"
-        aria-expanded="true"
-        class="MuiButtonBase-root MuiExpansionPanelSummary-root WithStyles(ForwardRef(ExpansionPanelSummary))-root Accordion-summary Mui-expanded"
-        role="button"
-        tabindex="0"
-      >
-        <div
-          class="MuiExpansionPanelSummary-content WithStyles(ForwardRef(ExpansionPanelSummary))-content Accordion-content Mui-expanded"
-        >
-          <div>
-            Fryderyk Chopin
-          </div>
-        </div>
-        <div
-          aria-disabled="false"
-          aria-hidden="true"
-          class="MuiButtonBase-root MuiIconButton-root MuiExpansionPanelSummary-expandIcon Mui-expanded MuiIconButton-edgeEnd"
-          role="button"
-          tabindex="-1"
-        >
-          <span
-            class="MuiIconButton-label"
-          >
-            <svg
-              class="SvgArrowDownMinor16-root Accordion-expandIcon"
-              style="min-width: 16px; min-height: 16px;"
-              viewBox="0 0 16 16"
-            >
-              <defs>
-                <path
-                  d="M6.793 9.5l-4-4 .707-.707 4 4 4-4 .707.707L7.5 10.207 6.793 9.5z"
-                  id="arrowDownMinor16_svg__a"
-                />
-              </defs>
-              <g
-                fill-rule="evenodd"
-              >
-                <mask
-                  id="arrowDownMinor16_svg__b"
-                >
-                  <use
-                    xlink:href="#arrowDownMinor16_svg__a"
-                  />
-                </mask>
-                <use
-                  fill-rule="nonzero"
-                  xlink:href="#arrowDownMinor16_svg__a"
-                />
-                <g
-                  mask="url(#arrowDownMinor16_svg__b)"
-                >
-                  <path
-                    d="M0 0h16v16H0z"
-                  />
-                </g>
-              </g>
-            </svg>
-          </span>
-        </div>
-      </div>
       <div
         class="MuiCollapse-container MuiCollapse-entered"
         style="min-height: 0px;"
