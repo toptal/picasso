@@ -8,6 +8,9 @@ PicassoProvider.override(() => ({
     root: {
       '&$expanded': {
         margin: 0
+      },
+      '&$disabled': {
+        backgroundColor: 'unset'
       }
     }
   }
