@@ -1,6 +1,17 @@
 import { Theme } from '@material-ui/core/styles'
 
 import { createPropertiesStyles } from '../styles'
+import { PicassoProvider } from '../Picasso'
+
+PicassoProvider.override(() => ({
+  MuiExpansionPanel: {
+    root: {
+      '&$expanded': {
+        margin: 0
+      }
+    }
+  }
+}))
 
 export default ({ palette, typography }: Theme) => {
   const separatorStyles = createPropertiesStyles({
@@ -21,9 +32,6 @@ export default ({ palette, typography }: Theme) => {
       '&:before': {
         display: 'none'
       }
-    },
-    expanded: {
-      margin: 0
     },
     bordered: {
       '&:first-child:before': {
