@@ -19,7 +19,8 @@ export default ({ palette }: Theme) =>
       color: palette.grey.main
     },
     rail: {
-      height: rem('1px')
+      height: rem('1px'),
+      opacity: 0.24
     },
     track: {
       backgroundColor: palette.grey.main,
@@ -30,6 +31,7 @@ export default ({ palette }: Theme) =>
       border: `${rem('2px')} solid ${palette.common.white}`,
       height: rem('13px'),
       width: rem('13px'),
+      marginTop: rem('-6px'),
       '&:hover': {
         boxShadow: 'none'
       }
