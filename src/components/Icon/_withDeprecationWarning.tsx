@@ -5,17 +5,21 @@ const withDeprecationWarning = (oldName: string, newName?: string) => <
 >(
   NewIcon: React.ComponentType<T>
 ): React.ComponentType<T> => {
-  if (!newName) {
-    window.console.warn(
-      `'${oldName}' icon is deprecated and will be removed in the next major release of Picasso. Please contact your designer to provide you a correct icon.`
-    )
-  } else {
-    window.console.warn(
-      `'${oldName}' icon is deprecated and will be removed in the next major release of Picasso. Please use '${newName}' directly to maintain pixel perfect icons.`
-    )
+  const newIconComponent = (props: T) => {
+    React.useEffect(() => {
+      if (!newName) {
+        window.console.warn(
+          `'${oldName}' icon is deprecated and will be removed in the next major release of Picasso. Please contact your designer to provide you a correct icon.`
+        )
+      } else {
+        window.console.warn(
+          `'${oldName}' icon is deprecated and will be removed in the next major release of Picasso. Please use '${newName}' directly to maintain pixel perfect icons.`
+        )
+      }
+    }, [])
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    return <NewIcon {...props} />
   }
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  const newIconComponent = (props: T) => <NewIcon {...props} />
 
   return newIconComponent
 }
