@@ -1,11 +1,11 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, Fragment } from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import MUICssBaseline, { CssBaselineProps } from '@material-ui/core/CssBaseline'
+import { CssBaselineProps } from '@material-ui/core/CssBaseline'
 
 import styles from './styles'
 
 const CssBaseline: FunctionComponent<CssBaselineProps> = ({ children }) => (
-  <MUICssBaseline>{children}</MUICssBaseline>
+  <Fragment>{children}</Fragment>
 )
 
 export default withStyles(styles)(CssBaseline)
