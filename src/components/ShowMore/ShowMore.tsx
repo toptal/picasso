@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles'
 import Truncate from 'react-truncate'
 
 import { StandardProps } from '../Picasso'
-import ChevronRightIcon from '../Icon/ChevronRight'
+import ChevronRightIcon16 from '../Icon/ChevronRight16'
 import Typography from '../Typography'
 import Link from '../Link'
 import styles from './styles'
@@ -56,7 +56,7 @@ export const ShowMore: FunctionComponent<Props> = ({
             {shownMore ? lessText : moreText}
           </Typography>
           <div className={iconWrapper}>
-            <ChevronRightIcon
+            <ChevronRightIcon16
               className={cx(icon, {
                 [expandedIcon]: shownMore
               })}

@@ -1,11 +1,11 @@
 import React from 'react'
 import { Button } from '@toptal/picasso'
-import { Cog } from '@toptal/picasso/Icon'
+import { Settings16 } from '@toptal/picasso/Icon'
 
 const ButtonIconButtonsWithTextExample = () => (
   <div>
-    <Button icon={<Cog />}>Cog</Button>
-    <Button icon={<Cog />} iconPosition='right'>
+    <Button icon={<Settings16 />}>Cog</Button>
+    <Button icon={<Settings16 />} iconPosition='right'>
       Check
     </Button>
   </div>

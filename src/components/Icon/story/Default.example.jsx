@@ -1,9 +1,9 @@
 import React from 'react'
-import { Cog } from '@toptal/picasso/Icon'
+import { Settings16 } from '@toptal/picasso/Icon'
 
 const IconExample = () => (
   <div>
-    <Cog />
+    <Settings16 />
   </div>
 )
 

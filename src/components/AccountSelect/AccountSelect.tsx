@@ -9,7 +9,7 @@ import Menu from '../Menu'
 import { ListNativeProps } from '../Menu/Menu'
 import Link from '../Link'
 import Container from '../Container'
-import { ChevronRight } from '../Icon'
+import { ChevronRight16 } from '../Icon'
 import styles from './styles'
 
 type Account = {
@@ -73,7 +73,7 @@ export const AccountSelect: FunctionComponent<Props> = ({
               <UserBadge name={account.name} avatar={account.avatar}>
                 <Typography size='small'>{account.position}</Typography>
               </UserBadge>
-              <ChevronRight color={palette.text.primary} />
+              <ChevronRight16 color={palette.text.primary} />
             </Container>
           </Link>
         </Menu.Item>
