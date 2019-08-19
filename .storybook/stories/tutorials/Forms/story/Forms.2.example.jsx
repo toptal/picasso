@@ -3,7 +3,7 @@ import { Grid, Checkbox, Select, TextField, Form } from '@toptal/picasso'
 
 const FormsExample = () => (
   <div>
-    <Grid justify='center' alignItems='center'>
+    <Grid justifyContent='center' alignItems='center'>
       <Grid.Item small={12} medium={8} large={6}>
         <Form>
           <Form.Field>
