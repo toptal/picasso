@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Select, Container } from '@toptal/picasso'
-import { Cog } from '@toptal/picasso/Icon'
+import { Settings16 } from '@toptal/picasso/Icon'
 
 const SelectWithIconExample = () => {
   const [value, setValue] = useState()
@@ -16,7 +16,7 @@ const SelectWithIconExample = () => {
           onChange={handleChange}
           options={OPTIONS}
           value={value}
-          icon={<Cog />}
+          icon={<Settings16 />}
           placeholder='Choose an option...'
           width='auto'
         />
@@ -27,7 +27,7 @@ const SelectWithIconExample = () => {
           options={OPTIONS}
           value={value}
           iconPosition='end'
-          icon={<Cog />}
+          icon={<Settings16 />}
           placeholder='Choose an option...'
           width='auto'
         />
@@ -38,7 +38,7 @@ const SelectWithIconExample = () => {
           onChange={handleChange}
           options={OPTIONS}
           value={value}
-          icon={<Cog />}
+          icon={<Settings16 />}
           placeholder='Choose an option...'
           width='auto'
         />
