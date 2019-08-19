@@ -52,7 +52,7 @@ exports.Autocomplete = (_a) => {
     const [filter, setFilter] = react_1.useState(EMPTY_VALUE);
     const [placeholder, setPlaceholder] = react_1.useState(initialPlaceholder);
     const [selectedItem, setSelectedItem] = react_1.useState(null);
-    const onChangeDebounced = debounce_1.default(onChange, debounceTime);
+    const onChangeDebounced = react_1.default.useCallback(debounce_1.default(onChange, debounceTime), [onChange, debounceTime]);
     const selectItem = (item) => {
         if (item === undefined)
             return;

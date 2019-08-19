@@ -1,3 +1,11 @@
+## [2.26.3](https://github.com/toptal/picasso/compare/v2.26.2...v2.26.3) (2019-08-19)
+
+
+### Bug Fixes
+
+* **autocomplete:** fix onchange event firing too often ([d9f3dcf](https://github.com/toptal/picasso/commit/d9f3dcf))
+* **autocomplete:** fix onchange event firing too often ([aea8e4c](https://github.com/toptal/picasso/commit/aea8e4c))
+
 ## [2.26.2](https://github.com/toptal/picasso/compare/v2.26.1...v2.26.2) (2019-08-16)
 
 

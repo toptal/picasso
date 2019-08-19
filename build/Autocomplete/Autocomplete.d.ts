@@ -14,7 +14,7 @@ declare type HTMLInputProps = InputHTMLAttributes<HTMLInputElement>;
 export interface Props extends StandardProps, Omit<HTMLInputProps, 'onChange' | 'onSelect'> {
     /** Placeholder for value */
     placeholder?: string;
-    /** Debounce time for onChange event handler */
+    /** Debounce time in ms for onChange event handler */
     debounceTime?: number;
     /** Width of the component which will apply `min-width` to the `input` */
     width?: 'full' | 'shrink' | 'auto';
