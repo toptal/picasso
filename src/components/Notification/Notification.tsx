@@ -15,7 +15,7 @@ import { capitalize } from '@material-ui/core/utils/helpers'
 
 import palette from '../Picasso/config/palette'
 import {
-  Close,
+  CloseMinor16,
   Exclamation16 as Alert,
   CheckMinor16 as Tick,
   Info16 as Info
@@ -53,7 +53,7 @@ const renderNotificationCloseButton = ({
     onClick={onClose}
     className={close}
     title='Close Notification'
-    icon={<Close className={closeIcon} />}
+    icon={<CloseMinor16 className={closeIcon} />}
   />
 )
 

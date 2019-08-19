@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Select, Container } from '@toptal/picasso'
-import { Cog } from '@toptal/picasso/Icon'
+import { Settings16 } from '@toptal/picasso/Icon'
 
 const SelectDefaultExample = () => {
   const [value, setValue] = useState()
@@ -25,7 +25,7 @@ const SelectDefaultExample = () => {
           onChange={handleChange}
           options={OPTIONS}
           value={value}
-          icon={<Cog />}
+          icon={<Settings16 />}
           placeholder='ID'
           width='shrink'
         />
