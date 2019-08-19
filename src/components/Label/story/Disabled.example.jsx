@@ -1,10 +1,10 @@
 import React from 'react'
 import { Label } from '@toptal/picasso'
-import { Cog } from '@toptal/picasso/Icon'
+import { Settings16 } from '@toptal/picasso/Icon'
 
 const LabelDisabledExample = () => (
   <div>
-    <Label disabled icon={<Cog />} onDelete={handleDelete}>
+    <Label disabled icon={<Settings16 />} onDelete={handleDelete}>
       Label
     </Label>
   </div>
