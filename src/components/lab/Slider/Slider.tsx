@@ -5,7 +5,7 @@ import React, {
   ChangeEvent
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import MUISlider from '@material-ui/lab/Slider'
+import MUISlider from '@material-ui/core/Slider'
 
 import { StandardProps } from '../../Picasso'
 import styles from './styles'
@@ -43,8 +43,8 @@ export const Slider: FunctionComponent<Props> = ({
     return currentValue
   }
 
-  const handleChange = (event: ChangeEvent<{}>, value: number) => {
-    const currentValue = getNormalizedValue(value)
+  const handleChange = (event: ChangeEvent<{}>, value: number | number[]) => {
+    const currentValue = getNormalizedValue(value as number)
 
     setValue(currentValue)
     onChange(event, currentValue)
