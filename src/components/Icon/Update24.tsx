@@ -8,23 +8,13 @@ const BASE_SIZE = 24
 
 type ScaleType = 1 | 2 | 3 | 4
 export interface Props extends StandardProps {
-  size?: number
   scale?: ScaleType
   color?: string
   base?: number
 }
 
 const SvgUpdate24 = (props: Props) => {
-  const { classes, className, style = {}, color, scale, size, base } = props
-
-  if (size) {
-    const name = 'SvgUpdate24'
-
-    window.console.warn(
-      `${name}: size' prop will be removed in the next major release of Picasso. Please use 'scale' to maintain pixel perfect icons`
-    )
-  }
-
+  const { classes, className, style = {}, color, scale, base } = props
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
   const svgStyle = {
     minWidth: `${scaledSize}px`,
