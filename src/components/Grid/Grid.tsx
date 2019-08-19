@@ -22,7 +22,7 @@ interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
   /** Defines the align-items style property based on the direction */
   alignItems?: GridItemsAlignment
   /** Defines the justify-content style property based on the direction */
-  justify?: GridJustification
+  justifyContent?: GridJustification
   /** Defines the flex-wrap style property based on the direction */
   wrap?: GridWrap
 }
@@ -41,7 +41,7 @@ export const Grid: FunctionComponent<Props> & StaticProps = ({
   spacing,
   direction,
   alignItems,
-  justify,
+  justifyContent,
   wrap,
   classes,
   className,
@@ -55,7 +55,7 @@ export const Grid: FunctionComponent<Props> & StaticProps = ({
     spacing={humanToMUISpacing(spacing!)}
     direction={direction}
     alignItems={alignItems}
-    justify={justify}
+    justify={justifyContent}
     wrap={wrap}
     classes={classes}
     className={className}
@@ -68,7 +68,7 @@ export const Grid: FunctionComponent<Props> & StaticProps = ({
 Grid.defaultProps = {
   alignItems: 'flex-start',
   direction: 'row',
-  justify: 'flex-start',
+  justifyContent: 'flex-start',
   spacing: 32,
   wrap: 'wrap'
 }
