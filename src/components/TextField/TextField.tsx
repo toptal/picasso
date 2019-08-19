@@ -6,7 +6,6 @@ import React, {
 } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
-import { OutlinedInputProps } from '@material-ui/core/OutlinedInput'
 
 import InputAdornment from '../InputAdornment'
 import OutlinedInput from '../OutlinedInput'
@@ -30,8 +29,6 @@ export interface Props
   error?: boolean
   /** If true, the `TextField` will be disabled */
   disabled?: boolean
-  /** Take the full width of a container */
-  fullWidth?: boolean
   /** Width of the component which will apply `min-width` to the `input` */
   width?: 'full' | 'shrink' | 'auto'
   /** Focus during first mount */
@@ -42,7 +39,6 @@ export interface Props
   iconPosition?: IconPosition
   /** Specify icon which should be rendered inside TextField */
   icon?: ReactNode
-  inputProps?: OutlinedInputProps // DEPRECATED: remove in v3
   /** Whether `TextField` should be rendered as `TextArea` or not */
   multiline?: boolean
   /** Specify rows amount for `TextArea` */
@@ -73,7 +69,6 @@ export const TextField: FunctionComponent<Props> = ({
   classes,
   children,
   multiline,
-  fullWidth,
   width,
   className,
   style,
@@ -81,7 +76,6 @@ export const TextField: FunctionComponent<Props> = ({
   rowsMax,
   type,
   onChange,
-  inputProps,
   ...rest
 }) => {
   const IconAdornment = icon && (
@@ -92,8 +86,6 @@ export const TextField: FunctionComponent<Props> = ({
 
   return (
     <OutlinedInput
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...inputProps}
       className={className}
       style={style}
       classes={{
@@ -114,7 +106,7 @@ export const TextField: FunctionComponent<Props> = ({
       rows={rows}
       rowsMax={rowsMax}
       type={type}
-      width={fullWidth ? 'full' : width}
+      width={width}
       // html attributes
       inputProps={rest}
       endAdornment={iconPosition === 'end' && IconAdornment}
@@ -128,7 +120,8 @@ export const TextField: FunctionComponent<Props> = ({
 
 TextField.defaultProps = {
   iconPosition: 'start',
-  multiline: false
+  multiline: false,
+  width: 'auto'
 }
 
 TextField.displayName = 'TextField'
