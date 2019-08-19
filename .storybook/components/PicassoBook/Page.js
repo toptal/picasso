@@ -1,5 +1,4 @@
 import { storiesOf } from '@storybook/react'
-import { isFunction } from 'lodash'
 
 import Base from './Base'
 import Chapter from './Chapter'
