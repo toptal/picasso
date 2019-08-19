@@ -78,19 +78,13 @@ const template = ({ template }, opts, { componentName, jsx }) => {
       | 4
 
     export interface Props extends StandardProps {
-      size?: number
       scale?: ScaleType
       color?: string,
       base?: number
     }
 
     const ${componentName} = (props: Props) => {
-      const { classes, className, style = {}, color, scale, size, base } = props
-
-      if (size) {
-        const name = '${componentName.name}'
-        window.console.warn(\`\${name}: size' prop will be removed in the next major release of Picasso. Please use 'scale' to maintain pixel perfect icons\`)
-      }
+      const { classes, className, style = {}, color, scale, base } = props
 
       const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
 
