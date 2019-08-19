@@ -32,7 +32,7 @@ const accounts = [
 const AccountSelectPageExample = () => (
   <Page>
     <Page.Content>
-      <Grid justify='center'>
+      <Grid justifyContent='center'>
         <Grid.Item small={5}>
           <Container flex direction='column' alignItems='center'>
             <Logo emblem />

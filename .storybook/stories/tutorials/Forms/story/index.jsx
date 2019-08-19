@@ -36,7 +36,7 @@ tutorialChapter
   .addTextSection(
     `
 For this example we will use \`Grid\` component to make form responsive and adequate size for different
-screen sizes. It can easily be centered using \`justify\` prop. Each form should have
+screen sizes. It can easily be centered using \`justifyContent\` prop. Each form should have
 [\`Form\`](..?path=/story/forms-folder--form) component as root element to handle form interaction like
 \`onSubmit\` events.
 
