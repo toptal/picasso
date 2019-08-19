@@ -6,7 +6,7 @@ import { PicassoProvider } from '../../Picasso'
 PicassoProvider.override(() => ({
   MuiSlider: {
     thumb: {
-      '&$active': {
+      '&:hover, &$active, &$focusVisible': {
         boxShadow: 'none'
       }
     }
@@ -16,14 +16,20 @@ PicassoProvider.override(() => ({
 export default ({ palette }: Theme) =>
   createStyles({
     root: {
-      color: palette.grey.main
+      display: 'block',
+      color: palette.grey.main,
+      margin: `${rem('6px')} 0`,
+      padding: 0,
+      height: rem('1px')
     },
     rail: {
       height: rem('1px'),
+      borderRadius: 'unset',
       opacity: 0.24
     },
     track: {
       backgroundColor: palette.grey.main,
+      borderRadius: 'unset',
       height: rem('1px')
     },
     thumb: {
@@ -31,9 +37,6 @@ export default ({ palette }: Theme) =>
       border: `${rem('2px')} solid ${palette.common.white}`,
       height: rem('13px'),
       width: rem('13px'),
-      marginTop: rem('-6px'),
-      '&:hover': {
-        boxShadow: 'none'
-      }
+      marginTop: rem('-6px')
     }
   })
