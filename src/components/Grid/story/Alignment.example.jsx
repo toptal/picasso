@@ -3,19 +3,19 @@ import { Grid, Button } from '@toptal/picasso'
 
 const GridAlignmentExample = () => (
   <div>
-    <Grid justify='flex-start'>
+    <Grid justifyContent='flex-start'>
       <Grid.Item>
         <Button>Left</Button>
       </Grid.Item>
     </Grid>
 
-    <Grid justify='center'>
+    <Grid justifyContent='center'>
       <Grid.Item>
         <Button>Center</Button>
       </Grid.Item>
     </Grid>
 
-    <Grid justify='flex-end'>
+    <Grid justifyContent='flex-end'>
       <Grid.Item>
         <Button>Right</Button>
       </Grid.Item>

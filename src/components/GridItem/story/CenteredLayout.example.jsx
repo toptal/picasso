@@ -5,7 +5,7 @@ const GridCenteredLayoutExample = () => (
   <Page>
     <Page.Header title='Onboarding' />
     <Page.Content>
-      <Grid justify='center'>
+      <Grid justifyContent='center'>
         <Grid.Item small={8}>
           <SampleContainer>Content</SampleContainer>
         </Grid.Item>
