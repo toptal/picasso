@@ -44,7 +44,7 @@ export interface Props
     Omit<HTMLInputProps, 'onChange' | 'onSelect'> {
   /** Placeholder for value */
   placeholder?: string
-  /** Debounce time for onChange event handler */
+  /** Debounce time in ms for onChange event handler */
   debounceTime?: number
   /** Width of the component which will apply `min-width` to the `input` */
   width?: 'full' | 'shrink' | 'auto'
@@ -100,7 +100,10 @@ export const Autocomplete: FunctionComponent<Props> = ({
   const [filter, setFilter] = useState(EMPTY_VALUE)
   const [placeholder, setPlaceholder] = useState(initialPlaceholder)
   const [selectedItem, setSelectedItem] = useState<Maybe<Item>>(null)
-  const onChangeDebounced = debounce(onChange!, debounceTime)
+  const onChangeDebounced = React.useCallback(
+    debounce(onChange!, debounceTime),
+    [onChange, debounceTime]
+  )
 
   const selectItem = (item: Maybe<Item>) => {
     if (item === undefined) return
