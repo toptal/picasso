@@ -1,6 +1,5 @@
 declare var TEST_ENV: string // defined by ENV
 
-import _ from 'lodash'
 import React, {
   ReactNode,
   Component,
@@ -8,6 +7,7 @@ import React, {
   useState,
   useEffect
 } from 'react'
+import debounce from 'debounce'
 import styled from 'styled-components'
 import { withStyles } from '@material-ui/core/styles'
 import IconLink from '@material-ui/icons/Link'
@@ -26,6 +26,7 @@ import styles from './styles'
 
 const COPY_LINK_DEFAULT_TEXT = 'Link'
 const COPY_LINK_COPIED_TEXT = 'Copied!'
+const PRESETS = [['typescript', { allExtensions: true, isTSX: true }], 'es2015']
 
 interface Props {
   classes: Classes
@@ -34,9 +35,7 @@ interface Props {
   showEditCode?: boolean
 }
 
-const imports: {
-  [key: string]: object
-} = {
+const imports: Record<string, object> = {
   react: React,
   'styled-components': styled,
   '@toptal/picasso': require('@components'),
@@ -103,6 +102,7 @@ class CodeExample extends Component<Props> {
 
   getOriginalSourceCode = () => {
     const { src } = this.props
+
     try {
       return require(`!raw-loader!@components/${src}`).default
     } catch (e) {
@@ -125,7 +125,7 @@ class CodeExample extends Component<Props> {
     }, 2000)
   }
 
-  handleChangeCode = _.debounce(value => {
+  handleChangeCode = debounce((value: string) => {
     this.setState({ sourceCode: value })
   }, 400)
 
@@ -145,7 +145,7 @@ class CodeExample extends Component<Props> {
         <div ref={this.sourceRendererRef} className={classes.componentRenderer}>
           <SourceRender
             babelConfig={{
-              presets: ['es2015']
+              presets: PRESETS
             }}
             wrap={renderInTestPicasso}
             resolver={resolver}
@@ -181,7 +181,7 @@ class CodeExample extends Component<Props> {
       <div ref={this.sourceRendererRef}>
         <SourceRender
           babelConfig={{
-            presets: ['es2015']
+            presets: PRESETS
           }}
           wrap={renderInPicasso}
           resolver={resolver}
