@@ -1,7 +1,13 @@
 declare var TEST_ENV: string // defined by ENV
 
 import _ from 'lodash'
-import React, { ReactNode, Component, useState, useEffect } from 'react'
+import React, {
+  ReactNode,
+  Component,
+  FunctionComponent,
+  useState,
+  useEffect
+} from 'react'
 import styled from 'styled-components'
 import { withStyles } from '@material-ui/core/styles'
 import IconLink from '@material-ui/icons/Link'
@@ -40,6 +46,26 @@ const imports: {
 }
 
 const resolver = (path: string) => imports[path]
+
+// react-source-render uses internally server side rendering
+// so React is complaining about useLayoutEffect hook usage
+// for SSR rendering.
+// This fix is suggested here
+// https://gist.github.com/gaearon/e7d97cdf38a2907924ea12e4ebdf3c85#option-2-lazily-show-component-with-uselayouteffect
+const PicassoSSR: FunctionComponent = ({ children }) => {
+  const [showPicasso, setShowPicasso] = useState(false)
+
+  // Wait until after client-side hydration to show
+  useEffect(() => {
+    setShowPicasso(true)
+  }, [])
+
+  if (!showPicasso) {
+    return null
+  }
+
+  return <Picasso>{children}</Picasso>
+}
 
 class CodeExample extends Component<Props> {
   static defaultProps = {
@@ -147,20 +173,9 @@ class CodeExample extends Component<Props> {
       </div>
     )
 
-    const renderInPicasso = (element: ReactNode) => {
-      const [showThemeProvider, setShowThemeProvider] = useState(false)
-
-      // Wait until after client-side hydration to show
-      useEffect(() => {
-        setShowThemeProvider(true)
-      }, [])
-
-      if (!showThemeProvider) {
-        return null
-      }
-
-      return <Picasso>{element}</Picasso>
-    }
+    const renderInPicasso = (element: ReactNode) => (
+      <PicassoSSR>{element}</PicassoSSR>
+    )
 
     return (
       <div ref={this.sourceRendererRef}>
