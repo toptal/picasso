@@ -1,4 +1,4 @@
-import React, { ReactNode, FunctionComponent, HTMLAttributes } from 'react'
+import React, { ReactNode, HTMLAttributes, forwardRef } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
@@ -12,17 +12,22 @@ interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   children?: ReactNode
 }
 
-export const ButtonGroup: FunctionComponent<Props> = ({
-  children,
-  classes,
-  className,
-  style,
-  ...rest
-}) => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  <div {...rest} className={cx(classes.root, className)} style={style}>
-    {children}
-  </div>
+export const ButtonGroup = forwardRef<HTMLDivElement, Props>(
+  function ButtonGroup(props, ref) {
+    const { children, classes, className, style, ...rest } = props
+
+    return (
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      <div
+        {...rest}
+        ref={ref}
+        className={cx(classes.root, className)}
+        style={style}
+      >
+        {children}
+      </div>
+    )
+  }
 )
 
 ButtonGroup.defaultProps = {
