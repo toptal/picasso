@@ -41,7 +41,7 @@ export interface Props
   inputProps?: InputBaseComponentProps
   inputRef?: React.Ref<any> | React.RefObject<any>
   value?: ValueType
-  /** Whether `TextField` should be rendered as `TextArea` or not */
+  /** Whether `Input` should be rendered as `TextArea` or not */
   multiline?: boolean
   /** Specify rows amount for `TextArea` */
   rows?: string | number

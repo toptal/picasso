@@ -12,7 +12,7 @@ formsPage
   .addTextSection(
     `
 In this tutorial you will learn how to create forms layouts from scratch using components from Picasso.
-We will focus on using \`Form\`, \`Form.Field\`, input components \`TextField\`, \`Select\`, \`Radio\` and
+We will focus on using \`Form\`, \`Form.Field\`, input components \`Input\`, \`Select\`, \`Radio\` and
 \`Checkbox\` to create imaginary form for creating new candidate.
 
 ### Goals
@@ -54,7 +54,7 @@ Let's add one form text field just to be able to test responsivness of our form.
 tutorialChapter
   .addTextSection(
     `
-As you probably saw from the last step when we added \`TextField\` we wrapped it with \`Form.Field\`. It is
+As you probably saw from the last step when we added \`Input\` we wrapped it with \`Form.Field\`. It is
 important because \`Form.Field\` keeps correct spacings in form, allows the addition of hints and in future, it will
 provide new features regarding validation and integration with data.
 
@@ -95,7 +95,7 @@ tutorialChapter
 In this step we used the same form as in previous example, but replaced placeholders with labels.
 
 The concept stays the same, we wrap each control with \`Form.Field\` , but also add \`Form.Label\` for every input.
-If you'd like to focus \`TextField\` by click on label, you need to specify \`id\` and \`htmlFor\`
+If you'd like to focus \`Input\` by click on label, you need to specify \`id\` and \`htmlFor\`
 `,
     {
       title: 'Fourth step: Use labels instead of placeholders'

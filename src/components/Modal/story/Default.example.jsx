@@ -1,12 +1,5 @@
 import React, { useState } from 'react'
-import {
-  Modal,
-  Button,
-  TextField,
-  Checkbox,
-  Select,
-  Form
-} from '@toptal/picasso'
+import { Modal, Button, Input, Checkbox, Select, Form } from '@toptal/picasso'
 
 const STATES = [
   {
@@ -46,10 +39,10 @@ const ModalDefaultExample = () => {
         <Modal.Title>Edit address details</Modal.Title>
         <Modal.Content>
           <Form.Field>
-            <TextField placeholder='City' value='Alabaster' />
+            <Input placeholder='City' value='Alabaster' />
           </Form.Field>
           <Form.Field>
-            <TextField placeholder='Street' value='John Fruit' />
+            <Input placeholder='Street' value='John Fruit' />
           </Form.Field>
           <Form.Field>
             <Select placeholder='State' options={STATES} value='Alabama' />

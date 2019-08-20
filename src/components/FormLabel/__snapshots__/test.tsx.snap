@@ -19,7 +19,7 @@ exports[`FormLabel default render 1`] = `
           </span>
         </label>
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root TextField-root OutlinedInput-rootAuto"
+          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root Input-root OutlinedInput-rootAuto"
         >
           <fieldset
             aria-hidden="true"
@@ -36,7 +36,7 @@ exports[`FormLabel default render 1`] = `
             </legend>
           </fieldset>
           <input
-            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input TextField-input"
+            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input"
             type="text"
             value=""
           />
@@ -66,7 +66,7 @@ exports[`FormLabel disabled 1`] = `
           </span>
         </label>
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root TextField-root OutlinedInput-rootAuto"
+          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root Input-root OutlinedInput-rootAuto"
         >
           <fieldset
             aria-hidden="true"
@@ -83,7 +83,7 @@ exports[`FormLabel disabled 1`] = `
             </legend>
           </fieldset>
           <input
-            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input TextField-input"
+            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input"
             type="text"
             value=""
           />
@@ -118,7 +118,7 @@ exports[`FormLabel required 1`] = `
           </span>
         </label>
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root TextField-root OutlinedInput-rootAuto"
+          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root Input-root OutlinedInput-rootAuto"
         >
           <fieldset
             aria-hidden="true"
@@ -135,7 +135,7 @@ exports[`FormLabel required 1`] = `
             </legend>
           </fieldset>
           <input
-            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input TextField-input"
+            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input"
             type="text"
             value=""
           />
@@ -170,7 +170,7 @@ exports[`FormLabel requried and disabled 1`] = `
           </span>
         </label>
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root TextField-root OutlinedInput-rootAuto"
+          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root Input-root OutlinedInput-rootAuto"
         >
           <fieldset
             aria-hidden="true"
@@ -187,7 +187,7 @@ exports[`FormLabel requried and disabled 1`] = `
             </legend>
           </fieldset>
           <input
-            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input TextField-input"
+            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input"
             type="text"
             value=""
           />
