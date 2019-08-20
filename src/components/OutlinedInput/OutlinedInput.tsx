@@ -1,9 +1,9 @@
 import React, {
-  FunctionComponent,
   ChangeEventHandler,
   ReactType,
   ReactNode,
-  InputHTMLAttributes
+  InputHTMLAttributes,
+  forwardRef
 } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
@@ -56,66 +56,75 @@ export interface Props
   onChange?: ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>
 }
 
-const OutlinedInput: FunctionComponent<Props> = ({
-  classes,
-  className,
-  style,
-  id,
-  name,
-  placeholder,
-  autoFocus,
-  autoComplete,
-  multiline,
-  rows,
-  rowsMax,
-  width,
-  disabled,
-  inputComponent,
-  inputProps,
-  inputRef,
-  value,
-  type,
-  error,
-  startAdornment,
-  endAdornment,
-  onChange,
-  ...rest
-}) => (
-  <MUIOutlinedInput
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    {...rest}
-    classes={{
-      root: cx(classes.root, classes[`root${capitalize(width!)}`]),
-      input: classes.input,
-      inputMultiline: classes.inputMultiline
-    }}
-    className={className}
-    style={style}
-    labelWidth={0}
-    fullWidth={width === 'full'}
-    disabled={disabled}
-    error={error}
-    inputComponent={inputComponent}
-    inputProps={inputProps}
-    inputRef={inputRef}
-    value={value}
-    type={type}
-    startAdornment={startAdornment}
-    endAdornment={endAdornment}
-    id={id}
-    name={name}
-    placeholder={placeholder}
-    autoFocus={autoFocus}
-    autoComplete={autoComplete}
-    multiline={multiline}
-    rows={rows}
-    rowsMax={rowsMax}
-    onChange={onChange}
-  />
+const OutlinedInput = forwardRef<HTMLInputElement, Props>(
+  function OutlinedInput(props, ref) {
+    const {
+      classes,
+      className,
+      style,
+      id,
+      name,
+      placeholder,
+      autoFocus,
+      autoComplete,
+      multiline,
+      rows,
+      rowsMax,
+      width,
+      disabled,
+      inputComponent,
+      inputProps,
+      inputRef,
+      value,
+      type,
+      error,
+      startAdornment,
+      endAdornment,
+      onChange,
+      ...rest
+    } = props
+
+    return (
+      <MUIOutlinedInput
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...rest}
+        ref={ref}
+        classes={{
+          root: cx(classes.root, classes[`root${capitalize(width!)}`]),
+          input: classes.input,
+          inputMultiline: classes.inputMultiline
+        }}
+        className={className}
+        style={style}
+        labelWidth={0}
+        fullWidth={width === 'full'}
+        disabled={disabled}
+        error={error}
+        inputComponent={inputComponent}
+        inputProps={inputProps}
+        inputRef={inputRef}
+        value={value}
+        type={type}
+        startAdornment={startAdornment}
+        endAdornment={endAdornment}
+        id={id}
+        name={name}
+        placeholder={placeholder}
+        autoFocus={autoFocus}
+        autoComplete={autoComplete}
+        multiline={multiline}
+        rows={rows}
+        rowsMax={rowsMax}
+        onChange={onChange}
+      />
+    )
+  }
 )
 
 OutlinedInput.defaultProps = {
   width: 'auto'
 }
+
+OutlinedInput.displayName = 'OutlinedInput'
 
 export default withStyles(styles)(OutlinedInput)

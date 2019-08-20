@@ -1,11 +1,11 @@
 import React, {
-  FunctionComponent,
   ChangeEvent,
   InputHTMLAttributes,
   FormEvent,
   useState,
   useEffect,
-  KeyboardEvent
+  KeyboardEvent,
+  forwardRef
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import { capitalize } from '@material-ui/core/utils/helpers'
@@ -79,231 +79,236 @@ const getItemValue = (item: Maybe<Item>) => {
   return item.value || getItemLabel(item)
 }
 
-export const Autocomplete: FunctionComponent<Props> = ({
-  classes,
-  className,
-  debounceTime,
-  loading,
-  minLength,
-  placeholder: initialPlaceholder,
-  noOptionsText,
-  options: initialOptions,
-  style,
-  width,
-  allowAny,
-  onSelect = () => {},
-  value,
-  onChange,
-  ...rest
-}) => {
-  const [inputValue, setInputValue] = useState<string | null>(null)
-  const [filter, setFilter] = useState(EMPTY_VALUE)
-  const [placeholder, setPlaceholder] = useState(initialPlaceholder)
-  const [selectedItem, setSelectedItem] = useState<Maybe<Item>>(null)
-  const onChangeDebounced = debounce(onChange!, debounceTime)
+export const Autocomplete = forwardRef<HTMLInputElement, Props>(
+  function Autocomplete(props, ref) {
+    const {
+      classes,
+      className,
+      debounceTime,
+      loading,
+      minLength,
+      placeholder: initialPlaceholder,
+      noOptionsText,
+      options: initialOptions,
+      style,
+      width,
+      allowAny,
+      onSelect = () => {},
+      value,
+      onChange,
+      ...rest
+    } = props
 
-  const selectItem = (item: Maybe<Item>) => {
-    if (item === undefined) return
+    const [inputValue, setInputValue] = useState<string | null>(null)
+    const [filter, setFilter] = useState(EMPTY_VALUE)
+    const [placeholder, setPlaceholder] = useState(initialPlaceholder)
+    const [selectedItem, setSelectedItem] = useState<Maybe<Item>>(null)
+    const onChangeDebounced = debounce(onChange!, debounceTime)
 
-    setInputValue(getItemLabel(item))
-    setSelectedItem(item)
+    const selectItem = (item: Maybe<Item>) => {
+      if (item === undefined) return
 
-    if (item !== null) {
-      setPlaceholder(getItemLabel(item))
-    } else {
-      setPlaceholder(initialPlaceholder)
+      setInputValue(getItemLabel(item))
+      setSelectedItem(item)
+
+      if (item !== null) {
+        setPlaceholder(getItemLabel(item))
+      } else {
+        setPlaceholder(initialPlaceholder)
+      }
+
+      onSelect(item)
     }
+    const handleStateChange = (props: StateChangeOptions<Item>) => {
+      const { selectedItem } = props
 
-    onSelect(item)
-  }
-  const handleStateChange = (props: StateChangeOptions<Item>) => {
-    const { selectedItem } = props
-
-    selectItem(selectedItem)
-  }
-
-  const options = initialOptions!.filter(item =>
-    isSubstring(filter || EMPTY_VALUE, getItemLabel(item))
-  )
-
-  const isSelected = (item: Item, selectedItem: Item) =>
-    getItemValue(item) === getItemValue(selectedItem)
-
-  const handleChange = (
-    item: Item,
-    helpers: ControllerStateAndHelpers<Item>
-  ) => {
-    const { setHighlightedIndex } = helpers
-    const currentIndex = options ? options.indexOf(item) : 0
-
-    setHighlightedIndex(currentIndex)
-  }
-
-  useEffect(() => {
-    const selectedItem = initialOptions!.find(
-      option => getItemValue(option) === value
-    )
-
-    if (!selectedItem && allowAny && value !== undefined) {
-      setInputValue(String(value))
-    } else {
       selectItem(selectedItem)
     }
-  }, [value])
 
-  return (
-    <Downshift
-      itemToString={item => getItemLabel(item)}
-      onStateChange={handleStateChange}
-      onChange={handleChange}
-      inputValue={inputValue}
-      selectedItem={selectedItem}
-    >
-      {({
-        getMenuProps,
-        getInputProps,
-        getItemProps,
-        isOpen,
-        selectedItem,
-        highlightedIndex,
-        openMenu,
-        selectItem: downshiftSelectItem,
-        setHighlightedIndex,
-        reset
-      }) => {
-        const isTyping = Boolean(inputValue)
-        const hasOptions = Boolean(options.length)
-        const canOpen =
-          isOpen &&
-          isMatchingMinLength(inputValue || EMPTY_VALUE, minLength) &&
-          !loading &&
-          (hasOptions || isTyping)
+    const options = initialOptions!.filter(item =>
+      isSubstring(filter || EMPTY_VALUE, getItemLabel(item))
+    )
 
-        const optionsMenu = (
-          <ScrollMenu>
-            {!hasOptions ? (
-              <Menu.Item disabled>{noOptionsText}</Menu.Item>
-            ) : (
-              options.map((option, index) => (
-                <Menu.Item
-                  key={getItemValue(option)}
-                  selected={highlightedIndex === index}
-                  disabled={isSelected(option, selectedItem)}
-                  /* eslint-disable-next-line react/jsx-props-no-spreading */
-                  {...getItemProps({ item: option })}
-                >
-                  {getItemLabel(option)}
-                </Menu.Item>
-              ))
-            )}
-          </ScrollMenu>
-        )
+    const isSelected = (item: Item, selectedItem: Item) =>
+      getItemValue(item) === getItemValue(selectedItem)
 
-        const selectItem = (item: Maybe<Item>) => {
-          downshiftSelectItem(item)
-          setPlaceholder(initialPlaceholder)
-          setFilter(EMPTY_VALUE)
-        }
+    const handleChange = (
+      item: Item,
+      helpers: ControllerStateAndHelpers<Item>
+    ) => {
+      const { setHighlightedIndex } = helpers
+      const currentIndex = options ? options.indexOf(item) : 0
 
-        const {
-          onBlur,
-          onKeyDown,
-          onFocus,
-          onChange = () => {}
-        } = getInputProps({
-          onFocus: () => {
-            openMenu()
-            if (!selectedItem) return
+      setHighlightedIndex(currentIndex)
+    }
 
-            const currentIndex = options ? options.indexOf(selectedItem) : 0
+    useEffect(() => {
+      const selectedItem = initialOptions!.find(
+        option => getItemValue(option) === value
+      )
 
-            setPlaceholder(getItemLabel(selectedItem))
-            setInputValue(EMPTY_VALUE)
-            setHighlightedIndex(currentIndex)
-          },
-          onBlur: () => {
-            if (options.length === 1) {
-              const firstOption = options[0]
+      if (!selectedItem && allowAny && value !== undefined) {
+        setInputValue(String(value))
+      } else {
+        selectItem(selectedItem)
+      }
+    }, [value])
 
-              selectItem(firstOption)
-            }
+    return (
+      <Downshift
+        itemToString={item => getItemLabel(item)}
+        onStateChange={handleStateChange}
+        onChange={handleChange}
+        inputValue={inputValue}
+        selectedItem={selectedItem}
+      >
+        {({
+          getMenuProps,
+          getInputProps,
+          getItemProps,
+          isOpen,
+          selectedItem,
+          highlightedIndex,
+          openMenu,
+          selectItem: downshiftSelectItem,
+          setHighlightedIndex,
+          reset
+        }) => {
+          const isTyping = Boolean(inputValue)
+          const hasOptions = Boolean(options.length)
+          const canOpen =
+            isOpen &&
+            isMatchingMinLength(inputValue || EMPTY_VALUE, minLength) &&
+            !loading &&
+            (hasOptions || isTyping)
 
-            if (!options.length && !allowAny) {
-              reset()
-              setInputValue(EMPTY_VALUE)
-              setPlaceholder(initialPlaceholder)
-              setFilter(EMPTY_VALUE)
-              return
-            }
+          const optionsMenu = (
+            <ScrollMenu>
+              {!hasOptions ? (
+                <Menu.Item disabled>{noOptionsText}</Menu.Item>
+              ) : (
+                options.map((option, index) => (
+                  <Menu.Item
+                    key={getItemValue(option)}
+                    selected={highlightedIndex === index}
+                    disabled={isSelected(option, selectedItem)}
+                    /* eslint-disable-next-line react/jsx-props-no-spreading */
+                    {...getItemProps({ item: option })}
+                  >
+                    {getItemLabel(option)}
+                  </Menu.Item>
+                ))
+              )}
+            </ScrollMenu>
+          )
 
-            if (!selectedItem) return
-
-            if (allowAny && getItemLabel(selectedItem) !== inputValue) {
-              if (inputValue !== EMPTY_VALUE) {
-                setSelectedItem(null)
-                setPlaceholder(initialPlaceholder)
-              }
-            }
-
-            setInputValue(getItemLabel(selectedItem))
-          },
-          onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => {
-            if (event.key === 'Backspace' && inputValue === EMPTY_VALUE) {
-              selectItem(null)
-            }
-
-            if (rest.onKeyDown) {
-              rest.onKeyDown(event)
-            }
-          },
-          onChange: (event: ChangeEvent<HTMLInputElement>) => {
-            const { value } = event.target
-
-            setFilter((value || EMPTY_VALUE).trim())
-            setInputValue(value)
-
-            if (!isMatchingMinLength(value, minLength)) {
-              return
-            }
-
-            event.persist()
-            onChangeDebounced(event)
+          const selectItem = (item: Maybe<Item>) => {
+            downshiftSelectItem(item)
+            setPlaceholder(initialPlaceholder)
+            setFilter(EMPTY_VALUE)
           }
-        })
 
-        return (
-          <div
-            className={cx(
-              classes.root,
-              className,
-              classes[`root${capitalize(width!)}`]
-            )}
-            style={style}
-          >
-            <Input
-              /* eslint-disable-next-line react/jsx-props-no-spreading */
-              {...rest}
-              icon={loading ? <Loader size='small' /> : null}
-              iconPosition='end'
-              value={inputValue || EMPTY_VALUE}
-              onBlur={onBlur}
-              onKeyDown={onKeyDown}
-              onFocus={onFocus}
-              onClick={onFocus}
-              placeholder={placeholder}
-              width={width}
-              onChange={event => {
-                onChange(event as FormEvent<HTMLInputElement>)
-              }}
-            />
-            {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-            <div {...getMenuProps()}>{canOpen ? optionsMenu : null}</div>
-          </div>
-        )
-      }}
-    </Downshift>
-  )
-}
+          const {
+            onBlur,
+            onKeyDown,
+            onFocus,
+            onChange = () => {}
+          } = getInputProps({
+            onFocus: () => {
+              openMenu()
+              if (!selectedItem) return
+
+              const currentIndex = options ? options.indexOf(selectedItem) : 0
+
+              setPlaceholder(getItemLabel(selectedItem))
+              setInputValue(EMPTY_VALUE)
+              setHighlightedIndex(currentIndex)
+            },
+            onBlur: () => {
+              if (options.length === 1) {
+                const firstOption = options[0]
+
+                selectItem(firstOption)
+              }
+
+              if (!options.length && !allowAny) {
+                reset()
+                setInputValue(EMPTY_VALUE)
+                setPlaceholder(initialPlaceholder)
+                setFilter(EMPTY_VALUE)
+                return
+              }
+
+              if (!selectedItem) return
+
+              if (allowAny && getItemLabel(selectedItem) !== inputValue) {
+                if (inputValue !== EMPTY_VALUE) {
+                  setSelectedItem(null)
+                  setPlaceholder(initialPlaceholder)
+                }
+              }
+
+              setInputValue(getItemLabel(selectedItem))
+            },
+            onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => {
+              if (event.key === 'Backspace' && inputValue === EMPTY_VALUE) {
+                selectItem(null)
+              }
+
+              if (rest.onKeyDown) {
+                rest.onKeyDown(event)
+              }
+            },
+            onChange: (event: ChangeEvent<HTMLInputElement>) => {
+              const { value } = event.target
+
+              setFilter((value || EMPTY_VALUE).trim())
+              setInputValue(value)
+
+              if (!isMatchingMinLength(value, minLength)) {
+                return
+              }
+
+              event.persist()
+              onChangeDebounced(event)
+            }
+          })
+
+          return (
+            <div
+              className={cx(
+                classes.root,
+                className,
+                classes[`root${capitalize(width!)}`]
+              )}
+              style={style}
+            >
+              <Input
+                /* eslint-disable-next-line react/jsx-props-no-spreading */
+                {...rest}
+                ref={ref}
+                icon={loading ? <Loader size='small' /> : null}
+                iconPosition='end'
+                value={inputValue || EMPTY_VALUE}
+                onBlur={onBlur}
+                onKeyDown={onKeyDown}
+                onFocus={onFocus}
+                onClick={onFocus}
+                placeholder={placeholder}
+                width={width}
+                onChange={event => {
+                  onChange(event as FormEvent<HTMLInputElement>)
+                }}
+              />
+              {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+              <div {...getMenuProps()}>{canOpen ? optionsMenu : null}</div>
+            </div>
+          )
+        }}
+      </Downshift>
+    )
+  }
+)
 
 Autocomplete.defaultProps = {
   allowAny: true,
