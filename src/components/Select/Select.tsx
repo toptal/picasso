@@ -41,9 +41,9 @@ export interface Props
   width?: 'full' | 'shrink' | 'auto'
   /** Placeholder option which is selected by default */
   placeholder?: string
-  /** Whether icon should be placed at the beginning or end of the `TextField` */
+  /** Whether icon should be placed at the beginning or end of the `Input` */
   iconPosition?: IconPosition
-  /** Specify icon which should be rendered inside TextField */
+  /** Specify icon which should be rendered inside Input */
   icon?: ReactNode
   /** Whether `Select` should be rendered as native HTML `<select />` */
   native?: boolean

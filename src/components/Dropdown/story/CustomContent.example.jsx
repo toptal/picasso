@@ -2,7 +2,7 @@ import React from 'react'
 import {
   Dropdown,
   Form,
-  TextField,
+  Input,
   Container,
   Select,
   Button,
@@ -30,7 +30,7 @@ const ComplexContent = () => {
       </Container>
       <Form>
         <Form.Field>
-          <TextField autoFocus width='full' placeholder='Job title' />
+          <Input autoFocus width='full' placeholder='Job title' />
         </Form.Field>
         <Form.Field>
           <Select placeholder='Select talent' options={OPTIONS} />

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Grid, Select, TextField, Checkbox, Radio } from '@toptal/picasso'
+import { Form, Grid, Select, Input, Checkbox, Radio } from '@toptal/picasso'
 
 const FormFieldExample = () => (
   <Grid>
@@ -14,7 +14,7 @@ const FormFieldExample = () => (
           <Form.Label required htmlFor='city'>
             City
           </Form.Label>
-          <TextField id='city' width='full' placeholder='e.g., Barcelona' />
+          <Input id='city' width='full' placeholder='e.g., Barcelona' />
           <Form.Hint>Choose city where you would like to live</Form.Hint>
         </Form.Field>
 
@@ -25,7 +25,7 @@ const FormFieldExample = () => (
           <Form.Label htmlFor='district' required>
             District
           </Form.Label>
-          <TextField
+          <Input
             id='district'
             width='full'
             placeholder='e.g., Sant Marti'

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { TextField, Container } from '@toptal/picasso'
+import { Input, Container } from '@toptal/picasso'
 import { Search16 } from '@toptal/picasso/Icon'
 
-const TextFieldWithIconExample = () => {
+const InputWithIconExample = () => {
   const [value, setValue] = useState('Text')
 
   const handleChange = event => {
@@ -12,10 +12,10 @@ const TextFieldWithIconExample = () => {
   return (
     <Container flex direction='column'>
       <Container bottom='small'>
-        <TextField icon={<Search16 />} value={value} onChange={handleChange} />
+        <Input icon={<Search16 />} value={value} onChange={handleChange} />
       </Container>
       <Container bottom='small'>
-        <TextField
+        <Input
           disabled
           icon={<Search16 />}
           value={value}
@@ -23,7 +23,7 @@ const TextFieldWithIconExample = () => {
         />
       </Container>
       <Container bottom='small'>
-        <TextField
+        <Input
           iconPosition='end'
           icon={<Search16 />}
           value={value}
@@ -31,7 +31,7 @@ const TextFieldWithIconExample = () => {
         />
       </Container>
       <Container bottom='small'>
-        <TextField
+        <Input
           iconPosition='end'
           icon={<Search16 />}
           placeholder='Placeholder'
@@ -42,4 +42,4 @@ const TextFieldWithIconExample = () => {
   )
 }
 
-export default TextFieldWithIconExample
+export default InputWithIconExample

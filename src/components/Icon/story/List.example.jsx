@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Paper, Typography, Container, TextField } from '@toptal/picasso'
+import { Grid, Paper, Typography, Container, Input } from '@toptal/picasso'
 import * as icons from '@toptal/picasso/Icon'
 
 /** We don't want to render internal icons */
@@ -20,7 +20,7 @@ const IconListExample = () => {
       <Grid spacing={16}>
         <Grid.Item small={12}>
           <Container flex>
-            <TextField
+            <Input
               icon={<listIcons.Search16 />}
               width='full'
               placeholder='Filter icons...'
