@@ -1,9 +1,10 @@
 declare var TEST_ENV: string // defined by ENV
 
 import _ from 'lodash'
-import React, { ReactNode, Component, useState, useEffect } from 'react'
+import React, { ReactNode, Component } from 'react'
 import styled from 'styled-components'
 import { withStyles } from '@material-ui/core/styles'
+import IconCode from '@material-ui/icons/Code'
 import IconLink from '@material-ui/icons/Link'
 import SourceRender from 'react-source-render'
 import copy from 'copy-to-clipboard'
@@ -147,20 +148,7 @@ class CodeExample extends Component<Props> {
       </div>
     )
 
-    const renderInPicasso = (element: ReactNode) => {
-      const [showThemeProvider, setShowThemeProvider] = useState(false)
-
-      // Wait until after client-side hydration to show
-      useEffect(() => {
-        setShowThemeProvider(true)
-      }, [])
-
-      if (!showThemeProvider) {
-        return null
-      }
-
-      return <Picasso>{element}</Picasso>
-    }
+    const renderInPicasso = (element: ReactNode) => <Picasso>{element}</Picasso>
 
     return (
       <div ref={this.sourceRendererRef}>
