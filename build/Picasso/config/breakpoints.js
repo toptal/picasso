@@ -25,9 +25,9 @@ exports.useScreenSize = () => {
     const [size, setSize] = react_1.useState(window.innerWidth);
     const updateSize = () => setSize(window.innerWidth);
     react_1.useEffect(() => {
-        window.onresize = updateSize;
+        window.addEventListener('resize', updateSize);
         return () => {
-            window.onresize = null;
+            window.removeEventListener('resize', updateSize);
         };
     }, []);
     return size;

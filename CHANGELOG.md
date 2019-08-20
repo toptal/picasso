@@ -1,3 +1,10 @@
+## [2.26.4](https://github.com/toptal/picasso/compare/v2.26.3...v2.26.4) (2019-08-20)
+
+
+### Bug Fixes
+
+* **breakpoints:** fix useScreenSize hook ([#611](https://github.com/toptal/picasso/issues/611)) ([86a2caa](https://github.com/toptal/picasso/commit/86a2caa))
+
 ## [2.26.3](https://github.com/toptal/picasso/compare/v2.26.2...v2.26.3) (2019-08-19)
 
 
