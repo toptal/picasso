@@ -34,12 +34,18 @@ const ADDONS = [chaptersAddon]
 DECORATORS.forEach(decorator => addDecorator(decorator))
 ADDONS.forEach(addon => setAddon(addon))
 
+/** Tutorials */
 const reqStorybook = require.context(
   '~/.storybook/stories',
   true,
-  /story\/index.jsx$/
+  /story\/index.(jsx|tsx)$/
 )
-const reqComponents = require.context('@components', true, /story\/index.jsx$/)
+/** Stories from components */
+const reqComponents = require.context(
+  '@components',
+  true,
+  /story\/index.(jsx|tsx)$/
+)
 
 const loadStories = () => {
   require('./stories/Picasso') // markdown pages for README & CHANGELOG
