@@ -6,7 +6,7 @@ import {
   Grid,
   Checkbox,
   Select,
-  TextField,
+  Input,
   Radio,
   Form
 } from '@toptal/picasso'
@@ -25,7 +25,7 @@ const FormsExample = () => (
             <Form.Label required htmlFor='job-title-final'>
               Job title
             </Form.Label>
-            <TextField id='job-title-final' width='full' />
+            <Input id='job-title-final' width='full' />
           </Form.Field>
 
           <Form.Field>
@@ -41,7 +41,7 @@ const FormsExample = () => (
                   <Form.Label htmlFor='city-final'>
                     City of residence
                   </Form.Label>
-                  <TextField id='city-final' width='full' />
+                  <Input id='city-final' width='full' />
                 </Form.Field>
               </Grid.Item>
             </Grid>
@@ -51,7 +51,7 @@ const FormsExample = () => (
             <Form.Label htmlFor='description-final'>
               Full description
             </Form.Label>
-            <TextField id='description-final' width='full' />
+            <Input id='description-final' width='full' />
           </Form.Field>
 
           <Form.Field>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { TextField } from '@toptal/picasso'
+import { Input } from '@toptal/picasso'
 
-const TextFieldFullWidthExample = () => {
+const InputFullWidthExample = () => {
   const [value, setValue] = useState('Text')
 
   const handleChange = event => {
@@ -9,7 +9,7 @@ const TextFieldFullWidthExample = () => {
   }
 
   return (
-    <TextField
+    <Input
       width='full'
       value={value}
       placeholder='Placeholder'
@@ -18,4 +18,4 @@ const TextFieldFullWidthExample = () => {
   )
 }
 
-export default TextFieldFullWidthExample
+export default InputFullWidthExample
