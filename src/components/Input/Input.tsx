@@ -6,7 +6,6 @@ import React, {
 } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
-import { OutlinedInputProps } from '@material-ui/core/OutlinedInput'
 
 import InputAdornment from '../InputAdornment'
 import OutlinedInput from '../OutlinedInput'
@@ -26,24 +25,21 @@ export interface Props
   value?: string
   /** Placeholder for value */
   placeholder?: string
-  /** Indicate whether `TextField` is in error state */
+  /** Indicate whether `Input` is in error state */
   error?: boolean
-  /** If true, the `TextField` will be disabled */
+  /** If true, the `Input` will be disabled */
   disabled?: boolean
-  /** Take the full width of a container */
-  fullWidth?: boolean
   /** Width of the component which will apply `min-width` to the `input` */
   width?: 'full' | 'shrink' | 'auto'
   /** Focus during first mount */
   autoFocus?: boolean
   /** Helps users to fill forms faster */
   autoComplete?: string
-  /** Whether icon should be placed at the beginning or end of the `TextField` */
+  /** Whether icon should be placed at the beginning or end of the `Input` */
   iconPosition?: IconPosition
-  /** Specify icon which should be rendered inside TextField */
+  /** Specify icon which should be rendered inside Input */
   icon?: ReactNode
-  inputProps?: OutlinedInputProps // DEPRECATED: remove in v3
-  /** Whether `TextField` should be rendered as `TextArea` or not */
+  /** Whether `Input` should be rendered as `TextArea` or not */
   multiline?: boolean
   /** Specify rows amount for `TextArea` */
   rows?: string | number
@@ -51,7 +47,7 @@ export interface Props
   rowsMax?: string | number
   /** Type attribute of the Input element. It should be a valid HTML5 input type */
   type?: string
-  /**  Callback invoked when `TextField` changes its state */
+  /**  Callback invoked when `Input` changes its state */
   onChange?: (
     event: ChangeEvent<
       HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
@@ -59,7 +55,7 @@ export interface Props
   ) => void
 }
 
-export const TextField: FunctionComponent<Props> = ({
+export const Input: FunctionComponent<Props> = ({
   id,
   name,
   value,
@@ -73,7 +69,6 @@ export const TextField: FunctionComponent<Props> = ({
   classes,
   children,
   multiline,
-  fullWidth,
   width,
   className,
   style,
@@ -81,7 +76,6 @@ export const TextField: FunctionComponent<Props> = ({
   rowsMax,
   type,
   onChange,
-  inputProps,
   ...rest
 }) => {
   const IconAdornment = icon && (
@@ -92,8 +86,6 @@ export const TextField: FunctionComponent<Props> = ({
 
   return (
     <OutlinedInput
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...inputProps}
       className={className}
       style={style}
       classes={{
@@ -114,7 +106,7 @@ export const TextField: FunctionComponent<Props> = ({
       rows={rows}
       rowsMax={rowsMax}
       type={type}
-      width={fullWidth ? 'full' : width}
+      width={width}
       // html attributes
       inputProps={rest}
       endAdornment={iconPosition === 'end' && IconAdornment}
@@ -126,11 +118,12 @@ export const TextField: FunctionComponent<Props> = ({
   )
 }
 
-TextField.defaultProps = {
+Input.defaultProps = {
   iconPosition: 'start',
-  multiline: false
+  multiline: false,
+  width: 'auto'
 }
 
-TextField.displayName = 'TextField'
+Input.displayName = 'Input'
 
-export default withStyles(styles)(TextField)
+export default withStyles(styles)(Input)

@@ -6,7 +6,7 @@ exports[`Icon prop renders icon at the beginning 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root TextField-root OutlinedInput-rootAuto MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+      class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root Input-root OutlinedInput-rootAuto MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
     >
       <fieldset
         aria-hidden="true"
@@ -38,7 +38,7 @@ exports[`Icon prop renders icon at the beginning 1`] = `
         </svg>
       </div>
       <input
-        class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input TextField-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+        class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
         type="text"
         value=""
       />
@@ -53,7 +53,7 @@ exports[`Icon prop renders icon at the end 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root TextField-root OutlinedInput-rootAuto MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+      class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root Input-root OutlinedInput-rootAuto MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
     >
       <fieldset
         aria-hidden="true"
@@ -85,7 +85,7 @@ exports[`Icon prop renders icon at the end 1`] = `
         </svg>
       </div>
       <input
-        class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input TextField-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+        class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
         type="text"
         value=""
       />
@@ -100,7 +100,7 @@ exports[`Native html attributes adds native props to the input 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root TextField-root OutlinedInput-rootAuto Mui-disabled Mui-disabled"
+      class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root Input-root OutlinedInput-rootAuto Mui-disabled Mui-disabled"
     >
       <fieldset
         aria-hidden="true"
@@ -118,7 +118,7 @@ exports[`Native html attributes adds native props to the input 1`] = `
       </fieldset>
       <input
         autocomplete="autocomplete"
-        class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input TextField-input Mui-disabled Mui-disabled"
+        class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input Mui-disabled Mui-disabled"
         disabled=""
         form="formId"
         list="listId"

@@ -13,7 +13,7 @@ exports[`Autocomplete default render 1`] = `
       role="combobox"
     >
       <div
-        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root TextField-root OutlinedInput-rootAuto"
+        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root Input-root OutlinedInput-rootAuto"
       >
         <fieldset
           aria-hidden="true"
@@ -30,7 +30,7 @@ exports[`Autocomplete default render 1`] = `
           </legend>
         </fieldset>
         <input
-          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input TextField-input"
+          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input"
           placeholder="Start typing here..."
           type="text"
           value=""
@@ -60,7 +60,7 @@ exports[`Autocomplete render options when start typing 1`] = `
       role="combobox"
     >
       <div
-        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root TextField-root OutlinedInput-rootAuto"
+        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root Input-root OutlinedInput-rootAuto"
       >
         <fieldset
           aria-hidden="true"
@@ -77,7 +77,7 @@ exports[`Autocomplete render options when start typing 1`] = `
           </legend>
         </fieldset>
         <input
-          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input TextField-input"
+          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input"
           placeholder="Start typing here..."
           type="text"
           value="t"

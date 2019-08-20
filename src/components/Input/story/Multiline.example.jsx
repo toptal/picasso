@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { TextField, Container } from '@toptal/picasso'
+import { Input, Container } from '@toptal/picasso'
 
-const TextFieldMultilineExample = () => {
+const InputMultilineExample = () => {
   const [value, setValue] = useState('Multiline text')
 
   const handleChange = event => {
@@ -11,13 +11,13 @@ const TextFieldMultilineExample = () => {
   return (
     <Container flex inline>
       <Container right='small'>
-        <TextField multiline rows={4} value={value} onChange={handleChange} />
+        <Input multiline rows={4} value={value} onChange={handleChange} />
       </Container>
       <Container right='small'>
-        <TextField multiline rows={4} placeholder='Placeholder' />
+        <Input multiline rows={4} placeholder='Placeholder' />
       </Container>
     </Container>
   )
 }
 
-export default TextFieldMultilineExample
+export default InputMultilineExample

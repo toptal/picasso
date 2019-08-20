@@ -17,7 +17,7 @@ import Downshift, {
 import debounce from 'debounce'
 
 import { StandardProps } from '../Picasso'
-import TextField from '../TextField'
+import Input from '../Input'
 import Menu from '../Menu'
 import Loader from '../Loader'
 import ScrollMenu from '../ScrollMenu'
@@ -283,7 +283,7 @@ export const Autocomplete: FunctionComponent<Props> = ({
             )}
             style={style}
           >
-            <TextField
+            <Input
               /* eslint-disable-next-line react/jsx-props-no-spreading */
               {...rest}
               icon={loading ? <Loader size='small' /> : null}
