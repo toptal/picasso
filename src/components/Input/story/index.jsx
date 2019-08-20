@@ -15,9 +15,6 @@ page
     component: Input,
     name: 'Input',
     additionalDocs: {
-      fullWidth: {
-        name: 'fullWidth [DEPRECATED]'
-      },
       iconPosition: {
         type: 'enum',
         enums: ['start', 'end']
