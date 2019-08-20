@@ -1,9 +1,10 @@
 import React, {
   ReactNode,
-  FunctionComponent,
+  ForwardRefExoticComponent,
   ChangeEvent,
   HTMLAttributes,
-  ReactElement
+  ReactElement,
+  forwardRef
 } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
@@ -34,56 +35,63 @@ export interface Props
   onChange?: (event: ChangeEvent<{}>, expanded: boolean) => void
 }
 
-export const Accordion: FunctionComponent<Props> = ({
-  children,
-  content,
-  expanded,
-  expandIcon,
-  bordered,
-  disabled,
-  className,
-  style,
-  classes,
-  onChange,
-  ...rest
-}) => (
-  <MUIExpansionPanel
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    {...rest}
-    classes={{
-      root: children ? cx(classes.root, { [classes.bordered]: bordered }) : ''
-    }}
-    className={className}
-    style={style}
-    elevation={0}
-    expanded={expanded}
-    disabled={disabled}
-    onChange={onChange}
-  >
-    {children ? (
-      <ExpansionPanelSummary
-        classes={{
-          root: classes.summary,
-          content: classes.content
-        }}
-        expandIcon={
-          expandIcon || <ArrowDownMinor16 className={classes.expandIcon} />
-        }
-      >
-        {children}
-      </ExpansionPanelSummary>
-    ) : (
-      <React.Fragment />
-    )}
-    <ExpansionPanelDetails
+export const Accordion: ForwardRefExoticComponent<
+  Props & React.RefAttributes<HTMLElement>
+> = forwardRef(function Accordion(props, ref) {
+  const {
+    children,
+    content,
+    expanded,
+    expandIcon,
+    bordered,
+    disabled,
+    className,
+    style,
+    classes,
+    onChange,
+    ...rest
+  } = props
+
+  return (
+    <MUIExpansionPanel
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
+      ref={ref}
       classes={{
-        root: classes.details
+        root: children ? cx(classes.root, { [classes.bordered]: bordered }) : ''
       }}
+      className={className}
+      style={style}
+      elevation={0}
+      expanded={expanded}
+      disabled={disabled}
+      onChange={onChange}
     >
-      {content}
-    </ExpansionPanelDetails>
-  </MUIExpansionPanel>
-)
+      {children ? (
+        <ExpansionPanelSummary
+          classes={{
+            root: classes.summary,
+            content: classes.content
+          }}
+          expandIcon={
+            expandIcon || <ArrowDownMinor16 className={classes.expandIcon} />
+          }
+        >
+          {children}
+        </ExpansionPanelSummary>
+      ) : (
+        <React.Fragment />
+      )}
+      <ExpansionPanelDetails
+        classes={{
+          root: classes.details
+        }}
+      >
+        {content}
+      </ExpansionPanelDetails>
+    </MUIExpansionPanel>
+  )
+})
 
 Accordion.defaultProps = {
   bordered: true,
