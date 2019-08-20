@@ -1,6 +1,5 @@
 import React, {
   ReactNode,
-  ForwardRefExoticComponent,
   ChangeEvent,
   HTMLAttributes,
   ReactElement,
@@ -35,9 +34,10 @@ export interface Props
   onChange?: (event: ChangeEvent<{}>, expanded: boolean) => void
 }
 
-export const Accordion: ForwardRefExoticComponent<
-  Props & React.RefAttributes<HTMLElement>
-> = forwardRef(function Accordion(props, ref) {
+export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
+  props,
+  ref
+) {
   const {
     children,
     content,
