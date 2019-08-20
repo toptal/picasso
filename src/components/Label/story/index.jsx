@@ -29,7 +29,7 @@ page
 
 page
   .createChapter()
-  .addExample('Label/story/Default.example.jsx', 'Default')
+  .addExample('Label/story/Variants.example.jsx', 'Variants')
   .addExample('Label/story/Dismissible.example.jsx', 'Dismissible')
   .addExample('Label/story/WithIcon.example.jsx', 'With icon')
   .addExample('Label/story/Disabled.example.jsx', 'Disabled')

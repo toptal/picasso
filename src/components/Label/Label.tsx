@@ -13,6 +13,8 @@ import LabelGroup from '../LabelGroup'
 import { StandardProps, PicassoComponent } from '../Picasso'
 import styles from './styles'
 
+type VariantType = 'grey' | 'white'
+
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Text content of the `Label` component */
   children: ReactNode
@@ -25,6 +27,8 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
    * Please note that specifying this callback automatically adds remove `Icon` as children of the `Label`
    */
   onDelete?: () => void
+  /** Variant of the `Label` */
+  variant?: VariantType
 }
 
 interface StaticProps {
@@ -39,13 +43,16 @@ export const Label: FunctionComponent<Props> & StaticProps = ({
   icon,
   disabled,
   onDelete,
+  variant,
   ...rest
 }) => (
   <Chip
     // eslint-disable-next-line react/jsx-props-no-spreading
     {...rest}
     classes={{
-      root: cx(classes.root, { [classes.disabled]: disabled })
+      root: cx(classes[variant!], {
+        [classes.disabled]: disabled
+      })
     }}
     className={className}
     style={style}
@@ -61,7 +68,8 @@ export const Label: FunctionComponent<Props> & StaticProps = ({
 )
 
 Label.defaultProps = {
-  children: ''
+  children: '',
+  variant: 'grey'
 }
 
 Label.displayName = 'Label'
