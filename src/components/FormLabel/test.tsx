@@ -4,7 +4,7 @@ import '@testing-library/react/cleanup-after-each'
 
 import FormLabel, { Props } from './FormLabel'
 import Form from '../Form'
-import TextField from '../TextField'
+import Input from '../Input'
 import Picasso, { OmitInternalProps } from '../Picasso'
 
 const TestFormLabel: FunctionComponent<OmitInternalProps<Props>> = ({
@@ -25,7 +25,7 @@ const TestFormLabel: FunctionComponent<OmitInternalProps<Props>> = ({
         >
           {children}
         </FormLabel>
-        <TextField />
+        <Input />
       </Form.Field>
     </Form>
   </Picasso>

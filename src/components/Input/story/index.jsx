@@ -1,9 +1,9 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-import { TextField } from '../TextField'
+import { Input } from '../Input'
 
 const page = PicassoBook.createPage(
-  'TextField',
+  'Input',
   `Input fields are UI elements through which users submit information to the system. 
   Input fields should be clearly labeled by the topic to ensure users know exactly what is being asked of them.`,
   'Forms'
@@ -12,8 +12,8 @@ const page = PicassoBook.createPage(
 page
   .createChapter()
   .addComponentDocs({
-    component: TextField,
-    name: 'TextField',
+    component: Input,
+    name: 'Input',
     additionalDocs: {
       fullWidth: {
         name: 'fullWidth [DEPRECATED]'
@@ -24,9 +24,9 @@ page
       }
     }
   })
-  .addExample('TextField/story/Default.example.jsx', 'Default')
-  .addExample('TextField/story/Disabled.example.jsx', 'Disabled')
-  .addExample('TextField/story/Error.example.jsx', 'Error')
-  .addExample('TextField/story/WithIcon.example.jsx', 'With icon')
-  .addExample('TextField/story/FullWidth.example.jsx', 'Full width')
-  .addExample('TextField/story/Multiline.example.jsx', 'Multiline | Textarea')
+  .addExample('Input/story/Default.example.jsx', 'Default')
+  .addExample('Input/story/Disabled.example.jsx', 'Disabled')
+  .addExample('Input/story/Error.example.jsx', 'Error')
+  .addExample('Input/story/WithIcon.example.jsx', 'With icon')
+  .addExample('Input/story/FullWidth.example.jsx', 'Full width')
+  .addExample('Input/story/Multiline.example.jsx', 'Multiline | Textarea')

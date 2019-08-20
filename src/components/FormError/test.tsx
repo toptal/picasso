@@ -4,7 +4,7 @@ import { render, cleanup, RenderResult } from '@testing-library/react'
 import Picasso, { OmitInternalProps } from '../Picasso'
 import { Props } from './FormError'
 import Form from '../Form'
-import TextField from '../TextField'
+import Input from '../Input'
 
 const TestFormError = ({ children }: OmitInternalProps<Props>) => {
   return (
@@ -12,7 +12,7 @@ const TestFormError = ({ children }: OmitInternalProps<Props>) => {
       <Form>
         <Form.Field>
           <Form.Label>Label:</Form.Label>
-          <TextField />
+          <Input />
           <Form.Error>{children}</Form.Error>
           <Form.Hint>This is a hint</Form.Hint>
         </Form.Field>

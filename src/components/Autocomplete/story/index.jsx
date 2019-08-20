@@ -4,7 +4,7 @@ import { Autocomplete } from '../Autocomplete'
 
 const page = PicassoBook.createPage(
   'Autocomplete',
-  `TextField with the autocomplete`,
+  `Input with the autocomplete`,
   'Forms'
 )
 
@@ -15,8 +15,7 @@ page.createTabChapter('Props').addComponentDocs({
     options: {
       type: {
         name: '[]',
-        description:
-        `
+        description: `
 {\n
   text?: string\n
   value?: string\n
@@ -31,7 +30,7 @@ page
   .createChapter()
   .addTextSection(
     `
-Autocomplete supports all the default HTML native props, as TextField supports.
+Autocomplete supports all the default HTML native props, as Input supports.
 
 You also may want to disable standard browser autofill and autocomplete
 for this component. This you can achieve by adding corresponding attributes:

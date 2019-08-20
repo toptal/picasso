@@ -3,19 +3,16 @@ import { render, cleanup } from '@testing-library/react'
 import SearchIcon from '@material-ui/icons/Search'
 
 import Picasso, { OmitInternalProps } from '../Picasso'
-import TextField, { Props } from './TextField'
+import Input, { Props } from './Input'
 
-const renderTextField = (
-  children: ReactNode,
-  props: OmitInternalProps<Props>
-) => {
+const renderInput = (children: ReactNode, props: OmitInternalProps<Props>) => {
   const { icon, iconPosition } = props
 
   return render(
     <Picasso loadFonts={false}>
-      <TextField icon={icon} iconPosition={iconPosition}>
+      <Input icon={icon} iconPosition={iconPosition}>
         {children}
-      </TextField>
+      </Input>
     </Picasso>
   )
 }
@@ -24,7 +21,7 @@ afterEach(cleanup)
 
 describe('Icon prop', () => {
   test('renders icon at the end', () => {
-    const { container } = renderTextField(null, {
+    const { container } = renderInput(null, {
       icon: <SearchIcon />
     })
 
@@ -32,7 +29,7 @@ describe('Icon prop', () => {
   })
 
   test('renders icon at the beginning', () => {
-    const { container } = renderTextField(null, {
+    const { container } = renderInput(null, {
       icon: <SearchIcon />,
       iconPosition: 'start'
     })
@@ -45,7 +42,7 @@ describe('Native html attributes', () => {
   test('adds native props to the input', () => {
     const { container } = render(
       <Picasso loadFonts={false}>
-        <TextField
+        <Input
           readOnly
           required
           disabled

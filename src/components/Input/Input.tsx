@@ -25,9 +25,9 @@ export interface Props
   value?: string
   /** Placeholder for value */
   placeholder?: string
-  /** Indicate whether `TextField` is in error state */
+  /** Indicate whether `Input` is in error state */
   error?: boolean
-  /** If true, the `TextField` will be disabled */
+  /** If true, the `Input` will be disabled */
   disabled?: boolean
   /** Width of the component which will apply `min-width` to the `input` */
   width?: 'full' | 'shrink' | 'auto'
@@ -35,11 +35,11 @@ export interface Props
   autoFocus?: boolean
   /** Helps users to fill forms faster */
   autoComplete?: string
-  /** Whether icon should be placed at the beginning or end of the `TextField` */
+  /** Whether icon should be placed at the beginning or end of the `Input` */
   iconPosition?: IconPosition
-  /** Specify icon which should be rendered inside TextField */
+  /** Specify icon which should be rendered inside Input */
   icon?: ReactNode
-  /** Whether `TextField` should be rendered as `TextArea` or not */
+  /** Whether `Input` should be rendered as `TextArea` or not */
   multiline?: boolean
   /** Specify rows amount for `TextArea` */
   rows?: string | number
@@ -47,7 +47,7 @@ export interface Props
   rowsMax?: string | number
   /** Type attribute of the Input element. It should be a valid HTML5 input type */
   type?: string
-  /**  Callback invoked when `TextField` changes its state */
+  /**  Callback invoked when `Input` changes its state */
   onChange?: (
     event: ChangeEvent<
       HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
@@ -55,7 +55,7 @@ export interface Props
   ) => void
 }
 
-export const TextField: FunctionComponent<Props> = ({
+export const Input: FunctionComponent<Props> = ({
   id,
   name,
   value,
@@ -118,12 +118,12 @@ export const TextField: FunctionComponent<Props> = ({
   )
 }
 
-TextField.defaultProps = {
+Input.defaultProps = {
   iconPosition: 'start',
   multiline: false,
   width: 'auto'
 }
 
-TextField.displayName = 'TextField'
+Input.displayName = 'Input'
 
-export default withStyles(styles)(TextField)
+export default withStyles(styles)(Input)
