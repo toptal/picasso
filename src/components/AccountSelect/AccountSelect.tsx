@@ -45,8 +45,8 @@ export const AccountSelect = forwardRef<HTMLUListElement, Props>(
     } = classes
 
     return (
-      // eslint-disable-next-line react/jsx-props-no-spreading
       <Menu
+        // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         ref={ref}
         classes={menuClasses}

@@ -17,8 +17,8 @@ export const ButtonGroup = forwardRef<HTMLDivElement, Props>(
     const { children, classes, className, style, ...rest } = props
 
     return (
-      // eslint-disable-next-line react/jsx-props-no-spreading
       <div
+        // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         ref={ref}
         className={cx(classes.root, className)}
