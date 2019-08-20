@@ -9,8 +9,7 @@ import React, {
   createRef,
   RefObject,
   useContext,
-  useState,
-  useEffect
+  useState
 } from 'react'
 
 import CssBaseline from '../CssBaseline'
@@ -124,28 +123,15 @@ const Picasso: FunctionComponent<PicassoProps> = ({
   loadFonts,
   reset,
   children
-}) => {
-  const [showThemeProvider, setShowThemeProvider] = useState(false)
-
-  // Wait until after client-side hydration to show
-  useEffect(() => {
-    setShowThemeProvider(true)
-  }, [])
-
-  if (!showThemeProvider) {
-    return null
-  }
-
-  return (
-    <MuiThemeProvider theme={PicassoProvider.theme}>
-      {loadFonts && <FontsLoader />}
-      {reset && <CssBaseline />}
-      <PicassoGlobalStylesProvider>
-        <NotificationsProvider>{children}</NotificationsProvider>
-      </PicassoGlobalStylesProvider>
-    </MuiThemeProvider>
-  )
-}
+}) => (
+  <MuiThemeProvider theme={PicassoProvider.theme}>
+    {loadFonts && <FontsLoader />}
+    {reset && <CssBaseline />}
+    <PicassoGlobalStylesProvider>
+      <NotificationsProvider>{children}</NotificationsProvider>
+    </PicassoGlobalStylesProvider>
+  </MuiThemeProvider>
+)
 
 Picasso.defaultProps = {
   loadFonts: true,
