@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { forwardRef } from 'react'
 import MUICheckbox from '@material-ui/core/Checkbox'
 import { withStyles } from '@material-ui/core/styles'
 
@@ -31,20 +31,23 @@ export interface Props
   value?: string
 }
 
-export const Checkbox: FunctionComponent<Props> = ({
-  label,
-  id,
-  classes,
-  className,
-  style,
-  disabled,
-  required,
-  onChange,
-  value,
-  checked,
-  indeterminate,
-  ...rest
-}) => {
+export const Checkbox = forwardRef<HTMLButtonElement, Props>(function Checkbox(
+  {
+    label,
+    id,
+    classes,
+    className,
+    style,
+    disabled,
+    required,
+    onChange,
+    value,
+    checked,
+    indeterminate,
+    ...rest
+  },
+  ref
+) {
   const rootClasses = {
     root: classes.root,
     disabled: classes.disabled
@@ -56,6 +59,7 @@ export const Checkbox: FunctionComponent<Props> = ({
     <MUICheckbox
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...checkboxAttributes}
+      ref={ref}
       checked={checked}
       icon={<div className={classes.uncheckedIcon} />}
       checkedIcon={<div className={classes.checkedIcon} />}
@@ -86,7 +90,7 @@ export const Checkbox: FunctionComponent<Props> = ({
       }
     />
   )
-}
+})
 
 Checkbox.defaultProps = {
   disabled: false,
