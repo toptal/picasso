@@ -28,7 +28,7 @@ import styles from './styles'
 const DEBOUNCE_TIME = 300
 const EMPTY_VALUE = ''
 
-type Item = {
+export type Item = {
   label?: string
   value?: string
   text?: string
@@ -66,7 +66,7 @@ export interface Props
   /**  Callback invoked when key is pressed */
   onKeyDown?: (
     event: KeyboardEvent<HTMLInputElement>,
-    inputValue: string
+    inputValue: string | null
   ) => void
   /** ReactNode for labels that will be used as start InputAdornment - */
   startAdornment?: ReactNode
@@ -272,7 +272,7 @@ export const Autocomplete: FunctionComponent<Props> = ({
             }
 
             if (onKeyDown) {
-              onKeyDown(event, inputValue!)
+              onKeyDown(event, inputValue)
             }
           },
           onChange: (event: ChangeEvent<HTMLInputElement>) => {

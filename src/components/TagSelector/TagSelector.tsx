@@ -5,7 +5,7 @@ import { Maybe } from '../utils'
 import { StandardProps } from '../Picasso'
 import Label from '../Label'
 import LabelGroup from '../LabelGroup'
-import Autocomplete from '../Autocomplete'
+import Autocomplete, { Item as AutoCompleteItem } from '../Autocomplete'
 import styles from './styles'
 
 type Item = {
@@ -13,11 +13,8 @@ type Item = {
   label: string
 }
 
-type ReturnItem = {
-  label?: string
-  value?: string
-  text?: string
-}
+const getUniqueValue = (value: string) =>
+  `${value.replace(/\s+/g, '-').toLowerCase()}-${new Date().getTime()}`
 
 export interface Props extends StandardProps {
   /** Placeholder for value */
@@ -29,7 +26,7 @@ export interface Props extends StandardProps {
   /** List of options with unique labels */
   options?: Item[]
   /** List of pre-selected items values */
-  value?: string[]
+  initialValues?: string[]
   /**  Callback invoked when item is selected */
   onChange?: (selectedOptions: string[]) => void
   /**  Callback invoked when typing value is changed */
@@ -40,99 +37,95 @@ export const TagSelector: FunctionComponent<Props> = ({
   loading = false,
   placeholder = '',
   options = [],
-  value = [],
+  initialValues = [],
   newOptionLabel = 'Add new option: ',
   onChange = () => {},
   onInputChange = () => {},
   classes
 }) => {
-  const [selectedItems, setSelectedItems] = React.useState<string[]>(value)
-  const [availableOptions, setAvailableOptions] = React.useState<Item[]>(
-    options
+  const [inputValue, setInputValue] = React.useState<string | null>(null)
+  const [selectedValues, setSelectedValues] = React.useState<string[]>(
+    initialValues
   )
-  const [inputBoxValue, setInputBoxValue] = React.useState('')
-
-  const updateValue = (value: string[]) => {
-    setSelectedItems(value)
-    onChange(value)
-  }
-
-  const getUniqueValue = (value: string) =>
-    `${value.replace(/\s+/g, '-').toLowerCase()}-${new Date().getTime()}`
+  const [addedOptions, setAddedOptions] = React.useState<Item[]>([])
+  const currentOptions = [...options, ...addedOptions]
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputBoxValue((e.target.value || '').trim())
+    setInputValue((e.target.value || '').trim())
     onInputChange(e)
+  }
+
+  const updateSelectedValues = (values: string[]) => {
+    setSelectedValues(values)
+    onChange(values)
+  }
+
+  const handleDelete = (value: string) => {
+    const index = selectedValues.indexOf(value)
+
+    updateSelectedValues([
+      ...selectedValues.slice(0, index),
+      ...selectedValues.slice(index + 1)
+    ])
   }
 
   const handleKeyDown = (
     event: KeyboardEvent<HTMLInputElement>,
-    inputValue: string
+    inputValue: string | null
   ) => {
-    const hasSelection = selectedItems.length
-    const hasValue = inputValue && inputValue.length
+    const hasSelection = selectedValues.length
+    const hasValue = inputValue
     const isDeleting = event.key === 'Backspace'
 
     if (hasSelection && !hasValue && isDeleting) {
-      handleDelete(selectedItems[selectedItems.length - 1])
+      handleDelete(selectedValues[selectedValues.length - 1])
     }
   }
 
   const handleSelect = (
-    item: Maybe<ReturnItem>,
-    helpers: { resetInput: () => void }
+    item: Maybe<AutoCompleteItem>,
+    { resetInput }: { resetInput: () => void }
   ) => {
-    if (!item || !item.value) return null
+    if (!item || !item.value) return
 
-    const isAtOptions = availableOptions.find(
+    const isAtOptions = currentOptions.find(
       option => option.value === item!.value
     )
 
-    let selectedItemsClone = [...selectedItems]
-
-    if (!selectedItemsClone.includes(item.value)) {
-      selectedItemsClone = [...selectedItemsClone, item.value]
-    }
-
     if (!isAtOptions) {
-      const newAvailableOptions = [
-        ...availableOptions,
-        { value: item.value, label: inputBoxValue }
-      ]
-
-      setAvailableOptions(newAvailableOptions)
+      setAddedOptions([
+        ...addedOptions,
+        { value: item.value, label: inputValue || '' }
+      ])
     }
 
-    updateValue(selectedItemsClone)
-    setInputBoxValue('')
-    helpers.resetInput()
+    if (!selectedValues.includes(item.value)) {
+      updateSelectedValues([...selectedValues, item.value])
+    }
+    setInputValue(null)
+    resetInput()
   }
 
-  const handleDelete = (itemValue: string) => {
-    const index = selectedItems.indexOf(itemValue)
-    const selectedItemsClone = [
-      ...selectedItems.slice(0, index),
-      ...selectedItems.slice(index + 1)
-    ]
-
-    updateValue(selectedItemsClone)
-  }
-
-  const filteredOptions = availableOptions!.filter(
-    item => !selectedItems.includes(item.value)
+  const nonSelectedOptions: Item[] = currentOptions.filter(
+    item => !selectedValues.includes(item.value)
   )
 
-  if (inputBoxValue.length) {
-    filteredOptions.push({
-      value: getUniqueValue(inputBoxValue),
-      label: `${newOptionLabel}${inputBoxValue}`
-    })
-  }
+  const maybeNewOption: Maybe<Item> = inputValue
+    ? {
+        value: getUniqueValue(inputValue),
+        label: `${newOptionLabel}${inputValue}`
+      }
+    : undefined
+
+  const autocompleteOptions: Item[] = [
+    ...nonSelectedOptions,
+    ...(maybeNewOption ? [maybeNewOption] : [])
+  ]
 
   const labels = (
     <LabelGroup>
-      {availableOptions
-        .filter(x => selectedItems.includes(x.value))
+      {currentOptions
+        .filter(option => selectedValues.includes(option.value))
         .map(item => (
           <Label key={item.value} onDelete={() => handleDelete(item.value)}>
             {item.label}
@@ -144,7 +137,7 @@ export const TagSelector: FunctionComponent<Props> = ({
   return (
     <Autocomplete
       placeholder={placeholder}
-      options={filteredOptions}
+      options={autocompleteOptions}
       onSelect={handleSelect}
       onKeyDown={handleKeyDown}
       startAdornment={labels}
