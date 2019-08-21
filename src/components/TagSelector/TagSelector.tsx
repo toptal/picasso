@@ -49,6 +49,22 @@ export const TagSelector: FunctionComponent<Props> = ({
   )
   const [addedOptions, setAddedOptions] = React.useState<Item[]>([])
   const currentOptions = [...options, ...addedOptions]
+  const inputRef = React.useRef<HTMLInputElement>(null)
+
+  React.useEffect(() => {
+    const inputNode = inputRef.current
+
+    if (inputNode) {
+      const resizeInput = () => {
+        inputNode.style.width = inputNode.value.length + 2 + 'ch'
+      }
+
+      inputNode && inputNode.addEventListener('input', resizeInput)
+      return () => {
+        inputNode && inputNode.removeEventListener('input', resizeInput)
+      }
+    }
+  }, [])
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue((e.target.value || '').trim())
