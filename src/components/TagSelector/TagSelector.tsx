@@ -136,7 +136,7 @@ export const TagSelector: FunctionComponent<Props> = ({
 
   return (
     <Autocomplete
-      placeholder={placeholder}
+      placeholder={selectedValues.length ? undefined : placeholder}
       options={autocompleteOptions}
       onSelect={handleSelect}
       onKeyDown={handleKeyDown}

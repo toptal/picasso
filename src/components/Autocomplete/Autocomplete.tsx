@@ -93,7 +93,7 @@ export const Autocomplete: FunctionComponent<Props> = ({
   debounceTime,
   loading,
   minLength,
-  placeholder: initialPlaceholder,
+  placeholder,
   noOptionsText,
   options: initialOptions,
   style,
@@ -108,19 +108,12 @@ export const Autocomplete: FunctionComponent<Props> = ({
 }) => {
   const [inputValue, setInputValue] = useState<string | null>(null)
   const [filter, setFilter] = useState(EMPTY_VALUE)
-  const [placeholder, setPlaceholder] = useState(initialPlaceholder)
   const [selectedItem, setSelectedItem] = useState<Maybe<Item>>(null)
   const onChangeDebounced = debounce(onChange!, debounceTime)
 
   const selectItem = (item: Maybe<Item>) => {
     setInputValue(getItemLabel(item))
     setSelectedItem(item)
-
-    if (item !== null) {
-      setPlaceholder(getItemLabel(item))
-    } else {
-      setPlaceholder(initialPlaceholder)
-    }
   }
 
   const handleSelectItem = (item: Maybe<Item>) => {
@@ -220,7 +213,6 @@ export const Autocomplete: FunctionComponent<Props> = ({
 
         const selectItem = (item: Maybe<Item>) => {
           downshiftSelectItem(item)
-          setPlaceholder(initialPlaceholder)
           setFilter(EMPTY_VALUE)
         }
 
@@ -236,7 +228,6 @@ export const Autocomplete: FunctionComponent<Props> = ({
 
             const currentIndex = options ? options.indexOf(selectedItem) : 0
 
-            setPlaceholder(getItemLabel(selectedItem))
             setInputValue(EMPTY_VALUE)
             setHighlightedIndex(currentIndex)
           },
@@ -250,7 +241,6 @@ export const Autocomplete: FunctionComponent<Props> = ({
             if (!options.length && !allowAny) {
               reset()
               setInputValue(EMPTY_VALUE)
-              setPlaceholder(initialPlaceholder)
               setFilter(EMPTY_VALUE)
               return
             }
@@ -260,7 +250,6 @@ export const Autocomplete: FunctionComponent<Props> = ({
             if (allowAny && getItemLabel(selectedItem) !== inputValue) {
               if (inputValue !== EMPTY_VALUE) {
                 setSelectedItem(null)
-                setPlaceholder(initialPlaceholder)
               }
             }
 
@@ -309,7 +298,9 @@ export const Autocomplete: FunctionComponent<Props> = ({
               onKeyDown={handleOnKeyDown}
               onFocus={onFocus}
               onClick={onFocus}
-              placeholder={placeholder}
+              placeholder={
+                selectedItem ? getItemLabel(selectedItem) : placeholder
+              }
               width={width}
               onChange={event => {
                 onChange(event as FormEvent<HTMLInputElement>)
