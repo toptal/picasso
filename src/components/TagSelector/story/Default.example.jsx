@@ -5,7 +5,13 @@ const options = [
   { value: 'AF', label: 'Afghanistan' },
   { value: 'AI', label: 'Aland Islands' },
   { value: 'ALB', label: 'Albania' },
-  { value: 'ALG', label: 'Algeria' }
+  { value: 'ALG', label: 'Algeria' },
+  { value: 'BY', label: 'Belarus' },
+  { value: 'HR', label: 'Croatia' },
+  { value: 'LU', label: 'Lithuania' },
+  { value: 'SK', label: 'Slovakia' },
+  { value: 'SP', label: 'Spain' },
+  { value: 'UA', label: 'Ukraine' }
 ]
 
 const TagSelectorDefaultExample = () => (

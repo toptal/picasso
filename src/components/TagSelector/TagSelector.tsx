@@ -1,10 +1,14 @@
-import React, { FunctionComponent, KeyboardEvent, ChangeEvent } from 'react'
+import React, {
+  FunctionComponent,
+  KeyboardEvent,
+  ChangeEvent,
+  Fragment
+} from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
 import { Maybe } from '../utils'
 import { StandardProps } from '../Picasso'
 import Label from '../Label'
-import LabelGroup from '../LabelGroup'
 import Autocomplete, { Item as AutoCompleteItem } from '../Autocomplete'
 import styles from './styles'
 
@@ -139,15 +143,23 @@ export const TagSelector: FunctionComponent<Props> = ({
   ]
 
   const labels = (
-    <LabelGroup>
-      {currentOptions
-        .filter(option => selectedValues.includes(option.value))
-        .map(item => (
-          <Label key={item.value} onDelete={() => handleDelete(item.value)}>
+    <Fragment>
+      {selectedValues.map(value => {
+        const item = currentOptions.find(option => option.value === value)
+
+        if (!item) {
+          window.console.warn(
+            `TagSelector: There is no option for the given value \` ${value}\``
+          )
+          return null
+        }
+        return (
+          <Label key={value} onDelete={() => handleDelete(value)}>
             {item.label}
           </Label>
-        ))}
-    </LabelGroup>
+        )
+      })}
+    </Fragment>
   )
 
   return (
