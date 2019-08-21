@@ -7,6 +7,10 @@ exports.default = ({ palette }) => styles_1.createStyles({
         borderColor: palette.grey.lighter,
         color: palette.grey.main,
         pointerEvents: 'none'
+    },
+    white: {
+        background: 'none',
+        color: palette.common.white
     }
 });
 //# sourceMappingURL=styles.js.map

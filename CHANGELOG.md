@@ -1,3 +1,10 @@
+# [2.27.0](https://github.com/toptal/picasso/compare/v2.26.4...v2.27.0) (2019-08-21)
+
+
+### Features
+
+* **Label:** add `white `variant to Label ([#607](https://github.com/toptal/picasso/issues/607)) ([5b62a0d](https://github.com/toptal/picasso/commit/5b62a0d))
+
 ## [2.26.4](https://github.com/toptal/picasso/compare/v2.26.3...v2.26.4) (2019-08-20)
 
 

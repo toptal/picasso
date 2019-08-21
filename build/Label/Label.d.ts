@@ -1,6 +1,7 @@
 import { FunctionComponent, ReactNode, ReactElement, HTMLAttributes } from 'react';
 import LabelGroup from '../LabelGroup';
 import { StandardProps, PicassoComponent } from '../Picasso';
+declare type VariantType = 'grey' | 'white';
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
     /** Text content of the `Label` component */
     children: ReactNode;
@@ -13,6 +14,8 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
      * Please note that specifying this callback automatically adds remove `Icon` as children of the `Label`
      */
     onDelete?: () => void;
+    /** Variant of the `Label` */
+    variant?: VariantType;
 }
 interface StaticProps {
     Group: typeof LabelGroup;

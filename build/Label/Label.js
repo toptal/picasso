@@ -22,16 +22,19 @@ const Chip_1 = __importDefault(require("../Chip"));
 const LabelGroup_1 = __importDefault(require("../LabelGroup"));
 const styles_2 = __importDefault(require("./styles"));
 exports.Label = (_a) => {
-    var { children, classes, style, className, icon, disabled, onDelete } = _a, rest = __rest(_a, ["children", "classes", "style", "className", "icon", "disabled", "onDelete"]);
+    var { children, classes, style, className, icon, disabled, onDelete, variant } = _a, rest = __rest(_a, ["children", "classes", "style", "className", "icon", "disabled", "onDelete", "variant"]);
     return (react_1.default.createElement(Chip_1.default
     // eslint-disable-next-line react/jsx-props-no-spreading
     , Object.assign({}, rest, { classes: {
-            root: classnames_1.default(classes.root, { [classes.disabled]: disabled })
+            root: classnames_1.default(classes[variant], {
+                [classes.disabled]: disabled
+            })
         }, className: className, style: style, deleteIcon: react_1.default.createElement("span", { "aria-label": 'delete icon', role: 'button' },
             react_1.default.createElement(Icon_1.CloseMinor16, null)), onDelete: onDelete, label: children, icon: icon })));
 };
 exports.Label.defaultProps = {
-    children: ''
+    children: '',
+    variant: 'grey'
 };
 exports.Label.displayName = 'Label';
 exports.Label.Group = LabelGroup_1.default;
