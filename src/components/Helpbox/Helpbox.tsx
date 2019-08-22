@@ -69,6 +69,8 @@ export const Helpbox = forwardRef<HTMLDivElement, Props>(function Helpbox(
 
 Helpbox.defaultProps = {}
 
+Helpbox.displayName = 'Helpbox'
+
 Helpbox.Title = HelpboxTitle
 
 Helpbox.Content = HelpboxContent
