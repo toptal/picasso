@@ -60,15 +60,21 @@ export const TagSelector: FunctionComponent<Props> = ({
 
     if (inputNode) {
       const resizeInput = () => {
-        inputNode.style.width = inputNode.value.length + 2 + 'ch'
+        const inputLength = inputNode.value.length
+
+        inputNode.style.width =
+          inputLength === 0 && selectedValues.length === 0
+            ? 'auto'
+            : inputLength + 2 + 'ch'
       }
 
-      inputNode && inputNode.addEventListener('input', resizeInput)
+      resizeInput()
+      inputNode.addEventListener('input', resizeInput)
       return () => {
-        inputNode && inputNode.removeEventListener('input', resizeInput)
+        inputNode.removeEventListener('input', resizeInput)
       }
     }
-  }, [])
+  }, [selectedValues])
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue((e.target.value || '').trim())
@@ -164,6 +170,7 @@ export const TagSelector: FunctionComponent<Props> = ({
 
   return (
     <Autocomplete
+      ref={inputRef}
       placeholder={selectedValues.length ? undefined : placeholder}
       options={autocompleteOptions}
       onSelect={handleSelect}

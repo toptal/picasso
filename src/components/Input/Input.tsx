@@ -99,7 +99,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
 
   return (
     <OutlinedInput
-      ref={ref}
+      inputRef={ref}
       className={className}
       style={style}
       classes={{
