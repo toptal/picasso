@@ -24,8 +24,8 @@ export const PageContent = forwardRef<HTMLDivElement, Props>(
     )
 
     return (
-      // eslint-disable-next-line react/jsx-props-no-spreading
       <div
+        // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         ref={ref}
         className={cx(classes.root, className)}

@@ -16,8 +16,8 @@ export const ModalTitle = forwardRef<HTMLDivElement, Props>(function ModalTitle(
   ref
 ) {
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
     <div
+      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       ref={ref}
       className={cx(classes.root, className)}
