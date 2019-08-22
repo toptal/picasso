@@ -1,4 +1,4 @@
-import React, { ReactNode, ReactElement, MouseEvent } from 'react'
+import React, { ReactNode, ReactElement, MouseEvent, forwardRef } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import ButtonBase from '@material-ui/core/ButtonBase'
@@ -9,9 +9,10 @@ import Group from '../ButtonGroup'
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import {
   StandardProps,
-  PicassoComponent,
+  PicassoComponentWithRef,
   SizeType,
-  ButtonOrAnchorProps
+  ButtonOrAnchorProps,
+  CompoundedComponentWithRef
 } from '../Picasso'
 import styles from './styles'
 
@@ -72,14 +73,7 @@ const getVariantType = (variant: VariantType) => {
   return type
 }
 
-export interface CompoundedComponent
-  extends React.ForwardRefExoticComponent<
-    Props & React.RefAttributes<HTMLButtonElement>
-  > {
-  Group: typeof Group
-}
-
-export const Button = React.forwardRef(function Button(
+export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
   {
     icon,
     iconPosition,
@@ -101,8 +95,8 @@ export const Button = React.forwardRef(function Button(
     value,
     type,
     ...rest
-  }: Props,
-  ref: React.Ref<HTMLButtonElement>
+  },
+  ref
 ) {
   const {
     icon: iconClass,
@@ -158,6 +152,7 @@ export const Button = React.forwardRef(function Button(
     <ButtonBase
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
+      ref={ref}
       classes={{
         root: rootClassName
       }}
@@ -168,7 +163,6 @@ export const Button = React.forwardRef(function Button(
       title={title}
       value={value}
       type={type}
-      ref={ref}
     >
       <Container
         as='span'
@@ -186,7 +180,7 @@ export const Button = React.forwardRef(function Button(
       )}
     </ButtonBase>
   )
-}) as CompoundedComponent
+}) as CompoundedComponentWithRef<Props, HTMLButtonElement, StaticProps>
 
 Button.defaultProps = {
   active: false,
@@ -208,7 +202,8 @@ Button.displayName = 'Button'
 
 Button.Group = Group
 
-export default withStyles(styles)(Button) as PicassoComponent<
+export default withStyles(styles)(Button) as PicassoComponentWithRef<
   Props,
+  HTMLButtonElement,
   StaticProps
 >

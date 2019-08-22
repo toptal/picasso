@@ -1,8 +1,8 @@
 import React, {
-  FunctionComponent,
   ReactNode,
   ChangeEvent,
-  InputHTMLAttributes
+  InputHTMLAttributes,
+  forwardRef
 } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
@@ -59,31 +59,34 @@ export interface Props
   ) => void
 }
 
-export const Input: FunctionComponent<Props> = ({
-  id,
-  name,
-  value,
-  placeholder,
-  error,
-  disabled,
-  autoFocus,
-  autoComplete,
-  icon,
-  iconPosition,
-  classes,
-  children,
-  multiline,
-  width,
-  className,
-  style,
-  rows,
-  rowsMax,
-  type,
-  onChange,
-  startAdornment,
-  endAdornment,
-  ...rest
-}) => {
+export const Input = forwardRef<HTMLInputElement, Props>(function Input(
+  {
+    id,
+    name,
+    value,
+    placeholder,
+    error,
+    disabled,
+    autoFocus,
+    autoComplete,
+    icon,
+    iconPosition,
+    classes,
+    children,
+    multiline,
+    width,
+    className,
+    style,
+    rows,
+    rowsMax,
+    type,
+    onChange,
+    startAdornment,
+    endAdornment,
+    ...rest
+  },
+  ref
+) {
   const IconAdornment = icon && (
     <InputAdornment position={iconPosition!} disabled={disabled}>
       {icon}
@@ -96,6 +99,7 @@ export const Input: FunctionComponent<Props> = ({
 
   return (
     <OutlinedInput
+      ref={ref}
       className={className}
       style={style}
       classes={{
@@ -126,7 +130,7 @@ export const Input: FunctionComponent<Props> = ({
       {children}
     </OutlinedInput>
   )
-}
+})
 
 Input.defaultProps = {
   iconPosition: 'start',
