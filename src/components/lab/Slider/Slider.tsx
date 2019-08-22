@@ -1,9 +1,4 @@
-import React, {
-  FunctionComponent,
-  useState,
-  useEffect,
-  ChangeEvent
-} from 'react'
+import React, { forwardRef, useState, useEffect, ChangeEvent } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUISlider from '@material-ui/core/Slider'
 
@@ -25,15 +20,18 @@ export interface Props extends StandardProps {
   onChange?: (event: ChangeEvent<{}>, value: number) => void
 }
 
-export const Slider: FunctionComponent<Props> = ({
-  classes,
-  onChange = () => {},
-  min,
-  max,
-  value: initialValue,
-  step,
-  disabled
-}) => {
+export const Slider = forwardRef<HTMLElement, Props>(function Slider(
+  {
+    classes,
+    onChange = () => {},
+    min,
+    max,
+    value: initialValue,
+    step,
+    disabled
+  },
+  ref
+) {
   const [value, setValue] = useState<number>(initialValue!)
 
   const getNormalizedValue = (value: number) => {
@@ -58,6 +56,7 @@ export const Slider: FunctionComponent<Props> = ({
 
   return (
     <MUISlider
+      ref={ref}
       min={min}
       max={max}
       value={value}
@@ -67,7 +66,7 @@ export const Slider: FunctionComponent<Props> = ({
       disabled={disabled}
     />
   )
-}
+})
 
 Slider.defaultProps = {}
 

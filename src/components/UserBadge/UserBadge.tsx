@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react'
+import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
@@ -32,19 +32,22 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   children?: ReactNode
 }
 
-export const UserBadge: FunctionComponent<Props> = ({
-  avatar,
-  name,
-  size,
-  title,
-  invert,
-  center,
-  children,
-  classes,
-  className,
-  style,
-  ...rest
-}) => {
+export const UserBadge = forwardRef<HTMLDivElement, Props>(function UserBadge(
+  {
+    avatar,
+    name,
+    size,
+    title,
+    invert,
+    center,
+    children,
+    classes,
+    className,
+    style,
+    ...rest
+  },
+  ref
+) {
   const UserBadgeAvatar = React.isValidElement(avatar) ? (
     avatar
   ) : (
@@ -70,6 +73,7 @@ export const UserBadge: FunctionComponent<Props> = ({
     <Container
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
+      ref={ref}
       flex
       alignItems={alignItems}
       className={cx(classes.root, className)}
@@ -93,7 +97,7 @@ export const UserBadge: FunctionComponent<Props> = ({
       </Container>
     </Container>
   )
-}
+})
 
 UserBadge.defaultProps = {
   center: 'auto',
