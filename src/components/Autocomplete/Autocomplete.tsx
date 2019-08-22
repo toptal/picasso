@@ -1,11 +1,11 @@
 import React, {
+  forwardRef,
   ChangeEvent,
   InputHTMLAttributes,
   FormEvent,
   useState,
   useEffect,
-  KeyboardEvent,
-  forwardRef
+  KeyboardEvent
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import { capitalize } from '@material-ui/core/utils/helpers'
@@ -17,7 +17,7 @@ import Downshift, {
 import debounce from 'debounce'
 
 import { StandardProps } from '../Picasso'
-import Input from '../Input'
+import TextField from '../TextField'
 import Menu from '../Menu'
 import Loader from '../Loader'
 import ScrollMenu from '../ScrollMenu'
@@ -44,7 +44,7 @@ export interface Props
     Omit<HTMLInputProps, 'onChange' | 'onSelect'> {
   /** Placeholder for value */
   placeholder?: string
-  /** Debounce time for onChange event handler */
+  /** Debounce time in ms for onChange event handler */
   debounceTime?: number
   /** Width of the component which will apply `min-width` to the `input` */
   width?: 'full' | 'shrink' | 'auto'
@@ -104,7 +104,10 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
     const [filter, setFilter] = useState(EMPTY_VALUE)
     const [placeholder, setPlaceholder] = useState(initialPlaceholder)
     const [selectedItem, setSelectedItem] = useState<Maybe<Item>>(null)
-    const onChangeDebounced = debounce(onChange!, debounceTime)
+    const onChangeDebounced = React.useCallback(
+      debounce(onChange!, debounceTime),
+      [onChange, debounceTime]
+    )
 
     const selectItem = (item: Maybe<Item>) => {
       if (item === undefined) return
@@ -284,7 +287,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
               )}
               style={style}
             >
-              <Input
+              <TextField
                 /* eslint-disable-next-line react/jsx-props-no-spreading */
                 {...rest}
                 ref={ref}
