@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useRef, Fragment } from 'react'
+import React, { forwardRef, useRef, Fragment } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { InputBaseComponentProps } from '@material-ui/core/InputBase'
@@ -90,19 +90,22 @@ const FileInputContent = withStyles(styles)(
   }
 )
 
-export const FileInput: FunctionComponent<Props> = ({
-  classes,
-  className,
-  style,
-  width,
-  accept,
-  progress,
-  error,
-  disabled,
-  value,
-  status,
-  onChange
-}) => {
+export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
+  {
+    classes,
+    className,
+    style,
+    width,
+    accept,
+    progress,
+    error,
+    disabled,
+    value,
+    status,
+    onChange
+  },
+  ref
+) {
   const nativeInput = useRef<HTMLInputElement>()
 
   const inProgress =
@@ -153,6 +156,7 @@ export const FileInput: FunctionComponent<Props> = ({
 
   return (
     <OutlinedInput
+      ref={ref}
       className={className}
       style={style}
       classes={{
@@ -183,7 +187,7 @@ export const FileInput: FunctionComponent<Props> = ({
       endAdornment={endAdornment}
     />
   )
-}
+})
 
 FileInput.displayName = 'FileInput'
 

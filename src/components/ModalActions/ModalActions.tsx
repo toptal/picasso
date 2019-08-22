@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react'
+import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
@@ -10,17 +10,20 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   children: ReactNode
 }
 
-export const ModalActions: FunctionComponent<Props> = ({
-  children,
-  classes,
-  className,
-  style,
-  ...rest
-}) => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  <div {...rest} className={cx(classes.root, className)} style={style}>
-    {children}
-  </div>
+export const ModalActions = forwardRef<HTMLDivElement, Props>(
+  function ModalActions({ children, classes, className, style, ...rest }, ref) {
+    return (
+      <div
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...rest}
+        ref={ref}
+        className={cx(classes.root, className)}
+        style={style}
+      >
+        {children}
+      </div>
+    )
+  }
 )
 
 ModalActions.displayName = 'ModalActions'

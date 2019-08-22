@@ -1,4 +1,9 @@
-import React, { FunctionComponent, useMemo, HTMLAttributes } from 'react'
+import React, {
+  FunctionComponent,
+  forwardRef,
+  useMemo,
+  HTMLAttributes
+} from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
 import Button from '../Button'
@@ -60,14 +65,10 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   totalPages: number
 }
 
-export const Pagination: FunctionComponent<Props> = ({
-  activePage,
-  classes,
-  disabled,
-  totalPages,
-  onPageChange,
-  ...rest
-}) => {
+export const Pagination = forwardRef<HTMLDivElement, Props>(function Pagination(
+  { activePage, classes, disabled, totalPages, onPageChange, ...rest },
+  ref
+) {
   const isFirstActive = activePage === 1
   const isLastActive = activePage === totalPages
 
@@ -102,7 +103,7 @@ export const Pagination: FunctionComponent<Props> = ({
 
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
-    <Container {...rest} flex inline alignItems='center'>
+    <Container {...rest} ref={ref} flex inline alignItems='center'>
       <Button
         disabled={isFirstActive || disabled}
         onClick={() => handleChange('previous')}
@@ -146,7 +147,7 @@ export const Pagination: FunctionComponent<Props> = ({
       </Button>
     </Container>
   )
-}
+})
 
 Pagination.defaultProps = {
   disabled: false

@@ -1,4 +1,4 @@
-import React, { ReactNode, HTMLAttributes } from 'react'
+import React, { ReactNode, HTMLAttributes, forwardRef } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
@@ -62,7 +62,7 @@ interface Props
 /**
  * Container component used for spacing 2 elements
  */
-export const Container = React.forwardRef(function Container(
+export const Container = forwardRef<HTMLDivElement, Props>(function Container(
   {
     children,
     className,
@@ -82,8 +82,8 @@ export const Container = React.forwardRef(function Container(
     classes,
     as: Component = inline ? 'span' : 'div',
     ...rest
-  }: Props,
-  ref: React.Ref<HTMLDivElement>
+  },
+  ref
 ) {
   const margins = {
     ...(top && { marginTop: spacingToEm(top) }),

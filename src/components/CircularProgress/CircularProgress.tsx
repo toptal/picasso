@@ -38,4 +38,6 @@ const CircularProgress: FunctionComponent<Props> = ({
   />
 )
 
+CircularProgress.displayName = 'CircularProgress'
+
 export default withStyles(styles)(CircularProgress)

@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { forwardRef } from 'react'
 import MUIRadio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import { withStyles } from '@material-ui/core/styles'
@@ -6,7 +6,8 @@ import { withStyles } from '@material-ui/core/styles'
 import FormControlLabel from '../FormControlLabel'
 import Form from '../Form'
 import {
-  PicassoComponent,
+  PicassoComponentWithRef,
+  CompoundedComponentWithRef,
   StandardProps,
   ButtonOrAnchorProps
 } from '../Picasso'
@@ -32,17 +33,21 @@ interface StaticProps {
   Group: typeof RadioGroup
 }
 
-export const Radio: FunctionComponent<Props> & StaticProps = ({
-  classes,
-  className,
-  style,
-  label,
-  checked,
-  disabled,
-  value,
-  onChange,
-  ...rest
-}) => {
+// eslint-disable-next-line react/display-name
+export const Radio = forwardRef<HTMLButtonElement, Props>(function Radio(
+  {
+    classes,
+    className,
+    style,
+    label,
+    checked,
+    disabled,
+    value,
+    onChange,
+    ...rest
+  },
+  ref
+) {
   const rootClasses = {
     root: classes.root,
     disabled: classes.disabled
@@ -51,6 +56,7 @@ export const Radio: FunctionComponent<Props> & StaticProps = ({
     <MUIRadio
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
+      ref={ref}
       checked={checked}
       disabled={disabled}
       onChange={onChange}
@@ -81,7 +87,7 @@ export const Radio: FunctionComponent<Props> & StaticProps = ({
       }
     />
   )
-}
+}) as CompoundedComponentWithRef<Props, HTMLButtonElement, StaticProps>
 
 Radio.defaultProps = {
   classes: {},
@@ -92,4 +98,8 @@ Radio.displayName = 'Radio'
 
 Radio.Group = RadioGroup
 
-export default withStyles(styles)(Radio) as PicassoComponent<Props, StaticProps>
+export default withStyles(styles)(Radio) as PicassoComponentWithRef<
+  Props,
+  HTMLButtonElement,
+  StaticProps
+>

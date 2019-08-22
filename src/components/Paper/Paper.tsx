@@ -1,4 +1,4 @@
-import React, { ReactNode, FunctionComponent, HTMLAttributes } from 'react'
+import React, { ReactNode, forwardRef, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUIPaper from '@material-ui/core/Paper'
 
@@ -10,25 +10,25 @@ interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   children: ReactNode
 }
 
-export const Paper: FunctionComponent<Props> = ({
-  classes,
-  className,
-  style,
-  children,
-  ...rest
-}) => (
-  <MUIPaper
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    {...rest}
-    classes={classes}
-    className={className}
-    style={style}
-    elevation={1}
-    square
-  >
-    {children}
-  </MUIPaper>
-)
+export const Paper = forwardRef<HTMLDivElement, Props>(function Paper(
+  { classes, className, style, children, ...rest },
+  ref
+) {
+  return (
+    <MUIPaper
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
+      ref={ref}
+      classes={classes}
+      className={className}
+      style={style}
+      elevation={1}
+      square
+    >
+      {children}
+    </MUIPaper>
+  )
+})
 
 Paper.displayName = 'Paper'
 

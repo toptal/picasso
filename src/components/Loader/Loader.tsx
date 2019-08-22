@@ -1,4 +1,4 @@
-import React, { ReactNode, FunctionComponent, HTMLAttributes } from 'react'
+import React, { ReactNode, forwardRef, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import { capitalize } from '@material-ui/core/utils/helpers'
 import cx from 'classnames'
@@ -28,35 +28,32 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   variant?: VariantType
 }
 
-export const Loader: FunctionComponent<Props> = ({
-  children,
-  classes,
-  size,
-  inline,
-  className,
-  value,
-  variant,
-  ...rest
-}) => (
-  <div
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    {...rest}
-    className={cx(classes.wrapper, className, {
-      [classes.inline]: inline
-    })}
-  >
-    <CircularProgress
-      classes={{
-        root: classes[`spinner${capitalize(variant!)}`]
-      }}
-      size={SIZES[size!]}
-      value={value}
-      variant={value ? 'static' : 'indeterminate'}
-    />
+export const Loader = forwardRef<HTMLDivElement, Props>(function Loader(
+  { children, classes, size, inline, className, value, variant, ...rest },
+  ref
+) {
+  return (
+    <div
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
+      ref={ref}
+      className={cx(classes.wrapper, className, {
+        [classes.inline]: inline
+      })}
+    >
+      <CircularProgress
+        classes={{
+          root: classes[`spinner${capitalize(variant!)}`]
+        }}
+        size={SIZES[size!]}
+        value={value}
+        variant={value ? 'static' : 'indeterminate'}
+      />
 
-    {children && <div className={classes.label}>{children}</div>}
-  </div>
-)
+      {children && <div className={classes.label}>{children}</div>}
+    </div>
+  )
+})
 
 Loader.defaultProps = {
   inline: false,

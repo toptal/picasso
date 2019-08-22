@@ -7,9 +7,9 @@ import { Paper, Container } from '@components'
 import TabsSectionHeader from './TabsSectionHeader'
 
 export interface TabOptions {
-  name: string
+  name?: string
   description?: string
-  content: ReactNode
+  content?: ReactNode
 }
 
 interface Props {
@@ -39,7 +39,9 @@ const TabsSection: FunctionComponent<Props> = props => {
         )}
         {tabs.map(
           (tab, index) =>
-            index === selectedTab && <div key={tab.name}>{tab.content}</div>
+            index === selectedTab && (
+              <div key={tab.name || index}>{tab.content}</div>
+            )
         )}
       </Container>
     </Paper>

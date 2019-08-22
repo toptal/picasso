@@ -3,8 +3,6 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 import { PicassoProvider } from '../Picasso'
 import { rem } from '../styles'
 
-import { rem } from '../styles'
-
 PicassoProvider.override(({ breakpoints, palette, typography }: Theme) => ({
   MuiTab: {
     root: {

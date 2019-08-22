@@ -1,5 +1,5 @@
 import React, {
-  FunctionComponent,
+  forwardRef,
   useRef,
   useState,
   useContext,
@@ -16,7 +16,8 @@ import {
   StandardProps,
   SpacingType,
   spacingToEm,
-  PicassoComponent,
+  CompoundedComponentWithRef,
+  PicassoComponentWithRef,
   usePicassoRoot
 } from '../Picasso'
 import DropdownArrow from '../DropdownArrow'
@@ -70,21 +71,25 @@ function useDropdownContext() {
   return context
 }
 
-export const Dropdown: FunctionComponent<Props> & StaticProps = ({
-  classes,
-  className,
-  style,
-  children,
-  content,
-  offset,
-  transformOrigin,
-  anchorOrigin,
-  disableAutoClose,
-  disableAutoFocus,
-  onOpen,
-  onClose,
-  ...rest
-}) => {
+// eslint-disable-next-line react/display-name
+export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
+  {
+    classes,
+    className,
+    style,
+    children,
+    content,
+    offset,
+    transformOrigin,
+    anchorOrigin,
+    disableAutoClose,
+    disableAutoFocus,
+    onOpen,
+    onClose,
+    ...rest
+  },
+  ref
+) {
   const contentRef = useRef<HTMLElement>()
 
   const [anchorEl, setAnchorEl] = useState<HTMLDivElement | undefined>(
@@ -186,8 +191,13 @@ export const Dropdown: FunctionComponent<Props> & StaticProps = ({
   const container = usePicassoRoot()
 
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <div {...rest} className={cx(classes.root, className)} style={style}>
+    <div
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
+      ref={ref}
+      className={cx(classes.root, className)}
+      style={style}
+    >
       <div className={classes.anchor} onClick={handleAnchorClick}>
         {children}
       </div>
@@ -220,7 +230,7 @@ export const Dropdown: FunctionComponent<Props> & StaticProps = ({
       </Popover>
     </div>
   )
-}
+}) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
 
 Dropdown.defaultProps = {
   anchorOrigin: {
@@ -243,7 +253,8 @@ Dropdown.displayName = 'Dropdown'
 Dropdown.Arrow = DropdownArrow
 Dropdown.useContext = useDropdownContext
 
-export default withStyles(styles)(Dropdown) as PicassoComponent<
+export default withStyles(styles)(Dropdown) as PicassoComponentWithRef<
   Props,
+  HTMLDivElement,
   StaticProps
 >

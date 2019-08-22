@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { forwardRef, Ref } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 
@@ -12,8 +12,10 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-
-const SvgDropdownArrows16 = (props: Props) => {
+const SvgDropdownArrows16 = forwardRef(function SvgDropdownArrows16(
+  props: Props,
+  ref: Ref<SVGSVGElement>
+) {
   const { classes, className, style = {}, color, scale, base } = props
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
   const svgStyle = {
@@ -28,13 +30,14 @@ const SvgDropdownArrows16 = (props: Props) => {
       className={cx(classes.root, className)}
       style={svgStyle}
       color={color}
+      ref={ref}
     >
       <g>
         <path d='M8.429 2.715l2.117 3.528a.5.5 0 0 1-.43.757H5.884a.5.5 0 0 1-.429-.757l2.117-3.528a.5.5 0 0 1 .858 0zM8.429 13.285l2.117-3.528a.5.5 0 0 0-.43-.757H5.884a.5.5 0 0 0-.429.757l2.117 3.528a.5.5 0 0 0 .858 0z' />
       </g>
     </svg>
   )
-}
+})
 
 SvgDropdownArrows16.displayName = 'SvgDropdownArrows16'
 export default withStyles(styles)(SvgDropdownArrows16)

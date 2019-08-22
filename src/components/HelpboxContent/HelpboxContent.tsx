@@ -1,4 +1,4 @@
-import React, { ReactNode, FunctionComponent, HTMLAttributes } from 'react'
+import React, { ReactNode, forwardRef, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
 import { StandardProps } from '../Picasso'
@@ -10,25 +10,27 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
   children: ReactNode
 }
 
-export const HelpboxContent: FunctionComponent<Props> = ({
-  classes,
-  className,
-  style,
-  children,
-  ...rest
-}) => (
-  <Typography
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    {...rest}
-    classes={classes}
-    className={className}
-    style={style}
-    variant='body'
-    size='medium'
-    color='dark-grey'
-  >
-    {children}
-  </Typography>
+export const HelpboxContent = forwardRef<HTMLElement, Props>(
+  function HelpboxContent(
+    { classes, className, style, children, ...rest },
+    ref
+  ) {
+    return (
+      <Typography
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...rest}
+        ref={ref}
+        classes={classes}
+        className={className}
+        style={style}
+        variant='body'
+        size='medium'
+        color='dark-grey'
+      >
+        {children}
+      </Typography>
+    )
+  }
 )
 
 HelpboxContent.defaultProps = {}

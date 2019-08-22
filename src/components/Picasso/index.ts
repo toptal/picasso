@@ -14,6 +14,8 @@ export {
   SpacingType,
   spacingToEm,
   PicassoComponent,
+  PicassoComponentWithRef,
   SpacingEnum,
-  ButtonOrAnchorProps
+  ButtonOrAnchorProps,
+  CompoundedComponentWithRef
 } from './types'

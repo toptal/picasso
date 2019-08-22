@@ -1,5 +1,5 @@
 import React, {
-  FunctionComponent,
+  forwardRef,
   ReactNode,
   ReactElement,
   HTMLAttributes
@@ -10,7 +10,11 @@ import cx from 'classnames'
 import { CloseMinor16 } from '../Icon'
 import Chip from '../Chip'
 import LabelGroup from '../LabelGroup'
-import { StandardProps, PicassoComponent } from '../Picasso'
+import {
+  StandardProps,
+  CompoundedComponentWithRef,
+  PicassoComponentWithRef
+} from '../Picasso'
 import styles from './styles'
 
 type VariantType = 'grey' | 'white'
@@ -35,37 +39,44 @@ interface StaticProps {
   Group: typeof LabelGroup
 }
 
-export const Label: FunctionComponent<Props> & StaticProps = ({
-  children,
-  classes,
-  style,
-  className,
-  icon,
-  disabled,
-  onDelete,
-  variant,
-  ...rest
-}) => (
-  <Chip
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    {...rest}
-    classes={{
-      root: cx(classes[variant!], {
-        [classes.disabled]: disabled
-      })
-    }}
-    className={className}
-    style={style}
-    deleteIcon={
-      <span aria-label='delete icon' role='button'>
-        <CloseMinor16 />
-      </span>
-    }
-    onDelete={onDelete}
-    label={children}
-    icon={icon}
-  />
-)
+// eslint-disable-next-line react/display-name
+export const Label = forwardRef<HTMLDivElement, Props>(function Label(
+  {
+    children,
+    classes,
+    style,
+    className,
+    icon,
+    disabled,
+    onDelete,
+    variant,
+    ...rest
+  },
+  ref
+) {
+  return (
+    <Chip
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
+      ref={ref}
+      classes={{
+        root: cx(classes[variant!], {
+          [classes.disabled]: disabled
+        })
+      }}
+      className={className}
+      style={style}
+      deleteIcon={
+        <span aria-label='delete icon' role='button'>
+          <CloseMinor16 />
+        </span>
+      }
+      onDelete={onDelete}
+      label={children}
+      icon={icon}
+    />
+  )
+}) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
 
 Label.defaultProps = {
   children: '',
@@ -76,4 +87,8 @@ Label.displayName = 'Label'
 
 Label.Group = LabelGroup
 
-export default withStyles(styles)(Label) as PicassoComponent<Props, StaticProps>
+export default withStyles(styles)(Label) as PicassoComponentWithRef<
+  Props,
+  HTMLDivElement,
+  StaticProps
+>
