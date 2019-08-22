@@ -50,9 +50,6 @@ export default ({ palette, typography }: Theme) => {
         '&:before, &:after': {
           display: 'none'
         }
-      },
-      '&$expanded + &:before': {
-        display: 'block'
       }
     },
     summary: {

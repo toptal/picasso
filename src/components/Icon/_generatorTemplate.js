@@ -58,11 +58,13 @@ const template = ({ template }, opts, { componentName, jsx }) => {
   decorateWithIdentifierProp(svgElement, 'style', 'svgStyle')
   // add `color={color}` to svg root tag
   decorateWithIdentifierProp(svgElement, 'color', 'color')
+  // add `ref={ref}` to svg root tag
+  decorateWithIdentifierProp(svgElement, 'ref', 'ref')
 
   const typeScriptTpl = template.smart({ plugins: ['typescript'] })
 
   return typeScriptTpl.ast`
-    import React from 'react'
+    import React, { forwardRef, Ref } from 'react'
     import cx from 'classnames'
     import { withStyles } from '@material-ui/core/styles'
 
@@ -83,7 +85,10 @@ const template = ({ template }, opts, { componentName, jsx }) => {
       base?: number
     }
 
-    const ${componentName} = (props: Props) => {
+    const ${componentName} = forwardRef(function ${componentName}(
+      props: Props,
+      ref: Ref<SVGSVGElement>
+    ) {
       const { classes, className, style = {}, color, scale, base } = props
 
       const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
@@ -97,7 +102,7 @@ const template = ({ template }, opts, { componentName, jsx }) => {
       return (
         ${jsx}
       )
-    }
+    })
 
     ${componentName}.displayName = ${displayName}
 

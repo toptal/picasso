@@ -1,7 +1,7 @@
 import React, {
   useContext,
   useEffect,
-  FunctionComponent,
+  forwardRef,
   ReactNode,
   ReactElement,
   HTMLAttributes
@@ -28,16 +28,19 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
   variant?: VariantType
 }
 
-export const PageHeader: FunctionComponent<Props> = ({
-  classes,
-  className,
-  style,
-  title,
-  logoLink,
-  rightContent,
-  variant,
-  ...rest
-}) => {
+export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
+  {
+    classes,
+    className,
+    style,
+    title,
+    logoLink,
+    rightContent,
+    variant,
+    ...rest
+  },
+  ref
+) {
   const { setHasPageHeader } = usePageHeader()
 
   useEffect(() => {
@@ -63,6 +66,7 @@ export const PageHeader: FunctionComponent<Props> = ({
     <header
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
+      ref={ref}
       className={cx('mui-fixed', classes.root, classes[variant!], className)}
       style={style}
     >
@@ -87,7 +91,7 @@ export const PageHeader: FunctionComponent<Props> = ({
       </div>
     </header>
   )
-}
+})
 
 PageHeader.defaultProps = {
   variant: 'light'

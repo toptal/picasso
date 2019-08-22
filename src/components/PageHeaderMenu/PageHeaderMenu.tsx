@@ -1,7 +1,6 @@
-import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react'
+import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
-import renamePropsWithWarning from 'react-deprecate'
 
 import { StandardProps } from '../Picasso'
 import UserBadge from '../UserBadge'
@@ -14,64 +13,58 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   name: string
   /** Additional content of PageHeaderMenu */
   meta?: ReactNode
-  organization?: string // deprecated in favor of `meta`
   /** Photo url or custom Avatar component */
   avatar?: ReactNode
   /** Menu content */
   children: ReactNode
 }
 
-export const PageHeaderMenu: FunctionComponent<Props> = ({
-  name,
-  meta,
-  avatar,
-  classes,
-  className,
-  style,
-  children,
-  ...rest
-}) => {
-  const metaContent =
-    typeof meta === 'string' ? (
-      <Typography className={classes.truncateText} invert size='small'>
-        {meta}
-      </Typography>
-    ) : (
-      meta
-    )
+export const PageHeaderMenu = forwardRef<HTMLDivElement, Props>(
+  function PageHeaderMenu(
+    { name, meta, avatar, classes, className, style, children, ...rest },
+    ref
+  ) {
+    const metaContent =
+      typeof meta === 'string' ? (
+        <Typography className={classes.truncateText} invert size='small'>
+          {meta}
+        </Typography>
+      ) : (
+        meta
+      )
 
-  return (
-    <Dropdown
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...rest}
-      className={cx(classes.root, className)}
-      classes={{ content: classes.content }}
-      style={style}
-      content={children}
-      offset={{ top: 'xsmall' }}
-    >
-      <UserBadge
-        invert
-        center
-        size='xsmall'
-        classes={{
-          avatar: classes.avatar,
-          name: cx(classes.name, classes.truncateText)
-        }}
-        name={name}
-        avatar={avatar}
+    return (
+      <Dropdown
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...rest}
+        ref={ref}
+        className={cx(classes.root, className)}
+        classes={{ content: classes.content }}
+        style={style}
+        content={children}
+        offset={{ top: 'xsmall' }}
       >
-        {meta && metaContent}
-      </UserBadge>
-      <Dropdown.Arrow style={{ color: 'white' }} />
-    </Dropdown>
-  )
-}
+        <UserBadge
+          invert
+          center
+          size='xsmall'
+          classes={{
+            avatar: classes.avatar,
+            name: cx(classes.name, classes.truncateText)
+          }}
+          name={name}
+          avatar={avatar}
+        >
+          {meta && metaContent}
+        </UserBadge>
+        <Dropdown.Arrow style={{ color: 'white' }} />
+      </Dropdown>
+    )
+  }
+)
 
 PageHeaderMenu.defaultProps = {}
 
 PageHeaderMenu.displayName = 'PageHeaderMenu'
 
-export default renamePropsWithWarning(withStyles(styles)(PageHeaderMenu), {
-  organization: 'meta'
-})
+export default withStyles(styles)(PageHeaderMenu)

@@ -1,9 +1,4 @@
-import React, {
-  FunctionComponent,
-  ReactElement,
-  Fragment,
-  useContext
-} from 'react'
+import React, { forwardRef, ReactElement, Fragment, useContext } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
@@ -32,19 +27,22 @@ export interface Props extends StandardProps, MenuItemAttributes {
   onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
 }
 
-export const SidebarItem: FunctionComponent<Props> = ({
-  children,
-  icon,
-  selected,
-  collapsible,
-  menu,
-  disabled,
-  classes,
-  className,
-  style,
-  onClick,
-  ...rest
-}) => {
+export const SidebarItem = forwardRef<HTMLElement, Props>(function SidebarItem(
+  {
+    children,
+    icon,
+    selected,
+    collapsible,
+    menu,
+    disabled,
+    classes,
+    className,
+    style,
+    onClick,
+    ...rest
+  },
+  ref
+) {
   const hasIcon = Boolean(icon)
   const hasMenu = Boolean(menu)
 
@@ -76,6 +74,7 @@ export const SidebarItem: FunctionComponent<Props> = ({
     <MenuItem
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
+      ref={ref}
       style={style}
       className={cx(
         classes.root,
@@ -135,7 +134,7 @@ export const SidebarItem: FunctionComponent<Props> = ({
       {menu}
     </Fragment>
   )
-}
+})
 
 SidebarItem.defaultProps = {
   collapsible: false,

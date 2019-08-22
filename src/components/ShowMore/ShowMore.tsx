@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react'
+import React, { forwardRef, useState } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import Truncate from 'react-truncate'
@@ -26,21 +26,24 @@ export interface Props extends StandardProps {
   onToggle?: () => void
 }
 
-export const ShowMore: FunctionComponent<Props> = ({
-  children,
-  rows = 4,
-  initialExpanded = false,
-  disableToggle = false,
-  classes: { expandedIcon, icon, toggleText, iconWrapper },
-  moreText = 'Show more',
-  lessText = 'Show less',
-  onToggle = () => {}
-}) => {
+export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
+  {
+    children,
+    rows = 4,
+    initialExpanded = false,
+    disableToggle = false,
+    classes: { expandedIcon, icon, toggleText, iconWrapper },
+    moreText = 'Show more',
+    lessText = 'Show less',
+    onToggle = () => {}
+  },
+  ref
+) {
   const [shownMore, setShownMore] = useState(initialExpanded)
 
   return (
     <React.Fragment>
-      <Typography size='medium' color='dark-grey'>
+      <Typography ref={ref} size='medium' color='dark-grey'>
         <Truncate lines={!shownMore && rows}>{children}</Truncate>
       </Typography>
       {!disableToggle && (
@@ -66,7 +69,7 @@ export const ShowMore: FunctionComponent<Props> = ({
       )}
     </React.Fragment>
   )
-}
+})
 
 ShowMore.displayName = 'ShowMore'
 

@@ -2,7 +2,9 @@ import {
   CSSProperties,
   FunctionComponent,
   AnchorHTMLAttributes,
-  ButtonHTMLAttributes
+  ButtonHTMLAttributes,
+  RefAttributes,
+  ForwardRefExoticComponent
 } from 'react'
 
 import { Classes } from '../styles/types'
@@ -35,6 +37,17 @@ export type PicassoComponent<P, S = {}> = FunctionComponent<
   OmitInternalProps<P> & Partial<JssProps>
 > &
   S
+
+export type PicassoComponentWithRef<P, R, S = {}> = FunctionComponent<
+  OmitInternalProps<P> & Partial<JssProps> & RefAttributes<R>
+> &
+  S
+
+export type CompoundedComponentWithRef<
+  P,
+  R,
+  S = {}
+> = ForwardRefExoticComponent<P & RefAttributes<R>> & S
 
 type Sizes = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'
 

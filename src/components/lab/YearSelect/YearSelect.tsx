@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useMemo, ChangeEvent } from 'react'
+import React, { forwardRef, useMemo, ChangeEvent } from 'react'
 
 import Select, { Props as SelectProps } from '../../Select'
 import { JssProps, OmitInternalProps } from '../../Picasso'
@@ -32,29 +32,28 @@ function generateOptions(from: number, to: number) {
   })
 }
 
-export const YearSelect: FunctionComponent<Props> = ({
-  from,
-  to,
-  onChange,
-  ...rest
-}) => {
-  const handleChange = (
-    event: ChangeEvent<{ name?: string | undefined; value: unknown }>
-  ) => {
-    onChange(event)
-  }
+export const YearSelect = forwardRef<HTMLInputElement, Props>(
+  function YearSelect({ from, to, onChange, ...rest }, ref) {
+    const handleChange = (
+      event: ChangeEvent<{ name?: string | undefined; value: unknown }>
+    ) => {
+      onChange(event)
+    }
 
-  if (!to || !from || to < from) {
-    throw new Error(
-      `Invalid range. Please check the values you have passed: from: ${from}, to: ${to}`
+    if (!to || !from || to < from) {
+      throw new Error(
+        `Invalid range. Please check the values you have passed: from: ${from}, to: ${to}`
+      )
+    }
+
+    const options = useMemo(() => generateOptions(from, to), [from, to])
+
+    return (
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      <Select {...rest} ref={ref} options={options} onChange={handleChange} />
     )
   }
-
-  const options = useMemo(() => generateOptions(from, to), [from, to])
-
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  return <Select {...rest} options={options} onChange={handleChange} />
-}
+)
 
 YearSelect.defaultProps = {}
 
