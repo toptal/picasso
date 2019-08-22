@@ -1,4 +1,4 @@
-import React, { ReactNode, FunctionComponent, HTMLAttributes } from 'react'
+import React, { ReactNode, forwardRef, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUIGrid, { GridSize } from '@material-ui/core/Grid'
 
@@ -16,31 +16,30 @@ interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
   large?: GridSize
 }
 
-export const GridItem: FunctionComponent<Props> = ({
-  children,
-  small,
-  medium,
-  large,
-  classes,
-  className,
-  style,
-  ...rest
-}) => (
-  <MUIGrid
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    {...rest}
-    item
-    lg={large}
-    md={medium}
-    xs={small}
-    classes={classes}
-    className={className}
-    style={style}
-  >
-    {children}
-  </MUIGrid>
-)
+export const GridItem = forwardRef<HTMLDivElement, Props>(function GridItem(
+  { children, small, medium, large, classes, className, style, ...rest },
+  ref
+) {
+  return (
+    <MUIGrid
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
+      ref={ref}
+      item
+      lg={large}
+      md={medium}
+      xs={small}
+      classes={classes}
+      className={className}
+      style={style}
+    >
+      {children}
+    </MUIGrid>
+  )
+})
 
 GridItem.defaultProps = {}
+
+GridItem.displayName = 'GridItem'
 
 export default withStyles(styles)(GridItem)

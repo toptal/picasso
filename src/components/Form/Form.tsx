@@ -1,5 +1,5 @@
 import React, {
-  FunctionComponent,
+  forwardRef,
   FormEventHandler,
   ReactNode,
   FormHTMLAttributes
@@ -9,7 +9,7 @@ import FormField from '../FormField'
 import FormHint from '../FormHint'
 import FormLabel from '../FormLabel'
 import FormError from '../FormError'
-import { BaseProps } from '../Picasso'
+import { BaseProps, CompoundedComponentWithRef } from '../Picasso'
 
 interface Props extends BaseProps, FormHTMLAttributes<HTMLFormElement> {
   /** Content of Form constructed of Form elements */
@@ -25,18 +25,24 @@ interface StaticProps {
   Error: typeof FormError
 }
 
-export const Form: FunctionComponent<Props> & StaticProps = ({
-  onSubmit,
-  className,
-  style,
-  children,
-  ...rest
-}) => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  <form {...rest} onSubmit={onSubmit} className={className} style={style}>
-    {children}
-  </form>
-)
+// eslint-disable-next-line react/display-name
+export const Form = forwardRef<HTMLFormElement, Props>(function Form(
+  { onSubmit, className, style, children, ...rest },
+  ref
+) {
+  return (
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <form
+      {...rest}
+      ref={ref}
+      onSubmit={onSubmit}
+      className={className}
+      style={style}
+    >
+      {children}
+    </form>
+  )
+}) as CompoundedComponentWithRef<Props, HTMLFormElement, StaticProps>
 
 Form.Field = FormField
 Form.Hint = FormHint

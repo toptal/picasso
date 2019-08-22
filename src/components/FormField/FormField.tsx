@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react'
+import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
@@ -16,22 +16,24 @@ interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   children: ReactNode
 }
 
-export const FormField: FunctionComponent<Props> = ({
-  classes,
-  className,
-  style,
-  hint,
-  children,
-  error,
-  ...rest
-}) => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  <div {...rest} className={cx(classes.root, className)} style={style}>
-    {children}
-    {error && <FormError className={classes.error}>{error}</FormError>}
-    {hint && <FormHint className={classes.hint}>{hint}</FormHint>}
-  </div>
-)
+export const FormField = forwardRef<HTMLDivElement, Props>(function FormField(
+  { classes, className, style, hint, children, error, ...rest },
+  ref
+) {
+  return (
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <div
+      {...rest}
+      ref={ref}
+      className={cx(classes.root, className)}
+      style={style}
+    >
+      {children}
+      {error && <FormError className={classes.error}>{error}</FormError>}
+      {hint && <FormHint className={classes.hint}>{hint}</FormHint>}
+    </div>
+  )
+})
 
 FormField.defaultProps = {}
 
