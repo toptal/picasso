@@ -15,9 +15,10 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLSpanElement> {
 
 export const Amount = memo(
   // eslint-disable-next-line react/display-name
-  forwardRef<HTMLSpanElement, Props>(function Amount(props, ref) {
-    const { amount, className, classes, currency, ...rest } = props
-
+  forwardRef<HTMLSpanElement, Props>(function Amount(
+    { amount, className, classes, currency, ...rest },
+    ref
+  ) {
     const formattedAmount = Intl.NumberFormat('en-US', {
       style: 'currency',
       currency

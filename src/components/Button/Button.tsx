@@ -74,10 +74,7 @@ const getVariantType = (variant: VariantType) => {
 }
 
 export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
-  props,
-  ref
-) {
-  const {
+  {
     icon,
     iconPosition,
     loading,
@@ -98,8 +95,9 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     value,
     type,
     ...rest
-  } = props
-
+  },
+  ref
+) {
   const {
     icon: iconClass,
     iconLeft: iconLeftClass,

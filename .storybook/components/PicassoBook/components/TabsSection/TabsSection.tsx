@@ -7,9 +7,9 @@ import { Paper, Container } from '@components'
 import TabsSectionHeader from './TabsSectionHeader'
 
 export interface TabOptions {
-  name: string
+  name?: string
   description?: string
-  content: ReactNode
+  content?: ReactNode
 }
 
 interface Props {

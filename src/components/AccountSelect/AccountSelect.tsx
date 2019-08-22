@@ -35,9 +35,10 @@ export interface Props
 }
 
 export const AccountSelect = forwardRef<HTMLUListElement, Props>(
-  function AccountSelect(props, ref) {
-    const { classes, className, accounts, onSelect, style, ...rest } = props
-
+  function AccountSelect(
+    { classes, className, accounts, onSelect, style, ...rest },
+    ref
+  ) {
     const {
       accountItem: accountItemClass,
       accountLink: accountLinkClass,

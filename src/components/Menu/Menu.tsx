@@ -20,12 +20,10 @@ interface StaticProps {
 }
 
 // eslint-disable-next-line react/display-name
-export const Menu = forwardRef<HTMLUListElement, Props>(function AccountSelect(
-  props,
+export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
+  { children, className, classes, style, ...rest },
   ref
 ) {
-  const { children, className, classes, style, ...rest } = props
-
   return (
     <MUIMenuList
       // eslint-disable-next-line react/jsx-props-no-spreading

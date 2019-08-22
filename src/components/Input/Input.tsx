@@ -56,10 +56,7 @@ export interface Props
 }
 
 export const Input = forwardRef<HTMLInputElement, Props>(function Input(
-  props,
-  ref
-) {
-  const {
+  {
     id,
     name,
     value,
@@ -81,8 +78,9 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
     type,
     onChange,
     ...rest
-  } = props
-
+  },
+  ref
+) {
   const IconAdornment = icon && (
     <InputAdornment position={iconPosition!} disabled={disabled}>
       {icon}

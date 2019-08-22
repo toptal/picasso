@@ -13,9 +13,7 @@ interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
 }
 
 export const ButtonGroup = forwardRef<HTMLDivElement, Props>(
-  function ButtonGroup(props, ref) {
-    const { children, classes, className, style, ...rest } = props
-
+  function ButtonGroup({ children, classes, className, style, ...rest }, ref) {
     return (
       <div
         // eslint-disable-next-line react/jsx-props-no-spreading

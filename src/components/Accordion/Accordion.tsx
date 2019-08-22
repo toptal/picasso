@@ -35,10 +35,7 @@ export interface Props
 }
 
 export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
-  props,
-  ref
-) {
-  const {
+  {
     children,
     content,
     expanded,
@@ -50,8 +47,9 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
     classes,
     onChange,
     ...rest
-  } = props
-
+  },
+  ref
+) {
   return (
     <MUIExpansionPanel
       // eslint-disable-next-line react/jsx-props-no-spreading

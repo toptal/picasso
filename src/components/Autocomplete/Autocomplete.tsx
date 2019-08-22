@@ -80,8 +80,8 @@ const getItemValue = (item: Maybe<Item>) => {
 }
 
 export const Autocomplete = forwardRef<HTMLInputElement, Props>(
-  function Autocomplete(props, ref) {
-    const {
+  function Autocomplete(
+    {
       classes,
       className,
       debounceTime,
@@ -97,8 +97,9 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       value,
       onChange,
       ...rest
-    } = props
-
+    },
+    ref
+  ) {
     const [inputValue, setInputValue] = useState<string | null>(null)
     const [filter, setFilter] = useState(EMPTY_VALUE)
     const [placeholder, setPlaceholder] = useState(initialPlaceholder)

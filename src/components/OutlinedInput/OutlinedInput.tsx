@@ -57,8 +57,8 @@ export interface Props
 }
 
 const OutlinedInput = forwardRef<HTMLInputElement, Props>(
-  function OutlinedInput(props, ref) {
-    const {
+  function OutlinedInput(
+    {
       classes,
       className,
       style,
@@ -82,8 +82,9 @@ const OutlinedInput = forwardRef<HTMLInputElement, Props>(
       endAdornment,
       onChange,
       ...rest
-    } = props
-
+    },
+    ref
+  ) {
     return (
       <MUIOutlinedInput
         // eslint-disable-next-line react/jsx-props-no-spreading
