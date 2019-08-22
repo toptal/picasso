@@ -9,7 +9,7 @@ exports[`should render label group with 4 labels 1`] = `
       class="LabelGroup-root"
     >
       <div
-        class="MuiChip-root Chip-root Label-root"
+        class="MuiChip-root Chip-root"
       >
         <span
           class="MuiChip-label"
@@ -22,7 +22,7 @@ exports[`should render label group with 4 labels 1`] = `
         </span>
       </div>
       <div
-        class="MuiChip-root Chip-root Label-root"
+        class="MuiChip-root Chip-root"
       >
         <span
           class="MuiChip-label"
@@ -35,7 +35,7 @@ exports[`should render label group with 4 labels 1`] = `
         </span>
       </div>
       <div
-        class="MuiChip-root Chip-root Label-root"
+        class="MuiChip-root Chip-root"
       >
         <span
           class="MuiChip-label"
@@ -48,7 +48,7 @@ exports[`should render label group with 4 labels 1`] = `
         </span>
       </div>
       <div
-        class="MuiChip-root Chip-root Label-root"
+        class="MuiChip-root Chip-root"
       >
         <span
           class="MuiChip-label"

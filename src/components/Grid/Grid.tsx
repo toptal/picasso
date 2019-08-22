@@ -1,4 +1,4 @@
-import React, { ReactNode, FunctionComponent, HTMLAttributes } from 'react'
+import React, { ReactNode, forwardRef, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUIGrid, {
   GridSpacing,
@@ -9,7 +9,11 @@ import MUIGrid, {
 } from '@material-ui/core/Grid'
 
 import GridItem from '../GridItem'
-import { StandardProps, PicassoComponent } from '../Picasso'
+import {
+  StandardProps,
+  PicassoComponentWithRef,
+  CompoundedComponentWithRef
+} from '../Picasso'
 import styles from './styles'
 
 interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
@@ -36,34 +40,41 @@ const humanToMUISpacing = (spacing: number) => {
   return (spacing / 8) as GridSpacing
 }
 
-export const Grid: FunctionComponent<Props> & StaticProps = ({
-  children,
-  spacing,
-  direction,
-  alignItems,
-  justifyContent,
-  wrap,
-  classes,
-  className,
-  style,
-  ...rest
-}) => (
-  <MUIGrid
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    {...rest}
-    container
-    spacing={humanToMUISpacing(spacing!)}
-    direction={direction}
-    alignItems={alignItems}
-    justify={justifyContent}
-    wrap={wrap}
-    classes={classes}
-    className={className}
-    style={style}
-  >
-    {children}
-  </MUIGrid>
-)
+// eslint-disable-next-line react/display-name
+export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(
+  {
+    children,
+    spacing,
+    direction,
+    alignItems,
+    justifyContent,
+    wrap,
+    classes,
+    className,
+    style,
+    ...rest
+  },
+  ref
+) {
+  return (
+    <MUIGrid
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
+      ref={ref}
+      container
+      spacing={humanToMUISpacing(spacing!)}
+      direction={direction}
+      alignItems={alignItems}
+      justify={justifyContent}
+      wrap={wrap}
+      classes={classes}
+      className={className}
+      style={style}
+    >
+      {children}
+    </MUIGrid>
+  )
+}) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
 
 Grid.defaultProps = {
   alignItems: 'flex-start',
@@ -75,4 +86,8 @@ Grid.defaultProps = {
 
 Grid.Item = GridItem
 
-export default withStyles(styles)(Grid) as PicassoComponent<Props, StaticProps>
+export default withStyles(styles)(Grid) as PicassoComponentWithRef<
+  Props,
+  HTMLDivElement,
+  StaticProps
+>

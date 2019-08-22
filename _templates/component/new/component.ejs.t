@@ -4,7 +4,7 @@ to: src/components/<%= h.changeCase.pascalCase(name) %>/<%= h.changeCase.pascalC
 <%
   Name = h.changeCase.pascalCase(name)
 -%>
-import React, { FunctionComponent } from 'react'
+import React, { forwardRef } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
 import { StandardProps } from '../Picasso'
@@ -13,7 +13,7 @@ import styles from './styles'
 export interface Props extends StandardProps {
 }
 
-export const <%= Name %>: FunctionComponent<Props> = props => {
+export const <%= Name %> = forwardRef<HTMLElement, Props>(props, ref) => {
   return null
 }
 

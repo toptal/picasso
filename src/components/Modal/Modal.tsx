@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react'
+import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import Dialog from '@material-ui/core/Dialog'
 import { PaperProps } from '@material-ui/core/Paper'
@@ -7,7 +7,12 @@ import { CloseMinor16 } from '../Icon'
 import ModalTitle from '../ModalTitle'
 import ModalContent from '../ModalContent'
 import ModalActions from '../ModalActions'
-import { StandardProps, PicassoComponent, usePicassoRoot } from '../Picasso'
+import {
+  StandardProps,
+  PicassoComponentWithRef,
+  CompoundedComponentWithRef,
+  usePicassoRoot
+} from '../Picasso'
 import styles from './styles'
 
 type ContainerValue = HTMLElement | (() => HTMLElement)
@@ -37,8 +42,9 @@ interface StaticProps {
   Title: typeof ModalTitle
 }
 
-export const Modal: FunctionComponent<Props> & StaticProps = props => {
-  const {
+// eslint-disable-next-line react/display-name
+export const Modal = forwardRef<HTMLElement, Props>(function Modal(
+  {
     children,
     open,
     onBackdropClick,
@@ -52,7 +58,9 @@ export const Modal: FunctionComponent<Props> & StaticProps = props => {
     transitionDuration,
     paperProps,
     ...rest
-  } = props
+  },
+  ref
+) {
   const { closeButton, ...restClasses } = classes
 
   const picassoRootContainer = usePicassoRoot()
@@ -61,6 +69,7 @@ export const Modal: FunctionComponent<Props> & StaticProps = props => {
     <Dialog
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
+      ref={ref}
       classes={restClasses}
       className={className}
       style={style}
@@ -81,15 +90,21 @@ export const Modal: FunctionComponent<Props> & StaticProps = props => {
       {children}
     </Dialog>
   )
-}
+}) as CompoundedComponentWithRef<Props, HTMLElement, StaticProps>
 
 Modal.defaultProps = {
   hideBackdrop: false,
   transitionDuration: 300
 }
 
+Modal.displayName = 'Modal'
+
 Modal.Content = ModalContent
 Modal.Actions = ModalActions
 Modal.Title = ModalTitle
 
-export default withStyles(styles)(Modal) as PicassoComponent<Props, StaticProps>
+export default withStyles(styles)(Modal) as PicassoComponentWithRef<
+  Props,
+  HTMLElement,
+  StaticProps
+>

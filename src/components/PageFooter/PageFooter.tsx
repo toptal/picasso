@@ -1,9 +1,4 @@
-import React, {
-  useContext,
-  FunctionComponent,
-  ReactNode,
-  HTMLAttributes
-} from 'react'
+import React, { useContext, forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
@@ -19,13 +14,10 @@ interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
 
 const currentYear = new Date().getFullYear()
 
-export const PageFooter: FunctionComponent<Props> = ({
-  classes,
-  className,
-  style,
-  rightContent,
-  ...rest
-}) => {
+export const PageFooter = forwardRef<HTMLElement, Props>(function PageFooter(
+  { classes, className, style, rightContent, ...rest },
+  ref
+) {
   const { fullWidth } = useContext<PageContextProps>(PageContext)
 
   const contentClassnames = cx(
@@ -36,8 +28,13 @@ export const PageFooter: FunctionComponent<Props> = ({
   )
 
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <footer {...rest} className={cx(classes.root, className)} style={style}>
+    <footer
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
+      ref={ref}
+      className={cx(classes.root, className)}
+      style={style}
+    >
       <div className={contentClassnames}>
         <div className={classes.left}>
           {`© Copyright 2010 – ${currentYear} Toptal, LLC`}
@@ -47,7 +44,7 @@ export const PageFooter: FunctionComponent<Props> = ({
       </div>
     </footer>
   )
-}
+})
 
 PageFooter.defaultProps = {
   rightContent: null

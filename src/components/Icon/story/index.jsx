@@ -6,12 +6,6 @@ page
   .createChapter()
   .addDocs([
     {
-      name: 'size [DEPRECATED]',
-      type: 'number',
-      defaultValue: 'inherit',
-      description: 'Size of icon in `rem`'
-    },
-    {
       name: 'color',
       type: 'string',
       description: 'Color of icon'

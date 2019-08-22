@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode, TableHTMLAttributes } from 'react'
+import React, { forwardRef, ReactNode, TableHTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUITable from '@material-ui/core/Table'
 
@@ -7,7 +7,11 @@ import TableBody from '../TableBody'
 import TableRow from '../TableRow'
 import TableHead from '../TableHead'
 import TableFooter from '../TableFooter'
-import { StandardProps, PicassoComponent } from '../Picasso'
+import {
+  StandardProps,
+  PicassoComponentWithRef,
+  CompoundedComponentWithRef
+} from '../Picasso'
 import styles from './styles'
 
 interface Props extends StandardProps, TableHTMLAttributes<HTMLTableElement> {
@@ -23,18 +27,24 @@ interface StaticProps {
   Footer: typeof TableFooter
 }
 
-export const Table: FunctionComponent<Props> & StaticProps = ({
-  classes,
-  className,
-  style,
-  children,
-  ...rest
-}) => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  <MUITable {...rest} classes={classes} className={className} style={style}>
-    {children}
-  </MUITable>
-)
+// eslint-disable-next-line react/display-name
+export const Table = forwardRef<HTMLTableElement, Props>(function Table(
+  { classes, className, style, children, ...rest },
+  ref
+) {
+  return (
+    <MUITable
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
+      ref={ref}
+      classes={classes}
+      className={className}
+      style={style}
+    >
+      {children}
+    </MUITable>
+  )
+}) as CompoundedComponentWithRef<Props, HTMLTableElement, StaticProps>
 
 Table.defaultProps = {}
 
@@ -52,4 +62,8 @@ Table.Row = TableRow
 
 Table.Footer = TableFooter
 
-export default withStyles(styles)(Table) as PicassoComponent<Props, StaticProps>
+export default withStyles(styles)(Table) as PicassoComponentWithRef<
+  Props,
+  HTMLTableElement,
+  StaticProps
+>

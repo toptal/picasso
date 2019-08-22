@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react'
+import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUITableCell from '@material-ui/core/TableCell'
 
@@ -16,26 +16,26 @@ interface Props extends StandardProps, HTMLAttributes<HTMLTableCellElement> {
   colSpan?: number
 }
 
-export const TableCell: FunctionComponent<Props> = ({
-  align,
-  classes,
-  className,
-  style,
-  children,
-  colSpan,
-  ...rest
-}) => (
-  <MUITableCell
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    {...rest}
-    align={align}
-    classes={classes}
-    className={className}
-    style={style}
-    colSpan={colSpan}
-  >
-    {children}
-  </MUITableCell>
+export const TableCell = forwardRef<HTMLTableCellElement, Props>(
+  function TableCell(
+    { align, classes, className, style, children, colSpan, ...rest },
+    ref
+  ) {
+    return (
+      <MUITableCell
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...rest}
+        ref={ref}
+        align={align}
+        classes={classes}
+        className={className}
+        style={style}
+        colSpan={colSpan}
+      >
+        {children}
+      </MUITableCell>
+    )
+  }
 )
 
 TableCell.defaultProps = {

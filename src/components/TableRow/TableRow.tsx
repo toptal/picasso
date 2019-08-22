@@ -1,9 +1,4 @@
-import React, {
-  FunctionComponent,
-  ReactNode,
-  MouseEvent,
-  HTMLAttributes
-} from 'react'
+import React, { forwardRef, ReactNode, MouseEvent, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUITableRow from '@material-ui/core/TableRow'
 
@@ -21,28 +16,27 @@ interface Props extends StandardProps, HTMLAttributes<HTMLTableRowElement> {
   onClick?: (event: MouseEvent<HTMLTableRowElement>) => void
 }
 
-export const TableRow: FunctionComponent<Props> = ({
-  classes,
-  className,
-  style,
-  children,
-  hover,
-  selected,
-  onClick,
-  ...rest
-}) => (
-  <MUITableRow
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    {...rest}
-    classes={classes}
-    className={className}
-    style={style}
-    hover={hover}
-    selected={selected}
-    onClick={onClick}
-  >
-    {children}
-  </MUITableRow>
+export const TableRow = forwardRef<HTMLTableRowElement, Props>(
+  function TableRow(
+    { classes, className, style, children, hover, selected, onClick, ...rest },
+    ref
+  ) {
+    return (
+      <MUITableRow
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...rest}
+        ref={ref}
+        classes={classes}
+        className={className}
+        style={style}
+        hover={hover}
+        selected={selected}
+        onClick={onClick}
+      >
+        {children}
+      </MUITableRow>
+    )
+  }
 )
 
 TableRow.defaultProps = {

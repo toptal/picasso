@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { forwardRef, Ref } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 
@@ -12,8 +12,10 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-
-const SvgMicrophoneOff24 = (props: Props) => {
+const SvgMicrophoneOff24 = forwardRef(function SvgMicrophoneOff24(
+  props: Props,
+  ref: Ref<SVGSVGElement>
+) {
   const { classes, className, style = {}, color, scale, base } = props
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
   const svgStyle = {
@@ -28,6 +30,7 @@ const SvgMicrophoneOff24 = (props: Props) => {
       className={cx(classes.root, className)}
       style={svgStyle}
       color={color}
+      ref={ref}
     >
       <defs>
         <path
@@ -46,7 +49,7 @@ const SvgMicrophoneOff24 = (props: Props) => {
       </g>
     </svg>
   )
-}
+})
 
 SvgMicrophoneOff24.displayName = 'SvgMicrophoneOff24'
 export default withStyles(styles)(SvgMicrophoneOff24)

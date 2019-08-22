@@ -1,4 +1,4 @@
-import React, { FunctionComponent, HTMLAttributes } from 'react'
+import React, { forwardRef, HTMLAttributes } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import MUIStepper from '@material-ui/core/Stepper'
@@ -21,22 +21,15 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   steps: string[]
 }
 
-export const Stepper: FunctionComponent<Props> = props => {
-  const {
-    active,
-    steps,
-    fullWidth,
-    hideLabels,
-    classes,
-    className,
-    style,
-    ...rest
-  } = props
-
+export const Stepper = forwardRef<HTMLDivElement, Props>(function Stepper(
+  { active, steps, fullWidth, hideLabels, classes, className, style, ...rest },
+  ref
+) {
   return (
     <MUIStepper
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
+      ref={ref}
       activeStep={active}
       connector={<StepConnector />}
       className={cx(
@@ -54,7 +47,7 @@ export const Stepper: FunctionComponent<Props> = props => {
       ))}
     </MUIStepper>
   )
-}
+})
 
 Stepper.defaultProps = {
   active: 0,

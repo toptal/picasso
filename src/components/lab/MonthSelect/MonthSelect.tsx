@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ChangeEvent, useMemo } from 'react'
+import React, { forwardRef, ChangeEvent, useMemo } from 'react'
 
 import Select, { Props as SelectProps } from '../../Select'
 import { JssProps, OmitInternalProps } from '../../Picasso'
@@ -41,35 +41,37 @@ function getFilteredOptions(from: number, to: number) {
 const FIRST_MONTH = 1
 const LAST_MONTH = 12
 
-export const MonthSelect: FunctionComponent<Props> = ({
-  from = FIRST_MONTH,
-  to = LAST_MONTH,
-  onChange,
-  ...rest
-}) => {
-  const handleChange = (
-    event: ChangeEvent<{ name?: string | undefined; value: unknown }>
-  ) => {
-    onChange(event)
-  }
-
-  if (
-    from < FIRST_MONTH ||
-    from > LAST_MONTH ||
-    to < FIRST_MONTH ||
-    to > LAST_MONTH ||
-    to < from
+export const MonthSelect = forwardRef<HTMLInputElement, Props>(
+  function MonthSelect(
+    { from = FIRST_MONTH, to = LAST_MONTH, onChange, ...rest },
+    ref
   ) {
-    throw new Error(
-      `Invalid range. Please check the values you have passed: from: ${from}, to: ${to}`
+    const handleChange = (
+      event: ChangeEvent<{ name?: string | undefined; value: unknown }>
+    ) => {
+      onChange(event)
+    }
+
+    if (
+      from < FIRST_MONTH ||
+      from > LAST_MONTH ||
+      to < FIRST_MONTH ||
+      to > LAST_MONTH ||
+      to < from
+    ) {
+      throw new Error(
+        `Invalid range. Please check the values you have passed: from: ${from}, to: ${to}`
+      )
+    }
+
+    const options = useMemo(() => getFilteredOptions(from, to), [from, to])
+
+    return (
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      <Select {...rest} ref={ref} options={options} onChange={handleChange} />
     )
   }
-
-  const options = useMemo(() => getFilteredOptions(from, to), [from, to])
-
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  return <Select {...rest} options={options} onChange={handleChange} />
-}
+)
 
 MonthSelect.defaultProps = {
   from: 1,
