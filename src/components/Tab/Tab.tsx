@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react'
+import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUITab from '@material-ui/core/Tab'
 
@@ -32,26 +32,24 @@ export interface Props
   onClick?: React.EventHandler<any>
 }
 
-export const Tab: FunctionComponent<Props> = ({
-  disabled,
-  value,
-  label,
-  selected,
-  onChange,
-  onClick,
-  ...rest
-}) => (
-  <MUITab
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    {...rest}
-    disabled={disabled}
-    label={label}
-    value={value}
-    selected={selected}
-    onChange={onChange}
-    onClick={onClick}
-  />
-)
+export const Tab = forwardRef<HTMLDivElement, Props>(function Tab(
+  { disabled, value, label, selected, onChange, onClick, ...rest },
+  ref
+) {
+  return (
+    <MUITab
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
+      ref={ref}
+      disabled={disabled}
+      label={label}
+      value={value}
+      selected={selected}
+      onChange={onChange}
+      onClick={onClick}
+    />
+  )
+})
 
 Tab.defaultProps = {}
 

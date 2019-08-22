@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from 'react'
+import React, { forwardRef, ReactNode } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUITabs from '@material-ui/core/Tabs'
 
@@ -6,7 +6,8 @@ import Tab from '../Tab'
 import {
   ButtonOrAnchorProps,
   StandardProps,
-  PicassoComponent
+  PicassoComponentWithRef,
+  CompoundedComponentWithRef
 } from '../Picasso'
 import styles from './styles'
 
@@ -27,17 +28,18 @@ interface StaticProps {
   Tab: typeof Tab
 }
 
-export const Tabs: FunctionComponent<Props> & StaticProps = ({
-  children,
-  onChange,
-  value,
-  ...rest
-}) => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  <MUITabs {...rest} onChange={onChange} value={value}>
-    {children}
-  </MUITabs>
-)
+// eslint-disable-next-line react/display-name
+export const Tabs = forwardRef<HTMLButtonElement, Props>(function Tabs(
+  { children, onChange, value, ...rest },
+  ref
+) {
+  return (
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <MUITabs {...rest} ref={ref} onChange={onChange} value={value}>
+      {children}
+    </MUITabs>
+  )
+}) as CompoundedComponentWithRef<Props, HTMLButtonElement, StaticProps>
 
 Tabs.defaultProps = {}
 
@@ -45,4 +47,8 @@ Tabs.displayName = 'Tabs'
 
 Tabs.Tab = Tab
 
-export default withStyles(styles)(Tabs) as PicassoComponent<Props, StaticProps>
+export default withStyles(styles)(Tabs) as PicassoComponentWithRef<
+  Props,
+  HTMLButtonElement,
+  StaticProps
+>

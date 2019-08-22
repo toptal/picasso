@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react'
+import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUITableBody from '@material-ui/core/TableBody'
 
@@ -10,18 +10,23 @@ interface Props extends StandardProps, HTMLAttributes<HTMLTableSectionElement> {
   children: ReactNode
 }
 
-export const TableBody: FunctionComponent<Props> = ({
-  classes,
-  className,
-  style,
-  children,
-  ...rest
-}) => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  <MUITableBody {...rest} classes={classes} className={className} style={style}>
-    {children}
-  </MUITableBody>
-)
+export const TableBody = forwardRef<HTMLElement, Props>(function TableBody(
+  { classes, className, style, children, ...rest },
+  ref
+) {
+  return (
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <MUITableBody
+      {...rest}
+      ref={ref}
+      classes={classes}
+      className={className}
+      style={style}
+    >
+      {children}
+    </MUITableBody>
+  )
+})
 
 TableBody.defaultProps = {}
 

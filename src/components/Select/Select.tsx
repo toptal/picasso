@@ -1,5 +1,5 @@
 import React, {
-  FunctionComponent,
+  forwardRef,
   ChangeEvent,
   ReactNode,
   useMemo,
@@ -92,23 +92,26 @@ const renderOptions = (
   return resultOptions
 }
 
-export const Select: FunctionComponent<Props> = ({
-  classes,
-  className,
-  style,
-  width,
-  id,
-  icon,
-  iconPosition,
-  native,
-  options,
-  placeholder,
-  disabled,
-  error,
-  onChange,
-  value,
-  ...rest
-}) => {
+export const Select = forwardRef<HTMLInputElement, Props>(function Select(
+  {
+    classes,
+    className,
+    style,
+    width,
+    id,
+    icon,
+    iconPosition,
+    native,
+    options,
+    placeholder,
+    disabled,
+    error,
+    onChange,
+    value,
+    ...rest
+  },
+  ref
+) {
   const isPlaceholderShown = placeholder && value === ''
 
   const selectedOption = useMemo(
@@ -120,6 +123,7 @@ export const Select: FunctionComponent<Props> = ({
     <OutlinedInput
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
+      ref={ref}
       classes={{
         root: cx({
           [classes.inputRootNative]: native
@@ -192,7 +196,7 @@ export const Select: FunctionComponent<Props> = ({
       {renderOptions(options, classes, placeholder, native)}
     </MUISelect>
   )
-}
+})
 
 Select.defaultProps = {
   disabled: false,
