@@ -39,6 +39,7 @@ interface StaticProps {
   Group: typeof LabelGroup
 }
 
+// eslint-disable-next-line react/display-name
 export const Label = forwardRef<HTMLDivElement, Props>(function Label(
   {
     children,
