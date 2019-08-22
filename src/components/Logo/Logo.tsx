@@ -1,4 +1,4 @@
-import React, { CSSProperties, FunctionComponent } from 'react'
+import React, { CSSProperties, forwardRef } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 
@@ -16,27 +16,27 @@ interface Props extends StandardProps {
   style?: CSSProperties
 }
 
-export const Logo: FunctionComponent<Props> = ({
-  classes,
-  emblem,
-  variant,
-  style,
-  className
-}) => {
+export const Logo = forwardRef<SVGSVGElement, Props>(function Logo(
+  { classes, emblem, variant, style, className },
+  ref
+) {
   const rootClass = emblem ? classes.logoEmblem : classes.logo
   const colorClass = classes[variant!]
   const LogoComponent = emblem ? LogoEmblemIcon : LogoIcon
 
   return (
     <LogoComponent
+      ref={ref}
       className={cx(rootClass, colorClass, className)}
       style={style}
     />
   )
-}
+})
 
 Logo.defaultProps = {
   variant: 'default'
 }
+
+Logo.displayName = 'Logo'
 
 export default withStyles(styles)(Logo)

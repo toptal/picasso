@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react'
+import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import { ThemeStyle as MUIVariant } from '@material-ui/core/styles/createTypography'
 import { PropTypes } from '@material-ui/core'
@@ -68,22 +68,25 @@ const VARIANTS: VariantsType = {
   }
 }
 
-export const Typography: FunctionComponent<Props> = ({
-  variant,
-  children,
-  size,
-  align,
-  className,
-  classes,
-  style,
-  inline,
-  as,
-  weight,
-  color,
-  invert,
-  noWrap,
-  ...rest
-}) => {
+export const Typography = forwardRef<HTMLElement, Props>(function Typography(
+  {
+    variant,
+    children,
+    size,
+    align,
+    className,
+    classes,
+    style,
+    inline,
+    as,
+    weight,
+    color,
+    invert,
+    noWrap,
+    ...rest
+  },
+  ref
+) {
   const resolvedVariant = VARIANTS[variant!][size!]
   const variantClassName = kebabToCamelCase(`${variant}-${size}`)
   const colorClassName = kebabToCamelCase(`${color}`)
@@ -101,6 +104,7 @@ export const Typography: FunctionComponent<Props> = ({
     <MUITypography
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
+      ref={ref}
       align={align}
       className={className}
       classes={{
@@ -115,7 +119,7 @@ export const Typography: FunctionComponent<Props> = ({
       {children}
     </MUITypography>
   )
-}
+})
 
 Typography.defaultProps = {
   inline: false,

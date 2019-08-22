@@ -1,6 +1,6 @@
 import React, {
   MouseEvent,
-  FunctionComponent,
+  forwardRef,
   ReactNode,
   ElementType,
   AnchorHTMLAttributes
@@ -42,20 +42,23 @@ interface Props extends StandardProps, AnchorHTMLAttributes<HTMLAnchorElement> {
   invert?: boolean
 }
 
-export const Link: FunctionComponent<Props> = ({
-  href,
-  underline,
-  onClick,
-  children,
-  classes,
-  className,
-  style,
-  as,
-  variant,
-  tabIndex,
-  invert,
-  ...rest
-}) => {
+export const Link = forwardRef<HTMLAnchorElement, Props>(function Link(
+  {
+    href,
+    underline,
+    onClick,
+    children,
+    classes,
+    className,
+    style,
+    as,
+    variant,
+    tabIndex,
+    invert,
+    ...rest
+  },
+  ref
+) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { color, ...nativeHTMLAttributes } = rest
 
@@ -63,6 +66,7 @@ export const Link: FunctionComponent<Props> = ({
     <MUILink
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...nativeHTMLAttributes}
+      ref={ref}
       href={href}
       underline={underline}
       onClick={onClick}
@@ -77,7 +81,7 @@ export const Link: FunctionComponent<Props> = ({
       {children}
     </MUILink>
   )
-}
+})
 
 Link.defaultProps = {
   as: 'a',

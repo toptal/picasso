@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { forwardRef, Ref } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 
@@ -12,8 +12,10 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-
-const SvgPlus24 = (props: Props) => {
+const SvgPlus24 = forwardRef(function SvgPlus24(
+  props: Props,
+  ref: Ref<SVGSVGElement>
+) {
   const { classes, className, style = {}, color, scale, base } = props
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
   const svgStyle = {
@@ -28,6 +30,7 @@ const SvgPlus24 = (props: Props) => {
       className={cx(classes.root, className)}
       style={svgStyle}
       color={color}
+      ref={ref}
     >
       <defs>
         <path d='M12 11h7v1h-7v7h-1v-7H4v-1h7V4h1v7z' id='plus24_svg__a' />
@@ -43,7 +46,7 @@ const SvgPlus24 = (props: Props) => {
       </g>
     </svg>
   )
-}
+})
 
 SvgPlus24.displayName = 'SvgPlus24'
 export default withStyles(styles)(SvgPlus24)
