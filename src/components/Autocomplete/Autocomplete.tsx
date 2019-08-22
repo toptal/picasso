@@ -29,7 +29,6 @@ const DEBOUNCE_TIME = 300
 const EMPTY_VALUE = ''
 
 export type Item = {
-  label?: string
   value?: string
   text?: string
 }
@@ -75,17 +74,11 @@ export interface Props
 const isMatchingMinLength = (value: string, minLength?: number) =>
   !minLength || value.length >= minLength
 
-const getItemLabel = (item: Maybe<Item>) => {
-  if (!item) return EMPTY_VALUE
+const getItemText = (item: Maybe<Item>) =>
+  item ? item.text || EMPTY_VALUE : EMPTY_VALUE
 
-  return item.label || item.text || EMPTY_VALUE
-}
-
-const getItemValue = (item: Maybe<Item>) => {
-  if (!item) return EMPTY_VALUE
-
-  return item.value || getItemLabel(item)
-}
+const getItemValue = (item: Maybe<Item>) =>
+  item ? item.value || getItemText(item) : EMPTY_VALUE
 
 export const Autocomplete = forwardRef<HTMLInputElement, Props>(
   function Autocomplete(
@@ -119,7 +112,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
     )
 
     const selectItem = (item: Maybe<Item>) => {
-      setInputValue(getItemLabel(item))
+      setInputValue(getItemText(item))
       setSelectedItem(item)
     }
 
@@ -135,14 +128,12 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       onSelect(item, internalHelpers)
     }
 
-    const handleStateChange = (props: StateChangeOptions<Item>) => {
-      const { selectedItem } = props
-
+    const handleStateChange = ({ selectedItem }: StateChangeOptions<Item>) => {
       handleSelectItem(selectedItem)
     }
 
     const options = initialOptions!.filter(item =>
-      isSubstring(filter || EMPTY_VALUE, getItemLabel(item))
+      isSubstring(filter || EMPTY_VALUE, getItemText(item))
     )
 
     const isSelected = (item: Item, selectedItem: Item) =>
@@ -172,7 +163,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
 
     return (
       <Downshift
-        itemToString={item => getItemLabel(item)}
+        itemToString={item => getItemText(item)}
         onStateChange={handleStateChange}
         onChange={handleChange}
         inputValue={inputValue}
@@ -211,7 +202,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
                     /* eslint-disable-next-line react/jsx-props-no-spreading */
                     {...getItemProps({ item: option, index: index })}
                   >
-                    {getItemLabel(option)}
+                    {getItemText(option)}
                   </Menu.Item>
                 ))
               )}
@@ -235,8 +226,8 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
 
               const currentIndex = options ? options.indexOf(selectedItem) : 0
 
-              setInputValue(EMPTY_VALUE)
               setHighlightedIndex(currentIndex)
+              setInputValue(EMPTY_VALUE)
             },
             onBlur: () => {
               if (!options.length && !allowAny) {
@@ -248,13 +239,15 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
 
               if (!selectedItem) return
 
-              if (allowAny && getItemLabel(selectedItem) !== inputValue) {
-                if (inputValue !== EMPTY_VALUE) {
-                  setSelectedItem(null)
-                }
+              if (
+                allowAny &&
+                getItemText(selectedItem) !== inputValue &&
+                inputValue !== EMPTY_VALUE
+              ) {
+                setSelectedItem(null)
               }
 
-              setInputValue(getItemLabel(selectedItem))
+              setInputValue(getItemText(selectedItem))
             },
             onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => {
               if (event.key === 'Backspace' && inputValue === EMPTY_VALUE) {
@@ -301,7 +294,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
                 onFocus={onFocus}
                 onClick={onFocus}
                 placeholder={
-                  selectedItem ? getItemLabel(selectedItem) : placeholder
+                  selectedItem ? getItemText(selectedItem) : placeholder
                 }
                 width={width}
                 onChange={event => {

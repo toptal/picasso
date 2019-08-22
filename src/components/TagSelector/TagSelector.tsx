@@ -14,7 +14,7 @@ import styles from './styles'
 
 type Item = {
   value: string
-  label: string
+  text: string
 }
 
 const getUniqueValue = (value: string) =>
@@ -30,7 +30,7 @@ export interface Props extends StandardProps {
   /** List of options with unique labels */
   options?: Item[]
   /** List of pre-selected items values */
-  initialValues?: string[]
+  defaultValues?: string[]
   /**  Callback invoked when item is selected */
   onChange?: (selectedValues: string[]) => void
   /**  Callback invoked when typing value is changed */
@@ -41,7 +41,7 @@ export const TagSelector: FunctionComponent<Props> = ({
   loading = false,
   placeholder = '',
   options = [],
-  initialValues = [],
+  defaultValues = [],
   newOptionLabel = 'Add new option: ',
   onChange = () => {},
   onInputChange = () => {},
@@ -49,7 +49,7 @@ export const TagSelector: FunctionComponent<Props> = ({
 }) => {
   const [inputValue, setInputValue] = React.useState<string | null>(null)
   const [selectedValues, setSelectedValues] = React.useState<string[]>(
-    initialValues
+    defaultValues
   )
   const [addedOptions, setAddedOptions] = React.useState<Item[]>([])
   const currentOptions = [...options, ...addedOptions]
@@ -121,7 +121,7 @@ export const TagSelector: FunctionComponent<Props> = ({
     if (!isAtOptions) {
       setAddedOptions([
         ...addedOptions,
-        { value: item.value, label: inputValue || '' }
+        { value: item.value, text: inputValue || '' }
       ])
     }
 
@@ -139,7 +139,7 @@ export const TagSelector: FunctionComponent<Props> = ({
   const maybeNewOption: Maybe<Item> = inputValue
     ? {
         value: getUniqueValue(inputValue),
-        label: `${newOptionLabel}${inputValue}`
+        text: `${newOptionLabel}${inputValue}`
       }
     : undefined
 
@@ -161,7 +161,7 @@ export const TagSelector: FunctionComponent<Props> = ({
         }
         return (
           <Label key={value} onDelete={() => handleDelete(value)}>
-            {item.label}
+            {item.text}
           </Label>
         )
       })}
