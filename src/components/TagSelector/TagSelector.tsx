@@ -32,7 +32,7 @@ export interface Props extends StandardProps {
   /** List of pre-selected items values */
   initialValues?: string[]
   /**  Callback invoked when item is selected */
-  onChange?: (selectedOptions: string[]) => void
+  onChange?: (selectedValues: string[]) => void
   /**  Callback invoked when typing value is changed */
   onInputChange?: (event: ChangeEvent<HTMLInputElement>) => void
 }

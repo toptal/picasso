@@ -232,12 +232,6 @@ export const Autocomplete: FunctionComponent<Props> = ({
             setHighlightedIndex(currentIndex)
           },
           onBlur: () => {
-            if (options.length === 1) {
-              const firstOption = options[0]
-
-              selectItem(firstOption)
-            }
-
             if (!options.length && !allowAny) {
               reset()
               setInputValue(EMPTY_VALUE)
