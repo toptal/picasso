@@ -19,7 +19,7 @@ exports[`Page.Header default render 1`] = `
             style="margin-right: 1em; align-items: center;"
           >
             <svg
-              class="SvgLogo-root Component-logo Component-white"
+              class="SvgLogo-root Logo-logo Logo-white"
               style="min-width: 16px; min-height: 16px;"
               viewBox="0 0 134 40"
             >
@@ -75,7 +75,7 @@ exports[`Page.Header render with link 1`] = `
               href="https://www.toptal.com"
             >
               <svg
-                class="SvgLogo-root Component-logo Component-white"
+                class="SvgLogo-root Logo-logo Logo-white"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 134 40"
               >

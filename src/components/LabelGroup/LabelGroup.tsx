@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react'
+import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
 import { StandardProps } from '../Picasso'
@@ -9,16 +9,17 @@ interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   children: ReactNode
 }
 
-export const LabelGroup: FunctionComponent<Props> = ({
-  children,
-  classes,
-  ...rest
-}) => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  <div {...rest} className={classes.root}>
-    {children}
-  </div>
-)
+export const LabelGroup = forwardRef<HTMLDivElement, Props>(function LabelGroup(
+  { children, classes, ...rest },
+  ref
+) {
+  return (
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <div {...rest} ref={ref} className={classes.root}>
+      {children}
+    </div>
+  )
+})
 
 LabelGroup.defaultProps = {
   children: undefined

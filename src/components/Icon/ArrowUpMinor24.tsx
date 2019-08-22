@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { forwardRef, Ref } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 
@@ -12,8 +12,10 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-
-const SvgArrowUpMinor24 = (props: Props) => {
+const SvgArrowUpMinor24 = forwardRef(function SvgArrowUpMinor24(
+  props: Props,
+  ref: Ref<SVGSVGElement>
+) {
   const { classes, className, style = {}, color, scale, base } = props
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
   const svgStyle = {
@@ -28,6 +30,7 @@ const SvgArrowUpMinor24 = (props: Props) => {
       className={cx(classes.root, className)}
       style={svgStyle}
       color={color}
+      ref={ref}
     >
       <defs>
         <path
@@ -46,7 +49,7 @@ const SvgArrowUpMinor24 = (props: Props) => {
       </g>
     </svg>
   )
-}
+})
 
 SvgArrowUpMinor24.displayName = 'SvgArrowUpMinor24'
 export default withStyles(styles)(SvgArrowUpMinor24)

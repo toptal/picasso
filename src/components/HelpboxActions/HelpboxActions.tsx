@@ -1,9 +1,4 @@
-import React, {
-  ReactNode,
-  FunctionComponent,
-  useContext,
-  HTMLAttributes
-} from 'react'
+import React, { ReactNode, forwardRef, useContext, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
@@ -18,36 +13,36 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   children: ReactNode
 }
 
-export const HelpboxActions: FunctionComponent<Props> = ({
-  classes,
-  className,
-  style,
-  children,
-  ...rest
-}) => {
-  const { closeable } = HelpboxContext
-    ? useContext<HelpboxContextProps>(HelpboxContext)
-    : ({} as HelpboxContextProps)
+export const HelpboxActions = forwardRef<HTMLDivElement, Props>(
+  function HelpboxActions(
+    { classes, className, style, children, ...rest },
+    ref
+  ) {
+    const { closeable } = HelpboxContext
+      ? useContext<HelpboxContextProps>(HelpboxContext)
+      : ({} as HelpboxContextProps)
 
-  return (
-    <Container
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...rest}
-      className={cx(
-        classes.root,
-        {
-          [classes.rootCloseable]: closeable
-        },
-        className
-      )}
-      style={style}
-      flex
-      alignItems='center'
-    >
-      {children}
-    </Container>
-  )
-}
+    return (
+      <Container
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...rest}
+        ref={ref}
+        className={cx(
+          classes.root,
+          {
+            [classes.rootCloseable]: closeable
+          },
+          className
+        )}
+        style={style}
+        flex
+        alignItems='center'
+      >
+        {children}
+      </Container>
+    )
+  }
+)
 
 HelpboxActions.defaultProps = {}
 
