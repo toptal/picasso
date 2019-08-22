@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react'
+import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
@@ -11,18 +11,22 @@ interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   children: ReactNode
 }
 
-export const FormHint: FunctionComponent<Props> = ({
-  children,
-  classes,
-  className,
-  style,
-  ...rest
-}) => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  <div {...rest} className={cx(classes.root, className)} style={style}>
-    <Typography className={classes.hint}>{children}</Typography>
-  </div>
-)
+export const FormHint = forwardRef<HTMLDivElement, Props>(function FormHint(
+  { children, classes, className, style, ...rest },
+  ref
+) {
+  return (
+    <div
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
+      ref={ref}
+      className={cx(classes.root, className)}
+      style={style}
+    >
+      <Typography className={classes.hint}>{children}</Typography>
+    </div>
+  )
+})
 
 FormHint.defaultProps = {}
 

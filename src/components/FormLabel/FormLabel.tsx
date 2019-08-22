@@ -1,4 +1,4 @@
-import React, { FunctionComponent, HTMLAttributes } from 'react'
+import React, { forwardRef, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
@@ -24,24 +24,28 @@ export interface Props
   as?: ComponentType
 }
 
-export const FormLabel: FunctionComponent<Props> = ({
-  children,
-  required,
-  disabled,
-  htmlFor,
-  classes,
-  className,
-  style,
-  inline,
-  as: Component = 'label',
-  ...rest
-}) => {
+export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
+  {
+    children,
+    required,
+    disabled,
+    htmlFor,
+    classes,
+    className,
+    style,
+    inline,
+    as: Component = 'label',
+    ...rest
+  },
+  ref
+) {
   const isInline = inline || Component === 'span'
 
   return (
     <Component
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
+      ref={ref}
       htmlFor={htmlFor}
       className={cx(
         classes.root,
@@ -57,7 +61,7 @@ export const FormLabel: FunctionComponent<Props> = ({
       <span className={classes.text}>{children}</span>
     </Component>
   )
-}
+})
 
 FormLabel.defaultProps = {
   as: 'label',

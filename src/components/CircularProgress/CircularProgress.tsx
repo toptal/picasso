@@ -1,4 +1,4 @@
-import React, { FunctionComponent, HTMLAttributes } from 'react'
+import React, { forwardRef, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUICircularProgress from '@material-ui/core/CircularProgress'
 
@@ -17,25 +17,27 @@ interface Props
   /** Variant of the `Loader` */
   variant?: VariantType
 }
-const CircularProgress: FunctionComponent<Props> = ({
-  classes,
-  className,
-  style,
-  size,
-  value,
-  variant,
-  ...rest
-}) => (
-  <MUICircularProgress
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    {...rest}
-    classes={classes}
-    className={className}
-    style={style}
-    size={size}
-    value={value}
-    variant={variant}
-  />
+const CircularProgress = forwardRef<HTMLElement, Props>(
+  function CircularProgress(
+    { classes, className, style, size, value, variant, ...rest },
+    ref
+  ) {
+    return (
+      <MUICircularProgress
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...rest}
+        ref={ref}
+        classes={classes}
+        className={className}
+        style={style}
+        size={size}
+        value={value}
+        variant={variant}
+      />
+    )
+  }
 )
+
+CircularProgress.displayName = 'CircularProgress'
 
 export default withStyles(styles)(CircularProgress)
