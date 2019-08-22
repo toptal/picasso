@@ -45,7 +45,7 @@ export interface Props
     Omit<HTMLInputProps, 'onChange' | 'onSelect' | 'onKeyDown'> {
   /** Placeholder for value */
   placeholder?: string
-  /** Debounce time for onChange event handler */
+  /** Debounce time in ms for onChange event handler */
   debounceTime?: number
   /** Width of the component which will apply `min-width` to the `input` */
   width?: 'full' | 'shrink' | 'auto'
@@ -113,7 +113,10 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
     const [inputValue, setInputValue] = useState<string | null>(null)
     const [filter, setFilter] = useState(EMPTY_VALUE)
     const [selectedItem, setSelectedItem] = useState<Maybe<Item>>(null)
-    const onChangeDebounced = debounce(onChange!, debounceTime)
+    const onChangeDebounced = React.useCallback(
+      debounce(onChange!, debounceTime),
+      [onChange, debounceTime]
+    )
 
     const selectItem = (item: Maybe<Item>) => {
       setInputValue(getItemLabel(item))

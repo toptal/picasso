@@ -7,5 +7,10 @@ export default ({ palette }: Theme) =>
       borderColor: palette.grey.lighter,
       color: palette.grey.main,
       pointerEvents: 'none'
+    },
+
+    white: {
+      background: 'none',
+      color: palette.common.white
     }
   })

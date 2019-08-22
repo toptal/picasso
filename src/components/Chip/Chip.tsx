@@ -1,5 +1,5 @@
 import React, {
-  FunctionComponent,
+  forwardRef,
   ReactElement,
   ReactNode,
   HTMLAttributes
@@ -21,16 +21,10 @@ interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   onDelete?: () => void
 }
 
-const Chip: FunctionComponent<Props> = ({
-  classes,
-  className,
-  style,
-  deleteIcon,
-  icon,
-  label,
-  onDelete,
-  ...rest
-}) => {
+const Chip = forwardRef<HTMLDivElement, Props>(function Chip(
+  { classes, className, style, deleteIcon, icon, label, onDelete, ...rest },
+  ref
+) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { color, ...htmlAttributes } = rest
   const { innerLabel, ...restClasses } = classes
@@ -39,6 +33,7 @@ const Chip: FunctionComponent<Props> = ({
     <MUIChip
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...htmlAttributes}
+      ref={ref}
       classes={restClasses}
       className={className}
       style={style}
@@ -48,6 +43,8 @@ const Chip: FunctionComponent<Props> = ({
       onDelete={onDelete}
     />
   )
-}
+})
+
+Chip.displayName = 'Chip'
 
 export default withStyles(styles)(Chip)

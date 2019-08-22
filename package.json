@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso",
-  "version": "2.26.2",
+  "version": "2.27.0",
   "description": "",
   "main": "./build/index.js",
   "module": "./build/index.js",
@@ -63,7 +63,6 @@
     "@semantic-release/npm": "^5.1.4",
     "@semantic-release/release-notes-generator": "^7.1.4",
     "@storybook/addon-actions": "^5.0.11",
-    "@storybook/addon-links": "^5.0.11",
     "@storybook/react": "^5.0.11",
     "@storybook/theming": "^5.0.11",
     "@svgr/cli": "^4.3.0",

@@ -40,10 +40,10 @@ export const useScreenSize = () => {
   const updateSize = () => setSize(window.innerWidth)
 
   useEffect(() => {
-    window.onresize = updateSize
+    window.addEventListener('resize', updateSize)
 
     return () => {
-      window.onresize = null
+      window.removeEventListener('resize', updateSize)
     }
   }, [])
 
