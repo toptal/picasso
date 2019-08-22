@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { forwardRef } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
 import { StandardProps } from '../Picasso'
@@ -34,53 +34,57 @@ export interface Props
   onSelect: (account: Account) => void
 }
 
-export const AccountSelect: FunctionComponent<Props> = ({
-  classes,
-  className,
-  accounts,
-  onSelect,
-  style,
-  ...rest
-}) => {
-  const {
-    accountItem: accountItemClass,
-    accountLink: accountLinkClass,
-    ...menuClasses
-  } = classes
+export const AccountSelect = forwardRef<HTMLUListElement, Props>(
+  function AccountSelect(
+    { classes, className, accounts, onSelect, style, ...rest },
+    ref
+  ) {
+    const {
+      accountItem: accountItemClass,
+      accountLink: accountLinkClass,
+      ...menuClasses
+    } = classes
 
-  return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <Menu {...rest} classes={menuClasses} className={className} style={style}>
-      {accounts.map(account => (
-        <Menu.Item
-          disableGutters
-          className={accountItemClass}
-          key={`role-${account.id}`}
-        >
-          <Link
-            className={accountLinkClass}
-            href={account.href}
-            onClick={() => onSelect(account)}
-            underline='none'
+    return (
+      <Menu
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...rest}
+        ref={ref}
+        classes={menuClasses}
+        className={className}
+        style={style}
+      >
+        {accounts.map(account => (
+          <Menu.Item
+            disableGutters
+            className={accountItemClass}
+            key={`role-${account.id}`}
           >
-            <Container
-              padded='medium'
-              flex
-              direction='row'
-              alignItems='center'
-              justifyContent='space-between'
+            <Link
+              className={accountLinkClass}
+              href={account.href}
+              onClick={() => onSelect(account)}
+              underline='none'
             >
-              <UserBadge name={account.name} avatar={account.avatar}>
-                <Typography size='small'>{account.position}</Typography>
-              </UserBadge>
-              <ChevronRight16 color={palette.text.primary} />
-            </Container>
-          </Link>
-        </Menu.Item>
-      ))}
-    </Menu>
-  )
-}
+              <Container
+                padded='medium'
+                flex
+                direction='row'
+                alignItems='center'
+                justifyContent='space-between'
+              >
+                <UserBadge name={account.name} avatar={account.avatar}>
+                  <Typography size='small'>{account.position}</Typography>
+                </UserBadge>
+                <ChevronRight16 color={palette.text.primary} />
+              </Container>
+            </Link>
+          </Menu.Item>
+        ))}
+      </Menu>
+    )
+  }
+)
 
 AccountSelect.defaultProps = {
   onSelect: () => {}
