@@ -8,7 +8,8 @@ Picasso_1.PicassoProvider.override(() => ({
             fontSize: '1rem',
             lineHeight: '1rem',
             padding: 0,
-            margin: '0.25em 0.5em 0.25em 0',
+            margin: '0 0.5em 0 0',
+            alignSelf: 'flex-start',
             '&$disabled': {
                 cursor: 'not-allowed',
                 pointerEvents: 'auto'

@@ -1,3 +1,10 @@
+## [2.27.1](https://github.com/toptal/picasso/compare/v2.27.0...v2.27.1) (2019-08-23)
+
+
+### Bug Fixes
+
+* **Checkbox:** adjust multiline label ([#615](https://github.com/toptal/picasso/issues/615)) ([90cfb2a](https://github.com/toptal/picasso/commit/90cfb2a))
+
 # [2.27.0](https://github.com/toptal/picasso/compare/v2.26.4...v2.27.0) (2019-08-21)
 
 
