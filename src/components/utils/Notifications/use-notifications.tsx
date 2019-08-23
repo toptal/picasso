@@ -1,10 +1,10 @@
-import React, { ReactNode, ReactElement, Ref } from 'react'
+import React, { ReactNode, ReactElement, forwardRef } from 'react'
 import cx from 'classnames'
 import { useSnackbar, OptionsObject } from 'notistack'
 import { withStyles } from '@material-ui/core/styles'
 import { SnackbarOrigin } from '@material-ui/core/Snackbar'
 
-import Notification, { VariantType } from '../../Notification'
+import PicassoNotification, { VariantType } from '../../Notification'
 import { Classes } from '../../styles/types'
 import styles from './styles'
 
@@ -24,12 +24,12 @@ interface Props {
 
 const StyledNotification = withStyles(styles)(
   // eslint-disable-next-line react/display-name
-  React.forwardRef(
-    (
-      { content, icon, key, onClose, variant = 'white', classes }: Props,
-      ref: Ref<Notification>
-    ) => (
-      <Notification
+  forwardRef<HTMLElement, Props>(function Notification(
+    { content, icon, key, onClose, variant = 'white', classes },
+    ref
+  ) {
+    return (
+      <PicassoNotification
         variant={variant}
         elevated
         icon={icon}
@@ -42,9 +42,9 @@ const StyledNotification = withStyles(styles)(
         ref={ref}
       >
         {content}
-      </Notification>
+      </PicassoNotification>
     )
-  )
+  })
 )
 
 export const useNotifications = () => {

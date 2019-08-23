@@ -1,9 +1,4 @@
-import React, {
-  useContext,
-  FunctionComponent,
-  ReactNode,
-  HTMLAttributes
-} from 'react'
+import React, { useContext, forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
@@ -17,29 +12,30 @@ interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   children: ReactNode
 }
 
-export const PageContent: FunctionComponent<Props> = ({
-  children,
-  classes,
-  className,
-  style,
-  ...rest
-}) => {
-  const { fullWidth } = useContext<PageContextProps>(PageContext)
+export const PageContent = forwardRef<HTMLDivElement, Props>(
+  function PageContent({ children, classes, className, style, ...rest }, ref) {
+    const { fullWidth } = useContext<PageContextProps>(PageContext)
 
-  const innerClassName = cx(
-    {
-      [classes.fullWidth]: fullWidth
-    },
-    classes.content
-  )
+    const innerClassName = cx(
+      {
+        [classes.fullWidth]: fullWidth
+      },
+      classes.content
+    )
 
-  return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <div {...rest} className={cx(classes.root, className)} style={style}>
-      <div className={innerClassName}>{children}</div>
-    </div>
-  )
-}
+    return (
+      <div
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...rest}
+        ref={ref}
+        className={cx(classes.root, className)}
+        style={style}
+      >
+        <div className={innerClassName}>{children}</div>
+      </div>
+    )
+  }
+)
 
 PageContent.displayName = 'PageContent'
 

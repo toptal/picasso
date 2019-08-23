@@ -1,5 +1,5 @@
 import React, {
-  FunctionComponent,
+  forwardRef,
   ReactNode,
   MouseEvent,
   ReactElement,
@@ -111,8 +111,8 @@ const renderNotificationContent = (props: Props) => {
   )
 }
 
-export const Notification: FunctionComponent<Props> = React.forwardRef(
-  function Notification(props: Props, ref: Ref<Notification>) {
+export const Notification = forwardRef<HTMLElement, Props>(
+  function Notification(props, ref) {
     const { className, classes, variant, elevated, fullWidth, ...rest } = props
 
     return (
