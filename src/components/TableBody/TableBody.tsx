@@ -15,8 +15,8 @@ export const TableBody = forwardRef<HTMLElement, Props>(function TableBody(
   ref
 ) {
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
     <MUITableBody
+      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       ref={ref}
       classes={classes}

@@ -48,8 +48,8 @@ export const YearSelect = forwardRef<HTMLInputElement, Props>(
 
     const options = useMemo(() => generateOptions(from, to), [from, to])
 
-    // eslint-disable-next-line react/jsx-props-no-spreading
     return (
+      // eslint-disable-next-line react/jsx-props-no-spreading
       <Select {...rest} ref={ref} options={options} onChange={handleChange} />
     )
   }

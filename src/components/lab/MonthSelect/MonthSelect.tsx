@@ -66,8 +66,8 @@ export const MonthSelect = forwardRef<HTMLInputElement, Props>(
 
     const options = useMemo(() => getFilteredOptions(from, to), [from, to])
 
-    // eslint-disable-next-line react/jsx-props-no-spreading
     return (
+      // eslint-disable-next-line react/jsx-props-no-spreading
       <Select {...rest} ref={ref} options={options} onChange={handleChange} />
     )
   }
