@@ -1,5 +1,5 @@
 import React, {
-  FunctionComponent,
+  forwardRef,
   ReactNode,
   LiHTMLAttributes,
   HTMLAttributes,
@@ -37,20 +37,23 @@ interface Props extends StandardProps, MenuItemAttributes {
   variant?: VariantType
 }
 
-export const MenuItem: FunctionComponent<Props> = ({
-  as,
-  children,
-  classes,
-  className,
-  disabled,
-  disableGutters,
-  onClick,
-  selected,
-  style,
-  value,
-  variant,
-  ...rest
-}) => {
+export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
+  {
+    as,
+    children,
+    classes,
+    className,
+    disabled,
+    disableGutters,
+    onClick,
+    selected,
+    style,
+    value,
+    variant,
+    ...rest
+  },
+  ref
+) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { stringContent, light, dark, ...restClasses } = classes
 
@@ -66,9 +69,7 @@ export const MenuItem: FunctionComponent<Props> = ({
     <MUIMenuItem
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
-      // TODO: -1 is added to keep backward compatibility e.g. for AccountSelect component
-      // Should be fixed during https://toptal-core.atlassian.net/browse/FX-310
-      tabIndex={-1} // DEPRECATED: remove explicit value in v3 and use passed one from props
+      ref={ref}
       component={as!}
       classes={restClasses}
       className={cx(classes[variant!], className)}
@@ -82,7 +83,7 @@ export const MenuItem: FunctionComponent<Props> = ({
       {children}
     </MUIMenuItem>
   )
-}
+})
 
 MenuItem.defaultProps = {
   as: 'li',

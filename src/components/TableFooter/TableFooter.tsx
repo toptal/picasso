@@ -1,6 +1,6 @@
 import { withStyles } from '@material-ui/core/styles'
 import MUITableFooter from '@material-ui/core/TableFooter'
-import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react'
+import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 
 import { StandardProps } from '../Picasso'
 import styles from './styles'
@@ -10,23 +10,23 @@ interface Props extends StandardProps, HTMLAttributes<HTMLTableSectionElement> {
   children: ReactNode
 }
 
-export const TableFooter: FunctionComponent<Props> = ({
-  classes,
-  className,
-  style,
-  children,
-  ...rest
-}) => (
-  <MUITableFooter
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    {...rest}
-    classes={classes}
-    className={className}
-    style={style}
-  >
-    {children}
-  </MUITableFooter>
-)
+export const TableFooter = forwardRef<HTMLElement, Props>(function TableFooter(
+  { classes, className, style, children, ...rest },
+  ref
+) {
+  return (
+    <MUITableFooter
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
+      ref={ref}
+      classes={classes}
+      className={className}
+      style={style}
+    >
+      {children}
+    </MUITableFooter>
+  )
+})
 
 TableFooter.defaultProps = {}
 

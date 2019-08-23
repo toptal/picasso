@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react'
+import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
 import { StandardProps } from '../../Picasso'
@@ -11,26 +11,25 @@ export interface Props
   children: ReactNode
 }
 
-export const SidebarLogo: FunctionComponent<Props> = ({
-  children,
-  className,
-  classes,
-  style,
-  ...rest
-}) => (
-  <Container
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    {...rest}
-    flex
-    bottom='small'
-    left='medium'
-    alignItems='center'
-    className={className}
-    style={style}
-    classes={classes}
-  >
-    {children}
-  </Container>
+export const SidebarLogo = forwardRef<HTMLDivElement, Props>(
+  function SidebarLogo({ children, className, classes, style, ...rest }, ref) {
+    return (
+      <Container
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...rest}
+        ref={ref}
+        flex
+        bottom='small'
+        left='medium'
+        alignItems='center'
+        className={className}
+        style={style}
+        classes={classes}
+      >
+        {children}
+      </Container>
+    )
+  }
 )
 
 SidebarLogo.defaultProps = {}

@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { forwardRef } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
@@ -11,19 +11,18 @@ export interface Props extends StandardProps, ListNativeProps {
   bottom?: boolean
 }
 
-export const SidebarMenu: FunctionComponent<Props> = ({
-  bottom,
-  classes,
-  style,
-  className,
-  ...rest
-}) => (
-  <Menu
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    {...rest}
-    style={style}
-    className={cx(classes.root, { [classes.bottom]: bottom }, className)}
-  />
+export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
+  function SidebarMenu({ bottom, classes, style, className, ...rest }, ref) {
+    return (
+      <Menu
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...rest}
+        ref={ref}
+        style={style}
+        className={cx(classes.root, { [classes.bottom]: bottom }, className)}
+      />
+    )
+  }
 )
 
 SidebarMenu.defaultProps = {

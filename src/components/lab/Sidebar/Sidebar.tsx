@@ -1,8 +1,12 @@
-import React, { FunctionComponent } from 'react'
+import React, { forwardRef } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
-import { StandardProps, PicassoComponent } from '../../Picasso'
+import {
+  StandardProps,
+  PicassoComponentWithRef,
+  CompoundedComponentWithRef
+} from '../../Picasso'
 import Container from '../../Container'
 import SidebarMenu from '../SidebarMenu'
 import SidebarItem from '../SidebarItem'
@@ -25,25 +29,26 @@ export const SidebarContext = React.createContext<SidebarContextProps>(
   {} as SidebarContextProps
 )
 
-export const Sidebar: FunctionComponent<Props> & StaticProps = ({
-  children,
-  variant,
-  className,
-  style,
-  classes
-}) => (
-  <Container
-    flex
-    direction='column'
-    style={style}
-    className={cx(classes.root, className, classes[variant!])}
-  >
-    <div className={classes.spacer} />
-    <SidebarContext.Provider value={{ variant }}>
-      {children}
-    </SidebarContext.Provider>
-  </Container>
-)
+// eslint-disable-next-line react/display-name
+export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
+  { children, variant, className, style, classes },
+  ref
+) {
+  return (
+    <Container
+      ref={ref}
+      flex
+      direction='column'
+      style={style}
+      className={cx(classes.root, className, classes[variant!])}
+    >
+      <div className={classes.spacer} />
+      <SidebarContext.Provider value={{ variant }}>
+        {children}
+      </SidebarContext.Provider>
+    </Container>
+  )
+}) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
 
 Sidebar.defaultProps = {
   variant: 'light'
@@ -57,7 +62,8 @@ Sidebar.Item = SidebarItem
 
 Sidebar.Logo = SidebarLogo
 
-export default withStyles(styles)(Sidebar) as PicassoComponent<
+export default withStyles(styles)(Sidebar) as PicassoComponentWithRef<
   Props,
+  HTMLDivElement,
   StaticProps
 >
