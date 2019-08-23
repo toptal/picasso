@@ -17,3 +17,5 @@ export { default as isBoolean } from './is-boolean'
 export { default as isSubstring } from './is-substring'
 export { Maybe } from './monads'
 export { useNotifications } from './Notifications'
+
+export { default as useCombinedRefs } from './use-combined-refs'
