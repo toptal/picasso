@@ -39,7 +39,6 @@ export interface Props
   disabled?: boolean
   inputComponent?: ReactType<InputBaseComponentProps>
   inputProps?: InputBaseComponentProps
-  inputRef?: React.Ref<any> | React.RefObject<any>
   value?: ValueType
   /** Whether `Input` should be rendered as `TextArea` or not */
   multiline?: boolean
@@ -74,7 +73,6 @@ const OutlinedInput = forwardRef<HTMLInputElement, Props>(
       disabled,
       inputComponent,
       inputProps,
-      inputRef,
       value,
       type,
       error,
@@ -89,7 +87,6 @@ const OutlinedInput = forwardRef<HTMLInputElement, Props>(
       <MUIOutlinedInput
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
-        ref={ref}
         classes={{
           root: cx(classes.root, classes[`root${capitalize(width!)}`]),
           input: classes.input,
@@ -103,7 +100,7 @@ const OutlinedInput = forwardRef<HTMLInputElement, Props>(
         error={error}
         inputComponent={inputComponent}
         inputProps={inputProps}
-        inputRef={inputRef}
+        inputRef={ref}
         value={value}
         type={type}
         startAdornment={startAdornment}
