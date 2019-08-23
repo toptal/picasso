@@ -12,7 +12,7 @@ import Loader from '../Loader'
 import Link from '../Link'
 import Typography from '../Typography'
 import { Check16, UploadDocument16 } from '../Icon'
-import { isNumber, isBoolean } from '../utils'
+import { isNumber, isBoolean, useCombinedRefs } from '../utils'
 import styles from './styles'
 
 export interface FileInfo {
@@ -106,7 +106,12 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
   },
   ref
 ) {
-  const nativeInput = useRef<HTMLInputElement>()
+  // if `ref` is null then we need a ref to control the input
+  // so we create another ref manually if needed and merge both of them
+  const inputRef = useCombinedRefs<HTMLInputElement>(
+    ref,
+    useRef<HTMLInputElement>(null)
+  )
 
   const inProgress =
     (isNumber(progress) && progress! <= 100) ||
@@ -146,7 +151,7 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
           size='small'
           variant={uploadButtonVariant}
           disabled={disabled}
-          onClick={() => nativeInput.current && nativeInput.current.click()}
+          onClick={() => inputRef.current && inputRef.current.click()}
         >
           {uploadButtonTitle}
         </Button>
@@ -156,7 +161,7 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
 
   return (
     <OutlinedInput
-      ref={ref}
+      ref={inputRef}
       className={className}
       style={style}
       classes={{
@@ -182,7 +187,6 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
         accept,
         status
       }}
-      inputRef={nativeInput}
       startAdornment={startAdornment}
       endAdornment={endAdornment}
     />
