@@ -43,13 +43,16 @@ const renderOptions = (options, classes, placeholder, isNative) => {
     }
     return resultOptions;
 };
-exports.Select = (_a) => {
+exports.Select = react_1.forwardRef(function Select(_a, ref) {
     var { classes, className, style, width, id, icon, iconPosition, native, options, placeholder, disabled, error, onChange, value } = _a, rest = __rest(_a, ["classes", "className", "style", "width", "id", "icon", "iconPosition", "native", "options", "placeholder", "disabled", "error", "onChange", "value"]);
     const isPlaceholderShown = placeholder && value === '';
     const selectedOption = react_1.useMemo(() => options.find(option => option.value === value), [value, options]);
     const outlinedInput = (react_1.default.createElement(OutlinedInput_1.default
     // eslint-disable-next-line react/jsx-props-no-spreading
-    , Object.assign({}, rest, { classes: {
+    , Object.assign({}, rest, { ref: ref, classes: {
+            root: classnames_1.default({
+                [classes.inputRootNative]: native
+            }),
             input: classnames_1.default(classes.input, {
                 [classes.inputPlaceholder]: isPlaceholderShown,
                 [classes.inputPlaceholderDisabled]: isPlaceholderShown && disabled,
@@ -69,9 +72,7 @@ exports.Select = (_a) => {
         getContentAnchorEl: undefined // needed to restore default behaviour
     };
     return (react_1.default.createElement(Select_1.default, { className: className, style: style, classes: {
-            root: classnames_1.default(classes[`root${helpers_1.capitalize(width)}`], {
-                [classes.selectNative]: native
-            }),
+            root: classes[`root${helpers_1.capitalize(width)}`],
             icon: classes.caret,
             select: classes.select
         }, error: error, disabled: disabled, displayEmpty: true, id: id, input: outlinedInput, native: native, variant: 'outlined', value: value, renderValue: () => (react_1.default.createElement(react_1.default.Fragment, null,
@@ -82,7 +83,7 @@ exports.Select = (_a) => {
             iconPosition === 'end' && iconAdornment)), IconComponent: ({ className }) => (react_1.default.createElement(Icon_1.DropdownArrows16, { className: classnames_1.default(className, {
                 [classes.caretDisabled]: disabled
             }) })), MenuProps: menuProps, onChange: onChange }, renderOptions(options, classes, placeholder, native)));
-};
+});
 exports.Select.defaultProps = {
     disabled: false,
     error: false,

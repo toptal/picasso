@@ -36,7 +36,7 @@ const PaginationEllipsis = ({ classes }) => {
 const PaginationPage = ({ page, activePage, disabled, classes, onClick }) => {
     return (react_1.default.createElement(Button_1.default, { className: classes.rangeButton, disabled: disabled, onClick: () => onClick(page), variant: activePage === page ? 'primary-blue' : 'secondary-blue', size: 'small' }, page));
 };
-exports.Pagination = (_a) => {
+exports.Pagination = react_1.forwardRef(function Pagination(_a, ref) {
     var { activePage, classes, disabled, totalPages, onPageChange } = _a, rest = __rest(_a, ["activePage", "classes", "disabled", "totalPages", "onPageChange"]);
     const isFirstActive = activePage === 1;
     const isLastActive = activePage === totalPages;
@@ -64,18 +64,22 @@ exports.Pagination = (_a) => {
     ]);
     return (
     // eslint-disable-next-line react/jsx-props-no-spreading
-    react_1.default.createElement(Container_1.default, Object.assign({}, rest, { flex: true, inline: true, alignItems: 'center' }),
+    react_1.default.createElement(Container_1.default, Object.assign({}, rest, { ref: ref, flex: true, inline: true, alignItems: 'center' }),
         react_1.default.createElement(Button_1.default, { disabled: isFirstActive || disabled, onClick: () => handleChange('previous'), variant: 'secondary-blue', size: 'small' }, "Prev"),
         pages.map((page, index) => {
             if (page === range_utils_1.ELLIPSIS) {
-                return react_1.default.createElement(PaginationEllipsis, { classes: classes });
+                return (react_1.default.createElement(PaginationEllipsis
+                // eslint-disable-next-line react/no-array-index-key
+                , { 
+                    // eslint-disable-next-line react/no-array-index-key
+                    key: 'pagination-ellipsis' + index, classes: classes }));
             }
             return (react_1.default.createElement(PaginationPage, { classes: classes, page: page, activePage: activePage, disabled: disabled, 
                 // eslint-disable-next-line react/no-array-index-key
                 key: page + index, onClick: handleChange }));
         }),
         react_1.default.createElement(Button_1.default, { disabled: isLastActive || disabled, onClick: () => handleChange('next'), variant: 'secondary-blue', size: 'small' }, "Next")));
-};
+});
 exports.Pagination.defaultProps = {
     disabled: false
 };

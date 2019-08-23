@@ -10,11 +10,18 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importDefault(require("react"));
+const react_1 = __importStar(require("react"));
 const styles_1 = require("@material-ui/core/styles");
 const classnames_1 = __importDefault(require("classnames"));
 const utils_1 = require("../utils");
@@ -26,15 +33,17 @@ const Icon_1 = require("../Icon");
 const Button_1 = __importDefault(require("../Button"));
 const styles_2 = __importDefault(require("./styles"));
 exports.HelpboxContext = react_1.default.createContext({});
-exports.Helpbox = (_a) => {
+// eslint-disable-next-line react/display-name
+exports.Helpbox = react_1.forwardRef(function Helpbox(_a, ref) {
     var { classes, className, style, children, variant, onClose } = _a, rest = __rest(_a, ["classes", "className", "style", "children", "variant", "onClose"]);
     return (react_1.default.createElement(Container_1.default
     // eslint-disable-next-line react/jsx-props-no-spreading
-    , Object.assign({}, rest, { className: classnames_1.default(classes.root, className), style: style, bordered: true, variant: variant, padded: 'large' }),
+    , Object.assign({}, rest, { ref: ref, className: classnames_1.default(classes.root, className), style: style, bordered: true, variant: variant, padded: 'large' }),
         react_1.default.createElement(exports.HelpboxContext.Provider, { value: { closeable: Boolean(onClose) } }, children),
         onClose && (react_1.default.createElement(Button_1.default, { className: classes.closeButton, circular: true, onClick: onClose, icon: react_1.default.createElement(Icon_1.Close16, { color: utils_1.palette.grey.dark }) }))));
-};
+});
 exports.Helpbox.defaultProps = {};
+exports.Helpbox.displayName = 'Helpbox';
 exports.Helpbox.Title = HelpboxTitle_1.default;
 exports.Helpbox.Content = HelpboxContent_1.default;
 exports.Helpbox.Actions = HelpboxActions_1.default;

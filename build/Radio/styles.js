@@ -15,13 +15,10 @@ Picasso_1.PicassoProvider.override(({ palette, transitions }) => ({
             margin: '0.25em 0.5em 0.25em 0',
             transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`,
             '&$disabled': {
+                opacity: 0.48,
                 cursor: 'not-allowed',
                 pointerEvents: 'auto'
             }
-        },
-        disabled: {
-            color: palette.grey.main,
-            opacity: 0.48
         },
         checked: {
             color: palette.primary.main
@@ -44,7 +41,7 @@ const centeredCircle = (backgroundColor) => styles_2.createPropertiesStyles({
     transitionDuration: 'inherit',
     transitionTimingFunction: 'inherit'
 });
-exports.default = ({ palette, spacing, transitions }) => styles_1.createStyles({
+exports.default = ({ palette, sizes, transitions }) => styles_1.createStyles({
     root: {
         '&:hover $uncheckedIcon': {
             color: palette.primary.main
@@ -58,13 +55,13 @@ exports.default = ({ palette, spacing, transitions }) => styles_1.createStyles({
     uncheckedIcon: {
         color: palette.grey.main,
         transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`,
-        '&:before': Object.assign({}, centeredCircle(palette.common.white), { border: `${spacing.borderWidth} solid ${palette.grey.main}` }),
+        '&:before': Object.assign({}, centeredCircle(palette.common.white), { border: `${sizes.borderWidth} solid ${palette.grey.main}` }),
         '&:after': Object.assign({}, centeredCircle(palette.common.white), { width: 'initial', height: 'initial', borderWidth: styles_2.rem('3px'), borderStyle: 'solid', opacity: 0, color: palette.common.white, transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}` })
     },
     checkedIcon: {
         color: palette.primary.main,
         transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`,
-        '&:before': Object.assign({}, centeredCircle(palette.common.white), { border: `${spacing.borderWidth} solid ${palette.grey.main}` }),
+        '&:before': Object.assign({}, centeredCircle(palette.common.white), { border: `${sizes.borderWidth} solid ${palette.grey.main}` }),
         '&:after': Object.assign({}, centeredCircle(palette.common.white), { width: 'initial', height: 'initial', borderWidth: styles_2.rem('3px'), borderStyle: 'solid', opacity: 1, transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}` })
     },
     label: {

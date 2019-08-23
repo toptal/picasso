@@ -2,14 +2,14 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const styles_1 = require("@material-ui/core/styles");
 const Picasso_1 = require("../Picasso");
-Picasso_1.PicassoProvider.override(({ palette, spacing }) => ({
+Picasso_1.PicassoProvider.override(({ palette, sizes }) => ({
     MuiChip: {
         root: {
             fontSize: '1em',
             color: palette.grey.dark,
             backgroundColor: palette.common.white,
             borderRadius: '6.25em',
-            border: `${spacing.borderWidth} solid ${palette.grey.light}`,
+            border: `${sizes.borderWidth} solid ${palette.grey.light}`,
             height: '1.5em'
         },
         label: {

@@ -1,6 +1,6 @@
-import { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
+import { ReactNode, HTMLAttributes } from 'react';
 import { PopoverOrigin } from '@material-ui/core/Popover';
-import { StandardProps, SpacingType, PicassoComponent } from '../Picasso';
+import { StandardProps, SpacingType, CompoundedComponentWithRef, PicassoComponentWithRef } from '../Picasso';
 import DropdownArrow from '../DropdownArrow';
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
     /** Anchor element that opens content on click */
@@ -34,6 +34,6 @@ interface StaticProps {
 interface ContextProps {
     close: () => void;
 }
-export declare const Dropdown: FunctionComponent<Props> & StaticProps;
-declare const _default: PicassoComponent<Props, StaticProps>;
+export declare const Dropdown: CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>;
+declare const _default: PicassoComponentWithRef<Props, HTMLDivElement, StaticProps>;
 export default _default;

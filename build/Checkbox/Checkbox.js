@@ -10,17 +10,24 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importDefault(require("react"));
+const react_1 = __importStar(require("react"));
 const Checkbox_1 = __importDefault(require("@material-ui/core/Checkbox"));
 const styles_1 = require("@material-ui/core/styles");
 const FormControlLabel_1 = __importDefault(require("../FormControlLabel"));
 const Form_1 = __importDefault(require("../Form"));
 const styles_2 = __importDefault(require("./styles"));
-exports.Checkbox = (_a) => {
+exports.Checkbox = react_1.forwardRef(function Checkbox(_a, ref) {
     var { label, id, classes, className, style, disabled, required, onChange, value, checked, indeterminate } = _a, rest = __rest(_a, ["label", "id", "classes", "className", "style", "disabled", "required", "onChange", "value", "checked", "indeterminate"]);
     const rootClasses = {
         root: classes.root,
@@ -30,12 +37,12 @@ exports.Checkbox = (_a) => {
     const { color } = rest, checkboxAttributes = __rest(rest, ["color"]);
     const muiCheckbox = (react_1.default.createElement(Checkbox_1.default
     // eslint-disable-next-line react/jsx-props-no-spreading
-    , Object.assign({}, checkboxAttributes, { checked: checked, icon: react_1.default.createElement("div", { className: classes.uncheckedIcon }), checkedIcon: react_1.default.createElement("div", { className: classes.checkedIcon }), indeterminateIcon: react_1.default.createElement("div", { className: classes.indeterminateIcon }), classes: rootClasses, className: className, style: style, disabled: disabled, id: id, indeterminate: indeterminate, onChange: onChange, value: value })));
+    , Object.assign({}, checkboxAttributes, { ref: ref, checked: checked, icon: react_1.default.createElement("div", { className: classes.uncheckedIcon }), checkedIcon: react_1.default.createElement("div", { className: classes.checkedIcon }), indeterminateIcon: react_1.default.createElement("div", { className: classes.indeterminateIcon }), classes: rootClasses, className: className, style: style, disabled: disabled, id: id, indeterminate: indeterminate, onChange: onChange, value: value })));
     if (!label) {
         return muiCheckbox;
     }
     return (react_1.default.createElement(FormControlLabel_1.default, { classes: rootClasses, control: muiCheckbox, label: react_1.default.createElement(Form_1.default.Label, { required: required, disabled: disabled, as: 'span' }, label) }));
-};
+});
 exports.Checkbox.defaultProps = {
     disabled: false,
     indeterminate: false,

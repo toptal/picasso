@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const typography = {
-    useNextVariants: true,
     fontFamily: ['proxima-nova', 'Arial', 'sans-serif'].join(','),
     fontSize: 16,
     fontWeights: {

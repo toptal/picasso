@@ -42,16 +42,18 @@ const FileInputContent = styles_1.withStyles(styles_2.default)(({ classes, accep
             }), inline: true }, getFilename()),
         react_1.default.createElement("input", { type: 'file', className: classes.nativeInput, ref: inputRef, accept: accept, onChange: onChange })));
 });
-exports.FileInput = ({ classes, className, style, width, accept, progress, error, disabled, value, status, onChange }) => {
-    const nativeInput = react_1.useRef();
+exports.FileInput = react_1.forwardRef(function FileInput({ classes, className, style, width, accept, progress, error, disabled, value, status, onChange }, ref) {
+    // if `ref` is null then we need a ref to control the input
+    // so we create another ref manually if needed and merge both of them
+    const inputRef = utils_1.useCombinedRefs(ref, react_1.useRef(null));
     const inProgress = (utils_1.isNumber(progress) && progress <= 100) ||
         (utils_1.isBoolean(progress) && progress);
     const uploadButtonVariant = value || error ? 'secondary-blue' : 'primary-blue';
     const uploadButtonTitle = value || error ? 'Choose different file' : 'Choose File';
     const loaderValue = utils_1.isNumber(progress) && progress;
     const startAdornment = (react_1.default.createElement(InputAdornment_1.default, { className: classes.adornmentStart, disabled: disabled, position: 'start' }, value ? (react_1.default.createElement(Icon_1.Check16, { color: !disabled ? palette_1.default.green.main : undefined })) : (react_1.default.createElement(Icon_1.UploadDocument16, null))));
-    const endAdornment = (react_1.default.createElement(InputAdornment_1.default, { position: 'end' }, inProgress ? (react_1.default.createElement(Loader_1.default, { className: classes.loader, size: 'small', value: utils_1.isNumber(progress) ? loaderValue : undefined })) : (react_1.default.createElement(Button_1.default, { className: classes.button, size: 'small', variant: uploadButtonVariant, disabled: disabled, onClick: () => nativeInput.current && nativeInput.current.click() }, uploadButtonTitle))));
-    return (react_1.default.createElement(OutlinedInput_1.default, { className: className, style: style, classes: {
+    const endAdornment = (react_1.default.createElement(InputAdornment_1.default, { position: 'end' }, inProgress ? (react_1.default.createElement(Loader_1.default, { className: classes.loader, size: 'small', value: utils_1.isNumber(progress) ? loaderValue : undefined })) : (react_1.default.createElement(Button_1.default, { className: classes.button, size: 'small', variant: uploadButtonVariant, disabled: disabled, onClick: () => inputRef.current && inputRef.current.click() }, uploadButtonTitle))));
+    return (react_1.default.createElement(OutlinedInput_1.default, { ref: inputRef, className: className, style: style, classes: {
             root: classes.root,
             input: classes.input
         }, error: error, disabled: disabled, width: width, type: 'file', 
@@ -69,8 +71,8 @@ exports.FileInput = ({ classes, className, style, width, accept, progress, error
             onChange,
             accept,
             status
-        }, inputRef: nativeInput, startAdornment: startAdornment, endAdornment: endAdornment }));
-};
+        }, startAdornment: startAdornment, endAdornment: endAdornment }));
+});
 exports.FileInput.displayName = 'FileInput';
 exports.default = styles_1.withStyles(styles_2.default)(exports.FileInput);
 //# sourceMappingURL=FileInput.js.map

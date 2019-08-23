@@ -42,7 +42,7 @@ function getFilteredOptions(from, to) {
 }
 const FIRST_MONTH = 1;
 const LAST_MONTH = 12;
-exports.MonthSelect = (_a) => {
+exports.MonthSelect = react_1.forwardRef(function MonthSelect(_a, ref) {
     var { from = FIRST_MONTH, to = LAST_MONTH, onChange } = _a, rest = __rest(_a, ["from", "to", "onChange"]);
     const handleChange = (event) => {
         onChange(event);
@@ -55,9 +55,10 @@ exports.MonthSelect = (_a) => {
         throw new Error(`Invalid range. Please check the values you have passed: from: ${from}, to: ${to}`);
     }
     const options = react_1.useMemo(() => getFilteredOptions(from, to), [from, to]);
+    return (
     // eslint-disable-next-line react/jsx-props-no-spreading
-    return react_1.default.createElement(Select_1.default, Object.assign({}, rest, { options: options, onChange: handleChange }));
-};
+    react_1.default.createElement(Select_1.default, Object.assign({}, rest, { ref: ref, options: options, onChange: handleChange })));
+});
 exports.MonthSelect.defaultProps = {
     from: 1,
     to: 12

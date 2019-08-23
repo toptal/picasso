@@ -11,24 +11,22 @@ Picasso_1.PicassoProvider.override(() => ({
             margin: '0 0.5em 0 0',
             alignSelf: 'flex-start',
             '&$disabled': {
+                opacity: 0.48,
                 cursor: 'not-allowed',
                 pointerEvents: 'auto'
             }
-        },
-        disabled: {
-            opacity: 0.48
         }
     }
 }));
-exports.default = ({ palette, spacing, transitions }) => styles_1.createStyles({
+exports.default = ({ palette, sizes, transitions }) => styles_1.createStyles({
     root: {
         '&:hover $uncheckedIcon': {
-            border: `${spacing.borderWidth} solid ${palette.primary.main}`
+            border: `${sizes.borderWidth} solid ${palette.primary.main}`
         }
     },
     disabled: {
         '&:hover $uncheckedIcon': {
-            border: `${spacing.borderWidth} solid ${palette.grey.main}`
+            border: `${sizes.borderWidth} solid ${palette.grey.main}`
         }
     },
     checkedIcon: {
@@ -36,7 +34,7 @@ exports.default = ({ palette, spacing, transitions }) => styles_1.createStyles({
         width: '1em',
         transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`,
         background: palette.primary.main,
-        border: `${spacing.borderWidth} solid ${palette.primary.main}`,
+        border: `${sizes.borderWidth} solid ${palette.primary.main}`,
         color: palette.common.white,
         '&:before': {
             top: '0.5em',
@@ -66,7 +64,7 @@ exports.default = ({ palette, spacing, transitions }) => styles_1.createStyles({
         width: '1em',
         transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`,
         background: palette.common.white,
-        border: `${spacing.borderWidth} solid ${palette.grey.main}`
+        border: `${sizes.borderWidth} solid ${palette.grey.main}`
     },
     indeterminateIcon: {
         position: 'relative',
@@ -74,7 +72,7 @@ exports.default = ({ palette, spacing, transitions }) => styles_1.createStyles({
         width: '1em',
         transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`,
         background: palette.primary.main,
-        border: `${spacing.borderWidth} solid ${palette.primary.main}`,
+        border: `${sizes.borderWidth} solid ${palette.primary.main}`,
         color: palette.common.white,
         '&:before': {
             content: '""',

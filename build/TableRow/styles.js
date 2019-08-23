@@ -4,7 +4,7 @@ const styles_1 = require("@material-ui/core/styles");
 const styles_2 = require("../styles");
 const Picasso_1 = require("../Picasso");
 Picasso_1.PicassoProvider.override(() => ({}));
-exports.default = ({ palette, spacing, transitions }) => styles_1.createStyles({
+exports.default = ({ palette, sizes, transitions }) => styles_1.createStyles({
     root: {
         height: 'auto',
         '&:nth-of-type(even)': {
@@ -15,7 +15,7 @@ exports.default = ({ palette, spacing, transitions }) => styles_1.createStyles({
         }
     },
     head: {
-        borderBottom: `${spacing.borderWidth} solid ${palette.grey.lighter}`
+        borderBottom: `${sizes.borderWidth} solid ${palette.grey.lighter}`
     },
     hover: {
         transition: transitions.create('background-color', {

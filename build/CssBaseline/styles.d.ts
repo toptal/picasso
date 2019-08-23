@@ -1,2 +1,3 @@
-declare const _default: () => Record<"@global", import("@material-ui/core/styles/withStyles").CSSProperties>;
+import { Theme } from '@material-ui/core/styles';
+declare const _default: ({ palette }: Theme) => Record<"@global", import("@material-ui/styles").CSSProperties | (() => import("@material-ui/styles").CSSProperties)>;
 export default _default;

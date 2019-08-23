@@ -37,7 +37,8 @@ function useDropdownContext() {
     }
     return context;
 }
-exports.Dropdown = (_a) => {
+// eslint-disable-next-line react/display-name
+exports.Dropdown = react_1.forwardRef(function Dropdown(_a, ref) {
     var { classes, className, style, children, content, offset, transformOrigin, anchorOrigin, disableAutoClose, disableAutoFocus, onOpen, onClose } = _a, rest = __rest(_a, ["classes", "className", "style", "children", "content", "offset", "transformOrigin", "anchorOrigin", "disableAutoClose", "disableAutoFocus", "onOpen", "onClose"]);
     const contentRef = react_1.useRef();
     const [anchorEl, setAnchorEl] = react_1.useState(undefined);
@@ -103,9 +104,7 @@ exports.Dropdown = (_a) => {
         close: () => close(true)
     }), [close]);
     const container = Picasso_1.usePicassoRoot();
-    return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    react_1.default.createElement("div", Object.assign({}, rest, { className: classnames_1.default(classes.root, className), style: style }),
+    return (react_1.default.createElement("div", Object.assign({}, rest, { ref: ref, className: classnames_1.default(classes.root, className), style: style }),
         react_1.default.createElement("div", { className: classes.anchor, onClick: handleAnchorClick }, children),
         react_1.default.createElement(Popover_1.default, { open: open, anchorEl: anchorEl, 
             // MUI has a wrong typing for onClose prop without `reason` argument
@@ -117,7 +116,7 @@ exports.Dropdown = (_a) => {
             react_1.default.createElement("div", { className: classes.content, onClick: handleContentClick, onKeyDown: handleContentKeyDown },
                 react_1.default.createElement(DropdownContext.Provider, { value: context },
                     react_1.default.createElement(RootRef_1.default, { rootRef: contentRef }, content))))));
-};
+});
 exports.Dropdown.defaultProps = {
     anchorOrigin: {
         vertical: 'bottom',

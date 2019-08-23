@@ -28,7 +28,7 @@ const __1 = require("../");
 const Page_1 = require("../Page");
 const Picasso_1 = require("../Picasso");
 const styles_2 = __importDefault(require("./styles"));
-exports.PageHeader = (_a) => {
+exports.PageHeader = react_1.forwardRef(function PageHeader(_a, ref) {
     var { classes, className, style, title, logoLink, rightContent, variant } = _a, rest = __rest(_a, ["classes", "className", "style", "title", "logoLink", "rightContent", "variant"]);
     const { setHasPageHeader } = Picasso_1.usePageHeader();
     react_1.useEffect(() => {
@@ -42,7 +42,7 @@ exports.PageHeader = (_a) => {
         [classes.fullWidth]: fullWidth
     }, classes.content);
     const logo = react_1.default.createElement(__1.Logo, { variant: 'white' });
-    return (react_1.default.createElement("header", Object.assign({}, rest, { className: classnames_1.default('mui-fixed', classes.root, classes[variant], className), style: style }),
+    return (react_1.default.createElement("header", Object.assign({}, rest, { ref: ref, className: classnames_1.default('mui-fixed', classes.root, classes[variant], className), style: style }),
         react_1.default.createElement("div", { className: contentClassnames },
             react_1.default.createElement("div", { className: classes.left },
                 react_1.default.createElement(__1.Container, { right: 'small', flex: true, alignItems: 'center' }, logoLink ? react_1.default.cloneElement(logoLink, {}, logo) : logo),
@@ -51,7 +51,7 @@ exports.PageHeader = (_a) => {
                     react_1.default.createElement(__1.Container, { left: 'small' },
                         react_1.default.createElement(__1.Typography, { invert: true, weight: 'light' }, title))))),
             react_1.default.createElement("div", { className: classes.right }, rightContent))));
-};
+});
 exports.PageHeader.defaultProps = {
     variant: 'light'
 };

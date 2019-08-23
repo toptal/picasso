@@ -27,19 +27,17 @@ const classnames_1 = __importDefault(require("classnames"));
 const Page_1 = require("../Page");
 const styles_2 = __importDefault(require("./styles"));
 const currentYear = new Date().getFullYear();
-exports.PageFooter = (_a) => {
+exports.PageFooter = react_1.forwardRef(function PageFooter(_a, ref) {
     var { classes, className, style, rightContent } = _a, rest = __rest(_a, ["classes", "className", "style", "rightContent"]);
     const { fullWidth } = react_1.useContext(Page_1.PageContext);
     const contentClassnames = classnames_1.default({
         [classes.fullWidth]: fullWidth
     }, classes.content);
-    return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    react_1.default.createElement("footer", Object.assign({}, rest, { className: classnames_1.default(classes.root, className), style: style }),
+    return (react_1.default.createElement("footer", Object.assign({}, rest, { ref: ref, className: classnames_1.default(classes.root, className), style: style }),
         react_1.default.createElement("div", { className: contentClassnames },
             react_1.default.createElement("div", { className: classes.left }, `© Copyright 2010 – ${currentYear} Toptal, LLC`),
             react_1.default.createElement("div", { className: classes.right }, rightContent))));
-};
+});
 exports.PageFooter.defaultProps = {
     rightContent: null
 };

@@ -24,5 +24,6 @@ const CircularProgress = (_a) => {
     // eslint-disable-next-line react/jsx-props-no-spreading
     , Object.assign({}, rest, { classes: classes, className: className, style: style, size: size, value: value, variant: variant })));
 };
+CircularProgress.displayName = 'CircularProgress';
 exports.default = styles_1.withStyles(styles_2.default)(CircularProgress);
 //# sourceMappingURL=CircularProgress.js.map

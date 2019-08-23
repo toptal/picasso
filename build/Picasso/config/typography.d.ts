@@ -18,7 +18,6 @@ declare module '@material-ui/core/styles/createTypography' {
     }
 }
 declare const typography: {
-    useNextVariants: boolean;
     fontFamily: string;
     fontSize: number;
     fontWeights: {

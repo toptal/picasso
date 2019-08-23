@@ -39,6 +39,8 @@ var Helpbox_1 = require("./Helpbox");
 exports.Helpbox = Helpbox_1.default;
 var Image_1 = require("./Image");
 exports.Image = Image_1.default;
+var Input_1 = require("./Input");
+exports.Input = Input_1.default;
 var Label_1 = require("./Label");
 exports.Label = Label_1.default;
 var Link_1 = require("./Link");
@@ -77,6 +79,8 @@ var TableFooter_1 = require("./TableFooter");
 exports.TableFooter = TableFooter_1.default;
 var Tabs_1 = require("./Tabs");
 exports.Tabs = Tabs_1.default;
+// TextField component is deprecated and
+// have to be removed in v4 of Picasso
 var TextField_1 = require("./TextField");
 exports.TextField = TextField_1.default;
 var Tooltip_1 = require("./Tooltip");

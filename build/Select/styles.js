@@ -21,7 +21,7 @@ Picasso_1.PicassoProvider.override(() => ({
         }
     }
 }));
-exports.default = ({ spacing: { input }, palette }) => styles_1.createStyles({
+exports.default = ({ sizes: { input }, palette }) => styles_1.createStyles({
     rootFull: {
         width: '100%',
         display: 'flex'
@@ -34,6 +34,10 @@ exports.default = ({ spacing: { input }, palette }) => styles_1.createStyles({
     },
     rootAuto: {},
     input: {
+        paddingRight: `calc(${input.padding} + 1em)`
+    },
+    inputRootNative: {
+        paddingLeft: input.padding,
         paddingRight: `calc(${input.padding} + 1em)`
     },
     inputNative: {
@@ -52,10 +56,6 @@ exports.default = ({ spacing: { input }, palette }) => styles_1.createStyles({
     },
     select: {
         width: '100%'
-    },
-    selectNative: {
-        padding: input.padding,
-        paddingRight: `calc(${input.padding} + 1em)`
     },
     caret: {
         top: 'calc(50% - 0.5em)',

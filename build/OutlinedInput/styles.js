@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const styles_1 = require("@material-ui/core/styles");
 const Picasso_1 = require("../Picasso");
 const styles_2 = require("../styles");
-Picasso_1.PicassoProvider.override(({ palette, spacing: { input } }) => ({
+Picasso_1.PicassoProvider.override(({ palette, sizes: { input } }) => ({
     MuiOutlinedInput: {
         root: {
             height: input.height,

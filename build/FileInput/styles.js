@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const styles_1 = require("@material-ui/core/styles");
 const styles_2 = require("../styles");
-exports.default = ({ palette, spacing: { input } }) => styles_1.createStyles({
+exports.default = ({ palette, sizes: { input } }) => styles_1.createStyles({
     root: {
         cursor: 'default',
         padding: `${input.padding} 0.375em`

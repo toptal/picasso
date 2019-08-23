@@ -26,17 +26,15 @@ const styles_1 = require("@material-ui/core/styles");
 const classnames_1 = __importDefault(require("classnames"));
 const Page_1 = require("../Page");
 const styles_2 = __importDefault(require("./styles"));
-exports.PageContent = (_a) => {
+exports.PageContent = react_1.forwardRef(function PageContent(_a, ref) {
     var { children, classes, className, style } = _a, rest = __rest(_a, ["children", "classes", "className", "style"]);
     const { fullWidth } = react_1.useContext(Page_1.PageContext);
     const innerClassName = classnames_1.default({
         [classes.fullWidth]: fullWidth
     }, classes.content);
-    return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    react_1.default.createElement("div", Object.assign({}, rest, { className: classnames_1.default(classes.root, className), style: style }),
+    return (react_1.default.createElement("div", Object.assign({}, rest, { ref: ref, className: classnames_1.default(classes.root, className), style: style }),
         react_1.default.createElement("div", { className: innerClassName }, children)));
-};
+});
 exports.PageContent.displayName = 'PageContent';
 exports.default = styles_1.withStyles(styles_2.default)(exports.PageContent);
 //# sourceMappingURL=PageContent.js.map

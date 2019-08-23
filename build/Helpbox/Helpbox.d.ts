@@ -1,5 +1,5 @@
-import React, { ReactNode, FunctionComponent, HTMLAttributes } from 'react';
-import { StandardProps, PicassoComponent } from '../Picasso';
+import React, { ReactNode, HTMLAttributes } from 'react';
+import { StandardProps, PicassoComponentWithRef, CompoundedComponentWithRef } from '../Picasso';
 import { VariantType as ContainerVariantType } from '../Container';
 import HelpboxTitle from '../HelpboxTitle';
 import HelpboxContent from '../HelpboxContent';
@@ -19,6 +19,6 @@ interface StaticProps {
     Actions: typeof HelpboxActions;
 }
 export declare const HelpboxContext: React.Context<HelpboxContextProps>;
-export declare const Helpbox: FunctionComponent<Props> & StaticProps;
-declare const _default: PicassoComponent<Props, StaticProps>;
+export declare const Helpbox: CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>;
+declare const _default: PicassoComponentWithRef<Props, HTMLDivElement, StaticProps>;
 export default _default;

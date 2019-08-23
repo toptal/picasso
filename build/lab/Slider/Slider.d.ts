@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ChangeEvent } from 'react';
+import React, { ChangeEvent } from 'react';
 import { StandardProps } from '../../Picasso';
 export interface Props extends StandardProps {
     /** Minimum slider value */
@@ -14,6 +14,6 @@ export interface Props extends StandardProps {
     /** Callback invoked when slider changes its state. */
     onChange?: (event: ChangeEvent<{}>, value: number) => void;
 }
-export declare const Slider: FunctionComponent<Props>;
-declare const _default: React.ComponentType<Pick<React.PropsWithChildren<Props>, "style" | "disabled" | "children" | "value" | "className" | "onChange" | "step" | "max" | "min"> & import("@material-ui/core/styles").StyledComponentProps<"track" | "thumb" | "activated">>;
+export declare const Slider: React.ForwardRefExoticComponent<Props & React.RefAttributes<HTMLElement>>;
+declare const _default: React.ComponentType<Pick<Props & React.RefAttributes<HTMLElement>, "style" | "disabled" | "ref" | "value" | "className" | "onChange" | "step" | "key" | "max" | "min"> & import("@material-ui/core/styles").StyledComponentProps<"track" | "root" | "rail" | "thumb">>;
 export default _default;

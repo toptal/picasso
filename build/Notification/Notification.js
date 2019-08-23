@@ -32,7 +32,7 @@ const Container_1 = __importDefault(require("../Container"));
 const Button_1 = __importDefault(require("../Button"));
 const styles_2 = __importDefault(require("./styles"));
 const Typography_1 = __importDefault(require("../Typography"));
-const renderNotificationCloseButton = ({ onClose, classes: { close, closeIcon } }) => (react_1.default.createElement(Button_1.default, { circular: true, onClick: onClose, className: close, title: 'Close Notification', icon: react_1.default.createElement(Icon_1.Close, { className: closeIcon }) }));
+const renderNotificationCloseButton = ({ onClose, classes: { close, closeIcon } }) => (react_1.default.createElement(Button_1.default, { circular: true, onClick: onClose, className: close, title: 'Close Notification', icon: react_1.default.createElement(Icon_1.CloseMinor16, { className: closeIcon }) }));
 const renderNotificationIcon = ({ icon, variant, classes }) => {
     const iconProps = {
         className: classes.icon
@@ -64,15 +64,15 @@ const renderNotificationContent = (props) => {
             }), as: 'div' }, children),
         onClose && renderNotificationCloseButton(props)));
 };
-exports.Notification = props => {
+exports.Notification = react_1.forwardRef(function Notification(props, ref) {
     const { className, classes, variant, elevated, fullWidth } = props, rest = __rest(props, ["className", "classes", "variant", "elevated", "fullWidth"]);
     return (react_1.default.createElement(SnackbarContent_1.default
     // eslint-disable-next-line react/jsx-props-no-spreading
     , Object.assign({}, rest, { className: classnames_1.default(classes[`notification${helpers_1.capitalize(variant)}`], {
             [classes.notificationShadow]: elevated,
             [classes.notificationFullWidth]: fullWidth
-        }, classes.notification, className), message: renderNotificationContent(props) })));
-};
+        }, classes.notification, className), message: renderNotificationContent(props), ref: ref })));
+});
 exports.Notification.defaultProps = {
     elevated: false,
     fullWidth: false,

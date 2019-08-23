@@ -12,9 +12,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importStar(require("react"));
 const styles_1 = require("@material-ui/core/styles");
-const Slider_1 = __importDefault(require("@material-ui/lab/Slider"));
+const Slider_1 = __importDefault(require("@material-ui/core/Slider"));
 const styles_2 = __importDefault(require("./styles"));
-exports.Slider = ({ classes, onChange = () => { }, min, max, value: initialValue, step, disabled }) => {
+exports.Slider = react_1.forwardRef(function Slider({ classes, onChange = () => { }, min, max, value: initialValue, step, disabled }, ref) {
     const [value, setValue] = react_1.useState(initialValue);
     const getNormalizedValue = (value) => {
         let currentValue = value < 0 ? 0 : value;
@@ -30,8 +30,8 @@ exports.Slider = ({ classes, onChange = () => { }, min, max, value: initialValue
         const currentValue = getNormalizedValue(initialValue);
         setValue(currentValue);
     }, [initialValue]);
-    return (react_1.default.createElement(Slider_1.default, { min: min, max: max, value: value, onChange: handleChange, classes: classes, step: step, disabled: disabled }));
-};
+    return (react_1.default.createElement(Slider_1.default, { ref: ref, min: min, max: max, value: value, onChange: handleChange, classes: classes, step: step, disabled: disabled }));
+});
 exports.Slider.defaultProps = {};
 exports.Slider.displayName = 'Slider';
 exports.Slider.defaultProps = {

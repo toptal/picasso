@@ -27,7 +27,7 @@ const helpers_1 = require("@material-ui/core/utils/helpers");
 const classnames_1 = __importDefault(require("classnames"));
 const downshift_1 = __importDefault(require("downshift"));
 const debounce_1 = __importDefault(require("debounce"));
-const TextField_1 = __importDefault(require("../TextField"));
+const Input_1 = __importDefault(require("../Input"));
 const Menu_1 = __importDefault(require("../Menu"));
 const Loader_1 = __importDefault(require("../Loader"));
 const ScrollMenu_1 = __importDefault(require("../ScrollMenu"));
@@ -46,7 +46,7 @@ const getItemValue = (item) => {
         return EMPTY_VALUE;
     return item.value || getItemLabel(item);
 };
-exports.Autocomplete = (_a) => {
+exports.Autocomplete = react_1.forwardRef(function Autocomplete(_a, ref) {
     var { classes, className, debounceTime, loading, minLength, placeholder: initialPlaceholder, noOptionsText, options: initialOptions, style, width, allowAny, onSelect = () => { }, value, onChange } = _a, rest = __rest(_a, ["classes", "className", "debounceTime", "loading", "minLength", "placeholder", "noOptionsText", "options", "style", "width", "allowAny", "onSelect", "value", "onChange"]);
     const [inputValue, setInputValue] = react_1.useState(null);
     const [filter, setFilter] = react_1.useState(EMPTY_VALUE);
@@ -151,14 +151,14 @@ exports.Autocomplete = (_a) => {
             }
         });
         return (react_1.default.createElement("div", { className: classnames_1.default(classes.root, className, classes[`root${helpers_1.capitalize(width)}`]), style: style },
-            react_1.default.createElement(TextField_1.default
+            react_1.default.createElement(Input_1.default
             /* eslint-disable-next-line react/jsx-props-no-spreading */
-            , Object.assign({}, rest, { icon: loading ? react_1.default.createElement(Loader_1.default, { size: 'small' }) : null, iconPosition: 'end', value: inputValue || EMPTY_VALUE, onBlur: onBlur, onKeyDown: onKeyDown, onFocus: onFocus, onClick: onFocus, placeholder: placeholder, width: width, onChange: event => {
+            , Object.assign({}, rest, { ref: ref, icon: loading ? react_1.default.createElement(Loader_1.default, { size: 'small' }) : null, iconPosition: 'end', value: inputValue || EMPTY_VALUE, onBlur: onBlur, onKeyDown: onKeyDown, onFocus: onFocus, onClick: onFocus, placeholder: placeholder, width: width, onChange: event => {
                     onChange(event);
                 } })),
             react_1.default.createElement("div", Object.assign({}, getMenuProps()), canOpen ? optionsMenu : null)));
     }));
-};
+});
 exports.Autocomplete.defaultProps = {
     allowAny: true,
     debounceTime: DEBOUNCE_TIME,

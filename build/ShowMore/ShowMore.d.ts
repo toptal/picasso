@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import { StandardProps } from '../Picasso';
 export interface Props extends StandardProps {
     /** Content of the component */
@@ -16,6 +16,6 @@ export interface Props extends StandardProps {
     /** Callback tiggered when show more/less is clicked */
     onToggle?: () => void;
 }
-export declare const ShowMore: FunctionComponent<Props>;
-declare const _default: React.ComponentType<Pick<React.PropsWithChildren<Props>, "style" | "children" | "className" | "rows" | "initialExpanded" | "disableToggle" | "moreText" | "lessText" | "onToggle"> & import("@material-ui/core/styles").StyledComponentProps<"icon" | "iconWrapper" | "toggleText" | "expandedIcon">>;
+export declare const ShowMore: React.ForwardRefExoticComponent<Props & React.RefAttributes<HTMLSpanElement>>;
+declare const _default: React.ComponentType<Pick<Props & React.RefAttributes<HTMLSpanElement>, "style" | "children" | "ref" | "className" | "key" | "rows" | "initialExpanded" | "disableToggle" | "moreText" | "lessText" | "onToggle"> & import("@material-ui/core/styles").StyledComponentProps<"icon" | "iconWrapper" | "toggleText" | "expandedIcon">>;
 export default _default;

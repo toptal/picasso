@@ -1,9 +1,16 @@
 "use strict";
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importDefault(require("react"));
+const react_1 = __importStar(require("react"));
 const classnames_1 = __importDefault(require("classnames"));
 const notistack_1 = require("notistack");
 const styles_1 = require("@material-ui/core/styles");
@@ -13,10 +20,14 @@ const defaultPosition = {
     vertical: 'top',
     horizontal: 'right'
 };
-const StyledNotification = styles_1.withStyles(styles_2.default)(({ content, icon, key, onClose, variant = 'white', classes }) => (react_1.default.createElement(Notification_1.default, { variant: variant, elevated: true, icon: icon, key: key, onClose: onClose, className: classnames_1.default({
-        [classes.generalNotification]: variant === 'white',
-        [classes.formNotification]: variant !== 'white'
-    }) }, content)));
+const StyledNotification = styles_1.withStyles(styles_2.default)(
+// eslint-disable-next-line react/display-name
+react_1.forwardRef(function Notification({ content, icon, key, onClose, variant = 'white', classes }, ref) {
+    return (react_1.default.createElement(Notification_1.default, { variant: variant, elevated: true, icon: icon, key: key, onClose: onClose, className: classnames_1.default({
+            [classes.generalNotification]: variant === 'white',
+            [classes.formNotification]: variant !== 'white'
+        }), ref: ref }, content));
+}));
 exports.useNotifications = () => {
     const { enqueueSnackbar, closeSnackbar } = notistack_1.useSnackbar();
     const getNotification = (variant) => (content, icon, options) => {

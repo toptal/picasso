@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import { StandardProps } from '../Picasso';
 export interface FileInfo {
     name: string;
@@ -22,6 +22,6 @@ export interface Props extends StandardProps {
     /** Callback invoked when `FileInput` changes its state by selecting new files. */
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
-export declare const FileInput: FunctionComponent<Props>;
-declare const _default: React.ComponentType<Pick<React.PropsWithChildren<Props>, "width" | "style" | "progress" | "disabled" | "children" | "error" | "value" | "className" | "onChange" | "accept" | "status"> & import("@material-ui/core/styles").StyledComponentProps<"button" | "input" | "root" | "loader" | "inputValue" | "inputValueDisabled" | "nativeInput" | "adornmentStart">>;
+export declare const FileInput: React.ForwardRefExoticComponent<Props & React.RefAttributes<HTMLInputElement>>;
+declare const _default: React.ComponentType<Pick<Props & React.RefAttributes<HTMLInputElement>, "width" | "style" | "progress" | "disabled" | "ref" | "error" | "value" | "className" | "onChange" | "key" | "accept" | "status"> & import("@material-ui/core/styles").StyledComponentProps<"button" | "input" | "root" | "loader" | "inputValue" | "inputValueDisabled" | "nativeInput" | "adornmentStart">>;
 export default _default;

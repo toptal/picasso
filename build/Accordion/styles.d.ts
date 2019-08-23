@@ -6,12 +6,18 @@ declare const _default: ({ palette, typography }: Theme) => {
             display: string;
         };
     };
-    expanded: {
-        margin: number;
-    };
     bordered: {
         '&:first-child:before': {
-            [x: string]: string | number | import("@material-ui/core/styles/withStyles").CSSProperties | undefined;
+            [x: string]: string | number | import("@material-ui/styles").CSSProperties | (import("csstype").FontFace & {
+                fallbacks?: import("csstype").FontFace[] | undefined;
+            }) | (import("csstype").FontFace & {
+                fallbacks?: import("csstype").FontFace[] | undefined;
+            })[] | undefined;
+            '@font-face'?: (import("csstype").FontFace & {
+                fallbacks?: import("csstype").FontFace[] | undefined;
+            }) | (import("csstype").FontFace & {
+                fallbacks?: import("csstype").FontFace[] | undefined;
+            })[] | undefined;
             alignContent?: string | undefined;
             alignItems?: string | undefined;
             alignSelf?: string | undefined;
@@ -755,7 +761,16 @@ declare const _default: ({ palette, typography }: Theme) => {
             background: string;
         };
         '&:after': {
-            [x: string]: string | number | import("@material-ui/core/styles/withStyles").CSSProperties | undefined;
+            [x: string]: string | number | import("@material-ui/styles").CSSProperties | (import("csstype").FontFace & {
+                fallbacks?: import("csstype").FontFace[] | undefined;
+            }) | (import("csstype").FontFace & {
+                fallbacks?: import("csstype").FontFace[] | undefined;
+            })[] | undefined;
+            '@font-face'?: (import("csstype").FontFace & {
+                fallbacks?: import("csstype").FontFace[] | undefined;
+            }) | (import("csstype").FontFace & {
+                fallbacks?: import("csstype").FontFace[] | undefined;
+            })[] | undefined;
             alignContent?: string | undefined;
             alignItems?: string | undefined;
             alignSelf?: string | undefined;
@@ -1500,14 +1515,11 @@ declare const _default: ({ palette, typography }: Theme) => {
                 display: string;
             };
         };
-        '&$expanded + &:before': {
-            display: string;
-        };
     };
     summary: {
         color: string;
     };
-    summaryFontWeightInherit: import("@material-ui/core/styles/withStyles").CSSProperties;
+    summaryFontWeightInherit: import("@material-ui/styles").CSSProperties;
     expandIcon: {
         fontSize: string;
         color: string;

@@ -14,6 +14,7 @@ const VERTICAL_POSITION = {
 };
 function arrowGenerator(color) {
     return {
+        opacity: 0.9,
         '&[x-placement*="bottom"] $arrow': {
             top: `-${ARROW_SIZE}`,
             '&::before': Object.assign({ borderWidth: `0 ${ARROW_SIZE} ${ARROW_SIZE} ${ARROW_SIZE}`, borderColor: `transparent transparent ${shadowColor} transparent` }, VERTICAL_POSITION),
@@ -44,7 +45,8 @@ exports.default = ({ palette, shadows }) => styles_1.createStyles({
         fontSize: styles_2.rem('13px'),
         lineHeight: '1.5em',
         padding: '1rem',
-        borderRadius: 0
+        borderRadius: 0,
+        position: 'relative'
     },
     arrowPopper: arrowGenerator(palette.grey.darker),
     arrowPopperLight: arrowGenerator(palette.common.white),

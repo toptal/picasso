@@ -1,5 +1,5 @@
-import React, { FunctionComponent } from 'react';
-import { StandardProps, PicassoComponent } from '../../Picasso';
+import React from 'react';
+import { StandardProps, PicassoComponentWithRef, CompoundedComponentWithRef } from '../../Picasso';
 import SidebarMenu from '../SidebarMenu';
 import SidebarItem from '../SidebarItem';
 import SidebarLogo from '../SidebarLogo';
@@ -14,6 +14,6 @@ interface StaticProps {
     Logo: typeof SidebarLogo;
 }
 export declare const SidebarContext: React.Context<SidebarContextProps>;
-export declare const Sidebar: FunctionComponent<Props> & StaticProps;
-declare const _default: PicassoComponent<Props, StaticProps>;
+export declare const Sidebar: CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>;
+declare const _default: PicassoComponentWithRef<Props, HTMLDivElement, StaticProps>;
 export default _default;

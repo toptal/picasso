@@ -4,5 +4,5 @@ import '../InputBase/styles';
 import '../OutlinedInput/styles';
 import '../Menu/styles';
 import '../MenuItem/styles';
-declare const _default: ({ spacing: { input }, palette }: Theme) => Record<"caret" | "input" | "select" | "placeholder" | "rootFull" | "rootShrink" | "rootAuto" | "inputValue" | "inputNative" | "inputPlaceholder" | "inputPlaceholderDisabled" | "selectNative" | "caretDisabled" | "placeholderOption", import("@material-ui/core/styles/withStyles").CSSProperties>;
+declare const _default: ({ sizes: { input }, palette }: Theme) => Record<"caret" | "input" | "select" | "placeholder" | "rootFull" | "rootShrink" | "rootAuto" | "inputValue" | "inputRootNative" | "inputNative" | "inputPlaceholder" | "inputPlaceholderDisabled" | "caretDisabled" | "placeholderOption", import("@material-ui/styles").CSSProperties | (() => import("@material-ui/styles").CSSProperties)>;
 export default _default;

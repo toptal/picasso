@@ -1,6 +1,5 @@
-import { FunctionComponent } from 'react';
 import RadioGroup from '@material-ui/core/RadioGroup';
-import { PicassoComponent, StandardProps, ButtonOrAnchorProps } from '../Picasso';
+import { PicassoComponentWithRef, CompoundedComponentWithRef, StandardProps, ButtonOrAnchorProps } from '../Picasso';
 export interface Props extends StandardProps, Omit<ButtonOrAnchorProps, 'onChange' | 'value'> {
     /** Text label for the `Radio` */
     label?: string;
@@ -16,6 +15,6 @@ export interface Props extends StandardProps, Omit<ButtonOrAnchorProps, 'onChang
 interface StaticProps {
     Group: typeof RadioGroup;
 }
-export declare const Radio: FunctionComponent<Props> & StaticProps;
-declare const _default: PicassoComponent<Props, StaticProps>;
+export declare const Radio: CompoundedComponentWithRef<Props, HTMLButtonElement, StaticProps>;
+declare const _default: PicassoComponentWithRef<Props, HTMLButtonElement, StaticProps>;
 export default _default;

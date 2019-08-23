@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const styles_1 = require("@material-ui/core/styles");
 const Picasso_1 = require("../Picasso");
+const styles_2 = require("../styles");
 Picasso_1.PicassoProvider.override(({ breakpoints, palette, typography }) => ({
     MuiTab: {
         root: {
@@ -10,6 +11,10 @@ Picasso_1.PicassoProvider.override(({ breakpoints, palette, typography }) => ({
             minWidth: 0,
             lineHeight: 1,
             textTransform: 'none',
+            padding: `${styles_2.rem('11px')} 0 ${styles_2.rem('9px')}`,
+            [breakpoints.up('md')]: {
+                padding: undefined
+            },
             color: palette.grey.dark,
             '&$selected': {
                 color: palette.common.black
@@ -23,14 +28,9 @@ Picasso_1.PicassoProvider.override(({ breakpoints, palette, typography }) => ({
             }
         },
         selected: {},
-        labelContainer: {
-            padding: '0.625em 0',
-            [breakpoints.up('md')]: {
-                padding: undefined
-            }
-        },
-        label: {
-            fontSize: '0.8125em'
+        wrapper: {
+            fontSize: styles_2.rem('13px'),
+            lineHeight: '1rem'
         }
     }
 }));

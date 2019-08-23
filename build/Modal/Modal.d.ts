@@ -1,9 +1,9 @@
-import { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
+import { ReactNode, HTMLAttributes } from 'react';
 import { PaperProps } from '@material-ui/core/Paper';
 import ModalTitle from '../ModalTitle';
 import ModalContent from '../ModalContent';
 import ModalActions from '../ModalActions';
-import { StandardProps, PicassoComponent } from '../Picasso';
+import { StandardProps, PicassoComponentWithRef, CompoundedComponentWithRef } from '../Picasso';
 declare type ContainerValue = HTMLElement | (() => HTMLElement);
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
     /** Content of Modal component */
@@ -28,6 +28,6 @@ interface StaticProps {
     Actions: typeof ModalActions;
     Title: typeof ModalTitle;
 }
-export declare const Modal: FunctionComponent<Props> & StaticProps;
-declare const _default: PicassoComponent<Props, StaticProps>;
+export declare const Modal: CompoundedComponentWithRef<Props, HTMLElement, StaticProps>;
+declare const _default: PicassoComponentWithRef<Props, HTMLElement, StaticProps>;
 export default _default;

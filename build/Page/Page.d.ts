@@ -1,9 +1,9 @@
-import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
+import React, { ReactNode, HTMLAttributes } from 'react';
 import PageHeader from '../PageHeader';
 import PageHeaderMenu from '../PageHeaderMenu';
 import PageFooter from '../PageFooter';
 import PageContent from '../PageContent';
-import { StandardProps, PicassoComponent } from '../Picasso';
+import { StandardProps, PicassoComponentWithRef, CompoundedComponentWithRef } from '../Picasso';
 import { PageContextProps } from './types';
 interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
     /** Component becomes responsive with width 100% and overrides width prop */
@@ -22,6 +22,6 @@ interface StaticProps {
     Footer: typeof PageFooter;
 }
 export declare const PageContext: React.Context<PageContextProps>;
-export declare const Page: FunctionComponent<Props> & StaticProps;
-declare const _default: PicassoComponent<Props, StaticProps>;
+export declare const Page: CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>;
+declare const _default: PicassoComponentWithRef<Props, HTMLElement, StaticProps>;
 export default _default;

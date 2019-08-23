@@ -17,11 +17,10 @@ Picasso_1.PicassoProvider.override(({ typography }) => ({
             }
         },
         expandIcon: {
+            margin: 0,
             padding: 0,
-            right: 0,
-            transform: 'translateY(-50%)',
             '&$expanded': {
-                transform: 'translateY(-50%) rotate(180deg)'
+                transform: 'rotate(180deg)'
             }
         },
         content: {

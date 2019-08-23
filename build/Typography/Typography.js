@@ -10,11 +10,18 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importDefault(require("react"));
+const react_1 = __importStar(require("react"));
 const styles_1 = require("@material-ui/core/styles");
 const Typography_1 = __importDefault(require("@material-ui/core/Typography"));
 const classnames_1 = __importDefault(require("classnames"));
@@ -34,7 +41,7 @@ const VARIANTS = {
         inherit: 'body1'
     }
 };
-exports.Typography = (_a) => {
+exports.Typography = react_1.forwardRef(function Typography(_a, ref) {
     var { variant, children, size, align, className, classes, style, inline, as, weight, color, invert, noWrap } = _a, rest = __rest(_a, ["variant", "children", "size", "align", "className", "classes", "style", "inline", "as", "weight", "color", "invert", "noWrap"]);
     const resolvedVariant = VARIANTS[variant][size];
     const variantClassName = kebab_to_camel_case_1.default(`${variant}-${size}`);
@@ -44,10 +51,10 @@ exports.Typography = (_a) => {
     }, classes[variantClassName], classes[weight], classes[colorClassName]);
     return (react_1.default.createElement(Typography_1.default
     // eslint-disable-next-line react/jsx-props-no-spreading
-    , Object.assign({}, rest, { align: align, className: className, classes: {
+    , Object.assign({}, rest, { ref: ref, align: align, className: className, classes: {
             root: rootClass
-        }, style: style, variant: resolvedVariant, inline: inline, component: as, noWrap: noWrap }), children));
-};
+        }, style: style, variant: resolvedVariant, display: inline ? 'inline' : 'initial', component: as, noWrap: noWrap }), children));
+});
 exports.Typography.defaultProps = {
     inline: false,
     noWrap: false,

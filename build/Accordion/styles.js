@@ -1,6 +1,19 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const styles_1 = require("../styles");
+const Picasso_1 = require("../Picasso");
+Picasso_1.PicassoProvider.override(() => ({
+    MuiExpansionPanel: {
+        root: {
+            '&$expanded': {
+                margin: 0
+            },
+            '&$disabled': {
+                backgroundColor: 'unset'
+            }
+        }
+    }
+}));
 exports.default = ({ palette, typography }) => {
     const separatorStyles = styles_1.createPropertiesStyles({
         display: 'block',
@@ -19,9 +32,6 @@ exports.default = ({ palette, typography }) => {
                 display: 'none'
             }
         },
-        expanded: {
-            margin: 0
-        },
         bordered: {
             '&:first-child:before': Object.assign({}, separatorStyles),
             '&:before': {
@@ -32,9 +42,6 @@ exports.default = ({ palette, typography }) => {
                 '&:before, &:after': {
                     display: 'none'
                 }
-            },
-            '&$expanded + &:before': {
-                display: 'block'
             }
         },
         summary: {

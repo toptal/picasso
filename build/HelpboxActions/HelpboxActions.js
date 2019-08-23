@@ -27,17 +27,17 @@ const classnames_1 = __importDefault(require("classnames"));
 const Container_1 = __importDefault(require("../Container"));
 const styles_2 = __importDefault(require("./styles"));
 const Helpbox_1 = require("../Helpbox");
-exports.HelpboxActions = (_a) => {
+exports.HelpboxActions = react_1.forwardRef(function HelpboxActions(_a, ref) {
     var { classes, className, style, children } = _a, rest = __rest(_a, ["classes", "className", "style", "children"]);
     const { closeable } = Helpbox_1.HelpboxContext
         ? react_1.useContext(Helpbox_1.HelpboxContext)
         : {};
     return (react_1.default.createElement(Container_1.default
     // eslint-disable-next-line react/jsx-props-no-spreading
-    , Object.assign({}, rest, { className: classnames_1.default(classes.root, {
+    , Object.assign({}, rest, { ref: ref, className: classnames_1.default(classes.root, {
             [classes.rootCloseable]: closeable
         }, className), style: style, flex: true, alignItems: 'center' }), children));
-};
+});
 exports.HelpboxActions.defaultProps = {};
 exports.HelpboxActions.displayName = 'HelpboxActions';
 exports.default = styles_1.withStyles(styles_2.default)(exports.HelpboxActions);

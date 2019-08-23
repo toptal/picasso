@@ -26,7 +26,9 @@ const classnames_1 = __importDefault(require("classnames"));
 const react_1 = __importStar(require("react"));
 const styles_2 = __importDefault(require("./styles"));
 /** Currency List: https://www.currency-iso.org/en/home/tables/table-a1.html */
-exports.Amount = react_1.memo((_a) => {
+exports.Amount = react_1.memo(
+// eslint-disable-next-line react/display-name
+react_1.forwardRef(function Amount(_a, ref) {
     var { amount, className, classes, currency } = _a, rest = __rest(_a, ["amount", "className", "classes", "currency"]);
     const formattedAmount = Intl.NumberFormat('en-US', {
         style: 'currency',
@@ -34,8 +36,8 @@ exports.Amount = react_1.memo((_a) => {
     }).format(amount);
     return (
     // eslint-disable-next-line react/jsx-props-no-spreading
-    react_1.default.createElement("span", Object.assign({}, rest, { className: classnames_1.default(classes.root, className) }), formattedAmount));
-});
+    react_1.default.createElement("span", Object.assign({}, rest, { ref: ref, className: classnames_1.default(classes.root, className) }), formattedAmount));
+}));
 exports.Amount.defaultProps = {
     currency: 'USD'
 };

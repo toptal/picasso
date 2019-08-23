@@ -1,3 +1,45 @@
+# [3.0.0](https://github.com/toptal/picasso/compare/v2.27.1...v3.0.0) (2019-08-23)
+
+
+### Bug Fixes
+
+* **Accordion:** fix Accordion styles ([#592](https://github.com/toptal/picasso/issues/592)) ([c2636b9](https://github.com/toptal/picasso/commit/c2636b9))
+* **Accordion:** fix an issue with no children rendered ([b9d198e](https://github.com/toptal/picasso/commit/b9d198e))
+* **CssBaseline:** [FX-368] Use our own css baseline ([#595](https://github.com/toptal/picasso/issues/595)) ([bf9052c](https://github.com/toptal/picasso/commit/bf9052c))
+* **Grid:** divide Picasso grid spacing according to MUI ([#586](https://github.com/toptal/picasso/issues/586)) ([41b9783](https://github.com/toptal/picasso/commit/41b9783))
+* **paper:** fix default text color ([#594](https://github.com/toptal/picasso/issues/594)) ([5522976](https://github.com/toptal/picasso/commit/5522976))
+* **Select:** issues after upgrade to MUI v4 ([#590](https://github.com/toptal/picasso/issues/590)) ([7c34698](https://github.com/toptal/picasso/commit/7c34698))
+* **Slider:** [FX-378] Move Slider from lab to core ([#596](https://github.com/toptal/picasso/issues/596)) ([58e33b9](https://github.com/toptal/picasso/commit/58e33b9))
+* **Table:** adjust cell paddings ([#591](https://github.com/toptal/picasso/issues/591)) ([550d901](https://github.com/toptal/picasso/commit/550d901))
+* **Tabs:** after upgrade to v4 ([#593](https://github.com/toptal/picasso/issues/593)) ([07dcef8](https://github.com/toptal/picasso/commit/07dcef8))
+* fix disabled state for Checkbox and Radio ([#587](https://github.com/toptal/picasso/issues/587)) ([bc73cea](https://github.com/toptal/picasso/commit/bc73cea))
+* **Tooltip:** issues after upgrade to v4 ([#581](https://github.com/toptal/picasso/issues/581)) ([65676e0](https://github.com/toptal/picasso/commit/65676e0))
+* **Typography:** fix typography, baseline visual issues ([#585](https://github.com/toptal/picasso/issues/585)) ([68e8aec](https://github.com/toptal/picasso/commit/68e8aec))
+
+
+### chore
+
+* **TextField:** remove deprecated props and rename to Input ([#606](https://github.com/toptal/picasso/issues/606)) ([1d63602](https://github.com/toptal/picasso/commit/1d63602))
+* rename `justifyContent` prop in Grid to match Container ([#600](https://github.com/toptal/picasso/issues/600)) ([8da9a02](https://github.com/toptal/picasso/commit/8da9a02))
+* **Icon:** delete deprecated icon components ([#598](https://github.com/toptal/picasso/issues/598)) ([b37be08](https://github.com/toptal/picasso/commit/b37be08))
+* **Icon:** remove deprecated prop `size` from icons ([#599](https://github.com/toptal/picasso/issues/599)) ([033a5ac](https://github.com/toptal/picasso/commit/033a5ac))
+
+
+### Features
+
+* [FX-377] Forward refs for all components ([#612](https://github.com/toptal/picasso/issues/612)) ([677af2e](https://github.com/toptal/picasso/commit/677af2e))
+* [FX-377] Proxy ref from forwardRef to FileInput ([#621](https://github.com/toptal/picasso/issues/621)) ([54668a3](https://github.com/toptal/picasso/commit/54668a3))
+* upgrade MUI to v4 ([29d14bd](https://github.com/toptal/picasso/commit/29d14bd))
+
+
+### BREAKING CHANGES
+
+* **TextField:** TextField component to Input
+* **Slider:** Slider component has been moved from `@toptal/picasso/lab` to `@toptal/picasso`
+* rename `justify` prop in `Grid`  to `justifyContent`
+* **Icon:** remove deprecated prop `size` from icons
+* **Icon:** icon components deprecated in v2 have been fully removed in v3. To obtain support migrating these components, check: https://toptal-core.atlassian.net/wiki/x/boACG
+
 ## [2.27.1](https://github.com/toptal/picasso/compare/v2.27.0...v2.27.1) (2019-08-23)
 
 

@@ -1,9 +1,9 @@
-import { FunctionComponent, FormEventHandler, ReactNode, FormHTMLAttributes } from 'react';
+import { FormEventHandler, ReactNode, FormHTMLAttributes } from 'react';
 import FormField from '../FormField';
 import FormHint from '../FormHint';
 import FormLabel from '../FormLabel';
 import FormError from '../FormError';
-import { BaseProps } from '../Picasso';
+import { BaseProps, CompoundedComponentWithRef } from '../Picasso';
 interface Props extends BaseProps, FormHTMLAttributes<HTMLFormElement> {
     /** Content of Form constructed of Form elements */
     children?: ReactNode;
@@ -16,5 +16,5 @@ interface StaticProps {
     Label: typeof FormLabel;
     Error: typeof FormError;
 }
-export declare const Form: FunctionComponent<Props> & StaticProps;
+export declare const Form: CompoundedComponentWithRef<Props, HTMLFormElement, StaticProps>;
 export default Form;

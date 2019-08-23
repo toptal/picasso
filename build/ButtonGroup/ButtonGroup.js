@@ -10,22 +10,27 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importDefault(require("react"));
+const react_1 = __importStar(require("react"));
 const styles_1 = require("@material-ui/core/styles");
 const classnames_1 = __importDefault(require("classnames"));
 const Button_1 = __importDefault(require("../Button"));
 const styles_2 = require("../styles");
 const styles_3 = __importDefault(require("./styles"));
-exports.ButtonGroup = (_a) => {
+exports.ButtonGroup = react_1.forwardRef(function ButtonGroup(_a, ref) {
     var { children, classes, className, style } = _a, rest = __rest(_a, ["children", "classes", "className", "style"]);
-    return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    react_1.default.createElement("div", Object.assign({}, rest, { className: classnames_1.default(classes.root, className), style: style }), children));
-};
+    return (react_1.default.createElement("div", Object.assign({}, rest, { ref: ref, className: classnames_1.default(classes.root, className), style: style }), children));
+});
 exports.ButtonGroup.defaultProps = {
     classes: {}
 };

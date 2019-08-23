@@ -9,14 +9,14 @@ Picasso_1.PicassoProvider.override(() => ({
         }
     }
 }));
-exports.default = ({ palette, spacing }) => styles_1.createStyles({
+exports.default = ({ palette, sizes }) => styles_1.createStyles({
     root: {
         height: '1.5em',
         width: '1.5em',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        border: `${spacing.borderWidth} solid ${palette.grey.main}`,
+        border: `${sizes.borderWidth} solid ${palette.grey.main}`,
         borderRadius: '50%',
         backgroundColor: 'transparent',
         color: palette.common.white

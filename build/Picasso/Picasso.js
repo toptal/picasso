@@ -22,7 +22,7 @@ const picasso = {
     palette: config_1.palette,
     layout: config_1.layout,
     transitions: config_1.transitions,
-    spacing: config_1.spacing,
+    sizes: config_1.sizes,
     breakpoints: config_1.breakpoints,
     screens: config_1.screens,
     shadows: config_1.shadows,

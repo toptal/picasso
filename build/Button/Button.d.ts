@@ -1,6 +1,6 @@
-import { FunctionComponent, ReactNode, ReactElement, MouseEvent } from 'react';
+import { ReactNode, ReactElement, MouseEvent } from 'react';
 import Group from '../ButtonGroup';
-import { StandardProps, PicassoComponent, SizeType, ButtonOrAnchorProps } from '../Picasso';
+import { StandardProps, PicassoComponentWithRef, SizeType, ButtonOrAnchorProps, CompoundedComponentWithRef } from '../Picasso';
 declare type VariantType = 'primary-blue' | 'secondary-blue' | 'primary-red' | 'secondary-red' | 'primary-green' | 'flat' | 'flat-white' | 'secondary-white';
 declare type IconPositionType = 'left' | 'right';
 export interface Props extends StandardProps, ButtonOrAnchorProps {
@@ -39,6 +39,6 @@ export interface Props extends StandardProps, ButtonOrAnchorProps {
 interface StaticProps {
     Group: typeof Group;
 }
-export declare const Button: FunctionComponent<Props> & StaticProps;
-declare const _default: PicassoComponent<Props, StaticProps>;
+export declare const Button: CompoundedComponentWithRef<Props, HTMLButtonElement, StaticProps>;
+declare const _default: PicassoComponentWithRef<Props, HTMLButtonElement, StaticProps>;
 export default _default;

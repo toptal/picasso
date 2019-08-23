@@ -1,6 +1,6 @@
-import { FunctionComponent, ReactNode, ReactElement, HTMLAttributes } from 'react';
+import { ReactNode, ReactElement, HTMLAttributes } from 'react';
 import LabelGroup from '../LabelGroup';
-import { StandardProps, PicassoComponent } from '../Picasso';
+import { StandardProps, CompoundedComponentWithRef, PicassoComponentWithRef } from '../Picasso';
 declare type VariantType = 'grey' | 'white';
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
     /** Text content of the `Label` component */
@@ -20,6 +20,6 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
 interface StaticProps {
     Group: typeof LabelGroup;
 }
-export declare const Label: FunctionComponent<Props> & StaticProps;
-declare const _default: PicassoComponent<Props, StaticProps>;
+export declare const Label: CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>;
+declare const _default: PicassoComponentWithRef<Props, HTMLDivElement, StaticProps>;
 export default _default;

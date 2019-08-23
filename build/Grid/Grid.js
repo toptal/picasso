@@ -10,25 +10,37 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importDefault(require("react"));
+const react_1 = __importStar(require("react"));
 const styles_1 = require("@material-ui/core/styles");
 const Grid_1 = __importDefault(require("@material-ui/core/Grid"));
 const GridItem_1 = __importDefault(require("../GridItem"));
 const styles_2 = __importDefault(require("./styles"));
-exports.Grid = (_a) => {
-    var { children, spacing, direction, alignItems, justify, wrap, classes, className, style } = _a, rest = __rest(_a, ["children", "spacing", "direction", "alignItems", "justify", "wrap", "classes", "className", "style"]);
+const humanToMUISpacing = (spacing) => {
+    /** Material Design margins and columns follow an 8px square baseline grid */
+    return (spacing / 8);
+};
+// eslint-disable-next-line react/display-name
+exports.Grid = react_1.forwardRef(function Grid(_a, ref) {
+    var { children, spacing, direction, alignItems, justifyContent, wrap, classes, className, style } = _a, rest = __rest(_a, ["children", "spacing", "direction", "alignItems", "justifyContent", "wrap", "classes", "className", "style"]);
     return (react_1.default.createElement(Grid_1.default
     // eslint-disable-next-line react/jsx-props-no-spreading
-    , Object.assign({}, rest, { container: true, spacing: spacing, direction: direction, alignItems: alignItems, justify: justify, wrap: wrap, classes: classes, className: className, style: style }), children));
-};
+    , Object.assign({}, rest, { ref: ref, container: true, spacing: humanToMUISpacing(spacing), direction: direction, alignItems: alignItems, justify: justifyContent, wrap: wrap, classes: classes, className: className, style: style }), children));
+});
 exports.Grid.defaultProps = {
     alignItems: 'flex-start',
     direction: 'row',
-    justify: 'flex-start',
+    justifyContent: 'flex-start',
     spacing: 32,
     wrap: 'wrap'
 };

@@ -31,7 +31,7 @@ const Accordion_1 = __importDefault(require("../../Accordion"));
 const Icon_1 = require("../../Icon");
 const Sidebar_1 = require("../Sidebar");
 const styles_2 = __importDefault(require("./styles"));
-exports.SidebarItem = (_a) => {
+exports.SidebarItem = react_1.forwardRef(function SidebarItem(_a, ref) {
     var { children, icon, selected, collapsible, menu, disabled, classes, className, style, onClick } = _a, rest = __rest(_a, ["children", "icon", "selected", "collapsible", "menu", "disabled", "classes", "className", "style", "onClick"]);
     const hasIcon = Boolean(icon);
     const hasMenu = Boolean(menu);
@@ -44,7 +44,7 @@ exports.SidebarItem = (_a) => {
     const resolvedChildren = typeof children === 'string' ? (react_1.default.createElement(Typography_1.default, { className: classes.labelContent, color: 'inherit', size: 'medium', noWrap: true }, children)) : (children);
     const menuItem = (react_1.default.createElement(MenuItem_1.default
     // eslint-disable-next-line react/jsx-props-no-spreading
-    , Object.assign({}, rest, { style: style, className: classnames_1.default(classes.root, classes.noWrap, classes[variant], { [classes.selected]: !hasMenu && selected }, className), onClick: handleMenuItemClick, selected: !hasMenu && selected, disabled: disabled, variant: variant }),
+    , Object.assign({}, rest, { ref: ref, style: style, className: classnames_1.default(classes.root, classes.noWrap, classes[variant], { [classes.selected]: !hasMenu && selected }, className), onClick: handleMenuItemClick, selected: !hasMenu && selected, disabled: disabled, variant: variant }),
         react_1.default.createElement(Container_1.default, { className: classes.noWrap, inline: true, flex: true, alignItems: 'center' },
             icon,
             react_1.default.createElement(Container_1.default, { className: classnames_1.default(classes.label, classes.noWrap, {
@@ -64,7 +64,7 @@ exports.SidebarItem = (_a) => {
     return (react_1.default.createElement(react_1.Fragment, null,
         menuItem,
         menu));
-};
+});
 exports.SidebarItem.defaultProps = {
     collapsible: false,
     onClick: () => { },

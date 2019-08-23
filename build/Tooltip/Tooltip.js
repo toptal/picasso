@@ -27,43 +27,35 @@ const Tooltip_1 = __importDefault(require("@material-ui/core/Tooltip"));
 const classnames_1 = __importDefault(require("classnames"));
 const Picasso_1 = require("../Picasso");
 const styles_2 = __importDefault(require("./styles"));
-const getPopperProps = (arrow, arrowRef, container) => ({
-    container,
-    popperOptions: {
-        modifiers: {
-            arrow: {
-                enabled: arrow,
-                element: arrowRef
-            }
-        }
-    }
-});
-const getClasses = (classes, variant) => {
-    const isLight = variant === 'light';
-    return {
-        popper: isLight ? classes.arrowPopperLight : classes.arrowPopper,
-        tooltip: classnames_1.default(classes.tooltip, {
-            [classes.light]: isLight
-        })
-    };
-};
 exports.Tooltip = (_a) => {
-    var { content, children, placement, interactive, classes, className, style, arrow, open, onClose, onOpen, variant, trigger } = _a, rest = __rest(_a, ["content", "children", "placement", "interactive", "classes", "className", "style", "arrow", "open", "onClose", "onOpen", "variant", "trigger"]);
+    var { content, children, placement, interactive, classes, className, style, arrow, open, onClose, onOpen, variant } = _a, rest = __rest(_a, ["content", "children", "placement", "interactive", "classes", "className", "style", "arrow", "open", "onClose", "onOpen", "variant"]);
     const [arrowRef, setArrowRef] = react_1.useState(null);
     const container = Picasso_1.usePicassoRoot();
     const title = (react_1.default.createElement(react_1.Fragment, null,
         content,
-        arrow && (react_1.default.createElement("span", { className: classes.arrow, 
-            // @ts-ignore
-            ref: setArrowRef }))));
+        arrow && react_1.default.createElement("span", { className: classes.arrow, ref: setArrowRef })));
     return (react_1.default.createElement(Tooltip_1.default
     // eslint-disable-next-line react/jsx-props-no-spreading
-    , Object.assign({}, rest, { PopperProps: getPopperProps(arrow, arrowRef, container), classes: getClasses(classes, variant), className: className, style: style, disableHoverListener: trigger === 'click', interactive: interactive, onClose: onClose, onOpen: onOpen, open: open, placement: placement, title: title }), children));
+    , Object.assign({}, rest, { PopperProps: {
+            container,
+            popperOptions: {
+                modifiers: {
+                    arrow: {
+                        enabled: Boolean(arrowRef),
+                        element: arrowRef
+                    }
+                }
+            }
+        }, classes: {
+            popper: variant === 'light' ? classes.arrowPopperLight : classes.arrowPopper,
+            tooltip: classnames_1.default(classes.tooltip, {
+                [classes.light]: variant === 'light'
+            })
+        }, className: className, style: style, interactive: interactive, onClose: onClose, onOpen: onOpen, open: open, placement: placement, title: title }), children));
 };
 exports.Tooltip.defaultProps = {
     arrow: true,
     placement: 'top',
-    trigger: 'hover',
     variant: 'dark'
 };
 exports.default = styles_1.withStyles(styles_2.default)(exports.Tooltip);
