@@ -1,10 +1,15 @@
 import React from 'react'
-import { Checkbox } from '@toptal/picasso'
+import { Checkbox, Grid } from '@toptal/picasso'
 
 const CheckboxRequiredExample = () => (
-  <div>
-    <Checkbox label='Checkbox' required />
-  </div>
+  <Grid>
+    <Grid.Item large={3}>
+      <Checkbox
+        label='I confirm that I have legal permission from the client to feature this project.'
+        required
+      />
+    </Grid.Item>
+  </Grid>
 )
 
 export default CheckboxRequiredExample
