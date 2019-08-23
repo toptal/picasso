@@ -1,29 +1,9 @@
 /* eslint-disable react/no-multi-comp */
-import React, { ReactNode } from 'react'
-import {
-  render,
-  fireEvent,
-  cleanup,
-  RenderResult
-} from '@testing-library/react'
+import React from 'react'
+import { render, fireEvent, cleanup } from '@testing-library/react'
 
-import Picasso, { OmitInternalProps } from '../Picasso'
-import Accordion, { Props } from './Accordion'
-
-const renderAccordion = (
-  props: OmitInternalProps<Props>,
-  children: ReactNode
-) => {
-  const { content, expanded } = props
-
-  return render(
-    <Picasso loadFonts={false}>
-      <Accordion content={content} expanded={expanded}>
-        {children}
-      </Accordion>
-    </Picasso>
-  )
-}
+import Picasso from '../Picasso'
+import Accordion from './Accordion'
 
 afterEach(cleanup)
 
@@ -42,20 +22,26 @@ const Details = () => (
 )
 
 describe('default version for sections', () => {
-  let api: RenderResult
-
-  beforeEach(() => {
-    api = renderAccordion({ content: <Details /> }, <Summary />)
-  })
-
   test('should render default version', () => {
-    const { container } = api
+    const { container } = render(
+      <Picasso loadFonts={false}>
+        <Accordion content={<Details />}>
+          <Summary />
+        </Accordion>
+      </Picasso>
+    )
 
     expect(container).toMatchSnapshot()
   })
 
   test('should render expanded version after click on summary', () => {
-    const { container, getByText } = api
+    const { container, getByText } = render(
+      <Picasso loadFonts={false}>
+        <Accordion content={<Details />}>
+          <Summary />
+        </Accordion>
+      </Picasso>
+    )
     const summary = getByText(summaryHeaderText)
 
     fireEvent.click(summary)
@@ -66,24 +52,24 @@ describe('default version for sections', () => {
 
 describe('controlled version', () => {
   test('should render expanded version', () => {
-    const { container } = renderAccordion(
-      {
-        content: <Details />,
-        expanded: true
-      },
-      null
+    const { container } = render(
+      <Picasso loadFonts={false}>
+        <Accordion content={<Details />} expanded>
+          <Summary />
+        </Accordion>
+      </Picasso>
     )
 
     expect(container).toMatchSnapshot()
   })
 
   test('should render collapsed version', () => {
-    const { container } = renderAccordion(
-      {
-        content: <Details />,
-        expanded: false
-      },
-      null
+    const { container } = render(
+      <Picasso loadFonts={false}>
+        <Accordion content={<Details />} expanded={false}>
+          <Summary />
+        </Accordion>
+      </Picasso>
     )
 
     expect(container).toMatchSnapshot()

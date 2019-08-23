@@ -115,7 +115,13 @@ export const Pagination = forwardRef<HTMLDivElement, Props>(function Pagination(
 
       {pages.map((page, index) => {
         if (page === ELLIPSIS) {
-          return <PaginationEllipsis classes={classes} />
+          return (
+            <PaginationEllipsis
+              // eslint-disable-next-line react/no-array-index-key
+              key={'pagination-ellipsis' + index}
+              classes={classes}
+            />
+          )
         }
 
         return (

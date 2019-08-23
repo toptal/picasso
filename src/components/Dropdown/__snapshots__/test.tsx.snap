@@ -22,7 +22,7 @@ exports[`Dropdown default render 1`] = `
 `;
 
 exports[`Dropdown should render menu 1`] = `
-<body>
+<div>
   <div
     class="Picasso-root"
     style="overflow: hidden;"
@@ -111,11 +111,11 @@ exports[`Dropdown should render menu 1`] = `
       />
     </div>
   </div>
-</body>
+</div>
 `;
 
 exports[`Dropdown should render menu without focus 1`] = `
-<body>
+<div>
   <div
     class="Picasso-root"
     style="overflow: hidden;"
@@ -204,5 +204,5 @@ exports[`Dropdown should render menu without focus 1`] = `
       />
     </div>
   </div>
-</body>
+</div>
 `;
