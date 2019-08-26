@@ -5,7 +5,8 @@ import React, {
   useState,
   useEffect,
   KeyboardEvent,
-  forwardRef
+  forwardRef,
+  ReactNode
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import { capitalize } from '@material-ui/core/utils/helpers'
@@ -27,11 +28,12 @@ import styles from './styles'
 const DEBOUNCE_TIME = 300
 const EMPTY_VALUE = ''
 
-type Item = {
-  label?: string
+export type Item = {
   value?: string
   text?: string
 }
+
+type VariantType = 'tagSelector'
 
 /**
  * Alias for all valid HTML props for `<input>` element.
@@ -41,10 +43,10 @@ type HTMLInputProps = InputHTMLAttributes<HTMLInputElement>
 
 export interface Props
   extends StandardProps,
-    Omit<HTMLInputProps, 'onChange' | 'onSelect'> {
+    Omit<HTMLInputProps, 'onChange' | 'onSelect' | 'onKeyDown'> {
   /** Placeholder for value */
   placeholder?: string
-  /** Debounce time in ms for onChange event handler */
+  /** Debounce time in ms for onChange event handler. Set it to 0 to disable debouncing. */
   debounceTime?: number
   /** Width of the component which will apply `min-width` to the `input` */
   width?: 'full' | 'shrink' | 'auto'
@@ -59,25 +61,28 @@ export interface Props
   /** The minimum number of characters a user must type before a search is performed */
   minLength?: number
   /**  Callback invoked when item is selected */
-  onSelect?: (item: Maybe<Item>) => void
+  onSelect?: (item: Maybe<Item>, helpers: { resetInput: () => void }) => void
   /**  Callback invoked when typing value is changed */
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void
+  /**  Callback invoked when key is pressed */
+  onKeyDown?: (
+    event: KeyboardEvent<HTMLInputElement>,
+    inputValue: string | null
+  ) => void
+  /** ReactNode for labels that will be used as start InputAdornment - */
+  startAdornment?: ReactNode
+  /** Variant of `AutoComplete` */
+  variant?: VariantType
 }
 
 const isMatchingMinLength = (value: string, minLength?: number) =>
   !minLength || value.length >= minLength
 
-const getItemLabel = (item: Maybe<Item>) => {
-  if (!item) return EMPTY_VALUE
+const getItemText = (item: Maybe<Item>) =>
+  item ? item.text || EMPTY_VALUE : EMPTY_VALUE
 
-  return item.label || item.text || EMPTY_VALUE
-}
-
-const getItemValue = (item: Maybe<Item>) => {
-  if (!item) return EMPTY_VALUE
-
-  return item.value || getItemLabel(item)
-}
+const getItemValue = (item: Maybe<Item>) =>
+  item ? item.value || getItemText(item) : EMPTY_VALUE
 
 export const Autocomplete = forwardRef<HTMLInputElement, Props>(
   function Autocomplete(
@@ -87,50 +92,52 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       debounceTime,
       loading,
       minLength,
-      placeholder: initialPlaceholder,
+      placeholder,
       noOptionsText,
       options: initialOptions,
       style,
       width,
       allowAny,
-      onSelect = () => {},
+      onSelect,
+      onKeyDown: onKeyDownProp,
       value,
       onChange,
+      startAdornment,
+      variant,
       ...rest
     },
     ref
   ) {
     const [inputValue, setInputValue] = useState<string | null>(null)
     const [filter, setFilter] = useState(EMPTY_VALUE)
-    const [placeholder, setPlaceholder] = useState(initialPlaceholder)
     const [selectedItem, setSelectedItem] = useState<Maybe<Item>>(null)
     const onChangeDebounced = React.useCallback(
-      debounce(onChange!, debounceTime),
+      debounceTime === 0 ? onChange! : debounce(onChange!, debounceTime),
       [onChange, debounceTime]
     )
 
-    const selectItem = (item: Maybe<Item>) => {
-      if (item === undefined) return
-
-      setInputValue(getItemLabel(item))
-      setSelectedItem(item)
-
-      if (item !== null) {
-        setPlaceholder(getItemLabel(item))
-      } else {
-        setPlaceholder(initialPlaceholder)
+    const handleSelectItem = (item: Maybe<Item>) => {
+      if (item === undefined) {
+        return
+      }
+      const internalHelpers = {
+        resetInput: () => {
+          setInputValue(EMPTY_VALUE)
+          setSelectedItem(null)
+        }
       }
 
-      onSelect(item)
+      setInputValue(getItemText(item))
+      setSelectedItem(item)
+      onSelect!(item, internalHelpers)
     }
-    const handleStateChange = (props: StateChangeOptions<Item>) => {
-      const { selectedItem } = props
 
-      selectItem(selectedItem)
+    const handleStateChange = ({ selectedItem }: StateChangeOptions<Item>) => {
+      handleSelectItem(selectedItem)
     }
 
     const options = initialOptions!.filter(item =>
-      isSubstring(filter || EMPTY_VALUE, getItemLabel(item))
+      isSubstring(filter || EMPTY_VALUE, getItemText(item))
     )
 
     const isSelected = (item: Item, selectedItem: Item) =>
@@ -154,13 +161,13 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       if (!selectedItem && allowAny && value !== undefined) {
         setInputValue(String(value))
       } else {
-        selectItem(selectedItem)
+        handleSelectItem(selectedItem)
       }
     }, [value])
 
     return (
       <Downshift
-        itemToString={item => getItemLabel(item)}
+        itemToString={item => getItemText(item)}
         onStateChange={handleStateChange}
         onChange={handleChange}
         inputValue={inputValue}
@@ -187,7 +194,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
             (hasOptions || isTyping)
 
           const optionsMenu = (
-            <ScrollMenu>
+            <ScrollMenu selectedIndex={highlightedIndex}>
               {!hasOptions ? (
                 <Menu.Item disabled>{noOptionsText}</Menu.Item>
               ) : (
@@ -197,9 +204,9 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
                     selected={highlightedIndex === index}
                     disabled={isSelected(option, selectedItem)}
                     /* eslint-disable-next-line react/jsx-props-no-spreading */
-                    {...getItemProps({ item: option })}
+                    {...getItemProps({ item: option, index })}
                   >
-                    {getItemLabel(option)}
+                    {getItemText(option)}
                   </Menu.Item>
                 ))
               )}
@@ -208,7 +215,6 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
 
           const selectItem = (item: Maybe<Item>) => {
             downshiftSelectItem(item)
-            setPlaceholder(initialPlaceholder)
             setFilter(EMPTY_VALUE)
           }
 
@@ -224,44 +230,34 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
 
               const currentIndex = options ? options.indexOf(selectedItem) : 0
 
-              setPlaceholder(getItemLabel(selectedItem))
-              setInputValue(EMPTY_VALUE)
               setHighlightedIndex(currentIndex)
+              setInputValue(EMPTY_VALUE)
             },
             onBlur: () => {
-              if (options.length === 1) {
-                const firstOption = options[0]
-
-                selectItem(firstOption)
-              }
-
               if (!options.length && !allowAny) {
                 reset()
                 setInputValue(EMPTY_VALUE)
-                setPlaceholder(initialPlaceholder)
                 setFilter(EMPTY_VALUE)
                 return
               }
 
               if (!selectedItem) return
 
-              if (allowAny && getItemLabel(selectedItem) !== inputValue) {
-                if (inputValue !== EMPTY_VALUE) {
-                  setSelectedItem(null)
-                  setPlaceholder(initialPlaceholder)
-                }
+              if (
+                allowAny &&
+                getItemText(selectedItem) !== inputValue &&
+                inputValue !== EMPTY_VALUE
+              ) {
+                setSelectedItem(null)
               }
 
-              setInputValue(getItemLabel(selectedItem))
+              setInputValue(getItemText(selectedItem))
             },
             onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => {
               if (event.key === 'Backspace' && inputValue === EMPTY_VALUE) {
                 selectItem(null)
               }
-
-              if (rest.onKeyDown) {
-                rest.onKeyDown(event)
-              }
+              onKeyDownProp!(event, inputValue)
             },
             onChange: (event: ChangeEvent<HTMLInputElement>) => {
               const { value } = event.target
@@ -291,6 +287,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
                 /* eslint-disable-next-line react/jsx-props-no-spreading */
                 {...rest}
                 ref={ref}
+                variant={variant}
                 icon={loading ? <Loader size='small' /> : null}
                 iconPosition='end'
                 value={inputValue || EMPTY_VALUE}
@@ -298,11 +295,14 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
                 onKeyDown={onKeyDown}
                 onFocus={onFocus}
                 onClick={onFocus}
-                placeholder={placeholder}
+                placeholder={
+                  selectedItem ? getItemText(selectedItem) : placeholder
+                }
                 width={width}
                 onChange={event => {
                   onChange(event as FormEvent<HTMLInputElement>)
                 }}
+                startAdornment={startAdornment}
               />
               {/* eslint-disable-next-line react/jsx-props-no-spreading */}
               <div {...getMenuProps()}>{canOpen ? optionsMenu : null}</div>
@@ -320,6 +320,7 @@ Autocomplete.defaultProps = {
   loading: false,
   noOptionsText: 'No options',
   onChange: () => {},
+  onKeyDown: () => {},
   onSelect: () => {},
   options: [],
   width: 'auto'

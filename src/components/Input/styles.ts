@@ -13,9 +13,6 @@ export default ({ sizes: { input } }: Theme) =>
     rootMultiline: {
       height: 'auto'
     },
-    rootFullWidth: {
-      width: '100%'
-    },
     input: {
       fontSize: '0.8125em',
       padding: 0
