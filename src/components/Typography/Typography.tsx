@@ -24,7 +24,7 @@ type ColorType =
   | 'inherit'
 
 export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
-  /** Font variant inner text */
+  /** Font variant for inner text */
   variant?: VariantType
   /** Text content */
   children?: ReactNode
@@ -40,7 +40,7 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
   invert?: boolean
   /** Text color */
   color?: ColorType
-  /** Enable ellipse of text overflow */
+  /** Enable ellipsis for overflowing text */
   noWrap?: boolean
   /** Rendered HTML markup */
   as?: React.ElementType<React.HTMLAttributes<HTMLElement>>

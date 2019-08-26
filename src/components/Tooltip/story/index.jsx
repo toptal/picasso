@@ -8,20 +8,27 @@ const page = PicassoBook.createPage(
   'Overlays'
 )
 
-page.createTabChapter('Props').addComponentDocs({
-  component: Tooltip,
-  name: 'Timesheets',
-  additionalDocs: {
-    placement: {
-      type: 'enum',
-      enums: ['bottom', 'left', 'right', 'top']
-    },
-    variant: {
-      type: 'enum',
-      enums: ['light', 'dark']
+page
+  .createTabChapter('Props')
+  .addComponentDocs({
+    component: Tooltip,
+    name: 'Timesheets',
+    additionalDocs: {
+      placement: {
+        type: 'enum',
+        enums: ['bottom', 'left', 'right', 'top']
+      },
+      variant: {
+        type: 'enum',
+        enums: ['light', 'dark']
+      }
     }
-  }
-})
+  })
+  .addTextSection(
+    `
+  Note: On mobile, the tooltip is displayed when the user long-presses the element and hides after a delay of 1500ms.
+  `
+  )
 
 page
   .createChapter()

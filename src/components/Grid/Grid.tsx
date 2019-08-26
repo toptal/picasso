@@ -19,7 +19,7 @@ import styles from './styles'
 export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
   /** Grid content containing Grid.Item */
   children?: ReactNode
-  /** Defines the space between the type item components */
+  /** Defines amount of space between Grid.Item components (in px) */
   spacing?: 0 | 8 | 16 | 32 | 64 | 72 | 80
   /** Defines the orientation of the grid */
   direction?: GridDirection
