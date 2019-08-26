@@ -3,10 +3,13 @@ import React, {
   forwardRef,
   ReactNode,
   ElementType,
-  AnchorHTMLAttributes
+  ComponentType,
+  AnchorHTMLAttributes,
+  ReactElement,
+  ComponentPropsWithRef
 } from 'react'
 import MUILink from '@material-ui/core/Link'
-import { withStyles } from '@material-ui/core/styles'
+import { withStyles, StyledComponentProps } from '@material-ui/core/styles'
 import cx from 'classnames'
 
 import { StandardProps } from '../Picasso'
@@ -15,7 +18,7 @@ import styles from './styles'
 type UnderlineType = 'none' | 'hover' | 'always'
 type VariantType = 'action' | 'default'
 
-interface Props extends StandardProps, AnchorHTMLAttributes<HTMLAnchorElement> {
+type Props<T extends ElementType> = AnchorHTMLAttributes<HTMLAnchorElement> & ComponentPropsWithRef<T> & {
   /** Content of the component */
   children?: ReactNode
   /** Destination the link points to */
@@ -23,16 +26,12 @@ interface Props extends StandardProps, AnchorHTMLAttributes<HTMLAnchorElement> {
   /** Controls when the link should have an underline */
   underline?: UnderlineType
   /** Callback invoked when component is clicked */
-  onClick?: (event: MouseEvent<HTMLAnchorElement>) => void
+  onClick?: (event: React.MouseEvent<T>) => void
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
-   *
-   * Currently doesn't support `button` value because of broken typings,
-   * it's already fixed at `4.0.0-beta.2`
-   * Please, remove this comment after upgrade
    */
-  as?: ElementType
+  as?: T
 
   /** Either it's a regular link or an _action_ */
   variant?: VariantType
@@ -88,6 +87,17 @@ Link.defaultProps = {
   variant: 'default'
 }
 
-Link.displayName = 'Link'
+// Link.displayName = 'Link'
 
-export default withStyles(styles)(Link)
+function StyledLink<T extends ElementType>(props: Props<T> & StyledComponentProps) {
+  const Component = withStyles(styles)(Link)
+
+  return <Component {...props} />
+}
+
+StyledLink.displayName = 'Link'
+
+export default StyledLink
+
+// const StyledLink = withStyles(styles)(Link) as <T extends ElementType>(props: Props<T> & StyledComponentProps) => ReactElement
+// export default StyledLink

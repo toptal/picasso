@@ -1,5 +1,6 @@
 import React from 'react'
 import { render, cleanup } from '@testing-library/react'
+import { Link as RouterLink } from 'react-router-dom'
 
 import Link from '../Link'
 import Picasso from '../Picasso'
