@@ -26,7 +26,7 @@ type JustifyContentType =
 
 export type VariantType = 'red' | 'green' | 'white' | 'yellow' | 'blue'
 
-interface Props
+export interface Props
   extends StandardProps,
     HTMLAttributes<HTMLDivElement | HTMLSpanElement> {
   /** Content of Container */
