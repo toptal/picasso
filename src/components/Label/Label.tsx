@@ -73,15 +73,9 @@ export const Label = forwardRef<HTMLDivElement, Props>(function Label(
       {...htmlAttributes}
       ref={ref}
       classes={{
-        root: cx(
-          classes.root,
-          classes.icon,
-          classes.deleteIcon,
-          classes[variant!],
-          {
-            [classes.disabled]: disabled
-          }
-        )
+        root: cx(classes[variant!], {
+          [classes.disabled]: disabled
+        })
       }}
       className={className}
       style={style}
