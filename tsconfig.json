@@ -17,6 +17,8 @@
     "baseUrl": ".",
     "typeRoots": ["node_modules/@types", "@types"],
     "paths": {
+      "@toptal/picasso/*": ["src/components/*"],
+      "@toptal/picasso": ["src/components/index"],
       "*": ["@types/*"]
     }
   },
