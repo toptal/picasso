@@ -2,8 +2,6 @@ import React from 'react'
 import { Button, Link } from '@toptal/picasso'
 import { Settings16 } from '@toptal/picasso/Icon'
 
-// @ts-ignore
-
 const ButtonAugmentationExample = () => (
   <div>
     {/*
