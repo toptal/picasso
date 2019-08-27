@@ -1,3 +1,10 @@
+## [3.0.1](https://github.com/toptal/picasso/compare/v3.0.0...v3.0.1) (2019-08-27)
+
+
+### Bug Fixes
+
+* [FX-386] Export missing props to unlock styled components typing ([#627](https://github.com/toptal/picasso/issues/627)) ([83ed4ae](https://github.com/toptal/picasso/commit/83ed4ae))
+
 # [3.0.0](https://github.com/toptal/picasso/compare/v2.27.1...v3.0.0) (2019-08-23)
 
 

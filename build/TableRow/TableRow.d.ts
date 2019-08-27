@@ -1,6 +1,6 @@
 import React, { ReactNode, MouseEvent, HTMLAttributes } from 'react';
 import { StandardProps } from '../Picasso';
-interface Props extends StandardProps, HTMLAttributes<HTMLTableRowElement> {
+export interface Props extends StandardProps, HTMLAttributes<HTMLTableRowElement> {
     /** Should be valid `<tr>` children such as `Table.Cell`. */
     children: ReactNode;
     /** If true, the table row will shade on hover */

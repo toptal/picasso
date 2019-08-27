@@ -1,6 +1,6 @@
 import React, { ReactNode, HTMLAttributes } from 'react';
 import { StandardProps } from '../Picasso';
-interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
     /** List of `Label` components which you want to render inside `LabelGroup` */
     children: ReactNode;
 }

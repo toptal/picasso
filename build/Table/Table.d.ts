@@ -5,7 +5,7 @@ import TableRow from '../TableRow';
 import TableHead from '../TableHead';
 import TableFooter from '../TableFooter';
 import { StandardProps, PicassoComponentWithRef, CompoundedComponentWithRef } from '../Picasso';
-interface Props extends StandardProps, TableHTMLAttributes<HTMLTableElement> {
+export interface Props extends StandardProps, TableHTMLAttributes<HTMLTableElement> {
     /** Children components (`Table.Head`, `Table.Body`, `Table.Footer`) */
     children: ReactNode;
 }

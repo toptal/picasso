@@ -2,7 +2,7 @@ import React, { ReactElement, ReactNode, LabelHTMLAttributes } from 'react';
 import { FormControlLabelProps } from '@material-ui/core/FormControlLabel';
 import { StandardProps } from '../Picasso';
 export declare type FormControlLabelAttributesType = LabelHTMLAttributes<HTMLLabelElement> & Pick<FormControlLabelProps, 'onChange'>;
-interface Props extends StandardProps, FormControlLabelAttributesType {
+export interface Props extends StandardProps, FormControlLabelAttributesType {
     /** A control element. For instance, it can be be a Radio, a Switch or a Checkbox */
     control: ReactElement;
     /** The text to be used in an enclosing label element */

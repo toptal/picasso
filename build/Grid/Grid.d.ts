@@ -2,7 +2,7 @@ import { ReactNode, HTMLAttributes } from 'react';
 import { GridItemsAlignment, GridDirection, GridJustification, GridWrap } from '@material-ui/core/Grid';
 import GridItem from '../GridItem';
 import { StandardProps, PicassoComponentWithRef, CompoundedComponentWithRef } from '../Picasso';
-interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
+export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
     /** Grid content containing Grid.Item */
     children?: ReactNode;
     /** Defines the space between the type item components */

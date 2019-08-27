@@ -1,7 +1,7 @@
 import React, { ReactNode, HTMLAttributes } from 'react';
 import { GridSize } from '@material-ui/core/Grid';
 import { StandardProps } from '../Picasso';
-interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
+export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
     /** Content of Grid.Item */
     children?: ReactNode;
     /** Defines the number of grids the component is going to use. It's applied for all the screen sizes with the lowest priority */

@@ -1,6 +1,6 @@
 import React, { ReactNode, HTMLAttributes } from 'react';
 import { StandardProps } from '../Picasso';
-interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
+export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
     /** Content for the right side of the `Footer`  */
     rightContent?: ReactNode;
 }

@@ -4,7 +4,7 @@ import FormHint from '../FormHint';
 import FormLabel from '../FormLabel';
 import FormError from '../FormError';
 import { BaseProps, CompoundedComponentWithRef } from '../Picasso';
-interface Props extends BaseProps, FormHTMLAttributes<HTMLFormElement> {
+export interface Props extends BaseProps, FormHTMLAttributes<HTMLFormElement> {
     /** Content of Form constructed of Form elements */
     children?: ReactNode;
     /** Submit handler */

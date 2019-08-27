@@ -1,6 +1,6 @@
 import React, { ReactNode, HTMLAttributes } from 'react';
 import { StandardProps } from '../Picasso';
-interface Props extends StandardProps, HTMLAttributes<HTMLTableSectionElement> {
+export interface Props extends StandardProps, HTMLAttributes<HTMLTableSectionElement> {
     /** Zero or more Table.Row elements. */
     children: ReactNode;
 }
