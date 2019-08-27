@@ -11,18 +11,13 @@ const TooltipArrowExample = () => {
   return (
     <div style={{ textAlign: 'center' }}>
       <Container top='large' bottom='large' left='large' right='large' inline>
-        <Tooltip content='Some content...' placement='top' trigger='hover'>
+        <Tooltip content='Some content...' placement='top'>
           <Button>Hover</Button>
         </Tooltip>
       </Container>
       <ClickAwayListener onClickAway={handleTooltipClose}>
         <Container top='large' bottom='large' left='large' right='large' inline>
-          <Tooltip
-            open={open}
-            content='Some content...'
-            placement='top'
-            trigger='click'
-          >
+          <Tooltip open={open} content='Some content...' placement='top'>
             <Button onClick={handleTooltipOpen}>Click</Button>
           </Tooltip>
         </Container>
