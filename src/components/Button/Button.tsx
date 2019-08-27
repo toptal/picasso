@@ -37,7 +37,7 @@ type IconPositionType = 'left' | 'right'
 export interface Props extends StandardProps, ButtonOrAnchorProps {
   /** Show button in the active state (left mouse button down) */
   active?: boolean
-  /** Component name to render the menu item as */
+  /** The component used for the root node. Either a string to use a DOM element or a component. */
   as?: ElementType<ButtonBaseProps>
   /** Disables button */
   disabled?: boolean
