@@ -5,7 +5,7 @@ import MUIGrid, { GridSize } from '@material-ui/core/Grid'
 import styles from './styles'
 import { StandardProps } from '../Picasso'
 
-interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
+export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
   /** Content of Grid.Item */
   children?: ReactNode
   /** Defines the number of grids the component is going to use. It's applied for all the screen sizes with the lowest priority */

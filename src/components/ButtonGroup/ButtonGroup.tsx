@@ -7,7 +7,7 @@ import { StandardProps } from '../Picasso'
 import { withClasses } from '../styles'
 import styles from './styles'
 
-interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** List of `Button` components which you want to render as `ButtonGroup` */
   children?: ReactNode
 }

@@ -16,7 +16,7 @@ import {
 } from '../Picasso'
 import styles from './styles'
 
-interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
+export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
   /** Grid content containing Grid.Item */
   children?: ReactNode
   /** Defines the space between the type item components */

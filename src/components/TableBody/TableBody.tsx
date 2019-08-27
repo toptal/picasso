@@ -5,7 +5,9 @@ import MUITableBody from '@material-ui/core/TableBody'
 import { StandardProps } from '../Picasso'
 import styles from './styles'
 
-interface Props extends StandardProps, HTMLAttributes<HTMLTableSectionElement> {
+export interface Props
+  extends StandardProps,
+    HTMLAttributes<HTMLTableSectionElement> {
   /** The content of the component, normally `Table.Row` */
   children: ReactNode
 }

@@ -6,7 +6,7 @@ import { StandardProps } from '../Picasso'
 import Typography from '../Typography'
 import styles from './styles'
 
-interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** The text of the hint */
   children: ReactNode
 }

@@ -7,7 +7,9 @@ import styles from './styles'
 
 type AlignType = 'inherit' | 'left' | 'center' | 'right' | 'justify'
 
-interface Props extends StandardProps, HTMLAttributes<HTMLTableCellElement> {
+export interface Props
+  extends StandardProps,
+    HTMLAttributes<HTMLTableCellElement> {
   /** Set the text-align on the table cell content */
   align?: AlignType
   /** The table cell contents */

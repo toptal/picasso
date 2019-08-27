@@ -13,7 +13,7 @@ import styles from './styles'
 export type ListNativeProps = HTMLAttributes<HTMLUListElement> &
   Pick<MenuListProps, 'onKeyDown'>
 
-interface Props extends StandardProps, ListNativeProps {}
+export interface Props extends StandardProps, ListNativeProps {}
 
 interface StaticProps {
   Item: typeof MenuItem

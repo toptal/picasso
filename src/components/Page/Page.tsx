@@ -14,7 +14,7 @@ import {
 import { PageContextProps } from './types'
 import styles from './styles'
 
-interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Component becomes responsive with width 100% and overrides width prop */
   fullWidth?: boolean
   /** Define container width in `rem` */
