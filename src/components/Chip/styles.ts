@@ -1,4 +1,4 @@
-import { Theme, createStyles } from '@material-ui/core/styles'
+import { Theme } from '@material-ui/core/styles'
 
 import { PicassoProvider } from '../Picasso'
 
@@ -38,14 +38,3 @@ PicassoProvider.override(({ palette, sizes }: Theme) => ({
     }
   }
 }))
-
-export default () =>
-  createStyles({
-    root: {},
-    icon: {},
-    deleteIcon: {},
-    innerLabel: {
-      fontSize: '0.75em',
-      fontWeight: 600
-    }
-  })
