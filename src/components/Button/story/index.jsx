@@ -43,7 +43,7 @@ page
     'Button with text and Icon'
   )
   .addExample('Button/story/Loading.example.jsx', 'Button with loading state')
-  .addExample('Button/story/Augmentation.example.jsx', {
+  .addExample('Button/story/Augmentation.example.tsx', {
     title: 'Augmentation',
     description:
       'Example show augmentation with Picasso Link component. You can use Link component from react-router-dom or some other custom component.'
