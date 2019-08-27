@@ -14,7 +14,9 @@ import {
 } from '../Picasso'
 import styles from './styles'
 
-interface Props extends StandardProps, TableHTMLAttributes<HTMLTableElement> {
+export interface Props
+  extends StandardProps,
+    TableHTMLAttributes<HTMLTableElement> {
   /** Children components (`Table.Head`, `Table.Body`, `Table.Footer`) */
   children: ReactNode
 }

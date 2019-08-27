@@ -8,7 +8,7 @@ import styles from './styles'
 
 type VariantType = 'default' | 'white' | 'black'
 
-interface Props extends StandardProps {
+export interface Props extends StandardProps {
   /** Whether logo should be shown as TT emblem or full word mark */
   emblem?: boolean
   /** Variant of the `Logo` */

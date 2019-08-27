@@ -7,7 +7,7 @@ import FormError from '../FormError'
 import { StandardProps } from '../Picasso'
 import styles from './styles'
 
-interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** The text of the hint */
   hint?: string
   /** The text of the error */

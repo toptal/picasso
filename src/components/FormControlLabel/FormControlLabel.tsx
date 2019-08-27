@@ -17,7 +17,7 @@ export type FormControlLabelAttributesType = LabelHTMLAttributes<
 > &
   Pick<FormControlLabelProps, 'onChange'>
 
-interface Props extends StandardProps, FormControlLabelAttributesType {
+export interface Props extends StandardProps, FormControlLabelAttributesType {
   /** A control element. For instance, it can be be a Radio, a Switch or a Checkbox */
   control: ReactElement
   /** The text to be used in an enclosing label element */

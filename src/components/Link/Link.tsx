@@ -15,7 +15,9 @@ import styles from './styles'
 type UnderlineType = 'none' | 'hover' | 'always'
 type VariantType = 'action' | 'default'
 
-interface Props extends StandardProps, AnchorHTMLAttributes<HTMLAnchorElement> {
+export interface Props
+  extends StandardProps,
+    AnchorHTMLAttributes<HTMLAnchorElement> {
   /** Content of the component */
   children?: ReactNode
   /** Destination the link points to */

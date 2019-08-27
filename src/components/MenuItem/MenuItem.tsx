@@ -19,7 +19,7 @@ export type MenuItemAttributes = LiHTMLAttributes<HTMLLIElement> &
   HTMLAttributes<HTMLDivElement> &
   ButtonOrAnchorProps
 
-interface Props extends StandardProps, MenuItemAttributes {
+export interface Props extends StandardProps, MenuItemAttributes {
   /** Component name to render the menu item as */
   as?: ElementType<MenuItemProps>
   /** Whether to render disabled item */

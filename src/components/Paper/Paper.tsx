@@ -5,7 +5,7 @@ import MUIPaper from '@material-ui/core/Paper'
 import { StandardProps } from '../Picasso'
 import styles from './styles'
 
-interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Content of component */
   children: ReactNode
 }
