@@ -73,7 +73,7 @@ export const Label = forwardRef<HTMLDivElement, Props>(function Label(
       {...htmlAttributes}
       ref={ref}
       classes={{
-        root: cx(classes[variant!], {
+        root: cx(classes.root, classes[variant!], {
           [classes.disabled]: disabled
         })
       }}

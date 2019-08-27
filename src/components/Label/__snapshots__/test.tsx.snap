@@ -6,7 +6,7 @@ exports[`dismissable label should render dismissable label 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiChip-root Label-root Label-icon Label-deleteIcon MuiChip-deletable"
+      class="MuiChip-root Label-root MuiChip-deletable"
       role="button"
       tabindex="0"
     >
@@ -70,7 +70,7 @@ exports[`renders \`grey\` variant 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiChip-root Label-root Label-icon Label-deleteIcon"
+      class="MuiChip-root Label-root"
     >
       <span
         class="MuiChip-label"
@@ -92,7 +92,7 @@ exports[`renders \`white\` variant 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiChip-root Label-root Label-icon Label-deleteIcon Label-white"
+      class="MuiChip-root Label-root Label-white"
     >
       <span
         class="MuiChip-label"
