@@ -1,7 +1,13 @@
-import React, { ReactNode, ReactElement, MouseEvent, forwardRef } from 'react'
+import React, {
+  ReactNode,
+  ReactElement,
+  MouseEvent,
+  forwardRef,
+  ElementType
+} from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
-import ButtonBase from '@material-ui/core/ButtonBase'
+import ButtonBase, { ButtonBaseProps } from '@material-ui/core/ButtonBase'
 
 import Loader from '../Loader'
 import Container from '../Container'
@@ -31,6 +37,8 @@ type IconPositionType = 'left' | 'right'
 export interface Props extends StandardProps, ButtonOrAnchorProps {
   /** Show button in the active state (left mouse button down) */
   active?: boolean
+  /** Component name to render the menu item as */
+  as?: ElementType<ButtonBaseProps>
   /** Disables button */
   disabled?: boolean
   /** Content of Button component */
@@ -94,6 +102,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     title,
     value,
     type,
+    as,
     ...rest
   },
   ref
@@ -163,6 +172,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
       title={title}
       value={value}
       type={type}
+      component={as!}
     >
       <Container
         as='span'
@@ -184,6 +194,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
 
 Button.defaultProps = {
   active: false,
+  as: 'button',
   children: null,
   circular: false,
   disabled: false,
