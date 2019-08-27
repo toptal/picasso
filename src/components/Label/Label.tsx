@@ -66,7 +66,6 @@ export const Label = forwardRef<HTMLDivElement, Props>(function Label(
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { color, ...htmlAttributes } = rest
-  const { innerLabel, ...restClasses } = classes
 
   return (
     <Chip
@@ -74,14 +73,20 @@ export const Label = forwardRef<HTMLDivElement, Props>(function Label(
       {...htmlAttributes}
       ref={ref}
       classes={{
-        root: cx(restClasses, classes[variant!], {
-          [classes.disabled]: disabled
-        })
+        root: cx(
+          classes.root,
+          classes.icon,
+          classes.deleteIcon,
+          classes[variant!],
+          {
+            [classes.disabled]: disabled
+          }
+        )
       }}
       className={className}
       style={style}
       icon={icon}
-      label={<span className={innerLabel}>{children}</span>}
+      label={<span className={classes.innerLabel}>{children}</span>}
       deleteIcon={
         <span aria-label='delete icon' role='button'>
           <CloseMinor16 />

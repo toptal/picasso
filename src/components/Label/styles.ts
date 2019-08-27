@@ -14,9 +14,6 @@ export default ({ palette }: Theme) =>
       background: 'none',
       color: palette.common.white
     },
-    deleteIconDisabled: {
-      cursor: 'default'
-    },
     innerLabel: {
       fontSize: '0.75em',
       fontWeight: 600
