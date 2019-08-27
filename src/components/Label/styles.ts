@@ -8,9 +8,12 @@ export default ({ palette }: Theme) =>
       color: palette.grey.main,
       pointerEvents: 'none'
     },
-
     white: {
       background: 'none',
       color: palette.common.white
+    },
+    innerLabel: {
+      fontSize: '0.75em',
+      fontWeight: 600
     }
   })
