@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/toptal/picasso/compare/v3.0.1...v3.1.0) (2019-08-27)
+
+
+### Features
+
+* **Button:** add augmentation with as prop ([#630](https://github.com/toptal/picasso/issues/630)) ([fb3682e](https://github.com/toptal/picasso/commit/fb3682e))
+
 ## [3.0.1](https://github.com/toptal/picasso/compare/v3.0.0...v3.0.1) (2019-08-27)
 
 

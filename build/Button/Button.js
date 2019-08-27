@@ -35,7 +35,7 @@ const getVariantType = (variant) => {
     return type;
 };
 exports.Button = react_1.forwardRef(function Button(_a, ref) {
-    var { icon, iconPosition, loading, children, classes, className, style, fullWidth, variant, size, focused, hovered, disabled, active, onClick, circular, title, value, type } = _a, rest = __rest(_a, ["icon", "iconPosition", "loading", "children", "classes", "className", "style", "fullWidth", "variant", "size", "focused", "hovered", "disabled", "active", "onClick", "circular", "title", "value", "type"]);
+    var { icon, iconPosition, loading, children, classes, className, style, fullWidth, variant, size, focused, hovered, disabled, active, onClick, circular, title, value, type, as } = _a, rest = __rest(_a, ["icon", "iconPosition", "loading", "children", "classes", "className", "style", "fullWidth", "variant", "size", "focused", "hovered", "disabled", "active", "onClick", "circular", "title", "value", "type", "as"]);
     const { icon: iconClass, iconLeft: iconLeftClass, iconRight: iconRightClass, iconSmall: iconSmallClass, root: rootClass, hidden: hiddenClass, loader: loaderClass, content: contentClass } = classes;
     let finalChildren = [children];
     if (icon) {
@@ -71,12 +71,13 @@ exports.Button = react_1.forwardRef(function Button(_a, ref) {
     // eslint-disable-next-line react/jsx-props-no-spreading
     , Object.assign({}, rest, { ref: ref, classes: {
             root: rootClassName
-        }, onClick: onClick, className: className, style: style, disabled: disabled, title: title, value: value, type: type }),
+        }, onClick: onClick, className: className, style: style, disabled: disabled, title: title, value: value, type: type, component: as }),
         react_1.default.createElement(Container_1.default, { as: 'span', inline: true, flex: true, direction: 'row', alignItems: 'center', className: classnames_1.default({ [hiddenClass]: loading }, contentClass) }, finalChildren),
         loading && (react_1.default.createElement(Loader_1.default, { variant: 'inherit', className: loaderClass, inline: true, size: 'small' }))));
 });
 exports.Button.defaultProps = {
     active: false,
+    as: 'button',
     children: null,
     circular: false,
     disabled: false,
