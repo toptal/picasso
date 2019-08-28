@@ -11,6 +11,10 @@ exports.default = ({ palette }) => styles_1.createStyles({
     white: {
         background: 'none',
         color: palette.common.white
+    },
+    innerLabel: {
+        fontSize: '0.75em',
+        fontWeight: 600
     }
 });
 //# sourceMappingURL=styles.js.map

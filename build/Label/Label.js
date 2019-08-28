@@ -24,21 +24,31 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importStar(require("react"));
 const styles_1 = require("@material-ui/core/styles");
 const classnames_1 = __importDefault(require("classnames"));
-const Icon_1 = require("../Icon");
 const Chip_1 = __importDefault(require("../Chip"));
+const Icon_1 = require("../Icon");
 const LabelGroup_1 = __importDefault(require("../LabelGroup"));
 const styles_2 = __importDefault(require("./styles"));
 // eslint-disable-next-line react/display-name
 exports.Label = react_1.forwardRef(function Label(_a, ref) {
     var { children, classes, style, className, icon, disabled, onDelete, variant } = _a, rest = __rest(_a, ["children", "classes", "style", "className", "icon", "disabled", "onDelete", "variant"]);
+    const handleDelete = () => {
+        if (disabled) {
+            return;
+        }
+        if (onDelete) {
+            onDelete();
+        }
+    };
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { color } = rest, htmlAttributes = __rest(rest, ["color"]);
     return (react_1.default.createElement(Chip_1.default
     // eslint-disable-next-line react/jsx-props-no-spreading
-    , Object.assign({}, rest, { ref: ref, classes: {
-            root: classnames_1.default(classes[variant], {
+    , Object.assign({}, htmlAttributes, { ref: ref, classes: {
+            root: classnames_1.default(classes.root, classes[variant], {
                 [classes.disabled]: disabled
             })
-        }, className: className, style: style, deleteIcon: react_1.default.createElement("span", { "aria-label": 'delete icon', role: 'button' },
-            react_1.default.createElement(Icon_1.CloseMinor16, null)), onDelete: onDelete, label: children, icon: icon })));
+        }, className: className, style: style, icon: icon, label: react_1.default.createElement("span", { className: classes.innerLabel }, children), deleteIcon: react_1.default.createElement("span", { "aria-label": 'delete icon', role: 'button' },
+            react_1.default.createElement(Icon_1.CloseMinor16, null)), onDelete: onDelete ? handleDelete : undefined })));
 });
 exports.Label.defaultProps = {
     children: '',

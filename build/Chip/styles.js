@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const styles_1 = require("@material-ui/core/styles");
 const Picasso_1 = require("../Picasso");
 Picasso_1.PicassoProvider.override(({ palette, sizes }) => ({
     MuiChip: {
@@ -37,13 +36,4 @@ Picasso_1.PicassoProvider.override(({ palette, sizes }) => ({
         }
     }
 }));
-exports.default = () => styles_1.createStyles({
-    root: {},
-    icon: {},
-    deleteIcon: {},
-    innerLabel: {
-        fontSize: '0.75em',
-        fontWeight: 600
-    }
-});
 //# sourceMappingURL=styles.js.map

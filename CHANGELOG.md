@@ -1,3 +1,10 @@
+## [3.1.1](https://github.com/toptal/picasso/compare/v3.1.0...v3.1.1) (2019-08-28)
+
+
+### Bug Fixes
+
+* [FX-391] Fix loading fonts multiple times if many Picasso roots ([#633](https://github.com/toptal/picasso/issues/633)) ([c687fc3](https://github.com/toptal/picasso/commit/c687fc3))
+
 # [3.1.0](https://github.com/toptal/picasso/compare/v3.0.1...v3.1.0) (2019-08-27)
 
 
