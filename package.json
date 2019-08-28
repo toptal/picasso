@@ -9,7 +9,7 @@
     "test:watch": "jest --watchAll",
     "test:visual": "./bin/run-in-docker ./bin/test-visual",
     "lint": "davinci syntax lint code .",
-    "storybook": "start-storybook -p 9001 -s ./.storybook/public -c .storybook",
+    "start": "start-storybook -p 9001 -s ./.storybook/public -c .storybook",
     "storybook:cache": "CACHE=1 start-storybook -p 9001 -s ./.storybook/public -c .storybook",
     "build:storybook": "build-storybook -s ./.storybook/public -c .storybook -o build/storybook",
     "release": "./bin/release",
