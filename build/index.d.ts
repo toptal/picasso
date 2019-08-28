@@ -36,6 +36,7 @@ export { default as Stepper } from './Stepper';
 export { default as Table } from './Table';
 export { default as TableFooter } from './TableFooter';
 export { default as Tabs } from './Tabs';
+export { default as TagSelector } from './lab/TagSelector';
 export { default as TextField } from './TextField';
 export { default as Tooltip } from './Tooltip';
 export { default as Typography } from './Typography';

@@ -1,3 +1,10 @@
+# [3.2.0](https://github.com/toptal/picasso/compare/v3.1.1...v3.2.0) (2019-08-28)
+
+
+### Features
+
+* add tagselector component ([#617](https://github.com/toptal/picasso/issues/617)) ([378bc19](https://github.com/toptal/picasso/commit/378bc19))
+
 ## [3.1.1](https://github.com/toptal/picasso/compare/v3.1.0...v3.1.1) (2019-08-28)
 
 

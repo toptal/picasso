@@ -12,9 +12,6 @@ exports.default = ({ sizes: { input } }) => styles_1.createStyles({
     rootMultiline: {
         height: 'auto'
     },
-    rootFullWidth: {
-        width: '100%'
-    },
     input: {
         fontSize: '0.8125em',
         padding: 0

@@ -79,6 +79,8 @@ var TableFooter_1 = require("./TableFooter");
 exports.TableFooter = TableFooter_1.default;
 var Tabs_1 = require("./Tabs");
 exports.Tabs = Tabs_1.default;
+var TagSelector_1 = require("./lab/TagSelector");
+exports.TagSelector = TagSelector_1.default;
 // TextField component is deprecated and
 // have to be removed in v4 of Picasso
 var TextField_1 = require("./TextField");
