@@ -59,7 +59,8 @@ module.exports = ({ config }) => {
   config.resolve.alias = {
     '~': path.resolve(__dirname, '..'),
     '@': path.resolve(__dirname, '../src'),
-    '@components': path.resolve(__dirname, '../src/components')
+    '@components': path.resolve(__dirname, '../src/components'),
+    '@toptal/picasso': path.resolve(__dirname, '../src/components')
   }
 
   config.plugins.push(
