@@ -3,15 +3,20 @@ import React, {
   ChangeEvent,
   Fragment,
   forwardRef,
-  useRef
+  useRef,
+  Ref
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
 import { Maybe, useCombinedRefs } from '../../utils'
 import { StandardProps } from '../../Picasso'
 import Label from '../../Label'
+import { Props as InputProps } from '../../Input'
+import OutlinedInput from '../../OutlinedInput'
 import Autocomplete, { Item as AutoCompleteItem } from '../../Autocomplete'
 import styles from './styles'
+import Loader from '../../Loader'
+import InputAdornment from '../../InputAdornment'
 
 type Item = {
   value: string
@@ -41,6 +46,7 @@ export interface Props extends StandardProps {
 export const TagSelector = forwardRef<HTMLInputElement, Props>(
   function TagSelector(
     {
+      classes,
       loading,
       placeholder,
       options,
@@ -182,6 +188,27 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       </Fragment>
     )
 
+    const loaderAdornment = loading ? (
+      <InputAdornment position='end' className={classes.loaderAdornment}>
+        {<Loader size='small' />}
+      </InputAdornment>
+    ) : null
+
+    const renderTagSelectorInput = (
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      { iconPosition, ...outlinedInputProps }: InputProps,
+      ref: Ref<HTMLInputElement>
+    ) => (
+      <OutlinedInput
+        ref={ref}
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...outlinedInputProps}
+        startAdornment={labels}
+        endAdornment={loaderAdornment}
+        className={classes.inputBase}
+      />
+    )
+
     return (
       <Autocomplete
         ref={inputRef}
@@ -189,11 +216,10 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         options={autocompleteOptions}
         onSelect={handleSelect}
         onKeyDown={handleKeyDown}
-        startAdornment={labels}
         onChange={handleInputChange}
         debounceTime={0}
-        variant='tagSelector'
         loading={loading}
+        renderInput={renderTagSelectorInput}
       />
     )
   }

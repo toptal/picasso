@@ -14,8 +14,6 @@ import styles from './styles'
 
 type IconPosition = 'start' | 'end'
 
-type VariantType = 'tagSelector'
-
 export interface Props
   extends StandardProps,
     InputHTMLAttributes<HTMLInputElement> {
@@ -59,8 +57,6 @@ export interface Props
       HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
     >
   ) => void
-  /** Variant of `Input` */
-  variant?: VariantType
 }
 
 export const Input = forwardRef<HTMLInputElement, Props>(function Input(
@@ -87,7 +83,6 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
     onChange,
     startAdornment,
     endAdornment,
-    variant,
     ...rest
   },
   ref
@@ -108,13 +103,11 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
       className={className}
       style={style}
       classes={{
-        root: cx({
-          [classes.root]: variant !== 'tagSelector',
+        root: cx(classes.root, {
           [classes.rootMultiline]: multiline
         }),
-        input: cx({ [classes.input]: variant !== 'tagSelector' })
+        input: classes.input
       }}
-      variant={variant}
       id={id}
       name={name}
       value={value}
