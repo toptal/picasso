@@ -1,7 +1,9 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
 import { PicassoProvider } from '../Picasso'
-import { alpha } from '../styles'
+import { alpha, rem } from '../styles'
+
+const TAG_SELECTOR_GUTTER_SIZE = rem('6px')
 
 PicassoProvider.override(({ palette, sizes: { input } }: Theme) => ({
   MuiOutlinedInput: {
@@ -74,7 +76,7 @@ PicassoProvider.override(({ palette, sizes: { input } }: Theme) => ({
   }
 }))
 
-export default () =>
+export default ({ sizes: { input } }: Theme) =>
   createStyles({
     root: {},
     rootFull: {
@@ -84,6 +86,29 @@ export default () =>
       width: 'auto'
     },
     rootAuto: {},
+    rootVariantTagSelector: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      height: 'auto',
+      padding: TAG_SELECTOR_GUTTER_SIZE,
+      marginRight: `-${TAG_SELECTOR_GUTTER_SIZE}`,
+      marginBottom: `-${TAG_SELECTOR_GUTTER_SIZE}`,
+      '& > *': {
+        marginRight: TAG_SELECTOR_GUTTER_SIZE,
+        marginBottom: TAG_SELECTOR_GUTTER_SIZE
+      },
+      // Loading indicator
+      '& > div:last-child': {
+        marginRight: input.padding
+      }
+    },
     input: {},
+    inputVariantTagSelector: {
+      width: 'auto',
+      height: rem('24px'),
+      paddingLeft: rem('4px'),
+      paddingRight: '0',
+      fontSize: '0.8125em'
+    },
     inputMultiline: {}
   })

@@ -21,6 +21,8 @@ type ValueType =
   | boolean
   | object
 
+type VariantType = 'input' | 'tagSelector'
+
 export interface Props
   extends StandardProps,
     Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'defaultValue'> {
@@ -53,6 +55,8 @@ export interface Props
   startAdornment?: ReactNode
   endAdornment?: ReactNode
   onChange?: ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>
+  /** Variant of `OutlinedInput` */
+  variant?: VariantType
 }
 
 const OutlinedInput = forwardRef<HTMLInputElement, Props>(
@@ -79,6 +83,7 @@ const OutlinedInput = forwardRef<HTMLInputElement, Props>(
       startAdornment,
       endAdornment,
       onChange,
+      variant,
       ...rest
     },
     ref
@@ -88,8 +93,14 @@ const OutlinedInput = forwardRef<HTMLInputElement, Props>(
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         classes={{
-          root: cx(classes.root, classes[`root${capitalize(width!)}`]),
-          input: classes.input,
+          root: cx(classes.root, classes[`root${capitalize(width!)}`], {
+            [classes[`rootVariant${capitalize(String(variant))}`]]:
+              variant !== undefined
+          }),
+          input: cx(classes.input, {
+            [classes[`inputVariant${capitalize(String(variant))}`]]:
+              variant !== undefined
+          }),
           inputMultiline: classes.inputMultiline
         }}
         className={className}

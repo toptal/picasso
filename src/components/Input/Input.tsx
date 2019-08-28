@@ -14,6 +14,8 @@ import styles from './styles'
 
 type IconPosition = 'start' | 'end'
 
+type VariantType = 'tagSelector'
+
 export interface Props
   extends StandardProps,
     InputHTMLAttributes<HTMLInputElement> {
@@ -47,12 +49,18 @@ export interface Props
   rowsMax?: string | number
   /** Type attribute of the Input element. It should be a valid HTML5 input type */
   type?: string
+  /** Adds element at the start of the input - can't be used in combination with `iconPosition: start` */
+  startAdornment?: ReactNode
+  /** Adds element at the end of the input - can't be used in combination with `iconPosition: end` */
+  endAdornment?: ReactNode
   /**  Callback invoked when `Input` changes its state */
   onChange?: (
     event: ChangeEvent<
       HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
     >
   ) => void
+  /** Variant of `Input` */
+  variant?: VariantType
 }
 
 export const Input = forwardRef<HTMLInputElement, Props>(function Input(
@@ -77,6 +85,9 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
     rowsMax,
     type,
     onChange,
+    startAdornment,
+    endAdornment,
+    variant,
     ...rest
   },
   ref
@@ -86,6 +97,10 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
       {icon}
     </InputAdornment>
   )
+  const usedStartAdornment =
+    icon && iconPosition === 'start' ? IconAdornment : startAdornment
+  const usedEndAdornment =
+    icon && iconPosition === 'end' ? IconAdornment : endAdornment
 
   return (
     <OutlinedInput
@@ -93,11 +108,13 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
       className={className}
       style={style}
       classes={{
-        root: cx(classes.root, {
+        root: cx({
+          [classes.root]: variant !== 'tagSelector',
           [classes.rootMultiline]: multiline
         }),
-        input: classes.input
+        input: cx({ [classes.input]: variant !== 'tagSelector' })
       }}
+      variant={variant}
       id={id}
       name={name}
       value={value}
@@ -113,8 +130,8 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
       width={width}
       // html attributes
       inputProps={rest}
-      endAdornment={iconPosition === 'end' && IconAdornment}
-      startAdornment={iconPosition === 'start' && IconAdornment}
+      endAdornment={usedEndAdornment}
+      startAdornment={usedStartAdornment}
       onChange={onChange}
     >
       {children}

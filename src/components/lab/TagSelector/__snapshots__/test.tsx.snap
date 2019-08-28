@@ -1,0 +1,621 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TagSelector available options when start typing 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      aria-expanded="true"
+      aria-haspopup="listbox"
+      aria-labelledby="downshift-1-label"
+      aria-owns="downshift-1-menu"
+      class="Autocomplete-root Autocomplete-rootAuto"
+      role="combobox"
+    >
+      <div
+        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootVariantTagSelector MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+      >
+        <fieldset
+          aria-hidden="true"
+          class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+          style="padding-left: 8px;"
+        >
+          <legend
+            class="PrivateNotchedOutline-legend"
+            style="width: 0.01px;"
+          >
+            <span>
+              ​
+            </span>
+          </legend>
+        </fieldset>
+        <input
+          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputVariantTagSelector MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+          placeholder="Please select..."
+          style="width: auto;"
+          type="text"
+          value="Al"
+        />
+      </div>
+      <div
+        aria-labelledby="downshift-1-label"
+        id="downshift-1-menu"
+        role="listbox"
+      >
+        <ul
+          class="MuiList-root ScrollMenu-menu"
+          role="menu"
+          tabindex="-1"
+        >
+          <div
+            class="ScrollMenu-scrollView"
+          >
+            <li
+              aria-disabled="false"
+              aria-selected="false"
+              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+              id="downshift-1-item-0"
+              role="option"
+              tabindex="-1"
+            >
+              <p
+                class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+              >
+                Aland Islands
+              </p>
+            </li>
+            <li
+              aria-disabled="false"
+              aria-selected="false"
+              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+              id="downshift-1-item-1"
+              role="option"
+              tabindex="-1"
+            >
+              <p
+                class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+              >
+                Albania
+              </p>
+            </li>
+            <li
+              aria-disabled="false"
+              aria-selected="false"
+              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+              id="downshift-1-item-2"
+              role="option"
+              tabindex="-1"
+            >
+              <p
+                class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+              >
+                Algeria
+              </p>
+            </li>
+            <li
+              aria-disabled="false"
+              aria-selected="false"
+              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+              id="downshift-1-item-3"
+              role="option"
+              tabindex="-1"
+            >
+              <p
+                class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+              >
+                Add new option: Al
+              </p>
+            </li>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TagSelector default render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      aria-expanded="false"
+      aria-haspopup="listbox"
+      aria-labelledby="downshift-0-label"
+      class="Autocomplete-root Autocomplete-rootAuto"
+      role="combobox"
+    >
+      <div
+        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootVariantTagSelector MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+      >
+        <fieldset
+          aria-hidden="true"
+          class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+          style="padding-left: 8px;"
+        >
+          <legend
+            class="PrivateNotchedOutline-legend"
+            style="width: 0.01px;"
+          >
+            <span>
+              ​
+            </span>
+          </legend>
+        </fieldset>
+        <input
+          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputVariantTagSelector MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+          placeholder="Please select..."
+          style="width: auto;"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        aria-labelledby="downshift-0-label"
+        id="downshift-0-menu"
+        role="listbox"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TagSelector newly added option selected 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      aria-expanded="false"
+      aria-haspopup="listbox"
+      aria-labelledby="downshift-4-label"
+      class="Autocomplete-root Autocomplete-rootAuto"
+      role="combobox"
+    >
+      <div
+        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootVariantTagSelector MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+      >
+        <fieldset
+          aria-hidden="true"
+          class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+          style="padding-left: 8px;"
+        >
+          <legend
+            class="PrivateNotchedOutline-legend"
+            style="width: 0.01px;"
+          >
+            <span>
+              ​
+            </span>
+          </legend>
+        </fieldset>
+        <div
+          class="MuiChip-root Label-root MuiChip-deletable"
+          role="button"
+          tabindex="0"
+        >
+          <span
+            class="MuiChip-label"
+          >
+            <span
+              class="Label-innerLabel"
+            >
+              xxxx
+            </span>
+          </span>
+          <span
+            aria-label="delete icon"
+            class="MuiChip-deleteIcon"
+            role="button"
+          >
+            <svg
+              class="SvgCloseMinor16-root"
+              style="min-width: 16px; min-height: 16px;"
+              viewBox="0 0 16 16"
+            >
+              <defs>
+                <path
+                  d="M8.707 8l3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5z"
+                  id="closeMinor16_svg__a"
+                />
+              </defs>
+              <g
+                fill-rule="evenodd"
+              >
+                <mask
+                  id="closeMinor16_svg__b"
+                >
+                  <use
+                    xlink:href="#closeMinor16_svg__a"
+                  />
+                </mask>
+                <use
+                  fill-rule="nonzero"
+                  xlink:href="#closeMinor16_svg__a"
+                />
+                <g
+                  mask="url(#closeMinor16_svg__b)"
+                >
+                  <path
+                    d="M0 0h16v16H0z"
+                  />
+                </g>
+              </g>
+            </svg>
+          </span>
+        </div>
+        <input
+          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputVariantTagSelector MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+          style="width: auto;"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        aria-labelledby="downshift-4-label"
+        id="downshift-4-menu"
+        role="listbox"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TagSelector options selected and then unselected 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      aria-expanded="false"
+      aria-haspopup="listbox"
+      aria-labelledby="downshift-5-label"
+      class="Autocomplete-root Autocomplete-rootAuto"
+      role="combobox"
+    >
+      <div
+        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootVariantTagSelector MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+      >
+        <fieldset
+          aria-hidden="true"
+          class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+          style="padding-left: 8px;"
+        >
+          <legend
+            class="PrivateNotchedOutline-legend"
+            style="width: 0.01px;"
+          >
+            <span>
+              ​
+            </span>
+          </legend>
+        </fieldset>
+        <div
+          class="MuiChip-root Label-root MuiChip-deletable"
+          role="button"
+          tabindex="0"
+        >
+          <span
+            class="MuiChip-label"
+          >
+            <span
+              class="Label-innerLabel"
+            >
+              Afghanistan
+            </span>
+          </span>
+          <span
+            aria-label="delete icon"
+            class="MuiChip-deleteIcon"
+            role="button"
+          >
+            <svg
+              class="SvgCloseMinor16-root"
+              style="min-width: 16px; min-height: 16px;"
+              viewBox="0 0 16 16"
+            >
+              <defs>
+                <path
+                  d="M8.707 8l3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5z"
+                  id="closeMinor16_svg__a"
+                />
+              </defs>
+              <g
+                fill-rule="evenodd"
+              >
+                <mask
+                  id="closeMinor16_svg__b"
+                >
+                  <use
+                    xlink:href="#closeMinor16_svg__a"
+                  />
+                </mask>
+                <use
+                  fill-rule="nonzero"
+                  xlink:href="#closeMinor16_svg__a"
+                />
+                <g
+                  mask="url(#closeMinor16_svg__b)"
+                >
+                  <path
+                    d="M0 0h16v16H0z"
+                  />
+                </g>
+              </g>
+            </svg>
+          </span>
+        </div>
+        <div
+          class="MuiChip-root Label-root MuiChip-deletable"
+          role="button"
+          tabindex="0"
+        >
+          <span
+            class="MuiChip-label"
+          >
+            <span
+              class="Label-innerLabel"
+            >
+              Albania
+            </span>
+          </span>
+          <span
+            aria-label="delete icon"
+            class="MuiChip-deleteIcon"
+            role="button"
+          >
+            <svg
+              class="SvgCloseMinor16-root"
+              style="min-width: 16px; min-height: 16px;"
+              viewBox="0 0 16 16"
+            >
+              <defs>
+                <path
+                  d="M8.707 8l3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5z"
+                  id="closeMinor16_svg__a"
+                />
+              </defs>
+              <g
+                fill-rule="evenodd"
+              >
+                <mask
+                  id="closeMinor16_svg__b"
+                >
+                  <use
+                    xlink:href="#closeMinor16_svg__a"
+                  />
+                </mask>
+                <use
+                  fill-rule="nonzero"
+                  xlink:href="#closeMinor16_svg__a"
+                />
+                <g
+                  mask="url(#closeMinor16_svg__b)"
+                >
+                  <path
+                    d="M0 0h16v16H0z"
+                  />
+                </g>
+              </g>
+            </svg>
+          </span>
+        </div>
+        <input
+          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputVariantTagSelector MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+          style="width: auto;"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        aria-labelledby="downshift-5-label"
+        id="downshift-5-menu"
+        role="listbox"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TagSelector preselected value 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      aria-expanded="false"
+      aria-haspopup="listbox"
+      aria-labelledby="downshift-2-label"
+      class="Autocomplete-root Autocomplete-rootAuto"
+      role="combobox"
+    >
+      <div
+        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootVariantTagSelector MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+      >
+        <fieldset
+          aria-hidden="true"
+          class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+          style="padding-left: 8px;"
+        >
+          <legend
+            class="PrivateNotchedOutline-legend"
+            style="width: 0.01px;"
+          >
+            <span>
+              ​
+            </span>
+          </legend>
+        </fieldset>
+        <div
+          class="MuiChip-root Label-root MuiChip-deletable"
+          role="button"
+          tabindex="0"
+        >
+          <span
+            class="MuiChip-label"
+          >
+            <span
+              class="Label-innerLabel"
+            >
+              Afghanistan
+            </span>
+          </span>
+          <span
+            aria-label="delete icon"
+            class="MuiChip-deleteIcon"
+            role="button"
+          >
+            <svg
+              class="SvgCloseMinor16-root"
+              style="min-width: 16px; min-height: 16px;"
+              viewBox="0 0 16 16"
+            >
+              <defs>
+                <path
+                  d="M8.707 8l3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5z"
+                  id="closeMinor16_svg__a"
+                />
+              </defs>
+              <g
+                fill-rule="evenodd"
+              >
+                <mask
+                  id="closeMinor16_svg__b"
+                >
+                  <use
+                    xlink:href="#closeMinor16_svg__a"
+                  />
+                </mask>
+                <use
+                  fill-rule="nonzero"
+                  xlink:href="#closeMinor16_svg__a"
+                />
+                <g
+                  mask="url(#closeMinor16_svg__b)"
+                >
+                  <path
+                    d="M0 0h16v16H0z"
+                  />
+                </g>
+              </g>
+            </svg>
+          </span>
+        </div>
+        <input
+          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputVariantTagSelector MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        aria-labelledby="downshift-2-label"
+        id="downshift-2-menu"
+        role="listbox"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TagSelector selected option 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      aria-expanded="false"
+      aria-haspopup="listbox"
+      aria-labelledby="downshift-3-label"
+      class="Autocomplete-root Autocomplete-rootAuto"
+      role="combobox"
+    >
+      <div
+        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootVariantTagSelector MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+      >
+        <fieldset
+          aria-hidden="true"
+          class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+          style="padding-left: 8px;"
+        >
+          <legend
+            class="PrivateNotchedOutline-legend"
+            style="width: 0.01px;"
+          >
+            <span>
+              ​
+            </span>
+          </legend>
+        </fieldset>
+        <div
+          class="MuiChip-root Label-root MuiChip-deletable"
+          role="button"
+          tabindex="0"
+        >
+          <span
+            class="MuiChip-label"
+          >
+            <span
+              class="Label-innerLabel"
+            >
+              Afghanistan
+            </span>
+          </span>
+          <span
+            aria-label="delete icon"
+            class="MuiChip-deleteIcon"
+            role="button"
+          >
+            <svg
+              class="SvgCloseMinor16-root"
+              style="min-width: 16px; min-height: 16px;"
+              viewBox="0 0 16 16"
+            >
+              <defs>
+                <path
+                  d="M8.707 8l3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5z"
+                  id="closeMinor16_svg__a"
+                />
+              </defs>
+              <g
+                fill-rule="evenodd"
+              >
+                <mask
+                  id="closeMinor16_svg__b"
+                >
+                  <use
+                    xlink:href="#closeMinor16_svg__a"
+                  />
+                </mask>
+                <use
+                  fill-rule="nonzero"
+                  xlink:href="#closeMinor16_svg__a"
+                />
+                <g
+                  mask="url(#closeMinor16_svg__b)"
+                >
+                  <path
+                    d="M0 0h16v16H0z"
+                  />
+                </g>
+              </g>
+            </svg>
+          </span>
+        </div>
+        <input
+          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputVariantTagSelector MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+          style="width: auto;"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        aria-labelledby="downshift-3-label"
+        id="downshift-3-menu"
+        role="listbox"
+      />
+    </div>
+  </div>
+</div>
+`;
