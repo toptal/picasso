@@ -14,7 +14,7 @@ exports[`TagSelector available options when start typing 1`] = `
       role="combobox"
     >
       <div
-        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootVariantTagSelector MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto TagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
       >
         <fieldset
           aria-hidden="true"
@@ -31,7 +31,7 @@ exports[`TagSelector available options when start typing 1`] = `
           </legend>
         </fieldset>
         <input
-          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputVariantTagSelector MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
           placeholder="Please select..."
           style="width: auto;"
           type="text"
@@ -128,7 +128,7 @@ exports[`TagSelector default render 1`] = `
       role="combobox"
     >
       <div
-        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootVariantTagSelector MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto TagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
       >
         <fieldset
           aria-hidden="true"
@@ -145,7 +145,7 @@ exports[`TagSelector default render 1`] = `
           </legend>
         </fieldset>
         <input
-          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputVariantTagSelector MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
           placeholder="Please select..."
           style="width: auto;"
           type="text"
@@ -175,7 +175,7 @@ exports[`TagSelector newly added option selected 1`] = `
       role="combobox"
     >
       <div
-        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootVariantTagSelector MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto TagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
       >
         <fieldset
           aria-hidden="true"
@@ -247,7 +247,7 @@ exports[`TagSelector newly added option selected 1`] = `
           </span>
         </div>
         <input
-          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputVariantTagSelector MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
           style="width: auto;"
           type="text"
           value=""
@@ -276,7 +276,7 @@ exports[`TagSelector options selected and then unselected 1`] = `
       role="combobox"
     >
       <div
-        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootVariantTagSelector MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto TagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
       >
         <fieldset
           aria-hidden="true"
@@ -403,7 +403,7 @@ exports[`TagSelector options selected and then unselected 1`] = `
           </span>
         </div>
         <input
-          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputVariantTagSelector MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
           style="width: auto;"
           type="text"
           value=""
@@ -432,7 +432,7 @@ exports[`TagSelector preselected value 1`] = `
       role="combobox"
     >
       <div
-        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootVariantTagSelector MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto TagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
       >
         <fieldset
           aria-hidden="true"
@@ -504,7 +504,7 @@ exports[`TagSelector preselected value 1`] = `
           </span>
         </div>
         <input
-          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputVariantTagSelector MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
           type="text"
           value=""
         />
@@ -532,7 +532,7 @@ exports[`TagSelector selected option 1`] = `
       role="combobox"
     >
       <div
-        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootVariantTagSelector MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto TagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
       >
         <fieldset
           aria-hidden="true"
@@ -604,7 +604,7 @@ exports[`TagSelector selected option 1`] = `
           </span>
         </div>
         <input
-          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputVariantTagSelector MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
           style="width: auto;"
           type="text"
           value=""

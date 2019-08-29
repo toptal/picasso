@@ -3,7 +3,8 @@ import React, {
   ChangeEvent,
   Fragment,
   forwardRef,
-  useRef
+  useRef,
+  ComponentType
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
@@ -12,6 +13,8 @@ import { StandardProps } from '../../Picasso'
 import Label from '../../Label'
 import Autocomplete, { Item as AutoCompleteItem } from '../../Autocomplete'
 import styles from './styles'
+import TagSelectorInput from '../TagSelectorInput'
+import { Props as InputProps } from '../../Input'
 
 type Item = {
   value: string
@@ -192,8 +195,8 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         startAdornment={labels}
         onChange={handleInputChange}
         debounceTime={0}
-        variant='tagSelector'
         loading={loading}
+        inputComponent={TagSelectorInput as ComponentType<InputProps>}
       />
     )
   }
