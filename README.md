@@ -2,13 +2,16 @@
 
 <br/>
 
+[Check out documentation](https://picasso.toptal.net)
+
+<br/>
+
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 [![](https://img.shields.io/badge/npm-3.3.0-brightgreen.svg)](https://www.npmjs.com/package/@toptal/picasso)
-[![#-frontend-exp-core](https://img.shields.io/badge/slack-%23--frontend--exp--core-green.svg)](https://toptal-core.slack.com/app_redirect?channel=CERF5NHT3)
+[![#-frontend-exp-core](https://img.shields.io/badge/slack-%23--frontend--exp--core-green.svg)](https://slack.com)
+>>>>>>> feat: Make Picasso publically accessible
 
 ## Installation instructions
-
-In order to include the library to your project you need to install it from NPM. As Picasso is hosted on private NPM repository you need to have `NPM_TOKEN` present. You can obtain new token on [npmjs.com](https://www.npmjs.com/settings/talbot/tokens) with credentials from LastPass. Then you can use [.envrc](.envrc.example) file in synergy with [direnv](https://direnv.net/) to automatically expose `$NPM_TOKEN` for Picasso.
 
 ```
 yarn add @toptal/picasso

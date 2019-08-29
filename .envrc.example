@@ -1,6 +1,0 @@
-export GITHUB_TOKEN=
-export GITHUB_URL="https://api.github.com"
-export NPM_TOKEN=
-export DANGER_GITHUB_API_TOKEN=
-export DANGER_FAKE_CI="YEP"
-export DANGER_TEST_REPO='toptal/picasso'
