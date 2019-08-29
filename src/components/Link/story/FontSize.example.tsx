@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { MouseEvent } from 'react'
 import { Link, Container, Typography } from '@toptal/picasso'
 
 const FontSizeExample = () => {
-  const handleClick = e => {
+  const handleClick = (e: MouseEvent) => {
     e.preventDefault()
     window.alert('Click handled just before redirect')
   }

@@ -21,7 +21,6 @@ const tsLoader = {
   }
 }
 
-const SKIP_PATTERN = /node_modules\/@types\/react\/index.d.ts/
 const tsDocgenLoader = {
   loader: require.resolve('react-docgen-typescript-loader'),
   options: {
@@ -29,7 +28,11 @@ const tsDocgenLoader = {
     propFilter: prop => {
       if (prop.description.length === 0) return false
 
-      return !SKIP_PATTERN.test(prop.parent.fileName)
+      if (prop.parent) {
+        return !prop.parent.fileName.includes('node_modules')
+      }
+
+      return true
     }
   }
 }

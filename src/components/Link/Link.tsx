@@ -1,56 +1,54 @@
 import React, {
-  MouseEvent,
   forwardRef,
   ReactNode,
   ElementType,
   AnchorHTMLAttributes
 } from 'react'
 import MUILink from '@material-ui/core/Link'
-import { withStyles } from '@material-ui/core/styles'
+import { Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
+import { makeStyles } from '@material-ui/styles'
 
-import { StandardProps } from '../Picasso'
+import { BaseProps, OverridableComponent } from '../Picasso'
 import styles from './styles'
 
 type UnderlineType = 'none' | 'hover' | 'always'
 type VariantType = 'action' | 'default'
 
-export interface Props
-  extends StandardProps,
-    AnchorHTMLAttributes<HTMLAnchorElement> {
-  /** Content of the component */
-  children?: ReactNode
-  /** Destination the link points to */
-  href?: string
-  /** Controls when the link should have an underline */
-  underline?: UnderlineType
-  /** Callback invoked when component is clicked */
-  onClick?: (event: MouseEvent<HTMLAnchorElement>) => void
-  /**
-   * The component used for the root node.
-   * Either a string to use a DOM element or a component.
-   *
-   * Currently doesn't support `button` value because of broken typings,
-   * it's already fixed at `4.0.0-beta.2`
-   * Please, remove this comment after upgrade
-   */
-  as?: ElementType
+const useStyles = makeStyles<Theme, Props>(styles)
 
-  /** Either it's a regular link or an _action_ */
-  variant?: VariantType
-  /** Indicates the order of receiving focus. If not set will not receive focus. */
-  tabIndex?: number
-  /** Uses white text color for dark background */
-  invert?: boolean
-}
+export type Props = BaseProps &
+  AnchorHTMLAttributes<HTMLAnchorElement> & {
+    /** Content of the component */
+    children?: ReactNode
+    /** Destination the link points to */
+    href?: string
+    /** Controls when the link should have an underline */
+    underline?: UnderlineType
+    /** Callback invoked when component is clicked */
+    onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void
+    /**
+     * The component used for the root node.
+     * Either a string to use a DOM element or a component.
+     */
+    as?: ElementType
+    /** Either it's a regular link or an _action_ */
+    variant?: VariantType
+    /** Indicates the order of receiving focus. If not set will not receive focus. */
+    tabIndex?: number
+    /** Uses white text color for dark background */
+    invert?: boolean
+  }
 
-export const Link = forwardRef<HTMLAnchorElement, Props>(function Link(
-  {
+export const Link: OverridableComponent<Props> = forwardRef<
+  HTMLAnchorElement,
+  Props
+>(function Link(props, ref) {
+  const {
     href,
     underline,
     onClick,
     children,
-    classes,
     className,
     style,
     as,
@@ -58,11 +56,10 @@ export const Link = forwardRef<HTMLAnchorElement, Props>(function Link(
     tabIndex,
     invert,
     ...rest
-  },
-  ref
-) {
+  } = props
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { color, ...nativeHTMLAttributes } = rest
+  const classes = useStyles(props)
 
   return (
     <MUILink
@@ -92,4 +89,4 @@ Link.defaultProps = {
 
 Link.displayName = 'Link'
 
-export default withStyles(styles)(Link)
+export default Link

@@ -17,5 +17,6 @@ export {
   PicassoComponentWithRef,
   SpacingEnum,
   ButtonOrAnchorProps,
-  CompoundedComponentWithRef
+  CompoundedComponentWithRef,
+  OverridableComponent
 } from './types'

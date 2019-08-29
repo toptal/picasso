@@ -14,6 +14,23 @@ exports[`Link default render 1`] = `
 </div>
 `;
 
+exports[`Link renders a Link from react-router 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div>
+      <a
+        class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
+        href="/"
+      >
+        Please verify your email
+      </a>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Link renders native attributes 1`] = `
 <div>
   <div
