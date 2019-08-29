@@ -1,6 +1,5 @@
 import React, {
   KeyboardEvent,
-  ChangeEvent,
   Fragment,
   forwardRef,
   useRef,
@@ -8,13 +7,15 @@ import React, {
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
-import { Maybe, useCombinedRefs } from '../../utils'
+import { useCombinedRefs } from '../../utils'
 import { StandardProps } from '../../Picasso'
 import Label from '../../Label'
-import Autocomplete, { Item as AutoCompleteItem } from '../../Autocomplete'
+import Autocomplete from '../../Autocomplete'
 import styles from './styles'
 import TagSelectorInput from '../TagSelectorInput'
 import { Props as InputProps } from '../../Input'
+import useControlledAndUncontrolledState from '../../utils/use-controlled-and-uncontrolled-state'
+import useControlledAndUncontrolledInput from '../../utils/use-controlled-and-uncontrolled-input'
 
 type Item = {
   value: string
@@ -33,12 +34,18 @@ export interface Props extends StandardProps {
   newOptionLabel?: string
   /** List of options with unique labels */
   options?: Item[]
-  /** List of pre-selected items values */
-  defaultValues?: string[]
-  /**  Callback invoked when item is selected */
-  onChange?: (selectedValues: string[]) => void
-  /**  Callback invoked when typing value is changed */
-  onInputChange?: (event: ChangeEvent<HTMLInputElement>) => void
+  /** The list of default selected option values. Use when the component is not controlled. */
+  defaultValue?: string[]
+  /** The list of values of the selected options, required for a controlled component. */
+  value?: string[]
+  /**  Callback invoked when selection changes */
+  onChange?: (value: string[]) => void
+  /** The default `input` element value. Use when the component is not controlled. */
+  defaultInputValue?: string
+  /** The value of the `input` element, required for a controlled component. */
+  inputValue?: string
+  /**  Callback invoked when `input` element value is changed */
+  onInputChange?: (inputValue: string) => void
 }
 
 export const TagSelector = forwardRef<HTMLInputElement, Props>(
@@ -47,17 +54,29 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       loading,
       placeholder,
       options,
-      defaultValues,
       newOptionLabel,
+      defaultValue,
+      value,
       onChange,
+      defaultInputValue,
+      inputValue: inputValueProp,
       onInputChange
     },
     ref
   ) {
-    const [inputValue, setInputValue] = React.useState<string | null>(null)
-    const [selectedValues, setSelectedValues] = React.useState<string[]>(
-      defaultValues!
+    const [inputValue, setInputValue] = useControlledAndUncontrolledInput(
+      defaultInputValue,
+      inputValueProp,
+      onInputChange!
     )
+
+    const [
+      selectedValues,
+      setSelectedValues
+    ] = useControlledAndUncontrolledState(defaultValue, value, onChange as (
+      value: string[] | null
+    ) => void) as [string[], ((value: string[]) => void)]
+
     const [addedOptions, setAddedOptions] = React.useState<Item[]>([])
     const currentOptions = [...options!, ...addedOptions]
 
@@ -89,22 +108,10 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       }
     }, [selectedValues])
 
-    const handleInputChange = React.useCallback((
-      e: ChangeEvent<HTMLInputElement>
-    ) => {
-      setInputValue((e.target.value || '').trim())
-      onInputChange!(e)
-    }, [onInputChange])
-
-    const updateSelectedValues = (values: string[]) => {
-      setSelectedValues(values)
-      onChange!(values)
-    }
-
     const handleDelete = (value: string) => {
       const index = selectedValues.indexOf(value)
 
-      updateSelectedValues([
+      setSelectedValues([
         ...selectedValues.slice(0, index),
         ...selectedValues.slice(index + 1)
       ])
@@ -112,7 +119,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
 
     const handleKeyDown = (
       event: KeyboardEvent<HTMLInputElement>,
-      inputValue: string | null
+      inputValue: string
     ) => {
       const hasSelection = selectedValues.length
       const hasValue = inputValue
@@ -123,28 +130,26 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       }
     }
 
-    const handleSelect = (
-      item: Maybe<AutoCompleteItem>,
-      { resetInput }: { resetInput: () => void }
-    ) => {
-      if (!item || !item.value) return
+    const handleSelect = (itemValue: string | null) => {
+      if (!itemValue) return
 
       const isInOptions = currentOptions.find(
-        option => option.value === item.value
+        option => option.value === itemValue
       )
 
       if (!isInOptions) {
         setAddedOptions([
           ...addedOptions,
-          { value: item.value, text: inputValue || '' }
+          {
+            value: itemValue,
+            text: inputValue.replace(newOptionLabel || '', '')
+          }
         ])
       }
-
-      if (!selectedValues.includes(item.value)) {
-        updateSelectedValues([...selectedValues, item.value])
+      if (!selectedValues.includes(itemValue)) {
+        setSelectedValues([...selectedValues, itemValue])
       }
-      setInputValue(null)
-      resetInput()
+      setInputValue('')
     }
 
     const nonSelectedOptions: Item[] = currentOptions.filter(
@@ -172,7 +177,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
 
           if (!item) {
             window.console.warn(
-              `TagSelector: There is no option for the given value \` ${value}\``
+              `TagSelector: There is no option for the given value \`${value}\``
             )
             return null
           }
@@ -190,10 +195,12 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         ref={inputRef}
         placeholder={selectedValues.length === 0 ? placeholder : undefined}
         options={autocompleteOptions}
+        value={null}
         onSelect={handleSelect}
+        inputValue={inputValue}
+        onChange={setInputValue}
         onKeyDown={handleKeyDown}
         startAdornment={labels}
-        onChange={handleInputChange}
         debounceTime={0}
         loading={loading}
         inputComponent={TagSelectorInput as ComponentType<InputProps>}
@@ -203,7 +210,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
 )
 
 TagSelector.defaultProps = {
-  defaultValues: [],
+  defaultValue: [],
   loading: false,
   newOptionLabel: 'Add new option: ',
   onChange: () => {},

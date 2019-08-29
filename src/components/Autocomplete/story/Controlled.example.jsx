@@ -6,28 +6,48 @@ const options = [
   { text: 'Croatia', value: 'HR' },
   { text: 'Lithuania', value: 'LU' },
   { text: 'Slovakia', value: 'SK' },
+  { text: 'Spain', value: 'SP' },
   { text: 'Ukraine', value: 'UA' }
 ]
 
 const AutocompleteControlledItemExample = () => {
-  const [value, setValue] = useState('BY')
+  const [value, setValue] = useState(options[0].value)
+  const [inputValue, setInputValue] = useState(options[0].text)
 
   return (
     <div>
       <Autocomplete
         placeholder='Start typing country...'
         options={options}
-        onSelect={item => setValue(item && item.value)}
         value={value}
+        onSelect={newValue => {
+          console.log('onSelect value:', newValue)
+          setValue(newValue)
+        }}
+        inputValue={inputValue}
+        onChange={newInputValue => {
+          console.log('onChange value:', newInputValue)
+          setInputValue(newInputValue)
+        }}
       />
-
       <Container top={2}>
         <Grid>
           <Grid.Item>
-            <Button onClick={() => setValue('SK')}>
+            <Button
+              onClick={() => {
+                setValue(options[3].value)
+                setInputValue(options[3].text)
+              }}
+            >
               Set to country in your profile: Slovakia
             </Button>
-            <Button onClick={() => setValue(null)} variant='secondary-blue'>
+            <Button
+              onClick={() => {
+                setValue(null)
+                setInputValue('')
+              }}
+              variant='secondary-blue'
+            >
               Reset
             </Button>
           </Grid.Item>

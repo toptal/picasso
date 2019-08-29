@@ -1,21 +1,15 @@
 import React, {
-  ChangeEvent,
   InputHTMLAttributes,
-  useState,
-  useEffect,
   KeyboardEvent,
   forwardRef,
   ReactNode,
   ComponentType,
-  FormEvent
+  useCallback
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import { capitalize } from '@material-ui/core/utils/helpers'
 import cx from 'classnames'
-import Downshift, {
-  StateChangeOptions,
-  ControllerStateAndHelpers
-} from 'downshift'
+import Downshift, { DownshiftState, StateChangeOptions } from 'downshift'
 import debounce from 'debounce'
 
 import { StandardProps } from '../Picasso'
@@ -25,11 +19,13 @@ import Loader from '../Loader'
 import ScrollMenu from '../ScrollMenu'
 import { isSubstring, Maybe } from '../utils'
 import styles from './styles'
+import useControlledAndUncontrolledState from '../utils/use-controlled-and-uncontrolled-state'
+import useControlledAndUncontrolledInput from '../utils/use-controlled-and-uncontrolled-input'
 
-const DEBOUNCE_TIME = 300
-const EMPTY_VALUE = ''
+const DEFAULT_DEBOUNCE_TIME = 300
+const EMPTY_INPUT_VALUE = ''
 
-export type Item = {
+type Item = {
   value?: string
   text?: string
 }
@@ -42,7 +38,22 @@ type HTMLInputProps = InputHTMLAttributes<HTMLInputElement>
 
 export interface Props
   extends StandardProps,
-    Omit<HTMLInputProps, 'onChange' | 'onSelect' | 'onKeyDown'> {
+    Omit<
+      HTMLInputProps,
+      'defaultValue' | 'value' | 'onChange' | 'onSelect' | 'onKeyDown'
+    > {
+  /** The default `input` element value. Use when the component is not controlled. */
+  defaultInputValue?: string
+  /** The value of the `input` element, required for a controlled component. */
+  inputValue?: string
+  /**  Callback invoked when `input` element value is changed */
+  onChange?: (inputValue: string) => void
+  /** The default selected option value. Use when the component is not controlled. */
+  defaultValue?: string | null
+  /** The value of the selected option, required for a controlled component. */
+  value?: string | null
+  /**  Callback invoked when selection changes */
+  onSelect?: (itemValue: string | null) => void
   /** Placeholder for value */
   placeholder?: string
   /** Debounce time in ms for onChange event handler. Set it to 0 to disable debouncing. */
@@ -51,7 +62,7 @@ export interface Props
   width?: 'full' | 'shrink' | 'auto'
   /** Shows the loading icon when options are loading */
   loading?: boolean
-  /** Allow to input any value which is not in the list of `options` */
+  /** Allow any input any value which is not in the list of `options` when blurring. Otherwise the input is reset to the last selected item label or blank. */
   allowAny?: boolean
   /** Label to show when no options were found */
   noOptionsText?: string
@@ -59,14 +70,10 @@ export interface Props
   options?: Item[]
   /** The minimum number of characters a user must type before a search is performed */
   minLength?: number
-  /**  Callback invoked when item is selected */
-  onSelect?: (item: Maybe<Item>, helpers: { resetInput: () => void }) => void
-  /**  Callback invoked when typing value is changed */
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void
   /**  Callback invoked when key is pressed */
   onKeyDown?: (
     event: KeyboardEvent<HTMLInputElement>,
-    inputValue: string | null
+    inputValue: string
   ) => void
   /** ReactNode for labels that will be used as start InputAdornment - */
   startAdornment?: ReactNode
@@ -78,125 +85,149 @@ const isMatchingMinLength = (value: string, minLength?: number) =>
   !minLength || value.length >= minLength
 
 const getItemText = (item: Maybe<Item>) =>
-  item ? item.text || EMPTY_VALUE : EMPTY_VALUE
+  (item && item.text) || EMPTY_INPUT_VALUE
 
 const getItemValue = (item: Maybe<Item>) =>
-  item ? item.value || getItemText(item) : EMPTY_VALUE
+  (item && (item.value || item.text)) || null
+
+const isSelected = (item: Item, selectedItem: Item | null) =>
+  getItemValue(item) === getItemValue(selectedItem)
 
 export const Autocomplete = forwardRef<HTMLInputElement, Props>(
   function Autocomplete(
     {
       classes,
       className,
+      defaultInputValue,
+      inputValue: inputValueProp,
+      onChange: onInputChange,
+      defaultValue,
+      value,
+      onSelect,
       debounceTime,
       loading,
       minLength,
       placeholder,
       noOptionsText,
-      options: initialOptions,
+      options,
       style,
       width,
       allowAny,
-      onSelect,
-      onKeyDown: onKeyDownProp,
-      value,
-      onChange,
+      onKeyDown,
       inputComponent,
       ...rest
     },
     ref
   ) {
-    const [inputValue, setInputValue] = useState<string | null>(null)
-    const [filter, setFilter] = useState(EMPTY_VALUE)
-    const [selectedItem, setSelectedItem] = useState<Maybe<Item>>(null)
-    const onChangeDebounced = React.useCallback(
-      debounceTime === 0 ? onChange! : debounce(onChange!, debounceTime),
-      [onChange, debounceTime]
-    )
+    const [
+      selectedItemValue,
+      setSelectedItemValue
+    ] = useControlledAndUncontrolledState(defaultValue, value, onSelect!)
 
-    const handleSelectItem = (item: Maybe<Item>) => {
-      if (item === undefined) {
-        return
-      }
-      const internalHelpers = {
-        resetInput: () => {
-          setInputValue(EMPTY_VALUE)
-          setSelectedItem(null)
-        }
-      }
+    const selectedItem =
+      selectedItemValue === null
+        ? null
+        : options!.find(option => getItemValue(option) === selectedItemValue)
 
-      setInputValue(getItemText(item))
-      setSelectedItem(item)
-      onSelect!(item, internalHelpers)
-    }
-
-    const handleStateChange = ({ selectedItem }: StateChangeOptions<Item>) => {
-      handleSelectItem(selectedItem)
-    }
-
-    const options = initialOptions!.filter(item =>
-      isSubstring(filter || EMPTY_VALUE, getItemText(item))
-    )
-
-    const isSelected = (item: Item, selectedItem: Item) =>
-      getItemValue(item) === getItemValue(selectedItem)
-
-    const handleChange = (
-      item: Item,
-      helpers: ControllerStateAndHelpers<Item>
-    ) => {
-      const { setHighlightedIndex } = helpers
-      const currentIndex = options ? options.indexOf(item) : 0
-
-      setHighlightedIndex(currentIndex)
-    }
-
-    useEffect(() => {
-      const selectedItem = initialOptions!.find(
-        option => getItemValue(option) === value
+    if (selectedItem === undefined) {
+      window.console.warn(
+        `Autocomplete: There is no option for the given value \`${value}\``
       )
+      return null
+    }
 
-      if (!selectedItem && allowAny && value !== undefined) {
-        setInputValue(String(value))
-      } else {
-        handleSelectItem(selectedItem)
+    const onInputChangeDebounced = useCallback(
+      debounceTime === 0
+        ? onInputChange!
+        : debounce(onInputChange!, debounceTime),
+      [onInputChange, debounceTime]
+    )
+
+    const [inputValue, setInputValue] = useControlledAndUncontrolledInput(
+      defaultInputValue || getItemText(selectedItem),
+      inputValueProp,
+      onInputChangeDebounced!
+    )
+
+    const handleInputValueChange = (newInputValue: string) => {
+      if (newInputValue !== inputValue) {
+        setInputValue(newInputValue)
       }
-    }, [value])
+    }
+
+    const handleSelectItem = (item: Item | null) => {
+      setSelectedItemValue(getItemValue(item))
+    }
+
+    const matchingOptions =
+      getItemText(selectedItem) === inputValue
+        ? options!
+        : options!.filter(item => isSubstring(inputValue, getItemText(item)))
+
+    const currentSelectedItemIndex = selectedItem
+      ? matchingOptions.indexOf(selectedItem)
+      : null
+
+    const downshiftStateReducer = (
+      state: DownshiftState<Item>,
+      changes: StateChangeOptions<Item>
+    ): Partial<StateChangeOptions<Item>> => {
+      switch (changes.type) {
+        case Downshift.stateChangeTypes.controlledPropUpdatedSelectedItem:
+          return { ...changes, highlightedIndex: currentSelectedItemIndex }
+        case Downshift.stateChangeTypes.mouseUp:
+        case Downshift.stateChangeTypes.blurInput:
+          const hasInput = inputValue.length > 0
+
+          if (
+            allowAny &&
+            hasInput &&
+            inputValue !== getItemText(selectedItem)
+          ) {
+            return {
+              ...changes,
+              inputValue,
+              selectedItem: null
+            }
+          }
+          break
+      }
+      return changes
+    }
+
+    const downshiftItemToString = (item: Item | null) =>
+      item === null
+        ? allowAny
+          ? inputValue
+          : EMPTY_INPUT_VALUE
+        : getItemText(item)
 
     return (
       <Downshift
-        itemToString={item => getItemText(item)}
-        onStateChange={handleStateChange}
-        onChange={handleChange}
         inputValue={inputValue}
+        onInputValueChange={handleInputValueChange}
         selectedItem={selectedItem}
+        onChange={handleSelectItem}
+        itemToString={downshiftItemToString}
+        stateReducer={downshiftStateReducer}
       >
         {({
           getMenuProps,
           getInputProps,
           getItemProps,
           isOpen,
-          selectedItem,
           highlightedIndex,
-          openMenu,
-          selectItem: downshiftSelectItem,
-          setHighlightedIndex,
-          reset
+          selectItem,
+          setState
         }) => {
-          const isTyping = Boolean(inputValue)
-          const hasOptions = Boolean(options.length)
+          const hasMatchingOptions = matchingOptions.length > 0
           const canOpen =
-            isOpen &&
-            isMatchingMinLength(inputValue || EMPTY_VALUE, minLength) &&
-            !loading &&
-            (hasOptions || isTyping)
+            isOpen && isMatchingMinLength(inputValue, minLength) && !loading
 
           const optionsMenu = (
             <ScrollMenu selectedIndex={highlightedIndex}>
-              {!hasOptions ? (
-                <Menu.Item disabled>{noOptionsText}</Menu.Item>
-              ) : (
-                options.map((option, index) => (
+              {hasMatchingOptions ? (
+                matchingOptions.map((option, index) => (
                   <Menu.Item
                     key={getItemValue(option)}
                     selected={highlightedIndex === index}
@@ -207,72 +238,44 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
                     {getItemText(option)}
                   </Menu.Item>
                 ))
+              ) : (
+                <Menu.Item disabled>{noOptionsText}</Menu.Item>
               )}
             </ScrollMenu>
           )
 
-          const selectItem = (item: Maybe<Item>) => {
-            downshiftSelectItem(item)
-            setFilter(EMPTY_VALUE)
+          const handleFocusOrClick = () => {
+            if (!isOpen) {
+              let newInputValue = inputValue
+              const isInputSelectedItem =
+                inputValue === getItemText(selectedItem)
+
+              if (!allowAny || isInputSelectedItem) {
+                newInputValue = EMPTY_INPUT_VALUE
+              }
+              setState({
+                isOpen: true,
+                inputValue: newInputValue,
+                highlightedIndex: currentSelectedItemIndex
+              })
+            }
           }
 
-          const {
-            onBlur,
-            onKeyDown,
-            onFocus,
-            onChange = () => {}
-          } = getInputProps({
-            onFocus: () => {
-              openMenu()
-              if (!selectedItem) return
+          const InputComponent = inputComponent || Input
 
-              const currentIndex = options ? options.indexOf(selectedItem) : 0
-
-              setHighlightedIndex(currentIndex)
-              setInputValue(EMPTY_VALUE)
-            },
-            onBlur: () => {
-              if (!options.length && !allowAny) {
-                reset()
-                setInputValue(EMPTY_VALUE)
-                setFilter(EMPTY_VALUE)
-                return
-              }
-
-              if (!selectedItem) return
-
-              if (
-                allowAny &&
-                getItemText(selectedItem) !== inputValue &&
-                inputValue !== EMPTY_VALUE
-              ) {
-                setSelectedItem(null)
-              }
-
-              setInputValue(getItemText(selectedItem))
-            },
+          const inputProps = getInputProps({
+            onFocus: handleFocusOrClick,
+            onClick: handleFocusOrClick,
             onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => {
-              if (event.key === 'Backspace' && inputValue === EMPTY_VALUE) {
+              if (
+                event.key === 'Backspace' &&
+                inputValue === EMPTY_INPUT_VALUE
+              ) {
                 selectItem(null)
               }
-              onKeyDownProp!(event, inputValue)
-            },
-            onChange: (event: ChangeEvent<HTMLInputElement>) => {
-              const { value } = event.target
-
-              setFilter((value || EMPTY_VALUE).trim())
-              setInputValue(value)
-
-              if (!isMatchingMinLength(value, minLength)) {
-                return
-              }
-
-              event.persist()
-              onChangeDebounced(event)
+              onKeyDown!(event, inputValue)
             }
           })
-
-          const InputComponent = inputComponent || Input
 
           return (
             <div
@@ -286,22 +289,16 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
               <InputComponent
                 /* eslint-disable-next-line react/jsx-props-no-spreading */
                 {...rest}
+                // eslint-disable-next-line react/jsx-props-no-spreading
+                {...inputProps as any}
                 ref={ref}
                 classes={{}}
-                icon={loading ? <Loader size='small' /> : null}
-                iconPosition='end'
-                value={inputValue || EMPTY_VALUE}
-                onBlur={onBlur}
-                onKeyDown={onKeyDown}
-                onFocus={onFocus}
-                onClick={onFocus}
                 placeholder={
                   selectedItem ? getItemText(selectedItem) : placeholder
                 }
+                icon={loading ? <Loader size='small' /> : null}
+                iconPosition='end'
                 width={width}
-                onChange={e => {
-                  onChange(e as FormEvent<HTMLInputElement>)
-                }}
               />
               {/* eslint-disable-next-line react/jsx-props-no-spreading */}
               <div {...getMenuProps()}>{canOpen ? optionsMenu : null}</div>
@@ -315,8 +312,11 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
 
 Autocomplete.defaultProps = {
   allowAny: true,
-  debounceTime: DEBOUNCE_TIME,
+  debounceTime: DEFAULT_DEBOUNCE_TIME,
+  defaultInputValue: '',
+  defaultValue: null,
   loading: false,
+  minLength: 0,
   noOptionsText: 'No options',
   onChange: () => {},
   onKeyDown: () => {},

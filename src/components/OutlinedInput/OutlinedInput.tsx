@@ -39,6 +39,7 @@ export interface Props
   disabled?: boolean
   inputComponent?: ReactType<InputBaseComponentProps>
   inputProps?: InputBaseComponentProps
+  defaultValue?: ValueType
   value?: ValueType
   /** Whether `Input` should be rendered as `TextArea` or not */
   multiline?: boolean

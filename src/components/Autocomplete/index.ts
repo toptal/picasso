@@ -1,1 +1,1 @@
-export { default, Item } from './Autocomplete'
+export { default } from './Autocomplete'

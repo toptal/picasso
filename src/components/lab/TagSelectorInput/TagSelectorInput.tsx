@@ -7,10 +7,11 @@ import OutlinedInput from '../../OutlinedInput'
 import styles from './styles'
 
 export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
-  function Input(
+  function TagSelectorInput(
     {
       id,
       name,
+      defaultValue,
       value,
       placeholder,
       error,
@@ -55,6 +56,7 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
         className={classes.inputBase}
         id={id}
         name={name}
+        defaultValue={defaultValue}
         value={value}
         placeholder={placeholder}
         error={error}
