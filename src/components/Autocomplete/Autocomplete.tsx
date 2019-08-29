@@ -1,13 +1,13 @@
 import React, {
   ChangeEvent,
   InputHTMLAttributes,
-  FormEvent,
   useState,
   useEffect,
   KeyboardEvent,
   forwardRef,
   ReactNode,
-  Ref
+  ComponentType,
+  FormEvent
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import { capitalize } from '@material-ui/core/utils/helpers'
@@ -68,8 +68,10 @@ export interface Props
     event: KeyboardEvent<HTMLInputElement>,
     inputValue: string | null
   ) => void
-  /** Custom input render */
-  renderInput?: (props: InputProps, ref: Ref<HTMLInputElement>) => ReactNode
+  /** ReactNode for labels that will be used as start InputAdornment - */
+  startAdornment?: ReactNode
+  /** Custom input component */
+  inputComponent?: ComponentType<InputProps>
 }
 
 const isMatchingMinLength = (value: string, minLength?: number) =>
@@ -99,7 +101,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       onKeyDown: onKeyDownProp,
       value,
       onChange,
-      renderInput,
+      inputComponent,
       ...rest
     },
     ref
@@ -270,29 +272,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
             }
           })
 
-          const inputProps: InputProps = {
-            ...rest,
-            classes: {},
-            icon: loading ? <Loader size='small' /> : null,
-            iconPosition: 'end',
-            value: inputValue || EMPTY_VALUE,
-            onBlur,
-            onKeyDown,
-            onFocus,
-            onClick: onFocus,
-            placeholder: selectedItem ? getItemText(selectedItem) : placeholder,
-            width,
-            onChange: event => {
-              onChange(event as FormEvent<HTMLInputElement>)
-            }
-          }
-
-          const inputNode = renderInput ? (
-            renderInput(inputProps, ref)
-          ) : (
-            // eslint-disable-next-line react/jsx-props-no-spreading
-            <Input {...inputProps} ref={ref} />
-          )
+          const InputComponent = inputComponent || Input
 
           return (
             <div
@@ -303,7 +283,26 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
               )}
               style={style}
             >
-              {inputNode}
+              <InputComponent
+                /* eslint-disable-next-line react/jsx-props-no-spreading */
+                {...rest}
+                ref={ref}
+                classes={{}}
+                icon={loading ? <Loader size='small' /> : null}
+                iconPosition='end'
+                value={inputValue || EMPTY_VALUE}
+                onBlur={onBlur}
+                onKeyDown={onKeyDown}
+                onFocus={onFocus}
+                onClick={onFocus}
+                placeholder={
+                  selectedItem ? getItemText(selectedItem) : placeholder
+                }
+                width={width}
+                onChange={e => {
+                  onChange(e as FormEvent<HTMLInputElement>)
+                }}
+              />
               {/* eslint-disable-next-line react/jsx-props-no-spreading */}
               <div {...getMenuProps()}>{canOpen ? optionsMenu : null}</div>
             </div>
