@@ -30,7 +30,7 @@ export default ({ palette }: Theme) =>
     },
     selected: {},
     label: {
-      marginLeft: '1.875em'
+      marginLeft: 0
     },
     withIcon: {
       marginLeft: '0.875em'
