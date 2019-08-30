@@ -15,6 +15,10 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   meta?: ReactNode
   /** Photo url or custom Avatar component */
   avatar?: ReactNode
+  /** Controll autoclosing of dropdown */
+  disableAutoClose?: boolean
+  /** Controll autofocus for dropdown component */
+  disableAutoFocus?: boolean
   /** Menu content */
   children: ReactNode
 }
