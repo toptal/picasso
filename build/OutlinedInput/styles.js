@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const styles_1 = require("@material-ui/core/styles");
 const Picasso_1 = require("../Picasso");
 const styles_2 = require("../styles");
-const TAG_SELECTOR_GUTTER_SIZE = styles_2.rem('6px');
 Picasso_1.PicassoProvider.override(({ palette, sizes: { input } }) => ({
     MuiOutlinedInput: {
         root: {
@@ -68,7 +67,7 @@ Picasso_1.PicassoProvider.override(({ palette, sizes: { input } }) => ({
         notchedOutline: {}
     }
 }));
-exports.default = ({ sizes: { input } }) => styles_1.createStyles({
+exports.default = () => styles_1.createStyles({
     root: {},
     rootFull: {
         width: '100%'
@@ -77,30 +76,7 @@ exports.default = ({ sizes: { input } }) => styles_1.createStyles({
         width: 'auto'
     },
     rootAuto: {},
-    rootVariantTagSelector: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        height: 'auto',
-        padding: TAG_SELECTOR_GUTTER_SIZE,
-        marginRight: `-${TAG_SELECTOR_GUTTER_SIZE}`,
-        marginBottom: `-${TAG_SELECTOR_GUTTER_SIZE}`,
-        '& > *': {
-            marginRight: TAG_SELECTOR_GUTTER_SIZE,
-            marginBottom: TAG_SELECTOR_GUTTER_SIZE
-        },
-        // Loading indicator
-        '& > div:last-child': {
-            marginRight: input.padding
-        }
-    },
     input: {},
-    inputVariantTagSelector: {
-        width: 'auto',
-        height: styles_2.rem('24px'),
-        paddingLeft: styles_2.rem('4px'),
-        paddingRight: '0',
-        fontSize: '0.8125em'
-    },
     inputMultiline: {}
 });
 //# sourceMappingURL=styles.js.map

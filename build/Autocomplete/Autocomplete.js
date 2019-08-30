@@ -39,7 +39,7 @@ const isMatchingMinLength = (value, minLength) => !minLength || value.length >= 
 const getItemText = (item) => item ? item.text || EMPTY_VALUE : EMPTY_VALUE;
 const getItemValue = (item) => item ? item.value || getItemText(item) : EMPTY_VALUE;
 exports.Autocomplete = react_1.forwardRef(function Autocomplete(_a, ref) {
-    var { classes, className, debounceTime, loading, minLength, placeholder, noOptionsText, options: initialOptions, style, width, allowAny, onSelect, onKeyDown: onKeyDownProp, value, onChange, startAdornment, variant } = _a, rest = __rest(_a, ["classes", "className", "debounceTime", "loading", "minLength", "placeholder", "noOptionsText", "options", "style", "width", "allowAny", "onSelect", "onKeyDown", "value", "onChange", "startAdornment", "variant"]);
+    var { classes, className, debounceTime, loading, minLength, placeholder, noOptionsText, options: initialOptions, style, width, allowAny, onSelect, onKeyDown: onKeyDownProp, value, onChange, inputComponent } = _a, rest = __rest(_a, ["classes", "className", "debounceTime", "loading", "minLength", "placeholder", "noOptionsText", "options", "style", "width", "allowAny", "onSelect", "onKeyDown", "value", "onChange", "inputComponent"]);
     const [inputValue, setInputValue] = react_1.useState(null);
     const [filter, setFilter] = react_1.useState(EMPTY_VALUE);
     const [selectedItem, setSelectedItem] = react_1.useState(null);
@@ -131,12 +131,13 @@ exports.Autocomplete = react_1.forwardRef(function Autocomplete(_a, ref) {
                 onChangeDebounced(event);
             }
         });
+        const InputComponent = inputComponent || Input_1.default;
         return (react_1.default.createElement("div", { className: classnames_1.default(classes.root, className, classes[`root${helpers_1.capitalize(width)}`]), style: style },
-            react_1.default.createElement(Input_1.default
+            react_1.default.createElement(InputComponent
             /* eslint-disable-next-line react/jsx-props-no-spreading */
-            , Object.assign({}, rest, { ref: ref, variant: variant, icon: loading ? react_1.default.createElement(Loader_1.default, { size: 'small' }) : null, iconPosition: 'end', value: inputValue || EMPTY_VALUE, onBlur: onBlur, onKeyDown: onKeyDown, onFocus: onFocus, onClick: onFocus, placeholder: selectedItem ? getItemText(selectedItem) : placeholder, width: width, onChange: event => {
-                    onChange(event);
-                }, startAdornment: startAdornment })),
+            , Object.assign({}, rest, { ref: ref, classes: {}, icon: loading ? react_1.default.createElement(Loader_1.default, { size: 'small' }) : null, iconPosition: 'end', value: inputValue || EMPTY_VALUE, onBlur: onBlur, onKeyDown: onKeyDown, onFocus: onFocus, onClick: onFocus, placeholder: selectedItem ? getItemText(selectedItem) : placeholder, width: width, onChange: e => {
+                    onChange(e);
+                } })),
             react_1.default.createElement("div", Object.assign({}, getMenuProps()), canOpen ? optionsMenu : null)));
     }));
 });

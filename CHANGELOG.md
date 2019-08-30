@@ -1,3 +1,10 @@
+## [3.2.2](https://github.com/toptal/picasso/compare/v3.2.1...v3.2.2) (2019-08-30)
+
+
+### Bug Fixes
+
+* **tagselector:** fix input style override ([#636](https://github.com/toptal/picasso/issues/636)) ([b2e1492](https://github.com/toptal/picasso/commit/b2e1492))
+
 ## [3.2.1](https://github.com/toptal/picasso/compare/v3.2.0...v3.2.1) (2019-08-28)
 
 

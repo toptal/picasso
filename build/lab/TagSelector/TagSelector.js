@@ -16,6 +16,7 @@ const utils_1 = require("../../utils");
 const Label_1 = __importDefault(require("../../Label"));
 const Autocomplete_1 = __importDefault(require("../../Autocomplete"));
 const styles_2 = __importDefault(require("./styles"));
+const TagSelectorInput_1 = __importDefault(require("../TagSelectorInput"));
 const getUniqueValue = (value) => `${value.replace(/\s+/g, '-').toLowerCase()}-${new Date().getTime()}`;
 exports.TagSelector = react_1.forwardRef(function TagSelector({ loading, placeholder, options, defaultValues, newOptionLabel, onChange, onInputChange }, ref) {
     const [inputValue, setInputValue] = react_1.default.useState(null);
@@ -102,7 +103,7 @@ exports.TagSelector = react_1.forwardRef(function TagSelector({ loading, placeho
         }
         return (react_1.default.createElement(Label_1.default, { key: value, onDelete: () => handleDelete(value) }, item.text));
     })));
-    return (react_1.default.createElement(Autocomplete_1.default, { ref: inputRef, placeholder: selectedValues.length === 0 ? placeholder : undefined, options: autocompleteOptions, onSelect: handleSelect, onKeyDown: handleKeyDown, startAdornment: labels, onChange: handleInputChange, debounceTime: 0, variant: 'tagSelector', loading: loading }));
+    return (react_1.default.createElement(Autocomplete_1.default, { ref: inputRef, placeholder: selectedValues.length === 0 ? placeholder : undefined, options: autocompleteOptions, onSelect: handleSelect, onKeyDown: handleKeyDown, startAdornment: labels, onChange: handleInputChange, debounceTime: 0, loading: loading, inputComponent: TagSelectorInput_1.default }));
 });
 exports.TagSelector.defaultProps = {
     defaultValues: [],
