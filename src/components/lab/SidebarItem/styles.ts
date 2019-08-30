@@ -29,9 +29,7 @@ export default ({ palette }: Theme) =>
       }
     },
     selected: {},
-    label: {
-      marginLeft: 0
-    },
+    label: {},
     withIcon: {
       marginLeft: '0.875em'
     },
@@ -39,6 +37,7 @@ export default ({ palette }: Theme) =>
       padding: 0
     },
     details: {
+      marginLeft: '1.875em',
       fontSize: 'inherit',
       marginBottom: '0'
     },
