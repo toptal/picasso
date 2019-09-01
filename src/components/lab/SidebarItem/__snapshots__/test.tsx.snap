@@ -92,34 +92,38 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
         </div>
       </div>
     </li>
-    <ul
-      class="MuiList-root SidebarMenu-root"
-      role="menu"
-      tabindex="-1"
+    <div
+      class="SidebarItem-submenuNonCollapsible"
     >
-      <li
-        aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light SidebarItem-root SidebarItem-noWrap MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-        role="menuitem"
+      <ul
+        class="MuiList-root SidebarMenu-root"
+        role="menu"
         tabindex="-1"
       >
-        <div
-          class="Container-flex Container-inline SidebarItem-noWrap"
-          style="align-items: center;"
+        <li
+          aria-disabled="false"
+          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light SidebarItem-root SidebarItem-noWrap MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+          role="menuitem"
+          tabindex="-1"
         >
           <div
-            class="Container-flex SidebarItem-label SidebarItem-noWrap"
+            class="Container-flex Container-inline SidebarItem-noWrap"
             style="align-items: center;"
           >
-            <p
-              class="MuiTypography-root Typography-bodyMedium Typography-inherit MuiTypography-body1 MuiTypography-noWrap"
+            <div
+              class="Container-flex SidebarItem-label SidebarItem-noWrap"
+              style="align-items: center;"
             >
-              Menu item
-            </p>
+              <p
+                class="MuiTypography-root Typography-bodyMedium Typography-inherit MuiTypography-body1 MuiTypography-noWrap"
+              >
+                Menu item
+              </p>
+            </div>
           </div>
-        </div>
-      </li>
-    </ul>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>
 `;
