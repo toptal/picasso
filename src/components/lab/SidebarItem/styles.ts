@@ -60,5 +60,8 @@ export default ({ palette }: Theme) =>
     noWrap: {
       flex: 1,
       minWidth: 0
+    },
+    submenuNonCollapsible: {
+      marginLeft: '1.875em'
     }
   })
