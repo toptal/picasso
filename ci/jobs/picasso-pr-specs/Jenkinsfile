@@ -196,7 +196,7 @@ pipeline {
         success {
           success "Visual Tests"
           script {
-            ghHelper.notifyPR('Visual Tests', 'SUCCESS', 'Success', "${ghprbActualCommit}", "${BUILD_URL}", repoName)
+            ghHelper.notifyPR('Visual Tests', 'SUCCESS', 'Success', "${ghprbActualCommit}", "${BUILD_URL}/Visual_20Regression_20Tests/", repoName)
           }
         }
         failure {
@@ -212,14 +212,13 @@ pipeline {
   post {
     always {
       script {
-        def lastCommit = sh(returnStdout: true, script: 'git rev-parse --short=8 HEAD').trim()
         archiveArtifacts(
-          artifacts: "${PWD}/__diff_output__/${lastCommit}/*",
+          artifacts: "${PWD}/__diff_output__/latest/*",
           fingerprint: true,
           allowEmptyArchive: true
         )
 
-        publishHtmlReports(reportName: "Visual Regression Tests", reportDir: "__diff_output__/${lastCommit}", reportFiles: 'index.html')
+        publishHtmlReports(reportName: "Visual Regression Tests", reportDir: "${PWD}/__diff_output__/latest", reportFiles: 'index.html')
       }
     }
   }
