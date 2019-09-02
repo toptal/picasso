@@ -1,22 +1,19 @@
 import React from 'react'
 import { render, cleanup } from '@testing-library/react'
+import { MemoryRouter, Link as RouterLink } from 'react-router-dom'
 
 import Link from '../Link'
 import Picasso from '../Picasso'
-
-const renderLink = () => {
-  return render(
-    <Picasso loadFonts={false}>
-      <Link>Please verify your email</Link>
-    </Picasso>
-  )
-}
 
 afterEach(cleanup)
 
 describe('Link', () => {
   test('default render', () => {
-    const { container } = renderLink()
+    const { container } = render(
+      <Picasso loadFonts={false}>
+        <Link>Please verify your email</Link>
+      </Picasso>
+    )
 
     expect(container).toMatchSnapshot()
   })
@@ -33,6 +30,22 @@ describe('Link', () => {
         >
           Please verify your email
         </Link>
+      </Picasso>
+    )
+
+    expect(container).toMatchSnapshot()
+  })
+
+  test('renders a Link from react-router', () => {
+    const { container } = render(
+      <Picasso loadFonts={false}>
+        <MemoryRouter>
+          <div>
+            <Link as={RouterLink} to='/'>
+              Please verify your email
+            </Link>
+          </div>
+        </MemoryRouter>
       </Picasso>
     )
 
