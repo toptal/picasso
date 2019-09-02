@@ -21,7 +21,7 @@ function build_storybook() {
 }
 
 function run_jest() {
-  if [[ "$1" == "-u" ]]; then
+  if [[ "$*" == *"-u"* ]]; then
     echo -e "${BLUE} Updating snapshots to a current version ... ${NC}"
   else
     echo -e "${BLUE} Verifying snapshots with a current version ... ${NC}"
@@ -34,4 +34,6 @@ function run_jest() {
 
 build_storybook
 
-run_jest $@
+# filter not supported --build-image argument
+JEST_PARAMS=`echo $@ | sed 's/--build-image //'`
+run_jest $JEST_PARAMS

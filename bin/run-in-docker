@@ -2,17 +2,17 @@
 
 BLUE='\033[0;34m'
 NC='\033[0m'
-PICASSO_IMAGE='picasso'
+REPO_NAME='picasso'
+PICASSO_IMAGE="gcr.io/toptal-hub/${REPO_NAME}"
 PKG_VERSION=`node -p "require('./package.json').version"`
-GIT_SHA=`git rev-parse --short=8 HEAD`
+GIT_SHA=`git rev-parse HEAD`
 
-if [[ "$(docker images -q $PICASSO_IMAGE:$PKG_VERSION 2> /dev/null)" == "" ]]; then
-  docker build -t $PICASSO_IMAGE:$PKG_VERSION .
-else
-  echo -e "${BLUE} Docker image found: '$PICASSO_IMAGE:$PKG_VERSION' ${NC}" 
+if [[ "$*" == *"--build-image"* ]]; then
+  echo -e "${BLUE} Rebuilding docker image ... ${NC}"
+  docker build -t $PICASSO_IMAGE:$GIT_SHA .
 fi
 
-DOCKER_CMD="docker run -t -i --rm --name $PICASSO_IMAGE \
+DOCKER_CMD="docker run -t -i --rm --name $REPO_NAME \
  -v ${PWD}/src:/app/src \
  -v ${PWD}/puppeteer:/app/puppeteer \
  -v ${PWD}/.storybook:/app/.storybook \
@@ -20,7 +20,7 @@ DOCKER_CMD="docker run -t -i --rm --name $PICASSO_IMAGE \
  -v ${PWD}/__diff_output__:/app/__diff_output__ \
  -e NPM_TOKEN=$NPM_TOKEN \
  -e GIT_SHA=$GIT_SHA \
- $PICASSO_IMAGE:$PKG_VERSION"
+ $PICASSO_IMAGE:$GIT_SHA"
 
 echo -e "${BLUE} Running command inside docker ... ${NC}"
 
