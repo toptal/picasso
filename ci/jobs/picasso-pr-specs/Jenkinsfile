@@ -214,7 +214,7 @@ pipeline {
       script {
         def lastCommit = sh(returnStdout: true, script: 'git rev-parse --short=8 HEAD').trim()
         archiveArtifacts(
-          artifacts: "__diff_output__/${lastCommit}/*",
+          artifacts: "${PWD}/__diff_output__/${lastCommit}/*",
           fingerprint: true,
           allowEmptyArchive: true
         )
