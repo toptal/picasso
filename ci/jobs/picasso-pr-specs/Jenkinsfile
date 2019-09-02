@@ -188,7 +188,7 @@ pipeline {
         script {
           ghHelper.notifyPR('Visual Tests', 'PENDING', 'running', "${ghprbActualCommit}", "${BUILD_URL}", repoName)
 
-          sh "docker run --rm -v ${PWD}/__diff_output__/${ghprbActualCommit}:/app/__diff_output__/${ghprbActualCommit} gcr.io/toptal-hub/${repoName}:${ghprbActualCommit} ./bin/test-visual"
+          sh "docker run --rm -v ${PWD}/__diff_output__:/app/__diff_output__ gcr.io/toptal-hub/${repoName}:${ghprbActualCommit} ./bin/test-visual"
         }
       } //steps
 
