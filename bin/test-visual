@@ -12,12 +12,11 @@ JEST_ENV="$BASE_PATH/puppeteer/environment.js"
 JEST_CONFIG="$BASE_PATH/puppeteer/puppeteer.jest.config.js"
 JEST_TEST_ENV="visual"
 DIFF_OUTPUT_PATH="$BASE_PATH/__diff_output__/*"
-GIT_SHA="$(git rev-parse --short=8 HEAD)"
 
 function build_storybook() {
   echo -e "${BLUE} Building storybook ... ${NC}"
   set -x
-  GIT_SHA=$GIT_SHA TEST_ENV=$JEST_TEST_ENV yarn build:storybook
+  TEST_ENV=$JEST_TEST_ENV yarn build:storybook
   set +x
 }
 
@@ -29,7 +28,7 @@ function run_jest() {
   fi
 
   set -x
-  GIT_SHA=$GIT_SHA $BIN_PATH/jest --testEnvironment=$JEST_ENV --config=$JEST_CONFIG $@ || exit 1
+  $BIN_PATH/jest --testEnvironment=$JEST_ENV --config=$JEST_CONFIG $@ || exit 1
   set +x
 }
 
