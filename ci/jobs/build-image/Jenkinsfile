@@ -20,6 +20,7 @@ pipeline {
   }
 
   environment {
+    NPM_TOKEN = credentials('npm-token-for-toptal-private-registry-publish')
     GCE_ACCOUNT_KEY = credentials('jenkins-storage-administrator')
   }
 
@@ -46,7 +47,7 @@ pipeline {
           sh "gcloud auth activate-service-account --key-file=$GCE_ACCOUNT_KEY"
 
           if (!isDockerImagePresentRemotely("gcr.io/toptal-hub/${IMAGE_NAME}", VERSION)) {
-            image = docker.build("toptal-hub/${IMAGE_NAME}:${VERSION}", ".")
+            image = docker.build("toptal-hub/${IMAGE_NAME}:${VERSION}", "--build-arg NPM_TOKEN=${NPM_TOKEN} .")
             success "== Built image for version ${VERSION} =="
           } else {
             success "== Found image for version ${VERSION} =="
