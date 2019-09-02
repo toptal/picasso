@@ -9,7 +9,7 @@ def VERSION
 pipeline {
   agent {
     docker {
-      image 'gcr.io/compute-engine-1069/picasso:latest'
+      image "gcr.io/toptal-hub/picasso:${gitCommit()}"
       alwaysPull true
       args '-v /etc/passwd:/etc/passwd -v /home/jenkins/.ssh:/home/jenkins/.ssh --entrypoint='
     }
@@ -60,32 +60,14 @@ pipeline {
       }
     }//stage
 
-    stage('Build new Docker image') {
-      when { equals expected: "1", actual: params.RELEASE_AND_PUBLISH }
-      steps {
-        info "== Building new docker image"
-        script {
-          downStreamBuilds[0] = buildWithParameters(
-            jobName: 'picasso-build-image',
-            propagate: false,
-            wait: true,
-            parameters: [
-              BRANCH: 'master'
-            ]
-          )
-        }
-      }
-    }
-
     stage('Run release') {
       steps {
           sshagent(credentials: ['picasso-ssh-deploy-key']) { //provbot (jenkins/provbot)
             sh """
               git config user.email "$GIT_COMMITTER_EMAIL"
               git config user.name "$GIT_COMMITTER_NAME"
-              yarn
               echo "" > VERSION.txt
-              yarn release ${params.RELEASE_AND_PUBLISH}
+              yarn release ${RELEASE_AND_PUBLISH}
               cat VERSION.txt
             """
             success "Done."
@@ -97,7 +79,7 @@ pipeline {
     }//stage
 
     stage('Deploy documentation') {
-      when { equals expected: "1", actual: params.RELEASE_AND_PUBLISH }
+      when { equals expected: "1", actual: RELEASE_AND_PUBLISH }
 
       steps {
         info "== Deploying docs"

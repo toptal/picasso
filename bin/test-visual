@@ -33,7 +33,6 @@ function run_jest() {
   set +x
 }
 
-yarn install
 build_storybook
 
 run_jest $@

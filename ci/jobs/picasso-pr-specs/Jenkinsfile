@@ -2,17 +2,15 @@
 
 ghHelper = new helpers.GithubNotifyHelper()
 helper = new helpers.Helpers()
+buildImageResult = []
+repoName = 'picasso'
+buildImageJobName = "${repoName}-build-image"
 def FAILURE_REASON
 def TOTAL_TESTS = 0
 def FAILED_TESTS = 0
 
 pipeline {
-  agent {
-      docker {
-          image 'gcr.io/compute-engine-1069/picasso:latest'
-          args '--entrypoint='
-      }
-  }
+  agent { label 'slave_aws' }
 
   options {
     ansiColor('xterm')
@@ -31,18 +29,18 @@ pipeline {
     // Perform this only for PRs
     stage('Git checkout PR') {
       steps {
-        info "== Checking out Git revision ${env.ghprbActualCommit}"
+        info "== Checking out Git revision ${ghprbActualCommit}"
         gitCheckout(
-                branches: "${env.ghprbActualCommit}",
+                branches: "${ghprbActualCommit}",
                 credentials: [username: 'git', description: 'jenkins/picasso'],
                 url: 'git@github.com:toptal/picasso.git',
-                refspec: "+refs/heads/${env.ghprbTargetBranch}:refs/remotes/origin/${ghprbTargetBranch} +refs/pull/${env.ghprbPullId}/*:refs/remotes/origin/pr/${env.ghprbPullId}/*",
+                refspec: "+refs/heads/${ghprbTargetBranch}:refs/remotes/origin/${ghprbTargetBranch} +refs/pull/${ghprbPullId}/*:refs/remotes/origin/pr/${ghprbPullId}/*",
                 additionalBehaviours: [
                         advancedCheckoutBehaviour: [timeout: 120],
                         advancedCloneBehaviour   : [depth: 0, noTags: true, reference: '', shallow: false, timeout: 340],
                         cleanBeforeCheckout      : false,
-                        calculateChangelog       : [compareRemote: 'origin', compareTarget: "${env.ghprbTargetBranch}"],
-                        mergeBeforeBuild         : [mergeRemote: 'origin', mergeTarget: "${env.ghprbTargetBranch}", mergeStrategy: 'DEFAULT', fastForwardMode: 'FF']
+                        calculateChangelog       : [compareRemote: 'origin', compareTarget: "${ghprbTargetBranch}"],
+                        mergeBeforeBuild         : [mergeRemote: 'origin', mergeTarget: "${ghprbTargetBranch}", mergeStrategy: 'DEFAULT', fastForwardMode: 'FF']
                 ])
 
         info "Git commit: ${gitCommit()}"
@@ -51,24 +49,40 @@ pipeline {
       }
     }//stage
 
-    stage('Yarn install') {
+    stage('Build image') {
       steps {
-        sh 'rm -rf ./node_modules'
-        sh 'yarn install'
+        script {
+          buildImageResult[0] = buildWithParameters(
+            jobName: buildImageJobName,
+            propagate: false,
+            wait: true,
+            parameters: [
+              BRANCH: ghprbSourceBranch,
+              VERSION: ghprbActualCommit,
+              IMAGE_NAME: repoName
+            ]
+          )
+        }
       } //steps
-    }//stage
+    } //stage
 
     stage('Danger checks') {
       steps {
-        sh 'yarn danger ci'
+        script {
+          sh """
+            docker run \
+            --rm \
+            -e JENKINS_URL=${JENKINS_URL} \
+            -e ghprbPullId=${ghprbPullId} \
+            -e ghprbGhRepository=${ghprbGhRepository} \
+            -e BUILD_URL=${BUILD_URL} \
+            -e DANGER_GITHUB_API_TOKEN=${DANGER_GITHUB_API_TOKEN} \
+            gcr.io/toptal-hub/${repoName}:${ghprbActualCommit} \
+            yarn danger ci
+          """
+        }
       } //steps
-    }//stage
-
-    stage('Check build') {
-      steps {
-        sh 'yarn build:dist'
-      } //steps
-    }//stage
+    } //stage
 
     stage('Deploy documentation') {
       steps {
@@ -87,77 +101,113 @@ pipeline {
       }
     }
 
-    stage('Run linter') {
-      steps {
-        script {
-          FAILURE_REASON = 'lint'
-          ghHelper.notifyPR('Lint', 'PENDING', 'running', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
-        }
-        sh 'yarn lint'
-      } //steps
-    }//stage
+    stage('Run tests') {
+      parallel {
 
-    stage('Run jest') {
-      steps {
-        script {
-          FAILURE_REASON = 'jest'
-          ghHelper.notifyPR('Jest Tests', 'PENDING', 'running', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
-        }
-        sh 'yarn test'
-      } //steps
-    }//stage
+        stage('Run linter') {
+          steps {
+            script {
+              ghHelper.notifyPR('Lint', 'PENDING', 'running', "${ghprbActualCommit}", "${BUILD_URL}", repoName)
+
+              sh "docker run --rm gcr.io/toptal-hub/${repoName}:${ghprbActualCommit} yarn lint"
+            }
+          } //steps
+
+          post {
+            success {
+              success "Lint successful"
+              script {
+                ghHelper.notifyPR('Lint', 'SUCCESS', 'Success', "${ghprbActualCommit}", "${BUILD_URL}", repoName)
+              }
+            }
+            failure {
+              err "Lint failed"
+              script {
+                ghHelper.notifyPR('Lint', 'ERROR', 'Job failed', "${ghprbActualCommit}", "${BUILD_URL}", repoName)
+              }
+            }
+          } //post
+        } //stage
+
+        stage('Run jest') {
+          steps {
+            script {
+              ghHelper.notifyPR('Jest Tests', 'PENDING', 'running', "${ghprbActualCommit}", "${BUILD_URL}", repoName)
+
+              sh "docker run --rm gcr.io/toptal-hub/${repoName}:${ghprbActualCommit} yarn test"
+            }
+          } //steps
+
+          post {
+            success {
+              success "Jest Tests"
+              script {
+                ghHelper.notifyPR('Jest Tests', 'SUCCESS', 'Success', "${ghprbActualCommit}", "${BUILD_URL}", repoName)
+              }
+            }
+            failure {
+              err "Jest Tests"
+              script {
+                ghHelper.notifyPR('Jest Tests', 'ERROR', 'Job failed', "${ghprbActualCommit}", "${BUILD_URL}", repoName)
+              }
+            }
+          } //post
+        } //stage
+
+        stage('Check build') {
+          steps {
+            ghHelper.notifyPR('Check build', 'PENDING', 'running', "${ghprbActualCommit}", "${BUILD_URL}", repoName)
+
+            sh "docker run --rm gcr.io/toptal-hub/${repoName}:${ghprbActualCommit} yarn build:dist"
+          } //steps
+
+          post {
+            success {
+              success "Check build"
+              script {
+                ghHelper.notifyPR('Check build', 'SUCCESS', 'Success', "${ghprbActualCommit}", "${BUILD_URL}", repoName)
+              }
+            }
+            failure {
+              err "Check build"
+              script {
+                ghHelper.notifyPR('Check build', 'ERROR', 'Job failed', "${ghprbActualCommit}", "${BUILD_URL}", repoName)
+              }
+            }
+          } //post
+        }//stage
+
+      } //parallel
+    } //stage
 
     stage('Run visual tests') {
       steps {
         info 'Run visual tests...'
         script {
-          FAILURE_REASON = 'visual tests'
-          ghHelper.notifyPR('Visual Tests', 'PENDING', 'running', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
-        }
+          ghHelper.notifyPR('Visual Tests', 'PENDING', 'running', "${ghprbActualCommit}", "${BUILD_URL}", repoName)
 
-        sh './bin/test-visual'
+          sh "docker run --rm gcr.io/toptal-hub/${repoName}:${ghprbActualCommit} ./bin/test-visual"
+        }
       } //steps
+
+      post {
+        success {
+          success "Visual Tests"
+          script {
+            ghHelper.notifyPR('Visual Tests', 'SUCCESS', 'Success', "${ghprbActualCommit}", "${BUILD_URL}", repoName)
+          }
+        }
+        failure {
+          err "Visual Tests"
+          script {
+            ghHelper.notifyPR('Visual Tests', 'ERROR', 'Job failed', "${ghprbActualCommit}","${BUILD_URL}/Visual_20Regression_20Tests/", repoName)
+          }
+        }
+      } //post
     }//stage
   }//stages
 
   post {
-
-    success {
-      success 'Build succeeded!'
-
-      script {
-        ghHelper.notifyPR('Lint', 'SUCCESS', 'Success', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
-        ghHelper.notifyPR('Jest Tests', 'SUCCESS', 'Success', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
-        ghHelper.notifyPR('Visual Tests', 'SUCCESS', 'Success', "${env.ghprbActualCommit}", "${env.BUILD_URL}/Visual_20Regression_20Tests/", 'picasso')
-      }
-    }
-
-    failure {
-      script {
-        def lastCommit = sh(returnStdout: true, script: 'git rev-parse --short=8 HEAD').trim()
-        if (FAILURE_REASON == 'lint') {
-          ghHelper.notifyPR('Lint', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
-          ghHelper.notifyPR('Jest Tests', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
-          ghHelper.notifyPR('Visual Tests', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}/Visual_20Regression_20Tests/", 'picasso')
-        } else if (FAILURE_REASON == 'jest') {
-          ghHelper.notifyPR('Lint', 'SUCCESS', 'Success', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
-          ghHelper.notifyPR('Jest Tests', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
-          ghHelper.notifyPR('Visual Tests', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}/Visual_20Regression_20Tests/", 'picasso')
-        } else if (FAILURE_REASON == 'visual tests') {
-          TOTAL_TESTS = sh(returnStdout: true, script: "cat ./__diff_output__/${lastCommit}/stats.json | jq '.suite.total' -r").trim()
-          FAILED_TESTS = sh(returnStdout: true, script: "cat ./__diff_output__/${lastCommit}/stats.json | jq '.suite.failed' -r").trim()
-          message = "${FAILED_TESTS}/${TOTAL_TESTS} snaphosts failed"
-          ghHelper.notifyPR('Lint', 'SUCCESS', 'Success', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
-          ghHelper.notifyPR('Jest Tests', 'SUCCESS', 'Success', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
-          ghHelper.notifyPR('Visual Tests', 'ERROR', message, "${env.ghprbActualCommit}", "${env.BUILD_URL}/Visual_20Regression_20Tests/", 'picasso')
-        } else {
-          ghHelper.notifyPR('Lint', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
-          ghHelper.notifyPR('Jest Tests', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}", 'picasso')
-          ghHelper.notifyPR('Visual Tests', 'ERROR', 'Job failed', "${env.ghprbActualCommit}", "${env.BUILD_URL}/Visual_20Regression_20Tests/", 'picasso')
-        }
-      }
-    }
-
     always {
       script {
         def lastCommit = sh(returnStdout: true, script: 'git rev-parse --short=8 HEAD').trim()

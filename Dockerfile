@@ -30,8 +30,13 @@ RUN apk update && apk upgrade && \
       bash \
       sed
 
-COPY . /app
 WORKDIR /app
+
+# Enables layer caching
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile
+
+COPY . /app
 
 COPY bin/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh

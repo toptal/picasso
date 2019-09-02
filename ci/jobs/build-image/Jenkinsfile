@@ -15,6 +15,8 @@ pipeline {
 
   parameters {
     string(name: 'BRANCH', defaultValue: 'master', description: 'Branch or tag to build')
+    string(name: 'IMAGE_NAME', description: 'Image name')
+    string(name: 'VERSION', description: 'Tag for the created docker image')
   }
 
   environment {
@@ -24,15 +26,15 @@ pipeline {
   stages {
     stage('Git checkout') {
       steps {
-        info "== Checking out ${params.BRANCH} =="
+        info "== Checking out ${BRANCH} =="
         gitCheckout(
-          branches: params.BRANCH,
+          branches: BRANCH,
           credentials: [username: 'git', description: 'jenkins/picasso'],
           url: 'git@github.com:toptal/picasso.git',
           additionalBehaviours: [
             cleanBeforeCheckout: true
           ])
-        success "== Checked out ${params.BRANCH} at ${gitCommit()}"
+        success "== Checked out ${BRANCH} at ${gitCommit()}"
       }
     }//checkout
 
@@ -43,11 +45,11 @@ pipeline {
 
           sh "gcloud auth activate-service-account --key-file=$GCE_ACCOUNT_KEY"
 
-          if (!isDockerImagePresentRemotely('gcr.io/compute-engine-1069/picasso', version)) {
-            image = docker.build("compute-engine-1069/picasso:${version}", ".")
-            success "== Built image for version ${version} =="
+          if (!isDockerImagePresentRemotely("gcr.io/toptal-hub/${IMAGE_NAME}", VERSION)) {
+            image = docker.build("toptal-hub/${IMAGE_NAME}:${VERSION}", ".")
+            success "== Built image for version ${VERSION} =="
           } else {
-            success "== Found image for version ${version} =="
+            success "== Found image for version ${VERSION} =="
           }
         }
       }
@@ -57,13 +59,13 @@ pipeline {
       steps {
         script {
           if (image) {
-            docker.withRegistry('https://gcr.io/compute-engine-1069/') {
-              image.push('latest')
+            docker.withRegistry('https://gcr.io/toptal-hub/') {
+              image.push(VERSION)
             }
-            success "== Pushed image with tag :latest =="
+            success "== Pushed image with tag ${VERSION} =="
           }
         }
       }
-    }//push image
+    } //push image
   }
 }
