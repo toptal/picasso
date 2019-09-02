@@ -23,13 +23,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importStar(require("react"));
 const Link_1 = __importDefault(require("@material-ui/core/Link"));
-const styles_1 = require("@material-ui/core/styles");
 const classnames_1 = __importDefault(require("classnames"));
+const styles_1 = require("@material-ui/styles");
 const styles_2 = __importDefault(require("./styles"));
-exports.Link = react_1.forwardRef(function Link(_a, ref) {
-    var { href, underline, onClick, children, classes, className, style, as, variant, tabIndex, invert } = _a, rest = __rest(_a, ["href", "underline", "onClick", "children", "classes", "className", "style", "as", "variant", "tabIndex", "invert"]);
+const useStyles = styles_1.makeStyles(styles_2.default);
+exports.Link = react_1.forwardRef(function Link(props, ref) {
+    const { href, underline, onClick, children, className, style, as, variant, tabIndex, invert } = props, rest = __rest(props
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    , ["href", "underline", "onClick", "children", "className", "style", "as", "variant", "tabIndex", "invert"]);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { color } = rest, nativeHTMLAttributes = __rest(rest, ["color"]);
+    const classes = useStyles(props);
     return (react_1.default.createElement(Link_1.default
     // eslint-disable-next-line react/jsx-props-no-spreading
     , Object.assign({}, nativeHTMLAttributes, { ref: ref, href: href, underline: underline, onClick: onClick, className: classnames_1.default(classes.root, className, {
@@ -42,5 +46,5 @@ exports.Link.defaultProps = {
     variant: 'default'
 };
 exports.Link.displayName = 'Link';
-exports.default = styles_1.withStyles(styles_2.default)(exports.Link);
+exports.default = exports.Link;
 //# sourceMappingURL=Link.js.map

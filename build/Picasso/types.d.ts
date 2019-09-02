@@ -1,4 +1,4 @@
-import { CSSProperties, FunctionComponent, AnchorHTMLAttributes, ButtonHTMLAttributes, RefAttributes, ForwardRefExoticComponent } from 'react';
+import { CSSProperties, FunctionComponent, AnchorHTMLAttributes, ButtonHTMLAttributes, RefAttributes, ForwardRefExoticComponent, ElementType, ComponentPropsWithRef } from 'react';
 import { Classes } from '../styles/types';
 export interface BaseProps {
     /** Classnames applied to root element */
@@ -14,6 +14,16 @@ export declare type OmitInternalProps<T, K = ''> = Pick<T, Exclude<keyof T, keyo
 export declare type PicassoComponent<P, S = {}> = FunctionComponent<OmitInternalProps<P> & Partial<JssProps>> & S;
 export declare type PicassoComponentWithRef<P, R, S = {}> = FunctionComponent<OmitInternalProps<P> & Partial<JssProps> & RefAttributes<R>> & S;
 export declare type CompoundedComponentWithRef<P, R, S = {}> = ForwardRefExoticComponent<P & RefAttributes<R>> & S;
+declare type PropsWithOverridableAs<T extends ElementType, P> = Omit<P, 'as'> & {
+    as?: T;
+} & ComponentPropsWithRef<T>;
+interface NamedComponent<P> {
+    defaultProps?: Partial<P>;
+    displayName?: string;
+}
+export interface OverridableComponent<P = {}> extends NamedComponent<P> {
+    <T extends ElementType = ElementType<Omit<P, 'as'>>>(props: PropsWithOverridableAs<T, P>): JSX.Element | null;
+}
 declare type Sizes = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
 export declare type SizeType<T extends Sizes> = T;
 export declare type SpacingType = number | SizeType<'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'>;

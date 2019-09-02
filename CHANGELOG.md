@@ -1,3 +1,10 @@
+# [3.3.0](https://github.com/toptal/picasso/compare/v3.2.2...v3.3.0) (2019-09-02)
+
+
+### Features
+
+* **Link:** extend `as` prop type definition ([#626](https://github.com/toptal/picasso/issues/626)) ([85a5952](https://github.com/toptal/picasso/commit/85a5952))
+
 ## [3.2.2](https://github.com/toptal/picasso/compare/v3.2.1...v3.2.2) (2019-08-30)
 
 
