@@ -93,7 +93,7 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
       </div>
     </li>
     <div
-      class="SidebarItem-submenuNonCollapsible"
+      class="SidebarItem-nonCollapsibleMenu"
     >
       <ul
         class="MuiList-root SidebarMenu-root"

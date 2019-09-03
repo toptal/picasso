@@ -61,7 +61,7 @@ export default ({ palette }: Theme) =>
       flex: 1,
       minWidth: 0
     },
-    submenuNonCollapsible: {
+    nonCollapsibleMenu: {
       marginLeft: '1.875em'
     }
   })
