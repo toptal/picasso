@@ -57,7 +57,7 @@ const Purifier: FunctionComponent = ({ children }) => {
     }
 
     purifyFixedPosition(sourceRendererRef.current)
-  }, [])
+  }, [sourceRendererRef])
 
   return <div ref={sourceRendererRef}>{children}</div>
 }
@@ -67,7 +67,6 @@ const Purifier: FunctionComponent = ({ children }) => {
 // for SSR rendering.
 // This fix is suggested here
 // https://gist.github.com/gaearon/e7d97cdf38a2907924ea12e4ebdf3c85#option-2-lazily-show-component-with-uselayouteffect
-// @ts-ignore
 const PicassoSSR: FunctionComponent = ({ children }) => {
   const [showPicasso, setShowPicasso] = useState(false)
 
