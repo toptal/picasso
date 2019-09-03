@@ -47,42 +47,11 @@ const imports: Record<string, object> = {
 
 const resolver = (path: string) => imports[path]
 
-// react-source-render uses internally server side rendering
-// so React is complaining about useLayoutEffect hook usage
-// for SSR rendering.
-// This fix is suggested here
-// https://gist.github.com/gaearon/e7d97cdf38a2907924ea12e4ebdf3c85#option-2-lazily-show-component-with-uselayouteffect
-const PicassoSSR: FunctionComponent = ({ children }) => {
-  const [showPicasso, setShowPicasso] = useState(false)
-
-  // Wait until after client-side hydration to show
-  useEffect(() => {
-    setShowPicasso(true)
-  }, [])
-
-  if (!showPicasso) {
-    return null
-  }
-
-  return <Picasso>{children}</Picasso>
-}
-
-class CodeExample extends Component<Props> {
-  static defaultProps = {
-    showEditCode: true
-  }
-
-  state = {
-    sourceCode: '',
-    isEditorVisible: false,
-    copyLinkButtonText: COPY_LINK_DEFAULT_TEXT
-  }
-
+class Purifier extends Component {
   sourceRendererRef = React.createRef<HTMLDivElement>()
 
   componentDidMount() {
-    const sourceCode = this.getOriginalSourceCode()
-    this.setState({ sourceCode })
+    this.purifyFixedPositionElements()
   }
 
   componentDidUpdate() {
@@ -99,6 +68,54 @@ class CodeExample extends Component<Props> {
     }
 
     purifyFixedPosition(this.sourceRendererRef.current)
+  }
+
+  render() {
+    const { children } = this.props
+
+    return <div ref={this.sourceRendererRef}>{children}</div>
+  }
+}
+
+// react-source-render uses internally server side rendering
+// so React is complaining about useLayoutEffect hook usage
+// for SSR rendering.
+// This fix is suggested here
+// https://gist.github.com/gaearon/e7d97cdf38a2907924ea12e4ebdf3c85#option-2-lazily-show-component-with-uselayouteffect
+// @ts-ignore
+const PicassoSSR: FunctionComponent = ({ children }) => {
+  const [showPicasso, setShowPicasso] = useState(false)
+
+  // Wait until after client-side hydration to show
+  useEffect(() => {
+    setShowPicasso(true)
+  }, [])
+
+  if (!showPicasso) {
+    return null
+  }
+
+  return (
+    <Picasso>
+      <Purifier>{children}</Purifier>
+    </Picasso>
+  )
+}
+
+class CodeExample extends Component<Props> {
+  static defaultProps = {
+    showEditCode: true
+  }
+
+  state = {
+    sourceCode: '',
+    isEditorVisible: false,
+    copyLinkButtonText: COPY_LINK_DEFAULT_TEXT
+  }
+
+  componentDidMount() {
+    const sourceCode = this.getOriginalSourceCode()
+    this.setState({ sourceCode })
   }
 
   getOriginalSourceCode = () => {
@@ -139,11 +156,13 @@ class CodeExample extends Component<Props> {
      */
     if (TEST_ENV === 'visual') {
       const renderInTestPicasso = (element: ReactNode) => (
-        <Picasso loadFonts={false}>{element}</Picasso>
+        <Picasso loadFonts={false}>
+          <Purifier>{element}</Purifier>
+        </Picasso>
       )
 
       return (
-        <div ref={this.sourceRendererRef} className={classes.componentRenderer}>
+        <div className={classes.componentRenderer}>
           <SourceRender
             babelConfig={{
               presets: PRESETS
@@ -179,60 +198,58 @@ class CodeExample extends Component<Props> {
     )
 
     return (
-      <div ref={this.sourceRendererRef}>
-        <SourceRender
-          babelConfig={{
-            presets: PRESETS
-          }}
-          wrap={renderInPicasso}
-          resolver={resolver}
-          source={sourceCode}
-          unstable_hot
-        >
-          {({ element, error }: RenderResult) => (
-            <div className={classes.root}>
-              <div className={classes.component}>
-                <Container
-                  className={classes.componentRenderer}
-                  top='large'
-                  bottom='large'
-                >
-                  {element}
-                  {error && (
-                    <Typography color='red'>{error.toString()}</Typography>
-                  )}
-                </Container>
-                <div className={classes.buttons}>
-                  {showEditCode && (
-                    <Button
-                      variant='flat'
-                      size='small'
-                      icon={<Code16 />}
-                      onClick={this.handleShowEditor}
-                    >
-                      Edit code
-                    </Button>
-                  )}
+      <SourceRender
+        babelConfig={{
+          presets: PRESETS
+        }}
+        wrap={renderInPicasso}
+        resolver={resolver}
+        source={sourceCode}
+        unstable_hot
+      >
+        {({ element, error }: RenderResult) => (
+          <div className={classes.root}>
+            <div className={classes.component}>
+              <Container
+                className={classes.componentRenderer}
+                top='large'
+                bottom='large'
+              >
+                {element}
+                {error && (
+                  <Typography color='red'>{error.toString()}</Typography>
+                )}
+              </Container>
+              <div className={classes.buttons}>
+                {showEditCode && (
                   <Button
                     variant='flat'
                     size='small'
-                    icon={<IconLink />}
-                    onClick={this.handleCopyLink}
+                    icon={<Code16 />}
+                    onClick={this.handleShowEditor}
                   >
-                    {copyLinkButtonText}
+                    Edit code
                   </Button>
-                </div>
-              </div>
-              <div>
-                <Accordion
-                  content={SourceCodeEditor}
-                  expanded={isEditorVisible}
-                />
+                )}
+                <Button
+                  variant='flat'
+                  size='small'
+                  icon={<IconLink />}
+                  onClick={this.handleCopyLink}
+                >
+                  {copyLinkButtonText}
+                </Button>
               </div>
             </div>
-          )}
-        </SourceRender>
-      </div>
+            <div>
+              <Accordion
+                content={SourceCodeEditor}
+                expanded={isEditorVisible}
+              />
+            </div>
+          </div>
+        )}
+      </SourceRender>
     )
   }
 }
