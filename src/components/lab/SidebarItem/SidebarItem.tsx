@@ -131,7 +131,7 @@ export const SidebarItem = forwardRef<HTMLElement, Props>(function SidebarItem(
   return (
     <Fragment>
       {menuItem}
-      {menu}
+      {hasMenu && <div className={classes.nonCollapsibleMenu}>{menu}</div>}
     </Fragment>
   )
 })

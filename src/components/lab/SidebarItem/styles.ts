@@ -12,6 +12,12 @@ export default ({ palette }: Theme) =>
 
       '&:focus': {
         backgroundColor: 'initial'
+      },
+      '$nonCollapsibleMenu &': {
+        paddingLeft: '3.375em'
+      },
+      '$details &': {
+        paddingLeft: '3.375em'
       }
     },
     light: {
@@ -29,9 +35,7 @@ export default ({ palette }: Theme) =>
       }
     },
     selected: {},
-    label: {
-      marginLeft: '1.875em'
-    },
+    label: {},
     withIcon: {
       marginLeft: '0.875em'
     },
@@ -61,5 +65,6 @@ export default ({ palette }: Theme) =>
     noWrap: {
       flex: 1,
       minWidth: 0
-    }
+    },
+    nonCollapsibleMenu: {}
   })
