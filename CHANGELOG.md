@@ -1,3 +1,10 @@
+# [3.4.0](https://github.com/toptal/picasso/compare/v3.3.0...v3.4.0) (2019-09-03)
+
+
+### Features
+
+* make Picasso publicly accessible ([#637](https://github.com/toptal/picasso/issues/637)) ([c3f1b43](https://github.com/toptal/picasso/commit/c3f1b43))
+
 # [3.3.0](https://github.com/toptal/picasso/compare/v3.2.2...v3.3.0) (2019-09-02)
 
 
