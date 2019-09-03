@@ -4,5 +4,5 @@
 # as static icon and we can't use shields.io service directly 
 
 sed -i 'README.md' -e "s/npm-.*-\(.*\)\.svg/npm-$1-\1\.svg/g"
-echo $1 > VERSION.txt
+echo $1 > .version
 
