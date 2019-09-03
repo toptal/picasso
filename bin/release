@@ -1,5 +1,4 @@
 #!/usr/bin/env sh
-
 CWD="$(dirname "$0")"	
 cd "$CWD/../"
 BASE_PATH=$(pwd)

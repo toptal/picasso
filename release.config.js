@@ -1,7 +1,6 @@
 /* eslint-disable */
 
 module.exports = {
-  branch: 'fx-move-node-modules-ci',
   analyzeCommits: ['@semantic-release/commit-analyzer'], // Determine the type of release by analyzing commits with conventional-changelog
   verifyConditions: [
     '@semantic-release/changelog', // Verify the presence and the validity of the configuration
