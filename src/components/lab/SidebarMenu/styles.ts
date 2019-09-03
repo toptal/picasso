@@ -5,7 +5,10 @@ export default () =>
     root: {
       flex: 0,
       boxShadow: 'none',
-      order: 1
+      order: 1,
+      '& &': {
+        flex: 1
+      }
     },
     bottom: {
       order: 99

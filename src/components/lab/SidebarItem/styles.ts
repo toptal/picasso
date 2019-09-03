@@ -5,13 +5,18 @@ export default ({ palette }: Theme) =>
     root: {
       height: '3em',
       padding: '0 1.5em',
-
       '&:hover': {
         backgroundColor: 'initial'
       },
 
       '&:focus': {
         backgroundColor: 'initial'
+      },
+      '$nonCollapsibleMenu &': {
+        paddingLeft: '3.375em'
+      },
+      '$details &': {
+        paddingLeft: '3.375em'
       }
     },
     light: {
@@ -37,7 +42,6 @@ export default ({ palette }: Theme) =>
       padding: 0
     },
     details: {
-      marginLeft: '1.875em',
       fontSize: 'inherit',
       marginBottom: '0'
     },
@@ -61,7 +65,5 @@ export default ({ palette }: Theme) =>
       flex: 1,
       minWidth: 0
     },
-    nonCollapsibleMenu: {
-      marginLeft: '1.875em'
-    }
+    nonCollapsibleMenu: {}
   })
