@@ -5,6 +5,7 @@ export default ({ palette }: Theme) =>
     root: {
       height: '3em',
       padding: '0 1.5em',
+
       '&:hover': {
         backgroundColor: 'initial'
       },
