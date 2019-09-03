@@ -10,6 +10,12 @@ exports.default = ({ palette }) => styles_1.createStyles({
         },
         '&:focus': {
             backgroundColor: 'initial'
+        },
+        '$nonCollapsibleMenu &': {
+            paddingLeft: '3.375em'
+        },
+        '$details &': {
+            paddingLeft: '3.375em'
         }
     },
     light: {
@@ -25,9 +31,7 @@ exports.default = ({ palette }) => styles_1.createStyles({
         }
     },
     selected: {},
-    label: {
-        marginLeft: '1.875em'
-    },
+    label: {},
     withIcon: {
         marginLeft: '0.875em'
     },
@@ -57,6 +61,7 @@ exports.default = ({ palette }) => styles_1.createStyles({
     noWrap: {
         flex: 1,
         minWidth: 0
-    }
+    },
+    nonCollapsibleMenu: {}
 });
 //# sourceMappingURL=styles.js.map

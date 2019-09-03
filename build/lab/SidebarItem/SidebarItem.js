@@ -63,7 +63,7 @@ exports.SidebarItem = react_1.forwardRef(function SidebarItem(_a, ref) {
     }
     return (react_1.default.createElement(react_1.Fragment, null,
         menuItem,
-        menu));
+        hasMenu && react_1.default.createElement("div", { className: classes.nonCollapsibleMenu }, menu)));
 });
 exports.SidebarItem.defaultProps = {
     collapsible: false,

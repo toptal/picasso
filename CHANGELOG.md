@@ -1,3 +1,10 @@
+## [3.4.1](https://github.com/toptal/picasso/compare/v3.4.0...v3.4.1) (2019-09-03)
+
+
+### Bug Fixes
+
+* remove spacing on the left from an iconless sidebar menu item ([#640](https://github.com/toptal/picasso/issues/640)) ([65a5b43](https://github.com/toptal/picasso/commit/65a5b43))
+
 # [3.4.0](https://github.com/toptal/picasso/compare/v3.3.0...v3.4.0) (2019-09-03)
 
 
