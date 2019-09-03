@@ -5,7 +5,8 @@ import React, {
   Component,
   FunctionComponent,
   useState,
-  useEffect
+  useEffect,
+  useLayoutEffect
 } from 'react'
 import debounce from 'debounce'
 import styled from 'styled-components'
@@ -47,34 +48,18 @@ const imports: Record<string, object> = {
 
 const resolver = (path: string) => imports[path]
 
-class Purifier extends Component {
-  sourceRendererRef = React.createRef<HTMLDivElement>()
+const Purifier: FunctionComponent = ({ children }) => {
+  const sourceRendererRef = React.createRef<HTMLDivElement>()
 
-  componentDidMount() {
-    this.purifyFixedPositionElements()
-  }
-
-  componentDidUpdate() {
-    this.purifyFixedPositionElements()
-  }
-
-  /* We need this function because of the fixed positioned components
-   * like PageHeader. We want to make them behave like absolute positioned
-   * elements inside the each example, especially when scroll involved.
-   */
-  purifyFixedPositionElements = () => {
-    if (!this.sourceRendererRef.current) {
+  useLayoutEffect(() => {
+    if (!sourceRendererRef.current) {
       return
     }
 
-    purifyFixedPosition(this.sourceRendererRef.current)
-  }
+    purifyFixedPosition(sourceRendererRef.current)
+  }, [])
 
-  render() {
-    const { children } = this.props
-
-    return <div ref={this.sourceRendererRef}>{children}</div>
-  }
+  return <div ref={sourceRendererRef}>{children}</div>
 }
 
 // react-source-render uses internally server side rendering
