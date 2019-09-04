@@ -13,6 +13,7 @@ import { Logo, Container, Typography } from '../'
 import { PageContext } from '../Page'
 import { PageContextProps } from '../Page/types'
 import { StandardProps, usePageHeader } from '../Picasso'
+import { useScreenSize, isScreenSize } from '../Picasso/config/breakpoints'
 import styles from './styles'
 
 type VariantType = 'dark' | 'light'
@@ -43,6 +44,10 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
 ) {
   const { setHasPageHeader } = usePageHeader()
 
+  const windowSize = useScreenSize()
+  const isMobile =
+    isScreenSize('small', windowSize) || isScreenSize('medium', windowSize)
+
   useEffect(() => {
     setHasPageHeader(true)
 
@@ -60,7 +65,9 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
     classes.content
   )
 
-  const logo = <Logo variant='white' />
+  const logo = (
+    <Logo variant='white' emblem={isMobile} className={classes.logo} />
+  )
 
   return (
     <header
@@ -75,7 +82,7 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
           <Container right='small' flex alignItems='center'>
             {logoLink ? React.cloneElement(logoLink, {}, logo) : logo}
           </Container>
-          {title && (
+          {title && !isMobile && (
             <React.Fragment>
               <div className={classes.divider} />
               <Container left='small'>

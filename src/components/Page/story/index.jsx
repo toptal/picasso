@@ -9,6 +9,14 @@ import { Page } from '../Page'
 
 const page = PicassoBook.createPage('Page', `A Page component`, 'Layout')
 
+const pageResponsive = PicassoBook.createPage(
+  'Page (Responsive)',
+  `A Responsive Page component`,
+  'Layout'
+)
+
+pageResponsive.connect(pageHeaderStory.chapter)
+
 page
   .createTabChapter('Props')
   .addComponentDocs({ component: Page, name: 'Page' })
