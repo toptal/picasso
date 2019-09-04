@@ -1,7 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Page, Grid, Container, Typography, Table } from '@toptal/picasso'
-import { Globe, Profile, Portfolio, Message } from '@toptal/picasso/Icon'
+import {
+  Globe16,
+  Profile16,
+  PortfolioDesigner16,
+  Message16
+} from '@toptal/picasso/Icon'
 import { palette } from '@toptal/picasso/utils'
 
 const SidebarItem = ({ icon, children }) => (
@@ -19,16 +24,16 @@ const Sidebar = () => (
   <Container top='medium'>
     <Grid direction='column' alignItems='stretch' spacing={8}>
       <Grid.Item>
-        <SidebarItem icon={<Portfolio />}>Overview</SidebarItem>
+        <SidebarItem icon={<PortfolioDesigner16 />}>Overview</SidebarItem>
       </Grid.Item>
       <Grid.Item>
-        <SidebarItem icon={<Profile />}>Jobs</SidebarItem>
+        <SidebarItem icon={<Profile16 />}>Jobs</SidebarItem>
       </Grid.Item>
       <Grid.Item>
-        <SidebarItem icon={<Message />}>Candidates</SidebarItem>
+        <SidebarItem icon={<Message16 />}>Candidates</SidebarItem>
       </Grid.Item>
       <Grid.Item>
-        <SidebarItem icon={<Globe />}>Team</SidebarItem>
+        <SidebarItem icon={<Globe16 />}>Team</SidebarItem>
       </Grid.Item>
     </Grid>
   </Container>
