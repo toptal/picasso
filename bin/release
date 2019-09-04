@@ -1,9 +1,15 @@
 #!/usr/bin/env sh
-CWD="$(dirname "$0")"
+CWD="$(dirname "$0")"	
 cd "$CWD/../"
 BASE_PATH=$(pwd)
 
 NODE_MODULES="$BASE_PATH/node_modules/"
+
+echo "" > .version
+
+# Needs to be updated for publishing package to npm
+echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN} \
+always-auth=true " > .npmrc
 
 yarn build:dist
 cp .npmrc build/
@@ -11,7 +17,7 @@ cp .npmrc build/
 # Safe switch for jenkins if we want to just try out release
 # yarn release [0|1]
 
-if [ "$1" == "1" ]; then
+if [ $RELEASE_AND_PUBLISH == "1" ]; then
   echo "=== WARNING RUNNING LIVE RELEASE ==="
   $NODE_MODULES/.bin/semantic-release --debug
 else
@@ -19,3 +25,4 @@ else
   $NODE_MODULES/.bin/semantic-release --debug --dry-run
 fi
 
+cp .version /artifacts/.version

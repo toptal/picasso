@@ -12,28 +12,28 @@ JEST_ENV="$BASE_PATH/puppeteer/environment.js"
 JEST_CONFIG="$BASE_PATH/puppeteer/puppeteer.jest.config.js"
 JEST_TEST_ENV="visual"
 DIFF_OUTPUT_PATH="$BASE_PATH/__diff_output__/*"
-GIT_SHA="$(git rev-parse --short=8 HEAD)"
 
 function build_storybook() {
   echo -e "${BLUE} Building storybook ... ${NC}"
   set -x
-  GIT_SHA=$GIT_SHA TEST_ENV=$JEST_TEST_ENV yarn build:storybook
+  TEST_ENV=$JEST_TEST_ENV yarn build:storybook
   set +x
 }
 
 function run_jest() {
-  if [[ "$1" == "-u" ]]; then
+  if [[ "$*" == *"-u"* ]]; then
     echo -e "${BLUE} Updating snapshots to a current version ... ${NC}"
   else
     echo -e "${BLUE} Verifying snapshots with a current version ... ${NC}"
   fi
 
   set -x
-  GIT_SHA=$GIT_SHA $BIN_PATH/jest --testEnvironment=$JEST_ENV --config=$JEST_CONFIG $@ || exit 1
+  $BIN_PATH/jest --testEnvironment=$JEST_ENV --config=$JEST_CONFIG $@ || exit 1
   set +x
 }
 
-yarn install
 build_storybook
 
-run_jest $@
+# filter not supported --build-image argument
+JEST_PARAMS=`echo $@ | sed 's/--build-image //'`
+run_jest $JEST_PARAMS

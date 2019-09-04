@@ -4,16 +4,12 @@ helper = new helpers.Helpers()
 ghHelper = new helpers.GithubNotifyHelper()
 
 downStreamBuilds = []
+repoName = 'picasso'
+buildImageJobName = "${repoName}-build-image"
 def VERSION
 
 pipeline {
-  agent {
-    docker {
-      image 'gcr.io/compute-engine-1069/picasso:latest'
-      alwaysPull true
-      args '-v /etc/passwd:/etc/passwd -v /home/jenkins/.ssh:/home/jenkins/.ssh --entrypoint='
-    }
-  }
+  agent { label 'slave_aws' }
 
   parameters {
     string(name: 'RELEASE_AND_PUBLISH', defaultValue: '1', description: 'Run build in dry-run mode which will not release new version')
@@ -60,41 +56,64 @@ pipeline {
       }
     }//stage
 
-    stage('Build new Docker image') {
-      when { equals expected: "1", actual: params.RELEASE_AND_PUBLISH }
+    stage('Build image') {
       steps {
-        info "== Building new docker image"
         script {
           downStreamBuilds[0] = buildWithParameters(
-            jobName: 'picasso-build-image',
+            jobName: buildImageJobName,
             propagate: false,
             wait: true,
             parameters: [
-              BRANCH: 'master'
+              BRANCH: gitBranch(),
+              VERSION: gitCommit(),
+              IMAGE_NAME: repoName
             ]
           )
         }
-      }
-    }
+      } //steps
+    } //stage
 
     stage('Run release') {
       steps {
-          sshagent(credentials: ['picasso-ssh-deploy-key']) { //provbot (jenkins/provbot)
-            sh """
-              git config user.email "$GIT_COMMITTER_EMAIL"
-              git config user.name "$GIT_COMMITTER_NAME"
-              yarn
-              echo "" > VERSION.txt
-              yarn release ${params.RELEASE_AND_PUBLISH}
-              cat VERSION.txt
-            """
-            success "Done."
-          }//sshagent
         script {
-            NEW_VERSION = sh(returnStdout: true, script: 'cat VERSION.txt').trim()
+          PWD = sh(returnStdout: true, script: 'pwd').trim()
+        }
+
+        sshagent(credentials: ['picasso-ssh-deploy-key']) {
+          // $SSH_AUTH_SOCK - is the ssh key passed from "picasso-ssh-deploy-key" credentials
+          // 
+          // -v /etc/passwd:/etc/passwd \
+          // -v /home/jenkins/.ssh:/home/jenkins/.ssh \
+          // -u 469:469 \
+          // - all those need to be passed to reuse jenkins user from Jenkins
+          //   and it's .ssh folder, keys and passwords
+          //
+          // -v ${PWD}:/artifacts - needs to pass .versions file
+          sh """
+            docker run \
+            --rm \
+            -e GIT_COMMITTER_EMAIL=${GIT_COMMITTER_EMAIL} \
+            -e GIT_COMMITTER_NAME=${GIT_COMMITTER_NAME} \
+            -e GITHUB_TOKEN=${GITHUB_TOKEN} \
+            -e RELEASE_AND_PUBLISH=${RELEASE_AND_PUBLISH} \
+            -e NPM_TOKEN=${NPM_TOKEN} \
+            -v ${PWD}:/artifacts \
+            -v /etc/passwd:/etc/passwd \
+            -v /home/jenkins/.ssh:/home/jenkins/.ssh \
+            -u 469:469 \
+            --entrypoint=./bin/release \
+            -v $SSH_AUTH_SOCK:/ssh-agent \
+            -e SSH_AUTH_SOCK=/ssh-agent \
+            -v ${PWD}/.git:/app/.git \
+            gcr.io/toptal-hub/${repoName}:${gitCommit()}
+          """
+        }
+
+        script {
+          NEW_VERSION = sh(returnStdout: true, script: 'cat .version').trim()
         }
       } //steps
-    }//stage
+    } //stage
 
     stage('Deploy documentation') {
       when { equals expected: "1", actual: params.RELEASE_AND_PUBLISH }
@@ -123,6 +142,7 @@ pipeline {
       }
     }
   }//stages
+
   post {
       success {
           script {

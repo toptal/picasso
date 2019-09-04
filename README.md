@@ -69,6 +69,12 @@ yarn test:visual -u -t Colors
 
 ```
 
+Also, right now visual tests are using docker images from `gcr.io/toptal-hub`, but if you want to build your own local image you can use `--build-image` argument:
+
+```
+yarn test:visual --build-image -u -t Colors
+```
+
 ### Running yarn commands inside docker image
 
 In order to run `yarn` commands we need to mount current `components` directory to docker, so command will be executed against current working directory not the one built inside image.
