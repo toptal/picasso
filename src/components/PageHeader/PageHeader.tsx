@@ -13,7 +13,7 @@ import { Logo, Container, Typography } from '../'
 import { PageContext } from '../Page'
 import { PageContextProps } from '../Page/types'
 import { StandardProps, usePageHeader } from '../Picasso'
-import { useScreenSize, isScreenSize } from '../Picasso/config/breakpoints'
+import { useScreenSize, isScreenSize } from '../utils'
 import styles from './styles'
 
 type VariantType = 'dark' | 'light'
@@ -45,8 +45,7 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
   const { setHasPageHeader } = usePageHeader()
 
   const windowSize = useScreenSize()
-  const isMobile =
-    isScreenSize('small', windowSize) || isScreenSize('medium', windowSize)
+  const isMobile = isScreenSize('small', windowSize)
 
   useEffect(() => {
     setHasPageHeader(true)
@@ -79,18 +78,18 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
     >
       <div className={contentClassnames}>
         <div className={classes.left}>
-          <Container right='small' flex alignItems='center'>
+          <Container flex alignItems='center'>
             {logoLink ? React.cloneElement(logoLink, {}, logo) : logo}
           </Container>
           {title && !isMobile && (
-            <React.Fragment>
+            <Container left='small' flex alignItems='center'>
               <div className={classes.divider} />
               <Container left='small'>
                 <Typography invert weight='light'>
                   {title}
                 </Typography>
               </Container>
-            </React.Fragment>
+            </Container>
           )}
         </div>
 

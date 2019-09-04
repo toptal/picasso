@@ -28,7 +28,7 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
       height: headerHeight,
       padding: `0 ${layout.contentPaddingHorizontal}`,
 
-      [screens('small', 'medium')]: {
+      [screens('small')]: {
         height: '2.5em',
         justifyContent: 'center'
       }
@@ -51,7 +51,7 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
       opacity: 0.8
     },
     logo: {
-      [screens('small', 'medium')]: {
+      [screens('small')]: {
         fontSize: '1.5em'
       }
     }

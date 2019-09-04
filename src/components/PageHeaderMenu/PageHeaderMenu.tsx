@@ -3,7 +3,9 @@ import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 
 import { StandardProps } from '../Picasso'
+import { useScreenSize, isScreenSize } from '../utils'
 import UserBadge from '../UserBadge'
+import Avatar from '../Avatar'
 import Dropdown from '../Dropdown'
 import Typography from '../Typography'
 import styles from './styles'
@@ -24,6 +26,34 @@ export const PageHeaderMenu = forwardRef<HTMLDivElement, Props>(
     { name, meta, avatar, classes, className, style, children, ...rest },
     ref
   ) {
+    const windowSize = useScreenSize()
+    const isMobile = isScreenSize('small', windowSize)
+
+    if (isMobile) {
+      return (
+        <Dropdown
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          {...rest}
+          ref={ref}
+          className={cx(classes.root, className)}
+          classes={{ content: classes.content }}
+          style={style}
+          content={children}
+          offset={{ top: 'xsmall' }}
+        >
+          <Avatar
+            size='xsmall'
+            classes={{
+              root: classes.avatar,
+              xsmall: classes.xsmall
+            }}
+            src={avatar as string}
+          />
+          <Dropdown.Arrow className={classes.arrow} />
+        </Dropdown>
+      )
+    }
+
     const metaContent =
       typeof meta === 'string' ? (
         <Typography className={classes.truncateText} invert size='small'>
@@ -57,7 +87,7 @@ export const PageHeaderMenu = forwardRef<HTMLDivElement, Props>(
         >
           {meta && metaContent}
         </UserBadge>
-        <Dropdown.Arrow style={{ color: 'white' }} />
+        <Dropdown.Arrow className={classes.arrow} />
       </Dropdown>
     )
   }
