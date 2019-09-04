@@ -5,7 +5,8 @@ import React, {
   Component,
   FunctionComponent,
   useState,
-  useEffect
+  useEffect,
+  useLayoutEffect
 } from 'react'
 import debounce from 'debounce'
 import styled from 'styled-components'
@@ -47,6 +48,20 @@ const imports: Record<string, object> = {
 
 const resolver = (path: string) => imports[path]
 
+const Purifier: FunctionComponent = ({ children }) => {
+  const sourceRendererRef = React.createRef<HTMLDivElement>()
+
+  useLayoutEffect(() => {
+    if (!sourceRendererRef.current) {
+      return
+    }
+
+    purifyFixedPosition(sourceRendererRef.current)
+  }, [sourceRendererRef])
+
+  return <div ref={sourceRendererRef}>{children}</div>
+}
+
 // react-source-render uses internally server side rendering
 // so React is complaining about useLayoutEffect hook usage
 // for SSR rendering.
@@ -64,7 +79,11 @@ const PicassoSSR: FunctionComponent = ({ children }) => {
     return null
   }
 
-  return <Picasso>{children}</Picasso>
+  return (
+    <Picasso>
+      <Purifier>{children}</Purifier>
+    </Picasso>
+  )
 }
 
 class CodeExample extends Component<Props> {
@@ -78,27 +97,9 @@ class CodeExample extends Component<Props> {
     copyLinkButtonText: COPY_LINK_DEFAULT_TEXT
   }
 
-  sourceRendererRef = React.createRef<HTMLDivElement>()
-
   componentDidMount() {
     const sourceCode = this.getOriginalSourceCode()
     this.setState({ sourceCode })
-  }
-
-  componentDidUpdate() {
-    this.purifyFixedPositionElements()
-  }
-
-  /* We need this function because of the fixed positioned components
-   * like PageHeader. We want to make them behave like absolute positioned
-   * elements inside the each example, especially when scroll involved.
-   */
-  purifyFixedPositionElements = () => {
-    if (!this.sourceRendererRef.current) {
-      return
-    }
-
-    purifyFixedPosition(this.sourceRendererRef.current)
   }
 
   getOriginalSourceCode = () => {
@@ -139,11 +140,13 @@ class CodeExample extends Component<Props> {
      */
     if (TEST_ENV === 'visual') {
       const renderInTestPicasso = (element: ReactNode) => (
-        <Picasso loadFonts={false}>{element}</Picasso>
+        <Picasso loadFonts={false}>
+          <Purifier>{element}</Purifier>
+        </Picasso>
       )
 
       return (
-        <div ref={this.sourceRendererRef} className={classes.componentRenderer}>
+        <div className={classes.componentRenderer}>
           <SourceRender
             babelConfig={{
               presets: PRESETS
@@ -179,60 +182,58 @@ class CodeExample extends Component<Props> {
     )
 
     return (
-      <div ref={this.sourceRendererRef}>
-        <SourceRender
-          babelConfig={{
-            presets: PRESETS
-          }}
-          wrap={renderInPicasso}
-          resolver={resolver}
-          source={sourceCode}
-          unstable_hot
-        >
-          {({ element, error }: RenderResult) => (
-            <div className={classes.root}>
-              <div className={classes.component}>
-                <Container
-                  className={classes.componentRenderer}
-                  top='large'
-                  bottom='large'
-                >
-                  {element}
-                  {error && (
-                    <Typography color='red'>{error.toString()}</Typography>
-                  )}
-                </Container>
-                <div className={classes.buttons}>
-                  {showEditCode && (
-                    <Button
-                      variant='flat'
-                      size='small'
-                      icon={<Code16 />}
-                      onClick={this.handleShowEditor}
-                    >
-                      Edit code
-                    </Button>
-                  )}
+      <SourceRender
+        babelConfig={{
+          presets: PRESETS
+        }}
+        wrap={renderInPicasso}
+        resolver={resolver}
+        source={sourceCode}
+        unstable_hot
+      >
+        {({ element, error }: RenderResult) => (
+          <div className={classes.root}>
+            <div className={classes.component}>
+              <Container
+                className={classes.componentRenderer}
+                top='large'
+                bottom='large'
+              >
+                {element}
+                {error && (
+                  <Typography color='red'>{error.toString()}</Typography>
+                )}
+              </Container>
+              <div className={classes.buttons}>
+                {showEditCode && (
                   <Button
                     variant='flat'
                     size='small'
-                    icon={<IconLink />}
-                    onClick={this.handleCopyLink}
+                    icon={<Code16 />}
+                    onClick={this.handleShowEditor}
                   >
-                    {copyLinkButtonText}
+                    Edit code
                   </Button>
-                </div>
-              </div>
-              <div>
-                <Accordion
-                  content={SourceCodeEditor}
-                  expanded={isEditorVisible}
-                />
+                )}
+                <Button
+                  variant='flat'
+                  size='small'
+                  icon={<IconLink />}
+                  onClick={this.handleCopyLink}
+                >
+                  {copyLinkButtonText}
+                </Button>
               </div>
             </div>
-          )}
-        </SourceRender>
-      </div>
+            <div>
+              <Accordion
+                content={SourceCodeEditor}
+                expanded={isEditorVisible}
+              />
+            </div>
+          </div>
+        )}
+      </SourceRender>
     )
   }
 }
