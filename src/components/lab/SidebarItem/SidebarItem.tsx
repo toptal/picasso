@@ -1,6 +1,13 @@
-import React, { forwardRef, ReactElement, Fragment, useContext } from 'react'
+import React, {
+  forwardRef,
+  ReactElement,
+  Fragment,
+  useContext,
+  ElementType
+} from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
+import { MenuItemProps } from '@material-ui/core/MenuItem'
 
 import { StandardProps } from '../../Picasso'
 import Container from '../../Container'
@@ -21,10 +28,14 @@ export interface Props extends StandardProps, MenuItemAttributes {
   disabled?: boolean
   /** If item has menu defines can menu be collapsed */
   collapsible?: boolean
+  /** Only makes sense if collapsible === true: define accordion content initial state */
+  defaultExpanded?: boolean
   /** Renders nested sidebar menu */
   menu?: ReactElement
   /** Callback when item is clicked */
   onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
+  /** Component name to render the menu item as */
+  as?: ElementType<MenuItemProps>
 }
 
 export const SidebarItem = forwardRef<HTMLElement, Props>(function SidebarItem(
@@ -33,12 +44,14 @@ export const SidebarItem = forwardRef<HTMLElement, Props>(function SidebarItem(
     icon,
     selected,
     collapsible,
+    defaultExpanded,
     menu,
     disabled,
     classes,
     className,
     style,
     onClick,
+    as,
     ...rest
   },
   ref
@@ -74,6 +87,7 @@ export const SidebarItem = forwardRef<HTMLElement, Props>(function SidebarItem(
     <MenuItem
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
+      as={as}
       ref={ref}
       style={style}
       className={cx(
@@ -114,6 +128,7 @@ export const SidebarItem = forwardRef<HTMLElement, Props>(function SidebarItem(
         content={menu}
         bordered={false}
         disabled={disabled}
+        defaultExpanded={defaultExpanded}
         // @ts-ignore
         expandIcon={
           <ArrowDropDown16
@@ -138,6 +153,7 @@ export const SidebarItem = forwardRef<HTMLElement, Props>(function SidebarItem(
 
 SidebarItem.defaultProps = {
   collapsible: false,
+  defaultExpanded: false,
   onClick: () => {},
   selected: false
 }

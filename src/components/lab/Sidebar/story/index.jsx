@@ -21,7 +21,11 @@ page
 
 page
   .createChapter()
-  .addExample('lab/Sidebar/story/Default.example.jsx', 'Default')
+  .addExample(
+    'lab/Sidebar/story/ExpandedByRouting.example.jsx',
+    'Expanded By Routing'
+  )
+/* .addExample('lab/Sidebar/story/Default.example.jsx', 'Default')
   .addExample('lab/Sidebar/story/Links.example.jsx', 'With Links')
   .addExample('lab/Sidebar/story/WithoutIcons.example.jsx', 'Without Icons')
   .addExample('lab/Sidebar/story/Variants.example.jsx', 'Variants')
@@ -29,4 +33,4 @@ page
     title: 'Item Menu',
     description:
       'Sidebar.Item has capability to render nested Sidebar.Menu with collapsible prop'
-  })
+  }) */
