@@ -5,6 +5,7 @@ export default ({ palette }: Theme) =>
     root: {
       height: '100%',
       minWidth: '17em',
+      width: '17em',
       boxShadow: `inset -1px 0px 0px 0px ${palette.grey.darker}`,
       padding: '1em 0'
     },
