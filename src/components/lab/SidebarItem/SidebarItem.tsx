@@ -125,7 +125,7 @@ export const SidebarItem = forwardRef<HTMLElement, Props>(function SidebarItem(
 
     const defaultExpanded =
       menuChildren.find(
-        ({ props: { selected } }: { props: { selected: any } }) => selected
+        (menuChild: ReactElement) => menuChild.props.selected
       ) !== undefined
 
     return (
