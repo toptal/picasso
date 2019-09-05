@@ -28,8 +28,6 @@ export interface Props extends StandardProps, MenuItemAttributes {
   disabled?: boolean
   /** If item has menu defines can menu be collapsed */
   collapsible?: boolean
-  /** Only makes sense if collapsible === true: define accordion content initial state */
-  defaultExpanded?: boolean
   /** Renders nested sidebar menu */
   menu?: ReactElement
   /** Callback when item is clicked */
@@ -44,7 +42,6 @@ export const SidebarItem = forwardRef<HTMLElement, Props>(function SidebarItem(
     icon,
     selected,
     collapsible,
-    defaultExpanded,
     menu,
     disabled,
     classes,
@@ -118,6 +115,12 @@ export const SidebarItem = forwardRef<HTMLElement, Props>(function SidebarItem(
   )
 
   if (hasMenu && collapsible) {
+    const menuChildren = menu ? menu.props.children : []
+    const defaultExpanded =
+      menuChildren.find(
+        ({ props: { selected } }: { props: { selected: any } }) => selected
+      ) !== undefined
+
     return (
       <Accordion
         classes={{
@@ -153,7 +156,6 @@ export const SidebarItem = forwardRef<HTMLElement, Props>(function SidebarItem(
 
 SidebarItem.defaultProps = {
   collapsible: false,
-  defaultExpanded: false,
   onClick: () => {},
   selected: false
 }
