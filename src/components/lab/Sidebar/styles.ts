@@ -4,7 +4,7 @@ export default ({ palette }: Theme) =>
   createStyles({
     root: {
       height: '100%',
-      width: '17em',
+      minWidth: '17em',
       boxShadow: `inset -1px 0px 0px 0px ${palette.grey.darker}`,
       padding: '1em 0'
     },
