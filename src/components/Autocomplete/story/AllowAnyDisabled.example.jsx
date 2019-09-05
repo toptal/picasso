@@ -15,7 +15,7 @@ const AutocompleteAllowAnyDisabledExample = () => (
       placeholder='Start typing country...'
       options={options}
       onSelect={item => console.log('onSelect value:', item)}
-      onChange={inputValue => console.log('onChange value:', inputValue)}
+      onChange={e => console.log('onChange value:', e.target.value)}
       allowAny={false}
     />
   </div>

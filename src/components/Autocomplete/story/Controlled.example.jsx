@@ -25,7 +25,9 @@ const AutocompleteControlledItemExample = () => {
           setValue(newValue)
         }}
         inputValue={inputValue}
-        onChange={newInputValue => {
+        onChange={e => {
+          const newInputValue = e.target.value
+
           console.log('onChange value:', newInputValue)
           setInputValue(newInputValue)
         }}

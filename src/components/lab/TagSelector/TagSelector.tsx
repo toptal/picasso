@@ -198,7 +198,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         value={null}
         onSelect={handleSelect}
         inputValue={inputValue}
-        onChange={setInputValue}
+        onChange={e => setInputValue(e.target.value)}
         onKeyDown={handleKeyDown}
         startAdornment={labels}
         debounceTime={0}

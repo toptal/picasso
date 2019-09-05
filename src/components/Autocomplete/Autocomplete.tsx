@@ -1,4 +1,5 @@
 import React, {
+  ChangeEvent,
   InputHTMLAttributes,
   KeyboardEvent,
   forwardRef,
@@ -47,7 +48,7 @@ export interface Props
   /** The value of the `input` element, required for a controlled component. */
   inputValue?: string
   /**  Callback invoked when `input` element value is changed */
-  onChange?: (inputValue: string) => void
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void
   /** The default selected option value. Use when the component is not controlled. */
   defaultValue?: string | null
   /** The value of the selected option, required for a controlled component. */
@@ -146,7 +147,12 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
     const [inputValue, setInputValue] = useControlledAndUncontrolledInput(
       defaultInputValue || getItemText(selectedItem),
       inputValueProp,
-      onInputChangeDebounced!
+      // FIXME: Hack for 3.0 compatibility. Fix in Picasso 4.0 by setting: `onChange?: (inputValue: stirng) => void`
+      newInputValue => {
+        const fakeEvent = { target: { value: newInputValue } }
+
+        onInputChangeDebounced!(fakeEvent as any)
+      }
     )
 
     const handleInputValueChange = (newInputValue: string) => {
