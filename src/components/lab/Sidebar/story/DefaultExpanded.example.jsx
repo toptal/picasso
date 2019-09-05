@@ -1,89 +1,42 @@
 import React from 'react'
 import { Sidebar, Logo, Typography } from '@toptal/picasso'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-
-const RootRouterComponent = ({
-  history: {
-    location: { pathname }
-  }
-}) => {
-  const ForcedToRerenderComponent = () => {
-    return (
-      <div>
-        Current path: {pathname}
-        <Sidebar>
-          <Sidebar.Logo>
-            <Logo />
-          </Sidebar.Logo>
-          <Sidebar.Menu>
-            <Sidebar.Item as={Link} to='/l1-overview'>
-              Overview
-            </Sidebar.Item>
-            <Sidebar.Item as={Link} to='/l1-jobs'>
-              Jobs
-            </Sidebar.Item>
-            <Sidebar.Item as={Link} to='/l1-candidates'>
-              Candidates
-            </Sidebar.Item>
-            <Sidebar.Item as={Link} to='/l1-team'>
-              Team
-            </Sidebar.Item>
-            <Sidebar.Item as={Link} to='/l1-users'>
-              Users
-            </Sidebar.Item>
-            <Sidebar.Item as={Link} to='/l1-billing' disabled>
-              Billing
-            </Sidebar.Item>
-            <Sidebar.Item as={Link} to='/l1-legal-info'>
-              <Typography size='medium' color='inherit'>
-                Legal Info
-              </Typography>
-            </Sidebar.Item>
-            <Sidebar.Item
-              collapsible
-              menu={
-                <Sidebar.Menu>
-                  {[
-                    'Share Online',
-                    'Referred Users',
-                    'Commissions',
-                    'Payment Options',
-                    'Expected Commissions'
-                  ].map(title => {
-                    const slug = '/l2-' + title.toLowerCase().replace(' ', '-')
-
-                    return (
-                      <Sidebar.Item
-                        key={slug}
-                        as={Link}
-                        to={slug}
-                        selected={slug === pathname}
-                      >
-                        {title}
-                      </Sidebar.Item>
-                    )
-                  })}
-                </Sidebar.Menu>
-              }
-            >
-              Resources
-            </Sidebar.Item>
-            <Sidebar.Item as={Link} to='/#more-resources'>
-              More Resources
-            </Sidebar.Item>
-          </Sidebar.Menu>
-        </Sidebar>
-      </div>
-    )
-  }
-
-  return <ForcedToRerenderComponent />
-}
+import { Referrals16 } from '@toptal/picasso/Icon'
 
 const SidebarDefaultExpanded = () => (
-  <Router>
-    <Route path='/*' component={RootRouterComponent} />
-  </Router>
+  <Sidebar>
+    <Sidebar.Logo>
+      <Logo />
+    </Sidebar.Logo>
+    <Sidebar.Menu>
+      <Sidebar.Item>Overview</Sidebar.Item>
+      <Sidebar.Item>Jobs</Sidebar.Item>
+      <Sidebar.Item>Candidates</Sidebar.Item>
+      <Sidebar.Item>Team</Sidebar.Item>
+      <Sidebar.Item>Users</Sidebar.Item>
+      <Sidebar.Item disabled>Billing</Sidebar.Item>
+      <Sidebar.Item>
+        <Typography size='medium' color='inherit'>
+          Legal Info
+        </Typography>
+      </Sidebar.Item>
+      <Sidebar.Item
+        collapsible
+        icon={<Referrals16 />}
+        menu={
+          <Sidebar.Menu>
+            <Sidebar.Item selected>Share Online</Sidebar.Item>
+            <Sidebar.Item>Referred Users</Sidebar.Item>
+            <Sidebar.Item>Commisions</Sidebar.Item>
+            <Sidebar.Item>Payment Options</Sidebar.Item>
+            <Sidebar.Item>Expected Commisions</Sidebar.Item>
+          </Sidebar.Menu>
+        }
+      >
+        Referrals
+      </Sidebar.Item>
+      <Sidebar.Item>More Resources</Sidebar.Item>
+    </Sidebar.Menu>
+  </Sidebar>
 )
 
 export default SidebarDefaultExpanded
