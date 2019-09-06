@@ -1,5 +1,146 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`SidebarItem collapsible menu is expanded when one of the children is selected 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="MuiPaper-root MuiPaper-elevation0 MuiExpansionPanel-root Accordion-root Mui-expanded MuiExpansionPanel-rounded MuiPaper-rounded"
+    >
+      <div
+        aria-disabled="false"
+        aria-expanded="true"
+        class="MuiButtonBase-root MuiExpansionPanelSummary-root WithStyles(ForwardRef(ExpansionPanelSummary))-root Accordion-summary SidebarItem-summary Mui-expanded"
+        role="button"
+        tabindex="0"
+      >
+        <div
+          class="MuiExpansionPanelSummary-content WithStyles(ForwardRef(ExpansionPanelSummary))-content Accordion-content SidebarItem-content Mui-expanded"
+        >
+          <li
+            aria-disabled="false"
+            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light SidebarItem-root SidebarItem-noWrap MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+            role="menuitem"
+            tabindex="-1"
+          >
+            <div
+              class="Container-flex Container-inline SidebarItem-noWrap"
+              style="align-items: center;"
+            >
+              <div
+                class="Container-flex SidebarItem-label SidebarItem-noWrap"
+                style="align-items: center;"
+              >
+                <p
+                  class="MuiTypography-root Typography-bodyMedium Typography-inherit MuiTypography-body1 MuiTypography-noWrap"
+                >
+                  Test item
+                </p>
+              </div>
+            </div>
+          </li>
+        </div>
+        <div
+          aria-disabled="false"
+          aria-hidden="true"
+          class="MuiButtonBase-root MuiIconButton-root MuiExpansionPanelSummary-expandIcon Mui-expanded MuiIconButton-edgeEnd"
+          role="button"
+          tabindex="-1"
+        >
+          <span
+            class="MuiIconButton-label"
+          >
+            <svg
+              class="SvgArrowDropDown16-root SidebarItem-expandIcon"
+              style="min-width: 16px; min-height: 16px;"
+              viewBox="0 0 16 16"
+            >
+              <defs>
+                <path
+                  d="M7.357 10.228L3.643 5.772C3.283 5.34 3.446 5 3.995 5h8.01c.54 0 .707.346.352.772l-3.714 4.456c-.36.432-.931.426-1.286 0z"
+                  id="arrowDropDown16_svg__a"
+                />
+              </defs>
+              <g
+                fill-rule="evenodd"
+              >
+                <mask
+                  id="arrowDropDown16_svg__b"
+                >
+                  <use
+                    xlink:href="#arrowDropDown16_svg__a"
+                  />
+                </mask>
+                <use
+                  xlink:href="#arrowDropDown16_svg__a"
+                />
+                <g
+                  mask="url(#arrowDropDown16_svg__b)"
+                >
+                  <path
+                    d="M0 0h16v16H0z"
+                  />
+                </g>
+              </g>
+            </svg>
+          </span>
+        </div>
+      </div>
+      <div
+        class="MuiCollapse-container MuiCollapse-entered"
+        style="min-height: 0px;"
+      >
+        <div
+          class="MuiCollapse-wrapper"
+        >
+          <div
+            class="MuiCollapse-wrapperInner"
+          >
+            <div
+              role="region"
+            >
+              <div
+                class="MuiExpansionPanelDetails-root ExpansionPanelDetails-root Accordion-details SidebarItem-details"
+              >
+                <ul
+                  class="MuiList-root SidebarMenu-root"
+                  role="menu"
+                  tabindex="-1"
+                >
+                  <li
+                    aria-disabled="false"
+                    class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light SidebarItem-root SidebarItem-noWrap SidebarItem-selected Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+                    role="menuitem"
+                    tabindex="-1"
+                  >
+                    <div
+                      class="Container-flex Container-inline SidebarItem-noWrap"
+                      style="align-items: center;"
+                    >
+                      <div
+                        class="Container-flex SidebarItem-label SidebarItem-noWrap"
+                        style="align-items: center;"
+                      >
+                        <p
+                          class="MuiTypography-root Typography-bodyMedium Typography-inherit MuiTypography-body1 MuiTypography-noWrap"
+                        >
+                          Menu item
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`SidebarItem default render 1`] = `
 <div>
   <div

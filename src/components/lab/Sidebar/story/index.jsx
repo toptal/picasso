@@ -22,6 +22,10 @@ page
 page
   .createChapter()
   .addExample('lab/Sidebar/story/Default.example.jsx', 'Default')
+  .addExample(
+    'lab/Sidebar/story/DefaultExpanded.example.jsx',
+    'Expanded By Default'
+  )
   .addExample('lab/Sidebar/story/Links.example.jsx', 'With Links')
   .addExample('lab/Sidebar/story/WithoutIcons.example.jsx', 'Without Icons')
   .addExample('lab/Sidebar/story/Variants.example.jsx', 'Variants')

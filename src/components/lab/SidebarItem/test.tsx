@@ -69,6 +69,22 @@ describe('SidebarItem', () => {
     expect(container).toMatchSnapshot()
   })
 
+  test('collapsible menu is expanded when one of the children is selected', () => {
+    const menu = (
+      <SidebarMenu>
+        <SidebarItem selected>Menu item</SidebarItem>
+      </SidebarMenu>
+    )
+
+    const { container } = render(
+      <TestSidebarItem menu={menu} collapsible>
+        Test item
+      </TestSidebarItem>
+    )
+
+    expect(container).toMatchSnapshot()
+  })
+
   test("don't use accordion for non-collapsible with menu", () => {
     const menu = (
       <SidebarMenu>
