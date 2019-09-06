@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
+import React, { forwardRef, ReactNode, HTMLAttributes, useState } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
@@ -41,6 +41,14 @@ export const Page = forwardRef<HTMLDivElement, Props>(function Page(
   { children, classes, className, style, fullWidth, ...rest },
   ref
 ) {
+  const [showSidebar, setShowSidebarState] = useState<boolean>(false)
+  const [triggerEl, setTriggerElState] = useState<Element | undefined>()
+
+  function handleSidebarToggle(event: React.MouseEvent<HTMLButtonElement>) {
+    setShowSidebarState(!showSidebar)
+    setTriggerElState(event.currentTarget)
+  }
+
   return (
     <div
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -49,7 +57,14 @@ export const Page = forwardRef<HTMLDivElement, Props>(function Page(
       className={cx(classes.root, className)}
       style={style}
     >
-      <PageContext.Provider value={{ fullWidth }}>
+      <PageContext.Provider
+        value={{
+          fullWidth,
+          showSidebar,
+          triggerEl,
+          onSidebarToggle: handleSidebarToggle
+        }}
+      >
         {children}
       </PageContext.Provider>
     </div>

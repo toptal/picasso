@@ -1,13 +1,20 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
-export default ({ palette }: Theme) =>
+export default ({ palette, screens }: Theme) =>
   createStyles({
     root: {
       height: '100%',
       minWidth: '17em',
       width: '17em',
       boxShadow: `inset -1px 0px 0px 0px ${palette.grey.darker}`,
-      padding: '1em 0'
+      padding: '1em 0',
+
+      [screens('small')]: {
+        width: '100vw',
+        // needs to be 2.5em (height of header)
+        height: 'calc(100vh - 20.5em)',
+        overflowY: 'scroll'
+      }
     },
     spacer: {
       order: 50,

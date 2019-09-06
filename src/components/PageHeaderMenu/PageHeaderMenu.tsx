@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
+import React, { forwardRef, ReactNode, HTMLAttributes, Fragment } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 
@@ -29,6 +29,15 @@ export const PageHeaderMenu = forwardRef<HTMLDivElement, Props>(
     const windowSize = useScreenSize()
     const isMobile = isScreenSize('small', windowSize)
 
+    const metaContent =
+      typeof meta === 'string' ? (
+        <Typography className={classes.truncateText} invert size='small'>
+          {meta}
+        </Typography>
+      ) : (
+        meta
+      )
+
     if (isMobile) {
       return (
         <Dropdown
@@ -38,7 +47,24 @@ export const PageHeaderMenu = forwardRef<HTMLDivElement, Props>(
           className={cx(classes.root, className)}
           classes={{ content: classes.content }}
           style={style}
-          content={children}
+          content={
+            <Fragment>
+              <UserBadge
+                center
+                size='xsmall'
+                classes={{
+                  root: classes.avatarRootMobile,
+                  avatar: classes.avatar,
+                  name: cx(classes.name, classes.truncateText)
+                }}
+                name={name}
+                avatar={avatar}
+              >
+                {meta && metaContent}
+              </UserBadge>
+              {children}
+            </Fragment>
+          }
           offset={{ top: 'xsmall' }}
         >
           <Avatar
@@ -53,15 +79,6 @@ export const PageHeaderMenu = forwardRef<HTMLDivElement, Props>(
         </Dropdown>
       )
     }
-
-    const metaContent =
-      typeof meta === 'string' ? (
-        <Typography className={classes.truncateText} invert size='small'>
-          {meta}
-        </Typography>
-      ) : (
-        meta
-      )
 
     return (
       <Dropdown

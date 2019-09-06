@@ -9,6 +9,12 @@ export default ({ screens }: Theme) =>
         // fontSize: '0.5rem'
       }
     },
+    avatarRootMobile: {
+      padding: '1em',
+      zIndex: 9999999,
+      backgroundColor: 'white',
+      position: 'relative'
+    },
     xsmall: {
       [screens('small')]: {
         height: '1.5em',
@@ -16,7 +22,11 @@ export default ({ screens }: Theme) =>
       }
     },
     content: {
-      width: '15em'
+      width: '15em',
+
+      [screens('small')]: {
+        width: '100vw'
+      }
     },
     name: {
       fontWeight: 400,

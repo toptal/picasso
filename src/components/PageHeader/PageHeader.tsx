@@ -13,6 +13,8 @@ import { Logo, Container, Typography } from '../'
 import { PageContext } from '../Page'
 import { PageContextProps } from '../Page/types'
 import { StandardProps, usePageHeader } from '../Picasso'
+import { Overview16, Close16 } from '../Icon'
+import Button from '../Button'
 import { useScreenSize, isScreenSize } from '../utils'
 import styles from './styles'
 
@@ -25,6 +27,8 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
   logoLink?: ReactElement
   /** Content for the right side of the `Header`  */
   rightContent?: ReactNode
+  /** Action items  */
+  actionContent?: ReactNode
   /** Color variant */
   variant?: VariantType
 }
@@ -37,6 +41,7 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
     title,
     logoLink,
     rightContent,
+    actionContent,
     variant,
     ...rest
   },
@@ -55,7 +60,9 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
     }
   }, [])
 
-  const { fullWidth } = useContext<PageContextProps>(PageContext)
+  const { fullWidth, onSidebarToggle, showSidebar } = useContext<
+    PageContextProps
+  >(PageContext)
 
   const contentClassnames = cx(
     {
@@ -77,8 +84,16 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
       style={style}
     >
       <div className={contentClassnames}>
+        {isMobile && (
+          <Button
+            icon={showSidebar ? <Close16 /> : <Overview16 />}
+            circular
+            variant='flat-white'
+            onClick={onSidebarToggle}
+          />
+        )}
         <div className={classes.left}>
-          <Container flex alignItems='center'>
+          <Container className={classes.logoContainer} flex alignItems='center'>
             {logoLink ? React.cloneElement(logoLink, {}, logo) : logo}
           </Container>
           {title && !isMobile && (
@@ -93,7 +108,10 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
           )}
         </div>
 
-        <div className={classes.right}>{rightContent}</div>
+        <div className={classes.right}>
+          {!isMobile && actionContent}
+          {rightContent}
+        </div>
       </div>
     </header>
   )

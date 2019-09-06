@@ -29,8 +29,7 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
       padding: `0 ${layout.contentPaddingHorizontal}`,
 
       [screens('small')]: {
-        height: '2.5em',
-        justifyContent: 'center'
+        height: '2.5em'
       }
     },
     fullWidth: {
@@ -49,6 +48,14 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
       height: '1.75em',
       backgroundColor: palette.common.white,
       opacity: 0.8
+    },
+    logoContainer: {
+      [screens('small')]: {
+        lineHeight: '1em',
+        position: 'absolute',
+        left: '50%',
+        transform: 'translate(-50%, 0%)'
+      }
     },
     logo: {
       [screens('small')]: {

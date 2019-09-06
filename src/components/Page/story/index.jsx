@@ -15,6 +15,15 @@ const pageResponsive = PicassoBook.createPage(
   'Layout'
 )
 
+pageResponsive
+  .createChapter()
+  .addExample('Page/story/Default.example.jsx', {
+    title: 'Default',
+    description:
+      'Page has centered content and restricted width of 1200px or 75rem'
+  })
+  .addExample('Page/story/Sidebar.example.jsx', 'With sidebar')
+
 pageResponsive.connect(pageHeaderStory.chapter)
 
 page
