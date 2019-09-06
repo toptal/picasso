@@ -28,7 +28,7 @@ const AutocompleteDynamicOptionsExample = () => {
   const [loading, setLoading] = useState(false)
 
   const handleChange = useCallback(async e => {
-    const inputValue = e.traget.value.trim().toLowerCase()
+    const inputValue = e.target.value.trim().toLowerCase()
 
     setLoading(true)
     const options = await loadOptions(inputValue)

@@ -5,6 +5,7 @@ import React, {
   forwardRef,
   ReactNode,
   ComponentType,
+  FormEvent,
   useCallback
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
@@ -19,9 +20,9 @@ import Menu from '../Menu'
 import Loader from '../Loader'
 import ScrollMenu from '../ScrollMenu'
 import { isSubstring, Maybe } from '../utils'
-import styles from './styles'
 import useControlledAndUncontrolledState from '../utils/use-controlled-and-uncontrolled-state'
 import useControlledAndUncontrolledInput from '../utils/use-controlled-and-uncontrolled-input'
+import styles from './styles'
 
 const DEFAULT_DEBOUNCE_TIME = 300
 const EMPTY_INPUT_VALUE = ''
@@ -296,7 +297,12 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
                 /* eslint-disable-next-line react/jsx-props-no-spreading */
                 {...rest}
                 // eslint-disable-next-line react/jsx-props-no-spreading
-                {...inputProps as any}
+                {...inputProps}
+                defaultValue={inputProps.defaultValue as string | undefined}
+                value={inputProps.value as string | undefined}
+                onChange={e => {
+                  inputProps.onChange!(e as FormEvent<HTMLInputElement>)
+                }}
                 ref={ref}
                 classes={{}}
                 placeholder={

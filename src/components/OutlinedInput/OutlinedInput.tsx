@@ -74,6 +74,7 @@ const OutlinedInput = forwardRef<HTMLInputElement, Props>(
       disabled,
       inputComponent,
       inputProps,
+      defaultValue,
       value,
       type,
       error,
@@ -102,6 +103,7 @@ const OutlinedInput = forwardRef<HTMLInputElement, Props>(
         inputComponent={inputComponent}
         inputProps={inputProps}
         inputRef={ref}
+        defaultValue={defaultValue}
         value={value}
         type={type}
         startAdornment={startAdornment}

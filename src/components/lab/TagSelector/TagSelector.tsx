@@ -22,6 +22,8 @@ type Item = {
   text: string
 }
 
+type SelectedValuesStateTuple = [string[], ((value: string[]) => void)]
+
 const getUniqueValue = (value: string) =>
   `${value.replace(/\s+/g, '-').toLowerCase()}-${new Date().getTime()}`
 
@@ -60,7 +62,8 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       onChange,
       defaultInputValue,
       inputValue: inputValueProp,
-      onInputChange
+      onInputChange,
+      ...rest
     },
     ref
   ) {
@@ -75,8 +78,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       setSelectedValues
     ] = useControlledAndUncontrolledState(defaultValue, value, onChange as (
       value: string[] | null
-    ) => void) as [string[], ((value: string[]) => void)]
-
+    ) => void) as SelectedValuesStateTuple
     const [addedOptions, setAddedOptions] = React.useState<Item[]>([])
     const currentOptions = [...options!, ...addedOptions]
 
@@ -192,6 +194,8 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
 
     return (
       <Autocomplete
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...rest}
         ref={inputRef}
         placeholder={selectedValues.length === 0 ? placeholder : undefined}
         options={autocompleteOptions}
