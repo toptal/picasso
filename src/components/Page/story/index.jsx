@@ -26,7 +26,6 @@ page
   })
   .addExample('Page/story/FullWidth.example.jsx', 'Full width')
   .addExample('Page/story/Scroll.example.jsx', 'Scroll with overflow')
-  .addExample('Page/story/WithSidebar.example.jsx', 'With Sidebar')
 
 page.connect(pageHeaderStory.chapter)
 
