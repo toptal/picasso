@@ -68,7 +68,7 @@ exports[`Dropdown should render menu 1`] = `
           >
             <li
               aria-disabled="false"
-              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-focusVisible Mui-focusVisible"
+              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
               role="menuitem"
               tabindex="-1"
             >
@@ -114,7 +114,7 @@ exports[`Dropdown should render menu 1`] = `
 </div>
 `;
 
-exports[`Dropdown should render menu without focus 1`] = `
+exports[`Dropdown should render menu with focus 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -161,7 +161,7 @@ exports[`Dropdown should render menu without focus 1`] = `
           >
             <li
               aria-disabled="false"
-              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-focusVisible Mui-focusVisible"
               role="menuitem"
               tabindex="-1"
             >
