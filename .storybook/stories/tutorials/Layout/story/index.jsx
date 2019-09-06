@@ -12,12 +12,11 @@ layoutPage
   .addTextSection(
     `
 In this tutorial you will learn how to create page layouts from scratch using components from Picasso.
-We will focus on using \`Page\`, \`Grid\` and \`Container\` components to create simple page layout consisting of
+We will focus on using \`Page\` and \`Container\` components to create simple page layout consisting of
 header, footer, sidebar and main content.
 
 ### Goals
  * Explain \`Page\` component and it's childs components
- * Show how \`Grid\` and \`Grid.Item\` is used to create responsive layouts
  * Usage of \`Container\` for defining spacings of components
 `
   )
@@ -63,19 +62,10 @@ tutorialChapter
   .addTextSection(
     `
 Great, now that we have basic layout let's divide content part of the page into a left sidebar and main content sections.
-We want to make them responsive so we will use [\`Grid\`](..?path=/story/layout-folder--grid) component.
+We will use [\`Container\`](..?path=/story/layout-folder--container) component for placing them side by side by using \`flex\` property.
 
-\`Grid\` component is based on flexbox and 12-column grid layout that supports breakpoints and spacings between items.
-It allows us to create consistent layout across different screen sizes.
-
-Let's import \`Grid\` from Picasso library and then define a grid with two items using \`Grid.Item\`, one for sidebar
-and other for main content section. We want to have them in different ratios for different screen sizes based on
-[breakpoints](..?path=/story/utils-folder--breakpoints) so we are using \`medium\` and \`large\` props to define ratio.
-We didn't specify ratio for \`small\` breakpoint, so it will automatically keep ratio defined for the medium breakpoint.
-Also, we don't need any spacing between those 2 items. 
-
-Because this is a specific case we need to define some styling for grid components to remove margins and give components
-full height. We are doing this using \`styled-components\`.
+Because this is a specific case we need to define some styling for wrapper container component to give it full height. We are doing this using \`styled-components\`.
+Also, for demonstration purposes, it's been added additional padding for Sidebar and the Main Content.
   `,
     {
       title: 'Second step: Implement sidebar and main content layout'
@@ -89,18 +79,11 @@ full height. We are doing this using \`styled-components\`.
 tutorialChapter
   .addTextSection(
     `
-For the sidebar we want to have various items stacked vertically with some spacing between them.
-Each item will have an icon and label. \`Grid\` is based on the flexbox and we can use \`direction\`
-and \`alignItems\` props to define vertical stacking of the items. We need to keep in mind to wrap each
-item with \`Grid.Item\` for proper functioning of layout.
-
-We extracted item implementation into \`SidebarItem\` component to make our code more readable and
-used grid for defining layout of label and icon. Each item should have hover and we want to add
-some inner spacing for each item so we used [\`Container\`](..?path=/story/layout-folder--container)
-component to add some padding.
+To add the sidebar menu we will be using [\`Sidebar\`](..?path=/story/lab-folder--sidebar) component,
+which is a part of Picasso librabry. It should fill all available height of the left column.
   `,
     {
-      title: 'Third step: Sidebar items'
+      title: 'Third step: Sidebar menu'
     }
   )
   .addExample('tutorials/Layout/story/Layout.3.example.jsx', {
@@ -112,8 +95,9 @@ tutorialChapter
   .addTextSection(
     `
 Main content can have various layouts, but for this tutorial, we choose to have simple item
-showing us talent details. We use \`Container\` component to define inner spacings of the root and
-talent details container.
+showing us talent details. We use [\`Container\`](..?path=/story/utils-folder--container) component
+to define inner spacings of the root and talent details container. Also, because we use a flexbox wrapper
+around the page, we need to make MainContent grow and fill all available space.
 
 Picasso defines standard BASE [colors](..?path=/story/utils-folder--colors) so we can
 easily set color of containers by using \`palette\`.

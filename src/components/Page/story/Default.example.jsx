@@ -1,12 +1,21 @@
 import React from 'react'
-import { Page, Container, Menu, Typography } from '@toptal/picasso'
+import styled from 'styled-components'
+import { Page, Container, Menu, Typography, Sidebar } from '@toptal/picasso'
+import { Globe16, Profile16, PortfolioDesigner16 } from '@toptal/picasso/Icon'
+
+const StyledContentContainer = styled(Container)`
+  height: 100%;
+`
 
 const PageDefaultExample = () => (
   <div style={{ height: '30rem' }}>
     <Page>
       <Page.Header rightContent={<RightContent />} title='Default example' />
       <Page.Content>
-        <Content />
+        <StyledContentContainer flex>
+          <SidebarMenu />
+          <Content />
+        </StyledContentContainer>
       </Page.Content>
       <Page.Footer />
     </Page>
@@ -14,6 +23,16 @@ const PageDefaultExample = () => (
 )
 
 const handleClick = () => window.alert('Item clicked')
+
+const SidebarMenu = () => (
+  <Sidebar>
+    <Sidebar.Menu>
+      <Sidebar.Item icon={<PortfolioDesigner16 />}>Home</Sidebar.Item>
+      <Sidebar.Item icon={<Profile16 />}>Contacts</Sidebar.Item>
+      <Sidebar.Item icon={<Globe16 />}>Team</Sidebar.Item>
+    </Sidebar.Menu>
+  </Sidebar>
+)
 
 const RightContent = () => (
   <Page.HeaderMenu
