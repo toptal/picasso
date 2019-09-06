@@ -115,7 +115,7 @@ export const SidebarItem = forwardRef<HTMLElement, Props>(function SidebarItem(
   )
 
   if (hasMenu && collapsible) {
-    const menuChildren = menu ? React.Children.toArray(menu.props.children) : []
+    const menuChildren = React.Children.toArray(menu!.props.children)
 
     const defaultExpanded =
       menuChildren.find(
