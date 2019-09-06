@@ -1,41 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Page, Grid, Container, Typography } from '@toptal/picasso'
-import {
-  Globe16,
-  Profile16,
-  PortfolioDesigner16,
-  Message16
-} from '@toptal/picasso/Icon'
+import { Page, Container, Sidebar } from '@toptal/picasso'
+import { Globe16, Profile16, PortfolioDesigner16 } from '@toptal/picasso/Icon'
 
-const SidebarItem = ({ icon, children }) => (
-  <Container padded='xsmall'>
-    <Grid spacing={8} alignItems='center'>
-      <Grid.Item>{icon}</Grid.Item>
-      <Grid.Item>
-        <Typography weight='semibold'>{children}</Typography>
-      </Grid.Item>
-    </Grid>
-  </Container>
-)
-
-const Sidebar = () => (
-  <Container top='medium'>
-    <Grid direction='column' alignItems='stretch' spacing={8}>
-      <Grid.Item>
-        <SidebarItem icon={<PortfolioDesigner16 />}>Overview</SidebarItem>
-      </Grid.Item>
-      <Grid.Item>
-        <SidebarItem icon={<Profile16 />}>Jobs</SidebarItem>
-      </Grid.Item>
-      <Grid.Item>
-        <SidebarItem icon={<Message16 />}>Candidates</SidebarItem>
-      </Grid.Item>
-      <Grid.Item>
-        <SidebarItem icon={<Globe16 />}>Team</SidebarItem>
-      </Grid.Item>
-    </Grid>
-  </Container>
+const SidebarMenu = () => (
+  <Sidebar>
+    <Sidebar.Menu>
+      <Sidebar.Item icon={<PortfolioDesigner16 />}>Home</Sidebar.Item>
+      <Sidebar.Item icon={<Profile16 />}>Contacts</Sidebar.Item>
+      <Sidebar.Item icon={<Globe16 />}>Team</Sidebar.Item>
+    </Sidebar.Menu>
+  </Sidebar>
 )
 
 const LayoutExample = () => (
@@ -43,26 +18,17 @@ const LayoutExample = () => (
     <Page>
       <Page.Header title='How to layout a page' />
       <Page.Content>
-        <PageGrid spacing={0}>
-          <PageGridItem medium={4} large={2}>
-            <Sidebar />
-          </PageGridItem>
-          <PageGridItem medium={8} large={10}>
-            Main Content
-          </PageGridItem>
-        </PageGrid>
+        <StyledContentContainer flex>
+          <SidebarMenu />
+          <Container padded='small'>Main Content</Container>
+        </StyledContentContainer>
       </Page.Content>
       <Page.Footer />
     </Page>
   </div>
 )
 
-const PageGrid = styled(Grid)`
-  height: 100%;
-  margin: 0;
-`
-
-const PageGridItem = styled(Grid.Item)`
+const StyledContentContainer = styled(Container)`
   height: 100%;
 `
 
