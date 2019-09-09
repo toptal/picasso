@@ -11,6 +11,9 @@ page
   .addComponentDocs({ component: Menu, name: 'Menu' })
   .addComponentDocs(menuItemStory.componentDocs)
 
-page.createChapter().addExample('Menu/story/Default.example.jsx', 'Default')
+page
+  .createChapter()
+  .addExample('Menu/story/Drilldown.example.jsx', 'Drill Down')
+  .addExample('Menu/story/Default.example.jsx', 'Default')
 
 page.connect(menuItemStory.chapter)
