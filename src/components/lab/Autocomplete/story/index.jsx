@@ -37,23 +37,23 @@ for this component. This you can achieve by adding corresponding attributes:
 \`autoComplete='nope' autofill='off'\`
     `
   )
-  .addExample('Autocomplete/story/Default.example.jsx', 'Default')
-  .addExample('Autocomplete/story/AllowAnyDisabled.example.jsx', {
+  .addExample('lab/Autocomplete/story/Default.example.jsx', 'Default')
+  .addExample('lab/Autocomplete/story/AllowAnyDisabled.example.jsx', {
     title: 'Any value disabled',
     description: `By default Autocomplete allows to enter any input value by user,
         you can set allowAny={false} prop to allow values only from the suggestion list`
   })
   .addExample(
-    'Autocomplete/story/InitialSelectedItem.example.jsx',
+    'lab/Autocomplete/story/InitialSelectedItem.example.jsx',
     'Initially selected item'
   )
   .addExample(
-    'Autocomplete/story/Controlled.example.jsx',
+    'lab/Autocomplete/story/Controlled.example.jsx',
     'Controlled selection'
   )
-  .addExample('Autocomplete/story/FullWidth.example.jsx', 'Full width')
-  .addExample('Autocomplete/story/Loading.example.jsx', 'Loading')
-  .addExample('Autocomplete/story/DynamicOptions.example.jsx', {
+  .addExample('lab/Autocomplete/story/FullWidth.example.jsx', 'Full width')
+  .addExample('lab/Autocomplete/story/Loading.example.jsx', 'Loading')
+  .addExample('lab/Autocomplete/story/DynamicOptions.example.jsx', {
     title: 'Dynamic options',
     description: `When you use Autocomplete with the ajax request to load options,
         you should always specify \`minLength\` prop to make less number of 

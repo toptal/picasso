@@ -1,5 +1,5 @@
 import React from 'react'
-import { Autocomplete } from '@toptal/picasso'
+import { Autocomplete } from '@toptal/picasso/lab'
 
 const options = [
   { text: 'Belarus', value: 'BY' },

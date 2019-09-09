@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react'
-import { Autocomplete } from '@toptal/picasso'
+import { Autocomplete } from '@toptal/picasso/lab'
 
 const remoteOptions = [
   { text: 'Belarus' },
@@ -27,12 +27,10 @@ const AutocompleteDynamicOptionsExample = () => {
   const [options, setOptions] = useState([])
   const [loading, setLoading] = useState(false)
 
-  const handleChange = useCallback(async e => {
-    const inputValue = e.target.value.trim().toLowerCase()
+  const handleChange = useCallback(async inputValue => {
+    const options = await loadOptions(inputValue.trim().toLowerCase())
 
     setLoading(true)
-    const options = await loadOptions(inputValue)
-
     setLoading(false)
     setOptions(options)
   }, [])

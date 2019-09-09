@@ -10,7 +10,7 @@ import { withStyles } from '@material-ui/core/styles'
 import { useCombinedRefs } from '../../utils'
 import { StandardProps } from '../../Picasso'
 import Label from '../../Label'
-import Autocomplete from '../../Autocomplete'
+import Autocomplete from '../Autocomplete'
 import styles from './styles'
 import TagSelectorInput from '../TagSelectorInput'
 import { Props as InputProps } from '../../Input'
@@ -202,7 +202,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         value={null}
         onSelect={handleSelect}
         inputValue={inputValue}
-        onChange={e => setInputValue(e.target.value)}
+        onChange={setInputValue}
         onKeyDown={handleKeyDown}
         startAdornment={labels}
         debounceTime={0}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { Autocomplete, Button, Container, Grid } from '@toptal/picasso'
+import { Button, Container, Grid } from '@toptal/picasso'
+import { Autocomplete } from '@toptal/picasso/lab'
 
 const options = [
   { text: 'Belarus', value: 'BY' },
@@ -25,9 +26,7 @@ const AutocompleteControlledItemExample = () => {
           setValue(newValue)
         }}
         inputValue={inputValue}
-        onChange={e => {
-          const newInputValue = e.target.value
-
+        onChange={newInputValue => {
           console.log('onChange value:', newInputValue)
           setInputValue(newInputValue)
         }}
@@ -38,7 +37,6 @@ const AutocompleteControlledItemExample = () => {
             <Button
               onClick={() => {
                 setValue(options[3].value)
-                setInputValue(options[3].text)
               }}
             >
               Set to country in your profile: Slovakia
@@ -46,6 +44,7 @@ const AutocompleteControlledItemExample = () => {
             <Button
               onClick={() => {
                 setValue(null)
+                // We need this to clear input too for the time being. WIP.
                 setInputValue('')
               }}
               variant='secondary-blue'
