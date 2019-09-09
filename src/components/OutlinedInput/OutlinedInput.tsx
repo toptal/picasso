@@ -39,6 +39,7 @@ export interface Props
   disabled?: boolean
   inputComponent?: ReactType<InputBaseComponentProps>
   inputProps?: InputBaseComponentProps
+  defaultValue?: ValueType
   value?: ValueType
   /** Whether `Input` should be rendered as `TextArea` or not */
   multiline?: boolean
@@ -73,6 +74,7 @@ const OutlinedInput = forwardRef<HTMLInputElement, Props>(
       disabled,
       inputComponent,
       inputProps,
+      defaultValue,
       value,
       type,
       error,
@@ -101,6 +103,7 @@ const OutlinedInput = forwardRef<HTMLInputElement, Props>(
         inputComponent={inputComponent}
         inputProps={inputProps}
         inputRef={ref}
+        defaultValue={defaultValue}
         value={value}
         type={type}
         startAdornment={startAdornment}

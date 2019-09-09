@@ -99,6 +99,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       allowAny,
       onSelect,
       onKeyDown: onKeyDownProp,
+      defaultValue,
       value,
       onChange,
       inputComponent,
@@ -106,6 +107,19 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
     },
     ref
   ) {
+    useEffect(() => {
+      window.console.warn(
+        `There is a newer version of this component with the latest fixes and API under '@toptal/picasso/lab'.
+
+This version of the component will receive no more updates during v3, and will be replaced by the one in lab in v4.
+Please update to the new one if you want to get the latest fixes and prepare for the next version.
+
+BREAKING CHANGES:
+
+- \`onChange\` prop function provides a \`string\` as argument instead of an \`Event\``
+      )
+    }, [])
+
     const [inputValue, setInputValue] = useState<string | null>(null)
     const [filter, setFilter] = useState(EMPTY_VALUE)
     const [selectedItem, setSelectedItem] = useState<Maybe<Item>>(null)
@@ -286,6 +300,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
               <InputComponent
                 /* eslint-disable-next-line react/jsx-props-no-spreading */
                 {...rest}
+                defaultValue={defaultValue as string | undefined}
                 ref={ref}
                 classes={{}}
                 icon={loading ? <Loader size='small' /> : null}

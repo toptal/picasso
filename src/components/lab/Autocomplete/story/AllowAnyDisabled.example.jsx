@@ -1,5 +1,5 @@
 import React from 'react'
-import { Autocomplete } from '@toptal/picasso'
+import { Autocomplete } from '@toptal/picasso/lab'
 
 const options = [
   { text: 'Belarus', value: 'BY' },
@@ -9,14 +9,16 @@ const options = [
   { text: 'Ukraine', value: 'UA' }
 ]
 
-const AutocompleteFullWidthExample = () => (
+const AutocompleteAllowAnyDisabledExample = () => (
   <div>
     <Autocomplete
       placeholder='Start typing country...'
       options={options}
-      width='full'
+      onSelect={item => console.log('onSelect value:', item)}
+      onChange={inputValue => console.log('onChange value:', inputValue)}
+      allowAny={false}
     />
   </div>
 )
 
-export default AutocompleteFullWidthExample
+export default AutocompleteAllowAnyDisabledExample

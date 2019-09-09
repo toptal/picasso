@@ -18,13 +18,13 @@ const TagSelectorSingleDefaultSelectionExample = () => (
   <div>
     <TagSelector
       options={options}
-      defaultValues={[options[0].value]}
+      defaultValue={[options[0].value]}
       placeholder='Start typing...'
       onChange={selectedValues =>
         window.console.log('onChange values: ', selectedValues)
       }
-      onInputChange={e =>
-        window.console.log('onInputChange value: ', e.target.value)
+      onInputChange={inputValue =>
+        window.console.log('onInputChange value: ', inputValue)
       }
     />
   </div>

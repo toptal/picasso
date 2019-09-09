@@ -21,7 +21,9 @@ export interface Props
   id?: string
   /** Name attribute of the input element */
   name?: string
-  /** The value of the component */
+  /** The default `input` element value. Use when the component is not controlled. */
+  defaultValue?: string
+  /** The value of the `input` element, required for a controlled component. */
   value?: string
   /** Placeholder for value */
   placeholder?: string
@@ -63,6 +65,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
   {
     id,
     name,
+    defaultValue,
     value,
     placeholder,
     error,
@@ -110,6 +113,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
       }}
       id={id}
       name={name}
+      defaultValue={defaultValue}
       value={value}
       placeholder={placeholder}
       error={error}
