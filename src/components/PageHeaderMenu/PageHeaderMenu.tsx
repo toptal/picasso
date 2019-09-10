@@ -38,47 +38,51 @@ export const PageHeaderMenu = forwardRef<HTMLDivElement, Props>(
         meta
       )
 
-    if (isMobile) {
-      return (
-        <Dropdown
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          {...rest}
-          ref={ref}
-          className={cx(classes.root, className)}
-          classes={{ content: classes.content, paper: classes.paper }}
-          style={style}
-          content={
-            <Fragment>
-              <UserBadge
-                center
-                size='xsmall'
-                classes={{
-                  root: classes.avatarRootMobile,
-                  avatar: classes.avatar,
-                  name: cx(classes.name, classes.truncateText)
-                }}
-                name={name}
-                avatar={avatar}
-              >
-                {meta && metaContent}
-              </UserBadge>
-              {children}
-            </Fragment>
-          }
-          offset={{ top: 'xsmall' }}
+    const content = isMobile ? (
+      <Fragment>
+        <UserBadge
+          center
+          size='xsmall'
+          classes={{
+            root: classes.contentUserBadge,
+            avatar: classes.avatar,
+            name: cx(classes.name, classes.truncateText)
+          }}
+          name={name}
+          avatar={avatar}
         >
-          <Avatar
-            size='xsmall'
-            classes={{
-              root: classes.avatar,
-              xsmall: classes.xsmall
-            }}
-            src={avatar as string}
-          />
-          <Dropdown.Arrow className={classes.arrow} />
-        </Dropdown>
-      )
-    }
+          {meta && metaContent}
+        </UserBadge>
+        {children}
+      </Fragment>
+    ) : (
+      children
+    )
+
+    const trigger = isMobile ? (
+      <Avatar
+        size='xsmall'
+        classes={{
+          root: classes.avatar,
+          xsmall: classes.xsmall
+        }}
+        src={avatar as string}
+      />
+    ) : (
+      <UserBadge
+        invert
+        center
+        size='xsmall'
+        classes={{
+          avatar: classes.avatar,
+          name: cx(classes.name, classes.truncateText)
+        }}
+        name={name}
+        avatar={avatar}
+      >
+        {meta && metaContent}
+      </UserBadge>
+    )
 
     return (
       <Dropdown
@@ -88,22 +92,10 @@ export const PageHeaderMenu = forwardRef<HTMLDivElement, Props>(
         className={cx(classes.root, className)}
         classes={{ content: classes.content }}
         style={style}
-        content={children}
+        content={content}
         offset={{ top: 'xsmall' }}
       >
-        <UserBadge
-          invert
-          center
-          size='xsmall'
-          classes={{
-            avatar: classes.avatar,
-            name: cx(classes.name, classes.truncateText)
-          }}
-          name={name}
-          avatar={avatar}
-        >
-          {meta && metaContent}
-        </UserBadge>
+        {trigger}
         <Dropdown.Arrow className={classes.arrow} />
       </Dropdown>
     )

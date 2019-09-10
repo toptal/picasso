@@ -4,7 +4,7 @@ import { Page, Menu, Container, Button } from '@toptal/picasso'
 const PageHeaderRightContentExample = () => (
   <div style={{ height: '4.5em' }}>
     <Page.Header
-      actionContent={
+      actionItems={
         <Container right='medium'>
           <Button variant='secondary-white'>Create job</Button>
         </Container>

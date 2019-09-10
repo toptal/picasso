@@ -28,7 +28,7 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
   /** Content for the right side of the `Header`  */
   rightContent?: ReactNode
   /** Action items  */
-  actionContent?: ReactNode
+  actionItems?: ReactNode
   /** Color variant */
   variant?: VariantType
 }
@@ -41,16 +41,16 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
     title,
     logoLink,
     rightContent,
-    actionContent,
+    actionItems,
     variant,
     ...rest
   },
   ref
 ) {
-  const { setHasPageHeader } = usePageHeader()
-
   const windowSize = useScreenSize()
   const isMobile = isScreenSize('small', windowSize)
+
+  const { setHasPageHeader } = usePageHeader()
 
   useEffect(() => {
     setHasPageHeader(true)
@@ -64,15 +64,28 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
     PageContextProps
   >(PageContext)
 
-  const contentClassnames = cx(
-    {
-      [classes.fullWidth]: fullWidth
-    },
-    classes.content
-  )
-
   const logo = (
     <Logo variant='white' emblem={isMobile} className={classes.logo} />
+  )
+
+  const titleComponent = title && !isMobile && (
+    <Container left='small' flex alignItems='center'>
+      <div className={classes.divider} />
+      <Container left='small'>
+        <Typography invert weight='light'>
+          {title}
+        </Typography>
+      </Container>
+    </Container>
+  )
+
+  const sidebarButton = hasSidebar && isMobile && (
+    <Button
+      icon={showSidebar ? <Close16 /> : <Overview16 />}
+      circular
+      variant='flat-white'
+      onClick={onSidebarToggle}
+    />
   )
 
   return (
@@ -83,33 +96,17 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
       className={cx('mui-fixed', classes.root, classes[variant!], className)}
       style={style}
     >
-      <div className={contentClassnames}>
-        {isMobile && hasSidebar && (
-          <Button
-            icon={showSidebar ? <Close16 /> : <Overview16 />}
-            circular
-            variant='flat-white'
-            onClick={onSidebarToggle}
-          />
-        )}
+      <div className={cx({ [classes.fullWidth]: fullWidth }, classes.content)}>
+        {sidebarButton}
         <div className={classes.left}>
           <Container className={classes.logoContainer} flex alignItems='center'>
             {logoLink ? React.cloneElement(logoLink, {}, logo) : logo}
           </Container>
-          {title && !isMobile && (
-            <Container left='small' flex alignItems='center'>
-              <div className={classes.divider} />
-              <Container left='small'>
-                <Typography invert weight='light'>
-                  {title}
-                </Typography>
-              </Container>
-            </Container>
-          )}
+          {titleComponent}
         </div>
 
         <div className={classes.right}>
-          {!isMobile && actionContent}
+          {!isMobile && actionItems}
           {rightContent}
         </div>
       </div>

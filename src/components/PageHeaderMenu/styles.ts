@@ -3,17 +3,15 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 export default ({ screens }: Theme) =>
   createStyles({
     avatar: {
-      fontSize: '0.9rem',
-
-      [screens('small')]: {
-        // fontSize: '0.5rem'
-      }
+      fontSize: '0.9rem'
     },
-    avatarRootMobile: {
-      padding: '1em',
-      zIndex: 9999999,
-      backgroundColor: 'white',
-      position: 'relative'
+    contentUserBadge: {
+      [screens('small')]: {
+        padding: '1em',
+        zIndex: 1,
+        backgroundColor: 'white',
+        position: 'relative'
+      }
     },
     xsmall: {
       [screens('small')]: {

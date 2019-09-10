@@ -43,10 +43,7 @@ const imports: Record<string, object> = {
   '@toptal/picasso': require('@components'),
   '@toptal/picasso/lab': require('@components/lab'),
   '@toptal/picasso/utils': require('@components/utils'),
-  '@toptal/picasso/Icon': require('@components/Icon'),
-  '@material-ui/core': require('@material-ui/core'),
-  '@toptal/picasso/Page': require('@components/Page'),
-  '@toptal/picasso/Page/types': require('@components/Page/types')
+  '@toptal/picasso/Icon': require('@components/Icon')
 }
 
 const resolver = (path: string) => imports[path]
