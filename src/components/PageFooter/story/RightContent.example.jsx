@@ -1,5 +1,5 @@
-import React from 'react'
-import { Page, Link, Container } from '@toptal/picasso'
+import React, { Fragment } from 'react'
+import { Page, Link } from '@toptal/picasso'
 
 const FooterRightContentExample = () => (
   <div>
@@ -8,7 +8,7 @@ const FooterRightContentExample = () => (
 )
 
 const Links = () => (
-  <Container flex justifyContent='space-between'>
+  <Fragment>
     <Link href='#' underline='none' invert style={{ marginLeft: '2.5em' }}>
       +1.888.604.3188
     </Link>
@@ -28,7 +28,7 @@ const Links = () => (
     <Link href='#' underline='none' invert style={{ marginLeft: '2.5em' }}>
       Toptal Training
     </Link>
-  </Container>
+  </Fragment>
 )
 
 export default FooterRightContentExample

@@ -44,5 +44,10 @@ export default ({ screens }: Theme) =>
       [screens('small')]: {
         marginLeft: '0.5rem'
       }
+    },
+    paper: {
+      [screens('small')]: {
+        top: '2.5em !important'
+      }
     }
   })

@@ -60,7 +60,7 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
     }
   }, [])
 
-  const { fullWidth, onSidebarToggle, showSidebar } = useContext<
+  const { fullWidth, onSidebarToggle, showSidebar, hasSidebar } = useContext<
     PageContextProps
   >(PageContext)
 
@@ -84,7 +84,7 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
       style={style}
     >
       <div className={contentClassnames}>
-        {isMobile && (
+        {isMobile && hasSidebar && (
           <Button
             icon={showSidebar ? <Close16 /> : <Overview16 />}
             circular

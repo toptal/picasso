@@ -1,13 +1,17 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useContext, useEffect } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
 import {
   StandardProps,
   PicassoComponentWithRef,
-  CompoundedComponentWithRef
+  CompoundedComponentWithRef,
+  usePicassoRoot
 } from '../../Picasso'
 import Container from '../../Container'
+import Popover from '../../Popover'
+import { PageContext } from '../../Page'
+import { useScreenSize, isScreenSize } from '../../utils'
 import SidebarMenu from '../SidebarMenu'
 import SidebarItem from '../SidebarItem'
 import SidebarLogo from '../SidebarLogo'
@@ -34,7 +38,21 @@ export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
   { children, variant, className, style, classes },
   ref
 ) {
-  return (
+  const { showSidebar, setHasSidebar, triggerEl, onSidebarToggle } = useContext(
+    PageContext
+  )
+  const windowSize = useScreenSize()
+  const isMobile = isScreenSize('small', windowSize)
+
+  useEffect(() => {
+    setHasSidebar(true)
+
+    return function cleanup() {
+      setHasSidebar(false)
+    }
+  }, [])
+
+  const sidebar = (
     <Container
       ref={ref}
       flex
@@ -48,6 +66,35 @@ export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
       </SidebarContext.Provider>
     </Container>
   )
+
+  if (isMobile) {
+    const container = usePicassoRoot()
+
+    return (
+      <Popover
+        classes={{ paper: classes.paper }}
+        open={showSidebar!}
+        onClose={onSidebarToggle}
+        anchorEl={triggerEl}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left'
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'left'
+        }}
+        PaperProps={{
+          elevation: 2
+        }}
+        container={container}
+      >
+        {sidebar}
+      </Popover>
+    )
+  }
+
+  return sidebar
 }) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
 
 Sidebar.defaultProps = {

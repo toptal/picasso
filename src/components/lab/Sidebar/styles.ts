@@ -11,9 +11,12 @@ export default ({ palette, screens }: Theme) =>
 
       [screens('small')]: {
         width: '100vw',
-        // needs to be 2.5em (height of header)
-        height: 'calc(100vh - 20.5em)',
         overflowY: 'scroll'
+      }
+    },
+    paper: {
+      [screens('small')]: {
+        top: '2.5em !important'
       }
     },
     spacer: {

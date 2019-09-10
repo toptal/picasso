@@ -1,13 +1,5 @@
-import React, { useContext } from 'react'
-import {
-  Sidebar,
-  Page,
-  Container,
-  Menu,
-  Typography,
-  Label,
-  Logo
-} from '@toptal/picasso'
+import React from 'react'
+import { Page, Container, Menu, Typography, Label, Logo } from '@toptal/picasso'
 import {
   Jobs16,
   Overview16,
@@ -21,9 +13,6 @@ import {
   ReferralBonus16,
   Help16
 } from '@toptal/picasso/Icon'
-import { PageContext } from '@toptal/picasso/Page'
-import { useScreenSize, isScreenSize } from '@toptal/picasso/utils'
-import { Popover } from '@material-ui/core'
 
 const PageSidebarExample = () => (
   <div style={{ height: '40rem', overflowY: 'scroll' }}>
@@ -57,7 +46,7 @@ const RightContent = () => (
 const Content = () => (
   <Container top='small' bottom='small' left='small' right='small'>
     <Typography align='center' variant='heading' size='large'>
-      FullWidth example
+      Sidebar example
     </Typography>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -71,92 +60,58 @@ const Content = () => (
   </Container>
 )
 
-const PageSidebar = () => {
-  const { showSidebar, triggerEl, onSidebarToggle } = useContext(PageContext)
-  const windowSize = useScreenSize()
-  const isMobile = isScreenSize('small', windowSize)
-
-  console.log('dddd: ', triggerEl)
-
-  const sidebar = (
-    <Sidebar>
-      <Sidebar.Logo>
-        <Logo />
-      </Sidebar.Logo>
-      <Sidebar.Menu>
-        <Sidebar.Item icon={<Overview16 />} selected>
-          Overview
-        </Sidebar.Item>
-        <Sidebar.Item icon={<Jobs16 />}>Jobs</Sidebar.Item>
-        <Sidebar.Item icon={<Candidates16 />}>Candidates</Sidebar.Item>
-        <Sidebar.Item icon={<Team16 />}>Team</Sidebar.Item>
-        <Sidebar.Item icon={<Participants16 />}>Users</Sidebar.Item>
-        <Sidebar.Item icon={<Billing16 />} disabled>
-          Billing
-        </Sidebar.Item>
-        <Sidebar.Item icon={<LegalInfo16 />}>
-          <Typography size='medium' color='inherit'>
-            Legal Info
-          </Typography>
-          <Container left='medium'>
-            <Label>5</Label>
-          </Container>
-        </Sidebar.Item>
-        <Sidebar.Item
-          collapsible
-          icon={<Referrals16 />}
-          menu={
-            <Sidebar.Menu>
-              <Sidebar.Item>Share Online</Sidebar.Item>
-              <Sidebar.Item>Referred Users</Sidebar.Item>
-              <Sidebar.Item>Commisions</Sidebar.Item>
-              <Sidebar.Item>Payment Options</Sidebar.Item>
-              <Sidebar.Item>Expected Commisions</Sidebar.Item>
-            </Sidebar.Menu>
-          }
-        >
-          Referrals
-        </Sidebar.Item>
-        <Sidebar.Item icon={<Resources16 />}>Resources</Sidebar.Item>
-      </Sidebar.Menu>
-
-      <Sidebar.Menu bottom>
-        <Sidebar.Item icon={<Candidates16 />}>Opportunities</Sidebar.Item>
-        <Sidebar.Item icon={<ReferralBonus16 />}>Referral Bonus</Sidebar.Item>
-        <Sidebar.Item icon={<Help16 />}>Help</Sidebar.Item>
-      </Sidebar.Menu>
-    </Sidebar>
-  )
-
-  if (isMobile) {
-    return (
-      <Popover
-        open={showSidebar}
-        onClose={onSidebarToggle}
-        anchorEl={triggerEl}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'right'
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'right'
-        }}
+const PageSidebar = () => (
+  <Page.Sidebar>
+    <Page.Sidebar.Logo>
+      <Logo />
+    </Page.Sidebar.Logo>
+    <Page.Sidebar.Menu>
+      <Page.Sidebar.Item icon={<Overview16 />} selected>
+        Overview
+      </Page.Sidebar.Item>
+      <Page.Sidebar.Item icon={<Jobs16 />}>Jobs</Page.Sidebar.Item>
+      <Page.Sidebar.Item icon={<Candidates16 />}>Candidates</Page.Sidebar.Item>
+      <Page.Sidebar.Item icon={<Team16 />}>Team</Page.Sidebar.Item>
+      <Page.Sidebar.Item icon={<Participants16 />}>Users</Page.Sidebar.Item>
+      <Page.Sidebar.Item icon={<Billing16 />} disabled>
+        Billing
+      </Page.Sidebar.Item>
+      <Page.Sidebar.Item icon={<LegalInfo16 />}>
+        <Typography size='medium' color='inherit'>
+          Legal Info
+        </Typography>
+        <Container left='medium'>
+          <Label>5</Label>
+        </Container>
+      </Page.Sidebar.Item>
+      <Page.Sidebar.Item
+        collapsible
+        icon={<Referrals16 />}
+        menu={
+          <Page.Sidebar.Menu>
+            <Page.Sidebar.Item>Share Online</Page.Sidebar.Item>
+            <Page.Sidebar.Item>Referred Users</Page.Sidebar.Item>
+            <Page.Sidebar.Item>Commisions</Page.Sidebar.Item>
+            <Page.Sidebar.Item>Payment Options</Page.Sidebar.Item>
+            <Page.Sidebar.Item>Expected Commisions</Page.Sidebar.Item>
+          </Page.Sidebar.Menu>
+        }
       >
-        {sidebar}
-      </Popover>
-    )
-  }
+        Referrals
+      </Page.Sidebar.Item>
+      <Page.Sidebar.Item icon={<Resources16 />}>Resources</Page.Sidebar.Item>
+    </Page.Sidebar.Menu>
 
-  return (
-    <div
-      style={{
-        height: '100%'
-      }}
-    >
-      {sidebar}
-    </div>
-  )
-}
+    <Page.Sidebar.Menu bottom>
+      <Page.Sidebar.Item icon={<Candidates16 />}>
+        Opportunities
+      </Page.Sidebar.Item>
+      <Page.Sidebar.Item icon={<ReferralBonus16 />}>
+        Referral Bonus
+      </Page.Sidebar.Item>
+      <Page.Sidebar.Item icon={<Help16 />}>Help</Page.Sidebar.Item>
+    </Page.Sidebar.Menu>
+  </Page.Sidebar>
+)
 
 export default PageSidebarExample

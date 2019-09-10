@@ -45,7 +45,7 @@ export const PageHeaderMenu = forwardRef<HTMLDivElement, Props>(
           {...rest}
           ref={ref}
           className={cx(classes.root, className)}
-          classes={{ content: classes.content }}
+          classes={{ content: classes.content, paper: classes.paper }}
           style={style}
           content={
             <Fragment>

@@ -9,23 +9,6 @@ import { Page } from '../Page'
 
 const page = PicassoBook.createPage('Page', `A Page component`, 'Layout')
 
-const pageResponsive = PicassoBook.createPage(
-  'Page (Responsive)',
-  `A Responsive Page component`,
-  'Layout'
-)
-
-pageResponsive
-  .createChapter()
-  .addExample('Page/story/Default.example.jsx', {
-    title: 'Default',
-    description:
-      'Page has centered content and restricted width of 1200px or 75rem'
-  })
-  .addExample('Page/story/Sidebar.example.jsx', 'With sidebar')
-
-pageResponsive.connect(pageHeaderStory.chapter)
-
 page
   .createTabChapter('Props')
   .addComponentDocs({ component: Page, name: 'Page' })
@@ -36,13 +19,7 @@ page
 
 page
   .createChapter()
-  .addExample('Page/story/Default.example.jsx', {
-    title: 'Default',
-    description:
-      'Page has centered content and restricted width of 1200px or 75rem'
-  })
-  .addExample('Page/story/FullWidth.example.jsx', 'Full width')
-  .addExample('Page/story/Scroll.example.jsx', 'Scroll with overflow')
+  .addExample('Page/story/Sidebar.example.jsx', 'With sidebar')
 
 page.connect(pageHeaderStory.chapter)
 

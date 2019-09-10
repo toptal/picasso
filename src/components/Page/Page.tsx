@@ -6,6 +6,7 @@ import PageHeader from '../PageHeader'
 import PageHeaderMenu from '../PageHeaderMenu'
 import PageFooter from '../PageFooter'
 import PageContent from '../PageContent'
+import PageSidebar from '../lab/Sidebar'
 import {
   StandardProps,
   PicassoComponentWithRef,
@@ -30,11 +31,14 @@ interface StaticProps {
   HeaderMenu: typeof PageHeaderMenu
   Content: typeof PageContent
   Footer: typeof PageFooter
+  Sidebar: typeof PageSidebar
 }
 
-export const PageContext = React.createContext<PageContextProps>(
-  {} as PageContextProps
-)
+export const PageContext = React.createContext<PageContextProps>({
+  showSidebar: false,
+  hasSidebar: false,
+  setHasSidebar: () => {}
+} as PageContextProps)
 
 // eslint-disable-next-line react/display-name
 export const Page = forwardRef<HTMLDivElement, Props>(function Page(
@@ -42,11 +46,16 @@ export const Page = forwardRef<HTMLDivElement, Props>(function Page(
   ref
 ) {
   const [showSidebar, setShowSidebarState] = useState<boolean>(false)
+  const [hasSidebar, setHasSidebarState] = useState<boolean>(false)
   const [triggerEl, setTriggerElState] = useState<Element | undefined>()
 
   function handleSidebarToggle(event: React.MouseEvent<HTMLButtonElement>) {
     setShowSidebarState(!showSidebar)
     setTriggerElState(event.currentTarget)
+  }
+
+  function handleSetHasSidebar(hasSidebar: boolean) {
+    setHasSidebarState(hasSidebar)
   }
 
   return (
@@ -61,7 +70,9 @@ export const Page = forwardRef<HTMLDivElement, Props>(function Page(
         value={{
           fullWidth,
           showSidebar,
+          hasSidebar,
           triggerEl,
+          setHasSidebar: handleSetHasSidebar,
           onSidebarToggle: handleSidebarToggle
         }}
       >
@@ -84,6 +95,8 @@ Page.HeaderMenu = PageHeaderMenu
 Page.Content = PageContent
 
 Page.Footer = PageFooter
+
+Page.Sidebar = PageSidebar
 
 export default withStyles(styles)(Page) as PicassoComponentWithRef<
   Props,
