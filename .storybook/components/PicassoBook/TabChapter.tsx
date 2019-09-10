@@ -26,7 +26,7 @@ class TabChapter extends Chapter {
       }
     })
 
-    const render = () => <TabsSection tabs={tabs} />
+    const render = () => <TabsSection tabs={tabs} hideOnMobileScreen />
 
     const tabsSection = new Section({
       title,

@@ -39,6 +39,10 @@ export default ({ palette, screens, layout }: Theme) =>
 
       [screens('small', 'medium', 'large')]: {
         order: -1
+      },
+
+      [screens('small')]: {
+        display: 'none'
       }
     }
   })
