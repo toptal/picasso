@@ -1,4 +1,9 @@
-import React, { HTMLAttributes, forwardRef, ReactElement } from 'react'
+import React, {
+  HTMLAttributes,
+  forwardRef,
+  ReactElement,
+  useState
+} from 'react'
 import MUIMenuList, { MenuListProps } from '@material-ui/core/MenuList'
 import { withStyles } from '@material-ui/core/styles'
 
@@ -26,33 +31,40 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
   { children, className, classes, style, ...rest },
   ref
 ) {
-  children = React.Children.toArray(children).map(child => {
-    const childElement = child as ReactElement
+  const [activeChildIdx, setActiveChildIdx] = useState(-1)
 
-    if (childElement.props.menu) {
-      child = (
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        <MenuItem {...childElement.props}>
-          <Container inline flex alignItems='center' style={{ flex: 1 }}>
-            <Container style={{ flex: 1 }}>
-              <WrappedStringMenuItemContent>
-                {childElement.props.children}
-              </WrappedStringMenuItemContent>
+  if (activeChildIdx !== -1) {
+    const activeChild = React.Children.toArray(children).find((child, idx) => {
+      return idx === activeChildIdx
+    }) as ReactElement
+
+    children = activeChild.props.menu
+  } else {
+    children = React.Children.toArray(children).map((child, idx) => {
+      const childElement = child as ReactElement
+
+      if (childElement.props.menu) {
+        child = (
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          <MenuItem
+            {...childElement.props}
+            onClick={() => setActiveChildIdx(idx)}
+          >
+            <Container inline flex alignItems='center' style={{ flex: 1 }}>
+              <Container style={{ flex: 1 }}>
+                <WrappedStringMenuItemContent>
+                  {childElement.props.children}
+                </WrappedStringMenuItemContent>
+              </Container>
+              <Chevron16 />
             </Container>
-            <Chevron16 />
-          </Container>
-        </MenuItem>
-      )
-    }
+          </MenuItem>
+        )
+      }
 
-    return child
-  })
-
-  /*
-
-    return child
+      return child
+    })
   }
-  */
 
   return (
     <MUIMenuList
