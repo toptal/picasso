@@ -51,7 +51,7 @@ export interface Props
   inputValue?: string
   /**  Callback invoked when `input` element value is changed */
   onInputChange?: (inputValue: string) => void
-  /** Width of the component which will apply `min-width` to the `input` */
+  /** Width of the component */
   width?: 'full' | 'shrink' | 'auto'
 }
 

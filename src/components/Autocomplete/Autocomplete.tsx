@@ -47,7 +47,7 @@ export interface Props
   placeholder?: string
   /** Debounce time in ms for onChange event handler. Set it to 0 to disable debouncing. */
   debounceTime?: number
-  /** Width of the component which will apply `min-width` to the `input` */
+  /** Width of the component */
   width?: 'full' | 'shrink' | 'auto'
   /** Shows the loading icon when options are loading */
   loading?: boolean
