@@ -8,7 +8,7 @@ import MUIMenuList, { MenuListProps } from '@material-ui/core/MenuList'
 import { withStyles } from '@material-ui/core/styles'
 
 import Container from '../Container'
-import { Chevron16 } from '../Icon'
+import { Chevron16, BackMinor16 } from '../Icon'
 import MenuItem, { WrappedStringMenuItemContent } from '../MenuItem'
 import {
   StandardProps,
@@ -38,14 +38,26 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
       return idx === activeChildIdx
     }) as ReactElement
 
-    children = activeChild.props.menu
+    /* eslint-disable react/jsx-key */
+    children = [
+      <MenuItem onClick={() => setActiveChildIdx(-1)}>
+        <Container inline flex alignItems='center' style={{ flex: 1 }}>
+          <BackMinor16 />
+          <Container style={{ flex: 1 }}>
+            <WrappedStringMenuItemContent>Back</WrappedStringMenuItemContent>
+          </Container>
+        </Container>
+      </MenuItem>,
+      activeChild.props.menu
+    ]
+    /* eslint-disable react/jsx-key */
   } else {
     children = React.Children.toArray(children).map((child, idx) => {
       const childElement = child as ReactElement
 
       if (childElement.props.menu) {
         child = (
-          // eslint-disable-next-line react/jsx-props-no-spreading
+          /* eslint-disable react/jsx-props-no-spreading */
           <MenuItem
             {...childElement.props}
             onClick={() => setActiveChildIdx(idx)}
@@ -59,6 +71,7 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
               <Chevron16 />
             </Container>
           </MenuItem>
+          /* eslint-enable react/jsx-props-no-spreading */
         )
       }
 
