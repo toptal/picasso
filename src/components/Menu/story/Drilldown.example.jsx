@@ -6,32 +6,45 @@ const DrilldownExample = () => {
     console.log('Menu item is clicked')
   }
 
-  const submenu2 = (
+  const cMenu = (
     <Menu>
-      <Menu.Item onClick={handleClick}>3rd Level Submenu First item</Menu.Item>
-      <Menu.Item onClick={handleClick}>3rd Level Submenu Second item</Menu.Item>
-      <Menu.Item onClick={handleClick}>3rd Level Submenu Third item</Menu.Item>
+      <Menu.Item onClick={handleClick}>Item C1</Menu.Item>
+      <Menu.Item onClick={handleClick}>Item C2</Menu.Item>
     </Menu>
   )
 
-  const submenu = (
+  const d3Menu = (
     <Menu>
-      <Menu.Item onClick={handleClick}>Submenu First item</Menu.Item>
-      <Menu.Item onClick={handleClick}>Submenu Second item</Menu.Item>
-      <Menu.Item onClick={handleClick} menu={submenu2}>
-        Submenu Third item
+      <Menu.Item onClick={handleClick}>Item D3-1</Menu.Item>
+      <Menu.Item onClick={handleClick}>Item D3-2</Menu.Item>
+      <Menu.Item onClick={handleClick}>Item D3-3</Menu.Item>
+    </Menu>
+  )
+
+  const dMenu = (
+    <Menu>
+      <Menu.Item onClick={handleClick}>Item D1</Menu.Item>
+      <Menu.Item onClick={handleClick}>Item D2</Menu.Item>
+      <Menu.Item onClick={handleClick} menu={d3Menu}>
+        Item D3
       </Menu.Item>
+      <Menu.Item onClick={handleClick}>Item D4</Menu.Item>
+      <Menu.Item onClick={handleClick}>Item D5</Menu.Item>
     </Menu>
   )
 
   return (
     <div>
       <Menu>
-        <Menu.Item onClick={handleClick}>First item</Menu.Item>
-        <Menu.Item onClick={handleClick} menu={submenu}>
-          Second item
+        <Menu.Item onClick={handleClick}>Item A</Menu.Item>
+        <Menu.Item onClick={handleClick}>Item B</Menu.Item>
+        <Menu.Item onClick={handleClick} menu={cMenu}>
+          Item C
         </Menu.Item>
-        <Menu.Item onClick={handleClick}>Third item</Menu.Item>
+        <Menu.Item onClick={handleClick} menu={dMenu}>
+          Item D
+        </Menu.Item>
+        <Menu.Item onClick={handleClick}>Item E</Menu.Item>
       </Menu>
     </div>
   )
