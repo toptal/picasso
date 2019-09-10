@@ -69,7 +69,7 @@ yarn test:visual -u -t Colors
 
 ```
 
-Also, right now visual tests are using docker images from `gcr.io/toptal-hub`, but if you want to build your own local image you can use `--build-image` argument:
+Also, right now visual tests are using docker images from `gcr.io/toptal-hub`, so to use them you need to have `docker` authenticated with `gcloud`. How to make it you can read [here](https://toptal-core.atlassian.net/wiki/spaces/IE/pages/337838085/Docker#Docker-docker-loginLogintoToptal'sprivateregistry). As well, if you want to build your own local image you can use `--build-image` argument:
 
 ```
 yarn test:visual --build-image -u -t Colors
