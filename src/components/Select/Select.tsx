@@ -37,7 +37,7 @@ export interface Props
   error?: boolean
   /** Component ID */
   id?: string
-  /** Width of the component which will apply `min-width` to the `input` */
+  /** Width of the component */
   width?: 'full' | 'shrink' | 'auto'
   /** Placeholder option which is selected by default */
   placeholder?: string

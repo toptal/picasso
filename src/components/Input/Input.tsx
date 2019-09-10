@@ -31,7 +31,7 @@ export interface Props
   error?: boolean
   /** If true, the `Input` will be disabled */
   disabled?: boolean
-  /** Width of the component which will apply `min-width` to the `input` */
+  /** Width of the component */
   width?: 'full' | 'shrink' | 'auto'
   /** Focus during first mount */
   autoFocus?: boolean

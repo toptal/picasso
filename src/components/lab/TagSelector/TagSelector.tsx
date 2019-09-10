@@ -3,7 +3,8 @@ import React, {
   Fragment,
   forwardRef,
   useRef,
-  ComponentType
+  ComponentType,
+  InputHTMLAttributes
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
@@ -27,7 +28,9 @@ type SelectedValuesStateTuple = [string[], ((value: string[]) => void)]
 const getUniqueValue = (value: string) =>
   `${value.replace(/\s+/g, '-').toLowerCase()}-${new Date().getTime()}`
 
-export interface Props extends StandardProps {
+export interface Props
+  extends StandardProps,
+    Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
   /** Placeholder for value */
   placeholder?: string
   /** Shows the loading icon when options are loading */
@@ -48,6 +51,8 @@ export interface Props extends StandardProps {
   inputValue?: string
   /**  Callback invoked when `input` element value is changed */
   onInputChange?: (inputValue: string) => void
+  /** Width of the component */
+  width?: 'full' | 'shrink' | 'auto'
 }
 
 export const TagSelector = forwardRef<HTMLInputElement, Props>(
@@ -63,6 +68,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       defaultInputValue,
       inputValue: inputValueProp,
       onInputChange,
+      width,
       ...rest
     },
     ref
@@ -208,6 +214,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         debounceTime={0}
         loading={loading}
         inputComponent={TagSelectorInput as ComponentType<InputProps>}
+        width={width}
       />
     )
   }

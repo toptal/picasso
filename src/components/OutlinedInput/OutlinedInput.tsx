@@ -34,7 +34,7 @@ export interface Props
   autoFocus?: boolean
   /** Helps users to fill forms faster */
   autoComplete?: string
-  /** Width of the component which will apply `min-width` to the `input` */
+  /** Width of the component */
   width?: 'full' | 'shrink' | 'auto'
   disabled?: boolean
   inputComponent?: ReactType<InputBaseComponentProps>
