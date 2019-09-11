@@ -26,12 +26,12 @@ const styles_1 = require("@material-ui/core/styles");
 const InputAdornment_1 = __importDefault(require("../../InputAdornment"));
 const OutlinedInput_1 = __importDefault(require("../../OutlinedInput"));
 const styles_2 = __importDefault(require("./styles"));
-exports.TagSelectorInput = react_1.forwardRef(function Input(_a, ref) {
-    var { id, name, value, placeholder, error, disabled, autoFocus, autoComplete, icon, iconPosition, classes, children, multiline, width, style, rows, rowsMax, type, onChange, startAdornment, endAdornment } = _a, rest = __rest(_a, ["id", "name", "value", "placeholder", "error", "disabled", "autoFocus", "autoComplete", "icon", "iconPosition", "classes", "children", "multiline", "width", "style", "rows", "rowsMax", "type", "onChange", "startAdornment", "endAdornment"]);
+exports.TagSelectorInput = react_1.forwardRef(function TagSelectorInput(_a, ref) {
+    var { id, name, defaultValue, value, placeholder, error, disabled, autoFocus, autoComplete, icon, iconPosition, classes, children, multiline, width, style, rows, rowsMax, type, onChange, startAdornment, endAdornment } = _a, rest = __rest(_a, ["id", "name", "defaultValue", "value", "placeholder", "error", "disabled", "autoFocus", "autoComplete", "icon", "iconPosition", "classes", "children", "multiline", "width", "style", "rows", "rowsMax", "type", "onChange", "startAdornment", "endAdornment"]);
     const IconAdornment = icon && (react_1.default.createElement(InputAdornment_1.default, { position: iconPosition, disabled: disabled, className: classes.loaderAdornment }, icon));
     const usedStartAdornment = icon && iconPosition === 'start' ? IconAdornment : startAdornment;
     const usedEndAdornment = icon && iconPosition === 'end' ? IconAdornment : endAdornment;
-    return (react_1.default.createElement(OutlinedInput_1.default, { ref: ref, style: style, className: classes.inputBase, id: id, name: name, value: value, placeholder: placeholder, error: error, disabled: disabled, autoFocus: autoFocus, autoComplete: autoComplete, multiline: multiline, rows: rows, rowsMax: rowsMax, type: type, width: width, 
+    return (react_1.default.createElement(OutlinedInput_1.default, { ref: ref, style: style, className: classes.inputBase, id: id, name: name, defaultValue: defaultValue, value: value, placeholder: placeholder, error: error, disabled: disabled, autoFocus: autoFocus, autoComplete: autoComplete, multiline: multiline, rows: rows, rowsMax: rowsMax, type: type, width: width, 
         // html attributes
         inputProps: rest, endAdornment: usedEndAdornment, startAdornment: usedStartAdornment, onChange: onChange }, children));
 });

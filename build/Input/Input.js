@@ -28,7 +28,7 @@ const InputAdornment_1 = __importDefault(require("../InputAdornment"));
 const OutlinedInput_1 = __importDefault(require("../OutlinedInput"));
 const styles_2 = __importDefault(require("./styles"));
 exports.Input = react_1.forwardRef(function Input(_a, ref) {
-    var { id, name, value, placeholder, error, disabled, autoFocus, autoComplete, icon, iconPosition, classes, children, multiline, width, className, style, rows, rowsMax, type, onChange, startAdornment, endAdornment } = _a, rest = __rest(_a, ["id", "name", "value", "placeholder", "error", "disabled", "autoFocus", "autoComplete", "icon", "iconPosition", "classes", "children", "multiline", "width", "className", "style", "rows", "rowsMax", "type", "onChange", "startAdornment", "endAdornment"]);
+    var { id, name, defaultValue, value, placeholder, error, disabled, autoFocus, autoComplete, icon, iconPosition, classes, children, multiline, width, className, style, rows, rowsMax, type, onChange, startAdornment, endAdornment } = _a, rest = __rest(_a, ["id", "name", "defaultValue", "value", "placeholder", "error", "disabled", "autoFocus", "autoComplete", "icon", "iconPosition", "classes", "children", "multiline", "width", "className", "style", "rows", "rowsMax", "type", "onChange", "startAdornment", "endAdornment"]);
     const IconAdornment = icon && (react_1.default.createElement(InputAdornment_1.default, { position: iconPosition, disabled: disabled }, icon));
     const usedStartAdornment = icon && iconPosition === 'start' ? IconAdornment : startAdornment;
     const usedEndAdornment = icon && iconPosition === 'end' ? IconAdornment : endAdornment;
@@ -37,7 +37,7 @@ exports.Input = react_1.forwardRef(function Input(_a, ref) {
                 [classes.rootMultiline]: multiline
             }),
             input: classes.input
-        }, id: id, name: name, value: value, placeholder: placeholder, error: error, disabled: disabled, autoFocus: autoFocus, autoComplete: autoComplete, multiline: multiline, rows: rows, rowsMax: rowsMax, type: type, width: width, 
+        }, id: id, name: name, defaultValue: defaultValue, value: value, placeholder: placeholder, error: error, disabled: disabled, autoFocus: autoFocus, autoComplete: autoComplete, multiline: multiline, rows: rows, rowsMax: rowsMax, type: type, width: width, 
         // html attributes
         inputProps: rest, endAdornment: usedEndAdornment, startAdornment: usedStartAdornment, onChange: onChange }, children));
 });

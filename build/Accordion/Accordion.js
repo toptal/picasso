@@ -46,6 +46,7 @@ exports.Accordion = react_1.forwardRef(function Accordion(_a, ref) {
 });
 exports.Accordion.defaultProps = {
     bordered: true,
+    defaultExpanded: false,
     disabled: false,
     expanded: undefined,
     onChange: () => { }

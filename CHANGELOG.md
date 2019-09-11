@@ -1,3 +1,22 @@
+# [3.5.0](https://github.com/toptal/picasso/compare/v3.4.1...v3.5.0) (2019-09-11)
+
+
+### Bug Fixes
+
+* add read/write rights for jenkins user for release ([#669](https://github.com/toptal/picasso/issues/669)) ([298dc26](https://github.com/toptal/picasso/commit/298dc26))
+* fix release by adding ci env variable ([#666](https://github.com/toptal/picasso/issues/666)) ([6a002fe](https://github.com/toptal/picasso/commit/6a002fe))
+* fix release ci build ([#668](https://github.com/toptal/picasso/issues/668)) ([d6f891b](https://github.com/toptal/picasso/commit/d6f891b))
+* fix release ci job ([#667](https://github.com/toptal/picasso/issues/667)) ([1e97ae5](https://github.com/toptal/picasso/commit/1e97ae5))
+* **autocomplete:** auto highlight first option ([#663](https://github.com/toptal/picasso/issues/663)) ([31552a0](https://github.com/toptal/picasso/commit/31552a0))
+* **autocomplete:** fix diverse issues ([#654](https://github.com/toptal/picasso/issues/654)) ([c46dda6](https://github.com/toptal/picasso/commit/c46dda6))
+* **autocomplete:** fix missing details ([#661](https://github.com/toptal/picasso/issues/661)) ([1bbe9ed](https://github.com/toptal/picasso/commit/1bbe9ed))
+* **Sidebar:** [FX-384] Fix minWidth for Sidebar, add page sidebar tutorial ([#655](https://github.com/toptal/picasso/issues/655)) ([b673d8d](https://github.com/toptal/picasso/commit/b673d8d))
+
+
+### Features
+
+* allow 'defaultExpanded' prop for SidebarItem for plugging to re… ([#653](https://github.com/toptal/picasso/issues/653)) ([7088e16](https://github.com/toptal/picasso/commit/7088e16))
+
 ## [3.4.1](https://github.com/toptal/picasso/compare/v3.4.0...v3.4.1) (2019-09-03)
 
 

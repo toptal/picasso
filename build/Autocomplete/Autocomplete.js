@@ -39,7 +39,17 @@ const isMatchingMinLength = (value, minLength) => !minLength || value.length >= 
 const getItemText = (item) => item ? item.text || EMPTY_VALUE : EMPTY_VALUE;
 const getItemValue = (item) => item ? item.value || getItemText(item) : EMPTY_VALUE;
 exports.Autocomplete = react_1.forwardRef(function Autocomplete(_a, ref) {
-    var { classes, className, debounceTime, loading, minLength, placeholder, noOptionsText, options: initialOptions, style, width, allowAny, onSelect, onKeyDown: onKeyDownProp, value, onChange, inputComponent } = _a, rest = __rest(_a, ["classes", "className", "debounceTime", "loading", "minLength", "placeholder", "noOptionsText", "options", "style", "width", "allowAny", "onSelect", "onKeyDown", "value", "onChange", "inputComponent"]);
+    var { classes, className, debounceTime, loading, minLength, placeholder, noOptionsText, options: initialOptions, style, width, allowAny, onSelect, onKeyDown: onKeyDownProp, defaultValue, value, onChange, inputComponent } = _a, rest = __rest(_a, ["classes", "className", "debounceTime", "loading", "minLength", "placeholder", "noOptionsText", "options", "style", "width", "allowAny", "onSelect", "onKeyDown", "defaultValue", "value", "onChange", "inputComponent"]);
+    react_1.useEffect(() => {
+        window.console.warn(`There is a newer version of this component with the latest fixes and API under '@toptal/picasso/lab'.
+
+This version of the component will receive no more updates during v3, and will be replaced by the one in lab in v4.
+Please update to the new one if you want to get the latest fixes and prepare for the next version.
+
+BREAKING CHANGES:
+
+- \`onChange\` prop function provides a \`string\` as argument instead of an \`Event\``);
+    }, []);
     const [inputValue, setInputValue] = react_1.useState(null);
     const [filter, setFilter] = react_1.useState(EMPTY_VALUE);
     const [selectedItem, setSelectedItem] = react_1.useState(null);
@@ -135,7 +145,7 @@ exports.Autocomplete = react_1.forwardRef(function Autocomplete(_a, ref) {
         return (react_1.default.createElement("div", { className: classnames_1.default(classes.root, className, classes[`root${helpers_1.capitalize(width)}`]), style: style },
             react_1.default.createElement(InputComponent
             /* eslint-disable-next-line react/jsx-props-no-spreading */
-            , Object.assign({}, rest, { ref: ref, classes: {}, icon: loading ? react_1.default.createElement(Loader_1.default, { size: 'small' }) : null, iconPosition: 'end', value: inputValue || EMPTY_VALUE, onBlur: onBlur, onKeyDown: onKeyDown, onFocus: onFocus, onClick: onFocus, placeholder: selectedItem ? getItemText(selectedItem) : placeholder, width: width, onChange: e => {
+            , Object.assign({}, rest, { defaultValue: defaultValue, ref: ref, classes: {}, icon: loading ? react_1.default.createElement(Loader_1.default, { size: 'small' }) : null, iconPosition: 'end', value: inputValue || EMPTY_VALUE, onBlur: onBlur, onKeyDown: onKeyDown, onFocus: onFocus, onClick: onFocus, placeholder: selectedItem ? getItemText(selectedItem) : placeholder, width: width, onChange: e => {
                     onChange(e);
                 } })),
             react_1.default.createElement("div", Object.assign({}, getMenuProps()), canOpen ? optionsMenu : null)));
