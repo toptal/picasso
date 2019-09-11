@@ -6,7 +6,7 @@ to: src/components/<%= h.changeCase.pascalCase(name) %>/test.tsx
 -%>
 import React, { ReactNode } from 'react'
 /* eslint-disable-next-line */
-import { render, fireEvent, cleanup, RenderResult } from '@testing-library/react'
+import { render, fireEvent, cleanup } from '@testing-library/react'
 
 import { OmitInternalProps } from '../Picasso'
 import <%= Name %>, { Props } from './<%= Name %>'
@@ -23,13 +23,8 @@ const render<%= Name %> = (
 afterEach(cleanup)
 
 describe('<%= Name %>', () => {
-  let api: RenderResult
-
-  beforeEach(() => {
-    api = render<%= Name %>(null, {})
-  })
   test('default render', () => {
-    const { container } = api
+    const { container } = render<%= Name %>(null, {})
 
     expect(container).toMatchSnapshot()
   })
