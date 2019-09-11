@@ -90,7 +90,7 @@ pipeline {
           //
           // -v ${PWD}:/artifacts - needs to pass .versions file
           //
-          // -e JENKINS_URL=${JENKINS_URL} - needs to make semantic-release to thinkg
+          // -e JENKINS_URL=${JENKINS_URL} - needs to make semantic-release to think
           //   that we are running it inside CI environment
           sh """
             docker run \
