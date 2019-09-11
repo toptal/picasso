@@ -26,3 +26,10 @@ page
   `,
     showEditCode: false
   }) // picasso-skip-visuals
+  .addExample('utils/Breakpoints/story/useScreen.example.jsx', {
+    title: 'useScreen',
+    description: `
+    Provides programatic way to check what screen size defined by breakpoints is active
+  `,
+    showEditCode: false
+  }) // picasso-skip-visuals
