@@ -28,14 +28,14 @@ const OutlinedInput_1 = __importDefault(require("@material-ui/core/OutlinedInput
 const helpers_1 = require("@material-ui/core/utils/helpers");
 const styles_2 = __importDefault(require("./styles"));
 const OutlinedInput = react_1.forwardRef(function OutlinedInput(_a, ref) {
-    var { classes, className, style, id, name, placeholder, autoFocus, autoComplete, multiline, rows, rowsMax, width, disabled, inputComponent, inputProps, value, type, error, startAdornment, endAdornment, onChange } = _a, rest = __rest(_a, ["classes", "className", "style", "id", "name", "placeholder", "autoFocus", "autoComplete", "multiline", "rows", "rowsMax", "width", "disabled", "inputComponent", "inputProps", "value", "type", "error", "startAdornment", "endAdornment", "onChange"]);
+    var { classes, className, style, id, name, placeholder, autoFocus, autoComplete, multiline, rows, rowsMax, width, disabled, inputComponent, inputProps, defaultValue, value, type, error, startAdornment, endAdornment, onChange } = _a, rest = __rest(_a, ["classes", "className", "style", "id", "name", "placeholder", "autoFocus", "autoComplete", "multiline", "rows", "rowsMax", "width", "disabled", "inputComponent", "inputProps", "defaultValue", "value", "type", "error", "startAdornment", "endAdornment", "onChange"]);
     return (react_1.default.createElement(OutlinedInput_1.default
     // eslint-disable-next-line react/jsx-props-no-spreading
     , Object.assign({}, rest, { classes: {
             root: classnames_1.default(classes.root, classes[`root${helpers_1.capitalize(width)}`]),
             input: classes.input,
             inputMultiline: classes.inputMultiline
-        }, className: className, style: style, labelWidth: 0, fullWidth: width === 'full', disabled: disabled, error: error, inputComponent: inputComponent, inputProps: inputProps, inputRef: ref, value: value, type: type, startAdornment: startAdornment, endAdornment: endAdornment, id: id, name: name, placeholder: placeholder, autoFocus: autoFocus, autoComplete: autoComplete, multiline: multiline, rows: rows, rowsMax: rowsMax, onChange: onChange })));
+        }, className: className, style: style, labelWidth: 0, fullWidth: width === 'full', disabled: disabled, error: error, inputComponent: inputComponent, inputProps: inputProps, inputRef: ref, defaultValue: defaultValue, value: value, type: type, startAdornment: startAdornment, endAdornment: endAdornment, id: id, name: name, placeholder: placeholder, autoFocus: autoFocus, autoComplete: autoComplete, multiline: multiline, rows: rows, rowsMax: rowsMax, onChange: onChange })));
 });
 OutlinedInput.defaultProps = {
     width: 'auto'
