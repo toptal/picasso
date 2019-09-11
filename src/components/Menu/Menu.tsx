@@ -8,8 +8,7 @@ import React, {
 import MUIMenuList, { MenuListProps } from '@material-ui/core/MenuList'
 import { withStyles } from '@material-ui/core/styles'
 
-import Container from '../Container'
-import { Chevron16, BackMinor16 } from '../Icon'
+import { BackMinor16 } from '../Icon'
 import MenuItem, { WrappedStringMenuItemContent } from '../MenuItem'
 import {
   StandardProps,
@@ -27,31 +26,29 @@ interface StaticProps {
   Item: typeof MenuItem
 }
 
-function extendMenuItemsWithChevrons(
+function extendMenuItemsWithNavigation(
   children: ReactNode,
-  onClick: (arg: number) => void
+  onClick: (arg: number) => void,
+  activeChildPath: number[]
 ) {
-  return React.Children.toArray(children).map((child, idx) => {
+  return React.Children.toArray(children).map((child, index) => {
     const childElement = child as ReactElement
 
+    let props = childElement.props
+
     if (childElement.props.menu) {
-      child = (
-        /* eslint-disable react/jsx-props-no-spreading */
-        <MenuItem {...childElement.props} onClick={() => onClick(idx)}>
-          <Container inline flex alignItems='center' style={{ flex: 1 }}>
-            <Container style={{ flex: 1 }}>
-              <WrappedStringMenuItemContent>
-                {childElement.props.children}
-              </WrappedStringMenuItemContent>
-            </Container>
-            <Chevron16 />
-          </Container>
-        </MenuItem>
-        /* eslint-enable react/jsx-props-no-spreading */
-      )
+      props = {
+        ...props,
+        onClick: () => onClick(index)
+      }
     }
 
-    return child
+    return (
+      // eslint-disable-next-line react/jsx-props-no-spreading, react/no-array-index-key
+      <MenuItem {...props} key={activeChildPath.join('_') + index}>
+        {childElement.props.children}
+      </MenuItem>
+    )
   })
 }
 
@@ -63,14 +60,13 @@ function getActiveChildRecursively(
     activeChildPath[0]
   ] as ReactElement
 
-  if (activeChildPath.length === 1) {
-    return currentLevelActiveChild
-  } else {
+  if (activeChildPath.length > 1) {
     return getActiveChildRecursively(
       currentLevelActiveChild.props.menu.props.children,
       activeChildPath.slice(1)
     )
   }
+  return currentLevelActiveChild
 }
 
 // eslint-disable-next-line react/display-name
@@ -97,13 +93,9 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
 
     /* eslint-disable react/jsx-key */
     const backButton = (
-      <MenuItem onClick={handleBack}>
-        <Container inline flex alignItems='center' style={{ flex: 1 }}>
-          <BackMinor16 />
-          <Container style={{ flex: 1 }}>
-            <WrappedStringMenuItemContent>Back</WrappedStringMenuItemContent>
-          </Container>
-        </Container>
+      <MenuItem onClick={handleBack} key={activeChildPath.join('_') + 'back'}>
+        <BackMinor16 />
+        <WrappedStringMenuItemContent>Back</WrappedStringMenuItemContent>
       </MenuItem>
     )
     /* eslint-disable react/jsx-key */
@@ -111,13 +103,18 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
     activeMenuProps = activeChild.props.menu.props
     children = [
       backButton,
-      ...extendMenuItemsWithChevrons(
+      ...extendMenuItemsWithNavigation(
         activeChild.props.menu.props.children,
-        handleDrilldown
+        handleDrilldown,
+        activeChildPath
       )
     ]
   } else {
-    children = extendMenuItemsWithChevrons(children, handleDrilldown)
+    children = extendMenuItemsWithNavigation(
+      children,
+      handleDrilldown,
+      activeChildPath
+    )
   }
 
   return (

@@ -9,6 +9,7 @@ import React, {
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import MUIMenuItem, { MenuItemProps } from '@material-ui/core/MenuItem'
+import { Chevron16 } from '@toptal/picasso'
 
 import { StandardProps, ButtonOrAnchorProps } from '../Picasso'
 import Typography from '../Typography'
@@ -51,7 +52,7 @@ export const WrappedStringMenuItemContent = withStyles(styles)(
     return (
       <Typography
         className={stringContent}
-        style={style}
+        style={{ ...style, flex: 1 }}
         color='inherit'
         ref={ref}
       >
@@ -84,6 +85,15 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
   if (typeof children === 'string') {
     children = (
       <WrappedStringMenuItemContent>{children}</WrappedStringMenuItemContent>
+    )
+  }
+
+  if (rest.menu) {
+    children = (
+      <React.Fragment>
+        {children}
+        <Chevron16 />
+      </React.Fragment>
     )
   }
 
