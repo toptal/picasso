@@ -100,7 +100,7 @@ pipeline {
             -e GITHUB_TOKEN=${GITHUB_TOKEN} \
             -e RELEASE_AND_PUBLISH=${RELEASE_AND_PUBLISH} \
             -e NPM_TOKEN=${NPM_TOKEN} \
-            -e JENKINS_URL=${JENKINS_URL}
+            -e JENKINS_URL=${JENKINS_URL} \
             -v ${PWD}:/artifacts \
             -v /etc/passwd:/etc/passwd \
             -v /home/jenkins/.ssh:/home/jenkins/.ssh \
