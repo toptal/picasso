@@ -31,7 +31,7 @@ export interface Props extends StandardProps {
   progress?: number | boolean
   /** Status message indicating various states during upload or error */
   status?: string
-  /** Width of the component which will apply `min-width` to the `input` */
+  /** Width of the component */
   width?: 'full' | 'shrink' | 'auto'
   /** Descriptor containing file name and location */
   value?: FileInfo

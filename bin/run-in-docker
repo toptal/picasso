@@ -1,11 +1,46 @@
 #!/usr/bin/env bash
 
-BLUE='\033[0;34m'
+BLUE='\033[34m'
 NC='\033[0m'
+RED='\033[31m'
 REPO_NAME='picasso'
 PICASSO_IMAGE="gcr.io/toptal-hub/${REPO_NAME}"
 PKG_VERSION=`node -p "require('./package.json').version"`
 GIT_SHA=`git rev-parse HEAD`
+
+IS_GCLOUD_INSTALLED=`which gcloud`
+if [[ $IS_GCLOUD_INSTALLED == "" ]]; then
+  echo -e "${RED}'gcloud' is not installed ${NC}"
+  echo -e ""
+  echo -e "Please install 'gcloud' and follow instructions \
+to auth docker to be able to pull images from gcr.io/hub:
+
+https://toptal-core.atlassian.net/wiki/spaces/IE/pages/337838085/Docker#Docker-docker-loginLogintoToptal'sprivateregistry
+
+Or you can build image locally by running:
+
+yarn visual:test -u --build-image
+"
+
+  exit 1
+fi
+
+IS_GCLOUD_AUTHENTICATED=`gcloud auth list --filter=status:ACTIVE --format="value(account)"`
+if [[ $IS_GCLOUD_AUTHENTICATED != *"@toptal.com"* ]]; then
+  echo -e "${RED}'docker' is not authenticated by 'gcloud'${NC}"
+  echo -e ""
+  echo -e "Please follow instructions to auth docker to be able \
+to pull images from gcr.io/hub:
+
+https://toptal-core.atlassian.net/wiki/spaces/IE/pages/337838085/Docker#Docker-docker-loginLogintoToptal'sprivateregistry
+
+Or you can build image locally by running:
+
+yarn visual:test -u --build-image
+"
+
+  exit 1
+fi
 
 if [[ "$*" == *"--build-image"* ]]; then
   echo -e "${BLUE} Rebuilding docker image ... ${NC}"

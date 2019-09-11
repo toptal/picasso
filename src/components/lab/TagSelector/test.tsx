@@ -25,7 +25,7 @@ const testProps = {
 }
 
 const renderTagSelector = (props: OmitInternalProps<Props>) => {
-  const { loading, newOptionLabel, options, placeholder, defaultValues } = props
+  const { loading, newOptionLabel, options, placeholder, defaultValue } = props
 
   return render(
     <Picasso loadFonts={false}>
@@ -34,7 +34,7 @@ const renderTagSelector = (props: OmitInternalProps<Props>) => {
         newOptionLabel={newOptionLabel}
         options={options}
         placeholder={placeholder}
-        defaultValues={defaultValues}
+        defaultValue={defaultValue}
       />
     </Picasso>
   )
@@ -80,7 +80,7 @@ describe('TagSelector', () => {
       newOptionLabel: 'Add: ',
       options,
       placeholder: 'Please select...',
-      defaultValues: [options[0].value]
+      defaultValue: [options[0].value]
     })
 
     expect(container).toMatchSnapshot()

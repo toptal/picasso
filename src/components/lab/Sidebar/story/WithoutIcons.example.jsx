@@ -27,7 +27,7 @@ const SidebarIconlessExample = () => (
             collapsible
             menu={
               <Sidebar.Menu>
-                <Sidebar.Item selected>Share Online</Sidebar.Item>
+                <Sidebar.Item>Share Online</Sidebar.Item>
                 <Sidebar.Item>Referred Users</Sidebar.Item>
                 <Sidebar.Item>Commissions</Sidebar.Item>
                 <Sidebar.Item>Payment Options</Sidebar.Item>

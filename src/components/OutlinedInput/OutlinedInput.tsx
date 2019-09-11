@@ -34,11 +34,12 @@ export interface Props
   autoFocus?: boolean
   /** Helps users to fill forms faster */
   autoComplete?: string
-  /** Width of the component which will apply `min-width` to the `input` */
+  /** Width of the component */
   width?: 'full' | 'shrink' | 'auto'
   disabled?: boolean
   inputComponent?: ReactType<InputBaseComponentProps>
   inputProps?: InputBaseComponentProps
+  defaultValue?: ValueType
   value?: ValueType
   /** Whether `Input` should be rendered as `TextArea` or not */
   multiline?: boolean
@@ -73,6 +74,7 @@ const OutlinedInput = forwardRef<HTMLInputElement, Props>(
       disabled,
       inputComponent,
       inputProps,
+      defaultValue,
       value,
       type,
       error,
@@ -101,6 +103,7 @@ const OutlinedInput = forwardRef<HTMLInputElement, Props>(
         inputComponent={inputComponent}
         inputProps={inputProps}
         inputRef={ref}
+        defaultValue={defaultValue}
         value={value}
         type={type}
         startAdornment={startAdornment}

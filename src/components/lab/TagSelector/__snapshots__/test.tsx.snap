@@ -31,7 +31,13 @@ exports[`TagSelector available options when start typing 1`] = `
           </legend>
         </fieldset>
         <input
+          aria-activedescendant="downshift-1-item-0"
+          aria-autocomplete="list"
+          aria-controls="downshift-1-menu"
+          aria-labelledby="downshift-1-label"
+          autocomplete="off"
           class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+          id="downshift-1-input"
           placeholder="Please select..."
           style="width: auto;"
           type="text"
@@ -53,8 +59,8 @@ exports[`TagSelector available options when start typing 1`] = `
           >
             <li
               aria-disabled="false"
-              aria-selected="false"
-              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+              aria-selected="true"
+              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
               id="downshift-1-item-0"
               role="option"
               tabindex="-1"
@@ -145,7 +151,11 @@ exports[`TagSelector default render 1`] = `
           </legend>
         </fieldset>
         <input
+          aria-autocomplete="list"
+          aria-labelledby="downshift-0-label"
+          autocomplete="off"
           class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+          id="downshift-0-input"
           placeholder="Please select..."
           style="width: auto;"
           type="text"
@@ -247,7 +257,11 @@ exports[`TagSelector newly added option selected 1`] = `
           </span>
         </div>
         <input
+          aria-autocomplete="list"
+          aria-labelledby="downshift-4-label"
+          autocomplete="off"
           class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+          id="downshift-4-input"
           style="width: auto;"
           type="text"
           value=""
@@ -403,7 +417,11 @@ exports[`TagSelector options selected and then unselected 1`] = `
           </span>
         </div>
         <input
+          aria-autocomplete="list"
+          aria-labelledby="downshift-5-label"
+          autocomplete="off"
           class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+          id="downshift-5-input"
           style="width: auto;"
           type="text"
           value=""
@@ -504,7 +522,11 @@ exports[`TagSelector preselected value 1`] = `
           </span>
         </div>
         <input
+          aria-autocomplete="list"
+          aria-labelledby="downshift-2-label"
+          autocomplete="off"
           class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+          id="downshift-2-input"
           type="text"
           value=""
         />
@@ -604,7 +626,11 @@ exports[`TagSelector selected option 1`] = `
           </span>
         </div>
         <input
+          aria-autocomplete="list"
+          aria-labelledby="downshift-3-label"
+          autocomplete="off"
           class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+          id="downshift-3-input"
           style="width: auto;"
           type="text"
           value=""

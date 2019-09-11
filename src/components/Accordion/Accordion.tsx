@@ -24,6 +24,8 @@ export interface Props
   content: ReactNode
   /** Define accordion content state, whether it should be collapsed or displayed */
   expanded?: boolean
+  /** Define accordion initial content state */
+  defaultExpanded?: boolean
   /** Whether the Accordion is disabled */
   disabled?: boolean
   /** Customize icon indicating expanded status */
@@ -93,6 +95,7 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
 
 Accordion.defaultProps = {
   bordered: true,
+  defaultExpanded: false,
   disabled: false,
   expanded: undefined,
   onChange: () => {}

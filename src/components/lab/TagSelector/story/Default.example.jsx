@@ -22,8 +22,8 @@ const TagSelectorDefaultExample = () => (
       onChange={selectedValues =>
         window.console.log('onChange values: ', selectedValues)
       }
-      onInputChange={e =>
-        window.console.log('onInputChange value: ', e.target.value)
+      onInputChange={inputValue =>
+        window.console.log('onInputChange value: ', inputValue)
       }
     />
   </div>
