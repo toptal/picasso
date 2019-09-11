@@ -1,15 +1,15 @@
 import React from 'react'
 import { Grid, Container, Typography } from '@toptal/picasso'
-import { palette, isScreenSize, useScreenSize } from '@toptal/picasso/utils'
+import { palette, useScreen, useScreenSize } from '@toptal/picasso/utils'
 
 const ScreenSize = ({ size }) => {
-  if (isScreenSize('extra-large', size)) {
+  if (useScreen('extra-large')) {
     return `Extra Large - current [${size}px]`
   }
-  if (isScreenSize('large', size)) {
+  if (useScreen('large')) {
     return `Large - current [${size}px]`
   }
-  if (isScreenSize('medium', size)) {
+  if (useScreen('medium')) {
     return `Medium - current [${size}px]`
   }
 

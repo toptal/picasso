@@ -21,4 +21,4 @@ export {
   OverridableComponent
 } from './types'
 
-export { useScreenSize, isScreenSize } from './config'
+export { useScreenSize, isScreenSize, useScreen } from './config'

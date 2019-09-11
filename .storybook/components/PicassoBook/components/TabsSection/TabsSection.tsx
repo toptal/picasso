@@ -1,7 +1,7 @@
 import React, { FunctionComponent, ReactNode } from 'react'
 
 import { Paper, Container, Typography } from '@components'
-import { useScreenSize, isScreenSize } from '@components/utils'
+import { useScreen } from '@components/utils'
 
 import TabsSectionHeader from './TabsSectionHeader'
 
@@ -27,8 +27,7 @@ const TabsSection: FunctionComponent<Props> = props => {
 
   const hasMultiple = tabs.length > 1
 
-  const windowSize = useScreenSize()
-  const isMobile = isScreenSize('small', windowSize)
+  const isMobile = useScreen('small')
 
   if (isMobile && hideOnMobileScreen) {
     return <Typography size='medium'>Not visible on smaller screens</Typography>

@@ -11,7 +11,7 @@ import {
 import Container from '../../Container'
 import Popover from '../../Popover'
 import { PageContext } from '../../Page'
-import { useScreenSize, isScreenSize } from '../../utils'
+import { useScreen } from '../../utils'
 import SidebarMenu from '../SidebarMenu'
 import SidebarItem from '../SidebarItem'
 import SidebarLogo from '../SidebarLogo'
@@ -41,8 +41,7 @@ export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
   const { showSidebar, setHasSidebar, triggerEl, onSidebarToggle } = useContext(
     PageContext
   )
-  const windowSize = useScreenSize()
-  const isMobile = isScreenSize('small', windowSize)
+  const isMobile = useScreen('small')
 
   useEffect(() => {
     setHasSidebar(true)

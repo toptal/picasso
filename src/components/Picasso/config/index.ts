@@ -7,7 +7,8 @@ export {
   default as breakpoints,
   screens,
   useScreenSize,
-  isScreenSize
+  isScreenSize,
+  useScreen
 } from './breakpoints'
 export { default as layout } from './layout'
 export { default as shadows } from './shadows'

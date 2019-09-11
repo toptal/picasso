@@ -3,7 +3,7 @@ import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 
 import { StandardProps } from '../Picasso'
-import { useScreenSize, isScreenSize } from '../utils'
+import { useScreen } from '../utils'
 import UserBadge from '../UserBadge'
 import Avatar from '../Avatar'
 import Dropdown from '../Dropdown'
@@ -26,8 +26,7 @@ export const PageHeaderMenu = forwardRef<HTMLDivElement, Props>(
     { name, meta, avatar, classes, className, style, children, ...rest },
     ref
   ) {
-    const windowSize = useScreenSize()
-    const isMobile = isScreenSize('small', windowSize)
+    const isMobile = useScreen('small')
 
     const metaContent =
       typeof meta === 'string' ? (

@@ -15,7 +15,7 @@ import { PageContextProps } from '../Page/types'
 import { StandardProps, usePageHeader } from '../Picasso'
 import { Overview16, Close16 } from '../Icon'
 import Button from '../Button'
-import { useScreenSize, isScreenSize } from '../utils'
+import { useScreen } from '../utils'
 import styles from './styles'
 
 type VariantType = 'dark' | 'light'
@@ -47,8 +47,7 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
   },
   ref
 ) {
-  const windowSize = useScreenSize()
-  const isMobile = isScreenSize('small', windowSize)
+  const isMobile = useScreen('small')
 
   const { setHasPageHeader } = usePageHeader()
 
