@@ -81,6 +81,7 @@ exports[`Autocomplete render options when start typing 1`] = `
           </legend>
         </fieldset>
         <input
+          aria-activedescendant="downshift-1-item-0"
           aria-autocomplete="list"
           aria-controls="downshift-1-menu"
           aria-labelledby="downshift-1-label"
@@ -107,8 +108,8 @@ exports[`Autocomplete render options when start typing 1`] = `
           >
             <li
               aria-disabled="false"
-              aria-selected="false"
-              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+              aria-selected="true"
+              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
               id="downshift-1-item-0"
               role="option"
               tabindex="-1"

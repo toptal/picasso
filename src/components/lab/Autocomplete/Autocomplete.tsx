@@ -25,6 +25,7 @@ import styles from './styles'
 
 const DEFAULT_DEBOUNCE_TIME = 300
 const EMPTY_INPUT_VALUE = ''
+const FIRST_ITEM_INDEX = 0
 
 type Item = {
   value?: string
@@ -176,6 +177,8 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       switch (changes.type) {
         case Downshift.stateChangeTypes.controlledPropUpdatedSelectedItem:
           return { ...changes, highlightedIndex: currentSelectedItemIndex }
+        case Downshift.stateChangeTypes.changeInput:
+          return { ...changes, highlightedIndex: FIRST_ITEM_INDEX }
         case Downshift.stateChangeTypes.mouseUp:
         case Downshift.stateChangeTypes.blurInput:
           const hasInput = inputValue.length > 0
@@ -257,7 +260,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
               setState({
                 isOpen: true,
                 inputValue: newInputValue,
-                highlightedIndex: currentSelectedItemIndex
+                highlightedIndex: currentSelectedItemIndex || FIRST_ITEM_INDEX
               })
             }
           }
