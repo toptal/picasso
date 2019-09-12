@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles'
 
 import { StandardProps } from '../Picasso'
 import styles from './styles'
-const BASE_SIZE = 16
+const BASE_SIZE = 24
 
 type ScaleType = 1 | 2 | 3 | 4
 export interface Props extends StandardProps {
@@ -12,7 +12,7 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-const SvgFilter16 = forwardRef(function SvgFilter16(
+const SvgArrowLongUp24 = forwardRef(function SvgArrowLongUp24(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {
@@ -26,7 +26,7 @@ const SvgFilter16 = forwardRef(function SvgFilter16(
 
   return (
     <svg
-      viewBox='0 0 16 16'
+      viewBox='0 0 24 24'
       className={cx(classes.root, className)}
       style={svgStyle}
       color={color}
@@ -34,22 +34,22 @@ const SvgFilter16 = forwardRef(function SvgFilter16(
     >
       <defs>
         <path
-          d='M0 4h16v1H0V4zm4 8h8v1H4v-1zm10-4v1H2V8h12z'
-          id='filter16_svg__a'
+          d='M11.5 2.793L17.207 8.5l-.707.707-4.5-4.5V21h-1V4.707l-4.5 4.5-.707-.707L11.5 2.793z'
+          id='arrowLongUp24_svg__a'
         />
       </defs>
       <g fillRule='evenodd'>
-        <mask id='filter16_svg__b'>
-          <use xlinkHref='#filter16_svg__a' />
+        <mask id='arrowLongUp24_svg__b'>
+          <use xlinkHref='#arrowLongUp24_svg__a' />
         </mask>
-        <use xlinkHref='#filter16_svg__a' />
-        <g mask='url(#filter16_svg__b)'>
-          <path d='M0 0h16v16H0z' />
+        <use fillRule='nonzero' xlinkHref='#arrowLongUp24_svg__a' />
+        <g mask='url(#arrowLongUp24_svg__b)'>
+          <path d='M0 0h24v24H0z' />
         </g>
       </g>
     </svg>
   )
 })
 
-SvgFilter16.displayName = 'SvgFilter16'
-export default withStyles(styles)(SvgFilter16)
+SvgArrowLongUp24.displayName = 'SvgArrowLongUp24'
+export default withStyles(styles)(SvgArrowLongUp24)

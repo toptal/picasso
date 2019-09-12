@@ -34,7 +34,7 @@ const SvgFilter24 = forwardRef(function SvgFilter24(
     >
       <defs>
         <path
-          d='M17 6v2h-1V3h1v2h7v1h-7zM0 5h14v1H0V5zm13 13v2h-1v-5h1v2h11v1H13zM0 17h10v1H0v-1zm7-5H0v-1h7V9h1v5H7v-2zm17-1v1H10v-1h14z'
+          d='M0 6h24v1H0V6zm6 12h12v1H6v-1zm15-6v1H3v-1h18z'
           id='filter24_svg__a'
         />
       </defs>

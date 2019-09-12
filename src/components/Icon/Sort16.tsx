@@ -12,7 +12,7 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-const SvgFilter16 = forwardRef(function SvgFilter16(
+const SvgSort16 = forwardRef(function SvgSort16(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {
@@ -34,16 +34,16 @@ const SvgFilter16 = forwardRef(function SvgFilter16(
     >
       <defs>
         <path
-          d='M0 4h16v1H0V4zm4 8h8v1H4v-1zm10-4v1H2V8h12z'
-          id='filter16_svg__a'
+          d='M5 5v8.292l2.5-2.5.707.708L4.5 15.207l-.707-.707-3-3 .707-.707 2.5 2.5V5h1zM11.5.793L15.207 4.5l-.707.707-2.5-2.5V11h-1V2.707l-2.5 2.5-.707-.707 3-3L11.5.793z'
+          id='sort16_svg__a'
         />
       </defs>
       <g fillRule='evenodd'>
-        <mask id='filter16_svg__b'>
-          <use xlinkHref='#filter16_svg__a' />
+        <mask id='sort16_svg__b'>
+          <use xlinkHref='#sort16_svg__a' />
         </mask>
-        <use xlinkHref='#filter16_svg__a' />
-        <g mask='url(#filter16_svg__b)'>
+        <use fillRule='nonzero' xlinkHref='#sort16_svg__a' />
+        <g mask='url(#sort16_svg__b)'>
           <path d='M0 0h16v16H0z' />
         </g>
       </g>
@@ -51,5 +51,5 @@ const SvgFilter16 = forwardRef(function SvgFilter16(
   )
 })
 
-SvgFilter16.displayName = 'SvgFilter16'
-export default withStyles(styles)(SvgFilter16)
+SvgSort16.displayName = 'SvgSort16'
+export default withStyles(styles)(SvgSort16)
