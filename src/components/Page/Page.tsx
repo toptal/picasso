@@ -38,7 +38,7 @@ export const PageContext = React.createContext<PageContextProps>({
   showSidebar: false,
   hasSidebar: false,
   setHasSidebar: () => {}
-} as PageContextProps)
+})
 
 // eslint-disable-next-line react/display-name
 export const Page = forwardRef<HTMLDivElement, Props>(function Page(

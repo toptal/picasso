@@ -3,13 +3,17 @@ import { Grid, Container, Typography } from '@toptal/picasso'
 import { palette, useScreen, useScreenSize } from '@toptal/picasso/utils'
 
 const ScreenSize = ({ size }) => {
-  if (useScreen('extra-large')) {
+  const isExtraLarge = useScreen('extra-large')
+  const isLarge = useScreen('large')
+  const isMedium = useScreen('medium')
+
+  if (isExtraLarge) {
     return `Extra Large - current [${size}px]`
   }
-  if (useScreen('large')) {
+  if (isLarge) {
     return `Large - current [${size}px]`
   }
-  if (useScreen('medium')) {
+  if (isMedium) {
     return `Medium - current [${size}px]`
   }
 
