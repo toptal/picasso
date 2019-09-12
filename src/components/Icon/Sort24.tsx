@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles'
 
 import { StandardProps } from '../Picasso'
 import styles from './styles'
-const BASE_SIZE = 16
+const BASE_SIZE = 24
 
 type ScaleType = 1 | 2 | 3 | 4
 export interface Props extends StandardProps {
@@ -12,7 +12,7 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-const SvgFilter16 = forwardRef(function SvgFilter16(
+const SvgSort24 = forwardRef(function SvgSort24(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {
@@ -26,7 +26,7 @@ const SvgFilter16 = forwardRef(function SvgFilter16(
 
   return (
     <svg
-      viewBox='0 0 16 16'
+      viewBox='0 0 24 24'
       className={cx(classes.root, className)}
       style={svgStyle}
       color={color}
@@ -34,22 +34,22 @@ const SvgFilter16 = forwardRef(function SvgFilter16(
     >
       <defs>
         <path
-          d='M0 4h16v1H0V4zm4 8h8v1H4v-1zm10-4v1H2V8h12z'
-          id='filter16_svg__a'
+          d='M7 7v13.292l4.5-4.5.707.708L6.5 22.207l-.707-.707-5-5 .707-.707 4.5 4.5V7h1zm10.5-5.207L23.207 7.5l-.707.707-4.5-4.5V17h-1V3.707l-4.5 4.5-.707-.707 5-5 .707-.707z'
+          id='sort24_svg__a'
         />
       </defs>
       <g fillRule='evenodd'>
-        <mask id='filter16_svg__b'>
-          <use xlinkHref='#filter16_svg__a' />
+        <mask id='sort24_svg__b'>
+          <use xlinkHref='#sort24_svg__a' />
         </mask>
-        <use xlinkHref='#filter16_svg__a' />
-        <g mask='url(#filter16_svg__b)'>
-          <path d='M0 0h16v16H0z' />
+        <use fillRule='nonzero' xlinkHref='#sort24_svg__a' />
+        <g mask='url(#sort24_svg__b)'>
+          <path d='M0 0h24v24H0z' />
         </g>
       </g>
     </svg>
   )
 })
 
-SvgFilter16.displayName = 'SvgFilter16'
-export default withStyles(styles)(SvgFilter16)
+SvgSort24.displayName = 'SvgSort24'
+export default withStyles(styles)(SvgSort24)

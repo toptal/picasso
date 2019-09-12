@@ -12,7 +12,7 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-const SvgFilter16 = forwardRef(function SvgFilter16(
+const SvgArrowLongUp16 = forwardRef(function SvgArrowLongUp16(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {
@@ -34,16 +34,16 @@ const SvgFilter16 = forwardRef(function SvgFilter16(
     >
       <defs>
         <path
-          d='M0 4h16v1H0V4zm4 8h8v1H4v-1zm10-4v1H2V8h12z'
-          id='filter16_svg__a'
+          d='M7.5 1.793L11.207 5.5l-.707.707-2.5-2.5V14H7V3.707l-2.5 2.5-.707-.707 3-3 .707-.707z'
+          id='arrowLongUp16_svg__a'
         />
       </defs>
       <g fillRule='evenodd'>
-        <mask id='filter16_svg__b'>
-          <use xlinkHref='#filter16_svg__a' />
+        <mask id='arrowLongUp16_svg__b'>
+          <use xlinkHref='#arrowLongUp16_svg__a' />
         </mask>
-        <use xlinkHref='#filter16_svg__a' />
-        <g mask='url(#filter16_svg__b)'>
+        <use fillRule='nonzero' xlinkHref='#arrowLongUp16_svg__a' />
+        <g mask='url(#arrowLongUp16_svg__b)'>
           <path d='M0 0h16v16H0z' />
         </g>
       </g>
@@ -51,5 +51,5 @@ const SvgFilter16 = forwardRef(function SvgFilter16(
   )
 })
 
-SvgFilter16.displayName = 'SvgFilter16'
-export default withStyles(styles)(SvgFilter16)
+SvgArrowLongUp16.displayName = 'SvgArrowLongUp16'
+export default withStyles(styles)(SvgArrowLongUp16)
