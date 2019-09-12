@@ -82,6 +82,7 @@ export default ({ palette }: Theme) =>
     },
     selected: {},
     stringContent: {
+      flex: 1,
       fontSize: '0.8125em'
     }
   })

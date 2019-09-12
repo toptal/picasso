@@ -42,17 +42,16 @@ export interface Props extends StandardProps, MenuItemAttributes {
 }
 
 // eslint-disable-next-line react/display-name
-export const WrappedStringMenuItemContent = withStyles(styles)(
-  forwardRef<HTMLElement, Props>(function WrappedStringMenuItemContent(
-    { style, classes, children },
-    ref
-  ) {
+export const WrappedStringMenuItemContent = withStyles(styles, {
+  name: 'MenuItem'
+})(
+  forwardRef<HTMLElement, Props>(({ style, classes, children }, ref) => {
     const { stringContent } = classes
 
     return (
       <Typography
         className={stringContent}
-        style={{ ...style, flex: 1 }}
+        style={style}
         color='inherit'
         ref={ref}
       >
