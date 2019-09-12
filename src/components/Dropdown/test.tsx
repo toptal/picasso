@@ -41,16 +41,12 @@ describe('Dropdown', () => {
 
     fireEvent.click(trigger)
 
-    const item = container.querySelector('li')
-
-    expect(document.activeElement === item).toBeTruthy()
-
     expect(container).toMatchSnapshot()
 
     unmount()
   })
 
-  test('should render menu without focus', () => {
+  test('should render menu with focus', () => {
     const { container, getByText, unmount } = render(
       <Picasso loadFonts={false}>
         <Dropdown
@@ -61,7 +57,7 @@ describe('Dropdown', () => {
               <Menu.Item>Item3</Menu.Item>
             </Menu>
           }
-          disableAutoFocus
+          disableAutoFocus={false}
         >
           Open Dropdown <Dropdown.Arrow />
         </Dropdown>
@@ -74,7 +70,7 @@ describe('Dropdown', () => {
 
     const item = container.querySelector('li')
 
-    expect(document.activeElement === item).toBeFalsy()
+    expect(document.activeElement === item).toBeTruthy()
 
     expect(container).toMatchSnapshot()
 
