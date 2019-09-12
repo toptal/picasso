@@ -9,6 +9,7 @@ import React, {
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import MUIMenuItem, { MenuItemProps } from '@material-ui/core/MenuItem'
+import { Chevron16 } from '@toptal/picasso'
 
 import Container from '../Container'
 import { Chevron16 } from '../Icon'
