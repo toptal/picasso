@@ -1,3 +1,10 @@
+# [3.6.0](https://github.com/toptal/picasso/compare/v3.5.0...v3.6.0) (2019-09-12)
+
+
+### Features
+
+* **Icon:** filter and sort icons ([#664](https://github.com/toptal/picasso/issues/664)) ([8dc3698](https://github.com/toptal/picasso/commit/8dc3698)), closes [#666](https://github.com/toptal/picasso/issues/666) [#667](https://github.com/toptal/picasso/issues/667) [#668](https://github.com/toptal/picasso/issues/668) [#669](https://github.com/toptal/picasso/issues/669) [#669](https://github.com/toptal/picasso/issues/669) [#666](https://github.com/toptal/picasso/issues/666) [#668](https://github.com/toptal/picasso/issues/668) [#667](https://github.com/toptal/picasso/issues/667) [#663](https://github.com/toptal/picasso/issues/663) [#654](https://github.com/toptal/picasso/issues/654) [#661](https://github.com/toptal/picasso/issues/661) [#655](https://github.com/toptal/picasso/issues/655) [#653](https://github.com/toptal/picasso/issues/653)
+
 # [3.5.0](https://github.com/toptal/picasso/compare/v3.4.1...v3.5.0) (2019-09-11)
 
 

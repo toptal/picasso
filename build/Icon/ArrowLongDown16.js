@@ -15,20 +15,20 @@ const classnames_1 = __importDefault(require("classnames"));
 const styles_1 = require("@material-ui/core/styles");
 const styles_2 = __importDefault(require("./styles"));
 const BASE_SIZE = 16;
-const SvgFilter16 = react_1.forwardRef(function SvgFilter16(props, ref) {
+const SvgArrowLongDown16 = react_1.forwardRef(function SvgArrowLongDown16(props, ref) {
     const { classes, className, style = {}, color, scale, base } = props;
     const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1);
     const svgStyle = Object.assign({ minWidth: `${scaledSize}px`, minHeight: `${scaledSize}px` }, style);
     return (react_1.default.createElement("svg", { viewBox: '0 0 16 16', className: classnames_1.default(classes.root, className), style: svgStyle, color: color, ref: ref },
         react_1.default.createElement("defs", null,
-            react_1.default.createElement("path", { d: 'M0 4h16v1H0V4zm4 8h8v1H4v-1zm10-4v1H2V8h12z', id: 'filter16_svg__a' })),
+            react_1.default.createElement("path", { d: 'M8 2v10.293l2.5-2.5.707.707L7.5 14.207 3.793 10.5l.707-.707 2.5 2.5V2h1z', id: 'arrowLongDown16_svg__a' })),
         react_1.default.createElement("g", { fillRule: 'evenodd' },
-            react_1.default.createElement("mask", { id: 'filter16_svg__b' },
-                react_1.default.createElement("use", { xlinkHref: '#filter16_svg__a' })),
-            react_1.default.createElement("use", { xlinkHref: '#filter16_svg__a' }),
-            react_1.default.createElement("g", { mask: 'url(#filter16_svg__b)' },
+            react_1.default.createElement("mask", { id: 'arrowLongDown16_svg__b' },
+                react_1.default.createElement("use", { xlinkHref: '#arrowLongDown16_svg__a' })),
+            react_1.default.createElement("use", { fillRule: 'nonzero', xlinkHref: '#arrowLongDown16_svg__a' }),
+            react_1.default.createElement("g", { mask: 'url(#arrowLongDown16_svg__b)' },
                 react_1.default.createElement("path", { d: 'M0 0h16v16H0z' })))));
 });
-SvgFilter16.displayName = 'SvgFilter16';
-exports.default = styles_1.withStyles(styles_2.default)(SvgFilter16);
-//# sourceMappingURL=Filter16.js.map
+SvgArrowLongDown16.displayName = 'SvgArrowLongDown16';
+exports.default = styles_1.withStyles(styles_2.default)(SvgArrowLongDown16);
+//# sourceMappingURL=ArrowLongDown16.js.map
