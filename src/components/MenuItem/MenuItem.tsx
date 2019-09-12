@@ -9,8 +9,8 @@ import React, {
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import MUIMenuItem, { MenuItemProps } from '@material-ui/core/MenuItem'
-import { Chevron16 } from '@toptal/picasso'
 
+import { Chevron16 } from '../Icon'
 import { StandardProps, ButtonOrAnchorProps } from '../Picasso'
 import Typography from '../Typography'
 import styles from './styles'
@@ -41,11 +41,14 @@ export interface Props extends StandardProps, MenuItemAttributes {
   variant?: VariantType
 }
 
-// eslint-disable-next-line react/display-name
 export const WrappedStringMenuItemContent = withStyles(styles, {
   name: 'MenuItem'
 })(
-  forwardRef<HTMLElement, Props>(({ style, classes, children }, ref) => {
+  // eslint-disable-next-line react/display-name
+  forwardRef<HTMLElement, Props>(function StringMenuItem(
+    { style, classes, children },
+    ref
+  ) {
     const { stringContent } = classes
 
     return (
@@ -70,6 +73,7 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
     disabled,
     disableGutters,
     onClick,
+    menu,
     selected,
     style,
     value,
@@ -84,15 +88,6 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
   if (typeof children === 'string') {
     children = (
       <WrappedStringMenuItemContent>{children}</WrappedStringMenuItemContent>
-    )
-  }
-
-  if (rest.menu) {
-    children = (
-      <React.Fragment>
-        {children}
-        <Chevron16 />
-      </React.Fragment>
     )
   }
 
@@ -112,6 +107,7 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
       selected={selected}
     >
       {children}
+      {menu && <Chevron16 />}
     </MUIMenuItem>
   )
 })

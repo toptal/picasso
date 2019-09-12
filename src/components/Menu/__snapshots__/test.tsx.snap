@@ -50,3 +50,88 @@ exports[`Menu default render 1`] = `
   </div>
 </div>
 `;
+
+exports[`Menu nested 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <ul
+      class="MuiList-root"
+      role="menu"
+      tabindex="-1"
+    >
+      <li
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <p
+          class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+        >
+          Item A
+        </p>
+      </li>
+      <li
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <p
+          class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+        >
+          Item B
+        </p>
+        <svg
+          class="SvgChevron16-root"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
+        >
+          <defs>
+            <path
+              d="M10.5 6.793l.707.707L4.5 14.207l-.707-.707 6-6-6-6L4.5.793l6 6z"
+              id="chevron16_svg__a"
+            />
+          </defs>
+          <g
+            fill-rule="evenodd"
+          >
+            <mask
+              id="chevron16_svg__b"
+            >
+              <use
+                xlink:href="#chevron16_svg__a"
+              />
+            </mask>
+            <use
+              fill-rule="nonzero"
+              xlink:href="#chevron16_svg__a"
+            />
+            <g
+              mask="url(#chevron16_svg__b)"
+            >
+              <path
+                d="M0 0h16v16H0z"
+              />
+            </g>
+          </g>
+        </svg>
+      </li>
+      <li
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <p
+          class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+        >
+          Item C
+        </p>
+      </li>
+    </ul>
+  </div>
+</div>
+`;

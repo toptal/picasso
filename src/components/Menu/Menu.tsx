@@ -43,12 +43,10 @@ function extendMenuItemsWithNavigation(
       }
     }
 
-    return (
-      // eslint-disable-next-line react/jsx-props-no-spreading, react/no-array-index-key
-      <MenuItem {...props} key={activeChildPath.join('_') + index}>
-        {childElement.props.children}
-      </MenuItem>
-    )
+    return React.cloneElement(childElement, {
+      ...props,
+      key: props.key || activeChildPath.join('_') + index
+    })
   })
 }
 
