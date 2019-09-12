@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu } from '@toptal/picasso'
+import { Menu, Dropdown } from '@toptal/picasso'
 
 const DrilldownExample = () => {
   const handleClick = () => {
@@ -46,6 +46,25 @@ const DrilldownExample = () => {
         </Menu.Item>
         <Menu.Item onClick={handleClick}>Item E</Menu.Item>
       </Menu>
+
+      <Dropdown
+        content={
+          <Menu>
+            <Menu.Item onClick={handleClick}>Item A</Menu.Item>
+            <Menu.Item onClick={handleClick}>Item B</Menu.Item>
+            <Menu.Item onClick={handleClick} menu={cMenu}>
+              Item C
+            </Menu.Item>
+            <Menu.Item onClick={handleClick} menu={dMenu}>
+              Item D
+            </Menu.Item>
+            <Menu.Item onClick={handleClick}>Item E</Menu.Item>
+          </Menu>
+        }
+      >
+        Open Dropdown
+        <Dropdown.Arrow />
+      </Dropdown>
     </div>
   )
 }
