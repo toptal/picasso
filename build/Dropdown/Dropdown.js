@@ -123,7 +123,7 @@ exports.Dropdown.defaultProps = {
         horizontal: 'right'
     },
     disableAutoClose: false,
-    disableAutoFocus: false,
+    disableAutoFocus: true,
     offset: {},
     onClose: () => { },
     onOpen: () => { },

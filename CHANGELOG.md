@@ -1,3 +1,10 @@
+## [3.6.1](https://github.com/toptal/picasso/compare/v3.6.0...v3.6.1) (2019-09-12)
+
+
+### Bug Fixes
+
+* **Dropdown:** disable autofocus by default ([#657](https://github.com/toptal/picasso/issues/657)) ([7e29a8c](https://github.com/toptal/picasso/commit/7e29a8c)), closes [#664](https://github.com/toptal/picasso/issues/664) [#666](https://github.com/toptal/picasso/issues/666) [#667](https://github.com/toptal/picasso/issues/667) [#668](https://github.com/toptal/picasso/issues/668) [#669](https://github.com/toptal/picasso/issues/669) [#669](https://github.com/toptal/picasso/issues/669) [#666](https://github.com/toptal/picasso/issues/666) [#668](https://github.com/toptal/picasso/issues/668) [#667](https://github.com/toptal/picasso/issues/667) [#663](https://github.com/toptal/picasso/issues/663) [#654](https://github.com/toptal/picasso/issues/654) [#661](https://github.com/toptal/picasso/issues/661) [#655](https://github.com/toptal/picasso/issues/655) [#653](https://github.com/toptal/picasso/issues/653) [#666](https://github.com/toptal/picasso/issues/666) [#667](https://github.com/toptal/picasso/issues/667) [#668](https://github.com/toptal/picasso/issues/668) [#669](https://github.com/toptal/picasso/issues/669) [#669](https://github.com/toptal/picasso/issues/669) [#666](https://github.com/toptal/picasso/issues/666) [#668](https://github.com/toptal/picasso/issues/668) [#667](https://github.com/toptal/picasso/issues/667) [#663](https://github.com/toptal/picasso/issues/663) [#654](https://github.com/toptal/picasso/issues/654) [#661](https://github.com/toptal/picasso/issues/661) [#655](https://github.com/toptal/picasso/issues/655) [#653](https://github.com/toptal/picasso/issues/653)
+
 # [3.6.0](https://github.com/toptal/picasso/compare/v3.5.0...v3.6.0) (2019-09-12)
 
 
