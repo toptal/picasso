@@ -89,6 +89,11 @@ pipeline {
           //   and it's .ssh folder, keys and passwords
           //
           // -v ${PWD}:/artifacts - needs to pass .versions file
+          //
+          // -e JENKINS_URL=${JENKINS_URL} \
+          // -e GIT_BRANCH=${GIT_BRANCH} \
+          // - need to make semantic-release to think
+          //   that we are running it inside CI environment
           sh """
             docker run \
             --rm \
@@ -97,6 +102,8 @@ pipeline {
             -e GITHUB_TOKEN=${GITHUB_TOKEN} \
             -e RELEASE_AND_PUBLISH=${RELEASE_AND_PUBLISH} \
             -e NPM_TOKEN=${NPM_TOKEN} \
+            -e JENKINS_URL=${JENKINS_URL} \
+            -e GIT_BRANCH=${GIT_BRANCH} \
             -v ${PWD}:/artifacts \
             -v /etc/passwd:/etc/passwd \
             -v /home/jenkins/.ssh:/home/jenkins/.ssh \

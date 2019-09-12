@@ -1,4 +1,15 @@
 "use strict";
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
@@ -14,13 +25,16 @@ const react_1 = __importStar(require("react"));
 const styles_1 = require("@material-ui/core/styles");
 const utils_1 = require("../../utils");
 const Label_1 = __importDefault(require("../../Label"));
-const Autocomplete_1 = __importDefault(require("../../Autocomplete"));
+const Autocomplete_1 = __importDefault(require("../Autocomplete"));
 const styles_2 = __importDefault(require("./styles"));
 const TagSelectorInput_1 = __importDefault(require("../TagSelectorInput"));
+const use_controlled_and_uncontrolled_state_1 = __importDefault(require("../../utils/use-controlled-and-uncontrolled-state"));
+const use_controlled_and_uncontrolled_input_1 = __importDefault(require("../../utils/use-controlled-and-uncontrolled-input"));
 const getUniqueValue = (value) => `${value.replace(/\s+/g, '-').toLowerCase()}-${new Date().getTime()}`;
-exports.TagSelector = react_1.forwardRef(function TagSelector({ loading, placeholder, options, defaultValues, newOptionLabel, onChange, onInputChange }, ref) {
-    const [inputValue, setInputValue] = react_1.default.useState(null);
-    const [selectedValues, setSelectedValues] = react_1.default.useState(defaultValues);
+exports.TagSelector = react_1.forwardRef(function TagSelector(_a, ref) {
+    var { loading, placeholder, options, newOptionLabel, defaultValue, value, onChange, defaultInputValue, inputValue: inputValueProp, onInputChange, width } = _a, rest = __rest(_a, ["loading", "placeholder", "options", "newOptionLabel", "defaultValue", "value", "onChange", "defaultInputValue", "inputValue", "onInputChange", "width"]);
+    const [inputValue, setInputValue] = use_controlled_and_uncontrolled_input_1.default(defaultInputValue, inputValueProp, onInputChange);
+    const [selectedValues, setSelectedValues] = use_controlled_and_uncontrolled_state_1.default(defaultValue, value, onChange);
     const [addedOptions, setAddedOptions] = react_1.default.useState([]);
     const currentOptions = [...options, ...addedOptions];
     const inputRef = utils_1.useCombinedRefs(ref, react_1.useRef(null));
@@ -43,17 +57,9 @@ exports.TagSelector = react_1.forwardRef(function TagSelector({ loading, placeho
             };
         }
     }, [selectedValues]);
-    const handleInputChange = react_1.default.useCallback((e) => {
-        setInputValue((e.target.value || '').trim());
-        onInputChange(e);
-    }, [onInputChange]);
-    const updateSelectedValues = (values) => {
-        setSelectedValues(values);
-        onChange(values);
-    };
     const handleDelete = (value) => {
         const index = selectedValues.indexOf(value);
-        updateSelectedValues([
+        setSelectedValues([
             ...selectedValues.slice(0, index),
             ...selectedValues.slice(index + 1)
         ]);
@@ -66,21 +72,23 @@ exports.TagSelector = react_1.forwardRef(function TagSelector({ loading, placeho
             handleDelete(selectedValues[selectedValues.length - 1]);
         }
     };
-    const handleSelect = (item, { resetInput }) => {
-        if (!item || !item.value)
+    const handleSelect = (itemValue) => {
+        if (!itemValue)
             return;
-        const isInOptions = currentOptions.find(option => option.value === item.value);
+        const isInOptions = currentOptions.find(option => option.value === itemValue);
         if (!isInOptions) {
             setAddedOptions([
                 ...addedOptions,
-                { value: item.value, text: inputValue || '' }
+                {
+                    value: itemValue,
+                    text: inputValue.replace(newOptionLabel || '', '')
+                }
             ]);
         }
-        if (!selectedValues.includes(item.value)) {
-            updateSelectedValues([...selectedValues, item.value]);
+        if (!selectedValues.includes(itemValue)) {
+            setSelectedValues([...selectedValues, itemValue]);
         }
-        setInputValue(null);
-        resetInput();
+        setInputValue('');
     };
     const nonSelectedOptions = currentOptions.filter(item => !selectedValues.includes(item.value));
     const maybeNewOptions = inputValue
@@ -98,15 +106,17 @@ exports.TagSelector = react_1.forwardRef(function TagSelector({ loading, placeho
     const labels = (react_1.default.createElement(react_1.Fragment, null, selectedValues.map(value => {
         const item = currentOptions.find(option => option.value === value);
         if (!item) {
-            window.console.warn(`TagSelector: There is no option for the given value \` ${value}\``);
+            window.console.warn(`TagSelector: There is no option for the given value \`${value}\``);
             return null;
         }
         return (react_1.default.createElement(Label_1.default, { key: value, onDelete: () => handleDelete(value) }, item.text));
     })));
-    return (react_1.default.createElement(Autocomplete_1.default, { ref: inputRef, placeholder: selectedValues.length === 0 ? placeholder : undefined, options: autocompleteOptions, onSelect: handleSelect, onKeyDown: handleKeyDown, startAdornment: labels, onChange: handleInputChange, debounceTime: 0, loading: loading, inputComponent: TagSelectorInput_1.default }));
+    return (react_1.default.createElement(Autocomplete_1.default
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    , Object.assign({}, rest, { ref: inputRef, placeholder: selectedValues.length === 0 ? placeholder : undefined, options: autocompleteOptions, value: null, onSelect: handleSelect, inputValue: inputValue, onChange: setInputValue, onKeyDown: handleKeyDown, startAdornment: labels, debounceTime: 0, loading: loading, inputComponent: TagSelectorInput_1.default, width: width })));
 });
 exports.TagSelector.defaultProps = {
-    defaultValues: [],
+    defaultValue: [],
     loading: false,
     newOptionLabel: 'Add new option: ',
     onChange: () => { },
