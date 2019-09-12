@@ -1,4 +1,10 @@
-import React, { forwardRef, useContext, useEffect } from 'react'
+import React, {
+  forwardRef,
+  useContext,
+  useLayoutEffect,
+  ReactNode,
+  FunctionComponent
+} from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
@@ -11,12 +17,57 @@ import {
 import Container from '../../Container'
 import Popover from '../../Popover'
 import { PageContext } from '../../Page'
-import { useScreen } from '../../utils'
+import { useBreakpoint } from '../../utils'
 import SidebarMenu from '../SidebarMenu'
 import SidebarItem from '../SidebarItem'
 import SidebarLogo from '../SidebarLogo'
 import styles from './styles'
 import { SidebarContextProps, VariantType } from './types'
+
+export interface RepsonsiveSidebarProps extends StandardProps {
+  children?: ReactNode
+}
+
+const ResponsiveSidebar: FunctionComponent<RepsonsiveSidebarProps> = ({
+  classes,
+  children
+}) => {
+  const { showSidebar, setHasSidebar, triggerEl, onSidebarToggle } = useContext(
+    PageContext
+  )
+  const container = usePicassoRoot()
+
+  useLayoutEffect(() => {
+    setHasSidebar(true)
+
+    return function cleanup() {
+      setHasSidebar(false)
+    }
+  }, [])
+
+  return (
+    <Popover
+      classes={{ paper: classes.paper }}
+      open={showSidebar!}
+      onClose={onSidebarToggle}
+      anchorEl={triggerEl}
+      anchorOrigin={{
+        vertical: 'bottom',
+        horizontal: 'left'
+      }}
+      transformOrigin={{
+        vertical: 'top',
+        horizontal: 'left'
+      }}
+      PaperProps={{
+        elevation: 2
+      }}
+      container={container}
+    >
+      {children}
+    </Popover>
+  )
+}
 
 export interface Props extends StandardProps {
   /** Style variant of Sidebar and subcomponents */
@@ -38,18 +89,7 @@ export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
   { children, variant, className, style, classes },
   ref
 ) {
-  const { showSidebar, setHasSidebar, triggerEl, onSidebarToggle } = useContext(
-    PageContext
-  )
-  const isMobile = useScreen('small')
-
-  useEffect(() => {
-    setHasSidebar(true)
-
-    return function cleanup() {
-      setHasSidebar(false)
-    }
-  }, [])
+  const isSmallScreen = useBreakpoint('small')
 
   const sidebar = (
     <Container
@@ -66,34 +106,11 @@ export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
     </Container>
   )
 
-  if (isMobile) {
-    const container = usePicassoRoot()
-
-    return (
-      <Popover
-        classes={{ paper: classes.paper }}
-        open={showSidebar!}
-        onClose={onSidebarToggle}
-        anchorEl={triggerEl}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left'
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'left'
-        }}
-        PaperProps={{
-          elevation: 2
-        }}
-        container={container}
-      >
-        {sidebar}
-      </Popover>
-    )
-  }
-
-  return sidebar
+  return isSmallScreen ? (
+    <ResponsiveSidebar classes={classes}>{sidebar}</ResponsiveSidebar>
+  ) : (
+    sidebar
+  )
 }) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
 
 Sidebar.defaultProps = {

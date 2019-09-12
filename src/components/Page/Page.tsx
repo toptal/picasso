@@ -45,17 +45,17 @@ export const Page = forwardRef<HTMLDivElement, Props>(function Page(
   { children, classes, className, style, fullWidth, ...rest },
   ref
 ) {
-  const [showSidebar, setShowSidebarState] = useState<boolean>(false)
-  const [hasSidebar, setHasSidebarState] = useState<boolean>(false)
-  const [triggerEl, setTriggerElState] = useState<Element | undefined>()
+  const [showSidebar, setShowSidebar] = useState<boolean>(false)
+  const [hasSidebar, setHasSidebar] = useState<boolean>(false)
+  const [triggerEl, setTriggerEl] = useState<Element | undefined>()
 
   function handleSidebarToggle(event: React.MouseEvent<HTMLButtonElement>) {
-    setShowSidebarState(!showSidebar)
-    setTriggerElState(event.currentTarget)
+    setShowSidebar(!showSidebar)
+    setTriggerEl(event.currentTarget)
   }
 
   function handleSetHasSidebar(hasSidebar: boolean) {
-    setHasSidebarState(hasSidebar)
+    setHasSidebar(hasSidebar)
   }
 
   return (

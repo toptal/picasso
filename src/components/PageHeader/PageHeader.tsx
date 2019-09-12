@@ -1,6 +1,6 @@
 import React, {
   useContext,
-  useEffect,
+  useLayoutEffect,
   forwardRef,
   ReactNode,
   ReactElement,
@@ -15,7 +15,7 @@ import { PageContextProps } from '../Page/types'
 import { StandardProps, usePageHeader } from '../Picasso'
 import { Overview16, Close16 } from '../Icon'
 import Button from '../Button'
-import { useScreen } from '../utils'
+import { useBreakpoint } from '../utils'
 import styles from './styles'
 
 type VariantType = 'dark' | 'light'
@@ -47,11 +47,11 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
   },
   ref
 ) {
-  const isMobile = useScreen('small')
+  const isSmallScreen = useBreakpoint('small')
 
   const { setHasPageHeader } = usePageHeader()
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setHasPageHeader(true)
 
     return function cleanup() {
@@ -64,10 +64,10 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
   >(PageContext)
 
   const logo = (
-    <Logo variant='white' emblem={isMobile} className={classes.logo} />
+    <Logo variant='white' emblem={isSmallScreen} className={classes.logo} />
   )
 
-  const titleComponent = title && !isMobile && (
+  const titleComponent = title && (
     <Container left='small' flex alignItems='center'>
       <div className={classes.divider} />
       <Container left='small'>
@@ -78,7 +78,7 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
     </Container>
   )
 
-  const sidebarButton = hasSidebar && isMobile && (
+  const sidebarButton = hasSidebar && (
     <Button
       icon={showSidebar ? <Close16 /> : <Overview16 />}
       circular
@@ -96,16 +96,16 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
       style={style}
     >
       <div className={cx({ [classes.fullWidth]: fullWidth }, classes.content)}>
-        {sidebarButton}
+        {isSmallScreen && sidebarButton}
         <div className={classes.left}>
           <Container className={classes.logoContainer} flex alignItems='center'>
             {logoLink ? React.cloneElement(logoLink, {}, logo) : logo}
           </Container>
-          {titleComponent}
+          {!isSmallScreen && titleComponent}
         </div>
 
         <div className={classes.right}>
-          {!isMobile && actionItems}
+          {!isSmallScreen && actionItems}
           {rightContent}
         </div>
       </div>

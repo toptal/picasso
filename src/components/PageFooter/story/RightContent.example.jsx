@@ -1,5 +1,16 @@
 import React, { Fragment } from 'react'
 import { Page, Link } from '@toptal/picasso'
+import styled from 'styled-components'
+import { screens } from '@toptal/picasso/utils'
+
+const StyledLink = styled(Link)`
+  margin-left: 2.5em;
+
+  ${screens('small')} {
+    margin-left: 0;
+    margin-bottom: 0.5em;
+  }
+`
 
 const FooterRightContentExample = () => (
   <div>
@@ -9,25 +20,25 @@ const FooterRightContentExample = () => (
 
 const Links = () => (
   <Fragment>
-    <Link href='#' underline='none' invert style={{ marginLeft: '2.5em' }}>
+    <StyledLink href='#' underline='none' invert>
       +1.888.604.3188
-    </Link>
+    </StyledLink>
 
-    <Link href='#' underline='none' invert style={{ marginLeft: '2.5em' }}>
+    <StyledLink href='#' underline='none' invert>
       Contact Us
-    </Link>
+    </StyledLink>
 
-    <Link href='#' underline='none' invert style={{ marginLeft: '2.5em' }}>
+    <StyledLink href='#' underline='none' invert>
       Privacy Policy
-    </Link>
+    </StyledLink>
 
-    <Link href='#' underline='none' invert style={{ marginLeft: '2.5em' }}>
+    <StyledLink href='#' underline='none' invert>
       Portal Agreement
-    </Link>
+    </StyledLink>
 
-    <Link href='#' underline='none' invert style={{ marginLeft: '2.5em' }}>
+    <StyledLink href='#' underline='none' invert>
       Toptal Training
-    </Link>
+    </StyledLink>
   </Fragment>
 )
 

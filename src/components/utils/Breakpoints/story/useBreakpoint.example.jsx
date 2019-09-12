@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react'
-import { useScreen } from '@toptal/picasso/utils'
+import { useBreakpoint } from '@toptal/picasso/utils'
 import { Typography } from '@toptal/picasso'
 
 const UseScreenExample = () => {
-  const isSmall = useScreen('small')
-  const isSmallOrMedium = useScreen(['small', 'medium'])
+  const isSmall = useBreakpoint('small')
+  const isSmallOrMedium = useBreakpoint(['small', 'medium'])
 
   return (
     <Fragment>

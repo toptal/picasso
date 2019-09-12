@@ -3,7 +3,7 @@ import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 
 import { StandardProps } from '../Picasso'
-import { useScreen } from '../utils'
+import { useBreakpoint } from '../utils'
 import UserBadge from '../UserBadge'
 import Avatar from '../Avatar'
 import Dropdown from '../Dropdown'
@@ -26,7 +26,7 @@ export const PageHeaderMenu = forwardRef<HTMLDivElement, Props>(
     { name, meta, avatar, classes, className, style, children, ...rest },
     ref
   ) {
-    const isMobile = useScreen('small')
+    const isSmallScreen = useBreakpoint('small')
 
     const metaContent =
       typeof meta === 'string' ? (
@@ -37,7 +37,7 @@ export const PageHeaderMenu = forwardRef<HTMLDivElement, Props>(
         meta
       )
 
-    const content = isMobile ? (
+    const content = isSmallScreen ? (
       <Fragment>
         <UserBadge
           center
@@ -58,7 +58,7 @@ export const PageHeaderMenu = forwardRef<HTMLDivElement, Props>(
       children
     )
 
-    const trigger = isMobile ? (
+    const trigger = isSmallScreen ? (
       <Avatar
         size='xsmall'
         classes={{
