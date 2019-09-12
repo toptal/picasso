@@ -4,16 +4,19 @@ import React, {
   LiHTMLAttributes,
   HTMLAttributes,
   ElementType,
-  ReactElement
+  ReactElement,
+  useContext
 } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import MUIMenuItem, { MenuItemProps } from '@material-ui/core/MenuItem'
-import { Chevron16 } from '@toptal/picasso'
 
 import Container from '../Container'
 import { Chevron16 } from '../Icon'
 import { StandardProps, ButtonOrAnchorProps } from '../Picasso'
+import { MenuContext } from '../Menu'
+import { MenuContextProps } from '../Menu/types'
+import Typography from '../Typography'
 import styles from './styles'
 
 export type VariantType = 'light' | 'dark'
@@ -65,6 +68,8 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { stringContent, light, dark, ...restClasses } = classes
 
+  const { push } = useContext<MenuContextProps>(MenuContext)
+
   if (typeof children === 'string') {
     children = (
       <span className={stringContent} style={style}>
@@ -82,6 +87,17 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
     )
   }
 
+  const handleClick = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    if (menu) {
+      event.stopPropagation()
+      push(menu)
+    }
+
+    if (onClick) {
+      onClick(event)
+    }
+  }
+
   return (
     <MUIMenuItem
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -92,7 +108,7 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
       className={cx(classes[variant!], className)}
       disabled={disabled}
       disableGutters={disableGutters}
-      onClick={onClick}
+      onClick={handleClick}
       style={style}
       value={value}
       selected={selected}

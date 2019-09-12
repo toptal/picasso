@@ -3,13 +3,14 @@ import React, {
   forwardRef,
   ReactElement,
   useState,
-  ReactNode
+  useContext
 } from 'react'
 import MUIMenuList, { MenuListProps } from '@material-ui/core/MenuList'
 import { withStyles } from '@material-ui/core/styles'
 
 import { BackMinor16 } from '../Icon'
-import MenuItem, { WrappedStringMenuItemContent } from '../MenuItem'
+import MenuItem from '../MenuItem'
+import { MenuContextProps } from './types'
 import {
   StandardProps,
   PicassoComponentWithRef,
@@ -26,96 +27,26 @@ export interface StaticProps {
   Item: typeof MenuItem
 }
 
-function extendMenuItemsWithNavigation(
-  children: ReactNode,
-  onClick: (arg: number) => void,
-  activeChildPath: number[]
-) {
-  return React.Children.toArray(children).map((child, index) => {
-    const childElement = child as ReactElement
-
-    let props = childElement.props
-
-    if (childElement.props.menu) {
-      props = {
-        ...props,
-        onClick: () => onClick(index)
-      }
-    }
-
-    return React.cloneElement(childElement, {
-      ...props,
-      key: props.key || activeChildPath.join('_') + index
-    })
-  })
-}
-
-function getActiveChildRecursively(
-  children: ReactNode,
-  activeChildPath: number[]
-): ReactElement {
-  const currentLevelActiveChild = React.Children.toArray(children)[
-    activeChildPath[0]
-  ] as ReactElement
-
-  if (activeChildPath.length > 1) {
-    return getActiveChildRecursively(
-      currentLevelActiveChild.props.menu.props.children,
-      activeChildPath.slice(1)
-    )
-  }
-  return currentLevelActiveChild
-}
+export const MenuContext = React.createContext<MenuContextProps>(
+  {} as MenuContextProps
+)
 
 // eslint-disable-next-line react/display-name
 export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
   { children, className, classes, style, ...rest },
   ref
 ) {
-  const [activeChildPath, setActiveChildPath] = useState<number[]>([])
+  const { pop } = useContext<MenuContextProps>(MenuContext)
+  const hasParentMenu = !!pop
 
-  function handleDrilldown(innerIdx: number) {
-    const newPath = [...activeChildPath, innerIdx]
-
-    setActiveChildPath(newPath)
+  const handleBackClick = (
+    event: React.MouseEvent<HTMLElement, MouseEvent>
+  ) => {
+    event.stopPropagation()
+    pop()
   }
 
-  function handleBack() {
-    setActiveChildPath(activeChildPath.slice(0, -1))
-  }
-
-  let activeMenuProps = {}
-
-  if (activeChildPath.length) {
-    const activeChild = getActiveChildRecursively(children, activeChildPath)
-
-    /* eslint-disable react/jsx-key */
-    const backButton = (
-      <MenuItem onClick={handleBack} key={activeChildPath.join('_') + 'back'}>
-        <BackMinor16 />
-        <WrappedStringMenuItemContent>Back</WrappedStringMenuItemContent>
-      </MenuItem>
-    )
-    /* eslint-disable react/jsx-key */
-
-    activeMenuProps = activeChild.props.menu.props
-    children = [
-      backButton,
-      ...extendMenuItemsWithNavigation(
-        activeChild.props.menu.props.children,
-        handleDrilldown,
-        activeChildPath
-      )
-    ]
-  } else {
-    children = extendMenuItemsWithNavigation(
-      children,
-      handleDrilldown,
-      activeChildPath
-    )
-  }
-
-  return (
+  const menu = (
     <MUIMenuList
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
@@ -124,10 +55,32 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
       style={style}
       classes={classes}
       // eslint-disable-next-line react/jsx-props-no-spreading
-      {...activeMenuProps}
     >
+      {hasParentMenu && (
+        <MenuItem onClick={handleBackClick} key='back'>
+          <BackMinor16 />
+          Back
+        </MenuItem>
+      )}
       {children}
     </MUIMenuList>
+  )
+
+  const [menus, setMenus] = useState<ReactElement[]>([menu])
+
+  if (hasParentMenu) {
+    return menu
+  }
+
+  const contextStuff = {
+    push: menu => setMenus([...menus, menu]),
+    pop: () => setMenus(menus.slice(0, -1))
+  } as MenuContextProps
+
+  return (
+    <MenuContext.Provider value={contextStuff}>
+      {menus[menus.length - 1]}
+    </MenuContext.Provider>
   )
 }) as CompoundedComponentWithRef<Props, HTMLUListElement, StaticProps>
 
