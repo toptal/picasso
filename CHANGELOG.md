@@ -1,3 +1,10 @@
+# [3.7.0](https://github.com/toptal/picasso/compare/v3.6.1...v3.7.0) (2019-09-12)
+
+
+### Features
+
+* add ThumbsUp and ThumbsDown icons ([#675](https://github.com/toptal/picasso/issues/675)) ([d4411c1](https://github.com/toptal/picasso/commit/d4411c1))
+
 ## [3.6.1](https://github.com/toptal/picasso/compare/v3.6.0...v3.6.1) (2019-09-12)
 
 
