@@ -1,1 +1,1 @@
-export { default, WrappedStringMenuItemContent } from './MenuItem'
+export { default } from './MenuItem'

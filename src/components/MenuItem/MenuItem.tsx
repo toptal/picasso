@@ -44,29 +44,6 @@ export interface Props extends StandardProps, MenuItemAttributes {
   variant?: VariantType
 }
 
-export const WrappedStringMenuItemContent = withStyles(styles, {
-  name: 'MenuItem'
-})(
-  // eslint-disable-next-line react/display-name
-  forwardRef<HTMLElement, Props>(function StringMenuItem(
-    { style, classes, children },
-    ref
-  ) {
-    const { stringContent } = classes
-
-    return (
-      <Typography
-        className={stringContent}
-        style={style}
-        color='inherit'
-        ref={ref}
-      >
-        {children}
-      </Typography>
-    )
-  })
-)
-
 export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
   {
     as,
@@ -92,7 +69,14 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
 
   if (typeof children === 'string') {
     children = (
-      <WrappedStringMenuItemContent>{children}</WrappedStringMenuItemContent>
+      <Typography
+        className={stringContent}
+        style={style}
+        color='inherit'
+        ref={ref}
+      >
+        {children}
+      </Typography>
     )
   }
 
