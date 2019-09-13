@@ -51,11 +51,7 @@ export const Page = forwardRef<HTMLDivElement, Props>(function Page(
       className={cx(classes.root, className)}
       style={style}
     >
-      <PageContext.Provider
-        value={{
-          fullWidth
-        }}
-      >
+      <PageContext.Provider value={{ fullWidth }}>
         {children}
       </PageContext.Provider>
     </div>
