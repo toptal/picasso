@@ -13,9 +13,9 @@ import styles from './styles'
 export interface Props extends StandardProps {
 }
 
-export const <%= Name %> = forwardRef<HTMLElement, Props>(props, ref) => {
+export const <%= Name %> = forwardRef<HTMLElement, Props>(function <%= Name %>(props, ref) {
   return null
-}
+})
 
 <%= Name %>.defaultProps = {
 }
