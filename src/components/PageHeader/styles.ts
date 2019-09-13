@@ -29,7 +29,7 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
       padding: `0 ${layout.contentPaddingHorizontal}`,
 
       [screens('small')]: {
-        height: '2.5em'
+        height: '3em'
       }
     },
     fullWidth: {

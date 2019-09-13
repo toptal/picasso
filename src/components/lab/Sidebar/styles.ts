@@ -1,6 +1,6 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
-export default ({ palette, screens }: Theme) =>
+export default ({ palette, screens, zIndex }: Theme) =>
   createStyles({
     root: {
       height: '100%',
@@ -13,6 +13,12 @@ export default ({ palette, screens }: Theme) =>
         width: '100vw',
         overflowY: 'scroll'
       }
+    },
+    responsiveWrapper: {
+      position: 'absolute',
+      top: '0.375em',
+      left: '0.375em',
+      zIndex: zIndex.appBar
     },
     paper: {
       [screens('small')]: {

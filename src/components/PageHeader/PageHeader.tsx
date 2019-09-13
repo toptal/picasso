@@ -13,8 +13,6 @@ import { Logo, Container, Typography } from '../'
 import { PageContext } from '../Page'
 import { PageContextProps } from '../Page/types'
 import { StandardProps, usePageHeader } from '../Picasso'
-import { Overview16, Close16 } from '../Icon'
-import Button from '../Button'
 import { useBreakpoint } from '../utils'
 import styles from './styles'
 
@@ -59,9 +57,7 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
     }
   }, [])
 
-  const { fullWidth, onSidebarToggle, showSidebar, hasSidebar } = useContext<
-    PageContextProps
-  >(PageContext)
+  const { fullWidth } = useContext<PageContextProps>(PageContext)
 
   const logo = (
     <Logo variant='white' emblem={isSmallScreen} className={classes.logo} />
@@ -78,15 +74,6 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
     </Container>
   )
 
-  const sidebarButton = hasSidebar && (
-    <Button
-      icon={showSidebar ? <Close16 /> : <Overview16 />}
-      circular
-      variant='flat-white'
-      onClick={onSidebarToggle}
-    />
-  )
-
   return (
     <header
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -96,7 +83,6 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
       style={style}
     >
       <div className={cx({ [classes.fullWidth]: fullWidth }, classes.content)}>
-        {isSmallScreen && sidebarButton}
         <div className={classes.left}>
           <Container className={classes.logoContainer} flex alignItems='center'>
             {logoLink ? React.cloneElement(logoLink, {}, logo) : logo}

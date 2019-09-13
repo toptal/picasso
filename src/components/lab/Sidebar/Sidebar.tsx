@@ -1,7 +1,6 @@
 import React, {
   forwardRef,
-  useContext,
-  useLayoutEffect,
+  useState,
   ReactNode,
   FunctionComponent
 } from 'react'
@@ -11,12 +10,12 @@ import cx from 'classnames'
 import {
   StandardProps,
   PicassoComponentWithRef,
-  CompoundedComponentWithRef,
-  usePicassoRoot
+  CompoundedComponentWithRef
 } from '../../Picasso'
 import Container from '../../Container'
-import Popover from '../../Popover'
-import { PageContext } from '../../Page'
+import Button from '../../Button'
+import Dropdown from '../../Dropdown'
+import { Overview16, Close16 } from '../../Icon'
 import { useBreakpoint } from '../../utils'
 import SidebarMenu from '../SidebarMenu'
 import SidebarItem from '../SidebarItem'
@@ -32,40 +31,23 @@ const ResponsiveSidebar: FunctionComponent<RepsonsiveSidebarProps> = ({
   classes,
   children
 }) => {
-  const { showSidebar, setHasSidebar, triggerEl, onSidebarToggle } = useContext(
-    PageContext
-  )
-  const container = usePicassoRoot()
+  const [showSidebar, setShowSidebar] = useState<boolean>(false)
 
-  useLayoutEffect(() => {
-    setHasSidebar(true)
-
-    return function cleanup() {
-      setHasSidebar(false)
-    }
-  }, [])
+  const handleShowSidebar = () => setShowSidebar(!showSidebar)
 
   return (
-    <Popover
-      classes={{ paper: classes.paper }}
-      open={showSidebar!}
-      onClose={onSidebarToggle}
-      anchorEl={triggerEl}
-      anchorOrigin={{
-        vertical: 'bottom',
-        horizontal: 'left'
-      }}
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'left'
-      }}
-      PaperProps={{
-        elevation: 2
-      }}
-      container={container}
+    <Dropdown
+      content={children}
+      className={classes.responsiveWrapper}
+      offset={{ top: 'xsmall' }}
     >
-      {children}
-    </Popover>
+      <Button
+        icon={showSidebar ? <Close16 /> : <Overview16 />}
+        circular
+        variant='flat-white'
+        onClick={handleShowSidebar}
+      />
+    </Dropdown>
   )
 }
 

@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactNode, HTMLAttributes, useState } from 'react'
+import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
@@ -34,30 +34,15 @@ interface StaticProps {
   Sidebar: typeof PageSidebar
 }
 
-export const PageContext = React.createContext<PageContextProps>({
-  showSidebar: false,
-  hasSidebar: false,
-  setHasSidebar: () => {}
-})
+export const PageContext = React.createContext<PageContextProps>(
+  {} as PageContextProps
+)
 
 // eslint-disable-next-line react/display-name
 export const Page = forwardRef<HTMLDivElement, Props>(function Page(
   { children, classes, className, style, fullWidth, ...rest },
   ref
 ) {
-  const [showSidebar, setShowSidebar] = useState<boolean>(false)
-  const [hasSidebar, setHasSidebar] = useState<boolean>(false)
-  const [triggerEl, setTriggerEl] = useState<Element | undefined>()
-
-  function handleSidebarToggle(event: React.MouseEvent<HTMLButtonElement>) {
-    setShowSidebar(!showSidebar)
-    setTriggerEl(event.currentTarget)
-  }
-
-  function handleSetHasSidebar(hasSidebar: boolean) {
-    setHasSidebar(hasSidebar)
-  }
-
   return (
     <div
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -68,12 +53,7 @@ export const Page = forwardRef<HTMLDivElement, Props>(function Page(
     >
       <PageContext.Provider
         value={{
-          fullWidth,
-          showSidebar,
-          hasSidebar,
-          triggerEl,
-          setHasSidebar: handleSetHasSidebar,
-          onSidebarToggle: handleSidebarToggle
+          fullWidth
         }}
       >
         {children}
