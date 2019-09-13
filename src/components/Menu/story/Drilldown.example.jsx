@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu, Dropdown } from '@toptal/picasso'
+import { Menu, Dropdown, Grid, Typography } from '@toptal/picasso'
 
 const DrilldownExample = () => {
   const handleClick = () => {
@@ -34,38 +34,47 @@ const DrilldownExample = () => {
   )
 
   return (
-    <div>
-      <Menu>
-        <Menu.Item onClick={handleClick}>Item A</Menu.Item>
-        <Menu.Item onClick={handleClick}>Item B</Menu.Item>
-        <Menu.Item onClick={handleClick} menu={cMenu}>
-          Item C
-        </Menu.Item>
-        <Menu.Item onClick={handleClick} menu={dMenu}>
-          Item D
-        </Menu.Item>
-        <Menu.Item onClick={handleClick}>Item E</Menu.Item>
-      </Menu>
-
-      <Dropdown
-        content={
-          <Menu>
-            <Menu.Item onClick={handleClick}>Item A</Menu.Item>
-            <Menu.Item onClick={handleClick}>Item B</Menu.Item>
-            <Menu.Item onClick={handleClick} menu={cMenu}>
-              Item C
-            </Menu.Item>
-            <Menu.Item onClick={handleClick} menu={dMenu}>
-              Item D
-            </Menu.Item>
-            <Menu.Item onClick={handleClick}>Item E</Menu.Item>
-          </Menu>
-        }
-      >
-        Open Dropdown
-        <Dropdown.Arrow />
-      </Dropdown>
-    </div>
+    <Grid spacing={32}>
+      <Grid.Item small={6}>
+        <Typography variant='heading' size='small'>
+          Default:
+        </Typography>
+        <Menu>
+          <Menu.Item onClick={handleClick}>Item A</Menu.Item>
+          <Menu.Item onClick={handleClick}>Item B</Menu.Item>
+          <Menu.Item onClick={handleClick} menu={cMenu}>
+            Item C
+          </Menu.Item>
+          <Menu.Item onClick={handleClick} menu={dMenu}>
+            Item D
+          </Menu.Item>
+          <Menu.Item onClick={handleClick}>Item E</Menu.Item>
+        </Menu>
+      </Grid.Item>
+      <Grid.Item small={6}>
+        <Typography variant='heading' size='small'>
+          Wrapped By Dropdown:
+        </Typography>
+        <Dropdown
+          content={
+            <Menu>
+              <Menu.Item onClick={handleClick}>Item A</Menu.Item>
+              <Menu.Item onClick={handleClick}>Item B</Menu.Item>
+              <Menu.Item onClick={handleClick} menu={cMenu}>
+                Item C
+              </Menu.Item>
+              <Menu.Item onClick={handleClick} menu={dMenu}>
+                Item D
+              </Menu.Item>
+              <Menu.Item onClick={handleClick}>Item E</Menu.Item>
+            </Menu>
+          }
+        >
+          Open Dropdown
+          <Dropdown.Arrow />
+        </Dropdown>
+      </Grid.Item>
+    </Grid>
   )
 }
 
