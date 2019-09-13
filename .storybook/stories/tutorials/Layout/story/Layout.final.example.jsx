@@ -52,19 +52,13 @@ const LayoutExample = () => (
     <Page>
       <Page.Header title='How to layout a page' />
       <Page.Content>
-        <StyledContentContainer flex>
-          <SidebarMenu />
-          <MainContent />
-        </StyledContentContainer>
+        <SidebarMenu />
+        <MainContent />
       </Page.Content>
       <Page.Footer />
     </Page>
   </div>
 )
-
-const StyledContentContainer = styled(Container)`
-  height: 100%;
-`
 
 const StyledMainContentContainer = styled(Container)`
   background-color: ${palette.grey.light};
