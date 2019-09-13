@@ -23,14 +23,13 @@ import SidebarLogo from '../SidebarLogo'
 import styles from './styles'
 import { SidebarContextProps, VariantType } from './types'
 
-export interface RepsonsiveSidebarProps extends StandardProps {
+export interface SmallScreenSidebarWrapperProps extends StandardProps {
   children?: ReactNode
 }
 
-const ResponsiveSidebar: FunctionComponent<RepsonsiveSidebarProps> = ({
-  classes,
-  children
-}) => {
+const SmallScreenSidebarWrapper: FunctionComponent<
+  SmallScreenSidebarWrapperProps
+> = ({ classes, children }) => {
   const [showSidebar, setShowSidebar] = useState<boolean>(false)
 
   const handleShowSidebar = () => setShowSidebar(!showSidebar)
@@ -89,7 +88,9 @@ export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
   )
 
   return isSmallScreen ? (
-    <ResponsiveSidebar classes={classes}>{sidebar}</ResponsiveSidebar>
+    <SmallScreenSidebarWrapper classes={classes}>
+      {sidebar}
+    </SmallScreenSidebarWrapper>
   ) : (
     sidebar
   )
