@@ -42,11 +42,7 @@ export default ({ palette, screens, layout }: Theme) =>
       },
 
       [screens('small')]: {
-        flexDirection: 'column',
-
-        '& > *': {
-          marginBottom: '0.5em'
-        }
+        flexDirection: 'column'
       }
     }
   })

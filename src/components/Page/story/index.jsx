@@ -25,7 +25,6 @@ page
       'Page has centered content and restricted width of 1200px or 75rem'
   })
   .addExample('Page/story/FullWidth.example.jsx', 'Full width')
-  .addExample('Page/story/Sidebar.example.jsx', 'With sidebar')
   .addExample('Page/story/Scroll.example.jsx', 'Scroll with overflow')
 
 page.connect(pageHeaderStory.chapter)
