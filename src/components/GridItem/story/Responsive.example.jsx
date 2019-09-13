@@ -1,15 +1,19 @@
 import React from 'react'
 import { Grid, Container, Typography } from '@toptal/picasso'
-import { palette, isScreenSize, useScreenSize } from '@toptal/picasso/utils'
+import { palette, useBreakpoint, useScreenSize } from '@toptal/picasso/utils'
 
 const ScreenSize = ({ size }) => {
-  if (isScreenSize('extra-large', size)) {
+  const isExtraLarge = useBreakpoint('extra-large')
+  const isLarge = useBreakpoint('large')
+  const isMedium = useBreakpoint('medium')
+
+  if (isExtraLarge) {
     return `Extra Large - current [${size}px]`
   }
-  if (isScreenSize('large', size)) {
+  if (isLarge) {
     return `Large - current [${size}px]`
   }
-  if (isScreenSize('medium', size)) {
+  if (isMedium) {
     return `Medium - current [${size}px]`
   }
 

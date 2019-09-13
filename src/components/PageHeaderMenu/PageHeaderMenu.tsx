@@ -1,9 +1,11 @@
-import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
+import React, { forwardRef, ReactNode, HTMLAttributes, Fragment } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 
 import { StandardProps } from '../Picasso'
+import { useBreakpoint } from '../utils'
 import UserBadge from '../UserBadge'
+import Avatar from '../Avatar'
 import Dropdown from '../Dropdown'
 import Typography from '../Typography'
 import styles from './styles'
@@ -24,6 +26,8 @@ export const PageHeaderMenu = forwardRef<HTMLDivElement, Props>(
     { name, meta, avatar, classes, className, style, children, ...rest },
     ref
   ) {
+    const isSmallScreen = useBreakpoint('small')
+
     const metaContent =
       typeof meta === 'string' ? (
         <Typography className={classes.truncateText} invert size='small'>
@@ -33,22 +37,13 @@ export const PageHeaderMenu = forwardRef<HTMLDivElement, Props>(
         meta
       )
 
-    return (
-      <Dropdown
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        {...rest}
-        ref={ref}
-        className={cx(classes.root, className)}
-        classes={{ content: classes.content }}
-        style={style}
-        content={children}
-        offset={{ top: 'xsmall' }}
-      >
+    const content = isSmallScreen ? (
+      <Fragment>
         <UserBadge
-          invert
           center
           size='xsmall'
           classes={{
+            root: classes.contentUserBadge,
             avatar: classes.avatar,
             name: cx(classes.name, classes.truncateText)
           }}
@@ -57,7 +52,50 @@ export const PageHeaderMenu = forwardRef<HTMLDivElement, Props>(
         >
           {meta && metaContent}
         </UserBadge>
-        <Dropdown.Arrow style={{ color: 'white' }} />
+        {children}
+      </Fragment>
+    ) : (
+      children
+    )
+
+    const trigger = isSmallScreen ? (
+      <Avatar
+        size='xsmall'
+        classes={{
+          root: classes.avatar,
+          xsmall: classes.xsmall
+        }}
+        src={avatar as string}
+      />
+    ) : (
+      <UserBadge
+        invert
+        center
+        size='xsmall'
+        classes={{
+          avatar: classes.avatar,
+          name: cx(classes.name, classes.truncateText)
+        }}
+        name={name}
+        avatar={avatar}
+      >
+        {meta && metaContent}
+      </UserBadge>
+    )
+
+    return (
+      <Dropdown
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...rest}
+        ref={ref}
+        className={cx(classes.root, className)}
+        classes={{ content: classes.content }}
+        style={style}
+        content={content}
+        offset={{ top: isSmallScreen ? 'small' : 'xsmall' }}
+      >
+        {trigger}
+        <Dropdown.Arrow className={classes.arrow} />
       </Dropdown>
     )
   }

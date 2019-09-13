@@ -1,6 +1,6 @@
 import React, {
   useContext,
-  useEffect,
+  useLayoutEffect,
   forwardRef,
   ReactNode,
   ReactElement,
@@ -13,6 +13,7 @@ import { Logo, Container, Typography } from '../'
 import { PageContext } from '../Page'
 import { PageContextProps } from '../Page/types'
 import { StandardProps, usePageHeader } from '../Picasso'
+import { useBreakpoint } from '../utils'
 import styles from './styles'
 
 type VariantType = 'dark' | 'light'
@@ -24,6 +25,8 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
   logoLink?: ReactElement
   /** Content for the right side of the `Header`  */
   rightContent?: ReactNode
+  /** Action items  */
+  actionItems?: ReactNode
   /** Color variant */
   variant?: VariantType
 }
@@ -36,14 +39,17 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
     title,
     logoLink,
     rightContent,
+    actionItems,
     variant,
     ...rest
   },
   ref
 ) {
+  const isSmallScreen = useBreakpoint('small')
+
   const { setHasPageHeader } = usePageHeader()
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setHasPageHeader(true)
 
     return function cleanup() {
@@ -53,14 +59,20 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
 
   const { fullWidth } = useContext<PageContextProps>(PageContext)
 
-  const contentClassnames = cx(
-    {
-      [classes.fullWidth]: fullWidth
-    },
-    classes.content
+  const logo = (
+    <Logo variant='white' emblem={isSmallScreen} className={classes.logo} />
   )
 
-  const logo = <Logo variant='white' />
+  const titleComponent = title && (
+    <Container left='small' flex alignItems='center'>
+      <div className={classes.divider} />
+      <Container left='small'>
+        <Typography invert weight='light'>
+          {title}
+        </Typography>
+      </Container>
+    </Container>
+  )
 
   return (
     <header
@@ -70,24 +82,18 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
       className={cx('mui-fixed', classes.root, classes[variant!], className)}
       style={style}
     >
-      <div className={contentClassnames}>
+      <div className={cx({ [classes.fullWidth]: fullWidth }, classes.content)}>
         <div className={classes.left}>
-          <Container right='small' flex alignItems='center'>
+          <Container className={classes.logoContainer} flex alignItems='center'>
             {logoLink ? React.cloneElement(logoLink, {}, logo) : logo}
           </Container>
-          {title && (
-            <React.Fragment>
-              <div className={classes.divider} />
-              <Container left='small'>
-                <Typography invert weight='light'>
-                  {title}
-                </Typography>
-              </Container>
-            </React.Fragment>
-          )}
+          {!isSmallScreen && titleComponent}
         </div>
 
-        <div className={classes.right}>{rightContent}</div>
+        <div className={classes.right}>
+          {!isSmallScreen && actionItems}
+          {rightContent}
+        </div>
       </div>
     </header>
   )

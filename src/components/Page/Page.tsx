@@ -6,6 +6,7 @@ import PageHeader from '../PageHeader'
 import PageHeaderMenu from '../PageHeaderMenu'
 import PageFooter from '../PageFooter'
 import PageContent from '../PageContent'
+import PageSidebar from '../lab/Sidebar'
 import {
   StandardProps,
   PicassoComponentWithRef,
@@ -30,6 +31,7 @@ interface StaticProps {
   HeaderMenu: typeof PageHeaderMenu
   Content: typeof PageContent
   Footer: typeof PageFooter
+  Sidebar: typeof PageSidebar
 }
 
 export const PageContext = React.createContext<PageContextProps>(
@@ -69,6 +71,8 @@ Page.HeaderMenu = PageHeaderMenu
 Page.Content = PageContent
 
 Page.Footer = PageFooter
+
+Page.Sidebar = PageSidebar
 
 export default withStyles(styles)(Page) as PicassoComponentWithRef<
   Props,

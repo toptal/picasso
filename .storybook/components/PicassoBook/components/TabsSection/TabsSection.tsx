@@ -1,8 +1,7 @@
-import React, { Fragment, FunctionComponent, ReactNode } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import React, { FunctionComponent, ReactNode } from 'react'
 
-import { Classes } from '@components/styles/types'
-import { Paper, Container } from '@components'
+import { Paper, Container, Typography } from '@components'
+import { useBreakpoint } from '@components/utils'
 
 import TabsSectionHeader from './TabsSectionHeader'
 
@@ -14,10 +13,11 @@ export interface TabOptions {
 
 interface Props {
   tabs: TabOptions[]
+  hideOnSmallScreen?: boolean
 }
 
 const TabsSection: FunctionComponent<Props> = props => {
-  const { tabs } = props
+  const { tabs, hideOnSmallScreen } = props
 
   const [selectedTab, setSelectedTab] = React.useState(0)
 
@@ -26,6 +26,12 @@ const TabsSection: FunctionComponent<Props> = props => {
   }
 
   const hasMultiple = tabs.length > 1
+
+  const isSmallScreen = useBreakpoint('small')
+
+  if (isSmallScreen && hideOnSmallScreen) {
+    return <Typography size='medium'>Not visible on smaller screens</Typography>
+  }
 
   return (
     <Paper>

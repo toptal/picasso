@@ -1,6 +1,6 @@
-import { Theme, createStyles } from '@material-ui/core/styles'
+import { createStyles } from '@material-ui/core/styles'
 
-export default ({ palette }: Theme) =>
+export default () =>
   createStyles({
     tabs: {
       marginBottom: '1rem'

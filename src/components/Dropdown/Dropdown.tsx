@@ -9,7 +9,7 @@ import React, {
 } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
-import Popover, { PopoverOrigin } from '@material-ui/core/Popover'
+import { PopoverOrigin } from '@material-ui/core/Popover'
 import RootRef from '@material-ui/core/RootRef'
 
 import {
@@ -21,6 +21,7 @@ import {
   usePicassoRoot
 } from '../Picasso'
 import DropdownArrow from '../DropdownArrow'
+import Popover from '../Popover'
 import styles from './styles'
 
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
@@ -203,6 +204,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
       </div>
 
       <Popover
+        classes={{ paper: classes.paper }}
         open={open}
         anchorEl={anchorEl}
         // MUI has a wrong typing for onClose prop without `reason` argument

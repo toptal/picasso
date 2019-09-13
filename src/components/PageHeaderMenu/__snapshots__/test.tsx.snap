@@ -40,8 +40,7 @@ exports[`PageHeaderMenu default render 1`] = `
           </div>
         </div>
         <span
-          class="DropdownArrow-root"
-          style="color: white;"
+          class="DropdownArrow-root PageHeaderMenu-arrow"
         />
       </div>
     </div>

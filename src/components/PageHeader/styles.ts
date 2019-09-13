@@ -2,7 +2,7 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 
 export const headerHeight = '4.5em'
 
-export default ({ palette, layout, zIndex }: Theme) =>
+export default ({ palette, layout, zIndex, screens }: Theme) =>
   createStyles({
     root: {
       width: '100%',
@@ -26,7 +26,11 @@ export default ({ palette, layout, zIndex }: Theme) =>
       justifyContent: 'space-between',
       maxWidth: layout.contentWidth,
       height: headerHeight,
-      padding: `0 ${layout.contentPaddingHorizontal}`
+      padding: `0 ${layout.contentPaddingHorizontal}`,
+
+      [screens('small')]: {
+        height: '3em'
+      }
     },
     fullWidth: {
       maxWidth: '100%'
@@ -44,5 +48,18 @@ export default ({ palette, layout, zIndex }: Theme) =>
       height: '1.75em',
       backgroundColor: palette.common.white,
       opacity: 0.8
+    },
+    logoContainer: {
+      [screens('small')]: {
+        lineHeight: '1em',
+        position: 'absolute',
+        left: '50%',
+        transform: 'translate(-50%, 0%)'
+      }
+    },
+    logo: {
+      [screens('small')]: {
+        fontSize: '1.5em'
+      }
     }
   })

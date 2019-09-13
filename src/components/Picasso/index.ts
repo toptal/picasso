@@ -20,3 +20,5 @@ export {
   CompoundedComponentWithRef,
   OverridableComponent
 } from './types'
+
+export { useScreenSize, isScreenSize, useBreakpoint } from './config'
