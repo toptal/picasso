@@ -15,7 +15,7 @@ export type ListNativeProps = HTMLAttributes<HTMLUListElement> &
 
 export interface Props extends StandardProps, ListNativeProps {}
 
-interface StaticProps {
+export interface StaticProps {
   Item: typeof MenuItem
 }
 
