@@ -28,6 +28,7 @@ const PageHeader_1 = __importDefault(require("../PageHeader"));
 const PageHeaderMenu_1 = __importDefault(require("../PageHeaderMenu"));
 const PageFooter_1 = __importDefault(require("../PageFooter"));
 const PageContent_1 = __importDefault(require("../PageContent"));
+const Sidebar_1 = __importDefault(require("../lab/Sidebar"));
 const styles_2 = __importDefault(require("./styles"));
 exports.PageContext = react_1.default.createContext({});
 // eslint-disable-next-line react/display-name
@@ -44,5 +45,6 @@ exports.Page.Header = PageHeader_1.default;
 exports.Page.HeaderMenu = PageHeaderMenu_1.default;
 exports.Page.Content = PageContent_1.default;
 exports.Page.Footer = PageFooter_1.default;
+exports.Page.Sidebar = Sidebar_1.default;
 exports.default = styles_1.withStyles(styles_2.default)(exports.Page);
 //# sourceMappingURL=Page.js.map

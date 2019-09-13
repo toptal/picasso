@@ -1,6 +1,10 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = require("react");
+const useMediaQuery_1 = __importDefault(require("@material-ui/core/useMediaQuery"));
 exports.screens = function (...sizes) {
     const { sm, md, lg } = breakpoints.values;
     const mediaQueries = {
@@ -15,7 +19,7 @@ exports.isScreenSize = function (size, currentSize) {
     const { sm, md, lg, xl } = breakpoints.values;
     const breakPointBoundaries = {
         small: (width) => width < sm,
-        medium: (width) => width >= md && width < lg,
+        medium: (width) => width >= sm && width < md,
         large: (width) => width >= lg && width < xl,
         'extra-large': (width) => width >= xl
     };
@@ -32,6 +36,7 @@ exports.useScreenSize = () => {
     }, []);
     return size;
 };
+exports.useBreakpoint = (sizes) => useMediaQuery_1.default(exports.screens(...[].concat(sizes)));
 const breakpoints = {
     values: {
         xs: 0,

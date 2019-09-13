@@ -24,10 +24,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importStar(require("react"));
 const classnames_1 = __importDefault(require("classnames"));
 const styles_1 = require("@material-ui/core/styles");
-const Popover_1 = __importDefault(require("@material-ui/core/Popover"));
 const RootRef_1 = __importDefault(require("@material-ui/core/RootRef"));
 const Picasso_1 = require("../Picasso");
 const DropdownArrow_1 = __importDefault(require("../DropdownArrow"));
+const Popover_1 = __importDefault(require("../Popover"));
 const styles_2 = __importDefault(require("./styles"));
 const DropdownContext = react_1.default.createContext(null);
 function useDropdownContext() {
@@ -106,7 +106,7 @@ exports.Dropdown = react_1.forwardRef(function Dropdown(_a, ref) {
     const container = Picasso_1.usePicassoRoot();
     return (react_1.default.createElement("div", Object.assign({}, rest, { ref: ref, className: classnames_1.default(classes.root, className), style: style }),
         react_1.default.createElement("div", { className: classes.anchor, onClick: handleAnchorClick }, children),
-        react_1.default.createElement(Popover_1.default, { open: open, anchorEl: anchorEl, 
+        react_1.default.createElement(Popover_1.default, { classes: { paper: classes.paper }, open: open, anchorEl: anchorEl, 
             // MUI has a wrong typing for onClose prop without `reason` argument
             // @ts-ignore
             onClose: handlePopoverClose, onEntering: handlePopoverEntering, anchorOrigin: anchorOrigin, transformOrigin: transformOrigin, disableAutoFocus: disableAutoFocus, PaperProps: {

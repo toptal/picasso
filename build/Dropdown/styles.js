@@ -13,6 +13,7 @@ exports.default = () => styles_1.createStyles({
     },
     content: {
         fontSize: 'inherit'
-    }
+    },
+    paper: {}
 });
 //# sourceMappingURL=styles.js.map

@@ -37,6 +37,9 @@ exports.default = ({ palette, screens, layout }) => styles_1.createStyles({
         marginTop: '1rem',
         [screens('small', 'medium', 'large')]: {
             order: -1
+        },
+        [screens('small')]: {
+            flexDirection: 'column'
         }
     }
 });

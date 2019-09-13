@@ -9,6 +9,7 @@ exports.breakpoints = breakpoints_1.breakpointsList;
 exports.screens = breakpoints_1.screens;
 exports.isScreenSize = breakpoints_1.isScreenSize;
 exports.useScreenSize = breakpoints_1.useScreenSize;
+exports.useBreakpoint = breakpoints_1.useBreakpoint;
 var ClickAwayListener_1 = require("@material-ui/core/ClickAwayListener");
 exports.ClickAwayListener = ClickAwayListener_1.default;
 var is_string_1 = require("./is-string");

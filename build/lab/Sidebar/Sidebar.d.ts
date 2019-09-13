@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { StandardProps, PicassoComponentWithRef, CompoundedComponentWithRef } from '../../Picasso';
 import SidebarMenu from '../SidebarMenu';
 import SidebarItem from '../SidebarItem';
 import SidebarLogo from '../SidebarLogo';
 import { SidebarContextProps, VariantType } from './types';
+export interface SmallScreenSidebarWrapperProps extends StandardProps {
+    children?: ReactNode;
+}
 export interface Props extends StandardProps {
     /** Style variant of Sidebar and subcomponents */
     variant?: VariantType;

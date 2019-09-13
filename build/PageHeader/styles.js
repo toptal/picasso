@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const styles_1 = require("@material-ui/core/styles");
 exports.headerHeight = '4.5em';
-exports.default = ({ palette, layout, zIndex }) => styles_1.createStyles({
+exports.default = ({ palette, layout, zIndex, screens }) => styles_1.createStyles({
     root: {
         width: '100%',
         position: 'fixed',
@@ -25,7 +25,10 @@ exports.default = ({ palette, layout, zIndex }) => styles_1.createStyles({
         justifyContent: 'space-between',
         maxWidth: layout.contentWidth,
         height: exports.headerHeight,
-        padding: `0 ${layout.contentPaddingHorizontal}`
+        padding: `0 ${layout.contentPaddingHorizontal}`,
+        [screens('small')]: {
+            height: '3em'
+        }
     },
     fullWidth: {
         maxWidth: '100%'
@@ -43,6 +46,19 @@ exports.default = ({ palette, layout, zIndex }) => styles_1.createStyles({
         height: '1.75em',
         backgroundColor: palette.common.white,
         opacity: 0.8
+    },
+    logoContainer: {
+        [screens('small')]: {
+            lineHeight: '1em',
+            position: 'absolute',
+            left: '50%',
+            transform: 'translate(-50%, 0%)'
+        }
+    },
+    logo: {
+        [screens('small')]: {
+            fontSize: '1.5em'
+        }
     }
 });
 //# sourceMappingURL=styles.js.map

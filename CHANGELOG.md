@@ -1,3 +1,11 @@
+# [3.8.0](https://github.com/toptal/picasso/compare/v3.7.1...v3.8.0) (2019-09-13)
+
+
+### Features
+
+* add EnvironmentBanner component ([#674](https://github.com/toptal/picasso/issues/674)) ([f32ded0](https://github.com/toptal/picasso/commit/f32ded0))
+* **Page:** make responsive page ([#656](https://github.com/toptal/picasso/issues/656)) ([4ff7a06](https://github.com/toptal/picasso/commit/4ff7a06))
+
 ## [3.7.1](https://github.com/toptal/picasso/compare/v3.7.0...v3.7.1) (2019-09-13)
 
 
