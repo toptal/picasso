@@ -17,6 +17,7 @@ export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
       <Menu
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
+        allowNestedNavigation={false}
         ref={ref}
         style={style}
         className={cx(classes.root, { [classes.bottom]: bottom }, className)}

@@ -21,7 +21,11 @@ import styles from './styles'
 export type ListNativeProps = HTMLAttributes<HTMLUListElement> &
   Pick<MenuListProps, 'onKeyDown'>
 
-export interface Props extends StandardProps, ListNativeProps {}
+export interface Props extends StandardProps, ListNativeProps {
+  /** whether or not to handle nested navigation */
+  allowNestedNavigation?: boolean
+}
+
 
 interface StaticProps {
   Item: typeof MenuItem
@@ -33,7 +37,7 @@ export const MenuContext = React.createContext<MenuContextProps>(
 
 // eslint-disable-next-line react/display-name
 export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
-  { children, className, classes, style, ...rest },
+  { children, className, classes, style, allowNestedNavigation, ...rest },
   ref
 ) {
   const { pop } = useContext<MenuContextProps>(MenuContext)
@@ -56,7 +60,7 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
       classes={classes}
       // eslint-disable-next-line react/jsx-props-no-spreading
     >
-      {hasParentMenu && (
+      {hasParentMenu && allowNestedNavigation && (
         <MenuItem onClick={handleBackClick} key='back'>
           <BackMinor16 />
           Back
@@ -83,6 +87,10 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
     </MenuContext.Provider>
   )
 }) as CompoundedComponentWithRef<Props, HTMLUListElement, StaticProps>
+
+Menu.defaultProps = {
+  allowNestedNavigation: true
+}
 
 Menu.displayName = 'Menu'
 
