@@ -5,7 +5,7 @@ import { StandardProps, PicassoComponentWithRef, CompoundedComponentWithRef } fr
 export declare type ListNativeProps = HTMLAttributes<HTMLUListElement> & Pick<MenuListProps, 'onKeyDown'>;
 export interface Props extends StandardProps, ListNativeProps {
 }
-interface StaticProps {
+export interface StaticProps {
     Item: typeof MenuItem;
 }
 export declare const Menu: CompoundedComponentWithRef<Props, HTMLUListElement, StaticProps>;

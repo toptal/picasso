@@ -1,3 +1,10 @@
+## [3.7.1](https://github.com/toptal/picasso/compare/v3.7.0...v3.7.1) (2019-09-13)
+
+
+### Bug Fixes
+
+* **Menu:** export static props for Menu to fix ts type check ([#677](https://github.com/toptal/picasso/issues/677)) ([83d5908](https://github.com/toptal/picasso/commit/83d5908))
+
 # [3.7.0](https://github.com/toptal/picasso/compare/v3.6.1...v3.7.0) (2019-09-12)
 
 
