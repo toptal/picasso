@@ -36,7 +36,7 @@ render () {
 
 ## Running storybook
 
-In order to run storybook you need to execute `yarn storybook` which will spin up storybook server on http://localhost:9001
+In order to run storybook you need to execute `yarn start` which will spin up storybook server on http://localhost:9001
 
 ### Running visual tests
 
