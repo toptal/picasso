@@ -64,8 +64,10 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
     >
       {hasParentMenu && allowNestedNavigation && (
         <MenuItem onClick={handleBackClick} key='back'>
-          <BackMinor16 />
-          <Typography className={backButton} style={style} color='inherit'>
+          <span className={backButton}>
+            <BackMinor16 />
+          </span>
+          <Typography size='small' color='grey' variant='body'>
             Back
           </Typography>
         </MenuItem>
@@ -80,13 +82,13 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
     return menu
   }
 
-  const contextStuff = {
+  const menuContext = {
     push: menu => setMenus([...menus, menu]),
     pop: () => setMenus(menus.slice(0, -1))
   } as MenuContextProps
 
   return (
-    <MenuContext.Provider value={contextStuff}>
+    <MenuContext.Provider value={menuContext}>
       {menus[menus.length - 1]}
     </MenuContext.Provider>
   )
