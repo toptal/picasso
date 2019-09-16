@@ -10,4 +10,9 @@ PicassoProvider.override(({ shadows }: Theme) => ({
     }
   }
 }))
-export default () => createStyles({})
+export default () =>
+  createStyles({
+    backButton: {
+      fontSize: '0.8125em'
+    }
+  })
