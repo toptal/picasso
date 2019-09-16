@@ -41,7 +41,7 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
   { children, className, classes, style, allowNestedNavigation, ...rest },
   ref
 ) {
-  const { backButtonIcon } = classes
+  const { backButtonIcon, ...restClasses } = classes
   const { pop } = useContext<MenuContextProps>(MenuContext)
   const hasParentMenu = !!pop
 
@@ -59,7 +59,7 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
       ref={ref}
       className={className}
       style={style}
-      classes={classes}
+      classes={restClasses}
       // eslint-disable-next-line react/jsx-props-no-spreading
     >
       {hasParentMenu && allowNestedNavigation && (

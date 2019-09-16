@@ -66,7 +66,7 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
   const hasMenu = Boolean(menu)
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { stringContent, light, dark, ...restClasses } = classes
+  const { stringContent, light, dark, chevron, ...restClasses } = classes
 
   const { push } = useContext<MenuContextProps>(MenuContext)
 
@@ -82,7 +82,9 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
     children = (
       <Container inline flex alignItems='center' style={{ flex: 1 }}>
         <Container style={{ flex: 1 }}>{children}</Container>
-        <ChevronMinor16 />
+        <span className={classes.chevron}>
+          <ChevronMinor16 />
+        </span>
       </Container>
     )
   }
