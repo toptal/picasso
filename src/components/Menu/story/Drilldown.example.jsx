@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu, Dropdown, Grid, Typography } from '@toptal/picasso'
+import { Menu, Dropdown, Grid, Typography, Container } from '@toptal/picasso'
 
 const DrilldownExample = () => {
   const handleClick = () => {
@@ -35,26 +35,32 @@ const DrilldownExample = () => {
 
   return (
     <Grid spacing={32}>
-      <Grid.Item small={6}>
-        <Typography variant='heading' size='small'>
-          Default:
-        </Typography>
-        <Menu>
-          <Menu.Item onClick={handleClick}>Item A</Menu.Item>
-          <Menu.Item onClick={handleClick}>Item B</Menu.Item>
-          <Menu.Item onClick={handleClick} menu={cMenu}>
-            Item C
-          </Menu.Item>
-          <Menu.Item onClick={handleClick} menu={dMenu}>
-            Item D
-          </Menu.Item>
-          <Menu.Item onClick={handleClick}>Item E</Menu.Item>
-        </Menu>
+      <Grid.Item>
+        <Container bottom='small'>
+          <Typography variant='heading' size='small'>
+            Default:
+          </Typography>
+        </Container>
+        <Container style={{ width: 240 }}>
+          <Menu>
+            <Menu.Item onClick={handleClick}>Item A</Menu.Item>
+            <Menu.Item onClick={handleClick}>Item B</Menu.Item>
+            <Menu.Item onClick={handleClick} menu={cMenu}>
+              Item C
+            </Menu.Item>
+            <Menu.Item onClick={handleClick} menu={dMenu}>
+              Item D
+            </Menu.Item>
+            <Menu.Item onClick={handleClick}>Item E</Menu.Item>
+          </Menu>
+        </Container>
       </Grid.Item>
-      <Grid.Item small={6}>
-        <Typography variant='heading' size='small'>
-          Wrapped By Dropdown:
-        </Typography>
+      <Grid.Item>
+        <Container bottom='small'>
+          <Typography variant='heading' size='small'>
+            Wrapped By Dropdown:
+          </Typography>
+        </Container>
         <Dropdown
           content={
             <Menu>
