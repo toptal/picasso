@@ -12,7 +12,7 @@ import { withStyles } from '@material-ui/core/styles'
 import MUIMenuItem, { MenuItemProps } from '@material-ui/core/MenuItem'
 
 import Container from '../Container'
-import { Chevron16 } from '../Icon'
+import { ChevronMinor16 } from '../Icon'
 import { StandardProps, ButtonOrAnchorProps } from '../Picasso'
 import { MenuContext } from '../Menu'
 import { MenuContextProps } from '../Menu/types'
@@ -82,7 +82,7 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
     children = (
       <Container inline flex alignItems='center' style={{ flex: 1 }}>
         <Container style={{ flex: 1 }}>{children}</Container>
-        <Chevron16 />
+        <ChevronMinor16 />
       </Container>
     )
   }

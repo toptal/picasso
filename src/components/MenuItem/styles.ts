@@ -83,5 +83,8 @@ export default ({ palette }: Theme) =>
     stringContent: {
       flex: 1,
       fontSize: '0.8125em'
+    },
+    chevron: {
+      marginLeft: '1.5em'
     }
   })
