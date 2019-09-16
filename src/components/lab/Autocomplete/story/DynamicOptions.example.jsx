@@ -48,6 +48,9 @@ const AutocompleteDynamicOptionsExample = () => {
     if (inputValue.length >= MIN_CHARS) {
       setLoading(true)
       handleChangeDebounced(inputValue)
+    } else {
+      setLoading(false)
+      handleChangeDebounced.clear()
     }
   }
 
