@@ -1,18 +1,25 @@
 import React, { useState, useCallback } from 'react'
+import debounce from 'debounce'
 import { Autocomplete } from '@toptal/picasso/lab'
 
 const remoteOptions = [
   { text: 'Belarus' },
   { text: 'Croatia' },
+  { text: 'Finland' },
   { text: 'Lithuania' },
+  { text: 'Micronesia' },
+  { text: 'Moldova' },
+  { text: 'Monaco' },
+  { text: 'Mongolia' },
+  { text: 'Norway' },
   { text: 'Slovakia' },
-  { text: 'Ukraine' },
   { text: 'Spain' },
   { text: 'Sweden' },
   { text: 'Switzerland' },
-  { text: 'Norway' },
-  { text: 'Finland' }
+  { text: 'Ukraine' }
 ]
+
+const MIN_CHARS = 2
 
 const loadOptions = inputValue =>
   new Promise(resolve => {
@@ -27,13 +34,22 @@ const AutocompleteDynamicOptionsExample = () => {
   const [options, setOptions] = useState([])
   const [loading, setLoading] = useState(false)
 
-  const handleChange = useCallback(async inputValue => {
-    setLoading(true)
-    const options = await loadOptions(inputValue.trim().toLowerCase())
+  const handleChangeDebounced = useCallback(
+    debounce(async inputValue => {
+      const options = await loadOptions(inputValue.trim().toLowerCase())
 
-    setLoading(false)
-    setOptions(options)
-  }, [])
+      setLoading(false)
+      setOptions(options)
+    }, 500),
+    []
+  )
+
+  const handleChange = inputValue => {
+    if (inputValue.length >= MIN_CHARS) {
+      setLoading(true)
+      handleChangeDebounced(inputValue)
+    }
+  }
 
   return (
     <div>
@@ -41,8 +57,8 @@ const AutocompleteDynamicOptionsExample = () => {
         onChange={handleChange}
         options={options}
         loading={loading}
-        minLength={2}
-        placeholder='Start typing Sweden...'
+        minLength={MIN_CHARS}
+        placeholder='Start typing Mongolia...'
       />
     </div>
   )

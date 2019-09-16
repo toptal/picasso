@@ -4,14 +4,12 @@ import React, {
   forwardRef,
   ReactNode,
   ComponentType,
-  FormEvent,
-  useCallback
+  FormEvent
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import { capitalize } from '@material-ui/core/utils/helpers'
 import cx from 'classnames'
 import Downshift, { DownshiftState, StateChangeOptions } from 'downshift'
-import debounce from 'debounce'
 
 import { StandardProps } from '../../Picasso'
 import Input, { Props as InputProps } from '../../Input'
@@ -23,7 +21,6 @@ import useControlledAndUncontrolledState from '../../utils/use-controlled-and-un
 import useControlledAndUncontrolledInput from '../../utils/use-controlled-and-uncontrolled-input'
 import styles from './styles'
 
-const DEFAULT_DEBOUNCE_TIME = 300
 const EMPTY_INPUT_VALUE = ''
 const FIRST_ITEM_INDEX = 0
 
@@ -58,8 +55,6 @@ export interface Props
   onSelect?: (itemValue: string | null) => void
   /** Placeholder for value */
   placeholder?: string
-  /** Debounce time in ms for onChange event handler. Set it to 0 to disable debouncing. */
-  debounceTime?: number
   /** Width of the component */
   width?: 'full' | 'shrink' | 'auto'
   /** Shows the loading icon when options are loading */
@@ -70,7 +65,7 @@ export interface Props
   noOptionsText?: string
   /** List of options */
   options?: Item[]
-  /** The minimum number of characters a user must type before a search is performed */
+  /** The minimum number of characters a user must type before the options list is displayed */
   minLength?: number
   /**  Callback invoked when key is pressed */
   onKeyDown?: (
@@ -106,7 +101,6 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       defaultValue,
       value,
       onSelect,
-      debounceTime,
       loading,
       minLength,
       placeholder,
@@ -138,17 +132,10 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       return null
     }
 
-    const onInputChangeDebounced = useCallback(
-      debounceTime === 0
-        ? onInputChange!
-        : debounce(onInputChange!, debounceTime),
-      [onInputChange, debounceTime]
-    )
-
     const [inputValue, setInputValue] = useControlledAndUncontrolledInput(
       defaultInputValue || getItemText(selectedItem),
       inputValueProp,
-      onInputChangeDebounced
+      onInputChange!
     )
 
     const handleInputValueChange = (newInputValue: string) => {
@@ -321,7 +308,6 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
 
 Autocomplete.defaultProps = {
   allowAny: true,
-  debounceTime: DEFAULT_DEBOUNCE_TIME,
   defaultInputValue: '',
   defaultValue: null,
   loading: false,

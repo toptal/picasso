@@ -20,7 +20,6 @@ const AutocompleteControlledItemExample = () => {
       <Autocomplete
         placeholder='Start typing country...'
         options={options}
-        debounceTime={0}
         value={value}
         onSelect={newValue => {
           console.log('onSelect value:', newValue)

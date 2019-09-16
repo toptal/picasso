@@ -40,8 +40,8 @@ for this component. This you can achieve by adding corresponding attributes:
   .addExample('lab/Autocomplete/story/Default.example.jsx', 'Default')
   .addExample('lab/Autocomplete/story/AllowAnyDisabled.example.jsx', {
     title: 'Any value disabled',
-    description: `By default Autocomplete allows to enter any input value by user,
-        you can set allowAny={false} prop to allow values only from the suggestion list`
+    description: `By default Autocomplete allows any entered input value to stay after focus is removed from input,
+        you can set \`allowAny={false}\` prop to allow only selected values to stay after focus is removed from input`
   })
   .addExample(
     'lab/Autocomplete/story/InitialSelectedItem.example.jsx',
@@ -53,10 +53,7 @@ for this component. This you can achieve by adding corresponding attributes:
   )
   .addExample('lab/Autocomplete/story/FullWidth.example.jsx', 'Full width')
   .addExample('lab/Autocomplete/story/Loading.example.jsx', 'Loading')
-  .addExample('lab/Autocomplete/story/DynamicOptions.example.jsx', {
-    title: 'Dynamic options',
-    description: `When you use Autocomplete with the ajax request to load options,
-        you should always specify \`minLength\` prop to make less number of 
-        requests to the server and to show more relevant suggestions to 
-        your users.`
-  }) // picasso-skip-visuals
+  .addExample(
+    'lab/Autocomplete/story/DynamicOptions.example.jsx',
+    'Dynamic options'
+  ) // picasso-skip-visuals

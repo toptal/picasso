@@ -116,7 +116,8 @@ Please update to the new one if you want to get the latest fixes and prepare for
 
 BREAKING CHANGES:
 
-- \`onChange\` prop function provides a \`string\` as argument instead of an \`Event\``
+- \`onChange\` prop function provides a \`string\` as argument instead of an \`Event\`.
+- \`debounceTime\` prop removed. Now it is up to the component consumer to debounce any event.`
       )
     }, [])
 
