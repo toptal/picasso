@@ -41,7 +41,7 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
   { children, className, classes, style, allowNestedNavigation, ...rest },
   ref
 ) {
-  const { backButton } = classes
+  const { backButtonIcon } = classes
   const { pop } = useContext<MenuContextProps>(MenuContext)
   const hasParentMenu = !!pop
 
@@ -64,7 +64,7 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
     >
       {hasParentMenu && allowNestedNavigation && (
         <MenuItem onClick={handleBackClick} key='back'>
-          <span className={backButton}>
+          <span className={backButtonIcon}>
             <BackMinor16 />
           </span>
           <Typography size='small' color='grey' variant='body'>

@@ -15,8 +15,5 @@ export default () =>
   createStyles({
     backButtonIcon: {
       marginRight: rem('4px')
-    },
-    backButton: {
-      fontSize: '0.8125em'
     }
   })
