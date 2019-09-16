@@ -24,9 +24,10 @@ const SidebarLogo_1 = __importDefault(require("../SidebarLogo"));
 const styles_2 = __importDefault(require("./styles"));
 const SmallScreenSidebarWrapper = ({ classes, children }) => {
     const [showSidebar, setShowSidebar] = react_1.useState(false);
-    const handleShowSidebar = () => setShowSidebar(!showSidebar);
-    return (react_1.default.createElement(Dropdown_1.default, { content: children, className: classes.responsiveWrapper, offset: { top: 'xsmall' } },
-        react_1.default.createElement(Button_1.default, { icon: showSidebar ? react_1.default.createElement(Icon_1.Close16, null) : react_1.default.createElement(Icon_1.Overview16, null), circular: true, variant: 'flat-white', onClick: handleShowSidebar })));
+    const handleShowSidebar = () => setShowSidebar(true);
+    const handleHideSidebar = () => setShowSidebar(false);
+    return (react_1.default.createElement(Dropdown_1.default, { content: children, className: classes.responsiveWrapper, offset: { top: 'xsmall' }, onOpen: handleShowSidebar, onClose: handleHideSidebar },
+        react_1.default.createElement(Button_1.default, { icon: showSidebar ? react_1.default.createElement(Icon_1.Close16, null) : react_1.default.createElement(Icon_1.Overview16, null), circular: true, variant: 'flat-white' })));
 };
 exports.SidebarContext = react_1.default.createContext({});
 // eslint-disable-next-line react/display-name

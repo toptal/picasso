@@ -1,3 +1,10 @@
+## [3.8.1](https://github.com/toptal/picasso/compare/v3.8.0...v3.8.1) (2019-09-16)
+
+
+### Bug Fixes
+
+* **Sidebar:** fix position on small screens ([#680](https://github.com/toptal/picasso/issues/680)) ([b862fa9](https://github.com/toptal/picasso/commit/b862fa9))
+
 # [3.8.0](https://github.com/toptal/picasso/compare/v3.7.1...v3.8.0) (2019-09-13)
 
 
