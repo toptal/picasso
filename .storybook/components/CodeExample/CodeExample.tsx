@@ -20,6 +20,7 @@ import { Code16 } from '@components/Icon'
 import { RenderResult } from '~/@types/react-source-render'
 import { Classes } from '@components/styles/types'
 import Picasso, { Typography, Button, Accordion, Container } from '@components'
+import { useScreenSize } from '@components/utils'
 
 import Editor from '../Editor'
 import purifyFixedPosition from '../../utils/purify-fixed-position'
@@ -51,13 +52,15 @@ const resolver = (path: string) => imports[path]
 const Purifier: FunctionComponent = ({ children }) => {
   const sourceRendererRef = React.createRef<HTMLDivElement>()
 
+  const screenSize = useScreenSize()
+
   useLayoutEffect(() => {
     if (!sourceRendererRef.current) {
       return
     }
 
     purifyFixedPosition(sourceRendererRef.current)
-  }, [sourceRendererRef])
+  }, [sourceRendererRef, screenSize])
 
   return <div ref={sourceRendererRef}>{children}</div>
 }
