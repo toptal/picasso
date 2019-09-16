@@ -17,6 +17,7 @@ import {
   CompoundedComponentWithRef
 } from '../Picasso'
 import styles from './styles'
+import Typography from '../Typography'
 
 export type ListNativeProps = HTMLAttributes<HTMLUListElement> &
   Pick<MenuListProps, 'onKeyDown'>
@@ -25,7 +26,6 @@ export interface Props extends StandardProps, ListNativeProps {
   /** whether or not to handle nested navigation */
   allowNestedNavigation?: boolean
 }
-
 
 interface StaticProps {
   Item: typeof MenuItem
@@ -40,6 +40,7 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
   { children, className, classes, style, allowNestedNavigation, ...rest },
   ref
 ) {
+  const { backButton } = classes
   const { pop } = useContext<MenuContextProps>(MenuContext)
   const hasParentMenu = !!pop
 
@@ -63,7 +64,9 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
       {hasParentMenu && allowNestedNavigation && (
         <MenuItem onClick={handleBackClick} key='back'>
           <BackMinor16 />
-          Back
+          <Typography className={backButton} style={style} color='inherit'>
+            Back
+          </Typography>
         </MenuItem>
       )}
       {children}

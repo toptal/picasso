@@ -69,12 +69,7 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
 
   if (typeof children === 'string') {
     children = (
-      <Typography
-        className={stringContent}
-        style={style}
-        color='inherit'
-        ref={ref}
-      >
+      <Typography className={stringContent} style={style} color='inherit'>
         {children}
       </Typography>
     )
