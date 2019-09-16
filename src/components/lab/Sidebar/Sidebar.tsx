@@ -32,19 +32,21 @@ const SmallScreenSidebarWrapper: FunctionComponent<
 > = ({ classes, children }) => {
   const [showSidebar, setShowSidebar] = useState<boolean>(false)
 
-  const handleShowSidebar = () => setShowSidebar(!showSidebar)
+  const handleShowSidebar = () => setShowSidebar(true)
+  const handleHideSidebar = () => setShowSidebar(false)
 
   return (
     <Dropdown
       content={children}
       className={classes.responsiveWrapper}
       offset={{ top: 'xsmall' }}
+      onOpen={handleShowSidebar}
+      onClose={handleHideSidebar}
     >
       <Button
         icon={showSidebar ? <Close16 /> : <Overview16 />}
         circular
         variant='flat-white'
-        onClick={handleShowSidebar}
       />
     </Dropdown>
   )

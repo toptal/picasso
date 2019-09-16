@@ -14,15 +14,10 @@ exports.default = ({ palette, screens, zIndex }) => styles_1.createStyles({
         }
     },
     responsiveWrapper: {
-        position: 'absolute',
+        position: 'fixed',
         top: '0.375em',
         left: '0.375em',
         zIndex: zIndex.appBar
-    },
-    paper: {
-        [screens('small')]: {
-            top: '2.5em !important'
-        }
     },
     spacer: {
         order: 50,
