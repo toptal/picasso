@@ -1,9 +1,15 @@
 import React from 'react'
-import { Settings16 } from '@toptal/picasso/Icon'
+import { Button } from '@toptal/picasso'
+import { Plus16 } from '@toptal/picasso/Icon'
 
 const IconExample = () => (
   <div>
-    <Settings16 />
+    <Button
+      icon={
+        <Plus16 style={{ position: 'relative', left: '0.5px', top: '0.5px' }} />
+      }
+      circular
+    />
   </div>
 )
 
