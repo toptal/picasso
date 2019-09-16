@@ -34,7 +34,7 @@ const SvgChevron16 = forwardRef(function SvgChevron16(
     >
       <defs>
         <path
-          d='M10.5 6.793l.707.707L4.5 14.207l-.707-.707 6-6-6-6L4.5.793l6 6z'
+          d='M4.997 1.29l6.707 6.707-.707.707-6 6-.707-.707 6-6-6-6 .707-.707z'
           id='chevron16_svg__a'
         />
       </defs>

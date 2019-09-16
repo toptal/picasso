@@ -34,7 +34,7 @@ const SvgBackMinor24 = forwardRef(function SvgBackMinor24(
     >
       <defs>
         <path
-          d='M9.207 11.5l6 6-.707.707-6-6-.707-.707L14.5 4.793l.707.707-6 6z'
+          d='M14.997 5.29l.707.707-6 6 6 6-.707.707-6.707-6.707.707-.707 6-6z'
           id='backMinor24_svg__a'
         />
       </defs>

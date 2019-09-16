@@ -34,7 +34,7 @@ const SvgArrowUpMinor24 = forwardRef(function SvgArrowUpMinor24(
     >
       <defs>
         <path
-          d='M12.207 8.5l6 6-.707.707-6-6-6 6-.707-.707L11.5 7.793l.707.707z'
+          d='M11.997 8.29l6.707 6.707-.707.707-6-6-6 6-.707-.707 6-6 .707-.707z'
           id='arrowUpMinor24_svg__a'
         />
       </defs>
