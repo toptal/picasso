@@ -1,1 +1,1 @@
-export { default, MenuContext } from './Menu'
+export { default, MenuContext, Props } from './Menu'

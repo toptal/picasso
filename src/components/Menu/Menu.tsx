@@ -9,8 +9,8 @@ import MUIMenuList, { MenuListProps } from '@material-ui/core/MenuList'
 import { withStyles } from '@material-ui/core/styles'
 
 import { BackMinor16 } from '../Icon'
-import MenuItem from '../MenuItem'
 import { MenuContextProps } from './types'
+import MenuItem from '../MenuItem'
 import {
   StandardProps,
   PicassoComponentWithRef,
@@ -18,6 +18,9 @@ import {
 } from '../Picasso'
 import styles from './styles'
 import Typography from '../Typography'
+export const MenuContext = React.createContext<MenuContextProps>(
+  {} as MenuContextProps
+)
 
 export type ListNativeProps = HTMLAttributes<HTMLUListElement> &
   Pick<MenuListProps, 'onKeyDown'>
@@ -31,10 +34,6 @@ export interface Props extends StandardProps, ListNativeProps {
 export interface StaticProps {
   Item: typeof MenuItem
 }
-
-export const MenuContext = React.createContext<MenuContextProps>(
-  {} as MenuContextProps
-)
 
 // eslint-disable-next-line react/display-name
 export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
