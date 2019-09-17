@@ -10,7 +10,7 @@ import { withStyles } from '@material-ui/core/styles'
 
 import { BackMinor16 } from '../Icon'
 import { MenuContextProps } from './types'
-import MenuItem from '../MenuItem'
+
 import {
   StandardProps,
   PicassoComponentWithRef,
@@ -21,6 +21,7 @@ import Typography from '../Typography'
 export const MenuContext = React.createContext<MenuContextProps>(
   {} as MenuContextProps
 )
+import MenuItem from '../MenuItem'
 
 export type ListNativeProps = HTMLAttributes<HTMLUListElement> &
   Pick<MenuListProps, 'onKeyDown'>
