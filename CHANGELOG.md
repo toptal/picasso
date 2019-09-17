@@ -1,3 +1,10 @@
+## [3.8.3](https://github.com/toptal/picasso/compare/v3.8.2...v3.8.3) (2019-09-17)
+
+
+### Bug Fixes
+
+* **Modal:** fix close icon with content ([#686](https://github.com/toptal/picasso/issues/686)) ([1a15f24](https://github.com/toptal/picasso/commit/1a15f24))
+
 ## [3.8.2](https://github.com/toptal/picasso/compare/v3.8.1...v3.8.2) (2019-09-17)
 
 

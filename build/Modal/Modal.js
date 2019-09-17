@@ -38,9 +38,9 @@ exports.Modal = react_1.forwardRef(function Modal(_a, ref) {
     return (react_1.default.createElement(Dialog_1.default
     // eslint-disable-next-line react/jsx-props-no-spreading
     , Object.assign({}, rest, { ref: ref, classes: restClasses, className: className, style: style, container: container || picassoRootContainer, PaperProps: Object.assign({}, paperProps, { elevation: 2 }), hideBackdrop: hideBackdrop, onBackdropClick: onBackdropClick, onClose: onClose, onEnter: onOpen, open: open, transitionDuration: transitionDuration }),
+        children,
         onClose && (react_1.default.createElement("span", { onClick: onClose },
-            react_1.default.createElement(Icon_1.CloseMinor16, { className: closeButton }))),
-        children));
+            react_1.default.createElement(Icon_1.CloseMinor16, { className: closeButton })))));
 });
 exports.Modal.defaultProps = {
     hideBackdrop: false,
