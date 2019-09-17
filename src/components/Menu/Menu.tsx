@@ -17,10 +17,12 @@ import {
 } from '../Picasso'
 import styles from './styles'
 import Typography from '../Typography'
-import MenuItem from '../MenuItem'
+/* eslint-disable */
 export const MenuContext = React.createContext<MenuContextProps>(
   {} as MenuContextProps
 )
+import MenuItem from '../MenuItem'
+/* eslint-enable */
 
 export type ListNativeProps = HTMLAttributes<HTMLUListElement> &
   Pick<MenuListProps, 'onKeyDown'>
