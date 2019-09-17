@@ -82,12 +82,12 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(
       open={open}
       transitionDuration={transitionDuration}
     >
+      {children}
       {onClose && (
         <span onClick={onClose}>
           <CloseMinor16 className={closeButton} />
         </span>
       )}
-      {children}
     </Dialog>
   )
 }) as CompoundedComponentWithRef<Props, HTMLElement, StaticProps>
