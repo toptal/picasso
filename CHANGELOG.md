@@ -1,3 +1,10 @@
+## [3.8.4](https://github.com/toptal/picasso/compare/v3.8.3...v3.8.4) (2019-09-17)
+
+
+### Bug Fixes
+
+* visal test build image ([#691](https://github.com/toptal/picasso/issues/691)) ([a3f6ceb](https://github.com/toptal/picasso/commit/a3f6ceb))
+
 ## [3.8.3](https://github.com/toptal/picasso/compare/v3.8.2...v3.8.3) (2019-09-17)
 
 
