@@ -40,11 +40,13 @@ describe('Autocomplete', () => {
       options
     })
   })
+
   test('default render', () => {
     const { container } = api
 
     expect(container).toMatchSnapshot()
   })
+
   test('render options when start typing', () => {
     const input = api.getByPlaceholderText('Start typing here...')
 
@@ -52,6 +54,20 @@ describe('Autocomplete', () => {
     fireEvent.change(input, { target: { value: 't' } })
 
     const { container } = api
+
+    expect(container).toMatchSnapshot()
+  })
+
+  test('render option text when passed `value` prop', () => {
+    const { container } = render(
+      <Picasso loadFonts={false}>
+        <Autocomplete
+          placeholder='placeholder text'
+          value='UA'
+          options={options}
+        />
+      </Picasso>
+    )
 
     expect(container).toMatchSnapshot()
   })
