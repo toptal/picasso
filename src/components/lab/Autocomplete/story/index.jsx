@@ -60,3 +60,7 @@ for this component. This you can achieve by adding corresponding attributes:
         requests to the server and to show more relevant suggestions to 
         your users.`
   }) // picasso-skip-visuals
+  .addExample(
+    'lab/Autocomplete/story/CustomOptionRenderer.example.tsx',
+    'Custom options rendering'
+  )
