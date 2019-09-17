@@ -88,17 +88,16 @@ export interface Props
 const isMatchingMinLength = (value: string, minLength?: number) =>
   !minLength || value.length >= minLength
 
-const getItemText: <T extends Item>(item: Maybe<T>) => string = item =>
+const getItemText: (item: Maybe<Item>) => string = item =>
   (item && item.text) || EMPTY_INPUT_VALUE
 
-const getItemValue: <T extends Item>(item: Maybe<T>) => string | null = item =>
+const getItemValue: (item: Maybe<Item>) => string | null = item =>
   (item && (item.value || item.text)) || null
 
-const isSelected: <T extends Item>(
-  item: T,
-  selectedItem: T | null
-) => boolean = (item, selectedItem) =>
-  getItemValue(item) === getItemValue(selectedItem)
+const isSelected: (item: Item, selectedItem: Item | null) => boolean = (
+  item,
+  selectedItem
+) => getItemValue(item) === getItemValue(selectedItem)
 
 export const Autocomplete = forwardRef<HTMLInputElement, Props>(
   function Autocomplete(
