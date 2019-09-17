@@ -3,7 +3,8 @@ import React, {
   forwardRef,
   ReactElement,
   useState,
-  useContext
+  useContext,
+  createContext
 } from 'react'
 import MUIMenuList, { MenuListProps } from '@material-ui/core/MenuList'
 import { withStyles } from '@material-ui/core/styles'
@@ -18,7 +19,7 @@ import {
 import styles from './styles'
 import Typography from '../Typography'
 /* eslint-disable */
-export const MenuContext = React.createContext<MenuContextProps>(
+export const MenuContext = createContext<MenuContextProps>(
   {} as MenuContextProps
 )
 import MenuItem from '../MenuItem'
