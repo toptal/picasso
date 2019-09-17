@@ -53,7 +53,9 @@ for this component. This you can achieve by adding corresponding attributes:
   )
   .addExample('lab/Autocomplete/story/FullWidth.example.jsx', 'Full width')
   .addExample('lab/Autocomplete/story/Loading.example.jsx', 'Loading')
-  .addExample(
-    'lab/Autocomplete/story/DynamicOptions.example.jsx',
-    'Dynamic options'
-  ) // picasso-skip-visuals
+  .addExample('lab/Autocomplete/story/DynamicOptions.example.jsx', {
+    title: 'Dynamic options',
+    description: `If you need to obtain the list of options dynamically from a server.
+It is good practice to set debouncing and a minimum number of chars to limit the number of requests you send to the server.
+Start typing "Mongolia" letter by letter to see this example in action.`
+  }) // picasso-skip-visuals
