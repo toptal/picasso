@@ -13,7 +13,7 @@ page
 
 page
   .createChapter()
-  .addExample('Menu/story/Drilldown.example.jsx', 'Drill Down')
   .addExample('Menu/story/Default.example.jsx', 'Default')
+  .addExample('Menu/story/Drilldown.example.jsx', 'Drill Down')
 
 page.connect(menuItemStory.chapter)
