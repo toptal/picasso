@@ -29,7 +29,7 @@ export type ListNativeProps = HTMLAttributes<HTMLUListElement> &
   Pick<MenuListProps, 'onKeyDown'>
 
 export interface Props extends StandardProps, ListNativeProps {
-  /** whether or not to handle nested navigation */
+  // whether or not to handle nested navigation
   allowNestedNavigation?: boolean
 }
 
@@ -65,7 +65,7 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
       // eslint-disable-next-line react/jsx-props-no-spreading
     >
       {hasParentMenu && allowNestedNavigation && (
-        <MenuItem onClick={handleBackClick} key='back'>
+        <MenuItem onClick={handleBackClick} key='back' variant='dark'>
           <Typography size='small' color='dark-grey' variant='body'>
             <BackMinor16 className={backButtonIcon} />
             Back
