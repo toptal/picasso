@@ -1,3 +1,10 @@
+## [3.8.5](https://github.com/toptal/picasso/compare/v3.8.4...v3.8.5) (2019-09-17)
+
+
+### Bug Fixes
+
+* **Accordion:** support inline components in content ([#688](https://github.com/toptal/picasso/issues/688)) ([59b0b61](https://github.com/toptal/picasso/commit/59b0b61))
+
 ## [3.8.4](https://github.com/toptal/picasso/compare/v3.8.3...v3.8.4) (2019-09-17)
 
 

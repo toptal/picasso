@@ -1562,6 +1562,8 @@ declare const _default: ({ palette, typography }: Theme) => {
         fontWeight: number;
         marginBottom: string;
     };
-    content: {};
+    content: {
+        display: string;
+    };
 };
 export default _default;
