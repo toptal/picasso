@@ -17,7 +17,7 @@ const options = [
   { text: 'Ukraine', value: 'UA' }
 ]
 
-function renderAutocomplete<T>(props: OmitInternalProps<Props<T>>) {
+function renderAutocomplete(props: OmitInternalProps<Props>) {
   return render(
     <Picasso loadFonts={false}>
       <Autocomplete
