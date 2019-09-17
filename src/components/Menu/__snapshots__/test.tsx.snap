@@ -70,11 +70,11 @@ exports[`Menu has back button when in submenu 1`] = `
           role="menuitem"
           tabindex="-1"
         >
-          <span
-            class="Menu-backButtonIcon"
+          <p
+            class="MuiTypography-root Typography-bodySmall Typography-darkGrey MuiTypography-body1"
           >
             <svg
-              class="SvgBackMinor16-root"
+              class="SvgBackMinor16-root Menu-backButtonIcon"
               style="min-width: 16px; min-height: 16px;"
               viewBox="0 0 16 16"
             >
@@ -107,10 +107,6 @@ exports[`Menu has back button when in submenu 1`] = `
                 </g>
               </g>
             </svg>
-          </span>
-          <p
-            class="MuiTypography-root Typography-bodySmall Typography-grey MuiTypography-body1"
-          >
             Back
           </p>
         </li>
