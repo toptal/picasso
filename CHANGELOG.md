@@ -1,3 +1,10 @@
+## [3.8.2](https://github.com/toptal/picasso/compare/v3.8.1...v3.8.2) (2019-09-17)
+
+
+### Bug Fixes
+
+* **Icon:** [FX-456] Update miss-aligned icons inside viewbox ([#685](https://github.com/toptal/picasso/issues/685)) ([4bc7fa2](https://github.com/toptal/picasso/commit/4bc7fa2))
+
 ## [3.8.1](https://github.com/toptal/picasso/compare/v3.8.0...v3.8.1) (2019-09-16)
 
 

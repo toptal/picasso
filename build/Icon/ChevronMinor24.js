@@ -21,7 +21,7 @@ const SvgChevronMinor24 = react_1.forwardRef(function SvgChevronMinor24(props, r
     const svgStyle = Object.assign({ minWidth: `${scaledSize}px`, minHeight: `${scaledSize}px` }, style);
     return (react_1.default.createElement("svg", { viewBox: '0 0 24 24', className: classnames_1.default(classes.root, className), style: svgStyle, color: color, ref: ref },
         react_1.default.createElement("defs", null,
-            react_1.default.createElement("path", { d: 'M15.5 10.793l.707.707L9.5 18.207l-.707-.707 6-6-6-6 .707-.707 6 6z', id: 'chevronMinor24_svg__a' })),
+            react_1.default.createElement("path", { d: 'M8.997 5.29l6.707 6.707-.707.707-6 6-.707-.707 6-6-6-6 .707-.707z', id: 'chevronMinor24_svg__a' })),
         react_1.default.createElement("g", { fillRule: 'evenodd' },
             react_1.default.createElement("mask", { id: 'chevronMinor24_svg__b' },
                 react_1.default.createElement("use", { xlinkHref: '#chevronMinor24_svg__a' })),

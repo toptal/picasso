@@ -21,7 +21,7 @@ const SvgLength16 = react_1.forwardRef(function SvgLength16(props, ref) {
     const svgStyle = Object.assign({ minWidth: `${scaledSize}px`, minHeight: `${scaledSize}px` }, style);
     return (react_1.default.createElement("svg", { viewBox: '0 0 16 16', className: classnames_1.default(classes.root, className), style: svgStyle, color: color, ref: ref },
         react_1.default.createElement("defs", null,
-            react_1.default.createElement("path", { d: 'M3.207 8.5l3 3-.707.707-3-3-.707-.707L5.5 4.793l.707.707-3 3zM13.5 7.793l.707.707-3.707 3.707-.707-.707 3-3-3-3 .707-.707 3 3zM0 2h1v13H0V2zm15 0h1v13h-1V2z', id: 'length16_svg__a' })),
+            react_1.default.createElement("path", { d: 'M1 1v14H0V1h1zm15 0v14h-1V1h1zm-5.5 3.29l3 3 .707.707-3.707 3.707-.707-.707 2.999-3-3-3 .708-.707zm-5 0l.707.707-3 3 3 3-.707.707-3.707-3.707.707-.707 3-3z', id: 'length16_svg__a' })),
         react_1.default.createElement("g", { fillRule: 'evenodd' },
             react_1.default.createElement("mask", { id: 'length16_svg__b' },
                 react_1.default.createElement("use", { xlinkHref: '#length16_svg__a' })),
