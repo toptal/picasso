@@ -125,18 +125,18 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
         ? null
         : options!.find(option => getItemValue(option) === selectedItemValue)
 
-    if (selectedItem === undefined) {
-      window.console.warn(
-        `Autocomplete: There is no option for the given value \`${value}\``
-      )
-      return null
-    }
-
     const [inputValue, setInputValue] = useControlledAndUncontrolledInput(
       defaultInputValue || getItemText(selectedItem),
       inputValueProp,
       onInputChange!
     )
+
+    if (selectedItem === undefined) {
+      window.console.warn(
+        `Autocomplete: There is no option for the given value \`${selectedItemValue}\``
+      )
+      return null
+    }
 
     const handleInputValueChange = (newInputValue: string) => {
       if (newInputValue !== inputValue) {
