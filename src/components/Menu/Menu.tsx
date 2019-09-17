@@ -10,7 +10,6 @@ import { withStyles } from '@material-ui/core/styles'
 
 import { BackMinor16 } from '../Icon'
 import { MenuContextProps } from './types'
-
 import {
   StandardProps,
   PicassoComponentWithRef,
@@ -18,10 +17,10 @@ import {
 } from '../Picasso'
 import styles from './styles'
 import Typography from '../Typography'
+import MenuItem from '../MenuItem'
 export const MenuContext = React.createContext<MenuContextProps>(
   {} as MenuContextProps
 )
-import MenuItem from '../MenuItem'
 
 export type ListNativeProps = HTMLAttributes<HTMLUListElement> &
   Pick<MenuListProps, 'onKeyDown'>
@@ -64,10 +63,8 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
     >
       {hasParentMenu && allowNestedNavigation && (
         <MenuItem onClick={handleBackClick} key='back'>
-          <span className={backButtonIcon}>
-            <BackMinor16 />
-          </span>
-          <Typography size='small' color='grey' variant='body'>
+          <Typography size='small' color='dark-grey' variant='body'>
+            <BackMinor16 className={backButtonIcon} />
             Back
           </Typography>
         </MenuItem>
