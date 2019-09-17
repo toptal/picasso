@@ -35,5 +35,5 @@ function run_jest() {
 build_storybook
 
 # filter not supported --build-image argument
-JEST_PARAMS=`echo $@ | sed 's/--build-image //'`
+JEST_PARAMS=`echo $@ | sed 's/--build-image//'`
 run_jest $JEST_PARAMS
