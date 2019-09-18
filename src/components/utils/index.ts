@@ -8,6 +8,8 @@ export {
   useBreakpoint
 } from '../Picasso/config/breakpoints'
 
+export { useModal } from '../Modal/use-modal'
+
 export {
   default as ClickAwayListener
 } from '@material-ui/core/ClickAwayListener'

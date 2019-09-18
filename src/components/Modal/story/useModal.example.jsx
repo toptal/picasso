@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Modal, Button, Input, Checkbox, Select, Form } from '@toptal/picasso'
-import { useModal } from 'react-modal-hook'
+import { useModal } from '@toptal/picasso/utils'
 
 const STATES = [
   {
