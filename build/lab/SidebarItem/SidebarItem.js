@@ -53,7 +53,7 @@ exports.SidebarItem = react_1.forwardRef(function SidebarItem(_a, ref) {
     if (hasMenu && collapsible) {
         const menuChildren = react_1.default.Children.toArray(menu.props.children);
         const defaultExpanded = menuChildren.find((menuChild) => menuChild.props.selected) !== undefined;
-        return (react_1.default.createElement(Accordion_1.default, { classes: {
+        return (react_1.default.createElement(Accordion_1.default, { onChange: event => event.stopPropagation(), classes: {
                 summary: classes.summary,
                 details: classes.details,
                 content: classes.content

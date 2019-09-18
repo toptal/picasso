@@ -1,3 +1,10 @@
+## [3.8.7](https://github.com/toptal/picasso/compare/v3.8.6...v3.8.7) (2019-09-18)
+
+
+### Bug Fixes
+
+* **Sidebar:** fix auto-closing on small screens ([#695](https://github.com/toptal/picasso/issues/695)) ([428ca2f](https://github.com/toptal/picasso/commit/428ca2f))
+
 ## [3.8.6](https://github.com/toptal/picasso/compare/v3.8.5...v3.8.6) (2019-09-18)
 
 
