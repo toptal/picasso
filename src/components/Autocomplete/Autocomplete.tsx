@@ -109,14 +109,16 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
   ) {
     useEffect(() => {
       window.console.warn(
-        `There is a newer version of this component with the latest fixes and API under '@toptal/picasso/lab'.
+        `There is a newer version of this component with the latest fixes and API which can be imported from '@toptal/picasso/lab'.
 
-This version of the component will receive no more updates during v3, and will be replaced by the one in lab in v4.
+This version of the component will receive no more updates during v3, and will be replaced by the one in "lab" in the future.
 Please update to the new one if you want to get the latest fixes and prepare for the next version.
 
 BREAKING CHANGES:
 
-- \`onChange\` prop function provides a \`string\` as argument instead of an \`Event\``
+- \`onChange\` prop function provides a \`string\` as argument instead of an \`Event\`.
+- \`debounceTime\` prop removed. Now it is up to the component consumer to debounce any event.
+- Beware of how \`value\` and \`defaultValue\` props work now. To simply set an initial value, use \`defaultValue\`. Use \`value\` together with \`onSelect\` for fully controlled mode.`
       )
     }, [])
 

@@ -26,7 +26,6 @@ const styles_1 = require("@material-ui/core/styles");
 const helpers_1 = require("@material-ui/core/utils/helpers");
 const classnames_1 = __importDefault(require("classnames"));
 const downshift_1 = __importDefault(require("downshift"));
-const debounce_1 = __importDefault(require("debounce"));
 const Input_1 = __importDefault(require("../../Input"));
 const Menu_1 = __importDefault(require("../../Menu"));
 const Loader_1 = __importDefault(require("../../Loader"));
@@ -35,7 +34,6 @@ const utils_1 = require("../../utils");
 const use_controlled_and_uncontrolled_state_1 = __importDefault(require("../../utils/use-controlled-and-uncontrolled-state"));
 const use_controlled_and_uncontrolled_input_1 = __importDefault(require("../../utils/use-controlled-and-uncontrolled-input"));
 const styles_2 = __importDefault(require("./styles"));
-const DEFAULT_DEBOUNCE_TIME = 300;
 const EMPTY_INPUT_VALUE = '';
 const FIRST_ITEM_INDEX = 0;
 const isMatchingMinLength = (value, minLength) => !minLength || value.length >= minLength;
@@ -43,19 +41,16 @@ const getItemText = (item) => (item && item.text) || EMPTY_INPUT_VALUE;
 const getItemValue = (item) => (item && (item.value || item.text)) || null;
 const isSelected = (item, selectedItem) => getItemValue(item) === getItemValue(selectedItem);
 exports.Autocomplete = react_1.forwardRef(function Autocomplete(_a, ref) {
-    var { classes, className, defaultInputValue, inputValue: inputValueProp, onChange: onInputChange, defaultValue, value, onSelect, debounceTime, loading, minLength, placeholder, noOptionsText, options, style, width, allowAny, onKeyDown, inputComponent } = _a, rest = __rest(_a, ["classes", "className", "defaultInputValue", "inputValue", "onChange", "defaultValue", "value", "onSelect", "debounceTime", "loading", "minLength", "placeholder", "noOptionsText", "options", "style", "width", "allowAny", "onKeyDown", "inputComponent"]);
+    var { classes, className, defaultInputValue, inputValue: inputValueProp, onChange: onInputChange, defaultValue, value, onSelect, loading, minLength, placeholder, noOptionsText, options, style, width, allowAny, onKeyDown, inputComponent } = _a, rest = __rest(_a, ["classes", "className", "defaultInputValue", "inputValue", "onChange", "defaultValue", "value", "onSelect", "loading", "minLength", "placeholder", "noOptionsText", "options", "style", "width", "allowAny", "onKeyDown", "inputComponent"]);
     const [selectedItemValue, setSelectedItemValue] = use_controlled_and_uncontrolled_state_1.default(defaultValue, value, onSelect);
     const selectedItem = selectedItemValue === null
         ? null
         : options.find(option => getItemValue(option) === selectedItemValue);
+    const [inputValue, setInputValue] = use_controlled_and_uncontrolled_input_1.default(defaultInputValue || getItemText(selectedItem), inputValueProp, onInputChange);
     if (selectedItem === undefined) {
-        window.console.warn(`Autocomplete: There is no option for the given value \`${value}\``);
+        window.console.warn(`Autocomplete: There is no option for the given value \`${selectedItemValue}\``);
         return null;
     }
-    const onInputChangeDebounced = react_1.useCallback(debounceTime === 0
-        ? onInputChange
-        : debounce_1.default(onInputChange, debounceTime), [onInputChange, debounceTime]);
-    const [inputValue, setInputValue] = use_controlled_and_uncontrolled_input_1.default(defaultInputValue || getItemText(selectedItem), inputValueProp, onInputChangeDebounced);
     const handleInputValueChange = (newInputValue) => {
         if (newInputValue !== inputValue) {
             setInputValue(newInputValue);
@@ -134,7 +129,6 @@ exports.Autocomplete = react_1.forwardRef(function Autocomplete(_a, ref) {
 });
 exports.Autocomplete.defaultProps = {
     allowAny: true,
-    debounceTime: DEFAULT_DEBOUNCE_TIME,
     defaultInputValue: '',
     defaultValue: null,
     loading: false,

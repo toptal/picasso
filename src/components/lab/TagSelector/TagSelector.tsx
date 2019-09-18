@@ -211,7 +211,6 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         onChange={setInputValue}
         onKeyDown={handleKeyDown}
         startAdornment={labels}
-        debounceTime={0}
         loading={loading}
         inputComponent={TagSelectorInput as ComponentType<InputProps>}
         width={width}

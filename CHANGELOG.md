@@ -1,3 +1,24 @@
+## [3.8.7](https://github.com/toptal/picasso/compare/v3.8.6...v3.8.7) (2019-09-18)
+
+
+### Bug Fixes
+
+* **Sidebar:** fix auto-closing on small screens ([#695](https://github.com/toptal/picasso/issues/695)) ([428ca2f](https://github.com/toptal/picasso/commit/428ca2f))
+
+## [3.8.6](https://github.com/toptal/picasso/compare/v3.8.5...v3.8.6) (2019-09-18)
+
+
+### Bug Fixes
+
+* **autocomplete:** remove debouncing ([#682](https://github.com/toptal/picasso/issues/682)) ([6100769](https://github.com/toptal/picasso/commit/6100769))
+
+## [3.8.5](https://github.com/toptal/picasso/compare/v3.8.4...v3.8.5) (2019-09-17)
+
+
+### Bug Fixes
+
+* **Accordion:** support inline components in content ([#688](https://github.com/toptal/picasso/issues/688)) ([59b0b61](https://github.com/toptal/picasso/commit/59b0b61))
+
 ## [3.8.4](https://github.com/toptal/picasso/compare/v3.8.3...v3.8.4) (2019-09-17)
 
 

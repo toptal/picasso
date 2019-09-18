@@ -62,7 +62,9 @@ exports.default = ({ palette, typography }) => {
             fontWeight: typography.fontWeights.regular,
             marginBottom: '0.75em'
         },
-        content: {}
+        content: {
+            display: 'block'
+        }
     };
 };
 //# sourceMappingURL=styles.js.map

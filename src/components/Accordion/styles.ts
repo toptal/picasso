@@ -70,6 +70,8 @@ export default ({ palette, typography }: Theme) => {
       fontWeight: typography.fontWeights.regular,
       marginBottom: '0.75em'
     },
-    content: {}
+    content: {
+      display: 'block'
+    }
   }
 }
