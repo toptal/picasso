@@ -41,14 +41,16 @@ const getItemValue = (item) => item ? item.value || getItemText(item) : EMPTY_VA
 exports.Autocomplete = react_1.forwardRef(function Autocomplete(_a, ref) {
     var { classes, className, debounceTime, loading, minLength, placeholder, noOptionsText, options: initialOptions, style, width, allowAny, onSelect, onKeyDown: onKeyDownProp, defaultValue, value, onChange, inputComponent } = _a, rest = __rest(_a, ["classes", "className", "debounceTime", "loading", "minLength", "placeholder", "noOptionsText", "options", "style", "width", "allowAny", "onSelect", "onKeyDown", "defaultValue", "value", "onChange", "inputComponent"]);
     react_1.useEffect(() => {
-        window.console.warn(`There is a newer version of this component with the latest fixes and API under '@toptal/picasso/lab'.
+        window.console.warn(`There is a newer version of this component with the latest fixes and API which can be imported from '@toptal/picasso/lab'.
 
-This version of the component will receive no more updates during v3, and will be replaced by the one in lab in v4.
+This version of the component will receive no more updates during v3, and will be replaced by the one in "lab" in the future.
 Please update to the new one if you want to get the latest fixes and prepare for the next version.
 
 BREAKING CHANGES:
 
-- \`onChange\` prop function provides a \`string\` as argument instead of an \`Event\``);
+- \`onChange\` prop function provides a \`string\` as argument instead of an \`Event\`.
+- \`debounceTime\` prop removed. Now it is up to the component consumer to debounce any event.
+- Beware of how \`value\` and \`defaultValue\` props work now. To simply set an initial value, use \`defaultValue\`. Use \`value\` together with \`onSelect\` for fully controlled mode.`);
     }, []);
     const [inputValue, setInputValue] = react_1.useState(null);
     const [filter, setFilter] = react_1.useState(EMPTY_VALUE);

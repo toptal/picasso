@@ -113,7 +113,7 @@ exports.TagSelector = react_1.forwardRef(function TagSelector(_a, ref) {
     })));
     return (react_1.default.createElement(Autocomplete_1.default
     // eslint-disable-next-line react/jsx-props-no-spreading
-    , Object.assign({}, rest, { ref: inputRef, placeholder: selectedValues.length === 0 ? placeholder : undefined, options: autocompleteOptions, value: null, onSelect: handleSelect, inputValue: inputValue, onChange: setInputValue, onKeyDown: handleKeyDown, startAdornment: labels, debounceTime: 0, loading: loading, inputComponent: TagSelectorInput_1.default, width: width })));
+    , Object.assign({}, rest, { ref: inputRef, placeholder: selectedValues.length === 0 ? placeholder : undefined, options: autocompleteOptions, value: null, onSelect: handleSelect, inputValue: inputValue, onChange: setInputValue, onKeyDown: handleKeyDown, startAdornment: labels, loading: loading, inputComponent: TagSelectorInput_1.default, width: width })));
 });
 exports.TagSelector.defaultProps = {
     defaultValue: [],
