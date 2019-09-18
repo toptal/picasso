@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import {
   render,
   fireEvent,
@@ -17,14 +17,22 @@ const options = [
   { text: 'Ukraine', value: 'UA' }
 ]
 
-function renderAutocomplete(props: OmitInternalProps<Props>) {
+const renderAutocomplete = (
+  children: ReactNode,
+  props: OmitInternalProps<Props>
+) => {
+  const { placeholder, options, value, defaultValue } = props
+
   return render(
     <Picasso loadFonts={false}>
       <Autocomplete
-        placeholder={props.placeholder}
-        options={props.options}
-        renderOption={props.renderOption}
-      />
+        placeholder={placeholder}
+        options={options}
+        value={value}
+        defaultValue={defaultValue}
+      >
+        {children}
+      </Autocomplete>
     </Picasso>
   )
 }
@@ -35,7 +43,7 @@ describe('Autocomplete', () => {
   let api: RenderResult
 
   beforeEach(() => {
-    api = renderAutocomplete({
+    api = renderAutocomplete(null, {
       placeholder: 'Start typing here...',
       options
     })
@@ -59,31 +67,12 @@ describe('Autocomplete', () => {
   })
 
   test('render option text when passed `value` prop', () => {
-    const { container } = render(
-      <Picasso loadFonts={false}>
-        <Autocomplete
-          placeholder='placeholder text'
-          value='UA'
-          options={options}
-        />
-      </Picasso>
-    )
-
-    expect(container).toMatchSnapshot()
-  })
-})
-
-describe('Autocomplete', () => {
-  test('renders options customly', async () => {
-    const api = renderAutocomplete({
+    const { container } = renderAutocomplete(null, {
       placeholder: 'Start typing here...',
       options,
-      // eslint-disable-next-line react/display-name
-      renderOption: () => <div>Custom renderer</div>
+      value: 'UA'
     })
-    const input = api.getByPlaceholderText('Start typing here...')
 
-    fireEvent.change(input, { target: { value: 't' } })
-    expect(api.container.textContent).toContain('Custom renderer')
+    expect(container).toMatchSnapshot()
   })
 })
