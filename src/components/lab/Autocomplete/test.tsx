@@ -73,6 +73,26 @@ describe('Autocomplete', () => {
       value: 'UA'
     })
 
+    const input = container.querySelector('input')
+
+    expect(input!.value).toEqual('Ukraine')
+    expect(input!.placeholder).toEqual('Ukraine')
+
+    expect(container).toMatchSnapshot()
+  })
+
+  test('render option text when passed `defaultValue` prop', () => {
+    const { container } = renderAutocomplete(null, {
+      placeholder: 'Start typing here...',
+      options,
+      defaultValue: 'LU'
+    })
+
+    const input = container.querySelector('input')
+
+    expect(input!.value).toEqual('Lithuania')
+    expect(input!.placeholder).toEqual('Lithuania')
+
     expect(container).toMatchSnapshot()
   })
 })
