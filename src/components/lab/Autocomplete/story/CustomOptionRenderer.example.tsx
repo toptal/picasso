@@ -1,5 +1,6 @@
 import React from 'react'
 import { Autocomplete } from '@toptal/picasso/lab'
+import { Typography } from '@toptal/picasso'
 
 const options = [
   { text: 'Belarus', value: 'BY' },
@@ -14,12 +15,10 @@ const CustomOptionRenderer = () => (
     <Autocomplete
       placeholder='Start typing country...'
       options={options}
-      renderOption={option => (
-        <span
-          style={{ color: 'green', background: 'yellow', fontWeight: 'bold' }}
-        >
-          {option.text}
-        </span>
+      renderOption={(option, index) => (
+        <Typography size='large' color='green'>
+          {option.text} ({index})
+        </Typography>
       )}
     />
   </div>
