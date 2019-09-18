@@ -1,3 +1,10 @@
+## [3.8.6](https://github.com/toptal/picasso/compare/v3.8.5...v3.8.6) (2019-09-18)
+
+
+### Bug Fixes
+
+* **autocomplete:** remove debouncing ([#682](https://github.com/toptal/picasso/issues/682)) ([6100769](https://github.com/toptal/picasso/commit/6100769))
+
 ## [3.8.5](https://github.com/toptal/picasso/compare/v3.8.4...v3.8.5) (2019-09-17)
 
 
