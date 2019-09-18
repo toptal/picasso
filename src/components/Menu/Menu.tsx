@@ -3,8 +3,7 @@ import React, {
   forwardRef,
   ReactElement,
   useState,
-  useContext,
-  createContext
+  useContext
 } from 'react'
 import MUIMenuList, { MenuListProps } from '@material-ui/core/MenuList'
 import { withStyles } from '@material-ui/core/styles'
@@ -18,12 +17,8 @@ import {
 } from '../Picasso'
 import styles from './styles'
 import Typography from '../Typography'
-/* eslint-disable */
-export const MenuContext = createContext<MenuContextProps>(
-  {} as MenuContextProps
-)
 import MenuItem from '../MenuItem'
-/* eslint-enable */
+import MenuContext from './menuContext'
 
 export type ListNativeProps = HTMLAttributes<HTMLUListElement> &
   Pick<MenuListProps, 'onKeyDown'>
