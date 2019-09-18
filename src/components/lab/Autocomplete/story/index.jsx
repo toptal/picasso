@@ -53,6 +53,10 @@ for this component. This you can achieve by adding corresponding attributes:
   )
   .addExample('lab/Autocomplete/story/FullWidth.example.jsx', 'Full width')
   .addExample('lab/Autocomplete/story/Loading.example.jsx', 'Loading')
+  .addExample(
+    'lab/Autocomplete/story/CustomOptionRenderer.example.tsx',
+    'Custom options rendering'
+  )
   .addExample('lab/Autocomplete/story/DynamicOptions.example.jsx', {
     title: 'Dynamic options',
     description: `When you use Autocomplete with the ajax request to load options,
@@ -60,7 +64,3 @@ for this component. This you can achieve by adding corresponding attributes:
         requests to the server and to show more relevant suggestions to 
         your users.`
   }) // picasso-skip-visuals
-  .addExample(
-    'lab/Autocomplete/story/CustomOptionRenderer.example.tsx',
-    'Custom options rendering'
-  )

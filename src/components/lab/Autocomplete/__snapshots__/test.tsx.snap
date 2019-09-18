@@ -114,11 +114,11 @@ exports[`Autocomplete render options when start typing 1`] = `
               role="option"
               tabindex="-1"
             >
-              <p
-                class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+              <span
+                class="MenuItem-stringContent"
               >
                 Croatia
-              </p>
+              </span>
             </li>
             <li
               aria-disabled="false"
@@ -128,11 +128,11 @@ exports[`Autocomplete render options when start typing 1`] = `
               role="option"
               tabindex="-1"
             >
-              <p
-                class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+              <span
+                class="MenuItem-stringContent"
               >
                 Lithuania
-              </p>
+              </span>
             </li>
           </div>
         </ul>
