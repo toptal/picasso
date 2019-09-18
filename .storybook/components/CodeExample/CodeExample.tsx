@@ -45,7 +45,8 @@ const imports: Record<string, object> = {
   '@toptal/picasso': require('@components'),
   '@toptal/picasso/lab': require('@components/lab'),
   '@toptal/picasso/utils': require('@components/utils'),
-  '@toptal/picasso/Icon': require('@components/Icon')
+  '@toptal/picasso/Icon': require('@components/Icon'),
+  'react-modal-hook': require('react-modal-hook')
 }
 
 const resolver = (path: string) => imports[path]
