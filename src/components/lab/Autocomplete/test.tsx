@@ -49,50 +49,64 @@ describe('Autocomplete', () => {
     })
   })
 
-  test('default render', () => {
-    const { container } = api
+  describe('static behavior', () => {
+    test('default render', () => {
+      const { container } = api
 
-    expect(container).toMatchSnapshot()
-  })
-
-  test('render options when start typing', () => {
-    const input = api.getByPlaceholderText('Start typing here...')
-
-    // should show only Croatia and Lithuania
-    fireEvent.change(input, { target: { value: 't' } })
-
-    const { container } = api
-
-    expect(container).toMatchSnapshot()
-  })
-
-  test('render option text when passed `value` prop', () => {
-    const { container } = renderAutocomplete(null, {
-      placeholder: 'Start typing here...',
-      options,
-      value: 'UA'
+      expect(container).toMatchSnapshot()
     })
 
-    const input = container.querySelector('input')
+    test('render option text when passed `value` prop', () => {
+      const { container } = renderAutocomplete(null, {
+        options,
+        value: 'UA'
+      })
 
-    expect(input!.value).toEqual('Ukraine')
-    expect(input!.placeholder).toEqual('Ukraine')
+      const input = container.querySelector('input') as HTMLInputElement
 
-    expect(container).toMatchSnapshot()
-  })
+      expect(input.value).toEqual('Ukraine')
+      expect(input.placeholder).toEqual('Ukraine')
 
-  test('render option text when passed `defaultValue` prop', () => {
-    const { container } = renderAutocomplete(null, {
-      placeholder: 'Start typing here...',
-      options,
-      defaultValue: 'LU'
+      expect(container).toMatchSnapshot()
     })
 
-    const input = container.querySelector('input')
+    test('render option text when passed `defaultValue` prop', () => {
+      const { container } = renderAutocomplete(null, {
+        options,
+        defaultValue: 'LU'
+      })
 
-    expect(input!.value).toEqual('Lithuania')
-    expect(input!.placeholder).toEqual('Lithuania')
+      const input = container.querySelector('input') as HTMLInputElement
 
-    expect(container).toMatchSnapshot()
+      expect(input.value).toEqual('Lithuania')
+      expect(input.placeholder).toEqual('Lithuania')
+
+      expect(container).toMatchSnapshot()
+    })
+  })
+
+  describe('dynamic behavior', () => {
+    test('render options when start typing', () => {
+      const input = api.getByPlaceholderText('Start typing here...')
+
+      // should show only Croatia and Lithuania
+      fireEvent.change(input, { target: { value: 't' } })
+
+      const { container } = api
+
+      expect(container).toMatchSnapshot()
+    })
+
+    test('render options dropdown on focus', () => {
+      const { container } = renderAutocomplete(null, {
+        options
+      })
+
+      const input = container.querySelector('input') as HTMLInputElement
+
+      fireEvent.focus(input)
+
+      expect(container).toMatchSnapshot()
+    })
   })
 })
