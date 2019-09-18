@@ -124,7 +124,6 @@ export const SidebarItem = forwardRef<HTMLElement, Props>(function SidebarItem(
 
     return (
       <Accordion
-        onClick={event => event.stopPropagation()}
         onChange={event => event.stopPropagation()}
         classes={{
           summary: classes.summary,
