@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MenuItem default render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <li
+      aria-disabled="false"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      role="menuitem"
+      tabindex="-1"
+    >
+      <span
+        class="MenuItem-stringContent"
+      >
+        Item
+      </span>
+    </li>
+  </div>
+</div>
+`;
+
+exports[`MenuItem has chevron if has nested menu 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <li
+      aria-disabled="false"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      role="menuitem"
+      tabindex="-1"
+    >
+      <span
+        class="MenuItem-stringContent"
+      >
+        Item
+      </span>
+      <svg
+        class="SvgChevronMinor16-root"
+        style="min-width: 16px; min-height: 16px;"
+        viewBox="0 0 16 16"
+      >
+        <defs>
+          <path
+            d="M5.997 3.29l4 4 .707.707-.707.707-4 4-.707-.707 4-4-4-4 .707-.707z"
+            id="chevronMinor16_svg__a"
+          />
+        </defs>
+        <g
+          fill-rule="evenodd"
+        >
+          <mask
+            id="chevronMinor16_svg__b"
+          >
+            <use
+              xlink:href="#chevronMinor16_svg__a"
+            />
+          </mask>
+          <use
+            fill-rule="nonzero"
+            xlink:href="#chevronMinor16_svg__a"
+          />
+          <g
+            mask="url(#chevronMinor16_svg__b)"
+          >
+            <path
+              d="M0 0h16v16H0z"
+            />
+          </g>
+        </g>
+      </svg>
+    </li>
+  </div>
+</div>
+`;

@@ -1,26 +1,48 @@
-import React from 'react'
-import { render, cleanup } from '@testing-library/react'
+import React, { FunctionComponent } from 'react'
+import { render, cleanup, fireEvent } from '@testing-library/react'
 
-import Picasso from '../Picasso'
-import Menu from './Menu'
+import Picasso, { OmitInternalProps } from '../Picasso'
+import Menu, { Props } from './'
 
-const renderMenu = () => {
-  return render(
-    <Picasso loadFonts={false}>
-      <Menu>
-        <Menu.Item>Item 1</Menu.Item>
-        <Menu.Item>Item 2</Menu.Item>
-        <Menu.Item>Item 3</Menu.Item>
-      </Menu>
-    </Picasso>
-  )
-}
+const TestMenu: FunctionComponent<OmitInternalProps<Props>> = ({
+  children
+}) => (
+  <Picasso loadFonts={false}>
+    <Menu>{children}</Menu>
+  </Picasso>
+)
 
 afterEach(cleanup)
 
 describe('Menu', () => {
   test('default render', () => {
-    const { container } = renderMenu()
+    const { container } = render(
+      <TestMenu>
+        <Menu.Item>Item 1</Menu.Item>
+        <Menu.Item>Item 2</Menu.Item>
+        <Menu.Item>Item 3</Menu.Item>
+      </TestMenu>
+    )
+
+    expect(container).toMatchSnapshot()
+  })
+
+  test('has back button when in submenu', () => {
+    const { container, getByText } = render(
+      <TestMenu>
+        <Menu.Item
+          menu={
+            <TestMenu>
+              <Menu.Item>Submenu Item</Menu.Item>
+            </TestMenu>
+          }
+        >
+          Item 1
+        </Menu.Item>
+      </TestMenu>
+    )
+
+    fireEvent.click(getByText('Item 1'))
 
     expect(container).toMatchSnapshot()
   })

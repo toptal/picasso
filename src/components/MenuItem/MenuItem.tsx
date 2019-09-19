@@ -3,13 +3,18 @@ import React, {
   ReactNode,
   LiHTMLAttributes,
   HTMLAttributes,
-  ElementType
+  ElementType,
+  ReactElement,
+  useContext
 } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import MUIMenuItem, { MenuItemProps } from '@material-ui/core/MenuItem'
 
+import { ChevronMinor16 } from '../Icon'
 import { StandardProps, ButtonOrAnchorProps } from '../Picasso'
+import MenuContext from '../Menu/menuContext'
+import { MenuContextProps } from '../Menu/types'
 import styles from './styles'
 
 export type VariantType = 'light' | 'dark'
@@ -26,6 +31,8 @@ export interface Props extends StandardProps, MenuItemAttributes {
   /** Whether to render without internal padding */
   disableGutters?: boolean
   children?: ReactNode
+  /** Nested menu */
+  menu?: ReactElement
   /** Callback when menu item is clicked */
   onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
   /** Highlights the item as selected */
@@ -44,6 +51,7 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
     className,
     disabled,
     disableGutters,
+    menu,
     onClick,
     selected,
     style,
@@ -56,12 +64,25 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { stringContent, light, dark, ...restClasses } = classes
 
+  const { push } = useContext<MenuContextProps>(MenuContext)
+
   if (typeof children === 'string') {
     children = (
       <span className={stringContent} style={style}>
         {children}
       </span>
     )
+  }
+
+  const handleClick = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    if (menu) {
+      event.stopPropagation()
+      push(menu)
+    }
+
+    if (onClick) {
+      onClick(event)
+    }
   }
 
   return (
@@ -74,12 +95,13 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
       className={cx(classes[variant!], className)}
       disabled={disabled}
       disableGutters={disableGutters}
-      onClick={onClick}
+      onClick={handleClick}
       style={style}
       value={value}
       selected={selected}
     >
       {children}
+      {menu && <ChevronMinor16 />}
     </MUIMenuItem>
   )
 })

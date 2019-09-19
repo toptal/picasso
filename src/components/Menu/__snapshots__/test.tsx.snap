@@ -50,3 +50,80 @@ exports[`Menu default render 1`] = `
   </div>
 </div>
 `;
+
+exports[`Menu has back button when in submenu 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="Picasso-root"
+    >
+      <ul
+        class="MuiList-root"
+        role="menu"
+        tabindex="-1"
+      >
+        <li
+          aria-disabled="false"
+          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+          role="menuitem"
+          tabindex="-1"
+        >
+          <p
+            class="MuiTypography-root Typography-bodySmall Typography-darkGrey MuiTypography-body1"
+          >
+            <svg
+              class="SvgBackMinor16-root Menu-backButtonIcon"
+              style="min-width: 16px; min-height: 16px;"
+              viewBox="0 0 16 16"
+            >
+              <defs>
+                <path
+                  d="M9.997 3.29l.707.707-4 4 4 4-.707.707L5.29 7.997l.707-.707 4-4z"
+                  id="backMinor16_svg__a"
+                />
+              </defs>
+              <g
+                fill-rule="evenodd"
+              >
+                <mask
+                  id="backMinor16_svg__b"
+                >
+                  <use
+                    xlink:href="#backMinor16_svg__a"
+                  />
+                </mask>
+                <use
+                  fill-rule="nonzero"
+                  xlink:href="#backMinor16_svg__a"
+                />
+                <g
+                  mask="url(#backMinor16_svg__b)"
+                >
+                  <path
+                    d="M0 0h16v16H0z"
+                  />
+                </g>
+              </g>
+            </svg>
+            Back
+          </p>
+        </li>
+        <li
+          aria-disabled="false"
+          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+          role="menuitem"
+          tabindex="-1"
+        >
+          <span
+            class="MenuItem-stringContent"
+          >
+            Submenu Item
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;
