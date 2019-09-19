@@ -20,23 +20,23 @@ const FooterRightContentExample = () => (
 
 const Links = () => (
   <Fragment>
-    <StyledLink href='#' underline='none' invert>
+    <StyledLink href='#' underline='none' color='white'>
       +1.888.604.3188
     </StyledLink>
 
-    <StyledLink href='#' underline='none' invert>
+    <StyledLink href='#' underline='none' color='white'>
       Contact Us
     </StyledLink>
 
-    <StyledLink href='#' underline='none' invert>
+    <StyledLink href='#' underline='none' color='white'>
       Privacy Policy
     </StyledLink>
 
-    <StyledLink href='#' underline='none' invert>
+    <StyledLink href='#' underline='none' color='white'>
       Portal Agreement
     </StyledLink>
 
-    <StyledLink href='#' underline='none' invert>
+    <StyledLink href='#' underline='none' color='white'>
       Toptal Training
     </StyledLink>
   </Fragment>

@@ -15,8 +15,10 @@ export default ({ typography, palette }: Theme) =>
     action: {
       fontWeight: typography.fontWeights.semibold
     },
-
-    invert: {
+    black: {
+      color: palette.common.black
+    },
+    white: {
       color: palette.common.white
     }
   })
