@@ -13,12 +13,14 @@ export default ({ layout }: Theme) =>
     },
     content: {
       height: '100%',
-      display: 'flex',
       flexGrow: 1,
       maxWidth: layout.contentWidth,
       padding: '0 1rem'
     },
     fullWidth: {
       maxWidth: '100%'
+    },
+    flex: {
+      display: 'flex'
     }
   })

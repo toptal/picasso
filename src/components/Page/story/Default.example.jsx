@@ -11,7 +11,7 @@ const PageDefaultExample = () => (
   <div style={{ height: '30rem' }}>
     <Page>
       <Page.Header rightContent={<RightContent />} title='Default example' />
-      <Page.Content>
+      <Page.Content flex>
         <SidebarMenu />
         <Content />
       </Page.Content>
