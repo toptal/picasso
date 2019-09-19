@@ -6,7 +6,7 @@
   "module": "./build/index.js",
   "scripts": {
     "test": "jest",
-    "test:watch": "jest --watchAll",
+    "test:watch": "jest --watch --runInBand",
     "test:visual": "./bin/run-in-docker ./bin/test-visual",
     "lint": "davinci syntax lint code .",
     "start": "start-storybook -p 9001 -s ./.storybook/public -c .storybook",
