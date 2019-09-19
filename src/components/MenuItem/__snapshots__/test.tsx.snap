@@ -11,11 +11,11 @@ exports[`MenuItem default render 1`] = `
       role="menuitem"
       tabindex="-1"
     >
-      <p
-        class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+      <span
+        class="MenuItem-stringContent"
       >
         Item
-      </p>
+      </span>
     </li>
   </div>
 </div>
@@ -32,49 +32,45 @@ exports[`MenuItem has chevron if has nested menu 1`] = `
       role="menuitem"
       tabindex="-1"
     >
-      <p
-        class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+      <span
+        class="MenuItem-stringContent"
       >
         Item
-      </p>
-      <span
-        class="MenuItem-chevron"
+      </span>
+      <svg
+        class="SvgChevronMinor16-root"
+        style="min-width: 16px; min-height: 16px;"
+        viewBox="0 0 16 16"
       >
-        <svg
-          class="SvgChevronMinor16-root"
-          style="min-width: 16px; min-height: 16px;"
-          viewBox="0 0 16 16"
+        <defs>
+          <path
+            d="M5.997 3.29l4 4 .707.707-.707.707-4 4-.707-.707 4-4-4-4 .707-.707z"
+            id="chevronMinor16_svg__a"
+          />
+        </defs>
+        <g
+          fill-rule="evenodd"
         >
-          <defs>
-            <path
-              d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
-              id="chevronMinor16_svg__a"
-            />
-          </defs>
-          <g
-            fill-rule="evenodd"
+          <mask
+            id="chevronMinor16_svg__b"
           >
-            <mask
-              id="chevronMinor16_svg__b"
-            >
-              <use
-                xlink:href="#chevronMinor16_svg__a"
-              />
-            </mask>
             <use
-              fill-rule="nonzero"
               xlink:href="#chevronMinor16_svg__a"
             />
-            <g
-              mask="url(#chevronMinor16_svg__b)"
-            >
-              <path
-                d="M0 0h16v16H0z"
-              />
-            </g>
+          </mask>
+          <use
+            fill-rule="nonzero"
+            xlink:href="#chevronMinor16_svg__a"
+          />
+          <g
+            mask="url(#chevronMinor16_svg__b)"
+          >
+            <path
+              d="M0 0h16v16H0z"
+            />
           </g>
-        </svg>
-      </span>
+        </g>
+      </svg>
     </li>
   </div>
 </div>

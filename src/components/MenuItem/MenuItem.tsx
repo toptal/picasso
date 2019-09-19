@@ -11,12 +11,10 @@ import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import MUIMenuItem, { MenuItemProps } from '@material-ui/core/MenuItem'
 
-import Container from '../Container'
 import { ChevronMinor16 } from '../Icon'
 import { StandardProps, ButtonOrAnchorProps } from '../Picasso'
 import MenuContext from '../Menu/menuContext'
 import { MenuContextProps } from '../Menu/types'
-import Typography from '../Typography'
 import styles from './styles'
 
 export type VariantType = 'light' | 'dark'
@@ -63,10 +61,8 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
   },
   ref
 ) {
-  const hasMenu = Boolean(menu)
-
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { stringContent, light, dark, chevron, ...restClasses } = classes
+  const { stringContent, light, dark, ...restClasses } = classes
 
   const { push } = useContext<MenuContextProps>(MenuContext)
 
@@ -75,17 +71,6 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
       <span className={stringContent} style={style}>
         {children}
       </span>
-    )
-  }
-
-  if (hasMenu) {
-    children = (
-      <Container inline flex alignItems='center' style={{ flex: 1 }}>
-        <Container style={{ flex: 1 }}>{children}</Container>
-        <span className={classes.chevron}>
-          <ChevronMinor16 />
-        </span>
-      </Container>
     )
   }
 
@@ -116,6 +101,7 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
       selected={selected}
     >
       {children}
+      {menu && <ChevronMinor16 />}
     </MUIMenuItem>
   )
 })
