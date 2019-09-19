@@ -19,4 +19,7 @@ page
   .addComponentDocs(modalContentStory.componentDocs)
   .addComponentDocs(modalActionsStory.componentDocs)
 
-page.createChapter().addExample('Modal/story/Default.example.jsx', 'Default')
+page
+  .createChapter()
+  .addExample('Modal/story/Default.example.jsx', 'Default')
+  .addExample('Modal/story/useModal.example.jsx', 'useModal')

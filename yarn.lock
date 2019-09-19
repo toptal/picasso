@@ -13403,6 +13403,11 @@ react-markdown@^4.0.8:
     unist-util-visit "^1.3.0"
     xtend "^4.0.1"
 
+react-modal-hook@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/react-modal-hook/-/react-modal-hook-2.0.0.tgz#b2883758a29c9bc4c91fe3e565dfa28ede08337e"
+  integrity sha512-rSZbMw//qOx/tgZpTKIO8iihY58zM1RBYEf4nGyeEQ3LXOFLqSphkIyMtYrI8ZQBGUdkKduSArcxj0k2jxGdcg==
+
 react-popper-tooltip@^2.8.0:
   version "2.8.1"
   resolved "https://registry.yarnpkg.com/react-popper-tooltip/-/react-popper-tooltip-2.8.1.tgz#bbaec88b729e3b7e9f26521857e7f908bccdecf3"
