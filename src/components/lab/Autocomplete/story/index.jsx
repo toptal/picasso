@@ -34,7 +34,7 @@ Autocomplete supports all the default HTML native props, as Input supports.
 
 You also may want to disable standard browser autofill and autocomplete
 for this component. This you can achieve by adding corresponding attributes:
-\`autoComplete='nope' autofill='off'\`
+\`autocomplete='nope' autofill='off'\`
     `
   )
   .addExample('lab/Autocomplete/story/Default.example.jsx', 'Default')
