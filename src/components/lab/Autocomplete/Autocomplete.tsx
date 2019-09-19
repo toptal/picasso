@@ -76,6 +76,8 @@ export interface Props
   startAdornment?: ReactNode
   /** Custom input component */
   inputComponent?: ComponentType<InputProps>
+  /** Callback responsible for rendering the option given the option and its index in the list of options */
+  renderOption?: (option: Item, index?: number) => ReactNode
 }
 
 const isMatchingMinLength = (value: string, minLength?: number) =>
@@ -87,7 +89,7 @@ const getItemText = (item: Maybe<Item>) =>
 const getItemValue = (item: Maybe<Item>) =>
   (item && (item.value || item.text)) || null
 
-const isSelected = (item: Item, selectedItem: Item | null) =>
+const isSelected = (item: Item, selectedItem: Maybe<Item>) =>
   getItemValue(item) === getItemValue(selectedItem)
 
 export const Autocomplete = forwardRef<HTMLInputElement, Props>(
@@ -111,6 +113,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       allowAny,
       onKeyDown,
       inputComponent,
+      renderOption,
       ...rest
     },
     ref
@@ -226,7 +229,9 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
                     /* eslint-disable-next-line react/jsx-props-no-spreading */
                     {...getItemProps({ item: option, index })}
                   >
-                    {getItemText(option)}
+                    {renderOption
+                      ? renderOption(option, index)
+                      : getItemText(option)}
                   </Menu.Item>
                 ))
               ) : (

@@ -72,11 +72,11 @@ exports[`Dropdown should render menu 1`] = `
               role="menuitem"
               tabindex="-1"
             >
-              <p
-                class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+              <span
+                class="MenuItem-stringContent"
               >
                 Item1
-              </p>
+              </span>
             </li>
             <li
               aria-disabled="false"
@@ -84,11 +84,11 @@ exports[`Dropdown should render menu 1`] = `
               role="menuitem"
               tabindex="-1"
             >
-              <p
-                class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+              <span
+                class="MenuItem-stringContent"
               >
                 Item2
-              </p>
+              </span>
             </li>
             <li
               aria-disabled="false"
@@ -96,11 +96,11 @@ exports[`Dropdown should render menu 1`] = `
               role="menuitem"
               tabindex="-1"
             >
-              <p
-                class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+              <span
+                class="MenuItem-stringContent"
               >
                 Item3
-              </p>
+              </span>
             </li>
           </ul>
         </div>
@@ -165,11 +165,11 @@ exports[`Dropdown should render menu with focus 1`] = `
               role="menuitem"
               tabindex="-1"
             >
-              <p
-                class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+              <span
+                class="MenuItem-stringContent"
               >
                 Item1
-              </p>
+              </span>
             </li>
             <li
               aria-disabled="false"
@@ -177,11 +177,11 @@ exports[`Dropdown should render menu with focus 1`] = `
               role="menuitem"
               tabindex="-1"
             >
-              <p
-                class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+              <span
+                class="MenuItem-stringContent"
               >
                 Item2
-              </p>
+              </span>
             </li>
             <li
               aria-disabled="false"
@@ -189,11 +189,11 @@ exports[`Dropdown should render menu with focus 1`] = `
               role="menuitem"
               tabindex="-1"
             >
-              <p
-                class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+              <span
+                class="MenuItem-stringContent"
               >
                 Item3
-              </p>
+              </span>
             </li>
           </ul>
         </div>

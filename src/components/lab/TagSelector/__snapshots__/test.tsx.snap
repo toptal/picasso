@@ -65,11 +65,11 @@ exports[`TagSelector available options when start typing 1`] = `
               role="option"
               tabindex="-1"
             >
-              <p
-                class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+              <span
+                class="MenuItem-stringContent"
               >
                 Aland Islands
-              </p>
+              </span>
             </li>
             <li
               aria-disabled="false"
@@ -79,11 +79,11 @@ exports[`TagSelector available options when start typing 1`] = `
               role="option"
               tabindex="-1"
             >
-              <p
-                class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+              <span
+                class="MenuItem-stringContent"
               >
                 Albania
-              </p>
+              </span>
             </li>
             <li
               aria-disabled="false"
@@ -93,11 +93,11 @@ exports[`TagSelector available options when start typing 1`] = `
               role="option"
               tabindex="-1"
             >
-              <p
-                class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+              <span
+                class="MenuItem-stringContent"
               >
                 Algeria
-              </p>
+              </span>
             </li>
             <li
               aria-disabled="false"
@@ -107,11 +107,11 @@ exports[`TagSelector available options when start typing 1`] = `
               role="option"
               tabindex="-1"
             >
-              <p
-                class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+              <span
+                class="MenuItem-stringContent"
               >
                 Add new option: Al
-              </p>
+              </span>
             </li>
           </div>
         </ul>
