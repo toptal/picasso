@@ -30,7 +30,7 @@ exports.SidebarMenu = react_1.forwardRef(function SidebarMenu(_a, ref) {
     var { bottom, classes, style, className } = _a, rest = __rest(_a, ["bottom", "classes", "style", "className"]);
     return (react_1.default.createElement(Menu_1.default
     // eslint-disable-next-line react/jsx-props-no-spreading
-    , Object.assign({}, rest, { ref: ref, style: style, className: classnames_1.default(classes.root, { [classes.bottom]: bottom }, className) })));
+    , Object.assign({}, rest, { allowNestedNavigation: false, ref: ref, style: style, className: classnames_1.default(classes.root, { [classes.bottom]: bottom }, className) })));
 });
 exports.SidebarMenu.defaultProps = {
     bottom: false

@@ -1,3 +1,10 @@
+# [3.11.0](https://github.com/toptal/picasso/compare/v3.10.1...v3.11.0) (2019-09-19)
+
+
+### Features
+
+* **Menu:** [FX-436] drill-down functionality ([#684](https://github.com/toptal/picasso/issues/684)) ([3219579](https://github.com/toptal/picasso/commit/3219579)), closes [#2](https://github.com/toptal/picasso/issues/2) [#3](https://github.com/toptal/picasso/issues/3)
+
 ## [3.10.1](https://github.com/toptal/picasso/compare/v3.10.0...v3.10.1) (2019-09-19)
 
 

@@ -69,7 +69,11 @@ exports.default = ({ palette }) => styles_1.createStyles({
     },
     selected: {},
     stringContent: {
+        flex: 1,
         fontSize: '0.8125em'
+    },
+    chevron: {
+        marginLeft: '1.5em'
     }
 });
 //# sourceMappingURL=styles.js.map
