@@ -1,6 +1,140 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Autocomplete dynamic behavior render options focus without preselection 1`] = `
+exports[`Autocomplete dynamic behavior render options on focus with preselection 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      aria-expanded="true"
+      aria-haspopup="listbox"
+      aria-labelledby="downshift-9-label"
+      aria-owns="downshift-9-menu"
+      class="Autocomplete-root Autocomplete-rootAuto"
+      role="combobox"
+    >
+      <div
+        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root Input-root OutlinedInput-rootAuto"
+      >
+        <fieldset
+          aria-hidden="true"
+          class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+          style="padding-left: 8px;"
+        >
+          <legend
+            class="PrivateNotchedOutline-legend"
+            style="width: 0.01px;"
+          >
+            <span>
+              ​
+            </span>
+          </legend>
+        </fieldset>
+        <input
+          aria-activedescendant="downshift-9-item-0"
+          aria-autocomplete="list"
+          aria-controls="downshift-9-menu"
+          aria-labelledby="downshift-9-label"
+          autocomplete="off"
+          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input"
+          id="downshift-9-input"
+          placeholder="Belarus"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        aria-labelledby="downshift-9-label"
+        id="downshift-9-menu"
+        role="listbox"
+      >
+        <ul
+          class="MuiList-root ScrollMenu-menu"
+          role="menu"
+          tabindex="-1"
+        >
+          <div
+            class="ScrollMenu-scrollView"
+          >
+            <li
+              aria-disabled="true"
+              aria-selected="true"
+              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters Mui-disabled MuiListItem-button Mui-selected Mui-disabled"
+              id="downshift-9-item-0"
+              role="option"
+              tabindex="-1"
+            >
+              <p
+                class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+              >
+                Belarus
+              </p>
+            </li>
+            <li
+              aria-disabled="false"
+              aria-selected="false"
+              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+              id="downshift-9-item-1"
+              role="option"
+              tabindex="-1"
+            >
+              <p
+                class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+              >
+                Croatia
+              </p>
+            </li>
+            <li
+              aria-disabled="false"
+              aria-selected="false"
+              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+              id="downshift-9-item-2"
+              role="option"
+              tabindex="-1"
+            >
+              <p
+                class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+              >
+                Lithuania
+              </p>
+            </li>
+            <li
+              aria-disabled="false"
+              aria-selected="false"
+              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+              id="downshift-9-item-3"
+              role="option"
+              tabindex="-1"
+            >
+              <p
+                class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+              >
+                Slovakia
+              </p>
+            </li>
+            <li
+              aria-disabled="false"
+              aria-selected="false"
+              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+              id="downshift-9-item-4"
+              role="option"
+              tabindex="-1"
+            >
+              <p
+                class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+              >
+                Ukraine
+              </p>
+            </li>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Autocomplete dynamic behavior render options on focus without preselection 1`] = `
 <div>
   <div
     class="Picasso-root"

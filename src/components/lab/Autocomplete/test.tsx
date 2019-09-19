@@ -108,7 +108,7 @@ describe('Autocomplete', () => {
       expect(container).toMatchSnapshot()
     })
 
-    test('render options focus without preselection', () => {
+    test('render options on focus without preselection', () => {
       const { container } = renderAutocomplete(null, {
         options
       })
@@ -118,8 +118,34 @@ describe('Autocomplete', () => {
       fireEvent.focus(input)
 
       const firstOption = getDropdownOptionsAsArray(container)[0]
+      // first option is highlighted
 
       expect(firstOption.classList.contains('Mui-selected')).toBe(true)
+      expect(container).toMatchSnapshot()
+    })
+
+    test('render options on focus with preselection', () => {
+      const { container } = renderAutocomplete(null, {
+        options,
+        value: 'BY'
+      })
+
+      const input = container.querySelector('input') as HTMLInputElement
+
+      fireEvent.focus(input)
+
+      const selectedOption = getDropdownOptionsAsArray(container).find(
+        li => li.textContent === 'Belarus'
+      ) as HTMLLIElement
+
+      // text clears, placeholder shows selected option text.
+      expect(input.placeholder).toEqual('Belarus')
+      expect(input.value).toEqual('')
+
+      // selected option is highlighted and disabled
+      expect(selectedOption.classList.contains('Mui-selected')).toBe(true)
+      expect(selectedOption.classList.contains('Mui-disabled')).toBe(true)
+
       expect(container).toMatchSnapshot()
     })
   })
