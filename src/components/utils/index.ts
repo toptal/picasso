@@ -11,6 +11,13 @@ export {
 export { useModal } from '../Modal/use-modal'
 
 export {
+  default as useControlledAndUncontrolledState
+} from './use-controlled-and-uncontrolled-state'
+export {
+  default as useControlledAndUncontrolledInput
+} from './use-controlled-and-uncontrolled-input'
+
+export {
   default as ClickAwayListener
 } from '@material-ui/core/ClickAwayListener'
 
