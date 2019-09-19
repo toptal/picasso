@@ -1,3 +1,10 @@
+## [3.10.1](https://github.com/toptal/picasso/compare/v3.10.0...v3.10.1) (2019-09-19)
+
+
+### Bug Fixes
+
+* **utils:** expose controlled and uncontrolled mode hooks ([#697](https://github.com/toptal/picasso/issues/697)) ([583545f](https://github.com/toptal/picasso/commit/583545f))
+
 # [3.10.0](https://github.com/toptal/picasso/compare/v3.9.0...v3.10.0) (2019-09-19)
 
 
