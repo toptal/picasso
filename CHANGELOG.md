@@ -1,3 +1,10 @@
+# [3.9.0](https://github.com/toptal/picasso/compare/v3.8.7...v3.9.0) (2019-09-19)
+
+
+### Features
+
+* **autocomplete:** add custom renderer for an option ([#690](https://github.com/toptal/picasso/issues/690)) ([ab566df](https://github.com/toptal/picasso/commit/ab566df))
+
 ## [3.8.7](https://github.com/toptal/picasso/compare/v3.8.6...v3.8.7) (2019-09-18)
 
 

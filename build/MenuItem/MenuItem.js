@@ -25,14 +25,13 @@ const react_1 = __importStar(require("react"));
 const classnames_1 = __importDefault(require("classnames"));
 const styles_1 = require("@material-ui/core/styles");
 const MenuItem_1 = __importDefault(require("@material-ui/core/MenuItem"));
-const Typography_1 = __importDefault(require("../Typography"));
 const styles_2 = __importDefault(require("./styles"));
 exports.MenuItem = react_1.forwardRef(function MenuItem(_a, ref) {
     var { as, children, classes, className, disabled, disableGutters, onClick, selected, style, value, variant } = _a, rest = __rest(_a, ["as", "children", "classes", "className", "disabled", "disableGutters", "onClick", "selected", "style", "value", "variant"]);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { stringContent, light, dark } = classes, restClasses = __rest(classes, ["stringContent", "light", "dark"]);
     if (typeof children === 'string') {
-        children = (react_1.default.createElement(Typography_1.default, { className: stringContent, style: style, color: 'inherit' }, children));
+        children = (react_1.default.createElement("span", { className: stringContent, style: style }, children));
     }
     return (react_1.default.createElement(MenuItem_1.default
     // eslint-disable-next-line react/jsx-props-no-spreading
