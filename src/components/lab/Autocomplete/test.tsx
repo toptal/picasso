@@ -94,10 +94,15 @@ describe('Autocomplete', () => {
 
       const { container } = api
 
+      const filteredOptions = Array.from(
+        container.querySelectorAll('ul li p')
+      ).map(p => p.innerHTML)
+
+      expect(filteredOptions).toEqual(['Croatia', 'Lithuania'])
       expect(container).toMatchSnapshot()
     })
 
-    test('render options dropdown on focus', () => {
+    test('render options focus', () => {
       const { container } = renderAutocomplete(null, {
         options
       })

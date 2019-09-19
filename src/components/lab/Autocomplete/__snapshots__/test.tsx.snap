@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Autocomplete render options dropdown on focus 1`] = `
+exports[`Autocomplete dynamic behavior render options focus 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -38,7 +38,6 @@ exports[`Autocomplete render options dropdown on focus 1`] = `
           autocomplete="off"
           class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input"
           id="downshift-7-input"
-          placeholder="Start typing here..."
           type="text"
           value=""
         />
@@ -134,6 +133,98 @@ exports[`Autocomplete render options dropdown on focus 1`] = `
 </div>
 `;
 
+exports[`Autocomplete dynamic behavior render options when start typing 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      aria-expanded="true"
+      aria-haspopup="listbox"
+      aria-labelledby="downshift-5-label"
+      aria-owns="downshift-5-menu"
+      class="Autocomplete-root Autocomplete-rootAuto"
+      role="combobox"
+    >
+      <div
+        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root Input-root OutlinedInput-rootAuto"
+      >
+        <fieldset
+          aria-hidden="true"
+          class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+          style="padding-left: 8px;"
+        >
+          <legend
+            class="PrivateNotchedOutline-legend"
+            style="width: 0.01px;"
+          >
+            <span>
+              ​
+            </span>
+          </legend>
+        </fieldset>
+        <input
+          aria-activedescendant="downshift-5-item-0"
+          aria-autocomplete="list"
+          aria-controls="downshift-5-menu"
+          aria-labelledby="downshift-5-label"
+          autocomplete="off"
+          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input"
+          id="downshift-5-input"
+          placeholder="Start typing here..."
+          type="text"
+          value="t"
+        />
+      </div>
+      <div
+        aria-labelledby="downshift-5-label"
+        id="downshift-5-menu"
+        role="listbox"
+      >
+        <ul
+          class="MuiList-root ScrollMenu-menu"
+          role="menu"
+          tabindex="-1"
+        >
+          <div
+            class="ScrollMenu-scrollView"
+          >
+            <li
+              aria-disabled="false"
+              aria-selected="true"
+              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+              id="downshift-5-item-0"
+              role="option"
+              tabindex="-1"
+            >
+              <p
+                class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+              >
+                Croatia
+              </p>
+            </li>
+            <li
+              aria-disabled="false"
+              aria-selected="false"
+              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+              id="downshift-5-item-1"
+              role="option"
+              tabindex="-1"
+            >
+              <p
+                class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+              >
+                Lithuania
+              </p>
+            </li>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Autocomplete static behavior default render 1`] = `
 <div>
   <div
@@ -192,7 +283,7 @@ exports[`Autocomplete static behavior render option text when passed \`defaultVa
     <div
       aria-expanded="false"
       aria-haspopup="listbox"
-      aria-labelledby="downshift-5-label"
+      aria-labelledby="downshift-4-label"
       class="Autocomplete-root Autocomplete-rootAuto"
       role="combobox"
     >
@@ -215,18 +306,18 @@ exports[`Autocomplete static behavior render option text when passed \`defaultVa
         </fieldset>
         <input
           aria-autocomplete="list"
-          aria-labelledby="downshift-5-label"
+          aria-labelledby="downshift-4-label"
           autocomplete="off"
           class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input"
-          id="downshift-5-input"
+          id="downshift-4-input"
           placeholder="Lithuania"
           type="text"
           value="Lithuania"
         />
       </div>
       <div
-        aria-labelledby="downshift-5-label"
-        id="downshift-5-menu"
+        aria-labelledby="downshift-4-label"
+        id="downshift-4-menu"
         role="listbox"
       />
     </div>
@@ -242,7 +333,7 @@ exports[`Autocomplete static behavior render option text when passed \`value\` p
     <div
       aria-expanded="false"
       aria-haspopup="listbox"
-      aria-labelledby="downshift-3-label"
+      aria-labelledby="downshift-2-label"
       class="Autocomplete-root Autocomplete-rootAuto"
       role="combobox"
     >
@@ -265,112 +356,20 @@ exports[`Autocomplete static behavior render option text when passed \`value\` p
         </fieldset>
         <input
           aria-autocomplete="list"
-          aria-labelledby="downshift-3-label"
+          aria-labelledby="downshift-2-label"
           autocomplete="off"
           class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input"
-          id="downshift-3-input"
+          id="downshift-2-input"
           placeholder="Ukraine"
           type="text"
           value="Ukraine"
         />
       </div>
       <div
-        aria-labelledby="downshift-3-label"
-        id="downshift-3-menu"
+        aria-labelledby="downshift-2-label"
+        id="downshift-2-menu"
         role="listbox"
       />
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Autocomplete static behavior render options when start typing 1`] = `
-<div>
-  <div
-    class="Picasso-root"
-  >
-    <div
-      aria-expanded="true"
-      aria-haspopup="listbox"
-      aria-labelledby="downshift-1-label"
-      aria-owns="downshift-1-menu"
-      class="Autocomplete-root Autocomplete-rootAuto"
-      role="combobox"
-    >
-      <div
-        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root Input-root OutlinedInput-rootAuto"
-      >
-        <fieldset
-          aria-hidden="true"
-          class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
-          style="padding-left: 8px;"
-        >
-          <legend
-            class="PrivateNotchedOutline-legend"
-            style="width: 0.01px;"
-          >
-            <span>
-              ​
-            </span>
-          </legend>
-        </fieldset>
-        <input
-          aria-activedescendant="downshift-1-item-0"
-          aria-autocomplete="list"
-          aria-controls="downshift-1-menu"
-          aria-labelledby="downshift-1-label"
-          autocomplete="off"
-          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input"
-          id="downshift-1-input"
-          placeholder="Start typing here..."
-          type="text"
-          value="t"
-        />
-      </div>
-      <div
-        aria-labelledby="downshift-1-label"
-        id="downshift-1-menu"
-        role="listbox"
-      >
-        <ul
-          class="MuiList-root ScrollMenu-menu"
-          role="menu"
-          tabindex="-1"
-        >
-          <div
-            class="ScrollMenu-scrollView"
-          >
-            <li
-              aria-disabled="false"
-              aria-selected="true"
-              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
-              id="downshift-1-item-0"
-              role="option"
-              tabindex="-1"
-            >
-              <span
-                class="MenuItem-stringContent"
-              >
-                Croatia
-              </span>
-            </li>
-            <li
-              aria-disabled="false"
-              aria-selected="false"
-              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-              id="downshift-1-item-1"
-              role="option"
-              tabindex="-1"
-            >
-              <span
-                class="MenuItem-stringContent"
-              >
-                Lithuania
-              </span>
-            </li>
-          </div>
-        </ul>
-      </div>
     </div>
   </div>
 </div>
