@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React from 'react'
 import {
   render,
   fireEvent,
@@ -17,17 +17,14 @@ const options = [
   { text: 'Ukraine', value: 'UA' }
 ]
 
-const renderAutocomplete = (
-  children: ReactNode,
-  props: OmitInternalProps<Props>
-) => {
-  const { placeholder, options } = props
-
+function renderAutocomplete(props: OmitInternalProps<Props>) {
   return render(
     <Picasso loadFonts={false}>
-      <Autocomplete placeholder={placeholder} options={options}>
-        {children}
-      </Autocomplete>
+      <Autocomplete
+        placeholder={props.placeholder}
+        options={props.options}
+        renderOption={props.renderOption}
+      />
     </Picasso>
   )
 }
@@ -38,7 +35,7 @@ describe('Autocomplete', () => {
   let api: RenderResult
 
   beforeEach(() => {
-    api = renderAutocomplete(null, {
+    api = renderAutocomplete({
       placeholder: 'Start typing here...',
       options
     })
@@ -57,5 +54,20 @@ describe('Autocomplete', () => {
     const { container } = api
 
     expect(container).toMatchSnapshot()
+  })
+})
+
+describe('Autocomplete', () => {
+  test('renders options customly', async () => {
+    const api = renderAutocomplete({
+      placeholder: 'Start typing here...',
+      options,
+      // eslint-disable-next-line react/display-name
+      renderOption: () => <div>Custom renderer</div>
+    })
+    const input = api.getByPlaceholderText('Start typing here...')
+
+    fireEvent.change(input, { target: { value: 't' } })
+    expect(api.container.textContent).toContain('Custom renderer')
   })
 })

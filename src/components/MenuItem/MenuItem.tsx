@@ -10,7 +10,6 @@ import { withStyles } from '@material-ui/core/styles'
 import MUIMenuItem, { MenuItemProps } from '@material-ui/core/MenuItem'
 
 import { StandardProps, ButtonOrAnchorProps } from '../Picasso'
-import Typography from '../Typography'
 import styles from './styles'
 
 export type VariantType = 'light' | 'dark'
@@ -59,9 +58,9 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
 
   if (typeof children === 'string') {
     children = (
-      <Typography className={stringContent} style={style} color='inherit'>
+      <span className={stringContent} style={style}>
         {children}
-      </Typography>
+      </span>
     )
   }
 

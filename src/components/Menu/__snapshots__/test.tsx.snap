@@ -16,11 +16,11 @@ exports[`Menu default render 1`] = `
         role="menuitem"
         tabindex="-1"
       >
-        <p
-          class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+        <span
+          class="MenuItem-stringContent"
         >
           Item 1
-        </p>
+        </span>
       </li>
       <li
         aria-disabled="false"
@@ -28,11 +28,11 @@ exports[`Menu default render 1`] = `
         role="menuitem"
         tabindex="-1"
       >
-        <p
-          class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+        <span
+          class="MenuItem-stringContent"
         >
           Item 2
-        </p>
+        </span>
       </li>
       <li
         aria-disabled="false"
@@ -40,11 +40,11 @@ exports[`Menu default render 1`] = `
         role="menuitem"
         tabindex="-1"
       >
-        <p
-          class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+        <span
+          class="MenuItem-stringContent"
         >
           Item 3
-        </p>
+        </span>
       </li>
     </ul>
   </div>
