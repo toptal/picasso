@@ -11,6 +11,7 @@ import React, {
   useContext,
   useState
 } from 'react'
+import { ModalProvider } from 'react-modal-hook'
 
 import CssBaseline from '../CssBaseline'
 import {
@@ -128,7 +129,9 @@ const Picasso: FunctionComponent<PicassoProps> = ({
     {loadFonts && <FontsLoader />}
     {reset && <CssBaseline />}
     <PicassoGlobalStylesProvider>
-      <NotificationsProvider>{children}</NotificationsProvider>
+      <ModalProvider>
+        <NotificationsProvider>{children}</NotificationsProvider>
+      </ModalProvider>
     </PicassoGlobalStylesProvider>
   </MuiThemeProvider>
 )
