@@ -1,3 +1,10 @@
+# [3.10.0](https://github.com/toptal/picasso/compare/v3.9.0...v3.10.0) (2019-09-19)
+
+
+### Features
+
+* **Modal:** add useModal hook ([#694](https://github.com/toptal/picasso/issues/694)) ([bf2270f](https://github.com/toptal/picasso/commit/bf2270f))
+
 # [3.9.0](https://github.com/toptal/picasso/compare/v3.8.7...v3.9.0) (2019-09-19)
 
 

@@ -12,6 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const styles_1 = require("@material-ui/core/styles");
 const react_1 = __importStar(require("react"));
+const react_modal_hook_1 = require("react-modal-hook");
 const CssBaseline_1 = __importDefault(require("../CssBaseline"));
 const config_1 = require("./config");
 const FontsLoader_1 = __importDefault(require("./FontsLoader"));
@@ -77,7 +78,8 @@ const Picasso = ({ loadFonts, reset, children }) => (react_1.default.createEleme
     loadFonts && react_1.default.createElement(FontsLoader_1.default, null),
     reset && react_1.default.createElement(CssBaseline_1.default, null),
     react_1.default.createElement(PicassoGlobalStylesProvider, null,
-        react_1.default.createElement(NotificationsProvider_1.default, null, children))));
+        react_1.default.createElement(react_modal_hook_1.ModalProvider, null,
+            react_1.default.createElement(NotificationsProvider_1.default, null, children)))));
 Picasso.defaultProps = {
     loadFonts: true,
     reset: true
