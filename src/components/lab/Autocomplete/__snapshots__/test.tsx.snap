@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Autocomplete dynamic behavior render options focus 1`] = `
+exports[`Autocomplete dynamic behavior render options focus without preselection 1`] = `
 <div>
   <div
     class="Picasso-root"

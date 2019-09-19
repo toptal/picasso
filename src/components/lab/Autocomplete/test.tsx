@@ -39,6 +39,12 @@ const renderAutocomplete = (
 
 afterEach(cleanup)
 
+function getDropdownOptionsAsArray(
+  container: HTMLElement
+): Array<HTMLLIElement> {
+  return Array.from(container.querySelectorAll('ul li'))
+}
+
 describe('Autocomplete', () => {
   let api: RenderResult
 
@@ -94,15 +100,15 @@ describe('Autocomplete', () => {
 
       const { container } = api
 
-      const filteredOptions = Array.from(
-        container.querySelectorAll('ul li p')
-      ).map(p => p.innerHTML)
+      const filteredOptions = getDropdownOptionsAsArray(container).map(
+        li => li.textContent
+      )
 
       expect(filteredOptions).toEqual(['Croatia', 'Lithuania'])
       expect(container).toMatchSnapshot()
     })
 
-    test('render options focus', () => {
+    test('render options focus without preselection', () => {
       const { container } = renderAutocomplete(null, {
         options
       })
@@ -111,6 +117,9 @@ describe('Autocomplete', () => {
 
       fireEvent.focus(input)
 
+      const firstOption = getDropdownOptionsAsArray(container)[0]
+
+      expect(firstOption.classList.contains('Mui-selected')).toBe(true)
       expect(container).toMatchSnapshot()
     })
   })
