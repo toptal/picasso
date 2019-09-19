@@ -41,7 +41,7 @@ const getItemText = (item) => (item && item.text) || EMPTY_INPUT_VALUE;
 const getItemValue = (item) => (item && (item.value || item.text)) || null;
 const isSelected = (item, selectedItem) => getItemValue(item) === getItemValue(selectedItem);
 exports.Autocomplete = react_1.forwardRef(function Autocomplete(_a, ref) {
-    var { classes, className, defaultInputValue, inputValue: inputValueProp, onChange: onInputChange, defaultValue, value, onSelect, loading, minLength, placeholder, noOptionsText, options, style, width, allowAny, onKeyDown, inputComponent } = _a, rest = __rest(_a, ["classes", "className", "defaultInputValue", "inputValue", "onChange", "defaultValue", "value", "onSelect", "loading", "minLength", "placeholder", "noOptionsText", "options", "style", "width", "allowAny", "onKeyDown", "inputComponent"]);
+    var { classes, className, defaultInputValue, inputValue: inputValueProp, onChange: onInputChange, defaultValue, value, onSelect, loading, minLength, placeholder, noOptionsText, options, style, width, allowAny, onKeyDown, inputComponent, renderOption } = _a, rest = __rest(_a, ["classes", "className", "defaultInputValue", "inputValue", "onChange", "defaultValue", "value", "onSelect", "loading", "minLength", "placeholder", "noOptionsText", "options", "style", "width", "allowAny", "onKeyDown", "inputComponent", "renderOption"]);
     const [selectedItemValue, setSelectedItemValue] = use_controlled_and_uncontrolled_state_1.default(defaultValue, value, onSelect);
     const selectedItem = selectedItemValue === null
         ? null
@@ -91,7 +91,9 @@ exports.Autocomplete = react_1.forwardRef(function Autocomplete(_a, ref) {
     return (react_1.default.createElement(downshift_1.default, { inputValue: inputValue, onInputValueChange: handleInputValueChange, selectedItem: selectedItem, onChange: handleSelectItem, itemToString: downshiftItemToString, stateReducer: downshiftStateReducer }, ({ getMenuProps, getInputProps, getItemProps, isOpen, highlightedIndex, selectItem, setState }) => {
         const hasMatchingOptions = matchingOptions.length > 0;
         const canOpen = isOpen && isMatchingMinLength(inputValue, minLength) && !loading;
-        const optionsMenu = (react_1.default.createElement(ScrollMenu_1.default, { selectedIndex: highlightedIndex }, hasMatchingOptions ? (matchingOptions.map((option, index) => (react_1.default.createElement(Menu_1.default.Item, Object.assign({ key: getItemValue(option), selected: highlightedIndex === index, disabled: isSelected(option, selectedItem) }, getItemProps({ item: option, index })), getItemText(option))))) : (react_1.default.createElement(Menu_1.default.Item, { disabled: true }, noOptionsText))));
+        const optionsMenu = (react_1.default.createElement(ScrollMenu_1.default, { selectedIndex: highlightedIndex }, hasMatchingOptions ? (matchingOptions.map((option, index) => (react_1.default.createElement(Menu_1.default.Item, Object.assign({ key: getItemValue(option), selected: highlightedIndex === index, disabled: isSelected(option, selectedItem) }, getItemProps({ item: option, index })), renderOption
+            ? renderOption(option, index)
+            : getItemText(option))))) : (react_1.default.createElement(Menu_1.default.Item, { disabled: true }, noOptionsText))));
         const handleFocusOrClick = () => {
             if (!isOpen) {
                 let newInputValue = inputValue;

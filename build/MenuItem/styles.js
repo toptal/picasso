@@ -6,7 +6,6 @@ Picasso_1.PicassoProvider.override(() => ({
     MuiMenuItem: {
         root: {
             boxSizing: 'border-box',
-            height: '2.25em',
             lineHeight: '1em',
             padding: 0,
             // to override MUI paddingTop and paddingBottom default values
