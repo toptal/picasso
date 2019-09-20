@@ -4,7 +4,7 @@ import styled from 'styled-components'
 // import Picasso, { Page, Container } from '@toptal/picasso'
 import { default as Picasso, Page, Container } from '@toptal/picasso'
 
-const Content = styled(Container)`
+const ContentContainer = styled(Container)`
   flex: 1;
 `
 
@@ -13,9 +13,9 @@ const App = () => (
     <Page>
       <Page.Header title='App Page' />
       <Page.Content>
-        <Content top={7} bottom={7} flex justifyContent='center'>
+        <ContentContainer top={7} bottom={7} flex justifyContent='center'>
           Your application goes here
-        </Content>
+        </ContentContainer>
       </Page.Content>
       <Page.Footer />
     </Page>

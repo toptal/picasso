@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Page, Container, Menu, Typography, Sidebar } from '@toptal/picasso'
 import { Globe16, Profile16, PortfolioDesigner16 } from '@toptal/picasso/Icon'
 
-const StyledMainContent = styled(Container)`
+const StyledMainContentContainer = styled(Container)`
   flex: 1;
 `
 
@@ -45,7 +45,12 @@ const RightContent = () => (
 )
 
 const Content = () => (
-  <StyledMainContent top='small' bottom='small' left='small' right='small'>
+  <StyledMainContentContainer
+    top='small'
+    bottom='small'
+    left='small'
+    right='small'
+  >
     <Typography align='center' variant='heading' size='large'>
       Default example
     </Typography>
@@ -58,7 +63,7 @@ const Content = () => (
       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
       est laborum.
     </p>
-  </StyledMainContent>
+  </StyledMainContentContainer>
 )
 
 export default PageDefaultExample
