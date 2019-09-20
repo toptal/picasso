@@ -1,4 +1,4 @@
-@Library('globalLibrary@inf-add-function-to-match-pr-comment') _
+@Library('globalLibrary@master') _
 
 ghHelper = new helpers.GithubNotifyHelper()
 helper = new helpers.Helpers()
@@ -69,7 +69,7 @@ pipeline {
     stage('Danger checks') {
       when {
         expression {
-          ghprbMatchesComment(/danger/)
+          ghprbMatchesComment(/danger|all/)
         }
       }
       steps {
@@ -92,7 +92,7 @@ pipeline {
     stage('Deploy documentation') {
       when {
         expression {
-          ghprbMatchesComment(/deploy:documentation/)
+          ghprbMatchesComment(/deploy:documentation|all/)
         }
       }
       steps {
@@ -117,7 +117,7 @@ pipeline {
         stage('Run linter') {
           when {
             expression {
-              ghprbMatchesComment(/lint/)
+              ghprbMatchesComment(/lint|all/)
             }
           }
 
@@ -148,7 +148,7 @@ pipeline {
         stage('Run jest') {
           when {
             expression {
-              ghprbMatchesComment(/test/)
+              ghprbMatchesComment(/test|all/)
             }
           }
 
@@ -179,7 +179,7 @@ pipeline {
         stage('Check build') {
           when {
             expression {
-              ghprbMatchesComment(/build/)
+              ghprbMatchesComment(/build|all/)
             }
           }
 
@@ -213,7 +213,7 @@ pipeline {
     stage('Run visual tests') {
       when {
         expression {
-          ghprbMatchesComment(/test:visual/)
+          ghprbMatchesComment(/test:visual|all/)
         }
       }
 
