@@ -19,5 +19,8 @@ export default ({ layout }: Theme) =>
     },
     fullWidth: {
       maxWidth: '100%'
+    },
+    flex: {
+      display: 'flex'
     }
   })

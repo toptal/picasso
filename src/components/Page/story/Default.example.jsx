@@ -3,19 +3,17 @@ import styled from 'styled-components'
 import { Page, Container, Menu, Typography, Sidebar } from '@toptal/picasso'
 import { Globe16, Profile16, PortfolioDesigner16 } from '@toptal/picasso/Icon'
 
-const StyledContentContainer = styled(Container)`
-  height: 100%;
+const StyledMainContentContainer = styled(Container)`
+  flex: 1;
 `
 
 const PageDefaultExample = () => (
   <div style={{ height: '30rem' }}>
     <Page>
       <Page.Header rightContent={<RightContent />} title='Default example' />
-      <Page.Content>
-        <StyledContentContainer flex>
-          <SidebarMenu />
-          <Content />
-        </StyledContentContainer>
+      <Page.Content flex>
+        <SidebarMenu />
+        <Content />
       </Page.Content>
       <Page.Footer />
     </Page>
@@ -47,7 +45,12 @@ const RightContent = () => (
 )
 
 const Content = () => (
-  <Container top='small' bottom='small' left='small' right='small'>
+  <StyledMainContentContainer
+    top='small'
+    bottom='small'
+    left='small'
+    right='small'
+  >
     <Typography align='center' variant='heading' size='large'>
       Default example
     </Typography>
@@ -60,7 +63,7 @@ const Content = () => (
       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
       est laborum.
     </p>
-  </Container>
+  </StyledMainContentContainer>
 )
 
 export default PageDefaultExample
