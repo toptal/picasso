@@ -1,3 +1,10 @@
+## [3.11.2](https://github.com/toptal/picasso/compare/v3.11.1...v3.11.2) (2019-09-20)
+
+
+### Bug Fixes
+
+* **PageHeader:** title optional prop ([#704](https://github.com/toptal/picasso/issues/704)) ([98d0b06](https://github.com/toptal/picasso/commit/98d0b06))
+
 ## [3.11.1](https://github.com/toptal/picasso/compare/v3.11.0...v3.11.1) (2019-09-20)
 
 

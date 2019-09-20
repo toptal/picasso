@@ -3,7 +3,7 @@ import { StandardProps } from '../Picasso';
 declare type VariantType = 'dark' | 'light';
 export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
     /** Title which is displayed along the `Logo` */
-    title: string;
+    title?: string;
     /** Link component to wrap `Logo`  */
     logoLink?: ReactElement;
     /** Content for the right side of the `Header`  */
