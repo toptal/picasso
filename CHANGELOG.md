@@ -1,3 +1,10 @@
+## [3.11.1](https://github.com/toptal/picasso/compare/v3.11.0...v3.11.1) (2019-09-20)
+
+
+### Bug Fixes
+
+* **Page:** add flex to the Page.Content to simplify page layout ([#676](https://github.com/toptal/picasso/issues/676)) ([ddefacb](https://github.com/toptal/picasso/commit/ddefacb))
+
 # [3.11.0](https://github.com/toptal/picasso/compare/v3.10.1...v3.11.0) (2019-09-19)
 
 

@@ -18,6 +18,9 @@ exports.default = ({ layout }) => styles_1.createStyles({
     },
     fullWidth: {
         maxWidth: '100%'
+    },
+    flex: {
+        display: 'flex'
     }
 });
 //# sourceMappingURL=styles.js.map
