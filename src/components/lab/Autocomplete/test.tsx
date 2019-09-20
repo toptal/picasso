@@ -3,7 +3,8 @@ import {
   render,
   fireEvent,
   cleanup,
-  RenderResult
+  RenderResult,
+  waitForDomChange
 } from '@testing-library/react'
 
 import Picasso, { OmitInternalProps } from '../../Picasso'
@@ -21,7 +22,7 @@ const renderAutocomplete = (
   children: ReactNode,
   props: OmitInternalProps<Props>
 ) => {
-  const { placeholder, options, value, defaultValue } = props
+  const { placeholder, options, value, defaultValue, allowAny } = props
 
   return render(
     <Picasso loadFonts={false}>
@@ -30,6 +31,7 @@ const renderAutocomplete = (
         options={options}
         value={value}
         defaultValue={defaultValue}
+        allowAny={allowAny}
       >
         {children}
       </Autocomplete>
@@ -164,7 +166,30 @@ describe('Autocomplete', () => {
 
       fireEvent.click(selectedOption)
 
+      // if text is empty and an option is selected, text turns into selected option text
       expect(input.value).toEqual('Slovakia')
+
+      expect(container).toMatchSnapshot()
+    })
+
+    test('on blur with preselected option and random text entered when allowAny=true', async () => {
+      const { container } = renderAutocomplete(null, {
+        placeholder: 'Placeholder text',
+        options,
+        defaultValue: 'HR',
+        allowAny: true
+      })
+
+      const input = container.querySelector('input') as HTMLInputElement
+
+      fireEvent.change(input, { target: { value: 'random text' } })
+
+      fireEvent.blur(input)
+
+      await waitForDomChange({ container })
+
+      // If allowAny=true: text stays, and selection (if existed) is cleared
+      expect(input.placeholder).toEqual('Placeholder text')
 
       expect(container).toMatchSnapshot()
     })
