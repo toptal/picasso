@@ -1,3 +1,10 @@
+## [3.11.4](https://github.com/toptal/picasso/compare/v3.11.3...v3.11.4) (2019-09-23)
+
+
+### Bug Fixes
+
+* **Picasso:** fix usePicassoRoot hook ([#710](https://github.com/toptal/picasso/issues/710)) ([2992ffc](https://github.com/toptal/picasso/commit/2992ffc))
+
 ## [3.11.3](https://github.com/toptal/picasso/compare/v3.11.2...v3.11.3) (2019-09-23)
 
 
