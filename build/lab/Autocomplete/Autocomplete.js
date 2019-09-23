@@ -118,7 +118,9 @@ exports.Autocomplete = react_1.forwardRef(function Autocomplete(_a, ref) {
                     selectItem(null);
                 }
                 onKeyDown(event, inputValue);
-            }
+            },
+            // here we override the value returned from downshift, `off` by default
+            autoComplete: rest.autoComplete || 'off'
         });
         return (react_1.default.createElement("div", { className: classnames_1.default(classes.root, className, classes[`root${helpers_1.capitalize(width)}`]), style: style },
             react_1.default.createElement(InputComponent
