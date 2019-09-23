@@ -270,7 +270,9 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
                 selectItem(null)
               }
               onKeyDown!(event, inputValue)
-            }
+            },
+            // here we override the value returned from downshift, `off` by default
+            autoComplete: rest.autoComplete || 'off'
           })
 
           return (
