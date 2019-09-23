@@ -322,6 +322,44 @@ describe('Autocomplete', () => {
         expect(highlightedOption.classList.contains('Mui-selected')).toBe(true)
         expect(container).toMatchSnapshot()
       })
+
+      test('Enter', () => {
+        const { container } = renderAutocomplete(null, {
+          placeholder: 'Placeholder text',
+          options,
+          defaultValue: 'LU',
+          allowAny: false
+        })
+
+        const input = getInput(container)
+
+        fireEvent.focus(input)
+
+        fireEvent.keyDown(input, {
+          key: 'ArrowUp',
+          keyCode: 38,
+          which: 38
+        })
+
+        const highlightedOption = getDropdownOptionsAsArray(container).find(
+          li => li.textContent === 'Croatia'
+        ) as HTMLLIElement
+
+        expect(highlightedOption.classList.contains('Mui-selected')).toBe(true)
+        expect(input.value).toEqual('')
+        expect(input.placeholder).toEqual('Lithuania')
+
+        fireEvent.keyDown(input, {
+          key: 'Enter',
+          keyCode: 13,
+          which: 13
+        })
+
+        expect(input.value).toEqual('Croatia')
+        expect(input.placeholder).toEqual('Croatia')
+
+        expect(container).toMatchSnapshot()
+      })
     })
   })
 })
