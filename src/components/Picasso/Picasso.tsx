@@ -6,7 +6,7 @@ import {
 import React, {
   FunctionComponent,
   ReactNode,
-  createRef,
+  useRef,
   RefObject,
   useContext,
   useState
@@ -58,12 +58,11 @@ const picasso = {
 const PicassoProvider = new Provider(createMuiTheme(picasso))
 
 interface RootContextProps {
-  rootRef: RefObject<HTMLDivElement> | null
+  rootRef?: RefObject<HTMLDivElement>
   hasPageHeader: boolean
   setHasPageHeader: (value: boolean) => void
 }
 const RootContext = React.createContext<RootContextProps>({
-  rootRef: null,
   hasPageHeader: false,
   setHasPageHeader: () => {}
 })
@@ -92,7 +91,7 @@ const PicassoGlobalStylesProvider = withStyles(globalStyles, {
 })((props: PicassoGlobalStylesProviderProps) => {
   const { classes, children } = props
 
-  const rootRef = createRef<HTMLDivElement>()
+  const rootRef = useRef<HTMLDivElement>(null)
   const [contextValue, setContextValue] = useState({
     rootRef,
     hasPageHeader: false,
