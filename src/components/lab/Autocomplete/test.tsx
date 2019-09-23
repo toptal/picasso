@@ -47,6 +47,10 @@ function getDropdownOptionsAsArray(
   return Array.from(container.querySelectorAll('ul li'))
 }
 
+function getInput(container: HTMLElement): HTMLInputElement {
+  return container.querySelector('input') as HTMLInputElement
+}
+
 describe('Autocomplete', () => {
   let api: RenderResult
 
@@ -70,7 +74,7 @@ describe('Autocomplete', () => {
         value: 'UA'
       })
 
-      const input = container.querySelector('input') as HTMLInputElement
+      const input = getInput(container)
 
       expect(input.value).toEqual('Ukraine')
       expect(input.placeholder).toEqual('Ukraine')
@@ -84,7 +88,7 @@ describe('Autocomplete', () => {
         defaultValue: 'LU'
       })
 
-      const input = container.querySelector('input') as HTMLInputElement
+      const input = getInput(container)
 
       expect(input.value).toEqual('Lithuania')
       expect(input.placeholder).toEqual('Lithuania')
@@ -110,88 +114,114 @@ describe('Autocomplete', () => {
       expect(container).toMatchSnapshot()
     })
 
-    test('on focus without preselection', () => {
-      const { container } = renderAutocomplete(null, {
-        options
+    describe('on focus', () => {
+      test('without preselection', () => {
+        const { container } = renderAutocomplete(null, {
+          options
+        })
+
+        const input = getInput(container)
+
+        fireEvent.focus(input)
+
+        const firstOption = getDropdownOptionsAsArray(container)[0]
+        // first option is highlighted
+
+        expect(firstOption.classList.contains('Mui-selected')).toBe(true)
+        expect(container).toMatchSnapshot()
       })
 
-      const input = container.querySelector('input') as HTMLInputElement
+      test('with preselection', () => {
+        const { container } = renderAutocomplete(null, {
+          options,
+          value: 'BY'
+        })
 
-      fireEvent.focus(input)
+        const input = getInput(container)
 
-      const firstOption = getDropdownOptionsAsArray(container)[0]
-      // first option is highlighted
+        fireEvent.focus(input)
 
-      expect(firstOption.classList.contains('Mui-selected')).toBe(true)
-      expect(container).toMatchSnapshot()
+        const selectedOption = getDropdownOptionsAsArray(container).find(
+          li => li.textContent === 'Belarus'
+        ) as HTMLLIElement
+
+        // text clears, placeholder shows selected option text.
+        expect(input.placeholder).toEqual('Belarus')
+        expect(input.value).toEqual('')
+
+        // selected option is highlighted and disabled
+        expect(selectedOption.classList.contains('Mui-selected')).toBe(true)
+        expect(selectedOption.classList.contains('Mui-disabled')).toBe(true)
+
+        expect(container).toMatchSnapshot()
+      })
     })
 
-    test('on focus with preselection', () => {
-      const { container } = renderAutocomplete(null, {
-        options,
-        value: 'BY'
+    describe('on blur', () => {
+      test('on select option', () => {
+        const { container } = renderAutocomplete(null, {
+          options
+        })
+
+        const input = getInput(container)
+
+        fireEvent.focus(input)
+
+        const selectedOption = getDropdownOptionsAsArray(container).find(
+          li => li.textContent === 'Slovakia'
+        ) as HTMLLIElement
+
+        fireEvent.click(selectedOption)
+
+        // if text is empty and an option is selected, text turns into selected option text
+        expect(input.value).toEqual('Slovakia')
+
+        expect(container).toMatchSnapshot()
       })
 
-      const input = container.querySelector('input') as HTMLInputElement
+      test('preselected option and random text entered when allowAny=true', async () => {
+        const { container } = renderAutocomplete(null, {
+          placeholder: 'Placeholder text',
+          options,
+          defaultValue: 'HR',
+          allowAny: true
+        })
 
-      fireEvent.focus(input)
+        const input = getInput(container)
 
-      const selectedOption = getDropdownOptionsAsArray(container).find(
-        li => li.textContent === 'Belarus'
-      ) as HTMLLIElement
+        fireEvent.change(input, { target: { value: 'random text' } })
 
-      // text clears, placeholder shows selected option text.
-      expect(input.placeholder).toEqual('Belarus')
-      expect(input.value).toEqual('')
+        fireEvent.blur(input)
 
-      // selected option is highlighted and disabled
-      expect(selectedOption.classList.contains('Mui-selected')).toBe(true)
-      expect(selectedOption.classList.contains('Mui-disabled')).toBe(true)
+        await waitForDomChange({ container })
 
-      expect(container).toMatchSnapshot()
-    })
+        // If allowAny=true: text stays, and selection (if existed) is cleared
+        expect(input.placeholder).toEqual('Placeholder text')
 
-    test('on select option', () => {
-      const { container } = renderAutocomplete(null, {
-        options
+        expect(container).toMatchSnapshot()
       })
 
-      const input = container.querySelector('input') as HTMLInputElement
+      test('preselected option and random text entered when allowAny=false', async () => {
+        const { container } = renderAutocomplete(null, {
+          placeholder: 'Placeholder text',
+          options,
+          defaultValue: 'HR',
+          allowAny: false
+        })
 
-      fireEvent.focus(input)
+        const input = getInput(container)
 
-      const selectedOption = getDropdownOptionsAsArray(container).find(
-        li => li.textContent === 'Slovakia'
-      ) as HTMLLIElement
+        fireEvent.change(input, { target: { value: 'random text' } })
 
-      fireEvent.click(selectedOption)
+        fireEvent.blur(input)
 
-      // if text is empty and an option is selected, text turns into selected option text
-      expect(input.value).toEqual('Slovakia')
+        await waitForDomChange({ container })
 
-      expect(container).toMatchSnapshot()
-    })
+        // If allowAny=false: text turns into selected option text, or empty is no selection
+        expect(input.placeholder).toEqual('Croatia')
 
-    test('on blur with preselected option and random text entered when allowAny=true', async () => {
-      const { container } = renderAutocomplete(null, {
-        placeholder: 'Placeholder text',
-        options,
-        defaultValue: 'HR',
-        allowAny: true
+        expect(container).toMatchSnapshot()
       })
-
-      const input = container.querySelector('input') as HTMLInputElement
-
-      fireEvent.change(input, { target: { value: 'random text' } })
-
-      fireEvent.blur(input)
-
-      await waitForDomChange({ container })
-
-      // If allowAny=true: text stays, and selection (if existed) is cleared
-      expect(input.placeholder).toEqual('Placeholder text')
-
-      expect(container).toMatchSnapshot()
     })
   })
 })
