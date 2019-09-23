@@ -1,3 +1,10 @@
+## [3.11.3](https://github.com/toptal/picasso/compare/v3.11.2...v3.11.3) (2019-09-23)
+
+
+### Bug Fixes
+
+* **Autocomplete:** allow disabling default chrome autocomplete ([#706](https://github.com/toptal/picasso/issues/706)) ([05ed206](https://github.com/toptal/picasso/commit/05ed206))
+
 ## [3.11.2](https://github.com/toptal/picasso/compare/v3.11.1...v3.11.2) (2019-09-20)
 
 
