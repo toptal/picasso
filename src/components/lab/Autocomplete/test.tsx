@@ -223,5 +223,29 @@ describe('Autocomplete', () => {
         expect(container).toMatchSnapshot()
       })
     })
+
+    test('on "Esc" key pressed', async () => {
+      const { container } = renderAutocomplete(null, {
+        placeholder: 'Placeholder text',
+        options,
+        defaultValue: 'HR',
+        allowAny: false
+      })
+
+      const input = getInput(container)
+
+      fireEvent.change(input, { target: { value: 'random text' } })
+
+      fireEvent.keyDown(input, {
+        key: 'Escape',
+        keyCode: 27,
+        which: 27
+      })
+
+      // await waitForDomChange({ container })
+
+      // text and selection are cleared. Placeholder is displayed.
+      expect(container).toMatchSnapshot()
+    })
   })
 })
