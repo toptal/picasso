@@ -46,7 +46,6 @@ const picasso = {
 const PicassoProvider = new PicassoProvider_1.default(styles_1.createMuiTheme(picasso));
 exports.PicassoProvider = PicassoProvider;
 const RootContext = react_1.default.createContext({
-    rootRef: null,
     hasPageHeader: false,
     setHasPageHeader: () => { }
 });
@@ -65,7 +64,7 @@ const PicassoGlobalStylesProvider = styles_1.withStyles(styles_2.default, {
     name: 'Picasso'
 })((props) => {
     const { classes, children } = props;
-    const rootRef = react_1.createRef();
+    const rootRef = react_1.useRef(null);
     const [contextValue, setContextValue] = react_1.useState({
         rootRef,
         hasPageHeader: false,
