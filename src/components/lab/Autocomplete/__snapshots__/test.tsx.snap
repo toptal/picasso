@@ -1,5 +1,55 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Autocomplete dynamic behavior On "Backspace" key pressed with empty text 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      aria-expanded="false"
+      aria-haspopup="listbox"
+      aria-labelledby="downshift-19-label"
+      class="Autocomplete-root Autocomplete-rootAuto"
+      role="combobox"
+    >
+      <div
+        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root Input-root OutlinedInput-rootAuto"
+      >
+        <fieldset
+          aria-hidden="true"
+          class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+          style="padding-left: 8px;"
+        >
+          <legend
+            class="PrivateNotchedOutline-legend"
+            style="width: 0.01px;"
+          >
+            <span>
+              ​
+            </span>
+          </legend>
+        </fieldset>
+        <input
+          aria-autocomplete="list"
+          aria-labelledby="downshift-19-label"
+          autocomplete="off"
+          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input"
+          id="downshift-19-input"
+          placeholder="Placeholder text"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        aria-labelledby="downshift-19-label"
+        id="downshift-19-menu"
+        role="listbox"
+      />
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Autocomplete dynamic behavior on "Esc" key pressed 1`] = `
 <div>
   <div

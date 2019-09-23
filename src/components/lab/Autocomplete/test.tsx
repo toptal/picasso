@@ -242,9 +242,31 @@ describe('Autocomplete', () => {
         which: 27
       })
 
-      // await waitForDomChange({ container })
-
       // text and selection are cleared. Placeholder is displayed.
+      expect(container).toMatchSnapshot()
+    })
+
+    test('On "Backspace" key pressed with empty text', async () => {
+      const { container } = renderAutocomplete(null, {
+        placeholder: 'Placeholder text',
+        options,
+        defaultValue: 'HR',
+        allowAny: false
+      })
+
+      const input = getInput(container)
+
+      fireEvent.change(input, { target: { value: '' } })
+
+      fireEvent.keyDown(input, {
+        key: 'Backspace',
+        keyCode: 8,
+        which: 8
+      })
+
+      // If there was a selection, it is cleared and placeholder is displayed.
+      expect(input.value).toEqual('')
+      expect(input.placeholder).toEqual('Placeholder text')
       expect(container).toMatchSnapshot()
     })
   })
