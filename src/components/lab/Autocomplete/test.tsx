@@ -269,5 +269,59 @@ describe('Autocomplete', () => {
       expect(input.placeholder).toEqual('Placeholder text')
       expect(container).toMatchSnapshot()
     })
+
+    describe('On "arrow up/down" key press', () => {
+      test('down', () => {
+        const { container } = renderAutocomplete(null, {
+          placeholder: 'Placeholder text',
+          options,
+          defaultValue: 'LU',
+          allowAny: false
+        })
+
+        const input = getInput(container)
+
+        fireEvent.focus(input)
+
+        fireEvent.keyDown(input, {
+          key: 'ArrowDown',
+          keyCode: 40,
+          which: 40
+        })
+
+        const highlightedOption = getDropdownOptionsAsArray(container).find(
+          li => li.textContent === 'Slovakia'
+        ) as HTMLLIElement
+
+        expect(highlightedOption.classList.contains('Mui-selected')).toBe(true)
+        expect(container).toMatchSnapshot()
+      })
+
+      test('up', () => {
+        const { container } = renderAutocomplete(null, {
+          placeholder: 'Placeholder text',
+          options,
+          defaultValue: 'LU',
+          allowAny: false
+        })
+
+        const input = getInput(container)
+
+        fireEvent.focus(input)
+
+        fireEvent.keyDown(input, {
+          key: 'ArrowUp',
+          keyCode: 38,
+          which: 38
+        })
+
+        const highlightedOption = getDropdownOptionsAsArray(container).find(
+          li => li.textContent === 'Croatia'
+        ) as HTMLLIElement
+
+        expect(highlightedOption.classList.contains('Mui-selected')).toBe(true)
+        expect(container).toMatchSnapshot()
+      })
+    })
   })
 })

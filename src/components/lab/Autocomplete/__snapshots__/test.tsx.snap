@@ -50,6 +50,274 @@ exports[`Autocomplete dynamic behavior On "Backspace" key pressed with empty tex
 </div>
 `;
 
+exports[`Autocomplete dynamic behavior On "arrow up/down" key press down 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      aria-expanded="true"
+      aria-haspopup="listbox"
+      aria-labelledby="downshift-21-label"
+      aria-owns="downshift-21-menu"
+      class="Autocomplete-root Autocomplete-rootAuto"
+      role="combobox"
+    >
+      <div
+        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root Input-root OutlinedInput-rootAuto"
+      >
+        <fieldset
+          aria-hidden="true"
+          class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+          style="padding-left: 8px;"
+        >
+          <legend
+            class="PrivateNotchedOutline-legend"
+            style="width: 0.01px;"
+          >
+            <span>
+              ​
+            </span>
+          </legend>
+        </fieldset>
+        <input
+          aria-activedescendant="downshift-21-item-3"
+          aria-autocomplete="list"
+          aria-controls="downshift-21-menu"
+          aria-labelledby="downshift-21-label"
+          autocomplete="off"
+          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input"
+          id="downshift-21-input"
+          placeholder="Lithuania"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        aria-labelledby="downshift-21-label"
+        id="downshift-21-menu"
+        role="listbox"
+      >
+        <ul
+          class="MuiList-root ScrollMenu-menu"
+          role="menu"
+          tabindex="-1"
+        >
+          <div
+            class="ScrollMenu-scrollView"
+          >
+            <li
+              aria-disabled="false"
+              aria-selected="false"
+              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+              id="downshift-21-item-0"
+              role="option"
+              tabindex="-1"
+            >
+              <p
+                class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+              >
+                Belarus
+              </p>
+            </li>
+            <li
+              aria-disabled="false"
+              aria-selected="false"
+              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+              id="downshift-21-item-1"
+              role="option"
+              tabindex="-1"
+            >
+              <p
+                class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+              >
+                Croatia
+              </p>
+            </li>
+            <li
+              aria-disabled="true"
+              aria-selected="false"
+              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters Mui-disabled MuiListItem-button Mui-disabled"
+              id="downshift-21-item-2"
+              role="option"
+              tabindex="-1"
+            >
+              <p
+                class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+              >
+                Lithuania
+              </p>
+            </li>
+            <li
+              aria-disabled="false"
+              aria-selected="true"
+              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+              id="downshift-21-item-3"
+              role="option"
+              tabindex="-1"
+            >
+              <p
+                class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+              >
+                Slovakia
+              </p>
+            </li>
+            <li
+              aria-disabled="false"
+              aria-selected="false"
+              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+              id="downshift-21-item-4"
+              role="option"
+              tabindex="-1"
+            >
+              <p
+                class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+              >
+                Ukraine
+              </p>
+            </li>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Autocomplete dynamic behavior On "arrow up/down" key press up 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      aria-expanded="true"
+      aria-haspopup="listbox"
+      aria-labelledby="downshift-23-label"
+      aria-owns="downshift-23-menu"
+      class="Autocomplete-root Autocomplete-rootAuto"
+      role="combobox"
+    >
+      <div
+        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root Input-root OutlinedInput-rootAuto"
+      >
+        <fieldset
+          aria-hidden="true"
+          class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+          style="padding-left: 8px;"
+        >
+          <legend
+            class="PrivateNotchedOutline-legend"
+            style="width: 0.01px;"
+          >
+            <span>
+              ​
+            </span>
+          </legend>
+        </fieldset>
+        <input
+          aria-activedescendant="downshift-23-item-1"
+          aria-autocomplete="list"
+          aria-controls="downshift-23-menu"
+          aria-labelledby="downshift-23-label"
+          autocomplete="off"
+          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input"
+          id="downshift-23-input"
+          placeholder="Lithuania"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        aria-labelledby="downshift-23-label"
+        id="downshift-23-menu"
+        role="listbox"
+      >
+        <ul
+          class="MuiList-root ScrollMenu-menu"
+          role="menu"
+          tabindex="-1"
+        >
+          <div
+            class="ScrollMenu-scrollView"
+          >
+            <li
+              aria-disabled="false"
+              aria-selected="false"
+              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+              id="downshift-23-item-0"
+              role="option"
+              tabindex="-1"
+            >
+              <p
+                class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+              >
+                Belarus
+              </p>
+            </li>
+            <li
+              aria-disabled="false"
+              aria-selected="true"
+              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+              id="downshift-23-item-1"
+              role="option"
+              tabindex="-1"
+            >
+              <p
+                class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+              >
+                Croatia
+              </p>
+            </li>
+            <li
+              aria-disabled="true"
+              aria-selected="false"
+              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters Mui-disabled MuiListItem-button Mui-disabled"
+              id="downshift-23-item-2"
+              role="option"
+              tabindex="-1"
+            >
+              <p
+                class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+              >
+                Lithuania
+              </p>
+            </li>
+            <li
+              aria-disabled="false"
+              aria-selected="false"
+              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+              id="downshift-23-item-3"
+              role="option"
+              tabindex="-1"
+            >
+              <p
+                class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+              >
+                Slovakia
+              </p>
+            </li>
+            <li
+              aria-disabled="false"
+              aria-selected="false"
+              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+              id="downshift-23-item-4"
+              role="option"
+              tabindex="-1"
+            >
+              <p
+                class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+              >
+                Ukraine
+              </p>
+            </li>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Autocomplete dynamic behavior on "Esc" key pressed 1`] = `
 <div>
   <div
