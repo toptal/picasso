@@ -39,7 +39,7 @@ const SmallScreenSidebarWrapper: FunctionComponent<
     <Dropdown
       content={children}
       className={classes.responsiveWrapper}
-      offset={{ top: 'xsmall' }}
+      offset={{ top: 0.4 }}
       onOpen={handleShowSidebar}
       onClose={handleHideSidebar}
     >
