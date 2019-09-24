@@ -41,6 +41,15 @@ const renderAutocomplete = (
 
 afterEach(cleanup)
 
+function getDropdownOptionByText(
+  container: HTMLElement,
+  text: string
+): HTMLLIElement {
+  return getDropdownOptionsAsArray(container).find(
+    li => li.textContent === text
+  ) as HTMLLIElement
+}
+
 function getDropdownOptionsAsArray(
   container: HTMLElement
 ): Array<HTMLLIElement> {
@@ -357,6 +366,41 @@ describe('Autocomplete', () => {
 
         expect(input.value).toEqual('Croatia')
         expect(input.placeholder).toEqual('Croatia')
+
+        expect(container).toMatchSnapshot()
+      })
+
+      test('navigate after option selected', async () => {
+        const { container } = renderAutocomplete(null, {
+          placeholder: 'Placeholder text',
+          options,
+          allowAny: false
+        })
+
+        const input = getInput(container)
+
+        fireEvent.focus(input)
+        fireEvent.click(getDropdownOptionByText(container, 'Croatia'))
+        fireEvent.focus(input)
+        fireEvent.keyDown(input, {
+          key: 'ArrowUp',
+          keyCode: 38,
+          which: 38
+        })
+
+        // On option selected + immediately "arrow up/down" key press (no "blur" in between)
+        // You can navigate the full list of options, and highlighted option was the one selected.
+        expect(getDropdownOptionsAsArray(container).length).toEqual(5)
+        expect(
+          getDropdownOptionByText(container, 'Croatia').classList.contains(
+            'Mui-disabled'
+          )
+        ).toBe(true)
+        expect(
+          getDropdownOptionByText(container, 'Belarus').classList.contains(
+            'Mui-selected'
+          )
+        ).toBe(true)
 
         expect(container).toMatchSnapshot()
       })
