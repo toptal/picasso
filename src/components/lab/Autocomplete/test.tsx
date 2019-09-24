@@ -22,7 +22,14 @@ const renderAutocomplete = (
   children: ReactNode,
   props: OmitInternalProps<Props>
 ) => {
-  const { placeholder, options, value, defaultValue, allowAny } = props
+  const {
+    placeholder,
+    options,
+    value,
+    defaultValue,
+    allowAny,
+    inputValue
+  } = props
 
   return render(
     <Picasso loadFonts={false}>
@@ -32,6 +39,7 @@ const renderAutocomplete = (
         value={value}
         defaultValue={defaultValue}
         allowAny={allowAny}
+        inputValue={inputValue}
       >
         {children}
       </Autocomplete>
@@ -422,6 +430,22 @@ describe('Autocomplete', () => {
 
       // if value prop is present, the corresponding option is always selected, no matter what you do on UI.
       expect(input.placeholder).toEqual('Croatia')
+      expect(container).toMatchSnapshot()
+    })
+
+    test('inputValue is set', async () => {
+      const { container } = renderAutocomplete(null, {
+        options,
+        inputValue: 'ia'
+      })
+
+      const input = getInput(container)
+
+      fireEvent.change(input, { target: { value: 'new text' } })
+      fireEvent.click(getDropdownOptionByText(container, 'Croatia'))
+
+      // the input text always matches it, no matter what you do on UI.
+      expect(input.value).toEqual('ia')
       expect(container).toMatchSnapshot()
     })
   })
