@@ -1,11 +1,9 @@
-import React, { ReactNode, HTMLAttributes } from 'react';
+import React, { HTMLAttributes } from 'react';
 import { StandardProps } from '../Picasso';
 declare type AlignType = 'inherit' | 'left' | 'center' | 'right' | 'justify';
 export interface Props extends StandardProps, HTMLAttributes<HTMLTableCellElement> {
     /** Set the text-align on the table cell content */
     align?: AlignType;
-    /** The table cell contents */
-    children: ReactNode;
     /** Indicates for how many columns the cell extends */
     colSpan?: number;
 }

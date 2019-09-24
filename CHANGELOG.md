@@ -1,3 +1,10 @@
+## [3.11.6](https://github.com/toptal/picasso/compare/v3.11.5...v3.11.6) (2019-09-24)
+
+
+### Bug Fixes
+
+* **TableCell:** children prop should be optional ([#687](https://github.com/toptal/picasso/issues/687)) ([a8f1729](https://github.com/toptal/picasso/commit/a8f1729))
+
 ## [3.11.5](https://github.com/toptal/picasso/compare/v3.11.4...v3.11.5) (2019-09-24)
 
 
