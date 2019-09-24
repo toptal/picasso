@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
+import React, { forwardRef, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUITableCell from '@material-ui/core/TableCell'
 
@@ -12,8 +12,6 @@ export interface Props
     HTMLAttributes<HTMLTableCellElement> {
   /** Set the text-align on the table cell content */
   align?: AlignType
-  /** The table cell contents */
-  children: ReactNode
   /** Indicates for how many columns the cell extends */
   colSpan?: number
 }
