@@ -1,3 +1,10 @@
+## [3.11.5](https://github.com/toptal/picasso/compare/v3.11.4...v3.11.5) (2019-09-24)
+
+
+### Bug Fixes
+
+* **MenuItem:** remove useless class that provides a warning ([#711](https://github.com/toptal/picasso/issues/711)) ([66e466b](https://github.com/toptal/picasso/commit/66e466b))
+
 ## [3.11.4](https://github.com/toptal/picasso/compare/v3.11.3...v3.11.4) (2019-09-23)
 
 
