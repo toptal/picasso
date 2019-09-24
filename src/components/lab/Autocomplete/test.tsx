@@ -28,7 +28,8 @@ const renderAutocomplete = (
     value,
     defaultValue,
     allowAny,
-    inputValue
+    inputValue,
+    minLength
   } = props
 
   return render(
@@ -40,6 +41,7 @@ const renderAutocomplete = (
         defaultValue={defaultValue}
         allowAny={allowAny}
         inputValue={inputValue}
+        minLength={minLength}
       >
         {children}
       </Autocomplete>
@@ -448,5 +450,28 @@ describe('Autocomplete', () => {
       expect(input.value).toEqual('ia')
       expect(container).toMatchSnapshot()
     })
+  })
+
+  test('minLength', async () => {
+    const { container } = renderAutocomplete(null, {
+      options,
+      defaultInputValue: 'a',
+      minLength: 1
+    })
+
+    const input = getInput(container)
+
+    fireEvent.click(input)
+
+    // @TODO: NB, this is actually a wrong behavior, different from how it works via browser... to be investigated
+    // this would be correct if minLength == 2, but this is not the case
+    expect(getDropdownOptionsAsArray(container).length).toEqual(0)
+
+    fireEvent.change(input, { target: { value: 'ia' } })
+    fireEvent.focus(input)
+
+    expect(getDropdownOptionsAsArray(container).length).toEqual(3) // Slovakia, Croatia, Lithuania
+
+    expect(container).toMatchSnapshot()
   })
 })
