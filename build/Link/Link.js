@@ -28,21 +28,29 @@ const styles_1 = require("@material-ui/styles");
 const styles_2 = __importDefault(require("./styles"));
 const useStyles = styles_1.makeStyles(styles_2.default);
 exports.Link = react_1.forwardRef(function Link(props, ref) {
-    const { href, underline, onClick, children, className, style, as, variant, tabIndex, invert } = props, rest = __rest(props
+    const { href, underline, onClick, children, className, color, style, as, variant, tabIndex, invert } = props, rest = __rest(props
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    , ["href", "underline", "onClick", "children", "className", "style", "as", "variant", "tabIndex", "invert"]);
+    , ["href", "underline", "onClick", "children", "className", "color", "style", "as", "variant", "tabIndex", "invert"]);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { color } = rest, nativeHTMLAttributes = __rest(rest, ["color"]);
+    const nativeHTMLAttributes = __rest(rest, []);
     const classes = useStyles(props);
+    let fontColor = color;
+    if (invert) {
+        fontColor = 'white';
+        // eslint-disable-next-line no-console
+        console.log('Please stop using `invert` it will be removed in next major release. Use color=white instead.');
+    }
     return (react_1.default.createElement(Link_1.default
     // eslint-disable-next-line react/jsx-props-no-spreading
     , Object.assign({}, nativeHTMLAttributes, { ref: ref, href: href, underline: underline, onClick: onClick, className: classnames_1.default(classes.root, className, {
             [classes.action]: variant === 'action',
-            [classes.invert]: invert
+            [classes.white]: fontColor === 'white',
+            [classes.black]: fontColor === 'black'
         }), style: style, component: as, tabIndex: tabIndex }), children));
 });
 exports.Link.defaultProps = {
     as: 'a',
+    color: 'blue',
     variant: 'default'
 };
 exports.Link.displayName = 'Link';

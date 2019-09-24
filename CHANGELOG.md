@@ -1,3 +1,10 @@
+# [3.12.0](https://github.com/toptal/picasso/compare/v3.11.6...v3.12.0) (2019-09-24)
+
+
+### Features
+
+* **link:** add color prop ([#700](https://github.com/toptal/picasso/issues/700)) ([827684a](https://github.com/toptal/picasso/commit/827684a))
+
 ## [3.11.6](https://github.com/toptal/picasso/compare/v3.11.5...v3.11.6) (2019-09-24)
 
 

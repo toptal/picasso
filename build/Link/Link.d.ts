@@ -2,6 +2,7 @@ import React, { ReactNode, ElementType, AnchorHTMLAttributes } from 'react';
 import { BaseProps, OverridableComponent } from '../Picasso';
 declare type UnderlineType = 'none' | 'hover' | 'always';
 declare type VariantType = 'action' | 'default';
+declare type ColorType = 'white' | 'blue' | 'black';
 export declare type Props = BaseProps & AnchorHTMLAttributes<HTMLAnchorElement> & {
     /** Content of the component */
     children?: ReactNode;
@@ -18,9 +19,10 @@ export declare type Props = BaseProps & AnchorHTMLAttributes<HTMLAnchorElement> 
     as?: ElementType;
     /** Either it's a regular link or an _action_ */
     variant?: VariantType;
+    /** Controls color of the link (ignored while used with invert prop) */
+    color?: ColorType;
     /** Indicates the order of receiving focus. If not set will not receive focus. */
     tabIndex?: number;
-    /** Uses white text color for dark background */
     invert?: boolean;
 };
 export declare const Link: OverridableComponent<Props>;
