@@ -1188,6 +1188,31 @@ exports[`Autocomplete dynamic behavior render options when start typing 1`] = `
 </div>
 `;
 
+exports[`Autocomplete inputComponent 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      aria-expanded="false"
+      aria-haspopup="listbox"
+      aria-labelledby="downshift-35-label"
+      class="Autocomplete-root Autocomplete-rootAuto"
+      role="combobox"
+    >
+      <input
+        placeholder="myCustomInputComponent"
+      />
+      <div
+        aria-labelledby="downshift-35-label"
+        id="downshift-35-menu"
+        role="listbox"
+      />
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Autocomplete minLength 1`] = `
 <div>
   <div
@@ -1283,6 +1308,81 @@ exports[`Autocomplete minLength 1`] = `
                 class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
               >
                 Slovakia
+              </p>
+            </li>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Autocomplete noOptionsText 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      aria-expanded="true"
+      aria-haspopup="listbox"
+      aria-labelledby="downshift-37-label"
+      aria-owns="downshift-37-menu"
+      class="Autocomplete-root Autocomplete-rootAuto"
+      role="combobox"
+    >
+      <div
+        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root Input-root OutlinedInput-rootAuto"
+      >
+        <fieldset
+          aria-hidden="true"
+          class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+          style="padding-left: 8px;"
+        >
+          <legend
+            class="PrivateNotchedOutline-legend"
+            style="width: 0.01px;"
+          >
+            <span>
+              ​
+            </span>
+          </legend>
+        </fieldset>
+        <input
+          aria-activedescendant="downshift-37-item-0"
+          aria-autocomplete="list"
+          aria-controls="downshift-37-menu"
+          aria-labelledby="downshift-37-label"
+          autocomplete="off"
+          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input"
+          id="downshift-37-input"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        aria-labelledby="downshift-37-label"
+        id="downshift-37-menu"
+        role="listbox"
+      >
+        <ul
+          class="MuiList-root ScrollMenu-menu"
+          role="menu"
+          tabindex="-1"
+        >
+          <div
+            class="ScrollMenu-scrollView"
+          >
+            <li
+              aria-disabled="true"
+              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters Mui-disabled MuiListItem-button Mui-disabled"
+              role="menuitem"
+              tabindex="-1"
+            >
+              <p
+                class="MuiTypography-root Typography-bodyInherit Typography-inherit MenuItem-stringContent MuiTypography-body1"
+              >
+                my no options text
               </p>
             </li>
           </div>

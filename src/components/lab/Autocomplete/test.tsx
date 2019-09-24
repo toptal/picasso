@@ -29,7 +29,9 @@ const renderAutocomplete = (
     defaultValue,
     allowAny,
     inputValue,
-    minLength
+    minLength,
+    inputComponent,
+    noOptionsText
   } = props
 
   return render(
@@ -42,6 +44,8 @@ const renderAutocomplete = (
         allowAny={allowAny}
         inputValue={inputValue}
         minLength={minLength}
+        inputComponent={inputComponent}
+        noOptionsText={noOptionsText}
       >
         {children}
       </Autocomplete>
@@ -471,6 +475,35 @@ describe('Autocomplete', () => {
     fireEvent.focus(input)
 
     expect(getDropdownOptionsAsArray(container).length).toEqual(3) // Slovakia, Croatia, Lithuania
+
+    expect(container).toMatchSnapshot()
+  })
+
+  test('inputComponent', async () => {
+    const { container, getByPlaceholderText } = renderAutocomplete(null, {
+      // eslint-disable-next-line react/display-name
+      inputComponent: () => <input placeholder='myCustomInputComponent' />
+    })
+
+    const input = getByPlaceholderText('myCustomInputComponent')
+
+    expect(input).not.toBe(null)
+
+    expect(container).toMatchSnapshot()
+  })
+
+  test('noOptionsText', async () => {
+    const { container, getByText } = renderAutocomplete(null, {
+      noOptionsText: 'my no options text',
+      defaultInputValue: 'non existing option'
+    })
+
+    const input = getInput(container)
+
+    fireEvent.focus(input)
+    const noExistingOptionsContainer = getByText('my no options text')
+
+    expect(noExistingOptionsContainer).not.toBe(null)
 
     expect(container).toMatchSnapshot()
   })
