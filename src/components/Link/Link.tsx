@@ -14,6 +14,7 @@ import styles from './styles'
 
 type UnderlineType = 'none' | 'hover' | 'always'
 type VariantType = 'action' | 'default'
+type ColorType = 'white' | 'blue' | 'black'
 
 const useStyles = makeStyles<Theme, Props>(styles)
 
@@ -34,10 +35,11 @@ export type Props = BaseProps &
     as?: ElementType
     /** Either it's a regular link or an _action_ */
     variant?: VariantType
+    /** Controls color of the link (ignored while used with invert prop) */
+    color?: ColorType
     /** Indicates the order of receiving focus. If not set will not receive focus. */
     tabIndex?: number
-    /** Uses white text color for dark background */
-    invert?: boolean
+    invert?: boolean // TODO: remove in v4
   }
 
 export const Link: OverridableComponent<Props> = forwardRef<
@@ -50,6 +52,7 @@ export const Link: OverridableComponent<Props> = forwardRef<
     onClick,
     children,
     className,
+    color,
     style,
     as,
     variant,
@@ -58,8 +61,17 @@ export const Link: OverridableComponent<Props> = forwardRef<
     ...rest
   } = props
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { color, ...nativeHTMLAttributes } = rest
+  const { ...nativeHTMLAttributes } = rest
   const classes = useStyles(props)
+  let fontColor = color
+
+  if (invert) {
+    fontColor = 'white'
+    // eslint-disable-next-line no-console
+    console.log(
+      'Please stop using `invert` it will be removed in next major release. Use color=white instead.'
+    )
+  }
 
   return (
     <MUILink
@@ -71,7 +83,8 @@ export const Link: OverridableComponent<Props> = forwardRef<
       onClick={onClick}
       className={cx(classes.root, className, {
         [classes.action]: variant === 'action',
-        [classes.invert]: invert
+        [classes.white]: fontColor === 'white',
+        [classes.black]: fontColor === 'black'
       })}
       style={style}
       component={as!}
@@ -84,6 +97,7 @@ export const Link: OverridableComponent<Props> = forwardRef<
 
 Link.defaultProps = {
   as: 'a',
+  color: 'blue',
   variant: 'default'
 }
 

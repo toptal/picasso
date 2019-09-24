@@ -80,10 +80,15 @@ page.createTabChapter('Props').addComponentDocs({
       defaultValue: 'default',
       description: "Either it's a regular link or an _action_"
     },
-    invert: {
-      name: 'invert',
-      type: 'boolean',
-      description: 'Uses white text color for dark background'
+    color: {
+      name: 'color',
+      type: {
+        name: 'enum',
+        enums: ['"blue"', '"white"', '"black"']
+      },
+      defaultValue: 'blue',
+      description:
+        'Controls color of the link (ignored while used with invert prop)'
     },
     className: {
       name: 'className',
@@ -104,7 +109,7 @@ page
   .addExample('Link/story/Action.example.tsx', 'Action')
   .addExample('Link/story/Underline.example.tsx', 'Underline')
   .addExample('Link/story/FontSize.example.tsx', 'Font Size')
-  .addExample('Link/story/Invert.example.tsx', 'Invert')
+  .addExample('Link/story/Color.example.tsx', 'Color')
   .addExample('Link/story/Routing.example.tsx', {
     title: 'Routing',
     description:
