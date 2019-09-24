@@ -7,7 +7,6 @@ import {
   PicassoComponentWithRef,
   CompoundedComponentWithRef
 } from '../Picasso'
-import { palette } from '../utils'
 import Container, { VariantType as ContainerVariantType } from '../Container'
 import HelpboxTitle from '../HelpboxTitle'
 import HelpboxContent from '../HelpboxContent'
@@ -60,7 +59,7 @@ export const Helpbox = forwardRef<HTMLDivElement, Props>(function Helpbox(
           className={classes.closeButton}
           circular
           onClick={onClose}
-          icon={<Close16 color={palette.grey.dark} />}
+          icon={<Close16 color='dark-grey' />}
         />
       )}
     </Container>

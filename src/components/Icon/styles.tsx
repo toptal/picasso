@@ -1,6 +1,6 @@
-import { createStyles } from '@material-ui/core'
+import { Theme, createStyles } from '@material-ui/core'
 
-export default () =>
+export default ({ palette }: Theme) =>
   createStyles({
     root: {
       fill: 'currentColor',
@@ -8,5 +8,37 @@ export default () =>
       fontSize: 'inherit',
       height: '1em',
       verticalAlign: '-.125em'
+    },
+
+    // colors
+    green: {
+      color: palette.green.main
+    },
+    red: {
+      color: palette.red.main
+    },
+    blue: {
+      color: palette.primary.main
+    },
+    yellow: {
+      color: palette.yellow.main
+    },
+    lightGrey: {
+      color: palette.grey.light
+    },
+    grey: {
+      color: palette.grey.main
+    },
+    darkGrey: {
+      color: palette.text.primary
+    },
+    black: {
+      color: palette.common.black
+    },
+    invert: {
+      color: palette.common.white
+    },
+    inherit: {
+      color: 'inherit'
     }
   })

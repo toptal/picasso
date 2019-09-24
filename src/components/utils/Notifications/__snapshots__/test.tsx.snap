@@ -59,8 +59,7 @@ exports[`useNotifications error notification render 1`] = `
             style="align-items: center;"
           >
             <svg
-              class="SvgExclamation16-root"
-              color="#d42551"
+              class="SvgExclamation16-root SvgExclamation16-red"
               style="min-width: 16px; min-height: 16px;"
               viewBox="0 0 16 16"
             >
@@ -210,8 +209,7 @@ exports[`useNotifications info notification render 1`] = `
             style="align-items: center;"
           >
             <svg
-              class="SvgInfo16-root"
-              color="#c4c6ca"
+              class="SvgInfo16-root SvgInfo16-grey"
               style="min-width: 16px; min-height: 16px;"
               viewBox="0 0 16 16"
             >
@@ -361,8 +359,7 @@ exports[`useNotifications success notification render 1`] = `
             style="align-items: center;"
           >
             <svg
-              class="SvgCheckMinor16-root"
-              color="#00cc83"
+              class="SvgCheckMinor16-root SvgCheckMinor16-green"
               style="min-width: 16px; min-height: 16px;"
               viewBox="0 0 16 16"
             >

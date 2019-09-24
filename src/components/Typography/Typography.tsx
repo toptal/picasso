@@ -6,22 +6,12 @@ import MUITypography from '@material-ui/core/Typography'
 import cx from 'classnames'
 
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
-import { StandardProps, SizeType } from '../Picasso'
+import { StandardProps, SizeType, ColorType } from '../Picasso'
 import styles from './styles'
 
 type VariantType = 'heading' | 'body'
 
 type WeightType = 'thin' | 'light' | 'regular' | 'semibold'
-type ColorType =
-  | 'blue'
-  | 'green'
-  | 'red'
-  | 'yellow'
-  | 'light-grey'
-  | 'grey'
-  | 'dark-grey'
-  | 'black'
-  | 'inherit'
 
 export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
   /** Font variant for inner text */

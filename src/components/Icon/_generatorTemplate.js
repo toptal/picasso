@@ -9,14 +9,7 @@ function decorateWithClassNameProp(svgElement) {
     t.jsxAttribute(
       t.jsxIdentifier('className'),
       t.jsxExpressionContainer(
-        t.callExpression(t.identifier('cx'), [
-          t.memberExpression(
-            t.identifier('classes'),
-            t.identifier('root'),
-            false
-          ),
-          t.identifier('className')
-        ])
+        t.callExpression(t.identifier('cx'), [t.identifier('...classes')])
       )
     )
   ]
@@ -52,12 +45,12 @@ const template = ({ template }, opts, { componentName, jsx }) => {
 
   const svgElement = jsx.openingElement
 
-  // add `className={cx(classes.root, className)}` to svg root tag
+  // add `className={cx(classes.root, classes[colorClassName], className)}` to svg root tag
   decorateWithClassNameProp(svgElement)
   // add `style={style}` to svg root tag
   decorateWithIdentifierProp(svgElement, 'style', 'svgStyle')
-  // add `color={color}` to svg root tag
-  decorateWithIdentifierProp(svgElement, 'color', 'color')
+  // add `color={color}` to svg root tag - TODO - remove after v4
+  decorateWithIdentifierProp(svgElement, 'color', 'svgColor')
   // add `ref={ref}` to svg root tag
   decorateWithIdentifierProp(svgElement, 'ref', 'ref')
 
@@ -68,7 +61,8 @@ const template = ({ template }, opts, { componentName, jsx }) => {
     import cx from 'classnames'
     import { withStyles } from '@material-ui/core/styles'
 
-    import { StandardProps } from '../Picasso'
+    import kebabToCamelCase from '../utils/kebab-to-camel-case'
+    import { StandardProps, ColorType } from '../Picasso'
     import styles from './styles'
 
     const BASE_SIZE = ${baseSize}
@@ -81,7 +75,7 @@ const template = ({ template }, opts, { componentName, jsx }) => {
 
     export interface Props extends StandardProps {
       scale?: ScaleType
-      color?: string,
+      color?: ColorType | string
       base?: number
     }
 
@@ -89,9 +83,18 @@ const template = ({ template }, opts, { componentName, jsx }) => {
       props: Props,
       ref: Ref<SVGSVGElement>
     ) {
-      const { classes, className, style = {}, color, scale, base } = props
+      const { classes: availableClasses, className, style = {}, color, scale, base } = props
+      const classes = [availableClasses.root, className]
+      let svgColor
 
       const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
+      const colorClassName = kebabToCamelCase(\`\${color}\`)
+
+      if (!availableClasses[\`\${colorClassName}\`]) {
+        svgColor = color
+      } else {
+        classes.push(availableClasses[colorClassName])
+      }
 
       const svgStyle = {
         minWidth: \`\${scaledSize}px\`,

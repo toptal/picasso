@@ -4,7 +4,6 @@ import cx from 'classnames'
 import { InputBaseComponentProps } from '@material-ui/core/InputBase'
 
 import { StandardProps } from '../Picasso'
-import palette from '../Picasso/config/palette'
 import OutlinedInput from '../OutlinedInput'
 import InputAdornment from '../InputAdornment'
 import Button from '../Button'
@@ -130,7 +129,7 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
       position='start'
     >
       {value ? (
-        <Check16 color={!disabled ? palette.green.main : undefined} />
+        <Check16 color={!disabled ? 'green' : undefined} />
       ) : (
         <UploadDocument16 />
       )}

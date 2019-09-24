@@ -7,7 +7,20 @@ page
   .addDocs([
     {
       name: 'color',
-      type: 'string',
+      type: {
+        name: 'enum',
+        enums: [
+          '"inherit"',
+          '"black"',
+          '"blue"',
+          '"green"',
+          '"grey"',
+          '"red"',
+          '"yellow"',
+          '"light-grey"',
+          '"dark-grey"'
+        ]
+      },
       description: 'Color of icon'
     },
     {
