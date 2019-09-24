@@ -260,9 +260,7 @@ describe('Autocomplete', () => {
       fireEvent.change(input, { target: { value: 'random text' } })
 
       fireEvent.keyDown(input, {
-        key: 'Escape',
-        keyCode: 27,
-        which: 27
+        key: 'Escape'
       })
 
       // text and selection are cleared. Placeholder is displayed.
@@ -282,9 +280,7 @@ describe('Autocomplete', () => {
       fireEvent.change(input, { target: { value: '' } })
 
       fireEvent.keyDown(input, {
-        key: 'Backspace',
-        keyCode: 8,
-        which: 8
+        key: 'Backspace'
       })
 
       // If there was a selection, it is cleared and placeholder is displayed.
@@ -307,9 +303,7 @@ describe('Autocomplete', () => {
         fireEvent.focus(input)
 
         fireEvent.keyDown(input, {
-          key: 'ArrowDown',
-          keyCode: 40,
-          which: 40
+          key: 'ArrowDown'
         })
 
         const highlightedOption = getDropdownOptionsAsArray(container).find(
@@ -333,9 +327,7 @@ describe('Autocomplete', () => {
         fireEvent.focus(input)
 
         fireEvent.keyDown(input, {
-          key: 'ArrowUp',
-          keyCode: 38,
-          which: 38
+          key: 'ArrowUp'
         })
 
         const highlightedOption = getDropdownOptionsAsArray(container).find(
@@ -359,9 +351,7 @@ describe('Autocomplete', () => {
         fireEvent.focus(input)
 
         fireEvent.keyDown(input, {
-          key: 'ArrowUp',
-          keyCode: 38,
-          which: 38
+          key: 'ArrowUp'
         })
 
         const highlightedOption = getDropdownOptionsAsArray(container).find(
@@ -373,9 +363,7 @@ describe('Autocomplete', () => {
         expect(input.placeholder).toEqual('Lithuania')
 
         fireEvent.keyDown(input, {
-          key: 'Enter',
-          keyCode: 13,
-          which: 13
+          key: 'Enter'
         })
 
         expect(input.value).toEqual('Croatia')
@@ -397,9 +385,7 @@ describe('Autocomplete', () => {
         fireEvent.click(getDropdownOptionByText(container, 'Croatia'))
         fireEvent.focus(input)
         fireEvent.keyDown(input, {
-          key: 'ArrowUp',
-          keyCode: 38,
-          which: 38
+          key: 'ArrowUp'
         })
 
         // On option selected + immediately "arrow up/down" key press (no "blur" in between)
