@@ -406,4 +406,23 @@ describe('Autocomplete', () => {
       })
     })
   })
+
+  describe('controlled mode', () => {
+    test('value is set', async () => {
+      const { container } = renderAutocomplete(null, {
+        options,
+        value: 'HR'
+      })
+
+      const input = getInput(container)
+
+      fireEvent.focus(input)
+      fireEvent.click(getDropdownOptionByText(container, 'Belarus'))
+      fireEvent.focus(input)
+
+      // if value prop is present, the corresponding option is always selected, no matter what you do on UI.
+      expect(input.placeholder).toEqual('Croatia')
+      expect(container).toMatchSnapshot()
+    })
+  })
 })
