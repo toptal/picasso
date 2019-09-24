@@ -172,7 +172,7 @@ If you use [davinci](https://github.com/toptal/davinci) to manage your applicati
 In other cases when you use custom webpack build configuration you should check these three things to make sure you will have Picasso tree-shaked:
 
 1. You run your build in `production` mode
-2. You are not transforming your ES modules into `commonjs` during the build process. Usually it's a default behaviour of popular babel presets - [modules configuration](https://babeljs.io/docs/en/babel-preset-env#modules)
+2. You are not transforming your ES modules into `commonjs` during the build process. Usually, it's default behavior of popular babel presets - [modules configuration](https://babeljs.io/docs/en/babel-preset-env#modules)
 3. You have `sideEffects` prop in your `package.json` set to `false` value or don't have it at all
 
 Have a happy tree shaking! :)
