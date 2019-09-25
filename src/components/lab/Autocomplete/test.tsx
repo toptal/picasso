@@ -432,8 +432,7 @@ describe('Autocomplete', () => {
     const input = getInput(container)
 
     fireEvent.focus(input)
-    const noOptionsTextContainer = getByText('my no options text')
 
-    expect(noOptionsTextContainer).not.toBeNull()
+    expect(getByText('my no options text')).not.toBeNull()
   })
 })
