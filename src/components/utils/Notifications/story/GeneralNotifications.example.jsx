@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Container } from '@toptal/picasso'
-import { Edit as EditIcon } from '@toptal/picasso/Icon'
+import { Pencil16 } from '@toptal/picasso/Icon'
 import { useNotifications } from '@toptal/picasso/utils'
 
 const GeneralNotificationsExample = () => {
@@ -18,7 +18,7 @@ const GeneralNotificationsExample = () => {
       </Container>
       <Button
         variant='flat'
-        onClick={() => showInfo('The record was edited', <EditIcon />)}
+        onClick={() => showInfo('The record was edited', <Pencil16 />)}
       >
         Show general notification with icon
       </Button>
