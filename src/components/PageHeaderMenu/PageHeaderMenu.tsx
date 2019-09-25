@@ -92,7 +92,7 @@ export const PageHeaderMenu = forwardRef<HTMLDivElement, Props>(
         classes={{ content: classes.content }}
         style={style}
         content={content}
-        offset={{ top: isSmallScreen ? 'small' : 'xsmall' }}
+        offset={{ top: isSmallScreen ? 0.8 : 'xsmall' }}
       >
         {trigger}
         <Dropdown.Arrow className={classes.arrow} />
