@@ -3,7 +3,6 @@ import {
   render,
   fireEvent,
   cleanup,
-  RenderResult,
   waitForDomChange
 } from '@testing-library/react'
 
@@ -59,14 +58,12 @@ function getDropdownOptionByText(
   container: HTMLElement,
   text: string
 ): HTMLLIElement {
-  return getDropdownOptionsAsArray(container).find(
+  return getDropdownOptions(container).find(
     li => li.textContent === text
   ) as HTMLLIElement
 }
 
-function getDropdownOptionsAsArray(
-  container: HTMLElement
-): Array<HTMLLIElement> {
+function getDropdownOptions(container: HTMLElement): Array<HTMLLIElement> {
   return Array.from(container.querySelectorAll('ul li'))
 }
 
@@ -75,18 +72,12 @@ function getInput(container: HTMLElement): HTMLInputElement {
 }
 
 describe('Autocomplete', () => {
-  let api: RenderResult
-
-  beforeEach(() => {
-    api = renderAutocomplete(null, {
-      placeholder: 'Start typing here...',
-      options
-    })
-  })
-
   describe('static behavior', () => {
     test('default render', () => {
-      const { container } = api
+      const { container } = renderAutocomplete(null, {
+        placeholder: 'Start typing here...',
+        options
+      })
 
       expect(container).toMatchSnapshot()
     })
@@ -101,8 +92,6 @@ describe('Autocomplete', () => {
 
       expect(input.value).toEqual('Ukraine')
       expect(input.placeholder).toEqual('Ukraine')
-
-      expect(container).toMatchSnapshot()
     })
 
     test('render option text when passed `defaultValue` prop', () => {
@@ -115,21 +104,21 @@ describe('Autocomplete', () => {
 
       expect(input.value).toEqual('Lithuania')
       expect(input.placeholder).toEqual('Lithuania')
-
-      expect(container).toMatchSnapshot()
     })
   })
 
   describe('dynamic behavior', () => {
     test('render options when start typing', () => {
-      const input = api.getByPlaceholderText('Start typing here...')
+      const { getByPlaceholderText, container } = renderAutocomplete(null, {
+        placeholder: 'Start typing here...',
+        options
+      })
+      const input = getByPlaceholderText('Start typing here...')
 
       // should show only Croatia and Lithuania
       fireEvent.change(input, { target: { value: 't' } })
 
-      const { container } = api
-
-      const filteredOptions = getDropdownOptionsAsArray(container).map(
+      const filteredOptions = getDropdownOptions(container).map(
         li => li.textContent
       )
 
@@ -147,8 +136,8 @@ describe('Autocomplete', () => {
 
         fireEvent.focus(input)
 
-        const firstOption = getDropdownOptionsAsArray(container)[0]
         // first option is highlighted
+        const firstOption = getDropdownOptions(container)[0]
 
         expect(firstOption.classList.contains('Mui-selected')).toBe(true)
         expect(container).toMatchSnapshot()
@@ -164,7 +153,7 @@ describe('Autocomplete', () => {
 
         fireEvent.focus(input)
 
-        const selectedOption = getDropdownOptionsAsArray(container).find(
+        const selectedOption = getDropdownOptions(container).find(
           li => li.textContent === 'Belarus'
         ) as HTMLLIElement
 
@@ -190,7 +179,7 @@ describe('Autocomplete', () => {
 
         fireEvent.focus(input)
 
-        const selectedOption = getDropdownOptionsAsArray(container).find(
+        const selectedOption = getDropdownOptions(container).find(
           li => li.textContent === 'Slovakia'
         ) as HTMLLIElement
 
@@ -306,7 +295,7 @@ describe('Autocomplete', () => {
           key: 'ArrowDown'
         })
 
-        const highlightedOption = getDropdownOptionsAsArray(container).find(
+        const highlightedOption = getDropdownOptions(container).find(
           li => li.textContent === 'Slovakia'
         ) as HTMLLIElement
 
@@ -330,7 +319,7 @@ describe('Autocomplete', () => {
           key: 'ArrowUp'
         })
 
-        const highlightedOption = getDropdownOptionsAsArray(container).find(
+        const highlightedOption = getDropdownOptions(container).find(
           li => li.textContent === 'Croatia'
         ) as HTMLLIElement
 
@@ -354,7 +343,7 @@ describe('Autocomplete', () => {
           key: 'ArrowUp'
         })
 
-        const highlightedOption = getDropdownOptionsAsArray(container).find(
+        const highlightedOption = getDropdownOptions(container).find(
           li => li.textContent === 'Croatia'
         ) as HTMLLIElement
 
@@ -390,7 +379,7 @@ describe('Autocomplete', () => {
 
         // On option selected + immediately "arrow up/down" key press (no "blur" in between)
         // You can navigate the full list of options, and highlighted option was the one selected.
-        expect(getDropdownOptionsAsArray(container).length).toEqual(5)
+        expect(getDropdownOptions(container).length).toEqual(5)
         expect(
           getDropdownOptionByText(container, 'Croatia').classList.contains(
             'Mui-disabled'
@@ -455,12 +444,12 @@ describe('Autocomplete', () => {
 
     // @TODO: NB, this is actually a wrong behavior, different from how it works via browser... to be investigated
     // this would be correct if minLength == 2, but this is not the case
-    expect(getDropdownOptionsAsArray(container).length).toEqual(0)
+    expect(getDropdownOptions(container).length).toEqual(0)
 
     fireEvent.change(input, { target: { value: 'ia' } })
     fireEvent.focus(input)
 
-    expect(getDropdownOptionsAsArray(container).length).toEqual(3) // Slovakia, Croatia, Lithuania
+    expect(getDropdownOptions(container).length).toEqual(3) // Slovakia, Croatia, Lithuania
 
     expect(container).toMatchSnapshot()
   })
@@ -473,7 +462,7 @@ describe('Autocomplete', () => {
 
     const input = getByPlaceholderText('myCustomInputComponent')
 
-    expect(input).not.toBe(null)
+    expect(input).not.toBeNull()
 
     expect(container).toMatchSnapshot()
   })
@@ -489,7 +478,7 @@ describe('Autocomplete', () => {
     fireEvent.focus(input)
     const noExistingOptionsContainer = getByText('my no options text')
 
-    expect(noExistingOptionsContainer).not.toBe(null)
+    expect(noExistingOptionsContainer).not.toBeNull()
 
     expect(container).toMatchSnapshot()
   })
