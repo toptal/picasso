@@ -432,9 +432,10 @@ describe('Autocomplete', () => {
   })
 
   test('with "noOptionsText" prop', async () => {
+    const noOptionsText = 'my no options text'
     const { getByText, getByPlaceholderText } = renderAutocomplete(null, {
       placeholder,
-      noOptionsText: 'my no options text',
+      noOptionsText,
       defaultInputValue: 'non existing option'
     })
 
@@ -442,6 +443,6 @@ describe('Autocomplete', () => {
 
     fireEvent.focus(input)
 
-    expect(getByText('my no options text')).not.toBeNull()
+    expect(getByText(noOptionsText)).not.toBeNull()
   })
 })
