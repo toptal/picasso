@@ -54,15 +54,6 @@ const renderAutocomplete = (
 
 afterEach(cleanup)
 
-function getDropdownOptionByText(
-  container: HTMLElement,
-  text: string
-): HTMLLIElement {
-  return getDropdownOptions(container).find(
-    li => li.textContent === text
-  ) as HTMLLIElement
-}
-
 function getDropdownOptions(container: HTMLElement): Array<HTMLLIElement> {
   return Array.from(container.querySelectorAll('ul li'))
 }
@@ -128,7 +119,7 @@ describe('Autocomplete', () => {
 
     describe('on focus', () => {
       test('without preselection', () => {
-        const { container } = renderAutocomplete(null, {
+        const { container, getByText } = renderAutocomplete(null, {
           options
         })
 
@@ -137,14 +128,13 @@ describe('Autocomplete', () => {
         fireEvent.focus(input)
 
         // first option is highlighted
-        const firstOption = getDropdownOptions(container)[0]
-
-        expect(firstOption.classList.contains('Mui-selected')).toBe(true)
-        expect(container).toMatchSnapshot()
+        expect(
+          getByText('Belarus').parentElement!.getAttribute('aria-selected')
+        ).toBe('true')
       })
 
       test('with preselection', () => {
-        const { container } = renderAutocomplete(null, {
+        const { container, getByText } = renderAutocomplete(null, {
           options,
           value: 'BY'
         })
@@ -153,42 +143,33 @@ describe('Autocomplete', () => {
 
         fireEvent.focus(input)
 
-        const selectedOption = getDropdownOptions(container).find(
-          li => li.textContent === 'Belarus'
-        ) as HTMLLIElement
-
         // text clears, placeholder shows selected option text.
         expect(input.placeholder).toEqual('Belarus')
         expect(input.value).toEqual('')
 
         // selected option is highlighted and disabled
-        expect(selectedOption.classList.contains('Mui-selected')).toBe(true)
-        expect(selectedOption.classList.contains('Mui-disabled')).toBe(true)
-
-        expect(container).toMatchSnapshot()
+        expect(
+          getByText('Belarus').parentElement!.getAttribute('aria-selected')
+        ).toBe('true')
+        expect(
+          getByText('Belarus').parentElement!.getAttribute('aria-disabled')
+        ).toBe('true')
       })
     })
 
     describe('on blur', () => {
       test('on select option', () => {
-        const { container } = renderAutocomplete(null, {
+        const { container, getByText } = renderAutocomplete(null, {
           options
         })
 
         const input = getInput(container)
 
         fireEvent.focus(input)
-
-        const selectedOption = getDropdownOptions(container).find(
-          li => li.textContent === 'Slovakia'
-        ) as HTMLLIElement
-
-        fireEvent.click(selectedOption)
+        fireEvent.click(getByText('Slovakia'))
 
         // if text is empty and an option is selected, text turns into selected option text
         expect(input.value).toEqual('Slovakia')
-
-        expect(container).toMatchSnapshot()
       })
 
       test('preselected option and random text entered when allowAny=true', async () => {
@@ -209,8 +190,6 @@ describe('Autocomplete', () => {
 
         // If allowAny=true: text stays, and selection (if existed) is cleared
         expect(input.placeholder).toEqual('Placeholder text')
-
-        expect(container).toMatchSnapshot()
       })
 
       test('preselected option and random text entered when allowAny=false', async () => {
@@ -231,8 +210,6 @@ describe('Autocomplete', () => {
 
         // If allowAny=false: text turns into selected option text, or empty is no selection
         expect(input.placeholder).toEqual('Croatia')
-
-        expect(container).toMatchSnapshot()
       })
     })
 
@@ -253,7 +230,8 @@ describe('Autocomplete', () => {
       })
 
       // text and selection are cleared. Placeholder is displayed.
-      expect(container).toMatchSnapshot()
+      expect(input.placeholder).toEqual('Placeholder text')
+      expect(input.value).toEqual('')
     })
 
     test('On "Backspace" key pressed with empty text', async () => {
@@ -275,12 +253,11 @@ describe('Autocomplete', () => {
       // If there was a selection, it is cleared and placeholder is displayed.
       expect(input.value).toEqual('')
       expect(input.placeholder).toEqual('Placeholder text')
-      expect(container).toMatchSnapshot()
     })
 
     describe('On "arrow up/down" key press', () => {
-      test('down', () => {
-        const { container } = renderAutocomplete(null, {
+      test('press down', () => {
+        const { container, getByText } = renderAutocomplete(null, {
           placeholder: 'Placeholder text',
           options,
           defaultValue: 'LU',
@@ -295,16 +272,13 @@ describe('Autocomplete', () => {
           key: 'ArrowDown'
         })
 
-        const highlightedOption = getDropdownOptions(container).find(
-          li => li.textContent === 'Slovakia'
-        ) as HTMLLIElement
-
-        expect(highlightedOption.classList.contains('Mui-selected')).toBe(true)
-        expect(container).toMatchSnapshot()
+        expect(
+          getByText('Slovakia').parentElement!.getAttribute('aria-selected')
+        ).toBe('true')
       })
 
-      test('up', () => {
-        const { container } = renderAutocomplete(null, {
+      test('press up', () => {
+        const { container, getByText } = renderAutocomplete(null, {
           placeholder: 'Placeholder text',
           options,
           defaultValue: 'LU',
@@ -319,16 +293,13 @@ describe('Autocomplete', () => {
           key: 'ArrowUp'
         })
 
-        const highlightedOption = getDropdownOptions(container).find(
-          li => li.textContent === 'Croatia'
-        ) as HTMLLIElement
-
-        expect(highlightedOption.classList.contains('Mui-selected')).toBe(true)
-        expect(container).toMatchSnapshot()
+        expect(
+          getByText('Croatia').parentElement!.getAttribute('aria-selected')
+        ).toBe('true')
       })
 
-      test('Enter', () => {
-        const { container } = renderAutocomplete(null, {
+      test('press Enter', () => {
+        const { container, getByText } = renderAutocomplete(null, {
           placeholder: 'Placeholder text',
           options,
           defaultValue: 'LU',
@@ -343,11 +314,10 @@ describe('Autocomplete', () => {
           key: 'ArrowUp'
         })
 
-        const highlightedOption = getDropdownOptions(container).find(
-          li => li.textContent === 'Croatia'
-        ) as HTMLLIElement
+        expect(
+          getByText('Croatia').parentElement!.getAttribute('aria-selected')
+        ).toBe('true')
 
-        expect(highlightedOption.classList.contains('Mui-selected')).toBe(true)
         expect(input.value).toEqual('')
         expect(input.placeholder).toEqual('Lithuania')
 
@@ -357,12 +327,10 @@ describe('Autocomplete', () => {
 
         expect(input.value).toEqual('Croatia')
         expect(input.placeholder).toEqual('Croatia')
-
-        expect(container).toMatchSnapshot()
       })
 
       test('navigate after option selected', async () => {
-        const { container } = renderAutocomplete(null, {
+        const { container, getByText } = renderAutocomplete(null, {
           placeholder: 'Placeholder text',
           options,
           allowAny: false
@@ -371,7 +339,7 @@ describe('Autocomplete', () => {
         const input = getInput(container)
 
         fireEvent.focus(input)
-        fireEvent.click(getDropdownOptionByText(container, 'Croatia'))
+        fireEvent.click(getByText('Croatia'))
         fireEvent.focus(input)
         fireEvent.keyDown(input, {
           key: 'ArrowUp'
@@ -381,24 +349,18 @@ describe('Autocomplete', () => {
         // You can navigate the full list of options, and highlighted option was the one selected.
         expect(getDropdownOptions(container).length).toEqual(5)
         expect(
-          getDropdownOptionByText(container, 'Croatia').classList.contains(
-            'Mui-disabled'
-          )
-        ).toBe(true)
+          getByText('Croatia').parentElement!.getAttribute('aria-disabled')
+        ).toBe('true')
         expect(
-          getDropdownOptionByText(container, 'Belarus').classList.contains(
-            'Mui-selected'
-          )
-        ).toBe(true)
-
-        expect(container).toMatchSnapshot()
+          getByText('Belarus').parentElement!.getAttribute('aria-disabled')
+        ).toBe('false')
       })
     })
   })
 
   describe('controlled mode', () => {
-    test('value is set', async () => {
-      const { container } = renderAutocomplete(null, {
+    test('with "value" prop', async () => {
+      const { container, getByText } = renderAutocomplete(null, {
         options,
         value: 'HR'
       })
@@ -406,16 +368,15 @@ describe('Autocomplete', () => {
       const input = getInput(container)
 
       fireEvent.focus(input)
-      fireEvent.click(getDropdownOptionByText(container, 'Belarus'))
+      fireEvent.click(getByText('Belarus'))
       fireEvent.focus(input)
 
       // if value prop is present, the corresponding option is always selected, no matter what you do on UI.
       expect(input.placeholder).toEqual('Croatia')
-      expect(container).toMatchSnapshot()
     })
 
-    test('inputValue is set', async () => {
-      const { container } = renderAutocomplete(null, {
+    test('with "inputValue" prop', async () => {
+      const { container, getByText } = renderAutocomplete(null, {
         options,
         inputValue: 'ia'
       })
@@ -423,15 +384,14 @@ describe('Autocomplete', () => {
       const input = getInput(container)
 
       fireEvent.change(input, { target: { value: 'new text' } })
-      fireEvent.click(getDropdownOptionByText(container, 'Croatia'))
+      fireEvent.click(getByText('Croatia'))
 
       // the input text always matches it, no matter what you do on UI.
       expect(input.value).toEqual('ia')
-      expect(container).toMatchSnapshot()
     })
   })
 
-  test('minLength', async () => {
+  test('with "minLength" prop', async () => {
     const { container } = renderAutocomplete(null, {
       options,
       defaultInputValue: 'a',
@@ -450,12 +410,10 @@ describe('Autocomplete', () => {
     fireEvent.focus(input)
 
     expect(getDropdownOptions(container).length).toEqual(3) // Slovakia, Croatia, Lithuania
-
-    expect(container).toMatchSnapshot()
   })
 
-  test('inputComponent', async () => {
-    const { container, getByPlaceholderText } = renderAutocomplete(null, {
+  test('with "inputComponent" prop', async () => {
+    const { getByPlaceholderText } = renderAutocomplete(null, {
       // eslint-disable-next-line react/display-name
       inputComponent: () => <input placeholder='myCustomInputComponent' />
     })
@@ -463,11 +421,9 @@ describe('Autocomplete', () => {
     const input = getByPlaceholderText('myCustomInputComponent')
 
     expect(input).not.toBeNull()
-
-    expect(container).toMatchSnapshot()
   })
 
-  test('noOptionsText', async () => {
+  test('with "noOptionsText" prop', async () => {
     const { container, getByText } = renderAutocomplete(null, {
       noOptionsText: 'my no options text',
       defaultInputValue: 'non existing option'
@@ -476,10 +432,8 @@ describe('Autocomplete', () => {
     const input = getInput(container)
 
     fireEvent.focus(input)
-    const noExistingOptionsContainer = getByText('my no options text')
+    const noOptionsTextContainer = getByText('my no options text')
 
-    expect(noExistingOptionsContainer).not.toBeNull()
-
-    expect(container).toMatchSnapshot()
+    expect(noOptionsTextContainer).not.toBeNull()
   })
 })
