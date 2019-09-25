@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React from 'react'
 import {
   render,
   fireEvent,
@@ -17,10 +17,7 @@ const options = [
   { text: 'Ukraine', value: 'UA' }
 ]
 
-const renderAutocomplete = (
-  children: ReactNode,
-  props: OmitInternalProps<Props>
-) => {
+const renderAutocomplete = (props: OmitInternalProps<Props>) => {
   const {
     placeholder,
     options,
@@ -30,7 +27,8 @@ const renderAutocomplete = (
     inputValue,
     minLength,
     inputComponent,
-    noOptionsText
+    noOptionsText,
+    renderOption
   } = props
 
   return render(
@@ -45,9 +43,8 @@ const renderAutocomplete = (
         minLength={minLength}
         inputComponent={inputComponent}
         noOptionsText={noOptionsText}
-      >
-        {children}
-      </Autocomplete>
+        renderOption={renderOption}
+      />
     </Picasso>
   )
 }
@@ -59,7 +56,7 @@ const placeholder = 'Placeholder text'
 describe('Autocomplete', () => {
   describe('static behavior', () => {
     test('default render', () => {
-      const { container } = renderAutocomplete(null, {
+      const { container } = renderAutocomplete({
         placeholder: 'Start typing here...',
         options
       })
@@ -68,7 +65,7 @@ describe('Autocomplete', () => {
     })
 
     test('render option text when passed `value` prop', () => {
-      const { getByPlaceholderText } = renderAutocomplete(null, {
+      const { getByPlaceholderText } = renderAutocomplete({
         placeholder,
         options,
         value: 'UA'
@@ -81,7 +78,7 @@ describe('Autocomplete', () => {
     })
 
     test('render option text when passed `defaultValue` prop', () => {
-      const { getByPlaceholderText } = renderAutocomplete(null, {
+      const { getByPlaceholderText } = renderAutocomplete({
         options,
         defaultValue: 'LU',
         placeholder
@@ -100,7 +97,7 @@ describe('Autocomplete', () => {
         getByPlaceholderText,
         container,
         getAllByRole
-      } = renderAutocomplete(null, {
+      } = renderAutocomplete({
         placeholder,
         options
       })
@@ -117,7 +114,7 @@ describe('Autocomplete', () => {
 
     describe('on focus', () => {
       test('without preselection', () => {
-        const { getByText, getByPlaceholderText } = renderAutocomplete(null, {
+        const { getByText, getByPlaceholderText } = renderAutocomplete({
           placeholder,
           options
         })
@@ -133,7 +130,7 @@ describe('Autocomplete', () => {
       })
 
       test('with preselection', () => {
-        const { getByText, getByPlaceholderText } = renderAutocomplete(null, {
+        const { getByText, getByPlaceholderText } = renderAutocomplete({
           options,
           placeholder,
           value: 'BY'
@@ -159,7 +156,7 @@ describe('Autocomplete', () => {
 
     describe('on blur', () => {
       test('on select option', () => {
-        const { getByText, getByPlaceholderText } = renderAutocomplete(null, {
+        const { getByText, getByPlaceholderText } = renderAutocomplete({
           options,
           placeholder
         })
@@ -174,7 +171,7 @@ describe('Autocomplete', () => {
       })
 
       test('preselected option and random text entered when allowAny=true', async () => {
-        const { container, getByPlaceholderText } = renderAutocomplete(null, {
+        const { container, getByPlaceholderText } = renderAutocomplete({
           placeholder,
           options,
           defaultValue: 'HR',
@@ -194,7 +191,7 @@ describe('Autocomplete', () => {
       })
 
       test('preselected option and random text entered when allowAny=false', async () => {
-        const { container, getByPlaceholderText } = renderAutocomplete(null, {
+        const { container, getByPlaceholderText } = renderAutocomplete({
           placeholder,
           options,
           defaultValue: 'HR',
@@ -215,7 +212,7 @@ describe('Autocomplete', () => {
     })
 
     test('on "Esc" key pressed', async () => {
-      const { getByPlaceholderText } = renderAutocomplete(null, {
+      const { getByPlaceholderText } = renderAutocomplete({
         placeholder,
         options,
         defaultValue: 'HR',
@@ -236,7 +233,7 @@ describe('Autocomplete', () => {
     })
 
     test('On "Backspace" key pressed with empty text', async () => {
-      const { getByPlaceholderText } = renderAutocomplete(null, {
+      const { getByPlaceholderText } = renderAutocomplete({
         placeholder,
         options,
         defaultValue: 'HR',
@@ -258,7 +255,7 @@ describe('Autocomplete', () => {
 
     describe('On "arrow up/down" key press', () => {
       test('press down', () => {
-        const { getByText, getByPlaceholderText } = renderAutocomplete(null, {
+        const { getByText, getByPlaceholderText } = renderAutocomplete({
           placeholder,
           options,
           defaultValue: 'LU',
@@ -279,7 +276,7 @@ describe('Autocomplete', () => {
       })
 
       test('press up', () => {
-        const { getByText, getByPlaceholderText } = renderAutocomplete(null, {
+        const { getByText, getByPlaceholderText } = renderAutocomplete({
           placeholder,
           options,
           defaultValue: 'LU',
@@ -300,7 +297,7 @@ describe('Autocomplete', () => {
       })
 
       test('press Enter', () => {
-        const { getByText, getByPlaceholderText } = renderAutocomplete(null, {
+        const { getByText, getByPlaceholderText } = renderAutocomplete({
           placeholder,
           options,
           defaultValue: 'LU',
@@ -335,7 +332,7 @@ describe('Autocomplete', () => {
           getByText,
           getAllByRole,
           getByPlaceholderText
-        } = renderAutocomplete(null, {
+        } = renderAutocomplete({
           placeholder,
           options,
           allowAny: false
@@ -365,7 +362,7 @@ describe('Autocomplete', () => {
 
   describe('controlled mode', () => {
     test('with "value" prop', async () => {
-      const { getByText, getByPlaceholderText } = renderAutocomplete(null, {
+      const { getByText, getByPlaceholderText } = renderAutocomplete({
         options,
         placeholder,
         value: 'HR'
@@ -382,7 +379,7 @@ describe('Autocomplete', () => {
     })
 
     test('with "inputValue" prop', async () => {
-      const { getByText, getByPlaceholderText } = renderAutocomplete(null, {
+      const { getByText, getByPlaceholderText } = renderAutocomplete({
         placeholder,
         options,
         inputValue: 'ia'
@@ -399,7 +396,7 @@ describe('Autocomplete', () => {
   })
 
   test('with "minLength" prop', async () => {
-    const { queryAllByRole, getByPlaceholderText } = renderAutocomplete(null, {
+    const { queryAllByRole, getByPlaceholderText } = renderAutocomplete({
       options,
       placeholder,
       defaultInputValue: 'a',
@@ -421,7 +418,7 @@ describe('Autocomplete', () => {
   })
 
   test('with "inputComponent" prop', async () => {
-    const { getByPlaceholderText } = renderAutocomplete(null, {
+    const { getByPlaceholderText } = renderAutocomplete({
       // eslint-disable-next-line react/display-name
       inputComponent: () => <input placeholder='myCustomInputComponent' />
     })
@@ -433,7 +430,7 @@ describe('Autocomplete', () => {
 
   test('with "noOptionsText" prop', async () => {
     const noOptionsText = 'my no options text'
-    const { getByText, getByPlaceholderText } = renderAutocomplete(null, {
+    const { getByText, getByPlaceholderText } = renderAutocomplete({
       placeholder,
       noOptionsText,
       defaultInputValue: 'non existing option'
@@ -444,5 +441,18 @@ describe('Autocomplete', () => {
     fireEvent.focus(input)
 
     expect(getByText(noOptionsText)).not.toBeNull()
+  })
+
+  test('renders options customly', async () => {
+    const api = renderAutocomplete({
+      placeholder: 'Start typing here...',
+      options,
+      // eslint-disable-next-line react/display-name
+      renderOption: () => <div>Custom renderer</div>
+    })
+    const input = api.getByPlaceholderText('Start typing here...')
+
+    fireEvent.change(input, { target: { value: 't' } })
+    expect(api.container.textContent).toContain('Custom renderer')
   })
 })
