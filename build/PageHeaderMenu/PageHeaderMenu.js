@@ -50,7 +50,7 @@ exports.PageHeaderMenu = react_1.forwardRef(function PageHeaderMenu(_a, ref) {
         }, name: name, avatar: avatar }, meta && metaContent));
     return (react_1.default.createElement(Dropdown_1.default
     // eslint-disable-next-line react/jsx-props-no-spreading
-    , Object.assign({}, rest, { ref: ref, className: classnames_1.default(classes.root, className), classes: { content: classes.content }, style: style, content: content, offset: { top: isSmallScreen ? 'small' : 'xsmall' } }),
+    , Object.assign({}, rest, { ref: ref, className: classnames_1.default(classes.root, className), classes: { content: classes.content }, style: style, content: content, offset: { top: isSmallScreen ? 0.8 : 'xsmall' } }),
         trigger,
         react_1.default.createElement(Dropdown_1.default.Arrow, { className: classes.arrow })));
 });

@@ -26,7 +26,7 @@ const SmallScreenSidebarWrapper = ({ classes, children }) => {
     const [showSidebar, setShowSidebar] = react_1.useState(false);
     const handleShowSidebar = () => setShowSidebar(true);
     const handleHideSidebar = () => setShowSidebar(false);
-    return (react_1.default.createElement(Dropdown_1.default, { content: children, className: classes.responsiveWrapper, offset: { top: 'xsmall' }, onOpen: handleShowSidebar, onClose: handleHideSidebar },
+    return (react_1.default.createElement(Dropdown_1.default, { content: children, className: classes.responsiveWrapper, offset: { top: 0.4 }, onOpen: handleShowSidebar, onClose: handleHideSidebar },
         react_1.default.createElement(Button_1.default, { icon: showSidebar ? react_1.default.createElement(Icon_1.Close16, null) : react_1.default.createElement(Icon_1.Overview16, null), circular: true, variant: 'flat-white' })));
 };
 exports.SidebarContext = react_1.default.createContext({});

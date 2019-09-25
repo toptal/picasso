@@ -1,3 +1,10 @@
+## [3.12.1](https://github.com/toptal/picasso/compare/v3.12.0...v3.12.1) (2019-09-25)
+
+
+### Bug Fixes
+
+* **sidebar & page header menu:** dropdown offsets ([#713](https://github.com/toptal/picasso/issues/713)) ([bd552cc](https://github.com/toptal/picasso/commit/bd552cc))
+
 # [3.12.0](https://github.com/toptal/picasso/compare/v3.11.6...v3.12.0) (2019-09-24)
 
 
