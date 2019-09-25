@@ -1,5 +1,7 @@
 import { createStyles } from '@material-ui/core/styles'
 
+import '../Popover/styles'
+
 export default () =>
   createStyles({
     root: {
