@@ -38,7 +38,7 @@ exports[`Autocomplete dynamic behavior render options when start typing 1`] = `
           autocomplete="off"
           class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input"
           id="downshift-3-input"
-          placeholder="Start typing here..."
+          placeholder="Placeholder text"
           type="text"
           value="t"
         />

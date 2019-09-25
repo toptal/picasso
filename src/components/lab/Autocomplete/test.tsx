@@ -54,13 +54,7 @@ const renderAutocomplete = (
 
 afterEach(cleanup)
 
-function getDropdownOptions(container: HTMLElement): Array<HTMLLIElement> {
-  return Array.from(container.querySelectorAll('ul li'))
-}
-
-function getInput(container: HTMLElement): HTMLInputElement {
-  return container.querySelector('input') as HTMLInputElement
-}
+const placeholder = 'Placeholder text'
 
 describe('Autocomplete', () => {
   describe('static behavior', () => {
@@ -74,24 +68,26 @@ describe('Autocomplete', () => {
     })
 
     test('render option text when passed `value` prop', () => {
-      const { container } = renderAutocomplete(null, {
+      const { getByPlaceholderText } = renderAutocomplete(null, {
+        placeholder,
         options,
         value: 'UA'
       })
 
-      const input = getInput(container)
+      const input = getByPlaceholderText('Ukraine') as HTMLInputElement
 
       expect(input.value).toEqual('Ukraine')
       expect(input.placeholder).toEqual('Ukraine')
     })
 
     test('render option text when passed `defaultValue` prop', () => {
-      const { container } = renderAutocomplete(null, {
+      const { getByPlaceholderText } = renderAutocomplete(null, {
         options,
-        defaultValue: 'LU'
+        defaultValue: 'LU',
+        placeholder
       })
 
-      const input = getInput(container)
+      const input = getByPlaceholderText('Lithuania') as HTMLInputElement
 
       expect(input.value).toEqual('Lithuania')
       expect(input.placeholder).toEqual('Lithuania')
@@ -100,18 +96,20 @@ describe('Autocomplete', () => {
 
   describe('dynamic behavior', () => {
     test('render options when start typing', () => {
-      const { getByPlaceholderText, container } = renderAutocomplete(null, {
-        placeholder: 'Start typing here...',
+      const {
+        getByPlaceholderText,
+        container,
+        getAllByRole
+      } = renderAutocomplete(null, {
+        placeholder,
         options
       })
-      const input = getByPlaceholderText('Start typing here...')
+      const input = getByPlaceholderText(placeholder) as HTMLInputElement
 
       // should show only Croatia and Lithuania
       fireEvent.change(input, { target: { value: 't' } })
 
-      const filteredOptions = getDropdownOptions(container).map(
-        li => li.textContent
-      )
+      const filteredOptions = getAllByRole('option').map(li => li.textContent)
 
       expect(filteredOptions).toEqual(['Croatia', 'Lithuania'])
       expect(container).toMatchSnapshot()
@@ -119,11 +117,12 @@ describe('Autocomplete', () => {
 
     describe('on focus', () => {
       test('without preselection', () => {
-        const { container, getByText } = renderAutocomplete(null, {
+        const { getByText, getByPlaceholderText } = renderAutocomplete(null, {
+          placeholder,
           options
         })
 
-        const input = getInput(container)
+        const input = getByPlaceholderText(placeholder) as HTMLInputElement
 
         fireEvent.focus(input)
 
@@ -134,12 +133,13 @@ describe('Autocomplete', () => {
       })
 
       test('with preselection', () => {
-        const { container, getByText } = renderAutocomplete(null, {
+        const { getByText, getByPlaceholderText } = renderAutocomplete(null, {
           options,
+          placeholder,
           value: 'BY'
         })
 
-        const input = getInput(container)
+        const input = getByPlaceholderText('Belarus') as HTMLInputElement
 
         fireEvent.focus(input)
 
@@ -159,11 +159,12 @@ describe('Autocomplete', () => {
 
     describe('on blur', () => {
       test('on select option', () => {
-        const { container, getByText } = renderAutocomplete(null, {
-          options
+        const { getByText, getByPlaceholderText } = renderAutocomplete(null, {
+          options,
+          placeholder
         })
 
-        const input = getInput(container)
+        const input = getByPlaceholderText(placeholder) as HTMLInputElement
 
         fireEvent.focus(input)
         fireEvent.click(getByText('Slovakia'))
@@ -173,14 +174,14 @@ describe('Autocomplete', () => {
       })
 
       test('preselected option and random text entered when allowAny=true', async () => {
-        const { container } = renderAutocomplete(null, {
-          placeholder: 'Placeholder text',
+        const { container, getByPlaceholderText } = renderAutocomplete(null, {
+          placeholder,
           options,
           defaultValue: 'HR',
           allowAny: true
         })
 
-        const input = getInput(container)
+        const input = getByPlaceholderText('Croatia') as HTMLInputElement
 
         fireEvent.change(input, { target: { value: 'random text' } })
 
@@ -189,18 +190,18 @@ describe('Autocomplete', () => {
         await waitForDomChange({ container })
 
         // If allowAny=true: text stays, and selection (if existed) is cleared
-        expect(input.placeholder).toEqual('Placeholder text')
+        expect(input.placeholder).toEqual(placeholder)
       })
 
       test('preselected option and random text entered when allowAny=false', async () => {
-        const { container } = renderAutocomplete(null, {
-          placeholder: 'Placeholder text',
+        const { container, getByPlaceholderText } = renderAutocomplete(null, {
+          placeholder,
           options,
           defaultValue: 'HR',
           allowAny: false
         })
 
-        const input = getInput(container)
+        const input = getByPlaceholderText('Croatia') as HTMLInputElement
 
         fireEvent.change(input, { target: { value: 'random text' } })
 
@@ -214,14 +215,14 @@ describe('Autocomplete', () => {
     })
 
     test('on "Esc" key pressed', async () => {
-      const { container } = renderAutocomplete(null, {
-        placeholder: 'Placeholder text',
+      const { getByPlaceholderText } = renderAutocomplete(null, {
+        placeholder,
         options,
         defaultValue: 'HR',
         allowAny: false
       })
 
-      const input = getInput(container)
+      const input = getByPlaceholderText('Croatia') as HTMLInputElement
 
       fireEvent.change(input, { target: { value: 'random text' } })
 
@@ -230,19 +231,19 @@ describe('Autocomplete', () => {
       })
 
       // text and selection are cleared. Placeholder is displayed.
-      expect(input.placeholder).toEqual('Placeholder text')
+      expect(input.placeholder).toEqual(placeholder)
       expect(input.value).toEqual('')
     })
 
     test('On "Backspace" key pressed with empty text', async () => {
-      const { container } = renderAutocomplete(null, {
-        placeholder: 'Placeholder text',
+      const { getByPlaceholderText } = renderAutocomplete(null, {
+        placeholder,
         options,
         defaultValue: 'HR',
         allowAny: false
       })
 
-      const input = getInput(container)
+      const input = getByPlaceholderText('Croatia') as HTMLInputElement
 
       fireEvent.change(input, { target: { value: '' } })
 
@@ -252,19 +253,19 @@ describe('Autocomplete', () => {
 
       // If there was a selection, it is cleared and placeholder is displayed.
       expect(input.value).toEqual('')
-      expect(input.placeholder).toEqual('Placeholder text')
+      expect(input.placeholder).toEqual(placeholder)
     })
 
     describe('On "arrow up/down" key press', () => {
       test('press down', () => {
-        const { container, getByText } = renderAutocomplete(null, {
-          placeholder: 'Placeholder text',
+        const { getByText, getByPlaceholderText } = renderAutocomplete(null, {
+          placeholder,
           options,
           defaultValue: 'LU',
           allowAny: false
         })
 
-        const input = getInput(container)
+        const input = getByPlaceholderText('Lithuania') as HTMLInputElement
 
         fireEvent.focus(input)
 
@@ -278,14 +279,14 @@ describe('Autocomplete', () => {
       })
 
       test('press up', () => {
-        const { container, getByText } = renderAutocomplete(null, {
-          placeholder: 'Placeholder text',
+        const { getByText, getByPlaceholderText } = renderAutocomplete(null, {
+          placeholder,
           options,
           defaultValue: 'LU',
           allowAny: false
         })
 
-        const input = getInput(container)
+        const input = getByPlaceholderText('Lithuania') as HTMLInputElement
 
         fireEvent.focus(input)
 
@@ -299,14 +300,14 @@ describe('Autocomplete', () => {
       })
 
       test('press Enter', () => {
-        const { container, getByText } = renderAutocomplete(null, {
-          placeholder: 'Placeholder text',
+        const { getByText, getByPlaceholderText } = renderAutocomplete(null, {
+          placeholder,
           options,
           defaultValue: 'LU',
           allowAny: false
         })
 
-        const input = getInput(container)
+        const input = getByPlaceholderText('Lithuania') as HTMLInputElement
 
         fireEvent.focus(input)
 
@@ -330,13 +331,17 @@ describe('Autocomplete', () => {
       })
 
       test('navigate after option selected', async () => {
-        const { container, getByText } = renderAutocomplete(null, {
-          placeholder: 'Placeholder text',
+        const {
+          getByText,
+          getAllByRole,
+          getByPlaceholderText
+        } = renderAutocomplete(null, {
+          placeholder,
           options,
           allowAny: false
         })
 
-        const input = getInput(container)
+        const input = getByPlaceholderText(placeholder) as HTMLInputElement
 
         fireEvent.focus(input)
         fireEvent.click(getByText('Croatia'))
@@ -347,7 +352,7 @@ describe('Autocomplete', () => {
 
         // On option selected + immediately "arrow up/down" key press (no "blur" in between)
         // You can navigate the full list of options, and highlighted option was the one selected.
-        expect(getDropdownOptions(container).length).toEqual(5)
+        expect(getAllByRole('option').length).toEqual(5)
         expect(
           getByText('Croatia').parentElement!.getAttribute('aria-disabled')
         ).toBe('true')
@@ -360,12 +365,13 @@ describe('Autocomplete', () => {
 
   describe('controlled mode', () => {
     test('with "value" prop', async () => {
-      const { container, getByText } = renderAutocomplete(null, {
+      const { getByText, getByPlaceholderText } = renderAutocomplete(null, {
         options,
+        placeholder,
         value: 'HR'
       })
 
-      const input = getInput(container)
+      const input = getByPlaceholderText('Croatia') as HTMLInputElement
 
       fireEvent.focus(input)
       fireEvent.click(getByText('Belarus'))
@@ -376,12 +382,13 @@ describe('Autocomplete', () => {
     })
 
     test('with "inputValue" prop', async () => {
-      const { container, getByText } = renderAutocomplete(null, {
+      const { getByText, getByPlaceholderText } = renderAutocomplete(null, {
+        placeholder,
         options,
         inputValue: 'ia'
       })
 
-      const input = getInput(container)
+      const input = getByPlaceholderText(placeholder) as HTMLInputElement
 
       fireEvent.change(input, { target: { value: 'new text' } })
       fireEvent.click(getByText('Croatia'))
@@ -392,24 +399,25 @@ describe('Autocomplete', () => {
   })
 
   test('with "minLength" prop', async () => {
-    const { container } = renderAutocomplete(null, {
+    const { queryAllByRole, getByPlaceholderText } = renderAutocomplete(null, {
       options,
+      placeholder,
       defaultInputValue: 'a',
       minLength: 1
     })
 
-    const input = getInput(container)
+    const input = getByPlaceholderText(placeholder) as HTMLInputElement
 
-    fireEvent.click(input)
+    fireEvent.focus(input)
 
     // @TODO: NB, this is actually a wrong behavior, different from how it works via browser... to be investigated
     // this would be correct if minLength == 2, but this is not the case
-    expect(getDropdownOptions(container).length).toEqual(0)
+    expect(queryAllByRole('option').length).toEqual(0)
 
     fireEvent.change(input, { target: { value: 'ia' } })
     fireEvent.focus(input)
 
-    expect(getDropdownOptions(container).length).toEqual(3) // Slovakia, Croatia, Lithuania
+    expect(queryAllByRole('option').length).toEqual(3) // Slovakia, Croatia, Lithuania
   })
 
   test('with "inputComponent" prop', async () => {
@@ -424,12 +432,13 @@ describe('Autocomplete', () => {
   })
 
   test('with "noOptionsText" prop', async () => {
-    const { container, getByText } = renderAutocomplete(null, {
+    const { getByText, getByPlaceholderText } = renderAutocomplete(null, {
+      placeholder,
       noOptionsText: 'my no options text',
       defaultInputValue: 'non existing option'
     })
 
-    const input = getInput(container)
+    const input = getByPlaceholderText(placeholder) as HTMLInputElement
 
     fireEvent.focus(input)
 
