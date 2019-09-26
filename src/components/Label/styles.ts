@@ -1,5 +1,7 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
+import '../Chip/styles'
+
 export default ({ palette }: Theme) =>
   createStyles({
     root: {},
