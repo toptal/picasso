@@ -32,9 +32,13 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
     },
     ref
   ) {
-    const usedEndAdornment = React.cloneElement(endAdornment as ReactElement, {
-      className: classes.loaderAdornment
-    })
+    let usedEndAdornment = null
+
+    if (endAdornment) {
+      usedEndAdornment = React.cloneElement(endAdornment as ReactElement, {
+        className: classes.loaderAdornment
+      })
+    }
 
     return (
       <OutlinedInput
@@ -57,7 +61,7 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
         width={width}
         // html attributes
         inputProps={rest}
-        endAdornment={endAdornment ? usedEndAdornment : null}
+        endAdornment={usedEndAdornment}
         startAdornment={startAdornment}
         onChange={onChange}
       >
