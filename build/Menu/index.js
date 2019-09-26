@@ -1,5 +1,2 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var Menu_1 = require("./Menu");
-exports.default = Menu_1.default;
+export { default } from './Menu';
 //# sourceMappingURL=index.js.map

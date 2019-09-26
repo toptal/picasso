@@ -1,34 +1,29 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importDefault(require("react"));
-const picasso_1 = require("@toptal/picasso");
-const react_router_dom_1 = require("react-router-dom");
+import React from 'react';
+import { Link } from '@toptal/picasso';
+import { BrowserRouter as Router, Link as RouterLink, Route, Switch } from 'react-router-dom';
 const Index = () => {
-    return react_1.default.createElement("h2", null, "Home");
+    return React.createElement("h2", null, "Home");
 };
 const About = () => {
-    return react_1.default.createElement("h2", null, "About");
+    return React.createElement("h2", null, "About");
 };
 const Users = () => {
-    return react_1.default.createElement("h2", null, "Users");
+    return React.createElement("h2", null, "Users");
 };
-const RoutingExample = () => (react_1.default.createElement(react_router_dom_1.BrowserRouter, null,
-    react_1.default.createElement("div", null,
-        react_1.default.createElement("nav", null,
-            react_1.default.createElement("ul", null,
-                react_1.default.createElement("li", null,
-                    react_1.default.createElement(picasso_1.Link, { as: react_router_dom_1.Link, to: '/' }, "Home")),
-                react_1.default.createElement("li", null,
-                    react_1.default.createElement(picasso_1.Link, { as: react_router_dom_1.Link, to: '/about/' }, "About")),
-                react_1.default.createElement("li", null,
-                    react_1.default.createElement(picasso_1.Link, { as: react_router_dom_1.Link, to: '/users/' }, "Users")))),
-        react_1.default.createElement(react_router_dom_1.Switch, null,
-            react_1.default.createElement(react_router_dom_1.Route, { path: '/', exact: true, component: Index }),
-            react_1.default.createElement(react_router_dom_1.Route, { path: '/about/', component: About }),
-            react_1.default.createElement(react_router_dom_1.Route, { path: '/users/', component: Users }),
-            react_1.default.createElement(react_router_dom_1.Route, { component: Index })))));
-exports.default = RoutingExample;
+const RoutingExample = () => (React.createElement(Router, null,
+    React.createElement("div", null,
+        React.createElement("nav", null,
+            React.createElement("ul", null,
+                React.createElement("li", null,
+                    React.createElement(Link, { as: RouterLink, to: '/' }, "Home")),
+                React.createElement("li", null,
+                    React.createElement(Link, { as: RouterLink, to: '/about/' }, "About")),
+                React.createElement("li", null,
+                    React.createElement(Link, { as: RouterLink, to: '/users/' }, "Users")))),
+        React.createElement(Switch, null,
+            React.createElement(Route, { path: '/', exact: true, component: Index }),
+            React.createElement(Route, { path: '/about/', component: About }),
+            React.createElement(Route, { path: '/users/', component: Users }),
+            React.createElement(Route, { component: Index })))));
+export default RoutingExample;
 //# sourceMappingURL=Routing.example.js.map

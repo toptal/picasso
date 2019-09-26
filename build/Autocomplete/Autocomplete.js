@@ -1,4 +1,3 @@
-"use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -10,37 +9,26 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importStar(require("react"));
-const styles_1 = require("@material-ui/core/styles");
-const helpers_1 = require("@material-ui/core/utils/helpers");
-const classnames_1 = __importDefault(require("classnames"));
-const downshift_1 = __importDefault(require("downshift"));
-const debounce_1 = __importDefault(require("debounce"));
-const Input_1 = __importDefault(require("../Input"));
-const Menu_1 = __importDefault(require("../Menu"));
-const Loader_1 = __importDefault(require("../Loader"));
-const ScrollMenu_1 = __importDefault(require("../ScrollMenu"));
-const utils_1 = require("../utils");
-const styles_2 = __importDefault(require("./styles"));
+import React, { useState, useEffect, forwardRef } from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import { capitalize } from '@material-ui/core/utils/helpers';
+import cx from 'classnames';
+import Downshift from 'downshift';
+import debounce from 'debounce';
+import Input from '../Input';
+import Menu from '../Menu';
+import Loader from '../Loader';
+import ScrollMenu from '../ScrollMenu';
+import { isSubstring } from '../utils';
+import styles from './styles';
 const DEBOUNCE_TIME = 300;
 const EMPTY_VALUE = '';
 const isMatchingMinLength = (value, minLength) => !minLength || value.length >= minLength;
 const getItemText = (item) => item ? item.text || EMPTY_VALUE : EMPTY_VALUE;
 const getItemValue = (item) => item ? item.value || getItemText(item) : EMPTY_VALUE;
-exports.Autocomplete = react_1.forwardRef(function Autocomplete(_a, ref) {
+export const Autocomplete = forwardRef(function Autocomplete(_a, ref) {
     var { classes, className, debounceTime, loading, minLength, placeholder, noOptionsText, options: initialOptions, style, width, allowAny, onSelect, onKeyDown: onKeyDownProp, defaultValue, value, onChange, inputComponent } = _a, rest = __rest(_a, ["classes", "className", "debounceTime", "loading", "minLength", "placeholder", "noOptionsText", "options", "style", "width", "allowAny", "onSelect", "onKeyDown", "defaultValue", "value", "onChange", "inputComponent"]);
-    react_1.useEffect(() => {
+    useEffect(() => {
         window.console.warn(`There is a newer version of this component with the latest fixes and API which can be imported from '@toptal/picasso/lab'.
 
 This version of the component will receive no more updates during v3, and will be replaced by the one in "lab" in the future.
@@ -52,10 +40,10 @@ BREAKING CHANGES:
 - \`debounceTime\` prop removed. Now it is up to the component consumer to debounce any event.
 - Beware of how \`value\` and \`defaultValue\` props work now. To simply set an initial value, use \`defaultValue\`. Use \`value\` together with \`onSelect\` for fully controlled mode.`);
     }, []);
-    const [inputValue, setInputValue] = react_1.useState(null);
-    const [filter, setFilter] = react_1.useState(EMPTY_VALUE);
-    const [selectedItem, setSelectedItem] = react_1.useState(null);
-    const onChangeDebounced = react_1.default.useCallback(debounceTime === 0 ? onChange : debounce_1.default(onChange, debounceTime), [onChange, debounceTime]);
+    const [inputValue, setInputValue] = useState(null);
+    const [filter, setFilter] = useState(EMPTY_VALUE);
+    const [selectedItem, setSelectedItem] = useState(null);
+    const onChangeDebounced = React.useCallback(debounceTime === 0 ? onChange : debounce(onChange, debounceTime), [onChange, debounceTime]);
     const handleSelectItem = (item) => {
         if (item === undefined) {
             return;
@@ -73,14 +61,14 @@ BREAKING CHANGES:
     const handleStateChange = ({ selectedItem }) => {
         handleSelectItem(selectedItem);
     };
-    const options = initialOptions.filter(item => utils_1.isSubstring(filter || EMPTY_VALUE, getItemText(item)));
+    const options = initialOptions.filter(item => isSubstring(filter || EMPTY_VALUE, getItemText(item)));
     const isSelected = (item, selectedItem) => getItemValue(item) === getItemValue(selectedItem);
     const handleChange = (item, helpers) => {
         const { setHighlightedIndex } = helpers;
         const currentIndex = options ? options.indexOf(item) : 0;
         setHighlightedIndex(currentIndex);
     };
-    react_1.useEffect(() => {
+    useEffect(() => {
         const selectedItem = initialOptions.find(option => getItemValue(option) === value);
         if (!selectedItem && allowAny && value !== undefined) {
             setInputValue(String(value));
@@ -89,14 +77,14 @@ BREAKING CHANGES:
             handleSelectItem(selectedItem);
         }
     }, [value]);
-    return (react_1.default.createElement(downshift_1.default, { itemToString: item => getItemText(item), onStateChange: handleStateChange, onChange: handleChange, inputValue: inputValue, selectedItem: selectedItem }, ({ getMenuProps, getInputProps, getItemProps, isOpen, selectedItem, highlightedIndex, openMenu, selectItem: downshiftSelectItem, setHighlightedIndex, reset }) => {
+    return (React.createElement(Downshift, { itemToString: item => getItemText(item), onStateChange: handleStateChange, onChange: handleChange, inputValue: inputValue, selectedItem: selectedItem }, ({ getMenuProps, getInputProps, getItemProps, isOpen, selectedItem, highlightedIndex, openMenu, selectItem: downshiftSelectItem, setHighlightedIndex, reset }) => {
         const isTyping = Boolean(inputValue);
         const hasOptions = Boolean(options.length);
         const canOpen = isOpen &&
             isMatchingMinLength(inputValue || EMPTY_VALUE, minLength) &&
             !loading &&
             (hasOptions || isTyping);
-        const optionsMenu = (react_1.default.createElement(ScrollMenu_1.default, { selectedIndex: highlightedIndex }, !hasOptions ? (react_1.default.createElement(Menu_1.default.Item, { disabled: true }, noOptionsText)) : (options.map((option, index) => (react_1.default.createElement(Menu_1.default.Item, Object.assign({ key: getItemValue(option), selected: highlightedIndex === index, disabled: isSelected(option, selectedItem) }, getItemProps({ item: option, index })), getItemText(option)))))));
+        const optionsMenu = (React.createElement(ScrollMenu, { selectedIndex: highlightedIndex }, !hasOptions ? (React.createElement(Menu.Item, { disabled: true }, noOptionsText)) : (options.map((option, index) => (React.createElement(Menu.Item, Object.assign({ key: getItemValue(option), selected: highlightedIndex === index, disabled: isSelected(option, selectedItem) }, getItemProps({ item: option, index })), getItemText(option)))))));
         const selectItem = (item) => {
             downshiftSelectItem(item);
             setFilter(EMPTY_VALUE);
@@ -143,17 +131,17 @@ BREAKING CHANGES:
                 onChangeDebounced(event);
             }
         });
-        const InputComponent = inputComponent || Input_1.default;
-        return (react_1.default.createElement("div", { className: classnames_1.default(classes.root, className, classes[`root${helpers_1.capitalize(width)}`]), style: style },
-            react_1.default.createElement(InputComponent
+        const InputComponent = inputComponent || Input;
+        return (React.createElement("div", { className: cx(classes.root, className, classes[`root${capitalize(width)}`]), style: style },
+            React.createElement(InputComponent
             /* eslint-disable-next-line react/jsx-props-no-spreading */
-            , Object.assign({}, rest, { defaultValue: defaultValue, ref: ref, classes: {}, icon: loading ? react_1.default.createElement(Loader_1.default, { size: 'small' }) : null, iconPosition: 'end', value: inputValue || EMPTY_VALUE, onBlur: onBlur, onKeyDown: onKeyDown, onFocus: onFocus, onClick: onFocus, placeholder: selectedItem ? getItemText(selectedItem) : placeholder, width: width, onChange: e => {
+            , Object.assign({}, rest, { defaultValue: defaultValue, ref: ref, classes: {}, icon: loading ? React.createElement(Loader, { size: 'small' }) : null, iconPosition: 'end', value: inputValue || EMPTY_VALUE, onBlur: onBlur, onKeyDown: onKeyDown, onFocus: onFocus, onClick: onFocus, placeholder: selectedItem ? getItemText(selectedItem) : placeholder, width: width, onChange: e => {
                     onChange(e);
                 } })),
-            react_1.default.createElement("div", Object.assign({}, getMenuProps()), canOpen ? optionsMenu : null)));
+            React.createElement("div", Object.assign({}, getMenuProps()), canOpen ? optionsMenu : null)));
     }));
 });
-exports.Autocomplete.defaultProps = {
+Autocomplete.defaultProps = {
     allowAny: true,
     debounceTime: DEBOUNCE_TIME,
     loading: false,
@@ -164,6 +152,6 @@ exports.Autocomplete.defaultProps = {
     options: [],
     width: 'auto'
 };
-exports.Autocomplete.displayName = 'Autocomplete';
-exports.default = styles_1.withStyles(styles_2.default)(exports.Autocomplete);
+Autocomplete.displayName = 'Autocomplete';
+export default withStyles(styles)(Autocomplete);
 //# sourceMappingURL=Autocomplete.js.map

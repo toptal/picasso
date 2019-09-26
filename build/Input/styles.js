@@ -1,11 +1,9 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const styles_1 = require("@material-ui/core/styles");
-require("../InputBase/styles");
-require("../InputLabel/styles");
-require("../OutlinedInput/styles");
-require("../InputAdornment/styles");
-exports.default = ({ sizes: { input } }) => styles_1.createStyles({
+import { createStyles } from '@material-ui/core/styles';
+import '../InputBase/styles';
+import '../InputLabel/styles';
+import '../OutlinedInput/styles';
+import '../InputAdornment/styles';
+export default ({ sizes: { input } }) => createStyles({
     root: {
         padding: input.padding
     },

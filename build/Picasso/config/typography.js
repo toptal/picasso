@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 const typography = {
     fontFamily: ['proxima-nova', 'Arial', 'sans-serif'].join(','),
     fontSize: 16,
@@ -16,5 +14,5 @@ const typography = {
         fontSizeLarge: '15px'
     }
 };
-exports.default = typography;
+export default typography;
 //# sourceMappingURL=typography.js.map

@@ -1,4 +1,3 @@
-"use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -10,24 +9,20 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importDefault(require("react"));
-const styles_1 = require("@material-ui/core/styles");
-const InputAdornment_1 = __importDefault(require("@material-ui/core/InputAdornment"));
-const classnames_1 = __importDefault(require("classnames"));
-const styles_2 = __importDefault(require("./styles"));
+import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import MUIInputAdornment from '@material-ui/core/InputAdornment';
+import cx from 'classnames';
+import styles from './styles';
 const InputAdornment = (_a) => {
     var { classes, className, style, children, position, disabled } = _a, rest = __rest(_a, ["classes", "className", "style", "children", "position", "disabled"]);
-    return (react_1.default.createElement(InputAdornment_1.default
+    return (React.createElement(MUIInputAdornment
     // eslint-disable-next-line react/jsx-props-no-spreading
     , Object.assign({}, rest, { classes: {
-            root: classnames_1.default(classes.root, {
+            root: cx(classes.root, {
                 [classes.rootDisabled]: disabled
             })
         }, className: className, style: style, position: position }), children));
 };
-exports.default = styles_1.withStyles(styles_2.default)(InputAdornment);
+export default withStyles(styles)(InputAdornment);
 //# sourceMappingURL=InputAdornment.js.map

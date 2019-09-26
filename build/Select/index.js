@@ -1,5 +1,2 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var Select_1 = require("./Select");
-exports.default = Select_1.default;
+export { default } from './Select';
 //# sourceMappingURL=index.js.map

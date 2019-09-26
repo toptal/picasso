@@ -1,8 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const core_1 = require("@material-ui/core");
-const Picasso_1 = require("../Picasso");
-Picasso_1.PicassoProvider.override(({ palette }) => ({
+import { createStyles } from '@material-ui/core';
+import { PicassoProvider } from '../Picasso';
+PicassoProvider.override(({ palette }) => ({
     MuiInputLabel: {
         root: {
             fontSize: 'unset'
@@ -12,7 +10,7 @@ Picasso_1.PicassoProvider.override(({ palette }) => ({
         }
     }
 }));
-exports.default = () => core_1.createStyles({
+export default () => createStyles({
     root: {}
 });
 //# sourceMappingURL=styles.js.map

@@ -1,32 +1,30 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const styles_1 = require("@material-ui/core/styles");
-const styles_2 = require("../styles");
+import { createStyles } from '@material-ui/core/styles';
+import { lighten, darken, alpha } from '../styles';
 const ICON_SPACING = '0.4em';
 const primary = (mainColor, secondaryColor) => ({
     border: 'none',
     color: secondaryColor,
     backgroundColor: mainColor,
     '&:hover, &$hovered': {
-        backgroundColor: styles_2.darken(mainColor, 0.2)
+        backgroundColor: darken(mainColor, 0.2)
     },
     '&:active, &$active': {
-        backgroundColor: styles_2.darken(mainColor, 0.2)
+        backgroundColor: darken(mainColor, 0.2)
     }
 });
 const secondary = (mainColor, secondaryColor) => ({
     color: mainColor,
     backgroundColor: secondaryColor,
     '&:hover, &$hovered': {
-        backgroundColor: styles_2.lighten(mainColor, 0.84),
+        backgroundColor: lighten(mainColor, 0.84),
         borderColor: mainColor
     },
     '&:active, &$active': {
-        backgroundColor: styles_2.lighten(mainColor, 0.84),
+        backgroundColor: lighten(mainColor, 0.84),
         borderColor: mainColor
     }
 });
-exports.default = ({ palette, sizes, transitions, typography }) => styles_1.createStyles({
+export default ({ palette, sizes, transitions, typography }) => createStyles({
     root: {
         position: 'relative',
         textTransform: 'none',
@@ -98,11 +96,11 @@ exports.default = ({ palette, sizes, transitions, typography }) => styles_1.crea
         color: palette.common.white,
         border: `solid ${sizes.borderWidth} rgba(255, 255, 255, 0.32)`,
         '&:hover, &$hovered': {
-            backgroundColor: styles_2.alpha(palette.common.white, 0.16),
+            backgroundColor: alpha(palette.common.white, 0.16),
             borderColor: palette.common.white
         },
         '&:active, &$active': {
-            backgroundColor: styles_2.alpha(palette.common.white, 0.16),
+            backgroundColor: alpha(palette.common.white, 0.16),
             borderColor: palette.common.white
         }
     },
@@ -111,10 +109,10 @@ exports.default = ({ palette, sizes, transitions, typography }) => styles_1.crea
         color: palette.common.white,
         border: 'none',
         '&:hover, &$hovered': {
-            backgroundColor: styles_2.alpha(palette.common.white, 0.16)
+            backgroundColor: alpha(palette.common.white, 0.16)
         },
         '&:active, &$active': {
-            backgroundColor: styles_2.alpha(palette.common.white, 0.16)
+            backgroundColor: alpha(palette.common.white, 0.16)
         }
     },
     primaryDisabled: primary(palette.grey.light, palette.common.white),

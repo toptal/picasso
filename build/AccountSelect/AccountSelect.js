@@ -1,4 +1,3 @@
-"use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -10,42 +9,31 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importStar(require("react"));
-const styles_1 = require("@material-ui/core/styles");
-const palette_1 = __importDefault(require("../Picasso/config/palette"));
-const UserBadge_1 = __importDefault(require("../UserBadge"));
-const Typography_1 = __importDefault(require("../Typography"));
-const Menu_1 = __importDefault(require("../Menu"));
-const Link_1 = __importDefault(require("../Link"));
-const Container_1 = __importDefault(require("../Container"));
-const Icon_1 = require("../Icon");
-const styles_2 = __importDefault(require("./styles"));
-exports.AccountSelect = react_1.forwardRef(function AccountSelect(_a, ref) {
+import React, { forwardRef } from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import palette from '../Picasso/config/palette';
+import UserBadge from '../UserBadge';
+import Typography from '../Typography';
+import Menu from '../Menu';
+import Link from '../Link';
+import Container from '../Container';
+import { ChevronRight16 } from '../Icon';
+import styles from './styles';
+export const AccountSelect = forwardRef(function AccountSelect(_a, ref) {
     var { classes, className, accounts, onSelect, style } = _a, rest = __rest(_a, ["classes", "className", "accounts", "onSelect", "style"]);
     const { accountItem: accountItemClass, accountLink: accountLinkClass } = classes, menuClasses = __rest(classes, ["accountItem", "accountLink"]);
-    return (react_1.default.createElement(Menu_1.default
+    return (React.createElement(Menu
     // eslint-disable-next-line react/jsx-props-no-spreading
-    , Object.assign({}, rest, { ref: ref, classes: menuClasses, className: className, style: style }), accounts.map(account => (react_1.default.createElement(Menu_1.default.Item, { disableGutters: true, className: accountItemClass, key: `role-${account.id}` },
-        react_1.default.createElement(Link_1.default, { className: accountLinkClass, href: account.href, onClick: () => onSelect(account), underline: 'none' },
-            react_1.default.createElement(Container_1.default, { padded: 'medium', flex: true, direction: 'row', alignItems: 'center', justifyContent: 'space-between' },
-                react_1.default.createElement(UserBadge_1.default, { name: account.name, avatar: account.avatar },
-                    react_1.default.createElement(Typography_1.default, { size: 'small' }, account.position)),
-                react_1.default.createElement(Icon_1.ChevronRight16, { color: palette_1.default.text.primary }))))))));
+    , Object.assign({}, rest, { ref: ref, classes: menuClasses, className: className, style: style }), accounts.map(account => (React.createElement(Menu.Item, { disableGutters: true, className: accountItemClass, key: `role-${account.id}` },
+        React.createElement(Link, { className: accountLinkClass, href: account.href, onClick: () => onSelect(account), underline: 'none' },
+            React.createElement(Container, { padded: 'medium', flex: true, direction: 'row', alignItems: 'center', justifyContent: 'space-between' },
+                React.createElement(UserBadge, { name: account.name, avatar: account.avatar },
+                    React.createElement(Typography, { size: 'small' }, account.position)),
+                React.createElement(ChevronRight16, { color: palette.text.primary }))))))));
 });
-exports.AccountSelect.defaultProps = {
+AccountSelect.defaultProps = {
     onSelect: () => { }
 };
-exports.AccountSelect.displayName = 'AccountSelect';
-exports.default = styles_1.withStyles(styles_2.default)(exports.AccountSelect);
+AccountSelect.displayName = 'AccountSelect';
+export default withStyles(styles)(AccountSelect);
 //# sourceMappingURL=AccountSelect.js.map

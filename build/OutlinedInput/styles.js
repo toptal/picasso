@@ -1,9 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const styles_1 = require("@material-ui/core/styles");
-const Picasso_1 = require("../Picasso");
-const styles_2 = require("../styles");
-Picasso_1.PicassoProvider.override(({ palette, sizes: { input } }) => ({
+import { createStyles } from '@material-ui/core/styles';
+import { PicassoProvider } from '../Picasso';
+import { alpha } from '../styles';
+PicassoProvider.override(({ palette, sizes: { input } }) => ({
     MuiOutlinedInput: {
         root: {
             height: input.height,
@@ -24,9 +22,9 @@ Picasso_1.PicassoProvider.override(({ palette, sizes: { input } }) => ({
             },
             '&$disabled': {
                 '& $notchedOutline': {
-                    borderColor: styles_2.alpha(palette.grey.light, 0.48)
+                    borderColor: alpha(palette.grey.light, 0.48)
                 },
-                color: styles_2.alpha(palette.common.black, 0.48)
+                color: alpha(palette.common.black, 0.48)
             },
             '&:hover': {
                 '&:not($disabled)&:not($focused)&:not($error)': {
@@ -50,7 +48,7 @@ Picasso_1.PicassoProvider.override(({ palette, sizes: { input } }) => ({
             },
             '&$disabled': {
                 '&::placeholder': {
-                    color: styles_2.alpha(palette.grey.main2, 0.48),
+                    color: alpha(palette.grey.main2, 0.48),
                     opacity: 1
                 }
             }
@@ -67,7 +65,7 @@ Picasso_1.PicassoProvider.override(({ palette, sizes: { input } }) => ({
         notchedOutline: {}
     }
 }));
-exports.default = () => styles_1.createStyles({
+export default () => createStyles({
     root: {},
     rootFull: {
         width: '100%'

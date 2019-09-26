@@ -1,11 +1,6 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = require("react");
-const useMediaQuery_1 = __importDefault(require("@material-ui/core/useMediaQuery"));
-exports.screens = function (...sizes) {
+import { useState, useEffect } from 'react';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+export const screens = function (...sizes) {
     const { sm, md, lg } = breakpoints.values;
     const mediaQueries = {
         small: `(max-width: ${sm}px)`,
@@ -15,7 +10,7 @@ exports.screens = function (...sizes) {
     };
     return `@media ${sizes.map(size => mediaQueries[size]).join(', ')}`;
 };
-exports.isScreenSize = function (size, currentSize) {
+export const isScreenSize = function (size, currentSize) {
     const { sm, md, lg, xl } = breakpoints.values;
     const breakPointBoundaries = {
         small: (width) => width < sm,
@@ -25,10 +20,10 @@ exports.isScreenSize = function (size, currentSize) {
     };
     return breakPointBoundaries[size](currentSize || window.innerWidth);
 };
-exports.useScreenSize = () => {
-    const [size, setSize] = react_1.useState(window.innerWidth);
+export const useScreenSize = () => {
+    const [size, setSize] = useState(window.innerWidth);
     const updateSize = () => setSize(window.innerWidth);
-    react_1.useEffect(() => {
+    useEffect(() => {
         window.addEventListener('resize', updateSize);
         return () => {
             window.removeEventListener('resize', updateSize);
@@ -36,7 +31,7 @@ exports.useScreenSize = () => {
     }, []);
     return size;
 };
-exports.useBreakpoint = (sizes) => useMediaQuery_1.default(exports.screens(...[].concat(sizes)));
+export const useBreakpoint = (sizes) => useMediaQuery(screens(...[].concat(sizes)));
 const breakpoints = {
     values: {
         xs: 0,
@@ -46,11 +41,11 @@ const breakpoints = {
         xl: 1920
     }
 };
-exports.breakpointsList = {
+export const breakpointsList = {
     small: breakpoints.values.sm,
     medium: breakpoints.values.md,
     large: breakpoints.values.lg,
     'extra-large': breakpoints.values.xl
 };
-exports.default = breakpoints;
+export default breakpoints;
 //# sourceMappingURL=breakpoints.js.map

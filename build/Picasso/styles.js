@@ -1,7 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const core_1 = require("@material-ui/core");
-exports.default = ({ typography }) => core_1.createStyles({
+import { createStyles } from '@material-ui/core';
+export default ({ typography }) => createStyles({
     root: {
         flex: 1,
         boxSizing: 'border-box',

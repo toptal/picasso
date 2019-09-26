@@ -1,9 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const styles_1 = require("@material-ui/core/styles");
-const styles_2 = require("../../styles");
-const TAG_SELECTOR_GUTTER_SIZE = styles_2.rem('6px');
-exports.default = ({ sizes: { input } }) => styles_1.createStyles({
+import { createStyles } from '@material-ui/core/styles';
+import { rem } from '../../styles';
+const TAG_SELECTOR_GUTTER_SIZE = rem('6px');
+export default ({ sizes: { input } }) => createStyles({
     inputBase: {
         display: 'flex',
         flexWrap: 'wrap',
@@ -17,8 +15,8 @@ exports.default = ({ sizes: { input } }) => styles_1.createStyles({
         },
         '& > input': {
             width: 'auto',
-            height: styles_2.rem('24px'),
-            paddingLeft: styles_2.rem('4px'),
+            height: rem('24px'),
+            paddingLeft: rem('4px'),
             paddingRight: '0',
             fontSize: '0.8125em'
         }

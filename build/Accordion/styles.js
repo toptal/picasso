@@ -1,8 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const styles_1 = require("../styles");
-const Picasso_1 = require("../Picasso");
-Picasso_1.PicassoProvider.override(() => ({
+import { createPropertiesStyles } from '../styles';
+import { PicassoProvider } from '../Picasso';
+PicassoProvider.override(() => ({
     MuiExpansionPanel: {
         root: {
             '&$expanded': {
@@ -14,8 +12,8 @@ Picasso_1.PicassoProvider.override(() => ({
         }
     }
 }));
-exports.default = ({ palette, typography }) => {
-    const separatorStyles = styles_1.createPropertiesStyles({
+export default ({ palette, typography }) => {
+    const separatorStyles = createPropertiesStyles({
         display: 'block',
         left: 0,
         right: 0,
@@ -47,7 +45,7 @@ exports.default = ({ palette, typography }) => {
         summary: {
             color: palette.common.black
         },
-        summaryFontWeightInherit: styles_1.createPropertiesStyles({
+        summaryFontWeightInherit: createPropertiesStyles({
             fontWeight: 'inherit'
         }),
         expandIcon: {

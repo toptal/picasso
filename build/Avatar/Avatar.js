@@ -1,4 +1,3 @@
-"use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -10,40 +9,29 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importStar(require("react"));
-const classnames_1 = __importDefault(require("classnames"));
-const styles_1 = require("@material-ui/core/styles");
-const Image_1 = __importDefault(require("../Image"));
-const Logo_1 = __importDefault(require("../Logo"));
-const Typography_1 = __importDefault(require("../Typography"));
-const get_name_initials_1 = __importDefault(require("../utils/get-name-initials"));
-const styles_2 = __importDefault(require("./styles"));
-class Avatar extends react_1.PureComponent {
+import React, { PureComponent } from 'react';
+import cx from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
+import Image from '../Image';
+import Logo from '../Logo';
+import Typography from '../Typography';
+import getNameInitials from '../utils/get-name-initials';
+import styles from './styles';
+export class Avatar extends PureComponent {
     renderLogo() {
         const { classes, src, size } = this.props;
         if (!src || size === 'small' || size === 'xsmall') {
             return null;
         }
-        return (react_1.default.createElement("div", { className: classes.logoContainer },
-            react_1.default.createElement(Logo_1.default, { emblem: true, variant: 'white', className: classes.logo })));
+        return (React.createElement("div", { className: classes.logoContainer },
+            React.createElement(Logo, { emblem: true, variant: 'white', className: classes.logo })));
     }
     renderInitials() {
         const { classes, src, name } = this.props;
         if (src || !name) {
             return null;
         }
-        return (react_1.default.createElement(Typography_1.default, { className: classes.text, invert: true }, get_name_initials_1.default(name)));
+        return (React.createElement(Typography, { className: classes.text, invert: true }, getNameInitials(name)));
     }
     render() {
         const _a = this.props, { alt, src, classes, className, name, size, style, variant } = _a, rest = __rest(_a, ["alt", "src", "classes", "className", "name", "size", "style", "variant"]);
@@ -51,8 +39,8 @@ class Avatar extends react_1.PureComponent {
         const variantClassName = classes[variant];
         return (
         // eslint-disable-next-line react/jsx-props-no-spreading
-        react_1.default.createElement("div", Object.assign({}, rest, { className: classnames_1.default(classes.root, sizeClassName) }),
-            src ? (react_1.default.createElement(Image_1.default, { alt: alt || name, className: classnames_1.default(classes.image, variantClassName, sizeClassName, classes.clippedCorner, className), src: src, style: style })) : (react_1.default.createElement("div", { className: classnames_1.default(classes.textContainer, variantClassName, sizeClassName, classes.clippedCorner, className) })),
+        React.createElement("div", Object.assign({}, rest, { className: cx(classes.root, sizeClassName) }),
+            src ? (React.createElement(Image, { alt: alt || name, className: cx(classes.image, variantClassName, sizeClassName, classes.clippedCorner, className), src: src, style: style })) : (React.createElement("div", { className: cx(classes.textContainer, variantClassName, sizeClassName, classes.clippedCorner, className) })),
             this.renderInitials(),
             this.renderLogo()));
     }
@@ -62,6 +50,5 @@ Avatar.defaultProps = {
     variant: 'square'
 };
 Avatar.displayName = 'Avatar';
-exports.Avatar = Avatar;
-exports.default = styles_1.withStyles(styles_2.default)(Avatar);
+export default withStyles(styles)(Avatar);
 //# sourceMappingURL=Avatar.js.map

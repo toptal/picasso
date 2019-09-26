@@ -1,7 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const Picasso_1 = require("../Picasso");
-Picasso_1.PicassoProvider.override(({ palette, sizes }) => ({
+import { PicassoProvider } from '../Picasso';
+PicassoProvider.override(({ palette, sizes }) => ({
     MuiChip: {
         root: {
             fontSize: '1em',

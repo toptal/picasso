@@ -1,5 +1,2 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var OutlinedInput_1 = require("./OutlinedInput");
-exports.default = OutlinedInput_1.default;
+export { default } from './OutlinedInput';
 //# sourceMappingURL=index.js.map

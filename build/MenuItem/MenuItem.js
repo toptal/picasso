@@ -1,4 +1,3 @@
-"use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -10,31 +9,20 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importStar(require("react"));
-const classnames_1 = __importDefault(require("classnames"));
-const styles_1 = require("@material-ui/core/styles");
-const MenuItem_1 = __importDefault(require("@material-ui/core/MenuItem"));
-const Icon_1 = require("../Icon");
-const menuContext_1 = __importDefault(require("../Menu/menuContext"));
-const styles_2 = __importDefault(require("./styles"));
-exports.MenuItem = react_1.forwardRef(function MenuItem(_a, ref) {
+import React, { forwardRef, useContext } from 'react';
+import cx from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
+import MUIMenuItem from '@material-ui/core/MenuItem';
+import { ChevronMinor16 } from '../Icon';
+import MenuContext from '../Menu/menuContext';
+import styles from './styles';
+export const MenuItem = forwardRef(function MenuItem(_a, ref) {
     var { as, children, classes, className, disabled, disableGutters, menu, onClick, selected, style, value, variant } = _a, rest = __rest(_a, ["as", "children", "classes", "className", "disabled", "disableGutters", "menu", "onClick", "selected", "style", "value", "variant"]);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { stringContent, light, dark } = classes, restClasses = __rest(classes, ["stringContent", "light", "dark"]);
-    const { push } = react_1.useContext(menuContext_1.default);
+    const { push } = useContext(MenuContext);
     if (typeof children === 'string') {
-        children = (react_1.default.createElement("span", { className: stringContent, style: style }, children));
+        children = (React.createElement("span", { className: stringContent, style: style }, children));
     }
     const handleClick = (event) => {
         if (menu) {
@@ -45,17 +33,17 @@ exports.MenuItem = react_1.forwardRef(function MenuItem(_a, ref) {
             onClick(event);
         }
     };
-    return (react_1.default.createElement(MenuItem_1.default
+    return (React.createElement(MUIMenuItem
     // eslint-disable-next-line react/jsx-props-no-spreading
-    , Object.assign({}, rest, { ref: ref, component: as, classes: restClasses, className: classnames_1.default(classes[variant], className), disabled: disabled, disableGutters: disableGutters, onClick: handleClick, style: style, value: value, selected: selected }),
+    , Object.assign({}, rest, { ref: ref, component: as, classes: restClasses, className: cx(classes[variant], className), disabled: disabled, disableGutters: disableGutters, onClick: handleClick, style: style, value: value, selected: selected }),
         children,
-        menu && react_1.default.createElement(Icon_1.ChevronMinor16, null)));
+        menu && React.createElement(ChevronMinor16, null)));
 });
-exports.MenuItem.defaultProps = {
+MenuItem.defaultProps = {
     as: 'li',
     onClick: () => { },
     variant: 'light'
 };
-exports.MenuItem.displayName = 'MenuItem';
-exports.default = styles_1.withStyles(styles_2.default)(exports.MenuItem);
+MenuItem.displayName = 'MenuItem';
+export default withStyles(styles)(MenuItem);
 //# sourceMappingURL=MenuItem.js.map

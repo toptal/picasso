@@ -1,5 +1,2 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var PageFooter_1 = require("./PageFooter");
-exports.default = PageFooter_1.default;
+export { default } from './PageFooter';
 //# sourceMappingURL=index.js.map

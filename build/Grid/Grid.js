@@ -1,4 +1,3 @@
-"use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -10,40 +9,29 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importStar(require("react"));
-const styles_1 = require("@material-ui/core/styles");
-const Grid_1 = __importDefault(require("@material-ui/core/Grid"));
-const GridItem_1 = __importDefault(require("../GridItem"));
-const styles_2 = __importDefault(require("./styles"));
+import React, { forwardRef } from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import MUIGrid from '@material-ui/core/Grid';
+import GridItem from '../GridItem';
+import styles from './styles';
 const humanToMUISpacing = (spacing) => {
     /** Material Design margins and columns follow an 8px square baseline grid */
     return (spacing / 8);
 };
 // eslint-disable-next-line react/display-name
-exports.Grid = react_1.forwardRef(function Grid(_a, ref) {
+export const Grid = forwardRef(function Grid(_a, ref) {
     var { children, spacing, direction, alignItems, justifyContent, wrap, classes, className, style } = _a, rest = __rest(_a, ["children", "spacing", "direction", "alignItems", "justifyContent", "wrap", "classes", "className", "style"]);
-    return (react_1.default.createElement(Grid_1.default
+    return (React.createElement(MUIGrid
     // eslint-disable-next-line react/jsx-props-no-spreading
     , Object.assign({}, rest, { ref: ref, container: true, spacing: humanToMUISpacing(spacing), direction: direction, alignItems: alignItems, justify: justifyContent, wrap: wrap, classes: classes, className: className, style: style }), children));
 });
-exports.Grid.defaultProps = {
+Grid.defaultProps = {
     alignItems: 'flex-start',
     direction: 'row',
     justifyContent: 'flex-start',
     spacing: 32,
     wrap: 'wrap'
 };
-exports.Grid.Item = GridItem_1.default;
-exports.default = styles_1.withStyles(styles_2.default)(exports.Grid);
+Grid.Item = GridItem;
+export default withStyles(styles)(Grid);
 //# sourceMappingURL=Grid.js.map

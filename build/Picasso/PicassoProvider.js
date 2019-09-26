@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-class PicassoProvider {
+export class PicassoProvider {
     constructor(theme) {
         this.theme = theme;
     }
@@ -14,6 +12,5 @@ class PicassoProvider {
         this.theme.overrides = overrides;
     }
 }
-exports.PicassoProvider = PicassoProvider;
-exports.default = PicassoProvider;
+export default PicassoProvider;
 //# sourceMappingURL=PicassoProvider.js.map

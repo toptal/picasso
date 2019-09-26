@@ -1,4 +1,3 @@
-"use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -10,31 +9,20 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importStar(require("react"));
-const styles_1 = require("@material-ui/core/styles");
-const Tooltip_1 = __importDefault(require("@material-ui/core/Tooltip"));
-const classnames_1 = __importDefault(require("classnames"));
-const Picasso_1 = require("../Picasso");
-const styles_2 = __importDefault(require("./styles"));
-exports.Tooltip = (_a) => {
+import React, { Fragment, useState } from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import MUITooltip from '@material-ui/core/Tooltip';
+import cx from 'classnames';
+import { usePicassoRoot } from '../Picasso';
+import styles from './styles';
+export const Tooltip = (_a) => {
     var { content, children, placement, interactive, classes, className, style, arrow, open, onClose, onOpen, variant } = _a, rest = __rest(_a, ["content", "children", "placement", "interactive", "classes", "className", "style", "arrow", "open", "onClose", "onOpen", "variant"]);
-    const [arrowRef, setArrowRef] = react_1.useState(null);
-    const container = Picasso_1.usePicassoRoot();
-    const title = (react_1.default.createElement(react_1.Fragment, null,
+    const [arrowRef, setArrowRef] = useState(null);
+    const container = usePicassoRoot();
+    const title = (React.createElement(Fragment, null,
         content,
-        arrow && react_1.default.createElement("span", { className: classes.arrow, ref: setArrowRef })));
-    return (react_1.default.createElement(Tooltip_1.default
+        arrow && React.createElement("span", { className: classes.arrow, ref: setArrowRef })));
+    return (React.createElement(MUITooltip
     // eslint-disable-next-line react/jsx-props-no-spreading
     , Object.assign({}, rest, { PopperProps: {
             container,
@@ -48,15 +36,15 @@ exports.Tooltip = (_a) => {
             }
         }, classes: {
             popper: variant === 'light' ? classes.arrowPopperLight : classes.arrowPopper,
-            tooltip: classnames_1.default(classes.tooltip, {
+            tooltip: cx(classes.tooltip, {
                 [classes.light]: variant === 'light'
             })
         }, className: className, style: style, interactive: interactive, onClose: onClose, onOpen: onOpen, open: open, placement: placement, title: title }), children));
 };
-exports.Tooltip.defaultProps = {
+Tooltip.defaultProps = {
     arrow: true,
     placement: 'top',
     variant: 'dark'
 };
-exports.default = styles_1.withStyles(styles_2.default)(exports.Tooltip);
+export default withStyles(styles)(Tooltip);
 //# sourceMappingURL=Tooltip.js.map

@@ -1,4 +1,3 @@
-"use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -10,53 +9,42 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importStar(require("react"));
-const styles_1 = require("@material-ui/core/styles");
-const classnames_1 = __importDefault(require("classnames"));
-const __1 = require("../");
-const Page_1 = require("../Page");
-const Picasso_1 = require("../Picasso");
-const utils_1 = require("../utils");
-const styles_2 = __importDefault(require("./styles"));
-exports.PageHeader = react_1.forwardRef(function PageHeader(_a, ref) {
+import React, { useContext, useLayoutEffect, forwardRef } from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import cx from 'classnames';
+import { Logo, Container, Typography } from '../';
+import { PageContext } from '../Page';
+import { usePageHeader } from '../Picasso';
+import { useBreakpoint } from '../utils';
+import styles from './styles';
+export const PageHeader = forwardRef(function PageHeader(_a, ref) {
     var { classes, className, style, title, logoLink, rightContent, actionItems, variant } = _a, rest = __rest(_a, ["classes", "className", "style", "title", "logoLink", "rightContent", "actionItems", "variant"]);
-    const isSmallScreen = utils_1.useBreakpoint('small');
-    const { setHasPageHeader } = Picasso_1.usePageHeader();
-    react_1.useLayoutEffect(() => {
+    const isSmallScreen = useBreakpoint('small');
+    const { setHasPageHeader } = usePageHeader();
+    useLayoutEffect(() => {
         setHasPageHeader(true);
         return function cleanup() {
             setHasPageHeader(false);
         };
     }, []);
-    const { fullWidth } = react_1.useContext(Page_1.PageContext);
-    const logo = (react_1.default.createElement(__1.Logo, { variant: 'white', emblem: isSmallScreen, className: classes.logo }));
-    const titleComponent = title && (react_1.default.createElement(__1.Container, { left: 'small', flex: true, alignItems: 'center' },
-        react_1.default.createElement("div", { className: classes.divider }),
-        react_1.default.createElement(__1.Container, { left: 'small' },
-            react_1.default.createElement(__1.Typography, { invert: true, weight: 'light' }, title))));
-    return (react_1.default.createElement("header", Object.assign({}, rest, { ref: ref, className: classnames_1.default('mui-fixed', classes.root, classes[variant], className), style: style }),
-        react_1.default.createElement("div", { className: classnames_1.default({ [classes.fullWidth]: fullWidth }, classes.content) },
-            react_1.default.createElement("div", { className: classes.left },
-                react_1.default.createElement(__1.Container, { className: classes.logoContainer, flex: true, alignItems: 'center' }, logoLink ? react_1.default.cloneElement(logoLink, {}, logo) : logo),
+    const { fullWidth } = useContext(PageContext);
+    const logo = (React.createElement(Logo, { variant: 'white', emblem: isSmallScreen, className: classes.logo }));
+    const titleComponent = title && (React.createElement(Container, { left: 'small', flex: true, alignItems: 'center' },
+        React.createElement("div", { className: classes.divider }),
+        React.createElement(Container, { left: 'small' },
+            React.createElement(Typography, { invert: true, weight: 'light' }, title))));
+    return (React.createElement("header", Object.assign({}, rest, { ref: ref, className: cx('mui-fixed', classes.root, classes[variant], className), style: style }),
+        React.createElement("div", { className: cx({ [classes.fullWidth]: fullWidth }, classes.content) },
+            React.createElement("div", { className: classes.left },
+                React.createElement(Container, { className: classes.logoContainer, flex: true, alignItems: 'center' }, logoLink ? React.cloneElement(logoLink, {}, logo) : logo),
                 !isSmallScreen && titleComponent),
-            react_1.default.createElement("div", { className: classes.right },
+            React.createElement("div", { className: classes.right },
                 !isSmallScreen && actionItems,
                 rightContent))));
 });
-exports.PageHeader.defaultProps = {
+PageHeader.defaultProps = {
     variant: 'light'
 };
-exports.PageHeader.displayName = 'PageHeader';
-exports.default = styles_1.withStyles(styles_2.default)(exports.PageHeader);
+PageHeader.displayName = 'PageHeader';
+export default withStyles(styles)(PageHeader);
 //# sourceMappingURL=PageHeader.js.map

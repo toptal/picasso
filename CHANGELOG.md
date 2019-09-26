@@ -1,3 +1,10 @@
+# [3.13.0](https://github.com/toptal/picasso/compare/v3.12.2...v3.13.0) (2019-09-26)
+
+
+### Features
+
+* [FX-344] Activate tree-shaking for Picasso ([#714](https://github.com/toptal/picasso/issues/714)) ([349af61](https://github.com/toptal/picasso/commit/349af61))
+
 ## [3.12.2](https://github.com/toptal/picasso/compare/v3.12.1...v3.12.2) (2019-09-26)
 
 

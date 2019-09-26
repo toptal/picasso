@@ -1,1 +1,1 @@
-{"version":3,"file":"layout.js","sourceRoot":"","sources":["../../../src/components/Picasso/config/layout.ts"],"names":[],"mappings":";;AAKA,MAAM,MAAM,GAAW;IACrB,YAAY,EAAE,OAAO;IACrB,wBAAwB,EAAE,MAAM;CACjC,CAAA;AAED,kBAAe,MAAM,CAAA"}
+{"version":3,"file":"layout.js","sourceRoot":"","sources":["../../../src/components/Picasso/config/layout.ts"],"names":[],"mappings":"AAKA,MAAM,MAAM,GAAW;IACrB,YAAY,EAAE,OAAO;IACrB,wBAAwB,EAAE,MAAM;CACjC,CAAA;AAED,eAAe,MAAM,CAAA"}

@@ -1,4 +1,3 @@
-"use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -10,30 +9,19 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importStar(require("react"));
-const classnames_1 = __importDefault(require("classnames"));
-const styles_1 = require("@material-ui/core/styles");
-const InputAdornment_1 = __importDefault(require("../InputAdornment"));
-const OutlinedInput_1 = __importDefault(require("../OutlinedInput"));
-const styles_2 = __importDefault(require("./styles"));
-exports.Input = react_1.forwardRef(function Input(_a, ref) {
+import React, { forwardRef } from 'react';
+import cx from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
+import InputAdornment from '../InputAdornment';
+import OutlinedInput from '../OutlinedInput';
+import styles from './styles';
+export const Input = forwardRef(function Input(_a, ref) {
     var { id, name, defaultValue, value, placeholder, error, disabled, autoFocus, autoComplete, icon, iconPosition, classes, children, multiline, width, className, style, rows, rowsMax, type, onChange, startAdornment, endAdornment } = _a, rest = __rest(_a, ["id", "name", "defaultValue", "value", "placeholder", "error", "disabled", "autoFocus", "autoComplete", "icon", "iconPosition", "classes", "children", "multiline", "width", "className", "style", "rows", "rowsMax", "type", "onChange", "startAdornment", "endAdornment"]);
-    const IconAdornment = icon && (react_1.default.createElement(InputAdornment_1.default, { position: iconPosition, disabled: disabled }, icon));
+    const IconAdornment = icon && (React.createElement(InputAdornment, { position: iconPosition, disabled: disabled }, icon));
     const usedStartAdornment = icon && iconPosition === 'start' ? IconAdornment : startAdornment;
     const usedEndAdornment = icon && iconPosition === 'end' ? IconAdornment : endAdornment;
-    return (react_1.default.createElement(OutlinedInput_1.default, { ref: ref, className: className, style: style, classes: {
-            root: classnames_1.default(classes.root, {
+    return (React.createElement(OutlinedInput, { ref: ref, className: className, style: style, classes: {
+            root: cx(classes.root, {
                 [classes.rootMultiline]: multiline
             }),
             input: classes.input
@@ -41,11 +29,11 @@ exports.Input = react_1.forwardRef(function Input(_a, ref) {
         // html attributes
         inputProps: rest, endAdornment: usedEndAdornment, startAdornment: usedStartAdornment, onChange: onChange }, children));
 });
-exports.Input.defaultProps = {
+Input.defaultProps = {
     iconPosition: 'start',
     multiline: false,
     width: 'auto'
 };
-exports.Input.displayName = 'Input';
-exports.default = styles_1.withStyles(styles_2.default)(exports.Input);
+Input.displayName = 'Input';
+export default withStyles(styles)(Input);
 //# sourceMappingURL=Input.js.map

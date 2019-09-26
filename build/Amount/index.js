@@ -1,5 +1,2 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var Amount_1 = require("./Amount");
-exports.default = Amount_1.default;
+export { default } from './Amount';
 //# sourceMappingURL=index.js.map

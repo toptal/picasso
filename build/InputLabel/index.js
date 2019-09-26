@@ -1,5 +1,2 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var InputLabel_1 = require("./InputLabel");
-exports.default = InputLabel_1.default;
+export { default } from './InputLabel';
 //# sourceMappingURL=index.js.map

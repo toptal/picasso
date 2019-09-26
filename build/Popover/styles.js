@@ -1,7 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const Picasso_1 = require("../Picasso");
-Picasso_1.PicassoProvider.override(({ screens }) => ({
+import { PicassoProvider } from '../Picasso';
+PicassoProvider.override(({ screens }) => ({
     MuiPopover: {
         paper: {
             [screens('small')]: {

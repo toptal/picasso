@@ -1,5 +1,2 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var Grid_1 = require("./Grid");
-exports.default = Grid_1.default;
+export { default } from './Grid';
 //# sourceMappingURL=index.js.map

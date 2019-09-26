@@ -1,14 +1,12 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const styles_1 = require("@material-ui/core/styles");
-const styles_2 = require("../styles");
-const Picasso_1 = require("../Picasso");
-Picasso_1.PicassoProvider.override(() => ({}));
-exports.default = ({ palette, sizes, transitions }) => styles_1.createStyles({
+import { createStyles } from '@material-ui/core/styles';
+import { alpha } from '../styles';
+import { PicassoProvider } from '../Picasso';
+PicassoProvider.override(() => ({}));
+export default ({ palette, sizes, transitions }) => createStyles({
     root: {
         height: 'auto',
         '&:nth-of-type(even)': {
-            background: styles_2.alpha(palette.grey.lighter, 0.32)
+            background: alpha(palette.grey.lighter, 0.32)
         },
         '&$hover:hover': {
             backgroundColor: palette.blue.lighter

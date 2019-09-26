@@ -1,9 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = require("react");
+import { useRef, useEffect } from 'react';
 const useCombinedRefs = (...refs) => {
-    const targetRef = react_1.useRef(null);
-    react_1.useEffect(() => {
+    const targetRef = useRef(null);
+    useEffect(() => {
         refs.forEach(ref => {
             if (!ref) {
                 return;
@@ -19,5 +17,5 @@ const useCombinedRefs = (...refs) => {
     }, [refs]);
     return targetRef;
 };
-exports.default = useCombinedRefs;
+export default useCombinedRefs;
 //# sourceMappingURL=use-combined-refs.js.map

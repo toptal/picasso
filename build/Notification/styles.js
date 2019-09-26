@@ -1,8 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const styles_1 = require("@material-ui/core/styles");
-const Picasso_1 = require("../Picasso");
-Picasso_1.PicassoProvider.override(() => ({
+import { createStyles } from '@material-ui/core/styles';
+import { PicassoProvider } from '../Picasso';
+PicassoProvider.override(() => ({
     MuiSnackbarContent: {
         message: {
             display: 'flex',
@@ -11,7 +9,7 @@ Picasso_1.PicassoProvider.override(() => ({
         }
     }
 }));
-exports.default = ({ palette: { red, green, yellow, common, text }, shadows }) => styles_1.createStyles({
+export default ({ palette: { red, green, yellow, common, text }, shadows }) => createStyles({
     notification: {
         alignItems: 'start',
         borderRadius: 0,

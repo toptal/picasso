@@ -1,4 +1,3 @@
-"use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -10,44 +9,33 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importStar(require("react"));
-const styles_1 = require("@material-ui/core/styles");
-const helpers_1 = require("@material-ui/core/utils/helpers");
-const classnames_1 = __importDefault(require("classnames"));
-const CircularProgress_1 = __importDefault(require("../CircularProgress"));
-const styles_2 = __importDefault(require("./styles"));
+import React, { forwardRef } from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import { capitalize } from '@material-ui/core/utils/helpers';
+import cx from 'classnames';
+import CircularProgress from '../CircularProgress';
+import styles from './styles';
 var SIZES;
 (function (SIZES) {
     SIZES[SIZES["small"] = 16] = "small";
     SIZES[SIZES["medium"] = 32] = "medium";
     SIZES[SIZES["large"] = 64] = "large";
 })(SIZES || (SIZES = {}));
-exports.Loader = react_1.forwardRef(function Loader(_a, ref) {
+export const Loader = forwardRef(function Loader(_a, ref) {
     var { children, classes, size, inline, className, value, variant } = _a, rest = __rest(_a, ["children", "classes", "size", "inline", "className", "value", "variant"]);
-    return (react_1.default.createElement("div", Object.assign({}, rest, { ref: ref, className: classnames_1.default(classes.wrapper, className, {
+    return (React.createElement("div", Object.assign({}, rest, { ref: ref, className: cx(classes.wrapper, className, {
             [classes.inline]: inline
         }) }),
-        react_1.default.createElement(CircularProgress_1.default, { classes: {
-                root: classes[`spinner${helpers_1.capitalize(variant)}`]
+        React.createElement(CircularProgress, { classes: {
+                root: classes[`spinner${capitalize(variant)}`]
             }, size: SIZES[size], value: value, variant: value ? 'static' : 'indeterminate' }),
-        children && react_1.default.createElement("div", { className: classes.label }, children)));
+        children && React.createElement("div", { className: classes.label }, children)));
 });
-exports.Loader.defaultProps = {
+Loader.defaultProps = {
     inline: false,
     size: 'medium',
     variant: 'default'
 };
-exports.Loader.displayName = 'Loader';
-exports.default = styles_1.withStyles(styles_2.default)(exports.Loader);
+Loader.displayName = 'Loader';
+export default withStyles(styles)(Loader);
 //# sourceMappingURL=Loader.js.map

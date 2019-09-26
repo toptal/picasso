@@ -1,9 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const styles_1 = require("@material-ui/core/styles");
-const Picasso_1 = require("../Picasso");
-const styles_2 = require("../styles");
-Picasso_1.PicassoProvider.override(() => ({
+import { createStyles } from '@material-ui/core/styles';
+import { PicassoProvider } from '../Picasso';
+import { rem } from '../styles';
+PicassoProvider.override(() => ({
     MuiStepLabel: {
         label: {
             display: 'flex',
@@ -16,7 +14,7 @@ Picasso_1.PicassoProvider.override(() => ({
         }
     }
 }));
-exports.default = ({ palette }) => styles_1.createStyles({
+export default ({ palette }) => createStyles({
     hidden: {
         display: 'none'
     },
@@ -24,7 +22,7 @@ exports.default = ({ palette }) => styles_1.createStyles({
         marginLeft: '0.5em'
     },
     label: {
-        fontSize: styles_2.rem('11px'),
+        fontSize: rem('11px'),
         fontWeight: 600,
         lineHeight: '1em',
         color: palette.grey.dark

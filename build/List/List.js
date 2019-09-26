@@ -1,4 +1,3 @@
-"use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -10,19 +9,15 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importDefault(require("react"));
-const styles_1 = require("@material-ui/core/styles");
-const List_1 = __importDefault(require("@material-ui/core/List"));
-const styles_2 = __importDefault(require("./styles"));
+import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import MUIList from '@material-ui/core/List';
+import styles from './styles';
 const List = (_a) => {
     var { classes, className, style } = _a, rest = __rest(_a, ["classes", "className", "style"]);
     return (
     // eslint-disable-next-line react/jsx-props-no-spreading
-    react_1.default.createElement(List_1.default, Object.assign({}, rest, { classes: classes, className: className, style: style })));
+    React.createElement(MUIList, Object.assign({}, rest, { classes: classes, className: className, style: style })));
 };
-exports.default = styles_1.withStyles(styles_2.default)(List);
+export default withStyles(styles)(List);
 //# sourceMappingURL=List.js.map

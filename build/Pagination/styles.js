@@ -1,7 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const styles_1 = require("@material-ui/core/styles");
-exports.default = () => styles_1.createStyles({
+import { createStyles } from '@material-ui/core/styles';
+export default () => createStyles({
     rangeButton: {
         minWidth: '1.5em',
         padding: '0 0.3em'

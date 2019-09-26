@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.colors = {
+export const colors = {
     grey: {
         lighter: '#ebeced',
         light: '#d8d9dc',
@@ -35,10 +33,10 @@ exports.colors = {
         white: '#fff'
     }
 };
-const palette = Object.assign({}, JSON.parse(JSON.stringify(exports.colors)), { primary: JSON.parse(JSON.stringify(exports.colors.blue)), error: JSON.parse(JSON.stringify(exports.colors.red)), grey: Object.assign({ 100: exports.colors.grey.lighter, 200: exports.colors.grey.light, 300: exports.colors.grey.main, 400: exports.colors.grey.dark, 500: exports.colors.grey.darker }, exports.colors.grey), text: {
-        primary: exports.colors.grey.dark
+const palette = Object.assign({}, JSON.parse(JSON.stringify(colors)), { primary: JSON.parse(JSON.stringify(colors.blue)), error: JSON.parse(JSON.stringify(colors.red)), grey: Object.assign({ 100: colors.grey.lighter, 200: colors.grey.light, 300: colors.grey.main, 400: colors.grey.dark, 500: colors.grey.darker }, colors.grey), text: {
+        primary: colors.grey.dark
     }, background: {
-        default: exports.colors.common.white
+        default: colors.common.white
     } });
-exports.default = palette;
+export default palette;
 //# sourceMappingURL=palette.js.map

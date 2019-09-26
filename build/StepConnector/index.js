@@ -1,5 +1,2 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var StepConnector_1 = require("./StepConnector");
-exports.default = StepConnector_1.default;
+export { default } from './StepConnector';
 //# sourceMappingURL=index.js.map

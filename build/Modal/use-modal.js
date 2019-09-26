@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_modal_hook_1 = require("react-modal-hook");
-exports.useModal = react_modal_hook_1.useModal;
+import { useModal } from 'react-modal-hook';
+export { useModal };
 //# sourceMappingURL=use-modal.js.map

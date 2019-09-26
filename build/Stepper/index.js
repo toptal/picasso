@@ -1,5 +1,2 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var Stepper_1 = require("./Stepper");
-exports.default = Stepper_1.default;
+export { default } from './Stepper';
 //# sourceMappingURL=index.js.map

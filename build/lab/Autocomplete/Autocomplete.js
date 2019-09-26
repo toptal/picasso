@@ -1,4 +1,3 @@
-"use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -10,43 +9,32 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importStar(require("react"));
-const styles_1 = require("@material-ui/core/styles");
-const helpers_1 = require("@material-ui/core/utils/helpers");
-const classnames_1 = __importDefault(require("classnames"));
-const downshift_1 = __importDefault(require("downshift"));
-const Input_1 = __importDefault(require("../../Input"));
-const Menu_1 = __importDefault(require("../../Menu"));
-const Loader_1 = __importDefault(require("../../Loader"));
-const ScrollMenu_1 = __importDefault(require("../../ScrollMenu"));
-const utils_1 = require("../../utils");
-const use_controlled_and_uncontrolled_state_1 = __importDefault(require("../../utils/use-controlled-and-uncontrolled-state"));
-const use_controlled_and_uncontrolled_input_1 = __importDefault(require("../../utils/use-controlled-and-uncontrolled-input"));
-const styles_2 = __importDefault(require("./styles"));
+import React, { forwardRef } from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import { capitalize } from '@material-ui/core/utils/helpers';
+import cx from 'classnames';
+import Downshift from 'downshift';
+import Input from '../../Input';
+import Menu from '../../Menu';
+import Loader from '../../Loader';
+import ScrollMenu from '../../ScrollMenu';
+import { isSubstring } from '../../utils';
+import useControlledAndUncontrolledState from '../../utils/use-controlled-and-uncontrolled-state';
+import useControlledAndUncontrolledInput from '../../utils/use-controlled-and-uncontrolled-input';
+import styles from './styles';
 const EMPTY_INPUT_VALUE = '';
 const FIRST_ITEM_INDEX = 0;
 const isMatchingMinLength = (value, minLength) => !minLength || value.length >= minLength;
 const getItemText = (item) => (item && item.text) || EMPTY_INPUT_VALUE;
 const getItemValue = (item) => (item && (item.value || item.text)) || null;
 const isSelected = (item, selectedItem) => getItemValue(item) === getItemValue(selectedItem);
-exports.Autocomplete = react_1.forwardRef(function Autocomplete(_a, ref) {
+export const Autocomplete = forwardRef(function Autocomplete(_a, ref) {
     var { classes, className, defaultInputValue, inputValue: inputValueProp, onChange: onInputChange, defaultValue, value, onSelect, loading, minLength, placeholder, noOptionsText, options, style, width, allowAny, onKeyDown, inputComponent, renderOption } = _a, rest = __rest(_a, ["classes", "className", "defaultInputValue", "inputValue", "onChange", "defaultValue", "value", "onSelect", "loading", "minLength", "placeholder", "noOptionsText", "options", "style", "width", "allowAny", "onKeyDown", "inputComponent", "renderOption"]);
-    const [selectedItemValue, setSelectedItemValue] = use_controlled_and_uncontrolled_state_1.default(defaultValue, value, onSelect);
+    const [selectedItemValue, setSelectedItemValue] = useControlledAndUncontrolledState(defaultValue, value, onSelect);
     const selectedItem = selectedItemValue === null
         ? null
         : options.find(option => getItemValue(option) === selectedItemValue);
-    const [inputValue, setInputValue] = use_controlled_and_uncontrolled_input_1.default(defaultInputValue || getItemText(selectedItem), inputValueProp, onInputChange);
+    const [inputValue, setInputValue] = useControlledAndUncontrolledInput(defaultInputValue || getItemText(selectedItem), inputValueProp, onInputChange);
     if (selectedItem === undefined) {
         window.console.warn(`Autocomplete: There is no option for the given value \`${selectedItemValue}\``);
         return null;
@@ -61,18 +49,18 @@ exports.Autocomplete = react_1.forwardRef(function Autocomplete(_a, ref) {
     };
     const matchingOptions = getItemText(selectedItem) === inputValue
         ? options
-        : options.filter(item => utils_1.isSubstring(inputValue, getItemText(item)));
+        : options.filter(item => isSubstring(inputValue, getItemText(item)));
     const currentSelectedItemIndex = selectedItem
         ? matchingOptions.indexOf(selectedItem)
         : null;
     const downshiftStateReducer = (state, changes) => {
         switch (changes.type) {
-            case downshift_1.default.stateChangeTypes.controlledPropUpdatedSelectedItem:
+            case Downshift.stateChangeTypes.controlledPropUpdatedSelectedItem:
                 return Object.assign({}, changes, { highlightedIndex: currentSelectedItemIndex });
-            case downshift_1.default.stateChangeTypes.changeInput:
+            case Downshift.stateChangeTypes.changeInput:
                 return Object.assign({}, changes, { highlightedIndex: FIRST_ITEM_INDEX });
-            case downshift_1.default.stateChangeTypes.mouseUp:
-            case downshift_1.default.stateChangeTypes.blurInput:
+            case Downshift.stateChangeTypes.mouseUp:
+            case Downshift.stateChangeTypes.blurInput:
                 const hasInput = inputValue.length > 0;
                 if (allowAny &&
                     hasInput &&
@@ -88,12 +76,12 @@ exports.Autocomplete = react_1.forwardRef(function Autocomplete(_a, ref) {
             ? inputValue
             : EMPTY_INPUT_VALUE
         : getItemText(item);
-    return (react_1.default.createElement(downshift_1.default, { inputValue: inputValue, onInputValueChange: handleInputValueChange, selectedItem: selectedItem, onChange: handleSelectItem, itemToString: downshiftItemToString, stateReducer: downshiftStateReducer }, ({ getMenuProps, getInputProps, getItemProps, isOpen, highlightedIndex, selectItem, setState }) => {
+    return (React.createElement(Downshift, { inputValue: inputValue, onInputValueChange: handleInputValueChange, selectedItem: selectedItem, onChange: handleSelectItem, itemToString: downshiftItemToString, stateReducer: downshiftStateReducer }, ({ getMenuProps, getInputProps, getItemProps, isOpen, highlightedIndex, selectItem, setState }) => {
         const hasMatchingOptions = matchingOptions.length > 0;
         const canOpen = isOpen && isMatchingMinLength(inputValue, minLength) && !loading;
-        const optionsMenu = (react_1.default.createElement(ScrollMenu_1.default, { selectedIndex: highlightedIndex }, hasMatchingOptions ? (matchingOptions.map((option, index) => (react_1.default.createElement(Menu_1.default.Item, Object.assign({ key: getItemValue(option), selected: highlightedIndex === index, disabled: isSelected(option, selectedItem) }, getItemProps({ item: option, index })), renderOption
+        const optionsMenu = (React.createElement(ScrollMenu, { selectedIndex: highlightedIndex }, hasMatchingOptions ? (matchingOptions.map((option, index) => (React.createElement(Menu.Item, Object.assign({ key: getItemValue(option), selected: highlightedIndex === index, disabled: isSelected(option, selectedItem) }, getItemProps({ item: option, index })), renderOption
             ? renderOption(option, index)
-            : getItemText(option))))) : (react_1.default.createElement(Menu_1.default.Item, { disabled: true }, noOptionsText))));
+            : getItemText(option))))) : (React.createElement(Menu.Item, { disabled: true }, noOptionsText))));
         const handleFocusOrClick = () => {
             if (!isOpen) {
                 let newInputValue = inputValue;
@@ -108,7 +96,7 @@ exports.Autocomplete = react_1.forwardRef(function Autocomplete(_a, ref) {
                 });
             }
         };
-        const InputComponent = inputComponent || Input_1.default;
+        const InputComponent = inputComponent || Input;
         const inputProps = getInputProps({
             onFocus: handleFocusOrClick,
             onClick: handleFocusOrClick,
@@ -122,16 +110,16 @@ exports.Autocomplete = react_1.forwardRef(function Autocomplete(_a, ref) {
             // here we override the value returned from downshift, `off` by default
             autoComplete: rest.autoComplete || 'off'
         });
-        return (react_1.default.createElement("div", { className: classnames_1.default(classes.root, className, classes[`root${helpers_1.capitalize(width)}`]), style: style },
-            react_1.default.createElement(InputComponent
+        return (React.createElement("div", { className: cx(classes.root, className, classes[`root${capitalize(width)}`]), style: style },
+            React.createElement(InputComponent
             /* eslint-disable-next-line react/jsx-props-no-spreading */
             , Object.assign({}, rest, inputProps, { defaultValue: inputProps.defaultValue, value: inputProps.value, onChange: e => {
                     inputProps.onChange(e);
-                }, ref: ref, classes: {}, placeholder: selectedItem ? getItemText(selectedItem) : placeholder, icon: loading ? react_1.default.createElement(Loader_1.default, { size: 'small' }) : null, iconPosition: 'end', width: width })),
-            react_1.default.createElement("div", Object.assign({}, getMenuProps()), canOpen ? optionsMenu : null)));
+                }, ref: ref, classes: {}, placeholder: selectedItem ? getItemText(selectedItem) : placeholder, icon: loading ? React.createElement(Loader, { size: 'small' }) : null, iconPosition: 'end', width: width })),
+            React.createElement("div", Object.assign({}, getMenuProps()), canOpen ? optionsMenu : null)));
     }));
 });
-exports.Autocomplete.defaultProps = {
+Autocomplete.defaultProps = {
     allowAny: true,
     defaultInputValue: '',
     defaultValue: null,
@@ -144,6 +132,6 @@ exports.Autocomplete.defaultProps = {
     options: [],
     width: 'auto'
 };
-exports.Autocomplete.displayName = 'Autocomplete';
-exports.default = styles_1.withStyles(styles_2.default)(exports.Autocomplete);
+Autocomplete.displayName = 'Autocomplete';
+export default withStyles(styles)(Autocomplete);
 //# sourceMappingURL=Autocomplete.js.map

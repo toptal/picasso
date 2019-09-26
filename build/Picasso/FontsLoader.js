@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = require("react");
+import { useLayoutEffect } from 'react';
 const PROXIMA_NOVA_FONT = 'https://use.typekit.net/rlr4crj.css';
 // After the file is loaded to apply it
 // we have to change rel to 'stylesheet'
@@ -16,7 +14,7 @@ const findFontsLoader = () => {
         (link.rel === 'stylesheet' || link.rel === 'preload'));
 };
 const FontsLoader = () => {
-    react_1.useLayoutEffect(() => {
+    useLayoutEffect(() => {
         const existingFontLoader = findFontsLoader();
         if (!existingFontLoader) {
             const link = document.createElement('link');
@@ -29,5 +27,5 @@ const FontsLoader = () => {
     }, []);
     return null;
 };
-exports.default = FontsLoader;
+export default FontsLoader;
 //# sourceMappingURL=FontsLoader.js.map

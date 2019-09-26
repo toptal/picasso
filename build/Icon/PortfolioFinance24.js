@@ -1,34 +1,22 @@
-"use strict";
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importStar(require("react"));
-const classnames_1 = __importDefault(require("classnames"));
-const styles_1 = require("@material-ui/core/styles");
-const styles_2 = __importDefault(require("./styles"));
+import React, { forwardRef } from 'react';
+import cx from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
+import styles from './styles';
 const BASE_SIZE = 24;
-const SvgPortfolioFinance24 = react_1.forwardRef(function SvgPortfolioFinance24(props, ref) {
+const SvgPortfolioFinance24 = forwardRef(function SvgPortfolioFinance24(props, ref) {
     const { classes, className, style = {}, color, scale, base } = props;
     const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1);
     const svgStyle = Object.assign({ minWidth: `${scaledSize}px`, minHeight: `${scaledSize}px` }, style);
-    return (react_1.default.createElement("svg", { viewBox: '0 0 24 24', className: classnames_1.default(classes.root, className), style: svgStyle, color: color, ref: ref },
-        react_1.default.createElement("defs", null,
-            react_1.default.createElement("path", { d: 'M1.106 15.447L12 20.882l10.894-5.435L24 16l-12 6-12-6 1.106-.553zm0-4L12 16.882l10.894-5.435L24 12l-12 6-12-6 1.106-.553zM0 8l12-6 12 6-12 6L0 8zm12 4.882L21.764 8 12 3.118 2.236 8 12 12.882z', id: 'portfolioFinance24_svg__a' })),
-        react_1.default.createElement("g", { fillRule: 'evenodd' },
-            react_1.default.createElement("mask", { id: 'portfolioFinance24_svg__b' },
-                react_1.default.createElement("use", { xlinkHref: '#portfolioFinance24_svg__a' })),
-            react_1.default.createElement("use", { fillRule: 'nonzero', xlinkHref: '#portfolioFinance24_svg__a' }),
-            react_1.default.createElement("g", { mask: 'url(#portfolioFinance24_svg__b)' },
-                react_1.default.createElement("path", { d: 'M0 0h24v24H0z' })))));
+    return (React.createElement("svg", { viewBox: '0 0 24 24', className: cx(classes.root, className), style: svgStyle, color: color, ref: ref },
+        React.createElement("defs", null,
+            React.createElement("path", { d: 'M1.106 15.447L12 20.882l10.894-5.435L24 16l-12 6-12-6 1.106-.553zm0-4L12 16.882l10.894-5.435L24 12l-12 6-12-6 1.106-.553zM0 8l12-6 12 6-12 6L0 8zm12 4.882L21.764 8 12 3.118 2.236 8 12 12.882z', id: 'portfolioFinance24_svg__a' })),
+        React.createElement("g", { fillRule: 'evenodd' },
+            React.createElement("mask", { id: 'portfolioFinance24_svg__b' },
+                React.createElement("use", { xlinkHref: '#portfolioFinance24_svg__a' })),
+            React.createElement("use", { fillRule: 'nonzero', xlinkHref: '#portfolioFinance24_svg__a' }),
+            React.createElement("g", { mask: 'url(#portfolioFinance24_svg__b)' },
+                React.createElement("path", { d: 'M0 0h24v24H0z' })))));
 });
 SvgPortfolioFinance24.displayName = 'SvgPortfolioFinance24';
-exports.default = styles_1.withStyles(styles_2.default)(SvgPortfolioFinance24);
+export default withStyles(styles)(SvgPortfolioFinance24);
 //# sourceMappingURL=PortfolioFinance24.js.map

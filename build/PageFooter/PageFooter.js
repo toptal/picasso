@@ -1,4 +1,3 @@
-"use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -10,37 +9,26 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importStar(require("react"));
-const styles_1 = require("@material-ui/core/styles");
-const classnames_1 = __importDefault(require("classnames"));
-const Page_1 = require("../Page");
-const styles_2 = __importDefault(require("./styles"));
+import React, { useContext, forwardRef } from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import cx from 'classnames';
+import { PageContext } from '../Page';
+import styles from './styles';
 const currentYear = new Date().getFullYear();
-exports.PageFooter = react_1.forwardRef(function PageFooter(_a, ref) {
+export const PageFooter = forwardRef(function PageFooter(_a, ref) {
     var { classes, className, style, rightContent } = _a, rest = __rest(_a, ["classes", "className", "style", "rightContent"]);
-    const { fullWidth } = react_1.useContext(Page_1.PageContext);
-    const contentClassnames = classnames_1.default({
+    const { fullWidth } = useContext(PageContext);
+    const contentClassnames = cx({
         [classes.fullWidth]: fullWidth
     }, classes.content);
-    return (react_1.default.createElement("footer", Object.assign({}, rest, { ref: ref, className: classnames_1.default(classes.root, className), style: style }),
-        react_1.default.createElement("div", { className: contentClassnames },
-            react_1.default.createElement("div", { className: classes.left }, `© Copyright 2010 – ${currentYear} Toptal, LLC`),
-            react_1.default.createElement("div", { className: classes.right }, rightContent))));
+    return (React.createElement("footer", Object.assign({}, rest, { ref: ref, className: cx(classes.root, className), style: style }),
+        React.createElement("div", { className: contentClassnames },
+            React.createElement("div", { className: classes.left }, `© Copyright 2010 – ${currentYear} Toptal, LLC`),
+            React.createElement("div", { className: classes.right }, rightContent))));
 });
-exports.PageFooter.defaultProps = {
+PageFooter.defaultProps = {
     rightContent: null
 };
-exports.PageFooter.displayName = 'PageFooter';
-exports.default = styles_1.withStyles(styles_2.default)(exports.PageFooter);
+PageFooter.displayName = 'PageFooter';
+export default withStyles(styles)(PageFooter);
 //# sourceMappingURL=PageFooter.js.map

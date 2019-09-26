@@ -1,5 +1,2 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var Autocomplete_1 = require("./Autocomplete");
-exports.default = Autocomplete_1.default;
+export { default } from './Autocomplete';
 //# sourceMappingURL=index.js.map

@@ -1,7 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const styles_1 = require("@material-ui/core/styles");
-const styles_2 = require("../styles");
+import { createStyles } from '@material-ui/core/styles';
+import { rem } from '../styles';
 const shadowColor = 'rgba(0, 0, 0, 0.8)';
 const ARROW_SIZE = '1.25em';
 const HORIZONTAL_POSITION = {
@@ -37,12 +35,12 @@ function arrowGenerator(color) {
         }
     };
 }
-exports.default = ({ palette, shadows }) => styles_1.createStyles({
+export default ({ palette, shadows }) => createStyles({
     tooltip: {
         backgroundColor: palette.grey.darker,
         color: palette.common.white,
         boxShadow: shadows[4],
-        fontSize: styles_2.rem('13px'),
+        fontSize: rem('13px'),
         lineHeight: '1.5em',
         padding: '1rem',
         borderRadius: 0,

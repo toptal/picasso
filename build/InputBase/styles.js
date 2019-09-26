@@ -1,7 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const Picasso_1 = require("../Picasso");
-Picasso_1.PicassoProvider.override(({ typography, palette }) => ({
+import { PicassoProvider } from '../Picasso';
+PicassoProvider.override(({ typography, palette }) => ({
     MuiInputBase: {
         root: {
             fontSize: 'unset'

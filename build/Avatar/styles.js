@@ -1,10 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const styles_1 = require("@material-ui/core/styles");
+import { createStyles } from '@material-ui/core/styles';
 const getClipPathCornerMask = (cornerWidth) => `polygon(0 0, 100% 0, 100% 100%, ${cornerWidth} 100%, 0 calc(100% - ${cornerWidth}))`;
 const CLIPPED_CORNER_SIZE_EM = 0.5;
 const LOGO_SIZE_EM = 0.5;
-exports.default = ({ palette }) => styles_1.createStyles({
+export default ({ palette }) => createStyles({
     root: {
         position: 'relative'
     },

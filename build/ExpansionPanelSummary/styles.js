@@ -1,8 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const styles_1 = require("@material-ui/core/styles");
-const Picasso_1 = require("../Picasso");
-Picasso_1.PicassoProvider.override(({ typography }) => ({
+import { createStyles } from '@material-ui/core/styles';
+import { PicassoProvider } from '../Picasso';
+PicassoProvider.override(({ typography }) => ({
     MuiExpansionPanelSummary: {
         root: {
             fontSize: '1em',
@@ -32,7 +30,7 @@ Picasso_1.PicassoProvider.override(({ typography }) => ({
         }
     }
 }));
-exports.default = () => styles_1.createStyles({
+export default () => createStyles({
     root: {},
     content: {}
 });

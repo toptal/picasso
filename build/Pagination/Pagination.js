@@ -1,4 +1,3 @@
-"use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -10,79 +9,68 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importStar(require("react"));
-const styles_1 = require("@material-ui/core/styles");
-const Button_1 = __importDefault(require("../Button"));
-const Container_1 = __importDefault(require("../Container"));
-const Typography_1 = __importDefault(require("../Typography"));
-const range_utils_1 = require("./range-utils");
-const styles_2 = __importDefault(require("./styles"));
+import React, { forwardRef, useMemo } from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '../Button';
+import Container from '../Container';
+import Typography from '../Typography';
+import { getRange, ELLIPSIS, FIRST_PAGE, ONE_PAGE } from './range-utils';
+import styles from './styles';
 const SIBLING_COUNT = 1;
 const PaginationEllipsis = ({ classes }) => {
-    return (react_1.default.createElement(Container_1.default, { className: classes.ellipsis },
-        react_1.default.createElement(Typography_1.default, { size: 'small', weight: 'semibold', color: 'black' }, range_utils_1.ELLIPSIS)));
+    return (React.createElement(Container, { className: classes.ellipsis },
+        React.createElement(Typography, { size: 'small', weight: 'semibold', color: 'black' }, ELLIPSIS)));
 };
 const PaginationPage = ({ page, activePage, disabled, classes, onClick }) => {
-    return (react_1.default.createElement(Button_1.default, { className: classes.rangeButton, disabled: disabled, onClick: () => onClick(page), variant: activePage === page ? 'primary-blue' : 'secondary-blue', size: 'small' }, page));
+    return (React.createElement(Button, { className: classes.rangeButton, disabled: disabled, onClick: () => onClick(page), variant: activePage === page ? 'primary-blue' : 'secondary-blue', size: 'small' }, page));
 };
-exports.Pagination = react_1.forwardRef(function Pagination(_a, ref) {
+export const Pagination = forwardRef(function Pagination(_a, ref) {
     var { activePage, classes, disabled, totalPages, onPageChange } = _a, rest = __rest(_a, ["activePage", "classes", "disabled", "totalPages", "onPageChange"]);
     const isFirstActive = activePage === 1;
     const isLastActive = activePage === totalPages;
-    if (totalPages <= range_utils_1.ONE_PAGE) {
+    if (totalPages <= ONE_PAGE) {
         return null;
     }
     const handleChange = (navigation) => {
         if (navigation === 'first') {
-            return onPageChange(range_utils_1.FIRST_PAGE);
+            return onPageChange(FIRST_PAGE);
         }
         if (navigation === 'previous') {
-            return onPageChange(activePage - range_utils_1.ONE_PAGE);
+            return onPageChange(activePage - ONE_PAGE);
         }
         if (navigation === 'next') {
-            return onPageChange(activePage + range_utils_1.ONE_PAGE);
+            return onPageChange(activePage + ONE_PAGE);
         }
         if (navigation === 'last') {
             return onPageChange(totalPages);
         }
         return onPageChange(navigation);
     };
-    const pages = react_1.useMemo(() => range_utils_1.getRange(activePage, totalPages, SIBLING_COUNT), [
+    const pages = useMemo(() => getRange(activePage, totalPages, SIBLING_COUNT), [
         activePage,
         totalPages
     ]);
     return (
     // eslint-disable-next-line react/jsx-props-no-spreading
-    react_1.default.createElement(Container_1.default, Object.assign({}, rest, { ref: ref, flex: true, inline: true, alignItems: 'center' }),
-        react_1.default.createElement(Button_1.default, { disabled: isFirstActive || disabled, onClick: () => handleChange('previous'), variant: 'secondary-blue', size: 'small' }, "Prev"),
+    React.createElement(Container, Object.assign({}, rest, { ref: ref, flex: true, inline: true, alignItems: 'center' }),
+        React.createElement(Button, { disabled: isFirstActive || disabled, onClick: () => handleChange('previous'), variant: 'secondary-blue', size: 'small' }, "Prev"),
         pages.map((page, index) => {
-            if (page === range_utils_1.ELLIPSIS) {
-                return (react_1.default.createElement(PaginationEllipsis
+            if (page === ELLIPSIS) {
+                return (React.createElement(PaginationEllipsis
                 // eslint-disable-next-line react/no-array-index-key
                 , { 
                     // eslint-disable-next-line react/no-array-index-key
                     key: 'pagination-ellipsis' + index, classes: classes }));
             }
-            return (react_1.default.createElement(PaginationPage, { classes: classes, page: page, activePage: activePage, disabled: disabled, 
+            return (React.createElement(PaginationPage, { classes: classes, page: page, activePage: activePage, disabled: disabled, 
                 // eslint-disable-next-line react/no-array-index-key
                 key: page + index, onClick: handleChange }));
         }),
-        react_1.default.createElement(Button_1.default, { disabled: isLastActive || disabled, onClick: () => handleChange('next'), variant: 'secondary-blue', size: 'small' }, "Next")));
+        React.createElement(Button, { disabled: isLastActive || disabled, onClick: () => handleChange('next'), variant: 'secondary-blue', size: 'small' }, "Next")));
 });
-exports.Pagination.defaultProps = {
+Pagination.defaultProps = {
     disabled: false
 };
-exports.Pagination.displayName = 'Pagination';
-exports.default = styles_1.withStyles(styles_2.default)(exports.Pagination);
+Pagination.displayName = 'Pagination';
+export default withStyles(styles)(Pagination);
 //# sourceMappingURL=Pagination.js.map

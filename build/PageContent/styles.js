@@ -1,14 +1,12 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const styles_1 = require("@material-ui/core/styles");
-const styles_2 = require("../PageHeader/styles");
-exports.default = ({ layout }) => styles_1.createStyles({
+import { createStyles } from '@material-ui/core/styles';
+import { headerHeight } from '../PageHeader/styles';
+export default ({ layout }) => createStyles({
     root: {
         flex: 1,
         width: '100%',
         display: 'flex',
         justifyContent: 'center',
-        marginTop: styles_2.headerHeight
+        marginTop: headerHeight
     },
     content: {
         height: '100%',

@@ -1,11 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var YearSelect_1 = require("./YearSelect");
-exports.YearSelect = YearSelect_1.default;
-var MonthSelect_1 = require("./MonthSelect");
-exports.MonthSelect = MonthSelect_1.default;
-var Autocomplete_1 = require("./Autocomplete");
-exports.Autocomplete = Autocomplete_1.default;
-var TagSelector_1 = require("./TagSelector");
-exports.TagSelector = TagSelector_1.default;
+export { default as YearSelect } from './YearSelect';
+export { default as MonthSelect } from './MonthSelect';
+export { default as Autocomplete } from './Autocomplete';
+export { default as TagSelector } from './TagSelector';
 //# sourceMappingURL=index.js.map

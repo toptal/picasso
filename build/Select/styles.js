@@ -1,14 +1,12 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const styles_1 = require("@material-ui/core/styles");
-const Picasso_1 = require("../Picasso");
-require("../InputLabel/styles");
-require("../InputBase/styles");
-require("../OutlinedInput/styles");
-require("../Menu/styles");
-require("../MenuItem/styles");
-const styles_2 = require("../styles");
-Picasso_1.PicassoProvider.override(() => ({
+import { createStyles } from '@material-ui/core/styles';
+import { PicassoProvider } from '../Picasso';
+import '../InputLabel/styles';
+import '../InputBase/styles';
+import '../OutlinedInput/styles';
+import '../Menu/styles';
+import '../MenuItem/styles';
+import { alpha } from '../styles';
+PicassoProvider.override(() => ({
     MuiSelect: {
         select: {
             '&:focus': {
@@ -21,7 +19,7 @@ Picasso_1.PicassoProvider.override(() => ({
         }
     }
 }));
-exports.default = ({ sizes: { input }, palette }) => styles_1.createStyles({
+export default ({ sizes: { input }, palette }) => createStyles({
     rootFull: {
         width: '100%',
         display: 'flex'
@@ -49,7 +47,7 @@ exports.default = ({ sizes: { input }, palette }) => styles_1.createStyles({
         color: palette.grey.main2
     },
     inputPlaceholderDisabled: {
-        color: styles_2.alpha(palette.grey.main2, 0.48)
+        color: alpha(palette.grey.main2, 0.48)
     },
     inputValue: {
         fontSize: '0.8125em'
@@ -66,7 +64,7 @@ exports.default = ({ sizes: { input }, palette }) => styles_1.createStyles({
         fontSize: '1em'
     },
     caretDisabled: {
-        color: styles_2.alpha(palette.grey.dark, 0.48)
+        color: alpha(palette.grey.dark, 0.48)
     },
     placeholder: {
         opacity: 0.4

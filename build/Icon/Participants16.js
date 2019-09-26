@@ -1,34 +1,22 @@
-"use strict";
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importStar(require("react"));
-const classnames_1 = __importDefault(require("classnames"));
-const styles_1 = require("@material-ui/core/styles");
-const styles_2 = __importDefault(require("./styles"));
+import React, { forwardRef } from 'react';
+import cx from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
+import styles from './styles';
 const BASE_SIZE = 16;
-const SvgParticipants16 = react_1.forwardRef(function SvgParticipants16(props, ref) {
+const SvgParticipants16 = forwardRef(function SvgParticipants16(props, ref) {
     const { classes, className, style = {}, color, scale, base } = props;
     const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1);
     const svgStyle = Object.assign({ minWidth: `${scaledSize}px`, minHeight: `${scaledSize}px` }, style);
-    return (react_1.default.createElement("svg", { viewBox: '0 0 16 16', className: classnames_1.default(classes.root, className), style: svgStyle, color: color, ref: ref },
-        react_1.default.createElement("defs", null,
-            react_1.default.createElement("path", { d: 'M10.875 10.4a2.5 2.5 0 1 1 3.25 0A3.5 3.5 0 0 1 16 13.5v.5h-1v-.5a2.5 2.5 0 0 0-4.268-1.768l-.707-.707c.252-.252.539-.462.85-.625zm-7.922-.963a4 4 0 1 1 4.095 0A5.001 5.001 0 0 1 10 14H9a4 4 0 1 0-8 0H0a5.001 5.001 0 0 1 2.953-4.563zM5 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7.5 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z', id: 'participants16_svg__a' })),
-        react_1.default.createElement("g", { fillRule: 'evenodd' },
-            react_1.default.createElement("mask", { id: 'participants16_svg__b' },
-                react_1.default.createElement("use", { xlinkHref: '#participants16_svg__a' })),
-            react_1.default.createElement("use", { fillRule: 'nonzero', xlinkHref: '#participants16_svg__a' }),
-            react_1.default.createElement("g", { mask: 'url(#participants16_svg__b)' },
-                react_1.default.createElement("path", { d: 'M0 0h16v16H0z' })))));
+    return (React.createElement("svg", { viewBox: '0 0 16 16', className: cx(classes.root, className), style: svgStyle, color: color, ref: ref },
+        React.createElement("defs", null,
+            React.createElement("path", { d: 'M10.875 10.4a2.5 2.5 0 1 1 3.25 0A3.5 3.5 0 0 1 16 13.5v.5h-1v-.5a2.5 2.5 0 0 0-4.268-1.768l-.707-.707c.252-.252.539-.462.85-.625zm-7.922-.963a4 4 0 1 1 4.095 0A5.001 5.001 0 0 1 10 14H9a4 4 0 1 0-8 0H0a5.001 5.001 0 0 1 2.953-4.563zM5 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7.5 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z', id: 'participants16_svg__a' })),
+        React.createElement("g", { fillRule: 'evenodd' },
+            React.createElement("mask", { id: 'participants16_svg__b' },
+                React.createElement("use", { xlinkHref: '#participants16_svg__a' })),
+            React.createElement("use", { fillRule: 'nonzero', xlinkHref: '#participants16_svg__a' }),
+            React.createElement("g", { mask: 'url(#participants16_svg__b)' },
+                React.createElement("path", { d: 'M0 0h16v16H0z' })))));
 });
 SvgParticipants16.displayName = 'SvgParticipants16';
-exports.default = styles_1.withStyles(styles_2.default)(SvgParticipants16);
+export default withStyles(styles)(SvgParticipants16);
 //# sourceMappingURL=Participants16.js.map

@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 const sizes = {
     borderWidth: '1px',
     borderRadius: '3px',
@@ -9,5 +7,5 @@ const sizes = {
         padding: '0.625em'
     }
 };
-exports.default = sizes;
+export default sizes;
 //# sourceMappingURL=sizes.js.map

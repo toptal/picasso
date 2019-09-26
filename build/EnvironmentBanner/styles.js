@@ -1,8 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const styles_1 = require("@material-ui/core/styles");
+import { createStyles } from '@material-ui/core/styles';
 const bannerOrgange = '#c65523';
-exports.default = ({ palette, zIndex }) => styles_1.createStyles({
+export default ({ palette, zIndex }) => createStyles({
     root: {
         fontSize: '0.7rem',
         lineHeight: '1em',

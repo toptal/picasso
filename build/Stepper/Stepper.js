@@ -1,4 +1,3 @@
-"use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -10,41 +9,30 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importStar(require("react"));
-const classnames_1 = __importDefault(require("classnames"));
-const styles_1 = require("@material-ui/core/styles");
-const Stepper_1 = __importDefault(require("@material-ui/core/Stepper"));
-const Step_1 = __importDefault(require("../Step"));
-const StepLabel_1 = __importDefault(require("../StepLabel"));
-require("../StepIcon");
-const StepConnector_1 = __importDefault(require("../StepConnector"));
-const styles_2 = __importDefault(require("./styles"));
-exports.Stepper = react_1.forwardRef(function Stepper(_a, ref) {
+import React, { forwardRef } from 'react';
+import cx from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
+import MUIStepper from '@material-ui/core/Stepper';
+import Step from '../Step';
+import StepLabel from '../StepLabel';
+import '../StepIcon';
+import StepConnector from '../StepConnector';
+import styles from './styles';
+export const Stepper = forwardRef(function Stepper(_a, ref) {
     var { active, steps, fullWidth, hideLabels, classes, className, style } = _a, rest = __rest(_a, ["active", "steps", "fullWidth", "hideLabels", "classes", "className", "style"]);
-    return (react_1.default.createElement(Stepper_1.default
+    return (React.createElement(MUIStepper
     // eslint-disable-next-line react/jsx-props-no-spreading
-    , Object.assign({}, rest, { ref: ref, activeStep: active, connector: react_1.default.createElement(StepConnector_1.default, null), className: classnames_1.default({
+    , Object.assign({}, rest, { ref: ref, activeStep: active, connector: React.createElement(StepConnector, null), className: cx({
             [classes.fullWidth]: fullWidth
-        }, className), style: style }), steps.map(label => (react_1.default.createElement(Step_1.default, { key: label },
-        react_1.default.createElement(StepLabel_1.default, { hideLabel: hideLabels }, label))))));
+        }, className), style: style }), steps.map(label => (React.createElement(Step, { key: label },
+        React.createElement(StepLabel, { hideLabel: hideLabels }, label))))));
 });
-exports.Stepper.defaultProps = {
+Stepper.defaultProps = {
     active: 0,
     fullWidth: false,
     hideLabels: false,
     steps: []
 };
-exports.Stepper.displayName = 'Stepper';
-exports.default = styles_1.withStyles(styles_2.default)(exports.Stepper);
+Stepper.displayName = 'Stepper';
+export default withStyles(styles)(Stepper);
 //# sourceMappingURL=Stepper.js.map

@@ -1,8 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const styles_1 = require("@material-ui/core/styles");
-const Picasso_1 = require("../Picasso");
-Picasso_1.PicassoProvider.override(() => ({
+import { createStyles } from '@material-ui/core/styles';
+import { PicassoProvider } from '../Picasso';
+PicassoProvider.override(() => ({
     MuiTypography: {
         h1: {
             lineHeight: '1.5em'
@@ -21,7 +19,7 @@ Picasso_1.PicassoProvider.override(() => ({
         }
     }
 }));
-exports.default = ({ palette, typography }) => styles_1.createStyles({
+export default ({ palette, typography }) => createStyles({
     // variants
     bodySmall: {
         fontSize: '12px',

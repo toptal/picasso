@@ -1,8 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const styles_1 = require("@material-ui/core/styles");
-exports.headerHeight = '4.5em';
-exports.default = ({ palette, layout, zIndex, screens }) => styles_1.createStyles({
+import { createStyles } from '@material-ui/core/styles';
+export const headerHeight = '4.5em';
+export default ({ palette, layout, zIndex, screens }) => createStyles({
     root: {
         width: '100%',
         position: 'fixed',
@@ -24,7 +22,7 @@ exports.default = ({ palette, layout, zIndex, screens }) => styles_1.createStyle
         margin: '0 auto',
         justifyContent: 'space-between',
         maxWidth: layout.contentWidth,
-        height: exports.headerHeight,
+        height: headerHeight,
         padding: `0 ${layout.contentPaddingHorizontal}`,
         [screens('small')]: {
             height: '3em'

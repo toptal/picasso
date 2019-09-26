@@ -1,4 +1,3 @@
-"use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -10,29 +9,18 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importStar(require("react"));
-const classnames_1 = __importDefault(require("classnames"));
-const styles_1 = require("@material-ui/core/styles");
-const OutlinedInput_1 = __importDefault(require("@material-ui/core/OutlinedInput"));
-const helpers_1 = require("@material-ui/core/utils/helpers");
-const styles_2 = __importDefault(require("./styles"));
-const OutlinedInput = react_1.forwardRef(function OutlinedInput(_a, ref) {
+import React, { forwardRef } from 'react';
+import cx from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
+import MUIOutlinedInput from '@material-ui/core/OutlinedInput';
+import { capitalize } from '@material-ui/core/utils/helpers';
+import styles from './styles';
+const OutlinedInput = forwardRef(function OutlinedInput(_a, ref) {
     var { classes, className, style, id, name, placeholder, autoFocus, autoComplete, multiline, rows, rowsMax, width, disabled, inputComponent, inputProps, defaultValue, value, type, error, startAdornment, endAdornment, onChange } = _a, rest = __rest(_a, ["classes", "className", "style", "id", "name", "placeholder", "autoFocus", "autoComplete", "multiline", "rows", "rowsMax", "width", "disabled", "inputComponent", "inputProps", "defaultValue", "value", "type", "error", "startAdornment", "endAdornment", "onChange"]);
-    return (react_1.default.createElement(OutlinedInput_1.default
+    return (React.createElement(MUIOutlinedInput
     // eslint-disable-next-line react/jsx-props-no-spreading
     , Object.assign({}, rest, { classes: {
-            root: classnames_1.default(classes.root, classes[`root${helpers_1.capitalize(width)}`]),
+            root: cx(classes.root, classes[`root${capitalize(width)}`]),
             input: classes.input,
             inputMultiline: classes.inputMultiline
         }, className: className, style: style, labelWidth: 0, fullWidth: width === 'full', disabled: disabled, error: error, inputComponent: inputComponent, inputProps: inputProps, inputRef: ref, defaultValue: defaultValue, value: value, type: type, startAdornment: startAdornment, endAdornment: endAdornment, id: id, name: name, placeholder: placeholder, autoFocus: autoFocus, autoComplete: autoComplete, multiline: multiline, rows: rows, rowsMax: rowsMax, onChange: onChange })));
@@ -41,5 +29,5 @@ OutlinedInput.defaultProps = {
     width: 'auto'
 };
 OutlinedInput.displayName = 'OutlinedInput';
-exports.default = styles_1.withStyles(styles_2.default)(OutlinedInput);
+export default withStyles(styles)(OutlinedInput);
 //# sourceMappingURL=OutlinedInput.js.map

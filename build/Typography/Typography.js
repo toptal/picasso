@@ -1,4 +1,3 @@
-"use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -10,23 +9,12 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importStar(require("react"));
-const styles_1 = require("@material-ui/core/styles");
-const Typography_1 = __importDefault(require("@material-ui/core/Typography"));
-const classnames_1 = __importDefault(require("classnames"));
-const kebab_to_camel_case_1 = __importDefault(require("../utils/kebab-to-camel-case"));
-const styles_2 = __importDefault(require("./styles"));
+import React, { forwardRef } from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import MUITypography from '@material-ui/core/Typography';
+import cx from 'classnames';
+import kebabToCamelCase from '../utils/kebab-to-camel-case';
+import styles from './styles';
 const VARIANTS = {
     heading: {
         small: 'h4',
@@ -41,26 +29,26 @@ const VARIANTS = {
         inherit: 'body1'
     }
 };
-exports.Typography = react_1.forwardRef(function Typography(_a, ref) {
+export const Typography = forwardRef(function Typography(_a, ref) {
     var { variant, children, size, align, className, classes, style, inline, as, weight, color, invert, noWrap } = _a, rest = __rest(_a, ["variant", "children", "size", "align", "className", "classes", "style", "inline", "as", "weight", "color", "invert", "noWrap"]);
     const resolvedVariant = VARIANTS[variant][size];
-    const variantClassName = kebab_to_camel_case_1.default(`${variant}-${size}`);
-    const colorClassName = kebab_to_camel_case_1.default(`${color}`);
-    const rootClass = classnames_1.default({
+    const variantClassName = kebabToCamelCase(`${variant}-${size}`);
+    const colorClassName = kebabToCamelCase(`${color}`);
+    const rootClass = cx({
         [classes.invert]: invert
     }, classes[variantClassName], classes[weight], classes[colorClassName]);
-    return (react_1.default.createElement(Typography_1.default
+    return (React.createElement(MUITypography
     // eslint-disable-next-line react/jsx-props-no-spreading
     , Object.assign({}, rest, { ref: ref, align: align, className: className, classes: {
             root: rootClass
         }, style: style, variant: resolvedVariant, display: inline ? 'inline' : 'initial', component: as, noWrap: noWrap }), children));
 });
-exports.Typography.defaultProps = {
+Typography.defaultProps = {
     inline: false,
     noWrap: false,
     size: 'inherit',
     variant: 'body'
 };
-exports.Typography.displayName = 'Typography';
-exports.default = styles_1.withStyles(styles_2.default)(exports.Typography);
+Typography.displayName = 'Typography';
+export default withStyles(styles)(Typography);
 //# sourceMappingURL=Typography.js.map

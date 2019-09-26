@@ -1,8 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const styles_1 = require("@material-ui/core/styles");
-const styles_2 = require("../styles");
-exports.default = ({ palette, sizes: { input } }) => styles_1.createStyles({
+import { createStyles } from '@material-ui/core/styles';
+import { alpha } from '../styles';
+export default ({ palette, sizes: { input } }) => createStyles({
     root: {
         cursor: 'default',
         padding: `${input.padding} 0.375em`
@@ -18,7 +16,7 @@ exports.default = ({ palette, sizes: { input } }) => styles_1.createStyles({
         color: palette.grey.dark
     },
     inputValueDisabled: {
-        color: styles_2.alpha(palette.grey.dark, 0.48)
+        color: alpha(palette.grey.dark, 0.48)
     },
     nativeInput: {
         display: 'none'

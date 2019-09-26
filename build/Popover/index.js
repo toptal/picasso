@@ -1,6 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-require("./styles");
-var Popover_1 = require("@material-ui/core/Popover");
-exports.default = Popover_1.default;
+import './styles';
+export { default } from '@material-ui/core/Popover';
 //# sourceMappingURL=index.js.map

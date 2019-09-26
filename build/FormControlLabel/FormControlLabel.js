@@ -1,4 +1,3 @@
-"use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -10,19 +9,15 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importDefault(require("react"));
-const FormControlLabel_1 = __importDefault(require("@material-ui/core/FormControlLabel"));
-const styles_1 = require("@material-ui/core/styles");
-const styles_2 = __importDefault(require("./styles"));
+import React from 'react';
+import MUIFormControlLabel from '@material-ui/core/FormControlLabel';
+import { withStyles } from '@material-ui/core/styles';
+import styles from './styles';
 const FormControlLabel = (_a) => {
     var { control, label, classes, className, style } = _a, rest = __rest(_a, ["control", "label", "classes", "className", "style"]);
-    return (react_1.default.createElement(FormControlLabel_1.default
+    return (React.createElement(MUIFormControlLabel
     // eslint-disable-next-line react/jsx-props-no-spreading
     , Object.assign({}, rest, { control: control, label: label, classes: classes, className: className, style: style })));
 };
-exports.default = styles_1.withStyles(styles_2.default)(FormControlLabel);
+export default withStyles(styles)(FormControlLabel);
 //# sourceMappingURL=FormControlLabel.js.map

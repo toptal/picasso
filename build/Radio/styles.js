@@ -1,9 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const styles_1 = require("@material-ui/core/styles");
-const Picasso_1 = require("../Picasso");
-const styles_2 = require("../styles");
-Picasso_1.PicassoProvider.override(({ palette, transitions }) => ({
+import { createStyles } from '@material-ui/core/styles';
+import { PicassoProvider } from '../Picasso';
+import { createPropertiesStyles, rem } from '../styles';
+PicassoProvider.override(({ palette, transitions }) => ({
     MuiRadio: {
         root: {
             color: palette.common.white,
@@ -25,7 +23,7 @@ Picasso_1.PicassoProvider.override(({ palette, transitions }) => ({
         }
     }
 }));
-const centeredCircle = (backgroundColor) => styles_2.createPropertiesStyles({
+const centeredCircle = (backgroundColor) => createPropertiesStyles({
     position: 'absolute',
     width: '100%',
     height: '100%',
@@ -41,7 +39,7 @@ const centeredCircle = (backgroundColor) => styles_2.createPropertiesStyles({
     transitionDuration: 'inherit',
     transitionTimingFunction: 'inherit'
 });
-exports.default = ({ palette, sizes, transitions }) => styles_1.createStyles({
+export default ({ palette, sizes, transitions }) => createStyles({
     root: {
         '&:hover $uncheckedIcon': {
             color: palette.primary.main
@@ -56,13 +54,13 @@ exports.default = ({ palette, sizes, transitions }) => styles_1.createStyles({
         color: palette.grey.main,
         transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`,
         '&:before': Object.assign({}, centeredCircle(palette.common.white), { border: `${sizes.borderWidth} solid ${palette.grey.main}` }),
-        '&:after': Object.assign({}, centeredCircle(palette.common.white), { width: 'initial', height: 'initial', borderWidth: styles_2.rem('3px'), borderStyle: 'solid', opacity: 0, color: palette.common.white, transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}` })
+        '&:after': Object.assign({}, centeredCircle(palette.common.white), { width: 'initial', height: 'initial', borderWidth: rem('3px'), borderStyle: 'solid', opacity: 0, color: palette.common.white, transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}` })
     },
     checkedIcon: {
         color: palette.primary.main,
         transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`,
         '&:before': Object.assign({}, centeredCircle(palette.common.white), { border: `${sizes.borderWidth} solid ${palette.grey.main}` }),
-        '&:after': Object.assign({}, centeredCircle(palette.common.white), { width: 'initial', height: 'initial', borderWidth: styles_2.rem('3px'), borderStyle: 'solid', opacity: 1, transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}` })
+        '&:after': Object.assign({}, centeredCircle(palette.common.white), { width: 'initial', height: 'initial', borderWidth: rem('3px'), borderStyle: 'solid', opacity: 1, transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}` })
     },
     label: {
         marginRight: '0.5em'

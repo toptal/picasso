@@ -1,4 +1,3 @@
-"use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -10,28 +9,17 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importStar(require("react"));
-const styles_1 = require("@material-ui/core/styles");
-const Tab_1 = __importDefault(require("@material-ui/core/Tab"));
-const styles_2 = __importDefault(require("./styles"));
-exports.Tab = react_1.forwardRef(function Tab(_a, ref) {
+import React, { forwardRef } from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import MUITab from '@material-ui/core/Tab';
+import styles from './styles';
+export const Tab = forwardRef(function Tab(_a, ref) {
     var { disabled, value, label, selected, onChange, onClick } = _a, rest = __rest(_a, ["disabled", "value", "label", "selected", "onChange", "onClick"]);
-    return (react_1.default.createElement(Tab_1.default
+    return (React.createElement(MUITab
     // eslint-disable-next-line react/jsx-props-no-spreading
     , Object.assign({}, rest, { ref: ref, disabled: disabled, label: label, value: value, selected: selected, onChange: onChange, onClick: onClick })));
 });
-exports.Tab.defaultProps = {};
-exports.Tab.displayName = 'Tab';
-exports.default = styles_1.withStyles(styles_2.default)(exports.Tab);
+Tab.defaultProps = {};
+Tab.displayName = 'Tab';
+export default withStyles(styles)(Tab);
 //# sourceMappingURL=Tab.js.map

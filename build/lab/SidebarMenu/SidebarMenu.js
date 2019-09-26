@@ -1,4 +1,3 @@
-"use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -10,31 +9,20 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importStar(require("react"));
-const styles_1 = require("@material-ui/core/styles");
-const classnames_1 = __importDefault(require("classnames"));
-const Menu_1 = __importDefault(require("../../Menu/Menu"));
-const styles_2 = __importDefault(require("./styles"));
-exports.SidebarMenu = react_1.forwardRef(function SidebarMenu(_a, ref) {
+import React, { forwardRef } from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import cx from 'classnames';
+import Menu from '../../Menu/Menu';
+import styles from './styles';
+export const SidebarMenu = forwardRef(function SidebarMenu(_a, ref) {
     var { bottom, classes, style, className } = _a, rest = __rest(_a, ["bottom", "classes", "style", "className"]);
-    return (react_1.default.createElement(Menu_1.default
+    return (React.createElement(Menu
     // eslint-disable-next-line react/jsx-props-no-spreading
-    , Object.assign({}, rest, { allowNestedNavigation: false, ref: ref, style: style, className: classnames_1.default(classes.root, { [classes.bottom]: bottom }, className) })));
+    , Object.assign({}, rest, { allowNestedNavigation: false, ref: ref, style: style, className: cx(classes.root, { [classes.bottom]: bottom }, className) })));
 });
-exports.SidebarMenu.defaultProps = {
+SidebarMenu.defaultProps = {
     bottom: false
 };
-exports.SidebarMenu.displayName = 'SidebarMenu';
-exports.default = styles_1.withStyles(styles_2.default)(exports.SidebarMenu);
+SidebarMenu.displayName = 'SidebarMenu';
+export default withStyles(styles)(SidebarMenu);
 //# sourceMappingURL=SidebarMenu.js.map

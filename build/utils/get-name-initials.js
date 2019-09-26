@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = (fullName) => {
+export default (fullName) => {
     return fullName
         .split(' ')
         .map(word => {

@@ -1,7 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const styles_1 = require("@material-ui/core/styles");
-exports.default = () => styles_1.createStyles({
+import { createStyles } from '@material-ui/core/styles';
+export default () => createStyles({
     root: {
         display: 'flex',
         flexDirection: 'column',

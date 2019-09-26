@@ -1,5 +1,2 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var Tabs_1 = require("./Tabs");
-exports.default = Tabs_1.default;
+export { default } from './Tabs';
 //# sourceMappingURL=index.js.map

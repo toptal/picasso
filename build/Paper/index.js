@@ -1,5 +1,2 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var Paper_1 = require("./Paper");
-exports.default = Paper_1.default;
+export { default } from './Paper';
 //# sourceMappingURL=index.js.map

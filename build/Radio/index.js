@@ -1,5 +1,2 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var Radio_1 = require("./Radio");
-exports.default = Radio_1.default;
+export { default } from './Radio';
 //# sourceMappingURL=index.js.map

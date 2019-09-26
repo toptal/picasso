@@ -1,4 +1,3 @@
-"use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -10,19 +9,8 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importStar(require("react"));
-const Select_1 = __importDefault(require("../../Select"));
+import React, { forwardRef, useMemo } from 'react';
+import Select from '../../Select';
 const OPTIONS = [
     { value: 1, text: 'January' },
     { value: 2, text: 'February' },
@@ -42,7 +30,7 @@ function getFilteredOptions(from, to) {
 }
 const FIRST_MONTH = 1;
 const LAST_MONTH = 12;
-exports.MonthSelect = react_1.forwardRef(function MonthSelect(_a, ref) {
+export const MonthSelect = forwardRef(function MonthSelect(_a, ref) {
     var { from = FIRST_MONTH, to = LAST_MONTH, onChange } = _a, rest = __rest(_a, ["from", "to", "onChange"]);
     const handleChange = (event) => {
         onChange(event);
@@ -54,15 +42,15 @@ exports.MonthSelect = react_1.forwardRef(function MonthSelect(_a, ref) {
         to < from) {
         throw new Error(`Invalid range. Please check the values you have passed: from: ${from}, to: ${to}`);
     }
-    const options = react_1.useMemo(() => getFilteredOptions(from, to), [from, to]);
+    const options = useMemo(() => getFilteredOptions(from, to), [from, to]);
     return (
     // eslint-disable-next-line react/jsx-props-no-spreading
-    react_1.default.createElement(Select_1.default, Object.assign({}, rest, { ref: ref, options: options, onChange: handleChange })));
+    React.createElement(Select, Object.assign({}, rest, { ref: ref, options: options, onChange: handleChange })));
 });
-exports.MonthSelect.defaultProps = {
+MonthSelect.defaultProps = {
     from: 1,
     to: 12
 };
-exports.MonthSelect.displayName = 'MonthSelect';
-exports.default = exports.MonthSelect;
+MonthSelect.displayName = 'MonthSelect';
+export default MonthSelect;
 //# sourceMappingURL=MonthSelect.js.map

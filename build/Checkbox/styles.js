@@ -1,8 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const styles_1 = require("@material-ui/core/styles");
-const Picasso_1 = require("../Picasso");
-Picasso_1.PicassoProvider.override(() => ({
+import { createStyles } from '@material-ui/core/styles';
+import { PicassoProvider } from '../Picasso';
+PicassoProvider.override(() => ({
     MuiCheckbox: {
         root: {
             fontSize: '1rem',
@@ -18,7 +16,7 @@ Picasso_1.PicassoProvider.override(() => ({
         }
     }
 }));
-exports.default = ({ palette, sizes, transitions }) => styles_1.createStyles({
+export default ({ palette, sizes, transitions }) => createStyles({
     root: {
         '&:hover $uncheckedIcon': {
             border: `${sizes.borderWidth} solid ${palette.primary.main}`

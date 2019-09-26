@@ -1,5 +1,2 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var EnvironmentBanner_1 = require("./EnvironmentBanner");
-exports.default = EnvironmentBanner_1.default;
+export { default } from './EnvironmentBanner';
 //# sourceMappingURL=index.js.map

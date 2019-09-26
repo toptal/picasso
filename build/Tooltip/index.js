@@ -1,5 +1,2 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var Tooltip_1 = require("./Tooltip");
-exports.default = Tooltip_1.default;
+export { default } from './Tooltip';
 //# sourceMappingURL=index.js.map
