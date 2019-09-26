@@ -28,7 +28,6 @@ export interface Props extends StandardProps, ListNativeProps {
   allowNestedNavigation?: boolean
 }
 
-
 export interface StaticProps {
   Item: typeof MenuItem
 }
@@ -84,7 +83,7 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
 
   return (
     <MenuContext.Provider value={menuContext}>
-      {menus[menus.length - 1]}
+      {menus.length === 1 ? menu : menus[menus.length - 1]}
     </MenuContext.Provider>
   )
 }) as CompoundedComponentWithRef<Props, HTMLUListElement, StaticProps>
