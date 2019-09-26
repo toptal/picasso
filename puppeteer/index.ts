@@ -47,7 +47,7 @@ export const assertVisuals = function (
     const host = `file:///${join(__dirname, '/../build/storybook/')}`
     const url = generateIframeUrl({ host, kind, type })
 
-    await page.goto(url, { waitUntil: 'networkidle2' })
+    await page.goto(url, { waitUntil: 'networkidle0' })
     await page.waitFor(delay || 0)
 
     // eslint-disable-next-line no-console
