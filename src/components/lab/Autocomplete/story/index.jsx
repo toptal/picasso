@@ -53,7 +53,7 @@ for this component. This you can achieve by adding corresponding attributes:
   )
   .addExample('lab/Autocomplete/story/FullWidth.example.jsx', 'Full width')
   .addExample('lab/Autocomplete/story/Loading.example.jsx', 'Loading')
-  .addExample('lab/Autocomplete/story/Icons.example.jsx', 'With Icon')
+  .addExample('lab/Autocomplete/story/WithIcons.example.jsx', 'With Icon')
   .addExample(
     'lab/Autocomplete/story/CustomOptionRenderer.example.tsx',
     'Custom options rendering'
