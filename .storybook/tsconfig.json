@@ -5,6 +5,7 @@
     "allowJs": true,
     "declaration": false,
     "target": "es5",
+    "module": "esNext",
     "paths": {
       "~/*": ["*"],
       "@/*": ["src/*"],
