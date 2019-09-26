@@ -13,12 +13,18 @@ const stories = global.__STORYSHOTS__
 const outputPath = assignOutputDir
 
 // Cleanup current output path
+// eslint-disable-next-line no-console
+console.time('Cleanup before tests')
 exec(`rm -rf ${outputPath}`)
 exec(`mkdir -p ${outputPath}`)
+// eslint-disable-next-line no-console
+console.timeEnd('Cleanup before tests')
 
 const snapShotDir = storyPath =>
   path.resolve(path.dirname(storyPath), '../', config.storyShotsDirName)
 
+// eslint-disable-next-line no-console
+console.time('Visual tests preparations')
 stories.forEach(story => {
   story.tests.forEach(testName => {
     const humanName = createHumanName(story.name, testName)
@@ -33,3 +39,5 @@ stories.forEach(story => {
     )
   })
 })
+// eslint-disable-next-line no-console
+console.timeEnd('Visual tests preparations')

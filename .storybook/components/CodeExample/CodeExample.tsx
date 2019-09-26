@@ -1,5 +1,3 @@
-declare var TEST_ENV: string // defined by ENV
-
 import React, {
   ReactNode,
   Component,
@@ -138,33 +136,6 @@ class CodeExample extends Component<Props> {
   render() {
     const { classes, showEditCode } = this.props
     const { sourceCode, isEditorVisible, copyLinkButtonText } = this.state
-
-    /* When we are building storybook for visual tests we want to have
-     * only actual component without source code editor
-     */
-    if (TEST_ENV === 'visual') {
-      const renderInTestPicasso = (element: ReactNode) => (
-        <Picasso loadFonts={false}>
-          <Purifier>{element}</Purifier>
-        </Picasso>
-      )
-
-      return (
-        <div className={classes.componentRenderer}>
-          <SourceRender
-            babelConfig={{
-              presets: PRESETS
-            }}
-            wrap={renderInTestPicasso}
-            resolver={resolver}
-            source={sourceCode}
-            unstable_hot
-          >
-            {({ element }: RenderResult) => element}
-          </SourceRender>
-        </div>
-      )
-    }
 
     if (!sourceCode) {
       return null

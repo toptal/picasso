@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 
 BLUE='\033[0;34m'
+GREEN='\033[0;32m'
 NC='\033[0m'
 
 CWD="$(dirname "$0")"
@@ -28,12 +29,18 @@ function run_jest() {
   fi
 
   set -x
-  $BIN_PATH/jest --testEnvironment=$JEST_ENV --config=$JEST_CONFIG $@ || exit 1
+  $BIN_PATH/jest --testEnvironment=$JEST_ENV --config=$JEST_CONFIG --maxWorkers=30% $@ || exit 1
   set +x
 }
 
+START=$(date +%s)
 build_storybook
+END=$(date +%s)
+echo -e "${GREEN} Build storybook:" $(expr $END - $START) "sec ${NC}"
 
+START=$(date +%s)
 # filter not supported --build-image argument
 JEST_PARAMS=`echo $@ | sed 's/--build-image//'`
 run_jest $JEST_PARAMS
+END=$(date +%s)
+echo -e "${GREEN} Running visual tests:" $(expr $END - $START) "sec ${NC}"

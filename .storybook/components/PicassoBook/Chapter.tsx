@@ -12,7 +12,6 @@ import { generateUrl, getHost, normalize } from '@/utils/url-generator'
 
 import Base from './Base'
 import Section from './Section'
-import CodeExample from '../CodeExample'
 import Page from './Page'
 
 import PropsTable from './components/PropsTable'
@@ -145,21 +144,46 @@ class Chapter extends Base {
       section: sectionId
     })
 
-    const render = () => (
-      <Fragment>
-        <div
-          className='chapter-container'
-          style={{ display: TEST_ENV === 'visual' ? 'inline-block' : 'block' }}
-          id={sectionLinkId}
-        >
-          <CodeExample
-            src={source}
-            permanentLink={permanentLink}
-            showEditCode={finalOptions.showEditCode}
-          />
-        </div>
-      </Fragment>
-    )
+    let render = null
+    if (TEST_ENV === 'visual') {
+      const CodeExampleVisualTest = React.lazy(() =>
+        import('../CodeExampleVisualTest')
+      )
+
+      render = () => (
+        <React.Suspense fallback={null}>
+          <Fragment>
+            <div
+              className='chapter-container'
+              style={{ display: 'inline-block' }}
+              id={sectionLinkId}
+            >
+              <CodeExampleVisualTest src={source} />
+            </div>
+          </Fragment>
+        </React.Suspense>
+      )
+    } else {
+      const CodeExample = React.lazy(() => import('../CodeExample'))
+
+      render = () => (
+        <React.Suspense fallback={null}>
+          <Fragment>
+            <div
+              className='chapter-container'
+              style={{ display: 'block' }}
+              id={sectionLinkId}
+            >
+              <CodeExample
+                src={source}
+                permanentLink={permanentLink}
+                showEditCode={finalOptions.showEditCode}
+              />
+            </div>
+          </Fragment>
+        </React.Suspense>
+      )
+    }
 
     this.createSection({
       sectionFn: render,

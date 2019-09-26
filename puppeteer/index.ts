@@ -41,6 +41,8 @@ export const assertVisuals = function (
   options = { delay: 0 }
 ) {
   return async () => {
+    // eslint-disable-next-line no-console
+    console.time(`Test: ${kind} ${type}`)
     const { delay, ..._opts } = options
     const host = `file:///${join(__dirname, '/../build/storybook/')}`
     const url = generateIframeUrl({ host, kind, type })
@@ -48,8 +50,19 @@ export const assertVisuals = function (
     await page.goto(url)
     await page.waitFor(delay || 0)
 
+    // eslint-disable-next-line no-console
+    console.time('take screenshot')
     const image = await screenshotDOMElement()
 
+    // eslint-disable-next-line no-console
+    console.timeEnd('take screenshot')
+
+    // eslint-disable-next-line no-console
+    console.time('match screenshot')
     expect(image).toMatchImageSnapshot(_opts)
+    // eslint-disable-next-line no-console
+    console.timeEnd('match screenshot')
+    // eslint-disable-next-line no-console
+    console.timeEnd(`Test: ${kind} ${type}`)
   }
 }

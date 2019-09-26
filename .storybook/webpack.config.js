@@ -2,6 +2,7 @@ const webpack = require('webpack')
 const path = require('path')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const ForkTsCheckerNotifierWebpackPlugin = require('fork-ts-checker-notifier-webpack-plugin')
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 // example: /components/Button/Button.tsx
 const COMPONENT_DECLARATION_FILE_REGEXP = /components\/(.*)\/\1.tsx$/
@@ -70,6 +71,10 @@ module.exports = ({ config }) => {
       TEST_ENV: JSON.stringify(env.TEST_ENV)
     })
   )
+
+  // config.plugins.push(
+  //   new BundleAnalyzerPlugin()
+  // )
 
   if (isDevelopment) {
     config.plugins.push(
