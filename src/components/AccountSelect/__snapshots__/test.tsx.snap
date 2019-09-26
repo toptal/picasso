@@ -60,8 +60,7 @@ exports[`AccountSelect default render 1`] = `
               </div>
             </div>
             <svg
-              class="SvgChevronRight16-root"
-              color="#455065"
+              class="SvgChevronRight16-root SvgChevronRight16-darkGrey"
               style="min-width: 16px; min-height: 16px;"
               viewBox="0 0 16 16"
             >
@@ -148,8 +147,7 @@ exports[`AccountSelect default render 1`] = `
               </div>
             </div>
             <svg
-              class="SvgChevronRight16-root"
-              color="#455065"
+              class="SvgChevronRight16-root SvgChevronRight16-darkGrey"
               style="min-width: 16px; min-height: 16px;"
               viewBox="0 0 16 16"
             >
@@ -233,8 +231,7 @@ exports[`AccountSelect default render 1`] = `
               </div>
             </div>
             <svg
-              class="SvgChevronRight16-root"
-              color="#455065"
+              class="SvgChevronRight16-root SvgChevronRight16-darkGrey"
               style="min-width: 16px; min-height: 16px;"
               viewBox="0 0 16 16"
             >

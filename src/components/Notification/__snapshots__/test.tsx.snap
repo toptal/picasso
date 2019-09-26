@@ -17,8 +17,7 @@ exports[`Notification default render 1`] = `
           style="align-items: center;"
         >
           <svg
-            class="SvgInfo16-root"
-            color="#c4c6ca"
+            class="SvgInfo16-root SvgInfo16-grey"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >

@@ -18,7 +18,8 @@ export {
   SpacingEnum,
   ButtonOrAnchorProps,
   CompoundedComponentWithRef,
-  OverridableComponent
+  OverridableComponent,
+  ColorType
 } from './types'
 
 export { useScreenSize, isScreenSize, useBreakpoint } from './config'

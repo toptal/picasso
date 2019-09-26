@@ -2,7 +2,6 @@ import React, { forwardRef } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
 import { StandardProps } from '../Picasso'
-import palette from '../Picasso/config/palette'
 import UserBadge from '../UserBadge'
 import Typography from '../Typography'
 import Menu from '../Menu'
@@ -76,7 +75,7 @@ export const AccountSelect = forwardRef<HTMLUListElement, Props>(
                 <UserBadge name={account.name} avatar={account.avatar}>
                   <Typography size='small'>{account.position}</Typography>
                 </UserBadge>
-                <ChevronRight16 color={palette.text.primary} />
+                <ChevronRight16 color='dark-grey' />
               </Container>
             </Link>
           </Menu.Item>

@@ -13,7 +13,6 @@ import SnackbarContent from '@material-ui/core/SnackbarContent'
 import cx from 'classnames'
 import { capitalize } from '@material-ui/core/utils/helpers'
 
-import palette from '../Picasso/config/palette'
 import {
   CloseMinor16,
   Exclamation16 as Alert,
@@ -67,18 +66,18 @@ const renderNotificationIcon = ({ icon, variant, classes }: Props) => {
   switch (variant) {
     case 'red':
       // eslint-disable-next-line react/jsx-props-no-spreading
-      return <Alert {...iconProps} color={palette.red.main} />
+      return <Alert {...iconProps} color='red' />
 
     case 'yellow':
       // eslint-disable-next-line react/jsx-props-no-spreading
-      return <Alert {...iconProps} color={palette.yellow.main} />
+      return <Alert {...iconProps} color='yellow' />
 
     case 'green':
       // eslint-disable-next-line react/jsx-props-no-spreading
-      return <Tick {...iconProps} color={palette.green.main} />
+      return <Tick {...iconProps} color='green' />
 
     default:
-      const infoProps = { ...iconProps, color: palette.grey.main }
+      const infoProps = { ...iconProps, color: 'grey' as 'grey' }
 
       // eslint-disable-next-line react/jsx-props-no-spreading
       return icon ? cloneElement(icon, infoProps) : <Info {...infoProps} />
