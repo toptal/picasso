@@ -14619,7 +14619,7 @@ simple-git@^1.85.0:
 
 "simple-react-calendar@https://github.com/toptal/simple-react-calendar.git#picasso":
   version "1.8.0"
-  resolved "https://github.com/toptal/simple-react-calendar.git#751b5cf54b2624fd9e593ccf6f07ac6aa73799b9"
+  resolved "https://github.com/toptal/simple-react-calendar.git#7b0bf2119828b989f63592967a45372747326d07"
   dependencies:
     classnames "^2.2.5"
     date-fns "^1.27.2"
