@@ -7,9 +7,9 @@ const page = PicassoBook.createPage(
   `<-- description -->`
 )
 
-page
-  .createTabChapter('Props')
-  .addComponentDocs({ component: DatePicker, name: 'DatePicker' })
+// page
+//   .createTabChapter('Props')
+//   .addComponentDocs({ component: DatePicker, name: 'DatePicker' })
 
 page
   .createChapter()

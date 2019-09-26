@@ -16,8 +16,7 @@ export default ({ palette }: Theme) => createStyles({
   },
   month: {},
   week: {
-    display: 'flex',
-    marginBottom: '8px'
+    display: 'flex'
   },
   day: {
     height: rem('40px'),
@@ -70,7 +69,40 @@ export default ({ palette }: Theme) => createStyles({
     },
 
     '&$grayed': {
-      color: alpha('#acb3bb', 0.85)
+      color: palette.grey.main2
+    }
+  },
+  weekDays: {
+    display: 'flex',
+    textAlign: 'center',
+    fontSize: '12px',
+    textTransform: 'uppercase',
+    color: palette.grey.main2
+  },
+  weekDay: {
+    flexBasis: '15%'
+  },
+
+  actions: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    marginBottom: '1.5em'
+  },
+
+  startSelection: {
+    background: '#e3effc',
+    color: '#ffffff',
+
+    '&:before': {
+      content: ''
+    }
+  },
+  endSelection: {
+    background: '#e3effc',
+    color: '#ffffff',
+
+    '&:before': {
+      content: ''
     }
   },
 

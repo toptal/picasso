@@ -42,6 +42,7 @@
     "@material-ui/icons": "^4.2.1",
     "classnames": "^2.2.6",
     "color": "^3.1.1",
+    "date-fns": "^2.3.0",
     "debounce": "^1.2.0",
     "downshift": "^3.2.10",
     "notistack": "^0.8.9",

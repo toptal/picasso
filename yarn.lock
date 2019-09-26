@@ -6017,6 +6017,11 @@ date-fns@^1.27.2:
   version "1.30.1"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-1.30.1.tgz#2e71bf0b119153dbb4cc4e88d9ea5acfb50dc05c"
 
+date-fns@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.3.0.tgz#017eae725d0c46173b572da025fb5e4e534270fd"
+  integrity sha512-A8o+iXBVqQayl9Z39BHgb7m/zLOfhF7LK82t+n9Fq1adds1vaUn8ByVoADqWLe4OTc6BZYc/FdbdTwufNYqkJw==
+
 date-now@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/date-now/-/date-now-0.1.4.tgz#eaf439fd4d4848ad74e5cc7dbef200672b9e345b"
@@ -14619,7 +14624,7 @@ simple-git@^1.85.0:
 
 "simple-react-calendar@https://github.com/toptal/simple-react-calendar.git#picasso":
   version "1.8.0"
-  resolved "https://github.com/toptal/simple-react-calendar.git#7b0bf2119828b989f63592967a45372747326d07"
+  resolved "https://github.com/toptal/simple-react-calendar.git#023b6bc9da49f74d9afeaeae7b289aca331d7d74"
   dependencies:
     classnames "^2.2.5"
     date-fns "^1.27.2"
