@@ -22,6 +22,9 @@ export interface Props
 
   /** The value of the currently selected Tab. If you don't want any selected Tab, you can set this property to false. */
   value: any
+
+  /** Determines additional display behavior of the tabs */
+  variant?: 'standard' | 'scrollable' | 'fullWidth'
 }
 
 interface StaticProps {
@@ -30,18 +33,26 @@ interface StaticProps {
 
 // eslint-disable-next-line react/display-name
 export const Tabs = forwardRef<HTMLButtonElement, Props>(function Tabs(
-  { children, onChange, value, ...rest },
+  { children, onChange, value, variant, ...rest },
   ref
 ) {
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
-    <MUITabs {...rest} ref={ref} onChange={onChange} value={value}>
+    <MUITabs
+      {...rest}
+      ref={ref}
+      onChange={onChange}
+      value={value}
+      variant={variant}
+    >
       {children}
     </MUITabs>
   )
 }) as CompoundedComponentWithRef<Props, HTMLButtonElement, StaticProps>
 
-Tabs.defaultProps = {}
+Tabs.defaultProps = {
+  variant: 'scrollable'
+}
 
 Tabs.displayName = 'Tabs'
 
