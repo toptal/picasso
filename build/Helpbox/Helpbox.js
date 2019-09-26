@@ -12,7 +12,6 @@ var __rest = (this && this.__rest) || function (s, e) {
 import React, { forwardRef } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import cx from 'classnames';
-import { palette } from '../utils';
 import Container from '../Container';
 import HelpboxTitle from '../HelpboxTitle';
 import HelpboxContent from '../HelpboxContent';
@@ -28,7 +27,7 @@ export const Helpbox = forwardRef(function Helpbox(_a, ref) {
     // eslint-disable-next-line react/jsx-props-no-spreading
     , Object.assign({}, rest, { ref: ref, className: cx(classes.root, className), style: style, bordered: true, variant: variant, padded: 'large' }),
         React.createElement(HelpboxContext.Provider, { value: { closeable: Boolean(onClose) } }, children),
-        onClose && (React.createElement(Button, { className: classes.closeButton, circular: true, onClick: onClose, icon: React.createElement(Close16, { color: palette.grey.dark }) }))));
+        onClose && (React.createElement(Button, { className: classes.closeButton, circular: true, onClick: onClose, icon: React.createElement(Close16, { color: 'dark-grey' }) }))));
 });
 Helpbox.defaultProps = {};
 Helpbox.displayName = 'Helpbox';

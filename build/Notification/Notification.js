@@ -14,7 +14,6 @@ import { withStyles } from '@material-ui/core/styles';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 import cx from 'classnames';
 import { capitalize } from '@material-ui/core/utils/helpers';
-import palette from '../Picasso/config/palette';
 import { CloseMinor16, Exclamation16 as Alert, CheckMinor16 as Tick, Info16 as Info } from '../Icon';
 import Container from '../Container';
 import Button from '../Button';
@@ -30,15 +29,15 @@ const renderNotificationIcon = ({ icon, variant, classes }) => {
     switch (variant) {
         case 'red':
             // eslint-disable-next-line react/jsx-props-no-spreading
-            return React.createElement(Alert, Object.assign({}, iconProps, { color: palette.red.main }));
+            return React.createElement(Alert, Object.assign({}, iconProps, { color: 'red' }));
         case 'yellow':
             // eslint-disable-next-line react/jsx-props-no-spreading
-            return React.createElement(Alert, Object.assign({}, iconProps, { color: palette.yellow.main }));
+            return React.createElement(Alert, Object.assign({}, iconProps, { color: 'yellow' }));
         case 'green':
             // eslint-disable-next-line react/jsx-props-no-spreading
-            return React.createElement(Tick, Object.assign({}, iconProps, { color: palette.green.main }));
+            return React.createElement(Tick, Object.assign({}, iconProps, { color: 'green' }));
         default:
-            const infoProps = Object.assign({}, iconProps, { color: palette.grey.main });
+            const infoProps = Object.assign({}, iconProps, { color: 'grey' });
             // eslint-disable-next-line react/jsx-props-no-spreading
             return icon ? cloneElement(icon, infoProps) : React.createElement(Info, Object.assign({}, infoProps));
     }

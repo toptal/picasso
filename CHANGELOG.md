@@ -1,3 +1,10 @@
+# [3.14.0](https://github.com/toptal/picasso/compare/v3.13.0...v3.14.0) (2019-09-26)
+
+
+### Features
+
+* **icon:** update color prop ([#712](https://github.com/toptal/picasso/issues/712)) ([f20cc41](https://github.com/toptal/picasso/commit/f20cc41))
+
 # [3.13.0](https://github.com/toptal/picasso/compare/v3.12.2...v3.13.0) (2019-09-26)
 
 

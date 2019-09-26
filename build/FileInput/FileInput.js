@@ -1,7 +1,6 @@
 import React, { forwardRef, useRef, Fragment } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import cx from 'classnames';
-import palette from '../Picasso/config/palette';
 import OutlinedInput from '../OutlinedInput';
 import InputAdornment from '../InputAdornment';
 import Button from '../Button';
@@ -39,7 +38,7 @@ export const FileInput = forwardRef(function FileInput({ classes, className, sty
     const uploadButtonVariant = value || error ? 'secondary-blue' : 'primary-blue';
     const uploadButtonTitle = value || error ? 'Choose different file' : 'Choose File';
     const loaderValue = isNumber(progress) && progress;
-    const startAdornment = (React.createElement(InputAdornment, { className: classes.adornmentStart, disabled: disabled, position: 'start' }, value ? (React.createElement(Check16, { color: !disabled ? palette.green.main : undefined })) : (React.createElement(UploadDocument16, null))));
+    const startAdornment = (React.createElement(InputAdornment, { className: classes.adornmentStart, disabled: disabled, position: 'start' }, value ? (React.createElement(Check16, { color: !disabled ? 'green' : undefined })) : (React.createElement(UploadDocument16, null))));
     const endAdornment = (React.createElement(InputAdornment, { position: 'end' }, inProgress ? (React.createElement(Loader, { className: classes.loader, size: 'small', value: isNumber(progress) ? loaderValue : undefined })) : (React.createElement(Button, { className: classes.button, size: 'small', variant: uploadButtonVariant, disabled: disabled, onClick: () => inputRef.current && inputRef.current.click() }, uploadButtonTitle))));
     return (React.createElement(OutlinedInput, { ref: inputRef, className: className, style: style, classes: {
             root: classes.root,

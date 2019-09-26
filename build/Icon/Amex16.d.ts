@@ -6,5 +6,5 @@ export interface Props extends StandardProps {
     scale?: ScaleType;
     color?: string;
 }
-declare const _default: React.ComponentType<Pick<Props, "color" | "scale" | "size" | "style" | "className"> & import("@material-ui/core/styles").StyledComponentProps<"root">>;
+declare const _default: React.ComponentType<Pick<Props, "color" | "scale" | "size" | "style" | "className"> & import("@material-ui/core/styles").StyledComponentProps<"inherit" | "black" | "blue" | "green" | "grey" | "red" | "yellow" | "invert" | "root" | "lightGrey" | "darkGrey">>;
 export default _default;

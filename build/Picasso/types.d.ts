@@ -36,4 +36,5 @@ export declare enum SpacingEnum {
 }
 export declare const spacingToEm: (spacing: SpacingType) => string;
 export declare type ButtonOrAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> & ButtonHTMLAttributes<HTMLButtonElement>;
+export declare type ColorType = 'blue' | 'green' | 'red' | 'yellow' | 'light-grey' | 'grey' | 'dark-grey' | 'black' | 'inherit';
 export {};

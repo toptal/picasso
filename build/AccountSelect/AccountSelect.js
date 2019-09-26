@@ -11,7 +11,6 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 import React, { forwardRef } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import palette from '../Picasso/config/palette';
 import UserBadge from '../UserBadge';
 import Typography from '../Typography';
 import Menu from '../Menu';
@@ -29,7 +28,7 @@ export const AccountSelect = forwardRef(function AccountSelect(_a, ref) {
             React.createElement(Container, { padded: 'medium', flex: true, direction: 'row', alignItems: 'center', justifyContent: 'space-between' },
                 React.createElement(UserBadge, { name: account.name, avatar: account.avatar },
                     React.createElement(Typography, { size: 'small' }, account.position)),
-                React.createElement(ChevronRight16, { color: palette.text.primary }))))))));
+                React.createElement(ChevronRight16, { color: 'dark-grey' }))))))));
 });
 AccountSelect.defaultProps = {
     onSelect: () => { }
