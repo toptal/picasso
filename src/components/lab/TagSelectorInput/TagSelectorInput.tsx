@@ -1,8 +1,7 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, ReactElement } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
 import { Props as InputProps } from '../../Input'
-import InputAdornment from '../../InputAdornment'
 import OutlinedInput from '../../OutlinedInput'
 import styles from './styles'
 
@@ -18,8 +17,6 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
       disabled,
       autoFocus,
       autoComplete,
-      icon,
-      iconPosition,
       classes,
       children,
       multiline,
@@ -35,19 +32,9 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
     },
     ref
   ) {
-    const IconAdornment = icon && (
-      <InputAdornment
-        position={iconPosition!}
-        disabled={disabled}
-        className={classes.loaderAdornment}
-      >
-        {icon}
-      </InputAdornment>
-    )
-    const usedStartAdornment =
-      icon && iconPosition === 'start' ? IconAdornment : startAdornment
-    const usedEndAdornment =
-      icon && iconPosition === 'end' ? IconAdornment : endAdornment
+    const usedEndAdornment = React.cloneElement(endAdornment as ReactElement, {
+      className: classes.loaderAdornment
+    })
 
     return (
       <OutlinedInput
@@ -70,8 +57,8 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
         width={width}
         // html attributes
         inputProps={rest}
-        endAdornment={usedEndAdornment}
-        startAdornment={usedStartAdornment}
+        endAdornment={endAdornment ? usedEndAdornment : null}
+        startAdornment={startAdornment}
         onChange={onChange}
       >
         {children}
@@ -81,7 +68,6 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
 )
 
 TagSelectorInput.defaultProps = {
-  iconPosition: 'start',
   multiline: false,
   width: 'auto'
 }
