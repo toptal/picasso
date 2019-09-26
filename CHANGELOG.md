@@ -1,3 +1,10 @@
+## [3.12.2](https://github.com/toptal/picasso/compare/v3.12.1...v3.12.2) (2019-09-26)
+
+
+### Bug Fixes
+
+* **Menu:** fix arrow navigation ([#718](https://github.com/toptal/picasso/issues/718)) ([d5a2f70](https://github.com/toptal/picasso/commit/d5a2f70))
+
 ## [3.12.1](https://github.com/toptal/picasso/compare/v3.12.0...v3.12.1) (2019-09-25)
 
 

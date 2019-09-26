@@ -55,7 +55,7 @@ exports.Menu = react_1.forwardRef(function Menu(_a, ref) {
         push: menu => setMenus([...menus, menu]),
         pop: () => setMenus(menus.slice(0, -1))
     };
-    return (react_1.default.createElement(menuContext_1.default.Provider, { value: menuContext }, menus[menus.length - 1]));
+    return (react_1.default.createElement(menuContext_1.default.Provider, { value: menuContext }, menus.length === 1 ? menu : menus[menus.length - 1]));
 });
 exports.Menu.defaultProps = {
     allowNestedNavigation: true
