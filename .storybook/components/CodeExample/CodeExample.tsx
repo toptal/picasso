@@ -99,8 +99,8 @@ class CodeExample extends Component<Props> {
     copyLinkButtonText: COPY_LINK_DEFAULT_TEXT
   }
 
-  componentDidMount() {
-    const sourceCode = this.getOriginalSourceCode()
+  async componentDidMount() {
+    const { default: sourceCode } = await this.getOriginalSourceCode()
     this.setState({ sourceCode })
   }
 
@@ -108,9 +108,9 @@ class CodeExample extends Component<Props> {
     const { src } = this.props
 
     try {
-      return require(`!raw-loader!@components/${src}`).default
+      return import(`!raw-loader!@components/${src}`)
     } catch (e) {
-      return require(`!raw-loader!~/.storybook/stories/${src}`).default
+      return import(`!raw-loader!~/.storybook/stories/${src}`)
     }
   }
 
