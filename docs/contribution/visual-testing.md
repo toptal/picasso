@@ -35,6 +35,8 @@ Also, right now visual tests are using docker images from `gcr.io/toptal-hub`, s
 yarn test:visual --build-image -u -t Colors
 ```
 
+![jest-flow](https://user-images.githubusercontent.com/324488/57615955-57729680-757d-11e9-9b1a-ca299deebd99.png)
+
 ## How visual testing works on CI
 
 We run visual tests as a part of the CI job [picasso-pr-specs](https://jenkins.toptal.net/job/picasso-pr-specs) after other checks already passed (like linter, unit tests and test build is generated).
@@ -42,5 +44,3 @@ We run visual tests as a part of the CI job [picasso-pr-specs](https://jenkins.t
 To run visual tests we need a special build of Picasso storybook with each component example at the separate page (story). To make this build we run `TEST_ENV=visual yarn build:storybook` right before starting jest visual testing. The flag `TEST_ENV=visual` is responsible for building that _special_ visual testing build.
 
 Jest/Puppeteer tests take each page (story) with a single component on it and make a screenshot, which is stored in `./__diff_output__/latest/*` folder as `png` file. Later CI job takes the folder `./__diff_output__/latest/` and archive it as a Jenkins artifact. Jenkins stores this folder together with the generated report file `index.html` (based on `puppeteer/reporter.js` rules) and attach the link to the job result in the PR.
-
-![jest-flow](https://user-images.githubusercontent.com/324488/57615955-57729680-757d-11e9-9b1a-ca299deebd99.png)
