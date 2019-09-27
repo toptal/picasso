@@ -1,6 +1,5 @@
 const webpack = require('webpack')
 const path = require('path')
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const ForkTsCheckerNotifierWebpackPlugin = require('fork-ts-checker-notifier-webpack-plugin')
 
@@ -82,10 +81,6 @@ module.exports = ({ config }) => {
         skipFirstNotification: true
       })
     )
-  }
-
-  if (env.CACHE) {
-    config.plugins.push(new HardSourceWebpackPlugin())
   }
 
   config.node = {
