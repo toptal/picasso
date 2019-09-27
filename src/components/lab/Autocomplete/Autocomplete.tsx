@@ -20,6 +20,7 @@ import { isSubstring, Maybe } from '../../utils'
 import useControlledAndUncontrolledState from '../../utils/use-controlled-and-uncontrolled-state'
 import useControlledAndUncontrolledInput from '../../utils/use-controlled-and-uncontrolled-input'
 import styles from './styles'
+import InputAdornment from '../../InputAdornment'
 
 const EMPTY_INPUT_VALUE = ''
 const FIRST_ITEM_INDEX = 0
@@ -74,6 +75,10 @@ export interface Props
   ) => void
   /** ReactNode for labels that will be used as start InputAdornment - */
   startAdornment?: ReactNode
+  /** ReactNode for labels that will be used as end InputAdornment - */
+  endAdornment?: ReactNode
+  /** Specify icon which should be rendered inside Input */
+  icon?: ReactNode
   /** Custom input component */
   inputComponent?: ComponentType<InputProps>
   /** Callback responsible for rendering the option given the option and its index in the list of options */
@@ -114,6 +119,8 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       onKeyDown,
       inputComponent,
       renderOption,
+      endAdornment,
+      icon,
       ...rest
     },
     ref
@@ -258,6 +265,11 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
           }
 
           const InputComponent = inputComponent || Input
+          const loadingComponent = (
+            <InputAdornment position='end'>
+              <Loader size='small' />
+            </InputAdornment>
+          )
 
           const inputProps = getInputProps({
             onFocus: handleFocusOrClick,
@@ -289,6 +301,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
                 {...rest}
                 // eslint-disable-next-line react/jsx-props-no-spreading
                 {...inputProps}
+                icon={icon}
                 defaultValue={inputProps.defaultValue as string | undefined}
                 value={inputProps.value as string | undefined}
                 onChange={e => {
@@ -299,8 +312,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
                 placeholder={
                   selectedItem ? getItemText(selectedItem) : placeholder
                 }
-                icon={loading ? <Loader size='small' /> : null}
-                iconPosition='end'
+                endAdornment={loading ? loadingComponent : endAdornment}
                 width={width}
               />
               {/* eslint-disable-next-line react/jsx-props-no-spreading */}
