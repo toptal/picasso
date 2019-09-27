@@ -48,34 +48,7 @@ In order to run visual tests you need to first build `picasso` docker image.
 
 `yarn test:visual` - Running visual tests
 
-### Fixing broken visual tests inside a PR
-
-In order to have a good tracking on visual changes which were applied in each PR, we run visual snapshot comparision inside each pull request. `Jenkins` is automatically trying to take snapshot of each component and compare the result to a previous state. Logic behind this is similar as running `jest` snapshots, therefore when your PR has failing visual tests you need to update them.
-
-1. Check the report on jenkins which are linked to the PR status.
-2. Manually check the differences by eye and ensure that the current state of the screenshot is the expected state.
-3. After the engineer is sure that the current changes are legitimate run `yarn test:visual -u` on your local machine.
-4. Command should re-generate snapshots which are different against previous version.
-5. Commit generated `.png` files to the PR.
-6. Visual tests job should be green now.
-
-`yarn test:visual -u` - Updating to current snapshots
-
-If you want to update only some snapshots with the specific names, run:
-```bash
-yarn test:visual -u -t *snapshot_name_pattern*
-
-// example
-// will update Typography:Colors, Colors:Colors snapshots
-yarn test:visual -u -t Colors
-
-```
-
-Also, right now visual tests are using docker images from `gcr.io/toptal-hub`, so to use them you need to have `docker` authenticated with `gcloud`. How to make it you can read [here](https://toptal-core.atlassian.net/wiki/spaces/IE/pages/337838085/Docker#Docker-docker-loginLogintoToptal'sprivateregistry). As well, if you want to build your own local image you can use `--build-image` argument:
-
-```
-yarn test:visual --build-image -u -t Colors
-```
+[Need to fix broken visual tests?](https://github.com/toptal/picasso/blob/master/docs/contribution/visual-testing.md#fixing-broken-visual-tests-inside-a-pr)
 
 ### Running yarn commands inside docker image
 
@@ -96,7 +69,6 @@ In order to run `yarn` commands we need to mount current `components` directory 
 | **yarn test:visual**          | Run visual regression tests in Docker                                     |
 | **yarn test:visual -u**       | Update visual regression snapshots in docker                              |
 | **yarn start**                | Start storybook instance and inspect components                           |
-| **storybook:cache**           | Start storybook instance and inspect components with webpack cache        |
 | **yarn release:pre**          | Bump pre-release version in `package.json` and create new version git tag |
 | **yarn generate:component**   | Generate a new component template                                         |
 | **yarn generate:example**     | Generate a new component component code example                           |

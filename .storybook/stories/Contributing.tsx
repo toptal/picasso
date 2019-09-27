@@ -13,7 +13,7 @@ import JSS_ONBOARDING from '../../docs/contribution/jss-onboarding.md'
 // @ts-ignore
 import CREATING_EXAMPLES from '../../docs/contribution/creating-examples.md'
 // @ts-ignore
-import VISUAL_SNAPSHOTS from '../../docs/contribution/visual-snapshots.md'
+import VISUAL_SNAPSHOTS from '../../docs/contribution/visual-testing.md'
 
 storiesOf('Contribution|Folder', module)
   .add('GitHub workflow', doc(GITHUB_WORKFLOW))

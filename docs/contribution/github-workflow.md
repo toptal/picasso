@@ -13,7 +13,7 @@ To make reviews easier we have automatic "temploy" like deployment for every com
 * Jest Test - Runs Jest snapshots. (not visual tests)
 * Lint - Runs code linter.
 * Visual Tests - Runs visual regression tests. [See how to update them]
-(https://github.com/toptal/picasso/blob/master/docs/contribution/visual-snapshots.md)
+(https://github.com/toptal/picasso/blob/master/docs/contribution/visual-testing.md#fixing-broken-visual-tests-inside-a-pr)
 * Deploy docs - This job will deploy live preview of your changes
 
 ## CI Release workflow and commit messages

@@ -24,7 +24,7 @@ The following is a set of guidelines for contributing to Picasso and its package
   * [JSS onboarding](docs/contribution/jss-onboarding.md)
   * [New components](docs/contribution/new-component-creation.md)
   * [Creating examples](docs/contribution/creating-examples.md)
-  * [Visual snapshots](docs/contribution/visual-snapshots.md)
+  * [Visual snapshots](docs/contribution/visual-testing.md)
 
 #### Tutorials
   * [How to layout forms](https://picasso.toptal.net/?path=/story/tutorials-folder--how-to-layout-forms)
