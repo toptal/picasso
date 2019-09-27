@@ -11,20 +11,21 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 import React, { forwardRef } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import InputAdornment from '../../InputAdornment';
 import OutlinedInput from '../../OutlinedInput';
 import styles from './styles';
 export const TagSelectorInput = forwardRef(function TagSelectorInput(_a, ref) {
-    var { id, name, defaultValue, value, placeholder, error, disabled, autoFocus, autoComplete, icon, iconPosition, classes, children, multiline, width, style, rows, rowsMax, type, onChange, startAdornment, endAdornment } = _a, rest = __rest(_a, ["id", "name", "defaultValue", "value", "placeholder", "error", "disabled", "autoFocus", "autoComplete", "icon", "iconPosition", "classes", "children", "multiline", "width", "style", "rows", "rowsMax", "type", "onChange", "startAdornment", "endAdornment"]);
-    const IconAdornment = icon && (React.createElement(InputAdornment, { position: iconPosition, disabled: disabled, className: classes.loaderAdornment }, icon));
-    const usedStartAdornment = icon && iconPosition === 'start' ? IconAdornment : startAdornment;
-    const usedEndAdornment = icon && iconPosition === 'end' ? IconAdornment : endAdornment;
+    var { id, name, defaultValue, value, placeholder, error, disabled, autoFocus, autoComplete, classes, children, multiline, width, style, rows, rowsMax, type, onChange, startAdornment, endAdornment } = _a, rest = __rest(_a, ["id", "name", "defaultValue", "value", "placeholder", "error", "disabled", "autoFocus", "autoComplete", "classes", "children", "multiline", "width", "style", "rows", "rowsMax", "type", "onChange", "startAdornment", "endAdornment"]);
+    let usedEndAdornment = null;
+    if (endAdornment) {
+        usedEndAdornment = React.cloneElement(endAdornment, {
+            className: classes.loaderAdornment
+        });
+    }
     return (React.createElement(OutlinedInput, { ref: ref, style: style, className: classes.inputBase, id: id, name: name, defaultValue: defaultValue, value: value, placeholder: placeholder, error: error, disabled: disabled, autoFocus: autoFocus, autoComplete: autoComplete, multiline: multiline, rows: rows, rowsMax: rowsMax, type: type, width: width, 
         // html attributes
-        inputProps: rest, endAdornment: usedEndAdornment, startAdornment: usedStartAdornment, onChange: onChange }, children));
+        inputProps: rest, endAdornment: usedEndAdornment, startAdornment: startAdornment, onChange: onChange }, children));
 });
 TagSelectorInput.defaultProps = {
-    iconPosition: 'start',
     multiline: false,
     width: 'auto'
 };

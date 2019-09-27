@@ -1,3 +1,10 @@
+# [3.15.0](https://github.com/toptal/picasso/compare/v3.14.0...v3.15.0) (2019-09-27)
+
+
+### Features
+
+* **Autocomplate:** icon, startAdornment, endAdornment ([#717](https://github.com/toptal/picasso/issues/717)) ([072e745](https://github.com/toptal/picasso/commit/072e745))
+
 # [3.14.0](https://github.com/toptal/picasso/compare/v3.13.0...v3.14.0) (2019-09-26)
 
 
