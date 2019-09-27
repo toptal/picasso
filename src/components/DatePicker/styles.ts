@@ -36,7 +36,7 @@ export default ({ palette }: Theme) => createStyles({
     outline: 0,
 
     '&$selected': {
-      background: palette.blue.main,
+      background: alpha(palette.blue.main, 0.48),
       color: palette.common.white,
       position: 'relative',
       zIndex: 1
@@ -57,7 +57,7 @@ export default ({ palette }: Theme) => createStyles({
         position: 'absolute'
       },
 
-      '&:hover:not($today)': {
+      '&:hover:not($today):not($startSelection):not($endSelection)': {
         zIndex: 1,
         backgroundColor: palette.grey.lighter
       }
@@ -70,6 +70,10 @@ export default ({ palette }: Theme) => createStyles({
 
     '&$grayed': {
       color: palette.grey.main2
+    },
+
+    '&$startSelection, &$endSelection': {
+      backgroundColor: palette.blue.main
     }
   },
   weekDays: {
@@ -90,16 +94,18 @@ export default ({ palette }: Theme) => createStyles({
   },
 
   startSelection: {
-    background: '#e3effc',
-    color: '#ffffff',
+    // backgroundColor: palette.blue.main,
+    background: '#ff0',
+    // color: '#ffffff',
 
     '&:before': {
-      content: ''
+      content: '',
+      background: '#ff0',
     }
   },
   endSelection: {
-    background: '#e3effc',
-    color: '#ffffff',
+    // background: '#ff0',
+    // color: '#ffffff',
 
     '&:before': {
       content: ''

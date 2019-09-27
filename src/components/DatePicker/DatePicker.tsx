@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useState } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 // @ts-ignore
 import Calendar from 'simple-react-calendar'
@@ -19,22 +19,30 @@ export const DatePicker = forwardRef<HTMLElement, Props>(function DatePicker(
   ref
 ) {
   const { classes } = props
+  const [selected, setSelected] = useState({} as {start: Date, end: Date})
+  let mode = 'range'
 
   return (
     <Calendar
+      selected={selected}
+      onSelect={(selection: any) => {
+        console.log('args', selection)
+        setSelected(selection)
+      }}
       customRender={(props: any) => {
         return <div className={classes.root}>{props.children}</div>
       }}
       renderDay={(props: any) => {
-        console.log(props)
+        // console.log(props)
         return (
           <button
             className={cx(classes.day, {
               [classes.selected]: props.isSelected,
-              [classes.selectable]:
-                props.isSelectable && !props.isMonthPrev && !props.isMonthNext,
+              [classes.selectable]: props.isSelectable,
               [classes.today]: props.isToday,
-              [classes.grayed]: props.isMonthPrev || props.isMonthNext
+              [classes.grayed]: (props.isMonthPrev || props.isMonthNext) && !props.isSelected,
+              [classes.startSelection]: props.isSelectionStart,
+              [classes.endSelection]: props.isSelectionEnd
             })}
             onClick={props.handleOnClick}
             onMouseEnter={props.handleOnEnter}
@@ -45,7 +53,7 @@ export const DatePicker = forwardRef<HTMLElement, Props>(function DatePicker(
         )
       }}
       renderMonthHeader={(props: any) => {
-        console.log('month header props', props)
+        // console.log('month header props', props)
         return (
           <div className={classes.actions}>
             <Button
@@ -75,7 +83,7 @@ export const DatePicker = forwardRef<HTMLElement, Props>(function DatePicker(
         return <div className={classes.week}>{props.children}</div>
       }}
       activeMonth={activeMonth}
-      mode='range'
+      mode={mode}
     />
   )
 })
