@@ -223,8 +223,8 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
         style={paperMargins}
         disablePortal
       >
-        <Grow in={isOpen} appear>
-          <ClickAwayListener onClickAway={() => close({ force: true })}>
+        <ClickAwayListener onClickAway={() => close({ force: true })}>
+          <Grow in={isOpen} appear>
             <Paper
               className={classes.content}
               onClick={() => close()}
@@ -234,8 +234,8 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
                 <RootRef rootRef={contentRef}>{content}</RootRef>
               </DropdownContext.Provider>
             </Paper>
-          </ClickAwayListener>
-        </Grow>
+          </Grow>
+        </ClickAwayListener>
       </Popper>
     </div>
   )
