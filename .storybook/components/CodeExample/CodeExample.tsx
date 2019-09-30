@@ -153,30 +153,36 @@ class CodeExample extends Component<Props> {
       </div>
     )
 
+    /* When we are building storybook for visual tests we want to have
+     * only actual component without source code editor
+     */
+    if (TEST_ENV === 'visual') {
+      const renderInTestPicasso = (element: ReactNode) => (
+        <Picasso loadFonts={false}>
+          <Purifier>{element}</Purifier>
+        </Picasso>
+      )
+
+      return (
+        <div className={classes.componentRenderer}>
+          <SourceRender
+            babelConfig={{
+              presets: PRESETS
+            }}
+            wrap={renderInTestPicasso}
+            resolver={resolver}
+            source={sourceCode}
+            unstable_hot
+          >
+            {({ element }: RenderResult) => element}
+          </SourceRender>
+        </div>
+      )
+    }
+
     const renderInPicasso = (element: ReactNode) => (
       <PicassoSSR>{element}</PicassoSSR>
     )
-
-    if (TEST_ENV === 'visual') {
-      return (
-        <SourceRender
-          babelConfig={{
-            presets: PRESETS
-          }}
-          wrap={renderInPicasso}
-          resolver={resolver}
-          source={sourceCode}
-          unstable_hot
-        >
-          {({ element, error }: RenderResult) => (
-            <Fragment>
-              {element}
-              {error && <Typography color='red'>{error.toString()}</Typography>}
-            </Fragment>
-          )}
-        </SourceRender>
-      )
-    }
 
     return (
       <SourceRender
