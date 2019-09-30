@@ -27,7 +27,6 @@ export default ({ palette }: Theme) => createStyles({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    // flexBasis: '15%',
     background: '#ffffff',
     position: 'relative',
     margin: 0,
@@ -64,8 +63,8 @@ export default ({ palette }: Theme) => createStyles({
     },
 
     '&$today': {
-      backgroundColor: palette.blue.main,
-      color: palette.common.white
+      border: `1px solid ${palette.blue.main}`,
+      color: palette.blue.main
     },
 
     '&$grayed': {
@@ -73,7 +72,8 @@ export default ({ palette }: Theme) => createStyles({
     },
 
     '&$startSelection, &$endSelection': {
-      backgroundColor: palette.blue.main
+      backgroundColor: palette.blue.main,
+      color: palette.common.white
     }
   },
   weekDays: {
@@ -81,7 +81,8 @@ export default ({ palette }: Theme) => createStyles({
     textAlign: 'center',
     fontSize: '12px',
     textTransform: 'uppercase',
-    color: palette.grey.main2
+    color: palette.grey.main2,
+    paddingBottom: rem('11px')
   },
   weekDay: {
     flexBasis: '15%'
@@ -93,24 +94,8 @@ export default ({ palette }: Theme) => createStyles({
     marginBottom: '1.5em'
   },
 
-  startSelection: {
-    // backgroundColor: palette.blue.main,
-    background: '#ff0',
-    // color: '#ffffff',
-
-    '&:before': {
-      content: '',
-      background: '#ff0',
-    }
-  },
-  endSelection: {
-    // background: '#ff0',
-    // color: '#ffffff',
-
-    '&:before': {
-      content: ''
-    }
-  },
+  startSelection: {},
+  endSelection: {},
 
   // nested
   selected: {},

@@ -1,39 +1,76 @@
-import React, { forwardRef, useState } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import React, { forwardRef, useState, Fragment } from 'react'
+import { withStyles, Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/styles'
+
 // @ts-ignore
 import Calendar from 'simple-react-calendar'
 import cx from 'classnames'
-import { Button, Typography } from '@toptal/picasso'
+import { Button, Typography, Input } from '@toptal/picasso'
 import { ChevronMinor16, BackMinor16 } from '@toptal/picasso/Icon'
 import format from 'date-fns/format'
 
 import { StandardProps } from '../Picasso'
 import styles from './styles'
 
-export interface Props extends StandardProps {}
+type RangeType = {start: Date, end: Date}
+
+const useStyles = makeStyles<Theme, Props>(styles)
+
+export const DatePicker = (props: any) => {
+  const [opened, setOpened] = useState(false)
+
+  const openDatepicker = () => setOpened(true)
+
+  return (
+    <Fragment>
+      <Input onClick={openDatepicker} />
+
+      <PicassoCalendar
+        classes={{}}
+        opened={opened}
+        onSelect={(dates: any) => {
+          console.log(dates)
+        }}
+        range
+      />
+    </Fragment>
+  )
+}
+
+export interface Props extends StandardProps {
+  range?: boolean
+  onSelect: (value: Date | Date[]) => void
+  opened?: boolean
+}
 
 const activeMonth = new Date()
 
-export const DatePicker = forwardRef<HTMLElement, Props>(function DatePicker(
+export const PicassoCalendar = forwardRef<HTMLElement, Props>(function DatePicker(
   props,
   ref
 ) {
-  const { classes } = props
-  const [selected, setSelected] = useState({} as {start: Date, end: Date})
-  let mode = 'range'
+  const { range = false, opened = false, onSelect } = props
+  const [selected, setSelected] = useState<Date|RangeType|undefined>(undefined)
+  const classes = useStyles(props)
+
+  if (!opened) return null
 
   return (
     <Calendar
       selected={selected}
-      onSelect={(selection: any) => {
-        console.log('args', selection)
+      onSelect={(selection: Date | RangeType) => {
         setSelected(selection)
+
+        if (range) {
+          onSelect([(selection as RangeType).start, (selection as RangeType).end])
+        } else {
+          onSelect(selection as Date)
+        }
       }}
       customRender={(props: any) => {
         return <div className={classes.root}>{props.children}</div>
       }}
       renderDay={(props: any) => {
-        // console.log(props)
         return (
           <button
             className={cx(classes.day, {
@@ -53,7 +90,6 @@ export const DatePicker = forwardRef<HTMLElement, Props>(function DatePicker(
         )
       }}
       renderMonthHeader={(props: any) => {
-        // console.log('month header props', props)
         return (
           <div className={classes.actions}>
             <Button
@@ -83,7 +119,7 @@ export const DatePicker = forwardRef<HTMLElement, Props>(function DatePicker(
         return <div className={classes.week}>{props.children}</div>
       }}
       activeMonth={activeMonth}
-      mode={mode}
+      mode={range ? 'range' : 'single'}
     />
   )
 })
@@ -92,4 +128,4 @@ DatePicker.defaultProps = {}
 
 DatePicker.displayName = 'DatePicker'
 
-export default withStyles(styles)(DatePicker)
+export default DatePicker

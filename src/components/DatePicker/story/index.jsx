@@ -4,13 +4,14 @@ import { DatePicker } from '../DatePicker'
 
 const page = PicassoBook.createPage(
   'DatePicker',
-  `<-- description -->`
+  `Date Picker component`
 )
 
-// page
-//   .createTabChapter('Props')
-//   .addComponentDocs({ component: DatePicker, name: 'DatePicker' })
+page
+  .createTabChapter('Props')
+  .addComponentDocs({ component: DatePicker, name: 'DatePicker' })
 
 page
   .createChapter()
   .addExample('DatePicker/story/Default.example.tsx', 'Default')
+  .addExample('DatePicker/story/Range.example.tsx', 'Range Mode')
