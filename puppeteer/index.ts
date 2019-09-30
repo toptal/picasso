@@ -35,22 +35,16 @@ async function screenshotDOMElement() {
 }
 
 // TODO: Make this more universal when we add more components and their variations
-export const assertVisuals = function (
-  kind: string,
-  type: string,
-  options = { delay: 0 }
-) {
+export const assertVisuals = function (kind: string, type: string, options) {
   return async () => {
-    const { delay, ..._opts } = options
     const host = `file:///${join(__dirname, '/../build/storybook/')}`
     const url = generateIframeUrl({ host, kind, type })
 
     await page.goto(url)
-    await page.waitFor(delay || 0)
-    await page.waitForSelector('#visual-test-component')
+    await page.waitFor('#visual-test-component')
 
     const image = await screenshotDOMElement()
 
-    expect(image).toMatchImageSnapshot(_opts)
+    expect(image).toMatchImageSnapshot(options)
   }
 }
