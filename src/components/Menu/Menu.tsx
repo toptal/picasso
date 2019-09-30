@@ -1,15 +1,15 @@
 import React, {
   HTMLAttributes,
   forwardRef,
-  ReactElement,
   useState,
-  useContext
+  useContext,
+  ReactElement
 } from 'react'
 import MUIMenuList, { MenuListProps } from '@material-ui/core/MenuList'
 import { withStyles } from '@material-ui/core/styles'
+import cx from 'classnames'
 
 import { BackMinor16 } from '../Icon'
-import { MenuContextProps } from './types'
 import {
   StandardProps,
   PicassoComponentWithRef,
@@ -18,7 +18,7 @@ import {
 import styles from './styles'
 import Typography from '../Typography'
 import MenuItem from '../MenuItem'
-import MenuContext from './menuContext'
+import MenuContext, { MenuContextProps } from './menuContext'
 
 export type ListNativeProps = HTMLAttributes<HTMLUListElement> &
   Pick<MenuListProps, 'onKeyDown'>
@@ -32,13 +32,16 @@ export interface StaticProps {
   Item: typeof MenuItem
 }
 
+type Menus = { [key: string]: ReactElement }
+
 // eslint-disable-next-line react/display-name
 export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
   { children, className, classes, style, allowNestedNavigation, ...rest },
   ref
 ) {
-  const { backButtonIcon, ...restClasses } = classes
+  const { backButtonIcon, hideMenu, ...restClasses } = classes
   const { pop } = useContext<MenuContextProps>(MenuContext)
+
   const hasParentMenu = !!pop
 
   const handleBackClick = (
@@ -70,20 +73,49 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
     </MUIMenuList>
   )
 
-  const [menus, setMenus] = useState<ReactElement[]>([menu])
+  const [menus, setMenus] = useState<Menus>({} as Menus)
 
   if (hasParentMenu) {
     return menu
   }
 
   const menuContext = {
-    push: menu => setMenus([...menus, menu]),
-    pop: () => setMenus(menus.slice(0, -1))
+    push: (key: string, menu: ReactElement) =>
+      setMenus({ ...menus, ...{ [key]: menu } }),
+    pop: () => {
+      const key = Object.keys(menus).pop()
+
+      if (!key) {
+        return
+      }
+
+      const newMenus = { ...menus }
+
+      delete newMenus[key]
+      setMenus(newMenus)
+    },
+    refresh: (key: string, menu: ReactElement) => {
+      if (!menus[key]) {
+        return
+      }
+
+      setMenus({ ...menus, ...{ [key]: menu } })
+    }
   } as MenuContextProps
+
+  const visibleMenuKey = Object.keys(menus).pop()
 
   return (
     <MenuContext.Provider value={menuContext}>
-      {menus.length === 1 ? menu : menus[menus.length - 1]}
+      <div className={cx({ [hideMenu]: visibleMenuKey })}>{menu}</div>
+      {Object.keys(menus).map((menuKey: string) => (
+        <div
+          key={menuKey}
+          className={cx({ [hideMenu]: visibleMenuKey !== menuKey })}
+        >
+          {menus[menuKey]}
+        </div>
+      ))}
     </MenuContext.Provider>
   )
 }) as CompoundedComponentWithRef<Props, HTMLUListElement, StaticProps>
