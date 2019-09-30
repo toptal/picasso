@@ -138,21 +138,6 @@ class CodeExample extends Component<Props> {
     const { classes, showEditCode } = this.props
     const { sourceCode, isEditorVisible, copyLinkButtonText } = this.state
 
-    if (!sourceCode) {
-      return null
-    }
-
-    const SourceCodeEditor = (
-      <div className={classes.editor}>
-        <Editor
-          id='some-component-example'
-          mode='jsx'
-          value={sourceCode}
-          onChange={this.handleChangeCode}
-        />
-      </div>
-    )
-
     /* When we are building storybook for visual tests we want to have
      * only actual component without source code editor
      */
@@ -164,7 +149,7 @@ class CodeExample extends Component<Props> {
       )
 
       return (
-        <div className={classes.componentRenderer}>
+        <div className={classes.componentRenderer} id='visual-test-component'>
           <SourceRender
             babelConfig={{
               presets: PRESETS
@@ -179,6 +164,21 @@ class CodeExample extends Component<Props> {
         </div>
       )
     }
+
+    if (!sourceCode) {
+      return null
+    }
+
+    const SourceCodeEditor = (
+      <div className={classes.editor}>
+        <Editor
+          id='some-component-example'
+          mode='jsx'
+          value={sourceCode}
+          onChange={this.handleChangeCode}
+        />
+      </div>
+    )
 
     const renderInPicasso = (element: ReactNode) => (
       <PicassoSSR>{element}</PicassoSSR>

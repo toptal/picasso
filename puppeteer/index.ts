@@ -47,6 +47,7 @@ export const assertVisuals = function (
 
     await page.goto(url)
     await page.waitFor(delay || 0)
+    await page.waitForSelector('#visual-test-component')
 
     const image = await screenshotDOMElement()
 
