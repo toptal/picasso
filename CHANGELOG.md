@@ -1,3 +1,10 @@
+## [3.15.1](https://github.com/toptal/picasso/compare/v3.15.0...v3.15.1) (2019-09-30)
+
+
+### Bug Fixes
+
+* **EnvironmentBanner:** banner no longer steals clicks ([#726](https://github.com/toptal/picasso/issues/726)) ([f4ee655](https://github.com/toptal/picasso/commit/f4ee655)), closes [#725](https://github.com/toptal/picasso/issues/725)
+
 # [3.15.0](https://github.com/toptal/picasso/compare/v3.14.0...v3.15.0) (2019-09-27)
 
 
