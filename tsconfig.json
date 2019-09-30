@@ -28,6 +28,8 @@
     "**/test.tsx",
     "**/visual.test.jsx",
     "**/visual.test.tsx",
-    "**/story/index.jsx"
+    "**/story/index.jsx",
+    "**/story/*.example.jsx",
+    "**/story/*.example.tsx"
   ]
 }

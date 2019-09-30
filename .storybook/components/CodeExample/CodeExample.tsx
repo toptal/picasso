@@ -6,7 +6,8 @@ import React, {
   FunctionComponent,
   useState,
   useEffect,
-  useLayoutEffect
+  useLayoutEffect,
+  Fragment
 } from 'react'
 import debounce from 'debounce'
 import styled from 'styled-components'
@@ -101,19 +102,17 @@ class CodeExample extends Component<Props> {
     copyLinkButtonText: COPY_LINK_DEFAULT_TEXT
   }
 
-  componentDidMount() {
-    const sourceCode = this.getOriginalSourceCode()
+  async componentDidMount() {
+    const { default: sourceCode } = await this.getOriginalSourceCode()
     this.setState({ sourceCode })
   }
 
   getOriginalSourceCode = () => {
     const { src } = this.props
 
-    try {
-      return require(`!raw-loader!@components/${src}`).default
-    } catch (e) {
-      return require(`!raw-loader!~/.storybook/stories/${src}`).default
-    }
+    return import(`!raw-loader!@components/${src}`).catch(() => {
+      return import(`!raw-loader!~/.storybook/stories/${src}`)
+    })
   }
 
   handleShowEditor = () => {
@@ -139,33 +138,6 @@ class CodeExample extends Component<Props> {
     const { classes, showEditCode } = this.props
     const { sourceCode, isEditorVisible, copyLinkButtonText } = this.state
 
-    /* When we are building storybook for visual tests we want to have
-     * only actual component without source code editor
-     */
-    if (TEST_ENV === 'visual') {
-      const renderInTestPicasso = (element: ReactNode) => (
-        <Picasso loadFonts={false}>
-          <Purifier>{element}</Purifier>
-        </Picasso>
-      )
-
-      return (
-        <div className={classes.componentRenderer}>
-          <SourceRender
-            babelConfig={{
-              presets: PRESETS
-            }}
-            wrap={renderInTestPicasso}
-            resolver={resolver}
-            source={sourceCode}
-            unstable_hot
-          >
-            {({ element }: RenderResult) => element}
-          </SourceRender>
-        </div>
-      )
-    }
-
     if (!sourceCode) {
       return null
     }
@@ -184,6 +156,27 @@ class CodeExample extends Component<Props> {
     const renderInPicasso = (element: ReactNode) => (
       <PicassoSSR>{element}</PicassoSSR>
     )
+
+    if (TEST_ENV === 'visual') {
+      return (
+        <SourceRender
+          babelConfig={{
+            presets: PRESETS
+          }}
+          wrap={renderInPicasso}
+          resolver={resolver}
+          source={sourceCode}
+          unstable_hot
+        >
+          {({ element, error }: RenderResult) => (
+            <Fragment>
+              {element}
+              {error && <Typography color='red'>{error.toString()}</Typography>}
+            </Fragment>
+          )}
+        </SourceRender>
+      )
+    }
 
     return (
       <SourceRender
