@@ -1,5 +1,6 @@
 import { join } from 'path'
 import { Page } from 'puppeteer'
+import { MatchImageSnapshotOptions } from 'jest-image-snapshot'
 
 import { generateIframeUrl } from '../src/utils/url-generator'
 
@@ -35,7 +36,11 @@ async function screenshotDOMElement() {
 }
 
 // TODO: Make this more universal when we add more components and their variations
-export const assertVisuals = function (kind: string, type: string, options) {
+export const assertVisuals = function (
+  kind: string,
+  type: string,
+  options: MatchImageSnapshotOptions
+) {
   return async () => {
     const host = `file:///${join(__dirname, '/../build/storybook/')}`
     const url = generateIframeUrl({ host, kind, type })
