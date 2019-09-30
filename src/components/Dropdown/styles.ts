@@ -1,5 +1,5 @@
 import { createStyles } from '@material-ui/core/styles'
-
+import zIndex from '@material-ui/core/styles/zIndex'
 import '../Popover/styles'
 
 export default () =>
@@ -14,7 +14,10 @@ export default () =>
       cursor: 'pointer'
     },
     content: {
-      fontSize: 'inherit'
+      fontSize: 'inherit',
+      background: 'white'
     },
-    paper: {}
+    popper: {
+      zIndex: zIndex.modal
+    }
   })

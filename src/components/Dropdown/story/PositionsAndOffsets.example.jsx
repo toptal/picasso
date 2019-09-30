@@ -4,7 +4,7 @@ import { Dropdown, Menu, Container, Typography } from '@toptal/picasso'
 const DropdownDefaultExample = () => (
   <div>
     <Container bottom='xsmall'>
-      <Typography>Anchor position</Typography>
+      <Typography>Popper placement</Typography>
     </Container>
     <Container flex inline bottom='medium'>
       <Container right='large'>
@@ -17,7 +17,7 @@ const DropdownDefaultExample = () => (
             </Menu>
           }
         >
-          Default
+          Default Dropdown (bottom right)
           <Dropdown.Arrow />
         </Dropdown>
       </Container>
@@ -31,9 +31,9 @@ const DropdownDefaultExample = () => (
               <Menu.Item>Third item</Menu.Item>
             </Menu>
           }
-          anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+          placement='top-start'
         >
-          Top left
+          Top left Dropdown
           <Dropdown.Arrow />
         </Dropdown>
       </Container>
@@ -47,64 +47,9 @@ const DropdownDefaultExample = () => (
               <Menu.Item>Third item</Menu.Item>
             </Menu>
           }
-          anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+          placement='bottom-start'
         >
-          Bottom left
-          <Dropdown.Arrow />
-        </Dropdown>
-      </Container>
-    </Container>
-
-    <Container bottom='xsmall'>
-      <Typography>Menu position</Typography>
-    </Container>
-    <Container flex inline bottom='medium'>
-      <Container right='large'>
-        <Dropdown
-          content={
-            <Menu>
-              <Menu.Item>First item</Menu.Item>
-              <Menu.Item>Second item</Menu.Item>
-              <Menu.Item>Third item</Menu.Item>
-            </Menu>
-          }
-        >
-          Default
-          <Dropdown.Arrow />
-        </Dropdown>
-      </Container>
-
-      <Container right='large'>
-        <Dropdown
-          content={
-            <Menu>
-              <Menu.Item>First item</Menu.Item>
-              <Menu.Item>Second item</Menu.Item>
-              <Menu.Item>Third item</Menu.Item>
-            </Menu>
-          }
-          transformOrigin={{ vertical: 'top', horizontal: 'left' }}
-        >
-          Top left
-          <Dropdown.Arrow />
-        </Dropdown>
-      </Container>
-
-      <Container right='large'>
-        <Dropdown
-          content={
-            <Menu>
-              <Menu.Item>First item</Menu.Item>
-              <Menu.Item>Second item</Menu.Item>
-              <Menu.Item>Third item</Menu.Item>
-            </Menu>
-          }
-          transformOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left'
-          }}
-        >
-          Bottom left
+          Bottom left Dropdown
           <Dropdown.Arrow />
         </Dropdown>
       </Container>
@@ -124,7 +69,7 @@ const DropdownDefaultExample = () => (
             </Menu>
           }
         >
-          Offset - default
+          Offset - default (no offset)
           <Dropdown.Arrow />
         </Dropdown>
       </Container>
@@ -138,9 +83,9 @@ const DropdownDefaultExample = () => (
               <Menu.Item>Third item</Menu.Item>
             </Menu>
           }
-          offset={{ top: 'medium' }}
+          offset={{ top: 'large' }}
         >
-          Offset - top
+          Large offset - top
           <Dropdown.Arrow />
         </Dropdown>
       </Container>
@@ -154,9 +99,9 @@ const DropdownDefaultExample = () => (
               <Menu.Item>Third item</Menu.Item>
             </Menu>
           }
-          offset={{ left: 'medium' }}
+          offset={{ right: 'medium' }}
         >
-          Offset - left
+          Medium offset - right
           <Dropdown.Arrow />
         </Dropdown>
       </Container>
