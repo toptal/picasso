@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso",
-  "version": "3.15.0",
+  "version": "3.15.1",
   "description": "",
   "main": "./index.js",
   "module": "./index.js",
@@ -10,7 +10,6 @@
     "test:visual": "./bin/run-in-docker ./bin/test-visual",
     "lint": "davinci syntax lint code .",
     "start": "start-storybook -p 9001 -s ./.storybook/public -c .storybook",
-    "storybook:cache": "CACHE=1 start-storybook -p 9001 -s ./.storybook/public -c .storybook",
     "build:storybook": "build-storybook -s ./.storybook/public -c .storybook -o build/storybook",
     "release": "./bin/release",
     "build:dist": "cross-env NODE_ENV=production ./bin/build",
@@ -99,7 +98,6 @@
     "fork-ts-checker-webpack-plugin": "^1.4.3",
     "fs-extra": "^8.0.1",
     "glob": "^7.1.4",
-    "hard-source-webpack-plugin": "^0.13.1",
     "hygen": "^4.0.2",
     "jest": "^24.8.0",
     "jest-canvas-mock": "^2.1.0",

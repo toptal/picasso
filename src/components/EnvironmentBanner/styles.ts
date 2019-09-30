@@ -11,7 +11,8 @@ export default ({ palette, zIndex }: Theme) =>
       textAlign: 'center',
       top: 0,
       width: '100%',
-      zIndex: zIndex.snackbar
+      zIndex: zIndex.snackbar,
+      pointerEvents: 'none'
     },
     rootDevelopment: {
       borderTop: `0.4rem solid ${palette.green.main}`
@@ -30,7 +31,8 @@ export default ({ palette, zIndex }: Theme) =>
       letterSpacing: '.01em',
       padding: '0.25rem 0.7rem 0.5rem',
       textTransform: 'uppercase',
-      userSelect: 'none'
+      userSelect: 'none',
+      pointerEvents: 'initial'
     },
     labelDevelopment: {
       backgroundColor: palette.green.main
