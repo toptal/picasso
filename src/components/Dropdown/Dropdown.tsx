@@ -17,8 +17,7 @@ import {
   SpacingType,
   spacingToEm,
   CompoundedComponentWithRef,
-  PicassoComponentWithRef,
-  usePicassoRoot
+  PicassoComponentWithRef
 } from '../Picasso'
 import DropdownArrow from '../DropdownArrow'
 import Popper from '../Popper'
@@ -201,8 +200,6 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
     [close]
   )
 
-  const container = usePicassoRoot()
-
   return (
     <div
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -211,37 +208,35 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
       className={cx(classes.root, className)}
       style={style}
     >
-      <ClickAwayListener onClickAway={() => close({ force: true })}>
-        <div>
-          <div className={classes.anchor} onClick={toggleOpen}>
-            {children}
-          </div>
+      <div className={classes.anchor} onClick={toggleOpen}>
+        {children}
+      </div>
 
-          <Popper
-            className={classes.popper}
-            open={isOpen}
-            anchorEl={anchorEl}
-            popperOptions={{
-              onCreate: focus
-            }}
-            placement={placement}
-            container={container}
-            style={paperMargins}
-          >
-            <Grow in={isOpen} appear>
-              <Paper
-                className={classes.content}
-                onClick={() => close()}
-                onKeyDown={handleContentKeyDown}
-              >
-                <DropdownContext.Provider value={context}>
-                  <RootRef rootRef={contentRef}>{content}</RootRef>
-                </DropdownContext.Provider>
-              </Paper>
-            </Grow>
-          </Popper>
-        </div>
-      </ClickAwayListener>
+      <Popper
+        className={classes.popper}
+        open={isOpen}
+        anchorEl={anchorEl}
+        popperOptions={{
+          onCreate: focus
+        }}
+        placement={placement}
+        style={paperMargins}
+        disablePortal
+      >
+        <Grow in={isOpen} appear>
+          <ClickAwayListener onClickAway={() => close({ force: true })}>
+            <Paper
+              className={classes.content}
+              onClick={() => close()}
+              onKeyDown={handleContentKeyDown}
+            >
+              <DropdownContext.Provider value={context}>
+                <RootRef rootRef={contentRef}>{content}</RootRef>
+              </DropdownContext.Provider>
+            </Paper>
+          </ClickAwayListener>
+        </Grow>
+      </Popper>
     </div>
   )
 }) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
