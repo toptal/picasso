@@ -7,10 +7,11 @@ const isFunctionalComponent = (Component: Function) => {
   return !prototype || !prototype.isReactComponent
 }
 
-const generateModalId = () =>
-  Math.random()
-    .toString(36)
-    .substr(2, 9)
+const generateModalKey = (() => {
+  let count = 0
+
+  return () => `${++count}`
+})()
 
 const useModals = () => {
   const context = useContext(ModalContext)
@@ -26,7 +27,7 @@ const useModals = () => {
       )
     }
 
-    const key = generateModalId()
+    const key = generateModalKey()
 
     context.showModal(key, modal)
 
