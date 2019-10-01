@@ -32,7 +32,7 @@ export interface StaticProps {
   Item: typeof MenuItem
 }
 
-type Menus = { [key: string]: ReactElement }
+type Menus = Record<string, ReactElement>
 
 // eslint-disable-next-line react/display-name
 export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
@@ -73,16 +73,10 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
     </MUIMenuList>
   )
 
-  const [menus, setMenus] = useState<Menus>({} as Menus)
+  const [menus, setMenus] = useState<Menus>({})
   const menusKeys = Object.keys(menus)
 
-  const getLastKey = () => {
-    if (menusKeys.length === 0) {
-      return
-    }
-
-    return menusKeys[menusKeys.length - 1]
-  }
+  const getLastKey = () => menusKeys[menusKeys.length - 1]
 
   if (hasParentMenu) {
     return menu
@@ -113,11 +107,11 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
   } as MenuContextProps
 
   const currentVisibleMenuKey = getLastKey()
-  const isRootMenuVisible = !currentVisibleMenuKey
+  const isRootMenuHidden = Boolean(currentVisibleMenuKey)
 
   return (
     <MenuContext.Provider value={menuContext}>
-      <div className={cx({ [hideMenu]: !isRootMenuVisible })}>{menu}</div>
+      <div className={cx({ [hideMenu]: isRootMenuHidden })}>{menu}</div>
       {menusKeys.map((menuKey: string) => (
         <div
           key={menuKey}

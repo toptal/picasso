@@ -48,7 +48,7 @@ export interface Props extends StandardProps, MenuItemAttributes {
 const generateKey = (() => {
   let count = 0
 
-  return () => `${++count}`
+  return () => String(++count)
 })()
 
 export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
