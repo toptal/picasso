@@ -1,6 +1,5 @@
 import { join } from 'path'
 import { Page } from 'puppeteer'
-import { MatchImageSnapshotOptions } from 'jest-image-snapshot'
 
 import { generateIframeUrl } from '../src/utils/url-generator'
 
@@ -39,17 +38,19 @@ async function screenshotDOMElement() {
 export const assertVisuals = function (
   kind: string,
   type: string,
-  options: MatchImageSnapshotOptions
+  options = { delay: 0 }
 ) {
   return async () => {
+    const { delay, ..._opts } = options
     const host = `file:///${join(__dirname, '/../build/storybook/')}`
     const url = generateIframeUrl({ host, kind, type })
 
     await page.goto(url)
-    await page.waitFor('#visual-test-component')
+    await page.waitFor(delay || 0)
+    await page.evaluate(() => document.querySelector('.component-purifier'))
 
     const image = await screenshotDOMElement()
 
-    expect(image).toMatchImageSnapshot(options)
+    expect(image).toMatchImageSnapshot(_opts)
   }
 }

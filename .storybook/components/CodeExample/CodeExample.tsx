@@ -149,7 +149,7 @@ class CodeExample extends Component<Props> {
       )
 
       return (
-        <div className={classes.componentRenderer} id='visual-test-component'>
+        <div className={classes.componentRenderer}>
           <SourceRender
             babelConfig={{
               presets: PRESETS
@@ -159,7 +159,9 @@ class CodeExample extends Component<Props> {
             source={sourceCode}
             unstable_hot
           >
-            {({ element }: RenderResult) => element}
+            {({ element }: RenderResult) => (
+              <div className='component-purifier'>{element}</div>
+            )}
           </SourceRender>
         </div>
       )
