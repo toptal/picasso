@@ -7,7 +7,6 @@ import React, {
   ReactElement,
   useContext,
   useEffect,
-  useState,
   useMemo
 } from 'react'
 import cx from 'classnames'
@@ -76,10 +75,9 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
   const { push, refresh } = useContext<MenuContextProps>(MenuContext)
 
   const key = useMemo(generateKey, [])
-  const [isShow, setShow] = useState<boolean>(false)
 
   useEffect(() => {
-    if (isShow && menu) {
+    if (menu) {
       refresh(key, menu)
     }
   }, [menu])
@@ -96,7 +94,6 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
     if (menu) {
       event.stopPropagation()
       push(key, menu)
-      setShow(true)
     }
 
     if (onClick) {

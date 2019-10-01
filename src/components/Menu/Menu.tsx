@@ -74,6 +74,15 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
   )
 
   const [menus, setMenus] = useState<Menus>({} as Menus)
+  const menusKeys = Object.keys(menus)
+
+  const getLastKey = () => {
+    if (menusKeys.length === 0) {
+      return
+    }
+
+    return menusKeys[menusKeys.length - 1]
+  }
 
   if (hasParentMenu) {
     return menu
@@ -83,7 +92,7 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
     push: (key: string, menu: ReactElement) =>
       setMenus({ ...menus, ...{ [key]: menu } }),
     pop: () => {
-      const key = Object.keys(menus).pop()
+      const key = getLastKey()
 
       if (!key) {
         return
@@ -103,15 +112,16 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
     }
   } as MenuContextProps
 
-  const visibleMenuKey = Object.keys(menus).pop()
+  const currentVisibleMenuKey = getLastKey()
+  const isRootMenuVisible = !currentVisibleMenuKey
 
   return (
     <MenuContext.Provider value={menuContext}>
-      <div className={cx({ [hideMenu]: visibleMenuKey })}>{menu}</div>
-      {Object.keys(menus).map((menuKey: string) => (
+      <div className={cx({ [hideMenu]: !isRootMenuVisible })}>{menu}</div>
+      {menusKeys.map((menuKey: string) => (
         <div
           key={menuKey}
-          className={cx({ [hideMenu]: visibleMenuKey !== menuKey })}
+          className={cx({ [hideMenu]: menuKey !== currentVisibleMenuKey })}
         >
           {menus[menuKey]}
         </div>
