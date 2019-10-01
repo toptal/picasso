@@ -1,8 +1,8 @@
-import { createStyles } from '@material-ui/core/styles'
+import { createStyles, Theme } from '@material-ui/core/styles'
 import zIndex from '@material-ui/core/styles/zIndex'
 import '../Popover/styles'
 
-export default () =>
+export default ({ screens }: Theme) =>
   createStyles({
     root: {
       display: 'flex',
@@ -18,6 +18,14 @@ export default () =>
       background: 'white'
     },
     popper: {
-      zIndex: zIndex.modal
+      zIndex: zIndex.modal,
+      [screens('small')]: {
+        width: '100vw',
+        maxWidth: '100vw',
+        left: '0 !important',
+        // screen height - header height
+        maxHeight: 'calc(100vh - 2.5em)',
+        padding: 0
+      }
     }
   })

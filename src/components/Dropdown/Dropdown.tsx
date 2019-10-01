@@ -216,38 +216,45 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
         {children}
       </div>
 
-      <Popper
-        className={classes.popper}
-        open={isOpen}
-        anchorEl={anchorEl}
-        popperOptions={{
-          onCreate: focus
-        }}
-        placement={placement}
-        style={paperMargins}
-        disablePortal
-      >
-        <ClickAwayListener onClickAway={() => close({ force: true })}>
-          <Grow in={isOpen} appear>
-            <Paper
-              className={classes.content}
-              onClick={() => close()}
-              onKeyDown={handleContentKeyDown}
-            >
-              <DropdownContext.Provider value={context}>
-                <RootRef rootRef={contentRef}>{content}</RootRef>
-              </DropdownContext.Provider>
-            </Paper>
-          </Grow>
-        </ClickAwayListener>
-      </Popper>
+      {anchorEl && (
+        <Popper
+          className={classes.popper}
+          open={isOpen}
+          anchorEl={anchorEl}
+          popperOptions={{
+            onCreate: focus
+          }}
+          placement={placement}
+          style={paperMargins}
+          // RATIONALE: If portal is enabled, and dropdown's popper contains
+          // for example <Input autoFocus/>, popper will mount to the portal and
+          // before it finishes posotioning itself, autoFocus will force scrolling
+          // to the bottom of the portal.
+          disablePortal
+        >
+          <ClickAwayListener onClickAway={() => close({ force: true })}>
+            <Grow in={isOpen} appear>
+              <Paper
+                className={classes.content}
+                onClick={() => close()}
+                onKeyDown={handleContentKeyDown}
+                elevation={2}
+              >
+                <DropdownContext.Provider value={context}>
+                  <RootRef rootRef={contentRef}>{content}</RootRef>
+                </DropdownContext.Provider>
+              </Paper>
+            </Grow>
+          </ClickAwayListener>
+        </Popper>
+      )}
     </div>
   )
 }) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
 
 Dropdown.defaultProps = {
   disableAutoClose: false,
-  disableAutoFocus: false,
+  disableAutoFocus: true,
   offset: {},
   onClose: () => {},
   onOpen: () => {},

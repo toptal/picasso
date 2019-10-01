@@ -5,13 +5,15 @@ import MUIPaper from '@material-ui/core/Paper'
 import { StandardProps } from '../Picasso'
 import styles from './styles'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export type Props = {
   /** Content of component */
   children: ReactNode
-}
+  elevation?: number
+} & StandardProps &
+  HTMLAttributes<HTMLDivElement>
 
 export const Paper = forwardRef<HTMLDivElement, Props>(function Paper(
-  { classes, className, style, children, ...rest },
+  { classes, className, style, elevation, children, ...rest },
   ref
 ) {
   return (
@@ -22,13 +24,17 @@ export const Paper = forwardRef<HTMLDivElement, Props>(function Paper(
       classes={classes}
       className={className}
       style={style}
-      elevation={1}
+      elevation={elevation}
       square
     >
       {children}
     </MUIPaper>
   )
 })
+
+Paper.defaultProps = {
+  elevation: 1
+}
 
 Paper.displayName = 'Paper'
 
