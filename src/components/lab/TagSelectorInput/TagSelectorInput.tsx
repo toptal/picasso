@@ -1,7 +1,7 @@
 import React, { forwardRef, ReactElement } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
-import { Props as InputProps } from '../../Input'
+import { Props as InputProps } from '../../Input/Input'
 import OutlinedInput from '../../OutlinedInput'
 import styles from './styles'
 
