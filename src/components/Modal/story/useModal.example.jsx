@@ -15,21 +15,25 @@ const STATES = [
 
 const ModalDefaultExample = () => {
   const [isLoading, setLoading] = useState(false)
+  const [modalId, setModalId] = useState(null)
+
   const showDemo = () => {
     setLoading(true)
 
     setTimeout(() => {
       setLoading(false)
-      hideModal()
+      hideModal(modalId)
     }, 2000)
   }
 
-  const [showModal, hideModal] = useModal(
-    () => (
+  const { showModal, hideModal } = useModal()
+
+  const handleOnClick = () => {
+    const modalId = showModal(() => (
       <Modal
         container={() => document.getElementById('modal-container')}
         onBackdropClick={() => console.log('Clicked backdrop..')}
-        onClose={hideModal}
+        onClose={() => hideModal(modalId)}
         onOpen={() => console.log('onOpen()')}
         open
         transitionDuration={0} // Only for demo purposes, should not be used
@@ -62,13 +66,14 @@ const ModalDefaultExample = () => {
           </Button>
         </Modal.Actions>
       </Modal>
-    ),
-    [isLoading]
-  )
+    ))
+
+    setModalId(modalId)
+  }
 
   return (
     <div id='modal-container' style={{ width: '800px', height: '500px' }}>
-      <Button onClick={showModal}>Open</Button>
+      <Button onClick={handleOnClick}>Open</Button>
     </div>
   )
 }
