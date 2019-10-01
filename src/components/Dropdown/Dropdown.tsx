@@ -41,9 +41,9 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
     left?: SpacingType
     right?: SpacingType
   }
-  /** Positioning of content menu relative to anchor */
+  /** DEPRECATED. Positioning of content menu relative to anchor */
   anchorOrigin?: PopoverOrigin
-  /** Positioning of content menu relative to content */
+  /** DEPRECATED. Positioning of content menu relative to content */
   transformOrigin?: PopoverOrigin
   /** Position of the popper relative to the anchor */
   placement?: PopperPlacementType
@@ -101,11 +101,15 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
 ) {
   if (anchorOrigin) {
     // eslint-disable-next-line no-console
-    console.warn('DEPRICATED in Dropdown: anchorOrigin')
+    console.warn(
+      'DEPRECATED in Dropdown: "anchorOrigin". To control popper position, please use "placement" and "offset" props.'
+    )
   }
   if (transformOrigin) {
     // eslint-disable-next-line no-console
-    console.warn('DEPRICATED in Dropdown: transformOrigin')
+    console.warn(
+      'DEPRECATED in Dropdown: "transformOrigin". To control popper position, please use "placement" and "offset" props.'
+    )
   }
 
   const contentRef = useRef<HTMLElement>()
@@ -149,7 +153,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
     }
   }
 
-  const close = ({ force }: { force: boolean } = { force: false }) => {
+  const close = ({ force } = { force: false }) => {
     if (!force && disableAutoClose) {
       return
     }
