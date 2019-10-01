@@ -6,8 +6,13 @@ export default () =>
       width: 0,
       height: 0,
       borderStyle: 'solid',
-      borderWidth: '6px 5px 0 5px',
       borderColor: 'currentColor transparent transparent transparent',
-      marginLeft: '1.5em'
+      marginLeft: '0.7em'
+    },
+    small: {
+      borderWidth: '0.25rem 0.25rem 0 0.25rem'
+    },
+    medium: {
+      borderWidth: '0.375rem 0.3125rem 0 0.375rem'
     }
   })
