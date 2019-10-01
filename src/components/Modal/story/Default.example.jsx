@@ -76,6 +76,7 @@ const ModalDefaultExample = () => {
     ))
   }
 
+  // show a modal when the example is opened, in demonstration purpose
   useEffect(() => {
     handleClick()
   }, [])
