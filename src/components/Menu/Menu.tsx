@@ -111,15 +111,16 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
 
   return (
     <MenuContext.Provider value={menuContext}>
-      <div className={cx({ [hideMenu]: isRootMenuHidden })}>{menu}</div>
-      {menusKeys.map((menuKey: string) => (
-        <div
-          key={menuKey}
-          className={cx({ [hideMenu]: menuKey !== currentVisibleMenuKey })}
-        >
-          {menus[menuKey]}
-        </div>
-      ))}
+      {React.cloneElement(menu, {
+        className: cx(menu.props.className, { [hideMenu]: isRootMenuHidden })
+      })}
+      {menusKeys.map((menuKey: string) =>
+        React.cloneElement(menus[menuKey], {
+          className: cx(menus[menuKey].props.className, {
+            [hideMenu]: menuKey !== currentVisibleMenuKey
+          })
+        })
+      )}
     </MenuContext.Provider>
   )
 }) as CompoundedComponentWithRef<Props, HTMLUListElement, StaticProps>

@@ -77,7 +77,7 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
   const key = useMemo(generateKey, [])
 
   useEffect(() => {
-    if (menu) {
+    if (menu && refresh) {
       refresh(key, menu)
     }
   }, [menu])
@@ -91,7 +91,7 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
   }
 
   const handleClick = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    if (menu) {
+    if (menu && push) {
       event.stopPropagation()
       push(key, menu)
     }
