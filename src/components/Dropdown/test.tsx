@@ -1,8 +1,8 @@
+import { cleanup, fireEvent, render, wait } from '@testing-library/react'
 import React from 'react'
-import { render, fireEvent, cleanup } from '@testing-library/react'
 
-import Picasso from '../Picasso'
 import Menu from '../Menu'
+import Picasso from '../Picasso'
 import Dropdown from './Dropdown'
 
 afterEach(cleanup)
@@ -46,7 +46,7 @@ describe('Dropdown', () => {
     unmount()
   })
 
-  test('should render menu with focus', () => {
+  test('should render menu with focus', async () => {
     const { container, getByText, unmount } = render(
       <Picasso loadFonts={false}>
         <Dropdown
@@ -68,9 +68,9 @@ describe('Dropdown', () => {
 
     fireEvent.click(trigger)
 
-    const item = container.querySelector('li')
-
-    expect(document.activeElement === item).toBeTruthy()
+    await wait(() => {
+      expect(document.activeElement).toBe(container.querySelector('li'))
+    })
 
     expect(container).toMatchSnapshot()
 
