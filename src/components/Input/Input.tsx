@@ -119,6 +119,8 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
       error={error}
       disabled={disabled}
       autoFocus={autoFocus}
+      // https://developers.google.com/web/updates/2015/06/checkout-faster-with-autofill
+      // according to chrome specification
       autoComplete={autoComplete}
       multiline={multiline}
       rows={rows}
@@ -137,6 +139,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
 })
 
 Input.defaultProps = {
+  autoComplete: 'none',
   iconPosition: 'start',
   multiline: false,
   width: 'auto'

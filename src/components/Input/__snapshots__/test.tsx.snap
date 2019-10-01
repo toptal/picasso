@@ -38,6 +38,7 @@ exports[`Icon prop renders icon at the beginning 1`] = `
         </svg>
       </div>
       <input
+        autocomplete="none"
         class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
         type="text"
         value=""
@@ -85,6 +86,7 @@ exports[`Icon prop renders icon at the end 1`] = `
         </svg>
       </div>
       <input
+        autocomplete="none"
         class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
         type="text"
         value=""
