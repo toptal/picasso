@@ -1,9 +1,9 @@
 import React from 'react'
-import { DatePicker } from '@toptal/picasso'
+import { DatePicker } from '@toptal/picasso/lab'
 
 const RangeExample = () => {
   return (
-    <div>
+    <div style={{ height: '50vh' }}>
       <DatePicker
         range
         onSelect={(dates: any) => {

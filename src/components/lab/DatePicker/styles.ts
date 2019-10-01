@@ -1,47 +1,65 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
-import { alpha, rem } from '../styles'
+import { alpha, rem } from '../../styles'
 
-export default ({ palette }: Theme) => createStyles({
-  root: {
-    padding: '30px',
-    color: '#303030',
-    marginTop: '30px',
-    display: 'flex',
-    flexDirection: 'column',
-    flexBasis: '328px',
-    maxWidth: '328px',
-    boxShadow: `0px 0px 4px 0px ${alpha(palette.common.black, 0.24)},
-                0px 0px 32px 0px ${alpha(palette.common.black, 0.12)}`
-  },
-  month: {},
-  week: {
-    display: 'flex'
-  },
-  day: {
-    height: rem('40px'),
-    width: rem('40px'),
-    verticalAlign: 'middle',
-    fontSize: '12px',
-    userSelect: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    background: '#ffffff',
-    position: 'relative',
-    margin: 0,
-    padding: 0,
-    border: 'none',
-    outline: 0,
-
-    '&$selected': {
-      background: alpha(palette.blue.main, 0.48),
-      color: palette.common.white,
+export default ({ palette, sizes }: Theme) =>
+  createStyles({
+    root: {
+      position: 'absolute',
+      padding: rem('30px'),
+      color: palette.grey.darker,
+      marginTop: rem('5px'),
+      display: 'flex',
+      flexDirection: 'column',
+      flexBasis: '20.5rem',
+      maxWidth: '20.5rem',
+      boxShadow: `0 0 ${rem('4px')} 0 ${alpha(palette.common.black, 0.24)},
+                0 0 2em 0 ${alpha(palette.common.black, 0.12)}`,
+      backgroundColor: palette.common.white
+    },
+    month: {},
+    week: {
+      display: 'flex'
+    },
+    day: {
+      height: '2.5rem',
+      width: '2.5rem',
+      verticalAlign: 'middle',
+      fontSize: '0.75rem',
+      userSelect: 'none',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      background: palette.common.white,
       position: 'relative',
-      zIndex: 1
+      margin: 0,
+      padding: 0,
+      border: 'none',
+      outline: 0
+    },
+    weekDays: {
+      display: 'flex',
+      textAlign: 'center',
+      fontSize: '0.75em',
+      textTransform: 'uppercase',
+      color: palette.grey.main2,
+      paddingBottom: rem('11px')
+    },
+    weekDay: {
+      flexBasis: '15%'
     },
 
-    '&$selectable': {
+    actions: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      marginBottom: '1.5rem'
+    },
+    selected: {
+      background: alpha(palette.blue.main, 0.48),
+      color: palette.common.white,
+      position: 'relative'
+    },
+    selectable: {
       cursor: 'pointer',
       position: 'relative',
 
@@ -56,50 +74,31 @@ export default ({ palette }: Theme) => createStyles({
         position: 'absolute'
       },
 
-      '&:hover:not($today):not($startSelection):not($endSelection)': {
-        zIndex: 1,
+      '&:hover': {
         backgroundColor: palette.grey.lighter
+      },
+
+      '&$startSelection:hover, &$endSelection:hover': {
+        backgroundColor: palette.blue.main
+      },
+
+      '&$today:hover': {
+        backgroundColor: palette.common.white
       }
     },
-
-    '&$today': {
-      border: `1px solid ${palette.blue.main}`,
-      color: palette.blue.main
-    },
-
-    '&$grayed': {
-      color: palette.grey.main2
-    },
-
-    '&$startSelection, &$endSelection': {
+    startSelection: {
       backgroundColor: palette.blue.main,
       color: palette.common.white
+    },
+    endSelection: {
+      backgroundColor: palette.blue.main,
+      color: palette.common.white
+    },
+    today: {
+      border: `${sizes.borderWidth} solid ${palette.blue.main}`,
+      color: palette.blue.main
+    },
+    grayed: {
+      color: palette.grey.main2
     }
-  },
-  weekDays: {
-    display: 'flex',
-    textAlign: 'center',
-    fontSize: '12px',
-    textTransform: 'uppercase',
-    color: palette.grey.main2,
-    paddingBottom: rem('11px')
-  },
-  weekDay: {
-    flexBasis: '15%'
-  },
-
-  actions: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    marginBottom: '1.5em'
-  },
-
-  startSelection: {},
-  endSelection: {},
-
-  // nested
-  selected: {},
-  selectable: {},
-  today: {}, // maybe better highlighted?,
-  grayed: {}
-})
+  })

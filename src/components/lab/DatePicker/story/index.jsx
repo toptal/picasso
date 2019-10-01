@@ -13,5 +13,5 @@ page
 
 page
   .createChapter()
-  .addExample('DatePicker/story/Default.example.tsx', 'Default')
-  .addExample('DatePicker/story/Range.example.tsx', 'Range Mode')
+  .addExample('lab/DatePicker/story/Default.example.tsx', 'Default')
+  .addExample('lab/DatePicker/story/Range.example.tsx', 'Range Mode')
