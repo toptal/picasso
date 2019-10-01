@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Modal, Button, Input, Checkbox, Select, Form } from '@toptal/picasso'
 import { useModals } from '@toptal/picasso/utils'
 
@@ -75,6 +75,10 @@ const ModalDefaultExample = () => {
       <ModalDialog modalId={modalId} hideModal={hideModal} />
     ))
   }
+
+  useEffect(() => {
+    handleClick()
+  }, [])
 
   return (
     <div id='modal-container' style={{ width: '800px', height: '500px' }}>
