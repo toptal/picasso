@@ -8,8 +8,6 @@ export {
   useBreakpoint
 } from '../Picasso/config/breakpoints'
 
-export { useModal } from '../Modal/use-modal'
-
 export {
   default as useControlledAndUncontrolledState
 } from './use-controlled-and-uncontrolled-state'
@@ -27,5 +25,6 @@ export { default as isBoolean } from './is-boolean'
 export { default as isSubstring } from './is-substring'
 export { Maybe } from './monads'
 export { useNotifications } from './Notifications'
+export { useModals, useModal } from './Modal'
 
 export { default as useCombinedRefs } from './use-combined-refs'

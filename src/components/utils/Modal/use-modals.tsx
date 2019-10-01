@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import { ModalContext, ModalType } from 'react-modal-hook'
 
 const isFunctionalComponent = (Component: Function) => {
@@ -7,41 +7,20 @@ const isFunctionalComponent = (Component: Function) => {
   return !prototype || !prototype.isReactComponent
 }
 
-const queue: Map<
-  string,
-  {
-    hide: () => void
-  }
-> = new Map()
-
 const generateModalId = () =>
   Math.random()
     .toString(36)
     .substr(2, 9)
 
-const useModal = (component: ModalType, inputs: any[] = []) => {
-  useEffect(() => {
-    if (component || inputs) {
-      window.console.warn(
-        `The way you use 'useModal' hook is going to be deprecated in Picasso v4.`
-      )
-    }
-  }, [])
-
+const useModals = () => {
   const context = useContext(ModalContext)
 
   const hideModal = (key: string) => {
-    const modal = queue.get(key)
-
-    if (!modal) {
-      return
-    }
-
-    modal.hide()
+    context.hideModal(key)
   }
 
-  const showModal = (component: ModalType) => {
-    if (!isFunctionalComponent(component)) {
+  const showModal = (modal: ModalType) => {
+    if (!isFunctionalComponent(modal)) {
       throw new Error(
         'Only stateless components can be used as an argument to useModal. You have probably passed a class component where a function was expected.'
       )
@@ -49,11 +28,7 @@ const useModal = (component: ModalType, inputs: any[] = []) => {
 
     const key = generateModalId()
 
-    queue.set(key, {
-      hide: () => context.hideModal(key)
-    })
-
-    context.showModal(key, component)
+    context.showModal(key, modal)
 
     return key
   }
@@ -70,4 +45,4 @@ const useModal = (component: ModalType, inputs: any[] = []) => {
   }
 }
 
-export { useModal }
+export { useModals }
