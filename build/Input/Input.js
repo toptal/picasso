@@ -25,11 +25,15 @@ export const Input = forwardRef(function Input(_a, ref) {
                 [classes.rootMultiline]: multiline
             }),
             input: classes.input
-        }, id: id, name: name, defaultValue: defaultValue, value: value, placeholder: placeholder, error: error, disabled: disabled, autoFocus: autoFocus, autoComplete: autoComplete, multiline: multiline, rows: rows, rowsMax: rowsMax, type: type, width: width, 
+        }, id: id, name: name, defaultValue: defaultValue, value: value, placeholder: placeholder, error: error, disabled: disabled, autoFocus: autoFocus, 
+        // https://developers.google.com/web/updates/2015/06/checkout-faster-with-autofill
+        // according to chrome specification
+        autoComplete: autoComplete, multiline: multiline, rows: rows, rowsMax: rowsMax, type: type, width: width, 
         // html attributes
         inputProps: rest, endAdornment: usedEndAdornment, startAdornment: usedStartAdornment, onChange: onChange }, children));
 });
 Input.defaultProps = {
+    autoComplete: 'none',
     iconPosition: 'start',
     multiline: false,
     width: 'auto'

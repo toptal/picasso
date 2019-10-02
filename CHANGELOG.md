@@ -1,3 +1,10 @@
+## [3.17.1](https://github.com/toptal/picasso/compare/v3.17.0...v3.17.1) (2019-10-02)
+
+
+### Bug Fixes
+
+* **Input:** add ability to disable autofill for input ([#739](https://github.com/toptal/picasso/issues/739)) ([75c742c](https://github.com/toptal/picasso/commit/75c742c))
+
 # [3.17.0](https://github.com/toptal/picasso/compare/v3.16.1...v3.17.0) (2019-10-02)
 
 
