@@ -77,6 +77,8 @@ export interface Props
   startAdornment?: ReactNode
   /** ReactNode for labels that will be used as end InputAdornment - */
   endAdornment?: ReactNode
+  /** Indicate whether `Input` is in error state */
+  error?: boolean
   /** Specify icon which should be rendered inside Input */
   icon?: ReactNode
   /** Custom input component */
@@ -121,6 +123,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       renderOption,
       endAdornment,
       icon,
+      error,
       ...rest
     },
     ref
@@ -301,6 +304,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
                 {...rest}
                 // eslint-disable-next-line react/jsx-props-no-spreading
                 {...inputProps}
+                error={error}
                 icon={icon}
                 defaultValue={inputProps.defaultValue as string | undefined}
                 value={inputProps.value as string | undefined}
