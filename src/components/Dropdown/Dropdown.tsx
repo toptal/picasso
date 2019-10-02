@@ -20,12 +20,13 @@ import {
   PicassoComponentWithRef
 } from '../Picasso'
 import DropdownArrow from '../DropdownArrow'
-import Popper from '../Popper'
-import ClickAwayListener from '../ClickAwayListener'
+
+import Popper, { PopperPlacementType } from '@material-ui/core/Popper'
+import ClickAwayListener from '@material-ui/core/ClickAwayListener'
+
 import styles from './styles'
 
 import Grow from '@material-ui/core/Grow'
-import { PopperPlacementType } from '@material-ui/core/Popper'
 
 import { Paper } from '..'
 
@@ -141,7 +142,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
 
     // Always close menu regardless of disableAutoClose
     if (event.key === 'Escape') {
-      close({ force: true })
+      forceClose()
     }
 
     if (event.key === 'Enter') {
@@ -153,11 +154,14 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
     }
   }
 
-  const close = ({ force } = { force: false }) => {
-    if (!force && disableAutoClose) {
+  const close = () => {
+    if (disableAutoClose) {
       return
     }
+    forceClose()
+  }
 
+  const forceClose = () => {
     setAnchorEl(undefined)
     setIsOpen(false)
     onClose!()
@@ -199,7 +203,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
   // here you can expose other methods, states to child components
   const context = useMemo(
     () => ({
-      close: () => close({ force: true })
+      close: () => forceClose()
     }),
     [close]
   )
@@ -232,7 +236,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
           // to the bottom of the portal.
           disablePortal
         >
-          <ClickAwayListener onClickAway={() => close({ force: true })}>
+          <ClickAwayListener onClickAway={() => forceClose()}>
             <Grow in={isOpen} appear>
               <Paper
                 className={classes.content}
