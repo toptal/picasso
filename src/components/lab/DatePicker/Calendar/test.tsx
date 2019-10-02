@@ -1,16 +1,16 @@
 import React from 'react'
 import { render, cleanup } from '@testing-library/react'
 
-import Picasso from '../../Picasso'
-import DatePicker from './DatePicker'
+import Picasso from '../../../Picasso'
+import Calendar from './Calendar'
 
 afterEach(cleanup)
 
-describe('DatePicker', () => {
+describe('Calendar', () => {
   test('default render', () => {
     const { container } = render(
       <Picasso loadFonts={false}>
-        <DatePicker onSelect={() => {}} />
+        <Calendar onSelect={() => {}} />
       </Picasso>
     )
 
