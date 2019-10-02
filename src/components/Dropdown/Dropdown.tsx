@@ -1,34 +1,30 @@
+import ClickAwayListener from '@material-ui/core/ClickAwayListener'
+import Grow from '@material-ui/core/Grow'
+import { PopoverOrigin } from '@material-ui/core/Popover'
+import Popper, { PopperPlacementType } from '@material-ui/core/Popper'
+import RootRef from '@material-ui/core/RootRef'
+import { withStyles } from '@material-ui/core/styles'
+import cx from 'classnames'
 import React, {
   forwardRef,
-  useRef,
-  useState,
+  HTMLAttributes,
+  ReactNode,
   useContext,
   useMemo,
-  ReactNode,
-  HTMLAttributes
+  useRef,
+  useState
 } from 'react'
-import cx from 'classnames'
-import { withStyles } from '@material-ui/core/styles'
-import { PopoverOrigin } from '@material-ui/core/Popover'
-import RootRef from '@material-ui/core/RootRef'
 
-import {
-  StandardProps,
-  SpacingType,
-  spacingToEm,
-  CompoundedComponentWithRef,
-  PicassoComponentWithRef
-} from '../Picasso'
 import DropdownArrow from '../DropdownArrow'
-
-import Popper, { PopperPlacementType } from '@material-ui/core/Popper'
-import ClickAwayListener from '@material-ui/core/ClickAwayListener'
-
+import Paper from '../Paper'
+import {
+  CompoundedComponentWithRef,
+  PicassoComponentWithRef,
+  spacingToEm,
+  SpacingType,
+  StandardProps
+} from '../Picasso'
 import styles from './styles'
-
-import Grow from '@material-ui/core/Grow'
-
-import { Paper } from '..'
 
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Anchor element that opens content on click */

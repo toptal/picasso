@@ -5,12 +5,11 @@ import MUIPaper from '@material-ui/core/Paper'
 import { StandardProps } from '../Picasso'
 import styles from './styles'
 
-export type Props = {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Content of component */
+  elevation: number
   children: ReactNode
-  elevation?: number
-} & StandardProps &
-  HTMLAttributes<HTMLDivElement>
+}
 
 export const Paper = forwardRef<HTMLDivElement, Props>(function Paper(
   { classes, className, style, elevation, children, ...rest },
