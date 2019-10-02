@@ -77,6 +77,8 @@ export interface Props
   startAdornment?: ReactNode
   /** ReactNode for labels that will be used as end InputAdornment - */
   endAdornment?: ReactNode
+  /** Indicate whether `Input` is in error state */
+  error?: boolean
   /** Specify icon which should be rendered inside Input */
   icon?: ReactNode
   /** Custom input component */
@@ -329,6 +331,7 @@ Autocomplete.defaultProps = {
   allowAny: true,
   defaultInputValue: '',
   defaultValue: null,
+  error: false,
   loading: false,
   minLength: 0,
   noOptionsText: 'No options',
