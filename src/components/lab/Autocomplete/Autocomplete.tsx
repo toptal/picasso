@@ -123,6 +123,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       renderOption,
       endAdornment,
       icon,
+      error,
       ...rest
     },
     ref
@@ -303,6 +304,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
                 {...rest}
                 // eslint-disable-next-line react/jsx-props-no-spreading
                 {...inputProps}
+                error={error}
                 icon={icon}
                 defaultValue={inputProps.defaultValue as string | undefined}
                 value={inputProps.value as string | undefined}
