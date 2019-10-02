@@ -1,3 +1,10 @@
+## [3.15.2](https://github.com/toptal/picasso/compare/v3.15.1...v3.15.2) (2019-10-02)
+
+
+### Bug Fixes
+
+* **Menu:** refresh submenus in drill down ([#731](https://github.com/toptal/picasso/issues/731)) ([7905e7a](https://github.com/toptal/picasso/commit/7905e7a))
+
 ## [3.15.1](https://github.com/toptal/picasso/compare/v3.15.0...v3.15.1) (2019-09-30)
 
 

@@ -12,6 +12,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 import React, { forwardRef, useState, useContext } from 'react';
 import MUIMenuList from '@material-ui/core/MenuList';
 import { withStyles } from '@material-ui/core/styles';
+import cx from 'classnames';
 import { BackMinor16 } from '../Icon';
 import styles from './styles';
 import Typography from '../Typography';
@@ -20,7 +21,7 @@ import MenuContext from './menuContext';
 // eslint-disable-next-line react/display-name
 export const Menu = forwardRef(function Menu(_a, ref) {
     var { children, className, classes, style, allowNestedNavigation } = _a, rest = __rest(_a, ["children", "className", "classes", "style", "allowNestedNavigation"]);
-    const { backButtonIcon } = classes, restClasses = __rest(classes, ["backButtonIcon"]);
+    const { backButtonIcon, hideMenu } = classes, restClasses = __rest(classes, ["backButtonIcon", "hideMenu"]);
     const { pop } = useContext(MenuContext);
     const hasParentMenu = !!pop;
     const handleBackClick = (event) => {
@@ -35,15 +36,41 @@ export const Menu = forwardRef(function Menu(_a, ref) {
                 React.createElement(BackMinor16, { className: backButtonIcon }),
                 "Back"))),
         children));
-    const [menus, setMenus] = useState([menu]);
+    const [menus, setMenus] = useState({});
+    const menusKeys = Object.keys(menus);
+    const getLastKey = () => menusKeys[menusKeys.length - 1];
     if (hasParentMenu) {
         return menu;
     }
     const menuContext = {
-        push: menu => setMenus([...menus, menu]),
-        pop: () => setMenus(menus.slice(0, -1))
+        push: (key, menu) => setMenus(Object.assign({}, menus, { [key]: menu })),
+        pop: () => {
+            const key = getLastKey();
+            if (!key) {
+                return;
+            }
+            const newMenus = Object.assign({}, menus);
+            delete newMenus[key];
+            setMenus(newMenus);
+        },
+        refresh: (key, menu) => {
+            if (!menus[key]) {
+                return;
+            }
+            setMenus(Object.assign({}, menus, { [key]: menu }));
+        }
     };
-    return (React.createElement(MenuContext.Provider, { value: menuContext }, menus.length === 1 ? menu : menus[menus.length - 1]));
+    const currentVisibleMenuKey = getLastKey();
+    const isRootMenuHidden = Boolean(currentVisibleMenuKey);
+    return (React.createElement(MenuContext.Provider, { value: menuContext },
+        React.cloneElement(menu, {
+            className: cx(menu.props.className, { [hideMenu]: isRootMenuHidden })
+        }),
+        menusKeys.map((menuKey) => React.cloneElement(menus[menuKey], {
+            className: cx(menus[menuKey].props.className, {
+                [hideMenu]: menuKey !== currentVisibleMenuKey
+            })
+        }))));
 });
 Menu.defaultProps = {
     allowNestedNavigation: true
