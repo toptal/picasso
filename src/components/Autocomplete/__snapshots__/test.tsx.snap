@@ -30,6 +30,7 @@ exports[`Autocomplete default render 1`] = `
           </legend>
         </fieldset>
         <input
+          autocomplete="none"
           class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input"
           placeholder="Start typing here..."
           type="text"
@@ -77,6 +78,7 @@ exports[`Autocomplete render options when start typing 1`] = `
           </legend>
         </fieldset>
         <input
+          autocomplete="none"
           class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input"
           placeholder="Start typing here..."
           type="text"
