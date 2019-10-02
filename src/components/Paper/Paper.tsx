@@ -1,13 +1,13 @@
-import React, { ReactNode, forwardRef, HTMLAttributes } from 'react'
-import { withStyles } from '@material-ui/core/styles'
 import MUIPaper from '@material-ui/core/Paper'
+import { withStyles } from '@material-ui/core/styles'
+import React, { forwardRef, HTMLAttributes, ReactNode } from 'react'
 
 import { StandardProps } from '../Picasso'
 import styles from './styles'
 
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Content of component */
-  elevation: number
+  elevation?: number
   children: ReactNode
 }
 
