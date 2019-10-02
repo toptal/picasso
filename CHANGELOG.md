@@ -1,3 +1,10 @@
+## [3.16.1](https://github.com/toptal/picasso/compare/v3.16.0...v3.16.1) (2019-10-02)
+
+
+### Bug Fixes
+
+* **DropdownArrow:** added sizes for dropdown ([#741](https://github.com/toptal/picasso/issues/741)) ([a1e72dc](https://github.com/toptal/picasso/commit/a1e72dc))
+
 # [3.16.0](https://github.com/toptal/picasso/compare/v3.15.2...v3.16.0) (2019-10-02)
 
 

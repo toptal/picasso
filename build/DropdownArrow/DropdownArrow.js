@@ -14,9 +14,12 @@ import { withStyles } from '@material-ui/core/styles';
 import cx from 'classnames';
 import styles from './styles';
 export const DropdownArrow = forwardRef(function DropdownArrow(_a, ref) {
-    var { classes, className, style } = _a, rest = __rest(_a, ["classes", "className", "style"]);
-    return (React.createElement("span", Object.assign({}, rest, { ref: ref, className: cx(classes.root, className), style: style })));
+    var { classes, className, style, size } = _a, rest = __rest(_a, ["classes", "className", "style", "size"]);
+    return (React.createElement("span", Object.assign({}, rest, { ref: ref, className: cx(classes.root, className, classes[size]), style: style })));
 });
 DropdownArrow.displayName = 'DropdownArrow';
+DropdownArrow.defaultProps = {
+    size: 'medium'
+};
 export default withStyles(styles)(DropdownArrow);
 //# sourceMappingURL=DropdownArrow.js.map
