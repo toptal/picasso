@@ -1,3 +1,10 @@
+# [3.17.0](https://github.com/toptal/picasso/compare/v3.16.1...v3.17.0) (2019-10-02)
+
+
+### Features
+
+* **Autocomplete:** add error prop ([#742](https://github.com/toptal/picasso/issues/742)) ([9235f92](https://github.com/toptal/picasso/commit/9235f92))
+
 ## [3.16.1](https://github.com/toptal/picasso/compare/v3.16.0...v3.16.1) (2019-10-02)
 
 

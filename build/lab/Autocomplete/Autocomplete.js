@@ -30,7 +30,7 @@ const getItemText = (item) => (item && item.text) || EMPTY_INPUT_VALUE;
 const getItemValue = (item) => (item && (item.value || item.text)) || null;
 const isSelected = (item, selectedItem) => getItemValue(item) === getItemValue(selectedItem);
 export const Autocomplete = forwardRef(function Autocomplete(_a, ref) {
-    var { classes, className, defaultInputValue, inputValue: inputValueProp, onChange: onInputChange, defaultValue, value, onSelect, loading, minLength, placeholder, noOptionsText, options, style, width, allowAny, onKeyDown, inputComponent, renderOption, endAdornment, icon } = _a, rest = __rest(_a, ["classes", "className", "defaultInputValue", "inputValue", "onChange", "defaultValue", "value", "onSelect", "loading", "minLength", "placeholder", "noOptionsText", "options", "style", "width", "allowAny", "onKeyDown", "inputComponent", "renderOption", "endAdornment", "icon"]);
+    var { classes, className, defaultInputValue, inputValue: inputValueProp, onChange: onInputChange, defaultValue, value, onSelect, loading, minLength, placeholder, noOptionsText, options, style, width, allowAny, onKeyDown, inputComponent, renderOption, endAdornment, icon, error } = _a, rest = __rest(_a, ["classes", "className", "defaultInputValue", "inputValue", "onChange", "defaultValue", "value", "onSelect", "loading", "minLength", "placeholder", "noOptionsText", "options", "style", "width", "allowAny", "onKeyDown", "inputComponent", "renderOption", "endAdornment", "icon", "error"]);
     const [selectedItemValue, setSelectedItemValue] = useControlledAndUncontrolledState(defaultValue, value, onSelect);
     const selectedItem = selectedItemValue === null
         ? null
@@ -116,7 +116,7 @@ export const Autocomplete = forwardRef(function Autocomplete(_a, ref) {
         return (React.createElement("div", { className: cx(classes.root, className, classes[`root${capitalize(width)}`]), style: style },
             React.createElement(InputComponent
             /* eslint-disable-next-line react/jsx-props-no-spreading */
-            , Object.assign({}, rest, inputProps, { icon: icon, defaultValue: inputProps.defaultValue, value: inputProps.value, onChange: e => {
+            , Object.assign({}, rest, inputProps, { error: error, icon: icon, defaultValue: inputProps.defaultValue, value: inputProps.value, onChange: e => {
                     inputProps.onChange(e);
                 }, ref: ref, classes: {}, placeholder: selectedItem ? getItemText(selectedItem) : placeholder, endAdornment: loading ? loadingComponent : endAdornment, width: width })),
             React.createElement("div", Object.assign({}, getMenuProps()), canOpen ? optionsMenu : null)));
