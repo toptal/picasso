@@ -5,16 +5,18 @@ import React, {
   HTMLAttributes,
   ElementType,
   ReactElement,
-  useContext
+  useContext,
+  useEffect,
+  useMemo
 } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import MUIMenuItem, { MenuItemProps } from '@material-ui/core/MenuItem'
 
 import { ChevronMinor16 } from '../Icon'
+import Container from '../Container'
 import { StandardProps, ButtonOrAnchorProps } from '../Picasso'
-import MenuContext from '../Menu/menuContext'
-import { MenuContextProps } from '../Menu/types'
+import MenuContext, { MenuContextProps } from '../Menu/menuContext'
 import styles from './styles'
 
 export type VariantType = 'light' | 'dark'
@@ -43,6 +45,12 @@ export interface Props extends StandardProps, MenuItemAttributes {
   variant?: VariantType
 }
 
+const generateKey = (() => {
+  let count = 0
+
+  return () => String(++count)
+})()
+
 export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
   {
     as,
@@ -64,7 +72,15 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { stringContent, light, dark, ...restClasses } = classes
 
-  const { push } = useContext<MenuContextProps>(MenuContext)
+  const { push, refresh } = useContext<MenuContextProps>(MenuContext)
+
+  const key = useMemo(generateKey, [])
+
+  useEffect(() => {
+    if (menu && refresh) {
+      refresh(key, menu)
+    }
+  }, [menu])
 
   if (typeof children === 'string') {
     children = (
@@ -75,9 +91,9 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
   }
 
   const handleClick = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    if (menu) {
+    if (menu && push) {
       event.stopPropagation()
-      push(menu)
+      push(key, menu)
     }
 
     if (onClick) {
@@ -101,7 +117,11 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
       selected={selected}
     >
       {children}
-      {menu && <ChevronMinor16 />}
+      {menu && (
+        <Container inline-flex left='xsmall'>
+          <ChevronMinor16 />
+        </Container>
+      )}
     </MUIMenuItem>
   )
 })
