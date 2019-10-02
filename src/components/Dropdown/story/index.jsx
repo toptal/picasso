@@ -24,3 +24,4 @@ page
   )
   .addExample('Dropdown/story/CustomTrigger.example.jsx', 'Custom Anchor')
   .addExample('Dropdown/story/CustomContent.example.jsx', 'Custom Content')
+  .addExample('Dropdown/story/SmallArrow.example.jsx', 'Small Arrow Dropdown')
