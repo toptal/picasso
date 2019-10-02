@@ -1,3 +1,10 @@
+# [3.16.0](https://github.com/toptal/picasso/compare/v3.15.2...v3.16.0) (2019-10-02)
+
+
+### Features
+
+* **Modal:** [FX-497] Change useModal hook api ([#737](https://github.com/toptal/picasso/issues/737)) ([f46fcc3](https://github.com/toptal/picasso/commit/f46fcc3))
+
 ## [3.15.2](https://github.com/toptal/picasso/compare/v3.15.1...v3.15.2) (2019-10-02)
 
 
