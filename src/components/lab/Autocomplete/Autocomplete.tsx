@@ -331,7 +331,6 @@ Autocomplete.defaultProps = {
   allowAny: true,
   defaultInputValue: '',
   defaultValue: null,
-  error: false,
   loading: false,
   minLength: 0,
   noOptionsText: 'No options',
