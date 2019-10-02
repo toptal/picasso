@@ -19,7 +19,11 @@ page
   .addComponentDocs(modalContentStory.componentDocs)
   .addComponentDocs(modalActionsStory.componentDocs)
 
-page
-  .createChapter()
-  .addExample('Modal/story/Default.example.jsx', 'Default')
-  .addExample('Modal/story/useModal.example.jsx', 'useModal')
+page.createChapter().addExample('Modal/story/Default.example.jsx', {
+  title: 'Default',
+  description: `
+To show the 'Modal' component you should use 'useModals' hook. And if you need
+any additional logic inside the 'Modal' component you should create a wrapper 
+component and manage the internal state there.
+`
+}) // picasso-skip-visuals
