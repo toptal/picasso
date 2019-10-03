@@ -87,8 +87,12 @@ export default ({ palette, shadows }: Theme) =>
         backgroundColor: palette.grey.lighter
       },
 
-      '&$selected:hover, &$startSelection:hover, &$endSelection:hover': {
+      '&$selected:hover': {
         backgroundColor: alpha(palette.blue.main, 0.64)
+      },
+
+      '&$startSelection:hover, &$endSelection:hover': {
+        backgroundColor: palette.blue.main
       }
     },
     startSelection: {
