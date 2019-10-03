@@ -2,6 +2,25 @@ import { useLayoutEffect } from 'react'
 
 const PROXIMA_NOVA_FONT = 'https://use.typekit.net/rlr4crj.css'
 
+// Feature check for rel='preload' as soon it's not supported by FF and IE
+// https://www.w3.org/TR/preload/#link-type-preload
+const DOMTokenListSupports = function (tokenList: DOMTokenList, token: string) {
+  if (!tokenList || !tokenList.supports) {
+    return
+  }
+  try {
+    return tokenList.supports(token)
+  } catch (e) {
+    if (e instanceof TypeError) {
+      window.console.log(
+        "The DOMTokenList doesn't have a supported tokens list"
+      )
+    } else {
+      window.console.error("That shouldn't have happened")
+    }
+  }
+}
+
 // After the file is loaded to apply it
 // we have to change rel to 'stylesheet'
 // https://alligator.io/html/preload-prefetch
@@ -27,11 +46,16 @@ const FontsLoader = () => {
     const existingFontLoader = findFontsLoader()
 
     if (!existingFontLoader) {
+      const linkSupportsPreload = DOMTokenListSupports(
+        document.createElement('link').relList,
+        'preload'
+      )
+
       const link = document.createElement('link')
 
       link.as = 'style'
       link.href = PROXIMA_NOVA_FONT
-      link.rel = 'preload'
+      link.rel = linkSupportsPreload ? 'preload' : 'stylesheet'
       link.addEventListener('load', applyLoadedFont)
 
       document.body.appendChild(link)
