@@ -1,3 +1,10 @@
+## [3.17.2](https://github.com/toptal/picasso/compare/v3.17.1...v3.17.2) (2019-10-03)
+
+
+### Bug Fixes
+
+* **Typography:** add underline ([#744](https://github.com/toptal/picasso/issues/744)) ([8e63282](https://github.com/toptal/picasso/commit/8e63282))
+
 ## [3.17.1](https://github.com/toptal/picasso/compare/v3.17.0...v3.17.1) (2019-10-02)
 
 

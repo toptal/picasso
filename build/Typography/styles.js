@@ -104,6 +104,16 @@ export default ({ palette, typography }) => createStyles({
     },
     inherit: {
         color: 'inherit'
+    },
+    // underlines
+    underline: {
+        textDecoration: 'underline'
+    },
+    solid: {
+        textDecorationStyle: 'solid'
+    },
+    dashed: {
+        textDecorationStyle: 'dashed'
     }
 });
 //# sourceMappingURL=styles.js.map

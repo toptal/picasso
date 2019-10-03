@@ -30,13 +30,15 @@ const VARIANTS = {
     }
 };
 export const Typography = forwardRef(function Typography(_a, ref) {
-    var { variant, children, size, align, className, classes, style, inline, as, weight, color, invert, noWrap } = _a, rest = __rest(_a, ["variant", "children", "size", "align", "className", "classes", "style", "inline", "as", "weight", "color", "invert", "noWrap"]);
+    var { variant, children, size, align, className, classes, style, inline, as, weight, color, invert, noWrap, underline } = _a, rest = __rest(_a, ["variant", "children", "size", "align", "className", "classes", "style", "inline", "as", "weight", "color", "invert", "noWrap", "underline"]);
     const resolvedVariant = VARIANTS[variant][size];
     const variantClassName = kebabToCamelCase(`${variant}-${size}`);
     const colorClassName = kebabToCamelCase(`${color}`);
     const rootClass = cx({
         [classes.invert]: invert
-    }, classes[variantClassName], classes[weight], classes[colorClassName]);
+    }, classes[variantClassName], classes[weight], classes[colorClassName], {
+        [classes.underline]: underline
+    }, classes[underline]);
     return (React.createElement(MUITypography
     // eslint-disable-next-line react/jsx-props-no-spreading
     , Object.assign({}, rest, { ref: ref, align: align, className: className, classes: {
