@@ -1,0 +1,421 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Calendar default render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="makeStyles-root"
+    >
+      <div
+        class="makeStyles-actions"
+      >
+        <button
+          class="MuiButtonBase-root Button-small Button-flat Button-root"
+          tabindex="0"
+          type="button"
+        >
+          <span
+            class="Container-flex Container-inline Button-content"
+            style="align-items: center;"
+          >
+            <svg
+              class="SvgBackMinor16-root"
+              style="min-width: 16px; min-height: 16px;"
+              viewBox="0 0 16 16"
+            >
+              <defs>
+                <path
+                  d="M9.997 3.29l.707.707-4 4 4 4-.707.707L5.29 7.997l.707-.707 4-4z"
+                  id="backMinor16_svg__a"
+                />
+              </defs>
+              <g
+                fill-rule="evenodd"
+              >
+                <mask
+                  id="backMinor16_svg__b"
+                >
+                  <use
+                    xlink:href="#backMinor16_svg__a"
+                  />
+                </mask>
+                <use
+                  fill-rule="nonzero"
+                  xlink:href="#backMinor16_svg__a"
+                />
+                <g
+                  mask="url(#backMinor16_svg__b)"
+                >
+                  <path
+                    d="M0 0h16v16H0z"
+                  />
+                </g>
+              </g>
+            </svg>
+          </span>
+        </button>
+        <h3
+          class="MuiTypography-root Typography-headingMedium MuiTypography-h3"
+        >
+          February 2019
+        </h3>
+        <button
+          class="MuiButtonBase-root Button-small Button-flat Button-root"
+          tabindex="0"
+          type="button"
+        >
+          <span
+            class="Container-flex Container-inline Button-content"
+            style="align-items: center;"
+          >
+            <svg
+              class="SvgChevronMinor16-root"
+              style="min-width: 16px; min-height: 16px;"
+              viewBox="0 0 16 16"
+            >
+              <defs>
+                <path
+                  d="M5.997 3.29l4 4 .707.707-.707.707-4 4-.707-.707 4-4-4-4 .707-.707z"
+                  id="chevronMinor16_svg__a"
+                />
+              </defs>
+              <g
+                fill-rule="evenodd"
+              >
+                <mask
+                  id="chevronMinor16_svg__b"
+                >
+                  <use
+                    xlink:href="#chevronMinor16_svg__a"
+                  />
+                </mask>
+                <use
+                  fill-rule="nonzero"
+                  xlink:href="#chevronMinor16_svg__a"
+                />
+                <g
+                  mask="url(#chevronMinor16_svg__b)"
+                >
+                  <path
+                    d="M0 0h16v16H0z"
+                  />
+                </g>
+              </g>
+            </svg>
+          </span>
+        </button>
+      </div>
+      <div
+        class="calendar-month"
+      >
+        <div
+          class="makeStyles-weekDays"
+        >
+          <div
+            class="makeStyles-weekDay"
+          >
+            Mon
+          </div>
+          <div
+            class="makeStyles-weekDay"
+          >
+            Tue
+          </div>
+          <div
+            class="makeStyles-weekDay"
+          >
+            Wed
+          </div>
+          <div
+            class="makeStyles-weekDay"
+          >
+            Thu
+          </div>
+          <div
+            class="makeStyles-weekDay"
+          >
+            Fri
+          </div>
+          <div
+            class="makeStyles-weekDay"
+          >
+            Sat
+          </div>
+          <div
+            class="makeStyles-weekDay"
+          >
+            Sun
+          </div>
+        </div>
+        <div
+          class="makeStyles-week"
+        >
+          <button
+            class="makeStyles-day makeStyles-selectable makeStyles-grayed"
+            type="button"
+            value="2019-01-28"
+          >
+            28
+          </button>
+          <button
+            class="makeStyles-day makeStyles-selectable makeStyles-grayed"
+            type="button"
+            value="2019-01-29"
+          >
+            29
+          </button>
+          <button
+            class="makeStyles-day makeStyles-selectable makeStyles-grayed"
+            type="button"
+            value="2019-01-30"
+          >
+            30
+          </button>
+          <button
+            class="makeStyles-day makeStyles-selectable makeStyles-grayed"
+            type="button"
+            value="2019-01-31"
+          >
+            31
+          </button>
+          <button
+            class="makeStyles-day makeStyles-selectable"
+            type="button"
+            value="2019-02-01"
+          >
+            1
+          </button>
+          <button
+            class="makeStyles-day makeStyles-selectable"
+            type="button"
+            value="2019-02-02"
+          >
+            2
+          </button>
+          <button
+            class="makeStyles-day makeStyles-selectable"
+            type="button"
+            value="2019-02-03"
+          >
+            3
+          </button>
+        </div>
+        <div
+          class="makeStyles-week"
+        >
+          <button
+            class="makeStyles-day makeStyles-selectable"
+            type="button"
+            value="2019-02-04"
+          >
+            4
+          </button>
+          <button
+            class="makeStyles-day makeStyles-selectable"
+            type="button"
+            value="2019-02-05"
+          >
+            5
+          </button>
+          <button
+            class="makeStyles-day makeStyles-selectable"
+            type="button"
+            value="2019-02-06"
+          >
+            6
+          </button>
+          <button
+            class="makeStyles-day makeStyles-selectable"
+            type="button"
+            value="2019-02-07"
+          >
+            7
+          </button>
+          <button
+            class="makeStyles-day makeStyles-selectable"
+            type="button"
+            value="2019-02-08"
+          >
+            8
+          </button>
+          <button
+            class="makeStyles-day makeStyles-selectable"
+            type="button"
+            value="2019-02-09"
+          >
+            9
+          </button>
+          <button
+            class="makeStyles-day makeStyles-selectable"
+            type="button"
+            value="2019-02-10"
+          >
+            10
+          </button>
+        </div>
+        <div
+          class="makeStyles-week"
+        >
+          <button
+            class="makeStyles-day makeStyles-selectable"
+            type="button"
+            value="2019-02-11"
+          >
+            11
+          </button>
+          <button
+            class="makeStyles-day makeStyles-selectable"
+            type="button"
+            value="2019-02-12"
+          >
+            12
+          </button>
+          <button
+            class="makeStyles-day makeStyles-selectable"
+            type="button"
+            value="2019-02-13"
+          >
+            13
+          </button>
+          <button
+            class="makeStyles-day makeStyles-selectable"
+            type="button"
+            value="2019-02-14"
+          >
+            14
+          </button>
+          <button
+            class="makeStyles-day makeStyles-selectable"
+            type="button"
+            value="2019-02-15"
+          >
+            15
+          </button>
+          <button
+            class="makeStyles-day makeStyles-selectable"
+            type="button"
+            value="2019-02-16"
+          >
+            16
+          </button>
+          <button
+            class="makeStyles-day makeStyles-selectable"
+            type="button"
+            value="2019-02-17"
+          >
+            17
+          </button>
+        </div>
+        <div
+          class="makeStyles-week"
+        >
+          <button
+            class="makeStyles-day makeStyles-selectable"
+            type="button"
+            value="2019-02-18"
+          >
+            18
+          </button>
+          <button
+            class="makeStyles-day makeStyles-selectable"
+            type="button"
+            value="2019-02-19"
+          >
+            19
+          </button>
+          <button
+            class="makeStyles-day makeStyles-selectable"
+            type="button"
+            value="2019-02-20"
+          >
+            20
+          </button>
+          <button
+            class="makeStyles-day makeStyles-selectable"
+            type="button"
+            value="2019-02-21"
+          >
+            21
+          </button>
+          <button
+            class="makeStyles-day makeStyles-selectable"
+            type="button"
+            value="2019-02-22"
+          >
+            22
+          </button>
+          <button
+            class="makeStyles-day makeStyles-selectable"
+            type="button"
+            value="2019-02-23"
+          >
+            23
+          </button>
+          <button
+            class="makeStyles-day makeStyles-selectable"
+            type="button"
+            value="2019-02-24"
+          >
+            24
+          </button>
+        </div>
+        <div
+          class="makeStyles-week"
+        >
+          <button
+            class="makeStyles-day makeStyles-selectable"
+            type="button"
+            value="2019-02-25"
+          >
+            25
+          </button>
+          <button
+            class="makeStyles-day makeStyles-selectable"
+            type="button"
+            value="2019-02-26"
+          >
+            26
+          </button>
+          <button
+            class="makeStyles-day makeStyles-selectable"
+            type="button"
+            value="2019-02-27"
+          >
+            27
+          </button>
+          <button
+            class="makeStyles-day makeStyles-selectable"
+            type="button"
+            value="2019-02-28"
+          >
+            28
+          </button>
+          <button
+            class="makeStyles-day makeStyles-selectable makeStyles-grayed"
+            type="button"
+            value="2019-03-01"
+          >
+            1
+          </button>
+          <button
+            class="makeStyles-day makeStyles-selectable makeStyles-grayed"
+            type="button"
+            value="2019-03-02"
+          >
+            2
+          </button>
+          <button
+            class="makeStyles-day makeStyles-selectable makeStyles-grayed"
+            type="button"
+            value="2019-03-03"
+          >
+            3
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -3,11 +3,11 @@ import React, { useState } from 'react'
 import SimpleReactCalendar from 'simple-react-calendar'
 import cx from 'classnames'
 import format from 'date-fns/format'
-import { Button, Typography } from '@toptal/picasso'
-import { ChevronMinor16, BackMinor16 } from '@toptal/picasso/Icon'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 
-import { BaseProps } from '../../../Picasso'
+import { BaseProps } from '../../Picasso'
+import { Button, Typography } from '../..'
+import { ChevronMinor16, BackMinor16 } from '../../Icon'
 import {
   CalendarProps,
   MonthHeaderProps,
@@ -26,14 +26,19 @@ export interface Props extends BaseProps {
   onSelect: (value: DateOrDateRangeType) => void
   range?: boolean
   open?: boolean
+  activeMonth?: Date
 }
 
-const activeMonth = new Date()
 const useStyles = makeStyles<Theme, Props>(styles)
 
 export const Calendar = (props: Props) => {
   const classes = useStyles(props)
-  const { range = false, open = false, onSelect } = props
+  const {
+    range = false,
+    open = false,
+    activeMonth = new Date(),
+    onSelect
+  } = props
 
   const [value, setValue] = useState<
     Date | SimpleReactCalendarRangeType | undefined

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import { ClickAwayListener } from '../../utils'
 import { Input, Container } from '../..'
-import Calendar, { DateOrDateRangeType, DateRangeType } from './Calendar'
+import Calendar, { DateOrDateRangeType, DateRangeType } from '../Calendar'
 
 interface Props {
   range?: boolean

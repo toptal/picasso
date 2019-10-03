@@ -1,6 +1,6 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
-import { alpha, rem } from '../../../styles'
+import { alpha, rem } from '../../styles'
 
 export default ({ palette, shadows }: Theme) =>
   createStyles({
