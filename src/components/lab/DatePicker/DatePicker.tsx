@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { ClickAwayListener } from '@toptal/picasso/utils'
-import { Input, Container } from '@toptal/picasso'
 
+import { ClickAwayListener } from '../../utils'
+import { Input, Container } from '../..'
 import Calendar, { DateOrDateRangeType, DateRangeType } from './Calendar'
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 }
 
 export const DatePicker = ({ onSelect, range }: Props) => {
-  const [calendarShown, setCalendarShown] = useState(true)
+  const [calendarShown, setCalendarShown] = useState(false)
 
   const showCalendar = () => setCalendarShown(true)
   const hideCalendar = () => setCalendarShown(false)
