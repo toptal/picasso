@@ -155,9 +155,6 @@
   "resolutions": {
     "lodash": "^4.17.12",
     "**/marksy/marked": "^0.6.0",
-    "**/npx/npm": "^5.7.1",
-    "**/**/fsevents": "^1.2.9",
-    "**/**/date-fns": "^2.3.0",
-    "**/**/core-js": "^2.6.9"
+    "**/npx/npm": "^5.7.1"
   }
 }
