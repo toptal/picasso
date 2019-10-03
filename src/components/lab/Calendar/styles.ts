@@ -26,10 +26,10 @@ export default ({ palette, shadows }: Theme) =>
         position: 'absolute',
         top: '-0.5rem',
         transform: 'rotate(45deg)',
-        boxShadow: `
-          -0.25rem -0.25rem 0.25rem 0 ${alpha(palette.common.black, 0.24)},
-          -2em -2em 2em 0 ${alpha(palette.common.black, 0.12)}
-        `
+        boxShadow: `-${rem('2px')} -${rem('2px')} ${rem('2px')} 0 ${alpha(
+          palette.common.black,
+          0.15
+        )}`
       }
     },
     month: {},
