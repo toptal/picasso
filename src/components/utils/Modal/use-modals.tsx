@@ -1,5 +1,8 @@
-import { useContext } from 'react'
+import React, { useContext } from 'react'
 import { ModalContext, ModalType } from 'react-modal-hook'
+
+import PromptModal from '../../PromptModal'
+import { Props as PromptModalProps } from '../../PromptModal/PromptModal'
 
 const isFunctionalComponent = (Component: Function) => {
   const prototype = Component.prototype
@@ -34,9 +37,45 @@ const useModals = () => {
     return key
   }
 
-  const showPrompt = () => {
-    // show the prompt modal here by using
-    // showModal function :top:
+  const showPrompt = (
+    title: string,
+    message: string,
+    options: Partial<
+      Omit<
+        PromptModalProps,
+        'title' | 'message' | 'onSubmit' | 'onCancel' | 'onClose'
+      >
+    > = {}
+  ) => {
+    const { children } = options
+    const hasChildren = Boolean(children)
+
+    return new Promise(resolve => {
+      const handleSubmit = (result?: any) => {
+        resolve(hasChildren ? result : true)
+        hideModal(modalId)
+      }
+
+      const handleClose = () => {
+        resolve(false)
+        hideModal(modalId)
+      }
+
+      const modalId = showModal(() => (
+        <PromptModal
+          open
+          title={title}
+          message={message}
+          onSubmit={handleSubmit}
+          onCancel={handleClose}
+          onClose={handleClose}
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          {...options}
+        >
+          {children}
+        </PromptModal>
+      ))
+    })
   }
 
   return {
