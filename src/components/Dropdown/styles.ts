@@ -23,9 +23,15 @@ export default ({ screens }: Theme) =>
         width: '100vw',
         maxWidth: '100vw',
         left: '0 !important',
-        // screen height - header height
-        maxHeight: 'calc(100vh - 2.5em)',
+        maxHeight: calculateMaxHeight(),
         padding: 0
       }
     }
   })
+
+function calculateMaxHeight() {
+  const screenHeight = '100vh'
+  const headerHeight = '2.5em'
+
+  return `calc(${screenHeight} - ${headerHeight})`
+}
