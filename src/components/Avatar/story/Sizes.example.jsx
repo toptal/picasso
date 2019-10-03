@@ -6,6 +6,15 @@ const AvatarSizesExample = () => (
     <Container>
       <Container inline>
         <Avatar
+          size='xxsmall'
+          alt='Jacqueline Roque. Pablo Picasso, 1954. Small'
+          name='Jacqueline Roque'
+          src='./jacqueline-with-flowers-1954-square.jpg'
+        />
+      </Container>
+      <Container inline left='small'>
+        <Avatar
+          size='xsmall'
           alt='Jacqueline Roque. Pablo Picasso, 1954. Small'
           name='Jacqueline Roque'
           src='./jacqueline-with-flowers-1954-square.jpg'
@@ -39,7 +48,10 @@ const AvatarSizesExample = () => (
 
     <Container top='small'>
       <Container inline>
-        <Avatar name='Jacqueline Roque' />
+        <Avatar size='xxsmall' name='Jacqueline Roque' />
+      </Container>
+      <Container inline left='small'>
+        <Avatar size='xsmall' name='Jacqueline Roque' />
       </Container>
       <Container inline left='small'>
         <Avatar size='small' name='Jacqueline Roque' />
