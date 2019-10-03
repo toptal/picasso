@@ -1,3 +1,10 @@
+## [3.17.3](https://github.com/toptal/picasso/compare/v3.17.2...v3.17.3) (2019-10-03)
+
+
+### Bug Fixes
+
+* font loader for FF ([#750](https://github.com/toptal/picasso/issues/750)) ([5ba7ab0](https://github.com/toptal/picasso/commit/5ba7ab0))
+
 ## [3.17.2](https://github.com/toptal/picasso/compare/v3.17.1...v3.17.2) (2019-10-03)
 
 
