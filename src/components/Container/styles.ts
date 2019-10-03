@@ -1,4 +1,6 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
+import { Color } from '@material-ui/core'
+import { SimplePaletteColorOptions } from '@material-ui/core/styles/createPalette'
 
 import { SpacingEnum, SpacingType, spacingToEm } from '../Picasso'
 import { createPropertiesStyles } from '../styles'
@@ -15,12 +17,7 @@ const paddings = spacingVariants.reduce((acc, variant) => {
   return acc
 }, Object.create(null))
 
-interface MainAndLighterColor {
-  main?: string
-  lighter?: string
-}
-
-const colorVariant = (colorOptions?: MainAndLighterColor) => {
+const colorVariant = (colorOptions?: SimplePaletteColorOptions | Color) => {
   if (!colorOptions) {
     return {}
   }
