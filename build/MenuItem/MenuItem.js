@@ -9,25 +9,36 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { forwardRef, useContext } from 'react';
+import React, { forwardRef, useContext, useEffect, useMemo } from 'react';
 import cx from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import MUIMenuItem from '@material-ui/core/MenuItem';
 import { ChevronMinor16 } from '../Icon';
+import Container from '../Container';
 import MenuContext from '../Menu/menuContext';
 import styles from './styles';
+const generateKey = (() => {
+    let count = 0;
+    return () => String(++count);
+})();
 export const MenuItem = forwardRef(function MenuItem(_a, ref) {
     var { as, children, classes, className, disabled, disableGutters, menu, onClick, selected, style, value, variant } = _a, rest = __rest(_a, ["as", "children", "classes", "className", "disabled", "disableGutters", "menu", "onClick", "selected", "style", "value", "variant"]);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { stringContent, light, dark } = classes, restClasses = __rest(classes, ["stringContent", "light", "dark"]);
-    const { push } = useContext(MenuContext);
+    const { push, refresh } = useContext(MenuContext);
+    const key = useMemo(generateKey, []);
+    useEffect(() => {
+        if (menu && refresh) {
+            refresh(key, menu);
+        }
+    }, [menu]);
     if (typeof children === 'string') {
         children = (React.createElement("span", { className: stringContent, style: style }, children));
     }
     const handleClick = (event) => {
-        if (menu) {
+        if (menu && push) {
             event.stopPropagation();
-            push(menu);
+            push(key, menu);
         }
         if (onClick) {
             onClick(event);
@@ -37,7 +48,8 @@ export const MenuItem = forwardRef(function MenuItem(_a, ref) {
     // eslint-disable-next-line react/jsx-props-no-spreading
     , Object.assign({}, rest, { ref: ref, component: as, classes: restClasses, className: cx(classes[variant], className), disabled: disabled, disableGutters: disableGutters, onClick: handleClick, style: style, value: value, selected: selected }),
         children,
-        menu && React.createElement(ChevronMinor16, null)));
+        menu && (React.createElement(Container, { "inline-flex": true, left: 'xsmall' },
+            React.createElement(ChevronMinor16, null)))));
 });
 MenuItem.defaultProps = {
     as: 'li',

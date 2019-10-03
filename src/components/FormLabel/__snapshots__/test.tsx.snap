@@ -36,6 +36,7 @@ exports[`FormLabel default render 1`] = `
             </legend>
           </fieldset>
           <input
+            autocomplete="none"
             class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input"
             type="text"
             value=""
@@ -83,6 +84,7 @@ exports[`FormLabel disabled 1`] = `
             </legend>
           </fieldset>
           <input
+            autocomplete="none"
             class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input"
             type="text"
             value=""
@@ -135,6 +137,7 @@ exports[`FormLabel required 1`] = `
             </legend>
           </fieldset>
           <input
+            autocomplete="none"
             class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input"
             type="text"
             value=""
@@ -187,6 +190,7 @@ exports[`FormLabel requried and disabled 1`] = `
             </legend>
           </fieldset>
           <input
+            autocomplete="none"
             class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input"
             type="text"
             value=""

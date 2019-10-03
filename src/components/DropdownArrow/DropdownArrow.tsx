@@ -2,19 +2,22 @@ import React, { forwardRef, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
-import { StandardProps } from '../Picasso'
+import { StandardProps, SizeType } from '../Picasso'
 import styles from './styles'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLSpanElement> {}
+export interface Props extends StandardProps, HTMLAttributes<HTMLSpanElement> {
+  /** A Dropdown.Arrow can have different sizes */
+  size?: SizeType<'small' | 'medium'>
+}
 
 export const DropdownArrow = forwardRef<HTMLSpanElement, Props>(
-  function DropdownArrow({ classes, className, style, ...rest }, ref) {
+  function DropdownArrow({ classes, className, style, size, ...rest }, ref) {
     return (
       <span
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         ref={ref}
-        className={cx(classes.root, className)}
+        className={cx(classes.root, className, classes[size!])}
         style={style}
       />
     )
@@ -22,5 +25,9 @@ export const DropdownArrow = forwardRef<HTMLSpanElement, Props>(
 )
 
 DropdownArrow.displayName = 'DropdownArrow'
+
+DropdownArrow.defaultProps = {
+  size: 'medium'
+}
 
 export default withStyles(styles)(DropdownArrow)

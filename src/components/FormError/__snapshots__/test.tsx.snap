@@ -36,6 +36,7 @@ exports[`FormError default render 1`] = `
             </legend>
           </fieldset>
           <input
+            autocomplete="none"
             class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input"
             type="text"
             value=""

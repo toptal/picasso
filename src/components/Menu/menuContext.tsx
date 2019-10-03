@@ -1,5 +1,9 @@
-import { createContext } from 'react'
+import { ReactElement, createContext } from 'react'
 
-import { MenuContextProps } from './types'
+export interface MenuContextProps {
+  push: (key: string, menu: ReactElement) => void
+  pop: () => void
+  refresh: (key: string, menu: ReactElement) => void
+}
 
 export default createContext<MenuContextProps>({} as MenuContextProps)

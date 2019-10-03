@@ -13,7 +13,7 @@ exports[`Dropdown default render 1`] = `
       >
         Open Dropdown 
         <span
-          class="DropdownArrow-root"
+          class="DropdownArrow-root DropdownArrow-medium"
         />
       </div>
     </div>
@@ -36,7 +36,7 @@ exports[`Dropdown should render menu 1`] = `
       >
         Open Dropdown 
         <span
-          class="DropdownArrow-root"
+          class="DropdownArrow-root DropdownArrow-medium"
         />
       </div>
     </div>
@@ -129,7 +129,7 @@ exports[`Dropdown should render menu with focus 1`] = `
       >
         Open Dropdown 
         <span
-          class="DropdownArrow-root"
+          class="DropdownArrow-root DropdownArrow-medium"
         />
       </div>
     </div>

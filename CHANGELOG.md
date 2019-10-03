@@ -1,3 +1,38 @@
+## [3.17.1](https://github.com/toptal/picasso/compare/v3.17.0...v3.17.1) (2019-10-02)
+
+
+### Bug Fixes
+
+* **Input:** add ability to disable autofill for input ([#739](https://github.com/toptal/picasso/issues/739)) ([75c742c](https://github.com/toptal/picasso/commit/75c742c))
+
+# [3.17.0](https://github.com/toptal/picasso/compare/v3.16.1...v3.17.0) (2019-10-02)
+
+
+### Features
+
+* **Autocomplete:** add error prop ([#742](https://github.com/toptal/picasso/issues/742)) ([9235f92](https://github.com/toptal/picasso/commit/9235f92))
+
+## [3.16.1](https://github.com/toptal/picasso/compare/v3.16.0...v3.16.1) (2019-10-02)
+
+
+### Bug Fixes
+
+* **DropdownArrow:** added sizes for dropdown ([#741](https://github.com/toptal/picasso/issues/741)) ([a1e72dc](https://github.com/toptal/picasso/commit/a1e72dc))
+
+# [3.16.0](https://github.com/toptal/picasso/compare/v3.15.2...v3.16.0) (2019-10-02)
+
+
+### Features
+
+* **Modal:** [FX-497] Change useModal hook api ([#737](https://github.com/toptal/picasso/issues/737)) ([f46fcc3](https://github.com/toptal/picasso/commit/f46fcc3))
+
+## [3.15.2](https://github.com/toptal/picasso/compare/v3.15.1...v3.15.2) (2019-10-02)
+
+
+### Bug Fixes
+
+* **Menu:** refresh submenus in drill down ([#731](https://github.com/toptal/picasso/issues/731)) ([7905e7a](https://github.com/toptal/picasso/commit/7905e7a))
+
 ## [3.15.1](https://github.com/toptal/picasso/compare/v3.15.0...v3.15.1) (2019-09-30)
 
 

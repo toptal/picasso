@@ -15,6 +15,9 @@ export default () => createStyles({
         marginTop: rem('-1px'),
         marginRight: rem('4px'),
         marginLeft: rem('-5px')
+    },
+    hideMenu: {
+        display: 'none'
     }
 });
 //# sourceMappingURL=styles.js.map

@@ -56,6 +56,63 @@ exports[`Menu has back button when in submenu 1`] = `
   <div
     class="Picasso-root"
   >
+    <ul
+      class="MuiList-root Menu-hideMenu"
+      role="menu"
+      tabindex="-1"
+    >
+      <li
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="MenuItem-stringContent"
+        >
+          Item 1
+        </span>
+        <div
+          class=""
+          style="margin-left: 0.5em;"
+        >
+          <svg
+            class="SvgChevronMinor16-root"
+            style="min-width: 16px; min-height: 16px;"
+            viewBox="0 0 16 16"
+          >
+            <defs>
+              <path
+                d="M5.997 3.29l4 4 .707.707-.707.707-4 4-.707-.707 4-4-4-4 .707-.707z"
+                id="chevronMinor16_svg__a"
+              />
+            </defs>
+            <g
+              fill-rule="evenodd"
+            >
+              <mask
+                id="chevronMinor16_svg__b"
+              >
+                <use
+                  xlink:href="#chevronMinor16_svg__a"
+                />
+              </mask>
+              <use
+                fill-rule="nonzero"
+                xlink:href="#chevronMinor16_svg__a"
+              />
+              <g
+                mask="url(#chevronMinor16_svg__b)"
+              >
+                <path
+                  d="M0 0h16v16H0z"
+                />
+              </g>
+            </g>
+          </svg>
+        </div>
+      </li>
+    </ul>
     <div
       class="Picasso-root"
     >
