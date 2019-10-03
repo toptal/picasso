@@ -3,11 +3,15 @@ import format from 'date-fns/format'
 
 import { ClickAwayListener } from '../../utils'
 import { Input, Container } from '../..'
+import { BaseProps } from '../../Picasso'
 import Calendar, { DateOrDateRangeType, DateRangeType } from '../Calendar'
 
-interface Props {
-  range?: boolean
+export interface Props extends BaseProps {
+  /** Method that will be invoked with selected values */
   onSelect: (value: DateOrDateRangeType) => void
+  /** Whether calendar supports single date selection or range */
+  range?: boolean
+  /** Initial value */
   value?: Date
 }
 
@@ -46,13 +50,21 @@ export const DatePicker = ({ onSelect, range, value: initialValue }: Props) => {
       <Container inline>
         <Input value={inputValue} onFocus={openCalendar} />
 
-        <Calendar open={calendarOpened} onSelect={handleSelect} range={range} />
+        <Calendar
+          activeMonth={initialValue}
+          value={initialValue}
+          open={calendarOpened}
+          onSelect={handleSelect}
+          range={range}
+        />
       </Container>
     </ClickAwayListener>
   )
 }
 
-DatePicker.defaultProps = {}
+DatePicker.defaultProps = {
+  range: false
+}
 
 DatePicker.displayName = 'DatePicker'
 
