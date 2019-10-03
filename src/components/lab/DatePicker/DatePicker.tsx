@@ -10,27 +10,25 @@ interface Props {
 }
 
 export const DatePicker = ({ onSelect, range }: Props) => {
-  const [calendarShown, setCalendarShown] = useState(false)
+  const [calendarOpened, setCalendarOpened] = useState(false)
 
-  const showCalendar = () => setCalendarShown(true)
-  const hideCalendar = () => setCalendarShown(false)
+  const openCalendar = () => setCalendarOpened(true)
+  const closeCalendar = () => setCalendarOpened(false)
+
+  const handleSelect = (value: DateOrDateRangeType) => {
+    if (range) {
+      onSelect(value as DateRangeType)
+    } else {
+      onSelect(value as Date)
+    }
+  }
 
   return (
-    <ClickAwayListener onClickAway={hideCalendar}>
+    <ClickAwayListener onClickAway={closeCalendar}>
       <Container inline>
-        <Input onFocus={showCalendar} />
+        <Input onFocus={openCalendar} />
 
-        <Calendar
-          shown={calendarShown}
-          onSelect={(value: DateOrDateRangeType) => {
-            if (range) {
-              onSelect(value as DateRangeType)
-            } else {
-              onSelect(value as Date)
-            }
-          }}
-          range={range}
-        />
+        <Calendar open={calendarOpened} onSelect={handleSelect} range={range} />
       </Container>
     </ClickAwayListener>
   )

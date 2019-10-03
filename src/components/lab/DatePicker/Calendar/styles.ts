@@ -2,24 +2,23 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 
 import { alpha, rem } from '../../../styles'
 
-export default ({ palette }: Theme) =>
+export default ({ palette, shadows }: Theme) =>
   createStyles({
     root: {
       position: 'absolute',
-      padding: rem('30px'),
+      padding: '1.875em',
       color: palette.grey.darker,
       marginTop: '1rem',
       display: 'flex',
       flexDirection: 'column',
       flexBasis: '20.5rem',
       maxWidth: '20.5rem',
-      boxShadow: `0 0 0.25rem 0 ${alpha(palette.common.black, 0.24)},
-                0 0 2em 0 ${alpha(palette.common.black, 0.12)}`,
+      boxShadow: shadows[4],
       backgroundColor: palette.common.white,
 
       '&:before': {
         content: '""',
-        border: '0.5rem solid white',
+        border: `0.5rem solid ${palette.common.white}`,
         borderColor: `transparent transparent ${palette.common.white} ${
           palette.common.white
         }`,
@@ -27,11 +26,10 @@ export default ({ palette }: Theme) =>
         position: 'absolute',
         top: '-0.5rem',
         transform: 'rotate(45deg)',
-        boxShadow: `-0.25rem -0.25rem 0.25rem 0 ${alpha(
-          palette.common.black,
-          0.24
-        )},
-                    -2em -2em 2em 0 ${alpha(palette.common.black, 0.12)}`
+        boxShadow: `
+          -0.25rem -0.25rem 0.25rem 0 ${alpha(palette.common.black, 0.24)},
+          -2em -2em 2em 0 ${alpha(palette.common.black, 0.12)}
+        `
       }
     },
     month: {},

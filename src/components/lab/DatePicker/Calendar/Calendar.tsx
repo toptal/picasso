@@ -23,9 +23,9 @@ export type DateOrDateRangeType = Date | DateRangeType
 export type DateRangeType = [Date, Date]
 
 export interface Props extends BaseProps {
-  range?: boolean
   onSelect: (value: DateOrDateRangeType) => void
-  shown?: boolean
+  range?: boolean
+  open?: boolean
 }
 
 const activeMonth = new Date()
@@ -33,15 +33,16 @@ const useStyles = makeStyles<Theme, Props>(styles)
 
 export const Calendar = (props: Props) => {
   const classes = useStyles(props)
-  const { range = false, shown = false, onSelect } = props
-  const [selected, setSelected] = useState<
-    Date | SimpleReactCalendarRangeType | undefined
-  >(undefined)
+  const { range = false, open = false, onSelect } = props
 
-  if (!shown) return null
+  const [value, setValue] = useState<
+    Date | SimpleReactCalendarRangeType | undefined
+  >()
+
+  if (!open) return null
 
   const handleSelect = (selection: Date | SimpleReactCalendarRangeType) => {
-    setSelected(selection)
+    setValue(selection)
 
     if (range) {
       onSelect([
@@ -55,7 +56,7 @@ export const Calendar = (props: Props) => {
 
   return (
     <SimpleReactCalendar
-      selected={selected}
+      selected={value}
       onSelect={handleSelect}
       customRender={({ children }: CalendarProps) => {
         return <div className={classes.root}>{children}</div>
@@ -101,7 +102,7 @@ export const Calendar = (props: Props) => {
             <Typography variant='heading' size='medium'>
               {format(activeMonth, 'MMMM y')}
             </Typography>
-            <Button variant='flat' size='small' onClick={() => switchMonth(+1)}>
+            <Button variant='flat' size='small' onClick={() => switchMonth(1)}>
               <ChevronMinor16 />
             </Button>
           </div>

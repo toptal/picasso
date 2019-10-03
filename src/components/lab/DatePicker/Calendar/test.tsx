@@ -10,7 +10,7 @@ describe('Calendar', () => {
   test('default render', () => {
     const { container } = render(
       <Picasso loadFonts={false}>
-        <Calendar onSelect={() => {}} />
+        <Calendar onSelect={() => {}} open />
       </Picasso>
     )
 
