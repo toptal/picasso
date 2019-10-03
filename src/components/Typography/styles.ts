@@ -110,5 +110,16 @@ export default ({ palette, typography }: Theme) =>
     },
     inherit: {
       color: 'inherit'
+    },
+
+    // underlines
+    underline: {
+      textDecoration: 'underline'
+    },
+    solid: {
+      textDecorationStyle: 'solid'
+    },
+    dashed: {
+      textDecorationStyle: 'dashed'
     }
   })

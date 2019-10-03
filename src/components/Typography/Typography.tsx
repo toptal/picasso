@@ -13,6 +13,8 @@ type VariantType = 'heading' | 'body'
 
 type WeightType = 'thin' | 'light' | 'regular' | 'semibold'
 
+type UnderlineType = 'solid' | 'dashed'
+
 export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
   /** Font variant for inner text */
   variant?: VariantType
@@ -34,6 +36,8 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
   noWrap?: boolean
   /** Rendered HTML markup */
   as?: React.ElementType<React.HTMLAttributes<HTMLElement>>
+  /** Controls when the Typography should have an underline */
+  underline?: UnderlineType
 }
 
 type VariantsType = {
@@ -73,6 +77,7 @@ export const Typography = forwardRef<HTMLElement, Props>(function Typography(
     color,
     invert,
     noWrap,
+    underline,
     ...rest
   },
   ref
@@ -87,7 +92,11 @@ export const Typography = forwardRef<HTMLElement, Props>(function Typography(
     },
     classes[variantClassName],
     classes[weight!],
-    classes[colorClassName]
+    classes[colorClassName],
+    {
+      [classes.underline]: underline
+    },
+    classes[underline!]
   )
 
   return (

@@ -38,3 +38,4 @@ page
       use 'as' property.
     `
   })
+  .addExample('Typography/story/Underline.example.jsx', 'Underline')
