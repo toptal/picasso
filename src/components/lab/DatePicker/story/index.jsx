@@ -2,7 +2,11 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 import { DatePicker } from '../DatePicker'
 
-const page = PicassoBook.createPage('DatePicker', `Date Picker component`)
+const page = PicassoBook.createPage(
+  'DatePicker',
+  `Date Picker component`,
+  'Lab'
+)
 
 page
   .createTabChapter('Props')
