@@ -14603,9 +14603,10 @@ simple-git@^1.85.0:
   dependencies:
     debug "^4.0.1"
 
-"simple-react-calendar@https://github.com/toptal/simple-react-calendar.git#picasso":
-  version "1.8.0"
-  resolved "https://github.com/toptal/simple-react-calendar.git#023b6bc9da49f74d9afeaeae7b289aca331d7d74"
+simple-react-calendar@^1.9.0:
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/simple-react-calendar/-/simple-react-calendar-1.9.0.tgz#57ea3cec469c0669c951b5a7276e87cbfd3c8795"
+  integrity sha512-8FKgSCS3PamFjoBaPvuTeJtbWK0XVj00i9hg2I6/aB6UxFanZRP6YXHAvPBxTLsjuM2ZmpZ+9PgTmTdzmZFN7g==
   dependencies:
     classnames "^2.2.5"
     date-fns "^1.27.2"
