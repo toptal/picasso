@@ -20,8 +20,11 @@ const ContainerDefaultExample = () => (
       <Container bordered variant='green' padded='large' bottom='small'>
         Green
       </Container>
-      <Container bordered variant='blue' padded='large'>
+      <Container bordered variant='blue' padded='large' bottom='small'>
         Blue
+      </Container>
+      <Container bordered variant='grey' padded='large'>
+        Grey
       </Container>
     </Container>
 
@@ -42,8 +45,11 @@ const ContainerDefaultExample = () => (
       <Container variant='green' padded='large' bottom='small'>
         Green
       </Container>
-      <Container variant='blue' padded='large'>
+      <Container variant='blue' padded='large' bottom='small'>
         Blue
+      </Container>
+      <Container variant='grey' padded='large'>
+        Grey
       </Container>
     </Container>
   </Container>
