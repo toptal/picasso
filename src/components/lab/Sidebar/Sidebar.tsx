@@ -72,7 +72,7 @@ export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
   { children, variant, className, style, classes },
   ref
 ) {
-  const isSmallScreen = useBreakpoint('small')
+  const isSmallScreen = useBreakpoint(['small', 'medium'])
 
   const sidebar = (
     <Container

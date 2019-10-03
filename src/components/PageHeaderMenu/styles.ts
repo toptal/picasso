@@ -6,7 +6,7 @@ export default ({ screens }: Theme) =>
       fontSize: '0.9rem'
     },
     contentUserBadge: {
-      [screens('small')]: {
+      [screens('small', 'medium')]: {
         padding: '1em',
         zIndex: 1,
         backgroundColor: 'white',
@@ -14,7 +14,7 @@ export default ({ screens }: Theme) =>
       }
     },
     xsmall: {
-      [screens('small')]: {
+      [screens('small', 'medium')]: {
         height: '1.5em',
         width: '1.5em'
       }

@@ -26,7 +26,7 @@ export const PageHeaderMenu = forwardRef<HTMLDivElement, Props>(
     { name, meta, avatar, classes, className, style, children, ...rest },
     ref
   ) {
-    const isSmallScreen = useBreakpoint('small')
+    const isSmallScreen = useBreakpoint(['small', 'medium'])
 
     const metaContent =
       typeof meta === 'string' ? (

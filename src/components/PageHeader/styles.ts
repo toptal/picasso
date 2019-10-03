@@ -28,7 +28,7 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
       height: headerHeight,
       padding: `0 ${layout.contentPaddingHorizontal}`,
 
-      [screens('small')]: {
+      [screens('small', 'medium')]: {
         height: '3em'
       }
     },
@@ -50,7 +50,7 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
       opacity: 0.8
     },
     logoContainer: {
-      [screens('small')]: {
+      [screens('small', 'medium')]: {
         lineHeight: '1em',
         position: 'absolute',
         left: '50%',
@@ -58,7 +58,7 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
       }
     },
     logo: {
-      [screens('small')]: {
+      [screens('small', 'medium')]: {
         fontSize: '1.5em'
       }
     }
