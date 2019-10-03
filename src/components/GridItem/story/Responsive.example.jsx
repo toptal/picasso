@@ -1,23 +1,23 @@
 import React from 'react'
 import { Grid, Container, Typography } from '@toptal/picasso'
-import { palette, useBreakpoint, useScreenSize } from '@toptal/picasso/utils'
+import { palette, useBreakpoint } from '@toptal/picasso/utils'
 
-const ScreenSize = ({ size }) => {
+const ScreenSize = () => {
   const isExtraLarge = useBreakpoint('extra-large')
   const isLarge = useBreakpoint('large')
   const isMedium = useBreakpoint('medium')
 
   if (isExtraLarge) {
-    return `Extra Large - current [${size}px]`
+    return 'Extra Large'
   }
   if (isLarge) {
-    return `Large - current [${size}px]`
+    return 'Large'
   }
   if (isMedium) {
-    return `Medium - current [${size}px]`
+    return 'Medium'
   }
 
-  return `Small - current [${size}px]`
+  return 'Small'
 }
 
 const ContentContainer = ({ children }) => (
@@ -29,28 +29,26 @@ const ContentContainer = ({ children }) => (
 )
 
 const GridDefaultExample = () => {
-  const windowSize = useScreenSize()
-
   return (
     <Grid>
       <Grid.Item small={12} medium={6} large={3}>
         <ContentContainer>
-          <ScreenSize size={windowSize} />
+          <ScreenSize />
         </ContentContainer>
       </Grid.Item>
       <Grid.Item small={12} medium={6} large={3}>
         <ContentContainer>
-          <ScreenSize size={windowSize} />
+          <ScreenSize />
         </ContentContainer>
       </Grid.Item>
       <Grid.Item small={12} medium={6} large={3}>
         <ContentContainer>
-          <ScreenSize size={windowSize} />
+          <ScreenSize />
         </ContentContainer>
       </Grid.Item>
       <Grid.Item small={12} medium={6} large={3}>
         <ContentContainer>
-          <ScreenSize size={windowSize} />
+          <ScreenSize />
         </ContentContainer>
       </Grid.Item>
     </Grid>
