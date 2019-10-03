@@ -2,6 +2,7 @@ import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import Dialog from '@material-ui/core/Dialog'
 import { PaperProps } from '@material-ui/core/Paper'
+import cx from 'classnames'
 
 import { CloseMinor16 } from '../Icon'
 import ModalTitle from '../ModalTitle'
@@ -11,7 +12,8 @@ import {
   StandardProps,
   PicassoComponentWithRef,
   CompoundedComponentWithRef,
-  usePicassoRoot
+  usePicassoRoot,
+  SizeType
 } from '../Picasso'
 import styles from './styles'
 
@@ -22,6 +24,8 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   children: ReactNode
   /** Whether modal should be displayed */
   open: boolean
+  /** Width of modal */
+  size?: SizeType<'small' | 'medium' | 'large'>
   /** Callback executed when backdrop was clicked */
   onBackdropClick?: () => void
   /** Callback executed when attempting to close modal */
@@ -47,6 +51,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(
   {
     children,
     open,
+    size,
     onBackdropClick,
     onClose,
     onOpen,
@@ -61,8 +66,6 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(
   },
   ref
 ) {
-  const { closeButton, ...restClasses } = classes
-
   const picassoRootContainer = usePicassoRoot()
 
   return (
@@ -70,7 +73,11 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       ref={ref}
-      classes={restClasses}
+      classes={{
+        root: classes.root,
+        container: classes.container,
+        paper: cx(classes.paper, classes[size!])
+      }}
       className={className}
       style={style}
       container={container || picassoRootContainer}
@@ -81,11 +88,12 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(
       onEnter={onOpen}
       open={open}
       transitionDuration={transitionDuration}
+      maxWidth={false}
     >
       {children}
       {onClose && (
         <span onClick={onClose}>
-          <CloseMinor16 className={closeButton} />
+          <CloseMinor16 className={classes.closeButton} />
         </span>
       )}
     </Dialog>
@@ -94,6 +102,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(
 
 Modal.defaultProps = {
   hideBackdrop: false,
+  size: 'medium',
   transitionDuration: 300
 }
 

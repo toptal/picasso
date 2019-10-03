@@ -28,10 +28,10 @@ const ModalDialog = ({ modalId, hideModal }) => {
       <Modal.Title>Edit address details</Modal.Title>
       <Modal.Content>
         <Form.Field>
-          <Input placeholder='City' value='Alabaster' />
+          <Input width='full' placeholder='City' value='Alabaster' />
         </Form.Field>
         <Form.Field>
-          <Input placeholder='Street' value='John Fruit' />
+          <Input width='full' placeholder='Street' value='John Fruit' />
         </Form.Field>
         <Form.Field>
           <Select placeholder='State' options={STATES} value='Alabama' />
@@ -82,7 +82,7 @@ const ModalDefaultExample = () => {
   }, [])
 
   return (
-    <div id='modal-container' style={{ width: '800px', height: '500px' }}>
+    <div id='modal-container' style={{ width: '800px', height: '50px' }}>
       <Button onClick={handleClick}>Open</Button>
     </div>
   )
