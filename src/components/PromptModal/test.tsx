@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, fireEvent } from '@testing-library/react'
+import { render, fireEvent, wait } from '@testing-library/react'
 import '@testing-library/react/cleanup-after-each'
 
 import Picasso from '../Picasso'
@@ -22,12 +22,14 @@ test('renders PromptModal', () => {
   expect(baseElement).toMatchSnapshot()
 })
 
-test('showPrompt opens and closes modal', () => {
+test('showPrompt opens and closes modal', async () => {
   const TestComponent = () => {
     const { showPrompt } = useModals()
 
-    const handleClick = () => {
-      showPrompt('Test title', 'Test message')
+    const handleClick = async () => {
+      const { hide } = await showPrompt('Test title', 'Test message')
+
+      hide()
     }
 
     return <Button onClick={handleClick}>Show</Button>
@@ -53,6 +55,9 @@ test('showPrompt opens and closes modal', () => {
 
   fireEvent.click(submitModal)
 
-  expect(queryByText('Modal content')).toBeFalsy()
+  await wait(() => {
+    expect(queryByText('Modal content')).toBeFalsy()
+  })
+
   expect(baseElement).toMatchSnapshot()
 })
