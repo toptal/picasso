@@ -116,6 +116,7 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
       })}
       {menusKeys.map((menuKey: string) =>
         React.cloneElement(menus[menuKey], {
+          key: menuKey,
           className: cx(menus[menuKey].props.className, {
             [hideMenu]: menuKey !== currentVisibleMenuKey
           })
