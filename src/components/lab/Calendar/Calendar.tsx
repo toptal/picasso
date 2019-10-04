@@ -30,6 +30,12 @@ export interface Props extends BaseProps {
   activeMonth?: Date
 }
 
+function isDateRange(
+  value: Date | SimpleReactCalendarRangeType
+): value is SimpleReactCalendarRangeType {
+  return !(value instanceof Date) && Boolean(value.start && value.end)
+}
+
 const useStyles = makeStyles<Theme, Props>(styles)
 
 export const Calendar = (props: Props) => {
@@ -51,13 +57,12 @@ export const Calendar = (props: Props) => {
   const handleSelect = (selection: Date | SimpleReactCalendarRangeType) => {
     setValue(selection)
 
-    if (range) {
-      onSelect([
-        (selection as SimpleReactCalendarRangeType).start,
-        (selection as SimpleReactCalendarRangeType).end
-      ])
+    if (isDateRange(selection)) {
+      const { start, end } = selection
+
+      onSelect([start, end])
     } else {
-      onSelect(selection as Date)
+      onSelect(selection)
     }
   }
 
