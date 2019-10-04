@@ -1,1 +1,2 @@
-export { default, VariantType } from './Container'
+export { default } from './Container'
+export * from './Container'

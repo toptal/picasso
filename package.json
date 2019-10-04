@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso",
-  "version": "3.18.0",
+  "version": "3.19.0",
   "description": "",
   "main": "./build/index.js",
   "module": "./build/index.js",
@@ -128,7 +128,7 @@
     "styled-components": "4.3.2",
     "ts-jest": "^24.0.2",
     "ts-loader": "^6.0.1",
-    "typescript": "3.5.2",
+    "typescript": "3.6.3",
     "yargs": "^13.2.4"
   },
   "husky": {
