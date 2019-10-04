@@ -42,14 +42,14 @@ for this component. This you can achieve by adding corresponding attributes:
     title: 'Any value disabled',
     description: `By default Autocomplete allows any entered input value to stay after focus is removed from input,
       you can set \`allowAny={false}\` prop to allow only selected values to stay after focus is removed from input`
-  })
+  }) // picasso-skip-visuals
   .addExample('lab/Autocomplete/story/OtherOption.example.jsx', {
     title: 'Other option',
     description: `By default Autocomplete allows any entered input value to stay after focus is removed from input,
       you can set \`showOtherOption={true}\` prop to allow also this new item to appear in the suggestions list. Also,
       you can decorate this option with the prefix text by using \`otherOptionText\` and handle selection with
       \`onOtherOptionSelect\` event handler.`
-  })
+  }) // picasso-skip-visuals
   .addExample(
     'lab/Autocomplete/story/InitialSelectedItem.example.jsx',
     'Initially selected item'
