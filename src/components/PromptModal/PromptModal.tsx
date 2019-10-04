@@ -20,7 +20,7 @@ export type PromptOptions = {
   error: boolean
 }
 
-export interface Props extends Omit<ModalProps, 'children'> {
+export interface Props extends Omit<ModalProps, 'children' | 'onSubmit'> {
   /** Pass input component to allow you get input value from prompt modal */
   children?: (result: PromptOptions) => ReactNode
   /** Title of modal */
@@ -34,7 +34,7 @@ export interface Props extends Omit<ModalProps, 'children'> {
   /** Text on Cancel button */
   cancelText?: string
   /** Callback on Submit onClick event, returns result of input component if defined */
-  onSubmit: (result?: any) => void
+  onSubmit: (result: any, setLoading: (loading: boolean) => void) => void
   /** Callback on Cancel onClick event */
   onCancel?: () => void
 }
@@ -60,8 +60,7 @@ export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
   const [error, setError] = useState<boolean>(false)
 
   const handleSubmit = () => {
-    setLoading(true)
-    onSubmit(result)
+    onSubmit(result, setLoading)
   }
 
   return (

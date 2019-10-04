@@ -7,6 +7,7 @@ import { Props as PromptModalProps } from '../../PromptModal/PromptModal'
 type PromptResult = {
   result: any
   hide: () => void
+  setLoading?: (loading: boolean) => void
 }
 
 const isFunctionalComponent = (Component: Function) => {
@@ -56,11 +57,19 @@ const useModals = () => {
     const hasChildren = Boolean(children)
 
     return new Promise<PromptResult>(resolve => {
-      const handleSubmit = (result?: any) => {
+      const handleSubmit = (
+        result: any,
+        setLoading: (loading: boolean) => void
+      ) => {
+        const resultOptions = {
+          setLoading,
+          hide: () => hideModal(modalId)
+        }
+
         resolve(
           hasChildren
-            ? { result, hide: () => hideModal(modalId) }
-            : { result: true, hide: () => hideModal(modalId) }
+            ? { result, ...resultOptions }
+            : { result: true, ...resultOptions }
         )
       }
 
