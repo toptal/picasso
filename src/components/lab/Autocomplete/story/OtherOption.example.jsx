@@ -17,6 +17,9 @@ const AutocompleteOtherOptionExample = () => (
       placeholder='Start typing country...'
       options={options}
       onSelect={item => console.log('onSelect value:', item)}
+      onOtherOptionSelect={item =>
+        console.log('onOtherOptionSelect value:', item)
+      }
       onChange={inputValue => console.log('onChange value:', inputValue)}
     />
   </div>
