@@ -2,6 +2,18 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 
 export default ({ palette }: Theme) =>
   createStyles({
+    root: {},
+    container: {},
+    paper: {},
+    small: {
+      width: '32.5em'
+    },
+    medium: {
+      width: '40.625em'
+    },
+    large: {
+      width: '50em'
+    },
     closeButton: {
       position: 'absolute',
       right: '2rem',

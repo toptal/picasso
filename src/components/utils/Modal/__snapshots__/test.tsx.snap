@@ -24,7 +24,7 @@ exports[`useModal opens and closes modal 1`] = `
         </span>
       </button>
       <div
-        class="MuiDialog-root"
+        class="MuiDialog-root Modal-root"
         role="presentation"
         style="position: fixed; z-index: 1300; right: 0px; bottom: 0px; top: 0px; left: 0px;"
       >
@@ -38,13 +38,13 @@ exports[`useModal opens and closes modal 1`] = `
           tabindex="0"
         />
         <div
-          class="MuiDialog-container MuiDialog-scrollPaper"
+          class="MuiDialog-container Modal-container MuiDialog-scrollPaper"
           role="document"
           style="opacity: 1; webkit-transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
           tabindex="-1"
         >
           <div
-            class="MuiPaper-root MuiPaper-elevation2 MuiDialog-paper MuiDialog-paperScrollPaper MuiDialog-paperWidthSm"
+            class="MuiPaper-root MuiPaper-elevation2 MuiDialog-paper Modal-paper Modal-medium MuiDialog-paperScrollPaper MuiDialog-paperWidthFalse"
             role="dialog"
           >
             <p>
@@ -139,7 +139,7 @@ exports[`useModal shows multiple modals at the same time 1`] = `
       </button>
       <div
         aria-hidden="true"
-        class="MuiDialog-root"
+        class="MuiDialog-root Modal-root"
         role="presentation"
         style="position: fixed; z-index: 1300; right: 0px; bottom: 0px; top: 0px; left: 0px;"
       >
@@ -153,13 +153,13 @@ exports[`useModal shows multiple modals at the same time 1`] = `
           tabindex="0"
         />
         <div
-          class="MuiDialog-container MuiDialog-scrollPaper"
+          class="MuiDialog-container Modal-container MuiDialog-scrollPaper"
           role="document"
           style="opacity: 1; webkit-transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
           tabindex="-1"
         >
           <div
-            class="MuiPaper-root MuiPaper-elevation2 MuiDialog-paper MuiDialog-paperScrollPaper MuiDialog-paperWidthSm"
+            class="MuiPaper-root MuiPaper-elevation2 MuiDialog-paper Modal-paper Modal-medium MuiDialog-paperScrollPaper MuiDialog-paperWidthFalse"
             role="dialog"
           >
             <p>
@@ -173,7 +173,7 @@ exports[`useModal shows multiple modals at the same time 1`] = `
         />
       </div>
       <div
-        class="MuiDialog-root"
+        class="MuiDialog-root Modal-root"
         role="presentation"
         style="position: fixed; z-index: 1300; right: 0px; bottom: 0px; top: 0px; left: 0px;"
       >
@@ -187,13 +187,13 @@ exports[`useModal shows multiple modals at the same time 1`] = `
           tabindex="0"
         />
         <div
-          class="MuiDialog-container MuiDialog-scrollPaper"
+          class="MuiDialog-container Modal-container MuiDialog-scrollPaper"
           role="document"
           style="opacity: 1; webkit-transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
           tabindex="-1"
         >
           <div
-            class="MuiPaper-root MuiPaper-elevation2 MuiDialog-paper MuiDialog-paperScrollPaper MuiDialog-paperWidthSm"
+            class="MuiPaper-root MuiPaper-elevation2 MuiDialog-paper Modal-paper Modal-medium MuiDialog-paperScrollPaper MuiDialog-paperWidthFalse"
             role="dialog"
           >
             <p>
