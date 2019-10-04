@@ -51,7 +51,7 @@ const generateKey = (() => {
   return () => String(++count)
 })()
 
-export const MenuItem = forwardRef<HTMLLIElement, Props>(function MenuItem(
+export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
   {
     as,
     children,
