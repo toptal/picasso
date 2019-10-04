@@ -1,1 +1,2 @@
-export { default, Props } from './Menu'
+export { default } from './Menu'
+export * from './Menu'

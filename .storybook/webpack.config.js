@@ -2,6 +2,7 @@ const webpack = require('webpack')
 const path = require('path')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const ForkTsCheckerNotifierWebpackPlugin = require('fork-ts-checker-notifier-webpack-plugin')
+const { IgnoreNotFoundPlugin } = require('./plugins')
 
 // example: /components/Button/Button.tsx
 const COMPONENT_DECLARATION_FILE_REGEXP = /components\/(.*)\/\1.tsx$/
@@ -68,7 +69,9 @@ module.exports = ({ config }) => {
   config.plugins.push(
     new webpack.DefinePlugin({
       TEST_ENV: JSON.stringify(env.TEST_ENV)
-    })
+    }),
+    // https://github.com/TypeStrong/ts-loader/issues/653
+    new IgnoreNotFoundPlugin(['OverridableComponent', 'StandardProps'])
   )
 
   if (isDevelopment) {

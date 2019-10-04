@@ -11,7 +11,7 @@ import React, {
 } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
-import MUIMenuItem, { MenuItemProps } from '@material-ui/core/MenuItem'
+import MUIMenuItem from '@material-ui/core/MenuItem'
 
 import { ChevronMinor16 } from '../Icon'
 import Container from '../Container'
@@ -27,7 +27,7 @@ export type MenuItemAttributes = LiHTMLAttributes<HTMLLIElement> &
 
 export interface Props extends StandardProps, MenuItemAttributes {
   /** Component name to render the menu item as */
-  as?: ElementType<MenuItemProps>
+  as?: ElementType
   /** Whether to render disabled item */
   disabled?: boolean
   /** Whether to render without internal padding */
