@@ -1,1 +1,2 @@
-export { default, VariantType } from './Notification'
+export { default } from './Notification'
+export * from './Notification'
