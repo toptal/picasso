@@ -1,3 +1,10 @@
+# [3.19.0](https://github.com/toptal/picasso/compare/v3.18.0...v3.19.0) (2019-10-04)
+
+
+### Features
+
+* add DatePicker ([#736](https://github.com/toptal/picasso/issues/736)) ([9d0f506](https://github.com/toptal/picasso/commit/9d0f506))
+
 # [3.18.0](https://github.com/toptal/picasso/compare/v3.17.4...v3.18.0) (2019-10-04)
 
 

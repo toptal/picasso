@@ -1,6 +1,9 @@
 import { createStyles } from '@material-ui/core/styles';
 export default ({ palette }) => createStyles({
-    root: {},
+    root: {
+        display: 'flex',
+        flexDirection: 'column'
+    },
     container: {},
     paper: {},
     small: {
