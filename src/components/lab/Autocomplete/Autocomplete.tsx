@@ -57,7 +57,7 @@ export interface Props
   /**  Callback invoked when selection changes */
   onSelect?: (itemValue: string | null) => void
   /**  Callback invoked when other option selected */
-  onOtherOptionSelect?: (itemValue: string | null) => void
+  onOtherOptionSelect?: (itemValue: string) => void
   /** Placeholder for value */
   placeholder?: string
   /** Text prefix for other option */
@@ -174,12 +174,19 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
     const handleSelectItem = (item: Item | null) => {
       const itemValue = getItemValue(item)
 
+      if (itemValue === null) {
+        setSelectedItemValue(itemValue)
+        return
+      }
+
       const isInOptions = options!.find(option => option.value === itemValue)
 
       if (!isInOptions) {
         const itemText = inputValue.replace(otherOptionText || '', '')
 
-        setInputValue(itemText)
+        if (allowAny) {
+          setInputValue(itemText)
+        }
 
         onOtherOptionSelect!(itemValue)
         return

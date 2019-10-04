@@ -102,15 +102,20 @@ exports[`TagSelector available options when start typing 1`] = `
             <li
               aria-disabled="false"
               aria-selected="false"
-              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light Autocomplete-otherOption MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
               id="downshift-1-item-3"
               role="option"
               tabindex="-1"
             >
               <span
-                class="MenuItem-stringContent"
+                class="Autocomplete-stringContent"
               >
-                Add new option: Al
+                <span
+                  class="MuiTypography-root Typography-bodyInherit Typography-darkGrey MuiTypography-body1"
+                >
+                  Add new option: 
+                </span>
+                Al
               </span>
             </li>
           </div>

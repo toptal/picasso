@@ -187,7 +187,7 @@ describe('Autocomplete', () => {
         await waitForDomChange({ container })
 
         // If allowAny=true: text stays, and selection (if existed) is cleared
-        expect(input.placeholder).toEqual(placeholder)
+        expect(input.value).toEqual('random text')
       })
 
       test('preselected option and random text entered when allowAny=false', async () => {
@@ -207,7 +207,7 @@ describe('Autocomplete', () => {
         await waitForDomChange({ container })
 
         // If allowAny=false: text turns into selected option text, or empty is no selection
-        expect(input.placeholder).toEqual('Croatia')
+        expect(input.value).toEqual('Croatia')
       })
     })
 

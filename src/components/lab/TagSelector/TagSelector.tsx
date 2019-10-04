@@ -144,9 +144,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       setInputValue('')
     }
 
-    const handleOtherOptionSelect = (itemValue: string | null) => {
-      if (!itemValue) return
-
+    const handleOtherOptionSelect = (itemValue: string) => {
       setAddedOptions([
         ...addedOptions,
         {
