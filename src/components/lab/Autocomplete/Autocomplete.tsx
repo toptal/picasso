@@ -4,7 +4,8 @@ import React, {
   forwardRef,
   ReactNode,
   ComponentType,
-  FormEvent
+  FormEvent,
+  Fragment
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import { capitalize } from '@material-ui/core/utils/helpers'
@@ -16,6 +17,7 @@ import Input, { Props as InputProps } from '../../Input'
 import Menu from '../../Menu'
 import Loader from '../../Loader'
 import ScrollMenu from '../../ScrollMenu'
+import Typography from '../../Typography'
 import { isSubstring, Maybe } from '../../utils'
 import useControlledAndUncontrolledState from '../../utils/use-controlled-and-uncontrolled-state'
 import useControlledAndUncontrolledInput from '../../utils/use-controlled-and-uncontrolled-input'
@@ -186,22 +188,10 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       setSelectedItemValue(itemValue)
     }
 
-    const maybeOtherOption =
-      allowAny && showOtherOption && inputValue
-        ? [
-            {
-              value: getUniqueValue(inputValue),
-              text: `${otherOptionText}${inputValue}`
-            }
-          ]
-        : []
-
-    const matchingOptions = [
-      ...(getItemText(selectedItem) === inputValue
+    const matchingOptions =
+      getItemText(selectedItem) === inputValue
         ? options!
-        : options!.filter(item => isSubstring(inputValue, getItemText(item)))),
-      ...maybeOtherOption
-    ]
+        : options!.filter(item => isSubstring(inputValue, getItemText(item)))
 
     const currentSelectedItemIndex = selectedItem
       ? matchingOptions.indexOf(selectedItem)
@@ -265,22 +255,57 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
           const canOpen =
             isOpen && isMatchingMinLength(inputValue, minLength) && !loading
 
+          const matchingOptionsLength = matchingOptions.length
+          const maybeOtherOption =
+            allowAny && showOtherOption && inputValue
+              ? {
+                  value: getUniqueValue(inputValue),
+                  text: `${otherOptionText}${inputValue}`
+                }
+              : null
+          const shouldShowOtherOption = Boolean(maybeOtherOption)
+
           const optionsMenu = (
             <ScrollMenu selectedIndex={highlightedIndex}>
-              {hasMatchingOptions ? (
-                matchingOptions.map((option, index) => (
-                  <Menu.Item
-                    key={getItemValue(option)}
-                    selected={highlightedIndex === index}
-                    disabled={isSelected(option, selectedItem)}
-                    /* eslint-disable-next-line react/jsx-props-no-spreading */
-                    {...getItemProps({ item: option, index })}
-                  >
-                    {renderOption
-                      ? renderOption(option, index)
-                      : getItemText(option)}
-                  </Menu.Item>
-                ))
+              {hasMatchingOptions || shouldShowOtherOption ? (
+                <Fragment>
+                  {matchingOptions.map((option, index) => (
+                    <Menu.Item
+                      key={getItemValue(option)}
+                      selected={highlightedIndex === index}
+                      disabled={isSelected(option, selectedItem)}
+                      /* eslint-disable-next-line react/jsx-props-no-spreading */
+                      {...getItemProps({ item: option, index })}
+                    >
+                      {renderOption
+                        ? renderOption(option, index)
+                        : getItemText(option)}
+                    </Menu.Item>
+                  ))}
+
+                  {maybeOtherOption && (
+                    <Menu.Item
+                      key={getItemValue(maybeOtherOption)}
+                      selected={highlightedIndex === matchingOptionsLength}
+                      disabled={isSelected(maybeOtherOption, selectedItem)}
+                      /* eslint-disable-next-line react/jsx-props-no-spreading */
+                      {...getItemProps({
+                        item: maybeOtherOption,
+                        index: matchingOptionsLength
+                      })}
+                      className={cx({
+                        [classes.otherOption]: matchingOptionsLength
+                      })}
+                    >
+                      <span className={classes.stringContent}>
+                        <Typography as='span' color='dark-grey'>
+                          {otherOptionText}
+                        </Typography>
+                        {inputValue}
+                      </span>
+                    </Menu.Item>
+                  )}
+                </Fragment>
               ) : (
                 <Menu.Item disabled>{noOptionsText}</Menu.Item>
               )}
