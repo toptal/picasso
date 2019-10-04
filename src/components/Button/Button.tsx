@@ -67,7 +67,7 @@ export interface Props extends StandardProps, ButtonOrAnchorProps {
   circular?: boolean
   /** HTML title of Button component */
   title?: string
-  /** HTML type of Button component **/
+  /** HTML type of Button component */
   type?: 'button' | 'reset' | 'submit'
 }
 
@@ -118,7 +118,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     content: contentClass
   } = classes
 
-  let finalChildren = [children]
+  const finalChildren = [children]
 
   if (icon) {
     const iconComponent = React.cloneElement(icon, {

@@ -7,13 +7,13 @@
         "react/no-multi-comp": "off",	
         "react/require-optimization": "off",	
         "import/no-named-default": "off",	
-        "no-console": "off"	
+        "no-console": "off"
       }	
     },	
     {	
       "files": ["src/components/**/*.tsx"],	
       "rules": {	
-        "no-restricted-imports": ["error", "styled-components"]	
+        "no-restricted-imports": ["error", "styled-components"]
       }	
     }	
   ]
