@@ -54,14 +54,20 @@ export interface Props
   value?: string | null
   /**  Callback invoked when selection changes */
   onSelect?: (itemValue: string | null) => void
+  /**  Callback invoked when other option selected */
+  onOtherOptionSelect?: (itemValue: string | null) => void
   /** Placeholder for value */
   placeholder?: string
+  /** Text prefix for other option */
+  otherOptionText?: string
   /** Width of the component */
   width?: 'full' | 'shrink' | 'auto'
   /** Shows the loading icon when options are loading */
   loading?: boolean
   /** Allow any input any value which is not in the list of `options` when blurring. Otherwise the input is reset to the last selected item label or blank. */
   allowAny?: boolean
+  /** Allow to show the other option in the list of options. Have to be used with allowAny=true */
+  showOtherOption?: boolean
   /** Label to show when no options were found */
   noOptionsText?: string
   /** List of options */
@@ -99,6 +105,9 @@ const getItemValue = (item: Maybe<Item>) =>
 const isSelected = (item: Item, selectedItem: Maybe<Item>) =>
   getItemValue(item) === getItemValue(selectedItem)
 
+const getUniqueValue = (value: string) =>
+  `${value.replace(/\s+/g, '-').toLowerCase()}-${new Date().getTime()}`
+
 export const Autocomplete = forwardRef<HTMLInputElement, Props>(
   function Autocomplete(
     {
@@ -110,14 +119,17 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       defaultValue,
       value,
       onSelect,
+      onOtherOptionSelect,
       loading,
       minLength,
       placeholder,
+      otherOptionText,
       noOptionsText,
       options,
       style,
       width,
       allowAny,
+      showOtherOption,
       onKeyDown,
       inputComponent,
       renderOption,
@@ -158,13 +170,38 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
     }
 
     const handleSelectItem = (item: Item | null) => {
-      setSelectedItemValue(getItemValue(item))
+      const itemValue = getItemValue(item)
+
+      const isInOptions = options!.find(option => option.value === itemValue)
+
+      if (!isInOptions) {
+        const itemText = inputValue.replace(otherOptionText || '', '')
+
+        setInputValue(itemText)
+
+        onOtherOptionSelect!(itemValue)
+        return
+      }
+
+      setSelectedItemValue(itemValue)
     }
 
-    const matchingOptions =
-      getItemText(selectedItem) === inputValue
+    const maybeOtherOption =
+      allowAny && showOtherOption && inputValue
+        ? [
+            {
+              value: getUniqueValue(inputValue),
+              text: `${otherOptionText}${inputValue}`
+            }
+          ]
+        : []
+
+    const matchingOptions = [
+      ...(getItemText(selectedItem) === inputValue
         ? options!
-        : options!.filter(item => isSubstring(inputValue, getItemText(item)))
+        : options!.filter(item => isSubstring(inputValue, getItemText(item)))),
+      ...maybeOtherOption
+    ]
 
     const currentSelectedItemIndex = selectedItem
       ? matchingOptions.indexOf(selectedItem)
@@ -338,8 +375,11 @@ Autocomplete.defaultProps = {
   noOptionsText: 'No options',
   onChange: () => {},
   onKeyDown: () => {},
+  onOtherOptionSelect: () => {},
   onSelect: () => {},
   options: [],
+  otherOptionText: 'Other option: ',
+  showOtherOption: false,
   width: 'auto'
 }
 
