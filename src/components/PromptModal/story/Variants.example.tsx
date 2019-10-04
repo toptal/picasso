@@ -1,12 +1,13 @@
 import React from 'react'
 import { Button, Container } from '@toptal/picasso'
-import { useModals } from '@toptal/picasso/utils'
+import { useModals, useNotifications } from '@toptal/picasso/utils'
 
 const PromptModalDefaultExample = () => {
   const { showPrompt } = useModals()
+  const { showInfo } = useNotifications()
 
   const handleDefaultClick = async () => {
-    const result = await showPrompt(
+    const { result, hide } = await showPrompt(
       'Default variant',
       'This is default variant.',
       {
@@ -15,36 +16,52 @@ const PromptModalDefaultExample = () => {
       }
     )
 
-    window.alert(result)
+    hide()
+    showInfo(String(result))
   }
 
   const handleRedClick = async () => {
-    const result = await showPrompt('Red variant', 'This is red variant.', {
-      variant: 'red',
-      // for purpose of code example
-      container: () => document.getElementById('modal-container')!
-    })
+    const { result, hide } = await showPrompt(
+      'Red variant',
+      'This is red variant.',
+      {
+        variant: 'red',
+        // for purpose of code example
+        container: () => document.getElementById('modal-container')!
+      }
+    )
 
-    window.alert(result)
+    hide()
+    showInfo(String(result))
   }
 
   const handleBlueClick = async () => {
-    const result = await showPrompt('Red variant', 'This is blue variant.', {
-      variant: 'blue',
-      // for purpose of code example
-      container: () => document.getElementById('modal-container')!
-    })
+    const { result, hide } = await showPrompt(
+      'Blue variant',
+      'This is blue variant.',
+      {
+        variant: 'blue',
+        // for purpose of code example
+        container: () => document.getElementById('modal-container')!
+      }
+    )
 
-    window.alert(result)
+    hide()
+    showInfo(String(result))
   }
 
   const handleGreenClick = async () => {
-    const result = await showPrompt('Red variant', 'This is blue variant.', {
-      variant: 'green',
-      // for purpose of code example
-      container: () => document.getElementById('modal-container')!
-    })
+    const { result, hide } = await showPrompt(
+      'Green variant',
+      'This is green variant.',
+      {
+        variant: 'green',
+        // for purpose of code example
+        container: () => document.getElementById('modal-container')!
+      }
+    )
 
+    hide()
     window.alert(result)
   }
 

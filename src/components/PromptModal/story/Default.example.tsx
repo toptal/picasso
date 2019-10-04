@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Button } from '@toptal/picasso'
-import { useModals } from '@toptal/picasso/utils'
+import { useModals, useNotifications } from '@toptal/picasso/utils'
 
 function timeout(ms: number) {
   return new Promise(resolve => setTimeout(resolve, ms))
@@ -8,18 +8,22 @@ function timeout(ms: number) {
 
 const PromptModalDefaultExample = () => {
   const { showPrompt } = useModals()
+  const { showInfo } = useNotifications()
 
   const handleClick = async () => {
-    const result = await showPrompt('Confirm', 'Hello, World!', {
+    const { result, hide } = await showPrompt('Confirm', 'Hello, World!', {
       submitText: 'OK',
       // for purpose of code example
       container: () => document.getElementById('modal-container')!
     })
 
-    await timeout(3000)
+    // for example if result is true we need to do some async operation
+    if (result) {
+      await timeout(2000)
+    }
 
-    // @ts-ignore
-    result.close()
+    hide()
+    showInfo(String(result))
   }
 
   return (

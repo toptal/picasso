@@ -4,6 +4,11 @@ import { ModalContext, ModalType } from 'react-modal-hook'
 import PromptModal from '../../PromptModal'
 import { Props as PromptModalProps } from '../../PromptModal/PromptModal'
 
+type PromptResult = {
+  result: any
+  hide: () => void
+}
+
 const isFunctionalComponent = (Component: Function) => {
   const prototype = Component.prototype
 
@@ -50,7 +55,7 @@ const useModals = () => {
     const { children } = options
     const hasChildren = Boolean(children)
 
-    return new Promise(resolve => {
+    return new Promise<PromptResult>(resolve => {
       const handleSubmit = (result?: any) => {
         resolve(
           hasChildren
@@ -60,8 +65,7 @@ const useModals = () => {
       }
 
       const handleClose = () => {
-        resolve(false)
-        hideModal(modalId)
+        resolve({ result: false, hide: () => hideModal(modalId) })
       }
 
       const modalId = showModal(() => (

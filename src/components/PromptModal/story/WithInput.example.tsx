@@ -1,14 +1,15 @@
 import React from 'react'
 import { Button, Input } from '@toptal/picasso'
-import { useModals } from '@toptal/picasso/utils'
+import { useModals, useNotifications } from '@toptal/picasso/utils'
 
 const PromptModalDefaultExample = () => {
   const { showPrompt } = useModals()
+  const { showInfo } = useNotifications()
 
   const handleClick = async () => {
-    const result = await showPrompt('Email', 'Enter your email:', {
+    const { result, hide } = await showPrompt('Email', 'Enter your email:', {
       // eslint-disable-next-line react/display-name
-      children: (setResult, result) => (
+      children: ({ setResult, result }) => (
         <Input
           width='full'
           onChange={event => setResult(event.target.value)}
@@ -19,7 +20,8 @@ const PromptModalDefaultExample = () => {
       container: () => document.getElementById('modal-container')!
     })
 
-    window.alert(result)
+    hide()
+    showInfo(String(result))
   }
 
   return (
