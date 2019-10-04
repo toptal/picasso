@@ -85,6 +85,7 @@ export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
 PromptModal.defaultProps = {
   cancelText: 'Cancel',
   onCancel: () => {},
+  size: 'small',
   submitText: 'Submit',
   variant: 'green'
 }
