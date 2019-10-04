@@ -1,3 +1,10 @@
+## [3.17.4](https://github.com/toptal/picasso/compare/v3.17.3...v3.17.4) (2019-10-04)
+
+
+### Bug Fixes
+
+* **dropdown:** popper scrolling away ([#732](https://github.com/toptal/picasso/issues/732)) ([211dca8](https://github.com/toptal/picasso/commit/211dca8))
+
 ## [3.17.3](https://github.com/toptal/picasso/compare/v3.17.2...v3.17.3) (2019-10-03)
 
 

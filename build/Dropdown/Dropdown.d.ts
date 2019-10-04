@@ -1,7 +1,8 @@
-import { ReactNode, HTMLAttributes } from 'react';
 import { PopoverOrigin } from '@material-ui/core/Popover';
-import { StandardProps, SpacingType, CompoundedComponentWithRef, PicassoComponentWithRef } from '../Picasso';
+import { PopperPlacementType } from '@material-ui/core/Popper';
+import { HTMLAttributes, ReactNode } from 'react';
 import DropdownArrow from '../DropdownArrow';
+import { CompoundedComponentWithRef, PicassoComponentWithRef, SpacingType, StandardProps } from '../Picasso';
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
     /** Anchor element that opens content on click */
     children: ReactNode;
@@ -14,10 +15,12 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
         left?: SpacingType;
         right?: SpacingType;
     };
-    /** Positioning of content menu relative to anchor */
+    /** DEPRECATED. Positioning of content menu relative to anchor */
     anchorOrigin?: PopoverOrigin;
-    /** Positioning of content menu relative to content */
+    /** DEPRECATED. Positioning of content menu relative to content */
     transformOrigin?: PopoverOrigin;
+    /** Position of the popper relative to the anchor */
+    placement?: PopperPlacementType;
     /** Disable auto focus of first item in list or item */
     disableAutoFocus?: boolean;
     /** Disable close on generic close events */

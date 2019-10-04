@@ -1,6 +1,7 @@
 import { createStyles } from '@material-ui/core/styles';
+import zIndex from '@material-ui/core/styles/zIndex';
 import '../Popover/styles';
-export default () => createStyles({
+export default ({ screens }) => createStyles({
     root: {
         display: 'flex',
         alignItems: 'center'
@@ -11,8 +12,23 @@ export default () => createStyles({
         cursor: 'pointer'
     },
     content: {
-        fontSize: 'inherit'
+        fontSize: 'inherit',
+        background: 'white'
     },
-    paper: {}
+    popper: {
+        zIndex: zIndex.modal,
+        [screens('small')]: {
+            width: '100vw',
+            maxWidth: '100vw',
+            left: '0 !important',
+            maxHeight: calculateMaxHeight(),
+            padding: 0
+        }
+    }
 });
+function calculateMaxHeight() {
+    const screenHeight = '100vh';
+    const headerHeight = '2.5em';
+    return `calc(${screenHeight} - ${headerHeight})`;
+}
 //# sourceMappingURL=styles.js.map

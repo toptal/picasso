@@ -9,13 +9,16 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { forwardRef, useRef, useState, useContext, useMemo } from 'react';
-import cx from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Grow from '@material-ui/core/Grow';
+import Popper from '@material-ui/core/Popper';
 import RootRef from '@material-ui/core/RootRef';
-import { spacingToEm, usePicassoRoot } from '../Picasso';
+import { withStyles } from '@material-ui/core/styles';
+import cx from 'classnames';
+import React, { forwardRef, useContext, useMemo, useRef, useState } from 'react';
 import DropdownArrow from '../DropdownArrow';
-import Popover from '../Popover';
+import Paper from '../Paper';
+import { spacingToEm } from '../Picasso';
 import styles from './styles';
 const DropdownContext = React.createContext(null);
 function useDropdownContext() {
@@ -27,24 +30,30 @@ function useDropdownContext() {
 }
 // eslint-disable-next-line react/display-name
 export const Dropdown = forwardRef(function Dropdown(_a, ref) {
-    var { classes, className, style, children, content, offset, transformOrigin, anchorOrigin, disableAutoClose, disableAutoFocus, onOpen, onClose } = _a, rest = __rest(_a, ["classes", "className", "style", "children", "content", "offset", "transformOrigin", "anchorOrigin", "disableAutoClose", "disableAutoFocus", "onOpen", "onClose"]);
+    var { classes, className, style, children, content, offset, transformOrigin, anchorOrigin, placement, disableAutoClose, disableAutoFocus, onOpen, onClose } = _a, rest = __rest(_a, ["classes", "className", "style", "children", "content", "offset", "transformOrigin", "anchorOrigin", "placement", "disableAutoClose", "disableAutoFocus", "onOpen", "onClose"]);
+    if (anchorOrigin) {
+        // eslint-disable-next-line no-console
+        console.warn('DEPRECATED in Dropdown: "anchorOrigin". To control popper position, please use "placement" and "offset" props.');
+    }
+    if (transformOrigin) {
+        // eslint-disable-next-line no-console
+        console.warn('DEPRECATED in Dropdown: "transformOrigin". To control popper position, please use "placement" and "offset" props.');
+    }
     const contentRef = useRef();
     const [anchorEl, setAnchorEl] = useState(undefined);
-    const open = Boolean(anchorEl);
-    const handleAnchorClick = (event) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const open = (event) => {
         setAnchorEl(event.currentTarget);
+        setIsOpen(true);
         onOpen();
     };
-    const handlePopoverEntering = () => focus();
-    const handlePopoverClose = (_, reason) => {
-        // Always close menu regardless of disableAutoClose
-        if (reason === 'backdropClick') {
-            return close(true);
+    const toggleOpen = (event) => {
+        if (isOpen) {
+            close();
         }
-        close();
-    };
-    const handleContentClick = () => {
-        close();
+        else {
+            open(event);
+        }
     };
     const handleContentKeyDown = (event) => {
         if (event.key === 'Tab') {
@@ -52,7 +61,7 @@ export const Dropdown = forwardRef(function Dropdown(_a, ref) {
         }
         // Always close menu regardless of disableAutoClose
         if (event.key === 'Escape') {
-            close(true);
+            forceClose();
         }
         if (event.key === 'Enter') {
             close();
@@ -61,11 +70,15 @@ export const Dropdown = forwardRef(function Dropdown(_a, ref) {
             close();
         }
     };
-    const close = (force = false) => {
-        if (!force && disableAutoClose) {
+    const close = () => {
+        if (disableAutoClose) {
             return;
         }
+        forceClose();
+    };
+    const forceClose = () => {
         setAnchorEl(undefined);
+        setIsOpen(false);
         onClose();
     };
     const focus = () => {
@@ -89,36 +102,31 @@ export const Dropdown = forwardRef(function Dropdown(_a, ref) {
     const paperMargins = useMemo(() => (Object.assign({}, (offset.top && { marginTop: spacingToEm(offset.top) }), (offset.bottom && { marginBottom: spacingToEm(offset.bottom) }), (offset.left && { marginLeft: spacingToEm(offset.left) }), (offset.right && { marginRight: spacingToEm(offset.right) }))), [offset]);
     // here you can expose other methods, states to child components
     const context = useMemo(() => ({
-        close: () => close(true)
+        close: () => forceClose()
     }), [close]);
-    const container = usePicassoRoot();
     return (React.createElement("div", Object.assign({}, rest, { ref: ref, className: cx(classes.root, className), style: style }),
-        React.createElement("div", { className: classes.anchor, onClick: handleAnchorClick }, children),
-        React.createElement(Popover, { classes: { paper: classes.paper }, open: open, anchorEl: anchorEl, 
-            // MUI has a wrong typing for onClose prop without `reason` argument
-            // @ts-ignore
-            onClose: handlePopoverClose, onEntering: handlePopoverEntering, anchorOrigin: anchorOrigin, transformOrigin: transformOrigin, disableAutoFocus: disableAutoFocus, PaperProps: {
-                style: Object.assign({}, paperMargins),
-                elevation: 2
-            }, container: container },
-            React.createElement("div", { className: classes.content, onClick: handleContentClick, onKeyDown: handleContentKeyDown },
-                React.createElement(DropdownContext.Provider, { value: context },
-                    React.createElement(RootRef, { rootRef: contentRef }, content))))));
+        React.createElement("div", { className: classes.anchor, onClick: toggleOpen }, children),
+        anchorEl && (React.createElement(Popper, { className: classes.popper, open: isOpen, anchorEl: anchorEl, popperOptions: {
+                onCreate: focus
+            }, placement: placement, style: paperMargins, 
+            // RATIONALE: If portal is enabled, and dropdown's popper contains
+            // for example <Input autoFocus/>, popper will mount to the portal and
+            // before it finishes posotioning itself, autoFocus will force scrolling
+            // to the bottom of the portal.
+            disablePortal: true },
+            React.createElement(ClickAwayListener, { onClickAway: () => forceClose() },
+                React.createElement(Grow, { in: isOpen, appear: true },
+                    React.createElement(Paper, { className: classes.content, onClick: () => close(), onKeyDown: handleContentKeyDown, elevation: 2 },
+                        React.createElement(DropdownContext.Provider, { value: context },
+                            React.createElement(RootRef, { rootRef: contentRef }, content)))))))));
 });
 Dropdown.defaultProps = {
-    anchorOrigin: {
-        vertical: 'bottom',
-        horizontal: 'right'
-    },
     disableAutoClose: false,
     disableAutoFocus: true,
     offset: {},
     onClose: () => { },
     onOpen: () => { },
-    transformOrigin: {
-        vertical: 'top',
-        horizontal: 'right'
-    }
+    placement: 'bottom-end'
 };
 Dropdown.displayName = 'Dropdown';
 Dropdown.Arrow = DropdownArrow;

@@ -9,16 +9,19 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { forwardRef } from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import MUIPaper from '@material-ui/core/Paper';
+import { withStyles } from '@material-ui/core/styles';
+import React, { forwardRef } from 'react';
 import styles from './styles';
 export const Paper = forwardRef(function Paper(_a, ref) {
-    var { classes, className, style, children } = _a, rest = __rest(_a, ["classes", "className", "style", "children"]);
+    var { classes, className, style, elevation, children } = _a, rest = __rest(_a, ["classes", "className", "style", "elevation", "children"]);
     return (React.createElement(MUIPaper
     // eslint-disable-next-line react/jsx-props-no-spreading
-    , Object.assign({}, rest, { ref: ref, classes: classes, className: className, style: style, elevation: 1, square: true }), children));
+    , Object.assign({}, rest, { ref: ref, classes: classes, className: className, style: style, elevation: elevation, square: true }), children));
 });
+Paper.defaultProps = {
+    elevation: 1
+};
 Paper.displayName = 'Paper';
 export default withStyles(styles)(Paper);
 //# sourceMappingURL=Paper.js.map
