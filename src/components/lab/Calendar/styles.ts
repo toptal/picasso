@@ -2,35 +2,19 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 
 import { alpha, rem } from '../../styles'
 
-export default ({ palette, shadows }: Theme) =>
+export default ({ palette, shadows, zIndex }: Theme) =>
   createStyles({
     root: {
       position: 'absolute',
       padding: '1.875em',
       color: palette.grey.darker,
-      marginTop: '1rem',
       display: 'flex',
       flexDirection: 'column',
       flexBasis: '20.5rem',
       maxWidth: '20.5rem',
-      boxShadow: shadows[4],
+      boxShadow: shadows[2],
       backgroundColor: palette.common.white,
-
-      '&:before': {
-        content: '""',
-        border: `0.5rem solid ${palette.common.white}`,
-        borderColor: `transparent transparent ${palette.common.white} ${
-          palette.common.white
-        }`,
-        background: palette.common.white,
-        position: 'absolute',
-        top: '-0.5rem',
-        transform: 'rotate(45deg)',
-        boxShadow: `-${rem('2px')} -${rem('2px')} ${rem('2px')} 0 ${alpha(
-          palette.common.black,
-          0.15
-        )}`
-      }
+      zIndex: zIndex.modal
     },
     month: {},
     week: {
@@ -71,24 +55,13 @@ export default ({ palette, shadows }: Theme) =>
       marginBottom: '1.5rem'
     },
     selected: {
-      background: alpha(palette.blue.main, 0.48),
-      color: palette.common.white,
-      position: 'relative',
-
-      '&$today:after': {
-        backgroundColor: palette.common.white
-      }
+      background: palette.blue.lighter
     },
     selectable: {
       cursor: 'pointer',
-      position: 'relative',
 
       '&:hover': {
-        backgroundColor: palette.grey.lighter
-      },
-
-      '&$selected:hover': {
-        backgroundColor: alpha(palette.blue.main, 0.64)
+        backgroundColor: alpha(palette.blue.main, 0.24)
       },
 
       '&$startSelection:hover, &$endSelection:hover': {
@@ -97,11 +70,19 @@ export default ({ palette, shadows }: Theme) =>
     },
     startSelection: {
       backgroundColor: palette.blue.main,
-      color: palette.common.white
+      color: palette.common.white,
+
+      '&$today:after': {
+        backgroundColor: palette.common.white
+      }
     },
     endSelection: {
       backgroundColor: palette.blue.main,
-      color: palette.common.white
+      color: palette.common.white,
+
+      '&$today:after': {
+        backgroundColor: palette.common.white
+      }
     },
     today: {
       display: 'flex',
