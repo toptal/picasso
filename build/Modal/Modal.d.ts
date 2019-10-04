@@ -3,13 +3,15 @@ import { PaperProps } from '@material-ui/core/Paper';
 import ModalTitle from '../ModalTitle';
 import ModalContent from '../ModalContent';
 import ModalActions from '../ModalActions';
-import { StandardProps, PicassoComponentWithRef, CompoundedComponentWithRef } from '../Picasso';
+import { StandardProps, PicassoComponentWithRef, CompoundedComponentWithRef, SizeType } from '../Picasso';
 declare type ContainerValue = HTMLElement | (() => HTMLElement);
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
     /** Content of Modal component */
     children: ReactNode;
     /** Whether modal should be displayed */
     open: boolean;
+    /** Width of modal */
+    size?: SizeType<'small' | 'medium' | 'large'>;
     /** Callback executed when backdrop was clicked */
     onBackdropClick?: () => void;
     /** Callback executed when attempting to close modal */

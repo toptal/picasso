@@ -12,6 +12,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 import React, { forwardRef } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
+import cx from 'classnames';
 import { CloseMinor16 } from '../Icon';
 import ModalTitle from '../ModalTitle';
 import ModalContent from '../ModalContent';
@@ -20,18 +21,22 @@ import { usePicassoRoot } from '../Picasso';
 import styles from './styles';
 // eslint-disable-next-line react/display-name
 export const Modal = forwardRef(function Modal(_a, ref) {
-    var { children, open, onBackdropClick, onClose, onOpen, classes, className, style, container, hideBackdrop, transitionDuration, paperProps } = _a, rest = __rest(_a, ["children", "open", "onBackdropClick", "onClose", "onOpen", "classes", "className", "style", "container", "hideBackdrop", "transitionDuration", "paperProps"]);
-    const { closeButton } = classes, restClasses = __rest(classes, ["closeButton"]);
+    var { children, open, size, onBackdropClick, onClose, onOpen, classes, className, style, container, hideBackdrop, transitionDuration, paperProps } = _a, rest = __rest(_a, ["children", "open", "size", "onBackdropClick", "onClose", "onOpen", "classes", "className", "style", "container", "hideBackdrop", "transitionDuration", "paperProps"]);
     const picassoRootContainer = usePicassoRoot();
     return (React.createElement(Dialog
     // eslint-disable-next-line react/jsx-props-no-spreading
-    , Object.assign({}, rest, { ref: ref, classes: restClasses, className: className, style: style, container: container || picassoRootContainer, PaperProps: Object.assign({}, paperProps, { elevation: 2 }), hideBackdrop: hideBackdrop, onBackdropClick: onBackdropClick, onClose: onClose, onEnter: onOpen, open: open, transitionDuration: transitionDuration }),
+    , Object.assign({}, rest, { ref: ref, classes: {
+            root: classes.root,
+            container: classes.container,
+            paper: cx(classes.paper, classes[size])
+        }, className: className, style: style, container: container || picassoRootContainer, PaperProps: Object.assign({}, paperProps, { elevation: 2 }), hideBackdrop: hideBackdrop, onBackdropClick: onBackdropClick, onClose: onClose, onEnter: onOpen, open: open, transitionDuration: transitionDuration, maxWidth: false }),
         children,
         onClose && (React.createElement("span", { onClick: onClose },
-            React.createElement(CloseMinor16, { className: closeButton })))));
+            React.createElement(CloseMinor16, { className: classes.closeButton })))));
 });
 Modal.defaultProps = {
     hideBackdrop: false,
+    size: 'medium',
     transitionDuration: 300
 };
 Modal.displayName = 'Modal';

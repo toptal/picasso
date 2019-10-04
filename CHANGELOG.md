@@ -1,3 +1,10 @@
+# [3.18.0](https://github.com/toptal/picasso/compare/v3.17.4...v3.18.0) (2019-10-04)
+
+
+### Features
+
+* **Modal:** add sizes ([#756](https://github.com/toptal/picasso/issues/756)) ([49fb70d](https://github.com/toptal/picasso/commit/49fb70d))
+
 ## [3.17.4](https://github.com/toptal/picasso/compare/v3.17.3...v3.17.4) (2019-10-04)
 
 
