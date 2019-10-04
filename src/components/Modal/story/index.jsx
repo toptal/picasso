@@ -30,3 +30,6 @@ component and manage the internal state there.
 `
   }) // picasso-skip-visuals
   .addExample('Modal/story/Sizes.example.jsx', 'Sizes') // picasso-skip-visuals
+  .addExample('Modal/story/MaxHeight.example.jsx', {
+    title: 'Max Height'
+  }) // picasso-skip-visuals
