@@ -11,9 +11,18 @@ import styles from './styles'
 
 export type VariantType = 'red' | 'blue' | 'green'
 
+export type Result = {
+  setResult: (newResult: any) => void
+  result: any
+  setLoading: (loading: boolean) => void
+  loading: boolean
+  setError: (error: string) => void
+  error: string
+}
+
 export interface Props extends Omit<ModalProps, 'children'> {
   /** Pass input component to allow you get input value from prompt modal */
-  children?: (setResult: (newResult: any) => void, result: any) => ReactNode
+  children?: (result: Result) => ReactNode
   /** Title of modal */
   title: string
   /** Prompt message */
@@ -47,11 +56,11 @@ export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
   } = props
 
   const [result, setResult] = useState<any>()
-  const handleResultChange = (newResult: any) => {
-    setResult(newResult)
-  }
+  const [loading, setLoading] = useState<boolean>()
+  const [error, setError] = useState<string>()
 
   const handleSubmit = () => {
+    setLoading(true)
     onSubmit(result)
   }
 
@@ -63,15 +72,23 @@ export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
         <Typography size='medium'>{message}</Typography>
         {children && (
           <Container top='xsmall'>
-            {children(handleResultChange, result)}
+            {children({
+              setResult,
+              result,
+              setLoading,
+              loading,
+              setError,
+              error
+            })}
           </Container>
         )}
       </Modal.Content>
       <Modal.Actions>
-        <Button disabled={false} variant='flat' onClick={onCancel}>
+        <Button disabled={loading} variant='flat' onClick={onCancel}>
           {cancelText}
         </Button>
         <Button
+          loading={loading}
           onClick={handleSubmit}
           variant={`primary-${variant}` as ButtonVariantType}
         >

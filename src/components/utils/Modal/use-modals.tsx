@@ -52,8 +52,11 @@ const useModals = () => {
 
     return new Promise(resolve => {
       const handleSubmit = (result?: any) => {
-        resolve(hasChildren ? result : true)
-        hideModal(modalId)
+        resolve(
+          hasChildren
+            ? { result, hide: () => hideModal(modalId) }
+            : { result: true, hide: () => hideModal(modalId) }
+        )
       }
 
       const handleClose = () => {

@@ -2,6 +2,10 @@ import React, { useEffect } from 'react'
 import { Button } from '@toptal/picasso'
 import { useModals } from '@toptal/picasso/utils'
 
+function timeout(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
+
 const PromptModalDefaultExample = () => {
   const { showPrompt } = useModals()
 
@@ -12,13 +16,11 @@ const PromptModalDefaultExample = () => {
       container: () => document.getElementById('modal-container')!
     })
 
-    window.alert(result)
-  }
+    await timeout(3000)
 
-  // show a modal when the example is opened, in demonstration purpose
-  useEffect(() => {
-    handleClick()
-  })
+    // @ts-ignore
+    result.close()
+  }
 
   return (
     <div id='modal-container' style={{ width: '400px', height: '50px' }}>
