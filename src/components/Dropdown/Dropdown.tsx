@@ -1,27 +1,29 @@
+import ClickAwayListener from '@material-ui/core/ClickAwayListener'
+import Grow from '@material-ui/core/Grow'
+import { PopoverOrigin } from '@material-ui/core/Popover'
+import Popper, { PopperPlacementType } from '@material-ui/core/Popper'
+import RootRef from '@material-ui/core/RootRef'
+import { withStyles } from '@material-ui/core/styles'
+import cx from 'classnames'
 import React, {
   forwardRef,
-  useRef,
-  useState,
+  HTMLAttributes,
+  ReactNode,
   useContext,
   useMemo,
-  ReactNode,
-  HTMLAttributes
+  useRef,
+  useState
 } from 'react'
-import cx from 'classnames'
-import { withStyles } from '@material-ui/core/styles'
-import { PopoverOrigin } from '@material-ui/core/Popover'
-import RootRef from '@material-ui/core/RootRef'
 
+import DropdownArrow from '../DropdownArrow'
+import Paper from '../Paper'
 import {
-  StandardProps,
-  SpacingType,
-  spacingToEm,
   CompoundedComponentWithRef,
   PicassoComponentWithRef,
-  usePicassoRoot
+  spacingToEm,
+  SpacingType,
+  StandardProps
 } from '../Picasso'
-import DropdownArrow from '../DropdownArrow'
-import Popover from '../Popover'
 import styles from './styles'
 
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
@@ -36,10 +38,12 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
     left?: SpacingType
     right?: SpacingType
   }
-  /** Positioning of content menu relative to anchor */
+  /** DEPRECATED. Positioning of content menu relative to anchor */
   anchorOrigin?: PopoverOrigin
-  /** Positioning of content menu relative to content */
+  /** DEPRECATED. Positioning of content menu relative to content */
   transformOrigin?: PopoverOrigin
+  /** Position of the popper relative to the anchor */
+  placement?: PopperPlacementType
   /** Disable auto focus of first item in list or item */
   disableAutoFocus?: boolean
   /** Disable close on generic close events */
@@ -83,6 +87,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
     offset,
     transformOrigin,
     anchorOrigin,
+    placement,
     disableAutoClose,
     disableAutoFocus,
     onOpen,
@@ -91,33 +96,39 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
   },
   ref
 ) {
+  if (anchorOrigin) {
+    // eslint-disable-next-line no-console
+    console.warn(
+      'DEPRECATED in Dropdown: "anchorOrigin". To control popper position, please use "placement" and "offset" props.'
+    )
+  }
+  if (transformOrigin) {
+    // eslint-disable-next-line no-console
+    console.warn(
+      'DEPRECATED in Dropdown: "transformOrigin". To control popper position, please use "placement" and "offset" props.'
+    )
+  }
+
   const contentRef = useRef<HTMLElement>()
 
   const [anchorEl, setAnchorEl] = useState<HTMLDivElement | undefined>(
     undefined
   )
-  const open = Boolean(anchorEl)
 
-  const handleAnchorClick = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>
-  ) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+
+  const open = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     setAnchorEl(event.currentTarget)
+    setIsOpen(true)
     onOpen!()
   }
 
-  const handlePopoverEntering = () => focus()
-
-  const handlePopoverClose = (_: any, reason: string) => {
-    // Always close menu regardless of disableAutoClose
-    if (reason === 'backdropClick') {
-      return close(true)
+  const toggleOpen = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (isOpen) {
+      close()
+    } else {
+      open(event)
     }
-
-    close()
-  }
-
-  const handleContentClick = () => {
-    close()
   }
 
   const handleContentKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
@@ -127,7 +138,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
 
     // Always close menu regardless of disableAutoClose
     if (event.key === 'Escape') {
-      close(true)
+      forceClose()
     }
 
     if (event.key === 'Enter') {
@@ -139,12 +150,16 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
     }
   }
 
-  const close = (force = false) => {
-    if (!force && disableAutoClose) {
+  const close = () => {
+    if (disableAutoClose) {
       return
     }
+    forceClose()
+  }
 
+  const forceClose = () => {
     setAnchorEl(undefined)
+    setIsOpen(false)
     onClose!()
   }
 
@@ -184,12 +199,10 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
   // here you can expose other methods, states to child components
   const context = useMemo(
     () => ({
-      close: () => close(true)
+      close: () => forceClose()
     }),
     [close]
   )
-
-  const container = usePicassoRoot()
 
   return (
     <div
@@ -199,55 +212,53 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
       className={cx(classes.root, className)}
       style={style}
     >
-      <div className={classes.anchor} onClick={handleAnchorClick}>
+      <div className={classes.anchor} onClick={toggleOpen}>
         {children}
       </div>
 
-      <Popover
-        classes={{ paper: classes.paper }}
-        open={open}
-        anchorEl={anchorEl}
-        // MUI has a wrong typing for onClose prop without `reason` argument
-        // @ts-ignore
-        onClose={handlePopoverClose}
-        onEntering={handlePopoverEntering}
-        anchorOrigin={anchorOrigin}
-        transformOrigin={transformOrigin}
-        disableAutoFocus={disableAutoFocus}
-        PaperProps={{
-          style: { ...paperMargins },
-          elevation: 2
-        }}
-        container={container}
-      >
-        <div
-          className={classes.content}
-          onClick={handleContentClick}
-          onKeyDown={handleContentKeyDown}
+      {anchorEl && (
+        <Popper
+          className={classes.popper}
+          open={isOpen}
+          anchorEl={anchorEl}
+          popperOptions={{
+            onCreate: focus
+          }}
+          placement={placement}
+          style={paperMargins}
+          // RATIONALE: If portal is enabled, and dropdown's popper contains
+          // for example <Input autoFocus/>, popper will mount to the portal and
+          // before it finishes posotioning itself, autoFocus will force scrolling
+          // to the bottom of the portal.
+          disablePortal
         >
-          <DropdownContext.Provider value={context}>
-            <RootRef rootRef={contentRef}>{content}</RootRef>
-          </DropdownContext.Provider>
-        </div>
-      </Popover>
+          <ClickAwayListener onClickAway={() => forceClose()}>
+            <Grow in={isOpen} appear>
+              <Paper
+                className={classes.content}
+                onClick={() => close()}
+                onKeyDown={handleContentKeyDown}
+                elevation={2}
+              >
+                <DropdownContext.Provider value={context}>
+                  <RootRef rootRef={contentRef}>{content}</RootRef>
+                </DropdownContext.Provider>
+              </Paper>
+            </Grow>
+          </ClickAwayListener>
+        </Popper>
+      )}
     </div>
   )
 }) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
 
 Dropdown.defaultProps = {
-  anchorOrigin: {
-    vertical: 'bottom',
-    horizontal: 'right'
-  },
   disableAutoClose: false,
   disableAutoFocus: true,
   offset: {},
   onClose: () => {},
   onOpen: () => {},
-  transformOrigin: {
-    vertical: 'top',
-    horizontal: 'right'
-  }
+  placement: 'bottom-end'
 }
 
 Dropdown.displayName = 'Dropdown'

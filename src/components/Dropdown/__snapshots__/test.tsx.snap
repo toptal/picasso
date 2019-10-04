@@ -25,10 +25,8 @@ exports[`Dropdown should render menu 1`] = `
 <div>
   <div
     class="Picasso-root"
-    style="overflow: hidden;"
   >
     <div
-      aria-hidden="true"
       class="Dropdown-root"
     >
       <div
@@ -39,27 +37,15 @@ exports[`Dropdown should render menu 1`] = `
           class="DropdownArrow-root DropdownArrow-medium"
         />
       </div>
-    </div>
-    <div
-      role="presentation"
-      style="position: fixed; z-index: 1300; right: 0px; bottom: 0px; top: 0px; left: 0px;"
-    >
       <div
-        aria-hidden="true"
-        style="z-index: -1; position: fixed; right: 0px; bottom: 0px; top: 0px; left: 0px; background-color: transparent;"
-      />
-      <div
-        data-test="sentinelStart"
-        tabindex="0"
-      />
-      <div
-        class="MuiPaper-root MuiPaper-elevation2 MuiPopover-paper Dropdown-paper"
-        role="document"
-        style="opacity: 1; transform: scale(1, 1); transition: opacity 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; top: 16px; left: 16px; transform-origin: -16px -16px;"
-        tabindex="-1"
+        class="Dropdown-popper"
+        role="tooltip"
+        style="position: absolute;"
+        x-placement="bottom-end"
       >
         <div
-          class="Dropdown-content"
+          class="MuiPaper-root MuiPaper-elevation2 Dropdown-content"
+          style="opacity: 1; transform: scale(1, 1); transition: opacity 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
         >
           <ul
             class="MuiList-root"
@@ -105,10 +91,6 @@ exports[`Dropdown should render menu 1`] = `
           </ul>
         </div>
       </div>
-      <div
-        data-test="sentinelEnd"
-        tabindex="0"
-      />
     </div>
   </div>
 </div>
@@ -118,10 +100,8 @@ exports[`Dropdown should render menu with focus 1`] = `
 <div>
   <div
     class="Picasso-root"
-    style="overflow: hidden;"
   >
     <div
-      aria-hidden="true"
       class="Dropdown-root"
     >
       <div
@@ -132,27 +112,15 @@ exports[`Dropdown should render menu with focus 1`] = `
           class="DropdownArrow-root DropdownArrow-medium"
         />
       </div>
-    </div>
-    <div
-      role="presentation"
-      style="position: fixed; z-index: 1300; right: 0px; bottom: 0px; top: 0px; left: 0px;"
-    >
       <div
-        aria-hidden="true"
-        style="z-index: -1; position: fixed; right: 0px; bottom: 0px; top: 0px; left: 0px; background-color: transparent;"
-      />
-      <div
-        data-test="sentinelStart"
-        tabindex="0"
-      />
-      <div
-        class="MuiPaper-root MuiPaper-elevation2 MuiPopover-paper Dropdown-paper"
-        role="document"
-        style="opacity: 1; transform: scale(1, 1); transition: opacity 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; top: 16px; left: 16px; transform-origin: -16px -16px;"
-        tabindex="-1"
+        class="Dropdown-popper"
+        role="tooltip"
+        style="position: absolute; transform: translate3d(NaNpx, NaNpx, 0); top: 0px; left: 0px; will-change: transform;"
+        x-placement="bottom-end"
       >
         <div
-          class="Dropdown-content"
+          class="MuiPaper-root MuiPaper-elevation2 Dropdown-content"
+          style="opacity: 1; transform: none; transition: opacity 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
         >
           <ul
             class="MuiList-root"
@@ -198,10 +166,6 @@ exports[`Dropdown should render menu with focus 1`] = `
           </ul>
         </div>
       </div>
-      <div
-        data-test="sentinelEnd"
-        tabindex="0"
-      />
     </div>
   </div>
 </div>
