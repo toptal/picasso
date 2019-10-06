@@ -11,9 +11,18 @@ import styles from './styles'
 
 export type VariantType = 'red' | 'blue' | 'green'
 
-export interface Props extends Omit<ModalProps, 'children'> {
+export type PromptOptions = {
+  setResult: (newResult: any) => void
+  result: any
+  setLoading: (loading: boolean) => void
+  loading: boolean
+  setError: (error: boolean) => void
+  error: boolean
+}
+
+export interface Props extends Omit<ModalProps, 'children' | 'onSubmit'> {
   /** Pass input component to allow you get input value from prompt modal */
-  children?: (setResult: (newResult: any) => void, result: any) => ReactNode
+  children?: (result: PromptOptions) => ReactNode
   /** Title of modal */
   title: string
   /** Prompt message */
@@ -25,7 +34,7 @@ export interface Props extends Omit<ModalProps, 'children'> {
   /** Text on Cancel button */
   cancelText?: string
   /** Callback on Submit onClick event, returns result of input component if defined */
-  onSubmit: (result?: any) => void
+  onSubmit: (result: any, setLoading: (loading: boolean) => void) => void
   /** Callback on Cancel onClick event */
   onCancel?: () => void
 }
@@ -47,12 +56,11 @@ export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
   } = props
 
   const [result, setResult] = useState<any>()
-  const handleResultChange = (newResult: any) => {
-    setResult(newResult)
-  }
+  const [loading, setLoading] = useState<boolean>(false)
+  const [error, setError] = useState<boolean>(false)
 
   const handleSubmit = () => {
-    onSubmit(result)
+    onSubmit(result, setLoading)
   }
 
   return (
@@ -63,15 +71,24 @@ export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
         <Typography size='medium'>{message}</Typography>
         {children && (
           <Container top='xsmall'>
-            {children(handleResultChange, result)}
+            {children({
+              setResult,
+              result,
+              setLoading,
+              loading,
+              setError,
+              error
+            })}
           </Container>
         )}
       </Modal.Content>
       <Modal.Actions>
-        <Button disabled={false} variant='flat' onClick={onCancel}>
+        <Button disabled={loading} variant='flat' onClick={onCancel}>
           {cancelText}
         </Button>
         <Button
+          disabled={error}
+          loading={loading}
           onClick={handleSubmit}
           variant={`primary-${variant}` as ButtonVariantType}
         >

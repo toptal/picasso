@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from '@toptal/picasso'
 import { Autocomplete } from '@toptal/picasso/lab'
-import { useModals } from '@toptal/picasso/utils'
+import { useModals, useNotifications } from '@toptal/picasso/utils'
 
 const options = [
   { text: 'Belarus', value: 'BY' },
@@ -13,11 +13,12 @@ const options = [
 
 const PromptModalDefaultExample = () => {
   const { showPrompt } = useModals()
+  const { showInfo } = useNotifications()
 
   const handleClick = async () => {
-    const result = await showPrompt('Country', 'Select country:', {
+    const { result, hide } = await showPrompt('Country', 'Select country:', {
       // eslint-disable-next-line react/display-name
-      children: setResult => (
+      children: ({ setResult }) => (
         <Autocomplete
           width='full'
           placeholder='Start typing country...'
@@ -29,7 +30,8 @@ const PromptModalDefaultExample = () => {
       container: () => document.getElementById('modal-container')!
     })
 
-    window.alert(result)
+    showInfo(result)
+    hide()
   }
 
   return (

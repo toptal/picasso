@@ -1,24 +1,36 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Button } from '@toptal/picasso'
-import { useModals } from '@toptal/picasso/utils'
+import { useModals, useNotifications } from '@toptal/picasso/utils'
+
+function timeout(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
 
 const PromptModalDefaultExample = () => {
   const { showPrompt } = useModals()
+  const { showInfo } = useNotifications()
 
   const handleClick = async () => {
-    const result = await showPrompt('Confirm', 'Hello, World!', {
-      submitText: 'OK',
-      // for purpose of code example
-      container: () => document.getElementById('modal-container')!
-    })
+    const { result, hide, setLoading } = await showPrompt(
+      'Confirm',
+      'Hello, World!',
+      {
+        submitText: 'OK',
+        // for purpose of code example
+        container: () => document.getElementById('modal-container')!
+      }
+    )
 
-    window.alert(result)
+    // for example if result is true we need to do some async operation
+    if (result && setLoading) {
+      setLoading(true)
+      await timeout(2000)
+      setLoading(false)
+    }
+
+    hide()
+    showInfo(String(result))
   }
-
-  // show a modal when the example is opened, in demonstration purpose
-  useEffect(() => {
-    handleClick()
-  })
 
   return (
     <div id='modal-container' style={{ width: '400px', height: '50px' }}>
