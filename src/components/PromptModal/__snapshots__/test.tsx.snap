@@ -91,7 +91,7 @@ exports[`renders PromptModal 1`] = `
 </body>
 `;
 
-exports[`showPrompt opens and closes modal 1`] = `
+exports[`showPrompt opens and closes modal on Submit action 1`] = `
 <body
   style=""
 >
@@ -116,7 +116,7 @@ exports[`showPrompt opens and closes modal 1`] = `
 </body>
 `;
 
-exports[`showPrompt opens and closes modal 2`] = `
+exports[`showPrompt opens and closes modal on Submit action 2`] = `
 <body
   style=""
 >
@@ -256,7 +256,33 @@ exports[`showPrompt opens and closes modal 2`] = `
 </body>
 `;
 
-exports[`showPrompt opens and closes modal 3`] = `
+exports[`showPrompt opens and closes modal on Submit action 3`] = `
+<body
+  style=""
+>
+  <div>
+    <div
+      class="Picasso-root"
+      style=""
+    >
+      <button
+        class="MuiButtonBase-root Button-medium Button-primaryBlue Button-root"
+        tabindex="0"
+        type="button"
+      >
+        <span
+          class="Container-flex Container-inline Button-content"
+          style="align-items: center;"
+        >
+          Show
+        </span>
+      </button>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`showPrompt with input returns result on Submit action  1`] = `
 <body
   style=""
 >
