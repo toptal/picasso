@@ -20,7 +20,7 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
    * Size
    * @default xsmall
    */
-  size?: SizeType<'xsmall' | 'small' | 'medium' | 'large'>
+  size?: SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
   /** Photo url */
   src?: string
   /**
@@ -40,7 +40,7 @@ export class Avatar extends PureComponent<Props> {
   renderLogo() {
     const { classes, src, size } = this.props
 
-    if (!src || size === 'small' || size === 'xsmall') {
+    if (!src || ['small', 'xsmall', 'xxsmall'].includes(size!)) {
       return null
     }
 
