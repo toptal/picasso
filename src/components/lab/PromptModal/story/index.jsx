@@ -5,7 +5,7 @@ import { PromptModal } from '../PromptModal'
 const page = PicassoBook.createPage(
   'PromptModal',
   `Predefined modal for short prompts that asks user for input.`,
-  'Overlays'
+  'Lab'
 )
 
 page

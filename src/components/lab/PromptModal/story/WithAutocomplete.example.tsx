@@ -1,7 +1,8 @@
 import React from 'react'
 import { Button } from '@toptal/picasso'
 import { Autocomplete } from '@toptal/picasso/lab'
-import { useModals, useNotifications } from '@toptal/picasso/utils'
+import { useNotifications } from '@toptal/picasso/utils'
+import { useModals } from '@toptal/picasso/lab/utils'
 
 const options = [
   { text: 'Belarus', value: 'BY' },

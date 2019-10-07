@@ -2,10 +2,10 @@ import React from 'react'
 import { render, fireEvent, wait } from '@testing-library/react'
 import '@testing-library/react/cleanup-after-each'
 
-import Picasso from '../Picasso'
-import Button from '../Button'
-import Input from '../Input'
-import PromptModal from './PromptModal'
+import Picasso from '../../Picasso'
+import Button from '../../Button'
+import Input from '../../Input'
+import PromptModal from './../PromptModal'
 import { useModals } from '../utils'
 
 test('renders PromptModal', () => {

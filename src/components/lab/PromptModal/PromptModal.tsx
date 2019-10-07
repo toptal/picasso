@@ -1,12 +1,12 @@
 import React, { forwardRef, ReactNode, useState } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
-import Container from '../Container'
-import Modal from '../Modal'
-import { Props as ModalProps } from '../Modal/Modal'
-import Button from '../Button'
-import { VariantType as ButtonVariantType } from '../Button/Button'
-import Typography from '../Typography'
+import Container from '../../Container'
+import Modal from '../../Modal'
+import { Props as ModalProps } from '../../Modal/Modal'
+import Button from '../../Button'
+import { VariantType as ButtonVariantType } from '../../Button/Button'
+import Typography from '../../Typography'
 import styles from './styles'
 
 export type VariantType = 'red' | 'blue' | 'green'

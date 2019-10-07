@@ -8,7 +8,7 @@ import {
   Form,
   Container
 } from '@toptal/picasso'
-import { useModals } from '@toptal/picasso/utils'
+import { useModals } from '@toptal/picasso/lab/utils'
 
 const STATES = [
   {
