@@ -24,7 +24,7 @@ type JustifyContentType =
   | 'space-around'
   | 'space-evenly'
 
-export type VariantType = 'red' | 'green' | 'white' | 'yellow' | 'blue'
+export type VariantType = 'red' | 'green' | 'white' | 'yellow' | 'blue' | 'grey'
 
 export interface Props
   extends StandardProps,
