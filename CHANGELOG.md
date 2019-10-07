@@ -1,3 +1,10 @@
+## [3.21.1](https://github.com/toptal/picasso/compare/v3.21.0...v3.21.1) (2019-10-07)
+
+
+### Bug Fixes
+
+* **Autocomplete:** [FX-492] Extend the api with other option ([#760](https://github.com/toptal/picasso/issues/760)) ([780cd4f](https://github.com/toptal/picasso/commit/780cd4f))
+
 # [3.21.0](https://github.com/toptal/picasso/compare/v3.20.0...v3.21.0) (2019-10-07)
 
 

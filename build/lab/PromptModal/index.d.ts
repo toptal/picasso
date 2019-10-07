@@ -1,1 +1,2 @@
-export { default, VariantType } from './PromptModal';
+export { default } from './PromptModal';
+export * from './PromptModal';

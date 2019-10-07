@@ -18,7 +18,6 @@ import styles from './styles';
 import TagSelectorInput from '../TagSelectorInput';
 import useControlledAndUncontrolledState from '../../utils/use-controlled-and-uncontrolled-state';
 import useControlledAndUncontrolledInput from '../../utils/use-controlled-and-uncontrolled-input';
-const getUniqueValue = (value) => `${value.replace(/\s+/g, '-').toLowerCase()}-${new Date().getTime()}`;
 export const TagSelector = forwardRef(function TagSelector(_a, ref) {
     var { loading, placeholder, options, newOptionLabel, defaultValue, value, onChange, defaultInputValue, inputValue: inputValueProp, onInputChange, width } = _a, rest = __rest(_a, ["loading", "placeholder", "options", "newOptionLabel", "defaultValue", "value", "onChange", "defaultInputValue", "inputValue", "onInputChange", "width"]);
     const [inputValue, setInputValue] = useControlledAndUncontrolledInput(defaultInputValue, inputValueProp, onInputChange);
@@ -63,34 +62,25 @@ export const TagSelector = forwardRef(function TagSelector(_a, ref) {
     const handleSelect = (itemValue) => {
         if (!itemValue)
             return;
-        const isInOptions = currentOptions.find(option => option.value === itemValue);
-        if (!isInOptions) {
-            setAddedOptions([
-                ...addedOptions,
-                {
-                    value: itemValue,
-                    text: inputValue.replace(newOptionLabel || '', '')
-                }
-            ]);
-        }
         if (!selectedValues.includes(itemValue)) {
             setSelectedValues([...selectedValues, itemValue]);
         }
         setInputValue('');
     };
-    const nonSelectedOptions = currentOptions.filter(item => !selectedValues.includes(item.value));
-    const maybeNewOptions = inputValue
-        ? [
+    const handleOtherOptionSelect = (itemText) => {
+        setAddedOptions([
+            ...addedOptions,
             {
-                value: getUniqueValue(inputValue),
-                text: `${newOptionLabel}${inputValue}`
+                value: itemText,
+                text: itemText
             }
-        ]
-        : [];
-    const autocompleteOptions = [
-        ...nonSelectedOptions,
-        ...maybeNewOptions
-    ];
+        ]);
+        if (!selectedValues.includes(itemText)) {
+            setSelectedValues([...selectedValues, itemText]);
+        }
+        setInputValue('');
+    };
+    const autocompleteOptions = currentOptions.filter(item => !selectedValues.includes(item.value));
     const labels = (React.createElement(Fragment, null, selectedValues.map(value => {
         const item = currentOptions.find(option => option.value === value);
         if (!item) {
@@ -101,7 +91,7 @@ export const TagSelector = forwardRef(function TagSelector(_a, ref) {
     })));
     return (React.createElement(Autocomplete
     // eslint-disable-next-line react/jsx-props-no-spreading
-    , Object.assign({}, rest, { ref: inputRef, placeholder: selectedValues.length === 0 ? placeholder : undefined, options: autocompleteOptions, value: null, onSelect: handleSelect, inputValue: inputValue, onChange: setInputValue, onKeyDown: handleKeyDown, startAdornment: labels, loading: loading, inputComponent: TagSelectorInput, width: width })));
+    , Object.assign({}, rest, { ref: inputRef, placeholder: selectedValues.length === 0 ? placeholder : undefined, options: autocompleteOptions, value: null, onSelect: handleSelect, onOtherOptionSelect: handleOtherOptionSelect, inputValue: inputValue, onChange: setInputValue, onKeyDown: handleKeyDown, startAdornment: labels, loading: loading, inputComponent: TagSelectorInput, width: width, showOtherOption: true, otherOptionText: newOptionLabel })));
 });
 TagSelector.defaultProps = {
     defaultValue: [],
