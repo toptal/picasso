@@ -19,7 +19,7 @@ import styles from './styles';
  */
 export const Container = forwardRef(function Container(_a, ref) {
     var { children, className, top, bottom, left, right, padded, inline, flex, direction, alignItems, justifyContent, style, bordered = false, variant, classes, as: Component = inline ? 'span' : 'div' } = _a, rest = __rest(_a, ["children", "className", "top", "bottom", "left", "right", "padded", "inline", "flex", "direction", "alignItems", "justifyContent", "style", "bordered", "variant", "classes", "as"]);
-    const margins = Object.assign({}, (top && { marginTop: spacingToEm(top) }), (bottom && { marginBottom: spacingToEm(bottom) }), (left && { marginLeft: spacingToEm(left) }), (right && { marginRight: spacingToEm(right) }));
+    const margins = Object.assign(Object.assign(Object.assign(Object.assign({}, (top && { marginTop: spacingToEm(top) })), (bottom && { marginBottom: spacingToEm(bottom) })), (left && { marginLeft: spacingToEm(left) })), (right && { marginRight: spacingToEm(right) }));
     return (React.createElement(Component
     // eslint-disable-next-line react/jsx-props-no-spreading
     , Object.assign({}, rest, { ref: ref, className: cx(classes[`${variant}Variant`], {
@@ -28,7 +28,7 @@ export const Container = forwardRef(function Container(_a, ref) {
             [classes.flex]: flex,
             [classes.inline]: inline,
             [classes.column]: direction === 'column'
-        }, className), style: Object.assign({}, margins, (alignItems && { alignItems }), (justifyContent && { justifyContent }), (typeof padded === 'number' && { padding: spacingToEm(padded) }), style) }), children));
+        }, className), style: Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, margins), (alignItems && { alignItems })), (justifyContent && { justifyContent })), (typeof padded === 'number' && { padding: spacingToEm(padded) })), style) }), children));
 });
 Container.displayName = 'Container';
 Container.defaultProps = {

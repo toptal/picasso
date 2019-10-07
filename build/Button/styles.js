@@ -104,7 +104,7 @@ export default ({ palette, sizes, transitions, typography }) => createStyles({
             borderColor: palette.common.white
         }
     },
-    flat: Object.assign({}, secondary(palette.common.black, palette.common.white), { border: 'none' }),
+    flat: Object.assign(Object.assign({}, secondary(palette.common.black, palette.common.white)), { border: 'none' }),
     flatWhite: {
         color: palette.common.white,
         border: 'none',
@@ -117,7 +117,7 @@ export default ({ palette, sizes, transitions, typography }) => createStyles({
     },
     primaryDisabled: primary(palette.grey.light, palette.common.white),
     secondaryDisabled: secondary(palette.grey.light, palette.common.white),
-    flatDisabled: Object.assign({}, secondary(palette.grey.light, palette.common.white), { border: 'none' }),
+    flatDisabled: Object.assign(Object.assign({}, secondary(palette.grey.light, palette.common.white)), { border: 'none' }),
     // Other props
     fullWidth: {
         width: '100%'

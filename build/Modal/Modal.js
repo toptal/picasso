@@ -29,7 +29,7 @@ export const Modal = forwardRef(function Modal(_a, ref) {
             root: classes.root,
             container: classes.container,
             paper: cx(classes.paper, classes[size])
-        }, className: className, style: style, container: container || picassoRootContainer, PaperProps: Object.assign({}, paperProps, { elevation: 2 }), hideBackdrop: hideBackdrop, onBackdropClick: onBackdropClick, onClose: onClose, onEnter: onOpen, open: open, transitionDuration: transitionDuration, maxWidth: false }),
+        }, className: className, style: style, container: container || picassoRootContainer, PaperProps: Object.assign(Object.assign({}, paperProps), { elevation: 2 }), hideBackdrop: hideBackdrop, onBackdropClick: onBackdropClick, onClose: onClose, onEnter: onOpen, open: open, transitionDuration: transitionDuration, maxWidth: false }),
         children,
         onClose && (React.createElement("span", { onClick: onClose },
             React.createElement(CloseMinor16, { className: classes.closeButton })))));

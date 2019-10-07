@@ -1,3 +1,10 @@
+# [3.20.0](https://github.com/toptal/picasso/compare/v3.19.0...v3.20.0) (2019-10-07)
+
+
+### Features
+
+* **PromptModal:** add PromptModal and showPrompt ([#753](https://github.com/toptal/picasso/issues/753)) ([a7c7c48](https://github.com/toptal/picasso/commit/a7c7c48))
+
 # [3.19.0](https://github.com/toptal/picasso/compare/v3.18.0...v3.19.0) (2019-10-04)
 
 
