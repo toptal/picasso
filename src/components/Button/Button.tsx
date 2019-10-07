@@ -22,7 +22,7 @@ import {
 } from '../Picasso'
 import styles from './styles'
 
-type VariantType =
+export type VariantType =
   | 'primary-blue'
   | 'secondary-blue'
   | 'primary-red'
