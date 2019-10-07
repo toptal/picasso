@@ -182,12 +182,6 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       const isInOptions = options!.find(option => option.value === itemValue)
 
       if (!isInOptions) {
-        const itemText = inputValue.replace(otherOptionText || '', '')
-
-        if (allowAny) {
-          setInputValue(itemText)
-        }
-
         onOtherOptionSelect!(itemValue)
         return
       }
@@ -267,7 +261,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
             allowAny && showOtherOption && inputValue
               ? {
                   value: getUniqueValue(inputValue),
-                  text: `${otherOptionText}${inputValue}`
+                  text: `${inputValue}`
                 }
               : null
           const shouldShowOtherOption = Boolean(maybeOtherOption)
