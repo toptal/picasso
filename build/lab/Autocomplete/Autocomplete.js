@@ -57,16 +57,16 @@ export const Autocomplete = forwardRef(function Autocomplete(_a, ref) {
     const downshiftStateReducer = (state, changes) => {
         switch (changes.type) {
             case Downshift.stateChangeTypes.controlledPropUpdatedSelectedItem:
-                return Object.assign({}, changes, { highlightedIndex: currentSelectedItemIndex });
+                return Object.assign(Object.assign({}, changes), { highlightedIndex: currentSelectedItemIndex });
             case Downshift.stateChangeTypes.changeInput:
-                return Object.assign({}, changes, { highlightedIndex: FIRST_ITEM_INDEX });
+                return Object.assign(Object.assign({}, changes), { highlightedIndex: FIRST_ITEM_INDEX });
             case Downshift.stateChangeTypes.mouseUp:
             case Downshift.stateChangeTypes.blurInput:
                 const hasInput = inputValue.length > 0;
                 if (allowAny &&
                     hasInput &&
                     inputValue !== getItemText(selectedItem)) {
-                    return Object.assign({}, changes, { inputValue, selectedItem: null });
+                    return Object.assign(Object.assign({}, changes), { inputValue, selectedItem: null });
                 }
                 break;
         }

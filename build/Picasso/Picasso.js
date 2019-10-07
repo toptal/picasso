@@ -55,7 +55,7 @@ const PicassoGlobalStylesProvider = withStyles(globalStyles, {
     const [contextValue, setContextValue] = useState({
         rootRef,
         hasPageHeader: false,
-        setHasPageHeader: (hasPageHeader) => setContextValue(Object.assign({}, contextValue, { hasPageHeader }))
+        setHasPageHeader: (hasPageHeader) => setContextValue(Object.assign(Object.assign({}, contextValue), { hasPageHeader }))
     });
     return (React.createElement("div", { ref: rootRef, className: classes.root },
         React.createElement(RootContext.Provider, { value: contextValue }, children)));

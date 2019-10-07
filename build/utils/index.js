@@ -9,6 +9,6 @@ export { default as isNumber } from './is-number';
 export { default as isBoolean } from './is-boolean';
 export { default as isSubstring } from './is-substring';
 export { useNotifications } from './Notifications';
-export { useModals, useModal } from './Modal';
+export { useModal } from './Modal';
 export { default as useCombinedRefs } from './use-combined-refs';
 //# sourceMappingURL=index.js.map

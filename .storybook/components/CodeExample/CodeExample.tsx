@@ -44,6 +44,7 @@ const imports: Record<string, object> = {
   debounce: require('debounce'),
   '@toptal/picasso': require('@components'),
   '@toptal/picasso/lab': require('@components/lab'),
+  '@toptal/picasso/lab/utils': require('@components/lab/utils'),
   '@toptal/picasso/utils': require('@components/utils'),
   '@toptal/picasso/Icon': require('@components/Icon')
 }

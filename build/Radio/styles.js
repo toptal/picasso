@@ -53,14 +53,14 @@ export default ({ palette, sizes, transitions }) => createStyles({
     uncheckedIcon: {
         color: palette.grey.main,
         transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`,
-        '&:before': Object.assign({}, centeredCircle(palette.common.white), { border: `${sizes.borderWidth} solid ${palette.grey.main}` }),
-        '&:after': Object.assign({}, centeredCircle(palette.common.white), { width: 'initial', height: 'initial', borderWidth: rem('3px'), borderStyle: 'solid', opacity: 0, color: palette.common.white, transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}` })
+        '&:before': Object.assign(Object.assign({}, centeredCircle(palette.common.white)), { border: `${sizes.borderWidth} solid ${palette.grey.main}` }),
+        '&:after': Object.assign(Object.assign({}, centeredCircle(palette.common.white)), { width: 'initial', height: 'initial', borderWidth: rem('3px'), borderStyle: 'solid', opacity: 0, color: palette.common.white, transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}` })
     },
     checkedIcon: {
         color: palette.primary.main,
         transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`,
-        '&:before': Object.assign({}, centeredCircle(palette.common.white), { border: `${sizes.borderWidth} solid ${palette.grey.main}` }),
-        '&:after': Object.assign({}, centeredCircle(palette.common.white), { width: 'initial', height: 'initial', borderWidth: rem('3px'), borderStyle: 'solid', opacity: 1, transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}` })
+        '&:before': Object.assign(Object.assign({}, centeredCircle(palette.common.white)), { border: `${sizes.borderWidth} solid ${palette.grey.main}` }),
+        '&:after': Object.assign(Object.assign({}, centeredCircle(palette.common.white)), { width: 'initial', height: 'initial', borderWidth: rem('3px'), borderStyle: 'solid', opacity: 1, transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}` })
     },
     label: {
         marginRight: '0.5em'
