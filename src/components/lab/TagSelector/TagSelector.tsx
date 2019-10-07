@@ -25,9 +25,6 @@ type Item = {
 
 type SelectedValuesStateTuple = [string[], ((value: string[]) => void)]
 
-const getUniqueValue = (value: string) =>
-  `${value.replace(/\s+/g, '-').toLowerCase()}-${new Date().getTime()}`
-
 export interface Props
   extends StandardProps,
     Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
@@ -141,42 +138,30 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
     const handleSelect = (itemValue: string | null) => {
       if (!itemValue) return
 
-      const isInOptions = currentOptions.find(
-        option => option.value === itemValue
-      )
-
-      if (!isInOptions) {
-        setAddedOptions([
-          ...addedOptions,
-          {
-            value: itemValue,
-            text: inputValue.replace(newOptionLabel || '', '')
-          }
-        ])
-      }
       if (!selectedValues.includes(itemValue)) {
         setSelectedValues([...selectedValues, itemValue])
       }
       setInputValue('')
     }
 
-    const nonSelectedOptions: Item[] = currentOptions.filter(
+    const handleOtherOptionSelect = (itemText: string) => {
+      setAddedOptions([
+        ...addedOptions,
+        {
+          value: itemText,
+          text: itemText
+        }
+      ])
+
+      if (!selectedValues.includes(itemText)) {
+        setSelectedValues([...selectedValues, itemText])
+      }
+      setInputValue('')
+    }
+
+    const autocompleteOptions: Item[] = currentOptions.filter(
       item => !selectedValues.includes(item.value)
     )
-
-    const maybeNewOptions = inputValue
-      ? [
-          {
-            value: getUniqueValue(inputValue),
-            text: `${newOptionLabel}${inputValue}`
-          }
-        ]
-      : []
-
-    const autocompleteOptions: Item[] = [
-      ...nonSelectedOptions,
-      ...maybeNewOptions
-    ]
 
     const labels = (
       <Fragment>
@@ -207,6 +192,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         options={autocompleteOptions}
         value={null}
         onSelect={handleSelect}
+        onOtherOptionSelect={handleOtherOptionSelect}
         inputValue={inputValue}
         onChange={setInputValue}
         onKeyDown={handleKeyDown}
@@ -214,6 +200,8 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         loading={loading}
         inputComponent={TagSelectorInput as ComponentType<InputProps>}
         width={width}
+        showOtherOption
+        otherOptionText={newOptionLabel}
       />
     )
   }
