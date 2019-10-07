@@ -14,10 +14,10 @@ page
 
 page
   .createChapter()
-  .addExample('PromptModal/story/Default.example.tsx', 'Default') // picasso-skip-visuals
-  .addExample('PromptModal/story/Variants.example.tsx', 'Variants') // picasso-skip-visuals
-  .addExample('PromptModal/story/WithInput.example.tsx', 'With Input') // picasso-skip-visuals
+  .addExample('lab/PromptModal/story/Default.example.tsx', 'Default') // picasso-skip-visuals
+  .addExample('lab/PromptModal/story/Variants.example.tsx', 'Variants') // picasso-skip-visuals
+  .addExample('lab/PromptModal/story/WithInput.example.tsx', 'With Input') // picasso-skip-visuals
   .addExample(
-    'PromptModal/story/WithAutocomplete.example.tsx',
+    'lab/PromptModal/story/WithAutocomplete.example.tsx',
     'With Autocomplete'
   ) // picasso-skip-visuals
