@@ -1,3 +1,10 @@
+# [3.22.0](https://github.com/toptal/picasso/compare/v3.21.1...v3.22.0) (2019-10-07)
+
+
+### Features
+
+* **Tabs:** add variant prop ([#720](https://github.com/toptal/picasso/issues/720)) ([a00ac45](https://github.com/toptal/picasso/commit/a00ac45))
+
 ## [3.21.1](https://github.com/toptal/picasso/compare/v3.21.0...v3.21.1) (2019-10-07)
 
 
