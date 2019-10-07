@@ -2,7 +2,7 @@ import { ReactNode, ReactElement, MouseEvent, ElementType } from 'react';
 import { ButtonBaseProps } from '@material-ui/core/ButtonBase';
 import Group from '../ButtonGroup';
 import { StandardProps, PicassoComponentWithRef, SizeType, ButtonOrAnchorProps, CompoundedComponentWithRef } from '../Picasso';
-declare type VariantType = 'primary-blue' | 'secondary-blue' | 'primary-red' | 'secondary-red' | 'primary-green' | 'flat' | 'flat-white' | 'secondary-white';
+export declare type VariantType = 'primary-blue' | 'secondary-blue' | 'primary-red' | 'secondary-red' | 'primary-green' | 'flat' | 'flat-white' | 'secondary-white';
 declare type IconPositionType = 'left' | 'right';
 export interface Props extends StandardProps, ButtonOrAnchorProps {
     /** Show button in the active state (left mouse button down) */

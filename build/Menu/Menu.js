@@ -43,7 +43,7 @@ export const Menu = forwardRef(function Menu(_a, ref) {
         return menu;
     }
     const menuContext = {
-        push: (key, menu) => setMenus(Object.assign({}, menus, { [key]: menu })),
+        push: (key, menu) => setMenus(Object.assign(Object.assign({}, menus), { [key]: menu })),
         pop: () => {
             const key = getLastKey();
             if (!key) {
@@ -57,7 +57,7 @@ export const Menu = forwardRef(function Menu(_a, ref) {
             if (!menus[key]) {
                 return;
             }
-            setMenus(Object.assign({}, menus, { [key]: menu }));
+            setMenus(Object.assign(Object.assign({}, menus), { [key]: menu }));
         }
     };
     const currentVisibleMenuKey = getLastKey();

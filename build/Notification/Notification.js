@@ -37,7 +37,7 @@ const renderNotificationIcon = ({ icon, variant, classes }) => {
             // eslint-disable-next-line react/jsx-props-no-spreading
             return React.createElement(Tick, Object.assign({}, iconProps, { color: 'green' }));
         default:
-            const infoProps = Object.assign({}, iconProps, { color: 'grey' });
+            const infoProps = Object.assign(Object.assign({}, iconProps), { color: 'grey' });
             // eslint-disable-next-line react/jsx-props-no-spreading
             return icon ? cloneElement(icon, infoProps) : React.createElement(Info, Object.assign({}, infoProps));
     }

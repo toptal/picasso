@@ -99,7 +99,7 @@ export const Dropdown = forwardRef(function Dropdown(_a, ref) {
             return contentRef.current.focus();
         }
     };
-    const paperMargins = useMemo(() => (Object.assign({}, (offset.top && { marginTop: spacingToEm(offset.top) }), (offset.bottom && { marginBottom: spacingToEm(offset.bottom) }), (offset.left && { marginLeft: spacingToEm(offset.left) }), (offset.right && { marginRight: spacingToEm(offset.right) }))), [offset]);
+    const paperMargins = useMemo(() => (Object.assign(Object.assign(Object.assign(Object.assign({}, (offset.top && { marginTop: spacingToEm(offset.top) })), (offset.bottom && { marginBottom: spacingToEm(offset.bottom) })), (offset.left && { marginLeft: spacingToEm(offset.left) })), (offset.right && { marginRight: spacingToEm(offset.right) }))), [offset]);
     // here you can expose other methods, states to child components
     const context = useMemo(() => ({
         close: () => forceClose()
