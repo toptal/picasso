@@ -5,8 +5,7 @@ import React, {
   ReactElement,
   Fragment,
   cloneElement,
-  HTMLAttributes,
-  Ref
+  HTMLAttributes
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import SnackbarContent from '@material-ui/core/SnackbarContent'
@@ -19,11 +18,16 @@ import {
   CheckMinor16 as Tick,
   Info16 as Info
 } from '../Icon'
-import { StandardProps } from '../Picasso'
+import {
+  StandardProps,
+  PicassoComponentWithRef,
+  CompoundedComponentWithRef
+} from '../Picasso'
 import Container from '../Container'
 import Button from '../Button'
 import styles from './styles'
 import Typography from '../Typography'
+import NotificationActions from '../NotificationActions'
 
 export type VariantType = 'red' | 'green' | 'white' | 'yellow'
 
@@ -40,7 +44,10 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   elevated?: boolean
   /** Take the full width of a container */
   fullWidth?: boolean
-  ref?: Ref<Notification>
+}
+
+interface StaticProps {
+  Actions: typeof NotificationActions
 }
 
 const renderNotificationCloseButton = ({
@@ -110,6 +117,7 @@ const renderNotificationContent = (props: Props) => {
   )
 }
 
+// eslint-disable-next-line react/display-name
 export const Notification = forwardRef<HTMLElement, Props>(
   function Notification(props, ref) {
     const { className, classes, variant, elevated, fullWidth, ...rest } = props
@@ -132,7 +140,7 @@ export const Notification = forwardRef<HTMLElement, Props>(
       />
     )
   }
-)
+) as CompoundedComponentWithRef<Props, HTMLElement, StaticProps>
 
 Notification.defaultProps = {
   elevated: false,
@@ -142,4 +150,10 @@ Notification.defaultProps = {
 
 Notification.displayName = 'Notification'
 
-export default withStyles(styles)(Notification)
+Notification.Actions = NotificationActions
+
+export default withStyles(styles)(Notification) as PicassoComponentWithRef<
+  Props,
+  HTMLElement,
+  StaticProps
+>

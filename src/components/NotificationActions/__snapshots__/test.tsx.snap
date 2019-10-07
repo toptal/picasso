@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotificationActions default render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="MuiTypography-root MuiPaper-root MuiPaper-elevation6 MuiSnackbarContent-root Notification-notificationGreen Notification-notification MuiTypography-body2"
+      role="alertdialog"
+    >
+      <div
+        class="MuiSnackbarContent-message"
+      >
+        <div
+          class="Container-flex Notification-iconWrapper"
+          style="align-items: center;"
+        >
+          <svg
+            class="SvgCheckMinor16-root SvgCheckMinor16-green"
+            style="min-width: 16px; min-height: 16px;"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M6.5 9.793l4-4 .707.707-4 4-.707.707L3.793 8.5l.707-.707 2 2z"
+            />
+          </svg>
+        </div>
+        <div
+          class="MuiTypography-root Typography-bodyMedium Notification-content MuiTypography-body1"
+        >
+          The time zone in your profile is set to (UTC -08:00) America - Los
+          <div
+            class="Container-flex"
+            style="margin-top: 0.5em;"
+          >
+            Test
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
