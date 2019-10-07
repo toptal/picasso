@@ -1,3 +1,10 @@
+# [3.21.0](https://github.com/toptal/picasso/compare/v3.20.0...v3.21.0) (2019-10-07)
+
+
+### Features
+
+* **userbadge:** new size xxsmall ([#751](https://github.com/toptal/picasso/issues/751)) ([d99cb6a](https://github.com/toptal/picasso/commit/d99cb6a))
+
 # [3.20.0](https://github.com/toptal/picasso/compare/v3.19.0...v3.20.0) (2019-10-07)
 
 

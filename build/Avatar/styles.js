@@ -21,6 +21,9 @@ export default ({ palette }) => createStyles({
         width: '2.5em',
         height: '1.666em'
     },
+    xxsmall: {
+        fontSize: '0.8rem'
+    },
     xsmall: {
         fontSize: '1rem'
     },

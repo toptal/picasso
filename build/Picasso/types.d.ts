@@ -24,7 +24,7 @@ interface NamedComponent<P> {
 export interface OverridableComponent<P = {}> extends NamedComponent<P> {
     <T extends ElementType = ElementType<Omit<P, 'as'>>>(props: PropsWithOverridableAs<T, P>): JSX.Element | null;
 }
-declare type Sizes = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
+declare type Sizes = 'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
 export declare type SizeType<T extends Sizes> = T;
 export declare type SpacingType = number | SizeType<'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'>;
 export declare enum SpacingEnum {
