@@ -41,6 +41,7 @@ export const Tabs = forwardRef<HTMLButtonElement, Props>(function Tabs(
       onChange={onChange}
       value={value}
       variant='scrollable'
+      scrollButtons='off'
     >
       {children}
     </MUITabs>
