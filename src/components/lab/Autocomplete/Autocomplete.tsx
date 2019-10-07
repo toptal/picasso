@@ -182,7 +182,9 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       const isInOptions = options!.find(option => option.value === itemValue)
 
       if (!isInOptions) {
-        onOtherOptionSelect!(itemValue)
+        const itemText = getItemText(item)
+
+        onOtherOptionSelect!(itemText)
         return
       }
 

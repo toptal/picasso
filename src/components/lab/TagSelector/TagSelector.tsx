@@ -144,17 +144,17 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       setInputValue('')
     }
 
-    const handleOtherOptionSelect = (itemValue: string) => {
+    const handleOtherOptionSelect = (itemText: string) => {
       setAddedOptions([
         ...addedOptions,
         {
-          value: itemValue,
-          text: inputValue.replace(newOptionLabel || '', '')
+          value: itemText,
+          text: itemText
         }
       ])
 
-      if (!selectedValues.includes(itemValue)) {
-        setSelectedValues([...selectedValues, itemValue])
+      if (!selectedValues.includes(itemText)) {
+        setSelectedValues([...selectedValues, itemText])
       }
       setInputValue('')
     }
