@@ -1,3 +1,10 @@
+# [3.23.0](https://github.com/toptal/picasso/compare/v3.22.0...v3.23.0) (2019-10-07)
+
+
+### Features
+
+* [FX-502] Add grey variant to Container and Helpbox ([#747](https://github.com/toptal/picasso/issues/747)) ([d453f06](https://github.com/toptal/picasso/commit/d453f06))
+
 # [3.22.0](https://github.com/toptal/picasso/compare/v3.21.1...v3.22.0) (2019-10-07)
 
 

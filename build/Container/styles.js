@@ -30,5 +30,5 @@ export default ({ palette }) => createStyles(Object.assign({ bordered: {
         flexDirection: 'column'
     }, inline: {
         display: 'inline-block'
-    }, whiteVariant: colorVariant(), redVariant: colorVariant(palette.red), greenVariant: colorVariant(palette.green), yellowVariant: colorVariant(palette.yellow), blueVariant: colorVariant(palette.blue) }, paddings));
+    }, whiteVariant: colorVariant(), redVariant: colorVariant(palette.red), greenVariant: colorVariant(palette.green), yellowVariant: colorVariant(palette.yellow), blueVariant: colorVariant(palette.blue), greyVariant: colorVariant(palette.grey) }, paddings));
 //# sourceMappingURL=styles.js.map
