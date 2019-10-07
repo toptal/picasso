@@ -9,7 +9,7 @@ buildImageJobName = "${repoName}-build-image"
 def VERSION
 
 pipeline {
-  agent { label 'slave_aws' }
+  agent { label 'docker' }
 
   parameters {
     string(name: 'RELEASE_AND_PUBLISH', defaultValue: '1', description: 'Run build in dry-run mode which will not release new version')

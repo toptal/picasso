@@ -3,7 +3,7 @@
 image = null
 
 pipeline {
-  agent { label 'slave_aws' }
+  agent { label 'docker' }
 
   options {
     ansiColor('xterm')
