@@ -23,6 +23,10 @@ const DOMTokenListSupports = function (tokenList, token) {
 // https://alligator.io/html/preload-prefetch
 const applyLoadedFont = (e) => {
     const target = e.target;
+    // this handler needs to be removed from the link tag
+    // because of the issue with the infinite loop of
+    // loading fonts in IE11 and Edge
+    target.removeEventListener('load', applyLoadedFont);
     target.rel = 'stylesheet';
 };
 const findFontsLoader = () => {
