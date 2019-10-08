@@ -1,3 +1,10 @@
+# [3.24.0](https://github.com/toptal/picasso/compare/v3.23.0...v3.24.0) (2019-10-08)
+
+
+### Features
+
+* [FX-501] Make Sidebar and Top Header responsive for medium size ([#757](https://github.com/toptal/picasso/issues/757)) ([3045d2a](https://github.com/toptal/picasso/commit/3045d2a))
+
 # [3.23.0](https://github.com/toptal/picasso/compare/v3.22.0...v3.23.0) (2019-10-07)
 
 

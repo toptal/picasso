@@ -48,7 +48,7 @@ export const MenuItem = forwardRef(function MenuItem(_a, ref) {
     // eslint-disable-next-line react/jsx-props-no-spreading
     , Object.assign({}, rest, { ref: ref, component: as, classes: restClasses, className: cx(classes[variant], className), disabled: disabled, disableGutters: disableGutters, onClick: handleClick, style: style, value: value, selected: selected }),
         children,
-        menu && (React.createElement(Container, { "inline-flex": true, left: 'xsmall' },
+        menu && (React.createElement(Container, { flex: true, inline: true, left: 'xsmall' },
             React.createElement(ChevronMinor16, null)))));
 });
 MenuItem.defaultProps = {

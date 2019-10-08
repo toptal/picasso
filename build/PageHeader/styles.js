@@ -24,7 +24,7 @@ export default ({ palette, layout, zIndex, screens }) => createStyles({
         maxWidth: layout.contentWidth,
         height: headerHeight,
         padding: `0 ${layout.contentPaddingHorizontal}`,
-        [screens('small')]: {
+        [screens('small', 'medium')]: {
             height: '3em'
         }
     },
@@ -46,7 +46,7 @@ export default ({ palette, layout, zIndex, screens }) => createStyles({
         opacity: 0.8
     },
     logoContainer: {
-        [screens('small')]: {
+        [screens('small', 'medium')]: {
             lineHeight: '1em',
             position: 'absolute',
             left: '50%',
@@ -54,7 +54,7 @@ export default ({ palette, layout, zIndex, screens }) => createStyles({
         }
     },
     logo: {
-        [screens('small')]: {
+        [screens('small', 'medium')]: {
             fontSize: '1.5em'
         }
     }

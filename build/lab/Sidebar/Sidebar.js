@@ -20,11 +20,11 @@ const SmallScreenSidebarWrapper = ({ classes, children }) => {
 export const SidebarContext = React.createContext({});
 // eslint-disable-next-line react/display-name
 export const Sidebar = forwardRef(function Sidebar({ children, variant, className, style, classes }, ref) {
-    const isSmallScreen = useBreakpoint('small');
+    const isCompactLayout = useBreakpoint(['small', 'medium']);
     const sidebar = (React.createElement(Container, { ref: ref, flex: true, direction: 'column', style: style, className: cx(classes.root, className, classes[variant]) },
         React.createElement("div", { className: classes.spacer }),
         React.createElement(SidebarContext.Provider, { value: { variant } }, children)));
-    return isSmallScreen ? (React.createElement(SmallScreenSidebarWrapper, { classes: classes }, sidebar)) : (sidebar);
+    return isCompactLayout ? (React.createElement(SmallScreenSidebarWrapper, { classes: classes }, sidebar)) : (sidebar);
 });
 Sidebar.defaultProps = {
     variant: 'light'

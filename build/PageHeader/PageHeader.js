@@ -19,7 +19,7 @@ import { useBreakpoint } from '../utils';
 import styles from './styles';
 export const PageHeader = forwardRef(function PageHeader(_a, ref) {
     var { classes, className, style, title, logoLink, rightContent, actionItems, variant } = _a, rest = __rest(_a, ["classes", "className", "style", "title", "logoLink", "rightContent", "actionItems", "variant"]);
-    const isSmallScreen = useBreakpoint('small');
+    const isCompactLayout = useBreakpoint(['small', 'medium']);
     const { setHasPageHeader } = usePageHeader();
     useLayoutEffect(() => {
         setHasPageHeader(true);
@@ -28,7 +28,7 @@ export const PageHeader = forwardRef(function PageHeader(_a, ref) {
         };
     }, []);
     const { fullWidth } = useContext(PageContext);
-    const logo = (React.createElement(Logo, { variant: 'white', emblem: isSmallScreen, className: classes.logo }));
+    const logo = (React.createElement(Logo, { variant: 'white', emblem: isCompactLayout, className: classes.logo }));
     const titleComponent = title && (React.createElement(Container, { left: 'small', flex: true, alignItems: 'center' },
         React.createElement("div", { className: classes.divider }),
         React.createElement(Container, { left: 'small' },
@@ -37,9 +37,9 @@ export const PageHeader = forwardRef(function PageHeader(_a, ref) {
         React.createElement("div", { className: cx({ [classes.fullWidth]: fullWidth }, classes.content) },
             React.createElement("div", { className: classes.left },
                 React.createElement(Container, { className: classes.logoContainer, flex: true, alignItems: 'center' }, logoLink ? React.cloneElement(logoLink, {}, logo) : logo),
-                !isSmallScreen && titleComponent),
+                !isCompactLayout && titleComponent),
             React.createElement("div", { className: classes.right },
-                !isSmallScreen && actionItems,
+                !isCompactLayout && actionItems,
                 rightContent))));
 });
 PageHeader.defaultProps = {

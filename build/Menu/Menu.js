@@ -67,6 +67,7 @@ export const Menu = forwardRef(function Menu(_a, ref) {
             className: cx(menu.props.className, { [hideMenu]: isRootMenuHidden })
         }),
         menusKeys.map((menuKey) => React.cloneElement(menus[menuKey], {
+            key: menuKey,
             className: cx(menus[menuKey].props.className, {
                 [hideMenu]: menuKey !== currentVisibleMenuKey
             })

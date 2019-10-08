@@ -1,11 +1,11 @@
 {
   "name": "@toptal/picasso",
-  "version": "3.23.0",
+  "version": "3.24.0",
   "description": "",
   "main": "./index.js",
   "module": "./index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --runInBand",
     "test:watch": "jest --watch --runInBand",
     "test:visual": "./bin/run-in-docker ./bin/test-visual",
     "lint": "davinci syntax lint code .",
