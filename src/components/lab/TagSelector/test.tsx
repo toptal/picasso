@@ -45,15 +45,17 @@ const selectOption = async (
   input: HTMLElement,
   optionText: string
 ) => {
-  const { container, getByText } = renderResult
+  const { container, getAllByText } = renderResult
 
   fireEvent.change(input, { target: { value: optionText } })
 
-  const optionElement = await waitForElement(() => getByText(optionText), {
+  const optionElement = await waitForElement(() => getAllByText(optionText), {
     container
   })
 
-  fireEvent.click(optionElement)
+  // add new option is duplicating all the options when typing
+  // so we don't need it when selecting the option
+  fireEvent.click(optionElement[0])
 }
 
 afterEach(cleanup)
@@ -108,7 +110,7 @@ describe('TagSelector', () => {
     fireEvent.change(input, { target: { value: newOptionText } })
 
     const newOptionElement = await waitForElement(
-      () => getByText(testProps.newOptionLabel + newOptionText),
+      () => getByText(newOptionText),
       { container }
     )
 

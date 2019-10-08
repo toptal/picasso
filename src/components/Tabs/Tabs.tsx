@@ -34,8 +34,15 @@ export const Tabs = forwardRef<HTMLButtonElement, Props>(function Tabs(
   ref
 ) {
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <MUITabs {...rest} ref={ref} onChange={onChange} value={value}>
+    <MUITabs
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
+      ref={ref}
+      onChange={onChange}
+      value={value}
+      variant='scrollable'
+      scrollButtons='off'
+    >
       {children}
     </MUITabs>
   )

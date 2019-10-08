@@ -4,7 +4,7 @@ declare type ContainerType = 'div' | 'span';
 declare type DirectionType = 'row' | 'column';
 declare type AlignItemsType = 'flex-start' | 'flex-end' | 'center' | 'stretch' | 'baseline';
 declare type JustifyContentType = 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
-export declare type VariantType = 'red' | 'green' | 'white' | 'yellow' | 'blue';
+export declare type VariantType = 'red' | 'green' | 'white' | 'yellow' | 'blue' | 'grey';
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement | HTMLSpanElement> {
     /** Content of Container */
     children: ReactNode;

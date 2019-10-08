@@ -6,8 +6,12 @@ exports[`Tabs default render 1`] = `
     class="MuiTabs-root"
   >
     <div
-      class="MuiTabs-scroller MuiTabs-fixed"
-      style="overflow: hidden;"
+      class="MuiTabs-scrollable"
+      style="width: 99px; height: 99px; position: absolute; top: -9999px; overflow: scroll;"
+    />
+    <div
+      class="MuiTabs-scroller MuiTabs-scrollable"
+      style="margin-bottom: 0px;"
     >
       <div
         class="MuiTabs-flexContainer"
@@ -61,8 +65,12 @@ exports[`Tabs with preselected option 1`] = `
     class="MuiTabs-root"
   >
     <div
-      class="MuiTabs-scroller MuiTabs-fixed"
-      style="overflow: hidden;"
+      class="MuiTabs-scrollable"
+      style="width: 99px; height: 99px; position: absolute; top: -9999px; overflow: scroll;"
+    />
+    <div
+      class="MuiTabs-scroller MuiTabs-scrollable"
+      style="margin-bottom: 0px;"
     >
       <div
         class="MuiTabs-flexContainer"
@@ -116,8 +124,12 @@ exports[`Tabs with preselected option using custom value 1`] = `
     class="MuiTabs-root"
   >
     <div
-      class="MuiTabs-scroller MuiTabs-fixed"
-      style="overflow: hidden;"
+      class="MuiTabs-scrollable"
+      style="width: 99px; height: 99px; position: absolute; top: -9999px; overflow: scroll;"
+    />
+    <div
+      class="MuiTabs-scroller MuiTabs-scrollable"
+      style="margin-bottom: 0px;"
     >
       <div
         class="MuiTabs-flexContainer"

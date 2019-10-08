@@ -65,7 +65,7 @@ export interface OverridableComponent<P = {}> extends NamedComponent<P> {
   ): JSX.Element | null
 }
 
-type Sizes = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'
+type Sizes = 'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'
 
 export type SizeType<T extends Sizes> = T
 

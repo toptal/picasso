@@ -9,7 +9,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { forwardRef } from 'react';
+import React, { forwardRef, Fragment } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { capitalize } from '@material-ui/core/utils/helpers';
 import cx from 'classnames';
@@ -18,6 +18,7 @@ import Input from '../../Input';
 import Menu from '../../Menu';
 import Loader from '../../Loader';
 import ScrollMenu from '../../ScrollMenu';
+import Typography from '../../Typography';
 import { isSubstring } from '../../utils';
 import useControlledAndUncontrolledState from '../../utils/use-controlled-and-uncontrolled-state';
 import useControlledAndUncontrolledInput from '../../utils/use-controlled-and-uncontrolled-input';
@@ -29,8 +30,9 @@ const isMatchingMinLength = (value, minLength) => !minLength || value.length >= 
 const getItemText = (item) => (item && item.text) || EMPTY_INPUT_VALUE;
 const getItemValue = (item) => (item && (item.value || item.text)) || null;
 const isSelected = (item, selectedItem) => getItemValue(item) === getItemValue(selectedItem);
+const getUniqueValue = (value) => `${value.replace(/\s+/g, '-').toLowerCase()}-${new Date().getTime()}`;
 export const Autocomplete = forwardRef(function Autocomplete(_a, ref) {
-    var { classes, className, defaultInputValue, inputValue: inputValueProp, onChange: onInputChange, defaultValue, value, onSelect, loading, minLength, placeholder, noOptionsText, options, style, width, allowAny, onKeyDown, inputComponent, renderOption, endAdornment, icon, error } = _a, rest = __rest(_a, ["classes", "className", "defaultInputValue", "inputValue", "onChange", "defaultValue", "value", "onSelect", "loading", "minLength", "placeholder", "noOptionsText", "options", "style", "width", "allowAny", "onKeyDown", "inputComponent", "renderOption", "endAdornment", "icon", "error"]);
+    var { classes, className, defaultInputValue, inputValue: inputValueProp, onChange: onInputChange, defaultValue, value, onSelect, onOtherOptionSelect, loading, minLength, placeholder, otherOptionText, noOptionsText, options, style, width, allowAny, showOtherOption, onKeyDown, inputComponent, renderOption, endAdornment, icon, error } = _a, rest = __rest(_a, ["classes", "className", "defaultInputValue", "inputValue", "onChange", "defaultValue", "value", "onSelect", "onOtherOptionSelect", "loading", "minLength", "placeholder", "otherOptionText", "noOptionsText", "options", "style", "width", "allowAny", "showOtherOption", "onKeyDown", "inputComponent", "renderOption", "endAdornment", "icon", "error"]);
     const [selectedItemValue, setSelectedItemValue] = useControlledAndUncontrolledState(defaultValue, value, onSelect);
     const selectedItem = selectedItemValue === null
         ? null
@@ -46,7 +48,18 @@ export const Autocomplete = forwardRef(function Autocomplete(_a, ref) {
         }
     };
     const handleSelectItem = (item) => {
-        setSelectedItemValue(getItemValue(item));
+        const itemValue = getItemValue(item);
+        if (itemValue === null) {
+            setSelectedItemValue(itemValue);
+            return;
+        }
+        const isInOptions = options.find(option => option.value === itemValue);
+        if (!isInOptions) {
+            const itemText = getItemText(item);
+            onOtherOptionSelect(itemText);
+            return;
+        }
+        setSelectedItemValue(itemValue);
     };
     const matchingOptions = getItemText(selectedItem) === inputValue
         ? options
@@ -80,9 +93,27 @@ export const Autocomplete = forwardRef(function Autocomplete(_a, ref) {
     return (React.createElement(Downshift, { inputValue: inputValue, onInputValueChange: handleInputValueChange, selectedItem: selectedItem, onChange: handleSelectItem, itemToString: downshiftItemToString, stateReducer: downshiftStateReducer }, ({ getMenuProps, getInputProps, getItemProps, isOpen, highlightedIndex, selectItem, setState }) => {
         const hasMatchingOptions = matchingOptions.length > 0;
         const canOpen = isOpen && isMatchingMinLength(inputValue, minLength) && !loading;
-        const optionsMenu = (React.createElement(ScrollMenu, { selectedIndex: highlightedIndex }, hasMatchingOptions ? (matchingOptions.map((option, index) => (React.createElement(Menu.Item, Object.assign({ key: getItemValue(option), selected: highlightedIndex === index, disabled: isSelected(option, selectedItem) }, getItemProps({ item: option, index })), renderOption
-            ? renderOption(option, index)
-            : getItemText(option))))) : (React.createElement(Menu.Item, { disabled: true }, noOptionsText))));
+        const matchingOptionsLength = matchingOptions.length;
+        const maybeOtherOption = allowAny && showOtherOption && inputValue
+            ? {
+                value: getUniqueValue(inputValue),
+                text: `${inputValue}`
+            }
+            : null;
+        const shouldShowOtherOption = Boolean(maybeOtherOption);
+        const optionsMenu = (React.createElement(ScrollMenu, { selectedIndex: highlightedIndex }, hasMatchingOptions || shouldShowOtherOption ? (React.createElement(Fragment, null,
+            matchingOptions.map((option, index) => (React.createElement(Menu.Item, Object.assign({ key: getItemValue(option), selected: highlightedIndex === index, disabled: isSelected(option, selectedItem) }, getItemProps({ item: option, index })), renderOption
+                ? renderOption(option, index)
+                : getItemText(option)))),
+            maybeOtherOption && (React.createElement(Menu.Item, Object.assign({ key: getItemValue(maybeOtherOption), selected: highlightedIndex === matchingOptionsLength, disabled: isSelected(maybeOtherOption, selectedItem) }, getItemProps({
+                item: maybeOtherOption,
+                index: matchingOptionsLength
+            }), { className: cx({
+                    [classes.otherOption]: matchingOptionsLength
+                }) }),
+                React.createElement("span", { className: classes.stringContent },
+                    React.createElement(Typography, { as: 'span', color: 'dark-grey' }, otherOptionText),
+                    inputValue))))) : (React.createElement(Menu.Item, { disabled: true }, noOptionsText))));
         const handleFocusOrClick = () => {
             if (!isOpen) {
                 let newInputValue = inputValue;
@@ -131,8 +162,11 @@ Autocomplete.defaultProps = {
     noOptionsText: 'No options',
     onChange: () => { },
     onKeyDown: () => { },
+    onOtherOptionSelect: () => { },
     onSelect: () => { },
     options: [],
+    otherOptionText: 'Other option: ',
+    showOtherOption: false,
     width: 'auto'
 };
 Autocomplete.displayName = 'Autocomplete';

@@ -1,3 +1,31 @@
+# [3.23.0](https://github.com/toptal/picasso/compare/v3.22.0...v3.23.0) (2019-10-07)
+
+
+### Features
+
+* [FX-502] Add grey variant to Container and Helpbox ([#747](https://github.com/toptal/picasso/issues/747)) ([d453f06](https://github.com/toptal/picasso/commit/d453f06))
+
+# [3.22.0](https://github.com/toptal/picasso/compare/v3.21.1...v3.22.0) (2019-10-07)
+
+
+### Features
+
+* **Tabs:** add variant prop ([#720](https://github.com/toptal/picasso/issues/720)) ([a00ac45](https://github.com/toptal/picasso/commit/a00ac45))
+
+## [3.21.1](https://github.com/toptal/picasso/compare/v3.21.0...v3.21.1) (2019-10-07)
+
+
+### Bug Fixes
+
+* **Autocomplete:** [FX-492] Extend the api with other option ([#760](https://github.com/toptal/picasso/issues/760)) ([780cd4f](https://github.com/toptal/picasso/commit/780cd4f))
+
+# [3.21.0](https://github.com/toptal/picasso/compare/v3.20.0...v3.21.0) (2019-10-07)
+
+
+### Features
+
+* **userbadge:** new size xxsmall ([#751](https://github.com/toptal/picasso/issues/751)) ([d99cb6a](https://github.com/toptal/picasso/commit/d99cb6a))
+
 # [3.20.0](https://github.com/toptal/picasso/compare/v3.19.0...v3.20.0) (2019-10-07)
 
 

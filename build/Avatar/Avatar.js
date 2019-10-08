@@ -20,7 +20,7 @@ import styles from './styles';
 export class Avatar extends PureComponent {
     renderLogo() {
         const { classes, src, size } = this.props;
-        if (!src || size === 'small' || size === 'xsmall') {
+        if (!src || ['small', 'xsmall', 'xxsmall'].includes(size)) {
             return null;
         }
         return (React.createElement("div", { className: classes.logoContainer },

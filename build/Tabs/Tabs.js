@@ -17,9 +17,9 @@ import styles from './styles';
 // eslint-disable-next-line react/display-name
 export const Tabs = forwardRef(function Tabs(_a, ref) {
     var { children, onChange, value } = _a, rest = __rest(_a, ["children", "onChange", "value"]);
-    return (
+    return (React.createElement(MUITabs
     // eslint-disable-next-line react/jsx-props-no-spreading
-    React.createElement(MUITabs, Object.assign({}, rest, { ref: ref, onChange: onChange, value: value }), children));
+    , Object.assign({}, rest, { ref: ref, onChange: onChange, value: value, variant: 'scrollable', scrollButtons: 'off' }), children));
 });
 Tabs.defaultProps = {};
 Tabs.displayName = 'Tabs';
