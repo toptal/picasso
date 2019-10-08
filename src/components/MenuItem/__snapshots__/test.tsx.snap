@@ -38,7 +38,7 @@ exports[`MenuItem has chevron if has nested menu 1`] = `
         Item
       </span>
       <div
-        class=""
+        class="Container-flex Container-inline"
         style="margin-left: 0.5em;"
       >
         <svg

@@ -118,7 +118,7 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
     >
       {children}
       {menu && (
-        <Container inline-flex left='xsmall'>
+        <Container flex inline left='xsmall'>
           <ChevronMinor16 />
         </Container>
       )}
