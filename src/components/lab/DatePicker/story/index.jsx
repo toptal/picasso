@@ -14,9 +14,9 @@ page
 
 page
   .createChapter()
-  .addExample('lab/DatePicker/story/Default.example.tsx', 'Default')
-  .addExample('lab/DatePicker/story/Range.example.tsx', 'Range Mode')
+  .addExample('lab/DatePicker/story/Default.example.tsx', 'Default') // picasso-skip-visuals
+  .addExample('lab/DatePicker/story/Range.example.tsx', 'Range Mode') // picasso-skip-visuals
   .addExample(
     'lab/DatePicker/story/InitialValue.example.tsx',
     'With initial value specified'
-  )
+  ) // picasso-skip-visuals
