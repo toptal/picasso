@@ -45,7 +45,6 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
   },
   ref
 ) {
-  // Less information will be shown in compact mode
   const isCompactLayout = useBreakpoint(['small', 'medium'])
 
   const { setHasPageHeader } = usePageHeader()

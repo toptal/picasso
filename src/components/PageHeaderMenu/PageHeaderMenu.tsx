@@ -26,7 +26,6 @@ export const PageHeaderMenu = forwardRef<HTMLDivElement, Props>(
     { name, meta, avatar, classes, className, style, children, ...rest },
     ref
   ) {
-    // Less information will be shown in compact mode
     const isCompactLayout = useBreakpoint(['small', 'medium'])
 
     const metaContent =
