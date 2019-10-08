@@ -26,7 +26,7 @@ export const PageHeaderMenu = forwardRef<HTMLDivElement, Props>(
     { name, meta, avatar, classes, className, style, children, ...rest },
     ref
   ) {
-    const isSmallScreen = useBreakpoint('small')
+    const isCompactLayout = useBreakpoint(['small', 'medium'])
 
     const metaContent =
       typeof meta === 'string' ? (
@@ -37,7 +37,7 @@ export const PageHeaderMenu = forwardRef<HTMLDivElement, Props>(
         meta
       )
 
-    const content = isSmallScreen ? (
+    const content = isCompactLayout ? (
       <Fragment>
         <UserBadge
           center
@@ -58,7 +58,7 @@ export const PageHeaderMenu = forwardRef<HTMLDivElement, Props>(
       children
     )
 
-    const trigger = isSmallScreen ? (
+    const trigger = isCompactLayout ? (
       <Avatar
         size='xsmall'
         classes={{
@@ -92,7 +92,7 @@ export const PageHeaderMenu = forwardRef<HTMLDivElement, Props>(
         classes={{ content: classes.content }}
         style={style}
         content={content}
-        offset={{ top: isSmallScreen ? 0.8 : 'xsmall' }}
+        offset={{ top: isCompactLayout ? 0.8 : 'xsmall' }}
       >
         {trigger}
         <Dropdown.Arrow className={classes.arrow} />

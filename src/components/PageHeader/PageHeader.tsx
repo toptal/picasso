@@ -45,7 +45,7 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
   },
   ref
 ) {
-  const isSmallScreen = useBreakpoint('small')
+  const isCompactLayout = useBreakpoint(['small', 'medium'])
 
   const { setHasPageHeader } = usePageHeader()
 
@@ -60,7 +60,7 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
   const { fullWidth } = useContext<PageContextProps>(PageContext)
 
   const logo = (
-    <Logo variant='white' emblem={isSmallScreen} className={classes.logo} />
+    <Logo variant='white' emblem={isCompactLayout} className={classes.logo} />
   )
 
   const titleComponent = title && (
@@ -87,11 +87,11 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
           <Container className={classes.logoContainer} flex alignItems='center'>
             {logoLink ? React.cloneElement(logoLink, {}, logo) : logo}
           </Container>
-          {!isSmallScreen && titleComponent}
+          {!isCompactLayout && titleComponent}
         </div>
 
         <div className={classes.right}>
-          {!isSmallScreen && actionItems}
+          {!isCompactLayout && actionItems}
           {rightContent}
         </div>
       </div>
