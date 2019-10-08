@@ -13,11 +13,11 @@ export interface TabOptions {
 
 interface Props {
   tabs: TabOptions[]
-  hideOnSmallScreen?: boolean
+  hideOnCompactLayout?: boolean
 }
 
 const TabsSection: FunctionComponent<Props> = props => {
-  const { tabs, hideOnSmallScreen } = props
+  const { tabs, hideOnCompactLayout } = props
 
   const [selectedTab, setSelectedTab] = React.useState(0)
 
@@ -27,9 +27,9 @@ const TabsSection: FunctionComponent<Props> = props => {
 
   const hasMultiple = tabs.length > 1
 
-  const isSmallScreen = useBreakpoint('small')
+  const isCompactLayout = useBreakpoint('small')
 
-  if (isSmallScreen && hideOnSmallScreen) {
+  if (isCompactLayout && hideOnCompactLayout) {
     return <Typography size='medium'>Not visible on smaller screens</Typography>
   }
 

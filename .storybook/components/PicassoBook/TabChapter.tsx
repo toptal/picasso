@@ -14,7 +14,7 @@ class TabChapter extends Chapter {
 
   toStoryBook() {
     // @ts-ignore
-    const { title, info, hideOnSmallScreen = true } = this.options
+    const { title, info, hideOnCompactLayout = true } = this.options
 
     const tabs = this.collection.map(section => {
       const { title, subtitle, sectionFn } = section.toStoryBook()
@@ -27,7 +27,7 @@ class TabChapter extends Chapter {
     })
 
     const render = () => (
-      <TabsSection tabs={tabs} hideOnSmallScreen={hideOnSmallScreen} />
+      <TabsSection tabs={tabs} hideOnCompactLayout={hideOnCompactLayout} />
     )
 
     const tabsSection = new Section({
