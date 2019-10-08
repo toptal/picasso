@@ -27,6 +27,10 @@ const DOMTokenListSupports = function (tokenList: DOMTokenList, token: string) {
 const applyLoadedFont = (e: Event) => {
   const target = e.target as HTMLLinkElement
 
+  // this handler needs to be removed from the link tag
+  // because of the issue with the infinite loop of
+  // loading fonts in IE11 and Edge
+  target.removeEventListener('load', applyLoadedFont)
   target.rel = 'stylesheet'
 }
 
