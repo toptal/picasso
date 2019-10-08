@@ -164,7 +164,8 @@ export default ({ palette, sizes, transitions, typography }: Theme) =>
 
     // Child elements
     icon: {
-      fontSize: '1.2em !important'
+      fontSize: '1.2em !important',
+      flex: '1 1 0%'
     },
     iconLeft: {
       marginRight: ICON_SPACING
