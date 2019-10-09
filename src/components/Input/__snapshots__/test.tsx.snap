@@ -27,7 +27,7 @@ exports[`Icon prop renders icon at the beginning 1`] = `
       >
         <svg
           aria-hidden="true"
-          class="MuiSvgIcon-root"
+          class="MuiSvgIcon-root Input-icon"
           focusable="false"
           role="presentation"
           viewBox="0 0 24 24"
@@ -75,7 +75,7 @@ exports[`Icon prop renders icon at the end 1`] = `
       >
         <svg
           aria-hidden="true"
-          class="MuiSvgIcon-root"
+          class="MuiSvgIcon-root Input-icon"
           focusable="false"
           role="presentation"
           viewBox="0 0 24 24"

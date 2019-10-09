@@ -131,7 +131,8 @@ export default ({ palette, sizes, transitions, typography }) => createStyles({
     },
     // Child elements
     icon: {
-        fontSize: '1.2em !important'
+        fontSize: '1.2em !important',
+        flex: '1 1 0%' // IE11 fix
     },
     iconLeft: {
         marginRight: ICON_SPACING

@@ -1,5 +1,6 @@
 import React, {
   ReactNode,
+  ReactElement,
   ChangeEvent,
   InputHTMLAttributes,
   forwardRef
@@ -90,15 +91,24 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
   },
   ref
 ) {
-  const IconAdornment = icon && (
-    <InputAdornment position={iconPosition!} disabled={disabled}>
-      {icon}
-    </InputAdornment>
-  )
+  let IconAdornment
+
+  if (icon) {
+    const iconComponent = React.cloneElement(icon as ReactElement, {
+      className: classes.icon
+    })
+
+    IconAdornment = (
+      <InputAdornment position={iconPosition!} disabled={disabled}>
+        {iconComponent}
+      </InputAdornment>
+    )
+  }
+
   const usedStartAdornment =
-    icon && iconPosition === 'start' ? IconAdornment : startAdornment
+    IconAdornment && iconPosition === 'start' ? IconAdornment : startAdornment
   const usedEndAdornment =
-    icon && iconPosition === 'end' ? IconAdornment : endAdornment
+    IconAdornment && iconPosition === 'end' ? IconAdornment : endAdornment
 
   return (
     <OutlinedInput

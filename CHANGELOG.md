@@ -1,3 +1,24 @@
+## [3.24.3](https://github.com/toptal/picasso/compare/v3.24.2...v3.24.3) (2019-10-09)
+
+
+### Bug Fixes
+
+* **Input:** [Fx-176] Fix icons in adornment in IE11 ([#778](https://github.com/toptal/picasso/issues/778)) ([383b53c](https://github.com/toptal/picasso/commit/383b53c))
+
+## [3.24.2](https://github.com/toptal/picasso/compare/v3.24.1...v3.24.2) (2019-10-09)
+
+
+### Bug Fixes
+
+* **Button:** [FX-173] Fix styles for buttons in IE11 ([#770](https://github.com/toptal/picasso/issues/770)) ([e5e0aaf](https://github.com/toptal/picasso/commit/e5e0aaf))
+
+## [3.24.1](https://github.com/toptal/picasso/compare/v3.24.0...v3.24.1) (2019-10-08)
+
+
+### Bug Fixes
+
+* [FX-173] Fix infinite loop of loading font in IE11 and Edge ([#769](https://github.com/toptal/picasso/issues/769)) ([30ffd96](https://github.com/toptal/picasso/commit/30ffd96))
+
 # [3.24.0](https://github.com/toptal/picasso/compare/v3.23.0...v3.24.0) (2019-10-08)
 
 
