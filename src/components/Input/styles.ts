@@ -16,5 +16,8 @@ export default ({ sizes: { input } }: Theme) =>
     input: {
       fontSize: '0.8125em',
       padding: 0
+    },
+    icon: {
+      flex: '1 1 0%' // fix for IE11
     }
   })
