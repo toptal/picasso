@@ -29,7 +29,14 @@ page
   .addExample('utils/Breakpoints/story/useBreakpoint.example.jsx', {
     title: 'useBreakpoint',
     description: `
-    Provides programatic way to check what screen size defined by breakpoints is active
+    Provides programmatic way to check what screen size defined by breakpoints is active
   `,
     showEditCode: false
+  }) // picasso-skip-visuals
+  .addExample('utils/Breakpoints/story/useScreens.example.jsx', {
+    title: 'useScreens',
+    description: `
+    Provides a programmatic way to switch between different values depending on screen size. The function returned by useScreens is memoized per screen size.
+  `,
+    showEditCode: true
   }) // picasso-skip-visuals
