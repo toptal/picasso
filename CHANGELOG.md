@@ -1,3 +1,10 @@
+## [3.24.2](https://github.com/toptal/picasso/compare/v3.24.1...v3.24.2) (2019-10-09)
+
+
+### Bug Fixes
+
+* **Button:** [FX-173] Fix styles for buttons in IE11 ([#770](https://github.com/toptal/picasso/issues/770)) ([e5e0aaf](https://github.com/toptal/picasso/commit/e5e0aaf))
+
 ## [3.24.1](https://github.com/toptal/picasso/compare/v3.24.0...v3.24.1) (2019-10-08)
 
 
