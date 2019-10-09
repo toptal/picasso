@@ -1,3 +1,10 @@
+## [3.24.3](https://github.com/toptal/picasso/compare/v3.24.2...v3.24.3) (2019-10-09)
+
+
+### Bug Fixes
+
+* **Input:** [Fx-176] Fix icons in adornment in IE11 ([#778](https://github.com/toptal/picasso/issues/778)) ([383b53c](https://github.com/toptal/picasso/commit/383b53c))
+
 ## [3.24.2](https://github.com/toptal/picasso/compare/v3.24.1...v3.24.2) (2019-10-09)
 
 

@@ -17,9 +17,15 @@ import OutlinedInput from '../OutlinedInput';
 import styles from './styles';
 export const Input = forwardRef(function Input(_a, ref) {
     var { id, name, defaultValue, value, placeholder, error, disabled, autoFocus, autoComplete, icon, iconPosition, classes, children, multiline, width, className, style, rows, rowsMax, type, onChange, startAdornment, endAdornment } = _a, rest = __rest(_a, ["id", "name", "defaultValue", "value", "placeholder", "error", "disabled", "autoFocus", "autoComplete", "icon", "iconPosition", "classes", "children", "multiline", "width", "className", "style", "rows", "rowsMax", "type", "onChange", "startAdornment", "endAdornment"]);
-    const IconAdornment = icon && (React.createElement(InputAdornment, { position: iconPosition, disabled: disabled }, icon));
-    const usedStartAdornment = icon && iconPosition === 'start' ? IconAdornment : startAdornment;
-    const usedEndAdornment = icon && iconPosition === 'end' ? IconAdornment : endAdornment;
+    let IconAdornment;
+    if (icon) {
+        const iconComponent = React.cloneElement(icon, {
+            className: classes.icon
+        });
+        IconAdornment = (React.createElement(InputAdornment, { position: iconPosition, disabled: disabled }, iconComponent));
+    }
+    const usedStartAdornment = IconAdornment && iconPosition === 'start' ? IconAdornment : startAdornment;
+    const usedEndAdornment = IconAdornment && iconPosition === 'end' ? IconAdornment : endAdornment;
     return (React.createElement(OutlinedInput, { ref: ref, className: className, style: style, classes: {
             root: cx(classes.root, {
                 [classes.rootMultiline]: multiline
