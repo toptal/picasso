@@ -68,16 +68,16 @@ describe('TagSelector', () => {
   })
 
   test('available options when start typing', () => {
-    const { container, getByPlaceholderText } = renderTagSelector(testProps)
+    const { baseElement, getByPlaceholderText } = renderTagSelector(testProps)
     const input = getByPlaceholderText(testProps.placeholder)
 
     fireEvent.change(input, { target: { value: 'Al' } })
 
-    expect(container).toMatchSnapshot()
+    expect(baseElement).toMatchSnapshot()
   })
 
   test('preselected value', () => {
-    const { container } = renderTagSelector({
+    const { baseElement } = renderTagSelector({
       loading: false,
       newOptionLabel: 'Add: ',
       options,
@@ -85,24 +85,27 @@ describe('TagSelector', () => {
       defaultValue: [options[0].value]
     })
 
-    expect(container).toMatchSnapshot()
+    expect(baseElement).toMatchSnapshot()
   })
 
   test('selected option', async () => {
     const renderResult = renderTagSelector(testProps)
-    const { container, getByPlaceholderText } = renderResult
+    const { baseElement, getByPlaceholderText } = renderResult
 
     const input = getByPlaceholderText(testProps.placeholder)
 
     await selectOption(renderResult, input, options[0].text)
 
-    expect(container).toMatchSnapshot()
+    expect(baseElement).toMatchSnapshot()
   })
 
   test('newly added option selected', async () => {
-    const { container, getByPlaceholderText, getByText } = renderTagSelector(
-      testProps
-    )
+    const {
+      baseElement,
+      container,
+      getByPlaceholderText,
+      getByText
+    } = renderTagSelector(testProps)
     const newOptionText = 'xxxx'
 
     const input = getByPlaceholderText(testProps.placeholder)
@@ -116,12 +119,16 @@ describe('TagSelector', () => {
 
     fireEvent.click(newOptionElement)
 
-    expect(container).toMatchSnapshot()
+    expect(baseElement).toMatchSnapshot()
   })
 
   test('options selected and then unselected', async () => {
     const renderResult = renderTagSelector(testProps)
-    const { container, getByPlaceholderText, getAllByLabelText } = renderResult
+    const {
+      baseElement,
+      getByPlaceholderText,
+      getAllByLabelText
+    } = renderResult
     const input = getByPlaceholderText(testProps.placeholder)
 
     await selectOption(renderResult, input, options[0].text)
@@ -134,6 +141,6 @@ describe('TagSelector', () => {
 
     fireEvent.click(optionDeleteElements[1])
 
-    expect(container).toMatchSnapshot()
+    expect(baseElement).toMatchSnapshot()
   })
 })

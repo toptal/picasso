@@ -11,10 +11,12 @@ import { withStyles } from '@material-ui/core/styles'
 import { capitalize } from '@material-ui/core/utils/helpers'
 import cx from 'classnames'
 import Downshift, { DownshiftState, StateChangeOptions } from 'downshift'
+import Popper from '@material-ui/core/Popper'
 
 import { StandardProps } from '../../Picasso'
 import Input, { Props as InputProps } from '../../Input'
 import Menu from '../../Menu'
+import Container from '../../Container'
 import Loader from '../../Loader'
 import ScrollMenu from '../../ScrollMenu'
 import Typography from '../../Typography'
@@ -236,6 +238,8 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
           : EMPTY_INPUT_VALUE
         : getItemText(item)
 
+    const inputWrapperRef = React.useRef<HTMLDivElement>(null)
+
     return (
       <Downshift
         inputValue={inputValue}
@@ -364,28 +368,43 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
               )}
               style={style}
             >
-              <InputComponent
-                /* eslint-disable-next-line react/jsx-props-no-spreading */
-                {...rest}
-                // eslint-disable-next-line react/jsx-props-no-spreading
-                {...inputProps}
-                error={error}
-                icon={icon}
-                defaultValue={inputProps.defaultValue as string | undefined}
-                value={inputProps.value as string | undefined}
-                onChange={e => {
-                  inputProps.onChange!(e as FormEvent<HTMLInputElement>)
-                }}
-                ref={ref}
-                classes={{}}
-                placeholder={
-                  selectedItem ? getItemText(selectedItem) : placeholder
-                }
-                endAdornment={loading ? loadingComponent : endAdornment}
-                width={width}
-              />
+              <Container flex ref={inputWrapperRef}>
+                <InputComponent
+                  /* eslint-disable-next-line react/jsx-props-no-spreading */
+                  {...rest}
+                  // eslint-disable-next-line react/jsx-props-no-spreading
+                  {...inputProps}
+                  error={error}
+                  icon={icon}
+                  defaultValue={inputProps.defaultValue as string | undefined}
+                  value={inputProps.value as string | undefined}
+                  onChange={e => {
+                    inputProps.onChange!(e as FormEvent<HTMLInputElement>)
+                  }}
+                  ref={ref}
+                  classes={{}}
+                  placeholder={
+                    selectedItem ? getItemText(selectedItem) : placeholder
+                  }
+                  endAdornment={loading ? loadingComponent : endAdornment}
+                  width={width}
+                />
+              </Container>
               {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-              <div {...getMenuProps()}>{canOpen ? optionsMenu : null}</div>
+              <div {...getMenuProps()}>
+                {inputWrapperRef.current && (
+                  <Popper
+                    open={canOpen}
+                    anchorEl={inputWrapperRef.current}
+                    className={classes.popper}
+                    modifiers={{
+                      ...popperSizeModifier()
+                    }}
+                  >
+                    {optionsMenu}
+                  </Popper>
+                )}
+              </div>
             </div>
           )
         }}
@@ -393,6 +412,26 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
     )
   }
 )
+
+function popperSizeModifier() {
+  // inspired by conversation here:
+  // https://spectrum.chat/popper-js/support/how-to-compute-popper-width~79c9aca3-b0b5-475e-87e8-fa32af849b58
+
+  return {
+    size: {
+      enabled: true,
+      order: 840,
+      fn: (data: any) => {
+        data.offsets.popper.left = data.offsets.reference.left
+        data.offsets.popper.right = data.offsets.reference.right
+        data.offsets.popper.width = data.styles.width = Math.round(
+          data.offsets.reference.width
+        )
+        return data
+      }
+    }
+  }
+}
 
 Autocomplete.defaultProps = {
   allowAny: true,

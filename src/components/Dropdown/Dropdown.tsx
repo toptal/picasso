@@ -48,6 +48,8 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   disableAutoFocus?: boolean
   /** Disable close on generic close events */
   disableAutoClose?: boolean
+  /** Disable the portal behavior. The children stay within it's parent DOM hierarchy. */
+  disablePortal?: boolean
   /** Callback invoked when component is opened */
   onOpen?(): void
   /** Callback invoked when component is closed */
@@ -90,6 +92,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
     placement,
     disableAutoClose,
     disableAutoFocus,
+    disablePortal,
     onOpen,
     onClose,
     ...rest
@@ -226,11 +229,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
           }}
           placement={placement}
           style={paperMargins}
-          // RATIONALE: If portal is enabled, and dropdown's popper contains
-          // for example <Input autoFocus/>, popper will mount to the portal and
-          // before it finishes posotioning itself, autoFocus will force scrolling
-          // to the bottom of the portal.
-          disablePortal
+          disablePortal={disablePortal}
         >
           <ClickAwayListener onClickAway={() => forceClose()}>
             <Grow in={isOpen} appear>
@@ -255,6 +254,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
 Dropdown.defaultProps = {
   disableAutoClose: false,
   disableAutoFocus: true,
+  disablePortal: false,
   offset: {},
   onClose: () => {},
   onOpen: () => {},

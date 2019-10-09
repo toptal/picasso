@@ -1,95 +1,107 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Autocomplete dynamic behavior render options when start typing 1`] = `
-<div>
-  <div
-    class="Picasso-root"
-  >
+<body>
+  <div>
     <div
-      aria-expanded="true"
-      aria-haspopup="listbox"
-      aria-labelledby="downshift-3-label"
-      aria-owns="downshift-3-menu"
-      class="Autocomplete-root Autocomplete-rootAuto"
-      role="combobox"
+      class="Picasso-root"
     >
       <div
-        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root Input-root OutlinedInput-rootAuto"
-      >
-        <fieldset
-          aria-hidden="true"
-          class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
-          style="padding-left: 8px;"
-        >
-          <legend
-            class="PrivateNotchedOutline-legend"
-            style="width: 0.01px;"
-          >
-            <span>
-              ​
-            </span>
-          </legend>
-        </fieldset>
-        <input
-          aria-activedescendant="downshift-3-item-0"
-          aria-autocomplete="list"
-          aria-controls="downshift-3-menu"
-          aria-labelledby="downshift-3-label"
-          autocomplete="off"
-          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input"
-          id="downshift-3-input"
-          placeholder="Placeholder text"
-          type="text"
-          value="t"
-        />
-      </div>
-      <div
+        aria-expanded="true"
+        aria-haspopup="listbox"
         aria-labelledby="downshift-3-label"
-        id="downshift-3-menu"
-        role="listbox"
+        aria-owns="downshift-3-menu"
+        class="Autocomplete-root Autocomplete-rootAuto"
+        role="combobox"
       >
-        <ul
-          class="MuiList-root ScrollMenu-menu"
-          role="menu"
-          tabindex="-1"
+        <div
+          class="Container-flex"
         >
           <div
-            class="ScrollMenu-scrollView"
+            class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root Input-root OutlinedInput-rootAuto"
           >
-            <li
-              aria-disabled="false"
-              aria-selected="true"
-              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
-              id="downshift-3-item-0"
-              role="option"
-              tabindex="-1"
+            <fieldset
+              aria-hidden="true"
+              class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+              style="padding-left: 8px;"
             >
-              <span
-                class="MenuItem-stringContent"
+              <legend
+                class="PrivateNotchedOutline-legend"
+                style="width: 0.01px;"
               >
-                Croatia
-              </span>
-            </li>
-            <li
-              aria-disabled="false"
-              aria-selected="false"
-              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-              id="downshift-3-item-1"
-              role="option"
-              tabindex="-1"
-            >
-              <span
-                class="MenuItem-stringContent"
-              >
-                Lithuania
-              </span>
-            </li>
+                <span>
+                  ​
+                </span>
+              </legend>
+            </fieldset>
+            <input
+              aria-activedescendant="downshift-3-item-0"
+              aria-autocomplete="list"
+              aria-controls="downshift-3-menu"
+              aria-labelledby="downshift-3-label"
+              autocomplete="off"
+              class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input"
+              id="downshift-3-input"
+              placeholder="Placeholder text"
+              type="text"
+              value="t"
+            />
           </div>
-        </ul>
+        </div>
+        <div
+          aria-labelledby="downshift-3-label"
+          id="downshift-3-menu"
+          role="listbox"
+        />
       </div>
     </div>
   </div>
-</div>
+  <div
+    class="Autocomplete-popper"
+    role="tooltip"
+    style="position: absolute;"
+    x-placement="bottom"
+  >
+    <ul
+      class="MuiList-root ScrollMenu-menu"
+      role="menu"
+      tabindex="-1"
+    >
+      <div
+        class="ScrollMenu-scrollView"
+      >
+        <li
+          aria-disabled="false"
+          aria-selected="true"
+          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+          id="downshift-3-item-0"
+          role="option"
+          tabindex="-1"
+        >
+          <span
+            class="MenuItem-stringContent"
+          >
+            Croatia
+          </span>
+        </li>
+        <li
+          aria-disabled="false"
+          aria-selected="false"
+          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+          id="downshift-3-item-1"
+          role="option"
+          tabindex="-1"
+        >
+          <span
+            class="MenuItem-stringContent"
+          >
+            Lithuania
+          </span>
+        </li>
+      </div>
+    </ul>
+  </div>
+</body>
 `;
 
 exports[`Autocomplete static behavior default render 1`] = `
@@ -105,32 +117,36 @@ exports[`Autocomplete static behavior default render 1`] = `
       role="combobox"
     >
       <div
-        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root Input-root OutlinedInput-rootAuto"
+        class="Container-flex"
       >
-        <fieldset
-          aria-hidden="true"
-          class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
-          style="padding-left: 8px;"
+        <div
+          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root Input-root OutlinedInput-rootAuto"
         >
-          <legend
-            class="PrivateNotchedOutline-legend"
-            style="width: 0.01px;"
+          <fieldset
+            aria-hidden="true"
+            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+            style="padding-left: 8px;"
           >
-            <span>
-              ​
-            </span>
-          </legend>
-        </fieldset>
-        <input
-          aria-autocomplete="list"
-          aria-labelledby="downshift-0-label"
-          autocomplete="off"
-          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input"
-          id="downshift-0-input"
-          placeholder="Start typing here..."
-          type="text"
-          value=""
-        />
+            <legend
+              class="PrivateNotchedOutline-legend"
+              style="width: 0.01px;"
+            >
+              <span>
+                ​
+              </span>
+            </legend>
+          </fieldset>
+          <input
+            aria-autocomplete="list"
+            aria-labelledby="downshift-0-label"
+            autocomplete="off"
+            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input"
+            id="downshift-0-input"
+            placeholder="Start typing here..."
+            type="text"
+            value=""
+          />
+        </div>
       </div>
       <div
         aria-labelledby="downshift-0-label"

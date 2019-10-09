@@ -95,7 +95,7 @@ describe('Autocomplete', () => {
     test('render options when start typing', () => {
       const {
         getByPlaceholderText,
-        container,
+        baseElement,
         getAllByRole
       } = renderAutocomplete({
         placeholder,
@@ -109,7 +109,7 @@ describe('Autocomplete', () => {
       const filteredOptions = getAllByRole('option').map(li => li.textContent)
 
       expect(filteredOptions).toEqual(['Croatia', 'Lithuania'])
-      expect(container).toMatchSnapshot()
+      expect(baseElement).toMatchSnapshot()
     })
 
     describe('on focus', () => {
@@ -453,6 +453,6 @@ describe('Autocomplete', () => {
     const input = api.getByPlaceholderText('Start typing here...')
 
     fireEvent.change(input, { target: { value: 't' } })
-    expect(api.container.textContent).toContain('Custom renderer')
+    expect(api.baseElement.textContent).toContain('Custom renderer')
   })
 })
