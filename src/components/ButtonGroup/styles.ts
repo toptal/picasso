@@ -14,17 +14,17 @@ export default () =>
       transitionProperty: 'color, background',
 
       '&:first-child': {
-        borderTopRightRadius: 'unset',
-        borderBottomRightRadius: 'unset'
+        borderTopRightRadius: 0,
+        borderBottomRightRadius: 0
       },
 
       '&:not(:first-child):not(:last-child)': {
-        borderRadius: 'unset'
+        borderRadius: 0
       },
 
       '&:last-child': {
-        borderTopLeftRadius: 'unset',
-        borderBottomLeftRadius: 'unset'
+        borderTopLeftRadius: 0,
+        borderBottomLeftRadius: 0
       },
 
       '&:active, &$active, &:hover': {
