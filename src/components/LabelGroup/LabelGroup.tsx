@@ -1,5 +1,6 @@
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
+import cx from 'classnames'
 
 import { StandardProps } from '../Picasso'
 import styles from './styles'
@@ -10,12 +11,12 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
 }
 
 export const LabelGroup = forwardRef<HTMLDivElement, Props>(function LabelGroup(
-  { children, classes, ...rest },
+  { children, classes, className, ...rest },
   ref
 ) {
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
-    <div {...rest} ref={ref} className={classes.root}>
+    <div {...rest} ref={ref} className={cx(classes.root, className)}>
       {children}
     </div>
   )
