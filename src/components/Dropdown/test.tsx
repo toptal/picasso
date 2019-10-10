@@ -4,6 +4,7 @@ import React from 'react'
 import Menu from '../Menu'
 import Picasso from '../Picasso'
 import Dropdown from './Dropdown'
+import Container from '../Container'
 
 afterEach(cleanup)
 
@@ -21,7 +22,7 @@ describe('Dropdown', () => {
   })
 
   test('should render menu', () => {
-    const { container, getByText, unmount } = render(
+    const { getByText, unmount, baseElement } = render(
       <Picasso loadFonts={false}>
         <Dropdown
           content={
@@ -41,38 +42,39 @@ describe('Dropdown', () => {
 
     fireEvent.click(trigger)
 
-    expect(container).toMatchSnapshot()
+    expect(baseElement).toMatchSnapshot()
 
     unmount()
   })
 
   test('should render menu with focus', async () => {
-    const { container, getByText, unmount } = render(
+    const { baseElement, getByText, unmount } = render(
       <Picasso loadFonts={false}>
-        <Dropdown
-          content={
-            <Menu>
-              <Menu.Item>Item1</Menu.Item>
-              <Menu.Item>Item2</Menu.Item>
-              <Menu.Item>Item3</Menu.Item>
-            </Menu>
-          }
-          disableAutoFocus={false}
-        >
-          Open Dropdown <Dropdown.Arrow />
-        </Dropdown>
+        <Container>
+          <Dropdown
+            content={
+              <Menu>
+                <Menu.Item>Item1</Menu.Item>
+                <Menu.Item>Item2</Menu.Item>
+                <Menu.Item>Item3</Menu.Item>
+              </Menu>
+            }
+            disableAutoFocus={false}
+          >
+            Open Dropdown <Dropdown.Arrow />
+          </Dropdown>
+        </Container>
       </Picasso>
     )
 
     const trigger = getByText('Open Dropdown')
 
     fireEvent.click(trigger)
-
     await wait(() => {
-      expect(document.activeElement).toBe(container.querySelector('li'))
+      expect(document.activeElement).toBe(baseElement.querySelector('li'))
     })
 
-    expect(container).toMatchSnapshot()
+    expect(baseElement).toMatchSnapshot()
 
     unmount()
   })

@@ -9,9 +9,10 @@ import {
   Typography
 } from '@toptal/picasso'
 
+// Autofocus will force scrolling to the bottom of the portal, so we disable portal
 const ComplexDefaultExample = () => (
   <div>
-    <Dropdown content={<ComplexContent />} disableAutoClose>
+    <Dropdown content={<ComplexContent />} disableAutoClose disablePortal>
       Open Dropdown
       <Dropdown.Arrow />
     </Dropdown>
