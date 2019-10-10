@@ -65,6 +65,7 @@ export const PageHeaderMenu = forwardRef<HTMLDivElement, Props>(
           root: classes.avatar,
           xsmall: classes.xsmall
         }}
+        name={name}
         src={avatar as string}
       />
     ) : (
