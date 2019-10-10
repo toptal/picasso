@@ -1,9 +1,10 @@
-import React, { PureComponent, HTMLAttributes } from 'react'
+import React, { FunctionComponent, HTMLAttributes } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 
-import { StandardProps, SizeType } from '../Picasso'
+import { StandardProps, SizeType, OmitInternalProps } from '../Picasso'
 import Image from '../Image'
+import { Props as ImageProps } from '../Image/Image'
 import Logo from '../Logo'
 import Typography from '../Typography'
 import getNameInitials from '../utils/get-name-initials'
@@ -30,89 +31,101 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   variant?: VariantType
 }
 
-export class Avatar extends PureComponent<Props> {
-  static defaultProps: Partial<Props> = {
-    size: 'xsmall',
-    variant: 'square'
-  }
-  static displayName = 'Avatar'
+const isBrowserSupportsObjectFit =
+  'objectFit' in document.documentElement.style
 
-  renderLogo() {
-    const { classes, src, size } = this.props
-
-    if (!src || ['small', 'xsmall', 'xxsmall'].includes(size!)) {
-      return null
-    }
-
-    return (
-      <div className={classes.logoContainer}>
-        <Logo emblem variant='white' className={classes.logo} />
-      </div>
-    )
+const renderLogo = ({ classes, src, size }: Partial<Props>) => {
+  if (!src || ['small', 'xsmall', 'xxsmall'].includes(size!)) {
+    return null
   }
 
-  renderInitials() {
-    const { classes, src, name } = this.props
-
-    if (src || !name) {
-      return null
-    }
-
-    return (
-      <Typography className={classes.text} invert>
-        {getNameInitials(name)}
-      </Typography>
-    )
-  }
-
-  render() {
-    const {
-      alt,
-      src,
-      classes,
-      className,
-      name,
-      size,
-      style,
-      variant,
-      ...rest
-    } = this.props
-
-    const sizeClassName = classes[size!]
-    const variantClassName = classes[variant!]
-
-    return (
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      <div {...rest} className={cx(classes.root, sizeClassName)}>
-        {src ? (
-          <Image
-            alt={alt || name}
-            className={cx(
-              classes.image,
-              variantClassName,
-              sizeClassName,
-              classes.clippedCorner,
-              className
-            )}
-            src={src}
-            style={style}
-          />
-        ) : (
-          <div
-            className={cx(
-              classes.textContainer,
-              variantClassName,
-              sizeClassName,
-              classes.clippedCorner,
-              className
-            )}
-          />
-        )}
-        {this.renderInitials()}
-        {this.renderLogo()}
-      </div>
-    )
-  }
+  return (
+    <div className={classes!.logoContainer}>
+      <Logo emblem variant='white' className={classes!.logo} />
+    </div>
+  )
 }
+
+const renderInitials = ({ classes, src, name }: Partial<Props>) => {
+  if (src || !name) {
+    return null
+  }
+
+  return (
+    <Typography className={classes!.text} invert>
+      {getNameInitials(name)}
+    </Typography>
+  )
+}
+
+// You will be surprised, but it's a IE11 fix for `object-fit: cover` for images
+const IE11Image = ({ style, src, ...rest }: OmitInternalProps<ImageProps>) => (
+  <div
+    style={{
+      backgroundImage: `url(${src})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center center',
+      ...style
+    }}
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    {...rest}
+  />
+)
+
+export const Avatar: FunctionComponent<Props> = ({
+  alt,
+  src,
+  classes,
+  className,
+  name,
+  size,
+  style,
+  variant,
+  ...rest
+}) => {
+  const sizeClassName = classes[size!]
+  const variantClassName = classes[variant!]
+
+  const InputComponent = isBrowserSupportsObjectFit ? Image : IE11Image
+
+  return (
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <div {...rest} className={cx(classes.root, sizeClassName)}>
+      {src ? (
+        <InputComponent
+          alt={alt || name}
+          className={cx(
+            classes.image,
+            variantClassName,
+            sizeClassName,
+            classes.clippedCorner,
+            className
+          )}
+          src={src}
+          style={style}
+        />
+      ) : (
+        <div
+          className={cx(
+            classes.textContainer,
+            variantClassName,
+            sizeClassName,
+            classes.clippedCorner,
+            className
+          )}
+        />
+      )}
+      {renderInitials({ classes, src, name })}
+      {renderLogo({ classes, src, size })}
+    </div>
+  )
+}
+
+Avatar.defaultProps = {
+  size: 'xsmall',
+  variant: 'square'
+}
+
+Avatar.displayName = 'Avatar'
 
 export default withStyles(styles)(Avatar)
