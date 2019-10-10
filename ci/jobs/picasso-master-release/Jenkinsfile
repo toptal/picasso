@@ -56,27 +56,11 @@ pipeline {
       }
     }//stage
 
-    stage('Build image') {
-      steps {
-        script {
-          downStreamBuilds[0] = buildWithParameters(
-            jobName: buildImageJobName,
-            propagate: false,
-            wait: true,
-            parameters: [
-              BRANCH: gitBranch(),
-              VERSION: gitCommit(),
-              IMAGE_NAME: repoName
-            ]
-          )
-        }
-      } //steps
-    } //stage
-
     stage('Run release') {
       steps {
         script {
           PWD = sh(returnStdout: true, script: 'pwd').trim()
+          LAST_SOURCE_BRANCH_COMMIT_ID = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%H' ${ghprbSourceBranch}").trim()
         }
 
         sshagent(credentials: ['picasso-ssh-deploy-key']) {
@@ -112,7 +96,7 @@ pipeline {
             -v $SSH_AUTH_SOCK:/ssh-agent \
             -e SSH_AUTH_SOCK=/ssh-agent \
             -v ${PWD}/.git:/app/.git \
-            gcr.io/toptal-hub/${repoName}:${gitCommit()}
+            gcr.io/toptal-hub/${repoName}:${LAST_SOURCE_BRANCH_COMMIT_ID}
           """
         }
 
