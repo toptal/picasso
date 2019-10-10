@@ -91,6 +91,26 @@ export const useBreakpoint = (sizes: BreakpointKeys[] | BreakpointKeys) =>
  * screen size, or the default value, if no corresponding key found.
  *
  * The returned function is memoized per screen size name.
+ *
+ * @example <caption>Varying both `variant` prop and button text with using the hook</caption>
+ * const screens = useScreens()
+ * <Button
+ *   variant={screens(
+ *     {
+ *       small: 'secondary-blue',
+ *       large: 'primary-green'
+ *     },
+ *     'primary-blue'
+ *   )}
+ * >
+ * {screens(
+ *   {
+ *     small: 'small (secondary-blue)',
+ *     large: 'large (primary-green)'
+ *   },
+ *   'default (primary-blue)'
+ * )}
+ * </Button>
  */
 export const useScreens = () => {
   // Get current screen size in pixels, e.g. 800
@@ -109,9 +129,9 @@ export const useScreens = () => {
   ) => {
     if (screenKey in valuesByScreen) {
       return valuesByScreen[screenKey]
-    } else {
-      return defaultValue
     }
+
+    return defaultValue
   }, [screenKey])
 }
 
