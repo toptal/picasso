@@ -30,7 +30,7 @@ function useDropdownContext() {
 }
 // eslint-disable-next-line react/display-name
 export const Dropdown = forwardRef(function Dropdown(_a, ref) {
-    var { classes, className, style, children, content, offset, transformOrigin, anchorOrigin, placement, disableAutoClose, disableAutoFocus, onOpen, onClose } = _a, rest = __rest(_a, ["classes", "className", "style", "children", "content", "offset", "transformOrigin", "anchorOrigin", "placement", "disableAutoClose", "disableAutoFocus", "onOpen", "onClose"]);
+    var { classes, className, style, children, content, offset, transformOrigin, anchorOrigin, placement, disableAutoClose, disableAutoFocus, disablePortal, onOpen, onClose } = _a, rest = __rest(_a, ["classes", "className", "style", "children", "content", "offset", "transformOrigin", "anchorOrigin", "placement", "disableAutoClose", "disableAutoFocus", "disablePortal", "onOpen", "onClose"]);
     if (anchorOrigin) {
         // eslint-disable-next-line no-console
         console.warn('DEPRECATED in Dropdown: "anchorOrigin". To control popper position, please use "placement" and "offset" props.');
@@ -108,12 +108,7 @@ export const Dropdown = forwardRef(function Dropdown(_a, ref) {
         React.createElement("div", { className: classes.anchor, onClick: toggleOpen }, children),
         anchorEl && (React.createElement(Popper, { className: classes.popper, open: isOpen, anchorEl: anchorEl, popperOptions: {
                 onCreate: focus
-            }, placement: placement, style: paperMargins, 
-            // RATIONALE: If portal is enabled, and dropdown's popper contains
-            // for example <Input autoFocus/>, popper will mount to the portal and
-            // before it finishes posotioning itself, autoFocus will force scrolling
-            // to the bottom of the portal.
-            disablePortal: true },
+            }, placement: placement, style: paperMargins, disablePortal: disablePortal },
             React.createElement(ClickAwayListener, { onClickAway: () => forceClose() },
                 React.createElement(Grow, { in: isOpen, appear: true },
                     React.createElement(Paper, { className: classes.content, onClick: () => close(), onKeyDown: handleContentKeyDown, elevation: 2 },
@@ -123,6 +118,7 @@ export const Dropdown = forwardRef(function Dropdown(_a, ref) {
 Dropdown.defaultProps = {
     disableAutoClose: false,
     disableAutoFocus: true,
+    disablePortal: false,
     offset: {},
     onClose: () => { },
     onOpen: () => { },

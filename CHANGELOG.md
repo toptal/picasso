@@ -1,3 +1,11 @@
+## [3.24.4](https://github.com/toptal/picasso/compare/v3.24.3...v3.24.4) (2019-10-10)
+
+
+### Bug Fixes
+
+* **UserBadge:** [FX-179] Fix image squashing on IE11 ([#782](https://github.com/toptal/picasso/issues/782)) ([7020d7f](https://github.com/toptal/picasso/commit/7020d7f))
+* modal overlay for autocomplete and dropdown ([#775](https://github.com/toptal/picasso/issues/775)) ([87f648f](https://github.com/toptal/picasso/commit/87f648f))
+
 ## [3.24.3](https://github.com/toptal/picasso/compare/v3.24.2...v3.24.3) (2019-10-09)
 
 

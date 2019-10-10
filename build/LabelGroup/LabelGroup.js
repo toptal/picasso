@@ -11,12 +11,13 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 import React, { forwardRef } from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import cx from 'classnames';
 import styles from './styles';
 export const LabelGroup = forwardRef(function LabelGroup(_a, ref) {
-    var { children, classes } = _a, rest = __rest(_a, ["children", "classes"]);
+    var { children, classes, className } = _a, rest = __rest(_a, ["children", "classes", "className"]);
     return (
     // eslint-disable-next-line react/jsx-props-no-spreading
-    React.createElement("div", Object.assign({}, rest, { ref: ref, className: classes.root }), children));
+    React.createElement("div", Object.assign({}, rest, { ref: ref, className: cx(classes.root, className) }), children));
 });
 LabelGroup.defaultProps = {
     children: undefined

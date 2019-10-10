@@ -14,8 +14,10 @@ import { withStyles } from '@material-ui/core/styles';
 import { capitalize } from '@material-ui/core/utils/helpers';
 import cx from 'classnames';
 import Downshift from 'downshift';
+import Popper from '@material-ui/core/Popper';
 import Input from '../../Input';
 import Menu from '../../Menu';
+import Container from '../../Container';
 import Loader from '../../Loader';
 import ScrollMenu from '../../ScrollMenu';
 import Typography from '../../Typography';
@@ -90,6 +92,7 @@ export const Autocomplete = forwardRef(function Autocomplete(_a, ref) {
             ? inputValue
             : EMPTY_INPUT_VALUE
         : getItemText(item);
+    const inputWrapperRef = React.useRef(null);
     return (React.createElement(Downshift, { inputValue: inputValue, onInputValueChange: handleInputValueChange, selectedItem: selectedItem, onChange: handleSelectItem, itemToString: downshiftItemToString, stateReducer: downshiftStateReducer }, ({ getMenuProps, getInputProps, getItemProps, isOpen, highlightedIndex, selectItem, setState }) => {
         const hasMatchingOptions = matchingOptions.length > 0;
         const canOpen = isOpen && isMatchingMinLength(inputValue, minLength) && !loading;
@@ -145,14 +148,31 @@ export const Autocomplete = forwardRef(function Autocomplete(_a, ref) {
             autoComplete: rest.autoComplete || 'off'
         });
         return (React.createElement("div", { className: cx(classes.root, className, classes[`root${capitalize(width)}`]), style: style },
-            React.createElement(InputComponent
-            /* eslint-disable-next-line react/jsx-props-no-spreading */
-            , Object.assign({}, rest, inputProps, { error: error, icon: icon, defaultValue: inputProps.defaultValue, value: inputProps.value, onChange: e => {
-                    inputProps.onChange(e);
-                }, ref: ref, classes: {}, placeholder: selectedItem ? getItemText(selectedItem) : placeholder, endAdornment: loading ? loadingComponent : endAdornment, width: width })),
-            React.createElement("div", Object.assign({}, getMenuProps()), canOpen ? optionsMenu : null)));
+            React.createElement(Container, { flex: true, ref: inputWrapperRef },
+                React.createElement(InputComponent
+                /* eslint-disable-next-line react/jsx-props-no-spreading */
+                , Object.assign({}, rest, inputProps, { error: error, icon: icon, defaultValue: inputProps.defaultValue, value: inputProps.value, onChange: e => {
+                        inputProps.onChange(e);
+                    }, ref: ref, classes: {}, placeholder: selectedItem ? getItemText(selectedItem) : placeholder, endAdornment: loading ? loadingComponent : endAdornment, width: width }))),
+            React.createElement("div", Object.assign({}, getMenuProps()), inputWrapperRef.current && (React.createElement(Popper, { open: canOpen, anchorEl: inputWrapperRef.current, className: classes.popper, modifiers: Object.assign({}, popperSizeModifier()) }, optionsMenu)))));
     }));
 });
+function popperSizeModifier() {
+    // inspired by conversation here:
+    // https://spectrum.chat/popper-js/support/how-to-compute-popper-width~79c9aca3-b0b5-475e-87e8-fa32af849b58
+    return {
+        size: {
+            enabled: true,
+            order: 840,
+            fn: (data) => {
+                data.offsets.popper.left = data.offsets.reference.left;
+                data.offsets.popper.right = data.offsets.reference.right;
+                data.offsets.popper.width = data.styles.width = Math.round(data.offsets.reference.width);
+                return data;
+            }
+        }
+    };
+}
 Autocomplete.defaultProps = {
     allowAny: true,
     defaultInputValue: '',

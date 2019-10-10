@@ -25,6 +25,8 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
     disableAutoFocus?: boolean;
     /** Disable close on generic close events */
     disableAutoClose?: boolean;
+    /** Disable the portal behavior. The children stay within it's parent DOM hierarchy. */
+    disablePortal?: boolean;
     /** Callback invoked when component is opened */
     onOpen?(): void;
     /** Callback invoked when component is closed */

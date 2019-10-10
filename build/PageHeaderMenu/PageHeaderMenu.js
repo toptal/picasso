@@ -32,7 +32,7 @@ export const PageHeaderMenu = forwardRef(function PageHeaderMenu(_a, ref) {
     const trigger = isCompactLayout ? (React.createElement(Avatar, { size: 'xsmall', classes: {
             root: classes.avatar,
             xsmall: classes.xsmall
-        }, src: avatar })) : (React.createElement(UserBadge, { invert: true, center: true, size: 'xsmall', classes: {
+        }, name: name, src: avatar })) : (React.createElement(UserBadge, { invert: true, center: true, size: 'xsmall', classes: {
             avatar: classes.avatar,
             name: cx(classes.name, classes.truncateText)
         }, name: name, avatar: avatar }, meta && metaContent));
