@@ -17,7 +17,7 @@ yarn build:dist
 
 if [ $RELEASE_AND_PUBLISH == "1" ]; then
   echo "=== WARNING RUNNING LIVE RELEASE ==="
-  $NODE_MODULES/.bin/semantic-release --debug --dry-run
+  $NODE_MODULES/.bin/semantic-release --debug
 else
   echo "=== RUNNING TEST RELEASE. NOTHING WILL BE PUBLISHED ==="
   $NODE_MODULES/.bin/semantic-release --debug --dry-run
