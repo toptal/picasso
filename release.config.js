@@ -45,6 +45,7 @@ module.exports = {
       }
     ]
   ],
+  branch: 'fx-remove-npmrc-from-build',
   success: ['@semantic-release/github'], // Add a comment to GitHub issues and pull requests resolved in the release
   fail: ['@semantic-release/github'], // Open a GitHub issue when a release fails
   plugins: [] // Reset default plugins and use custom steps defined in this file
