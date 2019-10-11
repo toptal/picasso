@@ -20,3 +20,7 @@ page
     'lab/DatePicker/story/InitialValue.example.tsx',
     'With initial value specified'
   ) // picasso-skip-visuals
+  .addExample(
+    'lab/DatePicker/story/WithInputProps.example.tsx',
+    'With Input Props'
+  ) // picasso-skip-visuals
