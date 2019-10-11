@@ -15,7 +15,6 @@ pipeline {
   }
 
   environment {
-    NPM_TOKEN = credentials('npm-token-for-toptal-private-registry')
     GITHUB_TOKEN = credentials('toptal-devbot-personal-token')
   }
 
@@ -41,7 +40,7 @@ pipeline {
         steps {
             script {
                 sh """
-                      docker run --tty -e NPM_TOKEN=$NPM_TOKEN -e HOME=`pwd` --volume `pwd`:`pwd`:z --user `id -u`:`id -g` \\
+                      docker run --tty -e HOME=`pwd` --volume `pwd`:`pwd`:z --user `id -u`:`id -g` \\
                       --workdir `pwd` node:8-alpine sh -c 'rm -rf ./node_modules && yarn install && yarn build:storybook'
                    """
             }//script

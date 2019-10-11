@@ -40,8 +40,6 @@ COPY . /app
 
 # needs to be +rw for rm and mkdir /build
 RUN chmod a+rw /app
-# needs to be +rw for changing the content and use NPM_TOKEN for publish
-RUN chmod a+rw /app/.npmrc
 RUN chmod a+rw /app/CHANGELOG.md
 RUN chmod a+rw /app/package.json
 

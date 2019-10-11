@@ -7,12 +7,7 @@ NODE_MODULES="$BASE_PATH/node_modules/"
 
 echo "" > .version
 
-# Needs to be updated for publishing package to npm
-echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN} \
-always-auth=true " > .npmrc
-
 yarn build:dist
-cp .npmrc build/
 
 # Safe switch for jenkins if we want to just try out release
 # yarn release [0|1]
