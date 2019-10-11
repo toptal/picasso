@@ -50,21 +50,7 @@ const SvgVideoOn16 = forwardRef(function SvgVideoOn16(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M12 5.6L16 4v8l-4-1.6V13H0V3h12v2.6zm0 1.077v2.646l3 1.2V5.477l-3 1.2zM11 6V4H1v8h10V6z'
-          id='videoOn16_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='videoOn16_svg__b'>
-          <use xlinkHref='#videoOn16_svg__a' />
-        </mask>
-        <use fillRule='nonzero' xlinkHref='#videoOn16_svg__a' />
-        <g mask='url(#videoOn16_svg__b)'>
-          <path d='M0 0h16v16H0z' />
-        </g>
-      </g>
+      <path d='M12 5.6L16 4v8l-4-1.6V13H0V3h12v2.6zm0 1.077v2.646l3 1.2V5.477l-3 1.2zM11 6V4H1v8h10V6z' />
     </svg>
   )
 })

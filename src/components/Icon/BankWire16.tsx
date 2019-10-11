@@ -50,21 +50,7 @@ const SvgBankWire16 = forwardRef(function SvgBankWire16(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M0 13h16v3H0v-3zm1 1v1h14v-1H1zM0 3l8-3 8 3v2H0V3zm1 .66V4h14v-.34L8 1.087 1 3.659zM3 6h1v6H3V6zm3 0h1v6H6V6zm3 0h1v6H9V6zm3 0h1v6h-1V6z'
-          id='bankWire16_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='bankWire16_svg__b'>
-          <use xlinkHref='#bankWire16_svg__a' />
-        </mask>
-        <use fillRule='nonzero' xlinkHref='#bankWire16_svg__a' />
-        <g mask='url(#bankWire16_svg__b)'>
-          <path d='M0 0h16v16H0z' />
-        </g>
-      </g>
+      <path d='M0 13h16v3H0v-3zm1 1v1h14v-1H1zM0 3l8-3 8 3v2H0V3zm1 .66V4h14v-.34L8 1.087 1 3.659zM3 6h1v6H3V6zm3 0h1v6H6V6zm3 0h1v6H9V6zm3 0h1v6h-1V6z' />
     </svg>
   )
 })

@@ -50,21 +50,7 @@ const SvgArrowDropDown24 = forwardRef(function SvgArrowDropDown24(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M11.372 16.215l-6.744-8.43C4.285 7.355 4.448 7 5 7h13.998c.556 0 .72.351.373.785l-6.744 8.43c-.343.43-.91.434-1.256 0z'
-          id='arrowDropDown24_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='arrowDropDown24_svg__b'>
-          <use xlinkHref='#arrowDropDown24_svg__a' />
-        </mask>
-        <use xlinkHref='#arrowDropDown24_svg__a' />
-        <g mask='url(#arrowDropDown24_svg__b)'>
-          <path d='M0 0h24v24H0z' />
-        </g>
-      </g>
+      <path d='M11.372 16.215l-6.744-8.43C4.285 7.355 4.448 7 5 7h13.998c.556 0 .72.351.373.785l-6.744 8.43c-.343.43-.91.434-1.256 0z' />
     </svg>
   )
 })

@@ -50,21 +50,7 @@ const SvgOverlap24 = forwardRef(function SvgOverlap24(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M18 2H2v16H1V1h17v1zm4 4h1v17H6v-1h16V6zM6 6h12v12H6V6zm1 1v10h10V7H7z'
-          id='overlap24_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='overlap24_svg__b'>
-          <use xlinkHref='#overlap24_svg__a' />
-        </mask>
-        <use fillRule='nonzero' xlinkHref='#overlap24_svg__a' />
-        <g mask='url(#overlap24_svg__b)'>
-          <path d='M0 0h24v24H0z' />
-        </g>
-      </g>
+      <path d='M18 2H2v16H1V1h17v1zm4 4h1v17H6v-1h16V6zM6 6h12v12H6V6zm1 1v10h10V7H7z' />
     </svg>
   )
 })

@@ -50,21 +50,7 @@ const SvgLock24 = forwardRef(function SvgLock24(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M6 10V6a6 6 0 1 1 12 0v4h3v14H3V10h3zm1 0h10V6A5 5 0 0 0 7 6v4zm-1 1H4v12h16V11H6z'
-          id='lock24_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='lock24_svg__b'>
-          <use xlinkHref='#lock24_svg__a' />
-        </mask>
-        <use fillRule='nonzero' xlinkHref='#lock24_svg__a' />
-        <g mask='url(#lock24_svg__b)'>
-          <path d='M0 0h24v24H0z' />
-        </g>
-      </g>
+      <path d='M6 10V6a6 6 0 1 1 12 0v4h3v14H3V10h3zm1 0h10V6A5 5 0 0 0 7 6v4zm-1 1H4v12h16V11H6z' />
     </svg>
   )
 })

@@ -50,21 +50,7 @@ const SvgEvening24 = forwardRef(function SvgEvening24(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M19 16v-1h1v1h1v1h-1v1h-1v-1h-1v-1h1zm-9-3v-1h1v1h1v1h-1v1h-1v-1H9v-1h1zm7-4V7h1v2h2v1h-2v2h-1v-2h-2V9h2zM5 17v-2h1v2h2v1H6v2H5v-2H3v-1h2zM9 6h2v1H9v2H8V7H6V6h2V4h1v2z'
-          id='evening24_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='evening24_svg__b'>
-          <use xlinkHref='#evening24_svg__a' />
-        </mask>
-        <use xlinkHref='#evening24_svg__a' />
-        <g mask='url(#evening24_svg__b)'>
-          <path d='M0 0h24v24H0z' />
-        </g>
-      </g>
+      <path d='M19 16v-1h1v1h1v1h-1v1h-1v-1h-1v-1h1zm-9-3v-1h1v1h1v1h-1v1h-1v-1H9v-1h1zm7-4V7h1v2h2v1h-2v2h-1v-2h-2V9h2zM5 17v-2h1v2h2v1H6v2H5v-2H3v-1h2zM9 6h2v1H9v2H8V7H6V6h2V4h1v2z' />
     </svg>
   )
 })

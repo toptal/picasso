@@ -50,21 +50,7 @@ const SvgBilling16 = forwardRef(function SvgBilling16(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M11 0l4 4v12H1V0h10zm-.414 1H2v14h12V4.414L10.586 1zM4 5h2v1H4V5zm0 3h2v1H4V8zm4-3h4v1H8V5zm0 3h4v1H8V8zm0 3h4v1H8v-1z'
-          id='billing16_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='billing16_svg__b'>
-          <use xlinkHref='#billing16_svg__a' />
-        </mask>
-        <use fillRule='nonzero' xlinkHref='#billing16_svg__a' />
-        <g mask='url(#billing16_svg__b)'>
-          <path d='M0 0h16v16H0z' />
-        </g>
-      </g>
+      <path d='M11 0l4 4v12H1V0h10zm-.414 1H2v14h12V4.414L10.586 1zM4 5h2v1H4V5zm0 3h2v1H4V8zm4-3h4v1H8V5zm0 3h4v1H8V8zm0 3h4v1H8v-1z' />
     </svg>
   )
 })

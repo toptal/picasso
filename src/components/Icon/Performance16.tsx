@@ -50,21 +50,7 @@ const SvgPerformance16 = forwardRef(function SvgPerformance16(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M13 14h2v1H1v-1h2V8h1v6h2V6h1v8h2V4h1v10h2V2h1v12z'
-          id='performance16_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='performance16_svg__b'>
-          <use xlinkHref='#performance16_svg__a' />
-        </mask>
-        <use xlinkHref='#performance16_svg__a' />
-        <g mask='url(#performance16_svg__b)'>
-          <path d='M0 0h16v16H0z' />
-        </g>
-      </g>
+      <path d='M13 14h2v1H1v-1h2V8h1v6h2V6h1v8h2V4h1v10h2V2h1v12z' />
     </svg>
   )
 })

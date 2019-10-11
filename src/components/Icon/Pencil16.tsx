@@ -50,21 +50,7 @@ const SvgPencil16 = forwardRef(function SvgPencil16(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M11.5.793L15.207 4.5 4.707 15H1v-3.707L8.793 3.5V3.5l.707-.707 2-2zm-2 3.415l-7.5 7.5V14h2.293l7.499-7.5L9.5 4.208zm2-2L10.207 3.5l2.292 2.293L13.793 4.5 11.5 2.207z'
-          id='pencil16_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='pencil16_svg__b'>
-          <use xlinkHref='#pencil16_svg__a' />
-        </mask>
-        <use fillRule='nonzero' xlinkHref='#pencil16_svg__a' />
-        <g mask='url(#pencil16_svg__b)'>
-          <path d='M0 0h16v16H0z' />
-        </g>
-      </g>
+      <path d='M11.5.793L15.207 4.5 4.707 15H1v-3.707L8.793 3.5V3.5l.707-.707 2-2zm-2 3.415l-7.5 7.5V14h2.293l7.499-7.5L9.5 4.208zm2-2L10.207 3.5l2.292 2.293L13.793 4.5 11.5 2.207z' />
     </svg>
   )
 })

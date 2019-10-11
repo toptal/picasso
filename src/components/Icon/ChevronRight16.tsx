@@ -50,21 +50,7 @@ const SvgChevronRight16 = forwardRef(function SvgChevronRight16(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z'
-          id='chevronRight16_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='chevronRight16_svg__b'>
-          <use xlinkHref='#chevronRight16_svg__a' />
-        </mask>
-        <use fillRule='nonzero' xlinkHref='#chevronRight16_svg__a' />
-        <g mask='url(#chevronRight16_svg__b)'>
-          <path d='M0 0h16v16H0z' />
-        </g>
-      </g>
+      <path d='M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z' />
     </svg>
   )
 })

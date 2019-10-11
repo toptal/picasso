@@ -50,21 +50,7 @@ const SvgTrash16 = forwardRef(function SvgTrash16(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M2 4h1v12H2V4zm0 11h12v1H2v-1zM6 2V0h4v2h5v1H1V2h5zm1 0h2V1H7v1zm6 2h1v12h-1V4zM6 7h1v5H6V7zm3 0h1v5H9V7z'
-          id='trash16_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='trash16_svg__b'>
-          <use xlinkHref='#trash16_svg__a' />
-        </mask>
-        <use fillRule='nonzero' xlinkHref='#trash16_svg__a' />
-        <g mask='url(#trash16_svg__b)'>
-          <path d='M0 0h16v16H0z' />
-        </g>
-      </g>
+      <path d='M2 4h1v12H2V4zm0 11h12v1H2v-1zM6 2V0h4v2h5v1H1V2h5zm1 0h2V1H7v1zm6 2h1v12h-1V4zM6 7h1v5H6V7zm3 0h1v5H9V7z' />
     </svg>
   )
 })

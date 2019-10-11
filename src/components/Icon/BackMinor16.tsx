@@ -50,21 +50,7 @@ const SvgBackMinor16 = forwardRef(function SvgBackMinor16(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M9.997 3.29l.707.707-4 4 4 4-.707.707L5.29 7.997l.707-.707 4-4z'
-          id='backMinor16_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='backMinor16_svg__b'>
-          <use xlinkHref='#backMinor16_svg__a' />
-        </mask>
-        <use fillRule='nonzero' xlinkHref='#backMinor16_svg__a' />
-        <g mask='url(#backMinor16_svg__b)'>
-          <path d='M0 0h16v16H0z' />
-        </g>
-      </g>
+      <path d='M9.997 3.29l.707.707-4 4 4 4-.707.707L5.29 7.997l.707-.707 4-4z' />
     </svg>
   )
 })

@@ -50,21 +50,7 @@ const SvgArrowDropDown16 = forwardRef(function SvgArrowDropDown16(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M7.357 10.228L3.643 5.772C3.283 5.34 3.446 5 3.995 5h8.01c.54 0 .707.346.352.772l-3.714 4.456c-.36.432-.931.426-1.286 0z'
-          id='arrowDropDown16_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='arrowDropDown16_svg__b'>
-          <use xlinkHref='#arrowDropDown16_svg__a' />
-        </mask>
-        <use xlinkHref='#arrowDropDown16_svg__a' />
-        <g mask='url(#arrowDropDown16_svg__b)'>
-          <path d='M0 0h16v16H0z' />
-        </g>
-      </g>
+      <path d='M7.357 10.228L3.643 5.772C3.283 5.34 3.446 5 3.995 5h8.01c.54 0 .707.346.352.772l-3.714 4.456c-.36.432-.931.426-1.286 0z' />
     </svg>
   )
 })

@@ -50,21 +50,7 @@ const SvgTeam24 = forwardRef(function SvgTeam24(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M3.95 16L8 7.388V0h8v7.388L20.056 16H24v8h-8v-4H8v4H0v-8h3.95zm1.105 0H8v3h8v-3H18.951l-3.768-8H8.817l-3.762 8zM7 20v-3H1v6h6v-3zm10-1v4h6v-6h-6v2zM9 7h6V1H9v6z'
-          id='team24_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='team24_svg__b'>
-          <use xlinkHref='#team24_svg__a' />
-        </mask>
-        <use fillRule='nonzero' xlinkHref='#team24_svg__a' />
-        <g mask='url(#team24_svg__b)'>
-          <path d='M0 0h24v24H0z' />
-        </g>
-      </g>
+      <path d='M3.95 16L8 7.388V0h8v7.388L20.056 16H24v8h-8v-4H8v4H0v-8h3.95zm1.105 0H8v3h8v-3H18.951l-3.768-8H8.817l-3.762 8zM7 20v-3H1v6h6v-3zm10-1v4h6v-6h-6v2zM9 7h6V1H9v6z' />
     </svg>
   )
 })

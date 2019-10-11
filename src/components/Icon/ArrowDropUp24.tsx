@@ -50,21 +50,7 @@ const SvgArrowDropUp24 = forwardRef(function SvgArrowDropUp24(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M11.372 7.785c.347-.434.913-.43 1.256 0l6.744 8.43c.347.434.183.785-.373.785H5.001c-.553 0-.716-.356-.373-.785l6.744-8.43z'
-          id='arrowDropUp24_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='arrowDropUp24_svg__b'>
-          <use xlinkHref='#arrowDropUp24_svg__a' />
-        </mask>
-        <use xlinkHref='#arrowDropUp24_svg__a' />
-        <g mask='url(#arrowDropUp24_svg__b)'>
-          <path d='M0 0h24v24H0z' />
-        </g>
-      </g>
+      <path d='M11.372 7.785c.347-.434.913-.43 1.256 0l6.744 8.43c.347.434.183.785-.373.785H5.001c-.553 0-.716-.356-.373-.785l6.744-8.43z' />
     </svg>
   )
 })

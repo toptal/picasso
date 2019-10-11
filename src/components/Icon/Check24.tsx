@@ -50,21 +50,7 @@ const SvgCheck24 = forwardRef(function SvgCheck24(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M7.5 18.793l14-14 .707.707-14 14-.707.707L1.793 14.5l.707-.707 5 5z'
-          id='check24_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='check24_svg__b'>
-          <use xlinkHref='#check24_svg__a' />
-        </mask>
-        <use fillRule='nonzero' xlinkHref='#check24_svg__a' />
-        <g mask='url(#check24_svg__b)'>
-          <path d='M0 0h24v24H0z' />
-        </g>
-      </g>
+      <path d='M7.5 18.793l14-14 .707.707-14 14-.707.707L1.793 14.5l.707-.707 5 5z' />
     </svg>
   )
 })

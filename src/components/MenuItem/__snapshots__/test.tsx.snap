@@ -46,34 +46,9 @@ exports[`MenuItem has chevron if has nested menu 1`] = `
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
         >
-          <defs>
-            <path
-              d="M5.997 3.29l4 4 .707.707-.707.707-4 4-.707-.707 4-4-4-4 .707-.707z"
-              id="chevronMinor16_svg__a"
-            />
-          </defs>
-          <g
-            fill-rule="evenodd"
-          >
-            <mask
-              id="chevronMinor16_svg__b"
-            >
-              <use
-                xlink:href="#chevronMinor16_svg__a"
-              />
-            </mask>
-            <use
-              fill-rule="nonzero"
-              xlink:href="#chevronMinor16_svg__a"
-            />
-            <g
-              mask="url(#chevronMinor16_svg__b)"
-            >
-              <path
-                d="M0 0h16v16H0z"
-              />
-            </g>
-          </g>
+          <path
+            d="M5.997 3.29l4 4 .707.707-.707.707-4 4-.707-.707 4-4-4-4 .707-.707z"
+          />
         </svg>
       </div>
     </li>

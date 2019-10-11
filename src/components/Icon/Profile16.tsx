@@ -50,21 +50,7 @@ const SvgProfile16 = forwardRef(function SvgProfile16(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M5.639 9.408a5 5 0 1 1 4.723 0A7.003 7.003 0 0 1 15 16h-1a6 6 0 1 0-12 0H1a7.003 7.003 0 0 1 4.639-6.592zM8 9a4 4 0 1 0 0-8 4 4 0 0 0 0 8z'
-          id='profile16_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='profile16_svg__b'>
-          <use xlinkHref='#profile16_svg__a' />
-        </mask>
-        <use fillRule='nonzero' xlinkHref='#profile16_svg__a' />
-        <g mask='url(#profile16_svg__b)'>
-          <path d='M0 0h16v16H0z' />
-        </g>
-      </g>
+      <path d='M5.639 9.408a5 5 0 1 1 4.723 0A7.003 7.003 0 0 1 15 16h-1a6 6 0 1 0-12 0H1a7.003 7.003 0 0 1 4.639-6.592zM8 9a4 4 0 1 0 0-8 4 4 0 0 0 0 8z' />
     </svg>
   )
 })

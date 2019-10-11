@@ -50,21 +50,7 @@ const SvgMorning24 = forwardRef(function SvgMorning24(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M6.207 18a5.5 5.5 0 1 1 10.586 0h-1.05a4.5 4.5 0 1 0-8.488 0H6.208zM11 5h1v4h-1V5zm8.278 3.015l.707.707-2.828 2.828-.707-.707 2.828-2.828zM23 16v1h-4v-1h4zM0 17v-1h4v1H0zm3.015-8.278l.707-.707 2.828 2.828-.707.707-2.828-2.828z'
-          id='morning24_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='morning24_svg__b'>
-          <use xlinkHref='#morning24_svg__a' />
-        </mask>
-        <use fillRule='nonzero' xlinkHref='#morning24_svg__a' />
-        <g mask='url(#morning24_svg__b)'>
-          <path d='M0 0h24v24H0z' />
-        </g>
-      </g>
+      <path d='M6.207 18a5.5 5.5 0 1 1 10.586 0h-1.05a4.5 4.5 0 1 0-8.488 0H6.208zM11 5h1v4h-1V5zm8.278 3.015l.707.707-2.828 2.828-.707-.707 2.828-2.828zM23 16v1h-4v-1h4zM0 17v-1h4v1H0zm3.015-8.278l.707-.707 2.828 2.828-.707.707-2.828-2.828z' />
     </svg>
   )
 })
