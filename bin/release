@@ -7,9 +7,6 @@ NODE_MODULES="$BASE_PATH/node_modules/"
 
 echo "" > .version
 
-# Needs to be updated for publishing package to npm
-echo "npm config set //registry.npmjs.org/:_authToken=${NPM_TOKEN}"
-
 yarn build:dist
 
 # Safe switch for jenkins if we want to just try out release
@@ -17,7 +14,7 @@ yarn build:dist
 
 if [ $RELEASE_AND_PUBLISH == "1" ]; then
   echo "=== WARNING RUNNING LIVE RELEASE ==="
-  $NODE_MODULES/.bin/semantic-release --debug --dry-run
+  $NODE_MODULES/.bin/semantic-release --debug
 else
   echo "=== RUNNING TEST RELEASE. NOTHING WILL BE PUBLISHED ==="
   $NODE_MODULES/.bin/semantic-release --debug --dry-run
