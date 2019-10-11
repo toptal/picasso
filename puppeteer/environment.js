@@ -84,7 +84,10 @@ class Storyshots extends JestPuppeteer {
     // Find examples in main and sub stories
     if (ast.isCodeExampleExpression(node)) {
       if (!ast.isNodeSkipped(node, program)) {
-        output.tests.push(ast.getCodeExampleName(node))
+        output.tests.push({
+          exampleFilename: ast.getCodeExampleName(node),
+          options: ast.getCodeExampleOptions(node)
+        })
       }
     }
 

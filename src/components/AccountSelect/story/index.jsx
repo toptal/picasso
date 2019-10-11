@@ -27,5 +27,9 @@ page.createTabChapter('Props').addComponentDocs({
 
 page
   .createChapter()
-  .addExample('AccountSelect/story/Default.example.jsx', 'Default')
-  .addExample('AccountSelect/story/Page.example.jsx', 'Select Account Page')
+  .addExample('AccountSelect/story/Default.example.jsx', 'Default', {
+    waitUntilImagesLoaded: true
+  })
+  .addExample('AccountSelect/story/Page.example.jsx', 'Select Account Page', {
+    waitUntilImagesLoaded: true
+  })
