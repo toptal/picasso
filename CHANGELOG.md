@@ -1,3 +1,10 @@
+## [3.24.5](https://github.com/toptal/picasso/compare/v3.24.4...v3.24.5) (2019-10-11)
+
+
+### Bug Fixes
+
+* **docs:** minor docs fix ([#788](https://github.com/toptal/picasso/issues/788)) ([61e428b](https://github.com/toptal/picasso/commit/61e428b))
+
 ## [3.24.4](https://github.com/toptal/picasso/compare/v3.24.3...v3.24.4) (2019-10-10)
 
 
