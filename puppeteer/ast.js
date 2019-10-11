@@ -16,6 +16,22 @@ const getChapterName = node => node.arguments[0].value
 const isCodeExampleExpression = node =>
   node.callee.property.name === 'addExample'
 
+const getCodeExampleOptions = node => {
+  const optionsAst = node.arguments[2]
+
+  if (!optionsAst) {
+    return {}
+  }
+
+  return optionsAst.properties.reduce(
+    (acc, prop) => ({
+      ...acc,
+      [prop.key.name]: prop.value.value
+    }),
+    {}
+  )
+}
+
 const getCodeExampleName = node => {
   const nameArgument = node.arguments[1]
 
@@ -61,5 +77,6 @@ module.exports = {
   getChapterName,
   isCodeExampleExpression,
   getCodeExampleName,
+  getCodeExampleOptions,
   isNodeSkipped
 }

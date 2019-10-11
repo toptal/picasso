@@ -13,9 +13,21 @@ page
 
 page
   .createChapter()
-  .addExample('UserBadge/story/Default.example.jsx', 'Default')
-  .addExample('UserBadge/story/Sizes.example.jsx', 'Sizes')
-  .addExample('UserBadge/story/Alignment.example.jsx', 'Alignment')
-  .addExample('UserBadge/story/Invert.example.jsx', 'Invert')
-  .addExample('UserBadge/story/Custom.example.jsx', 'Custom')
-  .addExample('UserBadge/story/Title.example.jsx', 'With Title')
+  .addExample('UserBadge/story/Default.example.jsx', 'Default', {
+    waitUntilImagesLoaded: true
+  })
+  .addExample('UserBadge/story/Sizes.example.jsx', 'Sizes', {
+    waitUntilImagesLoaded: true
+  })
+  .addExample('UserBadge/story/Alignment.example.jsx', 'Alignment', {
+    waitUntilImagesLoaded: true
+  })
+  .addExample('UserBadge/story/Invert.example.jsx', 'Invert', {
+    waitUntilImagesLoaded: true
+  })
+  .addExample('UserBadge/story/Custom.example.jsx', 'Custom', {
+    waitUntilImagesLoaded: true
+  })
+  .addExample('UserBadge/story/Title.example.jsx', 'With Title', {
+    waitUntilImagesLoaded: true
+  })

@@ -38,14 +38,17 @@ async function screenshotDOMElement() {
 export const assertVisuals = function (
   kind: string,
   type: string,
-  options = { delay: 0 }
+  options = { delay: 0, waitUntilImagesLoaded: false }
 ) {
   return async () => {
-    const { delay, ..._opts } = options
+    const { delay, waitUntilImagesLoaded, ..._opts } = options
     const host = `file:///${join(__dirname, '/../build/storybook/')}`
     const url = generateIframeUrl({ host, kind, type })
 
-    await page.goto(url)
+    await page.goto(
+      url,
+      waitUntilImagesLoaded ? { waitUntil: 'networkidle0' } : {}
+    )
     await page.waitFor(delay || 0)
 
     const image = await screenshotDOMElement()

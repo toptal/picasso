@@ -20,15 +20,16 @@ const snapShotDir = storyPath =>
   path.resolve(path.dirname(storyPath), '../', config.storyShotsDirName)
 
 stories.forEach(story => {
-  story.tests.forEach(testName => {
-    const humanName = createHumanName(story.name, testName)
+  story.tests.forEach(({ exampleFilename, options }) => {
+    const humanName = createHumanName(story.name, exampleFilename)
 
     test(
       humanName,
-      assertVisuals(story.name, testName, {
+      assertVisuals(story.name, exampleFilename, {
         customSnapshotsDir: snapShotDir(story.file),
         customSnapshotIdentifier: `${createSnapshotName(humanName)}`,
-        customDiffDir: outputPath
+        customDiffDir: outputPath,
+        ...options
       })
     )
   })
