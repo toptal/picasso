@@ -2,6 +2,9 @@
   "name": "@toptal/picasso",
   "version": "3.24.4",
   "description": "",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "./index.js",
   "module": "./index.js",
   "scripts": {
