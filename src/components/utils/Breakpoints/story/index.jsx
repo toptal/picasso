@@ -36,7 +36,7 @@ page
   .addExample('utils/Breakpoints/story/useScreens.example.jsx', {
     title: 'useScreens',
     description: `
-    Provides a programmatic way to switch between different values depending on screen size. The function returned by useScreens is memoized per screen size.
+    Provides a programmatic way to switch between different values depending on screen size. The function returned by useScreens is memoized per screen size, so there are no performance penalties if re-rendering happens often.
   `,
     showEditCode: true
   }) // picasso-skip-visuals

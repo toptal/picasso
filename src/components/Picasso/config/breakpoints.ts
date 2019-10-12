@@ -21,18 +21,10 @@ export const isScreenSize = function (
   size: keyof BreakpointsList,
   currentSize?: number
 ): boolean {
-  const { sm, md, lg, xl } = breakpoints.values!
+  const sizeToUse = currentSize || window.innerWidth
+  const foundBreakpoint = screenSizeToBreakpointKey(sizeToUse)
 
-  const breakPointBoundaries: {
-    [key: string]: (width: number) => boolean
-  } = {
-    small: (width: number) => width < sm,
-    medium: (width: number) => width >= sm && width < md,
-    large: (width: number) => width >= lg && width < xl,
-    'extra-large': (width: number) => width >= xl
-  }
-
-  return breakPointBoundaries[size](currentSize || window.innerWidth)
+  return size === foundBreakpoint
 }
 
 /**
