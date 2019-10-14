@@ -18,14 +18,7 @@ const SvgSearch24 = forwardRef(function SvgSearch24(props, ref) {
     }
     const svgStyle = Object.assign({ minWidth: `${scaledSize}px`, minHeight: `${scaledSize}px` }, style);
     return (React.createElement("svg", { viewBox: '0 0 24 24', className: cx(...classes), style: svgStyle, color: svgColor, ref: ref },
-        React.createElement("defs", null,
-            React.createElement("path", { d: 'M15.854 15.147l6.353 6.353-.707.707-6.353-6.353a8.5 8.5 0 1 1 .707-.707zM9.5 17a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15z', id: 'search24_svg__a' })),
-        React.createElement("g", { fillRule: 'evenodd' },
-            React.createElement("mask", { id: 'search24_svg__b' },
-                React.createElement("use", { xlinkHref: '#search24_svg__a' })),
-            React.createElement("use", { fillRule: 'nonzero', xlinkHref: '#search24_svg__a' }),
-            React.createElement("g", { mask: 'url(#search24_svg__b)' },
-                React.createElement("path", { d: 'M0 0h24v24H0z' })))));
+        React.createElement("path", { d: 'M15.854 15.147l6.353 6.353-.707.707-6.353-6.353a8.5 8.5 0 1 1 .707-.707zM9.5 17a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15z' })));
 });
 SvgSearch24.displayName = 'SvgSearch24';
 export default withStyles(styles)(SvgSearch24);

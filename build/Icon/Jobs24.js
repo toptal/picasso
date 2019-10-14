@@ -18,14 +18,7 @@ const SvgJobs24 = forwardRef(function SvgJobs24(props, ref) {
     }
     const svgStyle = Object.assign({ minWidth: `${scaledSize}px`, minHeight: `${scaledSize}px` }, style);
     return (React.createElement("svg", { viewBox: '0 0 24 24', className: cx(...classes), style: svgStyle, color: svgColor, ref: ref },
-        React.createElement("defs", null,
-            React.createElement("path", { d: 'M15 6H1v7h22V6h-8zM9 5V2h6v3h9v17H0V5h9zm1 0h4V3h-4v2zm13 9H1v7h22v-7z', id: 'jobs24_svg__a' })),
-        React.createElement("g", { fillRule: 'evenodd' },
-            React.createElement("mask", { id: 'jobs24_svg__b' },
-                React.createElement("use", { xlinkHref: '#jobs24_svg__a' })),
-            React.createElement("use", { fillRule: 'nonzero', xlinkHref: '#jobs24_svg__a' }),
-            React.createElement("g", { mask: 'url(#jobs24_svg__b)' },
-                React.createElement("path", { d: 'M0 0h24v24H0z' })))));
+        React.createElement("path", { d: 'M15 6H1v7h22V6h-8zM9 5V2h6v3h9v17H0V5h9zm1 0h4V3h-4v2zm13 9H1v7h22v-7z' })));
 });
 SvgJobs24.displayName = 'SvgJobs24';
 export default withStyles(styles)(SvgJobs24);

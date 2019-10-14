@@ -18,14 +18,7 @@ const SvgMinus24 = forwardRef(function SvgMinus24(props, ref) {
     }
     const svgStyle = Object.assign({ minWidth: `${scaledSize}px`, minHeight: `${scaledSize}px` }, style);
     return (React.createElement("svg", { viewBox: '0 0 24 24', className: cx(...classes), style: svgStyle, color: svgColor, ref: ref },
-        React.createElement("defs", null,
-            React.createElement("path", { id: 'minus24_svg__a', d: 'M4 11h15v1H4z' })),
-        React.createElement("g", { fillRule: 'evenodd' },
-            React.createElement("mask", { id: 'minus24_svg__b' },
-                React.createElement("use", { xlinkHref: '#minus24_svg__a' })),
-            React.createElement("use", { xlinkHref: '#minus24_svg__a' }),
-            React.createElement("g", { mask: 'url(#minus24_svg__b)' },
-                React.createElement("path", { d: 'M0 0h24v24H0z' })))));
+        React.createElement("path", { d: 'M4 11h15v1H4z' })));
 });
 SvgMinus24.displayName = 'SvgMinus24';
 export default withStyles(styles)(SvgMinus24);

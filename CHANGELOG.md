@@ -1,3 +1,10 @@
+## [3.25.1](https://github.com/toptal/picasso/compare/v3.25.0...v3.25.1) (2019-10-14)
+
+
+### Bug Fixes
+
+* **icons:** glitch ([#784](https://github.com/toptal/picasso/issues/784)) ([1c200ed](https://github.com/toptal/picasso/commit/1c200ed))
+
 # [3.25.0](https://github.com/toptal/picasso/compare/v3.24.5...v3.25.0) (2019-10-14)
 
 

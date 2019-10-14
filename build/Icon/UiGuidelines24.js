@@ -18,14 +18,7 @@ const SvgUiGuidelines24 = forwardRef(function SvgUiGuidelines24(props, ref) {
     }
     const svgStyle = Object.assign({ minWidth: `${scaledSize}px`, minHeight: `${scaledSize}px` }, style);
     return (React.createElement("svg", { viewBox: '0 0 24 24', className: cx(...classes), style: svgStyle, color: svgColor, ref: ref },
-        React.createElement("defs", null,
-            React.createElement("path", { d: 'M23 2h-9v20h9V2zm1 0v21H13V1h11v1zM0 4h10v1H0V4zm0 5h10v1H0V9zm0 5h10v1H0v-1zm0 5h10v1H0v-1z', id: 'uiGuidelines24_svg__a' })),
-        React.createElement("g", { fillRule: 'evenodd' },
-            React.createElement("mask", { id: 'uiGuidelines24_svg__b' },
-                React.createElement("use", { xlinkHref: '#uiGuidelines24_svg__a' })),
-            React.createElement("use", { xlinkHref: '#uiGuidelines24_svg__a' }),
-            React.createElement("g", { mask: 'url(#uiGuidelines24_svg__b)' },
-                React.createElement("path", { d: 'M0 0h24v24H0z' })))));
+        React.createElement("path", { d: 'M23 2h-9v20h9V2zm1 0v21H13V1h11v1zM0 4h10v1H0V4zm0 5h10v1H0V9zm0 5h10v1H0v-1zm0 5h10v1H0v-1z' })));
 });
 SvgUiGuidelines24.displayName = 'SvgUiGuidelines24';
 export default withStyles(styles)(SvgUiGuidelines24);

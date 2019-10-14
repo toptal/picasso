@@ -18,14 +18,7 @@ const SvgChevron16 = forwardRef(function SvgChevron16(props, ref) {
     }
     const svgStyle = Object.assign({ minWidth: `${scaledSize}px`, minHeight: `${scaledSize}px` }, style);
     return (React.createElement("svg", { viewBox: '0 0 16 16', className: cx(...classes), style: svgStyle, color: svgColor, ref: ref },
-        React.createElement("defs", null,
-            React.createElement("path", { d: 'M4.997 1.29l6.707 6.707-.707.707-6 6-.707-.707 6-6-6-6 .707-.707z', id: 'chevron16_svg__a' })),
-        React.createElement("g", { fillRule: 'evenodd' },
-            React.createElement("mask", { id: 'chevron16_svg__b' },
-                React.createElement("use", { xlinkHref: '#chevron16_svg__a' })),
-            React.createElement("use", { fillRule: 'nonzero', xlinkHref: '#chevron16_svg__a' }),
-            React.createElement("g", { mask: 'url(#chevron16_svg__b)' },
-                React.createElement("path", { d: 'M0 0h16v16H0z' })))));
+        React.createElement("path", { d: 'M4.997 1.29l6.707 6.707-.707.707-6 6-.707-.707 6-6-6-6 .707-.707z' })));
 });
 SvgChevron16.displayName = 'SvgChevron16';
 export default withStyles(styles)(SvgChevron16);

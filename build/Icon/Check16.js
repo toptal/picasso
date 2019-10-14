@@ -18,14 +18,7 @@ const SvgCheck16 = forwardRef(function SvgCheck16(props, ref) {
     }
     const svgStyle = Object.assign({ minWidth: `${scaledSize}px`, minHeight: `${scaledSize}px` }, style);
     return (React.createElement("svg", { viewBox: '0 0 16 16', className: cx(...classes), style: svgStyle, color: svgColor, ref: ref },
-        React.createElement("defs", null,
-            React.createElement("path", { d: 'M5.5 11.793l9-9 .707.707-9 9-.707.707L.793 8.5l.707-.707 4 4z', id: 'check16_svg__a' })),
-        React.createElement("g", { fillRule: 'evenodd' },
-            React.createElement("mask", { id: 'check16_svg__b' },
-                React.createElement("use", { xlinkHref: '#check16_svg__a' })),
-            React.createElement("use", { fillRule: 'nonzero', xlinkHref: '#check16_svg__a' }),
-            React.createElement("g", { mask: 'url(#check16_svg__b)' },
-                React.createElement("path", { d: 'M0 0h16v16H0z' })))));
+        React.createElement("path", { d: 'M5.5 11.793l9-9 .707.707-9 9-.707.707L.793 8.5l.707-.707 4 4z' })));
 });
 SvgCheck16.displayName = 'SvgCheck16';
 export default withStyles(styles)(SvgCheck16);

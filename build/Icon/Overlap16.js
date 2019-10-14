@@ -18,14 +18,7 @@ const SvgOverlap16 = forwardRef(function SvgOverlap16(props, ref) {
     }
     const svgStyle = Object.assign({ minWidth: `${scaledSize}px`, minHeight: `${scaledSize}px` }, style);
     return (React.createElement("svg", { viewBox: '0 0 16 16', className: cx(...classes), style: svgStyle, color: svgColor, ref: ref },
-        React.createElement("defs", null,
-            React.createElement("path", { d: 'M12 2H2v10H1V1h11v1zm2 2h1v11H4v-1h10V4zM4 4h8v8H4V4zm1 1v6h6V5H5z', id: 'overlap16_svg__a' })),
-        React.createElement("g", { fillRule: 'evenodd' },
-            React.createElement("mask", { id: 'overlap16_svg__b' },
-                React.createElement("use", { xlinkHref: '#overlap16_svg__a' })),
-            React.createElement("use", { fillRule: 'nonzero', xlinkHref: '#overlap16_svg__a' }),
-            React.createElement("g", { mask: 'url(#overlap16_svg__b)' },
-                React.createElement("path", { d: 'M0 0h16v16H0z' })))));
+        React.createElement("path", { d: 'M12 2H2v10H1V1h11v1zm2 2h1v11H4v-1h10V4zM4 4h8v8H4V4zm1 1v6h6V5H5z' })));
 });
 SvgOverlap16.displayName = 'SvgOverlap16';
 export default withStyles(styles)(SvgOverlap16);

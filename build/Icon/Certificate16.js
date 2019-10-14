@@ -18,14 +18,7 @@ const SvgCertificate16 = forwardRef(function SvgCertificate16(props, ref) {
     }
     const svgStyle = Object.assign({ minWidth: `${scaledSize}px`, minHeight: `${scaledSize}px` }, style);
     return (React.createElement("svg", { viewBox: '0 0 16 16', className: cx(...classes), style: svgStyle, color: svgColor, ref: ref },
-        React.createElement("defs", null,
-            React.createElement("path", { d: 'M14 10.663a3.486 3.486 0 0 1-1.5.337c-.537 0-1.045-.12-1.5-.337v3.165l1.5-.45 1.5.45v-3.165zm1-.714v5.223l-2.5-.75-2.5.75V9.949a3.5 3.5 0 1 1 5 0zM1 16H0V0h13v3h-1V1H1v14h8v1H1zm11.5-6a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z', id: 'certificate16_svg__a' })),
-        React.createElement("g", { fillRule: 'evenodd' },
-            React.createElement("mask", { id: 'certificate16_svg__b' },
-                React.createElement("use", { xlinkHref: '#certificate16_svg__a' })),
-            React.createElement("use", { xlinkHref: '#certificate16_svg__a' }),
-            React.createElement("g", { mask: 'url(#certificate16_svg__b)' },
-                React.createElement("path", { d: 'M0 0h16v16H0z' })))));
+        React.createElement("path", { d: 'M14 10.663a3.486 3.486 0 0 1-1.5.337c-.537 0-1.045-.12-1.5-.337v3.165l1.5-.45 1.5.45v-3.165zm1-.714v5.223l-2.5-.75-2.5.75V9.949a3.5 3.5 0 1 1 5 0zM1 16H0V0h13v3h-1V1H1v14h8v1H1zm11.5-6a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z' })));
 });
 SvgCertificate16.displayName = 'SvgCertificate16';
 export default withStyles(styles)(SvgCertificate16);

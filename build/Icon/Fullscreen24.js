@@ -18,14 +18,7 @@ const SvgFullscreen24 = forwardRef(function SvgFullscreen24(props, ref) {
     }
     const svgStyle = Object.assign({ minWidth: `${scaledSize}px`, minHeight: `${scaledSize}px` }, style);
     return (React.createElement("svg", { viewBox: '0 0 24 24', className: cx(...classes), style: svgStyle, color: svgColor, ref: ref },
-        React.createElement("defs", null,
-            React.createElement("path", { d: 'M3 18h4v1H2v-5h1v4zM22 6v4h-1V6h-4V5h5v1zM0 3h24v18H0V3zm1 1v16h22V4H1z', id: 'fullscreen24_svg__a' })),
-        React.createElement("g", { fillRule: 'evenodd' },
-            React.createElement("mask", { id: 'fullscreen24_svg__b' },
-                React.createElement("use", { xlinkHref: '#fullscreen24_svg__a' })),
-            React.createElement("use", { fillRule: 'nonzero', xlinkHref: '#fullscreen24_svg__a' }),
-            React.createElement("g", { mask: 'url(#fullscreen24_svg__b)' },
-                React.createElement("path", { d: 'M0 0h24v24H0z' })))));
+        React.createElement("path", { d: 'M3 18h4v1H2v-5h1v4zM22 6v4h-1V6h-4V5h5v1zM0 3h24v18H0V3zm1 1v16h22V4H1z' })));
 });
 SvgFullscreen24.displayName = 'SvgFullscreen24';
 export default withStyles(styles)(SvgFullscreen24);

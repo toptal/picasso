@@ -18,14 +18,7 @@ const SvgArrowUpMinor24 = forwardRef(function SvgArrowUpMinor24(props, ref) {
     }
     const svgStyle = Object.assign({ minWidth: `${scaledSize}px`, minHeight: `${scaledSize}px` }, style);
     return (React.createElement("svg", { viewBox: '0 0 24 24', className: cx(...classes), style: svgStyle, color: svgColor, ref: ref },
-        React.createElement("defs", null,
-            React.createElement("path", { d: 'M11.997 8.29l6.707 6.707-.707.707-6-6-6 6-.707-.707 6-6 .707-.707z', id: 'arrowUpMinor24_svg__a' })),
-        React.createElement("g", { fillRule: 'evenodd' },
-            React.createElement("mask", { id: 'arrowUpMinor24_svg__b' },
-                React.createElement("use", { xlinkHref: '#arrowUpMinor24_svg__a' })),
-            React.createElement("use", { fillRule: 'nonzero', xlinkHref: '#arrowUpMinor24_svg__a' }),
-            React.createElement("g", { mask: 'url(#arrowUpMinor24_svg__b)' },
-                React.createElement("path", { d: 'M0 0h24v24H0z' })))));
+        React.createElement("path", { d: 'M11.997 8.29l6.707 6.707-.707.707-6-6-6 6-.707-.707 6-6 .707-.707z' })));
 });
 SvgArrowUpMinor24.displayName = 'SvgArrowUpMinor24';
 export default withStyles(styles)(SvgArrowUpMinor24);

@@ -18,14 +18,7 @@ const SvgShare16 = forwardRef(function SvgShare16(props, ref) {
     }
     const svgStyle = Object.assign({ minWidth: `${scaledSize}px`, minHeight: `${scaledSize}px` }, style);
     return (React.createElement("svg", { viewBox: '0 0 16 16', className: cx(...classes), style: svgStyle, color: svgColor, ref: ref },
-        React.createElement("defs", null,
-            React.createElement("path", { d: 'M14 14v1H0V3h9v1H1v10h12V7h1v7zM10 1h6v5h-6V1zm1 1v3h4V2h-4z', id: 'share16_svg__a' })),
-        React.createElement("g", { fillRule: 'evenodd' },
-            React.createElement("mask", { id: 'share16_svg__b' },
-                React.createElement("use", { xlinkHref: '#share16_svg__a' })),
-            React.createElement("use", { xlinkHref: '#share16_svg__a' }),
-            React.createElement("g", { mask: 'url(#share16_svg__b)' },
-                React.createElement("path", { d: 'M0 0h16v16H0z' })))));
+        React.createElement("path", { d: 'M14 14v1H0V3h9v1H1v10h12V7h1v7zM10 1h6v5h-6V1zm1 1v3h4V2h-4z' })));
 });
 SvgShare16.displayName = 'SvgShare16';
 export default withStyles(styles)(SvgShare16);

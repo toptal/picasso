@@ -18,14 +18,7 @@ const SvgOverview16 = forwardRef(function SvgOverview16(props, ref) {
     }
     const svgStyle = Object.assign({ minWidth: `${scaledSize}px`, minHeight: `${scaledSize}px` }, style);
     return (React.createElement("svg", { viewBox: '0 0 16 16', className: cx(...classes), style: svgStyle, color: svgColor, ref: ref },
-        React.createElement("defs", null,
-            React.createElement("path", { d: 'M0 13h16v1H0v-1zm0-5h16v1H0V8zm0-5h16v1H0V3z', id: 'overview16_svg__a' })),
-        React.createElement("g", { fillRule: 'evenodd' },
-            React.createElement("mask", { id: 'overview16_svg__b' },
-                React.createElement("use", { xlinkHref: '#overview16_svg__a' })),
-            React.createElement("use", { xlinkHref: '#overview16_svg__a' }),
-            React.createElement("g", { mask: 'url(#overview16_svg__b)' },
-                React.createElement("path", { d: 'M0 0h16v16H0z' })))));
+        React.createElement("path", { d: 'M0 13h16v1H0v-1zm0-5h16v1H0V8zm0-5h16v1H0V3z' })));
 });
 SvgOverview16.displayName = 'SvgOverview16';
 export default withStyles(styles)(SvgOverview16);

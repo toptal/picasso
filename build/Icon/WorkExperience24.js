@@ -18,14 +18,7 @@ const SvgWorkExperience24 = forwardRef(function SvgWorkExperience24(props, ref) 
     }
     const svgStyle = Object.assign({ minWidth: `${scaledSize}px`, minHeight: `${scaledSize}px` }, style);
     return (React.createElement("svg", { viewBox: '0 0 24 24', className: cx(...classes), style: svgStyle, color: svgColor, ref: ref },
-        React.createElement("defs", null,
-            React.createElement("path", { d: 'M7 10v1H1v4h6v1H0V5h6V3h4v2h6v3h-1V6H1v4h6zm0-5h2V4H7v1zm1 4h16v10H8V9zm1 1v8h14v-8H9zm1 10h12v1H10v-1z', id: 'workExperience24_svg__a' })),
-        React.createElement("g", { fillRule: 'evenodd' },
-            React.createElement("mask", { id: 'workExperience24_svg__b' },
-                React.createElement("use", { xlinkHref: '#workExperience24_svg__a' })),
-            React.createElement("use", { fillRule: 'nonzero', xlinkHref: '#workExperience24_svg__a' }),
-            React.createElement("g", { mask: 'url(#workExperience24_svg__b)' },
-                React.createElement("path", { d: 'M0 0h24v24H0z' })))));
+        React.createElement("path", { d: 'M7 10v1H1v4h6v1H0V5h6V3h4v2h6v3h-1V6H1v4h6zm0-5h2V4H7v1zm1 4h16v10H8V9zm1 1v8h14v-8H9zm1 10h12v1H10v-1z' })));
 });
 SvgWorkExperience24.displayName = 'SvgWorkExperience24';
 export default withStyles(styles)(SvgWorkExperience24);

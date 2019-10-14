@@ -18,14 +18,7 @@ const SvgPerformance16 = forwardRef(function SvgPerformance16(props, ref) {
     }
     const svgStyle = Object.assign({ minWidth: `${scaledSize}px`, minHeight: `${scaledSize}px` }, style);
     return (React.createElement("svg", { viewBox: '0 0 16 16', className: cx(...classes), style: svgStyle, color: svgColor, ref: ref },
-        React.createElement("defs", null,
-            React.createElement("path", { d: 'M13 14h2v1H1v-1h2V8h1v6h2V6h1v8h2V4h1v10h2V2h1v12z', id: 'performance16_svg__a' })),
-        React.createElement("g", { fillRule: 'evenodd' },
-            React.createElement("mask", { id: 'performance16_svg__b' },
-                React.createElement("use", { xlinkHref: '#performance16_svg__a' })),
-            React.createElement("use", { xlinkHref: '#performance16_svg__a' }),
-            React.createElement("g", { mask: 'url(#performance16_svg__b)' },
-                React.createElement("path", { d: 'M0 0h16v16H0z' })))));
+        React.createElement("path", { d: 'M13 14h2v1H1v-1h2V8h1v6h2V6h1v8h2V4h1v10h2V2h1v12z' })));
 });
 SvgPerformance16.displayName = 'SvgPerformance16';
 export default withStyles(styles)(SvgPerformance16);

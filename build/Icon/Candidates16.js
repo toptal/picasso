@@ -18,14 +18,7 @@ const SvgCandidates16 = forwardRef(function SvgCandidates16(props, ref) {
     }
     const svgStyle = Object.assign({ minWidth: `${scaledSize}px`, minHeight: `${scaledSize}px` }, style);
     return (React.createElement("svg", { viewBox: '0 0 16 16', className: cx(...classes), style: svgStyle, color: svgColor, ref: ref },
-        React.createElement("defs", null,
-            React.createElement("path", { d: 'M16 11H7v4l-7-4V1h16v10zm-1-9H1v8.42l5 2.857V10h9V2z', id: 'candidates16_svg__a' })),
-        React.createElement("g", { fillRule: 'evenodd' },
-            React.createElement("mask", { id: 'candidates16_svg__b' },
-                React.createElement("use", { xlinkHref: '#candidates16_svg__a' })),
-            React.createElement("use", { fillRule: 'nonzero', xlinkHref: '#candidates16_svg__a' }),
-            React.createElement("g", { mask: 'url(#candidates16_svg__b)' },
-                React.createElement("path", { d: 'M0 0h16v16H0z' })))));
+        React.createElement("path", { d: 'M16 11H7v4l-7-4V1h16v10zm-1-9H1v8.42l5 2.857V10h9V2z' })));
 });
 SvgCandidates16.displayName = 'SvgCandidates16';
 export default withStyles(styles)(SvgCandidates16);

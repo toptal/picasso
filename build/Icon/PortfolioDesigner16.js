@@ -18,14 +18,7 @@ const SvgPortfolioDesigner16 = forwardRef(function SvgPortfolioDesigner16(props,
     }
     const svgStyle = Object.assign({ minWidth: `${scaledSize}px`, minHeight: `${scaledSize}px` }, style);
     return (React.createElement("svg", { viewBox: '0 0 16 16', className: cx(...classes), style: svgStyle, color: svgColor, ref: ref },
-        React.createElement("defs", null,
-            React.createElement("path", { d: 'M0 0h7v7H0V0zm1 1v5h5V1H1zm8-1h7v7H9V0zm1 1v5h5V1h-5zM0 9h7v7H0V9zm1 6h5v-5H1v5zm8-6h7v7H9V9zm1 6h5v-5h-5v5z', id: 'portfolioDesigner16_svg__a' })),
-        React.createElement("g", { fillRule: 'evenodd' },
-            React.createElement("mask", { id: 'portfolioDesigner16_svg__b' },
-                React.createElement("use", { xlinkHref: '#portfolioDesigner16_svg__a' })),
-            React.createElement("use", { fillRule: 'nonzero', xlinkHref: '#portfolioDesigner16_svg__a' }),
-            React.createElement("g", { mask: 'url(#portfolioDesigner16_svg__b)' },
-                React.createElement("path", { d: 'M0 0h16v16H0z' })))));
+        React.createElement("path", { d: 'M0 0h7v7H0V0zm1 1v5h5V1H1zm8-1h7v7H9V0zm1 1v5h5V1h-5zM0 9h7v7H0V9zm1 6h5v-5H1v5zm8-6h7v7H9V9zm1 6h5v-5h-5v5z' })));
 });
 SvgPortfolioDesigner16.displayName = 'SvgPortfolioDesigner16';
 export default withStyles(styles)(SvgPortfolioDesigner16);

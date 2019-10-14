@@ -18,14 +18,7 @@ const SvgCheckMinor24 = forwardRef(function SvgCheckMinor24(props, ref) {
     }
     const svgStyle = Object.assign({ minWidth: `${scaledSize}px`, minHeight: `${scaledSize}px` }, style);
     return (React.createElement("svg", { viewBox: '0 0 24 24', className: cx(...classes), style: svgStyle, color: svgColor, ref: ref },
-        React.createElement("defs", null,
-            React.createElement("path", { d: 'M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z', id: 'checkMinor24_svg__a' })),
-        React.createElement("g", { fillRule: 'evenodd' },
-            React.createElement("mask", { id: 'checkMinor24_svg__b' },
-                React.createElement("use", { xlinkHref: '#checkMinor24_svg__a' })),
-            React.createElement("use", { fillRule: 'nonzero', xlinkHref: '#checkMinor24_svg__a' }),
-            React.createElement("g", { mask: 'url(#checkMinor24_svg__b)' },
-                React.createElement("path", { d: 'M0 0h24v24H0z' })))));
+        React.createElement("path", { d: 'M10.5 14.793l6-6 .707.707-6 6-.707.707L6.793 12.5l.707-.707 3 3z' })));
 });
 SvgCheckMinor24.displayName = 'SvgCheckMinor24';
 export default withStyles(styles)(SvgCheckMinor24);

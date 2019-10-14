@@ -18,14 +18,7 @@ const SvgBackMinor16 = forwardRef(function SvgBackMinor16(props, ref) {
     }
     const svgStyle = Object.assign({ minWidth: `${scaledSize}px`, minHeight: `${scaledSize}px` }, style);
     return (React.createElement("svg", { viewBox: '0 0 16 16', className: cx(...classes), style: svgStyle, color: svgColor, ref: ref },
-        React.createElement("defs", null,
-            React.createElement("path", { d: 'M9.997 3.29l.707.707-4 4 4 4-.707.707L5.29 7.997l.707-.707 4-4z', id: 'backMinor16_svg__a' })),
-        React.createElement("g", { fillRule: 'evenodd' },
-            React.createElement("mask", { id: 'backMinor16_svg__b' },
-                React.createElement("use", { xlinkHref: '#backMinor16_svg__a' })),
-            React.createElement("use", { fillRule: 'nonzero', xlinkHref: '#backMinor16_svg__a' }),
-            React.createElement("g", { mask: 'url(#backMinor16_svg__b)' },
-                React.createElement("path", { d: 'M0 0h16v16H0z' })))));
+        React.createElement("path", { d: 'M9.997 3.29l.707.707-4 4 4 4-.707.707L5.29 7.997l.707-.707 4-4z' })));
 });
 SvgBackMinor16.displayName = 'SvgBackMinor16';
 export default withStyles(styles)(SvgBackMinor16);

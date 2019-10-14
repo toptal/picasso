@@ -18,14 +18,7 @@ const SvgPlus24 = forwardRef(function SvgPlus24(props, ref) {
     }
     const svgStyle = Object.assign({ minWidth: `${scaledSize}px`, minHeight: `${scaledSize}px` }, style);
     return (React.createElement("svg", { viewBox: '0 0 24 24', className: cx(...classes), style: svgStyle, color: svgColor, ref: ref },
-        React.createElement("defs", null,
-            React.createElement("path", { d: 'M12 11h7v1h-7v7h-1v-7H4v-1h7V4h1v7z', id: 'plus24_svg__a' })),
-        React.createElement("g", { fillRule: 'evenodd' },
-            React.createElement("mask", { id: 'plus24_svg__b' },
-                React.createElement("use", { xlinkHref: '#plus24_svg__a' })),
-            React.createElement("use", { xlinkHref: '#plus24_svg__a' }),
-            React.createElement("g", { mask: 'url(#plus24_svg__b)' },
-                React.createElement("path", { d: 'M0 0h24v24H0z' })))));
+        React.createElement("path", { d: 'M12 11h7v1h-7v7h-1v-7H4v-1h7V4h1v7z' })));
 });
 SvgPlus24.displayName = 'SvgPlus24';
 export default withStyles(styles)(SvgPlus24);

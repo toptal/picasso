@@ -18,14 +18,7 @@ const SvgPortfolioFinance16 = forwardRef(function SvgPortfolioFinance16(props, r
     }
     const svgStyle = Object.assign({ minWidth: `${scaledSize}px`, minHeight: `${scaledSize}px` }, style);
     return (React.createElement("svg", { viewBox: '0 0 16 16', className: cx(...classes), style: svgStyle, color: svgColor, ref: ref },
-        React.createElement("defs", null,
-            React.createElement("path", { d: 'M14.883 10.441L16 11l-8 4-8-4 1.117-.559L8 13.882l6.883-3.44zm0-3L16 8l-8 4-8-4 1.117-.559L8 10.882l6.883-3.44zM8 1l8 4-8 4-8-4 8-4zm0 1.118L2.236 5 8 7.882 13.764 5 8 2.118z', id: 'portfolioFinance16_svg__a' })),
-        React.createElement("g", { fillRule: 'evenodd' },
-            React.createElement("mask", { id: 'portfolioFinance16_svg__b' },
-                React.createElement("use", { xlinkHref: '#portfolioFinance16_svg__a' })),
-            React.createElement("use", { fillRule: 'nonzero', xlinkHref: '#portfolioFinance16_svg__a' }),
-            React.createElement("g", { mask: 'url(#portfolioFinance16_svg__b)' },
-                React.createElement("path", { d: 'M0 0h16v16H0z' })))));
+        React.createElement("path", { d: 'M14.883 10.441L16 11l-8 4-8-4 1.117-.559L8 13.882l6.883-3.44zm0-3L16 8l-8 4-8-4 1.117-.559L8 10.882l6.883-3.44zM8 1l8 4-8 4-8-4 8-4zm0 1.118L2.236 5 8 7.882 13.764 5 8 2.118z' })));
 });
 SvgPortfolioFinance16.displayName = 'SvgPortfolioFinance16';
 export default withStyles(styles)(SvgPortfolioFinance16);

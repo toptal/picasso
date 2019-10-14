@@ -18,14 +18,7 @@ const SvgCloseMinor24 = forwardRef(function SvgCloseMinor24(props, ref) {
     }
     const svgStyle = Object.assign({ minWidth: `${scaledSize}px`, minHeight: `${scaledSize}px` }, style);
     return (React.createElement("svg", { viewBox: '0 0 24 24', className: cx(...classes), style: svgStyle, color: svgColor, ref: ref },
-        React.createElement("defs", null,
-            React.createElement("path", { d: 'M12.707 12l5.5 5.5-.707.707-5.5-5.5-5.5 5.5-.707-.707 5.5-5.5-5.5-5.5.707-.707 5.5 5.5 5.5-5.5.707.707-5.5 5.5z', id: 'closeMinor24_svg__a' })),
-        React.createElement("g", { fillRule: 'evenodd' },
-            React.createElement("mask", { id: 'closeMinor24_svg__b' },
-                React.createElement("use", { xlinkHref: '#closeMinor24_svg__a' })),
-            React.createElement("use", { fillRule: 'nonzero', xlinkHref: '#closeMinor24_svg__a' }),
-            React.createElement("g", { mask: 'url(#closeMinor24_svg__b)' },
-                React.createElement("path", { d: 'M0 0h24v24H0z' })))));
+        React.createElement("path", { d: 'M12.707 12l5.5 5.5-.707.707-5.5-5.5-5.5 5.5-.707-.707 5.5-5.5-5.5-5.5.707-.707 5.5 5.5 5.5-5.5.707.707-5.5 5.5z' })));
 });
 SvgCloseMinor24.displayName = 'SvgCloseMinor24';
 export default withStyles(styles)(SvgCloseMinor24);

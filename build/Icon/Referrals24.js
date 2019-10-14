@@ -18,14 +18,7 @@ const SvgReferrals24 = forwardRef(function SvgReferrals24(props, ref) {
     }
     const svgStyle = Object.assign({ minWidth: `${scaledSize}px`, minHeight: `${scaledSize}px` }, style);
     return (React.createElement("svg", { viewBox: '0 0 24 24', className: cx(...classes), style: svgStyle, color: svgColor, ref: ref },
-        React.createElement("defs", null,
-            React.createElement("path", { d: 'M21.5 10.793l.707.707-9.707 9.707-.707-.707 9-9-9-9 .707-.707 9 9zm-10 0l.707.707L2.5 21.207l-.707-.707 9-9-9-9 .707-.707 9 9z', id: 'referrals24_svg__a' })),
-        React.createElement("g", { fillRule: 'evenodd' },
-            React.createElement("mask", { id: 'referrals24_svg__b' },
-                React.createElement("use", { xlinkHref: '#referrals24_svg__a' })),
-            React.createElement("use", { fillRule: 'nonzero', xlinkHref: '#referrals24_svg__a' }),
-            React.createElement("g", { mask: 'url(#referrals24_svg__b)' },
-                React.createElement("path", { d: 'M0 0h24v24H0z' })))));
+        React.createElement("path", { d: 'M21.5 10.793l.707.707-9.707 9.707-.707-.707 9-9-9-9 .707-.707 9 9zm-10 0l.707.707L2.5 21.207l-.707-.707 9-9-9-9 .707-.707 9 9z' })));
 });
 SvgReferrals24.displayName = 'SvgReferrals24';
 export default withStyles(styles)(SvgReferrals24);
