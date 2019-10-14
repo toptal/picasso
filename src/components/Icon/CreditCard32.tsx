@@ -50,21 +50,7 @@ const SvgCreditCard32 = forwardRef(function SvgCreditCard32(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M31 10V7a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v3h30zm0 1H1v14a1 1 0 0 0 1 1h28a1 1 0 0 0 1-1V11zM2 5h28a2 2 0 0 1 2 2v18a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zm2 11h10v1H4v-1zm0 4h5v1H4v-1zm19-4h5v1h-5v-1z'
-          id='creditCard32_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='creditCard32_svg__b'>
-          <use xlinkHref='#creditCard32_svg__a' />
-        </mask>
-        <use fillRule='nonzero' xlinkHref='#creditCard32_svg__a' />
-        <g mask='url(#creditCard32_svg__b)'>
-          <path d='M0 0h32v32H0z' />
-        </g>
-      </g>
+      <path d='M31 10V7a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v3h30zm0 1H1v14a1 1 0 0 0 1 1h28a1 1 0 0 0 1-1V11zM2 5h28a2 2 0 0 1 2 2v18a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zm2 11h10v1H4v-1zm0 4h5v1H4v-1zm19-4h5v1h-5v-1z' />
     </svg>
   )
 })

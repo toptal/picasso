@@ -50,21 +50,7 @@ const SvgEvening16 = forwardRef(function SvgEvening16(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M14 12v-1h1v1h1v1h-1v1h-1v-1h-1v-1h1zM7 9V8h1v1h1v1H8v1H7v-1H6V9h1zm5-4V3h1v2h2v1h-2v2h-1V6h-2V5h2zM2 13v-2h1v2h2v1H3v2H2v-2H0v-1h2zM5 2h2v1H5v2H4V3H2V2h2V0h1v2z'
-          id='evening16_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='evening16_svg__b'>
-          <use xlinkHref='#evening16_svg__a' />
-        </mask>
-        <use xlinkHref='#evening16_svg__a' />
-        <g mask='url(#evening16_svg__b)'>
-          <path d='M0 0h16v16H0z' />
-        </g>
-      </g>
+      <path d='M14 12v-1h1v1h1v1h-1v1h-1v-1h-1v-1h1zM7 9V8h1v1h1v1H8v1H7v-1H6V9h1zm5-4V3h1v2h2v1h-2v2h-1V6h-2V5h2zM2 13v-2h1v2h2v1H3v2H2v-2H0v-1h2zM5 2h2v1H5v2H4V3H2V2h2V0h1v2z' />
     </svg>
   )
 })

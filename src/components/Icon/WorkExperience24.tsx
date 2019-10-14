@@ -50,21 +50,7 @@ const SvgWorkExperience24 = forwardRef(function SvgWorkExperience24(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M7 10v1H1v4h6v1H0V5h6V3h4v2h6v3h-1V6H1v4h6zm0-5h2V4H7v1zm1 4h16v10H8V9zm1 1v8h14v-8H9zm1 10h12v1H10v-1z'
-          id='workExperience24_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='workExperience24_svg__b'>
-          <use xlinkHref='#workExperience24_svg__a' />
-        </mask>
-        <use fillRule='nonzero' xlinkHref='#workExperience24_svg__a' />
-        <g mask='url(#workExperience24_svg__b)'>
-          <path d='M0 0h24v24H0z' />
-        </g>
-      </g>
+      <path d='M7 10v1H1v4h6v1H0V5h6V3h4v2h6v3h-1V6H1v4h6zm0-5h2V4H7v1zm1 4h16v10H8V9zm1 1v8h14v-8H9zm1 10h12v1H10v-1z' />
     </svg>
   )
 })

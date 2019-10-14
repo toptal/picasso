@@ -50,21 +50,7 @@ const SvgCertificate16 = forwardRef(function SvgCertificate16(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M14 10.663a3.486 3.486 0 0 1-1.5.337c-.537 0-1.045-.12-1.5-.337v3.165l1.5-.45 1.5.45v-3.165zm1-.714v5.223l-2.5-.75-2.5.75V9.949a3.5 3.5 0 1 1 5 0zM1 16H0V0h13v3h-1V1H1v14h8v1H1zm11.5-6a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z'
-          id='certificate16_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='certificate16_svg__b'>
-          <use xlinkHref='#certificate16_svg__a' />
-        </mask>
-        <use xlinkHref='#certificate16_svg__a' />
-        <g mask='url(#certificate16_svg__b)'>
-          <path d='M0 0h16v16H0z' />
-        </g>
-      </g>
+      <path d='M14 10.663a3.486 3.486 0 0 1-1.5.337c-.537 0-1.045-.12-1.5-.337v3.165l1.5-.45 1.5.45v-3.165zm1-.714v5.223l-2.5-.75-2.5.75V9.949a3.5 3.5 0 1 1 5 0zM1 16H0V0h13v3h-1V1H1v14h8v1H1zm11.5-6a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z' />
     </svg>
   )
 })

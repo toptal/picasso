@@ -50,21 +50,7 @@ const SvgUpdate24 = forwardRef(function SvgUpdate24(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M4.5 17.832V20.5h-1v-4h4v1H5.519a8.47 8.47 0 0 0 6.481 3 8.5 8.5 0 0 0 8.5-8.5h1a9.5 9.5 0 0 1-17 5.832zm15-11.664V3.5h1v4h-4v-1h1.981A8.47 8.47 0 0 0 12 3.5 8.5 8.5 0 0 0 3.5 12h-1a9.5 9.5 0 0 1 17-5.832z'
-          id='update24_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='update24_svg__b'>
-          <use xlinkHref='#update24_svg__a' />
-        </mask>
-        <use fillRule='nonzero' xlinkHref='#update24_svg__a' />
-        <g mask='url(#update24_svg__b)'>
-          <path d='M0 0h24v24H0z' />
-        </g>
-      </g>
+      <path d='M4.5 17.832V20.5h-1v-4h4v1H5.519a8.47 8.47 0 0 0 6.481 3 8.5 8.5 0 0 0 8.5-8.5h1a9.5 9.5 0 0 1-17 5.832zm15-11.664V3.5h1v4h-4v-1h1.981A8.47 8.47 0 0 0 12 3.5 8.5 8.5 0 0 0 3.5 12h-1a9.5 9.5 0 0 1 17-5.832z' />
     </svg>
   )
 })

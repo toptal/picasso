@@ -50,21 +50,7 @@ const SvgRotate16 = forwardRef(function SvgRotate16(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M2.707 3H15v5h-1V4H2.707l1.5 1.5-.707.707-2-2L.793 3.5 3.5.793l.707.707-1.5 1.5zm10.586 10H1V8h1v4h11.293l-1.5-1.5.707-.707 2 2 .707.707-2.707 2.707-.707-.707 1.5-1.5z'
-          id='rotate16_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='rotate16_svg__b'>
-          <use xlinkHref='#rotate16_svg__a' />
-        </mask>
-        <use xlinkHref='#rotate16_svg__a' />
-        <g mask='url(#rotate16_svg__b)'>
-          <path d='M0 0h16v16H0z' />
-        </g>
-      </g>
+      <path d='M2.707 3H15v5h-1V4H2.707l1.5 1.5-.707.707-2-2L.793 3.5 3.5.793l.707.707-1.5 1.5zm10.586 10H1V8h1v4h11.293l-1.5-1.5.707-.707 2 2 .707.707-2.707 2.707-.707-.707 1.5-1.5z' />
     </svg>
   )
 })

@@ -50,21 +50,7 @@ const SvgClose24 = forwardRef(function SvgClose24(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M12.707 12l8.5 8.5-.707.707-8.5-8.5-8.5 8.5-.707-.707 8.5-8.5-8.5-8.5.707-.707 8.5 8.5 8.5-8.5.707.707-8.5 8.5z'
-          id='close24_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='close24_svg__b'>
-          <use xlinkHref='#close24_svg__a' />
-        </mask>
-        <use fillRule='nonzero' xlinkHref='#close24_svg__a' />
-        <g mask='url(#close24_svg__b)'>
-          <path d='M0 0h24v24H0z' />
-        </g>
-      </g>
+      <path d='M12.707 12l8.5 8.5-.707.707-8.5-8.5-8.5 8.5-.707-.707 8.5-8.5-8.5-8.5.707-.707 8.5 8.5 8.5-8.5.707.707-8.5 8.5z' />
     </svg>
   )
 })

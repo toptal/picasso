@@ -50,21 +50,7 @@ const SvgView24 = forwardRef(function SvgView24(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M2 23H1V1h9v1H2v20h20v-8h1v9H2zM22 2.707l-9.5 9.5-.707-.707 9.5-9.5H15V1h8v8h-1V2.707z'
-          id='view24_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='view24_svg__b'>
-          <use xlinkHref='#view24_svg__a' />
-        </mask>
-        <use fillRule='nonzero' xlinkHref='#view24_svg__a' />
-        <g mask='url(#view24_svg__b)'>
-          <path d='M0 0h24v24H0z' />
-        </g>
-      </g>
+      <path d='M2 23H1V1h9v1H2v20h20v-8h1v9H2zM22 2.707l-9.5 9.5-.707-.707 9.5-9.5H15V1h8v8h-1V2.707z' />
     </svg>
   )
 })

@@ -50,21 +50,7 @@ const SvgSearch16 = forwardRef(function SvgSearch16(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M10.582 9.874l4.625 4.626-.707.707-4.626-4.625a6 6 0 1 1 .707-.707zM6 11A5 5 0 1 0 6 1a5 5 0 0 0 0 10z'
-          id='search16_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='search16_svg__b'>
-          <use xlinkHref='#search16_svg__a' />
-        </mask>
-        <use fillRule='nonzero' xlinkHref='#search16_svg__a' />
-        <g mask='url(#search16_svg__b)'>
-          <path d='M0 0h16v16H0z' />
-        </g>
-      </g>
+      <path d='M10.582 9.874l4.625 4.626-.707.707-4.626-4.625a6 6 0 1 1 .707-.707zM6 11A5 5 0 1 0 6 1a5 5 0 0 0 0 10z' />
     </svg>
   )
 })

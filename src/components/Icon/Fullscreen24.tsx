@@ -50,21 +50,7 @@ const SvgFullscreen24 = forwardRef(function SvgFullscreen24(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M3 18h4v1H2v-5h1v4zM22 6v4h-1V6h-4V5h5v1zM0 3h24v18H0V3zm1 1v16h22V4H1z'
-          id='fullscreen24_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='fullscreen24_svg__b'>
-          <use xlinkHref='#fullscreen24_svg__a' />
-        </mask>
-        <use fillRule='nonzero' xlinkHref='#fullscreen24_svg__a' />
-        <g mask='url(#fullscreen24_svg__b)'>
-          <path d='M0 0h24v24H0z' />
-        </g>
-      </g>
+      <path d='M3 18h4v1H2v-5h1v4zM22 6v4h-1V6h-4V5h5v1zM0 3h24v18H0V3zm1 1v16h22V4H1z' />
     </svg>
   )
 })

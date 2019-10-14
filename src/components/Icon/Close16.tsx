@@ -50,21 +50,7 @@ const SvgClose16 = forwardRef(function SvgClose16(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M8.707 8l5.5 5.5-.707.707-5.5-5.5-5.5 5.5-.707-.707 5.5-5.5-5.5-5.5.707-.707 5.5 5.5 5.5-5.5.707.707-5.5 5.5z'
-          id='close16_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='close16_svg__b'>
-          <use xlinkHref='#close16_svg__a' />
-        </mask>
-        <use fillRule='nonzero' xlinkHref='#close16_svg__a' />
-        <g mask='url(#close16_svg__b)'>
-          <path d='M0 0h16v16H0z' />
-        </g>
-      </g>
+      <path d='M8.707 8l5.5 5.5-.707.707-5.5-5.5-5.5 5.5-.707-.707 5.5-5.5-5.5-5.5.707-.707 5.5 5.5 5.5-5.5.707.707-5.5 5.5z' />
     </svg>
   )
 })

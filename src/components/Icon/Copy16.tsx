@@ -50,21 +50,7 @@ const SvgCopy16 = forwardRef(function SvgCopy16(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M12 2H2v10H1V1h11v1zM4 4h11v11H4V4zm1 1v9h9V5H5z'
-          id='copy16_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='copy16_svg__b'>
-          <use xlinkHref='#copy16_svg__a' />
-        </mask>
-        <use fillRule='nonzero' xlinkHref='#copy16_svg__a' />
-        <g mask='url(#copy16_svg__b)'>
-          <path d='M0 0h16v16H0z' />
-        </g>
-      </g>
+      <path d='M12 2H2v10H1V1h11v1zM4 4h11v11H4V4zm1 1v9h9V5H5z' />
     </svg>
   )
 })

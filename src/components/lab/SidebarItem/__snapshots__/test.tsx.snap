@@ -56,33 +56,9 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
               style="min-width: 16px; min-height: 16px;"
               viewBox="0 0 16 16"
             >
-              <defs>
-                <path
-                  d="M7.357 10.228L3.643 5.772C3.283 5.34 3.446 5 3.995 5h8.01c.54 0 .707.346.352.772l-3.714 4.456c-.36.432-.931.426-1.286 0z"
-                  id="arrowDropDown16_svg__a"
-                />
-              </defs>
-              <g
-                fill-rule="evenodd"
-              >
-                <mask
-                  id="arrowDropDown16_svg__b"
-                >
-                  <use
-                    xlink:href="#arrowDropDown16_svg__a"
-                  />
-                </mask>
-                <use
-                  xlink:href="#arrowDropDown16_svg__a"
-                />
-                <g
-                  mask="url(#arrowDropDown16_svg__b)"
-                >
-                  <path
-                    d="M0 0h16v16H0z"
-                  />
-                </g>
-              </g>
+              <path
+                d="M7.357 10.228L3.643 5.772C3.283 5.34 3.446 5 3.995 5h8.01c.54 0 .707.346.352.772l-3.714 4.456c-.36.432-.931.426-1.286 0z"
+              />
             </svg>
           </span>
         </div>
@@ -192,34 +168,9 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
         >
-          <defs>
-            <path
-              d="M16 11H7v4l-7-4V1h16v10zm-1-9H1v8.42l5 2.857V10h9V2z"
-              id="candidates16_svg__a"
-            />
-          </defs>
-          <g
-            fill-rule="evenodd"
-          >
-            <mask
-              id="candidates16_svg__b"
-            >
-              <use
-                xlink:href="#candidates16_svg__a"
-              />
-            </mask>
-            <use
-              fill-rule="nonzero"
-              xlink:href="#candidates16_svg__a"
-            />
-            <g
-              mask="url(#candidates16_svg__b)"
-            >
-              <path
-                d="M0 0h16v16H0z"
-              />
-            </g>
-          </g>
+          <path
+            d="M16 11H7v4l-7-4V1h16v10zm-1-9H1v8.42l5 2.857V10h9V2z"
+          />
         </svg>
         <div
           class="Container-flex SidebarItem-label SidebarItem-noWrap SidebarItem-withIcon"
@@ -289,34 +240,9 @@ exports[`SidebarItem is selected 1`] = `
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
         >
-          <defs>
-            <path
-              d="M16 11H7v4l-7-4V1h16v10zm-1-9H1v8.42l5 2.857V10h9V2z"
-              id="candidates16_svg__a"
-            />
-          </defs>
-          <g
-            fill-rule="evenodd"
-          >
-            <mask
-              id="candidates16_svg__b"
-            >
-              <use
-                xlink:href="#candidates16_svg__a"
-              />
-            </mask>
-            <use
-              fill-rule="nonzero"
-              xlink:href="#candidates16_svg__a"
-            />
-            <g
-              mask="url(#candidates16_svg__b)"
-            >
-              <path
-                d="M0 0h16v16H0z"
-              />
-            </g>
-          </g>
+          <path
+            d="M16 11H7v4l-7-4V1h16v10zm-1-9H1v8.42l5 2.857V10h9V2z"
+          />
         </svg>
         <div
           class="Container-flex SidebarItem-label SidebarItem-noWrap SidebarItem-withIcon"
@@ -367,34 +293,9 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
               >
-                <defs>
-                  <path
-                    d="M16 11H7v4l-7-4V1h16v10zm-1-9H1v8.42l5 2.857V10h9V2z"
-                    id="candidates16_svg__a"
-                  />
-                </defs>
-                <g
-                  fill-rule="evenodd"
-                >
-                  <mask
-                    id="candidates16_svg__b"
-                  >
-                    <use
-                      xlink:href="#candidates16_svg__a"
-                    />
-                  </mask>
-                  <use
-                    fill-rule="nonzero"
-                    xlink:href="#candidates16_svg__a"
-                  />
-                  <g
-                    mask="url(#candidates16_svg__b)"
-                  >
-                    <path
-                      d="M0 0h16v16H0z"
-                    />
-                  </g>
-                </g>
+                <path
+                  d="M16 11H7v4l-7-4V1h16v10zm-1-9H1v8.42l5 2.857V10h9V2z"
+                />
               </svg>
               <div
                 class="Container-flex SidebarItem-label SidebarItem-noWrap SidebarItem-withIcon"
@@ -424,33 +325,9 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
               style="min-width: 16px; min-height: 16px;"
               viewBox="0 0 16 16"
             >
-              <defs>
-                <path
-                  d="M7.357 10.228L3.643 5.772C3.283 5.34 3.446 5 3.995 5h8.01c.54 0 .707.346.352.772l-3.714 4.456c-.36.432-.931.426-1.286 0z"
-                  id="arrowDropDown16_svg__a"
-                />
-              </defs>
-              <g
-                fill-rule="evenodd"
-              >
-                <mask
-                  id="arrowDropDown16_svg__b"
-                >
-                  <use
-                    xlink:href="#arrowDropDown16_svg__a"
-                  />
-                </mask>
-                <use
-                  xlink:href="#arrowDropDown16_svg__a"
-                />
-                <g
-                  mask="url(#arrowDropDown16_svg__b)"
-                >
-                  <path
-                    d="M0 0h16v16H0z"
-                  />
-                </g>
-              </g>
+              <path
+                d="M7.357 10.228L3.643 5.772C3.283 5.34 3.446 5 3.995 5h8.01c.54 0 .707.346.352.772l-3.714 4.456c-.36.432-.931.426-1.286 0z"
+              />
             </svg>
           </span>
         </div>
@@ -529,34 +406,9 @@ exports[`SidebarItem with icon 1`] = `
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
         >
-          <defs>
-            <path
-              d="M16 11H7v4l-7-4V1h16v10zm-1-9H1v8.42l5 2.857V10h9V2z"
-              id="candidates16_svg__a"
-            />
-          </defs>
-          <g
-            fill-rule="evenodd"
-          >
-            <mask
-              id="candidates16_svg__b"
-            >
-              <use
-                xlink:href="#candidates16_svg__a"
-              />
-            </mask>
-            <use
-              fill-rule="nonzero"
-              xlink:href="#candidates16_svg__a"
-            />
-            <g
-              mask="url(#candidates16_svg__b)"
-            >
-              <path
-                d="M0 0h16v16H0z"
-              />
-            </g>
-          </g>
+          <path
+            d="M16 11H7v4l-7-4V1h16v10zm-1-9H1v8.42l5 2.857V10h9V2z"
+          />
         </svg>
         <div
           class="Container-flex SidebarItem-label SidebarItem-noWrap SidebarItem-withIcon"

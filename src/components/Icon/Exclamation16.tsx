@@ -50,21 +50,7 @@ const SvgExclamation16 = forwardRef(function SvgExclamation16(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M7.5 15a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15zm0-1a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13zM7 3h1v6H7V3zm0 8h1v1H7v-1z'
-          id='exclamation16_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='exclamation16_svg__b'>
-          <use xlinkHref='#exclamation16_svg__a' />
-        </mask>
-        <use xlinkHref='#exclamation16_svg__a' />
-        <g mask='url(#exclamation16_svg__b)'>
-          <path d='M0 0h16v16H0z' />
-        </g>
-      </g>
+      <path d='M7.5 15a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15zm0-1a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13zM7 3h1v6H7V3zm0 8h1v1H7v-1z' />
     </svg>
   )
 })

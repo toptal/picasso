@@ -50,21 +50,7 @@ const SvgUiGuidelines16 = forwardRef(function SvgUiGuidelines16(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M15 2h-5v12h5V2zm1 0v13H9V1h7v1zM0 3h7v1H0V3zm0 3h7v1H0V6zm0 3h7v1H0V9zm0 3h7v1H0v-1z'
-          id='uiGuidelines16_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='uiGuidelines16_svg__b'>
-          <use xlinkHref='#uiGuidelines16_svg__a' />
-        </mask>
-        <use xlinkHref='#uiGuidelines16_svg__a' />
-        <g mask='url(#uiGuidelines16_svg__b)'>
-          <path d='M0 0h16v16H0z' />
-        </g>
-      </g>
+      <path d='M15 2h-5v12h5V2zm1 0v13H9V1h7v1zM0 3h7v1H0V3zm0 3h7v1H0V6zm0 3h7v1H0V9zm0 3h7v1H0v-1z' />
     </svg>
   )
 })

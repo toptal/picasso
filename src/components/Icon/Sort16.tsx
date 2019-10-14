@@ -50,21 +50,7 @@ const SvgSort16 = forwardRef(function SvgSort16(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M5 5v8.292l2.5-2.5.707.708L4.5 15.207l-.707-.707-3-3 .707-.707 2.5 2.5V5h1zM11.5.793L15.207 4.5l-.707.707-2.5-2.5V11h-1V2.707l-2.5 2.5-.707-.707 3-3L11.5.793z'
-          id='sort16_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='sort16_svg__b'>
-          <use xlinkHref='#sort16_svg__a' />
-        </mask>
-        <use fillRule='nonzero' xlinkHref='#sort16_svg__a' />
-        <g mask='url(#sort16_svg__b)'>
-          <path d='M0 0h16v16H0z' />
-        </g>
-      </g>
+      <path d='M5 5v8.292l2.5-2.5.707.708L4.5 15.207l-.707-.707-3-3 .707-.707 2.5 2.5V5h1zM11.5.793L15.207 4.5l-.707.707-2.5-2.5V11h-1V2.707l-2.5 2.5-.707-.707 3-3L11.5.793z' />
     </svg>
   )
 })

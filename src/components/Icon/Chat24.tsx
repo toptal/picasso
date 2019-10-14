@@ -50,21 +50,7 @@ const SvgChat24 = forwardRef(function SvgChat24(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M11 16h1v1h7v2.586L21.586 17H23V9h-4V8h5v10h-2l-4 4v-4h-7v-2zM0 2h18v13H7v4l-4-4H0V2zm1 1v11h2.414L6 16.586V14h11V3H1z'
-          id='chat24_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='chat24_svg__b'>
-          <use xlinkHref='#chat24_svg__a' />
-        </mask>
-        <use fillRule='nonzero' xlinkHref='#chat24_svg__a' />
-        <g mask='url(#chat24_svg__b)'>
-          <path d='M0 0h24v24H0z' />
-        </g>
-      </g>
+      <path d='M11 16h1v1h7v2.586L21.586 17H23V9h-4V8h5v10h-2l-4 4v-4h-7v-2zM0 2h18v13H7v4l-4-4H0V2zm1 1v11h2.414L6 16.586V14h11V3H1z' />
     </svg>
   )
 })

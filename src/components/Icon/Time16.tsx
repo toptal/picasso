@@ -50,21 +50,7 @@ const SvgTime16 = forwardRef(function SvgTime16(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M7.5 15a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15zm0-1a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13zM7 8H4V7h3V2h1v6H7z'
-          id='time16_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='time16_svg__b'>
-          <use xlinkHref='#time16_svg__a' />
-        </mask>
-        <use xlinkHref='#time16_svg__a' />
-        <g mask='url(#time16_svg__b)'>
-          <path d='M0 0h16v16H0z' />
-        </g>
-      </g>
+      <path d='M7.5 15a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15zm0-1a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13zM7 8H4V7h3V2h1v6H7z' />
     </svg>
   )
 })

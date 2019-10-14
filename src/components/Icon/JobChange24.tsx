@@ -50,21 +50,7 @@ const SvgJobChange24 = forwardRef(function SvgJobChange24(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M14 12v1H1v5h13v1H0V6h7V3h6v3h7v5h-1V7H1v5h13zM8 6h4V4H8v2zm11.5 10.793l2-2 .707.707-2 2-.707.707-1.707-1.707.707-.707 1 1zm0 4.207a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9zm0-1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z'
-          id='jobChange24_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='jobChange24_svg__b'>
-          <use xlinkHref='#jobChange24_svg__a' />
-        </mask>
-        <use fillRule='nonzero' xlinkHref='#jobChange24_svg__a' />
-        <g mask='url(#jobChange24_svg__b)'>
-          <path d='M0 0h24v24H0z' />
-        </g>
-      </g>
+      <path d='M14 12v1H1v5h13v1H0V6h7V3h6v3h7v5h-1V7H1v5h13zM8 6h4V4H8v2zm11.5 10.793l2-2 .707.707-2 2-.707.707-1.707-1.707.707-.707 1 1zm0 4.207a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9zm0-1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z' />
     </svg>
   )
 })

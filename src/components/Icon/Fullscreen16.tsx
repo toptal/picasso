@@ -50,21 +50,7 @@ const SvgFullscreen16 = forwardRef(function SvgFullscreen16(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M3 11h2v1H2V9h1v2zm11-6v2h-1V5h-2V4h3v1zM0 2h16v12H0V2zm1 1v10h14V3H1z'
-          id='fullscreen16_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='fullscreen16_svg__b'>
-          <use xlinkHref='#fullscreen16_svg__a' />
-        </mask>
-        <use fillRule='nonzero' xlinkHref='#fullscreen16_svg__a' />
-        <g mask='url(#fullscreen16_svg__b)'>
-          <path d='M0 0h16v16H0z' />
-        </g>
-      </g>
+      <path d='M3 11h2v1H2V9h1v2zm11-6v2h-1V5h-2V4h3v1zM0 2h16v12H0V2zm1 1v10h14V3H1z' />
     </svg>
   )
 })

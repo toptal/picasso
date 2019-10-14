@@ -50,21 +50,7 @@ const SvgMicrophoneOn16 = forwardRef(function SvgMicrophoneOn16(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M7 15v-2.022A5.5 5.5 0 0 1 2 7.5h1a4.5 4.5 0 0 0 9 0h1a5.5 5.5 0 0 1-5 5.478V15h3v1H4v-1h3zm.5-15A3.5 3.5 0 0 1 11 3.5v4a3.5 3.5 0 0 1-7 0v-4A3.5 3.5 0 0 1 7.5 0zm0 1A2.5 2.5 0 0 0 5 3.5v4a2.5 2.5 0 0 0 5 0v-4A2.5 2.5 0 0 0 7.5 1z'
-          id='microphoneOn16_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='microphoneOn16_svg__b'>
-          <use xlinkHref='#microphoneOn16_svg__a' />
-        </mask>
-        <use fillRule='nonzero' xlinkHref='#microphoneOn16_svg__a' />
-        <g mask='url(#microphoneOn16_svg__b)'>
-          <path d='M0 0h16v16H0z' />
-        </g>
-      </g>
+      <path d='M7 15v-2.022A5.5 5.5 0 0 1 2 7.5h1a4.5 4.5 0 0 0 9 0h1a5.5 5.5 0 0 1-5 5.478V15h3v1H4v-1h3zm.5-15A3.5 3.5 0 0 1 11 3.5v4a3.5 3.5 0 0 1-7 0v-4A3.5 3.5 0 0 1 7.5 0zm0 1A2.5 2.5 0 0 0 5 3.5v4a2.5 2.5 0 0 0 5 0v-4A2.5 2.5 0 0 0 7.5 1z' />
     </svg>
   )
 })

@@ -50,21 +50,7 @@ const SvgRepresentatives24 = forwardRef(function SvgRepresentatives24(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M3 0h18v24l-9-6.007L3 24V0zm1 1v21.13l8-5.34 8 5.34V1H4z'
-          id='representatives24_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='representatives24_svg__b'>
-          <use xlinkHref='#representatives24_svg__a' />
-        </mask>
-        <use fillRule='nonzero' xlinkHref='#representatives24_svg__a' />
-        <g mask='url(#representatives24_svg__b)'>
-          <path d='M0 0h24v24H0z' />
-        </g>
-      </g>
+      <path d='M3 0h18v24l-9-6.007L3 24V0zm1 1v21.13l8-5.34 8 5.34V1H4z' />
     </svg>
   )
 })

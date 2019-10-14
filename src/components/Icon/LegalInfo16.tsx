@@ -50,21 +50,7 @@ const SvgLegalInfo16 = forwardRef(function SvgLegalInfo16(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M11 0l4 4v12H1V0h10zm-.414 1H2v14h12V4.414L10.586 1zM8 11V7H6V6h3v5h2v1H6v-1h2zM7 4h2v1H7V4z'
-          id='legalInfo16_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='legalInfo16_svg__b'>
-          <use xlinkHref='#legalInfo16_svg__a' />
-        </mask>
-        <use fillRule='nonzero' xlinkHref='#legalInfo16_svg__a' />
-        <g mask='url(#legalInfo16_svg__b)'>
-          <path d='M0 0h16v16H0z' />
-        </g>
-      </g>
+      <path d='M11 0l4 4v12H1V0h10zm-.414 1H2v14h12V4.414L10.586 1zM8 11V7H6V6h3v5h2v1H6v-1h2zM7 4h2v1H7V4z' />
     </svg>
   )
 })

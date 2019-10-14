@@ -50,21 +50,7 @@ const SvgShare16 = forwardRef(function SvgShare16(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M14 14v1H0V3h9v1H1v10h12V7h1v7zM10 1h6v5h-6V1zm1 1v3h4V2h-4z'
-          id='share16_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='share16_svg__b'>
-          <use xlinkHref='#share16_svg__a' />
-        </mask>
-        <use xlinkHref='#share16_svg__a' />
-        <g mask='url(#share16_svg__b)'>
-          <path d='M0 0h16v16H0z' />
-        </g>
-      </g>
+      <path d='M14 14v1H0V3h9v1H1v10h12V7h1v7zM10 1h6v5h-6V1zm1 1v3h4V2h-4z' />
     </svg>
   )
 })

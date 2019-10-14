@@ -50,21 +50,7 @@ const SvgRepresentatives16 = forwardRef(function SvgRepresentatives16(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M2 0h12v16l-6-4.005L2 16V0zm1 1v13.13l5-3.337 5 3.337V1H3z'
-          id='representatives16_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='representatives16_svg__b'>
-          <use xlinkHref='#representatives16_svg__a' />
-        </mask>
-        <use fillRule='nonzero' xlinkHref='#representatives16_svg__a' />
-        <g mask='url(#representatives16_svg__b)'>
-          <path d='M0 0h16v16H0z' />
-        </g>
-      </g>
+      <path d='M2 0h12v16l-6-4.005L2 16V0zm1 1v13.13l5-3.337 5 3.337V1H3z' />
     </svg>
   )
 })

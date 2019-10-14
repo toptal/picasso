@@ -50,21 +50,7 @@ const SvgJobs16 = forwardRef(function SvgJobs16(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M10 5H1v4h14V5h-5zM6 4V2h4v2h6v11H0V4h6zm1 0h2V3H7v1zm8 6H1v4h14v-4z'
-          id='jobs16_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='jobs16_svg__b'>
-          <use xlinkHref='#jobs16_svg__a' />
-        </mask>
-        <use fillRule='nonzero' xlinkHref='#jobs16_svg__a' />
-        <g mask='url(#jobs16_svg__b)'>
-          <path d='M0 0h16v16H0z' />
-        </g>
-      </g>
+      <path d='M10 5H1v4h14V5h-5zM6 4V2h4v2h6v11H0V4h6zm1 0h2V3H7v1zm8 6H1v4h14v-4z' />
     </svg>
   )
 })

@@ -50,21 +50,7 @@ const SvgMore16 = forwardRef(function SvgMore16(
       color={svgColor}
       ref={ref}
     >
-      <defs>
-        <path
-          d='M8 5a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z'
-          id='more16_svg__a'
-        />
-      </defs>
-      <g fillRule='evenodd'>
-        <mask id='more16_svg__b'>
-          <use xlinkHref='#more16_svg__a' />
-        </mask>
-        <use fillRule='nonzero' xlinkHref='#more16_svg__a' />
-        <g mask='url(#more16_svg__b)'>
-          <path d='M0 0h16v16H0z' />
-        </g>
-      </g>
+      <path d='M8 5a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z' />
     </svg>
   )
 })
