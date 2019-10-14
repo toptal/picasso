@@ -34,10 +34,6 @@ export interface Props
   disabled?: boolean
   /** Width of the component */
   width?: 'full' | 'shrink' | 'auto'
-  /** Focus during first mount */
-  autoFocus?: boolean
-  /** Helps users to fill forms faster */
-  autoComplete?: string
   /** Whether icon should be placed at the beginning or end of the `Input` */
   iconPosition?: IconPosition
   /** Specify icon which should be rendered inside Input */
@@ -71,8 +67,6 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
     placeholder,
     error,
     disabled,
-    autoFocus,
-    autoComplete,
     icon,
     iconPosition,
     classes,
@@ -128,10 +122,6 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
       placeholder={placeholder}
       error={error}
       disabled={disabled}
-      autoFocus={autoFocus}
-      // https://developers.google.com/web/updates/2015/06/checkout-faster-with-autofill
-      // according to chrome specification
-      autoComplete={autoComplete}
       multiline={multiline}
       rows={rows}
       rowsMax={rowsMax}

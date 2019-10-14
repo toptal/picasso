@@ -24,19 +24,8 @@ type ValueType =
 export interface Props
   extends StandardProps,
     Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'defaultValue'> {
-  /** The id of the `input` element. */
-  id?: string
-  /** Name attribute of the input element */
-  name?: string
-  /** Placeholder for value */
-  placeholder?: string
-  /** Focus during first mount */
-  autoFocus?: boolean
-  /** Helps users to fill forms faster */
-  autoComplete?: string
   /** Width of the component */
   width?: 'full' | 'shrink' | 'auto'
-  disabled?: boolean
   inputComponent?: ReactType<InputBaseComponentProps>
   inputProps?: InputBaseComponentProps
   defaultValue?: ValueType
@@ -62,16 +51,10 @@ const OutlinedInput = forwardRef<HTMLInputElement, Props>(
       classes,
       className,
       style,
-      id,
-      name,
-      placeholder,
-      autoFocus,
-      autoComplete,
       multiline,
       rows,
       rowsMax,
       width,
-      disabled,
       inputComponent,
       inputProps,
       defaultValue,
@@ -98,7 +81,6 @@ const OutlinedInput = forwardRef<HTMLInputElement, Props>(
         style={style}
         labelWidth={0}
         fullWidth={width === 'full'}
-        disabled={disabled}
         error={error}
         inputComponent={inputComponent}
         inputProps={inputProps}
@@ -108,11 +90,6 @@ const OutlinedInput = forwardRef<HTMLInputElement, Props>(
         type={type}
         startAdornment={startAdornment}
         endAdornment={endAdornment}
-        id={id}
-        name={name}
-        placeholder={placeholder}
-        autoFocus={autoFocus}
-        autoComplete={autoComplete}
         multiline={multiline}
         rows={rows}
         rowsMax={rowsMax}
