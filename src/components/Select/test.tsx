@@ -1,15 +1,31 @@
 import React from 'react'
-import { render, cleanup } from '@testing-library/react'
+import { render, cleanup, fireEvent } from '@testing-library/react'
 
 import Picasso, { OmitInternalProps } from '../Picasso'
 import Select, { Props } from './Select'
 
 const renderSelect = (props: OmitInternalProps<Props>) => {
-  const { options, native, value, width } = props
+  const {
+    options,
+    native,
+    value,
+    width,
+    placeholder,
+    multiple = false,
+    onChange = () => {}
+  } = props
 
   return render(
     <Picasso loadFonts={false}>
-      <Select options={options} native={native} value={value} width={width} />
+      <Select
+        options={options}
+        native={native}
+        value={value}
+        width={width}
+        placeholder={placeholder}
+        multiple={multiple}
+        onChange={onChange}
+      />
     </Picasso>
   )
 }
@@ -51,4 +67,35 @@ test('renders dropdown select', () => {
   })
 
   expect(container).toMatchSnapshot()
+})
+
+test('multi select can generate series of onChange events', async () => {
+  const onChange = jest.fn(event => event.target.value)
+  const placeholder = 'choose'
+
+  const { getByText } = renderSelect({
+    options: OPTIONS,
+    placeholder,
+    multiple: true,
+    onChange
+  })
+
+  fireEvent.click(getByText(placeholder))
+  fireEvent.click(getByText(OPTIONS[0].text))
+  fireEvent.click(getByText(OPTIONS[1].text))
+
+  expect(onChange).toHaveNthReturnedWith(1, [OPTIONS[0].value])
+  expect(onChange).toHaveNthReturnedWith(2, [OPTIONS[1].value])
+})
+
+test('multi select renders list of selected options', async () => {
+  const { container } = renderSelect({
+    options: OPTIONS,
+    multiple: true,
+    value: [OPTIONS[0].value, OPTIONS[1].value]
+  })
+
+  expect(container.textContent).toContain(
+    `${OPTIONS[0].text}, ${OPTIONS[1].text}`
+  )
 })
