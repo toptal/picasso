@@ -1,3 +1,10 @@
+# [3.25.0](https://github.com/toptal/picasso/compare/v3.24.5...v3.25.0) (2019-10-14)
+
+
+### Features
+
+* [FX-486] Add useScreens hook ([#773](https://github.com/toptal/picasso/issues/773)) ([78065df](https://github.com/toptal/picasso/commit/78065df))
+
 ## [3.24.5](https://github.com/toptal/picasso/compare/v3.24.4...v3.24.5) (2019-10-11)
 
 
