@@ -4,7 +4,8 @@ export {
   breakpointsList as breakpoints,
   screens,
   isScreenSize,
-  useBreakpoint
+  useBreakpoint,
+  useScreens
 } from '../Picasso/config/breakpoints'
 
 export {
