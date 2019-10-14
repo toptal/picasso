@@ -1,3 +1,10 @@
+# [3.26.0](https://github.com/toptal/picasso/compare/v3.25.1...v3.26.0) (2019-10-14)
+
+
+### Features
+
+* **icon:** add star solid ([#794](https://github.com/toptal/picasso/issues/794)) ([5c7884c](https://github.com/toptal/picasso/commit/5c7884c))
+
 ## [3.25.1](https://github.com/toptal/picasso/compare/v3.25.0...v3.25.1) (2019-10-14)
 
 

@@ -202,4 +202,5 @@ export { default as ThumbsDown16 } from './ThumbsDown16';
 export { default as ThumbsDown24 } from './ThumbsDown24';
 export { default as ThumbsUp16 } from './ThumbsUp16';
 export { default as ThumbsUp24 } from './ThumbsUp24';
+export { default as StarSolid16 } from './StarSolid16';
 //# sourceMappingURL=index.js.map
