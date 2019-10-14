@@ -10,16 +10,16 @@ const options = [
   { text: 'Ukraine', value: 'UA' }
 ]
 
-const AutocompleteInitialSelectedItemExample = () => (
+const AutocompleteInitialSetValueExample = () => (
   <div>
     <Autocomplete
       placeholder='Start typing country...'
       options={options}
       onSelect={item => console.log('onSelect value:', item)}
       onChange={inputValue => console.log('onChange value:', inputValue)}
-      defaultValue='BY'
+      value='Belarus'
     />
   </div>
 )
 
-export default AutocompleteInitialSelectedItemExample
+export default AutocompleteInitialSetValueExample

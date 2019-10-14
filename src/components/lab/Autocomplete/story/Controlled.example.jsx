@@ -12,8 +12,7 @@ const options = [
 ]
 
 const AutocompleteControlledItemExample = () => {
-  const [value, setValue] = useState(options[0].value)
-  const [inputValue, setInputValue] = useState(options[0].text)
+  const [value, setValue] = useState(options[0].text)
 
   return (
     <div>
@@ -21,14 +20,13 @@ const AutocompleteControlledItemExample = () => {
         placeholder='Start typing country...'
         options={options}
         value={value}
-        onSelect={newValue => {
-          console.log('onSelect value:', newValue)
-          setValue(newValue)
+        onSelect={item => {
+          console.log('onSelect value:', item)
+          setValue(item.text)
         }}
-        inputValue={inputValue}
-        onChange={newInputValue => {
-          console.log('onChange value:', newInputValue)
-          setInputValue(newInputValue)
+        onChange={newValue => {
+          console.log('onChange value:', newValue)
+          setValue(newValue)
         }}
       />
       <Container top={2}>
@@ -36,16 +34,14 @@ const AutocompleteControlledItemExample = () => {
           <Grid.Item>
             <Button
               onClick={() => {
-                setValue(options[3].value)
+                setValue(options[3].text)
               }}
             >
               Set to country in your profile: Slovakia
             </Button>
             <Button
               onClick={() => {
-                setValue(null)
-                // We need this to clear input too for the time being. WIP.
-                setInputValue('')
+                setValue('')
               }}
               variant='secondary-blue'
             >

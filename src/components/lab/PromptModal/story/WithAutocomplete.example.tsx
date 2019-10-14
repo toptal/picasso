@@ -1,16 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button } from '@toptal/picasso'
 import { Autocomplete } from '@toptal/picasso/lab'
 import { useNotifications } from '@toptal/picasso/utils'
 import { useModals } from '@toptal/picasso/lab/utils'
 
-const options = [
+const optionsList = [
   { text: 'Belarus', value: 'BY' },
   { text: 'Croatia', value: 'HR' },
   { text: 'Lithuania', value: 'LU' },
   { text: 'Slovakia', value: 'SK' },
   { text: 'Ukraine', value: 'UA' }
 ]
+const EMPTY_INPUT_VALUE = ''
+const mapValue = (item: any) => (item ? item.text : EMPTY_INPUT_VALUE)
+const isSubstring = (subStr: string, str: string) =>
+  str.toLowerCase().includes(subStr.trim().toLowerCase())
 
 const PromptModalDefaultExample = () => {
   const { showPrompt } = useModals()
@@ -19,19 +23,38 @@ const PromptModalDefaultExample = () => {
   const handleClick = async () => {
     const { result, hide } = await showPrompt('Country', 'Select country:', {
       // eslint-disable-next-line react/display-name
-      children: ({ setResult }) => (
-        <Autocomplete
-          width='full'
-          placeholder='Start typing country...'
-          options={options}
-          onSelect={item => setResult(item)}
-        />
-      ),
+      children: ({ setResult }) => {
+        const [value, setValue] = useState(EMPTY_INPUT_VALUE)
+        const [options, setOptions] = useState(optionsList)
+
+        return (
+          <Autocomplete
+            value={value}
+            width='full'
+            mapValue={mapValue}
+            placeholder='Start typing country...'
+            options={options}
+            onChange={value => {
+              const filteredOptions =
+                value !== ''
+                  ? optionsList.filter(option =>
+                      isSubstring(value, mapValue(option))
+                    )
+                  : optionsList
+
+              setOptions(filteredOptions)
+
+              setValue(value)
+            }}
+            onSelect={item => setResult(item.value)}
+          />
+        )
+      },
       // for purpose of code example
       container: () => document.getElementById('modal-container')!
     })
 
-    showInfo(result)
+    showInfo(String(result))
     hide()
   }
 

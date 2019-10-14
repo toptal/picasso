@@ -31,6 +31,7 @@ const loadOptions = inputValue =>
   })
 
 const AutocompleteDynamicOptionsExample = () => {
+  const [value, setValue] = useState('')
   const [options, setOptions] = useState([])
   const [loading, setLoading] = useState(false)
 
@@ -45,11 +46,14 @@ const AutocompleteDynamicOptionsExample = () => {
   )
 
   const handleChange = inputValue => {
+    setValue(inputValue)
+
     if (inputValue.length >= MIN_CHARS) {
       setLoading(true)
       handleChangeDebounced(inputValue)
     } else {
       setLoading(false)
+      setOptions([])
       handleChangeDebounced.clear()
     }
   }
@@ -57,6 +61,7 @@ const AutocompleteDynamicOptionsExample = () => {
   return (
     <div>
       <Autocomplete
+        value={value}
         onChange={handleChange}
         options={options}
         loading={loading}

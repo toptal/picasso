@@ -3,7 +3,7 @@ import { Autocomplete } from '@toptal/picasso/lab'
 
 const ErrorExample = () => (
   <div>
-    <Autocomplete error placeholder='Error input...' />
+    <Autocomplete error placeholder='Error input...' value='' />
   </div>
 )
 

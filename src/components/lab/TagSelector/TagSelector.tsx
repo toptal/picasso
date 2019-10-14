@@ -11,7 +11,7 @@ import { withStyles } from '@material-ui/core/styles'
 import { useCombinedRefs } from '../../utils'
 import { StandardProps } from '../../Picasso'
 import Label from '../../Label'
-import Autocomplete from '../Autocomplete'
+import Autocomplete from '../TagSelectorAutocomplete'
 import styles from './styles'
 import TagSelectorInput from '../TagSelectorInput'
 import { Props as InputProps } from '../../Input'
@@ -68,7 +68,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       inputValue: inputValueProp,
       onInputChange,
       width,
-      enableAutofill,
+      // enableAutofill,
       ...rest
     },
     ref
@@ -205,7 +205,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         width={width}
         showOtherOption
         otherOptionText={newOptionLabel}
-        enableAutofill={enableAutofill}
+        // enableAutofill={enableAutofill}
       />
     )
   }

@@ -11,7 +11,12 @@ const options = [
 
 const AutocompleteLoadingExample = () => (
   <div>
-    <Autocomplete placeholder='Loading state...' options={options} loading />
+    <Autocomplete
+      placeholder='Loading state...'
+      options={options}
+      value=''
+      loading
+    />
   </div>
 )
 

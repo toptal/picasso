@@ -24,7 +24,8 @@ enum Direction {
 const ScrollMenu: FunctionComponent<Props> = ({
   selectedIndex,
   classes,
-  children
+  children,
+  style
 }) => {
   const menuRef = useRef<HTMLDivElement | null>(null)
   const firstItemRef = createRef<HTMLElement>()
@@ -82,7 +83,7 @@ const ScrollMenu: FunctionComponent<Props> = ({
   })
 
   return (
-    <Menu className={classes.menu}>
+    <Menu className={classes.menu} style={style}>
       <div ref={menuRef} className={classes.scrollView}>
         {renderChildren}
       </div>
