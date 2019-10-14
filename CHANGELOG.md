@@ -1,3 +1,10 @@
+## [3.26.1](https://github.com/toptal/picasso/compare/v3.26.0...v3.26.1) (2019-10-14)
+
+
+### Bug Fixes
+
+* **ShowMore:** add props spreading to ShowMore component ([#793](https://github.com/toptal/picasso/issues/793)) ([e0f840f](https://github.com/toptal/picasso/commit/e0f840f))
+
 # [3.26.0](https://github.com/toptal/picasso/compare/v3.25.1...v3.26.0) (2019-10-14)
 
 
