@@ -35,7 +35,10 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
     classes: { expandedIcon, icon, toggleText, iconWrapper },
     moreText = 'Show more',
     lessText = 'Show less',
-    onToggle = () => {}
+    onToggle = () => {},
+    className,
+    style,
+    ...rest
   },
   ref
 ) {
@@ -43,7 +46,15 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
 
   return (
     <React.Fragment>
-      <Typography ref={ref} size='medium' color='dark-grey'>
+      <Typography
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...rest}
+        ref={ref}
+        size='medium'
+        color='dark-grey'
+        className={className}
+        style={style}
+      >
         <Truncate lines={!shownMore && rows}>{children}</Truncate>
       </Typography>
       {!disableToggle && (
