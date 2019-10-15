@@ -2,7 +2,6 @@ import React, {
   forwardRef,
   ChangeEvent,
   ReactNode,
-  useMemo,
   HTMLAttributes
 } from 'react'
 import cx from 'classnames'
@@ -22,7 +21,7 @@ import styles from './styles'
 
 interface Option {
   key?: number
-  text: string | ReactNode
+  text: ReactNode
   value: string | number
 }
 
@@ -55,7 +54,53 @@ export interface Props
   /** List of options to be rendered as `Select` */
   options: Option[]
   /** Selected value */
-  value?: string | number
+  value?: string | number | (string | number)[]
+  /** Allow selecting multiple values */
+  multiple?: boolean
+}
+
+interface Select {
+  isSelected(): boolean
+  display(): ReactNode
+}
+
+function createSelectMultiple(
+  allOptions: Option[],
+  selectedValues: (string | number)[]
+): Select {
+  const isSelected = () => selectedValues.length > 0
+
+  const display = () =>
+    selectedOptions()
+      .map(({ text }) => text)
+      .join(', ')
+
+  const selectedOptions = () =>
+    allOptions.filter(({ value }) => selectedValues.includes(value))
+
+  return {
+    display,
+    isSelected
+  }
+}
+
+function createSelectSingle(
+  allOptions: Option[],
+  selectedValue: string | number
+): Select {
+  const isSelected = () => !!selectedValue
+
+  const defaultOption = { text: '', value: '' }
+
+  const selectedOption = () =>
+    allOptions.find(option => option.value === selectedValue) || defaultOption
+
+  const display = () => selectedOption().text
+
+  return {
+    display,
+    isSelected
+  }
 }
 
 const renderOptions = (
@@ -107,17 +152,21 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     disabled,
     error,
     onChange,
-    value,
+    multiple,
+    value = multiple ? [] : '',
     ...rest
   },
   ref
 ) {
-  const isPlaceholderShown = placeholder && value === ''
+  const select = Array.isArray(value)
+    ? createSelectMultiple(options, value)
+    : createSelectSingle(options, value)
 
-  const selectedOption = useMemo(
-    () => options.find(option => option.value === value),
-    [value, options]
-  )
+  const renderValue = () => {
+    return select.isSelected() ? select.display() : placeholder
+  }
+
+  const isPlaceholderShown = placeholder && !select.isSelected()
 
   const outlinedInput = (
     <OutlinedInput
@@ -173,12 +222,12 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
       native={native}
       variant='outlined'
       value={value}
+      multiple={multiple}
       renderValue={() => (
         <React.Fragment>
           {iconPosition === 'start' && iconAdornment}
           <Typography className={classes.inputValue} inline color='inherit'>
-            {selectedOption && selectedOption.text}
-            {!selectedOption && placeholder}
+            {renderValue()}
           </Typography>
           {iconPosition === 'end' && iconAdornment}
         </React.Fragment>
@@ -204,7 +253,6 @@ Select.defaultProps = {
   iconPosition: 'start',
   native: false,
   onChange: () => {},
-  value: '',
   width: 'full'
 }
 

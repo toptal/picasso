@@ -45,3 +45,7 @@ page
     description:
       'Options of the Select component could be not only text, but custom components'
   })
+  .addExample('Select/story/Multiple.example.jsx', {
+    title: 'Multiple options',
+    description: 'Select component allows to select multiple options'
+  })
