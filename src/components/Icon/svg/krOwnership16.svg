@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
-    <title>Untitled 2</title>
+    <title>Untitled 4</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="kr-ownership-icon" stroke="#000000">
-            <path d="M8,15.5 C3.9,15.5 0.5,12.1 0.5,8 C0.5,3.9 3.9,0.5 8,0.5 C12.1,0.5 15.5,3.9 15.5,8 C15.5,12.2 12.1,15.5 8,15.5 Z" id="Shape"></path>
-            <path d="M4.2,12.1 C4.2,10.7 5,9.4 6.3,8.7 C7.4,8.1 8.7,8.1 9.8,8.7 C11.1,9.3 11.9,10.7 11.9,12.1" id="Shape"></path>
-            <path d="M8,8.2 C6.8,8.2 5.9,7.2 5.9,6.1 C5.9,4.9 6.9,4 8,4 C9.2,4 10.1,5 10.1,6.1 C10.1,7.2 9.2,8.2 8,8.2 Z" id="Shape"></path>
+        <g id="kr-ownership-icon-24px" stroke="#000000">
+            <path d="M12,23.5 C5.7,23.5 0.5,18.3 0.5,12 C0.5,5.7 5.7,0.5 12,0.5 C18.3,0.5 23.5,5.7 23.5,12 C23.5,18.4 18.3,23.5 12,23.5 Z" id="Shape"></path>
+            <path d="M6.2,18.3 C6.2,16.2 7.4,14.2 9.4,13.1 C11.1,12.2 13.1,12.2 14.8,13.1 C16.8,14 18,16.2 18,18.3" id="Shape"></path>
+            <path d="M12,12.3 C10.2,12.3 8.8,10.8 8.8,9.1 C8.8,7.3 10.3,5.9 12,5.9 C13.8,5.9 15.2,7.4 15.2,9.1 C15.2,10.8 13.8,12.3 12,12.3 Z" id="Shape"></path>
         </g>
     </g>
 </svg>

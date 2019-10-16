@@ -44,13 +44,13 @@ const SvgKrOwnership16 = forwardRef(function SvgKrOwnership16(
 
   return (
     <svg
-      viewBox='0 0 16 16'
+      viewBox='0 0 24 24'
       className={cx(...classes)}
       style={svgStyle}
       color={svgColor}
       ref={ref}
     >
-      <path d='M8 15.5C3.9 15.5.5 12.1.5 8S3.9.5 8 .5s7.5 3.4 7.5 7.5c0 4.2-3.4 7.5-7.5 7.5z' />
+      <path d='M12 23.5C5.7 23.5.5 18.3.5 12S5.7.5 12 .5 23.5 5.7 23.5 12c0 6.4-5.2 11.5-11.5 11.5z' />
     </svg>
   )
 })
