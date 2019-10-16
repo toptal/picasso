@@ -2,11 +2,24 @@ import React, { useState } from 'react'
 import format from 'date-fns/format'
 
 import { ClickAwayListener } from '../../utils'
-import { Input, Container } from '../..'
 import { BaseProps } from '../../Picasso'
+import Container from '../../Container'
+import Input, { Props as InputProps } from '../../Input'
 import Calendar, { DateOrDateRangeType, DateRangeType } from '../Calendar'
 
-export interface Props extends BaseProps {
+export interface Props
+  extends BaseProps,
+    Omit<
+      InputProps,
+      | 'value'
+      | 'onSelect'
+      | 'type'
+      | 'autoComplete'
+      | 'multiline'
+      | 'rows'
+      | 'defaultValue'
+      | 'onChange'
+    > {
   /** Method that will be invoked with selected values */
   onSelect: (value: DateOrDateRangeType) => void
   /** Whether calendar supports single date selection or range */
@@ -31,7 +44,13 @@ const formatValue = (value: DateOrDateRangeType) => {
   }
 }
 
-export const DatePicker = ({ onSelect, range, value: initialValue }: Props) => {
+export const DatePicker = ({
+  onSelect,
+  range,
+  value: initialValue,
+  width,
+  ...rest
+}: Props) => {
   const [calendarOpened, setCalendarOpened] = useState(false)
   const [inputValue, setInputValue] = useState<string | undefined>(
     initialValue ? formatValue(initialValue) : undefined
@@ -47,9 +66,14 @@ export const DatePicker = ({ onSelect, range, value: initialValue }: Props) => {
 
   return (
     <ClickAwayListener onClickAway={closeCalendar}>
-      <Container inline>
-        <Input value={inputValue} onFocus={openCalendar} />
-
+      <Container inline={width !== 'full'}>
+        <Input
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          {...rest}
+          value={inputValue}
+          onFocus={openCalendar}
+          width={width}
+        />
         <Calendar
           activeMonth={initialValue}
           value={initialValue}
