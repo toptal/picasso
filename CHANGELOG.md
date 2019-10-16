@@ -1,3 +1,10 @@
+# [3.29.0](https://github.com/toptal/picasso/compare/v3.28.0...v3.29.0) (2019-10-16)
+
+
+### Features
+
+* **DatePicker:** add possibility to use input props ([#785](https://github.com/toptal/picasso/issues/785)) ([a27bf1c](https://github.com/toptal/picasso/commit/a27bf1c))
+
 # [3.28.0](https://github.com/toptal/picasso/compare/v3.27.0...v3.28.0) (2019-10-16)
 
 
