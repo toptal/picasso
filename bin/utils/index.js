@@ -30,7 +30,7 @@ const generatePackageJson = (
     data.version = version
   }
 
-  fs.writeFileSync(out, JSON.stringify(data, null, 2))
+  fs.writeFileSync(out, JSON.stringify(data, null, 2) + '\n')
 }
 
 module.exports = {
