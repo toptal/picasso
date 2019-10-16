@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso",
-  "version": "3.26.1",
+  "version": "3.27.0",
   "description": "",
   "publishConfig": {
     "access": "public"
@@ -93,7 +93,7 @@
     "chalk": "^2.4.1",
     "commitizen": "^3.1.1",
     "copy-to-clipboard": "^3.2.0",
-    "cross-env": "^5.2.0",
+    "cross-env": "^6.0.3",
     "cz-conventional-changelog": "2.1.0",
     "danger": "^7.1.4",
     "ejs": "^2.6.1",

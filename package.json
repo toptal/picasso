@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso",
-  "version": "3.26.1",
+  "version": "3.27.0",
   "description": "",
   "publishConfig": {
     "access": "public"

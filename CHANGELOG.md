@@ -1,3 +1,11 @@
+# [3.27.0](https://github.com/toptal/picasso/compare/v3.26.1...v3.27.0) (2019-10-16)
+
+
+### Features
+
+* **Autocomplete:** add enableAutofill option ([#798](https://github.com/toptal/picasso/issues/798)) ([3de9683](https://github.com/toptal/picasso/commit/3de9683))
+* **select:** add support for multiple selections ([#797](https://github.com/toptal/picasso/issues/797)) ([903b593](https://github.com/toptal/picasso/commit/903b593))
+
 ## [3.26.1](https://github.com/toptal/picasso/compare/v3.26.0...v3.26.1) (2019-10-14)
 
 

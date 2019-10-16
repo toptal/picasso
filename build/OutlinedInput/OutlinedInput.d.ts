@@ -3,19 +3,8 @@ import { InputBaseComponentProps } from '@material-ui/core/InputBase';
 import { StandardProps } from '../Picasso';
 declare type ValueType = Array<string | number | boolean | object> | string | number | boolean | object;
 export interface Props extends StandardProps, Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'defaultValue'> {
-    /** The id of the `input` element. */
-    id?: string;
-    /** Name attribute of the input element */
-    name?: string;
-    /** Placeholder for value */
-    placeholder?: string;
-    /** Focus during first mount */
-    autoFocus?: boolean;
-    /** Helps users to fill forms faster */
-    autoComplete?: string;
     /** Width of the component */
     width?: 'full' | 'shrink' | 'auto';
-    disabled?: boolean;
     inputComponent?: ReactType<InputBaseComponentProps>;
     inputProps?: InputBaseComponentProps;
     defaultValue?: ValueType;

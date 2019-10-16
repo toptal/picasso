@@ -9,7 +9,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { forwardRef, Fragment } from 'react';
+import React, { forwardRef, useMemo, Fragment } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { capitalize } from '@material-ui/core/utils/helpers';
 import cx from 'classnames';
@@ -21,20 +21,31 @@ import Container from '../../Container';
 import Loader from '../../Loader';
 import ScrollMenu from '../../ScrollMenu';
 import Typography from '../../Typography';
+import InputAdornment from '../../InputAdornment';
 import { isSubstring } from '../../utils';
 import useControlledAndUncontrolledState from '../../utils/use-controlled-and-uncontrolled-state';
 import useControlledAndUncontrolledInput from '../../utils/use-controlled-and-uncontrolled-input';
 import styles from './styles';
-import InputAdornment from '../../InputAdornment';
 const EMPTY_INPUT_VALUE = '';
 const FIRST_ITEM_INDEX = 0;
+/**
+ * Specification has two options to enable/disable autofill:
+ * "on"|"off", but google chrome doesn't respect specification and
+ * enables autofill for inputs with common name like "email", "address" etc
+ * As a workaround it's possible to use any incorrect string as a value of
+ * "autocomplete" field. "none" is our current choice.
+ */
+const AUTOFILL_DISABLED_STATE = 'none';
+export const getAutocompletePropValue = (enableAutofill, autoComplete) => {
+    return enableAutofill ? autoComplete : AUTOFILL_DISABLED_STATE;
+};
 const isMatchingMinLength = (value, minLength) => !minLength || value.length >= minLength;
 const getItemText = (item) => (item && item.text) || EMPTY_INPUT_VALUE;
 const getItemValue = (item) => (item && (item.value || item.text)) || null;
 const isSelected = (item, selectedItem) => getItemValue(item) === getItemValue(selectedItem);
 const getUniqueValue = (value) => `${value.replace(/\s+/g, '-').toLowerCase()}-${new Date().getTime()}`;
 export const Autocomplete = forwardRef(function Autocomplete(_a, ref) {
-    var { classes, className, defaultInputValue, inputValue: inputValueProp, onChange: onInputChange, defaultValue, value, onSelect, onOtherOptionSelect, loading, minLength, placeholder, otherOptionText, noOptionsText, options, style, width, allowAny, showOtherOption, onKeyDown, inputComponent, renderOption, endAdornment, icon, error } = _a, rest = __rest(_a, ["classes", "className", "defaultInputValue", "inputValue", "onChange", "defaultValue", "value", "onSelect", "onOtherOptionSelect", "loading", "minLength", "placeholder", "otherOptionText", "noOptionsText", "options", "style", "width", "allowAny", "showOtherOption", "onKeyDown", "inputComponent", "renderOption", "endAdornment", "icon", "error"]);
+    var { classes, className, defaultInputValue, inputValue: inputValueProp, onChange: onInputChange, defaultValue, value, onSelect, onOtherOptionSelect, loading, minLength, placeholder, otherOptionText, noOptionsText, options, style, width, allowAny, showOtherOption, onKeyDown, inputComponent, renderOption, endAdornment, icon, error, enableAutofill, autoComplete } = _a, rest = __rest(_a, ["classes", "className", "defaultInputValue", "inputValue", "onChange", "defaultValue", "value", "onSelect", "onOtherOptionSelect", "loading", "minLength", "placeholder", "otherOptionText", "noOptionsText", "options", "style", "width", "allowAny", "showOtherOption", "onKeyDown", "inputComponent", "renderOption", "endAdornment", "icon", "error", "enableAutofill", "autoComplete"]);
     const [selectedItemValue, setSelectedItemValue] = useControlledAndUncontrolledState(defaultValue, value, onSelect);
     const selectedItem = selectedItemValue === null
         ? null
@@ -44,6 +55,7 @@ export const Autocomplete = forwardRef(function Autocomplete(_a, ref) {
         window.console.warn(`Autocomplete: There is no option for the given value \`${selectedItemValue}\``);
         return null;
     }
+    const autoCompletePropValue = useMemo(() => getAutocompletePropValue(enableAutofill, autoComplete), [enableAutofill, autoComplete]);
     const handleInputValueChange = (newInputValue) => {
         if (newInputValue !== inputValue) {
             setInputValue(newInputValue);
@@ -145,7 +157,7 @@ export const Autocomplete = forwardRef(function Autocomplete(_a, ref) {
                 onKeyDown(event, inputValue);
             },
             // here we override the value returned from downshift, `off` by default
-            autoComplete: rest.autoComplete || 'off'
+            autoComplete: autoCompletePropValue
         });
         return (React.createElement("div", { className: cx(classes.root, className, classes[`root${capitalize(width)}`]), style: style },
             React.createElement(Container, { flex: true, ref: inputWrapperRef },
@@ -177,6 +189,7 @@ Autocomplete.defaultProps = {
     allowAny: true,
     defaultInputValue: '',
     defaultValue: null,
+    enableAutofill: false,
     loading: false,
     minLength: 0,
     noOptionsText: 'No options',

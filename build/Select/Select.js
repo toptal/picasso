@@ -9,7 +9,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { forwardRef, useMemo } from 'react';
+import React, { forwardRef } from 'react';
 import cx from 'classnames';
 import MUISelect from '@material-ui/core/Select';
 import { withStyles } from '@material-ui/core/styles';
@@ -20,6 +20,27 @@ import MenuItem from '../MenuItem';
 import Typography from '../Typography';
 import { DropdownArrows16 } from '../Icon';
 import styles from './styles';
+function createSelectMultiple(allOptions, selectedValues) {
+    const isSelected = () => selectedValues.length > 0;
+    const display = () => selectedOptions()
+        .map(({ text }) => text)
+        .join(', ');
+    const selectedOptions = () => allOptions.filter(({ value }) => selectedValues.includes(value));
+    return {
+        display,
+        isSelected
+    };
+}
+function createSelectSingle(allOptions, selectedValue) {
+    const isSelected = () => !!selectedValue;
+    const defaultOption = { text: '', value: '' };
+    const selectedOption = () => allOptions.find(option => option.value === selectedValue) || defaultOption;
+    const display = () => selectedOption().text;
+    return {
+        display,
+        isSelected
+    };
+}
 const renderOptions = (options, classes, placeholder, isNative) => {
     if (!options.length) {
         return null;
@@ -32,9 +53,14 @@ const renderOptions = (options, classes, placeholder, isNative) => {
     return resultOptions;
 };
 export const Select = forwardRef(function Select(_a, ref) {
-    var { classes, className, style, width, id, icon, iconPosition, native, options, placeholder, disabled, error, onChange, value } = _a, rest = __rest(_a, ["classes", "className", "style", "width", "id", "icon", "iconPosition", "native", "options", "placeholder", "disabled", "error", "onChange", "value"]);
-    const isPlaceholderShown = placeholder && value === '';
-    const selectedOption = useMemo(() => options.find(option => option.value === value), [value, options]);
+    var { classes, className, style, width, id, icon, iconPosition, native, options, placeholder, disabled, error, onChange, multiple, value = multiple ? [] : '' } = _a, rest = __rest(_a, ["classes", "className", "style", "width", "id", "icon", "iconPosition", "native", "options", "placeholder", "disabled", "error", "onChange", "multiple", "value"]);
+    const select = Array.isArray(value)
+        ? createSelectMultiple(options, value)
+        : createSelectSingle(options, value);
+    const renderValue = () => {
+        return select.isSelected() ? select.display() : placeholder;
+    };
+    const isPlaceholderShown = placeholder && !select.isSelected();
     const outlinedInput = (React.createElement(OutlinedInput
     // eslint-disable-next-line react/jsx-props-no-spreading
     , Object.assign({}, rest, { ref: ref, classes: {
@@ -63,11 +89,9 @@ export const Select = forwardRef(function Select(_a, ref) {
             root: classes[`root${capitalize(width)}`],
             icon: classes.caret,
             select: classes.select
-        }, error: error, disabled: disabled, displayEmpty: true, id: id, input: outlinedInput, native: native, variant: 'outlined', value: value, renderValue: () => (React.createElement(React.Fragment, null,
+        }, error: error, disabled: disabled, displayEmpty: true, id: id, input: outlinedInput, native: native, variant: 'outlined', value: value, multiple: multiple, renderValue: () => (React.createElement(React.Fragment, null,
             iconPosition === 'start' && iconAdornment,
-            React.createElement(Typography, { className: classes.inputValue, inline: true, color: 'inherit' },
-                selectedOption && selectedOption.text,
-                !selectedOption && placeholder),
+            React.createElement(Typography, { className: classes.inputValue, inline: true, color: 'inherit' }, renderValue()),
             iconPosition === 'end' && iconAdornment)), IconComponent: ({ className }) => (React.createElement(DropdownArrows16, { className: cx(className, {
                 [classes.caretDisabled]: disabled
             }) })), MenuProps: menuProps, onChange: onChange }, renderOptions(options, classes, placeholder, native)));
@@ -78,7 +102,6 @@ Select.defaultProps = {
     iconPosition: 'start',
     native: false,
     onChange: () => { },
-    value: '',
     width: 'full'
 };
 Select.displayName = 'Select';

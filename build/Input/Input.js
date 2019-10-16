@@ -16,7 +16,7 @@ import InputAdornment from '../InputAdornment';
 import OutlinedInput from '../OutlinedInput';
 import styles from './styles';
 export const Input = forwardRef(function Input(_a, ref) {
-    var { id, name, defaultValue, value, placeholder, error, disabled, autoFocus, autoComplete, icon, iconPosition, classes, children, multiline, width, className, style, rows, rowsMax, type, onChange, startAdornment, endAdornment } = _a, rest = __rest(_a, ["id", "name", "defaultValue", "value", "placeholder", "error", "disabled", "autoFocus", "autoComplete", "icon", "iconPosition", "classes", "children", "multiline", "width", "className", "style", "rows", "rowsMax", "type", "onChange", "startAdornment", "endAdornment"]);
+    var { id, name, defaultValue, value, placeholder, error, disabled, icon, iconPosition, classes, children, multiline, width, className, style, rows, rowsMax, type, onChange, startAdornment, endAdornment } = _a, rest = __rest(_a, ["id", "name", "defaultValue", "value", "placeholder", "error", "disabled", "icon", "iconPosition", "classes", "children", "multiline", "width", "className", "style", "rows", "rowsMax", "type", "onChange", "startAdornment", "endAdornment"]);
     let IconAdornment;
     if (icon) {
         const iconComponent = React.cloneElement(icon, {
@@ -31,10 +31,7 @@ export const Input = forwardRef(function Input(_a, ref) {
                 [classes.rootMultiline]: multiline
             }),
             input: classes.input
-        }, id: id, name: name, defaultValue: defaultValue, value: value, placeholder: placeholder, error: error, disabled: disabled, autoFocus: autoFocus, 
-        // https://developers.google.com/web/updates/2015/06/checkout-faster-with-autofill
-        // according to chrome specification
-        autoComplete: autoComplete, multiline: multiline, rows: rows, rowsMax: rowsMax, type: type, width: width, 
+        }, id: id, name: name, defaultValue: defaultValue, value: value, placeholder: placeholder, error: error, disabled: disabled, multiline: multiline, rows: rows, rowsMax: rowsMax, type: type, width: width, 
         // html attributes
         inputProps: rest, endAdornment: usedEndAdornment, startAdornment: usedStartAdornment, onChange: onChange }, children));
 });

@@ -16,14 +16,14 @@ import MUIOutlinedInput from '@material-ui/core/OutlinedInput';
 import { capitalize } from '@material-ui/core/utils/helpers';
 import styles from './styles';
 const OutlinedInput = forwardRef(function OutlinedInput(_a, ref) {
-    var { classes, className, style, id, name, placeholder, autoFocus, autoComplete, multiline, rows, rowsMax, width, disabled, inputComponent, inputProps, defaultValue, value, type, error, startAdornment, endAdornment, onChange } = _a, rest = __rest(_a, ["classes", "className", "style", "id", "name", "placeholder", "autoFocus", "autoComplete", "multiline", "rows", "rowsMax", "width", "disabled", "inputComponent", "inputProps", "defaultValue", "value", "type", "error", "startAdornment", "endAdornment", "onChange"]);
+    var { classes, className, style, multiline, rows, rowsMax, width, inputComponent, inputProps, defaultValue, value, type, error, startAdornment, endAdornment, onChange } = _a, rest = __rest(_a, ["classes", "className", "style", "multiline", "rows", "rowsMax", "width", "inputComponent", "inputProps", "defaultValue", "value", "type", "error", "startAdornment", "endAdornment", "onChange"]);
     return (React.createElement(MUIOutlinedInput
     // eslint-disable-next-line react/jsx-props-no-spreading
     , Object.assign({}, rest, { classes: {
             root: cx(classes.root, classes[`root${capitalize(width)}`]),
             input: classes.input,
             inputMultiline: classes.inputMultiline
-        }, className: className, style: style, labelWidth: 0, fullWidth: width === 'full', disabled: disabled, error: error, inputComponent: inputComponent, inputProps: inputProps, inputRef: ref, defaultValue: defaultValue, value: value, type: type, startAdornment: startAdornment, endAdornment: endAdornment, id: id, name: name, placeholder: placeholder, autoFocus: autoFocus, autoComplete: autoComplete, multiline: multiline, rows: rows, rowsMax: rowsMax, onChange: onChange })));
+        }, className: className, style: style, labelWidth: 0, fullWidth: width === 'full', error: error, inputComponent: inputComponent, inputProps: inputProps, inputRef: ref, defaultValue: defaultValue, value: value, type: type, startAdornment: startAdornment, endAdornment: endAdornment, multiline: multiline, rows: rows, rowsMax: rowsMax, onChange: onChange })));
 });
 OutlinedInput.defaultProps = {
     width: 'auto'

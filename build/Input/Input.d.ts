@@ -18,10 +18,6 @@ export interface Props extends StandardProps, InputHTMLAttributes<HTMLInputEleme
     disabled?: boolean;
     /** Width of the component */
     width?: 'full' | 'shrink' | 'auto';
-    /** Focus during first mount */
-    autoFocus?: boolean;
-    /** Helps users to fill forms faster */
-    autoComplete?: string;
     /** Whether icon should be placed at the beginning or end of the `Input` */
     iconPosition?: IconPosition;
     /** Specify icon which should be rendered inside Input */

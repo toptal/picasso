@@ -19,7 +19,7 @@ import TagSelectorInput from '../TagSelectorInput';
 import useControlledAndUncontrolledState from '../../utils/use-controlled-and-uncontrolled-state';
 import useControlledAndUncontrolledInput from '../../utils/use-controlled-and-uncontrolled-input';
 export const TagSelector = forwardRef(function TagSelector(_a, ref) {
-    var { loading, placeholder, options, newOptionLabel, defaultValue, value, onChange, defaultInputValue, inputValue: inputValueProp, onInputChange, width } = _a, rest = __rest(_a, ["loading", "placeholder", "options", "newOptionLabel", "defaultValue", "value", "onChange", "defaultInputValue", "inputValue", "onInputChange", "width"]);
+    var { loading, placeholder, options, newOptionLabel, defaultValue, value, onChange, defaultInputValue, inputValue: inputValueProp, onInputChange, width, enableAutofill } = _a, rest = __rest(_a, ["loading", "placeholder", "options", "newOptionLabel", "defaultValue", "value", "onChange", "defaultInputValue", "inputValue", "onInputChange", "width", "enableAutofill"]);
     const [inputValue, setInputValue] = useControlledAndUncontrolledInput(defaultInputValue, inputValueProp, onInputChange);
     const [selectedValues, setSelectedValues] = useControlledAndUncontrolledState(defaultValue, value, onChange);
     const [addedOptions, setAddedOptions] = React.useState([]);
@@ -91,10 +91,11 @@ export const TagSelector = forwardRef(function TagSelector(_a, ref) {
     })));
     return (React.createElement(Autocomplete
     // eslint-disable-next-line react/jsx-props-no-spreading
-    , Object.assign({}, rest, { ref: inputRef, placeholder: selectedValues.length === 0 ? placeholder : undefined, options: autocompleteOptions, value: null, onSelect: handleSelect, onOtherOptionSelect: handleOtherOptionSelect, inputValue: inputValue, onChange: setInputValue, onKeyDown: handleKeyDown, startAdornment: labels, loading: loading, inputComponent: TagSelectorInput, width: width, showOtherOption: true, otherOptionText: newOptionLabel })));
+    , Object.assign({}, rest, { ref: inputRef, placeholder: selectedValues.length === 0 ? placeholder : undefined, options: autocompleteOptions, value: null, onSelect: handleSelect, onOtherOptionSelect: handleOtherOptionSelect, inputValue: inputValue, onChange: setInputValue, onKeyDown: handleKeyDown, startAdornment: labels, loading: loading, inputComponent: TagSelectorInput, width: width, showOtherOption: true, otherOptionText: newOptionLabel, enableAutofill: enableAutofill })));
 });
 TagSelector.defaultProps = {
     defaultValue: [],
+    enableAutofill: false,
     loading: false,
     newOptionLabel: 'Add new option: ',
     onChange: () => { },
