@@ -5,7 +5,7 @@ import '../InputLabel/styles'
 import '../OutlinedInput/styles'
 import '../InputAdornment/styles'
 
-export default ({ sizes: { input } }: Theme) =>
+export default ({ sizes: { input }, palette }: Theme) =>
   createStyles({
     root: {
       padding: input.padding
@@ -19,5 +19,18 @@ export default ({ sizes: { input } }: Theme) =>
     },
     icon: {
       flex: '1 1 0%' // fix for IE11
+    },
+    counter: {
+      color: palette.grey.main,
+      fontSize: '0.625rem'
+    },
+
+    counterNegative: {
+      color: palette.red.main
+    },
+
+    counterMultiline: {
+      alignSelf: 'flex-end',
+      marginBottom: '0.3125rem'
     }
   })
