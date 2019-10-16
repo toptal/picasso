@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>Untitled 5</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="kr-pending-icon-24px" stroke="#000000">
+            <path d="M11.9,12 C10.1,12 8.6,10.5 8.6,8.7 C8.6,6.9 10.1,5.4 11.9,5.4 C13.7,5.4 15.2,6.9 15.2,8.7 C15.2,10.6 13.7,12 11.9,12 Z" id="Shape"></path>
+            <path d="M12,23.5 C5.6,23.5 0.5,18.4 0.5,12 C0.5,5.7 5.6,0.5 12,0.5 C18.3,0.5 23.5,5.6 23.5,12 C23.5,18.4 18.3,23.5 12,23.5 Z" id="Shape" stroke-dasharray="3"></path>
+            <path d="M6.2,18.3 C6.2,16.1 7.4,14.1 9.4,13.2 C11,12.3 13,12.3 14.8,13.2 C16.8,14.2 18,16.3 18,18.3" id="Shape"></path>
+        </g>
+    </g>
+</svg>
