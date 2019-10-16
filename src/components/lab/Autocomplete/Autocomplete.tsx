@@ -64,7 +64,7 @@ export interface Props
   /**  Callback invoked when selection changes */
   onSelect?: (item: Item) => void
   /**  Callback invoked when other option selected */
-  onOtherOptionSelect?: (item: Item | null) => void
+  onOtherOptionSelect?: (item: Item) => void
   /** Placeholder for value */
   placeholder?: string
   /** Text prefix for other option */
@@ -80,6 +80,11 @@ export interface Props
   /** List of options */
   options?: Item[]
   mapValue?: (item: Item | null) => string
+  /**  Callback invoked when key is pressed */
+  onKeyDown?: (
+    event: KeyboardEvent<HTMLInputElement>,
+    inputValue: string
+  ) => void
   /** ReactNode for labels that will be used as start InputAdornment - */
   startAdornment?: ReactNode
   /** ReactNode for labels that will be used as end InputAdornment - */
@@ -120,6 +125,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       style,
       width,
       showOtherOption,
+      onKeyDown,
       inputComponent,
       renderOption,
       endAdornment,
@@ -290,6 +296,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
               if (event.key === 'Backspace' && value === EMPTY_INPUT_VALUE) {
                 selectItem(null)
               }
+              onKeyDown!(event, value)
             },
             // here we override the value returned from downshift, `off` by default
             autoComplete: autoCompletePropValue
@@ -351,6 +358,7 @@ Autocomplete.defaultProps = {
   mapValue: getItemText,
   noOptionsText: 'No options',
   onChange: () => {},
+  onKeyDown: () => {},
   onOtherOptionSelect: () => {},
   onSelect: () => {},
   options: [],
