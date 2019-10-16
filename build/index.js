@@ -25,6 +25,7 @@ export { default as Logo } from './Logo';
 export { default as Menu } from './Menu';
 export { default as Modal } from './Modal';
 export { default as Notification } from './Notification';
+export { default as NotificationActions } from './NotificationActions';
 export { default as Page } from './Page';
 export { default as Pagination } from './Pagination';
 export { default as Paper } from './Paper';

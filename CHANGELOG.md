@@ -1,3 +1,10 @@
+# [3.28.0](https://github.com/toptal/picasso/compare/v3.27.0...v3.28.0) (2019-10-16)
+
+
+### Features
+
+* **Notification:** add notification acitons ([#767](https://github.com/toptal/picasso/issues/767)) ([c059d90](https://github.com/toptal/picasso/commit/c059d90))
+
 # [3.27.0](https://github.com/toptal/picasso/compare/v3.26.1...v3.27.0) (2019-10-16)
 
 

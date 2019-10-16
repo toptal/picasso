@@ -19,6 +19,7 @@ import Container from '../Container';
 import Button from '../Button';
 import styles from './styles';
 import Typography from '../Typography';
+import NotificationActions from '../NotificationActions';
 const renderNotificationCloseButton = ({ onClose, classes: { close, closeIcon } }) => (React.createElement(Button, { circular: true, onClick: onClose, className: close, title: 'Close Notification', icon: React.createElement(CloseMinor16, { className: closeIcon }) }));
 const renderNotificationIcon = ({ icon, variant, classes }) => {
     const iconProps = {
@@ -51,6 +52,7 @@ const renderNotificationContent = (props) => {
             }), as: 'div' }, children),
         onClose && renderNotificationCloseButton(props)));
 };
+// eslint-disable-next-line react/display-name
 export const Notification = forwardRef(function Notification(props, ref) {
     const { className, classes, variant, elevated, fullWidth } = props, rest = __rest(props, ["className", "classes", "variant", "elevated", "fullWidth"]);
     return (React.createElement(SnackbarContent
@@ -66,5 +68,6 @@ Notification.defaultProps = {
     variant: 'white'
 };
 Notification.displayName = 'Notification';
+Notification.Actions = NotificationActions;
 export default withStyles(styles)(Notification);
 //# sourceMappingURL=Notification.js.map
