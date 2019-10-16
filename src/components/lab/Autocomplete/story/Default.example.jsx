@@ -21,7 +21,7 @@ const AutocompleteDefaultExample = () => {
   return (
     <div>
       <Autocomplete
-        placeholder='Start typing here...'
+        placeholder='Start typing country...'
         value={value}
         options={options}
         onSelect={item => {
