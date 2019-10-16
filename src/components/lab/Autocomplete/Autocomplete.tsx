@@ -5,6 +5,7 @@ import React, {
   ReactNode,
   ComponentType,
   FormEvent,
+  useMemo,
   Fragment
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
@@ -20,11 +21,11 @@ import Container from '../../Container'
 import Loader from '../../Loader'
 import ScrollMenu from '../../ScrollMenu'
 import Typography from '../../Typography'
+import InputAdornment from '../../InputAdornment'
 import { isSubstring, Maybe } from '../../utils'
 import useControlledAndUncontrolledState from '../../utils/use-controlled-and-uncontrolled-state'
 import useControlledAndUncontrolledInput from '../../utils/use-controlled-and-uncontrolled-input'
 import styles from './styles'
-import InputAdornment from '../../InputAdornment'
 
 const EMPTY_INPUT_VALUE = ''
 const FIRST_ITEM_INDEX = 0
@@ -35,15 +36,25 @@ type Item = {
 }
 
 /**
- * Alias for all valid HTML props for `<input>` element.
- * Does not include React's `ref` or `key`.
+ * Specification has two options to enable/disable autofill:
+ * "on"|"off", but google chrome doesn't respect specification and
+ * enables autofill for inputs with common name like "email", "address" etc
+ * As a workaround it's possible to use any incorrect string as a value of
+ * "autocomplete" field. "none" is our current choice.
  */
-type HTMLInputProps = InputHTMLAttributes<HTMLInputElement>
+const AUTOFILL_DISABLED_STATE = 'none'
+
+export const getAutocompletePropValue = (
+  enableAutofill: boolean | undefined,
+  autoComplete: string | undefined
+) => {
+  return enableAutofill ? autoComplete : AUTOFILL_DISABLED_STATE
+}
 
 export interface Props
   extends StandardProps,
     Omit<
-      HTMLInputProps,
+      InputHTMLAttributes<HTMLInputElement>,
       'defaultValue' | 'value' | 'onChange' | 'onSelect' | 'onKeyDown'
     > {
   /** The default `input` element value. Use when the component is not controlled. */
@@ -95,6 +106,8 @@ export interface Props
   inputComponent?: ComponentType<InputProps>
   /** Callback responsible for rendering the option given the option and its index in the list of options */
   renderOption?: (option: Item, index?: number) => ReactNode
+  /** Specifies whether the autofill enabled or not, disabled by default */
+  enableAutofill?: boolean
 }
 
 const isMatchingMinLength = (value: string, minLength?: number) =>
@@ -140,6 +153,8 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       endAdornment,
       icon,
       error,
+      enableAutofill,
+      autoComplete,
       ...rest
     },
     ref
@@ -166,6 +181,11 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       )
       return null
     }
+
+    const autoCompletePropValue = useMemo(
+      () => getAutocompletePropValue(enableAutofill, autoComplete),
+      [enableAutofill, autoComplete]
+    )
 
     const handleInputValueChange = (newInputValue: string) => {
       if (newInputValue !== inputValue) {
@@ -356,7 +376,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
               onKeyDown!(event, inputValue)
             },
             // here we override the value returned from downshift, `off` by default
-            autoComplete: rest.autoComplete || 'off'
+            autoComplete: autoCompletePropValue
           })
 
           return (
@@ -437,6 +457,7 @@ Autocomplete.defaultProps = {
   allowAny: true,
   defaultInputValue: '',
   defaultValue: null,
+  enableAutofill: false,
   loading: false,
   minLength: 0,
   noOptionsText: 'No options',

@@ -39,7 +39,7 @@ exports[`TagSelector available options when start typing 1`] = `
               aria-autocomplete="list"
               aria-controls="downshift-1-menu"
               aria-labelledby="downshift-1-label"
-              autocomplete="off"
+              autocomplete="none"
               class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
               id="downshift-1-input"
               placeholder="Please select..."
@@ -173,7 +173,7 @@ exports[`TagSelector default render 1`] = `
           <input
             aria-autocomplete="list"
             aria-labelledby="downshift-0-label"
-            autocomplete="off"
+            autocomplete="none"
             class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
             id="downshift-0-input"
             placeholder="Please select..."
@@ -259,7 +259,7 @@ exports[`TagSelector newly added option selected 1`] = `
             <input
               aria-autocomplete="list"
               aria-labelledby="downshift-4-label"
-              autocomplete="off"
+              autocomplete="none"
               class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
               id="downshift-4-input"
               style="width: auto;"
@@ -375,7 +375,7 @@ exports[`TagSelector options selected and then unselected 1`] = `
             <input
               aria-autocomplete="list"
               aria-labelledby="downshift-5-label"
-              autocomplete="off"
+              autocomplete="none"
               class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
               id="downshift-5-input"
               style="width: auto;"
@@ -461,7 +461,7 @@ exports[`TagSelector preselected value 1`] = `
             <input
               aria-autocomplete="list"
               aria-labelledby="downshift-2-label"
-              autocomplete="off"
+              autocomplete="none"
               class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
               id="downshift-2-input"
               type="text"
@@ -546,7 +546,7 @@ exports[`TagSelector selected option 1`] = `
             <input
               aria-autocomplete="list"
               aria-labelledby="downshift-3-label"
-              autocomplete="off"
+              autocomplete="none"
               class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
               id="downshift-3-input"
               style="width: auto;"

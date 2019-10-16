@@ -50,6 +50,8 @@ export interface Props
   onInputChange?: (inputValue: string) => void
   /** Width of the component */
   width?: 'full' | 'shrink' | 'auto'
+  /** Specifies whether the autofill enabled or not, disabled by default */
+  enableAutofill?: boolean
 }
 
 export const TagSelector = forwardRef<HTMLInputElement, Props>(
@@ -66,6 +68,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       inputValue: inputValueProp,
       onInputChange,
       width,
+      enableAutofill,
       ...rest
     },
     ref
@@ -202,6 +205,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         width={width}
         showOtherOption
         otherOptionText={newOptionLabel}
+        enableAutofill={enableAutofill}
       />
     )
   }
@@ -209,6 +213,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
 
 TagSelector.defaultProps = {
   defaultValue: [],
+  enableAutofill: false,
   loading: false,
   newOptionLabel: 'Add new option: ',
   onChange: () => {},

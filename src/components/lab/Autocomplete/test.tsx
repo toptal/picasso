@@ -28,7 +28,9 @@ const renderAutocomplete = (props: OmitInternalProps<Props>) => {
     minLength,
     inputComponent,
     noOptionsText,
-    renderOption
+    renderOption,
+    enableAutofill,
+    autoComplete
   } = props
 
   return render(
@@ -44,6 +46,8 @@ const renderAutocomplete = (props: OmitInternalProps<Props>) => {
         inputComponent={inputComponent}
         noOptionsText={noOptionsText}
         renderOption={renderOption}
+        enableAutofill={enableAutofill}
+        autoComplete={autoComplete}
       />
     </Picasso>
   )
@@ -454,5 +458,48 @@ describe('Autocomplete', () => {
 
     fireEvent.change(input, { target: { value: 't' } })
     expect(api.baseElement.textContent).toContain('Custom renderer')
+  })
+
+  describe('Autofill', () => {
+    test('when autoComplete value is not passed and autofill is not enabled', () => {
+      const { getByPlaceholderText } = renderAutocomplete({
+        placeholder: 'Start typing here...'
+      })
+      const input = getByPlaceholderText('Start typing here...')
+
+      expect(input.getAttribute('autocomplete')).toBe('none')
+    })
+
+    test('when autoComplete value is not passed and autofill is enabled', () => {
+      const { getByPlaceholderText } = renderAutocomplete({
+        placeholder: 'Start typing here...',
+        enableAutofill: true
+      })
+      const input = getByPlaceholderText('Start typing here...')
+
+      // disabled because of default value in Input
+      expect(input.getAttribute('autocomplete')).toBe('none')
+    })
+
+    test('when autoComplete value is passed and autofill is not enabled', () => {
+      const { getByPlaceholderText } = renderAutocomplete({
+        placeholder: 'Start typing here...',
+        autoComplete: 'country-name'
+      })
+      const input = getByPlaceholderText('Start typing here...')
+
+      expect(input.getAttribute('autocomplete')).toBe('none')
+    })
+
+    test('when autoComplete value is passed and autofill is enabled', () => {
+      const { getByPlaceholderText } = renderAutocomplete({
+        placeholder: 'Start typing here...',
+        enableAutofill: true,
+        autoComplete: 'country-name'
+      })
+      const input = getByPlaceholderText('Start typing here...')
+
+      expect(input.getAttribute('autocomplete')).toBe('country-name')
+    })
   })
 })

@@ -39,7 +39,7 @@ exports[`Autocomplete dynamic behavior render options when start typing 1`] = `
               aria-autocomplete="list"
               aria-controls="downshift-3-menu"
               aria-labelledby="downshift-3-label"
-              autocomplete="off"
+              autocomplete="none"
               class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input"
               id="downshift-3-input"
               placeholder="Placeholder text"
@@ -139,7 +139,7 @@ exports[`Autocomplete static behavior default render 1`] = `
           <input
             aria-autocomplete="list"
             aria-labelledby="downshift-0-label"
-            autocomplete="off"
+            autocomplete="none"
             class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input"
             id="downshift-0-input"
             placeholder="Start typing here..."

@@ -33,8 +33,8 @@ page
 Autocomplete supports all the default HTML native props, as Input supports.
 
 You also may want to disable standard browser autofill and autocomplete
-for this component. This you can achieve by adding corresponding attributes:
-\`autoComplete='none' and/or autofill='off'\`
+for this component. This you can achieve by adding this attribute:
+\`autoComplete='none'
     `
   )
   .addExample('lab/Autocomplete/story/Default.example.jsx', 'Default')
@@ -71,4 +71,10 @@ for this component. This you can achieve by adding corresponding attributes:
     description: `If you need to obtain the list of options dynamically from a server.
 It is good practice to set debouncing and a minimum number of chars to limit the number of requests you send to the server.
 Start typing "Mongolia" letter by letter to see this example in action.`
+  }) // picasso-skip-visuals
+  .addExample('lab/Autocomplete/story/Autofill.example.tsx', {
+    title: 'Form auto filling',
+    description: `This example shows how to use component inside the form with several fields
+      when it makes sense to have autofill enabled.
+    `
   }) // picasso-skip-visuals
