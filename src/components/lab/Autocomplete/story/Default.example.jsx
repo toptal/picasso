@@ -10,7 +10,7 @@ const optionsList = [
 ]
 
 const EMPTY_INPUT_VALUE = ''
-const mapValue = item => (item ? item.text : EMPTY_INPUT_VALUE)
+const getDisplayValue = item => (item ? item.text : EMPTY_INPUT_VALUE)
 const isSubstring = (subStr, str) =>
   str.toLowerCase().includes(subStr.trim().toLowerCase())
 
@@ -27,7 +27,7 @@ const AutocompleteDefaultExample = () => {
         onSelect={item => {
           console.log('onSelect value:', item)
 
-          const itemValue = mapValue(item)
+          const itemValue = getDisplayValue(item)
 
           if (value !== itemValue) {
             setValue(itemValue)
@@ -39,7 +39,7 @@ const AutocompleteDefaultExample = () => {
           const filteredOptions =
             value !== ''
               ? optionsList.filter(option =>
-                  isSubstring(value, mapValue(option))
+                  isSubstring(value, getDisplayValue(option))
                 )
               : optionsList
 
@@ -47,7 +47,7 @@ const AutocompleteDefaultExample = () => {
 
           setValue(value)
         }}
-        mapValue={mapValue}
+        getDisplayValue={getDisplayValue}
       />
     </div>
   )

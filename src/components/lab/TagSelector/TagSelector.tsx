@@ -56,13 +56,13 @@ export interface Props
 }
 
 const EMPTY_INPUT_VALUE = ''
-const mapValue = (item: AutocompleteItem | null) =>
-  item ? item.text || EMPTY_INPUT_VALUE : EMPTY_INPUT_VALUE
+const getDisplayValue = (item: AutocompleteItem | null) =>
+  item && item.text ? item.text : EMPTY_INPUT_VALUE
 const isSubstring = (subStr: string, str: string) =>
   str.toLowerCase().includes(subStr.trim().toLowerCase())
 const filterOptions = (value: string, options: AutocompleteItem[]) =>
   value !== ''
-    ? options.filter(option => isSubstring(value, mapValue(option)))
+    ? options.filter(option => isSubstring(value, getDisplayValue(option)))
     : options
 
 export const TagSelector = forwardRef<HTMLInputElement, Props>(
@@ -165,7 +165,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
     }
 
     const handleOtherOptionSelect = (item: AutocompleteItem) => {
-      const itemText = mapValue(item)
+      const itemText = getDisplayValue(item)
 
       setAddedOptions([
         ...addedOptions,
@@ -226,7 +226,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         showOtherOption
         otherOptionText={newOptionLabel}
         enableAutofill={enableAutofill}
-        mapValue={mapValue}
+        getDisplayValue={getDisplayValue}
       />
     )
   }

@@ -79,7 +79,7 @@ export interface Props
   /** List of options */
   options?: Item[]
   /** A function that takes a display value from the option item */
-  mapValue?: (item: Item | null) => string
+  getDisplayValue?: (item: Item | null) => string
   /**  Callback invoked when key is pressed */
   onKeyDown?: (
     event: KeyboardEvent<HTMLInputElement>,
@@ -121,7 +121,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       otherOptionText,
       noOptionsText,
       options,
-      mapValue,
+      getDisplayValue,
       style,
       width,
       showOtherOption,
@@ -161,14 +161,14 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
     }
 
     const handleSelectItem = (item: Item | null) => {
-      const itemValue = mapValue!(item)
+      const itemValue = getDisplayValue!(item)
 
       if (item === null || itemValue === null) {
         return
       }
 
       const isInOptions = options!.find(
-        option => mapValue!(option) === itemValue
+        option => getDisplayValue!(option) === itemValue
       )
 
       if (!isInOptions) {
@@ -202,7 +202,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
         inputValue={value}
         onInputValueChange={handleInputValueChange}
         onChange={handleSelectItem}
-        itemToString={mapValue}
+        itemToString={getDisplayValue}
         stateReducer={downshiftStateReducer}
       >
         {({
@@ -225,14 +225,14 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
             <ScrollMenu selectedIndex={highlightedIndex}>
               {options!.map((option, index) => (
                 <Menu.Item
-                  key={mapValue!(option)}
+                  key={getDisplayValue!(option)}
                   selected={highlightedIndex === index}
                   /* eslint-disable-next-line react/jsx-props-no-spreading */
                   {...getItemProps({ item: option, index })}
                 >
                   {renderOption
                     ? renderOption(option, index)
-                    : mapValue!(option)}
+                    : getDisplayValue!(option)}
                 </Menu.Item>
               ))}
 
@@ -346,8 +346,8 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
 
 Autocomplete.defaultProps = {
   enableAutofill: false,
+  getDisplayValue: getItemText,
   loading: false,
-  mapValue: getItemText,
   noOptionsText: 'No options',
   onChange: () => {},
   onKeyDown: () => {},

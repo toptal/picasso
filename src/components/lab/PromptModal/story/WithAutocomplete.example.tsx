@@ -12,7 +12,7 @@ const optionsList = [
   { text: 'Ukraine', value: 'UA' }
 ]
 const EMPTY_INPUT_VALUE = ''
-const mapValue = (item: any) => (item ? item.text : EMPTY_INPUT_VALUE)
+const getDisplayValue = (item: any) => (item ? item.text : EMPTY_INPUT_VALUE)
 const isSubstring = (subStr: string, str: string) =>
   str.toLowerCase().includes(subStr.trim().toLowerCase())
 
@@ -31,14 +31,14 @@ const PromptModalDefaultExample = () => {
           <Autocomplete
             value={value}
             width='full'
-            mapValue={mapValue}
+            getDisplayValue={getDisplayValue}
             placeholder='Start typing country...'
             options={options}
             onChange={value => {
               const filteredOptions =
                 value !== ''
                   ? optionsList.filter(option =>
-                      isSubstring(value, mapValue(option))
+                      isSubstring(value, getDisplayValue(option))
                     )
                   : optionsList
 
