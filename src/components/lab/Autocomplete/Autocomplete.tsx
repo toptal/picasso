@@ -79,6 +79,7 @@ export interface Props
   noOptionsText?: string
   /** List of options */
   options?: Item[]
+  /** A function that takes a display value from the option item */
   mapValue?: (item: Item | null) => string
   /**  Callback invoked when key is pressed */
   onKeyDown?: (
@@ -214,10 +215,9 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
           selectItem,
           setState
         }) => {
-          const hasMatchingOptions = options!.length > 0
           const canOpen = isOpen && !loading
+          const optionsLength = options!.length
 
-          const matchingOptionsLength = options!.length
           const maybeOtherOption =
             showOtherOption && value
               ? {
@@ -229,7 +229,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
 
           const optionsMenu = (
             <ScrollMenu selectedIndex={highlightedIndex}>
-              {hasMatchingOptions || shouldShowOtherOption ? (
+              {optionsLength || shouldShowOtherOption ? (
                 <Fragment>
                   {options!.map((option, index) => (
                     <Menu.Item
@@ -247,14 +247,14 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
                   {maybeOtherOption && (
                     <Menu.Item
                       key={mapValue!(maybeOtherOption)}
-                      selected={highlightedIndex === matchingOptionsLength}
+                      selected={highlightedIndex === optionsLength}
                       /* eslint-disable-next-line react/jsx-props-no-spreading */
                       {...getItemProps({
                         item: maybeOtherOption,
-                        index: matchingOptionsLength
+                        index: optionsLength
                       })}
                       className={cx({
-                        [classes.otherOption]: matchingOptionsLength
+                        [classes.otherOption]: optionsLength
                       })}
                     >
                       <span className={classes.stringContent}>
