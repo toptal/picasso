@@ -7,7 +7,7 @@ import React, {
   FormEvent,
   useMemo,
   Fragment,
-  useEffect,
+  useLayoutEffect,
   useState,
   useRef
 } from 'react'
@@ -103,7 +103,7 @@ export interface Props
 }
 
 const getItemText = (item: Item | null) =>
-  item ? item.text || EMPTY_INPUT_VALUE : EMPTY_INPUT_VALUE
+  item && item.text ? item.text : EMPTY_INPUT_VALUE
 
 const getUniqueValue = (value: string) =>
   `${value.replace(/\s+/g, '-').toLowerCase()}-${new Date().getTime()}`
@@ -146,7 +146,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
     const inputWrapperRef = useRef<HTMLDivElement>(null)
     const [menuWidth, setMenuWidth] = useState()
 
-    useEffect(() => {
+    useLayoutEffect(() => {
       if (!inputWrapperRef.current) {
         return
       }
