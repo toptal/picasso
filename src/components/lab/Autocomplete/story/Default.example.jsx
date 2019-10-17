@@ -13,6 +13,10 @@ const EMPTY_INPUT_VALUE = ''
 const getDisplayValue = item => (item ? item.text : EMPTY_INPUT_VALUE)
 const isSubstring = (subStr, str) =>
   str.toLowerCase().includes(subStr.trim().toLowerCase())
+const filterOptions = str =>
+  str !== ''
+    ? optionsList.filter(option => isSubstring(str, getDisplayValue(option)))
+    : optionsList
 
 const AutocompleteDefaultExample = () => {
   const [value, setValue] = useState(EMPTY_INPUT_VALUE)
@@ -36,15 +40,7 @@ const AutocompleteDefaultExample = () => {
         onChange={value => {
           console.log('onChange returns just item value:', value)
 
-          const filteredOptions =
-            value !== ''
-              ? optionsList.filter(option =>
-                  isSubstring(value, getDisplayValue(option))
-                )
-              : optionsList
-
-          setOptions(filteredOptions)
-
+          setOptions(filterOptions(value))
           setValue(value)
         }}
         getDisplayValue={getDisplayValue}

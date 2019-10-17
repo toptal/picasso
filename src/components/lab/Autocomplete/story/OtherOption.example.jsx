@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Autocomplete } from '@toptal/picasso/lab'
 
-const options = [
+const optionsList = [
   { text: 'Belarus', value: 'BY' },
   { text: 'Croatia', value: 'HR' },
   { text: 'Lithuania', value: 'LU' },
@@ -9,8 +9,18 @@ const options = [
   { text: 'Ukraine', value: 'UA' }
 ]
 
+const EMPTY_INPUT_VALUE = ''
+const getDisplayValue = item => (item ? item.text : EMPTY_INPUT_VALUE)
+const isSubstring = (subStr, str) =>
+  str.toLowerCase().includes(subStr.trim().toLowerCase())
+const filterOptions = str =>
+  str !== ''
+    ? optionsList.filter(option => isSubstring(str, getDisplayValue(option)))
+    : optionsList
+
 const AutocompleteOtherOptionExample = () => {
-  const [value, setValue] = useState('')
+  const [value, setValue] = useState(EMPTY_INPUT_VALUE)
+  const [options, setOptions] = useState(optionsList)
 
   return (
     <div>
@@ -19,14 +29,25 @@ const AutocompleteOtherOptionExample = () => {
         showOtherOption
         placeholder='Start typing country...'
         options={options}
-        onSelect={item => console.log('onSelect value:', item)}
+        onSelect={item => {
+          console.log('onSelect returns item object:', item)
+
+          const itemValue = getDisplayValue(item)
+
+          if (value !== itemValue) {
+            setValue(itemValue)
+          }
+        }}
         onOtherOptionSelect={item =>
-          console.log('onOtherOptionSelect value:', item)
+          console.log('onOtherOptionSelect returns item object:', item)
         }
         onChange={value => {
-          console.log('onChange value:', value)
+          console.log('onChange returns just item value:', value)
+
+          setOptions(filterOptions(value))
           setValue(value)
         }}
+        getDisplayValue={getDisplayValue}
       />
     </div>
   )

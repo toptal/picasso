@@ -11,10 +11,15 @@ const optionsList = [
   { text: 'Slovakia', value: 'SK' },
   { text: 'Ukraine', value: 'UA' }
 ]
+
 const EMPTY_INPUT_VALUE = ''
 const getDisplayValue = (item: any) => (item ? item.text : EMPTY_INPUT_VALUE)
 const isSubstring = (subStr: string, str: string) =>
   str.toLowerCase().includes(subStr.trim().toLowerCase())
+const filterOptions = (str: string) =>
+  str !== ''
+    ? optionsList.filter(option => isSubstring(str, getDisplayValue(option)))
+    : optionsList
 
 const PromptModalDefaultExample = () => {
   const { showPrompt } = useModals()
@@ -35,15 +40,7 @@ const PromptModalDefaultExample = () => {
             placeholder='Start typing country...'
             options={options}
             onChange={value => {
-              const filteredOptions =
-                value !== ''
-                  ? optionsList.filter(option =>
-                      isSubstring(value, getDisplayValue(option))
-                    )
-                  : optionsList
-
-              setOptions(filteredOptions)
-
+              setOptions(filterOptions(value))
               setValue(value)
             }}
             onSelect={item => setResult(item.value)}
