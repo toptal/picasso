@@ -9,21 +9,26 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { Fragment, forwardRef, useRef } from 'react';
+import React, { Fragment, forwardRef, useRef, useState } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { useCombinedRefs } from '../../utils';
+import { useCombinedRefs, isSubstring } from '../../utils';
 import Label from '../../Label';
 import Autocomplete from '../Autocomplete';
 import styles from './styles';
 import TagSelectorInput from '../TagSelectorInput';
 import useControlledAndUncontrolledState from '../../utils/use-controlled-and-uncontrolled-state';
 import useControlledAndUncontrolledInput from '../../utils/use-controlled-and-uncontrolled-input';
+const EMPTY_INPUT_VALUE = '';
+const getDisplayValue = (item) => item && item.text ? item.text : EMPTY_INPUT_VALUE;
+const filterOptions = (value, options) => value !== ''
+    ? options.filter(option => isSubstring(value, getDisplayValue(option)))
+    : options;
 export const TagSelector = forwardRef(function TagSelector(_a, ref) {
-    var { loading, placeholder, options, newOptionLabel, defaultValue, value, onChange, defaultInputValue, inputValue: inputValueProp, onInputChange, width, enableAutofill } = _a, rest = __rest(_a, ["loading", "placeholder", "options", "newOptionLabel", "defaultValue", "value", "onChange", "defaultInputValue", "inputValue", "onInputChange", "width", "enableAutofill"]);
+    var { loading, placeholder, options: allOptions, newOptionLabel, defaultValue, value, onChange, defaultInputValue, inputValue: inputValueProp, onInputChange, width, enableAutofill } = _a, rest = __rest(_a, ["loading", "placeholder", "options", "newOptionLabel", "defaultValue", "value", "onChange", "defaultInputValue", "inputValue", "onInputChange", "width", "enableAutofill"]);
     const [inputValue, setInputValue] = useControlledAndUncontrolledInput(defaultInputValue, inputValueProp, onInputChange);
+    const [options, setOptions] = useState(allOptions);
     const [selectedValues, setSelectedValues] = useControlledAndUncontrolledState(defaultValue, value, onChange);
     const [addedOptions, setAddedOptions] = React.useState([]);
-    const currentOptions = [...options, ...addedOptions];
     const inputRef = useCombinedRefs(ref, useRef(null));
     React.useLayoutEffect(() => {
         const inputNode = inputRef.current;
@@ -59,15 +64,20 @@ export const TagSelector = forwardRef(function TagSelector(_a, ref) {
             handleDelete(selectedValues[selectedValues.length - 1]);
         }
     };
-    const handleSelect = (itemValue) => {
-        if (!itemValue)
-            return;
+    const handleChange = (value) => {
+        setInputValue(value);
+        onInputChange(value);
+        setOptions(filterOptions(value, allOptions));
+    };
+    const handleSelect = (item) => {
+        const itemValue = item.value;
         if (!selectedValues.includes(itemValue)) {
             setSelectedValues([...selectedValues, itemValue]);
         }
         setInputValue('');
     };
-    const handleOtherOptionSelect = (itemText) => {
+    const handleOtherOptionSelect = (item) => {
+        const itemText = getDisplayValue(item);
         setAddedOptions([
             ...addedOptions,
             {
@@ -80,9 +90,9 @@ export const TagSelector = forwardRef(function TagSelector(_a, ref) {
         }
         setInputValue('');
     };
-    const autocompleteOptions = currentOptions.filter(item => !selectedValues.includes(item.value));
+    const autocompleteOptions = options.filter(item => !selectedValues.includes(item.value));
     const labels = (React.createElement(Fragment, null, selectedValues.map(value => {
-        const item = currentOptions.find(option => option.value === value);
+        const item = [...allOptions, ...addedOptions].find(option => option.value === value);
         if (!item) {
             window.console.warn(`TagSelector: There is no option for the given value \`${value}\``);
             return null;
@@ -91,7 +101,7 @@ export const TagSelector = forwardRef(function TagSelector(_a, ref) {
     })));
     return (React.createElement(Autocomplete
     // eslint-disable-next-line react/jsx-props-no-spreading
-    , Object.assign({}, rest, { ref: inputRef, placeholder: selectedValues.length === 0 ? placeholder : undefined, options: autocompleteOptions, value: null, onSelect: handleSelect, onOtherOptionSelect: handleOtherOptionSelect, inputValue: inputValue, onChange: setInputValue, onKeyDown: handleKeyDown, startAdornment: labels, loading: loading, inputComponent: TagSelectorInput, width: width, showOtherOption: true, otherOptionText: newOptionLabel, enableAutofill: enableAutofill })));
+    , Object.assign({}, rest, { ref: inputRef, placeholder: selectedValues.length === 0 ? placeholder : undefined, options: autocompleteOptions, value: inputValue, onSelect: handleSelect, onOtherOptionSelect: handleOtherOptionSelect, onChange: handleChange, onKeyDown: handleKeyDown, startAdornment: labels, loading: loading, inputComponent: TagSelectorInput, width: width, showOtherOption: true, otherOptionText: newOptionLabel, enableAutofill: enableAutofill, getDisplayValue: getDisplayValue })));
 });
 TagSelector.defaultProps = {
     defaultValue: [],

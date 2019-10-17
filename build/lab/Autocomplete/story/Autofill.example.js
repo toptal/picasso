@@ -23,7 +23,7 @@ const AutofillExample = () => (React.createElement(Grid, null,
                 React.createElement(Input, { name: 'ship-zip', autoComplete: 'shipping postal-code', width: 'full', placeholder: '10011' })),
             React.createElement(Form.Field, null,
                 React.createElement(Form.Label, null, "Country"),
-                React.createElement(Autocomplete, { options: options, width: 'full', name: 'country', autoComplete: 'shipping country-name', placeholder: 'USA', enableAutofill: true })))),
+                React.createElement(Autocomplete, { value: '', options: options, width: 'full', name: 'country', autoComplete: 'shipping country-name', placeholder: 'USA', enableAutofill: true })))),
     React.createElement(Grid.Item, { small: 5 },
         React.createElement(Typography, { variant: 'heading' }, "Autofill disabled for country"),
         React.createElement(Form, null,
@@ -38,6 +38,6 @@ const AutofillExample = () => (React.createElement(Grid, null,
                 React.createElement(Input, { name: 'ship-zip', autoComplete: 'shipping postal-code', width: 'full', placeholder: '10011' })),
             React.createElement(Form.Field, null,
                 React.createElement(Form.Label, null, "Country"),
-                React.createElement(Autocomplete, { options: options, width: 'full', name: 'country', autoComplete: 'shipping country-name', placeholder: 'USA' }))))));
+                React.createElement(Autocomplete, { value: '', options: options, width: 'full', name: 'country', autoComplete: 'shipping country-name', placeholder: 'USA' }))))));
 export default AutofillExample;
 //# sourceMappingURL=Autofill.example.js.map

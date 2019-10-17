@@ -8,7 +8,7 @@ var Direction;
     Direction[Direction["UP"] = 0] = "UP";
     Direction[Direction["DOWN"] = 1] = "DOWN";
 })(Direction || (Direction = {}));
-const ScrollMenu = ({ selectedIndex, classes, children }) => {
+const ScrollMenu = ({ selectedIndex, classes, children, style }) => {
     const menuRef = useRef(null);
     const firstItemRef = createRef();
     const [prevSelectedIndex, setPrevSelectedIndex] = useState(selectedIndex);
@@ -50,7 +50,7 @@ const ScrollMenu = ({ selectedIndex, classes, children }) => {
         }
         setPrevSelectedIndex(selectedIndex);
     });
-    return (React.createElement(Menu, { className: classes.menu },
+    return (React.createElement(Menu, { className: classes.menu, style: style },
         React.createElement("div", { ref: menuRef, className: classes.scrollView }, renderChildren)));
 };
 export default withStyles(styles)(ScrollMenu);

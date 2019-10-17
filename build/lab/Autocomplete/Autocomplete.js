@@ -9,12 +9,12 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { forwardRef, useMemo, Fragment } from 'react';
+import React, { forwardRef, useMemo, useLayoutEffect, useState, useRef } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { capitalize } from '@material-ui/core/utils/helpers';
 import cx from 'classnames';
-import Downshift from 'downshift';
 import Popper from '@material-ui/core/Popper';
+import Downshift from 'downshift';
 import Input from '../../Input';
 import Menu from '../../Menu';
 import Container from '../../Container';
@@ -22,9 +22,6 @@ import Loader from '../../Loader';
 import ScrollMenu from '../../ScrollMenu';
 import Typography from '../../Typography';
 import InputAdornment from '../../InputAdornment';
-import { isSubstring } from '../../utils';
-import useControlledAndUncontrolledState from '../../utils/use-controlled-and-uncontrolled-state';
-import useControlledAndUncontrolledInput from '../../utils/use-controlled-and-uncontrolled-input';
 import styles from './styles';
 const EMPTY_INPUT_VALUE = '';
 const FIRST_ITEM_INDEX = 0;
@@ -39,107 +36,74 @@ const AUTOFILL_DISABLED_STATE = 'none';
 export const getAutocompletePropValue = (enableAutofill, autoComplete) => {
     return enableAutofill ? autoComplete : AUTOFILL_DISABLED_STATE;
 };
-const isMatchingMinLength = (value, minLength) => !minLength || value.length >= minLength;
-const getItemText = (item) => (item && item.text) || EMPTY_INPUT_VALUE;
-const getItemValue = (item) => (item && (item.value || item.text)) || null;
-const isSelected = (item, selectedItem) => getItemValue(item) === getItemValue(selectedItem);
+const getItemText = (item) => item && item.text ? item.text : EMPTY_INPUT_VALUE;
 const getUniqueValue = (value) => `${value.replace(/\s+/g, '-').toLowerCase()}-${new Date().getTime()}`;
 export const Autocomplete = forwardRef(function Autocomplete(_a, ref) {
-    var { classes, className, defaultInputValue, inputValue: inputValueProp, onChange: onInputChange, defaultValue, value, onSelect, onOtherOptionSelect, loading, minLength, placeholder, otherOptionText, noOptionsText, options, style, width, allowAny, showOtherOption, onKeyDown, inputComponent, renderOption, endAdornment, icon, error, enableAutofill, autoComplete } = _a, rest = __rest(_a, ["classes", "className", "defaultInputValue", "inputValue", "onChange", "defaultValue", "value", "onSelect", "onOtherOptionSelect", "loading", "minLength", "placeholder", "otherOptionText", "noOptionsText", "options", "style", "width", "allowAny", "showOtherOption", "onKeyDown", "inputComponent", "renderOption", "endAdornment", "icon", "error", "enableAutofill", "autoComplete"]);
-    const [selectedItemValue, setSelectedItemValue] = useControlledAndUncontrolledState(defaultValue, value, onSelect);
-    const selectedItem = selectedItemValue === null
-        ? null
-        : options.find(option => getItemValue(option) === selectedItemValue);
-    const [inputValue, setInputValue] = useControlledAndUncontrolledInput(defaultInputValue || getItemText(selectedItem), inputValueProp, onInputChange);
-    if (selectedItem === undefined) {
-        window.console.warn(`Autocomplete: There is no option for the given value \`${selectedItemValue}\``);
-        return null;
-    }
+    var { classes, className, onChange: onInputChange, value, onSelect, onOtherOptionSelect, loading, placeholder, otherOptionText, noOptionsText, options, getDisplayValue, style, width, showOtherOption, onKeyDown, inputComponent, renderOption, endAdornment, icon, error, enableAutofill, autoComplete } = _a, rest = __rest(_a, ["classes", "className", "onChange", "value", "onSelect", "onOtherOptionSelect", "loading", "placeholder", "otherOptionText", "noOptionsText", "options", "getDisplayValue", "style", "width", "showOtherOption", "onKeyDown", "inputComponent", "renderOption", "endAdornment", "icon", "error", "enableAutofill", "autoComplete"]);
     const autoCompletePropValue = useMemo(() => getAutocompletePropValue(enableAutofill, autoComplete), [enableAutofill, autoComplete]);
-    const handleInputValueChange = (newInputValue) => {
-        if (newInputValue !== inputValue) {
-            setInputValue(newInputValue);
+    const inputWrapperRef = useRef(null);
+    const [menuWidth, setMenuWidth] = useState();
+    useLayoutEffect(() => {
+        if (!inputWrapperRef.current) {
+            return;
+        }
+        const { width } = inputWrapperRef.current.getBoundingClientRect();
+        setMenuWidth(`${width}px`);
+    }, [inputWrapperRef.current]);
+    const handleInputValueChange = (newValue) => {
+        if (newValue !== value) {
+            onInputChange(newValue);
         }
     };
     const handleSelectItem = (item) => {
-        const itemValue = getItemValue(item);
-        if (itemValue === null) {
-            setSelectedItemValue(itemValue);
+        const displayValue = getDisplayValue(item);
+        if (item === null || displayValue === null) {
             return;
         }
-        const isInOptions = options.find(option => option.value === itemValue);
+        const isInOptions = options.find(option => getDisplayValue(option) === displayValue);
         if (!isInOptions) {
-            const itemText = getItemText(item);
-            onOtherOptionSelect(itemText);
+            onOtherOptionSelect(item);
             return;
         }
-        setSelectedItemValue(itemValue);
+        onSelect(item);
     };
-    const matchingOptions = getItemText(selectedItem) === inputValue
-        ? options
-        : options.filter(item => isSubstring(inputValue, getItemText(item)));
-    const currentSelectedItemIndex = selectedItem
-        ? matchingOptions.indexOf(selectedItem)
-        : null;
     const downshiftStateReducer = (state, changes) => {
         switch (changes.type) {
-            case Downshift.stateChangeTypes.controlledPropUpdatedSelectedItem:
-                return Object.assign(Object.assign({}, changes), { highlightedIndex: currentSelectedItemIndex });
             case Downshift.stateChangeTypes.changeInput:
                 return Object.assign(Object.assign({}, changes), { highlightedIndex: FIRST_ITEM_INDEX });
             case Downshift.stateChangeTypes.mouseUp:
             case Downshift.stateChangeTypes.blurInput:
-                const hasInput = inputValue.length > 0;
-                if (allowAny &&
-                    hasInput &&
-                    inputValue !== getItemText(selectedItem)) {
-                    return Object.assign(Object.assign({}, changes), { inputValue, selectedItem: null });
-                }
-                break;
+                return Object.assign(Object.assign({}, changes), { inputValue: value, selectedItem: null });
         }
         return changes;
     };
-    const downshiftItemToString = (item) => item === null
-        ? allowAny
-            ? inputValue
-            : EMPTY_INPUT_VALUE
-        : getItemText(item);
-    const inputWrapperRef = React.useRef(null);
-    return (React.createElement(Downshift, { inputValue: inputValue, onInputValueChange: handleInputValueChange, selectedItem: selectedItem, onChange: handleSelectItem, itemToString: downshiftItemToString, stateReducer: downshiftStateReducer }, ({ getMenuProps, getInputProps, getItemProps, isOpen, highlightedIndex, selectItem, setState }) => {
-        const hasMatchingOptions = matchingOptions.length > 0;
-        const canOpen = isOpen && isMatchingMinLength(inputValue, minLength) && !loading;
-        const matchingOptionsLength = matchingOptions.length;
-        const maybeOtherOption = allowAny && showOtherOption && inputValue
-            ? {
-                value: getUniqueValue(inputValue),
-                text: `${inputValue}`
-            }
-            : null;
-        const shouldShowOtherOption = Boolean(maybeOtherOption);
-        const optionsMenu = (React.createElement(ScrollMenu, { selectedIndex: highlightedIndex }, hasMatchingOptions || shouldShowOtherOption ? (React.createElement(Fragment, null,
-            matchingOptions.map((option, index) => (React.createElement(Menu.Item, Object.assign({ key: getItemValue(option), selected: highlightedIndex === index, disabled: isSelected(option, selectedItem) }, getItemProps({ item: option, index })), renderOption
+    return (React.createElement(Downshift, { inputValue: value, onInputValueChange: handleInputValueChange, onChange: handleSelectItem, itemToString: getDisplayValue, stateReducer: downshiftStateReducer }, ({ getMenuProps, getInputProps, getItemProps, isOpen, highlightedIndex, selectItem, setState }) => {
+        const canOpen = isOpen && !loading;
+        const optionsLength = options.length;
+        const otherOption = {
+            text: value
+        };
+        const shouldShowOtherOption = showOtherOption && value;
+        const optionsMenu = (React.createElement(ScrollMenu, { selectedIndex: highlightedIndex },
+            options.map((option, index) => (React.createElement(Menu.Item, Object.assign({ key: getDisplayValue(option), selected: highlightedIndex === index }, getItemProps({ item: option, index })), renderOption
                 ? renderOption(option, index)
-                : getItemText(option)))),
-            maybeOtherOption && (React.createElement(Menu.Item, Object.assign({ key: getItemValue(maybeOtherOption), selected: highlightedIndex === matchingOptionsLength, disabled: isSelected(maybeOtherOption, selectedItem) }, getItemProps({
-                item: maybeOtherOption,
-                index: matchingOptionsLength
+                : getDisplayValue(option)))),
+            shouldShowOtherOption && (React.createElement(Menu.Item, Object.assign({ key: getUniqueValue(value), selected: highlightedIndex === optionsLength }, getItemProps({
+                item: otherOption,
+                index: optionsLength
             }), { className: cx({
-                    [classes.otherOption]: matchingOptionsLength
+                    [classes.otherOption]: Boolean(optionsLength)
                 }) }),
                 React.createElement("span", { className: classes.stringContent },
                     React.createElement(Typography, { as: 'span', color: 'dark-grey' }, otherOptionText),
-                    inputValue))))) : (React.createElement(Menu.Item, { disabled: true }, noOptionsText))));
+                    otherOption.text))),
+            !optionsLength && !shouldShowOtherOption && (React.createElement(Menu.Item, { disabled: true }, noOptionsText))));
         const handleFocusOrClick = () => {
             if (!isOpen) {
-                let newInputValue = inputValue;
-                const isInputSelectedItem = inputValue === getItemText(selectedItem);
-                if (!allowAny || isInputSelectedItem) {
-                    newInputValue = EMPTY_INPUT_VALUE;
-                }
                 setState({
                     isOpen: true,
-                    inputValue: newInputValue,
-                    highlightedIndex: currentSelectedItemIndex || FIRST_ITEM_INDEX
+                    inputValue: value,
+                    highlightedIndex: FIRST_ITEM_INDEX
                 });
             }
         };
@@ -150,11 +114,10 @@ export const Autocomplete = forwardRef(function Autocomplete(_a, ref) {
             onFocus: handleFocusOrClick,
             onClick: handleFocusOrClick,
             onKeyDown: (event) => {
-                if (event.key === 'Backspace' &&
-                    inputValue === EMPTY_INPUT_VALUE) {
+                if (event.key === 'Backspace' && value === EMPTY_INPUT_VALUE) {
                     selectItem(null);
                 }
-                onKeyDown(event, inputValue);
+                onKeyDown(event, value);
             },
             // here we override the value returned from downshift, `off` by default
             autoComplete: autoCompletePropValue
@@ -163,35 +126,16 @@ export const Autocomplete = forwardRef(function Autocomplete(_a, ref) {
             React.createElement(Container, { flex: true, ref: inputWrapperRef },
                 React.createElement(InputComponent
                 /* eslint-disable-next-line react/jsx-props-no-spreading */
-                , Object.assign({}, rest, inputProps, { error: error, icon: icon, defaultValue: inputProps.defaultValue, value: inputProps.value, onChange: e => {
+                , Object.assign({}, rest, inputProps, { error: error, icon: icon, defaultValue: undefined, value: value, onChange: e => {
                         inputProps.onChange(e);
-                    }, ref: ref, classes: {}, placeholder: selectedItem ? getItemText(selectedItem) : placeholder, endAdornment: loading ? loadingComponent : endAdornment, width: width }))),
-            React.createElement("div", Object.assign({}, getMenuProps()), inputWrapperRef.current && (React.createElement(Popper, { open: canOpen, anchorEl: inputWrapperRef.current, className: classes.popper, modifiers: Object.assign({}, popperSizeModifier()) }, optionsMenu)))));
+                    }, ref: ref, classes: {}, placeholder: placeholder, endAdornment: loading ? loadingComponent : endAdornment, width: width }))),
+            React.createElement("div", Object.assign({}, getMenuProps()), inputWrapperRef.current && (React.createElement(Popper, { open: canOpen, anchorEl: inputWrapperRef.current, className: classes.popper, style: { width: menuWidth } }, optionsMenu)))));
     }));
 });
-function popperSizeModifier() {
-    // inspired by conversation here:
-    // https://spectrum.chat/popper-js/support/how-to-compute-popper-width~79c9aca3-b0b5-475e-87e8-fa32af849b58
-    return {
-        size: {
-            enabled: true,
-            order: 840,
-            fn: (data) => {
-                data.offsets.popper.left = data.offsets.reference.left;
-                data.offsets.popper.right = data.offsets.reference.right;
-                data.offsets.popper.width = data.styles.width = Math.round(data.offsets.reference.width);
-                return data;
-            }
-        }
-    };
-}
 Autocomplete.defaultProps = {
-    allowAny: true,
-    defaultInputValue: '',
-    defaultValue: null,
     enableAutofill: false,
+    getDisplayValue: getItemText,
     loading: false,
-    minLength: 0,
     noOptionsText: 'No options',
     onChange: () => { },
     onKeyDown: () => { },

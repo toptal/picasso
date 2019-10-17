@@ -1,3 +1,10 @@
+# [3.30.0](https://github.com/toptal/picasso/compare/v3.29.1...v3.30.0) (2019-10-17)
+
+
+### Features
+
+* [FX-481] Autocomplete cleanup ([#799](https://github.com/toptal/picasso/issues/799)) ([960b749](https://github.com/toptal/picasso/commit/960b749))
+
 ## [3.29.1](https://github.com/toptal/picasso/compare/v3.29.0...v3.29.1) (2019-10-17)
 
 

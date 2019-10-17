@@ -1,6 +1,5 @@
 import { createStyles } from '@material-ui/core/styles';
-import zIndex from '@material-ui/core/styles/zIndex';
-export default ({ sizes: { input, borderWidth }, palette }) => createStyles({
+export default ({ sizes: { input, borderWidth }, palette, zIndex }) => createStyles({
     root: {
         position: 'relative',
         width: input.width
@@ -18,6 +17,8 @@ export default ({ sizes: { input, borderWidth }, palette }) => createStyles({
     stringContent: {
         fontSize: '0.8125em'
     },
-    popper: { zIndex: zIndex.modal }
+    popper: {
+        zIndex: zIndex.modal
+    }
 });
 //# sourceMappingURL=styles.js.map
