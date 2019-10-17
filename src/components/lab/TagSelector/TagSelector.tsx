@@ -3,22 +3,23 @@ import React, {
   Fragment,
   forwardRef,
   useRef,
+  useState,
   ComponentType,
   InputHTMLAttributes
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
-import { useCombinedRefs } from '../../utils'
+import { useCombinedRefs, isSubstring } from '../../utils'
 import { StandardProps } from '../../Picasso'
 import Label from '../../Label'
-import Autocomplete from '../Autocomplete'
+import Autocomplete, { Item as AutocompleteItem } from '../Autocomplete'
 import styles from './styles'
 import TagSelectorInput from '../TagSelectorInput'
 import { Props as InputProps } from '../../Input'
 import useControlledAndUncontrolledState from '../../utils/use-controlled-and-uncontrolled-state'
 import useControlledAndUncontrolledInput from '../../utils/use-controlled-and-uncontrolled-input'
 
-type Item = {
+interface Item extends AutocompleteItem {
   value: string
   text: string
 }
@@ -54,12 +55,20 @@ export interface Props
   enableAutofill?: boolean
 }
 
+const EMPTY_INPUT_VALUE = ''
+const getDisplayValue = (item: AutocompleteItem | null) =>
+  item && item.text ? item.text : EMPTY_INPUT_VALUE
+const filterOptions = (value: string, options: AutocompleteItem[]) =>
+  value !== ''
+    ? options.filter(option => isSubstring(value, getDisplayValue(option)))
+    : options
+
 export const TagSelector = forwardRef<HTMLInputElement, Props>(
   function TagSelector(
     {
       loading,
       placeholder,
-      options,
+      options: allOptions,
       newOptionLabel,
       defaultValue,
       value,
@@ -78,7 +87,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       inputValueProp,
       onInputChange!
     )
-
+    const [options, setOptions] = useState<AutocompleteItem[]>(allOptions!)
     const [
       selectedValues,
       setSelectedValues
@@ -86,7 +95,6 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       value: string[] | null
     ) => void) as SelectedValuesStateTuple
     const [addedOptions, setAddedOptions] = React.useState<Item[]>([])
-    const currentOptions = [...options!, ...addedOptions]
 
     const inputRef = useCombinedRefs<HTMLInputElement>(
       ref,
@@ -138,8 +146,15 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       }
     }
 
-    const handleSelect = (itemValue: string | null) => {
-      if (!itemValue) return
+    const handleChange = (value: string) => {
+      setInputValue(value)
+      onInputChange!(value)
+
+      setOptions(filterOptions(value, allOptions!))
+    }
+
+    const handleSelect = (item: AutocompleteItem) => {
+      const itemValue = item.value!
 
       if (!selectedValues.includes(itemValue)) {
         setSelectedValues([...selectedValues, itemValue])
@@ -147,7 +162,9 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       setInputValue('')
     }
 
-    const handleOtherOptionSelect = (itemText: string) => {
+    const handleOtherOptionSelect = (item: AutocompleteItem) => {
+      const itemText = getDisplayValue(item)
+
       setAddedOptions([
         ...addedOptions,
         {
@@ -162,14 +179,16 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       setInputValue('')
     }
 
-    const autocompleteOptions: Item[] = currentOptions.filter(
-      item => !selectedValues.includes(item.value)
+    const autocompleteOptions: AutocompleteItem[] = options.filter(
+      item => !selectedValues.includes(item.value!)
     )
 
     const labels = (
       <Fragment>
         {selectedValues.map(value => {
-          const item = currentOptions.find(option => option.value === value)
+          const item = [...allOptions!, ...addedOptions].find(
+            option => option.value === value
+          )
 
           if (!item) {
             window.console.warn(
@@ -193,11 +212,10 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         ref={inputRef}
         placeholder={selectedValues.length === 0 ? placeholder : undefined}
         options={autocompleteOptions}
-        value={null}
+        value={inputValue}
         onSelect={handleSelect}
         onOtherOptionSelect={handleOtherOptionSelect}
-        inputValue={inputValue}
-        onChange={setInputValue}
+        onChange={handleChange}
         onKeyDown={handleKeyDown}
         startAdornment={labels}
         loading={loading}
@@ -206,6 +224,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         showOtherOption
         otherOptionText={newOptionLabel}
         enableAutofill={enableAutofill}
+        getDisplayValue={getDisplayValue}
       />
     )
   }

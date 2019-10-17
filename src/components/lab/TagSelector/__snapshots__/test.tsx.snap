@@ -60,7 +60,7 @@ exports[`TagSelector available options when start typing 1`] = `
   <div
     class="Autocomplete-popper"
     role="tooltip"
-    style="position: absolute;"
+    style="width: 0px; position: absolute;"
     x-placement="bottom"
   >
     <ul

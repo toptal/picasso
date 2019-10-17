@@ -1,7 +1,13 @@
 import React from 'react'
 import { Autocomplete } from '@toptal/picasso/lab'
+import { Item } from '@toptal/picasso/lab/Autocomplete'
 import { Typography, Container } from '@toptal/picasso'
-type Country = { text: string; value: string; capital: string }
+
+interface Country extends Item {
+  text: string
+  value: string
+  capital: string
+}
 
 const options: Country[] = [
   { text: 'Belarus', value: 'BY', capital: 'Minsk' },
@@ -14,8 +20,13 @@ const options: Country[] = [
 const CustomOptionRenderer = () => (
   <div>
     <Autocomplete
+      value=''
       placeholder='Start typing country...'
       options={options}
+      onSelect={(item: Item) => {
+        window.console.log('onSelect returns item object:', item)
+        window.console.log('selected capital:', item.capital)
+      }}
       renderOption={(option: Partial<Country>, index) => (
         <Container>
           <Typography size='medium' weight='semibold'>

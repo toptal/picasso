@@ -38,11 +38,6 @@ for this component. This you can achieve by adding this attribute:
     `
   )
   .addExample('lab/Autocomplete/story/Default.example.jsx', 'Default')
-  .addExample('lab/Autocomplete/story/AllowAnyDisabled.example.jsx', {
-    title: 'Any value disabled',
-    description: `By default Autocomplete allows any entered input value to stay after focus is removed from input,
-      you can set \`allowAny={false}\` prop to allow only selected values to stay after focus is removed from input`
-  }) // picasso-skip-visuals
   .addExample('lab/Autocomplete/story/OtherOption.example.jsx', {
     title: 'Other option',
     description: `By default Autocomplete allows any entered input value to stay after focus is removed from input,
@@ -51,8 +46,8 @@ for this component. This you can achieve by adding this attribute:
       \`onOtherOptionSelect\` event handler.`
   }) // picasso-skip-visuals
   .addExample(
-    'lab/Autocomplete/story/InitialSelectedItem.example.jsx',
-    'Initially selected item'
+    'lab/Autocomplete/story/InitialSetValue.example.jsx',
+    'Initially set value'
   )
   .addExample(
     'lab/Autocomplete/story/Controlled.example.jsx',
@@ -75,6 +70,6 @@ Start typing "Mongolia" letter by letter to see this example in action.`
   .addExample('lab/Autocomplete/story/Autofill.example.tsx', {
     title: 'Form auto filling',
     description: `This example shows how to use component inside the form with several fields
-      when it makes sense to have autofill enabled.
+when it makes sense to have autofill enabled.
     `
   }) // picasso-skip-visuals

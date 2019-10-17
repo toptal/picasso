@@ -48,6 +48,7 @@ const AutofillExample = () => (
         <Form.Field>
           <Form.Label>Country</Form.Label>
           <Autocomplete
+            value=''
             options={options}
             width='full'
             name='country'
@@ -95,6 +96,7 @@ const AutofillExample = () => (
         <Form.Field>
           <Form.Label>Country</Form.Label>
           <Autocomplete
+            value=''
             options={options}
             width='full'
             name='country'

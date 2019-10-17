@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Autocomplete } from '@toptal/picasso/lab'
+import { isSubstring } from '@toptal/picasso/utils'
 
-const options = [
+const allOptions = [
   { text: 'Belarus', value: 'BY' },
   { text: 'Croatia', value: 'HR' },
   { text: 'Lithuania', value: 'LU' },
@@ -9,20 +10,46 @@ const options = [
   { text: 'Ukraine', value: 'UA' }
 ]
 
-const AutocompleteOtherOptionExample = () => (
-  <div>
-    <Autocomplete
-      allowAny
-      showOtherOption
-      placeholder='Start typing country...'
-      options={options}
-      onSelect={item => console.log('onSelect value:', item)}
-      onOtherOptionSelect={item =>
-        console.log('onOtherOptionSelect value:', item)
-      }
-      onChange={inputValue => console.log('onChange value:', inputValue)}
-    />
-  </div>
-)
+const EMPTY_INPUT_VALUE = ''
+const getDisplayValue = item => (item ? item.text : EMPTY_INPUT_VALUE)
+const filterOptions = str =>
+  str !== ''
+    ? allOptions.filter(option => isSubstring(str, getDisplayValue(option)))
+    : allOptions
+
+const AutocompleteOtherOptionExample = () => {
+  const [value, setValue] = useState(EMPTY_INPUT_VALUE)
+  const [options, setOptions] = useState(allOptions)
+
+  return (
+    <div>
+      <Autocomplete
+        value={value}
+        showOtherOption
+        placeholder='Start typing country...'
+        options={options}
+        onSelect={item => {
+          console.log('onSelect returns item object:', item)
+
+          const itemValue = getDisplayValue(item)
+
+          if (value !== itemValue) {
+            setValue(itemValue)
+          }
+        }}
+        onOtherOptionSelect={item =>
+          console.log('onOtherOptionSelect returns item object:', item)
+        }
+        onChange={value => {
+          console.log('onChange returns just item value:', value)
+
+          setOptions(filterOptions(value))
+          setValue(value)
+        }}
+        getDisplayValue={getDisplayValue}
+      />
+    </div>
+  )
+}
 
 export default AutocompleteOtherOptionExample

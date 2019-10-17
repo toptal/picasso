@@ -1,10 +1,5 @@
 import React from 'react'
-import {
-  render,
-  fireEvent,
-  cleanup,
-  waitForDomChange
-} from '@testing-library/react'
+import { render, fireEvent, cleanup } from '@testing-library/react'
 
 import Picasso, { OmitInternalProps } from '../../Picasso'
 import Autocomplete, { Props } from './Autocomplete'
@@ -22,15 +17,13 @@ const renderAutocomplete = (props: OmitInternalProps<Props>) => {
     placeholder,
     options,
     value,
-    defaultValue,
-    allowAny,
-    inputValue,
-    minLength,
     inputComponent,
     noOptionsText,
     renderOption,
     enableAutofill,
-    autoComplete
+    autoComplete,
+    onChange,
+    onSelect
   } = props
 
   return render(
@@ -39,15 +32,13 @@ const renderAutocomplete = (props: OmitInternalProps<Props>) => {
         placeholder={placeholder}
         options={options}
         value={value}
-        defaultValue={defaultValue}
-        allowAny={allowAny}
-        inputValue={inputValue}
-        minLength={minLength}
         inputComponent={inputComponent}
         noOptionsText={noOptionsText}
         renderOption={renderOption}
         enableAutofill={enableAutofill}
         autoComplete={autoComplete}
+        onChange={onChange}
+        onSelect={onSelect}
       />
     </Picasso>
   )
@@ -62,211 +53,132 @@ describe('Autocomplete', () => {
     test('default render', () => {
       const { container } = renderAutocomplete({
         placeholder: 'Start typing here...',
-        options
+        options,
+        value: ''
       })
 
       expect(container).toMatchSnapshot()
     })
 
     test('render option text when passed `value` prop', () => {
-      const { getByPlaceholderText } = renderAutocomplete({
+      const { getByDisplayValue } = renderAutocomplete({
         placeholder,
         options,
-        value: 'UA'
+        value: 'Ukraine'
       })
 
-      const input = getByPlaceholderText('Ukraine') as HTMLInputElement
+      const input = getByDisplayValue('Ukraine') as HTMLInputElement
 
       expect(input.value).toEqual('Ukraine')
-      expect(input.placeholder).toEqual('Ukraine')
-    })
-
-    test('render option text when passed `defaultValue` prop', () => {
-      const { getByPlaceholderText } = renderAutocomplete({
-        options,
-        defaultValue: 'LU',
-        placeholder
-      })
-
-      const input = getByPlaceholderText('Lithuania') as HTMLInputElement
-
-      expect(input.value).toEqual('Lithuania')
-      expect(input.placeholder).toEqual('Lithuania')
     })
   })
 
   describe('dynamic behavior', () => {
-    test('render options when start typing', () => {
-      const {
-        getByPlaceholderText,
-        baseElement,
-        getAllByRole
-      } = renderAutocomplete({
+    test('on focus', () => {
+      const { getByText, getByDisplayValue, getByRole } = renderAutocomplete({
         placeholder,
-        options
+        options,
+        value: ''
       })
+
+      const input = getByDisplayValue('') as HTMLInputElement
+
+      fireEvent.focus(input)
+
+      const firstOptionListItem = getByText('Belarus').parentElement
+      const menu = getByRole('menu')
+
+      // first option is highlighted
+      expect(firstOptionListItem!.getAttribute('aria-selected')).toBe('true')
+      // menu contains all the options displayed
+      expect(menu).toMatchSnapshot()
+    })
+
+    test('on type', () => {
+      const onChange = jest.fn()
+      const { getByPlaceholderText } = renderAutocomplete({
+        options,
+        placeholder,
+        value: '',
+        onChange
+      })
+
       const input = getByPlaceholderText(placeholder) as HTMLInputElement
 
-      // should show only Croatia and Lithuania
+      fireEvent.focus(input)
       fireEvent.change(input, { target: { value: 't' } })
 
-      const filteredOptions = getAllByRole('option').map(li => li.textContent)
-
-      expect(filteredOptions).toEqual(['Croatia', 'Lithuania'])
-      expect(baseElement).toMatchSnapshot()
+      expect(onChange).toBeCalledWith('t')
     })
 
-    describe('on focus', () => {
-      test('without preselection', () => {
-        const { getByText, getByPlaceholderText } = renderAutocomplete({
-          placeholder,
-          options
-        })
-
-        const input = getByPlaceholderText(placeholder) as HTMLInputElement
-
-        fireEvent.focus(input)
-
-        // first option is highlighted
-        expect(
-          getByText('Belarus').parentElement!.getAttribute('aria-selected')
-        ).toBe('true')
+    test('on select option', () => {
+      const onSelect = jest.fn()
+      const { getByText, getByPlaceholderText } = renderAutocomplete({
+        options,
+        placeholder,
+        value: '',
+        onSelect
       })
 
-      test('with preselection', () => {
-        const { getByText, getByPlaceholderText } = renderAutocomplete({
-          options,
-          placeholder,
-          value: 'BY'
-        })
+      const input = getByPlaceholderText(placeholder) as HTMLInputElement
 
-        const input = getByPlaceholderText('Belarus') as HTMLInputElement
+      fireEvent.focus(input)
+      fireEvent.click(getByText('Slovakia'))
 
-        fireEvent.focus(input)
+      const optionSlovakia = options.find(option => option.text === 'Slovakia')
 
-        // text clears, placeholder shows selected option text.
-        expect(input.placeholder).toEqual('Belarus')
-        expect(input.value).toEqual('')
-
-        // selected option is highlighted and disabled
-        expect(
-          getByText('Belarus').parentElement!.getAttribute('aria-selected')
-        ).toBe('true')
-        expect(
-          getByText('Belarus').parentElement!.getAttribute('aria-disabled')
-        ).toBe('true')
-      })
-    })
-
-    describe('on blur', () => {
-      test('on select option', () => {
-        const { getByText, getByPlaceholderText } = renderAutocomplete({
-          options,
-          placeholder
-        })
-
-        const input = getByPlaceholderText(placeholder) as HTMLInputElement
-
-        fireEvent.focus(input)
-        fireEvent.click(getByText('Slovakia'))
-
-        // if text is empty and an option is selected, text turns into selected option text
-        expect(input.value).toEqual('Slovakia')
-      })
-
-      test('preselected option and random text entered when allowAny=true', async () => {
-        const { container, getByPlaceholderText } = renderAutocomplete({
-          placeholder,
-          options,
-          defaultValue: 'HR',
-          allowAny: true
-        })
-
-        const input = getByPlaceholderText('Croatia') as HTMLInputElement
-
-        fireEvent.change(input, { target: { value: 'random text' } })
-
-        fireEvent.blur(input)
-
-        await waitForDomChange({ container })
-
-        // If allowAny=true: text stays, and selection (if existed) is cleared
-        expect(input.value).toEqual('random text')
-      })
-
-      test('preselected option and random text entered when allowAny=false', async () => {
-        const { container, getByPlaceholderText } = renderAutocomplete({
-          placeholder,
-          options,
-          defaultValue: 'HR',
-          allowAny: false
-        })
-
-        const input = getByPlaceholderText('Croatia') as HTMLInputElement
-
-        fireEvent.change(input, { target: { value: 'random text' } })
-
-        fireEvent.blur(input)
-
-        await waitForDomChange({ container })
-
-        // If allowAny=false: text turns into selected option text, or empty is no selection
-        expect(input.value).toEqual('Croatia')
-      })
+      expect(onSelect).toBeCalledWith(optionSlovakia)
     })
 
     test('on "Esc" key pressed', async () => {
-      const { getByPlaceholderText } = renderAutocomplete({
+      const onChange = jest.fn()
+      const { getByDisplayValue } = renderAutocomplete({
         placeholder,
         options,
-        defaultValue: 'HR',
-        allowAny: false
+        value: 'Croatia',
+        onChange
       })
 
-      const input = getByPlaceholderText('Croatia') as HTMLInputElement
+      const input = getByDisplayValue('Croatia') as HTMLInputElement
 
-      fireEvent.change(input, { target: { value: 'random text' } })
-
+      fireEvent.focus(input)
       fireEvent.keyDown(input, {
         key: 'Escape'
       })
 
-      // text and selection are cleared. Placeholder is displayed.
-      expect(input.placeholder).toEqual(placeholder)
-      expect(input.value).toEqual('')
+      // text should be tried to be cleared
+      expect(onChange).toBeCalledWith('')
     })
 
     test('On "Backspace" key pressed with empty text', async () => {
-      const { getByPlaceholderText } = renderAutocomplete({
+      const { getByDisplayValue, queryByRole } = renderAutocomplete({
         placeholder,
         options,
-        defaultValue: 'HR',
-        allowAny: false
+        value: ''
       })
 
-      const input = getByPlaceholderText('Croatia') as HTMLInputElement
+      const input = getByDisplayValue('') as HTMLInputElement
 
-      fireEvent.change(input, { target: { value: '' } })
-
+      fireEvent.focus(input)
       fireEvent.keyDown(input, {
         key: 'Backspace'
       })
 
-      // If there was a selection, it is cleared and placeholder is displayed.
-      expect(input.value).toEqual('')
-      expect(input.placeholder).toEqual(placeholder)
+      const menu = queryByRole('menu')
+      // should hide the options list
+
+      expect(menu).toBeNull()
     })
 
     describe('On "arrow up/down" key press', () => {
       test('press down', () => {
-        const { getByText, getByPlaceholderText } = renderAutocomplete({
+        const { getByText, getByDisplayValue } = renderAutocomplete({
           placeholder,
           options,
-          defaultValue: 'LU',
-          allowAny: false
+          value: ''
         })
 
-        const input = getByPlaceholderText('Lithuania') as HTMLInputElement
+        const input = getByDisplayValue('') as HTMLInputElement
 
         fireEvent.focus(input)
 
@@ -275,19 +187,18 @@ describe('Autocomplete', () => {
         })
 
         expect(
-          getByText('Slovakia').parentElement!.getAttribute('aria-selected')
+          getByText('Croatia').parentElement!.getAttribute('aria-selected')
         ).toBe('true')
       })
 
       test('press up', () => {
-        const { getByText, getByPlaceholderText } = renderAutocomplete({
+        const { getByText, getByDisplayValue } = renderAutocomplete({
           placeholder,
           options,
-          defaultValue: 'LU',
-          allowAny: false
+          value: ''
         })
 
-        const input = getByPlaceholderText('Lithuania') as HTMLInputElement
+        const input = getByDisplayValue('') as HTMLInputElement
 
         fireEvent.focus(input)
 
@@ -296,135 +207,47 @@ describe('Autocomplete', () => {
         })
 
         expect(
-          getByText('Croatia').parentElement!.getAttribute('aria-selected')
+          getByText('Ukraine').parentElement!.getAttribute('aria-selected')
         ).toBe('true')
       })
 
       test('press Enter', () => {
-        const { getByText, getByPlaceholderText } = renderAutocomplete({
+        const onSelect = jest.fn()
+        const { getByText, getByDisplayValue } = renderAutocomplete({
           placeholder,
           options,
-          defaultValue: 'LU',
-          allowAny: false
+          value: '',
+          onSelect
         })
 
-        const input = getByPlaceholderText('Lithuania') as HTMLInputElement
+        const input = getByDisplayValue('') as HTMLInputElement
 
         fireEvent.focus(input)
 
         fireEvent.keyDown(input, {
-          key: 'ArrowUp'
+          key: 'ArrowDown'
         })
 
         expect(
           getByText('Croatia').parentElement!.getAttribute('aria-selected')
         ).toBe('true')
-
-        expect(input.value).toEqual('')
-        expect(input.placeholder).toEqual('Lithuania')
 
         fireEvent.keyDown(input, {
           key: 'Enter'
         })
 
-        expect(input.value).toEqual('Croatia')
-        expect(input.placeholder).toEqual('Croatia')
-      })
+        const optionCroatia = options.find(option => option.text === 'Croatia')
 
-      test('navigate after option selected', async () => {
-        const {
-          getByText,
-          getAllByRole,
-          getByPlaceholderText
-        } = renderAutocomplete({
-          placeholder,
-          options,
-          allowAny: false
-        })
-
-        const input = getByPlaceholderText(placeholder) as HTMLInputElement
-
-        fireEvent.focus(input)
-        fireEvent.click(getByText('Croatia'))
-        fireEvent.focus(input)
-        fireEvent.keyDown(input, {
-          key: 'ArrowUp'
-        })
-
-        // On option selected + immediately "arrow up/down" key press (no "blur" in between)
-        // You can navigate the full list of options, and highlighted option was the one selected.
-        expect(getAllByRole('option').length).toEqual(5)
-        expect(
-          getByText('Croatia').parentElement!.getAttribute('aria-disabled')
-        ).toBe('true')
-        expect(
-          getByText('Belarus').parentElement!.getAttribute('aria-disabled')
-        ).toBe('false')
+        expect(onSelect).toBeCalledWith(optionCroatia)
       })
     })
-  })
-
-  describe('controlled mode', () => {
-    test('with "value" prop', async () => {
-      const { getByText, getByPlaceholderText } = renderAutocomplete({
-        options,
-        placeholder,
-        value: 'HR'
-      })
-
-      const input = getByPlaceholderText('Croatia') as HTMLInputElement
-
-      fireEvent.focus(input)
-      fireEvent.click(getByText('Belarus'))
-      fireEvent.focus(input)
-
-      // if value prop is present, the corresponding option is always selected, no matter what you do on UI.
-      expect(input.placeholder).toEqual('Croatia')
-    })
-
-    test('with "inputValue" prop', async () => {
-      const { getByText, getByPlaceholderText } = renderAutocomplete({
-        placeholder,
-        options,
-        inputValue: 'ia'
-      })
-
-      const input = getByPlaceholderText(placeholder) as HTMLInputElement
-
-      fireEvent.change(input, { target: { value: 'new text' } })
-      fireEvent.click(getByText('Croatia'))
-
-      // the input text always matches it, no matter what you do on UI.
-      expect(input.value).toEqual('ia')
-    })
-  })
-
-  test('with "minLength" prop', async () => {
-    const { queryAllByRole, getByPlaceholderText } = renderAutocomplete({
-      options,
-      placeholder,
-      defaultInputValue: 'a',
-      minLength: 1
-    })
-
-    const input = getByPlaceholderText(placeholder) as HTMLInputElement
-
-    fireEvent.focus(input)
-
-    // @TODO: NB, this is actually a wrong behavior, different from how it works via browser... to be investigated
-    // this would be correct if minLength == 2, but this is not the case
-    expect(queryAllByRole('option').length).toEqual(0)
-
-    fireEvent.change(input, { target: { value: 'ia' } })
-    fireEvent.focus(input)
-
-    expect(queryAllByRole('option').length).toEqual(3) // Slovakia, Croatia, Lithuania
   })
 
   test('with "inputComponent" prop', async () => {
     const { getByPlaceholderText } = renderAutocomplete({
       // eslint-disable-next-line react/display-name
-      inputComponent: () => <input placeholder='myCustomInputComponent' />
+      inputComponent: () => <input placeholder='myCustomInputComponent' />,
+      value: ''
     })
 
     const input = getByPlaceholderText('myCustomInputComponent')
@@ -437,7 +260,7 @@ describe('Autocomplete', () => {
     const { getByText, getByPlaceholderText } = renderAutocomplete({
       placeholder,
       noOptionsText,
-      defaultInputValue: 'non existing option'
+      value: 'non existing option'
     })
 
     const input = getByPlaceholderText(placeholder) as HTMLInputElement
@@ -451,19 +274,21 @@ describe('Autocomplete', () => {
     const api = renderAutocomplete({
       placeholder: 'Start typing here...',
       options,
+      value: '',
       // eslint-disable-next-line react/display-name
       renderOption: () => <div>Custom renderer</div>
     })
     const input = api.getByPlaceholderText('Start typing here...')
 
-    fireEvent.change(input, { target: { value: 't' } })
+    fireEvent.focus(input)
     expect(api.baseElement.textContent).toContain('Custom renderer')
   })
 
   describe('Autofill', () => {
     test('when autoComplete value is not passed and autofill is not enabled', () => {
       const { getByPlaceholderText } = renderAutocomplete({
-        placeholder: 'Start typing here...'
+        placeholder: 'Start typing here...',
+        value: ''
       })
       const input = getByPlaceholderText('Start typing here...')
 
@@ -473,6 +298,7 @@ describe('Autocomplete', () => {
     test('when autoComplete value is not passed and autofill is enabled', () => {
       const { getByPlaceholderText } = renderAutocomplete({
         placeholder: 'Start typing here...',
+        value: '',
         enableAutofill: true
       })
       const input = getByPlaceholderText('Start typing here...')
@@ -484,6 +310,7 @@ describe('Autocomplete', () => {
     test('when autoComplete value is passed and autofill is not enabled', () => {
       const { getByPlaceholderText } = renderAutocomplete({
         placeholder: 'Start typing here...',
+        value: '',
         autoComplete: 'country-name'
       })
       const input = getByPlaceholderText('Start typing here...')
@@ -494,6 +321,7 @@ describe('Autocomplete', () => {
     test('when autoComplete value is passed and autofill is enabled', () => {
       const { getByPlaceholderText } = renderAutocomplete({
         placeholder: 'Start typing here...',
+        value: '',
         enableAutofill: true,
         autoComplete: 'country-name'
       })
