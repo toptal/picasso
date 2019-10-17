@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Autocomplete } from '@toptal/picasso/lab'
+import { isSubstring } from '@toptal/picasso/utils'
 
 const allOptions = [
   { text: 'Belarus', value: 'BY' },
@@ -11,8 +12,6 @@ const allOptions = [
 
 const EMPTY_INPUT_VALUE = ''
 const getDisplayValue = item => (item ? item.text : EMPTY_INPUT_VALUE)
-const isSubstring = (subStr, str) =>
-  str.toLowerCase().includes(subStr.trim().toLowerCase())
 const filterOptions = str =>
   str !== ''
     ? allOptions.filter(option => isSubstring(str, getDisplayValue(option)))

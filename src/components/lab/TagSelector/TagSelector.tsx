@@ -9,7 +9,7 @@ import React, {
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
-import { useCombinedRefs } from '../../utils'
+import { useCombinedRefs, isSubstring } from '../../utils'
 import { StandardProps } from '../../Picasso'
 import Label from '../../Label'
 import Autocomplete, { Item as AutocompleteItem } from '../Autocomplete'
@@ -58,8 +58,6 @@ export interface Props
 const EMPTY_INPUT_VALUE = ''
 const getDisplayValue = (item: AutocompleteItem | null) =>
   item && item.text ? item.text : EMPTY_INPUT_VALUE
-const isSubstring = (subStr: string, str: string) =>
-  str.toLowerCase().includes(subStr.trim().toLowerCase())
 const filterOptions = (value: string, options: AutocompleteItem[]) =>
   value !== ''
     ? options.filter(option => isSubstring(value, getDisplayValue(option)))

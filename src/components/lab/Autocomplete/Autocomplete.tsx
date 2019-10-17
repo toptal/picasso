@@ -161,14 +161,14 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
     }
 
     const handleSelectItem = (item: Item | null) => {
-      const itemValue = getDisplayValue!(item)
+      const displayValue = getDisplayValue!(item)
 
-      if (item === null || itemValue === null) {
+      if (item === null || displayValue === null) {
         return
       }
 
       const isInOptions = options!.find(
-        option => getDisplayValue!(option) === itemValue
+        option => getDisplayValue!(option) === displayValue
       )
 
       if (!isInOptions) {

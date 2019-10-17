@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button } from '@toptal/picasso'
 import { Autocomplete } from '@toptal/picasso/lab'
-import { useNotifications } from '@toptal/picasso/utils'
+import { useNotifications, isSubstring } from '@toptal/picasso/utils'
 import { useModals } from '@toptal/picasso/lab/utils'
 
 const allOptions = [
@@ -14,8 +14,6 @@ const allOptions = [
 
 const EMPTY_INPUT_VALUE = ''
 const getDisplayValue = (item: any) => (item ? item.text : EMPTY_INPUT_VALUE)
-const isSubstring = (subStr: string, str: string) =>
-  str.toLowerCase().includes(subStr.trim().toLowerCase())
 const filterOptions = (str: string) =>
   str !== ''
     ? allOptions.filter(option => isSubstring(str, getDisplayValue(option)))
