@@ -89,7 +89,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       inputValueProp,
       onInputChange!
     )
-    const [options, setOptions] = useState(allOptions as AutocompleteItem[])
+    const [options, setOptions] = useState<AutocompleteItem[]>(allOptions!)
     const [
       selectedValues,
       setSelectedValues
@@ -152,7 +152,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       setInputValue(value)
       onInputChange!(value)
 
-      setOptions(filterOptions(value, allOptions as AutocompleteItem[]))
+      setOptions(filterOptions(value, allOptions!))
     }
 
     const handleSelect = (item: AutocompleteItem) => {
