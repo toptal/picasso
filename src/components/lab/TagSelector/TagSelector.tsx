@@ -19,7 +19,7 @@ import { Props as InputProps } from '../../Input'
 import useControlledAndUncontrolledState from '../../utils/use-controlled-and-uncontrolled-state'
 import useControlledAndUncontrolledInput from '../../utils/use-controlled-and-uncontrolled-input'
 
-type Item = {
+interface Item extends AutocompleteItem {
   value: string
   text: string
 }

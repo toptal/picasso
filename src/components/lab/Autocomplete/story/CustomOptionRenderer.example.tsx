@@ -24,7 +24,8 @@ const CustomOptionRenderer = () => (
       placeholder='Start typing country...'
       options={options}
       onSelect={(item: Item) => {
-        window.console.log('onSelect', item)
+        window.console.log('onSelect returns item object:', item)
+        window.console.log('selected capital:', item.capital)
       }}
       renderOption={(option: Partial<Country>, index) => (
         <Container>

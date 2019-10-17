@@ -21,11 +21,11 @@ const AutocompleteControlledItemExample = () => {
         options={options}
         value={value}
         onSelect={item => {
-          console.log('onSelect value:', item)
+          console.log('onSelect returns item object:', item)
           setValue(item.text)
         }}
         onChange={newValue => {
-          console.log('onChange value:', newValue)
+          console.log('onChange returns just item value:', newValue)
           setValue(newValue)
         }}
       />

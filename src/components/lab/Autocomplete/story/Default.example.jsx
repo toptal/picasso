@@ -25,7 +25,7 @@ const AutocompleteDefaultExample = () => {
         value={value}
         options={options}
         onSelect={item => {
-          console.log('onSelect value:', item)
+          console.log('onSelect returns item object:', item)
 
           const itemValue = getDisplayValue(item)
 
@@ -34,7 +34,7 @@ const AutocompleteDefaultExample = () => {
           }
         }}
         onChange={value => {
-          console.log('onChange value:', value)
+          console.log('onChange returns just item value:', value)
 
           const filteredOptions =
             value !== ''
