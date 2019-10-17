@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Autocomplete } from '@toptal/picasso/lab'
 
-const optionsList = [
+const allOptions = [
   { text: 'Belarus', value: 'BY' },
   { text: 'Croatia', value: 'HR' },
   { text: 'Lithuania', value: 'LU' },
@@ -15,12 +15,12 @@ const isSubstring = (subStr, str) =>
   str.toLowerCase().includes(subStr.trim().toLowerCase())
 const filterOptions = str =>
   str !== ''
-    ? optionsList.filter(option => isSubstring(str, getDisplayValue(option)))
-    : optionsList
+    ? allOptions.filter(option => isSubstring(str, getDisplayValue(option)))
+    : allOptions
 
 const AutocompleteOtherOptionExample = () => {
   const [value, setValue] = useState(EMPTY_INPUT_VALUE)
-  const [options, setOptions] = useState(optionsList)
+  const [options, setOptions] = useState(allOptions)
 
   return (
     <div>

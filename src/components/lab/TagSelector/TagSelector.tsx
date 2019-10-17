@@ -70,7 +70,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
     {
       loading,
       placeholder,
-      options: optionsList,
+      options: allOptions,
       newOptionLabel,
       defaultValue,
       value,
@@ -89,7 +89,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       inputValueProp,
       onInputChange!
     )
-    const [options, setOptions] = useState(optionsList as AutocompleteItem[])
+    const [options, setOptions] = useState(allOptions as AutocompleteItem[])
     const [
       selectedValues,
       setSelectedValues
@@ -152,7 +152,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       setInputValue(value)
       onInputChange!(value)
 
-      setOptions(filterOptions(value, optionsList as AutocompleteItem[]))
+      setOptions(filterOptions(value, allOptions as AutocompleteItem[]))
     }
 
     const handleSelect = (item: AutocompleteItem) => {
@@ -188,7 +188,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
     const labels = (
       <Fragment>
         {selectedValues.map(value => {
-          const item = [...optionsList!, ...addedOptions].find(
+          const item = [...allOptions!, ...addedOptions].find(
             option => option.value === value
           )
 

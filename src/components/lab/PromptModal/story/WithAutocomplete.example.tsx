@@ -4,7 +4,7 @@ import { Autocomplete } from '@toptal/picasso/lab'
 import { useNotifications } from '@toptal/picasso/utils'
 import { useModals } from '@toptal/picasso/lab/utils'
 
-const optionsList = [
+const allOptions = [
   { text: 'Belarus', value: 'BY' },
   { text: 'Croatia', value: 'HR' },
   { text: 'Lithuania', value: 'LU' },
@@ -18,8 +18,8 @@ const isSubstring = (subStr: string, str: string) =>
   str.toLowerCase().includes(subStr.trim().toLowerCase())
 const filterOptions = (str: string) =>
   str !== ''
-    ? optionsList.filter(option => isSubstring(str, getDisplayValue(option)))
-    : optionsList
+    ? allOptions.filter(option => isSubstring(str, getDisplayValue(option)))
+    : allOptions
 
 const PromptModalDefaultExample = () => {
   const { showPrompt } = useModals()
@@ -30,7 +30,7 @@ const PromptModalDefaultExample = () => {
       // eslint-disable-next-line react/display-name
       children: ({ setResult }) => {
         const [value, setValue] = useState(EMPTY_INPUT_VALUE)
-        const [options, setOptions] = useState(optionsList)
+        const [options, setOptions] = useState(allOptions)
 
         return (
           <Autocomplete
