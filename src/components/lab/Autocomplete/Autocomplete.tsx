@@ -6,7 +6,6 @@ import React, {
   ComponentType,
   FormEvent,
   useMemo,
-  Fragment,
   useLayoutEffect,
   useState,
   useRef
@@ -217,56 +216,49 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
         }) => {
           const canOpen = isOpen && !loading
           const optionsLength = options!.length
-
-          const maybeOtherOption =
-            showOtherOption && value
-              ? {
-                  value: getUniqueValue(value),
-                  text: `${value}`
-                }
-              : null
-          const shouldShowOtherOption = Boolean(maybeOtherOption)
+          const otherOption = {
+            text: value
+          }
+          const shouldShowOtherOption = showOtherOption && value
 
           const optionsMenu = (
             <ScrollMenu selectedIndex={highlightedIndex}>
-              {optionsLength || shouldShowOtherOption ? (
-                <Fragment>
-                  {options!.map((option, index) => (
-                    <Menu.Item
-                      key={mapValue!(option)}
-                      selected={highlightedIndex === index}
-                      /* eslint-disable-next-line react/jsx-props-no-spreading */
-                      {...getItemProps({ item: option, index })}
-                    >
-                      {renderOption
-                        ? renderOption(option, index)
-                        : getItemText(option)}
-                    </Menu.Item>
-                  ))}
+              {options!.map((option, index) => (
+                <Menu.Item
+                  key={mapValue!(option)}
+                  selected={highlightedIndex === index}
+                  /* eslint-disable-next-line react/jsx-props-no-spreading */
+                  {...getItemProps({ item: option, index })}
+                >
+                  {renderOption
+                    ? renderOption(option, index)
+                    : mapValue!(option)}
+                </Menu.Item>
+              ))}
 
-                  {maybeOtherOption && (
-                    <Menu.Item
-                      key={mapValue!(maybeOtherOption)}
-                      selected={highlightedIndex === optionsLength}
-                      /* eslint-disable-next-line react/jsx-props-no-spreading */
-                      {...getItemProps({
-                        item: maybeOtherOption,
-                        index: optionsLength
-                      })}
-                      className={cx({
-                        [classes.otherOption]: optionsLength
-                      })}
-                    >
-                      <span className={classes.stringContent}>
-                        <Typography as='span' color='dark-grey'>
-                          {otherOptionText}
-                        </Typography>
-                        {value}
-                      </span>
-                    </Menu.Item>
-                  )}
-                </Fragment>
-              ) : (
+              {shouldShowOtherOption && (
+                <Menu.Item
+                  key={getUniqueValue(value)}
+                  selected={highlightedIndex === optionsLength}
+                  /* eslint-disable-next-line react/jsx-props-no-spreading */
+                  {...getItemProps({
+                    item: otherOption,
+                    index: optionsLength
+                  })}
+                  className={cx({
+                    [classes.otherOption]: Boolean(optionsLength)
+                  })}
+                >
+                  <span className={classes.stringContent}>
+                    <Typography as='span' color='dark-grey'>
+                      {otherOptionText}
+                    </Typography>
+                    {otherOption.text}
+                  </span>
+                </Menu.Item>
+              )}
+
+              {!optionsLength && !shouldShowOtherOption && (
                 <Menu.Item disabled>{noOptionsText}</Menu.Item>
               )}
             </ScrollMenu>
