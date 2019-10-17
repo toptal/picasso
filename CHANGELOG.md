@@ -1,3 +1,10 @@
+## [3.29.1](https://github.com/toptal/picasso/compare/v3.29.0...v3.29.1) (2019-10-17)
+
+
+### Bug Fixes
+
+* **Modal:** fix scrollbar settings and spacing ([#800](https://github.com/toptal/picasso/issues/800)) ([a8155a3](https://github.com/toptal/picasso/commit/a8155a3))
+
 # [3.29.0](https://github.com/toptal/picasso/compare/v3.28.0...v3.29.0) (2019-10-16)
 
 

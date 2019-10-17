@@ -1,8 +1,8 @@
 import { createStyles } from '@material-ui/core';
 export default () => createStyles({
     root: {
-        margin: '2rem',
-        overflow: 'scroll',
+        padding: '1rem 2rem',
+        overflow: 'auto',
         flex: '1 1 auto'
     }
 });
