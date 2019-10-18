@@ -22,7 +22,6 @@ page
     }
   })
   .addExample('Input/story/Default.example.jsx', 'Default')
-  .addExample('Input/story/WithLimit.example.tsx', 'With Limit')
   .addExample('Input/story/Disabled.example.jsx', 'Disabled')
   .addExample('Input/story/Error.example.jsx', 'Error')
   .addExample('Input/story/WithIcon.example.jsx', 'With icon')
@@ -32,3 +31,4 @@ page
     'Input/story/AutoFill.example.jsx',
     'AutoComplete defined as email'
   )
+  .addExample('Input/story/WithLimit.example.tsx', 'With Limit') // picasso-skip-visuals
