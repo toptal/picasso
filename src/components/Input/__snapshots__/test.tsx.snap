@@ -22,12 +22,6 @@ exports[`renders icon at the beginning 1`] = `
           </span>
         </legend>
       </fieldset>
-      <input
-        autocomplete="none"
-        class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input makeStyles-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
-        type="text"
-        value=""
-      />
       <div
         class="MuiInputAdornment-root InputAdornment-root MuiInputAdornment-positionStart"
       >
@@ -43,6 +37,12 @@ exports[`renders icon at the beginning 1`] = `
           />
         </svg>
       </div>
+      <input
+        autocomplete="none"
+        class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input makeStyles-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+        type="text"
+        value=""
+      />
     </div>
   </div>
 </div>
@@ -70,12 +70,6 @@ exports[`renders icon at the end 1`] = `
           </span>
         </legend>
       </fieldset>
-      <input
-        autocomplete="none"
-        class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input makeStyles-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
-        type="text"
-        value=""
-      />
       <div
         class="MuiInputAdornment-root InputAdornment-root MuiInputAdornment-positionStart"
       >
@@ -91,6 +85,12 @@ exports[`renders icon at the end 1`] = `
           />
         </svg>
       </div>
+      <input
+        autocomplete="none"
+        class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input makeStyles-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+        type="text"
+        value=""
+      />
     </div>
   </div>
 </div>
@@ -118,6 +118,11 @@ exports[`shows counter for multiline input 1`] = `
           </span>
         </legend>
       </fieldset>
+      <textarea
+        autocomplete="none"
+        class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input makeStyles-input MuiInputBase-inputMultiline MuiOutlinedInput-inputMultiline OutlinedInput-inputMultiline MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+        rows="4"
+      />
       <div
         class="MuiInputAdornment-root InputAdornment-root MuiInputAdornment-positionEnd"
       >
@@ -127,11 +132,6 @@ exports[`shows counter for multiline input 1`] = `
           10
         </span>
       </div>
-      <textarea
-        autocomplete="none"
-        class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input makeStyles-input MuiInputBase-inputMultiline MuiOutlinedInput-inputMultiline OutlinedInput-inputMultiline MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
-        rows="4"
-      />
     </div>
   </div>
 </div>
@@ -159,6 +159,12 @@ exports[`shows counter for regular input 1`] = `
           </span>
         </legend>
       </fieldset>
+      <input
+        autocomplete="none"
+        class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input makeStyles-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+        type="text"
+        value=""
+      />
       <div
         class="MuiInputAdornment-root InputAdornment-root MuiInputAdornment-positionEnd"
       >
@@ -168,12 +174,6 @@ exports[`shows counter for regular input 1`] = `
           10
         </span>
       </div>
-      <input
-        autocomplete="none"
-        class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input makeStyles-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
-        type="text"
-        value=""
-      />
     </div>
   </div>
 </div>
