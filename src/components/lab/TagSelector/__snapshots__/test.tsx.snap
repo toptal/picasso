@@ -18,7 +18,7 @@ exports[`TagSelector available options when start typing 1`] = `
           class="Container-flex"
         >
           <div
-            class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto TagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+            class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto makeStyles-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
           >
             <fieldset
               aria-hidden="true"
@@ -154,7 +154,7 @@ exports[`TagSelector default render 1`] = `
         class="Container-flex"
       >
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto TagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto makeStyles-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
         >
           <fieldset
             aria-hidden="true"
@@ -210,7 +210,7 @@ exports[`TagSelector newly added option selected 1`] = `
           class="Container-flex"
         >
           <div
-            class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto TagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+            class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto makeStyles-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
           >
             <fieldset
               aria-hidden="true"
@@ -296,7 +296,7 @@ exports[`TagSelector options selected and then unselected 1`] = `
           class="Container-flex"
         >
           <div
-            class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto TagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+            class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto makeStyles-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
           >
             <fieldset
               aria-hidden="true"
@@ -412,7 +412,7 @@ exports[`TagSelector preselected value 1`] = `
           class="Container-flex"
         >
           <div
-            class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto TagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+            class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto makeStyles-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
           >
             <fieldset
               aria-hidden="true"
@@ -497,7 +497,7 @@ exports[`TagSelector selected option 1`] = `
           class="Container-flex"
         >
           <div
-            class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto TagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+            class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto makeStyles-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
           >
             <fieldset
               aria-hidden="true"

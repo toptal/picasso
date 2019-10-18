@@ -32,7 +32,6 @@ exports[`Autocomplete default render 1`] = `
         <input
           autocomplete="none"
           class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input makeStyles-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
-          classes="[object Object]"
           placeholder="Start typing here..."
           type="text"
           value=""
@@ -81,7 +80,6 @@ exports[`Autocomplete render options when start typing 1`] = `
         <input
           autocomplete="none"
           class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input makeStyles-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
-          classes="[object Object]"
           placeholder="Start typing here..."
           type="text"
           value="t"
