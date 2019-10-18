@@ -1,3 +1,10 @@
+# [3.31.0](https://github.com/toptal/picasso/compare/v3.30.0...v3.31.0) (2019-10-18)
+
+
+### Features
+
+* **Input:** add limit prop ([#803](https://github.com/toptal/picasso/issues/803)) ([8beab39](https://github.com/toptal/picasso/commit/8beab39))
+
 # [3.30.0](https://github.com/toptal/picasso/compare/v3.29.1...v3.30.0) (2019-10-17)
 
 
