@@ -59,13 +59,15 @@ export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
   const [error, setError] = useState<boolean>(false)
 
   const handleSubmit = async () => {
-    setLoading(true)
-    const submitError = await onSubmit(result)
+    try {
+      setLoading(true)
+      setError(false)
 
-    setLoading(false)
-
-    if (submitError !== undefined) {
+      await onSubmit(result)
+    } catch (err) {
       setError(true)
+    } finally {
+      setLoading(false)
     }
   }
 

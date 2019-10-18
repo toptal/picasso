@@ -11,9 +11,7 @@ const PromptModalDefaultExample = () => {
     showPrompt({
       title: 'Default variant',
       message: 'This is default variant.',
-      onSubmit: async () => {
-        showInfo('Submitted')
-      },
+      onSubmit: async () => showInfo('Submitted'),
       // for purpose of code example
       container: () => document.getElementById('modal-container')!
     })
@@ -23,9 +21,7 @@ const PromptModalDefaultExample = () => {
       title: 'Red variant',
       message: 'This is red variant.',
       variant: 'red',
-      onSubmit: async () => {
-        showInfo('Submitted')
-      },
+      onSubmit: async () => showInfo('Submitted'),
       // for purpose of code example
       container: () => document.getElementById('modal-container')!
     })
@@ -35,9 +31,7 @@ const PromptModalDefaultExample = () => {
       title: 'Blue variant',
       message: 'This is blue variant.',
       variant: 'blue',
-      onSubmit: async () => {
-        showInfo('Submitted')
-      },
+      onSubmit: async () => showInfo('Submitted'),
       // for purpose of code example
       container: () => document.getElementById('modal-container')!
     })
@@ -47,9 +41,7 @@ const PromptModalDefaultExample = () => {
       title: 'Green variant',
       message: 'This is green variant.',
       variant: 'green',
-      onSubmit: async () => {
-        showInfo('Submitted')
-      },
+      onSubmit: async () => showInfo('Submitted'),
       // for purpose of code example
       container: () => document.getElementById('modal-container')!
     })

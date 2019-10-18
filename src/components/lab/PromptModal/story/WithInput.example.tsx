@@ -12,21 +12,14 @@ const PromptModalDefaultExample = () => {
       title: 'Email',
       message: 'Enter your email:',
       // eslint-disable-next-line react/display-name
-      children: ({ setResult, result, error }) => (
+      children: ({ setResult, result }) => (
         <Input
           width='full'
-          error={error}
-          value={result}
           onChange={event => setResult(event.target.value)}
+          value={result}
         />
       ),
-      onSubmit: async (result: any) => {
-        if (!result || result === '') {
-          return false
-        }
-
-        showInfo(String(result))
-      },
+      onSubmit: async (result: any) => showInfo(String(result)),
       // for purpose of code example
       container: () => document.getElementById('modal-container')!
     })

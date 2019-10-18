@@ -15,7 +15,7 @@ test('renders PromptModal', () => {
         open
         title='Test title'
         message='Test message'
-        onSubmit={() => {}}
+        onSubmit={async () => {}}
       />
     </Picasso>
   )
@@ -27,10 +27,12 @@ test('showPrompt opens and closes modal on Submit action', async () => {
   const TestComponent = () => {
     const { showPrompt } = useModals()
 
-    const handleClick = async () => {
-      const { hide } = await showPrompt('Test title', 'Test message')
-
-      hide()
+    const handleClick = () => {
+      showPrompt({
+        title: 'Test title',
+        message: 'Test message',
+        onSubmit: async () => {}
+      })
     }
 
     return <Button onClick={handleClick}>Show</Button>
@@ -70,7 +72,12 @@ test('showPrompt with input returns result on Submit action ', async () => {
     const { showPrompt } = useModals()
 
     const handleClick = async () => {
-      const { result, hide } = await showPrompt('Test title', 'Test message', {
+      showPrompt({
+        title: 'Test title',
+        message: 'Test message',
+        onSubmit: async (result: any) => {
+          mockResult(result)
+        },
         // eslint-disable-next-line react/display-name
         children: ({ setResult, result }) => (
           <Input
@@ -81,10 +88,6 @@ test('showPrompt with input returns result on Submit action ', async () => {
           />
         )
       })
-
-      mockResult(result)
-
-      hide()
     }
 
     return <Button onClick={handleClick}>Show</Button>

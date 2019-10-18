@@ -44,14 +44,12 @@ const useModals = () => {
     const { children, onSubmit, onCancel, onClose, ...restOptions } = options
 
     const handleSubmit = async (result: any) => {
-      const submitError = await onSubmit(result)
-
-      if (submitError === undefined) {
+      try {
+        await onSubmit(result)
         hideModal(modalId)
-        return
+      } catch (err) {
+        throw err
       }
-
-      return submitError
     }
 
     const handleCancel = () => {

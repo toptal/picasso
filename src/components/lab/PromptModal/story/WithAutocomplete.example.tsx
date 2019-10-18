@@ -47,9 +47,7 @@ const PromptModalDefaultExample = () => {
           />
         )
       },
-      onSubmit: async (result: any) => {
-        showInfo(String(result))
-      },
+      onSubmit: async (result: any) => showInfo(String(result)),
       // for purpose of code example
       container: () => document.getElementById('modal-container')!
     })
