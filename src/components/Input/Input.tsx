@@ -61,14 +61,25 @@ export interface Props
   limit?: number
 }
 
+type LimitAdornmentProps = Pick<Props, 'multiline'> & {
+  charsLength: number
+  limit: number
+}
+
+type IconAdornmentProps = Pick<Props, 'disabled' | 'icon'> & {
+  position: Props['iconPosition']
+}
+
+type StartAdornmentProps = Pick<Props, 'icon' | 'iconPosition' | 'disabled'>
+
+type EndAdornmentProps = Pick<
+  Props,
+  'icon' | 'iconPosition' | 'disabled' | 'limit' | 'multiline'
+> & { charsLength?: number }
+
 const useStyles = makeStyles<Theme, Props>(styles)
 
-const LimitAdornment = (
-  props: Pick<Props, 'multiline'> & {
-    charsLength: number
-    limit: number
-  }
-) => {
+const LimitAdornment = (props: LimitAdornmentProps) => {
   const { multiline, charsLength, limit } = props
   const classes = useStyles(props)
 
@@ -90,13 +101,9 @@ const LimitAdornment = (
   )
 }
 
-const IconAdornment = (
-  props: Pick<Props, 'disabled' | 'icon'> & {
-    position: Props['iconPosition']
-  }
-) => {
+const IconAdornment = (props: IconAdornmentProps) => {
   const { position, disabled, icon } = props
-  const classes = useStyles(props as Pick<Props, 'icon'>)
+  const classes = useStyles(props)
   const styledIcon = React.cloneElement(icon as ReactElement, {
     className: classes.icon
   })
@@ -112,18 +119,13 @@ const StartAdornment = ({
   icon,
   iconPosition,
   disabled
-}: Pick<Props, 'icon' | 'iconPosition' | 'disabled'>) => {
+}: StartAdornmentProps) => {
   if (!icon || iconPosition !== 'start') return null
 
   return <IconAdornment disabled={disabled} position='start' icon={icon} />
 }
 
-const EndAdornment = (
-  props: Pick<
-    Props,
-    'icon' | 'iconPosition' | 'disabled' | 'limit' | 'multiline'
-  > & { charsLength?: number }
-) => {
+const EndAdornment = (props: EndAdornmentProps) => {
   const { icon, iconPosition, disabled, limit, multiline, charsLength } = props
 
   if (icon && iconPosition === 'end') {
