@@ -3,7 +3,8 @@ import React, {
   ReactElement,
   ChangeEvent,
   InputHTMLAttributes,
-  forwardRef
+  forwardRef,
+  useState
 } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
@@ -56,6 +57,8 @@ export interface Props
       HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
     >
   ) => void
+  /** Adds a counter of characters */
+  limit?: number
 }
 
 export const Input = forwardRef<HTMLInputElement, Props>(function Input(
@@ -81,28 +84,58 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
     onChange,
     startAdornment,
     endAdornment,
+    limit,
     ...rest
   },
   ref
 ) {
-  let IconAdornment
+  let usedStartAdornment = startAdornment
+  let usedEndAdornment = endAdornment
+
+  const [charsLength, setCharsLength] = useState(value ? value.length : 0)
 
   if (icon) {
-    const iconComponent = React.cloneElement(icon as ReactElement, {
+    const styledIcon = React.cloneElement(icon as ReactElement, {
       className: classes.icon
     })
 
-    IconAdornment = (
+    const iconAdornment = (
       <InputAdornment position={iconPosition!} disabled={disabled}>
-        {iconComponent}
+        {styledIcon}
+      </InputAdornment>
+    )
+
+    if (iconPosition === 'start') {
+      usedStartAdornment = iconAdornment
+    } else if (iconPosition === 'end') {
+      usedEndAdornment = iconAdornment
+    }
+  } else if (limit) {
+    usedEndAdornment = (
+      <InputAdornment
+        position='end'
+        classes={{
+          root: multiline ? classes.counterMultiline : ''
+        }}
+      >
+        <span
+          className={cx(classes.counter, {
+            [classes.counterNegative]: charsLength >= limit
+          })}
+        >
+          {limit - charsLength}
+        </span>
       </InputAdornment>
     )
   }
 
-  const usedStartAdornment =
-    IconAdornment && iconPosition === 'start' ? IconAdornment : startAdornment
-  const usedEndAdornment =
-    IconAdornment && iconPosition === 'end' ? IconAdornment : endAdornment
+  const handleChange: Props['onChange'] = e => {
+    setCharsLength(e.target.value.length)
+
+    if (onChange) {
+      onChange(e)
+    }
+  }
 
   return (
     <OutlinedInput
@@ -131,7 +164,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
       inputProps={rest}
       endAdornment={usedEndAdornment}
       startAdornment={usedStartAdornment}
-      onChange={onChange}
+      onChange={limit ? handleChange : onChange}
     >
       {children}
     </OutlinedInput>
