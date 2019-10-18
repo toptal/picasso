@@ -19,7 +19,7 @@ exports[`FormLabel default render 1`] = `
           </span>
         </label>
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root Input-root OutlinedInput-rootAuto"
+          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root makeStyles-root OutlinedInput-rootAuto MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
         >
           <fieldset
             aria-hidden="true"
@@ -37,7 +37,7 @@ exports[`FormLabel default render 1`] = `
           </fieldset>
           <input
             autocomplete="none"
-            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input"
+            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input makeStyles-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
             type="text"
             value=""
           />
@@ -67,7 +67,7 @@ exports[`FormLabel disabled 1`] = `
           </span>
         </label>
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root Input-root OutlinedInput-rootAuto"
+          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root makeStyles-root OutlinedInput-rootAuto MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
         >
           <fieldset
             aria-hidden="true"
@@ -85,7 +85,7 @@ exports[`FormLabel disabled 1`] = `
           </fieldset>
           <input
             autocomplete="none"
-            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input"
+            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input makeStyles-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
             type="text"
             value=""
           />
@@ -120,7 +120,7 @@ exports[`FormLabel required 1`] = `
           </span>
         </label>
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root Input-root OutlinedInput-rootAuto"
+          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root makeStyles-root OutlinedInput-rootAuto MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
         >
           <fieldset
             aria-hidden="true"
@@ -138,7 +138,7 @@ exports[`FormLabel required 1`] = `
           </fieldset>
           <input
             autocomplete="none"
-            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input"
+            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input makeStyles-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
             type="text"
             value=""
           />
@@ -173,7 +173,7 @@ exports[`FormLabel requried and disabled 1`] = `
           </span>
         </label>
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root Input-root OutlinedInput-rootAuto"
+          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root makeStyles-root OutlinedInput-rootAuto MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
         >
           <fieldset
             aria-hidden="true"
@@ -191,7 +191,7 @@ exports[`FormLabel requried and disabled 1`] = `
           </fieldset>
           <input
             autocomplete="none"
-            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Input-input"
+            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input makeStyles-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
             type="text"
             value=""
           />

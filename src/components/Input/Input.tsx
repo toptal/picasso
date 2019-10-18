@@ -7,17 +7,17 @@ import React, {
   useState
 } from 'react'
 import cx from 'classnames'
-import { withStyles } from '@material-ui/core/styles'
+import { Theme, makeStyles } from '@material-ui/core/styles'
 
 import InputAdornment from '../InputAdornment'
 import OutlinedInput from '../OutlinedInput'
-import { StandardProps } from '../Picasso'
+import { BaseProps } from '../Picasso'
 import styles from './styles'
 
 type IconPosition = 'start' | 'end'
 
 export interface Props
-  extends StandardProps,
+  extends BaseProps,
     InputHTMLAttributes<HTMLInputElement> {
   /** The id of the `input` element. */
   id?: string
@@ -61,25 +61,27 @@ export interface Props
   limit?: number
 }
 
-const LimitAdornment = ({
-  classes,
-  multiline,
-  charsLength,
-  limit
-}: Pick<Props, 'classes' | 'multiline'> & {
-  charsLength: number
-  limit: number
-}) => {
+const useStyles = makeStyles<Theme, Props>(styles)
+
+const LimitAdornment = (
+  props: Pick<Props, 'multiline'> & {
+    charsLength: number
+    limit: number
+  }
+) => {
+  const { multiline, charsLength, limit } = props
+  const classes = useStyles(props)
+
   return (
     <InputAdornment
       position='end'
       classes={{
-        root: multiline ? classes!.counterMultiline : ''
+        root: multiline ? classes.counterMultiline : ''
       }}
     >
       <span
-        className={cx(classes!.counter, {
-          [classes!.counterNegative]: charsLength >= limit
+        className={cx(classes.counter, {
+          [classes.counterNegative]: charsLength >= limit
         })}
       >
         {limit - charsLength}
@@ -88,16 +90,15 @@ const LimitAdornment = ({
   )
 }
 
-const IconAdornment = ({
-  position,
-  classes,
-  disabled,
-  icon
-}: Pick<Props, 'classes' | 'disabled' | 'icon'> & {
-  position: Props['iconPosition']
-}) => {
+const IconAdornment = (
+  props: Pick<Props, 'disabled' | 'icon'> & {
+    position: Props['iconPosition']
+  }
+) => {
+  const { position, disabled, icon } = props
+  const classes = useStyles(props as Pick<Props, 'icon'>)
   const styledIcon = React.cloneElement(icon as ReactElement, {
-    className: classes!.icon
+    className: classes.icon
   })
 
   return (
@@ -110,49 +111,29 @@ const IconAdornment = ({
 const StartAdornment = ({
   icon,
   iconPosition,
-  disabled,
-  classes
-}: Pick<Props, 'icon' | 'iconPosition' | 'disabled' | 'classes'>) => {
+  disabled
+}: Pick<Props, 'icon' | 'iconPosition' | 'disabled'>) => {
   if (!icon || iconPosition !== 'start') return null
 
-  return (
-    <IconAdornment
-      disabled={disabled}
-      position='start'
-      classes={classes}
-      icon={icon}
-    />
-  )
+  return <IconAdornment disabled={disabled} position='start' icon={icon} />
 }
 
-const EndAdornment = ({
-  icon,
-  iconPosition,
-  disabled,
-  classes,
-  limit,
-  multiline,
-  charsLength
-}: Pick<
-  Props,
-  'icon' | 'iconPosition' | 'disabled' | 'classes' | 'limit' | 'multiline'
-> & { charsLength?: number }) => {
+const EndAdornment = (
+  props: Pick<
+    Props,
+    'icon' | 'iconPosition' | 'disabled' | 'limit' | 'multiline'
+  > & { charsLength?: number }
+) => {
+  const { icon, iconPosition, disabled, limit, multiline, charsLength } = props
+
   if (icon && iconPosition === 'end') {
-    return (
-      <IconAdornment
-        disabled={disabled}
-        position='end'
-        classes={classes}
-        icon={icon}
-      />
-    )
+    return <IconAdornment disabled={disabled} position='end' icon={icon} />
   } else if (limit) {
     return (
       <LimitAdornment
         limit={limit}
         charsLength={charsLength as number}
         multiline={multiline}
-        classes={classes}
       />
     )
   }
@@ -161,7 +142,10 @@ const EndAdornment = ({
 }
 
 export const Input = forwardRef<HTMLInputElement, Props>(function Input(
-  {
+  props,
+  ref
+) {
+  const {
     id,
     name,
     defaultValue,
@@ -171,7 +155,6 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
     disabled,
     icon,
     iconPosition,
-    classes,
     children,
     multiline,
     width,
@@ -185,9 +168,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
     endAdornment,
     limit,
     ...rest
-  },
-  ref
-) {
+  } = props
   const [charsLength, setCharsLength] = useState(value ? value.length : 0)
 
   const handleChange: Props['onChange'] = e => {
@@ -199,6 +180,8 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
       onChange(e)
     }
   }
+
+  const classes = useStyles(props)
 
   return (
     <OutlinedInput
@@ -231,7 +214,6 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
             icon={icon}
             iconPosition={iconPosition}
             disabled={disabled}
-            classes={classes}
           />
         )
       }
@@ -241,7 +223,6 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
             icon={icon}
             iconPosition={iconPosition}
             disabled={disabled}
-            classes={classes}
             limit={limit}
             charsLength={charsLength}
           />
@@ -263,4 +244,4 @@ Input.defaultProps = {
 
 Input.displayName = 'Input'
 
-export default withStyles(styles)(Input)
+export default Input
