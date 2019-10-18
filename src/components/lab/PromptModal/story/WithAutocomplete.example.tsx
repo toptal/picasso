@@ -23,7 +23,7 @@ const PromptModalDefaultExample = () => {
   const { showPrompt } = useModals()
   const { showInfo } = useNotifications()
 
-  const handleClick = async () =>
+  const handleClick = () =>
     showPrompt({
       title: 'Country',
       message: 'Select country:',

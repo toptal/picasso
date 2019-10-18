@@ -7,7 +7,7 @@ const PromptModalDefaultExample = () => {
   const { showPrompt } = useModals()
   const { showInfo } = useNotifications()
 
-  const handleDefaultClick = async () =>
+  const handleDefaultClick = () =>
     showPrompt({
       title: 'Default variant',
       message: 'This is default variant.',
@@ -16,7 +16,7 @@ const PromptModalDefaultExample = () => {
       container: () => document.getElementById('modal-container')!
     })
 
-  const handleRedClick = async () =>
+  const handleRedClick = () =>
     showPrompt({
       title: 'Red variant',
       message: 'This is red variant.',
@@ -26,7 +26,7 @@ const PromptModalDefaultExample = () => {
       container: () => document.getElementById('modal-container')!
     })
 
-  const handleBlueClick = async () =>
+  const handleBlueClick = () =>
     showPrompt({
       title: 'Blue variant',
       message: 'This is blue variant.',
@@ -36,7 +36,7 @@ const PromptModalDefaultExample = () => {
       container: () => document.getElementById('modal-container')!
     })
 
-  const handleGreenClick = async () =>
+  const handleGreenClick = () =>
     showPrompt({
       title: 'Green variant',
       message: 'This is green variant.',

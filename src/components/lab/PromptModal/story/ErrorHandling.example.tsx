@@ -7,7 +7,7 @@ const PromptModalDefaultExample = () => {
   const { showPrompt } = useModals()
   const { showInfo, showError } = useNotifications()
 
-  const handleClick = async () =>
+  const handleClick = () =>
     showPrompt({
       title: 'Email',
       message: 'Enter your email:',
@@ -20,7 +20,7 @@ const PromptModalDefaultExample = () => {
         ) => {
           const { value } = event.target
 
-          if (!value || value === '') {
+          if (!value) {
             setError(true)
           } else {
             setError(false)
