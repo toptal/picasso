@@ -208,7 +208,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
       width={width}
       // html attributes
       inputProps={rest}
-      endAdornment={
+      startAdornment={
         startAdornment || (
           <StartAdornment
             icon={icon}
@@ -217,7 +217,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
           />
         )
       }
-      startAdornment={
+      endAdornment={
         endAdornment || (
           <EndAdornment
             icon={icon}
