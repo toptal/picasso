@@ -1,3 +1,10 @@
+## [3.31.1](https://github.com/toptal/picasso/compare/v3.31.0...v3.31.1) (2019-10-18)
+
+
+### Bug Fixes
+
+* issue with content growing flexbox children element ([#804](https://github.com/toptal/picasso/issues/804)) ([f2eb6a8](https://github.com/toptal/picasso/commit/f2eb6a8))
+
 # [3.31.0](https://github.com/toptal/picasso/compare/v3.30.0...v3.31.0) (2019-10-18)
 
 
