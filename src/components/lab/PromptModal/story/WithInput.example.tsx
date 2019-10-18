@@ -7,23 +7,29 @@ const PromptModalDefaultExample = () => {
   const { showPrompt } = useModals()
   const { showInfo } = useNotifications()
 
-  const handleClick = async () => {
-    const { result, hide } = await showPrompt('Email', 'Enter your email:', {
+  const handleClick = async () =>
+    showPrompt({
+      title: 'Email',
+      message: 'Enter your email:',
       // eslint-disable-next-line react/display-name
-      children: ({ setResult, result }) => (
+      children: ({ setResult, result, error }) => (
         <Input
           width='full'
-          onChange={event => setResult(event.target.value)}
+          error={error}
           value={result}
+          onChange={event => setResult(event.target.value)}
         />
       ),
+      onSubmit: async (result: any) => {
+        if (!result || result === '') {
+          return false
+        }
+
+        showInfo(String(result))
+      },
       // for purpose of code example
       container: () => document.getElementById('modal-container')!
     })
-
-    hide()
-    showInfo(String(result))
-  }
 
   return (
     <React.Fragment>

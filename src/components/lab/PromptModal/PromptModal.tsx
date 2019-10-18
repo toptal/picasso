@@ -34,7 +34,7 @@ export interface Props extends Omit<ModalProps, 'children' | 'onSubmit'> {
   /** Text on Cancel button */
   cancelText?: string
   /** Callback on Submit onClick event, returns result of input component if defined */
-  onSubmit: (result: any, setLoading: (loading: boolean) => void) => void
+  onSubmit: (result: any) => Promise<any>
   /** Callback on Cancel onClick event */
   onCancel?: () => void
 }
@@ -54,13 +54,19 @@ export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
     onCancel,
     ...rest
   } = props
-
   const [result, setResult] = useState<any>()
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<boolean>(false)
 
-  const handleSubmit = () => {
-    onSubmit(result, setLoading)
+  const handleSubmit = async () => {
+    setLoading(true)
+    const submitError = await onSubmit(result)
+
+    setLoading(false)
+
+    if (submitError !== undefined) {
+      setError(true)
+    }
   }
 
   return (
@@ -87,7 +93,7 @@ export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
           {cancelText}
         </Button>
         <Button
-          disabled={error}
+          disabled={loading}
           loading={loading}
           onClick={handleSubmit}
           variant={`primary-${variant}` as ButtonVariantType}

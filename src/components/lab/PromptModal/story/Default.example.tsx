@@ -11,27 +11,19 @@ const PromptModalDefaultExample = () => {
   const { showPrompt } = useModals()
   const { showInfo } = useNotifications()
 
-  const handleClick = async () => {
-    const { result, hide, setLoading } = await showPrompt(
-      'Confirm',
-      'Hello, World!',
-      {
-        submitText: 'OK',
-        // for purpose of code example
-        container: () => document.getElementById('modal-container')!
-      }
-    )
-
-    // for example if result is true we need to do some async operation
-    if (result && setLoading) {
-      setLoading(true)
-      await timeout(2000)
-      setLoading(false)
-    }
-
-    hide()
-    showInfo(String(result))
-  }
+  const handleClick = async () =>
+    showPrompt({
+      title: 'Confirm',
+      message: 'Hello, World!',
+      submitText: 'OK',
+      onSubmit: async () => {
+        showInfo('Submitting')
+        await timeout(2000)
+        showInfo('Submitted')
+      },
+      // for purpose of code example
+      container: () => document.getElementById('modal-container')!
+    })
 
   return (
     <div id='modal-container' style={{ width: '400px', height: '50px' }}>
