@@ -61,6 +61,105 @@ export interface Props
   limit?: number
 }
 
+const LimitAdornment = ({
+  classes,
+  multiline,
+  charsLength,
+  limit
+}: Pick<Props, 'classes' | 'multiline'> & {
+  charsLength: number
+  limit: number
+}) => {
+  return (
+    <InputAdornment
+      position='end'
+      classes={{
+        root: multiline ? classes!.counterMultiline : ''
+      }}
+    >
+      <span
+        className={cx(classes!.counter, {
+          [classes!.counterNegative]: charsLength >= limit
+        })}
+      >
+        {limit - charsLength}
+      </span>
+    </InputAdornment>
+  )
+}
+
+const IconAdornment = ({
+  position,
+  classes,
+  disabled,
+  icon
+}: Pick<Props, 'classes' | 'disabled' | 'icon'> & {
+  position: Props['iconPosition']
+}) => {
+  const styledIcon = React.cloneElement(icon as ReactElement, {
+    className: classes!.icon
+  })
+
+  return (
+    <InputAdornment position={position!} disabled={disabled}>
+      {styledIcon}
+    </InputAdornment>
+  )
+}
+
+const StartAdornment = ({
+  icon,
+  iconPosition,
+  disabled,
+  classes
+}: Pick<Props, 'icon' | 'iconPosition' | 'disabled' | 'classes'>) => {
+  if (!icon || iconPosition !== 'start') return null
+
+  return (
+    <IconAdornment
+      disabled={disabled}
+      position='start'
+      classes={classes}
+      icon={icon}
+    />
+  )
+}
+
+const EndAdornment = ({
+  icon,
+  iconPosition,
+  disabled,
+  classes,
+  limit,
+  multiline,
+  charsLength
+}: Pick<
+  Props,
+  'icon' | 'iconPosition' | 'disabled' | 'classes' | 'limit' | 'multiline'
+> & { charsLength?: number }) => {
+  if (icon && iconPosition === 'end') {
+    return (
+      <IconAdornment
+        disabled={disabled}
+        position='end'
+        classes={classes}
+        icon={icon}
+      />
+    )
+  } else if (limit) {
+    return (
+      <LimitAdornment
+        limit={limit}
+        charsLength={charsLength as number}
+        multiline={multiline}
+        classes={classes}
+      />
+    )
+  }
+
+  return null
+}
+
 export const Input = forwardRef<HTMLInputElement, Props>(function Input(
   {
     id,
@@ -89,48 +188,12 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
   },
   ref
 ) {
-  let usedStartAdornment = startAdornment
-  let usedEndAdornment = endAdornment
-
   const [charsLength, setCharsLength] = useState(value ? value.length : 0)
 
-  if (icon) {
-    const styledIcon = React.cloneElement(icon as ReactElement, {
-      className: classes.icon
-    })
-
-    const iconAdornment = (
-      <InputAdornment position={iconPosition!} disabled={disabled}>
-        {styledIcon}
-      </InputAdornment>
-    )
-
-    if (iconPosition === 'start') {
-      usedStartAdornment = iconAdornment
-    } else if (iconPosition === 'end') {
-      usedEndAdornment = iconAdornment
-    }
-  } else if (limit) {
-    usedEndAdornment = (
-      <InputAdornment
-        position='end'
-        classes={{
-          root: multiline ? classes.counterMultiline : ''
-        }}
-      >
-        <span
-          className={cx(classes.counter, {
-            [classes.counterNegative]: charsLength >= limit
-          })}
-        >
-          {limit - charsLength}
-        </span>
-      </InputAdornment>
-    )
-  }
-
   const handleChange: Props['onChange'] = e => {
-    setCharsLength(e.target.value.length)
+    if (limit) {
+      setCharsLength(e.target.value.length)
+    }
 
     if (onChange) {
       onChange(e)
@@ -162,9 +225,29 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
       width={width}
       // html attributes
       inputProps={rest}
-      endAdornment={usedEndAdornment}
-      startAdornment={usedStartAdornment}
-      onChange={limit ? handleChange : onChange}
+      endAdornment={
+        startAdornment || (
+          <StartAdornment
+            icon={icon}
+            iconPosition={iconPosition}
+            disabled={disabled}
+            classes={classes}
+          />
+        )
+      }
+      startAdornment={
+        endAdornment || (
+          <EndAdornment
+            icon={icon}
+            iconPosition={iconPosition}
+            disabled={disabled}
+            classes={classes}
+            limit={limit}
+            charsLength={charsLength}
+          />
+        )
+      }
+      onChange={handleChange}
     >
       {children}
     </OutlinedInput>
