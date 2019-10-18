@@ -1,13 +1,15 @@
 import React, { forwardRef, ReactElement } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import { Props as InputProps } from '../../Input/Input'
 import OutlinedInput from '../../OutlinedInput'
 import styles from './styles'
 
+const useStyles = makeStyles<Theme, InputProps>(styles)
+
 export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
-  function TagSelectorInput(
-    {
+  function TagSelectorInput(props, ref) {
+    const {
       id,
       name,
       defaultValue,
@@ -17,7 +19,6 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
       disabled,
       autoFocus,
       autoComplete,
-      classes,
       children,
       multiline,
       width,
@@ -29,9 +30,9 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
       startAdornment,
       endAdornment,
       ...rest
-    },
-    ref
-  ) {
+    } = props
+
+    const classes = useStyles(props)
     let usedEndAdornment = null
 
     if (endAdornment) {
@@ -78,4 +79,4 @@ TagSelectorInput.defaultProps = {
 
 TagSelectorInput.displayName = 'TagSelectorInput'
 
-export default withStyles(styles)(TagSelectorInput)
+export default TagSelectorInput
