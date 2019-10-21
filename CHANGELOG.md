@@ -1,3 +1,10 @@
+# [3.32.0](https://github.com/toptal/picasso/compare/v3.31.2...v3.32.0) (2019-10-21)
+
+
+### Features
+
+* **PromptModal:** improve api and error handling ([#805](https://github.com/toptal/picasso/issues/805)) ([e03f158](https://github.com/toptal/picasso/commit/e03f158))
+
 ## [3.31.2](https://github.com/toptal/picasso/compare/v3.31.1...v3.31.2) (2019-10-21)
 
 

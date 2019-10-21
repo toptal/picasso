@@ -17,20 +17,17 @@ function timeout(ms) {
 const PromptModalDefaultExample = () => {
     const { showPrompt } = useModals();
     const { showInfo } = useNotifications();
-    const handleClick = () => __awaiter(void 0, void 0, void 0, function* () {
-        const { result, hide, setLoading } = yield showPrompt('Confirm', 'Hello, World!', {
-            submitText: 'OK',
-            // for purpose of code example
-            container: () => document.getElementById('modal-container')
-        });
-        // for example if result is true we need to do some async operation
-        if (result && setLoading) {
-            setLoading(true);
+    const handleClick = () => showPrompt({
+        title: 'Confirm',
+        message: 'Hello, World!',
+        submitText: 'OK',
+        onSubmit: () => __awaiter(void 0, void 0, void 0, function* () {
+            showInfo('Submitting');
             yield timeout(2000);
-            setLoading(false);
-        }
-        hide();
-        showInfo(String(result));
+            showInfo('Submitted');
+        }),
+        // for purpose of code example
+        container: () => document.getElementById('modal-container')
     });
     return (React.createElement("div", { id: 'modal-container', style: { width: '400px', height: '50px' } },
         React.createElement(Button, { onClick: handleClick }, "Open prompt")));
