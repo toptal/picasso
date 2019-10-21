@@ -14,40 +14,36 @@ import { useModals } from '@toptal/picasso/lab/utils';
 const PromptModalDefaultExample = () => {
     const { showPrompt } = useModals();
     const { showInfo } = useNotifications();
-    const handleDefaultClick = () => __awaiter(void 0, void 0, void 0, function* () {
-        const { result, hide } = yield showPrompt('Default variant', 'This is default variant.', {
-            // for purpose of code example
-            container: () => document.getElementById('modal-container')
-        });
-        hide();
-        showInfo(String(result));
+    const handleDefaultClick = () => showPrompt({
+        title: 'Default variant',
+        message: 'This is default variant.',
+        onSubmit: () => __awaiter(void 0, void 0, void 0, function* () { return showInfo('Submitted'); }),
+        // for purpose of code example
+        container: () => document.getElementById('modal-container')
     });
-    const handleRedClick = () => __awaiter(void 0, void 0, void 0, function* () {
-        const { result, hide } = yield showPrompt('Red variant', 'This is red variant.', {
-            variant: 'red',
-            // for purpose of code example
-            container: () => document.getElementById('modal-container')
-        });
-        hide();
-        showInfo(String(result));
+    const handleRedClick = () => showPrompt({
+        title: 'Red variant',
+        message: 'This is red variant.',
+        variant: 'red',
+        onSubmit: () => __awaiter(void 0, void 0, void 0, function* () { return showInfo('Submitted'); }),
+        // for purpose of code example
+        container: () => document.getElementById('modal-container')
     });
-    const handleBlueClick = () => __awaiter(void 0, void 0, void 0, function* () {
-        const { result, hide } = yield showPrompt('Blue variant', 'This is blue variant.', {
-            variant: 'blue',
-            // for purpose of code example
-            container: () => document.getElementById('modal-container')
-        });
-        hide();
-        showInfo(String(result));
+    const handleBlueClick = () => showPrompt({
+        title: 'Blue variant',
+        message: 'This is blue variant.',
+        variant: 'blue',
+        onSubmit: () => __awaiter(void 0, void 0, void 0, function* () { return showInfo('Submitted'); }),
+        // for purpose of code example
+        container: () => document.getElementById('modal-container')
     });
-    const handleGreenClick = () => __awaiter(void 0, void 0, void 0, function* () {
-        const { result, hide } = yield showPrompt('Green variant', 'This is green variant.', {
-            variant: 'green',
-            // for purpose of code example
-            container: () => document.getElementById('modal-container')
-        });
-        hide();
-        window.alert(result);
+    const handleGreenClick = () => showPrompt({
+        title: 'Green variant',
+        message: 'This is green variant.',
+        variant: 'green',
+        onSubmit: () => showInfo('Submitted'),
+        // for purpose of code example
+        container: () => document.getElementById('modal-container')
     });
     return (React.createElement("div", { id: 'modal-container', style: { width: '400px', height: '50px' } },
         React.createElement(Container, { flex: true },

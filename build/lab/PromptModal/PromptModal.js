@@ -1,3 +1,12 @@
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -21,9 +30,19 @@ export const PromptModal = forwardRef(function PromptModal(props, ref) {
     const [result, setResult] = useState();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
-    const handleSubmit = () => {
-        onSubmit(result, setLoading);
-    };
+    const handleSubmit = () => __awaiter(this, void 0, void 0, function* () {
+        try {
+            setLoading(true);
+            setError(false);
+            yield onSubmit(result);
+        }
+        catch (err) {
+            setError(true);
+        }
+        finally {
+            setLoading(false);
+        }
+    });
     return (
     // eslint-disable-next-line react/jsx-props-no-spreading
     React.createElement(Modal, Object.assign({ ref: ref }, rest),
@@ -40,7 +59,7 @@ export const PromptModal = forwardRef(function PromptModal(props, ref) {
             })))),
         React.createElement(Modal.Actions, null,
             React.createElement(Button, { disabled: loading, variant: 'flat', onClick: onCancel }, cancelText),
-            React.createElement(Button, { disabled: error, loading: loading, onClick: handleSubmit, variant: `primary-${variant}` }, submitText))));
+            React.createElement(Button, { disabled: loading, loading: loading, onClick: handleSubmit, variant: `primary-${variant}` }, submitText))));
 });
 PromptModal.defaultProps = {
     cancelText: 'Cancel',

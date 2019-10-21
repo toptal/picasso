@@ -1,13 +1,18 @@
-import React, { useContext } from 'react'
+import React, { useContext, ReactNode } from 'react'
 import { ModalContext, ModalType } from 'react-modal-hook'
 
 import PromptModal from '../../PromptModal'
-import { Props as PromptModalProps } from '../../PromptModal/PromptModal'
+import {
+  Props as PromptModalProps,
+  PromptOptions
+} from '../../PromptModal/PromptModal'
 
-type PromptResult = {
-  result: any
-  hide: () => void
-  setLoading?: (loading: boolean) => void
+export interface ShowPromptOptions
+  extends Pick<PromptModalProps, 'onSubmit' | 'title' | 'message'>,
+    Partial<
+      Omit<PromptModalProps, 'children' | 'onSubmit' | 'title' | 'message'>
+    > {
+  content?: (result: PromptOptions) => ReactNode
 }
 
 const isFunctionalComponent = (Component: Function) => {
@@ -43,55 +48,46 @@ const useModals = () => {
     return key
   }
 
-  const showPrompt = (
-    title: string,
-    message: string,
-    options: Partial<
-      Omit<
-        PromptModalProps,
-        'title' | 'message' | 'onSubmit' | 'onCancel' | 'onClose'
+  const showPrompt = (options: ShowPromptOptions) => {
+    const { content, onSubmit, onCancel, onClose, ...restOptions } = options
+
+    const handleSubmit = async (result: any) => {
+      try {
+        await onSubmit(result)
+        hideModal(modalId)
+      } catch (err) {
+        throw err
+      }
+    }
+
+    const handleCancel = () => {
+      if (onCancel) {
+        onCancel()
+      }
+
+      hideModal(modalId)
+    }
+
+    const handleClose = () => {
+      if (onClose) {
+        onClose()
+      }
+
+      hideModal(modalId)
+    }
+
+    const modalId = showModal(() => (
+      <PromptModal
+        open
+        onSubmit={handleSubmit}
+        onCancel={handleCancel}
+        onClose={handleClose}
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...restOptions}
       >
-    > = {}
-  ) => {
-    const { children } = options
-    const hasChildren = Boolean(children)
-
-    return new Promise<PromptResult>(resolve => {
-      const handleSubmit = (
-        result: any,
-        setLoading: (loading: boolean) => void
-      ) => {
-        const resultOptions = {
-          setLoading,
-          hide: () => hideModal(modalId)
-        }
-
-        resolve(
-          hasChildren
-            ? { result, ...resultOptions }
-            : { result: true, ...resultOptions }
-        )
-      }
-
-      const handleClose = () => {
-        resolve({ result: false, hide: () => hideModal(modalId) })
-      }
-
-      const modalId = showModal(() => (
-        <PromptModal
-          open
-          title={title}
-          message={message}
-          onSubmit={handleSubmit}
-          onCancel={handleClose}
-          onClose={handleClose}
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          {...options}
-        >
-          {children}
-        </PromptModal>
-      ))
-    })
+        {content}
+      </PromptModal>
+    ))
   }
 
   return {

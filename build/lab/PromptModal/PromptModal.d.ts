@@ -23,7 +23,7 @@ export interface Props extends Omit<ModalProps, 'children' | 'onSubmit'> {
     /** Text on Cancel button */
     cancelText?: string;
     /** Callback on Submit onClick event, returns result of input component if defined */
-    onSubmit: (result: any, setLoading: (loading: boolean) => void) => void;
+    onSubmit: (result: any) => Promise<any> | any;
     /** Callback on Cancel onClick event */
     onCancel?: () => void;
 }

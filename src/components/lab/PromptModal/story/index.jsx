@@ -21,3 +21,7 @@ page
     'lab/PromptModal/story/WithAutocomplete.example.tsx',
     'With Autocomplete'
   ) // picasso-skip-visuals
+  .addExample(
+    'lab/PromptModal/story/ErrorHandling.example.tsx',
+    'Error handling'
+  ) // picasso-skip-visuals

@@ -1,12 +1,3 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 import React, { useState } from 'react';
 import { Button } from '@toptal/picasso';
 import { Autocomplete } from '@toptal/picasso/lab';
@@ -27,22 +18,21 @@ const filterOptions = (str) => str !== ''
 const PromptModalDefaultExample = () => {
     const { showPrompt } = useModals();
     const { showInfo } = useNotifications();
-    const handleClick = () => __awaiter(void 0, void 0, void 0, function* () {
-        const { result, hide } = yield showPrompt('Country', 'Select country:', {
-            // eslint-disable-next-line react/display-name
-            children: ({ setResult }) => {
-                const [value, setValue] = useState(EMPTY_INPUT_VALUE);
-                const [options, setOptions] = useState(allOptions);
-                return (React.createElement(Autocomplete, { value: value, width: 'full', getDisplayValue: getDisplayValue, placeholder: 'Start typing country...', options: options, onChange: value => {
-                        setOptions(filterOptions(value));
-                        setValue(value);
-                    }, onSelect: item => setResult(item.value) }));
-            },
-            // for purpose of code example
-            container: () => document.getElementById('modal-container')
-        });
-        showInfo(String(result));
-        hide();
+    const handleClick = () => showPrompt({
+        title: 'Country',
+        message: 'Select country:',
+        // eslint-disable-next-line react/display-name
+        content: ({ setResult }) => {
+            const [value, setValue] = useState(EMPTY_INPUT_VALUE);
+            const [options, setOptions] = useState(allOptions);
+            return (React.createElement(Autocomplete, { value: value, width: 'full', getDisplayValue: getDisplayValue, placeholder: 'Start typing country...', options: options, onChange: value => {
+                    setOptions(filterOptions(value));
+                    setValue(value);
+                }, onSelect: item => setResult(item.value) }));
+        },
+        onSubmit: (result) => showInfo(String(result)),
+        // for purpose of code example
+        container: () => document.getElementById('modal-container')
     });
     return (React.createElement(React.Fragment, null,
         React.createElement("div", { id: 'modal-container', style: { width: '400px', height: '50px' } },
