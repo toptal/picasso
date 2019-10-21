@@ -75,7 +75,7 @@ test('showPrompt with input returns result on Submit action ', async () => {
       showPrompt({
         title: 'Test title',
         message: 'Test message',
-        onSubmit: async (result: any) => {
+        onSubmit: (result: any) => {
           mockResult(result)
         },
         // eslint-disable-next-line react/display-name

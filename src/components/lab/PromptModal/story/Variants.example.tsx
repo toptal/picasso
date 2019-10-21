@@ -41,7 +41,7 @@ const PromptModalDefaultExample = () => {
       title: 'Green variant',
       message: 'This is green variant.',
       variant: 'green',
-      onSubmit: async () => showInfo('Submitted'),
+      onSubmit: () => showInfo('Submitted'),
       // for purpose of code example
       container: () => document.getElementById('modal-container')!
     })

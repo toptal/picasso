@@ -38,7 +38,7 @@ const PromptModalDefaultExample = () => {
           />
         )
       },
-      onSubmit: async (result: any) => {
+      onSubmit: (result: any) => {
         if (!result || result === '') {
           showError('Result cannot be empty')
           throw new Error('Result cannot be empty')
