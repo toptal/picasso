@@ -7,64 +7,44 @@ const PromptModalDefaultExample = () => {
   const { showPrompt } = useModals()
   const { showInfo } = useNotifications()
 
-  const handleDefaultClick = async () => {
-    const { result, hide } = await showPrompt(
-      'Default variant',
-      'This is default variant.',
-      {
-        // for purpose of code example
-        container: () => document.getElementById('modal-container')!
-      }
-    )
+  const handleDefaultClick = () =>
+    showPrompt({
+      title: 'Default variant',
+      message: 'This is default variant.',
+      onSubmit: async () => showInfo('Submitted'),
+      // for purpose of code example
+      container: () => document.getElementById('modal-container')!
+    })
 
-    hide()
-    showInfo(String(result))
-  }
+  const handleRedClick = () =>
+    showPrompt({
+      title: 'Red variant',
+      message: 'This is red variant.',
+      variant: 'red',
+      onSubmit: async () => showInfo('Submitted'),
+      // for purpose of code example
+      container: () => document.getElementById('modal-container')!
+    })
 
-  const handleRedClick = async () => {
-    const { result, hide } = await showPrompt(
-      'Red variant',
-      'This is red variant.',
-      {
-        variant: 'red',
-        // for purpose of code example
-        container: () => document.getElementById('modal-container')!
-      }
-    )
+  const handleBlueClick = () =>
+    showPrompt({
+      title: 'Blue variant',
+      message: 'This is blue variant.',
+      variant: 'blue',
+      onSubmit: async () => showInfo('Submitted'),
+      // for purpose of code example
+      container: () => document.getElementById('modal-container')!
+    })
 
-    hide()
-    showInfo(String(result))
-  }
-
-  const handleBlueClick = async () => {
-    const { result, hide } = await showPrompt(
-      'Blue variant',
-      'This is blue variant.',
-      {
-        variant: 'blue',
-        // for purpose of code example
-        container: () => document.getElementById('modal-container')!
-      }
-    )
-
-    hide()
-    showInfo(String(result))
-  }
-
-  const handleGreenClick = async () => {
-    const { result, hide } = await showPrompt(
-      'Green variant',
-      'This is green variant.',
-      {
-        variant: 'green',
-        // for purpose of code example
-        container: () => document.getElementById('modal-container')!
-      }
-    )
-
-    hide()
-    window.alert(result)
-  }
+  const handleGreenClick = () =>
+    showPrompt({
+      title: 'Green variant',
+      message: 'This is green variant.',
+      variant: 'green',
+      onSubmit: () => showInfo('Submitted'),
+      // for purpose of code example
+      container: () => document.getElementById('modal-container')!
+    })
 
   return (
     <div id='modal-container' style={{ width: '400px', height: '50px' }}>

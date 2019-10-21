@@ -23,10 +23,12 @@ const PromptModalDefaultExample = () => {
   const { showPrompt } = useModals()
   const { showInfo } = useNotifications()
 
-  const handleClick = async () => {
-    const { result, hide } = await showPrompt('Country', 'Select country:', {
+  const handleClick = () =>
+    showPrompt({
+      title: 'Country',
+      message: 'Select country:',
       // eslint-disable-next-line react/display-name
-      children: ({ setResult }) => {
+      content: ({ setResult }) => {
         const [value, setValue] = useState(EMPTY_INPUT_VALUE)
         const [options, setOptions] = useState(allOptions)
 
@@ -45,13 +47,10 @@ const PromptModalDefaultExample = () => {
           />
         )
       },
+      onSubmit: (result: any) => showInfo(String(result)),
       // for purpose of code example
       container: () => document.getElementById('modal-container')!
     })
-
-    showInfo(String(result))
-    hide()
-  }
 
   return (
     <React.Fragment>
