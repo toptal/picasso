@@ -1,3 +1,10 @@
+## [3.31.2](https://github.com/toptal/picasso/compare/v3.31.1...v3.31.2) (2019-10-21)
+
+
+### Bug Fixes
+
+* **Autocomplete:** not show other option when matches with option ([#807](https://github.com/toptal/picasso/issues/807)) ([ba3520c](https://github.com/toptal/picasso/commit/ba3520c))
+
 ## [3.31.1](https://github.com/toptal/picasso/compare/v3.31.0...v3.31.1) (2019-10-18)
 
 
