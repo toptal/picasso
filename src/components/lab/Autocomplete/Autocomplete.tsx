@@ -320,7 +320,6 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
                     inputProps.onChange!(e as FormEvent<HTMLInputElement>)
                   }}
                   ref={ref}
-                  classes={{}}
                   placeholder={placeholder}
                   endAdornment={loading ? loadingComponent : endAdornment}
                   width={width}

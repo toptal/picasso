@@ -304,7 +304,6 @@ BREAKING CHANGES:
                 {...rest}
                 defaultValue={defaultValue as string | undefined}
                 ref={ref}
-                classes={{}}
                 icon={loading ? <Loader size='small' /> : null}
                 iconPosition='end'
                 value={inputValue || EMPTY_VALUE}
