@@ -219,7 +219,10 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
           const otherOption = {
             text: value
           }
-          const shouldShowOtherOption = showOtherOption && value
+          const shouldShowOtherOption =
+            showOtherOption &&
+            value &&
+            options!.every(option => getDisplayValue!(option) !== value)
 
           const optionsMenu = (
             <ScrollMenu selectedIndex={highlightedIndex}>
