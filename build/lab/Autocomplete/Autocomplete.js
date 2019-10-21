@@ -83,7 +83,9 @@ export const Autocomplete = forwardRef(function Autocomplete(_a, ref) {
         const otherOption = {
             text: value
         };
-        const shouldShowOtherOption = showOtherOption && value;
+        const shouldShowOtherOption = showOtherOption &&
+            value &&
+            options.every(option => getDisplayValue(option) !== value);
         const optionsMenu = (React.createElement(ScrollMenu, { selectedIndex: highlightedIndex },
             options.map((option, index) => (React.createElement(Menu.Item, Object.assign({ key: getDisplayValue(option), selected: highlightedIndex === index }, getItemProps({ item: option, index })), renderOption
                 ? renderOption(option, index)
