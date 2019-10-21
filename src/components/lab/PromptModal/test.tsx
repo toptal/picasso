@@ -79,7 +79,7 @@ test('showPrompt with input returns result on Submit action ', async () => {
           mockResult(result)
         },
         // eslint-disable-next-line react/display-name
-        children: ({ setResult, result }) => (
+        content: ({ setResult, result }) => (
           <Input
             aria-label='test-input'
             width='full'

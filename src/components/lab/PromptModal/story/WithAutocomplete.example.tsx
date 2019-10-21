@@ -28,7 +28,7 @@ const PromptModalDefaultExample = () => {
       title: 'Country',
       message: 'Select country:',
       // eslint-disable-next-line react/display-name
-      children: ({ setResult }) => {
+      content: ({ setResult }) => {
         const [value, setValue] = useState(EMPTY_INPUT_VALUE)
         const [options, setOptions] = useState(allOptions)
 

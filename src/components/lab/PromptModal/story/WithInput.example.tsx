@@ -12,7 +12,7 @@ const PromptModalDefaultExample = () => {
       title: 'Email',
       message: 'Enter your email:',
       // eslint-disable-next-line react/display-name
-      children: ({ setResult, result }) => (
+      content: ({ setResult, result }) => (
         <Input
           width='full'
           onChange={event => setResult(event.target.value)}

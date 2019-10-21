@@ -1,8 +1,19 @@
-import React, { useContext } from 'react'
+import React, { useContext, ReactNode } from 'react'
 import { ModalContext, ModalType } from 'react-modal-hook'
 
 import PromptModal from '../../PromptModal'
-import { Props as PromptModalProps } from '../../PromptModal/PromptModal'
+import {
+  Props as PromptModalProps,
+  PromptOptions
+} from '../../PromptModal/PromptModal'
+
+export interface ShowPromptOptions
+  extends Pick<PromptModalProps, 'onSubmit' | 'title' | 'message'>,
+    Partial<
+      Omit<PromptModalProps, 'children' | 'onSubmit' | 'title' | 'message'>
+    > {
+  content?: (result: PromptOptions) => ReactNode
+}
 
 const isFunctionalComponent = (Component: Function) => {
   const prototype = Component.prototype
@@ -37,11 +48,8 @@ const useModals = () => {
     return key
   }
 
-  const showPrompt = (
-    options: Pick<PromptModalProps, 'onSubmit' | 'title' | 'message'> &
-      Partial<PromptModalProps>
-  ) => {
-    const { children, onSubmit, onCancel, onClose, ...restOptions } = options
+  const showPrompt = (options: ShowPromptOptions) => {
+    const { content, onSubmit, onCancel, onClose, ...restOptions } = options
 
     const handleSubmit = async (result: any) => {
       try {
@@ -77,7 +85,7 @@ const useModals = () => {
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...restOptions}
       >
-        {children}
+        {content}
       </PromptModal>
     ))
   }
