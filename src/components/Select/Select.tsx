@@ -317,11 +317,6 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
       placeholder={placeholder}
       startAdornment={iconPosition === 'start' && iconAdornment}
       endAdornment={endAdornment}
-      classes={{
-        input: cx(classes.input, {
-          [classes.inputPlaceholderDisabled]: disabled
-        })
-      }}
       width={width}
       value={inputValue}
       onChange={handleChange}

@@ -1,26 +1,11 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
-import { PicassoProvider } from '../Picasso'
 import '../InputLabel/styles'
 import '../InputBase/styles'
-import '../OutlinedInput/styles'
+import '../Input/styles'
 import '../Menu/styles'
 import '../MenuItem/styles'
 import { alpha } from '../styles'
-
-PicassoProvider.override(() => ({
-  MuiSelect: {
-    select: {
-      '&:focus': {
-        backgroundColor: 'transparent'
-      }
-    },
-    selectMenu: {
-      minHeight: 'auto',
-      lineHeight: '1em'
-    }
-  }
-}))
 
 export default ({ sizes: { input }, palette, zIndex }: Theme) =>
   createStyles({
@@ -35,10 +20,6 @@ export default ({ sizes: { input }, palette, zIndex }: Theme) =>
       width: 'auto'
     },
     rootAuto: {},
-    input: {
-      padding: 0,
-      fontSize: '0.8125em'
-    },
     inputRootNative: {
       paddingLeft: input.padding
     },
@@ -46,9 +27,6 @@ export default ({ sizes: { input }, palette, zIndex }: Theme) =>
       fontSize: '0.8125em',
       padding: 0,
       paddingRight: 0
-    },
-    inputPlaceholderDisabled: {
-      color: alpha(palette.grey.main2!, 0.48)
     },
     select: {
       width: '100%'
