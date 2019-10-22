@@ -2,21 +2,26 @@ import React, {
   forwardRef,
   ChangeEvent,
   ReactNode,
-  HTMLAttributes
+  ReactText,
+  InputHTMLAttributes,
+  Fragment,
+  useRef,
+  useState,
+  useLayoutEffect
 } from 'react'
 import cx from 'classnames'
-import MUISelect from '@material-ui/core/Select'
-import { MenuProps } from '@material-ui/core/Menu'
+import Popper from '@material-ui/core/Popper'
 import { withStyles } from '@material-ui/core/styles'
 import { capitalize } from '@material-ui/core/utils/helpers'
 
-import { Classes } from '../styles/types'
-import OutlinedInput from '../OutlinedInput'
+import Input from '../Input'
+import Container from '../Container'
+import ScrollMenu from '../ScrollMenu'
 import InputAdornment from '../InputAdornment'
 import MenuItem from '../MenuItem'
-import Typography from '../Typography'
 import { StandardProps } from '../Picasso'
 import { DropdownArrows16 } from '../Icon'
+import { isSubstring } from '../utils'
 import styles from './styles'
 
 interface Option {
@@ -29,7 +34,7 @@ type IconPosition = 'start' | 'end'
 
 export interface Props
   extends StandardProps,
-    Omit<HTMLAttributes<HTMLInputElement>, 'onChange'> {
+    Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
   /** If true, the 'Select' will be disabled */
   disabled?: boolean
   /** Indicate whether `Select` is in error state */
@@ -48,25 +53,24 @@ export interface Props
   native?: boolean
   /** Callback invoked when `Select` changes its state. */
   onChange?: (
-    event: ChangeEvent<{ name?: string | undefined; value: unknown }>,
-    child: ReactNode
+    event: ChangeEvent<{ name?: string | undefined; value: unknown }>
   ) => void
   /** List of options to be rendered as `Select` */
   options: Option[]
   /** Selected value */
-  value?: string | number | (string | number)[]
+  value?: string | number | string[]
   /** Allow selecting multiple values */
   multiple?: boolean
 }
 
 interface Select {
   isSelected(): boolean
-  display(): ReactNode
+  display(): string
 }
 
 function createSelectMultiple(
   allOptions: Option[],
-  selectedValues: (string | number)[]
+  selectedValues: ReactText[]
 ): Select {
   const isSelected = () => selectedValues.length > 0
 
@@ -86,7 +90,7 @@ function createSelectMultiple(
 
 function createSelectSingle(
   allOptions: Option[],
-  selectedValue: string | number
+  selectedValue: ReactText
 ): Select {
   const isSelected = () => !!selectedValue
 
@@ -95,7 +99,7 @@ function createSelectSingle(
   const selectedOption = () =>
     allOptions.find(option => option.value === selectedValue) || defaultOption
 
-  const display = () => selectedOption().text
+  const display = () => getDisplayValue(selectedOption())
 
   return {
     display,
@@ -105,8 +109,12 @@ function createSelectSingle(
 
 const renderOptions = (
   options: Option[],
-  classes: Classes,
-  placeholder?: string,
+  selectedValue: ReactText | ReactText[] | null,
+  highlightedIndex: number,
+  onItemClick: (
+    e: React.MouseEvent<HTMLElement, MouseEvent>,
+    option: Option
+  ) => void,
   isNative?: boolean
 ) => {
   if (!options.length) {
@@ -115,27 +123,45 @@ const renderOptions = (
 
   const OptionComponent = isNative ? 'option' : MenuItem
 
-  const resultOptions = options.map(({ key, value, text }) => (
-    <OptionComponent key={key || value} value={value}>
-      {text}
+  const optionComponents = options.map(option => (
+    <OptionComponent
+      key={option.key || option.value}
+      value={option.value}
+      onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
+        onItemClick(e, option)
+      }
+      onMouseDown={(e: any) => {
+        // This prevents the activeElement from being changed
+        // to the item so it can remain with the current activeElement
+        // which is a more common use case.
+        e!.preventDefault()
+      }}
+      selected={
+        Array.isArray(selectedValue)
+          ? selectedValue.some(value => value === option.value)
+          : undefined
+      }
+    >
+      {option.text}
     </OptionComponent>
   ))
 
-  if (placeholder) {
-    resultOptions.unshift(
-      <OptionComponent
-        className={classes.placeholderOption}
-        disabled
-        key='placeholder'
-        value=''
-      >
-        {placeholder}
-      </OptionComponent>
-    )
+  if (isNative) {
+    return optionComponents
   }
+
+  const resultOptions = (
+    <ScrollMenu selectedIndex={highlightedIndex}>{optionComponents}</ScrollMenu>
+  )
 
   return resultOptions
 }
+
+const getDisplayValue = (option: Option) => String(option.text!)
+const getSelected = (allOptions: Option[], value: ReactText | ReactText[]) =>
+  Array.isArray(value)
+    ? createSelectMultiple(allOptions, value)
+    : createSelectSingle(allOptions, value)
 
 export const Select = forwardRef<HTMLInputElement, Props>(function Select(
   {
@@ -146,8 +172,9 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     id,
     icon,
     iconPosition,
+    name,
     native,
-    options,
+    options: allOptions,
     placeholder,
     disabled,
     error,
@@ -158,34 +185,102 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
   },
   ref
 ) {
-  const select = Array.isArray(value)
-    ? createSelectMultiple(options, value)
-    : createSelectSingle(options, value)
+  const inputWrapperRef = useRef<HTMLDivElement>(null)
+  const [menuWidth, setMenuWidth] = useState()
 
-  const renderValue = () => {
-    return select.isSelected() ? select.display() : placeholder
+  useLayoutEffect(() => {
+    if (!inputWrapperRef.current) {
+      return
+    }
+    const { width } = inputWrapperRef.current.getBoundingClientRect()
+
+    setMenuWidth(`${width}px`)
+  }, [inputWrapperRef.current])
+
+  const select = getSelected(allOptions, value)
+  const [inputValue, setInputValue] = useState(
+    select.isSelected() ? select.display() : ''
+  )
+  const [selectedValue, setSelectedValue] = useState<
+    ReactText | ReactText[] | null
+  >(null)
+  const [open, setOpen] = useState(false)
+  const [options, setOptions] = useState(allOptions)
+  const [highlightedIndex] = useState(0)
+
+  const handleFocusOrClick = () => {
+    setOpen(true)
   }
 
-  const isPlaceholderShown = placeholder && !select.isSelected()
+  const handleBlur = () => {
+    const hasValue = inputValue !== ''
 
-  const outlinedInput = (
-    <OutlinedInput
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...rest}
-      ref={ref}
-      classes={{
-        root: cx({
-          [classes.inputRootNative]: native
-        }),
-        input: cx(classes.input, {
-          [classes.inputPlaceholder]: isPlaceholderShown,
-          [classes.inputPlaceholderDisabled]: isPlaceholderShown && disabled,
-          [classes.inputNative]: native
-        })
-      }}
-      width={width}
-    />
-  )
+    if (hasValue && selectedValue) {
+      const select = getSelected(allOptions, value)
+
+      setInputValue(select.display())
+    }
+
+    setOpen(false)
+  }
+
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
+    const newValue = e.target.value
+
+    setInputValue(newValue)
+
+    const filteredOptions = allOptions.filter(option =>
+      isSubstring(newValue, getDisplayValue(option))
+    )
+
+    setOptions(filteredOptions)
+  }
+
+  const handleItemClick = (
+    e: React.MouseEvent<HTMLElement, MouseEvent>,
+    option: Option
+  ) => {
+    let newValue
+
+    if (multiple) {
+      if (selectedValue && Array.isArray(selectedValue)) {
+        const isInSelectedValues = selectedValue.some(
+          value => value === option.value
+        )
+
+        if (isInSelectedValues) {
+          newValue = selectedValue!.filter(value => value !== option.value)
+        } else {
+          newValue = [...selectedValue, option.value]
+        }
+      } else {
+        newValue = [option.value]
+      }
+    } else {
+      newValue = option.value
+    }
+
+    e.persist()
+    // @ts-ignore
+    e.target = { value: newValue, name }
+    // @ts-ignore
+    onChange!(e)
+
+    const select = getSelected(allOptions, newValue)
+
+    setInputValue(select.display())
+
+    setSelectedValue(newValue)
+
+    if (!multiple) {
+      setOpen(false)
+    }
+  }
+
+  const isOpen = open && !disabled
+  const shouldShowOptions = !native && Boolean(options.length)
 
   const iconAdornment = icon ? (
     <InputAdornment disabled={disabled} position={iconPosition!}>
@@ -193,57 +288,78 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     </InputAdornment>
   ) : null
 
-  const menuProps = {
-    anchorOrigin: {
-      vertical: 'bottom',
-      horizontal: 'left'
-    },
-    transformOrigin: {
-      vertical: 'top',
-      horizontal: 'left'
-    },
-    getContentAnchorEl: undefined // needed to restore default behaviour
-  } as Partial<MenuProps>
+  const dropDownIcon = (
+    <DropdownArrows16
+      className={cx(classes.caret, {
+        [classes.caretDisabled]: disabled
+      })}
+    />
+  )
+
+  const endAdornment = (
+    <Fragment>
+      {iconPosition === 'end' && iconAdornment}
+      {dropDownIcon}
+    </Fragment>
+  )
+
+  const inputComponent = (
+    <Input
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
+      ref={ref}
+      error={error}
+      readOnly={multiple}
+      defaultValue={undefined}
+      disabled={disabled}
+      name={name}
+      id={id}
+      placeholder={placeholder}
+      startAdornment={iconPosition === 'start' && iconAdornment}
+      endAdornment={endAdornment}
+      classes={{
+        input: cx(classes.input, {
+          [classes.inputPlaceholderDisabled]: disabled
+        })
+      }}
+      width={width}
+      value={inputValue}
+      onChange={handleChange}
+      onClick={handleFocusOrClick}
+      onFocus={handleFocusOrClick}
+      onBlur={handleBlur}
+    />
+  )
 
   return (
-    <MUISelect
-      className={className}
+    <div
+      className={cx(
+        classes.root,
+        className,
+        classes[`root${capitalize(width!)}`]
+      )}
       style={style}
-      classes={{
-        root: classes[`root${capitalize(width!)}`],
-        icon: classes.caret,
-        select: classes.select
-      }}
-      error={error}
-      disabled={disabled}
-      displayEmpty
-      id={id}
-      input={outlinedInput}
-      native={native}
-      variant='outlined'
-      value={value}
-      multiple={multiple}
-      renderValue={() => (
-        <React.Fragment>
-          {iconPosition === 'start' && iconAdornment}
-          <Typography className={classes.inputValue} inline color='inherit'>
-            {renderValue()}
-          </Typography>
-          {iconPosition === 'end' && iconAdornment}
-        </React.Fragment>
-      )}
-      IconComponent={({ className }: { className: string }) => (
-        <DropdownArrows16
-          className={cx(className, {
-            [classes.caretDisabled]: disabled
-          })}
-        />
-      )}
-      MenuProps={menuProps}
-      onChange={onChange}
     >
-      {renderOptions(options, classes, placeholder, native)}
-    </MUISelect>
+      <Container flex ref={inputWrapperRef}>
+        {inputComponent}
+        {shouldShowOptions && (
+          <Popper
+            open={isOpen}
+            anchorEl={inputWrapperRef.current}
+            className={classes.popper}
+            style={{ width: menuWidth }}
+          >
+            {renderOptions(
+              options,
+              selectedValue,
+              highlightedIndex,
+              handleItemClick,
+              false
+            )}
+          </Popper>
+        )}
+      </Container>
+    </div>
   )
 })
 
