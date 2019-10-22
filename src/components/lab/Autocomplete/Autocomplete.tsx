@@ -4,17 +4,16 @@ import React, {
   forwardRef,
   ReactNode,
   ComponentType,
-  FormEvent,
   useMemo,
   useLayoutEffect,
   useState,
-  useRef
+  useRef,
+  ChangeEvent
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import { capitalize } from '@material-ui/core/utils/helpers'
 import cx from 'classnames'
 import Popper from '@material-ui/core/Popper'
-import Downshift, { DownshiftState, StateChangeOptions } from 'downshift'
 
 import { StandardProps } from '../../Picasso'
 import Input, { Props as InputProps } from '../../Input'
@@ -34,6 +33,48 @@ export type Item = {
   [prop: string]: string | undefined
 }
 
+function normalizeArrowKey(event: KeyboardEvent<HTMLInputElement>) {
+  const { key, keyCode } = event
+
+  if (keyCode >= 37 && keyCode <= 40 && key.indexOf('Arrow') !== 0) {
+    return `Arrow${key}`
+  }
+  return key
+}
+
+/**
+ * Returns the new index in the list, in a circular way. If next value is out of bonds from the total,
+ * it will wrap to either 0 or itemCount - 1.
+ *
+ * @param {number} moveAmount Number of positions to move. Negative to move backwards, positive forwards.
+ * @param {number} baseIndex The initial position to move from.
+ * @param {number} itemCount The total number of items.
+ * @returns {number} The new index after the move.
+ */
+function getNextWrappingIndex(
+  moveAmount: number,
+  baseIndex: number | null,
+  itemCount: number
+) {
+  const itemsLastIndex = itemCount - 1
+
+  if (
+    typeof baseIndex !== 'number' ||
+    baseIndex < 0 ||
+    baseIndex >= itemCount
+  ) {
+    baseIndex = moveAmount > 0 ? -1 : itemsLastIndex + 1
+  }
+  let newIndex = baseIndex + moveAmount
+
+  if (newIndex < 0) {
+    newIndex = itemsLastIndex
+  } else if (newIndex > itemsLastIndex) {
+    newIndex = 0
+  }
+  return newIndex
+}
+
 /**
  * Specification has two options to enable/disable autofill:
  * "on"|"off", but google chrome doesn't respect specification and
@@ -48,6 +89,11 @@ export const getAutocompletePropValue = (
   autoComplete: string | undefined
 ) => {
   return enableAutofill ? autoComplete : AUTOFILL_DISABLED_STATE
+}
+
+export interface AutocompleteState<Item> {
+  highlightedIndex: number | null
+  isOpen: boolean
 }
 
 export interface Props
@@ -144,6 +190,22 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
 
     const inputWrapperRef = useRef<HTMLDivElement>(null)
     const [menuWidth, setMenuWidth] = useState()
+    const [state, setState] = useState<AutocompleteState<Item>>({
+      highlightedIndex: null,
+      isOpen: false
+    })
+
+    const { highlightedIndex, isOpen } = state
+
+    const canOpen = isOpen && !loading
+    const optionsLength = options!.length
+    const otherOption = {
+      text: value
+    }
+    const shouldShowOtherOption =
+      showOtherOption &&
+      value &&
+      options!.every(option => getDisplayValue!(option) !== value)
 
     useLayoutEffect(() => {
       if (!inputWrapperRef.current) {
@@ -179,169 +241,255 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       onSelect!(item)
     }
 
-    const downshiftStateReducer = (
-      state: DownshiftState<Item>,
-      changes: StateChangeOptions<Item>
-    ): Partial<StateChangeOptions<Item>> => {
-      switch (changes.type) {
-        case Downshift.stateChangeTypes.changeInput:
-          return { ...changes, highlightedIndex: FIRST_ITEM_INDEX }
-        case Downshift.stateChangeTypes.mouseUp:
-        case Downshift.stateChangeTypes.blurInput:
-          return {
-            ...changes,
-            inputValue: value,
-            selectedItem: null
+    const keyboardHandlers: {
+      [key: string]: (event: KeyboardEvent<HTMLInputElement>) => void
+    } = {
+      ArrowDown: (event: KeyboardEvent<HTMLInputElement>) => {
+        event.preventDefault()
+
+        setState({
+          ...state,
+          isOpen: true,
+          highlightedIndex: getNextWrappingIndex(
+            event.shiftKey ? 5 : 1,
+            highlightedIndex,
+            optionsLength
+          )
+        })
+      },
+
+      ArrowUp: (event: KeyboardEvent<HTMLInputElement>) => {
+        event.preventDefault()
+
+        setState({
+          ...state,
+          isOpen: true,
+          highlightedIndex: getNextWrappingIndex(
+            event.shiftKey ? -5 : -1,
+            highlightedIndex,
+            optionsLength
+          )
+        })
+      },
+
+      Enter: (event: KeyboardEvent<HTMLInputElement>) => {
+        if (isOpen && highlightedIndex != null) {
+          event.preventDefault()
+
+          const item = options ? options[highlightedIndex] : null
+
+          if (item == null) {
+            return
           }
+
+          setState({ ...state, isOpen: false })
+          handleInputValueChange(getDisplayValue!(item))
+          handleSelectItem(item)
+        }
+      },
+
+      Escape: (event: KeyboardEvent<HTMLInputElement>) => {
+        event.preventDefault()
+
+        setState({ isOpen: false, highlightedIndex: null })
+
+        handleInputValueChange(getDisplayValue!(null))
+        handleSelectItem(null)
       }
-      return changes
+    }
+
+    const optionsMenu = (
+      <ScrollMenu selectedIndex={highlightedIndex}>
+        {options!.map((option, index) => (
+          <Menu.Item
+            key={getDisplayValue!(option)}
+            role='option'
+            selected={highlightedIndex === index}
+            onMouseMove={() => {
+              if (index === highlightedIndex) {
+                return
+              }
+
+              setState({ ...state, highlightedIndex: index })
+
+              // We never want to manually scroll when changing state based
+              // on `onMouseMove` because we will be moving the element out
+              // from under the user which is currently scrolling/moving the
+              // cursor
+              // this.avoidScrolling = true
+              // this.internalSetTimeout(() => (this.avoidScrolling = false), 250)
+            }}
+            onMouseDown={(event: any) => {
+              // This prevents the activeElement from being changed
+              // to the item so it can remain with the current activeElement
+              // which is a more common use case.
+              event!.preventDefault()
+            }}
+            onClick={() => {
+              setState({ ...state, isOpen: false })
+              handleInputValueChange(getDisplayValue!(option))
+              handleSelectItem(option)
+            }}
+          >
+            {renderOption
+              ? renderOption(option, index)
+              : getDisplayValue!(option)}
+          </Menu.Item>
+        ))}
+
+        {shouldShowOtherOption && (
+          <Menu.Item
+            key={getUniqueValue(value)}
+            role='option'
+            selected={highlightedIndex === optionsLength}
+            className={cx({
+              [classes.otherOption]: Boolean(optionsLength)
+            })}
+            onMouseMove={() => {
+              if (optionsLength === highlightedIndex) {
+                return
+              }
+
+              setState({ ...state, highlightedIndex: optionsLength })
+
+              // We never want to manually scroll when changing state based
+              // on `onMouseMove` because we will be moving the element out
+              // from under the user which is currently scrolling/moving the
+              // cursor
+              // this.avoidScrolling = true
+              // this.internalSetTimeout(() => (this.avoidScrolling = false), 250)
+            }}
+            onMouseDown={(event: any) => {
+              // This prevents the activeElement from being changed
+              // to the item so it can remain with the current activeElement
+              // which is a more common use case.
+              event!.preventDefault()
+            }}
+            onClick={() => {
+              setState({ ...state, isOpen: false })
+              handleInputValueChange(getDisplayValue!(otherOption))
+              handleSelectItem(otherOption)
+            }}
+          >
+            <span className={classes.stringContent}>
+              <Typography as='span' color='dark-grey'>
+                {otherOptionText}
+              </Typography>
+              {otherOption.text}
+            </span>
+          </Menu.Item>
+        )}
+
+        {!optionsLength && !shouldShowOtherOption && (
+          <Menu.Item disabled>{noOptionsText}</Menu.Item>
+        )}
+      </ScrollMenu>
+    )
+
+    const handleFocusOrClick = () => {
+      if (!isOpen) {
+        setState({
+          ...state,
+          isOpen: true,
+          highlightedIndex: FIRST_ITEM_INDEX
+        })
+
+        handleInputValueChange(value)
+      }
+    }
+
+    const InputComponent = inputComponent || Input
+    const loadingComponent = (
+      <InputAdornment position='end'>
+        <Loader size='small' />
+      </InputAdornment>
+    )
+
+    const handleChange = (
+      event: ChangeEvent<
+        HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
+      >
+    ) => {
+      setState({
+        ...state,
+        isOpen: true,
+        highlightedIndex: FIRST_ITEM_INDEX
+      })
+
+      handleInputValueChange(event.target.value)
+    }
+
+    const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+      if (event.key === 'Backspace' && value === EMPTY_INPUT_VALUE) {
+        handleInputValueChange(getDisplayValue!(null))
+        handleSelectItem(null)
+
+        setState({
+          ...state,
+          isOpen: false
+        })
+      }
+
+      const key = normalizeArrowKey(event)
+
+      if (key && keyboardHandlers[key]) {
+        keyboardHandlers[key](event)
+      }
+
+      onKeyDown!(event, value)
+    }
+
+    const handleBlur = () => {
+      setState({
+        ...state,
+        isOpen: false
+      })
     }
 
     return (
-      <Downshift
-        inputValue={value}
-        onInputValueChange={handleInputValueChange}
-        onChange={handleSelectItem}
-        itemToString={getDisplayValue}
-        stateReducer={downshiftStateReducer}
+      <div
+        className={cx(
+          classes.root,
+          className,
+          classes[`root${capitalize(width!)}`]
+        )}
+        style={style}
       >
-        {({
-          getMenuProps,
-          getInputProps,
-          getItemProps,
-          isOpen,
-          highlightedIndex,
-          selectItem,
-          setState
-        }) => {
-          const canOpen = isOpen && !loading
-          const optionsLength = options!.length
-          const otherOption = {
-            text: value
-          }
-          const shouldShowOtherOption =
-            showOtherOption &&
-            value &&
-            options!.every(option => getDisplayValue!(option) !== value)
-
-          const optionsMenu = (
-            <ScrollMenu selectedIndex={highlightedIndex}>
-              {options!.map((option, index) => (
-                <Menu.Item
-                  key={getDisplayValue!(option)}
-                  selected={highlightedIndex === index}
-                  /* eslint-disable-next-line react/jsx-props-no-spreading */
-                  {...getItemProps({ item: option, index })}
-                >
-                  {renderOption
-                    ? renderOption(option, index)
-                    : getDisplayValue!(option)}
-                </Menu.Item>
-              ))}
-
-              {shouldShowOtherOption && (
-                <Menu.Item
-                  key={getUniqueValue(value)}
-                  selected={highlightedIndex === optionsLength}
-                  /* eslint-disable-next-line react/jsx-props-no-spreading */
-                  {...getItemProps({
-                    item: otherOption,
-                    index: optionsLength
-                  })}
-                  className={cx({
-                    [classes.otherOption]: Boolean(optionsLength)
-                  })}
-                >
-                  <span className={classes.stringContent}>
-                    <Typography as='span' color='dark-grey'>
-                      {otherOptionText}
-                    </Typography>
-                    {otherOption.text}
-                  </span>
-                </Menu.Item>
-              )}
-
-              {!optionsLength && !shouldShowOtherOption && (
-                <Menu.Item disabled>{noOptionsText}</Menu.Item>
-              )}
-            </ScrollMenu>
-          )
-
-          const handleFocusOrClick = () => {
-            if (!isOpen) {
-              setState({
-                isOpen: true,
-                inputValue: value,
-                highlightedIndex: FIRST_ITEM_INDEX
-              })
-            }
-          }
-
-          const InputComponent = inputComponent || Input
-          const loadingComponent = (
-            <InputAdornment position='end'>
-              <Loader size='small' />
-            </InputAdornment>
-          )
-
-          const inputProps = getInputProps({
-            onFocus: handleFocusOrClick,
-            onClick: handleFocusOrClick,
-            onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => {
-              if (event.key === 'Backspace' && value === EMPTY_INPUT_VALUE) {
-                selectItem(null)
-              }
-              onKeyDown!(event, value)
-            },
+        <Container flex ref={inputWrapperRef}>
+          <InputComponent
+            /* eslint-disable-next-line react/jsx-props-no-spreading */
+            {...rest}
+            aria-autocomplete='list'
+            onFocus={handleFocusOrClick}
+            onClick={handleFocusOrClick}
+            onKeyDown={handleKeyDown}
+            onBlur={handleBlur}
             // here we override the value returned from downshift, `off` by default
-            autoComplete: autoCompletePropValue
-          })
-
-          return (
-            <div
-              className={cx(
-                classes.root,
-                className,
-                classes[`root${capitalize(width!)}`]
-              )}
-              style={style}
+            autoComplete={autoCompletePropValue}
+            error={error}
+            icon={icon}
+            defaultValue={undefined}
+            value={value}
+            onChange={handleChange}
+            ref={ref}
+            placeholder={placeholder}
+            endAdornment={loading ? loadingComponent : endAdornment}
+            width={width}
+          />
+        </Container>
+        <div role='listbox'>
+          {inputWrapperRef.current && (
+            <Popper
+              open={canOpen}
+              anchorEl={inputWrapperRef.current}
+              className={classes.popper}
+              style={{ width: menuWidth }}
             >
-              <Container flex ref={inputWrapperRef}>
-                <InputComponent
-                  /* eslint-disable-next-line react/jsx-props-no-spreading */
-                  {...rest}
-                  // eslint-disable-next-line react/jsx-props-no-spreading
-                  {...inputProps}
-                  error={error}
-                  icon={icon}
-                  defaultValue={undefined}
-                  value={value}
-                  onChange={e => {
-                    inputProps.onChange!(e as FormEvent<HTMLInputElement>)
-                  }}
-                  ref={ref}
-                  placeholder={placeholder}
-                  endAdornment={loading ? loadingComponent : endAdornment}
-                  width={width}
-                />
-              </Container>
-              {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-              <div {...getMenuProps()}>
-                {inputWrapperRef.current && (
-                  <Popper
-                    open={canOpen}
-                    anchorEl={inputWrapperRef.current}
-                    className={classes.popper}
-                    style={{ width: menuWidth }}
-                  >
-                    {optionsMenu}
-                  </Popper>
-                )}
-              </div>
-            </div>
-          )
-        }}
-      </Downshift>
+              {optionsMenu}
+            </Popper>
+          )}
+        </div>
+      </div>
     )
   }
 )
