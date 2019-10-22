@@ -6,17 +6,17 @@ exports[`controlled version should render collapsed version 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiPaper-elevation0 MuiExpansionPanel-root Accordion-root Accordion-bordered MuiExpansionPanel-rounded MuiPaper-rounded"
+      class="MuiPaper-root MuiPaper-elevation0 MuiExpansionPanel-root makeStyles-root makeStyles-bordered MuiExpansionPanel-rounded MuiPaper-rounded"
     >
       <div
         aria-disabled="false"
         aria-expanded="false"
-        class="MuiButtonBase-root MuiExpansionPanelSummary-root WithStyles(ForwardRef(ExpansionPanelSummary))-root Accordion-summary"
+        class="MuiButtonBase-root MuiExpansionPanelSummary-root WithStyles(ForwardRef(ExpansionPanelSummary))-root makeStyles-summary"
         role="button"
         tabindex="0"
       >
         <div
-          class="MuiExpansionPanelSummary-content WithStyles(ForwardRef(ExpansionPanelSummary))-content Accordion-content"
+          class="MuiExpansionPanelSummary-content WithStyles(ForwardRef(ExpansionPanelSummary))-content makeStyles-content"
         >
           <div>
             Fryderyk Chopin
@@ -33,7 +33,7 @@ exports[`controlled version should render collapsed version 1`] = `
             class="MuiIconButton-label"
           >
             <svg
-              class="SvgArrowDownMinor16-root Accordion-expandIcon"
+              class="SvgArrowDownMinor16-root makeStyles-expandIcon"
               style="min-width: 16px; min-height: 16px;"
               viewBox="0 0 16 16"
             >
@@ -58,7 +58,7 @@ exports[`controlled version should render collapsed version 1`] = `
               role="region"
             >
               <div
-                class="MuiExpansionPanelDetails-root ExpansionPanelDetails-root Accordion-details"
+                class="MuiExpansionPanelDetails-root ExpansionPanelDetails-root makeStyles-details"
               >
                 <div>
                   Fryderyk Chopin was born in Żelazowa Wola, 46 kilometres west of Warsaw, in what was then the Duchy of Warsaw, a Polish state established by Napoleon. The parish baptismal record gives his birthday as 22 February 1810, and cites his given names in the Latin form Fridericus Franciscus (in Polish, he was Fryderyk Franciszek). However, the composer and his family used the birthdate 1 March, which is now generally accepted as the correct date.
@@ -79,17 +79,17 @@ exports[`controlled version should render expanded version 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiPaper-elevation0 MuiExpansionPanel-root Accordion-root Accordion-bordered Mui-expanded MuiExpansionPanel-rounded MuiPaper-rounded"
+      class="MuiPaper-root MuiPaper-elevation0 MuiExpansionPanel-root makeStyles-root makeStyles-bordered Mui-expanded MuiExpansionPanel-rounded MuiPaper-rounded"
     >
       <div
         aria-disabled="false"
         aria-expanded="true"
-        class="MuiButtonBase-root MuiExpansionPanelSummary-root WithStyles(ForwardRef(ExpansionPanelSummary))-root Accordion-summary Mui-expanded"
+        class="MuiButtonBase-root MuiExpansionPanelSummary-root WithStyles(ForwardRef(ExpansionPanelSummary))-root makeStyles-summary Mui-expanded"
         role="button"
         tabindex="0"
       >
         <div
-          class="MuiExpansionPanelSummary-content WithStyles(ForwardRef(ExpansionPanelSummary))-content Accordion-content Mui-expanded"
+          class="MuiExpansionPanelSummary-content WithStyles(ForwardRef(ExpansionPanelSummary))-content makeStyles-content Mui-expanded"
         >
           <div>
             Fryderyk Chopin
@@ -106,7 +106,7 @@ exports[`controlled version should render expanded version 1`] = `
             class="MuiIconButton-label"
           >
             <svg
-              class="SvgArrowDownMinor16-root Accordion-expandIcon"
+              class="SvgArrowDownMinor16-root makeStyles-expandIcon"
               style="min-width: 16px; min-height: 16px;"
               viewBox="0 0 16 16"
             >
@@ -131,7 +131,7 @@ exports[`controlled version should render expanded version 1`] = `
               role="region"
             >
               <div
-                class="MuiExpansionPanelDetails-root ExpansionPanelDetails-root Accordion-details"
+                class="MuiExpansionPanelDetails-root ExpansionPanelDetails-root makeStyles-details"
               >
                 <div>
                   Fryderyk Chopin was born in Żelazowa Wola, 46 kilometres west of Warsaw, in what was then the Duchy of Warsaw, a Polish state established by Napoleon. The parish baptismal record gives his birthday as 22 February 1810, and cites his given names in the Latin form Fridericus Franciscus (in Polish, he was Fryderyk Franciszek). However, the composer and his family used the birthdate 1 March, which is now generally accepted as the correct date.
@@ -152,17 +152,17 @@ exports[`default version for sections should render default version 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiPaper-elevation0 MuiExpansionPanel-root Accordion-root Accordion-bordered MuiExpansionPanel-rounded MuiPaper-rounded"
+      class="MuiPaper-root MuiPaper-elevation0 MuiExpansionPanel-root makeStyles-root makeStyles-bordered MuiExpansionPanel-rounded MuiPaper-rounded"
     >
       <div
         aria-disabled="false"
         aria-expanded="false"
-        class="MuiButtonBase-root MuiExpansionPanelSummary-root WithStyles(ForwardRef(ExpansionPanelSummary))-root Accordion-summary"
+        class="MuiButtonBase-root MuiExpansionPanelSummary-root WithStyles(ForwardRef(ExpansionPanelSummary))-root makeStyles-summary"
         role="button"
         tabindex="0"
       >
         <div
-          class="MuiExpansionPanelSummary-content WithStyles(ForwardRef(ExpansionPanelSummary))-content Accordion-content"
+          class="MuiExpansionPanelSummary-content WithStyles(ForwardRef(ExpansionPanelSummary))-content makeStyles-content"
         >
           <div>
             Fryderyk Chopin
@@ -179,7 +179,7 @@ exports[`default version for sections should render default version 1`] = `
             class="MuiIconButton-label"
           >
             <svg
-              class="SvgArrowDownMinor16-root Accordion-expandIcon"
+              class="SvgArrowDownMinor16-root makeStyles-expandIcon"
               style="min-width: 16px; min-height: 16px;"
               viewBox="0 0 16 16"
             >
@@ -204,7 +204,7 @@ exports[`default version for sections should render default version 1`] = `
               role="region"
             >
               <div
-                class="MuiExpansionPanelDetails-root ExpansionPanelDetails-root Accordion-details"
+                class="MuiExpansionPanelDetails-root ExpansionPanelDetails-root makeStyles-details"
               >
                 <div>
                   Fryderyk Chopin was born in Żelazowa Wola, 46 kilometres west of Warsaw, in what was then the Duchy of Warsaw, a Polish state established by Napoleon. The parish baptismal record gives his birthday as 22 February 1810, and cites his given names in the Latin form Fridericus Franciscus (in Polish, he was Fryderyk Franciszek). However, the composer and his family used the birthdate 1 March, which is now generally accepted as the correct date.
@@ -225,17 +225,17 @@ exports[`default version for sections should render expanded version after click
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiPaper-elevation0 MuiExpansionPanel-root Accordion-root Accordion-bordered Mui-expanded MuiExpansionPanel-rounded MuiPaper-rounded"
+      class="MuiPaper-root MuiPaper-elevation0 MuiExpansionPanel-root makeStyles-root makeStyles-bordered Mui-expanded MuiExpansionPanel-rounded MuiPaper-rounded"
     >
       <div
         aria-disabled="false"
         aria-expanded="true"
-        class="MuiButtonBase-root MuiExpansionPanelSummary-root WithStyles(ForwardRef(ExpansionPanelSummary))-root Accordion-summary Mui-expanded"
+        class="MuiButtonBase-root MuiExpansionPanelSummary-root WithStyles(ForwardRef(ExpansionPanelSummary))-root makeStyles-summary Mui-expanded"
         role="button"
         tabindex="0"
       >
         <div
-          class="MuiExpansionPanelSummary-content WithStyles(ForwardRef(ExpansionPanelSummary))-content Accordion-content Mui-expanded"
+          class="MuiExpansionPanelSummary-content WithStyles(ForwardRef(ExpansionPanelSummary))-content makeStyles-content Mui-expanded"
         >
           <div>
             Fryderyk Chopin
@@ -252,7 +252,7 @@ exports[`default version for sections should render expanded version after click
             class="MuiIconButton-label"
           >
             <svg
-              class="SvgArrowDownMinor16-root Accordion-expandIcon"
+              class="SvgArrowDownMinor16-root makeStyles-expandIcon"
               style="min-width: 16px; min-height: 16px;"
               viewBox="0 0 16 16"
             >
@@ -277,7 +277,7 @@ exports[`default version for sections should render expanded version after click
               role="region"
             >
               <div
-                class="MuiExpansionPanelDetails-root ExpansionPanelDetails-root Accordion-details"
+                class="MuiExpansionPanelDetails-root ExpansionPanelDetails-root makeStyles-details"
               >
                 <div>
                   Fryderyk Chopin was born in Żelazowa Wola, 46 kilometres west of Warsaw, in what was then the Duchy of Warsaw, a Polish state established by Napoleon. The parish baptismal record gives his birthday as 22 February 1810, and cites his given names in the Latin form Fridericus Franciscus (in Polish, he was Fryderyk Franciszek). However, the composer and his family used the birthdate 1 March, which is now generally accepted as the correct date.
