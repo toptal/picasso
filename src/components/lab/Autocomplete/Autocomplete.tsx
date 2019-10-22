@@ -272,27 +272,38 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
         })
       },
 
-      Enter: (event: KeyboardEvent<HTMLInputElement>) => {
-        if (isOpen && highlightedIndex != null) {
-          event.preventDefault()
-
-          const item = options ? options[highlightedIndex] : null
-
-          if (item == null) {
-            return
-          }
-
-          setState({ ...state, isOpen: false })
-          handleInputValueChange(getDisplayValue!(item))
-          handleSelectItem(item)
+      Backspace: () => {
+        if (value !== EMPTY_INPUT_VALUE) {
+          return
         }
+
+        setState({ ...state, isOpen: false, highlightedIndex: null })
+        handleInputValueChange(getDisplayValue!(null))
+        handleSelectItem(null)
+      },
+
+      Enter: (event: KeyboardEvent<HTMLInputElement>) => {
+        if (!isOpen || highlightedIndex === null) {
+          return
+        }
+
+        event.preventDefault()
+
+        const item = options![highlightedIndex]
+
+        if (item == null) {
+          return
+        }
+
+        setState({ ...state, isOpen: false })
+        handleInputValueChange(getDisplayValue!(item))
+        handleSelectItem(item)
       },
 
       Escape: (event: KeyboardEvent<HTMLInputElement>) => {
         event.preventDefault()
 
-        setState({ isOpen: false, highlightedIndex: null })
-
+        setState({ ...state, isOpen: false, highlightedIndex: null })
         handleInputValueChange(getDisplayValue!(null))
         handleSelectItem(null)
       }
@@ -304,6 +315,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
           <Menu.Item
             key={getDisplayValue!(option)}
             role='option'
+            aria-selected={highlightedIndex === index}
             selected={highlightedIndex === index}
             onMouseMove={() => {
               if (index === highlightedIndex) {
@@ -311,13 +323,6 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
               }
 
               setState({ ...state, highlightedIndex: index })
-
-              // We never want to manually scroll when changing state based
-              // on `onMouseMove` because we will be moving the element out
-              // from under the user which is currently scrolling/moving the
-              // cursor
-              // this.avoidScrolling = true
-              // this.internalSetTimeout(() => (this.avoidScrolling = false), 250)
             }}
             onMouseDown={(event: any) => {
               // This prevents the activeElement from being changed
@@ -341,6 +346,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
           <Menu.Item
             key={getUniqueValue(value)}
             role='option'
+            aria-selected={highlightedIndex === optionsLength}
             selected={highlightedIndex === optionsLength}
             className={cx({
               [classes.otherOption]: Boolean(optionsLength)
@@ -351,13 +357,6 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
               }
 
               setState({ ...state, highlightedIndex: optionsLength })
-
-              // We never want to manually scroll when changing state based
-              // on `onMouseMove` because we will be moving the element out
-              // from under the user which is currently scrolling/moving the
-              // cursor
-              // this.avoidScrolling = true
-              // this.internalSetTimeout(() => (this.avoidScrolling = false), 250)
             }}
             onMouseDown={(event: any) => {
               // This prevents the activeElement from being changed
@@ -420,16 +419,6 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
     }
 
     const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-      if (event.key === 'Backspace' && value === EMPTY_INPUT_VALUE) {
-        handleInputValueChange(getDisplayValue!(null))
-        handleSelectItem(null)
-
-        setState({
-          ...state,
-          isOpen: false
-        })
-      }
-
       const key = normalizeArrowKey(event)
 
       if (key && keyboardHandlers[key]) {
@@ -454,6 +443,9 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
           classes[`root${capitalize(width!)}`]
         )}
         style={style}
+        role='combobox'
+        aria-expanded={isOpen}
+        aria-haspopup='listbox'
       >
         <Container flex ref={inputWrapperRef}>
           <InputComponent
