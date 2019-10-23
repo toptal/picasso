@@ -7,8 +7,7 @@ import React, {
   useMemo,
   useLayoutEffect,
   useState,
-  useRef,
-  ChangeEvent
+  useRef
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import { capitalize } from '@material-ui/core/utils/helpers'
@@ -23,57 +22,9 @@ import Loader from '../../Loader'
 import ScrollMenu from '../../ScrollMenu'
 import Typography from '../../Typography'
 import InputAdornment from '../../InputAdornment'
+import { Item } from './types'
+import useAutocomplete, { EMPTY_INPUT_VALUE } from './useAutocomplete'
 import styles from './styles'
-
-const EMPTY_INPUT_VALUE = ''
-const FIRST_ITEM_INDEX = 0
-
-export type Item = {
-  text?: string
-  [prop: string]: string | undefined
-}
-
-function normalizeArrowKey(event: KeyboardEvent<HTMLInputElement>) {
-  const { key, keyCode } = event
-
-  if (keyCode >= 37 && keyCode <= 40 && key.indexOf('Arrow') !== 0) {
-    return `Arrow${key}`
-  }
-  return key
-}
-
-/**
- * Returns the new index in the list, in a circular way. If next value is out of bonds from the total,
- * it will wrap to either 0 or itemCount - 1.
- *
- * @param {number} moveAmount Number of positions to move. Negative to move backwards, positive forwards.
- * @param {number} baseIndex The initial position to move from.
- * @param {number} itemCount The total number of items.
- * @returns {number} The new index after the move.
- */
-function getNextWrappingIndex(
-  moveAmount: number,
-  baseIndex: number | null,
-  itemCount: number
-) {
-  const itemsLastIndex = itemCount - 1
-
-  if (
-    typeof baseIndex !== 'number' ||
-    baseIndex < 0 ||
-    baseIndex >= itemCount
-  ) {
-    baseIndex = moveAmount > 0 ? -1 : itemsLastIndex + 1
-  }
-  let newIndex = baseIndex + moveAmount
-
-  if (newIndex < 0) {
-    newIndex = itemsLastIndex
-  } else if (newIndex > itemsLastIndex) {
-    newIndex = 0
-  }
-  return newIndex
-}
 
 /**
  * Specification has two options to enable/disable autofill:
@@ -91,10 +42,8 @@ export const getAutocompletePropValue = (
   return enableAutofill ? autoComplete : AUTOFILL_DISABLED_STATE
 }
 
-export interface AutocompleteState<Item> {
-  highlightedIndex: number | null
-  isOpen: boolean
-}
+const getItemText = (item: Item | null) =>
+  item && item.text ? item.text : EMPTY_INPUT_VALUE
 
 export interface Props
   extends StandardProps,
@@ -147,9 +96,6 @@ export interface Props
   enableAutofill?: boolean
 }
 
-const getItemText = (item: Item | null) =>
-  item && item.text ? item.text : EMPTY_INPUT_VALUE
-
 const getUniqueValue = (value: string) =>
   `${value.replace(/\s+/g, '-').toLowerCase()}-${new Date().getTime()}`
 
@@ -158,7 +104,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
     {
       classes,
       className,
-      onChange: onInputChange,
+      onChange,
       value,
       onSelect,
       onOtherOptionSelect,
@@ -188,46 +134,8 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       [enableAutofill, autoComplete]
     )
 
-    const inputWrapperRef = useRef<HTMLDivElement>(null)
-    const [menuWidth, setMenuWidth] = useState()
-    const [state, setState] = useState<AutocompleteState<Item>>({
-      highlightedIndex: null,
-      isOpen: false
-    })
-
-    const { highlightedIndex, isOpen } = state
-
-    const canOpen = isOpen && !loading
-    const optionsLength = options!.length
-    const otherOption = {
-      text: value
-    }
-    const shouldShowOtherOption =
-      showOtherOption &&
-      value &&
-      options!.every(option => getDisplayValue!(option) !== value)
-
-    useLayoutEffect(() => {
-      if (!inputWrapperRef.current) {
-        return
-      }
-      const { width } = inputWrapperRef.current.getBoundingClientRect()
-
-      setMenuWidth(`${width}px`)
-    }, [inputWrapperRef.current])
-
-    const handleInputValueChange = (newValue: string) => {
-      if (newValue !== value) {
-        onInputChange!(newValue)
-      }
-    }
-
-    const handleSelectItem = (item: Item | null) => {
+    const handleSelect = (item: Item) => {
       const displayValue = getDisplayValue!(item)
-
-      if (item === null || displayValue === null) {
-        return
-      }
 
       const isInOptions = options!.find(
         option => getDisplayValue!(option) === displayValue
@@ -241,100 +149,47 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       onSelect!(item)
     }
 
-    const keyboardHandlers: {
-      [key: string]: (event: KeyboardEvent<HTMLInputElement>) => void
-    } = {
-      ArrowDown: (event: KeyboardEvent<HTMLInputElement>) => {
-        event.preventDefault()
-
-        setState({
-          ...state,
-          isOpen: true,
-          highlightedIndex: getNextWrappingIndex(
-            event.shiftKey ? 5 : 1,
-            highlightedIndex,
-            optionsLength
-          )
-        })
-      },
-
-      ArrowUp: (event: KeyboardEvent<HTMLInputElement>) => {
-        event.preventDefault()
-
-        setState({
-          ...state,
-          isOpen: true,
-          highlightedIndex: getNextWrappingIndex(
-            event.shiftKey ? -5 : -1,
-            highlightedIndex,
-            optionsLength
-          )
-        })
-      },
-
-      Backspace: () => {
-        if (value !== EMPTY_INPUT_VALUE) {
-          return
-        }
-
-        setState({ ...state, isOpen: false, highlightedIndex: null })
-        handleInputValueChange(getDisplayValue!(null))
-        handleSelectItem(null)
-      },
-
-      Enter: (event: KeyboardEvent<HTMLInputElement>) => {
-        if (!isOpen || highlightedIndex === null) {
-          return
-        }
-
-        event.preventDefault()
-
-        const item = options![highlightedIndex]
-
-        if (item == null) {
-          return
-        }
-
-        setState({ ...state, isOpen: false })
-        handleInputValueChange(getDisplayValue!(item))
-        handleSelectItem(item)
-      },
-
-      Escape: (event: KeyboardEvent<HTMLInputElement>) => {
-        event.preventDefault()
-
-        setState({ ...state, isOpen: false, highlightedIndex: null })
-        handleInputValueChange(getDisplayValue!(null))
-        handleSelectItem(null)
+    const { highlightedIndex, isOpen, itemProps, inputProps } = useAutocomplete(
+      {
+        value,
+        options,
+        getDisplayValue: getDisplayValue!,
+        onSelect: handleSelect,
+        onChange,
+        onKeyDown
       }
+    )
+
+    const canOpen = isOpen && !loading
+    const optionsLength = options!.length
+    const otherOption = {
+      text: value
     }
+
+    const shouldShowOtherOption =
+      showOtherOption &&
+      value &&
+      options!.every(option => getDisplayValue!(option) !== value)
+
+    const inputWrapperRef = useRef<HTMLDivElement>(null)
+    const [menuWidth, setMenuWidth] = useState()
+
+    useLayoutEffect(() => {
+      if (!inputWrapperRef.current) {
+        return
+      }
+      const { width } = inputWrapperRef.current.getBoundingClientRect()
+
+      setMenuWidth(`${width}px`)
+    }, [inputWrapperRef.current])
 
     const optionsMenu = (
       <ScrollMenu selectedIndex={highlightedIndex}>
         {options!.map((option, index) => (
           <Menu.Item
             key={getDisplayValue!(option)}
-            role='option'
-            aria-selected={highlightedIndex === index}
-            selected={highlightedIndex === index}
-            onMouseMove={() => {
-              if (index === highlightedIndex) {
-                return
-              }
-
-              setState({ ...state, highlightedIndex: index })
-            }}
-            onMouseDown={(event: any) => {
-              // This prevents the activeElement from being changed
-              // to the item so it can remain with the current activeElement
-              // which is a more common use case.
-              event!.preventDefault()
-            }}
-            onClick={() => {
-              setState({ ...state, isOpen: false })
-              handleInputValueChange(getDisplayValue!(option))
-              handleSelectItem(option)
-            }}
+            /* eslint-disable-next-line react/jsx-props-no-spreading */
+            {...itemProps(index, option)}
           >
             {renderOption
               ? renderOption(option, index)
@@ -345,30 +200,11 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
         {shouldShowOtherOption && (
           <Menu.Item
             key={getUniqueValue(value)}
-            role='option'
-            aria-selected={highlightedIndex === optionsLength}
-            selected={highlightedIndex === optionsLength}
             className={cx({
-              [classes.otherOption]: Boolean(optionsLength)
+              [classes.otherOption]: true
             })}
-            onMouseMove={() => {
-              if (optionsLength === highlightedIndex) {
-                return
-              }
-
-              setState({ ...state, highlightedIndex: optionsLength })
-            }}
-            onMouseDown={(event: any) => {
-              // This prevents the activeElement from being changed
-              // to the item so it can remain with the current activeElement
-              // which is a more common use case.
-              event!.preventDefault()
-            }}
-            onClick={() => {
-              setState({ ...state, isOpen: false })
-              handleInputValueChange(getDisplayValue!(otherOption))
-              handleSelectItem(otherOption)
-            }}
+            /* eslint-disable-next-line react/jsx-props-no-spreading */
+            {...itemProps(optionsLength, otherOption)}
           >
             <span className={classes.stringContent}>
               <Typography as='span' color='dark-grey'>
@@ -385,55 +221,12 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       </ScrollMenu>
     )
 
-    const handleFocusOrClick = () => {
-      if (!isOpen) {
-        setState({
-          ...state,
-          isOpen: true,
-          highlightedIndex: FIRST_ITEM_INDEX
-        })
-
-        handleInputValueChange(value)
-      }
-    }
-
     const InputComponent = inputComponent || Input
     const loadingComponent = (
       <InputAdornment position='end'>
         <Loader size='small' />
       </InputAdornment>
     )
-
-    const handleChange = (
-      event: ChangeEvent<
-        HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
-      >
-    ) => {
-      setState({
-        ...state,
-        isOpen: true,
-        highlightedIndex: FIRST_ITEM_INDEX
-      })
-
-      handleInputValueChange(event.target.value)
-    }
-
-    const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-      const key = normalizeArrowKey(event)
-
-      if (key && keyboardHandlers[key]) {
-        keyboardHandlers[key](event)
-      }
-
-      onKeyDown!(event, value)
-    }
-
-    const handleBlur = () => {
-      setState({
-        ...state,
-        isOpen: false
-      })
-    }
 
     return (
       <div
@@ -451,18 +244,14 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
           <InputComponent
             /* eslint-disable-next-line react/jsx-props-no-spreading */
             {...rest}
-            aria-autocomplete='list'
-            onFocus={handleFocusOrClick}
-            onClick={handleFocusOrClick}
-            onKeyDown={handleKeyDown}
-            onBlur={handleBlur}
+            /* eslint-disable-next-line react/jsx-props-no-spreading */
+            {...inputProps()}
             // here we override the value returned from downshift, `off` by default
             autoComplete={autoCompletePropValue}
             error={error}
             icon={icon}
             defaultValue={undefined}
             value={value}
-            onChange={handleChange}
             ref={ref}
             placeholder={placeholder}
             endAdornment={loading ? loadingComponent : endAdornment}
