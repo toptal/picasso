@@ -159,10 +159,12 @@ const renderOptions = (
 }
 
 const getDisplayValue = (option: Option) => String(option.text!)
+
 const getSelected = (allOptions: Option[], value: Value) =>
   Array.isArray(value)
     ? createSelectMultiple(allOptions, value)
     : createSelectSingle(allOptions, value)
+
 const isEmpty = (value: Value) =>
   Array.isArray(value) ? value.length === 0 : value === ''
 
@@ -188,9 +190,6 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
   },
   ref
 ) {
-  const inputWrapperRef = useRef<HTMLDivElement>(null)
-  const [menuWidth, setMenuWidth] = useState()
-
   const fireOnChangeEvent = ({
     event,
     value
@@ -203,19 +202,12 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     onChange!(event)
   }
 
-  useLayoutEffect(() => {
-    if (!inputWrapperRef.current) {
-      return
-    }
-    const { width } = inputWrapperRef.current.getBoundingClientRect()
-
-    setMenuWidth(`${width}px`)
-  }, [inputWrapperRef.current])
+  const inputWrapperRef = useRef<HTMLDivElement>(null)
+  const [menuWidth, setMenuWidth] = useState()
 
   const select = getSelected(allOptions, value)
-  const [inputValue, setInputValue] = useState(
-    select.isSelected() ? select.display() : ''
-  )
+  const [inputValue, setInputValue] = useState(select.display())
+
   const [selectedValue, setSelectedValue] = useState<Value>(multiple ? [] : '')
   const [open, setOpen] = useState(false)
   const [options, setOptions] = useState(allOptions)
@@ -228,6 +220,15 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
 
     setOptions(filteredOptions)
   }
+
+  useLayoutEffect(() => {
+    if (!inputWrapperRef.current) {
+      return
+    }
+    const { width } = inputWrapperRef.current.getBoundingClientRect()
+
+    setMenuWidth(`${width}px`)
+  }, [inputWrapperRef.current])
 
   const handleFocusOrClick = () => {
     setOpen(true)
