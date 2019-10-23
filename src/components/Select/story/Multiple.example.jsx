@@ -5,6 +5,7 @@ const SelectDefaultExample = () => {
   const [values, setValues] = useState([])
 
   const handleChange = event => {
+    console.log('Select value:', event.target.value)
     setValues(event.target.value)
   }
 

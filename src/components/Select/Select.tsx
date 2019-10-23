@@ -212,7 +212,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     setOpen(true)
   }
 
-  const handleBlur = () => {
+  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
     const hasValue = inputValue !== ''
 
     if (hasValue && selectedValue) {
@@ -221,13 +221,27 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
       setInputValue(select.display())
     }
 
+    if (!multiple) {
+      const isInputCleaned = !hasValue && selectedValue
+
+      if (isInputCleaned) {
+        event.persist()
+        // @ts-ignore
+        event.target = { value: '', name }
+        // @ts-ignore
+        onChange!(event)
+      }
+    }
+
     setOpen(false)
   }
 
   const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+    event: ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
   ) => {
-    const newValue = e.target.value
+    const newValue = event.target.value
 
     setInputValue(newValue)
 
@@ -239,7 +253,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
   }
 
   const handleItemClick = (
-    e: React.MouseEvent<HTMLElement, MouseEvent>,
+    event: React.MouseEvent<HTMLElement, MouseEvent>,
     option: Option
   ) => {
     let newValue
@@ -262,11 +276,11 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
       newValue = option.value
     }
 
-    e.persist()
+    event.persist()
     // @ts-ignore
-    e.target = { value: newValue, name }
+    event.target = { value: newValue, name }
     // @ts-ignore
-    onChange!(e)
+    onChange!(event)
 
     const select = getSelected(allOptions, newValue)
 
@@ -307,6 +321,9 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     <Input
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
+      className={cx({
+        [classes.inputReadOnly]: multiple
+      })}
       ref={ref}
       error={error}
       readOnly={multiple}

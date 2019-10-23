@@ -23,6 +23,11 @@ export default ({ sizes: { input }, palette, zIndex }: Theme) =>
     inputRootNative: {
       paddingLeft: input.padding
     },
+    inputReadOnly: {
+      '&:hover, & input:hover': {
+        cursor: 'pointer'
+      }
+    },
     inputNative: {
       fontSize: '0.8125em',
       padding: 0,
