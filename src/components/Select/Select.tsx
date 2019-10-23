@@ -113,7 +113,7 @@ const renderOptions = (
   selectedValue: Value | null,
   highlightedIndex: number,
   onItemClick: (
-    e: React.MouseEvent<HTMLElement, MouseEvent>,
+    event: React.MouseEvent<HTMLElement, MouseEvent>,
     option: Option
   ) => void,
   isNative?: boolean
@@ -128,14 +128,14 @@ const renderOptions = (
     <OptionComponent
       key={option.key || option.value}
       value={option.value}
-      onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
-        onItemClick(e, option)
+      onClick={(event: React.MouseEvent<HTMLElement, MouseEvent>) =>
+        onItemClick(event, option)
       }
-      onMouseDown={(e: any) => {
+      onMouseDown={(event: any) => {
         // This prevents the activeElement from being changed
         // to the item so it can remain with the current activeElement
         // which is a more common use case.
-        e!.preventDefault()
+        event!.preventDefault()
       }}
       selected={
         Array.isArray(selectedValue)
