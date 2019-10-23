@@ -3,20 +3,42 @@ import React, {
   ChangeEvent,
   HTMLAttributes,
   ReactElement,
-  forwardRef
+  forwardRef,
+  FunctionComponent
 } from 'react'
 import cx from 'classnames'
-import { withStyles } from '@material-ui/core/styles'
 import MUIExpansionPanel from '@material-ui/core/ExpansionPanel'
+import { makeStyles } from '@material-ui/styles'
 
-import { StandardProps } from '../Picasso'
+import { CompoundedComponentWithRef, StandardProps } from '../Picasso'
 import { ArrowDownMinor16 } from '../Icon'
 import ExpansionPanelSummary from '../ExpansionPanelSummary'
 import ExpansionPanelDetails from '../ExpansionPanelDetails'
 import styles from './styles'
 
+const useStyles = makeStyles(styles)
+
+const Summary: FunctionComponent = props => {
+  const { children } = props
+  const classes = useStyles(props)
+
+  return <div className={classes.summaryWrapper}>{children}</div>
+}
+
+const Details: FunctionComponent<{ className: string }> = props => {
+  const { children, className } = props
+  const classes = useStyles(props)
+
+  return <div className={cx(className, classes.detailsWrapper)}>{children}</div>
+}
+
+interface StaticProps {
+  Summary: typeof Summary
+  Details: typeof Details
+}
+
 export interface Props
-  extends StandardProps,
+  extends Partial<StandardProps>,
     Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
   /** Always visible part of accordion */
   children?: ReactNode
@@ -36,8 +58,12 @@ export interface Props
   onChange?: (event: ChangeEvent<{}>, expanded: boolean) => void
 }
 
+// eslint-disable-next-line react/display-name
 export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
-  {
+  props,
+  ref
+) {
+  const {
     children,
     content,
     expanded,
@@ -46,12 +72,12 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
     disabled,
     className,
     style,
-    classes,
     onChange,
     ...rest
-  },
-  ref
-) {
+  } = props
+
+  const classes = useStyles(props)
+
   return (
     <MUIExpansionPanel
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -91,7 +117,7 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
       </ExpansionPanelDetails>
     </MUIExpansionPanel>
   )
-})
+}) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
 
 Accordion.defaultProps = {
   bordered: true,
@@ -103,4 +129,7 @@ Accordion.defaultProps = {
 
 Accordion.displayName = 'Accordion'
 
-export default withStyles(styles)(Accordion)
+Accordion.Summary = Summary
+Accordion.Details = Details
+
+export default Accordion

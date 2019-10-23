@@ -35,3 +35,8 @@ page
     title: 'Controlled state',
     description: 'Accordions with controlled expanded property'
   })
+  .addExample('Accordion/story/CustomFontStyling.example.jsx', {
+    title: 'Custom styling',
+    description:
+      'Summary and Details of Accordion can be decorated with additional styles'
+  })

@@ -1,4 +1,4 @@
-import { Theme } from '@material-ui/core/styles'
+import { Theme, createStyles } from '@material-ui/core/styles'
 
 import { createPropertiesStyles } from '../styles'
 import { PicassoProvider } from '../Picasso'
@@ -28,7 +28,7 @@ export default ({ palette, typography }: Theme) => {
     position: 'absolute'
   })
 
-  return {
+  return createStyles({
     root: {
       background: 'transparent',
 
@@ -52,9 +52,7 @@ export default ({ palette, typography }: Theme) => {
         }
       }
     },
-    summary: {
-      color: palette.common.black
-    },
+
     summaryFontWeightInherit: createPropertiesStyles({
       fontWeight: 'inherit'
     }),
@@ -62,16 +60,24 @@ export default ({ palette, typography }: Theme) => {
       fontSize: '0.7em',
       color: palette.primary.main
     },
+    summary: {
+      color: palette.common.black
+    },
     details: {
-      padding: 0,
+      padding: 0
+    },
+    content: {
+      display: 'block'
+    },
+    summaryWrapper: {
+      color: palette.common.black
+    },
+    detailsWrapper: {
       lineHeight: '1.5em',
       color: palette.grey.darker,
       fontSize: '0.875em',
       fontWeight: typography.fontWeights.regular,
       marginBottom: '0.75em'
-    },
-    content: {
-      display: 'block'
     }
-  }
+  })
 }
