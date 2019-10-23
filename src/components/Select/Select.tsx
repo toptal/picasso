@@ -31,6 +31,7 @@ interface Option {
 }
 
 type IconPosition = 'start' | 'end'
+type Value = string | string[] | number
 
 export interface Props
   extends StandardProps,
@@ -58,7 +59,7 @@ export interface Props
   /** List of options to be rendered as `Select` */
   options: Option[]
   /** Selected value */
-  value?: string | number | string[]
+  value?: Value
   /** Allow selecting multiple values */
   multiple?: boolean
 }
@@ -70,9 +71,9 @@ interface Select {
 
 function createSelectMultiple(
   allOptions: Option[],
-  selectedValues: ReactText[]
+  selectedValues: string[]
 ): Select {
-  const isSelected = () => selectedValues.length > 0
+  const isSelected = () => !isEmpty(selectedValues)
 
   const display = () =>
     selectedOptions()
@@ -80,7 +81,7 @@ function createSelectMultiple(
       .join(', ')
 
   const selectedOptions = () =>
-    allOptions.filter(({ value }) => selectedValues.includes(value))
+    allOptions.filter(({ value }) => selectedValues.includes(String(value)))
 
   return {
     display,
@@ -92,7 +93,7 @@ function createSelectSingle(
   allOptions: Option[],
   selectedValue: ReactText
 ): Select {
-  const isSelected = () => !!selectedValue
+  const isSelected = () => !isEmpty(selectedValue)
 
   const defaultOption = { text: '', value: '' }
 
@@ -109,7 +110,7 @@ function createSelectSingle(
 
 const renderOptions = (
   options: Option[],
-  selectedValue: ReactText | ReactText[] | null,
+  selectedValue: Value | null,
   highlightedIndex: number,
   onItemClick: (
     e: React.MouseEvent<HTMLElement, MouseEvent>,
@@ -158,10 +159,12 @@ const renderOptions = (
 }
 
 const getDisplayValue = (option: Option) => String(option.text!)
-const getSelected = (allOptions: Option[], value: ReactText | ReactText[]) =>
+const getSelected = (allOptions: Option[], value: Value) =>
   Array.isArray(value)
     ? createSelectMultiple(allOptions, value)
     : createSelectSingle(allOptions, value)
+const isEmpty = (value: Value) =>
+  Array.isArray(value) ? value.length === 0 : value === ''
 
 export const Select = forwardRef<HTMLInputElement, Props>(function Select(
   {
@@ -188,6 +191,18 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
   const inputWrapperRef = useRef<HTMLDivElement>(null)
   const [menuWidth, setMenuWidth] = useState()
 
+  const fireOnChangeEvent = ({
+    event,
+    value
+  }: {
+    event: any
+    value: Value
+  }) => {
+    event.persist()
+    event.target = { value, name }
+    onChange!(event)
+  }
+
   useLayoutEffect(() => {
     if (!inputWrapperRef.current) {
       return
@@ -201,38 +216,40 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
   const [inputValue, setInputValue] = useState(
     select.isSelected() ? select.display() : ''
   )
-  const [selectedValue, setSelectedValue] = useState<
-    ReactText | ReactText[] | null
-  >(null)
+  const [selectedValue, setSelectedValue] = useState<Value>(multiple ? [] : '')
   const [open, setOpen] = useState(false)
   const [options, setOptions] = useState(allOptions)
   const [highlightedIndex] = useState(0)
+
+  const filterOptions = (subStr: string) => {
+    const filteredOptions = allOptions.filter(option =>
+      isSubstring(subStr, getDisplayValue(option))
+    )
+
+    setOptions(filteredOptions)
+  }
 
   const handleFocusOrClick = () => {
     setOpen(true)
   }
 
   const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-    const hasValue = inputValue !== ''
-
-    if (hasValue && selectedValue) {
-      const select = getSelected(allOptions, value)
-
-      setInputValue(select.display())
-    }
-
     if (!multiple) {
-      const isInputCleaned = !hasValue && selectedValue
+      const hasValue = inputValue !== ''
+      const isInputCleaned = !hasValue && !isEmpty(selectedValue)
 
       if (isInputCleaned) {
-        event.persist()
-        // @ts-ignore
-        event.target = { value: '', name }
-        // @ts-ignore
-        onChange!(event)
+        setSelectedValue('')
+        setInputValue('')
+        fireOnChangeEvent({ event, value: '' })
+      } else {
+        const select = getSelected(allOptions, selectedValue)
+
+        setInputValue(select.display())
       }
     }
 
+    filterOptions('')
     setOpen(false)
   }
 
@@ -244,12 +261,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     const newValue = event.target.value
 
     setInputValue(newValue)
-
-    const filteredOptions = allOptions.filter(option =>
-      isSubstring(newValue, getDisplayValue(option))
-    )
-
-    setOptions(filteredOptions)
+    filterOptions(newValue)
   }
 
   const handleItemClick = (
@@ -258,29 +270,21 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
   ) => {
     let newValue
 
-    if (multiple) {
-      if (selectedValue && Array.isArray(selectedValue)) {
-        const isInSelectedValues = selectedValue.some(
-          value => value === option.value
-        )
+    if (multiple && Array.isArray(selectedValue)) {
+      const isInSelectedValues = selectedValue.some(
+        value => value === option.value
+      )
 
-        if (isInSelectedValues) {
-          newValue = selectedValue!.filter(value => value !== option.value)
-        } else {
-          newValue = [...selectedValue, option.value]
-        }
+      if (isInSelectedValues) {
+        newValue = selectedValue!.filter(value => value !== option.value)
       } else {
-        newValue = [option.value]
+        newValue = [...selectedValue, String(option.value)]
       }
     } else {
       newValue = option.value
     }
 
-    event.persist()
-    // @ts-ignore
-    event.target = { value: newValue, name }
-    // @ts-ignore
-    onChange!(event)
+    fireOnChangeEvent({ event, value: newValue })
 
     const select = getSelected(allOptions, newValue)
 
