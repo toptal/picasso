@@ -33,6 +33,11 @@ const secondary = (mainColor: string, secondaryColor: string) => ({
   }
 })
 
+const transparent = (color?: string) => ({
+  border: 'none',
+  color
+})
+
 export default ({ palette, sizes, transitions, typography }: Theme) =>
   createStyles({
     root: {
@@ -142,6 +147,15 @@ export default ({ palette, sizes, transitions, typography }: Theme) =>
       '&:active, &$active': {
         backgroundColor: alpha(palette.common.white, 0.16)
       }
+    },
+    transparent: {
+      ...transparent()
+    },
+    transparentWhite: {
+      ...transparent(palette.common.white)
+    },
+    transparentBlue: {
+      ...transparent(palette.primary.main)
     },
     primaryDisabled: primary(palette.grey.light!, palette.common.white),
     secondaryDisabled: secondary(palette.grey.light!, palette.common.white),

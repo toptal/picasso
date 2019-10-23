@@ -30,9 +30,10 @@ const ButtonVariantsExample = () => (
     </Container>
 
     <Typography variant='heading' size='small'>
-      Others:
+      Flat:
     </Typography>
-    <Container top='small'>
+
+    <Container top='small' bottom='large'>
       <Button variant='flat'>Flat</Button>
       <Container
         left={0.5}
@@ -41,6 +42,25 @@ const ButtonVariantsExample = () => (
         style={{ backgroundColor: palette.blue.main }}
       >
         <Button variant='flat-white'>Flat White</Button>
+      </Container>
+    </Container>
+
+    <Typography variant='heading' size='small'>
+      Transparent:
+    </Typography>
+
+    <Container top='small'>
+      <Button variant='transparent'>Transparent</Button>
+      <Container
+        left={0.5}
+        padded={0.5}
+        inline
+        style={{ backgroundColor: palette.blue.main }}
+      >
+        <Button variant='transparent-white'>Transparent White</Button>
+      </Container>
+      <Container left={0.5} padded={0.5} inline>
+        <Button variant='transparent-blue'>Transparent Blue</Button>
       </Container>
     </Container>
   </div>
