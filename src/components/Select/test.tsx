@@ -73,29 +73,32 @@ test('multi select can generate series of onChange events', async () => {
   const onChange = jest.fn(event => event.target.value)
   const placeholder = 'choose'
 
-  const { getByText } = renderSelect({
+  const { getByPlaceholderText, getByText } = renderSelect({
     options: OPTIONS,
     placeholder,
     multiple: true,
     onChange
   })
 
-  fireEvent.click(getByText(placeholder))
+  fireEvent.click(getByPlaceholderText(placeholder))
   fireEvent.click(getByText(OPTIONS[0].text))
   fireEvent.click(getByText(OPTIONS[1].text))
 
   expect(onChange).toHaveNthReturnedWith(1, [OPTIONS[0].value])
-  expect(onChange).toHaveNthReturnedWith(2, [OPTIONS[1].value])
+  expect(onChange).toHaveNthReturnedWith(2, [
+    OPTIONS[0].value,
+    OPTIONS[1].value
+  ])
 })
 
 test('multi select renders list of selected options', async () => {
-  const { container } = renderSelect({
+  const { queryByDisplayValue } = renderSelect({
     options: OPTIONS,
     multiple: true,
     value: [OPTIONS[0].value, OPTIONS[1].value]
   })
 
-  expect(container.textContent).toContain(
-    `${OPTIONS[0].text}, ${OPTIONS[1].text}`
-  )
+  expect(
+    queryByDisplayValue(`${OPTIONS[0].text}, ${OPTIONS[1].text}`)
+  ).toBeDefined()
 })
