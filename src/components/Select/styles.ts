@@ -7,11 +7,11 @@ import '../Menu/styles'
 import '../MenuItem/styles'
 import { alpha } from '../styles'
 
-export default ({ sizes: { input }, palette, zIndex }: Theme) =>
+export default ({ palette, zIndex }: Theme) =>
   createStyles({
     root: {
       position: 'relative',
-      width: input.width
+      display: 'inline-flex'
     },
     rootFull: {
       width: '100%'
@@ -20,27 +20,40 @@ export default ({ sizes: { input }, palette, zIndex }: Theme) =>
       width: 'auto'
     },
     rootAuto: {},
-    inputRootNative: {
-      paddingLeft: input.padding
+    selectWrapper: {
+      padding: 0
     },
-    inputReadOnly: {
-      '&:hover, & input:hover': {
+    select: {
+      width: '100%',
+      zIndex: 1,
+      fontSize: '0.8125em',
+
+      '&:focus': {
+        backgroundColor: 'inherit'
+      }
+    },
+    inputWrapper: {
+      width: 'inherit',
+      outline: 0
+    },
+    input: {
+      zIndex: 1,
+      paddingRight: 'calc(0.625em + 1em)'
+    },
+    inputMultiple: {
+      '&:hover': {
         cursor: 'pointer'
       }
     },
-    inputNative: {
-      fontSize: '0.8125em',
-      padding: 0,
-      paddingRight: 0
-    },
-    select: {
-      width: '100%'
+    placeholder: {
+      color: palette.grey.main2
     },
     caret: {
+      position: 'absolute',
+      top: 'calc(50% - 0.5em)',
       // in specs right spacing is defined relative to 6px icon width, while we use 16px
-      // so 5px are left instead of 10px when we use wider icon. Also, should compensate
-      // 14px of endAdornment padding
-      marginRight: '-0.5625em',
+      // so 5px are left instead of 10px when we use wider icon.
+      right: '0.3125em',
       color: palette.grey.dark,
       fontSize: '1em'
     },
