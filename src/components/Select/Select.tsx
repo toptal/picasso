@@ -240,8 +240,8 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
 
       if (isInputCleaned) {
         setSelectedValue('')
-        setInputValue('')
         fireOnChangeEvent({ event, value: '' })
+        setInputValue('')
       } else {
         const select = getSelected(allOptions, selectedValue)
 
@@ -284,13 +284,12 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
       newValue = option.value
     }
 
-    fireOnChangeEvent({ event, value: newValue })
-
     const select = getSelected(allOptions, newValue)
 
     setInputValue(select.display())
 
     setSelectedValue(newValue)
+    fireOnChangeEvent({ event, value: newValue })
 
     if (!multiple) {
       setOpen(false)
