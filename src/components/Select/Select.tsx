@@ -24,6 +24,8 @@ import { DropdownArrows16 } from '../Icon'
 import { isSubstring } from '../utils'
 import styles from './styles'
 
+const EMPTY_INPUT_VALUE = ''
+
 interface Option {
   key?: number
   text: ReactNode
@@ -64,21 +66,24 @@ export interface Props
   multiple?: boolean
 }
 
-interface Select {
+interface Selection {
   isSelected(): boolean
   display(): string
 }
 
-function createSelectMultiple(allOptions: Option[], value: string[]): Select {
+function getMultipleSelection(
+  allOptions: Option[],
+  value: string[]
+): Selection {
   const isSelected = () => !isEmpty(value)
+
+  const selectedOptions = () =>
+    allOptions.filter(option => value.includes(String(option.value)))
 
   const display = () =>
     selectedOptions()
       .map(({ text }) => text)
       .join(', ')
-
-  const selectedOptions = () =>
-    allOptions.filter(option => value.includes(String(option.value)))
 
   return {
     display,
@@ -86,7 +91,7 @@ function createSelectMultiple(allOptions: Option[], value: string[]): Select {
   }
 }
 
-function createSelectSingle(allOptions: Option[], value: ReactText): Select {
+function getSingleSelection(allOptions: Option[], value: ReactText): Selection {
   const isSelected = () => !isEmpty(value)
 
   const defaultOption = { text: '', value: '' }
@@ -125,15 +130,13 @@ const renderOptions = (
       onClick={(event: React.MouseEvent<HTMLElement, MouseEvent>) =>
         onItemClick(event, option)
       }
-      onMouseDown={(event: any) => {
+      onMouseDown={(event: React.MouseEvent) => {
         // This prevents the activeElement from being changed
         // to the item so it can remain with the current activeElement
         // which is a more common use case.
-        event!.preventDefault()
+        event.preventDefault()
       }}
-      selected={
-        Array.isArray(value) && value.some(value => value === option.value)
-      }
+      selected={Array.isArray(value) && value.includes(String(option.value))}
     >
       {option.text}
     </OptionComponent>
@@ -152,10 +155,10 @@ const renderOptions = (
 
 const getDisplayValue = (option: Option) => String(option.text!)
 
-const getSelected = (allOptions: Option[], value: ValueType) =>
+const getSelection = (allOptions: Option[], value: ValueType) =>
   Array.isArray(value)
-    ? createSelectMultiple(allOptions, value)
-    : createSelectSingle(allOptions, value)
+    ? getMultipleSelection(allOptions, value)
+    : getSingleSelection(allOptions, value)
 
 const isEmpty = (value: ValueType) =>
   Array.isArray(value) ? value.length === 0 : value === ''
@@ -203,7 +206,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
   const inputWrapperRef = useRef<HTMLDivElement>(null)
   const [menuWidth, setMenuWidth] = useState()
 
-  const select = getSelected(allOptions, value)
+  const select = getSelection(allOptions, value)
   const [inputValue, setInputValue] = useState(select.display())
   const [open, setOpen] = useState(false)
   const [options, setOptions] = useState(allOptions)
@@ -215,7 +218,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
   const [prevValue, setPrevValue] = useState<ValueType>(value)
 
   if (!isEqual(prevValue, value)) {
-    const select = getSelected(allOptions, value)
+    const select = getSelection(allOptions, value)
 
     setInputValue(select.display())
     setPrevValue(value)
@@ -244,20 +247,20 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
 
   const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
     if (!multiple) {
-      const hasValue = inputValue !== ''
+      const hasValue = inputValue !== EMPTY_INPUT_VALUE
       const isInputCleaned = !hasValue && !isEmpty(value)
 
       if (isInputCleaned) {
-        fireOnChangeEvent({ event, value: '' })
-        setInputValue('')
+        fireOnChangeEvent({ event, value: EMPTY_INPUT_VALUE })
+        setInputValue(EMPTY_INPUT_VALUE)
       } else {
-        const select = getSelected(allOptions, value)
+        const select = getSelection(allOptions, value)
 
         setInputValue(select.display())
       }
     }
 
-    filterOptions('')
+    filterOptions(EMPTY_INPUT_VALUE)
     setOpen(false)
   }
 
@@ -279,7 +282,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     let newValue
 
     if (multiple && Array.isArray(value)) {
-      const isInSelectedValues = value.some(value => value === option.value)
+      const isInSelectedValues = value.includes(String(option.value))
 
       if (isInSelectedValues) {
         newValue = value!.filter(value => value !== option.value)
@@ -290,7 +293,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
       newValue = option.value
     }
 
-    const select = getSelected(allOptions, newValue)
+    const select = getSelection(allOptions, newValue)
 
     setInputValue(select.display())
 
