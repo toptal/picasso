@@ -138,9 +138,8 @@ const renderOptions = (
         event!.preventDefault()
       }}
       selected={
-        Array.isArray(selectedValue)
-          ? selectedValue.some(value => value === option.value)
-          : undefined
+        Array.isArray(selectedValue) &&
+        selectedValue.some(value => value === option.value)
       }
     >
       {option.text}
