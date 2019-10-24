@@ -160,6 +160,11 @@ const getSelected = (allOptions: Option[], value: ValueType) =>
 const isEmpty = (value: ValueType) =>
   Array.isArray(value) ? value.length === 0 : value === ''
 
+const isEqual = (val1: ValueType, val2: ValueType) =>
+  Array.isArray(val1) && Array.isArray(val2)
+    ? val1.every(value => val2.includes(value))
+    : val1 === val2
+
 export const Select = forwardRef<HTMLInputElement, Props>(function Select(
   {
     classes,
@@ -207,9 +212,9 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
 
   // getDerivedStateFromProps for value prop
   // https://reactjs.org/docs/hooks-faq.html#how-do-i-implement-getderivedstatefromprops
-  const [prevValue, setPrevValue] = useState<ValueType | null>(null)
+  const [prevValue, setPrevValue] = useState<ValueType>(value)
 
-  if (prevValue !== value) {
+  if (!isEqual(prevValue, value)) {
     const select = getSelected(allOptions, value)
 
     setInputValue(select.display())

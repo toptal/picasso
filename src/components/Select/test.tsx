@@ -69,9 +69,10 @@ test('renders dropdown select', () => {
   expect(container).toMatchSnapshot()
 })
 
-test('multi select can generate series of onChange events', async () => {
+test('multi select returns value in onChange event', async () => {
   const onChange = jest.fn(event => event.target.value)
   const placeholder = 'choose'
+  const expectedValue = [OPTIONS[0].value]
 
   const { getByPlaceholderText, getByText } = renderSelect({
     options: OPTIONS,
@@ -82,13 +83,28 @@ test('multi select can generate series of onChange events', async () => {
 
   fireEvent.click(getByPlaceholderText(placeholder))
   fireEvent.click(getByText(OPTIONS[0].text))
+
+  expect(onChange).toHaveReturnedWith(expectedValue)
+})
+
+test('multi select adds value to the array of selected values in onChange event', async () => {
+  const onChange = jest.fn(event => event.target.value)
+  const placeholder = 'choose'
+  const currentValue = [OPTIONS[0].value]
+  const expectedValue = [OPTIONS[0].value, OPTIONS[1].value]
+
+  const { getByPlaceholderText, getByText } = renderSelect({
+    options: OPTIONS,
+    placeholder,
+    multiple: true,
+    onChange,
+    value: currentValue
+  })
+
+  fireEvent.click(getByPlaceholderText(placeholder))
   fireEvent.click(getByText(OPTIONS[1].text))
 
-  expect(onChange).toHaveNthReturnedWith(1, [OPTIONS[0].value])
-  expect(onChange).toHaveNthReturnedWith(2, [
-    OPTIONS[0].value,
-    OPTIONS[1].value
-  ])
+  expect(onChange).toHaveReturnedWith(expectedValue)
 })
 
 test('multi select renders list of selected options', async () => {
