@@ -1,9 +1,25 @@
-import { KeyboardEvent, useState, ChangeEvent } from 'react'
+import { KeyboardEvent, useState, ChangeEvent, useMemo } from 'react'
 
 import { Item } from './types'
 
 export const FIRST_ITEM_INDEX = 0
 export const EMPTY_INPUT_VALUE = ''
+
+/**
+ * Specification has two options to enable/disable autofill:
+ * "on"|"off", but google chrome doesn't respect specification and
+ * enables autofill for inputs with common name like "email", "address" etc
+ * As a workaround it's possible to use any incorrect string as a value of
+ * "autocomplete" field. "none" is our current choice.
+ */
+const AUTOFILL_DISABLED_STATE = 'none'
+
+export const getAutocompletePropValue = (
+  enableAutofill: boolean | undefined,
+  autoComplete: string | undefined
+) => {
+  return enableAutofill ? autoComplete : AUTOFILL_DISABLED_STATE
+}
 
 function normalizeArrowKey(event: KeyboardEvent<HTMLInputElement>) {
   const { key, keyCode } = event
@@ -56,6 +72,8 @@ function getNextWrappingIndex(
 interface Props {
   value: string
   options?: Item[]
+  enableAutofill?: boolean
+  autoComplete?: any
   onSelect?: (item: Item) => void
   onChange?: (value: string) => void
   onKeyDown?: (
@@ -68,6 +86,8 @@ interface Props {
 const useAutocomplete = ({
   value,
   options = [],
+  enableAutofill = false,
+  autoComplete,
   onChange = () => {},
   onKeyDown = () => {},
   onSelect = () => {},
@@ -92,7 +112,7 @@ const useAutocomplete = ({
     onSelect(item)
   }
 
-  const itemProps = (index: number, item: any) => ({
+  const getItemProps = (index: number, item: Item) => ({
     role: 'option',
     'aria-selected': highlightedIndex === index,
     selected: highlightedIndex === index,
@@ -125,8 +145,14 @@ const useAutocomplete = ({
     setHighlightedIndex(FIRST_ITEM_INDEX)
   }
 
-  const inputProps = () => ({
+  const autoCompletePropValue = useMemo(
+    () => getAutocompletePropValue(enableAutofill, autoComplete),
+    [enableAutofill, autoComplete]
+  )
+
+  const getInputProps = () => ({
     'aria-autocomplete': 'list' as React.AriaAttributes['aria-autocomplete'],
+    autoComplete: autoCompletePropValue,
     onFocus: handleFocusOrClick,
     onClick: handleFocusOrClick,
     onChange: (
@@ -203,8 +229,8 @@ const useAutocomplete = ({
   })
 
   return {
-    itemProps,
-    inputProps,
+    getItemProps,
+    getInputProps,
     isOpen,
     highlightedIndex
   }

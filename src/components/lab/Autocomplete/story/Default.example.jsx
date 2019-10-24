@@ -1,18 +1,13 @@
 import React, { useState } from 'react'
 import { Autocomplete } from '@toptal/picasso/lab'
-import { isSubstring, useNotifications } from '@toptal/picasso/utils'
+import { isSubstring } from '@toptal/picasso/utils'
 
 const allOptions = [
   { text: 'Belarus', value: 'BY' },
   { text: 'Croatia', value: 'HR' },
   { text: 'Lithuania', value: 'LU' },
   { text: 'Slovakia', value: 'SK' },
-  { text: 'Ukraine', value: 'UA' },
-  { text: 'Belarus2', value: 'BY2' },
-  { text: 'Croatia2', value: 'HR2' },
-  { text: 'Lithuania2', value: 'LU2' },
-  { text: 'Slovakia2', value: 'SK2' },
-  { text: 'Ukraine2', value: 'UA2' }
+  { text: 'Ukraine', value: 'UA' }
 ]
 
 const EMPTY_INPUT_VALUE = ''
@@ -26,8 +21,6 @@ const AutocompleteDefaultExample = () => {
   const [value, setValue] = useState(EMPTY_INPUT_VALUE)
   const [options, setOptions] = useState(allOptions)
 
-  const { showInfo } = useNotifications()
-
   return (
     <div>
       <Autocomplete
@@ -38,8 +31,6 @@ const AutocompleteDefaultExample = () => {
           console.log('onSelect returns item object:', item)
 
           const itemValue = getDisplayValue(item)
-
-          showInfo(itemValue)
 
           if (value !== itemValue) {
             setValue(itemValue)

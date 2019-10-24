@@ -4,9 +4,6 @@ import React, {
   forwardRef,
   ReactNode,
   ComponentType,
-  useMemo,
-  useLayoutEffect,
-  useState,
   useRef
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
@@ -22,28 +19,10 @@ import Loader from '../../Loader'
 import ScrollMenu from '../../ScrollMenu'
 import Typography from '../../Typography'
 import InputAdornment from '../../InputAdornment'
+import { useWidthOf } from '../../utils'
 import { Item } from './types'
 import useAutocomplete, { EMPTY_INPUT_VALUE } from './useAutocomplete'
 import styles from './styles'
-
-/**
- * Specification has two options to enable/disable autofill:
- * "on"|"off", but google chrome doesn't respect specification and
- * enables autofill for inputs with common name like "email", "address" etc
- * As a workaround it's possible to use any incorrect string as a value of
- * "autocomplete" field. "none" is our current choice.
- */
-const AUTOFILL_DISABLED_STATE = 'none'
-
-export const getAutocompletePropValue = (
-  enableAutofill: boolean | undefined,
-  autoComplete: string | undefined
-) => {
-  return enableAutofill ? autoComplete : AUTOFILL_DISABLED_STATE
-}
-
-const getItemText = (item: Item | null) =>
-  item && item.text ? item.text : EMPTY_INPUT_VALUE
 
 export interface Props
   extends StandardProps,
@@ -96,6 +75,9 @@ export interface Props
   enableAutofill?: boolean
 }
 
+const getItemText = (item: Item | null) =>
+  item && item.text ? item.text : EMPTY_INPUT_VALUE
+
 const getUniqueValue = (value: string) =>
   `${value.replace(/\s+/g, '-').toLowerCase()}-${new Date().getTime()}`
 
@@ -129,11 +111,6 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
     },
     ref
   ) {
-    const autoCompletePropValue = useMemo(
-      () => getAutocompletePropValue(enableAutofill, autoComplete),
-      [enableAutofill, autoComplete]
-    )
-
     const handleSelect = (item: Item) => {
       const displayValue = getDisplayValue!(item)
 
@@ -149,18 +126,22 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       onSelect!(item)
     }
 
-    const { highlightedIndex, isOpen, itemProps, inputProps } = useAutocomplete(
-      {
-        value,
-        options,
-        getDisplayValue: getDisplayValue!,
-        onSelect: handleSelect,
-        onChange,
-        onKeyDown
-      }
-    )
+    const {
+      highlightedIndex,
+      isOpen,
+      getItemProps,
+      getInputProps
+    } = useAutocomplete({
+      value,
+      options,
+      enableAutofill,
+      autoComplete,
+      getDisplayValue: getDisplayValue!,
+      onSelect: handleSelect,
+      onChange,
+      onKeyDown
+    })
 
-    const canOpen = isOpen && !loading
     const optionsLength = options!.length
     const otherOption = {
       text: value
@@ -171,25 +152,13 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       value &&
       options!.every(option => getDisplayValue!(option) !== value)
 
-    const inputWrapperRef = useRef<HTMLDivElement>(null)
-    const [menuWidth, setMenuWidth] = useState()
-
-    useLayoutEffect(() => {
-      if (!inputWrapperRef.current) {
-        return
-      }
-      const { width } = inputWrapperRef.current.getBoundingClientRect()
-
-      setMenuWidth(`${width}px`)
-    }, [inputWrapperRef.current])
-
     const optionsMenu = (
       <ScrollMenu selectedIndex={highlightedIndex}>
         {options!.map((option, index) => (
           <Menu.Item
             key={getDisplayValue!(option)}
             /* eslint-disable-next-line react/jsx-props-no-spreading */
-            {...itemProps(index, option)}
+            {...getItemProps(index, option)}
           >
             {renderOption
               ? renderOption(option, index)
@@ -204,7 +173,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
               [classes.otherOption]: true
             })}
             /* eslint-disable-next-line react/jsx-props-no-spreading */
-            {...itemProps(optionsLength, otherOption)}
+            {...getItemProps(optionsLength, otherOption)}
           >
             <span className={classes.stringContent}>
               <Typography as='span' color='dark-grey'>
@@ -228,6 +197,9 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       </InputAdornment>
     )
 
+    const inputWrapperRef = useRef<HTMLDivElement>(null)
+    const menuWidth = useWidthOf<HTMLDivElement>(inputWrapperRef)
+
     return (
       <div
         className={cx(
@@ -245,9 +217,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
             /* eslint-disable-next-line react/jsx-props-no-spreading */
             {...rest}
             /* eslint-disable-next-line react/jsx-props-no-spreading */
-            {...inputProps()}
-            // here we override the value returned from downshift, `off` by default
-            autoComplete={autoCompletePropValue}
+            {...getInputProps()}
             error={error}
             icon={icon}
             defaultValue={undefined}
@@ -261,7 +231,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
         <div role='listbox'>
           {inputWrapperRef.current && (
             <Popper
-              open={canOpen}
+              open={isOpen && !loading}
               anchorEl={inputWrapperRef.current}
               className={classes.popper}
               style={{ width: menuWidth }}
