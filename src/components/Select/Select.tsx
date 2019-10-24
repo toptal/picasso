@@ -69,11 +69,8 @@ interface Select {
   display(): string
 }
 
-function createSelectMultiple(
-  allOptions: Option[],
-  selectedValues: string[]
-): Select {
-  const isSelected = () => !isEmpty(selectedValues)
+function createSelectMultiple(allOptions: Option[], value: string[]): Select {
+  const isSelected = () => !isEmpty(value)
 
   const display = () =>
     selectedOptions()
@@ -81,7 +78,7 @@ function createSelectMultiple(
       .join(', ')
 
   const selectedOptions = () =>
-    allOptions.filter(({ value }) => selectedValues.includes(String(value)))
+    allOptions.filter(option => value.includes(String(option.value)))
 
   return {
     display,
@@ -89,16 +86,13 @@ function createSelectMultiple(
   }
 }
 
-function createSelectSingle(
-  allOptions: Option[],
-  selectedValue: ReactText
-): Select {
-  const isSelected = () => !isEmpty(selectedValue)
+function createSelectSingle(allOptions: Option[], value: ReactText): Select {
+  const isSelected = () => !isEmpty(value)
 
   const defaultOption = { text: '', value: '' }
 
   const selectedOption = () =>
-    allOptions.find(option => option.value === selectedValue) || defaultOption
+    allOptions.find(option => option.value === value) || defaultOption
 
   const display = () => getDisplayValue(selectedOption())
 
@@ -110,7 +104,7 @@ function createSelectSingle(
 
 const renderOptions = (
   options: Option[],
-  selectedValue: ValueType,
+  value: ValueType,
   highlightedIndex: number,
   onItemClick: (
     event: React.MouseEvent<HTMLElement, MouseEvent>,
@@ -138,8 +132,7 @@ const renderOptions = (
         event!.preventDefault()
       }}
       selected={
-        Array.isArray(selectedValue) &&
-        selectedValue.some(value => value === option.value)
+        Array.isArray(value) && value.some(value => value === option.value)
       }
     >
       {option.text}
@@ -207,12 +200,21 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
 
   const select = getSelected(allOptions, value)
   const [inputValue, setInputValue] = useState(select.display())
-
-  const [selectedValue, setSelectedValue] = useState<ValueType>(value)
   const [open, setOpen] = useState(false)
   const [options, setOptions] = useState(allOptions)
   const [highlightedIndex] = useState(0)
   const tabIndexValue = !disabled ? tabIndex : undefined
+
+  // getDerivedStateFromProps for value prop
+  // https://reactjs.org/docs/hooks-faq.html#how-do-i-implement-getderivedstatefromprops
+  const [prevValue, setPrevValue] = useState<ValueType | null>(null)
+
+  if (prevValue !== value) {
+    const select = getSelected(allOptions, value)
+
+    setInputValue(select.display())
+    setPrevValue(value)
+  }
 
   const filterOptions = (subStr: string) => {
     const filteredOptions = allOptions.filter(option =>
@@ -238,14 +240,13 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
   const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
     if (!multiple) {
       const hasValue = inputValue !== ''
-      const isInputCleaned = !hasValue && !isEmpty(selectedValue)
+      const isInputCleaned = !hasValue && !isEmpty(value)
 
       if (isInputCleaned) {
-        setSelectedValue('')
         fireOnChangeEvent({ event, value: '' })
         setInputValue('')
       } else {
-        const select = getSelected(allOptions, selectedValue)
+        const select = getSelected(allOptions, value)
 
         setInputValue(select.display())
       }
@@ -272,15 +273,13 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
   ) => {
     let newValue
 
-    if (multiple && Array.isArray(selectedValue)) {
-      const isInSelectedValues = selectedValue.some(
-        value => value === option.value
-      )
+    if (multiple && Array.isArray(value)) {
+      const isInSelectedValues = value.some(value => value === option.value)
 
       if (isInSelectedValues) {
-        newValue = selectedValue!.filter(value => value !== option.value)
+        newValue = value!.filter(value => value !== option.value)
       } else {
-        newValue = [...selectedValue, String(option.value)]
+        newValue = [...value, String(option.value)]
       }
     } else {
       newValue = option.value
@@ -290,7 +289,6 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
 
     setInputValue(select.display())
 
-    setSelectedValue(newValue)
     fireOnChangeEvent({ event, value: newValue })
 
     if (!multiple) {
@@ -346,13 +344,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
       <option disabled value={multiple ? [] : ''}>
         {placeholder}
       </option>
-      {renderOptions(
-        options,
-        selectedValue,
-        highlightedIndex,
-        handleItemClick,
-        true
-      )}
+      {renderOptions(options, value, highlightedIndex, handleItemClick, true)}
     </NativeSelect>
   )
 
@@ -415,7 +407,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
         >
           {renderOptions(
             options,
-            selectedValue,
+            value,
             highlightedIndex,
             handleItemClick,
             false
