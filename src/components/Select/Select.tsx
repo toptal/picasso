@@ -390,6 +390,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
           })
         }}
         size={1} // let input to have smallest width by default
+        role='textbox'
       />
       {dropDownIcon}
     </div>

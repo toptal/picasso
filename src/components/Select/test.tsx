@@ -60,7 +60,7 @@ test('renders native select', () => {
   expect(container).toMatchSnapshot()
 })
 
-test('renders dropdown select', () => {
+test('renders select', () => {
   const { container } = renderSelect({
     options: OPTIONS,
     value: 'val1'
@@ -69,52 +69,129 @@ test('renders dropdown select', () => {
   expect(container).toMatchSnapshot()
 })
 
-test('multi select returns value in onChange event', async () => {
-  const onChange = jest.fn(event => event.target.value)
-  const placeholder = 'choose'
-  const expectedValue = [OPTIONS[0].value]
+test('should open menu when focus on select', () => {
+  const placeholder = 'Choose an option...'
+  const { getByPlaceholderText, getByRole } = renderSelect({
+    options: OPTIONS,
+    placeholder
+  })
 
-  const { getByPlaceholderText, getByText } = renderSelect({
+  const input = getByPlaceholderText(placeholder)
+
+  fireEvent.focus(input)
+
+  const menu = getByRole('menu')
+
+  expect(menu).toMatchSnapshot()
+})
+
+test('should return back selected value when input value is edited', () => {
+  const placeholder = 'Choose an option...'
+  const expectedText = OPTIONS[1].text
+
+  const { getByPlaceholderText, getByRole } = renderSelect({
     options: OPTIONS,
     placeholder,
-    multiple: true,
+    value: [OPTIONS[1].value]
+  })
+
+  const input = getByPlaceholderText(placeholder)
+
+  fireEvent.focus(input)
+  fireEvent.change(input, { target: { value: 'some text' } })
+  fireEvent.blur(input)
+
+  const inputComponent = getByRole('textbox') as HTMLInputElement
+
+  expect(inputComponent.value).toBe(expectedText)
+})
+
+test('should reset selected value when input is wiped', () => {
+  const placeholder = 'Choose an option...'
+  const onChange = jest.fn(event => event.target.value)
+
+  const { getByPlaceholderText } = renderSelect({
+    options: OPTIONS,
+    placeholder,
+    value: [OPTIONS[1].value],
     onChange
   })
 
-  fireEvent.click(getByPlaceholderText(placeholder))
-  fireEvent.click(getByText(OPTIONS[0].text))
+  const input = getByPlaceholderText(placeholder)
 
-  expect(onChange).toHaveReturnedWith(expectedValue)
+  fireEvent.focus(input)
+  fireEvent.change(input, { target: { value: '' } })
+  fireEvent.blur(input)
+
+  expect(onChange).toHaveReturnedWith('')
 })
 
-test('multi select adds value to the array of selected values in onChange event', async () => {
-  const onChange = jest.fn(event => event.target.value)
-  const placeholder = 'choose'
-  const currentValue = [OPTIONS[0].value]
-  const expectedValue = [OPTIONS[0].value, OPTIONS[1].value]
+test('should filter options based on entered value to the input field', () => {
+  const placeholder = 'Choose an option...'
 
-  const { getByPlaceholderText, getByText } = renderSelect({
+  const { getByPlaceholderText, getByRole } = renderSelect({
     options: OPTIONS,
-    placeholder,
-    multiple: true,
-    onChange,
-    value: currentValue
+    placeholder
   })
 
-  fireEvent.click(getByPlaceholderText(placeholder))
-  fireEvent.click(getByText(OPTIONS[1].text))
+  const input = getByPlaceholderText(placeholder)
 
-  expect(onChange).toHaveReturnedWith(expectedValue)
+  fireEvent.focus(input)
+  fireEvent.change(input, { target: { value: '2' } })
+
+  const menu = getByRole('menu')
+
+  expect(menu).toMatchSnapshot()
 })
 
-test('multi select renders list of selected options', async () => {
-  const { queryByDisplayValue } = renderSelect({
-    options: OPTIONS,
-    multiple: true,
-    value: [OPTIONS[0].value, OPTIONS[1].value]
+describe('multiple select', () => {
+  test('should fire onChange event with the value when clicked on option', async () => {
+    const onChange = jest.fn(event => event.target.value)
+    const placeholder = 'choose'
+    const expectedValue = [OPTIONS[0].value]
+
+    const { getByPlaceholderText, getByText } = renderSelect({
+      options: OPTIONS,
+      placeholder,
+      multiple: true,
+      onChange
+    })
+
+    fireEvent.click(getByPlaceholderText(placeholder))
+    fireEvent.click(getByText(OPTIONS[0].text))
+
+    expect(onChange).toHaveReturnedWith(expectedValue)
   })
 
-  expect(
-    queryByDisplayValue(`${OPTIONS[0].text}, ${OPTIONS[1].text}`)
-  ).toBeDefined()
+  test('should fire onChange event with the array of values when clicked on option when other selected', async () => {
+    const onChange = jest.fn(event => event.target.value)
+    const placeholder = 'choose'
+    const currentValue = [OPTIONS[0].value]
+    const expectedValue = [OPTIONS[0].value, OPTIONS[1].value]
+
+    const { getByPlaceholderText, getByText } = renderSelect({
+      options: OPTIONS,
+      placeholder,
+      multiple: true,
+      onChange,
+      value: currentValue
+    })
+
+    fireEvent.click(getByPlaceholderText(placeholder))
+    fireEvent.click(getByText(OPTIONS[1].text))
+
+    expect(onChange).toHaveReturnedWith(expectedValue)
+  })
+
+  test('renders list of selected options', async () => {
+    const { getByRole } = renderSelect({
+      options: OPTIONS,
+      multiple: true,
+      value: [OPTIONS[0].value, OPTIONS[1].value]
+    })
+
+    const inputComponent = getByRole('textbox') as HTMLInputElement
+
+    expect(inputComponent.value).toBe(`${OPTIONS[0].text}, ${OPTIONS[1].text}`)
+  })
 })
