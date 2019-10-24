@@ -76,7 +76,7 @@ export interface Props
 }
 
 const getItemText = (item: Item | null) =>
-  item && item.text ? item.text : EMPTY_INPUT_VALUE
+  (item && item.text) || EMPTY_INPUT_VALUE
 
 const getUniqueValue = (value: string) =>
   `${value.replace(/\s+/g, '-').toLowerCase()}-${new Date().getTime()}`
