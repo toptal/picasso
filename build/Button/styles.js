@@ -24,6 +24,10 @@ const secondary = (mainColor, secondaryColor) => ({
         borderColor: mainColor
     }
 });
+const transparent = (color) => ({
+    border: 'none',
+    color
+});
 export default ({ palette, sizes, transitions, typography }) => createStyles({
     root: {
         position: 'relative',
@@ -115,6 +119,9 @@ export default ({ palette, sizes, transitions, typography }) => createStyles({
             backgroundColor: alpha(palette.common.white, 0.16)
         }
     },
+    transparent: Object.assign({}, transparent()),
+    transparentWhite: Object.assign({}, transparent(palette.common.white)),
+    transparentBlue: Object.assign({}, transparent(palette.primary.main)),
     primaryDisabled: primary(palette.grey.light, palette.common.white),
     secondaryDisabled: secondary(palette.grey.light, palette.common.white),
     flatDisabled: Object.assign(Object.assign({}, secondary(palette.grey.light, palette.common.white)), { border: 'none' }),

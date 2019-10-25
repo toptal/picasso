@@ -31,6 +31,9 @@ export type VariantType =
   | 'flat'
   | 'flat-white'
   | 'secondary-white'
+  | 'transparent'
+  | 'transparent-white'
+  | 'transparent-blue'
 
 type IconPositionType = 'left' | 'right'
 

@@ -135,7 +135,7 @@ BREAKING CHANGES:
         return (React.createElement("div", { className: cx(classes.root, className, classes[`root${capitalize(width)}`]), style: style },
             React.createElement(InputComponent
             /* eslint-disable-next-line react/jsx-props-no-spreading */
-            , Object.assign({}, rest, { defaultValue: defaultValue, ref: ref, classes: {}, icon: loading ? React.createElement(Loader, { size: 'small' }) : null, iconPosition: 'end', value: inputValue || EMPTY_VALUE, onBlur: onBlur, onKeyDown: onKeyDown, onFocus: onFocus, onClick: onFocus, placeholder: selectedItem ? getItemText(selectedItem) : placeholder, width: width, onChange: e => {
+            , Object.assign({}, rest, { defaultValue: defaultValue, ref: ref, icon: loading ? React.createElement(Loader, { size: 'small' }) : null, iconPosition: 'end', value: inputValue || EMPTY_VALUE, onBlur: onBlur, onKeyDown: onKeyDown, onFocus: onFocus, onClick: onFocus, placeholder: selectedItem ? getItemText(selectedItem) : placeholder, width: width, onChange: e => {
                     onChange(e);
                 } })),
             React.createElement("div", Object.assign({}, getMenuProps()), canOpen ? optionsMenu : null)));

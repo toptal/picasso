@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, Container, Typography } from '@toptal/picasso'
 import { palette } from '@toptal/picasso/utils'
+import { Copy24, Twitter24, Linkedin24 } from '@toptal/picasso/Icon'
 
 const ButtonVariantsExample = () => (
   <div>
@@ -30,9 +31,10 @@ const ButtonVariantsExample = () => (
     </Container>
 
     <Typography variant='heading' size='small'>
-      Others:
+      Flat:
     </Typography>
-    <Container top='small'>
+
+    <Container top='small' bottom='large'>
       <Button variant='flat'>Flat</Button>
       <Container
         left={0.5}
@@ -41,6 +43,25 @@ const ButtonVariantsExample = () => (
         style={{ backgroundColor: palette.blue.main }}
       >
         <Button variant='flat-white'>Flat White</Button>
+      </Container>
+    </Container>
+
+    <Typography variant='heading' size='small'>
+      Transparent:
+    </Typography>
+
+    <Container top='small'>
+      <Button variant='transparent' icon={<Copy24 />} />
+      <Container
+        left={0.5}
+        padded={0.5}
+        inline
+        style={{ backgroundColor: palette.blue.main }}
+      >
+        <Button variant='transparent-white' icon={<Twitter24 />} />
+      </Container>
+      <Container left={0.5} padded={0.5} inline>
+        <Button variant='transparent-blue' icon={<Linkedin24 />} />
       </Container>
     </Container>
   </div>

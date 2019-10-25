@@ -130,7 +130,7 @@ export const Autocomplete = forwardRef(function Autocomplete(_a, ref) {
                 /* eslint-disable-next-line react/jsx-props-no-spreading */
                 , Object.assign({}, rest, inputProps, { error: error, icon: icon, defaultValue: undefined, value: value, onChange: e => {
                         inputProps.onChange(e);
-                    }, ref: ref, classes: {}, placeholder: placeholder, endAdornment: loading ? loadingComponent : endAdornment, width: width }))),
+                    }, ref: ref, placeholder: placeholder, endAdornment: loading ? loadingComponent : endAdornment, width: width }))),
             React.createElement("div", Object.assign({}, getMenuProps()), inputWrapperRef.current && (React.createElement(Popper, { open: canOpen, anchorEl: inputWrapperRef.current, className: classes.popper, style: { width: menuWidth } }, optionsMenu)))));
     }));
 });

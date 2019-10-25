@@ -10,11 +10,13 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import React, { forwardRef } from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import OutlinedInput from '../../OutlinedInput';
 import styles from './styles';
-export const TagSelectorInput = forwardRef(function TagSelectorInput(_a, ref) {
-    var { id, name, defaultValue, value, placeholder, error, disabled, autoFocus, autoComplete, classes, children, multiline, width, style, rows, rowsMax, type, onChange, startAdornment, endAdornment } = _a, rest = __rest(_a, ["id", "name", "defaultValue", "value", "placeholder", "error", "disabled", "autoFocus", "autoComplete", "classes", "children", "multiline", "width", "style", "rows", "rowsMax", "type", "onChange", "startAdornment", "endAdornment"]);
+const useStyles = makeStyles(styles);
+export const TagSelectorInput = forwardRef(function TagSelectorInput(props, ref) {
+    const { id, name, defaultValue, value, placeholder, error, disabled, autoFocus, autoComplete, children, multiline, width, style, rows, rowsMax, type, onChange, startAdornment, endAdornment } = props, rest = __rest(props, ["id", "name", "defaultValue", "value", "placeholder", "error", "disabled", "autoFocus", "autoComplete", "children", "multiline", "width", "style", "rows", "rowsMax", "type", "onChange", "startAdornment", "endAdornment"]);
+    const classes = useStyles(props);
     let usedEndAdornment = null;
     if (endAdornment) {
         usedEndAdornment = React.cloneElement(endAdornment, {
@@ -30,5 +32,5 @@ TagSelectorInput.defaultProps = {
     width: 'auto'
 };
 TagSelectorInput.displayName = 'TagSelectorInput';
-export default withStyles(styles)(TagSelectorInput);
+export default TagSelectorInput;
 //# sourceMappingURL=TagSelectorInput.js.map

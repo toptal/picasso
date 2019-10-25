@@ -1,3 +1,10 @@
+# [3.33.0](https://github.com/toptal/picasso/compare/v3.32.0...v3.33.0) (2019-10-24)
+
+
+### Features
+
+* **Button:** add transparent variants ([#815](https://github.com/toptal/picasso/issues/815)) ([a2dda67](https://github.com/toptal/picasso/commit/a2dda67))
+
 # [3.32.0](https://github.com/toptal/picasso/compare/v3.31.2...v3.32.0) (2019-10-21)
 
 
