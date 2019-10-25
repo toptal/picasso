@@ -120,7 +120,7 @@ const renderOptions = (
 
     const isSelected =
       multiple && Array.isArray(value)
-        ? value.includes(String(option.value))
+        ? value.includes(String(option.value)) || selected
         : selected
 
     return (
