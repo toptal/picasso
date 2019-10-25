@@ -8,6 +8,7 @@ import React, {
 } from 'react'
 import cx from 'classnames'
 import { Theme, makeStyles } from '@material-ui/core/styles'
+import { InputBaseComponentProps } from '@material-ui/core/InputBase'
 
 import InputAdornment from '../InputAdornment'
 import OutlinedInput from '../OutlinedInput'
@@ -39,6 +40,7 @@ export interface Props
   iconPosition?: IconPosition
   /** Specify icon which should be rendered inside Input */
   icon?: ReactNode
+  inputProps?: InputBaseComponentProps
   /** Whether `Input` should be rendered as `TextArea` or not */
   multiline?: boolean
   /** Specify rows amount for `TextArea` */
@@ -157,6 +159,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
     disabled,
     icon,
     iconPosition,
+    inputProps,
     children,
     multiline,
     width,
@@ -209,7 +212,10 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
       type={type}
       width={width}
       // html attributes
-      inputProps={rest}
+      inputProps={{
+        ...rest,
+        ...inputProps
+      }}
       startAdornment={
         startAdornment || (
           <StartAdornment

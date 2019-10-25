@@ -1,65 +1,55 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
-import { PicassoProvider } from '../Picasso'
 import '../InputLabel/styles'
 import '../InputBase/styles'
-import '../OutlinedInput/styles'
+import '../Input/styles'
 import '../Menu/styles'
 import '../MenuItem/styles'
 import { alpha } from '../styles'
 
-PicassoProvider.override(() => ({
-  MuiSelect: {
-    select: {
-      '&:focus': {
-        backgroundColor: 'transparent'
-      }
-    },
-    selectMenu: {
-      minHeight: 'auto',
-      lineHeight: '1em'
-    }
-  }
-}))
-
-export default ({ sizes: { input }, palette }: Theme) =>
+export default ({ palette, zIndex }: Theme) =>
   createStyles({
+    root: {
+      position: 'relative',
+      display: 'inline-flex'
+    },
     rootFull: {
-      width: '100%',
-      display: 'flex'
-    },
-    rootShrink: {
-      width: 'auto',
-      '& $input': {
-        paddingRight: `calc(${input.padding} + 1em)`
-      }
-    },
-    rootAuto: {},
-    input: {
-      paddingRight: `calc(${input.padding} + 1em)`
-    },
-    inputRootNative: {
-      paddingLeft: input.padding,
-      paddingRight: `calc(${input.padding} + 1em)`
-    },
-    inputNative: {
-      fontSize: '0.8125em',
-      padding: 0,
-      paddingRight: 0
-    },
-    inputPlaceholder: {
-      color: palette.grey.main2
-    },
-    inputPlaceholderDisabled: {
-      color: alpha(palette.grey.main2!, 0.48)
-    },
-    inputValue: {
-      fontSize: '0.8125em'
-    },
-    select: {
       width: '100%'
     },
+    rootShrink: {
+      width: 'auto'
+    },
+    rootAuto: {},
+    selectWrapper: {
+      padding: 0
+    },
+    select: {
+      width: '100%',
+      zIndex: 1,
+      fontSize: '0.8125em',
+
+      '&:focus': {
+        backgroundColor: 'inherit'
+      }
+    },
+    inputWrapper: {
+      width: 'inherit',
+      outline: 0
+    },
+    input: {
+      zIndex: 1,
+      paddingRight: 'calc(0.625em + 1em)'
+    },
+    inputMultiple: {
+      '&:hover': {
+        cursor: 'pointer'
+      }
+    },
+    placeholder: {
+      color: palette.grey.main2
+    },
     caret: {
+      position: 'absolute',
       top: 'calc(50% - 0.5em)',
       // in specs right spacing is defined relative to 6px icon width, while we use 16px
       // so 5px are left instead of 10px when we use wider icon.
@@ -70,18 +60,7 @@ export default ({ sizes: { input }, palette }: Theme) =>
     caretDisabled: {
       color: alpha(palette.grey.dark!, 0.48)
     },
-    placeholder: {
-      opacity: 0.4
-    },
-    placeholderOption: {
-      '&[data-value=""]': {
-        backgroundColor: 'initial',
-        color: 'initial',
-
-        '&:hover, &:focus': {
-          backgroundColor: 'initial',
-          color: 'initial'
-        }
-      }
+    popper: {
+      zIndex: zIndex.modal
     }
   })

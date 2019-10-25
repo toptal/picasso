@@ -68,7 +68,7 @@ PicassoProvider.override(({ palette, sizes: { input } }: Theme) => ({
       padding: 0
     },
     error: {
-      backgroundColor: palette.common.white
+      backgroundColor: 'transparent'
     },
     notchedOutline: {}
   }

@@ -1,109 +1,208 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders dropdown select 1`] = `
-<div>
-  <div
-    class="Picasso-root"
-  >
-    <div
-      class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootFull MuiInputBase-fullWidth"
-    >
-      <fieldset
-        aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
-        style="padding-left: 8px;"
-      >
-        <legend
-          class="PrivateNotchedOutline-legend"
-          style="width: 0.01px;"
-        >
-          <span>
-            ​
-          </span>
-        </legend>
-      </fieldset>
-      <div
-        aria-haspopup="listbox"
-        class="MuiSelect-root Select-rootFull MuiSelect-select Select-select MuiSelect-selectMenu MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Select-input MuiInputBase-inputSelect MuiOutlinedInput-inputSelect MuiSelect-outlined"
-        role="button"
-        tabindex="0"
-      >
-        <p
-          class="MuiTypography-root Typography-bodyInherit Typography-inherit Select-inputValue MuiTypography-body1 MuiTypography-displayInline"
-        >
-          text1
-        </p>
-      </div>
-      <input
-        type="hidden"
-        value="val1"
-      />
-      <svg
-        class="SvgDropdownArrows16-root MuiSelect-icon Select-caret"
-        style="min-width: 16px; min-height: 16px;"
-        viewBox="0 0 16 16"
-      >
-        <path
-          d="M8.429 2.715l2.117 3.528a.5.5 0 0 1-.43.757H5.884a.5.5 0 0 1-.429-.757l2.117-3.528a.5.5 0 0 1 .858 0zM8.429 13.285l2.117-3.528a.5.5 0 0 0-.43-.757H5.884a.5.5 0 0 0-.429.757l2.117 3.528a.5.5 0 0 0 .858 0z"
-        />
-      </svg>
-    </div>
-  </div>
-</div>
-`;
-
 exports[`renders native select 1`] = `
 <div>
   <div
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root Select-inputRootNative OutlinedInput-rootFull MuiInputBase-fullWidth"
+      class="Select-root Select-rootFull"
     >
-      <fieldset
-        aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
-        style="padding-left: 8px;"
+      <div
+        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootFull Select-selectWrapper MuiInputBase-fullWidth"
       >
-        <legend
-          class="PrivateNotchedOutline-legend"
-          style="width: 0.01px;"
+        <fieldset
+          aria-hidden="true"
+          class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+          style="padding-left: 8px;"
         >
-          <span>
-            ​
-          </span>
-        </legend>
-      </fieldset>
-      <select
-        aria-invalid="false"
-        class="MuiSelect-root Select-rootFull MuiSelect-select Select-select MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input Select-input Select-inputNative MuiInputBase-inputSelect MuiOutlinedInput-inputSelect MuiSelect-outlined"
-      >
-        <option
-          value="val1"
+          <legend
+            class="PrivateNotchedOutline-legend"
+            style="width: 0.01px;"
+          >
+            <span>
+              ​
+            </span>
+          </legend>
+        </fieldset>
+        <select
+          aria-invalid="false"
+          class="MuiNativeSelect-root Select-select MuiNativeSelect-select MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input MuiInputBase-inputSelect MuiOutlinedInput-inputSelect"
         >
-          text1
-        </option>
-        <option
-          value="val2"
+          <option
+            disabled=""
+            value=""
+          />
+          <option
+            aria-selected="false"
+            role="option"
+            value="val1"
+          >
+            text1
+          </option>
+          <option
+            aria-selected="false"
+            role="option"
+            value="val2"
+          >
+            text2
+          </option>
+          <option
+            aria-selected="false"
+            role="option"
+            value="val3"
+          >
+            text3
+          </option>
+        </select>
+        <svg
+          class="SvgDropdownArrows16-root Select-caret"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
         >
-          text2
-        </option>
-        <option
-          value="val3"
-        >
-          text3
-        </option>
-      </select>
-      <svg
-        class="SvgDropdownArrows16-root MuiSelect-icon Select-caret"
-        style="min-width: 16px; min-height: 16px;"
-        viewBox="0 0 16 16"
-      >
-        <path
-          d="M8.429 2.715l2.117 3.528a.5.5 0 0 1-.43.757H5.884a.5.5 0 0 1-.429-.757l2.117-3.528a.5.5 0 0 1 .858 0zM8.429 13.285l2.117-3.528a.5.5 0 0 0-.43-.757H5.884a.5.5 0 0 0-.429.757l2.117 3.528a.5.5 0 0 0 .858 0z"
-        />
-      </svg>
+          <path
+            d="M8.429 2.715l2.117 3.528a.5.5 0 0 1-.43.757H5.884a.5.5 0 0 1-.429-.757l2.117-3.528a.5.5 0 0 1 .858 0zM8.429 13.285l2.117-3.528a.5.5 0 0 0-.43-.757H5.884a.5.5 0 0 0-.429.757l2.117 3.528a.5.5 0 0 0 .858 0z"
+          />
+        </svg>
+      </div>
     </div>
   </div>
 </div>
+`;
+
+exports[`renders select 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="Select-root Select-rootFull"
+    >
+      <div
+        class="Select-inputWrapper"
+        tabindex="0"
+      >
+        <div
+          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root makeStyles-root OutlinedInput-rootFull Select-input MuiInputBase-fullWidth MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+        >
+          <fieldset
+            aria-hidden="true"
+            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+            style="padding-left: 8px;"
+          >
+            <legend
+              class="PrivateNotchedOutline-legend"
+              style="width: 0.01px;"
+            >
+              <span>
+                ​
+              </span>
+            </legend>
+          </fieldset>
+          <input
+            aria-autocomplete="list"
+            aria-invalid="false"
+            autocomplete="none"
+            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input makeStyles-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+            role="textbox"
+            size="1"
+            type="text"
+            value="text1"
+          />
+        </div>
+        <svg
+          class="SvgDropdownArrows16-root Select-caret"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8.429 2.715l2.117 3.528a.5.5 0 0 1-.43.757H5.884a.5.5 0 0 1-.429-.757l2.117-3.528a.5.5 0 0 1 .858 0zM8.429 13.285l2.117-3.528a.5.5 0 0 0-.43-.757H5.884a.5.5 0 0 0-.429.757l2.117 3.528a.5.5 0 0 0 .858 0z"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`should filter options based on entered value to the input field 1`] = `
+<ul
+  class="MuiList-root ScrollMenu-menu"
+  role="menu"
+  tabindex="-1"
+>
+  <div
+    class="ScrollMenu-scrollView"
+  >
+    <li
+      aria-disabled="false"
+      aria-selected="true"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+      role="option"
+      tabindex="-1"
+      value="val2"
+    >
+      <span
+        class="MenuItem-stringContent"
+      >
+        text2
+      </span>
+    </li>
+  </div>
+</ul>
+`;
+
+exports[`should open menu when focus on select 1`] = `
+<ul
+  class="MuiList-root ScrollMenu-menu"
+  role="menu"
+  tabindex="-1"
+>
+  <div
+    class="ScrollMenu-scrollView"
+  >
+    <li
+      aria-disabled="false"
+      aria-selected="true"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+      role="option"
+      tabindex="-1"
+      value="val1"
+    >
+      <span
+        class="MenuItem-stringContent"
+      >
+        text1
+      </span>
+    </li>
+    <li
+      aria-disabled="false"
+      aria-selected="false"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      role="option"
+      tabindex="-1"
+      value="val2"
+    >
+      <span
+        class="MenuItem-stringContent"
+      >
+        text2
+      </span>
+    </li>
+    <li
+      aria-disabled="false"
+      aria-selected="false"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      role="option"
+      tabindex="-1"
+      value="val3"
+    >
+      <span
+        class="MenuItem-stringContent"
+      >
+        text3
+      </span>
+    </li>
+  </div>
+</ul>
 `;

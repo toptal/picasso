@@ -24,11 +24,9 @@ export default ({ sizes: { input }, palette }: Theme) =>
       color: palette.grey.main,
       fontSize: '0.625rem'
     },
-
     counterNegative: {
       color: palette.red.main
     },
-
     counterMultiline: {
       alignSelf: 'flex-end',
       marginBottom: '0.3125rem'
