@@ -34,16 +34,22 @@ exports[`renders native select 1`] = `
             value=""
           />
           <option
+            aria-selected="false"
+            role="option"
             value="val1"
           >
             text1
           </option>
           <option
+            aria-selected="false"
+            role="option"
             value="val2"
           >
             text2
           </option>
           <option
+            aria-selected="false"
+            role="option"
             value="val3"
           >
             text3
@@ -94,6 +100,7 @@ exports[`renders select 1`] = `
             </legend>
           </fieldset>
           <input
+            aria-autocomplete="list"
             aria-invalid="false"
             autocomplete="none"
             class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input makeStyles-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
@@ -129,8 +136,9 @@ exports[`should filter options based on entered value to the input field 1`] = `
   >
     <li
       aria-disabled="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-      role="menuitem"
+      aria-selected="true"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+      role="option"
       tabindex="-1"
       value="val2"
     >
@@ -155,8 +163,9 @@ exports[`should open menu when focus on select 1`] = `
   >
     <li
       aria-disabled="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-      role="menuitem"
+      aria-selected="true"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+      role="option"
       tabindex="-1"
       value="val1"
     >
@@ -168,8 +177,9 @@ exports[`should open menu when focus on select 1`] = `
     </li>
     <li
       aria-disabled="false"
+      aria-selected="false"
       class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-      role="menuitem"
+      role="option"
       tabindex="-1"
       value="val2"
     >
@@ -181,8 +191,9 @@ exports[`should open menu when focus on select 1`] = `
     </li>
     <li
       aria-disabled="false"
+      aria-selected="false"
       class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-      role="menuitem"
+      role="option"
       tabindex="-1"
       value="val3"
     >

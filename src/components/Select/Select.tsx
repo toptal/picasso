@@ -5,8 +5,7 @@ import React, {
   ReactText,
   InputHTMLAttributes,
   useRef,
-  useState,
-  useLayoutEffect
+  useState
 } from 'react'
 import cx from 'classnames'
 import Popper from '@material-ui/core/Popper'
@@ -21,16 +20,10 @@ import InputAdornment from '../InputAdornment'
 import MenuItem from '../MenuItem'
 import { StandardProps } from '../Picasso'
 import { DropdownArrows16 } from '../Icon'
-import { isSubstring } from '../utils'
+import { isSubstring, useWidthOf } from '../utils'
+import { Option } from './types'
+import useSelect, { EMPTY_INPUT_VALUE } from './useSelect'
 import styles from './styles'
-
-const EMPTY_INPUT_VALUE = ''
-
-interface Option {
-  key?: number
-  text: ReactNode
-  value: string | number
-}
 
 type IconPosition = 'start' | 'end'
 type ValueType = string | string[] | number
@@ -110,11 +103,10 @@ function getSingleSelection(allOptions: Option[], value: ReactText): Selection {
 const renderOptions = (
   options: Option[],
   value: ValueType,
-  highlightedIndex: number,
-  onItemClick: (
-    event: React.MouseEvent<HTMLElement, MouseEvent>,
-    option: Option
-  ) => void,
+  highlightedIndex: number | null,
+  onItemClick: (event: React.MouseEvent, option: Option) => void,
+  getItemProps: any,
+  multiple: boolean = false,
   isNative?: boolean
 ) => {
   if (!options.length) {
@@ -123,24 +115,32 @@ const renderOptions = (
 
   const OptionComponent = isNative ? 'option' : MenuItem
 
-  const optionComponents = options.map(option => (
-    <OptionComponent
-      key={option.key || option.value}
-      value={option.value}
-      onClick={(event: React.MouseEvent<HTMLElement, MouseEvent>) =>
-        onItemClick(event, option)
-      }
-      onMouseDown={(event: React.MouseEvent) => {
-        // This prevents the activeElement from being changed
-        // to the item so it can remain with the current activeElement
-        // which is a more common use case.
-        event.preventDefault()
-      }}
-      selected={Array.isArray(value) && value.includes(String(option.value))}
-    >
-      {option.text}
-    </OptionComponent>
-  ))
+  const optionComponents = options.map((option, index) => {
+    const { selected, close, ...rest } = getItemProps(index, option)
+
+    const isSelected =
+      multiple && Array.isArray(value)
+        ? value.includes(String(option.value))
+        : selected
+
+    return (
+      <OptionComponent
+        key={option.key || option.value}
+        value={option.value}
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...rest}
+        selected={isSelected}
+        onClick={(event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+          if (!multiple) {
+            close()
+          }
+          onItemClick(event, option)
+        }}
+      >
+        {option.text}
+      </OptionComponent>
+    )
+  })
 
   if (isNative) {
     return optionComponents
@@ -204,13 +204,10 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
   }
 
   const inputWrapperRef = useRef<HTMLDivElement>(null)
-  const [menuWidth, setMenuWidth] = useState()
-
   const select = getSelection(allOptions, value)
   const [inputValue, setInputValue] = useState(select.display())
-  const [open, setOpen] = useState(false)
   const [options, setOptions] = useState(allOptions)
-  const [highlightedIndex] = useState(0)
+  const menuWidth = useWidthOf<HTMLDivElement>(inputWrapperRef)
   const tabIndexValue = !disabled ? tabIndex : undefined
 
   // getDerivedStateFromProps for value prop
@@ -232,19 +229,6 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     setOptions(filteredOptions)
   }
 
-  useLayoutEffect(() => {
-    if (!inputWrapperRef.current) {
-      return
-    }
-    const { width } = inputWrapperRef.current.getBoundingClientRect()
-
-    setMenuWidth(`${width}px`)
-  }, [inputWrapperRef.current])
-
-  const handleFocusOrClick = () => {
-    setOpen(true)
-  }
-
   const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
     if (!multiple) {
       const hasValue = inputValue !== EMPTY_INPUT_VALUE
@@ -261,24 +245,14 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     }
 
     filterOptions(EMPTY_INPUT_VALUE)
-    setOpen(false)
   }
 
-  const handleChange = (
-    event: ChangeEvent<
-      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
-  ) => {
-    const newValue = event.target.value
-
+  const handleChange = (newValue: string) => {
     setInputValue(newValue)
     filterOptions(newValue)
   }
 
-  const handleItemClick = (
-    event: React.MouseEvent<HTMLElement, MouseEvent>,
-    option: Option
-  ) => {
+  const handleSelect = (event: React.SyntheticEvent, option: Option) => {
     let newValue
 
     if (multiple && Array.isArray(value)) {
@@ -298,13 +272,30 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     setInputValue(select.display())
 
     fireOnChangeEvent({ event, value: newValue })
-
-    if (!multiple) {
-      setOpen(false)
-    }
+    filterOptions(EMPTY_INPUT_VALUE)
   }
 
-  const isOpen = open && !disabled
+  const {
+    highlightedIndex,
+    isOpen,
+    getItemProps,
+    getInputProps,
+    getRootProps
+  } = useSelect({
+    value: inputValue,
+    getDisplayValue: option => {
+      if (!option) {
+        return EMPTY_INPUT_VALUE
+      }
+
+      return String(option.text)
+    },
+    options,
+    onSelect: handleSelect,
+    onChange: handleChange,
+    onBlur: handleBlur
+  })
+
   const shouldShowOptions = !native && Boolean(options.length)
 
   const iconAdornment = icon ? (
@@ -352,15 +343,22 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
       <option disabled value={multiple ? [] : ''}>
         {placeholder}
       </option>
-      {renderOptions(options, value, highlightedIndex, handleItemClick, true)}
+      {renderOptions(
+        options,
+        value,
+        highlightedIndex,
+        handleSelect,
+        getItemProps,
+        multiple,
+        true
+      )}
     </NativeSelect>
   )
 
   const inputComponent = (
     <div
-      onClick={handleFocusOrClick}
-      onFocus={handleFocusOrClick}
-      onBlur={handleBlur}
+      /* eslint-disable-next-line react/jsx-props-no-spreading */
+      {...getRootProps()}
       tabIndex={tabIndexValue}
       className={classes.inputWrapper}
     >
@@ -375,8 +373,11 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
         startAdornment={iconPosition === 'start' && iconAdornment}
         endAdornment={iconPosition === 'end' && iconAdornment}
         // Input specific props
-        onChange={handleChange}
         value={inputValue}
+        /* eslint-disable-next-line react/jsx-props-no-spreading */
+        {...getInputProps({
+          canCloseOnEnter: !multiple
+        })}
         placeholder={placeholder}
         width={width}
         readOnly={multiple}
@@ -409,7 +410,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
       {native ? nativeSelectComponent : inputComponent}
       {shouldShowOptions && (
         <Popper
-          open={isOpen}
+          open={isOpen && !disabled}
           anchorEl={inputWrapperRef.current}
           className={classes.popper}
           style={{ width: menuWidth }}
@@ -418,7 +419,9 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
             options,
             value,
             highlightedIndex,
-            handleItemClick,
+            handleSelect,
+            getItemProps,
+            multiple,
             false
           )}
         </Popper>
