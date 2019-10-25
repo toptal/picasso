@@ -37,6 +37,8 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   interactive?: boolean
   /** Programatically control tooltip's visibility */
   open?: boolean
+  /** Disables all listener */
+  disableListeners?: boolean
 }
 
 export const Tooltip: FunctionComponent<Props> = ({
@@ -52,6 +54,7 @@ export const Tooltip: FunctionComponent<Props> = ({
   onClose,
   onOpen,
   variant,
+  disableListeners,
   ...rest
 }) => {
   const [arrowRef, setArrowRef] = useState<HTMLSpanElement | null>(null)
@@ -94,6 +97,9 @@ export const Tooltip: FunctionComponent<Props> = ({
       open={open}
       placement={placement}
       title={title}
+      disableHoverListener={disableListeners}
+      disableFocusListener={disableListeners}
+      disableTouchListener={disableListeners}
     >
       {children as ReactElement}
     </MUITooltip>

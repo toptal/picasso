@@ -38,3 +38,8 @@ page
   .addExample('Tooltip/story/Variant.example.jsx', 'Variant')
   .addExample('Tooltip/story/Trigger.example.jsx', 'Trigger') // picasso-skip-visuals
   .addExample('Tooltip/story/Interactive.example.jsx', 'Interactive') // picasso-skip-visuals
+  .addExample('Tooltip/story/ControlListeners.example.tsx', 'Control Listeners') // picasso-skip-visuals
+  .addExample(
+    'Tooltip/story/DisabledElement.example.tsx',
+    'Tooltip on disabled element'
+  ) // picasso-skip-visuals
