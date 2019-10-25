@@ -4,17 +4,12 @@ import React, {
   forwardRef,
   ReactNode,
   ComponentType,
-  FormEvent,
-  useMemo,
-  useLayoutEffect,
-  useState,
   useRef
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import { capitalize } from '@material-ui/core/utils/helpers'
 import cx from 'classnames'
 import Popper from '@material-ui/core/Popper'
-import Downshift, { DownshiftState, StateChangeOptions } from 'downshift'
 
 import { StandardProps } from '../../Picasso'
 import Input, { Props as InputProps } from '../../Input'
@@ -24,31 +19,10 @@ import Loader from '../../Loader'
 import ScrollMenu from '../../ScrollMenu'
 import Typography from '../../Typography'
 import InputAdornment from '../../InputAdornment'
+import { useWidthOf } from '../../utils'
+import { Item } from './types'
+import useAutocomplete, { EMPTY_INPUT_VALUE } from './useAutocomplete'
 import styles from './styles'
-
-const EMPTY_INPUT_VALUE = ''
-const FIRST_ITEM_INDEX = 0
-
-export type Item = {
-  text?: string
-  [prop: string]: string | undefined
-}
-
-/**
- * Specification has two options to enable/disable autofill:
- * "on"|"off", but google chrome doesn't respect specification and
- * enables autofill for inputs with common name like "email", "address" etc
- * As a workaround it's possible to use any incorrect string as a value of
- * "autocomplete" field. "none" is our current choice.
- */
-const AUTOFILL_DISABLED_STATE = 'none'
-
-export const getAutocompletePropValue = (
-  enableAutofill: boolean | undefined,
-  autoComplete: string | undefined
-) => {
-  return enableAutofill ? autoComplete : AUTOFILL_DISABLED_STATE
-}
 
 export interface Props
   extends StandardProps,
@@ -102,7 +76,7 @@ export interface Props
 }
 
 const getItemText = (item: Item | null) =>
-  item && item.text ? item.text : EMPTY_INPUT_VALUE
+  (item && item.text) || EMPTY_INPUT_VALUE
 
 const getUniqueValue = (value: string) =>
   `${value.replace(/\s+/g, '-').toLowerCase()}-${new Date().getTime()}`
@@ -112,7 +86,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
     {
       classes,
       className,
-      onChange: onInputChange,
+      onChange,
       value,
       onSelect,
       onOtherOptionSelect,
@@ -137,35 +111,8 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
     },
     ref
   ) {
-    const autoCompletePropValue = useMemo(
-      () => getAutocompletePropValue(enableAutofill, autoComplete),
-      [enableAutofill, autoComplete]
-    )
-
-    const inputWrapperRef = useRef<HTMLDivElement>(null)
-    const [menuWidth, setMenuWidth] = useState()
-
-    useLayoutEffect(() => {
-      if (!inputWrapperRef.current) {
-        return
-      }
-      const { width } = inputWrapperRef.current.getBoundingClientRect()
-
-      setMenuWidth(`${width}px`)
-    }, [inputWrapperRef.current])
-
-    const handleInputValueChange = (newValue: string) => {
-      if (newValue !== value) {
-        onInputChange!(newValue)
-      }
-    }
-
-    const handleSelectItem = (item: Item | null) => {
+    const handleSelect = (item: Item) => {
       const displayValue = getDisplayValue!(item)
-
-      if (item === null || displayValue === null) {
-        return
-      }
 
       const isInOptions = options!.find(
         option => getDisplayValue!(option) === displayValue
@@ -179,169 +126,121 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       onSelect!(item)
     }
 
-    const downshiftStateReducer = (
-      state: DownshiftState<Item>,
-      changes: StateChangeOptions<Item>
-    ): Partial<StateChangeOptions<Item>> => {
-      switch (changes.type) {
-        case Downshift.stateChangeTypes.changeInput:
-          return { ...changes, highlightedIndex: FIRST_ITEM_INDEX }
-        case Downshift.stateChangeTypes.mouseUp:
-        case Downshift.stateChangeTypes.blurInput:
-          return {
-            ...changes,
-            inputValue: value,
-            selectedItem: null
-          }
-      }
-      return changes
+    const {
+      highlightedIndex,
+      isOpen,
+      getItemProps,
+      getInputProps
+    } = useAutocomplete({
+      value,
+      options,
+      enableAutofill,
+      autoComplete,
+      getDisplayValue: getDisplayValue!,
+      onSelect: handleSelect,
+      onChange,
+      onKeyDown
+    })
+
+    const optionsLength = options!.length
+    const otherOption = {
+      text: value
     }
 
+    const shouldShowOtherOption =
+      showOtherOption &&
+      value &&
+      options!.every(option => getDisplayValue!(option) !== value)
+
+    const optionsMenu = (
+      <ScrollMenu selectedIndex={highlightedIndex}>
+        {options!.map((option, index) => (
+          <Menu.Item
+            key={getDisplayValue!(option)}
+            /* eslint-disable-next-line react/jsx-props-no-spreading */
+            {...getItemProps(index, option)}
+          >
+            {renderOption
+              ? renderOption(option, index)
+              : getDisplayValue!(option)}
+          </Menu.Item>
+        ))}
+
+        {shouldShowOtherOption && (
+          <Menu.Item
+            key={getUniqueValue(value)}
+            className={cx({
+              [classes.otherOption]: true
+            })}
+            /* eslint-disable-next-line react/jsx-props-no-spreading */
+            {...getItemProps(optionsLength, otherOption)}
+          >
+            <span className={classes.stringContent}>
+              <Typography as='span' color='dark-grey'>
+                {otherOptionText}
+              </Typography>
+              {otherOption.text}
+            </span>
+          </Menu.Item>
+        )}
+
+        {!optionsLength && !shouldShowOtherOption && (
+          <Menu.Item disabled>{noOptionsText}</Menu.Item>
+        )}
+      </ScrollMenu>
+    )
+
+    const InputComponent = inputComponent || Input
+    const loadingComponent = (
+      <InputAdornment position='end'>
+        <Loader size='small' />
+      </InputAdornment>
+    )
+
+    const inputWrapperRef = useRef<HTMLDivElement>(null)
+    const menuWidth = useWidthOf<HTMLDivElement>(inputWrapperRef)
+
     return (
-      <Downshift
-        inputValue={value}
-        onInputValueChange={handleInputValueChange}
-        onChange={handleSelectItem}
-        itemToString={getDisplayValue}
-        stateReducer={downshiftStateReducer}
+      <div
+        className={cx(
+          classes.root,
+          className,
+          classes[`root${capitalize(width!)}`]
+        )}
+        style={style}
+        role='combobox'
+        aria-expanded={isOpen}
+        aria-haspopup='listbox'
       >
-        {({
-          getMenuProps,
-          getInputProps,
-          getItemProps,
-          isOpen,
-          highlightedIndex,
-          selectItem,
-          setState
-        }) => {
-          const canOpen = isOpen && !loading
-          const optionsLength = options!.length
-          const otherOption = {
-            text: value
-          }
-          const shouldShowOtherOption =
-            showOtherOption &&
-            value &&
-            options!.every(option => getDisplayValue!(option) !== value)
-
-          const optionsMenu = (
-            <ScrollMenu selectedIndex={highlightedIndex}>
-              {options!.map((option, index) => (
-                <Menu.Item
-                  key={getDisplayValue!(option)}
-                  selected={highlightedIndex === index}
-                  /* eslint-disable-next-line react/jsx-props-no-spreading */
-                  {...getItemProps({ item: option, index })}
-                >
-                  {renderOption
-                    ? renderOption(option, index)
-                    : getDisplayValue!(option)}
-                </Menu.Item>
-              ))}
-
-              {shouldShowOtherOption && (
-                <Menu.Item
-                  key={getUniqueValue(value)}
-                  selected={highlightedIndex === optionsLength}
-                  /* eslint-disable-next-line react/jsx-props-no-spreading */
-                  {...getItemProps({
-                    item: otherOption,
-                    index: optionsLength
-                  })}
-                  className={cx({
-                    [classes.otherOption]: Boolean(optionsLength)
-                  })}
-                >
-                  <span className={classes.stringContent}>
-                    <Typography as='span' color='dark-grey'>
-                      {otherOptionText}
-                    </Typography>
-                    {otherOption.text}
-                  </span>
-                </Menu.Item>
-              )}
-
-              {!optionsLength && !shouldShowOtherOption && (
-                <Menu.Item disabled>{noOptionsText}</Menu.Item>
-              )}
-            </ScrollMenu>
-          )
-
-          const handleFocusOrClick = () => {
-            if (!isOpen) {
-              setState({
-                isOpen: true,
-                inputValue: value,
-                highlightedIndex: FIRST_ITEM_INDEX
-              })
-            }
-          }
-
-          const InputComponent = inputComponent || Input
-          const loadingComponent = (
-            <InputAdornment position='end'>
-              <Loader size='small' />
-            </InputAdornment>
-          )
-
-          const inputProps = getInputProps({
-            onFocus: handleFocusOrClick,
-            onClick: handleFocusOrClick,
-            onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => {
-              if (event.key === 'Backspace' && value === EMPTY_INPUT_VALUE) {
-                selectItem(null)
-              }
-              onKeyDown!(event, value)
-            },
-            // here we override the value returned from downshift, `off` by default
-            autoComplete: autoCompletePropValue
-          })
-
-          return (
-            <div
-              className={cx(
-                classes.root,
-                className,
-                classes[`root${capitalize(width!)}`]
-              )}
-              style={style}
+        <Container flex ref={inputWrapperRef}>
+          <InputComponent
+            /* eslint-disable-next-line react/jsx-props-no-spreading */
+            {...rest}
+            /* eslint-disable-next-line react/jsx-props-no-spreading */
+            {...getInputProps()}
+            error={error}
+            icon={icon}
+            defaultValue={undefined}
+            value={value}
+            ref={ref}
+            placeholder={placeholder}
+            endAdornment={loading ? loadingComponent : endAdornment}
+            width={width}
+          />
+        </Container>
+        <div role='listbox'>
+          {inputWrapperRef.current && (
+            <Popper
+              open={isOpen && !loading}
+              anchorEl={inputWrapperRef.current}
+              className={classes.popper}
+              style={{ width: menuWidth }}
             >
-              <Container flex ref={inputWrapperRef}>
-                <InputComponent
-                  /* eslint-disable-next-line react/jsx-props-no-spreading */
-                  {...rest}
-                  // eslint-disable-next-line react/jsx-props-no-spreading
-                  {...inputProps}
-                  error={error}
-                  icon={icon}
-                  defaultValue={undefined}
-                  value={value}
-                  onChange={e => {
-                    inputProps.onChange!(e as FormEvent<HTMLInputElement>)
-                  }}
-                  ref={ref}
-                  placeholder={placeholder}
-                  endAdornment={loading ? loadingComponent : endAdornment}
-                  width={width}
-                />
-              </Container>
-              {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-              <div {...getMenuProps()}>
-                {inputWrapperRef.current && (
-                  <Popper
-                    open={canOpen}
-                    anchorEl={inputWrapperRef.current}
-                    className={classes.popper}
-                    style={{ width: menuWidth }}
-                  >
-                    {optionsMenu}
-                  </Popper>
-                )}
-              </div>
-            </div>
-          )
-        }}
-      </Downshift>
+              {optionsMenu}
+            </Popper>
+          )}
+        </div>
+      </div>
     )
   }
 )

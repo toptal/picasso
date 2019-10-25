@@ -14,6 +14,8 @@ export {
 export {
   default as useControlledAndUncontrolledInput
 } from './use-controlled-and-uncontrolled-input'
+export { default as useWidthOf } from './use-width-of'
+export { default as useCombinedRefs } from './use-combined-refs'
 
 export {
   default as ClickAwayListener
@@ -26,5 +28,3 @@ export { default as isSubstring } from './is-substring'
 export { Maybe } from './monads'
 export { useNotifications } from './Notifications'
 export { useModal } from './Modal'
-
-export { default as useCombinedRefs } from './use-combined-refs'

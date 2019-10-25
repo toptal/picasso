@@ -13,7 +13,6 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
       aria-disabled="false"
       aria-selected="true"
       class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
-      id="downshift-2-item-0"
       role="option"
       tabindex="-1"
     >
@@ -27,7 +26,6 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
       aria-disabled="false"
       aria-selected="false"
       class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-      id="downshift-2-item-1"
       role="option"
       tabindex="-1"
     >
@@ -41,7 +39,6 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
       aria-disabled="false"
       aria-selected="false"
       class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-      id="downshift-2-item-2"
       role="option"
       tabindex="-1"
     >
@@ -55,7 +52,6 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
       aria-disabled="false"
       aria-selected="false"
       class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-      id="downshift-2-item-3"
       role="option"
       tabindex="-1"
     >
@@ -69,7 +65,6 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
       aria-disabled="false"
       aria-selected="false"
       class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-      id="downshift-2-item-4"
       role="option"
       tabindex="-1"
     >
@@ -91,7 +86,6 @@ exports[`Autocomplete static behavior default render 1`] = `
     <div
       aria-expanded="false"
       aria-haspopup="listbox"
-      aria-labelledby="downshift-0-label"
       class="Autocomplete-root Autocomplete-rootAuto"
       role="combobox"
     >
@@ -117,10 +111,8 @@ exports[`Autocomplete static behavior default render 1`] = `
           </fieldset>
           <input
             aria-autocomplete="list"
-            aria-labelledby="downshift-0-label"
             autocomplete="none"
             class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input makeStyles-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
-            id="downshift-0-input"
             placeholder="Start typing here..."
             type="text"
             value=""
@@ -128,8 +120,6 @@ exports[`Autocomplete static behavior default render 1`] = `
         </div>
       </div>
       <div
-        aria-labelledby="downshift-0-label"
-        id="downshift-0-menu"
         role="listbox"
       />
     </div>
