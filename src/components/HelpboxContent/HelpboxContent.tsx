@@ -6,19 +6,22 @@ import Typography from '../Typography'
 import styles from './styles'
 
 export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
+  /** Rendered HTML markup */
+  as?: React.ElementType<React.HTMLAttributes<HTMLElement>>
   /** Content of Helpbox */
   children: ReactNode
 }
 
 export const HelpboxContent = forwardRef<HTMLElement, Props>(
   function HelpboxContent(
-    { classes, className, style, children, ...rest },
+    { classes, className, style, as, children, ...rest },
     ref
   ) {
     return (
       <Typography
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
+        as={as}
         ref={ref}
         classes={classes}
         className={className}

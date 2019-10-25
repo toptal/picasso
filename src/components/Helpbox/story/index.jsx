@@ -23,3 +23,5 @@ page
   .addExample('Helpbox/story/Default.example.jsx', 'Default')
   .addExample('Helpbox/story/Actions.example.jsx', 'With actions')
   .addExample('Helpbox/story/Closeable.example.jsx', 'Closeable')
+
+page.connect(helpboxContentStory.chapter)
