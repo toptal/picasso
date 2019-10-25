@@ -18,11 +18,11 @@ exports[`Helpbox default render 1`] = `
           Title
         </h4>
       </div>
-      <p
+      <div
         class="MuiTypography-root Typography-bodyMedium Typography-darkGrey MuiTypography-body1"
       >
         Test
-      </p>
+      </div>
       <div
         class="Container-flex HelpboxActions-root"
         style="align-items: center;"
