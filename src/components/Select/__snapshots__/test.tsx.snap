@@ -9,6 +9,7 @@ exports[`renders native select 1`] = `
       class="Select-root Select-rootFull"
     >
       <div
+        aria-autocomplete="list"
         class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootFull Select-selectWrapper MuiInputBase-fullWidth"
       >
         <fieldset
@@ -27,6 +28,7 @@ exports[`renders native select 1`] = `
         </fieldset>
         <select
           aria-invalid="false"
+          autocomplete="none"
           class="MuiNativeSelect-root Select-select MuiNativeSelect-select MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input MuiInputBase-inputSelect MuiOutlinedInput-inputSelect"
         >
           <option
