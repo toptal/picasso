@@ -17,7 +17,7 @@ export const HelpboxContent = forwardRef(function HelpboxContent(_a, ref) {
     var { classes, className, style, children } = _a, rest = __rest(_a, ["classes", "className", "style", "children"]);
     return (React.createElement(Typography
     // eslint-disable-next-line react/jsx-props-no-spreading
-    , Object.assign({}, rest, { ref: ref, classes: classes, className: className, style: style, variant: 'body', size: 'medium', color: 'dark-grey' }), children));
+    , Object.assign({}, rest, { ref: ref, classes: classes, className: className, style: style, variant: 'body', as: 'div', size: 'medium', color: 'dark-grey' }), children));
 });
 HelpboxContent.defaultProps = {};
 HelpboxContent.displayName = 'HelpboxContent';
