@@ -1,3 +1,10 @@
+## [3.33.1](https://github.com/toptal/picasso/compare/v3.33.0...v3.33.1) (2019-10-28)
+
+
+### Bug Fixes
+
+* **Helpbox:** render Helpbox.Content as a div element ([#821](https://github.com/toptal/picasso/issues/821)) ([f4ddfd7](https://github.com/toptal/picasso/commit/f4ddfd7)), closes [#789](https://github.com/toptal/picasso/issues/789)
+
 # [3.33.0](https://github.com/toptal/picasso/compare/v3.32.0...v3.33.0) (2019-10-24)
 
 
