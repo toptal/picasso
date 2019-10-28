@@ -2,6 +2,16 @@ import { KeyboardEvent, useState, ChangeEvent, useMemo } from 'react'
 
 import { Option } from './types'
 
+export type ItemProps = {
+  role: string
+  'aria-selected': boolean
+  selected: boolean
+  onMouseMove: () => void
+  onMouseDown: (event: React.MouseEvent) => void
+  close: () => void
+  onClick: (event: React.MouseEvent) => void
+}
+
 export const FIRST_ITEM_INDEX = 0
 export const EMPTY_INPUT_VALUE = ''
 
@@ -114,7 +124,7 @@ const useSelect = ({
     onSelect(event, item)
   }
 
-  const getItemProps = (index: number, item: Option) => ({
+  const getItemProps = (index: number, item: Option): ItemProps => ({
     role: 'option',
     'aria-selected': highlightedIndex === index,
     selected: highlightedIndex === index,
