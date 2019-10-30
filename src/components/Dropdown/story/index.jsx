@@ -16,7 +16,16 @@ page
 
 page
   .createChapter()
-  .addExample('Dropdown/story/Default.example.jsx', 'Default')
+  .addExample('Dropdown/story/Default.example.jsx', 'Default', {
+    isFullScreen: true,
+    effect: async page => {
+      console.log('2fn')
+
+      await page.click('span')
+
+      console.log('3fn')
+    }
+  })
   .addExample('Dropdown/story/ButtonDropdown.example.jsx', 'Button Anchor')
   .addExample(
     'Dropdown/story/PositionsAndOffsets.example.jsx',

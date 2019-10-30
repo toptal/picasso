@@ -97,6 +97,7 @@
     "cz-conventional-changelog": "2.1.0",
     "danger": "^9.2.2",
     "ejs": "^2.6.1",
+    "escodegen": "^1.12.0",
     "esprima": "^4.0.1",
     "esprima-walk": "^0.1.0",
     "fork-ts-checker-notifier-webpack-plugin": "^1.0.2",

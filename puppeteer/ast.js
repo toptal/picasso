@@ -1,4 +1,5 @@
 const config = require('./config')
+const escodegen = require('escodegen')
 
 const isMemberExpression = node =>
   node.type === 'CallExpression' && node.callee.type === 'MemberExpression'
@@ -17,19 +18,32 @@ const isCodeExampleExpression = node =>
   node.callee.property.name === 'addExample'
 
 const getCodeExampleOptions = node => {
+  //console.log('NODE:', JSON.stringify(node))
+
   const optionsAst = node.arguments[2]
 
   if (!optionsAst) {
     return {}
   }
 
-  return optionsAst.properties.reduce(
-    (acc, prop) => ({
+  return optionsAst.properties.reduce((acc, prop) => {
+    if (prop.key.name === 'effect') {
+      //console.log('CUSTOM: ', prop.value)
+      //console.log('CUSTOM trans: ', escodegen.generate(prop.value))
+
+      const functionBody = `return ${escodegen.generate(prop.value)}`
+
+      return {
+        ...acc,
+        [prop.key.name]: new Function(functionBody).call()
+      }
+    }
+
+    return {
       ...acc,
       [prop.key.name]: prop.value.value
-    }),
-    {}
-  )
+    }
+  }, {})
 }
 
 const getCodeExampleName = node => {

@@ -27,8 +27,13 @@ page
 To show the 'Modal' component you should use 'useModals' hook. And if you need
 any additional logic inside the 'Modal' component you should create a wrapper 
 component and manage the internal state there.
-`
-  }) // picasso-skip-visuals
+`,
+    sideeffectFn: () => {
+      // eslint-disable-next-line no-console
+      console.log('###############')
+    },
+    sideeffect: '2'
+  })
   .addExample('Modal/story/Sizes.example.jsx', 'Sizes') // picasso-skip-visuals
   .addExample('Modal/story/MaxHeight.example.jsx', {
     title: 'Max Height'

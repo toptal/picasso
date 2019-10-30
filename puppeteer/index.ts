@@ -1,5 +1,7 @@
 import { join } from 'path'
 import { Page } from 'puppeteer'
+import { isFullString } from 'is-what'
+import { MatchImageSnapshotOptions } from 'jest-image-snapshot'
 
 import { generateIframeUrl } from '../src/utils/url-generator'
 
@@ -7,7 +9,20 @@ declare var page: Page
 
 const PADDING_AROUND_COMPONENT = 8
 
-async function screenshotDOMElement() {
+interface Options extends MatchImageSnapshotOptions {
+  delay?: number
+  waitUntilImagesLoaded?: boolean
+  effect?: (page: Page) => Promise<any>
+  isFullScreen?: boolean
+}
+
+async function screenshotDOMElement(
+  options: Options = { isFullScreen: false }
+) {
+  if (isFullString) {
+    return page.screenshot()
+  }
+
   const dimensions = await page.evaluate(() => {
     const component = document.querySelector('#root .chapter-container')
 
@@ -35,15 +50,21 @@ async function screenshotDOMElement() {
 }
 
 // TODO: Make this more universal when we add more components and their variations
-export const assertVisuals = function (
+export const assertVisuals = function(
   kind: string,
   type: string,
-  options = { delay: 0, waitUntilImagesLoaded: false }
+  options: Options = {
+    delay: 0,
+    waitUntilImagesLoaded: false,
+    effect: undefined
+  }
 ) {
   return async () => {
-    const { delay, waitUntilImagesLoaded, ..._opts } = options
+    const { delay, waitUntilImagesLoaded, effect, ..._opts } = options
     const host = `file:///${join(__dirname, '/../build/storybook/')}`
     const url = generateIframeUrl({ host, kind, type })
+
+    console.log('control')
 
     await page.goto(
       url,
@@ -51,8 +72,34 @@ export const assertVisuals = function (
     )
     await page.waitFor(delay || 0)
 
-    const image = await screenshotDOMElement()
+    const image = await screenshotDOMElement(options)
 
     expect(image).toMatchImageSnapshot(_opts)
+
+    if (effect) {
+      console.log('################: ', effect)
+      // @ts-ignore
+      await effect(page)
+
+      const image_after_effect = await screenshotDOMElement(options)
+
+      expect(image_after_effect).toMatchImageSnapshot({
+        ..._opts,
+        // @ts-ignore
+        customSnapshotIdentifier: `${_opts.customSnapshotIdentifier}-after`
+      })
+    }
+
+    /* const [button] = await page.$x('//span')
+    if (button) {
+      console.log('BUTON: ', button)
+      await button.click()
+    }*/
+
+    //await page.click('span')
+
+    //const image = await screenshotDOMElement()
+
+    //expect(image).toMatchImageSnapshot(_opts)
   }
 }
