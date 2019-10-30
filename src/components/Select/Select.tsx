@@ -19,6 +19,7 @@ import OutlinedInput from '../OutlinedInput'
 import ScrollMenu from '../ScrollMenu'
 import InputAdornment from '../InputAdornment'
 import MenuItem from '../MenuItem'
+import Loader from '../Loader'
 import { StandardProps } from '../Picasso'
 import { DropdownArrows16 } from '../Icon'
 import { isSubstring, useWidthOf } from '../utils'
@@ -40,6 +41,8 @@ export interface Props
   id?: string
   /** Width of the component */
   width?: 'full' | 'shrink' | 'auto'
+  /** Shows the loading icon when options are loading */
+  loading?: boolean
   /** Placeholder option which is selected by default */
   placeholder?: string
   /** Whether icon should be placed at the beginning or end of the `Input` */
@@ -196,6 +199,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     className,
     style,
     width,
+    loading,
     id,
     icon,
     iconPosition,
@@ -326,12 +330,30 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     </InputAdornment>
   ) : null
 
+  const loadingComponent = (
+    <InputAdornment position='end'>
+      <Loader size='small' />
+    </InputAdornment>
+  )
+
   const dropDownIcon = (
     <DropdownArrows16
       className={cx(classes.caret, {
         [classes.caretDisabled]: disabled
       })}
     />
+  )
+
+  const startAdornment = iconPosition === 'start' && iconAdornment
+  const endAdornment = loading
+    ? loadingComponent
+    : iconPosition === 'end' && iconAdornment
+
+  const nativeStartAdornment = startAdornment && (
+    <div className={classes.nativeStartAdornment}>{startAdornment}</div>
+  )
+  const nativeEndAdornment = endAdornment && (
+    <div className={classes.nativeEndAdornment}>{endAdornment}</div>
   )
 
   const nativeSelectComponent = (
@@ -343,8 +365,8 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
       disabled={disabled}
       name={name}
       id={id}
-      startAdornment={iconPosition === 'start' && iconAdornment}
-      endAdornment={iconPosition === 'end' && iconAdornment}
+      startAdornment={nativeStartAdornment}
+      endAdornment={nativeEndAdornment}
       // NativeSelect specific props
       input={
         <OutlinedInput
@@ -363,6 +385,10 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
       classes={{
         root: cx(classes.select, {
           [classes.placeholder]: !select.isSelected()
+        }),
+        select: cx({
+          [classes.nativeStartAdornmentPadding]: Boolean(nativeStartAdornment),
+          [classes.nativeEndAdornmentPadding]: Boolean(nativeEndAdornment)
         })
       }}
     >
@@ -393,8 +419,8 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
           disabled={disabled}
           name={name}
           id={id}
-          startAdornment={iconPosition === 'start' && iconAdornment}
-          endAdornment={iconPosition === 'end' && iconAdornment}
+          startAdornment={startAdornment}
+          endAdornment={endAdornment}
           // Input specific props
           value={inputValue}
           /* eslint-disable-next-line react/jsx-props-no-spreading */
@@ -457,6 +483,7 @@ Select.defaultProps = {
   disabled: false,
   error: false,
   iconPosition: 'start',
+  loading: false,
   native: false,
   onChange: () => {},
   width: 'full'
