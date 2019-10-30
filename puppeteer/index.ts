@@ -1,6 +1,5 @@
 import { join } from 'path'
 import { Page } from 'puppeteer'
-import { isFullString } from 'is-what'
 import { MatchImageSnapshotOptions } from 'jest-image-snapshot'
 
 import { generateIframeUrl } from '../src/utils/url-generator'
@@ -9,21 +8,35 @@ declare var page: Page
 
 const PADDING_AROUND_COMPONENT = 8
 
+interface Dimensions {
+  x: number
+  y: number
+  width: number
+  height: number
+}
+
 interface Options extends MatchImageSnapshotOptions {
   delay?: number
   waitUntilImagesLoaded?: boolean
-  effect?: (page: Page) => Promise<any>
+  effect?: (
+    page: Page,
+    makeScreenShot: (options: Options) => void
+  ) => Promise<any>
   isFullScreen?: boolean
+  padding?: number
+  dimensions?: Partial<Dimensions>
 }
 
-async function screenshotDOMElement(
-  options: Options = { isFullScreen: false }
-) {
-  if (isFullString) {
+async function screenshotDOMElement({
+  isFullScreen,
+  padding,
+  dimensions
+}: Options) {
+  if (isFullScreen) {
     return page.screenshot()
   }
 
-  const dimensions = await page.evaluate(() => {
+  const componentDimensions = await page.evaluate(() => {
     const component = document.querySelector('#root .chapter-container')
 
     if (!component) {
@@ -36,21 +49,34 @@ async function screenshotDOMElement(
       y: componentRect.top,
       width: componentRect.width,
       height: componentRect.height
-    }
+    } as Dimensions
   })
+
+  const clipDimensions = {
+    ...componentDimensions,
+    ...dimensions
+  }
+
+  const clipPadding = padding || PADDING_AROUND_COMPONENT
 
   return page.screenshot({
     clip: {
-      x: dimensions.x - PADDING_AROUND_COMPONENT,
-      y: dimensions.y - PADDING_AROUND_COMPONENT,
-      width: dimensions.width + PADDING_AROUND_COMPONENT * 2,
-      height: dimensions.height + PADDING_AROUND_COMPONENT * 2
+      x: clipDimensions.x - clipPadding,
+      y: clipDimensions.y - clipPadding,
+      width: clipDimensions.width + clipPadding * 2,
+      height: clipDimensions.height + clipPadding * 2
     }
   })
 }
 
+async function matchScreenshot(options: Options) {
+  const image = await screenshotDOMElement(options)
+
+  expect(image).toMatchImageSnapshot(options)
+}
+
 // TODO: Make this more universal when we add more components and their variations
-export const assertVisuals = function(
+export const assertVisuals = function (
   kind: string,
   type: string,
   options: Options = {
@@ -60,11 +86,14 @@ export const assertVisuals = function(
   }
 ) {
   return async () => {
-    const { delay, waitUntilImagesLoaded, effect, ..._opts } = options
+    const {
+      delay,
+      waitUntilImagesLoaded,
+      effect,
+      customSnapshotIdentifier
+    } = options
     const host = `file:///${join(__dirname, '/../build/storybook/')}`
     const url = generateIframeUrl({ host, kind, type })
-
-    console.log('control')
 
     await page.goto(
       url,
@@ -72,34 +101,20 @@ export const assertVisuals = function(
     )
     await page.waitFor(delay || 0)
 
-    const image = await screenshotDOMElement(options)
-
-    expect(image).toMatchImageSnapshot(_opts)
+    await matchScreenshot(options)
 
     if (effect) {
-      console.log('################: ', effect)
-      // @ts-ignore
-      await effect(page)
+      let effectSnapshotId = 0
 
-      const image_after_effect = await screenshotDOMElement(options)
+      const makeEffectScreenShot = async (effectOptions: Options) => {
+        await matchScreenshot({
+          ...options,
+          ...effectOptions,
+          customSnapshotIdentifier: `${customSnapshotIdentifier}-effect-${++effectSnapshotId}`
+        })
+      }
 
-      expect(image_after_effect).toMatchImageSnapshot({
-        ..._opts,
-        // @ts-ignore
-        customSnapshotIdentifier: `${_opts.customSnapshotIdentifier}-after`
-      })
+      await effect(page, makeEffectScreenShot)
     }
-
-    /* const [button] = await page.$x('//span')
-    if (button) {
-      console.log('BUTON: ', button)
-      await button.click()
-    } */
-
-    // await page.click('span')
-
-    // const image = await screenshotDOMElement()
-
-    // expect(image).toMatchImageSnapshot(_opts)
   }
 }

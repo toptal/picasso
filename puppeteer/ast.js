@@ -28,14 +28,18 @@ const getCodeExampleOptions = node => {
   }
 
   return optionsAst.properties.reduce((acc, prop) => {
-    if (prop.key.name === 'effect') {
-      console.log('CUSTOM: ', prop.type)
-      // console.log('CUSTOM trans: ', escodegen.generate(prop.value))
-
+    if (
+      prop.value.type === 'ArrowFunctionExpression' ||
+      prop.value.type === 'FunctionExpression'
+    ) {
+      // we add 'return' and call new Function so we can get ordinary function
+      // in code example options and that we can use ordinary function notation
+      // in .addExample in stories
       const functionBody = `return ${escodegen.generate(prop.value)}`
 
       return {
         ...acc,
+        // eslint-disable-next-line no-new-func
         [prop.key.name]: new Function(functionBody).call()
       }
     }

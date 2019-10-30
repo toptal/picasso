@@ -17,13 +17,19 @@ page
 page
   .createChapter()
   .addExample('Dropdown/story/Default.example.jsx', 'Default', {
-    isFullScreen: true,
-    effect: async page => {
-      console.log('2fn')
-
+    effect: async (page, makeScreenshot) => {
       await page.click('span')
 
-      console.log('3fn')
+      await makeScreenshot({
+        dimensions: { x: 0, y: 0, width: 175, height: 175 }
+      })
+
+      await page.keyboard.press('ArrowDown')
+      await page.waitFor(250)
+
+      await makeScreenshot({
+        dimensions: { x: 0, y: 0, width: 175, height: 175 }
+      })
     }
   })
   .addExample('Dropdown/story/ButtonDropdown.example.jsx', 'Button Anchor')
