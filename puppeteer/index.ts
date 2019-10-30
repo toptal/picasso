@@ -94,12 +94,12 @@ export const assertVisuals = function(
     if (button) {
       console.log('BUTON: ', button)
       await button.click()
-    }*/
+    } */
 
-    //await page.click('span')
+    // await page.click('span')
 
-    //const image = await screenshotDOMElement()
+    // const image = await screenshotDOMElement()
 
-    //expect(image).toMatchImageSnapshot(_opts)
+    // expect(image).toMatchImageSnapshot(_opts)
   }
 }
