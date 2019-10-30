@@ -1,3 +1,10 @@
+# [3.34.0](https://github.com/toptal/picasso/compare/v3.33.2...v3.34.0) (2019-10-30)
+
+
+### Features
+
+* **Tooltip:** allow controlling listeners ([#819](https://github.com/toptal/picasso/issues/819)) ([c5f757f](https://github.com/toptal/picasso/commit/c5f757f))
+
 ## [3.33.2](https://github.com/toptal/picasso/compare/v3.33.1...v3.33.2) (2019-10-28)
 
 

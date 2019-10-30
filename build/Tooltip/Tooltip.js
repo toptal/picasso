@@ -16,7 +16,7 @@ import cx from 'classnames';
 import { usePicassoRoot } from '../Picasso';
 import styles from './styles';
 export const Tooltip = (_a) => {
-    var { content, children, placement, interactive, classes, className, style, arrow, open, onClose, onOpen, variant } = _a, rest = __rest(_a, ["content", "children", "placement", "interactive", "classes", "className", "style", "arrow", "open", "onClose", "onOpen", "variant"]);
+    var { content, children, placement, interactive, classes, className, style, arrow, open, onClose, onOpen, variant, disableListeners } = _a, rest = __rest(_a, ["content", "children", "placement", "interactive", "classes", "className", "style", "arrow", "open", "onClose", "onOpen", "variant", "disableListeners"]);
     const [arrowRef, setArrowRef] = useState(null);
     const container = usePicassoRoot();
     const title = (React.createElement(Fragment, null,
@@ -39,7 +39,7 @@ export const Tooltip = (_a) => {
             tooltip: cx(classes.tooltip, {
                 [classes.light]: variant === 'light'
             })
-        }, className: className, style: style, interactive: interactive, onClose: onClose, onOpen: onOpen, open: open, placement: placement, title: title }), children));
+        }, className: className, style: style, interactive: interactive, onClose: onClose, onOpen: onOpen, open: open, placement: placement, title: title, disableHoverListener: disableListeners, disableFocusListener: disableListeners, disableTouchListener: disableListeners }), children));
 };
 Tooltip.defaultProps = {
     arrow: true,
