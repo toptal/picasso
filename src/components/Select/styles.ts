@@ -5,6 +5,7 @@ import '../InputBase/styles'
 import '../Input/styles'
 import '../Menu/styles'
 import '../MenuItem/styles'
+import '../Loader/styles'
 import { alpha } from '../styles'
 
 export default ({ palette, zIndex }: Theme) =>
@@ -62,5 +63,19 @@ export default ({ palette, zIndex }: Theme) =>
     },
     popper: {
       zIndex: zIndex.modal
+    },
+    nativeStartAdornment: {
+      position: 'absolute',
+      left: '0.625em'
+    },
+    nativeEndAdornment: {
+      position: 'absolute',
+      right: '1.625em'
+    },
+    nativeStartAdornmentPadding: {
+      paddingLeft: '2.5625em'
+    },
+    nativeEndAdornmentPadding: {
+      paddingRight: '3.5625em'
     }
   })
