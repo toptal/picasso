@@ -1,5 +1,6 @@
 import { join } from 'path'
 import { Page } from 'puppeteer'
+import { MatchImageSnapshotOptions } from 'jest-image-snapshot'
 
 import { generateIframeUrl } from '../src/utils/url-generator'
 
@@ -7,9 +8,38 @@ declare var page: Page
 
 const PADDING_AROUND_COMPONENT = 8
 
-async function screenshotDOMElement() {
-  const dimensions = await page.evaluate(() => {
-    const component = document.querySelector('#root .chapter-container')
+interface Dimensions {
+  x: number
+  y: number
+  width: number
+  height: number
+}
+
+interface Options extends MatchImageSnapshotOptions {
+  delay?: number
+  waitUntilImagesLoaded?: boolean
+  effect?: (
+    page: Page,
+    makeScreenShot: (options: Options) => void
+  ) => Promise<any>
+  isFullScreen?: boolean
+  padding?: number
+  dimensions?: Partial<Dimensions>
+  selector?: string
+}
+
+async function screenshotDOMElement({
+  isFullScreen,
+  padding,
+  dimensions,
+  selector = '#root .chapter-container'
+}: Options) {
+  if (isFullScreen) {
+    return page.screenshot()
+  }
+
+  const componentDimensions = await page.evaluate(selector => {
+    const component = document.querySelector(selector)
 
     if (!component) {
       throw new Error(`Rendered story was not found!`)
@@ -21,27 +51,49 @@ async function screenshotDOMElement() {
       y: componentRect.top,
       width: componentRect.width,
       height: componentRect.height
-    }
-  })
+    } as Dimensions
+  }, selector)
+
+  const clipDimensions = {
+    ...componentDimensions,
+    ...dimensions
+  }
+
+  const clipPadding = padding || PADDING_AROUND_COMPONENT
 
   return page.screenshot({
     clip: {
-      x: dimensions.x - PADDING_AROUND_COMPONENT,
-      y: dimensions.y - PADDING_AROUND_COMPONENT,
-      width: dimensions.width + PADDING_AROUND_COMPONENT * 2,
-      height: dimensions.height + PADDING_AROUND_COMPONENT * 2
+      x: clipDimensions.x - clipPadding,
+      y: clipDimensions.y - clipPadding,
+      width: clipDimensions.width + clipPadding * 2,
+      height: clipDimensions.height + clipPadding * 2
     }
   })
+}
+
+async function matchScreenshot(options: Options) {
+  const image = await screenshotDOMElement(options)
+
+  expect(image).toMatchImageSnapshot(options)
 }
 
 // TODO: Make this more universal when we add more components and their variations
 export const assertVisuals = function (
   kind: string,
   type: string,
-  options = { delay: 0, waitUntilImagesLoaded: false }
+  options: Options = {
+    delay: 0,
+    waitUntilImagesLoaded: false,
+    effect: undefined
+  }
 ) {
   return async () => {
-    const { delay, waitUntilImagesLoaded, ..._opts } = options
+    const {
+      delay,
+      waitUntilImagesLoaded,
+      effect,
+      customSnapshotIdentifier
+    } = options
     const host = `file:///${join(__dirname, '/../build/storybook/')}`
     const url = generateIframeUrl({ host, kind, type })
 
@@ -51,8 +103,20 @@ export const assertVisuals = function (
     )
     await page.waitFor(delay || 0)
 
-    const image = await screenshotDOMElement()
+    await matchScreenshot(options)
 
-    expect(image).toMatchImageSnapshot(_opts)
+    if (effect) {
+      let effectSnapshotId = 0
+
+      const makeEffectScreenshot = async (effectOptions: Options) => {
+        await matchScreenshot({
+          ...options,
+          ...effectOptions,
+          customSnapshotIdentifier: `${customSnapshotIdentifier}-effect-${++effectSnapshotId}`
+        })
+      }
+
+      await effect(page, makeEffectScreenshot)
+    }
   }
 }

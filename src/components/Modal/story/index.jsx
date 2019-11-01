@@ -21,14 +21,35 @@ page
 
 page
   .createChapter()
-  .addExample('Modal/story/Default.example.jsx', {
-    title: 'Default',
-    description: `
+  .addExample(
+    'Modal/story/Default.example.jsx',
+    {
+      title: 'Default',
+      description: `
 To show the 'Modal' component you should use 'useModals' hook. And if you need
 any additional logic inside the 'Modal' component you should create a wrapper 
 component and manage the internal state there.
 `
-  }) // picasso-skip-visuals
+    },
+    {
+      effect: async (page, makeScreenshot) => {
+        await page.click('[data-testid="open"]')
+        await page.waitFor(100)
+        await makeScreenshot({
+          isFullScreen: true
+        })
+
+        await page.click('[data-testid="close"]')
+        await page.waitFor(100)
+        await makeScreenshot({
+          isFullScreen: true
+        })
+
+        await page.waitFor(1000)
+        await makeScreenshot()
+      }
+    }
+  )
   .addExample('Modal/story/Sizes.example.jsx', 'Sizes') // picasso-skip-visuals
   .addExample('Modal/story/MaxHeight.example.jsx', {
     title: 'Max Height'
