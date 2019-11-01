@@ -25,19 +25,21 @@ interface Options extends MatchImageSnapshotOptions {
   isFullScreen?: boolean
   padding?: number
   dimensions?: Partial<Dimensions>
+  selector?: string
 }
 
 async function screenshotDOMElement({
   isFullScreen,
   padding,
-  dimensions
+  dimensions,
+  selector = '#root .chapter-container'
 }: Options) {
   if (isFullScreen) {
     return page.screenshot()
   }
 
-  const componentDimensions = await page.evaluate(() => {
-    const component = document.querySelector('#root .chapter-container')
+  const componentDimensions = await page.evaluate(selector => {
+    const component = document.querySelector(selector)
 
     if (!component) {
       throw new Error(`Rendered story was not found!`)
@@ -50,7 +52,7 @@ async function screenshotDOMElement({
       width: componentRect.width,
       height: componentRect.height
     } as Dimensions
-  })
+  }, selector)
 
   const clipDimensions = {
     ...componentDimensions,
@@ -106,7 +108,7 @@ export const assertVisuals = function (
     if (effect) {
       let effectSnapshotId = 0
 
-      const makeEffectScreenShot = async (effectOptions: Options) => {
+      const makeEffectScreenshot = async (effectOptions: Options) => {
         await matchScreenshot({
           ...options,
           ...effectOptions,
@@ -114,7 +116,7 @@ export const assertVisuals = function (
         })
       }
 
-      await effect(page, makeEffectScreenShot)
+      await effect(page, makeEffectScreenshot)
     }
   }
 }

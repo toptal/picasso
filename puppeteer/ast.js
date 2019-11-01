@@ -19,8 +19,6 @@ const isCodeExampleExpression = node =>
   node.callee.property.name === 'addExample'
 
 const getCodeExampleOptions = node => {
-  // console.log('NODE:', JSON.stringify(node))
-
   const optionsAst = node.arguments[2]
 
   if (!optionsAst) {
