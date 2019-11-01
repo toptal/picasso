@@ -16,7 +16,7 @@ const useInputValue = (
 
 const InputWithLimitExample = () => {
   const [inputRemainingValue, handleInputRemainingChange] = useInputValue(
-    'Polonius, Hamler'
+    'Polonius, Hamlet'
   )
   const [textAreaRemainingValue, handleTextareaRemainingChange] = useInputValue(
     'Brevity is the soul of wit...'
