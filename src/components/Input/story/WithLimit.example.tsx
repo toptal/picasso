@@ -1,33 +1,79 @@
 import React, { useState } from 'react'
-import { Input, Container } from '@toptal/picasso'
+import { Input, Container, Typography } from '@toptal/picasso'
 import { Props as InputProps } from '@toptal/picasso/Input'
 
-const InputWithLimitExample = () => {
-  const [value, setValue] = useState('Text')
-  const [textAreaValue, setTextAreaValue] = useState('Text')
+const useInputValue = (
+  defaultValue: string
+): [string, InputProps['onChange']] => {
+  const [value, setValue] = useState(defaultValue)
 
   const handleChange: InputProps['onChange'] = event => {
     setValue(event.target.value)
   }
 
-  const handleTextareaChange: InputProps['onChange'] = event => {
-    setTextAreaValue(event.target.value)
-  }
+  return [value, handleChange]
+}
+
+const InputWithLimitExample = () => {
+  const [inputRemainingValue, handleInputRemainingChange] = useInputValue(
+    'Polonius, Hamlet'
+  )
+  const [textAreaRemainingValue, handleTextareaRemainingChange] = useInputValue(
+    'Brevity is the soul of wit...'
+  )
+  const [inputEnteredValue, handleInputEnteredChange] = useInputValue(
+    'Bruce Wayne'
+  )
+  const [textAreaEnteredValue, handleTextareaEnteredChange] = useInputValue(
+    "It's not who I am underneath, but what I do that defines me."
+  )
 
   return (
     <Container flex direction='column'>
-      <Container bottom='small'>
-        <Input limit={10} value={value} onChange={handleChange} />
+      <Container padded='small'>
+        <Typography variant='heading' size='small'>
+          Remaining chars counter:
+        </Typography>
+        <Container top='small' bottom='small'>
+          <Input
+            limit={10}
+            value={inputRemainingValue}
+            onChange={handleInputRemainingChange}
+          />
+        </Container>
+
+        <Container>
+          <Input
+            limit={10}
+            multiline
+            rows={4}
+            value={textAreaRemainingValue}
+            onChange={handleTextareaRemainingChange}
+          />
+        </Container>
       </Container>
 
-      <Container>
-        <Input
-          limit={10}
-          multiline
-          rows={4}
-          value={textAreaValue}
-          onChange={handleTextareaChange}
-        />
+      <Container padded='small'>
+        <Typography variant='heading' size='small'>
+          Entered chars counter:
+        </Typography>
+        <Container top='small' bottom='small'>
+          <Input
+            counter='entered'
+            value={inputEnteredValue}
+            onChange={handleInputEnteredChange}
+          />
+        </Container>
+
+        <Container>
+          <Input
+            counter='entered'
+            multiline
+            rows={4}
+            value={textAreaEnteredValue}
+            onChange={handleTextareaEnteredChange}
+          />
+        </Container>
       </Container>
     </Container>
   )
