@@ -1,4 +1,4 @@
-FROM node:12-alpine
+FROM node:13-alpine
 
 ARG NPM_TOKEN
 ENV NPM_TOKEN ${NPM_TOKEN}
@@ -6,12 +6,12 @@ ENV NPM_TOKEN ${NPM_TOKEN}
 ARG GIT_SHA
 ENV GIT_SHA ${GIT_SHA}
 
-ARG APK_BRANCH=3.9
+ARG APK_BRANCH=3.10
 ENV APK_BRANCH ${APK_BRANCH}
 
 ENV PATH="${PATH}:/app/node_modules/.bin"
 
-# Installs Chromium (72) package.
+# Installs Chromium (77) package.
 ENV CHROME_BIN /usr/bin/chromium-browser
 
 RUN echo $APK_BRANCH
