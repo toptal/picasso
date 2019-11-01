@@ -7,7 +7,7 @@ const DropdownDefaultExample = () => (
   <div>
     <Dropdown
       content={
-        <Menu>
+        <Menu data-testid='menu'>
           <Menu.Item onClick={handleClick}>First item</Menu.Item>
           <Menu.Item onClick={handleClick}>Second item</Menu.Item>
           <Menu.Item onClick={handleClick}>Third item</Menu.Item>
@@ -15,7 +15,7 @@ const DropdownDefaultExample = () => (
       }
     >
       Open Dropdown
-      <Dropdown.Arrow />
+      <Dropdown.Arrow data-testid='trigger' />
     </Dropdown>
   </div>
 )

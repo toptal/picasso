@@ -33,7 +33,7 @@ component and manage the internal state there.
     },
     {
       effect: async (page, makeScreenshot) => {
-        await page.waitFor(300)
+        /* await page.waitFor(300)
         const exists = await page.waitForSelector(
           'button[data-testid="open"]',
           {
@@ -43,9 +43,8 @@ component and manage the internal state there.
 
         if (exists) {
           await page.click('button[data-testid="open"]')
-        }
+        } */
 
-        /*
         await page.click('[data-testid="open"]')
         await page.waitFor(100)
         await makeScreenshot({
@@ -60,7 +59,6 @@ component and manage the internal state there.
 
         await page.waitFor(1000)
         await makeScreenshot()
-        */
       }
     }
   )

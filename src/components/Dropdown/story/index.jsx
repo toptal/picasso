@@ -18,17 +18,17 @@ page
   .createChapter()
   .addExample('Dropdown/story/Default.example.jsx', 'Default', {
     effect: async (page, makeScreenshot) => {
-      await page.click('span')
+      await page.click('[data-testid="trigger"]')
 
       await makeScreenshot({
-        dimensions: { x: 0, y: 0, width: 175, height: 175 }
+        selector: '[data-testid="menu"]'
       })
 
       await page.keyboard.press('ArrowDown')
       await page.waitFor(250)
 
       await makeScreenshot({
-        dimensions: { x: 0, y: 0, width: 175, height: 175 }
+        selector: '[data-testid="menu"]'
       })
     }
   })
