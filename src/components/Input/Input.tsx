@@ -86,9 +86,7 @@ const LimitAdornment = (props: LimitAdornmentProps) => {
   return (
     <InputAdornment
       position='end'
-      classes={{
-        root: multiline ? classes.counterMultiline : ''
-      }}
+      className={multiline ? classes.counterMultiline : ''}
     >
       <span
         className={cx(classes.counter, {
@@ -227,6 +225,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
             disabled={disabled}
             limit={limit}
             charsLength={charsLength}
+            multiline={multiline}
           />
         )
       }
