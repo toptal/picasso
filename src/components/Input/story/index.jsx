@@ -31,4 +31,4 @@ page
     'Input/story/AutoFill.example.jsx',
     'AutoComplete defined as email'
   )
-  .addExample('Input/story/WithLimit.example.tsx', 'With Limit') // picasso-skip-visuals
+  .addExample('Input/story/WithLimit.example.tsx', 'With Limit')
