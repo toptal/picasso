@@ -37,6 +37,8 @@ export interface Props extends BaseProps, InputHTMLAttributes<HTMLInputElement> 
     onChange?: (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement>) => void;
     /** Adds a counter of characters */
     limit?: number;
+    /** Type of the counter of characters */
+    counter?: 'remaining' | 'entered';
 }
 export declare const Input: React.ForwardRefExoticComponent<Props & React.RefAttributes<HTMLInputElement>>;
 export default Input;

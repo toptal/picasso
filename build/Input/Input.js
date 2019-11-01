@@ -17,14 +17,14 @@ import OutlinedInput from '../OutlinedInput';
 import styles from './styles';
 const useStyles = makeStyles(styles);
 const LimitAdornment = (props) => {
-    const { multiline, charsLength, limit } = props;
+    const { multiline, charsLength, limit, counter } = props;
     const classes = useStyles(props);
-    return (React.createElement(InputAdornment, { position: 'end', classes: {
-            root: multiline ? classes.counterMultiline : ''
-        } },
+    const isNegative = counter === 'remaining' ? charsLength >= limit : false;
+    const value = counter === 'remaining' ? limit - charsLength : charsLength;
+    return (React.createElement(InputAdornment, { position: 'end', className: multiline ? classes.counterMultiline : '' },
         React.createElement("span", { className: cx(classes.counter, {
-                [classes.counterNegative]: charsLength >= limit
-            }) }, limit - charsLength)));
+                [classes.counterNegative]: isNegative
+            }) }, value)));
 };
 const IconAdornment = (props) => {
     const { position, disabled, icon } = props;
@@ -40,20 +40,20 @@ const StartAdornment = ({ icon, iconPosition, disabled }) => {
     return React.createElement(IconAdornment, { disabled: disabled, position: 'start', icon: icon });
 };
 const EndAdornment = (props) => {
-    const { icon, iconPosition, disabled, limit, multiline, charsLength } = props;
+    const { icon, iconPosition, disabled, limit, multiline, charsLength, counter } = props;
     if (icon && iconPosition === 'end') {
         return React.createElement(IconAdornment, { disabled: disabled, position: 'end', icon: icon });
     }
-    else if (limit) {
-        return (React.createElement(LimitAdornment, { limit: limit, charsLength: charsLength, multiline: multiline }));
+    else if (limit || counter === 'entered') {
+        return (React.createElement(LimitAdornment, { limit: limit, charsLength: charsLength, multiline: multiline, counter: counter }));
     }
     return null;
 };
 export const Input = forwardRef(function Input(props, ref) {
-    const { id, name, defaultValue, value, placeholder, error, disabled, icon, iconPosition, children, multiline, width, className, style, rows, rowsMax, type, onChange, startAdornment, endAdornment, limit } = props, rest = __rest(props, ["id", "name", "defaultValue", "value", "placeholder", "error", "disabled", "icon", "iconPosition", "children", "multiline", "width", "className", "style", "rows", "rowsMax", "type", "onChange", "startAdornment", "endAdornment", "limit"]);
+    const { id, name, defaultValue, value, placeholder, error, disabled, icon, iconPosition, children, multiline, width, className, style, rows, rowsMax, type, onChange, startAdornment, endAdornment, limit, counter } = props, rest = __rest(props, ["id", "name", "defaultValue", "value", "placeholder", "error", "disabled", "icon", "iconPosition", "children", "multiline", "width", "className", "style", "rows", "rowsMax", "type", "onChange", "startAdornment", "endAdornment", "limit", "counter"]);
     const [charsLength, setCharsLength] = useState(value ? value.length : 0);
     const handleChange = e => {
-        if (limit) {
+        if (limit || counter === 'entered') {
             setCharsLength(e.target.value.length);
         }
         if (onChange) {
@@ -68,10 +68,11 @@ export const Input = forwardRef(function Input(props, ref) {
             input: classes.input
         }, id: id, name: name, defaultValue: defaultValue, value: value, placeholder: placeholder, error: error, disabled: disabled, multiline: multiline, rows: rows, rowsMax: rowsMax, type: type, width: width, 
         // html attributes
-        inputProps: rest, startAdornment: startAdornment || (React.createElement(StartAdornment, { icon: icon, iconPosition: iconPosition, disabled: disabled })), endAdornment: endAdornment || (React.createElement(EndAdornment, { icon: icon, iconPosition: iconPosition, disabled: disabled, limit: limit, charsLength: charsLength })), onChange: handleChange }, children));
+        inputProps: rest, startAdornment: startAdornment || (React.createElement(StartAdornment, { icon: icon, iconPosition: iconPosition, disabled: disabled })), endAdornment: endAdornment || (React.createElement(EndAdornment, { icon: icon, iconPosition: iconPosition, disabled: disabled, limit: limit, charsLength: charsLength, multiline: multiline, counter: counter })), onChange: handleChange }, children));
 });
 Input.defaultProps = {
     autoComplete: 'none',
+    counter: 'remaining',
     iconPosition: 'start',
     multiline: false,
     width: 'auto'

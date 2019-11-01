@@ -19,14 +19,16 @@ export default ({ sizes: { input }, palette }) => createStyles({
     },
     counter: {
         color: palette.grey.main,
-        fontSize: '0.625rem'
+        fontSize: '0.625em',
+        lineHeight: '1em'
     },
     counterNegative: {
         color: palette.red.main
     },
     counterMultiline: {
         alignSelf: 'flex-end',
-        marginBottom: '0.3125rem'
+        height: '0.625em',
+        marginBottom: '-0.25em'
     }
 });
 //# sourceMappingURL=styles.js.map

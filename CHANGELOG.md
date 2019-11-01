@@ -1,3 +1,10 @@
+# [3.35.0](https://github.com/toptal/picasso/compare/v3.34.0...v3.35.0) (2019-11-01)
+
+
+### Features
+
+* **Input:** [FX-570] Add entered counter type ([#831](https://github.com/toptal/picasso/issues/831)) ([15dee54](https://github.com/toptal/picasso/commit/15dee54))
+
 # [3.34.0](https://github.com/toptal/picasso/compare/v3.33.2...v3.34.0) (2019-10-30)
 
 
