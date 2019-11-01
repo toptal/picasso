@@ -15,6 +15,7 @@ import { BaseProps } from '../Picasso'
 import styles from './styles'
 
 type IconPosition = 'start' | 'end'
+type CounterType = 'remaining' | 'entered'
 
 export interface Props
   extends BaseProps,
@@ -60,11 +61,13 @@ export interface Props
   /** Adds a counter of characters */
   limit?: number
   /** Type of the counter of characters */
-  counter?: 'remaining' | 'entered'
+  counter?: CounterType
 }
 
-type LimitAdornmentProps = Pick<Props, 'multiline' | 'limit' | 'counter'> & {
+type LimitAdornmentProps = Pick<Props, 'multiline'> & {
   charsLength: number
+  limitValue: number
+  isNegative: boolean
 }
 
 type IconAdornmentProps = Pick<Props, 'disabled' | 'icon'> & {
@@ -80,13 +83,23 @@ type EndAdornmentProps = Pick<
 
 const useStyles = makeStyles<Theme, Props>(styles)
 
+const hasCounter = (counter: CounterType, limit?: number) =>
+  limit || counter === 'entered'
+const getCounterProps = (
+  counter: CounterType,
+  charsLength: number,
+  limit?: number
+) => {
+  const isNegative = counter === 'remaining' ? charsLength! >= limit! : false
+  const limitValue =
+    counter === 'remaining' ? limit! - charsLength! : charsLength!
+
+  return { limitValue, isNegative }
+}
+
 const LimitAdornment = (props: LimitAdornmentProps) => {
-  const { multiline, charsLength, limit, counter } = props
+  const { multiline, limitValue, isNegative } = props
   const classes = useStyles(props)
-
-  const isNegative = counter === 'remaining' ? charsLength >= limit! : false
-
-  const value = counter === 'remaining' ? limit! - charsLength : charsLength
 
   return (
     <InputAdornment
@@ -98,7 +111,7 @@ const LimitAdornment = (props: LimitAdornmentProps) => {
           [classes.counterNegative]: isNegative
         })}
       >
-        {value}
+        {limitValue}
       </span>
     </InputAdornment>
   )
@@ -141,13 +154,19 @@ const EndAdornment = (props: EndAdornmentProps) => {
 
   if (icon && iconPosition === 'end') {
     return <IconAdornment disabled={disabled} position='end' icon={icon} />
-  } else if (limit || counter === 'entered') {
+  } else if (hasCounter(counter!, limit)) {
+    const { limitValue, isNegative } = getCounterProps(
+      counter!,
+      charsLength!,
+      limit
+    )
+
     return (
       <LimitAdornment
-        limit={limit}
         charsLength={charsLength as number}
         multiline={multiline}
-        counter={counter}
+        isNegative={isNegative}
+        limitValue={limitValue}
       />
     )
   }
@@ -187,7 +206,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
   const [charsLength, setCharsLength] = useState(value ? value.length : 0)
 
   const handleChange: Props['onChange'] = e => {
-    if (limit || counter === 'entered') {
+    if (hasCounter(counter!, limit)) {
       setCharsLength(e.target.value.length)
     }
 
