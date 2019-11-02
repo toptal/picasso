@@ -64,10 +64,8 @@ export interface Props
   counter?: CounterType
 }
 
-type LimitAdornmentProps = Pick<Props, 'multiline'> & {
+type LimitAdornmentProps = Pick<Props, 'multiline' | 'limit' | 'counter'> & {
   charsLength: number
-  limitValue: number
-  isNegative: boolean
 }
 
 type IconAdornmentProps = Pick<Props, 'disabled' | 'icon'> & {
@@ -85,21 +83,28 @@ const useStyles = makeStyles<Theme, Props>(styles)
 
 const hasCounter = (counter: CounterType, limit?: number) =>
   limit || counter === 'entered'
-const getCounterProps = (
+const getCounter = (
   counter: CounterType,
   charsLength: number,
   limit?: number
 ) => {
-  const isNegative = counter === 'remaining' ? charsLength! >= limit! : false
-  const limitValue =
-    counter === 'remaining' ? limit! - charsLength! : charsLength!
+  if (counter === 'remaining') {
+    return {
+      isNegative: charsLength! >= limit!,
+      limitValue: limit! - charsLength!
+    }
+  }
 
-  return { limitValue, isNegative }
+  return {
+    isNegative: false,
+    limitValue: charsLength!
+  }
 }
 
 const LimitAdornment = (props: LimitAdornmentProps) => {
-  const { multiline, limitValue, isNegative } = props
   const classes = useStyles(props)
+  const { multiline, charsLength, counter, limit } = props
+  const { limitValue, isNegative } = getCounter(counter!, charsLength!, limit)
 
   return (
     <InputAdornment
@@ -154,19 +159,15 @@ const EndAdornment = (props: EndAdornmentProps) => {
 
   if (icon && iconPosition === 'end') {
     return <IconAdornment disabled={disabled} position='end' icon={icon} />
-  } else if (hasCounter(counter!, limit)) {
-    const { limitValue, isNegative } = getCounterProps(
-      counter!,
-      charsLength!,
-      limit
-    )
+  }
 
+  if (hasCounter(counter!, limit)) {
     return (
       <LimitAdornment
-        charsLength={charsLength as number}
+        charsLength={charsLength!}
         multiline={multiline}
-        isNegative={isNegative}
-        limitValue={limitValue}
+        counter={counter}
+        limit={limit}
       />
     )
   }
