@@ -9,7 +9,11 @@ import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { MenuItemProps } from '@material-ui/core/MenuItem'
 
-import { StandardProps } from '../../Picasso'
+import {
+  BaseProps,
+  OverridableComponent,
+  WithInternalProps
+} from '../../Picasso'
 import Container from '../../Container'
 import Typography from '../../Typography'
 import MenuItem, { MenuItemAttributes } from '../../MenuItem/MenuItem'
@@ -19,7 +23,7 @@ import { SidebarContext } from '../Sidebar'
 import { SidebarContextProps } from '../Sidebar/types'
 import styles from './styles'
 
-export interface Props extends StandardProps, MenuItemAttributes {
+export interface Props extends BaseProps, MenuItemAttributes {
   /** Pass icon to be used as part of item */
   icon?: ReactElement
   /** Highlights the item as selected */
@@ -36,125 +40,133 @@ export interface Props extends StandardProps, MenuItemAttributes {
   as?: ElementType<MenuItemProps>
 }
 
-export const SidebarItem = forwardRef<HTMLElement, Props>(function SidebarItem(
-  {
-    children,
-    icon,
-    selected,
-    collapsible,
-    menu,
-    disabled,
-    classes,
-    className,
-    style,
-    onClick,
-    as,
-    ...rest
-  },
-  ref
-) {
-  const hasIcon = Boolean(icon)
-  const hasMenu = Boolean(menu)
+type InternalProps = WithInternalProps<Props>
 
-  const { variant } = useContext<SidebarContextProps>(SidebarContext)
+export const SidebarItem = forwardRef<HTMLElement, InternalProps>(
+  function SidebarItem(
+    {
+      children,
+      icon,
+      selected,
+      collapsible,
+      menu,
+      disabled,
+      classes,
+      className,
+      style,
+      onClick,
+      as,
+      ...rest
+    },
+    ref
+  ) {
+    const hasIcon = Boolean(icon)
+    const hasMenu = Boolean(menu)
 
-  const handleMenuItemClick = (
-    event: React.MouseEvent<HTMLElement, MouseEvent>
-  ) => {
-    if (!hasMenu) {
-      onClick!(event)
+    const { variant } = useContext<SidebarContextProps>(SidebarContext)
+
+    const handleMenuItemClick = (
+      event: React.MouseEvent<HTMLElement, MouseEvent>
+    ) => {
+      if (!hasMenu) {
+        onClick!(event)
+      }
     }
-  }
 
-  const resolvedChildren =
-    typeof children === 'string' ? (
-      <Typography
-        className={classes.labelContent}
-        color='inherit'
-        size='medium'
-        noWrap
+    const resolvedChildren =
+      typeof children === 'string' ? (
+        <Typography
+          className={classes.labelContent}
+          color='inherit'
+          size='medium'
+          noWrap
+        >
+          {children}
+        </Typography>
+      ) : (
+        children
+      )
+
+    const menuItem = (
+      <MenuItem
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...rest}
+        as={as}
+        ref={ref}
+        style={style}
+        className={cx(
+          classes.root,
+          classes.noWrap,
+          classes[variant!],
+          { [classes.selected]: !hasMenu && selected },
+          className
+        )}
+        onClick={handleMenuItemClick}
+        selected={!hasMenu && selected}
+        disabled={disabled}
+        variant={variant}
       >
-        {children}
-      </Typography>
-    ) : (
-      children
+        <Container className={classes.noWrap} inline flex alignItems='center'>
+          {icon}
+          <Container
+            className={cx(classes.label, classes.noWrap, {
+              [classes.withIcon]: hasIcon
+            })}
+            flex
+            alignItems='center'
+          >
+            {resolvedChildren}
+          </Container>
+        </Container>
+      </MenuItem>
     )
 
-  const menuItem = (
-    <MenuItem
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...rest}
-      as={as}
-      ref={ref}
-      style={style}
-      className={cx(
-        classes.root,
-        classes.noWrap,
-        classes[variant!],
-        { [classes.selected]: !hasMenu && selected },
-        className
-      )}
-      onClick={handleMenuItemClick}
-      selected={!hasMenu && selected}
-      disabled={disabled}
-      variant={variant}
-    >
-      <Container className={classes.noWrap} inline flex alignItems='center'>
-        {icon}
-        <Container
-          className={cx(classes.label, classes.noWrap, {
-            [classes.withIcon]: hasIcon
-          })}
-          flex
-          alignItems='center'
+    if (hasMenu && collapsible) {
+      const menuChildren = React.Children.toArray(menu!.props.children)
+
+      const defaultExpanded =
+        menuChildren.find(
+          (menuChild: ReactElement) => menuChild.props.selected
+        ) !== undefined
+
+      return (
+        <Accordion
+          onChange={event => event.stopPropagation()}
+          classes={{
+            summary: classes.summary,
+            details: classes.details,
+            content: classes.content
+          }}
+          content={menu}
+          bordered={false}
+          disabled={disabled}
+          defaultExpanded={defaultExpanded}
+          // @ts-ignore
+          expandIcon={
+            <ArrowDropDown16
+              className={cx(
+                classes.expandIcon,
+                classes[`${variant}ExpandIcon`],
+                {
+                  [classes.expandIconDisabled]: disabled
+                }
+              )}
+            />
+          }
         >
-          {resolvedChildren}
-        </Container>
-      </Container>
-    </MenuItem>
-  )
-
-  if (hasMenu && collapsible) {
-    const menuChildren = React.Children.toArray(menu!.props.children)
-
-    const defaultExpanded =
-      menuChildren.find(
-        (menuChild: ReactElement) => menuChild.props.selected
-      ) !== undefined
+          {menuItem}
+        </Accordion>
+      )
+    }
 
     return (
-      <Accordion
-        onChange={event => event.stopPropagation()}
-        classes={{
-          summary: classes.summary,
-          details: classes.details,
-          content: classes.content
-        }}
-        content={menu}
-        bordered={false}
-        disabled={disabled}
-        defaultExpanded={defaultExpanded}
-        // @ts-ignore
-        expandIcon={
-          <ArrowDropDown16
-            className={cx(classes.expandIcon, classes[`${variant}ExpandIcon`], {
-              [classes.expandIconDisabled]: disabled
-            })}
-          />
-        }
-      >
+      <Fragment>
         {menuItem}
-      </Accordion>
+        {hasMenu && <div className={classes.nonCollapsibleMenu}>{menu}</div>}
+      </Fragment>
     )
   }
-
-  return (
-    <Fragment>
-      {menuItem}
-      {hasMenu && <div className={classes.nonCollapsibleMenu}>{menu}</div>}
-    </Fragment>
-  )
-})
+)
 
 SidebarItem.defaultProps = {
   collapsible: false,
@@ -164,4 +176,4 @@ SidebarItem.defaultProps = {
 
 SidebarItem.displayName = 'SidebarItem'
 
-export default withStyles(styles)(SidebarItem)
+export default withStyles(styles)(SidebarItem) as OverridableComponent<Props>

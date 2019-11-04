@@ -41,6 +41,7 @@ const imports: Record<string, object> = {
   react: React,
   'styled-components': styled,
   'react-router-dom': require('react-router-dom'),
+  history: require('history'),
   debounce: require('debounce'),
   '@toptal/picasso': require('@components'),
   '@toptal/picasso/lab': require('@components/lab'),
