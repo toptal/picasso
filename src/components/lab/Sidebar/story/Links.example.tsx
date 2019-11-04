@@ -1,6 +1,5 @@
 import React from 'react'
-import { Router, Link } from 'react-router-dom'
-import { createBrowserHistory } from 'history'
+import { BrowserRouter, Link } from 'react-router-dom'
 import { Sidebar, Logo } from '@toptal/picasso'
 import {
   Jobs16,
@@ -12,7 +11,7 @@ import {
 } from '@toptal/picasso/Icon'
 
 const SidebarDefaultExample = () => (
-  <Router history={customHistory}>
+  <BrowserRouter>
     <Sidebar>
       <Sidebar.Logo>
         <Logo />
@@ -38,9 +37,7 @@ const SidebarDefaultExample = () => (
         </Sidebar.Item>
       </Sidebar.Menu>
     </Sidebar>
-  </Router>
+  </BrowserRouter>
 )
-
-const customHistory = createBrowserHistory()
 
 export default SidebarDefaultExample
