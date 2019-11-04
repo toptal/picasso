@@ -12,12 +12,12 @@ exports[`useModal opens and closes modal 1`] = `
     >
       <button
         aria-hidden="true"
-        class="MuiButtonBase-root Button-medium Button-primaryBlue Button-root"
+        class="MuiButtonBase-root makeStyles-medium makeStyles-primaryBlue makeStyles-root"
         tabindex="0"
         type="button"
       >
         <span
-          class="Container-flex Container-inline Button-content"
+          class="Container-flex Container-inline makeStyles-content"
           style="align-items: center;"
         >
           Show
@@ -51,12 +51,12 @@ exports[`useModal opens and closes modal 1`] = `
               Modal content
             </p>
             <button
-              class="MuiButtonBase-root Button-medium Button-primaryBlue Button-root"
+              class="MuiButtonBase-root makeStyles-medium makeStyles-primaryBlue makeStyles-root"
               tabindex="0"
               type="button"
             >
               <span
-                class="Container-flex Container-inline Button-content"
+                class="Container-flex Container-inline makeStyles-content"
                 style="align-items: center;"
               >
                 Hide
@@ -85,12 +85,12 @@ exports[`useModal opens and closes modal 2`] = `
       style=""
     >
       <button
-        class="MuiButtonBase-root Button-medium Button-primaryBlue Button-root"
+        class="MuiButtonBase-root makeStyles-medium makeStyles-primaryBlue makeStyles-root"
         tabindex="0"
         type="button"
       >
         <span
-          class="Container-flex Container-inline Button-content"
+          class="Container-flex Container-inline makeStyles-content"
           style="align-items: center;"
         >
           Show
@@ -113,12 +113,12 @@ exports[`useModal shows multiple modals at the same time 1`] = `
     >
       <button
         aria-hidden="true"
-        class="MuiButtonBase-root Button-medium Button-primaryBlue Button-root"
+        class="MuiButtonBase-root makeStyles-medium makeStyles-primaryBlue makeStyles-root"
         tabindex="0"
         type="button"
       >
         <span
-          class="Container-flex Container-inline Button-content"
+          class="Container-flex Container-inline makeStyles-content"
           style="align-items: center;"
         >
           Show first
@@ -126,12 +126,12 @@ exports[`useModal shows multiple modals at the same time 1`] = `
       </button>
       <button
         aria-hidden="true"
-        class="MuiButtonBase-root Button-medium Button-primaryBlue Button-root"
+        class="MuiButtonBase-root makeStyles-medium makeStyles-primaryBlue makeStyles-root"
         tabindex="0"
         type="button"
       >
         <span
-          class="Container-flex Container-inline Button-content"
+          class="Container-flex Container-inline makeStyles-content"
           style="align-items: center;"
         >
           Show second

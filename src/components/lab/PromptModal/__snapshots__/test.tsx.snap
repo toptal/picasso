@@ -57,24 +57,24 @@ exports[`renders PromptModal 1`] = `
           class="ModalActions-root"
         >
           <button
-            class="MuiButtonBase-root Button-medium Button-flat Button-root"
+            class="MuiButtonBase-root makeStyles-medium makeStyles-flat makeStyles-root"
             tabindex="0"
             type="button"
           >
             <span
-              class="Container-flex Container-inline Button-content"
+              class="Container-flex Container-inline makeStyles-content"
               style="align-items: center;"
             >
               Cancel
             </span>
           </button>
           <button
-            class="MuiButtonBase-root Button-medium Button-primaryGreen Button-root"
+            class="MuiButtonBase-root makeStyles-medium makeStyles-primaryGreen makeStyles-root"
             tabindex="0"
             type="button"
           >
             <span
-              class="Container-flex Container-inline Button-content"
+              class="Container-flex Container-inline makeStyles-content"
               style="align-items: center;"
             >
               Submit
@@ -100,12 +100,12 @@ exports[`showPrompt opens and closes modal on Submit action 1`] = `
       class="Picasso-root"
     >
       <button
-        class="MuiButtonBase-root Button-medium Button-primaryBlue Button-root"
+        class="MuiButtonBase-root makeStyles-medium makeStyles-primaryBlue makeStyles-root"
         tabindex="0"
         type="button"
       >
         <span
-          class="Container-flex Container-inline Button-content"
+          class="Container-flex Container-inline makeStyles-content"
           style="align-items: center;"
         >
           Show
@@ -127,12 +127,12 @@ exports[`showPrompt opens and closes modal on Submit action 2`] = `
     >
       <button
         aria-hidden="true"
-        class="MuiButtonBase-root Button-medium Button-primaryBlue Button-root"
+        class="MuiButtonBase-root makeStyles-medium makeStyles-primaryBlue makeStyles-root"
         tabindex="0"
         type="button"
       >
         <span
-          class="Container-flex Container-inline Button-content"
+          class="Container-flex Container-inline makeStyles-content"
           style="align-items: center;"
         >
           Show
@@ -184,24 +184,24 @@ exports[`showPrompt opens and closes modal on Submit action 2`] = `
               class="ModalActions-root"
             >
               <button
-                class="MuiButtonBase-root Button-medium Button-flat Button-root"
+                class="MuiButtonBase-root makeStyles-medium makeStyles-flat makeStyles-root"
                 tabindex="0"
                 type="button"
               >
                 <span
-                  class="Container-flex Container-inline Button-content"
+                  class="Container-flex Container-inline makeStyles-content"
                   style="align-items: center;"
                 >
                   Cancel
                 </span>
               </button>
               <button
-                class="MuiButtonBase-root Button-medium Button-primaryGreen Button-root"
+                class="MuiButtonBase-root makeStyles-medium makeStyles-primaryGreen makeStyles-root"
                 tabindex="0"
                 type="button"
               >
                 <span
-                  class="Container-flex Container-inline Button-content"
+                  class="Container-flex Container-inline makeStyles-content"
                   style="align-items: center;"
                 >
                   Submit
@@ -241,12 +241,12 @@ exports[`showPrompt opens and closes modal on Submit action 3`] = `
       style=""
     >
       <button
-        class="MuiButtonBase-root Button-medium Button-primaryBlue Button-root"
+        class="MuiButtonBase-root makeStyles-medium makeStyles-primaryBlue makeStyles-root"
         tabindex="0"
         type="button"
       >
         <span
-          class="Container-flex Container-inline Button-content"
+          class="Container-flex Container-inline makeStyles-content"
           style="align-items: center;"
         >
           Show
@@ -267,12 +267,12 @@ exports[`showPrompt with input returns result on Submit action  1`] = `
       style=""
     >
       <button
-        class="MuiButtonBase-root Button-medium Button-primaryBlue Button-root"
+        class="MuiButtonBase-root makeStyles-medium makeStyles-primaryBlue makeStyles-root"
         tabindex="0"
         type="button"
       >
         <span
-          class="Container-flex Container-inline Button-content"
+          class="Container-flex Container-inline makeStyles-content"
           style="align-items: center;"
         >
           Show
