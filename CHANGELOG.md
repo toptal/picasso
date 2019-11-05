@@ -1,3 +1,10 @@
+# [3.36.0](https://github.com/toptal/picasso/compare/v3.35.0...v3.36.0) (2019-11-05)
+
+
+### Features
+
+* **SidebarItem:** [FX-510] Add 'as' type definitions ([#836](https://github.com/toptal/picasso/issues/836)) ([3db4216](https://github.com/toptal/picasso/commit/3db4216))
+
 # [3.35.0](https://github.com/toptal/picasso/compare/v3.34.0...v3.35.0) (2019-11-01)
 
 

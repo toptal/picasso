@@ -16,15 +16,27 @@ import InputAdornment from '../InputAdornment';
 import OutlinedInput from '../OutlinedInput';
 import styles from './styles';
 const useStyles = makeStyles(styles);
+const hasCounter = (counter, limit) => limit || counter === 'entered';
+const getCounter = (counter, charsLength, limit) => {
+    if (counter === 'remaining') {
+        return {
+            isNegative: charsLength >= limit,
+            limitValue: limit - charsLength
+        };
+    }
+    return {
+        isNegative: false,
+        limitValue: charsLength
+    };
+};
 const LimitAdornment = (props) => {
-    const { multiline, charsLength, limit, counter } = props;
     const classes = useStyles(props);
-    const isNegative = counter === 'remaining' ? charsLength >= limit : false;
-    const value = counter === 'remaining' ? limit - charsLength : charsLength;
+    const { multiline, charsLength, counter, limit } = props;
+    const { limitValue, isNegative } = getCounter(counter, charsLength, limit);
     return (React.createElement(InputAdornment, { position: 'end', className: multiline ? classes.counterMultiline : '' },
         React.createElement("span", { className: cx(classes.counter, {
                 [classes.counterNegative]: isNegative
-            }) }, value)));
+            }) }, limitValue)));
 };
 const IconAdornment = (props) => {
     const { position, disabled, icon } = props;
@@ -44,8 +56,8 @@ const EndAdornment = (props) => {
     if (icon && iconPosition === 'end') {
         return React.createElement(IconAdornment, { disabled: disabled, position: 'end', icon: icon });
     }
-    else if (limit || counter === 'entered') {
-        return (React.createElement(LimitAdornment, { limit: limit, charsLength: charsLength, multiline: multiline, counter: counter }));
+    if (hasCounter(counter, limit)) {
+        return (React.createElement(LimitAdornment, { charsLength: charsLength, multiline: multiline, counter: counter, limit: limit }));
     }
     return null;
 };
@@ -53,7 +65,7 @@ export const Input = forwardRef(function Input(props, ref) {
     const { id, name, defaultValue, value, placeholder, error, disabled, icon, iconPosition, children, multiline, width, className, style, rows, rowsMax, type, onChange, startAdornment, endAdornment, limit, counter } = props, rest = __rest(props, ["id", "name", "defaultValue", "value", "placeholder", "error", "disabled", "icon", "iconPosition", "children", "multiline", "width", "className", "style", "rows", "rowsMax", "type", "onChange", "startAdornment", "endAdornment", "limit", "counter"]);
     const [charsLength, setCharsLength] = useState(value ? value.length : 0);
     const handleChange = e => {
-        if (limit || counter === 'entered') {
+        if (hasCounter(counter, limit)) {
             setCharsLength(e.target.value.length);
         }
         if (onChange) {

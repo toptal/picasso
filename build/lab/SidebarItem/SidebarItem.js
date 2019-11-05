@@ -10,7 +10,7 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import React, { forwardRef, Fragment, useContext } from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import cx from 'classnames';
 import Container from '../../Container';
 import Typography from '../../Typography';
@@ -19,8 +19,10 @@ import Accordion from '../../Accordion';
 import { ArrowDropDown16 } from '../../Icon';
 import { SidebarContext } from '../Sidebar';
 import styles from './styles';
-export const SidebarItem = forwardRef(function SidebarItem(_a, ref) {
-    var { children, icon, selected, collapsible, menu, disabled, classes, className, style, onClick, as } = _a, rest = __rest(_a, ["children", "icon", "selected", "collapsible", "menu", "disabled", "classes", "className", "style", "onClick", "as"]);
+const useStyles = makeStyles(styles);
+export const SidebarItem = forwardRef(function SidebarItem(props, ref) {
+    const classes = useStyles(props);
+    const { children, icon, selected, collapsible, menu, disabled, className, style, onClick, as } = props, rest = __rest(props, ["children", "icon", "selected", "collapsible", "menu", "disabled", "className", "style", "onClick", "as"]);
     const hasIcon = Boolean(icon);
     const hasMenu = Boolean(menu);
     const { variant } = useContext(SidebarContext);
@@ -61,5 +63,5 @@ SidebarItem.defaultProps = {
     selected: false
 };
 SidebarItem.displayName = 'SidebarItem';
-export default withStyles(styles)(SidebarItem);
+export default SidebarItem;
 //# sourceMappingURL=SidebarItem.js.map

@@ -1,6 +1,7 @@
 import React, { ReactNode, ChangeEvent, InputHTMLAttributes } from 'react';
 import { BaseProps } from '../Picasso';
 declare type IconPosition = 'start' | 'end';
+declare type CounterType = 'remaining' | 'entered';
 export interface Props extends BaseProps, InputHTMLAttributes<HTMLInputElement> {
     /** The id of the `input` element. */
     id?: string;
@@ -38,7 +39,7 @@ export interface Props extends BaseProps, InputHTMLAttributes<HTMLInputElement> 
     /** Adds a counter of characters */
     limit?: number;
     /** Type of the counter of characters */
-    counter?: 'remaining' | 'entered';
+    counter?: CounterType;
 }
 export declare const Input: React.ForwardRefExoticComponent<Props & React.RefAttributes<HTMLInputElement>>;
 export default Input;
