@@ -5,11 +5,11 @@ import React, {
   useContext,
   ElementType
 } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { Theme, makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { MenuItemProps } from '@material-ui/core/MenuItem'
 
-import { StandardProps } from '../../Picasso'
+import { BaseProps, OverridableComponent } from '../../Picasso'
 import Container from '../../Container'
 import Typography from '../../Typography'
 import MenuItem, { MenuItemAttributes } from '../../MenuItem/MenuItem'
@@ -19,7 +19,7 @@ import { SidebarContext } from '../Sidebar'
 import { SidebarContextProps } from '../Sidebar/types'
 import styles from './styles'
 
-export interface Props extends StandardProps, MenuItemAttributes {
+export interface Props extends BaseProps, MenuItemAttributes {
   /** Pass icon to be used as part of item */
   icon?: ReactElement
   /** Highlights the item as selected */
@@ -36,23 +36,27 @@ export interface Props extends StandardProps, MenuItemAttributes {
   as?: ElementType<MenuItemProps>
 }
 
-export const SidebarItem = forwardRef<HTMLElement, Props>(function SidebarItem(
-  {
+const useStyles = makeStyles<Theme, Props>(styles)
+
+export const SidebarItem: OverridableComponent<Props> = forwardRef<
+  HTMLElement,
+  Props
+>(function SidebarItem(props, ref) {
+  const classes = useStyles(props)
+  const {
     children,
     icon,
     selected,
     collapsible,
     menu,
     disabled,
-    classes,
     className,
     style,
     onClick,
     as,
     ...rest
-  },
-  ref
-) {
+  } = props
+
   const hasIcon = Boolean(icon)
   const hasMenu = Boolean(menu)
 
@@ -164,4 +168,4 @@ SidebarItem.defaultProps = {
 
 SidebarItem.displayName = 'SidebarItem'
 
-export default withStyles(styles)(SidebarItem)
+export default SidebarItem

@@ -1,4 +1,5 @@
 import React from 'react'
+import { BrowserRouter, Link } from 'react-router-dom'
 import { Sidebar, Logo } from '@toptal/picasso'
 import {
   Jobs16,
@@ -9,16 +10,8 @@ import {
   Billing16
 } from '@toptal/picasso/Icon'
 
-// Replace with `import { Link } from 'react-router-dom'`
-const Link = ({ to, children, ...rest }) => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  <a href={to} {...rest}>
-    {children}
-  </a>
-)
-
 const SidebarDefaultExample = () => (
-  <div>
+  <BrowserRouter>
     <Sidebar>
       <Sidebar.Logo>
         <Logo />
@@ -44,7 +37,7 @@ const SidebarDefaultExample = () => (
         </Sidebar.Item>
       </Sidebar.Menu>
     </Sidebar>
-  </div>
+  </BrowserRouter>
 )
 
 export default SidebarDefaultExample

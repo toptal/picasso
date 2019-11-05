@@ -30,7 +30,7 @@ function renderRows({ documentation, classes }: Props): JSX.Element {
           <Table.Row key={name}>
             <Table.Cell>
               <span className={classes.propName}>{name}</span>
-              <span className={classes.requiredTag}>{required ? '*' : ''}</span>
+              {required && <span className={classes.requiredTag}>*</span>}
             </Table.Cell>
             <PropTypeTableCell className={classes.typeCell} type={type} />
             <Table.Cell className={classes.defaultValueCell}>
