@@ -71,7 +71,8 @@ export default ({ palette, typography }: Theme) => {
       marginBottom: '0.75em'
     },
     content: {
-      display: 'block'
+      display: 'block',
+      marginRight: '0.8em'
     }
   }
 }
