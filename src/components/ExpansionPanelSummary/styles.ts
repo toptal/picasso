@@ -18,7 +18,7 @@ PicassoProvider.override(({ typography }: Theme) => ({
     },
     expandIcon: {
       margin: 0,
-      padding: 0,
+      padding: '0 0.5rem',
 
       '&$expanded': {
         transform: 'rotate(180deg)'

@@ -31,7 +31,6 @@ export default ({ palette, typography }: Theme) => {
   return {
     root: {
       background: 'transparent',
-
       '&:before': {
         display: 'none'
       }
@@ -53,7 +52,8 @@ export default ({ palette, typography }: Theme) => {
       }
     },
     summary: {
-      color: palette.common.black
+      color: palette.common.black,
+      alignItems: 'start'
     },
     summaryFontWeightInherit: createPropertiesStyles({
       fontWeight: 'inherit'
