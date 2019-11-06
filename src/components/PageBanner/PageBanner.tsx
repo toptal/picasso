@@ -54,6 +54,6 @@ PageBanner.defaultProps = {
   variant: 'yellow'
 }
 
-PageBanner.displayName = 'Page.Banner'
+PageBanner.displayName = 'PageBanner'
 
-export default PageBanner as typeof PageBanner
+export default PageBanner
