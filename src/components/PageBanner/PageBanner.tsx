@@ -4,31 +4,31 @@ import React, {
   HTMLAttributes,
   ReactElement
 } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { Theme, makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
-import {
-  StandardProps,
-  PicassoComponentWithRef,
-  CompoundedComponentWithRef
-} from '../Picasso'
-import Container, { VariantType as ContainerVariantType } from '../Container'
+import { BaseProps } from '../Picasso'
+import Container, { VariantType } from '../Container'
 import styles from './styles'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Children components */
   children: ReactNode
   /** Color variant of Banner */
-  variant?: ContainerVariantType
+  variant?: VariantType
   /** Add <Icon /> before Banner content  */
   icon?: ReactElement
 }
 
-// eslint-disable-next-line react/display-name
+const useStyles = makeStyles<Theme, Props>(styles)
+
 export const PageBanner = forwardRef<HTMLDivElement, Props>(function PageBanner(
-  { classes, className, style, children, variant, icon, ...rest },
+  props,
   ref
 ) {
+  const { className, style, children, variant, icon, ...rest } = props
+  const classes = useStyles(props)
+
   return (
     <Container
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -48,7 +48,7 @@ export const PageBanner = forwardRef<HTMLDivElement, Props>(function PageBanner(
       {children}
     </Container>
   )
-}) as CompoundedComponentWithRef<Props, HTMLDivElement>
+})
 
 PageBanner.defaultProps = {
   variant: 'yellow'
@@ -56,7 +56,4 @@ PageBanner.defaultProps = {
 
 PageBanner.displayName = 'Page.Banner'
 
-export default withStyles(styles)(PageBanner) as PicassoComponentWithRef<
-  Props,
-  HTMLDivElement
->
+export default PageBanner as typeof PageBanner

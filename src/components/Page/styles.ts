@@ -1,5 +1,7 @@
 import { createStyles } from '@material-ui/core/styles'
 
+import { headerHeight } from '../PageHeader/styles'
+
 export default () =>
   createStyles({
     root: {
@@ -9,6 +11,9 @@ export default () =>
 
       '& > footer, & > header': {
         flex: 0
+      },
+      '& > header + *': {
+        marginTop: headerHeight
       }
     }
   })

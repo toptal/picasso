@@ -1,11 +1,12 @@
 import React from 'react'
-import { Page, Container, Github16 } from '@toptal/picasso'
+import { Page, Container, Time16 } from '@toptal/picasso'
 
 const NotificationIconExample = () => (
-  <Container>
-    <Container bottom='small'>
-      <Page.Banner icon={<Github16 />}>Please authorize</Page.Banner>
-    </Container>
+  <Container bottom='small'>
+    <Page.Banner icon={<Time16 />}>
+      We are now in the process of reviewing your profile. After your profile
+      has been checked, we will reach to you via email about next steps.
+    </Page.Banner>
   </Container>
 )
 
