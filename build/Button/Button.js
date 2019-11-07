@@ -11,7 +11,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 import React, { forwardRef } from 'react';
 import cx from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Loader from '../Loader';
 import Container from '../Container';
@@ -22,8 +22,10 @@ const getVariantType = (variant) => {
     const [type] = variant.split('-');
     return type;
 };
-export const Button = forwardRef(function Button(_a, ref) {
-    var { icon, iconPosition, loading, children, classes, className, style, fullWidth, variant, size, focused, hovered, disabled, active, onClick, circular, title, value, type, as } = _a, rest = __rest(_a, ["icon", "iconPosition", "loading", "children", "classes", "className", "style", "fullWidth", "variant", "size", "focused", "hovered", "disabled", "active", "onClick", "circular", "title", "value", "type", "as"]);
+const useStyles = makeStyles(styles);
+export const Button = forwardRef(function Button(props, ref) {
+    const { icon, iconPosition, loading, children, className, style, fullWidth, variant, size, focused, hovered, disabled, active, onClick, circular, title, value, type, as } = props, rest = __rest(props, ["icon", "iconPosition", "loading", "children", "className", "style", "fullWidth", "variant", "size", "focused", "hovered", "disabled", "active", "onClick", "circular", "title", "value", "type", "as"]);
+    const classes = useStyles(props);
     const { icon: iconClass, iconLeft: iconLeftClass, iconRight: iconRightClass, iconSmall: iconSmallClass, root: rootClass, hidden: hiddenClass, loader: loaderClass, content: contentClass } = classes;
     let finalChildren = [children];
     if (icon) {
@@ -81,5 +83,5 @@ Button.defaultProps = {
 };
 Button.displayName = 'Button';
 Button.Group = Group;
-export default withStyles(styles)(Button);
+export default Button;
 //# sourceMappingURL=Button.js.map

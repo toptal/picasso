@@ -1,3 +1,10 @@
+## [3.36.1](https://github.com/toptal/picasso/compare/v3.36.0...v3.36.1) (2019-11-07)
+
+
+### Bug Fixes
+
+* **Button:** accept all props of the component passed in the as property ([#834](https://github.com/toptal/picasso/issues/834)) ([753b953](https://github.com/toptal/picasso/commit/753b953))
+
 # [3.36.0](https://github.com/toptal/picasso/compare/v3.35.0...v3.36.0) (2019-11-05)
 
 

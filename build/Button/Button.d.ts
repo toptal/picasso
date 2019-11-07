@@ -1,10 +1,10 @@
 import { ReactNode, ReactElement, MouseEvent, ElementType } from 'react';
 import { ButtonBaseProps } from '@material-ui/core/ButtonBase';
 import Group from '../ButtonGroup';
-import { StandardProps, PicassoComponentWithRef, SizeType, ButtonOrAnchorProps, CompoundedComponentWithRef } from '../Picasso';
+import { BaseProps, SizeType, ButtonOrAnchorProps, CompoundedComponentWithRef, OverridableComponent } from '../Picasso';
 export declare type VariantType = 'primary-blue' | 'secondary-blue' | 'primary-red' | 'secondary-red' | 'primary-green' | 'flat' | 'flat-white' | 'secondary-white' | 'transparent' | 'transparent-white' | 'transparent-blue';
 declare type IconPositionType = 'left' | 'right';
-export interface Props extends StandardProps, ButtonOrAnchorProps {
+export interface Props extends BaseProps, ButtonOrAnchorProps {
     /** Show button in the active state (left mouse button down) */
     active?: boolean;
     /** The component used for the root node. Either a string to use a DOM element or a component. */
@@ -36,12 +36,12 @@ export interface Props extends StandardProps, ButtonOrAnchorProps {
     circular?: boolean;
     /** HTML title of Button component */
     title?: string;
-    /** HTML type of Button component **/
+    /** HTML type of Button component */
     type?: 'button' | 'reset' | 'submit';
 }
 interface StaticProps {
     Group: typeof Group;
 }
 export declare const Button: CompoundedComponentWithRef<Props, HTMLButtonElement, StaticProps>;
-declare const _default: PicassoComponentWithRef<Props, HTMLButtonElement, StaticProps>;
+declare const _default: OverridableComponent<Props> & StaticProps;
 export default _default;
