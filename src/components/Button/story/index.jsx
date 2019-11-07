@@ -14,8 +14,165 @@ page
   .addComponentDocs({
     component: Button,
     additionalDocs: {
+      children: {
+        name: 'children',
+        type: 'ReactNode',
+        description: 'Content of Button component',
+        defaultValue: 'null'
+      },
+      className: {
+        name: 'className',
+        type: 'string',
+        description: 'Classnames applied to root element'
+      },
+      style: {
+        name: 'style',
+        type: 'CSSProperties',
+        description: 'Style applied to root element'
+      },
+      title: {
+        name: 'title',
+        type: 'string',
+        description: 'HTML title of Button component'
+      },
+      onClick: {
+        name: 'onClick',
+        type: {
+          name: 'function',
+          description:
+            '(event: React.MouseEvent<HTMLButtonElement & HTMLAnchorElement>) => void'
+        },
+        description: 'Callback invoked when component is clicked'
+      },
+      size: {
+        name: 'size',
+        type: {
+          name: 'enum',
+          enums: ['medium', 'large', 'small']
+        },
+        defaultValue: 'medium',
+        description: 'A button can have different sizes'
+      },
       icon: {
-        type: 'ReactElement'
+        name: 'icon',
+        type: 'ReactElement',
+        description: "Add an `<Icon />` along Button's children"
+      },
+      active: {
+        name: 'active',
+        type: 'boolean',
+        description: 'Show button in the active state (left mouse button down)',
+        defaultValue: 'false'
+      },
+      disabled: {
+        name: 'disabled',
+        type: 'boolean',
+        description: 'Disables button',
+        defaultValue: 'false'
+      },
+
+      fullWidth: {
+        name: 'fullWidth',
+        type: 'boolean',
+        description: 'Take the full width of a container',
+        defaultValue: 'false'
+      },
+      hovered: {
+        name: 'hovered',
+        type: 'boolean',
+        description: 'Set hovered style for the button',
+        defaultValue: 'false'
+      },
+      circular: {
+        name: 'circular',
+        type: 'boolean',
+        description: 'Circular style of Button component',
+        defaultValue: 'false'
+      },
+      as: {
+        name: 'as',
+        type: {
+          name: 'enum',
+          enums: [
+            '"symbol"',
+            '"abbr"',
+            '"address"',
+            '"article"',
+            '"aside"',
+            '"b"',
+            '"bdi"',
+            '"bdo"',
+            '"big"',
+            '"blockquote"',
+            '"caption"',
+            '"cite"',
+            '"code"',
+            '"dd"',
+            '"del"',
+            '"details"',
+            '"dfn"',
+            '"dt"',
+            '"em"',
+            '"figcaption"',
+            '... 95 more ...'
+          ]
+        },
+        description:
+          'The component used for the root node. Either a string to use a DOM element or a component.',
+        defaultValue: 'button'
+      },
+      iconPosition: {
+        name: 'iconPosition',
+        description: 'Icon can be positioned on the left or right',
+        type: {
+          name: 'enum',
+          enums: ['left', 'right']
+        },
+        defaultValue: 'left'
+      },
+      loading: {
+        name: 'loading',
+        type: 'boolean',
+        description: 'A button can show a loading indicator',
+        defaultValue: 'false'
+      },
+      variant: {
+        name: 'variant',
+        defaultValue: 'primary-blue',
+        description: 'The variant to use',
+        type: {
+          name: 'enum',
+          enums: [
+            'transparent',
+            'flat',
+            'primary-blue',
+            'secondary-blue',
+            'primary-red',
+            'secondary-red',
+            'primary-green',
+            'flat-white',
+            'secondary-white',
+            'transparent-white',
+            'transparent-blue'
+          ]
+        }
+      },
+      value: {
+        name: 'value',
+        description: 'HTML Value of Button component',
+        type: {
+          name: 'enum',
+          enums: ['string', 'number']
+        }
+      },
+      type: {
+        name: 'type',
+        description: 'HTML type of Button component',
+        type: {
+          name: 'enum',
+          enums: ['button', 'reset', 'submit']
+        },
+        defaultValue: 'button'
       }
     },
     name: 'Button'

@@ -6,36 +6,36 @@ exports[`useNotifications error notification render 1`] = `
     class="Picasso-root"
   >
     <button
-      class="MuiButtonBase-root Button-medium Button-primaryBlue Button-root"
+      class="MuiButtonBase-root makeStyles-medium makeStyles-primaryBlue makeStyles-root"
       tabindex="0"
       type="button"
     >
       <span
-        class="Container-flex Container-inline Button-content"
+        class="Container-flex Container-inline makeStyles-content"
         style="align-items: center;"
       >
         Show Error
       </span>
     </button>
     <button
-      class="MuiButtonBase-root Button-medium Button-primaryBlue Button-root"
+      class="MuiButtonBase-root makeStyles-medium makeStyles-primaryBlue makeStyles-root"
       tabindex="0"
       type="button"
     >
       <span
-        class="Container-flex Container-inline Button-content"
+        class="Container-flex Container-inline makeStyles-content"
         style="align-items: center;"
       >
         Show Info
       </span>
     </button>
     <button
-      class="MuiButtonBase-root Button-medium Button-primaryBlue Button-root"
+      class="MuiButtonBase-root makeStyles-medium makeStyles-primaryBlue makeStyles-root"
       tabindex="0"
       type="button"
     >
       <span
-        class="Container-flex Container-inline Button-content"
+        class="Container-flex Container-inline makeStyles-content"
         style="align-items: center;"
       >
         Show Success
@@ -74,17 +74,17 @@ exports[`useNotifications error notification render 1`] = `
             Error message
           </div>
           <button
-            class="MuiButtonBase-root Button-circular Button-medium Button-primaryBlue Button-root Notification-close"
+            class="MuiButtonBase-root makeStyles-circular makeStyles-medium makeStyles-primaryBlue makeStyles-root Notification-close"
             tabindex="0"
             title="Close Notification"
             type="button"
           >
             <span
-              class="Container-flex Container-inline Button-content"
+              class="Container-flex Container-inline makeStyles-content"
               style="align-items: center;"
             >
               <svg
-                class="SvgCloseMinor16-root Button-icon Notification-closeIcon"
+                class="SvgCloseMinor16-root makeStyles-icon Notification-closeIcon"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
               >
@@ -107,36 +107,36 @@ exports[`useNotifications info notification render 1`] = `
     class="Picasso-root"
   >
     <button
-      class="MuiButtonBase-root Button-medium Button-primaryBlue Button-root"
+      class="MuiButtonBase-root makeStyles-medium makeStyles-primaryBlue makeStyles-root"
       tabindex="0"
       type="button"
     >
       <span
-        class="Container-flex Container-inline Button-content"
+        class="Container-flex Container-inline makeStyles-content"
         style="align-items: center;"
       >
         Show Error
       </span>
     </button>
     <button
-      class="MuiButtonBase-root Button-medium Button-primaryBlue Button-root"
+      class="MuiButtonBase-root makeStyles-medium makeStyles-primaryBlue makeStyles-root"
       tabindex="0"
       type="button"
     >
       <span
-        class="Container-flex Container-inline Button-content"
+        class="Container-flex Container-inline makeStyles-content"
         style="align-items: center;"
       >
         Show Info
       </span>
     </button>
     <button
-      class="MuiButtonBase-root Button-medium Button-primaryBlue Button-root"
+      class="MuiButtonBase-root makeStyles-medium makeStyles-primaryBlue makeStyles-root"
       tabindex="0"
       type="button"
     >
       <span
-        class="Container-flex Container-inline Button-content"
+        class="Container-flex Container-inline makeStyles-content"
         style="align-items: center;"
       >
         Show Success
@@ -175,17 +175,17 @@ exports[`useNotifications info notification render 1`] = `
             Info message
           </div>
           <button
-            class="MuiButtonBase-root Button-circular Button-medium Button-primaryBlue Button-root Notification-close"
+            class="MuiButtonBase-root makeStyles-circular makeStyles-medium makeStyles-primaryBlue makeStyles-root Notification-close"
             tabindex="0"
             title="Close Notification"
             type="button"
           >
             <span
-              class="Container-flex Container-inline Button-content"
+              class="Container-flex Container-inline makeStyles-content"
               style="align-items: center;"
             >
               <svg
-                class="SvgCloseMinor16-root Button-icon Notification-closeIcon"
+                class="SvgCloseMinor16-root makeStyles-icon Notification-closeIcon"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
               >
@@ -208,36 +208,36 @@ exports[`useNotifications success notification render 1`] = `
     class="Picasso-root"
   >
     <button
-      class="MuiButtonBase-root Button-medium Button-primaryBlue Button-root"
+      class="MuiButtonBase-root makeStyles-medium makeStyles-primaryBlue makeStyles-root"
       tabindex="0"
       type="button"
     >
       <span
-        class="Container-flex Container-inline Button-content"
+        class="Container-flex Container-inline makeStyles-content"
         style="align-items: center;"
       >
         Show Error
       </span>
     </button>
     <button
-      class="MuiButtonBase-root Button-medium Button-primaryBlue Button-root"
+      class="MuiButtonBase-root makeStyles-medium makeStyles-primaryBlue makeStyles-root"
       tabindex="0"
       type="button"
     >
       <span
-        class="Container-flex Container-inline Button-content"
+        class="Container-flex Container-inline makeStyles-content"
         style="align-items: center;"
       >
         Show Info
       </span>
     </button>
     <button
-      class="MuiButtonBase-root Button-medium Button-primaryBlue Button-root"
+      class="MuiButtonBase-root makeStyles-medium makeStyles-primaryBlue makeStyles-root"
       tabindex="0"
       type="button"
     >
       <span
-        class="Container-flex Container-inline Button-content"
+        class="Container-flex Container-inline makeStyles-content"
         style="align-items: center;"
       >
         Show Success
@@ -276,17 +276,17 @@ exports[`useNotifications success notification render 1`] = `
             Success message
           </div>
           <button
-            class="MuiButtonBase-root Button-circular Button-medium Button-primaryBlue Button-root Notification-close"
+            class="MuiButtonBase-root makeStyles-circular makeStyles-medium makeStyles-primaryBlue makeStyles-root Notification-close"
             tabindex="0"
             title="Close Notification"
             type="button"
           >
             <span
-              class="Container-flex Container-inline Button-content"
+              class="Container-flex Container-inline makeStyles-content"
               style="align-items: center;"
             >
               <svg
-                class="SvgCloseMinor16-root Button-icon Notification-closeIcon"
+                class="SvgCloseMinor16-root makeStyles-icon Notification-closeIcon"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
               >

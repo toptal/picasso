@@ -28,12 +28,12 @@ exports[`Helpbox default render 1`] = `
         style="align-items: center;"
       >
         <button
-          class="MuiButtonBase-root Button-medium Button-primaryBlue Button-root"
+          class="MuiButtonBase-root makeStyles-medium makeStyles-primaryBlue makeStyles-root"
           tabindex="0"
           type="button"
         >
           <span
-            class="Container-flex Container-inline Button-content"
+            class="Container-flex Container-inline makeStyles-content"
             style="align-items: center;"
           >
             Button
