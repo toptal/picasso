@@ -51,7 +51,9 @@ export default ({ palette }: Theme) =>
     },
     expandIcon: {
       margin: '0.8em',
-      fontSize: '0.6em'
+      fontSize: '0.6em',
+      marginTop: '0.97em',
+      marginBottom: '0.97em'
     },
     lightExpandIcon: {
       color: palette.grey.dark

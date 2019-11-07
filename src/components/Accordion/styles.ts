@@ -60,7 +60,10 @@ export default ({ palette, typography }: Theme) => {
     }),
     expandIcon: {
       fontSize: '0.7em',
-      color: palette.primary.main
+      color: palette.primary.main,
+      margin: '0.126em',
+      marginLeft: 0,
+      marginRight: 0
     },
     details: {
       padding: 0,
@@ -71,8 +74,8 @@ export default ({ palette, typography }: Theme) => {
       marginBottom: '0.75em'
     },
     content: {
-      display: 'block',
-      marginRight: '0.8em'
+      display: 'block'
+      // marginRight: '0.8em'
     }
   }
 }
