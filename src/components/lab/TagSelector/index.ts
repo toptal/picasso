@@ -1,2 +1,2 @@
 export { default } from './TagSelector'
-export * from './types'
+export * from './TagSelector'

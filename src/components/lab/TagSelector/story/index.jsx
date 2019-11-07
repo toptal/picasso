@@ -4,7 +4,7 @@ import { TagSelector } from '../TagSelector'
 
 const page = PicassoBook.createPage(
   'TagSelector',
-  'Input that allows multiselection from a list of available options with autocomplete. You can add new options too.',
+  'Input that allows multiselection from a list of available options with autocomplete. Based on Autocomplete component.',
   'Lab'
 )
 
@@ -14,13 +14,60 @@ page
 
 page
   .createChapter()
-  .addExample('lab/TagSelector/story/Default.example.jsx', 'Default')
+  .addExample('lab/TagSelector/story/Default.example.jsx', 'Default', {
+    effect: async (page, makeScreenshot) => {
+      await page.click('[role="combobox"]')
+      await makeScreenshot({
+        selector: '[role="menu"]'
+      })
+
+      await page.keyboard.press('Enter')
+      await page.waitFor(100)
+      await makeScreenshot({
+        selector: '[role="combobox"]'
+      })
+
+      await page.click('[aria-label="delete icon"]')
+      await page.waitFor(100)
+      await makeScreenshot({
+        selector: '[role="combobox"]'
+      })
+
+      await page.type('input', 'test')
+      await page.waitFor(100)
+      await makeScreenshot({
+        selector: '[role="combobox"]'
+      })
+      await makeScreenshot({
+        selector: '[role="menu"]'
+      })
+    }
+  })
+  .addExample('lab/TagSelector/story/OtherOption.example.jsx', 'Other option', {
+    effect: async (page, makeScreenshot) => {
+      await page.click('[role="combobox"]')
+      await makeScreenshot({
+        selector: '[role="menu"]'
+      })
+
+      await page.type('input', 'test')
+      await page.waitFor(100)
+      await makeScreenshot({
+        selector: '[role="combobox"]'
+      })
+      await makeScreenshot({
+        selector: '[role="menu"]'
+      })
+
+      await page.click('[role="option"]')
+      await page.waitFor(100)
+      await makeScreenshot({
+        selector: '[role="combobox"]'
+      })
+    }
+  })
   .addExample(
-    'lab/TagSelector/story/SingleDefaultSelection.example.jsx',
-    'Single Default selection'
-  )
-  .addExample(
-    'lab/TagSelector/story/MultilineDefaultSelection.example.jsx',
-    'Multiline Default selection'
+    'lab/TagSelector/story/InitialSetValue.example.jsx',
+    'Initially set value'
   )
   .addExample('lab/TagSelector/story/Loading.example.jsx', 'Loading')

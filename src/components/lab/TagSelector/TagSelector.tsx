@@ -14,8 +14,15 @@ import Label from '../../Label'
 import Autocomplete, { Item as AutocompleteItem } from '../Autocomplete'
 import TagSelectorInput from '../TagSelectorInput'
 import { Props as InputProps } from '../../Input'
-import { Item } from './types'
 import styles from './styles'
+
+export interface Item extends AutocompleteItem {
+  value: string
+  text: string
+}
+
+const isIncluded = (items: Item[], item: Item) =>
+  items.some(({ value }) => value === item.value)
 
 export interface Props
   extends StandardProps,
@@ -24,10 +31,12 @@ export interface Props
   placeholder?: string
   /** Shows the loading icon when options are loading */
   loading?: boolean
-  /** Text prefix for new option */
-  newOptionLabel?: string
-  /**  Callback invoked when new option selected */
-  onNewOptionSelect?: (item: Item) => void
+  /** Text prefix for other option */
+  otherOptionLabel?: string
+  /**  Callback invoked when other option selected */
+  onOtherOptionSelect?: (item: Item) => void
+  /** Allow to show the other option in the list of options */
+  showOtherOption?: boolean
   /** List of options with unique labels */
   options?: Item[]
   /** The list of values of the selected options, required for a controlled component. */
@@ -52,8 +61,9 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       loading,
       placeholder,
       options = [],
-      newOptionLabel,
-      onNewOptionSelect,
+      otherOptionLabel,
+      onOtherOptionSelect,
+      showOtherOption,
       value: values = [],
       getDisplayValue,
       onChange,
@@ -104,21 +114,18 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       inputValue: string
     ) => {
       const hasSelection = values.length
-      const hasInputValue = inputValue
       const isDeleting = event.key === 'Backspace'
 
-      if (hasSelection && !hasInputValue && isDeleting) {
+      if (hasSelection && !inputValue && isDeleting) {
         handleDelete(values[values.length - 1])
       }
     }
 
-    const handleChange = (value: string) => {
-      onInputChange!(value)
-    }
+    const handleSelect = (autocompleteItem: AutocompleteItem) => {
+      const item = autocompleteItem as Item
 
-    const handleSelect = (item: AutocompleteItem) => {
-      if (!values.some(value => value.value === item.value)) {
-        onChange!([...values, item as Item])
+      if (!isIncluded(values, item)) {
+        onChange!([...values, item])
       }
 
       onInputChange!('')
@@ -127,17 +134,22 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
     const handleOtherOptionSelect = (item: AutocompleteItem) => {
       const itemText = getDisplayValue!(item)
 
-      onNewOptionSelect!(item as Item)
+      const newOption = {
+        value: itemText,
+        text: itemText
+      } as Item
 
-      if (!values.some(value => value.value === itemText)) {
-        onChange!([...values, { value: itemText, text: itemText }])
+      onOtherOptionSelect!(newOption)
+
+      if (!isIncluded(values, newOption)) {
+        onChange!([...values, newOption])
       }
 
       onInputChange!('')
     }
 
     const autocompleteOptions: AutocompleteItem[] = options.filter(
-      item => !values.some(value => value.value === item.value)
+      option => !isIncluded(values, option)
     )
 
     const labels = (
@@ -160,14 +172,14 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         value={inputValue}
         onSelect={handleSelect}
         onOtherOptionSelect={handleOtherOptionSelect}
-        onChange={handleChange}
+        onChange={onInputChange}
         onKeyDown={handleKeyDown}
         startAdornment={labels}
         loading={loading}
         inputComponent={TagSelectorInput as ComponentType<InputProps>}
         width={width}
-        showOtherOption
-        otherOptionText={newOptionLabel}
+        showOtherOption={showOtherOption}
+        otherOptionText={otherOptionLabel}
         enableAutofill={enableAutofill}
         getDisplayValue={getDisplayValue}
       />
@@ -178,12 +190,13 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
 TagSelector.defaultProps = {
   enableAutofill: false,
   loading: false,
-  newOptionLabel: 'Add new option: ',
   onChange: () => {},
   onInputChange: () => {},
-  onNewOptionSelect: () => {},
+  onOtherOptionSelect: () => {},
   options: [],
-  placeholder: ''
+  otherOptionLabel: 'Add new option: ',
+  placeholder: '',
+  showOtherOption: false
 }
 
 TagSelector.displayName = 'TagSelector'
