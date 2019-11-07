@@ -45,7 +45,11 @@ const ModalDialog = ({ modalId, hideModal, size }) => (
       </Form.Field>
     </Modal.Content>
     <Modal.Actions>
-      <Button variant='flat' onClick={() => hideModal(modalId)}>
+      <Button
+        data-testid='cancel'
+        variant='flat'
+        onClick={() => hideModal(modalId)}
+      >
         Cancel
       </Button>
       <Button onClick={() => hideModal(modalId)} variant='primary-green'>
@@ -55,7 +59,7 @@ const ModalDialog = ({ modalId, hideModal, size }) => (
   </Modal>
 )
 
-const ModalDefaultExample = () => {
+const ModalSizesExample = () => {
   const { showModal, hideModal } = useModals()
 
   const handleSmallClick = () => {
@@ -79,12 +83,18 @@ const ModalDefaultExample = () => {
   return (
     <div id='modal-container-sizes' style={{ width: '800px', height: '50px' }}>
       <Container flex>
-        <Button onClick={handleSmallClick}>Open small</Button>
-        <Button onClick={handleMediumClick}>Open medium (default)</Button>
-        <Button onClick={handleLargeClick}>Open large</Button>
+        <Button onClick={handleSmallClick} data-testid='trigger-small'>
+          Open small
+        </Button>
+        <Button onClick={handleMediumClick} data-testid='trigger-medium'>
+          Open medium (default)
+        </Button>
+        <Button onClick={handleLargeClick} data-testid='trigger-large'>
+          Open large
+        </Button>
       </Container>
     </div>
   )
 }
 
-export default ModalDefaultExample
+export default ModalSizesExample

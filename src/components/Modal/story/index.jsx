@@ -50,7 +50,37 @@ component and manage the internal state there.
       }
     }
   )
-  .addExample('Modal/story/Sizes.example.jsx', 'Sizes') // picasso-skip-visuals
-  .addExample('Modal/story/MaxHeight.example.jsx', {
-    title: 'Max Height'
-  }) // picasso-skip-visuals
+  .addExample('Modal/story/Sizes.example.jsx', 'Sizes', {
+    effect: async (page, makeScreenshot) => {
+      await page.click('[data-testid="trigger-small"]')
+      await page.waitFor('[data-testid="cancel"]')
+      await makeScreenshot({
+        isFullScreen: true
+      })
+
+      await page.click('[data-testid="cancel"]')
+
+      await page.click('[data-testid="trigger-medium"]')
+      await page.waitFor('[data-testid="cancel"]')
+      await makeScreenshot({
+        isFullScreen: true
+      })
+
+      await page.click('[data-testid="cancel"]')
+
+      await page.click('[data-testid="trigger-large"]')
+      await page.waitFor('[data-testid="cancel"]')
+      await makeScreenshot({
+        isFullScreen: true
+      })
+    }
+  })
+  .addExample('Modal/story/MaxHeight.example.jsx', 'Max Height', {
+    effect: async (page, makeScreenshot) => {
+      await page.click('[data-testid="trigger"]')
+      await page.waitFor('[data-testid="cancel"]')
+      await makeScreenshot({
+        isFullScreen: true
+      })
+    }
+  })
