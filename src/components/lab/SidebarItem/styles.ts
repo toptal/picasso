@@ -50,10 +50,8 @@ export default ({ palette }: Theme) =>
       fontSize: 'inherit'
     },
     expandIcon: {
-      margin: '0.8em',
-      fontSize: '0.6em',
-      marginTop: '0.97em',
-      marginBottom: '0.97em'
+      margin: '0.97em 0.8em',
+      fontSize: '0.6em'
     },
     lightExpandIcon: {
       color: palette.grey.dark
