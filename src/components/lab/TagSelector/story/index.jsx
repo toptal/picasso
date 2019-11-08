@@ -18,52 +18,37 @@ page
     effect: async (page, makeScreenshot) => {
       await page.click('[role="combobox"]')
       await makeScreenshot({
-        selector: '[role="menu"]'
+        isFullScreen: true
       })
 
       await page.keyboard.press('Enter')
-      await page.waitFor(100)
-      await makeScreenshot({
-        selector: '[role="combobox"]'
-      })
+      await page.waitFor(50)
+      await makeScreenshot()
 
       await page.click('[aria-label="delete icon"]')
       await page.waitFor(100)
-      await makeScreenshot({
-        selector: '[role="combobox"]'
-      })
+      await makeScreenshot()
 
       await page.type('input', 'test')
-      await page.waitFor(100)
+      await page.waitFor(50)
       await makeScreenshot({
-        selector: '[role="combobox"]'
-      })
-      await makeScreenshot({
-        selector: '[role="menu"]'
+        isFullScreen: true
       })
     }
   })
   .addExample('lab/TagSelector/story/OtherOption.example.jsx', 'Other option', {
     effect: async (page, makeScreenshot) => {
       await page.click('[role="combobox"]')
-      await makeScreenshot({
-        selector: '[role="menu"]'
-      })
 
       await page.type('input', 'test')
-      await page.waitFor(100)
+      await page.waitFor(50)
       await makeScreenshot({
-        selector: '[role="combobox"]'
-      })
-      await makeScreenshot({
-        selector: '[role="menu"]'
+        isFullScreen: true
       })
 
       await page.click('[role="option"]')
-      await page.waitFor(100)
-      await makeScreenshot({
-        selector: '[role="combobox"]'
-      })
+      await page.waitFor(50)
+      await makeScreenshot()
     }
   })
   .addExample(
