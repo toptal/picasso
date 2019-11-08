@@ -1,6 +1,6 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
-import { createPropertiesStyles, rem } from '../styles'
+import { createPropertiesStyles } from '../styles'
 import { PicassoProvider } from '../Picasso'
 
 PicassoProvider.override(() => ({
@@ -60,7 +60,7 @@ export default ({ palette, typography }: Theme) => {
     }),
     expandIcon: {
       fontSize: '0.7em',
-      color: palette.primary.main,
+      color: palette.grey.dark,
       transition: 'transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms'
     },
     expandIconExpanded: {
@@ -69,10 +69,8 @@ export default ({ palette, typography }: Theme) => {
     expandIconAlignTop: {
       display: 'flex',
       alignItems: 'center',
-      height: rem('24px'),
-      alignSelf: 'flex-start',
-      // to keep the same size of the icon
-      fontSize: '1.7142857142857142rem'
+      height: '1.5em',
+      alignSelf: 'flex-start'
     },
     details: {
       padding: 0,
@@ -86,7 +84,8 @@ export default ({ palette, typography }: Theme) => {
       display: 'flex',
       flexDirection: 'row',
       alignItems: 'center',
-      justifyContent: 'space-between'
+      justifyContent: 'space-between',
+      lineHeight: '1.5em'
     }
   })
 }

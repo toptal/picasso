@@ -54,7 +54,8 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
   {
     children,
     content,
-    expanded: defaultExpanded,
+    expanded,
+    defaultExpanded,
     expandIcon,
     bordered,
     disabled,
@@ -66,17 +67,17 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
   },
   ref
 ) {
-  const [expanded, setExpanded] = useState(defaultExpanded)
+  const [summaryExpanded, setSummaryExpanded] = useState(defaultExpanded)
   const [prevExpanded, setPrevExpanded] = useState(defaultExpanded)
 
   // getDerivedStateFromProps implementation to allow expanded to be controlled
-  if (defaultExpanded !== prevExpanded) {
-    setExpanded(defaultExpanded)
-    setPrevExpanded(defaultExpanded)
+  if (expanded !== undefined && expanded !== prevExpanded) {
+    setSummaryExpanded(expanded)
+    setPrevExpanded(expanded)
   }
 
   const handleSummaryClick = () => {
-    setExpanded(expanded => !expanded)
+    setSummaryExpanded(expanded => !expanded)
   }
 
   return (
@@ -90,7 +91,7 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
       className={className}
       style={style}
       elevation={0}
-      expanded={expanded}
+      expanded={summaryExpanded}
       disabled={disabled}
       onChange={onChange}
     >
@@ -108,14 +109,14 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
             decorateWithExpandIconClasses(
               expandIcon,
               cx(classes.expandIcon, {
-                [classes.expandIconExpanded]: expanded
+                [classes.expandIconExpanded]: summaryExpanded
               })
             )
           ) : (
             <div className={classes.expandIconAlignTop}>
               <ArrowDownMinor16
                 className={cx(classes.expandIcon, {
-                  [classes.expandIconExpanded]: expanded
+                  [classes.expandIconExpanded]: summaryExpanded
                 })}
               />
             </div>

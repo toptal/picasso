@@ -6,11 +6,11 @@ PicassoProvider.override(({ typography }: Theme) => ({
   MuiExpansionPanelSummary: {
     root: {
       fontSize: '1em',
-      padding: '0.625em 0 0.5em',
+      padding: '0.5625em 0 0.5625em',
       fontWeight: typography.fontWeights.semibold,
-      minHeight: '2.45em',
+      minHeight: 'auto',
       '&$expanded': {
-        minHeight: '2.45em'
+        minHeight: 'auto'
       },
       '&$disabled': {
         opacity: 1
