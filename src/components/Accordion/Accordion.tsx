@@ -42,6 +42,14 @@ const EmptyExpansionPanelSummary = ({ expanded }: { expanded?: boolean }) => (
   <div />
 )
 
+const decorateWithExpandIconClasses = (
+  expandIcon: ReactElement,
+  classes: string
+) =>
+  React.cloneElement(expandIcon, {
+    className: cx(expandIcon.props.className, classes)
+  })
+
 export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
   {
     children,
@@ -59,6 +67,14 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
   ref
 ) {
   const [expanded, setExpanded] = useState(defaultExpanded)
+  const [prevExpanded, setPrevExpanded] = useState(defaultExpanded)
+
+  // getDerivedStateFromProps implementation to allow expanded to be controlled
+  if (defaultExpanded !== prevExpanded) {
+    setExpanded(defaultExpanded)
+    setPrevExpanded(defaultExpanded)
+  }
+
   const handleSummaryClick = () => {
     setExpanded(expanded => !expanded)
   }
@@ -89,11 +105,12 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
         >
           {children}
           {expandIcon ? (
-            React.cloneElement(expandIcon, {
-              className: cx(classes.expandIcon, expandIcon.props.className, {
+            decorateWithExpandIconClasses(
+              expandIcon,
+              cx(classes.expandIcon, {
                 [classes.expandIconExpanded]: expanded
               })
-            })
+            )
           ) : (
             <div className={classes.expandIconAlignTop}>
               <ArrowDownMinor16
