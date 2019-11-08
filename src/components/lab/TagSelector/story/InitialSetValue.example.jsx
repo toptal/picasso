@@ -25,13 +25,12 @@ const filterOptions = value =>
 
 const TagSelectorDefaultExample = () => {
   const [options, setOptions] = useState(allOptions)
-  const [value, setValue] = useState([])
+  const [value, setValue] = useState(allOptions.slice(0, 3))
   const [inputValue, setInputValue] = useState(EMPTY_INPUT_VALUE)
 
   return (
     <div>
       <TagSelector
-        data-testid='component'
         options={options}
         placeholder='Start typing...'
         value={value}

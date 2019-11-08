@@ -31,7 +31,6 @@ const TagSelectorDefaultExample = () => {
   return (
     <div>
       <TagSelector
-        data-testid='component'
         options={options}
         placeholder='Start typing...'
         value={value}
@@ -46,6 +45,10 @@ const TagSelectorDefaultExample = () => {
           setInputValue(inputValue)
           setOptions(filterOptions(inputValue))
         }}
+        showOtherOption
+        onOtherOptionSelect={item =>
+          console.log('onOtherOptionSelect returns item object:', item)
+        }
       />
     </div>
   )

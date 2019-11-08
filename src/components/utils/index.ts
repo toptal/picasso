@@ -8,12 +8,6 @@ export {
   useScreens
 } from '../Picasso/config/breakpoints'
 
-export {
-  default as useControlledAndUncontrolledState
-} from './use-controlled-and-uncontrolled-state'
-export {
-  default as useControlledAndUncontrolledInput
-} from './use-controlled-and-uncontrolled-input'
 export { default as useWidthOf } from './use-width-of'
 export { default as useCombinedRefs } from './use-combined-refs'
 
