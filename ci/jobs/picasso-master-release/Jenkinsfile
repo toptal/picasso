@@ -128,8 +128,8 @@ pipeline {
       steps {
         info "== Deploying docs"
         script {
-          downStreamBuilds[1] = buildWithParameters(
-            jobName: "picasso-docs",
+          downStreamBuilds[1] = build(
+            job: "picasso-docs",
             propagate: false,
             wait: true
           )
