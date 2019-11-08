@@ -70,7 +70,9 @@ export default ({ palette, typography }: Theme) => {
       display: 'flex',
       alignItems: 'center',
       height: rem('24px'),
-      alignSelf: 'flex-start'
+      alignSelf: 'flex-start',
+      // to keep the same size of the icon
+      fontSize: '1.7142857142857142rem'
     },
     details: {
       padding: 0,

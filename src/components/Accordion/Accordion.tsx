@@ -90,7 +90,7 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
           {children}
           {expandIcon ? (
             React.cloneElement(expandIcon, {
-              className: cx(expandIcon.props.className, {
+              className: cx(classes.expandIcon, expandIcon.props.className, {
                 [classes.expandIconExpanded]: expanded
               })
             })
