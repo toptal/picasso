@@ -131,10 +131,7 @@ pipeline {
           downStreamBuilds[1] = buildWithParameters(
             jobName: "picasso-docs",
             propagate: false,
-            wait: true,
-            parameters: [
-              CI_NODE_INDEX: "0"
-            ]
+            wait: true
           )
         }
       }
