@@ -21,16 +21,8 @@ exports[`controlled version should render collapsed version 1`] = `
           <div>
             Fryderyk Chopin
           </div>
-        </div>
-        <div
-          aria-disabled="false"
-          aria-hidden="true"
-          class="MuiButtonBase-root MuiIconButton-root MuiExpansionPanelSummary-expandIcon MuiIconButton-edgeEnd"
-          role="button"
-          tabindex="-1"
-        >
-          <span
-            class="MuiIconButton-label"
+          <div
+            class="Accordion-expandIconAlignTop"
           >
             <svg
               class="SvgArrowDownMinor16-root Accordion-expandIcon"
@@ -41,7 +33,7 @@ exports[`controlled version should render collapsed version 1`] = `
                 d="M11.997 5.29l.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4z"
               />
             </svg>
-          </span>
+          </div>
         </div>
       </div>
       <div
@@ -94,19 +86,11 @@ exports[`controlled version should render expanded version 1`] = `
           <div>
             Fryderyk Chopin
           </div>
-        </div>
-        <div
-          aria-disabled="false"
-          aria-hidden="true"
-          class="MuiButtonBase-root MuiIconButton-root MuiExpansionPanelSummary-expandIcon Mui-expanded MuiIconButton-edgeEnd"
-          role="button"
-          tabindex="-1"
-        >
-          <span
-            class="MuiIconButton-label"
+          <div
+            class="Accordion-expandIconAlignTop"
           >
             <svg
-              class="SvgArrowDownMinor16-root Accordion-expandIcon"
+              class="SvgArrowDownMinor16-root Accordion-expandIcon Accordion-expandIconExpanded"
               style="min-width: 16px; min-height: 16px;"
               viewBox="0 0 16 16"
             >
@@ -114,7 +98,7 @@ exports[`controlled version should render expanded version 1`] = `
                 d="M11.997 5.29l.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4z"
               />
             </svg>
-          </span>
+          </div>
         </div>
       </div>
       <div
@@ -167,16 +151,8 @@ exports[`default version for sections should render default version 1`] = `
           <div>
             Fryderyk Chopin
           </div>
-        </div>
-        <div
-          aria-disabled="false"
-          aria-hidden="true"
-          class="MuiButtonBase-root MuiIconButton-root MuiExpansionPanelSummary-expandIcon MuiIconButton-edgeEnd"
-          role="button"
-          tabindex="-1"
-        >
-          <span
-            class="MuiIconButton-label"
+          <div
+            class="Accordion-expandIconAlignTop"
           >
             <svg
               class="SvgArrowDownMinor16-root Accordion-expandIcon"
@@ -187,7 +163,7 @@ exports[`default version for sections should render default version 1`] = `
                 d="M11.997 5.29l.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4z"
               />
             </svg>
-          </span>
+          </div>
         </div>
       </div>
       <div
@@ -240,19 +216,11 @@ exports[`default version for sections should render expanded version after click
           <div>
             Fryderyk Chopin
           </div>
-        </div>
-        <div
-          aria-disabled="false"
-          aria-hidden="true"
-          class="MuiButtonBase-root MuiIconButton-root MuiExpansionPanelSummary-expandIcon Mui-expanded MuiIconButton-edgeEnd"
-          role="button"
-          tabindex="-1"
-        >
-          <span
-            class="MuiIconButton-label"
+          <div
+            class="Accordion-expandIconAlignTop"
           >
             <svg
-              class="SvgArrowDownMinor16-root Accordion-expandIcon"
+              class="SvgArrowDownMinor16-root Accordion-expandIcon Accordion-expandIconExpanded"
               style="min-width: 16px; min-height: 16px;"
               viewBox="0 0 16 16"
             >
@@ -260,7 +228,7 @@ exports[`default version for sections should render expanded version after click
                 d="M11.997 5.29l.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4z"
               />
             </svg>
-          </span>
+          </div>
         </div>
       </div>
       <div
