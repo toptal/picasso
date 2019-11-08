@@ -41,7 +41,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
             </div>
           </li>
           <svg
-            class="SvgArrowDropDown16-root makeStyles-expandIcon"
+            class="SvgArrowDropDown16-root Accordion-expandIcon makeStyles-expandIcon"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
@@ -298,7 +298,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
             </div>
           </li>
           <svg
-            class="SvgArrowDropDown16-root makeStyles-expandIcon"
+            class="SvgArrowDropDown16-root Accordion-expandIcon makeStyles-expandIcon"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
