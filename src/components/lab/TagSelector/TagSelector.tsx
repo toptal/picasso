@@ -3,48 +3,48 @@ import React, {
   Fragment,
   forwardRef,
   useRef,
-  useState,
   ComponentType,
   InputHTMLAttributes
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
-import { useCombinedRefs, isSubstring } from '../../utils'
+import { useCombinedRefs } from '../../utils'
 import { StandardProps } from '../../Picasso'
 import Label from '../../Label'
 import Autocomplete, { Item as AutocompleteItem } from '../Autocomplete'
-import styles from './styles'
 import TagSelectorInput from '../TagSelectorInput'
 import { Props as InputProps } from '../../Input'
-import useControlledAndUncontrolledState from '../../utils/use-controlled-and-uncontrolled-state'
-import useControlledAndUncontrolledInput from '../../utils/use-controlled-and-uncontrolled-input'
+import styles from './styles'
 
-interface Item extends AutocompleteItem {
+export interface Item extends AutocompleteItem {
   value: string
   text: string
 }
 
-type SelectedValuesStateTuple = [string[], ((value: string[]) => void)]
+const isIncluded = (items: Item[], item: Item) =>
+  items.some(({ value }) => value === item.value)
 
 export interface Props
   extends StandardProps,
-    Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
+    Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'> {
   /** Placeholder for value */
   placeholder?: string
   /** Shows the loading icon when options are loading */
   loading?: boolean
-  /** Text prefix for new option */
-  newOptionLabel?: string
+  /** Text prefix for other option */
+  otherOptionLabel?: string
+  /**  Callback invoked when other option selected */
+  onOtherOptionSelect?: (item: Item) => void
+  /** Allow to show the other option in the list of options */
+  showOtherOption?: boolean
   /** List of options with unique labels */
   options?: Item[]
-  /** The list of default selected option values. Use when the component is not controlled. */
-  defaultValue?: string[]
   /** The list of values of the selected options, required for a controlled component. */
-  value?: string[]
+  value?: Item[]
+  /** A function that takes a display value from the option item */
+  getDisplayValue?: (item: AutocompleteItem | null) => string
   /**  Callback invoked when selection changes */
-  onChange?: (value: string[]) => void
-  /** The default `input` element value. Use when the component is not controlled. */
-  defaultInputValue?: string
+  onChange?: (value: Item[]) => void
   /** The value of the `input` element, required for a controlled component. */
   inputValue?: string
   /**  Callback invoked when `input` element value is changed */
@@ -55,26 +55,19 @@ export interface Props
   enableAutofill?: boolean
 }
 
-const EMPTY_INPUT_VALUE = ''
-const getDisplayValue = (item: AutocompleteItem | null) =>
-  item && item.text ? item.text : EMPTY_INPUT_VALUE
-const filterOptions = (value: string, options: AutocompleteItem[]) =>
-  value !== ''
-    ? options.filter(option => isSubstring(value, getDisplayValue(option)))
-    : options
-
 export const TagSelector = forwardRef<HTMLInputElement, Props>(
   function TagSelector(
     {
       loading,
       placeholder,
-      options: allOptions,
-      newOptionLabel,
-      defaultValue,
-      value,
+      options = [],
+      otherOptionLabel,
+      onOtherOptionSelect,
+      showOtherOption,
+      value: values = [],
+      getDisplayValue,
       onChange,
-      defaultInputValue,
-      inputValue: inputValueProp,
+      inputValue = '',
       onInputChange,
       width,
       enableAutofill,
@@ -82,20 +75,6 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
     },
     ref
   ) {
-    const [inputValue, setInputValue] = useControlledAndUncontrolledInput(
-      defaultInputValue,
-      inputValueProp,
-      onInputChange!
-    )
-    const [options, setOptions] = useState<AutocompleteItem[]>(allOptions!)
-    const [
-      selectedValues,
-      setSelectedValues
-    ] = useControlledAndUncontrolledState(defaultValue, value, onChange as (
-      value: string[] | null
-    ) => void) as SelectedValuesStateTuple
-    const [addedOptions, setAddedOptions] = React.useState<Item[]>([])
-
     const inputRef = useCombinedRefs<HTMLInputElement>(
       ref,
       useRef<HTMLInputElement>(null)
@@ -108,7 +87,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         const resizeInput = () => {
           const inputLength = inputNode.value.length
           const isInputBlank = inputLength === 0
-          const isNothingSelected = selectedValues.length === 0
+          const isNothingSelected = values.length === 0
           const isShowingPlaceholder = isInputBlank && isNothingSelected
 
           inputNode.style.width = isShowingPlaceholder
@@ -122,86 +101,64 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
           inputNode.removeEventListener('input', resizeInput)
         }
       }
-    }, [selectedValues])
+    }, [values])
 
-    const handleDelete = (value: string) => {
-      const index = selectedValues.indexOf(value)
+    const handleDelete = (value: Item) => {
+      const index = values.indexOf(value)
 
-      setSelectedValues([
-        ...selectedValues.slice(0, index),
-        ...selectedValues.slice(index + 1)
-      ])
+      onChange!([...values.slice(0, index), ...values.slice(index + 1)])
     }
 
     const handleKeyDown = (
       event: KeyboardEvent<HTMLInputElement>,
       inputValue: string
     ) => {
-      const hasSelection = selectedValues.length
-      const hasValue = inputValue
+      const hasSelection = values.length
       const isDeleting = event.key === 'Backspace'
 
-      if (hasSelection && !hasValue && isDeleting) {
-        handleDelete(selectedValues[selectedValues.length - 1])
+      if (hasSelection && !inputValue && isDeleting) {
+        handleDelete(values[values.length - 1])
       }
     }
 
-    const handleChange = (value: string) => {
-      setInputValue(value)
-      onInputChange!(value)
+    const handleSelect = (autocompleteItem: AutocompleteItem) => {
+      const item = autocompleteItem as Item
 
-      setOptions(filterOptions(value, allOptions!))
-    }
-
-    const handleSelect = (item: AutocompleteItem) => {
-      const itemValue = item.value!
-
-      if (!selectedValues.includes(itemValue)) {
-        setSelectedValues([...selectedValues, itemValue])
+      if (!isIncluded(values, item)) {
+        onChange!([...values, item])
       }
-      setInputValue('')
+
+      onInputChange!('')
     }
 
     const handleOtherOptionSelect = (item: AutocompleteItem) => {
-      const itemText = getDisplayValue(item)
+      const itemText = getDisplayValue!(item)
 
-      setAddedOptions([
-        ...addedOptions,
-        {
-          value: itemText,
-          text: itemText
-        }
-      ])
+      const newOption = {
+        value: itemText,
+        text: itemText
+      } as Item
 
-      if (!selectedValues.includes(itemText)) {
-        setSelectedValues([...selectedValues, itemText])
+      onOtherOptionSelect!(newOption)
+
+      if (!isIncluded(values, newOption)) {
+        onChange!([...values, newOption])
       }
-      setInputValue('')
+
+      onInputChange!('')
     }
 
     const autocompleteOptions: AutocompleteItem[] = options.filter(
-      item => !selectedValues.includes(item.value!)
+      option => !isIncluded(values, option)
     )
 
     const labels = (
       <Fragment>
-        {selectedValues.map(value => {
-          const item = [...allOptions!, ...addedOptions].find(
-            option => option.value === value
-          )
-
-          if (!item) {
-            window.console.warn(
-              `TagSelector: There is no option for the given value \`${value}\``
-            )
-            return null
-          }
-          return (
-            <Label key={value} onDelete={() => handleDelete(value)}>
-              {item.text}
-            </Label>
-          )
-        })}
+        {values.map(item => (
+          <Label key={item.value} onDelete={() => handleDelete(item)}>
+            {item.text}
+          </Label>
+        ))}
       </Fragment>
     )
 
@@ -210,19 +167,19 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         ref={inputRef}
-        placeholder={selectedValues.length === 0 ? placeholder : undefined}
+        placeholder={values.length === 0 ? placeholder : undefined}
         options={autocompleteOptions}
         value={inputValue}
         onSelect={handleSelect}
         onOtherOptionSelect={handleOtherOptionSelect}
-        onChange={handleChange}
+        onChange={onInputChange}
         onKeyDown={handleKeyDown}
         startAdornment={labels}
         loading={loading}
         inputComponent={TagSelectorInput as ComponentType<InputProps>}
         width={width}
-        showOtherOption
-        otherOptionText={newOptionLabel}
+        showOtherOption={showOtherOption}
+        otherOptionText={otherOptionLabel}
         enableAutofill={enableAutofill}
         getDisplayValue={getDisplayValue}
       />
@@ -231,14 +188,15 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
 )
 
 TagSelector.defaultProps = {
-  defaultValue: [],
   enableAutofill: false,
   loading: false,
-  newOptionLabel: 'Add new option: ',
   onChange: () => {},
   onInputChange: () => {},
+  onOtherOptionSelect: () => {},
   options: [],
-  placeholder: ''
+  otherOptionLabel: 'Add new option: ',
+  placeholder: '',
+  showOtherOption: false
 }
 
 TagSelector.displayName = 'TagSelector'

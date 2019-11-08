@@ -19,22 +19,33 @@ const options = [
 
 const testProps = {
   loading: false,
-  newOptionLabel: 'Add new option: ',
+  otherOptionLabel: 'Add new option: ',
   options,
   placeholder: 'Please select...'
 }
 
 const renderTagSelector = (props: OmitInternalProps<Props>) => {
-  const { loading, newOptionLabel, options, placeholder, defaultValue } = props
+  const {
+    loading,
+    otherOptionLabel,
+    options,
+    placeholder,
+    value,
+    onInputChange,
+    onChange
+  } = props
 
   return render(
     <Picasso loadFonts={false}>
       <TagSelector
+        showOtherOption
         loading={loading}
-        newOptionLabel={newOptionLabel}
+        otherOptionLabel={otherOptionLabel}
         options={options}
         placeholder={placeholder}
-        defaultValue={defaultValue}
+        value={value}
+        onInputChange={onInputChange}
+        onChange={onChange}
       />
     </Picasso>
   )
@@ -67,80 +78,43 @@ describe('TagSelector', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('available options when start typing', () => {
-    const { baseElement, getByPlaceholderText } = renderTagSelector(testProps)
+  test('on type', () => {
+    const onInputChange = jest.fn()
+    const { getByPlaceholderText } = renderTagSelector({
+      ...testProps,
+      onInputChange
+    })
     const input = getByPlaceholderText(testProps.placeholder)
 
     fireEvent.change(input, { target: { value: 'Al' } })
 
-    expect(baseElement).toMatchSnapshot()
+    expect(onInputChange).toBeCalledWith('Al')
   })
 
   test('preselected value', () => {
     const { baseElement } = renderTagSelector({
       loading: false,
-      newOptionLabel: 'Add: ',
+      otherOptionLabel: 'Add: ',
       options,
       placeholder: 'Please select...',
-      defaultValue: [options[0].value]
+      value: [options[0]]
     })
 
     expect(baseElement).toMatchSnapshot()
   })
 
   test('selected option', async () => {
-    const renderResult = renderTagSelector(testProps)
-    const { baseElement, getByPlaceholderText } = renderResult
+    const onChange = jest.fn()
+    const renderResult = renderTagSelector({
+      ...testProps,
+      onChange
+    })
+    const { getByPlaceholderText } = renderResult
 
     const input = getByPlaceholderText(testProps.placeholder)
 
     await selectOption(renderResult, input, options[0].text)
 
-    expect(baseElement).toMatchSnapshot()
-  })
-
-  test('newly added option selected', async () => {
-    const {
-      baseElement,
-      container,
-      getByPlaceholderText,
-      getByText
-    } = renderTagSelector(testProps)
-    const newOptionText = 'xxxx'
-
-    const input = getByPlaceholderText(testProps.placeholder)
-
-    fireEvent.change(input, { target: { value: newOptionText } })
-
-    const newOptionElement = await waitForElement(
-      () => getByText(newOptionText),
-      { container }
-    )
-
-    fireEvent.click(newOptionElement)
-
-    expect(baseElement).toMatchSnapshot()
-  })
-
-  test('options selected and then unselected', async () => {
-    const renderResult = renderTagSelector(testProps)
-    const {
-      baseElement,
-      getByPlaceholderText,
-      getAllByLabelText
-    } = renderResult
-    const input = getByPlaceholderText(testProps.placeholder)
-
-    await selectOption(renderResult, input, options[0].text)
-    await selectOption(renderResult, input, options[1].text)
-    await selectOption(renderResult, input, options[2].text)
-
-    const optionDeleteElements = getAllByLabelText('delete icon')
-
-    expect(optionDeleteElements.length).toBe(3)
-
-    fireEvent.click(optionDeleteElements[1])
-
-    expect(baseElement).toMatchSnapshot()
+    expect(onChange).toBeCalledWith([options[0]])
   })
 })
