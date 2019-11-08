@@ -1,3 +1,10 @@
+# [3.37.0](https://github.com/toptal/picasso/compare/v3.36.1...v3.37.0) (2019-11-08)
+
+
+### Features
+
+* **TagSelector:** make TagSelector a controlled component ([#837](https://github.com/toptal/picasso/issues/837)) ([86fa5f3](https://github.com/toptal/picasso/commit/86fa5f3))
+
 ## [3.36.1](https://github.com/toptal/picasso/compare/v3.36.0...v3.36.1) (2019-11-07)
 
 
