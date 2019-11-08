@@ -10,7 +10,7 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import React, { forwardRef } from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import cx from 'classnames';
 import { CloseMinor16 } from '../Icon';
@@ -19,9 +19,11 @@ import ModalContent from '../ModalContent';
 import ModalActions from '../ModalActions';
 import { usePicassoRoot } from '../Picasso';
 import styles from './styles';
+const useStyles = makeStyles(styles);
 // eslint-disable-next-line react/display-name
-export const Modal = forwardRef(function Modal(_a, ref) {
-    var { children, open, size, onBackdropClick, onClose, onOpen, classes, className, style, container, hideBackdrop, transitionDuration, paperProps } = _a, rest = __rest(_a, ["children", "open", "size", "onBackdropClick", "onClose", "onOpen", "classes", "className", "style", "container", "hideBackdrop", "transitionDuration", "paperProps"]);
+export const Modal = forwardRef(function Modal(props, ref) {
+    const { children, open, size, onBackdropClick, onClose, onOpen, className, style, container, hideBackdrop, transitionDuration, paperProps } = props, rest = __rest(props, ["children", "open", "size", "onBackdropClick", "onClose", "onOpen", "className", "style", "container", "hideBackdrop", "transitionDuration", "paperProps"]);
+    const classes = useStyles(props);
     const picassoRootContainer = usePicassoRoot();
     return (React.createElement(Dialog
     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -43,5 +45,5 @@ Modal.displayName = 'Modal';
 Modal.Content = ModalContent;
 Modal.Actions = ModalActions;
 Modal.Title = ModalTitle;
-export default withStyles(styles)(Modal);
+export default Modal;
 //# sourceMappingURL=Modal.js.map

@@ -3,9 +3,9 @@ import { PaperProps } from '@material-ui/core/Paper';
 import ModalTitle from '../ModalTitle';
 import ModalContent from '../ModalContent';
 import ModalActions from '../ModalActions';
-import { StandardProps, PicassoComponentWithRef, CompoundedComponentWithRef, SizeType } from '../Picasso';
+import { BaseProps, CompoundedComponentWithRef, SizeType } from '../Picasso';
 declare type ContainerValue = HTMLElement | (() => HTMLElement);
-export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
     /** Content of Modal component */
     children: ReactNode;
     /** Whether modal should be displayed */
@@ -31,5 +31,4 @@ interface StaticProps {
     Title: typeof ModalTitle;
 }
 export declare const Modal: CompoundedComponentWithRef<Props, HTMLElement, StaticProps>;
-declare const _default: PicassoComponentWithRef<Props, HTMLElement, StaticProps>;
-export default _default;
+export default Modal;
