@@ -71,7 +71,8 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
         <ExpansionPanelSummary
           classes={{
             root: classes.summary,
-            content: classes.content
+            content: classes.content,
+            expandIcon: classes.expandIconContainer
           }}
           expandIcon={
             expandIcon || <ArrowDownMinor16 className={classes.expandIcon} />
@@ -80,7 +81,7 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
           {children}
         </ExpansionPanelSummary>
       ) : (
-        <React.Fragment />
+        <div />
       )}
       <ExpansionPanelDetails
         classes={{

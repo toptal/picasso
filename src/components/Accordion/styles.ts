@@ -1,6 +1,6 @@
 import { Theme } from '@material-ui/core/styles'
 
-import { createPropertiesStyles } from '../styles'
+import { createPropertiesStyles, rem } from '../styles'
 import { PicassoProvider } from '../Picasso'
 
 PicassoProvider.override(() => ({
@@ -61,6 +61,10 @@ export default ({ palette, typography }: Theme) => {
     expandIcon: {
       fontSize: '0.7em',
       color: palette.primary.main
+    },
+    expandIconContainer: {
+      height: rem('24px'),
+      alignSelf: 'flex-start'
     },
     details: {
       padding: 0,
