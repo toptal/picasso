@@ -9,7 +9,11 @@ import { Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { makeStyles } from '@material-ui/styles'
 
-import { BaseProps, OverridableComponent } from '../Picasso'
+import {
+  BaseProps,
+  OverridableComponent,
+  ensurePicassoContext
+} from '../Picasso'
 import styles from './styles'
 
 type UnderlineType = 'none' | 'hover' | 'always'
@@ -103,4 +107,4 @@ Link.defaultProps = {
 
 Link.displayName = 'Link'
 
-export default Link
+export default ensurePicassoContext(Link)

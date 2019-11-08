@@ -1,6 +1,7 @@
 export {
   default,
   PicassoProvider,
+  ensurePicassoContext,
   usePicassoRoot,
   usePageHeader
 } from './Picasso'

@@ -59,6 +59,7 @@ const PicassoProvider = new Provider(createMuiTheme(picasso))
 
 interface RootContextProps {
   rootRef?: RefObject<HTMLDivElement>
+  rootPicassoCheck?: boolean
   hasPageHeader: boolean
   setHasPageHeader: (value: boolean) => void
 }
@@ -82,6 +83,35 @@ export const usePageHeader = () => {
   }
 }
 
+export const useRootPicassoCheck = () => {
+  const context = useContext(RootContext)
+
+  return {
+    rootPicassoCheck: context.rootPicassoCheck
+  }
+}
+
+export function ensurePicassoContext<Props>(
+  Component: React.JSXElementConstructor<Props>
+) {
+  return function SecuredPicasso(props: Props) {
+    const { rootPicassoCheck } = useRootPicassoCheck()
+
+    if (!rootPicassoCheck) {
+      throw new Error(
+        'Not wrapped with Picasso component, please refer to the documentation'
+      )
+    }
+
+    return (
+      <Component
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...props as Props}
+      />
+    )
+  }
+}
+
 interface PicassoGlobalStylesProviderProps extends JssProps {
   children?: ReactNode
 }
@@ -95,6 +125,7 @@ const PicassoGlobalStylesProvider = withStyles(globalStyles, {
   const [contextValue, setContextValue] = useState({
     rootRef,
     hasPageHeader: false,
+    rootPicassoCheck: true,
     setHasPageHeader: (hasPageHeader: boolean) =>
       setContextValue({
         ...contextValue,
