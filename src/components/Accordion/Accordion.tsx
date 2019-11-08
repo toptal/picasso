@@ -3,7 +3,8 @@ import React, {
   ChangeEvent,
   HTMLAttributes,
   ReactElement,
-  forwardRef
+  forwardRef,
+  useState
 } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
@@ -36,11 +37,16 @@ export interface Props
   onChange?: (event: ChangeEvent<{}>, expanded: boolean) => void
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const EmptyExpansionPanelSummary = ({ expanded }: { expanded?: boolean }) => (
+  <div />
+)
+
 export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
   {
     children,
     content,
-    expanded,
+    expanded: defaultExpanded,
     expandIcon,
     bordered,
     disabled,
@@ -52,6 +58,11 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
   },
   ref
 ) {
+  const [expanded, setExpanded] = useState(defaultExpanded)
+  const handleSummaryClick = () => {
+    setExpanded(expanded => !expanded)
+  }
+
   return (
     <MUIExpansionPanel
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -71,17 +82,30 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
         <ExpansionPanelSummary
           classes={{
             root: classes.summary,
-            content: classes.content,
-            expandIcon: classes.expandIconContainer
+            content: classes.content
           }}
-          expandIcon={
-            expandIcon || <ArrowDownMinor16 className={classes.expandIcon} />
-          }
+          expandIcon={null}
+          onClick={handleSummaryClick}
         >
           {children}
+          {expandIcon ? (
+            React.cloneElement(expandIcon, {
+              className: cx(expandIcon.props.className, {
+                [classes.expandIconExpanded]: expanded
+              })
+            })
+          ) : (
+            <div className={classes.expandIconAlignTop}>
+              <ArrowDownMinor16
+                className={cx(classes.expandIcon, {
+                  [classes.expandIconExpanded]: expanded
+                })}
+              />
+            </div>
+          )}
         </ExpansionPanelSummary>
       ) : (
-        <div />
+        <EmptyExpansionPanelSummary />
       )}
       <ExpansionPanelDetails
         classes={{

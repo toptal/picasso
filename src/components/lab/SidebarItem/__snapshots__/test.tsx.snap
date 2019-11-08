@@ -40,27 +40,15 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
               </div>
             </div>
           </li>
-        </div>
-        <div
-          aria-disabled="false"
-          aria-hidden="true"
-          class="MuiButtonBase-root MuiIconButton-root MuiExpansionPanelSummary-expandIcon Mui-expanded MuiIconButton-edgeEnd"
-          role="button"
-          tabindex="-1"
-        >
-          <span
-            class="MuiIconButton-label"
+          <svg
+            class="SvgArrowDropDown16-root makeStyles-expandIcon"
+            style="min-width: 16px; min-height: 16px;"
+            viewBox="0 0 16 16"
           >
-            <svg
-              class="SvgArrowDropDown16-root makeStyles-expandIcon"
-              style="min-width: 16px; min-height: 16px;"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M7.357 10.228L3.643 5.772C3.283 5.34 3.446 5 3.995 5h8.01c.54 0 .707.346.352.772l-3.714 4.456c-.36.432-.931.426-1.286 0z"
-              />
-            </svg>
-          </span>
+            <path
+              d="M7.357 10.228L3.643 5.772C3.283 5.34 3.446 5 3.995 5h8.01c.54 0 .707.346.352.772l-3.714 4.456c-.36.432-.931.426-1.286 0z"
+            />
+          </svg>
         </div>
       </div>
       <div
@@ -309,27 +297,15 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
               </div>
             </div>
           </li>
-        </div>
-        <div
-          aria-disabled="false"
-          aria-hidden="true"
-          class="MuiButtonBase-root MuiIconButton-root MuiExpansionPanelSummary-expandIcon MuiIconButton-edgeEnd"
-          role="button"
-          tabindex="-1"
-        >
-          <span
-            class="MuiIconButton-label"
+          <svg
+            class="SvgArrowDropDown16-root makeStyles-expandIcon"
+            style="min-width: 16px; min-height: 16px;"
+            viewBox="0 0 16 16"
           >
-            <svg
-              class="SvgArrowDropDown16-root makeStyles-expandIcon"
-              style="min-width: 16px; min-height: 16px;"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M7.357 10.228L3.643 5.772C3.283 5.34 3.446 5 3.995 5h8.01c.54 0 .707.346.352.772l-3.714 4.456c-.36.432-.931.426-1.286 0z"
-              />
-            </svg>
-          </span>
+            <path
+              d="M7.357 10.228L3.643 5.772C3.283 5.34 3.446 5 3.995 5h8.01c.54 0 .707.346.352.772l-3.714 4.456c-.36.432-.931.426-1.286 0z"
+            />
+          </svg>
         </div>
       </div>
       <div

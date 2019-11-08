@@ -1,4 +1,4 @@
-import { Theme } from '@material-ui/core/styles'
+import { Theme, createStyles } from '@material-ui/core/styles'
 
 import { createPropertiesStyles, rem } from '../styles'
 import { PicassoProvider } from '../Picasso'
@@ -28,7 +28,7 @@ export default ({ palette, typography }: Theme) => {
     position: 'absolute'
   })
 
-  return {
+  return createStyles({
     root: {
       background: 'transparent',
 
@@ -60,9 +60,15 @@ export default ({ palette, typography }: Theme) => {
     }),
     expandIcon: {
       fontSize: '0.7em',
-      color: palette.primary.main
+      color: palette.primary.main,
+      transition: 'transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms'
     },
-    expandIconContainer: {
+    expandIconExpanded: {
+      transform: 'rotate(180deg)'
+    },
+    expandIconAlignTop: {
+      display: 'flex',
+      alignItems: 'center',
       height: rem('24px'),
       alignSelf: 'flex-start'
     },
@@ -75,7 +81,10 @@ export default ({ palette, typography }: Theme) => {
       marginBottom: '0.75em'
     },
     content: {
-      display: 'block'
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between'
     }
-  }
+  })
 }
