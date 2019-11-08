@@ -1,3 +1,4 @@
+import { createStyles } from '@material-ui/core/styles';
 import { createPropertiesStyles } from '../styles';
 import { PicassoProvider } from '../Picasso';
 PicassoProvider.override(() => ({
@@ -23,7 +24,7 @@ export default ({ palette, typography }) => {
         backgroundColor: palette.grey.light,
         position: 'absolute'
     });
-    return {
+    return createStyles({
         root: {
             background: 'transparent',
             '&:before': {
@@ -50,7 +51,17 @@ export default ({ palette, typography }) => {
         }),
         expandIcon: {
             fontSize: '0.7em',
-            color: palette.primary.main
+            color: palette.grey.dark,
+            transition: 'transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms'
+        },
+        expandIconExpanded: {
+            transform: 'rotate(180deg)'
+        },
+        expandIconAlignTop: {
+            display: 'flex',
+            alignItems: 'center',
+            height: '1.5em',
+            alignSelf: 'flex-start'
         },
         details: {
             padding: 0,
@@ -61,8 +72,12 @@ export default ({ palette, typography }) => {
             marginBottom: '0.75em'
         },
         content: {
-            display: 'block'
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            lineHeight: '1.5em'
         }
-    };
+    });
 };
 //# sourceMappingURL=styles.js.map

@@ -1,3 +1,10 @@
+# [3.39.0](https://github.com/toptal/picasso/compare/v3.38.0...v3.39.0) (2019-11-08)
+
+
+### Features
+
+* **Accordion:** [FX-571] Align expand icon to the top ([#842](https://github.com/toptal/picasso/issues/842)) ([3266cc0](https://github.com/toptal/picasso/commit/3266cc0))
+
 # [3.38.0](https://github.com/toptal/picasso/compare/v3.37.0...v3.38.0) (2019-11-08)
 
 
