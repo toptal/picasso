@@ -12,7 +12,7 @@ const NotificationsProvider: FunctionComponent = ({ children }) => {
   return (
     <SnackbarProvider
       maxSnack={MAX_NOTIFICATION_MESSAGES}
-      style={hasPageHeader ? { marginTop: headerHeight } : undefined}
+      style={hasPageHeader ? { marginTop: headerHeight.default } : undefined}
     >
       {children}
     </SnackbarProvider>

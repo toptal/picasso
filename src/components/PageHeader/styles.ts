@@ -1,6 +1,17 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
-export const headerHeight = '4.5em'
+import { screens } from '../Picasso/config'
+
+export const headerHeight = { default: '4.5em', smallAndMedium: '3em' }
+
+export const styleFromHeaderHeight = (prop: string) => {
+  return {
+    [prop]: headerHeight.default,
+    [screens('small', 'medium')]: {
+      [prop]: headerHeight.smallAndMedium
+    }
+  }
+}
 
 export default ({ palette, layout, zIndex, screens }: Theme) =>
   createStyles({
@@ -25,12 +36,9 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
       margin: '0 auto',
       justifyContent: 'space-between',
       maxWidth: layout.contentWidth,
-      height: headerHeight,
       padding: `0 ${layout.contentPaddingHorizontal}`,
 
-      [screens('small', 'medium')]: {
-        height: '3em'
-      }
+      ...styleFromHeaderHeight('height')
     },
     fullWidth: {
       maxWidth: '100%'

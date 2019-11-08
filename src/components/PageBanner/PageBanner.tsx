@@ -2,7 +2,8 @@ import React, {
   ReactNode,
   forwardRef,
   HTMLAttributes,
-  ReactElement
+  ReactElement,
+  useContext
 } from 'react'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
@@ -11,6 +12,8 @@ import { BaseProps } from '../Picasso'
 import Container, { VariantType } from '../Container'
 import styles from './styles'
 import { useScreens } from '../utils'
+import { PageContextProps } from '../Page/types'
+import { PageContext } from '../Page/Page'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Children components */
@@ -30,6 +33,14 @@ export const PageBanner = forwardRef<HTMLDivElement, Props>(function PageBanner(
   const { className, style, children, variant, icon, ...rest } = props
   const classes = useStyles(props)
   const screens = useScreens()
+  const { fullWidth } = useContext<PageContextProps>(PageContext)
+  const contentPadding = screens(
+    {
+      small: 'xsmall',
+      medium: 'xsmall'
+    },
+    'small'
+  )
 
   return (
     <Container
@@ -43,14 +54,8 @@ export const PageBanner = forwardRef<HTMLDivElement, Props>(function PageBanner(
     >
       <Container
         variant={variant}
-        className={classes.content}
-        padded={screens(
-          {
-            small: 'xsmall',
-            medium: 'xsmall'
-          },
-          'small'
-        )}
+        className={cx({ [classes.fullWidth]: fullWidth }, classes.content)}
+        padded={contentPadding}
         flex
       >
         {icon && (

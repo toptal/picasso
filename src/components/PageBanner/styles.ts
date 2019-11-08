@@ -18,5 +18,8 @@ export default ({ layout }: Theme) =>
       marginRight: '1.5em',
       minWidth: '1.5em',
       height: '1.3125em'
+    },
+    fullWidth: {
+      maxWidth: '100%'
     }
   })
