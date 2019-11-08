@@ -1,8 +1,8 @@
-import { createStyles } from '@material-ui/core/styles'
+import { createStyles, Theme } from '@material-ui/core/styles'
 
 import { headerHeight } from '../PageHeader/styles'
 
-export default () =>
+export default ({ screens }: Theme) =>
   createStyles({
     root: {
       display: 'flex',
@@ -13,7 +13,10 @@ export default () =>
         flex: 0
       },
       '& > header + *': {
-        marginTop: headerHeight
+        marginTop: headerHeight,
+        [screens('small', 'medium')]: {
+          marginTop: '3em'
+        }
       }
     }
   })

@@ -10,6 +10,7 @@ import cx from 'classnames'
 import { BaseProps } from '../Picasso'
 import Container, { VariantType } from '../Container'
 import styles from './styles'
+import { useScreens } from '../utils'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Children components */
@@ -28,6 +29,7 @@ export const PageBanner = forwardRef<HTMLDivElement, Props>(function PageBanner(
 ) {
   const { className, style, children, variant, icon, ...rest } = props
   const classes = useStyles(props)
+  const screens = useScreens()
 
   return (
     <Container
@@ -37,15 +39,27 @@ export const PageBanner = forwardRef<HTMLDivElement, Props>(function PageBanner(
       className={cx(classes.root, className)}
       style={style}
       variant={variant}
-      padded='medium'
       flex
     >
-      {icon && (
-        <Container flex alignItems='center' className={classes.iconWrapper}>
-          {icon}
-        </Container>
-      )}
-      {children}
+      <Container
+        variant={variant}
+        className={classes.content}
+        padded={screens(
+          {
+            small: 'xsmall',
+            medium: 'xsmall'
+          },
+          'small'
+        )}
+        flex
+      >
+        {icon && (
+          <Container flex alignItems='center' className={classes.iconWrapper}>
+            {icon}
+          </Container>
+        )}
+        {children}
+      </Container>
     </Container>
   )
 })

@@ -8,7 +8,7 @@ const StyledMainContentContainer = styled(Container)`
 `
 
 const WithBannerExample = () => (
-  <div style={{ height: '30rem' }}>
+  <div style={{ maxHeight: '30rem' }}>
     <Page>
       <Page.Header rightContent={<RightContent />} title='Default example' />
       <Page.Banner icon={<Time16 />}>

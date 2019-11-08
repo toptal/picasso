@@ -1,10 +1,17 @@
-import { createStyles } from '@material-ui/core/styles'
+import { createStyles, Theme } from '@material-ui/core/styles'
 
-export default () =>
+export default ({ layout }: Theme) =>
   createStyles({
     root: {
+      justifyContent: 'center'
+    },
+    content: {
+      alignItems: 'center',
       fontSize: '0.875em',
-      alignItems: 'center'
+      width: '100%',
+      paddingLeft: layout.contentPaddingHorizontal,
+      paddingRight: layout.contentPaddingHorizontal,
+      maxWidth: layout.contentWidth
     },
     iconWrapper: {
       flexBasis: '1.5em',
