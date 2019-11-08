@@ -12,11 +12,12 @@ const { env } = process
 const isDevelopment = env.NODE_ENV !== 'production' && env.NODE_ENV !== 'test'
 
 const tsConfigFile = path.join(process.cwd(), './.storybook/tsconfig.json')
+
 const tsLoader = {
   loader: require.resolve('ts-loader'),
   options: {
     configFile: tsConfigFile,
-    transpileOnly: isDevelopment || env.TEST_ENV === 'visual',
+    transpileOnly: true,
     experimentalWatchApi: isDevelopment
   }
 }
@@ -41,7 +42,7 @@ const defaultLoaders =
   env.TEST_ENV === 'visual' ? [tsLoader] : [tsLoader, tsDocgenLoader]
 
 module.exports = ({ config }) => {
-  config.entry = ['@babel/polyfill', ...config.entry]
+  // config.entry = ['@babel/polyfill', ...config.entry]
 
   config.module.rules.push({
     test: /\.(ts|tsx)$/,

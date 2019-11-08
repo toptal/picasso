@@ -1,5 +1,10 @@
 module.exports = {
   rootDir: '../',
+  globals: {
+    'ts-jest': {
+      isolatedModules: true
+    }
+  },
   testMatch: ['**/(storyshot.test).(jsx|tsx)'],
   preset: 'jest-puppeteer',
   testPathIgnorePatterns: ['/node_modules/', '/build'],
