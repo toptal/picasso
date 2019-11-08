@@ -1,15 +1,12 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
-import { headerHeight } from '../PageHeader/styles'
-
 export default ({ layout }: Theme) =>
   createStyles({
     root: {
       flex: 1,
       width: '100%',
       display: 'flex',
-      justifyContent: 'center',
-      marginTop: headerHeight
+      justifyContent: 'center'
     },
     content: {
       height: '100%',
