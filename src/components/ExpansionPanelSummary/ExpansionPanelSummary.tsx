@@ -9,9 +9,10 @@ import {
   ButtonOrAnchorProps
 } from '../Picasso'
 
-interface Props extends StandardProps, ButtonOrAnchorProps {
+export interface Props extends StandardProps, ButtonOrAnchorProps {
   expandIcon?: ReactNode
   children?: ReactNode
+  onClick?: () => void
 }
 
 // We can't create here intermediate object for ExpansionPanelSummary

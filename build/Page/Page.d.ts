@@ -4,6 +4,7 @@ import PageHeaderMenu from '../PageHeaderMenu';
 import PageFooter from '../PageFooter';
 import PageContent from '../PageContent';
 import PageSidebar from '../lab/Sidebar';
+import PageBanner from '../PageBanner';
 import { StandardProps, PicassoComponentWithRef, CompoundedComponentWithRef } from '../Picasso';
 import { PageContextProps } from './types';
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
@@ -22,6 +23,7 @@ interface StaticProps {
     Content: typeof PageContent;
     Footer: typeof PageFooter;
     Sidebar: typeof PageSidebar;
+    Banner: typeof PageBanner;
 }
 export declare const PageContext: React.Context<PageContextProps>;
 export declare const Page: CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>;

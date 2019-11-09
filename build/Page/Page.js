@@ -17,6 +17,7 @@ import PageHeaderMenu from '../PageHeaderMenu';
 import PageFooter from '../PageFooter';
 import PageContent from '../PageContent';
 import PageSidebar from '../lab/Sidebar';
+import PageBanner from '../PageBanner';
 import styles from './styles';
 export const PageContext = React.createContext({});
 // eslint-disable-next-line react/display-name
@@ -34,5 +35,6 @@ Page.HeaderMenu = PageHeaderMenu;
 Page.Content = PageContent;
 Page.Footer = PageFooter;
 Page.Sidebar = PageSidebar;
+Page.Banner = PageBanner;
 export default withStyles(styles)(Page);
 //# sourceMappingURL=Page.js.map
