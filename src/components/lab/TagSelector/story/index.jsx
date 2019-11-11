@@ -22,7 +22,7 @@ page
       })
 
       await page.keyboard.press('Enter')
-      await page.waitFor(50)
+      await page.waitFor('[role="button"]')
       await makeScreenshot()
 
       await page.click('[aria-label="delete icon"]')
