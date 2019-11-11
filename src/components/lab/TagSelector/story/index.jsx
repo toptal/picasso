@@ -16,13 +16,21 @@ page
   .createChapter()
   .addExample('lab/TagSelector/story/Default.example.jsx', 'Default', {
     effect: async (page, makeScreenshot) => {
+      const hideInputCaretStyle = `
+        input {
+          caret-color: transparent !important;
+        }
+      `
+
+      await page.addStyleTag({ content: hideInputCaretStyle })
+
       await page.click('[role="combobox"]')
       await makeScreenshot({
         isFullScreen: true
       })
 
       await page.keyboard.press('Enter')
-      await page.waitFor('[role="button"]')
+      await page.waitFor(50)
       await makeScreenshot()
 
       await page.click('[aria-label="delete icon"]')
