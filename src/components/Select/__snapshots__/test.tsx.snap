@@ -208,3 +208,52 @@ exports[`should open menu when focus on select 1`] = `
   </div>
 </ul>
 `;
+
+exports[`should render options customly 1`] = `
+<ul
+  class="MuiList-root ScrollMenu-menu"
+  role="menu"
+  tabindex="-1"
+>
+  <div
+    class="ScrollMenu-scrollView"
+  >
+    <li
+      aria-disabled="false"
+      aria-selected="true"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+      role="option"
+      tabindex="-1"
+      value="val1"
+    >
+      <div>
+        Custom renderered text1
+      </div>
+    </li>
+    <li
+      aria-disabled="false"
+      aria-selected="false"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      role="option"
+      tabindex="-1"
+      value="val2"
+    >
+      <div>
+        Custom renderered text2
+      </div>
+    </li>
+    <li
+      aria-disabled="false"
+      aria-selected="false"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      role="option"
+      tabindex="-1"
+      value="val3"
+    >
+      <div>
+        Custom renderered text3
+      </div>
+    </li>
+  </div>
+</ul>
+`;
