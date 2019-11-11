@@ -30,6 +30,9 @@ import styles from './styles'
 type IconPosition = 'start' | 'end'
 type ValueType = string | string[] | number
 
+const getOptionText = (option: Option | null) =>
+  (option && option.text) || EMPTY_INPUT_VALUE
+
 export interface Props
   extends StandardProps,
     Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
@@ -57,6 +60,10 @@ export interface Props
   ) => void
   /** List of options to be rendered as `Select` */
   options: Option[]
+  /** Callback responsible for rendering the option given the option and its index in the list of options */
+  renderOption?: (option: Option, index?: number) => ReactNode
+  /** A function that takes a display value from the option item */
+  getDisplayValue?: (option: Option | null) => string
   /** Selected value */
   value?: ValueType
   /** Allow selecting multiple values */
@@ -72,11 +79,14 @@ type NativePlaceholderProps = Pick<Props, 'placeholder'> & {
   emptySelectValue: ValueType
 }
 
-type NativeOptionsProps = Pick<Props, 'options'> & {
+type NativeOptionsProps = Pick<Props, 'options' | 'renderOption'> & {
   getItemProps: (index: number, option: Option) => ItemProps
 }
 
-type OptionsProps = Pick<Props, 'options' | 'value' | 'multiple'> & {
+type OptionsProps = Pick<
+  Props,
+  'options' | 'value' | 'multiple' | 'renderOption' | 'getDisplayValue'
+> & {
   highlightedIndex: number | null
   getItemProps: (index: number, option: Option) => ItemProps
   onItemSelect: (event: React.MouseEvent, option: Option) => void
@@ -91,7 +101,11 @@ const renderNativePlaceholder = ({
   </option>
 )
 
-const renderNativeOptions = ({ options, getItemProps }: NativeOptionsProps) =>
+const renderNativeOptions = ({
+  options,
+  renderOption,
+  getItemProps
+}: NativeOptionsProps) =>
   options.map((option, index) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { close: _, selected: __, ...rest } = getItemProps(index, option)
@@ -103,13 +117,14 @@ const renderNativeOptions = ({ options, getItemProps }: NativeOptionsProps) =>
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
       >
-        {option.text}
+        {renderOption!(option)}
       </option>
     )
   })
 
 const renderOptions = ({
   options,
+  renderOption,
   highlightedIndex,
   onItemSelect,
   getItemProps,
@@ -138,7 +153,7 @@ const renderOptions = ({
           onItemSelect(event, option)
         }}
       >
-        {option.text}
+        {renderOption!(option)}
       </MenuItem>
     )
   })
@@ -150,7 +165,8 @@ const renderOptions = ({
 
 const getMultipleSelection = (
   allOptions: Option[],
-  value: string[]
+  value: string[],
+  getDisplayValue: (option: Option | null) => string
 ): Selection => {
   const selectedOptions = () =>
     allOptions.filter(option => value.includes(String(option.value)))
@@ -158,7 +174,7 @@ const getMultipleSelection = (
   return {
     display: () =>
       selectedOptions()
-        .map(({ text }) => text)
+        .map(getDisplayValue)
         .join(', '),
     isSelected: () => !isEmpty(value)
   }
@@ -166,11 +182,11 @@ const getMultipleSelection = (
 
 const getSingleSelection = (
   allOptions: Option[],
-  value: ReactText
+  value: ReactText,
+  getDisplayValue: (option: Option | null) => string
 ): Selection => {
-  const defaultOption = { text: '', value: '' }
   const selectedOption = () =>
-    allOptions.find(option => option.value === value) || defaultOption
+    allOptions.find(option => option.value === value) || null
 
   return {
     display: () => getDisplayValue(selectedOption()),
@@ -178,12 +194,14 @@ const getSingleSelection = (
   }
 }
 
-const getSelection = (allOptions: Option[], value: ValueType) =>
+const getSelection = (
+  allOptions: Option[],
+  value: ValueType,
+  getDisplayValue: (option: Option | null) => string
+) =>
   Array.isArray(value)
-    ? getMultipleSelection(allOptions, value)
-    : getSingleSelection(allOptions, value)
-
-const getDisplayValue = (option: Option) => String(option.text!)
+    ? getMultipleSelection(allOptions, value, getDisplayValue)
+    : getSingleSelection(allOptions, value, getDisplayValue)
 
 const isEmpty = (value: ValueType) =>
   Array.isArray(value) ? value.length === 0 : value === ''
@@ -206,12 +224,14 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     name,
     native,
     options: allOptions,
+    renderOption,
     placeholder,
     disabled,
     error,
     onChange,
     multiple,
     value = multiple ? [] : '',
+    getDisplayValue,
     tabIndex = 0,
     ...rest
   },
@@ -230,7 +250,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
   }
 
   const inputWrapperRef = useRef<HTMLDivElement>(null)
-  const select = getSelection(allOptions, value)
+  const select = getSelection(allOptions, value, getDisplayValue!)
   const [inputValue, setInputValue] = useState(select.display())
   const [options, setOptions] = useState(allOptions)
   const menuWidth = useWidthOf<HTMLDivElement>(inputWrapperRef)
@@ -241,7 +261,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
   const [prevValue, setPrevValue] = useState<ValueType>(value)
 
   if (!isEqual(prevValue, value)) {
-    const select = getSelection(allOptions, value)
+    const select = getSelection(allOptions, value, getDisplayValue!)
 
     setInputValue(select.display())
     setPrevValue(value)
@@ -249,7 +269,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
 
   const filterOptions = (subStr: string) => {
     const filteredOptions = allOptions.filter(option =>
-      isSubstring(subStr, getDisplayValue(option))
+      isSubstring(subStr, getDisplayValue!(option))
     )
 
     setOptions(filteredOptions)
@@ -264,7 +284,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
         fireOnChangeEvent({ event, value: EMPTY_INPUT_VALUE })
         setInputValue(EMPTY_INPUT_VALUE)
       } else {
-        const select = getSelection(allOptions, value)
+        const select = getSelection(allOptions, value, getDisplayValue!)
 
         setInputValue(select.display())
       }
@@ -293,7 +313,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
       newValue = option.value
     }
 
-    const select = getSelection(allOptions, newValue)
+    const select = getSelection(allOptions, newValue, getDisplayValue!)
 
     setInputValue(select.display())
 
@@ -309,13 +329,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     getRootProps
   } = useSelect({
     value: inputValue,
-    getDisplayValue: option => {
-      if (!option) {
-        return EMPTY_INPUT_VALUE
-      }
-
-      return String(option.text)
-    },
+    getDisplayValue: getDisplayValue!,
     options,
     onSelect: handleSelect,
     onChange: handleChange,
@@ -398,6 +412,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
       })}
       {renderNativeOptions({
         options,
+        renderOption,
         getItemProps
       })}
     </NativeSelect>
@@ -453,10 +468,12 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
         >
           {renderOptions({
             options,
+            renderOption,
             highlightedIndex,
             onItemSelect: handleSelect,
             getItemProps,
             value,
+            getDisplayValue,
             multiple
           })}
         </Popper>
@@ -482,10 +499,12 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
 Select.defaultProps = {
   disabled: false,
   error: false,
+  getDisplayValue: getOptionText,
   iconPosition: 'start',
   loading: false,
   native: false,
   onChange: () => {},
+  renderOption: (option: Option) => option.text,
   width: 'full'
 }
 

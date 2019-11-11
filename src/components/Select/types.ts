@@ -1,7 +1,6 @@
-import { ReactNode } from 'react'
-
 export type Option = {
   key?: number
-  text: ReactNode
+  text: string
   value: string | number
+  [prop: string]: string | number | undefined
 }

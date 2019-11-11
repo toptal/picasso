@@ -12,6 +12,11 @@ const SelectCustomOptionExample = () => {
     <Select
       onChange={handleChange}
       options={OPTIONS}
+      renderOption={option => (
+        <div>
+          Custom <b>{option.text}</b>
+        </div>
+      )}
       value={value}
       placeholder='Choose an option...'
       width='auto'
@@ -20,14 +25,10 @@ const SelectCustomOptionExample = () => {
 }
 
 const OPTIONS = [
-  { value: 1, text: 'Option 1' },
+  { value: 1, text: 'option 1' },
   {
     value: 2,
-    text: (
-      <div>
-        Option <b>custom</b>
-      </div>
-    )
+    text: 'option 2'
   }
 ]
 
