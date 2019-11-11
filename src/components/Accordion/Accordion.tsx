@@ -80,6 +80,10 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
     setSummaryExpanded(expanded => !expanded)
   }
 
+  const expandIconClass = cx(classes.expandIcon, {
+    [classes.expandIconExpanded]: summaryExpanded
+  })
+
   return (
     <MUIExpansionPanel
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -106,19 +110,10 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
         >
           {children}
           {expandIcon ? (
-            decorateWithExpandIconClasses(
-              expandIcon,
-              cx(classes.expandIcon, {
-                [classes.expandIconExpanded]: summaryExpanded
-              })
-            )
+            decorateWithExpandIconClasses(expandIcon, expandIconClass)
           ) : (
             <div className={classes.expandIconAlignTop}>
-              <ArrowDownMinor16
-                className={cx(classes.expandIcon, {
-                  [classes.expandIconExpanded]: summaryExpanded
-                })}
-              />
+              <ArrowDownMinor16 className={expandIconClass} />
             </div>
           )}
         </ExpansionPanelSummary>
