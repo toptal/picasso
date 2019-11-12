@@ -1,6 +1,5 @@
 import React from 'react'
-import { Form, Grid, Input, Typography } from '@toptal/picasso'
-import { Autocomplete } from '@toptal/picasso/lab'
+import { Form, Grid, Input, Typography, Autocomplete } from '@toptal/picasso'
 
 const options = [
   { text: 'Belarus', value: 'BY' },

@@ -4,8 +4,7 @@ import { TagSelector } from '../TagSelector'
 
 const page = PicassoBook.createPage(
   'TagSelector',
-  'Input that allows multiselection from a list of available options with autocomplete. Based on Autocomplete component.',
-  'Lab'
+  'Input that allows multiselection from a list of available options with autocomplete. Based on Autocomplete component.'
 )
 
 page
@@ -14,7 +13,7 @@ page
 
 page
   .createChapter()
-  .addExample('lab/TagSelector/story/Default.example.jsx', 'Default', {
+  .addExample('TagSelector/story/Default.example.jsx', 'Default', {
     effect: async (page, makeScreenshot) => {
       const hideInputCaretStyle = `
         input {
@@ -44,7 +43,7 @@ page
       })
     }
   })
-  .addExample('lab/TagSelector/story/OtherOption.example.jsx', 'Other option', {
+  .addExample('TagSelector/story/OtherOption.example.jsx', 'Other option', {
     effect: async (page, makeScreenshot) => {
       await page.click('[role="combobox"]')
 
@@ -60,7 +59,7 @@ page
     }
   })
   .addExample(
-    'lab/TagSelector/story/InitialSetValue.example.jsx',
+    'TagSelector/story/InitialSetValue.example.jsx',
     'Initially set value'
   )
-  .addExample('lab/TagSelector/story/Loading.example.jsx', 'Loading')
+  .addExample('TagSelector/story/Loading.example.jsx', 'Loading')

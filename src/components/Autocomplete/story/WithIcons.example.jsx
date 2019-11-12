@@ -1,6 +1,5 @@
 import React from 'react'
-import { Autocomplete } from '@toptal/picasso/lab'
-import { Afternoon16 } from '@toptal/picasso'
+import { Afternoon16, Autocomplete } from '@toptal/picasso'
 
 const AutocompleteIconsExample = () => (
   <div>

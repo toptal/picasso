@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { Button } from '@toptal/picasso'
-import { Autocomplete } from '@toptal/picasso/lab'
+import { Button, Autocomplete } from '@toptal/picasso'
 import { useNotifications, isSubstring } from '@toptal/picasso/utils'
 import { useModals } from '@toptal/picasso/lab/utils'
 

@@ -4,8 +4,7 @@ import { Autocomplete } from '../Autocomplete'
 
 const page = PicassoBook.createPage(
   'Autocomplete',
-  `Input with the autocomplete`,
-  'Lab'
+  `Input with the autocomplete`
 )
 
 page.createTabChapter('Props').addComponentDocs({
@@ -37,8 +36,8 @@ for this component. This you can achieve by adding this attribute:
 \`autoComplete='none'
     `
   )
-  .addExample('lab/Autocomplete/story/Default.example.jsx', 'Default')
-  .addExample('lab/Autocomplete/story/OtherOption.example.jsx', {
+  .addExample('Autocomplete/story/Default.example.jsx', 'Default')
+  .addExample('Autocomplete/story/OtherOption.example.jsx', {
     title: 'Other option',
     description: `By default Autocomplete allows any entered input value to stay after focus is removed from input,
       you can set \`showOtherOption={true}\` prop to allow also this new item to appear in the suggestions list. Also,
@@ -46,28 +45,28 @@ for this component. This you can achieve by adding this attribute:
       \`onOtherOptionSelect\` event handler.`
   }) // picasso-skip-visuals
   .addExample(
-    'lab/Autocomplete/story/InitialSetValue.example.jsx',
+    'Autocomplete/story/InitialSetValue.example.jsx',
     'Initially set value'
   )
   .addExample(
-    'lab/Autocomplete/story/Controlled.example.jsx',
+    'Autocomplete/story/Controlled.example.jsx',
     'Controlled selection'
   )
-  .addExample('lab/Autocomplete/story/FullWidth.example.jsx', 'Full width')
-  .addExample('lab/Autocomplete/story/Loading.example.jsx', 'Loading')
-  .addExample('lab/Autocomplete/story/Error.example.jsx', 'Error')
-  .addExample('lab/Autocomplete/story/WithIcons.example.jsx', 'With Icon')
+  .addExample('Autocomplete/story/FullWidth.example.jsx', 'Full width')
+  .addExample('Autocomplete/story/Loading.example.jsx', 'Loading')
+  .addExample('Autocomplete/story/Error.example.jsx', 'Error')
+  .addExample('Autocomplete/story/WithIcons.example.jsx', 'With Icon')
   .addExample(
-    'lab/Autocomplete/story/CustomOptionRenderer.example.tsx',
+    'Autocomplete/story/CustomOptionRenderer.example.tsx',
     'Custom options rendering'
   )
-  .addExample('lab/Autocomplete/story/DynamicOptions.example.jsx', {
+  .addExample('Autocomplete/story/DynamicOptions.example.jsx', {
     title: 'Dynamic options',
     description: `If you need to obtain the list of options dynamically from a server.
 It is good practice to set debouncing and a minimum number of chars to limit the number of requests you send to the server.
 Start typing "Mongolia" letter by letter to see this example in action.`
   }) // picasso-skip-visuals
-  .addExample('lab/Autocomplete/story/Autofill.example.tsx', {
+  .addExample('Autocomplete/story/Autofill.example.tsx', {
     title: 'Form auto filling',
     description: `This example shows how to use component inside the form with several fields
 when it makes sense to have autofill enabled.

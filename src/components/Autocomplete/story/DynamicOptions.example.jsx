@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import debounce from 'debounce'
-import { Autocomplete } from '@toptal/picasso/lab'
+import { Autocomplete } from '@toptal/picasso'
 
 const remoteOptions = [
   { text: 'Belarus' },

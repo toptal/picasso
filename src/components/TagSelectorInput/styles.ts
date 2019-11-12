@@ -1,6 +1,6 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
-import { rem } from '../../styles'
+import { rem } from '../styles'
 
 const TAG_SELECTOR_GUTTER_SIZE = rem('6px')
 
