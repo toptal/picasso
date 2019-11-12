@@ -9,20 +9,22 @@ const SelectDefaultExample = () => {
     setValue(event.target.value)
   }
 
+  const getDisplayValue = option => {
+    if (!option) {
+      return
+    }
+
+    const { text, value } = option
+
+    return `You selected ${text} with value ${value}`
+  }
+
   return (
     <Select
       onChange={handleChange}
       options={OPTIONS}
       value={value}
-      getDisplayValue={option => {
-        if (!option) {
-          return
-        }
-
-        const { text, value } = option
-
-        return `You selected ${text} with value ${value}`
-      }}
+      getDisplayValue={getDisplayValue}
       placeholder='Choose an option...'
       width='auto'
     />

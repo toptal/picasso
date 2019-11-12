@@ -168,12 +168,12 @@ const getMultipleSelection = (
   value: string[],
   getDisplayValue: (option: Option | null) => string
 ): Selection => {
-  const selectedOptions = () =>
+  const getSelectedOptions = () =>
     allOptions.filter(option => value.includes(String(option.value)))
 
   return {
     display: () =>
-      selectedOptions()
+      getSelectedOptions()
         .map(getDisplayValue)
         .join(', '),
     isSelected: () => !isEmpty(value)
@@ -185,11 +185,11 @@ const getSingleSelection = (
   value: ReactText,
   getDisplayValue: (option: Option | null) => string
 ): Selection => {
-  const selectedOption = () =>
+  const getSelectedOption = () =>
     allOptions.find(option => option.value === value) || null
 
   return {
-    display: () => getDisplayValue(selectedOption()),
+    display: () => getDisplayValue(getSelectedOption()),
     isSelected: () => !isEmpty(value)
   }
 }
