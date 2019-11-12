@@ -12,13 +12,17 @@ const renderSelect = (props: OmitInternalProps<Props>) => {
     width,
     placeholder,
     multiple = false,
-    onChange = () => {}
+    onChange = () => {},
+    renderOption,
+    getDisplayValue
   } = props
 
   return render(
     <Picasso loadFonts={false}>
       <Select
         options={options}
+        renderOption={renderOption}
+        getDisplayValue={getDisplayValue}
         native={native}
         value={value}
         width={width}
@@ -142,6 +146,39 @@ test('should filter options based on entered value to the input field', () => {
   const menu = getByRole('menu')
 
   expect(menu).toMatchSnapshot()
+})
+
+test('should render options customly', async () => {
+  const placeholder = 'Choose an option...'
+
+  const { getByPlaceholderText, getByRole } = renderSelect({
+    options: OPTIONS,
+    placeholder,
+    // eslint-disable-next-line react/display-name
+    renderOption: ({ text }) => <div>{`Custom renderered ${text}`}</div>
+  })
+  const input = getByPlaceholderText(placeholder)
+
+  fireEvent.focus(input)
+
+  const menu = getByRole('menu')
+
+  expect(menu).toMatchSnapshot()
+})
+
+test('should render selected option customly', async () => {
+  const placeholder = 'Choose an option...'
+
+  const { getByRole } = renderSelect({
+    options: OPTIONS,
+    value: OPTIONS[0].value,
+    placeholder,
+    getDisplayValue: option => `${option ? option.text : 'None'} is selected`
+  })
+
+  const inputComponent = getByRole('textbox') as HTMLInputElement
+
+  expect(inputComponent.value).toBe(`${OPTIONS[0].text} is selected`)
 })
 
 describe('multiple select', () => {
