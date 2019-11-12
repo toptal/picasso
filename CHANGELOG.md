@@ -1,3 +1,52 @@
+# [3.39.0](https://github.com/toptal/picasso/compare/v3.38.0...v3.39.0) (2019-11-08)
+
+
+### Features
+
+* **Accordion:** [FX-571] Align expand icon to the top ([#842](https://github.com/toptal/picasso/issues/842)) ([3266cc0](https://github.com/toptal/picasso/commit/3266cc0))
+
+# [3.38.0](https://github.com/toptal/picasso/compare/v3.37.0...v3.38.0) (2019-11-08)
+
+
+### Features
+
+* create PageBanner component ([#835](https://github.com/toptal/picasso/issues/835)) ([a881c61](https://github.com/toptal/picasso/commit/a881c61))
+
+# [3.37.0](https://github.com/toptal/picasso/compare/v3.36.1...v3.37.0) (2019-11-08)
+
+
+### Features
+
+* **TagSelector:** make TagSelector a controlled component ([#837](https://github.com/toptal/picasso/issues/837)) ([86fa5f3](https://github.com/toptal/picasso/commit/86fa5f3))
+
+## [3.36.1](https://github.com/toptal/picasso/compare/v3.36.0...v3.36.1) (2019-11-07)
+
+
+### Bug Fixes
+
+* **Button:** accept all props of the component passed in the as property ([#834](https://github.com/toptal/picasso/issues/834)) ([753b953](https://github.com/toptal/picasso/commit/753b953))
+
+# [3.36.0](https://github.com/toptal/picasso/compare/v3.35.0...v3.36.0) (2019-11-05)
+
+
+### Features
+
+* **SidebarItem:** [FX-510] Add 'as' type definitions ([#836](https://github.com/toptal/picasso/issues/836)) ([3db4216](https://github.com/toptal/picasso/commit/3db4216))
+
+# [3.35.0](https://github.com/toptal/picasso/compare/v3.34.0...v3.35.0) (2019-11-01)
+
+
+### Features
+
+* **Input:** [FX-570] Add entered counter type ([#831](https://github.com/toptal/picasso/issues/831)) ([15dee54](https://github.com/toptal/picasso/commit/15dee54))
+
+# [3.34.0](https://github.com/toptal/picasso/compare/v3.33.2...v3.34.0) (2019-10-30)
+
+
+### Features
+
+* **Tooltip:** allow controlling listeners ([#819](https://github.com/toptal/picasso/issues/819)) ([c5f757f](https://github.com/toptal/picasso/commit/c5f757f))
+
 ## [3.33.2](https://github.com/toptal/picasso/compare/v3.33.1...v3.33.2) (2019-10-28)
 
 

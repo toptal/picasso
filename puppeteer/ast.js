@@ -1,3 +1,5 @@
+const escodegen = require('escodegen')
+
 const config = require('./config')
 
 const isMemberExpression = node =>
@@ -23,13 +25,28 @@ const getCodeExampleOptions = node => {
     return {}
   }
 
-  return optionsAst.properties.reduce(
-    (acc, prop) => ({
+  return optionsAst.properties.reduce((acc, prop) => {
+    if (
+      prop.value.type === 'ArrowFunctionExpression' ||
+      prop.value.type === 'FunctionExpression'
+    ) {
+      // we add 'return' and call new Function so we can get ordinary function
+      // in code example options and that we can use ordinary function notation
+      // in .addExample in stories
+      const functionBody = `return ${escodegen.generate(prop.value)}`
+
+      return {
+        ...acc,
+        // eslint-disable-next-line no-new-func
+        [prop.key.name]: new Function(functionBody).call()
+      }
+    }
+
+    return {
       ...acc,
       [prop.key.name]: prop.value.value
-    }),
-    {}
-  )
+    }
+  }, {})
 }
 
 const getCodeExampleName = node => {

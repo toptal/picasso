@@ -1,6 +1,6 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
-export const headerHeight = '4.5em'
+export const headerHeight = { default: '4.5em', smallAndMedium: '3em' }
 
 export default ({ palette, layout, zIndex, screens }: Theme) =>
   createStyles({
@@ -25,11 +25,10 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
       margin: '0 auto',
       justifyContent: 'space-between',
       maxWidth: layout.contentWidth,
-      height: headerHeight,
       padding: `0 ${layout.contentPaddingHorizontal}`,
-
+      height: headerHeight.default,
       [screens('small', 'medium')]: {
-        height: '3em'
+        height: headerHeight.smallAndMedium
       }
     },
     fullWidth: {

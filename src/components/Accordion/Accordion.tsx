@@ -4,7 +4,8 @@ import React, {
   HTMLAttributes,
   ReactElement,
   forwardRef,
-  FunctionComponent
+  FunctionComponent,
+  useState
 } from 'react'
 import cx from 'classnames'
 import MUIExpansionPanel from '@material-ui/core/ExpansionPanel'
@@ -58,7 +59,19 @@ export interface Props
   onChange?: (event: ChangeEvent<{}>, expanded: boolean) => void
 }
 
-// eslint-disable-next-line react/display-name
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const EmptyExpansionPanelSummary = ({ expanded }: { expanded?: boolean }) => (
+  <div />
+)
+
+const decorateWithExpandIconClasses = (
+  expandIcon: ReactElement,
+  classes: string
+) =>
+  React.cloneElement(expandIcon, {
+    className: cx(expandIcon.props.className, classes)
+  })
+
 export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
   props,
   ref
@@ -67,6 +80,7 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
     children,
     content,
     expanded,
+    defaultExpanded,
     expandIcon,
     bordered,
     disabled,
@@ -77,6 +91,22 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
   } = props
 
   const classes = useStyles(props)
+  const [summaryExpanded, setSummaryExpanded] = useState(defaultExpanded)
+  const [prevExpanded, setPrevExpanded] = useState(defaultExpanded)
+
+  // getDerivedStateFromProps implementation to allow expanded to be controlled
+  if (expanded !== undefined && expanded !== prevExpanded) {
+    setSummaryExpanded(expanded)
+    setPrevExpanded(expanded)
+  }
+
+  const handleSummaryClick = () => {
+    setSummaryExpanded(expanded => !expanded)
+  }
+
+  const expandIconClass = cx(classes.expandIcon, {
+    [classes.expandIconExpanded]: summaryExpanded
+  })
 
   return (
     <MUIExpansionPanel
@@ -89,7 +119,7 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
       className={className}
       style={style}
       elevation={0}
-      expanded={expanded}
+      expanded={summaryExpanded}
       disabled={disabled}
       onChange={onChange}
     >
@@ -99,14 +129,20 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
             root: classes.summary,
             content: classes.content
           }}
-          expandIcon={
-            expandIcon || <ArrowDownMinor16 className={classes.expandIcon} />
-          }
+          expandIcon={null}
+          onClick={handleSummaryClick}
         >
           {children}
+          {expandIcon ? (
+            decorateWithExpandIconClasses(expandIcon, expandIconClass)
+          ) : (
+            <div className={classes.expandIconAlignTop}>
+              <ArrowDownMinor16 className={expandIconClass} />
+            </div>
+          )}
         </ExpansionPanelSummary>
       ) : (
-        <React.Fragment />
+        <EmptyExpansionPanelSummary />
       )}
       <ExpansionPanelDetails
         classes={{

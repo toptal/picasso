@@ -41,7 +41,7 @@ pipeline {
             script {
                 sh """
                       docker run --tty -e HOME=`pwd` --volume `pwd`:`pwd`:z --user `id -u`:`id -g` \\
-                      --workdir `pwd` node:8-alpine sh -c 'rm -rf ./node_modules && yarn install && yarn build:storybook'
+                      --workdir `pwd` node:13-alpine sh -c 'rm -rf ./node_modules && yarn install && yarn build:storybook'
                    """
             }//script
         }//steps

@@ -1,5 +1,5 @@
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import Dialog from '@material-ui/core/Dialog'
 import { PaperProps } from '@material-ui/core/Paper'
 import cx from 'classnames'
@@ -9,8 +9,7 @@ import ModalTitle from '../ModalTitle'
 import ModalContent from '../ModalContent'
 import ModalActions from '../ModalActions'
 import {
-  StandardProps,
-  PicassoComponentWithRef,
+  BaseProps,
   CompoundedComponentWithRef,
   usePicassoRoot,
   SizeType
@@ -19,7 +18,9 @@ import styles from './styles'
 
 type ContainerValue = HTMLElement | (() => HTMLElement)
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+const useStyles = makeStyles<Theme, Props>(styles)
+
+export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Content of Modal component */
   children: ReactNode
   /** Whether modal should be displayed */
@@ -47,15 +48,14 @@ interface StaticProps {
 }
 
 // eslint-disable-next-line react/display-name
-export const Modal = forwardRef<HTMLElement, Props>(function Modal(
-  {
+export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
+  const {
     children,
     open,
     size,
     onBackdropClick,
     onClose,
     onOpen,
-    classes,
     className,
     style,
     container,
@@ -63,9 +63,8 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(
     transitionDuration,
     paperProps,
     ...rest
-  },
-  ref
-) {
+  } = props
+  const classes = useStyles(props)
   const picassoRootContainer = usePicassoRoot()
 
   return (
@@ -112,8 +111,4 @@ Modal.Content = ModalContent
 Modal.Actions = ModalActions
 Modal.Title = ModalTitle
 
-export default withStyles(styles)(Modal) as PicassoComponentWithRef<
-  Props,
-  HTMLElement,
-  StaticProps
->
+export default Modal

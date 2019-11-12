@@ -58,16 +58,23 @@ export default ({ palette, typography }: Theme) => {
     }),
     expandIcon: {
       fontSize: '0.7em',
-      color: palette.primary.main
+      color: palette.grey.dark,
+      transition: 'transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms'
+    },
+    expandIconExpanded: {
+      transform: 'rotate(180deg)'
+    },
+    expandIconAlignTop: {
+      display: 'flex',
+      alignItems: 'center',
+      height: '1.5em',
+      alignSelf: 'flex-start'
     },
     summary: {
       color: palette.common.black
     },
     details: {
       padding: 0
-    },
-    content: {
-      display: 'block'
     },
     summaryWrapper: {
       color: palette.common.black
@@ -78,6 +85,13 @@ export default ({ palette, typography }: Theme) => {
       fontSize: '0.875em',
       fontWeight: typography.fontWeights.regular,
       marginBottom: '0.75em'
+    },
+    content: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      lineHeight: '1.5em'
     }
   })
 }

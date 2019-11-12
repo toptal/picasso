@@ -6,7 +6,7 @@ import React, {
   ElementType
 } from 'react'
 import cx from 'classnames'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import ButtonBase, { ButtonBaseProps } from '@material-ui/core/ButtonBase'
 
 import Loader from '../Loader'
@@ -14,11 +14,11 @@ import Container from '../Container'
 import Group from '../ButtonGroup'
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import {
-  StandardProps,
-  PicassoComponentWithRef,
+  BaseProps,
   SizeType,
   ButtonOrAnchorProps,
-  CompoundedComponentWithRef
+  CompoundedComponentWithRef,
+  OverridableComponent
 } from '../Picasso'
 import styles from './styles'
 
@@ -37,7 +37,7 @@ export type VariantType =
 
 type IconPositionType = 'left' | 'right'
 
-export interface Props extends StandardProps, ButtonOrAnchorProps {
+export interface Props extends BaseProps, ButtonOrAnchorProps {
   /** Show button in the active state (left mouse button down) */
   active?: boolean
   /** The component used for the root node. Either a string to use a DOM element or a component. */
@@ -70,7 +70,7 @@ export interface Props extends StandardProps, ButtonOrAnchorProps {
   circular?: boolean
   /** HTML title of Button component */
   title?: string
-  /** HTML type of Button component **/
+  /** HTML type of Button component */
   type?: 'button' | 'reset' | 'submit'
 }
 
@@ -84,13 +84,17 @@ const getVariantType = (variant: VariantType) => {
   return type
 }
 
+const useStyles = makeStyles<Theme, Props>(styles)
+
 export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
-  {
+  props,
+  ref
+) {
+  const {
     icon,
     iconPosition,
     loading,
     children,
-    classes,
     className,
     style,
     fullWidth,
@@ -107,9 +111,9 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     type,
     as,
     ...rest
-  },
-  ref
-) {
+  } = props
+  const classes = useStyles(props)
+
   const {
     icon: iconClass,
     iconLeft: iconLeftClass,
@@ -216,8 +220,4 @@ Button.displayName = 'Button'
 
 Button.Group = Group
 
-export default withStyles(styles)(Button) as PicassoComponentWithRef<
-  Props,
-  HTMLButtonElement,
-  StaticProps
->
+export default Button as OverridableComponent<Props> & StaticProps

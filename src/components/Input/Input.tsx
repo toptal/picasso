@@ -16,6 +16,7 @@ import { BaseProps } from '../Picasso'
 import styles from './styles'
 
 type IconPosition = 'start' | 'end'
+type CounterType = 'remaining' | 'entered'
 
 export interface Props
   extends BaseProps,
@@ -61,11 +62,12 @@ export interface Props
   ) => void
   /** Adds a counter of characters */
   limit?: number
+  /** Type of the counter of characters */
+  counter?: CounterType
 }
 
-type LimitAdornmentProps = Pick<Props, 'multiline'> & {
+type LimitAdornmentProps = Pick<Props, 'multiline' | 'limit' | 'counter'> & {
   charsLength: number
-  limit: number
 }
 
 type IconAdornmentProps = Pick<Props, 'disabled' | 'icon'> & {
@@ -76,28 +78,47 @@ type StartAdornmentProps = Pick<Props, 'icon' | 'iconPosition' | 'disabled'>
 
 type EndAdornmentProps = Pick<
   Props,
-  'icon' | 'iconPosition' | 'disabled' | 'limit' | 'multiline'
+  'icon' | 'iconPosition' | 'disabled' | 'multiline' | 'limit' | 'counter'
 > & { charsLength?: number }
 
 const useStyles = makeStyles<Theme, Props>(styles)
 
+const hasCounter = (counter: CounterType, limit?: number) =>
+  limit || counter === 'entered'
+const getCounter = (
+  counter: CounterType,
+  charsLength: number,
+  limit?: number
+) => {
+  if (counter === 'remaining') {
+    return {
+      isNegative: charsLength! >= limit!,
+      limitValue: limit! - charsLength!
+    }
+  }
+
+  return {
+    isNegative: false,
+    limitValue: charsLength!
+  }
+}
+
 const LimitAdornment = (props: LimitAdornmentProps) => {
-  const { multiline, charsLength, limit } = props
   const classes = useStyles(props)
+  const { multiline, charsLength, counter, limit } = props
+  const { limitValue, isNegative } = getCounter(counter!, charsLength!, limit)
 
   return (
     <InputAdornment
       position='end'
-      classes={{
-        root: multiline ? classes.counterMultiline : ''
-      }}
+      className={multiline ? classes.counterMultiline : ''}
     >
       <span
         className={cx(classes.counter, {
-          [classes.counterNegative]: charsLength >= limit
+          [classes.counterNegative]: isNegative
         })}
       >
-        {limit - charsLength}
+        {limitValue}
       </span>
     </InputAdornment>
   )
@@ -128,16 +149,27 @@ const StartAdornment = ({
 }
 
 const EndAdornment = (props: EndAdornmentProps) => {
-  const { icon, iconPosition, disabled, limit, multiline, charsLength } = props
+  const {
+    icon,
+    iconPosition,
+    disabled,
+    limit,
+    multiline,
+    charsLength,
+    counter
+  } = props
 
   if (icon && iconPosition === 'end') {
     return <IconAdornment disabled={disabled} position='end' icon={icon} />
-  } else if (limit) {
+  }
+
+  if (hasCounter(counter!, limit)) {
     return (
       <LimitAdornment
-        limit={limit}
-        charsLength={charsLength as number}
+        charsLength={charsLength!}
         multiline={multiline}
+        counter={counter}
+        limit={limit}
       />
     )
   }
@@ -172,12 +204,13 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
     startAdornment,
     endAdornment,
     limit,
+    counter,
     ...rest
   } = props
   const [charsLength, setCharsLength] = useState(value ? value.length : 0)
 
   const handleChange: Props['onChange'] = e => {
-    if (limit) {
+    if (hasCounter(counter!, limit)) {
       setCharsLength(e.target.value.length)
     }
 
@@ -233,6 +266,8 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
             disabled={disabled}
             limit={limit}
             charsLength={charsLength}
+            multiline={multiline}
+            counter={counter}
           />
         )
       }
@@ -245,6 +280,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
 
 Input.defaultProps = {
   autoComplete: 'none',
+  counter: 'remaining',
   iconPosition: 'start',
   multiline: false,
   width: 'auto'

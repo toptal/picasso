@@ -4,7 +4,7 @@ import { TagSelector } from '../TagSelector'
 
 const page = PicassoBook.createPage(
   'TagSelector',
-  'Input that allows multiselection from a list of available options with autocomplete. You can add new options too.',
+  'Input that allows multiselection from a list of available options with autocomplete. Based on Autocomplete component.',
   'Lab'
 )
 
@@ -14,13 +14,53 @@ page
 
 page
   .createChapter()
-  .addExample('lab/TagSelector/story/Default.example.jsx', 'Default')
+  .addExample('lab/TagSelector/story/Default.example.jsx', 'Default', {
+    effect: async (page, makeScreenshot) => {
+      const hideInputCaretStyle = `
+        input {
+          caret-color: transparent !important;
+        }
+      `
+
+      await page.addStyleTag({ content: hideInputCaretStyle })
+
+      await page.click('[role="combobox"]')
+      await makeScreenshot({
+        isFullScreen: true
+      })
+
+      await page.keyboard.press('Enter')
+      await page.waitFor(50)
+      await makeScreenshot()
+
+      await page.click('[aria-label="delete icon"]')
+      await page.waitFor(100)
+      await makeScreenshot()
+
+      await page.type('input', 'test')
+      await page.waitFor(50)
+      await makeScreenshot({
+        isFullScreen: true
+      })
+    }
+  })
+  .addExample('lab/TagSelector/story/OtherOption.example.jsx', 'Other option', {
+    effect: async (page, makeScreenshot) => {
+      await page.click('[role="combobox"]')
+
+      await page.type('input', 'test')
+      await page.waitFor(50)
+      await makeScreenshot({
+        isFullScreen: true
+      })
+
+      await page.click('[role="option"]')
+      await page.waitFor(50)
+      await makeScreenshot()
+    }
+  })
   .addExample(
-    'lab/TagSelector/story/SingleDefaultSelection.example.jsx',
-    'Single Default selection'
-  )
-  .addExample(
-    'lab/TagSelector/story/MultilineDefaultSelection.example.jsx',
-    'Multiline Default selection'
+    'lab/TagSelector/story/InitialSetValue.example.jsx',
+    'Initially set value'
   )
   .addExample('lab/TagSelector/story/Loading.example.jsx', 'Loading')

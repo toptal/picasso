@@ -32,10 +32,7 @@ const ScrollMenu: FunctionComponent<Props> = ({
   const [prevSelectedIndex, setPrevSelectedIndex] = useState(selectedIndex)
 
   const renderChildren = React.Children.map(children, (child, index) => {
-    if (index === 0) {
-      // hack to be able to set ref for Menu.Item
-      // when we will move to MUI v4 we will be able
-      // just set ref={firstItemRef} to the child
+    if (index === 0 && child) {
       return <RootRef rootRef={firstItemRef}>{child}</RootRef>
     }
 

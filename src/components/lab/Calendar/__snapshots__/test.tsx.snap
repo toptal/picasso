@@ -12,12 +12,12 @@ exports[`Calendar default render 1`] = `
         class="makeStyles-actions"
       >
         <button
-          class="MuiButtonBase-root Button-small Button-flat Button-root"
+          class="MuiButtonBase-root makeStyles-small makeStyles-flat makeStyles-root"
           tabindex="0"
           type="button"
         >
           <span
-            class="Container-flex Container-inline Button-content"
+            class="Container-flex Container-inline makeStyles-content"
             style="align-items: center;"
           >
             <svg
@@ -37,12 +37,12 @@ exports[`Calendar default render 1`] = `
           February 2019
         </h3>
         <button
-          class="MuiButtonBase-root Button-small Button-flat Button-root"
+          class="MuiButtonBase-root makeStyles-small makeStyles-flat makeStyles-root"
           tabindex="0"
           type="button"
         >
           <span
-            class="Container-flex Container-inline Button-content"
+            class="Container-flex Container-inline makeStyles-content"
             style="align-items: center;"
           >
             <svg

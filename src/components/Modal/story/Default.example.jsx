@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Modal, Button, Input, Checkbox, Select, Form } from '@toptal/picasso'
 import { useModals } from '@toptal/picasso/lab/utils'
 
@@ -49,6 +49,7 @@ const ModalDialog = ({ modalId, hideModal }) => {
           Cancel
         </Button>
         <Button
+          data-testid='close'
           loading={isLoading}
           onClick={() => {
             setLoading(true)
@@ -56,7 +57,7 @@ const ModalDialog = ({ modalId, hideModal }) => {
             setTimeout(() => {
               setLoading(false)
               hideModal(modalId)
-            }, 2000)
+            }, 1000)
           }}
           variant='primary-green'
         >
@@ -76,14 +77,11 @@ const ModalDefaultExample = () => {
     ))
   }
 
-  // show a modal when the example is opened, in demonstration purpose
-  useEffect(() => {
-    handleClick()
-  }, [])
-
   return (
     <div id='modal-container' style={{ width: '800px', height: '50px' }}>
-      <Button onClick={handleClick}>Open</Button>
+      <Button data-testid='open' onClick={handleClick}>
+        Open
+      </Button>
     </div>
   )
 }

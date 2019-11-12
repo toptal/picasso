@@ -10,24 +10,24 @@ exports[`renders default 1`] = `
       style="align-items: center;"
     >
       <button
-        class="MuiButtonBase-root Button-small Button-secondaryBlue Button-root"
+        class="MuiButtonBase-root makeStyles-small makeStyles-secondaryBlue makeStyles-root"
         tabindex="0"
         type="button"
       >
         <span
-          class="Container-flex Container-inline Button-content"
+          class="Container-flex Container-inline makeStyles-content"
           style="align-items: center;"
         >
           Prev
         </span>
       </button>
       <button
-        class="MuiButtonBase-root Button-small Button-secondaryBlue Button-root Pagination-rangeButton"
+        class="MuiButtonBase-root makeStyles-small makeStyles-secondaryBlue makeStyles-root Pagination-rangeButton"
         tabindex="0"
         type="button"
       >
         <span
-          class="Container-flex Container-inline Button-content"
+          class="Container-flex Container-inline makeStyles-content"
           style="align-items: center;"
         >
           1
@@ -43,36 +43,36 @@ exports[`renders default 1`] = `
         </p>
       </div>
       <button
-        class="MuiButtonBase-root Button-small Button-secondaryBlue Button-root Pagination-rangeButton"
+        class="MuiButtonBase-root makeStyles-small makeStyles-secondaryBlue makeStyles-root Pagination-rangeButton"
         tabindex="0"
         type="button"
       >
         <span
-          class="Container-flex Container-inline Button-content"
+          class="Container-flex Container-inline makeStyles-content"
           style="align-items: center;"
         >
           4
         </span>
       </button>
       <button
-        class="MuiButtonBase-root Button-small Button-primaryBlue Button-root Pagination-rangeButton"
+        class="MuiButtonBase-root makeStyles-small makeStyles-primaryBlue makeStyles-root Pagination-rangeButton"
         tabindex="0"
         type="button"
       >
         <span
-          class="Container-flex Container-inline Button-content"
+          class="Container-flex Container-inline makeStyles-content"
           style="align-items: center;"
         >
           5
         </span>
       </button>
       <button
-        class="MuiButtonBase-root Button-small Button-secondaryBlue Button-root Pagination-rangeButton"
+        class="MuiButtonBase-root makeStyles-small makeStyles-secondaryBlue makeStyles-root Pagination-rangeButton"
         tabindex="0"
         type="button"
       >
         <span
-          class="Container-flex Container-inline Button-content"
+          class="Container-flex Container-inline makeStyles-content"
           style="align-items: center;"
         >
           6
@@ -88,24 +88,24 @@ exports[`renders default 1`] = `
         </p>
       </div>
       <button
-        class="MuiButtonBase-root Button-small Button-secondaryBlue Button-root Pagination-rangeButton"
+        class="MuiButtonBase-root makeStyles-small makeStyles-secondaryBlue makeStyles-root Pagination-rangeButton"
         tabindex="0"
         type="button"
       >
         <span
-          class="Container-flex Container-inline Button-content"
+          class="Container-flex Container-inline makeStyles-content"
           style="align-items: center;"
         >
           20
         </span>
       </button>
       <button
-        class="MuiButtonBase-root Button-small Button-secondaryBlue Button-root"
+        class="MuiButtonBase-root makeStyles-small makeStyles-secondaryBlue makeStyles-root"
         tabindex="0"
         type="button"
       >
         <span
-          class="Container-flex Container-inline Button-content"
+          class="Container-flex Container-inline makeStyles-content"
           style="align-items: center;"
         >
           Next
@@ -126,26 +126,26 @@ exports[`renders disabled 1`] = `
       style="align-items: center;"
     >
       <button
-        class="MuiButtonBase-root Button-small Button-secondaryDisabled Button-root Mui-disabled"
+        class="MuiButtonBase-root makeStyles-small makeStyles-secondaryDisabled makeStyles-root Mui-disabled"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <span
-          class="Container-flex Container-inline Button-content"
+          class="Container-flex Container-inline makeStyles-content"
           style="align-items: center;"
         >
           Prev
         </span>
       </button>
       <button
-        class="MuiButtonBase-root Button-small Button-secondaryDisabled Button-root Pagination-rangeButton Mui-disabled"
+        class="MuiButtonBase-root makeStyles-small makeStyles-secondaryDisabled makeStyles-root Pagination-rangeButton Mui-disabled"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <span
-          class="Container-flex Container-inline Button-content"
+          class="Container-flex Container-inline makeStyles-content"
           style="align-items: center;"
         >
           1
@@ -161,39 +161,39 @@ exports[`renders disabled 1`] = `
         </p>
       </div>
       <button
-        class="MuiButtonBase-root Button-small Button-secondaryDisabled Button-root Pagination-rangeButton Mui-disabled"
+        class="MuiButtonBase-root makeStyles-small makeStyles-secondaryDisabled makeStyles-root Pagination-rangeButton Mui-disabled"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <span
-          class="Container-flex Container-inline Button-content"
+          class="Container-flex Container-inline makeStyles-content"
           style="align-items: center;"
         >
           4
         </span>
       </button>
       <button
-        class="MuiButtonBase-root Button-small Button-primaryDisabled Button-root Pagination-rangeButton Mui-disabled"
+        class="MuiButtonBase-root makeStyles-small makeStyles-primaryDisabled makeStyles-root Pagination-rangeButton Mui-disabled"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <span
-          class="Container-flex Container-inline Button-content"
+          class="Container-flex Container-inline makeStyles-content"
           style="align-items: center;"
         >
           5
         </span>
       </button>
       <button
-        class="MuiButtonBase-root Button-small Button-secondaryDisabled Button-root Pagination-rangeButton Mui-disabled"
+        class="MuiButtonBase-root makeStyles-small makeStyles-secondaryDisabled makeStyles-root Pagination-rangeButton Mui-disabled"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <span
-          class="Container-flex Container-inline Button-content"
+          class="Container-flex Container-inline makeStyles-content"
           style="align-items: center;"
         >
           6
@@ -209,26 +209,26 @@ exports[`renders disabled 1`] = `
         </p>
       </div>
       <button
-        class="MuiButtonBase-root Button-small Button-secondaryDisabled Button-root Pagination-rangeButton Mui-disabled"
+        class="MuiButtonBase-root makeStyles-small makeStyles-secondaryDisabled makeStyles-root Pagination-rangeButton Mui-disabled"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <span
-          class="Container-flex Container-inline Button-content"
+          class="Container-flex Container-inline makeStyles-content"
           style="align-items: center;"
         >
           20
         </span>
       </button>
       <button
-        class="MuiButtonBase-root Button-small Button-secondaryDisabled Button-root Mui-disabled"
+        class="MuiButtonBase-root makeStyles-small makeStyles-secondaryDisabled makeStyles-root Mui-disabled"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <span
-          class="Container-flex Container-inline Button-content"
+          class="Container-flex Container-inline makeStyles-content"
           style="align-items: center;"
         >
           Next

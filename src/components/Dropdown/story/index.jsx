@@ -16,7 +16,22 @@ page
 
 page
   .createChapter()
-  .addExample('Dropdown/story/Default.example.jsx', 'Default')
+  .addExample('Dropdown/story/Default.example.jsx', 'Default', {
+    effect: async (page, makeScreenshot) => {
+      await page.click('[data-testid="trigger"]')
+
+      await makeScreenshot({
+        selector: '[data-testid="menu"]'
+      })
+
+      await page.keyboard.press('ArrowDown')
+      await page.waitFor(250)
+
+      await makeScreenshot({
+        selector: '[data-testid="menu"]'
+      })
+    }
+  })
   .addExample('Dropdown/story/ButtonDropdown.example.jsx', 'Button Anchor')
   .addExample(
     'Dropdown/story/PositionsAndOffsets.example.jsx',

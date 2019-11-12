@@ -94,7 +94,11 @@ const ModalDialog = ({ modalId, hideModal }) => {
         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </Modal.Content>
       <Modal.Actions>
-        <Button variant='flat' onClick={() => hideModal(modalId)}>
+        <Button
+          data-testid='cancel'
+          variant='flat'
+          onClick={() => hideModal(modalId)}
+        >
           Cancel
         </Button>
       </Modal.Actions>
@@ -113,7 +117,9 @@ const MaxHeightExample = () => {
 
   return (
     <div id='modal-container'>
-      <Button onClick={handleClick}>Open</Button>
+      <Button data-testid='trigger' onClick={handleClick}>
+        Open
+      </Button>
     </div>
   )
 }
