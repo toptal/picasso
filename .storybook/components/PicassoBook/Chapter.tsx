@@ -1,6 +1,6 @@
 declare var TEST_ENV: string // defined by ENV
 
-import React, { Fragment } from 'react'
+import React, { Fragment, ReactNode } from 'react'
 import { toArray } from 'lodash'
 
 import DocumentationGenerator, {
@@ -11,7 +11,7 @@ import DocumentationGenerator, {
 import { generateUrl, getHost, normalize } from '@/utils/url-generator'
 
 import Base from './Base'
-import Section from './Section'
+import Section, { SectionConfigType } from './Section'
 import CodeExample from '../CodeExample'
 import Page from './Page'
 
@@ -43,14 +43,14 @@ class Chapter extends Base {
     this.page = options.page
   }
 
-  createSection = (config: any) => {
+  createSection = (config: SectionConfigType) => {
     const section = new Section(config)
     this.collection.push(section)
 
     return section
   }
 
-  addTextSection = (text: string, options: any) => {
+  addTextSection = (text: string, options: Record<string, string>) => {
     if (TEST_ENV === 'visual') {
       return this
     }
@@ -61,7 +61,7 @@ class Chapter extends Base {
       sectionFn: render,
       ...options,
       options: {
-        decorator: (story: any) => (
+        decorator: (story: () => ReactNode) => (
           <div className='text-section-container'>{story()}</div>
         )
       }
@@ -126,7 +126,10 @@ class Chapter extends Base {
     return this
   }
 
-  addExample = (source: string, options: any) => {
+  addExample = (
+    source: string,
+    options: Record<string, string | boolean> & { showEditCode: boolean }
+  ) => {
     let finalOptions = options
 
     if (typeof options === 'string') {
@@ -135,7 +138,7 @@ class Chapter extends Base {
       }
     }
 
-    const sectionId = finalOptions.title || finalOptions.id
+    const sectionId = (finalOptions.title || finalOptions.id).toString()
 
     const sectionLinkId = normalize(sectionId)
     const permanentLink = generateUrl({

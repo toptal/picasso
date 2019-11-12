@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Button } from '@toptal/picasso'
 import { Autocomplete } from '@toptal/picasso/lab'
+import { Props as AutocompleteProps } from '@toptal/picasso/lab/Autocomplete'
 import { useNotifications, isSubstring } from '@toptal/picasso/utils'
 import { useModals } from '@toptal/picasso/lab/utils'
 
@@ -13,7 +14,8 @@ const allOptions = [
 ]
 
 const EMPTY_INPUT_VALUE = ''
-const getDisplayValue = (item: any) => (item ? item.text : EMPTY_INPUT_VALUE)
+const getDisplayValue: AutocompleteProps['getDisplayValue'] = item =>
+  item ? (item.text as string) : EMPTY_INPUT_VALUE
 const filterOptions = (str: string) =>
   str !== ''
     ? allOptions.filter(option => isSubstring(str, getDisplayValue(option)))
@@ -47,7 +49,7 @@ const PromptModalDefaultExample = () => {
           />
         )
       },
-      onSubmit: (result: any) => showInfo(String(result)),
+      onSubmit: result => showInfo(String(result)),
       // for purpose of code example
       container: () => document.getElementById('modal-container')!
     })

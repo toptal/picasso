@@ -136,7 +136,7 @@ ${propsTable}
     }
   }
 
-  resolveDefaultValue(defaultValue: any): string {
+  resolveDefaultValue(defaultValue: { value: string } | undefined): string {
     if (!defaultValue) {
       return ''
     }

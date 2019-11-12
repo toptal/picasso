@@ -4,7 +4,7 @@ import { MatchImageSnapshotOptions } from 'jest-image-snapshot'
 
 import { generateIframeUrl } from '../src/utils/url-generator'
 
-declare var page: Page
+declare const page: Page
 
 const PADDING_AROUND_COMPONENT = 8
 
@@ -21,7 +21,7 @@ interface Options extends MatchImageSnapshotOptions {
   effect?: (
     page: Page,
     makeScreenShot: (options: Options) => void
-  ) => Promise<any>
+  ) => Promise<unknown>
   isFullScreen?: boolean
   padding?: number
   dimensions?: Partial<Dimensions>
@@ -46,12 +46,14 @@ async function screenshotDOMElement({
     }
     const componentRect: ClientRect = component!.getBoundingClientRect()
 
-    return {
+    const dimensions: Dimensions = {
       x: componentRect.left,
       y: componentRect.top,
       width: componentRect.width,
       height: componentRect.height
-    } as Dimensions
+    }
+
+    return dimensions
   }, selector)
 
   const clipDimensions = {

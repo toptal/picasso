@@ -18,7 +18,10 @@ import {
 } from './types'
 import styles from './styles'
 
-type SimpleReactCalendarRangeType = { start: Date; end: Date }
+type SimpleReactCalendarRangeType = {
+  start: Date
+  end: Date
+}
 export type DateOrDateRangeType = Date | DateRangeType
 export type DateRangeType = [Date, Date]
 

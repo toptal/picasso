@@ -4,7 +4,7 @@ import { Paper } from '@components'
 
 import Base from './Base'
 
-const decorator = (story: any) => (
+const decorator = (story: () => ReactNode) => (
   <Paper className='component-section-container'>{story()}</Paper>
 )
 
