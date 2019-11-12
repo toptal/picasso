@@ -85,14 +85,14 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
 
       if (inputNode) {
         const resizeInput = () => {
-          const inputLength = inputNode.value.length
-          const isInputBlank = inputLength === 0
+          const inputNodeLength = inputNode.value.length
+          const isInputBlank = inputValue.length === 0
           const isNothingSelected = values.length === 0
           const isShowingPlaceholder = isInputBlank && isNothingSelected
 
           inputNode.style.width = isShowingPlaceholder
             ? 'auto'
-            : `${inputLength + 2}ch`
+            : `${inputNodeLength + 2}ch`
         }
 
         resizeInput()
