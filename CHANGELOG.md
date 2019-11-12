@@ -1,3 +1,10 @@
+## [3.39.1](https://github.com/toptal/picasso/compare/v3.39.0...v3.39.1) (2019-11-12)
+
+
+### Bug Fixes
+
+* **TagSelector:** fix placeholder on loading ([#851](https://github.com/toptal/picasso/issues/851)) ([b2252cc](https://github.com/toptal/picasso/commit/b2252cc))
+
 # [3.39.0](https://github.com/toptal/picasso/compare/v3.38.0...v3.39.0) (2019-11-08)
 
 
