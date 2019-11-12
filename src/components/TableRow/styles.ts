@@ -14,6 +14,10 @@ export default ({ palette, sizes, transitions }: Theme) =>
         background: alpha(palette.grey.lighter!, 0.32)
       },
 
+      '&:nth-of-type(even) + div': {
+        background: alpha(palette.grey.lighter!, 0.32)
+      },
+
       '&$hover:hover': {
         backgroundColor: palette.blue.lighter
       }
