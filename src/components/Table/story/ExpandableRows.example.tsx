@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import styled from 'styled-components'
 import {
   Table,
   Checkbox,
@@ -10,6 +11,17 @@ import {
   Container
 } from '@toptal/picasso'
 import { Star16, ArrowDownMinor16, More16 } from '@toptal/picasso/Icon'
+
+type StyledArrowDownMinor16Props = {
+  expanded: boolean
+}
+const StyledArrowDownMinor16 = styled(ArrowDownMinor16)`
+  transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transform: rotate(
+    ${(props: StyledArrowDownMinor16Props) =>
+      props.expanded ? '180deg' : '0deg'}
+  );
+`
 
 const ExpandableContent = () => (
   <React.Fragment>
@@ -100,7 +112,7 @@ const TableExpandableRowsExample = () => {
                 circular
                 variant='flat'
                 size='small'
-                icon={<ArrowDownMinor16 />}
+                icon={<StyledArrowDownMinor16 expanded={row.expanded} />}
                 data-testid={`expand-button-${row.id}`}
                 onClick={() => handleExpandClick(row.id)}
               />
