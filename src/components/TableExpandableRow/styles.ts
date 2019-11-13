@@ -1,8 +1,10 @@
-import { createStyles } from '@material-ui/core/styles'
+import { Theme, createStyles } from '@material-ui/core/styles'
 
-export default () =>
+import { alpha } from '../styles'
+
+export default ({ palette }: Theme) =>
   createStyles({
-    root: {
-      display: 'table-row'
+    stripEven: {
+      background: alpha(palette.grey.lighter!, 0.32)
     }
   })

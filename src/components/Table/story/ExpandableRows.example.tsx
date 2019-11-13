@@ -14,7 +14,7 @@ import { Star16, ArrowDownMinor16, More16 } from '@toptal/picasso/Icon'
 const TableExpandableRowsExample = () => {
   const [data, setData] = useState(tableData)
 
-  const handleExpandClick = id => {
+  const handleExpandClick = (id: number) => {
     const row = data[id]
     const toggleExpandedRow = {
       ...row,
@@ -53,7 +53,19 @@ const TableExpandableRowsExample = () => {
               <Table.Cell>{row.time}</Table.Cell>
               <Table.Cell align='center'>{row.asignee}</Table.Cell>
               <Table.Cell align='center'>
-                <Actions onExpandClick={() => handleExpandClick(row.id)} />
+                <Button
+                  circular
+                  variant='flat'
+                  size='small'
+                  icon={<Star16 />}
+                />
+                <Button
+                  circular
+                  variant='flat'
+                  size='small'
+                  icon={<ArrowDownMinor16 />}
+                  onClick={() => handleExpandClick(row.id)}
+                />
               </Table.Cell>
             </Table.Row>
             <ExpandableContent item={row} expanded={row.expanded} />
@@ -64,20 +76,17 @@ const TableExpandableRowsExample = () => {
   )
 }
 
-const createData = (id, task, dueDate, relatedTo, time, asignee) => {
-  return {
-    id,
-    task,
-    dueDate,
-    relatedTo,
-    time,
-    asignee,
-    expanded: false
-  }
+type ExpandableContentProps = {
+  item: Data
+  expanded: boolean
 }
-
-const ExpandableContent = ({ item, expanded }) => (
-  <Table.ExpandableRow expanded={expanded}>
+const ExpandableContent = ({
+  item,
+  expanded,
+  ...rest
+}: ExpandableContentProps) => (
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  <Table.ExpandableRow expanded={expanded} {...rest}>
     <Table.Cell colSpan={Object.keys(item).length}>
       <Tabs value={1}>
         <Tabs.Tab label='Job' />
@@ -119,58 +128,54 @@ const ExpandableContent = ({ item, expanded }) => (
   </Table.ExpandableRow>
 )
 
-const Actions = ({ onStarClick, onExpandClick }) => (
-  <React.Fragment>
-    <Button
-      circular
-      variant='flat'
-      size='small'
-      icon={<Star16 />}
-      onClick={onStarClick}
-    />
-    <Button
-      circular
-      variant='flat'
-      size='small'
-      icon={<ArrowDownMinor16 />}
-      onClick={onExpandClick}
-    />
-  </React.Fragment>
-)
-
-const tableData = {
-  0: createData(
-    0,
-    "Invoice the client for half of Sanin's time...",
-    'May 20, 2014',
-    'Passionate PHP Dev...',
-    '2:19 PM',
-    'AD'
-  ),
-  1: createData(
-    1,
-    'BUG: try to edit skills in profile',
-    'Sep 7, 2015',
-    'Ardelia Conn',
-    '3:27 PM',
-    'AD'
-  ),
-  2: createData(
-    2,
-    'Assign attendee to scheduled meeting',
-    'Oct 10, 2016',
-    'Mariel Ankunding',
-    '1:27 PM',
-    'AD'
-  ),
-  3: createData(
-    3,
-    'Conquer The World',
-    'Jul 30, 2017',
-    'Hye Schmeler',
-    '7:46 PM',
-    'AD'
-  )
+type Data = {
+  id: number
+  task: string
+  dueDate: string
+  relatedTo: string
+  time: string
+  asignee: string
+  expanded: boolean
+}
+const tableData: {
+  [id: number]: Data
+} = {
+  0: {
+    id: 0,
+    task: "Invoice the client for half of Sanin's time...",
+    dueDate: 'May 20, 2014',
+    relatedTo: 'Passionate PHP Dev...',
+    time: '2:19 PM',
+    asignee: 'AD',
+    expanded: false
+  },
+  1: {
+    id: 1,
+    task: 'BUG: try to edit skills in profile',
+    dueDate: 'Sep 7, 2015',
+    relatedTo: 'Ardelia Conn',
+    time: '3:27 PM',
+    asignee: 'AD',
+    expanded: false
+  },
+  2: {
+    id: 2,
+    task: 'Assign attendee to scheduled meeting',
+    dueDate: 'Oct 10, 2016',
+    relatedTo: 'Mariel Ankunding',
+    time: '1:27 PM',
+    asignee: 'AD',
+    expanded: false
+  },
+  3: {
+    id: 3,
+    task: 'Conquer The World',
+    dueDate: 'Jul 30, 2017',
+    relatedTo: 'Hye Schmeler',
+    time: '7:46 PM',
+    asignee: 'AD',
+    expanded: false
+  }
 }
 
 export default TableExpandableRowsExample
