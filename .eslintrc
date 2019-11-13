@@ -161,7 +161,7 @@
       }
     ],
     "no-unused-vars": 0,
-    "no-shadow": "error",
+    "no-shadow": 1,
     "@typescript-eslint/no-unused-vars": 2,
     "@typescript-eslint/explicit-function-return-type": 0,
     "@typescript-eslint/no-non-null-assertion": 1,

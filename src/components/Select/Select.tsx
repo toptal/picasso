@@ -232,7 +232,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
           {iconPosition === 'end' && iconAdornment}
         </React.Fragment>
       )}
-      IconComponent={({ iconClassName }: { iconClassName: string }) => (
+      IconComponent={({ className: iconClassName }: { className: string }) => (
         <DropdownArrows16
           className={cx(iconClassName, {
             [classes.caretDisabled]: disabled

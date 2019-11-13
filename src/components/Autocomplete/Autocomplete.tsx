@@ -156,7 +156,7 @@ BREAKING CHANGES:
       isSubstring(filter || EMPTY_VALUE, getItemText(item))
     )
 
-    const isSelected = (item: Item, currentSelectedItem: Item) =>
+    const isEqual = (item: Item, currentSelectedItem: Item) =>
       getItemValue(item) === getItemValue(currentSelectedItem)
 
     const handleChange = (
@@ -218,7 +218,7 @@ BREAKING CHANGES:
                   <Menu.Item
                     key={getItemValue(option)}
                     selected={highlightedIndex === index}
-                    disabled={isSelected(option, downshiftSelectedItem)}
+                    disabled={isEqual(option, downshiftSelectedItem)}
                     /* eslint-disable-next-line react/jsx-props-no-spreading */
                     {...getItemProps({ item: option, index })}
                   >
