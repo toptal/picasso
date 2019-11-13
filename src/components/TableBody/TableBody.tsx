@@ -38,14 +38,13 @@ const decorateRowsWithStripeEven = (children: React.ReactNode) => {
     const isTableRow =
       childElement.type === TableRow || childElement.type === TableExpandableRow
 
-    if (isTableRow) {
-      stripeEvenIndex++
-
-      if (stripeEvenIndex % 2 !== 0) {
-        return decorateRowWithStripeEven(childElement)
-      }
-
+    if (!isTableRow) {
       return childElement
+    }
+
+    stripeEvenIndex++
+    if (stripeEvenIndex % 2 !== 0) {
+      return decorateRowWithStripeEven(childElement)
     }
 
     return childElement
