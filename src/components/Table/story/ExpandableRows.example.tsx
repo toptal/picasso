@@ -11,6 +11,47 @@ import {
 } from '@toptal/picasso'
 import { Star16, ArrowDownMinor16, More16 } from '@toptal/picasso/Icon'
 
+const ExpandableContent = () => (
+  <React.Fragment>
+    <Tabs value={1}>
+      <Tabs.Tab label='Job' />
+      <Tabs.Tab label='Company' />
+      <Tabs.Tab label='Task Details' />
+    </Tabs>
+
+    <Container
+      flex
+      direction='row'
+      alignItems='center'
+      justifyContent='space-between'
+      top='medium'
+      bottom='medium'
+    >
+      <UserBadge
+        name='Jacqueline Roque'
+        avatar='./jacqueline-with-flowers-1954-square.jpg'
+      >
+        <Typography size='small'>UI specialist</Typography>
+      </UserBadge>
+
+      <Container>
+        <Button variant='secondary-blue' size='small'>
+          Q &amp; A
+        </Button>
+        <Button variant='secondary-blue' size='small'>
+          Timeline
+        </Button>
+        <Button size='small'>Contact Company</Button>
+        <Button circular variant='flat' size='small' icon={<More16 />} />
+      </Container>
+    </Container>
+
+    <Container top='small'>
+      <Label>$2k Design Credit</Label>
+    </Container>
+  </React.Fragment>
+)
+
 const TableExpandableRowsExample = () => {
   const [data, setData] = useState(tableData)
 
@@ -70,47 +111,6 @@ const TableExpandableRowsExample = () => {
     </Table>
   )
 }
-
-const ExpandableContent = () => (
-  <React.Fragment>
-    <Tabs value={1}>
-      <Tabs.Tab label='Job' />
-      <Tabs.Tab label='Company' />
-      <Tabs.Tab label='Task Details' />
-    </Tabs>
-
-    <Container
-      flex
-      direction='row'
-      alignItems='center'
-      justifyContent='space-between'
-      top='medium'
-      bottom='medium'
-    >
-      <UserBadge
-        name='Jacqueline Roque'
-        avatar='./jacqueline-with-flowers-1954-square.jpg'
-      >
-        <Typography size='small'>UI specialist</Typography>
-      </UserBadge>
-
-      <Container>
-        <Button variant='secondary-blue' size='small'>
-          Q &amp; A
-        </Button>
-        <Button variant='secondary-blue' size='small'>
-          Timeline
-        </Button>
-        <Button size='small'>Contact Company</Button>
-        <Button circular variant='flat' size='small' icon={<More16 />} />
-      </Container>
-    </Container>
-
-    <Container top='small'>
-      <Label>$2k Design Credit</Label>
-    </Container>
-  </React.Fragment>
-)
 
 type Data = {
   id: number
