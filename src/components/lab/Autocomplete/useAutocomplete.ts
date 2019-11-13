@@ -73,7 +73,7 @@ interface Props {
   value: string
   options?: Item[]
   enableAutofill?: boolean
-  autoComplete?: any
+  autoComplete?: string
   onSelect?: (item: Item) => void
   onChange?: (value: string) => void
   onKeyDown?: (
@@ -123,7 +123,7 @@ const useAutocomplete = ({
 
       setHighlightedIndex(index)
     },
-    onMouseDown: (event: any) => {
+    onMouseDown: (event: React.MouseEvent) => {
       // This prevents the activeElement from being changed
       // to the item so it can remain with the current activeElement
       // which is a more common use case.

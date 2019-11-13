@@ -31,8 +31,7 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   variant?: VariantType
 }
 
-const isBrowserSupportsObjectFit =
-  'objectFit' in document.documentElement.style
+const isBrowserSupportsObjectFit = 'objectFit' in document.documentElement.style
 
 const renderLogo = ({ classes, src, size }: Partial<Props>) => {
   if (!src || ['small', 'xsmall', 'xxsmall'].includes(size!)) {

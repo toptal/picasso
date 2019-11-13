@@ -14,7 +14,7 @@ interface Props {
   mode: 'html' | 'jsx'
   value: string
   classes: Classes
-  onChange: (value: string, event?: any) => void
+  onChange: (value: string) => void
 }
 
 const Editor: FunctionComponent<Props> = props => {

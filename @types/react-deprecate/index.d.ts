@@ -1,7 +1,9 @@
 import React from 'react'
 
 declare module 'react-deprecate' {
-  export type ProvidedProps = { [key: string]: any }
+  export type ProvidedProps = {
+    [key: string]: unknown
+  }
 
   export type IsDeprecatedFn = (
     prop: string,
@@ -23,7 +25,7 @@ declare module 'react-deprecate' {
     deprecatedProps: DeprecatedProps
     mapTo: string | null
     prop: string
-    value: any
+    value: unknown
   }
 
   export type WarningFn = (args: WarningArgs) => string

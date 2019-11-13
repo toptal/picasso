@@ -31,9 +31,7 @@ interface StaticProps {
   Actions: typeof HelpboxActions
 }
 
-export const HelpboxContext = React.createContext<HelpboxContextProps>(
-  {} as HelpboxContextProps
-)
+export const HelpboxContext = React.createContext<HelpboxContextProps>({})
 
 // eslint-disable-next-line react/display-name
 export const Helpbox = forwardRef<HTMLDivElement, Props>(function Helpbox(

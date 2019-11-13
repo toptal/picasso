@@ -15,7 +15,7 @@ import { StandardProps } from '../Picasso'
 import styles from './styles'
 
 type ValueType =
-  | Array<string | number | boolean | object>
+  | (string | number | boolean | object)[]
   | string
   | number
   | boolean
