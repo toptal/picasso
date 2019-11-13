@@ -41,9 +41,9 @@ const PromptModalDefaultExample = () => {
             getDisplayValue={getDisplayValue}
             placeholder='Start typing country...'
             options={options}
-            onChange={value => {
-              setOptions(filterOptions(value))
-              setValue(value)
+            onChange={newValue => {
+              setOptions(filterOptions(newValue))
+              setValue(newValue)
             }}
             onSelect={item => setResult(item.value)}
           />

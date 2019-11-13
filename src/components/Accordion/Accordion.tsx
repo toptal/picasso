@@ -77,7 +77,7 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
   }
 
   const handleSummaryClick = () => {
-    setSummaryExpanded(expanded => !expanded)
+    setSummaryExpanded(!summaryExpanded)
   }
 
   const expandIconClass = cx(classes.expandIcon, {

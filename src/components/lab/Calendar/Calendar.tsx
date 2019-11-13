@@ -108,14 +108,17 @@ export const Calendar = (props: Props) => {
           </button>
         )
       }}
-      renderMonthHeader={({ switchMonth, activeMonth }: MonthHeaderProps) => {
+      renderMonthHeader={({
+        switchMonth,
+        activeMonth: headerActiveMonth
+      }: MonthHeaderProps) => {
         return (
           <div className={classes.actions}>
             <Button variant='flat' size='small' onClick={() => switchMonth(-1)}>
               <BackMinor16 />
             </Button>
             <Typography variant='heading' size='medium'>
-              {format(activeMonth, 'MMMM y')}
+              {format(headerActiveMonth, 'MMMM y')}
             </Typography>
             <Button variant='flat' size='small' onClick={() => switchMonth(1)}>
               <ChevronMinor16 />

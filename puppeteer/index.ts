@@ -38,23 +38,24 @@ async function screenshotDOMElement({
     return page.screenshot()
   }
 
-  const componentDimensions = await page.evaluate(selector => {
-    const component = document.querySelector(selector)
+  const componentDimensions: Dimensions = await page.evaluate(
+    componentSelector => {
+      const component = document.querySelector(componentSelector)
 
-    if (!component) {
-      throw new Error(`Rendered story was not found!`)
-    }
-    const componentRect: ClientRect = component!.getBoundingClientRect()
+      if (!component) {
+        throw new Error(`Rendered story was not found!`)
+      }
+      const componentRect: ClientRect = component!.getBoundingClientRect()
 
-    const dimensions: Dimensions = {
-      x: componentRect.left,
-      y: componentRect.top,
-      width: componentRect.width,
-      height: componentRect.height
-    }
-
-    return dimensions
-  }, selector)
+      return {
+        x: componentRect.left,
+        y: componentRect.top,
+        width: componentRect.width,
+        height: componentRect.height
+      }
+    },
+    selector
+  )
 
   const clipDimensions = {
     ...componentDimensions,

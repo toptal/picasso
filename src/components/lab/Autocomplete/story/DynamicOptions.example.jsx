@@ -37,10 +37,10 @@ const AutocompleteDynamicOptionsExample = () => {
 
   const handleChangeDebounced = useCallback(
     debounce(async inputValue => {
-      const options = await loadOptions(inputValue.trim().toLowerCase())
+      const newOptions = await loadOptions(inputValue.trim().toLowerCase())
 
       setLoading(false)
-      setOptions(options)
+      setOptions(newOptions)
     }, 500),
     []
   )

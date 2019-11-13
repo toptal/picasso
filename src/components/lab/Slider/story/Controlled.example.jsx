@@ -4,8 +4,8 @@ import { Plus16, Minus16 } from '@toptal/picasso/Icon'
 
 const SelectDefaultExample = () => {
   const [value, setValue] = useState(0)
-  const handleChange = (event, value) => {
-    setValue(value)
+  const handleChange = (_, newValue) => {
+    setValue(newValue)
   }
 
   return (
