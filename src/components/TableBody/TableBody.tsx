@@ -2,12 +2,12 @@ import React, {
   forwardRef,
   ReactNode,
   HTMLAttributes,
-  ReactElement,
-  Fragment
+  ReactElement
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUITableBody from '@material-ui/core/TableBody'
 
+import TableExpandableRow from '../TableExpandableRow'
 import TableRow from '../TableRow'
 import { StandardProps } from '../Picasso'
 import styles from './styles'
@@ -35,10 +35,8 @@ const decorateRowsWithStripeEven = (children: React.ReactNode) => {
       return child
     }
 
-    // TableRows sometimes can be wrapped with a Fragment
-    // ex. when TableExpandableRow is used
     const isTableRow =
-      childElement.type === TableRow || childElement.type === Fragment
+      childElement.type === TableRow || childElement.type === TableExpandableRow
 
     if (isTableRow) {
       stripEvenIndex++
@@ -49,18 +47,13 @@ const decorateRowsWithStripeEven = (children: React.ReactNode) => {
 
       return childElement
     }
+
+    return childElement
   })
 }
 
-const decorateRowWithStripEven = (row: ReactElement) => {
-  if (row.type === Fragment) {
-    return React.Children.map(row.props.children, child =>
-      React.cloneElement(child, { stripEven: true })
-    )
-  }
-
-  return React.cloneElement(row, { stripEven: true })
-}
+const decorateRowWithStripEven = (row: ReactElement) =>
+  React.cloneElement(row, { stripEven: true })
 
 export const TableBody = forwardRef<HTMLElement, Props>(function TableBody(
   { classes, className, style, children, ...rest },
