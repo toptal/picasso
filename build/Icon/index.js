@@ -203,4 +203,6 @@ export { default as ThumbsDown24 } from './ThumbsDown24';
 export { default as ThumbsUp16 } from './ThumbsUp16';
 export { default as ThumbsUp24 } from './ThumbsUp24';
 export { default as StarSolid16 } from './StarSolid16';
+export { default as Guests16 } from './Guests16';
+export { default as Guests24 } from './Guests24';
 //# sourceMappingURL=index.js.map

@@ -1,3 +1,10 @@
+# [3.40.0](https://github.com/toptal/picasso/compare/v3.39.1...v3.40.0) (2019-11-13)
+
+
+### Features
+
+* **icon:** add guests icon ([#849](https://github.com/toptal/picasso/issues/849)) ([827566d](https://github.com/toptal/picasso/commit/827566d))
+
 ## [3.39.1](https://github.com/toptal/picasso/compare/v3.39.0...v3.39.1) (2019-11-12)
 
 
