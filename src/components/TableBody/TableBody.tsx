@@ -20,7 +20,7 @@ export interface Props
 }
 
 const decorateRowsWithStripeEven = (children: React.ReactNode) => {
-  let stripEvenIndex = -1
+  let stripeEvenIndex = -1
 
   return React.Children.map(children, child => {
     if (!child) {
@@ -39,10 +39,10 @@ const decorateRowsWithStripeEven = (children: React.ReactNode) => {
       childElement.type === TableRow || childElement.type === TableExpandableRow
 
     if (isTableRow) {
-      stripEvenIndex++
+      stripeEvenIndex++
 
-      if (stripEvenIndex % 2 !== 0) {
-        return decorateRowWithStripEven(childElement)
+      if (stripeEvenIndex % 2 !== 0) {
+        return decorateRowWithStripeEven(childElement)
       }
 
       return childElement
@@ -52,8 +52,8 @@ const decorateRowsWithStripeEven = (children: React.ReactNode) => {
   })
 }
 
-const decorateRowWithStripEven = (row: ReactElement) =>
-  React.cloneElement(row, { stripEven: true })
+const decorateRowWithStripeEven = (row: ReactElement) =>
+  React.cloneElement(row, { stripeEven: true })
 
 export const TableBody = forwardRef<HTMLElement, Props>(function TableBody(
   { classes, className, style, children, ...rest },

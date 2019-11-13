@@ -17,7 +17,7 @@ export default ({ palette, sizes, transitions }: Theme) =>
     head: {
       borderBottom: `${sizes.borderWidth} solid ${palette.grey.lighter}`
     },
-    stripEven: {
+    stripeEven: {
       background: alpha(palette.grey.lighter!, 0.32)
     },
     hover: {

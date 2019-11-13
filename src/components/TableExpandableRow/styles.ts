@@ -4,7 +4,7 @@ import { alpha } from '../styles'
 
 export default ({ palette }: Theme) =>
   createStyles({
-    stripEven: {
+    stripeEven: {
       background: alpha(palette.grey.lighter!, 0.32)
     }
   })

@@ -20,8 +20,8 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLTableRowElement> {
   content: ReactNode
   /** Whether the row is in collapsed or expanded state */
   expanded?: boolean
-  /** Set a strip even background for the row */
-  stripEven?: boolean
+  /** Set a stripe even background for the row */
+  stripeEven?: boolean
 }
 
 export const TableExpandableRow = forwardRef<HTMLTableRowElement, Props>(
@@ -31,7 +31,7 @@ export const TableExpandableRow = forwardRef<HTMLTableRowElement, Props>(
       children,
       content,
       expanded,
-      stripEven,
+      stripeEven,
       className,
       style,
       ...rest
@@ -43,7 +43,7 @@ export const TableExpandableRow = forwardRef<HTMLTableRowElement, Props>(
         {...rest}
         className={className}
         style={style}
-        stripEven={stripEven}
+        stripeEven={stripeEven}
       >
         {children}
       </TableRow>
@@ -56,7 +56,7 @@ export const TableExpandableRow = forwardRef<HTMLTableRowElement, Props>(
           <MUITableRow
             ref={ref}
             className={cx(className, {
-              [classes.stripEven]: stripEven
+              [classes.stripeEven]: stripeEven
             })}
             style={style}
           >
@@ -74,7 +74,7 @@ export const TableExpandableRow = forwardRef<HTMLTableRowElement, Props>(
 
 TableExpandableRow.defaultProps = {
   expanded: false,
-  stripEven: false
+  stripeEven: false
 }
 
 TableExpandableRow.displayName = 'TableExpandableRow'

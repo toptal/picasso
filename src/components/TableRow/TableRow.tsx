@@ -17,8 +17,8 @@ export interface Props
   selected?: boolean
   /** Callback invoked when user clicks on table row */
   onClick?: (event: MouseEvent<HTMLTableRowElement>) => void
-  /** Set a strip even background for the row */
-  stripEven?: boolean
+  /** Set a stripe even background for the row */
+  stripeEven?: boolean
 }
 
 export const TableRow = forwardRef<HTMLTableRowElement, Props>(
@@ -30,13 +30,13 @@ export const TableRow = forwardRef<HTMLTableRowElement, Props>(
       children,
       hover,
       selected,
-      stripEven,
+      stripeEven,
       onClick,
       ...rest
     },
     ref
   ) {
-    const { stripEven: stripEvenClass, ...restClasses } = classes
+    const { stripeEven: stripeEvenClass, ...restClasses } = classes
 
     return (
       <MUITableRow
@@ -45,7 +45,7 @@ export const TableRow = forwardRef<HTMLTableRowElement, Props>(
         ref={ref}
         classes={restClasses}
         className={cx(className, {
-          [stripEvenClass]: stripEven
+          [stripeEvenClass]: stripeEven
         })}
         style={style}
         hover={hover}
@@ -61,7 +61,7 @@ export const TableRow = forwardRef<HTMLTableRowElement, Props>(
 TableRow.defaultProps = {
   hover: false,
   selected: false,
-  stripEven: false
+  stripeEven: false
 }
 
 TableRow.displayName = 'TableRow'
