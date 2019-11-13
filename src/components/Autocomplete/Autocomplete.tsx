@@ -277,7 +277,7 @@ BREAKING CHANGES:
               }
               onKeyDownProp!(event, inputValue)
             },
-            onInputChange: (event: ChangeEvent<HTMLInputElement>) => {
+            onChange: (event: ChangeEvent<HTMLInputElement>) => {
               const { value: newValue } = event.target
 
               setFilter((newValue || EMPTY_VALUE).trim())
