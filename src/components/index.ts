@@ -38,7 +38,7 @@ export { default as Stepper } from './Stepper'
 export { default as Table } from './Table'
 export { default as TableFooter } from './TableFooter'
 export { default as Tabs } from './Tabs'
-export { default as TagSelector } from './lab/TagSelector'
+export { default as TagSelector } from './TagSelector'
 // TextField component is deprecated and
 // have to be removed in v4 of Picasso
 export { default as TextField } from './TextField'

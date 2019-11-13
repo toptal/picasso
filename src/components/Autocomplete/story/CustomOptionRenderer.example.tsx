@@ -1,7 +1,6 @@
 import React from 'react'
-import { Autocomplete } from '@toptal/picasso/lab'
-import { Item } from '@toptal/picasso/lab/Autocomplete'
-import { Typography, Container } from '@toptal/picasso'
+import { Item } from '@toptal/picasso/Autocomplete'
+import { Typography, Container, Autocomplete } from '@toptal/picasso'
 
 interface Country extends Item {
   text: string

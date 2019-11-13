@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Container, Grid } from '@toptal/picasso'
-import { Autocomplete } from '@toptal/picasso/lab'
+import { Button, Container, Grid, Autocomplete } from '@toptal/picasso'
 
 const options = [
   { text: 'Belarus', value: 'BY' },

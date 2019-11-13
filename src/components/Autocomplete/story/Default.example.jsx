@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Autocomplete } from '@toptal/picasso/lab'
+import { Autocomplete } from '@toptal/picasso'
 import { isSubstring } from '@toptal/picasso/utils'
 
 const allOptions = [

@@ -8,12 +8,12 @@ import React, {
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
-import { useCombinedRefs } from '../../utils'
-import { StandardProps } from '../../Picasso'
-import Label from '../../Label'
+import { useCombinedRefs } from '../utils'
+import { StandardProps } from '../Picasso'
+import Label from '../Label'
 import Autocomplete, { Item as AutocompleteItem } from '../Autocomplete'
 import TagSelectorInput from '../TagSelectorInput'
-import { Props as InputProps } from '../../Input'
+import { Props as InputProps } from '../Input'
 import styles from './styles'
 
 export interface Item extends AutocompleteItem {

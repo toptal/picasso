@@ -7,7 +7,7 @@ import {
   RenderResult
 } from '@testing-library/react'
 
-import Picasso, { OmitInternalProps } from '../../Picasso'
+import Picasso, { OmitInternalProps } from '../Picasso'
 import TagSelector, { Props } from './TagSelector'
 
 const options = [
