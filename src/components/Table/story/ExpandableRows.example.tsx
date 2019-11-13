@@ -33,7 +33,6 @@ const TableExpandableRowsExample = () => {
         <Table.Row>
           <Table.Cell />
           <Table.Cell>Tasks</Table.Cell>
-          <Table.Cell>Due Date</Table.Cell>
           <Table.Cell>Related to</Table.Cell>
           <Table.Cell>Time</Table.Cell>
           <Table.Cell align='center'>Assignee</Table.Cell>
@@ -51,7 +50,6 @@ const TableExpandableRowsExample = () => {
               <Checkbox />
             </Table.Cell>
             <Table.Cell>{row.task}</Table.Cell>
-            <Table.Cell>{row.dueDate}</Table.Cell>
             <Table.Cell>{row.relatedTo}</Table.Cell>
             <Table.Cell>{row.time}</Table.Cell>
             <Table.Cell align='center'>{row.asignee}</Table.Cell>
@@ -62,6 +60,7 @@ const TableExpandableRowsExample = () => {
                 variant='flat'
                 size='small'
                 icon={<ArrowDownMinor16 />}
+                data-testid={`expand-button-${row.id}`}
                 onClick={() => handleExpandClick(row.id)}
               />
             </Table.Cell>
@@ -119,7 +118,6 @@ const ExpandableContent = ({ item }: ExpandableContentProps) => (
 type Data = {
   id: number
   task: string
-  dueDate: string
   relatedTo: string
   time: string
   asignee: string
@@ -131,7 +129,6 @@ const tableData: {
   0: {
     id: 0,
     task: "Invoice the client for half of Sanin's time...",
-    dueDate: 'May 20, 2014',
     relatedTo: 'Passionate PHP Dev...',
     time: '2:19 PM',
     asignee: 'AD',
@@ -140,7 +137,6 @@ const tableData: {
   1: {
     id: 1,
     task: 'BUG: try to edit skills in profile',
-    dueDate: 'Sep 7, 2015',
     relatedTo: 'Ardelia Conn',
     time: '3:27 PM',
     asignee: 'AD',
@@ -149,7 +145,6 @@ const tableData: {
   2: {
     id: 2,
     task: 'Assign attendee to scheduled meeting',
-    dueDate: 'Oct 10, 2016',
     relatedTo: 'Mariel Ankunding',
     time: '1:27 PM',
     asignee: 'AD',
@@ -158,7 +153,6 @@ const tableData: {
   3: {
     id: 3,
     task: 'Conquer The World',
-    dueDate: 'Jul 30, 2017',
     relatedTo: 'Hye Schmeler',
     time: '7:46 PM',
     asignee: 'AD',

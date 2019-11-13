@@ -29,6 +29,13 @@ page
   .createChapter()
   .addExample('Table/story/Default.example.jsx', 'Plain table')
   .addExample('Table/story/Select.example.jsx', 'Selectable table')
-  .addExample('Table/story/ExpandableRows.example.tsx', 'Expandable rows')
+  .addExample('Table/story/ExpandableRows.example.tsx', 'Expandable rows', {
+    effect: async (page, makeScreenshot) => {
+      await page.click('[data-testid="expand-button-1"]')
+
+      await makeScreenshot()
+    },
+    waitUntilImagesLoaded: true
+  })
 
 page.connect(tableCellStory.chapter)
