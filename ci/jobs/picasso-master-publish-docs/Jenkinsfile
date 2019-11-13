@@ -24,7 +24,7 @@ pipeline {
         info "== Checking out Picasso"
         gitCheckout(
                 branches: params.BRANCH,
-                credentials: [username: 'git', description: 'jenkins/picasso'],
+                credentials: [username: 'toptal-build', description: 'toptal-build-ssh-key'],
                 url: 'git@github.com:toptal/picasso.git',
                 additionalBehaviours: [
                         cleanBeforeCheckout: true
@@ -46,7 +46,7 @@ pipeline {
             }//script
         }//steps
     }//stage
-    
+
     stage('Sync docs to docs server') {
       steps {
         script {
@@ -65,7 +65,7 @@ pipeline {
                     sh "curl -X \"DELETE\" -H \"Authorization: token ${GITHUB_TOKEN}\" https://api.github.com/repos/toptal/picasso/issues/comments/${it}"
                   }
                 }
-                
+
                 def url = "https://picasso.toptal.net/${targetBranch}/"
                 def comment = ":tada: Last commit is successfully deployed :tada: \\n\\nDemo is available on:\\n\\n- [${url}](${url}?${gitCommit()}) \\n\\n Your **[davinci-bot](https://github.com/toptal-davinci-bot)** :rocket:"
                 gitHubPostComment('picasso', params.PR_ID, comment, env.GITHUB_TOKEN)

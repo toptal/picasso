@@ -30,7 +30,7 @@ pipeline {
         info "== Checking out ${BRANCH} =="
         gitCheckout(
           branches: BRANCH,
-          credentials: [username: 'git', description: 'jenkins/picasso'],
+          credentials: [username: 'toptal-build', description: 'toptal-build-ssh-key'],
           url: 'git@github.com:toptal/picasso.git',
           additionalBehaviours: [
             cleanBeforeCheckout: true
