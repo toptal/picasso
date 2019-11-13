@@ -2,10 +2,14 @@ import React, { forwardRef, ReactNode, HTMLAttributes, Fragment } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITableRow from '@material-ui/core/TableRow'
+import MUICollapse from '@material-ui/core/Collapse'
 
-import TableRow from '../TableRow/'
+import TableRow from '../TableRow'
+import TableCell from '../TableCell'
 import { BaseProps } from '../Picasso'
 import styles from './styles'
+
+const MAX_COL_SPAN = 100
 
 const useStyles = makeStyles<Theme, Props>(styles)
 
@@ -56,7 +60,11 @@ export const TableExpandableRow = forwardRef<HTMLTableRowElement, Props>(
             })}
             style={style}
           >
-            {content}
+            <TableCell colSpan={MAX_COL_SPAN}>
+              <MUICollapse appear in>
+                {content}
+              </MUICollapse>
+            </TableCell>
           </MUITableRow>
         )}
       </Fragment>

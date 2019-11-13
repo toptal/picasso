@@ -43,7 +43,7 @@ const TableExpandableRowsExample = () => {
         {Object.values(data).map(row => (
           <Table.ExpandableRow
             key={row.id}
-            content={<ExpandableContent item={row} />}
+            content={<ExpandableContent />}
             expanded={row.expanded}
           >
             <Table.Cell>
@@ -71,11 +71,8 @@ const TableExpandableRowsExample = () => {
   )
 }
 
-type ExpandableContentProps = {
-  item: Data
-}
-const ExpandableContent = ({ item }: ExpandableContentProps) => (
-  <Table.Cell colSpan={Object.keys(item).length}>
+const ExpandableContent = () => (
+  <React.Fragment>
     <Tabs value={1}>
       <Tabs.Tab label='Job' />
       <Tabs.Tab label='Company' />
@@ -112,7 +109,7 @@ const ExpandableContent = ({ item }: ExpandableContentProps) => (
     <Container top='small'>
       <Label>$2k Design Credit</Label>
     </Container>
-  </Table.Cell>
+  </React.Fragment>
 )
 
 type Data = {
