@@ -9,7 +9,7 @@ import {
 import Picasso, { OmitInternalProps } from '../Picasso'
 import Autocomplete, { Props } from './Autocomplete'
 
-const options = [
+const testOptions = [
   { text: 'Belarus', value: 'BY' },
   { text: 'Croatia', value: 'HR' },
   { text: 'Lithuania', value: 'LU' },
@@ -40,7 +40,7 @@ describe('Autocomplete', () => {
   beforeEach(() => {
     api = renderAutocomplete(null, {
       placeholder: 'Start typing here...',
-      options
+      options: testOptions
     })
   })
   test('default render', () => {

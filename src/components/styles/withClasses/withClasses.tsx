@@ -22,9 +22,11 @@ export default (config: Config) => {
 
         let childResult = childNode
 
-        config(classes).forEach(([ComponentType, classes]) => {
-          if (childNode.type === ComponentType) {
-            childResult = React.cloneElement(childNode, { classes })
+        config(classes).forEach(([componentType, configClasses]) => {
+          if (childNode.type === componentType) {
+            childResult = React.cloneElement(childNode, {
+              classes: configClasses
+            })
           }
         })
 

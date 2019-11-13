@@ -3,9 +3,9 @@ import { Slider, Button, Grid } from '@toptal/picasso'
 import { Plus16, Minus16 } from '@toptal/picasso/Icon'
 
 const SelectDefaultExample = () => {
-  const [value, setValue] = useState(0)
-  const handleChange = (event, value) => {
-    setValue(value)
+  const [sliderValue, setSliderValue] = useState(0)
+  const handleSliderChange = (_, value) => {
+    setSliderValue(value)
   }
 
   return (
@@ -14,7 +14,7 @@ const SelectDefaultExample = () => {
         <Grid alignItems='center'>
           <Grid.Item>
             <Button
-              onClick={() => setValue(value - 1)}
+              onClick={() => setSliderValue(sliderValue - 1)}
               variant='flat'
               size='small'
               icon={<Minus16 />}
@@ -23,11 +23,11 @@ const SelectDefaultExample = () => {
             </Button>
           </Grid.Item>
           <Grid.Item small>
-            <Slider value={value} onChange={handleChange} max={5} />
+            <Slider value={sliderValue} onChange={handleSliderChange} max={5} />
           </Grid.Item>
           <Grid.Item>
             <Button
-              onClick={() => setValue(value + 1)}
+              onClick={() => setSliderValue(sliderValue + 1)}
               variant='flat'
               size='small'
               icon={<Plus16 />}

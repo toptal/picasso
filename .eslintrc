@@ -25,8 +25,16 @@
     "no-console": 0,
     "space-before-function-paren": 0,
     "camelcase": 0,
-    "react/jsx-fragments": [1, "element"],
-    "react/jsx-max-props-per-line": [2, { "when": "multiline" }],
+    "react/jsx-fragments": [
+      1,
+      "element"
+    ],
+    "react/jsx-max-props-per-line": [
+      2,
+      {
+        "when": "multiline"
+      }
+    ],
     "react/jsx-one-expression-per-line": 0,
     "react/jsx-no-literals": 0,
     "react/jsx-no-bind": 0,
@@ -36,7 +44,10 @@
     "react/jsx-indent": 0,
     "react/jsx-indent-props": 0,
     "react/jsx-tag-spacing": 0,
-    "react/jsx-closing-bracket-location": [2, "line-aligned"],
+    "react/jsx-closing-bracket-location": [
+      2,
+      "line-aligned"
+    ],
     "react/jsx-wrap-multilines": [
       2,
       {
@@ -52,12 +63,25 @@
     "standard/computed-property-even-spacing": 0,
     "standard/object-curly-even-spacing": 0,
     "react/jsx-max-depth": 0,
-    "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".jsx"] }],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".tsx",
+          ".jsx"
+        ]
+      }
+    ],
     "react/no-set-state": 0,
     "react/jsx-child-element-spacing": 0,
     "react/forbid-component-props": 0,
     "react/jsx-sort-props": 0,
-    "react/no-multi-comp": [2, { "ignoreStateless": true }],
+    "react/no-multi-comp": [
+      2,
+      {
+        "ignoreStateless": true
+      }
+    ],
     "react/sort-default-prop-types": 0,
     "react/sort-comp": [
       2,
@@ -97,31 +121,61 @@
             "componentDidUpdate",
             "componentWillUnmount"
           ],
-          "rendering": ["/^render.+$/", "render"]
+          "rendering": [
+            "/^render.+$/",
+            "render"
+          ]
         }
       }
     ],
-    "react/forbid-prop-types": [2, { "checkContextTypes": true }],
-    "object-curly-spacing": [2, "always"],
-    "newline-after-var": [2, "always"],
+    "react/forbid-prop-types": [
+      2,
+      {
+        "checkContextTypes": true
+      }
+    ],
+    "object-curly-spacing": [
+      2,
+      "always"
+    ],
+    "newline-after-var": [
+      2,
+      "always"
+    ],
     "import/order": [
       2,
       {
         "groups": [
-          ["builtin", "external"],
+          [
+            "builtin",
+            "external"
+          ],
           "internal",
-          ["parent", "sibling", "index"]
+          [
+            "parent",
+            "sibling",
+            "index"
+          ]
         ],
         "newlines-between": "always"
       }
     ],
     "no-unused-vars": 0,
+    "no-shadow": "error",
     "@typescript-eslint/no-unused-vars": 2,
     "@typescript-eslint/explicit-function-return-type": 0,
     "@typescript-eslint/no-non-null-assertion": 1,
     "@typescript-eslint/explicit-member-accessibility": 0,
     "@typescript-eslint/no-var-requires": 0,
-    "@typescript-eslint/no-use-before-define": [2, { "functions": false, "classes": false, "variables": false, "typedefs": false }],
+    "@typescript-eslint/no-use-before-define": [
+      2,
+      {
+        "functions": false,
+        "classes": false,
+        "variables": false,
+        "typedefs": false
+      }
+    ],
     "@typescript-eslint/no-explicit-any": 1,
     "@typescript-eslint/ban-ts-ignore": 1
   },
@@ -132,22 +186,28 @@
     "localStorage": true,
     "fetch": true
   },
-
-  "overrides": [	
-    {	
-      "files": ["*.example.jsx"],	
-      "rules": {	
+  "overrides": [
+    {
+      "files": [
+        "*.example.jsx"
+      ],
+      "rules": {
         "react/no-multi-comp": 0,
         "react/require-optimization": 0,
         "import/no-named-default": 0,
         "no-console": 0
-      }	
-    },	
-    {	
-      "files": ["src/components/**/*.tsx"],	
-      "rules": {	
-        "no-restricted-imports": [2, "styled-components"]
-      }	
+      }
+    },
+    {
+      "files": [
+        "src/components/**/*.tsx"
+      ],
+      "rules": {
+        "no-restricted-imports": [
+          2,
+          "styled-components"
+        ]
+      }
     }
   ]
 }

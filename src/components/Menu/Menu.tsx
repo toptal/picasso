@@ -83,8 +83,8 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
   }
 
   const menuContext: MenuContextProps = {
-    push: (key: string, menu: ReactElement) =>
-      setMenus({ ...menus, ...{ [key]: menu } }),
+    push: (key: string, newMenu: ReactElement) =>
+      setMenus({ ...menus, ...{ [key]: newMenu } }),
     pop: () => {
       const key = getLastKey()
 
@@ -97,12 +97,12 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
       delete newMenus[key]
       setMenus(newMenus)
     },
-    refresh: (key: string, menu: ReactElement) => {
+    refresh: (key: string, newMenu: ReactElement) => {
       if (!menus[key]) {
         return
       }
 
-      setMenus({ ...menus, ...{ [key]: menu } })
+      setMenus({ ...menus, ...{ [key]: newMenu } })
     }
   }
 

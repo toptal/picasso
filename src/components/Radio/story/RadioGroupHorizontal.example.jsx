@@ -7,7 +7,7 @@ const RadioRadioGroupHorizontalExample = () => {
   return (
     <Radio.Group
       name='variableName'
-      onChange={({ target: { value } }) => setValue(value)}
+      onChange={({ target }) => setValue(target.value)}
       style={{ flexDirection: 'row' }}
       value={value}
     >

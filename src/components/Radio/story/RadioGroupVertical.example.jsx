@@ -7,7 +7,7 @@ const RadioRadioGroupVerticalExample = () => {
   return (
     <Radio.Group
       name='variableName'
-      onChange={({ target: { value } }) => setValue(value)}
+      onChange={({ target: { value: targetValue } }) => setValue(targetValue)}
       value={value}
     >
       <Radio label='Radio 1' value='radio1' />
