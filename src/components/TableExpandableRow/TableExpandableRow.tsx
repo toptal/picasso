@@ -41,6 +41,7 @@ export const TableExpandableRow = forwardRef<HTMLTableRowElement, Props>(
       <TableRow
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
+        ref={ref}
         className={className}
         style={style}
         stripeEven={stripeEven}
@@ -54,7 +55,6 @@ export const TableExpandableRow = forwardRef<HTMLTableRowElement, Props>(
         {row}
         {expanded && (
           <MUITableRow
-            ref={ref}
             className={cx(className, {
               [classes.stripeEven]: stripeEven
             })}
