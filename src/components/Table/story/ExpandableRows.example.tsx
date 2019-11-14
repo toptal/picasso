@@ -65,26 +65,16 @@ const ExpandableContent = () => (
 )
 
 const TableExpandableRowsExample = () => {
-  const defaultExpandedData: {
-    [id: number]: { expanded: boolean }
-  } = data.reduce(
-    (acc, { id }) => ({
-      ...acc,
-      [id]: { expanded: false }
-    }),
-    {}
-  )
-  const [expandedData, setExpandedData] = useState(defaultExpandedData)
+  const [expandedData, setExpandedData] = useState<{
+    [id: number]: boolean
+  }>({})
 
   const handleExpandClick = (id: number) => {
-    const row = expandedData[id]
-    const toggleExpandedRow = {
-      expanded: !row.expanded
-    }
+    const expanded = expandedData[id]
 
     setExpandedData({
       ...expandedData,
-      [id]: toggleExpandedRow
+      [id]: !expanded
     })
   }
 
@@ -105,7 +95,7 @@ const TableExpandableRowsExample = () => {
           <Table.ExpandableRow
             key={id}
             content={<ExpandableContent />}
-            expanded={expandedData[id].expanded}
+            expanded={expandedData[id]}
           >
             <Table.Cell>
               <Checkbox />
@@ -120,11 +110,7 @@ const TableExpandableRowsExample = () => {
                 circular
                 variant='flat'
                 size='small'
-                icon={
-                  <StyledArrowDownMinor16
-                    expanded={expandedData[id].expanded}
-                  />
-                }
+                icon={<StyledArrowDownMinor16 expanded={expandedData[id]} />}
                 data-testid={`expand-button-${id}`}
                 onClick={() => handleExpandClick(id)}
               />
