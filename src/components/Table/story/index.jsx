@@ -30,8 +30,8 @@ page
   .addExample('Table/story/Default.example.jsx', 'Plain table')
   .addExample('Table/story/Select.example.jsx', 'Selectable table')
   .addExample('Table/story/ExpandableRows.example.tsx', 'Expandable rows', {
-    effect: async (page, makeScreenshot) => {
-      await page.click('[data-testid="expand-button-1"]')
+    effect: async (testPage, makeScreenshot) => {
+      await testPage.click('[data-testid="expand-button-1"]')
 
       await makeScreenshot()
     },

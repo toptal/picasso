@@ -93,32 +93,39 @@ const TableExpandableRowsExample = () => {
         </Table.Row>
       </Table.Head>
       <Table.Body>
-        {Object.values(data).map(row => (
-          <Table.ExpandableRow
-            key={row.id}
-            content={<ExpandableContent />}
-            expanded={row.expanded}
-          >
-            <Table.Cell>
-              <Checkbox />
-            </Table.Cell>
-            <Table.Cell>{row.task}</Table.Cell>
-            <Table.Cell>{row.relatedTo}</Table.Cell>
-            <Table.Cell>{row.time}</Table.Cell>
-            <Table.Cell align='center'>{row.asignee}</Table.Cell>
-            <Table.Cell align='center'>
-              <Button circular variant='flat' size='small' icon={<Star16 />} />
-              <Button
-                circular
-                variant='flat'
-                size='small'
-                icon={<StyledArrowDownMinor16 expanded={row.expanded} />}
-                data-testid={`expand-button-${row.id}`}
-                onClick={() => handleExpandClick(row.id)}
-              />
-            </Table.Cell>
-          </Table.ExpandableRow>
-        ))}
+        {Object.values(data).map(
+          ({ id, task, relatedTo, time, assignee, expanded }) => (
+            <Table.ExpandableRow
+              key={id}
+              content={<ExpandableContent />}
+              expanded={expanded}
+            >
+              <Table.Cell>
+                <Checkbox />
+              </Table.Cell>
+              <Table.Cell>{task}</Table.Cell>
+              <Table.Cell>{relatedTo}</Table.Cell>
+              <Table.Cell>{time}</Table.Cell>
+              <Table.Cell align='center'>{assignee}</Table.Cell>
+              <Table.Cell align='center'>
+                <Button
+                  circular
+                  variant='flat'
+                  size='small'
+                  icon={<Star16 />}
+                />
+                <Button
+                  circular
+                  variant='flat'
+                  size='small'
+                  icon={<StyledArrowDownMinor16 expanded={expanded} />}
+                  data-testid={`expand-button-${id}`}
+                  onClick={() => handleExpandClick(id)}
+                />
+              </Table.Cell>
+            </Table.ExpandableRow>
+          )
+        )}
       </Table.Body>
     </Table>
   )
@@ -129,7 +136,7 @@ type Data = {
   task: string
   relatedTo: string
   time: string
-  asignee: string
+  assignee: string
   expanded: boolean
 }
 const tableData: {
@@ -140,7 +147,7 @@ const tableData: {
     task: "Invoice the client for half of Sanin's time...",
     relatedTo: 'Passionate PHP Dev...',
     time: '2:19 PM',
-    asignee: 'AD',
+    assignee: 'AD',
     expanded: false
   },
   1: {
@@ -148,7 +155,7 @@ const tableData: {
     task: 'BUG: try to edit skills in profile',
     relatedTo: 'Ardelia Conn',
     time: '3:27 PM',
-    asignee: 'AD',
+    assignee: 'AD',
     expanded: false
   },
   2: {
@@ -156,7 +163,7 @@ const tableData: {
     task: 'Assign attendee to scheduled meeting',
     relatedTo: 'Mariel Ankunding',
     time: '1:27 PM',
-    asignee: 'AD',
+    assignee: 'AD',
     expanded: false
   },
   3: {
@@ -164,7 +171,7 @@ const tableData: {
     task: 'Conquer The World',
     relatedTo: 'Hye Schmeler',
     time: '7:46 PM',
-    asignee: 'AD',
+    assignee: 'AD',
     expanded: false
   }
 }

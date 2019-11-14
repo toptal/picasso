@@ -19,8 +19,8 @@ export interface Props
   children: ReactNode
 }
 
-const decorateRowsWithStripeEven = (children: React.ReactNode) => {
-  let stripeEvenIndex = -1
+const decorateRows = (children: React.ReactNode) => {
+  let stripeIndex = -1
 
   return React.Children.map(children, child => {
     if (!child) {
@@ -42,17 +42,14 @@ const decorateRowsWithStripeEven = (children: React.ReactNode) => {
       return childElement
     }
 
-    stripeEvenIndex++
-    if (stripeEvenIndex % 2 !== 0) {
-      return decorateRowWithStripeEven(childElement)
+    stripeIndex++
+    if (stripeIndex % 2 !== 0) {
+      return React.cloneElement(childElement, { stripeEven: true })
     }
 
     return childElement
   })
 }
-
-const decorateRowWithStripeEven = (row: ReactElement) =>
-  React.cloneElement(row, { stripeEven: true })
 
 export const TableBody = forwardRef<HTMLElement, Props>(function TableBody(
   { classes, className, style, children, ...rest },
@@ -67,7 +64,7 @@ export const TableBody = forwardRef<HTMLElement, Props>(function TableBody(
       className={className}
       style={style}
     >
-      {decorateRowsWithStripeEven(children)}
+      {decorateRows(children)}
     </MUITableBody>
   )
 })

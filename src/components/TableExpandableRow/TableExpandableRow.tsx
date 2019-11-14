@@ -1,7 +1,6 @@
 import React, { forwardRef, ReactNode, HTMLAttributes, Fragment } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import MUITableRow from '@material-ui/core/TableRow'
 import MUICollapse from '@material-ui/core/Collapse'
 
 import TableRow from '../TableRow'
@@ -54,7 +53,7 @@ export const TableExpandableRow = forwardRef<HTMLTableRowElement, Props>(
       <Fragment>
         {row}
         {expanded && (
-          <MUITableRow
+          <TableRow
             className={cx(className, {
               [classes.stripeEven]: stripeEven
             })}
@@ -65,7 +64,7 @@ export const TableExpandableRow = forwardRef<HTMLTableRowElement, Props>(
                 {content}
               </MUICollapse>
             </TableCell>
-          </MUITableRow>
+          </TableRow>
         )}
       </Fragment>
     )

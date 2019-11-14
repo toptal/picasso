@@ -186,7 +186,7 @@
     "localStorage": true,
     "fetch": true
   },
-  "overrides": [	
+  "overrides": [
     {
       "files": [
         "*.example.jsx",
