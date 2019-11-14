@@ -17,6 +17,7 @@ import TableBody from '../TableBody';
 import TableRow from '../TableRow';
 import TableHead from '../TableHead';
 import TableFooter from '../TableFooter';
+import TableExpandableRow from '../TableExpandableRow';
 import styles from './styles';
 // eslint-disable-next-line react/display-name
 export const Table = forwardRef(function Table(_a, ref) {
@@ -32,6 +33,7 @@ Table.Cell = TableCell;
 Table.Body = TableBody;
 Table.Head = TableHead;
 Table.Row = TableRow;
+Table.ExpandableRow = TableExpandableRow;
 Table.Footer = TableFooter;
 export default withStyles(styles)(Table);
 //# sourceMappingURL=Table.js.map

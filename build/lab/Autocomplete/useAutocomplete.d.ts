@@ -7,7 +7,7 @@ interface Props {
     value: string;
     options?: Item[];
     enableAutofill?: boolean;
-    autoComplete?: any;
+    autoComplete?: string;
     onSelect?: (item: Item) => void;
     onChange?: (value: string) => void;
     onKeyDown?: (event: KeyboardEvent<HTMLInputElement>, inputValue: string) => void;
@@ -19,7 +19,7 @@ declare const useAutocomplete: ({ value, options, enableAutofill, autoComplete, 
         'aria-selected': boolean;
         selected: boolean;
         onMouseMove: () => void;
-        onMouseDown: (event: any) => void;
+        onMouseDown: (event: import("react").MouseEvent<Element, MouseEvent>) => void;
         onClick: () => void;
     };
     getInputProps: () => {

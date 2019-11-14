@@ -1,5 +1,14 @@
 import { useState, useEffect, useCallback } from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+const breakpoints = {
+    values: {
+        xs: 0,
+        sm: 576,
+        md: 768,
+        lg: 992,
+        xl: 1920
+    }
+};
 export const screens = function (...sizes) {
     const { sm, md, lg } = breakpoints.values;
     const mediaQueries = {
@@ -99,15 +108,6 @@ export const useScreens = () => {
         }
         return defaultValue;
     }, [screenKey]);
-};
-const breakpoints = {
-    values: {
-        xs: 0,
-        sm: 576,
-        md: 768,
-        lg: 992,
-        xl: 1920
-    }
 };
 export const breakpointsList = {
     small: breakpoints.values.sm,

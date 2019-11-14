@@ -43,14 +43,7 @@ export const FileInput = forwardRef(function FileInput({ classes, className, sty
     return (React.createElement(OutlinedInput, { ref: inputRef, className: className, style: style, classes: {
             root: classes.root,
             input: classes.input
-        }, error: error, disabled: disabled, width: width, type: 'file', 
-        // MUIv3 doesn't provide generic way to change type of component and props
-        // that would be extensions of input component
-        // https://github.com/mui-org/material-ui/blob/v3.x/packages/material-ui/src/InputBase/InputBase.d.ts#L18
-        // @ts-ignore
-        inputComponent: FileInputContent, 
-        // @ts-ignore
-        inputProps: {
+        }, error: error, disabled: disabled, width: width, type: 'file', inputComponent: FileInputContent, inputProps: {
             progress,
             error,
             disabled,

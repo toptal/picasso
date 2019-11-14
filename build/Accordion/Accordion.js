@@ -32,7 +32,7 @@ export const Accordion = forwardRef(function Accordion(_a, ref) {
         setPrevExpanded(expanded);
     }
     const handleSummaryClick = () => {
-        setSummaryExpanded(expanded => !expanded);
+        setSummaryExpanded(!summaryExpanded);
     };
     const expandIconClass = cx(classes.expandIcon, {
         [classes.expandIconExpanded]: summaryExpanded

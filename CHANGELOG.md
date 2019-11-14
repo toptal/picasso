@@ -1,3 +1,10 @@
+# [3.41.0](https://github.com/toptal/picasso/compare/v3.40.0...v3.41.0) (2019-11-14)
+
+
+### Features
+
+* **Table:** [FX-585] Add expandable rows ([#856](https://github.com/toptal/picasso/issues/856)) ([db058ee](https://github.com/toptal/picasso/commit/db058ee))
+
 # [3.40.0](https://github.com/toptal/picasso/compare/v3.39.1...v3.40.0) (2019-11-13)
 
 

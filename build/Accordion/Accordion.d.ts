@@ -5,7 +5,7 @@ export interface Props extends StandardProps, Omit<HTMLAttributes<HTMLDivElement
     children?: ReactNode;
     /** Collapsible content of `Accordion` */
     content: ReactNode;
-    /** Define accordion content state, whether it should be collapsed or displayed */
+    /** Define accordion content state, whether it should be collapsed or expanded */
     expanded?: boolean;
     /** Define accordion initial content state */
     defaultExpanded?: boolean;

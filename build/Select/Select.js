@@ -92,7 +92,7 @@ export const Select = forwardRef(function Select(_a, ref) {
         }, error: error, disabled: disabled, displayEmpty: true, id: id, input: outlinedInput, native: native, variant: 'outlined', value: value, multiple: multiple, renderValue: () => (React.createElement(React.Fragment, null,
             iconPosition === 'start' && iconAdornment,
             React.createElement(Typography, { className: classes.inputValue, inline: true, color: 'inherit' }, renderValue()),
-            iconPosition === 'end' && iconAdornment)), IconComponent: ({ className }) => (React.createElement(DropdownArrows16, { className: cx(className, {
+            iconPosition === 'end' && iconAdornment)), IconComponent: ({ className: iconClassName }) => (React.createElement(DropdownArrows16, { className: cx(iconClassName, {
                 [classes.caretDisabled]: disabled
             }) })), MenuProps: menuProps, onChange: onChange }, renderOptions(options, classes, placeholder, native)));
 });
