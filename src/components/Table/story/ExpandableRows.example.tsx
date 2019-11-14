@@ -65,17 +65,25 @@ const ExpandableContent = () => (
 )
 
 const TableExpandableRowsExample = () => {
-  const [data, setData] = useState(tableData)
+  const defaultExpandedData: {
+    [id: number]: { expanded: boolean }
+  } = data.reduce(
+    (acc, { id }) => ({
+      ...acc,
+      [id]: { expanded: false }
+    }),
+    {}
+  )
+  const [expandedData, setExpandedData] = useState(defaultExpandedData)
 
   const handleExpandClick = (id: number) => {
-    const row = data[id]
+    const row = expandedData[id]
     const toggleExpandedRow = {
-      ...row,
       expanded: !row.expanded
     }
 
-    setData({
-      ...data,
+    setExpandedData({
+      ...expandedData,
       [id]: toggleExpandedRow
     })
   }
@@ -93,39 +101,36 @@ const TableExpandableRowsExample = () => {
         </Table.Row>
       </Table.Head>
       <Table.Body>
-        {Object.values(data).map(
-          ({ id, task, relatedTo, time, assignee, expanded }) => (
-            <Table.ExpandableRow
-              key={id}
-              content={<ExpandableContent />}
-              expanded={expanded}
-            >
-              <Table.Cell>
-                <Checkbox />
-              </Table.Cell>
-              <Table.Cell>{task}</Table.Cell>
-              <Table.Cell>{relatedTo}</Table.Cell>
-              <Table.Cell>{time}</Table.Cell>
-              <Table.Cell align='center'>{assignee}</Table.Cell>
-              <Table.Cell align='center'>
-                <Button
-                  circular
-                  variant='flat'
-                  size='small'
-                  icon={<Star16 />}
-                />
-                <Button
-                  circular
-                  variant='flat'
-                  size='small'
-                  icon={<StyledArrowDownMinor16 expanded={expanded} />}
-                  data-testid={`expand-button-${id}`}
-                  onClick={() => handleExpandClick(id)}
-                />
-              </Table.Cell>
-            </Table.ExpandableRow>
-          )
-        )}
+        {data.map(({ id, task, relatedTo, time, assignee }) => (
+          <Table.ExpandableRow
+            key={id}
+            content={<ExpandableContent />}
+            expanded={expandedData[id].expanded}
+          >
+            <Table.Cell>
+              <Checkbox />
+            </Table.Cell>
+            <Table.Cell>{task}</Table.Cell>
+            <Table.Cell>{relatedTo}</Table.Cell>
+            <Table.Cell>{time}</Table.Cell>
+            <Table.Cell align='center'>{assignee}</Table.Cell>
+            <Table.Cell align='center'>
+              <Button circular variant='flat' size='small' icon={<Star16 />} />
+              <Button
+                circular
+                variant='flat'
+                size='small'
+                icon={
+                  <StyledArrowDownMinor16
+                    expanded={expandedData[id].expanded}
+                  />
+                }
+                data-testid={`expand-button-${id}`}
+                onClick={() => handleExpandClick(id)}
+              />
+            </Table.Cell>
+          </Table.ExpandableRow>
+        ))}
       </Table.Body>
     </Table>
   )
@@ -139,10 +144,8 @@ type Data = {
   assignee: string
   expanded: boolean
 }
-const tableData: {
-  [id: number]: Data
-} = {
-  0: {
+const data: Data[] = [
+  {
     id: 0,
     task: "Invoice the client for half of Sanin's time...",
     relatedTo: 'Passionate PHP Dev...',
@@ -150,7 +153,7 @@ const tableData: {
     assignee: 'AD',
     expanded: false
   },
-  1: {
+  {
     id: 1,
     task: 'BUG: try to edit skills in profile',
     relatedTo: 'Ardelia Conn',
@@ -158,7 +161,7 @@ const tableData: {
     assignee: 'AD',
     expanded: false
   },
-  2: {
+  {
     id: 2,
     task: 'Assign attendee to scheduled meeting',
     relatedTo: 'Mariel Ankunding',
@@ -166,7 +169,7 @@ const tableData: {
     assignee: 'AD',
     expanded: false
   },
-  3: {
+  {
     id: 3,
     task: 'Conquer The World',
     relatedTo: 'Hye Schmeler',
@@ -174,6 +177,6 @@ const tableData: {
     assignee: 'AD',
     expanded: false
   }
-}
+]
 
 export default TableExpandableRowsExample
