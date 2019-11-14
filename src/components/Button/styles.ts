@@ -35,6 +35,7 @@ const secondary = (mainColor: string, secondaryColor: string) => ({
 
 const transparent = (color?: string) => ({
   border: 'none',
+  padding: 0,
   color
 })
 
