@@ -189,7 +189,8 @@
   "overrides": [
     {
       "files": [
-        "*.example.jsx"
+        "*.example.jsx",
+        "*.example.tsx"
       ],
       "rules": {
         "react/no-multi-comp": 0,
@@ -200,7 +201,7 @@
     },
     {
       "files": [
-        "src/components/**/*.tsx"
+        "src/components/**/*[!example].tsx"
       ],
       "rules": {
         "no-restricted-imports": [
