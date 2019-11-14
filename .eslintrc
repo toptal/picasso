@@ -8,6 +8,7 @@
     },
     "useJSXTextNode": false
   },
+  "plugins": ["fp"],
   "extends": [
     "standard",
     "standard-jsx",
@@ -160,20 +161,31 @@
      * If you need more, consider extracting some logic.
      * Also you have cool destructuring feature, use it.
      */
-    "complexity": ["error", { "max": 11 }],
-    "max-params": ["error", 3],
-    "max-statements": ["error", 10],
-    "max-statements-per-line": ["error", { "max": 1 }],
-    "max-nested-callbacks": ["error", { "max": 2 }],
-    "max-depth": ["error", { "max": 3 }],
+    "complexity": ["warn", { "max": 5 }],
+    "max-params": ["warn", 3],
+    "max-statements": ["warn", 20],
+    "max-statements-per-line": ["warn", { "max": 1 }],
+    "max-nested-callbacks": ["warn", { "max": 3 }],
+    "max-depth": ["warn", { "max": 3 }],
     "max-lines": [
       "error",
       {
-        "max": 150,
+        "max": 300,
         "skipBlankLines": true,
         "skipComments": true
       }
-    ]
+    ],
+    "max-lines-per-function": [
+      "warn",
+      {
+        "max": 200,
+        "skipBlankLines": true,
+        "skipComments": true
+      }
+    ],
+    "no-param-reassign": "warn",
+    "no-invalid-this": "warn",
+    "fp/no-mutating-methods": "warn"
   },
   "env": {
     "jest": true
