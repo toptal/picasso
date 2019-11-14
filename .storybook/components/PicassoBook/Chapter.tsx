@@ -33,6 +33,14 @@ export interface ChapterOptions {
   page: Page
 }
 
+type Options = {
+  showEditCode?: boolean
+  title?: string
+  id?: string
+  extra?: string
+  description?: string
+} & Record<string, string | boolean>
+
 class Chapter extends Base {
   type = 'Chapter'
   page: Page
@@ -126,19 +134,22 @@ class Chapter extends Base {
     return this
   }
 
-  addExample = (
-    source: string,
-    options: Record<string, string | boolean> & { showEditCode: boolean }
-  ) => {
-    let finalOptions = options
+  addExample = (source: string, options: Options | string) => {
+    const finalOptions: Options =
+      typeof options === 'string'
+        ? {
+            title: options
+          }
+        : options
 
-    if (typeof options === 'string') {
-      finalOptions = {
-        title: options
-      }
+    const { title, id, description, showEditCode, extra } = finalOptions
+
+    const sectionId = title || id
+    if (!sectionId) {
+      throw new Error(
+        'Cannot construct section id from options. Missing "title" or "id"'
+      )
     }
-
-    const sectionId = (finalOptions.title || finalOptions.id).toString()
 
     const sectionLinkId = normalize(sectionId)
     const permanentLink = generateUrl({
@@ -158,7 +169,7 @@ class Chapter extends Base {
           <CodeExample
             src={source}
             permanentLink={permanentLink}
-            showEditCode={finalOptions.showEditCode}
+            showEditCode={showEditCode}
           />
         </div>
       </Fragment>
@@ -167,8 +178,8 @@ class Chapter extends Base {
     this.createSection({
       sectionFn: render,
       ...finalOptions,
-      subtitle: finalOptions.description,
-      info: finalOptions.extra
+      subtitle: description,
+      info: extra
     })
 
     return this
