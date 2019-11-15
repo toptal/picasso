@@ -19,10 +19,6 @@ const decorateRows = (children: React.ReactNode) => {
 
   // eslint-disable-next-line complexity
   return React.Children.map(children, child => {
-    if (!child) {
-      return child
-    }
-
     if (!React.isValidElement(child)) {
       return child
     }
