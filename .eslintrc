@@ -8,6 +8,7 @@
     },
     "useJSXTextNode": false
   },
+  "plugins": ["fp"],
   "extends": [
     "standard",
     "standard-jsx",
@@ -25,10 +26,7 @@
     "no-console": 0,
     "space-before-function-paren": 0,
     "camelcase": 0,
-    "react/jsx-fragments": [
-      1,
-      "element"
-    ],
+    "react/jsx-fragments": [1, "element"],
     "react/jsx-max-props-per-line": [
       2,
       {
@@ -44,10 +42,7 @@
     "react/jsx-indent": 0,
     "react/jsx-indent-props": 0,
     "react/jsx-tag-spacing": 0,
-    "react/jsx-closing-bracket-location": [
-      2,
-      "line-aligned"
-    ],
+    "react/jsx-closing-bracket-location": [2, "line-aligned"],
     "react/jsx-wrap-multilines": [
       2,
       {
@@ -66,10 +61,7 @@
     "react/jsx-filename-extension": [
       1,
       {
-        "extensions": [
-          ".tsx",
-          ".jsx"
-        ]
+        "extensions": [".tsx", ".jsx"]
       }
     ],
     "react/no-set-state": 0,
@@ -121,10 +113,7 @@
             "componentDidUpdate",
             "componentWillUnmount"
           ],
-          "rendering": [
-            "/^render.+$/",
-            "render"
-          ]
+          "rendering": ["/^render.+$/", "render"]
         }
       }
     ],
@@ -134,28 +123,15 @@
         "checkContextTypes": true
       }
     ],
-    "object-curly-spacing": [
-      2,
-      "always"
-    ],
-    "newline-after-var": [
-      2,
-      "always"
-    ],
+    "object-curly-spacing": [2, "always"],
+    "newline-after-var": [2, "always"],
     "import/order": [
       2,
       {
         "groups": [
-          [
-            "builtin",
-            "external"
-          ],
+          ["builtin", "external"],
           "internal",
-          [
-            "parent",
-            "sibling",
-            "index"
-          ]
+          ["parent", "sibling", "index"]
         ],
         "newlines-between": "always"
       }
@@ -177,7 +153,39 @@
       }
     ],
     "@typescript-eslint/no-explicit-any": 1,
-    "@typescript-eslint/ban-ts-ignore": 1
+    "@typescript-eslint/ban-ts-ignore": 1,
+
+    /**
+     * COMPLEXITY
+     * Ensure small functions and no nested/callback hell.
+     * If you need more, consider extracting some logic.
+     * Also you have cool destructuring feature, use it.
+     */
+    "complexity": ["warn", { "max": 5 }],
+    "max-params": ["warn", 3],
+    "max-statements": ["warn", 20],
+    "max-statements-per-line": ["warn", { "max": 1 }],
+    "max-nested-callbacks": ["warn", { "max": 3 }],
+    "max-depth": ["warn", { "max": 3 }],
+    "max-lines": [
+      "error",
+      {
+        "max": 300,
+        "skipBlankLines": true,
+        "skipComments": true
+      }
+    ],
+    "max-lines-per-function": [
+      "warn",
+      {
+        "max": 200,
+        "skipBlankLines": true,
+        "skipComments": true
+      }
+    ],
+    "no-param-reassign": "warn",
+    "no-invalid-this": "warn",
+    "fp/no-mutating-methods": "warn"
   },
   "env": {
     "jest": true
@@ -188,10 +196,7 @@
   },
   "overrides": [
     {
-      "files": [
-        "*.example.jsx",
-        "*.example.tsx"
-      ],
+      "files": ["*.example.jsx", "*.example.tsx"],
       "rules": {
         "react/no-multi-comp": 0,
         "react/require-optimization": 0,
@@ -200,14 +205,9 @@
       }
     },
     {
-      "files": [
-        "src/components/**/*[!example].tsx"
-      ],
+      "files": ["src/components/**/*[!example].tsx"],
       "rules": {
-        "no-restricted-imports": [
-          2,
-          "styled-components"
-        ]
+        "no-restricted-imports": [2, "styled-components"]
       }
     }
   ]
