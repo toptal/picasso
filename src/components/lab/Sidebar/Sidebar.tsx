@@ -63,9 +63,7 @@ interface StaticProps {
   Logo: typeof SidebarLogo
 }
 
-export const SidebarContext = React.createContext<SidebarContextProps>(
-  {} as SidebarContextProps
-)
+export const SidebarContext = React.createContext<SidebarContextProps>({})
 
 // eslint-disable-next-line react/display-name
 export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(

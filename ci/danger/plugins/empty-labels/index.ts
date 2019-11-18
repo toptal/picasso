@@ -1,6 +1,6 @@
 import { DangerDSLType } from 'danger/distribution/dsl/DangerDSL'
 
-declare var danger: DangerDSLType
+declare const danger: DangerDSLType
 
 export declare function fail(message: string): void
 

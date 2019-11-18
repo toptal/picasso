@@ -2,6 +2,16 @@ import { useState, useEffect, useCallback } from 'react'
 import { Breakpoints } from '@material-ui/core/styles/createBreakpoints'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 
+const breakpoints: Partial<Breakpoints> = {
+  values: {
+    xs: 0,
+    sm: 576,
+    md: 768,
+    lg: 992,
+    xl: 1920
+  }
+}
+
 export const screens = function (...sizes: BreakpointKeys[]) {
   const { sm, md, lg } = breakpoints.values!
 
@@ -104,7 +114,7 @@ export const useBreakpoint = (sizes: BreakpointKeys[] | BreakpointKeys) =>
  * )}
  * </Button>
  */
-export const useScreens = () => {
+export const useScreens = <T = unknown>() => {
   // Get current screen size in pixels, e.g. 800
   const currentSize = useScreenSize()
 
@@ -116,8 +126,8 @@ export const useScreens = () => {
   // that picks a property from an object by screen name,
   // and return this memoized version of the function.
   return useCallback((
-    valuesByScreen: Partial<Record<BreakpointKeys, any>>,
-    defaultValue: any = undefined
+    valuesByScreen: Partial<Record<BreakpointKeys, T>>,
+    defaultValue: T | undefined = undefined
   ) => {
     if (screenKey in valuesByScreen) {
       return valuesByScreen[screenKey]
@@ -125,16 +135,6 @@ export const useScreens = () => {
 
     return defaultValue
   }, [screenKey])
-}
-
-const breakpoints: Partial<Breakpoints> = {
-  values: {
-    xs: 0,
-    sm: 576,
-    md: 768,
-    lg: 992,
-    xl: 1920
-  }
 }
 
 type BreakpointKeys = 'small' | 'medium' | 'large' | 'extra-large'

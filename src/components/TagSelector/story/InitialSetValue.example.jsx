@@ -40,10 +40,10 @@ const TagSelectorDefaultExample = () => {
           window.console.log('onChange values: ', selectedValues)
           setValue(selectedValues)
         }}
-        onInputChange={inputValue => {
-          window.console.log('onInputChange value: ', inputValue)
-          setInputValue(inputValue)
-          setOptions(filterOptions(inputValue))
+        onInputChange={newInputValue => {
+          window.console.log('onInputChange value: ', newInputValue)
+          setInputValue(newInputValue)
+          setOptions(filterOptions(newInputValue))
         }}
       />
     </div>

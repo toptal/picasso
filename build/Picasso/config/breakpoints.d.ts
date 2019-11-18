@@ -1,6 +1,10 @@
-import { Breakpoints } from '@material-ui/core/styles/createBreakpoints';
-export declare const screens: (...sizes: BreakpointKeys[]) => string;
-export declare const isScreenSize: (size: string | number, currentSize?: number | undefined) => boolean;
+import { Breakpoints } from '@material-ui/core/styles/createBreakpoints'
+declare const breakpoints: Partial<Breakpoints>
+export declare const screens: (...sizes: BreakpointKeys[]) => string
+export declare const isScreenSize: (
+  size: string | number,
+  currentSize?: number | undefined
+) => boolean
 /**
  * Gets a screen size nickname that corresponds to the given screen size.
  *
@@ -9,9 +13,11 @@ export declare const isScreenSize: (size: string | number, currentSize?: number 
  *
  * @param {number} size Screen size
  */
-export declare const screenSizeToBreakpointKey: (size: number) => BreakpointKeys;
-export declare const useScreenSize: () => number;
-export declare const useBreakpoint: (sizes: "medium" | "large" | "small" | "extra-large" | BreakpointKeys[]) => boolean;
+export declare const screenSizeToBreakpointKey: (size: number) => BreakpointKeys
+export declare const useScreenSize: () => number
+export declare const useBreakpoint: (
+  sizes: 'medium' | 'large' | 'small' | 'extra-large' | BreakpointKeys[]
+) => boolean
 /**
  * Returns a function that picks a value from a {screenSize=>anyValue} object map.
  *
@@ -45,11 +51,13 @@ export declare const useBreakpoint: (sizes: "medium" | "large" | "small" | "extr
  * )}
  * </Button>
  */
-export declare const useScreens: () => (valuesByScreen: Partial<Record<BreakpointKeys, any>>, defaultValue?: any) => any;
-declare const breakpoints: Partial<Breakpoints>;
-declare type BreakpointKeys = 'small' | 'medium' | 'large' | 'extra-large';
+export declare const useScreens: <T = unknown>() => (
+  valuesByScreen: Partial<Record<BreakpointKeys, T>>,
+  defaultValue?: T | undefined
+) => T | undefined
+declare type BreakpointKeys = 'small' | 'medium' | 'large' | 'extra-large'
 declare type BreakpointsList = {
-    [key: string]: number;
-};
-export declare const breakpointsList: BreakpointsList;
-export default breakpoints;
+  [key: string]: number
+}
+export declare const breakpointsList: BreakpointsList
+export default breakpoints

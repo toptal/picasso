@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Autocomplete } from '@toptal/picasso'
+import { Props as AutocompleteProps } from '@toptal/picasso/Autocomplete'
 import { useNotifications, isSubstring } from '@toptal/picasso/utils'
 import { useModals } from '@toptal/picasso/lab/utils'
 
@@ -12,7 +13,8 @@ const allOptions = [
 ]
 
 const EMPTY_INPUT_VALUE = ''
-const getDisplayValue = (item: any) => (item ? item.text : EMPTY_INPUT_VALUE)
+const getDisplayValue: AutocompleteProps['getDisplayValue'] = item =>
+  item ? (item.text as string) : EMPTY_INPUT_VALUE
 const filterOptions = (str: string) =>
   str !== ''
     ? allOptions.filter(option => isSubstring(str, getDisplayValue(option)))
@@ -38,15 +40,15 @@ const PromptModalDefaultExample = () => {
             getDisplayValue={getDisplayValue}
             placeholder='Start typing country...'
             options={options}
-            onChange={value => {
-              setOptions(filterOptions(value))
-              setValue(value)
+            onChange={newValue => {
+              setOptions(filterOptions(newValue))
+              setValue(newValue)
             }}
             onSelect={item => setResult(item.value)}
           />
         )
       },
-      onSubmit: (result: any) => showInfo(String(result)),
+      onSubmit: result => showInfo(String(result)),
       // for purpose of code example
       container: () => document.getElementById('modal-container')!
     })

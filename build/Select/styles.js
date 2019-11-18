@@ -1,83 +1,79 @@
-import { createStyles } from '@material-ui/core/styles';
-import { PicassoProvider } from '../Picasso';
-import '../InputLabel/styles';
-import '../InputBase/styles';
-import '../OutlinedInput/styles';
-import '../Menu/styles';
-import '../MenuItem/styles';
-import { alpha } from '../styles';
-PicassoProvider.override(() => ({
-    MuiSelect: {
-        select: {
-            '&:focus': {
-                backgroundColor: 'transparent'
-            }
-        },
-        selectMenu: {
-            minHeight: 'auto',
-            lineHeight: '1em'
-        }
-    }
-}));
-export default ({ sizes: { input }, palette }) => createStyles({
+import { createStyles } from '@material-ui/core/styles'
+import '../InputLabel/styles'
+import '../InputBase/styles'
+import '../Input/styles'
+import '../Menu/styles'
+import '../MenuItem/styles'
+import '../Loader/styles'
+import { alpha } from '../styles'
+export default ({ palette, zIndex }) =>
+  createStyles({
+    root: {
+      position: 'relative',
+      display: 'inline-flex'
+    },
     rootFull: {
-        width: '100%',
-        display: 'flex'
+      width: '100%'
     },
     rootShrink: {
-        width: 'auto',
-        '& $input': {
-            paddingRight: `calc(${input.padding} + 1em)`
-        }
+      width: 'auto'
     },
     rootAuto: {},
-    input: {
-        paddingRight: `calc(${input.padding} + 1em)`
-    },
-    inputRootNative: {
-        paddingLeft: input.padding,
-        paddingRight: `calc(${input.padding} + 1em)`
-    },
-    inputNative: {
-        fontSize: '0.8125em',
-        padding: 0,
-        paddingRight: 0
-    },
-    inputPlaceholder: {
-        color: palette.grey.main2
-    },
-    inputPlaceholderDisabled: {
-        color: alpha(palette.grey.main2, 0.48)
-    },
-    inputValue: {
-        fontSize: '0.8125em'
+    selectWrapper: {
+      padding: 0
     },
     select: {
-        width: '100%'
+      width: '100%',
+      zIndex: 1,
+      fontSize: '0.8125em',
+      '&:focus': {
+        backgroundColor: 'inherit'
+      }
     },
-    caret: {
-        top: 'calc(50% - 0.5em)',
-        // in specs right spacing is defined relative to 6px icon width, while we use 16px
-        // so 5px are left instead of 10px when we use wider icon.
-        right: '0.3125em',
-        color: palette.grey.dark,
-        fontSize: '1em'
+    inputWrapper: {
+      width: 'inherit',
+      outline: 0
     },
-    caretDisabled: {
-        color: alpha(palette.grey.dark, 0.48)
+    input: {
+      zIndex: 1,
+      paddingRight: 'calc(0.625em + 1em)'
+    },
+    inputMultiple: {
+      '&:hover': {
+        cursor: 'pointer'
+      }
     },
     placeholder: {
-        opacity: 0.4
+      color: palette.grey.main2
     },
-    placeholderOption: {
-        '&[data-value=""]': {
-            backgroundColor: 'initial',
-            color: 'initial',
-            '&:hover, &:focus': {
-                backgroundColor: 'initial',
-                color: 'initial'
-            }
-        }
+    caret: {
+      position: 'absolute',
+      top: 'calc(50% - 0.5em)',
+      // in specs right spacing is defined relative to 6px icon width, while we use 16px
+      // so 5px are left instead of 10px when we use wider icon.
+      right: '0.3125em',
+      color: palette.grey.dark,
+      fontSize: '1em'
+    },
+    caretDisabled: {
+      color: alpha(palette.grey.dark, 0.48)
+    },
+    popper: {
+      zIndex: zIndex.modal
+    },
+    nativeStartAdornment: {
+      position: 'absolute',
+      left: '0.625em'
+    },
+    nativeEndAdornment: {
+      position: 'absolute',
+      right: '1.625em'
+    },
+    nativeStartAdornmentPadding: {
+      paddingLeft: '2.5625em'
+    },
+    nativeEndAdornmentPadding: {
+      paddingRight: '3.5625em'
     }
-});
+  })
 //# sourceMappingURL=styles.js.map

@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 import { render, cleanup, RenderResult } from '@testing-library/react'
 
 import Button from '../../Button'
 import Picasso from '../../Picasso'
 import withClasses from './withClasses'
 
-const TestComponent = (props: any) => {
+const TestComponent = (props: { children: ReactElement }) => {
   const { children } = props
 
   return children

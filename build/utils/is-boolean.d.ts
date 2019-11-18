@@ -1,2 +1,2 @@
-declare const isBoolean: (value: any) => boolean;
-export default isBoolean;
+declare const isBoolean: (value: unknown) => boolean
+export default isBoolean

@@ -4,7 +4,7 @@ import { render, fireEvent, cleanup } from '@testing-library/react'
 import Picasso, { OmitInternalProps } from '../Picasso'
 import Autocomplete, { Props } from './Autocomplete'
 
-const options = [
+const testOptions = [
   { text: 'Belarus', value: 'BY' },
   { text: 'Croatia', value: 'HR' },
   { text: 'Lithuania', value: 'LU' },
@@ -53,7 +53,7 @@ describe('Autocomplete', () => {
     test('default render', () => {
       const { container } = renderAutocomplete({
         placeholder: 'Start typing here...',
-        options,
+        options: testOptions,
         value: ''
       })
 
@@ -63,7 +63,7 @@ describe('Autocomplete', () => {
     test('render option text when passed `value` prop', () => {
       const { getByDisplayValue } = renderAutocomplete({
         placeholder,
-        options,
+        options: testOptions,
         value: 'Ukraine'
       })
 
@@ -77,7 +77,7 @@ describe('Autocomplete', () => {
     test('on focus', () => {
       const { getByText, getByDisplayValue, getByRole } = renderAutocomplete({
         placeholder,
-        options,
+        options: testOptions,
         value: ''
       })
 
@@ -97,7 +97,7 @@ describe('Autocomplete', () => {
     test('on type', () => {
       const onChange = jest.fn()
       const { getByPlaceholderText } = renderAutocomplete({
-        options,
+        options: testOptions,
         placeholder,
         value: '',
         onChange
@@ -114,7 +114,7 @@ describe('Autocomplete', () => {
     test('on select option', () => {
       const onSelect = jest.fn()
       const { getByText, getByPlaceholderText } = renderAutocomplete({
-        options,
+        options: testOptions,
         placeholder,
         value: '',
         onSelect
@@ -125,7 +125,9 @@ describe('Autocomplete', () => {
       fireEvent.focus(input)
       fireEvent.click(getByText('Slovakia'))
 
-      const optionSlovakia = options.find(option => option.text === 'Slovakia')
+      const optionSlovakia = testOptions.find(
+        option => option.text === 'Slovakia'
+      )
 
       expect(onSelect).toBeCalledWith(optionSlovakia)
     })
@@ -134,7 +136,7 @@ describe('Autocomplete', () => {
       const onChange = jest.fn()
       const { getByDisplayValue } = renderAutocomplete({
         placeholder,
-        options,
+        options: testOptions,
         value: 'Croatia',
         onChange
       })
@@ -153,7 +155,7 @@ describe('Autocomplete', () => {
     test('On "Backspace" key pressed with empty text', async () => {
       const { getByDisplayValue, queryByRole } = renderAutocomplete({
         placeholder,
-        options,
+        options: testOptions,
         value: ''
       })
 
@@ -174,7 +176,7 @@ describe('Autocomplete', () => {
       test('press down', () => {
         const { getByText, getByDisplayValue } = renderAutocomplete({
           placeholder,
-          options,
+          options: testOptions,
           value: ''
         })
 
@@ -194,7 +196,7 @@ describe('Autocomplete', () => {
       test('press up', () => {
         const { getByText, getByDisplayValue } = renderAutocomplete({
           placeholder,
-          options,
+          options: testOptions,
           value: ''
         })
 
@@ -215,7 +217,7 @@ describe('Autocomplete', () => {
         const onSelect = jest.fn()
         const { getByText, getByDisplayValue } = renderAutocomplete({
           placeholder,
-          options,
+          options: testOptions,
           value: '',
           onSelect
         })
@@ -236,7 +238,9 @@ describe('Autocomplete', () => {
           key: 'Enter'
         })
 
-        const optionCroatia = options.find(option => option.text === 'Croatia')
+        const optionCroatia = testOptions.find(
+          option => option.text === 'Croatia'
+        )
 
         expect(onSelect).toBeCalledWith(optionCroatia)
       })
@@ -273,7 +277,7 @@ describe('Autocomplete', () => {
   test('renders options customly', async () => {
     const api = renderAutocomplete({
       placeholder: 'Start typing here...',
-      options,
+      options: testOptions,
       value: '',
       // eslint-disable-next-line react/display-name
       renderOption: () => <div>Custom renderer</div>
