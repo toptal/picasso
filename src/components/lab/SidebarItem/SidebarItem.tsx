@@ -138,7 +138,6 @@ export const SidebarItem: OverridableComponent<Props> = forwardRef<
         bordered={false}
         disabled={disabled}
         defaultExpanded={defaultExpanded}
-        // @ts-ignore
         expandIcon={
           <ArrowDropDown16
             className={cx(classes.expandIcon, classes[`${variant}ExpandIcon`], {

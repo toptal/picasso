@@ -111,12 +111,12 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
 
     const handleKeyDown = (
       event: KeyboardEvent<HTMLInputElement>,
-      inputValue: string
+      newInputValue: string
     ) => {
       const hasSelection = values.length
       const isDeleting = event.key === 'Backspace'
 
-      if (hasSelection && !inputValue && isDeleting) {
+      if (hasSelection && !newInputValue && isDeleting) {
         handleDelete(values[values.length - 1])
       }
     }
@@ -134,10 +134,10 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
     const handleOtherOptionSelect = (item: AutocompleteItem) => {
       const itemText = getDisplayValue!(item)
 
-      const newOption = {
+      const newOption: Item = {
         value: itemText,
         text: itemText
-      } as Item
+      }
 
       onOtherOptionSelect!(newOption)
 

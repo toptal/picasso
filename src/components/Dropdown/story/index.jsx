@@ -17,15 +17,15 @@ page
 page
   .createChapter()
   .addExample('Dropdown/story/Default.example.jsx', 'Default', {
-    effect: async (page, makeScreenshot) => {
-      await page.click('[data-testid="trigger"]')
+    effect: async (testPage, makeScreenshot) => {
+      await testPage.click('[data-testid="trigger"]')
 
       await makeScreenshot({
         selector: '[data-testid="menu"]'
       })
 
-      await page.keyboard.press('ArrowDown')
-      await page.waitFor(250)
+      await testPage.keyboard.press('ArrowDown')
+      await testPage.waitFor(250)
 
       await makeScreenshot({
         selector: '[data-testid="menu"]'

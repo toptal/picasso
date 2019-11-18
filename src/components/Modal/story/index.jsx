@@ -32,53 +32,53 @@ component and manage the internal state there.
 `
     },
     {
-      effect: async (page, makeScreenshot) => {
-        await page.click('[data-testid="open"]')
-        await page.waitFor(100)
+      effect: async (testPage, makeScreenshot) => {
+        await testPage.click('[data-testid="open"]')
+        await testPage.waitFor(100)
         await makeScreenshot({
           isFullScreen: true
         })
 
-        await page.click('[data-testid="close"]')
-        await page.waitFor(100)
+        await testPage.click('[data-testid="close"]')
+        await testPage.waitFor(100)
         await makeScreenshot({
           isFullScreen: true
         })
 
-        await page.waitFor(1000)
+        await testPage.waitFor(1000)
         await makeScreenshot()
       }
     }
   )
   .addExample('Modal/story/Sizes.example.jsx', 'Sizes', {
-    effect: async (page, makeScreenshot) => {
-      await page.click('[data-testid="trigger-small"]')
-      await page.waitFor('[data-testid="cancel"]')
+    effect: async (testPage, makeScreenshot) => {
+      await testPage.click('[data-testid="trigger-small"]')
+      await testPage.waitFor('[data-testid="cancel"]')
       await makeScreenshot({
         isFullScreen: true
       })
 
-      await page.click('[data-testid="cancel"]')
+      await testPage.click('[data-testid="cancel"]')
 
-      await page.click('[data-testid="trigger-medium"]')
-      await page.waitFor('[data-testid="cancel"]')
+      await testPage.click('[data-testid="trigger-medium"]')
+      await testPage.waitFor('[data-testid="cancel"]')
       await makeScreenshot({
         isFullScreen: true
       })
 
-      await page.click('[data-testid="cancel"]')
+      await testPage.click('[data-testid="cancel"]')
 
-      await page.click('[data-testid="trigger-large"]')
-      await page.waitFor('[data-testid="cancel"]')
+      await testPage.click('[data-testid="trigger-large"]')
+      await testPage.waitFor('[data-testid="cancel"]')
       await makeScreenshot({
         isFullScreen: true
       })
     }
   })
   .addExample('Modal/story/MaxHeight.example.jsx', 'Max Height', {
-    effect: async (page, makeScreenshot) => {
-      await page.click('[data-testid="trigger"]')
-      await page.waitFor('[data-testid="cancel"]')
+    effect: async (testPage, makeScreenshot) => {
+      await testPage.click('[data-testid="trigger"]')
+      await testPage.waitFor('[data-testid="cancel"]')
       await makeScreenshot({
         isFullScreen: true
       })

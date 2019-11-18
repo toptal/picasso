@@ -33,12 +33,12 @@ const PromptModalDefaultExample = () => {
           <Input
             width='full'
             error={error}
-            value={result}
+            value={String(result)}
             onChange={handleChange}
           />
         )
       },
-      onSubmit: (result: any) => {
+      onSubmit: result => {
         if (!result || result === '') {
           showError('Result cannot be empty')
           throw new Error('Result cannot be empty')

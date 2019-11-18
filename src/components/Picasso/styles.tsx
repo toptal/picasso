@@ -1,6 +1,6 @@
-import { createStyles } from '@material-ui/core'
+import { createStyles, Theme } from '@material-ui/core'
 
-export default ({ typography }: { typography: any }) =>
+export default ({ typography }: Theme) =>
   createStyles({
     root: {
       flex: 1,

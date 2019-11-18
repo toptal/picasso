@@ -19,7 +19,7 @@ page
     additionalDocs: {
       onDelete: {
         type: {
-          description: '(event: any) => void | undefined'
+          description: '(() => void) | undefined'
         }
       }
     },

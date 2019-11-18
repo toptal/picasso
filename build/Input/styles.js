@@ -1,32 +1,35 @@
-import { createStyles } from '@material-ui/core/styles';
-import '../InputBase/styles';
-import '../InputLabel/styles';
-import '../OutlinedInput/styles';
-import '../InputAdornment/styles';
-export default ({ sizes: { input }, palette }) => createStyles({
+import { createStyles } from '@material-ui/core/styles'
+import '../InputBase/styles'
+import '../InputLabel/styles'
+import '../OutlinedInput/styles'
+import '../InputAdornment/styles'
+export default ({ sizes: { input }, palette }) =>
+  createStyles({
     root: {
-        padding: input.padding
+      padding: input.padding
     },
     rootMultiline: {
-        height: 'auto'
+      height: 'auto'
     },
     input: {
-        fontSize: '0.8125em',
-        padding: 0
+      fontSize: '0.8125em',
+      padding: 0
     },
     icon: {
-        flex: '1 1 0%' // fix for IE11
+      flex: '1 1 0%' // fix for IE11
     },
     counter: {
-        color: palette.grey.main,
-        fontSize: '0.625rem'
+      color: palette.grey.main,
+      fontSize: '0.625em',
+      lineHeight: '1em'
     },
     counterNegative: {
-        color: palette.red.main
+      color: palette.red.main
     },
     counterMultiline: {
-        alignSelf: 'flex-end',
-        marginBottom: '0.3125rem'
+      alignSelf: 'flex-end',
+      height: '0.625em',
+      marginBottom: '-0.25em'
     }
-});
+  })
 //# sourceMappingURL=styles.js.map

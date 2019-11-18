@@ -39,7 +39,7 @@ function getBaseSize(componentName = '') {
   return 16
 }
 
-const template = ({ template }, opts, { componentName, jsx }) => {
+const iconTemplate = ({ template }, opts, { componentName, jsx }) => {
   const displayName = `'${componentName.name}'`
   const baseSize = `${getBaseSize(displayName)}`
 
@@ -113,4 +113,4 @@ const template = ({ template }, opts, { componentName, jsx }) => {
   `
 }
 
-module.exports = template
+module.exports = iconTemplate
