@@ -24,8 +24,8 @@ module.exports = {
 }
 
 function cleanupSketch(doc) {
-  let svg = doc.querySelector('svg')
-  let path = svg.querySelector('path')
+  const svg = doc.querySelector('svg')
+  const path = svg.querySelector('path')
 
   path.removeAttr('id')
   svg.content = [path]

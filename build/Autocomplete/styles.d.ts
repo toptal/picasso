@@ -1,3 +1,17 @@
-import { Theme } from '@material-ui/core/styles';
-declare const _default: ({ sizes: { input } }: Theme) => Record<"root" | "rootFull" | "rootShrink" | "rootAuto", import("@material-ui/styles").CSSProperties | (() => import("@material-ui/styles").CSSProperties)>;
-export default _default;
+import { Theme } from '@material-ui/core/styles'
+declare const _default: ({
+  sizes: { input, borderWidth },
+  palette,
+  zIndex
+}: Theme) => Record<
+  | 'root'
+  | 'popper'
+  | 'stringContent'
+  | 'rootFull'
+  | 'rootShrink'
+  | 'rootAuto'
+  | 'otherOption',
+  | import('@material-ui/styles').CSSProperties
+  | (() => import('@material-ui/styles').CSSProperties)
+>
+export default _default

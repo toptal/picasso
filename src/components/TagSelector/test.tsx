@@ -10,7 +10,7 @@ import {
 import Picasso, { OmitInternalProps } from '../Picasso'
 import TagSelector, { Props } from './TagSelector'
 
-const options = [
+const testOptions = [
   { value: 'AF', text: 'Afghanistan' },
   { value: 'AI', text: 'Aland Islands' },
   { value: 'ALB', text: 'Albania' },
@@ -20,7 +20,7 @@ const options = [
 const testProps = {
   loading: false,
   otherOptionLabel: 'Add new option: ',
-  options,
+  options: testOptions,
   placeholder: 'Please select...'
 }
 
@@ -95,9 +95,9 @@ describe('TagSelector', () => {
     const { baseElement } = renderTagSelector({
       loading: false,
       otherOptionLabel: 'Add: ',
-      options,
+      options: testOptions,
       placeholder: 'Please select...',
-      value: [options[0]]
+      value: [testOptions[0]]
     })
 
     expect(baseElement).toMatchSnapshot()
@@ -113,8 +113,8 @@ describe('TagSelector', () => {
 
     const input = getByPlaceholderText(testProps.placeholder)
 
-    await selectOption(renderResult, input, options[0].text)
+    await selectOption(renderResult, input, testOptions[0].text)
 
-    expect(onChange).toBeCalledWith([options[0]])
+    expect(onChange).toBeCalledWith([testOptions[0]])
   })
 })

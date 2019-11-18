@@ -1,6 +1,6 @@
 import React, { forwardRef, ReactNode } from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import MUITabs from '@material-ui/core/Tabs'
+import MUITabs, { TabsProps } from '@material-ui/core/Tabs'
 
 import Tab from '../Tab'
 import {
@@ -18,10 +18,10 @@ export interface Props
   children: ReactNode
 
   /** Callback fired when the value changes. */
-  onChange?: (event: React.ChangeEvent<{}>, value: any) => void
+  onChange?: TabsProps['onChange']
 
   /** The value of the currently selected Tab. If you don't want any selected Tab, you can set this property to false. */
-  value: any
+  value: TabsProps['value']
 }
 
 interface StaticProps {

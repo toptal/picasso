@@ -12,7 +12,7 @@ export interface ShowPromptOptions
     Partial<
       Omit<PromptModalProps, 'children' | 'onSubmit' | 'title' | 'message'>
     > {
-  content?: (result: PromptOptions) => ReactNode
+  content?: (promptOptions: PromptOptions) => ReactNode
 }
 
 const isFunctionalComponent = (Component: Function) => {
@@ -51,7 +51,7 @@ const useModals = () => {
   const showPrompt = (options: ShowPromptOptions) => {
     const { content, onSubmit, onCancel, onClose, ...restOptions } = options
 
-    const handleSubmit = async (result: any) => {
+    const handleSubmit = async (result: unknown) => {
       try {
         await onSubmit(result)
         hideModal(modalId)

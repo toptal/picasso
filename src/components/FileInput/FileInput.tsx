@@ -171,12 +171,7 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
       disabled={disabled}
       width={width}
       type='file'
-      // MUIv3 doesn't provide generic way to change type of component and props
-      // that would be extensions of input component
-      // https://github.com/mui-org/material-ui/blob/v3.x/packages/material-ui/src/InputBase/InputBase.d.ts#L18
-      // @ts-ignore
       inputComponent={FileInputContent}
-      // @ts-ignore
       inputProps={{
         progress,
         error,

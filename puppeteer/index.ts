@@ -4,7 +4,7 @@ import { MatchImageSnapshotOptions } from 'jest-image-snapshot'
 
 import { generateIframeUrl } from '../src/utils/url-generator'
 
-declare var page: Page
+declare const page: Page
 
 const PADDING_AROUND_COMPONENT = 8
 
@@ -21,7 +21,7 @@ interface Options extends MatchImageSnapshotOptions {
   effect?: (
     page: Page,
     makeScreenShot: (options: Options) => void
-  ) => Promise<any>
+  ) => Promise<unknown>
   isFullScreen?: boolean
   padding?: number
   dimensions?: Partial<Dimensions>
@@ -38,21 +38,24 @@ async function screenshotDOMElement({
     return page.screenshot()
   }
 
-  const componentDimensions = await page.evaluate(selector => {
-    const component = document.querySelector(selector)
+  const componentDimensions: Dimensions = await page.evaluate(
+    componentSelector => {
+      const component = document.querySelector(componentSelector)
 
-    if (!component) {
-      throw new Error(`Rendered story was not found!`)
-    }
-    const componentRect: ClientRect = component!.getBoundingClientRect()
+      if (!component) {
+        throw new Error(`Rendered story was not found!`)
+      }
+      const componentRect: ClientRect = component!.getBoundingClientRect()
 
-    return {
-      x: componentRect.left,
-      y: componentRect.top,
-      width: componentRect.width,
-      height: componentRect.height
-    } as Dimensions
-  }, selector)
+      return {
+        x: componentRect.left,
+        y: componentRect.top,
+        width: componentRect.width,
+        height: componentRect.height
+      }
+    },
+    selector
+  )
 
   const clipDimensions = {
     ...componentDimensions,

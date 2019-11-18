@@ -8,7 +8,7 @@ import React, {
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
-import { BaseProps } from '../Picasso'
+import { BaseProps, SpacingType } from '../Picasso'
 import Container, { VariantType } from '../Container'
 import styles from './styles'
 import { useScreens } from '../utils'
@@ -32,7 +32,7 @@ export const PageBanner = forwardRef<HTMLDivElement, Props>(function PageBanner(
 ) {
   const { className, style, children, variant, icon, ...rest } = props
   const classes = useStyles(props)
-  const screens = useScreens()
+  const screens = useScreens<SpacingType>()
   const { fullWidth } = useContext<PageContextProps>(PageContext)
   const contentPadding = screens(
     {
