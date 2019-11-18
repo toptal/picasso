@@ -12,7 +12,10 @@ const chapter = PicassoBook.connectToPage(page =>
     .addExample('PageHeader/story/RightContent.example.jsx', 'Right content')
     .addExample(
       'PageHeader/story/ExtraMenuContent.example.jsx',
-      'Extra header menu content'
+      'Extra header menu content',
+      {
+        waitUntilImagesLoaded: true
+      }
     )
     .addExample('PageHeader/story/Link.example.jsx', 'With link')
     .addExample('PageHeader/story/WithoutTitle.example.jsx', 'Without title')
