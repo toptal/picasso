@@ -7,12 +7,27 @@ NODE_MODULES="$BASE_PATH/node_modules/"
 
 echo "" > .version
 
+# Build core Picasso
 yarn build:dist
+
+# Build all packages
+npx lerna run build:dist --since ${TARGET_BRANCH:-master}
+
+# Publish packages
+if [[ $RELEASE_AND_PUBLISH == "1" ]]; then
+  echo "=== WARNING RUNNING LIVE RELEASE FOR PACKAGES ==="
+  $NODE_MODULES/.bin/lerna publish
+else
+  echo "=== RUNNING TEST RELEASE FOR PACKAGES. NOTHING WILL BE PUBLISHED ==="
+  $NODE_MODULES/.bin/lerna changed
+fi
+
+# Publish core Picasso
 
 # Safe switch for jenkins if we want to just try out release
 # yarn release [0|1]
 
-if [ $RELEASE_AND_PUBLISH == "1" ]; then
+if [[ $RELEASE_AND_PUBLISH == "1" ]]; then
   echo "=== WARNING RUNNING LIVE RELEASE ==="
   $NODE_MODULES/.bin/semantic-release --debug
 else
