@@ -2,7 +2,8 @@ import React, { ReactNode } from 'react'
 /* eslint-disable-next-line */
 import { render, cleanup, RenderResult } from '@testing-library/react'
 
-import { OmitInternalProps } from '../../Picasso'
+import { OmitInternalProps } from '@toptal/picasso-shared'
+
 import Slider, { Props } from './Slider'
 
 const renderSlider = (children: ReactNode, props: OmitInternalProps<Props>) => {

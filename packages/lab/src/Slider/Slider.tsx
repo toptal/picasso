@@ -1,8 +1,8 @@
 import React, { forwardRef, useState, useEffect, ChangeEvent } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUISlider from '@material-ui/core/Slider'
+import { StandardProps } from '@toptal/picasso-shared'
 
-import { StandardProps } from '../../Picasso'
 import styles from './styles'
 
 export interface Props extends StandardProps {

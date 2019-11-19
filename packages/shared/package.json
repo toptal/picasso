@@ -1,0 +1,22 @@
+{
+  "name": "@toptal/picasso-shared",
+  "version": "0.0.1",
+  "description": "Shared types, utils for Picasso internal usage",
+  "author": "denieler <daniel.ostapenko@toptal.com>",
+  "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-shared#readme",
+  "license": "ISC",
+  "main": "src/index.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toptal/picasso.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/toptal/picasso/issues"
+  }
+}

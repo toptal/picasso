@@ -1,0 +1,20 @@
+{
+  "packages": [
+    "packages/*"
+  ],
+  "npmClient": "yarn",
+  "version": "independent",
+  "command": {
+    "publish": {
+      "ignoreChanges": [
+        "*.md"
+      ],
+      "conventionalCommits": true,
+      "yes": true,
+      "message": "chore(release): publish [skip ci]"
+    },
+    "version": {
+      "createRelease": "github"
+    }
+  }
+}

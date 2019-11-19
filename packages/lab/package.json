@@ -1,0 +1,25 @@
+{
+  "name": "@toptal/picasso-lab",
+  "version": "0.0.1",
+  "description": "Lab components of Picasso",
+  "author": "denieler <daniel.ostapenko@toptal.com>",
+  "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-lab#readme",
+  "license": "ISC",
+  "main": "src/index.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toptal/picasso.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/toptal/picasso/issues"
+  },
+  "dependencies": {
+    "@toptal/picasso-shared": "^0.0.1"
+  }
+}

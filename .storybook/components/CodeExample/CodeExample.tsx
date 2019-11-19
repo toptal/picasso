@@ -44,6 +44,8 @@ const imports: Record<string, object> = {
   debounce: require('debounce'),
   '@toptal/picasso': require('@components'),
   '@toptal/picasso/lab': require('@components/lab'),
+  //--- need to fix this and use @toptal/picass-lab package here
+  '@toptal/picasso-lab': require('../../../packages/lab'),
   '@toptal/picasso/lab/utils': require('@components/lab/utils'),
   '@toptal/picasso/utils': require('@components/utils'),
   '@toptal/picasso/Icon': require('@components/Icon')
@@ -112,8 +114,12 @@ class CodeExample extends Component<Props> {
 
     try {
       return require(`!raw-loader!@components/${src}`).default
-    } catch (e) {
-      return require(`!raw-loader!~/.storybook/stories/${src}`).default
+    } catch {
+      try {
+        return require(`!raw-loader!~/packages/lab/src/${src}`).default
+      } catch {
+        return require(`!raw-loader!~/.storybook/stories/${src}`).default
+      }
     }
   }
 
