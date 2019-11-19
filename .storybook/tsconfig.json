@@ -13,5 +13,6 @@
       "*": ["@types/*"]
     }
   },
+  "include": ["../src/components/**/*", "../packages/**/*"],
   "exclude": []
 }
