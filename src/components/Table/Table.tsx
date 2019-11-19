@@ -7,6 +7,7 @@ import TableBody from '../TableBody'
 import TableRow from '../TableRow'
 import TableHead from '../TableHead'
 import TableFooter from '../TableFooter'
+import TableExpandableRow from '../TableExpandableRow'
 import {
   StandardProps,
   PicassoComponentWithRef,
@@ -27,6 +28,7 @@ interface StaticProps {
   Row: typeof TableRow
   Cell: typeof TableCell
   Footer: typeof TableFooter
+  ExpandableRow: typeof TableExpandableRow
 }
 
 // eslint-disable-next-line react/display-name
@@ -61,6 +63,8 @@ Table.Body = TableBody
 Table.Head = TableHead
 
 Table.Row = TableRow
+
+Table.ExpandableRow = TableExpandableRow
 
 Table.Footer = TableFooter
 

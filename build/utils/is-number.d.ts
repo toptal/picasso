@@ -1,2 +1,2 @@
-declare const isNumber: (value: any) => boolean;
-export default isNumber;
+declare const isNumber: (value: unknown) => boolean
+export default isNumber

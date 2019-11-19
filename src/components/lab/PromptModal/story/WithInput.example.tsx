@@ -16,10 +16,10 @@ const PromptModalDefaultExample = () => {
         <Input
           width='full'
           onChange={event => setResult(event.target.value)}
-          value={result}
+          value={String(result)}
         />
       ),
-      onSubmit: (result: any) => showInfo(String(result)),
+      onSubmit: result => showInfo(String(result)),
       // for purpose of code example
       container: () => document.getElementById('modal-container')!
     })

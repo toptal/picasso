@@ -1,24 +1,23 @@
-import { createStyles } from '@material-ui/core/styles';
-import { headerHeight } from '../PageHeader/styles';
-export default ({ layout }) => createStyles({
+import { createStyles } from '@material-ui/core/styles'
+export default ({ layout }) =>
+  createStyles({
     root: {
-        flex: 1,
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        marginTop: headerHeight
+      flex: 1,
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'center'
     },
     content: {
-        height: '100%',
-        flexGrow: 1,
-        maxWidth: layout.contentWidth,
-        padding: '0 1rem'
+      height: '100%',
+      flexGrow: 1,
+      maxWidth: layout.contentWidth,
+      padding: '0 1rem'
     },
     fullWidth: {
-        maxWidth: '100%'
+      maxWidth: '100%'
     },
     flex: {
-        display: 'flex'
+      display: 'flex'
     }
-});
+  })
 //# sourceMappingURL=styles.js.map

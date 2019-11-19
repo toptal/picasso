@@ -1,4 +1,5 @@
 import React, { forwardRef, ReactNode, MouseEvent, HTMLAttributes } from 'react'
+import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import MUITableRow from '@material-ui/core/TableRow'
 
@@ -16,20 +17,36 @@ export interface Props
   selected?: boolean
   /** Callback invoked when user clicks on table row */
   onClick?: (event: MouseEvent<HTMLTableRowElement>) => void
+  /** Set a stripe even background for the row */
+  stripeEven?: boolean
 }
 
 export const TableRow = forwardRef<HTMLTableRowElement, Props>(
   function TableRow(
-    { classes, className, style, children, hover, selected, onClick, ...rest },
+    {
+      classes,
+      className,
+      style,
+      children,
+      hover,
+      selected,
+      stripeEven,
+      onClick,
+      ...rest
+    },
     ref
   ) {
+    const { stripeEven: stripeEvenClass, ...restClasses } = classes
+
     return (
       <MUITableRow
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         ref={ref}
-        classes={classes}
-        className={className}
+        classes={restClasses}
+        className={cx(className, {
+          [stripeEvenClass]: stripeEven
+        })}
         style={style}
         hover={hover}
         selected={selected}
@@ -43,7 +60,8 @@ export const TableRow = forwardRef<HTMLTableRowElement, Props>(
 
 TableRow.defaultProps = {
   hover: false,
-  selected: false
+  selected: false,
+  stripeEven: false
 }
 
 TableRow.displayName = 'TableRow'

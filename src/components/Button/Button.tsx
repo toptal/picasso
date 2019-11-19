@@ -125,7 +125,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     content: contentClass
   } = classes
 
-  let finalChildren = [children]
+  const finalChildren = [children]
 
   if (icon) {
     const iconComponent = React.cloneElement(icon, {

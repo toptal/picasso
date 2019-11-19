@@ -14,47 +14,47 @@ page
 page
   .createChapter()
   .addExample('TagSelector/story/Default.example.jsx', 'Default', {
-    effect: async (page, makeScreenshot) => {
+    effect: async (testPage, makeScreenshot) => {
       const hideInputCaretStyle = `
         input {
           caret-color: transparent !important;
         }
       `
 
-      await page.addStyleTag({ content: hideInputCaretStyle })
+      await testPage.addStyleTag({ content: hideInputCaretStyle })
 
-      await page.click('[role="combobox"]')
+      await testPage.click('[role="combobox"]')
       await makeScreenshot({
         isFullScreen: true
       })
 
-      await page.keyboard.press('Enter')
-      await page.waitFor(50)
+      await testPage.keyboard.press('Enter')
+      await testPage.waitFor(50)
       await makeScreenshot()
 
-      await page.click('[aria-label="delete icon"]')
-      await page.waitFor(100)
+      await testPage.click('[aria-label="delete icon"]')
+      await testPage.waitFor(100)
       await makeScreenshot()
 
-      await page.type('input', 'test')
-      await page.waitFor(50)
+      await testPage.type('input', 'test')
+      await testPage.waitFor(50)
       await makeScreenshot({
         isFullScreen: true
       })
     }
   })
   .addExample('TagSelector/story/OtherOption.example.jsx', 'Other option', {
-    effect: async (page, makeScreenshot) => {
-      await page.click('[role="combobox"]')
+    effect: async (testPage, makeScreenshot) => {
+      await testPage.click('[role="combobox"]')
 
-      await page.type('input', 'test')
-      await page.waitFor(50)
+      await testPage.type('input', 'test')
+      await testPage.waitFor(50)
       await makeScreenshot({
         isFullScreen: true
       })
 
-      await page.click('[role="option"]')
-      await page.waitFor(50)
+      await testPage.click('[role="option"]')
+      await testPage.waitFor(50)
       await makeScreenshot()
     }
   })

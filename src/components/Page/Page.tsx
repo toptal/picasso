@@ -36,9 +36,7 @@ interface StaticProps {
   Banner: typeof PageBanner
 }
 
-export const PageContext = React.createContext<PageContextProps>(
-  {} as PageContextProps
-)
+export const PageContext = React.createContext<PageContextProps>({})
 
 // eslint-disable-next-line react/display-name
 export const Page = forwardRef<HTMLDivElement, Props>(function Page(

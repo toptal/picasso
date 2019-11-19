@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 59.1 (101010) - https://sketch.com -->
+    <title>44161674-b109-472a-9216-191a52a2eec3@1.00x</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M4,1 L4,2 L3,2 L3,15 L13,15 L13,2 L12,2 L12,1 L14,1 L14,16 L2,16 L2,1 L4,1 Z M10,12 L10,13 L6,13 L6,12 L10,12 Z M8,5 C9.1045695,5 10,5.8954305 10,7 C10,7.53259545 9.79181919,8.01656767 9.45239219,8.37498203 C10.3206116,8.85532043 10.925427,9.75550487 10.9935775,10.802112 L11,11 L10,11 C10,9.8954305 9.1045695,9 8,9 C6.9456382,9 6.08183488,9.81587779 6.00548574,10.8507377 L6,11 L5,11 C5,9.86966795 5.62512464,8.88534158 6.54851142,8.37388338 C6.20818081,8.01656767 6,7.53259545 6,7 C6,5.8954305 6.8954305,5 8,5 Z M8,6 C7.44771525,6 7,6.44771525 7,7 C7,7.55228475 7.44771525,8 8,8 C8.55228475,8 9,7.55228475 9,7 C9,6.44771525 8.55228475,6 8,6 Z M11,0 L11,3 L5,3 L5,0 L11,0 Z M10,1 L6,1 L6,2 L10,2 L10,1 Z" id="path-1"></path>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons-/-Top-Team-/-16-/-Guests">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Combined-Shape" fill="#455065" fill-rule="nonzero" xlink:href="#path-1"></use>
+            <g id="Colors-/-305-Dark-Grey" mask="url(#mask-2)" fill="#455065">
+                <rect id="Rectangle" x="0" y="0" width="16" height="16"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

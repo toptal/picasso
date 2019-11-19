@@ -48,7 +48,8 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
     event: React.MouseEvent<HTMLElement, MouseEvent>
   ) => {
     event.stopPropagation()
-    pop()
+
+    pop!()
   }
 
   const menu = (
@@ -59,7 +60,6 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
       className={className}
       style={style}
       classes={restClasses}
-      // eslint-disable-next-line react/jsx-props-no-spreading
     >
       {hasParentMenu && allowNestedNavigation && (
         <MenuItem onClick={handleBackClick} key='back'>
@@ -82,9 +82,9 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
     return menu
   }
 
-  const menuContext = {
-    push: (key: string, menu: ReactElement) =>
-      setMenus({ ...menus, ...{ [key]: menu } }),
+  const menuContext: MenuContextProps = {
+    push: (key: string, newMenu: ReactElement) =>
+      setMenus({ ...menus, ...{ [key]: newMenu } }),
     pop: () => {
       const key = getLastKey()
 
@@ -97,14 +97,14 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
       delete newMenus[key]
       setMenus(newMenus)
     },
-    refresh: (key: string, menu: ReactElement) => {
+    refresh: (key: string, newMenu: ReactElement) => {
       if (!menus[key]) {
         return
       }
 
-      setMenus({ ...menus, ...{ [key]: menu } })
+      setMenus({ ...menus, ...{ [key]: newMenu } })
     }
-  } as MenuContextProps
+  }
 
   const currentVisibleMenuKey = getLastKey()
   const isRootMenuHidden = Boolean(currentVisibleMenuKey)

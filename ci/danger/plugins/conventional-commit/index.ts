@@ -3,11 +3,9 @@ import load from '@commitlint/load'
 import lint from '@commitlint/lint'
 import table from 'markdown-table'
 
-declare var danger: DangerDSLType
+declare const danger: DangerDSLType
 
 export declare function fail(message: string): void
-export declare function warn(message: string): void
-export declare function schedule(cb: any): void
 
 const conventionalCommits = async () => {
   const { commits } = danger.git

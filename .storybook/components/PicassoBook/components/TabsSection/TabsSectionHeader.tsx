@@ -11,7 +11,7 @@ interface Props {
   classes: Classes
   tabs: TabOptions[]
   selectedTab: number
-  onChange: (event: any, selectedTab: number) => void
+  onChange: (event: React.ChangeEvent<{}>, selectedTab: number) => void
 }
 
 const TabsSectionHeader: FunctionComponent<Props> = props => {

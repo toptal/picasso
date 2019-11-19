@@ -1,6 +1,6 @@
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import MUITab from '@material-ui/core/Tab'
+import MUITab, { TabProps } from '@material-ui/core/Tab'
 
 import { StandardProps } from '../Picasso'
 import styles from './styles'
@@ -15,7 +15,7 @@ export interface Props
   disabled?: boolean
 
   /** You can provide your own value. Otherwise, we fallback to the child position index */
-  value?: any
+  value?: TabProps['value']
 
   /** The label element */
   label?: ReactNode
@@ -23,13 +23,8 @@ export interface Props
   // Properties below are managed by Tabs component
 
   selected?: boolean
-
-  onChange?: (
-    event: React.ChangeEvent<{ checked: boolean }>,
-    value: any
-  ) => void
-
-  onClick?: React.EventHandler<any>
+  onChange?: TabProps['onChange']
+  onClick?: TabProps['onClick']
 }
 
 export const Tab = forwardRef<HTMLDivElement, Props>(function Tab(

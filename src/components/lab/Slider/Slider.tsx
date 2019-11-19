@@ -34,18 +34,26 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
 ) {
   const [value, setValue] = useState<number>(initialValue!)
 
-  const getNormalizedValue = (value: number) => {
-    let currentValue = value < 0 ? 0 : value
+  const getNormalizedValue = (denormalizedValue: number): number => {
+    if (denormalizedValue < 0) {
+      return 0
+    }
 
-    currentValue = (currentValue > max! ? max : currentValue) as number
-    return currentValue
+    if (denormalizedValue > max!) {
+      return max as number
+    }
+
+    return denormalizedValue
   }
 
-  const handleChange = (event: ChangeEvent<{}>, value: number | number[]) => {
-    const currentValue = getNormalizedValue(value as number)
+  const handleChange = (
+    event: ChangeEvent<{}>,
+    newValue: number | number[]
+  ) => {
+    const newNormalizedValue = getNormalizedValue(newValue as number)
 
-    setValue(currentValue)
-    onChange(event, currentValue)
+    setValue(newNormalizedValue)
+    onChange(event, newNormalizedValue)
   }
 
   useEffect(() => {

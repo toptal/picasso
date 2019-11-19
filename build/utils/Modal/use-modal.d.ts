@@ -1,3 +1,3 @@
-/// <reference types="react" />
-declare const useModal: (component: import("react").FunctionComponent<any>, inputs?: any[]) => [() => void, () => void];
-export { useModal };
+import { useModal as useReactModalHook } from 'react-modal-hook'
+declare const useModal: typeof useReactModalHook
+export { useModal }

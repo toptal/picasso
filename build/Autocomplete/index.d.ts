@@ -1,4 +1,3 @@
-import { OmitInternalProps } from '../Picasso';
-import { Props } from './Autocomplete';
-export { default } from './Autocomplete';
-export declare type Props = OmitInternalProps<Props>;
+export { default } from './Autocomplete'
+export * from './Autocomplete'
+export * from './types'
