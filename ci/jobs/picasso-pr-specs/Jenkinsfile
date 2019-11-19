@@ -31,7 +31,7 @@ pipeline {
         info "== Checking out Git revision ${ghprbActualCommit}"
         gitCheckout(
                 branches: "${ghprbActualCommit}",
-                credentials: [username: 'git', description: 'jenkins/picasso'],
+                credentials: [username: 'toptal-build', description: 'toptal-build-ssh-key'],
                 url: 'git@github.com:toptal/picasso.git',
                 refspec: "+refs/heads/${ghprbTargetBranch}:refs/remotes/origin/${ghprbTargetBranch} +refs/pull/${ghprbPullId}/*:refs/remotes/origin/pr/${ghprbPullId}/*",
                 additionalBehaviours: [
