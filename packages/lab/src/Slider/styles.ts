@@ -1,7 +1,5 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
-
-import { rem } from '../../styles'
-import { PicassoProvider } from '../../Picasso'
+import { PicassoProvider, rem } from '@toptal/picasso-shared'
 
 PicassoProvider.override(() => ({
   MuiSlider: {

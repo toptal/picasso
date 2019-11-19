@@ -14,6 +14,6 @@ page
 
 page
   .createChapter()
-  .addExample('lab/Slider/story/Default.example.jsx', 'Default')
-  .addExample('lab/Slider/story/InitialValue.example.jsx', 'Initial value')
-  .addExample('lab/Slider/story/Controlled.example.jsx', 'Controlled value')
+  .addExample('Slider/story/Default.example.jsx', 'Default')
+  .addExample('Slider/story/InitialValue.example.jsx', 'Initial value')
+  .addExample('Slider/story/Controlled.example.jsx', 'Controlled value')
