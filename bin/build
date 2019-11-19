@@ -7,8 +7,6 @@ const sh = require('shelljs')
 const exec = require('child_process').execSync
 
 const { log, generatePackageJson } = require('./utils')
-const config = require(`../tsconfig.json`)
-const packageJson = require(path.resolve(__dirname, '../package.json'))
 const tscPath = path.resolve(__dirname, '../node_modules/.bin/tsc')
 
 const safeExec = cmd => {
@@ -30,7 +28,7 @@ const safeExec = cmd => {
   }
 }
 
-const compile = function (config) {
+const compile = function (tsConfig, packageJson) {
   const args = []
 
   log(`Building ${packageJson.name}:${packageJson.version}`)
@@ -39,24 +37,27 @@ const compile = function (config) {
     const cmd = `${tscPath} -p tsconfig.json ${args.join(' ')}`
 
     safeExec(cmd)
-    log(`Build ready in: ${config.compilerOptions.outDir}`, 'green')
+    log(`Build ready in: ${tsConfig.compilerOptions.outDir}`, 'green')
   }
 
   function clean () {
-    log(`Removing: ${config.compilerOptions.outDir}`, 'green')
-    sh.rm('-rf', config.compilerOptions.outDir)
+    log(`Removing: ${tsConfig.compilerOptions.outDir}`, 'green')
+    sh.rm('-rf', tsConfig.compilerOptions.outDir)
   }
 
   clean()
   build()
 
-  generatePackageJson(packageJson, config.compilerOptions.outDir)
+  generatePackageJson(packageJson, tsConfig.compilerOptions.outDir)
 
   if (yargs.watch) {
     args.unshift('--watch')
-    log(`Watching for changes in: ${config.include.join(', ')}`)
+    log(`Watching for changes in: ${tsConfig.include.join(', ')}`)
     build()
   }
 }
 
-compile(config)
+const tsConfig = require(path.resolve(yargs.tsConfig))
+const packageJson = require(path.resolve(yargs.packageJson))
+
+compile(tsConfig, packageJson)

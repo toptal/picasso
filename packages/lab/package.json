@@ -2,7 +2,7 @@
   "name": "@toptal/picasso-lab",
   "version": "0.0.1",
   "description": "Lab components of Picasso",
-  "author": "denieler <daniel.ostapenko@toptal.com>",
+  "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-lab#readme",
   "license": "ISC",
   "main": "src/index.ts",
@@ -14,12 +14,15 @@
     "url": "git+https://github.com/toptal/picasso.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "build:dist": "cross-env NODE_ENV=production ../../bin/build --tsConfig=./tsconfig.json --packageJson=./package.json"
   },
   "bugs": {
     "url": "https://github.com/toptal/picasso/issues"
   },
   "dependencies": {
     "@toptal/picasso-shared": "^0.0.1"
+  },
+  "devDependencies": {
+    "cross-env": "^6.0.3"
   }
 }

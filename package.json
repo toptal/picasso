@@ -15,7 +15,7 @@
     "start": "start-storybook -p 9001 -s ./.storybook/public -c .storybook",
     "build:storybook": "build-storybook -s ./.storybook/public -c .storybook -o build/storybook",
     "release": "./bin/release",
-    "build:dist": "cross-env NODE_ENV=production ./bin/build",
+    "build:dist": "cross-env NODE_ENV=production ./bin/build --tsConfig=./tsconfig.json --packageJson=./package.json",
     "build": "yarn run generate:icons && yarn build:dist",
     "build:watch": "cross-env ./bin/build --watch",
     "symlink": "cross-env ./bin/symlink --link",
