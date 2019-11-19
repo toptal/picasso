@@ -8,6 +8,7 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
 >
   <div
     class="ScrollMenu-scrollView"
+    tabindex="0"
   >
     <li
       aria-disabled="false"
@@ -95,6 +96,14 @@ exports[`Autocomplete static behavior default render 1`] = `
         <div
           class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root makeStyles-root OutlinedInput-rootAuto MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
         >
+          <input
+            aria-autocomplete="list"
+            autocomplete="none"
+            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input makeStyles-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+            placeholder="Start typing here..."
+            type="text"
+            value=""
+          />
           <fieldset
             aria-hidden="true"
             class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
@@ -109,14 +118,6 @@ exports[`Autocomplete static behavior default render 1`] = `
               </span>
             </legend>
           </fieldset>
-          <input
-            aria-autocomplete="list"
-            autocomplete="none"
-            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input makeStyles-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
-            placeholder="Start typing here..."
-            type="text"
-            value=""
-          />
         </div>
       </div>
       <div

@@ -15,14 +15,14 @@ exports[`checkbox interaction should render checked checkbox 1`] = `
         <span
           class="MuiIconButton-label"
         >
-          <div
-            class="Checkbox-checkedIcon"
-          />
           <input
             class="PrivateSwitchBase-input"
             data-indeterminate="false"
             type="checkbox"
             value=""
+          />
+          <div
+            class="Checkbox-checkedIcon"
           />
         </span>
       </span>
@@ -56,14 +56,14 @@ exports[`renders default checkbox without label 1`] = `
       <span
         class="MuiIconButton-label"
       >
-        <div
-          class="Checkbox-uncheckedIcon"
-        />
         <input
           class="PrivateSwitchBase-input"
           data-indeterminate="false"
           type="checkbox"
           value=""
+        />
+        <div
+          class="Checkbox-uncheckedIcon"
         />
       </span>
     </span>
@@ -84,15 +84,15 @@ exports[`renders disabled state 1`] = `
       <span
         class="MuiIconButton-label"
       >
-        <div
-          class="Checkbox-uncheckedIcon"
-        />
         <input
           class="PrivateSwitchBase-input"
           data-indeterminate="false"
           disabled=""
           type="checkbox"
           value=""
+        />
+        <div
+          class="Checkbox-uncheckedIcon"
         />
       </span>
     </span>
@@ -112,14 +112,14 @@ exports[`renders indeterminate state 1`] = `
       <span
         class="MuiIconButton-label"
       >
-        <div
-          class="Checkbox-indeterminateIcon"
-        />
         <input
           class="PrivateSwitchBase-input"
           data-indeterminate="true"
           type="checkbox"
           value=""
+        />
+        <div
+          class="Checkbox-indeterminateIcon"
         />
       </span>
     </span>
@@ -142,14 +142,14 @@ exports[`should render default checkbox with label 1`] = `
         <span
           class="MuiIconButton-label"
         >
-          <div
-            class="Checkbox-uncheckedIcon"
-          />
           <input
             class="PrivateSwitchBase-input"
             data-indeterminate="false"
             type="checkbox"
             value=""
+          />
+          <div
+            class="Checkbox-uncheckedIcon"
           />
         </span>
       </span>
