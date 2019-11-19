@@ -35,6 +35,7 @@ WORKDIR /app
 # Enables layer caching
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
+RUN npx lerna bootstrap
 
 COPY . /app
 
