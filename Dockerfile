@@ -35,7 +35,6 @@ WORKDIR /app
 # Enables layer caching
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
-RUN npx lerna bootstrap
 
 COPY . /app
 
@@ -43,6 +42,8 @@ COPY . /app
 RUN chmod a+rw /app
 RUN chmod a+rw /app/CHANGELOG.md
 RUN chmod a+rw /app/package.json
+
+RUN npx lerna bootstrap
 
 COPY bin/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
