@@ -118,7 +118,11 @@ class CodeExample extends Component<Props> {
       try {
         return require(`!raw-loader!~/packages/lab/src/${src}`).default
       } catch {
-        return require(`!raw-loader!~/.storybook/stories/${src}`).default
+        try {
+          return require(`!raw-loader!~/packages/shared/src/${src}`).default
+        } catch {
+          return require(`!raw-loader!~/.storybook/stories/${src}`).default
+        }
       }
     }
   }
