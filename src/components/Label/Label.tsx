@@ -82,7 +82,11 @@ export const Label = forwardRef<HTMLDivElement, Props>(function Label(
       icon={icon}
       label={<span className={classes.innerLabel}>{children}</span>}
       deleteIcon={
-        <span aria-label='delete icon' role='button'>
+        <span
+          aria-label='delete icon'
+          role='button'
+          className={classes.deleteIcon}
+        >
           <CloseMinor16 />
         </span>
       }

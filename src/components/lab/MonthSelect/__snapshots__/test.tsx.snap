@@ -15,6 +15,16 @@ exports[`MonthSelect default render 1`] = `
         <div
           class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root makeStyles-root OutlinedInput-rootFull Select-input MuiInputBase-fullWidth MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
         >
+          <input
+            aria-autocomplete="list"
+            aria-invalid="false"
+            autocomplete="none"
+            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input makeStyles-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+            role="textbox"
+            size="1"
+            type="text"
+            value=""
+          />
           <fieldset
             aria-hidden="true"
             class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
@@ -29,16 +39,6 @@ exports[`MonthSelect default render 1`] = `
               </span>
             </legend>
           </fieldset>
-          <input
-            aria-autocomplete="list"
-            aria-invalid="false"
-            autocomplete="none"
-            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input makeStyles-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
-            role="textbox"
-            size="1"
-            type="text"
-            value=""
-          />
         </div>
         <svg
           class="SvgDropdownArrows16-root Select-caret"

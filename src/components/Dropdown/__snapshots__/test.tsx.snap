@@ -60,7 +60,7 @@ exports[`Dropdown should render menu 1`] = `
           aria-disabled="false"
           class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
           role="menuitem"
-          tabindex="-1"
+          tabindex="0"
         >
           <span
             class="MenuItem-stringContent"
@@ -141,7 +141,7 @@ exports[`Dropdown should render menu with focus 1`] = `
           aria-disabled="false"
           class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-focusVisible Mui-focusVisible"
           role="menuitem"
-          tabindex="-1"
+          tabindex="0"
         >
           <span
             class="MenuItem-stringContent"

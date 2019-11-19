@@ -17,5 +17,9 @@ export default ({ palette }: Theme) =>
     innerLabel: {
       fontSize: '0.75em',
       fontWeight: 600
+    },
+    deleteIcon: {
+      width: 'auto',
+      height: 'auto'
     }
   })

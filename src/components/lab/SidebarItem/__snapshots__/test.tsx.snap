@@ -76,7 +76,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                     aria-disabled="false"
                     class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light makeStyles-root makeStyles-noWrap makeStyles-selected Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
                     role="menuitem"
-                    tabindex="-1"
+                    tabindex="0"
                   >
                     <div
                       class="Container-flex Container-inline makeStyles-noWrap"
@@ -184,7 +184,7 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
           aria-disabled="false"
           class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light makeStyles-root makeStyles-noWrap MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
           role="menuitem"
-          tabindex="-1"
+          tabindex="0"
         >
           <div
             class="Container-flex Container-inline makeStyles-noWrap"
@@ -333,7 +333,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
                     aria-disabled="false"
                     class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light makeStyles-root makeStyles-noWrap MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
                     role="menuitem"
-                    tabindex="-1"
+                    tabindex="0"
                   >
                     <div
                       class="Container-flex Container-inline makeStyles-noWrap"

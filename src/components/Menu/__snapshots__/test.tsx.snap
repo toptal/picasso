@@ -14,7 +14,7 @@ exports[`Menu default render 1`] = `
         aria-disabled="false"
         class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
-        tabindex="-1"
+        tabindex="0"
       >
         <span
           class="MenuItem-stringContent"
@@ -65,7 +65,7 @@ exports[`Menu has back button when in submenu 1`] = `
         aria-disabled="false"
         class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
-        tabindex="-1"
+        tabindex="0"
       >
         <span
           class="MenuItem-stringContent"
@@ -100,7 +100,7 @@ exports[`Menu has back button when in submenu 1`] = `
           aria-disabled="false"
           class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
           role="menuitem"
-          tabindex="-1"
+          tabindex="0"
         >
           <p
             class="MuiTypography-root Typography-bodySmall Typography-darkGrey MuiTypography-body1"

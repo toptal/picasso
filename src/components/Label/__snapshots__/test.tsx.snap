@@ -21,7 +21,7 @@ exports[`dismissable label should render dismissable label 1`] = `
       </span>
       <span
         aria-label="delete icon"
-        class="MuiChip-deleteIcon"
+        class="Label-deleteIcon MuiChip-deleteIcon"
         role="button"
       >
         <svg
