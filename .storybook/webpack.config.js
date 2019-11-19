@@ -6,7 +6,10 @@ const { IgnoreNotFoundPlugin } = require('./plugins')
 
 // example: /components/Button/Button.tsx
 const COMPONENT_DECLARATION_FILE_REGEXP = /components\/(.*)\/\1.tsx$/
+// example: /components/lab/Slider/Slider.tsx
 const LAB_COMPONENT_DECLARATION_FILE_REGEXP = /components\/lab\/(.*)\/\1.tsx$/
+// example: /packages/lab/src/Slider/Slider.tsx
+const PACKAGES_COMPONENT_DECLARATION_FILE_REGEXP = /packages\/.*\/src\/(.*)\/\1.tsx$/
 
 const { env } = process
 const isDevelopment = env.NODE_ENV !== 'production' && env.NODE_ENV !== 'test'
@@ -52,6 +55,10 @@ module.exports = ({ config }) => {
       },
       {
         test: LAB_COMPONENT_DECLARATION_FILE_REGEXP,
+        use: defaultLoaders
+      },
+      {
+        test: PACKAGES_COMPONENT_DECLARATION_FILE_REGEXP,
         use: defaultLoaders
       },
       { use: [tsLoader] }
