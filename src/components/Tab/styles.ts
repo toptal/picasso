@@ -28,14 +28,15 @@ PicassoProvider.override(({ breakpoints, palette, typography }: Theme) => ({
       },
 
       [breakpoints.up('md')]: {
-        minWidth: undefined,
-        fontSize: undefined
+        minWidth: 'auto',
+        fontSize: '1rem'
       }
     },
     selected: {},
     wrapper: {
       fontSize: rem('13px'),
-      lineHeight: '1rem'
+      lineHeight: '1rem',
+      width: 'auto'
     }
   }
 }))

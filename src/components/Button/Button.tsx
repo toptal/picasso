@@ -7,7 +7,7 @@ import React, {
 } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import ButtonBase, { ButtonBaseProps } from '@material-ui/core/ButtonBase'
+import ButtonBase from '@material-ui/core/ButtonBase'
 
 import Loader from '../Loader'
 import Container from '../Container'
@@ -41,7 +41,7 @@ export interface Props extends BaseProps, ButtonOrAnchorProps {
   /** Show button in the active state (left mouse button down) */
   active?: boolean
   /** The component used for the root node. Either a string to use a DOM element or a component. */
-  as?: ElementType<ButtonBaseProps>
+  as?: ElementType
   /** Disables button */
   disabled?: boolean
   /** Content of Button component */

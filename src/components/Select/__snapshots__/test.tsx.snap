@@ -12,20 +12,6 @@ exports[`renders native select 1`] = `
         aria-autocomplete="list"
         class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootFull Select-selectWrapper MuiInputBase-fullWidth"
       >
-        <fieldset
-          aria-hidden="true"
-          class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
-          style="padding-left: 8px;"
-        >
-          <legend
-            class="PrivateNotchedOutline-legend"
-            style="width: 0.01px;"
-          >
-            <span>
-              ​
-            </span>
-          </legend>
-        </fieldset>
         <select
           aria-invalid="false"
           autocomplete="none"
@@ -66,6 +52,20 @@ exports[`renders native select 1`] = `
             d="M8.429 2.715l2.117 3.528a.5.5 0 0 1-.43.757H5.884a.5.5 0 0 1-.429-.757l2.117-3.528a.5.5 0 0 1 .858 0zM8.429 13.285l2.117-3.528a.5.5 0 0 0-.43-.757H5.884a.5.5 0 0 0-.429.757l2.117 3.528a.5.5 0 0 0 .858 0z"
           />
         </svg>
+        <fieldset
+          aria-hidden="true"
+          class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+          style="padding-left: 8px;"
+        >
+          <legend
+            class="PrivateNotchedOutline-legend"
+            style="width: 0.01px;"
+          >
+            <span>
+              ​
+            </span>
+          </legend>
+        </fieldset>
       </div>
     </div>
   </div>
@@ -87,6 +87,16 @@ exports[`renders select 1`] = `
         <div
           class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root makeStyles-root OutlinedInput-rootFull Select-input MuiInputBase-fullWidth MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
         >
+          <input
+            aria-autocomplete="list"
+            aria-invalid="false"
+            autocomplete="none"
+            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input makeStyles-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+            role="textbox"
+            size="1"
+            type="text"
+            value="text1"
+          />
           <fieldset
             aria-hidden="true"
             class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
@@ -101,16 +111,6 @@ exports[`renders select 1`] = `
               </span>
             </legend>
           </fieldset>
-          <input
-            aria-autocomplete="list"
-            aria-invalid="false"
-            autocomplete="none"
-            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input makeStyles-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
-            role="textbox"
-            size="1"
-            type="text"
-            value="text1"
-          />
         </div>
         <svg
           class="SvgDropdownArrows16-root Select-caret"
@@ -135,6 +135,7 @@ exports[`should filter options based on entered value to the input field 1`] = `
 >
   <div
     class="ScrollMenu-scrollView"
+    tabindex="0"
   >
     <li
       aria-disabled="false"
@@ -162,6 +163,7 @@ exports[`should open menu when focus on select 1`] = `
 >
   <div
     class="ScrollMenu-scrollView"
+    tabindex="0"
   >
     <li
       aria-disabled="false"
@@ -217,6 +219,7 @@ exports[`should render options customly 1`] = `
 >
   <div
     class="ScrollMenu-scrollView"
+    tabindex="0"
   >
     <li
       aria-disabled="false"

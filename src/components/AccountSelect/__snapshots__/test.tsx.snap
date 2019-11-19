@@ -14,7 +14,7 @@ exports[`AccountSelect default render 1`] = `
         aria-disabled="false"
         class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light AccountSelect-accountItem MuiListItem-button"
         role="menuitem"
-        tabindex="-1"
+        tabindex="0"
       >
         <a
           class="MuiTypography-root MuiLink-root MuiLink-underlineNone AccountSelect-accountLink MuiTypography-colorPrimary"

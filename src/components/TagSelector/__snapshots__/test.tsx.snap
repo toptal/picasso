@@ -17,6 +17,15 @@ exports[`TagSelector default render 1`] = `
         <div
           class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto makeStyles-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
         >
+          <input
+            aria-autocomplete="list"
+            autocomplete="none"
+            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+            placeholder="Please select..."
+            style="width: auto;"
+            type="text"
+            value=""
+          />
           <fieldset
             aria-hidden="true"
             class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
@@ -31,15 +40,6 @@ exports[`TagSelector default render 1`] = `
               </span>
             </legend>
           </fieldset>
-          <input
-            aria-autocomplete="list"
-            autocomplete="none"
-            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
-            placeholder="Please select..."
-            style="width: auto;"
-            type="text"
-            value=""
-          />
         </div>
       </div>
       <div
@@ -68,20 +68,6 @@ exports[`TagSelector preselected value 1`] = `
           <div
             class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto makeStyles-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
           >
-            <fieldset
-              aria-hidden="true"
-              class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
-              style="padding-left: 8px;"
-            >
-              <legend
-                class="PrivateNotchedOutline-legend"
-                style="width: 0.01px;"
-              >
-                <span>
-                  ​
-                </span>
-              </legend>
-            </fieldset>
             <div
               class="MuiChip-root Label-root MuiChip-deletable"
               role="button"
@@ -98,7 +84,7 @@ exports[`TagSelector preselected value 1`] = `
               </span>
               <span
                 aria-label="delete icon"
-                class="MuiChip-deleteIcon"
+                class="Label-deleteIcon MuiChip-deleteIcon"
                 role="button"
               >
                 <svg
@@ -119,6 +105,20 @@ exports[`TagSelector preselected value 1`] = `
               type="text"
               value=""
             />
+            <fieldset
+              aria-hidden="true"
+              class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+              style="padding-left: 8px;"
+            >
+              <legend
+                class="PrivateNotchedOutline-legend"
+                style="width: 0.01px;"
+              >
+                <span>
+                  ​
+                </span>
+              </legend>
+            </fieldset>
           </div>
         </div>
         <div
