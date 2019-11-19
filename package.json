@@ -8,7 +8,7 @@
   "main": "./build/index.js",
   "module": "./build/index.js",
   "scripts": {
-    "test": "jest --runInBand",
+    "test": "npx lerna bootstrap && jest --runInBand",
     "test:watch": "jest --watch --runInBand",
     "test:visual": "./bin/run-in-docker ./bin/test-visual",
     "lint": "davinci syntax lint code .",
