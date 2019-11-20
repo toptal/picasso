@@ -5,8 +5,7 @@
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-lab#readme",
   "license": "ISC",
-  "main": "./build/index.js",
-  "module": "./build/index.js",
+  "main": "./src/index.ts",
   "publishConfig": {
     "access": "public"
   },
@@ -15,7 +14,8 @@
     "url": "git+https://github.com/toptal/picasso.git"
   },
   "scripts": {
-    "build:dist": "cross-env NODE_ENV=production ../../bin/build --tsConfig=./tsconfig.json --packageJson=./package.json"
+    "build:dist": "cross-env NODE_ENV=production ../../bin/build --tsConfig=./tsconfig.json --packageJson=./package.json --outputPackageJson=./ --entry=./build/index.js",
+    "postbuild": "git update-index --assume-unchanged ./packages.json"
   },
   "bugs": {
     "url": "https://github.com/toptal/picasso/issues"
