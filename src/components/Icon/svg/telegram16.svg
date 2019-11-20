@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 59.1 (101010) - https://sketch.com -->
+    <title>e6e917b9-f043-452b-8569-fc6796df5d20@1.00x</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M8,0 C3.58064516,0 0,3.58064516 0,8 C0,12.4193548 3.58064516,16 8,16 C12.4193548,16 16,12.4193548 16,8 C16,3.58064516 12.4193548,0 8,0 Z M11.9290323,5.48064516 L10.616129,11.6677419 C10.5193548,12.1064516 10.2580645,12.2129032 9.89354839,12.0064516 L7.89354839,10.5322581 L6.92903226,11.4612903 C6.82258065,11.5677419 6.73225806,11.6580645 6.52580645,11.6580645 L6.66774194,9.62258065 L10.3741935,6.27419355 C10.5354839,6.13225806 10.3387097,6.0516129 10.1258065,6.19354839 L5.54516129,9.07741935 L3.57096774,8.46129032 C3.14193548,8.32580645 3.13225806,8.03225806 3.66129032,7.82580645 L11.3741935,4.8516129 C11.7322581,4.72258065 12.0451613,4.93870968 11.9290323,5.48064516 L11.9290323,5.48064516 Z" id="path-1"></path>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons-/-Social-Media-/-16-/-Telegram">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Shape" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+            <g id="Colors-/-305-Dark-Grey" mask="url(#mask-2)" fill="#455065">
+                <rect id="Rectangle" x="0" y="0" width="16" height="16"></rect>
+            </g>
+        </g>
+    </g>
+</svg>
