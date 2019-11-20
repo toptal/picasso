@@ -5,7 +5,8 @@
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-lab#readme",
   "license": "ISC",
-  "main": "src/index.ts",
+  "main": "./build/index.js",
+  "module": "./build/index.js",
   "publishConfig": {
     "access": "public"
   },
