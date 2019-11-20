@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso",
-  "version": "3.41.0",
+  "version": "3.42.0",
   "description": "",
   "publishConfig": {
     "access": "public"
@@ -58,7 +58,7 @@
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/polyfill": "^7.4.4",
     "@babel/standalone": "^7.4.4",
-    "@commitlint/cli": "^7.6.1",
+    "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^7.6.0",
     "@semantic-release/changelog": "^3.0.2",
     "@semantic-release/commit-analyzer": "^6.1.0",
@@ -101,6 +101,7 @@
     "ejs": "^2.6.1",
     "escodegen": "^1.12.0",
     "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-fp": "^2.3.0",
     "esprima": "^4.0.1",
     "esprima-walk": "^0.1.0",
     "fork-ts-checker-notifier-webpack-plugin": "^1.0.2",

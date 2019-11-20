@@ -17,25 +17,20 @@ import TableRow from '../TableRow';
 import styles from './styles';
 const decorateRows = (children) => {
     let stripeIndex = -1;
+    // eslint-disable-next-line complexity
     return React.Children.map(children, child => {
-        if (!child) {
+        if (!React.isValidElement(child)) {
             return child;
         }
-        const childElement = child;
-        const type = childElement.type;
-        // child can be string or number, but we need to decorate only TableRows
-        if (!type) {
-            return child;
-        }
-        const isTableRow = childElement.type === TableRow || childElement.type === TableExpandableRow;
+        const isTableRow = child.type === TableRow || child.type === TableExpandableRow;
         if (!isTableRow) {
-            return childElement;
+            return child;
         }
         stripeIndex++;
         if (stripeIndex % 2 !== 0) {
-            return React.cloneElement(childElement, { stripeEven: true });
+            return React.cloneElement(child, { stripeEven: true });
         }
-        return childElement;
+        return child;
     });
 };
 export const TableBody = forwardRef(function TableBody(_a, ref) {

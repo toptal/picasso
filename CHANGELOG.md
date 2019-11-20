@@ -1,3 +1,10 @@
+# [3.42.0](https://github.com/toptal/picasso/compare/v3.41.0...v3.42.0) (2019-11-20)
+
+
+### Features
+
+* **icon:** add social icons ([#880](https://github.com/toptal/picasso/issues/880)) ([b4b7174](https://github.com/toptal/picasso/commit/b4b7174))
+
 # [3.41.0](https://github.com/toptal/picasso/compare/v3.40.0...v3.41.0) (2019-11-14)
 
 
