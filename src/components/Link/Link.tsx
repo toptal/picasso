@@ -13,7 +13,7 @@ import { BaseProps, OverridableComponent } from '../Picasso'
 import styles from './styles'
 
 type UnderlineType = 'none' | 'hover' | 'always'
-type VariantType = 'action' | 'default'
+type VariantType = 'action' | 'regular'
 type ColorType = 'white' | 'blue' | 'black'
 
 const useStyles = makeStyles<Theme, Props>(styles)
@@ -55,7 +55,7 @@ export const Link: OverridableComponent<Props> = forwardRef<
     color,
     style,
     as,
-    variant,
+    variant = 'regular',
     tabIndex,
     invert,
     ...rest
@@ -98,7 +98,7 @@ export const Link: OverridableComponent<Props> = forwardRef<
 Link.defaultProps = {
   as: 'a',
   color: 'blue',
-  variant: 'default'
+  variant: 'regular'
 }
 
 Link.displayName = 'Link'

@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles'
 import { StandardProps } from '../Picasso'
 import styles from './styles'
 
-type VariantType = 'default' | 'circular'
+type VariantType = 'rectangle' | 'circular'
 
 export interface Props
   extends StandardProps,
@@ -21,7 +21,16 @@ export interface Props
 }
 
 export const Image = forwardRef<HTMLImageElement, Props>(function Image(
-  { src, srcSet, alt, classes, className, variant, style, ...rest },
+  {
+    src,
+    srcSet,
+    alt,
+    classes,
+    className,
+    variant = 'rectangle',
+    style,
+    ...rest
+  },
   ref
 ) {
   return (
@@ -45,7 +54,7 @@ export const Image = forwardRef<HTMLImageElement, Props>(function Image(
 })
 
 Image.defaultProps = {
-  variant: 'default'
+  variant: 'rectangle'
 }
 
 Image.displayName = 'Image'

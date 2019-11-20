@@ -1,4 +1,4 @@
-import React, { CSSProperties, forwardRef } from 'react'
+import React, { forwardRef } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 
@@ -6,18 +6,17 @@ import { Logo as LogoIcon, LogoEmblem as LogoEmblemIcon } from '../Icon'
 import { StandardProps } from '../Picasso'
 import styles from './styles'
 
-type VariantType = 'default' | 'white' | 'black'
+type VariantType = 'blue' | 'white' | 'black'
 
 export interface Props extends StandardProps {
   /** Whether logo should be shown as TT emblem or full word mark */
   emblem?: boolean
   /** Variant of the `Logo` */
   variant?: VariantType
-  style?: CSSProperties
 }
 
 export const Logo = forwardRef<SVGSVGElement, Props>(function Logo(
-  { classes, emblem, variant, style, className },
+  { classes, emblem, variant = 'blue', style, className },
   ref
 ) {
   const rootClass = emblem ? classes.logoEmblem : classes.logo
@@ -34,7 +33,7 @@ export const Logo = forwardRef<SVGSVGElement, Props>(function Logo(
 })
 
 Logo.defaultProps = {
-  variant: 'default'
+  variant: 'blue'
 }
 
 Logo.displayName = 'Logo'

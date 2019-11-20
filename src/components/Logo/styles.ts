@@ -10,7 +10,7 @@ export default ({ palette }: Theme) =>
       fontSize: '1.875em',
       verticalAlign: 'baseline'
     },
-    default: {
+    blue: {
       color: palette.primary.main
     },
     white: {

@@ -13,7 +13,7 @@ enum SIZES {
   large = 64
 }
 
-type VariantType = 'default' | 'inherit'
+type VariantType = 'blue' | 'inherit'
 
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Text content for the `Loader` */
@@ -29,7 +29,16 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
 }
 
 export const Loader = forwardRef<HTMLDivElement, Props>(function Loader(
-  { children, classes, size, inline, className, value, variant, ...rest },
+  {
+    children,
+    classes,
+    size,
+    inline,
+    className,
+    value,
+    variant = 'blue',
+    ...rest
+  },
   ref
 ) {
   return (
@@ -58,7 +67,7 @@ export const Loader = forwardRef<HTMLDivElement, Props>(function Loader(
 Loader.defaultProps = {
   inline: false,
   size: 'medium',
-  variant: 'default'
+  variant: 'blue'
 }
 
 Loader.displayName = 'Loader'

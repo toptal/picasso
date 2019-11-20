@@ -2,7 +2,7 @@ import { createStyles, Theme } from '@material-ui/core/styles'
 
 export default ({ palette }: Theme) =>
   createStyles({
-    spinnerDefault: {
+    spinnerBlue: {
       color: palette.primary.main
     },
     spinnerInherit: {
