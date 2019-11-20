@@ -21,8 +21,8 @@ const TabsSection: FunctionComponent<Props> = props => {
 
   const [selectedTab, setSelectedTab] = React.useState(0)
 
-  function handleChange(event: any, selectedTab: number) {
-    setSelectedTab(selectedTab)
+  function handleChange(event: any, value: number) {
+    setSelectedTab(value)
   }
 
   const hasMultiple = tabs.length > 1
