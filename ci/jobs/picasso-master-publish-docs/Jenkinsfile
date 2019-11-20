@@ -46,6 +46,7 @@ pipeline {
           sh """
             docker run \
             --rm \
+            -u 469:469 \
             -v ${WORKSPACE}/deploy-docs:/app/deploy-docs \
             -e DEPLOY_DOCS_PATH=/app/deploy-docs \
             -e DEPLOY_DOCS_ARCHIVE=deploy-docs \
