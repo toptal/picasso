@@ -1,3 +1,10 @@
+# [3.43.0](https://github.com/toptal/picasso/compare/v3.42.0...v3.43.0) (2019-11-20)
+
+
+### Features
+
+* **button:** add secondary-green variant ([#883](https://github.com/toptal/picasso/issues/883)) ([c7ebde7](https://github.com/toptal/picasso/commit/c7ebde7))
+
 # [3.42.0](https://github.com/toptal/picasso/compare/v3.41.0...v3.42.0) (2019-11-20)
 
 
