@@ -49,7 +49,7 @@ pipeline {
             -v ${WORKSPACE}/deploy-docs:/app/deploy-docs \
             -e DEPLOY_DOCS_PATH=/app/deploy-docs \
             -e DEPLOY_DOCS_ARCHIVE=deploy-docs \
-            gcr.io/toptal-hub/${repoName}:${ghprbActualCommit} \
+            gcr.io/toptal-hub/${repoName}:${gitCommit()} \
             ./bin/release-docs
 
             tar -zxvf ${WORKSPACE}/deploy-docs/deploy-docs.tar.gz -C ${WORKSPACE}/deploy-docs/
