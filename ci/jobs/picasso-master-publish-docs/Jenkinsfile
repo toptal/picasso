@@ -1,4 +1,7 @@
 @Library('globalLibrary@master') _
+
+repoName = 'picasso'
+
 pipeline {
 
   agent { label 'docker' }
@@ -40,9 +43,17 @@ pipeline {
         steps {
             script {
                 sh """
-                      docker run --tty -e HOME=`pwd` --volume `pwd`:`pwd`:z --user `id -u`:`id -g` \\
-                      --workdir `pwd` node:13-alpine sh -c 'rm -rf ./node_modules && yarn install && yarn build:storybook'
-                   """
+                  docker run \
+                  --rm \
+                  -v ${PWD}/deploy-docs:/app/deploy-docs \
+                  -e DEPLOY_DOCS_PATH=/app/deploy-docs \
+                  -e DEPLOY_DOCS_ARCHIVE=deploy-docs \
+                  gcr.io/toptal-hub/${repoName}:${ghprbActualCommit} \
+                  ./bin/release-docs
+
+                  tar -zxvf ./deploy-docs/deploy-docs.tar.gz -C ./deploy-docs/
+                  rm ./deploy-docs/deploy-docs.tar.gz
+                """
             }//script
         }//steps
     }//stage
@@ -53,8 +64,9 @@ pipeline {
             targetBranch = params.BRANCH.replaceAll('/', '-')
 
             sh """
-                 rsync -avz --delete -e ssh ./build/storybook/ docs@docs.staging.toptal.net:~/docs/picasso/${targetBranch} && \\
+                 rsync -avz --delete -e ssh ./deploy-docs docs@docs.staging.toptal.net:~/docs/picasso/${targetBranch} && \\
                  rm -rf ./build
+                 rm -rf ./deploy-docs
                """
 
             if (targetBranch != 'master') {
