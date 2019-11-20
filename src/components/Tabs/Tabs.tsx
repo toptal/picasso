@@ -18,7 +18,7 @@ export interface Props
   children: ReactNode
 
   /** Callback fired when the value changes. */
-  onChange?: TabsProps['onChange']
+  onChange?: (event: React.ChangeEvent<{}>, value: number) => void
 
   /** The value of the currently selected Tab. If you don't want any selected Tab, you can set this property to false. */
   value: TabsProps['value']
