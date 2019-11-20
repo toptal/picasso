@@ -46,14 +46,14 @@ pipeline {
           sh """
             docker run \
             --rm \
-            -v ${PWD}/deploy-docs:/app/deploy-docs \
+            -v ${WORKSPACE}/deploy-docs:/app/deploy-docs \
             -e DEPLOY_DOCS_PATH=/app/deploy-docs \
             -e DEPLOY_DOCS_ARCHIVE=deploy-docs \
             gcr.io/toptal-hub/${repoName}:${ghprbActualCommit} \
             ./bin/release-docs
 
-            tar -zxvf ./deploy-docs/deploy-docs.tar.gz -C ./deploy-docs/
-            rm ./deploy-docs/deploy-docs.tar.gz
+            tar -zxvf ${WORKSPACE}/deploy-docs/deploy-docs.tar.gz -C ${WORKSPACE}/deploy-docs/
+            rm ${WORKSPACE}/deploy-docs/deploy-docs.tar.gz
           """
         }//script
       }//steps
@@ -65,9 +65,9 @@ pipeline {
           targetBranch = params.BRANCH.replaceAll('/', '-')
 
           sh """
-                rsync -avz --delete -e ssh ./deploy-docs docs@docs.staging.toptal.net:~/docs/picasso/${targetBranch} && \\
+                rsync -avz --delete -e ssh ${WORKSPACE}/deploy-docs docs@docs.staging.toptal.net:~/docs/picasso/${targetBranch} && \\
                 rm -rf ./build
-                rm -rf ./deploy-docs
+                rm -rf ${WORKSPACE}/deploy-docs
               """
 
           if (targetBranch != 'master') {
