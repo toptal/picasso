@@ -12,6 +12,7 @@ yarn build:dist
 
 # Build all packages
 npx lerna run build:dist --since ${TARGET_BRANCH:-master}
+npx lerna run postbuild --since ${TARGET_BRANCH:-master}
 
 # Publish packages
 if [[ $RELEASE_AND_PUBLISH == "1" ]]; then
