@@ -24,17 +24,13 @@ pipeline {
   stages {
     stage("Git checkout branch") {
       steps {
-        info "== Checking out master"
+        info "== Checking out ${BRANCH} =="
         gitCheckout(
-          branches: "$BRANCH",
+          branches: BRANCH,
           credentials: [username: 'toptal-build', description: 'toptal-build-ssh-key'],
           url: 'git@github.com:toptal/picasso.git',
-          refspec: '+refs/heads/master:refs/remotes/origin/master',
           additionalBehaviours: [
-            checkoutToSpecificLocalBranch: [ localBranch: "$BRANCH" ],
-            cleanBeforeCheckout: true,
-            advancedCheckoutBehaviour: [timeout: 30],
-            advancedCloneBehaviour: [depth: 0, noTags: false, reference: '', shallow: false, timeout: 30]
+            cleanBeforeCheckout: true
           ]
         )
 
@@ -45,51 +41,51 @@ pipeline {
     }//stage
 
     stage('Build docs') {
-        steps {
-            script {
-                sh """
-                  docker run \
-                  --rm \
-                  -v ${PWD}/deploy-docs:/app/deploy-docs \
-                  -e DEPLOY_DOCS_PATH=/app/deploy-docs \
-                  -e DEPLOY_DOCS_ARCHIVE=deploy-docs \
-                  gcr.io/toptal-hub/${repoName}:${ghprbActualCommit} \
-                  ./bin/release-docs
+      steps {
+        script {
+          sh """
+            docker run \
+            --rm \
+            -v ${PWD}/deploy-docs:/app/deploy-docs \
+            -e DEPLOY_DOCS_PATH=/app/deploy-docs \
+            -e DEPLOY_DOCS_ARCHIVE=deploy-docs \
+            gcr.io/toptal-hub/${repoName}:${ghprbActualCommit} \
+            ./bin/release-docs
 
-                  tar -zxvf ./deploy-docs/deploy-docs.tar.gz -C ./deploy-docs/
-                  rm ./deploy-docs/deploy-docs.tar.gz
-                """
-            }//script
-        }//steps
+            tar -zxvf ./deploy-docs/deploy-docs.tar.gz -C ./deploy-docs/
+            rm ./deploy-docs/deploy-docs.tar.gz
+          """
+        }//script
+      }//steps
     }//stage
 
     stage('Sync docs to docs server') {
       steps {
         script {
-            targetBranch = params.BRANCH.replaceAll('/', '-')
+          targetBranch = params.BRANCH.replaceAll('/', '-')
 
-            sh """
-                 rsync -avz --delete -e ssh ./deploy-docs docs@docs.staging.toptal.net:~/docs/picasso/${targetBranch} && \\
-                 rm -rf ./build
-                 rm -rf ./deploy-docs
-               """
+          sh """
+                rsync -avz --delete -e ssh ./deploy-docs docs@docs.staging.toptal.net:~/docs/picasso/${targetBranch} && \\
+                rm -rf ./build
+                rm -rf ./deploy-docs
+              """
 
-            if (targetBranch != 'master') {
-                existingComments = sh(returnStdout: true, script: "curl -H \"Authorization: token ${GITHUB_TOKEN}\" https://api.github.com/repos/toptal/picasso/issues/${params.PR_ID}/comments | jq -r '.[] | select(.user.login | contains(\"toptal-devbot\")) | select(.body | contains(\"Demo\")) | .id'").split("\n")
-                existingComments.each {
-                  if (it != "") {
-                    echo "Comment [$it] - Marked for delete"
-                    sh "curl -X \"DELETE\" -H \"Authorization: token ${GITHUB_TOKEN}\" https://api.github.com/repos/toptal/picasso/issues/comments/${it}"
-                  }
+          if (targetBranch != 'master') {
+              existingComments = sh(returnStdout: true, script: "curl -H \"Authorization: token ${GITHUB_TOKEN}\" https://api.github.com/repos/toptal/picasso/issues/${params.PR_ID}/comments | jq -r '.[] | select(.user.login | contains(\"toptal-devbot\")) | select(.body | contains(\"Demo\")) | .id'").split("\n")
+              existingComments.each {
+                if (it != "") {
+                  echo "Comment [$it] - Marked for delete"
+                  sh "curl -X \"DELETE\" -H \"Authorization: token ${GITHUB_TOKEN}\" https://api.github.com/repos/toptal/picasso/issues/comments/${it}"
                 }
+              }
 
-                def url = "https://picasso.toptal.net/${targetBranch}/"
-                def comment = ":tada: Last commit is successfully deployed :tada: \\n\\nDemo is available on:\\n\\n- [${url}](${url}?${gitCommit()}) \\n\\n Your **[davinci-bot](https://github.com/toptal-davinci-bot)** :rocket:"
-                gitHubPostComment('picasso', params.PR_ID, comment, env.GITHUB_TOKEN)
-            }
+              def url = "https://picasso.toptal.net/${targetBranch}/"
+              def comment = ":tada: Last commit is successfully deployed :tada: \\n\\nDemo is available on:\\n\\n- [${url}](${url}?${gitCommit()}) \\n\\n Your **[davinci-bot](https://github.com/toptal-davinci-bot)** :rocket:"
+              gitHubPostComment('picasso', params.PR_ID, comment, env.GITHUB_TOKEN)
+          }
         }//script
         script {
-            VERSION = sh(returnStdout: true, script: 'cat package.json | jq ".version" -r').trim()
+          VERSION = sh(returnStdout: true, script: 'cat package.json | jq ".version" -r').trim()
         }
       }//steps
     }//stage
