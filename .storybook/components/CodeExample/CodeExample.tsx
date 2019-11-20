@@ -114,17 +114,17 @@ class CodeExample extends Component<Props> {
 
     try {
       return require(`!raw-loader!@components/${src}`).default
-    } catch {
-      try {
-        return require(`!raw-loader!~/packages/lab/src/${src}`).default
-      } catch {
-        try {
-          return require(`!raw-loader!~/packages/shared/src/${src}`).default
-        } catch {
-          return require(`!raw-loader!~/.storybook/stories/${src}`).default
-        }
-      }
-    }
+    } catch {}
+
+    try {
+      return require(`!raw-loader!~/packages/lab/src/${src}`).default
+    } catch {}
+
+    try {
+      return require(`!raw-loader!~/packages/shared/src/${src}`).default
+    } catch {}
+
+    return require(`!raw-loader!~/.storybook/stories/${src}`).default
   }
 
   handleShowEditor = () => {
