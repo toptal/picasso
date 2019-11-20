@@ -120,6 +120,8 @@ export default ({ palette, sizes, transitions, typography }: Theme) =>
     primaryRed: primary(palette.red.main, palette.common.white),
     secondaryRed: secondary(palette.red.main, palette.common.white),
     primaryGreen: primary(palette.green.main, palette.common.white),
+    secondaryGreen: secondary(palette.green.main, palette.common.white),
+
     secondaryWhite: {
       color: palette.common.white,
       border: `solid ${sizes.borderWidth} rgba(255, 255, 255, 0.32)`,
