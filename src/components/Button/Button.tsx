@@ -28,6 +28,7 @@ export type VariantType =
   | 'primary-red'
   | 'secondary-red'
   | 'primary-green'
+  | 'secondary-green'
   | 'flat'
   | 'flat-white'
   | 'secondary-white'

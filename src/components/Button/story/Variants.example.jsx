@@ -20,6 +20,7 @@ const ButtonVariantsExample = () => (
     <Container top='small' bottom='large'>
       <Button variant='secondary-blue'>Secondary Blue</Button>
       <Button variant='secondary-red'>Secondary Red</Button>
+      <Button variant='secondary-green'>Secondary Green</Button>
       <Container
         left={0.5}
         padded={0.5}
