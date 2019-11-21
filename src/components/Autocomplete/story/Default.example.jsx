@@ -3,15 +3,15 @@ import { Autocomplete } from '@toptal/picasso'
 import { isSubstring } from '@toptal/picasso/utils'
 
 const allOptions = [
-  { text: 'Belarus', value: 'BY' },
-  { text: 'Croatia', value: 'HR' },
-  { text: 'Lithuania', value: 'LU' },
-  { text: 'Slovakia', value: 'SK' },
-  { text: 'Ukraine', value: 'UA' }
+  { country: 'Belarus', code: 'BY' },
+  { country: 'Croatia', code: 'HR' },
+  { country: 'Lithuania', code: 'LU' },
+  { country: 'Slovakia', code: 'SK' },
+  { country: 'Ukraine', code: 'UA' }
 ]
 
 const EMPTY_INPUT_VALUE = ''
-const getDisplayValue = item => (item ? item.text : EMPTY_INPUT_VALUE)
+const getDisplayValue = item => (item ? item.country : EMPTY_INPUT_VALUE)
 const filterOptions = str =>
   str !== ''
     ? allOptions.filter(option => isSubstring(str, getDisplayValue(option)))

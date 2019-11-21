@@ -17,12 +17,16 @@ import { Props as InputProps } from '../Input'
 import styles from './styles'
 
 export interface Item extends AutocompleteItem {
-  value: string
-  text: string
+  value?: string
 }
 
-const isIncluded = (items: Item[], item: Item) =>
-  items.some(({ value }) => value === item.value)
+const EMPTY_INPUT_VALUE = ''
+
+const isIncluded = (items: Item[], currentItem: Item) =>
+  items.some(item => item === currentItem)
+
+const getItemText = (item: Item | null) =>
+  (item && item.text) || EMPTY_INPUT_VALUE
 
 export interface Props
   extends StandardProps,
@@ -34,7 +38,7 @@ export interface Props
   /** Text prefix for other option */
   otherOptionLabel?: string
   /**  Callback invoked when other option selected */
-  onOtherOptionSelect?: (item: Item) => void
+  onOtherOptionSelect?: (value: string) => void
   /** Allow to show the other option in the list of options */
   showOtherOption?: boolean
   /** List of options with unique labels */
@@ -53,6 +57,8 @@ export interface Props
   width?: 'full' | 'shrink' | 'auto'
   /** Specifies whether the autofill enabled or not, disabled by default */
   enableAutofill?: boolean
+  /** Provide unique key for each option */
+  getKey?: (item: Item) => string | number
 }
 
 export const TagSelector = forwardRef<HTMLInputElement, Props>(
@@ -71,6 +77,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       onInputChange,
       width,
       enableAutofill,
+      getKey: customGetKey,
       ...rest
     },
     ref
@@ -124,28 +131,31 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
     const handleSelect = (autocompleteItem: AutocompleteItem) => {
       const item = autocompleteItem as Item
 
-      if (!isIncluded(values, item)) {
-        onChange!([...values, item])
-      }
-
+      onChange!([...values, item])
       onInputChange!('')
     }
 
-    const handleOtherOptionSelect = (item: AutocompleteItem) => {
-      const itemText = getDisplayValue!(item)
-
-      const newOption: Item = {
-        value: itemText,
-        text: itemText
-      }
-
-      onOtherOptionSelect!(newOption)
-
-      if (!isIncluded(values, newOption)) {
-        onChange!([...values, newOption])
-      }
-
+    const handleOtherOptionSelect = (value: string) => {
       onInputChange!('')
+      onOtherOptionSelect!(value)
+    }
+
+    const getKey = (item: Item) => {
+      if (item.key) {
+        return item.key
+      }
+
+      if (customGetKey) {
+        return customGetKey(item)
+      }
+
+      if (item.value) {
+        return item.value
+      }
+
+      console.error(
+        'TagSelector expect you to provide key prop value as Item.key, getKey or Item.value!'
+      )
     }
 
     const autocompleteOptions: AutocompleteItem[] = options.filter(
@@ -155,8 +165,8 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
     const labels = (
       <Fragment>
         {values.map(item => (
-          <Label key={item.value} onDelete={() => handleDelete(item)}>
-            {item.text}
+          <Label key={getKey!(item)} onDelete={() => handleDelete(item)}>
+            {getDisplayValue!(item)}
           </Label>
         ))}
       </Fragment>
@@ -189,6 +199,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
 
 TagSelector.defaultProps = {
   enableAutofill: false,
+  getDisplayValue: getItemText,
   loading: false,
   onChange: () => {},
   onInputChange: () => {},

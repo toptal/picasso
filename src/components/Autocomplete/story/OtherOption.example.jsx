@@ -37,9 +37,11 @@ const AutocompleteOtherOptionExample = () => {
             setValue(itemValue)
           }
         }}
-        onOtherOptionSelect={item =>
-          console.log('onOtherOptionSelect returns item object:', item)
-        }
+        onOtherOptionSelect={newValue => {
+          console.log('onOtherOptionSelect returns item value:', newValue)
+          setValue(newValue)
+          setOptions(filterOptions(newValue))
+        }}
         onChange={newValue => {
           console.log('onChange returns just item value:', newValue)
 
