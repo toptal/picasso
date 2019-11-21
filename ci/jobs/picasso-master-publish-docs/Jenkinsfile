@@ -65,7 +65,7 @@ pipeline {
           targetBranch = params.BRANCH.replaceAll('/', '-')
 
           sh """
-                rsync -avz --delete -e ssh ${WORKSPACE}/deploy-docs docs@docs.staging.toptal.net:~/docs/picasso/${targetBranch} && \\
+                rsync -avz --delete -e ssh ${WORKSPACE}/deploy-docs/ docs@docs.staging.toptal.net:~/docs/picasso/${targetBranch} && \\
                 rm -rf ./build
                 rm -rf ${WORKSPACE}/deploy-docs
               """
