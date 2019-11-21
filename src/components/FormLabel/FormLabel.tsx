@@ -1,4 +1,4 @@
-import React, { forwardRef, HTMLAttributes } from 'react'
+import React, { forwardRef, HTMLAttributes, ReactNode } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
@@ -11,7 +11,7 @@ export interface Props
   extends StandardProps,
     HTMLAttributes<HTMLLabelElement | HTMLSpanElement> {
   /** Content of the label */
-  children: string
+  children: ReactNode
   /** Adds asteriks if true */
   required?: boolean
   /** Is this label for disabled input or not */
