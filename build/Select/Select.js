@@ -15,6 +15,7 @@ var __rest =
       }
     return t
   }
+/* eslint-disable max-lines */
 import React, { forwardRef, useRef, useState, Fragment } from 'react'
 import cx from 'classnames'
 import Popper from '@material-ui/core/Popper'

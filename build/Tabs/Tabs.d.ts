@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 import { TabsProps } from '@material-ui/core/Tabs'
 import Tab from '../Tab'
 import {
@@ -13,7 +13,7 @@ export interface Props
   /** Tabs content containing Tab components */
   children: ReactNode
   /** Callback fired when the value changes. */
-  onChange?: TabsProps['onChange']
+  onChange?: (event: React.ChangeEvent<{}>, value: number) => void
   /** The value of the currently selected Tab. If you don't want any selected Tab, you can set this property to false. */
   value: TabsProps['value']
 }

@@ -26,6 +26,7 @@ declare const _default: ({
   | 'primaryRed'
   | 'secondaryRed'
   | 'primaryGreen'
+  | 'secondaryGreen'
   | 'secondaryWhite'
   | 'flatWhite'
   | 'transparentWhite'

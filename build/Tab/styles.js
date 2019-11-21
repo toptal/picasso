@@ -1,36 +1,37 @@
-import { createStyles } from '@material-ui/core/styles';
-import { PicassoProvider } from '../Picasso';
-import { rem } from '../styles';
+import { createStyles } from '@material-ui/core/styles'
+import { PicassoProvider } from '../Picasso'
+import { rem } from '../styles'
 PicassoProvider.override(({ breakpoints, palette, typography }) => ({
-    MuiTab: {
-        root: {
-            fontWeight: typography.fontWeights.semibold,
-            minHeight: 0,
-            minWidth: 0,
-            lineHeight: 1,
-            textTransform: 'none',
-            padding: `${rem('11px')} 0 ${rem('9px')}`,
-            [breakpoints.up('md')]: {
-                padding: undefined
-            },
-            color: palette.grey.dark,
-            '&$selected': {
-                color: palette.common.black
-            },
-            '&:not(:last-child)': {
-                marginRight: '2em'
-            },
-            [breakpoints.up('md')]: {
-                minWidth: undefined,
-                fontSize: undefined
-            }
-        },
-        selected: {},
-        wrapper: {
-            fontSize: rem('13px'),
-            lineHeight: '1rem'
-        }
+  MuiTab: {
+    root: {
+      fontWeight: typography.fontWeights.semibold,
+      minHeight: 0,
+      minWidth: 0,
+      lineHeight: 1,
+      textTransform: 'none',
+      padding: `${rem('11px')} 0 ${rem('9px')}`,
+      [breakpoints.up('md')]: {
+        padding: undefined
+      },
+      color: palette.grey.dark,
+      '&$selected': {
+        color: palette.common.black
+      },
+      '&:not(:last-child)': {
+        marginRight: '2em'
+      },
+      [breakpoints.up('md')]: {
+        minWidth: 'auto',
+        fontSize: '1rem'
+      }
+    },
+    selected: {},
+    wrapper: {
+      fontSize: rem('13px'),
+      lineHeight: '1rem',
+      width: 'auto'
     }
-}));
-export default () => createStyles({});
+  }
+}))
+export default () => createStyles({})
 //# sourceMappingURL=styles.js.map

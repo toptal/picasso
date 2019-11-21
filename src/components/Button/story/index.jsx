@@ -150,6 +150,7 @@ page
             'primary-red',
             'secondary-red',
             'primary-green',
+            'secondary-green',
             'flat-white',
             'secondary-white',
             'transparent-white',

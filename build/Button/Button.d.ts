@@ -1,5 +1,4 @@
 import { ReactNode, ReactElement, MouseEvent, ElementType } from 'react'
-import { ButtonBaseProps } from '@material-ui/core/ButtonBase'
 import Group from '../ButtonGroup'
 import {
   BaseProps,
@@ -14,6 +13,7 @@ export declare type VariantType =
   | 'primary-red'
   | 'secondary-red'
   | 'primary-green'
+  | 'secondary-green'
   | 'flat'
   | 'flat-white'
   | 'secondary-white'
@@ -25,7 +25,7 @@ export interface Props extends BaseProps, ButtonOrAnchorProps {
   /** Show button in the active state (left mouse button down) */
   active?: boolean
   /** The component used for the root node. Either a string to use a DOM element or a component. */
-  as?: ElementType<ButtonBaseProps>
+  as?: ElementType
   /** Disables button */
   disabled?: boolean
   /** Content of Button component */
