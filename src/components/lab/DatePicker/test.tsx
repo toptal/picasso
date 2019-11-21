@@ -10,7 +10,7 @@ describe('DatePicker', () => {
   test('default render', () => {
     const { container } = render(
       <Picasso loadFonts={false}>
-        <DatePicker onSelect={() => {}} />
+        <DatePicker onChange={() => {}} />
       </Picasso>
     )
 
