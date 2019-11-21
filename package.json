@@ -72,7 +72,7 @@
     "@storybook/react": "^5.0.11",
     "@storybook/theming": "^5.0.11",
     "@svgr/cli": "^4.3.0",
-    "@testing-library/react": "^8.0.7",
+    "@testing-library/react": "^9.3.2",
     "@toptal/davinci": "^0.1.0-alpha.17",
     "@types/classnames": "^2.2.8",
     "@types/color": "^3.0.0",
