@@ -1,9 +1,9 @@
-import React, { HTMLAttributes } from 'react';
+import React, { HTMLAttributes, ReactNode } from 'react';
 import { StandardProps } from '../Picasso';
 declare type ComponentType = 'label' | 'span';
 export interface Props extends StandardProps, HTMLAttributes<HTMLLabelElement | HTMLSpanElement> {
     /** Content of the label */
-    children: string;
+    children: ReactNode;
     /** Adds asteriks if true */
     required?: boolean;
     /** Is this label for disabled input or not */

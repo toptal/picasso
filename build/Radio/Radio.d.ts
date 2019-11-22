@@ -1,8 +1,9 @@
+import { ReactNode } from 'react';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import { PicassoComponentWithRef, CompoundedComponentWithRef, StandardProps, ButtonOrAnchorProps } from '../Picasso';
 export interface Props extends StandardProps, Omit<ButtonOrAnchorProps, 'onChange' | 'value'> {
     /** Text label for the `Radio` */
-    label?: string;
+    label?: ReactNode;
     /** Value of the `Radio` component used with conjuction of `Radio.Group` */
     value?: string | number | boolean;
     /** Defines if `Radio` is disabled */
