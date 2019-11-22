@@ -17,17 +17,22 @@
     "baseUrl": ".",
     "typeRoots": ["node_modules/@types", "@types"],
     "paths": {
-      "@toptal/picasso/*": ["src/components/*"],
-      "@toptal/picasso": ["src/components/index"],
+      "@toptal/picasso/*": ["packages/core/src/*"],
+      "@toptal/picasso": ["packages/core/src/index"],
+      "@toptal/picasso-lab/*": ["packages/lab/src/*"],
+      "@toptal/picasso-lab": ["packages/lab/src/index"],
       "*": ["@types/*"]
     }
   },
-  "include": ["src/components/**/*"],
+  "includes": ["packages/core/src/**/*"],
   "exclude": [
+    "dangerfile.ts",
+    "build",
+    "@types",
+    "ci",
+    "puppeteer",
     "**/test.jsx",
     "**/test.tsx",
-    "**/visual.test.jsx",
-    "**/visual.test.tsx",
     "**/story/index.jsx"
   ]
 }

@@ -7,4 +7,13 @@ export {
 
 export * from './types'
 
-export { useScreenSize, isScreenSize, useBreakpoint } from './config'
+export {
+  useScreenSize,
+  isScreenSize,
+  useBreakpoint,
+  breakpointsList,
+  screens,
+  useScreens,
+  colors,
+  shadows
+} from './config'
