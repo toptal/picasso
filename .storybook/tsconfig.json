@@ -8,11 +8,6 @@
   },
   "include": ["../packages/**/*"],
   "exclude": [
-    "../dangerfile.ts",
-    "../build",
-    "../@types",
-    "../ci",
-    "../puppeteer",
     "**/test.jsx",
     "**/test.tsx"
   ]

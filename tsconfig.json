@@ -19,18 +19,11 @@
     "paths": {
       "@toptal/picasso/*": ["packages/core/src/*"],
       "@toptal/picasso": ["packages/core/src/index"],
-      "@toptal/picasso-lab/*": ["packages/lab/src/*"],
-      "@toptal/picasso-lab": ["packages/lab/src/index"],
       "*": ["@types/*"]
     }
   },
-  "includes": ["packages/core/src/**/*"],
+  "include": ["packages/core/src/**/*"],
   "exclude": [
-    "dangerfile.ts",
-    "build",
-    "@types",
-    "ci",
-    "puppeteer",
     "**/test.jsx",
     "**/test.tsx",
     "**/story/index.jsx"
