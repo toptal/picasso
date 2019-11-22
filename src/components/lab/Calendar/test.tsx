@@ -10,7 +10,7 @@ describe('Calendar', () => {
   test('default render', () => {
     const { container } = render(
       <Picasso loadFonts={false}>
-        <Calendar activeMonth={new Date(2019, 1, 1)} onSelect={() => {}} open />
+        <Calendar activeMonth={new Date(2019, 1, 1)} onChange={() => {}} open />
       </Picasso>
     )
 

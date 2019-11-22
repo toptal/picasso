@@ -10,7 +10,7 @@ exports[`SidebarLogo default render 1`] = `
       style="margin-bottom: 1em; margin-left: 1.5em; align-items: center;"
     >
       <svg
-        class="SvgLogo-root Logo-logo Logo-default"
+        class="SvgLogo-root Logo-logo Logo-blue"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 134 40"
       >

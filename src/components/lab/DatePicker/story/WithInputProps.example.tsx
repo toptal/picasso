@@ -10,7 +10,7 @@ const WithInputPropsExample = () => {
         iconPosition='end'
         width='full'
         placeholder='Please select date...'
-        onSelect={(date: Date | [Date, Date]) => {
+        onChange={(date: Date | [Date, Date]) => {
           /* eslint-disable-next-line no-console */
           console.log('selected date is: ', date)
         }}

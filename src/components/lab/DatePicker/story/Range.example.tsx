@@ -6,7 +6,7 @@ const RangeExample = () => {
     <div style={{ height: '50vh' }}>
       <DatePicker
         range
-        onSelect={(dates: Date | [Date, Date]) => {
+        onChange={(dates: Date | [Date, Date]) => {
           const [start, end] = dates as [Date, Date]
 
           // eslint-disable-next-line no-console

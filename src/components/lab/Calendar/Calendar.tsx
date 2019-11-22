@@ -26,7 +26,7 @@ export type DateOrDateRangeType = Date | DateRangeType
 export type DateRangeType = [Date, Date]
 
 export interface Props extends BaseProps {
-  onSelect: (value: DateOrDateRangeType) => void
+  onChange: (value: DateOrDateRangeType) => void
   range?: boolean
   value?: Date
   open?: boolean
@@ -48,7 +48,7 @@ export const Calendar = (props: Props) => {
     open = false,
     activeMonth = new Date(),
     value: initialValue,
-    onSelect
+    onChange
   } = props
 
   const [value, setValue] = useState<
@@ -57,22 +57,22 @@ export const Calendar = (props: Props) => {
 
   if (!open) return null
 
-  const handleSelect = (selection: Date | SimpleReactCalendarRangeType) => {
+  const handleChange = (selection: Date | SimpleReactCalendarRangeType) => {
     setValue(selection)
 
     if (isDateRange(selection)) {
       const { start, end } = selection
 
-      onSelect([start, end])
+      onChange([start, end])
     } else {
-      onSelect(selection)
+      onChange(selection)
     }
   }
 
   return (
     <SimpleReactCalendar
       selected={value}
-      onSelect={handleSelect}
+      onSelect={handleChange}
       customRender={({ children }: CalendarProps) => {
         return <div className={classes.root}>{children}</div>
       }}

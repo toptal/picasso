@@ -21,7 +21,7 @@ export interface Props
       | 'onChange'
     > {
   /** Method that will be invoked with selected values */
-  onSelect: (value: DateOrDateRangeType) => void
+  onChange: (value: DateOrDateRangeType) => void
   /** Whether calendar supports single date selection or range */
   range?: boolean
   /** Initial value */
@@ -45,7 +45,7 @@ const formatValue = (value: DateOrDateRangeType) => {
 }
 
 export const DatePicker = ({
-  onSelect,
+  onChange,
   range,
   value: initialValue,
   width,
@@ -61,7 +61,7 @@ export const DatePicker = ({
 
   const handleSelect = (value: DateOrDateRangeType) => {
     setInputValue(formatValue(value))
-    onSelect(value)
+    onChange(value)
   }
 
   return (
@@ -78,7 +78,7 @@ export const DatePicker = ({
           activeMonth={initialValue}
           value={initialValue}
           open={calendarOpened}
-          onSelect={handleSelect}
+          onChange={handleSelect}
           range={range}
         />
       </Container>

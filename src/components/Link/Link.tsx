@@ -13,7 +13,7 @@ import { BaseProps, OverridableComponent } from '../Picasso'
 import styles from './styles'
 
 type UnderlineType = 'none' | 'hover' | 'always'
-type VariantType = 'action' | 'default'
+type VariantType = 'action' | 'anchor'
 type ColorType = 'white' | 'blue' | 'black'
 
 const useStyles = makeStyles<Theme, Props>(styles)
@@ -33,7 +33,7 @@ export type Props = BaseProps &
      * Either a string to use a DOM element or a component.
      */
     as?: ElementType
-    /** Either it's a regular link or an _action_ */
+    /** Either it's a regular hyperlink or an _action_ */
     variant?: VariantType
     /** Controls color of the link (ignored while used with invert prop) */
     color?: ColorType
@@ -55,7 +55,7 @@ export const Link: OverridableComponent<Props> = forwardRef<
     color,
     style,
     as,
-    variant,
+    variant = 'regular',
     tabIndex,
     invert,
     ...rest
@@ -98,7 +98,7 @@ export const Link: OverridableComponent<Props> = forwardRef<
 Link.defaultProps = {
   as: 'a',
   color: 'blue',
-  variant: 'default'
+  variant: 'anchor'
 }
 
 Link.displayName = 'Link'

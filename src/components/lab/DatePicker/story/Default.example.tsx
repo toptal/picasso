@@ -5,7 +5,7 @@ const DefaultExample = () => {
   return (
     <div style={{ height: '50vh' }}>
       <DatePicker
-        onSelect={(date: Date | [Date, Date]) => {
+        onChange={(date: Date | [Date, Date]) => {
           /* eslint-disable-next-line no-console */
           console.log('selected date is: ', date)
         }}
