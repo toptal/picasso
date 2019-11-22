@@ -4,11 +4,8 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const ForkTsCheckerNotifierWebpackPlugin = require('fork-ts-checker-notifier-webpack-plugin')
 const { IgnoreNotFoundPlugin } = require('./plugins')
 
-// example: /components/Button/Button.tsx
-const COMPONENT_DECLARATION_FILE_REGEXP = /components\/(.*)\/\1.tsx$/
-// example: /components/lab/Slider/Slider.tsx
-const LAB_COMPONENT_DECLARATION_FILE_REGEXP = /components\/lab\/(.*)\/\1.tsx$/
-// example: /packages/lab/src/Slider/Slider.tsx
+// example1: /packages/core/src/Button/Button.tsx
+// example2: /packages/lab/src/Slider/Slider.tsx
 const PACKAGES_COMPONENT_DECLARATION_FILE_REGEXP = /packages\/.*\/src\/(.*)\/\1.tsx$/
 
 const { env } = process
@@ -50,14 +47,6 @@ module.exports = ({ config }) => {
     test: /\.(ts|tsx)$/,
     oneOf: [
       {
-        test: COMPONENT_DECLARATION_FILE_REGEXP,
-        use: defaultLoaders
-      },
-      {
-        test: LAB_COMPONENT_DECLARATION_FILE_REGEXP,
-        use: defaultLoaders
-      },
-      {
         test: PACKAGES_COMPONENT_DECLARATION_FILE_REGEXP,
         use: defaultLoaders
       },
@@ -68,9 +57,8 @@ module.exports = ({ config }) => {
   config.resolve.extensions.push('.ts', '.tsx')
   config.resolve.alias = {
     '~': path.resolve(__dirname, '..'),
-    '@': path.resolve(__dirname, '../src'),
-    '@components': path.resolve(__dirname, '../src/components'),
-    '@toptal/picasso': path.resolve(__dirname, '../src/components')
+    '@toptal/picasso': path.resolve(__dirname, '../packages/core/src/index'),
+    '@toptal/picasso-lab': path.resolve(__dirname, '../packages/lab/src/index')
   }
 
   config.plugins.push(

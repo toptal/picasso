@@ -6,7 +6,7 @@ NC='\033[0m' # No Color
 CWD="$(dirname "$0")"
 cd "$CWD/../"
 BASE_PATH=$(pwd)
-ICON_PATH="src/components/Icon"
+ICON_PATH="packages/core/src/Icon"
 ICON_FULL_PATH="$BASE_PATH/$ICON_PATH"
 
 echo "Converting svg icons into react components ..."
@@ -20,9 +20,9 @@ for icon in $ICON_FULL_PATH/svg/*.svg; do
   basename=$(basename $icon | sed 's/\.svg$//');
   name=$(pascalCase "$basename")
   export_statement="export { default as $name } from './$name'"
-  if ! grep -Fxq "$export_statement" "src/components/Icon/index.ts"; then
+  if ! grep -Fxq "$export_statement" "packages/core/src/Icon/index.ts"; then
     echo -e "Adding export statement for ${YELLOW}[$basename]${NC} ..."
-    echo $export_statement >> src/components/Icon/index.ts
+    echo $export_statement >> packages/core/src/Icon/index.ts
   fi
 done
 

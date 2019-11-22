@@ -15,12 +15,18 @@ import IconLink from '@material-ui/icons/Link'
 import SourceRender from 'react-source-render'
 import copy from 'copy-to-clipboard'
 
-import { Code16 } from '@components/Icon'
+import { Code16 } from '../../../packages/core/src/Icon'
 
-import { RenderResult } from '~/@types/react-source-render'
-import { Classes } from '@components/styles/types'
-import Picasso, { Typography, Button, Accordion, Container } from '@components'
-import { useScreenSize } from '@components/Picasso'
+import { RenderResult } from '../../../@types/react-source-render'
+import { Classes } from '../../../packages/shared/src/styles/types'
+import Picasso from '../../../packages/shared'
+import {
+  Typography,
+  Button,
+  Accordion,
+  Container
+} from '../../../packages/core'
+import { useScreenSize } from '../../../packages/shared/src/Picasso'
 
 import Editor from '../Editor'
 import purifyFixedPosition from '../../utils/purify-fixed-position'
@@ -42,13 +48,12 @@ const imports: Record<string, object> = {
   'styled-components': styled,
   'react-router-dom': require('react-router-dom'),
   debounce: require('debounce'),
-  '@toptal/picasso': require('@components'),
-  '@toptal/picasso/lab': require('@components/lab'),
+  '@toptal/picasso': require('../../../packages/core'),
   //--- need to fix this and use @toptal/picass-lab package here
   '@toptal/picasso-lab': require('../../../packages/lab'),
-  '@toptal/picasso/lab/utils': require('@components/lab/utils'),
-  '@toptal/picasso/utils': require('@components/utils'),
-  '@toptal/picasso/Icon': require('@components/Icon')
+  '@toptal/picasso-lab/utils': require('../../../packages/lab/src/utils'),
+  '@toptal/picasso/utils': require('../../../packages/core/src/utils'),
+  '@toptal/picasso/Icon': require('../../../packages/core/src/Icon')
 }
 
 const resolver = (path: string) => imports[path]
@@ -113,7 +118,7 @@ class CodeExample extends Component<Props> {
     const { src } = this.props
 
     try {
-      return require(`!raw-loader!@components/${src}`).default
+      return require(`!raw-loader!~/packages/core/src/${src}`).default
     } catch {}
 
     try {

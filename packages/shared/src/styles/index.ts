@@ -33,3 +33,5 @@ export const rem = (px: string, baseFontSize = 16) => {
 export { default as withClasses } from './withClasses'
 
 export { createPropertiesStyles } from './createPropertiesStyles'
+
+export * from './types'

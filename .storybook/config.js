@@ -8,7 +8,7 @@ import {
 import chaptersAddon from 'react-storybook-addon-chapters'
 import { create } from '@storybook/theming'
 
-import Picasso from '@components'
+import Picasso from '../packages/shared'
 
 import PicassoBook from './components/PicassoBook'
 
@@ -40,12 +40,6 @@ const reqStorybook = require.context(
   true,
   /story\/index.(jsx|tsx)$/
 )
-/** Stories from components */
-const reqComponents = require.context(
-  '@components',
-  true,
-  /story\/index.(jsx|tsx)$/
-)
 /** Stories from packges */
 const reqPackagesComponents = require.context(
   '~/packages',
@@ -57,7 +51,6 @@ const loadStories = () => {
   require('./stories/Picasso') // markdown pages for README & CHANGELOG
   require('./stories/Contributing') // markdown pages for contribution guide
   reqStorybook.keys().forEach(filename => reqStorybook(filename))
-  reqComponents.keys().forEach(filename => reqComponents(filename))
   reqPackagesComponents
     .keys()
     .forEach(filename => reqPackagesComponents(filename))

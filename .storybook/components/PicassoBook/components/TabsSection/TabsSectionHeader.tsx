@@ -1,8 +1,8 @@
 import React, { Fragment, FunctionComponent } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
-import { Classes } from '@components/styles/types'
-import { Typography, Tabs } from '@components'
+import { Classes } from '../../../../../packages/shared'
+import { Typography, Tabs } from '../../../../../packages/core'
 
 import { TabOptions } from './TabsSection'
 import styles from './styles'
