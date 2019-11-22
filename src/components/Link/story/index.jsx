@@ -87,8 +87,7 @@ page.createTabChapter('Props').addComponentDocs({
         enums: ['"blue"', '"white"', '"black"']
       },
       defaultValue: 'blue',
-      description:
-        'Controls color of the link (ignored while used with invert prop)'
+      description: 'Controls color of the link'
     },
     className: {
       name: 'className',
