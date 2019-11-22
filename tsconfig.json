@@ -19,6 +19,8 @@
     "paths": {
       "@toptal/picasso/*": ["packages/core/src/*"],
       "@toptal/picasso": ["packages/core/src/index"],
+      "@toptal/picasso-lab/*": ["packages/lab/src/*"],
+      "@toptal/picasso-lab": ["packages/lab/src/index"],
       "*": ["@types/*"]
     }
   },
