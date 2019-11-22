@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, ReactNode } from 'react'
 import MUIRadio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import { withStyles } from '@material-ui/core/styles'
@@ -17,7 +17,7 @@ export interface Props
   extends StandardProps,
     Omit<ButtonOrAnchorProps, 'onChange' | 'value'> {
   /** Text label for the `Radio` */
-  label?: string
+  label?: ReactNode
   /** Value of the `Radio` component used with conjuction of `Radio.Group` */
   value?: string | number | boolean
   /** Defines if `Radio` is disabled */

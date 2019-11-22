@@ -34,3 +34,4 @@ page
     'Radio/story/RadioGroupHorizontal.example.jsx',
     'Radio group horizontal'
   )
+  .addExample('Radio/story/CustomLabel.example.jsx', 'Custom label')
