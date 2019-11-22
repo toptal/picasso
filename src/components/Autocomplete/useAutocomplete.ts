@@ -95,7 +95,7 @@ const useAutocomplete = ({
   onOtherOptionSelect = () => {},
   getDisplayValue
 }: Props) => {
-  const [isOpen, setOpen] = useState<boolean>(true)
+  const [isOpen, setOpen] = useState<boolean>(false)
   const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null)
 
   const handleChange = (newValue: string) => {
