@@ -21,6 +21,7 @@
     "url": "https://github.com/toptal/picasso/issues"
   },
   "dependencies": {
+    "@toptal/picasso-core": "^0.0.1",
     "@toptal/picasso-shared": "^0.0.1"
   },
   "devDependencies": {
