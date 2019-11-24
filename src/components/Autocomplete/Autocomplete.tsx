@@ -70,7 +70,7 @@ export interface Props
   /** Custom input component */
   inputComponent?: ComponentType<InputProps>
   /** Callback responsible for rendering the option given the option and its index in the list of options */
-  renderOption?: (option: Item, index?: number) => ReactNode
+  renderOption?: (option: Item, index: number) => ReactNode
   /** Provide unique key for each option */
   getKey?: (item: Item) => string | number
   /** Specifies whether the autofill enabled or not, disabled by default */
@@ -112,15 +112,19 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
     ref
   ) {
     const getKey = (item: Item) => {
-      if (item.key) {
-        return item.key
-      }
-
       if (customGetKey) {
         return customGetKey(item)
       }
 
-      return getDisplayValue!(item)
+      const displayValue = getDisplayValue!(item)
+
+      if (!displayValue) {
+        console.error(
+          'Autocomplete expects you to provide key prop value with getKey or Item.value!'
+        )
+      }
+
+      return displayValue
     }
 
     const {

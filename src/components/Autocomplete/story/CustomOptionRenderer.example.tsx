@@ -3,17 +3,16 @@ import { Item } from '@toptal/picasso/Autocomplete'
 import { Typography, Container, Autocomplete } from '@toptal/picasso'
 
 interface Country extends Item {
-  text: string
-  value: string
+  country: string
   capital: string
 }
 
 const options: Country[] = [
-  { text: 'Belarus', value: 'BY', capital: 'Minsk' },
-  { text: 'Croatia', value: 'HR', capital: 'Zagreb' },
-  { text: 'Lithuania', value: 'LU', capital: 'Vilnius' },
-  { text: 'Slovakia', value: 'SK', capital: 'Bratislava' },
-  { text: 'Ukraine', value: 'UA', capital: 'Kyiv' }
+  { country: 'Belarus', capital: 'Minsk' },
+  { country: 'Croatia', capital: 'Zagreb' },
+  { country: 'Lithuania', capital: 'Vilnius' },
+  { country: 'Slovakia', capital: 'Bratislava' },
+  { country: 'Ukraine', capital: 'Kyiv' }
 ]
 
 const CustomOptionRenderer = () => (
@@ -26,10 +25,13 @@ const CustomOptionRenderer = () => (
         window.console.log('onSelect returns item object:', item)
         window.console.log('selected capital:', item.capital)
       }}
+      getDisplayValue={(item: Item | null) =>
+        (item && (item as Country).country) || ''
+      }
       renderOption={(option: Partial<Country>, index) => (
         <Container>
           <Typography size='medium' weight='semibold'>
-            {option.text}
+            {option.country}
           </Typography>
           <Typography size='inherit' style={{ fontSize: '12px' }}>
             {option.capital} ({index})

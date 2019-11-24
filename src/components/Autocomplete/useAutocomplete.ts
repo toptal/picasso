@@ -114,7 +114,7 @@ const useAutocomplete = ({
     onSelect(item)
   }
 
-  const getItemProps = (index: number, item?: Item) => ({
+  const getBaseItemProps = (index: number) => ({
     role: 'option',
     'aria-selected': highlightedIndex === index,
     selected: highlightedIndex === index,
@@ -130,24 +130,22 @@ const useAutocomplete = ({
       // to the item so it can remain with the current activeElement
       // which is a more common use case.
       event.preventDefault()
-    },
+    }
+  })
+
+  const getItemProps = (index: number, item: Item) => ({
+    ...getBaseItemProps(index),
     onClick: () => {
       setOpen(false)
-
-      if (!item) {
-        return
-      }
-
       handleChange(getDisplayValue(item))
       handleSelect(item)
     }
   })
 
   const getOtherItemProps = (index: number, value: string) => ({
-    ...getItemProps(index),
+    ...getBaseItemProps(index),
     onClick: () => {
       setOpen(false)
-
       onOtherOptionSelect(value)
     }
   })

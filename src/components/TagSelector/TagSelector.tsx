@@ -4,7 +4,8 @@ import React, {
   forwardRef,
   useRef,
   ComponentType,
-  InputHTMLAttributes
+  InputHTMLAttributes,
+  ReactNode
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
@@ -46,7 +47,7 @@ export interface Props
   /** The list of values of the selected options, required for a controlled component. */
   value?: Item[]
   /** A function that takes a display value from the option item */
-  getDisplayValue?: (item: AutocompleteItem | null) => string
+  getDisplayValue?: (item: Item | null) => string
   /**  Callback invoked when selection changes */
   onChange?: (value: Item[]) => void
   /** The value of the `input` element, required for a controlled component. */
@@ -59,6 +60,8 @@ export interface Props
   enableAutofill?: boolean
   /** Provide unique key for each option */
   getKey?: (item: Item) => string | number
+  /** Callback responsible for rendering the option given the option and its index in the list of options */
+  renderOption?: (option: Item, index: number) => ReactNode
 }
 
 export const TagSelector = forwardRef<HTMLInputElement, Props>(
@@ -78,6 +81,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       width,
       enableAutofill,
       getKey: customGetKey,
+      renderOption,
       ...rest
     },
     ref
@@ -141,10 +145,6 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
     }
 
     const getKey = (item: Item) => {
-      if (item.key) {
-        return item.key
-      }
-
       if (customGetKey) {
         return customGetKey(item)
       }
@@ -154,7 +154,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       }
 
       console.error(
-        'TagSelector expect you to provide key prop value as Item.key, getKey or Item.value!'
+        'TagSelector expects you to provide key prop value with getKey or Item.value!'
       )
     }
 
@@ -192,6 +192,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         otherOptionText={otherOptionLabel}
         enableAutofill={enableAutofill}
         getDisplayValue={getDisplayValue}
+        renderOption={renderOption}
       />
     )
   }

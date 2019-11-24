@@ -3,27 +3,27 @@ import { TagSelector } from '@toptal/picasso'
 import { isSubstring } from '@toptal/picasso/utils'
 
 const allOptions = [
-  { code: 'AF', country: 'Afghanistan' },
-  { code: 'AI', country: 'Aland Islands' },
-  { code: 'ALB', country: 'Albania' },
-  { code: 'ALG', country: 'Algeria' },
-  { code: 'BY', country: 'Belarus' },
-  { code: 'HR', country: 'Croatia' },
-  { code: 'LU', country: 'Lithuania' },
-  { code: 'SK', country: 'Slovakia' },
-  { code: 'SP', country: 'Spain' },
-  { code: 'UA', country: 'Ukraine' }
+  { value: 'AF', text: 'Afghanistan' },
+  { value: 'AI', text: 'Aland Islands' },
+  { value: 'ALB', text: 'Albania' },
+  { value: 'ALG', text: 'Algeria' },
+  { value: 'BY', text: 'Belarus' },
+  { value: 'HR', text: 'Croatia' },
+  { value: 'LU', text: 'Lithuania' },
+  { value: 'SK', text: 'Slovakia' },
+  { value: 'SP', text: 'Spain' },
+  { value: 'UA', text: 'Ukraine' }
 ]
 
 const EMPTY_INPUT_VALUE = ''
 const getDisplayValue = item =>
-  item && item.country ? item.country : EMPTY_INPUT_VALUE
+  item && item.text ? item.text : EMPTY_INPUT_VALUE
 const filterOptions = value =>
   value !== ''
     ? allOptions.filter(option => isSubstring(value, getDisplayValue(option)))
     : allOptions
 
-const TagSelectorDefaultExample = () => {
+const TagSelectorOtherOptionExample = () => {
   const [options, setOptions] = useState(allOptions)
   const [value, setValue] = useState([])
   const [inputValue, setInputValue] = useState(EMPTY_INPUT_VALUE)
@@ -47,12 +47,12 @@ const TagSelectorDefaultExample = () => {
         }}
         showOtherOption
         onOtherOptionSelect={newValue => {
-          console.log('onOtherOptionSelect returns item object:', newValue)
-          setValue([...value, { code: newValue, country: newValue }])
+          console.log('onOtherOptionSelect returns item value:', newValue)
+          setValue([...value, { value: newValue, text: newValue }])
         }}
       />
     </div>
   )
 }
 
-export default TagSelectorDefaultExample
+export default TagSelectorOtherOptionExample
