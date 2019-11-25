@@ -3,11 +3,11 @@ import { Autocomplete } from '@toptal/picasso'
 import { isSubstring } from '@toptal/picasso/utils'
 
 const allOptions = [
-  { text: 'Belarus', value: 'BY' },
-  { text: 'Croatia', value: 'HR' },
-  { text: 'Lithuania', value: 'LU' },
-  { text: 'Slovakia', value: 'SK' },
-  { text: 'Ukraine', value: 'UA' }
+  { text: 'Belarus' },
+  { text: 'Croatia' },
+  { text: 'Lithuania' },
+  { text: 'Slovakia' },
+  { text: 'Ukraine' }
 ]
 
 const EMPTY_INPUT_VALUE = ''
@@ -37,9 +37,11 @@ const AutocompleteOtherOptionExample = () => {
             setValue(itemValue)
           }
         }}
-        onOtherOptionSelect={item =>
-          console.log('onOtherOptionSelect returns item object:', item)
-        }
+        onOtherOptionSelect={newValue => {
+          console.log('onOtherOptionSelect returns item value:', newValue)
+          setValue(newValue)
+          setOptions(filterOptions(newValue))
+        }}
         onChange={newValue => {
           console.log('onChange returns just item value:', newValue)
 

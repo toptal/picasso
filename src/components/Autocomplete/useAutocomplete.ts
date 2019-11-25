@@ -75,6 +75,7 @@ interface Props {
   enableAutofill?: boolean
   autoComplete?: string
   onSelect?: (item: Item) => void
+  onOtherOptionSelect?: (value: string) => void
   onChange?: (value: string) => void
   onKeyDown?: (
     event: KeyboardEvent<HTMLInputElement>,
@@ -91,6 +92,7 @@ const useAutocomplete = ({
   onChange = () => {},
   onKeyDown = () => {},
   onSelect = () => {},
+  onOtherOptionSelect = () => {},
   getDisplayValue
 }: Props) => {
   const [isOpen, setOpen] = useState<boolean>(false)
@@ -112,7 +114,7 @@ const useAutocomplete = ({
     onSelect(item)
   }
 
-  const getItemProps = (index: number, item: Item) => ({
+  const getBaseItemProps = (index: number) => ({
     role: 'option',
     'aria-selected': highlightedIndex === index,
     selected: highlightedIndex === index,
@@ -128,11 +130,23 @@ const useAutocomplete = ({
       // to the item so it can remain with the current activeElement
       // which is a more common use case.
       event.preventDefault()
-    },
+    }
+  })
+
+  const getItemProps = (index: number, item: Item) => ({
+    ...getBaseItemProps(index),
     onClick: () => {
       setOpen(false)
       handleChange(getDisplayValue(item))
       handleSelect(item)
+    }
+  })
+
+  const getOtherItemProps = (index: number, value: string) => ({
+    ...getBaseItemProps(index),
+    onClick: () => {
+      setOpen(false)
+      onOtherOptionSelect(value)
     }
   })
 
@@ -230,6 +244,7 @@ const useAutocomplete = ({
 
   return {
     getItemProps,
+    getOtherItemProps,
     getInputProps,
     isOpen,
     highlightedIndex

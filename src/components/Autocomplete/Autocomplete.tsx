@@ -37,7 +37,7 @@ export interface Props
   /**  Callback invoked when selection changes */
   onSelect?: (item: Item) => void
   /**  Callback invoked when other option selected */
-  onOtherOptionSelect?: (item: Item) => void
+  onOtherOptionSelect?: (value: string) => void
   /** Placeholder for value */
   placeholder?: string
   /** Text prefix for other option */
@@ -70,16 +70,15 @@ export interface Props
   /** Custom input component */
   inputComponent?: ComponentType<InputProps>
   /** Callback responsible for rendering the option given the option and its index in the list of options */
-  renderOption?: (option: Item, index?: number) => ReactNode
+  renderOption?: (option: Item, index: number) => ReactNode
+  /** Provide unique key for each option */
+  getKey?: (item: Item) => string
   /** Specifies whether the autofill enabled or not, disabled by default */
   enableAutofill?: boolean
 }
 
 const getItemText = (item: Item | null) =>
   (item && item.text) || EMPTY_INPUT_VALUE
-
-const getUniqueValue = (value: string) =>
-  `${value.replace(/\s+/g, '-').toLowerCase()}-${new Date().getTime()}`
 
 export const Autocomplete = forwardRef<HTMLInputElement, Props>(
   function Autocomplete(
@@ -107,29 +106,32 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       error,
       enableAutofill,
       autoComplete,
+      getKey: customGetKey,
       ...rest
     },
     ref
   ) {
-    const handleSelect = (item: Item) => {
-      const displayValue = getDisplayValue!(item)
-
-      const isInOptions = options!.find(
-        option => getDisplayValue!(option) === displayValue
-      )
-
-      if (!isInOptions) {
-        onOtherOptionSelect!(item)
-        return
+    const getKey = (item: Item) => {
+      if (customGetKey) {
+        return customGetKey(item)
       }
 
-      onSelect!(item)
+      const displayValue = getDisplayValue!(item)
+
+      if (!displayValue) {
+        console.error(
+          'Autocomplete expects you to provide key prop value with getKey or Item.value!'
+        )
+      }
+
+      return displayValue
     }
 
     const {
       highlightedIndex,
       isOpen,
       getItemProps,
+      getOtherItemProps,
       getInputProps
     } = useAutocomplete({
       value,
@@ -137,16 +139,13 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       enableAutofill,
       autoComplete,
       getDisplayValue: getDisplayValue!,
-      onSelect: handleSelect,
+      onSelect,
+      onOtherOptionSelect,
       onChange,
       onKeyDown
     })
 
     const optionsLength = options!.length
-    const otherOption = {
-      text: value
-    }
-
     const shouldShowOtherOption =
       showOtherOption &&
       value &&
@@ -156,7 +155,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       <ScrollMenu selectedIndex={highlightedIndex}>
         {options!.map((option, index) => (
           <Menu.Item
-            key={getDisplayValue!(option)}
+            key={getKey(option)}
             /* eslint-disable-next-line react/jsx-props-no-spreading */
             {...getItemProps(index, option)}
           >
@@ -168,18 +167,18 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
 
         {shouldShowOtherOption && (
           <Menu.Item
-            key={getUniqueValue(value)}
+            key='other-option'
             className={cx({
               [classes.otherOption]: true
             })}
             /* eslint-disable-next-line react/jsx-props-no-spreading */
-            {...getItemProps(optionsLength, otherOption)}
+            {...getOtherItemProps(optionsLength, value)}
           >
             <span className={classes.stringContent}>
               <Typography as='span' color='dark-grey'>
                 {otherOptionText}
               </Typography>
-              {otherOption.text}
+              {value}
             </span>
           </Menu.Item>
         )}

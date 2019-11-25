@@ -16,8 +16,7 @@ const allOptions = [
 ]
 
 const EMPTY_INPUT_VALUE = ''
-const getDisplayValue = item =>
-  item && item.text ? item.text : EMPTY_INPUT_VALUE
+const getDisplayValue = item => (item && item.text) || EMPTY_INPUT_VALUE
 const filterOptions = value =>
   value !== ''
     ? allOptions.filter(option => isSubstring(value, getDisplayValue(option)))

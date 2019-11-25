@@ -23,7 +23,7 @@ const filterOptions = value =>
     ? allOptions.filter(option => isSubstring(value, getDisplayValue(option)))
     : allOptions
 
-const TagSelectorDefaultExample = () => {
+const TagSelectorOtherOptionExample = () => {
   const [options, setOptions] = useState(allOptions)
   const [value, setValue] = useState([])
   const [inputValue, setInputValue] = useState(EMPTY_INPUT_VALUE)
@@ -46,12 +46,13 @@ const TagSelectorDefaultExample = () => {
           setOptions(filterOptions(newInputValue))
         }}
         showOtherOption
-        onOtherOptionSelect={item =>
-          console.log('onOtherOptionSelect returns item object:', item)
-        }
+        onOtherOptionSelect={newValue => {
+          console.log('onOtherOptionSelect returns item value:', newValue)
+          setValue([...value, { value: newValue, text: newValue }])
+        }}
       />
     </div>
   )
 }
 
-export default TagSelectorDefaultExample
+export default TagSelectorOtherOptionExample
