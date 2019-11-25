@@ -35,11 +35,10 @@ export type Props = BaseProps &
     as?: ElementType
     /** Either it's a regular hyperlink or an _action_ */
     variant?: VariantType
-    /** Controls color of the link (ignored while used with invert prop) */
+    /** Controls color of the link */
     color?: ColorType
     /** Indicates the order of receiving focus. If not set will not receive focus. */
     tabIndex?: number
-    invert?: boolean // TODO: remove in v4
   }
 
 export const Link: OverridableComponent<Props> = forwardRef<
@@ -52,26 +51,15 @@ export const Link: OverridableComponent<Props> = forwardRef<
     onClick,
     children,
     className,
-    color,
+    color = 'blue',
     style,
-    as,
-    variant = 'regular',
+    as = 'a',
+    variant = 'anchor',
     tabIndex,
-    invert,
     ...rest
   } = props
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { ...nativeHTMLAttributes } = rest
+  const nativeHTMLAttributes = rest
   const classes = useStyles(props)
-  let fontColor = color
-
-  if (invert) {
-    fontColor = 'white'
-    // eslint-disable-next-line no-console
-    console.log(
-      'Please stop using `invert` it will be removed in next major release. Use color=white instead.'
-    )
-  }
 
   return (
     <MUILink
@@ -83,8 +71,8 @@ export const Link: OverridableComponent<Props> = forwardRef<
       onClick={onClick}
       className={cx(classes.root, className, {
         [classes.action]: variant === 'action',
-        [classes.white]: fontColor === 'white',
-        [classes.black]: fontColor === 'black'
+        [classes.white]: color === 'white',
+        [classes.black]: color === 'black'
       })}
       style={style}
       component={as!}
