@@ -37,6 +37,7 @@ const TagSelectorCustomOptionRendererExample = () => {
         placeholder='Start typing...'
         value={value}
         inputValue={inputValue}
+        getKey={(item: Item) => (item as Country).code}
         getDisplayValue={getDisplayValue}
         renderOption={(option: Partial<Country>, index?: number) => (
           <Container>

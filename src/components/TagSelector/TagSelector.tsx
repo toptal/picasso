@@ -59,7 +59,7 @@ export interface Props
   /** Specifies whether the autofill enabled or not, disabled by default */
   enableAutofill?: boolean
   /** Provide unique key for each option */
-  getKey?: (item: Item) => string | number
+  getKey?: (item: Item) => string
   /** Callback responsible for rendering the option given the option and its index in the list of options */
   renderOption?: (option: Item, index: number) => ReactNode
 }

@@ -5,14 +5,15 @@ import { Typography, Container, Autocomplete } from '@toptal/picasso'
 interface Country extends Item {
   country: string
   capital: string
+  code: string
 }
 
 const options: Country[] = [
-  { country: 'Belarus', capital: 'Minsk' },
-  { country: 'Croatia', capital: 'Zagreb' },
-  { country: 'Lithuania', capital: 'Vilnius' },
-  { country: 'Slovakia', capital: 'Bratislava' },
-  { country: 'Ukraine', capital: 'Kyiv' }
+  { country: 'Belarus', capital: 'Minsk', code: 'BE' },
+  { country: 'Croatia', capital: 'Zagreb', code: 'HR' },
+  { country: 'Lithuania', capital: 'Vilnius', code: 'LU' },
+  { country: 'Slovakia', capital: 'Bratislava', code: 'SK' },
+  { country: 'Ukraine', capital: 'Kyiv', code: 'UA' }
 ]
 
 const CustomOptionRenderer = () => (
@@ -25,6 +26,7 @@ const CustomOptionRenderer = () => (
         window.console.log('onSelect returns item object:', item)
         window.console.log('selected capital:', item.capital)
       }}
+      getKey={(item: Item) => (item as Country).code}
       getDisplayValue={(item: Item | null) =>
         (item && (item as Country).country) || ''
       }

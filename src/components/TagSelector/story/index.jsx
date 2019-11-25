@@ -62,8 +62,8 @@ page
     'TagSelector/story/InitialSetValue.example.jsx',
     'Initially set value'
   )
-  .addExample('TagSelector/story/Loading.example.jsx', 'Loading')
   .addExample(
     'TagSelector/story/CustomOptionRenderer.example.tsx',
     'Custom option rendering'
   )
+  .addExample('TagSelector/story/Loading.example.jsx', 'Loading')
