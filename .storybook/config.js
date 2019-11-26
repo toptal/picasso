@@ -8,6 +8,7 @@ import {
 import chaptersAddon from 'react-storybook-addon-chapters'
 import { create } from '@storybook/theming'
 
+//--- fix direct link to packages/shared
 import Picasso from '../packages/shared'
 
 import PicassoBook from './components/PicassoBook'

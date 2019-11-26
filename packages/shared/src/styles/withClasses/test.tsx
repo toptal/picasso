@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import { render, cleanup, RenderResult } from '@testing-library/react'
 
 // --- horrible fix, we need to have a dependency to @toptal/picasso here
-import { Button } from '../../../../../packages/core'
+import { Button } from '../../../../../packages/picasso'
 import Picasso from '../../Picasso'
 import withClasses from './withClasses'
 

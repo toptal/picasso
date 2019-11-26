@@ -17,14 +17,14 @@
     "baseUrl": ".",
     "typeRoots": ["node_modules/@types", "@types"],
     "paths": {
-      "@toptal/picasso/*": ["packages/core/src/*"],
-      "@toptal/picasso": ["packages/core/src/index"],
-      "@toptal/picasso-lab/*": ["packages/lab/src/*"],
-      "@toptal/picasso-lab": ["packages/lab/src/index"],
+      "@toptal/picasso/*": ["packages/picasso/src/*"],
+      "@toptal/picasso": ["packages/picasso/src/index"],
+      "@toptal/picasso-lab/*": ["packages/picasso-lab/src/*"],
+      "@toptal/picasso-lab": ["packages/picasso-lab/src/index"],
       "*": ["@types/*"]
     }
   },
-  "include": ["packages/core/src/**/*"],
+  "include": ["packages/picasso/src/**/*"],
   "exclude": [
     "**/test.jsx",
     "**/test.tsx",

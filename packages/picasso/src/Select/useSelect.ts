@@ -1,4 +1,10 @@
-import { KeyboardEvent, useState, ChangeEvent, useMemo } from 'react'
+import {
+  KeyboardEvent,
+  useState,
+  ChangeEvent,
+  useMemo,
+  HTMLAttributes
+} from 'react'
 
 import { Option } from './types'
 
@@ -104,7 +110,19 @@ const useSelect = ({
   onSelect = () => {},
   onBlur = () => {},
   getDisplayValue
-}: Props) => {
+}: Props): {
+  getItemProps: (index: number, item: Option) => ItemProps
+  getRootProps: () => any
+  getInputProps: ({
+    canCloseOnEnter
+  }: {
+    canCloseOnEnter: boolean
+  }) => Partial<
+    HTMLAttributes<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  >
+  isOpen: boolean
+  highlightedIndex: number | null
+} => {
   const [isOpen, setOpen] = useState<boolean>(false)
   const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null)
 

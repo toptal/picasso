@@ -7,17 +7,13 @@ NODE_MODULES="$BASE_PATH/node_modules/"
 
 echo "" > .version
 
-# Build core Picasso
-yarn build:dist
-
 # Build all packages
 npx lerna run build:dist --since ${TARGET_BRANCH:-master}
-npx lerna run postbuild --since ${TARGET_BRANCH:-master}
 
 # Publish packages
 if [[ $RELEASE_AND_PUBLISH == "1" ]]; then
   echo "=== WARNING RUNNING LIVE RELEASE FOR PACKAGES ==="
-  $NODE_MODULES/.bin/lerna publish
+  $NODE_MODULES/.bin/lerna publish --contents build --canary
 else
   echo "=== RUNNING TEST RELEASE FOR PACKAGES. NOTHING WILL BE PUBLISHED ==="
   $NODE_MODULES/.bin/lerna changed

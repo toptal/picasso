@@ -15,7 +15,7 @@ import IconLink from '@material-ui/icons/Link'
 import SourceRender from 'react-source-render'
 import copy from 'copy-to-clipboard'
 
-import { Code16 } from '../../../packages/core/src/Icon'
+import { Code16 } from '../../../packages/picasso/src/Icon'
 
 import { RenderResult } from '../../../@types/react-source-render'
 import { Classes } from '../../../packages/shared/src/styles/types'
@@ -25,7 +25,7 @@ import {
   Button,
   Accordion,
   Container
-} from '../../../packages/core'
+} from '../../../packages/picasso'
 import { useScreenSize } from '../../../packages/shared/src/Picasso'
 
 import Editor from '../Editor'
@@ -48,12 +48,12 @@ const imports: Record<string, object> = {
   'styled-components': styled,
   'react-router-dom': require('react-router-dom'),
   debounce: require('debounce'),
-  '@toptal/picasso': require('../../../packages/core'),
+  '@toptal/picasso': require('../../../packages/picasso'),
   //--- need to fix this and use @toptal/picass-lab package here
-  '@toptal/picasso-lab': require('../../../packages/lab'),
-  '@toptal/picasso-lab/utils': require('../../../packages/lab/src/utils'),
-  '@toptal/picasso/utils': require('../../../packages/core/src/utils'),
-  '@toptal/picasso/Icon': require('../../../packages/core/src/Icon')
+  '@toptal/picasso-lab': require('../../../packages/picasso-lab'),
+  '@toptal/picasso-lab/utils': require('../../../packages/picasso-lab/src/utils'),
+  '@toptal/picasso/utils': require('../../../packages/picasso/src/utils'),
+  '@toptal/picasso/Icon': require('../../../packages/picasso/src/Icon')
 }
 
 const resolver = (path: string) => imports[path]
@@ -118,11 +118,11 @@ class CodeExample extends Component<Props> {
     const { src } = this.props
 
     try {
-      return require(`!raw-loader!~/packages/core/src/${src}`).default
+      return require(`!raw-loader!~/packages/picasso/src/${src}`).default
     } catch {}
 
     try {
-      return require(`!raw-loader!~/packages/lab/src/${src}`).default
+      return require(`!raw-loader!~/packages/picasso-lab/src/${src}`).default
     } catch {}
 
     try {

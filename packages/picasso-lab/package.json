@@ -1,9 +1,9 @@
 {
-  "name": "@toptal/picasso-shared",
+  "name": "@toptal/picasso-lab",
   "version": "0.0.1",
-  "description": "Shared types, utils for Picasso internal usage",
+  "description": "Lab components of Picasso",
   "author": "Toptal",
-  "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-shared#readme",
+  "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-lab#readme",
   "license": "ISC",
   "main": "./src/index.ts",
   "module": "./src/index.ts",
@@ -25,13 +25,17 @@
     "react-dom": "^16.8.4"
   },
   "dependencies": {
+    "@toptal/picasso": "^3.43.0",
+    "@toptal/picasso-shared": "^0.0.1",
+    "@material-ui/core": "4.5.0",
+    "@material-ui/icons": "4.2.1",
     "classnames": "^2.2.6",
+    "date-fns": "^2.3.0",
     "notistack": "^0.8.9",
     "react-modal-hook": "^2.0.0",
-    "color": "^3.1.1"
+    "simple-react-calendar": "^1.9.0"
   },
   "devDependencies": {
-    "@types/color": "^3.0.0",
     "@types/classnames": "^2.2.9",
     "cross-env": "^6.0.3"
   }
