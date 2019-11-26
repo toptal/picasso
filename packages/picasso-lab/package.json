@@ -25,10 +25,10 @@
     "react-dom": "^16.8.4"
   },
   "dependencies": {
-    "@toptal/picasso": "^3.43.0",
-    "@toptal/picasso-shared": "^0.0.1",
     "@material-ui/core": "4.5.0",
     "@material-ui/icons": "4.2.1",
+    "@toptal/picasso": "^3.44.1-alpha.1104+dbe46de4",
+    "@toptal/picasso-shared": "^0.0.2-alpha.1102+6c801b1e",
     "classnames": "^2.2.6",
     "date-fns": "^2.3.0",
     "notistack": "^0.8.9",
@@ -38,5 +38,6 @@
   "devDependencies": {
     "@types/classnames": "^2.2.9",
     "cross-env": "^6.0.3"
-  }
+  },
+  "gitHead": "dbe46de43aad88abf4636fd931dbb0c4298d8ad9"
 }
