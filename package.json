@@ -1,6 +1,6 @@
 {
-  "name": "@toptal/picasso",
-  "version": "3.44.0",
+  "name": "@toptal/picasso-root",
+  "version": "0.0.1",
   "description": "",
   "private": true,
   "workspaces": [
