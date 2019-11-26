@@ -48,7 +48,7 @@ const compile = function (tsConfig, packageJson) {
   clean()
   build()
 
-  generatePackageJson(packageJson, outputPackageJson, false, entry)
+  generatePackageJson(packageJson, outputPackageJson, entry)
 
   if (yargs.watch) {
     args.unshift('--watch')
