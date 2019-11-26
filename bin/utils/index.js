@@ -14,19 +14,22 @@ const log = function (text, color) {
 
 const setVersionPackageJson = (dir, version) => {
   log('')
-  const packageJsonContent = require(path.resolve(dir, './package.json'))
-  const outputPackageJson = path.resolve(dir, `./${BUILD_FOLDER}/package.json`)
+  const outputPackageJsonPath = path.resolve(
+    dir,
+    `./${BUILD_FOLDER}/package.json`
+  )
+  const outputPackageJson = require(outputPackageJsonPath)
 
   log(`Updating version for package.json in: ${outputPackageJson}`)
 
   fs.ensureDirSync(dir)
 
   const data = {
-    ...packageJsonContent,
+    ...outputPackageJson,
     version
   }
 
-  fs.writeFileSync(outputPackageJson, JSON.stringify(data, null, 2) + '\n')
+  fs.writeFileSync(outputPackageJsonPath, JSON.stringify(data, null, 2) + '\n')
 }
 
 const generatePackageJson = (
