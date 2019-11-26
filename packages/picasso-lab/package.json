@@ -28,8 +28,8 @@
   "dependencies": {
     "@material-ui/core": "4.5.0",
     "@material-ui/icons": "4.2.1",
-    "@toptal/picasso": "^3.44.1-alpha.1104+dbe46de4",
-    "@toptal/picasso-shared": "^0.0.2-alpha.1102+6c801b1e",
+    "@toptal/picasso": "^3.44.0",
+    "@toptal/picasso-shared": "^0.0.1",
     "classnames": "^2.2.6",
     "date-fns": "^2.3.0",
     "notistack": "^0.8.9",
