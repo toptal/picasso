@@ -96,7 +96,7 @@
     "commitizen": "^3.1.1",
     "copy-to-clipboard": "^3.2.0",
     "cross-env": "^6.0.3",
-    "cz-conventional-changelog": "2.1.0",
+    "cz-conventional-changelog": "3.0.2",
     "danger": "^9.2.2",
     "ejs": "^2.6.1",
     "escodegen": "^1.12.0",
