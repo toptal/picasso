@@ -64,3 +64,4 @@ page
     'Initially set value'
   )
   .addExample('lab/TagSelector/story/Loading.example.jsx', 'Loading')
+  .addExample('lab/TagSelector/story/FullWidth.example.jsx', 'Full width')
