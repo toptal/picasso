@@ -35,6 +35,5 @@
     "@types/classnames": "^2.2.9",
     "@types/color": "^3.0.0",
     "cross-env": "^6.0.3"
-  },
-  "gitHead": "dbe46de43aad88abf4636fd931dbb0c4298d8ad9"
+  }
 }
