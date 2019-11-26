@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import format from 'date-fns/format'
 import { BaseProps } from '@toptal/picasso-shared'
-import { Container, Input } from '@toptal/picasso-core'
-import { Props as InputProps } from '@toptal/picasso-core/src/Input'
-// --- think how to fix this path without 'src'
-import { ClickAwayListener } from '@toptal/picasso-core/src/utils'
+import { Container, Input } from '@toptal/picasso'
+import { Props as InputProps } from '@toptal/picasso/Input'
+import { ClickAwayListener } from '@toptal/picasso/utils'
 
 import Calendar, { DateOrDateRangeType, DateRangeType } from '../Calendar'
 

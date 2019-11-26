@@ -4,7 +4,7 @@ import _ from 'lodash'
 import { withStyles } from '@material-ui/core/styles'
 import { ClassNameMap } from '@material-ui/core/styles/withStyles'
 
-import { Tooltip, Table } from '../../../../../packages/core'
+import { Tooltip, Table } from '../../../../../packages/picasso'
 import Markdown from '~/.storybook/components/Markdown'
 import { PropTypeDocumentation } from '~/.storybook/utils/documentation-generator'
 import styles from './styles'

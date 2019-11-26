@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Autocomplete } from '@toptal/picasso'
-import { Props as AutocompleteProps } from '@toptal/picasso/Autocomplete'
+import { Item } from '@toptal/picasso/Autocomplete'
 import { useNotifications, isSubstring } from '@toptal/picasso/utils'
 import { useModals } from '@toptal/picasso-lab/utils'
 
@@ -13,7 +13,7 @@ const allOptions = [
 ]
 
 const EMPTY_INPUT_VALUE = ''
-const getDisplayValue: AutocompleteProps['getDisplayValue'] = item =>
+const getDisplayValue = (item: Item | null) =>
   item ? (item.text as string) : EMPTY_INPUT_VALUE
 const filterOptions = (str: string) =>
   str !== ''

@@ -1,6 +1,21 @@
-import { KeyboardEvent, useState, ChangeEvent, useMemo } from 'react'
+import {
+  KeyboardEvent,
+  useState,
+  ChangeEvent,
+  useMemo,
+  HTMLAttributes
+} from 'react'
 
 import { Item } from './types'
+
+export type ItemProps = {
+  role: string
+  'aria-selected': boolean
+  selected: boolean
+  onMouseMove: () => void
+  onMouseDown: (event: React.MouseEvent) => void
+  onClick: (event: React.MouseEvent) => void
+}
 
 export const FIRST_ITEM_INDEX = 0
 export const EMPTY_INPUT_VALUE = ''
@@ -94,7 +109,15 @@ const useAutocomplete = ({
   onSelect = () => {},
   onOtherOptionSelect = () => {},
   getDisplayValue
-}: Props) => {
+}: Props): {
+  getItemProps: (index: number, item: Item) => ItemProps
+  getOtherItemProps: (index: number, value: string) => ItemProps
+  getInputProps: () => HTMLAttributes<
+    HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+  >
+  isOpen: boolean
+  highlightedIndex: number | null
+} => {
   const [isOpen, setOpen] = useState<boolean>(false)
   const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null)
 

@@ -1,8 +1,8 @@
 import React, { forwardRef, ReactNode, useState } from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import { Button, Container, Typography, Modal } from '@toptal/picasso-core'
-import { Props as ModalProps } from '@toptal/picasso-core/src/Modal'
-import { VariantType as ButtonVariantType } from '@toptal/picasso-core/src/Button'
+import { Button, Container, Typography, Modal } from '@toptal/picasso'
+import { Props as ModalProps } from '@toptal/picasso/Modal'
+import { VariantType as ButtonVariantType } from '@toptal/picasso/Button'
 
 import styles from './styles'
 
