@@ -2,11 +2,10 @@
   "name": "@toptal/picasso",
   "version": "3.44.0",
   "description": "",
-  "publishConfig": {
-    "access": "public"
-  },
-  "main": "./build/index.js",
-  "module": "./build/index.js",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "test": "jest --runInBand",
     "test:watch": "jest --watch --runInBand",
@@ -15,16 +14,13 @@
     "start": "start-storybook -p 9001 -s ./.storybook/public -c .storybook",
     "build:storybook": "build-storybook -s ./.storybook/public -c .storybook -o build/storybook",
     "release": "./bin/release",
-    "build:dist": "cross-env NODE_ENV=production ./bin/build --tsConfig=./tsconfig.json --packageJson=./package.json",
-    "build": "yarn run generate:icons && yarn build:dist",
-    "build:watch": "cross-env ./bin/build --watch",
+    "build": "yarn run generate:icons && lerna run build:dist",
     "symlink": "cross-env ./bin/symlink --link",
     "symlink:off": "cross-env ./bin/symlink --unlink",
     "generate:component": "hygen component new",
     "generate:example": "hygen component example",
     "generate:icons": "./bin/generate-icons",
-    "commit": "git-cz",
-    "prepublishOnly": "cp ../README.md ."
+    "commit": "git-cz"
   },
   "repository": {
     "type": "git",
@@ -36,24 +32,6 @@
     "url": "https://github.com/toptal/picasso/issues"
   },
   "homepage": "https://github.com/toptal/picasso#readme",
-  "peerDependencies": {
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4"
-  },
-  "dependencies": {
-    "@material-ui/core": "4.5.0",
-    "@material-ui/icons": "4.2.1",
-    "classnames": "^2.2.6",
-    "color": "^3.1.1",
-    "date-fns": "^2.3.0",
-    "debounce": "^1.2.0",
-    "downshift": "^3.2.10",
-    "notistack": "^0.8.9",
-    "react-deprecate": "^0.1.0",
-    "react-modal-hook": "^2.0.0",
-    "react-truncate": "^2.4.0",
-    "simple-react-calendar": "^1.9.0"
-  },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/polyfill": "^7.4.4",
@@ -74,17 +52,12 @@
     "@svgr/cli": "^4.3.0",
     "@testing-library/react": "^9.3.2",
     "@toptal/davinci": "^0.1.0-alpha.17",
-    "@types/classnames": "^2.2.8",
-    "@types/color": "^3.0.0",
     "@types/debounce": "^1.2.0",
     "@types/esprima": "^4.0.2",
     "@types/jest": "^24.0.13",
     "@types/jest-image-snapshot": "^2.8.0",
     "@types/lodash": "^4.14.133",
     "@types/puppeteer": "^1.19.0",
-    "@types/react": "^16.9.11",
-    "@types/react-dom": "^16.8.4",
-    "@types/react-router-dom": "^4.3.5",
     "@types/react-truncate": "^2.3.3",
     "@types/storybook__react": "^4.0.0",
     "@types/styled-components": "4.1.19",
@@ -98,6 +71,7 @@
     "cross-env": "^6.0.3",
     "cz-conventional-changelog": "2.1.0",
     "danger": "^9.2.2",
+    "debounce": "^1.2.0",
     "ejs": "^2.6.1",
     "escodegen": "^1.12.0",
     "eslint-config-prettier": "^6.5.0",
@@ -123,6 +97,7 @@
     "raw-loader": "^3.0.0",
     "react": "^16.8.6",
     "react-ace": "^7.0.1",
+    "react-deprecate": "^0.1.0",
     "react-docgen-typescript-loader": "^3.1.0",
     "react-dom": "^16.8.6",
     "react-markdown": "^4.0.8",
@@ -133,6 +108,7 @@
     "rimraf": "^3.0.0",
     "semantic-release": "^15.13.12",
     "shelljs": "^0.8.3",
+    "simple-react-calendar": "^1.9.0",
     "storybook-readme": "^5.0.3",
     "styled-components": "4.3.2",
     "ts-jest": "^24.0.2",
