@@ -24,12 +24,6 @@ module.exports = {
       }
     ],
     [
-      '@semantic-release/exec', // Execute a shell command to update package.json to new version
-      {
-        prepareCmd: './ci/release/prepare-assets ${nextRelease.version}'
-      }
-    ],
-    [
       '@semantic-release/git',
       {
         assets: ['CHANGELOG.md', 'README.md', 'package.json', './build'] // Push a release commit and tag, including globed files

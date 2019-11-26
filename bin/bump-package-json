@@ -1,10 +1,16 @@
 #!/usr/bin/env node
 
 const path = require('path')
-const args = process.argv
+const yargs = require('yargs').argv
+const { log, setVersionPackageJson } = require('./utils')
 
-const { log, generatePackageJson } = require('./utils')
-const packageJson = require(path.resolve(__dirname, '../package.json'))
-const nextVersion = args[2]
+const packageJson = require(path.resolve(yargs.packageJson))
+const nextVersion = packageJson.version
+const packageDir = path.resolve('.')
 
-generatePackageJson(packageJson, path.resolve(__dirname, '../'), nextVersion, './build/index.js')
+log('')
+log(`Bumping package.json version inside build folder of the package: ${packageDir}`)
+log(`Next version: ${nextVersion}`)
+
+setVersionPackageJson(packageDir, nextVersion)
+log('')
