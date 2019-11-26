@@ -16,7 +16,7 @@
   },
   "scripts": {
     "build:dist": "cross-env NODE_ENV=production ../../bin/build --tsConfig=./tsconfig.json --packageJson=./package.json --outputPackageJson=./build --entry=./index.js",
-    "prepublishOnly": "echo $1 && cat ./package.json"
+    "prepublishOnly": "../../bin/bump-package-json --packageJson=./package.json"
   },
   "bugs": {
     "url": "https://github.com/toptal/picasso/issues"
