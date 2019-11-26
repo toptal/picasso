@@ -23,7 +23,7 @@ export interface Props
   children?: ReactNode
   /** Collapsible content of `Accordion` */
   content: ReactNode
-  /** Define accordion content state, whether it should be collapsed or displayed */
+  /** Define accordion content state, whether it should be collapsed or expanded */
   expanded?: boolean
   /** Define accordion initial content state */
   defaultExpanded?: boolean
@@ -77,7 +77,7 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
   }
 
   const handleSummaryClick = () => {
-    setSummaryExpanded(expanded => !expanded)
+    setSummaryExpanded(!summaryExpanded)
   }
 
   const expandIconClass = cx(classes.expandIcon, {

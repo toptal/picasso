@@ -1,6 +1,6 @@
 declare var TEST_ENV: string // defined by ENV
 
-import React, { Fragment } from 'react'
+import React, { Fragment, ReactNode } from 'react'
 import { toArray } from 'lodash'
 
 import DocumentationGenerator, {
@@ -11,7 +11,7 @@ import DocumentationGenerator, {
 import { generateUrl, getHost, normalize } from '@/utils/url-generator'
 
 import Base from './Base'
-import Section from './Section'
+import Section, { SectionConfigType } from './Section'
 import CodeExample from '../CodeExample'
 import Page from './Page'
 
@@ -33,6 +33,14 @@ export interface ChapterOptions {
   page: Page
 }
 
+type Options = {
+  showEditCode?: boolean
+  title?: string
+  id?: string
+  extra?: string
+  description?: string
+} & Record<string, string | boolean>
+
 class Chapter extends Base {
   type = 'Chapter'
   page: Page
@@ -43,14 +51,14 @@ class Chapter extends Base {
     this.page = options.page
   }
 
-  createSection = (config: any) => {
+  createSection = (config: SectionConfigType) => {
     const section = new Section(config)
     this.collection.push(section)
 
     return section
   }
 
-  addTextSection = (text: string, options: any) => {
+  addTextSection = (text: string, options: Record<string, string>) => {
     if (TEST_ENV === 'visual') {
       return this
     }
@@ -61,7 +69,7 @@ class Chapter extends Base {
       sectionFn: render,
       ...options,
       options: {
-        decorator: (story: any) => (
+        decorator: (story: () => ReactNode) => (
           <div className='text-section-container'>{story()}</div>
         )
       }
@@ -126,16 +134,22 @@ class Chapter extends Base {
     return this
   }
 
-  addExample = (source: string, options: any) => {
-    let finalOptions = options
+  addExample = (source: string, options: Options | string) => {
+    const finalOptions: Options =
+      typeof options === 'string'
+        ? {
+            title: options
+          }
+        : options
 
-    if (typeof options === 'string') {
-      finalOptions = {
-        title: options
-      }
+    const { title, id, description, showEditCode, extra } = finalOptions
+
+    const sectionId = title || id
+    if (!sectionId) {
+      throw new Error(
+        'Cannot construct section id from options. Missing "title" or "id"'
+      )
     }
-
-    const sectionId = finalOptions.title || finalOptions.id
 
     const sectionLinkId = normalize(sectionId)
     const permanentLink = generateUrl({
@@ -155,7 +169,7 @@ class Chapter extends Base {
           <CodeExample
             src={source}
             permanentLink={permanentLink}
-            showEditCode={finalOptions.showEditCode}
+            showEditCode={showEditCode}
           />
         </div>
       </Fragment>
@@ -164,8 +178,8 @@ class Chapter extends Base {
     this.createSection({
       sectionFn: render,
       ...finalOptions,
-      subtitle: finalOptions.description,
-      info: finalOptions.extra
+      subtitle: description,
+      info: extra
     })
 
     return this

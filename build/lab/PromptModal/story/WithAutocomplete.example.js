@@ -11,7 +11,7 @@ const allOptions = [
     { text: 'Ukraine', value: 'UA' }
 ];
 const EMPTY_INPUT_VALUE = '';
-const getDisplayValue = (item) => (item ? item.text : EMPTY_INPUT_VALUE);
+const getDisplayValue = item => item ? item.text : EMPTY_INPUT_VALUE;
 const filterOptions = (str) => str !== ''
     ? allOptions.filter(option => isSubstring(str, getDisplayValue(option)))
     : allOptions;
@@ -25,12 +25,12 @@ const PromptModalDefaultExample = () => {
         content: ({ setResult }) => {
             const [value, setValue] = useState(EMPTY_INPUT_VALUE);
             const [options, setOptions] = useState(allOptions);
-            return (React.createElement(Autocomplete, { value: value, width: 'full', getDisplayValue: getDisplayValue, placeholder: 'Start typing country...', options: options, onChange: value => {
-                    setOptions(filterOptions(value));
-                    setValue(value);
+            return (React.createElement(Autocomplete, { value: value, width: 'full', getDisplayValue: getDisplayValue, placeholder: 'Start typing country...', options: options, onChange: newValue => {
+                    setOptions(filterOptions(newValue));
+                    setValue(newValue);
                 }, onSelect: item => setResult(item.value) }));
         },
-        onSubmit: (result) => showInfo(String(result)),
+        onSubmit: result => showInfo(String(result)),
         // for purpose of code example
         container: () => document.getElementById('modal-container')
     });

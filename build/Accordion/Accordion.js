@@ -32,8 +32,11 @@ export const Accordion = forwardRef(function Accordion(_a, ref) {
         setPrevExpanded(expanded);
     }
     const handleSummaryClick = () => {
-        setSummaryExpanded(expanded => !expanded);
+        setSummaryExpanded(!summaryExpanded);
     };
+    const expandIconClass = cx(classes.expandIcon, {
+        [classes.expandIconExpanded]: summaryExpanded
+    });
     return (React.createElement(MUIExpansionPanel
     // eslint-disable-next-line react/jsx-props-no-spreading
     , Object.assign({}, rest, { ref: ref, classes: {
@@ -44,12 +47,8 @@ export const Accordion = forwardRef(function Accordion(_a, ref) {
                 content: classes.content
             }, expandIcon: null, onClick: handleSummaryClick },
             children,
-            expandIcon ? (decorateWithExpandIconClasses(expandIcon, cx(classes.expandIcon, {
-                [classes.expandIconExpanded]: summaryExpanded
-            }))) : (React.createElement("div", { className: classes.expandIconAlignTop },
-                React.createElement(ArrowDownMinor16, { className: cx(classes.expandIcon, {
-                        [classes.expandIconExpanded]: summaryExpanded
-                    }) }))))) : (React.createElement(EmptyExpansionPanelSummary, null)),
+            expandIcon ? (decorateWithExpandIconClasses(expandIcon, expandIconClass)) : (React.createElement("div", { className: classes.expandIconAlignTop },
+                React.createElement(ArrowDownMinor16, { className: expandIconClass }))))) : (React.createElement(EmptyExpansionPanelSummary, null)),
         React.createElement(ExpansionPanelDetails, { classes: {
                 root: classes.details
             } }, content)));

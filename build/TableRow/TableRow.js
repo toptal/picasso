@@ -10,18 +10,23 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import React, { forwardRef } from 'react';
+import cx from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import MUITableRow from '@material-ui/core/TableRow';
 import styles from './styles';
 export const TableRow = forwardRef(function TableRow(_a, ref) {
-    var { classes, className, style, children, hover, selected, onClick } = _a, rest = __rest(_a, ["classes", "className", "style", "children", "hover", "selected", "onClick"]);
+    var { classes, className, style, children, hover, selected, stripeEven, onClick } = _a, rest = __rest(_a, ["classes", "className", "style", "children", "hover", "selected", "stripeEven", "onClick"]);
+    const { stripeEven: stripeEvenClass } = classes, restClasses = __rest(classes, ["stripeEven"]);
     return (React.createElement(MUITableRow
     // eslint-disable-next-line react/jsx-props-no-spreading
-    , Object.assign({}, rest, { ref: ref, classes: classes, className: className, style: style, hover: hover, selected: selected, onClick: onClick }), children));
+    , Object.assign({}, rest, { ref: ref, classes: restClasses, className: cx(className, {
+            [stripeEvenClass]: stripeEven
+        }), style: style, hover: hover, selected: selected, onClick: onClick }), children));
 });
 TableRow.defaultProps = {
     hover: false,
-    selected: false
+    selected: false,
+    stripeEven: false
 };
 TableRow.displayName = 'TableRow';
 export default withStyles(styles)(TableRow);

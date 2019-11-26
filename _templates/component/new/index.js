@@ -2,7 +2,7 @@ const DEFAULT_NEWCOMPONENT_COMMAND = 'new'
 
 module.exports = {
   prompt: ({ prompter, args }) => {
-    let argvName = process.argv[process.argv.length - 1]
+    const argvName = process.argv[process.argv.length - 1]
 
     if (argvName !== DEFAULT_NEWCOMPONENT_COMMAND) {
       return Promise.resolve({ name: argvName })

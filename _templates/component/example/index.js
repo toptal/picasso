@@ -2,8 +2,8 @@ const DEFAULT_EXAMPLE_COMMAND = 'example'
 
 module.exports = {
   prompt: ({ prompter, args }) => {
-    let argvComponent = process.argv[process.argv.length - 2]
-    let argvExampleName = process.argv[process.argv.length - 1]
+    const argvComponent = process.argv[process.argv.length - 2]
+    const argvExampleName = process.argv[process.argv.length - 1]
 
     if (argvExampleName !== DEFAULT_EXAMPLE_COMMAND) {
       return Promise.resolve({

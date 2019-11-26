@@ -38,11 +38,11 @@ export const Calendar = (props) => {
                     [classes.startSelection]: isSelectionStart,
                     [classes.endSelection]: isSelectionEnd
                 }), onClick: handleOnClick, onMouseEnter: handleOnEnter, value: date.toString(), type: 'button' }, children));
-        }, renderMonthHeader: ({ switchMonth, activeMonth }) => {
+        }, renderMonthHeader: ({ switchMonth, activeMonth: headerActiveMonth }) => {
             return (React.createElement("div", { className: classes.actions },
                 React.createElement(Button, { variant: 'flat', size: 'small', onClick: () => switchMonth(-1) },
                     React.createElement(BackMinor16, null)),
-                React.createElement(Typography, { variant: 'heading', size: 'medium' }, format(activeMonth, 'MMMM y')),
+                React.createElement(Typography, { variant: 'heading', size: 'medium' }, format(headerActiveMonth, 'MMMM y')),
                 React.createElement(Button, { variant: 'flat', size: 'small', onClick: () => switchMonth(1) },
                     React.createElement(ChevronMinor16, null))));
         }, renderDaysOfWeek: ({ children }) => {

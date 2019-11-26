@@ -9,8 +9,8 @@ const PromptModalDefaultExample = () => {
         title: 'Email',
         message: 'Enter your email:',
         // eslint-disable-next-line react/display-name
-        content: ({ setResult, result }) => (React.createElement(Input, { width: 'full', onChange: event => setResult(event.target.value), value: result })),
-        onSubmit: (result) => showInfo(String(result)),
+        content: ({ setResult, result }) => (React.createElement(Input, { width: 'full', onChange: event => setResult(event.target.value), value: String(result) })),
+        onSubmit: result => showInfo(String(result)),
         // for purpose of code example
         container: () => document.getElementById('modal-container')
     });

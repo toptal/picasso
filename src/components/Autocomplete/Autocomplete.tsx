@@ -146,16 +146,18 @@ BREAKING CHANGES:
       onSelect!(item, internalHelpers)
     }
 
-    const handleStateChange = ({ selectedItem }: StateChangeOptions<Item>) => {
-      handleSelectItem(selectedItem)
+    const handleStateChange = ({
+      selectedItem: newSelectedItem
+    }: StateChangeOptions<Item>) => {
+      handleSelectItem(newSelectedItem)
     }
 
     const options = initialOptions!.filter(item =>
       isSubstring(filter || EMPTY_VALUE, getItemText(item))
     )
 
-    const isSelected = (item: Item, selectedItem: Item) =>
-      getItemValue(item) === getItemValue(selectedItem)
+    const isEqual = (item: Item, currentSelectedItem: Item) =>
+      getItemValue(item) === getItemValue(currentSelectedItem)
 
     const handleChange = (
       item: Item,
@@ -168,14 +170,14 @@ BREAKING CHANGES:
     }
 
     useEffect(() => {
-      const selectedItem = initialOptions!.find(
+      const newSelectedItem = initialOptions!.find(
         option => getItemValue(option) === value
       )
 
-      if (!selectedItem && allowAny && value !== undefined) {
+      if (!newSelectedItem && allowAny && value !== undefined) {
         setInputValue(String(value))
       } else {
-        handleSelectItem(selectedItem)
+        handleSelectItem(newSelectedItem)
       }
     }, [value])
 
@@ -192,7 +194,7 @@ BREAKING CHANGES:
           getInputProps,
           getItemProps,
           isOpen,
-          selectedItem,
+          selectedItem: downshiftSelectedItem,
           highlightedIndex,
           openMenu,
           selectItem: downshiftSelectItem,
@@ -216,7 +218,7 @@ BREAKING CHANGES:
                   <Menu.Item
                     key={getItemValue(option)}
                     selected={highlightedIndex === index}
-                    disabled={isSelected(option, selectedItem)}
+                    disabled={isEqual(option, downshiftSelectedItem)}
                     /* eslint-disable-next-line react/jsx-props-no-spreading */
                     {...getItemProps({ item: option, index })}
                   >
@@ -236,13 +238,15 @@ BREAKING CHANGES:
             onBlur,
             onKeyDown,
             onFocus,
-            onChange = () => {}
+            onChange: onInputChange = () => {}
           } = getInputProps({
             onFocus: () => {
               openMenu()
-              if (!selectedItem) return
+              if (!downshiftSelectedItem) return
 
-              const currentIndex = options ? options.indexOf(selectedItem) : 0
+              const currentIndex = options
+                ? options.indexOf(downshiftSelectedItem)
+                : 0
 
               setHighlightedIndex(currentIndex)
               setInputValue(EMPTY_VALUE)
@@ -255,17 +259,17 @@ BREAKING CHANGES:
                 return
               }
 
-              if (!selectedItem) return
+              if (!downshiftSelectedItem) return
 
               if (
                 allowAny &&
-                getItemText(selectedItem) !== inputValue &&
+                getItemText(downshiftSelectedItem) !== inputValue &&
                 inputValue !== EMPTY_VALUE
               ) {
                 setSelectedItem(null)
               }
 
-              setInputValue(getItemText(selectedItem))
+              setInputValue(getItemText(downshiftSelectedItem))
             },
             onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => {
               if (event.key === 'Backspace' && inputValue === EMPTY_VALUE) {
@@ -274,12 +278,12 @@ BREAKING CHANGES:
               onKeyDownProp!(event, inputValue)
             },
             onChange: (event: ChangeEvent<HTMLInputElement>) => {
-              const { value } = event.target
+              const { value: newValue } = event.target
 
-              setFilter((value || EMPTY_VALUE).trim())
-              setInputValue(value)
+              setFilter((newValue || EMPTY_VALUE).trim())
+              setInputValue(newValue)
 
-              if (!isMatchingMinLength(value, minLength)) {
+              if (!isMatchingMinLength(newValue, minLength)) {
                 return
               }
 
@@ -312,11 +316,13 @@ BREAKING CHANGES:
                 onFocus={onFocus}
                 onClick={onFocus}
                 placeholder={
-                  selectedItem ? getItemText(selectedItem) : placeholder
+                  downshiftSelectedItem
+                    ? getItemText(downshiftSelectedItem)
+                    : placeholder
                 }
                 width={width}
                 onChange={e => {
-                  onChange(e as FormEvent<HTMLInputElement>)
+                  onInputChange(e as FormEvent<HTMLInputElement>)
                 }}
               />
               {/* eslint-disable-next-line react/jsx-props-no-spreading */}

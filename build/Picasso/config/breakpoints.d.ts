@@ -1,4 +1,5 @@
 import { Breakpoints } from '@material-ui/core/styles/createBreakpoints';
+declare const breakpoints: Partial<Breakpoints>;
 export declare const screens: (...sizes: BreakpointKeys[]) => string;
 export declare const isScreenSize: (size: string | number, currentSize?: number | undefined) => boolean;
 /**
@@ -45,8 +46,7 @@ export declare const useBreakpoint: (sizes: "medium" | "large" | "small" | "extr
  * )}
  * </Button>
  */
-export declare const useScreens: () => (valuesByScreen: Partial<Record<BreakpointKeys, any>>, defaultValue?: any) => any;
-declare const breakpoints: Partial<Breakpoints>;
+export declare const useScreens: <T = unknown>() => (valuesByScreen: Partial<Record<BreakpointKeys, T>>, defaultValue?: T | undefined) => T | undefined;
 declare type BreakpointKeys = 'small' | 'medium' | 'large' | 'extra-large';
 declare type BreakpointsList = {
     [key: string]: number;

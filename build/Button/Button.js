@@ -27,7 +27,7 @@ export const Button = forwardRef(function Button(props, ref) {
     const { icon, iconPosition, loading, children, className, style, fullWidth, variant, size, focused, hovered, disabled, active, onClick, circular, title, value, type, as } = props, rest = __rest(props, ["icon", "iconPosition", "loading", "children", "className", "style", "fullWidth", "variant", "size", "focused", "hovered", "disabled", "active", "onClick", "circular", "title", "value", "type", "as"]);
     const classes = useStyles(props);
     const { icon: iconClass, iconLeft: iconLeftClass, iconRight: iconRightClass, iconSmall: iconSmallClass, root: rootClass, hidden: hiddenClass, loader: loaderClass, content: contentClass } = classes;
-    let finalChildren = [children];
+    const finalChildren = [children];
     if (icon) {
         const iconComponent = React.cloneElement(icon, {
             className: cx(iconClass, icon.props.className, {

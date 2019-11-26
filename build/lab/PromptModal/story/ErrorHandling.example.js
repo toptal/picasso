@@ -20,9 +20,9 @@ const PromptModalDefaultExample = () => {
                 }
                 setResult(value);
             };
-            return (React.createElement(Input, { width: 'full', error: error, value: result, onChange: handleChange }));
+            return (React.createElement(Input, { width: 'full', error: error, value: String(result), onChange: handleChange }));
         },
-        onSubmit: (result) => {
+        onSubmit: result => {
             if (!result || result === '') {
                 showError('Result cannot be empty');
                 throw new Error('Result cannot be empty');

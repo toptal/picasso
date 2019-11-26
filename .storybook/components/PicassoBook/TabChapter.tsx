@@ -1,6 +1,6 @@
 declare var TEST_ENV: string // defined by ENV
 
-import React from 'react'
+import React, { ReactNode } from 'react'
 import Section from './Section'
 
 import TabsSection from './components/TabsSection'
@@ -35,7 +35,7 @@ class TabChapter extends Chapter {
       info,
       sectionFn: render,
       options: {
-        decorator: (story: any) => (
+        decorator: (story: () => ReactNode) => (
           <div className='tab-chapter-container'>{story()}</div>
         )
       }

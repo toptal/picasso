@@ -47,9 +47,7 @@ export const SidebarItem = forwardRef(function SidebarItem(props, ref) {
                 summary: classes.summary,
                 details: classes.details,
                 content: classes.content
-            }, content: menu, bordered: false, disabled: disabled, defaultExpanded: defaultExpanded, 
-            // @ts-ignore
-            expandIcon: React.createElement(ArrowDropDown16, { className: cx(classes.expandIcon, classes[`${variant}ExpandIcon`], {
+            }, content: menu, bordered: false, disabled: disabled, defaultExpanded: defaultExpanded, expandIcon: React.createElement(ArrowDropDown16, { className: cx(classes.expandIcon, classes[`${variant}ExpandIcon`], {
                     [classes.expandIconDisabled]: disabled
                 }) }) }, menuItem));
     }

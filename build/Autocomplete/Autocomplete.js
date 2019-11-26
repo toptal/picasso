@@ -58,43 +58,45 @@ BREAKING CHANGES:
         setSelectedItem(item);
         onSelect(item, internalHelpers);
     };
-    const handleStateChange = ({ selectedItem }) => {
-        handleSelectItem(selectedItem);
+    const handleStateChange = ({ selectedItem: newSelectedItem }) => {
+        handleSelectItem(newSelectedItem);
     };
     const options = initialOptions.filter(item => isSubstring(filter || EMPTY_VALUE, getItemText(item)));
-    const isSelected = (item, selectedItem) => getItemValue(item) === getItemValue(selectedItem);
+    const isEqual = (item, currentSelectedItem) => getItemValue(item) === getItemValue(currentSelectedItem);
     const handleChange = (item, helpers) => {
         const { setHighlightedIndex } = helpers;
         const currentIndex = options ? options.indexOf(item) : 0;
         setHighlightedIndex(currentIndex);
     };
     useEffect(() => {
-        const selectedItem = initialOptions.find(option => getItemValue(option) === value);
-        if (!selectedItem && allowAny && value !== undefined) {
+        const newSelectedItem = initialOptions.find(option => getItemValue(option) === value);
+        if (!newSelectedItem && allowAny && value !== undefined) {
             setInputValue(String(value));
         }
         else {
-            handleSelectItem(selectedItem);
+            handleSelectItem(newSelectedItem);
         }
     }, [value]);
-    return (React.createElement(Downshift, { itemToString: item => getItemText(item), onStateChange: handleStateChange, onChange: handleChange, inputValue: inputValue, selectedItem: selectedItem }, ({ getMenuProps, getInputProps, getItemProps, isOpen, selectedItem, highlightedIndex, openMenu, selectItem: downshiftSelectItem, setHighlightedIndex, reset }) => {
+    return (React.createElement(Downshift, { itemToString: item => getItemText(item), onStateChange: handleStateChange, onChange: handleChange, inputValue: inputValue, selectedItem: selectedItem }, ({ getMenuProps, getInputProps, getItemProps, isOpen, selectedItem: downshiftSelectedItem, highlightedIndex, openMenu, selectItem: downshiftSelectItem, setHighlightedIndex, reset }) => {
         const isTyping = Boolean(inputValue);
         const hasOptions = Boolean(options.length);
         const canOpen = isOpen &&
             isMatchingMinLength(inputValue || EMPTY_VALUE, minLength) &&
             !loading &&
             (hasOptions || isTyping);
-        const optionsMenu = (React.createElement(ScrollMenu, { selectedIndex: highlightedIndex }, !hasOptions ? (React.createElement(Menu.Item, { disabled: true }, noOptionsText)) : (options.map((option, index) => (React.createElement(Menu.Item, Object.assign({ key: getItemValue(option), selected: highlightedIndex === index, disabled: isSelected(option, selectedItem) }, getItemProps({ item: option, index })), getItemText(option)))))));
+        const optionsMenu = (React.createElement(ScrollMenu, { selectedIndex: highlightedIndex }, !hasOptions ? (React.createElement(Menu.Item, { disabled: true }, noOptionsText)) : (options.map((option, index) => (React.createElement(Menu.Item, Object.assign({ key: getItemValue(option), selected: highlightedIndex === index, disabled: isEqual(option, downshiftSelectedItem) }, getItemProps({ item: option, index })), getItemText(option)))))));
         const selectItem = (item) => {
             downshiftSelectItem(item);
             setFilter(EMPTY_VALUE);
         };
-        const { onBlur, onKeyDown, onFocus, onChange = () => { } } = getInputProps({
+        const { onBlur, onKeyDown, onFocus, onChange: onInputChange = () => { } } = getInputProps({
             onFocus: () => {
                 openMenu();
-                if (!selectedItem)
+                if (!downshiftSelectedItem)
                     return;
-                const currentIndex = options ? options.indexOf(selectedItem) : 0;
+                const currentIndex = options
+                    ? options.indexOf(downshiftSelectedItem)
+                    : 0;
                 setHighlightedIndex(currentIndex);
                 setInputValue(EMPTY_VALUE);
             },
@@ -105,14 +107,14 @@ BREAKING CHANGES:
                     setFilter(EMPTY_VALUE);
                     return;
                 }
-                if (!selectedItem)
+                if (!downshiftSelectedItem)
                     return;
                 if (allowAny &&
-                    getItemText(selectedItem) !== inputValue &&
+                    getItemText(downshiftSelectedItem) !== inputValue &&
                     inputValue !== EMPTY_VALUE) {
                     setSelectedItem(null);
                 }
-                setInputValue(getItemText(selectedItem));
+                setInputValue(getItemText(downshiftSelectedItem));
             },
             onKeyDown: (event) => {
                 if (event.key === 'Backspace' && inputValue === EMPTY_VALUE) {
@@ -121,10 +123,10 @@ BREAKING CHANGES:
                 onKeyDownProp(event, inputValue);
             },
             onChange: (event) => {
-                const { value } = event.target;
-                setFilter((value || EMPTY_VALUE).trim());
-                setInputValue(value);
-                if (!isMatchingMinLength(value, minLength)) {
+                const { value: newValue } = event.target;
+                setFilter((newValue || EMPTY_VALUE).trim());
+                setInputValue(newValue);
+                if (!isMatchingMinLength(newValue, minLength)) {
                     return;
                 }
                 event.persist();
@@ -135,8 +137,10 @@ BREAKING CHANGES:
         return (React.createElement("div", { className: cx(classes.root, className, classes[`root${capitalize(width)}`]), style: style },
             React.createElement(InputComponent
             /* eslint-disable-next-line react/jsx-props-no-spreading */
-            , Object.assign({}, rest, { defaultValue: defaultValue, ref: ref, icon: loading ? React.createElement(Loader, { size: 'small' }) : null, iconPosition: 'end', value: inputValue || EMPTY_VALUE, onBlur: onBlur, onKeyDown: onKeyDown, onFocus: onFocus, onClick: onFocus, placeholder: selectedItem ? getItemText(selectedItem) : placeholder, width: width, onChange: e => {
-                    onChange(e);
+            , Object.assign({}, rest, { defaultValue: defaultValue, ref: ref, icon: loading ? React.createElement(Loader, { size: 'small' }) : null, iconPosition: 'end', value: inputValue || EMPTY_VALUE, onBlur: onBlur, onKeyDown: onKeyDown, onFocus: onFocus, onClick: onFocus, placeholder: downshiftSelectedItem
+                    ? getItemText(downshiftSelectedItem)
+                    : placeholder, width: width, onChange: e => {
+                    onInputChange(e);
                 } })),
             React.createElement("div", Object.assign({}, getMenuProps()), canOpen ? optionsMenu : null)));
     }));

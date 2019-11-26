@@ -7,7 +7,7 @@ import YearSelect from './YearSelect'
 afterEach(cleanup)
 
 // Mock console error since toThrow() outputs the error message with stacktrace
-let mockedConsoleError: any
+let mockedConsoleError: jest.SpyInstance
 
 beforeEach(() => {
   mockedConsoleError = jest.spyOn(console, 'error')

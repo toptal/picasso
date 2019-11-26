@@ -12,8 +12,8 @@ import styles from './styles'
 export type VariantType = 'red' | 'blue' | 'green'
 
 export type PromptOptions = {
-  setResult: (newResult: any) => void
-  result: any
+  setResult: (newResult: unknown) => void
+  result: unknown
   setLoading: (loading: boolean) => void
   loading: boolean
   setError: (error: boolean) => void
@@ -34,7 +34,7 @@ export interface Props extends Omit<ModalProps, 'children' | 'onSubmit'> {
   /** Text on Cancel button */
   cancelText?: string
   /** Callback on Submit onClick event, returns result of input component if defined */
-  onSubmit: (result: any) => Promise<any> | any
+  onSubmit: (result: unknown) => Promise<unknown> | unknown
   /** Callback on Cancel onClick event */
   onCancel?: () => void
 }
@@ -54,7 +54,7 @@ export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
     onCancel,
     ...rest
   } = props
-  const [result, setResult] = useState<any>()
+  const [result, setResult] = useState<unknown>()
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<boolean>(false)
 

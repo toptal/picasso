@@ -1,3 +1,45 @@
+# [3.44.0](https://github.com/toptal/picasso/compare/v3.43.0...v3.44.0) (2019-11-22)
+
+
+### Features
+
+* **radio:** change label from string to ReactElement ([#891](https://github.com/toptal/picasso/issues/891)) ([21a8d36](https://github.com/toptal/picasso/commit/21a8d36))
+
+# [3.43.0](https://github.com/toptal/picasso/compare/v3.42.0...v3.43.0) (2019-11-20)
+
+
+### Features
+
+* **button:** add secondary-green variant ([#883](https://github.com/toptal/picasso/issues/883)) ([c7ebde7](https://github.com/toptal/picasso/commit/c7ebde7))
+
+# [3.42.0](https://github.com/toptal/picasso/compare/v3.41.0...v3.42.0) (2019-11-20)
+
+
+### Features
+
+* **icon:** add social icons ([#880](https://github.com/toptal/picasso/issues/880)) ([b4b7174](https://github.com/toptal/picasso/commit/b4b7174))
+
+# [3.41.0](https://github.com/toptal/picasso/compare/v3.40.0...v3.41.0) (2019-11-14)
+
+
+### Features
+
+* **Table:** [FX-585] Add expandable rows ([#856](https://github.com/toptal/picasso/issues/856)) ([db058ee](https://github.com/toptal/picasso/commit/db058ee))
+
+# [3.40.0](https://github.com/toptal/picasso/compare/v3.39.1...v3.40.0) (2019-11-13)
+
+
+### Features
+
+* **icon:** add guests icon ([#849](https://github.com/toptal/picasso/issues/849)) ([827566d](https://github.com/toptal/picasso/commit/827566d))
+
+## [3.39.1](https://github.com/toptal/picasso/compare/v3.39.0...v3.39.1) (2019-11-12)
+
+
+### Bug Fixes
+
+* **TagSelector:** fix placeholder on loading ([#851](https://github.com/toptal/picasso/issues/851)) ([b2252cc](https://github.com/toptal/picasso/commit/b2252cc))
+
 # [3.39.0](https://github.com/toptal/picasso/compare/v3.38.0...v3.39.0) (2019-11-08)
 
 

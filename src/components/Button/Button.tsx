@@ -28,6 +28,7 @@ export type VariantType =
   | 'primary-red'
   | 'secondary-red'
   | 'primary-green'
+  | 'secondary-green'
   | 'flat'
   | 'flat-white'
   | 'secondary-white'
@@ -125,7 +126,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     content: contentClass
   } = classes
 
-  let finalChildren = [children]
+  const finalChildren = [children]
 
   if (icon) {
     const iconComponent = React.cloneElement(icon, {

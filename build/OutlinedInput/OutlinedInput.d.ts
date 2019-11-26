@@ -1,7 +1,7 @@
 import React, { ChangeEventHandler, ReactType, ReactNode, InputHTMLAttributes } from 'react';
 import { InputBaseComponentProps } from '@material-ui/core/InputBase';
 import { StandardProps } from '../Picasso';
-declare type ValueType = Array<string | number | boolean | object> | string | number | boolean | object;
+declare type ValueType = (string | number | boolean | object)[] | string | number | boolean | object;
 export interface Props extends StandardProps, Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'defaultValue'> {
     /** Width of the component */
     width?: 'full' | 'shrink' | 'auto';

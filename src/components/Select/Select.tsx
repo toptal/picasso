@@ -193,7 +193,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     </InputAdornment>
   ) : null
 
-  const menuProps = {
+  const menuProps: Partial<MenuProps> = {
     anchorOrigin: {
       vertical: 'bottom',
       horizontal: 'left'
@@ -203,7 +203,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
       horizontal: 'left'
     },
     getContentAnchorEl: undefined // needed to restore default behaviour
-  } as Partial<MenuProps>
+  }
 
   return (
     <MUISelect
@@ -232,9 +232,9 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
           {iconPosition === 'end' && iconAdornment}
         </React.Fragment>
       )}
-      IconComponent={({ className }: { className: string }) => (
+      IconComponent={({ className: iconClassName }: { className: string }) => (
         <DropdownArrows16
-          className={cx(className, {
+          className={cx(iconClassName, {
             [classes.caretDisabled]: disabled
           })}
         />

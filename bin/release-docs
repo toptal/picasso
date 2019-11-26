@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+yarn build:storybook
+
+# archive ./build/storybook folder to the shared folder with docker root
+mkdir -p $DEPLOY_DOCS_PATH
+tar -zcvf $DEPLOY_DOCS_PATH/$DEPLOY_DOCS_ARCHIVE.tar.gz -C ./build/storybook/ .
+
+chown -R 469:469 $DEPLOY_DOCS_PATH
