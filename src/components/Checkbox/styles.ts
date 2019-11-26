@@ -8,8 +8,6 @@ PicassoProvider.override(() => ({
       fontSize: '1rem',
       lineHeight: '1rem',
       padding: 0,
-      margin: '0 0.5em 0 0',
-      alignSelf: 'flex-start',
 
       '&$disabled': {
         opacity: 0.48,
@@ -26,6 +24,10 @@ export default ({ palette, sizes, transitions }: Theme) =>
       '&:hover $uncheckedIcon': {
         border: `${sizes.borderWidth} solid ${palette.primary.main}`
       }
+    },
+    withLabel: {
+      margin: '0 0.5em 0 0',
+      alignSelf: 'flex-start'
     },
     disabled: {
       '&:hover $uncheckedIcon': {
