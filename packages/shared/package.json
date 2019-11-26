@@ -15,7 +15,8 @@
     "url": "git+https://github.com/toptal/picasso.git"
   },
   "scripts": {
-    "build:dist": "cross-env NODE_ENV=production ../../bin/build --tsConfig=./tsconfig.json --packageJson=./package.json --outputPackageJson=./build --entry=./index.js"
+    "build:dist": "cross-env NODE_ENV=production ../../bin/build --tsConfig=./tsconfig.json --packageJson=./package.json --outputPackageJson=./build --entry=./index.js",
+    "prepublishOnly": "echo $1 && cat ./package.json"
   },
   "bugs": {
     "url": "https://github.com/toptal/picasso/issues"
@@ -26,13 +27,14 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
+    "color": "^3.1.1",
     "notistack": "^0.8.9",
-    "react-modal-hook": "^2.0.0",
-    "color": "^3.1.1"
+    "react-modal-hook": "^2.0.0"
   },
   "devDependencies": {
-    "@types/color": "^3.0.0",
     "@types/classnames": "^2.2.9",
+    "@types/color": "^3.0.0",
     "cross-env": "^6.0.3"
-  }
+  },
+  "gitHead": "dbe46de43aad88abf4636fd931dbb0c4298d8ad9"
 }
