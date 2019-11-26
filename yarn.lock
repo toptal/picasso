@@ -3997,16 +3997,6 @@
     lodash.camelcase "^4.3.0"
     lodash.kebabcase "^4.1.1"
 
-"@toptal/picasso-shared@^0.0.2-alpha.1102+6c801b1e":
-  version "0.0.2-alpha.1108"
-  resolved "https://registry.yarnpkg.com/@toptal/picasso-shared/-/picasso-shared-0.0.2-alpha.1108.tgz#dfd88fabcef82b80c4f9f670fdea5c8f130d66c9"
-  integrity sha512-L2bDwFV6NPBqg6kRQGLLq2j0qCWHcYSf7z8epczwDHeMgY+6IE/4agp9yLY/wW9dkYWRvvr1gCtT9dWSRrZQyw==
-  dependencies:
-    classnames "^2.2.6"
-    color "^3.1.1"
-    notistack "^0.8.9"
-    react-modal-hook "^2.0.0"
-
 "@toptal/picasso@^2.1.5":
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/@toptal/picasso/-/picasso-2.4.0.tgz#71204c8b4a365af1f8a7ba38b5cf9102e46f225d"
@@ -4015,20 +4005,6 @@
     "@material-ui/icons" "^3.0.2"
     classnames "^2.2.6"
     color "^3.1.1"
-
-"@toptal/picasso@^3.44.1-alpha.1104+dbe46de4":
-  version "3.44.1-alpha.1108"
-  resolved "https://registry.yarnpkg.com/@toptal/picasso/-/picasso-3.44.1-alpha.1108.tgz#873fec3f2bc5754295a531d188a991916bea5218"
-  integrity sha512-F3zf94dsSkmOh75sPvt9I7QPy1c3IS6WFpkv+iyUUoruuFNl9otiudEmFaQMW4HN23dXfvCt4mTO5vwT3JxvEg==
-  dependencies:
-    "@material-ui/core" "4.5.0"
-    "@material-ui/icons" "4.2.1"
-    "@toptal/picasso-shared" "^0.0.2-alpha.1102+6c801b1e"
-    classnames "^2.2.6"
-    notistack "^0.8.9"
-    react-modal-hook "^2.0.0"
-    react-router-dom "^5.0.1"
-    react-truncate "^2.4.0"
 
 "@types/babel__core@^7.1.0":
   version "7.1.1"

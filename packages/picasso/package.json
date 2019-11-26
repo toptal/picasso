@@ -28,7 +28,7 @@
   "dependencies": {
     "@material-ui/core": "4.5.0",
     "@material-ui/icons": "4.2.1",
-    "@toptal/picasso-shared": "^0.0.2-alpha.1102+6c801b1e",
+    "@toptal/picasso-shared": "^0.0.1",
     "classnames": "^2.2.6",
     "notistack": "^0.8.9",
     "react-modal-hook": "^2.0.0",
