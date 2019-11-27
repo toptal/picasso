@@ -15,12 +15,18 @@ import IconLink from '@material-ui/icons/Link'
 import SourceRender from 'react-source-render'
 import copy from 'copy-to-clipboard'
 
-import { Code16 } from '@components/Icon'
+import { Code16 } from '../../../packages/picasso/src/Icon'
 
-import { RenderResult } from '~/@types/react-source-render'
-import { Classes } from '@components/styles/types'
-import Picasso, { Typography, Button, Accordion, Container } from '@components'
-import { useScreenSize } from '@components/Picasso'
+import { RenderResult } from '../../../@types/react-source-render'
+import { Classes } from '../../../packages/shared/src/styles/types'
+import Picasso from '../../../packages/shared'
+import {
+  Typography,
+  Button,
+  Accordion,
+  Container
+} from '../../../packages/picasso'
+import { useScreenSize } from '../../../packages/shared/src/Picasso'
 
 import Editor from '../Editor'
 import purifyFixedPosition from '../../utils/purify-fixed-position'
@@ -42,11 +48,13 @@ const imports: Record<string, object> = {
   'styled-components': styled,
   'react-router-dom': require('react-router-dom'),
   debounce: require('debounce'),
-  '@toptal/picasso': require('@components'),
-  '@toptal/picasso/lab': require('@components/lab'),
-  '@toptal/picasso/lab/utils': require('@components/lab/utils'),
-  '@toptal/picasso/utils': require('@components/utils'),
-  '@toptal/picasso/Icon': require('@components/Icon')
+  // TODO: need to fix those direct imports
+  // and use @toptal/picass-lab or @toptal/picasso packages here
+  '@toptal/picasso': require('../../../packages/picasso'),
+  '@toptal/picasso-lab': require('../../../packages/picasso-lab'),
+  '@toptal/picasso-lab/utils': require('../../../packages/picasso-lab/src/utils'),
+  '@toptal/picasso/utils': require('../../../packages/picasso/src/utils'),
+  '@toptal/picasso/Icon': require('../../../packages/picasso/src/Icon')
 }
 
 const resolver = (path: string) => imports[path]
@@ -111,10 +119,18 @@ class CodeExample extends Component<Props> {
     const { src } = this.props
 
     try {
-      return require(`!raw-loader!@components/${src}`).default
-    } catch (e) {
-      return require(`!raw-loader!~/.storybook/stories/${src}`).default
-    }
+      return require(`!raw-loader!~/packages/picasso/src/${src}`).default
+    } catch {}
+
+    try {
+      return require(`!raw-loader!~/packages/picasso-lab/src/${src}`).default
+    } catch {}
+
+    try {
+      return require(`!raw-loader!~/packages/shared/src/${src}`).default
+    } catch {}
+
+    return require(`!raw-loader!~/.storybook/stories/${src}`).default
   }
 
   handleShowEditor = () => {

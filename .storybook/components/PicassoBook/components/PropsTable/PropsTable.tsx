@@ -1,10 +1,10 @@
 import React, { Fragment, FunctionComponent } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
-import { Table } from '@components'
+import { Table } from '../../../../../packages/picasso'
 import cx from 'classnames'
 
-import { Classes } from '@components/styles/types'
+import { Classes } from '../../../../../packages/shared'
 import {
   PropDocumentation,
   PropTypeDocumentation

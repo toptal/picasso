@@ -1,0 +1,43 @@
+{
+  "name": "@toptal/picasso-lab",
+  "version": "0.0.1",
+  "description": "Lab components of Picasso",
+  "author": "Toptal",
+  "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-lab#readme",
+  "license": "ISC",
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toptal/picasso.git"
+  },
+  "scripts": {
+    "build:dist": "cross-env NODE_ENV=production ../../bin/build --tsConfig=./tsconfig.json --packageJson=./package.json --outputPackageJson=./build --entry=./index.js",
+    "prepublishOnly": "../../bin/prepublish"
+  },
+  "bugs": {
+    "url": "https://github.com/toptal/picasso/issues"
+  },
+  "peerDependencies": {
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4"
+  },
+  "dependencies": {
+    "@material-ui/core": "4.5.0",
+    "@material-ui/icons": "4.2.1",
+    "@toptal/picasso": "^3.44.0",
+    "@toptal/picasso-shared": "^0.0.1",
+    "classnames": "^2.2.6",
+    "date-fns": "^2.3.0",
+    "notistack": "^0.8.9",
+    "react-modal-hook": "^2.0.0",
+    "simple-react-calendar": "^1.9.0"
+  },
+  "devDependencies": {
+    "@types/classnames": "^2.2.9",
+    "cross-env": "^6.0.3"
+  }
+}

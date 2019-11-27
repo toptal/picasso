@@ -2,10 +2,9 @@ import React, { FunctionComponent } from 'react'
 import _ from 'lodash'
 
 import { withStyles } from '@material-ui/core/styles'
-import { Table } from '@components'
 import { ClassNameMap } from '@material-ui/core/styles/withStyles'
 
-import Tooltip from '@components/Tooltip'
+import { Tooltip, Table } from '../../../../../packages/picasso'
 import Markdown from '~/.storybook/components/Markdown'
 import { PropTypeDocumentation } from '~/.storybook/utils/documentation-generator'
 import styles from './styles'

@@ -8,7 +8,11 @@ import DocumentationGenerator, {
   PropDocumentationMap,
   Documentable
 } from '~/.storybook/utils/documentation-generator'
-import { generateUrl, getHost, normalize } from '@/utils/url-generator'
+import {
+  generateUrl,
+  getHost,
+  normalize
+} from '../../../src/utils/url-generator'
 
 import Base from './Base'
 import Section, { SectionConfigType } from './Section'

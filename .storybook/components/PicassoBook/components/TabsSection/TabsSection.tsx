@@ -1,7 +1,7 @@
 import React, { FunctionComponent, ReactNode } from 'react'
 
-import { Paper, Container, Typography } from '@components'
-import { useBreakpoint } from '@components/utils'
+import { Paper, Container, Typography } from '../../../../../packages/picasso'
+import { useBreakpoint } from '../../../../../packages/picasso/src/utils'
 
 import TabsSectionHeader from './TabsSectionHeader'
 
