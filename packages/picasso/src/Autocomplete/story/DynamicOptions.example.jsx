@@ -47,8 +47,12 @@ const AutocompleteDynamicOptionsExample = () => {
     []
   )
 
-  const handleChange = inputValue => {
+  const handleChange = (inputValue, isSelected) => {
     setValue(inputValue)
+
+    if (isSelected) {
+      return
+    }
 
     if (inputValue.length >= MIN_CHARS) {
       setLoading(true)
