@@ -10,10 +10,9 @@ export default ({ sizes: { input } }: Theme) =>
       display: 'flex',
       flexWrap: 'wrap',
       height: 'auto',
-      padding: TAG_SELECTOR_GUTTER_SIZE,
-      marginRight: `-${TAG_SELECTOR_GUTTER_SIZE}`,
-      marginBottom: `-${TAG_SELECTOR_GUTTER_SIZE}`,
-      '& > *': {
+      paddingLeft: TAG_SELECTOR_GUTTER_SIZE,
+      paddingTop: TAG_SELECTOR_GUTTER_SIZE,
+      '& > *:not(fieldset)': {
         marginRight: TAG_SELECTOR_GUTTER_SIZE,
         marginBottom: TAG_SELECTOR_GUTTER_SIZE
       },
