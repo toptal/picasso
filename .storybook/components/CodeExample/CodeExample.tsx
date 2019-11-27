@@ -48,8 +48,9 @@ const imports: Record<string, object> = {
   'styled-components': styled,
   'react-router-dom': require('react-router-dom'),
   debounce: require('debounce'),
+  // TODO: need to fix those direct imports
+  // and use @toptal/picass-lab or @toptal/picasso packages here
   '@toptal/picasso': require('../../../packages/picasso'),
-  //--- need to fix this and use @toptal/picass-lab package here
   '@toptal/picasso-lab': require('../../../packages/picasso-lab'),
   '@toptal/picasso-lab/utils': require('../../../packages/picasso-lab/src/utils'),
   '@toptal/picasso/utils': require('../../../packages/picasso/src/utils'),

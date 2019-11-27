@@ -8,9 +8,8 @@ import {
 import chaptersAddon from 'react-storybook-addon-chapters'
 import { create } from '@storybook/theming'
 
-//--- fix direct link to packages/shared
+// TODO: fix direct link to packages/shared
 import Picasso from '../packages/shared'
-
 import PicassoBook from './components/PicassoBook'
 
 const loadFonts = TEST_ENV !== 'visual'
@@ -41,7 +40,7 @@ const reqStorybook = require.context(
   true,
   /story\/index.(jsx|tsx)$/
 )
-/** Stories from packges */
+/** Stories from packages */
 const reqPackagesComponents = require.context(
   '~/packages',
   true,
