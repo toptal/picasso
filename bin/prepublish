@@ -1,0 +1,20 @@
+#!/usr/bin/env node
+const path = require('path')
+const yargs = require('yargs').argv
+const packageRootDir = path.resolve('.')
+
+// script arguments
+const shouldCopyReadme = yargs.copyReadme
+
+const {
+  bumpPackageJsonVersion,
+  copyReadme,
+  bumpReadmeVersion
+} = require('./utils')
+
+bumpPackageJsonVersion(packageRootDir)
+
+if (shouldCopyReadme) {
+  copyReadme(packageRootDir)
+  bumpReadmeVersion(packageRootDir)
+}
