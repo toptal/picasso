@@ -5,7 +5,6 @@ const packageRootDir = path.resolve('.')
 
 // script arguments
 const shouldCopyReadme = yargs.copyReadme
-//
 
 const {
   bumpPackageJsonVersion,
