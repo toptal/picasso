@@ -5,7 +5,7 @@ import Picasso from '@toptal/picasso-shared'
 
 import Button from '../Button'
 import Input from '../Input'
-import PromptModal from './../PromptModal'
+import PromptModal from '../PromptModal'
 import { useModals } from '../utils'
 
 test('renders PromptModal', () => {

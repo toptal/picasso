@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { YearSelect } from '@toptal/picasso-lab'
+import { YearSelect } from '@toptal/picasso'
 
 const DefaultExample = () => {
   const [year, setYear] = useState()

@@ -1,7 +1,6 @@
 import React from 'react'
 import { Button } from '@toptal/picasso'
-import { useNotifications } from '@toptal/picasso/utils'
-import { useModals } from '@toptal/picasso-lab/utils'
+import { useNotifications, useModals } from '@toptal/picasso/utils'
 
 function timeout(ms: number) {
   return new Promise(resolve => setTimeout(resolve, ms))

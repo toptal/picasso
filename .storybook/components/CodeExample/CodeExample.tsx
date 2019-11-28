@@ -52,7 +52,6 @@ const imports: Record<string, object> = {
   // and use @toptal/picass-lab or @toptal/picasso packages here
   '@toptal/picasso': require('../../../packages/picasso'),
   '@toptal/picasso-lab': require('../../../packages/picasso-lab'),
-  '@toptal/picasso-lab/utils': require('../../../packages/picasso-lab/src/utils'),
   '@toptal/picasso/utils': require('../../../packages/picasso/src/utils'),
   '@toptal/picasso/Icon': require('../../../packages/picasso/src/Icon')
 }

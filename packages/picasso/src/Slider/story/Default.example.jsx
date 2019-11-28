@@ -1,6 +1,5 @@
 import React from 'react'
-import { Container } from '@toptal/picasso'
-import { Slider } from '@toptal/picasso-lab'
+import { Container, Slider } from '@toptal/picasso'
 
 const SelectDefaultExample = () => {
   const handleChange = (event, value) => {

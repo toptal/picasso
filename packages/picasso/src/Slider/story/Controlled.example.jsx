@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Grid } from '@toptal/picasso'
-import { Slider } from '@toptal/picasso-lab'
+import { Button, Grid, Slider } from '@toptal/picasso'
 import { Plus16, Minus16 } from '@toptal/picasso/Icon'
 
 const SelectDefaultExample = () => {
