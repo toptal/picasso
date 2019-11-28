@@ -14,7 +14,7 @@ PicassoProvider.override(({ palette, transitions }) => ({
       width: '1em',
       height: '1em',
       padding: '0',
-      margin: '0.25em 0.5em 0.25em 0',
+      margin: '0.25em 0',
       transition: `all ${transitions.duration.short}ms ${
         transitions.easing.easeInOut
       }`,
@@ -60,6 +60,9 @@ export default ({ palette, sizes, transitions }: Theme) =>
       '&:hover $uncheckedIcon': {
         color: palette.grey.main
       }
+    },
+    withLabel: {
+      marginRight: '0.5em'
     },
     uncheckedIcon: {
       color: palette.grey.main,
