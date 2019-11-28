@@ -5,7 +5,7 @@ import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
 
 import { Button } from '../'
 import Modal, { Props as ModalProps } from './Modal'
-import { useModal } from '../utils'
+import { useModals } from '../utils'
 import { Props as ModalActionsProps } from '../ModalActions/ModalActions'
 import { Props as ModalTitleProps } from '../ModalTitle/ModalTitle'
 import { Props as ModalContentProps } from '../ModalContent/ModalContent'
@@ -63,16 +63,20 @@ test('renders Modal', () => {
   expect(modalRoot).toMatchSnapshot()
 })
 
-test('useModal opens and closes modal', () => {
+test('useModals opens and closes modal', () => {
   const TestComponent = () => {
-    const [showModal, hideModal] = useModal(() => (
-      <Modal open>
-        <p>Modal content</p>
-        <Button onClick={hideModal}>Hide</Button>
-      </Modal>
-    ))
+    const { showModal, hideModal } = useModals()
 
-    return <Button onClick={showModal}>Show</Button>
+    const handleShowClick = () => {
+      const modalId = showModal(() => (
+        <Modal open>
+          <p>Modal content</p>
+          <Button onClick={() => hideModal(modalId)}>Hide</Button>
+        </Modal>
+      ))
+    }
+
+    return <Button onClick={handleShowClick}>Show</Button>
   }
 
   const { getByText, queryByText, baseElement } = render(
@@ -96,24 +100,30 @@ test('useModal opens and closes modal', () => {
   expect(baseElement).toMatchSnapshot()
 })
 
-test('useModal shows multiple modals at the same time', () => {
+test('useModals shows multiple modals at the same time', () => {
   const TestComponent = () => {
-    const [showFirstModal] = useModal(() => (
-      <Modal open>
-        <p>First modal content</p>
-      </Modal>
-    ))
+    const { showModal } = useModals()
 
-    const [showSecondModal] = useModal(() => (
-      <Modal open>
-        <p>Second modal content</p>
-      </Modal>
-    ))
+    const showFirstModalClick = () => {
+      showModal(() => (
+        <Modal open>
+          <p>First modal content</p>
+        </Modal>
+      ))
+    }
+
+    const showSecondModalClick = () => {
+      showModal(() => (
+        <Modal open>
+          <p>Second modal content</p>
+        </Modal>
+      ))
+    }
 
     return (
       <Fragment>
-        <Button onClick={showFirstModal}>Show first</Button>
-        <Button onClick={showSecondModal}>Show second</Button>
+        <Button onClick={showFirstModalClick}>Show first</Button>
+        <Button onClick={showSecondModalClick}>Show second</Button>
       </Fragment>
     )
   }
