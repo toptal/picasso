@@ -1,9 +1,8 @@
 import React, { Fragment } from 'react'
 import { render, fireEvent } from '@testing-library/react'
-import '@testing-library/react/cleanup-after-each'
 import Picasso from '@toptal/picasso-shared'
-import { Button, Modal } from '@toptal/picasso'
 
+import { Button, Modal } from '../../'
 import { useModals } from './use-modals'
 
 let modalRoot: HTMLElement

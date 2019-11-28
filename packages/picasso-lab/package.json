@@ -31,10 +31,7 @@
     "@toptal/picasso": "^3.44.0",
     "@toptal/picasso-shared": "^0.0.1",
     "classnames": "^2.2.6",
-    "date-fns": "^2.3.0",
-    "notistack": "^0.8.9",
-    "react-modal-hook": "^2.0.0",
-    "simple-react-calendar": "^1.9.0"
+    "date-fns": "^2.3.0"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.9",

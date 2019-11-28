@@ -1,9 +1,9 @@
 import React, { forwardRef, ReactNode, useState } from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import { Button, Container, Typography, Modal } from '@toptal/picasso'
-import { Props as ModalProps } from '@toptal/picasso/Modal'
-import { VariantType as ButtonVariantType } from '@toptal/picasso/Button'
 
+import { Button, Container, Typography, Modal } from '../'
+import { Props as ModalProps } from '../Modal'
+import { VariantType as ButtonVariantType } from '../Button'
 import styles from './styles'
 
 export type VariantType = 'red' | 'blue' | 'green'
