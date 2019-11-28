@@ -1,3 +1,10 @@
+# [3.45.0](https://github.com/toptal/picasso/compare/v3.44.0...v3.45.0) (2019-11-28)
+
+
+### Features
+
+* **Indicator:** add Indicator component ([#890](https://github.com/toptal/picasso/issues/890)) ([d298320](https://github.com/toptal/picasso/commit/d298320))
+
 # [3.44.0](https://github.com/toptal/picasso/compare/v3.43.0...v3.44.0) (2019-11-22)
 
 
