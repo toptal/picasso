@@ -2,7 +2,7 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 import { MonthSelect } from '../MonthSelect'
 
-const page = PicassoBook.createPage('MonthSelect', 'Month selector', 'Lab')
+const page = PicassoBook.createPage('MonthSelect', 'Month selector')
 
 page
   .createTabChapter('Props')
