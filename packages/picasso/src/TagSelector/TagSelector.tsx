@@ -158,9 +158,8 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       )
     }
 
-    const autocompleteOptions: AutocompleteItem[] = options.filter(
-      option => !isIncluded(values, option)
-    )
+    const autocompleteOptions: AutocompleteItem[] =
+      options && options.filter(option => !isIncluded(values, option))
 
     const labels = (
       <Fragment>

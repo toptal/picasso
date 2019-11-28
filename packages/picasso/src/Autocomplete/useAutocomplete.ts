@@ -1,21 +1,6 @@
-import {
-  KeyboardEvent,
-  useState,
-  ChangeEvent,
-  useMemo,
-  HTMLAttributes
-} from 'react'
+import { KeyboardEvent, useState, ChangeEvent, useMemo } from 'react'
 
-import { Item } from './types'
-
-export type ItemProps = {
-  role: string
-  'aria-selected': boolean
-  selected: boolean
-  onMouseMove: () => void
-  onMouseDown: (event: React.MouseEvent) => void
-  onClick: (event: React.MouseEvent) => void
-}
+import { Item, ChangedOptions } from './types'
 
 export const FIRST_ITEM_INDEX = 0
 export const EMPTY_INPUT_VALUE = ''
@@ -91,7 +76,7 @@ interface Props {
   autoComplete?: string
   onSelect?: (item: Item) => void
   onOtherOptionSelect?: (value: string) => void
-  onChange?: (value: string) => void
+  onChange?: (value: string, options: ChangedOptions) => void
   onKeyDown?: (
     event: KeyboardEvent<HTMLInputElement>,
     inputValue: string
@@ -109,21 +94,13 @@ const useAutocomplete = ({
   onSelect = () => {},
   onOtherOptionSelect = () => {},
   getDisplayValue
-}: Props): {
-  getItemProps: (index: number, item: Item) => ItemProps
-  getOtherItemProps: (index: number, value: string) => ItemProps
-  getInputProps: () => HTMLAttributes<
-    HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-  >
-  isOpen: boolean
-  highlightedIndex: number | null
-} => {
+}: Props) => {
   const [isOpen, setOpen] = useState<boolean>(false)
   const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null)
 
-  const handleChange = (newValue: string) => {
+  const handleChange = (newValue: string, isSelected = false) => {
     if (newValue !== value) {
-      onChange(newValue)
+      onChange(newValue, { isSelected })
     }
   }
 
@@ -160,16 +137,16 @@ const useAutocomplete = ({
     ...getBaseItemProps(index),
     onClick: () => {
       setOpen(false)
-      handleChange(getDisplayValue(item))
+      handleChange(getDisplayValue(item), true)
       handleSelect(item)
     }
   })
 
-  const getOtherItemProps = (index: number, value: string) => ({
+  const getOtherItemProps = (index: number, newValue: string) => ({
     ...getBaseItemProps(index),
     onClick: () => {
       setOpen(false)
-      onOtherOptionSelect(value)
+      onOtherOptionSelect(newValue)
     }
   })
 
@@ -199,7 +176,7 @@ const useAutocomplete = ({
     ) => {
       setOpen(true)
       setHighlightedIndex(FIRST_ITEM_INDEX)
-      onChange(event.target.value)
+      handleChange(event.target.value)
     },
 
     onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => {

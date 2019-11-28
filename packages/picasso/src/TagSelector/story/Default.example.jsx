@@ -17,10 +17,17 @@ const allOptions = [
 
 const EMPTY_INPUT_VALUE = ''
 const getDisplayValue = item => (item && item.text) || EMPTY_INPUT_VALUE
-const filterOptions = value =>
-  value !== ''
-    ? allOptions.filter(option => isSubstring(value, getDisplayValue(option)))
-    : allOptions
+const filterOptions = (str = '') => {
+  if (str === '') {
+    return allOptions
+  }
+
+  const result = allOptions.filter(option =>
+    isSubstring(str, getDisplayValue(option))
+  )
+
+  return result.length > 0 ? result : null
+}
 
 const TagSelectorDefaultExample = () => {
   const [options, setOptions] = useState(allOptions)

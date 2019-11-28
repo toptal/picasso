@@ -27,12 +27,14 @@ const loadOptions = inputValue =>
       text.toLowerCase().includes(inputValue)
     )
 
-    setTimeout(() => resolve(filteredOptions), 1000)
+    const result = filteredOptions.length ? filteredOptions : null
+
+    setTimeout(() => resolve(result), 1000)
   })
 
 const AutocompleteDynamicOptionsExample = () => {
   const [value, setValue] = useState('')
-  const [options, setOptions] = useState([])
+  const [options, setOptions] = useState(null)
   const [loading, setLoading] = useState(false)
 
   const handleChangeDebounced = useCallback(
@@ -45,15 +47,19 @@ const AutocompleteDynamicOptionsExample = () => {
     []
   )
 
-  const handleChange = inputValue => {
+  const handleChange = (inputValue, options) => {
     setValue(inputValue)
+
+    if (options.isSelected) {
+      return
+    }
 
     if (inputValue.length >= MIN_CHARS) {
       setLoading(true)
       handleChangeDebounced(inputValue)
     } else {
       setLoading(false)
-      setOptions([])
+      setOptions(null)
       handleChangeDebounced.clear()
     }
   }

@@ -20,7 +20,7 @@ import ScrollMenu from '../ScrollMenu'
 import Typography from '../Typography'
 import InputAdornment from '../InputAdornment'
 import { useWidthOf } from '../utils'
-import { Item } from './types'
+import { Item, ChangedOptions } from './types'
 import useAutocomplete, { EMPTY_INPUT_VALUE } from './useAutocomplete'
 import styles from './styles'
 
@@ -31,7 +31,7 @@ export interface Props
       'defaultValue' | 'value' | 'onChange' | 'onSelect' | 'onKeyDown'
     > {
   /**  Callback invoked when `input` element value is changed */
-  onChange?: (value: string) => void
+  onChange?: (value: string, options: ChangedOptions) => void
   /** The value of the selected option, required for a controlled component. */
   value: string
   /**  Callback invoked when selection changes */
@@ -145,13 +145,13 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       onKeyDown
     })
 
-    const optionsLength = options!.length
+    const optionsLength = options ? options!.length : 0
     const shouldShowOtherOption =
       showOtherOption &&
       value &&
       options!.every(option => getDisplayValue!(option) !== value)
 
-    const optionsMenu = (
+    const optionsMenu = options && (
       <ScrollMenu selectedIndex={highlightedIndex}>
         {options!.map((option, index) => (
           <Menu.Item
@@ -228,7 +228,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
           />
         </Container>
         <div role='listbox'>
-          {inputWrapperRef.current && (
+          {inputWrapperRef.current && optionsMenu && (
             <Popper
               open={isOpen && !loading}
               anchorEl={inputWrapperRef.current}
