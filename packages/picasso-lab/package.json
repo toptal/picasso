@@ -31,7 +31,8 @@
     "@toptal/picasso": "^3.44.0",
     "@toptal/picasso-shared": "^0.0.1",
     "classnames": "^2.2.6",
-    "date-fns": "^2.3.0"
+    "date-fns": "^2.3.0",
+    "simple-react-calendar": "^1.9.0"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.9",
