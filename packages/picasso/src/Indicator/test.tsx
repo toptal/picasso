@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import { render, cleanup } from '@testing-library/react'
+import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
 
-import Picasso, { OmitInternalProps } from '../Picasso'
 import Indicator, { Props } from './Indicator'
 
 const renderIndicator = (

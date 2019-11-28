@@ -1,8 +1,8 @@
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
+import { StandardProps } from '@toptal/picasso-shared'
 
-import { StandardProps } from '../Picasso'
 import styles from './styles'
 
 type ColorType = 'red' | 'yellow' | 'blue'
