@@ -15,7 +15,7 @@ const WithBannerExample = () => (
         We are now in the process of reviewing your profile. After your profile
         has been checked, we will reach to you via email about next steps.
       </Page.Banner>
-      <Page.Content flex>
+      <Page.Content>
         <Content />
       </Page.Content>
       <Page.Footer />
