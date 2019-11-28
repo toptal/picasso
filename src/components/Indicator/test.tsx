@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react'
-/* eslint-disable-next-line */
-import { render, fireEvent, cleanup } from '@testing-library/react'
+import { render, cleanup } from '@testing-library/react'
 
 import Picasso, { OmitInternalProps } from '../Picasso'
 import Indicator, { Props } from './Indicator'

@@ -1,12 +1,10 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
-import { rem } from '../styles'
-
 export default ({ palette }: Theme) =>
   createStyles({
     root: {
-      width: rem('8px'),
-      height: rem('8px'),
+      width: '0.5rem',
+      height: '0.5rem',
       borderRadius: '50%'
     },
     red: {

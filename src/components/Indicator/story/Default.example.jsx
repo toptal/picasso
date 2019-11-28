@@ -1,35 +1,35 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Indicator, Typography, Container } from '@toptal/picasso'
 
 const IndicatorDefaultExample = () => (
-  <div>
-    <div>
+  <Fragment>
+    <Container bottom='medium'>
       <Container inline right='small'>
         <Indicator color='red' />
       </Container>
       <Typography inline size='medium'>
         High priority
       </Typography>
-    </div>
+    </Container>
 
-    <div>
+    <Container bottom='medium'>
       <Container inline right='small'>
         <Indicator color='yellow' />
       </Container>
       <Typography inline size='medium'>
         Medium priority
       </Typography>
-    </div>
+    </Container>
 
-    <div>
+    <Container bottom='medium'>
       <Container inline right='small'>
         <Indicator color='blue' />
       </Container>
       <Typography inline size='medium'>
         Low priority
       </Typography>
-    </div>
-  </div>
+    </Container>
+  </Fragment>
 )
 
 export default IndicatorDefaultExample

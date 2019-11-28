@@ -12,16 +12,15 @@ export interface Props extends StandardProps {
   color: ColorType
 }
 
-export const Indicator = forwardRef<HTMLElement, Props>(function Indicator({
-  classes,
-  className,
-  color,
-  style
-}) {
+export const Indicator = forwardRef<HTMLDivElement, Props>(function Indicator(
+  { classes, className, color, style },
+  ref
+) {
   return (
     <div
       className={cx(classes.root, className, classes[color])}
       style={style}
+      ref={ref}
     />
   )
 })
