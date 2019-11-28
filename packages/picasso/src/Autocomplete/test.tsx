@@ -108,7 +108,7 @@ describe('Autocomplete', () => {
       fireEvent.focus(input)
       fireEvent.change(input, { target: { value: 't' } })
 
-      expect(onChange).toBeCalledWith('t', false)
+      expect(onChange).toBeCalledWith('t', { isSelected: false })
     })
 
     test('on select option', () => {
@@ -132,7 +132,7 @@ describe('Autocomplete', () => {
       )
 
       expect(onSelect).toBeCalledWith(optionSlovakia)
-      expect(onChange).toBeCalledWith('Slovakia', true)
+      expect(onChange).toBeCalledWith('Slovakia', { isSelected: true })
     })
 
     test('on "Esc" key pressed', async () => {
@@ -152,7 +152,7 @@ describe('Autocomplete', () => {
       })
 
       // text should be tried to be cleared
-      expect(onChange).toBeCalledWith('', false)
+      expect(onChange).toBeCalledWith('', { isSelected: false })
     })
 
     test('On "Backspace" key pressed with empty text', async () => {

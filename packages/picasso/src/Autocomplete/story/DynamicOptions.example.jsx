@@ -47,10 +47,10 @@ const AutocompleteDynamicOptionsExample = () => {
     []
   )
 
-  const handleChange = (inputValue, isSelected) => {
+  const handleChange = (inputValue, options) => {
     setValue(inputValue)
 
-    if (isSelected) {
+    if (options.isSelected) {
       return
     }
 

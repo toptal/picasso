@@ -88,7 +88,7 @@ describe('TagSelector', () => {
 
     fireEvent.change(input, { target: { value: 'Al' } })
 
-    expect(onInputChange).toBeCalledWith('Al', false)
+    expect(onInputChange).toBeCalledWith('Al', { isSelected: false })
   })
 
   test('preselected value', () => {

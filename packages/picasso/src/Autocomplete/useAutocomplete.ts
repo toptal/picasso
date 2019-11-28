@@ -1,6 +1,6 @@
 import { KeyboardEvent, useState, ChangeEvent, useMemo } from 'react'
 
-import { Item } from './types'
+import { Item, ChangedOptions } from './types'
 
 export const FIRST_ITEM_INDEX = 0
 export const EMPTY_INPUT_VALUE = ''
@@ -76,7 +76,7 @@ interface Props {
   autoComplete?: string
   onSelect?: (item: Item) => void
   onOtherOptionSelect?: (value: string) => void
-  onChange?: (value: string, isSelected: boolean) => void
+  onChange?: (value: string, options: ChangedOptions) => void
   onKeyDown?: (
     event: KeyboardEvent<HTMLInputElement>,
     inputValue: string
@@ -100,7 +100,7 @@ const useAutocomplete = ({
 
   const handleChange = (newValue: string, isSelected = false) => {
     if (newValue !== value) {
-      onChange(newValue, isSelected)
+      onChange(newValue, { isSelected })
     }
   }
 
