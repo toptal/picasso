@@ -1,6 +1,5 @@
 import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 import Grow from '@material-ui/core/Grow'
-import { PopoverOrigin } from '@material-ui/core/Popover'
 import Popper, { PopperPlacementType } from '@material-ui/core/Popper'
 import RootRef from '@material-ui/core/RootRef'
 import { withStyles } from '@material-ui/core/styles'
@@ -38,11 +37,6 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
     left?: SpacingType
     right?: SpacingType
   }
-  /** DEPRECATED. Positioning of content menu relative to anchor */
-  anchorOrigin?: PopoverOrigin
-  /** DEPRECATED. Positioning of content menu relative to content */
-  transformOrigin?: PopoverOrigin
-  /** Position of the popper relative to the anchor */
   placement?: PopperPlacementType
   /** Disable auto focus of first item in list or item */
   disableAutoFocus?: boolean
@@ -87,8 +81,6 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
     children,
     content,
     offset,
-    transformOrigin,
-    anchorOrigin,
     placement,
     disableAutoClose,
     disableAutoFocus,
@@ -99,19 +91,6 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
   },
   ref
 ) {
-  if (anchorOrigin) {
-    // eslint-disable-next-line no-console
-    console.warn(
-      'DEPRECATED in Dropdown: "anchorOrigin". To control popper position, please use "placement" and "offset" props.'
-    )
-  }
-  if (transformOrigin) {
-    // eslint-disable-next-line no-console
-    console.warn(
-      'DEPRECATED in Dropdown: "transformOrigin". To control popper position, please use "placement" and "offset" props.'
-    )
-  }
-
   const contentRef = useRef<HTMLElement>()
 
   const [anchorEl, setAnchorEl] = useState<HTMLDivElement | undefined>(
