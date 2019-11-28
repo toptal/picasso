@@ -43,9 +43,6 @@ export { default as Table } from './Table'
 export { default as TableFooter } from './TableFooter'
 export { default as Tabs } from './Tabs'
 export { default as TagSelector } from './TagSelector'
-// TextField component is deprecated and
-// have to be removed in v4 of Picasso
-export { default as TextField } from './TextField'
 export { default as Tooltip } from './Tooltip'
 export { default as Typography } from './Typography'
 export { default as UserBadge } from './UserBadge'
