@@ -14,7 +14,7 @@ exports[`Radio.Group renders radio in group 1`] = `
       >
         <span
           aria-disabled="false"
-          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root"
+          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel"
         >
           <span
             class="MuiIconButton-label"
@@ -48,7 +48,7 @@ exports[`Radio.Group renders radio in group 1`] = `
       >
         <span
           aria-disabled="false"
-          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root"
+          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel"
         >
           <span
             class="MuiIconButton-label"

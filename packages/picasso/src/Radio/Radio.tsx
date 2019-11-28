@@ -8,6 +8,7 @@ import {
   StandardProps,
   ButtonOrAnchorProps
 } from '@toptal/picasso-shared'
+import cx from 'classnames'
 
 import FormControlLabel from '../FormControlLabel'
 import Form from '../Form'
@@ -65,7 +66,9 @@ export const Radio = forwardRef<HTMLButtonElement, Props>(function Radio(
       checkedIcon={<div className={classes.checkedIcon} />}
       color='default'
       classes={rootClasses}
-      className={className}
+      className={cx(className, {
+        [classes.withLabel]: Boolean(label)
+      })}
       style={style}
     />
   )
