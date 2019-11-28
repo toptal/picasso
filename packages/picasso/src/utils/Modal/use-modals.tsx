@@ -1,8 +1,10 @@
 import React, { useContext, ReactNode } from 'react'
 import { ModalContext, ModalType } from 'react-modal-hook'
 
-import { PromptModal } from '../../'
-import { Props as PromptModalProps, PromptOptions } from '../../PromptModal'
+import PromptModal, {
+  Props as PromptModalProps,
+  PromptOptions
+} from '../../PromptModal'
 
 export interface ShowPromptOptions
   extends Pick<PromptModalProps, 'onSubmit' | 'title' | 'message'>,

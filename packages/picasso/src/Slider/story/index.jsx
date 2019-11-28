@@ -4,8 +4,7 @@ import { Slider } from '../Slider'
 
 const page = PicassoBook.createPage(
   'Slider',
-  'Slider is used to pick a numeric value from the predefined range',
-  'Lab'
+  'Slider is used to pick a numeric value from the predefined range'
 )
 
 page

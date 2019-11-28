@@ -2,9 +2,10 @@ import React from 'react'
 import { render, fireEvent, wait } from '@testing-library/react'
 import '@testing-library/react/cleanup-after-each'
 import Picasso from '@toptal/picasso-shared'
-import { Button, Input } from '@toptal/picasso'
 
-import PromptModal from './../PromptModal'
+import Button from '../Button'
+import Input from '../Input'
+import PromptModal from '../PromptModal'
 import { useModals } from '../utils'
 
 test('renders PromptModal', () => {

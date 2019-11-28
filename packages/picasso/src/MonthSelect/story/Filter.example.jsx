@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { Grid, Form } from '@toptal/picasso'
-import { MonthSelect, YearSelect } from '@toptal/picasso-lab'
+import { Grid, Form, MonthSelect, YearSelect } from '@toptal/picasso'
 
 const FilterExample = () => {
   const [startMonth, setStartMonth] = useState()

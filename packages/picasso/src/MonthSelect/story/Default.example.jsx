@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { MonthSelect } from '@toptal/picasso-lab'
+import { MonthSelect } from '@toptal/picasso'
 
 const DefaultExample = () => {
   const [selectedOption, setSelectedOption] = useState()

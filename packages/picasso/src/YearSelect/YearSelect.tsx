@@ -1,7 +1,7 @@
 import React, { forwardRef, useMemo, ChangeEvent } from 'react'
 import { JssProps, OmitInternalProps } from '@toptal/picasso-shared'
-import { Select } from '@toptal/picasso'
-import { Props as SelectProps } from '@toptal/picasso/Select'
+
+import Select, { Props as SelectProps } from '../Select'
 
 type AdjustedSelectProps = OmitInternalProps<
   Omit<SelectProps, 'onChange' | 'options'>
