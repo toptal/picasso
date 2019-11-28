@@ -1,7 +1,8 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, ReactNode } from 'react'
 import MUICheckbox from '@material-ui/core/Checkbox'
 import { withStyles } from '@material-ui/core/styles'
 import { StandardProps, ButtonOrAnchorProps } from '@toptal/picasso-shared'
+import cx from 'classnames'
 
 import FormControlLabel from '../FormControlLabel'
 import Form from '../Form'
@@ -17,7 +18,7 @@ export interface Props
   /** Checkbox can show indeterminate value instead of boolean */
   indeterminate?: boolean
   /** Text label for the `Checkbox` */
-  label?: string
+  label?: ReactNode
   /** The id of the input element */
   id?: string
   /** Mark field as required */
@@ -65,7 +66,9 @@ export const Checkbox = forwardRef<HTMLButtonElement, Props>(function Checkbox(
       checkedIcon={<div className={classes.checkedIcon} />}
       indeterminateIcon={<div className={classes.indeterminateIcon} />}
       classes={rootClasses}
-      className={className}
+      className={cx(className, {
+        [classes.withLabel]: Boolean(label)
+      })}
       style={style}
       disabled={disabled}
       id={id}
