@@ -21,14 +21,12 @@ const IndicatorDefaultExample = () => (
       </Typography>
     </Container>
 
-    <Container bottom='medium'>
-      <Container inline right='small'>
-        <Indicator color='blue' />
-      </Container>
-      <Typography inline size='medium'>
-        Low priority
-      </Typography>
+    <Container inline right='small'>
+      <Indicator color='blue' />
     </Container>
+    <Typography inline size='medium'>
+      Low priority
+    </Typography>
   </Fragment>
 )
 
