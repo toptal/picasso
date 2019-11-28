@@ -145,8 +145,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       onKeyDown
     })
 
-    const hasOptions = Boolean(options)
-    const optionsLength = hasOptions ? options!.length : 0
+    const optionsLength = options ? options!.length : 0
     const shouldShowOtherOption =
       showOtherOption &&
       value &&
@@ -229,7 +228,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
           />
         </Container>
         <div role='listbox'>
-          {inputWrapperRef.current && hasOptions && (
+          {inputWrapperRef.current && optionsMenu && (
             <Popper
               open={isOpen && !loading}
               anchorEl={inputWrapperRef.current}
