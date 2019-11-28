@@ -10,7 +10,7 @@ exports[`checkbox interaction should render checked checkbox 1`] = `
     >
       <span
         aria-disabled="false"
-        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiCheckbox-root Checkbox-root MuiCheckbox-colorSecondary PrivateSwitchBase-checked Mui-checked MuiIconButton-colorSecondary"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiCheckbox-root Checkbox-root MuiCheckbox-colorSecondary Checkbox-withLabel PrivateSwitchBase-checked Mui-checked MuiIconButton-colorSecondary"
       >
         <span
           class="MuiIconButton-label"
@@ -137,7 +137,7 @@ exports[`should render default checkbox with label 1`] = `
     >
       <span
         aria-disabled="false"
-        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiCheckbox-root Checkbox-root MuiCheckbox-colorSecondary MuiIconButton-colorSecondary"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiCheckbox-root Checkbox-root MuiCheckbox-colorSecondary Checkbox-withLabel MuiIconButton-colorSecondary"
       >
         <span
           class="MuiIconButton-label"
