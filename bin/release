@@ -23,4 +23,4 @@ else
 fi
 
 # Send data about published packages to jenkins
-$NODE_MODULES/.bin/lerna changed -l > /artifacts/.version
+npx lerna changed --json | jq '.[] | .name + "-" + .version' | xargs echo > /artifacts/.version
