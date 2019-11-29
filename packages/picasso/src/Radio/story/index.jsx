@@ -1,5 +1,6 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
+import radioGroupStory from '../../RadioGroup/story'
 import { Radio } from '../Radio'
 
 const page = PicassoBook.createPage(
@@ -9,18 +10,21 @@ const page = PicassoBook.createPage(
   'Forms'
 )
 
-page.createTabChapter('Props').addComponentDocs({
-  component: Radio,
-  name: 'Radio',
-  additionalDocs: {
-    onChange: {
-      type: {
-        description:
-          '(event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void'
+page
+  .createTabChapter('Props')
+  .addComponentDocs({
+    component: Radio,
+    name: 'Radio',
+    additionalDocs: {
+      onChange: {
+        type: {
+          description:
+            '(event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void'
+        }
       }
     }
-  }
-})
+  })
+  .addComponentDocs(radioGroupStory.componentDocs)
 
 page
   .createChapter()

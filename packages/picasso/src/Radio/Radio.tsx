@@ -1,6 +1,5 @@
 import React, { forwardRef, ReactNode } from 'react'
 import MUIRadio from '@material-ui/core/Radio'
-import RadioGroup from '@material-ui/core/RadioGroup'
 import { withStyles } from '@material-ui/core/styles'
 import {
   PicassoComponentWithRef,
@@ -10,6 +9,7 @@ import {
 } from '@toptal/picasso-shared'
 import cx from 'classnames'
 
+import RadioGroup from '../RadioGroup'
 import FormControlLabel from '../FormControlLabel'
 import Form from '../Form'
 import styles from './styles'
