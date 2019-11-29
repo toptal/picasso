@@ -5,8 +5,6 @@ BASE_PATH=$(pwd)
 
 NODE_MODULES="$BASE_PATH/node_modules/"
 
-echo "" > .version
-
 # Build all packages
 npx lerna run build:dist --since ${TARGET_BRANCH:-master}
 
