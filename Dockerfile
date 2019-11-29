@@ -44,7 +44,9 @@ RUN yarn
 
 # needs to be +rw for rm and mkdir /build
 RUN chmod a+rw /app
-RUN chmod a+rw /app/CHANGELOG.md
+RUN chmod a+rw /app/packages/picasso/CHANGELOG.md
+RUN chmod a+rw /app/packages/picasso-lab/CHANGELOG.md
+RUN chmod a+rw /app/packages/shared/CHANGELOG.md
 RUN chmod a+rw /app/package.json
 
 COPY bin/entrypoint.sh /usr/local/bin/entrypoint.sh
