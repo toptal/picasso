@@ -1,7 +1,7 @@
 import React, { forwardRef, Ref } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
-import { StandardProps, ColorType } from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import styles from './styles'
@@ -10,7 +10,7 @@ const BASE_SIZE = 24
 type ScaleType = 1 | 2 | 3 | 4
 export interface Props extends StandardProps {
   scale?: ScaleType
-  color?: ColorType | string
+  color?: string
   base?: number
 }
 const SvgBankWire24 = forwardRef(function SvgBankWire24(
@@ -26,13 +26,10 @@ const SvgBankWire24 = forwardRef(function SvgBankWire24(
     base
   } = props
   const classes = [availableClasses.root, className]
-  let svgColor
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
   const colorClassName = kebabToCamelCase(`${color}`)
 
-  if (!availableClasses[`${colorClassName}`]) {
-    svgColor = color
-  } else {
+  if (availableClasses[colorClassName]) {
     classes.push(availableClasses[colorClassName])
   }
 
@@ -47,7 +44,6 @@ const SvgBankWire24 = forwardRef(function SvgBankWire24(
       viewBox='0 0 32 32'
       className={cx(...classes)}
       style={svgStyle}
-      color={svgColor}
       ref={ref}
     >
       <path d='M2 26h28v4H2v-4zm1 1v2h26v-2H3zM2 8l14-6 14 6v3H2V8zm1 .66V10h26V8.66L16 3.087 3 8.659zM4 12h6v13H4V12zm1 1v11h4V13H5zm8-1h6v13h-6V12zm1 1v11h4V13h-4zm8-1h6v13h-6V12zm1 1v11h4V13h-4z' />
