@@ -1,7 +1,7 @@
 import React, { FunctionComponent, ReactNode } from 'react'
 
-import { Paper, Container, Typography } from '@components'
-import { useBreakpoint } from '@components/utils'
+import { Paper, Container, Typography } from '../../../../../packages/picasso'
+import { useBreakpoint } from '../../../../../packages/picasso/src/utils'
 
 import TabsSectionHeader from './TabsSectionHeader'
 
@@ -21,8 +21,8 @@ const TabsSection: FunctionComponent<Props> = props => {
 
   const [selectedTab, setSelectedTab] = React.useState(0)
 
-  function handleChange(event: any, selectedTab: number) {
-    setSelectedTab(selectedTab)
+  function handleChange(event: any, value: number) {
+    setSelectedTab(value)
   }
 
   const hasMultiple = tabs.length > 1

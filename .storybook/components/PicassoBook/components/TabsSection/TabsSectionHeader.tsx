@@ -1,8 +1,8 @@
 import React, { Fragment, FunctionComponent } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
-import { Classes } from '@components/styles/types'
-import { Typography, Tabs } from '@components'
+import { Classes } from '../../../../../packages/shared'
+import { Typography, Tabs } from '../../../../../packages/picasso'
 
 import { TabOptions } from './TabsSection'
 import styles from './styles'
@@ -11,7 +11,7 @@ interface Props {
   classes: Classes
   tabs: TabOptions[]
   selectedTab: number
-  onChange: (event: React.ChangeEvent<{}>, selectedTab: number) => void
+  onChange: (event: React.ChangeEvent<{}>, value: number) => void
 }
 
 const TabsSectionHeader: FunctionComponent<Props> = props => {

@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FileInput default render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root FileInput-root OutlinedInput-rootAuto MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+    >
+      <div
+        class="MuiInputAdornment-root InputAdornment-root FileInput-adornmentStart MuiInputAdornment-positionStart"
+      >
+        <svg
+          class="SvgUploadDocument16-root"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M1 15h7v1H0V0h13v8h-1V1H1v14zm12-3.293V16h-1v-4.293l-1.5 1.5-.707-.707L12.5 9.793l.707.707 2 2-.707.707-1.5-1.5zM3 4h7v1H3V4zm0 2h7v1H3V6zm0 2h3v1H3V8z"
+          />
+        </svg>
+      </div>
+      <p
+        class="MuiTypography-root Typography-bodyInherit Component-inputValue MuiTypography-body1 MuiTypography-displayInline"
+      />
+      <input
+        class="Component-nativeInput"
+        type="file"
+      />
+      <div
+        class="MuiInputAdornment-root InputAdornment-root MuiInputAdornment-positionEnd"
+      >
+        <button
+          class="MuiButtonBase-root makeStyles-small makeStyles-primaryBlue makeStyles-root FileInput-button"
+          tabindex="0"
+          type="button"
+        >
+          <span
+            class="Container-flex Container-inline makeStyles-content"
+            style="align-items: center;"
+          >
+            Choose File
+          </span>
+        </button>
+      </div>
+      <fieldset
+        aria-hidden="true"
+        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+        style="padding-left: 8px;"
+      >
+        <legend
+          class="PrivateNotchedOutline-legend"
+          style="width: 0.01px;"
+        >
+          <span>
+            ​
+          </span>
+        </legend>
+      </fieldset>
+    </div>
+  </div>
+</div>
+`;

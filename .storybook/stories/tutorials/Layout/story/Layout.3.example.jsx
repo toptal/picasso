@@ -16,7 +16,7 @@ const LayoutExample = () => (
   <div style={{ height: '40rem' }}>
     <Page>
       <Page.Header title='How to layout a page' />
-      <Page.Content flex>
+      <Page.Content>
         <SidebarMenu />
         <Container padded='small'>Main Content</Container>
       </Page.Content>

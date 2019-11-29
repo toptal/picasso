@@ -7,17 +7,17 @@ NODE_MODULES="$BASE_PATH/node_modules/"
 
 echo "" > .version
 
-yarn build:dist
+# Build all packages
+npx lerna run build:dist --since ${TARGET_BRANCH:-master}
 
-# Safe switch for jenkins if we want to just try out release
-# yarn release [0|1]
-
-if [ $RELEASE_AND_PUBLISH == "1" ]; then
-  echo "=== WARNING RUNNING LIVE RELEASE ==="
-  $NODE_MODULES/.bin/semantic-release --debug
+# Publish packages
+if [[ $RELEASE_AND_PUBLISH == "1" ]]; then
+  echo "=== WARNING RUNNING LIVE RELEASE FOR PACKAGES ==="
+  $NODE_MODULES/.bin/lerna publish --contents build --canary
 else
-  echo "=== RUNNING TEST RELEASE. NOTHING WILL BE PUBLISHED ==="
-  $NODE_MODULES/.bin/semantic-release --debug --dry-run
+  echo "=== RUNNING TEST RELEASE FOR PACKAGES. NOTHING WILL BE PUBLISHED ==="
+  $NODE_MODULES/.bin/lerna changed
 fi
 
-cp .version /artifacts/.version
+# Send data about published packages to jenkins
+$NODE_MODULES/.bin/lerna changed -l > /artifacts/.version

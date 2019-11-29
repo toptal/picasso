@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-CWD="$(dirname "$0")"
-
-$CWD/../../bin/bump-package-json $1
-rm .gitignore

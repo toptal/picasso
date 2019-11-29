@@ -1,0 +1,172 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`checkbox interaction should render checked checkbox 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <label
+      class="MuiFormControlLabel-root FormControlLabel-root Checkbox-root"
+    >
+      <span
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiCheckbox-root Checkbox-root MuiCheckbox-colorSecondary Checkbox-withLabel PrivateSwitchBase-checked Mui-checked MuiIconButton-colorSecondary"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <input
+            class="PrivateSwitchBase-input"
+            data-indeterminate="false"
+            type="checkbox"
+            value=""
+          />
+          <div
+            class="Checkbox-checkedIcon"
+          />
+        </span>
+      </span>
+      <span
+        class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+      >
+        <span
+          class="FormLabel-root FormLabel-inline"
+        >
+          <span
+            class="FormLabel-text"
+          >
+            Select item
+          </span>
+        </span>
+      </span>
+    </label>
+  </div>
+</div>
+`;
+
+exports[`renders default checkbox without label 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <span
+      aria-disabled="false"
+      class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiCheckbox-root Checkbox-root MuiCheckbox-colorSecondary MuiIconButton-colorSecondary"
+    >
+      <span
+        class="MuiIconButton-label"
+      >
+        <input
+          class="PrivateSwitchBase-input"
+          data-indeterminate="false"
+          type="checkbox"
+          value=""
+        />
+        <div
+          class="Checkbox-uncheckedIcon"
+        />
+      </span>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`renders disabled state 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <span
+      aria-disabled="true"
+      class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiCheckbox-root Checkbox-root MuiCheckbox-colorSecondary PrivateSwitchBase-disabled Mui-disabled Checkbox-disabled MuiIconButton-colorSecondary Mui-disabled Mui-disabled"
+      tabindex="-1"
+    >
+      <span
+        class="MuiIconButton-label"
+      >
+        <input
+          class="PrivateSwitchBase-input"
+          data-indeterminate="false"
+          disabled=""
+          type="checkbox"
+          value=""
+        />
+        <div
+          class="Checkbox-uncheckedIcon"
+        />
+      </span>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`renders indeterminate state 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <span
+      aria-disabled="false"
+      class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiCheckbox-root Checkbox-root MuiCheckbox-colorSecondary MuiCheckbox-indeterminate MuiIconButton-colorSecondary"
+    >
+      <span
+        class="MuiIconButton-label"
+      >
+        <input
+          class="PrivateSwitchBase-input"
+          data-indeterminate="true"
+          type="checkbox"
+          value=""
+        />
+        <div
+          class="Checkbox-indeterminateIcon"
+        />
+      </span>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`should render default checkbox with label 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <label
+      class="MuiFormControlLabel-root FormControlLabel-root Checkbox-root"
+    >
+      <span
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiCheckbox-root Checkbox-root MuiCheckbox-colorSecondary Checkbox-withLabel MuiIconButton-colorSecondary"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <input
+            class="PrivateSwitchBase-input"
+            data-indeterminate="false"
+            type="checkbox"
+            value=""
+          />
+          <div
+            class="Checkbox-uncheckedIcon"
+          />
+        </span>
+      </span>
+      <span
+        class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+      >
+        <span
+          class="FormLabel-root FormLabel-inline"
+        >
+          <span
+            class="FormLabel-text"
+          >
+            Select item
+          </span>
+        </span>
+      </span>
+    </label>
+  </div>
+</div>
+`;

@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
 
-import { Paper } from '@components'
+import { Paper } from '../../../packages/picasso'
 
 import Base from './Base'
 

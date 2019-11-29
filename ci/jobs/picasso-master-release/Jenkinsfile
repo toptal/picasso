@@ -104,14 +104,15 @@ pipeline {
             -e NPM_TOKEN=${NPM_TOKEN} \
             -e JENKINS_URL=${JENKINS_URL} \
             -e GIT_BRANCH=${GIT_BRANCH} \
+            -e TARGET_BRANCH=master \
             -v ${PWD}:/artifacts \
             -v /etc/passwd:/etc/passwd \
             -v /home/jenkins/.ssh:/home/jenkins/.ssh \
             -u 469:469 \
-            --entrypoint=./bin/release \
             -v $SSH_AUTH_SOCK:/ssh-agent \
             -e SSH_AUTH_SOCK=/ssh-agent \
             -v ${PWD}/.git:/app/.git \
+            --entrypoint=./bin/release \
             gcr.io/toptal-hub/${repoName}:${gitCommit()}
           """
         }

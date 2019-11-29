@@ -1,1 +1,0 @@
-{"version":3,"file":"styles.js","sourceRoot":"","sources":["../../src/components/LabelGroup/styles.ts"],"names":[],"mappings":"AAAA,eAAe,GAAG,EAAE,CAAC,CAAC;IACpB,IAAI,EAAE;QACJ,WAAW,EAAE,QAAQ;QACrB,YAAY,EAAE,QAAQ;QAEtB,OAAO,EAAE;YACP,WAAW,EAAE,OAAO;YACpB,YAAY,EAAE,OAAO;SACtB;KACF;CACF,CAAC,CAAA"}
