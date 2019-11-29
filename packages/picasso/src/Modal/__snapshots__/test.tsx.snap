@@ -85,7 +85,7 @@ exports[`renders Modal 1`] = `
 </div>
 `;
 
-exports[`useModal opens and closes modal 1`] = `
+exports[`useModals opens and closes modal 1`] = `
 <body>
   <div>
     <div
@@ -156,7 +156,7 @@ exports[`useModal opens and closes modal 1`] = `
 </body>
 `;
 
-exports[`useModal opens and closes modal 2`] = `
+exports[`useModals opens and closes modal 2`] = `
 <body>
   <div>
     <div
@@ -180,7 +180,7 @@ exports[`useModal opens and closes modal 2`] = `
 </body>
 `;
 
-exports[`useModal shows multiple modals at the same time 1`] = `
+exports[`useModals shows multiple modals at the same time 1`] = `
 <body>
   <div>
     <div

@@ -44,7 +44,7 @@ export const PageContent = forwardRef<HTMLDivElement, Props>(
 )
 
 PageContent.defaultProps = {
-  flex: false // In Picasso v4 we want to make default value true
+  flex: true
 }
 
 PageContent.displayName = 'PageContent'
