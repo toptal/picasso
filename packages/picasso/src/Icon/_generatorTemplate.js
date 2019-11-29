@@ -49,8 +49,6 @@ const iconTemplate = ({ template }, opts, { componentName, jsx }) => {
   decorateWithClassNameProp(svgElement)
   // add `style={style}` to svg root tag
   decorateWithIdentifierProp(svgElement, 'style', 'svgStyle')
-  // add `color={color}` to svg root tag - TODO - remove after v4
-  decorateWithIdentifierProp(svgElement, 'color', 'svgColor')
   // add `ref={ref}` to svg root tag
   decorateWithIdentifierProp(svgElement, 'ref', 'ref')
 
@@ -60,7 +58,7 @@ const iconTemplate = ({ template }, opts, { componentName, jsx }) => {
     import React, { forwardRef, Ref } from 'react'
     import cx from 'classnames'
     import { withStyles } from '@material-ui/core/styles'
-    import { StandardProps, ColorType } from '@toptal/picasso-shared'
+    import { StandardProps } from '@toptal/picasso-shared'
 
     import kebabToCamelCase from '../utils/kebab-to-camel-case'
     import styles from './styles'
@@ -75,7 +73,7 @@ const iconTemplate = ({ template }, opts, { componentName, jsx }) => {
 
     export interface Props extends StandardProps {
       scale?: ScaleType
-      color?: ColorType | string
+      color?: string
       base?: number
     }
 
@@ -85,14 +83,11 @@ const iconTemplate = ({ template }, opts, { componentName, jsx }) => {
     ) {
       const { classes: availableClasses, className, style = {}, color, scale, base } = props
       const classes = [availableClasses.root, className]
-      let svgColor
 
       const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
       const colorClassName = kebabToCamelCase(\`\${color}\`)
 
-      if (!availableClasses[\`\${colorClassName}\`]) {
-        svgColor = color
-      } else {
+      if (availableClasses[\`\${colorClassName}\`]) {
         classes.push(availableClasses[colorClassName])
       }
 
