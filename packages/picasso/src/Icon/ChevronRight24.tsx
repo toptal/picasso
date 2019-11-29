@@ -29,7 +29,7 @@ const SvgChevronRight24 = forwardRef(function SvgChevronRight24(
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
   const colorClassName = kebabToCamelCase(`${color}`)
 
-  if (availableClasses[`${colorClassName}`]) {
+  if (availableClasses[colorClassName]) {
     classes.push(availableClasses[colorClassName])
   }
 
