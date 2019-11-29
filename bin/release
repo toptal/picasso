@@ -5,6 +5,11 @@ BASE_PATH=$(pwd)
 
 NODE_MODULES="$BASE_PATH/node_modules/"
 
+# Needs to be updated for publishing package to npm	
+echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN} \	
+always-auth=true ' > .npmrc	
+git update-index --assume-unchanged .npmrc
+
 # Build all packages
 npx lerna run build:dist
 
