@@ -6,7 +6,7 @@ BASE_PATH=$(pwd)
 NODE_MODULES="$BASE_PATH/node_modules/"
 
 # Build all packages
-npx lerna run build:dist --since ${TARGET_BRANCH:-master}
+npx lerna run build:dist
 
 # Publish packages
 if [[ $RELEASE_AND_PUBLISH == "1" ]]; then

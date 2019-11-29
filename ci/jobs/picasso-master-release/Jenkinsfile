@@ -104,7 +104,6 @@ pipeline {
             -e NPM_TOKEN=${NPM_TOKEN} \
             -e JENKINS_URL=${JENKINS_URL} \
             -e GIT_BRANCH=${GIT_BRANCH} \
-            -e TARGET_BRANCH=master \
             -v ${PWD}:/artifacts \
             -v /etc/passwd:/etc/passwd \
             -v /home/jenkins/.ssh:/home/jenkins/.ssh \
