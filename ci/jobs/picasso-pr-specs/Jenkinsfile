@@ -30,17 +30,18 @@ pipeline {
       steps {
         info "== Checking out Git revision ${ghprbActualCommit}"
         gitCheckout(
-                branches: "${ghprbActualCommit}",
-                credentials: [username: 'toptal-build', description: 'toptal-build-ssh-key'],
-                url: 'git@github.com:toptal/picasso.git',
-                refspec: "+refs/heads/${ghprbTargetBranch}:refs/remotes/origin/${ghprbTargetBranch} +refs/pull/${ghprbPullId}/*:refs/remotes/origin/pr/${ghprbPullId}/*",
-                additionalBehaviours: [
-                        advancedCheckoutBehaviour: [timeout: 120],
-                        advancedCloneBehaviour   : [depth: 0, noTags: true, reference: '', shallow: false, timeout: 340],
-                        cleanBeforeCheckout      : false,
-                        calculateChangelog       : [compareRemote: 'origin', compareTarget: "${ghprbTargetBranch}"],
-                        mergeBeforeBuild         : [mergeRemote: 'origin', mergeTarget: "${ghprbTargetBranch}", mergeStrategy: 'DEFAULT', fastForwardMode: 'FF']
-                ])
+          branches: "${ghprbActualCommit}",
+          credentials: [username: 'toptal-build', description: 'toptal-build-ssh-key'],
+          url: 'git@github.com:toptal/picasso.git',
+          refspec: "+refs/heads/${ghprbTargetBranch}:refs/remotes/origin/${ghprbTargetBranch} +refs/pull/${ghprbPullId}/*:refs/remotes/origin/pr/${ghprbPullId}/*",
+          additionalBehaviours: [
+                  advancedCheckoutBehaviour: [timeout: 120],
+                  advancedCloneBehaviour   : [depth: 0, noTags: true, reference: '', shallow: false, timeout: 340],
+                  cleanBeforeCheckout      : false,
+                  calculateChangelog       : [compareRemote: 'origin', compareTarget: "${ghprbTargetBranch}"],
+                  mergeBeforeBuild         : [mergeRemote: 'origin', mergeTarget: "${ghprbTargetBranch}", mergeStrategy: 'DEFAULT', fastForwardMode: 'FF']
+          ]
+        )
 
         info "Git commit: ${gitCommit()}"
         info "Git branch: ${gitBranch()}"

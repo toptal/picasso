@@ -41,7 +41,7 @@ pipeline {
             branches: "$GIT_BRANCH",
             credentials: [username: 'toptal-build', description: 'toptal-build-ssh-key'],
             url: 'git@github.com:toptal/picasso.git',
-            refspec: '+refs/heads/master:refs/remotes/origin/master',
+            refspec: "+refs/heads/${GIT_BRANCH}:refs/remotes/origin/${GIT_BRANCH}",
             additionalBehaviours: [
               checkoutToSpecificLocalBranch: [ localBranch: "$GIT_BRANCH" ],
               cleanBeforeCheckout         : true,
