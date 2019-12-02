@@ -28,7 +28,13 @@ RUN apk update && apk upgrade && \
       su-exec \
       openssh-client \
       bash \
-      sed
+      sed \
+      shadow
+
+# Change default 'node' user id to match jenkins CI user id
+# so when we will be running container from CI it would have
+# all necessary rights for npm/yarn publish
+RUN groupmod -g 469 node && usermod -u 469 -g 469 node
 
 WORKDIR /app
 
