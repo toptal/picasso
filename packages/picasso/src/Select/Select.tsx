@@ -14,9 +14,9 @@ import Popper from '@material-ui/core/Popper'
 import NativeSelect from '@material-ui/core/NativeSelect'
 import { withStyles } from '@material-ui/core/styles'
 import { capitalize } from '@material-ui/core/utils/helpers'
-import { StandardProps } from '@toptal/picasso-shared'
+import { StandardProps, SizeType } from '@toptal/picasso-shared'
 
-import { Input } from '../'
+import Input from '../Input'
 import OutlinedInput from '../OutlinedInput'
 import ScrollMenu from '../ScrollMenu'
 import InputAdornment from '../InputAdornment'
@@ -36,7 +36,7 @@ const getOptionText = (option: Option | null) =>
 
 export interface Props
   extends StandardProps,
-    Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
+    Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'size'> {
   /** If true, the 'Select' will be disabled */
   disabled?: boolean
   /** Indicate whether `Select` is in error state */
@@ -69,6 +69,11 @@ export interface Props
   value?: ValueType
   /** Allow selecting multiple values */
   multiple?: boolean
+  /**
+   * Size of component
+   * @default medium
+   */
+  size?: SizeType<'small' | 'medium'>
 }
 
 type Selection = {
@@ -86,7 +91,7 @@ type NativeOptionsProps = Pick<Props, 'options' | 'renderOption'> & {
 
 type OptionsProps = Pick<
   Props,
-  'options' | 'value' | 'multiple' | 'renderOption' | 'getDisplayValue'
+  'options' | 'value' | 'multiple' | 'renderOption' | 'getDisplayValue' | 'size'
 > & {
   highlightedIndex: number | null
   getItemProps: (index: number, option: Option) => ItemProps
@@ -234,6 +239,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     value = multiple ? [] : '',
     getDisplayValue,
     tabIndex = 0,
+    size,
     ...rest
   },
   ref
@@ -398,7 +404,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
       onChange={onChange}
       IconComponent={() => dropDownIcon}
       classes={{
-        root: cx(classes.select, {
+        root: cx(classes.select, classes[`select${capitalize(size!)}`], {
           [classes.placeholder]: !select.isSelected()
         }),
         select: cx({
@@ -455,7 +461,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
               [classes.inputMultiple]: multiple
             })
           }}
-          size={1} // let input to have smallest width by default
+          size={size}
           role='textbox'
         />
         {dropDownIcon}
@@ -475,7 +481,8 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
             getItemProps,
             value,
             getDisplayValue,
-            multiple
+            multiple,
+            size
           })}
         </Popper>
       )}
@@ -506,6 +513,7 @@ Select.defaultProps = {
   native: false,
   onChange: () => {},
   renderOption: (option: Option) => option.text,
+  size: 'medium',
   width: 'full'
 }
 

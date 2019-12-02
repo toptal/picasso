@@ -9,7 +9,12 @@ const InputDefaultExample = () => {
   }
 
   return (
-    <Input value={value} placeholder='Placeholder' onChange={handleChange} />
+    <Input
+      value={value}
+      size='small'
+      placeholder='Placeholder'
+      onChange={handleChange}
+    />
   )
 }
 

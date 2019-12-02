@@ -10,11 +10,25 @@ export default ({ sizes: { input }, palette }: Theme) =>
     root: {
       padding: input.padding
     },
+    rootSmall: {
+      height: '1.5rem',
+      padding: '0.25rem 0.625rem',
+
+      '& $input': {
+        fontSize: '0.75rem'
+      }
+    },
+    rootMedium: {
+      height: input.height,
+
+      '& $input': {
+        fontSize: '0.8125rem'
+      }
+    },
     rootMultiline: {
       height: 'auto'
     },
     input: {
-      fontSize: '0.8125em',
       padding: 0
     },
     icon: {
@@ -22,15 +36,15 @@ export default ({ sizes: { input }, palette }: Theme) =>
     },
     counter: {
       color: palette.grey.main,
-      fontSize: '0.625em',
-      lineHeight: '1em'
+      fontSize: '0.625rem',
+      lineHeight: '1rem'
     },
     counterNegative: {
       color: palette.red.main
     },
     counterMultiline: {
       alignSelf: 'flex-end',
-      height: '0.625em',
-      marginBottom: '-0.25em'
+      height: '0.625rem',
+      marginBottom: '-0.25rem'
     }
   })
