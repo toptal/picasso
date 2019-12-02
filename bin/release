@@ -16,7 +16,7 @@ npx lerna run build:dist
 # Publish packages
 if [[ $RELEASE_AND_PUBLISH == "1" ]]; then
   echo "=== WARNING RUNNING LIVE RELEASE FOR PACKAGES ==="
-  $NODE_MODULES/.bin/lerna publish --contents build --canary --force-publish
+  $NODE_MODULES/.bin/lerna publish --contents build
 else
   echo "=== RUNNING TEST RELEASE FOR PACKAGES. NOTHING WILL BE PUBLISHED ==="
   $NODE_MODULES/.bin/lerna changed
