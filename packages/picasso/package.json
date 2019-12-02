@@ -8,8 +8,8 @@
   "main": "./src/index.ts",
   "module": "./src/index.ts",
   "scripts": {
-    "build:dist": "cross-env NODE_ENV=production ../../bin/build --tsConfig=./tsconfig.json --packageJson=./package.json --outputPackageJson=./build --entry=./index.js",
-    "prepublishOnly": "../../bin/prepublish --copy-readme"
+    "build:dist": "cross-env NODE_ENV=production ../../bin/build --tsConfig=./tsconfig.json --entry=./index.js",
+    "prepublishOnly": "../../bin/prepublish --entry=./index.js --copy-readme"
   },
   "repository": {
     "type": "git",

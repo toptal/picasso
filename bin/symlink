@@ -4,7 +4,7 @@ const path = require('path')
 const yargs = require('yargs').argv
 const exec = require('child_process').execSync
 
-const { log, generatePackageJson } = require('./utils')
+const { log } = require('./utils')
 const config = require(`../tsconfig.json`)
 const packageJson = require(path.resolve(__dirname, '../package.json'))
 
@@ -36,9 +36,11 @@ const setup = function (config) {
     unlink(packageJson.name, config.compilerOptions.outDir)
     unlink('react', './node_modules/react')
 
-    // prepare the build folder to looks like
-    // a proper package for yarn
-    generatePackageJson(packageJson, config.compilerOptions.outDir)
+    // TODO: needs to be fixed after v4 release
+    // generatePackageJson replaced with copyPackageJson
+    // // prepare the build folder to looks like
+    // // a proper package for yarn
+    // generatePackageJson(packageJson, config.compilerOptions.outDir)
 
     link('picasso', config.compilerOptions.outDir)
     link('react', './node_modules/react')

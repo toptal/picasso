@@ -5,14 +5,15 @@ const packageRootDir = path.resolve('.')
 
 // script arguments
 const shouldCopyReadme = yargs.copyReadme
+const entry = yargs.entry
 
 const {
-  bumpPackageJsonVersion,
+  copyPackageJson,
   copyReadme,
   bumpReadmeVersion
 } = require('./utils')
 
-bumpPackageJsonVersion(packageRootDir)
+copyPackageJson(packageRootDir, entry)
 
 if (shouldCopyReadme) {
   copyReadme(packageRootDir)

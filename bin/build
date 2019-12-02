@@ -6,7 +6,7 @@ const yargs = require('yargs').argv
 const sh = require('shelljs')
 const exec = require('child_process').execSync
 
-const { log, generatePackageJson } = require('./utils')
+const { log, copyPackageJson } = require('./utils')
 const tscPath = path.resolve(__dirname, '../node_modules/.bin/tsc')
 
 const safeExec = cmd => {
@@ -28,7 +28,7 @@ const safeExec = cmd => {
   }
 }
 
-const compile = function (tsConfig, packageJson) {
+const compile = function (tsConfig, packageJson, packageRootDir) {
   const args = []
 
   log(`Building ${packageJson.name}:${packageJson.version}`)
@@ -48,7 +48,7 @@ const compile = function (tsConfig, packageJson) {
   clean()
   build()
 
-  generatePackageJson(packageJson, outputPackageJson, entry)
+  copyPackageJson(packageRootDir, entry)
 
   if (yargs.watch) {
     args.unshift('--watch')
@@ -58,8 +58,8 @@ const compile = function (tsConfig, packageJson) {
 }
 
 const tsConfig = require(path.resolve(yargs.tsConfig))
-const packageJson = require(path.resolve(yargs.packageJson))
-const outputPackageJson = yargs.outputPackageJson || tsConfig.compilerOptions.outDir
+const packageRootDir = path.resolve('.')
+const packageJson = require(path.resolve(packageRootDir, './package.json'))
 const entry = yargs.entry || './index.js'
 
-compile(tsConfig, packageJson)
+compile(tsConfig, packageJson, packageRootDir)
