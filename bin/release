@@ -9,7 +9,6 @@ NODE_MODULES="$BASE_PATH/node_modules/"
 echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN} \	
 always-auth=true ' > .npmrc	
 git update-index --assume-unchanged .npmrc
-git update-index --assume-unchanged lerna.json
 
 # Build all packages
 npx lerna run build:dist
@@ -17,7 +16,7 @@ npx lerna run build:dist
 # Publish packages
 if [[ $RELEASE_AND_PUBLISH == "1" ]]; then
   echo "=== WARNING RUNNING LIVE RELEASE FOR PACKAGES ==="
-  $NODE_MODULES/.bin/lerna publish --no-git-reset --contents build --canary --force-publish
+  $NODE_MODULES/.bin/lerna publish --contents build --canary --force-publish
 else
   echo "=== RUNNING TEST RELEASE FOR PACKAGES. NOTHING WILL BE PUBLISHED ==="
   $NODE_MODULES/.bin/lerna changed
