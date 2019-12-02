@@ -13,6 +13,7 @@ pipeline {
 
   parameters {
     string(name: 'RELEASE_AND_PUBLISH', defaultValue: '1', description: 'Run build in dry-run mode which will not release new version')
+    string(name: 'GIT_BRANCH', defaultValue: 'master', description: 'Git branch')
   }
 
   options {
@@ -26,7 +27,6 @@ pipeline {
   environment {
     GITHUB_TOKEN = credentials('toptal-devbot-personal-token')
     NPM_TOKEN = credentials('npm-token-for-toptal-private-registry-publish')
-    GIT_BRANCH = 'master'
     GIT_AUTHOR_NAME = 'toptal-davinci-bot'
     GIT_COMMITTER_NAME = 'toptal-davinci-bot'
     GIT_AUTHOR_EMAIL = 'milos.mosovsky+davinci@toptal.com'
