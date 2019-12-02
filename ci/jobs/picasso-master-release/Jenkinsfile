@@ -104,7 +104,7 @@ pipeline {
             -e JENKINS_URL=${JENKINS_URL} \
             -e GIT_BRANCH=${GIT_BRANCH} \
             -v ${PWD}:/artifacts \
-            -v /home/jenkins/.ssh:/home/jenkins/.ssh \
+            -v /home/jenkins/.ssh:/home/node/.ssh \
             -u 469:469 \
             -v $SSH_AUTH_SOCK:/ssh-agent \
             -e SSH_AUTH_SOCK=/ssh-agent \
