@@ -217,8 +217,8 @@ pipeline {
         script {
           data = '''[
           {
-            "title": "<!here> Current master version is broken",
-            "fallback": "<!here> Current master version is broken",
+            "title": "<!subteam^SES9F1R0D|@frontend-experience> Current master version is broken",
+            "fallback": "<!subteam^SES9F1R0D|@frontend-experience> Current master version is broken",
             "color": "#e20101",
             "fields": [
               {
