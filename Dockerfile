@@ -35,8 +35,6 @@ RUN apk update && apk upgrade && \
 # so when we will be running container from CI it would have
 # all necessary rights for npm/yarn publish
 RUN groupmod -g 469 node && usermod -u 469 -g 469 node
-# Rename 'node' user to 'jenkins'
-RUN usermod -d /home/jenkins -l jenkins node
 
 WORKDIR /app
 
