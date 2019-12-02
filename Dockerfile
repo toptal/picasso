@@ -33,7 +33,8 @@ RUN apk update && apk upgrade && \
       su-exec \
       openssh-client \
       bash \
-      sed
+      sed \
+      shadow
 
 WORKDIR /app
 
