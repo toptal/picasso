@@ -36,7 +36,7 @@ RUN usermod -d /home/jenkins -l jenkins node
 # Change default 'node' user id to match jenkins CI user id
 # so when we will be running container from CI it would have
 # all necessary rights for npm/yarn publish
-RUN groupmod -g 469 node && usermod -u 469 -g 469 node
+RUN groupmod -g 469 jenkins && usermod -u 469 -g 469 jenkins
 
 WORKDIR /app
 
