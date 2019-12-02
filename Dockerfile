@@ -11,6 +11,9 @@ ENV APK_BRANCH ${APK_BRANCH}
 
 ENV PATH="${PATH}:/app/node_modules/.bin"
 
+ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
+ENV PATH=$PATH:/home/node/.npm-global/bin
+
 # Installs Chromium (77) package.
 ENV CHROME_BIN /usr/bin/chromium-browser
 
