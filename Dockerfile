@@ -11,8 +11,10 @@ ENV APK_BRANCH ${APK_BRANCH}
 
 ENV PATH="${PATH}:/app/node_modules/.bin"
 
-ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
-ENV PATH=$PATH:/home/node/.npm-global/bin
+# Change default 'node' user id to match jenkins CI user id
+# so when we will be running container from CI it would have
+# all necessary rights for npm/yarn publish
+RUN groupmod -g 469 node && usermod -u 469 -g 469 node
 
 # Installs Chromium (77) package.
 ENV CHROME_BIN /usr/bin/chromium-browser
