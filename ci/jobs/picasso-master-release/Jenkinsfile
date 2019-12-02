@@ -82,7 +82,6 @@ pipeline {
         sshagent(credentials: ['toptal-build-ssh-key']) {
           // $SSH_AUTH_SOCK - is the ssh key passed from "picasso-ssh-deploy-key" credentials
           //
-          // -v /etc/passwd:/etc/passwd \
           // -v /home/jenkins/.ssh:/home/jenkins/.ssh \
           // -u 469:469 \
           // - all those need to be passed to reuse jenkins user from Jenkins
@@ -105,7 +104,6 @@ pipeline {
             -e JENKINS_URL=${JENKINS_URL} \
             -e GIT_BRANCH=${GIT_BRANCH} \
             -v ${PWD}:/artifacts \
-            -v /etc/passwd:/etc/passwd \
             -v /home/jenkins/.ssh:/home/jenkins/.ssh \
             -u 469:469 \
             -v $SSH_AUTH_SOCK:/ssh-agent \
