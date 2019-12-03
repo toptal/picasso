@@ -18,7 +18,7 @@ import styles from './styles'
 
 type IconPosition = 'start' | 'end'
 type CounterType = 'remaining' | 'entered'
-type PropsIndex = { [index: string]: Props }
+type PropsIndex<T> = { [index: string]: T }
 
 export interface Props
   extends BaseProps,
@@ -187,6 +187,10 @@ const EndAdornment = (props: EndAdornmentProps) => {
 const disableUnsupportedProps = (props: Props) => {
   const { size } = props
 
+  if (size !== 'small') {
+    return props
+  }
+
   const unsupportedProps: Partial<Props> = {
     multiline: false,
     icon: undefined,
@@ -194,18 +198,13 @@ const disableUnsupportedProps = (props: Props) => {
     endAdornment: undefined,
     limit: undefined
   }
-
-  if (size !== 'small') {
-    return props
-  }
-
   const unsupportedPropNames = Object.keys(unsupportedProps)
 
   if (
-    !unsupportedPropNames.every(
+    unsupportedPropNames.some(
       propName =>
-        (unsupportedProps as PropsIndex)[propName] ===
-        (props as PropsIndex)[propName]
+        // @ts-ignore
+        props[propName]
     )
   ) {
     console.warn(
@@ -213,9 +212,11 @@ const disableUnsupportedProps = (props: Props) => {
         ', '
       )} props`
     )
+
+    return { ...props, ...unsupportedProps }
   }
 
-  return { ...props, ...unsupportedProps }
+  return props
 }
 
 export const Input = forwardRef<HTMLInputElement, Props>(function Input(
@@ -270,7 +271,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
       className={className}
       style={style}
       classes={{
-        root: cx(classes.root, classes[`root${capitalize(size!)}`], {
+        root: cx(classes[`root${capitalize(size!)}`], {
           [classes.rootMultiline]: multiline
         }),
         input: classes.input
@@ -287,6 +288,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
       rowsMax={rowsMax}
       type={type}
       width={width}
+      size={size}
       // html attributes
       inputProps={{
         ...rest,

@@ -7,23 +7,11 @@ import '../InputAdornment/styles'
 
 export default ({ sizes: { input }, palette }: Theme) =>
   createStyles({
-    root: {
-      padding: input.padding
-    },
     rootSmall: {
-      height: '1.5rem',
-      padding: '0.25rem 0.625rem',
-
-      '& $input': {
-        fontSize: '0.75rem'
-      }
+      padding: '0.25rem 0.625rem'
     },
     rootMedium: {
-      height: input.height,
-
-      '& $input': {
-        fontSize: '0.8125rem'
-      }
+      padding: input.padding
     },
     rootMultiline: {
       height: 'auto'

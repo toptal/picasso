@@ -10,10 +10,11 @@ import { withStyles } from '@material-ui/core/styles'
 import MUIOutlinedInput from '@material-ui/core/OutlinedInput'
 import { InputBaseComponentProps } from '@material-ui/core/InputBase'
 import { capitalize } from '@material-ui/core/utils/helpers'
-import { StandardProps } from '@toptal/picasso-shared'
+import { StandardProps, SizeType } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
+type PropsIndex = { [index: string]: Props }
 type ValueType =
   | (string | number | boolean | object)[]
   | string
@@ -23,7 +24,10 @@ type ValueType =
 
 export interface Props
   extends StandardProps,
-    Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'defaultValue'> {
+    Omit<
+      InputHTMLAttributes<HTMLInputElement>,
+      'value' | 'defaultValue' | 'size'
+    > {
   /** Width of the component */
   width?: 'full' | 'shrink' | 'auto'
   inputComponent?: ReactType<InputBaseComponentProps>
@@ -43,11 +47,57 @@ export interface Props
   startAdornment?: ReactNode
   endAdornment?: ReactNode
   onChange?: ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>
+  size?: SizeType<'small' | 'medium'>
+}
+
+const disableUnsupportedProps = (props: Props) => {
+  const { size } = props
+
+  if (size !== 'small') {
+    return props
+  }
+
+  const unsupportedProps: Partial<Props> = {
+    multiline: false,
+    startAdornment: undefined,
+    endAdornment: undefined
+  }
+
+  const unsupportedPropNames = Object.keys(unsupportedProps)
+
+  console.log(props.multiline, props.startAdornment, props.endAdornment)
+
+  console.log(props.multiline, props.startAdornment, props.endAdornment)
+  console.log(
+    unsupportedPropNames.some(
+      propName =>
+        // @ts-ignore
+        props[propName]
+    )
+  )
+
+  if (
+    unsupportedPropNames.some(
+      propName =>
+        // @ts-ignore
+        props[propName]
+    )
+  ) {
+    console.warn(
+      `OutlinedInput with size="small" doesn't support: ${unsupportedPropNames.join(
+        ', '
+      )} props`
+    )
+
+    return { ...props, ...unsupportedProps }
+  }
+
+  return props
 }
 
 const OutlinedInput = forwardRef<HTMLInputElement, Props>(
-  function OutlinedInput(
-    {
+  function OutlinedInput(props, ref) {
+    const {
       classes,
       className,
       style,
@@ -64,17 +114,21 @@ const OutlinedInput = forwardRef<HTMLInputElement, Props>(
       startAdornment,
       endAdornment,
       onChange,
+      size,
       ...rest
-    },
-    ref
-  ) {
+    } = disableUnsupportedProps(props)
+
     return (
       <MUIOutlinedInput
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         classes={{
-          root: cx(classes.root, classes[`root${capitalize(width!)}`]),
-          input: classes.input,
+          root: cx(
+            classes.root,
+            classes[`root${capitalize(width!)}`],
+            classes[`root${capitalize(size!)}`]
+          ),
+          input: cx(classes.input, classes[`input${capitalize(size!)}`]),
           inputMultiline: classes.inputMultiline
         }}
         className={className}
@@ -100,7 +154,8 @@ const OutlinedInput = forwardRef<HTMLInputElement, Props>(
 )
 
 OutlinedInput.defaultProps = {
-  width: 'auto'
+  width: 'auto',
+  size: 'medium'
 }
 
 OutlinedInput.displayName = 'OutlinedInput'

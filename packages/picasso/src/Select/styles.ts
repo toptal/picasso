@@ -36,7 +36,8 @@ export default ({ palette, zIndex }: Theme) =>
       fontSize: '0.8125rem'
     },
     selectSmall: {
-      fontSize: '0.75rem'
+      fontSize: '0.75rem',
+      padding: '0.25rem 0.625rem'
     },
     inputWrapper: {
       width: 'inherit',
