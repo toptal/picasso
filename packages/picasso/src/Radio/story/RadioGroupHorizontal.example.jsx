@@ -8,7 +8,7 @@ const RadioRadioGroupHorizontalExample = () => {
     <Radio.Group
       name='variableName'
       onChange={event => setValue(event.target.value)}
-      style={{ flexDirection: 'row' }}
+      horizontal
       value={value}
     >
       <Radio label='Radio 1' value='radio1' />
