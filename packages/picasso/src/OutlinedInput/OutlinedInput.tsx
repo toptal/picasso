@@ -62,19 +62,7 @@ const disableUnsupportedProps = (props: Props) => {
     startAdornment: undefined,
     endAdornment: undefined
   }
-
   const unsupportedPropNames = Object.keys(unsupportedProps)
-
-  console.log(props.multiline, props.startAdornment, props.endAdornment)
-
-  console.log(props.multiline, props.startAdornment, props.endAdornment)
-  console.log(
-    unsupportedPropNames.some(
-      propName =>
-        // @ts-ignore
-        props[propName]
-    )
-  )
 
   if (
     unsupportedPropNames.some(

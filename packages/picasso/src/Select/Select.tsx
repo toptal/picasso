@@ -30,9 +30,42 @@ import styles from './styles'
 
 type IconPosition = 'start' | 'end'
 type ValueType = string | string[] | number
+type PropsIndex<T> = { [index: string]: T }
 
 const getOptionText = (option: Option | null) =>
   (option && option.text) || EMPTY_INPUT_VALUE
+
+const disableUnsupportedProps = (props: Props) => {
+  const { size } = props
+
+  if (size !== 'small') {
+    return props
+  }
+
+  const unsupportedProps: Partial<Props> = {
+    icon: undefined,
+    loading: false
+  }
+  const unsupportedPropNames = Object.keys(unsupportedProps)
+
+  if (
+    unsupportedPropNames.some(
+      propName =>
+        // @ts-ignore
+        props[propName]
+    )
+  ) {
+    console.warn(
+      `Select with size="small" doesn't support: ${unsupportedPropNames.join(
+        ', '
+      )} props`
+    )
+
+    return { ...props, ...unsupportedProps }
+  }
+
+  return props
+}
 
 export interface Props
   extends StandardProps,
@@ -220,7 +253,10 @@ const isEqual = (val1: ValueType, val2: ValueType) =>
     : val1 === val2
 
 export const Select = forwardRef<HTMLInputElement, Props>(function Select(
-  {
+  props,
+  ref
+) {
+  const {
     classes,
     className,
     style,
@@ -243,9 +279,8 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     tabIndex = 0,
     size,
     ...rest
-  },
-  ref
-) {
+  } = disableUnsupportedProps(props)
+
   const fireOnChangeEvent = ({
     event,
     value
