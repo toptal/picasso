@@ -13,6 +13,9 @@ git update-index --assume-unchanged .npmrc
 # Build all packages
 npx lerna run build:dist
 
+git config user.email "$GIT_COMMITTER_EMAIL"
+git config user.name "$GIT_COMMITTER_NAME"
+
 # Publish packages
 if [[ $RELEASE_AND_PUBLISH == "1" ]]; then
   echo "=== WARNING RUNNING LIVE RELEASE FOR PACKAGES ==="
