@@ -5,7 +5,7 @@ PicassoProvider.override(() => ({
   MuiMenuItem: {
     root: {
       boxSizing: 'border-box',
-      lineHeight: '1em',
+      lineHeight: '1rem',
       padding: 0,
       // to override MUI paddingTop and paddingBottom default values
       paddingTop: 0,
@@ -14,10 +14,10 @@ PicassoProvider.override(() => ({
       minHeight: 'unset'
     },
     gutters: {
-      padding: '0.625em',
+      padding: '0.625rem',
       // to override MUI paddingLeft and paddingRight default values
-      paddingLeft: '0.625em',
-      paddingRight: '0.625em'
+      paddingLeft: '0.625rem',
+      paddingRight: '0.625rem'
     }
   }
 }))
@@ -82,5 +82,17 @@ export default ({ palette }: Theme) =>
     stringContent: {
       flex: 1,
       fontSize: '0.8125em'
+    },
+    stringContentSmall: {
+      fontSize: '0.75rem'
+    },
+    stringContentMedium: {
+      fontSize: '0.8125rem'
+    },
+    guttersSmall: {
+      padding: '0.25rem 0.625rem'
+    },
+    guttersMedium: {
+      padding: '0.625rem'
     }
   })

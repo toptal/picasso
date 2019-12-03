@@ -135,7 +135,8 @@ const renderOptions = ({
   onItemSelect,
   getItemProps,
   value,
-  multiple
+  multiple,
+  size
 }: OptionsProps) => {
   const optionComponents = options.map((option, index) => {
     const { selected, close, ...rest } = getItemProps(index, option)
@@ -149,6 +150,7 @@ const renderOptions = ({
       <MenuItem
         key={option.key || option.value}
         value={option.value}
+        size={size}
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         selected={isSelected}
