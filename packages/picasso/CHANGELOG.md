@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.0.0...@toptal/picasso@4.1.0) (2019-12-03)
+
+
+### Features
+
+* **RadioGroup:** add horizontal prop ([#918](https://github.com/toptal/picasso/issues/918)) ([b2ac0f0](https://github.com/toptal/picasso/commit/b2ac0f01c3ae6505035eb1e2cd67d07a44b05ae0))
+
+
+
+
+
 # 4.0.0 (2019-12-03)
 
 
