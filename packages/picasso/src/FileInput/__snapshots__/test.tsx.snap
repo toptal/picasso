@@ -6,7 +6,7 @@ exports[`FileInput default render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root FileInput-root OutlinedInput-rootAuto MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+      class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root FileInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
     >
       <div
         class="MuiInputAdornment-root InputAdornment-root FileInput-adornmentStart MuiInputAdornment-positionStart"

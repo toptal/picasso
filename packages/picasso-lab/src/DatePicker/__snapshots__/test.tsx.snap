@@ -9,11 +9,11 @@ exports[`DatePicker default render 1`] = `
       class="Container-inline"
     >
       <div
-        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root makeStyles-root OutlinedInput-rootAuto MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root makeStyles-root makeStyles-rootMedium OutlinedInput-rootAuto OutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
       >
         <input
           autocomplete="none"
-          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input makeStyles-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+          class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input makeStyles-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
           type="text"
           value=""
         />
