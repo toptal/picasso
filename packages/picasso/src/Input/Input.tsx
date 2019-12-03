@@ -271,7 +271,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
       className={className}
       style={style}
       classes={{
-        root: cx(classes[`root${capitalize(size!)}`], {
+        root: cx(classes.root, classes[`root${capitalize(size!)}`], {
           [classes.rootMultiline]: multiline
         }),
         input: classes.input

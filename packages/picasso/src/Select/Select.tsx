@@ -462,7 +462,8 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
           inputProps={{
             className: cx({
               [classes.inputMultiple]: multiple
-            })
+            }),
+            size: 1
           }}
           size={size}
           role='textbox'

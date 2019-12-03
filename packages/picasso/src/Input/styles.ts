@@ -7,6 +7,7 @@ import '../InputAdornment/styles'
 
 export default ({ sizes: { input }, palette }: Theme) =>
   createStyles({
+    root: {},
     rootSmall: {
       padding: '0.25rem 0.625rem'
     },
