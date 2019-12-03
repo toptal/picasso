@@ -14,7 +14,6 @@ const SelectNativeExample = () => {
       onChange={handleChange}
       options={OPTIONS}
       value={value}
-      size='small'
       placeholder='Choose an option...'
       width='auto'
     />
