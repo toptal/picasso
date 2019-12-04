@@ -481,7 +481,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
             className: cx({
               [classes.inputMultiple]: multiple
             }),
-            size: 1
+            size: 1 // let input to have smallest width by default for width:'shrink'
           }}
           size={size}
           role='textbox'

@@ -46,6 +46,10 @@ export interface Props
   startAdornment?: ReactNode
   endAdornment?: ReactNode
   onChange?: ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>
+  /**
+   * Size of component
+   * @default medium
+   */
   size?: SizeType<'small' | 'medium'>
 }
 
