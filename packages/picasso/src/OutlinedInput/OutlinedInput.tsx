@@ -14,7 +14,6 @@ import { StandardProps, SizeType } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
-type PropsIndex = { [index: string]: Props }
 type ValueType =
   | (string | number | boolean | object)[]
   | string
@@ -50,42 +49,9 @@ export interface Props
   size?: SizeType<'small' | 'medium'>
 }
 
-const disableUnsupportedProps = (props: Props) => {
-  const { size } = props
-
-  if (size !== 'small') {
-    return props
-  }
-
-  const unsupportedProps: Partial<Props> = {
-    multiline: false,
-    startAdornment: undefined,
-    endAdornment: undefined
-  }
-  const unsupportedPropNames = Object.keys(unsupportedProps)
-
-  if (
-    unsupportedPropNames.some(
-      propName =>
-        // @ts-ignore
-        props[propName]
-    )
-  ) {
-    console.warn(
-      `OutlinedInput with size="small" doesn't support: ${unsupportedPropNames.join(
-        ', '
-      )} props`
-    )
-
-    return { ...props, ...unsupportedProps }
-  }
-
-  return props
-}
-
 const OutlinedInput = forwardRef<HTMLInputElement, Props>(
-  function OutlinedInput(props, ref) {
-    const {
+  function OutlinedInput(
+    {
       classes,
       className,
       style,
@@ -104,8 +70,9 @@ const OutlinedInput = forwardRef<HTMLInputElement, Props>(
       onChange,
       size,
       ...rest
-    } = disableUnsupportedProps(props)
-
+    },
+    ref
+  ) {
     return (
       <MUIOutlinedInput
         // eslint-disable-next-line react/jsx-props-no-spreading

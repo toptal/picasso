@@ -13,11 +13,11 @@ import { BaseProps, SizeType } from '@toptal/picasso-shared'
 
 import InputAdornment from '../InputAdornment'
 import OutlinedInput from '../OutlinedInput'
+import { disableUnsupportedProps } from '../utils'
 import styles from './styles'
 
 type IconPosition = 'start' | 'end'
 type CounterType = 'remaining' | 'entered'
-type PropsIndex<T> = { [index: string]: T }
 
 export interface Props
   extends BaseProps,
@@ -183,11 +183,9 @@ const EndAdornment = (props: EndAdornmentProps) => {
   return null
 }
 
-const disableUnsupportedProps = (props: Props) => {
-  const { size } = props
-
-  if (size !== 'small') {
-    return props
+const purifyProps = (props: Props) => {
+  const featureProps: Partial<Props> = {
+    size: 'small'
   }
 
   const unsupportedProps: Partial<Props> = {
@@ -197,25 +195,8 @@ const disableUnsupportedProps = (props: Props) => {
     endAdornment: undefined,
     limit: undefined
   }
-  const unsupportedPropNames = Object.keys(unsupportedProps)
 
-  if (
-    unsupportedPropNames.some(
-      propName =>
-        // @ts-ignore
-        props[propName]
-    )
-  ) {
-    console.warn(
-      `Input with size="small" doesn't support: ${unsupportedPropNames.join(
-        ', '
-      )} props`
-    )
-
-    return { ...props, ...unsupportedProps }
-  }
-
-  return props
+  return disableUnsupportedProps(props, featureProps, unsupportedProps, 'Input')
 }
 
 export const Input = forwardRef<HTMLInputElement, Props>(function Input(
@@ -248,7 +229,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
     counter,
     size,
     ...rest
-  } = disableUnsupportedProps(props)
+  } = purifyProps(props)
 
   const [charsLength, setCharsLength] = useState(value ? value.length : 0)
 

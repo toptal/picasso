@@ -22,49 +22,16 @@ import InputAdornment from '../InputAdornment'
 import MenuItem from '../MenuItem'
 import Loader from '../Loader'
 import { DropdownArrows16 } from '../Icon'
-import { isSubstring, useWidthOf } from '../utils'
+import { isSubstring, useWidthOf, disableUnsupportedProps } from '../utils'
 import { Option } from './types'
 import useSelect, { EMPTY_INPUT_VALUE, ItemProps } from './useSelect'
 import styles from './styles'
 
 type IconPosition = 'start' | 'end'
 type ValueType = string | string[] | number
-type PropsIndex<T> = { [index: string]: T }
 
 const getOptionText = (option: Option | null) =>
   (option && option.text) || EMPTY_INPUT_VALUE
-
-const disableUnsupportedProps = (props: Props) => {
-  const { size } = props
-
-  if (size !== 'small') {
-    return props
-  }
-
-  const unsupportedProps: Partial<Props> = {
-    icon: undefined,
-    loading: false
-  }
-  const unsupportedPropNames = Object.keys(unsupportedProps)
-
-  if (
-    unsupportedPropNames.some(
-      propName =>
-        // @ts-ignore
-        props[propName]
-    )
-  ) {
-    console.warn(
-      `Select with size="small" doesn't support: ${unsupportedPropNames.join(
-        ', '
-      )} props`
-    )
-
-    return { ...props, ...unsupportedProps }
-  }
-
-  return props
-}
 
 export interface Props
   extends StandardProps,
@@ -251,6 +218,24 @@ const isEqual = (val1: ValueType, val2: ValueType) =>
     ? val1.every(value => val2.includes(value))
     : val1 === val2
 
+const purifyProps = (props: Props) => {
+  const featureProps: Partial<Props> = {
+    size: 'small'
+  }
+
+  const unsupportedProps: Partial<Props> = {
+    icon: undefined,
+    loading: false
+  }
+
+  return disableUnsupportedProps(
+    props,
+    featureProps,
+    unsupportedProps,
+    'Select'
+  )
+}
+
 export const Select = forwardRef<HTMLInputElement, Props>(function Select(
   props,
   ref
@@ -278,7 +263,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     tabIndex = 0,
     size,
     ...rest
-  } = disableUnsupportedProps(props)
+  } = purifyProps(props)
 
   const fireOnChangeEvent = ({
     event,
