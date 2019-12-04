@@ -1,5 +1,5 @@
 import React from 'react'
-import { CounterBlock } from '@toptal/picasso'
+import { CounterBlock } from '@toptal/picasso-lab'
 import { MemoryRouter as Router, Link, Route, Switch } from 'react-router-dom'
 
 const Index = () => <h2>Home</h2>

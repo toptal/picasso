@@ -1,5 +1,6 @@
 import React from 'react'
-import { CounterBlock, Container } from '@toptal/picasso'
+import { CounterBlock } from '@toptal/picasso-lab'
+import { Container } from '@toptal/picasso'
 
 const MultilineExample = () => (
   <section>

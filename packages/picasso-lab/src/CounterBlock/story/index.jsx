@@ -4,7 +4,8 @@ import { CounterBlock } from '../CounterBlock'
 
 const page = PicassoBook.createPage(
   'CounterBlock',
-  'Allows displaying counters.'
+  'Allows displaying counters.',
+  'Lab'
 )
 
 page.createTabChapter('Props').addComponentDocs({

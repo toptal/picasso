@@ -1,6 +1,6 @@
 /* global alert */
 import React from 'react'
-import { CounterBlock } from '@toptal/picasso'
+import { CounterBlock } from '@toptal/picasso-lab'
 
 const DefaultExample = () => {
   const handleClick = (title: string) => {
