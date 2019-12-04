@@ -38,6 +38,8 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
   as?: React.ElementType<React.HTMLAttributes<HTMLElement>>
   /** Controls when the Typography should have an underline */
   underline?: UnderlineType
+  /** Controls when the Typography should have line through */
+  lineThrough?: boolean
 }
 
 type VariantsType = {
@@ -78,6 +80,7 @@ export const Typography = forwardRef<HTMLElement, Props>(function Typography(
     invert,
     noWrap,
     underline,
+    lineThrough,
     ...rest
   },
   ref
@@ -94,7 +97,8 @@ export const Typography = forwardRef<HTMLElement, Props>(function Typography(
     classes[weight!],
     classes[colorClassName],
     {
-      [classes.underline]: underline
+      [classes.underline]: underline,
+      [classes.lineThrough]: lineThrough
     },
     classes[underline!]
   )

@@ -39,3 +39,4 @@ page
     `
   })
   .addExample('Typography/story/Underline.example.jsx', 'Underline')
+  .addExample('Typography/story/LineThrough.example.jsx', 'Line through')

@@ -111,7 +111,7 @@ export default ({ palette, typography }: Theme) =>
       color: 'inherit'
     },
 
-    // underlines
+    // Text decorations
     underline: {
       textDecoration: 'underline'
     },
@@ -120,5 +120,8 @@ export default ({ palette, typography }: Theme) =>
     },
     dashed: {
       textDecorationStyle: 'dashed'
+    },
+    lineThrough: {
+      textDecoration: 'line-through'
     }
   })
