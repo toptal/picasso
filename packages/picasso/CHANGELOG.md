@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.1.1...@toptal/picasso@4.2.0) (2019-12-04)
+
+
+### Features
+
+* **Typography:** add lineThrough prop ([#936](https://github.com/toptal/picasso/issues/936)) ([f3b7f20](https://github.com/toptal/picasso/commit/f3b7f20d1be72915a29aaae73f5670be89926e4e))
+
+
+
+
+
 ## [4.1.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.1.0...@toptal/picasso@4.1.1) (2019-12-03)
 
 **Note:** Version bump only for package @toptal/picasso
