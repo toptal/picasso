@@ -10,17 +10,17 @@ const RoutingExample = () => (
   <Router>
     <div>
       <CounterBlock.Group>
-        <CounterBlock value='10' title='Home' as={Link} to='/' />
+        <CounterBlock value='10' label='Home' as={Link} to='/' />
         <CounterBlock
           value='11'
-          title='About'
+          label='About'
           color='green'
           as={Link}
           to='/about/'
         />
         <CounterBlock
           value='15'
-          title='Users'
+          label='Users'
           color='blue'
           as={Link}
           to='/users/'

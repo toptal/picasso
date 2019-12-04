@@ -23,7 +23,7 @@ export type Props = BaseProps &
     /** Counter value  */
     value: string
     /** Counter title  */
-    title: string
+    label: string
     /** The color of counter's title  */
     color?: ColorType
     /** Component used for the root node. Either a string to use a DOM element or a component. */
@@ -43,7 +43,7 @@ export const CounterBlock: OverridableComponent<Props> & StaticProps =
   forwardRef<HTMLButtonElement, Props>(function CounterBlock(props, ref) {
     const {
       value,
-      title,
+      label,
       color,
       as: Component = 'button',
       className,
@@ -67,7 +67,7 @@ export const CounterBlock: OverridableComponent<Props> & StaticProps =
           className={classes.title}
           color={color}
         >
-          {title}
+          {label}
         </Typography>
       </Component>
     )

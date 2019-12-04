@@ -1,32 +1,31 @@
-/* global alert */
 import React from 'react'
 import { CounterBlock } from '@toptal/picasso-lab'
 
 const DefaultExample = () => {
   const handleClick = (title: string) => {
-    alert(`${title} clicked`)
+    window.alert(`${title} clicked`)
   }
 
   return (
     <CounterBlock.Group>
       <CounterBlock
         value='4249'
-        title='ACH'
+        label='ACH'
         onClick={() => handleClick('ACH')}
       />
       <CounterBlock
         value='19302'
-        title='Credit Card'
+        label='Credit Card'
         onClick={() => handleClick('Credit Card')}
       />
       <CounterBlock
         value='979'
-        title='PayPal'
+        label='PayPal'
         onClick={() => handleClick('PayPal')}
       />
       <CounterBlock
         value='803'
-        title='Wire'
+        label='Wire'
         onClick={() => handleClick('Wire')}
       />
     </CounterBlock.Group>
