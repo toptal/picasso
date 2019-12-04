@@ -13,14 +13,14 @@ exports[`YearSelect default render 1`] = `
         tabindex="0"
       >
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root makeStyles-root makeStyles-rootMedium OutlinedInput-rootFull OutlinedInput-rootMedium Select-input MuiInputBase-fullWidth MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+          aria-autocomplete="list"
+          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootFull OutlinedInput-rootMedium Select-input MuiInputBase-fullWidth"
+          role="textbox"
         >
           <input
-            aria-autocomplete="list"
             aria-invalid="false"
             autocomplete="none"
-            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input makeStyles-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
-            role="textbox"
+            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium"
             size="1"
             type="text"
             value=""

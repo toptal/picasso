@@ -43,7 +43,7 @@ PicassoProvider.override(({ palette, sizes: { input } }: Theme) => ({
       alignItems: 'center',
       boxSizing: 'border-box',
       height: '100%',
-      padding: input.padding,
+      padding: 0,
       border: 'none',
 
       '&::placeholder': {
@@ -75,9 +75,11 @@ export default ({ sizes: { input } }: Theme) =>
   createStyles({
     root: {},
     rootSmall: {
+      padding: '0.25rem 0.625rem',
       height: '1.5rem'
     },
     rootMedium: {
+      padding: input.padding,
       height: input.height
     },
     rootFull: {

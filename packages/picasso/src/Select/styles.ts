@@ -21,9 +21,6 @@ export default ({ palette, zIndex }: Theme) =>
       width: 'auto'
     },
     rootAuto: {},
-    selectWrapper: {
-      padding: 0
-    },
     select: {
       width: '100%',
       zIndex: 1,
@@ -31,13 +28,6 @@ export default ({ palette, zIndex }: Theme) =>
       '&:focus': {
         backgroundColor: 'inherit'
       }
-    },
-    selectMedium: {
-      fontSize: '0.8125rem'
-    },
-    selectSmall: {
-      fontSize: '0.75rem',
-      padding: '0.25rem 0.625rem'
     },
     inputWrapper: {
       width: 'inherit',

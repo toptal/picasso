@@ -5,20 +5,11 @@ import '../InputLabel/styles'
 import '../OutlinedInput/styles'
 import '../InputAdornment/styles'
 
-export default ({ sizes: { input }, palette }: Theme) =>
+export default ({ palette }: Theme) =>
   createStyles({
     root: {},
-    rootSmall: {
-      padding: '0.25rem 0.625rem'
-    },
-    rootMedium: {
-      padding: input.padding
-    },
     rootMultiline: {
       height: 'auto'
-    },
-    input: {
-      padding: 0
     },
     icon: {
       flex: '1 1 0%' // fix for IE11

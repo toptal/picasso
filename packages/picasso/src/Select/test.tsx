@@ -93,21 +93,19 @@ test('should return back selected value when input value is edited', () => {
   const placeholder = 'Choose an option...'
   const expectedText = OPTIONS[1].text
 
-  const { getByPlaceholderText, getByRole } = renderSelect({
+  const { getByPlaceholderText } = renderSelect({
     options: OPTIONS,
     placeholder,
     value: [OPTIONS[1].value]
   })
 
-  const input = getByPlaceholderText(placeholder)
+  const input = getByPlaceholderText(placeholder) as HTMLInputElement
 
   fireEvent.focus(input)
   fireEvent.change(input, { target: { value: 'some text' } })
   fireEvent.blur(input)
 
-  const inputComponent = getByRole('textbox') as HTMLInputElement
-
-  expect(inputComponent.value).toBe(expectedText)
+  expect(input.value).toBe(expectedText)
 })
 
 test('should reset selected value when input is wiped', () => {
@@ -169,14 +167,14 @@ test('should render options customly', async () => {
 test('should render selected option customly', async () => {
   const placeholder = 'Choose an option...'
 
-  const { getByRole } = renderSelect({
+  const { getByPlaceholderText } = renderSelect({
     options: OPTIONS,
     value: OPTIONS[0].value,
     placeholder,
     getDisplayValue: option => `${option ? option.text : 'None'} is selected`
   })
 
-  const inputComponent = getByRole('textbox') as HTMLInputElement
+  const inputComponent = getByPlaceholderText(placeholder) as HTMLInputElement
 
   expect(inputComponent.value).toBe(`${OPTIONS[0].text} is selected`)
 })
@@ -221,13 +219,16 @@ describe('multiple select', () => {
   })
 
   test('renders list of selected options', async () => {
-    const { getByRole } = renderSelect({
+    const placeholder = 'choose'
+
+    const { getByPlaceholderText } = renderSelect({
+      placeholder,
       options: OPTIONS,
       multiple: true,
       value: [OPTIONS[0].value, OPTIONS[1].value]
     })
 
-    const inputComponent = getByRole('textbox') as HTMLInputElement
+    const inputComponent = getByPlaceholderText(placeholder) as HTMLInputElement
 
     expect(inputComponent.value).toBe(`${OPTIONS[0].text}, ${OPTIONS[1].text}`)
   })

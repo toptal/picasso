@@ -9,7 +9,6 @@ import React, {
 import cx from 'classnames'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import { InputBaseComponentProps } from '@material-ui/core/InputBase'
-import { capitalize } from '@material-ui/core/utils/helpers'
 import { BaseProps, SizeType } from '@toptal/picasso-shared'
 
 import InputAdornment from '../InputAdornment'
@@ -271,10 +270,9 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
       className={className}
       style={style}
       classes={{
-        root: cx(classes.root, classes[`root${capitalize(size!)}`], {
+        root: cx(classes.root, {
           [classes.rootMultiline]: multiline
-        }),
-        input: classes.input
+        })
       }}
       id={id}
       name={name}

@@ -16,7 +16,6 @@ import { withStyles } from '@material-ui/core/styles'
 import { capitalize } from '@material-ui/core/utils/helpers'
 import { StandardProps, SizeType } from '@toptal/picasso-shared'
 
-import Input from '../Input'
 import OutlinedInput from '../OutlinedInput'
 import ScrollMenu from '../ScrollMenu'
 import InputAdornment from '../InputAdornment'
@@ -429,7 +428,6 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
       input={
         <OutlinedInput
           width={width}
-          className={classes.selectWrapper}
           inputProps={{ multiple }}
           size={size}
           // eslint-disable-next-line react/jsx-props-no-spreading
@@ -442,7 +440,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
       onChange={onChange}
       IconComponent={() => dropDownIcon}
       classes={{
-        root: cx(classes.select, classes[`select${capitalize(size!)}`], {
+        root: cx(classes.select, {
           [classes.placeholder]: !select.isSelected()
         }),
         select: cx({
@@ -471,7 +469,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
         tabIndex={tabIndexValue}
         className={classes.inputWrapper}
       >
-        <Input
+        <OutlinedInput
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...rest}
           ref={ref}
