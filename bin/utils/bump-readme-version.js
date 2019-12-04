@@ -14,16 +14,16 @@ const getPackageJsonVersion = packageRootDir => {
   return nextVersion
 }
 
-const bumpReadmeVersion = packageRootDir => {
+const bumpReadmeVersion = (packageRootDir, outputReadmePath) => {
   log('')
   log(
     `Bumping README.md version inside build folder of the package: ${packageRootDir}`
   )
 
-  const outputReadme = path.resolve(
-    packageRootDir,
-    `./${BUILD_FOLDER}/README.md`
-  )
+  const outputReadme = outputReadmePath
+    ? path.resolve(outputReadmePath)
+    : path.resolve(packageRootDir, `./${BUILD_FOLDER}/README.md`)
+
   const outputReadmeContent = fs.readFileSync(outputReadme, 'utf8')
   const nextVersion = getPackageJsonVersion(packageRootDir)
 
