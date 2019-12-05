@@ -13,6 +13,7 @@ import {
   getHost,
   normalize
 } from '../../../src/utils/url-generator'
+import { Typography } from '../../../packages/picasso'
 
 import Base from './Base'
 import Section, { SectionConfigType } from './Section'
@@ -127,7 +128,14 @@ class Chapter extends Base {
       additionalDocs!
     )
 
-    const render = () => <PropsTable documentation={toArray(documentation)} />
+    const documentationArray = toArray(documentation)
+
+    const render = () =>
+      documentationArray.length > 0 ? (
+        <PropsTable documentation={documentationArray} />
+      ) : (
+        <Typography size='medium'>Component doesn't have props.</Typography>
+      )
 
     this.createSection({
       sectionFn: render,
