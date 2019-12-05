@@ -55,3 +55,8 @@ page
     title: 'Multiple options',
     description: 'Select component allows to select multiple options'
   })
+  .addExample('Select/story/AutoFocus.example.jsx', {
+    title: 'Auto focus',
+    description:
+      'Demonstrate auto focus capability by switching visibility of Select'
+  }) // picasso-skip-visuals
