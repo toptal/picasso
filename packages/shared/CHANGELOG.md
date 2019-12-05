@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.0.0...@toptal/picasso-shared@1.0.1) (2019-12-05)
+
+
+### Bug Fixes
+
+* fix tree-shaking ([#941](https://github.com/toptal/picasso/issues/941)) ([6a9d2a0](https://github.com/toptal/picasso/commit/6a9d2a02f8c692e3b061a026d3cc5d748e9f2263))
+
+
+
+
+
 # 1.0.0 (2019-12-03)
 
 
