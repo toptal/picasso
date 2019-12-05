@@ -134,9 +134,7 @@ class Chapter extends Base {
       documentationArray.length > 0 ? (
         <PropsTable documentation={documentationArray} />
       ) : (
-        <Typography size='medium' color='yellow'>
-          Component doesn't have props.
-        </Typography>
+        <Typography size='medium'>Component doesn't have props.</Typography>
       )
 
     this.createSection({
