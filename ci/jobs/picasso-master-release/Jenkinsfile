@@ -6,6 +6,7 @@ ghHelper = new helpers.GithubNotifyHelper()
 downStreamBuilds = []
 repoName = 'picasso'
 buildImageJobName = "${repoName}-build-image"
+releaseDocsJobName = "${repoName}-docs"
 def VERSION
 
 pipeline {
@@ -129,8 +130,8 @@ pipeline {
       steps {
         info "== Deploying docs"
         script {
-          downStreamBuilds[1] = build(
-            job: "picasso-docs",
+          downStreamBuilds[1] = buildWithParameters(
+            jobName: releaseDocsJobName,
             propagate: false,
             wait: true,
             parameters: [
