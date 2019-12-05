@@ -69,7 +69,7 @@ exports[`TagSelector preselected value 1`] = `
             class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium makeStyles-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
           >
             <div
-              class="MuiChip-root Label-root MuiChip-deletable"
+              class="MuiChip-root Label-root TagSelector-label MuiChip-deletable"
               role="button"
               tabindex="0"
             >

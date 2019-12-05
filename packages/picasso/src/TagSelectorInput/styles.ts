@@ -12,20 +12,18 @@ export default () =>
       paddingBottom: 0,
       paddingLeft: TAG_SELECTOR_GUTTER_SIZE,
       paddingTop: TAG_SELECTOR_GUTTER_SIZE,
-      '& > *:not(fieldset)': {
-        marginRight: TAG_SELECTOR_GUTTER_SIZE,
-        marginBottom: TAG_SELECTOR_GUTTER_SIZE
-      },
+
       '& > input': {
         width: 'auto',
         height: rem('24px'),
         paddingLeft: rem('4px'),
         paddingRight: '0',
-        fontSize: '0.8125em'
-      },
-      '& > $loaderAdornment': {
-        marginRight: 0
+        fontSize: '0.8125em',
+        marginRight: TAG_SELECTOR_GUTTER_SIZE,
+        marginBottom: TAG_SELECTOR_GUTTER_SIZE
       }
     },
-    loaderAdornment: {}
+    loaderAdornment: {
+      marginBottom: TAG_SELECTOR_GUTTER_SIZE
+    }
   })
