@@ -16,14 +16,14 @@ const RoutingExample = () => (
           label='About'
           color='green'
           as={Link}
-          to='/about/'
+          to='/about'
         />
         <CounterBlock
           value='15'
           label='Users'
           color='blue'
           as={Link}
-          to='/users/'
+          to='/users'
         />
       </CounterBlock.Group>
 
