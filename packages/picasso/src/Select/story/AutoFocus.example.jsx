@@ -15,17 +15,17 @@ const SelectCustomOptionExample = () => {
 
   return (
     <Container>
-      <Container bottom={2}>
+      <Container bottom={1}>
         <Button onClick={handleClick}>{show ? 'Hide' : 'Show'}</Button>
       </Container>
       {show && (
         <Select
-          onChange={handleChange}
-          options={OPTIONS}
           autoFocus
-          value={value}
           placeholder='Choose an option...'
           width='auto'
+          options={OPTIONS}
+          value={value}
+          onChange={handleChange}
         />
       )}
     </Container>
