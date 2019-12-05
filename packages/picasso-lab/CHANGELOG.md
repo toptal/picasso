@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@1.0.3...@toptal/picasso-lab@1.1.0) (2019-12-05)
+
+
+### Features
+
+* **CounterBlock:** add CounterBlock component ([#935](https://github.com/toptal/picasso/issues/935)) ([33b182b](https://github.com/toptal/picasso/commit/33b182b57063f04542b6af72602a967807a55607))
+
+
+
+
+
 ## [1.0.3](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@1.0.2...@toptal/picasso-lab@1.0.3) (2019-12-04)
 
 **Note:** Version bump only for package @toptal/picasso-lab
