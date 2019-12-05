@@ -51,6 +51,7 @@ function renderRows({ documentation, classes }: Props): JSX.Element {
 
 const PropsTable: FunctionComponent<Props> = props => {
   const { classes } = props
+
   return (
     <div className={classes.root}>
       <Table className={classes.table}>
