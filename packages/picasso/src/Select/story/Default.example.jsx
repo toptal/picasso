@@ -14,8 +14,6 @@ const SelectDefaultExample = () => {
       onChange={handleChange}
       options={OPTIONS}
       value={value}
-      // if you want to open menu immediatly
-      // autoFocus // uncomment
       placeholder='Choose an option...'
       width='auto'
     />

@@ -1,37 +1,26 @@
-import React, { useState, Fragment } from 'react'
-import { Select, Button } from '@toptal/picasso'
+import React, { useState } from 'react'
+import { Select } from '@toptal/picasso'
 
 const SelectCustomOptionExample = () => {
   const [value, setValue] = useState()
-  const [show, setShow] = useState(false)
 
   const handleChange = event => {
     setValue(event.target.value)
   }
 
-  const handleShowClick = () => {
-    setShow(!show)
-  }
-
   return (
-    <Fragment>
-      <Button onClick={handleShowClick}>{show ? 'Hide' : 'Show'}</Button>
-      {show && (
-        <Select
-          onChange={handleChange}
-          options={OPTIONS}
-          autoFocus
-          renderOption={option => (
-            <div>
-              Custom <b>{option.text}</b>
-            </div>
-          )}
-          value={value}
-          placeholder='Choose an option...'
-          width='auto'
-        />
+    <Select
+      onChange={handleChange}
+      options={OPTIONS}
+      renderOption={option => (
+        <div>
+          Custom <b>{option.text}</b>
+        </div>
       )}
-    </Fragment>
+      value={value}
+      placeholder='Choose an option...'
+      width='auto'
+    />
   )
 }
 
