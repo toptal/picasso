@@ -23,6 +23,7 @@ import MenuItem from '../MenuItem'
 import Loader from '../Loader'
 import { DropdownArrows16 } from '../Icon'
 import { isSubstring, useWidthOf, disableUnsupportedProps } from '../utils'
+import { FeatureOptions } from '../utils/disable-unsupported-props'
 import { Option } from './types'
 import useSelect, { EMPTY_INPUT_VALUE, ItemProps } from './useSelect'
 import styles from './styles'
@@ -219,21 +220,17 @@ const isEqual = (val1: ValueType, val2: ValueType) =>
     : val1 === val2
 
 const purifyProps = (props: Props) => {
-  const featureProps: Partial<Props> = {
-    size: 'small'
+  const sizeOptions: FeatureOptions<Props> = {
+    featureProps: {
+      size: 'small'
+    },
+    unsupportedProps: {
+      icon: undefined,
+      loading: false
+    }
   }
 
-  const unsupportedProps: Partial<Props> = {
-    icon: undefined,
-    loading: false
-  }
-
-  return disableUnsupportedProps(
-    props,
-    featureProps,
-    unsupportedProps,
-    'Select'
-  )
+  return disableUnsupportedProps('Select', props, sizeOptions)
 }
 
 export const Select = forwardRef<HTMLInputElement, Props>(function Select(

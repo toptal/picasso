@@ -1,11 +1,17 @@
 type PIndex = { [index: string]: unknown }
 
+export type FeatureOptions<P extends object> = {
+  featureProps: Partial<P>
+  unsupportedProps: Partial<P>
+}
+
 export default <P extends object>(
+  componentName: string,
   props: P,
-  featureProps: Partial<P>,
-  unsupportedProps: Partial<P>,
-  componentName: string
+  options: FeatureOptions<P>
 ) => {
+  const { featureProps, unsupportedProps } = options
+
   const featurePropNames = Object.keys(featureProps)
 
   // Check if in props there are props with same value as feature props, if

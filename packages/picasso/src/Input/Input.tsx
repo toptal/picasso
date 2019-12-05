@@ -14,6 +14,7 @@ import { BaseProps, SizeType } from '@toptal/picasso-shared'
 import InputAdornment from '../InputAdornment'
 import OutlinedInput from '../OutlinedInput'
 import { disableUnsupportedProps } from '../utils'
+import { FeatureOptions } from '../utils/disable-unsupported-props'
 import styles from './styles'
 
 type IconPosition = 'start' | 'end'
@@ -184,19 +185,20 @@ const EndAdornment = (props: EndAdornmentProps) => {
 }
 
 const purifyProps = (props: Props) => {
-  const featureProps: Partial<Props> = {
-    size: 'small'
+  const sizeOptions: FeatureOptions<Props> = {
+    featureProps: {
+      size: 'small'
+    },
+    unsupportedProps: {
+      multiline: false,
+      icon: undefined,
+      startAdornment: undefined,
+      endAdornment: undefined,
+      limit: undefined
+    }
   }
 
-  const unsupportedProps: Partial<Props> = {
-    multiline: false,
-    icon: undefined,
-    startAdornment: undefined,
-    endAdornment: undefined,
-    limit: undefined
-  }
-
-  return disableUnsupportedProps(props, featureProps, unsupportedProps, 'Input')
+  return disableUnsupportedProps('Input', props, sizeOptions)
 }
 
 export const Input = forwardRef<HTMLInputElement, Props>(function Input(
