@@ -1,6 +1,7 @@
 @Library('globalLibrary@master') _
 
 repoName = 'picasso'
+imageCommitId = ''
 
 pipeline {
 
@@ -84,12 +85,6 @@ pipeline {
                   echo "Comment [$it] - Marked for delete"
                   sh "curl -X \"DELETE\" -H \"Authorization: token ${GITHUB_TOKEN}\" https://api.github.com/repos/toptal/picasso/issues/comments/${it}"
                 }
-              }
-
-              if (COMMIT_ID != '') {
-                imageCommitId = COMMIT_ID
-              } else {
-                imageCommitId = gitCommit()
               }
 
               def url = "https://picasso.toptal.net/${targetBranch}/"
