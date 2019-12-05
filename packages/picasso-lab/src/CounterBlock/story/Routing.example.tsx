@@ -29,8 +29,8 @@ const RoutingExample = () => (
 
       <Switch>
         <Route path='/' exact component={Index} />
-        <Route path='/about/' component={About} />
-        <Route path='/users/' component={Users} />
+        <Route path='/about' component={About} />
+        <Route path='/users' component={Users} />
         <Route component={Index} />
       </Switch>
     </div>

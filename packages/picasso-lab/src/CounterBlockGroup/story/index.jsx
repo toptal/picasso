@@ -4,8 +4,7 @@ import CounterBlockGroup from '../CounterBlockGroup'
 
 const componentDocs = PicassoBook.createComponentDocs(
   CounterBlockGroup,
-  'CounterBlock.Group',
-  'No props yet'
+  'CounterBlock.Group'
 )
 
 export default {

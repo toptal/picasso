@@ -50,24 +50,22 @@ function renderRows({ documentation, classes }: Props): JSX.Element {
 }
 
 const PropsTable: FunctionComponent<Props> = props => {
-  const { classes, documentation } = props
+  const { classes } = props
   return (
     <div className={classes.root}>
       <Table className={classes.table}>
-        {documentation.length > 0 && (
-          <Table.Head>
-            <Table.Row>
-              <Table.Cell className={cx(classes.name)}>Name</Table.Cell>
-              <Table.Cell className={cx(classes.type)}>Type</Table.Cell>
-              <Table.Cell className={cx(classes.defaultValue)}>
-                Default
-              </Table.Cell>
-              <Table.Cell className={cx(classes.description)}>
-                Description
-              </Table.Cell>
-            </Table.Row>
-          </Table.Head>
-        )}
+        <Table.Head>
+          <Table.Row>
+            <Table.Cell className={cx(classes.name)}>Name</Table.Cell>
+            <Table.Cell className={cx(classes.type)}>Type</Table.Cell>
+            <Table.Cell className={cx(classes.defaultValue)}>
+              Default
+            </Table.Cell>
+            <Table.Cell className={cx(classes.description)}>
+              Description
+            </Table.Cell>
+          </Table.Row>
+        </Table.Head>
         <Table.Body>{renderRows(props)}</Table.Body>
       </Table>
     </div>
