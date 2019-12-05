@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@1.1.0...@toptal/picasso-lab@1.2.0) (2019-12-05)
+
+
+### Features
+
+* **Input:** small size variant ([#932](https://github.com/toptal/picasso/issues/932)) ([b5a049c](https://github.com/toptal/picasso/commit/b5a049c0b7659e5885674482ae75a64487d5122b))
+
+
+
+
+
 # [1.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@1.0.3...@toptal/picasso-lab@1.1.0) (2019-12-05)
 
 
