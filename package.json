@@ -121,10 +121,6 @@
       "git add"
     ]
   },
-  "sideEffects": [
-    "**/styles.ts",
-    "**/styles.js"
-  ],
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"

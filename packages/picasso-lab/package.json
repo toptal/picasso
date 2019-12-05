@@ -37,5 +37,9 @@
   "devDependencies": {
     "@types/classnames": "^2.2.9",
     "cross-env": "^6.0.3"
-  }
+  },
+  "sideEffects": [
+    "**/styles.ts",
+    "**/styles.js"
+  ]
 }
