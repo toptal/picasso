@@ -25,6 +25,7 @@ page
   .addExample('Input/story/Disabled.example.jsx', 'Disabled')
   .addExample('Input/story/Error.example.jsx', 'Error')
   .addExample('Input/story/WithIcon.example.jsx', 'With icon')
+  .addExample('Input/story/Sizes.example.jsx', 'Sizes')
   .addExample('Input/story/FullWidth.example.jsx', 'Full width')
   .addExample('Input/story/Multiline.example.jsx', 'Multiline | Textarea')
   .addExample(

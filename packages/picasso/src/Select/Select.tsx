@@ -14,16 +14,16 @@ import Popper from '@material-ui/core/Popper'
 import NativeSelect from '@material-ui/core/NativeSelect'
 import { withStyles } from '@material-ui/core/styles'
 import { capitalize } from '@material-ui/core/utils/helpers'
-import { StandardProps } from '@toptal/picasso-shared'
+import { StandardProps, SizeType } from '@toptal/picasso-shared'
 
-import { Input } from '../'
 import OutlinedInput from '../OutlinedInput'
 import ScrollMenu from '../ScrollMenu'
 import InputAdornment from '../InputAdornment'
 import MenuItem from '../MenuItem'
 import Loader from '../Loader'
 import { DropdownArrows16 } from '../Icon'
-import { isSubstring, useWidthOf } from '../utils'
+import { isSubstring, useWidthOf, disableUnsupportedProps } from '../utils'
+import { FeatureOptions } from '../utils/disable-unsupported-props'
 import { Option } from './types'
 import useSelect, { EMPTY_INPUT_VALUE, ItemProps } from './useSelect'
 import styles from './styles'
@@ -36,7 +36,7 @@ const getOptionText = (option: Option | null) =>
 
 export interface Props
   extends StandardProps,
-    Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
+    Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'size'> {
   /** If true, the 'Select' will be disabled */
   disabled?: boolean
   /** Indicate whether `Select` is in error state */
@@ -69,6 +69,11 @@ export interface Props
   value?: ValueType
   /** Allow selecting multiple values */
   multiple?: boolean
+  /**
+   * Size of component
+   * @default medium
+   */
+  size?: SizeType<'small' | 'medium'>
 }
 
 type Selection = {
@@ -86,7 +91,7 @@ type NativeOptionsProps = Pick<Props, 'options' | 'renderOption'> & {
 
 type OptionsProps = Pick<
   Props,
-  'options' | 'value' | 'multiple' | 'renderOption' | 'getDisplayValue'
+  'options' | 'value' | 'multiple' | 'renderOption' | 'getDisplayValue' | 'size'
 > & {
   highlightedIndex: number | null
   getItemProps: (index: number, option: Option) => ItemProps
@@ -130,7 +135,8 @@ const renderOptions = ({
   onItemSelect,
   getItemProps,
   value,
-  multiple
+  multiple,
+  size
 }: OptionsProps) => {
   const optionComponents = options.map((option, index) => {
     const { selected, close, ...rest } = getItemProps(index, option)
@@ -144,6 +150,7 @@ const renderOptions = ({
       <MenuItem
         key={option.key || option.value}
         value={option.value}
+        size={size}
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         selected={isSelected}
@@ -212,8 +219,25 @@ const isEqual = (val1: ValueType, val2: ValueType) =>
     ? val1.every(value => val2.includes(value))
     : val1 === val2
 
+const purifyProps = (props: Props) => {
+  const sizeOptions: FeatureOptions<Props> = {
+    featureProps: {
+      size: 'small'
+    },
+    unsupportedProps: {
+      icon: undefined,
+      loading: false
+    }
+  }
+
+  return disableUnsupportedProps('Select', props, sizeOptions)
+}
+
 export const Select = forwardRef<HTMLInputElement, Props>(function Select(
-  {
+  props,
+  ref
+) {
+  const {
     classes,
     className,
     style,
@@ -234,10 +258,10 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     value = multiple ? [] : '',
     getDisplayValue,
     tabIndex = 0,
+    size,
     ...rest
-  },
-  ref
-) {
+  } = purifyProps(props)
+
   const fireOnChangeEvent = ({
     event,
     value
@@ -386,8 +410,8 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
       input={
         <OutlinedInput
           width={width}
-          className={classes.selectWrapper}
           inputProps={{ multiple }}
+          size={size}
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...getInputProps({
             canCloseOnEnter: !multiple
@@ -427,7 +451,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
         tabIndex={tabIndexValue}
         className={classes.inputWrapper}
       >
-        <Input
+        <OutlinedInput
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...rest}
           ref={ref}
@@ -453,9 +477,10 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
           inputProps={{
             className: cx({
               [classes.inputMultiple]: multiple
-            })
+            }),
+            size: 1 // let input to have smallest width by default for width:'shrink'
           }}
-          size={1} // let input to have smallest width by default
+          size={size}
           role='textbox'
         />
         {dropDownIcon}
@@ -475,7 +500,8 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
             getItemProps,
             value,
             getDisplayValue,
-            multiple
+            multiple,
+            size
           })}
         </Popper>
       )}
@@ -506,6 +532,7 @@ Select.defaultProps = {
   native: false,
   onChange: () => {},
   renderOption: (option: Option) => option.text,
+  size: 'medium',
   width: 'full'
 }
 

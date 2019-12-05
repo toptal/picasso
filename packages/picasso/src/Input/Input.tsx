@@ -9,10 +9,12 @@ import React, {
 import cx from 'classnames'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import { InputBaseComponentProps } from '@material-ui/core/InputBase'
-import { BaseProps } from '@toptal/picasso-shared'
+import { BaseProps, SizeType } from '@toptal/picasso-shared'
 
 import InputAdornment from '../InputAdornment'
 import OutlinedInput from '../OutlinedInput'
+import { disableUnsupportedProps } from '../utils'
+import { FeatureOptions } from '../utils/disable-unsupported-props'
 import styles from './styles'
 
 type IconPosition = 'start' | 'end'
@@ -20,7 +22,7 @@ type CounterType = 'remaining' | 'entered'
 
 export interface Props
   extends BaseProps,
-    InputHTMLAttributes<HTMLInputElement> {
+    Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
   /** The id of the `input` element. */
   id?: string
   /** Name attribute of the input element */
@@ -64,6 +66,11 @@ export interface Props
   limit?: number
   /** Type of the counter of characters */
   counter?: CounterType
+  /**
+   * Size of component
+   * @default medium
+   */
+  size?: SizeType<'small' | 'medium'>
 }
 
 type LimitAdornmentProps = Pick<Props, 'multiline' | 'limit' | 'counter'> & {
@@ -177,6 +184,23 @@ const EndAdornment = (props: EndAdornmentProps) => {
   return null
 }
 
+const purifyProps = (props: Props) => {
+  const sizeOptions: FeatureOptions<Props> = {
+    featureProps: {
+      size: 'small'
+    },
+    unsupportedProps: {
+      multiline: false,
+      icon: undefined,
+      startAdornment: undefined,
+      endAdornment: undefined,
+      limit: undefined
+    }
+  }
+
+  return disableUnsupportedProps('Input', props, sizeOptions)
+}
+
 export const Input = forwardRef<HTMLInputElement, Props>(function Input(
   props,
   ref
@@ -205,8 +229,10 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
     endAdornment,
     limit,
     counter,
+    size,
     ...rest
-  } = props
+  } = purifyProps(props)
+
   const [charsLength, setCharsLength] = useState(value ? value.length : 0)
 
   const handleChange: Props['onChange'] = e => {
@@ -229,8 +255,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
       classes={{
         root: cx(classes.root, {
           [classes.rootMultiline]: multiline
-        }),
-        input: classes.input
+        })
       }}
       id={id}
       name={name}
@@ -244,6 +269,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
       rowsMax={rowsMax}
       type={type}
       width={width}
+      size={size}
       // html attributes
       inputProps={{
         ...rest,
@@ -283,6 +309,7 @@ Input.defaultProps = {
   counter: 'remaining',
   iconPosition: 'start',
   multiline: false,
+  size: 'medium',
   width: 'auto'
 }
 

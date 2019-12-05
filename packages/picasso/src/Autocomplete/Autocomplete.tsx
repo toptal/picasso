@@ -28,7 +28,7 @@ export interface Props
   extends StandardProps,
     Omit<
       InputHTMLAttributes<HTMLInputElement>,
-      'defaultValue' | 'value' | 'onChange' | 'onSelect' | 'onKeyDown'
+      'defaultValue' | 'value' | 'onChange' | 'onSelect' | 'onKeyDown' | 'size'
     > {
   /**  Callback invoked when `input` element value is changed */
   onChange?: (value: string, options: ChangedOptions) => void

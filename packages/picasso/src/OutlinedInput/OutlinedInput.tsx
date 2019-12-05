@@ -10,7 +10,7 @@ import { withStyles } from '@material-ui/core/styles'
 import MUIOutlinedInput from '@material-ui/core/OutlinedInput'
 import { InputBaseComponentProps } from '@material-ui/core/InputBase'
 import { capitalize } from '@material-ui/core/utils/helpers'
-import { StandardProps } from '@toptal/picasso-shared'
+import { StandardProps, SizeType } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
@@ -23,7 +23,10 @@ type ValueType =
 
 export interface Props
   extends StandardProps,
-    Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'defaultValue'> {
+    Omit<
+      InputHTMLAttributes<HTMLInputElement>,
+      'value' | 'defaultValue' | 'size'
+    > {
   /** Width of the component */
   width?: 'full' | 'shrink' | 'auto'
   inputComponent?: ReactType<InputBaseComponentProps>
@@ -43,6 +46,11 @@ export interface Props
   startAdornment?: ReactNode
   endAdornment?: ReactNode
   onChange?: ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>
+  /**
+   * Size of component
+   * @default medium
+   */
+  size?: SizeType<'small' | 'medium'>
 }
 
 const OutlinedInput = forwardRef<HTMLInputElement, Props>(
@@ -64,6 +72,7 @@ const OutlinedInput = forwardRef<HTMLInputElement, Props>(
       startAdornment,
       endAdornment,
       onChange,
+      size,
       ...rest
     },
     ref
@@ -73,8 +82,12 @@ const OutlinedInput = forwardRef<HTMLInputElement, Props>(
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         classes={{
-          root: cx(classes.root, classes[`root${capitalize(width!)}`]),
-          input: classes.input,
+          root: cx(
+            classes.root,
+            classes[`root${capitalize(width!)}`],
+            classes[`root${capitalize(size!)}`]
+          ),
+          input: cx(classes.input, classes[`input${capitalize(size!)}`]),
           inputMultiline: classes.inputMultiline
         }}
         className={className}
@@ -100,7 +113,8 @@ const OutlinedInput = forwardRef<HTMLInputElement, Props>(
 )
 
 OutlinedInput.defaultProps = {
-  width: 'auto'
+  width: 'auto',
+  size: 'medium'
 }
 
 OutlinedInput.displayName = 'OutlinedInput'

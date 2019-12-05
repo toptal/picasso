@@ -1,29 +1,29 @@
-import { Theme, createStyles } from '@material-ui/core/styles'
+import { createStyles } from '@material-ui/core/styles'
 import { rem } from '@toptal/picasso-shared'
 
-const TAG_SELECTOR_GUTTER_SIZE = rem('6px')
+export const TAG_SELECTOR_INPUT_GUTTER_SIZE = rem('6px')
 
-export default ({ sizes: { input } }: Theme) =>
+export default () =>
   createStyles({
     inputBase: {
       display: 'flex',
       flexWrap: 'wrap',
       height: 'auto',
-      paddingLeft: TAG_SELECTOR_GUTTER_SIZE,
-      paddingTop: TAG_SELECTOR_GUTTER_SIZE,
-      '& > *:not(fieldset)': {
-        marginRight: TAG_SELECTOR_GUTTER_SIZE,
-        marginBottom: TAG_SELECTOR_GUTTER_SIZE
-      },
+      paddingBottom: 0,
+      paddingLeft: TAG_SELECTOR_INPUT_GUTTER_SIZE,
+      paddingTop: TAG_SELECTOR_INPUT_GUTTER_SIZE,
+
       '& > input': {
         width: 'auto',
         height: rem('24px'),
         paddingLeft: rem('4px'),
         paddingRight: '0',
-        fontSize: '0.8125em'
+        fontSize: '0.8125em',
+        marginRight: TAG_SELECTOR_INPUT_GUTTER_SIZE,
+        marginBottom: TAG_SELECTOR_INPUT_GUTTER_SIZE
       }
     },
     loaderAdornment: {
-      marginRight: input.padding
+      marginBottom: TAG_SELECTOR_INPUT_GUTTER_SIZE
     }
   })

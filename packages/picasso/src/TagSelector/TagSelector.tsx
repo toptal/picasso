@@ -82,6 +82,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       enableAutofill,
       getKey: customGetKey,
       renderOption,
+      classes,
       ...rest
     },
     ref
@@ -164,7 +165,11 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
     const labels = (
       <Fragment>
         {values.map(item => (
-          <Label key={getKey!(item)} onDelete={() => handleDelete(item)}>
+          <Label
+            className={classes.label}
+            key={getKey!(item)}
+            onDelete={() => handleDelete(item)}
+          >
             {getDisplayValue!(item)}
           </Label>
         ))}

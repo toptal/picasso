@@ -21,13 +21,9 @@ export default ({ palette, zIndex }: Theme) =>
       width: 'auto'
     },
     rootAuto: {},
-    selectWrapper: {
-      padding: 0
-    },
     select: {
       width: '100%',
       zIndex: 1,
-      fontSize: '0.8125em',
 
       '&:focus': {
         backgroundColor: 'inherit'
@@ -39,7 +35,7 @@ export default ({ palette, zIndex }: Theme) =>
     },
     input: {
       zIndex: 1,
-      paddingRight: 'calc(0.625em + 1em)'
+      paddingRight: 'calc(0.625rem + 1rem)'
     },
     inputMultiple: {
       '&:hover': {
@@ -51,12 +47,12 @@ export default ({ palette, zIndex }: Theme) =>
     },
     caret: {
       position: 'absolute',
-      top: 'calc(50% - 0.5em)',
+      top: 'calc(50% - 0.5rem)',
       // in specs right spacing is defined relative to 6px icon width, while we use 16px
       // so 5px are left instead of 10px when we use wider icon.
-      right: '0.3125em',
+      right: '0.3125rem',
       color: palette.grey.dark,
-      fontSize: '1em'
+      fontSize: '1rem'
     },
     caretDisabled: {
       color: alpha(palette.grey.dark!, 0.48)
@@ -66,16 +62,16 @@ export default ({ palette, zIndex }: Theme) =>
     },
     nativeStartAdornment: {
       position: 'absolute',
-      left: '0.625em'
+      left: '0.625rem'
     },
     nativeEndAdornment: {
       position: 'absolute',
-      right: '1.625em'
+      right: '1.625rem'
     },
     nativeStartAdornmentPadding: {
-      paddingLeft: '2.5625em'
+      paddingLeft: '2.5625rem'
     },
     nativeEndAdornmentPadding: {
-      paddingRight: '3.5625em'
+      paddingRight: '3.5625rem'
     }
   })

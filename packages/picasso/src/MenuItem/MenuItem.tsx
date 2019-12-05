@@ -11,8 +11,13 @@ import React, {
 } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
+import { capitalize } from '@material-ui/core/utils/helpers'
 import MUIMenuItem from '@material-ui/core/MenuItem'
-import { StandardProps, ButtonOrAnchorProps } from '@toptal/picasso-shared'
+import {
+  StandardProps,
+  ButtonOrAnchorProps,
+  SizeType
+} from '@toptal/picasso-shared'
 
 import { ChevronMinor16 } from '../Icon'
 import { Container } from '../'
@@ -43,6 +48,10 @@ export interface Props extends StandardProps, MenuItemAttributes {
   value?: string | string[] | number
   /** Variant of colors */
   variant?: VariantType
+  /**
+   * Size of component
+   */
+  size?: SizeType<'small' | 'medium'>
 }
 
 const generateKey = (() => {
@@ -65,15 +74,12 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
     style,
     value,
     variant,
+    size,
     ...rest
   },
   ref
 ) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { stringContent, light, dark, ...restClasses } = classes
-
   const { push, refresh } = useContext<MenuContextProps>(MenuContext)
-
   const key = useMemo(generateKey, [])
 
   useEffect(() => {
@@ -84,7 +90,12 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
 
   if (typeof children === 'string') {
     children = (
-      <span className={stringContent} style={style}>
+      <span
+        className={cx(classes.stringContent, {
+          [classes[`stringContent${size && capitalize(size!)}`]]: size
+        })}
+        style={style}
+      >
         {children}
       </span>
     )
@@ -107,7 +118,12 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
       {...rest}
       ref={ref}
       component={as!}
-      classes={restClasses}
+      classes={{
+        root: cx({
+          [classes[`gutters${size && capitalize(size!)}`]]: size
+        }),
+        selected: classes.selected
+      }}
       className={cx(classes[variant!], className)}
       disabled={disabled}
       disableGutters={disableGutters}

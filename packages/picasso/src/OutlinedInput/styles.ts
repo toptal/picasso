@@ -4,7 +4,6 @@ import { PicassoProvider, alpha } from '@toptal/picasso-shared'
 PicassoProvider.override(({ palette, sizes: { input } }: Theme) => ({
   MuiOutlinedInput: {
     root: {
-      height: input.height,
       width: input.width,
       color: palette.common.black,
 
@@ -39,12 +38,12 @@ PicassoProvider.override(({ palette, sizes: { input } }: Theme) => ({
       }
     },
     input: {
-      fontSize: '1em',
+      fontSize: '1rem',
       display: 'flex',
       alignItems: 'center',
       boxSizing: 'border-box',
       height: '100%',
-      padding: input.padding,
+      padding: 0,
       border: 'none',
 
       '&::placeholder': {
@@ -72,9 +71,17 @@ PicassoProvider.override(({ palette, sizes: { input } }: Theme) => ({
   }
 }))
 
-export default () =>
+export default ({ sizes: { input } }: Theme) =>
   createStyles({
     root: {},
+    rootSmall: {
+      padding: '0.25rem 0.625rem',
+      height: '1.5rem'
+    },
+    rootMedium: {
+      padding: input.padding,
+      height: input.height
+    },
     rootFull: {
       width: '100%'
     },
@@ -83,5 +90,11 @@ export default () =>
     },
     rootAuto: {},
     input: {},
+    inputSmall: {
+      fontSize: '0.75rem'
+    },
+    inputMedium: {
+      fontSize: '0.8125rem'
+    },
     inputMultiline: {}
   })

@@ -15,12 +15,12 @@ exports[`TagSelector default render 1`] = `
         class="Container-flex"
       >
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto makeStyles-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium makeStyles-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
         >
           <input
             aria-autocomplete="list"
             autocomplete="none"
-            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
             placeholder="Please select..."
             style="width: auto;"
             type="text"
@@ -66,10 +66,10 @@ exports[`TagSelector preselected value 1`] = `
           class="Container-flex"
         >
           <div
-            class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto makeStyles-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+            class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium makeStyles-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
           >
             <div
-              class="MuiChip-root Label-root MuiChip-deletable"
+              class="MuiChip-root Label-root TagSelector-label MuiChip-deletable"
               role="button"
               tabindex="0"
             >
@@ -101,7 +101,7 @@ exports[`TagSelector preselected value 1`] = `
             <input
               aria-autocomplete="list"
               autocomplete="none"
-              class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+              class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
               type="text"
               value=""
             />
