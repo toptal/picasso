@@ -87,12 +87,6 @@ pipeline {
                 }
               }
 
-              if (COMMIT_ID != '') {
-                imageCommitId = COMMIT_ID
-              } else {
-                imageCommitId = gitCommit()
-              }
-
               def url = "https://picasso.toptal.net/${targetBranch}/"
               def comment = ":tada: Last commit is successfully deployed :tada: \\n\\nDemo is available on:\\n\\n- [${url}](${url}?${imageCommitId}) \\n\\n Your **[davinci-bot](https://github.com/toptal-davinci-bot)** :rocket:"
               gitHubPostComment('picasso', params.PR_ID, comment, env.GITHUB_TOKEN)
