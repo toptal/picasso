@@ -1,6 +1,7 @@
 @Library('globalLibrary@master') _
 
 repoName = 'picasso'
+imageCommitId = ''
 
 pipeline {
 
@@ -15,6 +16,7 @@ pipeline {
   parameters {
     string(name: 'BRANCH', defaultValue: 'master', description: 'Branch or tag to build')
     string(name: 'PR_ID', defaultValue: '1', description: 'Pull request id')
+    string(name: 'COMMIT_ID', defaultValue: '', description: 'Commit hash from which docs should be created')
   }
 
   environment {
@@ -43,13 +45,19 @@ pipeline {
     stage('Build docs') {
       steps {
         script {
+          if (COMMIT_ID != '') {
+            imageCommitId = COMMIT_ID
+          } else {
+            imageCommitId = gitCommit()
+          }
+
           sh """
             docker run \
             --rm \
             -v ${WORKSPACE}/deploy-docs:/app/deploy-docs \
             -e DEPLOY_DOCS_PATH=/app/deploy-docs \
             -e DEPLOY_DOCS_ARCHIVE=deploy-docs \
-            gcr.io/toptal-hub/${repoName}:${gitCommit()} \
+            gcr.io/toptal-hub/${repoName}:${imageCommitId} \
             ./bin/release-docs
 
             tar -zxvf ${WORKSPACE}/deploy-docs/deploy-docs.tar.gz -C ${WORKSPACE}/deploy-docs/
@@ -80,7 +88,7 @@ pipeline {
               }
 
               def url = "https://picasso.toptal.net/${targetBranch}/"
-              def comment = ":tada: Last commit is successfully deployed :tada: \\n\\nDemo is available on:\\n\\n- [${url}](${url}?${gitCommit()}) \\n\\n Your **[davinci-bot](https://github.com/toptal-davinci-bot)** :rocket:"
+              def comment = ":tada: Last commit is successfully deployed :tada: \\n\\nDemo is available on:\\n\\n- [${url}](${url}?${imageCommitId}) \\n\\n Your **[davinci-bot](https://github.com/toptal-davinci-bot)** :rocket:"
               gitHubPostComment('picasso', params.PR_ID, comment, env.GITHUB_TOKEN)
           }
         }//script

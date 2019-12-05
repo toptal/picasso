@@ -132,7 +132,10 @@ pipeline {
           downStreamBuilds[1] = build(
             job: "picasso-docs",
             propagate: false,
-            wait: true
+            wait: true,
+            parameters: [
+              COMMIT_ID: gitCommit()
+            ]
           )
         }
       }
