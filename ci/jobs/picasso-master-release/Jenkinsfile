@@ -7,6 +7,7 @@ downStreamBuilds = []
 repoName = 'picasso'
 buildImageJobName = "${repoName}-build-image"
 releaseDocsJobName = "${repoName}-docs"
+imageCommitId = ''
 def VERSION
 
 pipeline {
@@ -60,6 +61,7 @@ pipeline {
     stage('Build image') {
       steps {
         script {
+          imageCommitId = gitCommit()
           downStreamBuilds[0] = buildWithParameters(
             jobName: buildImageJobName,
             propagate: false,
@@ -114,7 +116,7 @@ pipeline {
             -e SSH_AUTH_SOCK=/ssh-agent \
             -v ${PWD}/.git:/app/.git \
             --entrypoint=./bin/release \
-            gcr.io/toptal-hub/${repoName}:${gitCommit()}
+            gcr.io/toptal-hub/${repoName}:${imageCommitId}
           """
         }
 
@@ -135,7 +137,7 @@ pipeline {
             propagate: false,
             wait: true,
             parameters: [
-              COMMIT_ID: gitCommit()
+              COMMIT_ID: imageCommitId
             ]
           )
         }
