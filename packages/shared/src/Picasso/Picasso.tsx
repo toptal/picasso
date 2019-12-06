@@ -117,19 +117,24 @@ interface PicassoProps {
   loadFonts?: boolean
   /** Whether to apply Picasso CSS reset */
   reset?: boolean
+  /** Notification DOMNode for createPortal */
+  notificationContainer?: HTMLElement
 }
 
 const Picasso: FunctionComponent<PicassoProps> = ({
   loadFonts,
   reset,
-  children
+  children,
+  notificationContainer
 }) => (
   <MuiThemeProvider theme={PicassoProvider.theme}>
     {loadFonts && <FontsLoader />}
     {reset && <CssBaseline />}
     <PicassoGlobalStylesProvider>
       <ModalProvider>
-        <NotificationsProvider>{children}</NotificationsProvider>
+        <NotificationsProvider container={notificationContainer}>
+          {children}
+        </NotificationsProvider>
       </ModalProvider>
     </PicassoGlobalStylesProvider>
   </MuiThemeProvider>

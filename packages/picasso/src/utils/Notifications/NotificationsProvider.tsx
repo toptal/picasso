@@ -6,11 +6,20 @@ import { headerHeight } from '../../PageHeader/styles'
 
 const MAX_NOTIFICATION_MESSAGES = 5
 
-const NotificationsProvider: FunctionComponent = ({ children }) => {
+interface Props {
+  /** Notification DOMNode for createPortal */
+  container?: HTMLElement
+}
+
+const NotificationsProvider: FunctionComponent<Props> = ({
+  children,
+  container
+}) => {
   const { hasPageHeader } = usePageHeader()
 
   return (
     <SnackbarProvider
+      domRoot={container}
       maxSnack={MAX_NOTIFICATION_MESSAGES}
       style={hasPageHeader ? { marginTop: headerHeight.default } : undefined}
     >

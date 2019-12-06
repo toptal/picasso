@@ -42,58 +42,73 @@ exports[`useNotifications error notification render 1`] = `
       </span>
     </button>
     <div
-      class="MuiSnackbar-root SnackbarItem-root MuiSnackbar-anchorOriginTopRight SnackbarItem-anchorOriginTopRight"
-      height="0"
-      style="top: 20px; transition: all 200ms; transition-delay: 150ms;"
+      class="makeStyles-root makeStyles-top makeStyles-right makeStyles-top makeStyles-right"
     >
       <div
-        class="MuiTypography-root MuiPaper-root MuiPaper-elevation6 MuiSnackbarContent-root Notification-notificationRed Notification-notificationShadow Notification-notification ForwardRef(Notification)-formNotification MuiTypography-body2"
-        role="alertdialog"
-        style="webkit-transform: none; transform: none; webkit-transition: -webkit-transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms; transition: transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;"
+        class="MuiCollapse-container SnackbarItem-collapseContainer MuiCollapse-entered"
+        style="min-height: 0px;"
       >
         <div
-          class="MuiSnackbarContent-message"
+          class="MuiCollapse-wrapper SnackbarItem-collapseWrapper"
         >
           <div
-            class="Container-flex Notification-iconWrapper"
-            style="align-items: center;"
+            class="MuiCollapse-wrapperInner"
           >
-            <svg
-              class="SvgExclamation16-root SvgExclamation16-red"
-              style="min-width: 16px; min-height: 16px;"
-              viewBox="0 0 16 16"
+            <div
+              class="MuiSnackbar-root SnackbarItem-root SnackbarItem-wrappedRoot MuiSnackbar-anchorOriginTopRight SnackbarItem-anchorOriginTopRight"
             >
-              <path
-                d="M7.5 15a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15zm0-1a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13zM7 3h1v6H7V3zm0 8h1v1H7v-1z"
-              />
-            </svg>
-          </div>
-          <div
-            class="MuiTypography-root Typography-bodyMedium Notification-content Notification-contentCloseButton MuiTypography-body1"
-          >
-            Error message
-          </div>
-          <button
-            class="MuiButtonBase-root makeStyles-circular makeStyles-medium makeStyles-primaryBlue makeStyles-root Notification-close"
-            tabindex="0"
-            title="Close Notification"
-            type="button"
-          >
-            <span
-              class="Container-flex Container-inline makeStyles-content"
-              style="align-items: center;"
-            >
-              <svg
-                class="SvgCloseMinor16-root makeStyles-icon Notification-closeIcon"
-                style="min-width: 16px; min-height: 16px;"
-                viewBox="0 0 16 16"
+              <div
+                class="MuiTypography-root MuiPaper-root MuiPaper-elevation6 MuiSnackbarContent-root Notification-notificationRed Notification-notificationShadow Notification-notification ForwardRef(Notification)-formNotification MuiTypography-body2"
+                role="alertdialog"
+                style="webkit-transform: none; transform: none; webkit-transition: -webkit-transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms; transition: transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;"
               >
-                <path
-                  d="M8.707 8l3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5z"
-                />
-              </svg>
-            </span>
-          </button>
+                <div
+                  class="MuiSnackbarContent-message"
+                >
+                  <div
+                    class="Container-flex Notification-iconWrapper"
+                    style="align-items: center;"
+                  >
+                    <svg
+                      class="SvgExclamation16-root SvgExclamation16-red"
+                      style="min-width: 16px; min-height: 16px;"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M7.5 15a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15zm0-1a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13zM7 3h1v6H7V3zm0 8h1v1H7v-1z"
+                      />
+                    </svg>
+                  </div>
+                  <div
+                    class="MuiTypography-root Typography-bodyMedium Notification-content Notification-contentCloseButton MuiTypography-body1"
+                  >
+                    Error message
+                  </div>
+                  <button
+                    class="MuiButtonBase-root makeStyles-circular makeStyles-medium makeStyles-primaryBlue makeStyles-root Notification-close"
+                    tabindex="0"
+                    title="Close Notification"
+                    type="button"
+                  >
+                    <span
+                      class="Container-flex Container-inline makeStyles-content"
+                      style="align-items: center;"
+                    >
+                      <svg
+                        class="SvgCloseMinor16-root makeStyles-icon Notification-closeIcon"
+                        style="min-width: 16px; min-height: 16px;"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          d="M8.707 8l3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5z"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -143,58 +158,73 @@ exports[`useNotifications info notification render 1`] = `
       </span>
     </button>
     <div
-      class="MuiSnackbar-root SnackbarItem-root MuiSnackbar-anchorOriginTopRight SnackbarItem-anchorOriginTopRight"
-      height="0"
-      style="top: 20px; transition: all 200ms; transition-delay: 150ms;"
+      class="makeStyles-root makeStyles-top makeStyles-right makeStyles-top makeStyles-right"
     >
       <div
-        class="MuiTypography-root MuiPaper-root MuiPaper-elevation6 MuiSnackbarContent-root Notification-notificationWhite Notification-notificationShadow Notification-notification ForwardRef(Notification)-generalNotification MuiTypography-body2"
-        role="alertdialog"
-        style="webkit-transform: none; transform: none; webkit-transition: -webkit-transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms; transition: transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;"
+        class="MuiCollapse-container SnackbarItem-collapseContainer MuiCollapse-entered"
+        style="min-height: 0px;"
       >
         <div
-          class="MuiSnackbarContent-message"
+          class="MuiCollapse-wrapper SnackbarItem-collapseWrapper"
         >
           <div
-            class="Container-flex Notification-iconWrapper"
-            style="align-items: center;"
+            class="MuiCollapse-wrapperInner"
           >
-            <svg
-              class="SvgInfo16-root SvgInfo16-grey"
-              style="min-width: 16px; min-height: 16px;"
-              viewBox="0 0 16 16"
+            <div
+              class="MuiSnackbar-root SnackbarItem-root SnackbarItem-wrappedRoot MuiSnackbar-anchorOriginTopRight SnackbarItem-anchorOriginTopRight"
             >
-              <path
-                d="M7.5 15a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15zm0-1a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13zM7 6h1v6H7V6zm0-3h1v1H7V3z"
-              />
-            </svg>
-          </div>
-          <div
-            class="MuiTypography-root Typography-bodyMedium Notification-content Notification-contentCloseButton MuiTypography-body1"
-          >
-            Info message
-          </div>
-          <button
-            class="MuiButtonBase-root makeStyles-circular makeStyles-medium makeStyles-primaryBlue makeStyles-root Notification-close"
-            tabindex="0"
-            title="Close Notification"
-            type="button"
-          >
-            <span
-              class="Container-flex Container-inline makeStyles-content"
-              style="align-items: center;"
-            >
-              <svg
-                class="SvgCloseMinor16-root makeStyles-icon Notification-closeIcon"
-                style="min-width: 16px; min-height: 16px;"
-                viewBox="0 0 16 16"
+              <div
+                class="MuiTypography-root MuiPaper-root MuiPaper-elevation6 MuiSnackbarContent-root Notification-notificationWhite Notification-notificationShadow Notification-notification ForwardRef(Notification)-generalNotification MuiTypography-body2"
+                role="alertdialog"
+                style="webkit-transform: none; transform: none; webkit-transition: -webkit-transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms; transition: transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;"
               >
-                <path
-                  d="M8.707 8l3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5z"
-                />
-              </svg>
-            </span>
-          </button>
+                <div
+                  class="MuiSnackbarContent-message"
+                >
+                  <div
+                    class="Container-flex Notification-iconWrapper"
+                    style="align-items: center;"
+                  >
+                    <svg
+                      class="SvgInfo16-root SvgInfo16-grey"
+                      style="min-width: 16px; min-height: 16px;"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M7.5 15a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15zm0-1a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13zM7 6h1v6H7V6zm0-3h1v1H7V3z"
+                      />
+                    </svg>
+                  </div>
+                  <div
+                    class="MuiTypography-root Typography-bodyMedium Notification-content Notification-contentCloseButton MuiTypography-body1"
+                  >
+                    Info message
+                  </div>
+                  <button
+                    class="MuiButtonBase-root makeStyles-circular makeStyles-medium makeStyles-primaryBlue makeStyles-root Notification-close"
+                    tabindex="0"
+                    title="Close Notification"
+                    type="button"
+                  >
+                    <span
+                      class="Container-flex Container-inline makeStyles-content"
+                      style="align-items: center;"
+                    >
+                      <svg
+                        class="SvgCloseMinor16-root makeStyles-icon Notification-closeIcon"
+                        style="min-width: 16px; min-height: 16px;"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          d="M8.707 8l3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5z"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -244,58 +274,73 @@ exports[`useNotifications success notification render 1`] = `
       </span>
     </button>
     <div
-      class="MuiSnackbar-root SnackbarItem-root MuiSnackbar-anchorOriginTopRight SnackbarItem-anchorOriginTopRight"
-      height="0"
-      style="top: 20px; transition: all 200ms; transition-delay: 150ms;"
+      class="makeStyles-root makeStyles-top makeStyles-right makeStyles-top makeStyles-right"
     >
       <div
-        class="MuiTypography-root MuiPaper-root MuiPaper-elevation6 MuiSnackbarContent-root Notification-notificationGreen Notification-notificationShadow Notification-notification ForwardRef(Notification)-formNotification MuiTypography-body2"
-        role="alertdialog"
-        style="webkit-transform: none; transform: none; webkit-transition: -webkit-transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms; transition: transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;"
+        class="MuiCollapse-container SnackbarItem-collapseContainer MuiCollapse-entered"
+        style="min-height: 0px;"
       >
         <div
-          class="MuiSnackbarContent-message"
+          class="MuiCollapse-wrapper SnackbarItem-collapseWrapper"
         >
           <div
-            class="Container-flex Notification-iconWrapper"
-            style="align-items: center;"
+            class="MuiCollapse-wrapperInner"
           >
-            <svg
-              class="SvgCheckMinor16-root SvgCheckMinor16-green"
-              style="min-width: 16px; min-height: 16px;"
-              viewBox="0 0 16 16"
+            <div
+              class="MuiSnackbar-root SnackbarItem-root SnackbarItem-wrappedRoot MuiSnackbar-anchorOriginTopRight SnackbarItem-anchorOriginTopRight"
             >
-              <path
-                d="M6.5 9.793l4-4 .707.707-4 4-.707.707L3.793 8.5l.707-.707 2 2z"
-              />
-            </svg>
-          </div>
-          <div
-            class="MuiTypography-root Typography-bodyMedium Notification-content Notification-contentCloseButton MuiTypography-body1"
-          >
-            Success message
-          </div>
-          <button
-            class="MuiButtonBase-root makeStyles-circular makeStyles-medium makeStyles-primaryBlue makeStyles-root Notification-close"
-            tabindex="0"
-            title="Close Notification"
-            type="button"
-          >
-            <span
-              class="Container-flex Container-inline makeStyles-content"
-              style="align-items: center;"
-            >
-              <svg
-                class="SvgCloseMinor16-root makeStyles-icon Notification-closeIcon"
-                style="min-width: 16px; min-height: 16px;"
-                viewBox="0 0 16 16"
+              <div
+                class="MuiTypography-root MuiPaper-root MuiPaper-elevation6 MuiSnackbarContent-root Notification-notificationGreen Notification-notificationShadow Notification-notification ForwardRef(Notification)-formNotification MuiTypography-body2"
+                role="alertdialog"
+                style="webkit-transform: none; transform: none; webkit-transition: -webkit-transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms; transition: transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;"
               >
-                <path
-                  d="M8.707 8l3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5z"
-                />
-              </svg>
-            </span>
-          </button>
+                <div
+                  class="MuiSnackbarContent-message"
+                >
+                  <div
+                    class="Container-flex Notification-iconWrapper"
+                    style="align-items: center;"
+                  >
+                    <svg
+                      class="SvgCheckMinor16-root SvgCheckMinor16-green"
+                      style="min-width: 16px; min-height: 16px;"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M6.5 9.793l4-4 .707.707-4 4-.707.707L3.793 8.5l.707-.707 2 2z"
+                      />
+                    </svg>
+                  </div>
+                  <div
+                    class="MuiTypography-root Typography-bodyMedium Notification-content Notification-contentCloseButton MuiTypography-body1"
+                  >
+                    Success message
+                  </div>
+                  <button
+                    class="MuiButtonBase-root makeStyles-circular makeStyles-medium makeStyles-primaryBlue makeStyles-root Notification-close"
+                    tabindex="0"
+                    title="Close Notification"
+                    type="button"
+                  >
+                    <span
+                      class="Container-flex Container-inline makeStyles-content"
+                      style="align-items: center;"
+                    >
+                      <svg
+                        class="SvgCloseMinor16-root makeStyles-icon Notification-closeIcon"
+                        style="min-width: 16px; min-height: 16px;"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          d="M8.707 8l3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5z"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
