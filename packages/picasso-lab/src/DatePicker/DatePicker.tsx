@@ -22,7 +22,7 @@ export interface Props
       | 'onChange'
     > {
   /** Date that will be selected in Datepicker */
-  value: DateOrDateRangeType
+  value: DateOrDateRangeType | undefined
   /** Method that will be invoked with selected values */
   onChange: (value: DateOrDateRangeType) => void
   /** Invoked when user goes away from Datepicker input */
@@ -57,12 +57,7 @@ const DEFAULT_DATE_FORMAT = 'MMM d, yyyy'
 const DEFAULT_RAW_DATE_FORMAT = 'MM-dd-yyyy'
 const EMPTY_INPUT_VALUE = ''
 
-// 2) fix range mode
-// 3) update examples
-
 export const DatePicker = ({
-  // TODO: fix range variant
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   range,
   hideOnSelect,
   displayDateFormat,
@@ -73,9 +68,9 @@ export const DatePicker = ({
   width,
   ...rest
 }: Props) => {
-  // TODO: fix range mode
   const inputProps = rest
-  const errorMessae = `Entered date is invalid, please, check the format "${editDateFormat!.toLowerCase()}"`
+  const errorMessage = `Entered date is invalid, please, check the format "${editDateFormat!.toLowerCase()}"`
+
   const [calendarIsShown, setCalendarIsShown] = useState(false)
   const [showRawValueInInput, setShowRawValueInInput] = useState(false)
   const [error, setError] = useState('')
@@ -90,6 +85,11 @@ export const DatePicker = ({
   useLayoutEffect(() => {
     if (!value) return
 
+    if (range) {
+      setInputValue(formatDateRange(value as [Date, Date], displayDateFormat!))
+      return
+    }
+
     if (showRawValueInInput) {
       setInputValue(formatDate(value as Date, editDateFormat!))
     } else {
@@ -99,7 +99,10 @@ export const DatePicker = ({
 
   const leaveInput = () => {
     hideCalendar()
-    onBlur!()
+
+    if (showRawValueInInput) {
+      onBlur!()
+    }
 
     if (error) {
       setShowError(true)
@@ -123,6 +126,9 @@ export const DatePicker = ({
       HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
     >
   ) => {
+    // TODO: change this if manual entering of range is needed
+    if (range) return
+
     const nextInputValue = e.target.value
 
     // TODO: add char filtering (only number , `-` or ` ` allowed)
@@ -136,10 +142,10 @@ export const DatePicker = ({
 
         resetError()
       } else {
-        setError(errorMessae)
+        setError(errorMessage)
       }
     } catch {
-      setError(errorMessae)
+      setError(errorMessage)
     }
   }
 
@@ -210,7 +216,11 @@ export const DatePicker = ({
         {showError && <Form.Error>{error}</Form.Error>}
 
         {calendarIsShown && (
-          <Calendar value={value} onChange={handleCalendarChange} />
+          <Calendar
+            range={range}
+            value={value}
+            onChange={handleCalendarChange}
+          />
         )}
       </Container>
     </ClickAwayListener>
