@@ -2,14 +2,14 @@ import React, { useState } from 'react'
 import { DatePicker } from '@toptal/picasso-lab'
 
 const RangeExample = () => {
-  const [value, setValue] = useState<[Date, Date]>(undefined)
+  const [value, setValue] = useState<[Date, Date]>()
 
   return (
     <div style={{ height: '50vh' }}>
       <DatePicker
         range
         value={value}
-        onChange={(dates: Date | [Date, Date]) => {
+        onChange={dates => {
           const [start, end] = dates as [Date, Date]
 
           // eslint-disable-next-line no-console

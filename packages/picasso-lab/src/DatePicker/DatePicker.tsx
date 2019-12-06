@@ -21,6 +21,8 @@ export interface Props
       | 'defaultValue'
       | 'onChange'
     > {
+  /** Date that will be selected in Datepicker */
+  value: DateOrDateRangeType
   /** Method that will be invoked with selected values */
   onChange: (value: DateOrDateRangeType) => void
   /** Invoked when user goes away from Datepicker input */
@@ -29,8 +31,6 @@ export interface Props
   range?: boolean
   /** Whether calendar should be closed after date selection. True by default */
   hideOnSelect?: boolean
-  /** Initial value of the Datepicker if needed */
-  value?: DateOrDateRangeType
   /** Date format that user will see in the input */
   displayDateFormat?: string
   /** Date format that user will see during manual input */
@@ -57,6 +57,9 @@ const DEFAULT_DATE_FORMAT = 'MMM d, yyyy'
 const DEFAULT_RAW_DATE_FORMAT = 'MM-dd-yyyy'
 const EMPTY_INPUT_VALUE = ''
 
+// 2) fix range mode
+// 3) update examples
+
 export const DatePicker = ({
   // TODO: fix range variant
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -66,7 +69,7 @@ export const DatePicker = ({
   editDateFormat,
   onBlur,
   onChange,
-  value: initialValue,
+  value,
   width,
   ...rest
 }: Props) => {
@@ -74,9 +77,6 @@ export const DatePicker = ({
   const inputProps = rest
   const errorMessae = `Entered date is invalid, please, check the format "${editDateFormat!.toLowerCase()}"`
   const [calendarIsShown, setCalendarIsShown] = useState(false)
-  const [rawValue, setRawValue] = useState<DateOrDateRangeType | undefined>(
-    initialValue
-  )
   const [showRawValueInInput, setShowRawValueInInput] = useState(false)
   const [error, setError] = useState('')
   const [showError, setShowError] = useState(false)
@@ -88,14 +88,14 @@ export const DatePicker = ({
   const inputRef = useRef<HTMLInputElement>(null)
 
   useLayoutEffect(() => {
-    if (!rawValue) return
+    if (!value) return
 
     if (showRawValueInInput) {
-      setInputValue(formatDate(rawValue as Date, editDateFormat!))
+      setInputValue(formatDate(value as Date, editDateFormat!))
     } else {
-      setInputValue(formatDate(rawValue as Date, displayDateFormat!))
+      setInputValue(formatDate(value as Date, displayDateFormat!))
     }
-  }, [rawValue, showRawValueInInput])
+  }, [value, showRawValueInInput])
 
   const leaveInput = () => {
     hideCalendar()
@@ -123,20 +123,16 @@ export const DatePicker = ({
       HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
     >
   ) => {
-    const value = e.target.value
+    const nextInputValue = e.target.value
 
     // TODO: add char filtering (only number , `-` or ` ` allowed)
-    setInputValue(value)
+    setInputValue(nextInputValue)
 
     try {
-      const isDateValid = validateDate(value)
+      const isDateValid = validateDate(nextInputValue)
 
       if (isDateValid) {
-        setRawValue(new Date(value))
-
-        if (rawValue) {
-          onChange(rawValue)
-        }
+        onChange(new Date(nextInputValue))
 
         resetError()
       } else {
@@ -161,11 +157,7 @@ export const DatePicker = ({
   }
 
   const handleCalendarChange = (value: DateOrDateRangeType) => {
-    setRawValue(value)
-
-    if (rawValue) {
-      onChange(rawValue)
-    }
+    onChange(value)
 
     if (hideOnSelect) {
       focus()
@@ -218,7 +210,7 @@ export const DatePicker = ({
         {showError && <Form.Error>{error}</Form.Error>}
 
         {calendarIsShown && (
-          <Calendar value={rawValue} onChange={handleCalendarChange} />
+          <Calendar value={value} onChange={handleCalendarChange} />
         )}
       </Container>
     </ClickAwayListener>
