@@ -120,6 +120,16 @@ export const DatePicker = ({
     }
   }
 
+  const resetError = () => {
+    setError('')
+    setShowError(false)
+  }
+
+  const validateDate = (value: string) => {
+    // TODO: make this check more serious
+    return value.length === 10 && isValid(new Date(value))
+  }
+
   const handleInputChange = (
     e: React.ChangeEvent<
       HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
@@ -131,11 +141,11 @@ export const DatePicker = ({
     setInputValue(value)
 
     try {
-      // TODO: make this check more serious
-      if (value.length === 10 && isValid(new Date(value))) {
+      const isDateValid = validateDate(value)
+
+      if (isDateValid) {
         setRawValue(new Date(value))
-        setError('')
-        setShowError(false)
+        resetError()
       } else {
         setError(errorMessae)
       }
@@ -166,8 +176,7 @@ export const DatePicker = ({
     }
 
     if (error) {
-      setError('')
-      setShowError(false)
+      resetError()
     }
   }
 
@@ -180,6 +189,7 @@ export const DatePicker = ({
 
     if (key === 'Escape') {
       hideCalendar()
+      return
     }
 
     if (key === 'Tab') {
