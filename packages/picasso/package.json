@@ -30,7 +30,7 @@
     "@material-ui/icons": "4.5.1",
     "@toptal/picasso-shared": "^1.0.1",
     "classnames": "^2.2.6",
-    "notistack": "^0.8.9",
+    "notistack": "^0.9.7",
     "react-modal-hook": "^2.0.0",
     "react-router-dom": "^5.0.1",
     "react-truncate": "^2.4.0"

@@ -65,7 +65,7 @@ export const useNotifications = () => {
     const notificationId = enqueueSnackbar('', {
       anchorOrigin: defaultPosition,
       // eslint-disable-next-line react/display-name
-      children: (key: string) => (
+      content: (key: string) => (
         <StyledNotification
           content={content}
           icon={icon}
