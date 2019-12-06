@@ -1,9 +1,16 @@
-import React, { useState, useRef, KeyboardEvent, useLayoutEffect } from 'react'
+import React, {
+  useState,
+  useRef,
+  KeyboardEvent,
+  useLayoutEffect,
+  ReactNode
+} from 'react'
 import formatDate from 'date-fns/format'
 import isValid from 'date-fns/isValid'
 import { BaseProps } from '@toptal/picasso-shared'
-import { Container, Input, Form } from '@toptal/picasso'
+import { Container, Input, Form, InputAdornment } from '@toptal/picasso'
 import { Props as InputProps } from '@toptal/picasso/Input'
+import { Calendar16 } from '@toptal/picasso/Icon'
 import { ClickAwayListener } from '@toptal/picasso/utils'
 
 import Calendar, { DateOrDateRangeType, DateRangeType } from '../Calendar'
@@ -35,6 +42,8 @@ export interface Props
   displayDateFormat?: string
   /** Date format that user will see during manual input */
   editDateFormat?: string
+  /** Specify icon which should be rendered inside DatePicker */
+  icon?: ReactNode
 }
 
 function isDateRange(value: DateOrDateRangeType): value is DateRangeType {
@@ -70,6 +79,7 @@ export const DatePicker = ({
   onChange,
   value,
   width,
+  icon,
   ...rest
 }: Props) => {
   const inputProps = rest
@@ -191,6 +201,12 @@ export const DatePicker = ({
     }
   }
 
+  const startAdornment = (
+    <InputAdornment position='start' disablePointerEvents>
+      {icon || <Calendar16 />}
+    </InputAdornment>
+  )
+
   return (
     <ClickAwayListener onClickAway={handleClickAway}>
       <Container inline={width !== 'full'}>
@@ -204,6 +220,7 @@ export const DatePicker = ({
           onFocus={handleInputFocus}
           value={inputValue}
           onChange={handleInputChange}
+          startAdornment={startAdornment}
         />
 
         {showError && <Form.Error>{error}</Form.Error>}
