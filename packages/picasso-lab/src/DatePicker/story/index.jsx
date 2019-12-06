@@ -17,7 +17,7 @@ page
   .addExample('DatePicker/story/Default.example.tsx', 'Default') // picasso-skip-visuals
   .addExample('DatePicker/story/Range.example.tsx', 'Range Mode') // picasso-skip-visuals
   .addExample(
-    'DatePicker/story/InitialValue.example.tsx',
+    'DatePicker/story/WithInitialValue.example.tsx',
     'With initial value specified'
   ) // picasso-skip-visuals
   .addExample('DatePicker/story/WithInputProps.example.tsx', 'With Input Props') // picasso-skip-visuals
