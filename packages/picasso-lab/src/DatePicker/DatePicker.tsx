@@ -1,10 +1,4 @@
-import React, {
-  useState,
-  useRef,
-  useEffect,
-  KeyboardEvent,
-  useLayoutEffect
-} from 'react'
+import React, { useState, useRef, KeyboardEvent, useLayoutEffect } from 'react'
 import formatDate from 'date-fns/format'
 import isValid from 'date-fns/isValid'
 import { BaseProps } from '@toptal/picasso-shared'
@@ -94,20 +88,14 @@ export const DatePicker = ({
   const inputRef = useRef<HTMLInputElement>(null)
 
   useLayoutEffect(() => {
-    if (rawValue) {
-      if (showRawValueInInput) {
-        setInputValue(formatDate(rawValue as Date, editDateFormat!))
-      } else {
-        setInputValue(formatDate(rawValue as Date, displayDateFormat!))
-      }
+    if (!rawValue) return
+
+    if (showRawValueInInput) {
+      setInputValue(formatDate(rawValue as Date, editDateFormat!))
+    } else {
+      setInputValue(formatDate(rawValue as Date, displayDateFormat!))
     }
   }, [rawValue, showRawValueInInput])
-
-  useEffect(() => {
-    if (rawValue) {
-      onChange(rawValue)
-    }
-  }, [rawValue])
 
   const leaveInput = () => {
     hideCalendar()
@@ -145,6 +133,11 @@ export const DatePicker = ({
 
       if (isDateValid) {
         setRawValue(new Date(value))
+
+        if (rawValue) {
+          onChange(rawValue)
+        }
+
         resetError()
       } else {
         setError(errorMessae)
@@ -169,6 +162,10 @@ export const DatePicker = ({
 
   const handleCalendarChange = (value: DateOrDateRangeType) => {
     setRawValue(value)
+
+    if (rawValue) {
+      onChange(rawValue)
+    }
 
     if (hideOnSelect) {
       focus()
