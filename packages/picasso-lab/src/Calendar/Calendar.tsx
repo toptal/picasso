@@ -55,7 +55,7 @@ export const Calendar = (props: Props) => {
     }
   }
 
-  const getNormilizedValue = () => {
+  const getNormalizedValue = () => {
     if (!value) return
 
     if (value instanceof Date) {
@@ -69,7 +69,7 @@ export const Calendar = (props: Props) => {
 
   return (
     <SimpleReactCalendar
-      selected={getNormilizedValue()}
+      selected={getNormalizedValue()}
       onSelect={handleChange}
       customRender={({ children }: CalendarProps) => {
         return <div className={classes.root}>{children}</div>
