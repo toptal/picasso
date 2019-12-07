@@ -8,9 +8,11 @@ afterEach(cleanup)
 
 describe('DatePicker', () => {
   test('default render', () => {
+    const date = new Date('12-12-2019')
+
     const { container } = render(
       <Picasso loadFonts={false}>
-        <DatePicker onChange={() => {}} />
+        <DatePicker value={date} onChange={() => {}} />
       </Picasso>
     )
 
