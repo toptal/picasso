@@ -1,14 +1,18 @@
 import React, { useState } from 'react'
 import { DatePicker } from '@toptal/picasso-lab'
 
-const DefaultExample = () => {
+const WithOnBlurHandlerExample = () => {
   const [datepickerValue, setDatepickerValue] = useState<Date>()
 
   return (
     <div style={{ height: '50vh' }}>
       <DatePicker
         value={datepickerValue}
-        onChange={date => {
+        onBlur={() => {
+          /* eslint-disable-next-line no-console */
+          console.log('fire of the onBlur handler')
+        }}
+        onChange={(date: Date | [Date, Date]) => {
           /* eslint-disable-next-line no-console */
           console.log('selected date is: ', date)
 
@@ -19,4 +23,4 @@ const DefaultExample = () => {
   )
 }
 
-export default DefaultExample
+export default WithOnBlurHandlerExample

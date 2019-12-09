@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import SimpleReactCalendar from 'simple-react-calendar'
 import cx from 'classnames'
@@ -25,11 +26,22 @@ type SimpleReactCalendarRangeType = {
 export type DateOrDateRangeType = Date | DateRangeType
 export type DateRangeType = [Date, Date]
 
+const getNormalizedValue = (value: DateOrDateRangeType | undefined) => {
+  if (!value) return
+
+  if (value instanceof Date) {
+    return value
+  }
+
+  const [start, end] = value
+
+  return { start, end }
+}
+
 export interface Props extends BaseProps {
   onChange: (value: DateOrDateRangeType) => void
   range?: boolean
-  value?: Date
-  open?: boolean
+  value?: DateOrDateRangeType
   activeMonth?: Date
 }
 
@@ -43,23 +55,9 @@ const useStyles = makeStyles<Theme, Props>(styles)
 
 export const Calendar = (props: Props) => {
   const classes = useStyles(props)
-  const {
-    range = false,
-    open = false,
-    activeMonth = new Date(),
-    value: initialValue,
-    onChange
-  } = props
-
-  const [value, setValue] = useState<
-    Date | SimpleReactCalendarRangeType | undefined
-  >(initialValue)
-
-  if (!open) return null
+  const { range = false, activeMonth, value, onChange } = props
 
   const handleChange = (selection: Date | SimpleReactCalendarRangeType) => {
-    setValue(selection)
-
     if (isDateRange(selection)) {
       const { start, end } = selection
 
@@ -71,7 +69,7 @@ export const Calendar = (props: Props) => {
 
   return (
     <SimpleReactCalendar
-      selected={value}
+      selected={getNormalizedValue(value)}
       onSelect={handleChange}
       customRender={({ children }: CalendarProps) => {
         return <div className={classes.root}>{children}</div>
@@ -102,6 +100,7 @@ export const Calendar = (props: Props) => {
             onClick={handleOnClick}
             onMouseEnter={handleOnEnter}
             value={date.toString()}
+            tabIndex={-1}
             type='button'
           >
             {children}
@@ -114,13 +113,23 @@ export const Calendar = (props: Props) => {
       }: MonthHeaderProps) => {
         return (
           <div className={classes.actions}>
-            <Button variant='flat' size='small' onClick={() => switchMonth(-1)}>
+            <Button
+              tabIndex={-1}
+              variant='flat'
+              size='small'
+              onClick={() => switchMonth(-1)}
+            >
               <BackMinor16 />
             </Button>
             <Typography variant='heading' size='medium'>
               {format(headerActiveMonth, 'MMMM y')}
             </Typography>
-            <Button variant='flat' size='small' onClick={() => switchMonth(1)}>
+            <Button
+              tabIndex={-1}
+              variant='flat'
+              size='small'
+              onClick={() => switchMonth(1)}
+            >
               <ChevronMinor16 />
             </Button>
           </div>
@@ -135,7 +144,7 @@ export const Calendar = (props: Props) => {
       renderWeek={({ children }: WeekProps) => {
         return <div className={classes.week}>{children}</div>
       }}
-      activeMonth={activeMonth}
+      activeMonth={activeMonth || value}
       mode={range ? 'range' : 'single'}
     />
   )

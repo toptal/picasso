@@ -12,10 +12,11 @@ exports[`DatePicker default render 1`] = `
         class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root makeStyles-root OutlinedInput-rootAuto OutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
       >
         <input
+          aria-invalid="false"
           autocomplete="none"
           class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
           type="text"
-          value=""
+          value="Dec 12, 2019"
         />
         <fieldset
           aria-hidden="true"
