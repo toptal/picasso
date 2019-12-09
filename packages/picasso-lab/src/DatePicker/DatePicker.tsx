@@ -22,7 +22,7 @@ export interface Props
       | 'onChange'
     > {
   /** Date that will be selected in Datepicker */
-  value: DateOrDateRangeType | undefined
+  value?: DateOrDateRangeType
   /** Method that will be invoked with selected values */
   onChange: (value: DateOrDateRangeType) => void
   /** Invoked when user goes away from Datepicker input */
@@ -53,9 +53,13 @@ const formatValue = (value: DateOrDateRangeType, format: string) => {
   }
 }
 
-const DEFAULT_DATE_FORMAT = 'MMM d, yyyy'
-const DEFAULT_RAW_DATE_FORMAT = 'MM-dd-yyyy'
+const DEFAULT_DISPLAY_DATE_FORMAT = 'MMM d, yyyy'
+const DEFAULT_EDIT_DATE_FORMAT = 'MM-dd-yyyy'
 const EMPTY_INPUT_VALUE = ''
+
+const isDateValid = (date: string, pattern: string) => {
+  return date.length === pattern.length && isValid(new Date(date))
+}
 
 export const DatePicker = ({
   range,
@@ -72,7 +76,7 @@ export const DatePicker = ({
   const errorMessage = `Entered date is invalid, please, check the format "${editDateFormat!.toLowerCase()}"`
 
   const [calendarIsShown, setCalendarIsShown] = useState(false)
-  const [showRawValueInInput, setShowRawValueInInput] = useState(false)
+  const [isInputFocused, setIsInputFocused] = useState(false)
   const [error, setError] = useState('')
   const [showError, setShowError] = useState(false)
   const [inputValue, setInputValue] = useState(EMPTY_INPUT_VALUE)
@@ -86,39 +90,34 @@ export const DatePicker = ({
     if (!value) return
 
     if (range) {
-      setInputValue(formatDateRange(value as [Date, Date], displayDateFormat!))
+      setInputValue(formatDateRange(value as DateRangeType, displayDateFormat!))
       return
     }
 
-    if (showRawValueInInput) {
+    if (isInputFocused) {
       setInputValue(formatDate(value as Date, editDateFormat!))
     } else {
       setInputValue(formatDate(value as Date, displayDateFormat!))
     }
-  }, [value, showRawValueInInput])
+  }, [value, isInputFocused])
 
-  const leaveInput = () => {
+  const handleInputBlur = () => {
     hideCalendar()
 
-    if (showRawValueInInput) {
+    if (isInputFocused) {
       onBlur!()
     }
 
     if (error) {
       setShowError(true)
     } else {
-      setShowRawValueInInput(false)
+      setIsInputFocused(false)
     }
   }
 
   const resetError = () => {
     setError('')
     setShowError(false)
-  }
-
-  const validateDate = (value: string) => {
-    // TODO: make this check more serious
-    return value.length === 10 && isValid(new Date(value))
   }
 
   const handleInputChange = (
@@ -134,23 +133,17 @@ export const DatePicker = ({
     // TODO: add char filtering (only number , `-` or ` ` allowed)
     setInputValue(nextInputValue)
 
-    try {
-      const isDateValid = validateDate(nextInputValue)
+    if (isDateValid(nextInputValue, editDateFormat!)) {
+      onChange(new Date(nextInputValue))
 
-      if (isDateValid) {
-        onChange(new Date(nextInputValue))
-
-        resetError()
-      } else {
-        setError(errorMessage)
-      }
-    } catch {
+      resetError()
+    } else {
       setError(errorMessage)
     }
   }
 
   const handleInputFocus = () => {
-    setShowRawValueInInput(true)
+    setIsInputFocused(true)
     showCalendar()
   }
 
@@ -159,7 +152,7 @@ export const DatePicker = ({
       inputRef.current.focus()
     }
 
-    setShowRawValueInInput(true)
+    setIsInputFocused(true)
   }
 
   const handleCalendarChange = (value: DateOrDateRangeType) => {
@@ -176,7 +169,7 @@ export const DatePicker = ({
   }
 
   const handleClickAway = () => {
-    leaveInput()
+    handleInputBlur()
   }
 
   const handleInputKeydown = (event: KeyboardEvent<HTMLInputElement>) => {
@@ -188,7 +181,7 @@ export const DatePicker = ({
     }
 
     if (key === 'Tab') {
-      leaveInput()
+      handleInputBlur()
     }
   }
 
@@ -231,8 +224,8 @@ DatePicker.defaultProps = {
   range: false,
   hideOnSelect: true,
   onBlur: () => {},
-  editDateFormat: DEFAULT_RAW_DATE_FORMAT,
-  displayDateFormat: DEFAULT_DATE_FORMAT
+  editDateFormat: DEFAULT_EDIT_DATE_FORMAT,
+  displayDateFormat: DEFAULT_DISPLAY_DATE_FORMAT
 }
 
 DatePicker.displayName = 'DatePicker'

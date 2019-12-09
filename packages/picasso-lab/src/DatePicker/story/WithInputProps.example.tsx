@@ -3,7 +3,7 @@ import { DatePicker } from '@toptal/picasso-lab'
 import { Search16 } from '@toptal/picasso'
 
 const WithInputPropsExample = () => {
-  const [value, setValue] = useState<Date | [Date, Date]>()
+  const [value, setValue] = useState<Date>()
 
   return (
     <div style={{ height: '50vh', width: '100%' }}>
@@ -17,7 +17,7 @@ const WithInputPropsExample = () => {
           /* eslint-disable-next-line no-console */
           console.log('selected date is: ', date)
 
-          setValue(date)
+          setValue(date as Date)
         }}
       />
     </div>

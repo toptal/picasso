@@ -2,9 +2,7 @@ import React, { useState } from 'react'
 import { DatePicker } from '@toptal/picasso-lab'
 
 const WithInitialValueExample = () => {
-  const [datepickerValue, setDatepickerValue] = useState<Date | [Date, Date]>(
-    new Date(2019, 10, 10)
-  )
+  const [datepickerValue, setDatepickerValue] = useState(new Date(2019, 10, 10))
 
   return (
     <div style={{ height: '50vh' }}>
@@ -14,7 +12,7 @@ const WithInitialValueExample = () => {
           /* eslint-disable-next-line no-console */
           console.log('selected date is: ', date)
 
-          setDatepickerValue(date)
+          setDatepickerValue(date as Date)
         }}
       />
     </div>

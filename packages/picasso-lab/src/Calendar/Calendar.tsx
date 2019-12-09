@@ -26,10 +26,22 @@ type SimpleReactCalendarRangeType = {
 export type DateOrDateRangeType = Date | DateRangeType
 export type DateRangeType = [Date, Date]
 
+const getNormalizedValue = (value: DateOrDateRangeType | undefined) => {
+  if (!value) return
+
+  if (value instanceof Date) {
+    return value
+  }
+
+  const [start, end] = value
+
+  return { start, end }
+}
+
 export interface Props extends BaseProps {
   onChange: (value: DateOrDateRangeType) => void
   range?: boolean
-  value: DateOrDateRangeType | undefined
+  value?: DateOrDateRangeType
   activeMonth?: Date
 }
 
@@ -55,21 +67,9 @@ export const Calendar = (props: Props) => {
     }
   }
 
-  const getNormalizedValue = () => {
-    if (!value) return
-
-    if (value instanceof Date) {
-      return value
-    }
-
-    const [start, end] = value
-
-    return { start, end }
-  }
-
   return (
     <SimpleReactCalendar
-      selected={getNormalizedValue()}
+      selected={getNormalizedValue(value)}
       onSelect={handleChange}
       customRender={({ children }: CalendarProps) => {
         return <div className={classes.root}>{children}</div>
@@ -144,7 +144,6 @@ export const Calendar = (props: Props) => {
       renderWeek={({ children }: WeekProps) => {
         return <div className={classes.week}>{children}</div>
       }}
-      // TODO: maybe need to move it to datepicker, don't fix it for range
       activeMonth={activeMonth || value}
       mode={range ? 'range' : 'single'}
     />
