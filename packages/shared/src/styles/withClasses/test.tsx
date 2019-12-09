@@ -1,12 +1,13 @@
 import React, { ReactElement } from 'react'
 import { render, cleanup, RenderResult } from '@testing-library/react'
 
+import { Classes } from '../types'
 // --- horrible fix, we need to have a dependency to @toptal/picasso here
 import { Button } from '../../../../../packages/picasso'
 import Picasso from '../../Picasso'
 import withClasses from './withClasses'
 
-const TestComponent = (props: { children: ReactElement }) => {
+const TestComponent = (props: { children: ReactElement; classes: Classes }) => {
   const { children } = props
 
   return children

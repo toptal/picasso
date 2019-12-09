@@ -11,8 +11,10 @@ export interface WithClassesProps {
 }
 
 export default (config: Config) => {
-  return <P extends object>(Component: ComponentType<P>) => {
-    const WithClasses = (props: P & WithClassesProps) => {
+  const withClasses = <T extends WithClassesProps>(
+    Component: ComponentType<T>
+  ) => {
+    const Wrapper = (props: T) => {
       const { children, classes } = props
 
       const modifiedChildren = React.Children.map(children, childNode => {
@@ -37,8 +39,10 @@ export default (config: Config) => {
       return <Component {...props}>{modifiedChildren}</Component>
     }
 
-    WithClasses.displayName = Component.displayName || Component.name
+    Wrapper.displayName = Component.displayName || Component.name
 
-    return WithClasses
+    return Wrapper
   }
+
+  return withClasses
 }

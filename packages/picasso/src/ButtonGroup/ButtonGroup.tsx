@@ -8,7 +8,7 @@ import styles from './styles'
 
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** List of `Button` components which you want to render as `ButtonGroup` */
-  children?: ReactNode
+  children: ReactNode
 }
 
 export const ButtonGroup = forwardRef<HTMLDivElement, Props>(
