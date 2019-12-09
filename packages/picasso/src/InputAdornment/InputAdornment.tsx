@@ -12,6 +12,7 @@ interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   children: ReactNode
   position: PositionType
   disabled?: boolean
+  disablePointerEvents?: boolean
 }
 
 const InputAdornment: FunctionComponent<Props> = ({
@@ -21,6 +22,7 @@ const InputAdornment: FunctionComponent<Props> = ({
   children,
   position,
   disabled,
+  disablePointerEvents,
   ...rest
 }) => {
   return (
@@ -35,6 +37,7 @@ const InputAdornment: FunctionComponent<Props> = ({
       className={className}
       style={style}
       position={position}
+      disablePointerEvents={disablePointerEvents}
     >
       {children}
     </MUIInputAdornment>
