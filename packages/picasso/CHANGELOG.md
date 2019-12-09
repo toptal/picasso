@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.4.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.3.2...@toptal/picasso@4.4.0) (2019-12-09)
+
+
+### Features
+
+* [BIL-789] extend NotificationProvider with createPortal ([#777](https://github.com/toptal/picasso/issues/777)) ([eaa69c8](https://github.com/toptal/picasso/commit/eaa69c8ac1f31cc623bcd7ce5a4fc768d836fe65))
+
+
+
+
+
 ## [4.3.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.3.1...@toptal/picasso@4.3.2) (2019-12-05)
 
 **Note:** Version bump only for package @toptal/picasso
