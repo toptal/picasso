@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.5.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.4.0...@toptal/picasso@4.5.0) (2019-12-09)
+
+
+### Features
+
+* **DatePicker:** [FX-608] Add default icon ([#944](https://github.com/toptal/picasso/issues/944)) ([9b0240f](https://github.com/toptal/picasso/commit/9b0240f4ecda048198774be588da7ec25c59f883))
+
+
+
+
+
 # [4.4.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.3.2...@toptal/picasso@4.4.0) (2019-12-09)
 
 
