@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@1.2.3...@toptal/picasso-lab@1.3.0) (2019-12-09)
+
+
+### Features
+
+* **Datepicker:** general improvements ([#943](https://github.com/toptal/picasso/issues/943)) ([667612a](https://github.com/toptal/picasso/commit/667612a7460c6ee1eebeeb321bf2bf3a70c7bda4))
+
+
+
+
+
 ## [1.2.3](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@1.2.2...@toptal/picasso-lab@1.2.3) (2019-12-09)
 
 **Note:** Version bump only for package @toptal/picasso-lab
