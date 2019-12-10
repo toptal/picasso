@@ -10,7 +10,7 @@ import {
   SizeType
 } from '@toptal/picasso-shared'
 
-import { CloseMinor16 } from '../Icon'
+import { Close16 } from '../Icon'
 import ModalTitle from '../ModalTitle'
 import ModalContent from '../ModalContent'
 import ModalActions from '../ModalActions'
@@ -92,7 +92,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
       {children}
       {onClose && (
         <span onClick={onClose}>
-          <CloseMinor16 className={classes.closeButton} />
+          <Close16 className={classes.closeButton} />
         </span>
       )}
     </Dialog>

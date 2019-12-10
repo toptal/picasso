@@ -210,12 +210,12 @@ exports[`showPrompt opens and closes modal on Submit action 2`] = `
             </div>
             <span>
               <svg
-                class="SvgCloseMinor16-root makeStyles-closeButton"
+                class="SvgClose16-root makeStyles-closeButton"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
               >
                 <path
-                  d="M8.707 8l3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5z"
+                  d="M8.707 8l5.5 5.5-.707.707-5.5-5.5-5.5 5.5-.707-.707 5.5-5.5-5.5-5.5.707-.707 5.5 5.5 5.5-5.5.707.707-5.5 5.5z"
                 />
               </svg>
             </span>
