@@ -66,10 +66,17 @@ const DefaultTooltip: React.FunctionComponent<ValueLabelComponentProps> = ({
 
 export const Slider = forwardRef<HTMLElement, Props>(function Slider(
   {
+    min,
+    max,
+    value,
+    defaultValue = 0,
     classes,
     tooltip,
     tooltipFormat,
     TooltipComponent: UserDefinedTooltip,
+    step,
+    disabled,
+    onChange,
     ...rest
   },
   ref
@@ -90,10 +97,17 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     <MUISlider
       {...rest}
       ref={ref}
+      defaultValue={defaultValue}
+      value={value}
+      min={min}
+      max={max}
+      step={step}
+      disabled={disabled}
       classes={classes}
       ValueLabelComponent={Tooltip}
       valueLabelFormat={tooltipFormat}
       valueLabelDisplay={tooltip}
+      onChange={onChange}
     />
   )
 })
@@ -103,7 +117,7 @@ Slider.displayName = 'Slider'
 Slider.defaultProps = {
   defaultValue: 0,
   min: 0,
-  max: 0,
+  max: 100,
   tooltip: 'off'
 }
 
