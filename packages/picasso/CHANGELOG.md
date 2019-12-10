@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.5.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.5.0...@toptal/picasso@4.5.1) (2019-12-10)
+
+
+### Bug Fixes
+
+* **Modal:** use SvgClose16 icon to close Modal ([#951](https://github.com/toptal/picasso/issues/951)) ([d107bf5](https://github.com/toptal/picasso/commit/d107bf5fbd3e37cd52bdc1bdb087762c074e995f))
+
+
+
+
+
 # [4.5.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.4.0...@toptal/picasso@4.5.0) (2019-12-09)
 
 
