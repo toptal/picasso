@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.1.0...@toptal/picasso-shared@1.1.1) (2019-12-10)
+
+
+### Bug Fixes
+
+* correct typings for withClasses HOC ([#949](https://github.com/toptal/picasso/issues/949)) ([053d6f5](https://github.com/toptal/picasso/commit/053d6f5eb7dcc9ad6d4ac3d81b702c3bf958322d))
+
+
+
+
+
 # [1.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.0.1...@toptal/picasso-shared@1.1.0) (2019-12-09)
 
 
