@@ -26,8 +26,8 @@ function RangeExample() {
           min={0}
           max={23}
           onChange={handleChange}
-          valueLabelDisplay='on'
-          valueLabelFormat={renderLabel}
+          tooltip='on'
+          tooltipFormat={renderLabel}
         />
       </Container>
     </Container>

@@ -17,28 +17,27 @@ export interface Props extends SliderProps {
   max?: number
   /** Controlled value of the component */
   value?: Value
-  /** The default element value. Use when the component is not controlled. */
+  /** The default value. Use when the component is not controlled. */
   defaultValue?: Value
   /** Step for the thumb movement */
   step?: number
   /** Whether component is disabled or not */
   disabled?: boolean
-  /** The value label component. */
-  ValueLabelComponent?: React.ElementType<ValueLabelProps>
-  /** Controls when the value label is displayed:
-  - **auto** the value label will display when the thumb is hovered or focused.
+  /** The tooltip component. */
+  TooltipComponent?: React.ElementType<ValueLabelProps>
+  /** Controls when tooltip is displayed:
+  - **auto** the value tooltip will display when the thumb is hovered or focused.
   - **on** will display persistently.
   - **off** will never display
   */
-  valueLabelDisplay?: 'on' | 'auto' | 'off'
-  /** The format function the value label's value. */
-  valueLabelFormat?:
-    | string
-    | ((value: number, index: number) => React.ReactNode)
+  tooltip?: 'on' | 'auto' | 'off'
+  /** The format function the value tooltip's value. */
+  tooltipFormat?: string | ((value: number, index: number) => React.ReactNode)
   /** Callback invoked when slider changes its state. */
   onChange?: (event: ChangeEvent<{}>, value: Value) => void
 }
 
+// This type is needed because ValueLabelProps does not describe all exposed props
 type ValueLabelComponentProps = ValueLabelProps & {
   valueLabelFormat?:
     | string
@@ -46,14 +45,17 @@ type ValueLabelComponentProps = ValueLabelProps & {
   index?: number
 }
 
-const DefaultValueLabelComponent: React.FunctionComponent<
-  ValueLabelComponentProps
-> = ({ children, open, value, valueLabelFormat, index = 0 }) => {
+const DefaultTooltip: React.FunctionComponent<ValueLabelComponentProps> = ({
+  children,
+  open,
+  value,
+  valueLabelFormat: tooltipFormat,
+  index = 0
+}) => {
   const content =
-    valueLabelFormat &&
-    (typeof valueLabelFormat === 'string'
-      ? valueLabelFormat
-      : valueLabelFormat(value, index))
+    tooltipFormat && typeof tooltipFormat === 'function'
+      ? tooltipFormat(value, index)
+      : tooltipFormat
 
   return (
     <Tooltip arrow content={content} open={open} placement='top'>
@@ -65,24 +67,23 @@ const DefaultValueLabelComponent: React.FunctionComponent<
 export const Slider = forwardRef<HTMLElement, Props>(function Slider(
   {
     classes,
-    valueLabelDisplay,
-    valueLabelFormat,
-    ValueLabelComponent: UserDefinedValueLabelComponent,
+    tooltip,
+    tooltipFormat,
+    TooltipComponent: UserDefinedTooltip,
     ...rest
   },
   ref
 ) {
-  const shouldDisplayLabel =
-    valueLabelDisplay === 'on' ||
-    valueLabelDisplay === 'auto' ||
-    UserDefinedValueLabelComponent ||
-    valueLabelFormat
+  const shouldDisplayTooltip =
+    tooltip === 'on' ||
+    tooltip === 'auto' ||
+    UserDefinedTooltip ||
+    tooltipFormat
 
-  let ValueLabelComponent: typeof UserDefinedValueLabelComponent
+  let Tooltip: typeof UserDefinedTooltip
 
-  if (shouldDisplayLabel) {
-    ValueLabelComponent =
-      UserDefinedValueLabelComponent || DefaultValueLabelComponent
+  if (shouldDisplayTooltip) {
+    Tooltip = UserDefinedTooltip || DefaultTooltip
   }
 
   return (
@@ -90,8 +91,9 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
       {...rest}
       ref={ref}
       classes={classes}
-      ValueLabelComponent={ValueLabelComponent}
-      valueLabelFormat={valueLabelFormat}
+      ValueLabelComponent={Tooltip}
+      valueLabelFormat={tooltipFormat}
+      valueLabelDisplay={tooltip}
     />
   )
 })
@@ -99,7 +101,10 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
 Slider.displayName = 'Slider'
 
 Slider.defaultProps = {
-  defaultValue: 0
+  defaultValue: 0,
+  min: 0,
+  max: 0,
+  tooltip: 'off'
 }
 
 export default withStyles(styles)(Slider)

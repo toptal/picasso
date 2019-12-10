@@ -19,7 +19,7 @@ const TooltipExample = () => {
           Display persistently
         </Typography>
         <Container top='large'>
-          <Slider valueLabelDisplay='on' />
+          <Slider tooltip='on' />
         </Container>
       </Container>
       <Container top='large'>
@@ -27,7 +27,7 @@ const TooltipExample = () => {
           Display when the thumb is hovered or focused
         </Typography>
         <Container top='large'>
-          <Slider valueLabelDisplay='auto' />
+          <Slider tooltip='auto' />
         </Container>
       </Container>
       <Container top='large'>
@@ -35,12 +35,7 @@ const TooltipExample = () => {
           Custom rendered label
         </Typography>
         <Container top='large'>
-          <Slider
-            min={0}
-            max={23}
-            valueLabelDisplay='on'
-            valueLabelFormat={formatLabel}
-          />
+          <Slider min={0} max={23} tooltip='on' tooltipFormat={formatLabel} />
         </Container>
       </Container>
     </Container>
