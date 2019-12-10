@@ -1,13 +1,16 @@
 import React from 'react'
 import { Container, Slider, Typography } from '@toptal/picasso'
 
-const renderLabel = val => {
+const formatLabel = val => {
   let formattedVal = String(val)
 
   formattedVal = formattedVal.length === 2 ? formattedVal : '0' + formattedVal
   return <Typography color='inherit'>GMT+{formattedVal}:00</Typography>
 }
 
+/* NOTE: this example will break visual tests as soon as MUI is upgraded to v4.7.1,
+   because persistant tooltips will start appearing on the screenshots.
+ */
 const TooltipExample = () => {
   return (
     <Container>
@@ -36,7 +39,7 @@ const TooltipExample = () => {
             min={0}
             max={23}
             valueLabelDisplay='on'
-            valueLabelFormat={renderLabel}
+            valueLabelFormat={formatLabel}
           />
         </Container>
       </Container>
