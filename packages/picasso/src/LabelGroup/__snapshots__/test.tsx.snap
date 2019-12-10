@@ -9,52 +9,52 @@ exports[`should render label group with 4 labels 1`] = `
       class="LabelGroup-root"
     >
       <div
-        class="MuiChip-root Label-root"
+        class="MuiChip-root makeStyles-root"
       >
         <span
           class="MuiChip-label"
         >
           <span
-            class="Label-innerLabel"
+            class="makeStyles-innerLabel"
           >
             Angular JS
           </span>
         </span>
       </div>
       <div
-        class="MuiChip-root Label-root"
+        class="MuiChip-root makeStyles-root"
       >
         <span
           class="MuiChip-label"
         >
           <span
-            class="Label-innerLabel"
+            class="makeStyles-innerLabel"
           >
             React JS
           </span>
         </span>
       </div>
       <div
-        class="MuiChip-root Label-root"
+        class="MuiChip-root makeStyles-root"
       >
         <span
           class="MuiChip-label"
         >
           <span
-            class="Label-innerLabel"
+            class="makeStyles-innerLabel"
           >
             Ember JS
           </span>
         </span>
       </div>
       <div
-        class="MuiChip-root Label-root"
+        class="MuiChip-root makeStyles-root"
       >
         <span
           class="MuiChip-label"
         >
           <span
-            class="Label-innerLabel"
+            class="makeStyles-innerLabel"
           >
             Vue JS
           </span>

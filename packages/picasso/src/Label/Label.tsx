@@ -4,22 +4,18 @@ import React, {
   ReactElement,
   HTMLAttributes
 } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import {
-  StandardProps,
-  CompoundedComponentWithRef,
-  PicassoComponentWithRef
-} from '@toptal/picasso-shared'
+import { BaseProps, CompoundedComponentWithRef } from '@toptal/picasso-shared'
 
 import Chip from '../Chip'
 import { CloseMinor16 } from '../Icon'
 import LabelGroup from '../LabelGroup'
 import styles from './styles'
 
-type VariantType = 'grey' | 'white'
+type VariantType = 'grey' | 'white' | 'green' | 'yellow' | 'red'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Text content of the `Label` component */
   children: ReactNode
   /** Specify the icon which should be rendered inside Label */
@@ -39,11 +35,15 @@ interface StaticProps {
   Group: typeof LabelGroup
 }
 
+const useStyles = makeStyles<Theme, Props>(styles)
+
 // eslint-disable-next-line react/display-name
 export const Label = forwardRef<HTMLDivElement, Props>(function Label(
-  {
+  props,
+  ref
+) {
+  const {
     children,
-    classes,
     style,
     className,
     icon,
@@ -51,9 +51,11 @@ export const Label = forwardRef<HTMLDivElement, Props>(function Label(
     onDelete,
     variant,
     ...rest
-  },
-  ref
-) {
+  } = props
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { color, ...htmlAttributes } = rest
+  const classes = useStyles(props)
+
   const handleDelete = () => {
     if (disabled) {
       return
@@ -63,9 +65,6 @@ export const Label = forwardRef<HTMLDivElement, Props>(function Label(
       onDelete()
     }
   }
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { color, ...htmlAttributes } = rest
 
   return (
     <Chip
@@ -104,8 +103,4 @@ Label.displayName = 'Label'
 
 Label.Group = LabelGroup
 
-export default withStyles(styles)(Label) as PicassoComponentWithRef<
-  Props,
-  HTMLDivElement,
-  StaticProps
->
+export default Label

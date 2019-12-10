@@ -6,7 +6,7 @@ exports[`dismissable label should render dismissable label 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiChip-root Label-root MuiChip-deletable"
+      class="MuiChip-root makeStyles-root MuiChip-deletable"
       role="button"
       tabindex="0"
     >
@@ -14,14 +14,14 @@ exports[`dismissable label should render dismissable label 1`] = `
         class="MuiChip-label"
       >
         <span
-          class="Label-innerLabel"
+          class="makeStyles-innerLabel"
         >
           Label
         </span>
       </span>
       <span
         aria-label="delete icon"
-        class="Label-deleteIcon MuiChip-deleteIcon"
+        class="makeStyles-deleteIcon MuiChip-deleteIcon"
         role="button"
       >
         <svg
@@ -45,13 +45,13 @@ exports[`renders \`grey\` variant 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiChip-root Label-root"
+      class="MuiChip-root makeStyles-root"
     >
       <span
         class="MuiChip-label"
       >
         <span
-          class="Label-innerLabel"
+          class="makeStyles-innerLabel"
         >
           Label
         </span>
@@ -67,13 +67,13 @@ exports[`renders \`white\` variant 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiChip-root Label-root Label-white"
+      class="MuiChip-root makeStyles-root makeStyles-white"
     >
       <span
         class="MuiChip-label"
       >
         <span
-          class="Label-innerLabel"
+          class="makeStyles-innerLabel"
         >
           Label
         </span>
