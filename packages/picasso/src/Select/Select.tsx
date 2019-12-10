@@ -10,13 +10,13 @@ import React, {
   Fragment
 } from 'react'
 import cx from 'classnames'
-import Popper from '@material-ui/core/Popper'
 import NativeSelect from '@material-ui/core/NativeSelect'
 import { withStyles } from '@material-ui/core/styles'
 import { capitalize } from '@material-ui/core/utils/helpers'
 import { StandardProps, SizeType } from '@toptal/picasso-shared'
 
 import OutlinedInput from '../OutlinedInput'
+import Popper from '../Popper'
 import ScrollMenu from '../ScrollMenu'
 import InputAdornment from '../InputAdornment'
 import MenuItem from '../MenuItem'
