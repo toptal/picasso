@@ -1,90 +1,124 @@
-import React, { forwardRef, useState, useEffect, ChangeEvent } from 'react'
+import React, { forwardRef, ChangeEvent } from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import MUISlider from '@material-ui/core/Slider'
-import { StandardProps } from '@toptal/picasso-shared'
+import MUISlider, {
+  SliderProps,
+  ValueLabelProps
+} from '@material-ui/core/Slider'
+import { Tooltip } from '@toptal/picasso'
 
 import styles from './styles'
 
-export interface Props extends StandardProps {
+type Value = number | number[]
+
+export interface Props extends SliderProps {
   /** Minimum slider value */
   min?: number
   /** Maximum slider value */
   max?: number
   /** Controlled value of the component */
-  value?: number
+  value?: Value
+  /** The default value. Use when the component is not controlled. */
+  defaultValue?: Value
   /** Step for the thumb movement */
   step?: number
   /** Whether component is disabled or not */
   disabled?: boolean
+  /** The tooltip component. */
+  TooltipComponent?: React.ElementType<ValueLabelProps>
+  /** Controls when tooltip is displayed:
+  - **auto** the value tooltip will display when the thumb is hovered or focused.
+  - **on** will display persistently.
+  - **off** will never display
+  */
+  tooltip?: 'on' | 'auto' | 'off'
+  /** The format function the value tooltip's value. */
+  tooltipFormat?: string | ((value: number, index: number) => React.ReactNode)
   /** Callback invoked when slider changes its state. */
-  onChange?: (event: ChangeEvent<{}>, value: number) => void
+  onChange?: (event: ChangeEvent<{}>, value: Value) => void
+}
+
+// This type is needed because ValueLabelProps does not describe all exposed props
+type ValueLabelComponentProps = ValueLabelProps & {
+  valueLabelFormat?:
+    | string
+    | ((value: number, index: number) => React.ReactNode)
+  index?: number
+}
+
+const DefaultTooltip: React.FunctionComponent<ValueLabelComponentProps> = ({
+  children,
+  open,
+  value,
+  valueLabelFormat: tooltipFormat,
+  index = 0
+}) => {
+  const content =
+    tooltipFormat && typeof tooltipFormat === 'function'
+      ? tooltipFormat(value, index)
+      : tooltipFormat
+
+  return (
+    <Tooltip arrow content={content} open={open} placement='top'>
+      {children}
+    </Tooltip>
+  )
 }
 
 export const Slider = forwardRef<HTMLElement, Props>(function Slider(
   {
-    classes,
-    onChange = () => {},
     min,
     max,
-    value: initialValue,
+    value,
+    defaultValue = 0,
+    classes,
+    tooltip,
+    tooltipFormat,
+    TooltipComponent: UserDefinedTooltip,
     step,
-    disabled
+    disabled,
+    onChange,
+    ...rest
   },
   ref
 ) {
-  const [value, setValue] = useState<number>(initialValue!)
+  const shouldDisplayTooltip =
+    tooltip === 'on' ||
+    tooltip === 'auto' ||
+    UserDefinedTooltip ||
+    tooltipFormat
 
-  const getNormalizedValue = (denormalizedValue: number): number => {
-    if (denormalizedValue < 0) {
-      return 0
-    }
+  let Tooltip: typeof UserDefinedTooltip
 
-    if (denormalizedValue > max!) {
-      return max as number
-    }
-
-    return denormalizedValue
+  if (shouldDisplayTooltip) {
+    Tooltip = UserDefinedTooltip || DefaultTooltip
   }
-
-  const handleChange = (
-    event: ChangeEvent<{}>,
-    newValue: number | number[]
-  ) => {
-    const newNormalizedValue = getNormalizedValue(newValue as number)
-
-    setValue(newNormalizedValue)
-    onChange(event, newNormalizedValue)
-  }
-
-  useEffect(() => {
-    const currentValue = getNormalizedValue(initialValue!)
-
-    setValue(currentValue)
-  }, [initialValue])
 
   return (
     <MUISlider
+      {...rest}
       ref={ref}
+      defaultValue={defaultValue}
+      value={value}
       min={min}
       max={max}
-      value={value}
-      onChange={handleChange}
-      classes={classes}
       step={step}
       disabled={disabled}
+      classes={classes}
+      ValueLabelComponent={Tooltip}
+      valueLabelFormat={tooltipFormat}
+      valueLabelDisplay={tooltip}
+      onChange={onChange}
     />
   )
 })
 
-Slider.defaultProps = {}
-
 Slider.displayName = 'Slider'
 
 Slider.defaultProps = {
-  max: 100,
+  defaultValue: 0,
   min: 0,
-  onChange: () => {},
-  value: 0
+  max: 100,
+  tooltip: 'off'
 }
 
 export default withStyles(styles)(Slider)

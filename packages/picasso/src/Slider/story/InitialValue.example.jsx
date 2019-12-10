@@ -4,7 +4,7 @@ import { Container, Slider } from '@toptal/picasso'
 const SelectDefaultExample = () => {
   return (
     <Container>
-      <Slider value={8} />
+      <Slider defaultValue={8} />
     </Container>
   )
 }

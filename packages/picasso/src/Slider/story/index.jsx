@@ -16,3 +16,5 @@ page
   .addExample('Slider/story/Default.example.jsx', 'Default')
   .addExample('Slider/story/InitialValue.example.jsx', 'Initial value')
   .addExample('Slider/story/Controlled.example.jsx', 'Controlled value')
+  .addExample('Slider/story/Tooltip.example.jsx', 'Tooltip')
+  .addExample('Slider/story/Range.example.jsx', 'Range')
