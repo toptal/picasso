@@ -1,32 +1,37 @@
 import React from 'react'
-import { Container, Label, Settings16, Typography } from '@toptal/picasso'
+import { Container, Label, Settings16 } from '@toptal/picasso'
 import { palette } from '@toptal/picasso/utils'
 
 const LabelVariantsExample = () => (
-  <div>
-    <Typography variant='heading' size='small'>
-      Grey:
-    </Typography>
-    <Container top='small' bottom='large' padded='medium'>
+  <Container flex>
+    <Container right='small' top={0.5}>
       <Label icon={<Settings16 />} variant='grey'>
-        Label
+        Grey
       </Label>
     </Container>
 
-    <Typography variant='heading' size='small'>
-      White:
-    </Typography>
     <Container
-      top='small'
-      bottom='large'
+      padded={0.5}
+      right='small'
       style={{ backgroundColor: palette.grey.dark }}
-      padded='medium'
     >
       <Label icon={<Settings16 />} variant='white'>
-        Label
+        White
       </Label>
     </Container>
-  </div>
+
+    <Container right='small' top={0.5}>
+      <Label variant='green'>Green</Label>
+    </Container>
+
+    <Container right='small' top={0.5}>
+      <Label variant='yellow'>Yellow</Label>
+    </Container>
+
+    <Container top={0.5}>
+      <Label variant='red'>Red</Label>
+    </Container>
+  </Container>
 )
 
 export default LabelVariantsExample

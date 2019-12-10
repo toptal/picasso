@@ -69,7 +69,7 @@ exports[`TagSelector preselected value 1`] = `
             class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium makeStyles-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
           >
             <div
-              class="MuiChip-root Label-root TagSelector-label MuiChip-deletable"
+              class="MuiChip-root makeStyles-root TagSelector-label MuiChip-deletable"
               role="button"
               tabindex="0"
             >
@@ -77,14 +77,14 @@ exports[`TagSelector preselected value 1`] = `
                 class="MuiChip-label"
               >
                 <span
-                  class="Label-innerLabel"
+                  class="makeStyles-innerLabel"
                 >
                   Afghanistan
                 </span>
               </span>
               <span
                 aria-label="delete icon"
-                class="Label-deleteIcon MuiChip-deleteIcon"
+                class="makeStyles-deleteIcon MuiChip-deleteIcon"
                 role="button"
               >
                 <svg
