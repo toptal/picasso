@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.6.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.5.2...@toptal/picasso@4.6.0) (2019-12-10)
+
+
+### Features
+
+* **slider:** add tooltip and range features ([#948](https://github.com/toptal/picasso/issues/948)) ([1ad8675](https://github.com/toptal/picasso/commit/1ad8675d855b37d78834915f698b4e0446c67206))
+
+
+
+
+
 ## [4.5.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.5.1...@toptal/picasso@4.5.2) (2019-12-10)
 
 
