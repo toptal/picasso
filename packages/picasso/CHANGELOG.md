@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.7.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.6.0...@toptal/picasso@4.7.0) (2019-12-10)
+
+
+### Features
+
+* **Label:** add colors ([#950](https://github.com/toptal/picasso/issues/950)) ([cde15ba](https://github.com/toptal/picasso/commit/cde15ba6b5432f572cf3bc349ae12e8bc38ac22f))
+
+
+
+
+
 # [4.6.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.5.2...@toptal/picasso@4.6.0) (2019-12-10)
 
 
