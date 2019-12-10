@@ -32,3 +32,14 @@ page
     description:
       'Sidebar.Item has capability to render nested Sidebar.Menu with collapsible prop'
   })
+  .addExample(
+    'Sidebar/story/MultipleSubMenus.example.jsx',
+    'Multiple submenus',
+    {
+      effect: async (testPage, makeScreenshot) => {
+        await testPage.click('[test-id="Resources"]')
+        await testPage.waitFor(50)
+        await makeScreenshot()
+      }
+    }
+  )

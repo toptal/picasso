@@ -2,8 +2,8 @@ import React, {
   forwardRef,
   ReactElement,
   Fragment,
-  useContext,
-  ElementType
+  ElementType,
+  ChangeEvent
 } from 'react'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
@@ -13,9 +13,8 @@ import { BaseProps, OverridableComponent } from '@toptal/picasso-shared'
 import { Container, Typography, Accordion, MenuItem } from '../'
 import { ArrowDropDown16 } from '../Icon'
 import { MenuItemAttributes } from '../MenuItem'
-import { SidebarContext } from '../Sidebar'
-import { SidebarContextProps } from '../Sidebar/types'
 import styles from './styles'
+import useSidebar from '../Sidebar/useSidebar'
 
 export interface Props extends BaseProps, MenuItemAttributes {
   /** Pass icon to be used as part of item */
@@ -58,13 +57,23 @@ export const SidebarItem: OverridableComponent<Props> = forwardRef<
   const hasIcon = Boolean(icon)
   const hasMenu = Boolean(menu)
 
-  const { variant } = useContext<SidebarContextProps>(SidebarContext)
+  const { variant, isExpanded, isInitialExpandState, expand } = useSidebar()
 
   const handleMenuItemClick = (
     event: React.MouseEvent<HTMLElement, MouseEvent>
   ) => {
     if (!hasMenu) {
       onClick!(event)
+    }
+  }
+
+  const handleAccordionChange = (
+    event: ChangeEvent<{}>,
+    expansion: boolean
+  ) => {
+    event.stopPropagation()
+    if (expansion) {
+      expand()
     }
   }
 
@@ -119,14 +128,18 @@ export const SidebarItem: OverridableComponent<Props> = forwardRef<
   if (hasMenu && collapsible) {
     const menuChildren = React.Children.toArray(menu!.props.children)
 
-    const defaultExpanded =
+    const shouldBeInitiallyExpanded =
       menuChildren.find(
         (menuChild: ReactElement) => menuChild.props.selected
       ) !== undefined
 
+    if (shouldBeInitiallyExpanded && isInitialExpandState) {
+      expand()
+    }
+
     return (
       <Accordion
-        onChange={event => event.stopPropagation()}
+        onChange={handleAccordionChange}
         classes={{
           summary: classes.summary,
           details: classes.details,
@@ -135,7 +148,7 @@ export const SidebarItem: OverridableComponent<Props> = forwardRef<
         content={menu}
         bordered={false}
         disabled={disabled}
-        defaultExpanded={defaultExpanded}
+        expanded={isExpanded}
         expandIcon={
           <ArrowDropDown16
             className={cx(classes.expandIcon, classes[`${variant}ExpandIcon`], {
