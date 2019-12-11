@@ -26,7 +26,7 @@ const ColorGroup = ({ colors, colorGroupName }) => (
   <Grid spacing={16}>
     {colors.map(([colorName, color]) => (
       <Grid.Item key={colorName}>
-        <Paper style={{ padding: '1em' }}>
+        <Paper style={{ padding: '1rem' }}>
           <ColorRectangle color={color} />
           <Typography size='small'>
             {`${colorGroupName}.${colorName}`}

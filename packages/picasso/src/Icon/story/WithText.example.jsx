@@ -5,12 +5,12 @@ import { Settings16, Settings24 } from '@toptal/picasso/Icon'
 const IconWithTextExample = () => (
   <div>
     <div>
-      <Settings16 style={{ marginRight: '0.5em' }} />
+      <Settings16 style={{ marginRight: '0.5rem' }} />
       Vertical alignment of the icon with the same height as text
     </div>
 
     <Container flex alignItems='center' top='small'>
-      <Settings24 style={{ marginRight: '0.5em' }} />
+      <Settings24 style={{ marginRight: '0.5rem' }} />
       Vertical alignment of the icon with bigger height than text
     </Container>
   </div>

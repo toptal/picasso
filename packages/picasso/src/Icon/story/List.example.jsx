@@ -40,7 +40,7 @@ const IconListExample = () => {
                   justifyContent='center'
                   padded='small'
                   style={{
-                    paddingBottom: '0.5em',
+                    paddingBottom: '0.5rem',
                     minWidth: '9rem',
                     height: '7rem'
                   }}

@@ -23,6 +23,6 @@ export default () =>
     editor: {
       width: '100%',
       backgroundColor: '#141414',
-      padding: '1em 0'
+      padding: '1rem 0'
     }
   })

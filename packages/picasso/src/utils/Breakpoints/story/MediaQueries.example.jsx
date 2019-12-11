@@ -4,7 +4,7 @@ import { screens, palette } from '@toptal/picasso/utils'
 
 const StyledBox = styled.div`
   background-color: ${palette.green.main};
-  padding: 2em;
+  padding: 2rem;
 
   ${screens('small', 'medium')} {
     background-color: ${palette.blue.main};

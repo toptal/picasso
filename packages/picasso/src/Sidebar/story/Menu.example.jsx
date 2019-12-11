@@ -4,7 +4,7 @@ import { Referrals16 } from '@toptal/picasso/Icon'
 
 const SidebarVariantsExample = () => (
   <Grid spacing={32}>
-    <Grid.Item style={{ height: '30em' }}>
+    <Grid.Item style={{ height: '30rem' }}>
       <Typography variant='heading' size='small'>
         Collapsible:
       </Typography>
@@ -41,7 +41,7 @@ const SidebarVariantsExample = () => (
       </Sidebar>
     </Grid.Item>
 
-    <Grid.Item style={{ height: '30em' }}>
+    <Grid.Item style={{ height: '30rem' }}>
       <Typography variant='heading' size='small'>
         Collapsible (disabled):
       </Typography>
@@ -67,7 +67,7 @@ const SidebarVariantsExample = () => (
       </Sidebar>
     </Grid.Item>
 
-    <Grid.Item style={{ height: '30em' }}>
+    <Grid.Item style={{ height: '30rem' }}>
       <Typography variant='heading' size='small'>
         Non-collapsible:
       </Typography>
@@ -91,7 +91,7 @@ const SidebarVariantsExample = () => (
       </Sidebar>
     </Grid.Item>
 
-    <Grid.Item style={{ height: '30em' }}>
+    <Grid.Item style={{ height: '30rem' }}>
       <Typography variant='heading' size='small'>
         Non-collapsible (disabled):
       </Typography>

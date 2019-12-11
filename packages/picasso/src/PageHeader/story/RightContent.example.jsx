@@ -2,7 +2,7 @@ import React from 'react'
 import { Page, Menu, Container, Button } from '@toptal/picasso'
 
 const PageHeaderRightContentExample = () => (
-  <div style={{ height: '4.5em' }}>
+  <div style={{ height: '4.5rem' }}>
     <Page.Header
       actionItems={
         <Container right='medium'>
