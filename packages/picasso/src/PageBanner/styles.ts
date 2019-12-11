@@ -3,6 +3,7 @@ import { createStyles, Theme } from '@material-ui/core/styles'
 export default ({ layout }: Theme) =>
   createStyles({
     root: {
+      fontSize: '1rem',
       justifyContent: 'center'
     },
     content: {

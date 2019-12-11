@@ -16,7 +16,7 @@ import React, {
 import {
   CompoundedComponentWithRef,
   PicassoComponentWithRef,
-  spacingToEm,
+  spacingToRem,
   SpacingType,
   StandardProps
 } from '@toptal/picasso-shared'
@@ -170,10 +170,10 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
 
   const paperMargins = useMemo(
     () => ({
-      ...(offset!.top && { marginTop: spacingToEm(offset!.top) }),
-      ...(offset!.bottom && { marginBottom: spacingToEm(offset!.bottom) }),
-      ...(offset!.left && { marginLeft: spacingToEm(offset!.left) }),
-      ...(offset!.right && { marginRight: spacingToEm(offset!.right) })
+      ...(offset!.top && { marginTop: spacingToRem(offset!.top) }),
+      ...(offset!.bottom && { marginBottom: spacingToRem(offset!.bottom) }),
+      ...(offset!.left && { marginLeft: spacingToRem(offset!.left) }),
+      ...(offset!.right && { marginRight: spacingToRem(offset!.right) })
     }),
     [offset]
   )

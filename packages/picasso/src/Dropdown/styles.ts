@@ -31,7 +31,7 @@ export default ({ screens }: Theme) =>
 
 function calculateMaxHeight() {
   const screenHeight = '100vh'
-  const headerHeight = '2.5em'
+  const headerHeight = '2.5rem'
 
   return `calc(${screenHeight} - ${headerHeight})`
 }

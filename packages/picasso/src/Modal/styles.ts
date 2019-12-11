@@ -22,7 +22,7 @@ export default ({ palette }: Theme) =>
       right: '2rem',
       top: '1.875rem',
       color: palette.grey.dark,
-      fontSize: '1em',
+      fontSize: '1rem',
       cursor: 'pointer',
       opacity: 0.3,
 

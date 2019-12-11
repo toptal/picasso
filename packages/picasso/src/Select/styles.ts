@@ -31,7 +31,8 @@ export default ({ palette, zIndex }: Theme) =>
     },
     inputWrapper: {
       width: 'inherit',
-      outline: 0
+      outline: 0,
+      display: 'flex'
     },
     input: {
       zIndex: 1,

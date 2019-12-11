@@ -19,7 +19,7 @@ const BreakpointsExample = () => (
 
       return (
         <Grid.Item key={breakpointName} medium={3}>
-          <Paper style={{ padding: '2em' }}>
+          <Paper style={{ padding: '2rem' }}>
             <Container flex direction='column' alignItems='center'>
               <Typography variant='heading' size='large'>
                 {breakpointName}
@@ -35,7 +35,7 @@ const BreakpointsExample = () => (
                 <Image
                   src={`./ico-breakpoint-${breakpointName}.svg`}
                   alt={`${breakpointName}`}
-                  style={{ height: '7em' }}
+                  style={{ height: '7rem' }}
                 />
               </Container>
             </Container>

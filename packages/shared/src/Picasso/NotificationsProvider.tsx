@@ -4,7 +4,7 @@ import React, { FunctionComponent } from 'react'
 import { usePageHeader } from '../Picasso'
 
 // --- need to move to shared config
-export const headerHeight = { default: '4.5em', smallAndMedium: '3em' }
+export const headerHeight = { default: '4.5rem', smallAndMedium: '3rem' }
 
 const MAX_NOTIFICATION_MESSAGES = 5
 

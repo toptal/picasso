@@ -20,6 +20,7 @@ PicassoProvider.override(() => ({
 export default ({ palette, sizes, transitions }: Theme) =>
   createStyles({
     root: {
+      fontSize: '1rem',
       '&:hover $uncheckedIcon': {
         border: `${sizes.borderWidth} solid ${palette.primary.main}`
       }

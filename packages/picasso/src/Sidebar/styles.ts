@@ -4,10 +4,11 @@ export default ({ palette, screens, zIndex }: Theme) =>
   createStyles({
     root: {
       height: '100%',
-      minWidth: '17em',
-      width: '17em',
+      minWidth: '17rem',
+      width: '17rem',
       boxShadow: `inset -1px 0px 0px 0px ${palette.grey.darker}`,
-      padding: '1em 0',
+      padding: '1rem 0',
+      fontSize: '1rem',
 
       [screens('small')]: {
         width: '100vw',

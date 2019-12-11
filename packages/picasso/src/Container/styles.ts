@@ -4,7 +4,7 @@ import { SimplePaletteColorOptions } from '@material-ui/core/styles/createPalett
 import {
   SpacingEnum,
   SpacingType,
-  spacingToEm,
+  spacingToRem,
   createPropertiesStyles
 } from '@toptal/picasso-shared'
 
@@ -14,7 +14,7 @@ const spacingVariants = Object.keys(SpacingEnum).filter(variant =>
 
 const paddings = spacingVariants.reduce((acc, variant) => {
   acc[`${variant}Padding`] = {
-    padding: spacingToEm(variant as SpacingType)
+    padding: spacingToRem(variant as SpacingType)
   }
 
   return acc

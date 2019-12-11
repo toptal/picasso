@@ -36,6 +36,7 @@ export const Stepper = forwardRef<HTMLDivElement, Props>(function Stepper(
         {
           [classes.fullWidth]: fullWidth
         },
+        classes.root,
         className
       )}
       style={style}

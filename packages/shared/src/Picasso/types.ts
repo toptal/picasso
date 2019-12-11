@@ -81,8 +81,8 @@ export enum SpacingEnum {
   xlarge = 2.5
 }
 
-export const spacingToEm = (spacing: SpacingType) =>
-  typeof spacing === 'number' ? `${spacing}em` : `${SpacingEnum[spacing]}em`
+export const spacingToRem = (spacing: SpacingType) =>
+  typeof spacing === 'number' ? `${spacing}rem` : `${SpacingEnum[spacing]}rem`
 
 export type ButtonOrAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> &
   ButtonHTMLAttributes<HTMLButtonElement>

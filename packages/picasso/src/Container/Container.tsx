@@ -1,7 +1,11 @@
 import React, { ReactNode, HTMLAttributes, forwardRef } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { StandardProps, SpacingType, spacingToEm } from '@toptal/picasso-shared'
+import {
+  StandardProps,
+  SpacingType,
+  spacingToRem
+} from '@toptal/picasso-shared'
 
 import styles from './styles'
 
@@ -86,10 +90,10 @@ export const Container = forwardRef<HTMLDivElement, Props>(function Container(
   ref
 ) {
   const margins = {
-    ...(top && { marginTop: spacingToEm(top) }),
-    ...(bottom && { marginBottom: spacingToEm(bottom) }),
-    ...(left && { marginLeft: spacingToEm(left) }),
-    ...(right && { marginRight: spacingToEm(right) })
+    ...(top && { marginTop: spacingToRem(top) }),
+    ...(bottom && { marginBottom: spacingToRem(bottom) }),
+    ...(left && { marginLeft: spacingToRem(left) }),
+    ...(right && { marginRight: spacingToRem(right) })
   }
 
   return (
@@ -112,7 +116,7 @@ export const Container = forwardRef<HTMLDivElement, Props>(function Container(
         ...margins,
         ...(alignItems && { alignItems }),
         ...(justifyContent && { justifyContent }),
-        ...(typeof padded === 'number' && { padding: spacingToEm(padded) }),
+        ...(typeof padded === 'number' && { padding: spacingToRem(padded) }),
         ...style
       }}
     >

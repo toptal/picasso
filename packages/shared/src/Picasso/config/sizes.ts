@@ -12,9 +12,9 @@ const sizes = {
   borderWidth: '1px',
   borderRadius: '3px',
   input: {
-    height: '2.25em',
-    width: '18.75em',
-    padding: '0.625em'
+    height: '2.25rem',
+    width: '18.75rem',
+    padding: '0.625rem'
   }
 }
 

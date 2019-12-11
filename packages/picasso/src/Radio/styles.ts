@@ -52,6 +52,8 @@ const centeredCircle = (backgroundColor: string) =>
 export default ({ palette, sizes, transitions }: Theme) =>
   createStyles({
     root: {
+      fontSize: '1rem',
+
       '&:hover $uncheckedIcon': {
         color: palette.primary.main
       }

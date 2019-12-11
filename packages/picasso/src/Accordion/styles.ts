@@ -29,6 +29,7 @@ export default ({ palette, typography }: Theme) => {
   return createStyles({
     root: {
       background: 'transparent',
+      fontSize: '1rem',
 
       '&:before': {
         display: 'none'

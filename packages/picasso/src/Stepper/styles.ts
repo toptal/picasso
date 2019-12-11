@@ -11,6 +11,9 @@ PicassoProvider.override(() => ({
 
 export default () =>
   createStyles({
+    root: {
+      fontSize: '1rem'
+    },
     fullWidth: {
       display: 'flex',
       flexDirection: 'row',

@@ -4,7 +4,9 @@ import '../Chip/styles'
 
 export default ({ palette }: Theme) =>
   createStyles({
-    root: {},
+    root: {
+      fontSize: '1rem'
+    },
     disabled: {
       borderColor: palette.grey.lighter,
       color: palette.grey.main,
