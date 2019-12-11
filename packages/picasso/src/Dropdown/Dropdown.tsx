@@ -205,13 +205,13 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
   const layoutPopperOptions = {
     modifiers: {
       flip: {
-        enabled: !isCompactLayout
+        enabled: false
         // boundariesElement: 'scrollParent'
       },
       preventOverflow: {
-        // enabled: true,
+        enabled: true, //false,
         padding: isCompactLayout ? 0 : 5,
-        // boundariesElement: 'scrollParent'
+        //boundariesElement: isCompactLayout ? 'viewport' : 'scrollParent'
         boundariesElement: 'viewport'
       }
     }
@@ -231,7 +231,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
 
       {anchorEl && (
         <Popper
-          className={cx(classes.popper, { [classes.popperOpen]: isOpen })}
+          className={classes.popper}
           open={isOpen}
           anchorEl={anchorEl}
           popperOptions={{

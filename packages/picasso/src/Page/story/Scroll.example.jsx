@@ -7,12 +7,131 @@ import {
   Menu,
   Sidebar,
   Button,
-  Autocomplete
+  Autocomplete,
+  Modal,
+  Form,
+  Input,
+  Checkbox,
+  Select
 } from '@toptal/picasso'
-import { isSubstring } from '@toptal/picasso/utils'
+import { isSubstring, useModals } from '@toptal/picasso/utils'
 import { Globe16, Profile16, PortfolioDesigner16 } from '@toptal/picasso/Icon'
 
 const handleClick = () => window.alert('Item clicked')
+
+const STATES = [
+  {
+    text: 'Alabama',
+    value: 'Alabama'
+  },
+  {
+    text: 'Utah',
+    value: 'Utah'
+  }
+]
+
+const ModalDialog = ({ modalId, hideModal }) => {
+  const [isLoading, setLoading] = useState(false)
+
+  return (
+    <Modal
+      container={() => document.getElementById('modal-container')}
+      onBackdropClick={() => console.log('Clicked backdrop..')}
+      onClose={() => hideModal(modalId)}
+      onOpen={() => console.log('onOpen()')}
+      open
+      transitionDuration={0} // Only for demo purposes, should not be used
+    >
+      <Modal.Title>Edit address details</Modal.Title>
+      <Modal.Content>
+        <Form.Field>
+          <Input width='full' placeholder='City' value='Alabaster' />
+        </Form.Field>
+        <Dropdown
+          content={
+            <Menu data-testid='menu'>
+              <Menu.Item onClick={handleClick}>First item</Menu.Item>
+              <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+              <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+              <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+              <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+              <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+              <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+              <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+              <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+              <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+              <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+              <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+              <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+              <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+              <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+              <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+              <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+              <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+              <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+              <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+              <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+              <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+            </Menu>
+          }
+        >
+          <Button variant='primary'>
+            Open Large Dropdown
+            <Dropdown.Arrow />
+          </Button>
+        </Dropdown>
+        <Dropdown
+          content={
+            <Menu data-testid='menu'>
+              <Menu.Item onClick={handleClick}>First item</Menu.Item>
+              <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+              <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+              <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+            </Menu>
+          }
+        >
+          <Button variant='primary'>
+            Open Small Dropdown
+            <Dropdown.Arrow />
+          </Button>
+        </Dropdown>
+        <Form.Field>
+          <Input width='full' placeholder='Street' value='John Fruit' />
+        </Form.Field>
+        <Form.Field>
+          <Select placeholder='State' options={STATES} value='Alabama' />
+        </Form.Field>
+        <Form.Field>
+          <Checkbox label='Use shipping address for billing' />
+        </Form.Field>
+      </Modal.Content>
+      <Modal.Actions>
+        <Button
+          disabled={isLoading}
+          variant='flat'
+          onClick={() => hideModal(modalId)}
+        >
+          Cancel
+        </Button>
+        <Button
+          data-testid='close'
+          loading={isLoading}
+          onClick={() => {
+            setLoading(true)
+
+            setTimeout(() => {
+              setLoading(false)
+              hideModal(modalId)
+            }, 1000)
+          }}
+          variant='primary-green'
+        >
+          Update
+        </Button>
+      </Modal.Actions>
+    </Modal>
+  )
+}
 
 const allOptions = [
   { text: 'Belarus' },
@@ -102,12 +221,22 @@ const RightContent = () => (
 const Content = () => {
   const [value, setValue] = useState(EMPTY_INPUT_VALUE)
   const [options, setOptions] = useState(allOptions)
+  const { showModal, hideModal } = useModals()
+
+  const handleModalClick = () => {
+    const modalId = showModal(() => (
+      <ModalDialog modalId={modalId} hideModal={hideModal} />
+    ))
+  }
 
   return (
     <Container top='small' bottom='small' left='small' right='small'>
       <Typography align='center' variant='heading' size='large'>
         Scrollable example
       </Typography>
+      <Button data-testid='open' onClick={handleModalClick}>
+        Open
+      </Button>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Sollicitudin ac orci

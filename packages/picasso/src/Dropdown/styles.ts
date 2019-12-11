@@ -15,18 +15,22 @@ export default ({ screens }: Theme) =>
     },
     content: {
       fontSize: 'inherit',
-      background: 'white'
-    },
-    popper: {
-      zIndex: zIndex.modal,
+      background: 'white',
       maxHeight: `calc(100vh - 4.8125rem)`,
       overflowY: 'auto',
       [screens('small')]: {
+        maxHeight: `calc(100vh - 3rem)`
+      }
+    },
+    popper: {
+      zIndex: zIndex.modal, //zIndex.speedDial
+      padding: '10px',
+      margin: '-10px',
+      [screens('small')]: {
         width: '100vw',
         maxWidth: '100vw',
-        maxHeight: `calc(100vh - 3rem)`,
-        overflowY: 'auto',
-        padding: 0
+        padding: 0,
+        margin: 0
       }
     }
   })
