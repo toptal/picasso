@@ -6,95 +6,102 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiPaper-elevation0 MuiExpansionPanel-root makeStyles-root Mui-expanded MuiExpansionPanel-rounded MuiPaper-rounded"
+      class="Container-flex Container-column Sidebar-root Sidebar-light"
     >
       <div
-        aria-disabled="false"
-        aria-expanded="true"
-        class="MuiButtonBase-root MuiExpansionPanelSummary-root WithStyles(ForwardRef(ExpansionPanelSummary))-root makeStyles-summary makeStyles-summary Mui-expanded"
-        role="button"
-        tabindex="0"
-      >
-        <div
-          class="MuiExpansionPanelSummary-content WithStyles(ForwardRef(ExpansionPanelSummary))-content makeStyles-content makeStyles-content Mui-expanded"
-        >
-          <li
-            aria-disabled="false"
-            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light makeStyles-root makeStyles-noWrap MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-            role="menuitem"
-            tabindex="-1"
-          >
-            <div
-              class="Container-flex Container-inline makeStyles-noWrap"
-              style="align-items: center;"
-            >
-              <div
-                class="Container-flex makeStyles-label makeStyles-noWrap"
-                style="align-items: center;"
-              >
-                <p
-                  class="MuiTypography-root Typography-bodyMedium Typography-inherit MuiTypography-body1 MuiTypography-noWrap"
-                >
-                  Test item
-                </p>
-              </div>
-            </div>
-          </li>
-          <svg
-            class="SvgArrowDropDown16-root makeStyles-expandIcon makeStyles-expandIcon makeStyles-expandIconExpanded"
-            style="min-width: 16px; min-height: 16px;"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M7.357 10.228L3.643 5.772C3.283 5.34 3.446 5 3.995 5h8.01c.54 0 .707.346.352.772l-3.714 4.456c-.36.432-.931.426-1.286 0z"
-            />
-          </svg>
-        </div>
-      </div>
+        class="Sidebar-spacer"
+      />
       <div
-        class="MuiCollapse-container MuiCollapse-entered"
-        style="min-height: 0px;"
+        class="MuiPaper-root MuiPaper-elevation0 MuiExpansionPanel-root makeStyles-root Mui-expanded MuiExpansionPanel-rounded MuiPaper-rounded"
       >
         <div
-          class="MuiCollapse-wrapper"
+          aria-disabled="false"
+          aria-expanded="true"
+          class="MuiButtonBase-root MuiExpansionPanelSummary-root WithStyles(ForwardRef(ExpansionPanelSummary))-root makeStyles-summary makeStyles-summary Mui-expanded"
+          role="button"
+          tabindex="0"
         >
           <div
-            class="MuiCollapse-wrapperInner"
+            class="MuiExpansionPanelSummary-content WithStyles(ForwardRef(ExpansionPanelSummary))-content makeStyles-content makeStyles-content Mui-expanded"
           >
-            <div
-              role="region"
+            <li
+              aria-disabled="false"
+              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light makeStyles-root makeStyles-noWrap makeStyles-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+              role="menuitem"
+              tabindex="-1"
             >
               <div
-                class="MuiExpansionPanelDetails-root ExpansionPanelDetails-root makeStyles-details makeStyles-details"
+                class="Container-flex Container-inline makeStyles-noWrap"
+                style="align-items: center;"
               >
-                <ul
-                  class="MuiList-root SidebarMenu-root"
-                  role="menu"
-                  tabindex="-1"
+                <div
+                  class="Container-flex makeStyles-label makeStyles-noWrap"
+                  style="align-items: center;"
                 >
-                  <li
-                    aria-disabled="false"
-                    class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light makeStyles-root makeStyles-noWrap makeStyles-selected Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
-                    role="menuitem"
-                    tabindex="0"
+                  <p
+                    class="MuiTypography-root Typography-bodyMedium Typography-inherit MuiTypography-body1 MuiTypography-noWrap"
                   >
-                    <div
-                      class="Container-flex Container-inline makeStyles-noWrap"
-                      style="align-items: center;"
+                    Test item
+                  </p>
+                </div>
+              </div>
+            </li>
+            <svg
+              class="SvgArrowDropDown16-root makeStyles-expandIcon makeStyles-lightExpandIcon makeStyles-expandIcon makeStyles-expandIconExpanded"
+              style="min-width: 16px; min-height: 16px;"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M7.357 10.228L3.643 5.772C3.283 5.34 3.446 5 3.995 5h8.01c.54 0 .707.346.352.772l-3.714 4.456c-.36.432-.931.426-1.286 0z"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          class="MuiCollapse-container"
+          style="min-height: 0px; height: 0px; transition-duration: 0ms;"
+        >
+          <div
+            class="MuiCollapse-wrapper"
+          >
+            <div
+              class="MuiCollapse-wrapperInner"
+            >
+              <div
+                role="region"
+              >
+                <div
+                  class="MuiExpansionPanelDetails-root ExpansionPanelDetails-root makeStyles-details makeStyles-details"
+                >
+                  <ul
+                    class="MuiList-root SidebarMenu-root"
+                    role="menu"
+                    tabindex="-1"
+                  >
+                    <li
+                      aria-disabled="false"
+                      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light makeStyles-root makeStyles-noWrap makeStyles-light makeStyles-selected Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+                      role="menuitem"
+                      tabindex="0"
                     >
                       <div
-                        class="Container-flex makeStyles-label makeStyles-noWrap"
+                        class="Container-flex Container-inline makeStyles-noWrap"
                         style="align-items: center;"
                       >
-                        <p
-                          class="MuiTypography-root Typography-bodyMedium Typography-inherit MuiTypography-body1 MuiTypography-noWrap"
+                        <div
+                          class="Container-flex makeStyles-label makeStyles-noWrap"
+                          style="align-items: center;"
                         >
-                          Menu item
-                        </p>
+                          <p
+                            class="MuiTypography-root Typography-bodyMedium Typography-inherit MuiTypography-body1 MuiTypography-noWrap"
+                          >
+                            Menu item
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                  </li>
-                </ul>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
