@@ -6,7 +6,7 @@ exports[`Stepper default render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiPaper-elevation0 MuiStepper-root MuiStepper-horizontal"
+      class="MuiPaper-root MuiPaper-elevation0 MuiStepper-root MuiStepper-horizontal Stepper-root"
     >
       <div
         class="MuiStep-root MuiStep-horizontal MuiStep-completed"
@@ -178,7 +178,7 @@ exports[`Stepper render with all steps completed 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiPaper-elevation0 MuiStepper-root MuiStepper-horizontal"
+      class="MuiPaper-root MuiPaper-elevation0 MuiStepper-root MuiStepper-horizontal Stepper-root"
     >
       <div
         class="MuiStep-root MuiStep-horizontal MuiStep-completed"
@@ -370,7 +370,7 @@ exports[`Stepper render with full-width 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiPaper-elevation0 MuiStepper-root MuiStepper-horizontal Stepper-fullWidth"
+      class="MuiPaper-root MuiPaper-elevation0 MuiStepper-root MuiStepper-horizontal Stepper-fullWidth Stepper-root"
     >
       <div
         class="MuiStep-root MuiStep-horizontal MuiStep-completed"
@@ -562,7 +562,7 @@ exports[`Stepper render with hidden labels 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiPaper-elevation0 MuiStepper-root MuiStepper-horizontal"
+      class="MuiPaper-root MuiPaper-elevation0 MuiStepper-root MuiStepper-horizontal Stepper-root"
     >
       <div
         class="MuiStep-root MuiStep-horizontal MuiStep-completed"

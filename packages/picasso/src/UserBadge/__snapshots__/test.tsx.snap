@@ -23,7 +23,7 @@ exports[`UserBadge auto center alignment 1`] = `
       </div>
       <div
         class="Container-flex Container-column"
-        style="margin-left: 1em;"
+        style="margin-left: 1rem;"
       >
         <div
           class=""
@@ -63,7 +63,7 @@ exports[`UserBadge default render 1`] = `
       </div>
       <div
         class="Container-flex Container-column"
-        style="margin-left: 1em;"
+        style="margin-left: 1rem;"
       >
         <div
           class=""
@@ -108,7 +108,7 @@ exports[`UserBadge invert render 1`] = `
       </div>
       <div
         class="Container-flex Container-column"
-        style="margin-left: 1em;"
+        style="margin-left: 1rem;"
       >
         <div
           class=""
@@ -153,7 +153,7 @@ exports[`UserBadge manual center alignment 1`] = `
       </div>
       <div
         class="Container-flex Container-column"
-        style="margin-left: 1em;"
+        style="margin-left: 1rem;"
       >
         <div
           class=""
@@ -198,7 +198,7 @@ exports[`UserBadge override auto center alignment 1`] = `
       </div>
       <div
         class="Container-flex Container-column"
-        style="margin-left: 1em;"
+        style="margin-left: 1rem;"
       >
         <div
           class=""
@@ -238,7 +238,7 @@ exports[`UserBadge small size 1`] = `
       </div>
       <div
         class="Container-flex Container-column"
-        style="margin-left: 1em;"
+        style="margin-left: 1rem;"
       >
         <div
           class=""

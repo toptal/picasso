@@ -7,7 +7,7 @@ exports[`SidebarLogo default render 1`] = `
   >
     <div
       class="Container-flex"
-      style="margin-bottom: 1em; margin-left: 1.5em; align-items: center;"
+      style="margin-bottom: 1rem; margin-left: 1.5rem; align-items: center;"
     >
       <svg
         class="SvgLogo-root Logo-logo Logo-blue"

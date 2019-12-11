@@ -31,14 +31,14 @@ exports[`Page.Header default render 1`] = `
           </div>
           <div
             class="Container-flex"
-            style="margin-left: 1em; align-items: center;"
+            style="margin-left: 1rem; align-items: center;"
           >
             <div
               class="PageHeader-divider"
             />
             <div
               class=""
-              style="margin-left: 1em;"
+              style="margin-left: 1rem;"
             >
               <p
                 class="MuiTypography-root Typography-invert Typography-bodyInherit Typography-light MuiTypography-body1"
@@ -93,14 +93,14 @@ exports[`Page.Header render with link 1`] = `
           </div>
           <div
             class="Container-flex"
-            style="margin-left: 1em; align-items: center;"
+            style="margin-left: 1rem; align-items: center;"
           >
             <div
               class="PageHeader-divider"
             />
             <div
               class=""
-              style="margin-left: 1em;"
+              style="margin-left: 1rem;"
             >
               <p
                 class="MuiTypography-root Typography-invert Typography-bodyInherit Typography-light MuiTypography-body1"
