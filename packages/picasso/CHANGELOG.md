@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.7.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.7.0...@toptal/picasso@4.7.1) (2019-12-11)
+
+
+### Bug Fixes
+
+* **RadioGroup:** pass correct classes to MUI component ([#955](https://github.com/toptal/picasso/issues/955)) ([e0e269c](https://github.com/toptal/picasso/commit/e0e269c6d5565cf7e238ea06e03bb44dd90c2926))
+
+
+
+
+
 # [4.7.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.6.0...@toptal/picasso@4.7.0) (2019-12-10)
 
 
