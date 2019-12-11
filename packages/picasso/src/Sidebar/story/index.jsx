@@ -27,17 +27,16 @@ page
   .addExample('Sidebar/story/Links.example.tsx', 'With Links')
   .addExample('Sidebar/story/WithoutIcons.example.jsx', 'Without Icons')
   .addExample('Sidebar/story/Variants.example.jsx', 'Variants')
-  .addExample('Sidebar/story/Menu.example.jsx', {
-    title: 'Item Menu',
-    description:
-      'Sidebar.Item has capability to render nested Sidebar.Menu with collapsible prop'
-  })
   .addExample(
-    'Sidebar/story/MultipleSubMenus.example.jsx',
-    'Multiple submenus',
+    'Sidebar/story/Menu.example.jsx',
+    {
+      title: 'Item Menu',
+      description:
+        'Sidebar.Item has capability to render nested Sidebar.Menu with collapsible prop'
+    },
     {
       effect: async (testPage, makeScreenshot) => {
-        await testPage.click('[test-id="Resources"]')
+        await testPage.click('[test-id="Referrals"]')
         await testPage.waitFor(50)
         await makeScreenshot()
       }

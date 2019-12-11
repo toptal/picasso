@@ -11,6 +11,7 @@ const SidebarVariantsExample = () => (
       <Sidebar>
         <Sidebar.Menu>
           <Sidebar.Item
+            test-id='Referrals'
             collapsible
             icon={<Referrals16 />}
             menu={
@@ -24,6 +25,17 @@ const SidebarVariantsExample = () => (
             }
           >
             Referrals
+          </Sidebar.Item>
+          <Sidebar.Item
+            collapsible
+            menu={
+              <Sidebar.Menu>
+                <Sidebar.Item selected>Community Leader</Sidebar.Item>
+                <Sidebar.Item>Speakers Network</Sidebar.Item>
+              </Sidebar.Menu>
+            }
+          >
+            Get Involved
           </Sidebar.Item>
         </Sidebar.Menu>
       </Sidebar>
