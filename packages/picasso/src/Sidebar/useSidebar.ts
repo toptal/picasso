@@ -1,6 +1,6 @@
 import { useContext, useMemo } from 'react'
 
-import { SidebarContext, DEFAULT_EXPANDED_ITEM_ID } from './Sidebar'
+import { SidebarContext, DEFAULT_EXPANDED_ITEM_KEY } from './Sidebar'
 import { SidebarContextProps } from '../Sidebar/types'
 
 const generateKey = (() => {
@@ -10,21 +10,21 @@ const generateKey = (() => {
 })()
 
 const useSidebar = () => {
-  const key = useMemo(generateKey, [])
+  const thisItemKey = useMemo(generateKey, [])
 
-  const { variant, expanded, setExpanded } = useContext<SidebarContextProps>(
-    SidebarContext
-  )
+  const { variant, expandedItemKey, setExpandedItemKey } = useContext<
+    SidebarContextProps
+  >(SidebarContext)
 
   const expand = () => {
-    setExpanded(key)
+    setExpandedItemKey(thisItemKey)
   }
 
-  const isExpanded = expanded === key
+  const isExpanded = expandedItemKey === thisItemKey
 
-  const isInitialExpandState = expanded === DEFAULT_EXPANDED_ITEM_ID
+  const isNothingExpanded = expandedItemKey === DEFAULT_EXPANDED_ITEM_KEY
 
-  return { variant, isExpanded, isInitialExpandState, expand }
+  return { variant, isExpanded, isNothingExpanded, expand }
 }
 
 export default useSidebar

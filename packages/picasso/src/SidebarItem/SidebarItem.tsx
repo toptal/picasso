@@ -57,7 +57,12 @@ export const SidebarItem: OverridableComponent<Props> = forwardRef<
   const hasIcon = Boolean(icon)
   const hasMenu = Boolean(menu)
 
-  const { variant, isExpanded, isInitialExpandState, expand } = useSidebar()
+  const {
+    variant,
+    isExpanded,
+    isNothingExpanded: isNothingExpandedOnSidebar,
+    expand
+  } = useSidebar()
 
   const handleMenuItemClick = (
     event: React.MouseEvent<HTMLElement, MouseEvent>
@@ -128,12 +133,12 @@ export const SidebarItem: OverridableComponent<Props> = forwardRef<
   if (hasMenu && collapsible) {
     const menuChildren = React.Children.toArray(menu!.props.children)
 
-    const shouldBeInitiallyExpanded =
+    const isExpandedableByDefault =
       menuChildren.find(
         (menuChild: ReactElement) => menuChild.props.selected
       ) !== undefined
 
-    if (shouldBeInitiallyExpanded && isInitialExpandState) {
+    if (isNothingExpandedOnSidebar && isExpandedableByDefault) {
       expand()
     }
 

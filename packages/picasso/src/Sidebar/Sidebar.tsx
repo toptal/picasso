@@ -25,7 +25,7 @@ export interface SmallScreenSidebarWrapperProps extends StandardProps {
   children?: ReactNode
 }
 
-export const DEFAULT_EXPANDED_ITEM_ID = ''
+export const DEFAULT_EXPANDED_ITEM_KEY = ''
 
 const SmallScreenSidebarWrapper: FunctionComponent<
   SmallScreenSidebarWrapperProps
@@ -64,8 +64,8 @@ interface StaticProps {
 }
 
 export const SidebarContext = React.createContext<SidebarContextProps>({
-  expanded: DEFAULT_EXPANDED_ITEM_ID,
-  setExpanded: () => {}
+  expandedItemKey: DEFAULT_EXPANDED_ITEM_KEY,
+  setExpandedItemKey: () => {}
 })
 
 // eslint-disable-next-line react/display-name
@@ -74,7 +74,9 @@ export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
   ref
 ) {
   const isCompactLayout = useBreakpoint(['small', 'medium'])
-  const [expanded, setExpanded] = useState(DEFAULT_EXPANDED_ITEM_ID)
+  const [expandedItemKey, setExpandedItemKey] = useState(
+    DEFAULT_EXPANDED_ITEM_KEY
+  )
 
   const sidebar = (
     <Container
@@ -85,7 +87,13 @@ export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
       className={cx(classes.root, className, classes[variant!])}
     >
       <div className={classes.spacer} />
-      <SidebarContext.Provider value={{ variant, expanded, setExpanded }}>
+      <SidebarContext.Provider
+        value={{
+          variant,
+          expandedItemKey,
+          setExpandedItemKey
+        }}
+      >
         {children}
       </SidebarContext.Provider>
     </Container>
