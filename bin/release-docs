@@ -1,8 +1,10 @@
 #!/usr/bin/env sh
 
+JEST_TEST_ENV="visual"
+
 # Update README.md version
 node -e "require('./bin/utils').bumpReadmeVersion('./packages/picasso', './README.md')"
-yarn build:storybook
+TEST_ENV=$JEST_TEST_ENV yarn build:storybook
 
 # archive ./build/storybook folder to the shared folder with docker root
 mkdir -p $DEPLOY_DOCS_PATH
