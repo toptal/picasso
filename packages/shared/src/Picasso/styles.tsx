@@ -16,8 +16,6 @@ export default ({ typography }: Theme) =>
       // https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
       '& *, & *::before, & *::after': {
         boxSizing: 'inherit'
-      },
-
-      fontSize: '2em'
+      }
     }
   })
