@@ -14,14 +14,14 @@ const useStyles = makeStyles<Theme, Props>(styles)
 
 const RadioGroup: FunctionComponent<Props> = props => {
   const { horizontal, className, ...rest } = props
-  const classes = useStyles(props)
+  const { horizontal: horizontalClass, ...classes } = useStyles(props)
 
   return (
     <MUIRadioGroup
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       classes={classes}
-      className={cx({ [classes.horizontal]: horizontal }, className)}
+      className={cx({ [horizontalClass]: horizontal }, className)}
     />
   )
 }
