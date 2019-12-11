@@ -209,9 +209,9 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
         // boundariesElement: 'scrollParent'
       },
       preventOverflow: {
-        enabled: true, //false,
+        enabled: true, // false,
         padding: isCompactLayout ? 0 : 5,
-        //boundariesElement: isCompactLayout ? 'viewport' : 'scrollParent'
+        // boundariesElement: isCompactLayout ? 'viewport' : 'scrollParent'
         boundariesElement: 'viewport'
       }
     }

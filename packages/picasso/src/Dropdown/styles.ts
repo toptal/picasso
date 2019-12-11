@@ -2,7 +2,7 @@ import { createStyles, Theme } from '@material-ui/core/styles'
 import zIndex from '@material-ui/core/styles/zIndex'
 import '../Popover/styles'
 
-export default ({ screens }: Theme) =>
+export default ({ screens, shadows }: Theme) =>
   createStyles({
     root: {
       display: 'flex',
@@ -18,14 +18,14 @@ export default ({ screens }: Theme) =>
       background: 'white',
       maxHeight: `calc(100vh - 4.8125rem)`,
       overflowY: 'auto',
+      boxShadow: shadows[0],
       [screens('small')]: {
         maxHeight: `calc(100vh - 3rem)`
       }
     },
     popper: {
-      zIndex: zIndex.modal, //zIndex.speedDial
-      padding: '10px',
-      margin: '-10px',
+      zIndex: zIndex.modal, // zIndex.speedDial
+      boxShadow: shadows[2],
       [screens('small')]: {
         width: '100vw',
         maxWidth: '100vw',
