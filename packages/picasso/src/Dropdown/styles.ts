@@ -19,19 +19,14 @@ export default ({ screens }: Theme) =>
     },
     popper: {
       zIndex: zIndex.modal,
+      maxHeight: `calc(100vh - 4.8125rem)`,
+      overflowY: 'auto',
       [screens('small')]: {
         width: '100vw',
         maxWidth: '100vw',
-        left: '0 !important',
-        maxHeight: calculateMaxHeight(),
+        maxHeight: `calc(100vh - 3rem)`,
+        overflowY: 'auto',
         padding: 0
       }
     }
   })
-
-function calculateMaxHeight() {
-  const screenHeight = '100vh'
-  const headerHeight = '2.5rem'
-
-  return `calc(${screenHeight} - ${headerHeight})`
-}

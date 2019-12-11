@@ -1,9 +1,3 @@
-import ClickAwayListener from '@material-ui/core/ClickAwayListener'
-import Grow from '@material-ui/core/Grow'
-import { PopperPlacementType } from '@material-ui/core/Popper'
-import RootRef from '@material-ui/core/RootRef'
-import { withStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
 import React, {
   forwardRef,
   HTMLAttributes,
@@ -11,8 +5,15 @@ import React, {
   useContext,
   useMemo,
   useRef,
-  useState
+  useState,
+  useLayoutEffect
 } from 'react'
+import ClickAwayListener from '@material-ui/core/ClickAwayListener'
+import Grow from '@material-ui/core/Grow'
+import { PopperPlacementType } from '@material-ui/core/Popper'
+import RootRef from '@material-ui/core/RootRef'
+import { withStyles } from '@material-ui/core/styles'
+import cx from 'classnames'
 import {
   CompoundedComponentWithRef,
   PicassoComponentWithRef,
@@ -21,6 +22,7 @@ import {
   StandardProps
 } from '@toptal/picasso-shared'
 
+import { useBreakpoint } from '../utils'
 import DropdownArrow from '../DropdownArrow'
 import Popper from '../Popper'
 import Paper from '../Paper'
@@ -45,6 +47,8 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   disableAutoClose?: boolean
   /** Disable the portal behavior. The children stay within it's parent DOM hierarchy. */
   disablePortal?: boolean
+  /** Popper options */
+  popperOptions?: object
   /** Callback invoked when component is opened */
   onOpen?(): void
   /** Callback invoked when component is closed */
@@ -86,6 +90,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
     disableAutoClose,
     disableAutoFocus,
     disablePortal,
+    popperOptions,
     onOpen,
     onClose,
     ...rest
@@ -187,6 +192,31 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
     [close]
   )
 
+  const isCompactLayout = useBreakpoint(['small', 'medium'])
+
+  useLayoutEffect(() => {
+    if (isCompactLayout && isOpen) {
+      document.body.style.position = 'fixed'
+    } else {
+      document.body.style.position = 'initial'
+    }
+  }, [isCompactLayout, isOpen])
+
+  const layoutPopperOptions = {
+    modifiers: {
+      flip: {
+        enabled: !isCompactLayout
+        // boundariesElement: 'scrollParent'
+      },
+      preventOverflow: {
+        // enabled: true,
+        padding: isCompactLayout ? 0 : 5,
+        // boundariesElement: 'scrollParent'
+        boundariesElement: 'viewport'
+      }
+    }
+  }
+
   return (
     <div
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -201,11 +231,13 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
 
       {anchorEl && (
         <Popper
-          className={classes.popper}
+          className={cx(classes.popper, { [classes.popperOpen]: isOpen })}
           open={isOpen}
           anchorEl={anchorEl}
           popperOptions={{
-            onCreate: focus
+            onCreate: focus,
+            ...layoutPopperOptions,
+            ...popperOptions
           }}
           placement={placement}
           style={paperMargins}
