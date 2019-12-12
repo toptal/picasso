@@ -5,6 +5,7 @@ import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
 
 import { Candidates16 } from '../Icon'
 import SidebarMenu from '../SidebarMenu'
+import Sidebar from '../Sidebar'
 import SidebarItem, { Props } from './SidebarItem'
 
 const TestSidebarItem: FunctionComponent<OmitInternalProps<Props>> = ({
@@ -70,16 +71,21 @@ describe('SidebarItem', () => {
   })
 
   test('collapsible menu is expanded when one of the children is selected', () => {
-    const menu = (
-      <SidebarMenu>
-        <SidebarItem selected>Menu item</SidebarItem>
-      </SidebarMenu>
-    )
-
     const { container } = render(
-      <TestSidebarItem menu={menu} collapsible>
-        Test item
-      </TestSidebarItem>
+      <Picasso>
+        <Sidebar>
+          <SidebarItem
+            menu={
+              <SidebarMenu>
+                <SidebarItem selected>Menu item</SidebarItem>
+              </SidebarMenu>
+            }
+            collapsible
+          >
+            Test item
+          </SidebarItem>
+        </Sidebar>
+      </Picasso>
     )
 
     expect(container).toMatchSnapshot()
