@@ -2,11 +2,11 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 
 export default ({ palette }: Theme) =>
   createStyles({
-    logo: {
+    root: {
       fontSize: '1.875rem',
       verticalAlign: 'baseline'
     },
-    logoEmblem: {
+    rootEmblem: {
       fontSize: '1.875rem',
       verticalAlign: 'baseline'
     },
