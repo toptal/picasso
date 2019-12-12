@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.8.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.7.1...@toptal/picasso@4.8.0) (2019-12-12)
+
+
+### Features
+
+* **sidebar:** add collapsible behaviour ([#954](https://github.com/toptal/picasso/issues/954)) ([cd145f1](https://github.com/toptal/picasso/commit/cd145f1ed27391df82d4d0a3e35e2cca4ea82044))
+
+
+
+
+
 ## [4.7.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.7.0...@toptal/picasso@4.7.1) (2019-12-11)
 
 
