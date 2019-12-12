@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.8](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@1.4.7...@toptal/picasso-lab@1.4.8) (2019-12-12)
+
+
+### Bug Fixes
+
+* **DatePicker:** fix width prop ([#961](https://github.com/toptal/picasso/issues/961)) ([80ed90d](https://github.com/toptal/picasso/commit/80ed90dffd16954643cefefada821dd6cb97883e))
+
+
+
+
+
 ## [1.4.7](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@1.4.6...@toptal/picasso-lab@1.4.7) (2019-12-12)
 
 
