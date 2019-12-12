@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.8.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.8.0...@toptal/picasso@4.8.1) (2019-12-12)
+
+
+### Bug Fixes
+
+* [FX-653] Fix em-related sizes in components ([#958](https://github.com/toptal/picasso/issues/958)) ([726799c](https://github.com/toptal/picasso/commit/726799c02a11e4f23b7bc211eeb5c51a101ae2ce))
+
+
+
+
+
 # [4.8.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.7.1...@toptal/picasso@4.8.0) (2019-12-12)
 
 
