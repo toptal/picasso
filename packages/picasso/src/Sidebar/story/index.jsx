@@ -37,7 +37,7 @@ page
     {
       effect: async (testPage, makeScreenshot) => {
         await testPage.click('[test-id="Referrals"]')
-        await testPage.waitFor(50)
+        await testPage.waitFor(100)
         await makeScreenshot()
       }
     }
