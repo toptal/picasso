@@ -371,6 +371,39 @@ const Content = () => {
         ut placerat orci nulla. Sit amet nisl suscipit adipiscing bibendum est.
         Nibh tortor id aliquet lectus proin.
       </p>
+      <Dropdown
+        content={
+          <Menu data-testid='menu'>
+            <Menu.Item onClick={handleClick}>First item</Menu.Item>
+            <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+            <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+            <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+            <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+            <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+            <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+            <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+            <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+            <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+            <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+            <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+            <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+            <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+            <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+            <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+            <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+            <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+            <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+            <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+            <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+            <Menu.Item onClick={handleClick}>Second item</Menu.Item>
+          </Menu>
+        }
+      >
+        <Button variant='primary'>
+          Open Large Dropdown
+          <Dropdown.Arrow />
+        </Button>
+      </Dropdown>
     </Container>
   )
 }

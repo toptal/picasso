@@ -21,6 +21,21 @@ export default ({ palette, screens, zIndex }: Theme) =>
       left: '0.375em',
       zIndex: zIndex.appBar
     },
+    responsiveWrapperContent: {
+      maxHeight: 'calc(100vh - 4.5rem)',
+
+      [screens('small')]: {
+        maxHeight: 'calc(100vh - 3rem)'
+      },
+
+      '@media screen and (max-height: 585px)': {
+        maxHeight: 'calc(100vh - 4.5rem)',
+
+        [screens('small')]: {
+          maxHeight: 'calc(100vh - 3rem)'
+        }
+      }
+    },
     spacer: {
       order: 50,
       flex: 1,

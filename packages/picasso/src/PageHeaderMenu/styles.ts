@@ -21,9 +21,19 @@ export default ({ screens }: Theme) =>
     },
     content: {
       width: '15em',
+      maxHeight: 'calc(100vh - 4.5rem)',
 
       [screens('small')]: {
-        width: '100vw'
+        width: '100vw',
+        maxHeight: 'calc(100vh - 3rem)'
+      },
+
+      '@media screen and (max-height: 585px)': {
+        maxHeight: 'calc(100vh - 4.5rem)',
+
+        [screens('small')]: {
+          maxHeight: 'calc(100vh - 3rem)'
+        }
       }
     },
     name: {

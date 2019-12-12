@@ -27,9 +27,10 @@ export interface SmallScreenSidebarWrapperProps extends StandardProps {
 
 export const DEFAULT_EXPANDED_ITEM_KEY = ''
 
-const SmallScreenSidebarWrapper: FunctionComponent<
-  SmallScreenSidebarWrapperProps
-> = ({ classes, children }) => {
+const SmallScreenSidebarWrapper: FunctionComponent<SmallScreenSidebarWrapperProps> = ({
+  classes,
+  children
+}) => {
   const [showSidebar, setShowSidebar] = useState<boolean>(false)
 
   const handleShowSidebar = () => setShowSidebar(true)
@@ -39,7 +40,16 @@ const SmallScreenSidebarWrapper: FunctionComponent<
     <Dropdown
       content={children}
       className={classes.responsiveWrapper}
+      classes={{ content: classes.responsiveWrapperContent }}
       offset={{ top: 0.4 }}
+      popperOptions={{
+        modifiers: {
+          flip: { enabled: false },
+          preventOverflow: {
+            padding: 0
+          }
+        }
+      }}
       onOpen={handleShowSidebar}
       onClose={handleHideSidebar}
     >

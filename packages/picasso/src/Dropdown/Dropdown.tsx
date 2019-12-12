@@ -212,10 +212,13 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
     /*onUpdate: data => {
       console.log(data)
     },*/
+    ...popperOptions,
     modifiers: {
+      ...popperOptions!.modifiers,
       flip: {
-        enabled: false
+        enabled: true,
         // boundariesElement: 'scrollParent'
+        ...(popperOptions!.modifiers && popperOptions!.modifiers.flip)
       },
       preventOverflow: {
         enabled: true, // false,
@@ -223,7 +226,9 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
           ? 0
           : { top: 72, bottom: 5, left: 5, right: 5 },
         // boundariesElement: isCompactLayout ? 'viewport' : 'scrollParent'
-        boundariesElement: 'viewport'
+        boundariesElement: 'viewport',
+        ...(popperOptions!.modifiers &&
+          popperOptions!.modifiers.preventOverflow)
       }
     }
   }
@@ -247,8 +252,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
           anchorEl={anchorEl}
           popperOptions={{
             onCreate: focus,
-            ...layoutPopperOptions,
-            ...popperOptions
+            ...layoutPopperOptions
           }}
           placement={placement}
           style={paperMargins}
@@ -281,7 +285,8 @@ Dropdown.defaultProps = {
   offset: {},
   onClose: () => {},
   onOpen: () => {},
-  placement: 'bottom-end'
+  placement: 'bottom-end',
+  popperOptions: {}
 }
 
 Dropdown.displayName = 'Dropdown'

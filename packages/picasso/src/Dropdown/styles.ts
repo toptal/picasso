@@ -16,11 +16,15 @@ export default ({ screens, shadows }: Theme) =>
     content: {
       fontSize: 'inherit',
       background: 'white',
-      maxHeight: `calc(100vh - 4.8125rem)`,
+      maxHeight: `240px`, //`calc(100vh - 4.8125rem)`, //`calc(50vh - 4.8125rem)`, //
       overflowY: 'auto',
       boxShadow: shadows[0],
       [screens('small')]: {
-        maxHeight: `calc(100vh - 3rem)`
+        maxHeight: '240px' // `calc(100vh - 3rem)`
+      },
+
+      '@media screen and (max-height: 585px)': {
+        maxHeight: `calc(50vh - 4.8125rem)` //`calc(100vh - 4.8125rem)`, //`calc(50vh - 4.8125rem)`, //
       }
     },
     popper: {
