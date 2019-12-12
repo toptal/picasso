@@ -221,6 +221,7 @@ export const DatePicker = ({
           value={inputValue}
           onChange={handleInputChange}
           startAdornment={startAdornment}
+          width={width}
         />
 
         {showError && <Form.Error>{error}</Form.Error>}
