@@ -12,7 +12,8 @@ export default ({ palette, zIndex }: Theme) =>
   createStyles({
     root: {
       position: 'relative',
-      display: 'inline-flex'
+      display: 'inline-flex',
+      fontSize: '1rem'
     },
     rootFull: {
       width: '100%'
@@ -31,8 +32,7 @@ export default ({ palette, zIndex }: Theme) =>
     },
     inputWrapper: {
       width: 'inherit',
-      outline: 0,
-      display: 'flex'
+      outline: 0
     },
     input: {
       zIndex: 1,
