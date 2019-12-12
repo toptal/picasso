@@ -196,9 +196,9 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
 
   useLayoutEffect(() => {
     if (isCompactLayout && isOpen) {
-      document.body.style.position = 'fixed'
+      document.body.style.overflow = 'hidden'
     } else {
-      document.body.style.position = 'initial'
+      document.body.style.overflow = 'initial'
     }
   }, [isCompactLayout, isOpen])
 
