@@ -31,6 +31,9 @@ export default ({ screens, shadows }: Theme) =>
         maxWidth: '100vw',
         padding: 0,
         margin: 0
+      },
+      '&[x-out-of-boundaries]': {
+        display: 'none'
       }
     }
   })

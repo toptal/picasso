@@ -195,7 +195,11 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
   const isCompactLayout = useBreakpoint(['small', 'medium'])
 
   useLayoutEffect(() => {
-    if (isCompactLayout && isOpen) {
+    if (!isCompactLayout) {
+      return
+    }
+
+    if (isOpen) {
       document.body.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = 'initial'
@@ -203,6 +207,11 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
   }, [isCompactLayout, isOpen])
 
   const layoutPopperOptions = {
+    //positionFixed: true,
+    //eventsEnabled: true,
+    /*onUpdate: data => {
+      console.log(data)
+    },*/
     modifiers: {
       flip: {
         enabled: false
@@ -210,7 +219,9 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
       },
       preventOverflow: {
         enabled: true, // false,
-        padding: isCompactLayout ? 0 : 5,
+        padding: isCompactLayout
+          ? 0
+          : { top: 72, bottom: 5, left: 5, right: 5 },
         // boundariesElement: isCompactLayout ? 'viewport' : 'scrollParent'
         boundariesElement: 'viewport'
       }
