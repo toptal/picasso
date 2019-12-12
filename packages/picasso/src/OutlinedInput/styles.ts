@@ -6,6 +6,7 @@ PicassoProvider.override(({ palette, sizes: { input } }: Theme) => ({
     root: {
       width: input.width,
       color: palette.common.black,
+      fontSize: '1rem',
 
       '& $notchedOutline': {
         borderColor: palette.grey.light,

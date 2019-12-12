@@ -19,7 +19,7 @@ export const Logo = forwardRef<SVGSVGElement, Props>(function Logo(
   { classes, emblem, variant = 'blue', style, className },
   ref
 ) {
-  const rootClass = emblem ? classes.logoEmblem : classes.logo
+  const rootClass = emblem ? classes.rootEmblem : classes.root
   const colorClass = classes[variant!]
   const LogoComponent = emblem ? LogoEmblemIcon : LogoIcon
 

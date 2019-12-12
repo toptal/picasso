@@ -1,10 +1,11 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
-export const headerHeight = { default: '4.5em', smallAndMedium: '3em' }
+export const headerHeight = { default: '4.5rem', smallAndMedium: '3rem' }
 
 export default ({ palette, layout, zIndex, screens }: Theme) =>
   createStyles({
     root: {
+      fontSize: '1rem',
       width: '100%',
       position: 'fixed',
       top: 0,

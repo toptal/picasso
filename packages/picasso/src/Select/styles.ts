@@ -12,7 +12,8 @@ export default ({ palette, zIndex }: Theme) =>
   createStyles({
     root: {
       position: 'relative',
-      display: 'inline-flex'
+      display: 'inline-flex',
+      fontSize: '1rem'
     },
     rootFull: {
       width: '100%'

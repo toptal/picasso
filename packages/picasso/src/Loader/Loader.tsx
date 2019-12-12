@@ -46,7 +46,7 @@ export const Loader = forwardRef<HTMLDivElement, Props>(function Loader(
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       ref={ref}
-      className={cx(classes.wrapper, className, {
+      className={cx(classes.root, className, {
         [classes.inline]: inline
       })}
     >

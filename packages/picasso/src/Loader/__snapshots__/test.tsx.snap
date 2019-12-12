@@ -3,7 +3,7 @@
 exports[`props combo 1`] = `
 <div>
   <div
-    class="Loader-wrapper Loader-inline"
+    class="Loader-root Loader-inline"
   >
     <div
       class="MuiCircularProgress-root CircularProgress-root Loader-spinnerBlue MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"

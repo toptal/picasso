@@ -23,7 +23,7 @@ import {
 
 const SidebarVariantsExample = () => (
   <Grid spacing={32}>
-    <Grid.Item style={{ height: '58em' }}>
+    <Grid.Item style={{ height: '58rem' }}>
       <Typography variant='heading' size='small'>
         Light (default):
       </Typography>
@@ -76,7 +76,7 @@ const SidebarVariantsExample = () => (
       </Sidebar>
     </Grid.Item>
 
-    <Grid.Item style={{ height: '58em' }}>
+    <Grid.Item style={{ height: '58rem' }}>
       <Typography variant='heading' size='small'>
         Dark:
       </Typography>

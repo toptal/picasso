@@ -1,5 +1,5 @@
 import { createStyles } from '@material-ui/core/styles'
-import { spacingToEm } from '@toptal/picasso-shared'
+import { spacingToRem } from '@toptal/picasso-shared'
 
 export default () =>
   createStyles({
@@ -10,7 +10,7 @@ export default () =>
         flex: '1 0'
       },
       '& > * + *': {
-        marginLeft: spacingToEm('xsmall')
+        marginLeft: spacingToRem('xsmall')
       }
     }
   })

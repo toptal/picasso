@@ -74,7 +74,7 @@ exports[`Menu has back button when in submenu 1`] = `
         </span>
         <div
           class="Container-flex Container-inline"
-          style="margin-left: 0.5em;"
+          style="margin-left: 0.5rem;"
         >
           <svg
             class="SvgChevronMinor16-root"
