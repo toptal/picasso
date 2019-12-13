@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.8.3](https://github.com/toptal/picasso/compare/@toptal/picasso@4.8.2...@toptal/picasso@4.8.3) (2019-12-13)
+
+
+### Bug Fixes
+
+* **notification:** overflow ([#964](https://github.com/toptal/picasso/issues/964)) ([336f044](https://github.com/toptal/picasso/commit/336f044a090bc4886286945fb03696f94d9f5a02))
+
+
+
+
+
 ## [4.8.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.8.1...@toptal/picasso@4.8.2) (2019-12-13)
 
 
