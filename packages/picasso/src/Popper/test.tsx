@@ -1,41 +1,56 @@
-import React, { useCallback, useState, RefObject, FC } from 'react'
-import { render, cleanup } from '@testing-library/react'
-import { RootContext } from '@toptal/picasso-shared'
+import React, { useState, Fragment, FC, ReactNode, forwardRef } from 'react'
+import { render, cleanup, act, fireEvent } from '@testing-library/react'
+import Picasso from '@toptal/picasso-shared'
 
 import Popper from './Popper'
 
 afterEach(cleanup)
 
-const FakeRootComponent: FC = ({ children }) => {
-  const [rootRef, setRootRef] = useState<RefObject<HTMLDivElement>>()
+// eslint-disable-next-line react/display-name
+const FakeRootNode = forwardRef<HTMLDivElement, { children?: ReactNode }>(
+  (props, ref) => {
+    const { children } = props
 
-  const onRefSet = useCallback(ref => {
-    setRootRef({
-      current: ref
-    })
-  }, [])
-
-  return (
-    <div ref={onRefSet} role='root'>
-      <RootContext.Provider
-        value={{ rootRef, hasPageHeader: false, setHasPageHeader: () => {} }}
-      >
+    return (
+      <div ref={ref} role='root'>
         {children}
-      </RootContext.Provider>
-    </div>
-  )
-}
+      </div>
+    )
+  }
+)
 
 test('default render', () => {
-  const { getByRole } = render(
-    <Popper open anchorEl={document.body}>
-      {'some children'}
-    </Popper>,
-    { wrapper: FakeRootComponent }
-  )
+  const Wrapper: FC = ({ children }) => {
+    return (
+      <Picasso loadFonts={false} RootComponent={FakeRootNode}>
+        {children}
+      </Picasso>
+    )
+  }
+
+  const PopperRenderer = () => {
+    const [popoverIsOpen, setPopoverIsOpen] = useState(false)
+
+    return (
+      <Fragment>
+        <button onClick={() => setPopoverIsOpen(true)} role='action'>
+          Click
+        </button>
+        <Popper open={popoverIsOpen} anchorEl={document.body}>
+          {'some children'}
+        </Popper>
+      </Fragment>
+    )
+  }
+
+  const { getByRole } = render(<PopperRenderer />, { wrapper: Wrapper })
+
+  act(() => {
+    fireEvent.click(getByRole('action'))
+  })
 
   const popper = getByRole('tooltip')
   const root = getByRole('root')
 
-  expect(root.firstChild).toBe(popper)
+  expect(root).toContainElement(popper)
 })
