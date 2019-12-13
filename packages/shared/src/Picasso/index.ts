@@ -2,7 +2,8 @@ export {
   default,
   PicassoProvider,
   usePicassoRoot,
-  usePageHeader
+  usePageHeader,
+  RootContext
 } from './Picasso'
 
 export * from './types'

@@ -145,5 +145,5 @@ Picasso.defaultProps = {
   reset: true
 }
 
-export { PicassoProvider }
+export { PicassoProvider, RootContext }
 export default Picasso
