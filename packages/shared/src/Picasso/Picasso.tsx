@@ -149,7 +149,7 @@ interface PicassoProps {
   /** Notification DOMNode for createPortal */
   notificationContainer?: HTMLElement
   /** Component that is used  */
-  RootComponent: PicassoGlobalStylesProviderProps['RootComponent']
+  RootComponent?: PicassoGlobalStylesProviderProps['RootComponent']
 }
 
 const Picasso: FunctionComponent<PicassoProps> = ({
