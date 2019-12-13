@@ -18,4 +18,16 @@ describe('DatePicker', () => {
 
     expect(container).toMatchSnapshot()
   })
+
+  test('full width', () => {
+    const date = new Date('12-12-2019')
+
+    const { container } = render(
+      <Picasso loadFonts={false}>
+        <DatePicker width='full' value={date} onChange={() => {}} />
+      </Picasso>
+    )
+
+    expect(container).toMatchSnapshot()
+  })
 })
