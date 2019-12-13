@@ -48,7 +48,7 @@ export interface Props
   multiline?: boolean
   /** Specify rows amount for `TextArea` */
   rows?: string | number
-  /* Maximum number of rows to display when multiline option is set to true. */
+  /** Maximum number of rows to display when multiline option is set to true. */
   rowsMax?: string | number
   /** Type attribute of the Input element. It should be a valid HTML5 input type */
   type?: string
