@@ -6,7 +6,8 @@ PicassoProvider.override(() => ({
     message: {
       display: 'flex',
       padding: 0,
-      maxWidth: '72.5em'
+      maxWidth: '72.5em',
+      minWidth: 0
     }
   }
 }))
@@ -47,7 +48,9 @@ export default ({
 
     // Content
     content: {
-      color: text.primary
+      color: text.primary,
+      overflowWrap: 'break-word',
+      minWidth: 0
     },
     contentCloseButton: {
       paddingRight: '1.5em'
