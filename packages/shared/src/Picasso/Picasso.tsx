@@ -162,7 +162,7 @@ const Picasso: FunctionComponent<PicassoProps> = ({
   <MuiThemeProvider theme={PicassoProvider.theme}>
     {loadFonts && <FontsLoader />}
     {reset && <CssBaseline />}
-    <PicassoGlobalStylesProvider RootComponent={RootComponent}>
+    <PicassoGlobalStylesProvider RootComponent={RootComponent!}>
       <ModalProvider>
         <NotificationsProvider container={notificationContainer}>
           {children}
