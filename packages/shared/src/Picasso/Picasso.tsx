@@ -148,7 +148,7 @@ interface PicassoProps {
   reset?: boolean
   /** Notification DOMNode for createPortal */
   notificationContainer?: HTMLElement
-  /** Component that is used  */
+  /** Component that is used to render root node  */
   RootComponent?: PicassoGlobalStylesProviderProps['RootComponent']
 }
 
