@@ -19,31 +19,31 @@ const FakeRootNode = forwardRef<HTMLDivElement, { children?: ReactNode }>(
   }
 )
 
+const PicassoWithFakeRootNode: FC = ({ children }) => {
+  return (
+    <Picasso loadFonts={false} RootComponent={FakeRootNode}>
+      {children}
+    </Picasso>
+  )
+}
+
+const PopperRenderer = () => {
+  const [popoverIsOpen, setPopoverIsOpen] = useState(false)
+
+  return (
+    <Fragment>
+      <button onClick={() => setPopoverIsOpen(true)} role='action'>
+        Click
+      </button>
+      <Popper open={popoverIsOpen} anchorEl={document.body}>
+        {'some children'}
+      </Popper>
+    </Fragment>
+  )
+}
+
 test('default render', () => {
-  const Wrapper: FC = ({ children }) => {
-    return (
-      <Picasso loadFonts={false} RootComponent={FakeRootNode}>
-        {children}
-      </Picasso>
-    )
-  }
-
-  const PopperRenderer = () => {
-    const [popoverIsOpen, setPopoverIsOpen] = useState(false)
-
-    return (
-      <Fragment>
-        <button onClick={() => setPopoverIsOpen(true)} role='action'>
-          Click
-        </button>
-        <Popper open={popoverIsOpen} anchorEl={document.body}>
-          {'some children'}
-        </Popper>
-      </Fragment>
-    )
-  }
-
-  const { getByRole } = render(<PopperRenderer />, { wrapper: Wrapper })
+  const { getByRole } = render(<PopperRenderer />, { wrapper: PicassoWithFakeRootNode })
 
   act(() => {
     fireEvent.click(getByRole('action'))
