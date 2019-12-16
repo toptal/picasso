@@ -40,7 +40,7 @@ exports[`Dropdown should render menu 1`] = `
         </div>
       </div>
       <div
-        class="Dropdown-popper"
+        class="makeStyles-root Dropdown-popper"
         role="tooltip"
         style="position: absolute;"
         x-placement="bottom-end"
@@ -121,7 +121,7 @@ exports[`Dropdown should render menu with focus 1`] = `
         </div>
       </div>
       <div
-        class="Dropdown-popper"
+        class="makeStyles-root Dropdown-popper"
         role="tooltip"
         style="position: absolute; transform: translate3d(NaNpx, NaNpx, 0); top: 0px; left: 0px; will-change: transform;"
         x-placement="bottom-end"
