@@ -97,7 +97,7 @@ export const Popper = forwardRef<PopperJs, Props>(function Popper(props, ref) {
   const picassoRootContainer = usePicassoRoot()
 
   const classes = useStyles(props)
-  const isCompactLayout = useBreakpoint(['small'])
+  const isCompactLayout = useBreakpoint(['small', 'medium'])
 
   const resolvedAnchorEl = getAnchorEl(anchorEl)
   const anchorElWidth = useWidthOf<ReferenceObject>(resolvedAnchorEl)

@@ -10,7 +10,7 @@ export default ({ palette, screens, zIndex }: Theme) =>
       padding: '1rem 0',
       fontSize: '1rem',
 
-      [screens('small')]: {
+      [screens('small', 'medium')]: {
         width: '100vw',
         overflowY: 'scroll'
       }
@@ -24,7 +24,7 @@ export default ({ palette, screens, zIndex }: Theme) =>
     responsiveWrapperContent: {
       maxHeight: 'calc(100vh - 4.5rem)', // viewport minus header height
 
-      [screens('small')]: {
+      [screens('small', 'medium')]: {
         maxHeight: 'calc(100vh - 3rem)' // viewport minus header height
       },
 
@@ -33,7 +33,7 @@ export default ({ palette, screens, zIndex }: Theme) =>
       '@media screen and (max-height: 585px)': {
         maxHeight: 'calc(100vh - 4.5rem)', // viewport minus header height
 
-        [screens('small')]: {
+        [screens('small', 'medium')]: {
           maxHeight: 'calc(100vh - 3rem)' // viewport minus header height
         }
       }

@@ -18,7 +18,7 @@ export default ({ screens, shadows, palette }: Theme) =>
       maxHeight: '14.75rem', // 6.5 lines of menu to show
       overflowY: 'auto',
       boxShadow: shadows[0],
-      [screens('small')]: {
+      [screens('small', 'medium')]: {
         maxHeight: '14.75rem' // 6.5 lines of menu to show
       },
 
@@ -27,7 +27,7 @@ export default ({ screens, shadows, palette }: Theme) =>
       '@media screen and (max-height: 585px)': {
         maxHeight: `calc(50vh - 3.5rem)`, // half of screen minus header and anchor
 
-        [screens('small')]: {
+        [screens('small', 'medium')]: {
           maxHeight: 'calc(50vh - 3rem)' // half of viewport minus header and anchor
         }
       }
