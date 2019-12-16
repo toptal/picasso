@@ -6,15 +6,21 @@ export default ({ palette, screens }: Theme) =>
       backgroundColor: palette.common.white
     },
     scrollView: {
-      maxHeight: '10.125rem', // 4.5 lines of menu to show
+      maxHeight: '14.75rem', // 6.5 lines of menu to show
       overflowY: 'auto',
 
       [screens('small')]: {
-        maxHeight: '10.125rem'
+        maxHeight: '14.75rem' // 6.5 lines of menu to show
       },
 
+      // height under which maxHeight menu starts to overflow
+      // and needs to reduce height dynamically to avoid overflow
       '@media screen and (max-height: 585px)': {
-        maxHeight: `calc(50vh - 4.8125rem)`
+        maxHeight: `calc(50vh - 4.8125rem)`, // half of viewport minus header and anchor
+
+        [screens('small')]: {
+          maxHeight: 'calc(50vh - 4.3125rem)' // half of viewport minus header and anchor
+        }
       }
     }
   })

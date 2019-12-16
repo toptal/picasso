@@ -15,15 +15,21 @@ export default ({ screens, shadows, palette }: Theme) =>
     content: {
       fontSize: 'inherit',
       background: palette.common.white,
-      maxHeight: `15rem`,
+      maxHeight: '14.75rem', // 6.5 lines of menu to show
       overflowY: 'auto',
       boxShadow: shadows[0],
       [screens('small')]: {
-        maxHeight: '15rem'
+        maxHeight: '14.75rem' // 6.5 lines of menu to show
       },
 
+      // height under which maxHeight menu starts to overflow
+      // and needs to reduce height dynamically to avoid overflow
       '@media screen and (max-height: 585px)': {
-        maxHeight: `calc(50vh - 4.8125rem)`
+        maxHeight: `calc(50vh - 3.5rem)`, // half of screen minus header and anchor
+
+        [screens('small')]: {
+          maxHeight: 'calc(50vh - 3rem)' // half of viewport minus header and anchor
+        }
       }
     },
     popper: {

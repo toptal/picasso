@@ -22,17 +22,19 @@ export default ({ palette, screens, zIndex }: Theme) =>
       zIndex: zIndex.appBar
     },
     responsiveWrapperContent: {
-      maxHeight: 'calc(100vh - 4.5rem)',
+      maxHeight: 'calc(100vh - 4.5rem)', // viewport minus header height
 
       [screens('small')]: {
-        maxHeight: 'calc(100vh - 3rem)'
+        maxHeight: 'calc(100vh - 3rem)' // viewport minus header height
       },
 
+      // height under which maxHeight menu starts to overflow
+      // and needs to reduce height dynamically to avoid overflow
       '@media screen and (max-height: 585px)': {
-        maxHeight: 'calc(100vh - 4.5rem)',
+        maxHeight: 'calc(100vh - 4.5rem)', // viewport minus header height
 
         [screens('small')]: {
-          maxHeight: 'calc(100vh - 3rem)'
+          maxHeight: 'calc(100vh - 3rem)' // viewport minus header height
         }
       }
     },

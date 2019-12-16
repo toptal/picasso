@@ -21,18 +21,19 @@ export default ({ screens }: Theme) =>
     },
     content: {
       width: '15em',
-      maxHeight: 'calc(100vh - 4.5rem)',
+      maxHeight: 'calc(100vh - 4.5rem)', // viewport minus header height
 
       [screens('small')]: {
         width: '100vw',
-        maxHeight: 'calc(100vh - 3rem)'
+        maxHeight: 'calc(100vh - 3rem)' // viewport minus header height
       },
 
+      // override existing media-query because we have full height
       '@media screen and (max-height: 585px)': {
-        maxHeight: 'calc(100vh - 4.5rem)',
+        maxHeight: 'calc(100vh - 4.5rem)', // viewport minus header height
 
         [screens('small')]: {
-          maxHeight: 'calc(100vh - 3rem)'
+          maxHeight: 'calc(100vh - 3rem)' // viewport minus header height
         }
       }
     },

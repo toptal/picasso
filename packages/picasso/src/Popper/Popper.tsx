@@ -73,7 +73,7 @@ function getPopperOptions(
         boundariesElement: 'viewport',
         padding: isCompactLayout
           ? 0
-          : { top: 72, bottom: 5, left: 5, right: 5 },
+          : { top: 72, bottom: 5, left: 5, right: 5 }, // top needs more offset to include header height
         // replace with optional chaining
         ...(popperOptions.modifiers && popperOptions.modifiers.preventOverflow)
       }
@@ -97,7 +97,7 @@ export const Popper = forwardRef<PopperJs, Props>(function Popper(props, ref) {
   const picassoRootContainer = usePicassoRoot()
 
   const classes = useStyles(props)
-  const isCompactLayout = useBreakpoint(['small', 'medium'])
+  const isCompactLayout = useBreakpoint(['small'])
 
   const resolvedAnchorEl = getAnchorEl(anchorEl)
   const anchorElWidth = useWidthOf<ReferenceObject>(resolvedAnchorEl)
