@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.8.4](https://github.com/toptal/picasso/compare/@toptal/picasso@4.8.3...@toptal/picasso@4.8.4) (2019-12-16)
+
+
+### Bug Fixes
+
+* create Popper component ([#956](https://github.com/toptal/picasso/issues/956)) ([18eaa09](https://github.com/toptal/picasso/commit/18eaa09468917673bf8d5689b1d6e4ff2f38a4f6))
+
+
+
+
+
 ## [4.8.3](https://github.com/toptal/picasso/compare/@toptal/picasso@4.8.2...@toptal/picasso@4.8.3) (2019-12-13)
 
 

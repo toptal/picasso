@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.3](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.1.2...@toptal/picasso-shared@1.1.3) (2019-12-16)
+
+
+### Bug Fixes
+
+* create Popper component ([#956](https://github.com/toptal/picasso/issues/956)) ([18eaa09](https://github.com/toptal/picasso/commit/18eaa09468917673bf8d5689b1d6e4ff2f38a4f6))
+
+
+
+
+
 ## [1.1.2](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.1.1...@toptal/picasso-shared@1.1.2) (2019-12-12)
 
 
