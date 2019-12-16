@@ -8,7 +8,7 @@ import '../Menu/styles'
 import '../MenuItem/styles'
 import '../Loader/styles'
 
-export default ({ palette, zIndex }: Theme) =>
+export default ({ palette }: Theme) =>
   createStyles({
     root: {
       position: 'relative',
@@ -57,9 +57,6 @@ export default ({ palette, zIndex }: Theme) =>
     },
     caretDisabled: {
       color: alpha(palette.grey.dark!, 0.48)
-    },
-    popper: {
-      zIndex: zIndex.modal
     },
     nativeStartAdornment: {
       position: 'absolute',

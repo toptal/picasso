@@ -19,7 +19,6 @@ import ScrollMenu from '../ScrollMenu'
 import Typography from '../Typography'
 import Popper from '../Popper'
 import InputAdornment from '../InputAdornment'
-import { useWidthOf } from '../utils'
 import { Item, ChangedOptions } from './types'
 import useAutocomplete, { EMPTY_INPUT_VALUE } from './useAutocomplete'
 import styles from './styles'
@@ -197,7 +196,6 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
     )
 
     const inputWrapperRef = useRef<HTMLDivElement>(null)
-    const menuWidth = useWidthOf<HTMLDivElement>(inputWrapperRef)
 
     return (
       <div
@@ -230,10 +228,9 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
         <div role='listbox'>
           {inputWrapperRef.current && optionsMenu && (
             <Popper
+              autoWidth
               open={isOpen && !loading}
               anchorEl={inputWrapperRef.current}
-              className={classes.popper}
-              style={{ width: menuWidth }}
             >
               {optionsMenu}
             </Popper>

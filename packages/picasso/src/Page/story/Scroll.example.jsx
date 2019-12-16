@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import React, { useState } from 'react'
 import {
   Page,
@@ -35,12 +36,10 @@ const ModalDialog = ({ modalId, hideModal }) => {
 
   return (
     <Modal
-      container={() => document.getElementById('modal-container')}
       onBackdropClick={() => console.log('Clicked backdrop..')}
       onClose={() => hideModal(modalId)}
       onOpen={() => console.log('onOpen()')}
       open
-      transitionDuration={0} // Only for demo purposes, should not be used
     >
       <Modal.Title>Edit address details</Modal.Title>
       <Modal.Content>
@@ -141,6 +140,18 @@ const allOptions = [
   { text: 'Ukraine' }
 ]
 
+const SELECT_OPTIONS = [
+  { value: '1', text: 'Option 1' },
+  { value: '2', text: 'Option 2' },
+  { value: '3', text: 'Option 3' },
+  { value: '4', text: 'Option 4' },
+  { value: '5', text: 'Option 4' },
+  { value: '6', text: 'Option 5' },
+  { value: '7', text: 'Option 6' },
+  { value: '8', text: 'Option 7' },
+  { value: '9', text: 'Option 8' }
+]
+
 const EMPTY_INPUT_VALUE = ''
 const getDisplayValue = item => (item ? item.text : EMPTY_INPUT_VALUE)
 const filterOptions = (str = '') => {
@@ -222,6 +233,12 @@ const Content = () => {
   const [value, setValue] = useState(EMPTY_INPUT_VALUE)
   const [options, setOptions] = useState(allOptions)
   const { showModal, hideModal } = useModals()
+  const [selectValue, setSelectValue] = useState()
+
+  const handleSelectChange = event => {
+    console.log('Select value:', event.target.value)
+    setSelectValue(event.target.value)
+  }
 
   const handleModalClick = () => {
     const modalId = showModal(() => (
@@ -333,6 +350,13 @@ const Content = () => {
           setValue(newValue)
         }}
         getDisplayValue={getDisplayValue}
+      />
+      <Select
+        onChange={handleSelectChange}
+        options={SELECT_OPTIONS}
+        value={selectValue}
+        placeholder='Choose an option...'
+        width='auto'
       />
       <p>
         t egestas dui id. Tortor dignissim convallis aenean et tortor at risus.

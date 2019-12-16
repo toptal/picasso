@@ -98,7 +98,7 @@ export const PageHeaderMenu = forwardRef<HTMLDivElement, Props>(
           modifiers: {
             flip: { enabled: false },
             preventOverflow: {
-              padding: isCompactLayout ? 0 : 5
+              padding: 0
             }
           }
         }}

@@ -5,8 +5,7 @@ import React, {
   useContext,
   useMemo,
   useRef,
-  useState,
-  useLayoutEffect
+  useState
 } from 'react'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 import Grow from '@material-ui/core/Grow'
@@ -22,7 +21,6 @@ import {
   StandardProps
 } from '@toptal/picasso-shared'
 
-import { useBreakpoint } from '../utils'
 import DropdownArrow from '../DropdownArrow'
 import Popper from '../Popper'
 import Paper from '../Paper'
@@ -192,47 +190,6 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
     [close]
   )
 
-  const isCompactLayout = useBreakpoint(['small', 'medium'])
-
-  useLayoutEffect(() => {
-    if (!isCompactLayout) {
-      return
-    }
-
-    if (isOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = 'initial'
-    }
-  }, [isCompactLayout, isOpen])
-
-  const layoutPopperOptions = {
-    //positionFixed: true,
-    //eventsEnabled: true,
-    /*onUpdate: data => {
-      console.log(data)
-    },*/
-    ...popperOptions,
-    modifiers: {
-      ...popperOptions!.modifiers,
-      flip: {
-        enabled: true,
-        // boundariesElement: 'scrollParent'
-        ...(popperOptions!.modifiers && popperOptions!.modifiers.flip)
-      },
-      preventOverflow: {
-        enabled: true, // false,
-        padding: isCompactLayout
-          ? 0
-          : { top: 72, bottom: 5, left: 5, right: 5 },
-        // boundariesElement: isCompactLayout ? 'viewport' : 'scrollParent'
-        boundariesElement: 'viewport',
-        ...(popperOptions!.modifiers &&
-          popperOptions!.modifiers.preventOverflow)
-      }
-    }
-  }
-
   return (
     <div
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -252,11 +209,12 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
           anchorEl={anchorEl}
           popperOptions={{
             onCreate: focus,
-            ...layoutPopperOptions
+            ...popperOptions
           }}
           placement={placement}
           style={paperMargins}
           disablePortal={disablePortal}
+          autoWidth={false}
         >
           <ClickAwayListener onClickAway={() => forceClose()}>
             <Grow in={isOpen} appear>

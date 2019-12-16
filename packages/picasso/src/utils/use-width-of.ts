@@ -1,16 +1,20 @@
-import { useLayoutEffect, useState, RefObject } from 'react'
+import { useLayoutEffect, useState } from 'react'
 
-const useWidthOf = <T extends HTMLElement>(ref: RefObject<T>) => {
+export interface ReferenceObject {
+  getBoundingClientRect(): ClientRect
+}
+
+const useWidthOf = <T extends ReferenceObject>(element: T | null) => {
   const [menuWidth, setMenuWidth] = useState<string | undefined>()
 
   useLayoutEffect(() => {
-    if (!ref.current) {
+    if (!element) {
       return
     }
-    const { width } = ref.current.getBoundingClientRect()
+    const { width } = element.getBoundingClientRect()
 
     setMenuWidth(`${width}px`)
-  }, [ref.current])
+  }, [element])
 
   return menuWidth
 }

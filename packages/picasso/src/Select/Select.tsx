@@ -22,7 +22,7 @@ import InputAdornment from '../InputAdornment'
 import MenuItem from '../MenuItem'
 import Loader from '../Loader'
 import { DropdownArrows16 } from '../Icon'
-import { isSubstring, useWidthOf, disableUnsupportedProps } from '../utils'
+import { isSubstring, disableUnsupportedProps } from '../utils'
 import { FeatureOptions } from '../utils/disable-unsupported-props'
 import { Option } from './types'
 import useSelect, { EMPTY_INPUT_VALUE, ItemProps } from './useSelect'
@@ -278,7 +278,6 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
   const select = getSelection(allOptions, value, getDisplayValue!)
   const [inputValue, setInputValue] = useState(select.display())
   const [options, setOptions] = useState(allOptions)
-  const menuWidth = useWidthOf<HTMLDivElement>(inputWrapperRef)
   const tabIndexValue = !disabled ? tabIndex : undefined
 
   // getDerivedStateFromProps for value prop
@@ -486,12 +485,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
         {dropDownIcon}
       </div>
       {Boolean(options.length) && (
-        <Popper
-          open={isOpen && !disabled}
-          anchorEl={inputWrapperRef.current}
-          className={classes.popper}
-          style={{ width: menuWidth }}
-        >
+        <Popper autoWidth open={isOpen} anchorEl={inputWrapperRef.current}>
           {renderOptions({
             options,
             renderOption,
