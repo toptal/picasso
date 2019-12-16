@@ -1,7 +1,7 @@
 import {
   createMuiTheme,
   MuiThemeProvider,
-  withStyles
+  Theme
 } from '@material-ui/core/styles'
 import React, {
   FunctionComponent,
@@ -9,9 +9,13 @@ import React, {
   useRef,
   RefObject,
   useContext,
-  useState
+  useState,
+  forwardRef,
+  ForwardRefExoticComponent,
+  RefAttributes
 } from 'react'
 import { ModalProvider } from 'react-modal-hook'
+import { makeStyles } from '@material-ui/styles'
 
 import CssBaseline from '../CssBaseline'
 import {
@@ -28,7 +32,6 @@ import FontsLoader from './FontsLoader'
 import Provider from './PicassoProvider'
 import NotificationsProvider from './NotificationsProvider'
 import globalStyles from './styles'
-import { JssProps } from './types'
 
 const picasso = {
   palette,
@@ -82,34 +85,60 @@ export const usePageHeader = () => {
   }
 }
 
-interface PicassoGlobalStylesProviderProps extends JssProps {
+interface PicassoGlobalStylesProviderProps {
+  children?: ReactNode
+  RootComponent: ForwardRefExoticComponent<
+    PicassoRootNodeProps & RefAttributes<HTMLDivElement>
+  >
+}
+
+interface PicassoRootNodeProps {
   children?: ReactNode
 }
 
-const PicassoGlobalStylesProvider = withStyles(globalStyles, {
+const useGlobalStyles = makeStyles<Theme, PicassoRootNodeProps>(globalStyles, {
   name: 'Picasso'
-})((props: PicassoGlobalStylesProviderProps) => {
-  const { classes, children } = props
+})
+
+// eslint-disable-next-line react/display-name
+const PicassoRootNode = forwardRef<HTMLDivElement, PicassoRootNodeProps>(
+  (props, ref) => {
+    const { children } = props
+    const classes = useGlobalStyles(props)
+
+    return (
+      <div ref={ref} className={classes.root}>
+        {children}
+      </div>
+    )
+  }
+)
+
+const PicassoGlobalStylesProvider = (
+  props: PicassoGlobalStylesProviderProps
+) => {
+  const { children, RootComponent } = props
 
   const rootRef = useRef<HTMLDivElement>(null)
   const [contextValue, setContextValue] = useState({
     rootRef,
     hasPageHeader: false,
-    setHasPageHeader: (hasPageHeader: boolean) =>
+    setHasPageHeader: (hasPageHeader: boolean) => {
       setContextValue({
         ...contextValue,
         hasPageHeader
       })
+    }
   })
 
   return (
-    <div ref={rootRef} className={classes.root}>
+    <RootComponent ref={rootRef}>
       <RootContext.Provider value={contextValue}>
         {children}
       </RootContext.Provider>
-    </div>
+    </RootComponent>
   )
-})
+}
 
 interface PicassoProps {
   children?: ReactNode
@@ -119,18 +148,21 @@ interface PicassoProps {
   reset?: boolean
   /** Notification DOMNode for createPortal */
   notificationContainer?: HTMLElement
+  /** Component that is used to render root node  */
+  RootComponent?: PicassoGlobalStylesProviderProps['RootComponent']
 }
 
 const Picasso: FunctionComponent<PicassoProps> = ({
   loadFonts,
   reset,
   children,
-  notificationContainer
+  notificationContainer,
+  RootComponent
 }) => (
   <MuiThemeProvider theme={PicassoProvider.theme}>
     {loadFonts && <FontsLoader />}
     {reset && <CssBaseline />}
-    <PicassoGlobalStylesProvider>
+    <PicassoGlobalStylesProvider RootComponent={RootComponent!}>
       <ModalProvider>
         <NotificationsProvider container={notificationContainer}>
           {children}
@@ -142,7 +174,8 @@ const Picasso: FunctionComponent<PicassoProps> = ({
 
 Picasso.defaultProps = {
   loadFonts: true,
-  reset: true
+  reset: true,
+  RootComponent: PicassoRootNode
 }
 
 export { PicassoProvider }

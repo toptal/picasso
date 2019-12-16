@@ -6,6 +6,8 @@ module.exports = {
   testMatch: ['**/(test).(js|jsx|ts|tsx)'],
   testPathIgnorePatterns: ['/node_modules/', '/build'],
 
+  setupFilesAfterEnv: ['./jest-setup.ts'],
+
   /*
     jss-snapshot-serializer is needed to remove dynamically
     generated parts of classNames from material-ui components

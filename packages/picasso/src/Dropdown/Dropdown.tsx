@@ -1,6 +1,6 @@
 import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 import Grow from '@material-ui/core/Grow'
-import Popper, { PopperPlacementType } from '@material-ui/core/Popper'
+import { PopperPlacementType } from '@material-ui/core/Popper'
 import RootRef from '@material-ui/core/RootRef'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
@@ -22,6 +22,7 @@ import {
 } from '@toptal/picasso-shared'
 
 import DropdownArrow from '../DropdownArrow'
+import Popper from '../Popper'
 import Paper from '../Paper'
 import styles from './styles'
 
