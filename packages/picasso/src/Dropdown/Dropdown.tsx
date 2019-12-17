@@ -10,6 +10,7 @@ import React, {
 import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 import Grow from '@material-ui/core/Grow'
 import { PopperPlacementType } from '@material-ui/core/Popper'
+import { PopperOptions } from 'popper.js'
 import RootRef from '@material-ui/core/RootRef'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
@@ -45,8 +46,7 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   disableAutoClose?: boolean
   /** Disable the portal behavior. The children stay within it's parent DOM hierarchy. */
   disablePortal?: boolean
-  /** Popper options */
-  popperOptions?: object
+  popperOptions?: PopperOptions
   /** Callback invoked when component is opened */
   onOpen?(): void
   /** Callback invoked when component is closed */
