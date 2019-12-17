@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.8.5](https://github.com/toptal/picasso/compare/@toptal/picasso@4.8.4...@toptal/picasso@4.8.5) (2019-12-17)
+
+
+### Bug Fixes
+
+* **Popper:** fix dynamic placement of Popper ([#957](https://github.com/toptal/picasso/issues/957)) ([9b53759](https://github.com/toptal/picasso/commit/9b537593d8bba656bf5a4d23c24ef90fbf99daca))
+
+
+
+
+
 ## [4.8.4](https://github.com/toptal/picasso/compare/@toptal/picasso@4.8.3...@toptal/picasso@4.8.4) (2019-12-16)
 
 
