@@ -1,7 +1,16 @@
-import React, { forwardRef, ReactNode } from 'react'
+import React, { forwardRef, ReactNode, useLayoutEffect } from 'react'
+import cx from 'classnames'
 import MUIPopper from '@material-ui/core/Popper'
-import PopperJs, { ReferenceObject } from 'popper.js'
-import { BaseProps, usePicassoRoot } from '@toptal/picasso-shared'
+import { Theme, makeStyles } from '@material-ui/core/styles'
+import PopperJs, { ReferenceObject, PopperOptions } from 'popper.js'
+import {
+  BaseProps,
+  usePicassoRoot,
+  usePageHeader
+} from '@toptal/picasso-shared'
+
+import { useBreakpoint, useWidthOf } from '../utils'
+import styles from './styles'
 
 export type PopperPlacementType =
   | 'bottom-end'
@@ -26,7 +35,7 @@ export interface Props extends BaseProps {
   /** Popper placement */
   placement?: PopperPlacementType
   /** Options provided to the popper.js instance */
-  popperOptions?: object
+  popperOptions?: PopperOptions
   /**
    * A node, component instance, or function that returns either.
    * The `container` will have the portal children appended to it.
@@ -38,19 +47,102 @@ export interface Props extends BaseProps {
    * https://popper.js.org/popper-documentation.html#referenceObject
    */
   anchorEl: null | ReferenceObject | (() => ReferenceObject)
+  /** Popper automatically resize to anchor element width */
+  autoWidth?: boolean
+}
+
+const useStyles = makeStyles<Theme, Props>(styles)
+
+function getAnchorEl(
+  anchorEl: null | ReferenceObject | (() => ReferenceObject)
+) {
+  return typeof anchorEl === 'function' ? anchorEl() : anchorEl
+}
+
+function getPopperOptions(
+  popperOptions: PopperOptions,
+  isCompactLayout: boolean,
+  hasHeader: boolean
+) {
+  // top needs more offset to include header height
+  const topPadding = hasHeader ? 72 : 5
+
+  const preventOverflowPadding = isCompactLayout
+    ? 5
+    : { top: topPadding, bottom: 5, left: 5, right: 5 }
+
+  return {
+    ...popperOptions,
+    modifiers: {
+      ...popperOptions.modifiers,
+      flip: {
+        enabled: true,
+        // replace with optional chaining
+        ...(popperOptions.modifiers && popperOptions.modifiers.flip)
+      },
+      preventOverflow: {
+        enabled: true,
+        boundariesElement: 'viewport',
+        padding: preventOverflowPadding,
+        // replace with optional chaining
+        ...(popperOptions.modifiers && popperOptions.modifiers.preventOverflow)
+      }
+    }
+  }
 }
 
 export const Popper = forwardRef<PopperJs, Props>(function Popper(props, ref) {
+  const {
+    children,
+    open,
+    anchorEl,
+    className,
+    container,
+    popperOptions,
+    autoWidth,
+    style,
+    ...rest
+  } = props
+
   const picassoRootContainer = usePicassoRoot()
-  const { children, open, anchorEl, className, container, ...rest } = props
+  const { hasPageHeader } = usePageHeader()
+
+  const classes = useStyles(props)
+  const isCompactLayout = useBreakpoint(['small', 'medium'])
+
+  const resolvedAnchorEl = getAnchorEl(anchorEl)
+  const anchorElWidth = useWidthOf<ReferenceObject>(resolvedAnchorEl)
+  const anchorElWidthStyle =
+    !isCompactLayout && autoWidth ? { width: anchorElWidth } : {}
+
+  useLayoutEffect(() => {
+    if (isCompactLayout && open && document.body.style.overflow !== 'hidden') {
+      const prev = document.body.style.overflow
+
+      document.body.style.overflow = 'hidden'
+
+      return () => {
+        document.body.style.overflow = prev
+      }
+    }
+  }, [isCompactLayout, open])
 
   return (
     <MUIPopper
       open={open}
       container={container || picassoRootContainer}
       anchorEl={anchorEl}
-      className={className}
+      className={cx(classes.root, className)}
       popperRef={ref}
+      popperOptions={getPopperOptions(
+        popperOptions!,
+        isCompactLayout,
+        hasPageHeader
+      )}
+      style={{
+        ...style,
+        ...anchorElWidthStyle
+      }}
       {...rest}
     >
       {children}
@@ -61,7 +153,9 @@ export const Popper = forwardRef<PopperJs, Props>(function Popper(props, ref) {
 Popper.defaultProps = {
   open: false,
   disablePortal: false,
-  placement: 'bottom'
+  placement: 'bottom',
+  popperOptions: {},
+  autoWidth: true
 }
 
 Popper.displayName = 'Popper'

@@ -94,6 +94,14 @@ export const PageHeaderMenu = forwardRef<HTMLDivElement, Props>(
         style={style}
         content={content}
         offset={{ top: isCompactLayout ? 0.8 : 'xsmall' }}
+        popperOptions={{
+          modifiers: {
+            flip: { enabled: false },
+            preventOverflow: {
+              padding: 0
+            }
+          }
+        }}
       >
         {trigger}
         <Dropdown.Arrow className={classes.arrow} />

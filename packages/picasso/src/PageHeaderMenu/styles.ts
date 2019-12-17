@@ -21,9 +21,20 @@ export default ({ screens }: Theme) =>
     },
     content: {
       width: '15em',
+      maxHeight: 'calc(100vh - 4.5rem)', // viewport minus header height
 
-      [screens('small')]: {
-        width: '100vw'
+      [screens('small', 'medium')]: {
+        width: '100vw',
+        maxHeight: 'calc(100vh - 3rem)' // viewport minus header height
+      },
+
+      // override existing media-query because we have full height
+      '@media screen and (max-height: 585px)': {
+        maxHeight: 'calc(100vh - 4.5rem)', // viewport minus header height
+
+        [screens('small', 'medium')]: {
+          maxHeight: 'calc(100vh - 3rem)' // viewport minus header height
+        }
       }
     },
     name: {
@@ -39,12 +50,12 @@ export default ({ screens }: Theme) =>
     arrow: {
       color: 'white',
 
-      [screens('small')]: {
+      [screens('small', 'medium')]: {
         marginLeft: '0.5rem'
       }
     },
     paper: {
-      [screens('small')]: {
+      [screens('small', 'medium')]: {
         top: '2.5em !important'
       }
     }

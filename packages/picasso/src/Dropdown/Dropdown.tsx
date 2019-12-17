@@ -1,9 +1,3 @@
-import ClickAwayListener from '@material-ui/core/ClickAwayListener'
-import Grow from '@material-ui/core/Grow'
-import { PopperPlacementType } from '@material-ui/core/Popper'
-import RootRef from '@material-ui/core/RootRef'
-import { withStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
 import React, {
   forwardRef,
   HTMLAttributes,
@@ -13,6 +7,13 @@ import React, {
   useRef,
   useState
 } from 'react'
+import ClickAwayListener from '@material-ui/core/ClickAwayListener'
+import Grow from '@material-ui/core/Grow'
+import { PopperPlacementType } from '@material-ui/core/Popper'
+import { PopperOptions } from 'popper.js'
+import RootRef from '@material-ui/core/RootRef'
+import { withStyles } from '@material-ui/core/styles'
+import cx from 'classnames'
 import {
   CompoundedComponentWithRef,
   PicassoComponentWithRef,
@@ -45,6 +46,7 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   disableAutoClose?: boolean
   /** Disable the portal behavior. The children stay within it's parent DOM hierarchy. */
   disablePortal?: boolean
+  popperOptions?: PopperOptions
   /** Callback invoked when component is opened */
   onOpen?(): void
   /** Callback invoked when component is closed */
@@ -86,6 +88,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
     disableAutoClose,
     disableAutoFocus,
     disablePortal,
+    popperOptions,
     onOpen,
     onClose,
     ...rest
@@ -205,11 +208,13 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
           open={isOpen}
           anchorEl={anchorEl}
           popperOptions={{
-            onCreate: focus
+            onCreate: focus,
+            ...popperOptions
           }}
           placement={placement}
           style={paperMargins}
           disablePortal={disablePortal}
+          autoWidth={false}
         >
           <ClickAwayListener onClickAway={() => forceClose()}>
             <Grow in={isOpen} appear>
@@ -238,7 +243,8 @@ Dropdown.defaultProps = {
   offset: {},
   onClose: () => {},
   onOpen: () => {},
-  placement: 'bottom-end'
+  placement: 'bottom-end',
+  popperOptions: {}
 }
 
 Dropdown.displayName = 'Dropdown'

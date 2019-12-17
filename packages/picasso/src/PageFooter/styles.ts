@@ -41,7 +41,7 @@ export default ({ palette, screens, layout }: Theme) =>
         order: -1
       },
 
-      [screens('small')]: {
+      [screens('small', 'medium')]: {
         flexDirection: 'column'
       }
     }

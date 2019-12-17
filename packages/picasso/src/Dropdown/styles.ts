@@ -1,8 +1,7 @@
 import { createStyles, Theme } from '@material-ui/core/styles'
-import zIndex from '@material-ui/core/styles/zIndex'
 import '../Popover/styles'
 
-export default ({ screens }: Theme) =>
+export default ({ screens, shadows, palette }: Theme) =>
   createStyles({
     root: {
       display: 'flex',
@@ -15,23 +14,25 @@ export default ({ screens }: Theme) =>
     },
     content: {
       fontSize: 'inherit',
-      background: 'white'
+      background: palette.common.white,
+      maxHeight: '14.75rem', // 6.5 lines of menu to show
+      overflowY: 'auto',
+      boxShadow: shadows[0],
+      [screens('small', 'medium')]: {
+        maxHeight: '14.75rem' // 6.5 lines of menu to show
+      },
+
+      // height under which maxHeight menu starts to overflow
+      // and needs to reduce height dynamically to avoid overflow
+      '@media screen and (max-height: 585px)': {
+        maxHeight: `calc(50vh - 3.5rem)`, // half of screen minus header and anchor
+
+        [screens('small', 'medium')]: {
+          maxHeight: 'calc(50vh - 3rem)' // half of viewport minus header and anchor
+        }
+      }
     },
     popper: {
-      zIndex: zIndex.modal,
-      [screens('small')]: {
-        width: '100vw',
-        maxWidth: '100vw',
-        left: '0 !important',
-        maxHeight: calculateMaxHeight(),
-        padding: 0
-      }
+      boxShadow: shadows[2]
     }
   })
-
-function calculateMaxHeight() {
-  const screenHeight = '100vh'
-  const headerHeight = '2.5rem'
-
-  return `calc(${screenHeight} - ${headerHeight})`
-}
