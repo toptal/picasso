@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.15](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@1.4.14...@toptal/picasso-lab@1.4.15) (2019-12-17)
+
+
+### Bug Fixes
+
+* upgrade simple-react-calendar to the stable version ([#972](https://github.com/toptal/picasso/issues/972)) ([53b0133](https://github.com/toptal/picasso/commit/53b013369714939dcf60a643505c04452635bc38))
+
+
+
+
+
 ## [1.4.14](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@1.4.13...@toptal/picasso-lab@1.4.14) (2019-12-17)
 
 **Note:** Version bump only for package @toptal/picasso-lab
