@@ -8,7 +8,7 @@ const purifyFixedPosition = (exampleContainerElement: HTMLElement) => {
     })
     .forEach(element => {
       const htmlElement = element as HTMLElement
-      //htmlElement.style.position = 'absolute'
+      htmlElement.style.position = 'absolute'
     })
 }
 
