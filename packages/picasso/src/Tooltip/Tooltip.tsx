@@ -16,7 +16,7 @@ import styles from './styles'
 
 type VariantType = 'light' | 'dark'
 
-type PlacementType = 'bottom' | 'left' | 'right' | 'top'
+type PlacementType = 'bottom' | 'bottom-end' | 'left' | 'right' | 'top'
 
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Trigger element for tooltip */

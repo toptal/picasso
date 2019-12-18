@@ -16,7 +16,7 @@ page
     additionalDocs: {
       placement: {
         type: 'enum',
-        enums: ['bottom', 'left', 'right', 'top']
+        enums: ['bottom', 'bottom-end', 'left', 'right', 'top']
       },
       variant: {
         type: 'enum',

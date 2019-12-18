@@ -1,25 +1,18 @@
 import React from 'react'
-import { Tooltip, Button, Container } from '@toptal/picasso'
+import { Tooltip, Button } from '@toptal/picasso'
 
-const placements = ['left', 'bottom', 'top', 'right']
+const placements = ['bottom', 'bottom-end', 'left', 'right', 'top']
 
 const TooltipPlacementExample = () => (
-  <div style={{ width: '800px', height: '230px', padding: '3rem 6rem' }}>
+  <React.Fragment>
     {placements.map(placement => (
-      <Container
-        key={placement}
-        top='large'
-        bottom='large'
-        left='large'
-        right='large'
-        inline
-      >
+      <div key={placement} style={{ marginBottom: '100px' }}>
         <Tooltip arrow content='Content' open placement={placement}>
           <Button>{placement}</Button>
         </Tooltip>
-      </Container>
+      </div>
     ))}
-  </div>
+  </React.Fragment>
 )
 
 export default TooltipPlacementExample
