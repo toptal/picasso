@@ -97,6 +97,7 @@ interface Props {
     inputValue: string
   ) => void
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void
+  onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void
   getDisplayValue: (item: Option | null) => string
 }
 
@@ -109,6 +110,7 @@ const useSelect = ({
   onKeyDown = () => {},
   onSelect = () => {},
   onBlur = () => {},
+  onFocus = () => {},
   getDisplayValue
 }: Props): {
   getItemProps: (index: number, item: Option) => ItemProps
@@ -169,7 +171,8 @@ const useSelect = ({
     }
   })
 
-  const handleFocusOrClick = () => {
+  const handleFocusOrClick = (event: React.FocusEvent<HTMLInputElement>) => {
+    onFocus(event)
     setOpen(true)
     setHighlightedIndex(FIRST_ITEM_INDEX)
   }
