@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.8.6](https://github.com/toptal/picasso/compare/@toptal/picasso@4.8.5...@toptal/picasso@4.8.6) (2019-12-20)
+
+
+### Bug Fixes
+
+* **Select:** allow changing dynamic options ([#977](https://github.com/toptal/picasso/issues/977)) ([18cf418](https://github.com/toptal/picasso/commit/18cf418b36c9c39b0dc2635f1e168c1d733ee555))
+
+
+
+
+
 ## [4.8.5](https://github.com/toptal/picasso/compare/@toptal/picasso@4.8.4...@toptal/picasso@4.8.5) (2019-12-17)
 
 
