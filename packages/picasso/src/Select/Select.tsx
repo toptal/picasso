@@ -299,6 +299,10 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     setOptions(filteredOptions)
   }
 
+  const handleFocus = () => {
+    filterOptions(EMPTY_INPUT_VALUE)
+  }
+
   const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
     if (!multiple) {
       const hasValue = inputValue !== EMPTY_INPUT_VALUE
@@ -357,7 +361,8 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     options,
     onSelect: handleSelect,
     onChange: handleChange,
-    onBlur: handleBlur
+    onBlur: handleBlur,
+    onFocus: handleFocus
   })
 
   const emptySelectValue = multiple ? [] : ''
@@ -484,7 +489,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
         />
         {dropDownIcon}
       </div>
-      {Boolean(options.length) && (
+      {Boolean(options.length) && !disabled && (
         <Popper autoWidth open={isOpen} anchorEl={inputWrapperRef.current}>
           {renderOptions({
             options,
