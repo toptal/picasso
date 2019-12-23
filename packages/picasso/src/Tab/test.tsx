@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, cleanup } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Tab, { Props } from './Tab'
@@ -9,8 +9,6 @@ const renderTab = (props: OmitInternalProps<Props>) => {
 
   return render(<Tab label={label} disabled={disabled} />)
 }
-
-afterEach(cleanup)
 
 describe('Tab', () => {
   test('default render', () => {

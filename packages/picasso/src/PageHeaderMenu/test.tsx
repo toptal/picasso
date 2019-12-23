@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 /* eslint-disable-next-line */
-import { render, cleanup } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Menu from '../Menu'
@@ -17,8 +17,6 @@ const TestPageHeaderMenu: FunctionComponent<OmitInternalProps<Props>> = ({
     </PageHeaderMenu>
   </Picasso>
 )
-
-afterEach(cleanup)
 
 describe('PageHeaderMenu', () => {
   test('default render', () => {

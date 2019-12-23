@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import { render, cleanup } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Loader, { Props } from './Loader'
@@ -13,8 +13,6 @@ const renderLoader = (children: ReactNode, props: OmitInternalProps<Props>) => {
     </Loader>
   )
 }
-
-afterEach(cleanup)
 
 test('props combo', () => {
   const { container } = renderLoader('Testing', {

@@ -1,12 +1,10 @@
-import { cleanup, fireEvent, render, wait } from '@testing-library/react'
+import { fireEvent, render, wait } from '@testing-library/react'
 import React from 'react'
 import Picasso from '@toptal/picasso-shared'
 
 import Menu from '../Menu'
 import Dropdown from './Dropdown'
 import Container from '../Container'
-
-afterEach(cleanup)
 
 describe('Dropdown', () => {
   test('default render', () => {

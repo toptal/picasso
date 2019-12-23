@@ -1,10 +1,5 @@
 import React from 'react'
-import {
-  render,
-  fireEvent,
-  cleanup,
-  RenderResult
-} from '@testing-library/react'
+import { render, fireEvent, RenderResult } from '@testing-library/react'
 import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Checkbox, { Props } from './Checkbox'
@@ -23,8 +18,6 @@ const renderCheckbox = (props: OmitInternalProps<Props>) => {
     </Picasso>
   )
 }
-
-afterEach(cleanup)
 
 test('renders default checkbox without label', () => {
   const { container } = renderCheckbox({})

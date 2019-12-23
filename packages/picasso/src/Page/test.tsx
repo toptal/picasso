@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, cleanup, RenderResult } from '@testing-library/react'
+import { render, RenderResult } from '@testing-library/react'
 import Picasso from '@toptal/picasso-shared'
 
 import Page from './Page'
@@ -11,8 +11,6 @@ const renderPage = (children: React.ReactNode) => {
     </Picasso>
   )
 }
-
-afterEach(cleanup)
 
 describe('Page', () => {
   let api: RenderResult

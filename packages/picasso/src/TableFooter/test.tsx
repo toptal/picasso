@@ -1,5 +1,5 @@
 import React from 'react'
-import { cleanup, render, RenderResult } from '@testing-library/react'
+import { render, RenderResult } from '@testing-library/react'
 import Picasso from '@toptal/picasso-shared'
 
 import Table from '../Table'
@@ -17,8 +17,6 @@ const renderTableFooter = () => {
     </Picasso>
   )
 }
-
-afterEach(cleanup)
 
 describe('TableFooter', () => {
   let api: RenderResult

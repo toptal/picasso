@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, cleanup } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Avatar, { Props } from './Avatar'
@@ -13,8 +13,6 @@ const renderAvatar = (props: OmitInternalProps<Props>) => {
     </Picasso>
   )
 }
-
-afterEach(cleanup)
 
 describe('Avatar', () => {
   test('avatar with text render', () => {

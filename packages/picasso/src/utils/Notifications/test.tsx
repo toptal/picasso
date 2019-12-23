@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { render, cleanup, fireEvent } from '@testing-library/react'
+import { render, fireEvent } from '@testing-library/react'
 import Picasso from '@toptal/picasso-shared'
 
 import { useNotifications } from './use-notifications'
@@ -26,8 +26,6 @@ const renderNotification = () => {
     </Picasso>
   )
 }
-
-afterEach(cleanup)
 
 describe('useNotifications', () => {
   test('error notification render', () => {

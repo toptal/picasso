@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from 'react'
 import { render } from '@testing-library/react'
-import '@testing-library/react/cleanup-after-each'
 import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
 
 import FormLabel, { Props } from './FormLabel'

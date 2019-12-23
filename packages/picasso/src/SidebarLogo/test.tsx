@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 /* eslint-disable-next-line */
-import { render, cleanup } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
 
 import { Logo } from '../'
@@ -13,8 +13,6 @@ const TestSidebarLogo: FunctionComponent<OmitInternalProps<Props>> = ({
     <SidebarLogo>{children}</SidebarLogo>
   </Picasso>
 )
-
-afterEach(cleanup)
 
 describe('SidebarLogo', () => {
   test('default render', () => {

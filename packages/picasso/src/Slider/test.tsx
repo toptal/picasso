@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import { render, cleanup, RenderResult } from '@testing-library/react'
+import { render, RenderResult } from '@testing-library/react'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Slider, { Props } from './Slider'
@@ -9,8 +9,6 @@ const renderSlider = (children: ReactNode, props: OmitInternalProps<Props>) => {
 
   return render(<Slider value={value}>{children}</Slider>)
 }
-
-afterEach(cleanup)
 
 describe('Slider', () => {
   let api: RenderResult

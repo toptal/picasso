@@ -1,11 +1,9 @@
 import React from 'react'
-import { render, cleanup } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import SearchIcon from '@material-ui/icons/Search'
 import Picasso from '@toptal/picasso-shared'
 
 import Input from './Input'
-
-afterEach(cleanup)
 
 test('renders icon at the end', () => {
   const { container } = render(

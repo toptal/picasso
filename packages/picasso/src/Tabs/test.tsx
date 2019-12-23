@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import { render, cleanup } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Tabs, { Props } from './Tabs'
@@ -12,8 +12,6 @@ const renderTabs = (
 
   return render(<Tabs value={value}>{children}</Tabs>)
 }
-
-afterEach(cleanup)
 
 describe('Tabs', () => {
   test('default render', () => {

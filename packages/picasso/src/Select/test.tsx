@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, cleanup, fireEvent } from '@testing-library/react'
+import { render, fireEvent } from '@testing-library/react'
 import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Select, { Props } from './Select'
@@ -51,8 +51,6 @@ const OPTIONS = [
     text: 'text3'
   }
 ]
-
-afterEach(cleanup)
 
 test('renders native select', () => {
   const { container } = renderSelect({

@@ -1,10 +1,5 @@
 import React, { ReactNode } from 'react'
-import {
-  render,
-  cleanup,
-  RenderResult,
-  fireEvent
-} from '@testing-library/react'
+import { render, RenderResult, fireEvent } from '@testing-library/react'
 import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Notification, { Props } from './Notification'
@@ -21,8 +16,6 @@ const renderNotification = (
     </Picasso>
   )
 }
-
-afterEach(cleanup)
 
 describe('Notification', () => {
   let api: RenderResult

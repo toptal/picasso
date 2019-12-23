@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import { render, cleanup, RenderResult } from '@testing-library/react'
+import { render, RenderResult } from '@testing-library/react'
 
 import { Classes } from '../types'
 // --- horrible fix, we need to have a dependency to @toptal/picasso here
@@ -26,8 +26,6 @@ const renderComponent = () => {
     </Picasso>
   )
 }
-
-afterEach(cleanup)
 
 describe('withClasses', () => {
   let api: RenderResult

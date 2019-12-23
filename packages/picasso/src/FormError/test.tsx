@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, cleanup, RenderResult } from '@testing-library/react'
+import { render, RenderResult } from '@testing-library/react'
 import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
 
 import { Props } from './FormError'
@@ -20,8 +20,6 @@ const TestFormError = ({ children }: OmitInternalProps<Props>) => {
     </Picasso>
   )
 }
-
-afterEach(cleanup)
 
 describe('FormError', () => {
   let api: RenderResult

@@ -1,6 +1,6 @@
 import React from 'react'
 /* eslint-disable-next-line */
-import { render, cleanup } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
 
 import EnvironmentBanner, { Props } from './EnvironmentBanner'
@@ -14,8 +14,6 @@ const renderEnvironmentBanner = (props: OmitInternalProps<Props>) => {
     </Picasso>
   )
 }
-
-afterEach(cleanup)
 
 describe('EnvironmentBanner', () => {
   test('development render', () => {

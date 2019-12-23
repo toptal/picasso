@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 /* eslint-disable-next-line */
-import { render, cleanup } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
 
 import SidebarMenu, { Props } from './SidebarMenu'
@@ -13,8 +13,6 @@ const TestSidebarMenu: FunctionComponent<OmitInternalProps<Props>> = ({
     <SidebarMenu bottom={bottom}>{children}</SidebarMenu>
   </Picasso>
 )
-
-afterEach(cleanup)
 
 describe('SidebarMenu', () => {
   test('default render', () => {

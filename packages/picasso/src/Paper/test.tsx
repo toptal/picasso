@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, cleanup, RenderResult } from '@testing-library/react'
+import { render, RenderResult } from '@testing-library/react'
 import Picasso from '@toptal/picasso-shared'
 
 import Typography from '../Typography'
@@ -12,8 +12,6 @@ const renderPaper = (children: React.ReactNode) => {
     </Picasso>
   )
 }
-
-afterEach(cleanup)
 
 describe('Paper', () => {
   let api: RenderResult

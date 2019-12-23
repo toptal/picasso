@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react'
-import { render, cleanup } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Helpbox, { Props } from './Helpbox'
@@ -18,8 +18,6 @@ const TestHelpbox: FunctionComponent<OmitInternalProps<Props>> = ({
     </Helpbox>
   </Picasso>
 )
-
-afterEach(cleanup)
 
 describe('Helpbox', () => {
   test('default render', () => {
