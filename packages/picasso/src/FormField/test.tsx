@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, cleanup } from '@testing-library/react'
+import { render } from '@testing-library/react'
 
 import FormField from './index'
 
@@ -10,8 +10,6 @@ const renderFormField = () => {
     </FormField>
   )
 }
-
-afterEach(cleanup)
 
 describe('FormField', () => {
   test('default render', () => {

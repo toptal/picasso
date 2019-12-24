@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react'
-import { render, cleanup } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
 
 import FileInput, { Props } from './FileInput'
@@ -9,8 +9,6 @@ const TestFileInput: FunctionComponent<OmitInternalProps<Props>> = () => (
     <FileInput />
   </Picasso>
 )
-
-afterEach(cleanup)
 
 describe('FileInput', () => {
   test('default render', () => {

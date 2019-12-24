@@ -1,10 +1,8 @@
 import React from 'react'
-import { render, cleanup } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import Picasso from '@toptal/picasso-shared'
 
 import Calendar from './Calendar'
-
-afterEach(cleanup)
 
 describe('Calendar', () => {
   test('default render', () => {

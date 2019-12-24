@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import { render, cleanup } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Indicator, { Props } from './Indicator'
@@ -16,8 +16,6 @@ const renderIndicator = (
     </Picasso>
   )
 }
-
-afterEach(cleanup)
 
 describe('Indicator', () => {
   test('default render', () => {

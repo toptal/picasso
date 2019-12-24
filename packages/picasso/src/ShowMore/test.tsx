@@ -1,11 +1,5 @@
 import React from 'react'
-/* eslint-disable-next-line */
-import {
-  render,
-  fireEvent,
-  cleanup,
-  RenderResult
-} from '@testing-library/react'
+import { render, fireEvent, RenderResult } from '@testing-library/react'
 import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
 
 import ShowMore, { Props } from './ShowMore'
@@ -36,8 +30,6 @@ const renderShowMore = (props: OmitInternalProps<Props>) => {
     </Picasso>
   )
 }
-
-afterEach(cleanup)
 
 describe('when onToggle function is passed', () => {
   test('should call onToggle after clicking on the action link', () => {

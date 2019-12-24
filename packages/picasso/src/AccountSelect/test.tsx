@@ -1,10 +1,5 @@
 import React from 'react'
-import {
-  render,
-  cleanup,
-  RenderResult,
-  fireEvent
-} from '@testing-library/react'
+import { render, RenderResult, fireEvent } from '@testing-library/react'
 import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
 
 import AccountSelect, { Props } from './AccountSelect'
@@ -23,8 +18,6 @@ const renderAccountSelect = (
     </Picasso>
   )
 }
-
-afterEach(cleanup)
 
 const accounts = [
   {

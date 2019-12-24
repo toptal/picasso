@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, cleanup } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import Picasso from '@toptal/picasso-shared'
 
 import FormHint from './index'
@@ -11,8 +11,6 @@ const renderFormHint = (text: string) => {
     </Picasso>
   )
 }
-
-afterEach(cleanup)
 
 describe('FormHint', () => {
   test('default render', () => {

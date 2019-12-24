@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import { cleanup, render, RenderResult } from '@testing-library/react'
+import { render, RenderResult } from '@testing-library/react'
 import Picasso from '@toptal/picasso-shared'
 
 import Notification from '../Notification'
@@ -14,8 +14,6 @@ const renderNotificationActions = (children: ReactNode) => {
     </Picasso>
   )
 }
-
-afterEach(cleanup)
 
 describe('NotificationActions', () => {
   let api: RenderResult

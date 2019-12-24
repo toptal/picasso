@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react'
-import { render, cleanup, fireEvent } from '@testing-library/react'
+import { render, fireEvent } from '@testing-library/react'
 import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Menu, { Props } from './'
@@ -11,8 +11,6 @@ const TestMenu: FunctionComponent<OmitInternalProps<Props>> = ({
     <Menu>{children}</Menu>
   </Picasso>
 )
-
-afterEach(cleanup)
 
 describe('Menu', () => {
   test('default render', () => {

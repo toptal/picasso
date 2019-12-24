@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, cleanup } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Typography from '../Typography'
@@ -19,8 +19,6 @@ const renderUserBadge = (
     </Picasso>
   )
 }
-
-afterEach(cleanup)
 
 describe('UserBadge', () => {
   test('default render', () => {

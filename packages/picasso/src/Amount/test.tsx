@@ -1,5 +1,5 @@
 import React from 'react'
-import { cleanup, render, RenderResult } from '@testing-library/react'
+import { render, RenderResult } from '@testing-library/react'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Amount, { Props } from './Amount'
@@ -9,8 +9,6 @@ const renderAmount = (props: OmitInternalProps<Props>) => {
 
   return render(<Amount amount={amount} />)
 }
-
-afterEach(cleanup)
 
 describe('Amount', () => {
   let api: RenderResult

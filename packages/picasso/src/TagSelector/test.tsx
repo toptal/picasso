@@ -2,7 +2,6 @@ import React from 'react'
 import {
   render,
   fireEvent,
-  cleanup,
   waitForElement,
   RenderResult
 } from '@testing-library/react'
@@ -68,8 +67,6 @@ const selectOption = async (
   // so we don't need it when selecting the option
   fireEvent.click(optionElement[0])
 }
-
-afterEach(cleanup)
 
 describe('TagSelector', () => {
   test('default render', () => {

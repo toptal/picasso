@@ -1,11 +1,9 @@
 /* eslint-disable react/no-multi-comp */
 import React from 'react'
-import { render, fireEvent, cleanup } from '@testing-library/react'
+import { render, fireEvent } from '@testing-library/react'
 import Picasso from '@toptal/picasso-shared'
 
 import Accordion from './Accordion'
-
-afterEach(cleanup)
 
 const summaryHeaderText = 'Fryderyk Chopin'
 const Summary = () => <div>{summaryHeaderText}</div>

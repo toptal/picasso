@@ -1,11 +1,9 @@
 import React from 'react'
-import { render, cleanup } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import { MemoryRouter, Link as RouterLink } from 'react-router-dom'
 import Picasso from '@toptal/picasso-shared'
 
 import Link from '../Link'
-
-afterEach(cleanup)
 
 describe('Link', () => {
   test('default render', () => {

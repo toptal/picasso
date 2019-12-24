@@ -1,10 +1,8 @@
 import React from 'react'
-import { render, cleanup } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import Picasso from '@toptal/picasso-shared'
 
 import MonthSelect from './MonthSelect'
-
-afterEach(cleanup)
 
 // Mock console error since toThrow() outputs the error message with stacktrace
 let mockedConsoleError: jest.SpyInstance

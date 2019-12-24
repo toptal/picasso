@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, cleanup } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Image, { Props } from './Image'
@@ -9,8 +9,6 @@ const renderImage = (props: OmitInternalProps<Props>) => {
 
   return render(<Image alt={alt} variant={variant} src={src} />)
 }
-
-afterEach(cleanup)
 
 describe('Image', () => {
   test('default render', () => {

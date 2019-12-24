@@ -1,11 +1,9 @@
 import React from 'react'
-import { render, cleanup } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import Picasso from '@toptal/picasso-shared'
 
 import Link from '../Link'
 import PageHeader from './PageHeader'
-
-afterEach(cleanup)
 
 describe('Page.Header', () => {
   test('default render', () => {

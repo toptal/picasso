@@ -1,6 +1,5 @@
 import React from 'react'
 import { render, fireEvent, wait } from '@testing-library/react'
-import '@testing-library/react/cleanup-after-each'
 import Picasso from '@toptal/picasso-shared'
 
 import Button from '../Button'

@@ -1,10 +1,5 @@
 import React, { ReactNode } from 'react'
-import {
-  render,
-  fireEvent,
-  cleanup,
-  RenderResult
-} from '@testing-library/react'
+import { render, fireEvent, RenderResult } from '@testing-library/react'
 import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Button, { Props } from './Button'
@@ -20,8 +15,6 @@ const renderButton = (children: ReactNode, props: OmitInternalProps<Props>) => {
     </Picasso>
   )
 }
-
-afterEach(cleanup)
 
 test('onClick callback should be fired after clicking the button', () => {
   const onClick = jest.fn()

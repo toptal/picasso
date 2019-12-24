@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 /* eslint-disable-next-line */
-import { render, cleanup } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
 
 import { Candidates16 } from '../Icon'
@@ -26,8 +26,6 @@ const TestSidebarItem: FunctionComponent<OmitInternalProps<Props>> = ({
     </SidebarItem>
   </Picasso>
 )
-
-afterEach(cleanup)
 
 describe('SidebarItem', () => {
   test('default render', () => {

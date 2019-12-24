@@ -1,10 +1,8 @@
 import React from 'react'
-import { render, cleanup } from '@testing-library/react'
+import { render } from '@testing-library/react'
 
 import Container from '../Container'
 import Tooltip from './Tooltip'
-
-afterEach(cleanup)
 
 describe('Tooltip', () => {
   test('default render', () => {

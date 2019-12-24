@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react'
-import { render, cleanup } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Typography, { Props } from './Typography'
@@ -17,8 +17,6 @@ const TestTypography: FunctionComponent<OmitInternalProps<Props>> = ({
     </Typography>
   </Picasso>
 )
-
-afterEach(cleanup)
 
 describe('Typography', () => {
   test('default render', () => {

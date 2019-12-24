@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, fireEvent, cleanup } from '@testing-library/react'
+import { render, fireEvent } from '@testing-library/react'
 import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Label, { Props } from './Label'
@@ -18,8 +18,6 @@ const renderLabel = (
     </Picasso>
   )
 }
-
-afterEach(cleanup)
 
 test('renders `grey` variant', () => {
   const { container } = renderLabel('Label', {})

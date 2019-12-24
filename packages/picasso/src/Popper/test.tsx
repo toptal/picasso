@@ -1,10 +1,8 @@
 import React, { useState, Fragment, FC, ReactNode, forwardRef } from 'react'
-import { render, cleanup, act, fireEvent } from '@testing-library/react'
+import { render, act, fireEvent } from '@testing-library/react'
 import Picasso from '@toptal/picasso-shared'
 
 import Popper from './Popper'
-
-afterEach(cleanup)
 
 // eslint-disable-next-line react/display-name
 const FakeRootNode = forwardRef<HTMLDivElement, { children?: ReactNode }>(
@@ -43,7 +41,9 @@ const PopperRenderer = () => {
 }
 
 test('default render', () => {
-  const { getByRole } = render(<PopperRenderer />, { wrapper: PicassoWithFakeRootNode })
+  const { getByRole } = render(<PopperRenderer />, {
+    wrapper: PicassoWithFakeRootNode
+  })
 
   act(() => {
     fireEvent.click(getByRole('action'))
