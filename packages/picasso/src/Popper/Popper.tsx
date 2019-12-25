@@ -49,6 +49,8 @@ export interface Props extends BaseProps {
   anchorEl: null | ReferenceObject | (() => ReferenceObject)
   /** Popper automatically resize to anchor element width */
   autoWidth?: boolean
+  /** Popper width */
+  width?: string
 }
 
 const useStyles = makeStyles<Theme, Props>(styles)
@@ -91,6 +93,27 @@ function getPopperOptions(
   }
 }
 
+const calcWidthStyle = ({
+  anchorEl,
+  autoWidth,
+  width
+}: Pick<Props, 'anchorEl' | 'autoWidth' | 'width'>) => {
+  const resolvedAnchorEl = getAnchorEl(anchorEl)
+  const anchorElWidth = useWidthOf<ReferenceObject>(resolvedAnchorEl)
+
+  if (autoWidth && width) {
+    return { width }
+  }
+  if (width) {
+    return { width }
+  }
+  if (autoWidth) {
+    return { width: anchorElWidth }
+  }
+
+  return {}
+}
+
 export const Popper = forwardRef<PopperJs, Props>(function Popper(props, ref) {
   const {
     children,
@@ -100,6 +123,7 @@ export const Popper = forwardRef<PopperJs, Props>(function Popper(props, ref) {
     container,
     popperOptions,
     autoWidth,
+    width,
     style,
     ...rest
   } = props
@@ -110,10 +134,8 @@ export const Popper = forwardRef<PopperJs, Props>(function Popper(props, ref) {
   const classes = useStyles(props)
   const isCompactLayout = useBreakpoint(['small', 'medium'])
 
-  const resolvedAnchorEl = getAnchorEl(anchorEl)
-  const anchorElWidth = useWidthOf<ReferenceObject>(resolvedAnchorEl)
   const anchorElWidthStyle =
-    !isCompactLayout && autoWidth ? { width: anchorElWidth } : {}
+    !isCompactLayout && calcWidthStyle({ autoWidth, width, anchorEl })
 
   useLayoutEffect(() => {
     if (isCompactLayout && open && document.body.style.overflow !== 'hidden') {

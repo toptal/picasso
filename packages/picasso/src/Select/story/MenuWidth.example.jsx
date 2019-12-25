@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { Select, Container } from '@toptal/picasso'
-import { Settings16 } from '@toptal/picasso/Icon'
 
-const ShrinkWidthExample = () => {
+const MenuWidthExample = () => {
   const [value, setValue] = useState()
 
   const handleChange = event => {
@@ -18,16 +17,8 @@ const ShrinkWidthExample = () => {
           value={value}
           placeholder='ID'
           width='shrink'
-        />
-      </Container>
-      <Container right='small'>
-        <Select
-          onChange={handleChange}
-          options={OPTIONS}
-          value={value}
-          icon={<Settings16 />}
-          placeholder='ID'
-          width='shrink'
+          menuWidth='200px'
+          data-testid='trigger'
         />
       </Container>
     </Container>
@@ -41,4 +32,4 @@ const OPTIONS = [
   { value: '4', text: '4' }
 ]
 
-export default ShrinkWidthExample
+export default MenuWidthExample

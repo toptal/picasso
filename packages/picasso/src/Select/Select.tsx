@@ -45,6 +45,8 @@ export interface Props
   id?: string
   /** Width of the component */
   width?: 'full' | 'shrink' | 'auto'
+  /** Width of the menu */
+  menuWidth?: string
   /** Shows the loading icon when options are loading */
   loading?: boolean
   /** Placeholder option which is selected by default */
@@ -242,6 +244,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     className,
     style,
     width,
+    menuWidth,
     loading,
     id,
     icon,
@@ -490,7 +493,12 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
         {dropDownIcon}
       </div>
       {Boolean(options.length) && !disabled && (
-        <Popper autoWidth open={isOpen} anchorEl={inputWrapperRef.current}>
+        <Popper
+          autoWidth
+          width={menuWidth}
+          open={isOpen}
+          anchorEl={inputWrapperRef.current}
+        >
           {renderOptions({
             options,
             renderOption,
