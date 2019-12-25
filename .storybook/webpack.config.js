@@ -59,15 +59,7 @@ module.exports = ({ config }) => {
   config.resolve.alias = {
     ...config.resolve.alias,
     '~': path.resolve(__dirname, '..'),
-    '@toptal/picasso/utils': path.resolve(
-      __dirname,
-      '../packages/picasso/src/utils/index'
-    ),
-    '@toptal/picasso/Icon': path.resolve(
-      __dirname,
-      '../packages/picasso/src/Icon/index'
-    ),
-    '@toptal/picasso': path.resolve(__dirname, '../packages/picasso/src/index'),
+    '@toptal/picasso': path.resolve(__dirname, '../packages/picasso/src'),
     '@toptal/picasso-lab': path.resolve(
       __dirname,
       '../packages/picasso-lab/src/index'
