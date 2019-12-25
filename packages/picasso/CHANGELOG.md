@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.9.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.8.9...@toptal/picasso@4.9.0) (2019-12-25)
+
+
+### Features
+
+* **menuitem:** change text wrap to normal ([#986](https://github.com/toptal/picasso/issues/986)) ([81eb1ab](https://github.com/toptal/picasso/commit/81eb1ab043283d553da04fa3bc69443effdeccb9))
+
+
+
+
+
 ## [4.8.9](https://github.com/toptal/picasso/compare/@toptal/picasso@4.8.8...@toptal/picasso@4.8.9) (2019-12-24)
 
 **Note:** Version bump only for package @toptal/picasso
