@@ -11,7 +11,8 @@ PicassoProvider.override(() => ({
       paddingTop: 0,
       paddingBottom: 0,
       fontSize: '1rem',
-      minHeight: 'unset'
+      minHeight: 'unset',
+      whiteSpace: 'normal'
     },
     gutters: {
       padding: '0.625rem',
