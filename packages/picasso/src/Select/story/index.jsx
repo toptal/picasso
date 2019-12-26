@@ -37,6 +37,15 @@ page
   .addExample('Select/story/Sizes.example.jsx', 'Sizes')
   .addExample('Select/story/FullWidth.example.jsx', 'Full width')
   .addExample('Select/story/ShrinkWidth.example.jsx', 'Shrink width')
+  .addExample('Select/story/MenuWidth.example.jsx', 'Menu width', {
+    effect: async (testPage, makeScreenshot) => {
+      await testPage.click('[data-testid="trigger"] input')
+      await testPage.waitFor(50)
+      await makeScreenshot({
+        isFullScreen: true
+      })
+    }
+  })
   .addExample('Select/story/ChosenOption.example.jsx', {
     title: 'Chosen option',
     description:
