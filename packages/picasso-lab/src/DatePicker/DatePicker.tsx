@@ -88,7 +88,9 @@ export const DatePicker = ({
   const inputWrapperRef = useRef<HTMLDivElement>(null)
 
   useLayoutEffect(() => {
-    if (!value) return
+    if (!value) {
+      return
+    }
 
     if (range) {
       setInputValue(formatDateRange(value as DateRangeType, displayDateFormat!))
@@ -117,7 +119,15 @@ export const DatePicker = ({
     )
   }
 
-  const handleInputBlur = () => {
+  const handleBlur = (event: React.FocusEvent<HTMLDivElement>) => {
+    const isFocusedInsideDatePicker = isInsideDatePicker(
+      event.relatedTarget as Node
+    )
+
+    if (isFocusedInsideDatePicker) {
+      return
+    }
+
     hideCalendar()
     onBlur!()
 
@@ -155,11 +165,6 @@ export const DatePicker = ({
     }
   }
 
-  const handleInputFocus = () => {
-    showCalendar()
-    setIsInputFocused(true)
-  }
-
   const focus = () => {
     if (inputRef && inputRef.current) {
       inputRef.current.focus()
@@ -192,8 +197,9 @@ export const DatePicker = ({
     }
   }
 
-  const handleInputClick = () => {
+  const handleFocusOrClick = () => {
     showCalendar()
+    setIsInputFocused(true)
   }
 
   const startAdornment = (
@@ -211,19 +217,9 @@ export const DatePicker = ({
           ref={inputRef}
           error={showError}
           onKeyDown={handleInputKeydown}
-          onClick={handleInputClick}
-          onFocus={handleInputFocus}
-          onBlur={(event: React.FocusEvent<HTMLInputElement>) => {
-            const isFocusedInsideDatePicker = isInsideDatePicker(
-              event.relatedTarget as Node
-            )
-
-            if (isFocusedInsideDatePicker) {
-              return
-            }
-
-            handleInputBlur()
-          }}
+          onClick={handleFocusOrClick}
+          onFocus={handleFocusOrClick}
+          onBlur={handleBlur}
           value={inputValue}
           onChange={handleInputChange}
           startAdornment={startAdornment}
@@ -243,17 +239,7 @@ export const DatePicker = ({
             range={range}
             value={value}
             onChange={handleCalendarChange}
-            onBlur={(event: React.FocusEvent<HTMLDivElement>) => {
-              const isFocusedInsideDatePicker = isInsideDatePicker(
-                event.relatedTarget as Node
-              )
-
-              if (isFocusedInsideDatePicker) {
-                return
-              }
-
-              handleInputBlur()
-            }}
+            onBlur={handleBlur}
           />
         </Popper>
       )}
