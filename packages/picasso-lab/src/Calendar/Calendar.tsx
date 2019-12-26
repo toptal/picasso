@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import SimpleReactCalendar from 'simple-react-calendar'
@@ -53,7 +53,10 @@ function isDateRange(
 
 const useStyles = makeStyles<Theme, Props>(styles)
 
-export const Calendar = (props: Props) => {
+export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
+  props,
+  ref
+) {
   const classes = useStyles(props)
   const { range = false, activeMonth, value, onChange } = props
 
@@ -69,6 +72,7 @@ export const Calendar = (props: Props) => {
 
   return (
     <SimpleReactCalendar
+      ref={ref}
       selected={getNormalizedValue(value)}
       onSelect={handleChange}
       customRender={({ children }: CalendarProps) => {
@@ -148,7 +152,7 @@ export const Calendar = (props: Props) => {
       mode={range ? 'range' : 'single'}
     />
   )
-}
+})
 
 Calendar.displayName = 'Calendar'
 
