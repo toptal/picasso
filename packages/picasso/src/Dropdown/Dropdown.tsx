@@ -69,7 +69,7 @@ function useDropdownContext() {
 
   if (!context) {
     throw new Error(
-      `Dropdown compound components cannot be rendered outside the Dropdown component`
+      'Dropdown compound components cannot be rendered outside the Dropdown component'
     )
   }
   return context

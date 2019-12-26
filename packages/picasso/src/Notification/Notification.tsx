@@ -83,11 +83,12 @@ const renderNotificationIcon = ({ icon, variant, classes }: Props) => {
       // eslint-disable-next-line react/jsx-props-no-spreading
       return <Tick {...iconProps} color='green' />
 
-    default:
+    default: {
       const infoProps = { ...iconProps, color: 'grey' as 'grey' }
 
       // eslint-disable-next-line react/jsx-props-no-spreading
       return icon ? cloneElement(icon, infoProps) : <Info {...infoProps} />
+    }
   }
 }
 

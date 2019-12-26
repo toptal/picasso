@@ -25,15 +25,18 @@ const conventionalPRTitle = async () => {
 
   if (!result.valid) {
     if (result.errors.length > 0) {
-      let message = `PR title doesn't conform the conventional commit guidelines. \n\n**Errors**:\n\n`
+      let message =
+        "PR title doesn't conform the conventional commit guidelines. \n\n**Errors**:\n\n"
 
       message += table([
         ['Message'],
         ...result.errors.map(error => [error.message])
       ])
 
-      message += `\n\n💡 For a guidance on how to fix this problem please refer to [https://www.conventionalcommits.org](https://www.conventionalcommits.org)`
-      message += `\n\n💡 Or you can check our [documentation](https://github.com/toptal/picasso/blob/master/docs/contribution/github-workflow.md#general-commit-message-pattern)`
+      message +=
+        '\n\n💡 For a guidance on how to fix this problem please refer to [https://www.conventionalcommits.org](https://www.conventionalcommits.org)'
+      message +=
+        '\n\n💡 Or you can check our [documentation](https://github.com/toptal/picasso/blob/master/docs/contribution/github-workflow.md#general-commit-message-pattern)'
 
       fail(message)
     }

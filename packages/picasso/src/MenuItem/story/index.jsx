@@ -1,10 +1,10 @@
-import PicassoBook from '~/.storybook/components/PicassoBook'
-
 import { MenuItem } from '../MenuItem'
+
+import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const chapter = PicassoBook.connectToPage(page =>
   page
-    .createChapter('Menu.Item', `An Item component`)
+    .createChapter('Menu.Item', 'An Item component')
     .addExample('MenuItem/story/Router.example.jsx', 'Usage with react-router')
 )
 

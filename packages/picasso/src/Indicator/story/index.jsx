@@ -1,6 +1,6 @@
-import PicassoBook from '~/.storybook/components/PicassoBook'
-
 import { Indicator } from '../Indicator'
+
+import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.createPage('Indicator')
 

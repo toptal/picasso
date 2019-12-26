@@ -1,6 +1,6 @@
-import PicassoBook from '~/.storybook/components/PicassoBook'
-
 import { Amount } from '../Amount'
+
+import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.createPage(
   'Amount',

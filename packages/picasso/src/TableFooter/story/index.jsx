@@ -1,6 +1,6 @@
-import PicassoBook from '~/.storybook/components/PicassoBook'
-
 import { TableFooter } from '../TableFooter'
+
+import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const componentDocs = PicassoBook.createComponentDocs(
   TableFooter,

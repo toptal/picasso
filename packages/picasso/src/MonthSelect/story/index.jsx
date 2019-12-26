@@ -1,6 +1,6 @@
-import PicassoBook from '~/.storybook/components/PicassoBook'
-
 import { MonthSelect } from '../MonthSelect'
+
+import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.createPage('MonthSelect', 'Month selector')
 

@@ -1,14 +1,14 @@
-import PicassoBook from '~/.storybook/components/PicassoBook'
-
 import { Form } from '../Form'
 import formFieldStory from '../../FormField/story'
 import formHintStory from '../../FormHint/story'
 import formLabelStory from '../../FormLabel/story'
 import formErrorStory from '../../FormError/story'
 
+import PicassoBook from '~/.storybook/components/PicassoBook'
+
 const page = PicassoBook.createPage(
   'Form',
-  `Helper components for building forms.`,
+  'Helper components for building forms.',
   'Forms'
 )
 

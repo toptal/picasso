@@ -1,6 +1,6 @@
-import PicassoBook from '~/.storybook/components/PicassoBook'
-
 import { ModalActions } from '../ModalActions'
+
+import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const componentDocs = PicassoBook.createComponentDocs(
   ModalActions,

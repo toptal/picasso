@@ -1,10 +1,10 @@
-import PicassoBook from '~/.storybook/components/PicassoBook'
-
 import { PromptModal } from '../PromptModal'
+
+import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.createPage(
   'PromptModal',
-  `Predefined modal for short prompts that asks user for input.`
+  'Predefined modal for short prompts that asks user for input.'
 )
 
 page

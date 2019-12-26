@@ -1,13 +1,13 @@
-import PicassoBook from '~/.storybook/components/PicassoBook'
-
 import sidebarMenuStory from '../../SidebarMenu/story'
 import sidebarItemStory from '../../SidebarItem/story'
 import sidebarLogoStory from '../../SidebarLogo/story'
 import { Sidebar } from '../Sidebar'
 
+import PicassoBook from '~/.storybook/components/PicassoBook'
+
 const page = PicassoBook.createPage(
   'Sidebar',
-  `Navigation items provide access to parts in your app`
+  'Navigation items provide access to parts in your app'
 )
 
 page

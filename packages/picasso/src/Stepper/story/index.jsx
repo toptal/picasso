@@ -1,10 +1,10 @@
-import PicassoBook from '~/.storybook/components/PicassoBook'
-
 import { Stepper } from '../Stepper'
+
+import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.createPage(
   'Stepper',
-  `Stepper component display progress through a sequence of steps.`
+  'Stepper component display progress through a sequence of steps.'
 )
 
 page

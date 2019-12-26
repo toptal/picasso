@@ -1,6 +1,6 @@
-import PicassoBook from '~/.storybook/components/PicassoBook'
-
 import { HelpboxActions } from '../HelpboxActions'
+
+import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const componentDocs = PicassoBook.createComponentDocs(
   HelpboxActions,

@@ -1,7 +1,7 @@
-import PicassoBook from '~/.storybook/components/PicassoBook'
-
 import radioGroupStory from '../../RadioGroup/story'
 import { Radio } from '../Radio'
+
+import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.createPage(
   'Radio',

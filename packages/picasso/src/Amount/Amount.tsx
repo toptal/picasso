@@ -13,6 +13,7 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLSpanElement> {
 }
 /** Currency List: https://www.currency-iso.org/en/home/tables/table-a1.html */
 
+// eslint-disable-next-line react/display-name
 export const Amount = memo(
   // eslint-disable-next-line react/display-name
   forwardRef<HTMLSpanElement, Props>(function Amount(

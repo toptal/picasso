@@ -1,10 +1,10 @@
-import PicassoBook from '~/.storybook/components/PicassoBook'
-
 import { UserBadge } from '../UserBadge'
+
+import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.createPage(
   'UserBadge',
-  `Show user avatar and name along with addition content`
+  'Show user avatar and name along with addition content'
 )
 
 page

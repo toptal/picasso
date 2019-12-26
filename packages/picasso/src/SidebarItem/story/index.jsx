@@ -1,6 +1,6 @@
-import PicassoBook from '~/.storybook/components/PicassoBook'
-
 import { SidebarItem } from '../SidebarItem'
+
+import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const componentDocs = PicassoBook.createComponentDocs(
   SidebarItem,
