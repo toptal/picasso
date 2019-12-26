@@ -93,7 +93,7 @@ function getPopperOptions(
   }
 }
 
-const calcWidthStyle = ({
+const useWidthStyle = ({
   anchorEl,
   autoWidth,
   width
@@ -101,12 +101,10 @@ const calcWidthStyle = ({
   const resolvedAnchorEl = getAnchorEl(anchorEl)
   const anchorElWidth = useWidthOf<ReferenceObject>(resolvedAnchorEl)
 
-  if (autoWidth && width) {
-    return { width }
-  }
   if (width) {
     return { width }
   }
+
   if (autoWidth) {
     return { width: anchorElWidth }
   }
@@ -133,9 +131,8 @@ export const Popper = forwardRef<PopperJs, Props>(function Popper(props, ref) {
 
   const classes = useStyles(props)
   const isCompactLayout = useBreakpoint(['small', 'medium'])
-
-  const anchorElWidthStyle =
-    !isCompactLayout && calcWidthStyle({ autoWidth, width, anchorEl })
+  const widthStyle = useWidthStyle({ autoWidth, width, anchorEl })
+  const anchorElWidthStyle = !isCompactLayout && widthStyle
 
   useLayoutEffect(() => {
     if (isCompactLayout && open && document.body.style.overflow !== 'hidden') {
