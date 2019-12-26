@@ -88,6 +88,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
       open={open}
       transitionDuration={transitionDuration}
       maxWidth={false}
+      disableEnforceFocus // we need our own mechanism to keep focus inside the Modals
     >
       {children}
       {onClose && (

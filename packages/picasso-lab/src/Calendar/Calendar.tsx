@@ -40,6 +40,7 @@ const getNormalizedValue = (value: DateOrDateRangeType | undefined) => {
 
 export interface Props extends BaseProps {
   onChange: (value: DateOrDateRangeType) => void
+  onBlur?: (event: React.FocusEvent<HTMLDivElement>) => void
   range?: boolean
   value?: DateOrDateRangeType
   activeMonth?: Date
@@ -58,7 +59,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
   ref
 ) {
   const classes = useStyles(props)
-  const { range = false, activeMonth, value, onChange } = props
+  const { range = false, activeMonth, value, onChange, onBlur } = props
 
   const handleChange = (selection: Date | SimpleReactCalendarRangeType) => {
     if (isDateRange(selection)) {
@@ -71,88 +72,93 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
   }
 
   return (
-    <SimpleReactCalendar
-      ref={ref}
-      selected={getNormalizedValue(value)}
-      onSelect={handleChange}
-      customRender={({ children }: CalendarProps) => {
-        return <div className={classes.root}>{children}</div>
-      }}
-      renderDay={({
-        isSelected,
-        isSelectable,
-        isToday,
-        isMonthNext,
-        isMonthPrev,
-        isSelectionStart,
-        isSelectionEnd,
-        handleOnClick,
-        handleOnEnter,
-        date,
-        children
-      }: DayProps) => {
-        return (
-          <button
-            className={cx(classes.day, {
-              [classes.selected]: isSelected,
-              [classes.selectable]: isSelectable,
-              [classes.today]: isToday,
-              [classes.grayed]: (isMonthPrev || isMonthNext) && !isSelected,
-              [classes.startSelection]: isSelectionStart,
-              [classes.endSelection]: isSelectionEnd
-            })}
-            onClick={handleOnClick}
-            onMouseEnter={handleOnEnter}
-            value={date.toString()}
-            tabIndex={-1}
-            type='button'
-          >
-            {children}
-          </button>
-        )
-      }}
-      renderMonthHeader={({
-        switchMonth,
-        activeMonth: headerActiveMonth
-      }: MonthHeaderProps) => {
-        return (
-          <div className={classes.actions}>
-            <Button
+    <div ref={ref} onBlur={onBlur}>
+      <SimpleReactCalendar
+        selected={getNormalizedValue(value)}
+        onSelect={handleChange}
+        customRender={({ children }: CalendarProps) => {
+          return <div className={classes.root}>{children}</div>
+        }}
+        renderDay={({
+          isSelected,
+          isSelectable,
+          isToday,
+          isMonthNext,
+          isMonthPrev,
+          isSelectionStart,
+          isSelectionEnd,
+          handleOnClick,
+          handleOnEnter,
+          date,
+          children
+        }: DayProps) => {
+          return (
+            <button
+              className={cx(classes.day, {
+                [classes.selected]: isSelected,
+                [classes.selectable]: isSelectable,
+                [classes.today]: isToday,
+                [classes.grayed]: (isMonthPrev || isMonthNext) && !isSelected,
+                [classes.startSelection]: isSelectionStart,
+                [classes.endSelection]: isSelectionEnd
+              })}
+              onClick={handleOnClick}
+              onMouseEnter={handleOnEnter}
+              value={date.toString()}
               tabIndex={-1}
-              variant='flat'
-              size='small'
-              onClick={() => switchMonth(-1)}
+              type='button'
             >
-              <BackMinor16 />
-            </Button>
-            <Typography variant='heading' size='medium'>
-              {format(headerActiveMonth, 'MMMM y')}
-            </Typography>
-            <Button
-              tabIndex={-1}
-              variant='flat'
-              size='small'
-              onClick={() => switchMonth(1)}
-            >
-              <ChevronMinor16 />
-            </Button>
-          </div>
-        )
-      }}
-      renderDaysOfWeek={({ children }: DaysOfWeekProps) => {
-        return <div className={classes.weekDays}>{children}</div>
-      }}
-      renderDayOfWeek={({ children }: DayOfWeekProps) => {
-        return <div className={classes.weekDay}>{children}</div>
-      }}
-      renderWeek={({ children }: WeekProps) => {
-        return <div className={classes.week}>{children}</div>
-      }}
-      activeMonth={activeMonth || value}
-      mode={range ? 'range' : 'single'}
-    />
+              {children}
+            </button>
+          )
+        }}
+        renderMonthHeader={({
+          switchMonth,
+          activeMonth: headerActiveMonth
+        }: MonthHeaderProps) => {
+          return (
+            <div className={classes.actions}>
+              <Button
+                tabIndex={-1}
+                variant='flat'
+                size='small'
+                onClick={() => switchMonth(-1)}
+              >
+                <BackMinor16 />
+              </Button>
+              <Typography variant='heading' size='medium'>
+                {format(headerActiveMonth, 'MMMM y')}
+              </Typography>
+              <Button
+                tabIndex={-1}
+                variant='flat'
+                size='small'
+                onClick={() => switchMonth(1)}
+              >
+                <ChevronMinor16 />
+              </Button>
+            </div>
+          )
+        }}
+        renderDaysOfWeek={({ children }: DaysOfWeekProps) => {
+          return <div className={classes.weekDays}>{children}</div>
+        }}
+        renderDayOfWeek={({ children }: DayOfWeekProps) => {
+          return <div className={classes.weekDay}>{children}</div>
+        }}
+        renderWeek={({ children }: WeekProps) => {
+          return <div className={classes.week}>{children}</div>
+        }}
+        activeMonth={activeMonth || value}
+        mode={range ? 'range' : 'single'}
+      />
+    </div>
   )
 })
+
+Calendar.defaultProps = {
+  onBlur: () => {}
+}
 
 Calendar.displayName = 'Calendar'
 

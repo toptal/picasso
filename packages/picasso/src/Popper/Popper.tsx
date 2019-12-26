@@ -122,6 +122,7 @@ export const Popper = forwardRef<PopperJs, Props>(function Popper(props, ref) {
     popperOptions,
     autoWidth,
     width,
+    disablePortal,
     style,
     ...rest
   } = props
@@ -158,6 +159,7 @@ export const Popper = forwardRef<PopperJs, Props>(function Popper(props, ref) {
         isCompactLayout,
         hasPageHeader
       )}
+      disablePortal={disablePortal}
       style={{
         ...style,
         ...anchorElWidthStyle
