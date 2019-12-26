@@ -1,9 +1,9 @@
-import PicassoBook from '~/.storybook/components/PicassoBook'
-
 import menuItemStory from '../../MenuItem/story'
 import { Menu } from '../Menu'
 
-const page = PicassoBook.createPage('Menu', `Menu list.`)
+import PicassoBook from '~/.storybook/components/PicassoBook'
+
+const page = PicassoBook.createPage('Menu', 'Menu list.')
 
 page
   .createTabChapter('Props')

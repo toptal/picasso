@@ -1,6 +1,6 @@
-import PicassoBook from '~/.storybook/components/PicassoBook'
-
 import { FormField } from '../FormField'
+
+import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const chapter = PicassoBook.connectToPage(page =>
   page

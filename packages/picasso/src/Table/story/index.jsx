@@ -1,5 +1,3 @@
-import PicassoBook from '~/.storybook/components/PicassoBook'
-
 import tableCellStory from '../../TableCell/story'
 import tableBodyStory from '../../TableBody/story'
 import tableFooterStory from '../../TableFooter/story'
@@ -8,7 +6,9 @@ import tableRowStory from '../../TableRow/story'
 import tableExpandableRowStory from '../../TableExpandableRow/story'
 import { Table } from '../Table'
 
-const page = PicassoBook.createPage('Table', `Display sets of data`)
+import PicassoBook from '~/.storybook/components/PicassoBook'
+
+const page = PicassoBook.createPage('Table', 'Display sets of data')
 
 page
   .createTabChapter('Props')

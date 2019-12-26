@@ -34,7 +34,7 @@ const PopperRenderer = () => {
         Click
       </button>
       <Popper open={popoverIsOpen} anchorEl={document.body}>
-        {'some children'}
+        some children
       </Popper>
     </Fragment>
   )

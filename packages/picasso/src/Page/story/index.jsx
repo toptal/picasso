@@ -1,5 +1,3 @@
-import PicassoBook from '~/.storybook/components/PicassoBook'
-
 import pageHeaderStory from '../../PageHeader/story'
 import pageHeaderMenuStory from '../../PageHeaderMenu/story'
 import pageContentStory from '../../PageContent/story'
@@ -7,7 +5,9 @@ import pageFooterStory from '../../PageFooter/story'
 import pageBannerStory from '../../PageBanner/story'
 import { Page } from '../Page'
 
-const page = PicassoBook.createPage('Page', `A Page component`, 'Layout')
+import PicassoBook from '~/.storybook/components/PicassoBook'
+
+const page = PicassoBook.createPage('Page', 'A Page component', 'Layout')
 
 page
   .createTabChapter('Props')

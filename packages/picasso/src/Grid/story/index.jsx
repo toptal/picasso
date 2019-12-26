@@ -1,7 +1,7 @@
-import PicassoBook from '~/.storybook/components/PicassoBook'
-
 import gridItemStory from '../../GridItem/story'
 import { Grid } from '../Grid'
+
+import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.createPage(
   'Grid',

@@ -1,7 +1,7 @@
-import PicassoBook from '~/.storybook/components/PicassoBook'
-
 import labelGroupStory from '../../LabelGroup/story'
 import { Label } from '../Label'
+
+import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.createPage(
   'Label',

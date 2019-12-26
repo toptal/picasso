@@ -1,6 +1,6 @@
-import PicassoBook from '~/.storybook/components/PicassoBook'
-
 import { LabelGroup } from '../LabelGroup'
+
+import PicassoBook from '~/.storybook/components/PicassoBook'
 
 export const chapter = PicassoBook.connectToPage(page =>
   page

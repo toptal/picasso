@@ -1,7 +1,7 @@
-import PicassoBook from '~/.storybook/components/PicassoBook'
-
 import counterBlockGroupStory from '../../CounterBlockGroup/story'
 import { CounterBlock } from '../CounterBlock'
+
+import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.createPage(
   'CounterBlock',

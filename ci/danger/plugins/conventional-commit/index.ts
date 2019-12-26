@@ -27,8 +27,10 @@ const conventionalCommits = async () => {
           ...result.errors.map(error => [error.message])
         ])
 
-        message += `\n\n💡 For a guidance on how to fix this problem please refer to [https://www.conventionalcommits.org](https://www.conventionalcommits.org)`
-        message += `\n\n💡 Or you can check our [documentation](https://github.com/toptal/picasso/blob/master/docs/contribution/github-workflow.md#general-commit-message-pattern)`
+        message +=
+          '\n\n💡 For a guidance on how to fix this problem please refer to [https://www.conventionalcommits.org](https://www.conventionalcommits.org)'
+        message +=
+          '\n\n💡 Or you can check our [documentation](https://github.com/toptal/picasso/blob/master/docs/contribution/github-workflow.md#general-commit-message-pattern)'
 
         fail(message)
       }

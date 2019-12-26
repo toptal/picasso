@@ -1,11 +1,11 @@
-import PicassoBook from '~/.storybook/components/PicassoBook'
-
 import dropdownArrowStory from '../../DropdownArrow/story'
 import { Dropdown } from '../Dropdown'
 
+import PicassoBook from '~/.storybook/components/PicassoBook'
+
 const page = PicassoBook.createPage(
   'Dropdown',
-  `Allows rendering of menus and custom content triggered by custom anchors`
+  'Allows rendering of menus and custom content triggered by custom anchors'
 )
 
 page

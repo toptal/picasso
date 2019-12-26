@@ -1,11 +1,11 @@
-import PicassoBook from '~/.storybook/components/PicassoBook'
-
 import { NotificationActions } from '../NotificationActions'
+
+import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const componentDocs = PicassoBook.createComponentDocs(
   NotificationActions,
   'Notification.Actions',
-  `Notification actions`
+  'Notification actions'
 )
 
 export default {

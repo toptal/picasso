@@ -1,13 +1,13 @@
-import PicassoBook from '~/.storybook/components/PicassoBook'
-
 import helpboxTitleStory from '../../HelpboxTitle/story'
 import helpboxContentStory from '../../HelpboxContent/story'
 import helpboxActionsStory from '../../HelpboxActions/story'
 import { Helpbox } from '../Helpbox'
 
+import PicassoBook from '~/.storybook/components/PicassoBook'
+
 const page = PicassoBook.createPage(
   'Helpbox',
-  `Container specialized for rendering suggestions`
+  'Container specialized for rendering suggestions'
 )
 
 page

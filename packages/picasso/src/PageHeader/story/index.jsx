@@ -1,12 +1,12 @@
-import PicassoBook from '~/.storybook/components/PicassoBook'
-
 import { PageHeader } from '../PageHeader'
+
+import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const componentDocs = PicassoBook.createComponentDocs(PageHeader, 'Page.Header')
 
 const chapter = PicassoBook.connectToPage(page =>
   page
-    .createChapter('Page.Header', `A Header component`)
+    .createChapter('Page.Header', 'A Header component')
     .addExample('PageHeader/story/Default.example.jsx', 'Default')
     .addExample('PageHeader/story/Variants.example.jsx', 'Variants')
     .addExample('PageHeader/story/RightContent.example.jsx', 'Right content')

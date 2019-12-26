@@ -1,8 +1,8 @@
-import PicassoBook from '~/.storybook/components/PicassoBook'
-
 import notificationsStreamStory from '../../utils/Notifications/story'
 import notificationActionStory from '../../NotificationActions/story'
 import { Notification } from '../Notification'
+
+import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.createPage(
   'Notification',

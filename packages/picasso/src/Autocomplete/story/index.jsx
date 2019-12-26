@@ -1,10 +1,10 @@
-import PicassoBook from '~/.storybook/components/PicassoBook'
-
 import { Autocomplete } from '../Autocomplete'
+
+import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.createPage(
   'Autocomplete',
-  `Input with the autocomplete`
+  'Input with the autocomplete'
 )
 
 page.createTabChapter('Props').addComponentDocs({

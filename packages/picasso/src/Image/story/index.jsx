@@ -1,8 +1,8 @@
-import PicassoBook from '~/.storybook/components/PicassoBook'
-
 import { Image } from '../Image'
 
-const page = PicassoBook.createPage('Image', `Display any types of images.`)
+import PicassoBook from '~/.storybook/components/PicassoBook'
+
+const page = PicassoBook.createPage('Image', 'Display any types of images.')
 
 page
   .createTabChapter('Props')

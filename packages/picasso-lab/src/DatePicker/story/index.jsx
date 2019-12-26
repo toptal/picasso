@@ -1,10 +1,10 @@
-import PicassoBook from '~/.storybook/components/PicassoBook'
-
 import { DatePicker } from '../DatePicker'
+
+import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.createPage(
   'DatePicker',
-  `Date Picker component`,
+  'Date Picker component',
   'Lab'
 )
 

@@ -1,10 +1,10 @@
-import PicassoBook from '~/.storybook/components/PicassoBook'
-
 import { Paper } from '../Paper'
+
+import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.createPage(
   'Paper',
-  `Elevated container with shadow`,
+  'Elevated container with shadow',
   'Layout'
 )
 

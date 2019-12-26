@@ -1,10 +1,10 @@
-import PicassoBook from '~/.storybook/components/PicassoBook'
-
 import { EnvironmentBanner } from '../EnvironmentBanner'
+
+import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.createPage(
   'EnvironmentBanner',
-  `Banner on page top to highlight current environment`
+  'Banner on page top to highlight current environment'
 )
 
 page

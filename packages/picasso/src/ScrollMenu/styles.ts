@@ -16,7 +16,7 @@ export default ({ palette, screens }: Theme) =>
       // height under which maxHeight menu starts to overflow
       // and needs to reduce height dynamically to avoid overflow
       '@media screen and (max-height: 585px)': {
-        maxHeight: `calc(50vh - 4.8125rem)`, // half of viewport minus header and anchor
+        maxHeight: 'calc(50vh - 4.8125rem)', // half of viewport minus header and anchor
 
         [screens('small', 'medium')]: {
           maxHeight: 'calc(50vh - 4.3125rem)' // half of viewport minus header and anchor

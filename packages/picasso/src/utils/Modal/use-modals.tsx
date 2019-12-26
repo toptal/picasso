@@ -51,12 +51,8 @@ const useModals = () => {
     const { content, onSubmit, onCancel, onClose, ...restOptions } = options
 
     const handleSubmit = async (result: unknown) => {
-      try {
-        await onSubmit(result)
-        hideModal(modalId)
-      } catch (err) {
-        throw err
-      }
+      await onSubmit(result)
+      hideModal(modalId)
     }
 
     const handleCancel = () => {

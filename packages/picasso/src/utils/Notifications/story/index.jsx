@@ -10,7 +10,7 @@ The 'useNotifications' hook is providing the set of tools for
 operating easily the most common notifications types, like 'info', 'error',
 'warning', 'success' in a single stream of messages.`
       )
-      .addTextSection(`### How to use`)
+      .addTextSection('### How to use')
       .addTextSection(
         `
 'useNotifications' hook is providing the list of methods to show the notifications

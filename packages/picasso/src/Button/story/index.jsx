@@ -1,7 +1,7 @@
-import PicassoBook from '~/.storybook/components/PicassoBook'
-
 import buttonGroupStory from '../../ButtonGroup/story'
 import { Button } from '../Button'
+
+import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.createPage(
   'Button',
