@@ -496,6 +496,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
         <Popper
           autoWidth
           width={menuWidth}
+          placement='bottom-start'
           open={isOpen}
           anchorEl={inputWrapperRef.current}
         >
