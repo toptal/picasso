@@ -278,6 +278,17 @@ const getAdornments = ({
   }
 }
 
+const DropDownIcon = ({
+  classes,
+  disabled
+}: Pick<Props, 'classes' | 'disabled'>) => (
+  <DropdownArrows16
+    className={cx(classes.caret, {
+      [classes.caretDisabled]: disabled
+    })}
+  />
+)
+
 export const Select = forwardRef<HTMLInputElement, Props>(function Select(
   props,
   ref
@@ -411,13 +422,9 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
 
   const emptySelectValue = multiple ? [] : ''
 
-  const dropDownIcon = (
-    <DropdownArrows16
-      className={cx(classes.caret, {
-        [classes.caretDisabled]: disabled
-      })}
-    />
-  )
+  const inputProps = getInputProps({
+    canCloseOnEnter: !multiple
+  })
 
   const adorments = getAdornments({
     iconPosition,
@@ -425,10 +432,6 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     loading,
     disabled,
     classes
-  })
-
-  const inputProps = getInputProps({
-    canCloseOnEnter: !multiple
   })
 
   const nativeSelectComponent = (
@@ -454,7 +457,9 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
       }
       value={value}
       onChange={onChange}
-      IconComponent={() => dropDownIcon}
+      IconComponent={() => (
+        <DropDownIcon classes={classes} disabled={disabled} />
+      )}
       classes={{
         root: cx(classes.select, {
           [classes.placeholder]: !select.isSelected()
@@ -518,7 +523,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
           size={size}
           role='textbox'
         />
-        {dropDownIcon}
+        <DropDownIcon classes={classes} disabled={disabled} />
       </div>
       {Boolean(options.length) && !disabled && (
         <Popper
