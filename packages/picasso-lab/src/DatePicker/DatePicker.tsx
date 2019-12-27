@@ -3,15 +3,17 @@ import React, {
   useRef,
   KeyboardEvent,
   useLayoutEffect,
-  ReactNode
+  ReactNode,
+  Fragment
 } from 'react'
+import PopperJs from 'popper.js'
 import formatDate from 'date-fns/format'
 import isValid from 'date-fns/isValid'
 import { BaseProps } from '@toptal/picasso-shared'
 import { Container, Input, Form, InputAdornment } from '@toptal/picasso'
+import Popper from '@toptal/picasso/Popper'
 import { Props as InputProps } from '@toptal/picasso/Input'
 import { Calendar16 } from '@toptal/picasso/Icon'
-import { ClickAwayListener } from '@toptal/picasso/utils'
 
 import Calendar, { DateOrDateRangeType, DateRangeType } from '../Calendar'
 
@@ -46,21 +48,8 @@ export interface Props
   icon?: ReactNode
 }
 
-function isDateRange(value: DateOrDateRangeType): value is DateRangeType {
-  return Array.isArray(value)
-}
-
 const formatDateRange = (dates: DateRangeType, format: string) =>
   dates.map(date => formatDate(date, format)).join(' - ')
-
-// eslint-disable-next-line
-const formatValue = (value: DateOrDateRangeType, format: string) => {
-  if (isDateRange(value)) {
-    return formatDateRange(value, format)
-  } else {
-    return formatDate(value, format)
-  }
-}
 
 const DEFAULT_DISPLAY_DATE_FORMAT = 'MMM d, yyyy'
 const DEFAULT_EDIT_DATE_FORMAT = 'MM-dd-yyyy'
@@ -95,9 +84,13 @@ export const DatePicker = ({
   const showCalendar = () => setCalendarIsShown(true)
 
   const inputRef = useRef<HTMLInputElement>(null)
+  const calendarRef = useRef<PopperJs>(null)
+  const inputWrapperRef = useRef<HTMLDivElement>(null)
 
   useLayoutEffect(() => {
-    if (!value) return
+    if (!value) {
+      return
+    }
 
     if (range) {
       setInputValue(formatDateRange(value as DateRangeType, displayDateFormat!))
@@ -111,12 +104,32 @@ export const DatePicker = ({
     }
   }, [value, isInputFocused])
 
-  const handleInputBlur = () => {
-    hideCalendar()
-
-    if (isInputFocused) {
-      onBlur!()
+  const isInsideDatePicker = (node: Node) => {
+    if (!inputWrapperRef.current) {
+      return
     }
+
+    if (!calendarRef.current) {
+      return
+    }
+
+    return (
+      calendarRef.current.popper.contains(node) ||
+      inputWrapperRef.current.contains(node)
+    )
+  }
+
+  const handleBlur = (event: React.FocusEvent<HTMLDivElement>) => {
+    const isFocusedInsideDatePicker = isInsideDatePicker(
+      event.relatedTarget as Node
+    )
+
+    if (isFocusedInsideDatePicker) {
+      return
+    }
+
+    hideCalendar()
+    onBlur!()
 
     if (error) {
       setShowError(true)
@@ -152,17 +165,10 @@ export const DatePicker = ({
     }
   }
 
-  const handleInputFocus = () => {
-    setIsInputFocused(true)
-    showCalendar()
-  }
-
   const focus = () => {
     if (inputRef && inputRef.current) {
       inputRef.current.focus()
     }
-
-    setIsInputFocused(true)
   }
 
   const handleCalendarChange = (value: DateOrDateRangeType) => {
@@ -178,10 +184,6 @@ export const DatePicker = ({
     }
   }
 
-  const handleClickAway = () => {
-    handleInputBlur()
-  }
-
   const handleInputKeydown = (event: KeyboardEvent<HTMLInputElement>) => {
     const key = event.key
 
@@ -190,15 +192,14 @@ export const DatePicker = ({
       return
     }
 
-    if (key === 'Tab') {
-      handleInputBlur()
+    if (key === 'Enter') {
+      hideCalendar()
     }
   }
 
-  const handleInputClick = () => {
-    if (!calendarIsShown) {
-      showCalendar()
-    }
+  const handleFocusOrClick = () => {
+    showCalendar()
+    setIsInputFocused(true)
   }
 
   const startAdornment = (
@@ -208,16 +209,17 @@ export const DatePicker = ({
   )
 
   return (
-    <ClickAwayListener onClickAway={handleClickAway}>
-      <Container inline={width !== 'full'}>
+    <Fragment>
+      <Container inline={width !== 'full'} ref={inputWrapperRef}>
         <Input
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...inputProps}
           ref={inputRef}
           error={showError}
           onKeyDown={handleInputKeydown}
-          onClick={handleInputClick}
-          onFocus={handleInputFocus}
+          onClick={handleFocusOrClick}
+          onFocus={handleFocusOrClick}
+          onBlur={handleBlur}
           value={inputValue}
           onChange={handleInputChange}
           startAdornment={startAdornment}
@@ -225,16 +227,23 @@ export const DatePicker = ({
         />
 
         {showError && <Form.Error>{error}</Form.Error>}
-
-        {calendarIsShown && (
+      </Container>
+      {inputWrapperRef.current && (
+        <Popper
+          open={calendarIsShown}
+          anchorEl={inputWrapperRef.current}
+          autoWidth={false}
+          ref={calendarRef}
+        >
           <Calendar
             range={range}
             value={value}
             onChange={handleCalendarChange}
+            onBlur={handleBlur}
           />
-        )}
-      </Container>
-    </ClickAwayListener>
+        </Popper>
+      )}
+    </Fragment>
   )
 }
 

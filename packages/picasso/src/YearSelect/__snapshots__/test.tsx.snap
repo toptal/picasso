@@ -10,7 +10,6 @@ exports[`YearSelect default render 1`] = `
     >
       <div
         class="Select-inputWrapper"
-        tabindex="0"
       >
         <div
           aria-autocomplete="list"

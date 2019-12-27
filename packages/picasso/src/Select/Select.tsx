@@ -260,7 +260,6 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     multiple,
     value = multiple ? [] : '',
     getDisplayValue,
-    tabIndex = 0,
     size,
     ...rest
   } = purifyProps(props)
@@ -281,7 +280,6 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
   const select = getSelection(allOptions, value, getDisplayValue!)
   const [inputValue, setInputValue] = useState(select.display())
   const [options, setOptions] = useState(allOptions)
-  const tabIndexValue = !disabled ? tabIndex : undefined
 
   // getDerivedStateFromProps for value prop
   // https://reactjs.org/docs/hooks-faq.html#how-do-i-implement-getderivedstatefromprops
@@ -455,7 +453,6 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
       <div
         /* eslint-disable-next-line react/jsx-props-no-spreading */
         {...getRootProps()}
-        tabIndex={tabIndexValue}
         className={classes.inputWrapper}
       >
         <OutlinedInput
