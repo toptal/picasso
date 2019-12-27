@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Modal, Button, Input, Checkbox, Select, Form } from '@toptal/picasso'
 import { useModals } from '@toptal/picasso/utils'
+import { DatePicker } from '@toptal/picasso-lab'
 
 const STATES = [
   {
@@ -15,6 +16,7 @@ const STATES = [
 
 const ModalDialog = ({ modalId, hideModal }) => {
   const [isLoading, setLoading] = useState(false)
+  const [datepickerValue, setDatepickerValue] = useState()
 
   return (
     <Modal
@@ -35,6 +37,17 @@ const ModalDialog = ({ modalId, hideModal }) => {
         </Form.Field>
         <Form.Field>
           <Select placeholder='State' options={STATES} value='Alabama' />
+        </Form.Field>
+        <Form.Field>
+          <DatePicker
+            value={datepickerValue}
+            onChange={date => {
+              /* eslint-disable-next-line no-console */
+              console.log('selected date is: ', date)
+
+              setDatepickerValue(date)
+            }}
+          />
         </Form.Field>
         <Form.Field>
           <Checkbox label='Use shipping address for billing' />
