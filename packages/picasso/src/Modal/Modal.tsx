@@ -1,4 +1,10 @@
-import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
+import React, {
+  forwardRef,
+  ReactNode,
+  HTMLAttributes,
+  useEffect,
+  useRef
+} from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import Dialog from '@material-ui/core/Dialog'
 import { PaperProps } from '@material-ui/core/Paper'
@@ -11,14 +17,13 @@ import {
 } from '@toptal/picasso-shared'
 
 import { Close16 } from '../Icon'
+import { useCombinedRefs } from '../utils'
 import ModalTitle from '../ModalTitle'
 import ModalContent from '../ModalContent'
 import ModalActions from '../ModalActions'
 import styles from './styles'
 
 type ContainerValue = HTMLElement | (() => HTMLElement)
-
-const useStyles = makeStyles<Theme, Props>(styles)
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Content of Modal component */
@@ -47,6 +52,50 @@ interface StaticProps {
   Title: typeof ModalTitle
 }
 
+const useStyles = makeStyles<Theme, Props>(styles)
+
+// https://github.com/udacity/ud891/blob/gh-pages/lesson2-focus/07-modals-and-keyboard-traps/solution/modal.js#L25
+// found in https://developers.google.com/web/fundamentals/accessibility/focus/using-tabindex
+const focusableElementsString =
+  'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]'
+const tooltipContainerString = '[role=tooltip]'
+
+const focusFirstFocusableElement = (node: Element) => {
+  const elements = node.querySelectorAll(focusableElementsString)
+  // Convert NodeList to Array
+  const focusableElements = Array.prototype.slice.call(elements)
+
+  focusableElements[0].focus()
+}
+
+const isFocusInsideModal = (modalNode: Element) => {
+  const modalContainsFocusedElement = modalNode.contains(document.activeElement)
+
+  if (modalContainsFocusedElement) {
+    return true
+  }
+
+  return false
+}
+
+const isFocusInsideTooltip = () => {
+  const tooltipContainer = document.querySelector(tooltipContainerString)
+
+  if (!tooltipContainer) {
+    return false
+  }
+
+  const tooltipContainsFocusedElement = tooltipContainer.contains(
+    document.activeElement
+  )
+
+  if (tooltipContainsFocusedElement) {
+    return true
+  }
+
+  return false
+}
+
 // eslint-disable-next-line react/display-name
 export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
   const {
@@ -66,12 +115,37 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
   } = props
   const classes = useStyles(props)
   const picassoRootContainer = usePicassoRoot()
+  const rootRef = useCombinedRefs<HTMLElement>(ref, useRef<HTMLElement>(null))
+
+  const handleDocumentFocus = () => {
+    if (!rootRef || !rootRef.current) {
+      return
+    }
+
+    if (isFocusInsideModal(rootRef.current)) {
+      return
+    }
+
+    if (isFocusInsideTooltip()) {
+      return
+    }
+
+    focusFirstFocusableElement(rootRef.current)
+  }
+
+  useEffect(() => {
+    document.addEventListener('focus', handleDocumentFocus, true)
+
+    return () => {
+      document.removeEventListener('focus', handleDocumentFocus, true)
+    }
+  }, [])
 
   return (
     <Dialog
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
-      ref={ref}
+      ref={rootRef}
       classes={{
         root: classes.root,
         container: classes.container,
