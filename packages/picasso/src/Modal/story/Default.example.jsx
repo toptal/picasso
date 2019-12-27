@@ -40,6 +40,7 @@ const ModalDialog = ({ modalId, hideModal }) => {
         </Form.Field>
         <Form.Field>
           <DatePicker
+            width='full'
             value={datepickerValue}
             onChange={date => {
               /* eslint-disable-next-line no-console */
