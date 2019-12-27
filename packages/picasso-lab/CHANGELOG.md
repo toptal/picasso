@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@1.4.22...@toptal/picasso-lab@1.5.0) (2019-12-27)
+
+
+### Features
+
+* **DatePicker:** [FX-631] Calendar to be rendered in Popper ([#989](https://github.com/toptal/picasso/issues/989)) ([a395cc7](https://github.com/toptal/picasso/commit/a395cc74e7449f2b2db2eba27c65f45ba00ac38a))
+
+
+
+
+
 ## [1.4.22](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@1.4.21...@toptal/picasso-lab@1.4.22) (2019-12-26)
 
 **Note:** Version bump only for package @toptal/picasso-lab
