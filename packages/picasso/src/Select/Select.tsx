@@ -403,12 +403,18 @@ function _useSelect({
     event,
     value: _value
   }: {
-    event: any
+    event: React.SyntheticEvent<unknown>
     value: ValueType
   }) => {
-    event.persist()
-    event.target = { value: _value, name }
-    onChange(event)
+    const outEvent = event as React.ChangeEvent<{
+      name?: string | undefined
+      value: ValueType
+    }>
+
+    outEvent.persist()
+    outEvent.target.value = _value
+    outEvent.target.name = name
+    onChange(outEvent)
   }
 
   const select = getSelection(allOptions, value, getDisplayValue)
