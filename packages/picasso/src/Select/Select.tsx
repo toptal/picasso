@@ -289,6 +289,103 @@ const DropDownIcon = ({
   />
 )
 
+const NativeSelectComponent = forwardRef<
+  HTMLInputElement,
+  Props & {
+    inputProps: any
+    getItemProps: any
+    allOptions: Option[]
+  }
+>((props, ref) => {
+  const {
+    icon,
+    classes,
+    iconPosition,
+    loading,
+    disabled,
+    error,
+    name,
+    id,
+    width,
+    multiple,
+    size,
+    value = multiple ? [] : '',
+    options,
+    getDisplayValue,
+    placeholder,
+    renderOption,
+    onChange,
+    allOptions,
+    inputProps,
+    getItemProps,
+    ...rest
+  } = props
+
+  const adorments = getAdornments({
+    iconPosition,
+    icon,
+    loading,
+    disabled,
+    classes
+  })
+
+  const select = getSelection(allOptions, value, getDisplayValue!)
+
+  const emptySelectValue = multiple ? [] : ''
+
+  return (
+    <NativeSelect
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
+      ref={ref}
+      error={error}
+      disabled={disabled}
+      name={name}
+      id={id}
+      startAdornment={adorments.nativeStartAdornment}
+      endAdornment={adorments.nativeEndAdornment}
+      // NativeSelect specific props
+      input={
+        <OutlinedInput
+          width={width}
+          inputProps={{ multiple }}
+          size={size}
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          {...inputProps}
+        />
+      }
+      value={value}
+      onChange={onChange}
+      IconComponent={() => (
+        <DropDownIcon classes={classes} disabled={disabled} />
+      )}
+      classes={{
+        root: cx(classes.select, {
+          [classes.placeholder]: !select.isSelected()
+        }),
+        select: cx({
+          [classes.nativeStartAdornmentPadding]: Boolean(
+            adorments.nativeStartAdornment
+          ),
+          [classes.nativeEndAdornmentPadding]: Boolean(
+            adorments.nativeEndAdornment
+          )
+        })
+      }}
+    >
+      {renderNativePlaceholder({
+        emptySelectValue,
+        placeholder
+      })}
+      {renderNativeOptions({
+        options,
+        renderOption,
+        getItemProps
+      })}
+    </NativeSelect>
+  )
+})
+
 export const Select = forwardRef<HTMLInputElement, Props>(function Select(
   props,
   ref
@@ -330,8 +427,9 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     onChange!(event)
   }
 
-  const inputWrapperRef = useRef<HTMLDivElement>(null)
   const select = getSelection(allOptions, value, getDisplayValue!)
+
+  const inputWrapperRef = useRef<HTMLDivElement>(null)
   const [inputValue, setInputValue] = useState(select.display())
   const [options, setOptions] = useState(allOptions)
 
@@ -420,8 +518,6 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     onFocus: handleFocus
   })
 
-  const emptySelectValue = multiple ? [] : ''
-
   const inputProps = getInputProps({
     canCloseOnEnter: !multiple
   })
@@ -433,58 +529,6 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     disabled,
     classes
   })
-
-  const nativeSelectComponent = (
-    <NativeSelect
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...rest}
-      ref={ref}
-      error={error}
-      disabled={disabled}
-      name={name}
-      id={id}
-      startAdornment={adorments.nativeStartAdornment}
-      endAdornment={adorments.nativeEndAdornment}
-      // NativeSelect specific props
-      input={
-        <OutlinedInput
-          width={width}
-          inputProps={{ multiple }}
-          size={size}
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          {...inputProps}
-        />
-      }
-      value={value}
-      onChange={onChange}
-      IconComponent={() => (
-        <DropDownIcon classes={classes} disabled={disabled} />
-      )}
-      classes={{
-        root: cx(classes.select, {
-          [classes.placeholder]: !select.isSelected()
-        }),
-        select: cx({
-          [classes.nativeStartAdornmentPadding]: Boolean(
-            adorments.nativeStartAdornment
-          ),
-          [classes.nativeEndAdornmentPadding]: Boolean(
-            adorments.nativeEndAdornment
-          )
-        })
-      }}
-    >
-      {renderNativePlaceholder({
-        emptySelectValue,
-        placeholder
-      })}
-      {renderNativeOptions({
-        options,
-        renderOption,
-        getItemProps
-      })}
-    </NativeSelect>
-  )
 
   const selectComponent = (
     <Fragment>
@@ -559,7 +603,13 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
       style={style}
       ref={inputWrapperRef}
     >
-      {native ? nativeSelectComponent : selectComponent}
+      {native ? (
+        <NativeSelectComponent
+          {...{ ...props, options, allOptions, inputProps, getItemProps }}
+        />
+      ) : (
+        selectComponent
+      )}
     </div>
   )
 })
