@@ -235,6 +235,49 @@ const purifyProps = (props: Props) => {
   return disableUnsupportedProps('Select', props, sizeOptions)
 }
 
+const getAdornments = ({
+  iconPosition = 'start',
+  icon,
+  loading,
+  disabled,
+  classes
+}: Pick<
+  Props,
+  'iconPosition' | 'icon' | 'loading' | 'classes' | 'disabled'
+>) => {
+  const iconAdornment = icon ? (
+    <InputAdornment disabled={disabled} position={iconPosition}>
+      {icon}
+    </InputAdornment>
+  ) : null
+
+  const loadingComponent = (
+    <InputAdornment position='end'>
+      <Loader size='small' />
+    </InputAdornment>
+  )
+
+  const startAdornment = () => iconPosition === 'start' && iconAdornment
+  const endAdornment = () =>
+    loading ? loadingComponent : iconPosition === 'end' && iconAdornment
+
+  const nativeStartAdornment = () =>
+    startAdornment() && (
+      <div className={classes.nativeStartAdornment}>{startAdornment()}</div>
+    )
+  const nativeEndAdornment = () =>
+    endAdornment() && (
+      <div className={classes.nativeEndAdornment}>{endAdornment()}</div>
+    )
+
+  return {
+    startAdornment: startAdornment(),
+    endAdornment: endAdornment(),
+    nativeStartAdornment: nativeStartAdornment(),
+    nativeEndAdornment: nativeEndAdornment()
+  }
+}
+
 export const Select = forwardRef<HTMLInputElement, Props>(function Select(
   props,
   ref
@@ -368,18 +411,6 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
 
   const emptySelectValue = multiple ? [] : ''
 
-  const iconAdornment = icon ? (
-    <InputAdornment disabled={disabled} position={iconPosition!}>
-      {icon}
-    </InputAdornment>
-  ) : null
-
-  const loadingComponent = (
-    <InputAdornment position='end'>
-      <Loader size='small' />
-    </InputAdornment>
-  )
-
   const dropDownIcon = (
     <DropdownArrows16
       className={cx(classes.caret, {
@@ -388,17 +419,13 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     />
   )
 
-  const startAdornment = iconPosition === 'start' && iconAdornment
-  const endAdornment = loading
-    ? loadingComponent
-    : iconPosition === 'end' && iconAdornment
-
-  const nativeStartAdornment = startAdornment && (
-    <div className={classes.nativeStartAdornment}>{startAdornment}</div>
-  )
-  const nativeEndAdornment = endAdornment && (
-    <div className={classes.nativeEndAdornment}>{endAdornment}</div>
-  )
+  const adorments = getAdornments({
+    iconPosition,
+    icon,
+    loading,
+    disabled,
+    classes
+  })
 
   const nativeSelectComponent = (
     <NativeSelect
@@ -409,8 +436,8 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
       disabled={disabled}
       name={name}
       id={id}
-      startAdornment={nativeStartAdornment}
-      endAdornment={nativeEndAdornment}
+      startAdornment={adorments.nativeStartAdornment}
+      endAdornment={adorments.nativeEndAdornment}
       // NativeSelect specific props
       input={
         <OutlinedInput
@@ -431,8 +458,12 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
           [classes.placeholder]: !select.isSelected()
         }),
         select: cx({
-          [classes.nativeStartAdornmentPadding]: Boolean(nativeStartAdornment),
-          [classes.nativeEndAdornmentPadding]: Boolean(nativeEndAdornment)
+          [classes.nativeStartAdornmentPadding]: Boolean(
+            adorments.nativeStartAdornment
+          ),
+          [classes.nativeEndAdornmentPadding]: Boolean(
+            adorments.nativeEndAdornment
+          )
         })
       }}
     >
@@ -463,8 +494,8 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
           disabled={disabled}
           name={name}
           id={id}
-          startAdornment={startAdornment}
-          endAdornment={endAdornment}
+          startAdornment={adorments.startAdornment}
+          endAdornment={adorments.endAdornment}
           // Input specific props
           value={inputValue}
           /* eslint-disable-next-line react/jsx-props-no-spreading */
