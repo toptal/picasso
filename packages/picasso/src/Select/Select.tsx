@@ -427,6 +427,10 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     classes
   })
 
+  const inputProps = getInputProps({
+    canCloseOnEnter: !multiple
+  })
+
   const nativeSelectComponent = (
     <NativeSelect
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -445,9 +449,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
           inputProps={{ multiple }}
           size={size}
           // eslint-disable-next-line react/jsx-props-no-spreading
-          {...getInputProps({
-            canCloseOnEnter: !multiple
-          })}
+          {...inputProps}
         />
       }
       value={value}
@@ -499,9 +501,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
           // Input specific props
           value={inputValue}
           /* eslint-disable-next-line react/jsx-props-no-spreading */
-          {...getInputProps({
-            canCloseOnEnter: !multiple
-          })}
+          {...inputProps}
           placeholder={placeholder}
           width={width}
           readOnly={multiple}
