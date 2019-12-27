@@ -18,6 +18,7 @@ import {
 
 import { Close16 } from '../Icon'
 import { useCombinedRefs } from '../utils'
+import { ModalManager } from '../utils/Modal'
 import ModalTitle from '../ModalTitle'
 import ModalContent from '../ModalContent'
 import ModalActions from '../ModalActions'
@@ -53,6 +54,7 @@ interface StaticProps {
 }
 
 const useStyles = makeStyles<Theme, Props>(styles)
+const defaultManager = new ModalManager()
 
 // https://github.com/udacity/ud891/blob/gh-pages/lesson2-focus/07-modals-and-keyboard-traps/solution/modal.js#L25
 // found in https://developers.google.com/web/fundamentals/accessibility/focus/using-tabindex
@@ -96,6 +98,12 @@ const isFocusInsideTooltip = () => {
   return false
 }
 
+const generateKey = (() => {
+  let count = 0
+
+  return () => ++count
+})()
+
 // eslint-disable-next-line react/display-name
 export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
   const {
@@ -116,8 +124,13 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
   const classes = useStyles(props)
   const picassoRootContainer = usePicassoRoot()
   const rootRef = useCombinedRefs<HTMLElement>(ref, useRef<HTMLElement>(null))
+  const modalId = useRef(generateKey())
 
   const handleDocumentFocus = () => {
+    if (!defaultManager.isTopModal(modalId.current)) {
+      return
+    }
+
     if (!rootRef || !rootRef.current) {
       return
     }
@@ -134,12 +147,28 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
   }
 
   useEffect(() => {
+    if (!open) {
+      return
+    }
+
     document.addEventListener('focus', handleDocumentFocus, true)
 
     return () => {
       document.removeEventListener('focus', handleDocumentFocus, true)
     }
-  }, [])
+  }, [open])
+
+  useEffect(() => {
+    if (open) {
+      defaultManager.add(modalId.current)
+    } else {
+      defaultManager.remove(modalId.current)
+    }
+
+    return () => {
+      defaultManager.remove(modalId.current)
+    }
+  }, [open])
 
   return (
     <Dialog
