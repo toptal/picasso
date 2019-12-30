@@ -7,8 +7,7 @@ import React, {
   InputHTMLAttributes,
   useRef,
   useState,
-  Fragment,
-  HTMLAttributes
+  Fragment
 } from 'react'
 import cx from 'classnames'
 import NativeSelect from '@material-ui/core/NativeSelect'
@@ -290,106 +289,6 @@ const DropDownIcon = ({
   />
 )
 
-type NativeProps = Props & {
-  inputProps: Partial<
-    HTMLAttributes<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  >
-  getItemProps: (index: number, item: Option) => ItemProps
-  allOptions: Option[]
-}
-
-const NativeSelectComponent = forwardRef<HTMLInputElement, NativeProps>(
-  (props, ref) => {
-    const {
-      icon,
-      classes,
-      iconPosition,
-      loading,
-      disabled,
-      error,
-      name,
-      id,
-      width,
-      multiple,
-      size,
-      value = multiple ? [] : '',
-      options,
-      getDisplayValue = getOptionText,
-      placeholder,
-      renderOption,
-      onChange,
-      allOptions,
-      inputProps,
-      getItemProps,
-      ...rest
-    } = props
-
-    const adorments = getAdornments({
-      iconPosition,
-      icon,
-      loading,
-      disabled,
-      classes
-    })
-
-    const select = getSelection(allOptions, value, getDisplayValue)
-
-    const emptySelectValue = multiple ? [] : ''
-
-    return (
-      <NativeSelect
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        {...rest}
-        ref={ref}
-        error={error}
-        disabled={disabled}
-        name={name}
-        id={id}
-        startAdornment={adorments.nativeStartAdornment}
-        endAdornment={adorments.nativeEndAdornment}
-        // NativeSelect specific props
-        input={
-          <OutlinedInput
-            width={width}
-            inputProps={{ multiple }}
-            size={size}
-            // eslint-disable-next-line react/jsx-props-no-spreading
-            {...inputProps}
-          />
-        }
-        value={value}
-        onChange={onChange}
-        IconComponent={() => (
-          <DropDownIcon classes={classes} disabled={disabled} />
-        )}
-        classes={{
-          root: cx(classes.select, {
-            [classes.placeholder]: !select.isSelected()
-          }),
-          select: cx({
-            [classes.nativeStartAdornmentPadding]: Boolean(
-              adorments.nativeStartAdornment
-            ),
-            [classes.nativeEndAdornmentPadding]: Boolean(
-              adorments.nativeEndAdornment
-            )
-          })
-        }}
-      >
-        {renderNativePlaceholder({
-          emptySelectValue,
-          placeholder
-        })}
-        {renderNativeOptions({
-          options,
-          renderOption,
-          getItemProps
-        })}
-      </NativeSelect>
-    )
-  }
-)
-
 // Looks like this hook and useSelect hook can and need to be merged together
 function _useSelect({
   getDisplayValue = getOptionText,
@@ -519,14 +418,110 @@ function _useSelect({
   }
 }
 
-export const Select = forwardRef<HTMLInputElement, Props>(function Select(
-  props,
-  ref
-) {
+const NativeSelectComponent = forwardRef<HTMLInputElement, Props>(
+  (props, ref) => {
+    const {
+      icon,
+      classes,
+      iconPosition,
+      loading,
+      disabled,
+      error,
+      name,
+      id,
+      width,
+      multiple,
+      size,
+      value = multiple ? [] : '',
+      options: allOptions,
+      getDisplayValue = getOptionText,
+      placeholder,
+      renderOption,
+      onChange,
+      ...rest
+    } = props
+
+    const adorments = getAdornments({
+      iconPosition,
+      icon,
+      loading,
+      disabled,
+      classes
+    })
+
+    const select = getSelection(allOptions, value, getDisplayValue)
+
+    const emptySelectValue = multiple ? [] : ''
+
+    const { options, getInputProps, getItemProps } = _useSelect({
+      ...props,
+      allOptions
+    })
+
+    const inputProps = getInputProps({
+      canCloseOnEnter: !multiple
+    })
+
+    return (
+      <NativeSelect
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...rest}
+        ref={ref}
+        error={error}
+        disabled={disabled}
+        name={name}
+        id={id}
+        startAdornment={adorments.nativeStartAdornment}
+        endAdornment={adorments.nativeEndAdornment}
+        // NativeSelect specific props
+        input={
+          <OutlinedInput
+            width={width}
+            inputProps={{ multiple }}
+            size={size}
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            {...inputProps}
+          />
+        }
+        value={value}
+        onChange={onChange}
+        IconComponent={() => (
+          <DropDownIcon classes={classes} disabled={disabled} />
+        )}
+        classes={{
+          root: cx(classes.select, {
+            [classes.placeholder]: !select.isSelected()
+          }),
+          select: cx({
+            [classes.nativeStartAdornmentPadding]: Boolean(
+              adorments.nativeStartAdornment
+            ),
+            [classes.nativeEndAdornmentPadding]: Boolean(
+              adorments.nativeEndAdornment
+            )
+          })
+        }}
+      >
+        {renderNativePlaceholder({
+          emptySelectValue,
+          placeholder
+        })}
+        {renderNativeOptions({
+          options,
+          renderOption,
+          getItemProps
+        })}
+      </NativeSelect>
+    )
+  }
+)
+
+export const SelectComponent = forwardRef<
+  HTMLInputElement,
+  Props & { inputWrapperRef: React.RefObject<HTMLDivElement> }
+>(function Select(props, ref) {
   const {
     classes,
-    className,
-    style,
     width = 'full',
     menuWidth,
     loading,
@@ -534,7 +529,6 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     icon,
     iconPosition,
     name,
-    native,
     options: allOptions,
     renderOption,
     placeholder,
@@ -547,7 +541,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     ...rest
   } = purifyProps(props)
 
-  const inputWrapperRef = useRef<HTMLDivElement>(null)
+  const { inputWrapperRef } = props
 
   const {
     options,
@@ -572,7 +566,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     classes
   })
 
-  const selectComponent = (
+  return (
     <Fragment>
       <div
         /* eslint-disable-next-line react/jsx-props-no-spreading */
@@ -634,6 +628,17 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
       )}
     </Fragment>
   )
+})
+
+export const Select = forwardRef<HTMLInputElement, Props>(function Select(
+  props,
+  ref
+) {
+  const { classes, className, style, width = 'full', native } = purifyProps(
+    props
+  )
+
+  const inputWrapperRef = useRef<HTMLDivElement>(null)
 
   return (
     <div
@@ -646,11 +651,13 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
       ref={inputWrapperRef}
     >
       {native ? (
-        <NativeSelectComponent
-          {...{ ...props, options, allOptions, inputProps, getItemProps }}
-        />
+        <NativeSelectComponent ref={ref} {...props} />
       ) : (
-        selectComponent
+        <SelectComponent
+          ref={ref}
+          inputWrapperRef={inputWrapperRef}
+          {...props}
+        />
       )}
     </div>
   )
