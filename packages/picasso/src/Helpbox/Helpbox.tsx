@@ -45,7 +45,7 @@ export const Helpbox = forwardRef<HTMLDivElement, Props>(function Helpbox(
       ref={ref}
       className={cx(classes.root, className)}
       style={style}
-      bordered
+      bordered={!variant || variant === 'white'}
       variant={variant}
       padded='large'
     >
