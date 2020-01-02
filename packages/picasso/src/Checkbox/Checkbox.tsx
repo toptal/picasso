@@ -1,12 +1,21 @@
 import React, { forwardRef, ReactNode } from 'react'
 import MUICheckbox from '@material-ui/core/Checkbox'
 import { withStyles } from '@material-ui/core/styles'
-import { StandardProps, ButtonOrAnchorProps } from '@toptal/picasso-shared'
+import {
+  StandardProps,
+  ButtonOrAnchorProps,
+  CompoundedComponentWithRef
+} from '@toptal/picasso-shared'
 import cx from 'classnames'
 
+import CheckboxGroup from '../CheckboxGroup'
 import FormControlLabel from '../FormControlLabel'
 import Form from '../Form'
 import styles from './styles'
+
+interface StaticProps {
+  Group: typeof CheckboxGroup
+}
 
 export interface Props
   extends StandardProps,
@@ -91,9 +100,10 @@ export const Checkbox = forwardRef<HTMLButtonElement, Props>(function Checkbox(
           {label}
         </Form.Label>
       }
+      className='picasso-checkbox'
     />
   )
-})
+}) as CompoundedComponentWithRef<Props, HTMLButtonElement, StaticProps>
 
 Checkbox.defaultProps = {
   disabled: false,
@@ -102,5 +112,7 @@ Checkbox.defaultProps = {
 }
 
 Checkbox.displayName = 'Checkbox'
+
+Checkbox.Group = CheckboxGroup
 
 export default withStyles(styles)(Checkbox)

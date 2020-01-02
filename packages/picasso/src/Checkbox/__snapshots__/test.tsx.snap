@@ -6,7 +6,7 @@ exports[`checkbox interaction should render checked checkbox 1`] = `
     class="Picasso-root"
   >
     <label
-      class="MuiFormControlLabel-root FormControlLabel-root Checkbox-root"
+      class="MuiFormControlLabel-root FormControlLabel-root Checkbox-root picasso-checkbox"
     >
       <span
         aria-disabled="false"
@@ -133,7 +133,7 @@ exports[`should render default checkbox with label 1`] = `
     class="Picasso-root"
   >
     <label
-      class="MuiFormControlLabel-root FormControlLabel-root Checkbox-root"
+      class="MuiFormControlLabel-root FormControlLabel-root Checkbox-root picasso-checkbox"
     >
       <span
         aria-disabled="false"
