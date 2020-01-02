@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.12.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.11.0...@toptal/picasso@4.12.0) (2020-01-02)
+
+
+### Features
+
+* **helpbox:** some tweaks ([#994](https://github.com/toptal/picasso/issues/994)) ([b4de027](https://github.com/toptal/picasso/commit/b4de0270426af6072dfea87493a08e2ab061c022))
+
+
+
+
+
 # [4.11.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.10.1...@toptal/picasso@4.11.0) (2019-12-27)
 
 
