@@ -1,13 +1,11 @@
 import React from 'react'
-import { Checkbox, Container } from '@toptal/picasso'
+import { Checkbox } from '@toptal/picasso'
 
 const CheckboxDisabledExample = () => (
-  <div>
-    <Container bottom='small'>
-      <Checkbox checked={false} disabled label='Unchecked' />
-    </Container>
+  <Checkbox.Group>
+    <Checkbox checked={false} disabled label='Unchecked' />
     <Checkbox checked disabled label='Checked' />
-  </div>
+  </Checkbox.Group>
 )
 
 export default CheckboxDisabledExample
