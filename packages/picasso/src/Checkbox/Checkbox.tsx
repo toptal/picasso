@@ -100,6 +100,7 @@ export const Checkbox = forwardRef<HTMLButtonElement, Props>(function Checkbox(
           {label}
         </Form.Label>
       }
+      className='picasso-checkbox'
     />
   )
 }) as CompoundedComponentWithRef<Props, HTMLButtonElement, StaticProps>
