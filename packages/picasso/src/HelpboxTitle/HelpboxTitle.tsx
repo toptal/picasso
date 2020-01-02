@@ -21,7 +21,7 @@ export const HelpboxTitle = forwardRef<HTMLDivElement, Props>(
         classes={classes}
         className={className}
         style={style}
-        bottom='medium'
+        bottom='small'
       >
         <Typography variant='heading' size='small'>
           {children}
