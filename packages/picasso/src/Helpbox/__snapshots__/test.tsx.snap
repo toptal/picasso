@@ -10,7 +10,7 @@ exports[`Helpbox default render 1`] = `
     >
       <div
         class=""
-        style="margin-bottom: 1.5rem;"
+        style="margin-bottom: 1rem;"
       >
         <h4
           class="MuiTypography-root Typography-headingSmall MuiTypography-h4"
