@@ -1,16 +1,42 @@
+import { capitalize } from '@material-ui/core/utils/helpers'
 import { Theme, createStyles } from '@material-ui/core/styles'
 import { Color } from '@material-ui/core'
 import { SimplePaletteColorOptions } from '@material-ui/core/styles/createPalette'
 import {
-  SpacingEnum,
+  // SpacingEnum,
   SpacingType,
   spacingToRem,
   createPropertiesStyles
 } from '@toptal/picasso-shared'
 
-const spacingVariants = Object.keys(SpacingEnum).filter(variant =>
-  Number.isNaN(Number(variant))
-)
+const alignItemsVariants = [
+  'flex-start',
+  'flex-end',
+  'center',
+  'stretch',
+  'baseline'
+] as const
+
+const justifyContentVariants = [
+  'flex-start',
+  'flex-end',
+  'center',
+  'space-between',
+  'space-around',
+  'space-evenly'
+] as const
+
+export type AlignItemsType = typeof alignItemsVariants[number]
+
+export type JustifyContentType = typeof justifyContentVariants[number]
+
+const spacingVariants = [
+  'xsmall',
+  'small',
+  'medium',
+  'large',
+  'xlarge'
+] as const
 
 const paddings = spacingVariants.reduce((acc, variant) => {
   acc[`${variant}Padding`] = {
@@ -34,6 +60,34 @@ const colorVariant = (colorOptions?: SimplePaletteColorOptions | Color) => {
   })
 }
 
+type MapOfClasses = { [key: string]: { [key: string]: string } }
+
+const margins: MapOfClasses = {}
+
+spacingVariants.forEach(variant =>
+  ['top', 'left', 'bottom', 'right'].forEach(direction => {
+    margins[`${direction}${variant}Margin`] = {
+      [`margin${capitalize(direction)}`]: spacingToRem(variant)
+    }
+  })
+)
+
+const alignItems: MapOfClasses = {}
+
+alignItemsVariants.forEach(variant => {
+  alignItems[`${variant.replace('-', '')}AlignItems`] = {
+    alignItems: variant
+  }
+})
+
+const justifyContent: MapOfClasses = {}
+
+justifyContentVariants.forEach(variant => {
+  justifyContent[`${variant.replace('-', '')}JustifyContent`] = {
+    justifyContent: variant
+  }
+})
+
 export default ({ palette }: Theme) =>
   createStyles({
     bordered: {
@@ -47,9 +101,11 @@ export default ({ palette }: Theme) =>
         display: 'inline-flex'
       }
     },
+
     column: {
       flexDirection: 'column'
     },
+
     inline: {
       display: 'inline-block'
     },
@@ -66,5 +122,8 @@ export default ({ palette }: Theme) =>
 
     greyVariant: colorVariant(palette.grey),
 
-    ...paddings
+    ...paddings,
+    ...margins,
+    ...alignItems,
+    ...justifyContent
   })

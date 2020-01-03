@@ -1,3 +1,5 @@
+/* eslint-disable complexity */
+
 import React, { ReactNode, HTMLAttributes, forwardRef } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
@@ -7,26 +9,11 @@ import {
   spacingToRem
 } from '@toptal/picasso-shared'
 
-import styles from './styles'
+import styles, { AlignItemsType, JustifyContentType } from './styles'
 
 type ContainerType = 'div' | 'span'
 
 type DirectionType = 'row' | 'column'
-
-type AlignItemsType =
-  | 'flex-start'
-  | 'flex-end'
-  | 'center'
-  | 'stretch'
-  | 'baseline'
-
-type JustifyContentType =
-  | 'flex-start'
-  | 'flex-end'
-  | 'center'
-  | 'space-between'
-  | 'space-around'
-  | 'space-evenly'
 
 export type VariantType = 'red' | 'green' | 'white' | 'yellow' | 'blue' | 'grey'
 
@@ -90,10 +77,10 @@ export const Container = forwardRef<HTMLDivElement, Props>(function Container(
   ref
 ) {
   const margins = {
-    ...(top && { marginTop: spacingToRem(top) }),
-    ...(bottom && { marginBottom: spacingToRem(bottom) }),
-    ...(left && { marginLeft: spacingToRem(left) }),
-    ...(right && { marginRight: spacingToRem(right) })
+    ...(typeof top === 'number' && { marginTop: spacingToRem(top) }),
+    ...(typeof bottom === 'number' && { marginBottom: spacingToRem(bottom) }),
+    ...(typeof left === 'number' && { marginLeft: spacingToRem(left) }),
+    ...(typeof right === 'number' && { marginRight: spacingToRem(right) })
   }
 
   return (
@@ -105,6 +92,20 @@ export const Container = forwardRef<HTMLDivElement, Props>(function Container(
         classes[`${variant}Variant`],
         {
           [classes[`${padded}Padding`]]: typeof padded === 'string',
+
+          [classes[`top${top}Margin`]]: typeof top === 'string',
+          [classes[`bottom${bottom}Margin`]]: typeof bottom === 'string',
+          [classes[`left${left}Margin`]]: typeof left === 'string',
+          [classes[`right${right}Margin`]]: typeof right === 'string',
+
+          [classes[
+            `${(alignItems || '').replace('-', '')}AlignItems`
+          ]]: alignItems,
+
+          [classes[
+            `${(justifyContent || '').replace('-', '')}JustifyContent`
+          ]]: justifyContent,
+
           [classes.bordered]: bordered,
           [classes.flex]: flex,
           [classes.inline]: inline,
@@ -114,8 +115,6 @@ export const Container = forwardRef<HTMLDivElement, Props>(function Container(
       )}
       style={{
         ...margins,
-        ...(alignItems && { alignItems }),
-        ...(justifyContent && { justifyContent }),
         ...(typeof padded === 'number' && { padding: spacingToRem(padded) }),
         ...style
       }}

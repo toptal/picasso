@@ -20,12 +20,10 @@ exports[`AccountSelect default render 1`] = `
           class="MuiTypography-root MuiLink-root MuiLink-underlineNone AccountSelect-accountLink MuiTypography-colorPrimary"
         >
           <div
-            class="Container-mediumPadding Container-flex"
-            style="align-items: center; justify-content: space-between;"
+            class="Container-mediumPadding Container-centerAlignItems Container-spacebetweenJustifyContent Container-flex"
           >
             <div
-              class="Container-flex UserBadge-root"
-              style="align-items: flex-start;"
+              class="Container-flexstartAlignItems Container-flex UserBadge-root"
             >
               <div
                 class="Avatar-root Avatar-xsmall"
@@ -40,8 +38,7 @@ exports[`AccountSelect default render 1`] = `
                 </p>
               </div>
               <div
-                class="Container-flex Container-column"
-                style="margin-left: 1rem;"
+                class="Container-leftsmallMargin Container-flex Container-column"
               >
                 <div
                   class=""
@@ -82,12 +79,10 @@ exports[`AccountSelect default render 1`] = `
           href="#"
         >
           <div
-            class="Container-mediumPadding Container-flex"
-            style="align-items: center; justify-content: space-between;"
+            class="Container-mediumPadding Container-centerAlignItems Container-spacebetweenJustifyContent Container-flex"
           >
             <div
-              class="Container-flex UserBadge-root"
-              style="align-items: flex-start;"
+              class="Container-flexstartAlignItems Container-flex UserBadge-root"
             >
               <div
                 class="Avatar-root Avatar-xsmall"
@@ -102,8 +97,7 @@ exports[`AccountSelect default render 1`] = `
                 </p>
               </div>
               <div
-                class="Container-flex Container-column"
-                style="margin-left: 1rem;"
+                class="Container-leftsmallMargin Container-flex Container-column"
               >
                 <div
                   class=""
@@ -144,12 +138,10 @@ exports[`AccountSelect default render 1`] = `
           href="#"
         >
           <div
-            class="Container-mediumPadding Container-flex"
-            style="align-items: center; justify-content: space-between;"
+            class="Container-mediumPadding Container-centerAlignItems Container-spacebetweenJustifyContent Container-flex"
           >
             <div
-              class="Container-flex UserBadge-root"
-              style="align-items: flex-start;"
+              class="Container-flexstartAlignItems Container-flex UserBadge-root"
             >
               <div
                 class="Avatar-root Avatar-xsmall"
@@ -161,8 +153,7 @@ exports[`AccountSelect default render 1`] = `
                 />
               </div>
               <div
-                class="Container-flex Container-column"
-                style="margin-left: 1rem;"
+                class="Container-leftsmallMargin Container-flex Container-column"
               >
                 <div
                   class=""

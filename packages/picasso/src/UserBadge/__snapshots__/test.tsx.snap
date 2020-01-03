@@ -6,8 +6,7 @@ exports[`UserBadge auto center alignment 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Container-flex UserBadge-root"
-      style="align-items: center;"
+      class="Container-centerAlignItems Container-flex UserBadge-root"
     >
       <div
         class="Avatar-root Avatar-xsmall"
@@ -22,8 +21,7 @@ exports[`UserBadge auto center alignment 1`] = `
         </p>
       </div>
       <div
-        class="Container-flex Container-column"
-        style="margin-left: 1rem;"
+        class="Container-leftsmallMargin Container-flex Container-column"
       >
         <div
           class=""
@@ -46,8 +44,7 @@ exports[`UserBadge custom name 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Container-flex UserBadge-root"
-      style="align-items: flex-start;"
+      class="Container-flexstartAlignItems Container-flex UserBadge-root"
     >
       <div
         class="Avatar-root Avatar-xsmall"
@@ -62,8 +59,7 @@ exports[`UserBadge custom name 1`] = `
         </p>
       </div>
       <div
-        class="Container-flex Container-column"
-        style="margin-left: 1rem;"
+        class="Container-leftsmallMargin Container-flex Container-column"
       >
         <div
           class=""
@@ -89,8 +85,7 @@ exports[`UserBadge default render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Container-flex UserBadge-root"
-      style="align-items: flex-start;"
+      class="Container-flexstartAlignItems Container-flex UserBadge-root"
     >
       <div
         class="Avatar-root Avatar-xsmall"
@@ -105,8 +100,7 @@ exports[`UserBadge default render 1`] = `
         </p>
       </div>
       <div
-        class="Container-flex Container-column"
-        style="margin-left: 1rem;"
+        class="Container-leftsmallMargin Container-flex Container-column"
       >
         <div
           class=""
@@ -134,8 +128,7 @@ exports[`UserBadge invert render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Container-flex UserBadge-root"
-      style="align-items: flex-start;"
+      class="Container-flexstartAlignItems Container-flex UserBadge-root"
     >
       <div
         class="Avatar-root Avatar-xsmall"
@@ -150,8 +143,7 @@ exports[`UserBadge invert render 1`] = `
         </p>
       </div>
       <div
-        class="Container-flex Container-column"
-        style="margin-left: 1rem;"
+        class="Container-leftsmallMargin Container-flex Container-column"
       >
         <div
           class=""
@@ -179,8 +171,7 @@ exports[`UserBadge manual center alignment 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Container-flex UserBadge-root"
-      style="align-items: center;"
+      class="Container-centerAlignItems Container-flex UserBadge-root"
     >
       <div
         class="Avatar-root Avatar-xsmall"
@@ -195,8 +186,7 @@ exports[`UserBadge manual center alignment 1`] = `
         </p>
       </div>
       <div
-        class="Container-flex Container-column"
-        style="margin-left: 1rem;"
+        class="Container-leftsmallMargin Container-flex Container-column"
       >
         <div
           class=""
@@ -224,8 +214,7 @@ exports[`UserBadge override auto center alignment 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Container-flex UserBadge-root"
-      style="align-items: flex-start;"
+      class="Container-flexstartAlignItems Container-flex UserBadge-root"
     >
       <div
         class="Avatar-root Avatar-xsmall"
@@ -240,8 +229,7 @@ exports[`UserBadge override auto center alignment 1`] = `
         </p>
       </div>
       <div
-        class="Container-flex Container-column"
-        style="margin-left: 1rem;"
+        class="Container-leftsmallMargin Container-flex Container-column"
       >
         <div
           class=""
@@ -264,8 +252,7 @@ exports[`UserBadge small size 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Container-flex UserBadge-root"
-      style="align-items: flex-start;"
+      class="Container-flexstartAlignItems Container-flex UserBadge-root"
     >
       <div
         class="Avatar-root Avatar-small"
@@ -280,8 +267,7 @@ exports[`UserBadge small size 1`] = `
         </p>
       </div>
       <div
-        class="Container-flex Container-column"
-        style="margin-left: 1rem;"
+        class="Container-leftsmallMargin Container-flex Container-column"
       >
         <div
           class=""

@@ -6,8 +6,7 @@ exports[`renders default 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Container-flex Container-inline"
-      style="align-items: center;"
+      class="Container-centerAlignItems Container-flex Container-inline"
     >
       <button
         class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryBlue PicassoButton-root"
@@ -15,8 +14,7 @@ exports[`renders default 1`] = `
         type="button"
       >
         <span
-          class="Container-flex Container-inline PicassoButton-content"
-          style="align-items: center;"
+          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
         >
           Prev
         </span>
@@ -27,8 +25,7 @@ exports[`renders default 1`] = `
         type="button"
       >
         <span
-          class="Container-flex Container-inline PicassoButton-content"
-          style="align-items: center;"
+          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
         >
           1
         </span>
@@ -48,8 +45,7 @@ exports[`renders default 1`] = `
         type="button"
       >
         <span
-          class="Container-flex Container-inline PicassoButton-content"
-          style="align-items: center;"
+          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
         >
           4
         </span>
@@ -60,8 +56,7 @@ exports[`renders default 1`] = `
         type="button"
       >
         <span
-          class="Container-flex Container-inline PicassoButton-content"
-          style="align-items: center;"
+          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
         >
           5
         </span>
@@ -72,8 +67,7 @@ exports[`renders default 1`] = `
         type="button"
       >
         <span
-          class="Container-flex Container-inline PicassoButton-content"
-          style="align-items: center;"
+          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
         >
           6
         </span>
@@ -93,8 +87,7 @@ exports[`renders default 1`] = `
         type="button"
       >
         <span
-          class="Container-flex Container-inline PicassoButton-content"
-          style="align-items: center;"
+          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
         >
           20
         </span>
@@ -105,8 +98,7 @@ exports[`renders default 1`] = `
         type="button"
       >
         <span
-          class="Container-flex Container-inline PicassoButton-content"
-          style="align-items: center;"
+          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
         >
           Next
         </span>
@@ -122,8 +114,7 @@ exports[`renders disabled 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Container-flex Container-inline"
-      style="align-items: center;"
+      class="Container-centerAlignItems Container-flex Container-inline"
     >
       <button
         class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryDisabled PicassoButton-root Mui-disabled"
@@ -132,8 +123,7 @@ exports[`renders disabled 1`] = `
         type="button"
       >
         <span
-          class="Container-flex Container-inline PicassoButton-content"
-          style="align-items: center;"
+          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
         >
           Prev
         </span>
@@ -145,8 +135,7 @@ exports[`renders disabled 1`] = `
         type="button"
       >
         <span
-          class="Container-flex Container-inline PicassoButton-content"
-          style="align-items: center;"
+          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
         >
           1
         </span>
@@ -167,8 +156,7 @@ exports[`renders disabled 1`] = `
         type="button"
       >
         <span
-          class="Container-flex Container-inline PicassoButton-content"
-          style="align-items: center;"
+          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
         >
           4
         </span>
@@ -180,8 +168,7 @@ exports[`renders disabled 1`] = `
         type="button"
       >
         <span
-          class="Container-flex Container-inline PicassoButton-content"
-          style="align-items: center;"
+          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
         >
           5
         </span>
@@ -193,8 +180,7 @@ exports[`renders disabled 1`] = `
         type="button"
       >
         <span
-          class="Container-flex Container-inline PicassoButton-content"
-          style="align-items: center;"
+          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
         >
           6
         </span>
@@ -215,8 +201,7 @@ exports[`renders disabled 1`] = `
         type="button"
       >
         <span
-          class="Container-flex Container-inline PicassoButton-content"
-          style="align-items: center;"
+          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
         >
           20
         </span>
@@ -228,8 +213,7 @@ exports[`renders disabled 1`] = `
         type="button"
       >
         <span
-          class="Container-flex Container-inline PicassoButton-content"
-          style="align-items: center;"
+          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
         >
           Next
         </span>

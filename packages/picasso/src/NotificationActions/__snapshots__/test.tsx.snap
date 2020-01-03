@@ -13,8 +13,7 @@ exports[`NotificationActions default render 1`] = `
         class="MuiSnackbarContent-message"
       >
         <div
-          class="Container-flex Notification-iconWrapper"
-          style="align-items: center;"
+          class="Container-centerAlignItems Container-flex Notification-iconWrapper"
         >
           <svg
             class="SvgCheckMinor16-root SvgCheckMinor16-green"
@@ -31,8 +30,7 @@ exports[`NotificationActions default render 1`] = `
         >
           The time zone in your profile is set to (UTC -08:00) America - Los
           <div
-            class="Container-flex"
-            style="margin-top: 0.5rem;"
+            class="Container-topxsmallMargin Container-flex"
           >
             Test
           </div>
