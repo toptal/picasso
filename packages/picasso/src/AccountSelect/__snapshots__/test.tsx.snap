@@ -20,10 +20,10 @@ exports[`AccountSelect default render 1`] = `
           class="MuiTypography-root MuiLink-root MuiLink-underlineNone AccountSelect-accountLink MuiTypography-colorPrimary"
         >
           <div
-            class="Container-mediumPadding Container-centerAlignItems Container-spacebetweenJustifyContent Container-flex"
+            class="Container-mediumPadding Container-centerAlignItems Container-spaceBetweenJustifyContent Container-flex"
           >
             <div
-              class="Container-flexstartAlignItems Container-flex UserBadge-root"
+              class="Container-flexStartAlignItems Container-flex UserBadge-root"
             >
               <div
                 class="Avatar-root Avatar-xsmall"
@@ -79,10 +79,10 @@ exports[`AccountSelect default render 1`] = `
           href="#"
         >
           <div
-            class="Container-mediumPadding Container-centerAlignItems Container-spacebetweenJustifyContent Container-flex"
+            class="Container-mediumPadding Container-centerAlignItems Container-spaceBetweenJustifyContent Container-flex"
           >
             <div
-              class="Container-flexstartAlignItems Container-flex UserBadge-root"
+              class="Container-flexStartAlignItems Container-flex UserBadge-root"
             >
               <div
                 class="Avatar-root Avatar-xsmall"
@@ -138,10 +138,10 @@ exports[`AccountSelect default render 1`] = `
           href="#"
         >
           <div
-            class="Container-mediumPadding Container-centerAlignItems Container-spacebetweenJustifyContent Container-flex"
+            class="Container-mediumPadding Container-centerAlignItems Container-spaceBetweenJustifyContent Container-flex"
           >
             <div
-              class="Container-flexstartAlignItems Container-flex UserBadge-root"
+              class="Container-flexStartAlignItems Container-flex UserBadge-root"
             >
               <div
                 class="Avatar-root Avatar-xsmall"

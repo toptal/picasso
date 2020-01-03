@@ -9,6 +9,8 @@ import {
   createPropertiesStyles
 } from '@toptal/picasso-shared'
 
+import kebabToCamelCase from '../utils/kebab-to-camel-case'
+
 const alignItemsVariants = [
   'flex-start',
   'flex-end',
@@ -75,7 +77,7 @@ spacingVariants.forEach(variant =>
 const alignItems: MapOfClasses = {}
 
 alignItemsVariants.forEach(variant => {
-  alignItems[`${variant.replace('-', '')}AlignItems`] = {
+  alignItems[`${kebabToCamelCase(variant)}AlignItems`] = {
     alignItems: variant
   }
 })
@@ -83,7 +85,7 @@ alignItemsVariants.forEach(variant => {
 const justifyContent: MapOfClasses = {}
 
 justifyContentVariants.forEach(variant => {
-  justifyContent[`${variant.replace('-', '')}JustifyContent`] = {
+  justifyContent[`${kebabToCamelCase(variant)}JustifyContent`] = {
     justifyContent: variant
   }
 })

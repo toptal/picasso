@@ -10,6 +10,7 @@ import {
 } from '@toptal/picasso-shared'
 
 import styles, { AlignItemsType, JustifyContentType } from './styles'
+import kebabToCamelCase from '../utils/kebab-to-camel-case'
 
 type ContainerType = 'div' | 'span'
 
@@ -99,11 +100,11 @@ export const Container = forwardRef<HTMLDivElement, Props>(function Container(
           [classes[`right${right}Margin`]]: typeof right === 'string',
 
           [classes[
-            `${(alignItems || '').replace('-', '')}AlignItems`
+            `${kebabToCamelCase(alignItems || '')}AlignItems`
           ]]: alignItems,
 
           [classes[
-            `${(justifyContent || '').replace('-', '')}JustifyContent`
+            `${kebabToCamelCase(justifyContent || '')}JustifyContent`
           ]]: justifyContent,
 
           [classes.bordered]: bordered,
