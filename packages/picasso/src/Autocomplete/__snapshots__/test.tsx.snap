@@ -94,7 +94,7 @@ exports[`Autocomplete static behavior default render 1`] = `
         class="Container-flex"
       >
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root makeStyles-root OutlinedInput-rootAuto OutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root PicassoInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
         >
           <input
             aria-autocomplete="list"

@@ -9,7 +9,7 @@ exports[`DatePicker default render 1`] = `
       class="Container-inline"
     >
       <div
-        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root makeStyles-root OutlinedInput-rootAuto OutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root PicassoInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
       >
         <div
           class="MuiInputAdornment-root InputAdornment-root MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionStart"
@@ -60,7 +60,7 @@ exports[`DatePicker full width 1`] = `
       class=""
     >
       <div
-        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root makeStyles-root OutlinedInput-rootFull OutlinedInput-rootMedium MuiInputBase-fullWidth MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root PicassoInput-root OutlinedInput-rootFull OutlinedInput-rootMedium MuiInputBase-fullWidth MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
       >
         <div
           class="MuiInputAdornment-root InputAdornment-root MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionStart"

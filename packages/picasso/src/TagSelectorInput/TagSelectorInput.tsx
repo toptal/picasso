@@ -5,7 +5,9 @@ import { Props as InputProps } from '../Input/Input'
 import OutlinedInput from '../OutlinedInput'
 import styles from './styles'
 
-const useStyles = makeStyles<Theme, InputProps>(styles)
+const useStyles = makeStyles<Theme, InputProps>(styles, {
+  name: 'TagSelectorInput'
+})
 
 export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
   function TagSelectorInput(props, ref) {

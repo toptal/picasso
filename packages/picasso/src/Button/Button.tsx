@@ -85,7 +85,7 @@ const getVariantType = (variant: VariantType) => {
   return type
 }
 
-const useStyles = makeStyles<Theme, Props>(styles)
+const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoButton' })
 
 export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
   props,

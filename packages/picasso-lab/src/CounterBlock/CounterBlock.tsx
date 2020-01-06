@@ -36,7 +36,9 @@ interface StaticProps {
   Group: FunctionComponent
 }
 
-const useStyles = makeStyles<Theme, Props>(styles)
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'PicassoCounterBlock'
+})
 
 export const CounterBlock: OverridableComponent<Props> & StaticProps =
   // eslint-disable-next-line react/display-name

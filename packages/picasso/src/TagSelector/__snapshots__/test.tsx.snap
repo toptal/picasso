@@ -15,7 +15,7 @@ exports[`TagSelector default render 1`] = `
         class="Container-flex"
       >
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium makeStyles-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium TagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
         >
           <input
             aria-autocomplete="list"
@@ -66,10 +66,10 @@ exports[`TagSelector preselected value 1`] = `
           class="Container-flex"
         >
           <div
-            class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium makeStyles-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+            class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium TagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
           >
             <div
-              class="MuiChip-root makeStyles-root TagSelector-label MuiChip-deletable"
+              class="MuiChip-root PicassoLabel-root TagSelector-label MuiChip-deletable"
               role="button"
               tabindex="0"
             >
@@ -77,14 +77,14 @@ exports[`TagSelector preselected value 1`] = `
                 class="MuiChip-label"
               >
                 <span
-                  class="makeStyles-innerLabel"
+                  class="PicassoLabel-innerLabel"
                 >
                   Afghanistan
                 </span>
               </span>
               <span
                 aria-label="delete icon"
-                class="makeStyles-deleteIcon MuiChip-deleteIcon"
+                class="PicassoLabel-deleteIcon MuiChip-deleteIcon"
                 role="button"
               >
                 <svg

@@ -52,7 +52,7 @@ function isDateRange(
   return !(value instanceof Date) && Boolean(value.start && value.end)
 }
 
-const useStyles = makeStyles<Theme, Props>(styles)
+const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoCalendar' })
 
 export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
   props,

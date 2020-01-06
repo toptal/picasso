@@ -35,7 +35,7 @@ interface StaticProps {
   Group: typeof LabelGroup
 }
 
-const useStyles = makeStyles<Theme, Props>(styles)
+const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoLabel' })
 
 // eslint-disable-next-line react/display-name
 export const Label = forwardRef<HTMLDivElement, Props>(function Label(

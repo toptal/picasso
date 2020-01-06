@@ -6,7 +6,9 @@ import styles from './styles'
 
 type Props = HTMLAttributes<HTMLDivElement>
 
-const useStyles = makeStyles<Theme, Props>(styles)
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'CounterBlockGroup'
+})
 
 const CounterBlockGroup: FunctionComponent<Props> = props => {
   const { className, ...rest } = props

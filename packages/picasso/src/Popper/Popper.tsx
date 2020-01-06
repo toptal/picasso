@@ -53,7 +53,7 @@ export interface Props extends BaseProps {
   width?: string
 }
 
-const useStyles = makeStyles<Theme, Props>(styles)
+const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoPopper' })
 
 function getAnchorEl(
   anchorEl: null | ReferenceObject | (() => ReferenceObject)

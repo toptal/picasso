@@ -10,7 +10,9 @@ export interface Props extends RadioGroupProps {
   horizontal?: boolean
 }
 
-const useStyles = makeStyles<Theme, Props>(styles)
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'PicassoRadioGroup'
+})
 
 const RadioGroup: FunctionComponent<Props> = props => {
   const { horizontal, className, ...rest } = props

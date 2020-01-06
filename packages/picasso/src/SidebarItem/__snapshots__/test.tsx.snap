@@ -17,25 +17,25 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
         <div
           aria-disabled="false"
           aria-expanded="true"
-          class="MuiButtonBase-root MuiExpansionPanelSummary-root WithStyles(ForwardRef(ExpansionPanelSummary))-root makeStyles-summary makeStyles-summary Mui-expanded"
+          class="MuiButtonBase-root MuiExpansionPanelSummary-root WithStyles(ForwardRef(ExpansionPanelSummary))-root makeStyles-summary PicassoSidebarItem-summary Mui-expanded"
           role="button"
           tabindex="0"
         >
           <div
-            class="MuiExpansionPanelSummary-content WithStyles(ForwardRef(ExpansionPanelSummary))-content makeStyles-content makeStyles-content Mui-expanded"
+            class="MuiExpansionPanelSummary-content WithStyles(ForwardRef(ExpansionPanelSummary))-content makeStyles-content PicassoSidebarItem-content Mui-expanded"
           >
             <li
               aria-disabled="false"
-              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light makeStyles-root makeStyles-noWrap makeStyles-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
               role="menuitem"
               tabindex="-1"
             >
               <div
-                class="Container-flex Container-inline makeStyles-noWrap"
+                class="Container-flex Container-inline PicassoSidebarItem-noWrap"
                 style="align-items: center;"
               >
                 <div
-                  class="Container-flex makeStyles-label makeStyles-noWrap"
+                  class="Container-flex PicassoSidebarItem-label PicassoSidebarItem-noWrap"
                   style="align-items: center;"
                 >
                   <p
@@ -47,7 +47,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
               </div>
             </li>
             <svg
-              class="SvgArrowDropDown16-root makeStyles-expandIcon makeStyles-lightExpandIcon makeStyles-expandIcon makeStyles-expandIconExpanded"
+              class="SvgArrowDropDown16-root PicassoSidebarItem-expandIcon PicassoSidebarItem-lightExpandIcon makeStyles-expandIcon makeStyles-expandIconExpanded"
               style="min-width: 16px; min-height: 16px;"
               viewBox="0 0 16 16"
             >
@@ -71,7 +71,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                 role="region"
               >
                 <div
-                  class="MuiExpansionPanelDetails-root ExpansionPanelDetails-root makeStyles-details makeStyles-details"
+                  class="MuiExpansionPanelDetails-root ExpansionPanelDetails-root makeStyles-details PicassoSidebarItem-details"
                 >
                   <ul
                     class="MuiList-root SidebarMenu-root"
@@ -80,16 +80,16 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                   >
                     <li
                       aria-disabled="false"
-                      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light makeStyles-root makeStyles-noWrap makeStyles-light makeStyles-selected Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+                      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-light PicassoSidebarItem-selected Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
                       role="menuitem"
                       tabindex="0"
                     >
                       <div
-                        class="Container-flex Container-inline makeStyles-noWrap"
+                        class="Container-flex Container-inline PicassoSidebarItem-noWrap"
                         style="align-items: center;"
                       >
                         <div
-                          class="Container-flex makeStyles-label makeStyles-noWrap"
+                          class="Container-flex PicassoSidebarItem-label PicassoSidebarItem-noWrap"
                           style="align-items: center;"
                         >
                           <p
@@ -119,16 +119,16 @@ exports[`SidebarItem default render 1`] = `
   >
     <li
       aria-disabled="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light makeStyles-root makeStyles-noWrap MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="menuitem"
       tabindex="-1"
     >
       <div
-        class="Container-flex Container-inline makeStyles-noWrap"
+        class="Container-flex Container-inline PicassoSidebarItem-noWrap"
         style="align-items: center;"
       >
         <div
-          class="Container-flex makeStyles-label makeStyles-noWrap"
+          class="Container-flex PicassoSidebarItem-label PicassoSidebarItem-noWrap"
           style="align-items: center;"
         >
           <p
@@ -150,12 +150,12 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
   >
     <li
       aria-disabled="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light makeStyles-root makeStyles-noWrap MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="menuitem"
       tabindex="-1"
     >
       <div
-        class="Container-flex Container-inline makeStyles-noWrap"
+        class="Container-flex Container-inline PicassoSidebarItem-noWrap"
         style="align-items: center;"
       >
         <svg
@@ -168,7 +168,7 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
           />
         </svg>
         <div
-          class="Container-flex makeStyles-label makeStyles-noWrap makeStyles-withIcon"
+          class="Container-flex PicassoSidebarItem-label PicassoSidebarItem-noWrap PicassoSidebarItem-withIcon"
           style="align-items: center;"
         >
           <p
@@ -180,7 +180,7 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
       </div>
     </li>
     <div
-      class="makeStyles-nonCollapsibleMenu"
+      class="PicassoSidebarItem-nonCollapsibleMenu"
     >
       <ul
         class="MuiList-root SidebarMenu-root"
@@ -189,16 +189,16 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
       >
         <li
           aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light makeStyles-root makeStyles-noWrap MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
           role="menuitem"
           tabindex="0"
         >
           <div
-            class="Container-flex Container-inline makeStyles-noWrap"
+            class="Container-flex Container-inline PicassoSidebarItem-noWrap"
             style="align-items: center;"
           >
             <div
-              class="Container-flex makeStyles-label makeStyles-noWrap"
+              class="Container-flex PicassoSidebarItem-label PicassoSidebarItem-noWrap"
               style="align-items: center;"
             >
               <p
@@ -222,12 +222,12 @@ exports[`SidebarItem is selected 1`] = `
   >
     <li
       aria-disabled="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light makeStyles-root makeStyles-noWrap makeStyles-selected Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-selected Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
       role="menuitem"
       tabindex="-1"
     >
       <div
-        class="Container-flex Container-inline makeStyles-noWrap"
+        class="Container-flex Container-inline PicassoSidebarItem-noWrap"
         style="align-items: center;"
       >
         <svg
@@ -240,7 +240,7 @@ exports[`SidebarItem is selected 1`] = `
           />
         </svg>
         <div
-          class="Container-flex makeStyles-label makeStyles-noWrap makeStyles-withIcon"
+          class="Container-flex PicassoSidebarItem-label PicassoSidebarItem-noWrap PicassoSidebarItem-withIcon"
           style="align-items: center;"
         >
           <p
@@ -266,21 +266,21 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
       <div
         aria-disabled="false"
         aria-expanded="false"
-        class="MuiButtonBase-root MuiExpansionPanelSummary-root WithStyles(ForwardRef(ExpansionPanelSummary))-root makeStyles-summary makeStyles-summary"
+        class="MuiButtonBase-root MuiExpansionPanelSummary-root WithStyles(ForwardRef(ExpansionPanelSummary))-root makeStyles-summary PicassoSidebarItem-summary"
         role="button"
         tabindex="0"
       >
         <div
-          class="MuiExpansionPanelSummary-content WithStyles(ForwardRef(ExpansionPanelSummary))-content makeStyles-content makeStyles-content"
+          class="MuiExpansionPanelSummary-content WithStyles(ForwardRef(ExpansionPanelSummary))-content makeStyles-content PicassoSidebarItem-content"
         >
           <li
             aria-disabled="false"
-            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light makeStyles-root makeStyles-noWrap MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
             role="menuitem"
             tabindex="-1"
           >
             <div
-              class="Container-flex Container-inline makeStyles-noWrap"
+              class="Container-flex Container-inline PicassoSidebarItem-noWrap"
               style="align-items: center;"
             >
               <svg
@@ -293,7 +293,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
                 />
               </svg>
               <div
-                class="Container-flex makeStyles-label makeStyles-noWrap makeStyles-withIcon"
+                class="Container-flex PicassoSidebarItem-label PicassoSidebarItem-noWrap PicassoSidebarItem-withIcon"
                 style="align-items: center;"
               >
                 <p
@@ -305,7 +305,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
             </div>
           </li>
           <svg
-            class="SvgArrowDropDown16-root makeStyles-expandIcon makeStyles-expandIcon"
+            class="SvgArrowDropDown16-root PicassoSidebarItem-expandIcon makeStyles-expandIcon"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
@@ -329,7 +329,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
               role="region"
             >
               <div
-                class="MuiExpansionPanelDetails-root ExpansionPanelDetails-root makeStyles-details makeStyles-details"
+                class="MuiExpansionPanelDetails-root ExpansionPanelDetails-root makeStyles-details PicassoSidebarItem-details"
               >
                 <ul
                   class="MuiList-root SidebarMenu-root"
@@ -338,16 +338,16 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
                 >
                   <li
                     aria-disabled="false"
-                    class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light makeStyles-root makeStyles-noWrap MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+                    class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
                     role="menuitem"
                     tabindex="0"
                   >
                     <div
-                      class="Container-flex Container-inline makeStyles-noWrap"
+                      class="Container-flex Container-inline PicassoSidebarItem-noWrap"
                       style="align-items: center;"
                     >
                       <div
-                        class="Container-flex makeStyles-label makeStyles-noWrap"
+                        class="Container-flex PicassoSidebarItem-label PicassoSidebarItem-noWrap"
                         style="align-items: center;"
                       >
                         <p
@@ -376,12 +376,12 @@ exports[`SidebarItem with icon 1`] = `
   >
     <li
       aria-disabled="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light makeStyles-root makeStyles-noWrap MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="menuitem"
       tabindex="-1"
     >
       <div
-        class="Container-flex Container-inline makeStyles-noWrap"
+        class="Container-flex Container-inline PicassoSidebarItem-noWrap"
         style="align-items: center;"
       >
         <svg
@@ -394,7 +394,7 @@ exports[`SidebarItem with icon 1`] = `
           />
         </svg>
         <div
-          class="Container-flex makeStyles-label makeStyles-noWrap makeStyles-withIcon"
+          class="Container-flex PicassoSidebarItem-label PicassoSidebarItem-noWrap PicassoSidebarItem-withIcon"
           style="align-items: center;"
         >
           <p

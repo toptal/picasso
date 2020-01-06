@@ -53,7 +53,7 @@ interface StaticProps {
   Title: typeof ModalTitle
 }
 
-const useStyles = makeStyles<Theme, Props>(styles)
+const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoModal' })
 const defaultManager = new ModalManager()
 
 // https://github.com/udacity/ud891/blob/gh-pages/lesson2-focus/07-modals-and-keyboard-traps/solution/modal.js#L25
