@@ -11,7 +11,7 @@ import styles from './styles'
 const MAX_COL_SPAN = 100
 
 const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'TableExpandableRow'
+  name: 'PicassoTableExpandableRow'
 })
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLTableRowElement> {

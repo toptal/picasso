@@ -6,7 +6,7 @@ import OutlinedInput from '../OutlinedInput'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme, InputProps>(styles, {
-  name: 'TagSelectorInput'
+  name: 'PicassoTagSelectorInput'
 })
 
 export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
