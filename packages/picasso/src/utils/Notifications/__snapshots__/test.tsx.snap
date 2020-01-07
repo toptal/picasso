@@ -6,36 +6,36 @@ exports[`useNotifications error notification render 1`] = `
     class="Picasso-root"
   >
     <button
-      class="MuiButtonBase-root makeStyles-medium makeStyles-primaryBlue makeStyles-root"
+      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
       tabindex="0"
       type="button"
     >
       <span
-        class="Container-flex Container-inline makeStyles-content"
+        class="Container-flex Container-inline PicassoButton-content"
         style="align-items: center;"
       >
         Show Error
       </span>
     </button>
     <button
-      class="MuiButtonBase-root makeStyles-medium makeStyles-primaryBlue makeStyles-root"
+      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
       tabindex="0"
       type="button"
     >
       <span
-        class="Container-flex Container-inline makeStyles-content"
+        class="Container-flex Container-inline PicassoButton-content"
         style="align-items: center;"
       >
         Show Info
       </span>
     </button>
     <button
-      class="MuiButtonBase-root makeStyles-medium makeStyles-primaryBlue makeStyles-root"
+      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
       tabindex="0"
       type="button"
     >
       <span
-        class="Container-flex Container-inline makeStyles-content"
+        class="Container-flex Container-inline PicassoButton-content"
         style="align-items: center;"
       >
         Show Success
@@ -85,17 +85,17 @@ exports[`useNotifications error notification render 1`] = `
                     Error message
                   </div>
                   <button
-                    class="MuiButtonBase-root makeStyles-circular makeStyles-medium makeStyles-primaryBlue makeStyles-root Notification-close"
+                    class="MuiButtonBase-root PicassoButton-circular PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root Notification-close"
                     tabindex="0"
                     title="Close Notification"
                     type="button"
                   >
                     <span
-                      class="Container-flex Container-inline makeStyles-content"
+                      class="Container-flex Container-inline PicassoButton-content"
                       style="align-items: center;"
                     >
                       <svg
-                        class="SvgCloseMinor16-root makeStyles-icon Notification-closeIcon"
+                        class="SvgCloseMinor16-root PicassoButton-icon Notification-closeIcon"
                         style="min-width: 16px; min-height: 16px;"
                         viewBox="0 0 16 16"
                       >
@@ -122,36 +122,36 @@ exports[`useNotifications info notification render 1`] = `
     class="Picasso-root"
   >
     <button
-      class="MuiButtonBase-root makeStyles-medium makeStyles-primaryBlue makeStyles-root"
+      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
       tabindex="0"
       type="button"
     >
       <span
-        class="Container-flex Container-inline makeStyles-content"
+        class="Container-flex Container-inline PicassoButton-content"
         style="align-items: center;"
       >
         Show Error
       </span>
     </button>
     <button
-      class="MuiButtonBase-root makeStyles-medium makeStyles-primaryBlue makeStyles-root"
+      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
       tabindex="0"
       type="button"
     >
       <span
-        class="Container-flex Container-inline makeStyles-content"
+        class="Container-flex Container-inline PicassoButton-content"
         style="align-items: center;"
       >
         Show Info
       </span>
     </button>
     <button
-      class="MuiButtonBase-root makeStyles-medium makeStyles-primaryBlue makeStyles-root"
+      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
       tabindex="0"
       type="button"
     >
       <span
-        class="Container-flex Container-inline makeStyles-content"
+        class="Container-flex Container-inline PicassoButton-content"
         style="align-items: center;"
       >
         Show Success
@@ -201,17 +201,17 @@ exports[`useNotifications info notification render 1`] = `
                     Info message
                   </div>
                   <button
-                    class="MuiButtonBase-root makeStyles-circular makeStyles-medium makeStyles-primaryBlue makeStyles-root Notification-close"
+                    class="MuiButtonBase-root PicassoButton-circular PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root Notification-close"
                     tabindex="0"
                     title="Close Notification"
                     type="button"
                   >
                     <span
-                      class="Container-flex Container-inline makeStyles-content"
+                      class="Container-flex Container-inline PicassoButton-content"
                       style="align-items: center;"
                     >
                       <svg
-                        class="SvgCloseMinor16-root makeStyles-icon Notification-closeIcon"
+                        class="SvgCloseMinor16-root PicassoButton-icon Notification-closeIcon"
                         style="min-width: 16px; min-height: 16px;"
                         viewBox="0 0 16 16"
                       >
@@ -238,36 +238,36 @@ exports[`useNotifications success notification render 1`] = `
     class="Picasso-root"
   >
     <button
-      class="MuiButtonBase-root makeStyles-medium makeStyles-primaryBlue makeStyles-root"
+      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
       tabindex="0"
       type="button"
     >
       <span
-        class="Container-flex Container-inline makeStyles-content"
+        class="Container-flex Container-inline PicassoButton-content"
         style="align-items: center;"
       >
         Show Error
       </span>
     </button>
     <button
-      class="MuiButtonBase-root makeStyles-medium makeStyles-primaryBlue makeStyles-root"
+      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
       tabindex="0"
       type="button"
     >
       <span
-        class="Container-flex Container-inline makeStyles-content"
+        class="Container-flex Container-inline PicassoButton-content"
         style="align-items: center;"
       >
         Show Info
       </span>
     </button>
     <button
-      class="MuiButtonBase-root makeStyles-medium makeStyles-primaryBlue makeStyles-root"
+      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
       tabindex="0"
       type="button"
     >
       <span
-        class="Container-flex Container-inline makeStyles-content"
+        class="Container-flex Container-inline PicassoButton-content"
         style="align-items: center;"
       >
         Show Success
@@ -317,17 +317,17 @@ exports[`useNotifications success notification render 1`] = `
                     Success message
                   </div>
                   <button
-                    class="MuiButtonBase-root makeStyles-circular makeStyles-medium makeStyles-primaryBlue makeStyles-root Notification-close"
+                    class="MuiButtonBase-root PicassoButton-circular PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root Notification-close"
                     tabindex="0"
                     title="Close Notification"
                     type="button"
                   >
                     <span
-                      class="Container-flex Container-inline makeStyles-content"
+                      class="Container-flex Container-inline PicassoButton-content"
                       style="align-items: center;"
                     >
                       <svg
-                        class="SvgCloseMinor16-root makeStyles-icon Notification-closeIcon"
+                        class="SvgCloseMinor16-root PicassoButton-icon Notification-closeIcon"
                         style="min-width: 16px; min-height: 16px;"
                         viewBox="0 0 16 16"
                       >

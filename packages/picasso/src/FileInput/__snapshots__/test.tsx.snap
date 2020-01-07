@@ -32,12 +32,12 @@ exports[`FileInput default render 1`] = `
         class="MuiInputAdornment-root InputAdornment-root MuiInputAdornment-positionEnd"
       >
         <button
-          class="MuiButtonBase-root makeStyles-small makeStyles-primaryBlue makeStyles-root FileInput-button"
+          class="MuiButtonBase-root PicassoButton-small PicassoButton-primaryBlue PicassoButton-root FileInput-button"
           tabindex="0"
           type="button"
         >
           <span
-            class="Container-flex Container-inline makeStyles-content"
+            class="Container-flex Container-inline PicassoButton-content"
             style="align-items: center;"
           >
             Choose File

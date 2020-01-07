@@ -33,7 +33,9 @@ export interface Props extends BaseProps, MenuItemAttributes {
   as?: ElementType<MenuItemProps>
 }
 
-const useStyles = makeStyles<Theme, Props>(styles)
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'PicassoSidebarItem'
+})
 
 export const SidebarItem: OverridableComponent<Props> = forwardRef<
   HTMLElement,

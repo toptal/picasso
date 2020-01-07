@@ -10,7 +10,9 @@ import styles from './styles'
 
 const MAX_COL_SPAN = 100
 
-const useStyles = makeStyles<Theme, Props>(styles)
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'PicassoTableExpandableRow'
+})
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLTableRowElement> {
   /** Should be valid `<tr>` children such as `Table.Cell`. */

@@ -24,7 +24,9 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   icon?: ReactElement
 }
 
-const useStyles = makeStyles<Theme, Props>(styles)
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'PicassoPageBanner'
+})
 
 export const PageBanner = forwardRef<HTMLDivElement, Props>(function PageBanner(
   props,

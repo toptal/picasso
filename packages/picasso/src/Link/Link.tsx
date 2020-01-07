@@ -16,7 +16,7 @@ type UnderlineType = 'none' | 'hover' | 'always'
 type VariantType = 'action' | 'anchor'
 type ColorType = 'white' | 'blue' | 'black'
 
-const useStyles = makeStyles<Theme, Props>(styles)
+const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoLink' })
 
 export type Props = BaseProps &
   AnchorHTMLAttributes<HTMLAnchorElement> & {

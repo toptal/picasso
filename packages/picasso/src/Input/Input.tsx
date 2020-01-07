@@ -88,7 +88,7 @@ type EndAdornmentProps = Pick<
   'icon' | 'iconPosition' | 'disabled' | 'multiline' | 'limit' | 'counter'
 > & { charsLength?: number }
 
-const useStyles = makeStyles<Theme, Props>(styles)
+const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoInput' })
 
 const hasCounter = (counter: CounterType, limit?: number) =>
   limit || counter === 'entered'

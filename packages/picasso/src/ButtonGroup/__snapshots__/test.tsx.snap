@@ -9,32 +9,32 @@ exports[`ButtonGroup render 1`] = `
       class="ButtonGroup-root"
     >
       <button
-        class="MuiButtonBase-root makeStyles-medium makeStyles-primaryBlue makeStyles-root ButtonGroup-button"
+        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root ButtonGroup-button"
         tabindex="0"
         type="button"
       >
         <span
-          class="Container-flex Container-inline makeStyles-content"
+          class="Container-flex Container-inline PicassoButton-content"
           style="align-items: center;"
         />
       </button>
       <button
-        class="MuiButtonBase-root makeStyles-active ButtonGroup-active makeStyles-medium makeStyles-primaryBlue makeStyles-root ButtonGroup-button"
+        class="MuiButtonBase-root PicassoButton-active ButtonGroup-active PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root ButtonGroup-button"
         tabindex="0"
         type="button"
       >
         <span
-          class="Container-flex Container-inline makeStyles-content"
+          class="Container-flex Container-inline PicassoButton-content"
           style="align-items: center;"
         />
       </button>
       <button
-        class="MuiButtonBase-root makeStyles-medium makeStyles-primaryBlue makeStyles-root ButtonGroup-button"
+        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root ButtonGroup-button"
         tabindex="0"
         type="button"
       >
         <span
-          class="Container-flex Container-inline makeStyles-content"
+          class="Container-flex Container-inline PicassoButton-content"
           style="align-items: center;"
         />
       </button>

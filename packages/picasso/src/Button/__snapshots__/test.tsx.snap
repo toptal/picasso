@@ -6,13 +6,13 @@ exports[`disabled button renders disabled version 1`] = `
     class="Picasso-root"
   >
     <button
-      class="MuiButtonBase-root makeStyles-medium makeStyles-primaryDisabled makeStyles-root Mui-disabled"
+      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryDisabled PicassoButton-root Mui-disabled"
       disabled=""
       tabindex="-1"
       type="button"
     >
       <span
-        class="Container-flex Container-inline makeStyles-content"
+        class="Container-flex Container-inline PicassoButton-content"
         style="align-items: center;"
       >
         Click me!

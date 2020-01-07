@@ -10,24 +10,24 @@ exports[`renders default 1`] = `
       style="align-items: center;"
     >
       <button
-        class="MuiButtonBase-root makeStyles-small makeStyles-secondaryBlue makeStyles-root"
+        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryBlue PicassoButton-root"
         tabindex="0"
         type="button"
       >
         <span
-          class="Container-flex Container-inline makeStyles-content"
+          class="Container-flex Container-inline PicassoButton-content"
           style="align-items: center;"
         >
           Prev
         </span>
       </button>
       <button
-        class="MuiButtonBase-root makeStyles-small makeStyles-secondaryBlue makeStyles-root Pagination-rangeButton"
+        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryBlue PicassoButton-root Pagination-rangeButton"
         tabindex="0"
         type="button"
       >
         <span
-          class="Container-flex Container-inline makeStyles-content"
+          class="Container-flex Container-inline PicassoButton-content"
           style="align-items: center;"
         >
           1
@@ -43,36 +43,36 @@ exports[`renders default 1`] = `
         </p>
       </div>
       <button
-        class="MuiButtonBase-root makeStyles-small makeStyles-secondaryBlue makeStyles-root Pagination-rangeButton"
+        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryBlue PicassoButton-root Pagination-rangeButton"
         tabindex="0"
         type="button"
       >
         <span
-          class="Container-flex Container-inline makeStyles-content"
+          class="Container-flex Container-inline PicassoButton-content"
           style="align-items: center;"
         >
           4
         </span>
       </button>
       <button
-        class="MuiButtonBase-root makeStyles-small makeStyles-primaryBlue makeStyles-root Pagination-rangeButton"
+        class="MuiButtonBase-root PicassoButton-small PicassoButton-primaryBlue PicassoButton-root Pagination-rangeButton"
         tabindex="0"
         type="button"
       >
         <span
-          class="Container-flex Container-inline makeStyles-content"
+          class="Container-flex Container-inline PicassoButton-content"
           style="align-items: center;"
         >
           5
         </span>
       </button>
       <button
-        class="MuiButtonBase-root makeStyles-small makeStyles-secondaryBlue makeStyles-root Pagination-rangeButton"
+        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryBlue PicassoButton-root Pagination-rangeButton"
         tabindex="0"
         type="button"
       >
         <span
-          class="Container-flex Container-inline makeStyles-content"
+          class="Container-flex Container-inline PicassoButton-content"
           style="align-items: center;"
         >
           6
@@ -88,24 +88,24 @@ exports[`renders default 1`] = `
         </p>
       </div>
       <button
-        class="MuiButtonBase-root makeStyles-small makeStyles-secondaryBlue makeStyles-root Pagination-rangeButton"
+        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryBlue PicassoButton-root Pagination-rangeButton"
         tabindex="0"
         type="button"
       >
         <span
-          class="Container-flex Container-inline makeStyles-content"
+          class="Container-flex Container-inline PicassoButton-content"
           style="align-items: center;"
         >
           20
         </span>
       </button>
       <button
-        class="MuiButtonBase-root makeStyles-small makeStyles-secondaryBlue makeStyles-root"
+        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryBlue PicassoButton-root"
         tabindex="0"
         type="button"
       >
         <span
-          class="Container-flex Container-inline makeStyles-content"
+          class="Container-flex Container-inline PicassoButton-content"
           style="align-items: center;"
         >
           Next
@@ -126,26 +126,26 @@ exports[`renders disabled 1`] = `
       style="align-items: center;"
     >
       <button
-        class="MuiButtonBase-root makeStyles-small makeStyles-secondaryDisabled makeStyles-root Mui-disabled"
+        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryDisabled PicassoButton-root Mui-disabled"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <span
-          class="Container-flex Container-inline makeStyles-content"
+          class="Container-flex Container-inline PicassoButton-content"
           style="align-items: center;"
         >
           Prev
         </span>
       </button>
       <button
-        class="MuiButtonBase-root makeStyles-small makeStyles-secondaryDisabled makeStyles-root Pagination-rangeButton Mui-disabled"
+        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryDisabled PicassoButton-root Pagination-rangeButton Mui-disabled"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <span
-          class="Container-flex Container-inline makeStyles-content"
+          class="Container-flex Container-inline PicassoButton-content"
           style="align-items: center;"
         >
           1
@@ -161,39 +161,39 @@ exports[`renders disabled 1`] = `
         </p>
       </div>
       <button
-        class="MuiButtonBase-root makeStyles-small makeStyles-secondaryDisabled makeStyles-root Pagination-rangeButton Mui-disabled"
+        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryDisabled PicassoButton-root Pagination-rangeButton Mui-disabled"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <span
-          class="Container-flex Container-inline makeStyles-content"
+          class="Container-flex Container-inline PicassoButton-content"
           style="align-items: center;"
         >
           4
         </span>
       </button>
       <button
-        class="MuiButtonBase-root makeStyles-small makeStyles-primaryDisabled makeStyles-root Pagination-rangeButton Mui-disabled"
+        class="MuiButtonBase-root PicassoButton-small PicassoButton-primaryDisabled PicassoButton-root Pagination-rangeButton Mui-disabled"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <span
-          class="Container-flex Container-inline makeStyles-content"
+          class="Container-flex Container-inline PicassoButton-content"
           style="align-items: center;"
         >
           5
         </span>
       </button>
       <button
-        class="MuiButtonBase-root makeStyles-small makeStyles-secondaryDisabled makeStyles-root Pagination-rangeButton Mui-disabled"
+        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryDisabled PicassoButton-root Pagination-rangeButton Mui-disabled"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <span
-          class="Container-flex Container-inline makeStyles-content"
+          class="Container-flex Container-inline PicassoButton-content"
           style="align-items: center;"
         >
           6
@@ -209,26 +209,26 @@ exports[`renders disabled 1`] = `
         </p>
       </div>
       <button
-        class="MuiButtonBase-root makeStyles-small makeStyles-secondaryDisabled makeStyles-root Pagination-rangeButton Mui-disabled"
+        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryDisabled PicassoButton-root Pagination-rangeButton Mui-disabled"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <span
-          class="Container-flex Container-inline makeStyles-content"
+          class="Container-flex Container-inline PicassoButton-content"
           style="align-items: center;"
         >
           20
         </span>
       </button>
       <button
-        class="MuiButtonBase-root makeStyles-small makeStyles-secondaryDisabled makeStyles-root Mui-disabled"
+        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryDisabled PicassoButton-root Mui-disabled"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <span
-          class="Container-flex Container-inline makeStyles-content"
+          class="Container-flex Container-inline PicassoButton-content"
           style="align-items: center;"
         >
           Next
