@@ -9,6 +9,7 @@ import React, {
 import PopperJs from 'popper.js'
 import formatDate from 'date-fns/format'
 import isValid from 'date-fns/isValid'
+import { Theme, makeStyles } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
 import { Container, Input, Form, InputAdornment } from '@toptal/picasso'
 import Popper from '@toptal/picasso/Popper'
@@ -16,6 +17,7 @@ import { Props as InputProps } from '@toptal/picasso/Input'
 import { Calendar16 } from '@toptal/picasso/Icon'
 
 import Calendar, { DateOrDateRangeType, DateRangeType } from '../Calendar'
+import styles from './styles'
 
 export interface Props
   extends BaseProps,
@@ -59,18 +61,25 @@ const isDateValid = (date: string, pattern: string) => {
   return date.length === pattern.length && isValid(new Date(date))
 }
 
-export const DatePicker = ({
-  range,
-  hideOnSelect,
-  displayDateFormat,
-  editDateFormat,
-  onBlur,
-  onChange,
-  value,
-  width,
-  icon,
-  ...rest
-}: Props) => {
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'PicassoDatePicker'
+})
+
+export const DatePicker = (props: Props) => {
+  const {
+    range,
+    hideOnSelect,
+    displayDateFormat,
+    editDateFormat,
+    onBlur,
+    onChange,
+    value,
+    width,
+    icon,
+    ...rest
+  } = props
+  const classes = useStyles(props)
+
   const inputProps = rest
   const errorMessage = `Entered date is invalid, please, check the format "${editDateFormat!.toLowerCase()}"`
 
@@ -240,6 +249,8 @@ export const DatePicker = ({
             value={value}
             onChange={handleCalendarChange}
             onBlur={handleBlur}
+            className={classes.calendar}
+            tabIndex={-1}
           />
         </Popper>
       )}

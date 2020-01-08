@@ -38,7 +38,9 @@ const getNormalizedValue = (value: DateOrDateRangeType | undefined) => {
   return { start, end }
 }
 
-export interface Props extends BaseProps {
+export interface Props
+  extends BaseProps,
+    Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'onBlur'> {
   onChange: (value: DateOrDateRangeType) => void
   onBlur?: (event: React.FocusEvent<HTMLDivElement>) => void
   range?: boolean
@@ -59,7 +61,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
   ref
 ) {
   const classes = useStyles(props)
-  const { range = false, activeMonth, value, onChange, onBlur } = props
+  const { range = false, activeMonth, value, onChange, onBlur, ...rest } = props
 
   const handleChange = (selection: Date | SimpleReactCalendarRangeType) => {
     if (isDateRange(selection)) {
@@ -72,7 +74,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
   }
 
   return (
-    <div ref={ref} onBlur={onBlur}>
+    <div {...rest} ref={ref} onBlur={onBlur}>
       <SimpleReactCalendar
         selected={getNormalizedValue(value)}
         onSelect={handleChange}
