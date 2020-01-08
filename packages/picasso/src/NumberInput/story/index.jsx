@@ -14,3 +14,5 @@ page
 page
   .createChapter()
   .addExample('NumberInput/story/Default.example.tsx', 'Default')
+  .addExample('NumberInput/story/Disabled.example.tsx', 'Disabled')
+  .addExample('NumberInput/story/Errored.example.tsx', 'Errored')

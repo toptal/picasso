@@ -1,7 +1,7 @@
 import React, { useState, ChangeEventHandler } from 'react'
 import { NumberInput, Container } from '@toptal/picasso'
 
-const DefaultExample = () => {
+const DisabledExample = () => {
   const [value, setValue] = useState('1')
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = event => {
@@ -11,6 +11,7 @@ const DefaultExample = () => {
   return (
     <Container>
       <NumberInput
+        disabled
         value={value}
         onChange={handleChange}
         step='5'
@@ -21,4 +22,4 @@ const DefaultExample = () => {
   )
 }
 
-export default DefaultExample
+export default DisabledExample

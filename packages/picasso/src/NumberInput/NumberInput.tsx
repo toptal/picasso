@@ -133,6 +133,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
       value,
       onChange,
       disabled,
+      error,
       ...rest
     } = props
 
@@ -167,6 +168,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
           min,
           max
         }}
+        error={error}
         ref={inputRef}
         type='number'
         value={value}
