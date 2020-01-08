@@ -14,7 +14,7 @@ import { StandardProps, SizeType } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
-export type ValueType =
+type ValueType =
   | (string | number | boolean | object)[]
   | string
   | number
