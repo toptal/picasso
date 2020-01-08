@@ -1,6 +1,6 @@
 import { createStyles, Theme } from '@material-ui/core/styles'
 
-export default ({ palette }: Theme) =>
+export default ({ palette, transitions }: Theme) =>
   createStyles({
     root: {
       paddingRight: 0
@@ -13,16 +13,32 @@ export default ({ palette }: Theme) =>
       },
       '-moz-appearance': 'textfield'
     },
+
     control: {
       height: '1.125rem',
       width: '1.625rem',
       borderLeft: `1px solid ${palette.grey.light}`,
-      borderBottom: `1px solid ${palette.grey.light}`,
       borderRight: '1px solid transparent',
 
+      '&:hover': {
+        background: palette.grey.light,
+        borderColor: palette.grey.light
+      },
+
       '& + &': {
-        borderBottom: '1px solid transparent'
-      }
+        borderTop: `1px solid ${palette.grey.light}`
+      },
+
+      '&:active + &': {
+        borderTop: `1px solid ${palette.grey.main}`
+      },
+
+      '&:active': {
+        background: palette.grey.main,
+        borderColor: palette.grey.main
+      },
+      transition: `all ${transitions.duration.short}ms ${transitions.easing.easeOut}`,
+      transitionProperty: 'border, color, background'
     },
 
     controlDisabled: {

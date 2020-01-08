@@ -37,6 +37,11 @@ const nativeInputValueSetter = (Object.getOwnPropertyDescriptor(
 const NumberAdornment = (props: NumberAdornmentProps) => {
   const { step, min, max, value, inputRef, classes, disabled } = props
 
+  const normalizedStep = Number(step)
+  const normalizedValue = Number(value)
+  const normalizedMin = Number(min)
+  const normalizedMax = Number(max)
+
   const fireEvent = (nextValue: number) => {
     const input = inputRef.current
 
@@ -54,9 +59,16 @@ const NumberAdornment = (props: NumberAdornmentProps) => {
 
   const handleUpClick = () => {
     if (typeof value !== 'undefined') {
-      const nextValue = Number(value) + Number(step)
+      let nextValue = normalizedValue + normalizedStep
 
       if (nextValue <= max) {
+        if (normalizedValue < normalizedMin + normalizedStep) {
+          nextValue = normalizedMin + normalizedStep
+        }
+
+        fireEvent(nextValue)
+      } else if (normalizedValue !== normalizedMax) {
+        nextValue = normalizedMax
         fireEvent(nextValue)
       }
     }
@@ -64,9 +76,16 @@ const NumberAdornment = (props: NumberAdornmentProps) => {
 
   const handleDownClick = () => {
     if (typeof value !== 'undefined') {
-      const nextValue = Number(value) - Number(step)
+      let nextValue = normalizedValue - normalizedStep
 
       if (nextValue >= min) {
+        if (normalizedValue > normalizedMax - normalizedStep) {
+          nextValue = normalizedMax - normalizedStep
+        }
+
+        fireEvent(nextValue)
+      } else if (normalizedValue !== normalizedMin) {
+        nextValue = normalizedMin
         fireEvent(nextValue)
       }
     }
