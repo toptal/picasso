@@ -33,7 +33,7 @@ export interface Props extends Omit<ModalProps, 'children' | 'onSubmit'> {
   cancelText?: string
   /** Callback on Submit onClick event, returns result of input component if defined */
   onSubmit: (result: unknown) => Promise<unknown> | unknown
-  onAfterSubmit: () => void
+  onAfterSubmit?: () => void
   /** Callback on Cancel onClick event */
   onCancel?: () => void
 }
@@ -66,7 +66,7 @@ export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
       await onSubmit(result)
       setLoading(false)
       // closes modal if use-modals hook is used
-      onAfterSubmit()
+      onAfterSubmit!()
     } catch (err) {
       setError(true)
       setLoading(false)
