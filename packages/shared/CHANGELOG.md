@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.2.0...@toptal/picasso-shared@1.2.1) (2020-01-09)
+
+
+### Bug Fixes
+
+* **Notification:** [FX-701] Fix missing context when using in Modal ([#1003](https://github.com/toptal/picasso/issues/1003)) ([c893c00](https://github.com/toptal/picasso/commit/c893c00da9e2ddef2196f7382efb86ddbc1cc1fe))
+
+
+
+
+
 # [1.2.0](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.1.6...@toptal/picasso-shared@1.2.0) (2020-01-02)
 
 
