@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.13.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.13.1...@toptal/picasso@4.13.2) (2020-01-09)
+
+
+### Bug Fixes
+
+* **PromptModal:** [FX-696] Fix warning after submit ([#1002](https://github.com/toptal/picasso/issues/1002)) ([c7a8d08](https://github.com/toptal/picasso/commit/c7a8d08f4faf27b28d271460e766723316a3a1c8))
+
+
+
+
+
 ## [4.13.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.13.0...@toptal/picasso@4.13.1) (2020-01-07)
 
 **Note:** Version bump only for package @toptal/picasso
