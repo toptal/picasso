@@ -188,7 +188,8 @@
     "fp/no-mutating-methods": "warn"
   },
   "env": {
-    "jest": true
+    "jest": true,
+    "browser": true
   },
   "globals": {
     "localStorage": true,

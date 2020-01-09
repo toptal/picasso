@@ -240,9 +240,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
       setCharsLength(e.target.value.length)
     }
 
-    if (onChange) {
-      onChange(e)
-    }
+    onChange!(e)
   }
 
   const classes = useStyles(props)
@@ -310,7 +308,8 @@ Input.defaultProps = {
   iconPosition: 'start',
   multiline: false,
   size: 'medium',
-  width: 'auto'
+  width: 'auto',
+  onChange: () => {}
 }
 
 Input.displayName = 'Input'
