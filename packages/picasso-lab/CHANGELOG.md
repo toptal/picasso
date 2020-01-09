@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.5](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@1.5.4...@toptal/picasso-lab@1.5.5) (2020-01-09)
+
+
+### Bug Fixes
+
+* **datepicker:** fix the picker in Safari ([#1001](https://github.com/toptal/picasso/issues/1001)) ([914a546](https://github.com/toptal/picasso/commit/914a5467eb882615e135159d64bf96a43d39c6c5)), closes [#1000](https://github.com/toptal/picasso/issues/1000)
+
+
+
+
+
 ## [1.5.4](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@1.5.3...@toptal/picasso-lab@1.5.4) (2020-01-09)
 
 **Note:** Version bump only for package @toptal/picasso-lab
