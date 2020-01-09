@@ -11,7 +11,10 @@ import ArrowUpIcon from './icons/ArrowUpIcon'
 import styles from './styles'
 
 export interface Props
-  extends Omit<OmitInternalProps<OutlinedInputProps>, 'defaultValue'>,
+  extends Omit<
+      OmitInternalProps<OutlinedInputProps>,
+      'defaultValue' | 'type' | 'multiline' | 'rows'
+    >,
     BaseProps {
   /** Value of the `input` element. */
   value: string | number
@@ -23,6 +26,12 @@ export interface Props
   step?: number | string
   /** Should controls be hidden or not */
   hideControls?: boolean
+  /** Indicates whether component is in error state */
+  error?: boolean
+  /** Indicates whether component is in disabled state */
+  disabled?: boolean
+  /** Callback invoked when `NumberInput` changes its state. */
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 type NumberAdornmentProps = {

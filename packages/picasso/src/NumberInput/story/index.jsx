@@ -4,7 +4,8 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.createPage(
   'NumberInput',
-  'Input component for numbers'
+  'Input component for numbers',
+  'Forms'
 )
 
 page
