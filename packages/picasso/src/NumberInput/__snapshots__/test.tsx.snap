@@ -26,18 +26,35 @@ exports[`regular 1`] = `
           tabindex="0"
           type="button"
         >
-          <span
-            class="PicassoNumberInput-arrowUp"
-          />
+          <svg
+            height="5"
+            width="6"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M3 0l3 5H0z"
+              fill="#455065"
+              fill-rule="evenodd"
+            />
+          </svg>
         </button>
         <button
           class="MuiButtonBase-root PicassoNumberInput-control"
           tabindex="0"
           type="button"
         >
-          <span
+          <svg
             class="PicassoNumberInput-arrowDown"
-          />
+            height="5"
+            width="6"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M3 0l3 5H0z"
+              fill="#455065"
+              fill-rule="evenodd"
+            />
+          </svg>
         </button>
       </div>
     </div>
