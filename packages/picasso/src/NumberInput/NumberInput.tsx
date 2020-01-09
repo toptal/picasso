@@ -13,11 +13,16 @@ import styles from './styles'
 export interface Props
   extends Omit<OmitInternalProps<OutlinedInputProps>, 'defaultValue'>,
     BaseProps {
+  /** Value of the `input` element. */
   value: string | number
+  /** Minimum value for the `input` element */
   min?: number | string
+  /** Maximum value for the `input` element */
   max?: number | string
-  hideControls?: boolean
+  /** Next value of the `input` element will be calculated based on step */
   step?: number | string
+  /** Should controls be hidden or not */
+  hideControls?: boolean
 }
 
 type NumberAdornmentProps = {
