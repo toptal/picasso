@@ -7,6 +7,7 @@ import OutlinedInput, { Props as OutlinedInputProps } from '../OutlinedInput'
 import InputAdornment from '../InputAdornment'
 import Container from '../Container'
 import { useCombinedRefs } from '../utils'
+import ArrowUpIcon from './icons/ArrowUpIcon'
 import styles from './styles'
 
 export interface Props
@@ -58,36 +59,36 @@ const NumberAdornment = (props: NumberAdornmentProps) => {
   }
 
   const handleUpClick = () => {
-    if (typeof value !== 'undefined') {
-      let nextValue = normalizedValue + normalizedStep
+    if (typeof value === 'undefined') return
 
-      if (nextValue <= max) {
-        if (normalizedValue < normalizedMin + normalizedStep) {
-          nextValue = normalizedMin + normalizedStep
-        }
+    let nextValue = normalizedValue + normalizedStep
 
-        fireEvent(nextValue)
-      } else if (normalizedValue !== normalizedMax) {
-        nextValue = normalizedMax
-        fireEvent(nextValue)
+    if (nextValue <= max) {
+      if (normalizedValue < normalizedMin + normalizedStep) {
+        nextValue = normalizedMin + normalizedStep
       }
+
+      fireEvent(nextValue)
+    } else if (normalizedValue !== normalizedMax) {
+      nextValue = normalizedMax
+      fireEvent(nextValue)
     }
   }
 
   const handleDownClick = () => {
-    if (typeof value !== 'undefined') {
-      let nextValue = normalizedValue - normalizedStep
+    if (typeof value === 'undefined') return
 
-      if (nextValue >= min) {
-        if (normalizedValue > normalizedMax - normalizedStep) {
-          nextValue = normalizedMax - normalizedStep
-        }
+    let nextValue = normalizedValue - normalizedStep
 
-        fireEvent(nextValue)
-      } else if (normalizedValue !== normalizedMin) {
-        nextValue = normalizedMin
-        fireEvent(nextValue)
+    if (nextValue >= min) {
+      if (normalizedValue > normalizedMax - normalizedStep) {
+        nextValue = normalizedMax - normalizedStep
       }
+
+      fireEvent(nextValue)
+    } else if (normalizedValue !== normalizedMin) {
+      nextValue = normalizedMin
+      fireEvent(nextValue)
     }
   }
 
@@ -102,7 +103,7 @@ const NumberAdornment = (props: NumberAdornmentProps) => {
           }}
           onClick={handleUpClick}
         >
-          <span className={classes.arrowUp} />
+          <ArrowUpIcon />
         </ButtonBase>
         <ButtonBase
           disabled={disabled}
@@ -112,7 +113,7 @@ const NumberAdornment = (props: NumberAdornmentProps) => {
           }}
           onClick={handleDownClick}
         >
-          <span className={classes.arrowDown} />
+          <ArrowUpIcon className={classes.arrowDown} />
         </ButtonBase>
       </Container>
     </InputAdornment>

@@ -45,19 +45,7 @@ export default ({ palette, transitions }: Theme) =>
       opacity: 0.48
     },
 
-    arrowUp: {
-      width: 0,
-      height: 0,
-      borderLeft: '3px solid transparent',
-      borderRight: '3px solid transparent',
-      borderBottom: `5px solid ${palette.grey.dark}`
-    },
-
     arrowDown: {
-      width: 0,
-      height: 0,
-      borderLeft: '3px solid transparent',
-      borderRight: '3px solid transparent',
-      borderTop: `5px solid ${palette.grey.dark}`
+      transform: 'rotate(180deg)'
     }
   })
