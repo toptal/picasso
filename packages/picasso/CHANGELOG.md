@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.14.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.13.3...@toptal/picasso@4.14.0) (2020-01-09)
+
+
+### Features
+
+* add NumberInput component ([#998](https://github.com/toptal/picasso/issues/998)) ([57b3862](https://github.com/toptal/picasso/commit/57b3862fab18edc131a7a6b0da634b1f5cb057d9))
+
+
+
+
+
 ## [4.13.3](https://github.com/toptal/picasso/compare/@toptal/picasso@4.13.2...@toptal/picasso@4.13.3) (2020-01-09)
 
 **Note:** Version bump only for package @toptal/picasso
