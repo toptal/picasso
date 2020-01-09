@@ -50,8 +50,7 @@ const useModals = () => {
   const showPrompt = (options: ShowPromptOptions) => {
     const { content, onSubmit, onCancel, onClose, ...restOptions } = options
 
-    const handleSubmit = async (result: unknown) => {
-      await onSubmit(result)
+    const handleOnAfterSubmit = () => {
       hideModal(modalId)
     }
 
@@ -74,7 +73,8 @@ const useModals = () => {
     const modalId = showModal(() => (
       <PromptModal
         open
-        onSubmit={handleSubmit}
+        onSubmit={onSubmit}
+        onAfterSubmit={handleOnAfterSubmit}
         onCancel={handleCancel}
         onClose={handleClose}
         // eslint-disable-next-line react/jsx-props-no-spreading
