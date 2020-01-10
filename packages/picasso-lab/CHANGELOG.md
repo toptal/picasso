@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.8](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@1.5.7...@toptal/picasso-lab@1.5.8) (2020-01-10)
+
+
+### Bug Fixes
+
+* **datepicker:** fix resetting to empty value ([#1009](https://github.com/toptal/picasso/issues/1009)) ([4999b54](https://github.com/toptal/picasso/commit/4999b54c8a0dbcf977da5ff1ad59d58ae850026f))
+
+
+
+
+
 ## [1.5.7](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@1.5.6...@toptal/picasso-lab@1.5.7) (2020-01-09)
 
 **Note:** Version bump only for package @toptal/picasso-lab
