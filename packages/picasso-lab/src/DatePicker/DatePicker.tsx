@@ -98,6 +98,7 @@ export const DatePicker = (props: Props) => {
 
   useLayoutEffect(() => {
     if (!value) {
+      setInputValue(EMPTY_INPUT_VALUE)
       return
     }
 
