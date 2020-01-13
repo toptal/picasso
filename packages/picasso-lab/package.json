@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-lab",
-  "version": "1.5.8",
+  "version": "1.5.9",
   "description": "Lab components of Picasso",
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-lab#readme",
@@ -28,7 +28,7 @@
   "dependencies": {
     "@material-ui/core": "4.5.0",
     "@material-ui/icons": "4.5.1",
-    "@toptal/picasso": "^4.14.0",
+    "@toptal/picasso": "^4.15.0",
     "@toptal/picasso-shared": "^1.2.1",
     "classnames": "^2.2.6",
     "date-fns": "^2.3.0",

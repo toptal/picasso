@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.15.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.14.0...@toptal/picasso@4.15.0) (2020-01-13)
+
+
+### Features
+
+* **UserBadge:** add support for custom name rendering ([#1005](https://github.com/toptal/picasso/issues/1005)) ([cad2f99](https://github.com/toptal/picasso/commit/cad2f99e0520c934bb1d15dc8d17e4092ff3bd73))
+
+
+
+
+
 # [4.14.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.13.3...@toptal/picasso@4.14.0) (2020-01-09)
 
 
