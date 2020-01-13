@@ -31,3 +31,10 @@ page
   .addExample('UserBadge/story/Title.example.jsx', 'With Title', {
     waitUntilImagesLoaded: true
   })
+  .addExample(
+    'UserBadge/story/CustomName.example.jsx',
+    'Custom Name Rendering',
+    {
+      waitUntilImagesLoaded: true
+    }
+  )

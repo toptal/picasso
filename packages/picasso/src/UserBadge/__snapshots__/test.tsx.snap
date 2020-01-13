@@ -40,6 +40,49 @@ exports[`UserBadge auto center alignment 1`] = `
 </div>
 `;
 
+exports[`UserBadge custom name 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="Container-flex UserBadge-root"
+      style="align-items: flex-start;"
+    >
+      <div
+        class="Avatar-root Avatar-xsmall"
+      >
+        <div
+          class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
+        />
+        <p
+          class="MuiTypography-root Typography-invert Typography-bodyInherit Avatar-text MuiTypography-body1"
+        >
+          JD
+        </p>
+      </div>
+      <div
+        class="Container-flex Container-column"
+        style="margin-left: 1rem;"
+      >
+        <div
+          class=""
+        >
+          <div>
+            Joe Doe
+          </div>
+        </div>
+        <p
+          class="MuiTypography-root Typography-bodyInherit MuiTypography-body1"
+        >
+          QA tester
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`UserBadge default render 1`] = `
 <div>
   <div

@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
@@ -13,6 +14,8 @@ type AlignmentType = boolean | 'auto'
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** User full name to display */
   name: string
+  /** Function responsible for rendering the user's name with a custom component */
+  renderName?: (name: string, invert?: boolean) => ReactNode
   /** Photo url or custom Avatar component */
   avatar?: ReactNode
   /** Size */
@@ -36,6 +39,7 @@ export const UserBadge = forwardRef<HTMLDivElement, Props>(function UserBadge(
   {
     avatar,
     name,
+    renderName,
     size,
     title,
     invert,
@@ -69,6 +73,20 @@ export const UserBadge = forwardRef<HTMLDivElement, Props>(function UserBadge(
     </Typography>
   )
 
+  const userName = renderName ? (
+    renderName(name, invert)
+  ) : (
+    <Typography
+      className={classes.name}
+      inline
+      variant='heading'
+      size='small'
+      invert={invert}
+    >
+      {name}
+    </Typography>
+  )
+
   return (
     <Container
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -82,15 +100,7 @@ export const UserBadge = forwardRef<HTMLDivElement, Props>(function UserBadge(
       {UserBadgeAvatar}
       <Container flex direction='column' left='small'>
         <Container>
-          <Typography
-            className={classes.name}
-            inline
-            variant='heading'
-            size='small'
-            invert={invert}
-          >
-            {name}
-          </Typography>
+          {userName}
           {userTitle}
         </Container>
         {children}
