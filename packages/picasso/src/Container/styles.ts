@@ -62,7 +62,7 @@ const colorVariant = (colorOptions?: SimplePaletteColorOptions | Color) => {
   })
 }
 
-type MapOfClasses = { [key: string]: { [key: string]: string } }
+type MapOfClasses = Record<string, Record<string, string>>
 
 const margins: MapOfClasses = {}
 
