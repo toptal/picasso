@@ -17,12 +17,12 @@ declare module '@material-ui/core/styles/createPalette' {
 
 declare module '@material-ui/core' {
   interface Color {
-    lighter: string
-    light: string
-    main: string
-    main2: string
-    dark: string
-    darker: string
+    lighter?: string
+    light?: string
+    main?: string
+    main2?: string
+    dark?: string
+    darker?: string
   }
 }
 
