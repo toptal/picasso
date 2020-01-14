@@ -1,5 +1,6 @@
 import { createStyles, Theme } from '@material-ui/core/styles'
 import { rem, alpha } from '@toptal/picasso-shared'
+
 export default ({ palette }: Theme) =>
   createStyles({
     root: {
@@ -9,8 +10,10 @@ export default ({ palette }: Theme) =>
       padding: '0.5rem 1rem',
       minWidth: rem('150px'),
       border: 'none',
+      textDecoration: 'none'
+    },
+    clickable: {
       cursor: 'pointer',
-      textDecoration: 'none',
       '&:hover': {
         backgroundColor: palette.grey.lighter
       }

@@ -49,6 +49,7 @@ export const CounterBlock: OverridableComponent<Props> & StaticProps =
       color,
       as: Component = 'button',
       className,
+      onClick,
       ...rest
     } = props
     const classes = useStyles(props)
@@ -58,7 +59,12 @@ export const CounterBlock: OverridableComponent<Props> & StaticProps =
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         ref={ref}
-        className={cx(classes.root, className)}
+        className={cx(
+          { [classes.clickable]: Boolean(onClick) },
+          classes.root,
+          className
+        )}
+        onClick={onClick}
       >
         <Typography size='large' weight='semibold'>
           {value}
