@@ -29,3 +29,4 @@ page
     'With initial value specified'
   ) // picasso-skip-visuals
   .addExample('DatePicker/story/WithInputProps.example.tsx', 'With Input Props') // picasso-skip-visuals
+  .addExample('DatePicker/story/Autocomplete.example.tsx', 'Autocomplete') // picasso-skip-visuals

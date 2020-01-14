@@ -26,7 +26,6 @@ export interface Props
       | 'value'
       | 'onSelect'
       | 'type'
-      | 'autoComplete'
       | 'multiline'
       | 'rows'
       | 'defaultValue'
@@ -76,6 +75,7 @@ export const DatePicker = (props: Props) => {
     value,
     width,
     icon,
+    autoComplete,
     ...rest
   } = props
   const classes = useStyles(props)
@@ -224,6 +224,7 @@ export const DatePicker = (props: Props) => {
         <Input
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...inputProps}
+          autoComplete={autoComplete}
           ref={inputRef}
           error={showError}
           onKeyDown={handleInputKeydown}
@@ -264,7 +265,8 @@ DatePicker.defaultProps = {
   hideOnSelect: true,
   onBlur: () => {},
   editDateFormat: DEFAULT_EDIT_DATE_FORMAT,
-  displayDateFormat: DEFAULT_DISPLAY_DATE_FORMAT
+  displayDateFormat: DEFAULT_DISPLAY_DATE_FORMAT,
+  autoComplete: 'off'
 }
 
 DatePicker.displayName = 'DatePicker'
