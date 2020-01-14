@@ -21,6 +21,7 @@ page
       }
     }
   })
+  .addExample('Input/story/FinalForm.example.tsx', 'FinalForm')
   .addExample('Input/story/Default.example.jsx', 'Default')
   .addExample('Input/story/Disabled.example.jsx', 'Disabled')
   .addExample('Input/story/Error.example.jsx', 'Error')

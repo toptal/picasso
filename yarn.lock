@@ -9078,6 +9078,13 @@ fill-range@^7.0.1:
   dependencies:
     to-regex-range "^5.0.1"
 
+final-form@^4.18.6:
+  version "4.18.6"
+  resolved "https://registry.yarnpkg.com/final-form/-/final-form-4.18.6.tgz#3539c53d04e6603a0cc11c78dc830755add986d4"
+  integrity sha512-LssWTXTGkoNv5WxowFTTUyC86oLYlEHH2glARBxOq8RpjiQdOyUyVG7qfPaCeOwoOw7Y5wrhSWdePyOydqSrCw==
+  dependencies:
+    "@babel/runtime" "^7.3.1"
+
 finalhandler@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/finalhandler/-/finalhandler-1.1.2.tgz#b7e7d000ffd11938d0fdb053506f6ebabe9f587d"
@@ -14947,7 +14954,6 @@ parse-path@^4.0.0:
 
 parse-srcset@ikatyang/parse-srcset#54eb9c1cb21db5c62b4d0e275d7249516df6f0ee:
   version "1.0.2"
-  uid "54eb9c1cb21db5c62b4d0e275d7249516df6f0ee"
   resolved "https://codeload.github.com/ikatyang/parse-srcset/tar.gz/54eb9c1cb21db5c62b4d0e275d7249516df6f0ee"
 
 parse-url@^5.0.0:
@@ -16273,6 +16279,14 @@ react-error-overlay@^5.1.6:
 react-fast-compare@2.0.4, react-fast-compare@^2.0.2, react-fast-compare@^2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-2.0.4.tgz#e84b4d455b0fec113e0402c329352715196f81f9"
+
+react-final-form@^6.3.3:
+  version "6.3.3"
+  resolved "https://registry.yarnpkg.com/react-final-form/-/react-final-form-6.3.3.tgz#8856a92278de2733f83e88c75d9ef347294a66a0"
+  integrity sha512-hFLwLpLasywky46SovNEGlym7+N+3RKge1/cg+/fVec/YY0l4g0ihgjRof6PbkiYe4qGjKbwbrvlgfZ9/Uf8vw==
+  dependencies:
+    "@babel/runtime" "^7.4.5"
+    ts-essentials "^3.0.2"
 
 react-focus-lock@^1.17.7:
   version "1.18.3"
@@ -18946,6 +18960,11 @@ tryer@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/tryer/-/tryer-1.0.1.tgz#f2c85406800b9b0f74c9f7465b81eaad241252f8"
   integrity sha512-c3zayb8/kWWpycWYg87P71E1S1ZL6b6IJxfb5fvsUgsf0S2MVGaDhDXXjDMpdCpfWXqptc+4mXwmiy1ypXqRAA==
+
+ts-essentials@^3.0.2:
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/ts-essentials/-/ts-essentials-3.0.5.tgz#34a45f9f2b3817ed6756a4a876a0543a1cedc12a"
+  integrity sha512-2aZyDplUuZ44ABrP9Z8kWzgrCLgntyro+WZMXgJOp5Lhx7e/N3eIDeDQUOHNUKDVyGrGtlOYy1WMkOrZBqLiUA==
 
 ts-jest@^24.0.2:
   version "24.0.2"
