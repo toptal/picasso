@@ -6,7 +6,7 @@ export default ({ palette }: Theme) =>
     root: {
       display: 'flex',
       flexDirection: 'column',
-      backgroundColor: alpha(palette.grey.lighter, 0.32),
+      backgroundColor: alpha(palette.grey.lighter!, 0.32),
       padding: '0.5rem 1rem',
       minWidth: rem('150px'),
       border: 'none',

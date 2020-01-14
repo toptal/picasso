@@ -18,7 +18,7 @@ export const lighten = (inputColor: string, amount: number) => {
   return colorValue.lightness(lightness + (100 - lightness) * amount).hex()
 }
 
-export const alpha = (inputColor: string | undefined, amount: number) => {
+export const alpha = (inputColor: string, amount: number) => {
   return color(inputColor)
     .alpha(amount)
     .toString()
