@@ -73,6 +73,7 @@
     "esprima": "^4.0.1",
     "esprima-walk": "^0.1.0",
     "final-form": "^4.18.6",
+    "final-form-focus": "^1.1.2",
     "fork-ts-checker-notifier-webpack-plugin": "^1.0.2",
     "fork-ts-checker-webpack-plugin": "^1.4.3",
     "fs-extra": "^8.0.1",
@@ -134,5 +135,8 @@
     "lodash": "^4.17.12",
     "**/marksy/marked": "^0.6.0",
     "**/npx/npm": "^5.7.1"
+  },
+  "dependencies": {
+    "@types/final-form-focus": "^1.1.1"
   }
 }

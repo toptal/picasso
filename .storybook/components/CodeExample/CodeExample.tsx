@@ -48,6 +48,7 @@ const imports: Record<string, object> = {
   'styled-components': styled,
   'react-router-dom': require('react-router-dom'),
   'react-final-form': require('react-final-form'),
+  'final-form-focus': require('final-form-focus').default,
   debounce: require('debounce'),
   // TODO: need to fix those direct imports
   // and use @toptal/picass-lab or @toptal/picasso packages here

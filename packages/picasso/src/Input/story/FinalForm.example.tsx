@@ -1,11 +1,21 @@
 import React from 'react'
 import { Input, Button, Form as PicassoForm } from '@toptal/picasso'
 import { Form, Field, FieldRenderProps } from 'react-final-form'
+import createDecorator from 'final-form-focus'
+
+const focusOnErrors = createDecorator()
 
 const InputAdapter = (props: FieldRenderProps<string, HTMLInputElement>) => {
-  const { input, ...rest } = props
+  const { input, meta, ...rest } = props
 
-  return <Input {...input} {...rest} />
+  return (
+    <React.Fragment>
+      <Input {...input} {...rest} error={meta.touched && meta.invalid} />
+      {meta.error && meta.touched && (
+        <PicassoForm.Error>{meta.error}</PicassoForm.Error>
+      )}
+    </React.Fragment>
+  )
 }
 
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
@@ -16,8 +26,14 @@ const FinalFormExample = () => {
     window.alert(JSON.stringify(values))
   }
 
-  const validate = () => {
-    const errors = {}
+  type Vals = { city?: string }
+
+  const validate = (values: Vals) => {
+    const errors: Vals = {}
+
+    if (!values.city) {
+      errors.city = 'Required'
+    }
 
     return errors
   }
@@ -26,6 +42,8 @@ const FinalFormExample = () => {
     <Form
       onSubmit={onSubmit}
       validate={validate}
+      decorators={[focusOnErrors]}
+      validateOnBlur
       render={({ handleSubmit }) => (
         <PicassoForm onSubmit={handleSubmit}>
           <PicassoForm.Field>
@@ -48,7 +66,9 @@ const FinalFormExample = () => {
             />
           </PicassoForm.Field>
           <PicassoForm.Field>
-            <PicassoForm.Label htmlFor='city'>City</PicassoForm.Label>
+            <PicassoForm.Label htmlFor='city' required>
+              City
+            </PicassoForm.Label>
             <Field
               name='city'
               component={InputAdapter}
