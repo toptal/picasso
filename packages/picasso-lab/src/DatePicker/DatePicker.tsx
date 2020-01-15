@@ -26,7 +26,6 @@ export interface Props
       | 'value'
       | 'onSelect'
       | 'type'
-      | 'autoComplete'
       | 'multiline'
       | 'rows'
       | 'defaultValue'
@@ -48,6 +47,8 @@ export interface Props
   editDateFormat?: string
   /** Specify icon which should be rendered inside DatePicker */
   icon?: ReactNode
+  /** Specify a value if want to enable browser autofill */
+  autoComplete?: string
 }
 
 const formatDateRange = (dates: DateRangeType, format: string) =>
@@ -76,6 +77,7 @@ export const DatePicker = (props: Props) => {
     value,
     width,
     icon,
+    autoComplete,
     ...rest
   } = props
   const classes = useStyles(props)
@@ -224,6 +226,7 @@ export const DatePicker = (props: Props) => {
         <Input
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...inputProps}
+          autoComplete={autoComplete}
           ref={inputRef}
           error={showError}
           onKeyDown={handleInputKeydown}
@@ -264,7 +267,8 @@ DatePicker.defaultProps = {
   hideOnSelect: true,
   onBlur: () => {},
   editDateFormat: DEFAULT_EDIT_DATE_FORMAT,
-  displayDateFormat: DEFAULT_DISPLAY_DATE_FORMAT
+  displayDateFormat: DEFAULT_DISPLAY_DATE_FORMAT,
+  autoComplete: 'off'
 }
 
 DatePicker.displayName = 'DatePicker'

@@ -26,7 +26,7 @@ exports[`DatePicker default render 1`] = `
         </div>
         <input
           aria-invalid="false"
-          autocomplete="none"
+          autocomplete="off"
           class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
           type="text"
           value="Dec 12, 2019"
@@ -77,7 +77,7 @@ exports[`DatePicker full width 1`] = `
         </div>
         <input
           aria-invalid="false"
-          autocomplete="none"
+          autocomplete="off"
           class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
           type="text"
           value="Dec 12, 2019"
