@@ -3,7 +3,6 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 import { Color } from '@material-ui/core'
 import { SimplePaletteColorOptions } from '@material-ui/core/styles/createPalette'
 import {
-  // SpacingEnum,
   SpacingType,
   spacingToRem,
   createPropertiesStyles
