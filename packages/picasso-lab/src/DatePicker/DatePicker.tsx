@@ -47,6 +47,8 @@ export interface Props
   editDateFormat?: string
   /** Specify icon which should be rendered inside DatePicker */
   icon?: ReactNode
+  /** Specify a value if want to enable browser autofill */
+  autoComplete?: string
 }
 
 const formatDateRange = (dates: DateRangeType, format: string) =>
