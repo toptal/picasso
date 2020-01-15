@@ -39,8 +39,10 @@ export interface Props
   onBlur?: () => void
   /** Whether calendar supports single date selection or range */
   range?: boolean
-  /** Minimal start date for calendar */
+  /** Earliest date available for selection */
   minDate?: Date
+  /** Latest date available for selection */
+  maxDate?: Date
   /** Whether calendar should be closed after date selection. True by default */
   hideOnSelect?: boolean
   /** Date format that user will see in the input */
@@ -83,6 +85,7 @@ export const DatePicker = (props: Props) => {
     icon,
     autoComplete,
     minDate,
+    maxDate,
     error,
     ...rest
   } = props
@@ -236,6 +239,7 @@ export const DatePicker = (props: Props) => {
             range={range}
             value={value}
             minDate={minDate}
+            maxDate={maxDate}
             onChange={handleCalendarChange}
             onBlur={handleBlur}
             className={classes.calendar}

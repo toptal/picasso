@@ -44,6 +44,7 @@ export interface Props
   onChange: (value: DateOrDateRangeType) => void
   onBlur?: (event: React.FocusEvent<HTMLDivElement>) => void
   minDate?: Date
+  maxDate?: Date
   range?: boolean
   value?: DateOrDateRangeType
   activeMonth?: Date
@@ -68,6 +69,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
     value,
     onChange,
     minDate,
+    maxDate,
     onBlur,
     ...rest
   } = props
@@ -163,6 +165,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
         activeMonth={activeMonth || value}
         mode={range ? 'range' : 'single'}
         minDate={minDate}
+        maxDate={maxDate}
       />
     </div>
   )

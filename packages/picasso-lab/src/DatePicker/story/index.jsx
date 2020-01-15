@@ -30,5 +30,8 @@ page
   ) // picasso-skip-visuals
   .addExample('DatePicker/story/WithInputProps.example.tsx', 'With Input Props') // picasso-skip-visuals
   .addExample('DatePicker/story/Autocomplete.example.tsx', 'Autocomplete') // picasso-skip-visuals
-  .addExample('DatePicker/story/WithMinDate.example.tsx', 'With Min Date') // picasso-skip-visuals
   .addExample('DatePicker/story/Error.example.tsx', 'Error') // picasso-skip-visuals
+  .addExample(
+    'DatePicker/story/WithSelectionLimits.example.tsx',
+    'With Selection Limits'
+  ) // picasso-skip-visuals
