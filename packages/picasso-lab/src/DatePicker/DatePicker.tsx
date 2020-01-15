@@ -145,6 +145,8 @@ export const DatePicker = (props: Props) => {
 
     hideCalendar()
     onBlur!()
+
+    setIsInputFocused(false)
   }
 
   const handleInputChange = (

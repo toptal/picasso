@@ -25,7 +25,6 @@ exports[`DatePicker default render 1`] = `
           </svg>
         </div>
         <input
-          aria-invalid="false"
           autocomplete="off"
           class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
           type="text"
@@ -76,7 +75,6 @@ exports[`DatePicker full width 1`] = `
           </svg>
         </div>
         <input
-          aria-invalid="false"
           autocomplete="off"
           class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
           type="text"
