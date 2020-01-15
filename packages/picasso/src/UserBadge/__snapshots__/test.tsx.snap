@@ -44,7 +44,7 @@ exports[`UserBadge custom name 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Container-flexstartAlignItems Container-flex UserBadge-root"
+      class="Container-flexStartAlignItems Container-flex UserBadge-root"
     >
       <div
         class="Avatar-root Avatar-xsmall"
