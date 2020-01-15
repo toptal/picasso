@@ -92,6 +92,7 @@ const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoInput' })
 
 const hasCounter = (counter: CounterType, limit?: number) =>
   limit || counter === 'entered'
+
 const getCounter = (
   counter: CounterType,
   charsLength: number,
@@ -110,22 +111,43 @@ const getCounter = (
   }
 }
 
+const getMultilineLabel = (
+  isNegative: boolean,
+  multiline?: boolean,
+  limit?: number
+) => {
+  if (!multiline) {
+    return null
+  }
+
+  if (!limit) {
+    return ' characters entered'
+  }
+
+  return isNegative ? ' over the limit' : ' characters left'
+}
+
 const LimitAdornment = (props: LimitAdornmentProps) => {
   const classes = useStyles(props)
   const { multiline, charsLength, counter, limit } = props
+
   const { limitValue, isNegative } = getCounter(counter!, charsLength!, limit)
+  const multilineLabel = getMultilineLabel(isNegative, multiline, limit)
 
   return (
     <InputAdornment
       position='end'
-      className={multiline ? classes.counterMultiline : ''}
+      className={cx({
+        [classes.limiterMultiline]: multiline
+      })}
     >
       <span
-        className={cx(classes.counter, {
-          [classes.counterNegative]: isNegative
+        className={cx(classes.limiter, {
+          [classes.limiterNegative]: isNegative
         })}
       >
         {limitValue}
+        {multilineLabel}
       </span>
     </InputAdornment>
   )
@@ -252,7 +274,9 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
       style={style}
       classes={{
         root: cx(classes.root, {
-          [classes.rootMultiline]: multiline
+          [classes.rootMultiline]: multiline,
+          [classes.rootMultilineLimiter]:
+            multiline && hasCounter(counter!, limit)
         })
       }}
       id={id}

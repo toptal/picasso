@@ -13,20 +13,29 @@ export default ({ palette }: Theme) =>
     rootMultiline: {
       height: 'auto'
     },
+    rootMultilineLimiter: {
+      minHeight: '3.75rem',
+      paddingBottom: '1.875rem'
+    },
     icon: {
       flex: '1 1 0%' // fix for IE11
     },
-    counter: {
-      color: palette.grey.main,
+    limiter: {
+      color: palette.grey.main2,
       fontSize: '0.625rem',
       lineHeight: '1rem'
     },
-    counterNegative: {
+    limiterNegative: {
       color: palette.red.main
     },
-    counterMultiline: {
-      alignSelf: 'flex-end',
-      height: '0.625rem',
-      marginBottom: '-0.25rem'
+    limiterMultiline: {
+      position: 'absolute',
+      bottom: 0,
+      width: 'calc(100% - 1.25rem)',
+      height: '1.25rem',
+      justifyContent: 'flex-start',
+      margin: 0,
+      padding: '0.25rem 0',
+      borderTop: `1px solid ${palette.grey.lighter}`
     }
   })
