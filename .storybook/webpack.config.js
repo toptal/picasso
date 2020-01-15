@@ -63,6 +63,10 @@ module.exports = ({ config }) => {
     '@toptal/picasso-lab': path.resolve(
       __dirname,
       '../packages/picasso-lab/src/index'
+    ),
+    '@toptal/picasso-forms': path.resolve(
+      __dirname,
+      '../packages/picasso-forms/src/index'
     )
   }
 
