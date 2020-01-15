@@ -43,6 +43,7 @@ export interface Props
     Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'onBlur'> {
   onChange: (value: DateOrDateRangeType) => void
   onBlur?: (event: React.FocusEvent<HTMLDivElement>) => void
+  minDate?: Date
   range?: boolean
   value?: DateOrDateRangeType
   activeMonth?: Date
@@ -61,7 +62,15 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
   ref
 ) {
   const classes = useStyles(props)
-  const { range = false, activeMonth, value, onChange, onBlur, ...rest } = props
+  const {
+    range = false,
+    activeMonth,
+    value,
+    onChange,
+    minDate,
+    onBlur,
+    ...rest
+  } = props
 
   const handleChange = (selection: Date | SimpleReactCalendarRangeType) => {
     if (isDateRange(selection)) {
@@ -153,6 +162,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
         }}
         activeMonth={activeMonth || value}
         mode={range ? 'range' : 'single'}
+        minDate={minDate}
       />
     </div>
   )
