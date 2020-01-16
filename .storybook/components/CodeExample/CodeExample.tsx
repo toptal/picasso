@@ -54,6 +54,7 @@ const imports: Record<string, object> = {
   '@toptal/picasso': require('../../../packages/picasso'),
   '@toptal/picasso-lab': require('../../../packages/picasso-lab'),
   '@toptal/picasso-forms': require('../../../packages/picasso-forms'),
+  '@toptal/picasso-forms/utils': require('../../../packages/picasso-forms/src/utils'),
   '@toptal/picasso/utils': require('../../../packages/picasso/src/utils'),
   '@toptal/picasso/Icon': require('../../../packages/picasso/src/Icon')
 }

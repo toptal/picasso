@@ -1,33 +1,31 @@
 import React, { ReactNode } from 'react'
 import { render } from '@testing-library/react'
-import { Form } from 'react-final-form'
 import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
+import { Button } from '@toptal/picasso'
 
-import FormInput, { Props } from './FormInput'
+import Form, { Props } from './Form'
 
 const renderFormInput = (
   children: ReactNode,
   props: OmitInternalProps<Props>
 ) => {
-  const { name } = props
+  const { onSubmit } = props
 
   return render(
     <Picasso loadFonts={false}>
-      <Form
-        onSubmit={values => console.log(values)}
-        render={() => (
-          <React.Fragment>
-            <FormInput name={name}>{children}</FormInput>
-          </React.Fragment>
-        )}
-      />
+      <Form onSubmit={onSubmit}>
+        <Form.Input name='test' placeholder='test input' />
+        <Button type='submit'>Submit</Button>
+      </Form>
     </Picasso>
   )
 }
 
 describe('FormInput', () => {
   test('default render', () => {
-    const { container } = renderFormInput(null, { name: 'test' })
+    const { container } = renderFormInput(null, {
+      onSubmit: values => console.log(values)
+    })
 
     expect(container).toMatchSnapshot()
   })
