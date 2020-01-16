@@ -35,6 +35,8 @@ export interface Props
   value?: ValueType
   /** Whether `Input` should be rendered as `TextArea` or not */
   multiline?: boolean
+  /** If true, the input element will be focused during the first mount */
+  autoFocus?: boolean
   /** Specify rows amount for `TextArea` */
   rows?: string | number
   /* Maximum number of rows to display when multiline option is set to true. */
@@ -60,6 +62,7 @@ const OutlinedInput = forwardRef<HTMLInputElement, Props>(
       className,
       style,
       multiline,
+      autoFocus,
       rows,
       rowsMax,
       width,
@@ -104,6 +107,7 @@ const OutlinedInput = forwardRef<HTMLInputElement, Props>(
         startAdornment={startAdornment}
         endAdornment={endAdornment}
         multiline={multiline}
+        autoFocus={autoFocus}
         rows={rows}
         rowsMax={rowsMax}
         onChange={onChange}
