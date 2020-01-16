@@ -102,7 +102,7 @@ exports[`shows counter for multiline input 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root PicassoInput-root PicassoInput-rootMultiline OutlinedInput-rootAuto OutlinedInput-rootMedium MuiInputBase-multiline MuiOutlinedInput-multiline MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+      class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root PicassoInput-root PicassoInput-rootMultiline PicassoInput-rootMultilineLimiter OutlinedInput-rootAuto OutlinedInput-rootMedium MuiInputBase-multiline MuiOutlinedInput-multiline MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
     >
       <textarea
         autocomplete="none"
@@ -110,12 +110,13 @@ exports[`shows counter for multiline input 1`] = `
         rows="4"
       />
       <div
-        class="MuiInputAdornment-root InputAdornment-root PicassoInput-counterMultiline MuiInputAdornment-positionEnd"
+        class="MuiInputAdornment-root InputAdornment-root PicassoInput-limiterMultiline MuiInputAdornment-positionEnd"
       >
         <span
-          class="PicassoInput-counter"
+          class="PicassoInput-limiter"
         >
           10
+           characters left
         </span>
       </div>
       <fieldset
@@ -155,7 +156,7 @@ exports[`shows counter for regular input 1`] = `
         class="MuiInputAdornment-root InputAdornment-root MuiInputAdornment-positionEnd"
       >
         <span
-          class="PicassoInput-counter"
+          class="PicassoInput-limiter"
         >
           10
         </span>
