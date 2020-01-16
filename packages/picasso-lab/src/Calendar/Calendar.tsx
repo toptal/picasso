@@ -44,9 +44,11 @@ export interface Props
   onChange: (value: DateOrDateRangeType) => void
   onBlur?: (event: React.FocusEvent<HTMLDivElement>) => void
   minDate?: Date
+  maxDate?: Date
   range?: boolean
   value?: DateOrDateRangeType
   activeMonth?: Date
+  disabledIntervals?: { start: Date; end: Date }[]
 }
 
 function isDateRange(
@@ -63,11 +65,13 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
 ) {
   const classes = useStyles(props)
   const {
-    range = false,
+    range,
     activeMonth,
     value,
     onChange,
     minDate,
+    maxDate,
+    disabledIntervals,
     onBlur,
     ...rest
   } = props
@@ -91,6 +95,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
           return <div className={classes.root}>{children}</div>
         }}
         renderDay={({
+          isDisabled,
           isSelected,
           isSelectable,
           isToday,
@@ -109,7 +114,9 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
                 [classes.selected]: isSelected,
                 [classes.selectable]: isSelectable,
                 [classes.today]: isToday,
-                [classes.grayed]: (isMonthPrev || isMonthNext) && !isSelected,
+                [classes.grayed]:
+                  (isMonthPrev || isMonthNext) && !isSelected && !isDisabled,
+                [classes.disabled]: isDisabled,
                 [classes.startSelection]: isSelectionStart,
                 [classes.endSelection]: isSelectionEnd
               })}
@@ -163,13 +170,16 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
         activeMonth={activeMonth || value}
         mode={range ? 'range' : 'single'}
         minDate={minDate}
+        maxDate={maxDate}
+        disabledIntervals={disabledIntervals}
       />
     </div>
   )
 })
 
 Calendar.defaultProps = {
-  onBlur: () => {}
+  onBlur: () => {},
+  range: false
 }
 
 Calendar.displayName = 'Calendar'

@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
 
 export interface DayProps {
+  isDisabled: boolean
   isSelected: boolean
   isSelectable: boolean
   isToday: boolean

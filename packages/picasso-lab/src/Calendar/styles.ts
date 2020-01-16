@@ -97,5 +97,8 @@ export default ({ palette, shadows }: Theme) =>
     },
     grayed: {
       color: palette.grey.main2
+    },
+    disabled: {
+      color: palette.grey.main
     }
   })
