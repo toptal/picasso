@@ -47,6 +47,8 @@ export interface Props
   hideOnSelect?: boolean
   /** Date format that user will see in the input */
   displayDateFormat?: string
+  /** Date range where selection is not allowed */
+  disabledIntervals?: [Date, Date][]
   /** Date format that user will see during manual input */
   editDateFormat?: string
   /** Specify icon which should be rendered inside DatePicker */
@@ -86,6 +88,7 @@ export const DatePicker = (props: Props) => {
     autoComplete,
     minDate,
     maxDate,
+    disabledIntervals,
     error,
     ...rest
   } = props
@@ -240,6 +243,7 @@ export const DatePicker = (props: Props) => {
             value={value}
             minDate={minDate}
             maxDate={maxDate}
+            disabledIntervals={disabledIntervals}
             onChange={handleCalendarChange}
             onBlur={handleBlur}
             className={classes.calendar}

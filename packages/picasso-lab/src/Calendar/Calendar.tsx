@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useMemo } from 'react'
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import SimpleReactCalendar from 'simple-react-calendar'
@@ -48,6 +48,7 @@ export interface Props
   range?: boolean
   value?: DateOrDateRangeType
   activeMonth?: Date
+  disabledIntervals?: [Date, Date][]
 }
 
 function isDateRange(
@@ -70,6 +71,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
     onChange,
     minDate,
     maxDate,
+    disabledIntervals,
     onBlur,
     ...rest
   } = props
@@ -83,6 +85,13 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
       onChange(selection)
     }
   }
+
+  const normalizedDisabledIntervals = useMemo(() => {
+    return (
+      disabledIntervals &&
+      disabledIntervals.map(([start, end]) => ({ start, end }))
+    )
+  }, disabledIntervals)
 
   return (
     <div {...rest} ref={ref} onBlur={onBlur}>
@@ -111,7 +120,9 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
                 [classes.selected]: isSelected,
                 [classes.selectable]: isSelectable,
                 [classes.today]: isToday,
-                [classes.grayed]: (isMonthPrev || isMonthNext) && !isSelected,
+                [classes.grayed]:
+                  ((isMonthPrev || isMonthNext) && !isSelected) ||
+                  !isSelectable,
                 [classes.startSelection]: isSelectionStart,
                 [classes.endSelection]: isSelectionEnd
               })}
@@ -166,6 +177,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
         mode={range ? 'range' : 'single'}
         minDate={minDate}
         maxDate={maxDate}
+        disabledIntervals={normalizedDisabledIntervals}
       />
     </div>
   )
