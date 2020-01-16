@@ -1,4 +1,4 @@
-import React, { forwardRef, useMemo } from 'react'
+import React, { forwardRef } from 'react'
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import SimpleReactCalendar from 'simple-react-calendar'
@@ -48,7 +48,7 @@ export interface Props
   range?: boolean
   value?: DateOrDateRangeType
   activeMonth?: Date
-  disabledIntervals?: [Date, Date][]
+  disabledIntervals?: { start: Date; end: Date }[]
 }
 
 function isDateRange(
@@ -65,7 +65,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
 ) {
   const classes = useStyles(props)
   const {
-    range = false,
+    range,
     activeMonth,
     value,
     onChange,
@@ -86,13 +86,6 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
     }
   }
 
-  const normalizedDisabledIntervals = useMemo(() => {
-    return (
-      disabledIntervals &&
-      disabledIntervals.map(([start, end]) => ({ start, end }))
-    )
-  }, disabledIntervals)
-
   return (
     <div {...rest} ref={ref} onBlur={onBlur}>
       <SimpleReactCalendar
@@ -102,6 +95,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
           return <div className={classes.root}>{children}</div>
         }}
         renderDay={({
+          isDisabled,
           isSelected,
           isSelectable,
           isToday,
@@ -121,8 +115,8 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
                 [classes.selectable]: isSelectable,
                 [classes.today]: isToday,
                 [classes.grayed]:
-                  ((isMonthPrev || isMonthNext) && !isSelected) ||
-                  !isSelectable,
+                  (isMonthPrev || isMonthNext) && !isSelected && !isDisabled,
+                [classes.disabled]: isDisabled,
                 [classes.startSelection]: isSelectionStart,
                 [classes.endSelection]: isSelectionEnd
               })}
@@ -177,14 +171,15 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
         mode={range ? 'range' : 'single'}
         minDate={minDate}
         maxDate={maxDate}
-        disabledIntervals={normalizedDisabledIntervals}
+        disabledIntervals={disabledIntervals}
       />
     </div>
   )
 })
 
 Calendar.defaultProps = {
-  onBlur: () => {}
+  onBlur: () => {},
+  range: false
 }
 
 Calendar.displayName = 'Calendar'

@@ -48,7 +48,7 @@ export interface Props
   /** Date format that user will see in the input */
   displayDateFormat?: string
   /** Date range where selection is not allowed */
-  disabledIntervals?: [Date, Date][]
+  disabledIntervals?: { start: Date; end: Date }[]
   /** Date format that user will see during manual input */
   editDateFormat?: string
   /** Specify icon which should be rendered inside DatePicker */
