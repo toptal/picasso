@@ -23,6 +23,9 @@ export default ({ palette }: Theme) =>
     yellow: {
       color: palette.yellow.main
     },
+    white: {
+      color: palette.common.white
+    },
     lightGrey: {
       color: palette.grey.light
     },
