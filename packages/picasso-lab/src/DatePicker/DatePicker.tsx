@@ -11,7 +11,7 @@ import formatDate from 'date-fns/format'
 import isValid from 'date-fns/isValid'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
-import { Container, Input, Form, InputAdornment } from '@toptal/picasso'
+import { Container, Input, InputAdornment } from '@toptal/picasso'
 import Popper from '@toptal/picasso/Popper'
 import { Props as InputProps } from '@toptal/picasso/Input'
 import { Calendar16 } from '@toptal/picasso/Icon'
@@ -51,6 +51,8 @@ export interface Props
   icon?: ReactNode
   /** Specify a value if want to enable browser autofill */
   autoComplete?: string
+  /** Indicate whether `DatePicker`'s input is in error state */
+  error?: boolean
 }
 
 const formatDateRange = (dates: DateRangeType, format: string) =>
@@ -81,17 +83,15 @@ export const DatePicker = (props: Props) => {
     icon,
     autoComplete,
     minDate,
+    error,
     ...rest
   } = props
   const classes = useStyles(props)
 
   const inputProps = rest
-  const errorMessage = `Entered date is invalid, please, check the format "${editDateFormat!.toLowerCase()}"`
 
   const [calendarIsShown, setCalendarIsShown] = useState(false)
   const [isInputFocused, setIsInputFocused] = useState(false)
-  const [error, setError] = useState('')
-  const [showError, setShowError] = useState(false)
   const [inputValue, setInputValue] = useState(EMPTY_INPUT_VALUE)
 
   const hideCalendar = () => setCalendarIsShown(false)
@@ -146,16 +146,7 @@ export const DatePicker = (props: Props) => {
     hideCalendar()
     onBlur!()
 
-    if (error) {
-      setShowError(true)
-    } else {
-      setIsInputFocused(false)
-    }
-  }
-
-  const resetError = () => {
-    setError('')
-    setShowError(false)
+    setIsInputFocused(false)
   }
 
   const handleInputChange = (
@@ -173,10 +164,6 @@ export const DatePicker = (props: Props) => {
 
     if (isDateValid(nextInputValue, editDateFormat!)) {
       onChange(new Date(nextInputValue))
-
-      resetError()
-    } else {
-      setError(errorMessage)
     }
   }
 
@@ -192,10 +179,6 @@ export const DatePicker = (props: Props) => {
     if (hideOnSelect) {
       focus()
       hideCalendar()
-    }
-
-    if (error) {
-      resetError()
     }
   }
 
@@ -231,7 +214,7 @@ export const DatePicker = (props: Props) => {
           {...inputProps}
           autoComplete={autoComplete}
           ref={inputRef}
-          error={showError}
+          error={error}
           onKeyDown={handleInputKeydown}
           onClick={handleFocusOrClick}
           onFocus={handleFocusOrClick}
@@ -241,8 +224,6 @@ export const DatePicker = (props: Props) => {
           startAdornment={startAdornment}
           width={width}
         />
-
-        {showError && <Form.Error>{error}</Form.Error>}
       </Container>
       {inputWrapperRef.current && (
         <Popper
