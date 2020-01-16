@@ -44,3 +44,15 @@ test('shows counter for multiline input', () => {
 
   expect(container).toMatchSnapshot()
 })
+
+test('is focused when autoFocus', () => {
+  const { getByPlaceholderText } = render(
+    <Picasso loadFonts={false}>
+      <Input autoFocus placeholder='test input' />
+    </Picasso>
+  )
+
+  const input = getByPlaceholderText('test input')
+
+  expect(document.activeElement).toEqual(input)
+})
