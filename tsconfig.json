@@ -21,6 +21,8 @@
       "@toptal/picasso": ["packages/picasso/src/index"],
       "@toptal/picasso-lab/*": ["packages/picasso-lab/src/*"],
       "@toptal/picasso-lab": ["packages/picasso-lab/src/index"],
+      "@toptal/picasso-forms/*": ["packages/picasso-forms/src/*"],
+      "@toptal/picasso-forms": ["packages/picasso-forms/src/index"],
       "*": ["@types/*"]
     }
   },

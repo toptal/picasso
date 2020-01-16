@@ -52,6 +52,7 @@ RUN yarn install --frozen-lockfile
 RUN chmod a+rw /app
 RUN chmod a+rw /app/packages/picasso
 RUN chmod a+rw /app/packages/picasso-lab
+RUN chmod a+rw /app/packages/picasso-forms
 RUN chmod a+rw /app/packages/shared
 RUN chmod a+rw /app/packages/picasso/CHANGELOG.md
 RUN chmod a+rw /app/packages/picasso-lab/CHANGELOG.md

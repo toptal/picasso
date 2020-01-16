@@ -47,11 +47,13 @@ const imports: Record<string, object> = {
   react: React,
   'styled-components': styled,
   'react-router-dom': require('react-router-dom'),
+  'react-final-form': require('react-final-form'),
   debounce: require('debounce'),
   // TODO: need to fix those direct imports
   // and use @toptal/picass-lab or @toptal/picasso packages here
   '@toptal/picasso': require('../../../packages/picasso'),
   '@toptal/picasso-lab': require('../../../packages/picasso-lab'),
+  '@toptal/picasso-forms': require('../../../packages/picasso-forms'),
   '@toptal/picasso/utils': require('../../../packages/picasso/src/utils'),
   '@toptal/picasso/Icon': require('../../../packages/picasso/src/Icon')
 }
@@ -123,6 +125,10 @@ class CodeExample extends Component<Props> {
 
     try {
       return require(`!raw-loader!~/packages/picasso-lab/src/${src}`).default
+    } catch {}
+
+    try {
+      return require(`!raw-loader!~/packages/picasso-forms/src/${src}`).default
     } catch {}
 
     try {
