@@ -65,7 +65,7 @@ export const PageBanner = forwardRef<HTMLDivElement, Props>(function PageBanner(
             {icon}
           </Container>
         )}
-        {children}
+        <div>{children}</div>
       </Container>
     </Container>
   )
