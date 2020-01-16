@@ -27,9 +27,7 @@ const justifyContentVariants = [
   'space-evenly'
 ] as const
 
-export type AlignItemsType = typeof alignItemsVariants[number]
-
-export type JustifyContentType = typeof justifyContentVariants[number]
+const directionVariants = ['top', 'left', 'bottom', 'right'] as const
 
 const spacingVariants = [
   'xsmall',
@@ -38,6 +36,12 @@ const spacingVariants = [
   'large',
   'xlarge'
 ] as const
+
+export type AlignItemsType = typeof alignItemsVariants[number]
+export type JustifyContentType = typeof justifyContentVariants[number]
+type Direction = typeof directionVariants[number]
+type Spacing = typeof spacingVariants[number]
+type MapOfClasses = Record<string, Record<string, string>>
 
 const paddings = spacingVariants.reduce((acc, variant) => {
   acc[`${variant}Padding`] = {
@@ -61,17 +65,26 @@ const colorVariant = (colorOptions?: SimplePaletteColorOptions | Color) => {
   })
 }
 
-type MapOfClasses = Record<string, Record<string, string>>
+const marginClassDef = (direction: Direction, spacing: Spacing) => ({
+  [`margin${capitalize(direction)}`]: spacingToRem(spacing)
+})
 
-const margins: MapOfClasses = {}
+const marginClasses = (direction: Direction) => {
+  return {
+    [`${direction}${'xsmall'}Margin`]: marginClassDef(direction, 'xsmall'),
+    [`${direction}${'small'}Margin`]: marginClassDef(direction, 'small'),
+    [`${direction}${'medium'}Margin`]: marginClassDef(direction, 'medium'),
+    [`${direction}${'large'}Margin`]: marginClassDef(direction, 'large'),
+    [`${direction}${'xlarge'}Margin`]: marginClassDef(direction, 'xlarge')
+  }
+}
 
-spacingVariants.forEach(variant =>
-  ['top', 'left', 'bottom', 'right'].forEach(direction => {
-    margins[`${direction}${variant}Margin`] = {
-      [`margin${capitalize(direction)}`]: spacingToRem(variant)
-    }
-  })
-)
+const margins: MapOfClasses = {
+  ...marginClasses('top'),
+  ...marginClasses('left'),
+  ...marginClasses('bottom'),
+  ...marginClasses('right')
+}
 
 const alignItems: MapOfClasses = {}
 
