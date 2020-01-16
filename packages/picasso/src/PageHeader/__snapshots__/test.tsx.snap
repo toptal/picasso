@@ -15,8 +15,7 @@ exports[`Page.Header default render 1`] = `
           class="PageHeader-left"
         >
           <div
-            class="Container-flex PageHeader-logoContainer"
-            style="align-items: center;"
+            class="Container-centerAlignItems Container-flex PageHeader-logoContainer"
           >
             <svg
               class="SvgLogo-root Logo-root Logo-white PageHeader-logo"
@@ -30,15 +29,13 @@ exports[`Page.Header default render 1`] = `
             </svg>
           </div>
           <div
-            class="Container-flex"
-            style="margin-left: 1rem; align-items: center;"
+            class="Container-leftsmallMargin Container-centerAlignItems Container-flex"
           >
             <div
               class="PageHeader-divider"
             />
             <div
-              class=""
-              style="margin-left: 1rem;"
+              class="Container-leftsmallMargin"
             >
               <p
                 class="MuiTypography-root Typography-invert Typography-bodyInherit Typography-light MuiTypography-body1"
@@ -72,8 +69,7 @@ exports[`Page.Header render with link 1`] = `
           class="PageHeader-left"
         >
           <div
-            class="Container-flex PageHeader-logoContainer"
-            style="align-items: center;"
+            class="Container-centerAlignItems Container-flex PageHeader-logoContainer"
           >
             <a
               class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
@@ -92,15 +88,13 @@ exports[`Page.Header render with link 1`] = `
             </a>
           </div>
           <div
-            class="Container-flex"
-            style="margin-left: 1rem; align-items: center;"
+            class="Container-leftsmallMargin Container-centerAlignItems Container-flex"
           >
             <div
               class="PageHeader-divider"
             />
             <div
-              class=""
-              style="margin-left: 1rem;"
+              class="Container-leftsmallMargin"
             >
               <p
                 class="MuiTypography-root Typography-invert Typography-bodyInherit Typography-light MuiTypography-body1"

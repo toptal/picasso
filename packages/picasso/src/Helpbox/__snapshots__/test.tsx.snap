@@ -9,8 +9,7 @@ exports[`Helpbox default render 1`] = `
       class="Container-largePadding Container-bordered Helpbox-root"
     >
       <div
-        class=""
-        style="margin-bottom: 1rem;"
+        class="Container-bottomsmallMargin"
       >
         <h4
           class="MuiTypography-root Typography-headingSmall MuiTypography-h4"
@@ -24,8 +23,7 @@ exports[`Helpbox default render 1`] = `
         Test
       </div>
       <div
-        class="Container-flex HelpboxActions-root"
-        style="align-items: center;"
+        class="Container-centerAlignItems Container-flex HelpboxActions-root"
       >
         <button
           class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
@@ -33,8 +31,7 @@ exports[`Helpbox default render 1`] = `
           type="button"
         >
           <span
-            class="Container-flex Container-inline PicassoButton-content"
-            style="align-items: center;"
+            class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
           >
             Button
           </span>

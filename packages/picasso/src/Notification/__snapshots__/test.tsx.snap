@@ -13,8 +13,7 @@ exports[`Notification default render 1`] = `
         class="MuiSnackbarContent-message"
       >
         <div
-          class="Container-flex Notification-iconWrapper"
-          style="align-items: center;"
+          class="Container-centerAlignItems Container-flex Notification-iconWrapper"
         >
           <svg
             class="SvgInfo16-root SvgInfo16-grey"

@@ -56,8 +56,7 @@ exports[`renders Modal 1`] = `
             type="button"
           >
             <span
-              class="Container-flex Container-inline PicassoButton-content"
-              style="align-items: center;"
+              class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
             >
               Cancel
             </span>
@@ -68,8 +67,7 @@ exports[`renders Modal 1`] = `
             type="button"
           >
             <span
-              class="Container-flex Container-inline PicassoButton-content"
-              style="align-items: center;"
+              class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
             >
               Update
             </span>
@@ -99,8 +97,7 @@ exports[`useModals opens and closes modal 1`] = `
         type="button"
       >
         <span
-          class="Container-flex Container-inline PicassoButton-content"
-          style="align-items: center;"
+          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
         >
           Show
         </span>
@@ -138,8 +135,7 @@ exports[`useModals opens and closes modal 1`] = `
               type="button"
             >
               <span
-                class="Container-flex Container-inline PicassoButton-content"
-                style="align-items: center;"
+                class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
               >
                 Hide
               </span>
@@ -169,8 +165,7 @@ exports[`useModals opens and closes modal 2`] = `
         type="button"
       >
         <span
-          class="Container-flex Container-inline PicassoButton-content"
-          style="align-items: center;"
+          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
         >
           Show
         </span>
@@ -194,8 +189,7 @@ exports[`useModals shows multiple modals at the same time 1`] = `
         type="button"
       >
         <span
-          class="Container-flex Container-inline PicassoButton-content"
-          style="align-items: center;"
+          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
         >
           Show first
         </span>
@@ -207,8 +201,7 @@ exports[`useModals shows multiple modals at the same time 1`] = `
         type="button"
       >
         <span
-          class="Container-flex Container-inline PicassoButton-content"
-          style="align-items: center;"
+          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
         >
           Show second
         </span>
