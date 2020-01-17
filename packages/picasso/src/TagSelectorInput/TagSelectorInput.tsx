@@ -5,18 +5,11 @@ import { Props as InputProps } from '../Input/Input'
 import OutlinedInput from '../OutlinedInput'
 import styles from './styles'
 
-export interface Props extends InputProps {
-  /** Whether to render reset icon when there is a value in the input */
-  allowReset?: boolean
-  /** Callback invoked when reset button was clicked */
-  onResetClick?: () => void
-}
-
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme, InputProps>(styles, {
   name: 'PicassoTagSelectorInput'
 })
 
-export const TagSelectorInput = forwardRef<HTMLInputElement, Props>(
+export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
   function TagSelectorInput(props, ref) {
     const {
       id,
