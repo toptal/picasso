@@ -33,4 +33,4 @@ page
     'AutoComplete defined as email'
   )
   .addExample('Input/story/WithLimit.example.tsx', 'With Limit')
-  .addExample('Input/story/ResetButton.example.jsx', 'With reset button') // picasso-skip-visuals
+  .addExample('Input/story/ResetButton.example.tsx', 'With reset button') // picasso-skip-visuals

@@ -4,7 +4,11 @@ import { Input } from '@toptal/picasso'
 const ResetButtonExample = () => {
   const [value, setValue] = useState('Text')
 
-  const handleChange = event => {
+  const handleChange = (
+    event: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     setValue(event.target.value)
   }
 
