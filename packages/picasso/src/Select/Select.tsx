@@ -7,7 +7,8 @@ import React, {
   InputHTMLAttributes,
   useRef,
   useState,
-  Fragment
+  Fragment,
+  useLayoutEffect
 } from 'react'
 import cx from 'classnames'
 import NativeSelect from '@material-ui/core/NativeSelect'
@@ -216,11 +217,6 @@ const getSelection = (
 const isEmpty = (value: ValueType) =>
   Array.isArray(value) ? value.length === 0 : value === ''
 
-const isEqual = (val1: ValueType, val2: ValueType) =>
-  Array.isArray(val1) && Array.isArray(val2)
-    ? val1.every(value => val2.includes(value))
-    : val1 === val2
-
 const purifyProps = (props: Props) => {
   const sizeOptions: FeatureOptions<Props> = {
     featureProps: {
@@ -281,16 +277,11 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
   const [inputValue, setInputValue] = useState(select.display())
   const [options, setOptions] = useState(allOptions)
 
-  // getDerivedStateFromProps for value prop
-  // https://reactjs.org/docs/hooks-faq.html#how-do-i-implement-getderivedstatefromprops
-  const [prevValue, setPrevValue] = useState<ValueType>(value)
-
-  if (!isEqual(prevValue, value)) {
+  useLayoutEffect(() => {
     const select = getSelection(allOptions, value, getDisplayValue!)
 
     setInputValue(select.display())
-    setPrevValue(value)
-  }
+  }, [value])
 
   const filterOptions = (subStr: string) => {
     const filteredOptions = allOptions.filter(option =>
