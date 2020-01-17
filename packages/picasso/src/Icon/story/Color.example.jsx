@@ -7,7 +7,17 @@ const IconExample = () => (
     <Container inline right='small'>
       <Settings16 color='red' />
     </Container>
-    <Settings16 color='green' />
+    <Container inline right='small'>
+      <Settings16 color='green' />
+    </Container>
+    <Container
+      inline
+      right='small'
+      style={{ backgroundColor: 'black' }}
+      padded='xsmall'
+    >
+      <Settings16 color='white' />
+    </Container>
   </div>
 )
 
