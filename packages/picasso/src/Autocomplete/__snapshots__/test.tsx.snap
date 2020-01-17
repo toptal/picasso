@@ -104,6 +104,29 @@ exports[`Autocomplete static behavior default render 1`] = `
             type="text"
             value=""
           />
+          <div
+            class="MuiInputAdornment-root InputAdornment-root OutlinedInput-resetButton MuiInputAdornment-positionEnd"
+          >
+            <button
+              class="MuiButtonBase-root PicassoButton-circular PicassoButton-medium PicassoButton-transparent PicassoButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+              >
+                <svg
+                  class="SvgCloseMinor16-root PicassoButton-icon"
+                  style="min-width: 16px; min-height: 16px;"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M8.707 8l3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5z"
+                  />
+                </svg>
+              </span>
+            </button>
+          </div>
           <fieldset
             aria-hidden="true"
             class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"

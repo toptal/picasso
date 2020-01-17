@@ -15,17 +15,40 @@ exports[`TagSelector default render 1`] = `
         class="Container-flex"
       >
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium PicassoTagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium PicassoTagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
         >
           <input
             aria-autocomplete="list"
             autocomplete="none"
-            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
             placeholder="Please select..."
             style="width: auto;"
             type="text"
             value=""
           />
+          <div
+            class="MuiInputAdornment-root InputAdornment-root OutlinedInput-resetButton MuiInputAdornment-positionEnd"
+          >
+            <button
+              class="MuiButtonBase-root PicassoButton-circular PicassoButton-medium PicassoButton-transparent PicassoButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+              >
+                <svg
+                  class="SvgCloseMinor16-root PicassoButton-icon"
+                  style="min-width: 16px; min-height: 16px;"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M8.707 8l3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5z"
+                  />
+                </svg>
+              </span>
+            </button>
+          </div>
           <fieldset
             aria-hidden="true"
             class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
@@ -66,7 +89,7 @@ exports[`TagSelector preselected value 1`] = `
           class="Container-flex"
         >
           <div
-            class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium PicassoTagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+            class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium PicassoTagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
           >
             <div
               class="MuiChip-root PicassoLabel-root TagSelector-label MuiChip-deletable"
@@ -101,10 +124,33 @@ exports[`TagSelector preselected value 1`] = `
             <input
               aria-autocomplete="list"
               autocomplete="none"
-              class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+              class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
               type="text"
               value=""
             />
+            <div
+              class="MuiInputAdornment-root InputAdornment-root OutlinedInput-resetButton MuiInputAdornment-positionEnd"
+            >
+              <button
+                class="MuiButtonBase-root PicassoButton-circular PicassoButton-medium PicassoButton-transparent PicassoButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <span
+                  class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+                >
+                  <svg
+                    class="SvgCloseMinor16-root PicassoButton-icon"
+                    style="min-width: 16px; min-height: 16px;"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M8.707 8l3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5z"
+                    />
+                  </svg>
+                </span>
+              </button>
+            </div>
             <fieldset
               aria-hidden="true"
               class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
