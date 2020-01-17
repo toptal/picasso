@@ -74,7 +74,11 @@ PicassoProvider.override(({ palette, sizes: { input } }: Theme) => ({
 
 export default ({ sizes: { input } }: Theme) =>
   createStyles({
-    root: {},
+    root: {
+      '&:hover $resetButtonDirty, &$focused $resetButtonDirty': {
+        visibility: 'visible'
+      }
+    },
     rootSmall: {
       padding: '0.25rem 0.625rem',
       height: '1.5rem'
@@ -97,5 +101,9 @@ export default ({ sizes: { input } }: Theme) =>
     inputMedium: {
       fontSize: '0.8125rem'
     },
-    inputMultiline: {}
+    inputMultiline: {},
+    resetButton: {
+      visibility: 'hidden'
+    },
+    resetButtonDirty: {}
   })
