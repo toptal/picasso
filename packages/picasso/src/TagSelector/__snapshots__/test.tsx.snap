@@ -30,7 +30,7 @@ exports[`TagSelector default render 1`] = `
             class="MuiInputAdornment-root InputAdornment-root OutlinedInput-resetButton MuiInputAdornment-positionEnd"
           >
             <button
-              class="MuiButtonBase-root PicassoButton-circular PicassoButton-medium PicassoButton-transparent PicassoButton-root"
+              class="MuiButtonBase-root PicassoButton-circular PicassoButton-small PicassoButton-transparent PicassoButton-root"
               tabindex="0"
               type="button"
             >
@@ -132,7 +132,7 @@ exports[`TagSelector preselected value 1`] = `
               class="MuiInputAdornment-root InputAdornment-root OutlinedInput-resetButton MuiInputAdornment-positionEnd"
             >
               <button
-                class="MuiButtonBase-root PicassoButton-circular PicassoButton-medium PicassoButton-transparent PicassoButton-root"
+                class="MuiButtonBase-root PicassoButton-circular PicassoButton-small PicassoButton-transparent PicassoButton-root"
                 tabindex="0"
                 type="button"
               >

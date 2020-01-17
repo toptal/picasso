@@ -114,7 +114,7 @@ exports[`should show reset button 1`] = `
         class="MuiInputAdornment-root InputAdornment-root OutlinedInput-resetButton OutlinedInput-resetButtonDirty MuiInputAdornment-positionEnd"
       >
         <button
-          class="MuiButtonBase-root PicassoButton-circular PicassoButton-medium PicassoButton-transparent PicassoButton-root"
+          class="MuiButtonBase-root PicassoButton-circular PicassoButton-small PicassoButton-transparent PicassoButton-root"
           tabindex="0"
           type="button"
         >
