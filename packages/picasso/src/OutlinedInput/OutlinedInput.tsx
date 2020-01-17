@@ -105,7 +105,7 @@ const OutlinedInput = forwardRef<HTMLInputElement, Props>(
       type,
       error,
       startAdornment,
-      endAdornment: endAdornmentProp,
+      endAdornment: userDefinedEndAdornment,
       onChange,
       size,
       allowReset,
@@ -123,10 +123,10 @@ const OutlinedInput = forwardRef<HTMLInputElement, Props>(
           hasValue={Boolean(value)}
           onClick={onResetClick!}
         />
-        {endAdornmentProp}
+        {userDefinedEndAdornment}
       </Fragment>
     ) : (
-      endAdornmentProp
+      userDefinedEndAdornment
     )
 
     return (
