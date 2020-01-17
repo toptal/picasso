@@ -82,6 +82,7 @@ const ResetButton = ({
       icon={<CloseMinor16 />}
       circular
       variant='transparent'
+      size='small'
       onClick={onClick}
     />
   </InputAdornment>

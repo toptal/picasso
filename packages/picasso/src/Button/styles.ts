@@ -45,9 +45,7 @@ export default ({ palette, sizes, transitions, typography }: Theme) =>
       borderRadius: sizes.borderRadius,
       border: `solid ${sizes.borderWidth} ${palette.grey.light}`,
       fontSize: '1rem',
-      transition: `all ${transitions.duration.short}ms ${
-        transitions.easing.easeOut
-      }`,
+      transition: `all ${transitions.duration.short}ms ${transitions.easing.easeOut}`,
       transitionProperty: 'border, color, background',
 
       '&:focus, &$focused': {
@@ -187,9 +185,6 @@ export default ({ palette, sizes, transitions, typography }: Theme) =>
     },
     iconRight: {
       marginLeft: ICON_SPACING
-    },
-    iconSmall: {
-      height: `${typography.buttons.fontSizeSmall} !important`
     },
     hidden: {
       opacity: 0
