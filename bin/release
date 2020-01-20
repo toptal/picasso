@@ -5,6 +5,9 @@ BASE_PATH=$(pwd)
 
 NODE_MODULES="$BASE_PATH/node_modules/"
 
+# add github to known_hosts
+ssh-keyscan -t ssh-rsa github.com >> ~/.ssh/known_hosts
+
 # Needs to be updated for publishing package to npm	
 echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN} \	
 always-auth=true ' > .npmrc	
