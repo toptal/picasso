@@ -8,25 +8,27 @@ NODE_MODULES="$BASE_PATH/node_modules/"
 # add github to known_hosts
 ssh-keyscan -t ssh-rsa github.com >> ~/.ssh/known_hosts
 
-# Needs to be updated for publishing package to npm	
-echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN} \	
-always-auth=true ' > .npmrc	
-git update-index --assume-unchanged .npmrc
+ssh -T git@github.com
 
-# Build all packages
-npx lerna run build:dist
+# # Needs to be updated for publishing package to npm	
+# echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN} \	
+# always-auth=true ' > .npmrc	
+# git update-index --assume-unchanged .npmrc
 
-git config user.email "$GIT_COMMITTER_EMAIL"
-git config user.name "$GIT_COMMITTER_NAME"
+# # Build all packages
+# npx lerna run build:dist
 
-# Publish packages
-if [[ $RELEASE_AND_PUBLISH == "1" ]]; then
-  echo "=== WARNING RUNNING LIVE RELEASE FOR PACKAGES ==="
-  $NODE_MODULES/.bin/lerna publish --contents build
-else
-  echo "=== RUNNING TEST RELEASE FOR PACKAGES. NOTHING WILL BE PUBLISHED ==="
-  $NODE_MODULES/.bin/lerna changed
-fi
+# git config user.email "$GIT_COMMITTER_EMAIL"
+# git config user.name "$GIT_COMMITTER_NAME"
 
-# Send data about published packages to jenkins
-npx lerna changed --json | jq '.[] | .name + "-" + .version' | xargs echo > /artifacts/.version
+# # Publish packages
+# if [[ $RELEASE_AND_PUBLISH == "1" ]]; then
+#   echo "=== WARNING RUNNING LIVE RELEASE FOR PACKAGES ==="
+#   $NODE_MODULES/.bin/lerna publish --contents build
+# else
+#   echo "=== RUNNING TEST RELEASE FOR PACKAGES. NOTHING WILL BE PUBLISHED ==="
+#   $NODE_MODULES/.bin/lerna changed
+# fi
+
+# # Send data about published packages to jenkins
+# npx lerna changed --json | jq '.[] | .name + "-" + .version' | xargs echo > /artifacts/.version
