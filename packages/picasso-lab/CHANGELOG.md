@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@1.5.9...@toptal/picasso-lab@1.6.0) (2020-01-20)
+
+
+### Bug Fixes
+
+* move error handing outside of DatePicker ([#1017](https://github.com/toptal/picasso/issues/1017)) ([73d336a](https://github.com/toptal/picasso/commit/73d336a8e43b5c3456598ff96e1c98a853350a14))
+* **counterblock:** hover effect ([#1011](https://github.com/toptal/picasso/issues/1011)) ([3b95422](https://github.com/toptal/picasso/commit/3b9542228be0ce5569feac1071683f9c9ba1caa0))
+* **DatePicker:** disable autofill by default ([#1015](https://github.com/toptal/picasso/issues/1015)) ([f25af39](https://github.com/toptal/picasso/commit/f25af39b9d464c887aa1e8d1c4a810428b100bea))
+
+
+### Features
+
+* **DatePicker:** add mindate property to datepicker ([#1018](https://github.com/toptal/picasso/issues/1018)) ([1371c7f](https://github.com/toptal/picasso/commit/1371c7f30972f9bf44df502b356058002ee048c3))
+* **DatePicker:** cover limits ([#1019](https://github.com/toptal/picasso/issues/1019)) ([e27e687](https://github.com/toptal/picasso/commit/e27e68761d47b3def926ed6a9431e746f4093389))
+
+
+
+
+
 ## [1.5.9](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@1.5.8...@toptal/picasso-lab@1.5.9) (2020-01-13)
 
 **Note:** Version bump only for package @toptal/picasso-lab

@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.16.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.15.0...@toptal/picasso@4.16.0) (2020-01-20)
+
+
+### Features
+
+* **icons:** add support for white color ([#1023](https://github.com/toptal/picasso/issues/1023)) ([feedf12](https://github.com/toptal/picasso/commit/feedf12d823446115797bfc19ea9990480798345))
+* **input:** add autoFocus prop explicitly to docs ([#1020](https://github.com/toptal/picasso/issues/1020)) ([ab8ce47](https://github.com/toptal/picasso/commit/ab8ce47a205fd6d9c974dd3cd5cae825cca8be18))
+* **input:** tweak TextArea counter position ([#1012](https://github.com/toptal/picasso/issues/1012)) ([7788386](https://github.com/toptal/picasso/commit/778838692ff572950dd43b8a2bc0a64681562281))
+* **PageBanner:** handle text whitespaces ([#1022](https://github.com/toptal/picasso/issues/1022)) ([d173afe](https://github.com/toptal/picasso/commit/d173afe35dcbce3a07871636407f9dfe363ceb73))
+
+
+
+
+
 # [4.15.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.14.0...@toptal/picasso@4.15.0) (2020-01-13)
 
 
