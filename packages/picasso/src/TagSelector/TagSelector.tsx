@@ -197,6 +197,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         enableAutofill={enableAutofill}
         getDisplayValue={getDisplayValue}
         renderOption={renderOption}
+        allowReset={false}
       />
     )
   }
