@@ -18,7 +18,7 @@ const ResetButtonExample = () => {
 
   return (
     <Input
-      allowReset
+      enableReset
       onResetClick={handleResetClick}
       value={value}
       placeholder='Placeholder'

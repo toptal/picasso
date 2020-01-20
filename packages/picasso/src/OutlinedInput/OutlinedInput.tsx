@@ -58,7 +58,7 @@ export interface Props
    */
   size?: SizeType<'small' | 'medium'>
   /** Whether to render reset icon when there is a value in the input */
-  allowReset?: boolean
+  enableReset?: boolean
   /** Callback invoked when reset button was clicked */
   onResetClick?: () => void
 }
@@ -109,14 +109,14 @@ const OutlinedInput = forwardRef<HTMLInputElement, Props>(
       endAdornment: userDefinedEndAdornment,
       onChange,
       size,
-      allowReset,
+      enableReset,
       disabled,
       onResetClick,
       ...rest
     },
     ref
   ) {
-    const shouldShowReset = allowReset && !disabled
+    const shouldShowReset = enableReset && !disabled
     const endAdornment = shouldShowReset ? (
       <Fragment>
         <ResetButton

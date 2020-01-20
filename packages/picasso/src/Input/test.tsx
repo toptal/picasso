@@ -60,7 +60,7 @@ test('is focused when autoFocus', () => {
 test('should show reset button', () => {
   const { container } = render(
     <Picasso loadFonts={false}>
-      <Input allowReset value='Some value' />
+      <Input enableReset value='Some value' />
     </Picasso>
   )
 

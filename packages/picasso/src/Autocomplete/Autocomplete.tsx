@@ -75,7 +75,7 @@ export interface Props
   /** Specifies whether the autofill enabled or not, disabled by default */
   enableAutofill?: boolean
   /** Whether to render reset icon when there is a value in the input */
-  allowReset?: boolean
+  enableReset?: boolean
 }
 
 const getItemText = (item: Item | null) =>
@@ -108,7 +108,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       enableAutofill,
       autoComplete,
       getKey: customGetKey,
-      allowReset,
+      enableReset,
       ...rest
     },
     ref
@@ -145,7 +145,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       onOtherOptionSelect,
       onChange,
       onKeyDown,
-      allowReset
+      enableReset
     })
 
     const optionsLength = options ? options!.length : 0
@@ -258,7 +258,7 @@ Autocomplete.defaultProps = {
   otherOptionText: 'Other option: ',
   showOtherOption: false,
   width: 'auto',
-  allowReset: true
+  enableReset: true
 }
 
 Autocomplete.displayName = 'Autocomplete'

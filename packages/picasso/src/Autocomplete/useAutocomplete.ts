@@ -82,7 +82,7 @@ interface Props {
     inputValue: string
   ) => void
   getDisplayValue: (item: Item | null) => string
-  allowReset?: boolean
+  enableReset?: boolean
 }
 
 const useAutocomplete = ({
@@ -95,7 +95,7 @@ const useAutocomplete = ({
   onSelect = () => {},
   onOtherOptionSelect = () => {},
   getDisplayValue,
-  allowReset
+  enableReset
 }: Props) => {
   const [isOpen, setOpen] = useState<boolean>(false)
   const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null)
@@ -242,7 +242,7 @@ const useAutocomplete = ({
     },
 
     onBlur: () => setOpen(false),
-    allowReset,
+    enableReset,
     onResetClick: () => {
       handleChange(getDisplayValue(null))
     }

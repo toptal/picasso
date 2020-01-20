@@ -74,7 +74,7 @@ export interface Props
    */
   size?: SizeType<'small' | 'medium'>
   /** Whether to render reset icon when there is a value in the input */
-  allowReset?: boolean
+  enableReset?: boolean
   /** Callback invoked when reset button was clicked */
   onResetClick?: () => void
 }
@@ -259,7 +259,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
     limit,
     counter,
     size,
-    allowReset,
+    enableReset,
     onResetClick,
     ...rest
   } = purifyProps(props)
@@ -330,7 +330,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
         )
       }
       onChange={handleChange}
-      allowReset={allowReset}
+      enableReset={enableReset}
       onResetClick={onResetClick}
     >
       {children}
