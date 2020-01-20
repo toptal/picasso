@@ -56,3 +56,13 @@ test('is focused when autoFocus', () => {
 
   expect(document.activeElement).toEqual(input)
 })
+
+test('should show reset button', () => {
+  const { container } = render(
+    <Picasso loadFonts={false}>
+      <Input enableReset value='Some value' />
+    </Picasso>
+  )
+
+  expect(container).toMatchSnapshot()
+})

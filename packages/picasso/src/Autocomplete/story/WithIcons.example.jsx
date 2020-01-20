@@ -5,7 +5,7 @@ const AutocompleteIconsExample = () => (
   <div>
     <Autocomplete
       icon={<Afternoon16 />}
-      placeholder='This is autocomplete input with icon...'
+      placeholder='Autocomplete with icon...'
       value=''
     />
   </div>

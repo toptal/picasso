@@ -119,7 +119,6 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     icon: iconClass,
     iconLeft: iconLeftClass,
     iconRight: iconRightClass,
-    iconSmall: iconSmallClass,
     root: rootClass,
     hidden: hiddenClass,
     loader: loaderClass,
@@ -132,11 +131,9 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     const iconComponent = React.cloneElement(icon, {
       className: cx(iconClass, icon.props.className, {
         [iconLeftClass]: children && iconPosition === 'left',
-        [iconRightClass]: children && iconPosition === 'right',
-        [iconSmallClass]: size === 'small'
+        [iconRightClass]: children && iconPosition === 'right'
       }),
-      key: 'button-icon',
-      base: size === 'small' ? '12' : undefined
+      key: 'button-icon'
     })
 
     if (iconPosition === 'left') {

@@ -73,6 +73,10 @@ export interface Props
    * @default medium
    */
   size?: SizeType<'small' | 'medium'>
+  /** Whether to render reset icon when there is a value in the input */
+  enableReset?: boolean
+  /** Callback invoked when reset button was clicked */
+  onResetClick?: () => void
 }
 
 type LimitAdornmentProps = Pick<Props, 'multiline' | 'limit' | 'counter'> & {
@@ -255,6 +259,8 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
     limit,
     counter,
     size,
+    enableReset,
+    onResetClick,
     ...rest
   } = purifyProps(props)
 
@@ -324,6 +330,8 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
         )
       }
       onChange={handleChange}
+      enableReset={enableReset}
+      onResetClick={onResetClick}
     >
       {children}
     </OutlinedInput>
@@ -337,7 +345,8 @@ Input.defaultProps = {
   multiline: false,
   size: 'medium',
   width: 'auto',
-  onChange: () => {}
+  onChange: () => {},
+  onResetClick: () => {}
 }
 
 Input.displayName = 'Input'

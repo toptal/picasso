@@ -31,6 +31,8 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
       onChange,
       startAdornment,
       endAdornment,
+      enableReset,
+      onResetClick,
       ...rest
     } = props
 
@@ -67,6 +69,8 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
         endAdornment={usedEndAdornment}
         startAdornment={startAdornment}
         onChange={onChange}
+        enableReset={enableReset}
+        onResetClick={onResetClick}
       >
         {children}
       </OutlinedInput>

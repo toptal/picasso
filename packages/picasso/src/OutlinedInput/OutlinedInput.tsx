@@ -3,15 +3,19 @@ import React, {
   ReactType,
   ReactNode,
   InputHTMLAttributes,
-  forwardRef
+  forwardRef,
+  Fragment
 } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import MUIOutlinedInput from '@material-ui/core/OutlinedInput'
 import { InputBaseComponentProps } from '@material-ui/core/InputBase'
 import { capitalize } from '@material-ui/core/utils/helpers'
-import { StandardProps, SizeType } from '@toptal/picasso-shared'
+import { StandardProps, SizeType, Classes } from '@toptal/picasso-shared'
 
+import InputAdornment from '../InputAdornment'
+import Button from '../Button'
+import { CloseMinor16 } from '../Icon'
 import styles from './styles'
 
 type ValueType =
@@ -53,7 +57,36 @@ export interface Props
    * @default medium
    */
   size?: SizeType<'small' | 'medium'>
+  /** Whether to render reset icon when there is a value in the input */
+  enableReset?: boolean
+  /** Callback invoked when reset button was clicked */
+  onResetClick?: () => void
 }
+
+const ResetButton = ({
+  classes,
+  hasValue,
+  onClick
+}: {
+  classes: Classes
+  hasValue: boolean
+  onClick: () => void
+}) => (
+  <InputAdornment
+    position='end'
+    className={cx(classes.resetButton, {
+      [classes.resetButtonDirty]: hasValue
+    })}
+  >
+    <Button
+      icon={<CloseMinor16 />}
+      circular
+      variant='transparent'
+      size='small'
+      onClick={onClick}
+    />
+  </InputAdornment>
+)
 
 const OutlinedInput = forwardRef<HTMLInputElement, Props>(
   function OutlinedInput(
@@ -73,13 +106,30 @@ const OutlinedInput = forwardRef<HTMLInputElement, Props>(
       type,
       error,
       startAdornment,
-      endAdornment,
+      endAdornment: userDefinedEndAdornment,
       onChange,
       size,
+      enableReset,
+      disabled,
+      onResetClick,
       ...rest
     },
     ref
   ) {
+    const shouldShowReset = enableReset && !disabled
+    const endAdornment = shouldShowReset ? (
+      <Fragment>
+        <ResetButton
+          classes={classes}
+          hasValue={Boolean(value)}
+          onClick={onResetClick!}
+        />
+        {userDefinedEndAdornment}
+      </Fragment>
+    ) : (
+      userDefinedEndAdornment
+    )
+
     return (
       <MUIOutlinedInput
         // eslint-disable-next-line react/jsx-props-no-spreading
@@ -111,6 +161,7 @@ const OutlinedInput = forwardRef<HTMLInputElement, Props>(
         rows={rows}
         rowsMax={rowsMax}
         onChange={onChange}
+        disabled={disabled}
       />
     )
   }
@@ -118,7 +169,8 @@ const OutlinedInput = forwardRef<HTMLInputElement, Props>(
 
 OutlinedInput.defaultProps = {
   width: 'auto',
-  size: 'medium'
+  size: 'medium',
+  onResetClick: () => {}
 }
 
 OutlinedInput.displayName = 'OutlinedInput'
