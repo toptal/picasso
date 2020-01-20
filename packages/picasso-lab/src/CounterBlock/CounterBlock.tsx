@@ -59,11 +59,9 @@ export const CounterBlock: OverridableComponent<Props> & StaticProps =
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         ref={ref}
-        className={cx(
-          { [classes.clickable]: Boolean(onClick) },
-          classes.root,
-          className
-        )}
+        className={cx(classes.root, className, {
+          [classes.clickable]: Boolean(onClick)
+        })}
         onClick={onClick}
       >
         <Typography size='large' weight='semibold'>
