@@ -1,4 +1,4 @@
-[FX-NNNN](https://toptal-core.atlassian.net/browse/FX-NNNN)
+[FX-NNNN]
 
 ### Description
 
