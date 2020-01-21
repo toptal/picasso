@@ -7,7 +7,9 @@ import FieldWrapper, { FieldProps } from '../FieldWrapper'
 export type Props = InputProps & FieldProps<string>
 
 export const Input = (props: Props) => (
-  <FieldWrapper<string, InputProps> inputType={<PicassoInput />} {...props} />
+  <FieldWrapper<string, InputProps> {...props}>
+    {input => <PicassoInput {...input} />}
+  </FieldWrapper>
 )
 
 Input.defaultProps = {}

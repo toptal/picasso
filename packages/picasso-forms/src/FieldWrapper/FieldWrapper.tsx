@@ -13,15 +13,16 @@ const { composeValidators, required: requiredValidator } = validators
 
 type ValueType = string | number
 
-export type FieldProps<InputValue> = FinalFieldProps<
-  InputValue,
-  FieldRenderProps<InputValue, HTMLInputElement>,
+export type FieldProps<TValue> = FinalFieldProps<
+  TValue,
+  FieldRenderProps<TValue, HTMLInputElement>,
   HTMLInputElement
 >
 
-export type Props<InputValue, InputProps> = InputProps &
-  FieldProps<InputValue> & {
+export type Props<TValue, TWrappedComponentProps> = TWrappedComponentProps &
+  FieldProps<TValue> & {
     name: string
+    children: (props: any) => React.ReactNode
   }
 
 const getInputError = <T extends ValueType>(meta: FieldMetaState<T>) => {
@@ -50,22 +51,15 @@ const getValidators = (required: boolean, validate?: any) => {
   return validate
 }
 
-export const FieldWrapper = <T extends ValueType, InputProps>(
-  props: Props<T, InputProps>
+const FieldWrapper = <TValue extends ValueType, TWrappedComponentProps>(
+  props: Props<TValue, TWrappedComponentProps>
 ) => {
-  const { name, validate, hint, label, required, inputType, ...rest } = props
+  const { name, validate, hint, label, required, children, ...rest } = props
 
   return (
     <FinalField name={name} validate={getValidators(required, validate)}>
       {({ input, meta }) => {
-        const error = getInputError<T>(meta)
-        const inputElement = React.cloneElement(inputType, {
-          name,
-          meta,
-          error: Boolean(error),
-          ...rest,
-          ...input
-        })
+        const error = getInputError<TValue>(meta)
 
         return (
           <PicassoForm.Field error={error} hint={hint}>
@@ -74,7 +68,12 @@ export const FieldWrapper = <T extends ValueType, InputProps>(
                 {label}
               </PicassoForm.Label>
             )}
-            {inputElement}
+            {typeof children === 'function' &&
+              children({
+                error: Boolean(error),
+                ...rest,
+                ...input
+              })}
           </PicassoForm.Field>
         )
       }}
