@@ -4,10 +4,10 @@ import { Props as InputProps } from '@toptal/picasso/Input'
 
 import FieldWrapper, { FieldProps } from '../FieldWrapper'
 
-export type Props = InputProps & FieldProps<string>
+export type Props = InputProps & FieldProps<InputProps['value']>
 
 export const Input = (props: Props) => (
-  <FieldWrapper<string, InputProps> {...props}>
+  <FieldWrapper<InputProps['value'], InputProps> {...props}>
     {input => <PicassoInput {...input} />}
   </FieldWrapper>
 )

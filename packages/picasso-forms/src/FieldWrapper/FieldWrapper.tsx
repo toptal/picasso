@@ -11,16 +11,19 @@ import { validators } from '../utils'
 
 const { composeValidators, required: requiredValidator } = validators
 
-type ValueType = string | number
+type ValueType = string | string[] | number | undefined
 
-export type FieldProps<TValue> = FinalFieldProps<
-  TValue,
-  FieldRenderProps<TValue, HTMLInputElement>,
+export type FieldProps<TInputValue> = FinalFieldProps<
+  TInputValue,
+  FieldRenderProps<TInputValue, HTMLInputElement>,
   HTMLInputElement
 >
 
-export type Props<TValue, TWrappedComponentProps> = TWrappedComponentProps &
-  FieldProps<TValue> & {
+export type Props<
+  TInputValue,
+  TWrappedComponentProps
+> = TWrappedComponentProps &
+  FieldProps<TInputValue> & {
     name: string
     children: (props: any) => React.ReactNode
   }
@@ -51,15 +54,15 @@ const getValidators = (required: boolean, validate?: any) => {
   return validate
 }
 
-const FieldWrapper = <TValue extends ValueType, TWrappedComponentProps>(
-  props: Props<TValue, TWrappedComponentProps>
+const FieldWrapper = <TInputValue extends ValueType, TWrappedComponentProps>(
+  props: Props<TInputValue, TWrappedComponentProps>
 ) => {
   const { name, validate, hint, label, required, children, ...rest } = props
 
   return (
     <FinalField name={name} validate={getValidators(required, validate)}>
       {({ input, meta }) => {
-        const error = getInputError<TValue>(meta)
+        const error = getInputError<TInputValue>(meta)
 
         return (
           <PicassoForm.Field error={error} hint={hint}>

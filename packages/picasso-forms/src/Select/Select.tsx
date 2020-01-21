@@ -4,10 +4,10 @@ import { Props as SelectProps } from '@toptal/picasso/Select'
 
 import FieldWrapper, { FieldProps } from '../FieldWrapper'
 
-export type Props = SelectProps & FieldProps<string>
+export type Props = SelectProps & FieldProps<SelectProps['value']>
 
 export const Select = (props: Props) => (
-  <FieldWrapper<string, SelectProps> {...props}>
+  <FieldWrapper<SelectProps['value'], SelectProps> {...props}>
     {(input: SelectProps) => <PicassoSelect {...input} />}
   </FieldWrapper>
 )
