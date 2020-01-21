@@ -1,13 +1,21 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
-export default ({ palette }: Theme) =>
+export default ({ palette, screens }: Theme) =>
   createStyles({
     root: {
       display: 'flex',
       flexDirection: 'column'
     },
     container: {},
-    paper: {},
+    paper: {
+      [screens('small')]: {
+        width: '100vw',
+        height: '100vh',
+        margin: 0,
+        maxWidth: 'none',
+        maxHeight: 'none'
+      }
+    },
     small: {
       width: '32.5em'
     },
