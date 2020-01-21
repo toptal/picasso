@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.17.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.16.0...@toptal/picasso@4.17.0) (2020-01-21)
+
+
+### Features
+
+* **Autocomplete:** [FX-353] Add reset button ([#1025](https://github.com/toptal/picasso/issues/1025)) ([207135b](https://github.com/toptal/picasso/commit/207135bbf194ff8efe82c95ed4579d61354f82aa))
+
+
+
+
+
 # [4.16.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.15.0...@toptal/picasso@4.16.0) (2020-01-20)
 
 
