@@ -56,6 +56,7 @@ RUN chmod a+rw /app/packages/picasso-forms
 RUN chmod a+rw /app/packages/shared
 RUN chmod a+rw /app/packages/picasso/CHANGELOG.md
 RUN chmod a+rw /app/packages/picasso-lab/CHANGELOG.md
+RUN chmod a+rw /app/packages/picasso-forms/CHANGELOG.md
 RUN chmod a+rw /app/packages/shared/CHANGELOG.md
 RUN chmod a+rw /app/package.json
 
