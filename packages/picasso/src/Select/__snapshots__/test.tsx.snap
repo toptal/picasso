@@ -10,7 +10,7 @@ exports[`renders native select 1`] = `
     >
       <div
         aria-autocomplete="list"
-        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootFull OutlinedInput-rootMedium MuiInputBase-fullWidth"
+        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootFull OutlinedInput-rootMedium Select-nativeInput MuiInputBase-fullWidth"
       >
         <select
           aria-invalid="false"
