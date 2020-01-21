@@ -260,6 +260,8 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     ...rest
   } = purifyProps(props)
 
+  const emptySelectValue = multiple ? [] : ''
+
   const fireOnChangeEvent = ({
     event,
     value
@@ -318,17 +320,22 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     filterOptions(newValue)
   }
 
-  const handleSelect = (event: React.SyntheticEvent, option: Option) => {
+  const toggleMultipleSelectValue = (value: string[], option: Option) => {
+    const isInSelectedValues = value.includes(String(option.value))
+
+    if (isInSelectedValues) {
+      return value!.filter(value => value !== option.value)
+    } else {
+      return [...value, String(option.value)]
+    }
+  }
+  const handleSelect = (event: React.SyntheticEvent, option: Option | null) => {
     let newValue
 
-    if (multiple && Array.isArray(value)) {
-      const isInSelectedValues = value.includes(String(option.value))
-
-      if (isInSelectedValues) {
-        newValue = value!.filter(value => value !== option.value)
-      } else {
-        newValue = [...value, String(option.value)]
-      }
+    if (option === null) {
+      newValue = emptySelectValue
+    } else if (multiple && Array.isArray(value)) {
+      newValue = toggleMultipleSelectValue(value, option)
     } else {
       newValue = option.value
     }
@@ -356,8 +363,6 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     onBlur: handleBlur,
     onFocus: handleFocus
   })
-
-  const emptySelectValue = multiple ? [] : ''
 
   const iconAdornment = icon ? (
     <InputAdornment disabled={disabled} position={iconPosition!}>
@@ -477,6 +482,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
           }}
           size={size}
           role='textbox'
+          enableReset={select.isSelected()}
         />
         {dropDownIcon}
       </div>
