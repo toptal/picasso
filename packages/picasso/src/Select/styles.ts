@@ -25,6 +25,7 @@ export default ({ palette }: Theme) =>
     select: {
       width: '100%',
       zIndex: 1,
+      padding: '0.625em',
 
       '&:focus': {
         backgroundColor: 'inherit'
@@ -42,6 +43,9 @@ export default ({ palette }: Theme) =>
       '&:hover': {
         cursor: 'pointer'
       }
+    },
+    nativeInput: {
+      padding: 0
     },
     placeholder: {
       color: palette.grey.main2

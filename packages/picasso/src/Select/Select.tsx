@@ -413,6 +413,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
           width={width}
           inputProps={{ multiple }}
           size={size}
+          className={classes.nativeInput}
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...getInputProps({
             canCloseOnEnter: !multiple
