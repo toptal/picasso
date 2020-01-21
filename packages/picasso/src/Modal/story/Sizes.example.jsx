@@ -81,7 +81,7 @@ const ModalSizesExample = () => {
   }
 
   return (
-    <div id='modal-container-sizes' style={{ width: '800px', height: '50px' }}>
+    <div id='modal-container-sizes'>
       <Container flex>
         <Button onClick={handleSmallClick} data-testid='trigger-small'>
           Open small

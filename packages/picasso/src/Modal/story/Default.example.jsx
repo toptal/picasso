@@ -92,7 +92,7 @@ const ModalDefaultExample = () => {
   }
 
   return (
-    <div id='modal-container' style={{ width: '800px', height: '50px' }}>
+    <div id='modal-container'>
       <Button data-testid='open' onClick={handleClick}>
         Open
       </Button>
