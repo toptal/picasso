@@ -77,6 +77,8 @@ export interface Props
    * @default medium
    */
   size?: SizeType<'small' | 'medium'>
+  /** Whether to render reset icon which clears selected value */
+  enableReset?: boolean
 }
 
 type Selection = {
@@ -257,6 +259,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     value = multiple ? [] : '',
     getDisplayValue,
     size,
+    enableReset,
     ...rest
   } = purifyProps(props)
 
@@ -483,7 +486,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
           }}
           size={size}
           role='textbox'
-          enableReset={select.isSelected()}
+          enableReset={enableReset ? select.isSelected() : false}
         />
         {dropDownIcon}
       </div>
