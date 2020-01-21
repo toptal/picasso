@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.18.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.17.0...@toptal/picasso@4.18.0) (2020-01-21)
+
+
+### Features
+
+* **Modal:** [FX-711] Make fullscreen on small screens ([#1034](https://github.com/toptal/picasso/issues/1034)) ([bcc43e2](https://github.com/toptal/picasso/commit/bcc43e2d0961d3f870dc6a42b547b080d41edb36))
+
+
+
+
+
 # [4.17.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.16.0...@toptal/picasso@4.17.0) (2020-01-21)
 
 
