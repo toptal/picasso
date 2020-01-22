@@ -54,10 +54,13 @@ const getValidators = (required: boolean, validate?: any) => {
   return validate
 }
 
-const FieldWrapper = <TInputValue extends ValueType, TWrappedComponentProps>(
+const FieldWrapper = <
+  TWrappedComponentProps extends { value?: ValueType },
+  TInputValue extends ValueType = TWrappedComponentProps['value']
+>(
   props: Props<TInputValue, TWrappedComponentProps>
 ) => {
-  const { name, validate, hint, label, required, children, ...rest } = props
+  const { name, validate, hint, label, required, children } = props
 
   return (
     <FinalField name={name} validate={getValidators(required, validate)}>
@@ -73,9 +76,8 @@ const FieldWrapper = <TInputValue extends ValueType, TWrappedComponentProps>(
             )}
             {children({
               ...props,
-              error: Boolean(error),
-              ...rest,
-              ...input
+              ...input,
+              error: Boolean(error)
             })}
           </PicassoForm.Field>
         )

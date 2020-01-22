@@ -7,8 +7,8 @@ import FieldWrapper, { FieldProps } from '../FieldWrapper'
 export type Props = InputProps & FieldProps<InputProps['value']>
 
 export const Input = (props: Props) => (
-  <FieldWrapper<InputProps['value'], InputProps> {...props}>
-    {(input: InputProps) => <PicassoInput {...input} />}
+  <FieldWrapper<InputProps> {...props}>
+    {(inputProps: InputProps) => <PicassoInput {...inputProps} />}
   </FieldWrapper>
 )
 
