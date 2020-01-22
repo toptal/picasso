@@ -25,8 +25,10 @@ export type Props<
 > = TWrappedComponentProps &
   FieldProps<TInputValue> & {
     name: string
-    children: (props: any) => React.ReactNode
     type?: string
+    hideFieldLabel?: boolean
+    fieldType?: string
+    children: (props: any) => React.ReactNode
   }
 
 const getInputError = <T extends ValueType>(meta: FieldMetaState<T>) => {
@@ -55,13 +57,46 @@ const getValidators = (required: boolean, validate?: any) => {
   return validate
 }
 
+const getProps = ({
+  hideFieldLabel,
+  error,
+  label,
+  required
+}: {
+  hideFieldLabel?: boolean
+  error: string
+  label: string
+  required: boolean
+}) => {
+  if (hideFieldLabel) {
+    return {
+      label,
+      required
+    }
+  }
+  return {
+    error: Boolean(error)
+  }
+}
+
 const FieldWrapper = <
   TWrappedComponentProps extends { value?: ValueType },
   TInputValue extends ValueType = TWrappedComponentProps['value']
 >(
   props: Props<TInputValue, TWrappedComponentProps>
 ) => {
-  const { name, validate, hint, label, required, type, children, value } = props
+  const {
+    type,
+    hideFieldLabel,
+    name,
+    validate,
+    hint,
+    label,
+    required,
+    children,
+    value,
+    ...rest
+  } = props
 
   return (
     <FinalField
@@ -73,18 +108,20 @@ const FieldWrapper = <
       {({ input, meta }) => {
         const error = getInputError<TInputValue>(meta)
 
+        const childProps = {
+          ...rest,
+          ...input,
+          ...getProps({ hideFieldLabel, error, label, required })
+        }
+
         return (
           <PicassoForm.Field error={error} hint={hint}>
-            {label && (
+            {!hideFieldLabel && label && (
               <PicassoForm.Label required={required} htmlFor={name}>
                 {label}
               </PicassoForm.Label>
             )}
-            {children({
-              ...props,
-              ...input,
-              error: Boolean(error)
-            })}
+            {children(childProps)}
           </PicassoForm.Field>
         )
       }}
