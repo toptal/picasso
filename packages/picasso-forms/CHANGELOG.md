@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.3.1...@toptal/picasso-forms@0.4.0) (2020-01-22)
+
+
+### Features
+
+* **formselect:** create ([#1036](https://github.com/toptal/picasso/issues/1036)) ([4cc9770](https://github.com/toptal/picasso/commit/4cc97702718fd0ef73977a5712f7f9ca49faaeef))
+
+
+
+
+
 ## [0.3.1](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.3.0...@toptal/picasso-forms@0.3.1) (2020-01-22)
 
 **Note:** Version bump only for package @toptal/picasso-forms
