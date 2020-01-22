@@ -17,9 +17,11 @@ const tsLoader = {
   options: {
     configFile: tsConfigFile,
     transpileOnly: isDevelopment || env.TEST_ENV === 'visual',
-    experimentalWatchApi: isDevelopment
+    experimentalWatchApi: isDevelopment,
+    happyPackMode: true
   }
 }
+const threadLoader = [{ loader: 'cache-loader' }, { loader: 'thread-loader' }]
 
 const tsDocgenLoader = {
   loader: require.resolve('react-docgen-typescript-loader'),
@@ -48,9 +50,9 @@ module.exports = ({ config }) => {
     oneOf: [
       {
         test: PACKAGES_COMPONENT_DECLARATION_FILE_REGEXP,
-        use: defaultLoaders
+        use: [...threadLoader, ...defaultLoaders]
       },
-      { use: [tsLoader] }
+      { use: [...threadLoader, tsLoader] }
     ]
   })
 
@@ -80,7 +82,11 @@ module.exports = ({ config }) => {
 
   if (isDevelopment) {
     config.plugins.push(
-      new ForkTsCheckerWebpackPlugin(),
+      new ForkTsCheckerWebpackPlugin({
+        // needed for happyPackMode
+        // https://medium.com/webpack/typescript-webpack-super-pursuit-mode-83cc568dea79
+        checkSyntacticErrors: true
+      }),
       new ForkTsCheckerNotifierWebpackPlugin({
         title: 'Picasso',
         excludeWarnings: true,
