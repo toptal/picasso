@@ -71,12 +71,11 @@ const FieldWrapper = <TInputValue extends ValueType, TWrappedComponentProps>(
                 {label}
               </PicassoForm.Label>
             )}
-            {typeof children === 'function' &&
-              children({
-                error: Boolean(error),
-                ...rest,
-                ...input
-              })}
+            {children({
+              error: Boolean(error),
+              ...rest,
+              ...input
+            })}
           </PicassoForm.Field>
         )
       }}
