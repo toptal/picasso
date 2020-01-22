@@ -25,7 +25,7 @@ export type Props<
 > = TWrappedComponentProps &
   FieldProps<TInputValue> & {
     name: string
-    children: (props: any) => React.ReactNode
+    children: (props: TWrappedComponentProps) => React.ReactNode
   }
 
 const getInputError = <T extends ValueType>(meta: FieldMetaState<T>) => {
@@ -72,6 +72,7 @@ const FieldWrapper = <TInputValue extends ValueType, TWrappedComponentProps>(
               </PicassoForm.Label>
             )}
             {children({
+              ...props,
               error: Boolean(error),
               ...rest,
               ...input

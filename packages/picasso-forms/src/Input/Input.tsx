@@ -8,7 +8,7 @@ export type Props = InputProps & FieldProps<InputProps['value']>
 
 export const Input = (props: Props) => (
   <FieldWrapper<InputProps['value'], InputProps> {...props}>
-    {input => <PicassoInput {...input} />}
+    {(input: InputProps) => <PicassoInput {...input} />}
   </FieldWrapper>
 )
 
