@@ -67,7 +67,7 @@
     "cz-conventional-changelog": "3.0.2",
     "danger": "^9.2.2",
     "debounce": "^1.2.0",
-    "ejs": "^2.6.1",
+    "ejs": "^3.0.1",
     "escodegen": "^1.12.0",
     "eslint-config-prettier": "^6.5.0",
     "eslint-plugin-fp": "^2.3.0",
