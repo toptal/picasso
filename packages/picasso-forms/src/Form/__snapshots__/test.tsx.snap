@@ -16,7 +16,6 @@ exports[`FormInput default render 1`] = `
             aria-invalid="false"
             autocomplete="none"
             class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
-            meta="[object Object]"
             name="test"
             placeholder="test input"
             type="text"
