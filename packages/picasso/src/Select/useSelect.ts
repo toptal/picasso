@@ -90,7 +90,7 @@ interface Props {
   options?: Option[]
   enableAutofill?: boolean
   autoComplete?: any
-  onSelect?: (event: React.SyntheticEvent, item: Option) => void
+  onSelect?: (event: React.SyntheticEvent, item: Option | null) => void
   onChange?: (value: string) => void
   onKeyDown?: (
     event: KeyboardEvent<HTMLInputElement>,
@@ -135,12 +135,6 @@ const useSelect = ({
   }
 
   const handleSelect = (event: React.SyntheticEvent, item: Option | null) => {
-    const displayValue = getDisplayValue(item)
-
-    if (item === null || displayValue === null) {
-      return
-    }
-
     onSelect(event, item)
   }
 
@@ -264,6 +258,13 @@ const useSelect = ({
       }
 
       onKeyDown(event, value)
+    },
+    onResetClick: (event: React.MouseEvent<HTMLInputElement>) => {
+      // keep select options closed
+      event.stopPropagation()
+
+      setHighlightedIndex(null)
+      handleSelect(event, null)
     }
   })
 
