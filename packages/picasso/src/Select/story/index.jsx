@@ -69,3 +69,4 @@ page
     description:
       'Demonstrate auto focus capability by switching visibility of Select'
   }) // picasso-skip-visuals
+  .addExample('Select/story/ResetButton.example.jsx', 'With reset button') // picasso-skip-visuals

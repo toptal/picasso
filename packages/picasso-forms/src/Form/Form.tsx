@@ -6,6 +6,7 @@ import {
 import { Form as PicassoForm } from '@toptal/picasso'
 
 import Input from '../Input'
+import Select from '../Select'
 
 export type Props = Omit<FinalFormProps, 'validate'> & {}
 
@@ -27,5 +28,6 @@ Form.defaultProps = {}
 Form.displayName = 'Form'
 
 Form.Input = Input
+Form.Select = Select
 
 export default Form
