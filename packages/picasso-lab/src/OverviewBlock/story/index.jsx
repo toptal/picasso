@@ -33,22 +33,21 @@ page
         description: 'Counter title'
       },
       color: {
-        name: 'color',
+        name: 'variant',
         type: {
           name: 'enum',
           enums: [
-            '"blue"',
-            '"green"',
-            '"red"',
-            '"yellow"',
-            '"light-grey"',
-            '"grey"',
-            '"dark-grey"',
-            '"black"',
-            '"inherit"'
+            "'value-red'",
+            "'value-green'",
+            "'value-blue'",
+            "'value-yellow'",
+            "'label-red'",
+            "'label-green'",
+            "'label-blue'",
+            "'label-yellow'"
           ]
         },
-        description: "The color of counter's title"
+        description: 'The color variant'
       },
       as: {
         name: 'as',
