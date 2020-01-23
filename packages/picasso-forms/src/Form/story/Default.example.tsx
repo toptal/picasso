@@ -12,6 +12,15 @@ const DefaultExample = () => (
         placeholder='e.g. Bruce'
       />
       <Form.Input name='lastName' label='Last name' placeholder='e.g. Wayne' />
+      <Form.NumberInput
+        required
+        name='age'
+        label='Age'
+        placeholder='e.g. 25'
+        step='1'
+        max='100'
+        min='0'
+      />
       <Form.Select
         required
         name='kids'
