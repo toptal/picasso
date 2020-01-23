@@ -79,6 +79,9 @@ export default ({ sizes: { input } }: Theme) =>
         visibility: 'visible'
       }
     },
+    hidden: {
+      display: 'none'
+    },
     rootSmall: {
       padding: '0.25rem 0.625rem',
       height: '1.5rem'
