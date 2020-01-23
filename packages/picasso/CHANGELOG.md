@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.19.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.19.0...@toptal/picasso@4.19.1) (2020-01-23)
+
+
+### Bug Fixes
+
+* **Tooltip:** export props type ([#1041](https://github.com/toptal/picasso/issues/1041)) ([0c2abd4](https://github.com/toptal/picasso/commit/0c2abd4f8cb347bbf71a010a01c47d5e074e7692))
+
+
+
+
+
 # [4.19.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.18.0...@toptal/picasso@4.19.0) (2020-01-22)
 
 
