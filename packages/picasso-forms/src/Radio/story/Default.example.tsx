@@ -6,7 +6,7 @@ const DefaultExample = () => (
   <Container>
     <Form onSubmit={values => console.log(values)}>
       <Form.RadioGroup
-        name='radio'
+        name='color'
         required
         label="What's your favorite color?"
       >

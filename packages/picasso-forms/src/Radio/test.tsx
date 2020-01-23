@@ -8,7 +8,14 @@ const renderFormRadio = () => {
   return render(
     <Picasso loadFonts={false}>
       <Form onSubmit={() => {}}>
-        <Form.Radio name='test' placeholder='test input' />
+        <Form.RadioGroup
+          name='color'
+          required
+          label="What's your favorite color?"
+        >
+          <Form.Radio label='Crimson' value='#ed143d' />
+          <Form.Radio label='Moccasin' value='#ffe4b5' />
+        </Form.RadioGroup>
       </Form>
     </Picasso>
   )
