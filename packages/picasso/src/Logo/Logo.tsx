@@ -6,7 +6,7 @@ import { StandardProps } from '@toptal/picasso-shared'
 import { Logo as LogoIcon, LogoEmblem as LogoEmblemIcon } from '../Icon'
 import styles from './styles'
 
-type VariantType = 'blue' | 'white' | 'black'
+type VariantType = 'default' | 'white' | 'black' | 'grey' | 'blue'
 
 export interface Props extends StandardProps {
   /** Whether logo should be shown as TT emblem or full word mark */
@@ -16,7 +16,7 @@ export interface Props extends StandardProps {
 }
 
 export const Logo = forwardRef<SVGSVGElement, Props>(function Logo(
-  { classes, emblem, variant = 'blue', style, className },
+  { classes, emblem, variant = 'default', style, className },
   ref
 ) {
   const rootClass = emblem ? classes.rootEmblem : classes.root
@@ -33,7 +33,7 @@ export const Logo = forwardRef<SVGSVGElement, Props>(function Logo(
 })
 
 Logo.defaultProps = {
-  variant: 'blue'
+  variant: 'default'
 }
 
 Logo.displayName = 'Logo'
