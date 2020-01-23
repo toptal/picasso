@@ -26,7 +26,7 @@ export type Props<
   FieldProps<TInputValue> & {
     name: string
     children: (props: any) => React.ReactNode
-    type: string
+    type?: string
   }
 
 const getInputError = <T extends ValueType>(meta: FieldMetaState<T>) => {
