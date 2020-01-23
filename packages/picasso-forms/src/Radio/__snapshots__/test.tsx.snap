@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormRadio default render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <form>
+      <div
+        class="FormField-root"
+      >
+        <span
+          aria-disabled="false"
+          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root"
+          placeholder="test input"
+        >
+          <span
+            class="MuiIconButton-label"
+          >
+            <input
+              class="PrivateSwitchBase-input"
+              name="test"
+              type="radio"
+              value=""
+            />
+            <div
+              class="Radio-uncheckedIcon"
+            />
+          </span>
+        </span>
+      </div>
+    </form>
+  </div>
+</div>
+`;
