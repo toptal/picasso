@@ -1,5 +1,5 @@
 import React from 'react'
-import { CounterBlock } from '@toptal/picasso-lab'
+import { OverviewBlock } from '@toptal/picasso-lab'
 
 const DefaultExample = () => {
   const handleClick = (title: string) => {
@@ -7,28 +7,28 @@ const DefaultExample = () => {
   }
 
   return (
-    <CounterBlock.Group>
-      <CounterBlock
+    <OverviewBlock.Group>
+      <OverviewBlock
         value='4249'
         label='ACH'
         onClick={() => handleClick('ACH')}
       />
-      <CounterBlock
+      <OverviewBlock
         value='19302'
         label='Credit Card'
         onClick={() => handleClick('Credit Card')}
       />
-      <CounterBlock
+      <OverviewBlock
         value='979'
         label='PayPal'
         onClick={() => handleClick('PayPal')}
       />
-      <CounterBlock
+      <OverviewBlock
         value='803'
         label='Wire'
         onClick={() => handleClick('Wire')}
       />
-    </CounterBlock.Group>
+    </OverviewBlock.Group>
   )
 }
 

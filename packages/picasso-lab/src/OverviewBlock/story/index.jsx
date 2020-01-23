@@ -1,10 +1,10 @@
-import counterBlockGroupStory from '../../CounterBlockGroup/story'
-import { CounterBlock } from '../CounterBlock'
+import overviewBlockGroupStory from '../../OverviewBlockGroup/story'
+import { OverviewBlock } from '../OverviewBlock'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.createPage(
-  'CounterBlock',
+  'OverviewBlock',
   'Allows displaying counters.',
   'Lab'
 )
@@ -12,8 +12,8 @@ const page = PicassoBook.createPage(
 page
   .createTabChapter('Props')
   .addComponentDocs({
-    component: CounterBlock,
-    name: 'CounterBlock',
+    component: OverviewBlock,
+    name: 'OverviewBlock',
     // react-docgen-typescript doesn't work with generics, so we have to generate this
     // documentation manually
     additionalDocs: {
@@ -69,10 +69,11 @@ page
       }
     }
   })
-  .addComponentDocs(counterBlockGroupStory.componentDocs)
+  .addComponentDocs(overviewBlockGroupStory.componentDocs)
 
 page
   .createChapter()
-  .addExample('CounterBlock/story/Default.example.tsx', 'Default')
-  .addExample('CounterBlock/story/Multiline.example.tsx', 'Multi-line')
-  .addExample('CounterBlock/story/Routing.example.tsx', 'Routing')
+  .addExample('OverviewBlock/story/Default.example.tsx', 'Default')
+  .addExample('OverviewBlock/story/Multiline.example.tsx', 'Multi-line')
+  .addExample('OverviewBlock/story/Routing.example.tsx', 'Routing')
+  .addExample('OverviewBlock/story/Text.example.tsx', 'Text')

@@ -16,7 +16,22 @@ import {
 import { Typography } from '@toptal/picasso'
 
 import styles from './styles'
-import CounterBlockGroup from '../CounterBlockGroup'
+import OverviewBlockGroup from '../OverviewBlockGroup'
+
+type Variant =
+  | 'value-red'
+  | 'value-green'
+  | 'value-blue'
+  | 'value-yellow'
+  | 'label-red'
+  | 'label-green'
+  | 'label-blue'
+  | 'label-yellow'
+
+type ColorSettings = {
+  value: ColorType
+  label: ColorType
+}
 
 export type Props = BaseProps &
   HTMLAttributes<HTMLButtonElement> & {
@@ -24,8 +39,8 @@ export type Props = BaseProps &
     value: string
     /** Counter title  */
     label: string
-    /** The color of counter's title  */
-    color?: ColorType
+    /** The color variant  */
+    variant?: Variant
     /** Component used for the root node. Either a string to use a DOM element or a component. */
     as?: ElementType
     /** Callback invoked when component is clicked */
@@ -37,22 +52,36 @@ interface StaticProps {
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoCounterBlock'
+  name: 'PicassoOverviewBlock'
 })
 
-export const CounterBlock: OverridableComponent<Props> & StaticProps =
+export const OverviewBlock: OverridableComponent<Props> & StaticProps =
   // eslint-disable-next-line react/display-name
-  forwardRef<HTMLButtonElement, Props>(function CounterBlock(props, ref) {
+  forwardRef<HTMLButtonElement, Props>(function OverviewBlock(props, ref) {
     const {
       value,
       label,
-      color,
+      variant,
       as: Component = 'button',
       className,
       onClick,
       ...rest
     } = props
     const classes = useStyles(props)
+
+    const color: ColorSettings = {
+      value: 'black',
+      label: 'dark-grey'
+    }
+
+    if (variant) {
+      const [partName, colorName] = variant.split('-') as [
+        keyof ColorSettings,
+        ColorType
+      ]
+
+      color[partName] = colorName
+    }
 
     return (
       <Component
@@ -66,14 +95,14 @@ export const CounterBlock: OverridableComponent<Props> & StaticProps =
         )}
         onClick={onClick}
       >
-        <Typography size='large' weight='semibold'>
+        <Typography size='large' weight='semibold' color={color.value}>
           {value}
         </Typography>
         <Typography
           size='small'
           weight='semibold'
           className={classes.title}
-          color={color}
+          color={color.label}
         >
           {label}
         </Typography>
@@ -81,11 +110,11 @@ export const CounterBlock: OverridableComponent<Props> & StaticProps =
     )
   }) as CompoundedComponentWithRef<Props, HTMLElement, StaticProps>
 
-CounterBlock.defaultProps = {
+OverviewBlock.defaultProps = {
   as: 'button'
 }
 
-CounterBlock.Group = CounterBlockGroup
-CounterBlock.displayName = 'CounterBlock'
+OverviewBlock.Group = OverviewBlockGroup
+OverviewBlock.displayName = 'OverviewBlock'
 
-export default CounterBlock
+export default OverviewBlock
