@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.6.1...@toptal/picasso-forms@0.7.0) (2020-01-24)
+
+
+### Features
+
+* numberinput ([#1048](https://github.com/toptal/picasso/issues/1048)) ([7604b48](https://github.com/toptal/picasso/commit/7604b4869e1da9aafc2b4e6e60730b6d161ef236))
+
+
+
+
+
+## [0.6.1](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.6.0...@toptal/picasso-forms@0.6.1) (2020-01-24)
+
+**Note:** Version bump only for package @toptal/picasso-forms
+
+
+
+
+
+# [0.6.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.5.0...@toptal/picasso-forms@0.6.0) (2020-01-24)
+
+
+### Features
+
+* **formcheckbox:** create ([#1038](https://github.com/toptal/picasso/issues/1038)) ([77633f9](https://github.com/toptal/picasso/commit/77633f940446caa9da648b8832fbeaed7f83bb28))
+
+
+
+
+
+# [0.5.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.4.2...@toptal/picasso-forms@0.5.0) (2020-01-24)
+
+
+### Features
+
+* [FX-726] Add Form.Radio ([#1046](https://github.com/toptal/picasso/issues/1046)) ([6753d39](https://github.com/toptal/picasso/commit/6753d39250bc832224566184867936962d97b92f))
+
+
+
+
+
+## [0.4.2](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.4.1...@toptal/picasso-forms@0.4.2) (2020-01-24)
+
+**Note:** Version bump only for package @toptal/picasso-forms
+
+
+
+
+
 ## [0.4.1](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.4.0...@toptal/picasso-forms@0.4.1) (2020-01-23)
 
 **Note:** Version bump only for package @toptal/picasso-forms

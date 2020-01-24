@@ -1,5 +1,5 @@
 import React from 'react'
-import { CounterBlock } from '@toptal/picasso-lab'
+import { OverviewBlock } from '@toptal/picasso-lab'
 import { MemoryRouter as Router, Link, Route, Switch } from 'react-router-dom'
 
 const Index = () => <h2>Home</h2>
@@ -9,23 +9,23 @@ const Users = () => <h2>Users</h2>
 const RoutingExample = () => (
   <Router>
     <div>
-      <CounterBlock.Group>
-        <CounterBlock value='10' label='Home' as={Link} to='/' />
-        <CounterBlock
+      <OverviewBlock.Group>
+        <OverviewBlock value='10' label='Home' as={Link} to='/' />
+        <OverviewBlock
           value='11'
           label='About'
-          color='green'
+          variant='label-green'
           as={Link}
           to='/about'
         />
-        <CounterBlock
+        <OverviewBlock
           value='15'
           label='Users'
-          color='blue'
+          variant='label-blue'
           as={Link}
           to='/users'
         />
-      </CounterBlock.Group>
+      </OverviewBlock.Group>
 
       <Switch>
         <Route path='/' exact component={Index} />

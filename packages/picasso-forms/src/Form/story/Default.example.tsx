@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Container } from '@toptal/picasso'
 import { Form } from '@toptal/picasso-forms'
 
-const FieldValidationExample = () => (
+const DefaultExample = () => (
   <Container>
     <Form onSubmit={values => console.log(values)}>
       <Form.Input
@@ -12,6 +12,15 @@ const FieldValidationExample = () => (
         placeholder='e.g. Bruce'
       />
       <Form.Input name='lastName' label='Last name' placeholder='e.g. Wayne' />
+      <Form.NumberInput
+        required
+        name='age'
+        label='Age'
+        placeholder='e.g. 25'
+        step='1'
+        max='100'
+        min='0'
+      />
       <Form.Select
         required
         name='kids'
@@ -23,7 +32,11 @@ const FieldValidationExample = () => (
           { value: 3, text: '3+' }
         ]}
       />
-
+      <Form.Checkbox
+        required
+        name='legal'
+        label='I confirm that I have legal permission from the client to feature this project.'
+      />
       <Container top='small'>
         <Button type='submit'>Submit</Button>
       </Container>
@@ -31,4 +44,4 @@ const FieldValidationExample = () => (
   </Container>
 )
 
-export default FieldValidationExample
+export default DefaultExample

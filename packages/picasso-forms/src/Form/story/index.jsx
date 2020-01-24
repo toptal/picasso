@@ -8,6 +8,4 @@ page
   .createTabChapter('Props')
   .addComponentDocs({ component: Form, name: 'Form' })
 
-page
-  .createChapter()
-  .addExample('Form/story/FieldValidation.example.tsx', 'Field Validation')
+page.createChapter().addExample('Form/story/Default.example.tsx', 'Default')

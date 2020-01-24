@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormRadio default render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <form>
+      <div
+        class="FormField-root"
+      >
+        <label
+          class="FormLabel-root"
+          for="color"
+        >
+          <span
+            class="FormLabel-asterisk"
+          >
+            *
+          </span>
+          <span
+            class="FormLabel-text"
+          >
+            What's your favorite color?
+          </span>
+        </label>
+        <div
+          class="MuiFormGroup-root"
+          role="radiogroup"
+          type="radio"
+        >
+          <label
+            class="MuiFormControlLabel-root FormControlLabel-root Radio-root Radio-label"
+          >
+            <span
+              aria-disabled="false"
+              class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel"
+            >
+              <span
+                class="MuiIconButton-label"
+              >
+                <input
+                  class="PrivateSwitchBase-input"
+                  name="color"
+                  type="radio"
+                  value="#ed143d"
+                />
+                <div
+                  class="Radio-uncheckedIcon"
+                />
+              </span>
+            </span>
+            <span
+              class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+            >
+              <span
+                class="FormLabel-root FormLabel-inline"
+              >
+                <span
+                  class="FormLabel-text"
+                >
+                  Crimson
+                </span>
+              </span>
+            </span>
+          </label>
+          <label
+            class="MuiFormControlLabel-root FormControlLabel-root Radio-root Radio-label"
+          >
+            <span
+              aria-disabled="false"
+              class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel"
+            >
+              <span
+                class="MuiIconButton-label"
+              >
+                <input
+                  class="PrivateSwitchBase-input"
+                  name="color"
+                  type="radio"
+                  value="#ffe4b5"
+                />
+                <div
+                  class="Radio-uncheckedIcon"
+                />
+              </span>
+            </span>
+            <span
+              class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+            >
+              <span
+                class="FormLabel-root FormLabel-inline"
+              >
+                <span
+                  class="FormLabel-text"
+                >
+                  Moccasin
+                </span>
+              </span>
+            </span>
+          </label>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+`;
