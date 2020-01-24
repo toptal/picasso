@@ -84,6 +84,9 @@ const ResetButton = ({
       variant='transparent'
       size='small'
       onClick={onClick}
+      onFocus={(
+        event: React.FocusEvent<HTMLButtonElement | HTMLAnchorElement>
+      ) => event.stopPropagation()}
     />
   </InputAdornment>
 )
