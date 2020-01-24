@@ -30,7 +30,7 @@ export interface Props
 }
 
 // should be moved to some global interfaces place
-interface StaticProps {
+export interface StaticProps {
   Group: typeof RadioGroup
 }
 

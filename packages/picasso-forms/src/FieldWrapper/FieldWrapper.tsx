@@ -11,7 +11,7 @@ import { validators } from '../utils'
 
 const { composeValidators, required: requiredValidator } = validators
 
-type ValueType = string | string[] | number | undefined
+type ValueType = string | string[] | number | boolean | undefined
 
 export type FieldProps<TInputValue> = FinalFieldProps<
   TInputValue,
@@ -25,7 +25,8 @@ export type Props<
 > = TWrappedComponentProps &
   FieldProps<TInputValue> & {
     name: string
-    children: (props: TWrappedComponentProps) => React.ReactNode
+    children: (props: any) => React.ReactNode
+    type?: string
   }
 
 const getInputError = <T extends ValueType>(meta: FieldMetaState<T>) => {
@@ -60,10 +61,15 @@ const FieldWrapper = <
 >(
   props: Props<TInputValue, TWrappedComponentProps>
 ) => {
-  const { name, validate, hint, label, required, children } = props
+  const { name, validate, hint, label, required, type, children, value } = props
 
   return (
-    <FinalField name={name} validate={getValidators(required, validate)}>
+    <FinalField
+      name={name}
+      validate={getValidators(required, validate)}
+      type={type}
+      value={value}
+    >
       {({ input, meta }) => {
         const error = getInputError<TInputValue>(meta)
 
