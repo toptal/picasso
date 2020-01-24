@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.6.1...@toptal/picasso-forms@0.7.0) (2020-01-24)
+
+
+### Features
+
+* numberinput ([#1048](https://github.com/toptal/picasso/issues/1048)) ([7604b48](https://github.com/toptal/picasso/commit/7604b4869e1da9aafc2b4e6e60730b6d161ef236))
+
+
+
+
+
 ## [0.6.1](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.6.0...@toptal/picasso-forms@0.6.1) (2020-01-24)
 
 **Note:** Version bump only for package @toptal/picasso-forms
