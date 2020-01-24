@@ -15,6 +15,10 @@ const LogoVariantsExample = () => (
       <LogoContainer bgcolor='#ffffff' inline>
         <Logo variant='black' />
       </LogoContainer>
+
+      <LogoContainer bgcolor='#ffffff' inline>
+        <Logo variant='grey' />
+      </LogoContainer>
     </div>
 
     <Container top='large'>
@@ -28,6 +32,10 @@ const LogoVariantsExample = () => (
 
       <LogoContainer bgcolor='#ffffff' inline>
         <Logo emblem variant='black' />
+      </LogoContainer>
+
+      <LogoContainer bgcolor='#ffffff' inline>
+        <Logo emblem variant='grey' />
       </LogoContainer>
     </Container>
   </div>
