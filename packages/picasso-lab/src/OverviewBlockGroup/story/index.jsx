@@ -1,10 +1,10 @@
-import CounterBlockGroup from '../CounterBlockGroup'
+import OverviewBlockGroup from '../OverviewBlockGroup'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const componentDocs = PicassoBook.createComponentDocs(
-  CounterBlockGroup,
-  'CounterBlock.Group'
+  OverviewBlockGroup,
+  'OverviewBlock.Group'
 )
 
 export default {
