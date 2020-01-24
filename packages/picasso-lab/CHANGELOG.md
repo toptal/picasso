@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@1.6.6...@toptal/picasso-lab@2.0.0) (2020-01-24)
+
+
+### Features
+
+* **overviewblock:** refactor CounterBlock to OverviewBlock ([#1045](https://github.com/toptal/picasso/issues/1045)) ([f3e8e6a](https://github.com/toptal/picasso/commit/f3e8e6a1b724b9f4dff3bf0556987beae5864880))
+
+
+### BREAKING CHANGES
+
+* **overviewblock:** CounterBlock is replaced with OverviewBlock
+
+
+
+
+
 ## [1.6.6](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@1.6.5...@toptal/picasso-lab@1.6.6) (2020-01-24)
 
 **Note:** Version bump only for package @toptal/picasso-lab
