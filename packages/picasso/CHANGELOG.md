@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.21.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.20.0...@toptal/picasso@4.21.0) (2020-01-24)
+
+
+### Features
+
+* **logo:** replace the logo with the 2020 design ([#1044](https://github.com/toptal/picasso/issues/1044)) ([ff58ddb](https://github.com/toptal/picasso/commit/ff58ddb8592b36db6f421348053e57133d267dac))
+
+
+
+
+
 # [4.20.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.19.2...@toptal/picasso@4.20.0) (2020-01-24)
 
 
