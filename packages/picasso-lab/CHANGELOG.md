@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.5](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@1.6.4...@toptal/picasso-lab@1.6.5) (2020-01-24)
+
+**Note:** Version bump only for package @toptal/picasso-lab
+
+
+
+
+
 ## [1.6.4](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@1.6.3...@toptal/picasso-lab@1.6.4) (2020-01-23)
 
 **Note:** Version bump only for package @toptal/picasso-lab
