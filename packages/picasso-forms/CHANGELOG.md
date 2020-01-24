@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.4.2...@toptal/picasso-forms@0.5.0) (2020-01-24)
+
+
+### Features
+
+* [FX-726] Add Form.Radio ([#1046](https://github.com/toptal/picasso/issues/1046)) ([6753d39](https://github.com/toptal/picasso/commit/6753d39250bc832224566184867936962d97b92f))
+
+
+
+
+
 ## [0.4.2](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.4.1...@toptal/picasso-forms@0.4.2) (2020-01-24)
 
 **Note:** Version bump only for package @toptal/picasso-forms
