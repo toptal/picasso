@@ -73,6 +73,7 @@ page
 page
   .createChapter()
   .addExample('OverviewBlock/story/Default.example.tsx', 'Default')
+  .addExample('OverviewBlock/story/Text.example.tsx', 'Text')
+  .addExample('OverviewBlock/story/Number.example.tsx', 'Number')
   .addExample('OverviewBlock/story/Multiline.example.tsx', 'Multi-line')
   .addExample('OverviewBlock/story/Routing.example.tsx', 'Routing')
-  .addExample('OverviewBlock/story/Text.example.tsx', 'Text')
