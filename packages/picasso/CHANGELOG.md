@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.20.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.19.2...@toptal/picasso@4.20.0) (2020-01-24)
+
+
+### Features
+
+* [FX-726] Add Form.Radio ([#1046](https://github.com/toptal/picasso/issues/1046)) ([6753d39](https://github.com/toptal/picasso/commit/6753d39250bc832224566184867936962d97b92f))
+
+
+
+
+
+## [4.19.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.19.1...@toptal/picasso@4.19.2) (2020-01-24)
+
+
+### Bug Fixes
+
+* **Select:** issue with options stuck in Chrome when reset ([#1047](https://github.com/toptal/picasso/issues/1047)) ([3f8378b](https://github.com/toptal/picasso/commit/3f8378b5b8368e0207fcc6bc6c12875ffea3d38f))
+
+
+
+
+
 ## [4.19.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.19.0...@toptal/picasso@4.19.1) (2020-01-23)
 
 

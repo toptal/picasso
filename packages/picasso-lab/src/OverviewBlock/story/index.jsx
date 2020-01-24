@@ -1,10 +1,10 @@
-import counterBlockGroupStory from '../../CounterBlockGroup/story'
-import { CounterBlock } from '../CounterBlock'
+import overviewBlockGroupStory from '../../OverviewBlockGroup/story'
+import { OverviewBlock } from '../OverviewBlock'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.createPage(
-  'CounterBlock',
+  'OverviewBlock',
   'Allows displaying counters.',
   'Lab'
 )
@@ -12,8 +12,8 @@ const page = PicassoBook.createPage(
 page
   .createTabChapter('Props')
   .addComponentDocs({
-    component: CounterBlock,
-    name: 'CounterBlock',
+    component: OverviewBlock,
+    name: 'OverviewBlock',
     // react-docgen-typescript doesn't work with generics, so we have to generate this
     // documentation manually
     additionalDocs: {
@@ -33,22 +33,21 @@ page
         description: 'Counter title'
       },
       color: {
-        name: 'color',
+        name: 'variant',
         type: {
           name: 'enum',
           enums: [
-            '"blue"',
-            '"green"',
-            '"red"',
-            '"yellow"',
-            '"light-grey"',
-            '"grey"',
-            '"dark-grey"',
-            '"black"',
-            '"inherit"'
+            "'value-red'",
+            "'value-green'",
+            "'value-blue'",
+            "'value-yellow'",
+            "'label-red'",
+            "'label-green'",
+            "'label-blue'",
+            "'label-yellow'"
           ]
         },
-        description: "The color of counter's title"
+        description: 'The color variant'
       },
       as: {
         name: 'as',
@@ -69,10 +68,12 @@ page
       }
     }
   })
-  .addComponentDocs(counterBlockGroupStory.componentDocs)
+  .addComponentDocs(overviewBlockGroupStory.componentDocs)
 
 page
   .createChapter()
-  .addExample('CounterBlock/story/Default.example.tsx', 'Default')
-  .addExample('CounterBlock/story/Multiline.example.tsx', 'Multi-line')
-  .addExample('CounterBlock/story/Routing.example.tsx', 'Routing')
+  .addExample('OverviewBlock/story/Default.example.tsx', 'Default')
+  .addExample('OverviewBlock/story/Text.example.tsx', 'Text')
+  .addExample('OverviewBlock/story/Number.example.tsx', 'Number')
+  .addExample('OverviewBlock/story/Multiline.example.tsx', 'Multi-line')
+  .addExample('OverviewBlock/story/Routing.example.tsx', 'Routing')

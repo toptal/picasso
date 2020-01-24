@@ -7,10 +7,10 @@ import styles from './styles'
 type Props = HTMLAttributes<HTMLDivElement>
 
 const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoCounterBlockGroup'
+  name: 'PicassoOverviewBlockGroup'
 })
 
-const CounterBlockGroup: FunctionComponent<Props> = props => {
+const OverviewBlockGroup: FunctionComponent<Props> = props => {
   const { className, ...rest } = props
   const classes = useStyles(props)
 
@@ -23,6 +23,6 @@ const CounterBlockGroup: FunctionComponent<Props> = props => {
   )
 }
 
-CounterBlockGroup.displayName = 'CounterBlockGroup'
+OverviewBlockGroup.displayName = 'OverviewBlockGroup'
 
-export default CounterBlockGroup
+export default OverviewBlockGroup

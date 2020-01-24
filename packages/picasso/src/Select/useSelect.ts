@@ -263,6 +263,7 @@ const useSelect = ({
       // keep select options closed
       event.stopPropagation()
 
+      setOpen(false)
       setHighlightedIndex(null)
       handleSelect(event, null)
     }
