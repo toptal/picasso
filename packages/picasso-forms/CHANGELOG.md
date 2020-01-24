@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.5.0...@toptal/picasso-forms@0.6.0) (2020-01-24)
+
+
+### Features
+
+* **formcheckbox:** create ([#1038](https://github.com/toptal/picasso/issues/1038)) ([77633f9](https://github.com/toptal/picasso/commit/77633f940446caa9da648b8832fbeaed7f83bb28))
+
+
+
+
+
 # [0.5.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.4.2...@toptal/picasso-forms@0.5.0) (2020-01-24)
 
 
