@@ -103,7 +103,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
           const isShowingPlaceholder = isInputBlank && isNothingSelected
 
           inputNode.style.width = isShowingPlaceholder
-            ? 'auto'
+            ? '100%'
             : `${inputNodeLength + 2}ch`
         }
 

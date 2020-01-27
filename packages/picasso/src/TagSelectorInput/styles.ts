@@ -14,7 +14,7 @@ export default () =>
       paddingTop: TAG_SELECTOR_INPUT_GUTTER_SIZE,
 
       '& > input': {
-        width: 'auto',
+        width: '100%',
         height: rem('24px'),
         paddingLeft: rem('4px'),
         paddingRight: '0',
