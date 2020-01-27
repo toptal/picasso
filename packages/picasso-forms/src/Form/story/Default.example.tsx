@@ -32,6 +32,12 @@ const DefaultExample = () => (
           { value: 3, text: '3+' }
         ]}
       />
+      <Form.FileInput
+        required
+        name='avatar'
+        label='Avatar'
+        status='No file selected.'
+      />
       <Form.Checkbox
         required
         name='legal'

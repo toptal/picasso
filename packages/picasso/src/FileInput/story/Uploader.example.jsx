@@ -39,10 +39,7 @@ const useUploader = config => {
         return
       }
 
-      setFile({
-        name: newFile.name,
-        location: `https://picsum.photos/${Math.round(Math.random() * 1000)}`
-      })
+      setFile(newFile)
       setStatus('Success.')
     }, 2000)
   }

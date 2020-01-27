@@ -20,6 +20,9 @@ export default ({ palette, sizes: { input } }: Theme) =>
     inputValueDisabled: {
       color: alpha(palette.grey.dark!, 0.48)
     },
+    inputValueSelected: {
+      color: palette.common.black
+    },
     nativeInput: {
       display: 'none'
     },
