@@ -22,7 +22,7 @@ exports[`TagSelector default render 1`] = `
             autocomplete="none"
             class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
             placeholder="Please select..."
-            style="width: auto;"
+            style="width: 100%;"
             type="text"
             value=""
           />
