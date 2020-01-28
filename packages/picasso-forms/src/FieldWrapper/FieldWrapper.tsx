@@ -36,7 +36,7 @@ const getInputError = <T extends ValueType>(meta: FieldMetaState<T>) => {
     return null
   }
 
-  if (meta.error && (meta.modified || meta.touched)) {
+  if (meta.error && meta.touched) {
     return meta.error
   }
 
