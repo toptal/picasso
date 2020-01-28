@@ -119,12 +119,12 @@ class CodeExample extends Component<Props> {
     copyLinkButtonText: COPY_LINK_DEFAULT_TEXT
   }
 
-  async componentDidMount() {
-    const sourceCode = await this.getOriginalSourceCode()
+  componentDidMount() {
+    const sourceCode = this.getOriginalSourceCode()
     this.setState({ sourceCode })
   }
 
-  getOriginalSourceCode = async () => {
+  getOriginalSourceCode = () => {
     const { src, module } = this.props
 
     try {
