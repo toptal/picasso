@@ -36,13 +36,11 @@ const getInputError = <T extends ValueType>(meta: FieldMetaState<T>) => {
     return null
   }
 
-  if (meta.error && meta.touched) {
-    return meta.error
+  if (!meta.touched) {
+    return null
   }
 
-  if (meta.submitError && !meta.dirtySinceLastSubmit) {
-    return meta.submitError
-  }
+  return meta.error
 }
 
 const getValidators = (required: boolean, validate?: any) => {
