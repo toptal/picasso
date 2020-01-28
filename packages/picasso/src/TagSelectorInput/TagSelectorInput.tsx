@@ -41,7 +41,7 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
 
     if (endAdornment) {
       usedEndAdornment = React.cloneElement(endAdornment as ReactElement, {
-        className: classes.loaderAdornment
+        className: classes.endAdornment
       })
     }
 
@@ -50,6 +50,9 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
         ref={ref}
         style={style}
         className={classes.inputBase}
+        classes={{
+          resetButton: classes.endAdornment
+        }}
         id={id}
         name={name}
         defaultValue={defaultValue}

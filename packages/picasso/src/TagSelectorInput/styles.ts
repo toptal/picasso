@@ -14,7 +14,8 @@ export default () =>
       paddingTop: TAG_SELECTOR_INPUT_GUTTER_SIZE,
 
       '& > input': {
-        width: '100%',
+        flexGrow: 1,
+        width: 'auto',
         height: rem('24px'),
         paddingLeft: rem('4px'),
         paddingRight: '0',
@@ -23,7 +24,8 @@ export default () =>
         marginBottom: TAG_SELECTOR_INPUT_GUTTER_SIZE
       }
     },
-    loaderAdornment: {
-      marginBottom: TAG_SELECTOR_INPUT_GUTTER_SIZE
+    endAdornment: {
+      marginBottom: TAG_SELECTOR_INPUT_GUTTER_SIZE,
+      flexGrow: 0
     }
   })
