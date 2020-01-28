@@ -12,15 +12,17 @@ const DefaultExample = () => (
         placeholder='e.g. Bruce'
         autoFocus
       />
-      <Form.RadioGroup
-        name='color'
+      <Form.Select
         required
-        label="What's your favorite color?"
-      >
-        <Form.Radio label='Crimson' value='#ed143d' />
-        <Form.Radio label='Moccasin' value='#ffe4b5' />
-        <Form.Radio label='Turquoise' value='#40e0d0' />
-      </Form.RadioGroup>
+        name='kids'
+        label='How many kids do you have?'
+        width='auto'
+        options={[
+          { value: 1, text: '1' },
+          { value: 2, text: '2' },
+          { value: 3, text: '3+' }
+        ]}
+      />
 
       <Container top='small'>
         <Button type='submit'>Submit</Button>

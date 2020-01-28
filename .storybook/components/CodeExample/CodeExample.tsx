@@ -103,7 +103,8 @@ const PicassoSSR: FunctionComponent = ({ children }) => {
 
 class CodeExample extends Component<Props> {
   static defaultProps = {
-    showEditCode: true
+    showEditCode: true,
+    module: 'picasso'
   }
 
   state = {
@@ -118,10 +119,10 @@ class CodeExample extends Component<Props> {
   }
 
   getOriginalSourceCode = () => {
-    const { src } = this.props
+    const { src, module } = this.props
 
     try {
-      return require(`!raw-loader!~/packages/picasso/src/${src}`).default
+      return require(`!raw-loader!~/packages/${module}/src/${src}`).default
     } catch {}
 
     try {

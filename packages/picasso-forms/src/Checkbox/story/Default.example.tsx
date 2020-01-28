@@ -12,15 +12,11 @@ const DefaultExample = () => (
         placeholder='e.g. Bruce'
         autoFocus
       />
-      <Form.RadioGroup
-        name='color'
+      <Form.Checkbox
         required
-        label="What's your favorite color?"
-      >
-        <Form.Radio label='Crimson' value='#ed143d' />
-        <Form.Radio label='Moccasin' value='#ffe4b5' />
-        <Form.Radio label='Turquoise' value='#40e0d0' />
-      </Form.RadioGroup>
+        name='legal'
+        label='I confirm that I have legal permission from the client to feature this project.'
+      />
 
       <Container top='small'>
         <Button type='submit'>Submit</Button>

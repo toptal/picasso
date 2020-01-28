@@ -6,4 +6,11 @@ const page = PicassoBook.createPage(
   'Picasso Forms'
 )
 
-page.createChapter().addExample('Radio/story/Default.example.tsx', 'Default')
+page
+  .createChapter()
+  .addTextSection(
+    `
+Form.Radio supports all the same props which Picasso Radio supports.
+    `
+  )
+  .addExample('Radio/story/Default.example.tsx', 'Default', 'picasso-forms')
