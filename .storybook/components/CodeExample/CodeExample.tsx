@@ -101,6 +101,12 @@ const PicassoSSR: FunctionComponent = ({ children }) => {
   )
 }
 
+const requireContext = require.context(
+  '!raw-loader!~/packages/',
+  true,
+  /^((?!node_modules|build).)*\.(js|jsx|ts|tsx)$/
+)
+
 class CodeExample extends Component<Props> {
   static defaultProps = {
     showEditCode: true,
@@ -113,28 +119,28 @@ class CodeExample extends Component<Props> {
     copyLinkButtonText: COPY_LINK_DEFAULT_TEXT
   }
 
-  componentDidMount() {
-    const sourceCode = this.getOriginalSourceCode()
+  async componentDidMount() {
+    const sourceCode = await this.getOriginalSourceCode()
     this.setState({ sourceCode })
   }
 
-  getOriginalSourceCode = () => {
+  getOriginalSourceCode = async () => {
     const { src, module } = this.props
 
     try {
-      return require(`!raw-loader!~/packages/${module}/src/${src}`).default
+      return requireContext(`./${module}/src/${src}`).default
     } catch {}
 
     try {
-      return require(`!raw-loader!~/packages/picasso-lab/src/${src}`).default
+      return requireContext(`./picasso-lab/src/${src}`).default
     } catch {}
 
     try {
-      return require(`!raw-loader!~/packages/picasso-forms/src/${src}`).default
+      return requireContext(`./picasso-forms/src/${src}`).default
     } catch {}
 
     try {
-      return require(`!raw-loader!~/packages/shared/src/${src}`).default
+      return requireContext(`./shared/src/${src}`).default
     } catch {}
 
     return require(`!raw-loader!~/.storybook/stories/${src}`).default
