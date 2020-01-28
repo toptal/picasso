@@ -16,19 +16,22 @@ import FileInput from '../FileInput'
 export type Props = Omit<FinalFormProps, 'validate'> & {}
 
 export const Form = (props: Props) => {
-  const { children, ...rest } = props
+  const { children, validateOnBlur, ...rest } = props
 
   return (
     <FinalForm
       render={({ handleSubmit }) => (
         <PicassoForm onSubmit={handleSubmit}>{children}</PicassoForm>
       )}
+      validateOnBlur={validateOnBlur}
       {...rest}
     />
   )
 }
 
-Form.defaultProps = {}
+Form.defaultProps = {
+  validateOnBlur: true
+}
 
 Form.displayName = 'Form'
 
