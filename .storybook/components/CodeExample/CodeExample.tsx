@@ -104,7 +104,7 @@ const PicassoSSR: FunctionComponent = ({ children }) => {
 const requireContext = require.context(
   '!raw-loader!~/packages/',
   true,
-  /^((?!node_modules|build).)*\.(js|jsx|ts|tsx)$/
+  /^.*story.*\.(js|jsx|ts|tsx)$/
 )
 
 class CodeExample extends Component<Props> {

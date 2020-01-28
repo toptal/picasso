@@ -20,36 +20,32 @@ page
 
 page
   .createChapter()
-  .addExample(
-    'Modal/story/Default.example.jsx',
-    {
-      title: 'Default',
-      description: `
+  .addExample('Modal/story/Default.example.jsx', {
+    title: 'Default',
+    description: `
 To show the 'Modal' component you should use 'useModals' hook. And if you need
 any additional logic inside the 'Modal' component you should create a wrapper 
 component and manage the internal state there.
-`
-    },
-    {
-      effect: async (testPage, makeScreenshot) => {
-        await testPage.click('[data-testid="open"]')
-        await testPage.waitFor(100)
-        await makeScreenshot({
-          isFullScreen: true
-        })
+`,
+    effect: async (testPage, makeScreenshot) => {
+      await testPage.click('[data-testid="open"]')
+      await testPage.waitFor(100)
+      await makeScreenshot({
+        isFullScreen: true
+      })
 
-        await testPage.click('[data-testid="close"]')
-        await testPage.waitFor(100)
-        await makeScreenshot({
-          isFullScreen: true
-        })
+      await testPage.click('[data-testid="close"]')
+      await testPage.waitFor(100)
+      await makeScreenshot({
+        isFullScreen: true
+      })
 
-        await testPage.waitFor(1000)
-        await makeScreenshot()
-      }
+      await testPage.waitFor(1000)
+      await makeScreenshot()
     }
-  )
-  .addExample('Modal/story/Sizes.example.jsx', 'Sizes', {
+  })
+  .addExample('Modal/story/Sizes.example.jsx', {
+    title: 'Sizes',
     effect: async (testPage, makeScreenshot) => {
       await testPage.click('[data-testid="trigger-small"]')
       await testPage.waitFor('[data-testid="cancel"]')
@@ -74,7 +70,8 @@ component and manage the internal state there.
       })
     }
   })
-  .addExample('Modal/story/MaxHeight.example.jsx', 'Max Height', {
+  .addExample('Modal/story/MaxHeight.example.jsx', {
+    title: 'Max Height',
     effect: async (testPage, makeScreenshot) => {
       await testPage.click('[data-testid="trigger"]')
       await testPage.waitFor('[data-testid="cancel"]')
