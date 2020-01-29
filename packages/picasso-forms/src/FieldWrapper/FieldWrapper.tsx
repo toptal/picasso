@@ -40,6 +40,11 @@ const getInputError = <T extends ValueType>(meta: FieldMetaState<T>) => {
     return null
   }
 
+  // to reset errors when start typing in the field
+  if (meta.active && meta.dirty) {
+    return null
+  }
+
   return meta.error
 }
 
