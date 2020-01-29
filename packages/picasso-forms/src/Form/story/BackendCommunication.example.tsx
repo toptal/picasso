@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react'
-import { Button, Container } from '@toptal/picasso'
+import { Button, Container, Typography } from '@toptal/picasso'
 import { useNotifications } from '@toptal/picasso/utils'
 import { Form } from '@toptal/picasso-forms'
 
@@ -25,41 +25,49 @@ const BackendCommunicationExample = () => {
   }, [])
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Input
-        required
-        name='firstName'
-        label='First name'
-        placeholder='e.g. Bruce'
-      />
-      <Form.Input
-        required
-        name='lastName'
-        label='Last name'
-        placeholder='e.g. Wayne'
-      />
-
-      <Container top='small'>
-        <Button type='submit' loading={isLoading}>
-          Login
-        </Button>
+    <Container>
+      <Container bottom='medium'>
+        <Typography>
+          To emulate successful login use &apos;Bruce&apos; as a first name. For
+          other values login process will fail.
+        </Typography>
       </Container>
-    </Form>
+      <Form onSubmit={handleSubmit}>
+        <Form.Input
+          required
+          name='firstName'
+          label='First name'
+          placeholder='e.g. Bruce'
+        />
+        <Form.Input
+          required
+          name='lastName'
+          label='Last name'
+          placeholder='e.g. Wayne'
+        />
+
+        <Container top='small'>
+          <Button type='submit' loading={isLoading}>
+            Login
+          </Button>
+        </Container>
+      </Form>
+    </Container>
   )
 }
 
 const api = {
   submit: async (values: any) =>
-    new Promise(resolve => {
+    new Promise(resolve =>
       setTimeout(() => {
-        if (values.firstName === 'picasso') {
+        if (values.firstName.toLowerCase() === 'bruce') {
           resolve('success')
           return
         }
 
         resolve('fail')
       }, 2000)
-    })
+    )
 }
 
 export default BackendCommunicationExample

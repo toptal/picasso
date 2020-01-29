@@ -18,11 +18,6 @@ provides inside all the necessary input components types.
   ) // picasso-skip-visuals
   .addExample(
     'Form/story/BackendCommunication.example.tsx',
-    {
-      title: 'Backend communication',
-      description: `
-To emulate successful login use 'picasso' as a first name.
-For other values login process will fail.`
-    },
+    'Backend communication',
     'picasso-form'
   ) // picasso-skip-visuals
