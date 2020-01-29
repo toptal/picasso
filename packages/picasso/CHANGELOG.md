@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.22.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.21.0...@toptal/picasso@4.22.0) (2020-01-29)
+
+
+### Features
+
+* **icons:** add long arrow left and right ([#1053](https://github.com/toptal/picasso/issues/1053)) ([417a575](https://github.com/toptal/picasso/commit/417a57592e33dd286422454597848a6cdbda00e2)), closes [#1052](https://github.com/toptal/picasso/issues/1052)
+
+
+
+
+
 # [4.21.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.20.0...@toptal/picasso@4.21.0) (2020-01-24)
 
 
