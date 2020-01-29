@@ -29,7 +29,7 @@ const DefaultExample = () => (
       </Form.RadioGroup>
       <Form.Select
         required
-        name='business-type'
+        name='businessType'
         label='Business type'
         width='auto'
         options={[
