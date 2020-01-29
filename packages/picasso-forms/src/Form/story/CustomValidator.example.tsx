@@ -16,28 +16,26 @@ const minMaxValidator = (value: string) => {
   return undefined
 }
 
-const DefaultExample = () => (
-  <Container>
-    <Form onSubmit={values => console.log(values)}>
-      <Form.Input
-        required
-        name='firstName'
-        label='First name'
-        placeholder='e.g. Bruce'
-      />
-      <Form.NumberInput
-        required
-        validate={minMaxValidator}
-        name='age'
-        label="What's your age?"
-        placeholder='e.g. 25'
-      />
+const CustomValidatorExample = () => (
+  <Form onSubmit={values => console.log(values)}>
+    <Form.Input
+      required
+      name='firstName'
+      label='First name'
+      placeholder='e.g. Bruce'
+    />
+    <Form.NumberInput
+      required
+      validate={minMaxValidator}
+      name='age'
+      label="What's your age?"
+      placeholder='e.g. 25'
+    />
 
-      <Container top='small'>
-        <Button type='submit'>Submit</Button>
-      </Container>
-    </Form>
-  </Container>
+    <Container top='small'>
+      <Button type='submit'>Submit</Button>
+    </Container>
+  </Form>
 )
 
-export default DefaultExample
+export default CustomValidatorExample

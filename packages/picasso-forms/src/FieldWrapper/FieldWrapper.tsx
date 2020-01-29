@@ -32,7 +32,7 @@ export type Props<
   }
 
 const getInputError = <T extends ValueType>(meta: FieldMetaState<T>) => {
-  if (!meta.error) {
+  if (!meta.error && !meta.submitError) {
     return null
   }
 
@@ -45,7 +45,7 @@ const getInputError = <T extends ValueType>(meta: FieldMetaState<T>) => {
     return null
   }
 
-  return meta.error
+  return meta.error || meta.submitError
 }
 
 const getValidators = (required: boolean, validate?: any) => {
