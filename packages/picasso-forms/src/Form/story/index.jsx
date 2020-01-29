@@ -6,7 +6,8 @@ page
   .createChapter()
   .addTextSection(
     `
-Form is a wrapper for 'react-final-form' Form component.
+Form is a wrapper for 'react-final-form' Form component. It also
+provides inside all the necessary input components types.
     `
   )
   .addExample('Form/story/Default.example.tsx', 'Default', 'picasso-form')
