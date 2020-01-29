@@ -10,3 +10,8 @@ Form is a wrapper for 'react-final-form' Form component.
     `
   )
   .addExample('Form/story/Default.example.tsx', 'Default', 'picasso-form')
+  .addExample(
+    'Form/story/CustomValidator.example.tsx',
+    'Custom validator',
+    'picasso-form'
+  )
