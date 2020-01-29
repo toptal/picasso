@@ -1,7 +1,4 @@
-const composeValidators = (...validators: any[]) => (
-  value: any,
-  allValues: any
-) =>
+const composeValidators = (validators: any[]) => (value: any, allValues: any) =>
   validators.reduce(
     (error, validator) => error || validator(value, allValues),
     undefined
