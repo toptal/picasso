@@ -19,7 +19,7 @@ const BackendCommunicationExample = () => {
         'Login failed! Please try another combination of first and last names.'
       )
       return {
-        firstName: 'Unknown first name'
+        name: 'Unknown first name'
       }
     }
   }, [])
@@ -35,13 +35,13 @@ const BackendCommunicationExample = () => {
       <Form onSubmit={handleSubmit}>
         <Form.Input
           required
-          name='firstName'
+          name='name'
           label='First name'
           placeholder='e.g. Bruce'
         />
         <Form.Input
           required
-          name='lastName'
+          name='surname'
           label='Last name'
           placeholder='e.g. Wayne'
         />
@@ -60,7 +60,7 @@ const api = {
   submit: async (values: any) =>
     new Promise(resolve =>
       setTimeout(() => {
-        if (values.firstName.toLowerCase() === 'bruce') {
+        if (values.name.toLowerCase() === 'bruce') {
           resolve('success')
           return
         }

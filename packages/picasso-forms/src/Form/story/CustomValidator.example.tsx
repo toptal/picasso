@@ -20,14 +20,14 @@ const CustomValidatorExample = () => (
   <Form onSubmit={values => console.log(values)}>
     <Form.Input
       required
-      name='firstName'
+      name='userName'
       label='First name'
       placeholder='e.g. Bruce'
     />
     <Form.NumberInput
       required
       validate={minMaxValidator}
-      name='age'
+      name='userAge'
       label="What's your age?"
       placeholder='e.g. 25'
     />
