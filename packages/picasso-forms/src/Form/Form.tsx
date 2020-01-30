@@ -3,6 +3,7 @@ import {
   Form as FinalForm,
   FormProps as FinalFormProps
 } from 'react-final-form'
+// @ts-ignore
 import createDecorator from 'final-form-focus'
 import { Form as PicassoForm } from '@toptal/picasso'
 
