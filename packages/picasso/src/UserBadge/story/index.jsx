@@ -13,22 +13,28 @@ page
 
 page
   .createChapter()
-  .addExample('UserBadge/story/Default.example.jsx', 'Default', {
+  .addExample('UserBadge/story/Default.example.jsx', {
+    title: 'Default',
     waitUntilImagesLoaded: true
   })
-  .addExample('UserBadge/story/Sizes.example.jsx', 'Sizes', {
+  .addExample('UserBadge/story/Sizes.example.jsx', {
+    title: 'Sizes',
     waitUntilImagesLoaded: true
   })
-  .addExample('UserBadge/story/Alignment.example.jsx', 'Alignment', {
+  .addExample('UserBadge/story/Alignment.example.jsx', {
+    title: 'Alignment',
     waitUntilImagesLoaded: true
   })
-  .addExample('UserBadge/story/Invert.example.jsx', 'Invert', {
+  .addExample('UserBadge/story/Invert.example.jsx', {
+    title: 'Invert',
     waitUntilImagesLoaded: true
   })
-  .addExample('UserBadge/story/Custom.example.jsx', 'Custom', {
+  .addExample('UserBadge/story/Custom.example.jsx', {
+    title: 'Custom',
     waitUntilImagesLoaded: true
   })
-  .addExample('UserBadge/story/Title.example.jsx', 'With Title', {
+  .addExample('UserBadge/story/Title.example.jsx', {
+    title: 'With Title',
     waitUntilImagesLoaded: true
   })
   .addExample('UserBadge/story/CustomName.example.jsx', {
