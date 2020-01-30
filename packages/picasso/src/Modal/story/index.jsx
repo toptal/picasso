@@ -5,10 +5,9 @@ import modalTitleStory from '../../ModalTitle/story'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.createPage(
+const page = PicassoBook.section('Overlays').createPage(
   'Modal',
-  'A modal displays content that temporarily blocks interactions with the main view of a site.',
-  'Overlays'
+  'A modal displays content that temporarily blocks interactions with the main view of a site.'
 )
 
 page

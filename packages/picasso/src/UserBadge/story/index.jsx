@@ -2,7 +2,7 @@ import { UserBadge } from '../UserBadge'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.createPage(
+const page = PicassoBook.section('Components').createPage(
   'UserBadge',
   'Show user avatar and name along with addition content'
 )

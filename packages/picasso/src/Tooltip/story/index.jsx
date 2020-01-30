@@ -2,10 +2,9 @@ import { Tooltip } from '../Tooltip'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.createPage(
+const page = PicassoBook.section('Overlays').createPage(
   'Tooltip',
-  'Tooltips display informative text when users hover over, focus on, or tap an element',
-  'Overlays'
+  'Tooltips display informative text when users hover over, focus on, or tap an element'
 )
 
 page

@@ -2,7 +2,7 @@ import { Indicator } from '../Indicator'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.createPage('Indicator')
+const page = PicassoBook.section('Components').createPage('Indicator')
 
 page.createTabChapter('Props').addComponentDocs({
   component: Indicator,

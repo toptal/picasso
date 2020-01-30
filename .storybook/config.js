@@ -48,12 +48,25 @@ const reqPackagesComponents = require.context(
 )
 
 const loadStories = () => {
+  PicassoBook.addSections([
+    'Tutorials',
+    'Components',
+    'Layout',
+    'Overlays',
+    'Utils',
+    'Forms',
+    'Picasso Forms',
+    'Widgets',
+    'Lab'
+  ])
+
   require('./stories/Picasso') // markdown pages for README & CHANGELOG
   require('./stories/Contributing') // markdown pages for contribution guide
   reqStorybook.keys().forEach(filename => reqStorybook(filename))
   reqPackagesComponents
     .keys()
     .forEach(filename => reqPackagesComponents(filename))
+
   PicassoBook.generate()
 }
 

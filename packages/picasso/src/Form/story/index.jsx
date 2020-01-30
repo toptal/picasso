@@ -6,10 +6,9 @@ import formErrorStory from '../../FormError/story'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.createPage(
+const page = PicassoBook.section('Forms').createPage(
   'Form',
-  'Helper components for building forms.',
-  'Forms'
+  'Helper components for building forms.'
 )
 
 page

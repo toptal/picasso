@@ -4,10 +4,9 @@ import { Notification } from '../Notification'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.createPage(
+const page = PicassoBook.section('Components').createPage(
   'Notification',
-  'Notification standard way to notify user about important information',
-  'Components'
+  'Notification standard way to notify user about important information'
 )
 
 page

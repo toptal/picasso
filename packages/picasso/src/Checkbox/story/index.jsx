@@ -3,7 +3,7 @@ import checkboxGroupStory from '../../CheckboxGroup/story'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.createPage('Checkbox', null, 'Forms')
+const page = PicassoBook.section('Forms').createPage('Checkbox', null)
 
 page
   .createTabChapter('Props')

@@ -2,7 +2,10 @@ import { ShowMore } from '../ShowMore'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.createPage('ShowMore', 'Strips provided content.')
+const page = PicassoBook.section('Components').createPage(
+  'ShowMore',
+  'Strips provided content.'
+)
 
 page
   .createTabChapter('Props')

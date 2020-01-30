@@ -2,11 +2,10 @@ import { Select } from '../Select'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.createPage(
+const page = PicassoBook.section('Forms').createPage(
   'Select',
   `Selects are interactive elements that prompt users to make selections 
-  or take actions from a set of list of available options.`,
-  'Forms'
+    or take actions from a set of list of available options.`
 )
 
 page.createTabChapter('Props').addComponentDocs({

@@ -2,7 +2,7 @@ import { Pagination } from '../Pagination'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.createPage(
+const page = PicassoBook.section('Components').createPage(
   'Pagination',
   'Component which allows navigating long data lists.'
 )

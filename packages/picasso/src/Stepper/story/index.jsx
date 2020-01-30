@@ -2,7 +2,7 @@ import { Stepper } from '../Stepper'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.createPage(
+const page = PicassoBook.section('Components').createPage(
   'Stepper',
   'Stepper component display progress through a sequence of steps.'
 )

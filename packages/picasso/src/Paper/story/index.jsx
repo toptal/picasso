@@ -2,10 +2,9 @@ import { Paper } from '../Paper'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.createPage(
+const page = PicassoBook.section('Layout').createPage(
   'Paper',
-  'Elevated container with shadow',
-  'Layout'
+  'Elevated container with shadow'
 )
 
 page

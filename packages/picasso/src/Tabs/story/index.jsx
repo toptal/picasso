@@ -3,10 +3,9 @@ import tabStory from '../../Tab/story'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.createPage(
+const page = PicassoBook.section('Layout').createPage(
   'Tabs',
-  'Tabs allow to switch between content sections',
-  'Layout'
+  'Tabs allow to switch between content sections'
 )
 
 page

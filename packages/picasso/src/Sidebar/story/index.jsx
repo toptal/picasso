@@ -5,7 +5,7 @@ import { Sidebar } from '../Sidebar'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.createPage(
+const page = PicassoBook.section('Components').createPage(
   'Sidebar',
   'Navigation items provide access to parts in your app'
 )

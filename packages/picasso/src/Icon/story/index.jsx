@@ -1,6 +1,6 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.createPage('Icons')
+const page = PicassoBook.section('Components').createPage('Icons')
 
 page
   .createChapter()
