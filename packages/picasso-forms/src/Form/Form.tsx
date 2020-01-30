@@ -17,8 +17,8 @@ import NumberInput from '../NumberInput'
 import FileInput from '../FileInput'
 
 export type Props = Omit<FinalFormProps, 'validate'> & {
-  successSubmitMessage: string
-  failedSubmitMessage: string
+  successSubmitMessage?: string
+  failedSubmitMessage?: string
 }
 
 const focusOnErrors = createDecorator()
