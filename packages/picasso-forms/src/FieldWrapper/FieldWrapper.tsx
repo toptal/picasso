@@ -11,7 +11,7 @@ import { validators } from '../utils'
 
 const { composeValidators, required: requiredValidator } = validators
 
-type ValueType = string | string[] | number | boolean | undefined
+type ValueType = string | string[] | number | boolean | undefined | File
 
 export type FieldProps<TInputValue> = FinalFieldProps<
   TInputValue,
@@ -107,7 +107,6 @@ const FieldWrapper = <
     >
       {({ input, meta }) => {
         const error = getInputError<TInputValue>(meta)
-
         const childProps = {
           ...rest,
           ...input,

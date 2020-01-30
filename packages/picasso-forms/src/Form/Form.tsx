@@ -11,6 +11,7 @@ import Radio from '../Radio'
 import RadioGroup from '../RadioGroup'
 import Checkbox from '../Checkbox'
 import NumberInput from '../NumberInput'
+import FileInput from '../FileInput'
 
 export type Props = Omit<FinalFormProps, 'validate'> & {}
 
@@ -37,5 +38,6 @@ Form.Radio = Radio
 Form.RadioGroup = RadioGroup
 Form.Checkbox = Checkbox
 Form.NumberInput = NumberInput
+Form.FileInput = FileInput
 
 export default Form

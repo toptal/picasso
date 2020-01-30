@@ -8,16 +8,10 @@ import OutlinedInput from '../OutlinedInput'
 import InputAdornment from '../InputAdornment'
 import Button from '../Button'
 import Loader from '../Loader'
-import Link from '../Link'
 import Typography from '../Typography'
 import { Check16, UploadDocument16 } from '../Icon'
 import { isNumber, isBoolean, useCombinedRefs } from '../utils'
 import styles from './styles'
-
-export interface FileInfo {
-  name: string
-  location: string
-}
 
 export interface Props extends StandardProps {
   /** If true, the 'FileInput' will be disabled */
@@ -32,8 +26,8 @@ export interface Props extends StandardProps {
   status?: string
   /** Width of the component */
   width?: 'full' | 'shrink' | 'auto'
-  /** Descriptor containing file name and location */
-  value?: FileInfo
+  /** Value uses the File interface */
+  value?: File
   /** Callback invoked when `FileInput` changes its state by selecting new files. */
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
@@ -51,28 +45,22 @@ const FileInputContent = withStyles(styles)(
     inputRef
   }: Props & InputBaseComponentProps) => {
     const getFilename = () => {
-      if (error || progress) {
+      if (error || progress || !value) {
         return status
       }
 
-      if (value) {
-        if (disabled) {
-          return value.name
-        }
-
-        return <Link href={value.location}>{value.name}</Link>
-      }
-
-      return status
+      return value.name
     }
 
     return (
       <Fragment>
         <Typography
-          className={cx(classes.inputValue, {
-            [classes.inputValueDisabled]: disabled
-          })}
           inline
+          color='black'
+          className={cx(classes.inputValue, {
+            [classes.inputValueDisabled]: disabled,
+            [classes.inputValueSelected]: value
+          })}
         >
           {getFilename()}
         </Typography>

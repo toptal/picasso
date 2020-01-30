@@ -22,7 +22,7 @@ exports[`FileInput default render 1`] = `
         </svg>
       </div>
       <p
-        class="MuiTypography-root Typography-bodyInherit Component-inputValue MuiTypography-body1 MuiTypography-displayInline"
+        class="MuiTypography-root Typography-bodyInherit Typography-black Component-inputValue MuiTypography-body1 MuiTypography-displayInline"
       />
       <input
         class="Component-nativeInput"
