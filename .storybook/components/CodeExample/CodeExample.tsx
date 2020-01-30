@@ -101,9 +101,16 @@ const PicassoSSR: FunctionComponent = ({ children }) => {
   )
 }
 
+const requireContext = require.context(
+  '!raw-loader!~/packages/',
+  true,
+  /^.*story.*\.(js|jsx|ts|tsx)$/
+)
+
 class CodeExample extends Component<Props> {
   static defaultProps = {
-    showEditCode: true
+    showEditCode: true,
+    module: 'picasso'
   }
 
   state = {
@@ -118,22 +125,22 @@ class CodeExample extends Component<Props> {
   }
 
   getOriginalSourceCode = () => {
-    const { src } = this.props
+    const { src, module } = this.props
 
     try {
-      return require(`!raw-loader!~/packages/picasso/src/${src}`).default
+      return requireContext(`./${module}/src/${src}`).default
     } catch {}
 
     try {
-      return require(`!raw-loader!~/packages/picasso-lab/src/${src}`).default
+      return requireContext(`./picasso-lab/src/${src}`).default
     } catch {}
 
     try {
-      return require(`!raw-loader!~/packages/picasso-forms/src/${src}`).default
+      return requireContext(`./picasso-forms/src/${src}`).default
     } catch {}
 
     try {
-      return require(`!raw-loader!~/packages/shared/src/${src}`).default
+      return requireContext(`./shared/src/${src}`).default
     } catch {}
 
     return require(`!raw-loader!~/.storybook/stories/${src}`).default

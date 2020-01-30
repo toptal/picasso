@@ -146,7 +146,7 @@ class Chapter extends Base {
     return this
   }
 
-  addExample = (source: string, options: Options | string) => {
+  addExample = (source: string, options: Options | string, module?: string) => {
     const finalOptions: Options =
       typeof options === 'string'
         ? {
@@ -180,6 +180,7 @@ class Chapter extends Base {
         >
           <CodeExample
             src={source}
+            module={module}
             permanentLink={permanentLink}
             showEditCode={showEditCode}
           />

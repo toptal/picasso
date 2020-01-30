@@ -255,6 +255,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     disabled,
     error,
     onChange,
+    onBlur,
     multiple,
     value = multiple ? [] : '',
     getDisplayValue,
@@ -316,6 +317,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     }
 
     filterOptions(EMPTY_INPUT_VALUE)
+    onBlur!(event)
   }
 
   const handleChange = (newValue: string) => {
@@ -537,6 +539,7 @@ Select.defaultProps = {
   loading: false,
   native: false,
   onChange: () => {},
+  onBlur: () => {},
   renderOption: (option: Option) => option.text,
   size: 'medium',
   width: 'full'

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, ChangeEvent, FocusEvent } from 'react'
 import {
   Field as FinalField,
   FieldProps as FinalFieldProps,
@@ -31,18 +31,32 @@ export type Props<
     children: (props: any) => React.ReactNode
   }
 
-const getInputError = <T extends ValueType>(meta: FieldMetaState<T>) => {
-  if (!meta.error) {
+type FieldMeta<T> = FieldMetaState<T> & {
+  dirtyAfterBlur?: boolean
+}
+
+const getInputError = <T extends ValueType>(meta: FieldMeta<T>) => {
+  if (!meta.error && !meta.submitError) {
     return null
   }
 
-  if (meta.error && (meta.modified || meta.touched)) {
+  if (!meta.touched) {
+    return null
+  }
+
+  if (meta.dirtyAfterBlur) {
+    return null
+  }
+
+  if (meta.error) {
     return meta.error
   }
 
-  if (meta.submitError && !meta.dirtySinceLastSubmit) {
-    return meta.submitError
+  if (meta.dirtySinceLastSubmit) {
+    return null
   }
+
+  return meta.submitError
 }
 
 const getValidators = (required: boolean, validate?: any) => {
@@ -97,6 +111,7 @@ const FieldWrapper = <
     value,
     ...rest
   } = props
+  const [dirtyAfterBlur, setDirtyAfterBlur] = useState(false)
 
   return (
     <FinalField
@@ -106,11 +121,22 @@ const FieldWrapper = <
       value={value}
     >
       {({ input, meta }) => {
-        const error = getInputError<TInputValue>(meta)
+        const error = getInputError<TInputValue>({
+          ...meta,
+          dirtyAfterBlur
+        })
         const childProps = {
           ...rest,
           ...input,
-          ...getProps({ hideFieldLabel, error, label, required })
+          ...getProps({ hideFieldLabel, error, label, required }),
+          onChange: (event: ChangeEvent<HTMLElement>) => {
+            setDirtyAfterBlur(true)
+            input.onChange(event)
+          },
+          onBlur: (event: FocusEvent<HTMLElement>) => {
+            setDirtyAfterBlur(false)
+            input.onBlur(event)
+          }
         }
 
         return (

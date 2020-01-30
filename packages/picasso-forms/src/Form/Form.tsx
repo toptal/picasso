@@ -3,6 +3,8 @@ import {
   Form as FinalForm,
   FormProps as FinalFormProps
 } from 'react-final-form'
+// @ts-ignore
+import createDecorator from 'final-form-focus'
 import { Form as PicassoForm } from '@toptal/picasso'
 
 import Input from '../Input'
@@ -15,20 +17,26 @@ import FileInput from '../FileInput'
 
 export type Props = Omit<FinalFormProps, 'validate'> & {}
 
+const focusOnErrors = createDecorator()
+
 export const Form = (props: Props) => {
-  const { children, ...rest } = props
+  const { children, validateOnBlur, ...rest } = props
 
   return (
     <FinalForm
       render={({ handleSubmit }) => (
         <PicassoForm onSubmit={handleSubmit}>{children}</PicassoForm>
       )}
+      validateOnBlur={validateOnBlur}
+      decorators={[focusOnErrors]}
       {...rest}
     />
   )
 }
 
-Form.defaultProps = {}
+Form.defaultProps = {
+  validateOnBlur: true
+}
 
 Form.displayName = 'Form'
 

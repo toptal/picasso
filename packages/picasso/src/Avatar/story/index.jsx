@@ -20,12 +20,15 @@ page
 
 page
   .createChapter()
-  .addExample('Avatar/story/Default.example.jsx', 'Default', {
+  .addExample('Avatar/story/Default.example.jsx', {
+    title: 'Default',
     waitUntilImagesLoaded: true
   })
-  .addExample('Avatar/story/Variants.example.jsx', 'Variants', {
+  .addExample('Avatar/story/Variants.example.jsx', {
+    title: 'Variants',
     waitUntilImagesLoaded: true
   })
-  .addExample('Avatar/story/Sizes.example.jsx', 'Sizes', {
+  .addExample('Avatar/story/Sizes.example.jsx', {
+    title: 'Sizes',
     waitUntilImagesLoaded: true
   })

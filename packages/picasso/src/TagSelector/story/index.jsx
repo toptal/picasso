@@ -13,7 +13,8 @@ page
 
 page
   .createChapter()
-  .addExample('TagSelector/story/Default.example.jsx', 'Default', {
+  .addExample('TagSelector/story/Default.example.jsx', {
+    title: 'Default',
     effect: async (testPage, makeScreenshot) => {
       const hideInputCaretStyle = `
         input {
@@ -43,7 +44,8 @@ page
       })
     }
   })
-  .addExample('TagSelector/story/OtherOption.example.jsx', 'Other option', {
+  .addExample('TagSelector/story/OtherOption.example.jsx', {
+    title: 'Other option',
     effect: async (testPage, makeScreenshot) => {
       await testPage.click('[role="combobox"]')
 

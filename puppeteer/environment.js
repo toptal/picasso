@@ -34,17 +34,13 @@ class Storyshots extends JestPuppeteer {
   static processFile(file) {
     const sourceCode = fs.readFileSync(file, 'utf-8')
 
-    try {
-      const program = Storyshots.parseSourceCode(sourceCode)
-      const output = {
-        ...Storyshots.walk(program),
-        file
-      }
-
-      return output
-    } catch (e) {
-      throw new Error(e)
+    const program = Storyshots.parseSourceCode(sourceCode)
+    const output = {
+      ...Storyshots.walk(program),
+      file
     }
+
+    return output
   }
 
   static parseSourceCode(source) {
