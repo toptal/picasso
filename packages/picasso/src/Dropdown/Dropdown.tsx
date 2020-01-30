@@ -51,6 +51,7 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   onOpen?(): void
   /** Callback invoked when component is closed */
   onClose?(): void
+  popperContainer?: HTMLElement
 }
 
 interface StaticProps {
@@ -90,6 +91,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
     disablePortal,
     popperOptions,
     onOpen,
+    popperContainer,
     onClose,
     ...rest
   },
@@ -215,6 +217,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
           style={paperMargins}
           disablePortal={disablePortal}
           autoWidth={false}
+          container={popperContainer}
         >
           <ClickAwayListener onClickAway={() => forceClose()}>
             <Grow in={isOpen} appear>

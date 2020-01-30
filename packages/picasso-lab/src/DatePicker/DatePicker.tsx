@@ -57,6 +57,7 @@ export interface Props
   autoComplete?: string
   /** Indicate whether `DatePicker`'s input is in error state */
   error?: boolean
+  popperContainer?: HTMLElement
 }
 
 const formatDateRange = (dates: DateRangeType, format: string) =>
@@ -90,6 +91,7 @@ export const DatePicker = (props: Props) => {
     maxDate,
     disabledIntervals,
     error,
+    popperContainer,
     ...rest
   } = props
   const classes = useStyles(props)
@@ -237,6 +239,7 @@ export const DatePicker = (props: Props) => {
           anchorEl={inputWrapperRef.current}
           autoWidth={false}
           ref={calendarRef}
+          container={popperContainer}
         >
           <Calendar
             range={range}
