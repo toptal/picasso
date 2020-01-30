@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.8.0...@toptal/picasso-forms@0.9.0) (2020-01-30)
+
+
+### Features
+
+* [FX-698] Prepare forms examples ([#1057](https://github.com/toptal/picasso/issues/1057)) ([86da7ba](https://github.com/toptal/picasso/commit/86da7ba568d15aea619e9dfc8236285cf85741ff))
+
+
+
+
+
 # [0.8.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.7.1...@toptal/picasso-forms@0.8.0) (2020-01-30)
 
 
