@@ -15,8 +15,8 @@ class PicassoBook extends Base {
     return this
   }
 
-  createPage = (title, info, section) => {
-    const page = new Page({ title, info, section })
+  createPage = (title, info, section, order) => {
+    const page = new Page({ title, info, section, order })
     this.collection.push(page)
 
     return page
@@ -29,7 +29,9 @@ class PicassoBook extends Base {
   connectToPage = connector => page => connector(page)
 
   generate() {
-    this.collection.forEach(page => page.generate())
+    this.collection
+      .sort((page1, page2) => page1.order >= page2.order)
+      .forEach(page => page.generate())
   }
 }
 

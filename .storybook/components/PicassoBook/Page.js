@@ -10,12 +10,14 @@ class Page extends Base {
   type = 'Page'
   title = ''
   section = COMPONENTS_SECTION
+  order = 0
 
   constructor({
     title = null,
     subtitle = null,
     info = null,
-    section = COMPONENTS_SECTION
+    section = COMPONENTS_SECTION,
+    order = 0
   }) {
     super({
       title,
@@ -26,6 +28,7 @@ class Page extends Base {
 
     this.title = title
     this.section = section
+    this.order = order
   }
 
   setDescription(description = '') {

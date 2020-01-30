@@ -1,11 +1,14 @@
 import { DatePicker } from '../DatePicker'
 
-import PicassoBook from '~/.storybook/components/PicassoBook'
+import PicassoBook, {
+  LAB_SECTION_ORDER
+} from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.createPage(
   'DatePicker',
   'Date Picker component',
-  'Lab'
+  'Lab',
+  LAB_SECTION_ORDER
 )
 
 page

@@ -1,0 +1,8 @@
+export const COMPONENTS_SECTION_ORDER = 0
+export const LAYOUT_SECTION_ORDER = 1
+export const OVERLAYS_SECTION_ORDER = 2
+export const UTILS_SECTION_ORDER = 3
+export const FORMS_SECTION_ORDER = 4
+export const PICASSO_FORMS_SECTION_ORDER = 5
+export const WIDGETS_SECTION_ORDER = 6
+export const LAB_SECTION_ORDER = 7
