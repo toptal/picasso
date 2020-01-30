@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Container } from '@toptal/picasso'
 import { Form } from '@toptal/picasso-forms'
 
-const minMaxValidator = (value: string) => {
+const minMaxValidator = (value: string | number) => {
   const number = Number(value)
 
   if (number < 0) {
