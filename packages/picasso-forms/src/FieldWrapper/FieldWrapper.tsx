@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, ChangeEvent, FocusEvent } from 'react'
 import {
   Field as FinalField,
   FieldProps as FinalFieldProps,
@@ -31,7 +31,11 @@ export type Props<
     children: (props: any) => React.ReactNode
   }
 
-const getInputError = <T extends ValueType>(meta: FieldMetaState<T>) => {
+type FieldMeta<T> = FieldMetaState<T> & {
+  dirtyAfterBlur?: boolean
+}
+
+const getInputError = <T extends ValueType>(meta: FieldMeta<T>) => {
   if (!meta.error && !meta.submitError) {
     return null
   }
@@ -40,12 +44,19 @@ const getInputError = <T extends ValueType>(meta: FieldMetaState<T>) => {
     return null
   }
 
-  // to reset errors when start typing in the field
-  if (meta.active && meta.dirty) {
+  if (meta.dirtyAfterBlur) {
     return null
   }
 
-  return meta.error || meta.submitError
+  if (meta.error) {
+    return meta.error
+  }
+
+  if (meta.dirtySinceLastSubmit) {
+    return null
+  }
+
+  return meta.submitError
 }
 
 const getValidators = (required: boolean, validate?: any) => {
@@ -100,6 +111,7 @@ const FieldWrapper = <
     value,
     ...rest
   } = props
+  const [dirtyAfterBlur, setDirtyAfterBlur] = useState(false)
 
   return (
     <FinalField
@@ -109,11 +121,22 @@ const FieldWrapper = <
       value={value}
     >
       {({ input, meta }) => {
-        const error = getInputError<TInputValue>(meta)
+        const error = getInputError<TInputValue>({
+          ...meta,
+          dirtyAfterBlur
+        })
         const childProps = {
           ...rest,
           ...input,
-          ...getProps({ hideFieldLabel, error, label, required })
+          ...getProps({ hideFieldLabel, error, label, required }),
+          onChange: (event: ChangeEvent<HTMLElement>) => {
+            setDirtyAfterBlur(true)
+            input.onChange(event)
+          },
+          onBlur: (event: FocusEvent<HTMLElement>) => {
+            setDirtyAfterBlur(false)
+            input.onBlur(event)
+          }
         }
 
         return (
