@@ -19,9 +19,9 @@ const isCodeExampleExpression = node =>
   node.callee.property.name === 'addExample'
 
 const getCodeExampleOptions = node => {
-  const optionsAst = node.arguments[2]
+  const optionsAst = node.arguments[1]
 
-  if (!optionsAst) {
+  if (!optionsAst || optionsAst.type === 'Literal') {
     return {}
   }
 
