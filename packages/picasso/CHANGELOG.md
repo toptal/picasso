@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.23.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.22.0...@toptal/picasso@4.23.0) (2020-01-30)
+
+
+### Features
+
+* [FX-728] Create FormFileInput ([#1049](https://github.com/toptal/picasso/issues/1049)) ([7c97b7b](https://github.com/toptal/picasso/commit/7c97b7b3a15f34350beecc1f52fbaea9296808d3))
+
+
+
+
+
 # [4.22.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.21.0...@toptal/picasso@4.22.0) (2020-01-29)
 
 

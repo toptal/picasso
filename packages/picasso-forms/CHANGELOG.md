@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.7.1...@toptal/picasso-forms@0.8.0) (2020-01-30)
+
+
+### Features
+
+* [FX-728] Create FormFileInput ([#1049](https://github.com/toptal/picasso/issues/1049)) ([7c97b7b](https://github.com/toptal/picasso/commit/7c97b7b3a15f34350beecc1f52fbaea9296808d3))
+
+
+
+
+
 ## [0.7.1](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.7.0...@toptal/picasso-forms@0.7.1) (2020-01-27)
 
 **Note:** Version bump only for package @toptal/picasso-forms
