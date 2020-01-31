@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.9.0...@toptal/picasso-forms@0.10.0) (2020-01-31)
+
+
+### Features
+
+* **picasso-forms:** [FX-698] Add notifications as a part of onSubmit for Form ([#1059](https://github.com/toptal/picasso/issues/1059)) ([fd2cda0](https://github.com/toptal/picasso/commit/fd2cda0c7c8ead15b767f6af0e958c4ab037157a))
+
+
+
+
+
 # [0.9.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.8.0...@toptal/picasso-forms@0.9.0) (2020-01-30)
 
 
