@@ -21,21 +21,21 @@ class PicassoBook extends Base {
   }
 
   section = name => {
-    if (this.sections.includes(name)) {
-      return {
-        createPage: (title, info) => {
-          const page = new Page({ title, info, section: name })
-          this.collection.push(page)
-          return page
-        }
-      }
-    }
-
-    throw new Error(`
+    if (!this.sections.includes(name)) {
+      throw new Error(`
 Section with the name '${name}' was not found.
 You need to add this section to the list of available sections
 in '.storybook/config.js'.
-    `)
+      `)
+    }
+
+    return {
+      createPage: (title, info) => {
+        const page = new Page({ title, info, section: name })
+        this.collection.push(page)
+        return page
+      }
+    }
   }
 
   createComponentDocs = (component, name, description, additionalDocs = {}) => {
@@ -51,8 +51,8 @@ in '.storybook/config.js'.
     //   ...
     // }
     const sectionsOrder = {}
-    for (let i in this.sections) {
-      sectionsOrder[this.sections[i]] = Number(i)
+    for (let index in this.sections) {
+      sectionsOrder[this.sections[index]] = Number(index)
     }
 
     this.collection
