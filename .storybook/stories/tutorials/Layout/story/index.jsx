@@ -2,8 +2,7 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const layoutPage = PicassoBook.section('Tutorials').createPage(
   'How to layout a page',
-  'Learn how to create page layouts using Picasso Grid component along with Page and Container components.',
-  'Tutorials'
+  'Learn how to create page layouts using Picasso Grid component along with Page and Container components.'
 )
 
 /** Introduction */
