@@ -2,7 +2,7 @@ import { Accordion } from '../Accordion'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.createPage(
+const page = PicassoBook.section('Components').createPage(
   'Accordion',
   'Accordions store information behind collapsible sections, allowing for more information to be stored in a limited amount of space.'
 )

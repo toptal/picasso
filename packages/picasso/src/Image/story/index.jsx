@@ -2,7 +2,10 @@ import { Image } from '../Image'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.createPage('Image', 'Display any types of images.')
+const page = PicassoBook.section('Components').createPage(
+  'Image',
+  'Display any types of images.'
+)
 
 page
   .createTabChapter('Props')

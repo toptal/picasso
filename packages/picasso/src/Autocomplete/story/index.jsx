@@ -2,7 +2,7 @@ import { Autocomplete } from '../Autocomplete'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.createPage(
+const page = PicassoBook.section('Components').createPage(
   'Autocomplete',
   'Input with the autocomplete'
 )

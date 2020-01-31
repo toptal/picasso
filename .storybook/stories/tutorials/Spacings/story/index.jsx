@@ -1,9 +1,8 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const spacingsPage = PicassoBook.createPage(
+const spacingsPage = PicassoBook.section('Tutorials').createPage(
   'How to use spacings',
-  'Explain goal of this tutorial',
-  'Tutorials'
+  'Explain goal of this tutorial'
 )
 
 /** Introduction */

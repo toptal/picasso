@@ -1,6 +1,6 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.createPage('Form', 'Form', 'Picasso Forms')
+const page = PicassoBook.section('Picasso Forms').createPage('Form', 'Form')
 
 page
   .createChapter()

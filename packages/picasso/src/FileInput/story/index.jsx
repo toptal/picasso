@@ -2,7 +2,10 @@ import { FileInput } from '../FileInput'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.createPage('FileInput', 'Input file control', 'Forms')
+const page = PicassoBook.section('Forms').createPage(
+  'FileInput',
+  'Input file control'
+)
 
 page
   .createTabChapter('Props')

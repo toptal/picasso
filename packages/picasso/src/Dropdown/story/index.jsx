@@ -3,7 +3,7 @@ import { Dropdown } from '../Dropdown'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.createPage(
+const page = PicassoBook.section('Components').createPage(
   'Dropdown',
   'Allows rendering of menus and custom content triggered by custom anchors'
 )

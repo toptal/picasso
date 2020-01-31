@@ -7,7 +7,10 @@ import { Page } from '../Page'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.createPage('Page', 'A Page component', 'Layout')
+const page = PicassoBook.section('Layout').createPage(
+  'Page',
+  'A Page component'
+)
 
 page
   .createTabChapter('Props')

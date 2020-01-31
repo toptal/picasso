@@ -2,18 +2,18 @@ import Picasso from '../Picasso'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.createPage(
+const page = PicassoBook.section('Components').createPage(
   'Picasso',
   `
-    The wrapper and the root component.
-    &nbsp;  
-    &nbsp;  
+      The wrapper and the root component.
+      &nbsp;  
+      &nbsp;  
 
-    All the rest of the components from Picasso library
-    should be used only as nested in Picasso component.
-    The preferred way to do that - to wrap your app within
-    the <Picasso> component.
-  `
+      All the rest of the components from Picasso library
+      should be used only as nested in Picasso component.
+      The preferred way to do that - to wrap your app within
+      the <Picasso> component.
+    `
 )
 
 page

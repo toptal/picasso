@@ -1,9 +1,8 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const formsPage = PicassoBook.createPage(
+const formsPage = PicassoBook.section('Tutorials').createPage(
   'How to layout forms',
-  'Learn how to create form layouts using Picasso Form components.',
-  'Tutorials'
+  'Learn how to create form layouts using Picasso Form components.'
 )
 
 /** Introduction */

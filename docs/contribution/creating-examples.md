@@ -12,10 +12,12 @@ To help you creating sample examples you can leverage our scaffolding tool `yarn
 ### Generating new Page inside documentation (Story Book).
 
 ```jsx
-const page = PicassoBook.createPage(
-  'Component',
-  'Description of component'
-)
+const page = PicassoBook
+  .section('Components')
+  .createPage(
+    'Component',
+    'Description of component'
+  )
 ```
 
 💡 ***TIP:*** You can see real exampe here [src/components/Button/story/index.jsx#L7](https://github.com/toptal/picasso/blob/master/src/components/Button/story/index.jsx#L7)

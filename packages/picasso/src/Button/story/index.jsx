@@ -3,7 +3,7 @@ import { Button } from '../Button'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.createPage(
+const page = PicassoBook.section('Components').createPage(
   'Button',
   'A Button indicates a possible user action.'
 )

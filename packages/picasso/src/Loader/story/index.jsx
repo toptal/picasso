@@ -2,7 +2,7 @@ import { Loader } from '../Loader'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.createPage(
+const page = PicassoBook.section('Components').createPage(
   'Loader',
   'Loaders indicate that an action is underway and that the user must wait to proceed until it is finished.'
 )

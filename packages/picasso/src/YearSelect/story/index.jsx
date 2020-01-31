@@ -2,7 +2,10 @@ import { YearSelect } from '../YearSelect'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.createPage('YearSelect', 'Year select')
+const page = PicassoBook.section('Components').createPage(
+  'YearSelect',
+  'Year select'
+)
 
 page
   .createTabChapter('Props')
