@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, ReactNode } from 'react'
 import {
   Form as FinalForm,
   FormProps as FinalFormProps
@@ -17,8 +17,8 @@ import NumberInput from '../NumberInput'
 import FileInput from '../FileInput'
 
 export type Props = Omit<FinalFormProps, 'validate'> & {
-  successSubmitMessage?: string
-  failedSubmitMessage?: string
+  successSubmitMessage?: ReactNode
+  failedSubmitMessage?: ReactNode
 }
 
 const focusOnErrors = createDecorator()
