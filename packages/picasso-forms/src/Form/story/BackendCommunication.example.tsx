@@ -1,23 +1,17 @@
 import React, { useState, useCallback } from 'react'
 import { Button, Container, Typography } from '@toptal/picasso'
-import { useNotifications } from '@toptal/picasso/utils'
 import { Form } from '@toptal/picasso-forms'
 
 const BackendCommunicationExample = () => {
   const [isLoading, setIsLoading] = useState(false)
-  const { showSuccess, showError } = useNotifications()
 
   const handleSubmit = useCallback(async (values: any) => {
     setIsLoading(true)
     const result = await api.submit(values)
 
     setIsLoading(false)
-    if (result === 'success') {
-      showSuccess('Login successful!')
-    } else {
-      showError(
-        'Login failed! Please try another combination of first and last names.'
-      )
+
+    if (result !== 'success') {
       return {
         name: 'Unknown first name'
       }
@@ -32,7 +26,11 @@ const BackendCommunicationExample = () => {
           other values login process will fail.
         </Typography>
       </Container>
-      <Form onSubmit={handleSubmit}>
+      <Form
+        onSubmit={handleSubmit}
+        successSubmitMessage='Login successful!'
+        failedSubmitMessage='Login failed! Please try another combination of first and last names.'
+      >
         <Form.Input
           required
           name='name'
@@ -56,6 +54,7 @@ const BackendCommunicationExample = () => {
   )
 }
 
+// the emulation of the api call
 const api = {
   submit: async (values: any) =>
     new Promise(resolve =>
