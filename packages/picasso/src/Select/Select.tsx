@@ -81,7 +81,7 @@ export interface Props
   enableReset?: boolean
   popperContainer?: HTMLElement
   /** A threshold of the number of options when start to enable filtering for Select */
-  minOptionsToEnableFiltering?: number
+  searchThreshold?: number
 }
 
 type Selection = {
@@ -265,7 +265,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     size,
     enableReset,
     popperContainer,
-    minOptionsToEnableFiltering,
+    searchThreshold,
     ...rest
   } = purifyProps(props)
 
@@ -455,8 +455,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     </NativeSelect>
   )
 
-  const readOnlyInput =
-    multiple || options.length <= minOptionsToEnableFiltering!
+  const readOnlyInput = multiple || options.length <= searchThreshold!
   const selectComponent = (
     <Fragment>
       <div
@@ -551,7 +550,7 @@ Select.defaultProps = {
   renderOption: (option: Option) => option.text,
   size: 'medium',
   width: 'full',
-  minOptionsToEnableFiltering: 4
+  searchThreshold: 4
 }
 
 Select.displayName = 'Select'
