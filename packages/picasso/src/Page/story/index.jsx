@@ -1,4 +1,5 @@
 import pageHeaderStory from '../../PageHeader/story'
+import pageHeadStory from '../../PageHead/story'
 import pageHeaderMenuStory from '../../PageHeaderMenu/story'
 import pageContentStory from '../../PageContent/story'
 import pageFooterStory from '../../PageFooter/story'
@@ -16,6 +17,7 @@ page
   .createTabChapter('Props')
   .addComponentDocs({ component: Page, name: 'Page' })
   .addComponentDocs(pageHeaderStory.componentDocs)
+  .addComponentDocs(pageHeadStory.componentDocs)
   .addComponentDocs(pageHeaderMenuStory.componentDocs)
   .addComponentDocs(pageContentStory.componentDocs)
   .addComponentDocs(pageFooterStory.componentDocs)
@@ -41,6 +43,8 @@ page
   })
 
 page.connect(pageHeaderStory.chapter)
+
+page.connect(pageHeadStory.chapter)
 
 page.connect(pageContentStory.chapter)
 
