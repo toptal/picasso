@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.26.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.25.0...@toptal/picasso@4.26.0) (2020-02-03)
+
+
+### Features
+
+* **Pagination:** renders null when activePage is bigger than totalPages ([#1040](https://github.com/toptal/picasso/issues/1040)) ([059757c](https://github.com/toptal/picasso/commit/059757c43a6d25002808f82a41591ec54dbba127))
+
+
+
+
+
 # [4.25.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.24.1...@toptal/picasso@4.25.0) (2020-02-03)
 
 
