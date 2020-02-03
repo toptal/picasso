@@ -39,7 +39,6 @@
     "@babel/standalone": "^7.4.4",
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^7.6.0",
-    "@storybook/addon-actions": "^5.0.11",
     "@storybook/addon-viewport": "^5.1.11",
     "@storybook/react": "^5.0.11",
     "@storybook/theming": "^5.0.11",
