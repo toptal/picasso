@@ -80,6 +80,8 @@ export interface Props
   /** Whether to render reset icon which clears selected value */
   enableReset?: boolean
   popperContainer?: HTMLElement
+  /** A threshold of the number of options when start to enable filtering for Select */
+  minOptionsToEnableFiltering?: number
 }
 
 type Selection = {
@@ -263,6 +265,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     size,
     enableReset,
     popperContainer,
+    minOptionsToEnableFiltering,
     ...rest
   } = purifyProps(props)
 
@@ -452,6 +455,8 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     </NativeSelect>
   )
 
+  const readOnlyInput =
+    multiple || options.length <= minOptionsToEnableFiltering!
   const selectComponent = (
     <Fragment>
       <div
@@ -477,14 +482,14 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
           })}
           placeholder={placeholder}
           width={width}
-          readOnly={multiple}
+          readOnly={readOnlyInput}
           defaultValue={undefined}
           className={cx(classes.input, {
-            [classes.inputMultiple]: multiple
+            [classes.readOnlyInput]: readOnlyInput
           })}
           inputProps={{
             className: cx({
-              [classes.inputMultiple]: multiple
+              [classes.readOnlyInput]: readOnlyInput
             }),
             size: 1 // let input to have smallest width by default for width:'shrink'
           }}
@@ -545,7 +550,8 @@ Select.defaultProps = {
   onBlur: () => {},
   renderOption: (option: Option) => option.text,
   size: 'medium',
-  width: 'full'
+  width: 'full',
+  minOptionsToEnableFiltering: 4
 }
 
 Select.displayName = 'Select'
