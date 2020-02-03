@@ -3,8 +3,8 @@ import { Page, Container, Menu, Typography } from '@toptal/picasso'
 
 const PageFullWidthExample = () => (
   <div style={{ height: '30rem' }}>
-    <Page width='full'>
-      <Page.Header rightContent={<RightContent />} title='FullWidth example' />
+    <Page width='wide'>
+      <Page.Header rightContent={<RightContent />} title='WideWidth example' />
       <Page.Content>
         <Content />
       </Page.Content>
@@ -30,7 +30,7 @@ const RightContent = () => (
 const Content = () => (
   <Container top='small' bottom='small' left='small' right='small'>
     <Typography align='center' variant='heading' size='large'>
-      FullWidth example
+      WideWidth example
     </Typography>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod

@@ -13,14 +13,12 @@ import PageFooter from '../PageFooter'
 import PageContent from '../PageContent'
 import PageSidebar from '../Sidebar'
 import PageBanner from '../PageBanner'
-import { PageContextProps } from './types'
+import { PageContextProps, ViewportWidthType } from './types'
 import styles from './styles'
 
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
-  /** Component becomes responsive with width 100% and overrides width prop */
-  fullWidth?: boolean
-  /** Define container width in `rem` */
-  width?: number
+  /** Define container width `wide` | `full` */
+  width?: ViewportWidthType
   /** Horizontally centers the content */
   centered?: boolean
   /** Children components (`Page.Header`, `Page.Content`, `Page.Footer`) */
@@ -40,7 +38,7 @@ export const PageContext = React.createContext<PageContextProps>({})
 
 // eslint-disable-next-line react/display-name
 export const Page = forwardRef<HTMLDivElement, Props>(function Page(
-  { children, classes, className, style, fullWidth, ...rest },
+  { children, classes, className, style, width, ...rest },
   ref
 ) {
   return (
@@ -51,16 +49,10 @@ export const Page = forwardRef<HTMLDivElement, Props>(function Page(
       className={cx(classes.root, className)}
       style={style}
     >
-      <PageContext.Provider value={{ fullWidth }}>
-        {children}
-      </PageContext.Provider>
+      <PageContext.Provider value={{ width }}>{children}</PageContext.Provider>
     </div>
   )
 }) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
-
-Page.defaultProps = {
-  fullWidth: false
-}
 
 Page.displayName = 'Page'
 

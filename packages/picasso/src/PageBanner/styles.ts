@@ -20,6 +20,9 @@ export default ({ layout }: Theme) =>
       minWidth: '1.5em',
       height: '1.3125em'
     },
+    wide: {
+      maxWidth: layout.wideContentWidth
+    },
     fullWidth: {
       maxWidth: '100%'
     }

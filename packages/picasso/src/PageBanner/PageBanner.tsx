@@ -35,13 +35,21 @@ export const PageBanner = forwardRef<HTMLDivElement, Props>(function PageBanner(
   const { className, style, children, variant, icon, ...rest } = props
   const classes = useStyles(props)
   const screens = useScreens<SpacingType>()
-  const { fullWidth } = useContext<PageContextProps>(PageContext)
+  const { width } = useContext<PageContextProps>(PageContext)
   const contentPadding = screens(
     {
       small: 'xsmall',
       medium: 'xsmall'
     },
     'small'
+  )
+
+  const innerClassName = cx(
+    {
+      [classes.fullWidth]: width === 'full',
+      [classes.wide]: width === 'wide'
+    },
+    classes.content
   )
 
   return (
@@ -56,7 +64,7 @@ export const PageBanner = forwardRef<HTMLDivElement, Props>(function PageBanner(
     >
       <Container
         variant={variant}
-        className={cx({ [classes.fullWidth]: fullWidth }, classes.content)}
+        className={innerClassName}
         padded={contentPadding}
         flex
       >
