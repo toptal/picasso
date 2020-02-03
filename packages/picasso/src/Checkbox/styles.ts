@@ -34,12 +34,15 @@ export default ({ palette, sizes, transitions }: Theme) =>
         border: `${sizes.borderWidth} solid ${palette.grey.main}`
       }
     },
+    focused: {
+      '& $uncheckedIcon': {
+        border: `${sizes.borderWidth} solid ${palette.primary.main}`
+      }
+    },
     checkedIcon: {
       height: '1em',
       width: '1em',
-      transition: `all ${transitions.duration.short}ms ${
-        transitions.easing.easeInOut
-      }`,
+      transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`,
       background: palette.primary.main,
       border: `${sizes.borderWidth} solid ${palette.primary.main}`,
       color: palette.common.white,
@@ -70,19 +73,16 @@ export default ({ palette, sizes, transitions }: Theme) =>
     uncheckedIcon: {
       height: '1em',
       width: '1em',
-      transition: `all ${transitions.duration.short}ms ${
-        transitions.easing.easeInOut
-      }`,
+      transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`,
       background: palette.common.white,
       border: `${sizes.borderWidth} solid ${palette.grey.main}`
     },
+
     indeterminateIcon: {
       position: 'relative',
       height: '1em',
       width: '1em',
-      transition: `all ${transitions.duration.short}ms ${
-        transitions.easing.easeInOut
-      }`,
+      transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`,
       background: palette.primary.main,
       border: `${sizes.borderWidth} solid ${palette.primary.main}`,
       color: palette.common.white,

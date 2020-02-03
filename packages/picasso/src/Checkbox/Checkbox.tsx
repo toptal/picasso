@@ -84,6 +84,7 @@ export const Checkbox = forwardRef<HTMLButtonElement, Props>(function Checkbox(
       indeterminate={indeterminate}
       onChange={onChange}
       value={value}
+      focusVisibleClassName={classes.focused}
     />
   )
 

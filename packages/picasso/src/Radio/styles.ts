@@ -15,9 +15,7 @@ PicassoProvider.override(({ palette, transitions }) => ({
       height: '1em',
       padding: '0',
       margin: '0.25em 0',
-      transition: `all ${transitions.duration.short}ms ${
-        transitions.easing.easeInOut
-      }`,
+      transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`,
 
       '&$disabled': {
         opacity: 0.48,
@@ -58,6 +56,11 @@ export default ({ palette, sizes, transitions }: Theme) =>
         color: palette.primary.main
       }
     },
+    focused: {
+      '& $uncheckedIcon': {
+        color: palette.primary.main
+      }
+    },
     disabled: {
       '&:hover $uncheckedIcon': {
         color: palette.grey.main
@@ -68,9 +71,7 @@ export default ({ palette, sizes, transitions }: Theme) =>
     },
     uncheckedIcon: {
       color: palette.grey.main,
-      transition: `all ${transitions.duration.short}ms ${
-        transitions.easing.easeInOut
-      }`,
+      transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`,
       '&:before': {
         ...centeredCircle(palette.common.white),
         border: `${sizes.borderWidth} solid ${palette.grey.main}`
@@ -83,16 +84,12 @@ export default ({ palette, sizes, transitions }: Theme) =>
         borderStyle: 'solid',
         opacity: 0,
         color: palette.common.white,
-        transition: `all ${transitions.duration.short}ms ${
-          transitions.easing.easeInOut
-        }`
+        transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`
       }
     },
     checkedIcon: {
       color: palette.primary.main,
-      transition: `all ${transitions.duration.short}ms ${
-        transitions.easing.easeInOut
-      }`,
+      transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`,
       '&:before': {
         ...centeredCircle(palette.common.white),
         border: `${sizes.borderWidth} solid ${palette.grey.main}`
@@ -104,9 +101,7 @@ export default ({ palette, sizes, transitions }: Theme) =>
         borderWidth: rem('3px'),
         borderStyle: 'solid',
         opacity: 1,
-        transition: `all ${transitions.duration.short}ms ${
-          transitions.easing.easeInOut
-        }`
+        transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`
       }
     },
     label: {
