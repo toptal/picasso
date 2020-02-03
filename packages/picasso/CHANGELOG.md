@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.25.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.24.1...@toptal/picasso@4.25.0) (2020-02-03)
+
+
+### Features
+
+* **Input:** hide input when type is hidden ([#1042](https://github.com/toptal/picasso/issues/1042)) ([87a5df2](https://github.com/toptal/picasso/commit/87a5df27e32da16115e382533f7efb5a6fa75efe))
+
+
+
+
+
 ## [4.24.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.24.0...@toptal/picasso@4.24.1) (2020-01-31)
 
 **Note:** Version bump only for package @toptal/picasso
