@@ -29,6 +29,13 @@ page
   .createChapter()
   .addExample('Select/story/Default.example.jsx', 'Default')
   .addExample('Select/story/Native.example.jsx', 'Native')
+  .addExample('Select/story/SearchBehavior.example.jsx', {
+    title: 'Search behavior',
+    description: `
+Search started to be enabled when Select component has the
+number of options greater than specified in \`searchThreshold\` prop.
+      `
+  }) // picasso-skip-visuals
   .addExample('Select/story/Disabled.example.jsx', 'Disabled')
   .addExample('Select/story/Error.example.jsx', 'Error')
   .addExample('Select/story/WithIcon.example.jsx', 'With Icon')

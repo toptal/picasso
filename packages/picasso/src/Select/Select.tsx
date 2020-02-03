@@ -455,7 +455,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     </NativeSelect>
   )
 
-  const readOnlyInput = multiple || options.length <= searchThreshold!
+  const readOnlyInput = multiple || allOptions.length <= searchThreshold!
   const selectComponent = (
     <Fragment>
       <div
