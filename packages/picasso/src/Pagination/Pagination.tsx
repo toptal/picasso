@@ -72,7 +72,7 @@ export const Pagination = forwardRef<HTMLDivElement, Props>(function Pagination(
   const isFirstActive = activePage === 1
   const isLastActive = activePage === totalPages
 
-  if (totalPages <= ONE_PAGE) {
+  if (totalPages <= ONE_PAGE || activePage > totalPages) {
     return null
   }
 

@@ -2,10 +2,9 @@ import { Container } from '../Container'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.createPage(
+const page = PicassoBook.section('Layout').createPage(
   'Container',
-  'Use Container to add space between 2 elements.',
-  'Layout'
+  'Use Container to add space between 2 elements.'
 )
 
 page

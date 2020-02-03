@@ -8,7 +8,10 @@ import { Table } from '../Table'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.createPage('Table', 'Display sets of data')
+const page = PicassoBook.section('Components').createPage(
+  'Table',
+  'Display sets of data'
+)
 
 page
   .createTabChapter('Props')

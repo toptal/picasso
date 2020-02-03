@@ -2,7 +2,7 @@ import { AccountSelect } from '../AccountSelect'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.createPage('AccountSelect', null, 'Widgets')
+const page = PicassoBook.section('Widgets').createPage('AccountSelect', null)
 
 page.createTabChapter('Props').addComponentDocs({
   component: AccountSelect,

@@ -3,12 +3,12 @@ import { Label } from '../Label'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.createPage(
+const page = PicassoBook.section('Components').createPage(
   'Label',
   `Labels are used to describe other topics, including textareas,
-  form fields, users, and more. By default, labels are read-only UI elements.
-  They are used to surface important information about a topic. Labels may also
-  be used to convey status, or used within a group to show selection.`
+    form fields, users, and more. By default, labels are read-only UI elements.
+    They are used to surface important information about a topic. Labels may also
+    be used to convey status, or used within a group to show selection.`
 )
 
 page

@@ -141,7 +141,8 @@ const OutlinedInput = forwardRef<HTMLInputElement, Props>(
           root: cx(
             classes.root,
             classes[`root${capitalize(width!)}`],
-            classes[`root${capitalize(size!)}`]
+            classes[`root${capitalize(size!)}`],
+            { [`${classes.hidden}`]: type === 'hidden' }
           ),
           input: cx(classes.input, classes[`input${capitalize(size!)}`]),
           inputMultiline: classes.inputMultiline

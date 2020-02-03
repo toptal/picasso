@@ -2,7 +2,7 @@ import { Link } from '../Link'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.createPage(
+const page = PicassoBook.section('Components').createPage(
   'Link',
   'The Link component allows you to easily customize anchor elements with your theme colors and typography styles.'
 )

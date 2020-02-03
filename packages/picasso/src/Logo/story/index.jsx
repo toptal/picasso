@@ -2,14 +2,14 @@ import { Logo } from '../Logo'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.createPage(
+const page = PicassoBook.section('Components').createPage(
   'Logo',
   `
-  The Toptal logo is the visual representation of the products we create.
-  It was designed to be instantly recognizable to our users, partners and
-  internal teams. Or goal is to ensure each logo instance contributes to our
-  brand. This requires consistency in placement, scale, color and location.
-`
+    The Toptal logo is the visual representation of the products we create.
+    It was designed to be instantly recognizable to our users, partners and
+    internal teams. Or goal is to ensure each logo instance contributes to our
+    brand. This requires consistency in placement, scale, color and location.
+  `
 )
 
 page

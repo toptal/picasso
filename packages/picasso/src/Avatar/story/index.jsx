@@ -2,16 +2,16 @@ import { Avatar } from '../Avatar'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.createPage(
+const page = PicassoBook.section('Components').createPage(
   'Avatar',
   `
-  Profile photo.
+    Profile photo.
 
-  &nbsp;  
-  &nbsp;  
-  Additional notes:
-    * The shape of clipped corner has a fallback for <=IE11, Edge to just a rectangle
-`
+    &nbsp;  
+    &nbsp;  
+    Additional notes:
+      * The shape of clipped corner has a fallback for <=IE11, Edge to just a rectangle
+  `
 )
 
 page

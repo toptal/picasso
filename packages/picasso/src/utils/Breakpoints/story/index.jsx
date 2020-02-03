@@ -1,13 +1,12 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.createPage(
+const page = PicassoBook.section('Utils').createPage(
   'Breakpoints',
   `
-    For optimal user experience, we need to be able to adapt layout
-    at various breakpoints. Each breakpoint matches with a fixed screen
-    width.
-  `,
-  'Utils'
+      For optimal user experience, we need to be able to adapt layout
+      at various breakpoints. Each breakpoint matches with a fixed screen
+      width.
+    `
 )
 
 page

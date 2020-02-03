@@ -8,10 +8,12 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 import { <%= Name %> } from '../<%= Name %>'
 
-const page = PicassoBook.createPage(
-  '<%= Name %>',
-  `<-- description -->`
-)
+const page = PicassoBook
+  .section('Components')
+  .createPage(
+    '<%= Name %>',
+    `<-- description -->`
+  )
 
 page
   .createTabChapter('Props')

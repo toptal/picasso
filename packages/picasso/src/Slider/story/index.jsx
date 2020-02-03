@@ -2,7 +2,7 @@ import { Slider } from '../Slider'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.createPage(
+const page = PicassoBook.section('Components').createPage(
   'Slider',
   'Slider is used to pick a numeric value from the predefined range'
 )
