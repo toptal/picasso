@@ -80,7 +80,7 @@ export interface Props
   /** Whether to render reset icon which clears selected value */
   enableReset?: boolean
   popperContainer?: HTMLElement
-  /** A threshold of the number of options when start to enable filtering for Select */
+  /** A threshold of the number of options, defines when to start showing search for Select */
   searchThreshold?: number
 }
 
