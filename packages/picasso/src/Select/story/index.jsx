@@ -39,6 +39,14 @@ page
   .addExample('Select/story/MenuWidth.example.jsx', {
     title: 'Menu width',
     effect: async (testPage, makeScreenshot) => {
+      const hideInputCaretStyle = `
+        input {
+          caret-color: transparent !important;
+        }
+      `
+
+      await testPage.addStyleTag({ content: hideInputCaretStyle })
+
       await testPage.click('[data-testid="trigger"] input')
       await testPage.waitFor(50)
       await makeScreenshot({
