@@ -15,7 +15,7 @@ const SelectSearchBehaviourExample = () => {
     setValue(event.target.value)
   }
 
-  const handleMoreOptionsClick = () => {
+  const handleAddOptionsClick = () => {
     setValue(null)
     setOptions(OPTIONS_WHEN_SEARCH_ENABLED)
   }
@@ -36,7 +36,7 @@ const SelectSearchBehaviourExample = () => {
         searchThreshold={4}
       />
       <Container left='small'>
-        <Button onClick={handleMoreOptionsClick}>Add more options</Button>
+        <Button onClick={handleAddOptionsClick}>Add options</Button>
       </Container>
       <Container left='small'>
         <Button onClick={handleRemoveOptionsClick}>Remove options</Button>
