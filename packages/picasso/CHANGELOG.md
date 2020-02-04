@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.28.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.27.0...@toptal/picasso@4.28.0) (2020-02-04)
+
+
+### Features
+
+* **Select:** [FX-742] Add threshold for enabling search ([#1065](https://github.com/toptal/picasso/issues/1065)) ([33534db](https://github.com/toptal/picasso/commit/33534dbc8e92ed1b79ea693dfe6e7f1b97759eaa))
+
+
+
+
+
 # [4.27.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.26.1...@toptal/picasso@4.27.0) (2020-02-04)
 
 
