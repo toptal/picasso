@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-forms",
-  "version": "0.10.1",
+  "version": "0.10.2",
   "description": "Picasso form components",
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-forms#readme",
@@ -31,7 +31,7 @@
     "classnames": "^2.2.6",
     "final-form": "^4.18.6",
     "final-form-focus": "^1.1.2",
-    "react-final-form": "^6.3.3"
+    "react-final-form": "^6.3.5"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.9",
