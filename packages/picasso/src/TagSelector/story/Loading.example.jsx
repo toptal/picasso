@@ -12,12 +12,7 @@ const options = [
 
 const TagSelectorLoadingExample = () => (
   <div>
-    <TagSelector
-      inputValue='Abcdefgh Abcdefgh Abcdefgh Abcdefgh Abcdefgh Abcdefgh'
-      placeholder='Loading Loading Loading Loading Loading Loading Loadingstate...'
-      options={options}
-      loading
-    />
+    <TagSelector placeholder='Loading state...' options={options} loading />
   </div>
 )
 
