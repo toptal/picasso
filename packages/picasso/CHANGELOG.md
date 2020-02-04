@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.27.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.26.1...@toptal/picasso@4.27.0) (2020-02-04)
+
+
+### Features
+
+* **popper:** expose popper container props to inputs ([#1050](https://github.com/toptal/picasso/issues/1050)) ([345d732](https://github.com/toptal/picasso/commit/345d7328b1ce915cc259807a55493f7b1e64ba03))
+
+
+
+
+
 ## [4.26.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.26.0...@toptal/picasso@4.26.1) (2020-02-03)
 
 **Note:** Version bump only for package @toptal/picasso
