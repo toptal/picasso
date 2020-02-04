@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { TagSelector, Button } from '@toptal/picasso'
+import { TagSelector } from '@toptal/picasso'
 import { isSubstring } from '@toptal/picasso/utils'
 
 const allOptions = [
@@ -32,18 +32,15 @@ const filterOptions = (str = '') => {
 const TagSelectorDefaultExample = () => {
   const [options, setOptions] = useState(allOptions)
   const [value, setValue] = useState([])
-  const [load, setLoad] = useState(false)
   const [inputValue, setInputValue] = useState(EMPTY_INPUT_VALUE)
 
   return (
     <div>
-      <Button onClick={() => setLoad(!load)}>load</Button>
       <TagSelector
         data-testid='component'
         options={options}
         placeholder='Start typing...'
         value={value}
-        loading={load}
         inputValue={inputValue}
         getDisplayValue={getDisplayValue}
         onChange={selectedValues => {
