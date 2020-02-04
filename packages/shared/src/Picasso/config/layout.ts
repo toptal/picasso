@@ -1,11 +1,11 @@
 export interface Layout {
-  wideContentWidth: string
+  contentWidthWide: string
   contentWidth: string
   contentPaddingHorizontal: string
 }
 
 const layout: Layout = {
-  wideContentWidth: '90rem',
+  contentWidthWide: '90rem',
   contentWidth: '75rem',
   contentPaddingHorizontal: '1rem'
 }

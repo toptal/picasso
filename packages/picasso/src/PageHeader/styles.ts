@@ -33,7 +33,7 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
       }
     },
     wide: {
-      maxWidth: layout.wideContentWidth
+      maxWidth: layout.contentWidthWide
     },
     fullWidth: {
       maxWidth: '100%'

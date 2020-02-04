@@ -23,7 +23,7 @@ export default ({ palette, screens, layout }: Theme) =>
     },
     centered: {},
     wide: {
-      maxWidth: layout.wideContentWidth
+      maxWidth: layout.contentWidthWide
     },
     fullWidth: {
       maxWidth: '100%'
