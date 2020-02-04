@@ -187,7 +187,7 @@ TagSelector.defaultProps = {
   otherOptionLabel: 'Add new option: ',
   placeholder: '',
   showOtherOption: false,
-  enableReset: true
+  enableReset: false
 }
 
 TagSelector.displayName = 'TagSelector'
