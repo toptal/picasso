@@ -15,20 +15,21 @@ export default () =>
 
       '& > input': {
         flexGrow: 1,
-        minWidth: '2.5rem',
-        width: 0,
+        width: 'auto',
         height: rem('24px'),
         paddingLeft: rem('4px'),
         paddingRight: '0',
         fontSize: '0.8125em',
-        marginRight: rem('24px'),
         marginBottom: TAG_SELECTOR_INPUT_GUTTER_SIZE
       }
     },
+    withEndAdornment: {
+      paddingRight: 'calc(2*0.625em + 1em)'
+    },
     endAdornment: {
       position: 'absolute',
-      right: '0.5rem',
-      bottom: '0.75rem',
-      marginBottom: TAG_SELECTOR_INPUT_GUTTER_SIZE
+      top: 'calc(50% - 0.5em)',
+      right: '0.625em',
+      height: '1em'
     }
   })
