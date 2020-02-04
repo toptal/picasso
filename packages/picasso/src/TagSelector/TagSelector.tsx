@@ -56,8 +56,6 @@ export interface Props
   width?: 'full' | 'shrink' | 'auto'
   /** Specifies whether the autofill enabled or not, disabled by default */
   enableAutofill?: boolean
-  /** Whether to render reset icon when there is a value in the input */
-  enableReset?: boolean
   /** Provide unique key for each option */
   getKey?: (item: Item) => string
   /** Callback responsible for rendering the option given the option and its index in the list of options */
@@ -80,7 +78,6 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       onInputChange,
       width,
       enableAutofill,
-      enableReset,
       getKey: customGetKey,
       renderOption,
       classes,
@@ -170,7 +167,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         enableAutofill={enableAutofill}
         getDisplayValue={getDisplayValue}
         renderOption={renderOption}
-        enableReset={enableReset}
+        enableReset={false}
       />
     )
   }
@@ -186,8 +183,7 @@ TagSelector.defaultProps = {
   options: [],
   otherOptionLabel: 'Add new option: ',
   placeholder: '',
-  showOtherOption: false,
-  enableReset: false
+  showOtherOption: false
 }
 
 TagSelector.displayName = 'TagSelector'
