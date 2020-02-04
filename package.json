@@ -41,7 +41,7 @@
     "@commitlint/config-conventional": "^7.6.0",
     "@storybook/addon-viewport": "^5.1.11",
     "@storybook/react": "^5.0.11",
-    "@storybook/theming": "^5.0.11",
+    "@storybook/theming": "^5.3.11",
     "@svgr/cli": "^4.3.0",
     "@testing-library/react": "^9.3.2",
     "@toptal/davinci": "^0.1.0-alpha.74",
