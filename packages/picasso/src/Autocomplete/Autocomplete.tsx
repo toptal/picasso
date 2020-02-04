@@ -76,6 +76,7 @@ export interface Props
   enableAutofill?: boolean
   /** Whether to render reset icon when there is a value in the input */
   enableReset?: boolean
+  popperContainer?: HTMLElement
 }
 
 const getItemText = (item: Item | null) =>
@@ -107,6 +108,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       error,
       enableAutofill,
       autoComplete,
+      popperContainer,
       getKey: customGetKey,
       enableReset,
       ...rest
@@ -235,6 +237,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
               autoWidth
               open={isOpen && !loading}
               anchorEl={inputWrapperRef.current}
+              container={popperContainer}
             >
               {optionsMenu}
             </Popper>

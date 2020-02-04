@@ -79,6 +79,7 @@ export interface Props
   size?: SizeType<'small' | 'medium'>
   /** Whether to render reset icon which clears selected value */
   enableReset?: boolean
+  popperContainer?: HTMLElement
 }
 
 type Selection = {
@@ -261,6 +262,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     getDisplayValue,
     size,
     enableReset,
+    popperContainer,
     ...rest
   } = purifyProps(props)
 
@@ -499,6 +501,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
           placement='bottom-start'
           open={isOpen}
           anchorEl={inputWrapperRef.current}
+          container={popperContainer}
         >
           {renderOptions({
             options,
