@@ -39,10 +39,8 @@ export default ({ palette }: Theme) =>
       zIndex: 1,
       paddingRight: 'calc(0.625rem + 1rem)'
     },
-    inputMultiple: {
-      '&:hover': {
-        cursor: 'pointer'
-      }
+    readOnlyInput: {
+      cursor: 'pointer'
     },
     nativeInput: {
       padding: 0
