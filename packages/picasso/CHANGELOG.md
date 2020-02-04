@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.29.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.28.0...@toptal/picasso@4.29.0) (2020-02-04)
+
+
+### Features
+
+* add focus state to checkbox and radio ([#1069](https://github.com/toptal/picasso/issues/1069)) ([5e714e0](https://github.com/toptal/picasso/commit/5e714e060aac5882be94c93ffc4ef92fc4891673))
+
+
+
+
+
 # [4.28.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.27.0...@toptal/picasso@4.28.0) (2020-02-04)
 
 
