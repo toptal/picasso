@@ -70,6 +70,7 @@ export const Radio = forwardRef<HTMLButtonElement, Props>(function Radio(
         [classes.withLabel]: Boolean(label)
       })}
       style={style}
+      focusVisibleClassName={classes.focused}
     />
   )
 
