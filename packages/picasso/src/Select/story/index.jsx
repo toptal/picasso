@@ -29,7 +29,7 @@ page
   .createChapter()
   .addExample('Select/story/Default.example.jsx', 'Default')
   .addExample('Select/story/Native.example.jsx', 'Native')
-  .addExample('Select/story/SearchBehavior.example.jsx', {
+  .addExample('Select/story/SearchBehavior.example.tsx', {
     title: 'Search behavior',
     description: `
 Search started to be enabled when Select component has the
