@@ -57,7 +57,7 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
     }
   }, [])
 
-  const { width } = useContext<PageContextProps>(PageContext)
+  const { width, fullWidth } = useContext<PageContextProps>(PageContext)
 
   const logo = (
     <Logo variant='white' emblem={isCompactLayout} className={classes.logo} />
@@ -76,7 +76,7 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
 
   const innerClassName = cx(
     {
-      [classes.fullWidth]: width === 'full',
+      [classes.fullWidth]: fullWidth || width === 'full',
       [classes.wide]: width === 'wide'
     },
     classes.content

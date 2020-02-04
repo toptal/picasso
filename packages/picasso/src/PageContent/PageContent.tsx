@@ -19,11 +19,11 @@ export const PageContent = forwardRef<HTMLDivElement, Props>(
     { children, classes, className, style, flex, ...rest },
     ref
   ) {
-    const { width } = useContext<PageContextProps>(PageContext)
+    const { width, fullWidth } = useContext<PageContextProps>(PageContext)
 
     const innerClassName = cx(
       {
-        [classes.fullWidth]: width === 'full',
+        [classes.fullWidth]: fullWidth || width === 'full',
         [classes.wide]: width === 'wide',
         [classes.flex]: flex
       },

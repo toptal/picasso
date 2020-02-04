@@ -17,6 +17,8 @@ import { PageContextProps, ViewportWidthType } from './types'
 import styles from './styles'
 
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+  /** DEPRECATED! Component becomes responsive with width 100% and overrides width prop */
+  fullWidth?: boolean
   /** Define container width `wide` | `full` */
   width?: ViewportWidthType
   /** Horizontally centers the content */
@@ -38,7 +40,7 @@ export const PageContext = React.createContext<PageContextProps>({})
 
 // eslint-disable-next-line react/display-name
 export const Page = forwardRef<HTMLDivElement, Props>(function Page(
-  { children, classes, className, style, width, ...rest },
+  { children, classes, className, style, width, fullWidth, ...rest },
   ref
 ) {
   return (
@@ -49,7 +51,9 @@ export const Page = forwardRef<HTMLDivElement, Props>(function Page(
       className={cx(classes.root, className)}
       style={style}
     >
-      <PageContext.Provider value={{ width }}>{children}</PageContext.Provider>
+      <PageContext.Provider value={{ width, fullWidth }}>
+        {children}
+      </PageContext.Provider>
     </div>
   )
 }) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>

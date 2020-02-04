@@ -18,11 +18,11 @@ export const PageFooter = forwardRef<HTMLElement, Props>(function PageFooter(
   { classes, className, style, rightContent, ...rest },
   ref
 ) {
-  const { width } = useContext<PageContextProps>(PageContext)
+  const { width, fullWidth } = useContext<PageContextProps>(PageContext)
 
   const contentClassnames = cx(
     {
-      [classes.fullWidth]: width === 'full',
+      [classes.fullWidth]: fullWidth || width === 'full',
       [classes.wide]: width === 'wide'
     },
     classes.content
