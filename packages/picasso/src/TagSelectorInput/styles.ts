@@ -2,8 +2,8 @@ import { createStyles } from '@material-ui/core/styles'
 import { rem } from '@toptal/picasso-shared'
 
 export const TAG_SELECTOR_INPUT_GUTTER_SIZE = rem('6px')
-const TAG_SELECTOR_END_ADORNMENT_PADDING = '0.625em'
-const TAG_SELECTOR_END_ADORNMENT_HEIGHT = '1em'
+const END_ADORNMENT_PADDING = '0.625em'
+const END_ADORNMENT_HEIGHT = '1em'
 
 export default () =>
   createStyles({
@@ -26,12 +26,12 @@ export default () =>
       }
     },
     withEndAdornment: {
-      paddingRight: `calc(2*${TAG_SELECTOR_END_ADORNMENT_PADDING} + ${TAG_SELECTOR_END_ADORNMENT_HEIGHT})`
+      paddingRight: `calc(2*${END_ADORNMENT_PADDING} + ${END_ADORNMENT_HEIGHT})`
     },
     endAdornment: {
       position: 'absolute',
-      top: `calc(50% - 0.5 * ${TAG_SELECTOR_END_ADORNMENT_HEIGHT})`,
+      top: `calc(50% - 0.5 * ${END_ADORNMENT_HEIGHT})`,
       right: '0.625em',
-      height: TAG_SELECTOR_END_ADORNMENT_HEIGHT
+      height: END_ADORNMENT_HEIGHT
     }
   })
