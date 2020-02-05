@@ -17,7 +17,7 @@ export default () =>
 
       '& > input': {
         flexGrow: 1,
-        width: 'auto',
+        width: '0',
         height: rem('24px'),
         paddingLeft: rem('4px'),
         paddingRight: '0',
