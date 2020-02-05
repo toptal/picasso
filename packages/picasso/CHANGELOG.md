@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.30.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.29.0...@toptal/picasso@4.30.0) (2020-02-05)
+
+
+### Features
+
+* support wide desktop screen ([#1063](https://github.com/toptal/picasso/issues/1063)) ([0c9eb83](https://github.com/toptal/picasso/commit/0c9eb8366ecb8576143c63bf5a8777103b3e00d9))
+
+
+
+
+
 # [4.29.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.28.0...@toptal/picasso@4.29.0) (2020-02-04)
 
 

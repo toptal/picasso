@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.3.1...@toptal/picasso-shared@1.4.0) (2020-02-05)
+
+
+### Features
+
+* support wide desktop screen ([#1063](https://github.com/toptal/picasso/issues/1063)) ([0c9eb83](https://github.com/toptal/picasso/commit/0c9eb8366ecb8576143c63bf5a8777103b3e00d9))
+
+
+
+
+
 ## [1.3.1](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.3.0...@toptal/picasso-shared@1.3.1) (2020-01-31)
 
 **Note:** Version bump only for package @toptal/picasso-shared
