@@ -32,6 +32,7 @@ import FontsLoader from './FontsLoader'
 import Provider from './PicassoProvider'
 import NotificationsProvider from './NotificationsProvider'
 import globalStyles from './styles'
+import Favicon from '../Favicon'
 
 const picasso = {
   palette,
@@ -144,6 +145,8 @@ interface PicassoProps {
   children?: ReactNode
   /** Whether to load fonts file to the page */
   loadFonts?: boolean
+  /** Whether to specify favicons in the head */
+  loadFavicon?: boolean
   /** Whether to apply Picasso CSS reset */
   reset?: boolean
   /** Notification DOMNode for createPortal */
@@ -154,6 +157,7 @@ interface PicassoProps {
 
 const Picasso: FunctionComponent<PicassoProps> = ({
   loadFonts,
+  loadFavicon,
   reset,
   children,
   notificationContainer,
@@ -162,6 +166,7 @@ const Picasso: FunctionComponent<PicassoProps> = ({
   <MuiThemeProvider theme={PicassoProvider.theme}>
     {loadFonts && <FontsLoader />}
     {reset && <CssBaseline />}
+    {loadFavicon && <Favicon />}
     <PicassoGlobalStylesProvider RootComponent={RootComponent!}>
       <NotificationsProvider container={notificationContainer}>
         <ModalProvider>{children}</ModalProvider>
@@ -172,6 +177,7 @@ const Picasso: FunctionComponent<PicassoProps> = ({
 
 Picasso.defaultProps = {
   loadFonts: true,
+  loadFavicon: true,
   reset: true,
   RootComponent: PicassoRootNode
 }
