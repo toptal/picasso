@@ -35,7 +35,10 @@ page
   })
   .addExample('Page/story/FullWidth.example.jsx', 'Full width')
   .addExample('Page/story/Scroll.example.jsx', 'Scroll with overflow')
-  .addExample('Page/story/WithBanner.example.jsx', 'With Banner')
+  .addExample('Page/story/WithBanner.example.jsx', {
+    title: 'With Banner',
+    waitUntilImagesLoaded: true
+  })
 
 page.connect(pageHeaderStory.chapter)
 

@@ -1,4 +1,5 @@
 import React, { forwardRef, ReactElement } from 'react'
+import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import { Props as InputProps } from '../Input/Input'
@@ -31,8 +32,10 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
       onChange,
       startAdornment,
       endAdornment,
-      enableReset,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       onResetClick,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      enableReset,
       ...rest
     } = props
 
@@ -41,7 +44,7 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
 
     if (endAdornment) {
       usedEndAdornment = React.cloneElement(endAdornment as ReactElement, {
-        className: classes.loaderAdornment
+        className: classes.endAdornment
       })
     }
 
@@ -49,7 +52,9 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
       <OutlinedInput
         ref={ref}
         style={style}
-        className={classes.inputBase}
+        className={cx(classes.inputBase, {
+          [classes.withEndAdornment]: Boolean(endAdornment)
+        })}
         id={id}
         name={name}
         defaultValue={defaultValue}
@@ -69,8 +74,6 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
         endAdornment={usedEndAdornment}
         startAdornment={startAdornment}
         onChange={onChange}
-        enableReset={enableReset}
-        onResetClick={onResetClick}
       >
         {children}
       </OutlinedInput>

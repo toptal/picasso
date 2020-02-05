@@ -2,7 +2,6 @@ import React, {
   KeyboardEvent,
   Fragment,
   forwardRef,
-  useRef,
   ComponentType,
   InputHTMLAttributes,
   ReactNode
@@ -10,7 +9,6 @@ import React, {
 import { withStyles } from '@material-ui/core/styles'
 import { StandardProps } from '@toptal/picasso-shared'
 
-import { useCombinedRefs } from '../utils'
 import Label from '../Label'
 import Autocomplete, { Item as AutocompleteItem } from '../Autocomplete'
 import TagSelectorInput from '../TagSelectorInput'
@@ -87,34 +85,6 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
     },
     ref
   ) {
-    const inputRef = useCombinedRefs<HTMLInputElement>(
-      ref,
-      useRef<HTMLInputElement>(null)
-    )
-
-    React.useLayoutEffect(() => {
-      const inputNode = inputRef.current
-
-      if (inputNode) {
-        const resizeInput = () => {
-          const inputNodeLength = inputNode.value.length
-          const isInputBlank = inputValue.length === 0
-          const isNothingSelected = values.length === 0
-          const isShowingPlaceholder = isInputBlank && isNothingSelected
-
-          inputNode.style.width = isShowingPlaceholder
-            ? 'auto'
-            : `${inputNodeLength + 2}ch`
-        }
-
-        resizeInput()
-        inputNode.addEventListener('input', resizeInput)
-        return () => {
-          inputNode.removeEventListener('input', resizeInput)
-        }
-      }
-    }, [values])
-
     const handleDelete = (value: Item) => {
       const index = values.indexOf(value)
 
@@ -180,7 +150,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       <Autocomplete
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
-        ref={inputRef}
+        ref={ref}
         placeholder={values.length === 0 ? placeholder : undefined}
         options={autocompleteOptions}
         value={inputValue}
