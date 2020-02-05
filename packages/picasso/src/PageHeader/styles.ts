@@ -32,6 +32,9 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
         height: headerHeight.smallAndMedium
       }
     },
+    wide: {
+      maxWidth: layout.contentWidthWide
+    },
     fullWidth: {
       maxWidth: '100%'
     },

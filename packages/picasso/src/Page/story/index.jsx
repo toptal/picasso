@@ -28,6 +28,11 @@ page
     description:
       'Page has centered content and restricted width of 1200px or 75rem'
   })
+  .addExample('Page/story/WideWidth.example.jsx', {
+    title: 'Wide width',
+    description:
+      'Page has centered content and restricted width of 1440px or 90rem'
+  })
   .addExample('Page/story/FullWidth.example.jsx', 'Full width')
   .addExample('Page/story/Scroll.example.jsx', 'Scroll with overflow')
   .addExample('Page/story/WithBanner.example.jsx', 'With Banner')

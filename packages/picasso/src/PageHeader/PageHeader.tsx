@@ -57,7 +57,7 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
     }
   }, [])
 
-  const { fullWidth } = useContext<PageContextProps>(PageContext)
+  const { width, fullWidth } = useContext<PageContextProps>(PageContext)
 
   const logo = (
     <Logo variant='white' emblem={isCompactLayout} className={classes.logo} />
@@ -74,6 +74,14 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
     </Container>
   )
 
+  const innerClassName = cx(
+    {
+      [classes.fullWidth]: fullWidth || width === 'full',
+      [classes.wide]: width === 'wide'
+    },
+    classes.content
+  )
+
   return (
     <header
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -82,7 +90,7 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
       className={cx('mui-fixed', classes.root, classes[variant!], className)}
       style={style}
     >
-      <div className={cx({ [classes.fullWidth]: fullWidth }, classes.content)}>
+      <div className={innerClassName}>
         <div className={classes.left}>
           <Container className={classes.logoContainer} flex alignItems='center'>
             {logoLink ? React.cloneElement(logoLink, {}, logo) : logo}

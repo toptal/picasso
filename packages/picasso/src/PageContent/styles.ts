@@ -14,6 +14,9 @@ export default ({ layout }: Theme) =>
       maxWidth: layout.contentWidth,
       padding: '0 1rem'
     },
+    wide: {
+      maxWidth: layout.contentWidthWide
+    },
     fullWidth: {
       maxWidth: '100%'
     },

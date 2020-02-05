@@ -1,10 +1,10 @@
 import React from 'react'
 import { Page, Container, Menu, Typography } from '@toptal/picasso'
 
-const PageFullWidthExample = () => (
+const PageWideWidthExample = () => (
   <div style={{ height: '30rem' }}>
-    <Page width='full'>
-      <Page.Header rightContent={<RightContent />} title='Full width example' />
+    <Page width='wide'>
+      <Page.Header rightContent={<RightContent />} title='Wide width example' />
       <Page.Content>
         <Content />
       </Page.Content>
@@ -30,7 +30,7 @@ const RightContent = () => (
 const Content = () => (
   <Container top='small' bottom='small' left='small' right='small'>
     <Typography align='center' variant='heading' size='large'>
-      Full width example
+      Wide width example
     </Typography>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -44,4 +44,4 @@ const Content = () => (
   </Container>
 )
 
-export default PageFullWidthExample
+export default PageWideWidthExample
