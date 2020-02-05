@@ -7,6 +7,7 @@ import {
   CompoundedComponentWithRef
 } from '@toptal/picasso-shared'
 
+import PageHead from '../PageHead'
 import PageHeader from '../PageHeader'
 import PageHeaderMenu from '../PageHeaderMenu'
 import PageFooter from '../PageFooter'
@@ -28,6 +29,7 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
 }
 
 interface StaticProps {
+  Head: typeof PageHead
   Header: typeof PageHeader
   HeaderMenu: typeof PageHeaderMenu
   Content: typeof PageContent
@@ -71,6 +73,8 @@ Page.Footer = PageFooter
 Page.Sidebar = PageSidebar
 
 Page.Banner = PageBanner
+
+Page.Head = PageHead
 
 export default withStyles(styles)(Page) as PicassoComponentWithRef<
   Props,
