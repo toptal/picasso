@@ -6817,11 +6817,7 @@ commander@2.17.x, commander@~2.17.1:
   version "2.17.1"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.17.1.tgz#bd77ab7de6de94205ceacc72f1716d29f20a77bf"
 
-commander@^2.11.0, commander@^2.14.1, commander@^2.18.0, commander@^2.19.0, commander@^2.20.0, commander@^2.9.0:
-  version "2.20.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.0.tgz#d58bb2b5c1ee8f87b0d340027e9e94e222c5a422"
-
-commander@~2.20.3:
+commander@^2.11.0, commander@^2.14.1, commander@^2.18.0, commander@^2.19.0, commander@^2.20.0, commander@^2.9.0, commander@~2.20.3:
   version "2.20.3"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
   integrity sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
@@ -7592,10 +7588,10 @@ d@1:
   dependencies:
     es5-ext "^0.10.9"
 
-danger@^9.2.2:
-  version "9.2.9"
-  resolved "https://registry.yarnpkg.com/danger/-/danger-9.2.9.tgz#233203f42c6dbae64084b814344d94cced749536"
-  integrity sha512-3Or++mfuX2scwYewf5Ef4t2sq4ncOSprexOyjOoQwr2d21m+InzSDzt/AANqGZFsPIbCt88jggzDPoKO8VSE/Q==
+danger@^9.2.10:
+  version "9.2.10"
+  resolved "https://registry.yarnpkg.com/danger/-/danger-9.2.10.tgz#7b4e34ca805dd39bbbc0ca2da9025d63f4d36a85"
+  integrity sha512-COMNt+zVATR+hY9HVDnvmv/PJ0ljkXg19NdlCdwO89HiXN4+ZMeAQtOAYKZoAiwOIYYVEZhfzoSYKOemCnlWCw==
   dependencies:
     "@babel/polyfill" "^7.2.5"
     "@octokit/rest" "^16.14.1"

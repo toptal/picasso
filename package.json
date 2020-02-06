@@ -64,7 +64,7 @@
     "copy-to-clipboard": "^3.2.1",
     "cross-env": "^6.0.3",
     "cz-conventional-changelog": "3.0.2",
-    "danger": "^9.2.2",
+    "danger": "^9.2.10",
     "debounce": "^1.2.0",
     "ejs": "^3.0.1",
     "escodegen": "^1.12.0",
