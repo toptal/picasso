@@ -41,7 +41,7 @@ export interface Props
   /** Allow to show the other option in the list of options */
   showOtherOption?: boolean
   /** List of options with unique labels */
-  options?: Item[]
+  options?: Item[] | null
   /** The list of values of the selected options, required for a controlled component. */
   value?: Item[]
   /** A function that takes a display value from the option item */
@@ -129,7 +129,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       )
     }
 
-    const autocompleteOptions: AutocompleteItem[] =
+    const autocompleteOptions: AutocompleteItem[] | null =
       options && options.filter(option => !isIncluded(values, option))
 
     const labels = (

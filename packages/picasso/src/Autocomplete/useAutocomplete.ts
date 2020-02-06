@@ -71,7 +71,7 @@ function getNextWrappingIndex(
 
 interface Props {
   value: string
-  options?: Item[]
+  options?: Item[] | null
   enableAutofill?: boolean
   autoComplete?: string
   onSelect?: (item: Item) => void
@@ -182,6 +182,12 @@ const useAutocomplete = ({
     },
 
     onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => {
+      onKeyDown(event, value)
+
+      if (!Array.isArray(options)) {
+        return
+      }
+
       const key = normalizeArrowKey(event)
 
       if (key === 'ArrowUp') {
@@ -237,8 +243,6 @@ const useAutocomplete = ({
         setHighlightedIndex(null)
         handleChange(getDisplayValue(null))
       }
-
-      onKeyDown(event, value)
     },
 
     onBlur: () => setOpen(false),

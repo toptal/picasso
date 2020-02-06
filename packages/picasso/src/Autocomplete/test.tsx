@@ -275,6 +275,23 @@ describe('Autocomplete', () => {
     expect(getByText(noOptionsText)).not.toBeNull()
   })
 
+  test('when "options" prop is null, no options are shown on focus', () => {
+    const PLACEHOLDER_TEXT = 'Start typing here...'
+    const NO_OPTIONS_TEXT = 'No options'
+
+    const { getByPlaceholderText, queryByText } = renderAutocomplete({
+      placeholder: PLACEHOLDER_TEXT,
+      noOptionsText: NO_OPTIONS_TEXT,
+      value: '',
+      options: null
+    })
+
+    const input = getByPlaceholderText(PLACEHOLDER_TEXT)
+
+    fireEvent.focus(input)
+    expect(queryByText(NO_OPTIONS_TEXT)).toBeNull()
+  })
+
   test('renders options customly', async () => {
     const api = renderAutocomplete({
       placeholder: 'Start typing here...',
