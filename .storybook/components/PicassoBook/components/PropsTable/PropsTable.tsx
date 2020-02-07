@@ -1,5 +1,6 @@
 import React, { Fragment, FunctionComponent } from 'react'
 import { withStyles } from '@material-ui/core/styles'
+import { sortBy } from 'lodash'
 
 import { Table } from '../../../../../packages/picasso'
 import cx from 'classnames'
@@ -23,9 +24,13 @@ function renderRows({ documentation, classes }: Props): JSX.Element {
   const isEnum = (type: string | PropTypeDocumentation) =>
     type === 'enum' || (type as PropTypeDocumentation).name === 'enum'
 
+  const sortedProps = sortBy(documentation, document =>
+    document.name.toLowerCase()
+  )
+
   return (
     <Fragment>
-      {documentation.map(
+      {sortedProps.map(
         ({ name, type, defaultValue, description, enums, required }) => (
           <Table.Row key={name}>
             <Table.Cell>
