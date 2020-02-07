@@ -1,5 +1,1 @@
-export type EnvironmentType =
-  | 'development'
-  | 'staging'
-  | 'temploy'
-  | 'production'
+export type EnvironmentType = 'development' | 'staging' | 'production'

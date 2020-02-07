@@ -19,15 +19,21 @@ export const Favicon = ({ environment }: Props) => {
   }>({})
 
   useEffect(() => {
-    getIcons(environment!)
-      .then(icons => {
+    async function loadIcons() {
+      try {
+        const icons = await getIcons(environment!)
+
         setIcons(icons)
-        return icons
-      })
-      .catch(e => {
+      } catch {
         // eslint-disable-next-line no-console
-        console.log(e)
-      })
+        console.error(
+          'favicons were not loaded properly for environment ',
+          environment
+        )
+      }
+    }
+
+    loadIcons()
   }, [])
 
   const { icon16, icon32, icon180 } = icons
