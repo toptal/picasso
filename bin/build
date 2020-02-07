@@ -45,18 +45,9 @@ const compile = function (tsConfig, packageJson, packageRootDir) {
     sh.rm('-rf', tsConfig.compilerOptions.outDir)
   }
 
-  function copyIcons () {
-    log('Copying favicons', 'green');
-
-    ['staging', 'development', 'production'].forEach(env => {
-      sh.cp('-R', `src/Favicon/icons/${env}/*.png`, `./build/Favicon/icons/${env}/`)
-    })
-  }
-
   clean()
   build()
 
-  copyIcons()
   copyPackageJson(packageRootDir, entry)
 
   if (yargs.watch) {
