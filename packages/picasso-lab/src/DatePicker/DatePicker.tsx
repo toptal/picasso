@@ -125,7 +125,7 @@ export const DatePicker = (props: Props) => {
     } else {
       setInputValue(formatDate(value as Date, displayDateFormat!))
     }
-  }, [value, isInputFocused])
+  }, [value, isInputFocused, range, displayDateFormat, editDateFormat])
 
   const isInsideDatePicker = (node: Node) => {
     if (!inputWrapperRef.current) {

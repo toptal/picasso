@@ -12,12 +12,14 @@ export const RadioGroup = (props: Props) => {
   const { children, ...rest } = props
 
   return (
+    // eslint-disable-next-line react/jsx-props-no-spreading
     <FieldWrapper {...rest} type='radio'>
       {radioGroupProps => {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { error, ...restRadioGroupProps } = radioGroupProps
 
         return (
+          // eslint-disable-next-line react/jsx-props-no-spreading
           <PicassoRadio.Group {...restRadioGroupProps}>
             {children}
           </PicassoRadio.Group>

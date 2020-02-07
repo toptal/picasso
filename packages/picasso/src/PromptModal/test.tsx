@@ -64,8 +64,10 @@ test('showPrompt opens and closes modal on Submit action', async () => {
   expect(baseElement).toMatchSnapshot()
 })
 
+const identity = <T extends unknown>(value: T) => value
+
 test('showPrompt with input returns result on Submit action ', async () => {
-  const mockResult = jest.fn(x => x)
+  const mockResult = jest.fn(identity)
 
   const TestComponent = () => {
     const { showPrompt } = useModals()

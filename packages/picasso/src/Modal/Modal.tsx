@@ -156,7 +156,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
     return () => {
       document.removeEventListener('focus', handleDocumentFocus, true)
     }
-  }, [open])
+  }, [handleDocumentFocus, open])
 
   useEffect(() => {
     if (open) {

@@ -95,6 +95,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
 
   return (
     <MUISlider
+      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       ref={ref}
       defaultValue={defaultValue}
