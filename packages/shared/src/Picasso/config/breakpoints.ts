@@ -57,7 +57,6 @@ export const screenSizeToBreakpointKey = function (
   } else if (size >= md && size < lg) {
     return 'large'
   }
-  // if (size >= lg)
   return 'extra-large'
 }
 
