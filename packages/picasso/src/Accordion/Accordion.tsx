@@ -29,7 +29,7 @@ const Summary: FunctionComponent = props => {
   return <div className={classes.summaryWrapper}>{children}</div>
 }
 
-const Details: FunctionComponent<{ className: string }> = props => {
+const Details: FunctionComponent<{ className?: string }> = props => {
   const { children, className } = props
   const classes = useStyles(props)
 
