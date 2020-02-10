@@ -36,9 +36,9 @@ const asyncGlob = pattern => {
 const lastCommitHash = () => {
   if (env.GIT_SHA) {
     return env.GIT_SHA.toString()
-  } else {
-    return 'latest'
   }
+
+  return 'latest'
 }
 
 const assignOutputDir = () => {
