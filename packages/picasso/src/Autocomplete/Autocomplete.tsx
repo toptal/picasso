@@ -50,7 +50,7 @@ export interface Props
   /** Label to show when no options were found */
   noOptionsText?: string
   /** List of options */
-  options?: Item[]
+  options?: Item[] | null
   /** A function that takes a display value from the option item */
   getDisplayValue?: (item: Item | null) => string
   /**  Callback invoked when key is pressed */
@@ -154,7 +154,8 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
     const shouldShowOtherOption =
       showOtherOption &&
       value &&
-      options!.every(option => getDisplayValue!(option) !== value)
+      Array.isArray(options) &&
+      options.every(option => getDisplayValue!(option) !== value)
 
     const optionsMenu = options && (
       <ScrollMenu selectedIndex={highlightedIndex}>
