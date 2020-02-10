@@ -9,7 +9,7 @@ type VariantType = 'standard' | 'outlined' | 'filled'
 
 export interface Props
   extends StandardProps,
-    LabelHTMLAttributes<HTMLLabelElement> {
+    Omit<LabelHTMLAttributes<HTMLLabelElement>, 'color'> {
   variant?: VariantType
   htmlFor?: string
   /** Label content */

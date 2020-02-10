@@ -10,7 +10,7 @@ import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import MUIOutlinedInput from '@material-ui/core/OutlinedInput'
 import { InputBaseComponentProps } from '@material-ui/core/InputBase'
-import { capitalize } from '@material-ui/core/utils/helpers'
+import capitalize from '@material-ui/core/utils/capitalize'
 import { StandardProps, SizeType, Classes } from '@toptal/picasso-shared'
 
 import InputAdornment from '../InputAdornment'
@@ -29,7 +29,7 @@ export interface Props
   extends StandardProps,
     Omit<
       InputHTMLAttributes<HTMLInputElement>,
-      'value' | 'defaultValue' | 'size'
+      'value' | 'defaultValue' | 'size' | 'color'
     > {
   /** Width of the component */
   width?: 'full' | 'shrink' | 'auto'

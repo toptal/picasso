@@ -1,4 +1,4 @@
-import { capitalize } from '@material-ui/core/utils/helpers'
+import capitalize from '@material-ui/core/utils/capitalize'
 import { Theme, createStyles } from '@material-ui/core/styles'
 import { Color } from '@material-ui/core'
 import { SimplePaletteColorOptions } from '@material-ui/core/styles/createPalette'

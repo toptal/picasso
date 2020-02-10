@@ -1,6 +1,6 @@
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import { ThemeStyle as MUIVariant } from '@material-ui/core/styles/createTypography'
+import { Variant as MUIVariant } from '@material-ui/core/styles/createTypography'
 import { PropTypes } from '@material-ui/core'
 import MUITypography from '@material-ui/core/Typography'
 import cx from 'classnames'
