@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.31.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.31.1...@toptal/picasso@4.31.2) (2020-02-10)
+
+
+### Bug Fixes
+
+* allow null options for the Autocomplete ([#1091](https://github.com/toptal/picasso/issues/1091)) ([26b8809](https://github.com/toptal/picasso/commit/26b8809ed4616ebff86d41e36e5bc2f706e21f55))
+
+
+
+
+
 ## [4.31.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.31.0...@toptal/picasso@4.31.1) (2020-02-10)
 
 
