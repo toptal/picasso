@@ -5,8 +5,8 @@ import { StandardProps } from '@toptal/picasso-shared'
 
 import Container from '../Container'
 import styles from './styles'
-import { HelpboxContext } from '../Helpbox'
 import { HelpboxContextProps } from '../Helpbox/types'
+import HelpboxContext from '../Helpbox/HelpboxContext'
 
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Actions part of Helpbox */

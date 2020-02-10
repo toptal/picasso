@@ -3,7 +3,8 @@ import React, {
   forwardRef,
   useState,
   useContext,
-  ReactElement
+  ReactElement,
+  useCallback
 } from 'react'
 import MUIMenuList, { MenuListProps } from '@material-ui/core/MenuList'
 import { withStyles } from '@material-ui/core/styles'
@@ -78,6 +79,19 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
 
   const getLastKey = () => menusKeys[menusKeys.length - 1]
 
+  const refresh = useCallback(
+    (key: string, newMenu: ReactElement) => {
+      if (!menus[key]) {
+        return
+      }
+
+      if (menus[key] !== newMenu) {
+        setMenus({ ...menus, ...{ [key]: newMenu } })
+      }
+    },
+    [menus]
+  )
+
   if (hasParentMenu) {
     return menu
   }
@@ -97,13 +111,7 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
       delete newMenus[key]
       setMenus(newMenus)
     },
-    refresh: (key: string, newMenu: ReactElement) => {
-      if (!menus[key]) {
-        return
-      }
-
-      setMenus({ ...menus, ...{ [key]: newMenu } })
-    }
+    refresh
   }
 
   const currentVisibleMenuKey = getLastKey()
