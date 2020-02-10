@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`default render 1`] = `
+NodeList [
+  <link
+    data-react-helmet="true"
+    href="test-file-stub"
+    rel="apple-touch-icon"
+    sizes="180x180"
+  />,
+  <link
+    data-react-helmet="true"
+    href="test-file-stub"
+    rel="icon"
+    sizes="32x32"
+    type="image/png"
+  />,
+  <link
+    data-react-helmet="true"
+    href="test-file-stub"
+    rel="icon"
+    sizes="16x16"
+    type="image/png"
+  />,
+]
+`;
+
+exports[`with environment specified 1`] = `
+NodeList [
+  <link
+    data-react-helmet="true"
+    href="test-file-stub"
+    rel="apple-touch-icon"
+    sizes="180x180"
+  />,
+  <link
+    data-react-helmet="true"
+    href="test-file-stub"
+    rel="icon"
+    sizes="32x32"
+    type="image/png"
+  />,
+  <link
+    data-react-helmet="true"
+    href="test-file-stub"
+    rel="icon"
+    sizes="16x16"
+    type="image/png"
+  />,
+]
+`;
