@@ -184,10 +184,6 @@ const useAutocomplete = ({
     onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => {
       onKeyDown(event, value)
 
-      if (!Array.isArray(options)) {
-        return
-      }
-
       const key = normalizeArrowKey(event)
 
       if (key === 'ArrowUp') {
@@ -195,7 +191,11 @@ const useAutocomplete = ({
 
         setOpen(true)
         setHighlightedIndex(
-          getNextWrappingIndex(-1, highlightedIndex, options.length)
+          getNextWrappingIndex(
+            -1,
+            highlightedIndex,
+            options ? options.length : 0
+          )
         )
       }
 
@@ -204,7 +204,11 @@ const useAutocomplete = ({
 
         setOpen(true)
         setHighlightedIndex(
-          getNextWrappingIndex(1, highlightedIndex, options.length)
+          getNextWrappingIndex(
+            1,
+            highlightedIndex,
+            options ? options.length : 0
+          )
         )
       }
 
@@ -225,7 +229,7 @@ const useAutocomplete = ({
 
         event.preventDefault()
 
-        const item = options[highlightedIndex]
+        const item = options ? options[highlightedIndex] : null
 
         if (item == null) {
           return
