@@ -143,26 +143,26 @@ const PicassoGlobalStylesProvider = (
 }
 
 const MetaTags = () => {
-  React.useLayoutEffect(() => {
-    let redundantMetaTags = document.querySelectorAll(
-      'meta[name="viewport"]:not([data-react-helmet="true"])'
-    )
-
-    redundantMetaTags.forEach(metaTag => metaTag.remove())
-
-    if (window.parent) {
-      redundantMetaTags = window.parent.document.querySelectorAll(
-        'meta[name="viewport"]:not([data-react-helmet="true"])'
-      )
-
-      redundantMetaTags.forEach(metaTag => metaTag.remove())
-    }
-  })
+  React.useLayoutEffect(() => {})
   return (
     <Helmet>
       <meta name='viewport' content='width=device-width, user-scalable=no' />
     </Helmet>
   )
+}
+
+let redundantMetaTags = document.querySelectorAll(
+  'meta[name="viewport"]:not([data-react-helmet="true"])'
+)
+
+redundantMetaTags.forEach(metaTag => metaTag.remove())
+
+if (window.parent) {
+  redundantMetaTags = window.parent.document.querySelectorAll(
+    'meta[name="viewport"]:not([data-react-helmet="true"])'
+  )
+
+  redundantMetaTags.forEach(metaTag => metaTag.remove())
 }
 
 interface PicassoProps {
