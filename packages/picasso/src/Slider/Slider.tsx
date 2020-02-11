@@ -9,6 +9,7 @@ import { Tooltip } from '@toptal/picasso'
 import styles from './styles'
 
 type Value = number | number[]
+type ValueLabelDisplay = 'on' | 'auto' | 'off'
 
 export interface Props extends SliderProps {
   /** Minimum slider value */
@@ -30,7 +31,7 @@ export interface Props extends SliderProps {
   - **on** will display persistently.
   - **off** will never display
   */
-  tooltip?: 'on' | 'auto' | 'off'
+  tooltip?: ValueLabelDisplay
   /** The format function the value tooltip's value. */
   tooltipFormat?: string | ((value: number, index: number) => React.ReactNode)
   /** Callback invoked when slider changes its state. */
@@ -39,26 +40,26 @@ export interface Props extends SliderProps {
 
 // This type is needed because ValueLabelProps does not describe all exposed props
 type ValueLabelComponentProps = ValueLabelProps & {
-  valueLabelFormat?:
-    | string
-    | ((value: number, index: number) => React.ReactNode)
-  index?: number
+  valueLabelDisplay: ValueLabelDisplay
 }
 
 const DefaultTooltip: React.FunctionComponent<ValueLabelComponentProps> = ({
   children,
   open,
   value,
-  valueLabelFormat: tooltipFormat,
-  index = 0
+  valueLabelDisplay
 }) => {
-  const content =
-    tooltipFormat && typeof tooltipFormat === 'function'
-      ? tooltipFormat(value, index)
-      : tooltipFormat
+  if (valueLabelDisplay === 'off') {
+    return children
+  }
 
   return (
-    <Tooltip arrow content={content} open={open} placement='top'>
+    <Tooltip
+      arrow
+      content={value}
+      open={open || valueLabelDisplay === 'on'}
+      placement='top'
+    >
       {children}
     </Tooltip>
   )
@@ -81,17 +82,8 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
   },
   ref
 ) {
-  const shouldDisplayTooltip =
-    tooltip === 'on' ||
-    tooltip === 'auto' ||
-    UserDefinedTooltip ||
-    tooltipFormat
-
-  let Tooltip: typeof UserDefinedTooltip
-
-  if (shouldDisplayTooltip) {
-    Tooltip = UserDefinedTooltip || DefaultTooltip
-  }
+  const ValueLabelComponent = (UserDefinedTooltip ||
+    DefaultTooltip) as typeof UserDefinedTooltip
 
   return (
     <MUISlider
@@ -105,7 +97,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
       step={step}
       disabled={disabled}
       classes={classes}
-      ValueLabelComponent={Tooltip}
+      ValueLabelComponent={ValueLabelComponent}
       valueLabelFormat={tooltipFormat}
       valueLabelDisplay={tooltip}
       onChange={onChange}

@@ -8,6 +8,9 @@ export default ({ palette, screens }: Theme) =>
     },
     container: {},
     paper: {
+      maxHeight: 'calc(100% - 6rem)',
+      maxWidth: 'calc(100% - 6rem)',
+
       [screens('small')]: {
         width: '100vw',
         height: '100vh',
