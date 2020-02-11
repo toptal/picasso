@@ -83,7 +83,7 @@ pipeline {
             -e BUILD_URL=${BUILD_URL} \
             -e DANGER_GITHUB_API_TOKEN=${DANGER_GITHUB_API_TOKEN} \
             gcr.io/toptal-hub/${repoName}:${ghprbActualCommit} \
-            yarn danger ci
+            yarn danger
           """
         }
       } //steps
