@@ -142,32 +142,33 @@ const PicassoGlobalStylesProvider = (
   )
 }
 
-const MetaTags = () => {
+const VieportMetaTag = () => {
   React.useEffect(() => {
-    let redundantMetaTags = document.querySelectorAll(
-      'meta[name="viewport"]:not([data-react-helmet="true"])'
-    )
-
-    redundantMetaTags.forEach(metaTag => {
-      metaTag.setAttribute(
-        'content',
-        metaTag.getAttribute('content') + ', user-scalable=no'
-      )
-    })
-
-    if (window.parent) {
-      redundantMetaTags = window.parent.document.querySelectorAll(
+    const disableScalingOnNonHelmetMetaTags = (document: Document) => {
+      const nonHelmetMetaTags = document.querySelectorAll(
         'meta[name="viewport"]:not([data-react-helmet="true"])'
       )
 
-      redundantMetaTags.forEach(metaTag => {
-        metaTag.setAttribute(
-          'content',
-          metaTag.getAttribute('content') + ', user-scalable=no'
-        )
+      nonHelmetMetaTags.forEach(metaTag => {
+        const content: string = metaTag.getAttribute('content') || ''
+
+        if (content.includes('user-scalable=no')) return
+
+        metaTag.setAttribute('content', content + ', user-scalable=no')
       })
     }
+
+    if (document) {
+      disableScalingOnNonHelmetMetaTags(document)
+    }
+
+    const isRuningInsideIFrame = Boolean(window.parent)
+
+    if (isRuningInsideIFrame) {
+      disableScalingOnNonHelmetMetaTags(window.parent.document)
+    }
   })
+
   return (
     <Helmet>
       <meta name='viewport' content='width=device-width, user-scalable=no' />
@@ -198,7 +199,7 @@ const Picasso: FunctionComponent<PicassoProps> = ({
   RootComponent
 }) => (
   <MuiThemeProvider theme={PicassoProvider.theme}>
-    <MetaTags />
+    <VieportMetaTag />
     {loadFonts && <FontsLoader />}
     {reset && <CssBaseline />}
     {loadFavicon && <Favicon />}
