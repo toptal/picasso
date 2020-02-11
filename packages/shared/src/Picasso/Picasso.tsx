@@ -162,7 +162,9 @@ const VieportMetaTag = () => {
       disableScalingOnNonHelmetMetaTags(document)
     }
 
-    const isRuningInsideIFrame = Boolean(window.parent)
+    const isRuningInsideIFrame = Boolean(
+      window && window.parent && window.parent.document
+    )
 
     if (isRuningInsideIFrame) {
       disableScalingOnNonHelmetMetaTags(window.parent.document)
