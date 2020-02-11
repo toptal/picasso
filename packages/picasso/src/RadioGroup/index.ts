@@ -1,5 +1,5 @@
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
-import { Props } from './RadioGroup'
+import { Props as RadioGroupProps } from './RadioGroup'
 export { default } from './RadioGroup'
-export type Props = OmitInternalProps<Props>
+export type Props = OmitInternalProps<RadioGroupProps>
