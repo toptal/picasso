@@ -142,6 +142,21 @@ const PicassoGlobalStylesProvider = (
   )
 }
 
+const MetaTags = () => {
+  React.useLayoutEffect(() => {
+    const redundantMetaTags = document.querySelectorAll(
+      'meta[name="viewport"]:not([data-react-helmet="true"])'
+    )
+
+    redundantMetaTags.forEach(metaTag => metaTag.remove())
+  })
+  return (
+    <Helmet>
+      <meta name='viewport' content='width=device-width, user-scalable=no' />
+    </Helmet>
+  )
+}
+
 interface PicassoProps {
   children?: ReactNode
   /** Whether to load fonts file to the page */
@@ -165,9 +180,7 @@ const Picasso: FunctionComponent<PicassoProps> = ({
   RootComponent
 }) => (
   <MuiThemeProvider theme={PicassoProvider.theme}>
-    <Helmet>
-      <meta name='viewport' content='width=device-width, user-scalable=no' />
-    </Helmet>
+    <MetaTags />
     {loadFonts && <FontsLoader />}
     {reset && <CssBaseline />}
     {loadFavicon && <Favicon />}
