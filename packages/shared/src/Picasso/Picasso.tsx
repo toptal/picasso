@@ -16,6 +16,7 @@ import React, {
 } from 'react'
 import { ModalProvider } from 'react-modal-hook'
 import { makeStyles } from '@material-ui/styles'
+import { Helmet } from 'react-helmet'
 
 import CssBaseline from '../CssBaseline'
 import {
@@ -164,6 +165,9 @@ const Picasso: FunctionComponent<PicassoProps> = ({
   RootComponent
 }) => (
   <MuiThemeProvider theme={PicassoProvider.theme}>
+    <Helmet>
+      <meta name='viewport' content='width=device-width, user-scalable=no' />
+    </Helmet>
     {loadFonts && <FontsLoader />}
     {reset && <CssBaseline />}
     {loadFavicon && <Favicon />}
