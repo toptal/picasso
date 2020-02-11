@@ -142,11 +142,38 @@ const PicassoGlobalStylesProvider = (
   )
 }
 
-const MetaTags = () => (
-  <Helmet>
-    <meta name='viewport' content='width=device-width, user-scalable=no' />
-  </Helmet>
-)
+const MetaTags = () => {
+  React.useEffect(() => {
+    let redundantMetaTags = document.querySelectorAll(
+      'meta[name="viewport"]:not([data-react-helmet="true"])'
+    )
+
+    redundantMetaTags.forEach(metaTag => {
+      metaTag.setAttribute(
+        'content',
+        metaTag.getAttribute('content') + ', user-scalable=no'
+      )
+    })
+
+    if (window.parent) {
+      redundantMetaTags = window.parent.document.querySelectorAll(
+        'meta[name="viewport"]:not([data-react-helmet="true"])'
+      )
+
+      redundantMetaTags.forEach(metaTag => {
+        metaTag.setAttribute(
+          'content',
+          metaTag.getAttribute('content') + ', user-scalable=no'
+        )
+      })
+    }
+  })
+  return (
+    <Helmet>
+      <meta name='viewport' content='width=device-width, user-scalable=no' />
+    </Helmet>
+  )
+}
 
 interface PicassoProps {
   children?: ReactNode
