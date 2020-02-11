@@ -6,8 +6,8 @@ exports[`NotificationActions default render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiTypography-root MuiPaper-root MuiPaper-elevation6 MuiSnackbarContent-root Notification-notificationGreen Notification-notification MuiTypography-body2"
-      role="alertdialog"
+      class="MuiPaper-root MuiSnackbarContent-root Notification-notificationGreen Notification-notification MuiPaper-elevation6"
+      role="alert"
     >
       <div
         class="MuiSnackbarContent-message"

@@ -25,12 +25,12 @@ exports[`renders Modal 1`] = `
     />
     <div
       class="MuiDialog-container PicassoModal-container MuiDialog-scrollPaper"
-      role="document"
+      role="none presentation"
       style="opacity: 1; webkit-transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
       tabindex="-1"
     >
       <div
-        class="MuiPaper-root MuiPaper-elevation2 MuiDialog-paper PicassoModal-paper PicassoModal-medium MuiDialog-paperScrollPaper MuiDialog-paperWidthFalse"
+        class="MuiPaper-root MuiDialog-paper PicassoModal-paper PicassoModal-medium MuiDialog-paperScrollPaper MuiDialog-paperWidthFalse MuiPaper-elevation2"
         role="dialog"
       >
         <div
@@ -118,12 +118,12 @@ exports[`useModals opens and closes modal 1`] = `
         />
         <div
           class="MuiDialog-container PicassoModal-container MuiDialog-scrollPaper"
-          role="document"
+          role="none presentation"
           style="opacity: 1; webkit-transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
           tabindex="-1"
         >
           <div
-            class="MuiPaper-root MuiPaper-elevation2 MuiDialog-paper PicassoModal-paper PicassoModal-medium MuiDialog-paperScrollPaper MuiDialog-paperWidthFalse"
+            class="MuiPaper-root MuiDialog-paper PicassoModal-paper PicassoModal-medium MuiDialog-paperScrollPaper MuiDialog-paperWidthFalse MuiPaper-elevation2"
             role="dialog"
           >
             <p>
@@ -223,12 +223,12 @@ exports[`useModals shows multiple modals at the same time 1`] = `
         />
         <div
           class="MuiDialog-container PicassoModal-container MuiDialog-scrollPaper"
-          role="document"
+          role="none presentation"
           style="opacity: 1; webkit-transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
           tabindex="-1"
         >
           <div
-            class="MuiPaper-root MuiPaper-elevation2 MuiDialog-paper PicassoModal-paper PicassoModal-medium MuiDialog-paperScrollPaper MuiDialog-paperWidthFalse"
+            class="MuiPaper-root MuiDialog-paper PicassoModal-paper PicassoModal-medium MuiDialog-paperScrollPaper MuiDialog-paperWidthFalse MuiPaper-elevation2"
             role="dialog"
           >
             <p>
@@ -257,12 +257,12 @@ exports[`useModals shows multiple modals at the same time 1`] = `
         />
         <div
           class="MuiDialog-container PicassoModal-container MuiDialog-scrollPaper"
-          role="document"
+          role="none presentation"
           style="opacity: 1; webkit-transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
           tabindex="-1"
         >
           <div
-            class="MuiPaper-root MuiPaper-elevation2 MuiDialog-paper PicassoModal-paper PicassoModal-medium MuiDialog-paperScrollPaper MuiDialog-paperWidthFalse"
+            class="MuiPaper-root MuiDialog-paper PicassoModal-paper PicassoModal-medium MuiDialog-paperScrollPaper MuiDialog-paperWidthFalse MuiPaper-elevation2"
             role="dialog"
           >
             <p>
