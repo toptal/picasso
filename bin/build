@@ -4,29 +4,9 @@
 const path = require('path')
 const yargs = require('yargs').argv
 const sh = require('shelljs')
-const exec = require('child_process').execSync
 
-const { log, copyPackageJson } = require('./utils')
+const { log, copyPackageJson, safeExec } = require('./utils')
 const tscPath = path.resolve(__dirname, '../node_modules/.bin/tsc')
-
-const safeExec = cmd => {
-  try {
-    exec(
-      cmd,
-      { stdio: [process.stdin, process.stdout, process.stderr] },
-      (error, stdout) => {
-        if (error) {
-          process.exit(1)
-        } else {
-          return stdout
-        }
-      }
-    )
-  } catch (e) {
-    console.error(e.message)
-    process.exit(1)
-  }
-}
 
 const compile = function (tsConfig, packageJson, packageRootDir) {
   const args = []

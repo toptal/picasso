@@ -1,47 +1,25 @@
 #!/usr/bin/env node
-/* eslint-disable no-console  */
 
 const path = require('path')
 const sh = require('shelljs')
-const exec = require('child_process').execSync
-const { log } = require('../../../bin/utils')
+const { log, safeExec } = require('../../../bin/utils')
+
+// typescript doesn't copy binaries, so we need to do it manually
+function copyIcons() {
+  log('Copying favicons', 'green');
+
+  ['staging', 'development', 'production'].forEach(env => {
+    sh.cp('-R', `src/Favicon/icons/${env}/*.png`, `./build/Favicon/icons/${env}/`)
+  })
+}
+
+const cmd = path.resolve(__dirname, '../../../bin/build') + ' --tsConfig=./tsconfig.json --entry=./index.js'
 
 
-const safeExec = cmd => {
-    try {
-      exec(
-        cmd,
-        { stdio: [process.stdin, process.stdout, process.stderr] },
-        (error, stdout) => {
-          if (error) {
-            process.exit(1)
-          } else {
-            return stdout
-          }
-        }
-      )
-    } catch (e) {
-      console.error(e.message)
-      process.exit(1)
-    }
-  }
+function build() {
+  safeExec(cmd)
 
-  // typescript doesn't copy binaries, so we need to do it manually
-  function copyIcons () {
-    log('Copying favicons', 'green');
+  copyIcons()
+}
 
-    ['staging', 'development', 'production'].forEach(env => {
-      sh.cp('-R', `src/Favicon/icons/${env}/*.png`, `./build/Favicon/icons/${env}/`)
-    })
-  }
-
-  const cmd = path.resolve(__dirname, '../../../bin/build') + ' --tsConfig=./tsconfig.json --entry=./index.js'
-
-
-  function build() {
-    safeExec(cmd)
-
-    copyIcons()
-  }
-
-  build()
+build()
