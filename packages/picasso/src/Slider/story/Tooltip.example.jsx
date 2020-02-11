@@ -13,7 +13,7 @@ const formatLabel = val => {
  */
 const TooltipExample = () => {
   return (
-    <Container>
+    <Container padded='small'>
       <Container>
         <Typography variant='heading' size='small'>
           Display persistently
