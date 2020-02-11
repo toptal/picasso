@@ -154,7 +154,10 @@ const VieportMetaTag = () => {
 
         if (content.includes('user-scalable=no')) return
 
-        metaTag.setAttribute('content', content + ', user-scalable=no')
+        metaTag.setAttribute(
+          'content',
+          [content, 'user-scalable=no'].join(', ')
+        )
       })
     }
 
