@@ -143,7 +143,7 @@ const PicassoGlobalStylesProvider = (
 }
 
 const MetaTags = () => {
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     let redundantMetaTags = document.querySelectorAll(
       'meta[name="viewport"]:not([data-react-helmet="true"])'
     )
