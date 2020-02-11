@@ -12,7 +12,6 @@
     "test:visual": "./bin/run-in-docker ./bin/test-visual",
     "test-ci:visual": "./bin/test-visual --ci",
     "lint": "davinci syntax lint code .",
-    "danger": "davinci ci danger",
     "start": "start-storybook -p 9001 -s ./.storybook/public -c .storybook",
     "build:storybook": "build-storybook -s ./.storybook/public -c .storybook -o build/storybook --quiet",
     "build:dist": "lerna run build:dist",
