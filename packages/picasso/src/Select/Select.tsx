@@ -292,7 +292,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     const select = getSelection(allOptions, value, getDisplayValue!)
 
     setInputValue(select.display())
-  }, [value])
+  }, [allOptions, getDisplayValue, value])
 
   const filterOptions = (subStr: string) => {
     const filteredOptions = allOptions.filter(option =>
@@ -335,9 +335,8 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
 
     if (isInSelectedValues) {
       return value!.filter(value => value !== option.value)
-    } else {
-      return [...value, String(option.value)]
     }
+    return [...value, String(option.value)]
   }
   const handleSelect = (event: React.SyntheticEvent, option: Option | null) => {
     let newValue

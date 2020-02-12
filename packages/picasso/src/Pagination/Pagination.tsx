@@ -69,6 +69,11 @@ export const Pagination = forwardRef<HTMLDivElement, Props>(function Pagination(
   { activePage, classes, disabled, totalPages, onPageChange, ...rest },
   ref
 ) {
+  const pages = useMemo(() => getRange(activePage, totalPages, SIBLING_COUNT), [
+    activePage,
+    totalPages
+  ])
+
   const isFirstActive = activePage === 1
   const isLastActive = activePage === totalPages
 
@@ -95,11 +100,6 @@ export const Pagination = forwardRef<HTMLDivElement, Props>(function Pagination(
 
     return onPageChange(navigation)
   }
-
-  const pages = useMemo(() => getRange(activePage, totalPages, SIBLING_COUNT), [
-    activePage,
-    totalPages
-  ])
 
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading

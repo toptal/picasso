@@ -55,7 +55,7 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
     return function cleanup() {
       setHasPageHeader(false)
     }
-  }, [])
+  }, [setHasPageHeader])
 
   const { width, fullWidth } = useContext<PageContextProps>(PageContext)
 

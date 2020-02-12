@@ -7,8 +7,12 @@ import FieldWrapper, { FieldProps } from '../FieldWrapper'
 export type Props = CheckboxProps & FieldProps<CheckboxProps['value']>
 
 export const Checkbox = (props: Props) => (
+  // eslint-disable-next-line react/jsx-props-no-spreading
   <FieldWrapper hideFieldLabel type='checkbox' {...props}>
-    {(input: CheckboxProps) => <PicassoCheckbox {...input} />}
+    {(input: CheckboxProps) => {
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      return <PicassoCheckbox {...input} />
+    }}
   </FieldWrapper>
 )
 

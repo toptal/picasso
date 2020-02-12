@@ -31,6 +31,7 @@ const renderNumberInput = (
 ) => {
   const { initialValue = '10' } = props
 
+  // eslint-disable-next-line react/jsx-props-no-spreading
   return render(<NumberInputRenderer initialValue={initialValue} {...props} />)
 }
 

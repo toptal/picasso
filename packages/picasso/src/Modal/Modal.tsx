@@ -126,27 +126,27 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
   const rootRef = useCombinedRefs<HTMLElement>(ref, useRef<HTMLElement>(null))
   const modalId = useRef(generateKey())
 
-  const handleDocumentFocus = () => {
-    if (!defaultManager.isTopModal(modalId.current)) {
-      return
-    }
-
-    if (!rootRef || !rootRef.current) {
-      return
-    }
-
-    if (isFocusInsideModal(rootRef.current)) {
-      return
-    }
-
-    if (isFocusInsideTooltip()) {
-      return
-    }
-
-    focusFirstFocusableElement(rootRef.current)
-  }
-
   useEffect(() => {
+    const handleDocumentFocus = () => {
+      if (!defaultManager.isTopModal(modalId.current)) {
+        return
+      }
+
+      if (!rootRef || !rootRef.current) {
+        return
+      }
+
+      if (isFocusInsideModal(rootRef.current)) {
+        return
+      }
+
+      if (isFocusInsideTooltip()) {
+        return
+      }
+
+      focusFirstFocusableElement(rootRef.current)
+    }
+
     if (!open) {
       return
     }
@@ -156,7 +156,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
     return () => {
       document.removeEventListener('focus', handleDocumentFocus, true)
     }
-  }, [open])
+  }, [open, rootRef])
 
   useEffect(() => {
     if (open) {

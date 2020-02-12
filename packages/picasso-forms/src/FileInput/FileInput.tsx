@@ -22,9 +22,11 @@ export const FileInput = (props: Props) => {
   }
 
   return (
+    // eslint-disable-next-line react/jsx-props-no-spreading
     <FieldWrapper<FileInputProps> {...props}>
       {(inputProps: FileInputProps) => (
         <PicassoFileInput
+          // eslint-disable-next-line react/jsx-props-no-spreading
           {...inputProps}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
             handleChange(event, inputProps.onChange as (file: unknown) => void)
