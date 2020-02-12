@@ -143,7 +143,7 @@ export const useScreens = <T = unknown>() => {
 type BreakpointKeys = 'small' | 'medium' | 'large' | 'extra-large'
 
 type BreakpointsList = {
-  [key: string]: number
+  [key: string]: number | undefined
 }
 
 export const breakpointsList: BreakpointsList = {
