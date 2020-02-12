@@ -116,7 +116,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
                 [classes.today]: isToday,
                 [classes.grayed]:
                   (isMonthPrev || isMonthNext) && !isSelected && !isDisabled,
-                [classes.disabled]: isDisabled,
+                [classes.disabled]: isDisabled || !isSelectable,
                 [classes.startSelection]: isSelectionStart,
                 [classes.endSelection]: isSelectionEnd
               })}
