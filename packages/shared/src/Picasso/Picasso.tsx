@@ -142,7 +142,7 @@ const PicassoGlobalStylesProvider = (
   )
 }
 
-const VieportMetaTag = () => {
+const ViewportMetaTag = () => {
   React.useEffect(() => {
     const disableScalingOnNonHelmetMetaTags = (document: Document) => {
       const nonHelmetMetaTags = document.querySelectorAll(
@@ -204,7 +204,7 @@ const Picasso: FunctionComponent<PicassoProps> = ({
   RootComponent
 }) => (
   <MuiThemeProvider theme={PicassoProvider.theme}>
-    <VieportMetaTag />
+    <ViewportMetaTag />
     {loadFonts && <FontsLoader />}
     {reset && <CssBaseline />}
     {loadFavicon && <Favicon />}
