@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.4.0...@toptal/picasso-shared@1.5.0) (2020-02-12)
+
+
+### Features
+
+* add Favicon component ([#1085](https://github.com/toptal/picasso/issues/1085)) ([38a834f](https://github.com/toptal/picasso/commit/38a834fbbe091503d3d145269c913ee8c4bf5738))
+
+
+
+
+
 # [1.4.0](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.3.1...@toptal/picasso-shared@1.4.0) (2020-02-05)
 
 
