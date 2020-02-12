@@ -26,7 +26,8 @@ import {
   sizes,
   breakpoints,
   screens,
-  shadows
+  shadows,
+  breakpointsList
 } from './config'
 import FontsLoader from './FontsLoader'
 import Provider from './PicassoProvider'
@@ -63,10 +64,12 @@ const PicassoProvider = new Provider(createMuiTheme(picasso))
 interface RootContextProps {
   rootRef?: RefObject<HTMLDivElement>
   hasPageHeader: boolean
+  responsive: boolean
   setHasPageHeader: (value: boolean) => void
 }
-const RootContext = React.createContext<RootContextProps>({
+export const RootContext = React.createContext<RootContextProps>({
   hasPageHeader: false,
+  responsive: true,
   setHasPageHeader: () => {}
 })
 
@@ -87,6 +90,7 @@ export const usePageHeader = () => {
 
 interface PicassoGlobalStylesProviderProps {
   children?: ReactNode
+  responsive: boolean
   RootComponent: ForwardRefExoticComponent<
     PicassoRootNodeProps & RefAttributes<HTMLDivElement>
   >
@@ -117,11 +121,12 @@ const PicassoRootNode = forwardRef<HTMLDivElement, PicassoRootNodeProps>(
 const PicassoGlobalStylesProvider = (
   props: PicassoGlobalStylesProviderProps
 ) => {
-  const { children, RootComponent } = props
+  const { children, responsive, RootComponent } = props
 
   const rootRef = useRef<HTMLDivElement>(null)
   const [contextValue, setContextValue] = useState({
     rootRef,
+    responsive,
     hasPageHeader: false,
     setHasPageHeader: (hasPageHeader: boolean) => {
       setContextValue({
@@ -144,6 +149,8 @@ interface PicassoProps {
   children?: ReactNode
   /** Whether to load fonts file to the page */
   loadFonts?: boolean
+  /** Sets a minimum width of the page */
+  responsive?: boolean
   /** Whether to apply Picasso CSS reset */
   reset?: boolean
   /** Notification DOMNode for createPortal */
@@ -157,22 +164,45 @@ const Picasso: FunctionComponent<PicassoProps> = ({
   reset,
   children,
   notificationContainer,
+  responsive,
   RootComponent
-}) => (
-  <MuiThemeProvider theme={PicassoProvider.theme}>
-    {loadFonts && <FontsLoader />}
-    {reset && <CssBaseline />}
-    <PicassoGlobalStylesProvider RootComponent={RootComponent!}>
-      <NotificationsProvider container={notificationContainer}>
-        <ModalProvider>{children}</ModalProvider>
-      </NotificationsProvider>
-    </PicassoGlobalStylesProvider>
-  </MuiThemeProvider>
-)
+}) => {
+  if (!responsive) {
+    PicassoProvider.theme.layout.contentMinWidth = '768px'
+    PicassoProvider.theme.breakpoints.keys = ['md', 'lg', 'xl']
+    PicassoProvider.theme.breakpoints.values = {
+      md: 768,
+      lg: 992,
+      xl: 1920
+    }
+    breakpoints.values = {
+      md: 768,
+      lg: 992,
+      xl: 1920
+    }
+    delete breakpointsList.small
+  }
+
+  return (
+    <MuiThemeProvider theme={PicassoProvider.theme}>
+      {loadFonts && <FontsLoader />}
+      {reset && <CssBaseline />}
+      <PicassoGlobalStylesProvider
+        responsive={Boolean(responsive)}
+        RootComponent={RootComponent!}
+      >
+        <NotificationsProvider container={notificationContainer}>
+          <ModalProvider>{children}</ModalProvider>
+        </NotificationsProvider>
+      </PicassoGlobalStylesProvider>
+    </MuiThemeProvider>
+  )
+}
 
 Picasso.defaultProps = {
   loadFonts: true,
   reset: true,
+  responsive: true,
   RootComponent: PicassoRootNode
 }
 

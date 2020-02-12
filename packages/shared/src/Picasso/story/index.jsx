@@ -20,4 +20,10 @@ page
   .createTabChapter('Props')
   .addComponentDocs({ component: Picasso, name: 'Picasso' })
 
-page.createChapter().addExample('Picasso/story/Default.example.jsx', 'Default')
+page
+  .createChapter()
+  .addExample('Picasso/story/Default.example.jsx', 'Default')
+  .addExample(
+    'Picasso/story/ResponsiveDisabled.example.jsx',
+    'Responsive Disabled'
+  )
