@@ -21,9 +21,9 @@ export const Favicon = ({ environment }: Props) => {
   useEffect(() => {
     async function loadIcons() {
       try {
-        const icons = await getIcons(environment!)
+        const iconsForEnvironment = await getIcons(environment!)
 
-        setIcons(icons)
+        setIcons(iconsForEnvironment)
       } catch {
         // eslint-disable-next-line no-console
         console.error(
