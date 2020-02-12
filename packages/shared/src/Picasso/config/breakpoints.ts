@@ -50,11 +50,11 @@ export const screenSizeToBreakpointKey = function (
 ): BreakpointKeys {
   const { sm, md, lg } = breakpoints.values!
 
-  if (size < sm) {
+  if (sm && size < sm) {
     return 'small'
-  } else if (size >= sm && size < md) {
+  } else if (sm && md && size >= sm && size < md) {
     return 'medium'
-  } else if (size >= md && size < lg) {
+  } else if (md && lg && size >= md && size < lg) {
     return 'large'
   } else {
     // if (size >= lg)

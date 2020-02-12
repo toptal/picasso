@@ -67,7 +67,7 @@ interface RootContextProps {
   responsive: boolean
   setHasPageHeader: (value: boolean) => void
 }
-export const RootContext = React.createContext<RootContextProps>({
+const RootContext = React.createContext<RootContextProps>({
   hasPageHeader: false,
   responsive: true,
   setHasPageHeader: () => {}
