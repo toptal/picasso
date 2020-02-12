@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.1.0...@toptal/picasso-lab@2.1.1) (2020-02-12)
+
+
+### Bug Fixes
+
+* **DatePicker:** highlight differently not selectable dates ([#1110](https://github.com/toptal/picasso/issues/1110)) ([8ca8ef5](https://github.com/toptal/picasso/commit/8ca8ef5f02df734d78e54fba860d45c6ddcf25ff))
+
+
+
+
+
 # [2.1.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.0.3...@toptal/picasso-lab@2.1.0) (2020-02-04)
 
 
