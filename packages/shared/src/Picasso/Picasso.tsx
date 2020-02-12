@@ -142,7 +142,12 @@ const PicassoGlobalStylesProvider = (
   )
 }
 
-const ViewportMetaTag = () => {
+const Viewport = () => {
+  /* RATIONALE
+   * On the page with Picasso there may be <meta name="viewport"> tag which is not created by Picasso.
+   * In this case Helmet renders duplicate of <meta name="viewport"> with "user-scalable=no" but browser will ignore that duplicate.
+   * To ensire scaling of inputs in Safari, iOS is disabled, we attach "user-scalable=no" to all <meta name="viewport"> on the page.
+   */
   React.useEffect(() => {
     const disableScalingOnNonHelmetMetaTags = (document: Document) => {
       const nonHelmetMetaTags = document.querySelectorAll(
@@ -163,14 +168,6 @@ const ViewportMetaTag = () => {
 
     if (document) {
       disableScalingOnNonHelmetMetaTags(document)
-    }
-
-    const isRuningInsideIFrame = Boolean(
-      window && window.parent && window.parent.document
-    )
-
-    if (isRuningInsideIFrame) {
-      disableScalingOnNonHelmetMetaTags(window.parent.document)
     }
   })
 
@@ -204,7 +201,7 @@ const Picasso: FunctionComponent<PicassoProps> = ({
   RootComponent
 }) => (
   <MuiThemeProvider theme={PicassoProvider.theme}>
-    <ViewportMetaTag />
+    <Viewport />
     {loadFonts && <FontsLoader />}
     {reset && <CssBaseline />}
     {loadFavicon && <Favicon />}
