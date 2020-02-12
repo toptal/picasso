@@ -1,11 +1,5 @@
 {
   "extends": "./node_modules/@toptal/davinci-syntax/src/configs/.eslintrc",
-  "rules": {
-    "@typescript-eslint/no-empty-function": "off"
-  },
-  "globals": {
-    "Event": true
-  },
   "overrides": [
     {
       "files": ["*.example.jsx", "*.example.tsx"],
