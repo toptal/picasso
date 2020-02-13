@@ -46,13 +46,11 @@ describe('YearSelect', () => {
       )
 
     from = null
-    expect(tryRender).toThrow(errorMessage())
-
-    to = null
-    expect(tryRender).toThrow(errorMessage())
-
-    from = 11
     to = 10
+    expect(tryRender).toThrow(errorMessage())
+
+    from = 10
+    to = null
     expect(tryRender).toThrow(errorMessage())
   })
 })
