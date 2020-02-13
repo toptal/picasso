@@ -1,9 +1,9 @@
-const disableScalingOnNonHelmetMetaTags = () => {
-  const nonHelmetMetaTags = document.querySelectorAll(
-    'meta[name="viewport"]:not([data-react-helmet="true"])'
+const disableScalingOnNonPicassoMetaTags = () => {
+  const nonPicassoMetaTags = document.querySelectorAll(
+    'meta[name="viewport"]:not([data-picasso="true"])'
   )
 
-  nonHelmetMetaTags.forEach(metaTag => {
+  nonPicassoMetaTags.forEach(metaTag => {
     const content = metaTag.getAttribute('content') || ''
 
     if (content.includes('user-scalable=no')) return
@@ -12,4 +12,4 @@ const disableScalingOnNonHelmetMetaTags = () => {
   })
 }
 
-export default disableScalingOnNonHelmetMetaTags
+export default disableScalingOnNonPicassoMetaTags
