@@ -16,6 +16,7 @@ import React, {
 } from 'react'
 import { ModalProvider } from 'react-modal-hook'
 import { makeStyles } from '@material-ui/styles'
+import { Helmet } from 'react-helmet'
 
 import CssBaseline from '../CssBaseline'
 import {
@@ -141,6 +142,36 @@ const PicassoGlobalStylesProvider = (
   )
 }
 
+const Viewport = () => {
+  const [warned, setWarned] = useState(false)
+
+  const content = 'width=device-width, user-scalable=no'
+  const nonPicassoViewportTags = document.querySelectorAll(
+    'meta[name="viewport"]:not([data-picasso="true"])'
+  )
+
+  if (nonPicassoViewportTags.length > 0) {
+    if (!warned) {
+      console.warn(
+        'PICASSO:',
+        `I wanted to add viewport meta tag to your page but failed as it already containes ${nonPicassoViewportTags.length}.`,
+        `My viewport meta tag content is "${content}".`,
+        'The absence of this content may cause some of my features to work incorrectly.',
+        'For example, inputs will be scaled when focused on Safari, iOS.',
+        'Please, delete your viewport meta tag so I can insert mine.'
+      )
+      setWarned(true)
+    }
+    return null
+  }
+
+  return (
+    <Helmet>
+      <meta name='viewport' content={content} data-picasso='true' />
+    </Helmet>
+  )
+}
+
 interface PicassoProps {
   children?: ReactNode
   /** Whether to load fonts file to the page */
@@ -164,6 +195,7 @@ const Picasso: FunctionComponent<PicassoProps> = ({
   RootComponent
 }) => (
   <MuiThemeProvider theme={PicassoProvider.theme}>
+    <Viewport />
     {loadFonts && <FontsLoader />}
     {reset && <CssBaseline />}
     {loadFavicon && <Favicon />}
