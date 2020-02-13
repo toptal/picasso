@@ -13,7 +13,7 @@ import React, {
 import cx from 'classnames'
 import NativeSelect from '@material-ui/core/NativeSelect'
 import { withStyles } from '@material-ui/core/styles'
-import { capitalize } from '@material-ui/core/utils/helpers'
+import capitalize from '@material-ui/core/utils/capitalize'
 import { StandardProps, SizeType } from '@toptal/picasso-shared'
 
 import OutlinedInput from '../OutlinedInput'
@@ -37,7 +37,7 @@ const getOptionText = (option: Option | null) =>
 
 export interface Props
   extends StandardProps,
-    Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'size'> {
+    Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'size' | 'color'> {
   /** If true, the 'Select' will be disabled */
   disabled?: boolean
   /** Indicate whether `Select` is in error state */

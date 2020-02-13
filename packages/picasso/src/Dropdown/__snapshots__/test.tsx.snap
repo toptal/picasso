@@ -46,7 +46,7 @@ exports[`Dropdown should render menu 1`] = `
         x-placement="bottom-end"
       >
         <div
-          class="MuiPaper-root MuiPaper-elevation2 Dropdown-content"
+          class="MuiPaper-root Dropdown-content MuiPaper-elevation2"
           style="opacity: 1; transform: scale(1, 1); transition: opacity 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
         >
           <ul
@@ -127,7 +127,7 @@ exports[`Dropdown should render menu with focus 1`] = `
         x-placement="bottom-end"
       >
         <div
-          class="MuiPaper-root MuiPaper-elevation2 Dropdown-content"
+          class="MuiPaper-root Dropdown-content MuiPaper-elevation2"
           style="opacity: 1; transform: none; transition: opacity 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
         >
           <ul

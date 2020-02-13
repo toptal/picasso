@@ -4,7 +4,7 @@ import { PicassoProvider } from '@toptal/picasso-shared'
 PicassoProvider.override(({ palette, sizes }: Theme) => ({
   MuiChip: {
     root: {
-      fontSize: '1em',
+      fontSize: '1rem',
       color: palette.grey.dark,
       backgroundColor: palette.common.white,
       borderRadius: '6.25em',
@@ -13,7 +13,9 @@ PicassoProvider.override(({ palette, sizes }: Theme) => ({
     },
     label: {
       paddingLeft: '0.75em',
-      paddingRight: '0.75em'
+      paddingRight: '0.75em',
+      display: 'flex',
+      alignItems: 'center'
     },
     icon: {
       marginLeft: '0.75em',

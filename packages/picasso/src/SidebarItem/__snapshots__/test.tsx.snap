@@ -12,7 +12,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
         class="Sidebar-spacer"
       />
       <div
-        class="MuiPaper-root MuiPaper-elevation0 MuiExpansionPanel-root makeStyles-root Mui-expanded MuiExpansionPanel-rounded MuiPaper-rounded"
+        class="MuiPaper-root MuiExpansionPanel-root makeStyles-root Mui-expanded MuiExpansionPanel-rounded MuiPaper-elevation0 MuiPaper-rounded"
       >
         <div
           aria-disabled="false"
@@ -249,7 +249,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiPaper-elevation0 MuiExpansionPanel-root makeStyles-root MuiExpansionPanel-rounded MuiPaper-rounded"
+      class="MuiPaper-root MuiExpansionPanel-root makeStyles-root MuiExpansionPanel-rounded MuiPaper-elevation0 MuiPaper-rounded"
     >
       <div
         aria-disabled="false"

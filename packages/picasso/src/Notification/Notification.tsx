@@ -10,7 +10,7 @@ import React, {
 import { withStyles } from '@material-ui/core/styles'
 import SnackbarContent from '@material-ui/core/SnackbarContent'
 import cx from 'classnames'
-import { capitalize } from '@material-ui/core/utils/helpers'
+import capitalize from '@material-ui/core/utils/capitalize'
 import {
   StandardProps,
   PicassoComponentWithRef,

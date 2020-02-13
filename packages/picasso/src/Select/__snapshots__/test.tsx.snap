@@ -15,7 +15,7 @@ exports[`renders native select 1`] = `
         <select
           aria-invalid="false"
           autocomplete="none"
-          class="MuiNativeSelect-root Select-select MuiNativeSelect-select MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputSelect MuiOutlinedInput-inputSelect"
+          class="MuiNativeSelect-root Select-select MuiNativeSelect-select MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium"
         >
           <option
             disabled=""

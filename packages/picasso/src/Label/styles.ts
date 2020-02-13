@@ -29,7 +29,7 @@ export default ({ palette }: Theme) =>
       borderColor: palette.red.main
     },
     innerLabel: {
-      fontSize: '0.75em',
+      fontSize: '0.75rem',
       fontWeight: 600
     },
     deleteIcon: {

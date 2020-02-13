@@ -14,7 +14,7 @@ To maintain consistency within `Picasso` repository we try to follow some conven
 ```jsx
 import React from 'react'
 import cx from 'classnames'
-import { capitalize } from '@material-ui/core/utils/helpers'
+import capitalize from '@material-ui/core/utils/capitalize'
 
 import styles from './styles'
 

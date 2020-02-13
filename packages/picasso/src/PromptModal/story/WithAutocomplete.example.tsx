@@ -11,6 +11,10 @@ const allOptions = [
   { text: 'Ukraine', value: 'UA' }
 ]
 
+interface ContentProps {
+  setResult: (value: unknown) => void
+}
+
 const EMPTY_INPUT_VALUE = ''
 const getDisplayValue = (item: Item | null) =>
   item ? (item.text as string) : EMPTY_INPUT_VALUE
@@ -23,7 +27,7 @@ const PromptModalDefaultExample = () => {
   const { showPrompt } = useModals()
   const { showInfo } = useNotifications()
 
-  const Content = ({ setResult }) => {
+  const Content = ({ setResult }: ContentProps) => {
     const [value, setValue] = useState(EMPTY_INPUT_VALUE)
     const [options, setOptions] = useState(allOptions)
 

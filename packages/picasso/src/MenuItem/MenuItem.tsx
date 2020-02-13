@@ -11,7 +11,7 @@ import React, {
 } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
-import { capitalize } from '@material-ui/core/utils/helpers'
+import capitalize from '@material-ui/core/utils/capitalize'
 import MUIMenuItem from '@material-ui/core/MenuItem'
 import {
   StandardProps,

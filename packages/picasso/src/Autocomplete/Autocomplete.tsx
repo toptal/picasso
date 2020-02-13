@@ -7,7 +7,7 @@ import React, {
   useRef
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import { capitalize } from '@material-ui/core/utils/helpers'
+import capitalize from '@material-ui/core/utils/capitalize'
 import cx from 'classnames'
 import { StandardProps } from '@toptal/picasso-shared'
 

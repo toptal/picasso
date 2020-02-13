@@ -17,10 +17,6 @@ PicassoProvider.override(({ breakpoints, palette, typography }: Theme) => ({
 
       color: palette.grey.dark,
 
-      '&$selected': {
-        color: palette.common.black
-      },
-
       '&:not(:last-child)': {
         marginRight: '2em'
       },
@@ -30,7 +26,15 @@ PicassoProvider.override(({ breakpoints, palette, typography }: Theme) => ({
         fontSize: '1rem'
       }
     },
-    selected: {},
+    selected: {
+      color: palette.common.black
+    },
+    textColorInherit: {
+      '&$disabled': {
+        opacity: 0.4
+      }
+    },
+    disabled: {},
     wrapper: {
       fontSize: rem('13px'),
       lineHeight: '1rem',

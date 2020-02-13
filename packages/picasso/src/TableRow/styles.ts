@@ -8,6 +8,10 @@ export default ({ palette, sizes, transitions }: Theme) =>
     root: {
       height: 'auto',
 
+      '&$selected': {
+        backgroundColor: alpha(palette.common.black, 0.04)
+      },
+
       '&$hover:hover': {
         backgroundColor: palette.blue.lighter
       }
@@ -22,5 +26,6 @@ export default ({ palette, sizes, transitions }: Theme) =>
       transition: transitions.create('background-color', {
         duration: transitions.duration.shortest
       })
-    }
+    },
+    selected: {}
   })
