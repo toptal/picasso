@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.32.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.31.6...@toptal/picasso@4.32.0) (2020-02-13)
+
+
+### Features
+
+* upgrade material-ui to 4.9.2 ([#1101](https://github.com/toptal/picasso/issues/1101)) ([3082e50](https://github.com/toptal/picasso/commit/3082e5081999e673b120d21e4a902cc300d2f922))
+
+
+
+
+
 ## [4.31.6](https://github.com/toptal/picasso/compare/@toptal/picasso@4.31.5...@toptal/picasso@4.31.6) (2020-02-12)
 
 **Note:** Version bump only for package @toptal/picasso

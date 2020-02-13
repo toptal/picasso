@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.1.2...@toptal/picasso-lab@2.2.0) (2020-02-13)
+
+
+### Features
+
+* upgrade material-ui to 4.9.2 ([#1101](https://github.com/toptal/picasso/issues/1101)) ([3082e50](https://github.com/toptal/picasso/commit/3082e5081999e673b120d21e4a902cc300d2f922))
+
+
+
+
+
 ## [2.1.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.1.1...@toptal/picasso-lab@2.1.2) (2020-02-12)
 
 **Note:** Version bump only for package @toptal/picasso-lab
