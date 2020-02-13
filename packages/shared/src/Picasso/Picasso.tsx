@@ -150,16 +150,18 @@ const Viewport = () => {
     'meta[name="viewport"]:not([data-picasso="true"])'
   )
 
-  if (nonPicassoViewportTags.length > 0 && !warned) {
-    console.warn(
-      'PICASSO:',
-      `I wanted to add viewport meta tag to your page but failed as it already containes ${nonPicassoViewportTags.length}.`,
-      `My viewport meta tag content is "${content}".`,
-      'The absence of this content may cause some of my features to work incorrectly.',
-      'For example, inputs will be scaled when focused on Safari, iOS.',
-      'Please, delete your viewport meta tag so I can insert mine.'
-    )
-    setWarned(true)
+  if (nonPicassoViewportTags.length > 0) {
+    if (!warned) {
+      console.warn(
+        'PICASSO:',
+        `I wanted to add viewport meta tag to your page but failed as it already containes ${nonPicassoViewportTags.length}.`,
+        `My viewport meta tag content is "${content}".`,
+        'The absence of this content may cause some of my features to work incorrectly.',
+        'For example, inputs will be scaled when focused on Safari, iOS.',
+        'Please, delete your viewport meta tag so I can insert mine.'
+      )
+      setWarned(true)
+    }
     return null
   }
 
