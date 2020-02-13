@@ -86,7 +86,7 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
     if (menu && refresh) {
       refresh(key, menu)
     }
-  }, [menu])
+  }, [key, menu, refresh])
 
   if (typeof children === 'string') {
     children = (

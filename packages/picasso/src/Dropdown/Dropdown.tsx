@@ -185,12 +185,9 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
   )
 
   // here you can expose other methods, states to child components
-  const context = useMemo(
-    () => ({
-      close: () => forceClose()
-    }),
-    [close]
-  )
+  const context = {
+    close: () => forceClose()
+  }
 
   return (
     <div

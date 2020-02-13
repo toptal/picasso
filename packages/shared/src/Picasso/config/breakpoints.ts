@@ -56,10 +56,8 @@ export const screenSizeToBreakpointKey = function (
     return 'medium'
   } else if (size >= md && size < lg) {
     return 'large'
-  } else {
-    // if (size >= lg)
-    return 'extra-large'
   }
+  return 'extra-large'
 }
 
 export const useScreenSize = () => {
@@ -125,16 +123,19 @@ export const useScreens = <T = unknown>() => {
   // For every screenKey value, memoize the instance of a function
   // that picks a property from an object by screen name,
   // and return this memoized version of the function.
-  return useCallback((
-    valuesByScreen: Partial<Record<BreakpointKeys, T>>,
-    defaultValue: T | undefined = undefined
-  ) => {
-    if (screenKey in valuesByScreen) {
-      return valuesByScreen[screenKey]
-    }
+  return useCallback(
+    (
+      valuesByScreen: Partial<Record<BreakpointKeys, T>>,
+      defaultValue: T | undefined = undefined
+    ) => {
+      if (screenKey in valuesByScreen) {
+        return valuesByScreen[screenKey]
+      }
 
-    return defaultValue
-  }, [screenKey])
+      return defaultValue
+    },
+    [screenKey]
+  )
 }
 
 type BreakpointKeys = 'small' | 'medium' | 'large' | 'extra-large'

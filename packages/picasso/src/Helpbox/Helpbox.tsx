@@ -13,8 +13,8 @@ import HelpboxContent from '../HelpboxContent'
 import HelpboxActions from '../HelpboxActions'
 import { Close16 } from '../Icon'
 import Button from '../Button'
-import { HelpboxContextProps } from './types'
 import styles from './styles'
+import HelpboxContext from './HelpboxContext'
 
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Children components (`Helpbox.Title`, `Helpbox.Content`, `Hdlpbox.Actions`) */
@@ -30,8 +30,6 @@ interface StaticProps {
   Content: typeof HelpboxContent
   Actions: typeof HelpboxActions
 }
-
-export const HelpboxContext = React.createContext<HelpboxContextProps>({})
 
 // eslint-disable-next-line react/display-name
 export const Helpbox = forwardRef<HTMLDivElement, Props>(function Helpbox(

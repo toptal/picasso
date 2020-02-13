@@ -77,7 +77,7 @@ const ScrollMenu: FunctionComponent<Props> = ({
     }
 
     setPrevSelectedIndex(selectedIndex)
-  })
+  }, [firstItemRef, selectedIndex, prevSelectedIndex])
 
   return (
     <Menu className={classes.menu} style={style}>

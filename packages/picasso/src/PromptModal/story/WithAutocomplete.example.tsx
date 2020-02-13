@@ -23,30 +23,32 @@ const PromptModalDefaultExample = () => {
   const { showPrompt } = useModals()
   const { showInfo } = useNotifications()
 
+  const Content = ({ setResult }) => {
+    const [value, setValue] = useState(EMPTY_INPUT_VALUE)
+    const [options, setOptions] = useState(allOptions)
+
+    return (
+      <Autocomplete
+        value={value}
+        width='full'
+        getDisplayValue={getDisplayValue}
+        placeholder='Start typing country...'
+        options={options}
+        onChange={newValue => {
+          setOptions(filterOptions(newValue))
+          setValue(newValue)
+        }}
+        onSelect={item => setResult(item.value)}
+      />
+    )
+  }
+
   const handleClick = () =>
     showPrompt({
       title: 'Country',
       message: 'Select country:',
       // eslint-disable-next-line react/display-name
-      content: ({ setResult }) => {
-        const [value, setValue] = useState(EMPTY_INPUT_VALUE)
-        const [options, setOptions] = useState(allOptions)
-
-        return (
-          <Autocomplete
-            value={value}
-            width='full'
-            getDisplayValue={getDisplayValue}
-            placeholder='Start typing country...'
-            options={options}
-            onChange={newValue => {
-              setOptions(filterOptions(newValue))
-              setValue(newValue)
-            }}
-            onSelect={item => setResult(item.value)}
-          />
-        )
-      },
+      content: Content,
       onSubmit: result => showInfo(String(result)),
       // for purpose of code example
       container: () => document.getElementById('modal-container')!

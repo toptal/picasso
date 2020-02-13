@@ -1,4 +1,4 @@
-const t = require('@babel/types')
+const types = require('@babel/types')
 
 /**
  * Add `className={cx(classes.root, className)}` to the svg tag
@@ -6,10 +6,12 @@ const t = require('@babel/types')
 function decorateWithClassNameProp(svgElement) {
   svgElement.attributes = [
     ...svgElement.attributes,
-    t.jsxAttribute(
-      t.jsxIdentifier('className'),
-      t.jsxExpressionContainer(
-        t.callExpression(t.identifier('cx'), [t.identifier('...classes')])
+    types.jsxAttribute(
+      types.jsxIdentifier('className'),
+      types.jsxExpressionContainer(
+        types.callExpression(types.identifier('cx'), [
+          types.identifier('...classes')
+        ])
       )
     )
   ]
@@ -21,9 +23,9 @@ function decorateWithClassNameProp(svgElement) {
 function decorateWithIdentifierProp(svgElement, propName, identifierName) {
   svgElement.attributes = [
     ...svgElement.attributes,
-    t.jsxAttribute(
-      t.jsxIdentifier(propName),
-      t.jsxExpressionContainer(t.identifier(identifierName))
+    types.jsxAttribute(
+      types.jsxIdentifier(propName),
+      types.jsxExpressionContainer(types.identifier(identifierName))
     )
   ]
 }

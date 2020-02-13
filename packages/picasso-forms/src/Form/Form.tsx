@@ -34,16 +34,25 @@ export const Form = (props: Props) => {
   } = props
   const { showSuccess, showError } = useNotifications()
 
-  const handleSubmit = useCallback(async (values, form, callback) => {
-    const errors = await onSubmit(values, form, callback)
+  const handleSubmit = useCallback(
+    async (values, form, callback) => {
+      const errors = await onSubmit(values, form, callback)
 
-    if (!errors) {
-      showSuccess(successSubmitMessage)
-    } else {
-      showError(failedSubmitMessage)
-      return errors
-    }
-  }, [])
+      if (!errors) {
+        showSuccess(successSubmitMessage)
+      } else {
+        showError(failedSubmitMessage)
+        return errors
+      }
+    },
+    [
+      failedSubmitMessage,
+      onSubmit,
+      showError,
+      showSuccess,
+      successSubmitMessage
+    ]
+  )
 
   return (
     <FinalForm
@@ -53,6 +62,7 @@ export const Form = (props: Props) => {
       onSubmit={handleSubmit}
       validateOnBlur={validateOnBlur}
       decorators={[focusOnErrors]}
+      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
     />
   )
