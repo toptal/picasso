@@ -143,37 +143,26 @@ const PicassoGlobalStylesProvider = (
 }
 
 const Viewport = () => {
-  /* RATIONALE
-   * On the page with Picasso there may be <meta name="viewport"> tag which is not created by Picasso.
-   * In this case Helmet renders duplicate of <meta name="viewport"> with "user-scalable=no" but browser will ignore that duplicate.
-   * To ensire scaling of inputs in Safari, iOS is disabled, we attach "user-scalable=no" to all <meta name="viewport"> on the page.
-   */
-  React.useEffect(() => {
-    const disableScalingOnNonHelmetMetaTags = (document: Document) => {
-      const nonHelmetMetaTags = document.querySelectorAll(
-        'meta[name="viewport"]:not([data-react-helmet="true"])'
-      )
+  const content = 'width=device-width, user-scalable=no'
+  const nonPicassoViewportTags = document.querySelectorAll(
+    'meta[name="viewport"]:not([data-picasso="true"])'
+  )
 
-      nonHelmetMetaTags.forEach(metaTag => {
-        const content: string = metaTag.getAttribute('content') || ''
-
-        if (content.includes('user-scalable=no')) return
-
-        metaTag.setAttribute(
-          'content',
-          [content, 'user-scalable=no'].join(', ')
-        )
-      })
-    }
-
-    if (document) {
-      disableScalingOnNonHelmetMetaTags(document)
-    }
-  })
+  if (nonPicassoViewportTags.length > 0) {
+    console.warn(
+      'PICASSO:',
+      `I wanted to add viewport meta tag to your page but failed as it already containes ${nonPicassoViewportTags.length}.`,
+      `My viewport meta tag content is "${content}".`,
+      'The absence of this content may cause some of my features to work incorrectly.',
+      'For example, inputs will be scaled when focused on Safari, iOS.',
+      'Please, delete your viewport meta tag so I can insert mine.'
+    )
+    return null
+  }
 
   return (
     <Helmet>
-      <meta name='viewport' content='width=device-width, user-scalable=no' />
+      <meta name='viewport' content={content} data-picasso='true' />
     </Helmet>
   )
 }
