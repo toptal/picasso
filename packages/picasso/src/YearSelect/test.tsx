@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from '@testing-library/react'
+import { render, fireEvent } from '@testing-library/react'
 import Picasso from '@toptal/picasso-shared'
 
 import YearSelect from './YearSelect'
@@ -28,11 +28,19 @@ describe('YearSelect', () => {
   })
 
   test('render in descending order', () => {
-    const { container } = render(
+    const placeholder = 'Select year'
+    const { getByPlaceholderText, container } = render(
       <Picasso loadFonts={false}>
-        <YearSelect from={2005} to={2001} onChange={() => {}} />
+        <YearSelect
+          from={2005}
+          to={2001}
+          placeholder={placeholder}
+          onChange={() => {}}
+        />
       </Picasso>
     )
+
+    fireEvent.focus(getByPlaceholderText(placeholder))
 
     expect(container).toMatchSnapshot()
   })
