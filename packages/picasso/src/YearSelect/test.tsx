@@ -29,7 +29,7 @@ describe('YearSelect', () => {
 
   test('render in descending order', () => {
     const placeholder = 'Select year'
-    const { getByPlaceholderText, container } = render(
+    const { getByPlaceholderText, getByRole } = render(
       <Picasso loadFonts={false}>
         <YearSelect
           from={2005}
@@ -42,7 +42,7 @@ describe('YearSelect', () => {
 
     fireEvent.focus(getByPlaceholderText(placeholder))
 
-    expect(container).toMatchSnapshot()
+    expect(getByRole('menu')).toMatchSnapshot()
   })
 
   test('wrong range', () => {
