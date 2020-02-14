@@ -27,6 +27,16 @@ describe('YearSelect', () => {
     expect(container).toMatchSnapshot()
   })
 
+  test('render in descending order', () => {
+    const { container } = render(
+      <Picasso loadFonts={false}>
+        <YearSelect from={2005} to={2001} onChange={() => {}} />
+      </Picasso>
+    )
+
+    expect(container).toMatchSnapshot()
+  })
+
   test('wrong range', () => {
     let from: number | null, to: number | null
 

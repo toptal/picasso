@@ -53,3 +53,57 @@ exports[`YearSelect default render 1`] = `
   </div>
 </div>
 `;
+
+exports[`YearSelect render in descending order 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="Select-root Select-rootFull"
+    >
+      <div
+        class="Select-inputWrapper"
+      >
+        <div
+          aria-autocomplete="list"
+          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootFull OutlinedInput-rootMedium Select-input MuiInputBase-fullWidth"
+          role="textbox"
+        >
+          <input
+            aria-invalid="false"
+            autocomplete="none"
+            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium"
+            size="1"
+            type="text"
+            value=""
+          />
+          <fieldset
+            aria-hidden="true"
+            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+            style="padding-left: 8px;"
+          >
+            <legend
+              class="PrivateNotchedOutline-legend"
+              style="width: 0.01px;"
+            >
+              <span>
+                ​
+              </span>
+            </legend>
+          </fieldset>
+        </div>
+        <svg
+          class="SvgDropdownArrows16-root Select-caret"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8.429 2.715l2.117 3.528a.5.5 0 0 1-.43.757H5.884a.5.5 0 0 1-.429-.757l2.117-3.528a.5.5 0 0 1 .858 0zM8.429 13.285l2.117-3.528a.5.5 0 0 0-.43-.757H5.884a.5.5 0 0 0-.429.757l2.117 3.528a.5.5 0 0 0 .858 0z"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+`;
