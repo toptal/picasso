@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.33.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.32.1...@toptal/picasso@4.33.0) (2020-02-17)
+
+
+### Features
+
+* **YearSelect:** allow descending order of years ([#1115](https://github.com/toptal/picasso/issues/1115)) ([65589cc](https://github.com/toptal/picasso/commit/65589cc5988ac420f2e0f5cb68d8d9cbcd8d5b95))
+
+
+
+
+
 ## [4.32.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.32.0...@toptal/picasso@4.32.1) (2020-02-13)
 
 **Note:** Version bump only for package @toptal/picasso
