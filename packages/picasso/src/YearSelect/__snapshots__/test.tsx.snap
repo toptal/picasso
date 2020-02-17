@@ -53,3 +53,87 @@ exports[`YearSelect default render 1`] = `
   </div>
 </div>
 `;
+
+exports[`YearSelect render in descending order 1`] = `
+<ul
+  class="MuiList-root ScrollMenu-menu"
+  role="menu"
+  tabindex="-1"
+>
+  <div
+    class="ScrollMenu-scrollView"
+    tabindex="0"
+  >
+    <li
+      aria-disabled="false"
+      aria-selected="true"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+      role="option"
+      tabindex="-1"
+      value="2005"
+    >
+      <span
+        class="MenuItem-stringContent MenuItem-stringContentMedium"
+      >
+        2005
+      </span>
+    </li>
+    <li
+      aria-disabled="false"
+      aria-selected="false"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      role="option"
+      tabindex="-1"
+      value="2004"
+    >
+      <span
+        class="MenuItem-stringContent MenuItem-stringContentMedium"
+      >
+        2004
+      </span>
+    </li>
+    <li
+      aria-disabled="false"
+      aria-selected="false"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      role="option"
+      tabindex="-1"
+      value="2003"
+    >
+      <span
+        class="MenuItem-stringContent MenuItem-stringContentMedium"
+      >
+        2003
+      </span>
+    </li>
+    <li
+      aria-disabled="false"
+      aria-selected="false"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      role="option"
+      tabindex="-1"
+      value="2002"
+    >
+      <span
+        class="MenuItem-stringContent MenuItem-stringContentMedium"
+      >
+        2002
+      </span>
+    </li>
+    <li
+      aria-disabled="false"
+      aria-selected="false"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      role="option"
+      tabindex="-1"
+      value="2001"
+    >
+      <span
+        class="MenuItem-stringContent MenuItem-stringContentMedium"
+      >
+        2001
+      </span>
+    </li>
+  </div>
+</ul>
+`;

@@ -20,10 +20,10 @@ export interface Props extends AdjustedSelectProps {
 }
 
 function generateOptions(from: number, to: number) {
-  const length = to - from + 1
+  const length = Math.abs(to - from) + 1
 
   return Array.from({ length }).map((_, index) => {
-    const value = index + from
+    const value = to < from ? from - index : index + from
 
     return {
       value,
@@ -40,7 +40,7 @@ export const YearSelect = forwardRef<HTMLInputElement, Props>(
       onChange(event)
     }
 
-    if (!to || !from || to < from) {
+    if (!to || !from) {
       throw new Error(
         `Invalid range. Please check the values you have passed: from: ${from}, to: ${to}`
       )

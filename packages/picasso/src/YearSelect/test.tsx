@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from '@testing-library/react'
+import { render, fireEvent } from '@testing-library/react'
 import Picasso from '@toptal/picasso-shared'
 
 import YearSelect from './YearSelect'
@@ -27,6 +27,24 @@ describe('YearSelect', () => {
     expect(container).toMatchSnapshot()
   })
 
+  test('render in descending order', () => {
+    const placeholder = 'Select year'
+    const { getByPlaceholderText, getByRole } = render(
+      <Picasso loadFonts={false}>
+        <YearSelect
+          from={2005}
+          to={2001}
+          placeholder={placeholder}
+          onChange={() => {}}
+        />
+      </Picasso>
+    )
+
+    fireEvent.focus(getByPlaceholderText(placeholder))
+
+    expect(getByRole('menu')).toMatchSnapshot()
+  })
+
   test('wrong range', () => {
     let from: number | null, to: number | null
 
@@ -46,13 +64,11 @@ describe('YearSelect', () => {
       )
 
     from = null
-    expect(tryRender).toThrow(errorMessage())
-
-    to = null
-    expect(tryRender).toThrow(errorMessage())
-
-    from = 11
     to = 10
+    expect(tryRender).toThrow(errorMessage())
+
+    from = 10
+    to = null
     expect(tryRender).toThrow(errorMessage())
   })
 })
