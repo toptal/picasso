@@ -229,7 +229,7 @@ const useAutocomplete = ({
           options && highlightedIndex ? options[highlightedIndex] : null
 
         if (selectedItem == null) {
-          if (value) {
+          if (value && !options?.map(option => option.text).includes(value)) {
             onOtherOptionSelect(value)
           }
           return
