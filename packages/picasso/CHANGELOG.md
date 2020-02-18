@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.33.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.33.0...@toptal/picasso@4.33.1) (2020-02-18)
+
+
+### Bug Fixes
+
+* **Tooltip:** remove opacity ([#1117](https://github.com/toptal/picasso/issues/1117)) ([2e9fae8](https://github.com/toptal/picasso/commit/2e9fae8a38074a17ce928aeb36a278ec64403d71))
+
+
+
+
+
 # [4.33.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.32.1...@toptal/picasso@4.33.0) (2020-02-17)
 
 
