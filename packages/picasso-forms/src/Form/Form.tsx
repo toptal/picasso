@@ -16,14 +16,16 @@ import Checkbox from '../Checkbox'
 import NumberInput from '../NumberInput'
 import FileInput from '../FileInput'
 
-export type Props = Omit<FinalFormProps, 'validate'> & {
+type AnyObject = Record<string, any>
+
+export type Props<T = AnyObject> = Omit<FinalFormProps<T>, 'validate'> & {
   successSubmitMessage?: ReactNode
   failedSubmitMessage?: ReactNode
 }
 
 const focusOnErrors = createDecorator()
 
-export const Form = (props: Props) => {
+export function Form<T = AnyObject>(props: Props<T>) {
   const {
     children,
     validateOnBlur,
