@@ -71,7 +71,7 @@ export function Form<T = AnyObject>(props: Props<T>) {
 }
 
 Form.defaultProps = {
-  validateOnBlur: true,
+  validateOnBlur: false,
   successSubmitMessage: 'Success!',
   failedSubmitMessage: 'Submit failed!'
 }
