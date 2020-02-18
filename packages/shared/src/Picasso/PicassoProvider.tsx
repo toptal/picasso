@@ -8,6 +8,10 @@ export class PicassoProvider {
     this.theme = theme
   }
 
+  disableResponsiveStyle() {
+    this.theme.layout.contentMinWidth = '768px'
+  }
+
   override(getOverride: (theme: Theme) => Partial<Overrides>) {
     const newOverride = getOverride(this.theme)
 

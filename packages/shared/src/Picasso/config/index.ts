@@ -5,11 +5,12 @@ export { default as typography } from './typography'
 export { default as sizes } from './sizes'
 export {
   default as breakpoints,
+  PicassoBreakpoints,
   screens,
-  useScreenSize,
   isScreenSize,
-  useBreakpoint,
   breakpointsList,
+  useScreenSize,
+  useBreakpoint,
   useScreens
 } from './breakpoints'
 export { default as layout } from './layout'

@@ -2,12 +2,13 @@ import { createStyles, Theme } from '@material-ui/core/styles'
 
 import { headerHeight } from '../PageHeader/styles'
 
-export default ({ screens }: Theme) =>
+export default ({ screens, layout }: Theme) =>
   createStyles({
     root: {
       display: 'flex',
       flexDirection: 'column',
       height: '100%',
+      ...(layout.contentMinWidth && { minWidth: layout.contentMinWidth }),
 
       '& > footer, & > header': {
         flex: 0
