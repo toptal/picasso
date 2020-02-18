@@ -23,7 +23,8 @@ const renderAutocomplete = (props: OmitInternalProps<Props>) => {
     enableAutofill,
     autoComplete,
     onChange,
-    onSelect
+    onSelect,
+    onOtherOptionSelect
   } = props
 
   return render(
@@ -39,6 +40,7 @@ const renderAutocomplete = (props: OmitInternalProps<Props>) => {
         autoComplete={autoComplete}
         onChange={onChange}
         onSelect={onSelect}
+        onOtherOptionSelect={onOtherOptionSelect}
       />
     </Picasso>
   )
@@ -244,6 +246,26 @@ describe('Autocomplete', () => {
         )
 
         expect(onSelect).toBeCalledWith(optionCroatia)
+      })
+
+      test('when entered other option and press Enter then onOhterOptionSelect is called', () => {
+        const onOtherOptionSelect = jest.fn()
+        const { getByPlaceholderText } = renderAutocomplete({
+          placeholder,
+          options: testOptions,
+          value: 'Other option!',
+          onOtherOptionSelect
+        })
+
+        const input = getByPlaceholderText(placeholder) as HTMLInputElement
+
+        fireEvent.focus(input)
+
+        fireEvent.keyDown(input, {
+          key: 'Enter'
+        })
+
+        expect(onOtherOptionSelect).toBeCalledWith('Other option!')
       })
     })
   })

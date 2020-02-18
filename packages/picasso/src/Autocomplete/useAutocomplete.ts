@@ -223,21 +223,21 @@ const useAutocomplete = ({
       }
 
       if (key === 'Enter') {
-        if (!isOpen || highlightedIndex === null) {
-          return
-        }
-
         event.preventDefault()
 
-        const item = options ? options[highlightedIndex] : null
+        const selectedItem =
+          options && highlightedIndex ? options[highlightedIndex] : null
 
-        if (item == null) {
+        if (selectedItem == null) {
+          if (value) {
+            onOtherOptionSelect(value)
+          }
           return
         }
 
         setOpen(false)
-        handleChange(getDisplayValue(item))
-        handleSelect(item)
+        handleChange(getDisplayValue(selectedItem))
+        handleSelect(selectedItem)
       }
 
       if (key === 'Escape') {
