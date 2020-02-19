@@ -142,15 +142,9 @@ const FieldWrapper = <
   }
 
   if (enableReset) {
-    let handler: (...args: any) => void
-
-    if (onResetClick) {
-      handler = resetClickHandler
-    } else {
-      handler = defaultResetClickHandler
-    }
-
-    childProps.onResetClick = handler
+    childProps.onResetClick = onResetClick
+      ? resetClickHandler
+      : defaultResetClickHandler
     childProps.enableReset = enableReset
   }
 
