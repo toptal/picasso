@@ -83,13 +83,16 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
       color[partName] = colorName
     }
 
+    const isClickable = Boolean(onClick)
+
     return (
       <Component
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         ref={ref}
         className={cx(
-          { [classes.clickable]: Boolean(onClick) },
+          { [classes.clickable]: isClickable },
+          { [classes.disableOutline]: !isClickable },
           classes.root,
           className
         )}
