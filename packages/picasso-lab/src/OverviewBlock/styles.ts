@@ -18,6 +18,9 @@ export default ({ palette }: Theme) =>
         backgroundColor: palette.grey.lighter
       }
     },
+    disableOutline: {
+      outline: 'none'
+    },
     title: {
       fontSize: rem('11px')
     }
