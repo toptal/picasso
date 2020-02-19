@@ -223,10 +223,16 @@ const useAutocomplete = ({
       }
 
       if (key === 'Enter') {
+        if (!isOpen || highlightedIndex === null) {
+          return
+        }
+
         event.preventDefault()
 
         const selectedItem =
-          options && highlightedIndex ? options[highlightedIndex] : null
+          options && highlightedIndex !== null
+            ? options[highlightedIndex]
+            : null
 
         if (selectedItem == null) {
           if (value && !options?.map(option => option.text).includes(value)) {
