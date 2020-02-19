@@ -22,12 +22,13 @@ import CssBaseline from '../CssBaseline'
 import {
   palette,
   layout,
+  breakpoints,
+  screens,
   transitions,
   typography,
   sizes,
-  breakpoints,
-  screens,
-  shadows
+  shadows,
+  PicassoBreakpoints
 } from './config'
 import FontsLoader from './FontsLoader'
 import Provider from './PicassoProvider'
@@ -180,6 +181,8 @@ interface PicassoProps {
   loadFavicon?: boolean
   /** Whether to apply Picasso CSS reset */
   reset?: boolean
+  /** Sets a minimum width of the page */
+  responsive?: boolean
   /** Notification DOMNode for createPortal */
   notificationContainer?: HTMLElement
   /** Component that is used to render root node  */
@@ -190,26 +193,35 @@ const Picasso: FunctionComponent<PicassoProps> = ({
   loadFonts,
   loadFavicon,
   reset,
+  responsive,
   children,
   notificationContainer,
   RootComponent
-}) => (
-  <MuiThemeProvider theme={PicassoProvider.theme}>
-    <Viewport />
-    {loadFonts && <FontsLoader />}
-    {reset && <CssBaseline />}
-    {loadFavicon && <Favicon />}
-    <PicassoGlobalStylesProvider RootComponent={RootComponent!}>
-      <NotificationsProvider container={notificationContainer}>
-        <ModalProvider>{children}</ModalProvider>
-      </NotificationsProvider>
-    </PicassoGlobalStylesProvider>
-  </MuiThemeProvider>
-)
+}) => {
+  if (!responsive) {
+    PicassoProvider.disableResponsiveStyle()
+    PicassoBreakpoints.disableMobileBreakpoints()
+  }
+
+  return (
+    <MuiThemeProvider theme={PicassoProvider.theme}>
+      <Viewport />
+      {loadFonts && <FontsLoader />}
+      {reset && <CssBaseline />}
+      {loadFavicon && <Favicon />}
+      <PicassoGlobalStylesProvider RootComponent={RootComponent!}>
+        <NotificationsProvider container={notificationContainer}>
+          <ModalProvider>{children}</ModalProvider>
+        </NotificationsProvider>
+      </PicassoGlobalStylesProvider>
+    </MuiThemeProvider>
+  )
+}
 
 Picasso.defaultProps = {
   loadFonts: true,
   loadFavicon: true,
+  responsive: true,
   reset: true,
   RootComponent: PicassoRootNode
 }
