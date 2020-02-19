@@ -227,6 +227,8 @@ const useAutocomplete = ({
           return
         }
 
+        setOpen(false)
+
         event.preventDefault()
 
         const selectedItem =
@@ -241,7 +243,6 @@ const useAutocomplete = ({
           return
         }
 
-        setOpen(false)
         handleChange(getDisplayValue(selectedItem))
         handleSelect(selectedItem)
       }
