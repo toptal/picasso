@@ -216,7 +216,7 @@ describe('Autocomplete', () => {
         ).toBe('true')
       })
 
-      test('when entered other option and press Enter then onOhterOptionSelect is called', () => {
+      test('when entered other option and press Enter then onOtherOptionSelect is called', () => {
         const onOtherOptionSelect = jest.fn()
         const { getByPlaceholderText } = renderAutocomplete({
           placeholder,
