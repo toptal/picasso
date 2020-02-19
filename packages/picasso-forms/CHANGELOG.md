@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.10.4...@toptal/picasso-forms@0.11.0) (2020-02-19)
+
+
+### Features
+
+* add useField hook to picasso-forms ([#1122](https://github.com/toptal/picasso/issues/1122)) ([465e8bd](https://github.com/toptal/picasso/commit/465e8bdb4e5c017d085efb7938594851c7507448))
+
+
+
+
+
 ## [0.10.4](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.10.3...@toptal/picasso-forms@0.10.4) (2020-02-18)
 
 
