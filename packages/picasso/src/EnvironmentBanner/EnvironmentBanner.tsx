@@ -1,7 +1,7 @@
 import React, { forwardRef, useState } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { StandardProps } from '@toptal/picasso-shared'
+import { StandardProps, useAppConfig } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
@@ -15,8 +15,11 @@ export interface Props extends StandardProps {
 export const EnvironmentBanner = forwardRef<HTMLDivElement, Props>(
   function EnvironmentBanner({ classes, environment, productName }, ref) {
     const [isShown, setIsShown] = useState(true)
+    const { environment: configEnvironment } = useAppConfig()
 
-    if (environment === 'production' || !isShown) {
+    const resolvedEnvironment = environment || configEnvironment
+
+    if (resolvedEnvironment === 'production' || !isShown) {
       return null
     }
 
@@ -24,20 +27,20 @@ export const EnvironmentBanner = forwardRef<HTMLDivElement, Props>(
       <div
         ref={ref}
         className={cx(classes.root, {
-          [classes.rootDevelopment]: environment === 'development',
-          [classes.rootTemploy]: environment === 'temploy',
-          [classes.rootStaging]: environment === 'staging'
+          [classes.rootDevelopment]: resolvedEnvironment === 'development',
+          [classes.rootTemploy]: resolvedEnvironment === 'temploy',
+          [classes.rootStaging]: resolvedEnvironment === 'staging'
         })}
       >
         <div
           onClick={() => setIsShown(false)}
           className={cx(classes.label, {
-            [classes.labelDevelopment]: environment === 'development',
-            [classes.labelTemploy]: environment === 'temploy',
-            [classes.labelStaging]: environment === 'staging'
+            [classes.labelDevelopment]: resolvedEnvironment === 'development',
+            [classes.labelTemploy]: resolvedEnvironment === 'temploy',
+            [classes.labelStaging]: resolvedEnvironment === 'staging'
           })}
         >
-          {`${productName} ${environment}`}
+          {`${productName} ${resolvedEnvironment}`}
         </div>
       </div>
     )

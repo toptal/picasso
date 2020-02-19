@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet'
 
 import { EnvironmentType } from './types'
 import { getIcons } from './icons'
+import { useAppConfig } from '../Picasso'
 
 export interface Props {
   /** Choose an icon color based on this variable */
@@ -18,23 +19,27 @@ export const Favicon = ({ environment }: Props) => {
     icon180?: string
   }>({})
 
+  const { environment: configEnvironment } = useAppConfig()
+
+  const resolvedEnvironment = environment || configEnvironment
+
   useEffect(() => {
     async function loadIcons() {
       try {
-        const icons = await getIcons(environment!)
+        const loadedIcons = await getIcons(resolvedEnvironment)
 
-        setIcons(icons)
+        setIcons(loadedIcons)
       } catch {
         // eslint-disable-next-line no-console
         console.error(
           'favicons were not loaded properly for environment',
-          environment
+          resolvedEnvironment
         )
       }
     }
 
     loadIcons()
-  }, [])
+  }, [resolvedEnvironment])
 
   const { icon16, icon32, icon180 } = icons
 
