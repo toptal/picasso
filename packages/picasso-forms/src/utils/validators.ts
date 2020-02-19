@@ -10,7 +10,7 @@ const required = (value: unknown) =>
   value === '' ||
   value === null ||
   (Array.isArray(value) && value.length === 0)
-    ? 'This field is required'
+    ? 'Please complete this field.'
     : undefined
 
 export default { composeValidators, required }
