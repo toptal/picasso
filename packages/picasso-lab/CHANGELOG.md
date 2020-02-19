@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.2.0...@toptal/picasso-lab@2.3.0) (2020-02-19)
+
+
+### Features
+
+* disable overviewblock outline ([#1119](https://github.com/toptal/picasso/issues/1119)) ([dae5753](https://github.com/toptal/picasso/commit/dae5753faff4dded14edf92f2521524bc324fe27))
+
+
+
+
+
 # [2.2.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.1.2...@toptal/picasso-lab@2.2.0) (2020-02-13)
 
 
