@@ -241,14 +241,15 @@ const useAutocomplete = ({
             ? options[highlightedIndex]
             : null
 
-        console.log('********ENTER******')
-        console.log('TCL: onOtherOptionSelect -> selectedItem', selectedItem)
-        console.log('TCL: onOtherOptionSelect -> value', value)
-
         if (selectedItem == null) {
-          if (value && !options?.map(option => option.text).includes(value)) {
+          const isValueAmongOptions = options
+            ?.map(option => option.text)
+            .includes(value)
+
+          if (value && !isValueAmongOptions) {
             onOtherOptionSelect(value)
           }
+
           return
         }
 

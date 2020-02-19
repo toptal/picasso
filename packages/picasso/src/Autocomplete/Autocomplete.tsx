@@ -1,5 +1,4 @@
 /* eslint-disable complexity, max-statements */ // Squiggly lines makes code difficult to work with
-/* eslint-disable complexity, max-statements */ // Squiggly lines makes code difficult to work with
 
 import React, {
   InputHTMLAttributes,
