@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent, FocusEvent } from 'react'
 import {
-  Field as FinalField,
+  useField,
   FieldProps as FinalFieldProps,
   FieldMetaState,
   FieldRenderProps
@@ -112,45 +112,40 @@ const FieldWrapper = <
     ...rest
   } = props
   const [dirtyAfterBlur, setDirtyAfterBlur] = useState(false)
+  const { meta, input } = useField<TInputValue>(name, {
+    validate: getValidators(required, validate),
+    type,
+    value: value
+  })
+
+  const error = getInputError<TInputValue>({
+    ...meta,
+    dirtyAfterBlur
+  })
+
+  const childProps = {
+    ...rest,
+    ...input,
+    ...getProps({ hideFieldLabel, error, label, required }),
+    onChange: (event: ChangeEvent<HTMLElement>) => {
+      setDirtyAfterBlur(true)
+      input.onChange(event)
+    },
+    onBlur: (event: FocusEvent<HTMLElement>) => {
+      setDirtyAfterBlur(false)
+      input.onBlur(event)
+    }
+  }
 
   return (
-    <FinalField
-      name={name}
-      validate={getValidators(required, validate)}
-      type={type}
-      value={value}
-    >
-      {({ input, meta }) => {
-        const error = getInputError<TInputValue>({
-          ...meta,
-          dirtyAfterBlur
-        })
-        const childProps = {
-          ...rest,
-          ...input,
-          ...getProps({ hideFieldLabel, error, label, required }),
-          onChange: (event: ChangeEvent<HTMLElement>) => {
-            setDirtyAfterBlur(true)
-            input.onChange(event)
-          },
-          onBlur: (event: FocusEvent<HTMLElement>) => {
-            setDirtyAfterBlur(false)
-            input.onBlur(event)
-          }
-        }
-
-        return (
-          <PicassoForm.Field error={error} hint={hint}>
-            {!hideFieldLabel && label && (
-              <PicassoForm.Label required={required} htmlFor={name}>
-                {label}
-              </PicassoForm.Label>
-            )}
-            {children(childProps)}
-          </PicassoForm.Field>
-        )
-      }}
-    </FinalField>
+    <PicassoForm.Field error={error} hint={hint}>
+      {!hideFieldLabel && label && (
+        <PicassoForm.Label required={required} htmlFor={name}>
+          {label}
+        </PicassoForm.Label>
+      )}
+      {children(childProps)}
+    </PicassoForm.Field>
   )
 }
 
