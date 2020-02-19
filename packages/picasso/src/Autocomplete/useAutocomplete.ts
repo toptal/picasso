@@ -242,11 +242,11 @@ const useAutocomplete = ({
             : null
 
         if (selectedItem == null) {
-          const isValueAmongOptions = options
+          const isValueInOptions = options
             ?.map(option => option.text)
             .includes(value)
 
-          if (value && !isValueAmongOptions) {
+          if (value && !isValueInOptions) {
             onOtherOptionSelect(value)
           }
 
