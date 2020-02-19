@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.7.0...@toptal/picasso-shared@1.8.0) (2020-02-19)
+
+
+### Features
+
+* disable responsive ui ([#1113](https://github.com/toptal/picasso/issues/1113)) ([cdf111f](https://github.com/toptal/picasso/commit/cdf111f0f50f704406c2cd1a88246458a610a2b7))
+
+
+
+
+
 # [1.7.0](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.6.1...@toptal/picasso-shared@1.7.0) (2020-02-13)
 
 

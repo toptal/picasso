@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.34.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.33.1...@toptal/picasso@4.34.0) (2020-02-19)
+
+
+### Features
+
+* disable responsive ui ([#1113](https://github.com/toptal/picasso/issues/1113)) ([cdf111f](https://github.com/toptal/picasso/commit/cdf111f0f50f704406c2cd1a88246458a610a2b7))
+
+
+
+
+
 ## [4.33.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.33.0...@toptal/picasso@4.33.1) (2020-02-18)
 
 
