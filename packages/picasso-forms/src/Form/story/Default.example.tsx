@@ -5,6 +5,10 @@ import { Form } from '@toptal/picasso-forms'
 const DefaultExample = () => (
   <Form onSubmit={values => console.log(values)}>
     <Form.Input
+      enableReset
+      onResetClick={(set: (value: string) => void) => {
+        set('')
+      }}
       required
       name='firstName'
       label='First name'
@@ -17,6 +21,7 @@ const DefaultExample = () => (
       placeholder='e.g. Wayne'
     />
     <Form.NumberInput
+      enableReset
       required
       name='age'
       label="What's your age?"
@@ -27,6 +32,7 @@ const DefaultExample = () => (
       <Form.Radio label='Female' value='female' />
     </Form.RadioGroup>
     <Form.Select
+      enableReset
       required
       name='businessType'
       label='Business type'

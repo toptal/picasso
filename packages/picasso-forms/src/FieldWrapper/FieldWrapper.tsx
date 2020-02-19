@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, FocusEvent } from 'react'
+import React, { ChangeEvent, FocusEvent, useCallback } from 'react'
 import {
   useField,
   FieldProps as FinalFieldProps,
@@ -41,10 +41,6 @@ const getInputError = <T extends ValueType>(meta: FieldMeta<T>) => {
   }
 
   if (!meta.touched) {
-    return null
-  }
-
-  if (meta.dirtyAfterBlur) {
     return null
   }
 
@@ -109,32 +105,47 @@ const FieldWrapper = <
     required,
     children,
     value,
+    enableReset,
+    onResetClick,
     ...rest
   } = props
-  const [dirtyAfterBlur, setDirtyAfterBlur] = useState(false)
   const { meta, input } = useField<TInputValue>(name, {
     validate: getValidators(required, validate),
     type,
     value: value
   })
 
+  const defaultResetClickHandler = useCallback(() => {
+    input.onChange('')
+  }, [input])
+
+  const resetClickHandler = useCallback(() => {
+    onResetClick((resetValue: string) => {
+      input.onChange(resetValue)
+    })
+  }, [input, onResetClick])
+
   const error = getInputError<TInputValue>({
-    ...meta,
-    dirtyAfterBlur
+    ...meta
   })
 
-  const childProps = {
+  const childProps: Record<string, unknown> = {
     ...rest,
     ...input,
     ...getProps({ hideFieldLabel, error, label, required }),
     onChange: (event: ChangeEvent<HTMLElement>) => {
-      setDirtyAfterBlur(true)
       input.onChange(event)
     },
     onBlur: (event: FocusEvent<HTMLElement>) => {
-      setDirtyAfterBlur(false)
       input.onBlur(event)
     }
+  }
+
+  if (enableReset) {
+    childProps.onResetClick = onResetClick
+      ? resetClickHandler
+      : defaultResetClickHandler
+    childProps.enableReset = enableReset
   }
 
   return (

@@ -28,7 +28,6 @@ const focusOnErrors = createDecorator()
 export function Form<T = AnyObject>(props: Props<T>) {
   const {
     children,
-    validateOnBlur,
     onSubmit,
     successSubmitMessage,
     failedSubmitMessage,
@@ -62,7 +61,6 @@ export function Form<T = AnyObject>(props: Props<T>) {
         <PicassoForm onSubmit={handleSubmit}>{children}</PicassoForm>
       )}
       onSubmit={handleSubmit}
-      validateOnBlur={validateOnBlur}
       decorators={[focusOnErrors]}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
@@ -71,7 +69,6 @@ export function Form<T = AnyObject>(props: Props<T>) {
 }
 
 Form.defaultProps = {
-  validateOnBlur: true,
   successSubmitMessage: 'Success!',
   failedSubmitMessage: 'Submit failed!'
 }
