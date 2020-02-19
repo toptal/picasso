@@ -216,43 +216,11 @@ describe('Autocomplete', () => {
         ).toBe('true')
       })
 
-      test('press Enter', () => {
-        const onSelect = jest.fn()
-        const { getByText, getByDisplayValue } = renderAutocomplete({
-          placeholder,
-          options: testOptions,
-          value: '',
-          onSelect
-        })
-
-        const input = getByDisplayValue('') as HTMLInputElement
-
-        fireEvent.focus(input)
-
-        fireEvent.keyDown(input, {
-          key: 'ArrowDown'
-        })
-
-        expect(
-          getByText('Croatia').parentElement!.getAttribute('aria-selected')
-        ).toBe('true')
-
-        fireEvent.keyDown(input, {
-          key: 'Enter'
-        })
-
-        const optionCroatia = testOptions.find(
-          option => option.text === 'Croatia'
-        )
-
-        expect(onSelect).toBeCalledWith(optionCroatia)
-      })
-
       test('when entered other option and press Enter then onOhterOptionSelect is called', () => {
         const onOtherOptionSelect = jest.fn()
         const { getByPlaceholderText } = renderAutocomplete({
           placeholder,
-          options: testOptions,
+          options: [], // simulate situation when no option matches the input
           value: 'Other option!',
           onOtherOptionSelect
         })

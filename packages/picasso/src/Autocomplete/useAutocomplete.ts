@@ -1,3 +1,5 @@
+/* eslint-disable complexity, max-statements */ // Squiggly lines makes code difficult to work with
+
 import { KeyboardEvent, useState, ChangeEvent, useMemo } from 'react'
 
 import { Item, ChangedOptions } from './types'
@@ -83,6 +85,7 @@ interface Props {
   ) => void
   getDisplayValue: (item: Item | null) => string
   enableReset?: boolean
+  showOtherOption?: boolean
 }
 
 const useAutocomplete = ({
@@ -95,10 +98,17 @@ const useAutocomplete = ({
   onSelect = () => {},
   onOtherOptionSelect = () => {},
   getDisplayValue,
-  enableReset
+  enableReset,
+  showOtherOption
 }: Props) => {
   const [isOpen, setOpen] = useState<boolean>(false)
   const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null)
+
+  const shouldShowOtherOption =
+    showOtherOption &&
+    value &&
+    Array.isArray(options) &&
+    options.every(option => getDisplayValue!(option) !== value)
 
   const handleChange = (newValue: string, isSelected = false) => {
     if (newValue !== value) {
@@ -186,16 +196,15 @@ const useAutocomplete = ({
 
       const key = normalizeArrowKey(event)
 
+      const itemsCount =
+        (options?.length || 0) + Number(Boolean(shouldShowOtherOption))
+
       if (key === 'ArrowUp') {
         event.preventDefault()
 
         setOpen(true)
         setHighlightedIndex(
-          getNextWrappingIndex(
-            -1,
-            highlightedIndex,
-            options ? options.length : 0
-          )
+          getNextWrappingIndex(-1, highlightedIndex, itemsCount)
         )
       }
 
@@ -204,11 +213,7 @@ const useAutocomplete = ({
 
         setOpen(true)
         setHighlightedIndex(
-          getNextWrappingIndex(
-            1,
-            highlightedIndex,
-            options ? options.length : 0
-          )
+          getNextWrappingIndex(1, highlightedIndex, itemsCount)
         )
       }
 
@@ -235,6 +240,10 @@ const useAutocomplete = ({
           options && highlightedIndex !== null
             ? options[highlightedIndex]
             : null
+
+        console.log('********ENTER******')
+        console.log('TCL: onOtherOptionSelect -> selectedItem', selectedItem)
+        console.log('TCL: onOtherOptionSelect -> value', value)
 
         if (selectedItem == null) {
           if (value && !options?.map(option => option.text).includes(value)) {
@@ -268,7 +277,8 @@ const useAutocomplete = ({
     getOtherItemProps,
     getInputProps,
     isOpen,
-    highlightedIndex
+    highlightedIndex,
+    shouldShowOtherOption
   }
 }
 
