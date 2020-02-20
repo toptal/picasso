@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react'
-import { render, fireEvent } from '@testing-library/react'
-import Picasso from '@toptal/picasso-shared'
+import { render, fireEvent } from '@toptal/picasso/test-utils'
 
 import { useNotifications } from './use-notifications'
 import Button from '../../Button'
@@ -20,11 +19,7 @@ const TestComponent = () => {
 }
 
 const renderNotification = () => {
-  return render(
-    <Picasso loadFonts={false}>
-      <TestComponent />
-    </Picasso>
-  )
+  return render(<TestComponent />)
 }
 
 describe('useNotifications', () => {

@@ -1,6 +1,5 @@
 import React from 'react'
-import { render } from '@testing-library/react'
-import Picasso from '@toptal/picasso-shared'
+import { render } from '@toptal/picasso/test-utils'
 
 import DatePicker from './DatePicker'
 
@@ -9,9 +8,7 @@ describe('DatePicker', () => {
     const date = new Date('12-12-2019')
 
     const { container } = render(
-      <Picasso loadFonts={false}>
-        <DatePicker value={date} onChange={() => {}} />
-      </Picasso>
+      <DatePicker value={date} onChange={() => {}} />
     )
 
     expect(container).toMatchSnapshot()
@@ -21,9 +18,7 @@ describe('DatePicker', () => {
     const date = new Date('12-12-2019')
 
     const { container } = render(
-      <Picasso loadFonts={false}>
-        <DatePicker width='full' value={date} onChange={() => {}} />
-      </Picasso>
+      <DatePicker width='full' value={date} onChange={() => {}} />
     )
 
     expect(container).toMatchSnapshot()

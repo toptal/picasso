@@ -1,19 +1,16 @@
 import React from 'react'
-import { render } from '@testing-library/react'
-import Picasso from '@toptal/picasso-shared'
+import { render } from '@toptal/picasso/test-utils'
 
 import Label from '../Label'
 
 const renderLabelGroup = () => {
   return render(
-    <Picasso loadFonts={false}>
-      <Label.Group>
-        <Label>Angular JS</Label>
-        <Label>React JS</Label>
-        <Label>Ember JS</Label>
-        <Label>Vue JS</Label>
-      </Label.Group>
-    </Picasso>
+    <Label.Group>
+      <Label>Angular JS</Label>
+      <Label>React JS</Label>
+      <Label>Ember JS</Label>
+      <Label>Vue JS</Label>
+    </Label.Group>
   )
 }
 

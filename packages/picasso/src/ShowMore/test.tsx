@@ -1,6 +1,6 @@
 import React from 'react'
-import { render, fireEvent, RenderResult } from '@testing-library/react'
-import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
+import { render, fireEvent, RenderResult } from '@toptal/picasso/test-utils'
+import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import ShowMore, { Props } from './ShowMore'
 
@@ -16,18 +16,16 @@ const renderShowMore = (props: OmitInternalProps<Props>) => {
   } = props
 
   return render(
-    <Picasso loadFonts={false}>
-      <ShowMore
-        rows={rows}
-        initialExpanded={initialExpanded}
-        onToggle={onToggle}
-        moreText={moreText}
-        lessText={lessText}
-        disableToggle={disableToggle}
-      >
-        {children}
-      </ShowMore>
-    </Picasso>
+    <ShowMore
+      rows={rows}
+      initialExpanded={initialExpanded}
+      onToggle={onToggle}
+      moreText={moreText}
+      lessText={lessText}
+      disableToggle={disableToggle}
+    >
+      {children}
+    </ShowMore>
   )
 }
 

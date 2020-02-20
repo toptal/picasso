@@ -1,6 +1,6 @@
 import React from 'react'
-import { render, fireEvent } from '@testing-library/react'
-import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
+import { render, fireEvent } from '@toptal/picasso/test-utils'
+import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Label, { Props } from './Label'
 
@@ -11,11 +11,9 @@ const renderLabel = (
   const { onDelete, disabled, variant } = props
 
   return render(
-    <Picasso loadFonts={false}>
-      <Label onDelete={onDelete} disabled={disabled} variant={variant}>
-        {children}
-      </Label>
-    </Picasso>
+    <Label onDelete={onDelete} disabled={disabled} variant={variant}>
+      {children}
+    </Label>
   )
 }
 

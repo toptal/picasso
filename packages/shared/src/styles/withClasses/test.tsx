@@ -1,10 +1,9 @@
 import React, { ReactElement } from 'react'
-import { render, RenderResult } from '@testing-library/react'
+import { render, RenderResult } from '@toptal/picasso/test-utils'
 
 import { Classes } from '../types'
 // --- horrible fix, we need to have a dependency to @toptal/picasso here
 import { Button } from '../../../../../packages/picasso'
-import Picasso from '../../Picasso'
 import withClasses from './withClasses'
 
 const TestComponent = (props: { children: ReactElement; classes: Classes }) => {
@@ -19,11 +18,9 @@ const DecoratedComponent = withClasses(classes => [
 
 const renderComponent = () => {
   return render(
-    <Picasso>
-      <DecoratedComponent classes={{ test: 'testing' }}>
-        <Button>Button</Button>
-      </DecoratedComponent>
-    </Picasso>
+    <DecoratedComponent classes={{ test: 'testing' }}>
+      <Button>Button</Button>
+    </DecoratedComponent>
   )
 }
 

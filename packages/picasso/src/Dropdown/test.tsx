@@ -1,6 +1,5 @@
-import { fireEvent, render, wait } from '@testing-library/react'
+import { fireEvent, render, wait } from '@toptal/picasso/test-utils'
 import React from 'react'
-import Picasso from '@toptal/picasso-shared'
 
 import Menu from '../Menu'
 import Dropdown from './Dropdown'
@@ -9,11 +8,9 @@ import Container from '../Container'
 describe('Dropdown', () => {
   test('default render', () => {
     const { container } = render(
-      <Picasso loadFonts={false}>
-        <Dropdown content={<div>Content</div>}>
-          Open Dropdown <Dropdown.Arrow />
-        </Dropdown>
-      </Picasso>
+      <Dropdown content={<div>Content</div>}>
+        Open Dropdown <Dropdown.Arrow />
+      </Dropdown>
     )
 
     expect(container).toMatchSnapshot()
@@ -21,19 +18,17 @@ describe('Dropdown', () => {
 
   test('should render menu', () => {
     const { getByText, unmount, baseElement } = render(
-      <Picasso loadFonts={false}>
-        <Dropdown
-          content={
-            <Menu>
-              <Menu.Item>Item1</Menu.Item>
-              <Menu.Item>Item2</Menu.Item>
-              <Menu.Item>Item3</Menu.Item>
-            </Menu>
-          }
-        >
-          Open Dropdown <Dropdown.Arrow />
-        </Dropdown>
-      </Picasso>
+      <Dropdown
+        content={
+          <Menu>
+            <Menu.Item>Item1</Menu.Item>
+            <Menu.Item>Item2</Menu.Item>
+            <Menu.Item>Item3</Menu.Item>
+          </Menu>
+        }
+      >
+        Open Dropdown <Dropdown.Arrow />
+      </Dropdown>
     )
 
     const trigger = getByText('Open Dropdown')
@@ -47,22 +42,20 @@ describe('Dropdown', () => {
 
   test('should render menu with focus', async () => {
     const { baseElement, getByText, unmount } = render(
-      <Picasso loadFonts={false}>
-        <Container>
-          <Dropdown
-            content={
-              <Menu>
-                <Menu.Item>Item1</Menu.Item>
-                <Menu.Item>Item2</Menu.Item>
-                <Menu.Item>Item3</Menu.Item>
-              </Menu>
-            }
-            disableAutoFocus={false}
-          >
-            Open Dropdown <Dropdown.Arrow />
-          </Dropdown>
-        </Container>
-      </Picasso>
+      <Container>
+        <Dropdown
+          content={
+            <Menu>
+              <Menu.Item>Item1</Menu.Item>
+              <Menu.Item>Item2</Menu.Item>
+              <Menu.Item>Item3</Menu.Item>
+            </Menu>
+          }
+          disableAutoFocus={false}
+        >
+          Open Dropdown <Dropdown.Arrow />
+        </Dropdown>
+      </Container>
     )
 
     const trigger = getByText('Open Dropdown')
@@ -82,21 +75,19 @@ describe('Dropdown', () => {
     const onClose = jest.fn()
 
     const { getByText, unmount } = render(
-      <Picasso loadFonts={false}>
-        <Dropdown
-          content={
-            <Menu>
-              <Menu.Item>Item1</Menu.Item>
-              <Menu.Item>Item2</Menu.Item>
-              <Menu.Item>Item3</Menu.Item>
-            </Menu>
-          }
-          onOpen={onOpen}
-          onClose={onClose}
-        >
-          Open Dropdown <Dropdown.Arrow />
-        </Dropdown>
-      </Picasso>
+      <Dropdown
+        content={
+          <Menu>
+            <Menu.Item>Item1</Menu.Item>
+            <Menu.Item>Item2</Menu.Item>
+            <Menu.Item>Item3</Menu.Item>
+          </Menu>
+        }
+        onOpen={onOpen}
+        onClose={onClose}
+      >
+        Open Dropdown <Dropdown.Arrow />
+      </Dropdown>
     )
 
     const trigger = getByText('Open Dropdown')

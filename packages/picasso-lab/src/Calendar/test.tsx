@@ -1,6 +1,5 @@
 import React from 'react'
-import { render } from '@testing-library/react'
-import Picasso from '@toptal/picasso-shared'
+import { render } from '@toptal/picasso/test-utils'
 
 import Calendar from './Calendar'
 
@@ -9,13 +8,11 @@ describe('Calendar', () => {
     const value = new Date('12-12-2019')
 
     const { container } = render(
-      <Picasso loadFonts={false}>
-        <Calendar
-          activeMonth={new Date(2019, 1, 1)}
-          onChange={() => {}}
-          value={value}
-        />
-      </Picasso>
+      <Calendar
+        activeMonth={new Date(2019, 1, 1)}
+        onChange={() => {}}
+        value={value}
+      />
     )
 
     expect(container).toMatchSnapshot()

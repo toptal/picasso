@@ -4,8 +4,8 @@ import {
   fireEvent,
   waitForElement,
   RenderResult
-} from '@testing-library/react'
-import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
+} from '@toptal/picasso/test-utils'
+import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import TagSelector, { Props } from './TagSelector'
 
@@ -35,18 +35,16 @@ const renderTagSelector = (props: OmitInternalProps<Props>) => {
   } = props
 
   return render(
-    <Picasso loadFonts={false}>
-      <TagSelector
-        showOtherOption
-        loading={loading}
-        otherOptionLabel={otherOptionLabel}
-        options={options}
-        placeholder={placeholder}
-        value={value}
-        onInputChange={onInputChange}
-        onChange={onChange}
-      />
-    </Picasso>
+    <TagSelector
+      showOtherOption
+      loading={loading}
+      otherOptionLabel={otherOptionLabel}
+      options={options}
+      placeholder={placeholder}
+      value={value}
+      onInputChange={onInputChange}
+      onChange={onChange}
+    />
   )
 }
 

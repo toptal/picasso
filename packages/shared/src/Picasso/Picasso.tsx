@@ -183,6 +183,8 @@ interface PicassoProps {
   reset?: boolean
   /** Sets a minimum width of the page */
   responsive?: boolean
+  /** Whether to load viewport fix or not */
+  fixViewport?: boolean
   /** Notification DOMNode for createPortal */
   notificationContainer?: HTMLElement
   /** Component that is used to render root node  */
@@ -195,6 +197,7 @@ const Picasso: FunctionComponent<PicassoProps> = ({
   reset,
   responsive,
   children,
+  fixViewport,
   notificationContainer,
   RootComponent
 }) => {
@@ -205,7 +208,7 @@ const Picasso: FunctionComponent<PicassoProps> = ({
 
   return (
     <MuiThemeProvider theme={PicassoProvider.theme}>
-      <Viewport />
+      {fixViewport && <Viewport />}
       {loadFonts && <FontsLoader />}
       {reset && <CssBaseline />}
       {loadFavicon && <Favicon />}
@@ -223,6 +226,7 @@ Picasso.defaultProps = {
   loadFavicon: true,
   responsive: true,
   reset: true,
+  fixViewport: true,
   RootComponent: PicassoRootNode
 }
 

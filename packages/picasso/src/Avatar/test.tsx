@@ -1,17 +1,13 @@
 import React from 'react'
-import { render } from '@testing-library/react'
-import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
+import { render } from '@toptal/picasso/test-utils'
+import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Avatar, { Props } from './Avatar'
 
 const renderAvatar = (props: OmitInternalProps<Props>) => {
   const { alt, name, src } = props
 
-  return render(
-    <Picasso loadFonts={false}>
-      <Avatar alt={alt} name={name} src={src} />
-    </Picasso>
-  )
+  return render(<Avatar alt={alt} name={name} src={src} />)
 }
 
 describe('Avatar', () => {

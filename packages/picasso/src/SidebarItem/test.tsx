@@ -1,7 +1,6 @@
 import React, { FunctionComponent } from 'react'
-/* eslint-disable-next-line */
-import { render } from '@testing-library/react'
-import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
+import { render } from '@toptal/picasso/test-utils'
+import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import { Candidates16 } from '../Icon'
 import SidebarMenu from '../SidebarMenu'
@@ -15,16 +14,14 @@ const TestSidebarItem: FunctionComponent<OmitInternalProps<Props>> = ({
   collapsible,
   menu
 }) => (
-  <Picasso loadFonts={false}>
-    <SidebarItem
-      icon={icon}
-      selected={selected}
-      collapsible={collapsible}
-      menu={menu}
-    >
-      {children}
-    </SidebarItem>
-  </Picasso>
+  <SidebarItem
+    icon={icon}
+    selected={selected}
+    collapsible={collapsible}
+    menu={menu}
+  >
+    {children}
+  </SidebarItem>
 )
 
 describe('SidebarItem', () => {
@@ -70,20 +67,18 @@ describe('SidebarItem', () => {
 
   test('collapsible menu is expanded when one of the children is selected', () => {
     const { container } = render(
-      <Picasso>
-        <Sidebar>
-          <SidebarItem
-            menu={
-              <SidebarMenu>
-                <SidebarItem selected>Menu item</SidebarItem>
-              </SidebarMenu>
-            }
-            collapsible
-          >
-            Test item
-          </SidebarItem>
-        </Sidebar>
-      </Picasso>
+      <Sidebar>
+        <SidebarItem
+          menu={
+            <SidebarMenu>
+              <SidebarItem selected>Menu item</SidebarItem>
+            </SidebarMenu>
+          }
+          collapsible
+        >
+          Test item
+        </SidebarItem>
+      </Sidebar>
     )
 
     expect(container).toMatchSnapshot()

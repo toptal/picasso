@@ -1,16 +1,12 @@
 import React, { FunctionComponent } from 'react'
-import { render, fireEvent } from '@testing-library/react'
-import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
+import { render, fireEvent } from '@toptal/picasso/test-utils'
+import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Menu, { Props } from './'
 
 const TestMenu: FunctionComponent<OmitInternalProps<Props>> = ({
   children
-}) => (
-  <Picasso loadFonts={false}>
-    <Menu>{children}</Menu>
-  </Picasso>
-)
+}) => <Menu>{children}</Menu>
 
 describe('Menu', () => {
   test('default render', () => {

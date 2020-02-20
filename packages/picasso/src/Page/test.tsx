@@ -1,15 +1,10 @@
 import React from 'react'
-import { render, RenderResult } from '@testing-library/react'
-import Picasso from '@toptal/picasso-shared'
+import { render, RenderResult } from '@toptal/picasso/test-utils'
 
 import Page from './Page'
 
 const renderPage = (children: React.ReactNode) => {
-  return render(
-    <Picasso loadFonts={false}>
-      <Page>{children}</Page>
-    </Picasso>
-  )
+  return render(<Page>{children}</Page>)
 }
 
 describe('Page', () => {

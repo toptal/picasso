@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
-import { render } from '@testing-library/react'
-import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
+import { render } from '@toptal/picasso/test-utils'
+import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Helpbox, { Props } from './Helpbox'
 import Button from '../Button'
@@ -8,15 +8,13 @@ import Button from '../Button'
 const TestHelpbox: FunctionComponent<OmitInternalProps<Props>> = ({
   children
 }) => (
-  <Picasso loadFonts={false}>
-    <Helpbox>
-      <Helpbox.Title>Title</Helpbox.Title>
-      <Helpbox.Content>{children}</Helpbox.Content>
-      <Helpbox.Actions>
-        <Button>Button</Button>
-      </Helpbox.Actions>
-    </Helpbox>
-  </Picasso>
+  <Helpbox>
+    <Helpbox.Title>Title</Helpbox.Title>
+    <Helpbox.Content>{children}</Helpbox.Content>
+    <Helpbox.Actions>
+      <Button>Button</Button>
+    </Helpbox.Actions>
+  </Helpbox>
 )
 
 describe('Helpbox', () => {

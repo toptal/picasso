@@ -1,6 +1,6 @@
 import React from 'react'
-import { render } from '@testing-library/react'
-import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
+import { render } from '@toptal/picasso/test-utils'
+import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Stepper, { Props } from './Stepper'
 
@@ -8,14 +8,12 @@ const renderStepper = (props: OmitInternalProps<Props>) => {
   const { active, fullWidth, hideLabels, steps } = props
 
   return render(
-    <Picasso loadFonts={false}>
-      <Stepper
-        active={active}
-        fullWidth={fullWidth}
-        hideLabels={hideLabels}
-        steps={steps}
-      />
-    </Picasso>
+    <Stepper
+      active={active}
+      fullWidth={fullWidth}
+      hideLabels={hideLabels}
+      steps={steps}
+    />
   )
 }
 

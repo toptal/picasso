@@ -1,15 +1,10 @@
 import React from 'react'
-import { render } from '@testing-library/react'
-import Picasso from '@toptal/picasso-shared'
+import { render } from '@toptal/picasso/test-utils'
 
 import FormHint from './index'
 
 const renderFormHint = (text: string) => {
-  return render(
-    <Picasso loadFonts={false}>
-      <FormHint>{text}</FormHint>
-    </Picasso>
-  )
+  return render(<FormHint>{text}</FormHint>)
 }
 
 describe('FormHint', () => {

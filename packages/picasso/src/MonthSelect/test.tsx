@@ -1,6 +1,5 @@
 import React from 'react'
-import { render } from '@testing-library/react'
-import Picasso from '@toptal/picasso-shared'
+import { render } from '@toptal/picasso/test-utils'
 
 import MonthSelect from './MonthSelect'
 
@@ -19,9 +18,7 @@ afterEach(() => {
 describe('MonthSelect', () => {
   test('default render', () => {
     const { container } = render(
-      <Picasso loadFonts={false}>
-        <MonthSelect onChange={() => {}} from={1} to={12} />
-      </Picasso>
+      <MonthSelect onChange={() => {}} from={1} to={12} />
     )
 
     expect(container).toMatchSnapshot()
@@ -33,11 +30,7 @@ describe('MonthSelect', () => {
     const errorMessage = () =>
       `Invalid range. Please check the values you have passed: from: ${from}, to: ${to}`
     const tryRender = () =>
-      render(
-        <Picasso loadFonts={false}>
-          <MonthSelect onChange={() => {}} from={from} to={to} />
-        </Picasso>
-      )
+      render(<MonthSelect onChange={() => {}} from={from} to={to} />)
 
     from = 12
     to = 11

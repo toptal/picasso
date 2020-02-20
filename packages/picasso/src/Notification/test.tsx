@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
-import { render, RenderResult, fireEvent } from '@testing-library/react'
-import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
+import { render, RenderResult, fireEvent } from '@toptal/picasso/test-utils'
+import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Notification, { Props } from './Notification'
 
@@ -10,11 +10,7 @@ const renderNotification = (
 ) => {
   const { onClose } = props
 
-  return render(
-    <Picasso loadFonts={false}>
-      <Notification onClose={onClose}>{children}</Notification>
-    </Picasso>
-  )
+  return render(<Notification onClose={onClose}>{children}</Notification>)
 }
 
 describe('Notification', () => {

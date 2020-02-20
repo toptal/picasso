@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react'
-import { render, fireEvent } from '@testing-library/react'
-import Picasso from '@toptal/picasso-shared'
+import { render, fireEvent } from '@toptal/picasso/test-utils'
 
 import Button from '../../Button'
 import Modal from '../../Modal'
@@ -35,11 +34,7 @@ test('useModal opens and closes modal', () => {
     )
   }
 
-  const { getByText, queryByText, baseElement } = render(
-    <Picasso loadFonts={false}>
-      <TestComponent />
-    </Picasso>
-  )
+  const { getByText, queryByText, baseElement } = render(<TestComponent />)
 
   const showModal = getByText('Show')
 
@@ -79,11 +74,7 @@ test('useModal shows multiple modals at the same time', () => {
     )
   }
 
-  const { getByText, queryByText, baseElement } = render(
-    <Picasso loadFonts={false}>
-      <TestComponent />
-    </Picasso>
-  )
+  const { getByText, queryByText, baseElement } = render(<TestComponent />)
 
   fireEvent.click(getByText('Show first'))
   fireEvent.click(getByText('Show second'))

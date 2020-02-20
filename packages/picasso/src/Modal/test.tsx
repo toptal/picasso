@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
-import { render, fireEvent } from '@testing-library/react'
-import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
+import { render, fireEvent } from '@toptal/picasso/test-utils'
+import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import { Button } from '../'
 import Modal, { Props as ModalProps } from './Modal'
@@ -20,11 +20,9 @@ beforeAll(() => {
 
 const TestModal = ({ children, open }: OmitInternalProps<ModalProps>) => {
   return (
-    <Picasso loadFonts={false}>
-      <Modal open={open} container={modalRoot}>
-        {children}
-      </Modal>
-    </Picasso>
+    <Modal open={open} container={modalRoot}>
+      {children}
+    </Modal>
   )
 }
 
@@ -78,11 +76,7 @@ test('useModals opens and closes modal', () => {
     return <Button onClick={handleShowClick}>Show</Button>
   }
 
-  const { getByText, queryByText, baseElement } = render(
-    <Picasso loadFonts={false}>
-      <TestComponent />
-    </Picasso>
-  )
+  const { getByText, queryByText, baseElement } = render(<TestComponent />)
 
   const showModal = getByText('Show')
 
@@ -127,11 +121,7 @@ test('useModals shows multiple modals at the same time', () => {
     )
   }
 
-  const { getByText, queryByText, baseElement } = render(
-    <Picasso loadFonts={false}>
-      <TestComponent />
-    </Picasso>
-  )
+  const { getByText, queryByText, baseElement } = render(<TestComponent />)
 
   fireEvent.click(getByText('Show first'))
   fireEvent.click(getByText('Show second'))

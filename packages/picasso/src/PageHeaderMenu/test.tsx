@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react'
 /* eslint-disable-next-line */
-import { render } from '@testing-library/react'
-import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
+import { render } from '@toptal/picasso/test-utils'
+import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Menu from '../Menu'
 import PageHeaderMenu, { Props } from './PageHeaderMenu'
@@ -11,11 +11,9 @@ const TestPageHeaderMenu: FunctionComponent<OmitInternalProps<Props>> = ({
   name,
   avatar
 }) => (
-  <Picasso loadFonts={false}>
-    <PageHeaderMenu name={name} avatar={avatar}>
-      {children}
-    </PageHeaderMenu>
-  </Picasso>
+  <PageHeaderMenu name={name} avatar={avatar}>
+    {children}
+  </PageHeaderMenu>
 )
 
 describe('PageHeaderMenu', () => {

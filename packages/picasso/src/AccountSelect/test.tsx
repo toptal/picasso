@@ -1,6 +1,6 @@
 import React from 'react'
-import { render, RenderResult, fireEvent } from '@testing-library/react'
-import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
+import { render, RenderResult, fireEvent } from '@toptal/picasso/test-utils'
+import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import AccountSelect, { Props } from './AccountSelect'
 
@@ -11,11 +11,9 @@ const renderAccountSelect = (
   const { onSelect, accounts } = props
 
   return render(
-    <Picasso loadFonts={false}>
-      <AccountSelect accounts={accounts} onSelect={onSelect}>
-        {children}
-      </AccountSelect>
-    </Picasso>
+    <AccountSelect accounts={accounts} onSelect={onSelect}>
+      {children}
+    </AccountSelect>
   )
 }
 
