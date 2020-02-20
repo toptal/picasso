@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.11.1...@toptal/picasso-forms@0.12.0) (2020-02-20)
+
+
+### Features
+
+* add test utils ([#1123](https://github.com/toptal/picasso/issues/1123)) ([eddc6df](https://github.com/toptal/picasso/commit/eddc6df73c7be5071012a227e1932b607964f6bc))
+
+
+
+
+
 ## [0.11.1](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.11.0...@toptal/picasso-forms@0.11.1) (2020-02-19)
 
 

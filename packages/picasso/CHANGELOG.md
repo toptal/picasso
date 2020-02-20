@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.35.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.34.2...@toptal/picasso@4.35.0) (2020-02-20)
+
+
+### Features
+
+* add test utils ([#1123](https://github.com/toptal/picasso/issues/1123)) ([eddc6df](https://github.com/toptal/picasso/commit/eddc6df73c7be5071012a227e1932b607964f6bc))
+
+
+
+
+
 ## [4.34.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.34.1...@toptal/picasso@4.34.2) (2020-02-20)
 
 
