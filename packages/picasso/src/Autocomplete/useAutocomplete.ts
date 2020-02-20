@@ -196,8 +196,9 @@ const useAutocomplete = ({
 
       const key = normalizeArrowKey(event)
 
-      const itemsCount =
-        (options?.length || 0) + Number(Boolean(shouldShowOtherOption))
+      const optionsCount = options?.length || 0
+      const otherOptionsCount = shouldShowOtherOption ? 1 : 0
+      const itemsCount = optionsCount + otherOptionsCount
 
       if (key === 'ArrowUp') {
         event.preventDefault()
@@ -228,33 +229,24 @@ const useAutocomplete = ({
       }
 
       if (key === 'Enter') {
-        if (!isOpen || highlightedIndex === null) {
-          return
-        }
-
+        event.preventDefault()
         setOpen(false)
 
-        event.preventDefault()
+        const findSelectedItemUsingIndex = () =>
+          highlightedIndex === null ? undefined : options?.[highlightedIndex]
+
+        const findSelectedItemUsingValue = () =>
+          options?.find(option => option.text === value)
 
         const selectedItem =
-          options && highlightedIndex !== null
-            ? options[highlightedIndex]
-            : null
+          findSelectedItemUsingIndex() ?? findSelectedItemUsingValue()
 
-        if (selectedItem == null) {
-          const isValueInOptions = options
-            ?.map(option => option.text)
-            .includes(value)
-
-          if (value && !isValueInOptions) {
-            onOtherOptionSelect(value)
-          }
-
-          return
+        if (selectedItem) {
+          handleChange(getDisplayValue(selectedItem))
+          handleSelect(selectedItem)
+        } else if (value) {
+          onOtherOptionSelect(value)
         }
-
-        handleChange(getDisplayValue(selectedItem))
-        handleSelect(selectedItem)
       }
 
       if (key === 'Escape') {
