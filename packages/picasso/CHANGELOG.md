@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.35.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.35.0...@toptal/picasso@4.35.1) (2020-02-20)
+
+
+### Bug Fixes
+
+* add environment prop to picasso root component ([#1120](https://github.com/toptal/picasso/issues/1120)) ([3282f58](https://github.com/toptal/picasso/commit/3282f580dcf4acf938e49086112d4aca2a66efee))
+
+
+
+
+
 # [4.35.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.34.2...@toptal/picasso@4.35.0) (2020-02-20)
 
 
