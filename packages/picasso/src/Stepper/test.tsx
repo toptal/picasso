@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from '@toptal/picasso/test_utils'
+import { render } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Stepper, { Props } from './Stepper'

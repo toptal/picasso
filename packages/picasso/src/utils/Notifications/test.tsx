@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { render, fireEvent } from '@toptal/picasso/test_utils'
+import { render, fireEvent } from '@toptal/picasso/test-utils'
 
 import { useNotifications } from './use-notifications'
 import Button from '../../Button'

@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import { render, RenderResult } from '@toptal/picasso/test_utils'
+import { render, RenderResult } from '@toptal/picasso/test-utils'
 
 import Notification from '../Notification'
 

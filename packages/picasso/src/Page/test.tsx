@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, RenderResult } from '@toptal/picasso/test_utils'
+import { render, RenderResult } from '@toptal/picasso/test-utils'
 
 import Page from './Page'
 

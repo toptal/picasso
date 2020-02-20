@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import { render, RenderResult, fireEvent } from '@toptal/picasso/test_utils'
+import { render, RenderResult, fireEvent } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Notification, { Props } from './Notification'

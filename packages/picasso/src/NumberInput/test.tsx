@@ -1,5 +1,5 @@
 import React, { useState, ChangeEventHandler } from 'react'
-import { render, fireEvent } from '@toptal/picasso/test_utils'
+import { render, fireEvent } from '@toptal/picasso/test-utils'
 
 import NumberInput, { Props as NumberInputProps } from './NumberInput'
 

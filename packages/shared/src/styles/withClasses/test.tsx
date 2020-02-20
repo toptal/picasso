@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import { render, RenderResult } from '@toptal/picasso/test_utils'
+import { render, RenderResult } from '@toptal/picasso/test-utils'
 
 import { Classes } from '../types'
 // --- horrible fix, we need to have a dependency to @toptal/picasso here

@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, fireEvent, wait } from '@toptal/picasso/test_utils'
+import { render, fireEvent, wait } from '@toptal/picasso/test-utils'
 
 import Button from '../Button'
 import Input from '../Input'

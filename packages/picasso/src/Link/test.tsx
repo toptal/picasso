@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from '@toptal/picasso/test_utils'
+import { render } from '@toptal/picasso/test-utils'
 import { MemoryRouter, Link as RouterLink } from 'react-router-dom'
 
 import Link from '../Link'

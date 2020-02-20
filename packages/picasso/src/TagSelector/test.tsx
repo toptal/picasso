@@ -4,7 +4,7 @@ import {
   fireEvent,
   waitForElement,
   RenderResult
-} from '@toptal/picasso/test_utils'
+} from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import TagSelector, { Props } from './TagSelector'

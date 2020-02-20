@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import { render, fireEvent, RenderResult } from '@toptal/picasso/test_utils'
+import { render, fireEvent, RenderResult } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Button, { Props } from './Button'

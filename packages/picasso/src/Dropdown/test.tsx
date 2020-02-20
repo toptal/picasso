@@ -1,4 +1,4 @@
-import { fireEvent, render, wait } from '@toptal/picasso/test_utils'
+import { fireEvent, render, wait } from '@toptal/picasso/test-utils'
 import React from 'react'
 
 import Menu from '../Menu'

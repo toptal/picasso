@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from '@toptal/picasso/test_utils'
+import { render } from '@toptal/picasso/test-utils'
 import SearchIcon from '@material-ui/icons/Search'
 
 import Input from './Input'

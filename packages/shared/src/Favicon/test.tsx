@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, waitForDomChange } from '@toptal/picasso/test_utils'
+import { render, waitForDomChange } from '@toptal/picasso/test-utils'
 
 import Favicon from './Favicon'
 
