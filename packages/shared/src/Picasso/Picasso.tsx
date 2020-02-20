@@ -34,7 +34,7 @@ import FontsLoader from './FontsLoader'
 import Provider from './PicassoProvider'
 import NotificationsProvider from './NotificationsProvider'
 import globalStyles from './styles'
-import Favicon from '../Favicon'
+import Favicon, { EnvironmentType } from '../Favicon'
 
 const picasso = {
   palette,
@@ -67,10 +67,12 @@ interface RootContextProps {
   rootRef?: RefObject<HTMLDivElement>
   hasPageHeader: boolean
   setHasPageHeader: (value: boolean) => void
+  environment: EnvironmentType
 }
 const RootContext = React.createContext<RootContextProps>({
   hasPageHeader: false,
-  setHasPageHeader: () => {}
+  setHasPageHeader: () => {},
+  environment: 'development'
 })
 
 export const usePicassoRoot = () => {
@@ -88,11 +90,20 @@ export const usePageHeader = () => {
   }
 }
 
+export const useAppConfig = () => {
+  const context = useContext(RootContext)
+
+  return {
+    environment: context.environment
+  }
+}
+
 interface PicassoGlobalStylesProviderProps {
   children?: ReactNode
   RootComponent: ForwardRefExoticComponent<
     PicassoRootNodeProps & RefAttributes<HTMLDivElement>
   >
+  environment: EnvironmentType
 }
 
 interface PicassoRootNodeProps {
@@ -120,7 +131,7 @@ const PicassoRootNode = forwardRef<HTMLDivElement, PicassoRootNodeProps>(
 const PicassoGlobalStylesProvider = (
   props: PicassoGlobalStylesProviderProps
 ) => {
-  const { children, RootComponent } = props
+  const { children, RootComponent, environment } = props
 
   const rootRef = useRef<HTMLDivElement>(null)
   const [contextValue, setContextValue] = useState({
@@ -131,7 +142,8 @@ const PicassoGlobalStylesProvider = (
         ...contextValue,
         hasPageHeader
       })
-    }
+    },
+    environment
   })
 
   return (
@@ -179,6 +191,8 @@ interface PicassoProps {
   loadFonts?: boolean
   /** Whether to specify favicons in the head */
   loadFavicon?: boolean
+  /** current environment */
+  environment?: EnvironmentType
   /** Whether to apply Picasso CSS reset */
   reset?: boolean
   /** Sets a minimum width of the page */
@@ -196,6 +210,7 @@ const Picasso: FunctionComponent<PicassoProps> = ({
   loadFavicon,
   reset,
   responsive,
+  environment,
   children,
   fixViewport,
   notificationContainer,
@@ -208,11 +223,14 @@ const Picasso: FunctionComponent<PicassoProps> = ({
 
   return (
     <MuiThemeProvider theme={PicassoProvider.theme}>
-      {fixViewport && <Viewport />}
-      {loadFonts && <FontsLoader />}
-      {reset && <CssBaseline />}
-      {loadFavicon && <Favicon />}
-      <PicassoGlobalStylesProvider RootComponent={RootComponent!}>
+      <PicassoGlobalStylesProvider
+        RootComponent={RootComponent!}
+        environment={environment!}
+      >
+        {fixViewport && <Viewport />}
+        {loadFonts && <FontsLoader />}
+        {reset && <CssBaseline />}
+        {loadFavicon && <Favicon environment={environment} />}
         <NotificationsProvider container={notificationContainer}>
           <ModalProvider>{children}</ModalProvider>
         </NotificationsProvider>
@@ -222,6 +240,7 @@ const Picasso: FunctionComponent<PicassoProps> = ({
 }
 
 Picasso.defaultProps = {
+  environment: 'development',
   loadFonts: true,
   loadFavicon: true,
   responsive: true,
