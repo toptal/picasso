@@ -1,16 +1,12 @@
 import React, { ReactElement } from 'react'
-import {
-  render as rtlRender,
-  RenderOptions,
-  RenderResult
-} from '@testing-library/react'
+import { render, RenderOptions, RenderResult } from '@testing-library/react'
 import Picasso from '@toptal/picasso-shared'
 
-const render = (
+const customRender = (
   ui: ReactElement,
   options?: Omit<RenderOptions, 'queries'>
 ): RenderResult => {
-  return rtlRender(
+  return render(
     <Picasso loadFavicon={false} loadFonts={false} fixViewport={false}>
       {ui}
     </Picasso>,
@@ -19,4 +15,4 @@ const render = (
 }
 
 export * from '@testing-library/react'
-export { render }
+export { customRender as render }
