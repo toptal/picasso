@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.34.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.34.1...@toptal/picasso@4.34.2) (2020-02-20)
+
+
+### Bug Fixes
+
+* **autocomplete:** onOtherOptionSelect invoke on enter ([#1121](https://github.com/toptal/picasso/issues/1121)) ([a2f8eed](https://github.com/toptal/picasso/commit/a2f8eedabbf64db77638158cd01203f20cec203e))
+
+
+
+
+
 ## [4.34.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.34.0...@toptal/picasso@4.34.1) (2020-02-19)
 
 
