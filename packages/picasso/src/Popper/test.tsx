@@ -19,7 +19,12 @@ const FakeRootNode = forwardRef<HTMLDivElement, { children?: ReactNode }>(
 
 const PicassoWithFakeRootNode: FC = ({ children }) => {
   return (
-    <Picasso loadFonts={false} RootComponent={FakeRootNode}>
+    <Picasso
+      loadFonts={false}
+      loadFavicon={false}
+      fixViewport={false}
+      RootComponent={FakeRootNode}
+    >
       {children}
     </Picasso>
   )
