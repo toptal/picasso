@@ -1,6 +1,6 @@
 import React from 'react'
-import { render, fireEvent } from '@testing-library/react'
-import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
+import { render, fireEvent } from '@toptal/picasso/test_utils'
+import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Autocomplete, { Props } from './Autocomplete'
 
@@ -28,21 +28,19 @@ const renderAutocomplete = (props: OmitInternalProps<Props>) => {
   } = props
 
   return render(
-    <Picasso loadFonts={false}>
-      <Autocomplete
-        placeholder={placeholder}
-        options={options}
-        value={value}
-        inputComponent={inputComponent}
-        noOptionsText={noOptionsText}
-        renderOption={renderOption}
-        enableAutofill={enableAutofill}
-        autoComplete={autoComplete}
-        onChange={onChange}
-        onSelect={onSelect}
-        onOtherOptionSelect={onOtherOptionSelect}
-      />
-    </Picasso>
+    <Autocomplete
+      placeholder={placeholder}
+      options={options}
+      value={value}
+      inputComponent={inputComponent}
+      noOptionsText={noOptionsText}
+      renderOption={renderOption}
+      enableAutofill={enableAutofill}
+      autoComplete={autoComplete}
+      onChange={onChange}
+      onSelect={onSelect}
+      onOtherOptionSelect={onOtherOptionSelect}
+    />
   )
 }
 

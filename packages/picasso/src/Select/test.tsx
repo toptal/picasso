@@ -1,6 +1,6 @@
 import React from 'react'
-import { render, fireEvent } from '@testing-library/react'
-import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
+import { render, fireEvent } from '@toptal/picasso/test_utils'
+import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Select, { Props } from './Select'
 
@@ -18,19 +18,17 @@ const renderSelect = (props: OmitInternalProps<Props>) => {
   } = props
 
   return render(
-    <Picasso loadFonts={false}>
-      <Select
-        options={options}
-        renderOption={renderOption}
-        getDisplayValue={getDisplayValue}
-        native={native}
-        value={value}
-        width={width}
-        placeholder={placeholder}
-        multiple={multiple}
-        onChange={onChange}
-      />
-    </Picasso>
+    <Select
+      options={options}
+      renderOption={renderOption}
+      getDisplayValue={getDisplayValue}
+      native={native}
+      value={value}
+      width={width}
+      placeholder={placeholder}
+      multiple={multiple}
+      onChange={onChange}
+    />
   )
 }
 

@@ -1,13 +1,11 @@
 import React, { FunctionComponent } from 'react'
-import { render } from '@testing-library/react'
-import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
+import { render } from '@toptal/picasso/test_utils'
+import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import FileInput, { Props } from './FileInput'
 
 const TestFileInput: FunctionComponent<OmitInternalProps<Props>> = () => (
-  <Picasso loadFonts={false}>
-    <FileInput />
-  </Picasso>
+  <FileInput />
 )
 
 describe('FileInput', () => {

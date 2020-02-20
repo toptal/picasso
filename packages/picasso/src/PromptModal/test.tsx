@@ -1,6 +1,5 @@
 import React from 'react'
-import { render, fireEvent, wait } from '@testing-library/react'
-import Picasso from '@toptal/picasso-shared'
+import { render, fireEvent, wait } from '@toptal/picasso/test_utils'
 
 import Button from '../Button'
 import Input from '../Input'
@@ -9,14 +8,12 @@ import { useModals } from '../utils'
 
 test('renders PromptModal', () => {
   const { baseElement } = render(
-    <Picasso loadFonts={false}>
-      <PromptModal
-        open
-        title='Test title'
-        message='Test message'
-        onSubmit={async () => {}}
-      />
-    </Picasso>
+    <PromptModal
+      open
+      title='Test title'
+      message='Test message'
+      onSubmit={async () => {}}
+    />
   )
 
   expect(baseElement).toMatchSnapshot()
@@ -37,11 +34,7 @@ test('showPrompt opens and closes modal on Submit action', async () => {
     return <Button onClick={handleClick}>Show</Button>
   }
 
-  const { getByText, queryByText, baseElement } = render(
-    <Picasso loadFonts={false}>
-      <TestComponent />
-    </Picasso>
-  )
+  const { getByText, queryByText, baseElement } = render(<TestComponent />)
 
   const showModal = getByText('Show')
 
@@ -94,11 +87,7 @@ test('showPrompt with input returns result on Submit action ', async () => {
     return <Button onClick={handleClick}>Show</Button>
   }
 
-  const { getByText, getByLabelText, baseElement } = render(
-    <Picasso loadFonts={false}>
-      <TestComponent />
-    </Picasso>
-  )
+  const { getByText, getByLabelText, baseElement } = render(<TestComponent />)
 
   const expectedResult = '42'
 

@@ -1,6 +1,6 @@
 import React from 'react'
-import { render } from '@testing-library/react'
-import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
+import { render } from '@toptal/picasso/test_utils'
+import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Pagination, { Props } from './Pagination'
 
@@ -8,14 +8,12 @@ const renderPagination = (props: OmitInternalProps<Props>) => {
   const { activePage, disabled, onPageChange, totalPages } = props
 
   return render(
-    <Picasso loadFonts={false}>
-      <Pagination
-        activePage={activePage}
-        disabled={disabled}
-        onPageChange={onPageChange}
-        totalPages={totalPages}
-      />
-    </Picasso>
+    <Pagination
+      activePage={activePage}
+      disabled={disabled}
+      onPageChange={onPageChange}
+      totalPages={totalPages}
+    />
   )
 }
 

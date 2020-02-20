@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
-import { render } from '@testing-library/react'
-import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
+import { render } from '@toptal/picasso/test_utils'
+import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import FormLabel, { Props } from './FormLabel'
 import Form from '../Form'
@@ -13,21 +13,19 @@ const TestFormLabel: FunctionComponent<OmitInternalProps<Props>> = ({
   htmlFor,
   inline
 }) => (
-  <Picasso loadFonts={false}>
-    <Form>
-      <Form.Field>
-        <FormLabel
-          required={required}
-          disabled={disabled}
-          htmlFor={htmlFor}
-          inline={inline}
-        >
-          {children}
-        </FormLabel>
-        <Input />
-      </Form.Field>
-    </Form>
-  </Picasso>
+  <Form>
+    <Form.Field>
+      <FormLabel
+        required={required}
+        disabled={disabled}
+        htmlFor={htmlFor}
+        inline={inline}
+      >
+        {children}
+      </FormLabel>
+      <Input />
+    </Form.Field>
+  </Form>
 )
 
 describe('FormLabel', () => {

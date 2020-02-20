@@ -1,6 +1,6 @@
 import React from 'react'
-import { render, fireEvent, RenderResult } from '@testing-library/react'
-import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
+import { render, fireEvent, RenderResult } from '@toptal/picasso/test_utils'
+import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Checkbox, { Props } from './Checkbox'
 
@@ -8,14 +8,12 @@ const renderCheckbox = (props: OmitInternalProps<Props>) => {
   const { label, disabled, indeterminate, onChange } = props
 
   return render(
-    <Picasso loadFonts={false}>
-      <Checkbox
-        disabled={disabled}
-        label={label}
-        indeterminate={indeterminate}
-        onChange={onChange}
-      />
-    </Picasso>
+    <Checkbox
+      disabled={disabled}
+      label={label}
+      indeterminate={indeterminate}
+      onChange={onChange}
+    />
   )
 }
 

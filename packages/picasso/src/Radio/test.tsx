@@ -1,17 +1,13 @@
 import React from 'react'
-import { render, fireEvent, RenderResult } from '@testing-library/react'
-import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
+import { render, fireEvent, RenderResult } from '@toptal/picasso/test_utils'
+import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Radio, { Props } from './Radio'
 
 const renderRadio = (props: OmitInternalProps<Props>) => {
   const { disabled, onChange } = props
 
-  return render(
-    <Picasso loadFonts={false}>
-      <Radio disabled={disabled} onChange={onChange} />
-    </Picasso>
-  )
+  return render(<Radio disabled={disabled} onChange={onChange} />)
 }
 
 describe('disabled radio button', () => {
@@ -51,12 +47,10 @@ describe('radio button', () => {
 describe('Radio.Group', () => {
   test('renders radio in group', () => {
     const { container }: RenderResult = render(
-      <Picasso loadFonts={false}>
-        <Radio.Group>
-          <Radio label='LABEL+1' value='VALUE+1' />
-          <Radio label='LABEL+2' value='VALUE+2' />
-        </Radio.Group>
-      </Picasso>
+      <Radio.Group>
+        <Radio label='LABEL+1' value='VALUE+1' />
+        <Radio label='LABEL+2' value='VALUE+2' />
+      </Radio.Group>
     )
 
     expect(container).toMatchSnapshot()

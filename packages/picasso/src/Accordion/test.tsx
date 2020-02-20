@@ -1,7 +1,6 @@
 /* eslint-disable react/no-multi-comp */
 import React from 'react'
-import { render, fireEvent } from '@testing-library/react'
-import Picasso from '@toptal/picasso-shared'
+import { render, fireEvent } from '@toptal/picasso/test_utils'
 
 import Accordion from './Accordion'
 
@@ -22,11 +21,9 @@ const Details = () => (
 describe('default version for sections', () => {
   test('should render default version', () => {
     const { container } = render(
-      <Picasso loadFonts={false}>
-        <Accordion content={<Details />}>
-          <Summary />
-        </Accordion>
-      </Picasso>
+      <Accordion content={<Details />}>
+        <Summary />
+      </Accordion>
     )
 
     expect(container).toMatchSnapshot()
@@ -34,11 +31,9 @@ describe('default version for sections', () => {
 
   test('should render expanded version after click on summary', () => {
     const { container, getByText } = render(
-      <Picasso loadFonts={false}>
-        <Accordion content={<Details />}>
-          <Summary />
-        </Accordion>
-      </Picasso>
+      <Accordion content={<Details />}>
+        <Summary />
+      </Accordion>
     )
     const summary = getByText(summaryHeaderText)
 
@@ -51,11 +46,9 @@ describe('default version for sections', () => {
 describe('controlled version', () => {
   test('should render expanded version', () => {
     const { container } = render(
-      <Picasso loadFonts={false}>
-        <Accordion content={<Details />} expanded>
-          <Summary />
-        </Accordion>
-      </Picasso>
+      <Accordion content={<Details />} expanded>
+        <Summary />
+      </Accordion>
     )
 
     expect(container).toMatchSnapshot()
@@ -63,11 +56,9 @@ describe('controlled version', () => {
 
   test('should render collapsed version', () => {
     const { container } = render(
-      <Picasso loadFonts={false}>
-        <Accordion content={<Details />} expanded={false}>
-          <Summary />
-        </Accordion>
-      </Picasso>
+      <Accordion content={<Details />} expanded={false}>
+        <Summary />
+      </Accordion>
     )
 
     expect(container).toMatchSnapshot()

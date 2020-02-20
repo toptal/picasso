@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
-import { render } from '@testing-library/react'
-import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
+import { render } from '@toptal/picasso/test_utils'
+import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Typography, { Props } from './Typography'
 
@@ -11,11 +11,9 @@ const TestTypography: FunctionComponent<OmitInternalProps<Props>> = ({
   size,
   children
 }) => (
-  <Picasso loadFonts={false}>
-    <Typography align={align} weight={weight} variant={variant} size={size}>
-      {children}
-    </Typography>
-  </Picasso>
+  <Typography align={align} weight={weight} variant={variant} size={size}>
+    {children}
+  </Typography>
 )
 
 describe('Typography', () => {

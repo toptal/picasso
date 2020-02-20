@@ -1,15 +1,10 @@
 import React from 'react'
-import { render, waitForDomChange } from '@testing-library/react'
+import { render, waitForDomChange } from '@toptal/picasso/test_utils'
 
-import Picasso from '../Picasso'
 import Favicon from './Favicon'
 
 test('default render', async () => {
-  render(
-    <Picasso loadFonts={false} loadFavicon={false}>
-      <Favicon />
-    </Picasso>
-  )
+  render(<Favicon />)
 
   await waitForDomChange()
 
@@ -17,11 +12,7 @@ test('default render', async () => {
 })
 
 test('with environment specified', async () => {
-  render(
-    <Picasso loadFonts={false} loadFavicon={false}>
-      <Favicon environment='staging' />
-    </Picasso>
-  )
+  render(<Favicon environment='staging' />)
 
   await waitForDomChange()
 

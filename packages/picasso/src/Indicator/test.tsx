@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
-import { render } from '@testing-library/react'
-import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
+import { render } from '@toptal/picasso/test_utils'
+import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Indicator, { Props } from './Indicator'
 
@@ -10,11 +10,7 @@ const renderIndicator = (
 ) => {
   const { color } = props
 
-  return render(
-    <Picasso loadFonts={false}>
-      <Indicator color={color}>{children}</Indicator>
-    </Picasso>
-  )
+  return render(<Indicator color={color}>{children}</Indicator>)
 }
 
 describe('Indicator', () => {

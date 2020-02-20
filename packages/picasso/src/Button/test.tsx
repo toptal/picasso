@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
-import { render, fireEvent, RenderResult } from '@testing-library/react'
-import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
+import { render, fireEvent, RenderResult } from '@toptal/picasso/test_utils'
+import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Button, { Props } from './Button'
 
@@ -8,11 +8,9 @@ const renderButton = (children: ReactNode, props: OmitInternalProps<Props>) => {
   const { disabled, onClick } = props
 
   return render(
-    <Picasso loadFonts={false}>
-      <Button disabled={disabled} onClick={onClick}>
-        {children}
-      </Button>
-    </Picasso>
+    <Button disabled={disabled} onClick={onClick}>
+      {children}
+    </Button>
   )
 }
 

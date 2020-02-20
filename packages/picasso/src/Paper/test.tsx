@@ -1,16 +1,11 @@
 import React from 'react'
-import { render, RenderResult } from '@testing-library/react'
-import Picasso from '@toptal/picasso-shared'
+import { render, RenderResult } from '@toptal/picasso/test_utils'
 
 import Typography from '../Typography'
 import Paper from './'
 
 const renderPaper = (children: React.ReactNode) => {
-  return render(
-    <Picasso loadFonts={false}>
-      <Paper>{children}</Paper>
-    </Picasso>
-  )
+  return render(<Paper>{children}</Paper>)
 }
 
 describe('Paper', () => {

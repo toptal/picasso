@@ -1,6 +1,5 @@
 import React from 'react'
-import { render, fireEvent } from '@testing-library/react'
-import Picasso from '@toptal/picasso-shared'
+import { render, fireEvent } from '@toptal/picasso/test_utils'
 
 import YearSelect from './YearSelect'
 
@@ -19,9 +18,7 @@ afterEach(() => {
 describe('YearSelect', () => {
   test('default render', () => {
     const { container } = render(
-      <Picasso loadFonts={false}>
-        <YearSelect from={2001} to={2005} onChange={() => {}} />
-      </Picasso>
+      <YearSelect from={2001} to={2005} onChange={() => {}} />
     )
 
     expect(container).toMatchSnapshot()
@@ -30,14 +27,12 @@ describe('YearSelect', () => {
   test('render in descending order', () => {
     const placeholder = 'Select year'
     const { getByPlaceholderText, getByRole } = render(
-      <Picasso loadFonts={false}>
-        <YearSelect
-          from={2005}
-          to={2001}
-          placeholder={placeholder}
-          onChange={() => {}}
-        />
-      </Picasso>
+      <YearSelect
+        from={2005}
+        to={2001}
+        placeholder={placeholder}
+        onChange={() => {}}
+      />
     )
 
     fireEvent.focus(getByPlaceholderText(placeholder))
@@ -54,13 +49,11 @@ describe('YearSelect', () => {
     // casting is needed to trick typescript and pass null
     const tryRender = () =>
       render(
-        <Picasso loadFonts={false}>
-          <YearSelect
-            onChange={() => {}}
-            from={from as number}
-            to={to as number}
-          />
-        </Picasso>
+        <YearSelect
+          onChange={() => {}}
+          from={from as number}
+          to={to as number}
+        />
       )
 
     from = null

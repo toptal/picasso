@@ -1,20 +1,17 @@
 import React from 'react'
-import { render, RenderResult } from '@testing-library/react'
-import Picasso from '@toptal/picasso-shared'
+import { render, RenderResult } from '@toptal/picasso/test_utils'
 
 import Table from '../Table'
 
 const renderTableFooter = () => {
   return render(
-    <Picasso loadFonts={false}>
-      <Table>
-        <Table.Footer>
-          <Table.Row>
-            <Table.Cell>Footer test</Table.Cell>
-          </Table.Row>
-        </Table.Footer>
-      </Table>
-    </Picasso>
+    <Table>
+      <Table.Footer>
+        <Table.Row>
+          <Table.Cell>Footer test</Table.Cell>
+        </Table.Row>
+      </Table.Footer>
+    </Table>
   )
 }
 

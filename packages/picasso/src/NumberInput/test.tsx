@@ -1,6 +1,5 @@
 import React, { useState, ChangeEventHandler } from 'react'
-import { render, fireEvent } from '@testing-library/react'
-import Picasso from '@toptal/picasso-shared'
+import { render, fireEvent } from '@toptal/picasso/test_utils'
 
 import NumberInput, { Props as NumberInputProps } from './NumberInput'
 
@@ -14,15 +13,13 @@ const NumberInputRenderer = (
   }
 
   return (
-    <Picasso loadFonts={false}>
-      <NumberInput
-        step={5}
-        max={100}
-        min={-100}
-        value={value}
-        onChange={handleChange}
-      />
-    </Picasso>
+    <NumberInput
+      step={5}
+      max={100}
+      min={-100}
+      value={value}
+      onChange={handleChange}
+    />
   )
 }
 

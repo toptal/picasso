@@ -1,55 +1,38 @@
 import React from 'react'
-import { render } from '@testing-library/react'
+import { render } from '@toptal/picasso/test_utils'
 import SearchIcon from '@material-ui/icons/Search'
-import Picasso from '@toptal/picasso-shared'
 
 import Input from './Input'
 
 test('renders icon at the end', () => {
-  const { container } = render(
-    <Picasso loadFonts={false}>
-      <Input icon={<SearchIcon />} />
-    </Picasso>
-  )
+  const { container } = render(<Input icon={<SearchIcon />} />)
 
   expect(container).toMatchSnapshot()
 })
 
 test('renders icon at the beginning', () => {
   const { container } = render(
-    <Picasso loadFonts={false}>
-      <Input icon={<SearchIcon />} iconPosition='start' />
-    </Picasso>
+    <Input icon={<SearchIcon />} iconPosition='start' />
   )
 
   expect(container).toMatchSnapshot()
 })
 
 test('shows counter for regular input', () => {
-  const { container } = render(
-    <Picasso loadFonts={false}>
-      <Input limit={10} />
-    </Picasso>
-  )
+  const { container } = render(<Input limit={10} />)
 
   expect(container).toMatchSnapshot()
 })
 
 test('shows counter for multiline input', () => {
-  const { container } = render(
-    <Picasso loadFonts={false}>
-      <Input multiline rows={4} limit={10} />
-    </Picasso>
-  )
+  const { container } = render(<Input multiline rows={4} limit={10} />)
 
   expect(container).toMatchSnapshot()
 })
 
 test('is focused when autoFocus', () => {
   const { getByPlaceholderText } = render(
-    <Picasso loadFonts={false}>
-      <Input autoFocus placeholder='test input' />
-    </Picasso>
+    <Input autoFocus placeholder='test input' />
   )
 
   const input = getByPlaceholderText('test input')
@@ -58,11 +41,7 @@ test('is focused when autoFocus', () => {
 })
 
 test('should show reset button', () => {
-  const { container } = render(
-    <Picasso loadFonts={false}>
-      <Input enableReset value='Some value' />
-    </Picasso>
-  )
+  const { container } = render(<Input enableReset value='Some value' />)
 
   expect(container).toMatchSnapshot()
 })

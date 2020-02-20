@@ -1,7 +1,7 @@
 import React from 'react'
 /* eslint-disable-next-line */
-import { render } from '@testing-library/react'
-import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
+import { render } from '@toptal/picasso/test_utils'
+import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import EnvironmentBanner, { Props } from './EnvironmentBanner'
 
@@ -9,9 +9,7 @@ const renderEnvironmentBanner = (props: OmitInternalProps<Props>) => {
   const { environment, productName } = props
 
   return render(
-    <Picasso loadFonts={false}>
-      <EnvironmentBanner environment={environment} productName={productName} />
-    </Picasso>
+    <EnvironmentBanner environment={environment} productName={productName} />
   )
 }
 

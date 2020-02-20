@@ -1,6 +1,6 @@
 import React from 'react'
-import { render } from '@testing-library/react'
-import Picasso, { OmitInternalProps } from '@toptal/picasso-shared'
+import { render } from '@toptal/picasso/test_utils'
+import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Typography from '../Typography'
 import UserBadge, { Props } from './UserBadge'
@@ -12,17 +12,15 @@ const renderUserBadge = (
   const { size, center, name, invert, renderName } = props
 
   return render(
-    <Picasso loadFonts={false}>
-      <UserBadge
-        name={name}
-        size={size}
-        center={center}
-        invert={invert}
-        renderName={renderName}
-      >
-        {children}
-      </UserBadge>
-    </Picasso>
+    <UserBadge
+      name={name}
+      size={size}
+      center={center}
+      invert={invert}
+      renderName={renderName}
+    >
+      {children}
+    </UserBadge>
   )
 }
 
