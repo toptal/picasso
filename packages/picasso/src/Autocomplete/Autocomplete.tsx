@@ -1,3 +1,5 @@
+/* eslint-disable complexity, max-statements */ // Squiggly lines makes code difficult to work with
+
 import React, {
   InputHTMLAttributes,
   KeyboardEvent,
@@ -134,6 +136,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
     const {
       highlightedIndex,
       isOpen,
+      shouldShowOtherOption,
       getItemProps,
       getOtherItemProps,
       getInputProps
@@ -147,15 +150,11 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       onOtherOptionSelect,
       onChange,
       onKeyDown,
-      enableReset
+      enableReset,
+      showOtherOption
     })
 
     const optionsLength = options ? options!.length : 0
-    const shouldShowOtherOption =
-      showOtherOption &&
-      value &&
-      Array.isArray(options) &&
-      options.every(option => getDisplayValue!(option) !== value)
 
     const optionsMenu = options && (
       <ScrollMenu selectedIndex={highlightedIndex}>

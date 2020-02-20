@@ -1,3 +1,5 @@
+/* eslint-disable complexity, max-statements */ // Squiggly lines makes code difficult to work with
+
 import { KeyboardEvent, useState, ChangeEvent, useMemo } from 'react'
 
 import { Item, ChangedOptions } from './types'
@@ -83,6 +85,7 @@ interface Props {
   ) => void
   getDisplayValue: (item: Item | null) => string
   enableReset?: boolean
+  showOtherOption?: boolean
 }
 
 const useAutocomplete = ({
@@ -95,10 +98,17 @@ const useAutocomplete = ({
   onSelect = () => {},
   onOtherOptionSelect = () => {},
   getDisplayValue,
-  enableReset
+  enableReset,
+  showOtherOption
 }: Props) => {
   const [isOpen, setOpen] = useState<boolean>(false)
   const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null)
+
+  const shouldShowOtherOption =
+    showOtherOption &&
+    value &&
+    Array.isArray(options) &&
+    options.every(option => getDisplayValue!(option) !== value)
 
   const handleChange = (newValue: string, isSelected = false) => {
     if (newValue !== value) {
@@ -186,16 +196,16 @@ const useAutocomplete = ({
 
       const key = normalizeArrowKey(event)
 
+      const optionsCount = options?.length || 0
+      const otherOptionsCount = shouldShowOtherOption ? 1 : 0
+      const itemsCount = optionsCount + otherOptionsCount
+
       if (key === 'ArrowUp') {
         event.preventDefault()
 
         setOpen(true)
         setHighlightedIndex(
-          getNextWrappingIndex(
-            -1,
-            highlightedIndex,
-            options ? options.length : 0
-          )
+          getNextWrappingIndex(-1, highlightedIndex, itemsCount)
         )
       }
 
@@ -204,11 +214,7 @@ const useAutocomplete = ({
 
         setOpen(true)
         setHighlightedIndex(
-          getNextWrappingIndex(
-            1,
-            highlightedIndex,
-            options ? options.length : 0
-          )
+          getNextWrappingIndex(1, highlightedIndex, itemsCount)
         )
       }
 
@@ -223,21 +229,24 @@ const useAutocomplete = ({
       }
 
       if (key === 'Enter') {
-        if (!isOpen || highlightedIndex === null) {
-          return
-        }
-
         event.preventDefault()
-
-        const item = options ? options[highlightedIndex] : null
-
-        if (item == null) {
-          return
-        }
-
         setOpen(false)
-        handleChange(getDisplayValue(item))
-        handleSelect(item)
+
+        const findSelectedItemUsingIndex = () =>
+          highlightedIndex === null ? undefined : options?.[highlightedIndex]
+
+        const findSelectedItemUsingValue = () =>
+          options?.find(option => option.text === value)
+
+        const selectedItem =
+          findSelectedItemUsingIndex() ?? findSelectedItemUsingValue()
+
+        if (selectedItem) {
+          handleChange(getDisplayValue(selectedItem))
+          handleSelect(selectedItem)
+        } else if (value) {
+          onOtherOptionSelect(value)
+        }
       }
 
       if (key === 'Escape') {
@@ -261,7 +270,8 @@ const useAutocomplete = ({
     getOtherItemProps,
     getInputProps,
     isOpen,
-    highlightedIndex
+    highlightedIndex,
+    shouldShowOtherOption
   }
 }
 
