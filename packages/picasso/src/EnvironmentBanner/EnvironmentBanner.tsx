@@ -47,6 +47,8 @@ export const EnvironmentBanner = forwardRef<HTMLDivElement, Props>(
   }
 )
 
+// TODO: remove default environment in v5, so either directly passed version will be used
+// or one from config, but not from defaultProps
 EnvironmentBanner.defaultProps = { environment: 'production' }
 
 EnvironmentBanner.displayName = 'EnvironmentBanner'
