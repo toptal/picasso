@@ -1,8 +1,12 @@
 import { EnvironmentType } from '../types'
 
 const getIcons = (environment: EnvironmentType) => {
-  if (environment === 'staging' || environment === 'production') {
-    return import(`./${environment}`)
+  if (environment === 'staging') {
+    return import('./staging')
+  }
+
+  if (environment === 'production') {
+    return import('./production')
   }
 
   return import('./development')
