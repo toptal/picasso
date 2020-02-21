@@ -3,7 +3,7 @@ import { DatePicker } from '@toptal/picasso-lab'
 import { Search16 } from '@toptal/picasso'
 
 const WithSelectionLimitsExample = () => {
-  const [value, setValue] = useState<Date>(new Date('12-12-2015'))
+  const [value, setValue] = useState(new Date('12-12-2015'))
   const minDate = new Date('12-01-2015')
   const maxDate = new Date('12-30-2015')
   const disabledIntervals = [

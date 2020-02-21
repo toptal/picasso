@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, ReactNode } from 'react'
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import SimpleReactCalendar from 'simple-react-calendar'
@@ -26,6 +26,8 @@ type SimpleReactCalendarRangeType = {
 export type DateOrDateRangeType = Date | DateRangeType
 export type DateRangeType = [Date, Date]
 
+export { DayProps }
+
 const getNormalizedValue = (value: DateOrDateRangeType | undefined) => {
   if (!value) return
 
@@ -43,6 +45,7 @@ export interface Props
     Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'onBlur'> {
   onChange: (value: DateOrDateRangeType) => void
   onBlur?: (event: React.FocusEvent<HTMLDivElement>) => void
+  renderDay?: (args: DayProps) => ReactNode
   minDate?: Date
   maxDate?: Date
   range?: boolean
@@ -73,6 +76,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
     maxDate,
     disabledIntervals,
     onBlur,
+    renderDay,
     ...rest
   } = props
 
@@ -94,21 +98,23 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
         customRender={({ children }: CalendarProps) => {
           return <div className={classes.root}>{children}</div>
         }}
-        renderDay={({
-          isDisabled,
-          isSelected,
-          isSelectable,
-          isToday,
-          isMonthNext,
-          isMonthPrev,
-          isSelectionStart,
-          isSelectionEnd,
-          handleOnClick,
-          handleOnEnter,
-          date,
-          children
-        }: DayProps) => {
-          return (
+        renderDay={(dayProps: DayProps) => {
+          const {
+            isDisabled,
+            isSelected,
+            isSelectable,
+            isToday,
+            isMonthNext,
+            isMonthPrev,
+            isSelectionStart,
+            isSelectionEnd,
+            handleOnClick,
+            handleOnEnter,
+            date,
+            children
+          } = dayProps
+
+          const defaultMarkup = (
             <button
               className={cx(classes.day, {
                 [classes.selected]: isSelected,
@@ -129,6 +135,13 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
               {children}
             </button>
           )
+
+          return renderDay
+            ? renderDay({
+                ...dayProps,
+                children: defaultMarkup
+              })
+            : defaultMarkup
         }}
         renderMonthHeader={({
           switchMonth,
