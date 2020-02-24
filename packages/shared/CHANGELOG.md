@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.2](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.9.1...@toptal/picasso-shared@1.9.2) (2020-02-24)
+
+
+### Bug Fixes
+
+* **favicon:** prevent webpack compilation warning ([#1125](https://github.com/toptal/picasso/issues/1125)) ([b853b3b](https://github.com/toptal/picasso/commit/b853b3ba86459ef12e9d68e11aa1684e05abc6d3)), closes [#1124](https://github.com/toptal/picasso/issues/1124)
+
+
+
+
+
 ## [1.9.1](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.9.0...@toptal/picasso-shared@1.9.1) (2020-02-20)
 
 
