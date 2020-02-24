@@ -9,7 +9,8 @@
   "module": "./src/index.ts",
   "scripts": {
     "build:dist": "cross-env NODE_ENV=production ../../bin/build --tsConfig=./tsconfig.json --entry=./index.js",
-    "prepublishOnly": "../../bin/prepublish --entry=./index.js --copy-readme"
+    "prepublishOnly": "../../bin/prepublish --entry=./index.js --copy-readme",
+    "typecheck": "tsc --noEmit"
   },
   "repository": {
     "type": "git",

@@ -17,6 +17,8 @@ describe('DatePicker', () => {
   test('full width', () => {
     const date = new Date('12-12-2019')
 
+    const x: number = '123'
+
     const { container } = render(
       <DatePicker width='full' value={date} onChange={() => {}} />
     )
