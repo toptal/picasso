@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.4.0...@toptal/picasso-lab@2.5.0) (2020-02-25)
+
+
+### Features
+
+* **DatePicker:** add renderDay ([#1128](https://github.com/toptal/picasso/issues/1128)) ([2ebad3c](https://github.com/toptal/picasso/commit/2ebad3cfe1aacb3059a8710fdda1c2fbb6c16eee))
+
+
+
+
+
 # [2.4.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.3.0...@toptal/picasso-lab@2.4.0) (2020-02-20)
 
 
