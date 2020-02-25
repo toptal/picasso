@@ -6,10 +6,10 @@ exports[`EnvironmentBanner development render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="EnvironmentBanner-root EnvironmentBanner-rootDevelopment"
+      class="PicassoEnvironmentBanner-root PicassoEnvironmentBanner-rootDevelopment"
     >
       <div
-        class="EnvironmentBanner-label EnvironmentBanner-labelDevelopment"
+        class="PicassoEnvironmentBanner-label PicassoEnvironmentBanner-labelDevelopment"
       >
         Picasso development
       </div>

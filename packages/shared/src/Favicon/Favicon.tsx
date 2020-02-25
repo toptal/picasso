@@ -24,6 +24,8 @@ export const Favicon = ({ environment }: Props) => {
   const resolvedEnvironment = environment || configEnvironment
 
   useEffect(() => {
+    if (resolvedEnvironment === 'test') return
+
     async function loadIcons() {
       try {
         const loadedIcons = await getIcons(resolvedEnvironment)
@@ -40,6 +42,11 @@ export const Favicon = ({ environment }: Props) => {
 
     loadIcons()
   }, [resolvedEnvironment])
+
+  if (resolvedEnvironment === 'test') {
+    // do not load favicons in tests (e.g. in e2e)
+    return null
+  }
 
   const { icon16, icon32, icon180 } = icons
 
