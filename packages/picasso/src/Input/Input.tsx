@@ -46,6 +46,8 @@ export interface Props
   inputProps?: InputBaseComponentProps
   /** Whether `Input` should be rendered as `TextArea` or not */
   multiline?: boolean
+  /** Whether a multiline can be manually resized by the user, requires multiline prop to be set to true */
+  multilineResizable?: boolean
   /** If true, the input element will be focused during the first mount */
   autoFocus?: boolean
   /** Specify rows amount for `TextArea` */
@@ -246,6 +248,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
     inputProps,
     children,
     multiline,
+    multilineResizable,
     autoFocus,
     width,
     className,
@@ -286,6 +289,9 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
           [classes.rootMultiline]: multiline,
           [classes.rootMultilineLimiter]:
             multiline && hasCounter(counter!, limit)
+        }),
+        input: cx(classes.input, {
+          [classes.inputMultilineResizable]: multiline && multilineResizable
         })
       }}
       id={id}

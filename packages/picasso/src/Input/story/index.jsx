@@ -28,6 +28,10 @@ page
   .addExample('Input/story/FullWidth.example.jsx', 'Full width')
   .addExample('Input/story/Multiline.example.jsx', 'Multiline | Textarea')
   .addExample(
+    'Input/story/MultilineExpand.example.jsx',
+    'Multiline expand and resize | Textarea'
+  )
+  .addExample(
     'Input/story/AutoFill.example.jsx',
     'AutoComplete defined as email'
   )

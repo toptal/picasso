@@ -45,3 +45,11 @@ test('should show reset button', () => {
 
   expect(container).toMatchSnapshot()
 })
+
+test('should show manual resize handler', () => {
+  const { container } = render(
+    <Input multiline multilineResizable rows={4} value='Some value' />
+  )
+
+  expect(container).toMatchSnapshot()
+})
