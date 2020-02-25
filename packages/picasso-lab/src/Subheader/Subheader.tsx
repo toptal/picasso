@@ -85,7 +85,6 @@ export const Subheader = forwardRef<HTMLDivElement, Props>(function Subheader(
 }) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
 
 Subheader.defaultProps = {
-  children: null,
   rightPadding: false
 }
 
