@@ -16,7 +16,11 @@ import Popper from '@toptal/picasso/Popper'
 import { Props as InputProps } from '@toptal/picasso/Input'
 import { Calendar16 } from '@toptal/picasso/Icon'
 
-import Calendar, { DateOrDateRangeType, DateRangeType } from '../Calendar'
+import Calendar, {
+  DateOrDateRangeType,
+  DateRangeType,
+  DayProps
+} from '../Calendar'
 import styles from './styles'
 
 export interface Props
@@ -57,6 +61,8 @@ export interface Props
   autoComplete?: string
   /** Indicate whether `DatePicker`'s input is in error state */
   error?: boolean
+  /** Function to override default markup to show Date */
+  renderDay?: (args: DayProps) => ReactNode
   popperContainer?: HTMLElement
 }
 
@@ -92,6 +98,7 @@ export const DatePicker = (props: Props) => {
     disabledIntervals,
     error,
     popperContainer,
+    renderDay,
     ...rest
   } = props
   const classes = useStyles(props)
@@ -247,6 +254,7 @@ export const DatePicker = (props: Props) => {
             minDate={minDate}
             maxDate={maxDate}
             disabledIntervals={disabledIntervals}
+            renderDay={renderDay}
             onChange={handleCalendarChange}
             onBlur={handleBlur}
             className={classes.calendar}

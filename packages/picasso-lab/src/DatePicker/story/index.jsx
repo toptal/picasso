@@ -34,3 +34,7 @@ page
     'DatePicker/story/WithSelectionLimits.example.tsx',
     'With Selection Limits'
   ) // picasso-skip-visuals
+  .addExample(
+    'DatePicker/story/WithCustomDayRendering.example.tsx',
+    'With Custom Day rendering'
+  ) // picasso-skip-visuals
