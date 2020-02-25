@@ -31,4 +31,13 @@ describe('EnvironmentBanner', () => {
 
     expect(container).toMatchSnapshot()
   })
+
+  test('render nothing in test environment', () => {
+    const { container } = renderEnvironmentBanner({
+      environment: 'test',
+      productName: 'Picasso'
+    })
+
+    expect(container).toMatchSnapshot()
+  })
 })

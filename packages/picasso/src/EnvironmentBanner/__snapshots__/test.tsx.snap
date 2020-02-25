@@ -25,3 +25,11 @@ exports[`EnvironmentBanner production render 1`] = `
   />
 </div>
 `;
+
+exports[`EnvironmentBanner render nothing in test environment 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  />
+</div>
+`;
