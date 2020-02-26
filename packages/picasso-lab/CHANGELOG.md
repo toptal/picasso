@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.5.0...@toptal/picasso-lab@2.6.0) (2020-02-26)
+
+
+### Features
+
+* add Subheader component ([#1126](https://github.com/toptal/picasso/issues/1126)) ([8a19bbc](https://github.com/toptal/picasso/commit/8a19bbc38dd2423c9daa2a0dd240c704d0ccbf95))
+
+
+
+
+
 # [2.5.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.4.0...@toptal/picasso-lab@2.5.0) (2020-02-25)
 
 
