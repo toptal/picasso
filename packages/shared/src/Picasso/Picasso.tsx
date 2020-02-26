@@ -34,7 +34,8 @@ import FontsLoader from './FontsLoader'
 import Provider from './PicassoProvider'
 import NotificationsProvider from './NotificationsProvider'
 import globalStyles from './styles'
-import Favicon, { EnvironmentType } from '../Favicon'
+import Favicon from '../Favicon'
+import { EnvironmentType } from './types'
 
 const picasso = {
   palette,
@@ -67,7 +68,7 @@ interface RootContextProps {
   rootRef?: RefObject<HTMLDivElement>
   hasPageHeader: boolean
   setHasPageHeader: (value: boolean) => void
-  environment: EnvironmentType
+  environment: EnvironmentType<'test'>
 }
 const RootContext = React.createContext<RootContextProps>({
   hasPageHeader: false,
@@ -103,7 +104,7 @@ interface PicassoGlobalStylesProviderProps {
   RootComponent: ForwardRefExoticComponent<
     PicassoRootNodeProps & RefAttributes<HTMLDivElement>
   >
-  environment: EnvironmentType
+  environment: EnvironmentType<'test'>
 }
 
 interface PicassoRootNodeProps {
@@ -192,7 +193,7 @@ interface PicassoProps {
   /** Whether to specify favicons in the head */
   loadFavicon?: boolean
   /** current environment */
-  environment?: EnvironmentType
+  environment?: EnvironmentType<'test'>
   /** Whether to apply Picasso CSS reset */
   reset?: boolean
   /** Sets a minimum width of the page */

@@ -1,25 +1,40 @@
 import React, { forwardRef, useState } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { Theme, makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { StandardProps, useAppConfig } from '@toptal/picasso-shared'
+import {
+  BaseProps,
+  useAppConfig,
+  EnvironmentType
+} from '@toptal/picasso-shared'
 
 import styles from './styles'
 
-export interface Props extends StandardProps {
+export interface Props extends BaseProps {
   /** Name of the current environment */
-  environment: 'development' | 'staging' | 'temploy' | 'production'
+  environment: EnvironmentType<'temploy' | 'test'>
   /** Name of the product to be rendered alongside enviroment (i.e. Blackfish, Talent, Portal, Billing) */
   productName: string
 }
 
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'PicassoEnvironmentBanner'
+})
+
 export const EnvironmentBanner = forwardRef<HTMLDivElement, Props>(
-  function EnvironmentBanner({ classes, environment, productName }, ref) {
-    const [isShown, setIsShown] = useState(true)
+  function EnvironmentBanner(props, ref) {
     const { environment: configEnvironment } = useAppConfig()
+    const { environment, productName } = props
+    const classes = useStyles(props)
+
+    const [isShown, setIsShown] = useState(true)
 
     const resolvedEnvironment = environment || configEnvironment
 
-    if (resolvedEnvironment === 'production' || !isShown) {
+    if (
+      resolvedEnvironment === 'production' ||
+      resolvedEnvironment === 'test' ||
+      !isShown
+    ) {
       return null
     }
 
@@ -53,4 +68,4 @@ EnvironmentBanner.defaultProps = { environment: 'production' }
 
 EnvironmentBanner.displayName = 'EnvironmentBanner'
 
-export default withStyles(styles)(EnvironmentBanner)
+export default EnvironmentBanner

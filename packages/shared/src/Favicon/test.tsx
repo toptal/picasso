@@ -18,3 +18,10 @@ test('with environment specified', async () => {
 
   expect(document.querySelectorAll('head > link')).toMatchSnapshot()
 })
+
+test('with test environment renders nothing', async () => {
+  const { container } = render(<Favicon environment='test' />)
+  const picassoRoot = container.firstChild as Element
+
+  expect(picassoRoot.children.length).toBe(0)
+})

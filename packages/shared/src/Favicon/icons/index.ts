@@ -1,4 +1,4 @@
-import { EnvironmentType } from '../types'
+import { EnvironmentType } from '../..'
 
 const getIcons = (environment: EnvironmentType) => {
   if (environment === 'staging') {
