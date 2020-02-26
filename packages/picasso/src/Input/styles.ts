@@ -17,6 +17,9 @@ export default ({ palette }: Theme) =>
       minHeight: '3.75rem',
       paddingBottom: '1.875rem'
     },
+    inputMultilineResizable: {
+      resize: 'vertical'
+    },
     icon: {
       flex: '1 1 0%' // fix for IE11
     },
