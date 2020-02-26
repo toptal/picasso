@@ -1,13 +1,17 @@
 import React, { forwardRef, useState } from 'react'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { BaseProps, useAppConfig } from '@toptal/picasso-shared'
+import {
+  BaseProps,
+  useAppConfig,
+  EnvironmentType
+} from '@toptal/picasso-shared'
 
 import styles from './styles'
 
 export interface Props extends BaseProps {
   /** Name of the current environment */
-  environment: 'development' | 'staging' | 'temploy' | 'production' | 'test'
+  environment: EnvironmentType<'temploy' | 'test'>
   /** Name of the product to be rendered alongside enviroment (i.e. Blackfish, Talent, Portal, Billing) */
   productName: string
 }

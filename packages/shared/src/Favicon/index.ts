@@ -1,2 +1,2 @@
 export { default } from './Favicon'
-export * from './types'
+export * from './Favicon'

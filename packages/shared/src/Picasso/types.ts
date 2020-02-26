@@ -67,6 +67,14 @@ export interface OverridableComponent<P = {}> extends NamedComponent<P> {
 
 type Sizes = 'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'
 
+type BaseEnvironments = 'development' | 'staging' | 'production'
+type Environments = BaseEnvironments | 'temploy' | 'test'
+
+/** T parameter is needed to extend BaseEnvironments with 'temploy' or 'test' */
+export type EnvironmentType<T extends Environments = BaseEnvironments> =
+  | T
+  | BaseEnvironments
+
 export type SizeType<T extends Sizes> = T
 
 export type SpacingType =

@@ -3,13 +3,12 @@ import React, { useState, useEffect } from 'react'
 // so it led to cross dependencies and error
 import { Helmet } from 'react-helmet'
 
-import { EnvironmentType } from './types'
 import { getIcons } from './icons'
-import { useAppConfig } from '../Picasso'
+import { useAppConfig, EnvironmentType } from '../Picasso'
 
 export interface Props {
   /** Choose an icon color based on this variable */
-  environment?: EnvironmentType
+  environment?: EnvironmentType<'test'>
 }
 
 export const Favicon = ({ environment }: Props) => {
@@ -28,7 +27,9 @@ export const Favicon = ({ environment }: Props) => {
 
     async function loadIcons() {
       try {
-        const loadedIcons = await getIcons(resolvedEnvironment)
+        const loadedIcons = await getIcons(
+          resolvedEnvironment as EnvironmentType
+        )
 
         setIcons(loadedIcons)
       } catch {
