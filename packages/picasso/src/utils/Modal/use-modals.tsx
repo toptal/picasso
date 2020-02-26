@@ -1,4 +1,10 @@
-import React, { useContext, ReactNode, useRef } from 'react'
+import React, {
+  useContext,
+  ReactNode,
+  useRef,
+  useEffect,
+  useCallback
+} from 'react'
 import { ModalContext, ModalType } from 'react-modal-hook'
 
 import PromptModal, {
@@ -30,11 +36,14 @@ const useModals = () => {
   const context = useContext(ModalContext)
   const openedModalKeys = useRef<string[]>([])
 
-  const hideModal = (key: string) => {
-    openedModalKeys.current = openedModalKeys.current.filter(it => it !== key)
+  const hideModal = useCallback(
+    (key: string) => {
+      openedModalKeys.current = openedModalKeys.current.filter(it => it !== key)
 
-    context.hideModal(key)
-  }
+      context.hideModal(key)
+    },
+    [context]
+  )
 
   const showModal = (modal: ModalType) => {
     if (!isFunctionalComponent(modal)) {
@@ -51,11 +60,18 @@ const useModals = () => {
     return key
   }
 
-  const hideAllModals = () => {
+  const hideAllModals = useCallback(() => {
     openedModalKeys.current.forEach(key => {
       hideModal(key)
     })
-  }
+  }, [hideModal])
+
+  // Hide all modals when component is unmount
+  useEffect(() => {
+    return () => {
+      hideAllModals()
+    }
+  }, [hideAllModals])
 
   const showPrompt = (options: ShowPromptOptions) => {
     const { content, onSubmit, onCancel, onClose, ...restOptions } = options
