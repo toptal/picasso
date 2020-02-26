@@ -18,18 +18,37 @@ const Toptal = () => (
 )
 
 const items = [
-  { text: 'USA', href: '/usa' },
-  { text: 'Software', href: '/usa/software' },
-  { text: 'Toptal', href: '/usa/software/toptal' }
+  { text: 'USA', to: '/usa' },
+  { text: 'Software', to: '/usa/software' },
+  { text: 'Toptal', to: '/usa/software/toptal' }
 ]
+
+const Crumb = ({ item, isActive }) =>
+  isActive ? (
+    <Breadcrumbs.Active>{item.text}</Breadcrumbs.Active>
+  ) : (
+    <Breadcrumbs.RouterLink key={item.text} to={item.to}>
+      {item.text}
+    </Breadcrumbs.RouterLink>
+  )
 
 const Nav = () => {
   const location = useLocation()
-  const active = items.map(item => item.href).indexOf(location.pathname)
-  return <Breadcrumbs items={items} active={active} />
+  const activeIndex = items.map(item => item.to).indexOf(location.pathname)
+  return (
+    <Breadcrumbs>
+      {items.map((item, itemIndex) => (
+        <Crumb
+          key={item.text}
+          item={item}
+          isActive={itemIndex === activeIndex}
+        />
+      ))}
+    </Breadcrumbs>
+  )
 }
 
-const StepperDefaultExample = () => (
+const Example = () => (
   <Container>
     <Router>
       <Nav />
@@ -43,4 +62,4 @@ const StepperDefaultExample = () => (
   </Container>
 )
 
-export default StepperDefaultExample
+export default Example
