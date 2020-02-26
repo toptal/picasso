@@ -3,7 +3,8 @@ import {
   MemoryRouter as Router,
   Route,
   Switch,
-  Redirect
+  Redirect,
+  useLocation
 } from 'react-router-dom'
 import { Container, Logo } from '@toptal/picasso'
 import { Breadcrumbs } from '@toptal/picasso-lab'
@@ -16,16 +17,22 @@ const Toptal = () => (
   </Container>
 )
 
+const items = [
+  { text: 'USA', href: '/usa' },
+  { text: 'Software', href: '/usa/software' },
+  { text: 'Toptal', href: '/usa/software/toptal' }
+]
+
+const Nav = () => {
+  const location = useLocation()
+  const active = items.map(item => item.href).indexOf(location.pathname)
+  return <Breadcrumbs items={items} active={active} />
+}
+
 const StepperDefaultExample = () => (
   <Container>
     <Router>
-      <Breadcrumbs
-        items={[
-          { text: 'USA', href: '/usa' },
-          { text: 'Software', href: '/usa/software' },
-          { text: 'Toptal', href: '/usa/software/toptal' }
-        ]}
-      />
+      <Nav />
       <Switch>
         <Redirect exact from='/' to='/usa/software/toptal' />
         <Route path='/usa' component={Usa} exact />

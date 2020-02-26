@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react'
-import { Link as RouterLink, useLocation } from 'react-router-dom'
+import { Link as RouterLink } from 'react-router-dom'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
 import { Link } from '@toptal/picasso'
@@ -16,6 +16,8 @@ interface Item {
 export interface Props extends BaseProps {
   /** Items representing breadcrumbs. */
   items: Item[]
+  /** Index of the active item. Defaults to the last item in items. */
+  active?: number
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
@@ -24,10 +26,11 @@ const useStyles = makeStyles<Theme, Props>(styles, {
 
 const Breadcrumbs: FunctionComponent<Props> = props => {
   const classes = useStyles(props)
-  const { items } = props
+  const { items, active = items.length - 1 } = props
 
-  const location = useLocation()
-  const active = items.map(item => item.href).indexOf(location.pathname)
+  if (!items.length) {
+    return null
+  }
 
   return (
     <nav aria-label='breadcrumb' className={classes.root}>
