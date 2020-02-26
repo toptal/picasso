@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.36.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.35.2...@toptal/picasso@4.36.0) (2020-02-26)
+
+
+### Features
+
+* **input:** new prop to enable manual resize for multiline ([#1134](https://github.com/toptal/picasso/issues/1134)) ([a29388b](https://github.com/toptal/picasso/commit/a29388bdc5aaa16d073085481ccde7e309667b62))
+
+
+
+
+
 ## [4.35.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.35.1...@toptal/picasso@4.35.2) (2020-02-24)
 
 **Note:** Version bump only for package @toptal/picasso
