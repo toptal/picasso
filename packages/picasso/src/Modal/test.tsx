@@ -93,6 +93,45 @@ test('useModals opens and closes modal', () => {
   expect(baseElement).toMatchSnapshot()
 })
 
+test('given multiple modals are opened, when hideAllModalls clicked then all modals should be closed at once', () => {
+  const TestComponent = () => {
+    const { showModal, hideAllModals } = useModals()
+
+    const handleShowClick = (number: number) => {
+      showModal(() => (
+        <Modal open>
+          <p>Modal content {number}</p>
+        </Modal>
+      ))
+    }
+
+    return (
+      <div>
+        <Button onClick={() => handleShowClick(1)}>Show 1</Button>
+        <Button onClick={() => handleShowClick(2)}>Show 2</Button>
+        <Button onClick={hideAllModals}>Hide all</Button>
+      </div>
+    )
+  }
+
+  const { getByText, queryByText } = render(<TestComponent />)
+
+  const showModal1 = getByText('Show 1')
+  const showModal2 = getByText('Show 2')
+
+  fireEvent.click(showModal1)
+  fireEvent.click(showModal2)
+
+  expect(queryByText('Modal content 1')).toBeTruthy()
+  expect(queryByText('Modal content 2')).toBeTruthy()
+
+  const hideModal = getByText('Hide all')
+  fireEvent.click(hideModal)
+
+  expect(queryByText('Modal content 1')).toBeFalsy()
+  expect(queryByText('Modal content 2')).toBeFalsy()
+})
+
 test('useModals shows multiple modals at the same time', () => {
   const TestComponent = () => {
     const { showModal } = useModals()

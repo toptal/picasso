@@ -1,4 +1,4 @@
-import React, { useContext, ReactNode } from 'react'
+import React, { useContext, ReactNode, useRef } from 'react'
 import { ModalContext, ModalType } from 'react-modal-hook'
 
 import PromptModal, {
@@ -28,8 +28,11 @@ const generateModalKey = (() => {
 
 const useModals = () => {
   const context = useContext(ModalContext)
+  const openedModalKeys = useRef<string[]>([])
 
   const hideModal = (key: string) => {
+    openedModalKeys.current = openedModalKeys.current.filter(it => it !== key)
+
     context.hideModal(key)
   }
 
@@ -41,10 +44,17 @@ const useModals = () => {
     }
 
     const key = generateModalKey()
+    openedModalKeys.current = [...openedModalKeys.current, key]
 
     context.showModal(key, modal)
 
     return key
+  }
+
+  const hideAllModals = () => {
+    openedModalKeys.current.forEach(key => {
+      hideModal(key)
+    })
   }
 
   const showPrompt = (options: ShowPromptOptions) => {
@@ -88,7 +98,8 @@ const useModals = () => {
   return {
     showModal,
     showPrompt,
-    hideModal
+    hideModal,
+    hideAllModals
   }
 }
 
