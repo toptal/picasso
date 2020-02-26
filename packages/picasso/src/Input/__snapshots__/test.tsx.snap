@@ -149,6 +149,7 @@ exports[`should show reset button 1`] = `
       >
         <button
           class="MuiButtonBase-root PicassoButton-circular PicassoButton-small PicassoButton-transparent PicassoButton-root"
+          role="reset"
           tabindex="0"
           type="button"
         >

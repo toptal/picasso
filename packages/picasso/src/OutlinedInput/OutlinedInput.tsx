@@ -83,6 +83,7 @@ const ResetButton = ({
       circular
       variant='transparent'
       size='small'
+      role='reset'
       onClick={onClick}
       onFocus={(
         event: React.FocusEvent<HTMLButtonElement | HTMLAnchorElement>
