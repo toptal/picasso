@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.9.2...@toptal/picasso-shared@1.10.0) (2020-02-26)
+
+
+### Features
+
+* support test environment at root component ([#1133](https://github.com/toptal/picasso/issues/1133)) ([9e3baaa](https://github.com/toptal/picasso/commit/9e3baaa6b3c23479a46695d0d5a85a702df83038))
+
+
+
+
+
 ## [1.9.2](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.9.1...@toptal/picasso-shared@1.9.2) (2020-02-24)
 
 

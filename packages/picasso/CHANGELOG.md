@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.37.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.36.0...@toptal/picasso@4.37.0) (2020-02-26)
+
+
+### Features
+
+* support test environment at root component ([#1133](https://github.com/toptal/picasso/issues/1133)) ([9e3baaa](https://github.com/toptal/picasso/commit/9e3baaa6b3c23479a46695d0d5a85a702df83038))
+
+
+
+
+
 # [4.36.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.35.2...@toptal/picasso@4.36.0) (2020-02-26)
 
 
