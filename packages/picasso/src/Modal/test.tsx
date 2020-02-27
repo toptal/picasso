@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import { render, fireEvent } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
@@ -93,13 +93,13 @@ test('useModals opens and closes modal', () => {
   expect(baseElement).toMatchSnapshot()
 })
 
-test('given multiple modals are opened, when hideAllModalls clicked then all modals should be closed at once', () => {
-  const TestComponent = () => {
-    const { showModal, hideAllModals } = useModals()
+test('given multiple modals are opened, when navigate from page then all modals should be closed', () => {
+  const PageWithModals = () => {
+    const { showModal } = useModals()
 
     const handleShowClick = (number: number) => {
       showModal(() => (
-        <Modal open>
+        <Modal container={document.body} open>
           <p>Modal content {number}</p>
         </Modal>
       ))
@@ -109,7 +109,22 @@ test('given multiple modals are opened, when hideAllModalls clicked then all mod
       <div>
         <Button onClick={() => handleShowClick(1)}>Show 1</Button>
         <Button onClick={() => handleShowClick(2)}>Show 2</Button>
-        <Button onClick={hideAllModals}>Hide all</Button>
+      </div>
+    )
+  }
+
+  const SimplePage = () => {
+    return <div>Simple Page</div>
+  }
+
+  const TestComponent = () => {
+    const [showPageWithModals, setShowPageWithModals] = useState(true)
+    return (
+      <div>
+        {showPageWithModals ? <PageWithModals /> : <SimplePage />}
+        <Button onClick={() => setShowPageWithModals(false)}>
+          Switch pages
+        </Button>
       </div>
     )
   }
@@ -119,15 +134,19 @@ test('given multiple modals are opened, when hideAllModalls clicked then all mod
   const showModal1 = getByText('Show 1')
   const showModal2 = getByText('Show 2')
 
+  // Open modals
   fireEvent.click(showModal1)
   fireEvent.click(showModal2)
 
+  // Check modals opened
   expect(queryByText('Modal content 1')).toBeTruthy()
   expect(queryByText('Modal content 2')).toBeTruthy()
 
-  const hideModal = getByText('Hide all')
-  fireEvent.click(hideModal)
+  // Switch to other page
+  const switchPages = getByText('Switch pages')
+  fireEvent.click(switchPages)
 
+  // Check all modals were auto-closed
   expect(queryByText('Modal content 1')).toBeFalsy()
   expect(queryByText('Modal content 2')).toBeFalsy()
 })
