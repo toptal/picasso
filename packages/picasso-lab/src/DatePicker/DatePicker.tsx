@@ -38,7 +38,7 @@ export interface Props
   /** Date that will be selected in Datepicker */
   value?: DateOrDateRangeType
   /** Method that will be invoked with selected values */
-  onChange: (value: DateOrDateRangeType) => void
+  onChange: (value: DateOrDateRangeType | null) => void
   /** Invoked when user goes away from Datepicker input */
   onBlur?: () => void
   /** Whether calendar supports single date selection or range */
@@ -177,7 +177,9 @@ export const DatePicker = (props: Props) => {
     // TODO: add char filtering (only number , `-` or ` ` allowed)
     setInputValue(nextInputValue)
 
-    if (isDateValid(nextInputValue, editDateFormat!)) {
+    if (!nextInputValue) {
+      onChange(null)
+    } else if (isDateValid(nextInputValue, editDateFormat!)) {
       onChange(new Date(nextInputValue))
     }
   }
