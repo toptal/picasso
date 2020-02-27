@@ -35,10 +35,26 @@ describe('DatePicker', () => {
 
     const day15 = getByText(/15/)
 
+    // this line leads to a warning, wrapping into `act` doesn't help
     fireEvent.mouseOver(day15)
 
     const tooltip = getByText('tooltip content')
 
-    expect(tooltip).toBeInTheDOM()
+    expect(tooltip).toBeInTheDocument()
+  })
+
+  test('custom day rendering', () => {
+    const date = new Date('2015-12-12')
+    const handleChange = jest.fn()
+
+    const { getByPlaceholderText } = render(
+      <DatePicker placeholder='input' value={date} onChange={handleChange} />
+    )
+
+    const input = getByPlaceholderText('input')
+
+    fireEvent.change(input, { target: { value: '' } })
+
+    expect(handleChange).toBeCalledWith(null)
   })
 })
