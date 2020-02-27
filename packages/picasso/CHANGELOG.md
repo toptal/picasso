@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.38.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.37.0...@toptal/picasso@4.38.0) (2020-02-27)
+
+
+### Features
+
+* add role for reset button ([#1136](https://github.com/toptal/picasso/issues/1136)) ([00446bd](https://github.com/toptal/picasso/commit/00446bd04a5d22ca99d0d5cace63a01e317db8e9))
+
+
+
+
+
 # [4.37.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.36.0...@toptal/picasso@4.37.0) (2020-02-26)
 
 
