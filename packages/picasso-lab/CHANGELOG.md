@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.6.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.6.0...@toptal/picasso-lab@2.6.1) (2020-02-27)
+
+
+### Bug Fixes
+
+* **DatePicker:** trigger onChange if input is emptied by user ([#1138](https://github.com/toptal/picasso/issues/1138)) ([9c39370](https://github.com/toptal/picasso/commit/9c39370bb61e907a6201f54ded2d0a8704cef16b))
+
+
+
+
+
 # [2.6.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.5.0...@toptal/picasso-lab@2.6.0) (2020-02-26)
 
 
