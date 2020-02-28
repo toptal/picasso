@@ -1,12 +1,13 @@
 import React from 'react'
 import {
   MemoryRouter as Router,
+  Link as RouterLink,
   Route,
   Switch,
   Redirect,
   useLocation
 } from 'react-router-dom'
-import { Container, Logo } from '@toptal/picasso'
+import { Container, Logo, Link } from '@toptal/picasso'
 import { Breadcrumbs } from '@toptal/picasso-lab'
 
 const Usa = () => <h2>USA</h2>
@@ -23,14 +24,8 @@ const items = [
   { text: 'Toptal', to: '/usa/software/toptal' }
 ]
 
-const Crumb = ({ item, isActive }) =>
-  isActive ? (
-    <Breadcrumbs.Active>{item.text}</Breadcrumbs.Active>
-  ) : (
-    <Breadcrumbs.RouterLink key={item.text} to={item.to}>
-      {item.text}
-    </Breadcrumbs.RouterLink>
-  )
+// eslint-disable-next-line react/jsx-props-no-spreading
+const ExampleLink: typeof Link = props => <Link as={RouterLink} {...props} />
 
 const Nav = () => {
   const location = useLocation()
@@ -38,11 +33,14 @@ const Nav = () => {
   return (
     <Breadcrumbs>
       {items.map((item, itemIndex) => (
-        <Crumb
+        <Breadcrumbs.Item
+          as={ExampleLink}
           key={item.text}
-          item={item}
-          isActive={itemIndex === activeIndex}
-        />
+          to={item.to}
+          active={itemIndex === activeIndex}
+        >
+          {item.text}
+        </Breadcrumbs.Item>
       ))}
     </Breadcrumbs>
   )
