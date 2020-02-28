@@ -99,7 +99,7 @@ test('given multiple modals are opened, when navigate from page then all modals 
 
     const handleShowClick = (number: number) => {
       showModal(() => (
-        <Modal container={document.body} open>
+        <Modal open>
           <p>Modal content {number}</p>
         </Modal>
       ))
@@ -139,16 +139,16 @@ test('given multiple modals are opened, when navigate from page then all modals 
   fireEvent.click(showModal2)
 
   // Check modals opened
-  expect(queryByText('Modal content 1')).toBeTruthy()
-  expect(queryByText('Modal content 2')).toBeTruthy()
+  expect(queryByText('Modal content 1')).toBeInTheDocument()
+  expect(queryByText('Modal content 2')).toBeInTheDocument()
 
   // Switch to other page
   const switchPages = getByText('Switch pages')
   fireEvent.click(switchPages)
 
   // Check all modals were auto-closed
-  expect(queryByText('Modal content 1')).toBeFalsy()
-  expect(queryByText('Modal content 2')).toBeFalsy()
+  expect(queryByText('Modal content 1')).not.toBeInTheDocument()
+  expect(queryByText('Modal content 2')).not.toBeInTheDocument()
 })
 
 test('useModals shows multiple modals at the same time', () => {

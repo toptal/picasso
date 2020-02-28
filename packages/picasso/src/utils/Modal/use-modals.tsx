@@ -34,12 +34,11 @@ const generateModalKey = (() => {
 
 const useModals = () => {
   const context = useContext(ModalContext)
-  const openedModalKeys = useRef<string[]>([])
+  const openedModalKeys = useRef<Set<string>>(new Set())
 
   const hideModal = useCallback(
     (key: string) => {
-      openedModalKeys.current = openedModalKeys.current.filter(it => it !== key)
-
+      openedModalKeys.current.delete(key)
       context.hideModal(key)
     },
     [context]
@@ -53,7 +52,7 @@ const useModals = () => {
     }
 
     const key = generateModalKey()
-    openedModalKeys.current = [...openedModalKeys.current, key]
+    openedModalKeys.current.add(key)
 
     context.showModal(key, modal)
 
@@ -61,16 +60,13 @@ const useModals = () => {
   }
 
   const hideAllModals = useCallback(() => {
-    openedModalKeys.current.forEach(key => {
-      hideModal(key)
-    })
+    const keys = [...openedModalKeys.current]
+    keys.forEach(hideModal)
   }, [hideModal])
 
   // Hide all modals when component is unmount
   useEffect(() => {
-    return () => {
-      hideAllModals()
-    }
+    return hideAllModals
   }, [hideAllModals])
 
   const showPrompt = (options: ShowPromptOptions) => {
@@ -114,8 +110,7 @@ const useModals = () => {
   return {
     showModal,
     showPrompt,
-    hideModal,
-    hideAllModals
+    hideModal
   }
 }
 

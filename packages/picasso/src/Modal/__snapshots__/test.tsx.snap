@@ -176,9 +176,7 @@ exports[`useModals opens and closes modal 2`] = `
 `;
 
 exports[`useModals shows multiple modals at the same time 1`] = `
-<body
-  style=""
->
+<body>
   <div>
     <div
       class="Picasso-root"
