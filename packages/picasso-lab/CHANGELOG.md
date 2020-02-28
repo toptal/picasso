@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.6.2...@toptal/picasso-lab@2.7.0) (2020-02-28)
+
+
+### Features
+
+* add     Breadcrumbs component ([#1132](https://github.com/toptal/picasso/issues/1132)) ([b294b62](https://github.com/toptal/picasso/commit/b294b62a7bd06a1c0d248da5902bf9e51e1a605e))
+
+
+
+
+
 ## [2.6.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.6.1...@toptal/picasso-lab@2.6.2) (2020-02-28)
 
 
