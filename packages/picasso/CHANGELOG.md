@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.39.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.38.0...@toptal/picasso@4.39.0) (2020-02-28)
+
+
+### Features
+
+* **use-modals:** implement hideAllModals ([#1137](https://github.com/toptal/picasso/issues/1137)) ([8c45a41](https://github.com/toptal/picasso/commit/8c45a410fb538d6e3271869b277517680264d008))
+
+
+
+
+
 # [4.38.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.37.0...@toptal/picasso@4.38.0) (2020-02-27)
 
 
