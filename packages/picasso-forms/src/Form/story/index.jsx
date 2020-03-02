@@ -33,6 +33,22 @@ however, you may need custom validators for more complex types of fields.
     'picasso-form'
   ) // picasso-skip-visuals
   .addExample(
+    'Form/story/ParseInput.example.tsx',
+    {
+      title: 'Change form input value',
+      description: `
+When you use picasso-forms your form input components are no longer
+completely controlled and they are controlled by final-form, which
+gives you the opportunity to rely on it with displaying errors,
+validations, etc.
+
+However, sometimes you may need to be able to modify the form input
+value.
+`
+    },
+    'picasso-form'
+  ) // picasso-skip-visuals
+  .addExample(
     'Form/story/BackendCommunication.example.tsx',
     {
       title: 'Backend communication',
