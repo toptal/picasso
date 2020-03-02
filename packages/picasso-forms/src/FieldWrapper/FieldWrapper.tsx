@@ -116,7 +116,6 @@ const FieldWrapper = <
     isEqual,
     name,
     parse,
-    render,
     subscription,
     validate,
     validateFields,
@@ -137,9 +136,7 @@ const FieldWrapper = <
     formatOnBlur,
     initialValue,
     isEqual,
-    name,
     parse,
-    render,
     subscription,
     validateFields,
     value
