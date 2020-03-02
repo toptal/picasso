@@ -131,7 +131,6 @@ const FieldWrapper = <
     afterSubmit,
     allowNull,
     beforeSubmit,
-    children,
     data,
     defaultValue,
     format,
