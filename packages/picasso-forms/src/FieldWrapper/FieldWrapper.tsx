@@ -98,24 +98,52 @@ const FieldWrapper = <
   const {
     type,
     hideFieldLabel,
-    name,
-    validate,
     hint,
     label,
     required,
-    children,
-    value,
     enableReset,
     onResetClick,
+    // FieldProps - https://final-form.org/docs/react-final-form/types/FieldProps
+    afterSubmit,
+    allowNull,
+    beforeSubmit,
+    children,
+    data,
+    defaultValue,
+    format,
+    formatOnBlur,
+    initialValue,
+    isEqual,
+    name,
     parse,
+    render,
+    subscription,
+    validate,
+    validateFields,
+    value,
+    //
     ...rest
   } = props
 
   const { meta, input } = useField<TInputValue>(name, {
     validate: getValidators(required, validate),
     type,
-    value,
-    parse
+    afterSubmit,
+    allowNull,
+    beforeSubmit,
+    children,
+    data,
+    defaultValue,
+    format,
+    formatOnBlur,
+    initialValue,
+    isEqual,
+    name,
+    parse,
+    render,
+    subscription,
+    validateFields,
+    value
   })
 
   const defaultResetClickHandler = useCallback(() => {
