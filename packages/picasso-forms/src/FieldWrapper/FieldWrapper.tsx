@@ -107,12 +107,15 @@ const FieldWrapper = <
     value,
     enableReset,
     onResetClick,
+    parse,
     ...rest
   } = props
+
   const { meta, input } = useField<TInputValue>(name, {
     validate: getValidators(required, validate),
     type,
-    value: value
+    value,
+    parse
   })
 
   const defaultResetClickHandler = useCallback(() => {
@@ -135,9 +138,17 @@ const FieldWrapper = <
     ...getProps({ hideFieldLabel, error, label, required }),
     onChange: (event: ChangeEvent<HTMLElement>) => {
       input.onChange(event)
+
+      if (rest.onChange) {
+        rest.onChange(event)
+      }
     },
     onBlur: (event: FocusEvent<HTMLElement>) => {
       input.onBlur(event)
+
+      if (rest.onBlur) {
+        rest.onBlur(event)
+      }
     }
   }
 
