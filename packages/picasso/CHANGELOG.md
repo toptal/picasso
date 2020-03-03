@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.40.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.39.0...@toptal/picasso@4.40.0) (2020-03-03)
+
+
+### Features
+
+* **Form.Field:** [FX-793] Add final-form field props ([#1143](https://github.com/toptal/picasso/issues/1143)) ([fbed95c](https://github.com/toptal/picasso/commit/fbed95ce7402f09095ffe30a5cd15c70b4c408e7))
+
+
+
+
+
 # [4.39.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.38.0...@toptal/picasso@4.39.0) (2020-02-28)
 
 
