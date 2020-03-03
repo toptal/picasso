@@ -18,10 +18,7 @@ import FileInput from '../FileInput'
 
 type AnyObject = Record<string, any>
 
-export type Props<T = AnyObject> = Omit<
-  FinalFormProps<T>,
-  'validate' | 'component' | 'validateOnBlur'
-> & {
+export type Props<T = AnyObject> = Omit<FinalFormProps<T>, 'validate'> & {
   successSubmitMessage?: ReactNode
   failedSubmitMessage?: ReactNode
 }

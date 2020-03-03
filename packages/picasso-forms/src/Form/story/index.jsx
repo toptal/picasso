@@ -7,7 +7,102 @@ const page = PicassoBook.section('Picasso Forms').createPage('Form', 'Form')
 
 page
   .createTabChapter('Props')
-  .addComponentDocs({ component: Form, name: 'Form' })
+  .addComponentDocs({
+    component: Form,
+    name: 'Form',
+    additionalDocs: {
+      debug: {
+        name: 'debug',
+        type: {
+          name: 'function',
+          description:
+            '(state: FormState, fieldStates: { [string]: FieldState }) => void'
+        },
+        description:
+          'A callback for debugging that receives the form state and the states of all the fields'
+      },
+      decorators: {
+        name: 'decorators',
+        type: 'Decorator[]',
+        description: 'An array of decorators to apply to the form'
+      },
+      initialValues: {
+        name: 'initialValues',
+        type: 'FormValues | Object',
+        description: 'The initial values of the form'
+      },
+      initialValuesEqual: {
+        name: 'initialValuesEqual',
+        type: {
+          name: 'function',
+          description: '(Object | undefined, Object | undefined) => boolean'
+        },
+        description:
+          'A predicate to determine whether or not the initialValues prop has changed'
+      },
+      keepDirtyOnReinitialize: {
+        name: 'keepDirtyOnReinitialize',
+        type: 'boolean',
+        description:
+          'If true, only pristine values will be overwritten when initialize(newValues) is called'
+      },
+      mutators: {
+        name: 'mutators',
+        type: {
+          name: 'object',
+          description: '{ [string]: Mutator }'
+        },
+        description: 'Named mutator functions'
+      },
+      onSubmit: {
+        name: 'onSubmit',
+        type: {
+          name: 'function',
+          description:
+            '(values: FormValues, form: FormApi, callback: ?(errors: ?Object) => void) => ?Object | Promise<?Object> | void'
+        },
+        description: 'Function to call when the form is submitted',
+        required: true
+      },
+      subscription: {
+        name: 'subscription',
+        type: {
+          name: 'object',
+          description: '{ [string]: boolean }'
+        },
+        description:
+          'An object of the parts of FormState (final-form) to subscribe to'
+      },
+      validate: {
+        name: 'validate',
+        type: {
+          name: 'function',
+          description: '(values: FormValues) => Object | Promise<Object>'
+        },
+        description:
+          'A whole-record validation function that takes all the values of the form and returns any validation errors'
+      },
+      validateOnBlur: {
+        name: 'validateOnBlur',
+        type: 'boolean',
+        description:
+          'If true, validation will happen on blur. If false, validation will happen on change',
+        defaultValue: false
+      },
+      successSubmitMessage: {
+        name: 'successSubmitMessage',
+        type: 'ReactNode',
+        description:
+          'Message to display in a tooltip when form submitted successfully'
+      },
+      failedSubmitMessage: {
+        name: 'failedSubmitMessage',
+        type: 'ReactNode',
+        description:
+          'Message to display in a tooltip when form submittion failed'
+      }
+    }
+  })
   .addComponentDocs(formFieldStory.componentDocs)
 
 page
