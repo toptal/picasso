@@ -1,6 +1,14 @@
+import Form from '../Form'
+import formFieldStory from '../../FieldWrapper/story'
+
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Picasso Forms').createPage('Form', 'Form')
+
+page
+  .createTabChapter('Props')
+  .addComponentDocs({ component: Form, name: 'Form' })
+  .addComponentDocs(formFieldStory.componentDocs)
 
 page
   .createChapter()
