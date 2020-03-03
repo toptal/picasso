@@ -43,7 +43,9 @@ type ValueLabelComponentProps = ValueLabelProps & {
   valueLabelDisplay: ValueLabelDisplay
 }
 
-const DefaultTooltip: React.FunctionComponent<ValueLabelComponentProps> = ({
+const DefaultTooltip = (
+  isTooltipAlwaysVisible: boolean
+): React.FunctionComponent<ValueLabelComponentProps> => ({
   children,
   open,
   value,
@@ -58,7 +60,8 @@ const DefaultTooltip: React.FunctionComponent<ValueLabelComponentProps> = ({
       arrow
       content={value}
       open={open || valueLabelDisplay === 'on'}
-      placement='top'
+      placement={isTooltipAlwaysVisible ? 'right' : 'top'}
+      preventOverflow={isTooltipAlwaysVisible}
     >
       {children}
     </Tooltip>
@@ -82,8 +85,9 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
   },
   ref
 ) {
+  const isTooltipAlwaysVisible = tooltip === 'on'
   const ValueLabelComponent = (UserDefinedTooltip ||
-    DefaultTooltip) as typeof UserDefinedTooltip
+    DefaultTooltip(isTooltipAlwaysVisible)) as typeof UserDefinedTooltip
 
   return (
     <MUISlider
