@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { StandardProps } from '@toptal/picasso-shared'
 
-import { Typography } from '../'
+import Typography from '../Typography'
 import styles from './styles'
 
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
