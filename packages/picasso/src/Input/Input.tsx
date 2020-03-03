@@ -3,8 +3,7 @@ import React, {
   ReactElement,
   ChangeEvent,
   InputHTMLAttributes,
-  forwardRef,
-  useState
+  forwardRef
 } from 'react'
 import cx from 'classnames'
 import { Theme, makeStyles } from '@material-ui/core/styles'
@@ -267,15 +266,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
     ...rest
   } = purifyProps(props)
 
-  const [charsLength, setCharsLength] = useState(value ? value.length : 0)
-
-  const handleChange: Props['onChange'] = e => {
-    if (hasCounter(counter!, limit)) {
-      setCharsLength(e.target.value.length)
-    }
-
-    onChange!(e)
-  }
+  const charsLength = value ? value.length : 0
 
   const classes = useStyles(props)
 
@@ -335,7 +326,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
           />
         )
       }
-      onChange={handleChange}
+      onChange={onChange}
       enableReset={enableReset}
       onResetClick={onResetClick}
     >
