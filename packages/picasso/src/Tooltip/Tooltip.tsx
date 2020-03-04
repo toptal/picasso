@@ -39,6 +39,8 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   open?: boolean
   /** Disables all listener */
   disableListeners?: boolean
+  /** Allows tooltip to change its placement when it overflows */
+  preventOverflow?: boolean
 }
 
 export const Tooltip: FunctionComponent<Props> = ({
@@ -55,6 +57,7 @@ export const Tooltip: FunctionComponent<Props> = ({
   onOpen,
   variant,
   disableListeners,
+  preventOverflow,
   ...rest
 }) => {
   const [arrowRef, setArrowRef] = useState<HTMLSpanElement | null>(null)
@@ -78,6 +81,10 @@ export const Tooltip: FunctionComponent<Props> = ({
             arrow: {
               enabled: Boolean(arrowRef),
               element: arrowRef
+            },
+            preventOverflow: {
+              enabled: preventOverflow,
+              boundariesElement: 'scrollParent'
             }
           }
         }
@@ -108,6 +115,7 @@ export const Tooltip: FunctionComponent<Props> = ({
 
 Tooltip.defaultProps = {
   arrow: true,
+  preventOverflow: false,
   placement: 'top',
   variant: 'dark'
 }
