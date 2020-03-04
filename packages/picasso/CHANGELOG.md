@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.42.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.41.0...@toptal/picasso@4.42.0) (2020-03-04)
+
+
+### Features
+
+* prevent slider tooltip overflow ([#1141](https://github.com/toptal/picasso/issues/1141)) ([1ad08e9](https://github.com/toptal/picasso/commit/1ad08e924421825868a32b975d508098bfc6f4c1))
+
+
+
+
+
 # [4.41.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.40.1...@toptal/picasso@4.41.0) (2020-03-04)
 
 
