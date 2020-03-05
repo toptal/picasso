@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import { Menu } from '@toptal/picasso'
 
 // Replace with `import { Link } from 'react-router-dom'`
-const Link = ({ to, children, ...rest }) => (
+const Link = forwardRef(({ to, children, ...rest }, ref) => (
   // eslint-disable-next-line react/jsx-props-no-spreading
-  <a href={to} {...rest}>
+  <a href={to} ref={ref} {...rest}>
     {children}
   </a>
-)
+))
 
 const MenuItemRouterExample = () => (
   <div>
