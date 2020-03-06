@@ -13,11 +13,14 @@ PicassoProvider.override(() => ({
 
 export default ({ palette }: Theme) =>
   createStyles({
+    wrapper: {
+      margin: `${rem('6px')} 0`
+    },
     root: {
       display: 'block',
       color: palette.grey.main,
-      margin: `${rem('6px')} 0`,
-      padding: 0,
+      padding: `${rem('6px')} 0`,
+      margin: `-${rem('6px')} 0`,
       height: rem('1px')
     },
     rail: {

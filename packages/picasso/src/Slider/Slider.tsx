@@ -1,5 +1,5 @@
 import React, { forwardRef, ChangeEvent } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUISlider, {
   SliderProps,
   ValueLabelProps
@@ -7,6 +7,8 @@ import MUISlider, {
 import { Tooltip } from '@toptal/picasso'
 
 import styles from './styles'
+
+const useStyles = makeStyles<Theme, Props>(styles)
 
 type Value = number | number[]
 type ValueLabelDisplay = 'on' | 'auto' | 'off'
@@ -69,12 +71,14 @@ const DefaultTooltip = (
 }
 
 export const Slider = forwardRef<HTMLElement, Props>(function Slider(
-  {
+  props,
+  ref
+) {
+  const {
     min,
     max,
     value,
     defaultValue = 0,
-    classes,
     tooltip,
     tooltipFormat,
     TooltipComponent: UserDefinedTooltip,
@@ -82,30 +86,31 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     disabled,
     onChange,
     ...rest
-  },
-  ref
-) {
+  } = props
+  const classes = useStyles(props)
   const isTooltipAlwaysVisible = tooltip === 'on'
   const ValueLabelComponent = (UserDefinedTooltip ||
     DefaultTooltip(isTooltipAlwaysVisible)) as typeof UserDefinedTooltip
 
   return (
-    <MUISlider
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...rest}
-      ref={ref}
-      defaultValue={defaultValue}
-      value={value}
-      min={min}
-      max={max}
-      step={step}
-      disabled={disabled}
-      classes={classes}
-      ValueLabelComponent={ValueLabelComponent}
-      valueLabelFormat={tooltipFormat}
-      valueLabelDisplay={tooltip}
-      onChange={onChange}
-    />
+    <div className={classes.wrapper}>
+      <MUISlider
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...rest}
+        ref={ref}
+        defaultValue={defaultValue}
+        value={value}
+        min={min}
+        max={max}
+        step={step}
+        disabled={disabled}
+        classes={classes}
+        ValueLabelComponent={ValueLabelComponent}
+        valueLabelFormat={tooltipFormat}
+        valueLabelDisplay={tooltip}
+        onChange={onChange}
+      />
+    </div>
   )
 })
 
@@ -118,4 +123,4 @@ Slider.defaultProps = {
   tooltip: 'off'
 }
 
-export default withStyles(styles)(Slider)
+export default Slider
