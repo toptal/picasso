@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.42.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.42.1...@toptal/picasso@4.42.2) (2020-03-06)
+
+
+### Bug Fixes
+
+* **slider:** fix accessibility of setting value by click on the line ([#1152](https://github.com/toptal/picasso/issues/1152)) ([a1476cf](https://github.com/toptal/picasso/commit/a1476cf829d0dcd437ba7ff45634cc4637ede9cd)), closes [#1151](https://github.com/toptal/picasso/issues/1151)
+
+
+
+
+
 ## [4.42.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.42.0...@toptal/picasso@4.42.1) (2020-03-05)
 
 **Note:** Version bump only for package @toptal/picasso
