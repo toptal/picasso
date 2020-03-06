@@ -9,11 +9,14 @@ const chapter = PicassoBook.connectToPage(page =>
     .createChapter('Page.Header', 'A Header component')
     .addExample('PageHeader/story/Default.example.jsx', 'Default')
     .addExample('PageHeader/story/Variants.example.jsx', 'Variants')
-    .addExample('PageHeader/story/RightContent.example.jsx', 'Right content')
-    .addExample(
-      'PageHeader/story/ExtraMenuContent.example.jsx',
-      'Extra header menu content'
-    )
+    .addExample('PageHeader/story/RightContent.example.jsx', {
+      title: 'Right content',
+      waitUntilImagesLoaded: true
+    })
+    .addExample('PageHeader/story/ExtraMenuContent.example.jsx', {
+      title: 'Extra header menu content',
+      waitUntilImagesLoaded: true
+    })
     .addExample('PageHeader/story/Link.example.jsx', 'With link')
     .addExample('PageHeader/story/WithoutTitle.example.jsx', 'Without title')
 )
