@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.42.4](https://github.com/toptal/picasso/compare/@toptal/picasso@4.42.3...@toptal/picasso@4.42.4) (2020-03-09)
+
+
+### Bug Fixes
+
+* **slider:** get rid of error about incorrect class override ([#1154](https://github.com/toptal/picasso/issues/1154)) ([81d8962](https://github.com/toptal/picasso/commit/81d89622f7553cb06ae7a4f06769b43cbcdc9ab8))
+
+
+
+
+
 ## [4.42.3](https://github.com/toptal/picasso/compare/@toptal/picasso@4.42.2...@toptal/picasso@4.42.3) (2020-03-06)
 
 **Note:** Version bump only for package @toptal/picasso
