@@ -87,13 +87,13 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     onChange,
     ...rest
   } = props
-  const classes = useStyles(props)
+  const { wrapper, ...classes } = useStyles(props)
   const isTooltipAlwaysVisible = tooltip === 'on'
   const ValueLabelComponent = (UserDefinedTooltip ||
     DefaultTooltip(isTooltipAlwaysVisible)) as typeof UserDefinedTooltip
 
   return (
-    <div className={classes.wrapper}>
+    <div className={wrapper}>
       <MUISlider
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
