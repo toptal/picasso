@@ -7,7 +7,7 @@ const exec = require('child_process').execSync
 
 const { log } = require('./utils')
 
-const packagesFolder = path.join(__dirname, '../packages/')
+const PACKAGES_DIR = path.join(__dirname, '../packages/')
 
 const link = function (name) {
   exec(`yarn link ${name}`, {
@@ -47,13 +47,13 @@ const removeLink = function (name, cwd) {
   }
 }
 
-const getPicassoPackages = () => readdirSync(packagesFolder)
+const getPicassoPackages = () => readdirSync(PACKAGES_DIR)
 const getPackageTsConfig = packageName => {
-  const tsConfigPath = path.join(packagesFolder, packageName, './tsconfig.json')
+  const tsConfigPath = path.join(PACKAGES_DIR, packageName, './tsconfig.json')
   return require(tsConfigPath)
 }
 const getPackagePackageJson = packageName => {
-  const packageJsonPath = path.join(packagesFolder, packageName, './package.json')
+  const packageJsonPath = path.join(PACKAGES_DIR, packageName, './package.json')
   return require(packageJsonPath)
 }
 
@@ -62,10 +62,9 @@ const setup = function () {
 
   const linkPackages = packages.map(package => {
     const tsConfig = getPackageTsConfig(package)
-    const outputDir = path.join(packagesFolder, package, tsConfig.compilerOptions.outDir)
+    const outputDir = path.join(PACKAGES_DIR, package, tsConfig.compilerOptions.outDir)
 
-    const packageJson = getPackagePackageJson(package)
-    const name = packageJson.name
+    const { name } = getPackagePackageJson(package)
 
     return { name, outputDir }
   })
