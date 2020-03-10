@@ -1,14 +1,32 @@
 #!/usr/bin/env node
 
 const path = require('path')
+const { readdirSync } = require('fs')
 const yargs = require('yargs').argv
 const exec = require('child_process').execSync
 
 const { log } = require('./utils')
-const config = require(`../tsconfig.json`)
-const packageJson = require(path.resolve(__dirname, '../package.json'))
 
-const link = function (name, cwd) {
+const packagesFolder = path.join(__dirname, '../packages/')
+
+const link = function (name) {
+  exec(`yarn link ${name}`, {
+    stdio: 'inherit'
+  })
+}
+
+const unlink = function (name) {
+  try {
+    exec(`yarn unlink ${name}`, {
+      stdio: 'ignore',
+      stderr: 'ignore'
+    })
+  } catch (e) {
+    log(`Package ${name} not found. ${e}`)
+  }
+}
+
+const createLink = function (name, cwd) {
   log(`Linking ${name}...`)
   exec('yarn link', {
     cwd,
@@ -16,7 +34,7 @@ const link = function (name, cwd) {
   })
 }
 
-const unlink = function (name, cwd) {
+const removeLink = function (name, cwd) {
   try {
     log(`Unlinking ${name}...`)
     exec('yarn unlink', {
@@ -29,21 +47,41 @@ const unlink = function (name, cwd) {
   }
 }
 
-const setup = function (config) {
+const getPicassoPackages = () => readdirSync(packagesFolder)
+const getPackageTsConfig = packageName => {
+  const tsConfigPath = path.join(packagesFolder, packageName, './tsconfig.json')
+  return require(tsConfigPath)
+}
+const getPackagePackageJson = packageName => {
+  const packageJsonPath = path.join(packagesFolder, packageName, './package.json')
+  return require(packageJsonPath)
+}
+
+const setup = function () {
+  const packages = getPicassoPackages()
+
+  const linkPackages = packages.map(package => {
+    const tsConfig = getPackageTsConfig(package)
+    const outputDir = path.join(packagesFolder, package, tsConfig.compilerOptions.outDir)
+
+    const packageJson = getPackagePackageJson(package)
+    const name = packageJson.name
+
+    return { name, outputDir }
+  })
+
   if (yargs.link) {
     log('Linking process started...')
 
-    unlink(packageJson.name, config.compilerOptions.outDir)
-    unlink('react', './node_modules/react')
+    linkPackages.forEach(({ name, outputDir }) => removeLink(name, outputDir))
+    removeLink('react', './node_modules/react')
 
-    // TODO: needs to be fixed after v4 release
-    // generatePackageJson replaced with copyPackageJson
-    // // prepare the build folder to looks like
-    // // a proper package for yarn
-    // generatePackageJson(packageJson, config.compilerOptions.outDir)
-
-    link('picasso', config.compilerOptions.outDir)
-    link('react', './node_modules/react')
+    linkPackages.forEach(({ name, outputDir }) => createLink(name, outputDir))
+    createLink('react', './node_modules/react')
+    // because we are using yarn workspaces
+    // we have default symlinks set up to /src folders of packages
+    // so we need to override them and reffer to /build folders
+    linkPackages.forEach(({ name, outputDir }) => link(name))
 
     log('Linking process finished.')
   }
@@ -51,13 +89,15 @@ const setup = function (config) {
   if (yargs.unlink) {
     log('Unlinking process started...')
 
-    unlink(packageJson.name, config.compilerOptions.outDir)
-    unlink('react', './node_modules/react')
+    linkPackages.forEach(({ name, outputDir }) => unlink(name))
+    linkPackages.forEach(({ name, outputDir }) => removeLink(name, outputDir))
+    removeLink('react', './node_modules/react')
 
-    exec('rm ./build/package.json')
+    log('Re-running "yarn install" to restore links for workspaces...')
+    exec('yarn install --force')
 
     log('Unlinking process finished.')
   }
 }
 
-setup(config)
+setup()

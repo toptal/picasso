@@ -115,8 +115,8 @@ In Picasso project directory:
 
 1. Checkout Picasso project from [Github](https://github.com/toptal/picasso)
 2. Install Picasso dependencies with `yarn install`
-3. Build Picasso with `yarn build` or `yarn build:watch` if you want to trigger build on file change
-4. Create a link with `yarn symlink` (creates Picasso and React link)
+3. Build Picasso inside Picasso package folder (`./packages/picasso/`) with `yarn build` or `yarn build:watch` if you want to trigger build on file change
+4. Create a link with running in the root path `yarn symlink` (creates all links to Picasso packages and React link)
 
 In your project directory:
 
