@@ -10,6 +10,7 @@ const PageHeaderLeftContentExample = () => (
         </Container>
       }
       leftContent={<LeftContent />}
+      title='Onboarding'
     />
   </div>
 )
