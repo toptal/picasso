@@ -244,6 +244,7 @@ export const DatePicker = (props: Props) => {
       </Container>
       {inputWrapperRef.current && (
         <Popper
+          placement='bottom-start'
           open={calendarIsShown}
           anchorEl={inputWrapperRef.current}
           autoWidth={false}
