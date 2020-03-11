@@ -5,7 +5,7 @@ import { JssProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
-interface Props extends JssProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends JssProps, HTMLAttributes<HTMLDivElement> {
   children?: ReactNode
 }
 

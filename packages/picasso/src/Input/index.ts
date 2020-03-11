@@ -1,5 +1,7 @@
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
-import { Props as InputProps } from './Input'
+import { Props as InternalInputProps } from './Input'
 export { default } from './Input'
-export type Props = OmitInternalProps<InputProps>
+export type InputProps = OmitInternalProps<InternalInputProps>
+/** @deprecated Use InputProps instead */
+export type Props = InputProps

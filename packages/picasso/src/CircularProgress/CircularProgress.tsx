@@ -7,7 +7,7 @@ import styles from './styles'
 
 type VariantType = 'determinate' | 'indeterminate' | 'static'
 
-interface Props
+export interface Props
   extends StandardProps,
     Omit<HTMLAttributes<HTMLDivElement>, 'color'> {
   /** Size of the component */
