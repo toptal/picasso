@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.1](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.10.0...@toptal/picasso-shared@1.10.1) (2020-03-11)
+
+
+### Bug Fixes
+
+* **Page:** [FX-823] Fix viewport scaling ([#1159](https://github.com/toptal/picasso/issues/1159)) ([a037d1b](https://github.com/toptal/picasso/commit/a037d1bead309b4422df2f7ff07c65b2c36b3a85))
+
+
+
+
+
 # [1.10.0](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.9.2...@toptal/picasso-shared@1.10.0) (2020-02-26)
 
 
