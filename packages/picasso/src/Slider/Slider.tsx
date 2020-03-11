@@ -89,14 +89,10 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     onChange,
     ...rest
   } = props
-  const { wrapper, markActiveTrack, ...classes } = useStyles(props)
+  const { wrapper, markTrack, ...classes } = useStyles(props)
   const isTooltipAlwaysVisible = tooltip === 'on'
   const ValueLabelComponent = (UserDefinedTooltip ||
     DefaultTooltip(isTooltipAlwaysVisible)) as typeof UserDefinedTooltip
-
-  classes.track = cx(classes.track, {
-    [markActiveTrack]: marks
-  })
 
   return (
     <div className={wrapper}>
@@ -111,7 +107,12 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
         step={step}
         marks={marks}
         disabled={disabled}
-        classes={classes}
+        classes={{
+          ...classes,
+          track: cx(classes.track, {
+            [markTrack]: marks
+          })
+        }}
         ValueLabelComponent={ValueLabelComponent}
         valueLabelFormat={tooltipFormat}
         valueLabelDisplay={tooltip}
