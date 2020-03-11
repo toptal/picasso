@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.8.0...@toptal/picasso-lab@2.8.1) (2020-03-11)
+
+
+### Bug Fixes
+
+* datepicker popper position ([#1157](https://github.com/toptal/picasso/issues/1157)) ([0fd14b4](https://github.com/toptal/picasso/commit/0fd14b4fdb06733a6f69ebc1aa7ea7f89008690e))
+
+
+
+
+
 # [2.8.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.7.0...@toptal/picasso-lab@2.8.0) (2020-03-04)
 
 
