@@ -18,4 +18,5 @@ page
   .addExample('Slider/story/Controlled.example.jsx', 'Controlled value')
   .addExample('Slider/story/Tooltip.example.jsx', 'Tooltip')
   .addExample('Slider/story/Range.example.jsx', 'Range')
+  .addExample('Slider/story/Marks.example.jsx', 'Marks')
   .addExample('Slider/story/CustomTooltip.example.jsx', 'Custom Tooltip') // picasso-skip-visuals

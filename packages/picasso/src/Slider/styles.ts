@@ -39,5 +39,22 @@ export default ({ palette }: Theme) =>
       height: rem('13px'),
       width: rem('13px'),
       marginTop: rem('-6px')
+    },
+    mark: {
+      backgroundColor: palette.grey.main,
+      height: rem('6px'),
+      width: rem('6px'),
+      borderRadius: '50%',
+      border: `${rem('2px')} solid ${palette.common.white}`,
+      opacity: 1,
+      top: rem('1.5px'),
+      transform: 'translateX(-50%)',
+      boxSizing: 'initial'
+    },
+    markActive: {
+      backgroundColor: palette.blue.main
+    },
+    markActiveTrack: {
+      backgroundColor: palette.blue.main
     }
   })
