@@ -52,9 +52,9 @@ export default ({ palette }: Theme) =>
       boxSizing: 'initial'
     },
     markActive: {
-      backgroundColor: palette.blue.main
+      backgroundColor: palette.primary.main
     },
-    markActiveTrack: {
-      backgroundColor: palette.blue.main
+    markTrack: {
+      backgroundColor: palette.primary.main
     }
   })

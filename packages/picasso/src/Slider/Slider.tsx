@@ -25,6 +25,8 @@ export interface Props extends SliderProps {
   defaultValue?: Value
   /** Step for the thumb movement */
   step?: number
+  /** Whether marks are shown or not */
+  marks?: boolean
   /** Whether component is disabled or not */
   disabled?: boolean
   /** The tooltip component. */

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Slider } from '@toptal/picasso'
 
-const SelectDefaultExample = () => {
+const SliderDefaultExample = () => {
   const handleChange = (event, value) => {
     window.console.log('onChange: ', value)
   }
@@ -13,4 +13,4 @@ const SelectDefaultExample = () => {
   )
 }
 
-export default SelectDefaultExample
+export default SliderDefaultExample
