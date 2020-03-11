@@ -23,6 +23,8 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
   title?: string
   /** Link component to wrap `Logo`  */
   logoLink?: ReactElement
+  /** Content for the left side of the `Header`  */
+  leftContent?: ReactNode
   /** Content for the right side of the `Header`  */
   rightContent?: ReactNode
   /** Action items  */
@@ -38,6 +40,7 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
     style,
     title,
     logoLink,
+    leftContent,
     rightContent,
     actionItems,
     variant,
@@ -96,6 +99,7 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
             {logoLink ? React.cloneElement(logoLink, {}, logo) : logo}
           </Container>
           {!isCompactLayout && titleComponent}
+          {leftContent}
         </div>
 
         <div className={classes.right}>

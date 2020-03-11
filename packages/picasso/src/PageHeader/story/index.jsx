@@ -9,6 +9,10 @@ const chapter = PicassoBook.connectToPage(page =>
     .createChapter('Page.Header', 'A Header component')
     .addExample('PageHeader/story/Default.example.jsx', 'Default')
     .addExample('PageHeader/story/Variants.example.jsx', 'Variants')
+    .addExample('PageHeader/story/LeftContent.example.jsx', {
+      title: 'Left content',
+      waitUntilImagesLoaded: true
+    })
     .addExample('PageHeader/story/RightContent.example.jsx', {
       title: 'Right content',
       waitUntilImagesLoaded: true
