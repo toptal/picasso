@@ -56,6 +56,7 @@ const loadStories = () => {
     'Utils',
     'Forms',
     'Picasso Forms',
+    'Picasso Charts',
     'Widgets',
     'Lab'
   ])

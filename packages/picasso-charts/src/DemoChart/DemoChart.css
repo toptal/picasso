@@ -1,0 +1,13 @@
+.recharts-wrapper .recharts-cartesian-grid-horizontal line {
+  stroke-dasharray: 3 3;
+}
+tspan {
+  font-size: 11px;
+  fill: #455065;
+}
+.recharts-wrapper
+  .recharts-yAxis
+  .recharts-cartesian-axis-ticks
+  .recharts-cartesian-axis-tick:first-child {
+  display: none;
+}
