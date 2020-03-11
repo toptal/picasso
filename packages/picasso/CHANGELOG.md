@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.43.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.42.5...@toptal/picasso@4.43.0) (2020-03-11)
+
+
+### Features
+
+* add leftContent to PageHeader ([#1156](https://github.com/toptal/picasso/issues/1156)) ([afa9bd0](https://github.com/toptal/picasso/commit/afa9bd0b17390ec9628f5811384fbbbfdd11c4c7))
+
+
+
+
+
 ## [4.42.5](https://github.com/toptal/picasso/compare/@toptal/picasso@4.42.4...@toptal/picasso@4.42.5) (2020-03-11)
 
 
