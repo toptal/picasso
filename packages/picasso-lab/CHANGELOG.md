@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.8.1...@toptal/picasso-lab@2.8.2) (2020-03-11)
+
+
+### Bug Fixes
+
+* **Page:** [FX-823] Fix viewport scaling ([#1159](https://github.com/toptal/picasso/issues/1159)) ([a037d1b](https://github.com/toptal/picasso/commit/a037d1bead309b4422df2f7ff07c65b2c36b3a85))
+
+
+
+
+
 ## [2.8.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.8.0...@toptal/picasso-lab@2.8.1) (2020-03-11)
 
 

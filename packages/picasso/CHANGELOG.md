@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.42.5](https://github.com/toptal/picasso/compare/@toptal/picasso@4.42.4...@toptal/picasso@4.42.5) (2020-03-11)
+
+
+### Bug Fixes
+
+* **Page:** [FX-823] Fix viewport scaling ([#1159](https://github.com/toptal/picasso/issues/1159)) ([a037d1b](https://github.com/toptal/picasso/commit/a037d1bead309b4422df2f7ff07c65b2c36b3a85))
+
+
+
+
+
 ## [4.42.4](https://github.com/toptal/picasso/compare/@toptal/picasso@4.42.3...@toptal/picasso@4.42.4) (2020-03-09)
 
 
