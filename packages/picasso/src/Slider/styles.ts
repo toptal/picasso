@@ -49,7 +49,7 @@ export default ({ palette }: Theme) =>
       opacity: 1,
       top: rem('1.5px'),
       transform: 'translateX(-50%)',
-      boxSizing: 'initial'
+      boxSizing: 'content-box'
     },
     markActive: {
       backgroundColor: palette.primary.main
