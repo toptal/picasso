@@ -5,6 +5,7 @@ import MUISlider, {
   ValueLabelProps
 } from '@material-ui/core/Slider'
 import { Tooltip } from '@toptal/picasso'
+import cx from 'classnames'
 
 import styles from './styles'
 
@@ -24,6 +25,8 @@ export interface Props extends SliderProps {
   defaultValue?: Value
   /** Step for the thumb movement */
   step?: number
+  /** Whether marks are shown or not */
+  marks?: boolean
   /** Whether component is disabled or not */
   disabled?: boolean
   /** The tooltip component. */
@@ -77,6 +80,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
   const {
     min,
     max,
+    marks,
     value,
     defaultValue = 0,
     tooltip,
@@ -87,7 +91,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     onChange,
     ...rest
   } = props
-  const { wrapper, ...classes } = useStyles(props)
+  const { wrapper, markTrack, ...classes } = useStyles(props)
   const isTooltipAlwaysVisible = tooltip === 'on'
   const ValueLabelComponent = (UserDefinedTooltip ||
     DefaultTooltip(isTooltipAlwaysVisible)) as typeof UserDefinedTooltip
@@ -103,8 +107,14 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
         min={min}
         max={max}
         step={step}
+        marks={marks}
         disabled={disabled}
-        classes={classes}
+        classes={{
+          ...classes,
+          track: cx(classes.track, {
+            [markTrack]: marks
+          })
+        }}
         ValueLabelComponent={ValueLabelComponent}
         valueLabelFormat={tooltipFormat}
         valueLabelDisplay={tooltip}

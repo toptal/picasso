@@ -32,6 +32,8 @@ export interface Props
     Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'> {
   /** Placeholder for value */
   placeholder?: string
+  /** Indicate whether `Input` is in error state */
+  error?: boolean
   /** Shows the loading icon when options are loading */
   loading?: boolean
   /** Text prefix for other option */

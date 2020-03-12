@@ -8,10 +8,7 @@ const formatLabel = val => {
   return <Typography color='inherit'>GMT+{formattedVal}:00</Typography>
 }
 
-/* NOTE: this example will break visual tests as soon as MUI is upgraded to v4.7.1,
-   because persistant tooltips will start appearing on the screenshots.
- */
-const TooltipExample = () => {
+const SliderTooltipExample = () => {
   return (
     <Container padded='small'>
       <Container>
@@ -42,4 +39,4 @@ const TooltipExample = () => {
   )
 }
 
-export default TooltipExample
+export default SliderTooltipExample

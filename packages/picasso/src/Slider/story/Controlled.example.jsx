@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Button, Grid, Slider } from '@toptal/picasso'
 import { Plus16, Minus16 } from '@toptal/picasso/Icon'
 
-const SelectDefaultExample = () => {
+const SliderControlledExample = () => {
   const [value, setValue] = useState(0)
   const handleChange = (_, newValue) => {
     setValue(newValue)
@@ -41,4 +41,4 @@ const SelectDefaultExample = () => {
   )
 }
 
-export default SelectDefaultExample
+export default SliderControlledExample
