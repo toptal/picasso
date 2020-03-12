@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.44.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.43.0...@toptal/picasso@4.44.0) (2020-03-12)
+
+
+### Features
+
+* **slider:** show marks ([#1160](https://github.com/toptal/picasso/issues/1160)) ([e5056ff](https://github.com/toptal/picasso/commit/e5056ff748eaa4a4e0d5435879aae912a5a12787))
+
+
+
+
+
 # [4.43.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.42.5...@toptal/picasso@4.43.0) (2020-03-11)
 
 
