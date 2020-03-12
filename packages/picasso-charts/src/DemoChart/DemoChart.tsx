@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 import { BaseProps } from '@toptal/picasso-shared'
 import {
   ComposedChart,
@@ -10,8 +11,6 @@ import {
   Area,
   Line
 } from 'recharts'
-
-import './DemoChart.css'
 
 export type Props = BaseProps
 
@@ -49,103 +48,121 @@ const data = [
   { date: 'Nov 19', order: 30, y: 1.3 }
 ]
 
+const StyleOverrides = styled.div`
+  .recharts-wrapper .recharts-cartesian-grid-horizontal line {
+    stroke-dasharray: 3 3;
+  }
+  tspan {
+    font-size: 11px;
+    fill: #455065;
+  }
+  .recharts-wrapper
+    .recharts-yAxis
+    .recharts-cartesian-axis-ticks
+    .recharts-cartesian-axis-tick:first-child {
+    display: none;
+  }
+`
+
 export const DemoChart = (props: Props) => (
-  <ComposedChart
-    width={920}
-    height={170}
-    margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
-    data={data}
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    {...props}
-  >
-    <CartesianGrid stroke='#ebeced' />
-
-    {/* Axis */}
-    <XAxis
-      type='number'
-      dataKey='order'
-      name='date'
-      tickLine={false}
-      axisLine={false}
-      interval='preserveStartEnd'
-      ticks={data.map(tick => tick.order)}
-      minTickGap={-10}
-      tickMargin={16}
-      tickFormatter={(tick: unknown) => {
-        return data.find(item => item.order === tick)?.date
-      }}
-      domain={[0, 30]}
-    />
-    <YAxis
-      type='number'
-      dataKey='y'
-      unit='d'
-      domain={[0, 4]}
-      tickLine={false}
-      axisLine={false}
-      interval={0}
-      minTickGap={-10}
-      tickMargin={16}
-    />
-
-    {/* Reference lines */}
-    <ReferenceLine y={2} stroke='#d42551' strokeDasharray='3 3 3' />
-    <ReferenceLine y={1.5} stroke='#e59c01' strokeDasharray='3 3' />
-    <ReferenceLine y={1} stroke='#00cc83' strokeDasharray='3 3' />
-
-    {/* Shape */}
-    <Area
-      type='linear'
-      dataKey='y'
-      fill='#204ecf'
-      fillOpacity={0.1}
-      isAnimationActive={false}
-    />
-    <Line
+  <StyleOverrides>
+    <ComposedChart
+      width={920}
+      height={170}
+      margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
       data={data}
-      dataKey='y'
-      stroke='#204ecf'
-      dot={{ fill: '#204ecf' }}
-      isAnimationActive={false}
-    />
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...props}
+    >
+      <CartesianGrid stroke='#ebeced' />
 
-    {/* Red selectinos */}
-    <ReferenceArea
-      x1={6.5}
-      x2={8.5}
-      y1={0}
-      y2={4}
-      fillOpacity={0.1}
-      fill='#d42551'
-    />
+      {/* Axis */}
+      <XAxis
+        type='number'
+        dataKey='order'
+        name='date'
+        tickLine={false}
+        axisLine={false}
+        interval='preserveStartEnd'
+        ticks={data.map(tick => tick.order)}
+        minTickGap={-10}
+        tickMargin={16}
+        tickFormatter={(tick: unknown) => {
+          return data.find(item => item.order === tick)?.date
+        }}
+        domain={[0, 30]}
+      />
+      <YAxis
+        type='number'
+        dataKey='y'
+        unit='d'
+        domain={[0, 4]}
+        tickLine={false}
+        axisLine={false}
+        interval={0}
+        minTickGap={-10}
+        tickMargin={16}
+      />
 
-    <ReferenceArea
-      x1={6.5}
-      x2={8.5}
-      y1={3.95}
-      y2={4}
-      fillOpacity={1}
-      fill='#d42551'
-    />
+      {/* Reference lines */}
+      <ReferenceLine y={2} stroke='#d42551' strokeDasharray='3 3 3' />
+      <ReferenceLine y={1.5} stroke='#e59c01' strokeDasharray='3 3' />
+      <ReferenceLine y={1} stroke='#00cc83' strokeDasharray='3 3' />
 
-    <ReferenceArea
-      x1={20.5}
-      x2={21.5}
-      y1={0}
-      y2={4}
-      fillOpacity={0.1}
-      fill='#d42551'
-    />
+      {/* Shape */}
+      <Area
+        type='linear'
+        dataKey='y'
+        fill='#204ecf'
+        fillOpacity={0.1}
+        isAnimationActive={false}
+      />
+      <Line
+        data={data}
+        dataKey='y'
+        stroke='#204ecf'
+        dot={{ fill: '#204ecf' }}
+        isAnimationActive={false}
+      />
 
-    <ReferenceArea
-      x1={20.5}
-      x2={21.5}
-      y1={3.95}
-      y2={4}
-      fillOpacity={1}
-      fill='#d42551'
-    />
-  </ComposedChart>
+      {/* Red selectinos */}
+      <ReferenceArea
+        x1={6.5}
+        x2={8.5}
+        y1={0}
+        y2={4}
+        fillOpacity={0.1}
+        fill='#d42551'
+      />
+
+      <ReferenceArea
+        x1={6.5}
+        x2={8.5}
+        y1={3.95}
+        y2={4}
+        fillOpacity={1}
+        fill='#d42551'
+      />
+
+      <ReferenceArea
+        x1={20.5}
+        x2={21.5}
+        y1={0}
+        y2={4}
+        fillOpacity={0.1}
+        fill='#d42551'
+      />
+
+      <ReferenceArea
+        x1={20.5}
+        x2={21.5}
+        y1={3.95}
+        y2={4}
+        fillOpacity={1}
+        fill='#d42551'
+      />
+    </ComposedChart>
+  </StyleOverrides>
 )
 
 DemoChart.defaultProps = {}
