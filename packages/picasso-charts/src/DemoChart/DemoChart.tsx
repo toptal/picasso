@@ -8,10 +8,7 @@ import {
   ReferenceArea,
   ReferenceLine,
   Area,
-  Line,
-  Tooltip,
-  ContentRenderer,
-  TooltipProps
+  Line
 } from 'recharts'
 
 import './DemoChart.css'
@@ -52,21 +49,6 @@ const data = [
   { date: 'Nov 19', order: 30, y: 1.3 }
 ]
 
-const renderTooltip: ContentRenderer<TooltipProps> = dataPoint => {
-  const date = dataPoint.payload?.[0]?.payload?.date
-  const val = dataPoint.payload?.[0]?.payload?.y
-  return (
-    <div
-      style={{ border: '1px solid green', background: 'white', padding: 10 }}
-    >
-      <div>
-        hey, on <b>{date}</b> it was:
-      </div>
-      <div>{val}</div>
-    </div>
-  )
-}
-
 export const DemoChart = (props: Props) => (
   <ComposedChart
     width={920}
@@ -77,7 +59,6 @@ export const DemoChart = (props: Props) => (
     {...props}
   >
     <CartesianGrid stroke='#ebeced' />
-    <Tooltip content={renderTooltip} isAnimationActive={false} />
 
     {/* Axis */}
     <XAxis
