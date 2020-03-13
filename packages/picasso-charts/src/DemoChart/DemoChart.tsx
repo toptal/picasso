@@ -1,6 +1,5 @@
 import React from 'react'
-import { BaseProps } from '@toptal/picasso-shared'
-import { palette } from '@toptal/picasso/utils'
+import { BaseProps, colors } from '@toptal/picasso-shared'
 import {
   ComposedChart,
   XAxis,
@@ -58,7 +57,7 @@ export const DemoChart = (props: Props) => (
           }
           tspan {
             font-size: 11px;
-            fill: ${palette.grey.dark};
+            fill: ${colors.grey.dark};
           }
           .recharts-wrapper
             .recharts-yAxis
@@ -77,7 +76,7 @@ export const DemoChart = (props: Props) => (
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
-      <CartesianGrid stroke={palette.grey.lighter} />
+      <CartesianGrid stroke={colors.grey.lighter} />
 
       {/* Axis */}
       <XAxis
@@ -108,27 +107,27 @@ export const DemoChart = (props: Props) => (
       />
 
       {/* Reference lines */}
-      <ReferenceLine y={2} stroke={palette.red.main} strokeDasharray='3 3 3' />
+      <ReferenceLine y={2} stroke={colors.red.main} strokeDasharray='3 3 3' />
       <ReferenceLine
         y={1.5}
-        stroke={palette.yellow.main}
+        stroke={colors.yellow.main}
         strokeDasharray='3 3'
       />
-      <ReferenceLine y={1} stroke={palette.green.main} strokeDasharray='3 3' />
+      <ReferenceLine y={1} stroke={colors.green.main} strokeDasharray='3 3' />
 
       {/* Shape */}
       <Area
         type='linear'
         dataKey='y'
-        fill={palette.blue.main}
+        fill={colors.blue.main}
         fillOpacity={0.1}
         isAnimationActive={false}
       />
       <Line
         data={data}
         dataKey='y'
-        stroke={palette.blue.main}
-        dot={{ fill: palette.blue.main }}
+        stroke={colors.blue.main}
+        dot={{ fill: colors.blue.main }}
         isAnimationActive={false}
       />
 
@@ -139,7 +138,7 @@ export const DemoChart = (props: Props) => (
         y1={0}
         y2={4}
         fillOpacity={0.1}
-        fill={palette.red.main}
+        fill={colors.red.main}
       />
 
       <ReferenceArea
@@ -148,7 +147,7 @@ export const DemoChart = (props: Props) => (
         y1={3.95}
         y2={4}
         fillOpacity={1}
-        fill={palette.red.main}
+        fill={colors.red.main}
       />
 
       <ReferenceArea
@@ -157,7 +156,7 @@ export const DemoChart = (props: Props) => (
         y1={0}
         y2={4}
         fillOpacity={0.1}
-        fill={palette.red.main}
+        fill={colors.red.main}
       />
 
       <ReferenceArea
@@ -166,7 +165,7 @@ export const DemoChart = (props: Props) => (
         y1={3.95}
         y2={4}
         fillOpacity={1}
-        fill={palette.red.main}
+        fill={colors.red.main}
       />
     </ComposedChart>
   </div>
