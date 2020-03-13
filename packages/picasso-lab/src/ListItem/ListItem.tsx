@@ -9,8 +9,8 @@ import styles from './styles'
 
 export type Props = BaseProps & {
   children: ReactNode
-  variant: ListVariant
-  index: number
+  variant?: ListVariant
+  index?: number
   /** Add a custom `<Icon />` to set a custom bullet in ordered lists */
   icon?: ReactNode
 }
@@ -43,7 +43,7 @@ export const ListItem = (props: Props) => {
   const classes = useStyles(props)
   const { children, icon, variant, index, ...rest } = props
 
-  const itemIcon = getBulletOrNumber(variant, index, icon)
+  const itemIcon = getBulletOrNumber(variant!, index!, icon)
 
   return (
     <li {...rest}>
