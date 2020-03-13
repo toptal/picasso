@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.3](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.8.2...@toptal/picasso-lab@2.8.3) (2020-03-13)
+
+
+### Bug Fixes
+
+* list type error ([#1163](https://github.com/toptal/picasso/issues/1163)) ([9a33049](https://github.com/toptal/picasso/commit/9a330498c4831419b8f2b2cba661b911c4f91860))
+
+
+
+
+
 ## [2.8.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.8.1...@toptal/picasso-lab@2.8.2) (2020-03-11)
 
 
