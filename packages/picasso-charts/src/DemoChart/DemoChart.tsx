@@ -1,6 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
 import { BaseProps } from '@toptal/picasso-shared'
+import { palette } from '@toptal/picasso/utils'
 import {
   ComposedChart,
   XAxis,
@@ -48,25 +48,27 @@ const data = [
   { date: 'Nov 19', order: 30, y: 1.3 }
 ]
 
-const StyleOverrides = styled.div`
-  && .recharts-wrapper .recharts-cartesian-grid-horizontal line {
-    stroke-dasharray: 3 3;
-  }
-  && tspan {
-    font-size: 11px;
-    fill: #455065;
-  }
-  &&
-    .recharts-wrapper
-    .recharts-yAxis
-    .recharts-cartesian-axis-ticks
-    .recharts-cartesian-axis-tick:first-child {
-    display: none;
-  }
-`
-
 export const DemoChart = (props: Props) => (
-  <StyleOverrides>
+  <div>
+    <style
+      dangerouslySetInnerHTML={{
+        __html: `
+          .recharts-wrapper .recharts-cartesian-grid-horizontal line {
+            stroke-dasharray: 3 3;
+          }
+          tspan {
+            font-size: 11px;
+            fill: ${palette.grey.dark};
+          }
+          .recharts-wrapper
+            .recharts-yAxis
+            .recharts-cartesian-axis-ticks
+            .recharts-cartesian-axis-tick:first-child {
+            display: none;
+          }
+    `
+      }}
+    />
     <ComposedChart
       width={920}
       height={170}
@@ -75,7 +77,7 @@ export const DemoChart = (props: Props) => (
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
-      <CartesianGrid stroke='#ebeced' />
+      <CartesianGrid stroke={palette.grey.lighter} />
 
       {/* Axis */}
       <XAxis
@@ -106,23 +108,27 @@ export const DemoChart = (props: Props) => (
       />
 
       {/* Reference lines */}
-      <ReferenceLine y={2} stroke='#d42551' strokeDasharray='3 3 3' />
-      <ReferenceLine y={1.5} stroke='#e59c01' strokeDasharray='3 3' />
-      <ReferenceLine y={1} stroke='#00cc83' strokeDasharray='3 3' />
+      <ReferenceLine y={2} stroke={palette.red.main} strokeDasharray='3 3 3' />
+      <ReferenceLine
+        y={1.5}
+        stroke={palette.yellow.main}
+        strokeDasharray='3 3'
+      />
+      <ReferenceLine y={1} stroke={palette.green.main} strokeDasharray='3 3' />
 
       {/* Shape */}
       <Area
         type='linear'
         dataKey='y'
-        fill='#204ecf'
+        fill={palette.blue.main}
         fillOpacity={0.1}
         isAnimationActive={false}
       />
       <Line
         data={data}
         dataKey='y'
-        stroke='#204ecf'
-        dot={{ fill: '#204ecf' }}
+        stroke={palette.blue.main}
+        dot={{ fill: palette.blue.main }}
         isAnimationActive={false}
       />
 
@@ -133,7 +139,7 @@ export const DemoChart = (props: Props) => (
         y1={0}
         y2={4}
         fillOpacity={0.1}
-        fill='#d42551'
+        fill={palette.red.main}
       />
 
       <ReferenceArea
@@ -142,7 +148,7 @@ export const DemoChart = (props: Props) => (
         y1={3.95}
         y2={4}
         fillOpacity={1}
-        fill='#d42551'
+        fill={palette.red.main}
       />
 
       <ReferenceArea
@@ -151,7 +157,7 @@ export const DemoChart = (props: Props) => (
         y1={0}
         y2={4}
         fillOpacity={0.1}
-        fill='#d42551'
+        fill={palette.red.main}
       />
 
       <ReferenceArea
@@ -160,10 +166,10 @@ export const DemoChart = (props: Props) => (
         y1={3.95}
         y2={4}
         fillOpacity={1}
-        fill='#d42551'
+        fill={palette.red.main}
       />
     </ComposedChart>
-  </StyleOverrides>
+  </div>
 )
 
 DemoChart.defaultProps = {}

@@ -2,7 +2,7 @@ import DemoChart from '../DemoChart'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.section('Picasso Charts').createPage(
+const page = PicassoBook.section('Charts').createPage(
   'DemoChart',
   'This is what we can do with charts for now'
 )
