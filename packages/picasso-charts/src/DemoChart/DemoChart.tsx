@@ -49,14 +49,15 @@ const data = [
 ]
 
 const StyleOverrides = styled.div`
-  .recharts-wrapper .recharts-cartesian-grid-horizontal line {
+  && .recharts-wrapper .recharts-cartesian-grid-horizontal line {
     stroke-dasharray: 3 3;
   }
-  tspan {
+  && tspan {
     font-size: 11px;
     fill: #455065;
   }
-  .recharts-wrapper
+  &&
+    .recharts-wrapper
     .recharts-yAxis
     .recharts-cartesian-axis-ticks
     .recharts-cartesian-axis-tick:first-child {

@@ -4,11 +4,13 @@ import styled from 'styled-components'
 import { screens } from '@toptal/picasso/utils'
 
 const StyledLink = styled(Link)`
-  margin-left: 2.5rem;
+  && {
+    margin-left: 2.5rem;
 
-  ${screens('small')} {
-    margin-left: 0;
-    margin-bottom: 0.5rem;
+    ${screens('small')} {
+      margin-left: 0;
+      margin-bottom: 0.5rem;
+    }
   }
 `
 
