@@ -56,6 +56,7 @@ const imports: Record<string, object> = {
   '@toptal/picasso-lab': require('../../../packages/picasso-lab'),
   '@toptal/picasso-forms': require('../../../packages/picasso-forms'),
   '@toptal/picasso-forms/utils': require('../../../packages/picasso-forms/src/utils'),
+  '@toptal/picasso-charts': require('../../../packages/picasso-charts'),
   '@toptal/picasso/utils': require('../../../packages/picasso/src/utils'),
   '@toptal/picasso/Icon': require('../../../packages/picasso/src/Icon')
 }
@@ -138,6 +139,10 @@ class CodeExample extends Component<Props> {
 
     try {
       return requireContext(`./picasso-forms/src/${src}`).default
+    } catch {}
+
+    try {
+      return requireContext(`./picasso-charts/src/${src}`).default
     } catch {}
 
     try {

@@ -23,6 +23,8 @@
       "@toptal/picasso-lab": ["packages/picasso-lab/src/index"],
       "@toptal/picasso-forms/*": ["packages/picasso-forms/src/*"],
       "@toptal/picasso-forms": ["packages/picasso-forms/src/index"],
+      "@toptal/picasso-charts/*": ["packages/picasso-charts/src/*"],
+      "@toptal/picasso-charts": ["packages/picasso-charts/src/index"],
       "*": ["@types/*"]
     }
   },
@@ -32,9 +34,5 @@
     // https://github.com/testing-library/jest-dom/issues/123 is fixed
     "./node_modules/@testing-library/jest-dom/extend-expect.d.ts"
   ],
-  "exclude": [
-    "**/test.jsx",
-    "**/test.tsx",
-    "**/story/index.jsx"
-  ]
+  "exclude": ["**/test.jsx", "**/test.tsx", "**/story/index.jsx"]
 }
