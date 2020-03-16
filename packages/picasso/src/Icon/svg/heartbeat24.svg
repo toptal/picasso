@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 63.1 (101010) - https://sketch.com -->
+    <title>30857e9d-0922-43d9-ae76-b79d704bafd2@1.00x</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <polygon id="path-1" points="6.598 12 9.05628459 0.941833244 12.039 17.843 14.9050311 3.99116737 17.369 12 24 12 24 13 16.6307127 13 15.095 8.008 11.9610225 23.1562402 8.943 6.059 7.4010858 13 0 13 0 12"></polygon>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons-/-Misc-/-24-/-Heartbeat">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Line-3" fill="#455065" fill-rule="nonzero" xlink:href="#path-1"></use>
+            <g id="Colors-/-305-Dark-Gray" mask="url(#mask-2)" fill="#455065">
+                <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+            </g>
+        </g>
+    </g>
+</svg>
