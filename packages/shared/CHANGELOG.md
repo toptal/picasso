@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.2](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.10.1...@toptal/picasso-shared@1.10.2) (2020-03-17)
+
+
+### Bug Fixes
+
+* **pageheader:** update color of light variant ([#1170](https://github.com/toptal/picasso/issues/1170)) ([ffb4004](https://github.com/toptal/picasso/commit/ffb4004e56571facd3d3b0f95470e16a20f10160))
+
+
+
+
+
 ## [1.10.1](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.10.0...@toptal/picasso-shared@1.10.1) (2020-03-11)
 
 

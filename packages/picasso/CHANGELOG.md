@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.44.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.44.1...@toptal/picasso@4.44.2) (2020-03-17)
+
+
+### Bug Fixes
+
+* **pageheader:** update color of light variant ([#1170](https://github.com/toptal/picasso/issues/1170)) ([ffb4004](https://github.com/toptal/picasso/commit/ffb4004e56571facd3d3b0f95470e16a20f10160))
+
+
+
+
+
 ## [4.44.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.44.0...@toptal/picasso@4.44.1) (2020-03-16)
 
 **Note:** Version bump only for package @toptal/picasso
