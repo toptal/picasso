@@ -13,10 +13,5 @@ page
 
 page.createChapter().addExample('Ellipsis/story/Default.example.jsx', {
   title: 'Default',
-  waitUntilImagesLoaded: true,
-  effect: async (testPage, makeScreenshot) => {
-    await testPage.type('[data-testid="input"]', ' some extra text')
-    await testPage.waitFor(100)
-    await makeScreenshot()
-  }
+  waitUntilImagesLoaded: true
 })

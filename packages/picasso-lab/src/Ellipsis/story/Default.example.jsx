@@ -1,31 +1,39 @@
 import React from 'react'
-import { Typography, Tooltip, Input } from '@toptal/picasso'
+import { Typography, Tooltip } from '@toptal/picasso'
 import { Ellipsis } from '@toptal/picasso-lab'
 
 const Example = () => {
-  const [text, setText] = React.useState('Type for tooltip')
-
-  const handleChange = event => {
-    setText(event.target.value)
-  }
-
   return (
-    <div style={{ width: 200 }}>
+    <div style={{ width: 300, marginTop: 100 }}>
       <Ellipsis
         renderWhenEllipsis={child => (
-          <Tooltip content={text} open placement='top'>
+          <Tooltip
+            content='Long text will be shortened and suffixed with ellipsis'
+            open
+            placement='top'
+          >
             {child}
           </Tooltip>
         )}
       >
-        <Typography noWrap>{text}</Typography>
+        <Typography noWrap>
+          Long text will be shortened and suffixed with ellipsis
+        </Typography>
       </Ellipsis>
-      <Input
-        value={text}
-        placeholder='Placeholder'
-        onChange={handleChange}
-        data-testid='input'
-      />
+
+      <Ellipsis
+        renderWhenEllipsis={child => (
+          <Tooltip
+            content='Short text displays completely'
+            open
+            placement='top'
+          >
+            {child}
+          </Tooltip>
+        )}
+      >
+        <Typography noWrap>Short text displays completely</Typography>
+      </Ellipsis>
     </div>
   )
 }
