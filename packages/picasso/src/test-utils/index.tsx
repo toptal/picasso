@@ -14,5 +14,6 @@ const customRender = (
   )
 }
 
+export { default as TestingPicasso } from './TestingPicasso'
 export * from '@testing-library/react'
 export { customRender as render }
