@@ -14,7 +14,7 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
       zIndex: zIndex.appBar
     },
     light: {
-      backgroundColor: palette.blue.dark
+      backgroundColor: palette.blue.main
     },
     dark: {
       backgroundColor: palette.blue.darker
