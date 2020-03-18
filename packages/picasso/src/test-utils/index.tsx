@@ -1,17 +1,13 @@
 import React, { ReactElement } from 'react'
 import { render, RenderOptions, RenderResult } from '@testing-library/react'
-import Picasso from '@toptal/picasso-shared'
+
+import TestingPicasso from './TestingPicasso'
 
 const customRender = (
   ui: ReactElement,
   options?: Omit<RenderOptions, 'queries'>
 ): RenderResult => {
-  return render(
-    <Picasso loadFavicon={false} loadFonts={false} fixViewport={false}>
-      {ui}
-    </Picasso>,
-    options
-  )
+  return render(<TestingPicasso>{ui}</TestingPicasso>, options)
 }
 
 export { default as TestingPicasso } from './TestingPicasso'
