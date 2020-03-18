@@ -506,17 +506,18 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
           anchorEl={inputWrapperRef.current}
           container={popperContainer}
         >
-          {renderOptions({
-            options,
-            renderOption,
-            highlightedIndex,
-            onItemSelect: handleSelect,
-            getItemProps,
-            value,
-            getDisplayValue,
-            multiple,
-            size
-          })}
+          {isOpen &&
+            renderOptions({
+              options,
+              renderOption,
+              highlightedIndex,
+              onItemSelect: handleSelect,
+              getItemProps,
+              value,
+              getDisplayValue,
+              multiple,
+              size
+            })}
         </Popper>
       )}
     </Fragment>

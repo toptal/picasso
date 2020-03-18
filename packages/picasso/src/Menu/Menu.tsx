@@ -2,6 +2,7 @@ import React, {
   HTMLAttributes,
   forwardRef,
   useState,
+  useMemo,
   useContext,
   ReactElement,
   useCallback
@@ -75,9 +76,12 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
   )
 
   const [menus, setMenus] = useState<Menus>({})
-  const menusKeys = Object.keys(menus)
 
-  const getLastKey = () => menusKeys[menusKeys.length - 1]
+  const menusKeys = useMemo(() => Object.keys(menus), [menus])
+
+  const getLastKey = useCallback(() => menusKeys[menusKeys.length - 1], [
+    menusKeys
+  ])
 
   const refresh = useCallback(
     (key: string, newMenu: ReactElement) => {
@@ -92,26 +96,29 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
     [menus]
   )
 
+  const menuContext: MenuContextProps = useMemo(
+    () => ({
+      push: (key: string, newMenu: ReactElement) =>
+        setMenus({ ...menus, ...{ [key]: newMenu } }),
+      pop: () => {
+        const key = getLastKey()
+
+        if (!key) {
+          return
+        }
+
+        const newMenus = { ...menus }
+
+        delete newMenus[key]
+        setMenus(newMenus)
+      },
+      refresh
+    }),
+    [getLastKey, menus, refresh]
+  )
+
   if (hasParentMenu) {
     return menu
-  }
-
-  const menuContext: MenuContextProps = {
-    push: (key: string, newMenu: ReactElement) =>
-      setMenus({ ...menus, ...{ [key]: newMenu } }),
-    pop: () => {
-      const key = getLastKey()
-
-      if (!key) {
-        return
-      }
-
-      const newMenus = { ...menus }
-
-      delete newMenus[key]
-      setMenus(newMenus)
-    },
-    refresh
   }
 
   const currentVisibleMenuKey = getLastKey()

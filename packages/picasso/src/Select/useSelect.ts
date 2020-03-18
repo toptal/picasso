@@ -12,7 +12,7 @@ export type ItemProps = {
   role: string
   'aria-selected': boolean
   selected: boolean
-  onMouseMove: () => void
+  onMouseEnter: () => void
   onMouseDown: (event: React.MouseEvent) => void
   close: () => void
   onClick: (event: React.MouseEvent) => void
@@ -142,7 +142,7 @@ const useSelect = ({
     role: 'option',
     'aria-selected': highlightedIndex === index,
     selected: highlightedIndex === index,
-    onMouseMove: () => {
+    onMouseEnter: () => {
       if (index === highlightedIndex) {
         return
       }
