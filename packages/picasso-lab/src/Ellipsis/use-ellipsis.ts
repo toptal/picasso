@@ -10,7 +10,7 @@ const useEllipsis = () => {
     )
   }
 
-  React.useEffect(measure)
+  React.useLayoutEffect(measure)
 
   React.useEffect(() => {
     window.addEventListener('resize', measure)
