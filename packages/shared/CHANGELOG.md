@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.3](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.10.2...@toptal/picasso-shared@1.10.3) (2020-03-18)
+
+
+### Bug Fixes
+
+* **notificationprovider:** fix notification spacing on pages with header ([#1169](https://github.com/toptal/picasso/issues/1169)) ([80fc1c9](https://github.com/toptal/picasso/commit/80fc1c91e76813bf77406e991e62ac39dd19a4aa)), closes [#1168](https://github.com/toptal/picasso/issues/1168)
+
+
+
+
+
 ## [1.10.2](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.10.1...@toptal/picasso-shared@1.10.2) (2020-03-17)
 
 
