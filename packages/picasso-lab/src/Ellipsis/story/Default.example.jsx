@@ -4,12 +4,11 @@ import { Ellipsis } from '@toptal/picasso-lab'
 
 const Example = () => {
   return (
-    <div style={{ width: 300, marginTop: 100 }}>
+    <div style={{ width: 300, marginTop: 50 }}>
       <Ellipsis
         renderWhenEllipsis={child => (
           <Tooltip
             content='Long text will be shortened and suffixed with ellipsis'
-            open
             placement='top'
           >
             {child}

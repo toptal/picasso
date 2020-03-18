@@ -1,4 +1,4 @@
-import React, { ReactNode, ReactElement } from 'react'
+import React, { ReactNode, ReactElement, FunctionComponent } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import useEllipsis from './use-ellipsis'
@@ -7,22 +7,21 @@ export interface Props extends BaseProps {
   /** Content of Ellipsis */
   children: ReactNode
   /** Specifies what to render in case of ellipsis active */
-  renderWhenEllipsis: (children: ReactNode) => ReactNode
+  renderWhenEllipsis?: (children: ReactElement) => ReactElement
 }
 
 const identity: <T>(arg: T) => T = input => input
 
-export const Ellipsis = ({
+export const Ellipsis: FunctionComponent<Props> = ({
   children,
   renderWhenEllipsis = identity
 }: Props) => {
-  let typography = React.Children.only(children)
+  let typography: ReactElement = React.Children.only(children) as ReactElement
   const { ref, isEllipsis } = useEllipsis()
-  typography = React.cloneElement(typography as ReactElement, {
+  typography = React.cloneElement(typography, {
     ref
   })
 
-  // eslint-disable-next-line react/jsx-props-no-spreading
   return isEllipsis ? renderWhenEllipsis(typography) : typography
 }
 
