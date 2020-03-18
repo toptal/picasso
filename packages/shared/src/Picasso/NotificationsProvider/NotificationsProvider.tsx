@@ -1,10 +1,11 @@
 import { SnackbarProvider } from 'notistack'
 import React, { FunctionComponent } from 'react'
+import { makeStyles } from '@material-ui/styles'
 
+import styles from './styles'
 import { usePageHeader } from '../Picasso'
 
-// --- need to move to shared config
-export const headerHeight = { default: '4.5rem', smallAndMedium: '3rem' }
+const useStyles = makeStyles(styles)
 
 const MAX_NOTIFICATION_MESSAGES = 5
 
@@ -18,12 +19,21 @@ const NotificationsProvider: FunctionComponent<Props> = ({
   container
 }) => {
   const { hasPageHeader } = usePageHeader()
+  const classes = useStyles()
+
+  const containerAnchorOriginTop = hasPageHeader
+    ? classes.rootWithMargin
+    : undefined
 
   return (
     <SnackbarProvider
       maxSnack={MAX_NOTIFICATION_MESSAGES}
       domRoot={container}
-      style={hasPageHeader ? { marginTop: headerHeight.default } : undefined}
+      classes={{
+        containerAnchorOriginTopRight: containerAnchorOriginTop,
+        containerAnchorOriginTopLeft: containerAnchorOriginTop,
+        containerAnchorOriginTopCenter: containerAnchorOriginTop
+      }}
     >
       {children}
     </SnackbarProvider>
