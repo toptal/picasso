@@ -13,5 +13,10 @@ page
 
 page.createChapter().addExample('Ellipsis/story/Default.example.jsx', {
   title: 'Default',
-  waitUntilImagesLoaded: true
+  effect: async (testPage, makeScreenshot) => {
+    // When ellipsed text is hovered then tooltip should appear
+    await testPage.hover('[data-testid="ellipsed-text"]')
+    await testPage.waitFor(100)
+    await makeScreenshot()
+  }
 })

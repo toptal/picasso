@@ -4,7 +4,7 @@ import { Ellipsis } from '@toptal/picasso-lab'
 
 const Example = () => {
   return (
-    <div style={{ width: 300, marginTop: 50 }}>
+    <div style={{ width: 300, marginTop: 100 }}>
       <Ellipsis
         renderWhenEllipsis={child => (
           <Tooltip
@@ -15,7 +15,7 @@ const Example = () => {
           </Tooltip>
         )}
       >
-        <Typography noWrap>
+        <Typography noWrap data-testid='ellipsed-text'>
           Long text will be shortened and suffixed with ellipsis
         </Typography>
       </Ellipsis>

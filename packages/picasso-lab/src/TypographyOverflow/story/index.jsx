@@ -15,5 +15,11 @@ page.createTabChapter('Props').addComponentDocs({
 page
   .createChapter()
   .addExample('TypographyOverflow/story/Default.example.jsx', {
-    title: 'Default'
+    title: 'Default',
+    effect: async (testPage, makeScreenshot) => {
+      // When ellipsed text is hovered then tooltip should appear
+      await testPage.hover('[data-testid="ellipsed-text"]')
+      await testPage.waitFor(100)
+      await makeScreenshot()
+    }
   })
