@@ -32,6 +32,12 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
         height: headerHeight.smallAndMedium
       }
     },
+    wrapper: {
+      height: headerHeight.default,
+      [screens('small', 'medium')]: {
+        height: headerHeight.smallAndMedium
+      }
+    },
     wide: {
       maxWidth: layout.contentWidthWide
     },
