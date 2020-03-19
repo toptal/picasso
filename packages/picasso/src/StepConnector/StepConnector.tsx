@@ -5,7 +5,7 @@ import { Classes } from '@toptal/picasso-shared'
 import { ChevronRight16 as ChevronRightIcon } from '../Icon'
 import styles from './styles'
 
-interface Props {
+export interface Props {
   classes: Classes
 }
 

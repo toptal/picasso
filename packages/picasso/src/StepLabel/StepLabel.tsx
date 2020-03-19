@@ -7,7 +7,7 @@ import { StandardProps } from '@toptal/picasso-shared'
 import StepIcon from '../StepIcon'
 import styles from './styles'
 
-interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   hideLabel: boolean
   children: string
   active?: boolean

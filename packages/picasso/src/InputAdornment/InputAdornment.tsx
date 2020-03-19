@@ -8,7 +8,7 @@ import styles from './styles'
 
 type PositionType = 'start' | 'end'
 
-interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   children: ReactNode
   position: PositionType
   disabled?: boolean

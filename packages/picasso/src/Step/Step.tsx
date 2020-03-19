@@ -4,7 +4,9 @@ import MUIStep, { StepProps } from '@material-ui/core/Step'
 
 import styles from './styles'
 
-export const Step: FunctionComponent<StepProps> = ({
+export type Props = StepProps
+
+export const Step: FunctionComponent<Props> = ({
   active,
   children,
   completed,

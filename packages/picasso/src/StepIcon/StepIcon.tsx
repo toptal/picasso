@@ -6,7 +6,7 @@ import { StandardProps } from '@toptal/picasso-shared'
 import { CheckMinor24 as TickIcon } from '../Icon'
 import styles from './styles'
 
-interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   active?: boolean
   completed?: boolean
 }
