@@ -3,6 +3,7 @@ import {
   useState,
   ChangeEvent,
   useMemo,
+  useCallback,
   HTMLAttributes
 } from 'react'
 
@@ -124,6 +125,7 @@ const useSelect = ({
   >
   isOpen: boolean
   highlightedIndex: number | null
+  setHighlightedIndex: (index: number | null) => void
 } => {
   const [isOpen, setOpen] = useState<boolean>(false)
   const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null)
@@ -138,6 +140,17 @@ const useSelect = ({
     onSelect(event, item)
   }
 
+  const onMouseDown = useCallback((event: React.MouseEvent) => {
+    // This prevents the activeElement from being changed
+    // to the item so it can remain with the current activeElement
+    // which is a more common use case.
+    event.preventDefault()
+  }, [])
+
+  const close = useCallback(() => {
+    setOpen(false)
+  }, [])
+
   const getItemProps = (index: number, item: Option): ItemProps => ({
     role: 'option',
     'aria-selected': highlightedIndex === index,
@@ -149,15 +162,8 @@ const useSelect = ({
 
       setHighlightedIndex(index)
     },
-    onMouseDown: (event: React.MouseEvent) => {
-      // This prevents the activeElement from being changed
-      // to the item so it can remain with the current activeElement
-      // which is a more common use case.
-      event.preventDefault()
-    },
-    close: () => {
-      setOpen(false)
-    },
+    onMouseDown,
+    close,
     onClick: (event: React.MouseEvent) => {
       setOpen(false)
       handleChange(getDisplayValue(item))
@@ -166,9 +172,11 @@ const useSelect = ({
   })
 
   const handleFocusOrClick = (event: React.FocusEvent<HTMLInputElement>) => {
-    onFocus(event)
-    setOpen(true)
-    setHighlightedIndex(FIRST_ITEM_INDEX)
+    if (!isOpen) {
+      onFocus(event)
+      setOpen(true)
+      setHighlightedIndex(FIRST_ITEM_INDEX)
+    }
   }
 
   const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
@@ -280,7 +288,8 @@ const useSelect = ({
     getRootProps,
     getInputProps,
     isOpen,
-    highlightedIndex
+    highlightedIndex,
+    setHighlightedIndex
   }
 }
 
