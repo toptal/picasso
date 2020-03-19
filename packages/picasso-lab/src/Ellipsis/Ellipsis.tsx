@@ -14,15 +14,17 @@ const identity: <T>(arg: T) => T = input => input
 
 export const Ellipsis: FunctionComponent<Props> = ({
   children,
-  renderWhenEllipsis = identity
+  renderWhenEllipsis
 }: Props) => {
-  let typography: ReactElement = React.Children.only(children) as ReactElement
+  let typography = React.Children.only(children) as ReactElement
   const { ref, isEllipsis } = useEllipsis()
   typography = React.cloneElement(typography, {
     ref
   })
 
-  return isEllipsis ? renderWhenEllipsis(typography) : typography
+  return isEllipsis && renderWhenEllipsis
+    ? renderWhenEllipsis(typography)
+    : typography
 }
 
 Ellipsis.displayName = 'Ellipsis'

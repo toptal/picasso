@@ -5,9 +5,10 @@ const useEllipsis = () => {
   const [isEllipsis, setIsEllipsis] = React.useState(false)
 
   const measure = () => {
-    setIsEllipsis(
-      (ref?.current?.scrollWidth ?? 0) > (ref?.current?.clientWidth ?? 0)
-    )
+    if (!ref || !ref.current) {
+      return
+    }
+    setIsEllipsis(ref.current.scrollWidth > ref.current.clientWidth)
   }
 
   React.useLayoutEffect(measure)

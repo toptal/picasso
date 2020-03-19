@@ -9,17 +9,8 @@ export interface Props extends BaseProps {
 }
 
 export const TypographyOverflow = ({ children }: Props) => {
-  const typography: ReactElement = React.Children.only(children) as ReactElement
-  const typographyText = typography.props.children
-
-  if (
-    typeof typographyText !== 'string' &&
-    typeof typographyText !== 'number'
-  ) {
-    throw new Error(
-      "TypographyOverflow's child must be a single Typography element with text"
-    )
-  }
+  const typography = React.Children.only(children) as ReactElement
+  const typographyText = React.Children.only(typography.props.children)
 
   return (
     <Ellipsis
