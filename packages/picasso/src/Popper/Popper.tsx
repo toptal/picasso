@@ -57,14 +57,7 @@ function getAnchorEl(
   return typeof anchorEl === 'function' ? anchorEl() : anchorEl
 }
 
-function getPopperOptions(
-  popperOptions: PopperOptions,
-  isCompactLayout: boolean
-) {
-  const preventOverflowPadding = isCompactLayout
-    ? 5
-    : { top: 5, bottom: 5, left: 5, right: 5 }
-
+function getPopperOptions(popperOptions: PopperOptions) {
   return {
     ...popperOptions,
     modifiers: {
@@ -77,7 +70,7 @@ function getPopperOptions(
       preventOverflow: {
         enabled: true,
         boundariesElement: 'viewport',
-        padding: preventOverflowPadding,
+        padding: 5,
         // replace with optional chaining
         ...(popperOptions.modifiers && popperOptions.modifiers.preventOverflow)
       }
@@ -145,7 +138,7 @@ export const Popper = forwardRef<PopperJs, Props>(function Popper(props, ref) {
       anchorEl={anchorEl}
       className={cx(classes.root, className)}
       popperRef={ref}
-      popperOptions={getPopperOptions(popperOptions!, isCompactLayout)}
+      popperOptions={getPopperOptions(popperOptions!)}
       disablePortal={disablePortal}
       style={{
         ...style,
