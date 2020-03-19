@@ -124,7 +124,7 @@ const renderNativeOptions = ({
 }: NativeOptionsProps) =>
   options.map((option, index) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { close: _, selected: __, ...rest } = getItemProps(index, option)
+    const { close: _, ...rest } = getItemProps(index, option)
 
     return (
       <option
@@ -205,9 +205,6 @@ const renderOptions = ({
   size
 }: OptionsProps) => {
   const optionComponents = options.map((option, index) => {
-    // we get close and onMouseDown here because getItemProps will always
-    // have a new reference because of design
-    // so passing it down will trigger unnecessary re-render
     const { close, onMouseDown } = getItemProps(index, option)
     const selected = highlightedIndex === index
 
