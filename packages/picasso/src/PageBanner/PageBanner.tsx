@@ -8,6 +8,7 @@ import React, {
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { BaseProps, SpacingType } from '@toptal/picasso-shared'
+import { Typography } from '@toptal/picasso'
 
 import Container, { VariantType } from '../Container'
 import styles from './styles'
@@ -73,7 +74,9 @@ export const PageBanner = forwardRef<HTMLDivElement, Props>(function PageBanner(
             {icon}
           </Container>
         )}
-        <div>{children}</div>
+        <Typography as='div' color='black'>
+          {children}
+        </Typography>
       </Container>
     </Container>
   )
