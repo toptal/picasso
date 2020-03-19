@@ -101,6 +101,29 @@ interface Props {
   getDisplayValue: (item: Option | null) => string
 }
 
+type GetInputProps = ({
+  canCloseOnEnter
+}: {
+  canCloseOnEnter: boolean
+}) => Partial<
+  HTMLAttributes<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+>
+
+type GetRootProps = () => {
+  onFocus: (event: React.FocusEvent<HTMLInputElement>) => void
+  onClick: (event: React.FocusEvent<HTMLInputElement>) => void
+  onBlur: (event: React.FocusEvent<HTMLInputElement>) => void
+}
+
+interface UseSelectOutput {
+  getItemProps: (index: number, item: Option) => ItemProps
+  getRootProps: GetRootProps
+  getInputProps: GetInputProps
+  isOpen: boolean
+  highlightedIndex: number | null
+  setHighlightedIndex: (index: number | null) => void
+}
+
 const useSelect = ({
   value,
   options = [],
@@ -112,20 +135,7 @@ const useSelect = ({
   onBlur = () => {},
   onFocus = () => {},
   getDisplayValue
-}: Props): {
-  getItemProps: (index: number, item: Option) => ItemProps
-  getRootProps: () => any
-  getInputProps: ({
-    canCloseOnEnter
-  }: {
-    canCloseOnEnter: boolean
-  }) => Partial<
-    HTMLAttributes<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  >
-  isOpen: boolean
-  highlightedIndex: number | null
-  setHighlightedIndex: (index: number | null) => void
-} => {
+}: Props): UseSelectOutput => {
   const [isOpen, setOpen] = useState<boolean>(false)
   const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null)
 
