@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.8.3...@toptal/picasso-lab@2.9.0) (2020-03-20)
+
+
+### Features
+
+* create Ellipsis component ([#1167](https://github.com/toptal/picasso/issues/1167)) ([f475344](https://github.com/toptal/picasso/commit/f47534474a498d1ce33a781d0be65aafb79533ba))
+
+
+
+
+
 ## [2.8.3](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.8.2...@toptal/picasso-lab@2.8.3) (2020-03-13)
 
 
