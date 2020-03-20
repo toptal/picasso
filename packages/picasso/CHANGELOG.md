@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.44.6](https://github.com/toptal/picasso/compare/@toptal/picasso@4.44.5...@toptal/picasso@4.44.6) (2020-03-20)
+
+
+### Bug Fixes
+
+* **page.banner:** fix icon alignment ([#1177](https://github.com/toptal/picasso/issues/1177)) ([59b9170](https://github.com/toptal/picasso/commit/59b9170dbfa84a80395c099012ccf0bd93493c4c))
+
+
+
+
+
 ## [4.44.5](https://github.com/toptal/picasso/compare/@toptal/picasso@4.44.4...@toptal/picasso@4.44.5) (2020-03-20)
 
 
