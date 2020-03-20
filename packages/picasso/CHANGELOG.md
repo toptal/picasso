@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.44.5](https://github.com/toptal/picasso/compare/@toptal/picasso@4.44.4...@toptal/picasso@4.44.5) (2020-03-20)
+
+
+### Bug Fixes
+
+* **Select:** improve rendering performance ([#1172](https://github.com/toptal/picasso/issues/1172)) ([4a56adb](https://github.com/toptal/picasso/commit/4a56adb7d736af7f2d487381d9bb417c7b14268c))
+
+
+
+
+
 ## [4.44.4](https://github.com/toptal/picasso/compare/@toptal/picasso@4.44.3...@toptal/picasso@4.44.4) (2020-03-19)
 
 **Note:** Version bump only for package @toptal/picasso
