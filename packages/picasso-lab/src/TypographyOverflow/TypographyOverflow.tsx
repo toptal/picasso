@@ -10,12 +10,11 @@ export interface Props extends BaseProps {
 
 export const TypographyOverflow = ({ children }: Props) => {
   const typography = React.Children.only(children) as ReactElement
-  const typographyText = React.Children.only(typography.props.children)
 
   return (
     <Ellipsis
       renderWhenEllipsis={child => (
-        <Tooltip content={typographyText} placement='top'>
+        <Tooltip content={typography.props.children} placement='top'>
           {child}
         </Tooltip>
       )}
