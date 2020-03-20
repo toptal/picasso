@@ -3,6 +3,7 @@ import {
   useState,
   ChangeEvent,
   useMemo,
+  useCallback,
   HTMLAttributes
 } from 'react'
 
@@ -11,8 +12,7 @@ import { Option } from './types'
 export type ItemProps = {
   role: string
   'aria-selected': boolean
-  selected: boolean
-  onMouseMove: () => void
+  onMouseEnter: () => void
   onMouseDown: (event: React.MouseEvent) => void
   close: () => void
   onClick: (event: React.MouseEvent) => void
@@ -101,6 +101,29 @@ interface Props {
   getDisplayValue: (item: Option | null) => string
 }
 
+type GetInputProps = ({
+  canCloseOnEnter
+}: {
+  canCloseOnEnter: boolean
+}) => Partial<
+  HTMLAttributes<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+>
+
+type GetRootProps = () => {
+  onFocus: (event: React.FocusEvent<HTMLInputElement>) => void
+  onClick: (event: React.MouseEvent<HTMLInputElement>) => void
+  onBlur: (event: React.FocusEvent<HTMLInputElement>) => void
+}
+
+interface UseSelectOutput {
+  getItemProps: (index: number, item: Option) => ItemProps
+  getRootProps: GetRootProps
+  getInputProps: GetInputProps
+  isOpen: boolean
+  highlightedIndex: number | null
+  setHighlightedIndex: (index: number | null) => void
+}
+
 const useSelect = ({
   value,
   options = [],
@@ -112,19 +135,7 @@ const useSelect = ({
   onBlur = () => {},
   onFocus = () => {},
   getDisplayValue
-}: Props): {
-  getItemProps: (index: number, item: Option) => ItemProps
-  getRootProps: () => any
-  getInputProps: ({
-    canCloseOnEnter
-  }: {
-    canCloseOnEnter: boolean
-  }) => Partial<
-    HTMLAttributes<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  >
-  isOpen: boolean
-  highlightedIndex: number | null
-} => {
+}: Props): UseSelectOutput => {
   const [isOpen, setOpen] = useState<boolean>(false)
   const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null)
 
@@ -138,26 +149,29 @@ const useSelect = ({
     onSelect(event, item)
   }
 
+  const onMouseDown = useCallback((event: React.MouseEvent) => {
+    // This prevents the activeElement from being changed
+    // to the item so it can remain with the current activeElement
+    // which is a more common use case.
+    event.preventDefault()
+  }, [])
+
+  const close = useCallback(() => {
+    setOpen(false)
+  }, [])
+
   const getItemProps = (index: number, item: Option): ItemProps => ({
     role: 'option',
     'aria-selected': highlightedIndex === index,
-    selected: highlightedIndex === index,
-    onMouseMove: () => {
+    onMouseEnter: () => {
       if (index === highlightedIndex) {
         return
       }
 
       setHighlightedIndex(index)
     },
-    onMouseDown: (event: React.MouseEvent) => {
-      // This prevents the activeElement from being changed
-      // to the item so it can remain with the current activeElement
-      // which is a more common use case.
-      event.preventDefault()
-    },
-    close: () => {
-      setOpen(false)
-    },
+    onMouseDown,
+    close,
     onClick: (event: React.MouseEvent) => {
       setOpen(false)
       handleChange(getDisplayValue(item))
@@ -165,10 +179,16 @@ const useSelect = ({
     }
   })
 
-  const handleFocusOrClick = (event: React.FocusEvent<HTMLInputElement>) => {
-    onFocus(event)
-    setOpen(true)
-    setHighlightedIndex(FIRST_ITEM_INDEX)
+  const handleFocusOrClick = (
+    event:
+      | React.FocusEvent<HTMLInputElement>
+      | React.MouseEvent<HTMLInputElement>
+  ) => {
+    if (!isOpen) {
+      onFocus(event as React.FocusEvent<HTMLInputElement>)
+      setOpen(true)
+      setHighlightedIndex(FIRST_ITEM_INDEX)
+    }
   }
 
   const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
@@ -280,7 +300,8 @@ const useSelect = ({
     getRootProps,
     getInputProps,
     isOpen,
-    highlightedIndex
+    highlightedIndex,
+    setHighlightedIndex
   }
 }
 

@@ -7,6 +7,7 @@ import React, {
   InputHTMLAttributes,
   useRef,
   useState,
+  useCallback,
   Fragment,
   useLayoutEffect
 } from 'react'
@@ -102,6 +103,7 @@ type OptionsProps = Pick<
   'options' | 'value' | 'multiple' | 'renderOption' | 'getDisplayValue' | 'size'
 > & {
   highlightedIndex: number | null
+  setHighlightedIndex: (index: number | null) => void
   getItemProps: (index: number, option: Option) => ItemProps
   onItemSelect: (event: React.MouseEvent, option: Option) => void
 }
@@ -122,7 +124,7 @@ const renderNativeOptions = ({
 }: NativeOptionsProps) =>
   options.map((option, index) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { close: _, selected: __, ...rest } = getItemProps(index, option)
+    const { close: _, ...rest } = getItemProps(index, option)
 
     return (
       <option
@@ -136,10 +138,66 @@ const renderNativeOptions = ({
     )
   })
 
+interface SelectOptionProps {
+  children?: ReactNode
+  onMouseDown: (event: React.MouseEvent) => void
+  close: () => void
+  selected: boolean
+  multiple?: boolean
+  size?: SizeType<'small' | 'medium'>
+  index: number
+  setHighlightedIndex: OptionsProps['setHighlightedIndex']
+  onItemSelect: OptionsProps['onItemSelect']
+  option: Option
+}
+
+const SelectOption = React.memo(
+  ({
+    option,
+    size,
+    onMouseDown,
+    selected,
+    setHighlightedIndex,
+    index,
+    onItemSelect,
+    multiple,
+    children,
+    close
+  }: SelectOptionProps) => {
+    return (
+      <MenuItem
+        role='option'
+        aria-selected={selected}
+        value={option.value}
+        size={size}
+        selected={selected}
+        onMouseDown={onMouseDown}
+        onMouseEnter={() => {
+          if (selected) {
+            return
+          }
+
+          setHighlightedIndex(index)
+        }}
+        onClick={(event: React.MouseEvent) => {
+          if (!multiple) {
+            close()
+          }
+
+          onItemSelect(event, option)
+        }}
+      >
+        {children}
+      </MenuItem>
+    )
+  }
+)
+
 const renderOptions = ({
   options,
   renderOption,
   highlightedIndex,
+  setHighlightedIndex,
   onItemSelect,
   getItemProps,
   value,
@@ -147,7 +205,8 @@ const renderOptions = ({
   size
 }: OptionsProps) => {
   const optionComponents = options.map((option, index) => {
-    const { selected, close, ...rest } = getItemProps(index, option)
+    const { close, onMouseDown } = getItemProps(index, option)
+    const selected = highlightedIndex === index
 
     const isSelected =
       multiple && Array.isArray(value)
@@ -155,22 +214,20 @@ const renderOptions = ({
         : selected
 
     return (
-      <MenuItem
+      <SelectOption
         key={option.key || option.value}
-        value={option.value}
+        option={option}
         size={size}
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        {...rest}
+        onMouseDown={onMouseDown}
         selected={isSelected}
-        onClick={(event: React.MouseEvent) => {
-          if (!multiple) {
-            close()
-          }
-          onItemSelect(event, option)
-        }}
+        setHighlightedIndex={setHighlightedIndex}
+        index={index}
+        multiple={multiple}
+        close={close}
+        onItemSelect={onItemSelect}
       >
         {renderOption!(option)}
-      </MenuItem>
+      </SelectOption>
     )
   })
 
@@ -271,17 +328,14 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
 
   const emptySelectValue = multiple ? [] : ''
 
-  const fireOnChangeEvent = ({
-    event,
-    value
-  }: {
-    event: any
-    value: ValueType
-  }) => {
-    event.persist()
-    event.target = { value, name }
-    onChange!(event)
-  }
+  const fireOnChangeEvent = useCallback(
+    ({ event, value }: { event: any; value: ValueType }) => {
+      event.persist()
+      event.target = { value, name }
+      onChange!(event)
+    },
+    [name, onChange]
+  )
 
   const inputWrapperRef = useRef<HTMLDivElement>(null)
   const select = getSelection(allOptions, value, getDisplayValue!)
@@ -294,13 +348,16 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     setInputValue(select.display())
   }, [allOptions, getDisplayValue, value])
 
-  const filterOptions = (subStr: string) => {
-    const filteredOptions = allOptions.filter(option =>
-      isSubstring(subStr, getDisplayValue!(option))
-    )
+  const filterOptions = useCallback(
+    (subStr: string) => {
+      const filteredOptions = allOptions.filter(option =>
+        isSubstring(subStr, getDisplayValue!(option))
+      )
 
-    setOptions(filteredOptions)
-  }
+      setOptions(filteredOptions)
+    },
+    [allOptions, getDisplayValue]
+  )
 
   const handleFocus = () => {
     filterOptions(EMPTY_INPUT_VALUE)
@@ -338,27 +395,39 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     }
     return [...value, String(option.value)]
   }
-  const handleSelect = (event: React.SyntheticEvent, option: Option | null) => {
-    let newValue
+  const handleSelect = useCallback(
+    (event: React.SyntheticEvent, option: Option | null) => {
+      let newValue
 
-    if (option === null) {
-      newValue = emptySelectValue
-    } else if (multiple && Array.isArray(value)) {
-      newValue = toggleMultipleSelectValue(value, option)
-    } else {
-      newValue = option.value
-    }
+      if (option === null) {
+        newValue = emptySelectValue
+      } else if (multiple && Array.isArray(value)) {
+        newValue = toggleMultipleSelectValue(value, option)
+      } else {
+        newValue = option.value
+      }
 
-    const select = getSelection(allOptions, newValue, getDisplayValue!)
+      const select = getSelection(allOptions, newValue, getDisplayValue!)
 
-    setInputValue(select.display())
+      setInputValue(select.display())
 
-    fireOnChangeEvent({ event, value: newValue })
-    filterOptions(EMPTY_INPUT_VALUE)
-  }
+      fireOnChangeEvent({ event, value: newValue })
+      filterOptions(EMPTY_INPUT_VALUE)
+    },
+    [
+      allOptions,
+      emptySelectValue,
+      filterOptions,
+      fireOnChangeEvent,
+      getDisplayValue,
+      multiple,
+      value
+    ]
+  )
 
   const {
     highlightedIndex,
+    setHighlightedIndex,
     isOpen,
     getItemProps,
     getInputProps,
@@ -506,17 +575,19 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
           anchorEl={inputWrapperRef.current}
           container={popperContainer}
         >
-          {renderOptions({
-            options,
-            renderOption,
-            highlightedIndex,
-            onItemSelect: handleSelect,
-            getItemProps,
-            value,
-            getDisplayValue,
-            multiple,
-            size
-          })}
+          {isOpen &&
+            renderOptions({
+              options,
+              renderOption,
+              highlightedIndex,
+              setHighlightedIndex,
+              onItemSelect: handleSelect,
+              getItemProps,
+              value,
+              getDisplayValue,
+              multiple,
+              size
+            })}
         </Popper>
       )}
     </Fragment>
