@@ -7,7 +7,6 @@ export default ({ layout }: Theme) =>
       justifyContent: 'center'
     },
     content: {
-      alignItems: 'center',
       fontSize: '0.875em',
       width: '100%',
       paddingLeft: layout.contentPaddingHorizontal,
@@ -15,10 +14,10 @@ export default ({ layout }: Theme) =>
       maxWidth: layout.contentWidth
     },
     iconWrapper: {
-      flexBasis: '1.5em',
-      marginRight: '1.5em',
-      minWidth: '1.5em',
-      height: '1.3125em'
+      flexBasis: '1.5rem',
+      marginRight: '1.5rem',
+      minWidth: '1.5rem',
+      height: '1.3125rem'
     },
     wide: {
       maxWidth: layout.contentWidthWide

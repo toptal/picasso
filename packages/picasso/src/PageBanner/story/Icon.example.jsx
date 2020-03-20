@@ -1,7 +1,7 @@
 import React from 'react'
 import { Page, Container, Time16 } from '@toptal/picasso'
 
-const NotificationIconExample = () => (
+const Example = () => (
   <Container bottom='small'>
     <Page.Banner icon={<Time16 />}>
       We are now in the process of reviewing your profile. After your profile
@@ -10,4 +10,4 @@ const NotificationIconExample = () => (
   </Container>
 )
 
-export default NotificationIconExample
+export default Example
