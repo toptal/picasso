@@ -111,7 +111,7 @@ type GetInputProps = ({
 
 type GetRootProps = () => {
   onFocus: (event: React.FocusEvent<HTMLInputElement>) => void
-  onClick: (event: React.FocusEvent<HTMLInputElement>) => void
+  onClick: (event: React.MouseEvent<HTMLInputElement>) => void
   onBlur: (event: React.FocusEvent<HTMLInputElement>) => void
 }
 
@@ -179,9 +179,13 @@ const useSelect = ({
     }
   })
 
-  const handleFocusOrClick = (event: React.FocusEvent<HTMLInputElement>) => {
+  const handleFocusOrClick = (
+    event:
+      | React.FocusEvent<HTMLInputElement>
+      | React.MouseEvent<HTMLInputElement>
+  ) => {
     if (!isOpen) {
-      onFocus(event)
+      onFocus(event as React.FocusEvent<HTMLInputElement>)
       setOpen(true)
       setHighlightedIndex(FIRST_ITEM_INDEX)
     }
