@@ -14,10 +14,19 @@ page.createTabChapter('Props').addComponentDocs({
 
 page
   .createChapter()
-  .addExample('TypographyOverflow/story/Default.example.jsx', {
+  .addExample('TypographyOverflow/story/Default.example.tsx', {
     title: 'Default',
     effect: async (testPage, makeScreenshot) => {
       // When ellipsed text is hovered then tooltip should appear
+      await testPage.hover('[data-testid="ellipsed-text"]')
+      await testPage.waitFor(100)
+      await makeScreenshot()
+    }
+  })
+  .addExample('TypographyOverflow/story/CheckboxLabel.example.tsx', {
+    title: 'Checkbox label',
+    effect: async (testPage, makeScreenshot) => {
+      // When ellipsed checkbox's label is hovered then tooltip should appear
       await testPage.hover('[data-testid="ellipsed-text"]')
       await testPage.waitFor(100)
       await makeScreenshot()
