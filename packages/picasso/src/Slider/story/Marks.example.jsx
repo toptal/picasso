@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Slider } from '@toptal/picasso'
 
-const SliderMarksExample = () => {
+const Example = () => {
   const handleChange = (event, value) => {
     window.console.log('onChange: ', value)
   }
@@ -13,4 +13,4 @@ const SliderMarksExample = () => {
   )
 }
 
-export default SliderMarksExample
+export default Example

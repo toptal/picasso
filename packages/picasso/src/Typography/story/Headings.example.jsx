@@ -1,7 +1,7 @@
 import React from 'react'
 import { Typography, Container } from '@toptal/picasso'
 
-const TypographyHeadingsExample = () => (
+const Example = () => (
   <div>
     <Container bottom='small'>
       <Typography variant='heading' size='small'>
@@ -24,4 +24,4 @@ const TypographyHeadingsExample = () => (
   </div>
 )
 
-export default TypographyHeadingsExample
+export default Example

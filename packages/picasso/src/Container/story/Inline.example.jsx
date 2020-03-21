@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container } from '@toptal/picasso'
 
-const ContainerInlineExample = () => (
+const Example = () => (
   <div>
     <Container inline right='large'>
       <span>Some inline text</span>
@@ -10,4 +10,4 @@ const ContainerInlineExample = () => (
   </div>
 )
 
-export default ContainerInlineExample
+export default Example

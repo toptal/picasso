@@ -1,7 +1,7 @@
 import React from 'react'
 import { UserBadge, Link, Typography } from '@toptal/picasso'
 
-const UserBadgeTitleExample = () => (
+const Example = () => (
   <UserBadge
     name='Jacqueline Roque'
     title='UI specialist'
@@ -13,4 +13,4 @@ const UserBadgeTitleExample = () => (
   </UserBadge>
 )
 
-export default UserBadgeTitleExample
+export default Example

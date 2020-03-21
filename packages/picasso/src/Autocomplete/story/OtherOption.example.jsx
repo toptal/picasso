@@ -17,7 +17,7 @@ const filterOptions = str =>
     ? allOptions.filter(option => isSubstring(str, getDisplayValue(option)))
     : allOptions
 
-const AutocompleteOtherOptionExample = () => {
+const Example = () => {
   const [value, setValue] = useState(EMPTY_INPUT_VALUE)
   const [options, setOptions] = useState(allOptions)
 
@@ -54,4 +54,4 @@ const AutocompleteOtherOptionExample = () => {
   )
 }
 
-export default AutocompleteOtherOptionExample
+export default Example

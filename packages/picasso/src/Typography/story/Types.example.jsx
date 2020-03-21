@@ -1,7 +1,7 @@
 import React from 'react'
 import { Typography, Container } from '@toptal/picasso'
 
-const TypographyTypesExample = () => (
+const Example = () => (
   <div>
     <Container bottom='small'>
       <Typography size='large'>Body Large</Typography>
@@ -20,4 +20,4 @@ const TypographyTypesExample = () => (
   </div>
 )
 
-export default TypographyTypesExample
+export default Example

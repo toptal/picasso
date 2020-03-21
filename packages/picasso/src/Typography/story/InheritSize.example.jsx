@@ -1,10 +1,10 @@
 import React from 'react'
 import { Typography } from '@toptal/picasso'
 
-const TypographyAlignmentExample = () => (
+const Example = () => (
   <div style={{ fontSize: '2rem' }}>
     <Typography>Inherit font size</Typography>
   </div>
 )
 
-export default TypographyAlignmentExample
+export default Example

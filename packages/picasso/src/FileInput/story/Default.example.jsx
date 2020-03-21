@@ -1,7 +1,7 @@
 import React from 'react'
 import { FileInput, Container } from '@toptal/picasso'
 
-const FileInputDefaultExample = () => (
+const Example = () => (
   <div>
     <Container bottom='small'>
       <FileInput status='No file uploaded.' />
@@ -15,4 +15,4 @@ const FileInputDefaultExample = () => (
   </div>
 )
 
-export default FileInputDefaultExample
+export default Example

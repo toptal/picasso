@@ -8,7 +8,7 @@ const StyledCustomNotification = styled(Container)`
   box-shadow: ${shadows[3]};
 `
 
-const CustomExample = () => {
+const Example = () => {
   const { showCustomNotification, closeNotification } = useNotifications()
 
   return (
@@ -42,4 +42,4 @@ const CustomExample = () => {
   )
 }
 
-export default CustomExample
+export default Example

@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Container } from '@toptal/picasso'
 import { useNotifications } from '@toptal/picasso/utils'
 
-const VariantsExample = () => {
+const Example = () => {
   const { showError, showInfo, showSuccess } = useNotifications()
 
   return (
@@ -34,4 +34,4 @@ const VariantsExample = () => {
   )
 }
 
-export default VariantsExample
+export default Example

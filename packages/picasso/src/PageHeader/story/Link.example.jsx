@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, Page } from '@toptal/picasso'
 
-const PageHeaderLinkExample = () => (
+const Example = () => (
   <div style={{ height: '4.5rem' }}>
     <Page.Header
       title='Onboarding'
@@ -10,4 +10,4 @@ const PageHeaderLinkExample = () => (
   </div>
 )
 
-export default PageHeaderLinkExample
+export default Example

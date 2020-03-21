@@ -11,7 +11,7 @@ import {
   Form
 } from '@toptal/picasso'
 
-const FormsExample = () => (
+const Example = () => (
   <div>
     <Grid justifyContent='center' alignItems='center'>
       <Grid.Item small={12} medium={8} large={6}>
@@ -88,4 +88,4 @@ const HorizontalRadioGroup = styled(Radio.Group)`
   flex-direction: row;
 `
 
-export default FormsExample
+export default Example

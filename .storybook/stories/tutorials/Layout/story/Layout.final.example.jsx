@@ -47,7 +47,7 @@ const MainContent = () => (
   </StyledMainContentContainer>
 )
 
-const LayoutExample = () => (
+const Example = () => (
   <div style={{ height: '40rem' }}>
     <Page>
       <Page.Header title='How to layout a page' />
@@ -69,4 +69,4 @@ const StyledDetailsContainer = styled(Container)`
   background-color: ${palette.common.white};
 `
 
-export default LayoutExample
+export default Example

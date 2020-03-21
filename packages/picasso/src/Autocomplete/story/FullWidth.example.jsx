@@ -9,7 +9,7 @@ const options = [
   { text: 'Ukraine' }
 ]
 
-const AutocompleteFullWidthExample = () => (
+const Example = () => (
   <div>
     <Autocomplete
       placeholder='Start typing country...'
@@ -20,4 +20,4 @@ const AutocompleteFullWidthExample = () => (
   </div>
 )
 
-export default AutocompleteFullWidthExample
+export default Example

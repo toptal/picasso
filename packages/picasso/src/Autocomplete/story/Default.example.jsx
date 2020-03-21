@@ -24,7 +24,7 @@ const filterOptions = (str = '') => {
   return result.length > 0 ? result : null
 }
 
-const AutocompleteDefaultExample = () => {
+const Example = () => {
   const [value, setValue] = useState(EMPTY_INPUT_VALUE)
   const [options, setOptions] = useState(allOptions)
 
@@ -55,4 +55,4 @@ const AutocompleteDefaultExample = () => {
   )
 }
 
-export default AutocompleteDefaultExample
+export default Example

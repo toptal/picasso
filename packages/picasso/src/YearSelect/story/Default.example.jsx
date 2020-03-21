@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { YearSelect } from '@toptal/picasso'
 
-const DefaultExample = () => {
+const Example = () => {
   const [year, setYear] = useState()
 
   const onChange = event => {
@@ -22,4 +22,4 @@ const DefaultExample = () => {
   )
 }
 
-export default DefaultExample
+export default Example

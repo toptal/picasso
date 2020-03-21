@@ -1,7 +1,7 @@
 import React from 'react'
 import { Avatar, Container } from '@toptal/picasso'
 
-const AvatarSizesExample = () => (
+const Example = () => (
   <div>
     <Container>
       <Container inline>
@@ -66,4 +66,4 @@ const AvatarSizesExample = () => (
   </div>
 )
 
-export default AvatarSizesExample
+export default Example

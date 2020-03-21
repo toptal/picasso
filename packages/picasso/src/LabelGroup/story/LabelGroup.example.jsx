@@ -1,7 +1,7 @@
 import React from 'react'
 import { Label } from '@toptal/picasso'
 
-const LabelGroupExample = () => (
+const Example = () => (
   <Label.Group>
     <Label>Angular JS</Label>
     <Label>React JS</Label>
@@ -14,4 +14,4 @@ const handleDelete = () => {
   window.alert('You clicked the delete icon.')
 }
 
-export default LabelGroupExample
+export default Example

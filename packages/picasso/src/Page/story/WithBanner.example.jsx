@@ -7,7 +7,7 @@ const StyledMainContentContainer = styled(Container)`
   flex: 1;
 `
 
-const WithBannerExample = () => (
+const Example = () => (
   <div style={{ maxHeight: '30rem' }}>
     <Page>
       <Page.Header rightContent={<RightContent />} title='Default example' />
@@ -59,4 +59,4 @@ const Content = () => (
   </StyledMainContentContainer>
 )
 
-export default WithBannerExample
+export default Example

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Page, Container } from '@toptal/picasso'
 
-const PageHeaderDefaultExample = () => (
+const Example = () => (
   <div>
     <Container style={{ position: 'relative', height: '6rem' }}>
       <Page.Header variant='light' title='Light' />
@@ -12,4 +12,4 @@ const PageHeaderDefaultExample = () => (
   </div>
 )
 
-export default PageHeaderDefaultExample
+export default Example

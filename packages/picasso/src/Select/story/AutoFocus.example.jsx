@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Select, Button, Container } from '@toptal/picasso'
 
-const SelectCustomOptionExample = () => {
+const Example = () => {
   const [value, setValue] = useState()
   const [show, setShow] = useState(false)
 
@@ -39,4 +39,4 @@ const OPTIONS = [
   { value: '4', text: 'Option 4' }
 ]
 
-export default SelectCustomOptionExample
+export default Example

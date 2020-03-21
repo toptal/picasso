@@ -3,7 +3,7 @@ import { Button, Container, Typography } from '@toptal/picasso'
 import { palette } from '@toptal/picasso/utils'
 import { Copy24, Twitter24, Linkedin24 } from '@toptal/picasso/Icon'
 
-const ButtonVariantsExample = () => (
+const Example = () => (
   <div>
     <Typography variant='heading' size='small'>
       Primary:
@@ -68,4 +68,4 @@ const ButtonVariantsExample = () => (
   </div>
 )
 
-export default ButtonVariantsExample
+export default Example

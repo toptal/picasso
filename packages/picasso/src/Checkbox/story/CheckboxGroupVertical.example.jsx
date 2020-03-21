@@ -1,7 +1,7 @@
 import React from 'react'
 import { Checkbox } from '@toptal/picasso'
 
-const CheckboxGroupVerticalExample = () => {
+const Example = () => {
   return (
     <Checkbox.Group>
       <Checkbox label='Checkbox 1' value='checkbox1' />
@@ -11,4 +11,4 @@ const CheckboxGroupVerticalExample = () => {
   )
 }
 
-export default CheckboxGroupVerticalExample
+export default Example

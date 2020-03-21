@@ -1,7 +1,7 @@
 import React from 'react'
 import { Menu } from '@toptal/picasso'
 
-const DefaultExample = () => {
+const Example = () => {
   const handleClick = () => {
     window.alert('Menu item is clicked')
   }
@@ -17,4 +17,4 @@ const DefaultExample = () => {
   )
 }
 
-export default DefaultExample
+export default Example

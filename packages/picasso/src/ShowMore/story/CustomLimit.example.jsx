@@ -1,7 +1,7 @@
 import React from 'react'
 import { ShowMore } from '@toptal/picasso'
 
-const CustomLimitExample = () => (
+const Example = () => (
   <div style={{ width: '430px' }}>
     <ShowMore rows={2}>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos earum vitae
@@ -25,4 +25,4 @@ const CustomLimitExample = () => (
   </div>
 )
 
-export default CustomLimitExample
+export default Example

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Logo, Container } from '@toptal/picasso'
 
-const LogoVariantsExample = () => (
+const Example = () => (
   <div>
     <div>
       <LogoContainer bgcolor='#ffffff' inline right='small'>
@@ -52,4 +52,4 @@ const LogoContainer = ({ children, bgcolor, inline, right }) => (
   </Container>
 )
 
-export default LogoVariantsExample
+export default Example

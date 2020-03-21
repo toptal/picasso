@@ -1,7 +1,7 @@
 import React from 'react'
 import { UserBadge, Grid, Typography } from '@toptal/picasso'
 
-const UserBadgeAlignmentExample = () => (
+const Example = () => (
   <div>
     <Grid direction='column'>
       <Grid.Item>
@@ -75,4 +75,4 @@ const UserBadgeAlignmentExample = () => (
   </div>
 )
 
-export default UserBadgeAlignmentExample
+export default Example

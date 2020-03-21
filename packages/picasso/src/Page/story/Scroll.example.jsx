@@ -1,7 +1,7 @@
 import React from 'react'
 import { Page, Container, Typography } from '@toptal/picasso'
 
-const PageScrollExample = () => (
+const Example = () => (
   <div style={{ maxHeight: '30rem', overflowY: 'scroll' }}>
     <Page>
       <Page.Header title='Scrollable example' />
@@ -57,4 +57,4 @@ const Content = () => (
   </Container>
 )
 
-export default PageScrollExample
+export default Example

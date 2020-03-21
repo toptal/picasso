@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Radio } from '@toptal/picasso'
 
-const RadioGroupHorizontalExample = () => {
+const Example = () => {
   const [value, setValue] = useState(null)
 
   return (
@@ -18,4 +18,4 @@ const RadioGroupHorizontalExample = () => {
   )
 }
 
-export default RadioGroupHorizontalExample
+export default Example

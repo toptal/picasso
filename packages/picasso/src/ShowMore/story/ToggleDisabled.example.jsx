@@ -1,7 +1,7 @@
 import React from 'react'
 import { ShowMore } from '@toptal/picasso'
 
-const ShowMoreDisabledToggleExample = () => (
+const Example = () => (
   <div style={{ width: '430px' }}>
     <ShowMore disableToggle>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos earum vitae
@@ -25,4 +25,4 @@ const ShowMoreDisabledToggleExample = () => (
   </div>
 )
 
-export default ShowMoreDisabledToggleExample
+export default Example

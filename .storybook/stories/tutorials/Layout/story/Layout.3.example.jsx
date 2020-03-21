@@ -12,7 +12,7 @@ const SidebarMenu = () => (
   </Sidebar>
 )
 
-const LayoutExample = () => (
+const Example = () => (
   <div style={{ height: '40rem' }}>
     <Page>
       <Page.Header title='How to layout a page' />
@@ -25,4 +25,4 @@ const LayoutExample = () => (
   </div>
 )
 
-export default LayoutExample
+export default Example

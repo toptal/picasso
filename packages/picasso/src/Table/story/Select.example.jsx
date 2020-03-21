@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Table, Checkbox } from '@toptal/picasso'
 
-const SelectTableExample = () => {
+const Example = () => {
   const [selected, setSelected] = useState([])
 
   const handleClick = (event, id) => {
@@ -95,4 +95,4 @@ const data = [
   )
 ]
 
-export default SelectTableExample
+export default Example

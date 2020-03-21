@@ -1,7 +1,7 @@
 import React from 'react'
 import { FileInput, Form } from '@toptal/picasso'
 
-const FileInputAllowedExtensionsExample = () => (
+const Example = () => (
   <div>
     <Form.Field hint='Accept png image files'>
       <FileInput accept='image/png' status='No file uploaded.' />
@@ -21,4 +21,4 @@ const FileInputAllowedExtensionsExample = () => (
   </div>
 )
 
-export default FileInputAllowedExtensionsExample
+export default Example

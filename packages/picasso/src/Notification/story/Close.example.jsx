@@ -5,7 +5,7 @@ const mockOnClose = () => {
   window.alert("You've clicked the close icon.")
 }
 
-const NotificationCloseExample = () => (
+const Example = () => (
   <div>
     <Container bottom={1}>
       <Typography variant='heading' size='small'>
@@ -19,4 +19,4 @@ const NotificationCloseExample = () => (
   </div>
 )
 
-export default NotificationCloseExample
+export default Example

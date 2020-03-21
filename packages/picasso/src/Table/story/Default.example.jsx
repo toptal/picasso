@@ -1,7 +1,7 @@
 import React from 'react'
 import { Table } from '@toptal/picasso'
 
-const TableDefaultExample = () => (
+const Example = () => (
   <div>
     <Table>
       <Table.Head>
@@ -75,4 +75,4 @@ const data = [
   )
 ]
 
-export default TableDefaultExample
+export default Example

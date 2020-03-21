@@ -10,7 +10,7 @@ const JobCandidate = () => (
   </Container>
 )
 
-const SpacingsExample = () => (
+const Example = () => (
   <div style={{ width: '35rem' }}>
     <Paper>
       <Container padded='medium'>
@@ -43,4 +43,4 @@ const SpacingsExample = () => (
   </div>
 )
 
-export default SpacingsExample
+export default Example

@@ -9,7 +9,7 @@ const DetailsDogDefinitionPanel = () => (
   </Typography>
 )
 
-const AccordionDefaultExample = () => {
+const Example = () => {
   return (
     <div style={{ width: '430px' }}>
       <Accordion content={<DetailsDogDefinitionPanel />}>
@@ -19,4 +19,4 @@ const AccordionDefaultExample = () => {
   )
 }
 
-export default AccordionDefaultExample
+export default Example

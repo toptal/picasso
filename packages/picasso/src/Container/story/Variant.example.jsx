@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Typography } from '@toptal/picasso'
 
-const ContainerDefaultExample = () => (
+const Example = () => (
   <Container flex direction='column'>
     <Container bottom='medium'>
       <Typography variant='heading' size='medium'>
@@ -55,4 +55,4 @@ const ContainerDefaultExample = () => (
   </Container>
 )
 
-export default ContainerDefaultExample
+export default Example

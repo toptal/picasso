@@ -1,7 +1,7 @@
 import React from 'react'
 import { Paper, Typography, Container } from '@toptal/picasso'
 
-const PaperDefaultExample = () => (
+const Example = () => (
   <div style={{ width: '25rem' }}>
     <Paper>
       <Container padded='small'>
@@ -19,4 +19,4 @@ const PaperDefaultExample = () => (
   </div>
 )
 
-export default PaperDefaultExample
+export default Example

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Input, Container } from '@toptal/picasso'
 import { Search16 } from '@toptal/picasso/Icon'
 
-const InputWithIconExample = () => {
+const Example = () => {
   const [value, setValue] = useState('Text')
 
   const handleChange = event => {
@@ -42,4 +42,4 @@ const InputWithIconExample = () => {
   )
 }
 
-export default InputWithIconExample
+export default Example

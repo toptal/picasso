@@ -1,7 +1,7 @@
 import React from 'react'
 import { Avatar } from '@toptal/picasso'
 
-const AvatarDefaultExample = () => (
+const Example = () => (
   <div>
     <Avatar
       alt='Jacqueline Roque. Pablo Picasso, 1954'
@@ -11,4 +11,4 @@ const AvatarDefaultExample = () => (
   </div>
 )
 
-export default AvatarDefaultExample
+export default Example

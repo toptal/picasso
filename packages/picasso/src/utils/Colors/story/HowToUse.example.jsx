@@ -2,7 +2,7 @@ import React from 'react'
 import { palette } from '@toptal/picasso/utils'
 import { Typography } from '@toptal/picasso'
 
-const HowToUseExample = () => (
+const Example = () => (
   <Typography>
     Use the color just directly from Picasso. For example,
     <span style={{ color: palette.blue.main }}>
@@ -11,4 +11,4 @@ const HowToUseExample = () => (
   </Typography>
 )
 
-export default HowToUseExample
+export default Example

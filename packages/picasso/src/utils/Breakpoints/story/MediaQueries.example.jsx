@@ -11,8 +11,8 @@ const StyledBox = styled.div`
   }
 `
 
-const MediaQueriesExample = () => (
+const Example = () => (
   <StyledBox>Box will become blue on small and medium screen sizes</StyledBox>
 )
 
-export default MediaQueriesExample
+export default Example

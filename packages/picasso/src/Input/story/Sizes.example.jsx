@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Input, Container, Typography } from '@toptal/picasso'
 
-const InputSizesExample = () => {
+const Example = () => {
   const [value, setValue] = useState()
 
   const handleChange = event => {
@@ -40,4 +40,4 @@ const InputSizesExample = () => {
   )
 }
 
-export default InputSizesExample
+export default Example

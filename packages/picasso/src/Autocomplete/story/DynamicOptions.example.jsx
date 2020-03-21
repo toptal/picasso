@@ -32,7 +32,7 @@ const loadOptions = inputValue =>
     setTimeout(() => resolve(result), 1000)
   })
 
-const AutocompleteDynamicOptionsExample = () => {
+const Example = () => {
   const [value, setValue] = useState('')
   const [options, setOptions] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -78,4 +78,4 @@ const AutocompleteDynamicOptionsExample = () => {
   )
 }
 
-export default AutocompleteDynamicOptionsExample
+export default Example

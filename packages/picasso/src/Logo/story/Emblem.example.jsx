@@ -1,10 +1,10 @@
 import React from 'react'
 import { Logo } from '@toptal/picasso'
 
-const LogoEmblemExample = () => (
+const Example = () => (
   <div>
     <Logo emblem />
   </div>
 )
 
-export default LogoEmblemExample
+export default Example

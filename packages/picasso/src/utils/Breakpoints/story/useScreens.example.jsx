@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { useScreens } from '@toptal/picasso/utils'
 import { Typography, Button } from '@toptal/picasso'
 
-const UseScreenExample = () => {
+const Example = () => {
   const screens = useScreens()
 
   return (
@@ -44,4 +44,4 @@ const UseScreenExample = () => {
   )
 }
 
-export default UseScreenExample
+export default Example

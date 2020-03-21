@@ -1,7 +1,7 @@
 import React from 'react'
 import { Notification, Container, Typography } from '@toptal/picasso'
 
-const NotificationFullWidthExample = () => (
+const Example = () => (
   <div>
     <Container bottom={1}>
       <Typography variant='heading' size='small'>
@@ -15,4 +15,4 @@ const NotificationFullWidthExample = () => (
   </div>
 )
 
-export default NotificationFullWidthExample
+export default Example

@@ -106,7 +106,7 @@ const ModalDialog = ({ modalId, hideModal }) => {
   )
 }
 
-const MaxHeightExample = () => {
+const Example = () => {
   const { showModal, hideModal } = useModals()
 
   const handleClick = () => {
@@ -124,4 +124,4 @@ const MaxHeightExample = () => {
   )
 }
 
-export default MaxHeightExample
+export default Example

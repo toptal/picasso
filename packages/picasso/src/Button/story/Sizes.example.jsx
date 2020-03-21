@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from '@toptal/picasso'
 
-const ButtonSizesExample = () => (
+const Example = () => (
   <div>
     <Button size='small'>Small</Button>
     <Button size='medium'>Medium (default)</Button>
@@ -9,4 +9,4 @@ const ButtonSizesExample = () => (
   </div>
 )
 
-export default ButtonSizesExample
+export default Example

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { Indicator, Typography, Container } from '@toptal/picasso'
 
-const IndicatorDefaultExample = () => (
+const Example = () => (
   <Fragment>
     <Container bottom='medium'>
       <Container inline right='small'>
@@ -30,4 +30,4 @@ const IndicatorDefaultExample = () => (
   </Fragment>
 )
 
-export default IndicatorDefaultExample
+export default Example

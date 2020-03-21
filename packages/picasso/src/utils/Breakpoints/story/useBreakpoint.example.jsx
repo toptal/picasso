@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { useBreakpoint } from '@toptal/picasso/utils'
 import { Typography } from '@toptal/picasso'
 
-const UseScreenExample = () => {
+const Example = () => {
   const isSmall = useBreakpoint('small')
   const isSmallOrMedium = useBreakpoint(['small', 'medium'])
 
@@ -14,4 +14,4 @@ const UseScreenExample = () => {
   )
 }
 
-export default UseScreenExample
+export default Example

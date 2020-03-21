@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Select, Container } from '@toptal/picasso'
 import { Settings16 } from '@toptal/picasso/Icon'
 
-const ShrinkWidthExample = () => {
+const Example = () => {
   const [value, setValue] = useState()
 
   const handleChange = event => {
@@ -41,4 +41,4 @@ const OPTIONS = [
   { value: '4', text: '4' }
 ]
 
-export default ShrinkWidthExample
+export default Example

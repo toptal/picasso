@@ -1,7 +1,7 @@
 import React from 'react'
 import { Typography, Container } from '@toptal/picasso'
 
-const UnderlineExample = () => (
+const Example = () => (
   <div>
     <Container bottom='small'>
       <Typography underline>solid</Typography>
@@ -12,4 +12,4 @@ const UnderlineExample = () => (
   </div>
 )
 
-export default UnderlineExample
+export default Example

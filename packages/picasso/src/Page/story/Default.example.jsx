@@ -7,7 +7,7 @@ const StyledMainContentContainer = styled(Container)`
   flex: 1;
 `
 
-const PageDefaultExample = () => (
+const Example = () => (
   <div style={{ height: '30rem' }}>
     <Page>
       <Page.Header rightContent={<RightContent />} title='Default example' />
@@ -66,4 +66,4 @@ const Content = () => (
   </StyledMainContentContainer>
 )
 
-export default PageDefaultExample
+export default Example

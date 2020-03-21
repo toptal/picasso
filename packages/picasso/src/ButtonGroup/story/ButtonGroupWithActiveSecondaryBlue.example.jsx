@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button } from '@toptal/picasso'
 
-const ButtonGroupWithActiveSecondaryBlueExample = () => {
+const Example = () => {
   const [active, setActive] = useState(1)
 
   return (
@@ -40,4 +40,4 @@ const ButtonGroupWithActiveSecondaryBlueExample = () => {
   )
 }
 
-export default ButtonGroupWithActiveSecondaryBlueExample
+export default Example

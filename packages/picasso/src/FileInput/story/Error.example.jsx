@@ -1,10 +1,10 @@
 import React from 'react'
 import { FileInput } from '@toptal/picasso'
 
-const FileInputErrorExample = () => (
+const Example = () => (
   <div>
     <FileInput error status='Upload failed.' />
   </div>
 )
 
-export default FileInputErrorExample
+export default Example

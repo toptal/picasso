@@ -8,7 +8,7 @@ const OPTIONS = [
   { value: '4', text: 'Option 4' }
 ]
 
-const SelectMultipleExample = () => {
+const Example = () => {
   const [values, setValues] = useState([])
 
   const handleChange = event => {
@@ -27,4 +27,4 @@ const SelectMultipleExample = () => {
   )
 }
 
-export default SelectMultipleExample
+export default Example

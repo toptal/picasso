@@ -1,7 +1,7 @@
 import React from 'react'
 import { Notification, Github16 } from '@toptal/picasso'
 
-const NotificationIconExample = () => (
+const Example = () => (
   <div>
     <Notification icon={<Github16 />}>
       The time zone in your profile is set to (UTC -08:00) America - Los
@@ -10,4 +10,4 @@ const NotificationIconExample = () => (
   </div>
 )
 
-export default NotificationIconExample
+export default Example

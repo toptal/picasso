@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Input, Container } from '@toptal/picasso'
 
-const InputMultilineExample = () => {
+const Example = () => {
   const [value, setValue] = useState('Multiline text')
 
   const handleChange = event => {
@@ -20,4 +20,4 @@ const InputMultilineExample = () => {
   )
 }
 
-export default InputMultilineExample
+export default Example

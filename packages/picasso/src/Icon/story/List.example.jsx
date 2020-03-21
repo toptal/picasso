@@ -6,7 +6,7 @@ import * as icons from '@toptal/picasso/Icon'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { Logo, LogoEmblem, DropdownArrows16, ...listIcons } = icons
 
-const IconListExample = () => {
+const Example = () => {
   const [filter, setFilter] = React.useState('')
 
   const handleFilter = e => setFilter(e.target.value)
@@ -63,4 +63,4 @@ const IconListExample = () => {
   )
 }
 
-export default IconListExample
+export default Example

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid, Button, Container, Typography } from '@toptal/picasso'
 
-const GridWrappingExample = () => (
+const Example = () => (
   <div>
     <Container bottom='large'>
       <Container bottom='small'>
@@ -65,4 +65,4 @@ const GridWrappingExample = () => (
   </div>
 )
 
-export default GridWrappingExample
+export default Example

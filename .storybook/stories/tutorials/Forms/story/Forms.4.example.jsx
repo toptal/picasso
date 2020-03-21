@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid, Checkbox, Select, Input, Form } from '@toptal/picasso'
 
-const FormsExample = () => (
+const Example = () => (
   <div>
     <Grid justifyContent='center' alignItems='center'>
       <Grid.Item small={12} medium={8} large={6}>
@@ -65,4 +65,4 @@ const OPTIONS = [
   { value: '4', text: 'Option 4' }
 ]
 
-export default FormsExample
+export default Example

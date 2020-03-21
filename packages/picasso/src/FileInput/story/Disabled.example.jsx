@@ -1,7 +1,7 @@
 import React from 'react'
 import { FileInput, Container } from '@toptal/picasso'
 
-const FileInputDisabledExample = () => (
+const Example = () => (
   <div>
     <Container bottom='small'>
       <FileInput disabled status='No file uploaded.' />
@@ -16,4 +16,4 @@ const FileInputDisabledExample = () => (
   </div>
 )
 
-export default FileInputDisabledExample
+export default Example

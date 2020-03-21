@@ -29,7 +29,7 @@ const filterOptions = (str = '') => {
   return result.length > 0 ? result : null
 }
 
-const TagSelectorDefaultExample = () => {
+const Example = () => {
   const [options, setOptions] = useState(allOptions)
   const [value, setValue] = useState([])
   const [inputValue, setInputValue] = useState(EMPTY_INPUT_VALUE)
@@ -57,4 +57,4 @@ const TagSelectorDefaultExample = () => {
   )
 }
 
-export default TagSelectorDefaultExample
+export default Example

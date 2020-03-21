@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Tooltip, Button, Container } from '@toptal/picasso'
 import { ClickAwayListener } from '@toptal/picasso/utils'
 
-const TooltipArrowExample = () => {
+const Example = () => {
   const [open, setOpen] = useState(false)
 
   const handleTooltipOpen = () => setOpen(true)
@@ -26,4 +26,4 @@ const TooltipArrowExample = () => {
   )
 }
 
-export default TooltipArrowExample
+export default Example

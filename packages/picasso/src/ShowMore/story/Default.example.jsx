@@ -1,7 +1,7 @@
 import React from 'react'
 import { ShowMore } from '@toptal/picasso'
 
-const ShowMoreDefaultExample = () => (
+const Example = () => (
   <div style={{ width: '430px' }}>
     <ShowMore>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos earum vitae
@@ -25,4 +25,4 @@ const ShowMoreDefaultExample = () => (
   </div>
 )
 
-export default ShowMoreDefaultExample
+export default Example

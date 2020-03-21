@@ -1,7 +1,7 @@
 import React from 'react'
 import { Typography, Container } from '@toptal/picasso'
 
-const TypographyWeightsExample = () => (
+const Example = () => (
   <div>
     <Container bottom='small'>
       <Typography weight='thin'>Thin</Typography>
@@ -18,4 +18,4 @@ const TypographyWeightsExample = () => (
   </div>
 )
 
-export default TypographyWeightsExample
+export default Example

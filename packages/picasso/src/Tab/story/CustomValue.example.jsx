@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Tabs } from '@toptal/picasso'
 
-const CustomValueExample = () => {
+const Example = () => {
   const [value, setValue] = React.useState(false)
 
   function handleChange(event, newValue) {
@@ -23,4 +23,4 @@ const CustomValueExample = () => {
   )
 }
 
-export default CustomValueExample
+export default Example

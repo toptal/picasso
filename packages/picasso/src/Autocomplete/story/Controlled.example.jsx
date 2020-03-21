@@ -10,7 +10,7 @@ const options = [
   { text: 'Ukraine', value: 'UA' }
 ]
 
-const AutocompleteControlledItemExample = () => {
+const Example = () => {
   const [value, setValue] = useState(options[0].text)
 
   return (
@@ -53,4 +53,4 @@ const AutocompleteControlledItemExample = () => {
   )
 }
 
-export default AutocompleteControlledItemExample
+export default Example

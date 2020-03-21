@@ -1,7 +1,7 @@
 import React from 'react'
 import { Notification } from '@toptal/picasso'
 
-const NotificationDefaultExample = () => (
+const Example = () => (
   <div>
     <Notification>
       The time zone in your profile is set to (UTC -08:00) America - Los
@@ -10,4 +10,4 @@ const NotificationDefaultExample = () => (
   </div>
 )
 
-export default NotificationDefaultExample
+export default Example

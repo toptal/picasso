@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Select, Container } from '@toptal/picasso'
 
-const MenuWidthExample = () => {
+const Example = () => {
   const [value, setValue] = useState()
 
   const handleChange = event => {
@@ -32,4 +32,4 @@ const OPTIONS = [
   { value: '4', text: '4' }
 ]
 
-export default MenuWidthExample
+export default Example

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from '@toptal/picasso'
 
-const ButtonButtonGroupExample = () => (
+const Example = () => (
   <div>
     <Button.Group>
       <Button>First</Button>
@@ -12,4 +12,4 @@ const ButtonButtonGroupExample = () => (
   </div>
 )
 
-export default ButtonButtonGroupExample
+export default Example

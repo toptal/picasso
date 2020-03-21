@@ -82,7 +82,7 @@ const ModalDialog = ({ modalId, hideModal }) => {
   )
 }
 
-const ModalDefaultExample = () => {
+const Example = () => {
   const { showModal, hideModal } = useModals()
 
   const handleClick = () => {
@@ -100,4 +100,4 @@ const ModalDefaultExample = () => {
   )
 }
 
-export default ModalDefaultExample
+export default Example

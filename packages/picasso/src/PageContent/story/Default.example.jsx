@@ -1,7 +1,7 @@
 import React from 'react'
 import { Page, Container, Typography } from '@toptal/picasso'
 
-const PageContentDefaultExample = () => (
+const Example = () => (
   <div style={{ height: '30rem' }}>
     <Page.Content>
       <Content />
@@ -26,4 +26,4 @@ const Content = () => (
   </Container>
 )
 
-export default PageContentDefaultExample
+export default Example

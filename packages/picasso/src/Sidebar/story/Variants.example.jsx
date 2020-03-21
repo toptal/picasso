@@ -21,7 +21,7 @@ import {
   Help16
 } from '@toptal/picasso/Icon'
 
-const SidebarVariantsExample = () => (
+const Example = () => (
   <Grid spacing={32}>
     <Grid.Item style={{ height: '58rem' }}>
       <Typography variant='heading' size='small'>
@@ -131,4 +131,4 @@ const SidebarVariantsExample = () => (
   </Grid>
 )
 
-export default SidebarVariantsExample
+export default Example

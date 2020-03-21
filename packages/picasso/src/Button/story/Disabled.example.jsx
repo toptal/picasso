@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from '@toptal/picasso'
 
-const ButtonDisabledExample = () => (
+const Example = () => (
   <div>
     <Button disabled>Disabled</Button>
     <Button disabled variant='secondary-red'>
@@ -10,4 +10,4 @@ const ButtonDisabledExample = () => (
   </div>
 )
 
-export default ButtonDisabledExample
+export default Example

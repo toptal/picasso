@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid, Page, Typography } from '@toptal/picasso'
 
-const GridSampleLayoutExample = () => (
+const Example = () => (
   <Page>
     <Page.Header title='Onboarding' />
     <Page.Content>
@@ -33,4 +33,4 @@ const SampleContainer = ({ children }) => (
   </div>
 )
 
-export default GridSampleLayoutExample
+export default Example

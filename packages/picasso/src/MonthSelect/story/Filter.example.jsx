@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Grid, Form, MonthSelect, YearSelect } from '@toptal/picasso'
 
-const FilterExample = () => {
+const Example = () => {
   const [startMonth, setStartMonth] = useState()
   const [endMonth, setEndMonth] = useState()
   const [startYear, setStartYear] = useState()
@@ -106,4 +106,4 @@ const FilterExample = () => {
   )
 }
 
-export default FilterExample
+export default Example

@@ -2,7 +2,7 @@ import React from 'react'
 import { Container } from '@toptal/picasso'
 import { Settings16, Settings24 } from '@toptal/picasso/Icon'
 
-const IconWithTextExample = () => (
+const Example = () => (
   <div>
     <div>
       <Settings16 style={{ marginRight: '0.5rem' }} />
@@ -16,4 +16,4 @@ const IconWithTextExample = () => (
   </div>
 )
 
-export default IconWithTextExample
+export default Example

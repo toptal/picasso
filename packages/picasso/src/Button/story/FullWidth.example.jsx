@@ -1,10 +1,10 @@
 import React from 'react'
 import { Button } from '@toptal/picasso'
 
-const ButtonFullWidthExample = () => (
+const Example = () => (
   <div>
     <Button fullWidth>Full width</Button>
   </div>
 )
 
-export default ButtonFullWidthExample
+export default Example

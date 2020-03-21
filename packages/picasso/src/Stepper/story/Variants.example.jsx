@@ -1,7 +1,7 @@
 import React from 'react'
 import { Stepper, Container, Typography } from '@toptal/picasso'
 
-const StepperVariantsExample = () => (
+const Example = () => (
   <div>
     <Typography>Default:</Typography>
     <Container padded='medium'>
@@ -16,4 +16,4 @@ const StepperVariantsExample = () => (
   </div>
 )
 
-export default StepperVariantsExample
+export default Example

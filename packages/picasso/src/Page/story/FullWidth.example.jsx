@@ -1,7 +1,7 @@
 import React from 'react'
 import { Page, Container, Menu, Typography } from '@toptal/picasso'
 
-const PageFullWidthExample = () => (
+const Example = () => (
   <div style={{ height: '30rem' }}>
     <Page width='full'>
       <Page.Header rightContent={<RightContent />} title='Full width example' />
@@ -44,4 +44,4 @@ const Content = () => (
   </Container>
 )
 
-export default PageFullWidthExample
+export default Example
