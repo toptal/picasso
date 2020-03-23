@@ -1,4 +1,10 @@
-import React, { ReactNode, ReactElement, forwardRef, useMemo } from 'react'
+import React, {
+  ReactNode,
+  ReactElement,
+  forwardRef,
+  useMemo,
+  useCallback
+} from 'react'
 import cx from 'classnames'
 import { useSnackbar, OptionsObject } from 'notistack'
 import { withStyles } from '@material-ui/core/styles'
@@ -50,8 +56,8 @@ const StyledNotification = withStyles(styles)(
 export const useNotifications = () => {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
 
-  return useMemo(() => {
-    const getNotification = (variant?: VariantType) => (
+  const getNotification = useCallback(
+    (variant?: VariantType) => (
       content: ReactNode,
       icon?: ReactElement,
       options?: OptionsObject
@@ -79,9 +85,12 @@ export const useNotifications = () => {
       })
 
       return notificationId
-    }
+    },
+    [closeSnackbar, enqueueSnackbar]
+  )
 
-    const showCustomNotification = (
+  const showCustomNotification = useCallback(
+    (
       Content: ReactElement,
       position?: SnackbarOrigin,
       options?: OptionsObject
@@ -91,14 +100,15 @@ export const useNotifications = () => {
         // eslint-disable-next-line react/display-name
         children: (key: string) => React.cloneElement(Content, { key }),
         ...options
-      })
+      }),
+    [enqueueSnackbar]
+  )
 
-    return {
-      showError: getNotification('red'),
-      showInfo: getNotification(),
-      showSuccess: getNotification('green'),
-      showCustomNotification: showCustomNotification,
-      closeNotification: closeSnackbar
-    }
-  }, [closeSnackbar, enqueueSnackbar])
+  return {
+    showError: useMemo(() => getNotification('red'), [getNotification]),
+    showInfo: useMemo(() => getNotification(), [getNotification]),
+    showSuccess: useMemo(() => getNotification('green'), [getNotification]),
+    showCustomNotification: showCustomNotification,
+    closeNotification: closeSnackbar
+  }
 }
