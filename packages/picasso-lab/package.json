@@ -32,7 +32,7 @@
     "@material-ui/icons": "4.9.1",
     "classnames": "^2.2.6",
     "date-fns": "^2.3.0",
-    "simple-react-calendar": "^1.9.2"
+    "simple-react-calendar": "^2.0.0"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.9",
