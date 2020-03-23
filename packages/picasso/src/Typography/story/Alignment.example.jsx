@@ -1,7 +1,7 @@
 import React from 'react'
 import { Typography, Container } from '@toptal/picasso'
 
-const TypographyAlignmentExample = () => (
+const Example = () => (
   <div>
     <Container bottom='small'>
       <Typography align='left'>Left</Typography>
@@ -13,4 +13,4 @@ const TypographyAlignmentExample = () => (
   </div>
 )
 
-export default TypographyAlignmentExample
+export default Example

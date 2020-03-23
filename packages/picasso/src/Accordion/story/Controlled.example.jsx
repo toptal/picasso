@@ -1,7 +1,7 @@
 import React from 'react'
 import { Accordion, Button, Container } from '@toptal/picasso'
 
-const AccordionControlledExample = () => {
+const Example = () => {
   const [expanded, setExpanded] = React.useState(true)
 
   return (
@@ -24,4 +24,4 @@ const DetailsDogDefinitionPanel = () => (
   </Accordion.Details>
 )
 
-export default AccordionControlledExample
+export default Example

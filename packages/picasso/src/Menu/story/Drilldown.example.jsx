@@ -8,7 +8,7 @@ import {
   Button
 } from '@toptal/picasso'
 
-const DrilldownExample = () => {
+const Example = () => {
   const handleClick = () => {
     console.log('Menu item is clicked')
   }
@@ -112,4 +112,4 @@ const DrilldownExample = () => {
   )
 }
 
-export default DrilldownExample
+export default Example

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Radio } from '@toptal/picasso'
 
-const RadioGroupVerticalExample = () => {
+const Example = () => {
   const [value, setValue] = useState(null)
 
   return (
@@ -17,4 +17,4 @@ const RadioGroupVerticalExample = () => {
   )
 }
 
-export default RadioGroupVerticalExample
+export default Example

@@ -2,7 +2,7 @@ import React from 'react'
 import { Button } from '@toptal/picasso'
 import { useNotifications } from '@toptal/picasso/utils'
 
-const NotificationOptionsExample = () => {
+const Example = () => {
   const { showError } = useNotifications()
 
   return (
@@ -22,4 +22,4 @@ const NotificationOptionsExample = () => {
   )
 }
 
-export default NotificationOptionsExample
+export default Example

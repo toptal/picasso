@@ -1,10 +1,10 @@
 import React from 'react'
 import { Page } from '@toptal/picasso'
 
-const FooterDefaultExample = () => (
+const Example = () => (
   <div>
     <Page.Footer />
   </div>
 )
 
-export default FooterDefaultExample
+export default Example

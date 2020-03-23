@@ -12,7 +12,7 @@ import {
   Sidebar
 } from '@toptal/picasso'
 
-const PageDefaultExample = () => (
+const Example = () => (
   <div style={{ height: '30rem' }}>
     <Page>
       <Page.Header rightContent={<RightContent />} title='Default example' />
@@ -91,7 +91,7 @@ const Content = () => (
 const Index = () => (
   <div id='root'>
     <Picasso responsive={false}>
-      <PageDefaultExample />
+      <Example />
     </Picasso>
   </div>
 )

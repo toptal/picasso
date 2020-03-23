@@ -1,10 +1,10 @@
 import React from 'react'
 import { Loader } from '@toptal/picasso'
 
-const LoaderControlledValueExample = () => (
+const Example = () => (
   <div>
     <Loader value={48}>48%</Loader>
   </div>
 )
 
-export default LoaderControlledValueExample
+export default Example

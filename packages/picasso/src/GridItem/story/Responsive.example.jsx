@@ -28,7 +28,7 @@ const ContentContainer = ({ children }) => (
   </Container>
 )
 
-const GridDefaultExample = () => {
+const Example = () => {
   return (
     <Grid>
       <Grid.Item small={12} medium={6} large={3}>
@@ -55,4 +55,4 @@ const GridDefaultExample = () => {
   )
 }
 
-export default GridDefaultExample
+export default Example

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Select, Container, Typography } from '@toptal/picasso'
 
-const SelectSizesExample = () => {
+const Example = () => {
   const [value, setValue] = useState()
 
   const handleChange = event => {
@@ -51,4 +51,4 @@ const OPTIONS = [
   { value: '4', text: 'Option 4' }
 ]
 
-export default SelectSizesExample
+export default Example

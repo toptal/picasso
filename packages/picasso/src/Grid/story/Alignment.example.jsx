@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid, Button } from '@toptal/picasso'
 
-const GridAlignmentExample = () => (
+const Example = () => (
   <div>
     <Grid justifyContent='flex-start'>
       <Grid.Item>
@@ -23,4 +23,4 @@ const GridAlignmentExample = () => (
   </div>
 )
 
-export default GridAlignmentExample
+export default Example

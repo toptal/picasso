@@ -1,10 +1,10 @@
 import React from 'react'
 import { Loader } from '@toptal/picasso'
 
-const LoaderIndeterminateExample = () => (
+const Example = () => (
   <div>
     <Loader indeterminate>Loading...</Loader>
   </div>
 )
 
-export default LoaderIndeterminateExample
+export default Example

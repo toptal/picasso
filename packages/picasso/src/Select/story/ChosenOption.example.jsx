@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Select } from '@toptal/picasso'
 
-const SelectChosenOptionExample = () => {
+const Example = () => {
   const [value, setValue] = useState('3')
 
   const handleChange = event => {
@@ -26,4 +26,4 @@ const OPTIONS = [
   { value: '4', text: 'Option 4' }
 ]
 
-export default SelectChosenOptionExample
+export default Example

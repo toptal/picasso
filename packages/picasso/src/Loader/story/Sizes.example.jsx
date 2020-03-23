@@ -1,7 +1,7 @@
 import React from 'react'
 import { Loader, Container } from '@toptal/picasso'
 
-const LoaderSizesExample = () => (
+const Example = () => (
   <div>
     <Container bottom='large'>
       <Loader size='small'>small</Loader>
@@ -13,4 +13,4 @@ const LoaderSizesExample = () => (
   </div>
 )
 
-export default LoaderSizesExample
+export default Example

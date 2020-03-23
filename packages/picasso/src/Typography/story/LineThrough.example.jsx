@@ -1,10 +1,10 @@
 import React from 'react'
 import { Typography } from '@toptal/picasso'
 
-const LineThroughExample = () => (
+const Example = () => (
   <div>
     <Typography lineThrough>Struck text</Typography>
   </div>
 )
 
-export default LineThroughExample
+export default Example

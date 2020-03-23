@@ -1,7 +1,7 @@
 import React from 'react'
 import { Tooltip, Button } from '@toptal/picasso'
 
-const TooltipDefaultExample = () => (
+const Example = () => (
   <div style={{ width: '320px', height: '120px', padding: '2rem' }}>
     <Tooltip content='Content goes here...' open placement='right'>
       <Button>Test me</Button>
@@ -9,4 +9,4 @@ const TooltipDefaultExample = () => (
   </div>
 )
 
-export default TooltipDefaultExample
+export default Example

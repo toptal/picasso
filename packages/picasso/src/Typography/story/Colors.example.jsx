@@ -2,7 +2,7 @@ import React from 'react'
 import { Typography, Container } from '@toptal/picasso'
 import { palette } from '@toptal/picasso/utils'
 
-const TypographyColorsExample = () => (
+const Example = () => (
   <div>
     <Container bottom={1}>
       <Typography color='blue'>Blue</Typography>
@@ -37,4 +37,4 @@ const TypographyColorsExample = () => (
   </div>
 )
 
-export default TypographyColorsExample
+export default Example

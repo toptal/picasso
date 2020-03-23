@@ -3,7 +3,7 @@ import { Dropdown, Button, Menu } from '@toptal/picasso'
 
 const handleClick = () => window.alert('Item clicked')
 
-const ButtonDropdownExample = () => (
+const Example = () => (
   <div>
     <Dropdown
       content={
@@ -22,4 +22,4 @@ const ButtonDropdownExample = () => (
   </div>
 )
 
-export default ButtonDropdownExample
+export default Example

@@ -1,10 +1,10 @@
 import React from 'react'
 import { Radio } from '@toptal/picasso'
 
-const RadioDisabledExample = () => (
+const Example = () => (
   <div>
     <Radio disabled label='Disabled' />
   </div>
 )
 
-export default RadioDisabledExample
+export default Example

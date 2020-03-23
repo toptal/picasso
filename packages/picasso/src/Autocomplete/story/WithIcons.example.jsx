@@ -1,7 +1,7 @@
 import React from 'react'
 import { Afternoon16, Autocomplete } from '@toptal/picasso'
 
-const AutocompleteIconsExample = () => (
+const Example = () => (
   <div>
     <Autocomplete
       icon={<Afternoon16 />}
@@ -11,4 +11,4 @@ const AutocompleteIconsExample = () => (
   </div>
 )
 
-export default AutocompleteIconsExample
+export default Example

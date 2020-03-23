@@ -3,7 +3,7 @@ import { Container, EnvironmentBanner, Typography } from '@toptal/picasso'
 
 const CONTAINER_HEIGHT = '2rem'
 
-const EnvironmentBannerVariantsExample = () => (
+const Example = () => (
   <div>
     <Container style={{ position: 'relative', height: CONTAINER_HEIGHT }}>
       <Typography variant='heading' size='small'>
@@ -40,4 +40,4 @@ const EnvironmentBannerVariantsExample = () => (
   </div>
 )
 
-export default EnvironmentBannerVariantsExample
+export default Example

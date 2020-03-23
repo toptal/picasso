@@ -1,7 +1,7 @@
 import React from 'react'
 import { Page, Container } from '@toptal/picasso'
 
-const PageBannerDefaultExample = () => (
+const Example = () => (
   <Container bottom='small'>
     <Page.Banner>
       We are now in the process of reviewing your profile. After your profile
@@ -10,4 +10,4 @@ const PageBannerDefaultExample = () => (
   </Container>
 )
 
-export default PageBannerDefaultExample
+export default Example

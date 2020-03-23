@@ -4,7 +4,7 @@ import { Grid, Paper, Image, Typography, Container } from '@toptal/picasso'
 
 const breakpointsList = Object.entries(breakpoints)
 
-const BreakpointsExample = () => (
+const Example = () => (
   <Grid spacing={16}>
     {breakpointsList.map(([breakpointName, breakpointValue], index) => {
       const prevBreakpoint = breakpointsList[index - 1]
@@ -46,4 +46,4 @@ const BreakpointsExample = () => (
   </Grid>
 )
 
-export default BreakpointsExample
+export default Example

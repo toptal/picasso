@@ -8,7 +8,7 @@ const formatLabel = val => {
   return <Typography color='inherit'>GMT+{formattedVal}:00</Typography>
 }
 
-const SliderTooltipExample = () => {
+const Example = () => {
   return (
     <Container padded='small'>
       <Container>
@@ -39,4 +39,4 @@ const SliderTooltipExample = () => {
   )
 }
 
-export default SliderTooltipExample
+export default Example

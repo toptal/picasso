@@ -10,10 +10,10 @@ const options = [
   { text: 'Ukraine', value: 'UA' }
 ]
 
-const TagSelectorLoadingExample = () => (
+const Example = () => (
   <div>
     <TagSelector placeholder='Loading state...' options={options} loading />
   </div>
 )
 
-export default TagSelectorLoadingExample
+export default Example

@@ -22,7 +22,7 @@ const accounts = [
   }
 ]
 
-const AccountSelectDefaultExample = () => (
+const Example = () => (
   <div>
     <AccountSelect
       accounts={accounts}
@@ -31,4 +31,4 @@ const AccountSelectDefaultExample = () => (
   </div>
 )
 
-export default AccountSelectDefaultExample
+export default Example

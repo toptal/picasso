@@ -4,7 +4,7 @@ import { Grid, Paper, Typography, Container } from '@toptal/picasso'
 
 const colorGroups = Object.entries(palette)
 
-const ColorsExample = () => (
+const Example = () => (
   <Fragment>
     {colorGroups.map(([colorGroupName, colorGroup]) => (
       <Fragment key={colorGroupName}>
@@ -50,4 +50,4 @@ const ColorRectangle = ({ color }) => (
   />
 )
 
-export default ColorsExample
+export default Example

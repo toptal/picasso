@@ -2,7 +2,7 @@ import React from 'react'
 import { Button } from '@toptal/picasso'
 import { Settings16, Settings24 } from '@toptal/picasso/Icon'
 
-const ButtonIconButtonsExample = () => (
+const Example = () => (
   <div>
     <Button icon={<Settings16 />} size='small' />
     <Button icon={<Settings16 />} />
@@ -10,4 +10,4 @@ const ButtonIconButtonsExample = () => (
   </div>
 )
 
-export default ButtonIconButtonsExample
+export default Example

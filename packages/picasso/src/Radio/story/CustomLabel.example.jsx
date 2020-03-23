@@ -69,7 +69,7 @@ const PayoneerPicker = () => {
   )
 }
 
-const CustomLabelExample = () => (
+const Example = () => (
   <div>
     <Container
       bordered
@@ -83,4 +83,4 @@ const CustomLabelExample = () => (
   </div>
 )
 
-export default CustomLabelExample
+export default Example

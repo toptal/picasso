@@ -9,7 +9,7 @@ const Link = forwardRef(({ to, children, ...rest }, ref) => (
   </a>
 ))
 
-const MenuItemRouterExample = () => (
+const Example = () => (
   <div>
     <Menu>
       <Menu.Item as={Link} to='/#home'>
@@ -25,4 +25,4 @@ const MenuItemRouterExample = () => (
   </div>
 )
 
-export default MenuItemRouterExample
+export default Example

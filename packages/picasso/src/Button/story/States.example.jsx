@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from '@toptal/picasso'
 
-const ButtonStatesExample = () => (
+const Example = () => (
   <div>
     <Button>Normal</Button>
     <Button hovered>Hovered</Button>
@@ -10,4 +10,4 @@ const ButtonStatesExample = () => (
   </div>
 )
 
-export default ButtonStatesExample
+export default Example

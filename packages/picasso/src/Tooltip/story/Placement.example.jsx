@@ -3,7 +3,7 @@ import { Tooltip, Button, Container } from '@toptal/picasso'
 
 const placements = ['left', 'bottom', 'top', 'right']
 
-const TooltipPlacementExample = () => (
+const Example = () => (
   <div style={{ width: '800px', height: '230px', padding: '3rem 6rem' }}>
     {placements.map(placement => (
       <Container
@@ -22,4 +22,4 @@ const TooltipPlacementExample = () => (
   </div>
 )
 
-export default TooltipPlacementExample
+export default Example

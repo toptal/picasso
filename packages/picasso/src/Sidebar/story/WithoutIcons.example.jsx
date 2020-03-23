@@ -1,7 +1,7 @@
 import React from 'react'
 import { Sidebar, Logo, Typography, Grid } from '@toptal/picasso'
 
-const SidebarIconlessExample = () => (
+const Example = () => (
   <Grid spacing={32}>
     <Grid.Item style={{ height: '58rem' }}>
       <Typography variant='heading' size='small'>
@@ -95,4 +95,4 @@ const SidebarIconlessExample = () => (
   </Grid>
 )
 
-export default SidebarIconlessExample
+export default Example

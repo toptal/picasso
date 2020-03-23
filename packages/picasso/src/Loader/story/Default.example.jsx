@@ -1,10 +1,10 @@
 import React from 'react'
 import { Loader } from '@toptal/picasso'
 
-const LoaderDefaultExample = () => (
+const Example = () => (
   <div>
     <Loader />
   </div>
 )
 
-export default LoaderDefaultExample
+export default Example

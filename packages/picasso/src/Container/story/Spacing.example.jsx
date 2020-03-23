@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Paper, Grid } from '@toptal/picasso'
 
-const ContainerSpacingExample = () => (
+const Example = () => (
   <div>
     <Container bottom='small'>Outer spacing</Container>
     <Grid>
@@ -83,4 +83,4 @@ const ContainerSpacingExample = () => (
   </div>
 )
 
-export default ContainerSpacingExample
+export default Example

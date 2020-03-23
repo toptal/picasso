@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Input } from '@toptal/picasso'
 
-const InputFullWidthExample = () => {
+const Example = () => {
   const [value, setValue] = useState('Text')
 
   const handleChange = event => {
@@ -18,4 +18,4 @@ const InputFullWidthExample = () => {
   )
 }
 
-export default InputFullWidthExample
+export default Example

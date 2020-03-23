@@ -1,7 +1,7 @@
 import React from 'react'
 import { Checkbox, Grid } from '@toptal/picasso'
 
-const CheckboxRequiredExample = () => (
+const Example = () => (
   <Grid>
     <Grid.Item large={3}>
       <Checkbox
@@ -12,4 +12,4 @@ const CheckboxRequiredExample = () => (
   </Grid>
 )
 
-export default CheckboxRequiredExample
+export default Example

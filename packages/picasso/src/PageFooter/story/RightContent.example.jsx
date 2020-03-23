@@ -12,7 +12,7 @@ const StyledLink = styled(Link)`
   }
 `
 
-const FooterRightContentExample = () => (
+const Example = () => (
   <div>
     <Page.Footer rightContent={<Links />} />
   </div>
@@ -42,4 +42,4 @@ const Links = () => (
   </Fragment>
 )
 
-export default FooterRightContentExample
+export default Example

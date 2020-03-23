@@ -1,7 +1,7 @@
 import { Amount, Container, Typography } from '@toptal/picasso'
 import React from 'react'
 
-const ButtonDisabledExample = () => (
+const Example = () => (
   <div>
     <Container bottom={1}>
       <Typography>
@@ -21,4 +21,4 @@ const ButtonDisabledExample = () => (
   </div>
 )
 
-export default ButtonDisabledExample
+export default Example

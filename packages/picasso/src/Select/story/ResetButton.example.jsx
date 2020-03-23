@@ -8,7 +8,7 @@ const OPTIONS = [
   { value: '4', text: 'Option 4' }
 ]
 
-const SelectResetButtonExample = () => {
+const Example = () => {
   const [values, setValues] = useState([])
 
   const handleChange = event => {
@@ -28,4 +28,4 @@ const SelectResetButtonExample = () => {
   )
 }
 
-export default SelectResetButtonExample
+export default Example

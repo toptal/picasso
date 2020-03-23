@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Slider } from '@toptal/picasso'
 
-const SliderDefaultValueExample = () => {
+const Example = () => {
   return (
     <Container>
       <Slider defaultValue={8} />
@@ -9,4 +9,4 @@ const SliderDefaultValueExample = () => {
   )
 }
 
-export default SliderDefaultValueExample
+export default Example

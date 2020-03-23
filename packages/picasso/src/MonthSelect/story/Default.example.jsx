@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { MonthSelect } from '@toptal/picasso'
 
-const DefaultExample = () => {
+const Example = () => {
   const [selectedOption, setSelectedOption] = useState()
 
   const onChange = e => {
@@ -18,4 +18,4 @@ const DefaultExample = () => {
   )
 }
 
-export default DefaultExample
+export default Example

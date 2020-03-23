@@ -1,7 +1,7 @@
 import React from 'react'
 import { Pagination, Container, Typography } from '@toptal/picasso'
 
-const PaginationDefaultExample = () => (
+const Example = () => (
   <Container flex direction='column' justifyContent='space-between'>
     <Container bottom='xsmall'>
       <Typography variant='heading' size='small'>
@@ -129,4 +129,4 @@ const handlePageChange = page => {
   window.alert('Page changed to ' + page)
 }
 
-export default PaginationDefaultExample
+export default Example

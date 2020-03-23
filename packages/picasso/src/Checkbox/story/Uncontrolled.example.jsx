@@ -1,10 +1,10 @@
 import React from 'react'
 import { Checkbox } from '@toptal/picasso'
 
-const CheckboxUncontrolledExample = () => (
+const Example = () => (
   <div>
     <Checkbox label='Checkbox' />
   </div>
 )
 
-export default CheckboxUncontrolledExample
+export default Example

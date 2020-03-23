@@ -1,10 +1,10 @@
 import React from 'react'
 import { Typography } from '@toptal/picasso'
 
-const TypographyDefaultExample = () => (
+const Example = () => (
   <div>
     <Typography>Just text</Typography>
   </div>
 )
 
-export default TypographyDefaultExample
+export default Example

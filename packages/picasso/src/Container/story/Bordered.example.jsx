@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container } from '@toptal/picasso'
 
-const ContainerDefaultExample = () => (
+const Example = () => (
   <div>
     <Container bordered padded='large'>
       With default border
@@ -9,4 +9,4 @@ const ContainerDefaultExample = () => (
   </div>
 )
 
-export default ContainerDefaultExample
+export default Example

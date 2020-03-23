@@ -8,7 +8,7 @@ const renderLabel = val => {
   return <Typography color='inherit'>GMT+{formattedVal}:00</Typography>
 }
 
-const SliderRangeExample = () => {
+const Example = () => {
   const [value, setValue] = React.useState([10, 20])
 
   const handleChange = (_, newValue) => {
@@ -34,4 +34,4 @@ const SliderRangeExample = () => {
   )
 }
 
-export default SliderRangeExample
+export default Example

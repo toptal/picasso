@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid, Button, Container, Typography } from '@toptal/picasso'
 
-const GridDirectionExample = () => (
+const Example = () => (
   <div>
     <Container bottom='large'>
       <Container bottom='small'>
@@ -33,4 +33,4 @@ const GridDirectionExample = () => (
   </div>
 )
 
-export default GridDirectionExample
+export default Example

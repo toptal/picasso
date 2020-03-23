@@ -9,7 +9,7 @@ const options = [
   { text: 'Ukraine' }
 ]
 
-const AutocompleteLoadingExample = () => (
+const Example = () => (
   <div>
     <Autocomplete
       placeholder='Loading state...'
@@ -20,4 +20,4 @@ const AutocompleteLoadingExample = () => (
   </div>
 )
 
-export default AutocompleteLoadingExample
+export default Example

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Image, Container } from '@toptal/picasso'
 
-const ImageVariantsExample = () => (
+const Example = () => (
   <div>
     <Container inline>
       <Image
@@ -21,4 +21,4 @@ const ImageVariantsExample = () => (
   </div>
 )
 
-export default ImageVariantsExample
+export default Example

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Tooltip, Button, Container } from '@toptal/picasso'
 
-const TooltipArrowExample = () => (
+const Example = () => (
   <div
     style={{
       textAlign: 'center',
@@ -23,4 +23,4 @@ const TooltipArrowExample = () => (
   </div>
 )
 
-export default TooltipArrowExample
+export default Example

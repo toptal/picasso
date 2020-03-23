@@ -1,7 +1,7 @@
 import React from 'react'
 import { Input, Container, Typography } from '@toptal/picasso'
 
-const InputMultilineExpandExample = () => {
+const Example = () => {
   return (
     <Container flex direction='column'>
       <Container padded='small'>
@@ -35,4 +35,4 @@ const InputMultilineExpandExample = () => {
   )
 }
 
-export default InputMultilineExpandExample
+export default Example

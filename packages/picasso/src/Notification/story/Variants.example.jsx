@@ -1,7 +1,7 @@
 import React from 'react'
 import { Notification, Container, Typography } from '@toptal/picasso'
 
-const NotificationVariantsExample = () => (
+const Example = () => (
   <div>
     <Container bottom={1}>
       <Container bottom={1}>
@@ -48,4 +48,4 @@ const NotificationVariantsExample = () => (
   </div>
 )
 
-export default NotificationVariantsExample
+export default Example

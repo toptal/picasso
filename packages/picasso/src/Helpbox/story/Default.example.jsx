@@ -1,7 +1,7 @@
 import React from 'react'
 import { Helpbox, Container } from '@toptal/picasso'
 
-const HelpboxDefaultExample = () => (
+const Example = () => (
   <Container>
     <Container bottom='small'>
       <Helpbox>
@@ -90,4 +90,4 @@ const HelpboxDefaultExample = () => (
   </Container>
 )
 
-export default HelpboxDefaultExample
+export default Example

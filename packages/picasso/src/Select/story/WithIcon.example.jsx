@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Select, Container } from '@toptal/picasso'
 import { Settings16 } from '@toptal/picasso/Icon'
 
-const SelectWithIconExample = () => {
+const Example = () => {
   const [value, setValue] = useState()
 
   const handleChange = event => {
@@ -54,4 +54,4 @@ const OPTIONS = [
   { value: '4', text: 'Option 4' }
 ]
 
-export default SelectWithIconExample
+export default Example

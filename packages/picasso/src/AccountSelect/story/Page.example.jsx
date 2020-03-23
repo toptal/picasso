@@ -29,7 +29,7 @@ const accounts = [
   }
 ]
 
-const AccountSelectPageExample = () => (
+const Example = () => (
   <Page>
     <Page.Content>
       <Grid justifyContent='center'>
@@ -52,4 +52,4 @@ const AccountSelectPageExample = () => (
   </Page>
 )
 
-export default AccountSelectPageExample
+export default Example

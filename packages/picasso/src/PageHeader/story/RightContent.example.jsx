@@ -1,7 +1,7 @@
 import React from 'react'
 import { Page, Menu, Container, Button } from '@toptal/picasso'
 
-const PageHeaderRightContentExample = () => (
+const Example = () => (
   <div style={{ height: '4.5rem' }}>
     <Page.Header
       actionItems={
@@ -30,4 +30,4 @@ const RightContent = () => (
   </Page.HeaderMenu>
 )
 
-export default PageHeaderRightContentExample
+export default Example

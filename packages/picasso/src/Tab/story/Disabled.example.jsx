@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Tabs } from '@toptal/picasso'
 
-const DisabledTabExample = () => {
+const Example = () => {
   const [value, setValue] = React.useState(0)
 
   function handleChange(event, newValue) {
@@ -29,4 +29,4 @@ const DisabledTabExample = () => {
   )
 }
 
-export default DisabledTabExample
+export default Example

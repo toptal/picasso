@@ -3,7 +3,7 @@ import { Button, Container } from '@toptal/picasso'
 import { Pencil16 } from '@toptal/picasso/Icon'
 import { useNotifications } from '@toptal/picasso/utils'
 
-const GeneralNotificationsExample = () => {
+const Example = () => {
   const { showInfo } = useNotifications()
 
   return (
@@ -26,4 +26,4 @@ const GeneralNotificationsExample = () => {
   )
 }
 
-export default GeneralNotificationsExample
+export default Example

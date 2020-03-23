@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Typography, Paper, Stepper } from '@toptal/picasso'
 
-const SpacingsExample = () => (
+const Example = () => (
   <div style={{ width: '35rem' }}>
     <Paper>
       <Container padded='medium'>
@@ -23,4 +23,4 @@ const SpacingsExample = () => (
   </div>
 )
 
-export default SpacingsExample
+export default Example

@@ -1,10 +1,10 @@
 import React from 'react'
 import { Settings16 } from '@toptal/picasso/Icon'
 
-const IconExample = () => (
+const Example = () => (
   <div>
     <Settings16 />
   </div>
 )
 
-export default IconExample
+export default Example

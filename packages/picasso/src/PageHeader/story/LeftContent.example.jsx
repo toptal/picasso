@@ -1,7 +1,7 @@
 import React from 'react'
 import { Page, Container, Button, Input, Search16 } from '@toptal/picasso'
 
-const PageHeaderLeftContentExample = () => (
+const Example = () => (
   <div style={{ height: '4.5rem' }}>
     <Page.Header
       actionItems={
@@ -21,4 +21,4 @@ const LeftContent = () => (
   </Container>
 )
 
-export default PageHeaderLeftContentExample
+export default Example

@@ -53,7 +53,7 @@ const useUploader = config => {
   }
 }
 
-const FileInputUploaderExample = () => {
+const Example = () => {
   const MAX_SIZE = 2
 
   const { error, progress, file, status, upload } = useUploader({
@@ -77,4 +77,4 @@ const FileInputUploaderExample = () => {
   )
 }
 
-export default FileInputUploaderExample
+export default Example

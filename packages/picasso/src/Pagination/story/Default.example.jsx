@@ -1,7 +1,7 @@
 import React from 'react'
 import { Pagination } from '@toptal/picasso'
 
-const PaginationDefaultExample = () => (
+const Example = () => (
   <div>
     <Pagination
       activePage={4}
@@ -15,4 +15,4 @@ const handlePageChange = page => {
   window.alert('Page changed to ' + page)
 }
 
-export default PaginationDefaultExample
+export default Example

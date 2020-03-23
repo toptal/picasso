@@ -2,7 +2,7 @@ import React from 'react'
 import { Container } from '@toptal/picasso'
 import { Settings16, Settings24 } from '@toptal/picasso/Icon'
 
-const IconExample = () => (
+const Example = () => (
   <div>
     <Container inline right='small'>
       <Settings16 scale={2} />
@@ -19,4 +19,4 @@ const IconExample = () => (
   </div>
 )
 
-export default IconExample
+export default Example

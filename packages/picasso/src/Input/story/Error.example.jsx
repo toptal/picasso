@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Input, Container } from '@toptal/picasso'
 
-const InputErrorExample = () => {
+const Example = () => {
   const [value, setValue] = useState('Text')
 
   const handleChange = event => {
@@ -18,4 +18,4 @@ const InputErrorExample = () => {
   )
 }
 
-export default InputErrorExample
+export default Example

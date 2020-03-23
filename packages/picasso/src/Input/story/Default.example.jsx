@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Input } from '@toptal/picasso'
 
-const InputDefaultExample = () => {
+const Example = () => {
   const [value, setValue] = useState('Text')
 
   const handleChange = event => {
@@ -13,4 +13,4 @@ const InputDefaultExample = () => {
   )
 }
 
-export default InputDefaultExample
+export default Example

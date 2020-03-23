@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Input } from '@toptal/picasso'
 
-const AutoFillExample = () => {
+const Example = () => {
   const [value, setValue] = useState('')
 
   const handleChange = event => {
@@ -20,4 +20,4 @@ const AutoFillExample = () => {
   )
 }
 
-export default AutoFillExample
+export default Example

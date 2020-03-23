@@ -23,7 +23,7 @@ const filterOptions = value =>
     ? allOptions.filter(option => isSubstring(value, getDisplayValue(option)))
     : allOptions
 
-const TagSelectorDefaultExample = () => {
+const Example = () => {
   const [options, setOptions] = useState(allOptions)
   const [value, setValue] = useState(allOptions.slice(0, 3))
   const [inputValue, setInputValue] = useState(EMPTY_INPUT_VALUE)
@@ -50,4 +50,4 @@ const TagSelectorDefaultExample = () => {
   )
 }
 
-export default TagSelectorDefaultExample
+export default Example

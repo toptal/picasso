@@ -1,7 +1,7 @@
 import React from 'react'
 import { Dropdown, Menu, Container, Typography } from '@toptal/picasso'
 
-const DropdownDefaultExample = () => (
+const Example = () => (
   <div>
     <Container bottom='xsmall'>
       <Typography>Popper placement</Typography>
@@ -109,4 +109,4 @@ const DropdownDefaultExample = () => (
   </div>
 )
 
-export default DropdownDefaultExample
+export default Example

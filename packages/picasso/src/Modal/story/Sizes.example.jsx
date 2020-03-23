@@ -59,7 +59,7 @@ const ModalDialog = ({ modalId, hideModal, size }) => (
   </Modal>
 )
 
-const ModalSizesExample = () => {
+const Example = () => {
   const { showModal, hideModal } = useModals()
 
   const handleSmallClick = () => {
@@ -97,4 +97,4 @@ const ModalSizesExample = () => {
   )
 }
 
-export default ModalSizesExample
+export default Example

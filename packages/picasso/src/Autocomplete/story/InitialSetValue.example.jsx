@@ -9,7 +9,7 @@ const options = [
   { text: 'Ukraine' }
 ]
 
-const AutocompleteInitialSetValueExample = () => (
+const Example = () => (
   <div>
     <Autocomplete
       placeholder='Start typing country...'
@@ -21,4 +21,4 @@ const AutocompleteInitialSetValueExample = () => (
   </div>
 )
 
-export default AutocompleteInitialSetValueExample
+export default Example

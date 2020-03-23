@@ -1,7 +1,7 @@
 import React from 'react'
 import { Accordion } from '@toptal/picasso'
 
-const AccordionDefaultExample = () => {
+const Example = () => {
   return (
     <div style={{ width: '430px' }}>
       <Accordion content={<DetailsDogDefinitionPanel />}>
@@ -19,4 +19,4 @@ const DetailsDogDefinitionPanel = () => (
   </Accordion.Details>
 )
 
-export default AccordionDefaultExample
+export default Example

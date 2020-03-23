@@ -2,7 +2,7 @@ import React from 'react'
 import { Container, Label, Settings16 } from '@toptal/picasso'
 import { palette } from '@toptal/picasso/utils'
 
-const LabelVariantsExample = () => (
+const Example = () => (
   <Container flex>
     <Container right='small' top={0.5}>
       <Label icon={<Settings16 />} variant='grey'>
@@ -34,4 +34,4 @@ const LabelVariantsExample = () => (
   </Container>
 )
 
-export default LabelVariantsExample
+export default Example

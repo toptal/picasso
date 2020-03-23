@@ -1,7 +1,7 @@
 import React from 'react'
 import { Image } from '@toptal/picasso'
 
-const ImageDefaultExample = () => (
+const Example = () => (
   <div>
     <Image
       src='./jacqueline-with-flowers-1954.jpg'
@@ -11,4 +11,4 @@ const ImageDefaultExample = () => (
   </div>
 )
 
-export default ImageDefaultExample
+export default Example

@@ -10,7 +10,7 @@ import {
 } from '@toptal/picasso'
 
 // Autofocus will force scrolling to the bottom of the portal, so we disable portal
-const ComplexDefaultExample = () => (
+const Example = () => (
   <div>
     <Dropdown content={<ComplexContent />} disableAutoClose disablePortal>
       Open Dropdown
@@ -51,4 +51,4 @@ const OPTIONS = [
   { value: '4', text: 'Option 4' }
 ]
 
-export default ComplexDefaultExample
+export default Example

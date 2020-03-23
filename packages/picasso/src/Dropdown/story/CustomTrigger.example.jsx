@@ -3,7 +3,7 @@ import { Dropdown, Menu, UserBadge } from '@toptal/picasso'
 
 const handleClick = () => window.alert('Item clicked')
 
-const DropdownHeaderExample = () => (
+const Example = () => (
   <div>
     <Dropdown
       content={
@@ -24,4 +24,4 @@ const DropdownHeaderExample = () => (
   </div>
 )
 
-export default DropdownHeaderExample
+export default Example

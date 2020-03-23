@@ -14,7 +14,7 @@ import {
   Help16
 } from '@toptal/picasso/Icon'
 
-const SidebarDefaultExample = () => (
+const Example = () => (
   <div
     style={{
       height: '58rem',
@@ -72,4 +72,4 @@ const SidebarDefaultExample = () => (
   </div>
 )
 
-export default SidebarDefaultExample
+export default Example

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Pagination } from '@toptal/picasso'
 
-const PaginationDisabledExample = () => (
+const Example = () => (
   <div>
     <Pagination
       activePage={4}
@@ -14,4 +14,4 @@ const PaginationDisabledExample = () => (
 
 const handlePageChange = () => {}
 
-export default PaginationDisabledExample
+export default Example
