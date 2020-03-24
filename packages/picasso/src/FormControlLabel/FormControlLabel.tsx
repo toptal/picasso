@@ -62,12 +62,7 @@ const FormControlLabel: FunctionComponent<Props> = props => {
       style={style}
     >
       {React.cloneElement(control, controlProps)}
-      <Form.Label
-        as='span'
-        className={classes.label}
-        required={required}
-        disabled={disabled}
-      >
+      <Form.Label as='span' required={required} disabled={disabled}>
         {label}
       </Form.Label>
     </label>
