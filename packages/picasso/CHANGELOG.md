@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.44.8](https://github.com/toptal/picasso/compare/@toptal/picasso@4.44.7...@toptal/picasso@4.44.8) (2020-03-24)
+
+
+### Bug Fixes
+
+* make use notifications functions identity stable ([#1178](https://github.com/toptal/picasso/issues/1178)) ([0b224f8](https://github.com/toptal/picasso/commit/0b224f873c5beac5345dd25742d8da073a8945ef))
+
+
+
+
+
 ## [4.44.7](https://github.com/toptal/picasso/compare/@toptal/picasso@4.44.6...@toptal/picasso@4.44.7) (2020-03-23)
 
 **Note:** Version bump only for package @toptal/picasso
