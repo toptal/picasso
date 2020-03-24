@@ -10,7 +10,6 @@ import cx from 'classnames'
 
 import CheckboxGroup from '../CheckboxGroup'
 import FormControlLabel from '../FormControlLabel'
-import Form from '../Form'
 import styles from './styles'
 
 interface StaticProps {
@@ -96,11 +95,9 @@ export const Checkbox = forwardRef<HTMLButtonElement, Props>(function Checkbox(
     <FormControlLabel
       classes={rootClasses}
       control={muiCheckbox}
-      label={
-        <Form.Label required={required} disabled={disabled} as='span'>
-          {label}
-        </Form.Label>
-      }
+      required={required}
+      disabled={disabled}
+      label={label}
       className='picasso-checkbox'
     />
   )

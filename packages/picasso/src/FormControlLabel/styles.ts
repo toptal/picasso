@@ -26,8 +26,37 @@ PicassoProvider.override(({ palette, typography }: Theme) => ({
   }
 }))
 
-export default () =>
+export default ({ palette, typography }: Theme) =>
   createStyles({
-    root: {},
+    root: {
+      display: 'inline-flex',
+      alignItems: 'center',
+      cursor: 'pointer',
+      // For correct alignment with the text.
+      verticalAlign: 'middle',
+      WebkitTapHighlightColor: 'transparent',
+      // marginLeft: -11,
+      // marginRight: 16, // used for row presentation of radio/checkbox
+      '&$disabled': {
+        cursor: 'default'
+      },
+      marginLeft: 0,
+      marginRight: 0
+    },
+    label: {
+      display: 'inline-block',
+
+      fontSize: '1em',
+      color: palette.text.primary,
+      lineHeight: '1em',
+      fontWeight: typography.fontWeightRegular,
+      cursor: 'pointer',
+      userSelect: 'none',
+
+      '&$disabled': {
+        cursor: 'not-allowed',
+        pointerEvents: 'auto'
+      }
+    },
     disabled: {}
   })

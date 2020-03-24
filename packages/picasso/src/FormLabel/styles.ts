@@ -29,7 +29,7 @@ export default ({ palette }: Theme) =>
       marginBottom: 0,
 
       '& $text': {
-        fontSize: '0.8125em',
+        fontSize: '0.8125rem',
         verticalAlign: 'top'
       },
 
