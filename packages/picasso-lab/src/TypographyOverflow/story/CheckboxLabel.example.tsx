@@ -4,20 +4,18 @@ import { TypographyOverflow } from '@toptal/picasso-lab'
 
 const Example = () => {
   return (
-    <div style={{ marginTop: 100 }}>
-      <Checkbox
-        label={
-          <TypographyOverflow>
-            <Typography
-              noWrap
-              data-testid='ellipsed-text'
-              style={{ width: 200 }}
-            >
-              This typography is very long and therefore it overflows.
-            </Typography>
-          </TypographyOverflow>
-        }
-      />
+    <div style={{ display: 'flex' }}>
+      <div style={{ marginTop: 100, maxWidth: '150px', flexBasis: '150px' }}>
+        <Checkbox
+          label={
+            <TypographyOverflow>
+              <Typography noWrap data-testid='ellipsed-text'>
+                This typography is very long and therefore it overflows.
+              </Typography>
+            </TypographyOverflow>
+          }
+        />
+      </div>
     </div>
   )
 }

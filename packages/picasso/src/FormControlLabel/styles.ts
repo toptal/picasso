@@ -32,6 +32,8 @@ export default ({ palette, typography }: Theme) =>
       display: 'inline-flex',
       alignItems: 'center',
       cursor: 'pointer',
+      // For ellipsis
+      maxWidth: '100%',
       // For correct alignment with the text.
       verticalAlign: 'middle',
       WebkitTapHighlightColor: 'transparent',
