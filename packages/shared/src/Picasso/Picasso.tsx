@@ -1,7 +1,9 @@
 import {
   createMuiTheme,
   MuiThemeProvider,
-  Theme
+  Theme,
+  StylesProvider,
+  createGenerateClassName
 } from '@material-ui/core/styles'
 import React, {
   FunctionComponent,
@@ -222,21 +224,33 @@ const Picasso: FunctionComponent<PicassoProps> = ({
     PicassoBreakpoints.disableMobileBreakpoints()
   }
 
+  const generateRandomString = () =>
+    Math.random()
+      .toString(36)
+      .substring(7)
+  const generateClassName = createGenerateClassName({
+    // if there are multiples instances of Picasso
+    // on the page we want each set of styles to be unique
+    seed: generateRandomString()
+  })
+
   return (
-    <MuiThemeProvider theme={PicassoProvider.theme}>
-      <PicassoGlobalStylesProvider
-        RootComponent={RootComponent!}
-        environment={environment!}
-      >
-        {fixViewport && <Viewport />}
-        {loadFonts && <FontsLoader />}
-        {reset && <CssBaseline />}
-        {loadFavicon && <Favicon environment={environment} />}
-        <NotificationsProvider container={notificationContainer}>
-          <ModalProvider>{children}</ModalProvider>
-        </NotificationsProvider>
-      </PicassoGlobalStylesProvider>
-    </MuiThemeProvider>
+    <StylesProvider generateClassName={generateClassName}>
+      <MuiThemeProvider theme={PicassoProvider.theme}>
+        <PicassoGlobalStylesProvider
+          RootComponent={RootComponent!}
+          environment={environment!}
+        >
+          {fixViewport && <Viewport />}
+          {loadFonts && <FontsLoader />}
+          {reset && <CssBaseline />}
+          {loadFavicon && <Favicon environment={environment} />}
+          <NotificationsProvider container={notificationContainer}>
+            <ModalProvider>{children}</ModalProvider>
+          </NotificationsProvider>
+        </PicassoGlobalStylesProvider>
+      </MuiThemeProvider>
+    </StylesProvider>
   )
 }
 
