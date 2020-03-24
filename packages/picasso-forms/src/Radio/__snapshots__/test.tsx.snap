@@ -51,7 +51,7 @@ exports[`FormRadio default render 1`] = `
               </span>
             </span>
             <span
-              class="FormLabel-root FormLabel-inline FormControlLabel-label"
+              class="FormLabel-root FormLabel-inline"
             >
               <span
                 class="FormLabel-text"
@@ -82,7 +82,7 @@ exports[`FormRadio default render 1`] = `
               </span>
             </span>
             <span
-              class="FormLabel-root FormLabel-inline FormControlLabel-label"
+              class="FormLabel-root FormLabel-inline"
             >
               <span
                 class="FormLabel-text"
