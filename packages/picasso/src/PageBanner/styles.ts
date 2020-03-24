@@ -1,23 +1,38 @@
 import { createStyles, Theme } from '@material-ui/core/styles'
+import { spacingToRem } from '@toptal/picasso-shared'
 
-export default ({ layout }: Theme) =>
+export default ({ layout, palette, typography }: Theme) =>
   createStyles({
     root: {
       fontSize: '1rem',
-      justifyContent: 'center'
+      justifyContent: 'center',
+
+      // "collapse padding" when few page banners come in a row
+      '& + &': {
+        marginTop: `-${spacingToRem('large')}`
+      }
     },
     content: {
-      fontSize: '0.875em',
+      color: palette.common.black,
+      lineHeight: '1.5rem',
+      fontSize: '0.8125rem',
       width: '100%',
       paddingLeft: layout.contentPaddingHorizontal,
       paddingRight: layout.contentPaddingHorizontal,
       maxWidth: layout.contentWidth
     },
+    actions: {
+      fontWeight: typography.fontWeights.semibold
+    },
+    main: {
+      '& > * + *': {
+        marginTop: spacingToRem('xsmall')
+      }
+    },
     iconWrapper: {
-      flexBasis: '1.5rem',
-      marginRight: '1.5rem',
-      minWidth: '1.5rem',
-      height: '1.3125rem'
+      paddingTop: '0.22rem',
+      alignItems: 'flex-start',
+      marginRight: '1rem'
     },
     wide: {
       maxWidth: layout.contentWidthWide

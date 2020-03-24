@@ -3,16 +3,15 @@ import React, {
   forwardRef,
   HTMLAttributes,
   ReactElement,
-  useContext
+  useContext,
+  FunctionComponent
 } from 'react'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { BaseProps, SpacingType } from '@toptal/picasso-shared'
-import { Typography } from '@toptal/picasso'
+import { BaseProps, CompoundedComponentWithRef } from '@toptal/picasso-shared'
 
 import Container, { VariantType } from '../Container'
 import styles from './styles'
-import { useScreens } from '../utils'
 import { PageContextProps } from '../Page/types'
 import { PageContext } from '../Page/Page'
 
@@ -25,9 +24,25 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   icon?: ReactElement
 }
 
+interface StaticProps {
+  Message: FunctionComponent
+  Actions: FunctionComponent
+}
+
 const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoPageBanner'
 })
+
+const useActionStyles = makeStyles<Theme>(styles, {
+  name: 'PicassoPageBannerActions'
+})
+
+const Message: FunctionComponent = ({ children }) => <div>{children}</div>
+const Actions: FunctionComponent = props => {
+  const classes = useActionStyles(props)
+
+  return <div className={classes.actions}>{props.children}</div>
+}
 
 export const PageBanner = forwardRef<HTMLDivElement, Props>(function PageBanner(
   props,
@@ -35,15 +50,7 @@ export const PageBanner = forwardRef<HTMLDivElement, Props>(function PageBanner(
 ) {
   const { className, style, children, variant, icon, ...rest } = props
   const classes = useStyles(props)
-  const screens = useScreens<SpacingType>()
   const { width, fullWidth } = useContext<PageContextProps>(PageContext)
-  const contentPadding = screens(
-    {
-      small: 'xsmall',
-      medium: 'xsmall'
-    },
-    'small'
-  )
 
   const innerClassName = cx(
     {
@@ -66,7 +73,7 @@ export const PageBanner = forwardRef<HTMLDivElement, Props>(function PageBanner(
       <Container
         variant={variant}
         className={innerClassName}
-        padded={contentPadding}
+        padded='medium'
         flex
       >
         {icon && (
@@ -74,18 +81,19 @@ export const PageBanner = forwardRef<HTMLDivElement, Props>(function PageBanner(
             {icon}
           </Container>
         )}
-        <Typography as='div' color='black'>
-          {children}
-        </Typography>
+        <Container className={classes.main}>{children}</Container>
       </Container>
     </Container>
   )
-})
+}) as CompoundedComponentWithRef<Props, HTMLElement, StaticProps>
 
 PageBanner.defaultProps = {
   variant: 'yellow'
 }
 
 PageBanner.displayName = 'PageBanner'
+
+PageBanner.Message = Message
+PageBanner.Actions = Actions
 
 export default PageBanner
