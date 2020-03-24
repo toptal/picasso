@@ -19,6 +19,8 @@ import React, {
 import { ModalProvider } from 'react-modal-hook'
 import { makeStyles } from '@material-ui/styles'
 import { Helmet } from 'react-helmet'
+// @ts-ignore
+import window from 'global'
 
 import CssBaseline from '../CssBaseline'
 import {
@@ -224,14 +226,19 @@ const Picasso: FunctionComponent<PicassoProps> = ({
     PicassoBreakpoints.disableMobileBreakpoints()
   }
 
-  const generateRandomString = () =>
-    Math.random()
-      .toString(36)
-      .substring(7)
+  const generateProjectSeed = () => {
+    if (!window.PicassoCssNamespace) {
+      window.PicassoCssNamespace = 0
+      return
+    }
+
+    window.PicassoCssNamespace = window.PicassoCssNamespace + 1
+    return window.PicassoCssNamespace
+  }
   const generateClassName = createGenerateClassName({
     // if there are multiples instances of Picasso
     // on the page we want each set of styles to be unique
-    seed: generateRandomString()
+    seed: generateProjectSeed()
   })
 
   return (
