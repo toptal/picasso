@@ -30,7 +30,7 @@ exports[`FormRadio default render 1`] = `
           type="radio"
         >
           <label
-            class="MuiFormControlLabel-root FormControlLabel-root Radio-root Radio-label"
+            class="FormControlLabel-root Radio-root Radio-label"
           >
             <span
               aria-disabled="false"
@@ -51,21 +51,17 @@ exports[`FormRadio default render 1`] = `
               </span>
             </span>
             <span
-              class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+              class="FormLabel-root FormLabel-inline FormControlLabel-label"
             >
               <span
-                class="FormLabel-root FormLabel-inline"
+                class="FormLabel-text"
               >
-                <span
-                  class="FormLabel-text"
-                >
-                  Crimson
-                </span>
+                Crimson
               </span>
             </span>
           </label>
           <label
-            class="MuiFormControlLabel-root FormControlLabel-root Radio-root Radio-label"
+            class="FormControlLabel-root Radio-root Radio-label"
           >
             <span
               aria-disabled="false"
@@ -86,16 +82,12 @@ exports[`FormRadio default render 1`] = `
               </span>
             </span>
             <span
-              class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+              class="FormLabel-root FormLabel-inline FormControlLabel-label"
             >
               <span
-                class="FormLabel-root FormLabel-inline"
+                class="FormLabel-text"
               >
-                <span
-                  class="FormLabel-text"
-                >
-                  Moccasin
-                </span>
+                Moccasin
               </span>
             </span>
           </label>
