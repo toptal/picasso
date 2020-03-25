@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.5](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.10.4...@toptal/picasso-shared@1.10.5) (2020-03-25)
+
+
+### Bug Fixes
+
+* [FX-855] Fix class names collisions for multiple Picasso ([#1182](https://github.com/toptal/picasso/issues/1182)) ([8f9fb65](https://github.com/toptal/picasso/commit/8f9fb654283a06d1714ef2d299cda95f9f2f7b27))
+
+
+
+
+
 ## [1.10.4](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.10.3...@toptal/picasso-shared@1.10.4) (2020-03-23)
 
 **Note:** Version bump only for package @toptal/picasso-shared
