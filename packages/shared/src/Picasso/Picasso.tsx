@@ -230,13 +230,14 @@ const Picasso: FunctionComponent<PicassoProps> = ({
       return
     }
 
-    if (window.PicassoCssNamespace === undefined) {
-      window.PicassoCssNamespace = 0
+    const picassoCssNamespace = (window as any).PicassoCssNamespace
+    if (picassoCssNamespace === undefined) {
+      ;(window as any).PicassoCssNamespace = 0
       return
     }
 
-    window.PicassoCssNamespace = window.PicassoCssNamespace + 1
-    return window.PicassoCssNamespace
+    ;(window as any).PicassoCssNamespace = picassoCssNamespace + 1
+    return picassoCssNamespace
   }
   const generateClassName = createGenerateClassName({
     // if there are multiples instances of Picasso
