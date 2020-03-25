@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.44.9](https://github.com/toptal/picasso/compare/@toptal/picasso@4.44.8...@toptal/picasso@4.44.9) (2020-03-25)
+
+
+### Bug Fixes
+
+* fix popper on header ([#1174](https://github.com/toptal/picasso/issues/1174)) ([8b8c3fd](https://github.com/toptal/picasso/commit/8b8c3fda0e9f455d0f2d36dc8a9ac4f01ba5f314))
+
+
+
+
+
 ## [4.44.8](https://github.com/toptal/picasso/compare/@toptal/picasso@4.44.7...@toptal/picasso@4.44.8) (2020-03-24)
 
 
