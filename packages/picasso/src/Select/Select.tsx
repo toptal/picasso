@@ -21,13 +21,13 @@ import OutlinedInput from '../OutlinedInput'
 import Popper from '../Popper'
 import ScrollMenu from '../ScrollMenu'
 import InputAdornment from '../InputAdornment'
-import MenuItem from '../MenuItem'
 import Loader from '../Loader'
 import { DropdownArrows16 } from '../Icon'
 import { isSubstring, disableUnsupportedProps } from '../utils'
 import { FeatureOptions } from '../utils/disable-unsupported-props'
 import { Option } from './types'
 import useSelect, { EMPTY_INPUT_VALUE, ItemProps } from './useSelect'
+import SelectOption from '../SelectOption'
 import styles from './styles'
 
 type IconPosition = 'start' | 'end'
@@ -151,7 +151,7 @@ interface SelectOptionProps {
   option: Option
 }
 
-const SelectOption = React.memo(
+const MemoizedMenuItem = React.memo(
   ({
     option,
     size,
@@ -165,7 +165,7 @@ const SelectOption = React.memo(
     close
   }: SelectOptionProps) => {
     return (
-      <MenuItem
+      <SelectOption
         role='option'
         aria-selected={selected}
         value={option.value}
@@ -188,7 +188,7 @@ const SelectOption = React.memo(
         }}
       >
         {children}
-      </MenuItem>
+      </SelectOption>
     )
   }
 )
@@ -214,7 +214,7 @@ const renderOptions = ({
         : selected
 
     return (
-      <SelectOption
+      <MemoizedMenuItem
         key={option.key || option.value}
         option={option}
         size={size}
@@ -227,7 +227,7 @@ const renderOptions = ({
         onItemSelect={onItemSelect}
       >
         {renderOption!(option)}
-      </SelectOption>
+      </MemoizedMenuItem>
     )
   })
 
