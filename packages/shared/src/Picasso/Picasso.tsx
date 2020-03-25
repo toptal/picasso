@@ -227,7 +227,7 @@ const Picasso: FunctionComponent<PicassoProps> = ({
   }
 
   const generateProjectSeed = () => {
-    if (!window.PicassoCssNamespace) {
+    if (window.PicassoCssNamespace === undefined) {
       window.PicassoCssNamespace = 0
       return
     }

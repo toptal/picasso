@@ -110,6 +110,8 @@ const requireContext = require.context(
 )
 
 class CodeExample extends Component<Props> {
+  static displayName = 'CodeExample'
+
   static defaultProps = {
     showEditCode: true,
     module: 'picasso'
