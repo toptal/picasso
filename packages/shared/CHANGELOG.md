@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.6](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.10.5...@toptal/picasso-shared@1.10.6) (2020-03-25)
+
+
+### Bug Fixes
+
+* [FX-855] Fix class names collision for chrome extensions ([#1186](https://github.com/toptal/picasso/issues/1186)) ([5ea5fac](https://github.com/toptal/picasso/commit/5ea5fac7e63d6e68086a73612f32d8c69ea42a6e))
+
+
+
+
+
 ## [1.10.5](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.10.4...@toptal/picasso-shared@1.10.5) (2020-03-25)
 
 
