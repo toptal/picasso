@@ -1,1 +1,1 @@
-export { default as DemoChart } from './DemoChart'
+export { default as LineChart } from './LineChart'
