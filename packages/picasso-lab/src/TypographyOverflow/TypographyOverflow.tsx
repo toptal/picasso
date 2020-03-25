@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React, { ReactText } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
 import { Tooltip, Typography, TypographyProps } from '@toptal/picasso'
 
@@ -6,7 +6,7 @@ import Ellipsis from '../Ellipsis'
 
 export interface Props extends BaseProps, TypographyProps {
   /** A typography which can possibly overflow */
-  children: ReactElement
+  children: ReactText
 }
 
 export const TypographyOverflow = ({ children, noWrap, ...rest }: Props) => {
