@@ -44,6 +44,8 @@ const Editor: FunctionComponent<Props> = props => {
   )
 }
 
+Editor.displayName = 'Editor'
+
 Editor.defaultProps = {
   mode: 'jsx'
 }

@@ -46,4 +46,6 @@ const PropTypeTableCell: FunctionComponent<Props> = props => {
   )
 }
 
+PropTypeTableCell.displayName = 'PropTypeTableCell'
+
 export default withStyles(styles)(PropTypeTableCell)

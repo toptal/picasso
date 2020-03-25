@@ -78,4 +78,6 @@ const PropsTable: FunctionComponent<Props> = props => {
   )
 }
 
+PropsTable.displayName = 'PropsTable'
+
 export default withStyles(styles)(PropsTable)

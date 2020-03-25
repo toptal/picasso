@@ -40,4 +40,6 @@ const EnumsList: FunctionComponent<Props> = props => {
   )
 }
 
+EnumsList.displayName = 'EnumsList'
+
 export default withStyles(styles)(EnumsList)
