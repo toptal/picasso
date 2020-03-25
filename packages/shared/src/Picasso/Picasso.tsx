@@ -226,7 +226,7 @@ const Picasso: FunctionComponent<PicassoProps> = ({
 
   const generateProjectSeed = () => {
     // if server-side rendering or rendering not inside the browser
-    if (typeof window !== 'undefined') {
+    if (typeof window === 'undefined') {
       return
     }
 
