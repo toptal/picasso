@@ -18,13 +18,16 @@ export type FormControlLabelAttributesType = LabelHTMLAttributes<
   Pick<FormControlLabelProps, 'onChange'>
 
 export interface Props extends StandardProps, FormControlLabelAttributesType {
-  /** A control element. For instance, it can be be a Radio, a Switch or a Checkbox */
+  /** A control element. For instance, it can be be a Radio or a Checkbox */
   control: ReactElement
   /** The text to be used in an enclosing label element */
   label?: ReactNode
+  /** Shows whether label is disabled or not */
   disabled?: boolean
+  /** Shows whether label is required or not */
   required?: boolean
 }
+
 const FormControlLabel: FunctionComponent<Props> = props => {
   const {
     control,
@@ -36,17 +39,6 @@ const FormControlLabel: FunctionComponent<Props> = props => {
     required,
     ...rest
   } = props
-  const controlProps: Record<string, unknown> = {
-    disabled
-  }
-  ;['checked', 'name', 'onChange', 'value', 'inputRef'].forEach(key => {
-    if (
-      typeof control.props[key] === 'undefined' &&
-      typeof (props as Record<string, unknown>)[key] !== 'undefined'
-    ) {
-      controlProps[key] = (props as Record<string, unknown>)[key]
-    }
-  })
 
   return (
     <label
@@ -61,7 +53,7 @@ const FormControlLabel: FunctionComponent<Props> = props => {
       )}
       style={style}
     >
-      {React.cloneElement(control, controlProps)}
+      {React.cloneElement(control, { disabled })}
       <Form.Label as='span' required={required} disabled={disabled}>
         {label}
       </Form.Label>
