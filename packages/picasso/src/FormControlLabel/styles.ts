@@ -37,8 +37,6 @@ export default ({ palette, typography }: Theme) =>
       // For correct alignment with the text.
       verticalAlign: 'middle',
       WebkitTapHighlightColor: 'transparent',
-      // marginLeft: -11,
-      // marginRight: 16, // used for row presentation of radio/checkbox
       '&$disabled': {
         cursor: 'default'
       },
