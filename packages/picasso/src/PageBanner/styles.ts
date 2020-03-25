@@ -1,5 +1,5 @@
 import { createStyles, Theme } from '@material-ui/core/styles'
-import { spacingToRem } from '@toptal/picasso-shared'
+import { spacingToRem, rem } from '@toptal/picasso-shared'
 
 export default ({ layout, palette, typography }: Theme) =>
   createStyles({
@@ -29,7 +29,7 @@ export default ({ layout, palette, typography }: Theme) =>
       }
     },
     iconWrapper: {
-      paddingTop: '0.22rem',
+      marginTop: rem('3px'),
       alignItems: 'flex-start',
       marginRight: '1rem'
     },
