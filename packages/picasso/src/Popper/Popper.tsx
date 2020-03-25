@@ -3,11 +3,7 @@ import cx from 'classnames'
 import MUIPopper from '@material-ui/core/Popper'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import PopperJs, { ReferenceObject, PopperOptions } from 'popper.js'
-import {
-  BaseProps,
-  usePicassoRoot,
-  usePageHeader
-} from '@toptal/picasso-shared'
+import { BaseProps, usePicassoRoot } from '@toptal/picasso-shared'
 
 import { useBreakpoint, useWidthOf } from '../utils'
 import styles from './styles'
@@ -61,18 +57,7 @@ function getAnchorEl(
   return typeof anchorEl === 'function' ? anchorEl() : anchorEl
 }
 
-function getPopperOptions(
-  popperOptions: PopperOptions,
-  isCompactLayout: boolean,
-  hasHeader: boolean
-) {
-  // top needs more offset to include header height
-  const topPadding = hasHeader ? 72 : 5
-
-  const preventOverflowPadding = isCompactLayout
-    ? 5
-    : { top: topPadding, bottom: 5, left: 5, right: 5 }
-
+function getPopperOptions(popperOptions: PopperOptions) {
   return {
     ...popperOptions,
     modifiers: {
@@ -85,7 +70,7 @@ function getPopperOptions(
       preventOverflow: {
         enabled: true,
         boundariesElement: 'viewport',
-        padding: preventOverflowPadding,
+        padding: 5,
         // replace with optional chaining
         ...(popperOptions.modifiers && popperOptions.modifiers.preventOverflow)
       }
@@ -128,7 +113,6 @@ export const Popper = forwardRef<PopperJs, Props>(function Popper(props, ref) {
   } = props
 
   const picassoRootContainer = usePicassoRoot()
-  const { hasPageHeader } = usePageHeader()
 
   const classes = useStyles(props)
   const isCompactLayout = useBreakpoint(['small', 'medium'])
@@ -154,11 +138,7 @@ export const Popper = forwardRef<PopperJs, Props>(function Popper(props, ref) {
       anchorEl={anchorEl}
       className={cx(classes.root, className)}
       popperRef={ref}
-      popperOptions={getPopperOptions(
-        popperOptions!,
-        isCompactLayout,
-        hasPageHeader
-      )}
+      popperOptions={getPopperOptions(popperOptions!)}
       disablePortal={disablePortal}
       style={{
         ...style,

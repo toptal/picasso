@@ -86,28 +86,34 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
   )
 
   return (
-    <header
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...rest}
-      ref={ref}
-      className={cx('mui-fixed', classes.root, classes[variant!], className)}
-      style={style}
-    >
-      <div className={innerClassName}>
-        <div className={classes.left}>
-          <Container className={classes.logoContainer} flex alignItems='center'>
-            {logoLink ? React.cloneElement(logoLink, {}, logo) : logo}
-          </Container>
-          {!isCompactLayout && titleComponent}
-          {leftContent}
-        </div>
+    <div className={classes.wrapper}>
+      <header
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...rest}
+        ref={ref}
+        className={cx('mui-fixed', classes.root, classes[variant!], className)}
+        style={style}
+      >
+        <div className={innerClassName}>
+          <div className={classes.left}>
+            <Container
+              className={classes.logoContainer}
+              flex
+              alignItems='center'
+            >
+              {logoLink ? React.cloneElement(logoLink, {}, logo) : logo}
+            </Container>
+            {!isCompactLayout && titleComponent}
+            {leftContent}
+          </div>
 
-        <div className={classes.right}>
-          {!isCompactLayout && actionItems}
-          {rightContent}
+          <div className={classes.right}>
+            {!isCompactLayout && actionItems}
+            {rightContent}
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+    </div>
   )
 })
 
