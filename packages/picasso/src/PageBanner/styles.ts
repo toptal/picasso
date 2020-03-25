@@ -29,7 +29,7 @@ export default ({ layout, palette, typography }: Theme) =>
       }
     },
     iconWrapper: {
-      marginTop: rem('3px'),
+      marginTop: rem('4px'),
       alignItems: 'flex-start',
       marginRight: '1rem'
     },
