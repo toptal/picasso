@@ -15,4 +15,6 @@ const Markdown = ({ children, classes }: Props): JSX.Element => {
   return <ReactMarkdown className={classes.root}>{children}</ReactMarkdown>
 }
 
+Markdown.displayName = 'Markdown'
+
 export default withStyles(styles)(Markdown)

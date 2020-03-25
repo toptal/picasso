@@ -31,4 +31,6 @@ const TabsSectionHeader: FunctionComponent<Props> = props => {
   )
 }
 
+TabsSectionHeader.displayName = 'TabsSectionHeader'
+
 export default withStyles(styles)(TabsSectionHeader)

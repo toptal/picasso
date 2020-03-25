@@ -1,7 +1,9 @@
 import {
   createMuiTheme,
   MuiThemeProvider,
-  Theme
+  Theme,
+  StylesProvider,
+  createGenerateClassName
 } from '@material-ui/core/styles'
 import React, {
   FunctionComponent,
@@ -17,6 +19,8 @@ import React, {
 import { ModalProvider } from 'react-modal-hook'
 import { makeStyles } from '@material-ui/styles'
 import { Helmet } from 'react-helmet'
+// @ts-ignore
+import { window } from 'global'
 
 import CssBaseline from '../CssBaseline'
 import {
@@ -222,21 +226,42 @@ const Picasso: FunctionComponent<PicassoProps> = ({
     PicassoBreakpoints.disableMobileBreakpoints()
   }
 
+  const generateProjectSeed = () => {
+    if (process.env.NODE_ENV === 'test') {
+      return ''
+    }
+
+    if (window.PicassoCssNamespace === undefined) {
+      window.PicassoCssNamespace = 0
+      return ''
+    }
+
+    window.PicassoCssNamespace = window.PicassoCssNamespace + 1
+    return window.PicassoCssNamespace
+  }
+  const generateClassName = createGenerateClassName({
+    // if there are multiples instances of Picasso
+    // on the page we want each set of styles to be unique
+    seed: generateProjectSeed()
+  })
+
   return (
-    <MuiThemeProvider theme={PicassoProvider.theme}>
-      <PicassoGlobalStylesProvider
-        RootComponent={RootComponent!}
-        environment={environment!}
-      >
-        {fixViewport && <Viewport />}
-        {loadFonts && <FontsLoader />}
-        {reset && <CssBaseline />}
-        {loadFavicon && <Favicon environment={environment} />}
-        <NotificationsProvider container={notificationContainer}>
-          <ModalProvider>{children}</ModalProvider>
-        </NotificationsProvider>
-      </PicassoGlobalStylesProvider>
-    </MuiThemeProvider>
+    <StylesProvider generateClassName={generateClassName}>
+      <MuiThemeProvider theme={PicassoProvider.theme}>
+        <PicassoGlobalStylesProvider
+          RootComponent={RootComponent!}
+          environment={environment!}
+        >
+          {fixViewport && <Viewport />}
+          {loadFonts && <FontsLoader />}
+          {reset && <CssBaseline />}
+          {loadFavicon && <Favicon environment={environment} />}
+          <NotificationsProvider container={notificationContainer}>
+            <ModalProvider>{children}</ModalProvider>
+          </NotificationsProvider>
+        </PicassoGlobalStylesProvider>
+      </MuiThemeProvider>
+    </StylesProvider>
   )
 }
 
