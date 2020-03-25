@@ -19,8 +19,6 @@ import React, {
 import { ModalProvider } from 'react-modal-hook'
 import { makeStyles } from '@material-ui/styles'
 import { Helmet } from 'react-helmet'
-// @ts-ignore
-import window from 'global'
 
 import CssBaseline from '../CssBaseline'
 import {
@@ -227,6 +225,11 @@ const Picasso: FunctionComponent<PicassoProps> = ({
   }
 
   const generateProjectSeed = () => {
+    // if server-side rendering or rendering not inside the browser
+    if (typeof window !== 'undefined') {
+      return
+    }
+
     if (window.PicassoCssNamespace === undefined) {
       window.PicassoCssNamespace = 0
       return
