@@ -70,12 +70,7 @@ export const PageBanner = forwardRef<HTMLDivElement, Props>(function PageBanner(
       variant={variant}
       flex
     >
-      <Container
-        variant={variant}
-        className={innerClassName}
-        padded='medium'
-        flex
-      >
+      <Container variant={variant} className={innerClassName} flex>
         {icon && (
           <Container flex alignItems='center' className={classes.iconWrapper}>
             {icon}

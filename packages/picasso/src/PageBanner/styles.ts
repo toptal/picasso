@@ -6,10 +6,8 @@ export default ({ layout, palette, typography }: Theme) =>
     root: {
       fontSize: '1rem',
       justifyContent: 'center',
-
-      // "collapse padding" when few page banners come in a row
-      '& + &': {
-        marginTop: `-${spacingToRem('large')}`
+      '&:first-of-type > $content': {
+        paddingTop: spacingToRem('medium')
       }
     },
     content: {
@@ -19,6 +17,7 @@ export default ({ layout, palette, typography }: Theme) =>
       width: '100%',
       paddingLeft: layout.contentPaddingHorizontal,
       paddingRight: layout.contentPaddingHorizontal,
+      paddingBottom: spacingToRem('medium'),
       maxWidth: layout.contentWidth
     },
     actions: {
