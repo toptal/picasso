@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@0.1.1...@toptal/picasso-charts@0.2.0) (2020-03-26)
+
+
+### Features
+
+* line chart ([#1173](https://github.com/toptal/picasso/issues/1173)) ([0bea86e](https://github.com/toptal/picasso/commit/0bea86ea0c852476335a078f2e2f034b16e35938))
+
+
+
+
+
 ## [0.1.1](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@0.1.0...@toptal/picasso-charts@0.1.1) (2020-03-18)
 
 **Note:** Version bump only for package @toptal/picasso-charts
