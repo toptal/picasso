@@ -12,7 +12,7 @@ export default ({ layout, palette, typography }: Theme) =>
     },
     content: {
       color: palette.common.black,
-      lineHeight: '1.5rem',
+      lineHeight: '1.25rem',
       fontSize: '0.8125rem',
       width: '100%',
       paddingLeft: layout.contentPaddingHorizontal,
@@ -29,7 +29,7 @@ export default ({ layout, palette, typography }: Theme) =>
       }
     },
     iconWrapper: {
-      marginTop: rem('4px'),
+      marginTop: rem('2px'),
       alignItems: 'flex-start',
       marginRight: '1rem'
     },
