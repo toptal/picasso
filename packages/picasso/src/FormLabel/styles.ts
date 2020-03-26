@@ -1,17 +1,13 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 import { alpha } from '@toptal/picasso-shared'
 
-const widthOfControlWithMargin = '1.5rem'
-
 export default ({ palette }: Theme) =>
   createStyles({
     root: {
       color: palette.grey[400],
       display: 'block',
       marginBottom: '0.5em',
-      lineHeight: '1em',
-      // For label
-      maxWidth: `calc(100% - ${widthOfControlWithMargin})`
+      lineHeight: '1em'
     },
 
     disabled: {

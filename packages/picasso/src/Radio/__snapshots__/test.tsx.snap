@@ -30,7 +30,7 @@ exports[`Radio.Group renders radio in group 1`] = `
           </span>
         </span>
         <span
-          class="FormLabel-root FormLabel-inline"
+          class="FormLabel-root FormLabel-inline FormControlLabel-label Radio-label"
         >
           <span
             class="FormLabel-text"
@@ -60,7 +60,7 @@ exports[`Radio.Group renders radio in group 1`] = `
           </span>
         </span>
         <span
-          class="FormLabel-root FormLabel-inline"
+          class="FormLabel-root FormLabel-inline FormControlLabel-label Radio-label"
         >
           <span
             class="FormLabel-text"
