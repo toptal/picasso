@@ -10,7 +10,7 @@ exports[`Radio.Group renders radio in group 1`] = `
       role="radiogroup"
     >
       <label
-        class="MuiFormControlLabel-root FormControlLabel-root Radio-root Radio-label"
+        class="FormControlLabel-root Radio-root Radio-label"
       >
         <span
           aria-disabled="false"
@@ -30,21 +30,17 @@ exports[`Radio.Group renders radio in group 1`] = `
           </span>
         </span>
         <span
-          class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+          class="FormLabel-root FormLabel-inline"
         >
           <span
-            class="FormLabel-root FormLabel-inline"
+            class="FormLabel-text"
           >
-            <span
-              class="FormLabel-text"
-            >
-              LABEL+1
-            </span>
+            LABEL+1
           </span>
         </span>
       </label>
       <label
-        class="MuiFormControlLabel-root FormControlLabel-root Radio-root Radio-label"
+        class="FormControlLabel-root Radio-root Radio-label"
       >
         <span
           aria-disabled="false"
@@ -64,16 +60,12 @@ exports[`Radio.Group renders radio in group 1`] = `
           </span>
         </span>
         <span
-          class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+          class="FormLabel-root FormLabel-inline"
         >
           <span
-            class="FormLabel-root FormLabel-inline"
+            class="FormLabel-text"
           >
-            <span
-              class="FormLabel-text"
-            >
-              LABEL+2
-            </span>
+            LABEL+2
           </span>
         </span>
       </label>

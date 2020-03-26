@@ -11,7 +11,6 @@ import cx from 'classnames'
 
 import RadioGroup from '../RadioGroup'
 import FormControlLabel from '../FormControlLabel'
-import Form from '../Form'
 import styles from './styles'
 
 export interface Props
@@ -84,11 +83,8 @@ export const Radio = forwardRef<HTMLButtonElement, Props>(function Radio(
       className={classes.label}
       classes={rootClasses}
       style={style}
-      label={
-        <Form.Label disabled={disabled} as='span'>
-          {label}
-        </Form.Label>
-      }
+      label={label}
+      disabled={disabled}
     />
   )
 }) as CompoundedComponentWithRef<Props, HTMLButtonElement, StaticProps>

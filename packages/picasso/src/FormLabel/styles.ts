@@ -7,7 +7,9 @@ export default ({ palette }: Theme) =>
       color: palette.grey[400],
       display: 'block',
       marginBottom: '0.5em',
-      lineHeight: '1em'
+      lineHeight: '1em',
+      // For label
+      maxWidth: '100%'
     },
 
     disabled: {
@@ -29,7 +31,7 @@ export default ({ palette }: Theme) =>
       marginBottom: 0,
 
       '& $text': {
-        fontSize: '0.8125em',
+        fontSize: '0.8125rem',
         verticalAlign: 'top'
       },
 

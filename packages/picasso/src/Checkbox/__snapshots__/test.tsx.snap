@@ -6,7 +6,7 @@ exports[`checkbox interaction should render checked checkbox 1`] = `
     class="Picasso-root"
   >
     <label
-      class="MuiFormControlLabel-root FormControlLabel-root Checkbox-root picasso-checkbox"
+      class="FormControlLabel-root Checkbox-root picasso-checkbox"
     >
       <span
         aria-disabled="false"
@@ -28,16 +28,12 @@ exports[`checkbox interaction should render checked checkbox 1`] = `
         </span>
       </span>
       <span
-        class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+        class="FormLabel-root FormLabel-inline"
       >
         <span
-          class="FormLabel-root FormLabel-inline"
+          class="FormLabel-text"
         >
-          <span
-            class="FormLabel-text"
-          >
-            Select item
-          </span>
+          Select item
         </span>
       </span>
     </label>
@@ -137,7 +133,7 @@ exports[`should render default checkbox with label 1`] = `
     class="Picasso-root"
   >
     <label
-      class="MuiFormControlLabel-root FormControlLabel-root Checkbox-root picasso-checkbox"
+      class="FormControlLabel-root Checkbox-root picasso-checkbox"
     >
       <span
         aria-disabled="false"
@@ -159,16 +155,12 @@ exports[`should render default checkbox with label 1`] = `
         </span>
       </span>
       <span
-        class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+        class="FormLabel-root FormLabel-inline"
       >
         <span
-          class="FormLabel-root FormLabel-inline"
+          class="FormLabel-text"
         >
-          <span
-            class="FormLabel-text"
-          >
-            Select item
-          </span>
+          Select item
         </span>
       </span>
     </label>

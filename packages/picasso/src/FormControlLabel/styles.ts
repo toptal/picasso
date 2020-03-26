@@ -26,8 +26,37 @@ PicassoProvider.override(({ palette, typography }: Theme) => ({
   }
 }))
 
-export default () =>
+export default ({ palette, typography }: Theme) =>
   createStyles({
-    root: {},
+    root: {
+      display: 'inline-flex',
+      alignItems: 'center',
+      cursor: 'pointer',
+      // For ellipsis
+      maxWidth: '100%',
+      // For correct alignment with the text.
+      verticalAlign: 'middle',
+      WebkitTapHighlightColor: 'transparent',
+      '&$disabled': {
+        cursor: 'default'
+      },
+      marginLeft: 0,
+      marginRight: 0
+    },
+    label: {
+      display: 'inline-block',
+
+      fontSize: '1em',
+      color: palette.text.primary,
+      lineHeight: '1em',
+      fontWeight: typography.fontWeightRegular,
+      cursor: 'pointer',
+      userSelect: 'none',
+
+      '&$disabled': {
+        cursor: 'not-allowed',
+        pointerEvents: 'auto'
+      }
+    },
     disabled: {}
   })

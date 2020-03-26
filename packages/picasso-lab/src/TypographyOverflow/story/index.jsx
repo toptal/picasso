@@ -32,3 +32,7 @@ page
       await makeScreenshot()
     }
   })
+  .addExample(
+    'TypographyOverflow/story/GridWithControls.example.tsx',
+    'Grid With Controls'
+  ) // picasso-skip-visuals
