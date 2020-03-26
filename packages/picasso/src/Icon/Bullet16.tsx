@@ -44,7 +44,7 @@ const SvgBullet16 = forwardRef(function SvgBullet16(
       style={svgStyle}
       ref={ref}
     >
-      <path d='M0 0h16v16H0z' />
+      <path d='M8 6a2 2 0 110 4 2 2 0 010-4z' />
     </svg>
   )
 })

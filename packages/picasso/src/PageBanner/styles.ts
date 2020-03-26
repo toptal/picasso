@@ -1,7 +1,9 @@
 import { createStyles, Theme } from '@material-ui/core/styles'
-import { spacingToRem, rem } from '@toptal/picasso-shared'
+import { spacingToRem } from '@toptal/picasso-shared'
 
-export default ({ layout, palette, typography }: Theme) =>
+const lineHeight = '1.25rem'
+
+export default ({ layout, palette, typography, screens }: Theme) =>
   createStyles({
     root: {
       fontSize: '1rem',
@@ -12,7 +14,7 @@ export default ({ layout, palette, typography }: Theme) =>
     },
     content: {
       color: palette.common.black,
-      lineHeight: '1.25rem',
+      lineHeight,
       fontSize: '0.8125rem',
       width: '100%',
       paddingLeft: layout.contentPaddingHorizontal,
@@ -29,9 +31,12 @@ export default ({ layout, palette, typography }: Theme) =>
       }
     },
     iconWrapper: {
-      marginTop: rem('2px'),
-      alignItems: 'flex-start',
-      marginRight: '1rem'
+      alignItems: 'center',
+      height: lineHeight,
+      marginRight: '1rem',
+      [screens('small', 'medium')]: {
+        marginRight: '0.5rem'
+      }
     },
     wide: {
       maxWidth: layout.contentWidthWide
