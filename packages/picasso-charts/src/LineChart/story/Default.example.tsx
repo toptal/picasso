@@ -2,6 +2,14 @@ import React from 'react'
 import { palette } from '@toptal/picasso/utils'
 import { LineChart } from '@toptal/picasso-charts'
 
+const HIGHLIGHTS_DATA = [
+  {
+    from: 6,
+    to: 8,
+    color: palette.yellow.main
+  }
+]
+
 const CHART_DATA = [
   { x: 'Oct 20', talents: 1.7 },
   { x: 'Oct 21', talents: 2 },
@@ -30,6 +38,7 @@ const CHART_DATA = [
 const Example = () => (
   <LineChart
     data={CHART_DATA}
+    highlightsData={HIGHLIGHTS_DATA}
     lines={{
       talents: palette.blue.main
     }}

@@ -14,15 +14,16 @@ import {
   Tooltip
 } from 'recharts'
 
-import calcTopDomain from '../utils/calc-top-domain'
+import {
+  findTopDomain,
+  getChartTicks,
+  convertHighlightData,
+  orderData
+} from '../utils'
 import CHART_CONSTANTS from '../utils/constants'
 
 const {
   BOTTOM_DOMAIN,
-  HIGHLIGHT_BOTTOM_START_POINT,
-  HIGHLIGHT_BOTTOM_FILL_OPACITY,
-  HIGHLIGHT_TOP_HEIGHT,
-  HIGHLIGHT_TOP_FILL_OPACITY,
   TICK_MARGIN,
   MIN_TICK_GAP,
   DEFAULT_MARGIN,
@@ -62,7 +63,7 @@ export type Props = BaseProps & {
   height?: number
   tooltip?: boolean
   customTooltip?: ReactElement
-  highlightsData?: HighlightData[]
+  highlightsData?: HighlightData[] | null
   referenceLineData?: ReferenceLineType[]
 }
 
@@ -87,34 +88,6 @@ const ChartStyle = () => (
     }}
   />
 )
-
-const calcTicks = (orderedData: OrderedChartDataPoint[]) =>
-  orderedData.map(({ order }) => order)
-
-const convertHighlightData = (topDomain: number, data: HighlightData[]) =>
-  data.map(({ from, to, color }) => {
-    const x1 = from
-    const x2 = to
-
-    return [
-      {
-        x1,
-        x2,
-        y1: HIGHLIGHT_BOTTOM_START_POINT,
-        y2: topDomain,
-        fillOpacity: HIGHLIGHT_BOTTOM_FILL_OPACITY,
-        fill: color
-      },
-      {
-        x1,
-        x2,
-        y1: topDomain - HIGHLIGHT_TOP_HEIGHT,
-        y2: topDomain,
-        fillOpacity: HIGHLIGHT_TOP_FILL_OPACITY,
-        fill: color
-      }
-    ]
-  })
 
 const generateHighlightedAreas = (
   topDomain: number,
@@ -167,12 +140,6 @@ const generateLineGraphs = (
     />
   ))
 
-const orderData = (data: ChartDataPoint[]): OrderedChartDataPoint[] =>
-  data.map((point, index: number) => ({
-    ...point,
-    order: index
-  }))
-
 export const LineChart = ({
   data,
   lines,
@@ -189,12 +156,12 @@ export const LineChart = ({
   const yKey = lineNames[0]
   const isSingleChart = lineNames.length === 1
 
-  const topDomain = calcTopDomain(data, xAxisKey!)
+  const topDomain = findTopDomain(data, xAxisKey!)
   const orderedData = orderData(data)
-  const ticks = calcTicks(orderedData)
+  const ticks = getChartTicks(orderedData)
 
   const referenceLineList = generateReferenceLines(referenceLineData)
-  const highlightedAreas = generateHighlightedAreas(topDomain, highlightsData)
+  const highlightedAreas = generateHighlightedAreas(topDomain, highlightsData!)
   const lineGraphs = generateLineGraphs(lineNames, orderedData, lines)
 
   const formatTicks = (tick: unknown) =>

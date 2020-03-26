@@ -1,5 +1,1 @@
-export {
-  default as LineChart,
-  ChartDataPoint,
-  HighlightData
-} from './LineChart'
+export { default as AnalyticsChart } from './AnalyticsChart'

@@ -1,7 +1,6 @@
 import React from 'react'
 import { palette } from '@toptal/picasso/utils'
-import { LineChart } from '@toptal/picasso-charts'
-import { toChartFormat, toHighlightFormat } from '@toptal/picasso-charts/utils'
+import { AnalyticsChart } from '@topkit/analytics-charts'
 
 const RAW_CHART_DATA = {
   '2020-10-20': 1.7,
@@ -43,33 +42,19 @@ const REFERENCE_LINE_DATA = [
   }
 ]
 
-const PREDEFINED_HIGHLIGHT = {
-  from: 6,
-  to: 8,
-  color: palette.yellow.main
-}
 const HIGHLIGHTS_DATA = ['2020-10-21', '2020-11-02']
 
-const convertedData = toChartFormat(RAW_CHART_DATA, 'date', 'projects')
-
-const convertedHighlightsData = toHighlightFormat(
-  HIGHLIGHTS_DATA,
-  convertedData,
-  palette.green.main,
-  'date'
-)
-
-const highlightsData = [PREDEFINED_HIGHLIGHT, ...convertedHighlightsData]
-
 const Example = () => (
-  <LineChart
+  <AnalyticsChart
     xAxisKey='date'
-    data={convertedData}
+    yAxisKey='projects'
+    data={RAW_CHART_DATA}
+    highlightsData={HIGHLIGHTS_DATA}
+    highLightsColor={palette.green.main}
+    referenceLineData={REFERENCE_LINE_DATA}
     lines={{
       projects: palette.blue.main
     }}
-    highlightsData={highlightsData}
-    referenceLineData={REFERENCE_LINE_DATA}
   />
 )
 

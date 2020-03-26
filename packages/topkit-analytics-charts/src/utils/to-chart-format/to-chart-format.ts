@@ -1,4 +1,4 @@
-import { ChartDataPoint } from '@toptal/picasso-charts'
+import { ChartDataPoint } from '@toptal/picasso-charts/src/LineChart'
 
 type DatePoint = {
   [key: string]: number
