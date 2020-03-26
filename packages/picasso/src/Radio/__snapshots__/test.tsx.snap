@@ -10,7 +10,7 @@ exports[`Radio.Group renders radio in group 1`] = `
       role="radiogroup"
     >
       <label
-        class="FormControlLabel-root Radio-root Radio-label"
+        class="FormControlLabel-root Radio-root"
       >
         <span
           aria-disabled="false"
@@ -40,7 +40,7 @@ exports[`Radio.Group renders radio in group 1`] = `
         </span>
       </label>
       <label
-        class="FormControlLabel-root Radio-root Radio-label"
+        class="FormControlLabel-root Radio-root"
       >
         <span
           aria-disabled="false"
