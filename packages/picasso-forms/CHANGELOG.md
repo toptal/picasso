@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.13.1...@toptal/picasso-forms@0.14.0) (2020-03-26)
+
+
+### Features
+
+* add ellipsis on control label overflow ([#1185](https://github.com/toptal/picasso/issues/1185)) ([a38be02](https://github.com/toptal/picasso/commit/a38be02d7a940df73dd6ee4a297ffd694cff71cb))
+
+
+
+
+
 ## [0.13.1](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.13.0...@toptal/picasso-forms@0.13.1) (2020-03-03)
 
 **Note:** Version bump only for package @toptal/picasso-forms

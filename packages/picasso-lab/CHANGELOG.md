@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.9.0...@toptal/picasso-lab@2.10.0) (2020-03-26)
+
+
+### Features
+
+* add ellipsis on control label overflow ([#1185](https://github.com/toptal/picasso/issues/1185)) ([a38be02](https://github.com/toptal/picasso/commit/a38be02d7a940df73dd6ee4a297ffd694cff71cb))
+
+
+
+
+
 # [2.9.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.8.3...@toptal/picasso-lab@2.9.0) (2020-03-20)
 
 
