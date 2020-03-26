@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.45.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.45.0...@toptal/picasso@4.45.1) (2020-03-26)
+
+
+### Bug Fixes
+
+* **FormControl:** make label smaller by control width ([#1188](https://github.com/toptal/picasso/issues/1188)) ([9d19225](https://github.com/toptal/picasso/commit/9d192256498145ef78dd3b25642a2b131297907b))
+
+
+
+
+
 # [4.45.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.44.11...@toptal/picasso@4.45.0) (2020-03-26)
 
 
