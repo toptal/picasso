@@ -1,1 +1,1 @@
-export { default } from './LineChart'
+export { default, ChartDataPoint, HighlightData } from './LineChart'
