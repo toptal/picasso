@@ -93,7 +93,10 @@ export const Checkbox = forwardRef<HTMLButtonElement, Props>(function Checkbox(
 
   return (
     <FormControlLabel
-      classes={rootClasses}
+      classes={{
+        ...rootClasses,
+        label: classes.label
+      }}
       control={muiCheckbox}
       required={required}
       disabled={disabled}

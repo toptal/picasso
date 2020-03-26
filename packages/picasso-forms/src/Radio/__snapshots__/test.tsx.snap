@@ -30,7 +30,7 @@ exports[`FormRadio default render 1`] = `
           type="radio"
         >
           <label
-            class="FormControlLabel-root Radio-root Radio-label"
+            class="FormControlLabel-root Radio-root"
           >
             <span
               aria-disabled="false"
@@ -51,7 +51,7 @@ exports[`FormRadio default render 1`] = `
               </span>
             </span>
             <span
-              class="FormLabel-root FormLabel-inline"
+              class="FormLabel-root FormLabel-inline FormControlLabel-label Radio-label"
             >
               <span
                 class="FormLabel-text"
@@ -61,7 +61,7 @@ exports[`FormRadio default render 1`] = `
             </span>
           </label>
           <label
-            class="FormControlLabel-root Radio-root Radio-label"
+            class="FormControlLabel-root Radio-root"
           >
             <span
               aria-disabled="false"
@@ -82,7 +82,7 @@ exports[`FormRadio default render 1`] = `
               </span>
             </span>
             <span
-              class="FormLabel-root FormLabel-inline"
+              class="FormLabel-root FormLabel-inline FormControlLabel-label Radio-label"
             >
               <span
                 class="FormLabel-text"

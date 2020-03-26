@@ -7,9 +7,7 @@ export default ({ palette }: Theme) =>
       color: palette.grey[400],
       display: 'block',
       marginBottom: '0.5em',
-      lineHeight: '1em',
-      // For label
-      maxWidth: '100%'
+      lineHeight: '1em'
     },
 
     disabled: {

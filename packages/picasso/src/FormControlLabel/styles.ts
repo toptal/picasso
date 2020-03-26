@@ -26,7 +26,7 @@ PicassoProvider.override(({ palette, typography }: Theme) => ({
   }
 }))
 
-export default ({ palette, typography }: Theme) =>
+export default () =>
   createStyles({
     root: {
       display: 'inline-flex',
@@ -44,15 +44,6 @@ export default ({ palette, typography }: Theme) =>
       marginRight: 0
     },
     label: {
-      display: 'inline-block',
-
-      fontSize: '1em',
-      color: palette.text.primary,
-      lineHeight: '1em',
-      fontWeight: typography.fontWeightRegular,
-      cursor: 'pointer',
-      userSelect: 'none',
-
       '&$disabled': {
         cursor: 'not-allowed',
         pointerEvents: 'auto'

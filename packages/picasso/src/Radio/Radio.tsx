@@ -80,8 +80,11 @@ export const Radio = forwardRef<HTMLButtonElement, Props>(function Radio(
   return (
     <FormControlLabel
       control={muiRadio}
-      className={classes.label}
-      classes={rootClasses}
+      className={classes.labelWithRightSpacing}
+      classes={{
+        ...rootClasses,
+        label: classes.label
+      }}
       style={style}
       label={label}
       disabled={disabled}

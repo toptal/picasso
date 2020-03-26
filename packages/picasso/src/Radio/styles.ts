@@ -5,6 +5,9 @@ import {
   rem
 } from '@toptal/picasso-shared'
 
+const controlWidth = '1em'
+const controlMarginRight = '0.5em'
+
 PicassoProvider.override(({ palette, transitions }) => ({
   MuiRadio: {
     root: {
@@ -67,7 +70,7 @@ export default ({ palette, sizes, transitions }: Theme) =>
       }
     },
     withLabel: {
-      marginRight: '0.5em'
+      marginRight: controlMarginRight
     },
     uncheckedIcon: {
       color: palette.grey.main,
@@ -105,6 +108,6 @@ export default ({ palette, sizes, transitions }: Theme) =>
       }
     },
     label: {
-      marginRight: '0.5em'
+      maxWidth: `calc(100% - ${controlWidth} - ${controlMarginRight})`
     }
   })

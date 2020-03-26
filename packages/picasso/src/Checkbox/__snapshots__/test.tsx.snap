@@ -28,7 +28,7 @@ exports[`checkbox interaction should render checked checkbox 1`] = `
         </span>
       </span>
       <span
-        class="FormLabel-root FormLabel-inline"
+        class="FormLabel-root FormLabel-inline FormControlLabel-label Checkbox-label"
       >
         <span
           class="FormLabel-text"
@@ -155,7 +155,7 @@ exports[`should render default checkbox with label 1`] = `
         </span>
       </span>
       <span
-        class="FormLabel-root FormLabel-inline"
+        class="FormLabel-root FormLabel-inline FormControlLabel-label Checkbox-label"
       >
         <span
           class="FormLabel-text"
