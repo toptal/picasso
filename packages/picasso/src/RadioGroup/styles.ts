@@ -4,5 +4,9 @@ export default () =>
   createStyles({
     horizontal: {
       flexDirection: 'row'
+    },
+
+    labelWithRightSpacing: {
+      marginRight: '0.5em'
     }
   })

@@ -16,7 +16,25 @@ const useStyles = makeStyles<Theme, Props>(styles, {
 
 const RadioGroup: FunctionComponent<Props> = props => {
   const { horizontal, className, ...rest } = props
-  const { horizontal: horizontalClass, ...classes } = useStyles(props)
+  const {
+    horizontal: horizontalClass,
+    labelWithRightSpacing,
+    ...classes
+  } = useStyles(props)
+
+  const children = React.Children.toArray(rest.children)
+
+  const childrenWithSpacing = children.map((child, index) => {
+    if (!React.isValidElement(child)) return
+
+    if (index === children.length || !horizontal) {
+      return child
+    }
+
+    return React.cloneElement(child, {
+      classes: { ...child.props.classes, labelWithRightSpacing }
+    })
+  })
 
   return (
     <MUIRadioGroup
@@ -24,7 +42,9 @@ const RadioGroup: FunctionComponent<Props> = props => {
       {...rest}
       classes={classes}
       className={cx({ [horizontalClass]: horizontal }, className)}
-    />
+    >
+      {childrenWithSpacing}
+    </MUIRadioGroup>
   )
 }
 

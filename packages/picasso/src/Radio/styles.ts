@@ -104,7 +104,5 @@ export default ({ palette, sizes, transitions }: Theme) =>
         transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`
       }
     },
-    label: {
-      marginRight: '0.5em'
-    }
+    label: {}
   })
