@@ -57,7 +57,8 @@ const imports: Record<string, object> = {
   '@toptal/picasso-forms': require('../../../packages/picasso-forms'),
   '@toptal/picasso-forms/utils': require('../../../packages/picasso-forms/src/utils'),
   '@toptal/picasso-charts': require('../../../packages/picasso-charts'),
-  '@toptal/picasso-charts/utils': require('../../../packages/picasso-charts/src/utils'),
+  '@topkit/analytics-chart': require('../../../packages/topkit-analytics-chart'),
+  '@topkit/analytics-chart/utils': require('../../../packages/topkit-analytics-chart/src/utils'),
   '@toptal/picasso/utils': require('../../../packages/picasso/src/utils'),
   '@toptal/picasso/Icon': require('../../../packages/picasso/src/Icon')
 }

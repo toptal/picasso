@@ -84,3 +84,4 @@ page
   .createChapter()
   .addExample('LineChart/story/Default.example.tsx', 'Default')
   .addExample('LineChart/story/Multiple.example.tsx', 'Multiple Lines')
+  .addExample('LineChart/story/Complex.example.tsx', 'Complex')
