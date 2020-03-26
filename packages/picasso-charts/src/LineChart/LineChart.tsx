@@ -1,4 +1,4 @@
-import React, { useMemo, ReactElement } from 'react'
+import React, { ReactElement } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
 import { palette } from '@toptal/picasso/utils'
 import {
@@ -151,6 +151,22 @@ const generateReferenceLines = (referenceLines?: ReferenceLineType[]) => {
   ))
 }
 
+const generateLineGraphs = (
+  lineNames: string[],
+  orderedData: OrderedChartDataPoint[],
+  lines: ChartLine
+) =>
+  lineNames.map((name, index) => (
+    <Line
+      key={`line-${index}`}
+      data={orderedData}
+      dataKey={name}
+      stroke={lines[name]}
+      dot={{ fill: lines[name] }}
+      isAnimationActive={IS_ANIMATION_ACTIVE}
+    />
+  ))
+
 const orderData = (data: ChartDataPoint[]): OrderedChartDataPoint[] =>
   data.map((point, index: number) => ({
     ...point,
@@ -173,21 +189,13 @@ export const LineChart = ({
   const yKey = lineNames[0]
   const isSingleChart = lineNames.length === 1
 
-  const topDomain = useMemo(() => calcTopDomain(data, xAxisKey!), [
-    data,
-    xAxisKey
-  ])
-  const orderedData = useMemo(() => orderData(data), [data])
-  const ticks = useMemo(() => calcTicks(orderedData), [orderedData])
+  const topDomain = calcTopDomain(data, xAxisKey!)
+  const orderedData = orderData(data)
+  const ticks = calcTicks(orderedData)
 
-  const referenceLineList = useMemo(
-    () => generateReferenceLines(referenceLineData),
-    [referenceLineData]
-  )
-  const highlightedAreas = useMemo(
-    () => generateHighlightedAreas(topDomain, highlightsData),
-    [highlightsData, topDomain]
-  )
+  const referenceLineList = generateReferenceLines(referenceLineData)
+  const highlightedAreas = generateHighlightedAreas(topDomain, highlightsData)
+  const lineGraphs = generateLineGraphs(lineNames, orderedData, lines)
 
   const formatTicks = (tick: unknown) =>
     orderedData.find(item => item.order === tick)![xAxisKey!]
@@ -251,16 +259,7 @@ export const LineChart = ({
             />
           )}
 
-          {lineNames.map((name, index) => (
-            <Line
-              key={`line-${index}`}
-              data={orderedData}
-              dataKey={name}
-              stroke={lines[name]}
-              dot={{ fill: lines[name] }}
-              isAnimationActive={IS_ANIMATION_ACTIVE}
-            />
-          ))}
+          {lineGraphs}
 
           {tooltip && <Tooltip content={customTooltip} />}
 
