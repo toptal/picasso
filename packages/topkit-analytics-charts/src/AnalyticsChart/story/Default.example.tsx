@@ -54,7 +54,7 @@ const REFERENCE_LINE_DATA = {
   }
 }
 
-const HIGHLIGHTS_DATA = ['2020-10-21', '2020-11-02']
+const HIGHLIGHTS_DATA = ['2020-10-21', '2020-11-01', '2020-11-02']
 
 const Example = () => (
   <AnalyticsChart
