@@ -81,7 +81,7 @@ async function matchScreenshot(options: Options) {
 }
 
 // TODO: Make this more universal when we add more components and their variations
-export const assertVisuals = function(
+export const assertVisuals = function (
   kind: string,
   type: string,
   options: Options = {
