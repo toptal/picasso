@@ -8,8 +8,8 @@ export default ({ layout, palette, typography, screens }: Theme) =>
     root: {
       fontSize: '1rem',
       justifyContent: 'center',
-      '&:first-of-type > $content': {
-        paddingTop: spacingToRem('medium')
+      '& + & > $content': {
+        paddingTop: 0
       }
     },
     content: {
@@ -17,9 +17,8 @@ export default ({ layout, palette, typography, screens }: Theme) =>
       lineHeight,
       fontSize: '0.8125rem',
       width: '100%',
-      paddingLeft: layout.contentPaddingHorizontal,
-      paddingRight: layout.contentPaddingHorizontal,
-      paddingBottom: spacingToRem('medium'),
+      padding: `${spacingToRem('medium')} ${layout.contentPaddingHorizontal}`,
+
       maxWidth: layout.contentWidth
     },
     actions: {
