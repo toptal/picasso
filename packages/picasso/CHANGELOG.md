@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.46.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.45.1...@toptal/picasso@4.46.0) (2020-03-27)
+
+
+### Features
+
+* **pagebanner:** extend with compound components ([#1183](https://github.com/toptal/picasso/issues/1183)) ([79c91a6](https://github.com/toptal/picasso/commit/79c91a61a30652803fabbbfce4643f75df3d3aa2))
+
+
+
+
+
 ## [4.45.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.45.0...@toptal/picasso@4.45.1) (2020-03-26)
 
 
