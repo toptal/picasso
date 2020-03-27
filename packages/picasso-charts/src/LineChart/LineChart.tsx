@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, ReactNode } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
 import { palette } from '@toptal/picasso/utils'
 import {
@@ -61,6 +61,7 @@ export type Props = BaseProps & {
   customTooltip?: ReactElement
   highlightsData?: HighlightData[] | null
   referenceLineData?: ReferenceLineType[]
+  children?: ReactNode
 }
 
 const StyleOverrides = () => (
@@ -147,6 +148,7 @@ export const LineChart = ({
   customTooltip,
   highlightsData,
   referenceLineData,
+  children,
   ...rest
 }: Props) => {
   const lineNames = Object.keys(lines)
@@ -224,6 +226,7 @@ export const LineChart = ({
           )}
 
           {lineGraphs}
+          {children}
 
           {tooltip && <Tooltip content={customTooltip} />}
 
