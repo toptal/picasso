@@ -60,7 +60,7 @@ const Example = () => (
   <AnalyticsChart
     xAxisKey='date'
     yAxisKey='projects'
-    data={RAW_CHART_DATA}
+    data={RAW_CHART_DATA.red}
     highlightsData={HIGHLIGHTS_DATA}
     highLightsColor={palette.green.main}
     referenceLineData={REFERENCE_LINE_DATA}

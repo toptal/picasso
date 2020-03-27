@@ -51,7 +51,7 @@ const imports: Record<string, object> = {
   debounce: require('debounce'),
   'date-fns': require('date-fns'),
   // TODO: need to fix those direct imports
-  // and use @toptal/picass-lab or @toptal/picasso packages here
+  // and use @toptal/picasso-lab or @toptal/picasso packages here
   '@toptal/picasso': require('../../../packages/picasso'),
   '@toptal/picasso-lab': require('../../../packages/picasso-lab'),
   '@toptal/picasso-forms': require('../../../packages/picasso-forms'),
