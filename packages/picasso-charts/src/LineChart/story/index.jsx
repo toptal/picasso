@@ -4,7 +4,7 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Charts').createPage(
   'LineChart',
-  'This is what we can do with charts for now'
+  'Responsive line charts'
 )
 
 page.createTabChapter('Props').addComponentDocs({

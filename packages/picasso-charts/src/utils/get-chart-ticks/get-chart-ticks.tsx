@@ -1,4 +1,4 @@
-import { OrderedChartDataPoint } from '../../LineChart'
+import { OrderedChartDataPoint } from '../..'
 
 const getChartTicks = (orderedData: OrderedChartDataPoint[]) =>
   orderedData.map(({ order }) => order)

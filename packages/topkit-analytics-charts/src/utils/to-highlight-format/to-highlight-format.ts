@@ -1,7 +1,4 @@
-import {
-  HighlightData,
-  ChartDataPoint
-} from '@toptal/picasso-charts/src/LineChart'
+import { ChartDataPoint, HighlightData } from '@toptal/picasso-charts'
 
 const toHighlightFormat = (
   data: string[],

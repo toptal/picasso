@@ -4,7 +4,7 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Charts').createPage(
   'AnalyticsChart',
-  'This is what we can do with charts for now'
+  'Use LineChart with analytics data'
 )
 
 page.createTabChapter('Props').addComponentDocs({

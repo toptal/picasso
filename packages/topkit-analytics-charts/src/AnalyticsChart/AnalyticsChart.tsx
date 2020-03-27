@@ -1,13 +1,10 @@
 import React from 'react'
-import { LineChart } from '@toptal/picasso-charts'
-import { Props as LineChartProps } from '@toptal/picasso-charts/src/LineChart'
+import { LineChart, LineChartProps } from '@toptal/picasso-charts'
 
 import { toHighlightFormat, toChartFormat } from '../utils'
 
 export type Props = LineChartProps & {
-  data: {
-    [key: string]: number
-  }
+  data: Record<string, number>
   highlightsData?: string[]
   highLightsColor?: string
   xAxisKey: string

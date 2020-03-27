@@ -1,4 +1,4 @@
-import convertHighlightData from './'
+import toRechartsHighlightFormat from './'
 
 const TOP_DOMAIN = 2
 
@@ -32,6 +32,6 @@ const CONVERTED_DATA = [
 ]
 
 test('get chart ticks', () => {
-  const chartTicks = convertHighlightData(TOP_DOMAIN, HIGHLIGHT_DATA)
+  const chartTicks = toRechartsHighlightFormat(TOP_DOMAIN, HIGHLIGHT_DATA)
   expect(chartTicks).toEqual(CONVERTED_DATA)
 })

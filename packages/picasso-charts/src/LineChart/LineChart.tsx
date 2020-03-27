@@ -17,7 +17,7 @@ import {
 import {
   findTopDomain,
   getChartTicks,
-  convertHighlightData,
+  toRechartsHighlightFormat,
   orderData
 } from '../utils'
 import CHART_CONSTANTS from '../utils/constants'
@@ -37,9 +37,7 @@ export type ReferenceLineType = {
   color: string
 }
 
-export type ChartDataPoint = {
-  [key: string]: string | number
-}
+export type ChartDataPoint = Record<string, string | number>
 
 export type HighlightData = {
   from: number
@@ -51,9 +49,7 @@ export type OrderedChartDataPoint = ChartDataPoint & {
   order: number
 }
 
-export type ChartLine = {
-  [key: string]: string
-}
+export type ChartLine = Record<string, number>
 
 export type Props = BaseProps & {
   data: ChartDataPoint[]
@@ -67,7 +63,7 @@ export type Props = BaseProps & {
   referenceLineData?: ReferenceLineType[]
 }
 
-const ChartStyle = () => (
+const StyleOverrides = () => (
   <style
     dangerouslySetInnerHTML={{
       __html: `
@@ -97,7 +93,7 @@ const generateHighlightedAreas = (
     return null
   }
 
-  const highlightAreas = convertHighlightData(topDomain, highlights)
+  const highlightAreas = toRechartsHighlightFormat(topDomain, highlights)
 
   return highlightAreas.map((highlightArea, index) =>
     highlightArea.map((props, highlightIndex: number) => (
@@ -114,6 +110,7 @@ const generateReferenceLines = (referenceLines?: ReferenceLineType[]) => {
   if (!referenceLines) {
     return null
   }
+
   return referenceLines.map(({ y, color }) => (
     <ReferenceLine
       key={`reference-line-${y}`}
@@ -174,7 +171,7 @@ export const LineChart = ({
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
     >
-      <ChartStyle />
+      <StyleOverrides />
       <ResponsiveContainer>
         <ComposedChart
           margin={{
