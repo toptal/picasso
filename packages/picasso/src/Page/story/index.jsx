@@ -41,6 +41,10 @@ page
     title: 'With Banner',
     waitUntilImagesLoaded: true
   })
+  .addExample('Page/story/WithCompoundBanner.example.jsx', {
+    title: 'With Compound Banner',
+    waitUntilImagesLoaded: true
+  })
 
 page.connect(pageHeaderStory.chapter)
 

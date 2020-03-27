@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-YELLOW='\033[1;33m'
-NC='\033[0m' # No Color
-
+# initialize
 CWD="$(dirname "$0")"
 cd "$CWD/../"
 BASE_PATH=$(pwd)
@@ -10,22 +8,16 @@ ICON_PATH="packages/picasso/src/Icon"
 ICON_FULL_PATH="$BASE_PATH/$ICON_PATH"
 
 echo "Converting svg icons into react components ..."
-svgr -d $ICON_PATH --ext tsx --template $ICON_PATH/_generatorTemplate.js --expand-props none $ICON_PATH/svg
+svgr \
+--out-dir $ICON_PATH \
+--ext tsx \
+--template $ICON_PATH/_generatorTemplate.js \
+--expand-props none $ICON_PATH/svg
 
-function pascalCase () {
-  echo $1 | perl -pe 's/(^|_)([a-z])/uc($2)/ge'  
-}
+# rename index.tsx --> index.ts because svgr generates index with .tsx extension
+mv $ICON_FULL_PATH/index.tsx $ICON_FULL_PATH/index.ts
 
-for icon in $ICON_FULL_PATH/svg/*.svg; do
-  basename=$(basename $icon | sed 's/\.svg$//');
-  name=$(pascalCase "$basename")
-  export_statement="export { default as $name } from './$name'"
-  if ! grep -Fxq "$export_statement" "packages/picasso/src/Icon/index.ts"; then
-    echo -e "Adding export statement for ${YELLOW}[$basename]${NC} ..."
-    echo $export_statement >> packages/picasso/src/Icon/index.ts
-  fi
-done
-
+# format all generated code with prettier and eslint
 davinci syntax lint code $ICON_FULL_PATH
 yarn prettier-standard $ICON_FULL_PATH/**/*.tsx
 yarn prettier-standard $ICON_FULL_PATH/index.ts

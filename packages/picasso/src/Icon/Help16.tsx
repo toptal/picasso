@@ -6,7 +6,6 @@ import { StandardProps } from '@toptal/picasso-shared'
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import styles from './styles'
 const BASE_SIZE = 16
-
 type ScaleType = 1 | 2 | 3 | 4
 export interface Props extends StandardProps {
   scale?: ScaleType
@@ -38,7 +37,6 @@ const SvgHelp16 = forwardRef(function SvgHelp16(
     minHeight: `${scaledSize}px`,
     ...style
   }
-
   return (
     <svg
       viewBox='0 0 16 16'
@@ -46,10 +44,9 @@ const SvgHelp16 = forwardRef(function SvgHelp16(
       style={svgStyle}
       ref={ref}
     >
-      <path d='M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16zm0-1A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0-6v2H7V8h1a2 2 0 1 0-2-2H5a3 3 0 1 1 3 3zm-1 3h1v1H7v-1z' />
+      <path d='M8 16A8 8 0 118 0a8 8 0 010 16zm0-1A7 7 0 108 1a7 7 0 000 14zm0-6v2H7V8h1a2 2 0 10-2-2H5a3 3 0 113 3zm-1 3h1v1H7v-1z' />
     </svg>
   )
 })
-
 SvgHelp16.displayName = 'SvgHelp16'
 export default withStyles(styles)(SvgHelp16)

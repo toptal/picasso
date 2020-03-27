@@ -6,7 +6,6 @@ import { StandardProps } from '@toptal/picasso-shared'
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import styles from './styles'
 const BASE_SIZE = 24
-
 type ScaleType = 1 | 2 | 3 | 4
 export interface Props extends StandardProps {
   scale?: ScaleType
@@ -38,7 +37,6 @@ const SvgBullet24 = forwardRef(function SvgBullet24(
     minHeight: `${scaledSize}px`,
     ...style
   }
-
   return (
     <svg
       viewBox='0 0 24 24'
@@ -46,22 +44,9 @@ const SvgBullet24 = forwardRef(function SvgBullet24(
       style={svgStyle}
       ref={ref}
     >
-      <defs>
-        <circle id='a' cx='12' cy='12' r='3' />
-      </defs>
-
-      <g fill='none' fillRule='evenodd'>
-        <mask id='b' fill='#fff'>
-          <use href='#a' />
-        </mask>
-        <use fill='#455065' href='#a' />
-        <g mask='url(#b)' fill='#455065'>
-          <path d='M0 0h24v24H0z' />
-        </g>
-      </g>
+      <path d='M12 9a3 3 0 110 6 3 3 0 010-6z' />
     </svg>
   )
 })
-
 SvgBullet24.displayName = 'SvgBullet24'
 export default withStyles(styles)(SvgBullet24)
