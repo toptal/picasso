@@ -49,11 +49,14 @@ export type OrderedChartDataPoint = ChartDataPoint & {
   order: number
 }
 
-export type ChartLine = Record<string, number>
+export type LineConfig = Record<
+  string,
+  { color: string; variant?: 'solid' | 'reference' }
+>
 
 export type Props = BaseProps & {
   data: ChartDataPoint[]
-  lines: ChartLine
+  lines: LineConfig
   unit?: string
   xAxisKey?: string
   height?: number
@@ -123,20 +126,24 @@ const generateReferenceLines = (referenceLines?: ReferenceLineType[]) => {
 }
 
 const generateLineGraphs = (
-  lineNames: string[],
-  orderedData: OrderedChartDataPoint[],
-  lines: ChartLine
+  lines: LineConfig,
+  orderedData: OrderedChartDataPoint[]
 ) =>
-  lineNames.map((name, index) => (
-    <Line
-      key={`line-${index}`}
-      data={orderedData}
-      dataKey={name}
-      stroke={lines[name]}
-      dot={{ fill: lines[name] }}
-      isAnimationActive={IS_ANIMATION_ACTIVE}
-    />
-  ))
+  Object.keys(lines).map((name, index) => {
+    const line = lines[name]
+    const isReferenceLine = line.variant === 'reference'
+    return (
+      <Line
+        key={`line-${index}`}
+        data={orderedData}
+        dataKey={name}
+        stroke={line.color}
+        dot={isReferenceLine ? false : { fill: line.color }}
+        isAnimationActive={IS_ANIMATION_ACTIVE}
+        strokeDasharray={isReferenceLine ? '3 3' : 'none'}
+      />
+    )
+  })
 
 export const LineChart = ({
   data,
@@ -161,7 +168,7 @@ export const LineChart = ({
 
   const referenceLineList = generateReferenceLines(referenceLineData)
   const highlightedAreas = generateHighlightedAreas(topDomain, highlightsData!)
-  const lineGraphs = generateLineGraphs(lineNames, orderedData, lines)
+  const lineGraphs = generateLineGraphs(lines, orderedData)
 
   const formatTicks = (tick: unknown) =>
     orderedData.find(item => item.order === tick)![xAxisKey!]

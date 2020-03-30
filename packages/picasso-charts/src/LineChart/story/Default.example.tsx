@@ -40,7 +40,7 @@ const Example = () => (
     data={CHART_DATA}
     highlightsData={HIGHLIGHTS}
     lines={{
-      talents: palette.blue.main
+      talents: { color: palette.blue.main }
     }}
   />
 )

@@ -8,7 +8,7 @@ export {
   ChartDataPoint,
   HighlightConfig,
   OrderedChartDataPoint,
-  ChartLine
+  LineConfig
 } from './LineChart'
 
 export type LineChartProps = OmitInternalProps<Props>

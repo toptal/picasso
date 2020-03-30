@@ -188,9 +188,9 @@ const Example = () => (
     unit=' cases'
     data={CHART_DATA}
     lines={{
-      infected: palette.yellow.main,
-      recovered: palette.blue.main,
-      died: palette.red.main
+      infected: { color: palette.yellow.main },
+      recovered: { color: palette.blue.main },
+      died: { color: palette.red.main }
     }}
   />
 )

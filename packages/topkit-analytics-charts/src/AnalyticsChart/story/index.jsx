@@ -22,40 +22,28 @@ page.createTabChapter('Props').addComponentDocs({
       description: 'A record of data points to be rendered as a line chart',
       required: true
     },
-    lineColor: {
-      name: 'lineColor',
+    color: {
+      name: 'color',
       type: 'string',
       description: 'Color of the line chart',
       defaultValue: palette.blue.main
     },
-    highlightsData: {
-      name: 'highlightsData',
-      type: 'string[]',
-      description: 'A list of dates to be highlighted'
-    },
-    highLightsColor: {
-      name: 'highLightsColor',
-      type: 'string',
-      description: 'Color of the highlighted area',
-      defaultValue: palette.red.main
-    },
-    referenceLineData: {
-      name: 'referenceLineData',
+    highlights: {
+      name: 'highlights',
       type: {
-        name: 'string[]',
-        description: `{
-          y: number
-          color: string
-        }: ReferenceLineType`
+        name: '{}',
+        description: '{ data: string[], color: string }'
+      },
+      description: 'A list of dates and to be highlighted'
+    },
+    referenceLine: {
+      name: 'referenceLine',
+      type: {
+        name: '{}',
+        description: `{ data: { [key: string]: number }, color: string }`
       },
       description:
-        'A record of data points to be rendered as a dashed horizontal reference line'
-    },
-    referenceLineColor: {
-      name: 'referenceLineColor',
-      type: 'string',
-      description: 'Color of the reference line',
-      defaultValue: palette.red.main
+        'A record of data points to be rendered as a dashed horizontal line'
     },
     xAxisKey: {
       name: 'xAxisKey',

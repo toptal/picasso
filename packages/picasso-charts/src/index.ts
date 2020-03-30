@@ -5,5 +5,5 @@ export {
   ChartDataPoint,
   HighlightConfig,
   OrderedChartDataPoint,
-  ChartLine
+  LineConfig
 } from './LineChart'

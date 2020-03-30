@@ -61,9 +61,11 @@ const Example = () => (
     xAxisKey='date'
     yAxisKey='projects'
     data={RAW_CHART_DATA}
-    highlightsData={HIGHLIGHTS_DATA}
-    highLightsColor={palette.green.main}
-    referenceLineData={REFERENCE_LINE_DATA.red}
+    highlights={{ data: HIGHLIGHTS_DATA, color: palette.green.main }}
+    referenceLine={{
+      data: REFERENCE_LINE_DATA.red,
+      color: palette.red.main
+    }}
     lines={{
       projects: palette.blue.main
     }}

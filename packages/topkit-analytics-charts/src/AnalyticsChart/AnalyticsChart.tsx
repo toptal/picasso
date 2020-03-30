@@ -4,7 +4,6 @@ import {
   LineChartProps,
   ChartDataPoint
 } from '@toptal/picasso-charts'
-import { Line } from 'recharts'
 import { palette } from '@toptal/picasso/utils'
 
 import { toHighlightFormat, toChartFormat } from '../utils'
@@ -12,93 +11,77 @@ import { toHighlightFormat, toChartFormat } from '../utils'
 export type ReferenceLineData = Record<string, number>
 export type DatePoint = Record<string, number>
 
+export type Highlights = {
+  data: string[]
+  color: string
+}
+
+export type ReferenceLine = {
+  data: ReferenceLineData
+  color: string
+}
+
 export type Props = LineChartProps & {
   data: DatePoint
   color?: string
-  highlights?: {
-    data: string[]
-    color?: string
-  }
-  referenceLines?: {
-    data: ReferenceLineData
-    color?: string
-  }
+  highlights?: Highlights
+  referenceLine?: ReferenceLine
   xAxisKey: string
   yAxisKey: string
 }
 
-const generateReferenceLine = (data: ReferenceLineData, color: string) => {
-  const lineData = toChartFormat(data, 'x', 'y').map(
-    (point: ChartDataPoint, index: number) => ({
+const generateChartData = (
+  chartData: ChartDataPoint[],
+  referenceLineData?: ReferenceLineData
+) => {
+  if (referenceLineData) {
+    return chartData.map(point => ({
       ...point,
-      order: index
-    })
-  )
-
-  return (
-    <Line
-      dot={false}
-      data={lineData}
-      dataKey='y'
-      stroke={color}
-      strokeDasharray='3 3'
-    />
-  )
+      reference: referenceLineData[point.date]
+    }))
+  }
+  return chartData
 }
+
 export const AnalyticsChart = ({
   data,
   color,
   highlights,
-  referenceLines,
+  referenceLine,
   xAxisKey,
   yAxisKey,
   ...rest
 }: Props) => {
-  const hasHighlights = highlights?.data && highlights?.color
   const lines = {
-    [yAxisKey]: color,
-    test: referenceLines?.color!
+    [yAxisKey]: { color },
+    ...(referenceLine && {
+      reference: { color: referenceLine?.color, variant: 'reference' }
+    })
   }
+  const formattedChartData = toChartFormat(data, xAxisKey, yAxisKey)
 
-  const convertedChartData = toChartFormat(data, xAxisKey, yAxisKey)
+  const highlightsData =
+    highlights && toHighlightFormat(formattedChartData, highlights!, xAxisKey)
 
-  const convertedHighlightsData =
-    hasHighlights &&
-    toHighlightFormat(
-      highlights?.data!,
-      convertedChartData,
-      highlights?.color!,
-      xAxisKey
-    )
-
-  const referenceLine =
-    referenceLines?.data &&
-    generateReferenceLine(referenceLines?.data, referenceLines?.color!)
+  const chartData = generateChartData(formattedChartData, referenceLine?.data)
+  console.log('chartData: ', chartData)
 
   return (
     <LineChart
       xAxisKey={xAxisKey}
-      data={convertedChartData}
-      lines={lines}
-      highlightsData={convertedHighlightsData || null}
+      data={chartData}
+      highlightsData={highlightsData || null}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
-    >
-      {referenceLine}
-    </LineChart>
+      lines={lines}
+    />
   )
 }
 
 AnalyticsChart.defaultProps = {
   xAxisKey: 'x',
   yAxisKey: 'y',
-  color: palette.blue.main,
-  highLights: {
-    color: palette.red.main
-  },
-  referenceLines: {
-    color: palette.red.main
-  }
+  color: palette.blue.main
 }
 
 AnalyticsChart.displayName = 'AnalyticsChart'
