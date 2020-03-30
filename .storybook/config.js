@@ -13,7 +13,11 @@ import Picasso from '../packages/shared'
 import PicassoBook from './components/PicassoBook'
 
 const loadFonts = TEST_ENV !== 'visual'
-const withPicasso = story => <Picasso loadFonts={loadFonts}>{story()}</Picasso>
+const withPicasso = story => (
+  <Picasso loadFonts={loadFonts} fixViewport={false} loadFavicon={false}>
+    {story()}
+  </Picasso>
+)
 
 addParameters({
   options: {
