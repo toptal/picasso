@@ -1,5 +1,6 @@
 import React from 'react'
-import { Container, Tabs } from '@toptal/picasso'
+import { Container, Tabs, Tooltip } from '@toptal/picasso'
+import { Exclamation16 } from '@toptal/picasso/Icon'
 
 const Example = () => {
   const [value, setValue] = React.useState(0)
@@ -11,9 +12,27 @@ const Example = () => {
   return (
     <div>
       <Tabs value={value} onChange={handleChange}>
+        <Tabs.Tab
+          label='Label'
+          icon={
+            <Tooltip content='Some content...' placement='top'>
+              <span>
+                <Exclamation16 color='red' />
+              </span>
+            </Tooltip>
+          }
+        />
         <Tabs.Tab label='Label' />
-        <Tabs.Tab label='Label' disabled />
-        <Tabs.Tab label='Label' />
+        <Tabs.Tab
+          label='Label'
+          icon={
+            <Tooltip content='Some content...' placement='top'>
+              <span>
+                <Exclamation16 color='red' />
+              </span>
+            </Tooltip>
+          }
+        />
       </Tabs>
 
       {value === 0 && (

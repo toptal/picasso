@@ -10,6 +10,7 @@ PicassoProvider.override(({ breakpoints, palette, typography }: Theme) => ({
       lineHeight: 1,
       textTransform: 'none',
       padding: `${rem('11px')} 0 ${rem('9px')}`,
+      overflow: 'initial',
 
       [breakpoints.up('md')]: {
         padding: undefined
@@ -24,6 +25,18 @@ PicassoProvider.override(({ breakpoints, palette, typography }: Theme) => ({
       [breakpoints.up('md')]: {
         minWidth: 'auto',
         fontSize: '1rem'
+      }
+    },
+    labelIcon: {
+      minHeight: 0,
+      paddingTop: rem('11px'),
+      '& $wrapper > *:first-child': {
+        position: 'absolute',
+        right: '-1.5rem',
+        marginBottom: 0
+      },
+      '&:not(:last-child)': {
+        marginRight: '3.5em'
       }
     },
     selected: {

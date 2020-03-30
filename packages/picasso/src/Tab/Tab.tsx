@@ -1,4 +1,9 @@
-import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
+import React, {
+  forwardRef,
+  ReactNode,
+  HTMLAttributes,
+  ReactElement
+} from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUITab, { TabProps } from '@material-ui/core/Tab'
 import { StandardProps } from '@toptal/picasso-shared'
@@ -20,6 +25,8 @@ export interface Props
   /** The label element */
   label?: ReactNode
 
+  /** The Icon element */
+  icon?: ReactElement
   // Properties below are managed by Tabs component
 
   selected?: boolean
@@ -28,7 +35,7 @@ export interface Props
 }
 
 export const Tab = forwardRef<HTMLDivElement, Props>(function Tab(
-  { disabled, value, label, selected, onChange, onClick, ...rest },
+  { disabled, value, label, icon, selected, onChange, onClick, ...rest },
   ref
 ) {
   return (
@@ -38,6 +45,7 @@ export const Tab = forwardRef<HTMLDivElement, Props>(function Tab(
       ref={ref}
       disabled={disabled}
       label={label}
+      icon={icon}
       value={value}
       selected={selected}
       onChange={onChange}

@@ -37,3 +37,26 @@ exports[`Tab disabled tab 1`] = `
   </button>
 </div>
 `;
+
+exports[`Tab tab with icon 1`] = `
+<div>
+  <button
+    class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-labelIcon"
+    role="tab"
+    tabindex="0"
+    type="button"
+  >
+    <span
+      class="MuiTab-wrapper"
+    >
+      <div
+        id="Icon"
+      />
+      Tab Label
+    </span>
+    <span
+      class="MuiTouchRipple-root"
+    />
+  </button>
+</div>
+`;
