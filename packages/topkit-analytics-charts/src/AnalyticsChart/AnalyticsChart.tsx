@@ -31,25 +31,30 @@ export type Props = LineChartProps & {
   yAxisKey: string
 }
 
+const insertReferenceLine = (
+  chartData: ChartDataPoint[],
+  lineConfig: LineConfig,
+  referenceLines: ReferenceLine[]
+) => {
+  chartData.forEach(point => {
+    referenceLines.forEach(({ data, color }, index) => {
+      const referenceLineName = `reference-${index}`
+      point[referenceLineName] = data[point.date]
+      lineConfig[referenceLineName] = {
+        variant: 'reference',
+        color
+      }
+    })
+  })
+}
+
 const generateChartData = (
   chartData: ChartDataPoint[],
   lineConfig: LineConfig,
   referenceLines?: ReferenceLine[]
 ) => {
   if (referenceLines) {
-    // injects reference line data into the chart data list
-    chartData.forEach(point => {
-      referenceLines.forEach(({ data, color }, index) => {
-        const referenceLineName = `reference-${index}`
-
-        point[referenceLineName] = data[point.date]
-
-        lineConfig[referenceLineName] = {
-          variant: 'reference',
-          color
-        }
-      })
-    })
+    insertReferenceLine(chartData, lineConfig, referenceLines)
   }
   return { chartData, lineConfig }
 }

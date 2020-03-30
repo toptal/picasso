@@ -89,8 +89,7 @@ const StyleOverrides = () => (
   />
 )
 
-const countCharts = (lines: LineConfig) =>
-  // determines how many non-reference lines were specified
+const countNonReferenceLines = (lines: LineConfig) =>
   Object.values(lines).filter(({ variant }) => !variant || variant === 'solid')
     .length
 
@@ -164,7 +163,7 @@ export const LineChart = ({
   ...rest
 }: Props) => {
   const yKey = Object.keys(lines)[0]
-  const isSingleChart = countCharts(lines) === 1
+  const isSingleChart = countNonReferenceLines(lines) === 1
 
   const topDomain = findTopDomain(data, xAxisKey!)
   const orderedData = orderData(data)
