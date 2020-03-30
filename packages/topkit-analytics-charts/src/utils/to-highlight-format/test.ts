@@ -35,11 +35,10 @@ const CHART_DATA = [
 ]
 
 test('convert highlight data', () => {
-  const convertedHighlightsData = toHighlightFormat(
-    ['2020-10-21', '2020-11-02'],
-    CHART_DATA,
-    'red'
-  )
+  const convertedHighlightsData = toHighlightFormat(CHART_DATA, {
+    data: ['2020-10-21', '2020-11-02'],
+    color: 'red'
+  })
   expect(convertedHighlightsData).toEqual([
     { color: 'red', from: 1, to: 2 },
     { color: 'red', from: 13, to: 14 }
