@@ -4,12 +4,12 @@ import { DatePicker } from '@toptal/picasso-lab'
 import { isBefore, isWithinInterval } from 'date-fns'
 
 const WithCustomDayRendering = () => {
-  const [datepickerValue, setDatepickerValue] = useState(new Date('12-12-2015'))
+  const [datepickerValue, setDatepickerValue] = useState(new Date('2015-12-12'))
 
-  const minDate = new Date('12-07-2015')
+  const minDate = new Date('2015-12-07')
 
   const disabledIntervals = [
-    { start: new Date('12-20-2015'), end: new Date('12-30-2015') }
+    { start: new Date('2015-12-20'), end: new Date('2015-12-30') }
   ]
 
   return (

@@ -3,12 +3,12 @@ import { DatePicker } from '@toptal/picasso-lab'
 import { Search16 } from '@toptal/picasso'
 
 const WithSelectionLimitsExample = () => {
-  const [value, setValue] = useState(new Date('12-12-2015'))
-  const minDate = new Date('12-01-2015')
-  const maxDate = new Date('12-30-2015')
+  const [value, setValue] = useState(new Date('2015-12-12'))
+  const minDate = new Date('2015-12-01')
+  const maxDate = new Date('2015-12-30')
   const disabledIntervals = [
-    { start: new Date('12-03-2015'), end: new Date('12-08-2015') },
-    { start: new Date('12-20-2015'), end: new Date('12-30-2015') }
+    { start: new Date('2015-12-03'), end: new Date('2015-12-08') },
+    { start: new Date('2015-12-20'), end: new Date('2015-12-30') }
   ]
 
   return (
