@@ -1,6 +1,6 @@
 import orderData from './'
 
-const CONVERTED_CHART_DATA = [
+const CHART_DATA = [
   { x: '2020-10-20', test: 1.7 },
   { x: '2020-10-21', test: 2 },
   { x: '2020-10-22', test: 1.7 },
@@ -15,6 +15,6 @@ const ORDERED_CHART_DATA = [
 ]
 
 test('order chart data', () => {
-  const ordered = orderData(CONVERTED_CHART_DATA)
+  const ordered = orderData(CHART_DATA)
   expect(ordered).toEqual(ORDERED_CHART_DATA)
 })

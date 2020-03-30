@@ -34,7 +34,7 @@ const RAW_CHART_DATA = {
   '2020-11-19': 1.3
 }
 
-const CONVERTED_CHART_DATA = [
+const EXPECTED_CHART_DATA = [
   { x: '2020-10-20', test: 1.7 },
   { x: '2020-10-21', test: 2 },
   { x: '2020-10-22', test: 1.7 },
@@ -70,5 +70,5 @@ const CONVERTED_CHART_DATA = [
 
 test('convert chart data', () => {
   const convertedChartData = toChartFormat(RAW_CHART_DATA, 'x', 'test')
-  expect(convertedChartData).toEqual(CONVERTED_CHART_DATA)
+  expect(convertedChartData).toEqual(EXPECTED_CHART_DATA)
 })

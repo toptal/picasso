@@ -1,6 +1,6 @@
 import toHighlightFormat from './'
 
-const CONVERTED_CHART_DATA = [
+const CHART_DATA = [
   { x: '2020-10-20', test: 1.7 },
   { x: '2020-10-21', test: 2 },
   { x: '2020-10-22', test: 1.7 },
@@ -37,7 +37,7 @@ const CONVERTED_CHART_DATA = [
 test('convert highlight data', () => {
   const convertedHighlightsData = toHighlightFormat(
     ['2020-10-21', '2020-11-02'],
-    CONVERTED_CHART_DATA,
+    CHART_DATA,
     'red'
   )
   expect(convertedHighlightsData).toEqual([

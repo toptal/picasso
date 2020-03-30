@@ -1,6 +1,6 @@
 import findTopDomain from './'
 
-const CONVERTED_CHART_DATA = [
+const CHART_DATA = [
   { x: '2020-10-20', test: 1.7 },
   { x: '2020-10-21', test: 2 },
   { x: '2020-10-22', test: 1.7 },
@@ -35,6 +35,6 @@ const CONVERTED_CHART_DATA = [
 ]
 
 test('find top domain', () => {
-  const topDomain = findTopDomain(CONVERTED_CHART_DATA, 'x')
+  const topDomain = findTopDomain(CHART_DATA, 'x')
   expect(topDomain).toEqual(5)
 })

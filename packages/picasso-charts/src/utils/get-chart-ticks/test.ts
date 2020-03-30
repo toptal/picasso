@@ -1,6 +1,6 @@
 import getChartTicks from './'
 
-const ORDERED_CHART_DATA = [
+const CHART_DATA = [
   { order: 0, x: '2020-10-20', test: 1.7 },
   { order: 1, x: '2020-10-21', test: 2 },
   { order: 2, x: '2020-10-22', test: 1.7 },
@@ -8,6 +8,6 @@ const ORDERED_CHART_DATA = [
 ]
 
 test('get chart ticks', () => {
-  const chartTicks = getChartTicks(ORDERED_CHART_DATA)
+  const chartTicks = getChartTicks(CHART_DATA)
   expect(chartTicks).toEqual([0, 1, 2, 3])
 })

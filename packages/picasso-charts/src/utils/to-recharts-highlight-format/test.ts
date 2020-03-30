@@ -2,7 +2,7 @@ import toRechartsHighlightFormat from './'
 
 const TOP_DOMAIN = 2
 
-const HIGHLIGHT_DATA = [
+const HIGHLIGHTS = [
   {
     from: 6,
     to: 8,
@@ -10,7 +10,7 @@ const HIGHLIGHT_DATA = [
   }
 ]
 
-const CONVERTED_DATA = [
+const EXPECTED_DATA = [
   [
     {
       fill: 'green',
@@ -31,7 +31,7 @@ const CONVERTED_DATA = [
   ]
 ]
 
-test('get chart ticks', () => {
-  const chartTicks = toRechartsHighlightFormat(TOP_DOMAIN, HIGHLIGHT_DATA)
-  expect(chartTicks).toEqual(CONVERTED_DATA)
+test('convert to rechart highlight format', () => {
+  const highlights = toRechartsHighlightFormat(TOP_DOMAIN, HIGHLIGHTS)
+  expect(highlights).toEqual(EXPECTED_DATA)
 })

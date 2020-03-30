@@ -14,11 +14,15 @@ export type DatePoint = Record<string, number>
 
 export type Props = LineChartProps & {
   data: DatePoint
-  lineColor?: string
-  highlightsData?: string[]
-  highLightsColor?: string
-  referenceLineData?: ReferenceLineData
-  referenceLineColor?: string
+  color?: string
+  highlights?: {
+    data: string[]
+    color?: string
+  }
+  referenceLines?: {
+    data: ReferenceLineData
+    color?: string
+  }
   xAxisKey: string
   yAxisKey: string
 }
@@ -43,19 +47,17 @@ const generateReferenceLine = (data: ReferenceLineData, color: string) => {
 }
 export const AnalyticsChart = ({
   data,
-  lineColor,
-  highlightsData,
-  highLightsColor,
-  referenceLineData,
-  referenceLineColor,
+  color,
+  highlights,
+  referenceLines,
   xAxisKey,
   yAxisKey,
   ...rest
 }: Props) => {
-  const hasHighlights = highlightsData && highLightsColor
+  const hasHighlights = highlights?.data && highlights?.color
   const lines = {
-    [yAxisKey]: lineColor,
-    test: referenceLineColor
+    [yAxisKey]: color,
+    test: referenceLines?.color!
   }
 
   const convertedChartData = toChartFormat(data, xAxisKey, yAxisKey)
@@ -63,15 +65,15 @@ export const AnalyticsChart = ({
   const convertedHighlightsData =
     hasHighlights &&
     toHighlightFormat(
-      highlightsData!,
+      highlights?.data!,
       convertedChartData,
-      highLightsColor!,
+      highlights?.color!,
       xAxisKey
     )
 
   const referenceLine =
-    referenceLineData &&
-    generateReferenceLine(referenceLineData, referenceLineColor!)
+    referenceLines?.data &&
+    generateReferenceLine(referenceLines?.data, referenceLines?.color!)
 
   return (
     <LineChart
@@ -90,9 +92,13 @@ export const AnalyticsChart = ({
 AnalyticsChart.defaultProps = {
   xAxisKey: 'x',
   yAxisKey: 'y',
-  lineColor: palette.blue.main,
-  highLightsColor: palette.red.main,
-  referenceLineColor: palette.red.main
+  color: palette.blue.main,
+  highLights: {
+    color: palette.red.main
+  },
+  referenceLines: {
+    color: palette.red.main
+  }
 }
 
 AnalyticsChart.displayName = 'AnalyticsChart'
