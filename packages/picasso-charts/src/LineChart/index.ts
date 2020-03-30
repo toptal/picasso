@@ -6,7 +6,7 @@ export {
   default,
   ReferenceLineType,
   ChartDataPoint,
-  HighlightData,
+  HighlightConfig,
   OrderedChartDataPoint,
   ChartLine
 } from './LineChart'

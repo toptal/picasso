@@ -3,7 +3,7 @@ export {
   LineChartProps,
   ReferenceLineType,
   ChartDataPoint,
-  HighlightData,
+  HighlightConfig,
   OrderedChartDataPoint,
   ChartLine
 } from './LineChart'

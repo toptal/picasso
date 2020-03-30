@@ -1,11 +1,11 @@
-import { ChartDataPoint, HighlightData } from '@toptal/picasso-charts'
+import { ChartDataPoint, HighlightConfig } from '@toptal/picasso-charts'
 
 const toHighlightFormat = (
   data: string[],
   chartData: ChartDataPoint[],
   color: string,
   xAxisKey?: string
-): HighlightData[] =>
+): HighlightConfig[] =>
   data.map(highlight => {
     const from = chartData.findIndex(
       point => point[xAxisKey || 'x'] === highlight

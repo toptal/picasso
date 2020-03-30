@@ -15,7 +15,7 @@ page.createTabChapter('Props').addComponentDocs({
       name: 'data',
       type: {
         name: '[]',
-        description: '{ [key: string]: string | number }: HighlightData'
+        description: '{ [key: string]: string | number }: HighlightConfig'
       },
       description: 'A list of data points to be rendered as a line chart',
       required: true
@@ -61,7 +61,7 @@ page.createTabChapter('Props').addComponentDocs({
             from: number
             to: number
             color: string
-          }: HighlightData`
+          }: HighlightConfig`
       },
       description: 'A list of regions to be highlighted'
     },

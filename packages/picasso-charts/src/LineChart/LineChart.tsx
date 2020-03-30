@@ -39,7 +39,7 @@ export type ReferenceLineType = {
 
 export type ChartDataPoint = Record<string, string | number>
 
-export type HighlightData = {
+export type HighlightConfig = {
   from: number
   to: number
   color: string
@@ -59,7 +59,7 @@ export type Props = BaseProps & {
   height?: number
   tooltip?: boolean
   customTooltip?: ReactElement
-  highlightsData?: HighlightData[] | null
+  highlightsData?: HighlightConfig[] | null
   referenceLineData?: ReferenceLineType[]
   children?: ReactNode
 }
@@ -88,7 +88,7 @@ const StyleOverrides = () => (
 
 const generateHighlightedAreas = (
   topDomain: number,
-  highlights?: HighlightData[]
+  highlights?: HighlightConfig[]
 ) => {
   if (!highlights) {
     return null

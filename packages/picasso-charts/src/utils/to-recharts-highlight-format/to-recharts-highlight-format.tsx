@@ -1,4 +1,4 @@
-import { HighlightData } from '../..'
+import { HighlightConfig } from '../..'
 import CHART_CONSTANTS from '../constants'
 
 const {
@@ -8,7 +8,10 @@ const {
   HIGHLIGHT_TOP_FILL_OPACITY
 } = CHART_CONSTANTS
 
-const toRechartsHighlightFormat = (topDomain: number, data: HighlightData[]) =>
+const toRechartsHighlightFormat = (
+  topDomain: number,
+  data: HighlightConfig[]
+) =>
   data.map(({ from, to, color }) => {
     const x1 = from
     const x2 = to
