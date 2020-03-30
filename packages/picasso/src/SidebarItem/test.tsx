@@ -3,8 +3,8 @@ import { render } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import { Candidates16 } from '../Icon'
-import SidebarMenu from '../SidebarMenu'
-import Sidebar from '../Sidebar'
+import SidebarMenu from '../SidebarMenu/SidebarMenu'
+import Sidebar from '../Sidebar/Sidebar'
 import SidebarItem, { Props } from './SidebarItem'
 
 const TestSidebarItem: FunctionComponent<OmitInternalProps<Props>> = ({

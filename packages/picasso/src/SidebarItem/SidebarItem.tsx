@@ -37,145 +37,148 @@ const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoSidebarItem'
 })
 
-export const SidebarItem: OverridableComponent<Props> = forwardRef<
-  HTMLElement,
-  Props
->(function SidebarItem(props, ref) {
-  const classes = useStyles(props)
-  const {
-    children,
-    icon,
-    selected,
-    collapsible,
-    menu,
-    disabled,
-    className,
-    style,
-    onClick,
-    as,
-    ...rest
-  } = props
+const SidebarItem: OverridableComponent<Props> = forwardRef<HTMLElement, Props>(
+  function SidebarItem(props, ref) {
+    const classes = useStyles(props)
+    const {
+      children,
+      icon,
+      selected,
+      collapsible,
+      menu,
+      disabled,
+      className,
+      style,
+      onClick,
+      as,
+      ...rest
+    } = props
 
-  const hasIcon = Boolean(icon)
-  const hasMenu = Boolean(menu)
+    const hasIcon = Boolean(icon)
+    const hasMenu = Boolean(menu)
 
-  const {
-    variant,
-    isExpanded,
-    isNothingExpanded: isNothingExpandedOnSidebar,
-    expand
-  } = useSidebar()
+    const {
+      variant,
+      isExpanded,
+      isNothingExpanded: isNothingExpandedOnSidebar,
+      expand
+    } = useSidebar()
 
-  const handleMenuItemClick = (
-    event: React.MouseEvent<HTMLElement, MouseEvent>
-  ) => {
-    if (!hasMenu) {
-      onClick!(event)
+    const handleMenuItemClick = (
+      event: React.MouseEvent<HTMLElement, MouseEvent>
+    ) => {
+      if (!hasMenu) {
+        onClick!(event)
+      }
     }
-  }
 
-  const handleAccordionChange = (
-    event: ChangeEvent<{}>,
-    expansion: boolean
-  ) => {
-    event.stopPropagation()
-    if (expansion) {
-      expand()
+    const handleAccordionChange = (
+      event: ChangeEvent<{}>,
+      expansion: boolean
+    ) => {
+      event.stopPropagation()
+      if (expansion) {
+        expand()
+      }
     }
-  }
 
-  const resolvedChildren =
-    typeof children === 'string' ? (
-      <Typography
-        className={classes.labelContent}
-        color='inherit'
-        size='medium'
-        noWrap
+    const resolvedChildren =
+      typeof children === 'string' ? (
+        <Typography
+          className={classes.labelContent}
+          color='inherit'
+          size='medium'
+          noWrap
+        >
+          {children}
+        </Typography>
+      ) : (
+        children
+      )
+
+    const menuItem = (
+      <MenuItem
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...rest}
+        as={as}
+        ref={ref}
+        style={style}
+        className={cx(
+          classes.root,
+          classes.noWrap,
+          classes[variant!],
+          { [classes.selected]: !hasMenu && selected },
+          className
+        )}
+        onClick={handleMenuItemClick}
+        selected={!hasMenu && selected}
+        disabled={disabled}
+        variant={variant}
       >
-        {children}
-      </Typography>
-    ) : (
-      children
+        <Container className={classes.noWrap} inline flex alignItems='center'>
+          {icon}
+          <Container
+            className={cx(classes.label, classes.noWrap, {
+              [classes.withIcon]: hasIcon
+            })}
+            flex
+            alignItems='center'
+          >
+            {resolvedChildren}
+          </Container>
+        </Container>
+      </MenuItem>
     )
 
-  const menuItem = (
-    <MenuItem
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...rest}
-      as={as}
-      ref={ref}
-      style={style}
-      className={cx(
-        classes.root,
-        classes.noWrap,
-        classes[variant!],
-        { [classes.selected]: !hasMenu && selected },
-        className
-      )}
-      onClick={handleMenuItemClick}
-      selected={!hasMenu && selected}
-      disabled={disabled}
-      variant={variant}
-    >
-      <Container className={classes.noWrap} inline flex alignItems='center'>
-        {icon}
-        <Container
-          className={cx(classes.label, classes.noWrap, {
-            [classes.withIcon]: hasIcon
-          })}
-          flex
-          alignItems='center'
+    if (hasMenu && collapsible) {
+      const menuChildren = React.Children.toArray(menu!.props.children)
+
+      const isExpandedableByDefault =
+        menuChildren.find(
+          (menuChild: ReactElement) => menuChild.props.selected
+        ) !== undefined
+
+      if (isNothingExpandedOnSidebar && isExpandedableByDefault) {
+        expand()
+      }
+
+      return (
+        <Accordion
+          onChange={handleAccordionChange}
+          classes={{
+            summary: classes.summary,
+            details: classes.details,
+            content: classes.content
+          }}
+          content={menu}
+          bordered={false}
+          disabled={disabled}
+          expanded={isExpanded}
+          expandIcon={
+            <ArrowDropDown16
+              className={cx(
+                classes.expandIcon,
+                classes[`${variant}ExpandIcon`],
+                {
+                  [classes.expandIconDisabled]: disabled
+                }
+              )}
+            />
+          }
         >
-          {resolvedChildren}
-        </Container>
-      </Container>
-    </MenuItem>
-  )
-
-  if (hasMenu && collapsible) {
-    const menuChildren = React.Children.toArray(menu!.props.children)
-
-    const isExpandedableByDefault =
-      menuChildren.find(
-        (menuChild: ReactElement) => menuChild.props.selected
-      ) !== undefined
-
-    if (isNothingExpandedOnSidebar && isExpandedableByDefault) {
-      expand()
+          {menuItem}
+        </Accordion>
+      )
     }
 
     return (
-      <Accordion
-        onChange={handleAccordionChange}
-        classes={{
-          summary: classes.summary,
-          details: classes.details,
-          content: classes.content
-        }}
-        content={menu}
-        bordered={false}
-        disabled={disabled}
-        expanded={isExpanded}
-        expandIcon={
-          <ArrowDropDown16
-            className={cx(classes.expandIcon, classes[`${variant}ExpandIcon`], {
-              [classes.expandIconDisabled]: disabled
-            })}
-          />
-        }
-      >
+      <Fragment>
         {menuItem}
-      </Accordion>
+        {hasMenu && <div className={classes.nonCollapsibleMenu}>{menu}</div>}
+      </Fragment>
     )
   }
-
-  return (
-    <Fragment>
-      {menuItem}
-      {hasMenu && <div className={classes.nonCollapsibleMenu}>{menu}</div>}
-    </Fragment>
-  )
-})
+)
 
 SidebarItem.defaultProps = {
   collapsible: false,

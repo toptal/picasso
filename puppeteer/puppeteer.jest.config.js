@@ -5,7 +5,7 @@ module.exports = {
   testPathIgnorePatterns: ['/node_modules/', '/build'],
   setupFilesAfterEnv: ['<rootDir>/puppeteer/setup.ts'],
   transform: {
-    '.(ts|tsx)': 'ts-jest'
+    '.(ts|tsx)': 'babel-jest'
   },
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
   reporters: ['default', '<rootDir>/puppeteer/reporter.js']

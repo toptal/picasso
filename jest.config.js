@@ -1,6 +1,6 @@
 module.exports = {
   transform: {
-    '^.+\\.(ts|tsx)$': 'ts-jest'
+    '^.+\\.(ts|tsx)$': 'babel-jest'
   },
   setupFiles: ['jest-canvas-mock', './jest-setup-dom.js'],
   testMatch: ['**/(test).(js|jsx|ts|tsx)'],
