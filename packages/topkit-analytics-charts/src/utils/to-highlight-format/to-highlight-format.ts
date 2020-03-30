@@ -6,20 +6,17 @@ const toHighlightFormat = (
   chartData: ChartDataPoint[],
   highlights: Highlight[],
   xAxisKey?: string
-) => {
-  const highlightConfig: HighlightConfig[] = []
-
-  highlights.forEach(({ data, color }) => {
-    data.forEach(section => {
+): HighlightConfig[] => {
+  return highlights
+    .map(({ data, color }) => data.map(section => ({ section, color })))
+    .reduce((acc, arr) => acc.concat(arr), [])
+    .map(({ section, color }) => {
       const from = chartData.findIndex(
         point => point[xAxisKey || 'x'] === section
       )
       const to = from + 1
-      highlightConfig.push({ from, to, color })
+      return { from, to, color }
     })
-  })
-
-  return highlightConfig
 }
 
 export default toHighlightFormat
