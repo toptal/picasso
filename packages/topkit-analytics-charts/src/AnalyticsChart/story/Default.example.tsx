@@ -29,6 +29,30 @@ const RAW_CHART_DATA = {
 
 const REFERENCE_LINE_DATA = {
   red: {
+    '2020-10-20': 2,
+    '2020-10-21': 2,
+    '2020-10-22': 2,
+    '2020-10-23': 2,
+    '2020-10-24': 2,
+    '2020-10-25': 2,
+    '2020-10-26': 2,
+    '2020-10-27': 2,
+    '2020-10-28': 2,
+    '2020-10-29': 2,
+    '2020-10-30': 2,
+    '2020-10-31': 2,
+    '2020-11-01': 3,
+    '2020-11-02': 3,
+    '2020-11-03': 3,
+    '2020-11-04': 3,
+    '2020-11-05': 3,
+    '2020-11-06': 3,
+    '2020-11-07': 3,
+    '2020-11-08': 3,
+    '2020-11-09': 3,
+    '2020-11-10': 3
+  },
+  green: {
     '2020-10-20': 1,
     '2020-10-21': 1,
     '2020-10-22': 1,
@@ -40,32 +64,39 @@ const REFERENCE_LINE_DATA = {
     '2020-10-28': 1,
     '2020-10-29': 1,
     '2020-10-30': 1,
-    '2020-10-31': 2,
-    '2020-11-01': 2,
-    '2020-11-02': 2,
-    '2020-11-03': 2,
-    '2020-11-04': 2,
-    '2020-11-05': 2,
-    '2020-11-06': 2,
-    '2020-11-07': 2,
-    '2020-11-08': 2,
-    '2020-11-09': 2,
-    '2020-11-10': 2
+    '2020-10-31': 1,
+    '2020-11-01': 1,
+    '2020-11-02': 1,
+    '2020-11-03': 1,
+    '2020-11-04': 1,
+    '2020-11-05': 1,
+    '2020-11-06': 1,
+    '2020-11-07': 1,
+    '2020-11-08': 1,
+    '2020-11-09': 1,
+    '2020-11-10': 1
   }
 }
-
-const HIGHLIGHTS_DATA = ['2020-10-21', '2020-11-01', '2020-11-02']
 
 const Example = () => (
   <AnalyticsChart
     xAxisKey='date'
     yAxisKey='projects'
     data={RAW_CHART_DATA}
-    highlights={{ data: HIGHLIGHTS_DATA, color: palette.green.main }}
-    referenceLine={{
-      data: REFERENCE_LINE_DATA.red,
-      color: palette.red.main
-    }}
+    highlights={[
+      { data: ['2020-10-21'], color: palette.green.main },
+      { data: ['2020-11-01', '2020-11-02'], color: palette.red.main }
+    ]}
+    referenceLines={[
+      {
+        data: REFERENCE_LINE_DATA.red,
+        color: palette.red.main
+      },
+      {
+        data: REFERENCE_LINE_DATA.green,
+        color: palette.green.main
+      }
+    ]}
     lines={{
       projects: palette.blue.main
     }}

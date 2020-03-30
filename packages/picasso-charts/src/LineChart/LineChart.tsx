@@ -89,6 +89,11 @@ const StyleOverrides = () => (
   />
 )
 
+const countCharts = (lines: LineConfig) =>
+  // determines how many non-reference lines were specified
+  Object.values(lines).filter(({ variant }) => !variant || variant === 'solid')
+    .length
+
 const generateHighlightedAreas = (
   topDomain: number,
   highlights?: HighlightConfig[]
@@ -158,9 +163,8 @@ export const LineChart = ({
   children,
   ...rest
 }: Props) => {
-  const lineNames = Object.keys(lines)
-  const yKey = lineNames[0]
-  const isSingleChart = lineNames.length === 1
+  const yKey = Object.keys(lines)[0]
+  const isSingleChart = countCharts(lines) === 1
 
   const topDomain = findTopDomain(data, xAxisKey!)
   const orderedData = orderData(data)

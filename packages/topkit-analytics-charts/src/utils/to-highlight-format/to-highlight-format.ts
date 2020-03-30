@@ -1,18 +1,25 @@
 import { ChartDataPoint, HighlightConfig } from '@toptal/picasso-charts'
 
-import { Highlights } from './../../AnalyticsChart'
+import { Highlight } from './../../AnalyticsChart'
 
 const toHighlightFormat = (
   chartData: ChartDataPoint[],
-  highlights: Highlights,
+  highlights: Highlight[],
   xAxisKey?: string
-): HighlightConfig[] =>
-  highlights.data.map(highlight => {
-    const from = chartData.findIndex(
-      point => point[xAxisKey || 'x'] === highlight
-    )
-    const to = from + 1
-    return { from, to, color: highlights.color }
+) => {
+  const highlightConfig: HighlightConfig[] = []
+
+  highlights.forEach(({ data, color }) => {
+    data.forEach(section => {
+      const from = chartData.findIndex(
+        point => point[xAxisKey || 'x'] === section
+      )
+      const to = from + 1
+      highlightConfig.push({ from, to, color })
+    })
   })
+
+  return highlightConfig
+}
 
 export default toHighlightFormat
