@@ -156,7 +156,7 @@ pipeline {
             script {
               ghHelper.notifyPR('Jest Tests', 'PENDING', 'running', "${ghprbActualCommit}", "${BUILD_URL}", repoName)
 
-              sh "docker run --rm gcr.io/toptal-hub/${repoName}:${ghprbActualCommit} yarn test"
+              sh "docker run --rm gcr.io/toptal-hub/${repoName}:${ghprbActualCommit} yarn test-ci"
             }
           } //steps
 

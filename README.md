@@ -66,6 +66,7 @@ In order to run `yarn` commands we need to mount current `components` directory 
 | **yarn test**                 | Run unit tests                                                            |
 | **yarn test -u**              | Update jest snapshots to current version                                  |
 | **yarn test:watch**           | Run unit tests in watch mode                                              |
+| **yarn test-ci**              | Run unit tests at ci                                              |
 | **yarn test:visual**          | Run visual regression tests in Docker                                     |
 | **yarn test:visual -u**       | Update visual regression snapshots in docker                              |
 | **yarn start**                | Start storybook instance and inspect components                           |
