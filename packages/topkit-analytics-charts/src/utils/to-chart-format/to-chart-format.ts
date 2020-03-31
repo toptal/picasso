@@ -6,19 +6,19 @@ const toChartFormat = (data: Point[], xAxisKey: string) => {
   const formattedData: ChartDataPoint[] = []
 
   data.forEach(({ id, values }) => {
-    Object.keys(values).forEach(date => {
+    Object.keys(values).forEach(label => {
       const index = formattedData.findIndex(
-        ({ [xAxisKey]: label }) => label === date
+        ({ [xAxisKey]: existingLabel }) => existingLabel === label
       )
 
       if (index > -1) {
-        formattedData[index][id] = values[date]
+        formattedData[index][id] = values[label]
         return
       }
 
       formattedData.push({
-        [xAxisKey]: date,
-        [id]: values[date]
+        [xAxisKey]: label,
+        [id]: values[label]
       })
     })
   })

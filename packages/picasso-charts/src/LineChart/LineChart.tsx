@@ -159,9 +159,7 @@ export const LineChart = ({
   customTooltip,
   highlightsData,
   referenceLineData,
-  children,
-  style,
-  ...rest
+  children
 }: Props) => {
   const yKey = Object.keys(lines)[0]
   const isSingleChart = countNonReferenceLines(lines) === 1
@@ -180,12 +178,7 @@ export const LineChart = ({
   return (
     <div
       // ResponsiveContainer expects a wrapper with a fixed height
-      style={{
-        height,
-        ...style
-      }}
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...rest}
+      style={{ height }}
     >
       <StyleOverrides />
       <ResponsiveContainer>
