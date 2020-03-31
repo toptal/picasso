@@ -3,4 +3,5 @@
 # be supported in prettier-standard
 packages/picasso/src/index.ts
 packages/picasso-charts/src/LineChart/index.ts
+packages/picasso-charts/src/index.ts
 packages/topkit-analytics-charts/src/AnalyticsChart/index.ts
