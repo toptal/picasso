@@ -90,4 +90,4 @@ class Page extends Base {
   }
 }
 
-export default Page
+export { Page }

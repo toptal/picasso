@@ -18,7 +18,7 @@ import { Typography } from '../../../packages/picasso'
 import Base from './Base'
 import Section, { SectionConfigType } from './Section'
 import CodeExample from '../CodeExample'
-import Page from './Page'
+import { Page } from './Page'
 
 import PropsTable from './components/PropsTable'
 import Markdown from '../Markdown'
