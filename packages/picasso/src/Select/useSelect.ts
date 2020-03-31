@@ -2,7 +2,6 @@ import {
   KeyboardEvent,
   useState,
   ChangeEvent,
-  useMemo,
   useCallback,
   HTMLAttributes
 } from 'react'
@@ -20,22 +19,6 @@ export type ItemProps = {
 
 export const FIRST_ITEM_INDEX = 0
 export const EMPTY_INPUT_VALUE = ''
-
-/**
- * Specification has two options to enable/disable autofill:
- * "on"|"off", but google chrome doesn't respect specification and
- * enables autofill for inputs with common name like "email", "address" etc
- * As a workaround it's possible to use any incorrect string as a value of
- * "autocomplete" field. "none" is our current choice.
- */
-const AUTOFILL_DISABLED_STATE = 'none'
-
-export const getAutocompletePropValue = (
-  enableAutofill: boolean | undefined,
-  autoComplete: string | undefined
-) => {
-  return enableAutofill ? autoComplete : AUTOFILL_DISABLED_STATE
-}
 
 function normalizeArrowKey(event: KeyboardEvent<HTMLInputElement>) {
   const { key, keyCode } = event
@@ -127,8 +110,6 @@ interface UseSelectOutput {
 const useSelect = ({
   value,
   options = [],
-  enableAutofill = false,
-  autoComplete,
   onChange = () => {},
   onKeyDown = () => {},
   onSelect = () => {},
@@ -196,18 +177,12 @@ const useSelect = ({
     onBlur(event)
   }
 
-  const autoCompletePropValue = useMemo(
-    () => getAutocompletePropValue(enableAutofill, autoComplete),
-    [enableAutofill, autoComplete]
-  )
-
   const getInputProps = ({
     canCloseOnEnter
   }: {
     canCloseOnEnter: boolean
   }) => ({
     'aria-autocomplete': 'list' as React.AriaAttributes['aria-autocomplete'],
-    autoComplete: autoCompletePropValue,
     onChange: (
       event: ChangeEvent<
         HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
