@@ -10,7 +10,10 @@ import { palette } from '@toptal/picasso/utils'
 import { toHighlightFormat, toChartFormat } from '../utils'
 
 export type ReferenceLineData = Record<string, number>
-export type DatePoint = Record<string, number>
+export type Point = {
+  id: string
+  values: Record<string, number>
+}
 
 export type Highlight = {
   data: string[]
@@ -23,12 +26,10 @@ export type ReferenceLine = {
 }
 
 export type Props = LineChartProps & {
-  data: DatePoint
-  color?: string
+  data: Point[]
   highlights?: Highlight[]
   referenceLines?: ReferenceLine[]
   xAxisKey: string
-  yAxisKey: string
 }
 
 const insertReferenceLine = (
@@ -61,24 +62,20 @@ const generateChartData = (
 
 export const AnalyticsChart = ({
   data,
-  color,
   highlights,
   referenceLines,
   xAxisKey,
-  yAxisKey,
+  lines,
   ...rest
 }: Props) => {
-  const line: LineConfig = {
-    [yAxisKey]: { color: color! }
-  }
-  const formattedChartData = toChartFormat(data, xAxisKey, yAxisKey)
+  const formattedChartData = toChartFormat(data, xAxisKey)
 
   const highlightsData =
     highlights && toHighlightFormat(formattedChartData, highlights!, xAxisKey)
 
   const { chartData, lineConfig } = generateChartData(
     formattedChartData,
-    line,
+    lines,
     referenceLines
   )
 
@@ -96,7 +93,6 @@ export const AnalyticsChart = ({
 
 AnalyticsChart.defaultProps = {
   xAxisKey: 'x',
-  yAxisKey: 'y',
   color: palette.blue.main
 }
 

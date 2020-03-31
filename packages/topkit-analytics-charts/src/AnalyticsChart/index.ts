@@ -1,1 +1,1 @@
-export { default, Highlight } from './AnalyticsChart'
+export { default, Highlight, Point } from './AnalyticsChart'
