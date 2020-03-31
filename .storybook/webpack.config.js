@@ -43,7 +43,11 @@ const defaultLoaders =
   env.TEST_ENV === 'visual' ? [tsLoader] : [tsLoader, tsDocgenLoader]
 
 module.exports = ({ config }) => {
-  config.entry = ['@babel/polyfill', ...config.entry]
+  config.entry = [
+    'core-js/stable',
+    'regenerator-runtime/runtime',
+    ...config.entry
+  ]
 
   config.module.rules.push({
     test: /\.(ts|tsx)$/,

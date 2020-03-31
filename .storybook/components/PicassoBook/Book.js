@@ -1,5 +1,5 @@
 import Base from './Base'
-import Page from './Page'
+import { Page } from './Page'
 
 class PicassoBook extends Base {
   type = 'Book'

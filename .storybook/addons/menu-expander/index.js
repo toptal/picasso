@@ -27,11 +27,6 @@ const autoExpandMenu = menuItems => {
   menuItems.forEach(item => {
     removeCaret(item)
 
-    // click only not already expanded items
-    if (!item.nextSibling || item.nextSibling.nodeName == 'A') {
-      item.click()
-    }
-
     if (item.nextSibling && item.nextSibling.nodeName == 'DIV') {
       componentChildren.push(item.nextSibling)
     }
@@ -44,8 +39,12 @@ const autoExpandMenu = menuItems => {
   componentChildren.forEach(child => applyChildrenStyling(child))
 }
 
-export const scheduleWork = async () => {
+export const scheduleWork = api => async () => {
   try {
+    // wait for Sidebar menu to be rendered
+    await waitForElements('section > a')
+    await api.expandAll()
+
     const menuItems = await waitForElements('section > a')
     autoExpandMenu(menuItems)
   } catch (e) {
