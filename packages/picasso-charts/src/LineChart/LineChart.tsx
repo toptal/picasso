@@ -160,6 +160,7 @@ export const LineChart = ({
   highlightsData,
   referenceLineData,
   children,
+  style,
   ...rest
 }: Props) => {
   const yKey = Object.keys(lines)[0]
@@ -179,7 +180,10 @@ export const LineChart = ({
   return (
     <div
       // ResponsiveContainer expects a wrapper with a fixed height
-      style={{ height }}
+      style={{
+        height,
+        ...style
+      }}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
     >
@@ -190,7 +194,7 @@ export const LineChart = ({
             top: DEFAULT_MARGIN,
             right: DEFAULT_MARGIN,
             bottom: DEFAULT_MARGIN,
-            left: DEFAULT_MARGIN
+            left: 0
           }}
           data={orderedData}
         >
