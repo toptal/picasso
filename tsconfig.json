@@ -25,6 +25,10 @@
       "@toptal/picasso-forms": ["packages/picasso-forms/src/index"],
       "@toptal/picasso-charts/*": ["packages/picasso-charts/src/*"],
       "@toptal/picasso-charts": ["packages/picasso-charts/src/index"],
+      "@topkit/analytics-charts/*": ["packages/topkit-analytics-charts/src/*"],
+      "@topkit/analytics-charts": [
+        "packages/topkit-analytics-charts/src/index"
+      ],
       "*": ["@types/*"]
     }
   },

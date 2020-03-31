@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, ReactNode } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
 import { palette } from '@toptal/picasso/utils'
 import {
@@ -14,15 +14,16 @@ import {
   Tooltip
 } from 'recharts'
 
-import calcTopDomain from '../utils/calc-top-domain'
+import {
+  findTopDomain,
+  getChartTicks,
+  toRechartsHighlightFormat,
+  orderData
+} from '../utils'
 import CHART_CONSTANTS from '../utils/constants'
 
 const {
   BOTTOM_DOMAIN,
-  HIGHLIGHT_BOTTOM_START_POINT,
-  HIGHLIGHT_BOTTOM_FILL_OPACITY,
-  HIGHLIGHT_TOP_HEIGHT,
-  HIGHLIGHT_TOP_FILL_OPACITY,
   TICK_MARGIN,
   MIN_TICK_GAP,
   DEFAULT_MARGIN,
@@ -36,11 +37,9 @@ export type ReferenceLineType = {
   color: string
 }
 
-export type ChartDataPoint = {
-  [key: string]: string | number
-}
+export type ChartDataPoint = Record<string, string | number>
 
-export type HighlightData = {
+export type HighlightConfig = {
   from: number
   to: number
   color: string
@@ -50,23 +49,25 @@ export type OrderedChartDataPoint = ChartDataPoint & {
   order: number
 }
 
-export type ChartLine = {
-  [key: string]: string
-}
+export type LineConfig = Record<
+  string,
+  { color: string; variant?: 'solid' | 'reference' }
+>
 
 export type Props = BaseProps & {
   data: ChartDataPoint[]
-  lines: ChartLine
+  lines: LineConfig
   unit?: string
   xAxisKey?: string
   height?: number
   tooltip?: boolean
   customTooltip?: ReactElement
-  highlightsData?: HighlightData[]
+  highlightsData?: HighlightConfig[] | null
   referenceLineData?: ReferenceLineType[]
+  children?: ReactNode
 }
 
-const ChartStyle = () => (
+const StyleOverrides = () => (
   <style
     dangerouslySetInnerHTML={{
       __html: `
@@ -88,43 +89,19 @@ const ChartStyle = () => (
   />
 )
 
-const calcTicks = (orderedData: OrderedChartDataPoint[]) =>
-  orderedData.map(({ order }) => order)
-
-const convertHighlightData = (topDomain: number, data: HighlightData[]) =>
-  data.map(({ from, to, color }) => {
-    const x1 = from
-    const x2 = to
-
-    return [
-      {
-        x1,
-        x2,
-        y1: HIGHLIGHT_BOTTOM_START_POINT,
-        y2: topDomain,
-        fillOpacity: HIGHLIGHT_BOTTOM_FILL_OPACITY,
-        fill: color
-      },
-      {
-        x1,
-        x2,
-        y1: topDomain - HIGHLIGHT_TOP_HEIGHT,
-        y2: topDomain,
-        fillOpacity: HIGHLIGHT_TOP_FILL_OPACITY,
-        fill: color
-      }
-    ]
-  })
+const countNonReferenceLines = (lines: LineConfig) =>
+  Object.values(lines).filter(({ variant }) => !variant || variant === 'solid')
+    .length
 
 const generateHighlightedAreas = (
   topDomain: number,
-  highlights?: HighlightData[]
+  highlights?: HighlightConfig[]
 ) => {
   if (!highlights) {
     return null
   }
 
-  const highlightAreas = convertHighlightData(topDomain, highlights)
+  const highlightAreas = toRechartsHighlightFormat(topDomain, highlights)
 
   return highlightAreas.map((highlightArea, index) =>
     highlightArea.map((props, highlightIndex: number) => (
@@ -141,6 +118,7 @@ const generateReferenceLines = (referenceLines?: ReferenceLineType[]) => {
   if (!referenceLines) {
     return null
   }
+
   return referenceLines.map(({ y, color }) => (
     <ReferenceLine
       key={`reference-line-${y}`}
@@ -152,26 +130,24 @@ const generateReferenceLines = (referenceLines?: ReferenceLineType[]) => {
 }
 
 const generateLineGraphs = (
-  lineNames: string[],
-  orderedData: OrderedChartDataPoint[],
-  lines: ChartLine
+  lines: LineConfig,
+  orderedData: OrderedChartDataPoint[]
 ) =>
-  lineNames.map((name, index) => (
-    <Line
-      key={`line-${index}`}
-      data={orderedData}
-      dataKey={name}
-      stroke={lines[name]}
-      dot={{ fill: lines[name] }}
-      isAnimationActive={IS_ANIMATION_ACTIVE}
-    />
-  ))
-
-const orderData = (data: ChartDataPoint[]): OrderedChartDataPoint[] =>
-  data.map((point, index: number) => ({
-    ...point,
-    order: index
-  }))
+  Object.keys(lines).map((name, index) => {
+    const line = lines[name]
+    const isReferenceLine = line.variant === 'reference'
+    return (
+      <Line
+        key={`line-${index}`}
+        data={orderedData}
+        dataKey={name}
+        stroke={line.color}
+        dot={isReferenceLine ? false : { fill: line.color }}
+        isAnimationActive={IS_ANIMATION_ACTIVE}
+        strokeDasharray={isReferenceLine ? '3 3' : 'none'}
+      />
+    )
+  })
 
 export const LineChart = ({
   data,
@@ -183,19 +159,19 @@ export const LineChart = ({
   customTooltip,
   highlightsData,
   referenceLineData,
+  children,
   ...rest
 }: Props) => {
-  const lineNames = Object.keys(lines)
-  const yKey = lineNames[0]
-  const isSingleChart = lineNames.length === 1
+  const yKey = Object.keys(lines)[0]
+  const isSingleChart = countNonReferenceLines(lines) === 1
 
-  const topDomain = calcTopDomain(data, xAxisKey!)
+  const topDomain = findTopDomain(data, xAxisKey!)
   const orderedData = orderData(data)
-  const ticks = calcTicks(orderedData)
+  const ticks = getChartTicks(orderedData)
 
   const referenceLineList = generateReferenceLines(referenceLineData)
-  const highlightedAreas = generateHighlightedAreas(topDomain, highlightsData)
-  const lineGraphs = generateLineGraphs(lineNames, orderedData, lines)
+  const highlightedAreas = generateHighlightedAreas(topDomain, highlightsData!)
+  const lineGraphs = generateLineGraphs(lines, orderedData)
 
   const formatTicks = (tick: unknown) =>
     orderedData.find(item => item.order === tick)![xAxisKey!]
@@ -207,7 +183,7 @@ export const LineChart = ({
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
     >
-      <ChartStyle />
+      <StyleOverrides />
       <ResponsiveContainer>
         <ComposedChart
           margin={{
@@ -260,6 +236,7 @@ export const LineChart = ({
           )}
 
           {lineGraphs}
+          {children}
 
           {tooltip && <Tooltip content={customTooltip} />}
 

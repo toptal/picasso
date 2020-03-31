@@ -1,1 +1,9 @@
-export { default as LineChart } from './LineChart'
+export {
+  default as LineChart,
+  LineChartProps,
+  ReferenceLineType,
+  ChartDataPoint,
+  HighlightConfig,
+  OrderedChartDataPoint,
+  LineConfig
+} from './LineChart'

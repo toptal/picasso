@@ -4,7 +4,7 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Charts').createPage(
   'LineChart',
-  'This is what we can do with charts for now'
+  'Responsive line charts'
 )
 
 page.createTabChapter('Props').addComponentDocs({
@@ -15,7 +15,7 @@ page.createTabChapter('Props').addComponentDocs({
       name: 'data',
       type: {
         name: '[]',
-        description: '{ [key: string]: string | number }: HighlightData'
+        description: '{ [key: string]: string | number }'
       },
       description: 'A list of data points to be rendered as a line chart',
       required: true
@@ -23,11 +23,12 @@ page.createTabChapter('Props').addComponentDocs({
     lines: {
       name: 'lines',
       type: {
-        name: 'ChartLine',
-        description: '{ [key: string]: string }'
+        name: '{}',
+        description:
+          "{ [key: string]: { color: string; variant?: 'solid' | 'reference' } }"
       },
       description:
-        'A dictionary of each line name as a key and color as a value',
+        "A dictionary of each line name as a key and the line's color and variant for value",
       required: true
     },
     unit: {
@@ -57,11 +58,7 @@ page.createTabChapter('Props').addComponentDocs({
       name: 'highlightsData',
       type: {
         name: '[]',
-        description: `{
-            from: number
-            to: number
-            color: string
-          }: HighlightData`
+        description: `{ from: number, to: number, color: string }`
       },
       description: 'A list of regions to be highlighted'
     },
@@ -69,10 +66,7 @@ page.createTabChapter('Props').addComponentDocs({
       name: 'referenceLineData',
       type: {
         name: '[]',
-        description: `{
-          y: number
-          color: string
-        }: ReferenceLineType`
+        description: `{ y: number, color: string }`
       },
       description:
         'Will display a full-width horizontal dashed line at the specified height in the specified color'
@@ -84,4 +78,3 @@ page
   .createChapter()
   .addExample('LineChart/story/Default.example.tsx', 'Default')
   .addExample('LineChart/story/Multiple.example.tsx', 'Multiple Lines')
-  .addExample('LineChart/story/Complex.example.tsx', 'Complex')

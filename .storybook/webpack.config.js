@@ -73,6 +73,10 @@ module.exports = ({ config }) => {
     '@toptal/picasso-charts': path.resolve(
       __dirname,
       '../packages/picasso-charts/src/index'
+    ),
+    '@topkit/analytics-charts': path.resolve(
+      __dirname,
+      '../packages/topkit-analytics-charts/src/index'
     )
   }
 

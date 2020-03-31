@@ -1,4 +1,4 @@
-import { calcTopDomain, toChartFormat, toHighlightFormat } from './'
+import toChartFormat from './'
 
 const RAW_CHART_DATA = {
   '2020-10-20': 1.7,
@@ -34,7 +34,7 @@ const RAW_CHART_DATA = {
   '2020-11-19': 1.3
 }
 
-const CONVERTED_CHART_DATA = [
+const EXPECTED_CHART_DATA = [
   { x: '2020-10-20', test: 1.7 },
   { x: '2020-10-21', test: 2 },
   { x: '2020-10-22', test: 1.7 },
@@ -68,26 +68,7 @@ const CONVERTED_CHART_DATA = [
   { x: '2020-11-19', test: 1.3 }
 ]
 
-describe('chart utils', () => {
-  test('calc top domain', () => {
-    const topDomain = calcTopDomain(CONVERTED_CHART_DATA, 'x')
-    expect(topDomain).toEqual(5)
-  })
-
-  test('convert chart data', () => {
-    const convertedChartData = toChartFormat(RAW_CHART_DATA, 'x', 'test')
-    expect(convertedChartData).toEqual(CONVERTED_CHART_DATA)
-  })
-
-  test('convert highlight data', () => {
-    const convertedHighlightsData = toHighlightFormat(
-      ['2020-10-21', '2020-11-02'],
-      CONVERTED_CHART_DATA,
-      'red'
-    )
-    expect(convertedHighlightsData).toEqual([
-      { color: 'red', from: 1, to: 2 },
-      { color: 'red', from: 13, to: 14 }
-    ])
-  })
+test('convert chart data', () => {
+  const convertedChartData = toChartFormat(RAW_CHART_DATA, 'x', 'test')
+  expect(convertedChartData).toEqual(EXPECTED_CHART_DATA)
 })
