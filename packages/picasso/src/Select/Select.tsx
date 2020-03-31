@@ -29,6 +29,7 @@ import { FeatureOptions } from '../utils/disable-unsupported-props'
 import { Option } from './types'
 import useSelect, { EMPTY_INPUT_VALUE, ItemProps } from './useSelect'
 import styles from './styles'
+import { getAutofillAttributes, isAttributeProvided } from './utils'
 
 type IconPosition = 'start' | 'end'
 type ValueType = string | string[] | number
@@ -528,7 +529,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
   )
 
   const readOnlyInput = multiple || allOptions.length <= searchThreshold!
-  const isNameAttributeProvided = typeof name === 'string'
+
   const selectComponent = (
     <Fragment>
       <div
@@ -536,7 +537,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
         {...getRootProps()}
         className={classes.inputWrapper}
       >
-        {!enableAutofill && isNameAttributeProvided && !native && (
+        {!enableAutofill && !native && isAttributeProvided(name) && (
           <input type='hidden' value={inputValue} name={name} />
         )}
         <OutlinedInput
@@ -571,15 +572,12 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
           role='textbox'
           enableReset={enableReset ? select.isSelected() : false}
           // eslint-disable-next-line react/jsx-props-no-spreading
-          {...((enableAutofill || native) && isNameAttributeProvided
-            ? { name }
-            : undefined)}
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          {...(enableAutofill
-            ? autoComplete
-              ? { autoComplete }
-              : undefined
-            : { autoComplete: 'off' })}
+          {...getAutofillAttributes({
+            enableAutofill,
+            autoComplete,
+            native,
+            name
+          })}
         />
         {dropDownIcon}
       </div>
