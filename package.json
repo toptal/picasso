@@ -16,6 +16,7 @@
     "start": "start-storybook -p 9001 -s ./.storybook/public -c .storybook",
     "build:storybook": "build-storybook -s ./.storybook/public -c .storybook -o build/storybook --quiet",
     "build:dist": "lerna run build:dist",
+    "postbuild:dist":  "rm -rf packages/build && mkdir -p packages/build && cp -rf packages/picasso packages/build/picasso && cp -rf packages/shared packages/build/picasso-shared && cp -rf packages/picasso-lab packages/build/picasso-lab && cp -rf packages/picasso-icons packages/build/picasso-icons && cp -rf packages/picasso-utils packages/build/picasso-utils",
     "release": "./bin/release",
     "symlink": "cross-env ./bin/symlink --link",
     "symlink:off": "cross-env ./bin/symlink --unlink",

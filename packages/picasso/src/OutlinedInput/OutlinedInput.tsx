@@ -12,10 +12,10 @@ import MUIOutlinedInput from '@material-ui/core/OutlinedInput'
 import { InputBaseComponentProps } from '@material-ui/core/InputBase'
 import capitalize from '@material-ui/core/utils/capitalize'
 import { StandardProps, SizeType, Classes } from '@toptal/picasso-shared'
+import { CloseMinor16 } from '@toptal/picasso-icons'
 
 import InputAdornment from '../InputAdornment'
 import Button from '../Button'
-import { CloseMinor16 } from '../Icon'
 import styles from './styles'
 
 type ValueType =

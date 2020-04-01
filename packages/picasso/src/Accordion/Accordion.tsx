@@ -14,8 +14,8 @@ import {
   CompoundedComponentWithRef,
   StandardProps
 } from '@toptal/picasso-shared'
+import { ArrowDownMinor16 } from '@toptal/picasso-icons'
 
-import { ArrowDownMinor16 } from '../Icon'
 import ExpansionPanelSummary from '../ExpansionPanelSummary'
 import ExpansionPanelDetails from '../ExpansionPanelDetails'
 import styles from './styles'

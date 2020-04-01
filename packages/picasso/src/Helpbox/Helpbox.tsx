@@ -6,12 +6,12 @@ import {
   PicassoComponentWithRef,
   CompoundedComponentWithRef
 } from '@toptal/picasso-shared'
+import { Close16 } from '@toptal/picasso-icons'
 
 import Container, { VariantType as ContainerVariantType } from '../Container'
 import HelpboxTitle from '../HelpboxTitle'
 import HelpboxContent from '../HelpboxContent'
 import HelpboxActions from '../HelpboxActions'
-import { Close16 } from '../Icon'
 import Button from '../Button'
 import styles from './styles'
 import HelpboxContext from './HelpboxContext'

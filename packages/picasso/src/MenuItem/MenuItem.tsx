@@ -18,8 +18,8 @@ import {
   ButtonOrAnchorProps,
   SizeType
 } from '@toptal/picasso-shared'
+import { ChevronMinor16 } from '@toptal/picasso-icons'
 
-import { ChevronMinor16 } from '../Icon'
 import { Container } from '../'
 import MenuContext, { MenuContextProps } from '../Menu/menuContext'
 import styles from './styles'

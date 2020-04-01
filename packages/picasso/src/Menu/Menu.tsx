@@ -15,8 +15,8 @@ import {
   PicassoComponentWithRef,
   CompoundedComponentWithRef
 } from '@toptal/picasso-shared'
+import { BackMinor16 } from '@toptal/picasso-icons'
 
-import { BackMinor16 } from '../Icon'
 import { Typography } from '../'
 import MenuItem from '../MenuItem'
 import MenuContext, { MenuContextProps } from './menuContext'

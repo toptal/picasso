@@ -2,8 +2,11 @@ import React, { forwardRef } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import { StandardProps } from '@toptal/picasso-shared'
+import {
+  Logo as LogoIcon,
+  LogoEmblem as LogoEmblemIcon
+} from '@toptal/picasso-icons'
 
-import { Logo as LogoIcon, LogoEmblem as LogoEmblemIcon } from '../Icon'
 import styles from './styles'
 
 type VariantType = 'default' | 'white' | 'black' | 'grey' | 'blue'

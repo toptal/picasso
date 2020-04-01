@@ -2,8 +2,8 @@ import React, { FunctionComponent, HTMLAttributes } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import { StandardProps } from '@toptal/picasso-shared'
+import { CheckMinor24 as TickIcon } from '@toptal/picasso-icons'
 
-import { CheckMinor24 as TickIcon } from '../Icon'
 import styles from './styles'
 
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {

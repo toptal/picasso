@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from 'react'
 import { render } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
+import { Candidates16 } from '@toptal/picasso-icons'
 
-import { Candidates16 } from '../Icon'
 import SidebarMenu from '../SidebarMenu'
 import Sidebar from '../Sidebar'
 import SidebarItem, { Props } from './SidebarItem'

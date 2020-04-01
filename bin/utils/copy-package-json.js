@@ -4,11 +4,11 @@ const fs = require('fs-extra')
 const { log } = require('./log')
 const { BUILD_FOLDER } = require('./constants')
 
-const updateEntries = (packageJsonContent, entry) => {
+const updateEntries = (packageJsonContent, { main, module }) => {
   return {
     ...packageJsonContent,
-    main: entry,
-    module: entry
+    main,
+    module
   }
 }
 
@@ -19,7 +19,10 @@ const copyPackageJson = (packageRootDir, entry) => {
   const rootPackageJson = path.resolve(packageRootDir, './package.json')
   const rootPackageJsonContent = require(rootPackageJson)
 
-  const content = updateEntries(rootPackageJsonContent, entry)
+  const content = updateEntries(rootPackageJsonContent, {
+    main: entry,
+    module: `esm/${entry}`
+  })
 
   const outputPackageJson = path.resolve(
     packageRootDir,

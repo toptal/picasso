@@ -16,20 +16,20 @@ import {
   PicassoComponentWithRef,
   CompoundedComponentWithRef
 } from '@toptal/picasso-shared'
-
 import {
   CloseMinor16,
   Exclamation16 as Alert,
   CheckMinor16 as Tick,
   Info16 as Info
-} from '../Icon'
+} from '@toptal/picasso-icons'
+
 import Container from '../Container'
 import Button from '../Button'
 import styles from './styles'
 import Typography from '../Typography'
 import NotificationActions from '../NotificationActions'
 
-export type VariantType = 'red' | 'green' | 'white' | 'yellow'
+export type NotificationVariantType = 'red' | 'green' | 'white' | 'yellow'
 
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Main content of the Notification */
@@ -37,7 +37,7 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Callback invoked when close is clicked */
   onClose?: (event: MouseEvent<HTMLButtonElement>) => void
   /** Style variant of Notification */
-  variant?: VariantType
+  variant?: NotificationVariantType
   /** Add <Icon /> before Notification content  */
   icon?: ReactElement
   /** Enable elevated appearance for Notification */

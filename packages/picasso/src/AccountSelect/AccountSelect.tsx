@@ -1,6 +1,7 @@
 import React, { forwardRef } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import { StandardProps } from '@toptal/picasso-shared'
+import { ChevronRight16 } from '@toptal/picasso-icons'
 
 import UserBadge from '../UserBadge'
 import Typography from '../Typography'
@@ -8,7 +9,6 @@ import Menu from '../Menu'
 import { ListNativeProps } from '../Menu/Menu'
 import Link from '../Link'
 import Container from '../Container'
-import { ChevronRight16 } from '../Icon'
 import styles from './styles'
 
 type Account = {

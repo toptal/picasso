@@ -7,9 +7,9 @@ import React, {
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { BaseProps, CompoundedComponentWithRef } from '@toptal/picasso-shared'
+import { CloseMinor16 } from '@toptal/picasso-icons'
 
 import Chip from '../Chip'
-import { CloseMinor16 } from '../Icon'
 import LabelGroup from '../LabelGroup'
 import styles from './styles'
 

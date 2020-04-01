@@ -15,8 +15,8 @@ import {
   usePicassoRoot,
   SizeType
 } from '@toptal/picasso-shared'
+import { Close16 } from '@toptal/picasso-icons'
 
-import { Close16 } from '../Icon'
 import useCombinedRefs from '../utils/use-combined-refs'
 import { ModalManager } from '../utils/Modal'
 import ModalTitle from '../ModalTitle'

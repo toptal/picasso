@@ -11,9 +11,9 @@ import {
   PicassoComponentWithRef,
   CompoundedComponentWithRef
 } from '@toptal/picasso-shared'
+import { Overview16, Close16 } from '@toptal/picasso-icons'
 
 import { Button, Container, Dropdown } from '../'
-import { Overview16, Close16 } from '../Icon'
 import { useBreakpoint } from '../utils'
 import SidebarMenu from '../SidebarMenu'
 import SidebarItem from '../SidebarItem'

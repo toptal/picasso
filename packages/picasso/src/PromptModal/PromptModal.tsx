@@ -18,7 +18,8 @@ export type PromptOptions = {
   error: boolean
 }
 
-export interface Props extends Omit<ModalProps, 'children' | 'onSubmit'> {
+export interface PromptModalProps
+  extends Omit<ModalProps, 'children' | 'onSubmit'> {
   /** Pass input component to allow you get input value from prompt modal */
   children?: (result: PromptOptions) => ReactNode
   /** Title of modal */
@@ -38,76 +39,75 @@ export interface Props extends Omit<ModalProps, 'children' | 'onSubmit'> {
   onCancel?: () => void
 }
 
-export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
-  props,
-  ref
-) {
-  const {
-    children,
-    title,
-    message,
-    variant,
-    submitText,
-    cancelText,
-    onSubmit,
-    onAfterSubmit,
-    onCancel,
-    ...rest
-  } = props
-  const [result, setResult] = useState<unknown>()
-  const [loading, setLoading] = useState<boolean>(false)
-  const [error, setError] = useState<boolean>(false)
+export const PromptModal = forwardRef<HTMLElement, PromptModalProps>(
+  function PromptModal(props, ref) {
+    const {
+      children,
+      title,
+      message,
+      variant,
+      submitText,
+      cancelText,
+      onSubmit,
+      onAfterSubmit,
+      onCancel,
+      ...rest
+    } = props
+    const [result, setResult] = useState<unknown>()
+    const [loading, setLoading] = useState<boolean>(false)
+    const [error, setError] = useState<boolean>(false)
 
-  const handleSubmit = async () => {
-    try {
-      setLoading(true)
-      setError(false)
+    const handleSubmit = async () => {
+      try {
+        setLoading(true)
+        setError(false)
 
-      await onSubmit(result)
-      setLoading(false)
-      // closes modal if use-modals hook is used
-      onAfterSubmit!()
-    } catch (err) {
-      setError(true)
-      setLoading(false)
+        await onSubmit(result)
+        setLoading(false)
+        // closes modal if use-modals hook is used
+        onAfterSubmit!()
+      } catch (err) {
+        setError(true)
+        setLoading(false)
+      }
     }
-  }
 
-  return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <Modal ref={ref} {...rest}>
-      {title && <Modal.Title>{title}</Modal.Title>}
-      <Modal.Content>
-        <Typography size='medium'>{message}</Typography>
-        {children && (
-          <Container top='xsmall'>
-            {children({
-              setResult,
-              result,
-              setLoading,
-              loading,
-              setError,
-              error
-            })}
-          </Container>
-        )}
-      </Modal.Content>
-      <Modal.Actions>
-        <Button disabled={loading} variant='flat' onClick={onCancel}>
-          {cancelText}
-        </Button>
-        <Button
-          disabled={loading}
-          loading={loading}
-          onClick={handleSubmit}
-          variant={`primary-${variant}` as ButtonVariantType}
-        >
-          {submitText}
-        </Button>
-      </Modal.Actions>
-    </Modal>
-  )
-})
+    return (
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      <Modal ref={ref} {...rest}>
+        {title && <Modal.Title>{title}</Modal.Title>}
+        <Modal.Content>
+          <Typography size='medium'>{message}</Typography>
+          {children && (
+            <Container top='xsmall'>
+              {children({
+                setResult,
+                result,
+                setLoading,
+                loading,
+                setError,
+                error
+              })}
+            </Container>
+          )}
+        </Modal.Content>
+        <Modal.Actions>
+          <Button disabled={loading} variant='flat' onClick={onCancel}>
+            {cancelText}
+          </Button>
+          <Button
+            disabled={loading}
+            loading={loading}
+            onClick={handleSubmit}
+            variant={`primary-${variant}` as ButtonVariantType}
+          >
+            {submitText}
+          </Button>
+        </Modal.Actions>
+      </Modal>
+    )
+  }
+)
 
 PromptModal.defaultProps = {
   cancelText: 'Cancel',
