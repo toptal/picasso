@@ -54,11 +54,13 @@ RUN chmod a+rw /app/packages/picasso
 RUN chmod a+rw /app/packages/picasso-lab
 RUN chmod a+rw /app/packages/picasso-forms
 RUN chmod a+rw /app/packages/picasso-charts
+RUN chmod a+rw /app/packages/topkit-analytics-charts
 RUN chmod a+rw /app/packages/shared
 RUN chmod a+rw /app/packages/picasso/CHANGELOG.md
 RUN chmod a+rw /app/packages/picasso-lab/CHANGELOG.md
 RUN chmod a+rw /app/packages/picasso-forms/CHANGELOG.md
 RUN chmod a+rw /app/packages/picasso-charts/CHANGELOG.md
+RUN chmod a+rw /app/packages/topkit-analytics-charts/CHANGELOG.md
 RUN chmod a+rw /app/packages/shared/CHANGELOG.md
 RUN chmod a+rw /app/package.json
 
