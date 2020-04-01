@@ -1,0 +1,7 @@
+# Those files need to be removed from here after this
+# version of prettier https://github.com/prettier/prettier/issues/7263 will
+# be supported in prettier-standard
+packages/picasso/src/index.ts
+packages/picasso-charts/src/LineChart/index.ts
+packages/picasso-charts/src/index.ts
+packages/topkit-analytics-charts/src/AnalyticsChart/index.ts

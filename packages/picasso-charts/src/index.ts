@@ -1,5 +1,5 @@
-export {
-  default as LineChart,
+export { default as LineChart } from './LineChart'
+export type {
   LineChartProps,
   ReferenceLineType,
   ChartDataPoint,

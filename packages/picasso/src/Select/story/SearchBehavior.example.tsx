@@ -2,7 +2,7 @@ import React, { useState, ChangeEvent } from 'react'
 import { Select, Button, Container } from '@toptal/picasso'
 
 const SelectSearchBehaviourExample = () => {
-  const [value, setValue] = useState()
+  const [value, setValue] = useState<string | string[] | number>()
   const [options, setOptions] = useState(OPTIONS_WHEN_SEARCH_DISABLED)
 
   const handleChange = (
@@ -16,12 +16,12 @@ const SelectSearchBehaviourExample = () => {
   }
 
   const handleAddOptionsClick = () => {
-    setValue(null)
+    setValue(undefined)
     setOptions(OPTIONS_WHEN_SEARCH_ENABLED)
   }
 
   const handleRemoveOptionsClick = () => {
-    setValue(null)
+    setValue(undefined)
     setOptions(OPTIONS_WHEN_SEARCH_DISABLED)
   }
 

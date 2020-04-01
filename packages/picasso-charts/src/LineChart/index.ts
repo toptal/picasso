@@ -2,8 +2,8 @@ import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import { Props } from './LineChart'
 
-export {
-  default,
+export { default } from './LineChart'
+export type {
   ReferenceLineType,
   ChartDataPoint,
   HighlightConfig,
