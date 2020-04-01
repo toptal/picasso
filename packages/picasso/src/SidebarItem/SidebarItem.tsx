@@ -14,7 +14,7 @@ import { Container, Typography, Accordion, MenuItem } from '../'
 import { ArrowDropDown16 } from '../Icon'
 import { MenuItemAttributes } from '../MenuItem'
 import styles from './styles'
-import useSidebar from '../Sidebar/useSidebar'
+import { VariantType } from '../Sidebar/types'
 
 export interface Props extends BaseProps, MenuItemAttributes {
   /** Pass icon to be used as part of item */
@@ -31,6 +31,10 @@ export interface Props extends BaseProps, MenuItemAttributes {
   onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
   /** Component name to render the menu item as */
   as?: ElementType<MenuItemProps>
+  variant?: VariantType
+  isExpanded?: boolean
+  isNothingExpandedOnSidebar?: boolean
+  expand?: () => void
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
@@ -53,18 +57,15 @@ export const SidebarItem: OverridableComponent<Props> = forwardRef<
     style,
     onClick,
     as,
+    variant,
+    isExpanded,
+    isNothingExpandedOnSidebar,
+    expand,
     ...rest
   } = props
 
   const hasIcon = Boolean(icon)
   const hasMenu = Boolean(menu)
-
-  const {
-    variant,
-    isExpanded,
-    isNothingExpanded: isNothingExpandedOnSidebar,
-    expand
-  } = useSidebar()
 
   const handleMenuItemClick = (
     event: React.MouseEvent<HTMLElement, MouseEvent>
@@ -80,7 +81,7 @@ export const SidebarItem: OverridableComponent<Props> = forwardRef<
   ) => {
     event.stopPropagation()
     if (expansion) {
-      expand()
+      expand!()
     }
   }
 
@@ -141,7 +142,7 @@ export const SidebarItem: OverridableComponent<Props> = forwardRef<
       ) !== undefined
 
     if (isNothingExpandedOnSidebar && isExpandedableByDefault) {
-      expand()
+      expand!()
     }
 
     return (
@@ -180,7 +181,8 @@ export const SidebarItem: OverridableComponent<Props> = forwardRef<
 SidebarItem.defaultProps = {
   collapsible: false,
   onClick: () => {},
-  selected: false
+  selected: false,
+  expand: () => {}
 }
 
 SidebarItem.displayName = 'SidebarItem'

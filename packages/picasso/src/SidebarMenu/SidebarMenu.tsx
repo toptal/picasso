@@ -1,10 +1,12 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useContext, ReactElement } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { StandardProps } from '@toptal/picasso-shared'
 
 import { Menu } from '../'
 import { ListNativeProps } from '../Menu'
+import { SidebarContext, DEFAULT_EXPANDED_ITEM_KEY } from '../Sidebar'
+import { SidebarContextProps } from '../Sidebar/types'
 import styles from './styles'
 
 export interface Props extends StandardProps, ListNativeProps {
@@ -13,7 +15,24 @@ export interface Props extends StandardProps, ListNativeProps {
 }
 
 export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
-  function SidebarMenu({ bottom, classes, style, className, ...rest }, ref) {
+  function SidebarMenu(
+    { bottom, classes, style, className, children, ...rest },
+    ref
+  ) {
+    const { variant, expandedItemKey, setExpandedItemKey } = useContext<
+      SidebarContextProps
+    >(SidebarContext)
+
+    const items = React.Children.map(children, (child, index) => {
+      return React.cloneElement(child as ReactElement, {
+        variant,
+        isExpanded: expandedItemKey === index,
+        isNothingExpandedOnSidebar:
+          expandedItemKey === DEFAULT_EXPANDED_ITEM_KEY,
+        expand: () => setExpandedItemKey(index)
+      })
+    })
+
     return (
       <Menu
         // eslint-disable-next-line react/jsx-props-no-spreading
@@ -22,7 +41,9 @@ export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
         ref={ref}
         style={style}
         className={cx(classes.root, { [classes.bottom]: bottom }, className)}
-      />
+      >
+        {items}
+      </Menu>
     )
   }
 )
