@@ -7,24 +7,12 @@ import { Menu } from '../'
 import { ListNativeProps } from '../Menu'
 import { SidebarContext } from '../Sidebar'
 import { SidebarContextProps } from '../Sidebar/types'
+import * as SidebarItem from '../SidebarItem'
 import styles from './styles'
 
 export interface Props extends StandardProps, ListNativeProps {
   /** Defines is sidebar menu pushed to bottom of sidebar */
   bottom?: boolean
-}
-
-const getSelectedChild = (sidebarItem: ReactElement) => {
-  const menu = sidebarItem.props.menu
-
-  if (!menu) {
-    return null
-  }
-
-  const subMenuItems = React.Children.toArray(menu.props.children)
-  return subMenuItems.find(
-    (menuChild: ReactElement) => menuChild.props.selected
-  )
 }
 
 export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
@@ -46,7 +34,7 @@ export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
         return React.cloneElement(sidebarItem, { variant })
       }
 
-      const selectedChild = getSelectedChild(sidebarItem)
+      const selectedChild = SidebarItem.getSelectedSubMenu(sidebarItem)
       const hasSelectedChild = Boolean(selectedChild)
 
       const isNothingExpandedOnSidebar = expandedItemKey === null

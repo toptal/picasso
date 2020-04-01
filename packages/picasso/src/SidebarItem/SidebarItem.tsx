@@ -171,6 +171,19 @@ export const SidebarItem: OverridableComponent<Props> = memo(
   })
 )
 
+export const getSelectedSubMenu = (sidebarItem: ReactElement<Props>) => {
+  const menu = sidebarItem.props.menu
+
+  if (!menu) {
+    return null
+  }
+
+  const subMenuItems = React.Children.toArray(menu.props.children)
+  return subMenuItems.find(
+    (menuChild: ReactElement<Props>) => menuChild.props.selected
+  )
+}
+
 SidebarItem.defaultProps = {
   collapsible: false,
   onClick: () => {},
