@@ -6,7 +6,7 @@
   )
 
   // fix for IE11 to support forEach method
-  nonPicassoMetaTags = Array.from(nonPicassoMetaTags)
+  nonPicassoMetaTags = [].slice.call(nonPicassoMetaTags)
   nonPicassoMetaTags.forEach(function (metaTag) {
     const content = metaTag.getAttribute('content') || ''
 
