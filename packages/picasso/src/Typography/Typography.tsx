@@ -5,8 +5,8 @@ import { PropTypes } from '@material-ui/core'
 import MUITypography from '@material-ui/core/Typography'
 import cx from 'classnames'
 import { StandardProps, SizeType, ColorType } from '@toptal/picasso-shared'
+import { kebabToCamelCase } from '@toptal/picasso-utils'
 
-import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import styles from './styles'
 
 type VariantType = 'heading' | 'body'

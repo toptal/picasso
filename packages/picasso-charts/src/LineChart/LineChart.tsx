@@ -1,6 +1,6 @@
 import React, { ReactElement, ReactNode } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
-import { palette } from '@toptal/picasso/utils'
+import { palette } from '@toptal/picasso-utils'
 import {
   ComposedChart,
   XAxis,

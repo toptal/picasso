@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { TagSelector, Typography, Container } from '@toptal/picasso'
-import { isSubstring } from '@toptal/picasso/utils'
+import { isSubstring } from '@toptal/picasso-utils'
 import { Item } from '@toptal/picasso/TagSelector'
 
 interface Country extends Item {

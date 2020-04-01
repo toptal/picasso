@@ -4,13 +4,13 @@ import cx from 'classnames'
 import { InputBaseComponentProps } from '@material-ui/core/InputBase'
 import { StandardProps } from '@toptal/picasso-shared'
 import { Check16, UploadDocument16 } from '@toptal/picasso-icons'
+import { isNumber, isBoolean, useCombinedRefs } from '@toptal/picasso-utils'
 
 import OutlinedInput from '../OutlinedInput'
 import InputAdornment from '../InputAdornment'
 import Button from '../Button'
 import Loader from '../Loader'
 import Typography from '../Typography'
-import { isNumber, isBoolean, useCombinedRefs } from '../utils'
 import styles from './styles'
 
 export interface Props extends StandardProps {

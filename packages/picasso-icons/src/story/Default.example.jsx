@@ -1,5 +1,5 @@
 import React from 'react'
-import { Settings16 } from '@toptal/picasso/Icon'
+import { Settings16 } from '@toptal/picasso-icons'
 
 const Example = () => (
   <div>

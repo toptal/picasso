@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
 import { Container, Typography } from '@toptal/picasso'
-import { Bullet16 } from '@toptal/picasso/Icon'
+import { Bullet16 } from '@toptal/picasso-icons'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 
 import { ListVariant } from '../List/List'

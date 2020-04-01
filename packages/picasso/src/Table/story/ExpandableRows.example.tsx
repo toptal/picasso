@@ -10,7 +10,7 @@ import {
   Label,
   Container
 } from '@toptal/picasso'
-import { Star16, ArrowDownMinor16, More16 } from '@toptal/picasso/Icon'
+import { Star16, ArrowDownMinor16, More16 } from '@toptal/picasso-icons'
 
 type StyledArrowDownMinor16Props = {
   expanded: boolean

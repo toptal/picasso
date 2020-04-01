@@ -4,3 +4,4 @@ import { Props } from './PageHeader'
 
 export { default } from './PageHeader'
 export type PageHeaderProps = OmitInternalProps<Props>
+export { headerHeight } from './styles'

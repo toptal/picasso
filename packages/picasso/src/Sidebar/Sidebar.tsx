@@ -12,9 +12,9 @@ import {
   CompoundedComponentWithRef
 } from '@toptal/picasso-shared'
 import { Overview16, Close16 } from '@toptal/picasso-icons'
+import { useBreakpoint } from '@toptal/picasso-utils'
 
 import { Button, Container, Dropdown } from '../'
-import { useBreakpoint } from '../utils'
 import SidebarMenu from '../SidebarMenu'
 import SidebarItem from '../SidebarItem'
 import SidebarLogo from '../SidebarLogo'

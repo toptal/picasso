@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Page, Container, Menu, Typography } from '@toptal/picasso'
-import { Time16 } from '@toptal/picasso/Icon'
+import { Time16 } from '@toptal/picasso-icons'
 
 const StyledMainContentContainer = styled(Container)`
   flex: 1;

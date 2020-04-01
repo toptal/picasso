@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Container, Typography } from '@toptal/picasso'
-import { palette } from '@toptal/picasso/utils'
-import { Copy24, Twitter24, Linkedin24 } from '@toptal/picasso/Icon'
+import { palette } from '@toptal/picasso-utils'
+import { Copy24, Twitter24, Linkedin24 } from '@toptal/picasso-icons'
 
 const Example = () => (
   <div>

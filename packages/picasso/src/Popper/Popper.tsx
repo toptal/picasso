@@ -4,8 +4,8 @@ import MUIPopper from '@material-ui/core/Popper'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import PopperJs, { ReferenceObject, PopperOptions } from 'popper.js'
 import { BaseProps, usePicassoRoot } from '@toptal/picasso-shared'
+import { useBreakpoint, useWidthOf } from '@toptal/picasso-utils'
 
-import { useBreakpoint, useWidthOf } from '../utils'
 import styles from './styles'
 
 export type PopperPlacementType =

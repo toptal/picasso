@@ -5,7 +5,7 @@ import {
   ChartDataPoint,
   LineConfig
 } from '@toptal/picasso-charts'
-import { palette } from '@toptal/picasso/utils'
+import { palette } from '@toptal/picasso-utils'
 
 import { toHighlightFormat, toChartFormat } from '../utils'
 

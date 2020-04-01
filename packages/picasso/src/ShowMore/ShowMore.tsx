@@ -3,7 +3,7 @@ import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import Truncate from 'react-truncate'
 import { StandardProps } from '@toptal/picasso-shared'
-import { ChevronRightIcon16 } from '@toptal/picasso-icons'
+import { ChevronRight16 } from '@toptal/picasso-icons'
 
 import Typography from '../Typography'
 import Link from '../Link'
@@ -70,7 +70,7 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
             {shownMore ? lessText : moreText}
           </Typography>
           <div className={iconWrapper}>
-            <ChevronRightIcon16
+            <ChevronRight16
               className={cx(icon, {
                 [expandedIcon]: shownMore
               })}

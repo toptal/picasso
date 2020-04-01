@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Select, Container } from '@toptal/picasso'
-import { Settings16 } from '@toptal/picasso/Icon'
+import { Settings16 } from '@toptal/picasso-icons'
 
 const Example = () => {
   const [value, setValue] = useState()

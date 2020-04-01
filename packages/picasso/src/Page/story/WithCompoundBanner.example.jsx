@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Page, Container, Menu, Typography, Link } from '@toptal/picasso'
-import { ExclamationSolid16 } from '@toptal/picasso/Icon'
+import { ExclamationSolid16 } from '@toptal/picasso-icons'
 const { Banner } = Page
 
 const StyledMainContentContainer = styled(Container)`

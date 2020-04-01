@@ -1,6 +1,6 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const chapter = PicassoBook.connectToPage(
+export const chapter = PicassoBook.connectToPage(
   page =>
     page
       .createChapter(

@@ -2,11 +2,11 @@ import React, { forwardRef, useRef, RefObject } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps, OmitInternalProps } from '@toptal/picasso-shared'
 import ButtonBase from '@material-ui/core/ButtonBase'
+import { useCombinedRefs } from '@toptal/picasso-utils'
 
 import OutlinedInput, { Props as OutlinedInputProps } from '../OutlinedInput'
 import InputAdornment from '../InputAdornment'
 import Container from '../Container'
-import { useCombinedRefs } from '../utils'
 import ArrowUpIcon from './icons/ArrowUpIcon'
 import styles from './styles'
 

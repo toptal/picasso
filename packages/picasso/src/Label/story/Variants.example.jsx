@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Label, Settings16 } from '@toptal/picasso'
-import { palette } from '@toptal/picasso/utils'
+import { palette } from '@toptal/picasso-utils'
 
 const Example = () => (
   <Container flex>

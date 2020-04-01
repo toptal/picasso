@@ -8,7 +8,7 @@ import {
   Team16,
   Participants16,
   Billing16
-} from '@toptal/picasso/Icon'
+} from '@toptal/picasso-icons'
 
 const SidebarDefaultExample = () => (
   <BrowserRouter>

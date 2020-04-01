@@ -14,7 +14,7 @@ import { BaseProps } from '@toptal/picasso-shared'
 import { Container, Input, InputAdornment } from '@toptal/picasso'
 import Popper from '@toptal/picasso/Popper'
 import { Props as InputProps } from '@toptal/picasso/Input'
-import { Calendar16 } from '@toptal/picasso/Icon'
+import { Calendar16 } from '@toptal/picasso-icons'
 
 import Calendar, {
   DateOrDateRangeType,

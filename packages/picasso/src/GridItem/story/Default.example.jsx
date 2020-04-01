@@ -1,6 +1,6 @@
 import React from 'react'
 import { Grid, Container, Typography } from '@toptal/picasso'
-import { palette } from '@toptal/picasso/utils'
+import { palette } from '@toptal/picasso-utils'
 
 const ContentContainer = ({ children }) => (
   <Container padded='small' style={{ backgroundColor: palette.blue.lighter }}>

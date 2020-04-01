@@ -1,10 +1,10 @@
 import React from 'react'
 import { render, fireEvent, wait } from '@toptal/picasso/test-utils'
+import { useModals } from '@toptal/picasso-utils'
 
 import Button from '../Button'
 import Input from '../Input'
 import PromptModal from '../PromptModal'
-import { useModals } from '../utils'
 
 test('renders PromptModal', () => {
   const { baseElement } = render(

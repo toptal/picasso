@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Autocomplete } from '@toptal/picasso'
-import { isSubstring } from '@toptal/picasso/utils'
+import { isSubstring } from '@toptal/picasso-utils'
 
 const allOptions = [
   { text: 'Belarus' },

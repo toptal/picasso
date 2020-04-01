@@ -9,11 +9,11 @@ import React, {
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { StandardProps, usePageHeader } from '@toptal/picasso-shared'
+import { useBreakpoint } from '@toptal/picasso-utils'
 
 import { Logo, Container, Typography } from '../'
 import { PageContext } from '../Page'
 import { PageContextProps } from '../Page/types'
-import { useBreakpoint } from '../utils'
 import styles from './styles'
 
 type VariantType = 'dark' | 'light'

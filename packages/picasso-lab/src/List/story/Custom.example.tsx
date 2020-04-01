@@ -1,5 +1,5 @@
 import React from 'react'
-import { Referrals16 } from '@toptal/picasso/Icon'
+import { Referrals16 } from '@toptal/picasso-icons'
 import { List } from '@toptal/picasso-lab'
 import { Container } from '@toptal/picasso'
 

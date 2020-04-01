@@ -6,12 +6,12 @@ import {
   SizeType,
   OmitInternalProps
 } from '@toptal/picasso-shared'
+import { getNameInitials } from '@toptal/picasso-utils'
 
 import Image from '../Image'
 import { Props as ImageProps } from '../Image/Image'
 import Logo from '../Logo'
 import Typography from '../Typography'
-import getNameInitials from '../utils/get-name-initials'
 import styles from './styles'
 
 type VariantType = 'square' | 'portrait' | 'landscape'

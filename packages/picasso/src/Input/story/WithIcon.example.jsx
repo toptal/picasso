@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Input, Container } from '@toptal/picasso'
-import { Search16 } from '@toptal/picasso/Icon'
+import { Search16 } from '@toptal/picasso-icons'
 
 const Example = () => {
   const [value, setValue] = useState('Text')

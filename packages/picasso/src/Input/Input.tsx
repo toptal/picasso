@@ -9,11 +9,10 @@ import cx from 'classnames'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import { InputBaseComponentProps } from '@material-ui/core/InputBase'
 import { BaseProps, SizeType } from '@toptal/picasso-shared'
+import { disableUnsupportedProps, FeatureOptions } from '@toptal/picasso-utils'
 
 import InputAdornment from '../InputAdornment'
 import OutlinedInput from '../OutlinedInput'
-import { disableUnsupportedProps } from '../utils'
-import { FeatureOptions } from '../utils/disable-unsupported-props'
 import styles from './styles'
 
 type IconPosition = 'start' | 'end'

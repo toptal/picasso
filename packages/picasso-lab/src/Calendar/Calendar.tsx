@@ -7,7 +7,7 @@ import format from 'date-fns/format'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
 import { Button, Typography } from '@toptal/picasso'
-import { ChevronMinor16, BackMinor16 } from '@toptal/picasso/Icon'
+import { ChevronMinor16, BackMinor16 } from '@toptal/picasso-icons'
 
 import {
   CalendarProps,

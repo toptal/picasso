@@ -6,7 +6,7 @@ import {
 // @ts-ignore
 import createDecorator from 'final-form-focus'
 import { Form as PicassoForm } from '@toptal/picasso'
-import { useNotifications } from '@toptal/picasso/utils'
+import { useNotifications } from '@toptal/picasso-utils'
 
 import Input from '../Input'
 import Select from '../Select'

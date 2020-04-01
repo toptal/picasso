@@ -1,6 +1,6 @@
 import React from 'react'
 import { Grid, Container, Typography } from '@toptal/picasso'
-import { palette, useBreakpoint } from '@toptal/picasso/utils'
+import { palette, useBreakpoint } from '@toptal/picasso-utils'
 
 const ScreenSize = () => {
   const isExtraLarge = useBreakpoint('extra-large')

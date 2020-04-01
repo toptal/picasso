@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Container } from '@toptal/picasso'
-import { Pencil16 } from '@toptal/picasso/Icon'
+import { Pencil16 } from '@toptal/picasso-icons'
 import { useNotifications } from '@toptal/picasso/utils'
 
 const Example = () => {

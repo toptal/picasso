@@ -1,6 +1,6 @@
 import React from 'react'
 import { Modal, Button } from '@toptal/picasso'
-import { useModals } from '@toptal/picasso/utils'
+import { useModals } from '@toptal/picasso-utils'
 
 const ModalDialog = ({ modalId, hideModal }) => {
   const container = document.getElementById('modal-container')

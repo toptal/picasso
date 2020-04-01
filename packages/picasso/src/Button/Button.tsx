@@ -15,11 +15,11 @@ import {
   CompoundedComponentWithRef,
   OverridableComponent
 } from '@toptal/picasso-shared'
+import { kebabToCamelCase } from '@toptal/picasso-utils'
 
 import Loader from '../Loader'
 import Container from '../Container'
 import Group from '../ButtonGroup'
-import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import styles from './styles'
 
 export type VariantType =

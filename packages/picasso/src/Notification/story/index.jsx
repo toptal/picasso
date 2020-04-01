@@ -1,5 +1,5 @@
-import notificationsStreamStory from '../../utils/Notifications/story'
-import notificationActionStory from '../../NotificationActions/story'
+// import {notificationsStreamStory} from '@toptal/picasso-utils'
+// import notificationActionStory from '../../NotificationActions/story'
 import { Notification } from '../Notification'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
@@ -12,7 +12,7 @@ const page = PicassoBook.section('Components').createPage(
 page
   .createTabChapter('Props')
   .addComponentDocs({ component: Notification, name: 'Notification' })
-  .addComponentDocs(notificationActionStory.componentDocs)
+// .addComponentDocs(notificationActionStory.componentDocs)
 
 page
   .createChapter()
@@ -24,4 +24,4 @@ page
   .addExample('Notification/story/Icon.example.jsx', 'Custom Icon')
   .addExample('Notification/story/Actions.example.jsx', 'With Action')
 
-page.connect(notificationsStreamStory.chapter)
+// page.connect(notificationsStreamStory)

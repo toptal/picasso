@@ -8,9 +8,9 @@ import {
   SpacingType,
   spacingToRem
 } from '@toptal/picasso-shared'
+import { kebabToCamelCase } from '@toptal/picasso-utils'
 
 import styles, { AlignItemsType, JustifyContentType } from './styles'
-import kebabToCamelCase from '../utils/kebab-to-camel-case'
 
 type ContainerType = 'div' | 'span'
 

@@ -7,8 +7,7 @@ import {
   spacingToRem,
   createPropertiesStyles
 } from '@toptal/picasso-shared'
-
-import kebabToCamelCase from '../utils/kebab-to-camel-case'
+import { kebabToCamelCase } from '@toptal/picasso-utils'
 
 const alignItemsVariants = [
   'flex-start',

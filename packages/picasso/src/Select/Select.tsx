@@ -17,6 +17,11 @@ import { withStyles } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
 import { StandardProps, SizeType } from '@toptal/picasso-shared'
 import { DropdownArrows16 } from '@toptal/picasso-icons'
+import {
+  FeatureOptions,
+  isSubstring,
+  disableUnsupportedProps
+} from '@toptal/picasso-utils'
 
 import OutlinedInput from '../OutlinedInput'
 import Popper from '../Popper'
@@ -24,8 +29,6 @@ import ScrollMenu from '../ScrollMenu'
 import InputAdornment from '../InputAdornment'
 import MenuItem from '../MenuItem'
 import Loader from '../Loader'
-import { isSubstring, disableUnsupportedProps } from '../utils'
-import { FeatureOptions } from '../utils/disable-unsupported-props'
 import { Option } from './types'
 import useSelect, { EMPTY_INPUT_VALUE, ItemProps } from './useSelect'
 import styles from './styles'

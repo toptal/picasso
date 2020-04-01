@@ -1,6 +1,6 @@
 import React from 'react'
 import { Sidebar, Grid, Typography } from '@toptal/picasso'
-import { Referrals16 } from '@toptal/picasso/Icon'
+import { Referrals16 } from '@toptal/picasso-icons'
 
 const Example = () => (
   <Grid spacing={32}>
