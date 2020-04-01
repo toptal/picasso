@@ -5,10 +5,10 @@
     'meta[name="viewport"]:not([data-picasso="true"])'
   )
 
-  nonPicassoMetaTags.forEach(metaTag => {
+  nonPicassoMetaTags.forEach(function (metaTag) {
     const content = metaTag.getAttribute('content') || ''
 
-    if (content.includes('user-scalable=no')) return
+    if (content.indexOf('user-scalable=no') >= 0) return
 
     metaTag.setAttribute('content', [content, 'user-scalable=no'].join(', '))
   })
