@@ -30,13 +30,16 @@ export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
       const sidebarItem = child as ReactElement
 
       if (!sidebarItem.props.collapsible) {
-        return child
+        return React.cloneElement(sidebarItem, { variant })
       }
+
+      const isExpanded = expandedItemKey === index
+      const isNothingExpandedOnSidebar = expandedItemKey === null
 
       return React.cloneElement(sidebarItem, {
         variant,
-        isExpanded: expandedItemKey === index,
-        isNothingExpandedOnSidebar: expandedItemKey === null,
+        isExpanded,
+        isNothingExpandedOnSidebar,
         expand: expandSidebarItem,
         index
       })

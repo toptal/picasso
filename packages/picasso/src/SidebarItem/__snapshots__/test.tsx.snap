@@ -11,98 +11,104 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
       <div
         class="Sidebar-spacer"
       />
-      <div
-        class="MuiPaper-root MuiExpansionPanel-root makeStyles-root Mui-expanded MuiExpansionPanel-rounded MuiPaper-elevation0 MuiPaper-rounded"
+      <ul
+        class="MuiList-root SidebarMenu-root"
+        role="menu"
+        tabindex="-1"
       >
         <div
-          aria-disabled="false"
-          aria-expanded="true"
-          class="MuiButtonBase-root MuiExpansionPanelSummary-root WithStyles(ForwardRef(ExpansionPanelSummary))-root makeStyles-summary PicassoSidebarItem-summary Mui-expanded"
-          role="button"
-          tabindex="0"
+          class="MuiPaper-root MuiExpansionPanel-root makeStyles-root Mui-expanded MuiExpansionPanel-rounded MuiPaper-elevation0 MuiPaper-rounded"
         >
           <div
-            class="MuiExpansionPanelSummary-content WithStyles(ForwardRef(ExpansionPanelSummary))-content makeStyles-content PicassoSidebarItem-content Mui-expanded"
-          >
-            <li
-              aria-disabled="false"
-              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-              role="menuitem"
-              tabindex="-1"
-            >
-              <div
-                class="Container-centerAlignItems Container-flex Container-inline PicassoSidebarItem-noWrap"
-              >
-                <div
-                  class="Container-centerAlignItems Container-flex PicassoSidebarItem-label PicassoSidebarItem-noWrap"
-                >
-                  <p
-                    class="MuiTypography-root Typography-bodyMedium Typography-inherit MuiTypography-body1 MuiTypography-noWrap"
-                  >
-                    Test item
-                  </p>
-                </div>
-              </div>
-            </li>
-            <svg
-              class="SvgArrowDropDown16-root PicassoSidebarItem-expandIcon PicassoSidebarItem-lightExpandIcon makeStyles-expandIcon makeStyles-expandIconExpanded"
-              style="min-width: 16px; min-height: 16px;"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M7.357 10.228L3.643 5.772C3.283 5.34 3.446 5 3.995 5h8.01c.54 0 .707.346.352.772l-3.714 4.456c-.36.432-.931.426-1.286 0z"
-              />
-            </svg>
-          </div>
-        </div>
-        <div
-          class="MuiCollapse-container"
-          style="min-height: 0px; height: 0px; transition-duration: 0ms;"
-        >
-          <div
-            class="MuiCollapse-wrapper"
+            aria-disabled="false"
+            aria-expanded="true"
+            class="MuiButtonBase-root MuiExpansionPanelSummary-root WithStyles(ForwardRef(ExpansionPanelSummary))-root makeStyles-summary PicassoSidebarItem-summary Mui-expanded"
+            role="button"
+            tabindex="0"
           >
             <div
-              class="MuiCollapse-wrapperInner"
+              class="MuiExpansionPanelSummary-content WithStyles(ForwardRef(ExpansionPanelSummary))-content makeStyles-content PicassoSidebarItem-content Mui-expanded"
             >
-              <div
-                role="region"
+              <li
+                aria-disabled="false"
+                class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+                role="menuitem"
+                tabindex="0"
               >
                 <div
-                  class="MuiExpansionPanelDetails-root ExpansionPanelDetails-root makeStyles-details PicassoSidebarItem-details"
+                  class="Container-centerAlignItems Container-flex Container-inline PicassoSidebarItem-noWrap"
                 >
-                  <ul
-                    class="MuiList-root SidebarMenu-root"
-                    role="menu"
-                    tabindex="-1"
+                  <div
+                    class="Container-centerAlignItems Container-flex PicassoSidebarItem-label PicassoSidebarItem-noWrap"
                   >
-                    <li
-                      aria-disabled="false"
-                      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-light PicassoSidebarItem-selected Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
-                      role="menuitem"
-                      tabindex="0"
+                    <p
+                      class="MuiTypography-root Typography-bodyMedium Typography-inherit MuiTypography-body1 MuiTypography-noWrap"
                     >
-                      <div
-                        class="Container-centerAlignItems Container-flex Container-inline PicassoSidebarItem-noWrap"
+                      Test item
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <svg
+                class="SvgArrowDropDown16-root PicassoSidebarItem-expandIcon PicassoSidebarItem-lightExpandIcon makeStyles-expandIcon makeStyles-expandIconExpanded"
+                style="min-width: 16px; min-height: 16px;"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M7.357 10.228L3.643 5.772C3.283 5.34 3.446 5 3.995 5h8.01c.54 0 .707.346.352.772l-3.714 4.456c-.36.432-.931.426-1.286 0z"
+                />
+              </svg>
+            </div>
+          </div>
+          <div
+            class="MuiCollapse-container"
+            style="min-height: 0px; height: 0px; transition-duration: 0ms;"
+          >
+            <div
+              class="MuiCollapse-wrapper"
+            >
+              <div
+                class="MuiCollapse-wrapperInner"
+              >
+                <div
+                  role="region"
+                >
+                  <div
+                    class="MuiExpansionPanelDetails-root ExpansionPanelDetails-root makeStyles-details PicassoSidebarItem-details"
+                  >
+                    <ul
+                      class="MuiList-root SidebarMenu-root"
+                      role="menu"
+                      tabindex="-1"
+                    >
+                      <li
+                        aria-disabled="false"
+                        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-light PicassoSidebarItem-selected Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+                        role="menuitem"
+                        tabindex="0"
                       >
                         <div
-                          class="Container-centerAlignItems Container-flex PicassoSidebarItem-label PicassoSidebarItem-noWrap"
+                          class="Container-centerAlignItems Container-flex Container-inline PicassoSidebarItem-noWrap"
                         >
-                          <p
-                            class="MuiTypography-root Typography-bodyMedium Typography-inherit MuiTypography-body1 MuiTypography-noWrap"
+                          <div
+                            class="Container-centerAlignItems Container-flex PicassoSidebarItem-label PicassoSidebarItem-noWrap"
                           >
-                            Menu item
-                          </p>
+                            <p
+                              class="MuiTypography-root Typography-bodyMedium Typography-inherit MuiTypography-body1 MuiTypography-noWrap"
+                            >
+                              Menu item
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                    </li>
-                  </ul>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </ul>
     </div>
   </div>
 </div>
