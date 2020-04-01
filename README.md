@@ -125,7 +125,7 @@ After Picasso will be released with your changes you can start using your Icon a
    }
    ```
 
-   - `CHANGELOG.md` using this template
+   - `CHANGELOG.md` using this template (All notable changes to the package will be documented in this file automatically)
 
    ```
    # Change Log
@@ -141,13 +141,6 @@ After Picasso will be released with your changes you can start using your Icon a
    - the `paths` key in `/tsconfig.json`
    - the `alias` key in `/.storybook/webpack.config.js`
    - the `imports` variable in `/.storybook/components/CodeExample/CodeExample.tsx`
-
-# Change Log
-
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
-```
 
 ## Linking with other projects
 
@@ -195,6 +188,8 @@ In other cases when you use custom webpack build configuration you should check 
 3. You have `sideEffects` prop in your `package.json` set to `false` value or don't have it at all
 
 Have a happy tree shaking! :)
+
+```
 
 ```
 
