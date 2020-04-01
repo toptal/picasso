@@ -14,6 +14,19 @@ export interface Props extends StandardProps, ListNativeProps {
   bottom?: boolean
 }
 
+const getSelectedChild = (sidebarItem: ReactElement) => {
+  const menu = sidebarItem.props.menu
+
+  if (!menu) {
+    return null
+  }
+
+  const subMenuItems = React.Children.toArray(menu.props.children)
+  return subMenuItems.find(
+    (menuChild: ReactElement) => menuChild.props.selected
+  )
+}
+
 export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
   function SidebarMenu(
     { bottom, classes, style, className, children, ...rest },
@@ -33,13 +46,17 @@ export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
         return React.cloneElement(sidebarItem, { variant })
       }
 
-      const isExpanded = expandedItemKey === index
+      const selectedChild = getSelectedChild(sidebarItem)
+      const hasSelectedChild = Boolean(selectedChild)
+
       const isNothingExpandedOnSidebar = expandedItemKey === null
+      const isExpanded =
+        (isNothingExpandedOnSidebar && hasSelectedChild) ||
+        expandedItemKey === index
 
       return React.cloneElement(sidebarItem, {
         variant,
         isExpanded,
-        isNothingExpandedOnSidebar,
         expand: expandSidebarItem,
         index
       })
