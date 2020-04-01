@@ -117,7 +117,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       onOtherOptionSelect!(value)
     }
 
-    const getKey = (item: Item) => {
+    const getKey = (item: Item): string => {
       if (customGetKey) {
         return customGetKey(item)
       }
@@ -129,6 +129,8 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       console.error(
         'TagSelector expects you to provide key prop value with getKey or Item.value!'
       )
+
+      return ''
     }
 
     const autocompleteOptions: AutocompleteItem[] | null =
@@ -170,6 +172,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         getDisplayValue={getDisplayValue}
         renderOption={renderOption}
         enableReset={false}
+        getKey={getKey}
       />
     )
   }
