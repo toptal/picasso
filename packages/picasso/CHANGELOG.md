@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.47.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.47.1...@toptal/picasso@4.47.2) (2020-04-01)
+
+
+### Bug Fixes
+
+* **tagselector:** pass `getKey` function to Autocomplete ([#1201](https://github.com/toptal/picasso/issues/1201)) ([be706ff](https://github.com/toptal/picasso/commit/be706ffae1e0812dca7aa92be95ed66fde051bfb))
+
+
+
+
+
 ## [4.47.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.47.0...@toptal/picasso@4.47.1) (2020-03-30)
 
 
