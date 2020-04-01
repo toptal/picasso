@@ -26,6 +26,8 @@
       "@toptal/picasso-forms": ["packages/picasso-forms/src/index"],
       "@toptal/picasso-icons/*": ["packages/picasso-icons/src/*"],
       "@toptal/picasso-icons": ["packages/picasso-icons/src/index"],
+      "@toptal/picasso-shared/*": ["packages/picasso-shared/src/*"],
+      "@toptal/picasso-shared": ["packages/picasso-shared/src/index"],
       "@toptal/picasso-utils/*": ["packages/picasso-utils/src/*"],
       "@toptal/picasso-utils": ["packages/picasso-utils/src/index"],
       "@toptal/picasso-charts/*": ["packages/picasso-charts/src/*"],
