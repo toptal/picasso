@@ -33,10 +33,7 @@
     }
   },
   "include": [
-    "packages/picasso/src/**/*",
-    // FIXME: this is temporary solution until
-    // https://github.com/testing-library/jest-dom/issues/123 is fixed
-    "./node_modules/@testing-library/jest-dom/extend-expect.d.ts"
+    "packages/picasso/src/**/*"
   ],
   "exclude": ["**/test.jsx", "**/test.tsx", "**/story/index.jsx"]
 }
