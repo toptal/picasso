@@ -1,6 +1,5 @@
 import React from 'react'
-import { Select as PicassoSelect } from '@toptal/picasso'
-import { Props as SelectProps } from '@toptal/picasso/Select'
+import { Select as PicassoSelect, SelectProps } from '@toptal/picasso'
 
 import FieldWrapper, { FieldProps } from '../FieldWrapper'
 

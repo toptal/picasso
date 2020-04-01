@@ -17,12 +17,12 @@ const compile = function(tsConfig, packageJson, packageRootDir) {
     const options = [
       {
         target: 'es5',
-        module: 'commonjs',
+        module: 'Commonjs',
         outDir: path.resolve(packageRootDir, 'build')
       },
       {
         target: 'es2015',
-        module: 'esnext',
+        module: 'Esnext',
         outDir: path.resolve(packageRootDir, 'build', 'esm')
       }
     ]
@@ -31,7 +31,7 @@ const compile = function(tsConfig, packageJson, packageRootDir) {
       const cmd = `${tscPath} -p tsconfig.json ${args.join(' ')} --target ${target} --module ${module} --outDir ${outDir}`
 
       safeExec(cmd)
-      log(`Build ready in: ${tsConfig.compilerOptions.outDir}`, 'green')
+      log(`${module} build ready in: ${tsConfig.compilerOptions.outDir}`, 'green')
     })
   }
 

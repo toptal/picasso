@@ -1,8 +1,7 @@
 import React, { Fragment } from 'react'
 import { render, fireEvent } from '@toptal/picasso/test-utils'
+import { Modal, Button } from '@toptal/picasso'
 
-import Button from '../../Button'
-import Modal from '../../Modal'
 import { useModals } from './use-modals'
 
 let modalRoot: HTMLElement

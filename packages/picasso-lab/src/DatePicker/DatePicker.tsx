@@ -11,9 +11,13 @@ import formatDate from 'date-fns/format'
 import isValid from 'date-fns/isValid'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
-import { Container, Input, InputAdornment } from '@toptal/picasso'
-import Popper from '@toptal/picasso/Popper'
-import { Props as InputProps } from '@toptal/picasso/Input'
+import {
+  Container,
+  Input,
+  InputAdornment,
+  InputProps,
+  Popper
+} from '@toptal/picasso'
 import { Calendar16 } from '@toptal/picasso-icons'
 
 import Calendar, {

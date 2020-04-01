@@ -1,5 +1,6 @@
 import React from 'react'
-import { Page, Container, Time16 } from '@toptal/picasso'
+import { Page, Container } from '@toptal/picasso'
+import { Time16 } from '@toptal/picasso-icons'
 
 const Example = () => (
   <Container bottom='small'>
