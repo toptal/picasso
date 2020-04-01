@@ -5,7 +5,7 @@ import { StandardProps } from '@toptal/picasso-shared'
 
 import { Menu } from '../'
 import { ListNativeProps } from '../Menu'
-import { SidebarContext, DEFAULT_EXPANDED_ITEM_KEY } from '../Sidebar'
+import { SidebarContext } from '../Sidebar'
 import { SidebarContextProps } from '../Sidebar/types'
 import styles from './styles'
 
@@ -27,11 +27,16 @@ export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
       setExpandedItemKey
     ])
     const items = React.Children.map(children, (child, index) => {
-      return React.cloneElement(child as ReactElement, {
+      const sidebarItem = child as ReactElement
+
+      if (!sidebarItem.props.collapsible) {
+        return child
+      }
+
+      return React.cloneElement(sidebarItem, {
         variant,
         isExpanded: expandedItemKey === index,
-        isNothingExpandedOnSidebar:
-          expandedItemKey === DEFAULT_EXPANDED_ITEM_KEY,
+        isNothingExpandedOnSidebar: expandedItemKey === null,
         expand: expandSidebarItem,
         index
       })
