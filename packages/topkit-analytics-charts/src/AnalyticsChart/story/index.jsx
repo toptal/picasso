@@ -16,8 +16,8 @@ page.createTabChapter('Props').addComponentDocs({
     data: {
       name: 'data',
       type: {
-        name: '{}',
-        description: '{ [key: string]: number }'
+        name: '[]',
+        description: '{ id: string, values: [key: string]: number }'
       },
       description: 'A record of data points to be rendered as a line chart',
       required: true
@@ -31,7 +31,7 @@ page.createTabChapter('Props').addComponentDocs({
     highlights: {
       name: 'highlights',
       type: {
-        name: '{}',
+        name: '[]',
         description: '{ data: string[], color: string }'
       },
       description: 'A list of dates and to be highlighted'
@@ -39,7 +39,7 @@ page.createTabChapter('Props').addComponentDocs({
     referenceLine: {
       name: 'referenceLine',
       type: {
-        name: '{}',
+        name: '[]',
         description: `{ data: { [key: string]: number }, color: string }`
       },
       description:
@@ -50,12 +50,6 @@ page.createTabChapter('Props').addComponentDocs({
       type: 'string',
       description: 'X axis key name to be used in the data array',
       defaultValue: 'x'
-    },
-    yAxisKey: {
-      name: 'yAxisKey',
-      type: 'string',
-      description: 'Y axis key name to be used in the data array',
-      defaultValue: 'y'
     }
   }
 })

@@ -7,7 +7,7 @@ export default {
   TOP_DOMAIN_OFFSET: 1,
   TICK_MARGIN: 16,
   MIN_TICK_GAP: -10,
-  DEFAULT_MARGIN: 20,
+  DEFAULT_MARGIN: 16,
   TICK_LINE: false,
   AXIS_LINE: false,
   IS_ANIMATION_ACTIVE: false
