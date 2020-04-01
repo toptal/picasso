@@ -1,4 +1,4 @@
-import React, { forwardRef, useContext, ReactElement } from 'react'
+import React, { forwardRef, useContext, ReactElement, useCallback } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { StandardProps } from '@toptal/picasso-shared'
@@ -23,13 +23,17 @@ export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
       SidebarContextProps
     >(SidebarContext)
 
+    const expandSidebarItem = useCallback(index => setExpandedItemKey(index), [
+      setExpandedItemKey
+    ])
     const items = React.Children.map(children, (child, index) => {
       return React.cloneElement(child as ReactElement, {
         variant,
         isExpanded: expandedItemKey === index,
         isNothingExpandedOnSidebar:
           expandedItemKey === DEFAULT_EXPANDED_ITEM_KEY,
-        expand: () => setExpandedItemKey(index)
+        expand: expandSidebarItem,
+        index
       })
     })
 

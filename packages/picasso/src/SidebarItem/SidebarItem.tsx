@@ -3,7 +3,8 @@ import React, {
   ReactElement,
   Fragment,
   ElementType,
-  ChangeEvent
+  ChangeEvent,
+  memo
 } from 'react'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
@@ -34,7 +35,8 @@ export interface Props extends BaseProps, MenuItemAttributes {
   variant?: VariantType
   isExpanded?: boolean
   isNothingExpandedOnSidebar?: boolean
-  expand?: () => void
+  expand?: (index: number | null) => void
+  index?: number | null
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
@@ -61,6 +63,7 @@ export const SidebarItem: OverridableComponent<Props> = forwardRef<
     isExpanded,
     isNothingExpandedOnSidebar,
     expand,
+    index,
     ...rest
   } = props
 
@@ -81,7 +84,7 @@ export const SidebarItem: OverridableComponent<Props> = forwardRef<
   ) => {
     event.stopPropagation()
     if (expansion) {
-      expand!()
+      expand!(index!)
     }
   }
 
@@ -142,7 +145,7 @@ export const SidebarItem: OverridableComponent<Props> = forwardRef<
       ) !== undefined
 
     if (isNothingExpandedOnSidebar && isExpandedableByDefault) {
-      expand!()
+      expand!(index!)
     }
 
     return (
@@ -187,4 +190,4 @@ SidebarItem.defaultProps = {
 
 SidebarItem.displayName = 'SidebarItem'
 
-export default SidebarItem
+export default memo(SidebarItem)
