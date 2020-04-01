@@ -26,7 +26,6 @@
   "dependencies": {
     "@material-ui/core": "4.9.2",
     "@material-ui/icons": "4.9.1",
-    "@toptal/picasso-shared": "^1.10.7",
     "classnames": "^2.2.6",
     "notistack": "^0.9.7",
     "react-helmet": "^5.2.1",
@@ -50,5 +49,7 @@
   "sideEffects": [
     "**/styles.ts",
     "**/styles.js"
-  ]
+  ],
+  "main": "./src/index.ts",
+  "module": "./src/index.ts"
 }

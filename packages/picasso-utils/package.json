@@ -51,5 +51,7 @@
   "sideEffects": [
     "**/styles.ts",
     "**/styles.js"
-  ]
+  ],
+  "main": "./src/index.ts",
+  "module": "./src/index.ts"
 }

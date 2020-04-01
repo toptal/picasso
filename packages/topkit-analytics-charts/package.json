@@ -24,5 +24,7 @@
   },
   "devDependencies": {
     "cross-env": "^6.0.3"
-  }
+  },
+  "main": "./src/index.ts",
+  "module": "./src/index.ts"
 }
