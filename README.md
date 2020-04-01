@@ -35,7 +35,6 @@ render () {
 
 ℹ️ **_[`Picasso`](/?path=/story/components-folder--picasso) component rendered at root level is required for library theme configuration and theme to work properly._**
 
-
 ## Running storybook
 
 In order to run storybook you need to execute `yarn start` which will spin up storybook server on http://localhost:9001
@@ -60,23 +59,23 @@ In order to run `yarn` commands we need to mount current `components` directory 
 
 ## Project commands
 
-| Command                       | Description                                                               |
-| ----------------------------- | ------------------------------------------------------------------------- |
-| **yarn lint**                 | Lint all files                                                            |
-| **yarn test**                 | Run unit tests                                                            |
-| **yarn test -u**              | Update jest snapshots to current version                                  |
-| **yarn test:watch**           | Run unit tests in watch mode                                              |
-| **yarn test-ci**              | Run unit tests at ci                                              |
-| **yarn test:visual**          | Run visual regression tests in Docker                                     |
-| **yarn test:visual -u**       | Update visual regression snapshots in docker                              |
-| **yarn start**                | Start storybook instance and inspect components                           |
-| **yarn release:pre**          | Bump pre-release version in `package.json` and create new version git tag |
-| **yarn generate:component**   | Generate a new component template                                         |
-| **yarn generate:example**     | Generate a new component component code example                           |
-| **yarn build**                | Build the library                                                         |
-| **yarn build:storybook**      | Build Storybook as static website                                         |
-| **yarn symlink**              | Symlink current version of library for development                        |
-| **yarn symlink:off**          | Un-symlink current version of library for development                     |
+| Command                     | Description                                                               |
+| --------------------------- | ------------------------------------------------------------------------- |
+| **yarn lint**               | Lint all files                                                            |
+| **yarn test**               | Run unit tests                                                            |
+| **yarn test -u**            | Update jest snapshots to current version                                  |
+| **yarn test:watch**         | Run unit tests in watch mode                                              |
+| **yarn test-ci**            | Run unit tests at ci                                                      |
+| **yarn test:visual**        | Run visual regression tests in Docker                                     |
+| **yarn test:visual -u**     | Update visual regression snapshots in docker                              |
+| **yarn start**              | Start storybook instance and inspect components                           |
+| **yarn release:pre**        | Bump pre-release version in `package.json` and create new version git tag |
+| **yarn generate:component** | Generate a new component template                                         |
+| **yarn generate:example**   | Generate a new component component code example                           |
+| **yarn build**              | Build the library                                                         |
+| **yarn build:storybook**    | Build Storybook as static website                                         |
+| **yarn symlink**            | Symlink current version of library for development                        |
+| **yarn symlink:off**        | Un-symlink current version of library for development                     |
 
 ## Icons
 
@@ -103,6 +102,46 @@ To add a new Icon to Picasso library please follow these steps:
 
 After Picasso will be released with your changes you can start using your Icon as described in the [Icons section](https://picasso.toptal.net/?path=/story/components-folder--icon#icon).
 
+## Adding new packages
+
+1. Create a new folder under `/packages` and add to it:
+
+   - `package.json` by running `lerna add`. Specify `Toptal` as the author and `src/index.ts` in the `main` key
+   - `tsconfig.json` using this template
+
+   ```
+   {
+     "extends": "../../tsconfig.json",
+     "compilerOptions": {
+       "outDir": "./build"
+     },
+     "include": ["./src/**/*"],
+     "exclude": [
+       "**/*.example.jsx",
+       "**/*.example.tsx",
+       "**/test.jsx",
+       "**/test.tsx"
+     ]
+   }
+   ```
+
+   - `CHANGELOG.md` using this template (All notable changes to the package will be documented in this file automatically)
+
+   ```
+   # Change Log
+   All notable changes to this project will be documented in this file.
+   See [Conventional Commits](https://conventionalcommits.org)   for commit guidelines.
+
+   ```
+
+2. Add the new folder and `CHANGELOG.md` to `/Dockerfile` to the list of directories that use `RUN chmod a+rw`
+
+3. Add the new package to:
+
+   - the `paths` key in `/tsconfig.json`
+   - the `alias` key in `/.storybook/webpack.config.js`
+   - the `imports` variable in `/.storybook/components/CodeExample/CodeExample.tsx`
+
 ## Linking with other projects
 
 In order to develop or debug Picasso in parallel with your project without the need to publish new Picasso versions, you need to link Picasso to your project. And once finished unlink it.
@@ -116,7 +155,7 @@ In Picasso project directory:
 
 1. Checkout Picasso project from [Github](https://github.com/toptal/picasso)
 2. Install Picasso dependencies with `yarn install`
-3. Build Picasso inside Picasso package folder (`./packages/picasso/`) with `yarn build` or `yarn build:watch` if you want to trigger build on file change
+3. Build Picasso inside Picasso package folder (`./packages/picasso/`) with `yarn build:dist`
 4. Create a link with running in the root path `yarn symlink` (creates all links to Picasso packages and React link)
 
 In your project directory:
@@ -149,3 +188,11 @@ In other cases when you use custom webpack build configuration you should check 
 3. You have `sideEffects` prop in your `package.json` set to `false` value or don't have it at all
 
 Have a happy tree shaking! :)
+
+```
+
+```
+
+```
+
+```
