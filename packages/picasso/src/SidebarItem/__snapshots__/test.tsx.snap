@@ -61,8 +61,8 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
             </div>
           </div>
           <div
-            class="MuiCollapse-container"
-            style="min-height: 0px; height: 0px; transition-duration: 0ms;"
+            class="MuiCollapse-container MuiCollapse-entered"
+            style="min-height: 0px;"
           >
             <div
               class="MuiCollapse-wrapper"
