@@ -93,12 +93,17 @@ exports[`Autocomplete static behavior default render 1`] = `
       <div
         class="Container-flex"
       >
+        <input
+          name="nodejs"
+          type="hidden"
+          value=""
+        />
         <div
           class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root PicassoInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
         >
           <input
             aria-autocomplete="list"
-            autocomplete="none"
+            autocomplete="off"
             class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
             placeholder="Start typing here..."
             type="text"

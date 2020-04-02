@@ -143,8 +143,6 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
     } = useAutocomplete({
       value,
       options,
-      enableAutofill,
-      autoComplete,
       getDisplayValue: getDisplayValue!,
       onSelect,
       onOtherOptionSelect,
@@ -216,6 +214,9 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
         aria-haspopup='listbox'
       >
         <Container flex ref={inputWrapperRef}>
+          {!enableAutofill && name && (
+            <input type='hidden' value={value} name={name} />
+          )}
           <InputComponent
             /* eslint-disable-next-line react/jsx-props-no-spreading */
             {...rest}
@@ -229,6 +230,8 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
             placeholder={placeholder}
             endAdornment={loading ? loadingComponent : endAdornment}
             width={width}
+            name={enableAutofill ? name : undefined}
+            autoComplete={enableAutofill ? autoComplete : autoComplete || 'off'}
           />
         </Container>
         <div role='listbox'>
