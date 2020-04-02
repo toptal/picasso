@@ -85,3 +85,4 @@ number of options greater than specified in \`searchThreshold\` prop.
       'Demonstrate auto focus capability by switching visibility of Select'
   }) // picasso-skip-visuals
   .addExample('Select/story/ResetButton.example.jsx', 'With reset button') // picasso-skip-visuals
+  .addExample('Select/story/Autofill.example.tsx', 'Disabling autofilling') // picasso-skip-visuals

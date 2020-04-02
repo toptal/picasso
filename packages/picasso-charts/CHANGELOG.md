@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@0.3.0...@toptal/picasso-charts@0.3.1) (2020-04-02)
+
+
+### Bug Fixes
+
+* tsconfig ([#1207](https://github.com/toptal/picasso/issues/1207)) ([cf79fde](https://github.com/toptal/picasso/commit/cf79fde32e4c1f1379b96f4ef51ef2b205af86f8))
+
+
+
+
+
 # [0.3.0](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@0.2.0...@toptal/picasso-charts@0.3.0) (2020-04-01)
 
 

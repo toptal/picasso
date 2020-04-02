@@ -14,11 +14,14 @@ const renderSelect = (props: OmitInternalProps<Props>) => {
     multiple = false,
     onChange = () => {},
     renderOption,
-    getDisplayValue
+    getDisplayValue,
+    ...rest
   } = props
 
   return render(
     <Select
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
       options={options}
       renderOption={renderOption}
       getDisplayValue={getDisplayValue}
@@ -158,6 +161,37 @@ test('should render options customly', async () => {
   const menu = getByRole('menu')
 
   expect(menu).toMatchSnapshot()
+})
+
+test('should keep value in the hidden input when autofill is not enabled explicitly', () => {
+  const placeholder = 'Choose an option...'
+
+  const { getByPlaceholderText } = renderSelect({
+    options: OPTIONS,
+    placeholder,
+    name: 'country'
+  })
+
+  const input = getByPlaceholderText(placeholder)
+
+  expect(input).not.toHaveAttribute('name')
+  expect(input).toHaveAttribute('autocomplete', 'off')
+})
+
+test('should allow browser autofilling by input name', () => {
+  const placeholder = 'Choose an option...'
+
+  const { getByPlaceholderText } = renderSelect({
+    options: OPTIONS,
+    placeholder,
+    name: 'country',
+    enableAutofill: true
+  })
+
+  const input = getByPlaceholderText(placeholder)
+
+  expect(input).toHaveAttribute('name', 'country')
+  expect(input).not.toHaveAttribute('autocomplete')
 })
 
 test('should render selected option customly', async () => {
