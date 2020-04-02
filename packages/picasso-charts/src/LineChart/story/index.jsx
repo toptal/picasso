@@ -49,10 +49,11 @@ export const sharedChartDocs = {
     description: 'Requires `tooltip` to be `true`'
   }
 }
+
 page.createTabChapter('Props').addComponentDocs({
   component: LineChart,
   name: 'LineChart',
-  additionalDocs: {
+  additionalDocs: Object.assign(sharedChartDocs, {
     data: {
       name: 'data',
       type: {
@@ -78,9 +79,8 @@ page.createTabChapter('Props').addComponentDocs({
       },
       description:
         'Will display a full-width horizontal dashed line at the specified height in the specified color'
-    },
-    ...sharedChartDocs
-  }
+    }
+  })
 })
 
 page

@@ -11,7 +11,7 @@ const page = PicassoBook.section('Charts').createPage(
 page.createTabChapter('Props').addComponentDocs({
   component: AnalyticsChart,
   name: 'AnalyticsChart',
-  additionalDocs: {
+  additionalDocs: Object.assign(sharedChartDocs, {
     data: {
       name: 'data',
       type: {
@@ -37,9 +37,8 @@ page.createTabChapter('Props').addComponentDocs({
       },
       description:
         'A record of data points to be rendered as a dashed horizontal line'
-    },
-    ...sharedChartDocs
-  }
+    }
+  })
 })
 
 page
