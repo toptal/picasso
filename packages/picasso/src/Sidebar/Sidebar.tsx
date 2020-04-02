@@ -25,8 +25,6 @@ export interface SmallScreenSidebarWrapperProps extends StandardProps {
   children?: ReactNode
 }
 
-export const DEFAULT_EXPANDED_ITEM_KEY = ''
-
 const SmallScreenSidebarWrapper: FunctionComponent<SmallScreenSidebarWrapperProps> = ({
   classes,
   children
@@ -74,7 +72,7 @@ interface StaticProps {
 }
 
 export const SidebarContext = React.createContext<SidebarContextProps>({
-  expandedItemKey: DEFAULT_EXPANDED_ITEM_KEY,
+  expandedItemKey: null,
   setExpandedItemKey: () => {}
 })
 
@@ -84,9 +82,7 @@ export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
   ref
 ) {
   const isCompactLayout = useBreakpoint(['small', 'medium'])
-  const [expandedItemKey, setExpandedItemKey] = useState(
-    DEFAULT_EXPANDED_ITEM_KEY
-  )
+  const [expandedItemKey, setExpandedItemKey] = useState<number | null>(null)
 
   const sidebar = (
     <Container

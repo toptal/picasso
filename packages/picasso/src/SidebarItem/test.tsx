@@ -68,16 +68,18 @@ describe('SidebarItem', () => {
   test('collapsible menu is expanded when one of the children is selected', () => {
     const { container } = render(
       <Sidebar>
-        <SidebarItem
-          menu={
-            <SidebarMenu>
-              <SidebarItem selected>Menu item</SidebarItem>
-            </SidebarMenu>
-          }
-          collapsible
-        >
-          Test item
-        </SidebarItem>
+        <SidebarMenu>
+          <SidebarItem
+            menu={
+              <SidebarMenu>
+                <SidebarItem selected>Menu item</SidebarItem>
+              </SidebarMenu>
+            }
+            collapsible
+          >
+            Test item
+          </SidebarItem>
+        </SidebarMenu>
       </Sidebar>
     )
 
