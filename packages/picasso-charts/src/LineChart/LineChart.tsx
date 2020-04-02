@@ -1,5 +1,4 @@
 import React, { ReactElement, ReactNode } from 'react'
-import { BaseProps } from '@toptal/picasso-shared'
 import { palette } from '@toptal/picasso/utils'
 import {
   ComposedChart,
@@ -54,17 +53,21 @@ export type LineConfig = Record<
   { color: string; variant?: 'solid' | 'reference' }
 >
 
-export type Props = Omit<BaseProps, 'style'> & {
-  data: ChartDataPoint[]
-  highlights?: HighlightConfig[] | null
-  referenceLines?: ReferenceLineType[]
+export type BaseChartProps = {
   lineConfig: LineConfig
   unit?: string
   xAxisKey?: string
   height?: number
   tooltip?: boolean
   customTooltip?: ReactElement
+  className?: string
   children?: ReactNode
+}
+
+export type Props = BaseChartProps & {
+  data: ChartDataPoint[]
+  highlights?: HighlightConfig[] | null
+  referenceLines?: ReferenceLineType[]
 }
 
 const StyleOverrides = () => (

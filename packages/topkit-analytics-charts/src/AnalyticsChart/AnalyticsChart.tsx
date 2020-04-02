@@ -1,9 +1,9 @@
 import React from 'react'
 import {
   LineChart,
-  LineChartProps,
   ChartDataPoint,
-  LineConfig
+  LineConfig,
+  BaseChartProps
 } from '@toptal/picasso-charts'
 
 import { toHighlightFormat, toChartFormat } from '../utils'
@@ -24,10 +24,7 @@ export type ReferenceLine = {
   color: string
 }
 
-export type Props = Omit<
-  LineChartProps,
-  'data' | 'highlights' | 'referenceLines'
-> & {
+export type Props = BaseChartProps & {
   data: Point[]
   highlights?: Highlight[]
   referenceLines?: ReferenceLine[]
