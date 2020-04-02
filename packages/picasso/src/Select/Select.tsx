@@ -83,6 +83,8 @@ export interface Props
   popperContainer?: HTMLElement
   /** A threshold of the number of options, defines when to start showing search for Select */
   searchThreshold?: number
+  /** Specifies whether the autofill enabled or not, disabled by default */
+  enableAutofill?: boolean
 }
 
 type Selection = {
@@ -323,6 +325,8 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
     enableReset,
     popperContainer,
     searchThreshold,
+    enableAutofill,
+    autoComplete,
     ...rest
   } = purifyProps(props)
 
@@ -524,6 +528,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
   )
 
   const readOnlyInput = multiple || allOptions.length <= searchThreshold!
+
   const selectComponent = (
     <Fragment>
       <div
@@ -531,13 +536,15 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
         {...getRootProps()}
         className={classes.inputWrapper}
       >
+        {!enableAutofill && !native && name && (
+          <input type='hidden' value={inputValue} name={name} />
+        )}
         <OutlinedInput
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...rest}
           ref={ref}
           error={error}
           disabled={disabled}
-          name={name}
           id={id}
           startAdornment={startAdornment}
           endAdornment={endAdornment}
@@ -563,6 +570,8 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
           size={size}
           role='textbox'
           enableReset={enableReset ? select.isSelected() : false}
+          autoComplete={enableAutofill ? autoComplete : 'off'}
+          name={enableAutofill || native ? name : undefined}
         />
         {dropDownIcon}
       </div>
@@ -620,7 +629,8 @@ Select.defaultProps = {
   renderOption: (option: Option) => option.text,
   size: 'medium',
   width: 'full',
-  searchThreshold: 4
+  searchThreshold: 4,
+  enableAutofill: false
 }
 
 Select.displayName = 'Select'
