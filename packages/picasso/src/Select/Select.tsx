@@ -29,7 +29,6 @@ import { FeatureOptions } from '../utils/disable-unsupported-props'
 import { Option } from './types'
 import useSelect, { EMPTY_INPUT_VALUE, ItemProps } from './useSelect'
 import styles from './styles'
-import { getAutofillAttributes, isAttributeProvided } from './utils'
 
 type IconPosition = 'start' | 'end'
 type ValueType = string | string[] | number
@@ -537,7 +536,7 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
         {...getRootProps()}
         className={classes.inputWrapper}
       >
-        {!enableAutofill && !native && isAttributeProvided(name) && (
+        {!enableAutofill && !native && name && (
           <input type='hidden' value={inputValue} name={name} />
         )}
         <OutlinedInput
@@ -571,13 +570,8 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
           size={size}
           role='textbox'
           enableReset={enableReset ? select.isSelected() : false}
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          {...getAutofillAttributes({
-            enableAutofill,
-            autoComplete,
-            native,
-            name
-          })}
+          autoComplete={enableAutofill ? autoComplete : 'off'}
+          name={enableAutofill || native ? name : undefined}
         />
         {dropDownIcon}
       </div>
