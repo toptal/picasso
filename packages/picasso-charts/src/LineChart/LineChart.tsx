@@ -54,16 +54,16 @@ export type LineConfig = Record<
   { color: string; variant?: 'solid' | 'reference' }
 >
 
-export type Props = BaseProps & {
+export type Props = Omit<BaseProps, 'style'> & {
   data: ChartDataPoint[]
-  lines: LineConfig
+  highlights?: HighlightConfig[] | null
+  referenceLines?: ReferenceLineType[]
+  lineConfig: LineConfig
   unit?: string
   xAxisKey?: string
   height?: number
   tooltip?: boolean
   customTooltip?: ReactElement
-  highlightsData?: HighlightConfig[] | null
-  referenceLineData?: ReferenceLineType[]
   children?: ReactNode
 }
 
@@ -151,14 +151,14 @@ const generateLineGraphs = (
 
 export const LineChart = ({
   data,
-  lines,
+  lineConfig: lines,
   unit,
   xAxisKey,
   height,
   tooltip,
   customTooltip,
-  highlightsData,
-  referenceLineData,
+  highlights,
+  referenceLines,
   children
 }: Props) => {
   const yKey = Object.keys(lines)[0]
@@ -168,8 +168,8 @@ export const LineChart = ({
   const orderedData = orderData(data)
   const ticks = getChartTicks(orderedData)
 
-  const referenceLineList = generateReferenceLines(referenceLineData)
-  const highlightedAreas = generateHighlightedAreas(topDomain, highlightsData!)
+  const referenceLineList = generateReferenceLines(referenceLines)
+  const highlightedAreas = generateHighlightedAreas(topDomain, highlights!)
   const lineGraphs = generateLineGraphs(lines, orderedData)
 
   const formatTicks = (tick: unknown) =>

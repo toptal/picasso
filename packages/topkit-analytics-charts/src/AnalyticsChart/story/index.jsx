@@ -1,6 +1,5 @@
-import { palette } from '@toptal/picasso/utils'
-
 import AnalyticsChart from '../AnalyticsChart'
+import { sharedChartDocs } from '../../../../picasso-charts/src/LineChart/story'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
@@ -22,12 +21,6 @@ page.createTabChapter('Props').addComponentDocs({
       description: 'A record of data points to be rendered as a line chart',
       required: true
     },
-    color: {
-      name: 'color',
-      type: 'string',
-      description: 'Color of the line chart',
-      defaultValue: palette.blue.main
-    },
     highlights: {
       name: 'highlights',
       type: {
@@ -36,8 +29,8 @@ page.createTabChapter('Props').addComponentDocs({
       },
       description: 'A list of dates and to be highlighted'
     },
-    referenceLine: {
-      name: 'referenceLine',
+    referenceLines: {
+      name: 'referenceLines',
       type: {
         name: '[]',
         description: `{ data: { [key: string]: number }, color: string }`
@@ -45,12 +38,7 @@ page.createTabChapter('Props').addComponentDocs({
       description:
         'A record of data points to be rendered as a dashed horizontal line'
     },
-    xAxisKey: {
-      name: 'xAxisKey',
-      type: 'string',
-      description: 'X axis key name to be used in the data array',
-      defaultValue: 'x'
-    }
+    ...sharedChartDocs
   }
 })
 

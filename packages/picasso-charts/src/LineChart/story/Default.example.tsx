@@ -38,8 +38,8 @@ const CHART_DATA = [
 const Example = () => (
   <LineChart
     data={CHART_DATA}
-    highlightsData={HIGHLIGHTS}
-    lines={{
+    highlights={HIGHLIGHTS}
+    lineConfig={{
       talents: { color: palette.blue.main }
     }}
   />

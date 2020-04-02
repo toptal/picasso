@@ -187,7 +187,7 @@ const Example = () => (
     height={150}
     unit=' cases'
     data={CHART_DATA}
-    lines={{
+    lineConfig={{
       infected: { color: palette.yellow.main },
       recovered: { color: palette.blue.main },
       died: { color: palette.red.main }
