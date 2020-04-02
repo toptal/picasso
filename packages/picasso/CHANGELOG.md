@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.48.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.48.0...@toptal/picasso@4.48.1) (2020-04-02)
+
+
+### Bug Fixes
+
+* **Sidebar:** speedup sidebar menu and menu items performance ([#1205](https://github.com/toptal/picasso/issues/1205)) ([0658ec0](https://github.com/toptal/picasso/commit/0658ec041dd4e415b714a0b1d76ee78a178268be))
+
+
+
+
+
 # [4.48.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.47.3...@toptal/picasso@4.48.0) (2020-04-02)
 
 
