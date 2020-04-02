@@ -1,11 +1,10 @@
 import React from 'react'
 import {
   LineChart,
-  LineChartProps,
   ChartDataPoint,
-  LineConfig
+  LineConfig,
+  BaseChartProps
 } from '@toptal/picasso-charts'
-import { palette } from '@toptal/picasso/utils'
 
 import { toHighlightFormat, toChartFormat } from '../utils'
 
@@ -25,11 +24,10 @@ export type ReferenceLine = {
   color: string
 }
 
-export type Props = LineChartProps & {
+export type Props = BaseChartProps & {
   data: Point[]
   highlights?: Highlight[]
   referenceLines?: ReferenceLine[]
-  xAxisKey: string
 }
 
 const insertReferenceLine = (
@@ -65,13 +63,13 @@ export const AnalyticsChart = ({
   highlights,
   referenceLines,
   xAxisKey,
-  lines,
+  lineConfig: lines,
   ...rest
 }: Props) => {
-  const formattedChartData = toChartFormat(data, xAxisKey)
+  const formattedChartData = toChartFormat(data, xAxisKey!)
 
   const highlightsData =
-    highlights && toHighlightFormat(formattedChartData, highlights!, xAxisKey)
+    highlights && toHighlightFormat(formattedChartData, highlights!, xAxisKey!)
 
   const { chartData, lineConfig } = generateChartData(
     formattedChartData,
@@ -83,18 +81,15 @@ export const AnalyticsChart = ({
     <LineChart
       xAxisKey={xAxisKey}
       data={chartData}
-      highlightsData={highlightsData || null}
+      highlights={highlightsData || null}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
-      lines={lineConfig}
+      lineConfig={lineConfig}
     />
   )
 }
 
-AnalyticsChart.defaultProps = {
-  xAxisKey: 'x',
-  color: palette.blue.main
-}
+AnalyticsChart.defaultProps = {}
 
 AnalyticsChart.displayName = 'AnalyticsChart'
 

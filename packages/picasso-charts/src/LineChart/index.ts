@@ -4,11 +4,12 @@ import { Props } from './LineChart'
 
 export { default } from './LineChart'
 export type {
-  ReferenceLineType,
+  BaseChartProps,
   ChartDataPoint,
   HighlightConfig,
+  LineConfig,
   OrderedChartDataPoint,
-  LineConfig
+  ReferenceLineType
 } from './LineChart'
 
 export type LineChartProps = OmitInternalProps<Props>

@@ -1,5 +1,4 @@
 import React, { ReactElement, ReactNode } from 'react'
-import { BaseProps } from '@toptal/picasso-shared'
 import { palette } from '@toptal/picasso/utils'
 import {
   ComposedChart,
@@ -54,17 +53,21 @@ export type LineConfig = Record<
   { color: string; variant?: 'solid' | 'reference' }
 >
 
-export type Props = BaseProps & {
-  data: ChartDataPoint[]
-  lines: LineConfig
+export type BaseChartProps = {
+  lineConfig: LineConfig
   unit?: string
   xAxisKey?: string
   height?: number
   tooltip?: boolean
   customTooltip?: ReactElement
-  highlightsData?: HighlightConfig[] | null
-  referenceLineData?: ReferenceLineType[]
+  className?: string
   children?: ReactNode
+}
+
+export type Props = BaseChartProps & {
+  data: ChartDataPoint[]
+  highlights?: HighlightConfig[] | null
+  referenceLines?: ReferenceLineType[]
 }
 
 const StyleOverrides = () => (
@@ -151,14 +154,14 @@ const generateLineGraphs = (
 
 export const LineChart = ({
   data,
-  lines,
+  lineConfig: lines,
   unit,
   xAxisKey,
   height,
   tooltip,
   customTooltip,
-  highlightsData,
-  referenceLineData,
+  highlights,
+  referenceLines,
   children
 }: Props) => {
   const yKey = Object.keys(lines)[0]
@@ -168,8 +171,8 @@ export const LineChart = ({
   const orderedData = orderData(data)
   const ticks = getChartTicks(orderedData)
 
-  const referenceLineList = generateReferenceLines(referenceLineData)
-  const highlightedAreas = generateHighlightedAreas(topDomain, highlightsData!)
+  const referenceLineList = generateReferenceLines(referenceLines)
+  const highlightedAreas = generateHighlightedAreas(topDomain, highlights!)
   const lineGraphs = generateLineGraphs(lines, orderedData)
 
   const formatTicks = (tick: unknown) =>

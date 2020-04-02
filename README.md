@@ -107,13 +107,17 @@ After Picasso will be released with your changes you can start using your Icon a
 1. Create a new folder under `/packages` and add to it:
 
    - `package.json` by running `lerna add`. Specify `Toptal` as the author and `src/index.ts` in the `main` key
-   - `tsconfig.json` using this template
+   - `tsconfig.json` using this template with paths to the `node_modules` of any used packages from the `/packages` directory 
 
    ```
    {
      "extends": "../../tsconfig.json",
      "compilerOptions": {
-       "outDir": "./build"
+       "outDir": "./build",
+       "paths": {
+         "@toptal/picasso/*": ["node_modules/@toptal/picasso/src/*"],
+         "@toptal/picasso": ["node_modules/@toptal/picasso/src/index"]
+       }
      },
      "include": ["./src/**/*"],
      "exclude": [

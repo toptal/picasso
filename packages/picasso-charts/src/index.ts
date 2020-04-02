@@ -1,9 +1,10 @@
 export { default as LineChart } from './LineChart'
 export type {
-  LineChartProps,
-  ReferenceLineType,
+  BaseChartProps,
   ChartDataPoint,
   HighlightConfig,
+  LineChartProps,
+  LineConfig,
   OrderedChartDataPoint,
-  LineConfig
+  ReferenceLineType
 } from './LineChart'

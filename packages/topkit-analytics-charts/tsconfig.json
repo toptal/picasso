@@ -4,7 +4,9 @@
     "outDir": "./build",
     "paths": {
       "@toptal/picasso/*": ["node_modules/@toptal/picasso/src/*"],
-      "@toptal/picasso": ["node_modules/@toptal/picasso/src/index"]
+      "@toptal/picasso": ["node_modules/@toptal/picasso/src/index"],
+      "@toptal/picasso-charts/*": ["node_modules/@toptal/picasso-charts/src/*"],
+      "@toptal/picasso-charts": ["node_modules/@toptal/picasso-charts/src/index"]
     }
   },
   "include": ["./src/**/*"],

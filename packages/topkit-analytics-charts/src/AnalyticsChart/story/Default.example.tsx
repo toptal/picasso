@@ -134,7 +134,7 @@ const Example = () => (
         color: palette.green.main
       }
     ]}
-    lines={{
+    lineConfig={{
       role: { color: palette.blue.main },
       team: { color: palette.yellow.main }
     }}
