@@ -12,6 +12,7 @@ export interface DayProps {
   handleOnClick: () => void
   handleOnEnter: () => void
   date: Date
+  getDayFormatted: (date: Date) => string
 }
 
 export interface MonthHeaderProps {
