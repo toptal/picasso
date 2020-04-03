@@ -112,11 +112,13 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
             handleOnClick,
             handleOnEnter,
             getDayFormatted,
-            date
+            date,
+            ISODate
           } = dayProps
 
           const defaultMarkup = (
             <button
+              data-simple-react-calendar-day={ISODate}
               key={key}
               className={cx(classes.day, {
                 [classes.selected]: isSelected,
