@@ -12,7 +12,6 @@ export interface DayProps {
   handleOnClick: () => void
   handleOnEnter: () => void
   date: Date
-  children?: ReactNode
 }
 
 export interface MonthHeaderProps {
@@ -25,6 +24,7 @@ export interface WeekProps {
 }
 
 export interface DayOfWeekProps {
+  day: string
   children?: ReactNode
 }
 
