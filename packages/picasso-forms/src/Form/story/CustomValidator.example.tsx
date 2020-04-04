@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Container } from '@toptal/picasso'
+import { Container } from '@toptal/picasso'
 import { Form } from '@toptal/picasso-forms'
 
 const minMaxValidator = (value: string | number) => {
@@ -23,6 +23,7 @@ const CustomValidatorExample = () => (
       name='userName'
       label='First name'
       placeholder='e.g. Bruce'
+      scrollOffsetTop={100}
     />
     <Form.NumberInput
       required
@@ -33,7 +34,7 @@ const CustomValidatorExample = () => (
     />
 
     <Container top='small'>
-      <Button type='submit'>Submit</Button>
+      <Form.SubmitButton>Submit</Form.SubmitButton>
     </Container>
   </Form>
 )

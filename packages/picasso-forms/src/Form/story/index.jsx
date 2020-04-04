@@ -100,6 +100,11 @@ page
         type: 'ReactNode',
         description:
           'Message to display in a tooltip when form submittion failed'
+      },
+      scrollOffsetTop: {
+        name: 'scrollOffsetTop',
+        type: 'number',
+        description: 'Offset from the viewport for inputs to focus on'
       }
     }
   })
