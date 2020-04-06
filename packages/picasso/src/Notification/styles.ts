@@ -45,6 +45,9 @@ export default ({
     notificationFullWidth: {
       justifyContent: 'center'
     },
+    notificationWithDrawer: {
+      marginRight: '27.5rem'
+    },
 
     // Content
     content: {

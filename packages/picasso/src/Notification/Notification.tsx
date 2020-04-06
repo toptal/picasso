@@ -14,7 +14,8 @@ import capitalize from '@material-ui/core/utils/capitalize'
 import {
   StandardProps,
   PicassoComponentWithRef,
-  CompoundedComponentWithRef
+  CompoundedComponentWithRef,
+  useDrawer
 } from '@toptal/picasso-shared'
 
 import {
@@ -122,6 +123,7 @@ const renderNotificationContent = (props: Props) => {
 export const Notification = forwardRef<HTMLElement, Props>(
   function Notification(props, ref) {
     const { className, classes, variant, elevated, fullWidth, ...rest } = props
+    const { hasDrawer } = useDrawer()
 
     return (
       <SnackbarContent
@@ -131,7 +133,8 @@ export const Notification = forwardRef<HTMLElement, Props>(
           classes[`notification${capitalize(variant as string)}`],
           {
             [classes.notificationShadow]: elevated,
-            [classes.notificationFullWidth]: fullWidth
+            [classes.notificationFullWidth]: fullWidth,
+            [classes.notificationWithDrawer]: hasDrawer
           },
           classes.notification,
           className

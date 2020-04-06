@@ -3,7 +3,8 @@ export {
   PicassoProvider,
   usePicassoRoot,
   usePageHeader,
-  useAppConfig
+  useAppConfig,
+  useDrawer
 } from './Picasso'
 
 export * from './types'
