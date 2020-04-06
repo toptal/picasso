@@ -1,9 +1,10 @@
+import { makeStyles } from '@material-ui/styles'
+import cx from 'classnames'
 import { SnackbarProvider } from 'notistack'
 import React, { FunctionComponent } from 'react'
-import { makeStyles } from '@material-ui/styles'
 
+import { useDrawer, usePageHeader } from '../Picasso'
 import styles from './styles'
-import { usePageHeader } from '../Picasso'
 
 const useStyles = makeStyles(styles)
 
@@ -20,6 +21,7 @@ const NotificationsProvider: FunctionComponent<Props> = ({
 }) => {
   const { hasPageHeader } = usePageHeader()
   const classes = useStyles()
+  const { hasDrawer } = useDrawer()
 
   const containerAnchorOriginTop = hasPageHeader
     ? classes.rootWithMargin
@@ -30,7 +32,9 @@ const NotificationsProvider: FunctionComponent<Props> = ({
       maxSnack={MAX_NOTIFICATION_MESSAGES}
       domRoot={container}
       classes={{
-        containerAnchorOriginTopRight: containerAnchorOriginTop,
+        containerAnchorOriginTopRight: cx(containerAnchorOriginTop, {
+          [classes.marginWithDrawer]: hasDrawer
+        }),
         containerAnchorOriginTopLeft: containerAnchorOriginTop,
         containerAnchorOriginTopCenter: containerAnchorOriginTop
       }}

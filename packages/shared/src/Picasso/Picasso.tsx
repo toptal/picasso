@@ -71,11 +71,15 @@ interface RootContextProps {
   hasPageHeader: boolean
   setHasPageHeader: (value: boolean) => void
   environment: EnvironmentType<'test'>
+  hasDrawer: boolean
+  setHasDrawer: (value: boolean) => void
 }
 const RootContext = React.createContext<RootContextProps>({
   hasPageHeader: false,
   setHasPageHeader: () => {},
-  environment: 'development'
+  environment: 'development',
+  hasDrawer: false,
+  setHasDrawer: () => {}
 })
 
 export const usePicassoRoot = () => {
@@ -90,6 +94,15 @@ export const usePageHeader = () => {
   return {
     hasPageHeader: context.hasPageHeader,
     setHasPageHeader: context.setHasPageHeader
+  }
+}
+
+export const useDrawer = () => {
+  const context = useContext(RootContext)
+
+  return {
+    hasDrawer: context.hasDrawer,
+    setHasDrawer: context.setHasDrawer
   }
 }
 
@@ -146,7 +159,14 @@ const PicassoGlobalStylesProvider = (
         hasPageHeader
       })
     },
-    environment
+    environment,
+    hasDrawer: false,
+    setHasDrawer: (hasDrawer: boolean) => {
+      setContextValue({
+        ...contextValue,
+        hasDrawer
+      })
+    }
   })
 
   return (
