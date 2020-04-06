@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.10.7...@toptal/picasso-shared@1.11.0) (2020-04-06)
+
+
+### Features
+
+* add drawer component ([#1211](https://github.com/toptal/picasso/issues/1211)) ([9dc2233](https://github.com/toptal/picasso/commit/9dc2233bf5cc276205fadba982ccc452b5099175))
+
+
+
+
+
 ## [1.10.7](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.10.6...@toptal/picasso-shared@1.10.7) (2020-03-30)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.12.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.11.1...@toptal/picasso-lab@2.12.0) (2020-04-06)
+
+
+### Features
+
+* add drawer component ([#1211](https://github.com/toptal/picasso/issues/1211)) ([9dc2233](https://github.com/toptal/picasso/commit/9dc2233bf5cc276205fadba982ccc452b5099175))
+
+
+
+
+
 ## [2.11.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.11.0...@toptal/picasso-lab@2.11.1) (2020-03-30)
 
 **Note:** Version bump only for package @toptal/picasso-lab
