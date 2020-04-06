@@ -30,14 +30,22 @@ page
   .addTextSection(
     `
 Autocomplete supports all the default HTML native props, as Input supports.
+    
+### A note about browser autofilling
 
 Standard browser autofilling feature is disabled in this component by default, because it's used pretty rarely.
 You can enable it by specifying \`enableAutofill\` property. Keep in mind that to enable browser autofilling
 you most likely need to specify \`name\` property as well.
 
 If you're still experiencing browser autofilling and you want to get rid of it, try to wrap
-your Autocomplete component into \`<Form>\`, you can also specify \`autocomplete='off'\` on that Form component
+your **Autocomplete** component into \`<Form>\`, you can also specify \`autoComplete='off'\` on that **Form** component
 if needed.
+
+\`\`\`jsx
+<Form autoComplete='off'>
+  <Autocomplete ... />
+</Form>
+\`\`\`
     `
   )
   .addExample('Autocomplete/story/Default.example.jsx', 'Default')

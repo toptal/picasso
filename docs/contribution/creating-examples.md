@@ -20,7 +20,7 @@ const page = PicassoBook
   )
 ```
 
-💡 ***TIP:*** You can see real exampe here [src/components/Button/story/index.jsx#L7](https://github.com/toptal/picasso/blob/master/src/components/Button/story/index.jsx#L7)
+💡 ***TIP:*** You can see real example here [src/components/Button/story/index.jsx#L7](https://github.com/toptal/picasso/blob/master/src/components/Button/story/index.jsx#L7)
 
 ### Generating automatic PropsTable from the passed component through AST parsing.
 
@@ -33,7 +33,7 @@ page
   })
 ```
 
-💡 ***TIP:*** You can see real exampe here [src/components/Button/story/index.jsx#L13](https://github.com/toptal/picasso/blob/master/src/components/Button/story/index.jsx#L13)
+💡 ***TIP:*** You can see real example here [src/components/Button/story/index.jsx#L13](https://github.com/toptal/picasso/blob/master/src/components/Button/story/index.jsx#L13)
 
 ### Extending default capability of Storybook where you can specify only one example per component.
 
@@ -46,7 +46,7 @@ page.createChapter(...).addComponentDocs(buttonGroupStory.componentDocs)
 
 ```
 
-💡 ***TIP:*** You can see real exampe here [src/components/Button/story/index.jsx#L23](https://github.com/toptal/picasso/blob/master/src/components/Button/story/index.jsx#L23)
+💡 ***TIP:*** You can see real example here [src/components/Button/story/index.jsx#L23](https://github.com/toptal/picasso/blob/master/src/components/Button/story/index.jsx#L23)
 
 ### Grouping related components to a single Page inside the documentation (`Button`, `Button.Group`)
 
@@ -54,7 +54,7 @@ page.createChapter(...).addComponentDocs(buttonGroupStory.componentDocs)
 page.connect(buttonGroupStory.chapter)
 ```
 
-💡 ***TIP:*** You can see real exampe here [src/components/Button/story/index.jsx#L47](https://github.com/toptal/picasso/blob/master/src/components/Button/story/index.jsx#L47)
+💡 ***TIP:*** You can see real example here [src/components/Button/story/index.jsx#L47](https://github.com/toptal/picasso/blob/master/src/components/Button/story/index.jsx#L47)
 
 ### Generating screenshots automatically based on provided examples
 
@@ -62,7 +62,7 @@ page.connect(buttonGroupStory.chapter)
 page.createChapter(...).addExample('Component/story/Default.example.jsx') // this is all you need to do, live code will be screenshoted and compared inside CI automatically
 ```
 
-💡 ***TIP:*** You can see real exampe here [src/components/Button/story/index.jsx#L27](https://github.com/toptal/picasso/blob/master/src/components/Button/story/index.jsx#L27)
+💡 ***TIP:*** You can see real example here [src/components/Button/story/index.jsx#L27](https://github.com/toptal/picasso/blob/master/src/components/Button/story/index.jsx#L27)
 
 ## Showing separate Live editor for examples and keep examples separated from story definition. 
 
@@ -70,7 +70,7 @@ page.createChapter(...).addExample('Component/story/Default.example.jsx') // thi
 page.createChapter(...).addExample('Component/story/Default.example.jsx') // this is all you need to do, live code editor will be automatically injected to the page
 ```
 
-💡 ***TIP:*** You can see real exampe here [src/components/Button/story/index.jsx#L27](https://github.com/toptal/picasso/blob/master/src/components/Button/story/index.jsx#L27)
+💡 ***TIP:*** You can see real example here [src/components/Button/story/index.jsx#L27](https://github.com/toptal/picasso/blob/master/src/components/Button/story/index.jsx#L27)
 
 ### PicassoBook.Page
 
