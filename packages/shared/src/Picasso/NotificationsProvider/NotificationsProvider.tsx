@@ -1,9 +1,10 @@
+import { makeStyles } from '@material-ui/styles'
+import cx from 'classnames'
 import { SnackbarProvider } from 'notistack'
 import React, { FunctionComponent } from 'react'
-import { makeStyles } from '@material-ui/styles'
 
+import { useDrawer, usePageHeader } from '../Picasso'
 import styles from './styles'
-import { usePageHeader, useDrawer } from '../Picasso'
 
 const useStyles = makeStyles(styles)
 
@@ -26,16 +27,15 @@ const NotificationsProvider: FunctionComponent<Props> = ({
     ? classes.rootWithMargin
     : undefined
 
-  const containerAnchorOriginRight = hasDrawer
-    ? classes.rootWithDrawer
-    : undefined
-
   return (
     <SnackbarProvider
       maxSnack={MAX_NOTIFICATION_MESSAGES}
       domRoot={container}
       classes={{
-        containerAnchorOriginTopRight: `${containerAnchorOriginTop} ${containerAnchorOriginRight}`,
+        containerAnchorOriginTopRight: cx({
+          [classes.rootWithMargin]: hasPageHeader,
+          [classes.rootWithDrawer]: hasDrawer
+        }),
         containerAnchorOriginTopLeft: containerAnchorOriginTop,
         containerAnchorOriginTopCenter: containerAnchorOriginTop
       }}
