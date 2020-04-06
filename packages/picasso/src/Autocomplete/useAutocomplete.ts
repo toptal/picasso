@@ -1,27 +1,11 @@
 /* eslint-disable complexity, max-statements */ // Squiggly lines makes code difficult to work with
 
-import { KeyboardEvent, useState, ChangeEvent, useMemo } from 'react'
+import { KeyboardEvent, useState, ChangeEvent } from 'react'
 
 import { Item, ChangedOptions } from './types'
 
 export const FIRST_ITEM_INDEX = 0
 export const EMPTY_INPUT_VALUE = ''
-
-/**
- * Specification has two options to enable/disable autofill:
- * "on"|"off", but google chrome doesn't respect specification and
- * enables autofill for inputs with common name like "email", "address" etc
- * As a workaround it's possible to use any incorrect string as a value of
- * "autocomplete" field. "none" is our current choice.
- */
-const AUTOFILL_DISABLED_STATE = 'none'
-
-export const getAutocompletePropValue = (
-  enableAutofill: boolean | undefined,
-  autoComplete: string | undefined
-) => {
-  return enableAutofill ? autoComplete : AUTOFILL_DISABLED_STATE
-}
 
 function normalizeArrowKey(event: KeyboardEvent<HTMLInputElement>) {
   const { key, keyCode } = event
@@ -74,8 +58,6 @@ function getNextWrappingIndex(
 interface Props {
   value: string
   options?: Item[] | null
-  enableAutofill?: boolean
-  autoComplete?: string
   onSelect?: (item: Item) => void
   onOtherOptionSelect?: (value: string) => void
   onChange?: (value: string, options: ChangedOptions) => void
@@ -91,8 +73,6 @@ interface Props {
 const useAutocomplete = ({
   value,
   options = [],
-  enableAutofill = false,
-  autoComplete,
   onChange = () => {},
   onKeyDown = () => {},
   onSelect = () => {},
@@ -171,14 +151,8 @@ const useAutocomplete = ({
     setHighlightedIndex(FIRST_ITEM_INDEX)
   }
 
-  const autoCompletePropValue = useMemo(
-    () => getAutocompletePropValue(enableAutofill, autoComplete),
-    [enableAutofill, autoComplete]
-  )
-
   const getInputProps = () => ({
     'aria-autocomplete': 'list' as React.AriaAttributes['aria-autocomplete'],
-    autoComplete: autoCompletePropValue,
     onFocus: handleFocusOrClick,
     onClick: handleFocusOrClick,
     onChange: (

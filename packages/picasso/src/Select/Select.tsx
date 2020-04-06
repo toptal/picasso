@@ -570,8 +570,8 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
           size={size}
           role='textbox'
           enableReset={enableReset ? select.isSelected() : false}
-          autoComplete={enableAutofill ? autoComplete : 'off'}
-          name={enableAutofill || native ? name : undefined}
+          autoComplete={enableAutofill ? autoComplete : autoComplete || 'off'}
+          name={enableAutofill ? name : undefined}
         />
         {dropDownIcon}
       </div>

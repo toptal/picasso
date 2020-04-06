@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Autocomplete } from '@toptal/picasso'
+import { Autocomplete, Form } from '@toptal/picasso'
 import { isSubstring } from '@toptal/picasso/utils'
 
 const allOptions = [
@@ -30,27 +30,29 @@ const Example = () => {
 
   return (
     <div>
-      <Autocomplete
-        placeholder='Start typing country...'
-        value={value}
-        options={options}
-        onSelect={item => {
-          console.log('onSelect returns item object:', item)
+      <Form autoComplete='off'>
+        <Autocomplete
+          placeholder='Start typing country...'
+          value={value}
+          options={options}
+          onSelect={item => {
+            console.log('onSelect returns item object:', item)
 
-          const itemValue = getDisplayValue(item)
+            const itemValue = getDisplayValue(item)
 
-          if (value !== itemValue) {
-            setValue(itemValue)
-          }
-        }}
-        onChange={newValue => {
-          console.log('onChange returns just item value:', newValue)
+            if (value !== itemValue) {
+              setValue(itemValue)
+            }
+          }}
+          onChange={newValue => {
+            console.log('onChange returns just item value:', newValue)
 
-          setOptions(filterOptions(newValue))
-          setValue(newValue)
-        }}
-        getDisplayValue={getDisplayValue}
-      />
+            setOptions(filterOptions(newValue))
+            setValue(newValue)
+          }}
+          getDisplayValue={getDisplayValue}
+        />
+      </Form>
     </div>
   )
 }

@@ -59,13 +59,13 @@ describe('Autocomplete', () => {
     })
 
     test('render option text when passed `value` prop', () => {
-      const { getByDisplayValue } = renderAutocomplete({
+      const { getByPlaceholderText } = renderAutocomplete({
         placeholder,
         options: testOptions,
         value: 'Ukraine'
       })
 
-      const input = getByDisplayValue('Ukraine') as HTMLInputElement
+      const input = getByPlaceholderText(placeholder) as HTMLInputElement
 
       expect(input.value).toEqual('Ukraine')
     })
@@ -73,13 +73,15 @@ describe('Autocomplete', () => {
 
   describe('dynamic behavior', () => {
     test('on focus', () => {
-      const { getByText, getByDisplayValue, getByRole } = renderAutocomplete({
-        placeholder,
-        options: testOptions,
-        value: ''
-      })
+      const { getByText, getByPlaceholderText, getByRole } = renderAutocomplete(
+        {
+          placeholder,
+          options: testOptions,
+          value: ''
+        }
+      )
 
-      const input = getByDisplayValue('') as HTMLInputElement
+      const input = getByPlaceholderText(placeholder) as HTMLInputElement
 
       fireEvent.focus(input)
 
@@ -135,14 +137,14 @@ describe('Autocomplete', () => {
 
     test('on "Esc" key pressed', async () => {
       const onChange = jest.fn()
-      const { getByDisplayValue } = renderAutocomplete({
+      const { getByPlaceholderText } = renderAutocomplete({
         placeholder,
         options: testOptions,
         value: 'Croatia',
         onChange
       })
 
-      const input = getByDisplayValue('Croatia') as HTMLInputElement
+      const input = getByPlaceholderText(placeholder) as HTMLInputElement
 
       fireEvent.focus(input)
       fireEvent.keyDown(input, {
@@ -154,13 +156,13 @@ describe('Autocomplete', () => {
     })
 
     test('On "Backspace" key pressed with empty text', async () => {
-      const { getByDisplayValue, queryByRole } = renderAutocomplete({
+      const { getByPlaceholderText, queryByRole } = renderAutocomplete({
         placeholder,
         options: testOptions,
         value: ''
       })
 
-      const input = getByDisplayValue('') as HTMLInputElement
+      const input = getByPlaceholderText(placeholder) as HTMLInputElement
 
       fireEvent.focus(input)
       fireEvent.keyDown(input, {
@@ -175,13 +177,13 @@ describe('Autocomplete', () => {
 
     describe('On "arrow up/down" key press', () => {
       test('press down', () => {
-        const { getByText, getByDisplayValue } = renderAutocomplete({
+        const { getByText, getByPlaceholderText } = renderAutocomplete({
           placeholder,
           options: testOptions,
           value: ''
         })
 
-        const input = getByDisplayValue('') as HTMLInputElement
+        const input = getByPlaceholderText(placeholder) as HTMLInputElement
 
         fireEvent.focus(input)
 
@@ -195,13 +197,13 @@ describe('Autocomplete', () => {
       })
 
       test('press up', () => {
-        const { getByText, getByDisplayValue } = renderAutocomplete({
+        const { getByText, getByPlaceholderText } = renderAutocomplete({
           placeholder,
           options: testOptions,
           value: ''
         })
 
-        const input = getByDisplayValue('') as HTMLInputElement
+        const input = getByPlaceholderText(placeholder) as HTMLInputElement
 
         fireEvent.focus(input)
 
@@ -302,7 +304,7 @@ describe('Autocomplete', () => {
       })
       const input = getByPlaceholderText('Start typing here...')
 
-      expect(input.getAttribute('autocomplete')).toBe('none')
+      expect(input.getAttribute('autocomplete')).toBe('off')
     })
 
     test('when autoComplete value is not passed and autofill is enabled', () => {
@@ -325,7 +327,9 @@ describe('Autocomplete', () => {
       })
       const input = getByPlaceholderText('Start typing here...')
 
-      expect(input.getAttribute('autocomplete')).toBe('none')
+      // user should be able to override autocomplete value if needed
+      // even when autoComplete itself is not enabled
+      expect(input.getAttribute('autocomplete')).toBe('country-name')
     })
 
     test('when autoComplete value is passed and autofill is enabled', () => {
