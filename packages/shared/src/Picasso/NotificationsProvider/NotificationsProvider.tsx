@@ -3,7 +3,7 @@ import React, { FunctionComponent } from 'react'
 import { makeStyles } from '@material-ui/styles'
 
 import styles from './styles'
-import { usePageHeader } from '../Picasso'
+import { usePageHeader, useDrawer } from '../Picasso'
 
 const useStyles = makeStyles(styles)
 
@@ -20,9 +20,14 @@ const NotificationsProvider: FunctionComponent<Props> = ({
 }) => {
   const { hasPageHeader } = usePageHeader()
   const classes = useStyles()
+  const { hasDrawer } = useDrawer()
 
   const containerAnchorOriginTop = hasPageHeader
     ? classes.rootWithMargin
+    : undefined
+
+  const containerAnchorOriginRight = hasDrawer
+    ? classes.rootWithDrawer
     : undefined
 
   return (
@@ -30,7 +35,7 @@ const NotificationsProvider: FunctionComponent<Props> = ({
       maxSnack={MAX_NOTIFICATION_MESSAGES}
       domRoot={container}
       classes={{
-        containerAnchorOriginTopRight: containerAnchorOriginTop,
+        containerAnchorOriginTopRight: `${containerAnchorOriginTop} ${containerAnchorOriginRight}`,
         containerAnchorOriginTopLeft: containerAnchorOriginTop,
         containerAnchorOriginTopCenter: containerAnchorOriginTop
       }}
