@@ -1,7 +1,7 @@
 import toRechartsHighlightFormat from './'
 
 const TOP_DOMAIN = 2
-
+const DATA_POINT_COUNT = 10
 const HIGHLIGHTS = [
   {
     from: 6,
@@ -15,16 +15,16 @@ const EXPECTED_DATA = [
     {
       fill: 'green',
       fillOpacity: 0.1,
-      x1: 6,
-      x2: 8,
+      x1: 5.5,
+      x2: 7.5,
       y1: 0,
       y2: 2
     },
     {
       fill: 'green',
       fillOpacity: 0.1,
-      x1: 6,
-      x2: 8,
+      x1: 5.5,
+      x2: 7.5,
       y1: 1.9,
       y2: 2
     }
@@ -32,6 +32,10 @@ const EXPECTED_DATA = [
 ]
 
 test('convert to rechart highlight format', () => {
-  const highlights = toRechartsHighlightFormat(TOP_DOMAIN, HIGHLIGHTS)
+  const highlights = toRechartsHighlightFormat(
+    TOP_DOMAIN,
+    DATA_POINT_COUNT,
+    HIGHLIGHTS
+  )
   expect(highlights).toEqual(EXPECTED_DATA)
 })
