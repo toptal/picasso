@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.3](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@0.3.2...@toptal/picasso-charts@0.3.3) (2020-04-06)
+
+
+### Bug Fixes
+
+* analytics-charts overflow and highlighting ([#1213](https://github.com/toptal/picasso/issues/1213)) ([f184b01](https://github.com/toptal/picasso/commit/f184b0100f6c819986d414c47dc51fee3580aa83))
+
+
+
+
+
 ## [0.3.2](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@0.3.1...@toptal/picasso-charts@0.3.2) (2020-04-02)
 
 
