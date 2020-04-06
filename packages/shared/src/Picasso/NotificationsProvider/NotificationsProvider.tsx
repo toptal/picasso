@@ -32,9 +32,8 @@ const NotificationsProvider: FunctionComponent<Props> = ({
       maxSnack={MAX_NOTIFICATION_MESSAGES}
       domRoot={container}
       classes={{
-        containerAnchorOriginTopRight: cx({
-          [classes.rootWithMargin]: hasPageHeader,
-          [classes.rootWithDrawer]: hasDrawer
+        containerAnchorOriginTopRight: cx(containerAnchorOriginTop, {
+          [classes.notificationWithDrawer]: hasDrawer
         }),
         containerAnchorOriginTopLeft: containerAnchorOriginTop,
         containerAnchorOriginTopCenter: containerAnchorOriginTop

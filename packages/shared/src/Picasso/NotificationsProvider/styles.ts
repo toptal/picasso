@@ -7,7 +7,7 @@ export default createStyles({
   rootWithMargin: {
     marginTop: headerHeight.default
   },
-  rootWithDrawer: {
+  notificationWithDrawer: {
     marginRight: '27.5rem'
   }
 })
