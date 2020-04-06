@@ -7,7 +7,7 @@ export default createStyles({
   rootWithMargin: {
     marginTop: headerHeight.default
   },
-  rootWhenDrawerIsOpen: {
+  marginWithDrawer: {
     marginRight: '27.5rem'
   }
 })

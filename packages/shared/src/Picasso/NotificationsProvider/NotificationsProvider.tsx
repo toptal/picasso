@@ -33,7 +33,7 @@ const NotificationsProvider: FunctionComponent<Props> = ({
       domRoot={container}
       classes={{
         containerAnchorOriginTopRight: cx(containerAnchorOriginTop, {
-          [classes.rootWhenDrawerIsOpen]: hasDrawer
+          [classes.marginWithDrawer]: hasDrawer
         }),
         containerAnchorOriginTopLeft: containerAnchorOriginTop,
         containerAnchorOriginTopCenter: containerAnchorOriginTop
