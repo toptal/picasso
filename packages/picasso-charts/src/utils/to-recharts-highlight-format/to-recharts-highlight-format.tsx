@@ -8,13 +8,20 @@ const {
   HIGHLIGHT_TOP_FILL_OPACITY
 } = CHART_CONSTANTS
 
+const OFFSET = 0.5
+
 const toRechartsHighlightFormat = (
   topDomain: number,
+  dataPointCount: number,
   data: HighlightConfig[]
 ) =>
   data.map(({ from, to, color }) => {
-    const x1 = from
-    const x2 = to
+    const isFromFirstPoint = from === 0
+    const x1 = isFromFirstPoint ? 0 : from - OFFSET
+
+    const isToLastPoint = to > dataPointCount
+    const x2 = isToLastPoint ? dataPointCount : to - 0.5
+
     return [
       {
         x1,

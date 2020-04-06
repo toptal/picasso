@@ -2,6 +2,8 @@ import { ChartDataPoint, HighlightConfig } from '@toptal/picasso-charts'
 
 import { Highlight } from './../../AnalyticsChart'
 
+const HIGHLIGHT_LENGTH = 1
+
 const toHighlightFormat = (
   chartData: ChartDataPoint[],
   highlights: Highlight[],
@@ -12,7 +14,8 @@ const toHighlightFormat = (
     .reduce((acc, arr) => acc.concat(arr), [])
     .map(({ section, color }) => {
       const from = chartData.findIndex(point => point[xAxisKey] === section)
-      const to = from + 1
+      const to = from + HIGHLIGHT_LENGTH
+
       return { from, to, color }
     })
 

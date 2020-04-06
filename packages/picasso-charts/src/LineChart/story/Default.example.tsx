@@ -7,6 +7,11 @@ const HIGHLIGHTS = [
     from: 6,
     to: 8,
     color: palette.yellow.main
+  },
+  {
+    from: 12,
+    to: 13,
+    color: palette.yellow.main
   }
 ]
 

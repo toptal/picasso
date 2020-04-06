@@ -98,13 +98,18 @@ const countNonReferenceLines = (lines: LineConfig) =>
 
 const generateHighlightedAreas = (
   topDomain: number,
-  highlights?: HighlightConfig[]
+  dataPointCount: number,
+  highlights?: HighlightConfig[] | null
 ) => {
   if (!highlights) {
     return null
   }
 
-  const highlightAreas = toRechartsHighlightFormat(topDomain, highlights)
+  const highlightAreas = toRechartsHighlightFormat(
+    topDomain,
+    dataPointCount,
+    highlights
+  )
 
   return highlightAreas.map((highlightArea, index) =>
     highlightArea.map((props, highlightIndex: number) => (
@@ -172,7 +177,11 @@ export const LineChart = ({
   const ticks = getChartTicks(orderedData)
 
   const referenceLineList = generateReferenceLines(referenceLines)
-  const highlightedAreas = generateHighlightedAreas(topDomain, highlights!)
+  const highlightedAreas = generateHighlightedAreas(
+    topDomain,
+    orderedData.length - 1,
+    highlights
+  )
   const lineGraphs = generateLineGraphs(lines, orderedData)
 
   const formatTicks = (tick: unknown) =>
