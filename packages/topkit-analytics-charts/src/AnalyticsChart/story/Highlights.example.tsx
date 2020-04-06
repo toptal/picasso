@@ -4,7 +4,7 @@ import { AnalyticsChart } from '@topkit/analytics-charts'
 
 const CHART_DATA = [
   {
-    id: 'role',
+    id: 'team',
     values: {
       '2020-10-20': 1.7,
       '2020-10-21': 2,
@@ -35,8 +35,18 @@ const CHART_DATA = [
 const Example = () => (
   <AnalyticsChart
     data={CHART_DATA}
+    highlights={[
+      {
+        data: ['2020-10-21'],
+        color: palette.green.main
+      },
+      {
+        data: ['2020-11-01', '2020-11-02'],
+        color: palette.red.main
+      }
+    ]}
     lineConfig={{
-      role: { color: palette.blue.main }
+      team: { color: palette.blue.main }
     }}
   />
 )

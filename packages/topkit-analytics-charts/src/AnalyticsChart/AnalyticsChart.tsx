@@ -33,12 +33,15 @@ export type Props = BaseChartProps & {
 const insertReferenceLine = (
   chartData: ChartDataPoint[],
   lineConfig: LineConfig,
+  xAxisKey: string,
   referenceLines: ReferenceLine[]
 ) => {
   chartData.forEach(point => {
     referenceLines.forEach(({ data, color }, index) => {
       const referenceLineName = `reference-${index}`
-      point[referenceLineName] = data[point.date]
+
+      point[referenceLineName] = data[point[xAxisKey]]
+
       lineConfig[referenceLineName] = {
         variant: 'reference',
         color
@@ -50,10 +53,11 @@ const insertReferenceLine = (
 const generateChartData = (
   chartData: ChartDataPoint[],
   lineConfig: LineConfig,
+  xAxisKey: string,
   referenceLines?: ReferenceLine[]
 ) => {
   if (referenceLines) {
-    insertReferenceLine(chartData, lineConfig, referenceLines)
+    insertReferenceLine(chartData, lineConfig, xAxisKey, referenceLines)
   }
   return { chartData, lineConfig }
 }
@@ -74,6 +78,7 @@ export const AnalyticsChart = ({
   const { chartData, lineConfig } = generateChartData(
     formattedChartData,
     lines,
+    xAxisKey!,
     referenceLines
   )
 
@@ -89,7 +94,9 @@ export const AnalyticsChart = ({
   )
 }
 
-AnalyticsChart.defaultProps = {}
+AnalyticsChart.defaultProps = {
+  xAxisKey: 'x'
+}
 
 AnalyticsChart.displayName = 'AnalyticsChart'
 
