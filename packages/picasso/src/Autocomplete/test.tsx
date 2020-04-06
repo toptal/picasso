@@ -327,7 +327,9 @@ describe('Autocomplete', () => {
       })
       const input = getByPlaceholderText('Start typing here...')
 
-      expect(input.getAttribute('autocomplete')).toBe('off')
+      // user should be able to override autocomplete value if needed
+      // even when autoComplete itself is not enabled
+      expect(input.getAttribute('autocomplete')).toBe('country-name')
     })
 
     test('when autoComplete value is passed and autofill is enabled', () => {
