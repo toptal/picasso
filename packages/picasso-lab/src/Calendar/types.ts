@@ -29,6 +29,7 @@ export interface WeekProps {
 
 export interface DayOfWeekProps {
   day: string
+  key: string
   children?: ReactNode
 }
 

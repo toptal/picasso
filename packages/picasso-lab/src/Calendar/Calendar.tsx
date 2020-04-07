@@ -178,8 +178,12 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
         renderDaysOfWeek={({ children }: DaysOfWeekProps) => {
           return <div className={classes.weekDays}>{children}</div>
         }}
-        renderDayOfWeek={({ day }: DayOfWeekProps) => {
-          return <div className={classes.weekDay}>{day}</div>
+        renderDayOfWeek={({ day, key }: DayOfWeekProps) => {
+          return (
+            <div key={key} className={classes.weekDay}>
+              {day}
+            </div>
+          )
         }}
         renderWeek={({ children }: WeekProps) => {
           return <div className={classes.week}>{children}</div>
