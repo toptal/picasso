@@ -44,3 +44,9 @@ page.createTabChapter('Props').addComponentDocs({
 page
   .createChapter()
   .addExample('AnalyticsChart/story/Default.example.tsx', 'Default')
+  .addExample('AnalyticsChart/story/Multiple.example.tsx', 'Multiple')
+  .addExample('AnalyticsChart/story/Highlights.example.tsx', 'Highlights')
+  .addExample(
+    'AnalyticsChart/story/ReferenceLines.example.tsx',
+    'Reference Lines'
+  )
