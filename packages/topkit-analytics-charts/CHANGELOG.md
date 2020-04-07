@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.4](https://github.com/toptal/picasso/compare/@topkit/analytics-charts@0.2.3...@topkit/analytics-charts@0.2.4) (2020-04-07)
+
+
+### Bug Fixes
+
+* add missing analytics-charts stories ([#1216](https://github.com/toptal/picasso/issues/1216)) ([721fa8b](https://github.com/toptal/picasso/commit/721fa8b5994751ec53b018be2df98d6cb2abeefe))
+
+
+
+
+
 ## [0.2.3](https://github.com/toptal/picasso/compare/@topkit/analytics-charts@0.2.2...@topkit/analytics-charts@0.2.3) (2020-04-06)
 
 
