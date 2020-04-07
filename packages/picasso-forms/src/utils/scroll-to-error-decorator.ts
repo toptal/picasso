@@ -1,4 +1,5 @@
 import { FormApi, getIn } from 'final-form'
+
 import flatMap from './flat-map'
 
 const scrollTo = (options: ScrollToOptions) => {
@@ -11,7 +12,8 @@ const scrollTo = (options: ScrollToOptions) => {
 
 const formInputs = (form: HTMLFormElement) =>
   Array.from(form.elements).filter(
-    element => element instanceof HTMLInputElement && typeof element.focus === 'function'
+    element =>
+      element instanceof HTMLInputElement && typeof element.focus === 'function'
   ) as HTMLInputElement[]
 
 const getInputs = (): HTMLInputElement[] => {

@@ -1,6 +1,6 @@
 /* eslint-disable complexity, max-statements */ // Squiggly lines makes code difficult to work with
 
-import { KeyboardEvent, useState, ChangeEvent } from 'react'
+import { KeyboardEvent, useState, ChangeEvent, FocusEventHandler } from 'react'
 
 import { Item, ChangedOptions } from './types'
 
@@ -65,6 +65,8 @@ interface Props {
     event: KeyboardEvent<HTMLInputElement>,
     inputValue: string
   ) => void
+  onFocus?: FocusEventHandler<HTMLInputElement>
+  onBlur?: FocusEventHandler<HTMLInputElement>
   getDisplayValue: (item: Item | null) => string
   enableReset?: boolean
   showOtherOption?: boolean
@@ -75,6 +77,8 @@ const useAutocomplete = ({
   options = [],
   onChange = () => {},
   onKeyDown = () => {},
+  onFocus = () => {},
+  onBlur = () => {},
   onSelect = () => {},
   onOtherOptionSelect = () => {},
   getDisplayValue,
@@ -142,7 +146,7 @@ const useAutocomplete = ({
     }
   })
 
-  const handleFocusOrClick = () => {
+  const handleClick = () => {
     if (isOpen) {
       return
     }
@@ -151,10 +155,20 @@ const useAutocomplete = ({
     setHighlightedIndex(FIRST_ITEM_INDEX)
   }
 
+  const handleFocus: FocusEventHandler<HTMLInputElement> = event => {
+    handleClick()
+    onFocus(event)
+  }
+
+  const handleBlur: FocusEventHandler<HTMLInputElement> = event => {
+    setOpen(false)
+    onBlur(event)
+  }
+
   const getInputProps = () => ({
     'aria-autocomplete': 'list' as React.AriaAttributes['aria-autocomplete'],
-    onFocus: handleFocusOrClick,
-    onClick: handleFocusOrClick,
+    onFocus: handleFocus,
+    onClick: handleClick,
     onChange: (
       event: ChangeEvent<
         HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
@@ -232,7 +246,7 @@ const useAutocomplete = ({
       }
     },
 
-    onBlur: () => setOpen(false),
+    onBlur: handleBlur,
     enableReset,
     onResetClick: () => {
       handleChange(getDisplayValue(null))
