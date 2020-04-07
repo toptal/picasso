@@ -1,9 +1,9 @@
 import React from 'react'
-import { Button, Container } from '@toptal/picasso'
+import { Container } from '@toptal/picasso'
 import { Form } from '@toptal/picasso-forms'
 
 const DefaultExample = () => (
-  <Form onSubmit={values => console.log(values)}>
+  <Form onSubmit={values => console.log(values)} scrollOffsetTop={100}>
     <Form.Input
       enableReset
       onResetClick={(set: (value: string) => void) => {
@@ -55,7 +55,7 @@ const DefaultExample = () => (
     />
 
     <Container top='small'>
-      <Button type='submit'>Submit</Button>
+      <Form.SubmitButton>Submit</Form.SubmitButton>
     </Container>
   </Form>
 )

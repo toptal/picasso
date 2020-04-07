@@ -1,15 +1,10 @@
-import React, { useState, useCallback } from 'react'
-import { Button, Container, Typography } from '@toptal/picasso'
+import React, { useCallback } from 'react'
+import { Container, Typography } from '@toptal/picasso'
 import { Form } from '@toptal/picasso-forms'
 
 const BackendCommunicationExample = () => {
-  const [isLoading, setIsLoading] = useState(false)
-
   const handleSubmit = useCallback(async (values: any) => {
-    setIsLoading(true)
     const result = await api.submit(values)
-
-    setIsLoading(false)
 
     if (result !== 'success') {
       return {
@@ -30,6 +25,7 @@ const BackendCommunicationExample = () => {
         onSubmit={handleSubmit}
         successSubmitMessage='Login successful!'
         failedSubmitMessage='Login failed! Please try another combination of first and last names.'
+        scrollOffsetTop={100}
       >
         <Form.Input
           required
@@ -45,9 +41,7 @@ const BackendCommunicationExample = () => {
         />
 
         <Container top='small'>
-          <Button type='submit' loading={isLoading}>
-            Login
-          </Button>
+          <Form.SubmitButton>Login</Form.SubmitButton>
         </Container>
       </Form>
     </Container>

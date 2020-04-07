@@ -3,8 +3,6 @@ import {
   Form as FinalForm,
   FormProps as FinalFormProps
 } from 'react-final-form'
-// @ts-ignore
-import createDecorator from 'final-form-focus'
 import { Form as PicassoForm } from '@toptal/picasso'
 import { useNotifications } from '@toptal/picasso/utils'
 
@@ -15,15 +13,16 @@ import RadioGroup from '../RadioGroup'
 import Checkbox from '../Checkbox'
 import NumberInput from '../NumberInput'
 import FileInput from '../FileInput'
+import SubmitButton from '../SubmitButton'
+import { createScrollToErrorDecorator } from '../utils'
 
 type AnyObject = Record<string, any>
 
 export type Props<T = AnyObject> = Omit<FinalFormProps<T>, 'validate'> & {
   successSubmitMessage?: ReactNode
   failedSubmitMessage?: ReactNode
+  scrollOffsetTop?: number
 }
-
-const focusOnErrors = createDecorator()
 
 export function Form<T = AnyObject>(props: Props<T>) {
   const {
@@ -31,6 +30,8 @@ export function Form<T = AnyObject>(props: Props<T>) {
     onSubmit,
     successSubmitMessage,
     failedSubmitMessage,
+    scrollOffsetTop,
+    decorators = [],
     ...rest
   } = props
   const { showSuccess, showError } = useNotifications()
@@ -39,12 +40,13 @@ export function Form<T = AnyObject>(props: Props<T>) {
     async (values, form, callback) => {
       const errors = await onSubmit(values, form, callback)
 
-      if (!errors) {
+      if (!errors && successSubmitMessage) {
         showSuccess(successSubmitMessage)
-      } else {
+      } else if (errors && failedSubmitMessage) {
         showError(failedSubmitMessage)
-        return errors
       }
+
+      return errors
     },
     [
       failedSubmitMessage,
@@ -61,17 +63,14 @@ export function Form<T = AnyObject>(props: Props<T>) {
         <PicassoForm onSubmit={handleSubmit}>{children}</PicassoForm>
       )}
       onSubmit={handleSubmit}
-      decorators={[focusOnErrors]}
+      decorators={decorators.concat(createScrollToErrorDecorator({ scrollOffsetTop }))}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
     />
   )
 }
 
-Form.defaultProps = {
-  successSubmitMessage: 'Success!',
-  failedSubmitMessage: 'Submit failed!'
-}
+Form.defaultProps = {}
 
 Form.displayName = 'Form'
 
@@ -82,5 +81,6 @@ Form.RadioGroup = RadioGroup
 Form.Checkbox = Checkbox
 Form.NumberInput = NumberInput
 Form.FileInput = FileInput
+Form.SubmitButton = SubmitButton
 
 export default Form

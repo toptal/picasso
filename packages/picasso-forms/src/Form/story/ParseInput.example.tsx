@@ -1,9 +1,9 @@
 import React from 'react'
-import { Button, Container, Typography } from '@toptal/picasso'
+import { Container, Typography } from '@toptal/picasso'
 import { Form } from '@toptal/picasso-forms'
 
 const ParseInputExample = () => (
-  <Form onSubmit={values => console.log(values)}>
+  <Form onSubmit={values => console.log(values)} scrollOffsetTop={100}>
     <Container bottom='small'>
       <Typography size='medium'>
         I want to trim my first name from the empty spaces:
@@ -18,7 +18,7 @@ const ParseInputExample = () => (
     />
 
     <Container top='small'>
-      <Button type='submit'>Submit</Button>
+      <Form.SubmitButton>Submit</Form.SubmitButton>
     </Container>
   </Form>
 )
