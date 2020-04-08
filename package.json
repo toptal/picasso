@@ -67,7 +67,7 @@
     "escodegen": "^1.12.0",
     "esprima": "^4.0.1",
     "esprima-walk": "^0.1.0",
-    "fork-ts-checker-notifier-webpack-plugin": "^1.0.2",
+    "fork-ts-checker-notifier-webpack-plugin": "^2.0.0",
     "fork-ts-checker-webpack-plugin": "^1.4.3",
     "fs-extra": "^8.0.1",
     "glob": "^7.1.4",
