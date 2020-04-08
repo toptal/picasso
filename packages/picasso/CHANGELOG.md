@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.49.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.48.3...@toptal/picasso@4.49.0) (2020-04-08)
+
+
+### Features
+
+* **autocomplete:** add extra `onFocus`/`onBlur` event handlers ([#1218](https://github.com/toptal/picasso/issues/1218)) ([04ae414](https://github.com/toptal/picasso/commit/04ae414a24146f45f51a9224e4bf07579088d32e))
+
+
+
+
+
 ## [4.48.3](https://github.com/toptal/picasso/compare/@toptal/picasso@4.48.2...@toptal/picasso@4.48.3) (2020-04-06)
 
 **Note:** Version bump only for package @toptal/picasso

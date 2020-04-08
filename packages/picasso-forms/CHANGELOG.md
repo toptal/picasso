@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.15.0...@toptal/picasso-forms@0.16.0) (2020-04-08)
+
+
+### Features
+
+* **autocomplete:** add extra `onFocus`/`onBlur` event handlers ([#1218](https://github.com/toptal/picasso/issues/1218)) ([04ae414](https://github.com/toptal/picasso/commit/04ae414a24146f45f51a9224e4bf07579088d32e))
+
+
+
+
+
 # [0.15.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.14.1...@toptal/picasso-forms@0.15.0) (2020-04-07)
 
 
