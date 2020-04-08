@@ -24,7 +24,9 @@ const renderAutocomplete = (props: OmitInternalProps<Props>) => {
     autoComplete,
     onChange,
     onSelect,
-    onOtherOptionSelect
+    onOtherOptionSelect,
+    onFocus,
+    onBlur
   } = props
 
   return render(
@@ -40,6 +42,8 @@ const renderAutocomplete = (props: OmitInternalProps<Props>) => {
       onChange={onChange}
       onSelect={onSelect}
       onOtherOptionSelect={onOtherOptionSelect}
+      onFocus={onFocus}
+      onBlur={onBlur}
     />
   )
 }
@@ -73,11 +77,13 @@ describe('Autocomplete', () => {
 
   describe('dynamic behavior', () => {
     test('on focus', () => {
+      const onFocus = jest.fn()
       const { getByText, getByPlaceholderText, getByRole } = renderAutocomplete(
         {
           placeholder,
           options: testOptions,
-          value: ''
+          value: '',
+          onFocus
         }
       )
 
@@ -90,6 +96,8 @@ describe('Autocomplete', () => {
 
       // first option is highlighted
       expect(firstOptionListItem!.getAttribute('aria-selected')).toBe('true')
+      // calls onFocus handler
+      expect(onFocus).toHaveBeenCalledTimes(1)
       // menu contains all the options displayed
       expect(menu).toMatchSnapshot()
     })

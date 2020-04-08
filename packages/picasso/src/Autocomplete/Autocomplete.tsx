@@ -6,7 +6,8 @@ import React, {
   forwardRef,
   ReactNode,
   ComponentType,
-  useRef
+  useRef,
+  FocusEventHandler
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
@@ -60,6 +61,10 @@ export interface Props
     event: KeyboardEvent<HTMLInputElement>,
     inputValue: string
   ) => void
+  /** Focus event handler */
+  onFocus?: FocusEventHandler<HTMLInputElement>
+  /** Blur event handler */
+  onBlur?: FocusEventHandler<HTMLInputElement>
   /** ReactNode for labels that will be used as start InputAdornment - */
   startAdornment?: ReactNode
   /** ReactNode for labels that will be used as end InputAdornment - */
@@ -103,6 +108,8 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       width,
       showOtherOption,
       onKeyDown,
+      onFocus,
+      onBlur,
       inputComponent,
       renderOption,
       endAdornment,
@@ -148,6 +155,8 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       onOtherOptionSelect,
       onChange,
       onKeyDown,
+      onFocus,
+      onBlur,
       enableReset,
       showOtherOption
     })
@@ -258,6 +267,8 @@ Autocomplete.defaultProps = {
   noOptionsText: 'No options',
   onChange: () => {},
   onKeyDown: () => {},
+  onFocus: () => {},
+  onBlur: () => {},
   onOtherOptionSelect: () => {},
   onSelect: () => {},
   options: [],

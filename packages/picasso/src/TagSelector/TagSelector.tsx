@@ -4,7 +4,8 @@ import React, {
   forwardRef,
   ComponentType,
   InputHTMLAttributes,
-  ReactNode
+  ReactNode,
+  FocusEventHandler
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import { StandardProps } from '@toptal/picasso-shared'
@@ -54,6 +55,10 @@ export interface Props
   inputValue?: string
   /**  Callback invoked when `input` element value is changed */
   onInputChange?: (inputValue: string) => void
+  /** Focus event handler */
+  onFocus?: FocusEventHandler<HTMLInputElement>
+  /** Blur event handler */
+  onBlur?: FocusEventHandler<HTMLInputElement>
   /** Width of the component */
   width?: 'full' | 'shrink' | 'auto'
   /** Specifies whether the autofill enabled or not, disabled by default */
@@ -78,6 +83,8 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       onChange,
       inputValue = '',
       onInputChange,
+      onFocus,
+      onBlur,
       width,
       enableAutofill,
       getKey: customGetKey,
@@ -162,6 +169,8 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         onOtherOptionSelect={handleOtherOptionSelect}
         onChange={onInputChange}
         onKeyDown={handleKeyDown}
+        onFocus={onFocus}
+        onBlur={onBlur}
         startAdornment={labels}
         loading={loading}
         inputComponent={TagSelectorInput as ComponentType<InputProps>}
