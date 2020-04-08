@@ -19,7 +19,7 @@ export interface Props extends BaseProps {
   /** Specify the drawer title */
   title: ReactNode
   /** Callback fired when the component requests to be closed. */
-  onClose: () => void
+  onClose?: () => void
 }
 
 const useStyles = makeStyles(styles, { name: 'PicassoDrawer' })
