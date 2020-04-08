@@ -17,7 +17,7 @@ import {
 } from '@toptal/picasso-shared'
 
 import { BackMinor16 } from '../Icon'
-import { Typography } from '../'
+import Typography from '../Typography'
 import MenuItem from '../MenuItem'
 import MenuContext, { MenuContextProps } from './menuContext'
 import styles from './styles'

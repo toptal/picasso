@@ -11,9 +11,11 @@ import cx from 'classnames'
 import { MenuItemProps } from '@material-ui/core/MenuItem'
 import { BaseProps, OverridableComponent } from '@toptal/picasso-shared'
 
-import { Container, Typography, Accordion, MenuItem } from '../'
+import Container from '../Container'
+import Typography from '../Typography'
+import Accordion from '../Accordion'
+import MenuItem, { MenuItemAttributes } from '../MenuItem'
 import { ArrowDropDown16 } from '../Icon'
-import { MenuItemAttributes } from '../MenuItem'
 import styles from './styles'
 import { VariantType } from '../Sidebar/types'
 

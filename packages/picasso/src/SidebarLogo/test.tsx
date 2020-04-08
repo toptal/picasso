@@ -3,7 +3,7 @@ import React, { FunctionComponent } from 'react'
 import { render } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
-import { Logo } from '../'
+import Logo from '../Logo'
 import SidebarLogo, { Props } from './SidebarLogo'
 
 const TestSidebarLogo: FunctionComponent<OmitInternalProps<Props>> = ({

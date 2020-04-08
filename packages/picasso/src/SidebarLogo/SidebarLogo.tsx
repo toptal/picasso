@@ -2,7 +2,7 @@ import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import { StandardProps } from '@toptal/picasso-shared'
 
-import { Container } from '../'
+import Container from '../Container'
 import styles from './styles'
 
 export interface Props
