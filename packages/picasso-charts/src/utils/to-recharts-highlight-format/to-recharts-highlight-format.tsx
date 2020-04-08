@@ -1,4 +1,4 @@
-import { HighlightConfig } from '../..'
+import { HighlightConfig } from '../../LineChart'
 import CHART_CONSTANTS from '../constants'
 
 const {
