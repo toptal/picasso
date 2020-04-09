@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react'
 import { render, fireEvent } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
-import { Button } from '../'
+import Button from '../Button'
 import Modal, { Props as ModalProps } from './Modal'
 import { useModals } from '../utils'
 import { Props as ModalActionsProps } from '../ModalActions/ModalActions'
