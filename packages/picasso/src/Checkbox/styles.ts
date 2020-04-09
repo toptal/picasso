@@ -103,6 +103,8 @@ export default ({ palette, sizes, transitions }: Theme) =>
       }
     },
     label: {
-      maxWidth: `calc(100% - ${controlWidth} - ${controlMarginRight})`
-    }
+      // 1px is needed for safari
+      maxWidth: `calc(100% - ${controlWidth} - ${controlMarginRight} + 1px)`
+    },
+    labelWithRightSpacing: {}
   })
