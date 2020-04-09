@@ -53,6 +53,7 @@ export const Drawer: FunctionComponent<Props> = ({
       open={hasDrawer}
       onClose={handleOnClose}
       style={{ zIndex: 1200 }}
+      disableEnforceFocus
     >
       <Container className={classes.drawer}>
         <Container
