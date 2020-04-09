@@ -52,6 +52,7 @@ export const Drawer: FunctionComponent<Props> = ({
       {...rest}
       open={hasDrawer}
       onClose={handleOnClose}
+      style={{ zIndex: 1200 }}
     >
       <Container className={classes.drawer}>
         <Container

@@ -28,3 +28,4 @@ page
     'Drawer/story/DrawerAndNotification.example.jsx',
     'With notification'
   ) // picasso-skip-visuals
+  .addExample('Drawer/story/DrawerAndModal.example.jsx', 'With modal') // picasso-skip-visuals
