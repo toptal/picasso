@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.1](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.16.0...@toptal/picasso-forms@0.16.1) (2020-04-09)
+
+
+### Bug Fixes
+
+* wrong ellipsis at Checkbox and Radio on overflow in Safari ([#1220](https://github.com/toptal/picasso/issues/1220)) ([e076c90](https://github.com/toptal/picasso/commit/e076c90a35d7026eafbb5bfe487a7027f918cc59))
+
+
+
+
+
 # [0.16.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.15.0...@toptal/picasso-forms@0.16.0) (2020-04-08)
 
 
