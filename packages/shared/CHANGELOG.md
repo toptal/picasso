@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.1](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.11.0...@toptal/picasso-shared@1.11.1) (2020-04-09)
+
+**Note:** Version bump only for package @toptal/picasso-shared
+
+
+
+
+
 # [1.11.0](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.10.7...@toptal/picasso-shared@1.11.0) (2020-04-06)
 
 

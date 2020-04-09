@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso",
-  "version": "4.49.1",
+  "version": "4.49.2",
   "description": "Toptal UI components library",
   "publishConfig": {
     "access": "public"
@@ -28,7 +28,7 @@
   "dependencies": {
     "@material-ui/core": "4.9.2",
     "@material-ui/icons": "4.9.1",
-    "@toptal/picasso-shared": "^1.11.0",
+    "@toptal/picasso-shared": "^1.11.1",
     "classnames": "^2.2.6",
     "notistack": "^0.9.7",
     "react-helmet": "^5.2.1",
