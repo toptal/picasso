@@ -14,6 +14,8 @@ export interface Props extends BaseProps {
   anchor?: AnchorType
   /** Drawer content */
   children: ReactNode
+  /** Disable the portal behavior. The children stay within it's parent DOM hierarchy. */
+  disablePortal?: boolean
   /** Specify if the drawer is opened or not */
   open: boolean
   /** Specify the drawer title */
@@ -26,6 +28,7 @@ const useStyles = makeStyles(styles, { name: 'PicassoDrawer' })
 
 export const Drawer: FunctionComponent<Props> = ({
   children,
+  disablePortal,
   open,
   onClose,
   title,
@@ -52,6 +55,7 @@ export const Drawer: FunctionComponent<Props> = ({
       {...rest}
       open={hasDrawer}
       onClose={handleOnClose}
+      disablePortal={disablePortal}
     >
       <Container className={classes.drawer}>
         <Container
@@ -80,6 +84,7 @@ Drawer.displayName = 'Drawer'
 
 Drawer.defaultProps = {
   anchor: 'right',
+  disablePortal: false,
   onClose: () => {}
 }
 
