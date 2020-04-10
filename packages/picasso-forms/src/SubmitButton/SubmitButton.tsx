@@ -1,10 +1,10 @@
 import React from 'react'
-import { Button, ButtonProps } from '@toptal/picasso/Button'
+import { Button, Props as ButtonProps } from '@toptal/picasso/Button'
 import { useFormState } from 'react-final-form'
 
 export type Props = Omit<ButtonProps, 'type'>
 
-export const SubmitButton = (props: Omit<ButtonProps, 'type'>) => {
+export const SubmitButton = (props: Props) => {
   const { submitting } = useFormState()
   return (
     <Button

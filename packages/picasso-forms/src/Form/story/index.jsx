@@ -104,7 +104,8 @@ page
       scrollOffsetTop: {
         name: 'scrollOffsetTop',
         type: 'number',
-        description: 'Offset from the viewport for inputs to focus on'
+        description:
+          'Offset from the viewport for inputs to focus on, defaults to the center of the window'
       }
     }
   })

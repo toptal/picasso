@@ -25,7 +25,6 @@ const BackendCommunicationExample = () => {
         onSubmit={handleSubmit}
         successSubmitMessage='Login successful!'
         failedSubmitMessage='Login failed! Please try another combination of first and last names.'
-        scrollOffsetTop={100}
       >
         <Form.Input
           required
