@@ -2,6 +2,11 @@ import { FormApi, getIn } from 'final-form'
 
 import flatMap from './flat-map'
 
+const getDefaultScrollOffsetTop = () => {
+  if (!window) return 0
+  return window.innerHeight / 2 - 50
+}
+
 const scrollTo = (options: ScrollToOptions) => {
   try {
     window.scrollTo(options)
@@ -34,9 +39,11 @@ const scrollToError = (offsetTop: number, errors: object) => {
   scrollTo({ top, behavior: 'smooth' })
 }
 
-export default ({ scrollOffsetTop = 0 }: { scrollOffsetTop?: number }) => <T>(
-  form: FormApi<T>
-) => {
+export default ({
+  scrollOffsetTop = getDefaultScrollOffsetTop()
+}: {
+  scrollOffsetTop?: number
+}) => <T>(form: FormApi<T>) => {
   const originalSubmit = form.submit
   let state: { errors?: object; submitErrors?: object } = {}
 

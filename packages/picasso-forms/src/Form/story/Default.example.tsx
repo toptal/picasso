@@ -3,7 +3,7 @@ import { Container } from '@toptal/picasso'
 import { Form } from '@toptal/picasso-forms'
 
 const DefaultExample = () => (
-  <Form onSubmit={values => console.log(values)} scrollOffsetTop={100}>
+  <Form onSubmit={values => console.log(values)}>
     <Form.Input
       enableReset
       onResetClick={(set: (value: string) => void) => {

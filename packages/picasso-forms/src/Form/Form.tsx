@@ -1,4 +1,4 @@
-import React, { useCallback, ReactNode } from 'react'
+import React, { useCallback, useMemo, ReactNode } from 'react'
 import {
   Form as FinalForm,
   FormProps as FinalFormProps
@@ -18,7 +18,7 @@ import { createScrollToErrorDecorator } from '../utils'
 
 type AnyObject = Record<string, any>
 
-export type Props<T = AnyObject> = Omit<FinalFormProps<T>, 'validate'> & {
+export type Props<T = AnyObject> = FinalFormProps<T> & {
   successSubmitMessage?: ReactNode
   failedSubmitMessage?: ReactNode
   scrollOffsetTop?: number
@@ -35,6 +35,10 @@ export function Form<T = AnyObject>(props: Props<T>) {
     ...rest
   } = props
   const { showSuccess, showError } = useNotifications()
+  const scrollToErrorDecorator = useMemo(
+    () => createScrollToErrorDecorator({ scrollOffsetTop }),
+    [scrollOffsetTop]
+  )
 
   const handleSubmit = useCallback(
     async (values, form, callback) => {
@@ -63,7 +67,7 @@ export function Form<T = AnyObject>(props: Props<T>) {
         <PicassoForm onSubmit={handleSubmit}>{children}</PicassoForm>
       )}
       onSubmit={handleSubmit}
-      decorators={decorators.concat(createScrollToErrorDecorator({ scrollOffsetTop }))}
+      decorators={[...decorators, scrollToErrorDecorator]}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
     />

@@ -23,7 +23,6 @@ const CustomValidatorExample = () => (
       name='userName'
       label='First name'
       placeholder='e.g. Bruce'
-      scrollOffsetTop={100}
     />
     <Form.NumberInput
       required
