@@ -18,7 +18,7 @@ const scrollTo = (options: ScrollToOptions) => {
 const formInputs = (form: HTMLFormElement) =>
   Array.from(form.elements).filter(
     element =>
-      element instanceof HTMLInputElement && typeof element.focus === 'function'
+      element instanceof HTMLElement && typeof element.focus === 'function'
   ) as HTMLInputElement[]
 
 const getInputs = (): HTMLInputElement[] => {
