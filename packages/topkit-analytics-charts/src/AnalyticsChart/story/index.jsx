@@ -37,6 +37,14 @@ page.createTabChapter('Props').addComponentDocs({
       },
       description:
         'A record of data points to be rendered as a dashed horizontal line'
+    },
+    formatXAxisLabel: {
+      name: 'formatXAxisLabel',
+      type: {
+        name: 'function',
+        description: `(label: string) => string`
+      },
+      description: 'A function to custom format the X axis label'
     }
   })
 })
@@ -49,4 +57,8 @@ page
   .addExample(
     'AnalyticsChart/story/ReferenceLines.example.tsx',
     'Reference Lines'
+  )
+  .addExample(
+    'AnalyticsChart/story/FormatLabel.example.tsx',
+    'Custom Format xAxis Label'
   )

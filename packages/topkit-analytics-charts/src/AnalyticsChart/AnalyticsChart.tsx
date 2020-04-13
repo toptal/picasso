@@ -28,6 +28,7 @@ export type Props = BaseChartProps & {
   data: Point[]
   highlights?: Highlight[]
   referenceLines?: ReferenceLine[]
+  formatXAxisLabel?: (label: string) => string
 }
 
 const insertReferenceLine = (
@@ -68,9 +69,10 @@ export const AnalyticsChart = ({
   referenceLines,
   xAxisKey,
   lineConfig: lines,
+  formatXAxisLabel,
   ...rest
 }: Props) => {
-  const formattedChartData = toChartFormat(data, xAxisKey!)
+  const formattedChartData = toChartFormat(data, xAxisKey!, formatXAxisLabel)
 
   const highlightsData =
     highlights && toHighlightFormat(formattedChartData, highlights!, xAxisKey!)

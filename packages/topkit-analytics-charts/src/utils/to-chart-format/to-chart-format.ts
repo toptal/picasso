@@ -2,23 +2,28 @@ import { ChartDataPoint } from '@toptal/picasso-charts'
 
 import { Point } from './../../AnalyticsChart'
 
-const toChartFormat = (data: Point[], xAxisKey: string) => {
+const toChartFormat = (
+  data: Point[],
+  xAxisKey: string,
+  labelFormatter: (label: string) => string = label => label
+) => {
   const formattedData: ChartDataPoint[] = []
 
   data.forEach(({ id, values }) => {
-    Object.keys(values).forEach(label => {
+    Object.entries(values).forEach(([key, value]) => {
+      const label = labelFormatter(key)
       const index = formattedData.findIndex(
         ({ [xAxisKey]: existingLabel }) => existingLabel === label
       )
 
       if (index > -1) {
-        formattedData[index][id] = values[label]
+        formattedData[index][id] = value
         return
       }
 
       formattedData.push({
         [xAxisKey]: label,
-        [id]: values[label]
+        [id]: value
       })
     })
   })
