@@ -42,6 +42,12 @@ const DefaultExample = () => (
         { value: 1, text: 'Individual' }
       ]}
     />
+    <Form.Select
+      name='country'
+      label='Country'
+      width='auto'
+      options={options}
+    />
     <Form.FileInput
       required
       name='avatar'
@@ -59,5 +65,17 @@ const DefaultExample = () => (
     </Container>
   </Form>
 )
+
+const options = [
+  { value: 'Afghanistan', text: 'Afghanistan' },
+  { value: 'Albania', text: 'Albania' },
+  { value: 'Algeria', text: 'Algeria' },
+  { value: 'Belarus', text: 'Belarus' },
+  { value: 'Croatia', text: 'Croatia' },
+  { value: 'Lithuania', text: 'Lithuania' },
+  { value: 'Slovakia', text: 'Slovakia' },
+  { value: 'Spain', text: 'Spain' },
+  { value: 'Ukraine', text: 'Ukraine' }
+]
 
 export default DefaultExample
