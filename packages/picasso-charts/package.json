@@ -20,7 +20,7 @@
     "url": "https://github.com/toptal/picasso/issues"
   },
   "peerDependencies": {
-    "@toptal/picasso": "^4.21.0"
+    "@toptal/picasso": "^4.49.2"
   },
   "dependencies": {
     "@types/recharts": "^1.8.7",
