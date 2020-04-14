@@ -8,6 +8,7 @@ export {
 } from './Picasso'
 
 export * from './types'
+export * from './utils'
 
 export {
   useScreenSize,

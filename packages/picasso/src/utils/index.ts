@@ -5,15 +5,14 @@ export {
   useBreakpoint,
   useScreens,
   shadows,
-  colors as palette
+  colors as palette,
+  generateRandomString
 } from '@toptal/picasso-shared'
 
 export { default as useWidthOf } from './use-width-of'
 export { default as useCombinedRefs } from './use-combined-refs'
 
-export {
-  default as ClickAwayListener
-} from '@material-ui/core/ClickAwayListener'
+export { default as ClickAwayListener } from '@material-ui/core/ClickAwayListener'
 
 export { default as isString } from './is-string'
 export { default as disableUnsupportedProps } from './disable-unsupported-props'

@@ -37,6 +37,7 @@ import Provider from './PicassoProvider'
 import NotificationsProvider from './NotificationsProvider'
 import globalStyles from './styles'
 import Favicon from '../Favicon'
+import { generateRandomString } from './utils'
 import { EnvironmentType } from './types'
 
 const picasso = {
@@ -244,21 +245,10 @@ const Picasso: FunctionComponent<PicassoProps> = ({
     PicassoBreakpoints.disableMobileBreakpoints()
   }
 
-  const generateRandomString = () =>
-    Math.random()
-      .toString(36)
-      .substring(7)
-  const generateProjectSeed = () => {
-    if (process.env.NODE_ENV === 'test') {
-      return ''
-    }
-
-    return generateRandomString()
-  }
   const generateClassName = createGenerateClassName({
     // if there are multiples instances of Picasso
     // on the page we want each set of styles to be unique
-    seed: generateProjectSeed()
+    seed: generateRandomString()
   })
 
   return (
