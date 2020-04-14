@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-lab",
-  "version": "2.12.2",
+  "version": "2.12.3",
   "description": "Lab components of Picasso",
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-lab#readme",
@@ -22,8 +22,8 @@
     "url": "https://github.com/toptal/picasso/issues"
   },
   "peerDependencies": {
-    "@toptal/picasso": "^4.21.0",
-    "@toptal/picasso-shared": "^1.3.0",
+    "@toptal/picasso": "^4.49.2",
+    "@toptal/picasso-shared": "^1.11.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   },
