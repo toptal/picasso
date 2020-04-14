@@ -19,7 +19,7 @@ import {
   SizeType
 } from '@toptal/picasso-shared'
 
-import { ChevronMinor16 } from '../Icon'
+import { ChevronMinor16, CheckMinor16 } from '../Icon'
 import Container from '../Container'
 import MenuContext, { MenuContextProps } from '../Menu/menuContext'
 import styles from './styles'
@@ -44,6 +44,8 @@ export interface Props extends StandardProps, MenuItemAttributes {
   onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
   /** Highlights the item as selected */
   selected?: boolean
+  /** Checkmarks the item */
+  checkmarked?: boolean
   /** Value of the item. Can be used when menu item is used inside Select component. */
   value?: string | string[] | number
   /** Variant of colors */
@@ -71,6 +73,7 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
     menu,
     onClick,
     selected,
+    checkmarked,
     style,
     value,
     variant,
@@ -112,6 +115,24 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
     }
   }
 
+  const renderIconIfEligible = () => {
+    if (menu) {
+      return (
+        <Container flex inline left='xsmall'>
+          <ChevronMinor16 />
+        </Container>
+      )
+    }
+    if (checkmarked) {
+      return (
+        <Container flex inline left='xsmall' data-testid='select-checkmark'>
+          <CheckMinor16 />
+        </Container>
+      )
+    }
+    return null
+  }
+
   return (
     <MUIMenuItem
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -133,11 +154,7 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
       selected={selected}
     >
       {children}
-      {menu && (
-        <Container flex inline left='xsmall'>
-          <ChevronMinor16 />
-        </Container>
-      )}
+      {renderIconIfEligible()}
     </MUIMenuItem>
   )
 })
