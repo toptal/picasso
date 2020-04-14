@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import { Select as PicassoSelect } from '@toptal/picasso'
 import { Props as SelectProps } from '@toptal/picasso/Select'
 import { generateRandomString } from '@toptal/picasso/utils'
@@ -8,11 +8,7 @@ import FieldWrapper, { FieldProps } from '../FieldWrapper'
 export type Props = SelectProps & FieldProps<SelectProps['value']>
 
 export const Select = ({ name, id = name, ...rest }: Props) => {
-  const randomizedId = useMemo(() => {
-    if (!id) return
-
-    return generateRandomString(id)
-  }, [id])
+  const randomizedId = id ? generateRandomString(id) : undefined
 
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
