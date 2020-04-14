@@ -6,7 +6,8 @@ export {
   useScreens,
   shadows,
   colors as palette,
-  generateRandomString
+  generateRandomString,
+  generateRandomStringOrGetEmptyInTest
 } from '@toptal/picasso-shared'
 
 export { default as useWidthOf } from './use-width-of'
