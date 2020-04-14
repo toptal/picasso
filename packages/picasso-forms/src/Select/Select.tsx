@@ -23,6 +23,7 @@ export const Select = ({ name, id = name, ...rest }: Props) => {
             // eslint-disable-next-line react/jsx-props-no-spreading
             {...selectProps}
             id={randomizedId}
+            // if `id` is specified, we have to provide a not correct value for autoComplete, e.g. `none` to trick google chrome
             autoComplete={id ? 'none' : rest.autoComplete || 'off'}
           />
         )
