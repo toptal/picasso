@@ -72,10 +72,16 @@ export const AnalyticsChart = ({
   formatXAxisLabel,
   ...rest
 }: Props) => {
-  const formattedChartData = toChartFormat(data, xAxisKey!, formatXAxisLabel)
+  const formattedChartData = toChartFormat(data, xAxisKey!, formatXAxisLabel!)
 
   const highlightsData =
-    highlights && toHighlightFormat(formattedChartData, highlights!, xAxisKey!)
+    highlights &&
+    toHighlightFormat(
+      formattedChartData,
+      highlights!,
+      xAxisKey!,
+      formatXAxisLabel!
+    )
 
   const { chartData, lineConfig } = generateChartData(
     formattedChartData,
@@ -97,7 +103,8 @@ export const AnalyticsChart = ({
 }
 
 AnalyticsChart.defaultProps = {
-  xAxisKey: 'x'
+  xAxisKey: 'x',
+  formatXAxisLabel: (label: string) => label
 }
 
 AnalyticsChart.displayName = 'AnalyticsChart'

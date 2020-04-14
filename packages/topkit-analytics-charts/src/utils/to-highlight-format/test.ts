@@ -22,7 +22,8 @@ test('convert highlight data', () => {
   const convertedHighlightsData = toHighlightFormat(
     CHART_DATA,
     HIGHLIGHTS,
-    X_AXIS_KEY
+    X_AXIS_KEY,
+    label => label
   )
   expect(convertedHighlightsData).toEqual([
     { color: 'red', from: 0, to: 1 },

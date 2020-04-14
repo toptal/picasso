@@ -5,19 +5,19 @@ import { Point } from './../../AnalyticsChart'
 const toChartFormat = (
   data: Point[],
   xAxisKey: string,
-  labelFormatter: (label: string) => string = label => label
+  formatLabel: (label: string) => string
 ) => {
   const formattedData: ChartDataPoint[] = []
 
   data.forEach(({ id, values }) => {
     Object.entries(values).forEach(([key, value]) => {
-      const label = labelFormatter(key)
-      const index = formattedData.findIndex(
+      const label = formatLabel(key)
+      const item = formattedData.find(
         ({ [xAxisKey]: existingLabel }) => existingLabel === label
       )
 
-      if (index > -1) {
-        formattedData[index][id] = value
+      if (item) {
+        item[id] = value
         return
       }
 

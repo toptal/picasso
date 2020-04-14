@@ -36,7 +36,7 @@ test('convert chart data', () => {
     { x: '2020-10-24', projects: 1.5, team: 1.5 },
     { x: '2020-10-25', projects: 1.3, team: 1.3 }
   ]
-  const convertedChartData = toChartFormat(RAW_CHART_DATA, 'x')
+  const convertedChartData = toChartFormat(RAW_CHART_DATA, 'x', label => label)
   expect(convertedChartData).toEqual(EXPECTED_CHART_DATA)
 })
 
@@ -49,10 +49,8 @@ test('convert chart data with custom label format', () => {
     { x: 'Oct 24', projects: 1.5, team: 1.5 },
     { x: 'Oct 25', projects: 1.3, team: 1.3 }
   ]
-  const convertedChartData = toChartFormat(
-    RAW_CHART_DATA,
-    'x',
-    (label: string) => format(parseISO(label), 'MMM dd')
+  const convertedChartData = toChartFormat(RAW_CHART_DATA, 'x', label =>
+    format(parseISO(label), 'MMM dd')
   )
   expect(convertedChartData).toEqual(EXPECTED_CHART_DATA)
 })

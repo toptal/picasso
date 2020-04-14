@@ -23,6 +23,7 @@
     "@toptal/picasso-charts": "^0.2.0"
   },
   "devDependencies": {
-    "cross-env": "^6.0.3"
+    "cross-env": "^6.0.3",
+    "date-fns": "^2.9.0"
   }
 }
