@@ -1,14 +1,8 @@
-import React from 'react'
-import {
-  LineChart,
-  ChartDataPoint,
-  LineConfig,
-  BaseChartProps
-} from '@toptal/picasso-charts'
+import React, { useMemo } from 'react'
+import { BaseChartProps, LineChart } from '@toptal/picasso-charts'
 
-import { toHighlightFormat, toChartFormat } from '../utils'
+import { toChartFormat, toHighlightFormat, toLineConfigFormat } from '../utils'
 
-export type ReferenceLineData = Record<string, number>
 export type Point = {
   id: string
   values: Record<string, number>
@@ -20,7 +14,7 @@ export type Highlight = {
 }
 
 export type ReferenceLine = {
-  data: ReferenceLineData
+  data: Record<string, number>
   color: string
 }
 
@@ -29,38 +23,6 @@ export type Props = BaseChartProps & {
   highlights?: Highlight[]
   referenceLines?: ReferenceLine[]
   formatXAxisLabel?: (label: string) => string
-}
-
-const insertReferenceLine = (
-  chartData: ChartDataPoint[],
-  lineConfig: LineConfig,
-  xAxisKey: string,
-  referenceLines: ReferenceLine[]
-) => {
-  chartData.forEach(point => {
-    referenceLines.forEach(({ data, color }, index) => {
-      const referenceLineName = `reference-${index}`
-
-      point[referenceLineName] = data[point[xAxisKey]]
-
-      lineConfig[referenceLineName] = {
-        variant: 'reference',
-        color
-      }
-    })
-  })
-}
-
-const generateChartData = (
-  chartData: ChartDataPoint[],
-  lineConfig: LineConfig,
-  xAxisKey: string,
-  referenceLines?: ReferenceLine[]
-) => {
-  if (referenceLines) {
-    insertReferenceLine(chartData, lineConfig, xAxisKey, referenceLines)
-  }
-  return { chartData, lineConfig }
 }
 
 export const AnalyticsChart = ({
@@ -72,22 +34,19 @@ export const AnalyticsChart = ({
   formatXAxisLabel,
   ...rest
 }: Props) => {
-  const formattedChartData = toChartFormat(data, xAxisKey!, formatXAxisLabel!)
-
-  const highlightsData =
-    highlights &&
-    toHighlightFormat(
-      formattedChartData,
-      highlights!,
-      xAxisKey!,
-      formatXAxisLabel!
-    )
-
-  const { chartData, lineConfig } = generateChartData(
-    formattedChartData,
-    lines,
-    xAxisKey!,
-    referenceLines
+  const chartData = useMemo(
+    () => toChartFormat(data, referenceLines, xAxisKey!, formatXAxisLabel!),
+    [data, referenceLines, xAxisKey, formatXAxisLabel]
+  )
+  const lineConfig = useMemo(
+    () => (referenceLines ? toLineConfigFormat(lines, referenceLines) : lines),
+    [referenceLines, lines]
+  )
+  const highlightsData = useMemo(
+    () =>
+      highlights &&
+      toHighlightFormat(chartData, highlights, xAxisKey!, formatXAxisLabel!),
+    [chartData, formatXAxisLabel, highlights, xAxisKey]
   )
 
   return (
@@ -95,9 +54,9 @@ export const AnalyticsChart = ({
       xAxisKey={xAxisKey}
       data={chartData}
       highlights={highlightsData || null}
+      lineConfig={lineConfig}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
-      lineConfig={lineConfig}
     />
   )
 }
