@@ -115,6 +115,7 @@ const FieldWrapper = <
     initialValue,
     isEqual,
     name,
+    id = name,
     parse,
     subscription,
     validate,
@@ -186,7 +187,7 @@ const FieldWrapper = <
   return (
     <PicassoForm.Field error={error} hint={hint}>
       {!hideFieldLabel && label && (
-        <PicassoForm.Label required={required} htmlFor={name}>
+        <PicassoForm.Label required={required} htmlFor={id}>
           {label}
         </PicassoForm.Label>
       )}
