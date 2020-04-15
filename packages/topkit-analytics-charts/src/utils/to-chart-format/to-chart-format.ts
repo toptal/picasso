@@ -1,7 +1,6 @@
 import { ChartDataPoint } from '@toptal/picasso-charts'
 
-import { Point } from './../../AnalyticsChart'
-import { ReferenceLine } from './../../AnalyticsChart/AnalyticsChart'
+import { Point, ReferenceLine } from './../../AnalyticsChart'
 import generateReferenceKey from '../generate-reference-key'
 
 const toChartFormat = (
