@@ -9,9 +9,11 @@ import {
 
 import styles from './styles'
 
+export type EnvironmentTypes = EnvironmentType<'temploy' | 'test'>
+
 export interface Props extends BaseProps {
   /** Name of the current environment */
-  environment: EnvironmentType<'temploy' | 'test'>
+  environment: EnvironmentTypes
   /** Name of the product to be rendered alongside enviroment (i.e. Blackfish, Talent, Portal, Billing) */
   productName: string
 }
