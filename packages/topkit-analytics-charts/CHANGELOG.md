@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/toptal/picasso/compare/@topkit/analytics-charts@0.2.4...@topkit/analytics-charts@0.3.0) (2020-04-15)
+
+
+### Features
+
+* **charts:** add prop to custom format xAxis label ([#1232](https://github.com/toptal/picasso/issues/1232)) ([1ceeecd](https://github.com/toptal/picasso/commit/1ceeecdfdf280df0b3598abb8a521bbb116f7c0f))
+
+
+
+
+
 ## [0.2.4](https://github.com/toptal/picasso/compare/@topkit/analytics-charts@0.2.3...@topkit/analytics-charts@0.2.4) (2020-04-07)
 
 
