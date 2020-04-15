@@ -82,12 +82,13 @@ export const Tooltip: FunctionComponent<Props> = ({
               enabled: Boolean(arrowRef),
               element: arrowRef
             },
-            ...(preventOverflow
-              ? {
-                  enabled: true,
-                  boundariesElement: 'scrollParent'
-                }
-              : {})
+            preventOverflow: {
+              enabled: preventOverflow,
+              boundariesElement: 'scrollParent'
+            },
+            hide: {
+              enabled: preventOverflow
+            }
           }
         }
       }}

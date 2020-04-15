@@ -64,15 +64,13 @@ function getPopperOptions(popperOptions: PopperOptions) {
       ...popperOptions.modifiers,
       flip: {
         enabled: true,
-        // replace with optional chaining
-        ...(popperOptions.modifiers && popperOptions.modifiers.flip)
+        ...popperOptions.modifiers?.flip
       },
       preventOverflow: {
         enabled: true,
         boundariesElement: 'viewport',
         padding: 5,
-        // replace with optional chaining
-        ...(popperOptions.modifiers && popperOptions.modifiers.preventOverflow)
+        ...popperOptions.modifiers?.preventOverflow
       }
     }
   }
