@@ -7,3 +7,4 @@ build/
 __diff_output__
 
 .envrc
+.DS_Store
