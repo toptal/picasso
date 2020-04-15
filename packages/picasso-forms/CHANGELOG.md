@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.6](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.16.5...@toptal/picasso-forms@0.16.6) (2020-04-15)
+
+
+### Bug Fixes
+
+* **Select:** randomize id attribute value in forms ([#1225](https://github.com/toptal/picasso/issues/1225)) ([0f7b56b](https://github.com/toptal/picasso/commit/0f7b56b7103aa88acc56c9e0a6b3e09bf5936022))
+
+
+
+
+
 ## [0.16.5](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.16.4...@toptal/picasso-forms@0.16.5) (2020-04-14)
 
 **Note:** Version bump only for package @toptal/picasso-forms
