@@ -7,7 +7,7 @@ const Example = () => {
   const handleChange = (
     event: ChangeEvent<{
       name?: string | undefined
-      value: string | string[] | number | undefined
+      value: string | string[] | number
     }>
   ) => {
     console.log('Select value:', event.target.value)

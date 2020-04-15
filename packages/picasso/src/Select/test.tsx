@@ -58,7 +58,7 @@ const getCheckmarkedOptions = (element: Element) =>
     opt.querySelector('[data-testid="select-checkmark"]')
   ) as Element[]
 
-const getSelectedOprions = (element: Element) =>
+const getSelectedOptions = (element: Element) =>
   Array.from(element.querySelectorAll('[class$="selected"]')) as Element[]
 
 test('renders native select', () => {
@@ -229,7 +229,7 @@ test('should highlight first and selected option when focus on select', () => {
   const input = getByPlaceholderText(placeholder)
   fireEvent.focus(input)
 
-  const selectedOptions = getSelectedOprions(container)
+  const selectedOptions = getSelectedOptions(container)
   expect(selectedOptions[0].textContent).toMatch(OPTIONS[0].text)
   expect(selectedOptions[1].textContent).toMatch(OPTIONS[2].text)
 })

@@ -60,7 +60,10 @@ export interface Props
   native?: boolean
   /** Callback invoked when `Select` changes its state. */
   onChange?: (
-    event: ChangeEvent<{ name?: string | undefined; value: ValueType }>
+    event: ChangeEvent<{
+      name?: string | undefined
+      value: Exclude<ValueType, undefined>
+    }>
   ) => void
   /** List of options to be rendered as `Select` */
   options: Option[]
@@ -268,7 +271,7 @@ const renderOptions = ({
 }: OptionsProps) => {
   const optionComponents = options.map((option, currentIndex) => {
     const { close, onMouseDown } = getItemProps(currentIndex, option)
-    const selectObj = getSelection(options, value)
+    const selection = getSelection(options, value)
     return (
       <SelectOption
         key={option.key || option.value}
@@ -276,10 +279,10 @@ const renderOptions = ({
         size={size}
         onMouseDown={onMouseDown}
         selected={
-          selectObj.isOptionSelected(option) ||
+          selection.isOptionSelected(option) ||
           highlightedIndex === currentIndex
         }
-        checkmarked={selectObj.isOptionCheckmarked(option)}
+        checkmarked={selection.isOptionCheckmarked(option)}
         setHighlightedIndex={setHighlightedIndex}
         index={currentIndex}
         multiple={multiple}

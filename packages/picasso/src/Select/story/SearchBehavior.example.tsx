@@ -2,13 +2,13 @@ import React, { useState, ChangeEvent } from 'react'
 import { Select, Button, Container } from '@toptal/picasso'
 
 const SelectSearchBehaviourExample = () => {
-  const [value, setValue] = useState<string | string[] | number | undefined>()
+  const [value, setValue] = useState<string | string[] | number>()
   const [options, setOptions] = useState(OPTIONS_WHEN_SEARCH_DISABLED)
 
   const handleChange = (
     event: ChangeEvent<{
       name?: string | undefined
-      value: string | string[] | number | undefined
+      value: string | string[] | number
     }>
   ) => {
     console.log('Select value:', event.target.value)
