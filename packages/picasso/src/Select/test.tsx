@@ -305,7 +305,7 @@ describe('multiple select', () => {
     expect(inputComponent.value).toBe(`${OPTIONS[0].text}, ${OPTIONS[1].text}`)
   })
 
-  test('should highlight first + selected options when focus on select', () => {
+  test('should highlight first option only when focus on select', () => {
     const placeholder = 'Choose an option...'
     const selectedOptions = [OPTIONS[2]]
     const { container, getByPlaceholderText } = renderSelect({
@@ -319,9 +319,8 @@ describe('multiple select', () => {
     fireEvent.focus(input)
 
     const selectedItems = container.querySelectorAll('[class$="selected"]')
-    expect(selectedItems.length).toBe(2)
+    expect(selectedItems.length).toBe(1)
     expect(selectedItems.item(0).textContent).toMatch(OPTIONS[0].text)
-    expect(selectedItems.item(1).textContent).toMatch(OPTIONS[2].text)
   })
 
   test('should checkmark user selected options', () => {

@@ -212,7 +212,7 @@ const getMultipleSelection = (
         .map(getDisplayValue)
         .join(', '),
     isSelected: () => !isEmpty(value),
-    isOptionSelected: option => value.includes(String(option.value)),
+    isOptionSelected: () => false,
     isOptionCheckmarked: option => value.includes(String(option.value))
   }
 }
