@@ -1,6 +1,6 @@
 import { LineConfig } from '@toptal/picasso-charts/src'
 
-import { ReferenceLine } from '../../AnalyticsChart/AnalyticsChart'
+import { ReferenceLine } from './../../AnalyticsChart/AnalyticsChart'
 import generateReferenceKey from '../generate-reference-key'
 
 const toLineConfigFormat = (

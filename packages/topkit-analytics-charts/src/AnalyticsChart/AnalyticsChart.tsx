@@ -1,7 +1,11 @@
 import React, { useMemo } from 'react'
 import { BaseChartProps, LineChart } from '@toptal/picasso-charts'
 
-import { toChartFormat, toHighlightFormat, toLineConfigFormat } from '../utils'
+import {
+  toChartFormat,
+  toHighlightFormat,
+  toLineConfigFormat
+} from './../utils'
 
 export type Point = {
   id: string

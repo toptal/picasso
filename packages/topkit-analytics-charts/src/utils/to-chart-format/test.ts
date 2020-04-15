@@ -1,7 +1,7 @@
 import { format, parseISO } from 'date-fns'
 
 import toChartFormat from './'
-import generateReferenceKey from '../generate-reference-key'
+import generateReferenceKey from './../generate-reference-key'
 
 const RAW_CHART_DATA = [
   {

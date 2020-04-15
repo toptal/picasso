@@ -1,7 +1,7 @@
-import { LineConfig } from '@toptal/picasso-charts/src'
+import { LineConfig } from '@toptal/picasso-charts'
 
-import { toLineConfigFormat } from '../index'
-import generateReferenceKey from '../generate-reference-key'
+import generateReferenceKey from './../generate-reference-key'
+import toLineConfigFormat from './'
 
 const LINE_CONFIG: LineConfig = {
   team: {
