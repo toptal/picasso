@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.50.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.49.3...@toptal/picasso@4.50.0) (2020-04-15)
+
+
+### Features
+
+* add time icons ([#1237](https://github.com/toptal/picasso/issues/1237)) ([fcef14d](https://github.com/toptal/picasso/commit/fcef14ddcd21394b7b538c53a758952dfe822690))
+
+
+
+
+
 ## [4.49.3](https://github.com/toptal/picasso/compare/@toptal/picasso@4.49.2...@toptal/picasso@4.49.3) (2020-04-15)
 
 
