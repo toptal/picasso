@@ -1,25 +1,36 @@
 import { ChartDataPoint } from '@toptal/picasso-charts'
 
-import { Point } from './../../AnalyticsChart'
+import { Point, ReferenceLine } from './../../AnalyticsChart'
+import generateReferenceKey from '../generate-reference-key'
 
-const toChartFormat = (data: Point[], xAxisKey: string) => {
+const toChartFormat = (
+  data: Point[],
+  referenceLines: ReferenceLine[] | undefined,
+  xAxisKey: string,
+  formatLabel: (label: string) => string
+) => {
   const formattedData: ChartDataPoint[] = []
+  const decoratePointWithRefData = (point: ChartDataPoint, dataKey: string) =>
+    referenceLines?.reduce((point, { data }, index) => {
+      point[generateReferenceKey(index)] = data[dataKey]
+      return point
+    }, point) || point
 
   data.forEach(({ id, values }) => {
-    Object.keys(values).forEach(label => {
-      const index = formattedData.findIndex(
+    Object.entries(values).forEach(([key, value]) => {
+      const label = formatLabel(key)
+      const existingItem = formattedData.find(
         ({ [xAxisKey]: existingLabel }) => existingLabel === label
       )
 
-      if (index > -1) {
-        formattedData[index][id] = values[label]
+      if (existingItem) {
+        existingItem[id] = value
         return
       }
 
-      formattedData.push({
-        [xAxisKey]: label,
-        [id]: values[label]
-      })
+      formattedData.push(
+        decoratePointWithRefData({ [xAxisKey]: label, [id]: value }, key)
+      )
     })
   })
 

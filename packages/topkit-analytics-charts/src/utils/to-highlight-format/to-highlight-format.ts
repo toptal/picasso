@@ -7,13 +7,17 @@ const HIGHLIGHT_LENGTH = 1
 const toHighlightFormat = (
   chartData: ChartDataPoint[],
   highlights: Highlight[],
-  xAxisKey: string
+  xAxisKey: string,
+  formatLabel: (label: string) => string
 ): HighlightConfig[] =>
   highlights
     .map(({ data, color }) => data.map(section => ({ section, color })))
-    .reduce((acc, arr) => acc.concat(arr), [])
+    .flat()
     .map(({ section, color }) => {
-      const from = chartData.findIndex(point => point[xAxisKey] === section)
+      const formattedSection = formatLabel(section)
+      const from = chartData.findIndex(
+        point => point[xAxisKey] === formattedSection
+      )
       const to = from + HIGHLIGHT_LENGTH
 
       return { from, to, color }
