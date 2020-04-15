@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.12.4](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.12.3...@toptal/picasso-lab@2.12.4) (2020-04-15)
+
+
+### Bug Fixes
+
+* **subheader:** bottom border position ([#1235](https://github.com/toptal/picasso/issues/1235)) ([896b66e](https://github.com/toptal/picasso/commit/896b66e6e6d65bbd490230e6bcfb478603f0d238))
+
+
+
+
+
 ## [2.12.3](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.12.2...@toptal/picasso-lab@2.12.3) (2020-04-14)
 
 **Note:** Version bump only for package @toptal/picasso-lab
