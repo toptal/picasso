@@ -41,6 +41,8 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   disableListeners?: boolean
   /** Allows tooltip to change its placement when it overflows */
   preventOverflow?: boolean
+  /** Tooltip's content container class */
+  contentClassName?: string
 }
 
 export const Tooltip: FunctionComponent<Props> = ({
@@ -58,6 +60,7 @@ export const Tooltip: FunctionComponent<Props> = ({
   variant,
   disableListeners,
   preventOverflow,
+  contentClassName,
   ...rest
 }) => {
   const [arrowRef, setArrowRef] = useState<HTMLSpanElement | null>(null)
@@ -95,9 +98,13 @@ export const Tooltip: FunctionComponent<Props> = ({
       classes={{
         popper:
           variant === 'light' ? classes.arrowPopperLight : classes.arrowPopper,
-        tooltip: cx(classes.tooltip, {
-          [classes.light]: variant === 'light'
-        })
+        tooltip: cx(
+          classes.tooltip,
+          {
+            [classes.light]: variant === 'light'
+          },
+          contentClassName
+        )
       }}
       className={className}
       style={style}
