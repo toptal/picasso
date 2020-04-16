@@ -61,7 +61,7 @@ export const TableExpandableRow = forwardRef<HTMLTableRowElement, Props>(
             })}
             style={style}
           >
-            <TableCell colSpan={MAX_COL_SPAN}>
+            <TableCell className={classes.noPadding} colSpan={MAX_COL_SPAN}>
               <MUICollapse appear in>
                 {content}
               </MUICollapse>
