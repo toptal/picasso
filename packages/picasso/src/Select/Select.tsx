@@ -30,7 +30,7 @@ import useSelect, { EMPTY_INPUT_VALUE, ItemProps } from './useSelect'
 import styles from './styles'
 
 type IconPosition = 'start' | 'end'
-type ValueType = string | string[] | number | undefined
+type ValueType = string | string[] | number
 
 const getOptionText = (option: Option | null) =>
   (option && option.text) || EMPTY_INPUT_VALUE
@@ -62,7 +62,7 @@ export interface Props
   onChange?: (
     event: ChangeEvent<{
       name?: string | undefined
-      value: Exclude<ValueType, undefined>
+      value: ValueType
     }>
   ) => void
   /** List of options to be rendered as `Select` */
@@ -222,7 +222,7 @@ const getMultipleSelection = (
 
 const getSingleSelection = (
   allOptions: Option[],
-  value: ValueType
+  value?: ValueType
 ): Selection => {
   const getSelectedOption = () =>
     allOptions.find(option => option.value === value) || null
@@ -236,12 +236,12 @@ const getSingleSelection = (
   }
 }
 
-const getSelection = (allOptions: Option[], value: ValueType) =>
+const getSelection = (allOptions: Option[], value?: ValueType) =>
   Array.isArray(value)
     ? getMultipleSelection(allOptions, value)
     : getSingleSelection(allOptions, value)
 
-const isEmpty = (value: ValueType) =>
+const isEmpty = (value?: ValueType) =>
   Array.isArray(value) ? value.length === 0 : value === ''
 
 const purifyProps = (props: Props) => {
