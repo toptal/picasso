@@ -1,9 +1,8 @@
-/* eslint-disable max-lines */
+/* eslint-disable max-lines, complexity, max-lines-per-function, max-statements */
 import React, {
   forwardRef,
   ChangeEvent,
   ReactNode,
-  ReactText,
   InputHTMLAttributes,
   useRef,
   useState,
@@ -61,7 +60,10 @@ export interface Props
   native?: boolean
   /** Callback invoked when `Select` changes its state. */
   onChange?: (
-    event: ChangeEvent<{ name?: string | undefined; value: ValueType }>
+    event: ChangeEvent<{
+      name?: string | undefined
+      value: ValueType
+    }>
   ) => void
   /** List of options to be rendered as `Select` */
   options: Option[]
@@ -89,7 +91,9 @@ export interface Props
 
 type Selection = {
   isSelected(): boolean
-  display(): string
+  isOptionSelected(option: Option): boolean
+  isOptionCheckmarked(option: Option): boolean
+  display(getDisplayValue: (option: Option | null) => string): string
 }
 
 type NativePlaceholderProps = Pick<Props, 'placeholder'> & {
@@ -145,6 +149,7 @@ interface SelectOptionProps {
   onMouseDown: (event: React.MouseEvent) => void
   close: () => void
   selected: boolean
+  checkmarked: boolean
   multiple?: boolean
   size?: SizeType<'small' | 'medium'>
   index: number
@@ -159,6 +164,7 @@ const SelectOption = React.memo(
     size,
     onMouseDown,
     selected,
+    checkmarked,
     setHighlightedIndex,
     index,
     onItemSelect,
@@ -173,6 +179,7 @@ const SelectOption = React.memo(
         value={option.value}
         size={size}
         selected={selected}
+        checkmarked={checkmarked}
         onMouseDown={onMouseDown}
         onMouseEnter={() => {
           if (selected) {
@@ -195,90 +202,46 @@ const SelectOption = React.memo(
   }
 )
 
-const renderOptions = ({
-  options,
-  renderOption,
-  highlightedIndex,
-  setHighlightedIndex,
-  onItemSelect,
-  getItemProps,
-  value,
-  multiple,
-  size
-}: OptionsProps) => {
-  const optionComponents = options.map((option, index) => {
-    const { close, onMouseDown } = getItemProps(index, option)
-    const selected = highlightedIndex === index
-
-    const isSelected =
-      multiple && Array.isArray(value)
-        ? value.includes(String(option.value)) || selected
-        : selected
-
-    return (
-      <SelectOption
-        key={option.key || option.value}
-        option={option}
-        size={size}
-        onMouseDown={onMouseDown}
-        selected={isSelected}
-        setHighlightedIndex={setHighlightedIndex}
-        index={index}
-        multiple={multiple}
-        close={close}
-        onItemSelect={onItemSelect}
-      >
-        {renderOption!(option)}
-      </SelectOption>
-    )
-  })
-
-  return (
-    <ScrollMenu selectedIndex={highlightedIndex}>{optionComponents}</ScrollMenu>
-  )
-}
-
 const getMultipleSelection = (
   allOptions: Option[],
-  value: string[],
-  getDisplayValue: (option: Option | null) => string
+  value: string[]
 ): Selection => {
   const getSelectedOptions = () =>
     allOptions.filter(option => value.includes(String(option.value)))
 
   return {
-    display: () =>
+    display: (getDisplayValue: (option: Option | null) => string) =>
       getSelectedOptions()
         .map(getDisplayValue)
         .join(', '),
-    isSelected: () => !isEmpty(value)
+    isSelected: () => !isEmpty(value),
+    isOptionSelected: () => false,
+    isOptionCheckmarked: option => value.includes(String(option.value))
   }
 }
 
 const getSingleSelection = (
   allOptions: Option[],
-  value: ReactText,
-  getDisplayValue: (option: Option | null) => string
+  value?: ValueType
 ): Selection => {
   const getSelectedOption = () =>
     allOptions.find(option => option.value === value) || null
 
   return {
-    display: () => getDisplayValue(getSelectedOption()),
-    isSelected: () => !isEmpty(value)
+    display: (getDisplayValue: (option: Option | null) => string) =>
+      getDisplayValue(getSelectedOption()),
+    isSelected: () => !isEmpty(value),
+    isOptionSelected: option => String(option.value) === value,
+    isOptionCheckmarked: () => false
   }
 }
 
-const getSelection = (
-  allOptions: Option[],
-  value: ValueType,
-  getDisplayValue: (option: Option | null) => string
-) =>
+const getSelection = (allOptions: Option[], value?: ValueType) =>
   Array.isArray(value)
-    ? getMultipleSelection(allOptions, value, getDisplayValue)
-    : getSingleSelection(allOptions, value, getDisplayValue)
+    ? getMultipleSelection(allOptions, value)
+    : getSingleSelection(allOptions, value)
 
-const isEmpty = (value: ValueType) =>
+const isEmpty = (value?: ValueType) =>
   Array.isArray(value) ? value.length === 0 : value === ''
 
 const purifyProps = (props: Props) => {
@@ -293,6 +256,47 @@ const purifyProps = (props: Props) => {
   }
 
   return disableUnsupportedProps('Select', props, sizeOptions)
+}
+
+const renderOptions = ({
+  options,
+  renderOption,
+  highlightedIndex,
+  setHighlightedIndex,
+  onItemSelect,
+  getItemProps,
+  value,
+  multiple,
+  size
+}: OptionsProps) => {
+  const optionComponents = options.map((option, currentIndex) => {
+    const { close, onMouseDown } = getItemProps(currentIndex, option)
+    const selection = getSelection(options, value)
+    return (
+      <SelectOption
+        key={option.key || option.value}
+        option={option}
+        size={size}
+        onMouseDown={onMouseDown}
+        selected={
+          selection.isOptionSelected(option) ||
+          highlightedIndex === currentIndex
+        }
+        checkmarked={selection.isOptionCheckmarked(option)}
+        setHighlightedIndex={setHighlightedIndex}
+        index={currentIndex}
+        multiple={multiple}
+        close={close}
+        onItemSelect={onItemSelect}
+      >
+        {renderOption?.(option)}
+      </SelectOption>
+    )
+  })
+
+  return (
+    <ScrollMenu selectedIndex={highlightedIndex}>{optionComponents}</ScrollMenu>
+  )
 }
 
 export const Select = forwardRef<HTMLInputElement, Props>(function Select(
@@ -342,14 +346,14 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
   )
 
   const inputWrapperRef = useRef<HTMLDivElement>(null)
-  const select = getSelection(allOptions, value, getDisplayValue!)
-  const [inputValue, setInputValue] = useState(select.display())
+  const select = getSelection(allOptions, value)
+  const [inputValue, setInputValue] = useState(select.display(getDisplayValue!))
   const [options, setOptions] = useState(allOptions)
 
   useLayoutEffect(() => {
-    const select = getSelection(allOptions, value, getDisplayValue!)
+    const select = getSelection(allOptions, value)
 
-    setInputValue(select.display())
+    setInputValue(select.display(getDisplayValue!))
   }, [allOptions, getDisplayValue, value])
 
   const filterOptions = useCallback(
@@ -376,9 +380,9 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
         fireOnChangeEvent({ event, value: EMPTY_INPUT_VALUE })
         setInputValue(EMPTY_INPUT_VALUE)
       } else {
-        const select = getSelection(allOptions, value, getDisplayValue!)
+        const select = getSelection(allOptions, value)
 
-        setInputValue(select.display())
+        setInputValue(select.display(getDisplayValue!))
       }
     }
 
@@ -411,9 +415,9 @@ export const Select = forwardRef<HTMLInputElement, Props>(function Select(
         newValue = option.value
       }
 
-      const select = getSelection(allOptions, newValue, getDisplayValue!)
+      const select = getSelection(allOptions, newValue)
 
-      setInputValue(select.display())
+      setInputValue(select.display(getDisplayValue!))
 
       fireOnChangeEvent({ event, value: newValue })
       filterOptions(EMPTY_INPUT_VALUE)

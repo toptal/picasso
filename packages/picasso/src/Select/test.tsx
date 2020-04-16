@@ -53,6 +53,14 @@ const OPTIONS = [
   }
 ]
 
+const getCheckmarkedOptions = (element: Element) =>
+  Array.from(element.querySelectorAll('li')).filter((opt: Element) =>
+    opt.querySelector('[data-testid="select-checkmark"]')
+  ) as Element[]
+
+const getSelectedOptions = (element: Element) =>
+  Array.from(element.querySelectorAll('[class$="selected"]')) as Element[]
+
 test('renders native select', () => {
   const { container } = renderSelect({
     native: true,
@@ -209,6 +217,40 @@ test('should render selected option customly', async () => {
   expect(inputComponent.value).toBe(`${OPTIONS[0].text} is selected`)
 })
 
+test('should highlight first and selected option when focus on select', () => {
+  const placeholder = 'Choose an option...'
+  const selectedValue = OPTIONS[2]
+  const { container, getByPlaceholderText } = renderSelect({
+    options: OPTIONS,
+    value: selectedValue.value,
+    placeholder
+  })
+
+  const input = getByPlaceholderText(placeholder)
+  fireEvent.focus(input)
+
+  const selectedOptions = getSelectedOptions(container)
+  expect(selectedOptions[0].textContent).toMatch(OPTIONS[0].text)
+  expect(selectedOptions[1].textContent).toMatch(OPTIONS[2].text)
+})
+
+test('should not checkmark user selected options', () => {
+  const placeholder = 'Choose an option...'
+  const selectedValue = OPTIONS[1]
+  const { container, getByPlaceholderText } = renderSelect({
+    options: OPTIONS,
+    value: selectedValue.value,
+    placeholder
+  })
+
+  const input = getByPlaceholderText(placeholder)
+  fireEvent.focus(input)
+
+  const checkmarkedOptions = getCheckmarkedOptions(container)
+
+  expect(checkmarkedOptions.length).toBe(0)
+})
+
 describe('multiple select', () => {
   test('should fire onChange event with the value when clicked on option', async () => {
     const onChange = jest.fn(event => event.target.value)
@@ -261,5 +303,42 @@ describe('multiple select', () => {
     const inputComponent = getByPlaceholderText(placeholder) as HTMLInputElement
 
     expect(inputComponent.value).toBe(`${OPTIONS[0].text}, ${OPTIONS[1].text}`)
+  })
+
+  test('should highlight first option only when focus on select', () => {
+    const placeholder = 'Choose an option...'
+    const selectedOptions = [OPTIONS[2]]
+    const { container, getByPlaceholderText } = renderSelect({
+      options: OPTIONS,
+      value: selectedOptions.map(opt => opt.value),
+      placeholder,
+      multiple: true
+    })
+
+    const input = getByPlaceholderText(placeholder)
+    fireEvent.focus(input)
+
+    const selectedItems = container.querySelectorAll('[class$="selected"]')
+    expect(selectedItems.length).toBe(1)
+    expect(selectedItems.item(0).textContent).toMatch(OPTIONS[0].text)
+  })
+
+  test('should checkmark user selected options', () => {
+    const placeholder = 'Choose an option...'
+    const selectedOptions = [OPTIONS[2]]
+    const { container, getByPlaceholderText } = renderSelect({
+      options: OPTIONS,
+      value: selectedOptions.map(opt => opt.value),
+      placeholder,
+      multiple: true
+    })
+
+    const input = getByPlaceholderText(placeholder)
+    fireEvent.focus(input)
+
+    const checkmarkedOptions = getCheckmarkedOptions(container)
+
+    expect(checkmarkedOptions.length).toBe(1)
+    expect(checkmarkedOptions[0].textContent).toMatch(OPTIONS[2].text)
   })
 })
