@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.51.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.50.2...@toptal/picasso@4.51.0) (2020-04-16)
+
+
+### Features
+
+* **select:** add checkmarks in multiple mode ([#1233](https://github.com/toptal/picasso/issues/1233)) ([bc42c63](https://github.com/toptal/picasso/commit/bc42c63a20c02824f4d61c2f10a418a16cae2741))
+
+
+
+
+
 ## [4.50.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.50.1...@toptal/picasso@4.50.2) (2020-04-16)
 
 
