@@ -85,6 +85,9 @@ export const Tooltip: FunctionComponent<Props> = ({
             preventOverflow: {
               enabled: preventOverflow,
               boundariesElement: 'scrollParent'
+            },
+            hide: {
+              enabled: preventOverflow
             }
           }
         }
