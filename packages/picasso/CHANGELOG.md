@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.50.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.50.1...@toptal/picasso@4.50.2) (2020-04-16)
+
+
+### Bug Fixes
+
+* **tooltip:** get rid of the modifier warning ([#1228](https://github.com/toptal/picasso/issues/1228)) ([3766719](https://github.com/toptal/picasso/commit/37667191c2808450dadb3f93aa51cc86ddb9018e)), closes [re#1227](https://github.com/re/issues/1227)
+
+
+
+
+
 ## [4.50.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.50.0...@toptal/picasso@4.50.1) (2020-04-15)
 
 
