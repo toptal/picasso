@@ -189,6 +189,15 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
     close: () => forceClose()
   }
 
+  const handleClickAway = (event: React.MouseEvent<Document>) => {
+    const target = event.target
+    if (anchorEl && target instanceof Node && anchorEl.contains(target)) {
+      return
+    }
+
+    forceClose()
+  }
+
   return (
     <div
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -216,7 +225,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
           autoWidth={false}
           container={popperContainer}
         >
-          <ClickAwayListener onClickAway={() => forceClose()}>
+          <ClickAwayListener onClickAway={handleClickAway}>
             <Grow in={isOpen} appear>
               <Paper
                 className={classes.content}
