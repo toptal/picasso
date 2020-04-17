@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.51.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.51.0...@toptal/picasso@4.51.1) (2020-04-17)
+
+
+### Bug Fixes
+
+* **dropdown:** fix closing dropdown by item click on mobile ([#1241](https://github.com/toptal/picasso/issues/1241)) ([04bfe31](https://github.com/toptal/picasso/commit/04bfe3163b152c7a2b7a98e671fd10ec6ba1e4ac)), closes [#786](https://github.com/toptal/picasso/issues/786)
+
+
+
+
+
 # [4.51.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.50.2...@toptal/picasso@4.51.0) (2020-04-16)
 
 
