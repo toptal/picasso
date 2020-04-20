@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.51.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.51.1...@toptal/picasso@4.51.2) (2020-04-20)
+
+
+### Bug Fixes
+
+* **Input:** fix issue with multiline limit ([#1242](https://github.com/toptal/picasso/issues/1242)) ([d79b247](https://github.com/toptal/picasso/commit/d79b247ac4f2c05a8d6e4a7e5ac390ea6cc6ef26))
+
+
+
+
+
 ## [4.51.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.51.0...@toptal/picasso@4.51.1) (2020-04-17)
 
 
