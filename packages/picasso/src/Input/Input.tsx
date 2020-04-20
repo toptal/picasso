@@ -153,7 +153,7 @@ const LimitAdornment = (props: LimitAdornmentProps) => {
           [classes.limiterNegative]: isNegative
         })}
       >
-        {limitValue}
+        {multiline ? Math.abs(limitValue) : limitValue}
         {multilineLabel}
       </span>
     </InputAdornment>
