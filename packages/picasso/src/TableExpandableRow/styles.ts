@@ -5,5 +5,11 @@ export default ({ palette }: Theme) =>
   createStyles({
     stripeEven: {
       background: alpha(palette.grey.lighter!, 0.32)
+    },
+    noPadding: {
+      padding: 0,
+      '&:last-child': {
+        paddingRight: 0
+      }
     }
   })
