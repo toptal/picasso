@@ -213,7 +213,7 @@ pipeline {
     stage('Run visual tests') {
       when {
         expression {
-          ghprbMatchesComment(/test:visual|all/)
+          ghprbMatchesComment(/test:visual|visual|all/)
         }
       }
 
