@@ -24,7 +24,7 @@ const StyledArrowDownMinor16 = styled(ArrowDownMinor16)`
 `
 
 const ExpandableContent = () => (
-  <React.Fragment>
+  <Container padded='small'>
     <Tabs value={1}>
       <Tabs.Tab label='Job' />
       <Tabs.Tab label='Company' />
@@ -61,7 +61,7 @@ const ExpandableContent = () => (
     <Container top='small'>
       <Label>$2k Design Credit</Label>
     </Container>
-  </React.Fragment>
+  </Container>
 )
 
 const TableExpandableRowsExample = () => {
