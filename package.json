@@ -95,7 +95,7 @@
     "rimraf": "^3.0.0",
     "semantic-release": "^15.13.12",
     "shelljs": "^0.8.3",
-    "simple-react-calendar": "^2.1.0",
+    "simple-react-calendar": "^2.2.1",
     "storybook-readme": "^5.0.3",
     "styled-components": "5.0.1",
     "thread-loader": "^2.1.3",
