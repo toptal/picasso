@@ -46,23 +46,23 @@ RUN yarn install --frozen-lockfile
 COPY . /app
 
 RUN yarn config set workspaces-experimental true
-RUN yarn install --frozen-lockfile
+RUN yarn install --frozen-lockfile && yarn cache clean
 
 # needs to be +rw for rm and mkdir /build
-RUN chmod a+rw /app
-RUN chmod a+rw /app/packages/picasso
-RUN chmod a+rw /app/packages/picasso-lab
-RUN chmod a+rw /app/packages/picasso-forms
-RUN chmod a+rw /app/packages/picasso-charts
-RUN chmod a+rw /app/packages/topkit-analytics-charts
-RUN chmod a+rw /app/packages/shared
-RUN chmod a+rw /app/packages/picasso/CHANGELOG.md
-RUN chmod a+rw /app/packages/picasso-lab/CHANGELOG.md
-RUN chmod a+rw /app/packages/picasso-forms/CHANGELOG.md
-RUN chmod a+rw /app/packages/picasso-charts/CHANGELOG.md
-RUN chmod a+rw /app/packages/topkit-analytics-charts/CHANGELOG.md
-RUN chmod a+rw /app/packages/shared/CHANGELOG.md
-RUN chmod a+rw /app/package.json
+RUN chmod a+rw /app && \
+  chmod a+rw /app/packages/picasso && \
+  chmod a+rw /app/packages/picasso-lab && \
+  chmod a+rw /app/packages/picasso-forms && \
+  chmod a+rw /app/packages/picasso-charts && \
+  chmod a+rw /app/packages/topkit-analytics-charts && \
+  chmod a+rw /app/packages/shared && \
+  chmod a+rw /app/packages/picasso/CHANGELOG.md && \
+  chmod a+rw /app/packages/picasso-lab/CHANGELOG.md && \
+  chmod a+rw /app/packages/picasso-forms/CHANGELOG.md && \
+  chmod a+rw /app/packages/picasso-charts/CHANGELOG.md && \
+  chmod a+rw /app/packages/topkit-analytics-charts/CHANGELOG.md && \
+  chmod a+rw /app/packages/shared/CHANGELOG.md && \
+  chmod a+rw /app/package.json
 
 COPY bin/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
