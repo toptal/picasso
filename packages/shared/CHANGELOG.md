@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.3](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.11.2...@toptal/picasso-shared@1.11.3) (2020-04-24)
+
+
+### Bug Fixes
+
+* **Favicon:** support temploy environment ([#1252](https://github.com/toptal/picasso/issues/1252)) ([e6a0097](https://github.com/toptal/picasso/commit/e6a0097947658c1d890011a2efca944bee9c3efd))
+
+
+
+
+
 ## [1.11.2](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.11.1...@toptal/picasso-shared@1.11.2) (2020-04-15)
 
 
