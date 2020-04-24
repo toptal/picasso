@@ -8,7 +8,7 @@ import { useAppConfig, EnvironmentType } from '../Picasso'
 
 export interface Props {
   /** Choose an icon color based on this variable */
-  environment?: EnvironmentType<'test'>
+  environment?: EnvironmentType<'test' | 'temploy'>
 }
 
 export const Favicon = ({ environment }: Props) => {
@@ -20,7 +20,12 @@ export const Favicon = ({ environment }: Props) => {
 
   const { environment: configEnvironment } = useAppConfig()
 
-  const resolvedEnvironment = environment || configEnvironment
+  let resolvedEnvironment = environment || configEnvironment
+
+  // temploy === staging
+  if (resolvedEnvironment === 'temploy') {
+    resolvedEnvironment = 'staging'
+  }
 
   useEffect(() => {
     if (resolvedEnvironment === 'test') return

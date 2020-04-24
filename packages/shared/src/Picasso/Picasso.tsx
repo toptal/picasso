@@ -71,7 +71,7 @@ interface RootContextProps {
   rootRef?: RefObject<HTMLDivElement>
   hasPageHeader: boolean
   setHasPageHeader: (value: boolean) => void
-  environment: EnvironmentType<'test'>
+  environment: EnvironmentType<'test' | 'temploy'>
   hasDrawer: boolean
   setHasDrawer: (value: boolean) => void
 }
@@ -120,7 +120,7 @@ interface PicassoGlobalStylesProviderProps {
   RootComponent: ForwardRefExoticComponent<
     PicassoRootNodeProps & RefAttributes<HTMLDivElement>
   >
-  environment: EnvironmentType<'test'>
+  environment: EnvironmentType<'test' | 'temploy'>
 }
 
 interface PicassoRootNodeProps {
@@ -216,7 +216,7 @@ interface PicassoProps {
   /** Whether to specify favicons in the head */
   loadFavicon?: boolean
   /** current environment */
-  environment?: EnvironmentType<'test'>
+  environment?: EnvironmentType<'test' | 'temploy'>
   /** Whether to apply Picasso CSS reset */
   reset?: boolean
   /** Sets a minimum width of the page */
