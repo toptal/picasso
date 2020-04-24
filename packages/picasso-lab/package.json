@@ -24,15 +24,15 @@
   "peerDependencies": {
     "@toptal/picasso": "^4.49.2",
     "@toptal/picasso-shared": "^1.11.1",
+    "@material-ui/core": "^4.9.4",
+    "@material-ui/icons": "^4.9.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   },
   "dependencies": {
-    "@material-ui/core": "4.9.4",
-    "@material-ui/icons": "4.9.1",
     "classnames": "^2.2.6",
     "date-fns": "^2.3.0",
-    "simple-react-calendar": "^2.1.0"
+    "simple-react-calendar": "^2.2.1"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.9",
