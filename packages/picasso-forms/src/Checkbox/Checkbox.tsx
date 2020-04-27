@@ -1,6 +1,6 @@
 import React from 'react'
 import { Checkbox as PicassoCheckbox } from '@toptal/picasso'
-import { Props as CheckboxProps } from '@toptal/picasso/Checkbox'
+import { CheckboxProps } from '@toptal/picasso/Checkbox'
 
 import FieldWrapper, { FieldProps } from '../FieldWrapper'
 
