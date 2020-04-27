@@ -1,8 +1,8 @@
 import React, { forwardRef, ReactNode } from 'react'
 import MUICheckbox from '@material-ui/core/Checkbox'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import {
-  StandardProps,
+  BaseProps,
   ButtonOrAnchorProps,
   CompoundedComponentWithRef
 } from '@toptal/picasso-shared'
@@ -16,8 +16,10 @@ interface StaticProps {
   Group: typeof CheckboxGroup
 }
 
+const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoCheckbox' })
+
 export interface Props
-  extends StandardProps,
+  extends BaseProps,
     Omit<ButtonOrAnchorProps, 'onChange'> {
   /** Show checkbox initially as checked */
   checked?: boolean
@@ -41,10 +43,12 @@ export interface Props
 }
 
 export const Checkbox = forwardRef<HTMLButtonElement, Props>(function Checkbox(
-  {
+  props,
+  ref
+) {
+  const {
     label,
     id,
-    classes,
     className,
     style,
     disabled,
@@ -54,9 +58,10 @@ export const Checkbox = forwardRef<HTMLButtonElement, Props>(function Checkbox(
     checked,
     indeterminate,
     ...rest
-  },
-  ref
-) {
+  } = props
+
+  const classes = useStyles(props)
+
   const rootClasses = {
     root: classes.root,
     disabled: classes.disabled
@@ -116,4 +121,4 @@ Checkbox.displayName = 'Checkbox'
 
 Checkbox.Group = CheckboxGroup
 
-export default withStyles(styles)(Checkbox)
+export default Checkbox

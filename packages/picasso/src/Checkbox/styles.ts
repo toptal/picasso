@@ -2,7 +2,7 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 import { PicassoProvider } from '@toptal/picasso-shared'
 
 const controlWidth = '1em'
-const controlMarginRight = '0.5em'
+const labelMargin = '0.5em'
 
 PicassoProvider.override(() => ({
   MuiCheckbox: {
@@ -29,7 +29,6 @@ export default ({ palette, sizes, transitions }: Theme) =>
       }
     },
     withLabel: {
-      margin: `0 ${controlMarginRight} 0 0`,
       alignSelf: 'flex-start'
     },
     disabled: {
@@ -103,8 +102,9 @@ export default ({ palette, sizes, transitions }: Theme) =>
       }
     },
     label: {
+      marginLeft: labelMargin,
       // 1px is needed for safari
-      maxWidth: `calc(100% - ${controlWidth} - ${controlMarginRight} + 1px)`
+      maxWidth: `calc(100% - ${controlWidth} - ${labelMargin} + 1px)`
     },
     labelWithRightSpacing: {}
   })

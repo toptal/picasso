@@ -2,16 +2,21 @@ import { createStyles } from '@material-ui/core/styles'
 
 export default () =>
   createStyles({
-    horizontal: {
-      flexDirection: 'row',
-      '& > .picasso-checkbox + .picasso-checkbox': {
-        marginLeft: '0.5em'
+    root: {
+      marginRight: '-0.5em',
+      marginBottom: '-0.5em',
+
+      '& > .picasso-checkbox': {
+        marginRight: '0.5em',
+        marginBottom: '0.5em'
       }
     },
+
+    horizontal: {
+      flexDirection: 'row'
+    },
+
     vertical: {
-      flexDirection: 'column',
-      '& > .picasso-checkbox + .picasso-checkbox': {
-        marginTop: '0.5em'
-      }
+      flexDirection: 'column'
     }
   })

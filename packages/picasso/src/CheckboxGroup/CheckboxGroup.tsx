@@ -26,6 +26,7 @@ const CheckboxGroup: FunctionComponent<Props> = props => {
       {...rest}
       classes={classes}
       className={cx(
+        classes.root,
         { [horizontalClass]: horizontal, [verticalClass]: !horizontal },
         className
       )}
