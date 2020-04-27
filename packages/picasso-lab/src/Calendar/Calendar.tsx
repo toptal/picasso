@@ -13,9 +13,9 @@ import {
   CalendarProps,
   MonthHeaderProps,
   WeekProps,
-  DaysOfWeekProps,
   DayOfWeekProps,
-  DayProps
+  DayProps,
+  DaysOfWeekProps
 } from './types'
 import styles from './styles'
 
@@ -100,6 +100,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
         }}
         renderDay={(dayProps: DayProps) => {
           const {
+            key,
             isDisabled,
             isSelected,
             isSelectable,
@@ -110,12 +111,15 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
             isSelectionEnd,
             handleOnClick,
             handleOnEnter,
+            getDayFormatted,
             date,
-            children
+            ISODate
           } = dayProps
 
           const defaultMarkup = (
             <button
+              data-simple-react-calendar-day={ISODate}
+              key={key}
               className={cx(classes.day, {
                 [classes.selected]: isSelected,
                 [classes.selectable]: isSelectable,
@@ -132,7 +136,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
               tabIndex={-1}
               type='button'
             >
-              {children}
+              {getDayFormatted(date)}
             </button>
           )
 
@@ -174,8 +178,12 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
         renderDaysOfWeek={({ children }: DaysOfWeekProps) => {
           return <div className={classes.weekDays}>{children}</div>
         }}
-        renderDayOfWeek={({ children }: DayOfWeekProps) => {
-          return <div className={classes.weekDay}>{children}</div>
+        renderDayOfWeek={({ day, key }: DayOfWeekProps) => {
+          return (
+            <div key={key} className={classes.weekDay}>
+              {day}
+            </div>
+          )
         }}
         renderWeek={({ children }: WeekProps) => {
           return <div className={classes.week}>{children}</div>

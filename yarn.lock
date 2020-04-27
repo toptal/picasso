@@ -18138,7 +18138,7 @@ react-docgen@^5.0.0:
     node-dir "^0.1.10"
     strip-indent "^3.0.0"
 
-react-dom@^16.0.0, react-dom@^16.12.0:
+react-dom@^16.12.0:
   version "16.12.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.12.0.tgz#0da4b714b8d13c2038c9396b54a92baea633fe11"
   integrity sha512-LMxFfAGrcS3kETtQaCkTKjMiifahaMySFDn71fZUNpPHZQEzmk/GiAeIT8JSOrHB23fnuCOMruL2a8NYlw+8Gw==
@@ -18306,13 +18306,6 @@ react-popper@^1.3.3:
     typed-styles "^0.0.7"
     warning "^4.0.2"
 
-react-prop-types@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/react-prop-types/-/react-prop-types-0.4.0.tgz#f99b0bfb4006929c9af2051e7c1414a5c75b93d0"
-  integrity sha1-+ZsL+0AGkpya8gUefBQUpcdbk9A=
-  dependencies:
-    warning "^3.0.0"
-
 react-resize-detector@^4.2.1:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/react-resize-detector/-/react-resize-detector-4.2.1.tgz#8982b74c3e1cf949afaa3c41050458c87b033982"
@@ -18457,7 +18450,7 @@ react-truncate@^2.4.0:
   resolved "https://registry.yarnpkg.com/react-truncate/-/react-truncate-2.4.0.tgz#3cf5ff09ab86f93e3c078d359f4de6d75aa60510"
   integrity sha512-3QW11/COYwi6iPUaunUhl06DW5NJBJD1WkmxW5YxqqUu6kvP+msB3jfoLg8WRbu57JqgebjVW8Lknw6T5/QZdA==
 
-react@^16.0.0, react@^16.12.0, react@^16.8.3, react@^16.8.6:
+react@^16.12.0, react@^16.8.3, react@^16.8.6:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react/-/react-16.13.1.tgz#2e818822f1a9743122c063d6410d85c1e3afe48e"
   integrity sha512-YMZQQq32xHLX0bz5Mnibv1/LHb3Sqzngu7xstSM+vrkE5Kzr9xE0yMByK5kMoTK30YVJE61WfbxIFFvfeDKT1w==
@@ -19773,16 +19766,13 @@ simple-html-tokenizer@^0.5.7:
   resolved "https://registry.yarnpkg.com/simple-html-tokenizer/-/simple-html-tokenizer-0.5.8.tgz#3417382f75954ee34515cc4fd32d9918e693f173"
   integrity sha512-0Sq4FvLlQEQODVA6PH2MIrc7tzYO0KT2HzzwvaVLYClWgIsuvaNUOrhrAvTi1pZHrcq7GDB4WiI3ukjqBMxcGQ==
 
-simple-react-calendar@^1.9.2:
-  version "1.9.2"
-  resolved "https://registry.yarnpkg.com/simple-react-calendar/-/simple-react-calendar-1.9.2.tgz#7b24935d8166236906533938296ff08b20c504ca"
-  integrity sha512-V2fworiLQYDtBKebN7+haXuxhE8oJXqE7skuyOrJGYO6Yu8mJg70UoNAUIYsfIfCStLb3sB0FAUInpHsHs3p+w==
+simple-react-calendar@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/simple-react-calendar/-/simple-react-calendar-2.2.1.tgz#0bbc06647a7a1bfac0b352ca23fa650973763ce4"
+  integrity sha512-O5ZeAVsYOdVjQoRIdLXW8h9g9GsIlWldu7rkI7p3s0MSst2T7pME/zjfXEZ2P2lmmrM0SLnLx1ksLSKQ9opFgA==
   dependencies:
     classnames "^2.2.5"
     date-fns "^1.27.2"
-    react "^16.0.0"
-    react-dom "^16.0.0"
-    react-prop-types "^0.4.0"
 
 simple-swizzle@^0.2.2:
   version "0.2.2"
