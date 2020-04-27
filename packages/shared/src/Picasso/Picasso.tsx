@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import {
   createMuiTheme,
   MuiThemeProvider,
@@ -65,7 +66,10 @@ const picasso = {
   }
 }
 
-const PicassoProvider = new Provider(createMuiTheme(picasso))
+const defaultTheme = createMuiTheme(picasso)
+const createProvider = (theme: Theme) => new Provider(theme)
+
+const PicassoProvider = createProvider(defaultTheme)
 
 interface RootContextProps {
   rootRef?: RefObject<HTMLDivElement>
@@ -227,6 +231,7 @@ interface PicassoProps {
   notificationContainer?: HTMLElement
   /** Component that is used to render root node  */
   RootComponent?: PicassoGlobalStylesProviderProps['RootComponent']
+  theme?: Theme
 }
 
 const Picasso: FunctionComponent<PicassoProps> = ({
@@ -238,8 +243,11 @@ const Picasso: FunctionComponent<PicassoProps> = ({
   children,
   fixViewport,
   notificationContainer,
-  RootComponent
+  RootComponent,
+  theme
 }) => {
+  const PicassoProvider = createProvider(theme!)
+
   if (!responsive) {
     PicassoProvider.disableResponsiveStyle()
     PicassoBreakpoints.disableMobileBreakpoints()
@@ -278,8 +286,9 @@ Picasso.defaultProps = {
   responsive: true,
   reset: true,
   fixViewport: true,
-  RootComponent: PicassoRootNode
+  RootComponent: PicassoRootNode,
+  theme: defaultTheme
 }
 
-export { PicassoProvider }
+export { PicassoProvider, createProvider, createMuiTheme as createTheme }
 export default Picasso
