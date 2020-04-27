@@ -1,3 +1,4 @@
+/* eslint-disable max-statements */
 import React, {
   useState,
   useRef,
