@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.7](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.16.6...@toptal/picasso-forms@0.16.7) (2020-04-27)
+
+
+### Bug Fixes
+
+* **checkboxgroup:** typings and style issues ([#1261](https://github.com/toptal/picasso/issues/1261)) ([93f6c65](https://github.com/toptal/picasso/commit/93f6c65963bfcdd84cbd66020e019a43ebea604a))
+
+
+
+
+
 ## [0.16.6](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.16.5...@toptal/picasso-forms@0.16.6) (2020-04-15)
 
 
