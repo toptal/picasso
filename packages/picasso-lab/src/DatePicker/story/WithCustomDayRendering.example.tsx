@@ -23,14 +23,22 @@ const WithCustomDayRendering = () => {
 
           if (!isSelectable) {
             if (isBefore(day, minDate)) {
-              return <Tooltip content='It is vacation time'>{children}</Tooltip>
+              return (
+                <Tooltip content='It is vacation time' key={day.toString()}>
+                  {children}
+                </Tooltip>
+              )
             }
             const isWithinDisabledInterval = disabledIntervals.some(interval =>
               isWithinInterval(day, interval)
             )
 
             if (isWithinDisabledInterval) {
-              return <Tooltip content='In a meeting'>{children}</Tooltip>
+              return (
+                <Tooltip content='In a meeting' key={day.toString()}>
+                  {children}
+                </Tooltip>
+              )
             }
           }
 
