@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.4](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.11.3...@toptal/picasso-shared@1.11.4) (2020-04-27)
+
+
+### Bug Fixes
+
+* useBreakpoint flicky implementation ([#1256](https://github.com/toptal/picasso/issues/1256)) ([a0be5c6](https://github.com/toptal/picasso/commit/a0be5c6632d0e93e14cece10587dfa233f238f18))
+
+
+
+
+
 ## [1.11.3](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.11.2...@toptal/picasso-shared@1.11.3) (2020-04-24)
 
 
