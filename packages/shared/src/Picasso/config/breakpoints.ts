@@ -119,7 +119,10 @@ export const useScreenSize = () => {
 
 export const useBreakpoint = (sizes: BreakpointKeys[] | BreakpointKeys) => {
   const mediaQueryString = screens(...([] as BreakpointKeys[]).concat(sizes))
-  const mediaQuery = useMediaQuery(mediaQueryString)
+  const mediaQuery = useMediaQuery(mediaQueryString, {
+    noSsr: true
+  })
+
   if (!mediaQueryString) return false
 
   return mediaQuery
