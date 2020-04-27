@@ -6,8 +6,8 @@ export default () =>
       marginRight: '-0.5em',
       marginBottom: '-0.5em',
 
-      '& > *': {
-        marginRight: '0.5em !important', // The Checkbox element overrides it
+      '& > .picasso-checkbox': {
+        marginRight: '0.5em',
         marginBottom: '0.5em'
       }
     },
