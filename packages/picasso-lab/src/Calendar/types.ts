@@ -12,6 +12,9 @@ export interface DayProps {
   handleOnClick: () => void
   handleOnEnter: () => void
   date: Date
+  ISODate: string
+  getDayFormatted: (date: Date) => string
+  key?: string
   children?: ReactNode
 }
 
@@ -25,6 +28,8 @@ export interface WeekProps {
 }
 
 export interface DayOfWeekProps {
+  day: string
+  key: string
   children?: ReactNode
 }
 

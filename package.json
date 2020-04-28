@@ -7,9 +7,9 @@
     "packages/*"
   ],
   "scripts": {
-    "test": "jest",
+    "test": "TZ=UTC jest",
     "test:watch": "jest --watch",
-    "test-ci": "jest --runInBand --ci",
+    "test-ci": "TZ=UTC jest --runInBand --ci",
     "test:visual": "./bin/run-in-docker ./bin/test-visual",
     "test-ci:visual": "./bin/test-visual --ci",
     "lint": "davinci syntax lint code .",
@@ -95,7 +95,7 @@
     "rimraf": "^3.0.0",
     "semantic-release": "^15.13.12",
     "shelljs": "^0.8.4",
-    "simple-react-calendar": "^1.9.2",
+    "simple-react-calendar": "^2.2.1",
     "storybook-readme": "^5.0.3",
     "styled-components": "5.0.1",
     "thread-loader": "^2.1.3",
