@@ -14,11 +14,6 @@ exports[`TagSelector default render 1`] = `
       <div
         class="Container-flex"
       >
-        <input
-          name="nodejs"
-          type="hidden"
-          value=""
-        />
         <div
           class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium PicassoTagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
         >
@@ -69,11 +64,6 @@ exports[`TagSelector preselected value 1`] = `
         <div
           class="Container-flex"
         >
-          <input
-            name="nodejs"
-            type="hidden"
-            value=""
-          />
           <div
             class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium PicassoTagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
           >
