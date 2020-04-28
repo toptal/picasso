@@ -11,12 +11,12 @@ import formatDate from 'date-fns/format'
 import isValid from 'date-fns/isValid'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
-import { Container, Input, InputAdornment } from '@toptal/picasso'
+import { Container, Input, InputAdornment, InputProps } from '@toptal/picasso'
 import Popper from '@toptal/picasso/Popper'
-import { Props as InputProps } from '@toptal/picasso/Input'
 import { Calendar16 } from '@toptal/picasso/Icon'
 
 import Calendar, {
+  CalendarRefProps,
   DateOrDateRangeType,
   DateRangeType,
   DayProps
@@ -106,14 +106,14 @@ export const DatePicker = (props: Props) => {
   const inputProps = rest
 
   const [calendarIsShown, setCalendarIsShown] = useState(false)
-  const [isInputFocused, setIsInputFocused] = useState(false)
   const [inputValue, setInputValue] = useState(EMPTY_INPUT_VALUE)
 
   const hideCalendar = () => setCalendarIsShown(false)
   const showCalendar = () => setCalendarIsShown(true)
 
   const inputRef = useRef<HTMLInputElement>(null)
-  const calendarRef = useRef<PopperJs>(null)
+  const popperRef = useRef<PopperJs>(null)
+  const calendarRef = useRef<CalendarRefProps>(null)
   const inputWrapperRef = useRef<HTMLDivElement>(null)
 
   useLayoutEffect(() => {
@@ -124,27 +124,22 @@ export const DatePicker = (props: Props) => {
 
     if (range) {
       setInputValue(formatDateRange(value as DateRangeType, displayDateFormat!))
-      return
-    }
-
-    if (isInputFocused) {
-      setInputValue(formatDate(value as Date, editDateFormat!))
     } else {
       setInputValue(formatDate(value as Date, displayDateFormat!))
     }
-  }, [value, isInputFocused, range, displayDateFormat, editDateFormat])
+  }, [value, range, displayDateFormat, editDateFormat])
 
   const isInsideDatePicker = (node: Node) => {
     if (!inputWrapperRef.current) {
       return
     }
 
-    if (!calendarRef.current) {
+    if (!popperRef.current) {
       return
     }
 
     return (
-      calendarRef.current.popper.contains(node) ||
+      popperRef.current.popper.contains(node) ||
       inputWrapperRef.current.contains(node)
     )
   }
@@ -160,8 +155,6 @@ export const DatePicker = (props: Props) => {
 
     hideCalendar()
     onBlur!()
-
-    setIsInputFocused(false)
   }
 
   const handleInputChange = (
@@ -204,17 +197,27 @@ export const DatePicker = (props: Props) => {
 
     if (key === 'Escape') {
       hideCalendar()
-      return
-    }
+      event.currentTarget.blur()
+    } else if (key === 'Enter') {
+      if (!calendarIsShown) {
+        showCalendar()
+      } else {
+        hideCalendar()
+      }
+    } else if (key === 'Tab') {
+      event.preventDefault()
+      event.stopPropagation()
 
-    if (key === 'Enter') {
-      hideCalendar()
+      if (!calendarIsShown) {
+        event.currentTarget.blur()
+      } else {
+        calendarRef.current?.previousMonth?.focus()
+      }
     }
   }
 
   const handleFocusOrClick = () => {
     showCalendar()
-    setIsInputFocused(true)
   }
 
   const startAdornment = (
@@ -248,10 +251,11 @@ export const DatePicker = (props: Props) => {
           open={calendarIsShown}
           anchorEl={inputWrapperRef.current}
           autoWidth={false}
-          ref={calendarRef}
           container={popperContainer}
+          ref={popperRef}
         >
           <Calendar
+            ref={calendarRef}
             range={range}
             value={value}
             minDate={minDate}
@@ -261,7 +265,6 @@ export const DatePicker = (props: Props) => {
             onChange={handleCalendarChange}
             onBlur={handleBlur}
             className={classes.calendar}
-            tabIndex={-1}
           />
         </Popper>
       )}

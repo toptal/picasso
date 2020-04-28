@@ -57,7 +57,7 @@ export default ({ palette, shadows }: Theme) =>
     selectable: {
       cursor: 'pointer',
 
-      '&:hover': {
+      '&:hover, &:focus': {
         backgroundColor: alpha(palette.blue.main, 0.24)
       },
 
