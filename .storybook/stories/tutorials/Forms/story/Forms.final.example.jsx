@@ -1,15 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import {
-  Container,
-  Typography,
-  Grid,
-  Checkbox,
-  Select,
-  Input,
-  Radio,
-  Form
-} from '@toptal/picasso'
+import { Grid, Checkbox, Select, Input, Radio, Form } from '@toptal/picasso'
 
 const Example = () => (
   <div>
@@ -61,11 +52,11 @@ const Example = () => (
 
           <Form.Field>
             <Form.Label>Estimated length:</Form.Label>
-            <HorizontalRadioGroup name='variableName' value='radio1'>
+            <Radio.Group horizontal name='variableName' value='radio1'>
               <Radio label='1-2 months' value='radio1' />
               <Radio label='2-4 months' value='radio2' />
               <Radio label='4-12 months' value='radio3' />
-            </HorizontalRadioGroup>
+            </Radio.Group>
           </Form.Field>
 
           <Form.Field hint='A Toptal Director of Engineering ewill work with you to understand you needs and fins you the right talent for you project.'>
@@ -83,9 +74,5 @@ const OPTIONS = [
   { value: '3', text: 'Option 3' },
   { value: '4', text: 'Option 4' }
 ]
-
-const HorizontalRadioGroup = styled(Radio.Group)`
-  flex-direction: row;
-`
 
 export default Example
