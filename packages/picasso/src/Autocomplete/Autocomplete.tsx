@@ -120,6 +120,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       popperContainer,
       getKey: customGetKey,
       enableReset,
+      name,
       ...rest
     },
     ref

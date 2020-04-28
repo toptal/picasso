@@ -93,11 +93,6 @@ exports[`Autocomplete static behavior default render 1`] = `
       <div
         class="Container-flex"
       >
-        <input
-          name="nodejs"
-          type="hidden"
-          value=""
-        />
         <div
           class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root PicassoInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
         >
