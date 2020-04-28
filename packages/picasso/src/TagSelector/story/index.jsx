@@ -2,7 +2,7 @@ import { TagSelector } from '../TagSelector'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.section('Components').createPage(
+const page = PicassoBook.section('Forms').createPage(
   'TagSelector',
   'Input that allows multiselection from a list of available options with autocomplete. Based on Autocomplete component.'
 )
