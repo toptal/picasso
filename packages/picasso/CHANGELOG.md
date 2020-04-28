@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.51.8](https://github.com/toptal/picasso/compare/@toptal/picasso@4.51.7...@toptal/picasso@4.51.8) (2020-04-28)
+
+
+### Bug Fixes
+
+* **Autocomplete:** pass input name property to Input component ([#1264](https://github.com/toptal/picasso/issues/1264)) ([bdca6d8](https://github.com/toptal/picasso/commit/bdca6d8bd2a32224c5cb949e62411280ee082b78))
+
+
+
+
+
 ## [4.51.7](https://github.com/toptal/picasso/compare/@toptal/picasso@4.51.6...@toptal/picasso@4.51.7) (2020-04-27)
 
 
