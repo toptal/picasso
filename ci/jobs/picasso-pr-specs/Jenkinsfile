@@ -247,12 +247,20 @@ pipeline {
     always {
       script {
         archiveArtifacts(
-          artifacts: "${PWD}/__diff_output__/latest/*",
+          artifacts: "__diff_output__/latest/*",
           fingerprint: true,
           allowEmptyArchive: true
         )
 
-        publishHtmlReports(reportName: "Visual Regression Tests", reportDir: "${PWD}/__diff_output__/latest", reportFiles: 'index.html')
+        publishHTML([
+          allowMissing: true, 
+          alwaysLinkToLastBuild: true, 
+          keepAll: true, 
+          reportDir: '__diff_output__/latest', 
+          reportFiles: 'index.html', 
+          reportName: 'Visual Regression Tests', 
+          reportTitles: 'All files'
+        ])
       }
     }
   }
