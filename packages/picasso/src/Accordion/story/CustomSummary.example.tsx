@@ -7,9 +7,15 @@ import {
   Time16,
   VideoOn16
 } from '@toptal/picasso/Icon'
-import { palette } from '@toptal/picasso/utils'
+import { palette, Transitions } from '@toptal/picasso/utils'
 
-const Summary = ({ onClick, expanded }) => (
+const Summary = ({
+  onClick,
+  expanded
+}: {
+  onClick: () => void
+  expanded: boolean
+}) => (
   <Container
     flex
     alignItems='center'
@@ -21,7 +27,15 @@ const Summary = ({ onClick, expanded }) => (
       Upcoming interviews (1)
     </Typography>
     <Container>
-      <Button variant='flat' icon={<ArrowDownMinor16 />} onClick={onClick}>
+      <Button
+        variant='flat'
+        icon={
+          <Transitions.Rotate180 on={expanded}>
+            <ArrowDownMinor16 />
+          </Transitions.Rotate180>
+        }
+        onClick={onClick}
+      >
         {expanded ? 'Hide' : 'Show'}
       </Button>
       <Button variant='transparent' icon={<Drag16 />} />
@@ -66,19 +80,20 @@ const InterviewCard = () => (
           <Typography size='medium' as='span'>
             <Link href='#'>React Front End Developer</Link>
           </Typography>
-          <Container right='xsmall' inline />
-          <Typography size='medium' as='span'>
-            with Walsh Group
-          </Typography>
+          <Container left='xsmall' inline>
+            <Typography size='medium' as='span'>
+              with Walsh Group
+            </Typography>
+          </Container>
         </Container>
 
         <Container>
           <Bell16 />
-          <Container right='xsmall' inline />
-          <Typography size='small' as='span'>
-            <Link href='#'>Add to calendar</Link>
-          </Typography>
-          <Container right='small' inline />
+          <Container left='xsmall' right='small' inline>
+            <Typography size='small' as='span'>
+              <Link href='#'>Add to calendar</Link>
+            </Typography>
+          </Container>
           <Button size='small'>Start Interview Onboarding</Button>
         </Container>
       </Container>
@@ -87,19 +102,20 @@ const InterviewCard = () => (
         <Container>
           <Container bottom='xsmall'>
             <Time16 />
-            <Container right='small' inline />
-            <Typography size='medium' as='span'>
-              07:00 PM – 07:30 PM (UTC+02:00) Europe – Belgrade
-            </Typography>
+            <Container left='small' inline>
+              <Typography size='medium' as='span'>
+                07:00 PM – 07:30 PM (UTC+02:00) Europe – Belgrade
+              </Typography>
+            </Container>
           </Container>
 
           <Container>
             <VideoOn16 />
-            <Container right='small' inline />
-            <Typography size='medium' as='span'>
-              Bluejeans Conference
-            </Typography>
-            <Container right='xsmall' inline />
+            <Container left='small' right='xsmall' inline>
+              <Typography size='medium' as='span'>
+                Bluejeans Conference
+              </Typography>
+            </Container>
             <Typography size='small' as='span'>
               <Link href='#'>Show URL</Link>
             </Typography>
