@@ -1,0 +1,126 @@
+import React, { useState } from 'react'
+import { Accordion, Typography, Button, Container, Link } from '@toptal/picasso'
+import {
+  ArrowDownMinor16,
+  Drag16,
+  Bell16,
+  Time16,
+  VideoOn16
+} from '@toptal/picasso/Icon'
+import { palette } from '@toptal/picasso/utils'
+
+const Summary = ({ onClick, expanded }) => (
+  <Container flex alignItems='center' justifyContent='space-between'>
+    <Typography variant='heading' size='medium'>
+      Upcoming interviews (1)
+    </Typography>
+    <Container>
+      <Button variant='flat' icon={<ArrowDownMinor16 />} onClick={onClick}>
+        {expanded ? 'Hide' : 'Show'}
+      </Button>
+      <Button variant='transparent' icon={<Drag16 />} />
+    </Container>
+  </Container>
+)
+
+const InterviewCard = () => (
+  <Container top='medium' style={{ flex: 1 }}>
+    <Container style={{ border: `1px solid ${palette.grey.light}` }} flex>
+      <Container
+        flex
+        direction='column'
+        padded='medium'
+        alignItems='center'
+        justifyContent='center'
+      >
+        <Typography weight='semibold' size='small' color='black'>
+          Fri
+        </Typography>
+        <Typography variant='heading' size='large'>
+          18
+        </Typography>
+        <Typography weight='semibold' size='small' color='black'>
+          Jan
+        </Typography>
+      </Container>
+
+      <div
+        style={{
+          width: '1px',
+          backgroundColor: palette.grey.light,
+          margin: '1.5em 0'
+        }}
+      />
+
+      <Container padded='medium' style={{ flex: 1 }}>
+        <Container flex justifyContent='space-between' bottom='xsmall'>
+          <Container>
+            <Typography size='medium' as='span'>
+              <Link href='#'>React Front End Developer</Link>
+            </Typography>
+            <Container right='xsmall' inline />
+            <Typography size='medium' as='span'>
+              with Walsh Group
+            </Typography>
+          </Container>
+
+          <Container>
+            <Bell16 />
+            <Container right='xsmall' inline />
+            <Typography size='small' as='span'>
+              <Link href='#'>Add to calendar</Link>
+            </Typography>
+            <Container right='xsmall' inline />
+            <Button size='small'>Start Interview Onboarding</Button>
+          </Container>
+        </Container>
+
+        <Container flex justifyContent='space-between' alignItems='center'>
+          <Container>
+            <Container bottom='xsmall'>
+              <Time16 />
+              <Container right='small' inline />
+              <Typography size='medium' as='span'>
+                07:00 PM – 07:30 PM (UTC+02:00) Europe – Belgrade
+              </Typography>
+            </Container>
+
+            <Container>
+              <VideoOn16 />
+              <Container right='small' inline />
+              <Typography size='medium' as='span'>
+                Bluejeans Conference
+              </Typography>
+              <Container right='xsmall' inline />
+              <Typography size='small' as='span'>
+                <Link href='#'>Show URL</Link>
+              </Typography>
+            </Container>
+          </Container>
+
+          <Typography size='small' align='right' style={{ width: '207px' }}>
+            If anything comes prior to the interview, please{' '}
+            <Link href='#'>reschedule.</Link>
+          </Typography>
+        </Container>
+      </Container>
+    </Container>
+  </Container>
+)
+
+const Example = () => {
+  const [expanded, setExpanded] = useState(true)
+
+  const handleClick = () => {
+    setExpanded(prevExpanded => !prevExpanded)
+  }
+
+  return (
+    <div style={{ width: '930px' }}>
+      <Summary onClick={handleClick} expanded={expanded} />
+      <Accordion content={<InterviewCard />} expanded={expanded} />
+    </div>
+  )
+}
+
+export default Example

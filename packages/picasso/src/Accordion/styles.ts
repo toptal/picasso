@@ -4,6 +4,10 @@ import { PicassoProvider, createPropertiesStyles } from '@toptal/picasso-shared'
 PicassoProvider.override(() => ({
   MuiExpansionPanel: {
     root: {
+      '&:before': {
+        height: 0,
+        opacity: 0
+      },
       '&$expanded': {
         margin: 0
       },
