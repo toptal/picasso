@@ -5,8 +5,7 @@ PicassoProvider.override(() => ({
   MuiExpansionPanel: {
     root: {
       '&:before': {
-        height: 0,
-        opacity: 0
+        display: 'none'
       },
       '&$expanded': {
         margin: 0

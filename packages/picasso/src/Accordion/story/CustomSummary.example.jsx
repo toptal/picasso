@@ -10,7 +10,13 @@ import {
 import { palette } from '@toptal/picasso/utils'
 
 const Summary = ({ onClick, expanded }) => (
-  <Container flex alignItems='center' justifyContent='space-between'>
+  <Container
+    flex
+    alignItems='center'
+    justifyContent='space-between'
+    bottom='small'
+    top='small'
+  >
     <Typography variant='heading' size='medium'>
       Upcoming interviews (1)
     </Typography>
@@ -24,85 +30,86 @@ const Summary = ({ onClick, expanded }) => (
 )
 
 const InterviewCard = () => (
-  <Container top='small' style={{ flex: 1 }}>
-    <Container style={{ border: `1px solid ${palette.grey.light}` }} flex>
-      <Container
-        flex
-        direction='column'
-        padded='medium'
-        alignItems='center'
-        justifyContent='center'
-      >
-        <Typography weight='semibold' size='small' color='black'>
-          Fri
-        </Typography>
-        <Typography variant='heading' size='large'>
-          18
-        </Typography>
-        <Typography weight='semibold' size='small' color='black'>
-          Jan
-        </Typography>
-      </Container>
+  <Container
+    style={{ flex: 1, border: `1px solid ${palette.grey.light}` }}
+    flex
+  >
+    <Container
+      flex
+      direction='column'
+      padded='medium'
+      alignItems='center'
+      justifyContent='center'
+    >
+      <Typography weight='semibold' size='small' color='black'>
+        Fri
+      </Typography>
+      <Typography variant='heading' size='large'>
+        18
+      </Typography>
+      <Typography weight='semibold' size='small' color='black'>
+        Jan
+      </Typography>
+    </Container>
 
-      <div
-        style={{
-          width: '1px',
-          backgroundColor: palette.grey.light,
-          margin: '1.5em 0'
-        }}
-      />
+    <div
+      style={{
+        width: '1px',
+        backgroundColor: palette.grey.light,
+        margin: '1.5em 0'
+      }}
+    />
 
-      <Container padded='medium' style={{ flex: 1 }}>
-        <Container flex justifyContent='space-between' bottom='xsmall'>
-          <Container>
-            <Typography size='medium' as='span'>
-              <Link href='#'>React Front End Developer</Link>
-            </Typography>
-            <Container right='xsmall' inline />
-            <Typography size='medium' as='span'>
-              with Walsh Group
-            </Typography>
-          </Container>
-
-          <Container>
-            <Bell16 />
-            <Container right='xsmall' inline />
-            <Typography size='small' as='span'>
-              <Link href='#'>Add to calendar</Link>
-            </Typography>
-            <Container right='small' inline />
-            <Button size='small'>Start Interview Onboarding</Button>
-          </Container>
-        </Container>
-
-        <Container flex justifyContent='space-between' alignItems='center'>
-          <Container>
-            <Container bottom='xsmall'>
-              <Time16 />
-              <Container right='small' inline />
-              <Typography size='medium' as='span'>
-                07:00 PM – 07:30 PM (UTC+02:00) Europe – Belgrade
-              </Typography>
-            </Container>
-
-            <Container>
-              <VideoOn16 />
-              <Container right='small' inline />
-              <Typography size='medium' as='span'>
-                Bluejeans Conference
-              </Typography>
-              <Container right='xsmall' inline />
-              <Typography size='small' as='span'>
-                <Link href='#'>Show URL</Link>
-              </Typography>
-            </Container>
-          </Container>
-
-          <Typography size='small' align='right' style={{ width: '207px' }}>
-            If anything comes prior to the interview, please{' '}
-            <Link href='#'>reschedule.</Link>
+    <Container padded='medium' style={{ flex: 1 }}>
+      <Container flex justifyContent='space-between' bottom='xsmall'>
+        <Container>
+          <Typography size='medium' as='span'>
+            <Link href='#'>React Front End Developer</Link>
+          </Typography>
+          <Container right='xsmall' inline />
+          <Typography size='medium' as='span'>
+            with Walsh Group
           </Typography>
         </Container>
+
+        <Container>
+          <Bell16 />
+          <Container right='xsmall' inline />
+          <Typography size='small' as='span'>
+            <Link href='#'>Add to calendar</Link>
+          </Typography>
+          <Container right='small' inline />
+          <Button size='small'>Start Interview Onboarding</Button>
+        </Container>
+      </Container>
+
+      <Container flex justifyContent='space-between' alignItems='center'>
+        <Container>
+          <Container bottom='xsmall'>
+            <Time16 />
+            <Container right='small' inline />
+            <Typography size='medium' as='span'>
+              07:00 PM – 07:30 PM (UTC+02:00) Europe – Belgrade
+            </Typography>
+          </Container>
+
+          <Container>
+            <VideoOn16 />
+            <Container right='small' inline />
+            <Typography size='medium' as='span'>
+              Bluejeans Conference
+            </Typography>
+            <Container right='xsmall' inline />
+            <Typography size='small' as='span'>
+              <Link href='#'>Show URL</Link>
+            </Typography>
+          </Container>
+        </Container>
+
+        <Typography size='small' align='right' style={{ width: '207px' }}>
+          If anything comes prior to the interview, please{' '}
+          <Link href='#'>reschedule.</Link>
+        </Typography>
       </Container>
     </Container>
   </Container>
@@ -118,7 +125,11 @@ const Example = () => {
   return (
     <div style={{ width: '930px' }}>
       <Summary onClick={handleClick} expanded={expanded} />
-      <Accordion content={<InterviewCard />} expanded={expanded} />
+      <Accordion
+        content={<InterviewCard />}
+        expanded={expanded}
+        bordered={false}
+      />
     </div>
   )
 }
