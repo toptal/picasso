@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.12.8](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.12.7...@toptal/picasso-lab@2.12.8) (2020-04-29)
+
+
+### Bug Fixes
+
+* **datepicker:** remove notice from disable days ([#1269](https://github.com/toptal/picasso/issues/1269)) ([621f7b1](https://github.com/toptal/picasso/commit/621f7b1b0708b758e60ff0d7cb76921496ca5c0a)), closes [#1268](https://github.com/toptal/picasso/issues/1268)
+
+
+
+
+
 ## [2.12.7](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.12.6...@toptal/picasso-lab@2.12.7) (2020-04-28)
 
 **Note:** Version bump only for package @toptal/picasso-lab
