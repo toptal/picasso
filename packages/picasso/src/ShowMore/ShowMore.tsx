@@ -46,17 +46,19 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
 
   return (
     <React.Fragment>
-      <Typography
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        {...rest}
-        ref={ref}
-        size='medium'
-        color='dark-grey'
-        className={className}
-        style={style}
-      >
-        <Truncate lines={!shownMore && rows}>{children}</Truncate>
-      </Typography>
+      {shownMore || rows !== 0 ? (
+        <Typography
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          {...rest}
+          ref={ref}
+          size='medium'
+          color='dark-grey'
+          className={className}
+          style={style}
+        >
+          <Truncate lines={!shownMore && rows}>{children}</Truncate>
+        </Typography>
+      ) : null}
       {!disableToggle && (
         <Link
           onClick={() => {
