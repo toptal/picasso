@@ -193,6 +193,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
         minDate={minDate}
         maxDate={maxDate}
         disabledIntervals={disabledIntervals}
+        getNoticeContent={() => null}
       />
     </div>
   )
