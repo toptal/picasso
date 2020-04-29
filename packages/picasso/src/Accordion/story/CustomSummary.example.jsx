@@ -24,7 +24,7 @@ const Summary = ({ onClick, expanded }) => (
 )
 
 const InterviewCard = () => (
-  <Container top='medium' style={{ flex: 1 }}>
+  <Container top='small' style={{ flex: 1 }}>
     <Container style={{ border: `1px solid ${palette.grey.light}` }} flex>
       <Container
         flex
@@ -70,7 +70,7 @@ const InterviewCard = () => (
             <Typography size='small' as='span'>
               <Link href='#'>Add to calendar</Link>
             </Typography>
-            <Container right='xsmall' inline />
+            <Container right='small' inline />
             <Button size='small'>Start Interview Onboarding</Button>
           </Container>
         </Container>
