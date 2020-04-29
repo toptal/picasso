@@ -3,6 +3,7 @@ import {
   createMuiTheme,
   MuiThemeProvider,
   Theme,
+  ThemeOptions,
   StylesProvider,
   createGenerateClassName
 } from '@material-ui/core/styles'
@@ -38,7 +39,7 @@ import Provider from './PicassoProvider'
 import NotificationsProvider from './NotificationsProvider'
 import globalStyles from './styles'
 import Favicon from '../Favicon'
-import { generateRandomStringOrGetEmptyInTest } from './utils'
+import { generateRandomStringOrGetEmptyInTest, deepmerge } from './utils'
 import { EnvironmentType } from './types'
 
 const picasso = {
@@ -66,9 +67,11 @@ const picasso = {
   }
 }
 
-const defaultTheme = createMuiTheme(picasso)
 const createProvider = (theme: Theme) => new Provider(theme)
+const createTheme = (options: ThemeOptions = {}) =>
+  createMuiTheme(deepmerge(picasso, options))
 
+const defaultTheme = createTheme()
 const PicassoProvider = createProvider(defaultTheme)
 
 interface RootContextProps {
@@ -290,5 +293,5 @@ Picasso.defaultProps = {
   theme: defaultTheme
 }
 
-export { PicassoProvider, createProvider, createMuiTheme as createTheme }
+export { PicassoProvider, createProvider, createTheme }
 export default Picasso
