@@ -7,7 +7,7 @@
 <br/>
 
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
-[![](https://img.shields.io/badge/npm-4.1.1-brightgreen.svg)](https://www.npmjs.com/package/@toptal/picasso)
+[![](https://img.shields.io/npm/v/@toptal/picasso?color=green&logo=toptal)](https://www.npmjs.com/package/@toptal/picasso)
 [![#-frontend-exp-core](https://img.shields.io/badge/slack-%23--frontend--exp--core-green.svg)](https://slack.com)
 
 ## Installation instructions
