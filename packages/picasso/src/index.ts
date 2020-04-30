@@ -1,4 +1,4 @@
-export { default } from '@toptal/picasso-shared'
+export { default, StandardProps, createProvider, createTheme } from '@toptal/picasso-shared'
 export { default as Accordion } from './Accordion'
 export type { AccordionProps } from './Accordion'
 export { default as AccountSelect } from './AccountSelect'
@@ -100,5 +100,4 @@ export type { UserBadgeProps } from './UserBadge'
 export { default as YearSelect } from './YearSelect'
 export type { YearSelectProps } from './YearSelect'
 
-export { StandardProps } from '@toptal/picasso-shared'
 export * from './Icon'
