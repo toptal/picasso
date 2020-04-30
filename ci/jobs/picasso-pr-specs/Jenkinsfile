@@ -222,7 +222,8 @@ pipeline {
         script {
           ghHelper.notifyPR('Visual Tests', 'PENDING', 'running', "${ghprbActualCommit}", "${BUILD_URL}", repoName)
 
-          sh "docker run --rm -v ${PWD}/__diff_output__:/app/__diff_output__ gcr.io/toptal-hub/${repoName}:${ghprbActualCommit} yarn run test-ci:visual"
+          def DIR = pwd() // can't be replaced with ${PWD}, because it's pointing to the jenkins_root folder
+          sh "docker run --rm -v ${DIR}/__diff_output__:/app/__diff_output__ gcr.io/toptal-hub/${repoName}:${ghprbActualCommit} yarn run test-ci:visual"
         }
       } //steps
 
@@ -247,7 +248,7 @@ pipeline {
     always {
       script {
         archiveArtifacts(
-          artifacts: "__diff_output__/latest/*",
+          artifacts: "__diff_output__/latest/**/*.*",
           fingerprint: true,
           allowEmptyArchive: true
         )
