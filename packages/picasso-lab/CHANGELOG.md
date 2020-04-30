@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.12.9](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.12.8...@toptal/picasso-lab@2.12.9) (2020-04-30)
+
+
+### Bug Fixes
+
+* **Accordion:** [FX-873] Add custom summary example, buttons line height ([#1271](https://github.com/toptal/picasso/issues/1271)) ([ea439c3](https://github.com/toptal/picasso/commit/ea439c3422b723aff0e0d6b0b9825d167ac0e87d))
+
+
+
+
+
 ## [2.12.8](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.12.7...@toptal/picasso-lab@2.12.8) (2020-04-29)
 
 
