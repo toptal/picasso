@@ -80,7 +80,7 @@
     "jsdom": "^15.1.1",
     "lerna": "^3.19.0",
     "lodash": "^4.17.11",
-    "puppeteer": "1.19.0",
+    "puppeteer": "3.0.2",
     "raw-loader": "^3.0.0",
     "react": "^16.12.0",
     "react-ace": "^8.1.0",
