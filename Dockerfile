@@ -6,13 +6,16 @@ ENV NPM_TOKEN ${NPM_TOKEN}
 ARG GIT_SHA
 ENV GIT_SHA ${GIT_SHA}
 
-ARG APK_BRANCH=3.10
+ARG APK_BRANCH=3.11
 ENV APK_BRANCH ${APK_BRANCH}
 
 ENV PATH="${PATH}:/app/node_modules/.bin"
 
-# Installs Chromium (77) package.
+# Installs Chromium (81) package.
 ENV CHROME_BIN /usr/bin/chromium-browser
+# Tell Puppeteer to skip installing Chrome. We'll be using the installed package.
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
 RUN echo $APK_BRANCH
 RUN apk update && apk upgrade && \
