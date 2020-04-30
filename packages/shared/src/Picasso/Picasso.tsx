@@ -72,7 +72,7 @@ const createProvider = (theme: Theme) => new Provider(theme)
 const createTheme = (options: ThemeOptions = {}) =>
   createMuiTheme(deepmerge(picasso, options))
 
-const defaultTheme = createTheme()
+const defaultTheme = createMuiTheme(picasso)
 const PicassoProvider = createProvider(defaultTheme)
 
 interface RootContextProps {
