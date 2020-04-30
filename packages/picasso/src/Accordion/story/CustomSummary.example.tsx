@@ -139,7 +139,7 @@ const Example = () => {
   }
 
   return (
-    <div style={{ width: '930px' }}>
+    <div style={{ width: '910px' }}>
       <Summary onClick={handleClick} expanded={expanded} />
       <Accordion
         content={<InterviewCard />}
