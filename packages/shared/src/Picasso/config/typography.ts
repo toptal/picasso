@@ -2,8 +2,11 @@ declare module '@material-ui/core/styles/createTypography' {
   export interface Typography {
     buttons: {
       fontSizeSmall: string
+      lineHeightSmall: string
       fontSizeMedium: string
+      lineHeightMedium: string
       fontSizeLarge: string
+      lineHeightLarge: string
     }
     fontWeights: {
       thin: number
@@ -31,8 +34,11 @@ const typography = {
   inputSize: '18px',
   buttons: {
     fontSizeSmall: '12px',
+    lineHeightSmall: '15px',
     fontSizeMedium: '13px',
-    fontSizeLarge: '15px'
+    lineHeightMedium: '16px',
+    fontSizeLarge: '15px',
+    lineHeightLarge: '18px'
   }
 }
 

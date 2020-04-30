@@ -40,3 +40,7 @@ page
     description:
       'Summary and Details of Accordion can be decorated with additional styles'
   })
+  .addExample('Accordion/story/CustomSummary.example.tsx', {
+    title: 'Custom Summary',
+    description: 'Summary can be a completely custom component'
+  })

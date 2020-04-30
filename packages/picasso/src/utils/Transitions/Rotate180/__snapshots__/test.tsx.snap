@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Rotate180 render with transformation 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="Rotate180-transition Rotate180-rotate180"
+    >
+      Rotating component
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Rotate180 render without transformation 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="Rotate180-transition"
+    >
+      Rotating component
+    </div>
+  </div>
+</div>
+`;
