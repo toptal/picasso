@@ -1,4 +1,4 @@
-FROM node:13-alpine
+FROM node:14-alpine
 
 ARG NPM_TOKEN
 ENV NPM_TOKEN ${NPM_TOKEN}
@@ -44,12 +44,9 @@ WORKDIR /app
 # Enables layer caching
 COPY package.json yarn.lock ./
 
-RUN yarn install --frozen-lockfile
+RUN yarn config set workspaces-experimental true && yarn install --frozen-lockfile && yarn cache clean
 
 COPY . /app
-
-RUN yarn config set workspaces-experimental true
-RUN yarn install --frozen-lockfile && yarn cache clean
 
 # needs to be +rw for rm and mkdir /build
 RUN chmod a+rw /app && \
