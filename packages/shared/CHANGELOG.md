@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.12.0](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.11.5...@toptal/picasso-shared@1.12.0) (2020-04-30)
+
+
+### Features
+
+* **Picasso:** add theme property ([#1262](https://github.com/toptal/picasso/issues/1262)) ([1ca7d44](https://github.com/toptal/picasso/commit/1ca7d44ee1716afcd5fddb038b4ac21fe7e35334))
+
+
+
+
+
 ## [1.11.5](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.11.4...@toptal/picasso-shared@1.11.5) (2020-04-30)
 
 
