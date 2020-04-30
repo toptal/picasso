@@ -20,6 +20,7 @@ import React, {
 } from 'react'
 import { ModalProvider } from 'react-modal-hook'
 import { makeStyles } from '@material-ui/styles'
+import { deepmerge } from '@material-ui/utils'
 import { Helmet } from 'react-helmet'
 
 import CssBaseline from '../CssBaseline'
@@ -39,7 +40,7 @@ import Provider from './PicassoProvider'
 import NotificationsProvider from './NotificationsProvider'
 import globalStyles from './styles'
 import Favicon from '../Favicon'
-import { generateRandomStringOrGetEmptyInTest, deepmerge } from './utils'
+import { generateRandomStringOrGetEmptyInTest } from './utils'
 import { EnvironmentType } from './types'
 
 const picasso = {
