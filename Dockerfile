@@ -48,6 +48,7 @@ RUN yarn install --frozen-lockfile
 
 COPY . /app
 
+# creates symlinks between packages
 RUN yarn config set workspaces-experimental true
 RUN yarn install --frozen-lockfile && yarn cache clean
 

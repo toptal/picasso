@@ -64,6 +64,11 @@ async function screenshotDOMElement({
 
   const clipPadding = padding || PADDING_AROUND_COMPONENT
 
+  await page.setViewport({
+    width: clipDimensions.width,
+    height: clipDimensions.height
+  })
+
   return page.screenshot({
     clip: {
       x: clipDimensions.x - clipPadding,
