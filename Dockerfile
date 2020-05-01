@@ -44,7 +44,8 @@ WORKDIR /app
 # Enables layer caching
 COPY package.json yarn.lock ./
 
-RUN yarn config set workspaces-experimental true && yarn install --frozen-lockfile && yarn cache clean
+RUN yarn config set workspaces-experimental true
+RUN yarn install --frozen-lockfile && yarn cache clean
 
 COPY . /app
 
