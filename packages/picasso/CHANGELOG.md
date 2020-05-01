@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.52.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.51.10...@toptal/picasso@4.52.0) (2020-04-30)
+
+
+### Features
+
+* **Picasso:** add theme property ([#1262](https://github.com/toptal/picasso/issues/1262)) ([1ca7d44](https://github.com/toptal/picasso/commit/1ca7d44ee1716afcd5fddb038b4ac21fe7e35334))
+
+
+
+
+
+## [4.51.10](https://github.com/toptal/picasso/compare/@toptal/picasso@4.51.9...@toptal/picasso@4.51.10) (2020-04-30)
+
+
+### Bug Fixes
+
+* **Accordion:** [FX-873] Add custom summary example, buttons line height ([#1271](https://github.com/toptal/picasso/issues/1271)) ([ea439c3](https://github.com/toptal/picasso/commit/ea439c3422b723aff0e0d6b0b9825d167ac0e87d))
+
+
+
+
+
 ## [4.51.9](https://github.com/toptal/picasso/compare/@toptal/picasso@4.51.8...@toptal/picasso@4.51.9) (2020-04-28)
 
 **Note:** Version bump only for package @toptal/picasso

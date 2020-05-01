@@ -1,3 +1,5 @@
+import * as TransitionUtils from './Transitions'
+
 export {
   breakpointsList as breakpoints,
   screens,
@@ -20,6 +22,8 @@ export { default as disableUnsupportedProps } from './disable-unsupported-props'
 export { default as isNumber } from './is-number'
 export { default as isBoolean } from './is-boolean'
 export { default as isSubstring } from './is-substring'
+export const Transitions = TransitionUtils
+
 export { Maybe } from './monads'
 export { useNotifications } from './Notifications'
 export { useModals } from './Modal'

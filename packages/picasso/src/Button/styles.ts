@@ -78,7 +78,8 @@ export default ({ palette, sizes, transitions, typography }: Theme) =>
       padding: '0 0.75em',
 
       '& $content': {
-        fontSize: typography.buttons.fontSizeSmall
+        fontSize: typography.buttons.fontSizeSmall,
+        lineHeight: typography.buttons.lineHeightSmall
       },
 
       '&$circular': {
@@ -90,7 +91,8 @@ export default ({ palette, sizes, transitions, typography }: Theme) =>
       padding: '0 1em',
 
       '& $content': {
-        fontSize: typography.buttons.fontSizeMedium
+        fontSize: typography.buttons.fontSizeMedium,
+        lineHeight: typography.buttons.lineHeightMedium
       },
 
       '&$circular': {
@@ -103,6 +105,7 @@ export default ({ palette, sizes, transitions, typography }: Theme) =>
 
       '& $content': {
         fontSize: typography.buttons.fontSizeLarge,
+        lineHeight: typography.buttons.lineHeightLarge,
         fontWeight: typography.fontWeights.semibold
       },
 

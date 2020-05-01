@@ -117,7 +117,10 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
       {...rest}
       ref={ref}
       classes={{
-        root: children ? cx(classes.root, { [classes.bordered]: bordered }) : ''
+        root:
+          children || bordered
+            ? cx(classes.root, { [classes.bordered]: bordered })
+            : ''
       }}
       className={className}
       style={style}
