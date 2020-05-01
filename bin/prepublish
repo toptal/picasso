@@ -10,12 +10,10 @@ const entry = yargs.entry
 const {
   copyPackageJson,
   copyReadme,
-  bumpReadmeVersion
 } = require('./utils')
 
 copyPackageJson(packageRootDir, entry)
 
 if (shouldCopyReadme) {
   copyReadme(packageRootDir)
-  bumpReadmeVersion(packageRootDir)
 }
