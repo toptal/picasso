@@ -210,7 +210,7 @@ export const DatePicker = (props: Props) => {
       return
     }
 
-    if (key === 'Tab') {
+    if (key === 'Tab' && calendarIsShown) {
       event.preventDefault()
       event.stopPropagation()
 
