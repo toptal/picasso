@@ -105,6 +105,7 @@ export const DatePicker = (props: Props) => {
   const inputProps = rest
 
   const [calendarIsShown, setCalendarIsShown] = useState(false)
+  const [isInputFocused, setIsInputFocused] = useState(false)
   const [inputValue, setInputValue] = useState(EMPTY_INPUT_VALUE)
 
   const hideCalendar = () => setCalendarIsShown(false)
@@ -123,10 +124,15 @@ export const DatePicker = (props: Props) => {
 
     if (range) {
       setInputValue(formatDateRange(value as DateRangeType, displayDateFormat!))
+      return
+    }
+
+    if (isInputFocused) {
+      setInputValue(formatDate(value as Date, editDateFormat!))
     } else {
       setInputValue(formatDate(value as Date, displayDateFormat!))
     }
-  }, [value, range, displayDateFormat, editDateFormat])
+  }, [value, isInputFocused, range, displayDateFormat, editDateFormat])
 
   const isInsideDatePicker = (node: Node) => {
     if (!inputWrapperRef.current) {
@@ -154,6 +160,7 @@ export const DatePicker = (props: Props) => {
 
     hideCalendar()
     onBlur!()
+    setIsInputFocused(false)
   }
 
   const handleInputChange = (
@@ -230,6 +237,7 @@ export const DatePicker = (props: Props) => {
 
   const handleFocusOrClick = () => {
     showCalendar()
+    setIsInputFocused(true)
   }
 
   const startAdornment = (
