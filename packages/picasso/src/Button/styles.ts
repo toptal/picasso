@@ -8,6 +8,10 @@ const primary = (mainColor: string, secondaryColor: string) => ({
   color: secondaryColor,
   backgroundColor: mainColor,
 
+  '&:focus, &focused': {
+    backgroundColor: darken(mainColor, 0.2)
+  },
+
   '&:hover, &$hovered': {
     backgroundColor: darken(mainColor, 0.2)
   },
@@ -20,6 +24,11 @@ const primary = (mainColor: string, secondaryColor: string) => ({
 const secondary = (mainColor: string, secondaryColor: string) => ({
   color: mainColor,
   backgroundColor: secondaryColor,
+
+  '&:focus, &focused': {
+    backgroundColor: lighten(mainColor, 0.84),
+    borderColor: mainColor
+  },
 
   '&:hover, &$hovered': {
     backgroundColor: lighten(mainColor, 0.84),
@@ -48,10 +57,10 @@ export default ({ palette, sizes, transitions, typography }: Theme) =>
       transition: `all ${transitions.duration.short}ms ${transitions.easing.easeOut}`,
       transitionProperty: 'border, color, background',
 
-      '&:focus, &$focused': {
+      '&:focus, &focused': {
         textDecoration: 'underline',
 
-        '&:active, &$active, &:hover': {
+        '&:hover, &$hovered, &:active, &$active': {
           textDecoration: 'none'
         }
       },
@@ -126,6 +135,11 @@ export default ({ palette, sizes, transitions, typography }: Theme) =>
       color: palette.common.white,
       border: `solid ${sizes.borderWidth} rgba(255, 255, 255, 0.32)`,
 
+      '&:focus, &focused': {
+        backgroundColor: alpha(palette.common.white, 0.16),
+        borderColor: palette.common.white
+      },
+
       '&:hover, &$hovered': {
         backgroundColor: alpha(palette.common.white, 0.16),
         borderColor: palette.common.white
@@ -143,9 +157,15 @@ export default ({ palette, sizes, transitions, typography }: Theme) =>
     flatWhite: {
       color: palette.common.white,
       border: 'none',
+
+      '&:focus, &focused': {
+        backgroundColor: alpha(palette.common.white, 0.16)
+      },
+
       '&:hover, &$hovered': {
         backgroundColor: alpha(palette.common.white, 0.16)
       },
+
       '&:active, &$active': {
         backgroundColor: alpha(palette.common.white, 0.16)
       }
