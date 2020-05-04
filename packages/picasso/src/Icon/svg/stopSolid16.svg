@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons / Audio and Video / 16 / Stop Solid</title>
+    <defs>
+        <rect id="path-1" x="1" y="1" width="14" height="14"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Extension-tools---Messges---No-sound" transform="translate(-1360.000000, -276.000000)">
+            <g id="Group-5" transform="translate(1169.000000, 72.000000)">
+                <g id="Right-side-bar">
+                    <g id="Icons-/-Audio-and-Video-/-16-/-Stop-Solid" transform="translate(190.000000, 203.000000)">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <use id="Rectangle" fill="#455065" fill-rule="evenodd" xlink:href="#path-1"></use>
+                        <g id="Colors-/-402-Main-Red" mask="url(#mask-2)" fill="#D42551" fill-rule="evenodd">
+                            <rect id="Rectangle" x="0" y="0" width="16" height="16"></rect>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
