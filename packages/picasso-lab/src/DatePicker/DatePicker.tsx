@@ -16,7 +16,6 @@ import Popper from '@toptal/picasso/Popper'
 import { Calendar16 } from '@toptal/picasso/Icon'
 
 import Calendar, {
-  CalendarRefProps,
   DateOrDateRangeType,
   DateRangeType,
   DayProps
@@ -113,7 +112,7 @@ export const DatePicker = (props: Props) => {
 
   const inputRef = useRef<HTMLInputElement>(null)
   const popperRef = useRef<PopperJs>(null)
-  const calendarRef = useRef<CalendarRefProps>(null)
+  const calendarRef = useRef<HTMLDivElement>(null)
   const inputWrapperRef = useRef<HTMLDivElement>(null)
 
   useLayoutEffect(() => {
@@ -198,20 +197,33 @@ export const DatePicker = (props: Props) => {
     if (key === 'Escape') {
       hideCalendar()
       event.currentTarget.blur()
-    } else if (key === 'Enter') {
+      return
+    }
+
+    if (key === 'Enter') {
       if (!calendarIsShown) {
         showCalendar()
       } else {
         hideCalendar()
       }
-    } else if (key === 'Tab') {
+
+      return
+    }
+
+    if (key === 'Tab') {
       event.preventDefault()
       event.stopPropagation()
 
       if (!calendarIsShown) {
         event.currentTarget.blur()
       } else {
-        calendarRef.current?.previousMonth?.focus()
+        const firstButton = calendarRef.current?.querySelector<
+          HTMLButtonElement
+        >('button:not([tabindex="-1"])')
+
+        if (firstButton) {
+          firstButton.focus()
+        }
       }
     }
   }

@@ -3,18 +3,20 @@ import { lighten, darken, alpha } from '@toptal/picasso-shared'
 
 const ICON_SPACING = '0.4em'
 
-const onFocus = '&:focus, &$hovered'
-const onHover = '&:hover, &$hovered'
-const onActive = '&:active, &$active'
-
-const states = (...rules: string[]) => rules.join(', ')
-
 const primary = (mainColor: string, secondaryColor: string) => ({
   border: 'none',
   color: secondaryColor,
   backgroundColor: mainColor,
 
-  [states(onFocus, onHover, onActive)]: {
+  '&:focus, &focused': {
+    backgroundColor: darken(mainColor, 0.2)
+  },
+
+  '&:hover, &$hovered': {
+    backgroundColor: darken(mainColor, 0.2)
+  },
+
+  '&:active, &$active': {
     backgroundColor: darken(mainColor, 0.2)
   }
 })
@@ -23,7 +25,17 @@ const secondary = (mainColor: string, secondaryColor: string) => ({
   color: mainColor,
   backgroundColor: secondaryColor,
 
-  [states(onFocus, onHover, onActive)]: {
+  '&:focus, &focused': {
+    backgroundColor: lighten(mainColor, 0.84),
+    borderColor: mainColor
+  },
+
+  '&:hover, &$hovered': {
+    backgroundColor: lighten(mainColor, 0.84),
+    borderColor: mainColor
+  },
+
+  '&:active, &$active': {
     backgroundColor: lighten(mainColor, 0.84),
     borderColor: mainColor
   }
@@ -45,10 +57,10 @@ export default ({ palette, sizes, transitions, typography }: Theme) =>
       transition: `all ${transitions.duration.short}ms ${transitions.easing.easeOut}`,
       transitionProperty: 'border, color, background',
 
-      [onFocus]: {
+      '&:focus, &focused': {
         textDecoration: 'underline',
 
-        [states(onActive, onHover)]: {
+        '&:hover, &$hovered, &:active, &$active': {
           textDecoration: 'none'
         }
       },
@@ -123,7 +135,17 @@ export default ({ palette, sizes, transitions, typography }: Theme) =>
       color: palette.common.white,
       border: `solid ${sizes.borderWidth} rgba(255, 255, 255, 0.32)`,
 
-      [states(onFocus, onHover, onActive)]: {
+      '&:focus, &focused': {
+        backgroundColor: alpha(palette.common.white, 0.16),
+        borderColor: palette.common.white
+      },
+
+      '&:hover, &$hovered': {
+        backgroundColor: alpha(palette.common.white, 0.16),
+        borderColor: palette.common.white
+      },
+
+      '&:active, &$active': {
         backgroundColor: alpha(palette.common.white, 0.16),
         borderColor: palette.common.white
       }
@@ -136,7 +158,15 @@ export default ({ palette, sizes, transitions, typography }: Theme) =>
       color: palette.common.white,
       border: 'none',
 
-      [states(onFocus, onHover, onActive)]: {
+      '&:focus, &focused': {
+        backgroundColor: alpha(palette.common.white, 0.16)
+      },
+
+      '&:hover, &$hovered': {
+        backgroundColor: alpha(palette.common.white, 0.16)
+      },
+
+      '&:active, &$active': {
         backgroundColor: alpha(palette.common.white, 0.16)
       }
     },

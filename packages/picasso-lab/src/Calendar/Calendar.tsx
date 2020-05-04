@@ -1,9 +1,4 @@
-import React, {
-  forwardRef,
-  ReactNode,
-  useImperativeHandle,
-  useRef
-} from 'react'
+import React, { forwardRef, ReactNode } from 'react'
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import SimpleReactCalendar from 'simple-react-calendar'
@@ -67,12 +62,7 @@ function isDateRange(
 
 const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoCalendar' })
 
-export type CalendarRefProps = {
-  calendarElement: HTMLDivElement | null
-  previousMonth: HTMLButtonElement | null
-}
-
-export const Calendar = forwardRef<CalendarRefProps, Props>(function Calendar(
+export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
   props,
   ref
 ) {
@@ -100,16 +90,8 @@ export const Calendar = forwardRef<CalendarRefProps, Props>(function Calendar(
     }
   }
 
-  const calendarElement = useRef<HTMLDivElement>(null)
-  const previousMonth = useRef<HTMLButtonElement>(null)
-
-  useImperativeHandle(ref, () => ({
-    calendarElement: calendarElement.current,
-    previousMonth: previousMonth.current
-  }))
-
   return (
-    <div ref={calendarElement} {...rest} onBlur={onBlur}>
+    <div ref={ref} {...rest} onBlur={onBlur}>
       <SimpleReactCalendar
         selected={getNormalizedValue(value)}
         onSelect={handleChange}
@@ -174,7 +156,6 @@ export const Calendar = forwardRef<CalendarRefProps, Props>(function Calendar(
               <Button
                 title='Previous month'
                 variant='flat'
-                ref={previousMonth}
                 size='small'
                 onClick={() => switchMonth(-1)}
               >
