@@ -1,6 +1,2 @@
-import { OmitInternalProps } from '@toptal/picasso-shared'
-
-import { Props } from './YearSelect'
-
+export type { Props as YearSelectProps } from './YearSelect'
 export { default } from './YearSelect'
-export type YearSelectProps = OmitInternalProps<Props>

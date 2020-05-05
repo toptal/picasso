@@ -1,6 +1,6 @@
-export type Option = {
+export type Option<T extends string | number = string | number> = {
   key?: number
   text: string
-  value: string | number
+  value: T
   [prop: string]: string | number | undefined
 }

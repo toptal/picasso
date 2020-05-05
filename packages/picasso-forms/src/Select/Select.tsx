@@ -1,18 +1,30 @@
 import React from 'react'
 import { Select as PicassoSelect } from '@toptal/picasso'
-import { Props as SelectProps } from '@toptal/picasso/Select'
+import { SelectProps, ValueType } from '@toptal/picasso/Select'
 import { generateRandomStringOrGetEmptyInTest } from '@toptal/picasso/utils'
 
 import FieldWrapper, { FieldProps } from '../FieldWrapper'
 
-export type Props = SelectProps & FieldProps<SelectProps['value']>
+export type Props<T extends ValueType, M extends boolean = false> = SelectProps<
+  T,
+  M
+> &
+  FieldProps<SelectProps<T, M>['value']>
 
-export const Select = ({ name, id = name, ...rest }: Props) => {
+export const Select = <T extends ValueType, M extends boolean = false>({
+  name,
+  id = name,
+  ...rest
+}: Props<T, M>) => {
   const randomizedId = id ? generateRandomStringOrGetEmptyInTest(id) : undefined
 
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <FieldWrapper<SelectProps> {...rest} name={name} id={randomizedId}>
+    <FieldWrapper<SelectProps<any, any>>
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
+      name={name}
+      id={randomizedId}
+    >
       {(selectProps: SelectProps) => {
         return (
           <PicassoSelect

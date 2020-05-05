@@ -1,13 +1,13 @@
 import React, { useState, ChangeEvent } from 'react'
-import { Select, Container, Form } from '@toptal/picasso'
+import { Container, Form, Select } from '@toptal/picasso'
 
 const Example = () => {
-  const [value, setValue] = useState<string | string[] | number>()
+  const [value, setValue] = useState<string>()
 
   const handleChange = (
     event: ChangeEvent<{
       name?: string | undefined
-      value: string | string[] | number
+      value: string
     }>
   ) => {
     console.log('Select value:', event.target.value)
