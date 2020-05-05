@@ -160,6 +160,7 @@ export const DatePicker = (props: Props) => {
 
     hideCalendar()
     onBlur!()
+
     setIsInputFocused(false)
   }
 
@@ -224,6 +225,7 @@ export const DatePicker = (props: Props) => {
       if (!calendarIsShown) {
         event.currentTarget.blur()
       } else {
+        // TODO: Manage this whole logic inside simple-react-calendar
         const firstButton = calendarRef.current?.querySelector<
           HTMLButtonElement
         >('button:not([tabindex="-1"])')
