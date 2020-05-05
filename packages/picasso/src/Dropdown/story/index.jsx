@@ -37,6 +37,9 @@ page
     'Dropdown/story/PositionsAndOffsets.example.jsx',
     'Positions & Offsets'
   )
-  .addExample('Dropdown/story/CustomTrigger.example.jsx', 'Custom Anchor')
+  .addExample('Dropdown/story/CustomTrigger.example.jsx', {
+    title: 'Custom Anchor',
+    waitUntilImagesLoaded: true
+  })
   .addExample('Dropdown/story/CustomContent.example.jsx', 'Custom Content')
   .addExample('Dropdown/story/SmallArrow.example.jsx', 'Small Arrow Dropdown')
