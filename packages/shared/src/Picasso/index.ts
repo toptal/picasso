@@ -4,9 +4,7 @@ export {
   usePicassoRoot,
   usePageHeader,
   useAppConfig,
-  useDrawer,
-  createProvider,
-  createTheme
+  useDrawer
 } from './Picasso'
 
 export * from './types'

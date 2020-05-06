@@ -1,5 +1,6 @@
-import { Theme } from '@material-ui/core/styles'
+import { Theme, ThemeOptions } from '@material-ui/core/styles'
 import { Overrides } from '@material-ui/core/styles/overrides'
+import { deepmerge } from '@material-ui/utils'
 
 export class PicassoProvider {
   theme: Theme
@@ -24,6 +25,10 @@ export class PicassoProvider {
     Object.assign(overrides, newOverride)
 
     this.theme.overrides = overrides
+  }
+
+  extendTheme(theme: ThemeOptions) {
+    this.theme = deepmerge(this.theme, theme)
   }
 }
 
