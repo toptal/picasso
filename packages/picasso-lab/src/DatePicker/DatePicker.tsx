@@ -11,9 +11,8 @@ import formatDate from 'date-fns/format'
 import isValid from 'date-fns/isValid'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
-import { Container, Input, InputAdornment } from '@toptal/picasso'
+import { Container, Input, InputAdornment, InputProps } from '@toptal/picasso'
 import Popper from '@toptal/picasso/Popper'
-import { Props as InputProps } from '@toptal/picasso/Input'
 import { Calendar16 } from '@toptal/picasso/Icon'
 
 import Calendar, {
@@ -113,7 +112,8 @@ export const DatePicker = (props: Props) => {
   const showCalendar = () => setCalendarIsShown(true)
 
   const inputRef = useRef<HTMLInputElement>(null)
-  const calendarRef = useRef<PopperJs>(null)
+  const popperRef = useRef<PopperJs>(null)
+  const calendarRef = useRef<HTMLDivElement>(null)
   const inputWrapperRef = useRef<HTMLDivElement>(null)
 
   useLayoutEffect(() => {
@@ -139,12 +139,12 @@ export const DatePicker = (props: Props) => {
       return
     }
 
-    if (!calendarRef.current) {
+    if (!popperRef.current) {
       return
     }
 
     return (
-      calendarRef.current.popper.contains(node) ||
+      popperRef.current.popper.contains(node) ||
       inputWrapperRef.current.contains(node)
     )
   }
@@ -204,11 +204,36 @@ export const DatePicker = (props: Props) => {
 
     if (key === 'Escape') {
       hideCalendar()
+      event.currentTarget.blur()
       return
     }
 
     if (key === 'Enter') {
-      hideCalendar()
+      if (!calendarIsShown) {
+        showCalendar()
+      } else {
+        hideCalendar()
+      }
+
+      return
+    }
+
+    if (key === 'Tab' && calendarIsShown) {
+      event.preventDefault()
+      event.stopPropagation()
+
+      if (!calendarIsShown) {
+        event.currentTarget.blur()
+      } else {
+        // TODO: Manage this whole logic inside simple-react-calendar
+        const firstButton = calendarRef.current?.querySelector<
+          HTMLButtonElement
+        >('button:not([tabindex="-1"])')
+
+        if (firstButton) {
+          firstButton.focus()
+        }
+      }
     }
   }
 
@@ -248,10 +273,11 @@ export const DatePicker = (props: Props) => {
           open={calendarIsShown}
           anchorEl={inputWrapperRef.current}
           autoWidth={false}
-          ref={calendarRef}
           container={popperContainer}
+          ref={popperRef}
         >
           <Calendar
+            ref={calendarRef}
             range={range}
             value={value}
             minDate={minDate}
@@ -261,7 +287,6 @@ export const DatePicker = (props: Props) => {
             onChange={handleCalendarChange}
             onBlur={handleBlur}
             className={classes.calendar}
-            tabIndex={-1}
           />
         </Popper>
       )}

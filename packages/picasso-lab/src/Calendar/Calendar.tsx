@@ -91,7 +91,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
   }
 
   return (
-    <div {...rest} ref={ref} onBlur={onBlur}>
+    <div ref={ref} {...rest} onBlur={onBlur}>
       <SimpleReactCalendar
         selected={getNormalizedValue(value)}
         onSelect={handleChange}
@@ -120,6 +120,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
             <button
               data-simple-react-calendar-day={ISODate}
               key={key}
+              tabIndex={isDisabled || !isSelectable ? -1 : undefined}
               className={cx(classes.day, {
                 [classes.selected]: isSelected,
                 [classes.selectable]: isSelectable,
@@ -133,7 +134,6 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
               onClick={handleOnClick}
               onMouseEnter={handleOnEnter}
               value={date.toString()}
-              tabIndex={-1}
               type='button'
             >
               {getDayFormatted(date)}
@@ -154,7 +154,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
           return (
             <div className={classes.actions}>
               <Button
-                tabIndex={-1}
+                title='Previous month'
                 variant='flat'
                 size='small'
                 onClick={() => switchMonth(-1)}
@@ -165,7 +165,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
                 {format(headerActiveMonth, 'MMMM y')}
               </Typography>
               <Button
-                tabIndex={-1}
+                title='Next month'
                 variant='flat'
                 size='small'
                 onClick={() => switchMonth(1)}

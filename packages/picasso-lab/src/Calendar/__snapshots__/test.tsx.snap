@@ -14,7 +14,8 @@ exports[`Calendar default render 1`] = `
         >
           <button
             class="MuiButtonBase-root PicassoButton-small PicassoButton-flat PicassoButton-root"
-            tabindex="-1"
+            tabindex="0"
+            title="Previous month"
             type="button"
           >
             <span
@@ -38,7 +39,8 @@ exports[`Calendar default render 1`] = `
           </h3>
           <button
             class="MuiButtonBase-root PicassoButton-small PicassoButton-flat PicassoButton-root"
-            tabindex="-1"
+            tabindex="0"
+            title="Next month"
             type="button"
           >
             <span
@@ -104,7 +106,6 @@ exports[`Calendar default render 1`] = `
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable PicassoCalendar-grayed"
               data-simple-react-calendar-day="2019-01-28"
-              tabindex="-1"
               type="button"
               value="Mon Jan 28 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
@@ -113,7 +114,6 @@ exports[`Calendar default render 1`] = `
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable PicassoCalendar-grayed"
               data-simple-react-calendar-day="2019-01-29"
-              tabindex="-1"
               type="button"
               value="Tue Jan 29 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
@@ -122,7 +122,6 @@ exports[`Calendar default render 1`] = `
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable PicassoCalendar-grayed"
               data-simple-react-calendar-day="2019-01-30"
-              tabindex="-1"
               type="button"
               value="Wed Jan 30 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
@@ -131,7 +130,6 @@ exports[`Calendar default render 1`] = `
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable PicassoCalendar-grayed"
               data-simple-react-calendar-day="2019-01-31"
-              tabindex="-1"
               type="button"
               value="Thu Jan 31 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
@@ -140,7 +138,6 @@ exports[`Calendar default render 1`] = `
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
               data-simple-react-calendar-day="2019-02-01"
-              tabindex="-1"
               type="button"
               value="Fri Feb 01 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
@@ -149,7 +146,6 @@ exports[`Calendar default render 1`] = `
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
               data-simple-react-calendar-day="2019-02-02"
-              tabindex="-1"
               type="button"
               value="Sat Feb 02 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
@@ -158,7 +154,6 @@ exports[`Calendar default render 1`] = `
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
               data-simple-react-calendar-day="2019-02-03"
-              tabindex="-1"
               type="button"
               value="Sun Feb 03 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
@@ -171,7 +166,6 @@ exports[`Calendar default render 1`] = `
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
               data-simple-react-calendar-day="2019-02-04"
-              tabindex="-1"
               type="button"
               value="Mon Feb 04 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
@@ -180,7 +174,6 @@ exports[`Calendar default render 1`] = `
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
               data-simple-react-calendar-day="2019-02-05"
-              tabindex="-1"
               type="button"
               value="Tue Feb 05 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
@@ -189,7 +182,6 @@ exports[`Calendar default render 1`] = `
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
               data-simple-react-calendar-day="2019-02-06"
-              tabindex="-1"
               type="button"
               value="Wed Feb 06 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
@@ -198,7 +190,6 @@ exports[`Calendar default render 1`] = `
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
               data-simple-react-calendar-day="2019-02-07"
-              tabindex="-1"
               type="button"
               value="Thu Feb 07 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
@@ -207,7 +198,6 @@ exports[`Calendar default render 1`] = `
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
               data-simple-react-calendar-day="2019-02-08"
-              tabindex="-1"
               type="button"
               value="Fri Feb 08 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
@@ -216,7 +206,6 @@ exports[`Calendar default render 1`] = `
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
               data-simple-react-calendar-day="2019-02-09"
-              tabindex="-1"
               type="button"
               value="Sat Feb 09 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
@@ -225,7 +214,6 @@ exports[`Calendar default render 1`] = `
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
               data-simple-react-calendar-day="2019-02-10"
-              tabindex="-1"
               type="button"
               value="Sun Feb 10 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
@@ -238,7 +226,6 @@ exports[`Calendar default render 1`] = `
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
               data-simple-react-calendar-day="2019-02-11"
-              tabindex="-1"
               type="button"
               value="Mon Feb 11 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
@@ -247,7 +234,6 @@ exports[`Calendar default render 1`] = `
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
               data-simple-react-calendar-day="2019-02-12"
-              tabindex="-1"
               type="button"
               value="Tue Feb 12 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
@@ -256,7 +242,6 @@ exports[`Calendar default render 1`] = `
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
               data-simple-react-calendar-day="2019-02-13"
-              tabindex="-1"
               type="button"
               value="Wed Feb 13 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
@@ -265,7 +250,6 @@ exports[`Calendar default render 1`] = `
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
               data-simple-react-calendar-day="2019-02-14"
-              tabindex="-1"
               type="button"
               value="Thu Feb 14 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
@@ -274,7 +258,6 @@ exports[`Calendar default render 1`] = `
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
               data-simple-react-calendar-day="2019-02-15"
-              tabindex="-1"
               type="button"
               value="Fri Feb 15 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
@@ -283,7 +266,6 @@ exports[`Calendar default render 1`] = `
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
               data-simple-react-calendar-day="2019-02-16"
-              tabindex="-1"
               type="button"
               value="Sat Feb 16 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
@@ -292,7 +274,6 @@ exports[`Calendar default render 1`] = `
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
               data-simple-react-calendar-day="2019-02-17"
-              tabindex="-1"
               type="button"
               value="Sun Feb 17 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
@@ -305,7 +286,6 @@ exports[`Calendar default render 1`] = `
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
               data-simple-react-calendar-day="2019-02-18"
-              tabindex="-1"
               type="button"
               value="Mon Feb 18 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
@@ -314,7 +294,6 @@ exports[`Calendar default render 1`] = `
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
               data-simple-react-calendar-day="2019-02-19"
-              tabindex="-1"
               type="button"
               value="Tue Feb 19 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
@@ -323,7 +302,6 @@ exports[`Calendar default render 1`] = `
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
               data-simple-react-calendar-day="2019-02-20"
-              tabindex="-1"
               type="button"
               value="Wed Feb 20 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
@@ -332,7 +310,6 @@ exports[`Calendar default render 1`] = `
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
               data-simple-react-calendar-day="2019-02-21"
-              tabindex="-1"
               type="button"
               value="Thu Feb 21 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
@@ -341,7 +318,6 @@ exports[`Calendar default render 1`] = `
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
               data-simple-react-calendar-day="2019-02-22"
-              tabindex="-1"
               type="button"
               value="Fri Feb 22 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
@@ -350,7 +326,6 @@ exports[`Calendar default render 1`] = `
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
               data-simple-react-calendar-day="2019-02-23"
-              tabindex="-1"
               type="button"
               value="Sat Feb 23 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
@@ -359,7 +334,6 @@ exports[`Calendar default render 1`] = `
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
               data-simple-react-calendar-day="2019-02-24"
-              tabindex="-1"
               type="button"
               value="Sun Feb 24 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
@@ -372,7 +346,6 @@ exports[`Calendar default render 1`] = `
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
               data-simple-react-calendar-day="2019-02-25"
-              tabindex="-1"
               type="button"
               value="Mon Feb 25 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
@@ -381,7 +354,6 @@ exports[`Calendar default render 1`] = `
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
               data-simple-react-calendar-day="2019-02-26"
-              tabindex="-1"
               type="button"
               value="Tue Feb 26 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
@@ -390,7 +362,6 @@ exports[`Calendar default render 1`] = `
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
               data-simple-react-calendar-day="2019-02-27"
-              tabindex="-1"
               type="button"
               value="Wed Feb 27 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
@@ -399,7 +370,6 @@ exports[`Calendar default render 1`] = `
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable"
               data-simple-react-calendar-day="2019-02-28"
-              tabindex="-1"
               type="button"
               value="Thu Feb 28 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
@@ -408,7 +378,6 @@ exports[`Calendar default render 1`] = `
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable PicassoCalendar-grayed"
               data-simple-react-calendar-day="2019-03-01"
-              tabindex="-1"
               type="button"
               value="Fri Mar 01 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
@@ -417,7 +386,6 @@ exports[`Calendar default render 1`] = `
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable PicassoCalendar-grayed"
               data-simple-react-calendar-day="2019-03-02"
-              tabindex="-1"
               type="button"
               value="Sat Mar 02 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
@@ -426,7 +394,6 @@ exports[`Calendar default render 1`] = `
             <button
               class="PicassoCalendar-day PicassoCalendar-selectable PicassoCalendar-grayed"
               data-simple-react-calendar-day="2019-03-03"
-              tabindex="-1"
               type="button"
               value="Sun Mar 03 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
             >
