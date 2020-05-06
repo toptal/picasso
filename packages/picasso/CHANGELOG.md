@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.52.3](https://github.com/toptal/picasso/compare/@toptal/picasso@4.52.2...@toptal/picasso@4.52.3) (2020-05-06)
+
+
+### Bug Fixes
+
+* **Select:** make Select a generic ([#1279](https://github.com/toptal/picasso/issues/1279)) ([f75810f](https://github.com/toptal/picasso/commit/f75810f97081e7fc59ae1f0df56994f38dd9baed))
+
+
+
+
+
 ## [4.52.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.52.1...@toptal/picasso@4.52.2) (2020-05-06)
 
 **Note:** Version bump only for package @toptal/picasso

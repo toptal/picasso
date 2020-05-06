@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.9](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.16.8...@toptal/picasso-forms@0.16.9) (2020-05-06)
+
+
+### Bug Fixes
+
+* **Select:** make Select a generic ([#1279](https://github.com/toptal/picasso/issues/1279)) ([f75810f](https://github.com/toptal/picasso/commit/f75810f97081e7fc59ae1f0df56994f38dd9baed))
+
+
+
+
+
 ## [0.16.8](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.16.7...@toptal/picasso-forms@0.16.8) (2020-04-30)
 
 
