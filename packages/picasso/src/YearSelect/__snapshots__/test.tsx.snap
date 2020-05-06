@@ -6,14 +6,14 @@ exports[`YearSelect default render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Select-root Select-rootFull"
+      class="makeStyles-root makeStyles-rootFull"
     >
       <div
-        class="Select-inputWrapper"
+        class="makeStyles-inputWrapper"
       >
         <div
           aria-autocomplete="list"
-          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootFull OutlinedInput-rootMedium Select-input MuiInputBase-fullWidth"
+          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootFull OutlinedInput-rootMedium makeStyles-input MuiInputBase-fullWidth"
           role="textbox"
         >
           <input
@@ -40,7 +40,7 @@ exports[`YearSelect default render 1`] = `
           </fieldset>
         </div>
         <svg
-          class="SvgDropdownArrows16-root Select-caret"
+          class="SvgDropdownArrows16-root makeStyles-caret"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
         >

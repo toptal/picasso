@@ -1,6 +1,5 @@
 /* eslint-disable max-lines, complexity, max-lines-per-function, max-statements */
 import React, {
-  forwardRef,
   ChangeEvent,
   ReactNode,
   InputHTMLAttributes,
@@ -12,9 +11,9 @@ import React, {
 } from 'react'
 import cx from 'classnames'
 import NativeSelect from '@material-ui/core/NativeSelect'
-import { withStyles } from '@material-ui/core/styles'
+import { Theme, makeStyles } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
-import { StandardProps, SizeType } from '@toptal/picasso-shared'
+import { BaseProps, SizeType } from '@toptal/picasso-shared'
 
 import OutlinedInput from '../OutlinedInput'
 import Popper from '../Popper'
@@ -28,16 +27,36 @@ import { FeatureOptions } from '../utils/disable-unsupported-props'
 import { Option } from './types'
 import useSelect, { EMPTY_INPUT_VALUE, ItemProps } from './useSelect'
 import styles from './styles'
+import { documentable, forwardRef } from '../utils/forward-ref'
 
 type IconPosition = 'start' | 'end'
-type ValueType = string | string[] | number
+export type ValueType = string | number
+
+const useStyles = makeStyles<Theme, Props<any, any>>(styles)
 
 const getOptionText = (option: Option | null) =>
   (option && option.text) || EMPTY_INPUT_VALUE
 
-export interface Props
-  extends StandardProps,
-    Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'size' | 'color'> {
+/**
+ * Select props are generalized over possible values in the component and whether
+ * Select should be a multiselect. If you want `onChange` to take a handler that
+ * can take array (for multiselect) you should set `M` to `true`. By default it's
+ * single select.
+ *
+ * @param T The type of the value in the `Select`, can be either `number` or `string`
+ * @param M The `boolean` type of the `multiple` property to indicate whether `onChange` will expect handler to accept plain `T` or array of `T`
+ * @param V Technical type, don't pass type argument to it directly
+ */
+export interface Props<
+  T extends ValueType = ValueType,
+  M extends boolean = boolean,
+  V = M extends true ? T[] : T
+>
+  extends BaseProps,
+    Omit<
+      InputHTMLAttributes<HTMLInputElement>,
+      'onChange' | 'size' | 'color' | 'value'
+    > {
   /** If true, the 'Select' will be disabled */
   disabled?: boolean
   /** Indicate whether `Select` is in error state */
@@ -62,19 +81,19 @@ export interface Props
   onChange?: (
     event: ChangeEvent<{
       name?: string | undefined
-      value: ValueType
+      value: V
     }>
   ) => void
   /** List of options to be rendered as `Select` */
-  options: Option[]
+  options: Option<T>[]
   /** Callback responsible for rendering the option given the option and its index in the list of options */
-  renderOption?: (option: Option, index?: number) => ReactNode
+  renderOption?: (option: Option<T>, index?: number) => ReactNode
   /** A function that takes a display value from the option item */
-  getDisplayValue?: (option: Option | null) => string
+  getDisplayValue?: (option: Option<T> | null) => string
   /** Selected value */
-  value?: ValueType
+  value?: V
   /** Allow selecting multiple values */
-  multiple?: boolean
+  multiple?: M
   /**
    * Size of component
    * @default medium
@@ -87,6 +106,7 @@ export interface Props
   searchThreshold?: number
   /** Specifies whether the autofill enabled or not, disabled by default */
   enableAutofill?: boolean
+  ref?: React.Ref<HTMLInputElement>
 }
 
 type Selection = {
@@ -97,7 +117,7 @@ type Selection = {
 }
 
 type NativePlaceholderProps = Pick<Props, 'placeholder'> & {
-  emptySelectValue: ValueType
+  emptySelectValue: string | string[]
 }
 
 type NativeOptionsProps = Pick<Props, 'options' | 'renderOption'> & {
@@ -204,7 +224,7 @@ const SelectOption = React.memo(
 
 const getMultipleSelection = (
   allOptions: Option[],
-  value: string[]
+  value: ValueType[]
 ): Selection => {
   const getSelectedOptions = () =>
     allOptions.filter(option => value.includes(String(option.value)))
@@ -236,15 +256,15 @@ const getSingleSelection = (
   }
 }
 
-const getSelection = (allOptions: Option[], value?: ValueType) =>
+const getSelection = (allOptions: Option[], value?: ValueType | ValueType[]) =>
   Array.isArray(value)
-    ? getMultipleSelection(allOptions, value)
-    : getSingleSelection(allOptions, value)
+    ? getMultipleSelection(allOptions, value as ValueType[])
+    : getSingleSelection(allOptions, value as ValueType | undefined)
 
-const isEmpty = (value?: ValueType) =>
+const isEmpty = (value?: ValueType | ValueType[]) =>
   Array.isArray(value) ? value.length === 0 : value === ''
 
-const purifyProps = (props: Props) => {
+const purifyProps = (props: Props<any, any>): Props<ValueType, boolean> => {
   const sizeOptions: FeatureOptions<Props> = {
     featureProps: {
       size: 'small'
@@ -299,327 +319,341 @@ const renderOptions = ({
   )
 }
 
-export const Select = forwardRef<HTMLInputElement, Props>(function Select(
-  props,
-  ref
-) {
-  const {
-    classes,
-    className,
-    style,
-    width,
-    menuWidth,
-    loading,
-    id,
-    icon,
-    iconPosition,
-    name,
-    native,
-    options: allOptions,
-    renderOption,
-    placeholder,
-    disabled,
-    error,
-    onChange,
-    onBlur,
-    multiple,
-    value = multiple ? [] : '',
-    getDisplayValue,
-    size,
-    enableReset,
-    popperContainer,
-    searchThreshold,
-    enableAutofill,
-    autoComplete,
-    ...rest
-  } = purifyProps(props)
+export const Select = documentable(
+  forwardRef(
+    <T extends ValueType, M extends boolean = false>(
+      props: Props<T, M>,
+      ref: React.Ref<HTMLInputElement> | null
+    ) => {
+      const {
+        className,
+        style,
+        width,
+        menuWidth,
+        loading,
+        id,
+        icon,
+        iconPosition,
+        name,
+        native,
+        options: allOptions,
+        renderOption,
+        placeholder,
+        disabled,
+        error,
+        onChange,
+        onBlur,
+        multiple,
+        value = multiple ? [] : '',
+        getDisplayValue,
+        size,
+        enableReset,
+        popperContainer,
+        searchThreshold,
+        enableAutofill,
+        autoComplete,
+        ...rest
+      } = purifyProps(props)
 
-  const emptySelectValue = multiple ? [] : ''
+      const classes = useStyles(props)
 
-  const fireOnChangeEvent = useCallback(
-    ({ event, value }: { event: any; value: ValueType }) => {
-      event.persist()
-      event.target = { value, name }
-      onChange!(event)
-    },
-    [name, onChange]
-  )
+      const emptySelectValue: string | string[] = multiple ? [] : ''
 
-  const inputWrapperRef = useRef<HTMLDivElement>(null)
-  const select = getSelection(allOptions, value)
-  const [inputValue, setInputValue] = useState(select.display(getDisplayValue!))
-  const [options, setOptions] = useState(allOptions)
-
-  useLayoutEffect(() => {
-    const select = getSelection(allOptions, value)
-
-    setInputValue(select.display(getDisplayValue!))
-  }, [allOptions, getDisplayValue, value])
-
-  const filterOptions = useCallback(
-    (subStr: string) => {
-      const filteredOptions = allOptions.filter(option =>
-        isSubstring(subStr, getDisplayValue!(option))
+      const fireOnChangeEvent = useCallback(
+        ({ event, value }: { event: any; value: ValueType | ValueType[] }) => {
+          event.persist()
+          event.target = { value, name }
+          onChange!(event)
+        },
+        [name, onChange]
       )
 
-      setOptions(filteredOptions)
-    },
-    [allOptions, getDisplayValue]
-  )
+      const inputWrapperRef = useRef<HTMLDivElement>(null)
+      const select = getSelection(allOptions, value)
+      const [inputValue, setInputValue] = useState(
+        select.display(getDisplayValue!)
+      )
+      const [options, setOptions] = useState(allOptions)
 
-  const handleFocus = () => {
-    filterOptions(EMPTY_INPUT_VALUE)
-  }
-
-  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-    if (!multiple) {
-      const hasValue = inputValue !== EMPTY_INPUT_VALUE
-      const isInputCleaned = !hasValue && !isEmpty(value)
-
-      if (isInputCleaned) {
-        fireOnChangeEvent({ event, value: EMPTY_INPUT_VALUE })
-        setInputValue(EMPTY_INPUT_VALUE)
-      } else {
+      useLayoutEffect(() => {
         const select = getSelection(allOptions, value)
 
         setInputValue(select.display(getDisplayValue!))
-      }
-    }
+      }, [allOptions, getDisplayValue, value])
 
-    filterOptions(EMPTY_INPUT_VALUE)
-    onBlur!(event)
-  }
+      const filterOptions = useCallback(
+        (subStr: string) => {
+          const filteredOptions = allOptions.filter(option =>
+            isSubstring(subStr, getDisplayValue!(option))
+          )
 
-  const handleChange = (newValue: string) => {
-    setInputValue(newValue)
-    filterOptions(newValue)
-  }
+          setOptions(filteredOptions)
+        },
+        [allOptions, getDisplayValue]
+      )
 
-  const toggleMultipleSelectValue = (value: string[], option: Option) => {
-    const isInSelectedValues = value.includes(String(option.value))
-
-    if (isInSelectedValues) {
-      return value!.filter(value => value !== option.value)
-    }
-    return [...value, String(option.value)]
-  }
-  const handleSelect = useCallback(
-    (event: React.SyntheticEvent, option: Option | null) => {
-      let newValue
-
-      if (option === null) {
-        newValue = emptySelectValue
-      } else if (multiple && Array.isArray(value)) {
-        newValue = toggleMultipleSelectValue(value, option)
-      } else {
-        newValue = option.value
+      const handleFocus = () => {
+        filterOptions(EMPTY_INPUT_VALUE)
       }
 
-      const select = getSelection(allOptions, newValue)
+      const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+        if (!multiple) {
+          const hasValue = inputValue !== EMPTY_INPUT_VALUE
+          const isInputCleaned = !hasValue && !isEmpty(value)
 
-      setInputValue(select.display(getDisplayValue!))
+          if (isInputCleaned) {
+            fireOnChangeEvent({ event, value: EMPTY_INPUT_VALUE })
+            setInputValue(EMPTY_INPUT_VALUE)
+          } else {
+            const select = getSelection(allOptions, value)
 
-      fireOnChangeEvent({ event, value: newValue })
-      filterOptions(EMPTY_INPUT_VALUE)
-    },
-    [
-      allOptions,
-      emptySelectValue,
-      filterOptions,
-      fireOnChangeEvent,
-      getDisplayValue,
-      multiple,
-      value
-    ]
-  )
+            setInputValue(select.display(getDisplayValue!))
+          }
+        }
 
-  const {
-    highlightedIndex,
-    setHighlightedIndex,
-    isOpen,
-    getItemProps,
-    getInputProps,
-    getRootProps
-  } = useSelect({
-    value: inputValue,
-    getDisplayValue: getDisplayValue!,
-    options,
-    onSelect: handleSelect,
-    onChange: handleChange,
-    onBlur: handleBlur,
-    onFocus: handleFocus
-  })
+        filterOptions(EMPTY_INPUT_VALUE)
+        onBlur!(event)
+      }
 
-  const iconAdornment = icon ? (
-    <InputAdornment disabled={disabled} position={iconPosition!}>
-      {icon}
-    </InputAdornment>
-  ) : null
+      const handleChange = (newValue: string) => {
+        setInputValue(newValue)
+        filterOptions(newValue)
+      }
 
-  const loadingComponent = (
-    <InputAdornment position='end'>
-      <Loader size='small' />
-    </InputAdornment>
-  )
+      const toggleMultipleSelectValue = (
+        value: ValueType[],
+        option: Option
+      ) => {
+        const isInSelectedValues = value.includes(String(option.value))
 
-  const dropDownIcon = (
-    <DropdownArrows16
-      className={cx(classes.caret, {
-        [classes.caretDisabled]: disabled
-      })}
-    />
-  )
+        if (isInSelectedValues) {
+          return value!.filter(value => value !== option.value)
+        }
+        return [...value, String(option.value)]
+      }
+      const handleSelect = useCallback(
+        (event: React.SyntheticEvent, option: Option | null) => {
+          let newValue
 
-  const startAdornment = iconPosition === 'start' && iconAdornment
-  const endAdornment = loading
-    ? loadingComponent
-    : iconPosition === 'end' && iconAdornment
+          if (option === null) {
+            newValue = emptySelectValue
+          } else if (multiple && Array.isArray(value)) {
+            newValue = toggleMultipleSelectValue(value, option)
+          } else {
+            newValue = option.value
+          }
 
-  const nativeStartAdornment = startAdornment && (
-    <div className={classes.nativeStartAdornment}>{startAdornment}</div>
-  )
-  const nativeEndAdornment = endAdornment && (
-    <div className={classes.nativeEndAdornment}>{endAdornment}</div>
-  )
+          const select = getSelection(allOptions, newValue)
 
-  const nativeSelectComponent = (
-    <NativeSelect
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...rest}
-      ref={ref}
-      error={error}
-      disabled={disabled}
-      name={name}
-      id={id}
-      startAdornment={nativeStartAdornment}
-      endAdornment={nativeEndAdornment}
-      // NativeSelect specific props
-      input={
-        <OutlinedInput
-          width={width}
-          inputProps={{ multiple }}
-          size={size}
-          className={classes.nativeInput}
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          {...getInputProps({
-            canCloseOnEnter: !multiple
+          setInputValue(select.display(getDisplayValue!))
+
+          fireOnChangeEvent({ event, value: newValue })
+          filterOptions(EMPTY_INPUT_VALUE)
+        },
+        [
+          allOptions,
+          emptySelectValue,
+          filterOptions,
+          fireOnChangeEvent,
+          getDisplayValue,
+          multiple,
+          value
+        ]
+      )
+
+      const {
+        highlightedIndex,
+        setHighlightedIndex,
+        isOpen,
+        getItemProps,
+        getInputProps,
+        getRootProps
+      } = useSelect({
+        value: inputValue,
+        getDisplayValue: getDisplayValue!,
+        options,
+        onSelect: handleSelect,
+        onChange: handleChange,
+        onBlur: handleBlur,
+        onFocus: handleFocus
+      })
+
+      const iconAdornment = icon ? (
+        <InputAdornment disabled={disabled} position={iconPosition!}>
+          {icon}
+        </InputAdornment>
+      ) : null
+
+      const loadingComponent = (
+        <InputAdornment position='end'>
+          <Loader size='small' />
+        </InputAdornment>
+      )
+
+      const dropDownIcon = (
+        <DropdownArrows16
+          className={cx(classes.caret, {
+            [classes.caretDisabled]: disabled
           })}
         />
-      }
-      value={value}
-      onChange={onChange}
-      IconComponent={() => dropDownIcon}
-      classes={{
-        root: cx(classes.select, {
-          [classes.placeholder]: !select.isSelected()
-        }),
-        select: cx({
-          [classes.nativeStartAdornmentPadding]: Boolean(nativeStartAdornment),
-          [classes.nativeEndAdornmentPadding]: Boolean(nativeEndAdornment)
-        })
-      }}
-    >
-      {renderNativePlaceholder({
-        emptySelectValue,
-        placeholder
-      })}
-      {renderNativeOptions({
-        options,
-        renderOption,
-        getItemProps
-      })}
-    </NativeSelect>
-  )
+      )
 
-  const readOnlyInput = multiple || allOptions.length <= searchThreshold!
+      const startAdornment = iconPosition === 'start' && iconAdornment
+      const endAdornment = loading
+        ? loadingComponent
+        : iconPosition === 'end' && iconAdornment
 
-  const selectComponent = (
-    <Fragment>
-      <div
-        /* eslint-disable-next-line react/jsx-props-no-spreading */
-        {...getRootProps()}
-        className={classes.inputWrapper}
-      >
-        {!enableAutofill && !native && name && (
-          <input type='hidden' value={inputValue} name={name} />
-        )}
-        <OutlinedInput
+      const nativeStartAdornment = startAdornment && (
+        <div className={classes.nativeStartAdornment}>{startAdornment}</div>
+      )
+      const nativeEndAdornment = endAdornment && (
+        <div className={classes.nativeEndAdornment}>{endAdornment}</div>
+      )
+
+      const nativeSelectComponent = (
+        <NativeSelect
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...rest}
           ref={ref}
           error={error}
           disabled={disabled}
+          name={name}
           id={id}
-          startAdornment={startAdornment}
-          endAdornment={endAdornment}
-          // Input specific props
-          value={inputValue}
-          /* eslint-disable-next-line react/jsx-props-no-spreading */
-          {...getInputProps({
-            canCloseOnEnter: !multiple
-          })}
-          placeholder={placeholder}
-          width={width}
-          readOnly={readOnlyInput}
-          defaultValue={undefined}
-          className={cx(classes.input, {
-            [classes.readOnlyInput]: readOnlyInput
-          })}
-          inputProps={{
-            className: cx({
-              [classes.readOnlyInput]: readOnlyInput
+          startAdornment={nativeStartAdornment}
+          endAdornment={nativeEndAdornment}
+          // NativeSelect specific props
+          input={
+            <OutlinedInput
+              width={width}
+              inputProps={{ multiple }}
+              size={size}
+              className={classes.nativeInput}
+              // eslint-disable-next-line react/jsx-props-no-spreading
+              {...getInputProps({
+                canCloseOnEnter: !multiple
+              })}
+            />
+          }
+          value={value}
+          onChange={onChange}
+          IconComponent={() => dropDownIcon}
+          classes={{
+            root: cx(classes.select, {
+              [classes.placeholder]: !select.isSelected()
             }),
-            size: 1 // let input to have smallest width by default for width:'shrink'
+            select: cx({
+              [classes.nativeStartAdornmentPadding]: Boolean(
+                nativeStartAdornment
+              ),
+              [classes.nativeEndAdornmentPadding]: Boolean(nativeEndAdornment)
+            })
           }}
-          size={size}
-          role='textbox'
-          enableReset={enableReset ? select.isSelected() : false}
-          autoComplete={enableAutofill ? autoComplete : autoComplete || 'off'}
-          name={enableAutofill ? name : undefined}
-        />
-        {dropDownIcon}
-      </div>
-      {Boolean(options.length) && !disabled && (
-        <Popper
-          autoWidth
-          width={menuWidth}
-          placement='bottom-start'
-          open={isOpen}
-          anchorEl={inputWrapperRef.current}
-          container={popperContainer}
         >
-          {isOpen &&
-            renderOptions({
-              options,
-              renderOption,
-              highlightedIndex,
-              setHighlightedIndex,
-              onItemSelect: handleSelect,
-              getItemProps,
-              value,
-              getDisplayValue,
-              multiple,
-              size
-            })}
-        </Popper>
-      )}
-    </Fragment>
-  )
+          {renderNativePlaceholder({
+            emptySelectValue,
+            placeholder
+          })}
+          {renderNativeOptions({
+            options,
+            renderOption,
+            getItemProps
+          })}
+        </NativeSelect>
+      )
 
-  return (
-    <div
-      className={cx(
-        classes.root,
-        className,
-        classes[`root${capitalize(width!)}`]
-      )}
-      style={style}
-      ref={inputWrapperRef}
-    >
-      {native ? nativeSelectComponent : selectComponent}
-    </div>
+      const readOnlyInput = multiple || allOptions.length <= searchThreshold!
+
+      const selectComponent = (
+        <Fragment>
+          <div
+            /* eslint-disable-next-line react/jsx-props-no-spreading */
+            {...getRootProps()}
+            className={classes.inputWrapper}
+          >
+            {!enableAutofill && !native && name && (
+              <input type='hidden' value={inputValue} name={name} />
+            )}
+            <OutlinedInput
+              // eslint-disable-next-line react/jsx-props-no-spreading
+              {...rest}
+              ref={ref}
+              error={error}
+              disabled={disabled}
+              id={id}
+              startAdornment={startAdornment}
+              endAdornment={endAdornment}
+              // Input specific props
+              value={inputValue}
+              /* eslint-disable-next-line react/jsx-props-no-spreading */
+              {...getInputProps({
+                canCloseOnEnter: !multiple
+              })}
+              placeholder={placeholder}
+              width={width}
+              readOnly={readOnlyInput}
+              defaultValue={undefined}
+              className={cx(classes.input, {
+                [classes.readOnlyInput]: readOnlyInput
+              })}
+              inputProps={{
+                className: cx({
+                  [classes.readOnlyInput]: readOnlyInput
+                }),
+                size: 1 // let input to have smallest width by default for width:'shrink'
+              }}
+              size={size}
+              role='textbox'
+              enableReset={enableReset ? select.isSelected() : false}
+              autoComplete={
+                enableAutofill ? autoComplete : autoComplete || 'off'
+              }
+              name={enableAutofill ? name : undefined}
+            />
+            {dropDownIcon}
+          </div>
+          {Boolean(options.length) && !disabled && (
+            <Popper
+              autoWidth
+              width={menuWidth}
+              placement='bottom-start'
+              open={isOpen}
+              anchorEl={inputWrapperRef.current}
+              container={popperContainer}
+            >
+              {isOpen &&
+                renderOptions({
+                  options,
+                  renderOption,
+                  highlightedIndex,
+                  setHighlightedIndex,
+                  onItemSelect: handleSelect,
+                  getItemProps,
+                  value,
+                  getDisplayValue,
+                  multiple,
+                  size
+                })}
+            </Popper>
+          )}
+        </Fragment>
+      )
+
+      return (
+        <div
+          className={cx(
+            classes.root,
+            className,
+            classes[`root${capitalize(width!)}`]
+          )}
+          style={style}
+          ref={inputWrapperRef}
+        >
+          {native ? nativeSelectComponent : selectComponent}
+        </div>
+      )
+    }
   )
-})
+)
 
 Select.defaultProps = {
   disabled: false,
@@ -639,4 +673,4 @@ Select.defaultProps = {
 
 Select.displayName = 'Select'
 
-export default withStyles(styles)(Select)
+export default Select

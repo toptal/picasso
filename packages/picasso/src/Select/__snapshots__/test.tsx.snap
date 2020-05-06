@@ -6,15 +6,15 @@ exports[`renders native select 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Select-root Select-rootFull"
+      class="makeStyles-root makeStyles-rootFull"
     >
       <div
         aria-autocomplete="list"
-        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootFull OutlinedInput-rootMedium Select-nativeInput MuiInputBase-fullWidth"
+        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootFull OutlinedInput-rootMedium makeStyles-nativeInput MuiInputBase-fullWidth"
       >
         <select
           aria-invalid="false"
-          class="MuiNativeSelect-root Select-select MuiNativeSelect-select MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium"
+          class="MuiNativeSelect-root makeStyles-select MuiNativeSelect-select MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium"
         >
           <option
             disabled=""
@@ -43,7 +43,7 @@ exports[`renders native select 1`] = `
           </option>
         </select>
         <svg
-          class="SvgDropdownArrows16-root Select-caret"
+          class="SvgDropdownArrows16-root makeStyles-caret"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
         >
@@ -77,20 +77,20 @@ exports[`renders select 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Select-root Select-rootFull"
+      class="makeStyles-root makeStyles-rootFull"
     >
       <div
-        class="Select-inputWrapper"
+        class="makeStyles-inputWrapper"
       >
         <div
           aria-autocomplete="list"
-          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootFull OutlinedInput-rootMedium Select-input Select-readOnlyInput MuiInputBase-fullWidth"
+          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootFull OutlinedInput-rootMedium makeStyles-input makeStyles-readOnlyInput MuiInputBase-fullWidth"
           role="textbox"
         >
           <input
             aria-invalid="false"
             autocomplete="off"
-            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium Select-readOnlyInput"
+            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium makeStyles-readOnlyInput"
             readonly=""
             size="1"
             type="text"
@@ -112,7 +112,7 @@ exports[`renders select 1`] = `
           </fieldset>
         </div>
         <svg
-          class="SvgDropdownArrows16-root Select-caret"
+          class="SvgDropdownArrows16-root makeStyles-caret"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
         >

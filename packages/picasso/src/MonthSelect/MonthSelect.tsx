@@ -1,22 +1,26 @@
-import React, { forwardRef, ChangeEvent, useMemo } from 'react'
-import { JssProps, OmitInternalProps } from '@toptal/picasso-shared'
-import { Select } from '@toptal/picasso'
-import { Props as SelectProps } from '@toptal/picasso/Select'
+import React, { useMemo, Ref } from 'react'
 
-type AdjustedSelectProps = OmitInternalProps<
-  Omit<SelectProps, 'onChange' | 'options'>
-> &
-  Partial<JssProps>
+import Select, { Props as SelectProps } from '../Select'
+import { documentable, forwardRef } from '../utils/forward-ref'
 
-export interface Props extends AdjustedSelectProps {
+type AdjustedSelectProps<M extends boolean> = Omit<
+  SelectProps<number, M>,
+  'options'
+>
+
+/**
+ * MonthSelect props are generalized over multiselect property. If you want `onChange`
+ * to take handler that can take array (for multiselect) you should set `Multiple`
+ * to `true`. By default it's single select.
+ *
+ * @param Multiple The `boolean` type of the `multiple` property to indicate whether `onChange` will expect handler to accept plain `number` or array of `number`s
+ */
+export interface Props<Multiple extends boolean>
+  extends AdjustedSelectProps<Multiple> {
   /** a number of month select starts from. e.g. 5 for May */
   from?: number
   /** a number of month select ends at. e.g. 11 for November */
   to?: number
-  /** Callback invoked when picker changes its state. */
-  onChange: (
-    event: ChangeEvent<{ name?: string | undefined; value: unknown }>
-  ) => void
 }
 
 const OPTIONS = [
@@ -41,36 +45,32 @@ function getFilteredOptions(from: number, to: number) {
 const FIRST_MONTH = 1
 const LAST_MONTH = 12
 
-export const MonthSelect = forwardRef<HTMLInputElement, Props>(
-  function MonthSelect(
-    { from = FIRST_MONTH, to = LAST_MONTH, onChange, ...rest },
-    ref
-  ) {
-    const handleChange = (
-      event: ChangeEvent<{ name?: string | undefined; value: unknown }>
+export const MonthSelect = documentable(
+  forwardRef(
+    <M extends boolean = false>(
+      { from = FIRST_MONTH, to = LAST_MONTH, ...rest }: Props<M>,
+      ref: Ref<HTMLInputElement>
     ) => {
-      onChange(event)
-    }
+      if (
+        from < FIRST_MONTH ||
+        from > LAST_MONTH ||
+        to < FIRST_MONTH ||
+        to > LAST_MONTH ||
+        to < from
+      ) {
+        throw new Error(
+          `Invalid range. Please check the values you have passed: from: ${from}, to: ${to}`
+        )
+      }
 
-    if (
-      from < FIRST_MONTH ||
-      from > LAST_MONTH ||
-      to < FIRST_MONTH ||
-      to > LAST_MONTH ||
-      to < from
-    ) {
-      throw new Error(
-        `Invalid range. Please check the values you have passed: from: ${from}, to: ${to}`
+      const options = useMemo(() => getFilteredOptions(from, to), [from, to])
+
+      return (
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        <Select {...rest} ref={ref} options={options} />
       )
     }
-
-    const options = useMemo(() => getFilteredOptions(from, to), [from, to])
-
-    return (
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      <Select {...rest} ref={ref} options={options} onChange={handleChange} />
-    )
-  }
+  )
 )
 
 MonthSelect.defaultProps = {

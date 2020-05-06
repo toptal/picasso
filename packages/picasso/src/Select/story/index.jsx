@@ -1,10 +1,10 @@
-import { Select } from '../Select'
+import Select from '../Select'
 
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Forms').createPage(
   'Select',
-  `Selects are interactive elements that prompt users to make selections 
+  `Selects are interactive elements that prompt users to make selections
     or take actions from a set of list of available options.`
 )
 
