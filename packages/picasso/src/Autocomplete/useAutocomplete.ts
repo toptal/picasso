@@ -4,7 +4,6 @@ import { KeyboardEvent, useState, ChangeEvent, FocusEventHandler } from 'react'
 
 import { Item, ChangedOptions } from './types'
 
-export const FIRST_ITEM_INDEX = 0
 export const EMPTY_INPUT_VALUE = ''
 
 function normalizeArrowKey(event: KeyboardEvent<HTMLInputElement>) {
@@ -56,7 +55,6 @@ function getNextWrappingIndex(
 }
 
 interface Props {
-  autoHighlightFirstOption: boolean
   value: string
   options?: Item[] | null
   onSelect?: (item: Item) => void
@@ -74,7 +72,6 @@ interface Props {
 }
 
 const useAutocomplete = ({
-  autoHighlightFirstOption,
   value,
   options = [],
   onChange = () => {},
@@ -154,10 +151,6 @@ const useAutocomplete = ({
     }
 
     setOpen(true)
-
-    if (autoHighlightFirstOption) {
-      setHighlightedIndex(FIRST_ITEM_INDEX)
-    }
   }
 
   const handleFocus: FocusEventHandler<HTMLInputElement> = event => {
@@ -180,11 +173,6 @@ const useAutocomplete = ({
       >
     ) => {
       setOpen(true)
-
-      if (autoHighlightFirstOption) {
-        setHighlightedIndex(FIRST_ITEM_INDEX)
-      }
-
       handleChange(event.target.value)
     },
 

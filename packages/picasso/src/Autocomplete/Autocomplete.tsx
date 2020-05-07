@@ -14,7 +14,7 @@ import capitalize from '@material-ui/core/utils/capitalize'
 import cx from 'classnames'
 import { StandardProps } from '@toptal/picasso-shared'
 
-import Input, { Props as InputProps } from '../Input'
+import Input, { InputProps } from '../Input'
 import Menu from '../Menu'
 import Container from '../Container'
 import Loader from '../Loader'
@@ -32,8 +32,6 @@ export interface Props
       InputHTMLAttributes<HTMLInputElement>,
       'defaultValue' | 'value' | 'onChange' | 'onSelect' | 'onKeyDown' | 'size'
     > {
-  /** Whether we should highlight the first option automatically */
-  autoHighlightFirstOption?: boolean
   /**  Callback invoked when `input` element value is changed */
   onChange?: (value: string, options: ChangedOptions) => void
   /** The value of the selected option, required for a controlled component. */
@@ -94,7 +92,6 @@ const getItemText = (item: Item | null) =>
 export const Autocomplete = forwardRef<HTMLInputElement, Props>(
   function Autocomplete(
     {
-      autoHighlightFirstOption,
       classes,
       className,
       onChange,
@@ -152,7 +149,6 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       getOtherItemProps,
       getInputProps
     } = useAutocomplete({
-      autoHighlightFirstOption: autoHighlightFirstOption!,
       value,
       options,
       getDisplayValue: getDisplayValue!,
@@ -266,7 +262,6 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
 )
 
 Autocomplete.defaultProps = {
-  autoHighlightFirstOption: true,
   enableAutofill: false,
   getDisplayValue: getItemText,
   loading: false,

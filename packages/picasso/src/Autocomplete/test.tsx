@@ -49,44 +49,6 @@ describe('Autocomplete', () => {
   })
 
   describe('dynamic behavior', () => {
-    describe('automatic option highlighting', () => {
-      test('when autoHighlightFirstOption is true', () => {
-        const { getByText, getByPlaceholderText } = renderAutocomplete({
-          placeholder,
-          options: testOptions,
-          value: '',
-          autoHighlightFirstOption: true
-        })
-
-        const input = getByPlaceholderText(placeholder) as HTMLInputElement
-
-        fireEvent.focus(input)
-
-        const firstOptionListItem = getByText('Belarus').parentElement
-
-        // first option is highlighted
-        expect(firstOptionListItem!.getAttribute('aria-selected')).toBe('true')
-      })
-
-      test('when autoHighlightFirstOption is false', () => {
-        const { getByText, getByPlaceholderText } = renderAutocomplete({
-          placeholder,
-          options: testOptions,
-          value: '',
-          autoHighlightFirstOption: false
-        })
-
-        const input = getByPlaceholderText(placeholder) as HTMLInputElement
-
-        fireEvent.focus(input)
-
-        const firstOptionListItem = getByText('Belarus').parentElement
-
-        // first option is not highlighted
-        expect(firstOptionListItem!.getAttribute('aria-selected')).toBe('false')
-      })
-    })
-
     test('on focus', () => {
       const onFocus = jest.fn()
       const { getByText, getByPlaceholderText, getByRole } = renderAutocomplete(
