@@ -28,7 +28,7 @@ page
       await makeScreenshot({
         isFullScreen: true
       })
-
+      await testPage.keyboard.press('ArrowDown')
       await testPage.keyboard.press('Enter')
       await testPage.waitFor(50)
       await makeScreenshot()

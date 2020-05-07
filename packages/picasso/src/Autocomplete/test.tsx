@@ -51,28 +51,21 @@ describe('Autocomplete', () => {
   describe('dynamic behavior', () => {
     test('on focus', () => {
       const onFocus = jest.fn()
-      const { getByText, getByPlaceholderText, getByRole } = renderAutocomplete(
-        {
-          placeholder,
-          options: testOptions,
-          value: '',
-          onFocus
-        }
-      )
+      const { getByPlaceholderText, getByRole } = renderAutocomplete({
+        placeholder,
+        options: testOptions,
+        value: '',
+        onFocus
+      })
 
       const input = getByPlaceholderText(placeholder) as HTMLInputElement
 
       fireEvent.focus(input)
 
-      const firstOptionListItem = getByText('Belarus').parentElement
-      const menu = getByRole('menu')
-
-      // first option is highlighted
-      expect(firstOptionListItem!.getAttribute('aria-selected')).toBe('true')
       // calls onFocus handler
       expect(onFocus).toHaveBeenCalledTimes(1)
       // menu contains all the options displayed
-      expect(menu).toMatchSnapshot()
+      expect(getByRole('menu')).toMatchSnapshot()
     })
 
     test('on type', () => {
@@ -173,7 +166,7 @@ describe('Autocomplete', () => {
         })
 
         expect(
-          getByText('Croatia').parentElement!.getAttribute('aria-selected')
+          getByText('Belarus').parentElement!.getAttribute('aria-selected')
         ).toBe('true')
       })
 
