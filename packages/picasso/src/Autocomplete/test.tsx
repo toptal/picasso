@@ -82,7 +82,7 @@ describe('Autocomplete', () => {
 
         const firstOptionListItem = getByText('Belarus').parentElement
 
-        // first option is highlighted
+        // first option is not highlighted
         expect(firstOptionListItem!.getAttribute('aria-selected')).toBe('false')
       })
     })
