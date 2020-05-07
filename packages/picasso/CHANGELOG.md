@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.52.4](https://github.com/toptal/picasso/compare/@toptal/picasso@4.52.3...@toptal/picasso@4.52.4) (2020-05-07)
+
+
+### Bug Fixes
+
+* **Picasso:** simplify theme override ([#1283](https://github.com/toptal/picasso/issues/1283)) ([56a3999](https://github.com/toptal/picasso/commit/56a3999b53e3c934255a9d13b86d87cba6620296))
+
+
+
+
+
 ## [4.52.3](https://github.com/toptal/picasso/compare/@toptal/picasso@4.52.2...@toptal/picasso@4.52.3) (2020-05-06)
 
 

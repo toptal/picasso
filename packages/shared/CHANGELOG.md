@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.1](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.12.0...@toptal/picasso-shared@1.12.1) (2020-05-07)
+
+
+### Bug Fixes
+
+* **Picasso:** simplify theme override ([#1283](https://github.com/toptal/picasso/issues/1283)) ([56a3999](https://github.com/toptal/picasso/commit/56a3999b53e3c934255a9d13b86d87cba6620296))
+
+
+
+
+
 # [1.12.0](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.11.5...@toptal/picasso-shared@1.12.0) (2020-04-30)
 
 
