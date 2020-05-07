@@ -49,6 +49,12 @@ if needed.
     `
   )
   .addExample('Autocomplete/story/Default.example.jsx', 'Default')
+  .addExample('Autocomplete/story/NotSelectingFirstOption.jsx', {
+    title: 'Not selecting first option',
+    description: `By default when the user types, the first available solution gets automatically selected.
+      Setting this property to \`false\` removes this behavior. 
+    `
+  })
   .addExample('Autocomplete/story/OtherOption.example.jsx', {
     title: 'Other option',
     description: `By default Autocomplete allows any entered input value to stay after focus is removed from input,

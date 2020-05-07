@@ -13,37 +13,10 @@ const testOptions = [
 ]
 
 const renderAutocomplete = (props: OmitInternalProps<Props>) => {
-  const {
-    placeholder,
-    options,
-    value,
-    inputComponent,
-    noOptionsText,
-    renderOption,
-    enableAutofill,
-    autoComplete,
-    onChange,
-    onSelect,
-    onOtherOptionSelect,
-    onFocus,
-    onBlur
-  } = props
-
   return render(
     <Autocomplete
-      placeholder={placeholder}
-      options={options}
-      value={value}
-      inputComponent={inputComponent}
-      noOptionsText={noOptionsText}
-      renderOption={renderOption}
-      enableAutofill={enableAutofill}
-      autoComplete={autoComplete}
-      onChange={onChange}
-      onSelect={onSelect}
-      onOtherOptionSelect={onOtherOptionSelect}
-      onFocus={onFocus}
-      onBlur={onBlur}
+      /* eslint-disable-next-line react/jsx-props-no-spreading */
+      {...props}
     />
   )
 }
@@ -76,6 +49,44 @@ describe('Autocomplete', () => {
   })
 
   describe('dynamic behavior', () => {
+    describe('automatic option selection', () => {
+      test('when autoSelectFirstOption is true', () => {
+        const { getByText, getByPlaceholderText } = renderAutocomplete({
+          placeholder,
+          options: testOptions,
+          value: '',
+          autoSelectFirstOption: true
+        })
+
+        const input = getByPlaceholderText(placeholder) as HTMLInputElement
+
+        fireEvent.focus(input)
+
+        const firstOptionListItem = getByText('Belarus').parentElement
+
+        // first option is highlighted
+        expect(firstOptionListItem!.getAttribute('aria-selected')).toBe('true')
+      })
+
+      test('when autoSelectFirstOption is false', () => {
+        const { getByText, getByPlaceholderText } = renderAutocomplete({
+          placeholder,
+          options: testOptions,
+          value: '',
+          autoSelectFirstOption: false
+        })
+
+        const input = getByPlaceholderText(placeholder) as HTMLInputElement
+
+        fireEvent.focus(input)
+
+        const firstOptionListItem = getByText('Belarus').parentElement
+
+        // first option is highlighted
+        expect(firstOptionListItem!.getAttribute('aria-selected')).toBe('false')
+      })
+    })
+
     test('on focus', () => {
       const onFocus = jest.fn()
       const { getByText, getByPlaceholderText, getByRole } = renderAutocomplete(
@@ -183,7 +194,7 @@ describe('Autocomplete', () => {
       expect(menu).toBeNull()
     })
 
-    describe('On "arrow up/down" key press', () => {
+    describe('on "arrow up/down" key press', () => {
       test('press down', () => {
         const { getByText, getByPlaceholderText } = renderAutocomplete({
           placeholder,
