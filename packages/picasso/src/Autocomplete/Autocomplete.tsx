@@ -32,8 +32,8 @@ export interface Props
       InputHTMLAttributes<HTMLInputElement>,
       'defaultValue' | 'value' | 'onChange' | 'onSelect' | 'onKeyDown' | 'size'
     > {
-  /** Whether we should select the first option automatically */
-  autoSelectFirstOption?: boolean
+  /** Whether we should highlight the first option automatically */
+  autoHighlightFirstOption?: boolean
   /**  Callback invoked when `input` element value is changed */
   onChange?: (value: string, options: ChangedOptions) => void
   /** The value of the selected option, required for a controlled component. */
@@ -94,7 +94,7 @@ const getItemText = (item: Item | null) =>
 export const Autocomplete = forwardRef<HTMLInputElement, Props>(
   function Autocomplete(
     {
-      autoSelectFirstOption,
+      autoHighlightFirstOption,
       classes,
       className,
       onChange,
@@ -152,7 +152,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       getOtherItemProps,
       getInputProps
     } = useAutocomplete({
-      autoSelectFirstOption: autoSelectFirstOption!,
+      autoHighlightFirstOption: autoHighlightFirstOption!,
       value,
       options,
       getDisplayValue: getDisplayValue!,
@@ -266,7 +266,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
 )
 
 Autocomplete.defaultProps = {
-  autoSelectFirstOption: true,
+  autoHighlightFirstOption: true,
   enableAutofill: false,
   getDisplayValue: getItemText,
   loading: false,

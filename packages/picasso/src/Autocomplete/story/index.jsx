@@ -49,10 +49,10 @@ if needed.
     `
   )
   .addExample('Autocomplete/story/Default.example.jsx', 'Default')
-  .addExample('Autocomplete/story/NotSelectingFirstOption.jsx', {
-    title: 'Not selecting first option',
-    description: `By default when the user types, the first available solution gets automatically selected.
-      Setting \`autoSelectFirstOption={false}\` disables this behavior.
+  .addExample('Autocomplete/story/NotHighlightingFirstOption.jsx', {
+    title: 'Not highlighted first option',
+    description: `By default when the user focus Autocomplete, the first available option gets automatically highlighted.
+      Setting \`autoHighlightFirstOption={false}\` disables this behavior.
     `
   })
   .addExample('Autocomplete/story/OtherOption.example.jsx', {

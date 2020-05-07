@@ -49,13 +49,13 @@ describe('Autocomplete', () => {
   })
 
   describe('dynamic behavior', () => {
-    describe('automatic option selection', () => {
-      test('when autoSelectFirstOption is true', () => {
+    describe('automatic option highlighting', () => {
+      test('when autoHighlightFirstOption is true', () => {
         const { getByText, getByPlaceholderText } = renderAutocomplete({
           placeholder,
           options: testOptions,
           value: '',
-          autoSelectFirstOption: true
+          autoHighlightFirstOption: true
         })
 
         const input = getByPlaceholderText(placeholder) as HTMLInputElement
@@ -68,12 +68,12 @@ describe('Autocomplete', () => {
         expect(firstOptionListItem!.getAttribute('aria-selected')).toBe('true')
       })
 
-      test('when autoSelectFirstOption is false', () => {
+      test('when autoHighlightFirstOption is false', () => {
         const { getByText, getByPlaceholderText } = renderAutocomplete({
           placeholder,
           options: testOptions,
           value: '',
-          autoSelectFirstOption: false
+          autoHighlightFirstOption: false
         })
 
         const input = getByPlaceholderText(placeholder) as HTMLInputElement

@@ -32,7 +32,7 @@ const Example = () => {
     <div>
       <Form autoComplete='off'>
         <Autocomplete
-          autoSelectFirstOption={false}
+          autoHighlightFirstOption={false}
           placeholder='Start typing country...'
           value={value}
           options={options}

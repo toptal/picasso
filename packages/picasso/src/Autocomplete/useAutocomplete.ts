@@ -56,7 +56,7 @@ function getNextWrappingIndex(
 }
 
 interface Props {
-  autoSelectFirstOption: boolean
+  autoHighlightFirstOption: boolean
   value: string
   options?: Item[] | null
   onSelect?: (item: Item) => void
@@ -74,7 +74,7 @@ interface Props {
 }
 
 const useAutocomplete = ({
-  autoSelectFirstOption,
+  autoHighlightFirstOption,
   value,
   options = [],
   onChange = () => {},
@@ -155,7 +155,7 @@ const useAutocomplete = ({
 
     setOpen(true)
 
-    if (autoSelectFirstOption) {
+    if (autoHighlightFirstOption) {
       setHighlightedIndex(FIRST_ITEM_INDEX)
     }
   }
@@ -181,7 +181,7 @@ const useAutocomplete = ({
     ) => {
       setOpen(true)
 
-      if (autoSelectFirstOption) {
+      if (autoHighlightFirstOption) {
         setHighlightedIndex(FIRST_ITEM_INDEX)
       }
 
