@@ -20,7 +20,6 @@ import React, {
 } from 'react'
 import { ModalProvider } from 'react-modal-hook'
 import { makeStyles } from '@material-ui/styles'
-import { deepmerge } from '@material-ui/utils'
 import { Helmet } from 'react-helmet'
 
 import CssBaseline from '../CssBaseline'
@@ -68,12 +67,7 @@ const picasso = {
   }
 }
 
-const createProvider = (theme: Theme) => new Provider(theme)
-const createTheme = (options: ThemeOptions = {}) =>
-  createMuiTheme(deepmerge(picasso, options))
-
-const defaultTheme = createMuiTheme(picasso)
-const PicassoProvider = createProvider(defaultTheme)
+const PicassoProvider = new Provider(createMuiTheme(picasso))
 
 interface RootContextProps {
   rootRef?: RefObject<HTMLDivElement>
@@ -235,7 +229,7 @@ interface PicassoProps {
   notificationContainer?: HTMLElement
   /** Component that is used to render root node  */
   RootComponent?: PicassoGlobalStylesProviderProps['RootComponent']
-  theme?: Theme
+  theme?: ThemeOptions
 }
 
 const Picasso: FunctionComponent<PicassoProps> = ({
@@ -250,7 +244,9 @@ const Picasso: FunctionComponent<PicassoProps> = ({
   RootComponent,
   theme
 }) => {
-  const PicassoProvider = createProvider(theme!)
+  if (theme) {
+    PicassoProvider.extendTheme(theme)
+  }
 
   if (!responsive) {
     PicassoProvider.disableResponsiveStyle()
@@ -290,9 +286,8 @@ Picasso.defaultProps = {
   responsive: true,
   reset: true,
   fixViewport: true,
-  RootComponent: PicassoRootNode,
-  theme: defaultTheme
+  RootComponent: PicassoRootNode
 }
 
-export { PicassoProvider, createProvider, createTheme }
+export { PicassoProvider }
 export default Picasso
