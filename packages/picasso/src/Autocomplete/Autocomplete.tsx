@@ -14,7 +14,7 @@ import capitalize from '@material-ui/core/utils/capitalize'
 import cx from 'classnames'
 import { StandardProps } from '@toptal/picasso-shared'
 
-import Input, { Props as InputProps } from '../Input'
+import Input, { InputProps } from '../Input'
 import Menu from '../Menu'
 import Container from '../Container'
 import Loader from '../Loader'

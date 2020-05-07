@@ -13,37 +13,10 @@ const testOptions = [
 ]
 
 const renderAutocomplete = (props: OmitInternalProps<Props>) => {
-  const {
-    placeholder,
-    options,
-    value,
-    inputComponent,
-    noOptionsText,
-    renderOption,
-    enableAutofill,
-    autoComplete,
-    onChange,
-    onSelect,
-    onOtherOptionSelect,
-    onFocus,
-    onBlur
-  } = props
-
   return render(
     <Autocomplete
-      placeholder={placeholder}
-      options={options}
-      value={value}
-      inputComponent={inputComponent}
-      noOptionsText={noOptionsText}
-      renderOption={renderOption}
-      enableAutofill={enableAutofill}
-      autoComplete={autoComplete}
-      onChange={onChange}
-      onSelect={onSelect}
-      onOtherOptionSelect={onOtherOptionSelect}
-      onFocus={onFocus}
-      onBlur={onBlur}
+      /* eslint-disable-next-line react/jsx-props-no-spreading */
+      {...props}
     />
   )
 }
@@ -78,28 +51,21 @@ describe('Autocomplete', () => {
   describe('dynamic behavior', () => {
     test('on focus', () => {
       const onFocus = jest.fn()
-      const { getByText, getByPlaceholderText, getByRole } = renderAutocomplete(
-        {
-          placeholder,
-          options: testOptions,
-          value: '',
-          onFocus
-        }
-      )
+      const { getByPlaceholderText, getByRole } = renderAutocomplete({
+        placeholder,
+        options: testOptions,
+        value: '',
+        onFocus
+      })
 
       const input = getByPlaceholderText(placeholder) as HTMLInputElement
 
       fireEvent.focus(input)
 
-      const firstOptionListItem = getByText('Belarus').parentElement
-      const menu = getByRole('menu')
-
-      // first option is highlighted
-      expect(firstOptionListItem!.getAttribute('aria-selected')).toBe('true')
       // calls onFocus handler
       expect(onFocus).toHaveBeenCalledTimes(1)
       // menu contains all the options displayed
-      expect(menu).toMatchSnapshot()
+      expect(getByRole('menu')).toMatchSnapshot()
     })
 
     test('on type', () => {
@@ -183,7 +149,7 @@ describe('Autocomplete', () => {
       expect(menu).toBeNull()
     })
 
-    describe('On "arrow up/down" key press', () => {
+    describe('on "arrow up/down" key press', () => {
       test('press down', () => {
         const { getByText, getByPlaceholderText } = renderAutocomplete({
           placeholder,
@@ -200,7 +166,7 @@ describe('Autocomplete', () => {
         })
 
         expect(
-          getByText('Croatia').parentElement!.getAttribute('aria-selected')
+          getByText('Belarus').parentElement!.getAttribute('aria-selected')
         ).toBe('true')
       })
 
