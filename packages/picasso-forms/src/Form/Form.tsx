@@ -26,7 +26,7 @@ export type Props<T = AnyObject> = FinalFormProps<T> & {
   failedSubmitMessage?: ReactNode
   scrollOffsetTop?: number
   /** Form validation mode */
-  validationMode: FormValidationMode
+  validationMode?: FormValidationMode
 }
 
 export function Form<T = AnyObject>(props: Props<T>) {
