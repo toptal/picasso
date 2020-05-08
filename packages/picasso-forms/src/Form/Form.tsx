@@ -68,7 +68,7 @@ export function Form<T = AnyObject>(props: Props<T>) {
   )
 
   return (
-    <FormContext.Provider value={{ validationMode: !validationMode }}>
+    <FormContext.Provider value={{ validationMode: validationMode! }}>
       <FinalForm
         render={({ handleSubmit }) => (
           <PicassoForm onSubmit={handleSubmit}>{children}</PicassoForm>
