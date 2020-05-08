@@ -1,12 +1,15 @@
-import React, { ChangeEvent, FocusEvent, useCallback } from 'react'
+import React, { ChangeEvent, FocusEvent, useCallback, useContext } from 'react'
 import {
   useField,
   FieldProps as FinalFieldProps,
   FieldMetaState,
-  FieldRenderProps
+  FieldRenderProps,
+  useForm,
+  useFormState
 } from 'react-final-form'
 import { Form as PicassoForm } from '@toptal/picasso'
 
+import { FormContext } from '../Form'
 import { validators } from '../utils'
 
 const { composeValidators, required: requiredValidator } = validators
@@ -31,11 +34,7 @@ export type Props<
     children: (props: any) => React.ReactNode
   }
 
-type FieldMeta<T> = FieldMetaState<T> & {
-  dirtyAfterBlur?: boolean
-}
-
-const getInputError = <T extends ValueType>(meta: FieldMeta<T>) => {
+const getInputError = <T extends ValueType>(meta: FieldMetaState<T>) => {
   if (!meta.error && !meta.submitError) {
     return null
   }
@@ -143,6 +142,10 @@ const FieldWrapper = <
     value
   })
 
+  const form = useForm()
+  const formState = useFormState()
+  const picassoFormContext = useContext(FormContext)
+
   const defaultResetClickHandler = useCallback(() => {
     input.onChange('')
   }, [input])
@@ -162,6 +165,11 @@ const FieldWrapper = <
     ...input,
     ...getProps({ hideFieldLabel, error, label, required }),
     onChange: (event: ChangeEvent<HTMLElement>) => {
+      if (picassoFormContext.validationMode === 'onSubmit') {
+        const values = formState.values
+        form.reset(values)
+      }
+
       input.onChange(event)
 
       if (rest.onChange) {
@@ -169,6 +177,10 @@ const FieldWrapper = <
       }
     },
     onBlur: (event: FocusEvent<HTMLElement>) => {
+      if (picassoFormContext.validationMode === 'onSubmit') {
+        return
+      }
+
       input.onBlur(event)
 
       if (rest.onBlur) {

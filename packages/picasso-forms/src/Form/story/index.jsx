@@ -106,6 +106,13 @@ page
         type: 'number',
         description:
           'Offset from the viewport for inputs to focus on, defaults to the center of the window'
+      },
+      validationMode: {
+        name: 'validationMode',
+        type: 'onSubmit | onChange',
+        description: 'Form validation mode',
+        defaultValue: 'onSubmit',
+        required: false
       }
     }
   })
@@ -137,6 +144,17 @@ types supported by picasso-forms.
       description: `
 We have a 'required' validator included by default to each input type,
 however, you may need custom validators for more complex types of fields.
+`
+    },
+    'picasso-form'
+  ) // picasso-skip-visuals
+  .addExample(
+    'Form/story/FormValidationModes.example.tsx',
+    {
+      title: 'Form validation modes',
+      description: `
+Form can support one of two validation modes: on-submit validation (when fields
+got validated on submit button click) and on-change validation (dynamic validation)
 `
     },
     'picasso-form'

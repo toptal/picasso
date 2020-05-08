@@ -15,13 +15,18 @@ import NumberInput from '../NumberInput'
 import FileInput from '../FileInput'
 import SubmitButton from '../SubmitButton'
 import { createScrollToErrorDecorator } from '../utils'
+import FormContext from './formContext'
 
 type AnyObject = Record<string, any>
+
+export type FormValidationMode = 'onSubmit' | 'onChange'
 
 export type Props<T = AnyObject> = FinalFormProps<T> & {
   successSubmitMessage?: ReactNode
   failedSubmitMessage?: ReactNode
   scrollOffsetTop?: number
+  /** Form validation mode */
+  validationMode: FormValidationMode
 }
 
 export function Form<T = AnyObject>(props: Props<T>) {
@@ -32,6 +37,7 @@ export function Form<T = AnyObject>(props: Props<T>) {
     failedSubmitMessage,
     scrollOffsetTop,
     decorators = [],
+    validationMode,
     ...rest
   } = props
   const { showSuccess, showError } = useNotifications()
@@ -62,19 +68,23 @@ export function Form<T = AnyObject>(props: Props<T>) {
   )
 
   return (
-    <FinalForm
-      render={({ handleSubmit }) => (
-        <PicassoForm onSubmit={handleSubmit}>{children}</PicassoForm>
-      )}
-      onSubmit={handleSubmit}
-      decorators={[...decorators, scrollToErrorDecorator]}
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...rest}
-    />
+    <FormContext.Provider value={{ validationMode }}>
+      <FinalForm
+        render={({ handleSubmit }) => (
+          <PicassoForm onSubmit={handleSubmit}>{children}</PicassoForm>
+        )}
+        onSubmit={handleSubmit}
+        decorators={[...decorators, scrollToErrorDecorator]}
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...rest}
+      />
+    </FormContext.Provider>
   )
 }
 
-Form.defaultProps = {}
+Form.defaultProps = {
+  validationMode: 'onSubmit'
+}
 
 Form.displayName = 'Form'
 
