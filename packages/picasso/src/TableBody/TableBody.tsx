@@ -3,8 +3,6 @@ import { withStyles } from '@material-ui/core/styles'
 import MUITableBody from '@material-ui/core/TableBody'
 import { StandardProps } from '@toptal/picasso-shared'
 
-import TableExpandableRow from '../TableExpandableRow'
-import TableRow from '../TableRow'
 import styles from './styles'
 
 export interface Props
@@ -17,16 +15,8 @@ export interface Props
 const decorateRows = (children: React.ReactNode) => {
   let stripeIndex = -1
 
-  // eslint-disable-next-line complexity
   return React.Children.map(children, child => {
     if (!React.isValidElement(child)) {
-      return child
-    }
-
-    const isTableRow =
-      child.type === TableRow || child.type === TableExpandableRow
-
-    if (!isTableRow) {
       return child
     }
 
