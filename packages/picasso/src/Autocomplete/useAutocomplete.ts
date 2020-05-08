@@ -54,10 +54,10 @@ function getNextWrappingIndex(
   return newIndex
 }
 
-interface Props {
-  value: string
-  options?: Item[] | null
-  onSelect?: (item: Item) => void
+export interface UseAutocompleteConfig<T> {
+  value: T
+  options?: T[] | null
+  onSelect?: (item: T) => void
   onOtherOptionSelect?: (value: string) => void
   onChange?: (value: string, options: ChangedOptions) => void
   onKeyDown?: (
@@ -66,12 +66,12 @@ interface Props {
   ) => void
   onFocus?: FocusEventHandler<HTMLInputElement>
   onBlur?: FocusEventHandler<HTMLInputElement>
-  getDisplayValue: (item: Item | null) => string
+  getDisplayValue: (item: T) => string
   enableReset?: boolean
   showOtherOption?: boolean
 }
 
-const useAutocomplete = ({
+const useAutocomplete = <T extends Item>({
   value,
   options = [],
   onChange = () => {},
@@ -83,7 +83,7 @@ const useAutocomplete = ({
   getDisplayValue,
   enableReset,
   showOtherOption
-}: Props) => {
+}: UseAutocompleteConfig<T>) => {
   const [isOpen, setOpen] = useState<boolean>(false)
   const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null)
 
@@ -91,15 +91,18 @@ const useAutocomplete = ({
     showOtherOption &&
     value &&
     Array.isArray(options) &&
-    options.every(option => getDisplayValue!(option) !== value)
+    options.every(option => getDisplayValue!(option) !== getDisplayValue(value))
 
-  const handleChange = (newValue: string, isSelected = false) => {
+  const handleChange = (newValue: T | string, isSelected = false) => {
     if (newValue !== value) {
-      onChange(newValue, { isSelected })
+      onChange(
+        typeof newValue === 'string' ? newValue : getDisplayValue(newValue),
+        { isSelected }
+      )
     }
   }
 
-  const handleSelect = (item: Item | null) => {
+  const handleSelect = (item: T) => {
     const displayValue = getDisplayValue(item)
 
     if (item === null || displayValue === null) {
@@ -128,11 +131,11 @@ const useAutocomplete = ({
     }
   })
 
-  const getItemProps = (index: number, item: Item) => ({
+  const getItemProps = (index: number, item: T) => ({
     ...getBaseItemProps(index),
     onClick: () => {
       setOpen(false)
-      handleChange(getDisplayValue(item), true)
+      handleChange(item, true)
       handleSelect(item)
     }
   })
@@ -177,7 +180,7 @@ const useAutocomplete = ({
     },
 
     onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => {
-      onKeyDown(event, value)
+      onKeyDown(event, getDisplayValue(value))
 
       const key = normalizeArrowKey(event)
 
@@ -204,7 +207,7 @@ const useAutocomplete = ({
       }
 
       if (key === 'Backspace') {
-        if (value !== EMPTY_INPUT_VALUE) {
+        if (getDisplayValue(value) !== EMPTY_INPUT_VALUE) {
           return
         }
 
@@ -221,7 +224,7 @@ const useAutocomplete = ({
           highlightedIndex === null ? undefined : options?.[highlightedIndex]
 
         const findSelectedItemUsingValue = () =>
-          options?.find(option => option.text === value)
+          options?.find(option => option.text === getDisplayValue(value))
 
         const selectedItem =
           findSelectedItemUsingIndex() ?? findSelectedItemUsingValue()
@@ -230,7 +233,7 @@ const useAutocomplete = ({
           handleChange(getDisplayValue(selectedItem))
           handleSelect(selectedItem)
         } else if (value) {
-          onOtherOptionSelect(value)
+          onOtherOptionSelect(getDisplayValue(value))
         }
       }
 

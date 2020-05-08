@@ -16,7 +16,7 @@ const Example = () => (
       options={options}
       onSelect={item => console.log('onSelect value:', item)}
       onChange={inputValue => console.log('onChange value:', inputValue)}
-      value='Belarus'
+      value={options[0]}
     />
   </div>
 )

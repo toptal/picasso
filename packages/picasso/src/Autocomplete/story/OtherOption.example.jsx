@@ -2,16 +2,10 @@ import React, { useState } from 'react'
 import { Autocomplete } from '@toptal/picasso'
 import { isSubstring } from '@toptal/picasso/utils'
 
-const allOptions = [
-  { text: 'Belarus' },
-  { text: 'Croatia' },
-  { text: 'Lithuania' },
-  { text: 'Slovakia' },
-  { text: 'Ukraine' }
-]
+const allOptions = ['Belarus', 'Croatia', 'Lithuania', 'Slovakia', 'Ukraine']
 
 const EMPTY_INPUT_VALUE = ''
-const getDisplayValue = item => (item ? item.text : EMPTY_INPUT_VALUE)
+const getDisplayValue = item => item || EMPTY_INPUT_VALUE
 const filterOptions = str =>
   str !== ''
     ? allOptions.filter(option => isSubstring(str, getDisplayValue(option)))
@@ -30,12 +24,7 @@ const Example = () => {
         options={options}
         onSelect={item => {
           console.log('onSelect returns item object:', item)
-
-          const itemValue = getDisplayValue(item)
-
-          if (value !== itemValue) {
-            setValue(itemValue)
-          }
+          setValue(item)
         }}
         onOtherOptionSelect={newValue => {
           console.log('onOtherOptionSelect returns item value:', newValue)

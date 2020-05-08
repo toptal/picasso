@@ -11,7 +11,7 @@ const options = [
 ]
 
 const Example = () => {
-  const [value, setValue] = useState(options[0].text)
+  const [value, setValue] = useState(options[0])
 
   return (
     <div>
@@ -21,11 +21,11 @@ const Example = () => {
         value={value}
         onSelect={item => {
           console.log('onSelect returns item object:', item)
-          setValue(item.text)
+          setValue(item)
         }}
         onChange={newValue => {
           console.log('onChange returns just item value:', newValue)
-          setValue(newValue)
+          setValue({ text: newValue })
         }}
       />
       <Container top={2}>
@@ -33,14 +33,14 @@ const Example = () => {
           <Grid.Item>
             <Button
               onClick={() => {
-                setValue(options[3].text)
+                setValue(options[3])
               }}
             >
               Set to country in your profile: Slovakia
             </Button>
             <Button
               onClick={() => {
-                setValue('')
+                setValue()
               }}
               variant='secondary-blue'
             >

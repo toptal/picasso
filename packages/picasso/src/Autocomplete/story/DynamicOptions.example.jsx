@@ -48,7 +48,7 @@ const Example = () => {
   )
 
   const handleChange = (inputValue, options) => {
-    setValue(inputValue)
+    setValue({ text: inputValue })
 
     if (options.isSelected) {
       return

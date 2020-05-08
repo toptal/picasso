@@ -2,16 +2,10 @@ import React, { useState } from 'react'
 import { Autocomplete, Form } from '@toptal/picasso'
 import { isSubstring } from '@toptal/picasso/utils'
 
-const allOptions = [
-  { text: 'Belarus' },
-  { text: 'Croatia' },
-  { text: 'Lithuania' },
-  { text: 'Slovakia' },
-  { text: 'Ukraine' }
-]
+const allOptions = ['Belarus', 'Croatia', 'Lithuania', 'Slovakia', 'Ukraine']
 
 const EMPTY_INPUT_VALUE = ''
-const getDisplayValue = item => (item ? item.text : EMPTY_INPUT_VALUE)
+const getDisplayValue = item => item || EMPTY_INPUT_VALUE
 const filterOptions = (str = '') => {
   if (str === '') {
     return allOptions
@@ -36,16 +30,11 @@ const Example = () => {
           value={value}
           options={options}
           onSelect={item => {
-            console.log('onSelect returns item object:', item)
-
-            const itemValue = getDisplayValue(item)
-
-            if (value !== itemValue) {
-              setValue(itemValue)
-            }
+            console.log('onSelect returns item value:', item)
+            setValue(item)
           }}
           onChange={newValue => {
-            console.log('onChange returns just item value:', newValue)
+            console.log('onChange returns input value:', newValue)
 
             setOptions(filterOptions(newValue))
             setValue(newValue)

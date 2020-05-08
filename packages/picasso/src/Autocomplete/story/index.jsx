@@ -30,7 +30,7 @@ page
   .addTextSection(
     `
 Autocomplete supports all the default HTML native props, as Input supports.
-    
+
 ### A note about browser autofilling
 
 Standard browser autofilling feature is disabled in this component by default, because it's used pretty rarely.

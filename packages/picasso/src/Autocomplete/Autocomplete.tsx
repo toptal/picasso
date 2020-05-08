@@ -3,7 +3,6 @@
 import React, {
   InputHTMLAttributes,
   KeyboardEvent,
-  forwardRef,
   ReactNode,
   ComponentType,
   useRef,
@@ -22,11 +21,12 @@ import ScrollMenu from '../ScrollMenu'
 import Typography from '../Typography'
 import Popper from '../Popper'
 import InputAdornment from '../InputAdornment'
+import { documentable, forwardRef } from '../utils/forward-ref'
 import { Item, ChangedOptions } from './types'
 import useAutocomplete, { EMPTY_INPUT_VALUE } from './useAutocomplete'
 import styles from './styles'
 
-export interface Props
+export interface Props<T>
   extends StandardProps,
     Omit<
       InputHTMLAttributes<HTMLInputElement>,
@@ -35,9 +35,9 @@ export interface Props
   /**  Callback invoked when `input` element value is changed */
   onChange?: (value: string, options: ChangedOptions) => void
   /** The value of the selected option, required for a controlled component. */
-  value: string
+  value: T
   /**  Callback invoked when selection changes */
-  onSelect?: (item: Item) => void
+  onSelect?: (item: T) => void
   /**  Callback invoked when other option selected */
   onOtherOptionSelect?: (value: string) => void
   /** Placeholder for value */
@@ -53,9 +53,9 @@ export interface Props
   /** Label to show when no options were found */
   noOptionsText?: string
   /** List of options */
-  options?: Item[] | null
+  options?: T[] | null
   /** A function that takes a display value from the option item */
-  getDisplayValue?: (item: Item | null) => string
+  getDisplayValue?: (item: T | null) => string
   /**  Callback invoked when key is pressed */
   onKeyDown?: (
     event: KeyboardEvent<HTMLInputElement>,
@@ -76,9 +76,9 @@ export interface Props
   /** Custom input component */
   inputComponent?: ComponentType<InputProps>
   /** Callback responsible for rendering the option given the option and its index in the list of options */
-  renderOption?: (option: Item, index: number) => ReactNode
+  renderOption?: (option: T, index: number) => ReactNode
   /** Provide unique key for each option */
-  getKey?: (item: Item) => string
+  getKey?: (item: T) => string
   /** Specifies whether the autofill enabled or not, disabled by default */
   enableAutofill?: boolean
   /** Whether to render reset icon when there is a value in the input */
@@ -86,179 +86,182 @@ export interface Props
   popperContainer?: HTMLElement
 }
 
-const getItemText = (item: Item | null) =>
-  (item && item.text) || EMPTY_INPUT_VALUE
+const getItemText = (item: Item) => (item && item.text) || EMPTY_INPUT_VALUE
 
-export const Autocomplete = forwardRef<HTMLInputElement, Props>(
-  function Autocomplete(
-    {
-      classes,
-      className,
-      onChange,
-      value,
-      onSelect,
-      onOtherOptionSelect,
-      loading,
-      placeholder,
-      otherOptionText,
-      noOptionsText,
-      options,
-      getDisplayValue,
-      style,
-      width,
-      showOtherOption,
-      onKeyDown,
-      onFocus,
-      onBlur,
-      inputComponent,
-      renderOption,
-      endAdornment,
-      icon,
-      error,
-      enableAutofill,
-      autoComplete,
-      popperContainer,
-      getKey: customGetKey,
-      enableReset,
-      name,
-      ...rest
-    },
-    ref
-  ) {
-    const getKey = (item: Item) => {
-      if (customGetKey) {
-        return customGetKey(item)
+export const Autocomplete = documentable(
+  forwardRef(
+    <T extends {}>(
+      {
+        classes,
+        className,
+        onChange,
+        value,
+        onSelect,
+        onOtherOptionSelect,
+        loading,
+        placeholder,
+        otherOptionText,
+        noOptionsText,
+        options,
+        getDisplayValue,
+        style,
+        width,
+        showOtherOption,
+        onKeyDown,
+        onFocus,
+        onBlur,
+        inputComponent,
+        renderOption,
+        endAdornment,
+        icon,
+        error,
+        enableAutofill,
+        autoComplete,
+        popperContainer,
+        getKey: customGetKey,
+        enableReset,
+        name,
+        ...rest
+      }: Props<T>,
+      ref: React.Ref<HTMLInputElement> | null
+    ) => {
+      const getKey = (item: T) => {
+        if (customGetKey) {
+          return customGetKey(item)
+        }
+
+        const displayValue = getDisplayValue!(item)
+
+        if (!displayValue) {
+          console.error(
+            'Autocomplete expects you to provide key prop value with getKey or Item.value!'
+          )
+        }
+
+        return displayValue
       }
 
-      const displayValue = getDisplayValue!(item)
+      const {
+        highlightedIndex,
+        isOpen,
+        shouldShowOtherOption,
+        getItemProps,
+        getOtherItemProps,
+        getInputProps
+      } = useAutocomplete<T>({
+        value,
+        options,
+        getDisplayValue: getDisplayValue!,
+        onSelect,
+        onOtherOptionSelect,
+        onChange,
+        onKeyDown,
+        onFocus,
+        onBlur,
+        enableReset,
+        showOtherOption
+      })
 
-      if (!displayValue) {
-        console.error(
-          'Autocomplete expects you to provide key prop value with getKey or Item.value!'
-        )
-      }
+      const optionsLength = options ? options!.length : 0
 
-      return displayValue
-    }
-
-    const {
-      highlightedIndex,
-      isOpen,
-      shouldShowOtherOption,
-      getItemProps,
-      getOtherItemProps,
-      getInputProps
-    } = useAutocomplete({
-      value,
-      options,
-      getDisplayValue: getDisplayValue!,
-      onSelect,
-      onOtherOptionSelect,
-      onChange,
-      onKeyDown,
-      onFocus,
-      onBlur,
-      enableReset,
-      showOtherOption
-    })
-
-    const optionsLength = options ? options!.length : 0
-
-    const optionsMenu = options && (
-      <ScrollMenu selectedIndex={highlightedIndex}>
-        {options!.map((option, index) => (
-          <Menu.Item
-            key={getKey(option)}
-            /* eslint-disable-next-line react/jsx-props-no-spreading */
-            {...getItemProps(index, option)}
-          >
-            {renderOption
-              ? renderOption(option, index)
-              : getDisplayValue!(option)}
-          </Menu.Item>
-        ))}
-
-        {shouldShowOtherOption && (
-          <Menu.Item
-            key='other-option'
-            className={cx({
-              [classes.otherOption]: true
-            })}
-            /* eslint-disable-next-line react/jsx-props-no-spreading */
-            {...getOtherItemProps(optionsLength, value)}
-          >
-            <span className={classes.stringContent}>
-              <Typography as='span' color='dark-grey'>
-                {otherOptionText}
-              </Typography>
-              {value}
-            </span>
-          </Menu.Item>
-        )}
-
-        {!optionsLength && !shouldShowOtherOption && (
-          <Menu.Item disabled>{noOptionsText}</Menu.Item>
-        )}
-      </ScrollMenu>
-    )
-
-    const InputComponent = inputComponent || Input
-    const loadingComponent = (
-      <InputAdornment position='end'>
-        <Loader size='small' />
-      </InputAdornment>
-    )
-
-    const inputWrapperRef = useRef<HTMLDivElement>(null)
-
-    return (
-      <div
-        className={cx(
-          classes.root,
-          className,
-          classes[`root${capitalize(width!)}`]
-        )}
-        style={style}
-        role='combobox'
-        aria-expanded={isOpen}
-        aria-haspopup='listbox'
-      >
-        <Container flex ref={inputWrapperRef}>
-          {!enableAutofill && name && (
-            <input type='hidden' value={value} name={name} />
-          )}
-          <InputComponent
-            /* eslint-disable-next-line react/jsx-props-no-spreading */
-            {...rest}
-            /* eslint-disable-next-line react/jsx-props-no-spreading */
-            {...getInputProps()}
-            error={error}
-            icon={icon}
-            defaultValue={undefined}
-            value={value}
-            ref={ref}
-            placeholder={placeholder}
-            endAdornment={loading ? loadingComponent : endAdornment}
-            width={width}
-            name={enableAutofill ? name : undefined}
-            autoComplete={enableAutofill ? autoComplete : autoComplete || 'off'}
-          />
-        </Container>
-        <div role='listbox'>
-          {inputWrapperRef.current && optionsMenu && (
-            <Popper
-              autoWidth
-              open={isOpen && !loading}
-              anchorEl={inputWrapperRef.current}
-              container={popperContainer}
+      const optionsMenu = options && (
+        <ScrollMenu selectedIndex={highlightedIndex}>
+          {options!.map((option, index) => (
+            <Menu.Item
+              key={getKey(option)}
+              /* eslint-disable-next-line react/jsx-props-no-spreading */
+              {...getItemProps(index, option)}
             >
-              {optionsMenu}
-            </Popper>
+              {renderOption
+                ? renderOption(option, index)
+                : getDisplayValue!(option)}
+            </Menu.Item>
+          ))}
+
+          {shouldShowOtherOption && (
+            <Menu.Item
+              key='other-option'
+              className={cx({
+                [classes.otherOption]: true
+              })}
+              /* eslint-disable-next-line react/jsx-props-no-spreading */
+              {...getOtherItemProps(optionsLength, value)}
+            >
+              <span className={classes.stringContent}>
+                <Typography as='span' color='dark-grey'>
+                  {otherOptionText}
+                </Typography>
+                {value}
+              </span>
+            </Menu.Item>
           )}
+
+          {!optionsLength && !shouldShowOtherOption && (
+            <Menu.Item disabled>{noOptionsText}</Menu.Item>
+          )}
+        </ScrollMenu>
+      )
+
+      const InputComponent = inputComponent || Input
+      const loadingComponent = (
+        <InputAdornment position='end'>
+          <Loader size='small' />
+        </InputAdornment>
+      )
+
+      const inputWrapperRef = useRef<HTMLDivElement>(null)
+
+      return (
+        <div
+          className={cx(
+            classes.root,
+            className,
+            classes[`root${capitalize(width!)}`]
+          )}
+          style={style}
+          role='combobox'
+          aria-expanded={isOpen}
+          aria-haspopup='listbox'
+        >
+          <Container flex ref={inputWrapperRef}>
+            {!enableAutofill && name && (
+              <input type='hidden' value={value} name={name} />
+            )}
+            <InputComponent
+              /* eslint-disable-next-line react/jsx-props-no-spreading */
+              {...rest}
+              /* eslint-disable-next-line react/jsx-props-no-spreading */
+              {...getInputProps()}
+              error={error}
+              icon={icon}
+              defaultValue={undefined}
+              value={getDisplayValue!(value)}
+              ref={ref}
+              placeholder={placeholder}
+              endAdornment={loading ? loadingComponent : endAdornment}
+              width={width}
+              name={enableAutofill ? name : undefined}
+              autoComplete={
+                enableAutofill ? autoComplete : autoComplete || 'off'
+              }
+            />
+          </Container>
+          <div role='listbox'>
+            {inputWrapperRef.current && optionsMenu && (
+              <Popper
+                autoWidth
+                open={isOpen && !loading}
+                anchorEl={inputWrapperRef.current}
+                container={popperContainer}
+              >
+                {optionsMenu}
+              </Popper>
+            )}
+          </div>
         </div>
-      </div>
-    )
-  }
+      )
+    }
+  )
 )
 
 Autocomplete.defaultProps = {
