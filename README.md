@@ -90,7 +90,7 @@ To add a new Icon to Picasso library please follow these steps:
    - Make sure that `viewBox` size is `0 0 16 16` (be careful this isn't just a simple value set!)
    - Make sure all paths are expanded and strokes are not used
 2. Add your SVG file(s) to the Picasso project:
-   > /components/Icon/svg/[your_icon_name].svg
+   > packages/picasso/src/Icon/svg/[your_icon_name].svg
 3. Run the command
 
    ```
@@ -98,7 +98,7 @@ To add a new Icon to Picasso library please follow these steps:
    ```
 
    This command will prepare corresponding react components for your icons
-   and add export statements to `/components/Icon/index.ts`
+   and add export statements to `packages/picasso/src/Icon/index.ts`
 
 After Picasso will be released with your changes you can start using your Icon as described in the [Icons section](https://picasso.toptal.net/?path=/story/components-folder--icon#icon).
 
@@ -107,7 +107,7 @@ After Picasso will be released with your changes you can start using your Icon a
 1. Create a new folder under `/packages` and add to it:
 
    - `package.json` by running `lerna add`. Specify `Toptal` as the author and `src/index.ts` in the `main` key
-   - `tsconfig.json` using this template with paths to the `node_modules` of any used packages from the `/packages` directory 
+   - `tsconfig.json` using this template with paths to the `node_modules` of any used packages from the `/packages` directory
 
    ```
    {
