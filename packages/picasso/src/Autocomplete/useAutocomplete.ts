@@ -1,6 +1,12 @@
 /* eslint-disable complexity, max-statements */ // Squiggly lines makes code difficult to work with
 
-import { KeyboardEvent, useState, ChangeEvent, FocusEventHandler } from 'react'
+import {
+  KeyboardEvent,
+  useState,
+  ChangeEvent,
+  FocusEventHandler,
+  useLayoutEffect
+} from 'react'
 
 import { Item, ChangedOptions } from './types'
 
@@ -86,6 +92,10 @@ const useAutocomplete = ({
 }: Props) => {
   const [isOpen, setOpen] = useState<boolean>(false)
   const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null)
+
+  useLayoutEffect(() => {
+    setHighlightedIndex(null)
+  }, [value])
 
   const shouldShowOtherOption =
     showOtherOption &&
@@ -209,7 +219,6 @@ const useAutocomplete = ({
         }
 
         setOpen(false)
-        setHighlightedIndex(null)
         handleChange(getDisplayValue(null))
       }
 
@@ -238,7 +247,6 @@ const useAutocomplete = ({
         event.preventDefault()
 
         setOpen(false)
-        setHighlightedIndex(null)
         handleChange(getDisplayValue(null))
       }
     },
