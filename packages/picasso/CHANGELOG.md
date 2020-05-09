@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.54.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.53.2...@toptal/picasso@4.54.0) (2020-05-09)
+
+
+### Features
+
+* **icon:** add profileCrossed icon ([#1291](https://github.com/toptal/picasso/issues/1291)) ([0758503](https://github.com/toptal/picasso/commit/0758503ff36a79e5c1ea9effdc7aa0883e166c31))
+
+
+
+
+
 ## [4.53.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.53.1...@toptal/picasso@4.53.2) (2020-05-08)
 
 
