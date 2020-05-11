@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.55.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.55.0...@toptal/picasso@4.55.1) (2020-05-11)
+
+
+### Bug Fixes
+
+* add missing picasso utils exports ([#1295](https://github.com/toptal/picasso/issues/1295)) ([a38f71a](https://github.com/toptal/picasso/commit/a38f71ae363f08d7f82d4eb77d9224b37d600a60))
+
+
+
+
+
 # [4.55.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.54.0...@toptal/picasso@4.55.0) (2020-05-11)
 
 
