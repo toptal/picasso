@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.55.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.54.0...@toptal/picasso@4.55.0) (2020-05-11)
+
+
+### Features
+
+* **Icon:** add player icon ([#1288](https://github.com/toptal/picasso/issues/1288)) ([20a3e5b](https://github.com/toptal/picasso/commit/20a3e5bc93f1d9dc5daaf656e292ce520fa0c1a4))
+
+
+
+
+
 # [4.54.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.53.2...@toptal/picasso@4.54.0) (2020-05-09)
 
 
