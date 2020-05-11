@@ -4,11 +4,13 @@ import React, {
   KeyboardEvent,
   useLayoutEffect,
   ReactNode,
-  Fragment
+  Fragment,
+  useEffect
 } from 'react'
 import PopperJs from 'popper.js'
 import formatDate from 'date-fns/format'
 import isValid from 'date-fns/isValid'
+import parse from 'date-fns/parse'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
 import { Container, Input, InputAdornment, InputProps } from '@toptal/picasso'
@@ -73,7 +75,9 @@ const DEFAULT_EDIT_DATE_FORMAT = 'MM-dd-yyyy'
 const EMPTY_INPUT_VALUE = ''
 
 const isDateValid = (date: string, pattern: string) => {
-  return date.length === pattern.length && isValid(new Date(date))
+  return (
+    date.length === pattern.length && isValid(parse(date, pattern, new Date()))
+  )
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
@@ -149,20 +153,31 @@ export const DatePicker = (props: Props) => {
     )
   }
 
-  const handleBlur = (event: React.FocusEvent<HTMLDivElement>) => {
-    const isFocusedInsideDatePicker = isInsideDatePicker(
-      event.relatedTarget as Node
-    )
+  const handleBlur = () => {
+    if (!calendarIsShown) {
+      hideCalendar()
+      onBlur!()
 
-    if (isFocusedInsideDatePicker) {
-      return
+      setIsInputFocused(false)
+    }
+  }
+
+  useEffect(() => {
+    const handlePageClick = (event: MouseEvent) => {
+      if (!calendarIsShown || isInsideDatePicker(event.target as Node)) {
+        return
+      }
+
+      hideCalendar()
+      onBlur!()
     }
 
-    hideCalendar()
-    onBlur!()
+    document.addEventListener('click', handlePageClick)
 
-    setIsInputFocused(false)
-  }
+    return () => {
+      document.removeEventListener('click', handlePageClick)
+    }
+  }, [calendarIsShown, onBlur])
 
   const handleInputChange = (
     e: React.ChangeEvent<
@@ -180,7 +195,7 @@ export const DatePicker = (props: Props) => {
     if (!nextInputValue) {
       onChange(null)
     } else if (isDateValid(nextInputValue, editDateFormat!)) {
-      onChange(new Date(nextInputValue))
+      onChange(parse(nextInputValue, editDateFormat!, new Date()))
     }
   }
 
@@ -259,8 +274,8 @@ export const DatePicker = (props: Props) => {
           error={error}
           onKeyDown={handleInputKeydown}
           onClick={handleFocusOrClick}
-          onFocus={handleFocusOrClick}
           onBlur={handleBlur}
+          onFocus={handleFocusOrClick}
           value={inputValue}
           onChange={handleInputChange}
           startAdornment={startAdornment}
@@ -285,7 +300,6 @@ export const DatePicker = (props: Props) => {
             disabledIntervals={disabledIntervals}
             renderDay={renderDay}
             onChange={handleCalendarChange}
-            onBlur={handleBlur}
             className={classes.calendar}
           />
         </Popper>

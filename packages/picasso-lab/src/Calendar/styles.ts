@@ -23,7 +23,6 @@ export default ({ palette, shadows }: Theme) =>
       minWidth: '2.5rem',
       verticalAlign: 'middle',
       fontSize: '0.75rem',
-      userSelect: 'none',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',

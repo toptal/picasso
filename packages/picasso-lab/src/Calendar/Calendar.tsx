@@ -75,7 +75,6 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
     minDate,
     maxDate,
     disabledIntervals,
-    onBlur,
     renderDay,
     ...rest
   } = props
@@ -91,7 +90,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
   }
 
   return (
-    <div ref={ref} {...rest} onBlur={onBlur}>
+    <div ref={ref} {...rest}>
       <SimpleReactCalendar
         selected={getNormalizedValue(value)}
         onSelect={handleChange}
@@ -200,7 +199,6 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
 })
 
 Calendar.defaultProps = {
-  onBlur: () => {},
   range: false
 }
 
