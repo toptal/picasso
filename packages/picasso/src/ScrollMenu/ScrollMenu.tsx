@@ -53,11 +53,11 @@ const ScrollMenu: FunctionComponent<Props> = ({
     const scrollViewHeight = menuRef.current.offsetHeight
 
     const moveDirection =
-      prevSelectedIndex && prevSelectedIndex <= selectedIndex
+      prevSelectedIndex != null && prevSelectedIndex <= selectedIndex
         ? Direction.DOWN
         : Direction.UP
 
-    const countItemsOnScrollView = Math.floor(scrollViewHeight / itemHeight)
+    const countItemsOnScrollView = scrollViewHeight / itemHeight
     const topVisibleItem = currentScrollTop / itemHeight
     const bottomVisibleItem = topVisibleItem + countItemsOnScrollView - 1
 
@@ -68,7 +68,7 @@ const ScrollMenu: FunctionComponent<Props> = ({
       let scrollTop = 0
 
       if (moveDirection === Direction.UP) {
-        scrollTop = (selectedIndex - 1) * itemHeight
+        scrollTop = selectedIndex * itemHeight
       } else if (moveDirection === Direction.DOWN) {
         scrollTop = (selectedIndex - countItemsOnScrollView + 1) * itemHeight
       }
