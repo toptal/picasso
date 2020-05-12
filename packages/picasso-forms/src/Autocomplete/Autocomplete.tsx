@@ -9,7 +9,7 @@ export type FormAutocompleteProps = Omit<
   'onChange' | 'value'
 > & {
   onInputChange?: AutocompleteProps['onChange']
-} & { onChange: AutocompleteProps['onSelect']; value: Item }
+} & { onChange?: AutocompleteProps['onSelect']; value: Item }
 export type Props = FormAutocompleteProps & FieldProps<Item>
 
 export const Autocomplete = (props: Props) => (
