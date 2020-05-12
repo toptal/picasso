@@ -3,7 +3,8 @@ import {
   useState,
   ChangeEvent,
   useCallback,
-  HTMLAttributes
+  HTMLAttributes,
+  useLayoutEffect
 } from 'react'
 
 import { Option } from './types'
@@ -17,7 +18,6 @@ export type ItemProps = {
   onClick: (event: React.MouseEvent) => void
 }
 
-export const FIRST_ITEM_INDEX = 0
 export const EMPTY_INPUT_VALUE = ''
 
 function normalizeArrowKey(event: KeyboardEvent<HTMLInputElement>) {
@@ -120,6 +120,10 @@ const useSelect = ({
   const [isOpen, setOpen] = useState<boolean>(false)
   const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null)
 
+  useLayoutEffect(() => {
+    setHighlightedIndex(null)
+  }, [value])
+
   const handleChange = (newValue: string) => {
     if (newValue !== value) {
       onChange(newValue)
@@ -168,7 +172,6 @@ const useSelect = ({
     if (!isOpen) {
       onFocus(event as React.FocusEvent<HTMLInputElement>)
       setOpen(true)
-      setHighlightedIndex(FIRST_ITEM_INDEX)
     }
   }
 
@@ -189,7 +192,6 @@ const useSelect = ({
       >
     ) => {
       setOpen(true)
-      setHighlightedIndex(FIRST_ITEM_INDEX)
       onChange(event.target.value)
     },
 
@@ -220,7 +222,6 @@ const useSelect = ({
         }
 
         setOpen(false)
-        setHighlightedIndex(null)
         handleChange(getDisplayValue(null))
       }
 
@@ -248,7 +249,6 @@ const useSelect = ({
         event.preventDefault()
 
         setOpen(false)
-        setHighlightedIndex(null)
         handleChange(getDisplayValue(null))
       }
 

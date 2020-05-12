@@ -66,8 +66,8 @@ exports[`YearSelect render in descending order 1`] = `
   >
     <li
       aria-disabled="false"
-      aria-selected="true"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+      aria-selected="false"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
       value="2005"
