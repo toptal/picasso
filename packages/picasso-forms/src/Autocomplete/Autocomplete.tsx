@@ -25,14 +25,14 @@ export const Autocomplete = (props: Props) => (
       } = inputProps
       return (
         <PicassoAutocomplete
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          {...rest}
           onSelect={onChange}
           value={getDisplayValue?.(value || null) || value?.text || ''}
           onChange={(newInputValue, changeOptions) => {
             onInputChange?.(newInputValue, changeOptions)
             onChange?.({ text: newInputValue })
           }}
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          {...rest}
         />
       )
     }}
