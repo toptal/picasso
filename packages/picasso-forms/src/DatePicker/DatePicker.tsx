@@ -4,11 +4,14 @@ import { Props as DatePickerProps } from '@toptal/picasso-lab/src/DatePicker/Dat
 
 import FieldWrapper, { FieldProps } from '../FieldWrapper'
 
-export type Props = DatePickerProps & FieldProps<DatePickerProps['value']>
+export type FormDatePickerProps = Omit<DatePickerProps, 'onChange'> & {
+  onChange?: DatePickerProps['onChange']
+}
+export type Props = FormDatePickerProps & FieldProps<DatePickerProps['value']>
 
 export const DatePicker = (props: Props) => (
   // eslint-disable-next-line react/jsx-props-no-spreading
-  <FieldWrapper<DatePickerProps> {...props}>
+  <FieldWrapper<FormDatePickerProps> {...props}>
     {(inputProps: DatePickerProps) => {
       // eslint-disable-next-line react/jsx-props-no-spreading
       return <PicassoDatePicker {...inputProps} />

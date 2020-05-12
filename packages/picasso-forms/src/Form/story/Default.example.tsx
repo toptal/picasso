@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Container } from '@toptal/picasso'
-import { isSubstring } from '@toptal/picasso/src/utils'
+import { isSubstring } from '@toptal/picasso/utils'
 import { Form } from '@toptal/picasso-forms'
 
 const skills = [
@@ -68,7 +68,6 @@ const DefaultExample = () => {
         inputValue={skillInputValue}
         options={skillOptions}
         onInputChange={setSkillInputValue}
-        initialValue={[]}
       />
       <Form.Select
         enableReset

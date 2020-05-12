@@ -16,7 +16,9 @@ export const TagSelector = (props: Props) => (
   </FieldWrapper>
 )
 
-TagSelector.defaultProps = {}
+TagSelector.defaultProps = {
+  initialValue: []
+}
 
 TagSelector.displayName = 'TagSelector'
 

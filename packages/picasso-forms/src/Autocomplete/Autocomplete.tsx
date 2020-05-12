@@ -9,8 +9,8 @@ export type FormAutocompleteProps = Omit<
   'onChange' | 'value'
 > & {
   onInputChange?: AutocompleteProps['onChange']
-} & { onChange?: AutocompleteProps['onSelect']; value: Item }
-export type Props = FormAutocompleteProps & FieldProps<Item>
+} & { onChange?: AutocompleteProps['onSelect']; value?: Item }
+export type Props = FormAutocompleteProps & FieldProps<Item | undefined>
 
 export const Autocomplete = (props: Props) => (
   // eslint-disable-next-line react/jsx-props-no-spreading
@@ -26,7 +26,7 @@ export const Autocomplete = (props: Props) => (
       return (
         <PicassoAutocomplete
           onSelect={onChange}
-          value={getDisplayValue?.(value) || value.text || ''}
+          value={getDisplayValue?.(value || null) || value?.text || ''}
           onChange={(newInputValue, changeOptions) => {
             onInputChange?.(newInputValue, changeOptions)
             onChange?.({ text: newInputValue })
