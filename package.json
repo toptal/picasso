@@ -23,7 +23,7 @@
     "generate:example": "hygen component example",
     "generate:icons": "./bin/generate-icons",
     "commit": "git-cz",
-    "prepublish": "test -f yarn.lock && yarn-deduplicate yarn.lock"
+    "prepublish": "if [ -f 'yarn.lock' ]; then yarn-deduplicate yarn.lock; fi"
   },
   "repository": {
     "type": "git",
