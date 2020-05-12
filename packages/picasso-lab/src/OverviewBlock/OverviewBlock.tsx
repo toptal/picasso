@@ -3,7 +3,8 @@ import React, {
   ElementType,
   FunctionComponent,
   HTMLAttributes,
-  MouseEvent
+  MouseEvent,
+  ReactNode
 } from 'react'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
@@ -36,7 +37,7 @@ type ColorSettings = {
 export type Props = BaseProps &
   HTMLAttributes<HTMLButtonElement> & {
     /** Counter value  */
-    value: string
+    value: ReactNode
     /** Counter title  */
     label: string
     /** The color variant  */
