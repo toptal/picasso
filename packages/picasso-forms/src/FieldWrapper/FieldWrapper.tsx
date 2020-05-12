@@ -6,12 +6,22 @@ import {
   FieldRenderProps
 } from 'react-final-form'
 import { Form as PicassoForm } from '@toptal/picasso'
+import { Item } from '@toptal/picasso/Autocomplete'
+import { DateOrDateRangeType } from '@toptal/picasso-lab/src/Calendar'
 
 import { validators } from '../utils'
 
 const { composeValidators, required: requiredValidator } = validators
 
-type ValueType = string | string[] | number | boolean | undefined | File
+type ValueType =
+  | string
+  | string[]
+  | number
+  | boolean
+  | undefined
+  | File
+  | DateOrDateRangeType
+  | Item[]
 
 export type FieldProps<TInputValue> = FinalFieldProps<
   TInputValue,

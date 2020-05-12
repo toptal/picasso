@@ -1,6 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Container } from '@toptal/picasso'
 import { Form } from '@toptal/picasso-forms'
+
+const skills = [
+  { value: 0, text: 'HTML' },
+  { value: 1, text: 'CSS' },
+  { value: 2, text: 'Javascript' }
+]
+
+const SkillSelector = props => {
+  const [inputValue, setInputValue] = useState<string>('')
+  const options = skills.filter(({ text }) =>
+    text.toLowerCase().includes(inputValue.toLowerCase())
+  )
+  return (
+    <Form.TagSelector
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...props}
+      inputValue={inputValue}
+      options={options}
+      onInputChange={setInputValue}
+      getKey={({ value }) => value}
+      initialValue={[]}
+    />
+  )
+}
 
 const DefaultExample = () => (
   <Form onSubmit={values => console.log(values)}>
@@ -31,6 +55,8 @@ const DefaultExample = () => (
       <Form.Radio label='Male' value='male' />
       <Form.Radio label='Female' value='female' />
     </Form.RadioGroup>
+    <Form.DatePicker name='dateOfBirth' label='Date of birth' />
+    <SkillSelector name='skills' label='Skills' />
     <Form.Select
       enableReset
       required

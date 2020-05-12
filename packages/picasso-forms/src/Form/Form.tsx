@@ -13,6 +13,8 @@ import RadioGroup from '../RadioGroup'
 import Checkbox from '../Checkbox'
 import NumberInput from '../NumberInput'
 import FileInput from '../FileInput'
+import DatePicker from '../DatePicker'
+import TagSelector from '../TagSelector'
 import SubmitButton from '../SubmitButton'
 import { createScrollToErrorDecorator } from '../utils'
 
@@ -85,6 +87,8 @@ Form.RadioGroup = RadioGroup
 Form.Checkbox = Checkbox
 Form.NumberInput = NumberInput
 Form.FileInput = FileInput
+Form.DatePicker = DatePicker
+Form.TagSelector = TagSelector
 Form.SubmitButton = SubmitButton
 
 export default Form
