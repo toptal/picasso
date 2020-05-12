@@ -26,6 +26,29 @@ const SkillSelector = props => {
   )
 }
 
+const watchers = [
+  { value: 0, text: 'Watcher 1' },
+  { value: 1, text: 'Watcher 2' },
+  { value: 2, text: 'Watcher 3' }
+]
+
+const WatcherAutocomplete = props => {
+  const [inputValue, setInputValue] = useState<string>('')
+  const options = watchers.filter(({ text }) =>
+    text.toLowerCase().includes(inputValue.toLowerCase())
+  )
+  return (
+    <Form.Autocomplete
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...props}
+      onInputChange={setInputValue}
+      options={options}
+      initialValue={watchers[2]}
+      getDisplayValue={({ text }) => text}
+    />
+  )
+}
+
 const DefaultExample = () => (
   <Form onSubmit={values => console.log(values)}>
     <Form.Input
@@ -80,6 +103,7 @@ const DefaultExample = () => (
       label='Avatar'
       status='No file selected.'
     />
+    <WatcherAutocomplete name='watcher' label='Watcher' />
     <Form.Checkbox
       required
       name='legal'

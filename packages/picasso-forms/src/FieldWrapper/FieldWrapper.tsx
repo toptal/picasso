@@ -21,6 +21,7 @@ type ValueType =
   | undefined
   | File
   | DateOrDateRangeType
+  | Item
   | Item[]
 
 export type FieldProps<TInputValue> = FinalFieldProps<
