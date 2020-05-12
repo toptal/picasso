@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.13.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.12.10...@toptal/picasso-lab@2.13.0) (2020-05-12)
+
+
+### Features
+
+* allow custom value for overview block ([#1300](https://github.com/toptal/picasso/issues/1300)) ([88aedc2](https://github.com/toptal/picasso/commit/88aedc26f25a59187f8fb3659e7b7c2fa737d83f))
+
+
+
+
+
 ## [2.12.10](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.12.9...@toptal/picasso-lab@2.12.10) (2020-05-06)
 
 **Note:** Version bump only for package @toptal/picasso-lab
