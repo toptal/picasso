@@ -13,5 +13,11 @@ page
 
 page
   .createChapter()
-  .addExample('Image/story/Default.example.jsx', 'Default')
-  .addExample('Image/story/Variants.example.jsx', 'Variants')
+  .addExample('Image/story/Default.example.jsx', {
+    title: 'Default',
+    waitUntilImagesLoaded: true
+  })
+  .addExample('Image/story/Variants.example.jsx', {
+    title: 'Variants',
+    waitUntilImagesLoaded: true
+  })
