@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.55.3](https://github.com/toptal/picasso/compare/@toptal/picasso@4.55.2...@toptal/picasso@4.55.3) (2020-05-12)
+
+
+### Bug Fixes
+
+* **Select:** fix scrolling on hover of boundary elements ([#1292](https://github.com/toptal/picasso/issues/1292)) ([9d28a9b](https://github.com/toptal/picasso/commit/9d28a9b7594b236e3da5ee1fde6952198b7dbc4e))
+
+
+
+
+
 ## [4.55.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.55.1...@toptal/picasso@4.55.2) (2020-05-12)
 
 **Note:** Version bump only for package @toptal/picasso
