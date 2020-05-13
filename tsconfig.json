@@ -33,7 +33,8 @@
     }
   },
   "include": [
-    "packages/picasso/src/**/*"
+    "packages/picasso/src/**/*",
+    "packages/picasso-forms/src/**/*"
   ],
   "exclude": ["**/test.jsx", "**/test.tsx", "**/story/index.jsx"]
 }

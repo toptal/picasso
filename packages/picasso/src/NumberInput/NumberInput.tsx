@@ -17,7 +17,7 @@ export interface Props
     >,
     BaseProps {
   /** Value of the `input` element. */
-  value: string | number
+  value?: string | number
   /** Minimum value for the `input` element */
   min?: number | string
   /** Maximum value for the `input` element */
@@ -43,6 +43,8 @@ type NumberAdornmentProps = {
   classes: Record<string, string>
   disabled?: boolean
 }
+
+const DEFAULT_NUMBER_INPUT_VALUE = 0
 
 const nativeInputValueSetter = (Object.getOwnPropertyDescriptor(
   window.HTMLInputElement.prototype,
@@ -201,6 +203,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
 
 NumberInput.defaultProps = {
   onChange: () => {},
+  value: DEFAULT_NUMBER_INPUT_VALUE,
   step: 1,
   min: -Infinity,
   max: Infinity,
