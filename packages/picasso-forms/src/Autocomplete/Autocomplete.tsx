@@ -1,12 +1,15 @@
 import React from 'react'
-import { Autocomplete as PicassoAutocomplete } from '@toptal/picasso'
-import { Props as AutocompleteProps, Item } from '@toptal/picasso/Autocomplete'
+import {
+  Autocomplete as PicassoAutocomplete,
+  AutocompleteProps
+} from '@toptal/picasso'
+import { Item } from '@toptal/picasso/Autocomplete'
 
 import FieldWrapper, { FieldProps } from '../FieldWrapper'
 
 export type FormAutocompleteProps = Omit<
   AutocompleteProps,
-  'onChange' | 'value'
+  'onChange' | 'value' | 'classes'
 > & {
   onInputChange?: AutocompleteProps['onChange']
 } & { onChange?: AutocompleteProps['onSelect']; value?: Item }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Container } from '@toptal/picasso'
+import { Item } from '@toptal/picasso/Autocomplete'
 import { isSubstring } from '@toptal/picasso/utils'
 import { Form } from '@toptal/picasso-forms'
 
@@ -15,11 +16,13 @@ const watchers = [
   { value: 2, text: 'Watcher 3' }
 ]
 
-const filterOptions = (str, options = []) => {
+const filterOptions = (str = '', options: Item[] = []): Item[] | null => {
   if (!str) {
     return options
   }
-  const result = options.filter(({ text }) => isSubstring(str, text))
+  const result = options.filter(option =>
+    option?.text ? isSubstring(str, option.text) : false
+  )
 
   return result.length > 0 ? result : null
 }
