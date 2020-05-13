@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.10](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.16.9...@toptal/picasso-forms@0.16.10) (2020-05-13)
+
+
+### Bug Fixes
+
+* some types in picasso-forms by adding ts checks in examples ([#1304](https://github.com/toptal/picasso/issues/1304)) ([1b89f8f](https://github.com/toptal/picasso/commit/1b89f8f86f1ae1d59e51e08387efef2c158fe794))
+
+
+
+
+
 ## [0.16.9](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.16.8...@toptal/picasso-forms@0.16.9) (2020-05-06)
 
 
