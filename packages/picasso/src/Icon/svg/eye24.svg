@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons / Interface Essential / 24 / Eye</title>
+    <defs>
+        <path d="M12,4 C16.418278,4 20.418278,6.66666667 24,12 C20.418278,17.3333333 16.418278,20 12,20 C7.581722,20 3.581722,17.3333333 0,12 C3.581722,6.66666667 7.581722,4 12,4 Z M12,5 C8.15486892,5 4.60531748,7.24132271 1.33163528,11.8326101 L1.214,12 L1.33163528,12.1673899 C4.52137691,16.640952 7.97302202,18.8835154 11.7048034,18.9955774 L12,19 C15.8451311,19 19.3946825,16.7586773 22.6683647,12.1673899 L22.785,12 L22.6683647,11.8326101 C19.4786231,7.35904803 16.026978,5.11648464 12.2951966,5.00442259 L12,5 Z M12,7 C14.7614237,7 17,9.23857625 17,12 C17,14.7614237 14.7614237,17 12,17 C9.23857625,17 7,14.7614237 7,12 C7,9.23857625 9.23857625,7 12,7 Z M12,8 C9.790861,8 8,9.790861 8,12 C8,14.209139 9.790861,16 12,16 C14.209139,16 16,14.209139 16,12 C16,9.790861 14.209139,8 12,8 Z" id="path-1"></path>
+    </defs>
+    <g id="Icons-/-Interface-Essential-/-24-/-Eye" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Combined-Shape" fill="#979797" fill-rule="nonzero" xlink:href="#path-1"></use>
+        <g id="Colors-/-305-Dark-Gray" mask="url(#mask-2)" fill="#455065">
+            <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+        </g>
+    </g>
+</svg>
