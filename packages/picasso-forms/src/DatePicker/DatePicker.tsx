@@ -1,6 +1,8 @@
 import React from 'react'
-import { DatePicker as PicassoDatePicker } from '@toptal/picasso-lab'
-import { Props as DatePickerProps } from '@toptal/picasso-lab/src/DatePicker/DatePicker'
+import {
+  DatePicker as PicassoDatePicker,
+  DatePickerProps
+} from '@toptal/picasso-lab'
 
 import FieldWrapper, { FieldProps } from '../FieldWrapper'
 

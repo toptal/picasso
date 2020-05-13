@@ -1,6 +1,5 @@
 import React from 'react'
-import { FileInput as PicassoFileInput } from '@toptal/picasso'
-import { Props as FileInputProps } from '@toptal/picasso/FileInput'
+import { FileInput as PicassoFileInput, FileInputProps } from '@toptal/picasso'
 
 import FieldWrapper, { FieldProps } from '../FieldWrapper'
 

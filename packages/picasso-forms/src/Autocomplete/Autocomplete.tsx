@@ -1,9 +1,9 @@
 import React from 'react'
 import {
   Autocomplete as PicassoAutocomplete,
-  AutocompleteProps
+  AutocompleteProps,
+  AutocompleteItem
 } from '@toptal/picasso'
-import { Item } from '@toptal/picasso/Autocomplete'
 
 import FieldWrapper, { FieldProps } from '../FieldWrapper'
 
@@ -12,8 +12,9 @@ export type FormAutocompleteProps = Omit<
   'onChange' | 'value' | 'classes'
 > & {
   onInputChange?: AutocompleteProps['onChange']
-} & { onChange?: AutocompleteProps['onSelect']; value?: Item }
-export type Props = FormAutocompleteProps & FieldProps<Item | undefined>
+} & { onChange?: AutocompleteProps['onSelect']; value?: AutocompleteItem }
+export type Props = FormAutocompleteProps &
+  FieldProps<AutocompleteItem | undefined>
 
 export const Autocomplete = (props: Props) => (
   // eslint-disable-next-line react/jsx-props-no-spreading
