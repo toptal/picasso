@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.57.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.56.3...@toptal/picasso@4.57.0) (2020-05-13)
+
+
+### Features
+
+* **icon:** add eye and ownerDefault icons ([#1306](https://github.com/toptal/picasso/issues/1306)) ([aed40a0](https://github.com/toptal/picasso/commit/aed40a07f31fd93b92818f8603fff89c4ca48001))
+
+
+
+
+
 ## [4.56.3](https://github.com/toptal/picasso/compare/@toptal/picasso@4.56.2...@toptal/picasso@4.56.3) (2020-05-13)
 
 
