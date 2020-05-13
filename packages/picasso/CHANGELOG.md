@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.56.3](https://github.com/toptal/picasso/compare/@toptal/picasso@4.56.2...@toptal/picasso@4.56.3) (2020-05-13)
+
+
+### Bug Fixes
+
+* **select:** do not highlight first option ([#1301](https://github.com/toptal/picasso/issues/1301)) ([cd111e1](https://github.com/toptal/picasso/commit/cd111e1af429cc85471443d94a649ec5a7902ef8))
+
+
+
+
+
 ## [4.56.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.56.1...@toptal/picasso@4.56.2) (2020-05-13)
 
 
