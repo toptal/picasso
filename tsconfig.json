@@ -17,6 +17,7 @@
     "baseUrl": ".",
     "typeRoots": ["node_modules/@types", "@types"],
     "paths": {
+      "@toptal/picasso/utils": ["packages/picasso/src/utils/index"],
       "@toptal/picasso/*": ["packages/picasso/src/*"],
       "@toptal/picasso": ["packages/picasso/src/index"],
       "@toptal/picasso-lab/*": ["packages/picasso-lab/src/*"],
@@ -34,7 +35,10 @@
   },
   "include": [
     "packages/picasso/src/**/*",
-    "packages/picasso-forms/src/**/*"
+    "packages/picasso-forms/src/**/*",
+    "packages/picasso-charts/src/**/*",
+    "packages/topkit-analytics-charts/src/**/*",
+    "packages/shared/src/**/*"
   ],
   "exclude": ["**/test.jsx", "**/test.tsx", "**/story/index.jsx"]
 }
