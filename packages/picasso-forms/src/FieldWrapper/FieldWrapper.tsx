@@ -7,7 +7,7 @@ import {
 } from 'react-final-form'
 import { Form as PicassoForm } from '@toptal/picasso'
 import { Item } from '@toptal/picasso/Autocomplete'
-import { DateOrDateRangeType } from '@toptal/picasso-lab/src/Calendar'
+import { DateOrDateRangeType } from '@toptal/picasso-lab/Calendar'
 
 import { validators } from '../utils'
 

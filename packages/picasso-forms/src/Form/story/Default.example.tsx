@@ -15,12 +15,11 @@ const watchers = [
   { value: 2, text: 'Watcher 3' }
 ]
 
-const filterOptions = (str = '', options = []) => {
-  if (str === '') {
+const filterOptions = (str, options = []) => {
+  if (!str) {
     return options
   }
-
-  const result = options.filter(option => isSubstring(str, option))
+  const result = options.filter(({ text }) => isSubstring(str, text))
 
   return result.length > 0 ? result : null
 }
