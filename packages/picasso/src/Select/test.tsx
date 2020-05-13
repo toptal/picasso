@@ -230,6 +230,7 @@ test('should highlight selected option when focus on select', () => {
   fireEvent.focus(input)
 
   const selectedOptions = getSelectedOptions(container)
+  expect(selectedOptions.length).toBe(1)
   expect(selectedOptions[0].textContent).toMatch(OPTIONS[2].text)
 })
 
@@ -304,7 +305,7 @@ describe('multiple select', () => {
     expect(inputComponent.value).toBe(`${OPTIONS[0].text}, ${OPTIONS[1].text}`)
   })
 
-  test('should not highlight anything when focus on select', () => {
+  test('should highlight nothing when focus on select', () => {
     const placeholder = 'Choose an option...'
     const selectedOptions = [OPTIONS[2]]
     const { container, getByPlaceholderText } = renderSelect({
