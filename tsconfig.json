@@ -18,6 +18,7 @@
     "typeRoots": ["node_modules/@types", "@types"],
     "paths": {
       "@toptal/picasso/utils": ["packages/picasso/src/utils/index"],
+      "@toptal/picasso/Icon": ["packages/picasso/src/Icon/index"],
       "@toptal/picasso/*": ["packages/picasso/src/*"],
       "@toptal/picasso": ["packages/picasso/src/index"],
       "@toptal/picasso-lab/*": ["packages/picasso-lab/src/*"],
