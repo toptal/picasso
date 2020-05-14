@@ -34,7 +34,10 @@
   },
   "include": [
     "packages/picasso/src/**/*",
-    "packages/picasso-forms/src/**/*"
+    "packages/picasso-forms/src/**/*",
+    "packages/picasso-charts/src/**/*",
+    "packages/topkit-analytics-charts/src/**/*",
+    "packages/shared/src/**/*"
   ],
   "exclude": ["**/test.jsx", "**/test.tsx", "**/story/index.jsx"]
 }

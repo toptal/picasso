@@ -28,14 +28,19 @@ page
   .addExample('Page/story/Default.example.jsx', {
     title: 'Default',
     description:
-      'Page has centered content and restricted width of 1200px or 75rem'
+      'Page has centered content and restricted width of 1200px or 75rem',
+    waitUntilImagesLoaded: true
   })
   .addExample('Page/story/WideWidth.example.jsx', {
     title: 'Wide width',
     description:
-      'Page has centered content and restricted width of 1440px or 90rem'
+      'Page has centered content and restricted width of 1440px or 90rem',
+    waitUntilImagesLoaded: true
   })
-  .addExample('Page/story/FullWidth.example.jsx', 'Full width')
+  .addExample('Page/story/FullWidth.example.jsx', {
+    title: 'Full width',
+    waitUntilImagesLoaded: true
+  })
   .addExample('Page/story/Scroll.example.jsx', 'Scroll with overflow')
   .addExample('Page/story/WithBanner.example.jsx', {
     title: 'With Banner',

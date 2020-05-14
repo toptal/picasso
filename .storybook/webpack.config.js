@@ -66,21 +66,29 @@ module.exports = ({ config }) => {
     ...config.resolve.alias,
     '~': path.resolve(__dirname, '..'),
     '@toptal/picasso': path.resolve(__dirname, '../packages/picasso/src'),
+    '@toptal/picasso/utils': path.resolve(
+      __dirname,
+      '../packages/picasso/src/utils'
+    ),
+    '@toptal/picasso/Icon': path.resolve(
+      __dirname,
+      '../packages/picasso/src/Icon'
+    ),
     '@toptal/picasso-lab': path.resolve(
       __dirname,
-      '../packages/picasso-lab/src/index'
+      '../packages/picasso-lab/src'
     ),
     '@toptal/picasso-forms': path.resolve(
       __dirname,
-      '../packages/picasso-forms/src/index'
+      '../packages/picasso-forms/src'
     ),
     '@toptal/picasso-charts': path.resolve(
       __dirname,
-      '../packages/picasso-charts/src/index'
+      '../packages/picasso-charts/src'
     ),
     '@topkit/analytics-charts': path.resolve(
       __dirname,
-      '../packages/topkit-analytics-charts/src/index'
+      '../packages/topkit-analytics-charts/src'
     )
   }
 
