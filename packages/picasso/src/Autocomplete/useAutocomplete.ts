@@ -95,7 +95,7 @@ const useAutocomplete = ({
 
   useLayoutEffect(() => {
     setHighlightedIndex(null)
-  }, [value])
+  }, [value, isOpen])
 
   const shouldShowOtherOption =
     showOtherOption &&
