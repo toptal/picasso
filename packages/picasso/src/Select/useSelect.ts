@@ -122,7 +122,7 @@ const useSelect = ({
 
   useLayoutEffect(() => {
     setHighlightedIndex(null)
-  }, [value])
+  }, [value, isOpen])
 
   const handleChange = (newValue: string) => {
     if (newValue !== value) {
