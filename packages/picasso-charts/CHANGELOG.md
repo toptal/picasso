@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.6](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@0.3.5...@toptal/picasso-charts@0.3.6) (2020-05-14)
+
+
+### Bug Fixes
+
+* add picasso/utils import alias ([#1305](https://github.com/toptal/picasso/issues/1305)) ([905f808](https://github.com/toptal/picasso/commit/905f80867f940dd7971a8bb7454a5dc73a42818f))
+
+
+
+
+
 ## [0.3.5](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@0.3.4...@toptal/picasso-charts@0.3.5) (2020-04-14)
 
 **Note:** Version bump only for package @toptal/picasso-charts

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.3](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.12.2...@toptal/picasso-shared@1.12.3) (2020-05-14)
+
+
+### Bug Fixes
+
+* add picasso/utils import alias ([#1305](https://github.com/toptal/picasso/issues/1305)) ([905f808](https://github.com/toptal/picasso/commit/905f80867f940dd7971a8bb7454a5dc73a42818f))
+
+
+
+
+
 ## [1.12.2](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.12.1...@toptal/picasso-shared@1.12.2) (2020-05-12)
 
 **Note:** Version bump only for package @toptal/picasso-shared
