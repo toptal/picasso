@@ -9,6 +9,7 @@ import React, {
 import PopperJs from 'popper.js'
 import formatDate from 'date-fns/format'
 import isValid from 'date-fns/isValid'
+import parse from 'date-fns/parse'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
 import { Container, Input, InputAdornment, InputProps } from '@toptal/picasso'
@@ -73,7 +74,9 @@ const DEFAULT_EDIT_DATE_FORMAT = 'MM-dd-yyyy'
 const EMPTY_INPUT_VALUE = ''
 
 const isDateValid = (date: string, pattern: string) => {
-  return date.length === pattern.length && isValid(new Date(date))
+  return (
+    date.length === pattern.length && isValid(parse(date, pattern, new Date()))
+  )
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
@@ -180,7 +183,7 @@ export const DatePicker = (props: Props) => {
     if (!nextInputValue) {
       onChange(null)
     } else if (isDateValid(nextInputValue, editDateFormat!)) {
-      onChange(new Date(nextInputValue))
+      onChange(parse(nextInputValue, editDateFormat!, new Date()))
     }
   }
 

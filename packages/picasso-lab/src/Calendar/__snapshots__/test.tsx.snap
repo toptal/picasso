@@ -5,7 +5,9 @@ exports[`Calendar default render 1`] = `
   <div
     class="Picasso-root"
   >
-    <div>
+    <div
+      tabindex="0"
+    >
       <div
         class="PicassoCalendar-root"
       >
