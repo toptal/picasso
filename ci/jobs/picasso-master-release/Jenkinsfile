@@ -14,7 +14,7 @@ pipeline {
   agent { label 'docker' }
 
   parameters {
-    string(name: 'RELEASE_AND_PUBLISH', defaultValue: '1', description: 'Run build in dry-run mode which will not release new version')
+    string(name: 'RELEASE_AND_PUBLISH', defaultValue: 'release', description: 'Run build in dry-run mode which will not release new version')
     string(name: 'GIT_BRANCH', defaultValue: 'master', description: 'Git branch')
   }
 
@@ -125,7 +125,7 @@ pipeline {
     } //stage
 
     stage('Deploy documentation') {
-      when { equals expected: "1", actual: params.RELEASE_AND_PUBLISH }
+      when { equals expected: "release", actual: params.RELEASE_AND_PUBLISH }
 
       steps {
         info "== Deploying docs"
@@ -184,7 +184,7 @@ pipeline {
               slackSend color: 'good', channel: '-frontend-exp-core', attachments: attachments
 
             } else {
-              if (params.RELEASE_AND_PUBLISH == "1") {
+              if (params.RELEASE_AND_PUBLISH == "release") {
                 data = '''[
                   {
 			              "title": ":nothingtodohere: Have a nice day :wave:"
