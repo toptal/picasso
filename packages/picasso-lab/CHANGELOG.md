@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.13.3](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.13.2...@toptal/picasso-lab@2.13.3) (2020-05-14)
+
+
+### Bug Fixes
+
+* **datepicker:** make it work on Safari and Firefox ([#1313](https://github.com/toptal/picasso/issues/1313)) ([bece4f5](https://github.com/toptal/picasso/commit/bece4f5032de400c0e1ada4cb33dc0ca73f9045f))
+
+
+
+
+
 ## [2.13.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.13.0...@toptal/picasso-lab@2.13.2) (2020-05-14)
 
 
