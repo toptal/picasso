@@ -5,15 +5,15 @@ import { isSubstring } from '@toptal/picasso/utils'
 import { Form } from '@toptal/picasso-forms'
 
 const skills = [
-  { value: 0, text: 'HTML' },
-  { value: 1, text: 'CSS' },
-  { value: 2, text: 'Javascript' }
+  { value: 1, text: 'HTML' },
+  { value: 2, text: 'CSS' },
+  { value: 3, text: 'Javascript' }
 ]
 
 const watchers = [
-  { value: 0, text: 'Watcher 1' },
-  { value: 1, text: 'Watcher 2' },
-  { value: 2, text: 'Watcher 3' }
+  { value: 1, text: 'Watcher 1' },
+  { value: 2, text: 'Watcher 2' },
+  { value: 3, text: 'Watcher 3' }
 ]
 
 const filterOptions = (str = '', options: Item[] = []): Item[] | null => {
