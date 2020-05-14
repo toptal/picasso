@@ -22,9 +22,12 @@ git config user.email "$GIT_COMMITTER_EMAIL"
 git config user.name "$GIT_COMMITTER_NAME"
 
 # Publish packages
-if [[ $RELEASE_AND_PUBLISH == "1" ]]; then
+if [[ $RELEASE_AND_PUBLISH == "release" ]]; then
   echo "=== WARNING RUNNING LIVE RELEASE FOR PACKAGES ==="
   $NODE_MODULES/.bin/lerna publish --contents build
+elif [[ $RELEASE_AND_PUBLISH == "force-release-all" ]]; then
+  echo "=== WARNING RUNNING LIVE FORCE RELEASE FOR ALL PACKAGES ==="
+  $NODE_MODULES/.bin/lerna publish --contents build --force-publish
 else
   echo "=== RUNNING TEST RELEASE FOR PACKAGES. NOTHING WILL BE PUBLISHED ==="
   $NODE_MODULES/.bin/lerna changed
