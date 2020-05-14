@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.58.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.58.0...@toptal/picasso@4.58.1) (2020-05-14)
+
+
+### Bug Fixes
+
+* **select:** forget highlighted option on toggle ([#1312](https://github.com/toptal/picasso/issues/1312)) ([8a5fa83](https://github.com/toptal/picasso/commit/8a5fa8333e15b77673ea1afa6d1e24ca42f93296))
+
+
+
+
+
 # [4.58.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.57.1...@toptal/picasso@4.58.0) (2020-05-14)
 
 
