@@ -62,7 +62,8 @@ RUN chmod a+rw /app && \
   chmod a+rw /app/packages/picasso-charts/CHANGELOG.md && \
   chmod a+rw /app/packages/topkit-analytics-charts/CHANGELOG.md && \
   chmod a+rw /app/packages/shared/CHANGELOG.md && \
-  chmod a+rw /app/package.json
+  chmod a+rw /app/package.json && \
+  chmod a+rw /app/yarn.lock
 
 COPY bin/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
