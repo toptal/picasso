@@ -13,7 +13,7 @@ function copyIcons() {
   })
 }
 
-const cmd = path.resolve(__dirname, '../../../bin/build') + ' --tsConfig=./tsconfig.json --entry=./index.js'
+const cmd = path.resolve(__dirname, '../../../bin/build') + ' --tsConfig=./tsconfig.build.json --entry=./index.js'
 
 
 function build() {

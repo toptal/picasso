@@ -4,7 +4,7 @@
 
 We do have pretty complex imports connections configured inside Picasso packages. We use Lerna to link and mange modules inside Picasso.
 
-- */packages/{package}/tsconfig.json*
+- */packages/{package}/tsconfig.build.json*
 
   File is needed when we build each package for publishing/releasing. `Paths` there are used to reference other Picasso packages correctly.
 
