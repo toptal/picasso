@@ -5,7 +5,7 @@ import { Subheader } from '@toptal/picasso-lab'
 const DefaultExample = () => {
   const [value, setValue] = React.useState(0)
 
-  function handleChange(_, newValue) {
+  function handleChange(_: any, newValue: number) {
     setValue(newValue)
   }
 
