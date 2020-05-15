@@ -10,12 +10,6 @@ const skills = [
   { value: 3, text: 'Javascript' }
 ]
 
-const watchers = [
-  { value: 1, text: 'Watcher 1' },
-  { value: 2, text: 'Watcher 2' },
-  { value: 3, text: 'Watcher 3' }
-]
-
 const filterOptions = (str = '', options: Item[] = []): Item[] | null => {
   if (!str) {
     return options
@@ -30,9 +24,6 @@ const filterOptions = (str = '', options: Item[] = []): Item[] | null => {
 const DefaultExample = () => {
   const [skillInputValue, setSkillInputValue] = useState<string>('')
   const skillOptions = filterOptions(skillInputValue, skills)
-
-  const [watcherInputValue, setWatcherInputValue] = useState<string>('')
-  const watcherOptions = filterOptions(watcherInputValue, watchers)
 
   return (
     <Form onSubmit={values => console.log(values)}>
@@ -93,13 +84,6 @@ const DefaultExample = () => {
         name='avatar'
         label='Avatar'
         status='No file selected.'
-      />
-      <Form.Autocomplete
-        name='watcher'
-        label='Watcher'
-        onInputChange={setWatcherInputValue}
-        options={watcherOptions}
-        initialValue={watchers[2]}
       />
       <Form.Checkbox
         required

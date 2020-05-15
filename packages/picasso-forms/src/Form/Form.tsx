@@ -15,7 +15,6 @@ import NumberInput from '../NumberInput'
 import FileInput from '../FileInput'
 import DatePicker from '../DatePicker'
 import TagSelector from '../TagSelector'
-import Autocomplete from '../Autocomplete'
 import SubmitButton from '../SubmitButton'
 import { createScrollToErrorDecorator } from '../utils'
 
@@ -90,7 +89,6 @@ Form.NumberInput = NumberInput
 Form.FileInput = FileInput
 Form.DatePicker = DatePicker
 Form.TagSelector = TagSelector
-Form.Autocomplete = Autocomplete
 Form.SubmitButton = SubmitButton
 
 export default Form
