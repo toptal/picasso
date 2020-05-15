@@ -1,2 +1,2 @@
 export { default } from './DatePicker'
-export * from './DatePicker'
+export { Props as DatePickerProps } from './DatePicker'
