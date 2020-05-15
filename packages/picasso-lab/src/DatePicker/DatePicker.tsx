@@ -282,7 +282,7 @@ export const DatePicker = (props: Props) => {
           <Calendar
             ref={calendarRef}
             range={range}
-            value={value}
+            value={value ?? undefined}
             minDate={minDate}
             maxDate={maxDate}
             disabledIntervals={disabledIntervals}
