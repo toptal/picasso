@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.13.4](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.13.3...@toptal/picasso-lab@2.13.4) (2020-05-15)
+
+
+### Bug Fixes
+
+* ts check for code examples in picasso-lab ([#1309](https://github.com/toptal/picasso/issues/1309)) ([750aeab](https://github.com/toptal/picasso/commit/750aeab10075719116292658dbb382077fd3731b))
+
+
+
+
+
 ## [2.13.3](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.13.2...@toptal/picasso-lab@2.13.3) (2020-05-14)
 
 
