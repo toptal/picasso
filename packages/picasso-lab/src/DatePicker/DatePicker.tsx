@@ -36,7 +36,7 @@ export interface Props
       | 'onChange'
     > {
   /** Date that will be selected in Datepicker */
-  value?: DateOrDateRangeType
+  value?: DateOrDateRangeType | null
   /** Method that will be invoked with selected values */
   onChange: (value: DateOrDateRangeType | null) => void
   /** Invoked when user goes away from Datepicker input */
