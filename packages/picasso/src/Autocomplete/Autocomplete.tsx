@@ -245,7 +245,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
           />
         </Container>
         <div role='listbox'>
-          {inputWrapperRef.current && optionsMenu && (
+          {isOpen && inputWrapperRef.current && optionsMenu && (
             <Popper
               autoWidth
               open={isOpen && !loading}
