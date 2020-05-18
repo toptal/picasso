@@ -68,7 +68,7 @@ exports[`TagSelector preselected value 1`] = `
             class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium PicassoTagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
           >
             <div
-              class="MuiChip-root PicassoLabel-root TagSelector-label MuiChip-deletable"
+              class="MuiChip-root PicassoLabel-root makeStyles-label MuiChip-deletable"
               role="button"
               tabindex="0"
             >

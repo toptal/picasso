@@ -1,5 +1,4 @@
 export { default as Breadcrumbs } from './Breadcrumbs'
-export type { DateOrDateRangeType } from './Calendar'
 export { default as Calendar } from './Calendar'
 export type { DateOrDateRangeType } from './Calendar'
 export { default as DatePicker } from './DatePicker'

@@ -18,6 +18,7 @@ type ValueType =
   | string[]
   | number
   | boolean
+  | null
   | undefined
   | File
   | DateOrDateRangeType
