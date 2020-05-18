@@ -8,7 +8,7 @@ import React, {
   FocusEventHandler
 } from 'react'
 import { makeStyles } from '@material-ui/styles'
-import { StandardProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import Label from '../Label'
 import Autocomplete, { Item as AutocompleteItem } from '../Autocomplete'
@@ -31,7 +31,7 @@ const getItemText = (item: Item | null) =>
   (item && item.text) || EMPTY_INPUT_VALUE
 
 export interface Props
-  extends Partial<StandardProps>,
+  extends BaseProps,
     Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'> {
   /** Placeholder for value */
   placeholder?: string
