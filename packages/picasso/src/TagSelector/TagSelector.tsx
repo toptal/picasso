@@ -7,8 +7,8 @@ import React, {
   ReactNode,
   FocusEventHandler
 } from 'react'
-import { withStyles } from '@material-ui/core/styles'
-import { StandardProps } from '@toptal/picasso-shared'
+import { makeStyles } from '@material-ui/styles'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import Label from '../Label'
 import Autocomplete, { Item as AutocompleteItem } from '../Autocomplete'
@@ -20,6 +20,8 @@ export interface Item extends AutocompleteItem {
   value?: string
 }
 
+const useStyles = makeStyles(styles)
+
 const EMPTY_INPUT_VALUE = ''
 
 const isIncluded = (items: Item[], currentItem: Item) =>
@@ -29,7 +31,7 @@ const getItemText = (item: Item | null) =>
   (item && item.text) || EMPTY_INPUT_VALUE
 
 export interface Props
-  extends StandardProps,
+  extends BaseProps,
     Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'> {
   /** Placeholder for value */
   placeholder?: string
@@ -70,8 +72,8 @@ export interface Props
 }
 
 export const TagSelector = forwardRef<HTMLInputElement, Props>(
-  function TagSelector(
-    {
+  function TagSelector(props, ref) {
+    const {
       loading,
       placeholder,
       options = [],
@@ -89,11 +91,11 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       enableAutofill,
       getKey: customGetKey,
       renderOption,
-      classes,
       ...rest
-    },
-    ref
-  ) {
+    } = props
+
+    const classes = useStyles(props)
+
     const handleDelete = (value: Item) => {
       const index = values.indexOf(value)
 
@@ -129,7 +131,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         return customGetKey(item)
       }
 
-      if (item.value) {
+      if (item.value !== undefined) {
         return item.value
       }
 
@@ -202,4 +204,4 @@ TagSelector.defaultProps = {
 
 TagSelector.displayName = 'TagSelector'
 
-export default withStyles(styles)(TagSelector)
+export default TagSelector

@@ -1,6 +1,8 @@
 import React from 'react'
-import { NumberInput as PicassoNumberInput } from '@toptal/picasso'
-import { Props as NumberInputProps } from '@toptal/picasso/NumberInput'
+import {
+  NumberInput as PicassoNumberInput,
+  NumberInputProps
+} from '@toptal/picasso'
 
 import FieldWrapper, { FieldProps } from '../FieldWrapper'
 

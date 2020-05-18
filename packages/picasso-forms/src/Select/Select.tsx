@@ -1,17 +1,19 @@
 import React from 'react'
-import { Select as PicassoSelect } from '@toptal/picasso'
-import { SelectProps, ValueType } from '@toptal/picasso/Select'
+import {
+  Select as PicassoSelect,
+  SelectProps,
+  SelectValueType
+} from '@toptal/picasso'
 import { generateRandomStringOrGetEmptyInTest } from '@toptal/picasso/utils'
 
 import FieldWrapper, { FieldProps } from '../FieldWrapper'
 
-export type Props<T extends ValueType, M extends boolean = false> = SelectProps<
-  T,
-  M
-> &
-  FieldProps<SelectProps<T, M>['value']>
+export type Props<
+  T extends SelectValueType,
+  M extends boolean = false
+> = SelectProps<T, M> & FieldProps<SelectProps<T, M>['value']>
 
-export const Select = <T extends ValueType, M extends boolean = false>({
+export const Select = <T extends SelectValueType, M extends boolean = false>({
   name,
   id = name,
   ...rest

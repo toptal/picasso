@@ -1,12 +1,13 @@
 import React from 'react'
-import { Radio as PicassoRadio } from '@toptal/picasso'
-import { Props as PicassoRadioProps } from '@toptal/picasso/Radio'
-import { Props as PicassoRadioGroupProps } from '@toptal/picasso/RadioGroup'
+import {
+  Radio as PicassoRadio,
+  RadioProps,
+  RadioGroupProps
+} from '@toptal/picasso'
 
 import FieldWrapper, { FieldProps } from '../FieldWrapper'
 
-export type Props = PicassoRadioGroupProps &
-  FieldProps<PicassoRadioProps['value']>
+export type Props = RadioGroupProps & FieldProps<RadioProps['value']>
 
 export const RadioGroup = (props: Props) => {
   const { children, ...rest } = props
