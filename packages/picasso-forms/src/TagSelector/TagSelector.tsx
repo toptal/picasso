@@ -6,13 +6,12 @@ import {
 
 import FieldWrapper, { FieldProps } from '../FieldWrapper'
 
-type FormTagSelector = Omit<TagSelectorProps, 'classes'>
-export type Props = FormTagSelector & FieldProps<TagSelectorProps['value']>
+export type Props = TagSelectorProps & FieldProps<TagSelectorProps['value']>
 
 export const TagSelector = (props: Props) => (
   // eslint-disable-next-line react/jsx-props-no-spreading
-  <FieldWrapper<FormTagSelector> {...props}>
-    {(inputProps: FormTagSelector) => {
+  <FieldWrapper<TagSelectorProps> {...props}>
+    {(inputProps: TagSelectorProps) => {
       // eslint-disable-next-line react/jsx-props-no-spreading
       return <PicassoTagSelector {...inputProps} />
     }}

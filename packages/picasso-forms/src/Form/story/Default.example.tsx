@@ -5,9 +5,9 @@ import { isSubstring } from '@toptal/picasso/utils'
 import { Form } from '@toptal/picasso-forms'
 
 const skills = [
-  { value: 1, text: 'HTML' },
-  { value: 2, text: 'CSS' },
-  { value: 3, text: 'Javascript' }
+  { value: 0, text: 'HTML' },
+  { value: 1, text: 'CSS' },
+  { value: 2, text: 'Javascript' }
 ]
 
 const filterOptions = (str = '', options: Item[] = []): Item[] | null => {
