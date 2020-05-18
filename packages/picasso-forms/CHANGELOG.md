@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.16.12...@toptal/picasso-forms@0.17.0) (2020-05-18)
+
+
+### Features
+
+* add TagSelector, DatePicker in picasso-forms ([#1297](https://github.com/toptal/picasso/issues/1297)) ([0e8f2dc](https://github.com/toptal/picasso/commit/0e8f2dcb47f44e19ac4d72914b8a90576d70381c))
+
+
+
+
+
 ## [0.16.12](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.16.10...@toptal/picasso-forms@0.16.12) (2020-05-14)
 
 
