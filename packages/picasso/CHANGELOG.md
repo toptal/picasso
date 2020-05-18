@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.60.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.60.0...@toptal/picasso@4.60.1) (2020-05-18)
+
+
+### Bug Fixes
+
+* **autocomplete:** fix size of the dropdown for full width autocomplete ([#1317](https://github.com/toptal/picasso/issues/1317)) ([ddab612](https://github.com/toptal/picasso/commit/ddab6122d6931863949458b49b98ee147a887811))
+
+
+
+
+
 # [4.60.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.59.0...@toptal/picasso@4.60.0) (2020-05-18)
 
 
