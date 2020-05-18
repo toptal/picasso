@@ -81,7 +81,6 @@ interface Props {
   ) => void
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void
   onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void
-  getDisplayValue: (item: Option | null) => string
 }
 
 type GetInputProps = ({
@@ -114,8 +113,7 @@ const useSelect = ({
   onKeyDown = () => {},
   onSelect = () => {},
   onBlur = () => {},
-  onFocus = () => {},
-  getDisplayValue
+  onFocus = () => {}
 }: Props): UseSelectOutput => {
   const [isOpen, setOpen] = useState<boolean>(false)
   const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null)
@@ -123,12 +121,6 @@ const useSelect = ({
   useLayoutEffect(() => {
     setHighlightedIndex(null)
   }, [value, isOpen])
-
-  const handleChange = (newValue: string) => {
-    if (newValue !== value) {
-      onChange(newValue)
-    }
-  }
 
   const handleSelect = (event: React.SyntheticEvent, item: Option | null) => {
     onSelect(event, item)
@@ -159,7 +151,6 @@ const useSelect = ({
     close,
     onClick: (event: React.MouseEvent) => {
       setOpen(false)
-      handleChange(getDisplayValue(item))
       handleSelect(event, item)
     }
   })
@@ -222,7 +213,6 @@ const useSelect = ({
         }
 
         setOpen(false)
-        handleChange(getDisplayValue(null))
       }
 
       if (key === 'Enter') {
@@ -241,7 +231,6 @@ const useSelect = ({
         if (canCloseOnEnter) {
           setOpen(false)
         }
-        handleChange(getDisplayValue(item))
         handleSelect(event, item)
       }
 
@@ -249,7 +238,6 @@ const useSelect = ({
         event.preventDefault()
 
         setOpen(false)
-        handleChange(getDisplayValue(null))
       }
 
       onKeyDown(event, value)

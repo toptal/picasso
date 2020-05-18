@@ -86,3 +86,4 @@ number of options greater than specified in \`searchThreshold\` prop.
   }) // picasso-skip-visuals
   .addExample('Select/story/ResetButton.example.jsx', 'With reset button') // picasso-skip-visuals
   .addExample('Select/story/Autofill.example.tsx', 'Disabling autofilling') // picasso-skip-visuals
+  .addExample('Select/story/DynamicOptions.example.tsx', 'Dynamic options') // picasso-skip-visuals

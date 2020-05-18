@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react'
 import debounce from 'debounce'
 import { Autocomplete } from '@toptal/picasso'
+import { isSubstring } from '@toptal/picasso/utils'
 
 const remoteOptions = [
   { text: 'Belarus' },
@@ -24,7 +25,7 @@ const MIN_CHARS = 2
 const loadOptions = inputValue =>
   new Promise(resolve => {
     const filteredOptions = remoteOptions.filter(({ text }) =>
-      text.toLowerCase().includes(inputValue)
+      isSubstring(inputValue, text)
     )
 
     const result = filteredOptions.length ? filteredOptions : null

@@ -75,7 +75,11 @@ export { default as Radio } from './Radio'
 export type { RadioProps } from './Radio'
 export type { RadioGroupProps } from './RadioGroup'
 export { default as Select } from './Select'
-export type { SelectProps, ValueType as SelectValueType } from './Select'
+export type {
+  SelectProps,
+  Option as SelectOption,
+  ValueType as SelectValueType
+} from './Select'
 export { default as Sidebar } from './Sidebar'
 export type { SidebarProps } from './Sidebar'
 export { default as Slider } from './Slider'
