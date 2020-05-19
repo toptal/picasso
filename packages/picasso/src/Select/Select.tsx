@@ -7,7 +7,7 @@ import React, {
   useState,
   useCallback,
   Fragment,
-  useLayoutEffect
+  useMemo
 } from 'react'
 import cx from 'classnames'
 import NativeSelect from '@material-ui/core/NativeSelect'
@@ -84,6 +84,8 @@ export interface Props<
       value: V
     }>
   ) => void
+  /** Callback invoked when filter input changed */
+  onSearchChange?: (value: string) => void
   /** List of options to be rendered as `Select` */
   options: Option<T>[]
   /** Callback responsible for rendering the option given the option and its index in the list of options */
@@ -133,6 +135,8 @@ type OptionsProps = Pick<
   getItemProps: (index: number, option: Option) => ItemProps
   onItemSelect: (event: React.MouseEvent, option: Option) => void
 }
+
+const DEFAULT_EMPTY_ARRAY_VALUE: ValueType[] = []
 
 const renderNativePlaceholder = ({
   emptySelectValue,
@@ -223,11 +227,11 @@ const SelectOption = React.memo(
 )
 
 const getMultipleSelection = (
-  allOptions: Option[],
+  options: Option[],
   value: ValueType[]
 ): Selection => {
   const getSelectedOptions = () =>
-    allOptions.filter(option => value.includes(String(option.value)))
+    options.filter(option => value.includes(String(option.value)))
 
   return {
     display: (getDisplayValue: (option: Option | null) => string) =>
@@ -241,11 +245,11 @@ const getMultipleSelection = (
 }
 
 const getSingleSelection = (
-  allOptions: Option[],
+  options: Option[],
   value?: ValueType
 ): Selection => {
   const getSelectedOption = () =>
-    allOptions.find(option => option.value === value) || null
+    options.find(option => option.value === value) || null
 
   return {
     display: (getDisplayValue: (option: Option | null) => string) =>
@@ -256,10 +260,18 @@ const getSingleSelection = (
   }
 }
 
-const getSelection = (allOptions: Option[], value?: ValueType | ValueType[]) =>
+const getSelection = (options: Option[], value?: ValueType | ValueType[]) =>
   Array.isArray(value)
-    ? getMultipleSelection(allOptions, value as ValueType[])
-    : getSingleSelection(allOptions, value as ValueType | undefined)
+    ? getMultipleSelection(options, value as ValueType[])
+    : getSingleSelection(options, value as ValueType | undefined)
+
+const removeDuplicatedOptions = (options: Option[]) =>
+  options.filter((option, index) => {
+    const innerIndex = options.findIndex(
+      innerOption => innerOption.value === option.value
+    )
+    return innerIndex === index
+  })
 
 const isEmpty = (value?: ValueType | ValueType[]) =>
   Array.isArray(value) ? value.length === 0 : value === ''
@@ -342,9 +354,10 @@ export const Select = documentable(
         disabled,
         error,
         onChange,
+        onSearchChange,
         onBlur,
         multiple,
-        value = multiple ? [] : '',
+        value = multiple ? DEFAULT_EMPTY_ARRAY_VALUE : '',
         getDisplayValue,
         size,
         enableReset,
@@ -369,31 +382,43 @@ export const Select = documentable(
       )
 
       const inputWrapperRef = useRef<HTMLDivElement>(null)
-      const select = getSelection(allOptions, value)
+      const [selectedOptions, setSelectedOptions] = useState(
+        allOptions.filter(option =>
+          Array.isArray(value)
+            ? value.includes(String(option.value))
+            : value === String(option.value)
+        )
+      )
+      const select = getSelection(
+        removeDuplicatedOptions([...allOptions, ...selectedOptions]),
+        value
+      )
       const [inputValue, setInputValue] = useState(
         select.display(getDisplayValue!)
       )
-      const [options, setOptions] = useState(allOptions)
-
-      useLayoutEffect(() => {
-        const select = getSelection(allOptions, value)
-
-        setInputValue(select.display(getDisplayValue!))
-      }, [allOptions, getDisplayValue, value])
-
-      const filterOptions = useCallback(
-        (subStr: string) => {
-          const filteredOptions = allOptions.filter(option =>
-            isSubstring(subStr, getDisplayValue!(option))
-          )
-
-          setOptions(filteredOptions)
-        },
-        [allOptions, getDisplayValue]
+      const [filterOptionsValue, setFilterOptionsValue] = useState(
+        EMPTY_INPUT_VALUE
+      )
+      const options = useMemo(
+        () =>
+          allOptions.filter(option =>
+            isSubstring(filterOptionsValue, getDisplayValue!(option))
+          ),
+        [allOptions, filterOptionsValue, getDisplayValue]
       )
 
+      const prevValue = useRef(value)
+      if (prevValue.current !== value) {
+        const select = getSelection(
+          removeDuplicatedOptions([...allOptions, ...selectedOptions]),
+          value
+        )
+        setInputValue(select.display(getDisplayValue!))
+        prevValue.current = value
+      }
+
       const handleFocus = () => {
-        filterOptions(EMPTY_INPUT_VALUE)
+        setFilterOptionsValue(EMPTY_INPUT_VALUE)
       }
 
       const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
@@ -405,19 +430,23 @@ export const Select = documentable(
             fireOnChangeEvent({ event, value: EMPTY_INPUT_VALUE })
             setInputValue(EMPTY_INPUT_VALUE)
           } else {
-            const select = getSelection(allOptions, value)
+            const select = getSelection(
+              removeDuplicatedOptions([...allOptions, ...selectedOptions]),
+              value
+            )
 
             setInputValue(select.display(getDisplayValue!))
           }
         }
 
-        filterOptions(EMPTY_INPUT_VALUE)
+        setFilterOptionsValue(EMPTY_INPUT_VALUE)
         onBlur!(event)
       }
 
       const handleChange = (newValue: string) => {
         setInputValue(newValue)
-        filterOptions(newValue)
+        onSearchChange!(newValue)
+        setFilterOptionsValue(newValue)
       }
 
       const toggleMultipleSelectValue = (
@@ -433,7 +462,7 @@ export const Select = documentable(
       }
       const handleSelect = useCallback(
         (event: React.SyntheticEvent, option: Option | null) => {
-          let newValue
+          let newValue: ValueType | ValueType[]
 
           if (option === null) {
             newValue = emptySelectValue
@@ -443,19 +472,21 @@ export const Select = documentable(
             newValue = option.value
           }
 
-          const select = getSelection(allOptions, newValue)
-
-          setInputValue(select.display(getDisplayValue!))
-
+          setSelectedOptions(
+            allOptions.filter(option =>
+              Array.isArray(newValue)
+                ? newValue.includes(String(option.value))
+                : newValue === String(option.value)
+            )
+          )
           fireOnChangeEvent({ event, value: newValue })
-          filterOptions(EMPTY_INPUT_VALUE)
+          setFilterOptionsValue(EMPTY_INPUT_VALUE)
         },
         [
           allOptions,
           emptySelectValue,
-          filterOptions,
+          setFilterOptionsValue,
           fireOnChangeEvent,
-          getDisplayValue,
           multiple,
           value
         ]
@@ -470,7 +501,6 @@ export const Select = documentable(
         getRootProps
       } = useSelect({
         value: inputValue,
-        getDisplayValue: getDisplayValue!,
         options,
         onSelect: handleSelect,
         onChange: handleChange,
@@ -663,6 +693,7 @@ Select.defaultProps = {
   loading: false,
   native: false,
   onChange: () => {},
+  onSearchChange: () => {},
   onBlur: () => {},
   renderOption: (option: Option) => option.text,
   size: 'medium',
