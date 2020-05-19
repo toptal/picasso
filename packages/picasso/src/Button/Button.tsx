@@ -57,7 +57,7 @@ export interface Props extends BaseProps, ButtonOrAnchorProps {
   icon?: ReactElement
   /** Icon can be positioned on the left or right */
   iconPosition?: IconPositionType
-  /** A button can show a loading indicator */
+  /** Shows a loading indicator and disables click events */
   loading?: boolean
   /** Callback invoked when component is clicked */
   onClick?: (event: MouseEvent<HTMLButtonElement & HTMLAnchorElement>) => void
@@ -86,6 +86,8 @@ const getVariantType = (variant: VariantType) => {
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoButton' })
+
+const defaultOnClick = () => {}
 
 export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
   props,
@@ -170,7 +172,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
       classes={{
         root: rootClassName
       }}
-      onClick={onClick}
+      onClick={loading ? defaultOnClick : onClick}
       className={className}
       style={style}
       disabled={disabled}
@@ -208,7 +210,7 @@ Button.defaultProps = {
   hovered: false,
   iconPosition: 'left',
   loading: false,
-  onClick: () => {},
+  onClick: defaultOnClick,
   size: 'medium',
   type: 'button',
   variant: 'primary-blue'

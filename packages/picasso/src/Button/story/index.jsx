@@ -132,7 +132,7 @@ page
       loading: {
         name: 'loading',
         type: 'boolean',
-        description: 'A button can show a loading indicator',
+        description: 'Shows a loading indicator and disables click events',
         defaultValue: 'false'
       },
       variant: {
