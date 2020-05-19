@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.62.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.61.0...@toptal/picasso@4.62.0) (2020-05-19)
+
+
+### Features
+
+* **Select:** [FX-959] Add onSearchChange handler ([#1318](https://github.com/toptal/picasso/issues/1318)) ([8e4bc28](https://github.com/toptal/picasso/commit/8e4bc289a156ac55b0163cb2b5eb56635951204c))
+
+
+
+
+
 # [4.61.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.60.1...@toptal/picasso@4.61.0) (2020-05-19)
 
 
