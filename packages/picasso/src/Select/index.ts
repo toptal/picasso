@@ -1,3 +1,3 @@
-export type { Props, Props as SelectProps, ValueType } from './Select'
-export type { Option } from './types'
+export type { Props, Props as SelectProps } from './Select'
+export type { Option, ValueType } from './types'
 export { default } from './Select'

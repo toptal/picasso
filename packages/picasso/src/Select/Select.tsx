@@ -17,25 +17,27 @@ import { BaseProps, SizeType } from '@toptal/picasso-shared'
 
 import OutlinedInput from '../OutlinedInput'
 import Popper from '../Popper'
-import ScrollMenu from '../ScrollMenu'
 import InputAdornment from '../InputAdornment'
-import MenuItem from '../MenuItem'
 import Loader from '../Loader'
 import { DropdownArrows16 } from '../Icon'
 import { isSubstring, disableUnsupportedProps } from '../utils'
 import { FeatureOptions } from '../utils/disable-unsupported-props'
-import { Option } from './types'
-import useSelect, { EMPTY_INPUT_VALUE, ItemProps } from './useSelect'
+import { Option, IconPosition, ValueType } from './types'
+import useSelect, { EMPTY_INPUT_VALUE } from './useSelect'
+import { getSelection, isEmpty } from './selectValue'
+import {
+  NativePlaceholder,
+  OptionsList,
+  NativeOptionsList,
+  getOptionText,
+  removeDuplicatedOptions
+} from './options'
 import styles from './styles'
 import { documentable, forwardRef } from '../utils/forward-ref'
 
-type IconPosition = 'start' | 'end'
-export type ValueType = string | number
+const DEFAULT_EMPTY_ARRAY_VALUE: ValueType[] = []
 
 const useStyles = makeStyles<Theme, Props<any, any>>(styles)
-
-const getOptionText = (option: Option | null) =>
-  (option && option.text) || EMPTY_INPUT_VALUE
 
 /**
  * Select props are generalized over possible values in the component and whether
@@ -111,171 +113,6 @@ export interface Props<
   ref?: React.Ref<HTMLInputElement>
 }
 
-type Selection = {
-  isSelected(): boolean
-  isOptionSelected(option: Option): boolean
-  isOptionCheckmarked(option: Option): boolean
-  display(getDisplayValue: (option: Option | null) => string): string
-}
-
-type NativePlaceholderProps = Pick<Props, 'placeholder'> & {
-  emptySelectValue: string | string[]
-}
-
-type NativeOptionsProps = Pick<Props, 'options' | 'renderOption'> & {
-  getItemProps: (index: number, option: Option) => ItemProps
-}
-
-type OptionsProps = Pick<
-  Props,
-  'options' | 'value' | 'multiple' | 'renderOption' | 'getDisplayValue' | 'size'
-> & {
-  highlightedIndex: number | null
-  setHighlightedIndex: (index: number | null) => void
-  getItemProps: (index: number, option: Option) => ItemProps
-  onItemSelect: (event: React.MouseEvent, option: Option) => void
-}
-
-const DEFAULT_EMPTY_ARRAY_VALUE: ValueType[] = []
-
-const renderNativePlaceholder = ({
-  emptySelectValue,
-  placeholder
-}: NativePlaceholderProps) => (
-  <option disabled value={emptySelectValue}>
-    {placeholder}
-  </option>
-)
-
-const renderNativeOptions = ({
-  options,
-  renderOption,
-  getItemProps
-}: NativeOptionsProps) =>
-  options.map((option, index) => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { close: _, ...rest } = getItemProps(index, option)
-
-    return (
-      <option
-        key={option.key || option.value}
-        value={option.value}
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        {...rest}
-      >
-        {renderOption!(option)}
-      </option>
-    )
-  })
-
-interface SelectOptionProps {
-  children?: ReactNode
-  onMouseDown: (event: React.MouseEvent) => void
-  close: () => void
-  selected: boolean
-  checkmarked: boolean
-  multiple?: boolean
-  size?: SizeType<'small' | 'medium'>
-  index: number
-  setHighlightedIndex: OptionsProps['setHighlightedIndex']
-  onItemSelect: OptionsProps['onItemSelect']
-  option: Option
-}
-
-const SelectOption = React.memo(
-  ({
-    option,
-    size,
-    onMouseDown,
-    selected,
-    checkmarked,
-    setHighlightedIndex,
-    index,
-    onItemSelect,
-    multiple,
-    children,
-    close
-  }: SelectOptionProps) => {
-    return (
-      <MenuItem
-        role='option'
-        aria-selected={selected}
-        value={option.value}
-        size={size}
-        selected={selected}
-        checkmarked={checkmarked}
-        onMouseDown={onMouseDown}
-        onMouseEnter={() => {
-          if (selected) {
-            return
-          }
-
-          setHighlightedIndex(index)
-        }}
-        onClick={(event: React.MouseEvent) => {
-          if (!multiple) {
-            close()
-          }
-
-          onItemSelect(event, option)
-        }}
-      >
-        {children}
-      </MenuItem>
-    )
-  }
-)
-
-const getMultipleSelection = (
-  options: Option[],
-  value: ValueType[]
-): Selection => {
-  const getSelectedOptions = () =>
-    options.filter(option => value.includes(String(option.value)))
-
-  return {
-    display: (getDisplayValue: (option: Option | null) => string) =>
-      getSelectedOptions()
-        .map(getDisplayValue)
-        .join(', '),
-    isSelected: () => !isEmpty(value),
-    isOptionSelected: () => false,
-    isOptionCheckmarked: option => value.includes(String(option.value))
-  }
-}
-
-const getSingleSelection = (
-  options: Option[],
-  value?: ValueType
-): Selection => {
-  const getSelectedOption = () =>
-    options.find(option => option.value === value) || null
-
-  return {
-    display: (getDisplayValue: (option: Option | null) => string) =>
-      getDisplayValue(getSelectedOption()),
-    isSelected: () => !isEmpty(value),
-    isOptionSelected: option => String(option.value) === value,
-    isOptionCheckmarked: () => false
-  }
-}
-
-const getSelection = (options: Option[], value?: ValueType | ValueType[]) =>
-  Array.isArray(value)
-    ? getMultipleSelection(options, value as ValueType[])
-    : getSingleSelection(options, value as ValueType | undefined)
-
-const removeDuplicatedOptions = (options: Option[]) =>
-  options.filter((option, index) => {
-    const innerIndex = options.findIndex(
-      innerOption => innerOption.value === option.value
-    )
-    return innerIndex === index
-  })
-
-const isEmpty = (value?: ValueType | ValueType[]) =>
-  Array.isArray(value) ? value.length === 0 : value === ''
-
 const purifyProps = (props: Props<any, any>): Props<ValueType, boolean> => {
   const sizeOptions: FeatureOptions<Props> = {
     featureProps: {
@@ -288,47 +125,6 @@ const purifyProps = (props: Props<any, any>): Props<ValueType, boolean> => {
   }
 
   return disableUnsupportedProps('Select', props, sizeOptions)
-}
-
-const renderOptions = ({
-  options,
-  renderOption,
-  highlightedIndex,
-  setHighlightedIndex,
-  onItemSelect,
-  getItemProps,
-  value,
-  multiple,
-  size
-}: OptionsProps) => {
-  const optionComponents = options.map((option, currentIndex) => {
-    const { close, onMouseDown } = getItemProps(currentIndex, option)
-    const selection = getSelection(options, value)
-    return (
-      <SelectOption
-        key={option.key || option.value}
-        option={option}
-        size={size}
-        onMouseDown={onMouseDown}
-        selected={
-          selection.isOptionSelected(option) ||
-          highlightedIndex === currentIndex
-        }
-        checkmarked={selection.isOptionCheckmarked(option)}
-        setHighlightedIndex={setHighlightedIndex}
-        index={currentIndex}
-        multiple={multiple}
-        close={close}
-        onItemSelect={onItemSelect}
-      >
-        {renderOption?.(option)}
-      </SelectOption>
-    )
-  })
-
-  return (
-    <ScrollMenu selectedIndex={highlightedIndex}>{optionComponents}</ScrollMenu>
-  )
 }
 
 export const Select = documentable(
@@ -579,15 +375,15 @@ export const Select = documentable(
             })
           }}
         >
-          {renderNativePlaceholder({
-            emptySelectValue,
-            placeholder
-          })}
-          {renderNativeOptions({
-            options,
-            renderOption,
-            getItemProps
-          })}
+          <NativePlaceholder
+            emptySelectValue={emptySelectValue}
+            placeholder={placeholder}
+          />
+          <NativeOptionsList
+            options={options}
+            renderOption={renderOption}
+            getItemProps={getItemProps}
+          />
         </NativeSelect>
       )
 
@@ -650,19 +446,20 @@ export const Select = documentable(
               anchorEl={inputWrapperRef.current}
               container={popperContainer}
             >
-              {isOpen &&
-                renderOptions({
-                  options,
-                  renderOption,
-                  highlightedIndex,
-                  setHighlightedIndex,
-                  onItemSelect: handleSelect,
-                  getItemProps,
-                  value,
-                  getDisplayValue,
-                  multiple,
-                  size
-                })}
+              {isOpen && (
+                <OptionsList
+                  options={options}
+                  renderOption={renderOption}
+                  highlightedIndex={highlightedIndex}
+                  setHighlightedIndex={setHighlightedIndex}
+                  onItemSelect={handleSelect}
+                  getItemProps={getItemProps}
+                  value={value}
+                  getDisplayValue={getDisplayValue}
+                  multiple={multiple}
+                  size={size}
+                />
+              )}
             </Popper>
           )}
         </Fragment>
