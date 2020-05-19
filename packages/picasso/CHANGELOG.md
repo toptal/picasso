@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.61.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.60.1...@toptal/picasso@4.61.0) (2020-05-19)
+
+
+### Features
+
+* ignore onClick for loading buttons ([#1319](https://github.com/toptal/picasso/issues/1319)) ([6984218](https://github.com/toptal/picasso/commit/69842186c1702009fca345cea59af6cbac311716))
+
+
+
+
+
 ## [4.60.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.60.0...@toptal/picasso@4.60.1) (2020-05-18)
 
 
