@@ -136,6 +136,8 @@ type OptionsProps = Pick<
   onItemSelect: (event: React.MouseEvent, option: Option) => void
 }
 
+const DEFAULT_EMPTY_ARRAY_VALUE: ValueType[] = []
+
 const renderNativePlaceholder = ({
   emptySelectValue,
   placeholder
@@ -274,14 +276,6 @@ const removeDuplicatedOptions = (options: Option[]) =>
 const isEmpty = (value?: ValueType | ValueType[]) =>
   Array.isArray(value) ? value.length === 0 : value === ''
 
-const isEqual = (
-  valueA?: ValueType | ValueType[],
-  valueB?: ValueType | ValueType[]
-) =>
-  Array.isArray(valueA) && Array.isArray(valueB)
-    ? valueA.length === valueB.length && valueA.every(e => valueB.includes(e))
-    : valueA === valueB
-
 const purifyProps = (props: Props<any, any>): Props<ValueType, boolean> => {
   const sizeOptions: FeatureOptions<Props> = {
     featureProps: {
@@ -363,7 +357,7 @@ export const Select = documentable(
         onSearchChange,
         onBlur,
         multiple,
-        value = multiple ? [] : '',
+        value = multiple ? DEFAULT_EMPTY_ARRAY_VALUE : '',
         getDisplayValue,
         size,
         enableReset,
@@ -414,7 +408,7 @@ export const Select = documentable(
       )
 
       const prevValue = useRef(value)
-      if (!isEqual(prevValue.current, value)) {
+      if (prevValue.current !== value) {
         const select = getSelection(
           removeDuplicatedOptions([...allOptions, ...selectedOptions]),
           value
