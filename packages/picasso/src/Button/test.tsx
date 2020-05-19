@@ -5,10 +5,10 @@ import { OmitInternalProps } from '@toptal/picasso-shared'
 import Button, { Props } from './Button'
 
 const renderButton = (children: ReactNode, props: OmitInternalProps<Props>) => {
-  const { disabled, onClick } = props
+  const { disabled, loading, onClick } = props
 
   return render(
-    <Button disabled={disabled} onClick={onClick}>
+    <Button disabled={disabled} loading={loading} onClick={onClick}>
       {children}
     </Button>
   )
@@ -21,6 +21,15 @@ test('onClick callback should be fired after clicking the button', () => {
   fireEvent.click(getByText('Click me!'))
 
   expect(onClick).toHaveBeenCalled()
+})
+
+test('onClick callback should not be fired when clicked button is in loading state', () => {
+  const onClick = jest.fn()
+  const { getByText } = renderButton('Click me!', { onClick, loading: true })
+
+  fireEvent.click(getByText('Click me!'))
+
+  expect(onClick).toHaveBeenCalledTimes(0)
 })
 
 describe('disabled button', () => {

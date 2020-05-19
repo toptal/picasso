@@ -132,7 +132,8 @@ page
       loading: {
         name: 'loading',
         type: 'boolean',
-        description: 'A button can show a loading indicator',
+        description:
+          'A button can show a loading indicator (the onClick() is not fired while loading indicator is shown)',
         defaultValue: 'false'
       },
       variant: {

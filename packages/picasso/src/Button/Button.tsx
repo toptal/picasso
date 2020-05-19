@@ -170,7 +170,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
       classes={{
         root: rootClassName
       }}
-      onClick={onClick}
+      onClick={loading ? undefined : onClick}
       className={className}
       style={style}
       disabled={disabled}
