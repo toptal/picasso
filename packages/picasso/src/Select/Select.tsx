@@ -413,14 +413,14 @@ export const Select = documentable(
         [allOptions, filterOptionsValue, getDisplayValue]
       )
 
-      const [prevValue, setPrevValue] = useState(value)
-      if (!isEqual(prevValue, value)) {
+      const prevValue = useRef(value)
+      if (!isEqual(prevValue.current, value)) {
         const select = getSelection(
           removeDuplicatedOptions([...allOptions, ...selectedOptions]),
           value
         )
         setInputValue(select.display(getDisplayValue!))
-        setPrevValue(value)
+        prevValue.current = value
       }
 
       const handleFocus = () => {
