@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import React, {
   ReactNode,
   ReactElement,
@@ -57,8 +58,10 @@ export interface Props extends BaseProps, ButtonOrAnchorProps {
   icon?: ReactElement
   /** Icon can be positioned on the left or right */
   iconPosition?: IconPositionType
-  /** Shows a loading indicator and disables click events */
+  /** Shows a loading indicator */
   loading?: boolean
+  /** Disables availability to click on button in loading state */
+  disableOnClickDuringLoading?: boolean
   /** Callback invoked when component is clicked */
   onClick?: (event: MouseEvent<HTMLButtonElement & HTMLAnchorElement>) => void
   /** A button can have different sizes */
@@ -87,8 +90,6 @@ const getVariantType = (variant: VariantType) => {
 
 const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoButton' })
 
-const defaultOnClick = () => {}
-
 export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
   props,
   ref
@@ -113,6 +114,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     value,
     type,
     as,
+    disableOnClickDuringLoading,
     ...rest
   } = props
   const classes = useStyles(props)
@@ -164,6 +166,14 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     rootClass
   )
 
+  const handleClick = (
+    event: MouseEvent<HTMLButtonElement & HTMLAnchorElement>
+  ) => {
+    if (disableOnClickDuringLoading && loading) return
+
+    onClick?.(event)
+  }
+
   return (
     <ButtonBase
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -172,7 +182,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
       classes={{
         root: rootClassName
       }}
-      onClick={loading ? defaultOnClick : onClick}
+      onClick={handleClick}
       className={className}
       style={style}
       disabled={disabled}
@@ -210,10 +220,11 @@ Button.defaultProps = {
   hovered: false,
   iconPosition: 'left',
   loading: false,
-  onClick: defaultOnClick,
+  onClick: () => {},
   size: 'medium',
   type: 'button',
-  variant: 'primary-blue'
+  variant: 'primary-blue',
+  disableOnClickDuringLoading: false
 }
 
 Button.displayName = 'Button'
