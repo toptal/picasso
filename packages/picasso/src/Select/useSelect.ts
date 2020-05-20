@@ -83,7 +83,7 @@ interface Props {
   onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void
 }
 
-type GetInputProps = ({
+export type GetInputProps = ({
   canCloseOnEnter
 }: {
   canCloseOnEnter: boolean

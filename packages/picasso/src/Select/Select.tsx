@@ -10,7 +10,6 @@ import React, {
   useMemo
 } from 'react'
 import cx from 'classnames'
-import NativeSelect from '@material-ui/core/NativeSelect'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
 import { BaseProps, SizeType } from '@toptal/picasso-shared'
@@ -20,18 +19,13 @@ import Popper from '../Popper'
 import InputAdornment from '../InputAdornment'
 import Loader from '../Loader'
 import { DropdownArrows16 } from '../Icon'
+import NativeSelect from './NativeSelect'
 import { isSubstring, disableUnsupportedProps } from '../utils'
 import { FeatureOptions } from '../utils/disable-unsupported-props'
 import { Option, IconPosition, ValueType } from './types'
 import useSelect, { EMPTY_INPUT_VALUE } from './useSelect'
 import { getSelection, isEmpty } from './selectValue'
-import {
-  NativePlaceholder,
-  OptionsList,
-  NativeOptionsList,
-  getOptionText,
-  removeDuplicatedOptions
-} from './options'
+import { OptionsList, getOptionText, removeDuplicatedOptions } from './options'
 import styles from './styles'
 import { documentable, forwardRef } from '../utils/forward-ref'
 
@@ -329,13 +323,6 @@ export const Select = documentable(
         ? loadingComponent
         : iconPosition === 'end' && iconAdornment
 
-      const nativeStartAdornment = startAdornment && (
-        <div className={classes.nativeStartAdornment}>{startAdornment}</div>
-      )
-      const nativeEndAdornment = endAdornment && (
-        <div className={classes.nativeEndAdornment}>{endAdornment}</div>
-      )
-
       const nativeSelectComponent = (
         <NativeSelect
           // eslint-disable-next-line react/jsx-props-no-spreading
@@ -345,46 +332,21 @@ export const Select = documentable(
           disabled={disabled}
           name={name}
           id={id}
-          startAdornment={nativeStartAdornment}
-          endAdornment={nativeEndAdornment}
-          // NativeSelect specific props
-          input={
-            <OutlinedInput
-              width={width}
-              inputProps={{ multiple }}
-              size={size}
-              className={classes.nativeInput}
-              // eslint-disable-next-line react/jsx-props-no-spreading
-              {...getInputProps({
-                canCloseOnEnter: !multiple
-              })}
-            />
-          }
+          startAdornment={startAdornment}
+          endAdornment={endAdornment}
+          width={width}
+          multiple={multiple}
+          size={size}
           value={value}
+          placeholder={placeholder}
           onChange={onChange}
-          IconComponent={() => dropDownIcon}
-          classes={{
-            root: cx(classes.select, {
-              [classes.placeholder]: !select.isSelected()
-            }),
-            select: cx({
-              [classes.nativeStartAdornmentPadding]: Boolean(
-                nativeStartAdornment
-              ),
-              [classes.nativeEndAdornmentPadding]: Boolean(nativeEndAdornment)
-            })
-          }}
-        >
-          <NativePlaceholder
-            emptySelectValue={emptySelectValue}
-            placeholder={placeholder}
-          />
-          <NativeOptionsList
-            options={options}
-            renderOption={renderOption}
-            getItemProps={getItemProps}
-          />
-        </NativeSelect>
+          options={options}
+          selectedOptions={selectedOptions}
+          renderOption={renderOption}
+          emptySelectValue={emptySelectValue}
+          getInputProps={getInputProps}
+          getItemProps={getItemProps}
+        />
       )
 
       const readOnlyInput = multiple || allOptions.length <= searchThreshold!
