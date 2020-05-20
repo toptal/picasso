@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@types/classnames": "^2.2.9",
-    "@types/color": "^3.0.0",
+    "@types/color": "^3.0.1",
     "cross-env": "^6.0.3"
   },
   "sideEffects": [
