@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react'
 import { SizeType } from '@toptal/picasso-shared'
 
 import MenuItem from '../../MenuItem'
-import { Option } from '../types'
+import { Option as OptionType } from '../types'
 import { OptionsListProps } from './OptionsList'
 
 type SelectOptionProps = {
@@ -16,10 +16,10 @@ type SelectOptionProps = {
   index: number
   setHighlightedIndex: OptionsListProps['setHighlightedIndex']
   onItemSelect: OptionsListProps['onItemSelect']
-  option: Option
+  option: OptionType
 }
 
-const SelectOption = React.memo(
+const Option = React.memo(
   ({
     option,
     size,
@@ -63,4 +63,4 @@ const SelectOption = React.memo(
   }
 )
 
-export default SelectOption
+export default Option
