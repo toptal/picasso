@@ -75,16 +75,6 @@ describe('TagSelector', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('disabled', () => {
-    const { container } = renderTagSelector({
-      ...testProps,
-      disabled: true,
-      value: [testOptions[0]]
-    })
-
-    expect(container).toMatchSnapshot()
-  })
-
   test('on type', () => {
     const onInputChange = jest.fn()
     const { getByPlaceholderText } = renderTagSelector({
@@ -123,5 +113,31 @@ describe('TagSelector', () => {
     await selectOption(renderResult, input, testOptions[0].text)
 
     expect(onChange).toBeCalledWith([testOptions[0]])
+  })
+
+  describe('in disabled state', () => {
+    test('renders disabled', async () => {
+      const { container } = renderTagSelector({
+        ...testProps,
+        disabled: true,
+        value: [testOptions[0]]
+      })
+
+      expect(container).toMatchSnapshot()
+    })
+    test('tags are not clickable', () => {
+      const onChange = jest.fn()
+      const { container } = renderTagSelector({
+        ...testProps,
+        onChange,
+        disabled: true,
+        value: [testOptions[0]]
+      })
+
+      const closeButton = container.querySelector('[aria-label="delete icon"]')
+      fireEvent.click(closeButton!)
+
+      expect(onChange).not.toHaveBeenCalled()
+    })
   })
 })

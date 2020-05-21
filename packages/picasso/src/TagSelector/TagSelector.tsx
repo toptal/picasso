@@ -35,7 +35,7 @@ export interface Props
     Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'> {
   /** Placeholder for value */
   placeholder?: string
-  /** Defines if `TagSelector` is disabled */
+  /** Disables `TagSelector` */
   disabled?: boolean
   /** Indicate whether `Input` is in error state */
   error?: boolean
@@ -155,7 +155,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
             className={classes.label}
             key={getKey!(item)}
             disabled={disabled}
-            onDelete={() => handleDelete(item)}
+            onDelete={() => !disabled && handleDelete(item)}
           >
             {getDisplayValue!(item)}
           </Label>

@@ -5,15 +5,12 @@ const options = [
   { text: 'Belarus', value: 'BY' },
   { text: 'Croatia', value: 'HR' },
   { text: 'Lithuania', value: 'LU' },
-  { text: 'Kyrgyzstan', value: 'KG' },
-  { text: 'Slovakia', value: 'SK' },
-  { text: 'Spain', value: 'SP' },
-  { text: 'Ukraine', value: 'UA' }
+  { text: 'Kyrgyzstan', value: 'KG' }
 ]
 
 const Example = () => (
   <div>
-    <TagSelector options={options} value={options.slice(0, 4)} disabled />
+    <TagSelector options={options} value={options} disabled />
   </div>
 )
 

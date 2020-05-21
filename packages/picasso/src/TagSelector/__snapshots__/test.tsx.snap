@@ -49,7 +49,7 @@ exports[`TagSelector default render 1`] = `
 </div>
 `;
 
-exports[`TagSelector disabled 1`] = `
+exports[`TagSelector in disabled state renders disabled 1`] = `
 <div>
   <div
     class="Picasso-root"
