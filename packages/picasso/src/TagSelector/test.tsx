@@ -26,6 +26,7 @@ const testProps = {
 const renderTagSelector = (props: OmitInternalProps<Props>) => {
   const {
     loading,
+    disabled,
     otherOptionLabel,
     options,
     placeholder,
@@ -38,6 +39,7 @@ const renderTagSelector = (props: OmitInternalProps<Props>) => {
     <TagSelector
       showOtherOption
       loading={loading}
+      disabled={disabled}
       otherOptionLabel={otherOptionLabel}
       options={options}
       placeholder={placeholder}
@@ -69,6 +71,16 @@ const selectOption = async (
 describe('TagSelector', () => {
   test('default render', () => {
     const { container } = renderTagSelector(testProps)
+
+    expect(container).toMatchSnapshot()
+  })
+
+  test('disabled', () => {
+    const { container } = renderTagSelector({
+      ...testProps,
+      disabled: true,
+      value: [testOptions[0]]
+    })
 
     expect(container).toMatchSnapshot()
   })

@@ -35,6 +35,8 @@ export interface Props
     Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'> {
   /** Placeholder for value */
   placeholder?: string
+  /** Defines if `TagSelector` is disabled */
+  disabled?: boolean
   /** Indicate whether `Input` is in error state */
   error?: boolean
   /** Shows the loading icon when options are loading */
@@ -75,6 +77,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
   function TagSelector(props, ref) {
     const {
       loading,
+      disabled,
       placeholder,
       options = [],
       otherOptionLabel,
@@ -151,6 +154,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
           <Label
             className={classes.label}
             key={getKey!(item)}
+            disabled={disabled}
             onDelete={() => handleDelete(item)}
           >
             {getDisplayValue!(item)}
@@ -175,6 +179,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         onBlur={onBlur}
         startAdornment={labels}
         loading={loading}
+        disabled={disabled}
         inputComponent={TagSelectorInput as ComponentType<InputProps>}
         width={width}
         showOtherOption={showOtherOption}
