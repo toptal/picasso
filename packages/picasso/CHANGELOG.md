@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.63.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.62.1...@toptal/picasso@4.63.0) (2020-05-21)
+
+
+### Features
+
+* update logo ([#1324](https://github.com/toptal/picasso/issues/1324)) ([10a43ae](https://github.com/toptal/picasso/commit/10a43ae3624ded54e713681217643affa80bdea9))
+
+
+
+
+
 ## [4.62.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.62.0...@toptal/picasso@4.62.1) (2020-05-21)
 
 **Note:** Version bump only for package @toptal/picasso
