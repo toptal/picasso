@@ -130,6 +130,7 @@ export default ({ palette, sizes, transitions, typography }: Theme) =>
     secondaryRed: secondary(palette.red.main, palette.common.white),
     primaryGreen: primary(palette.green.main, palette.common.white),
     secondaryGreen: secondary(palette.green.main, palette.common.white),
+    pizza: primary('#ff0000', palette.common.white),
 
     secondaryWhite: {
       color: palette.common.white,

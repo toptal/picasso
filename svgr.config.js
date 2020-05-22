@@ -8,6 +8,10 @@ const ICON_CONFIG = {
       '#262d3d': 'var(--logo-text-color)',
       '#204ecf': 'var(--logo-emblem-color)'
     }
+  },
+  'pizza24.svg': {
+    mergePaths: false,
+    removeFill: false
   }
 }
 

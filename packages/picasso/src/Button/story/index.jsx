@@ -142,6 +142,7 @@ page
         type: {
           name: 'enum',
           enums: [
+            'pizza',
             'transparent',
             'flat',
             'primary-blue',
@@ -181,6 +182,7 @@ page
 
 page
   .createChapter()
+  .addExample('Button/story/Pizza.example.jsx', 'Pizza')
   .addExample('Button/story/Basic.example.jsx', 'Basic')
   .addExample('Button/story/Variants.example.jsx', 'Variants')
   .addExample('Button/story/States.example.jsx', 'States')
