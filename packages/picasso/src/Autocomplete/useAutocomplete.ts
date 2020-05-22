@@ -236,7 +236,7 @@ const useAutocomplete = ({
           findSelectedItemUsingIndex() ?? findSelectedItemUsingValue()
 
         if (selectedItem) {
-          handleChange(getDisplayValue(selectedItem))
+          handleChange(getDisplayValue(selectedItem), true)
           handleSelect(selectedItem)
         } else if (value) {
           onOtherOptionSelect(value)
