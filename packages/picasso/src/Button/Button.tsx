@@ -36,7 +36,7 @@ export type VariantType =
   | 'transparent-white'
   | 'transparent-blue'
 
-type IconPositionType = 'left' | 'right'
+export type IconPositionType = 'left' | 'right'
 
 export interface Props extends BaseProps, ButtonOrAnchorProps {
   /** Show button in the active state (left mouse button down) */
