@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.63.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.63.0...@toptal/picasso@4.63.1) (2020-05-22)
+
+
+### Bug Fixes
+
+* **autocomplete:** add `isSelect` argument for keyboard selection ([#1331](https://github.com/toptal/picasso/issues/1331)) ([46b7d53](https://github.com/toptal/picasso/commit/46b7d53ef55a9b6b483895c8ad1b4f3430a23de6))
+
+
+
+
+
 # [4.63.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.62.1...@toptal/picasso@4.63.0) (2020-05-21)
 
 
