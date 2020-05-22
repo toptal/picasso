@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@0.3.7...@toptal/picasso-charts@0.4.0) (2020-05-22)
+
+
+### Features
+
+* add allowEscapeViewBox prop to charts ([#1323](https://github.com/toptal/picasso/issues/1323)) ([0c12e41](https://github.com/toptal/picasso/commit/0c12e41296576100eaec2523f31313356e4f0524))
+
+
+
+
+
 ## [0.3.7](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@0.3.5...@toptal/picasso-charts@0.3.7) (2020-05-14)
 
 
