@@ -60,6 +60,7 @@ export type BaseChartProps = {
   height?: number
   tooltip?: boolean
   customTooltip?: ReactElement
+  allowTooltipEscapeViewBox?: boolean
   className?: string
   children?: ReactNode
 }
@@ -165,6 +166,7 @@ export const LineChart = ({
   height,
   tooltip,
   customTooltip,
+  allowTooltipEscapeViewBox,
   highlights,
   referenceLines,
   children
@@ -247,7 +249,14 @@ export const LineChart = ({
           {lineGraphs}
           {children}
 
-          {tooltip && <Tooltip content={customTooltip} />}
+          {tooltip && (
+            <Tooltip
+              allowEscapeViewBox={
+                allowTooltipEscapeViewBox ? { x: true, y: true } : undefined
+              }
+              content={customTooltip}
+            />
+          )}
 
           {highlightedAreas}
         </ComposedChart>
@@ -260,6 +269,7 @@ LineChart.defaultProps = {
   height: 200,
   unit: 'd',
   tooltip: false,
+  allowTooltipEscapeViewBox: false,
   xAxisKey: 'x'
 }
 

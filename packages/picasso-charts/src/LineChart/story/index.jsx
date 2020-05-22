@@ -47,6 +47,12 @@ export const sharedChartDocs = {
     name: 'customTooltip',
     type: 'ReactElement',
     description: 'Requires `tooltip` to be `true`'
+  },
+  allowTooltipEscapeViewBox: {
+    name: 'allowTooltipEscapeViewBox',
+    type: 'boolean',
+    description:
+      'Allows the tooltip to extend beyond the viewBox of the chart itself'
   }
 }
 
