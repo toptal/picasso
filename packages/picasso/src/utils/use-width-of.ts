@@ -1,6 +1,7 @@
 import { useLayoutEffect, useState } from 'react'
 
 export interface ReferenceObject {
+  offsetParent?: Element
   getBoundingClientRect(): ClientRect
 }
 
@@ -14,7 +15,7 @@ const useWidthOf = <T extends ReferenceObject>(element: T | null) => {
     const { width } = element.getBoundingClientRect()
 
     setMenuWidth(`${width}px`)
-  }, [element])
+  }, [element, element?.offsetParent])
 
   return menuWidth
 }
