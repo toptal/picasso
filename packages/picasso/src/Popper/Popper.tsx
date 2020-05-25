@@ -47,6 +47,8 @@ export interface Props extends BaseProps {
   autoWidth?: boolean
   /** Popper width */
   width?: string
+  /** Take full window width on small and medium screens */
+  enableCompactMode?: boolean
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoPopper' })
@@ -105,6 +107,7 @@ export const Popper = forwardRef<PopperJs, Props>(function Popper(props, ref) {
     popperOptions,
     autoWidth,
     width,
+    enableCompactMode,
     disablePortal,
     style,
     ...rest
@@ -113,7 +116,8 @@ export const Popper = forwardRef<PopperJs, Props>(function Popper(props, ref) {
   const picassoRootContainer = usePicassoRoot()
 
   const classes = useStyles(props)
-  const isCompactLayout = useBreakpoint(['small', 'medium'])
+  const isCompactLayoutResolution = useBreakpoint(['small', 'medium'])
+  const isCompactLayout = enableCompactMode && isCompactLayoutResolution
   const widthStyle = useWidthStyle({ autoWidth, width, anchorEl })
   const anchorElWidthStyle = !isCompactLayout && widthStyle
 
