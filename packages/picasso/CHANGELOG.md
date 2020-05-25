@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.63.3](https://github.com/toptal/picasso/compare/@toptal/picasso@4.63.2...@toptal/picasso@4.63.3) (2020-05-25)
+
+
+### Bug Fixes
+
+* **popper:** disable compact mode for Autocomplete and Select ([#1320](https://github.com/toptal/picasso/issues/1320)) ([4f08250](https://github.com/toptal/picasso/commit/4f08250c9e8f34d5e678cc6e9bd5bc6d7b15b774))
+
+
+
+
+
 ## [4.63.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.63.1...@toptal/picasso@4.63.2) (2020-05-22)
 
 
