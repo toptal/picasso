@@ -223,6 +223,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
           style={paperMargins}
           disablePortal={disablePortal}
           autoWidth={false}
+          enableCompactMode
           container={popperContainer}
         >
           <ClickAwayListener onClickAway={handleClickAway}>
