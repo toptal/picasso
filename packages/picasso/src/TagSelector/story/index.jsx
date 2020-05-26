@@ -69,4 +69,5 @@ page
     'Custom option rendering'
   )
   .addExample('TagSelector/story/Loading.example.jsx', 'Loading')
+  .addExample('TagSelector/story/Disabled.example.jsx', 'Disabled')
   .addExample('TagSelector/story/FullWidth.example.jsx', 'Full width')
