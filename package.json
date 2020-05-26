@@ -47,7 +47,7 @@
     "@types/debounce": "^1.2.0",
     "@types/esprima": "^4.0.2",
     "@types/jest": "^25.1.4",
-    "@types/jest-image-snapshot": "^2.8.0",
+    "@types/jest-image-snapshot": "^3.1.0",
     "@types/lodash": "^4.14.133",
     "@types/puppeteer": "^1.19.0",
     "@types/react-truncate": "^2.3.3",
