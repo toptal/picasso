@@ -41,7 +41,7 @@ const Breadcrumb: FunctionComponent = () => (
     <span
       style={{ fontSize: '14px', fontWeight: 600, color: 'rgb(32, 78, 207)' }}
     >
-      Label &nbsp; > &nbsp; Label &nbsp; > &nbsp; Label
+      Label &nbsp; {'>'} &nbsp; Label &nbsp; {'>'} &nbsp; Label
     </span>
   </Container>
 )
