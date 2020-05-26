@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.16.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.16.0...@toptal/picasso-lab@2.16.1) (2020-05-25)
+
+
+### Bug Fixes
+
+* **popper:** disable compact mode for Autocomplete and Select ([#1320](https://github.com/toptal/picasso/issues/1320)) ([4f08250](https://github.com/toptal/picasso/commit/4f08250c9e8f34d5e678cc6e9bd5bc6d7b15b774))
+
+
+
+
+
+# [2.16.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.15.0...@toptal/picasso-lab@2.16.0) (2020-05-21)
+
+
+### Features
+
+* update logo ([#1324](https://github.com/toptal/picasso/issues/1324)) ([10a43ae](https://github.com/toptal/picasso/commit/10a43ae3624ded54e713681217643affa80bdea9))
+
+
+
+
+
 # [2.15.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.14.0...@toptal/picasso-lab@2.15.0) (2020-05-19)
 
 

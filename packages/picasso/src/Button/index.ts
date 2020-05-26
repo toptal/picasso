@@ -1,7 +1,5 @@
-import { OmitInternalProps } from '@toptal/picasso-shared'
-
 import { Props } from './Button'
 
 export { default } from './Button'
-export type ButtonProps = OmitInternalProps<Props>
+export type ButtonProps = Props
 export * from './Button'

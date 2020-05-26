@@ -153,6 +153,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
       error,
       onResetClick,
       enableReset,
+      width,
       ...rest
     } = props
 
@@ -187,6 +188,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
           min,
           max
         }}
+        width={width}
         onResetClick={onResetClick}
         enableReset={enableReset}
         error={error}
