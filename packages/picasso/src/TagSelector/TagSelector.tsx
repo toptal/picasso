@@ -100,11 +100,11 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
     const classes = useStyles(props)
 
     const handleDelete = (value: Item) => {
-      if (!disabled) {
-        const index = values.indexOf(value)
+      if (disabled) return
 
-        onChange!([...values.slice(0, index), ...values.slice(index + 1)])
-      }
+      const index = values.indexOf(value)
+
+      onChange!([...values.slice(0, index), ...values.slice(index + 1)])
     }
 
     const handleKeyDown = (
