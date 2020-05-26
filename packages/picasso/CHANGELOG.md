@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.63.4](https://github.com/toptal/picasso/compare/@toptal/picasso@4.63.3...@toptal/picasso@4.63.4) (2020-05-26)
+
+
+### Bug Fixes
+
+* add width for Numberinput ([#1328](https://github.com/toptal/picasso/issues/1328)) ([3a6da4f](https://github.com/toptal/picasso/commit/3a6da4f9fb2b43aab7097fb819562b981ff67cd3))
+
+
+
+
+
 ## [4.63.3](https://github.com/toptal/picasso/compare/@toptal/picasso@4.63.2...@toptal/picasso@4.63.3) (2020-05-25)
 
 
