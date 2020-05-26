@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.64.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.63.4...@toptal/picasso@4.64.0) (2020-05-26)
+
+
+### Features
+
+* add disabled state for TagSelector ([#1325](https://github.com/toptal/picasso/issues/1325)) ([6d9bb06](https://github.com/toptal/picasso/commit/6d9bb06bfef1a6ed023cac2eebde60fb2904f6f4))
+
+
+
+
+
 ## [4.63.4](https://github.com/toptal/picasso/compare/@toptal/picasso@4.63.3...@toptal/picasso@4.63.4) (2020-05-26)
 
 
