@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.64.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.64.0...@toptal/picasso@4.64.1) (2020-05-28)
+
+
+### Bug Fixes
+
+* **popper:** fix width calculation for Popper ([#1338](https://github.com/toptal/picasso/issues/1338)) ([46aeb4d](https://github.com/toptal/picasso/commit/46aeb4daab47fa0cbe526ef27f14a993ebd2faa2))
+
+
+
+
+
 # [4.64.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.63.4...@toptal/picasso@4.64.0) (2020-05-26)
 
 
