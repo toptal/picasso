@@ -67,6 +67,14 @@ component and manage the internal state there.
       await makeScreenshot({
         isFullScreen: true
       })
+
+      await testPage.click('[data-testid="cancel"]')
+
+      await testPage.click('[data-testid="trigger-full-screen"]')
+      await testPage.waitFor('[data-testid="cancel"]')
+      await makeScreenshot({
+        isFullScreen: true
+      })
     }
   })
   .addExample('Modal/story/MaxHeight.example.jsx', {

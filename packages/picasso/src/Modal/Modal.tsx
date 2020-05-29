@@ -32,7 +32,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Whether modal should be displayed */
   open: boolean
   /** Width of modal */
-  size?: SizeType<'small' | 'medium' | 'large'>
+  size?: SizeType<'small' | 'medium' | 'large'> | 'full-screen'
   /** Callback executed when backdrop was clicked */
   onBackdropClick?: () => void
   /** Callback executed when attempting to close modal */

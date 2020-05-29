@@ -80,6 +80,12 @@ const Example = () => {
     ))
   }
 
+  const handleFullScreenClick = () => {
+    const modalId = showModal(() => (
+      <ModalDialog modalId={modalId} hideModal={hideModal} size='full-screen' />
+    ))
+  }
+
   return (
     <div id='modal-container-sizes'>
       <Container flex>
@@ -91,6 +97,12 @@ const Example = () => {
         </Button>
         <Button onClick={handleLargeClick} data-testid='trigger-large'>
           Open large
+        </Button>
+        <Button
+          onClick={handleFullScreenClick}
+          data-testid='trigger-full-screen'
+        >
+          Open full-screen
         </Button>
       </Container>
     </div>

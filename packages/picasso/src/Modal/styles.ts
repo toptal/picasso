@@ -1,5 +1,8 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
+const maxHeight = 'calc(100% - 6rem)'
+const maxWidth = 'calc(100% - 6rem)'
+
 export default ({ palette, screens }: Theme) =>
   createStyles({
     root: {
@@ -8,8 +11,8 @@ export default ({ palette, screens }: Theme) =>
     },
     container: {},
     paper: {
-      maxHeight: 'calc(100% - 6rem)',
-      maxWidth: 'calc(100% - 6rem)',
+      maxHeight,
+      maxWidth,
 
       [screens('small')]: {
         width: '100vw',
@@ -27,6 +30,10 @@ export default ({ palette, screens }: Theme) =>
     },
     large: {
       width: '50em'
+    },
+    'full-screen': {
+      height: maxHeight,
+      width: maxWidth
     },
     closeButton: {
       position: 'absolute',
