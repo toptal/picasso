@@ -64,6 +64,8 @@ export interface Props
   /** Function to override default markup to show Date */
   renderDay?: (args: DayProps) => ReactNode
   popperContainer?: HTMLElement
+  /** Index of the first day of the week (0 - Sunday). Default is 0 */
+  weekStartsOn?: number
 }
 
 const formatDateRange = (dates: DateRangeType, format: string) =>
@@ -101,6 +103,7 @@ export const DatePicker = (props: Props) => {
     error,
     popperContainer,
     renderDay,
+    weekStartsOn,
     ...rest
   } = props
   const classes = useStyles(props)
@@ -291,6 +294,7 @@ export const DatePicker = (props: Props) => {
             onChange={handleCalendarChange}
             onBlur={handleBlur}
             className={classes.calendar}
+            weekStartsOn={weekStartsOn}
           />
         </Popper>
       )}
