@@ -18,6 +18,15 @@ page
           name: 'enum',
           enums: ['ordered', 'unordered']
         }
+      },
+      start: {
+        name: 'start',
+        defaultValue: '1',
+        type: {
+          name: 'number'
+        },
+        description:
+          'Specifies the start value of the first list item in an ordered list'
       }
     }
   })
@@ -26,5 +35,9 @@ page
 page
   .createChapter()
   .addExample('List/story/Ordered.example.tsx', 'Ordered')
+  .addExample(
+    'List/story/OrderedWithStart.example.tsx',
+    'Ordered with custom start'
+  )
   .addExample('List/story/Unordered.example.tsx', 'Unordered')
   .addExample('List/story/Custom.example.tsx', 'Custom')
