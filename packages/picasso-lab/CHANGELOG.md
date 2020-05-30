@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.18.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.17.0...@toptal/picasso-lab@2.18.0) (2020-05-30)
+
+
+### Features
+
+* **datepicker:** expose weekstartson prop ([#1344](https://github.com/toptal/picasso/issues/1344)) ([3d0bd08](https://github.com/toptal/picasso/commit/3d0bd081499033d60fd152381b7f1c3b63fcaf2c))
+
+
+
+
+
 # [2.17.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.16.2...@toptal/picasso-lab@2.17.0) (2020-05-29)
 
 
