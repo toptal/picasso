@@ -11,19 +11,21 @@ export type Props = BaseProps & {
   children: ReactNode
   /** The variant to use */
   variant: ListVariant
+  /** Specifies the start value of the first list item in an ordered list */
+  start?: number
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoList' })
 
 export const List = (props: Props) => {
   const classes = useStyles(props)
-  const { variant, children, ...rest } = props
+  const { variant, children, start, ...rest } = props
 
   const listProps = { className: classes.root, ...rest }
   const listItems = React.Children.map(children, (child, index) =>
     React.cloneElement(child as ReactElement, {
       variant,
-      index
+      index: index + start! - 1
     })
   )
 
@@ -35,7 +37,8 @@ export const List = (props: Props) => {
 }
 
 List.defaultProps = {
-  variant: 'unordered'
+  variant: 'unordered',
+  start: 1
 }
 
 List.Item = ListItem

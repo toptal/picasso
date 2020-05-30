@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.17.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.16.2...@toptal/picasso-lab@2.17.0) (2020-05-29)
+
+
+### Features
+
+* **list:** add start props to List component ([#1343](https://github.com/toptal/picasso/issues/1343)) ([336142c](https://github.com/toptal/picasso/commit/336142c15a94ae29ea044be8904b5e4bc37b9251))
+
+
+
+
+
 ## [2.16.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.16.1...@toptal/picasso-lab@2.16.2) (2020-05-27)
 
 **Note:** Version bump only for package @toptal/picasso-lab
