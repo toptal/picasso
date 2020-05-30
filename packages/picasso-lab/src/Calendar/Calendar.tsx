@@ -52,6 +52,7 @@ export interface Props
   value?: DateOrDateRangeType
   activeMonth?: Date
   disabledIntervals?: { start: Date; end: Date }[]
+  weekStartsOn?: number
 }
 
 function isDateRange(
@@ -76,6 +77,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
     maxDate,
     disabledIntervals,
     renderDay,
+    weekStartsOn,
     ...rest
   } = props
 
@@ -193,6 +195,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
         maxDate={maxDate}
         disabledIntervals={disabledIntervals}
         getNoticeContent={() => null}
+        weekStartsOn={weekStartsOn}
       />
     </div>
   )
