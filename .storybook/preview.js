@@ -8,8 +8,7 @@ import {
 import chaptersAddon from 'react-storybook-addon-chapters'
 import { create } from '@storybook/theming'
 
-// TODO: fix direct link to packages/shared
-import Picasso from '../packages/shared'
+import Picasso from '@toptal/picasso-shared'
 import PicassoBook from './components/PicassoBook'
 
 const loadFonts = TEST_ENV !== 'visual'

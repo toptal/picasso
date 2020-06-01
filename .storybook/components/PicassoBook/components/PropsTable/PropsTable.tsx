@@ -2,10 +2,10 @@ import React, { Fragment, FunctionComponent } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import { sortBy } from 'lodash'
 
-import { Table } from '../../../../../packages/picasso'
+import { Table } from '@toptal/picasso'
 import cx from 'classnames'
 
-import { Classes } from '../../../../../packages/shared'
+import { Classes } from '@toptal/picasso-shared'
 import {
   PropDocumentation,
   PropTypeDocumentation

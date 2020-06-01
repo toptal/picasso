@@ -8,7 +8,7 @@ const sh = require('shelljs')
 const { log, copyPackageJson, safeExec } = require('./utils')
 const tscPath = path.resolve(__dirname, '../node_modules/.bin/tsc')
 
-const compile = function(tsConfig, packageJson, packageRootDir) {
+const compile = function (tsConfig, packageJson, packageRootDir) {
   const args = []
 
   log(`Building ${packageJson.name}:${packageJson.version}`)
@@ -28,7 +28,7 @@ const compile = function(tsConfig, packageJson, packageRootDir) {
   clean()
   build()
 
-  copyPackageJson(packageRootDir, entry)
+  copyPackageJson(packageRootDir)
 
   if (yargs.watch) {
     args.unshift('--watch')
@@ -40,6 +40,5 @@ const compile = function(tsConfig, packageJson, packageRootDir) {
 const tsConfig = require(path.resolve(yargs.tsConfig))
 const packageRootDir = path.resolve('.')
 const packageJson = require(path.resolve(packageRootDir, './package.json'))
-const entry = yargs.entry || './index.js'
 
 compile(tsConfig, packageJson, packageRootDir)

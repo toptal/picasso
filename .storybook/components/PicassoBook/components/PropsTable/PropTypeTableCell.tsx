@@ -1,10 +1,9 @@
 import React, { FunctionComponent } from 'react'
-import _ from 'lodash'
 
 import { withStyles } from '@material-ui/core/styles'
 import { ClassNameMap } from '@material-ui/core/styles/withStyles'
 
-import { Tooltip, Table } from '../../../../../packages/picasso'
+import { Tooltip, Table } from '@toptal/picasso'
 import Markdown from '~/.storybook/components/Markdown'
 import { PropTypeDocumentation } from '~/.storybook/utils/documentation-generator'
 import styles from './styles'
@@ -18,7 +17,7 @@ interface Props {
 const PropTypeTableCell: FunctionComponent<Props> = props => {
   const { type, className, classes } = props
 
-  if (_.isString(type)) {
+  if (typeof type === 'string') {
     return <Table.Cell>{type}</Table.Cell>
   }
 

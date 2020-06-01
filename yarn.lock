@@ -3633,6 +3633,11 @@
     "@testing-library/dom" "^6.11.0"
     "@types/testing-library__react" "^9.1.2"
 
+"@toptal/browserslist-config@^0.1.0-alpha.2":
+  version "0.1.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/@toptal/browserslist-config/-/browserslist-config-0.1.0-alpha.2.tgz#c0acea1a7348799ed38ad6ecebf2a5d4ca3660b4"
+  integrity sha512-dSu1+Tf0nCa3qmTvGn+Kg6vwjbuXhZ7QIihax79zJKsXLYjYqny/YZAn3vrdNVGv9H9NvOM4qBVdrPDdVPVEVg==
+
 "@toptal/davinci-bootstrap@^1.0.14":
   version "1.0.14"
   resolved "https://registry.yarnpkg.com/@toptal/davinci-bootstrap/-/davinci-bootstrap-1.0.14.tgz#789a8ae1f9f532e64418eefb19010a9b52986be9"

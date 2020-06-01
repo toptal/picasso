@@ -4,9 +4,9 @@ import MUISlider, {
   SliderProps,
   ValueLabelProps
 } from '@material-ui/core/Slider'
-import { Tooltip } from '@toptal/picasso'
 import cx from 'classnames'
 
+import Tooltip from '../Tooltip'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme, Props>(styles)

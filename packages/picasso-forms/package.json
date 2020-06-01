@@ -5,8 +5,8 @@
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-forms#readme",
   "license": "ISC",
-  "main": "./src/index.ts",
-  "module": "./src/index.ts",
+  "main": "index.js",
+  "module": "index.js",
   "publishConfig": {
     "access": "public"
   },
@@ -15,8 +15,8 @@
     "url": "git+https://github.com/toptal/picasso.git"
   },
   "scripts": {
-    "build:dist": "cross-env NODE_ENV=production ../../bin/build --tsConfig=./tsconfig.build.json --entry=./index.js",
-    "prepublishOnly": "../../bin/prepublish --entry=./index.js"
+    "build:dist": "cross-env NODE_ENV=production ../../bin/build --tsConfig=./tsconfig.build.json",
+    "prepublishOnly": "../../bin/prepublish"
   },
   "bugs": {
     "url": "https://github.com/toptal/picasso/issues"
@@ -34,7 +34,6 @@
     "react-final-form": "^6.4.0"
   },
   "devDependencies": {
-    "@types/classnames": "^2.2.9",
-    "cross-env": "^6.0.3"
+    "@types/classnames": "^2.2.9"
   }
 }

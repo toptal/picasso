@@ -12,21 +12,12 @@ import debounce from 'debounce'
 import styled from 'styled-components'
 import { withStyles } from '@material-ui/core/styles'
 import IconLink from '@material-ui/icons/Link'
-import SourceRender from 'react-source-render'
+import SourceRender, { RenderResult } from 'react-source-render'
 import copy from 'copy-to-clipboard'
 
-import { Code16 } from '../../../packages/picasso/src/Icon'
-
-import { RenderResult } from '../../../@types/react-source-render'
-import { Classes } from '../../../packages/shared/src/styles/types'
-import Picasso from '../../../packages/shared'
-import {
-  Typography,
-  Button,
-  Accordion,
-  Container
-} from '../../../packages/picasso'
-import { useScreenSize } from '../../../packages/shared/src/Picasso'
+import { Typography, Button, Accordion, Container } from '@toptal/picasso'
+import Picasso, { useScreenSize, Classes } from '@toptal/picasso-shared'
+import { Code16 } from '@toptal/picasso/Icon'
 
 import Editor from '../Editor'
 import purifyFixedPosition from '../../utils/purify-fixed-position'
@@ -50,18 +41,16 @@ const imports: Record<string, object> = {
   'react-final-form': require('react-final-form'),
   debounce: require('debounce'),
   'date-fns': require('date-fns'),
-  // TODO: need to fix those direct imports
-  // and use @toptal/picasso-lab or @toptal/picasso packages here
-  '@toptal/picasso': require('../../../packages/picasso'),
-  '@toptal/picasso-lab': require('../../../packages/picasso-lab'),
-  '@toptal/picasso-forms': require('../../../packages/picasso-forms'),
-  '@toptal/picasso-forms/utils': require('../../../packages/picasso-forms/src/utils'),
-  '@toptal/picasso-charts': require('../../../packages/picasso-charts'),
-  '@toptal/picasso-charts/utils': require('../../../packages/picasso-charts/src/utils'),
-  '@topkit/analytics-charts': require('../../../packages/topkit-analytics-charts'),
-  '@topkit/analytics-charts/utils': require('../../../packages/topkit-analytics-charts/src/utils'),
-  '@toptal/picasso/utils': require('../../../packages/picasso/src/utils'),
-  '@toptal/picasso/Icon': require('../../../packages/picasso/src/Icon')
+  '@toptal/picasso': require('@toptal/picasso'),
+  '@toptal/picasso-lab': require('@toptal/picasso-lab'),
+  '@toptal/picasso-forms': require('@toptal/picasso-forms'),
+  '@toptal/picasso-forms/utils': require('@toptal/picasso-forms/utils'),
+  '@toptal/picasso-charts': require('@toptal/picasso-charts'),
+  '@toptal/picasso-charts/utils': require('@toptal/picasso-charts/utils'),
+  '@topkit/analytics-charts': require('@topkit/analytics-charts'),
+  '@topkit/analytics-charts/utils': require('@topkit/analytics-charts'),
+  '@toptal/picasso/utils': require('@toptal/picasso/utils'),
+  '@toptal/picasso/Icon': require('@toptal/picasso/Icon')
 }
 
 const resolver = (path: string) => imports[path]
@@ -100,7 +89,7 @@ const PicassoSSR: FunctionComponent = ({ children }) => {
   }
 
   return (
-    <Picasso fixViewport={false}>
+    <Picasso fixViewport={false} loadFavicon={false}>
       <Purifier>{children}</Purifier>
     </Picasso>
   )
@@ -189,7 +178,7 @@ class CodeExample extends Component<Props> {
      */
     if (TEST_ENV === 'visual') {
       const renderInTestPicasso = (element: ReactNode) => (
-        <Picasso loadFonts={false} fixViewport={false}>
+        <Picasso loadFonts={false} fixViewport={false} loadFavicon={false}>
           <Purifier>{element}</Purifier>
         </Picasso>
       )

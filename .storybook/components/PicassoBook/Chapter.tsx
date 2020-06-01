@@ -13,7 +13,7 @@ import {
   getHost,
   normalize
 } from '../../../src/utils/url-generator'
-import { Typography } from '../../../packages/picasso'
+import { Typography } from '@toptal/picasso'
 
 import Base from './Base'
 import Section, { SectionConfigType } from './Section'

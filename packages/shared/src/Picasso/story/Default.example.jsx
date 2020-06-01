@@ -9,7 +9,7 @@ const ContentContainer = styled(Container)`
 `
 
 const App = () => (
-  <Picasso>
+  <Picasso loadFavicon={false} fixViewport={false}>
     <Page>
       <Page.Header title='App Page' />
       <Page.Content>
