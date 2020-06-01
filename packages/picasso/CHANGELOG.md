@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.66.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.65.0...@toptal/picasso@4.66.0) (2020-06-01)
+
+
+### Features
+
+* add full-screen size for modal ([#1342](https://github.com/toptal/picasso/issues/1342)) ([3f57fb5](https://github.com/toptal/picasso/commit/3f57fb588311c9f46050f9235286fecaff66a7f2))
+
+
+
+
+
 # [4.65.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.64.1...@toptal/picasso@4.65.0) (2020-05-29)
 
 
