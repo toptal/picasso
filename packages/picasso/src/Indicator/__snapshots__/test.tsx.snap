@@ -7,6 +7,7 @@ exports[`Indicator default render 1`] = `
   >
     <div
       class="Indicator-root Indicator-red"
+      role="img"
     />
   </div>
 </div>
