@@ -2,13 +2,12 @@ import React, {
   forwardRef,
   ReactNode,
   ReactElement,
-  HTMLAttributes,
-  useContext
+  HTMLAttributes
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { BaseProps, CompoundedComponentWithRef } from '@toptal/picasso-shared'
-import { RootContext } from '@toptal/picasso-shared/src/Picasso'
+import { useAppConfig } from '@toptal/picasso-shared/src/Picasso'
 
 import Chip from '../Chip'
 import { CloseMinor16 } from '../Icon'
@@ -32,11 +31,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   onDelete?: () => void
   /** Variant of the `Label` */
   variant?: VariantType
-  /** Defines if the text should be transformed to title case */
-  titleCase?: boolean
 }
-
-export type LabelOverrideProps = 'titleCase'
 
 interface StaticProps {
   Group: typeof LabelGroup
@@ -57,16 +52,13 @@ export const Label = forwardRef<HTMLDivElement, Props>(function Label(
     disabled,
     onDelete,
     variant,
-    titleCase,
     ...rest
   } = props
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { color, ...htmlAttributes } = rest
   const classes = useStyles(props)
 
-  const { overrides } = useContext(RootContext)
-  const titleCaseValue =
-    titleCase === undefined ? overrides?.Label?.titleCase || false : titleCase
+  const { titleCase } = useAppConfig()
 
   const handleDelete = () => {
     if (disabled) {
@@ -93,7 +85,7 @@ export const Label = forwardRef<HTMLDivElement, Props>(function Label(
       icon={icon}
       label={
         <span className={classes.innerLabel}>
-          {titleCaseValue ? toTitleCase(children) : children}
+          {titleCase ? toTitleCase(children) : children}
         </span>
       }
       deleteIcon={

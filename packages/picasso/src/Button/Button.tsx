@@ -3,8 +3,7 @@ import React, {
   ReactElement,
   MouseEvent,
   forwardRef,
-  ElementType,
-  useContext
+  ElementType
 } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
@@ -16,7 +15,7 @@ import {
   CompoundedComponentWithRef,
   OverridableComponent
 } from '@toptal/picasso-shared'
-import { RootContext } from '@toptal/picasso-shared/src/Picasso'
+import { useAppConfig } from '@toptal/picasso-shared/src/Picasso'
 
 import Loader from '../Loader'
 import Container from '../Container'
@@ -76,11 +75,7 @@ export interface Props extends BaseProps, ButtonOrAnchorProps {
   title?: string
   /** HTML type of Button component */
   type?: 'button' | 'reset' | 'submit'
-  /** Defines if the text should be transformed to title case */
-  titleCase?: boolean
 }
-
-export type ButtonOverrideProps = 'titleCase'
 
 interface StaticProps {
   Group: typeof Group
@@ -119,15 +114,12 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     title,
     value,
     type,
-    titleCase,
     as,
     ...rest
   } = props
   const classes = useStyles(props)
 
-  const { overrides } = useContext(RootContext)
-  const titleCaseValue =
-    titleCase === undefined ? overrides?.Button?.titleCase || false : titleCase
+  const { titleCase } = useAppConfig()
 
   const {
     icon: iconClass,
@@ -139,7 +131,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     content: contentClass
   } = classes
 
-  const finalChildren = [titleCaseValue ? toTitleCase(children) : children]
+  const finalChildren = [titleCase ? toTitleCase(children) : children]
 
   if (icon) {
     const iconComponent = React.cloneElement(icon, {

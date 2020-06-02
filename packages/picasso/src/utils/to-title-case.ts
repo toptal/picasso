@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 import { titleCase } from 'title-case'
 
-import isString from '../is-string'
+import isString from './is-string'
 
 const toTitleCase = (node: ReactNode) => {
   if (!node || !isString(node)) {
