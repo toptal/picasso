@@ -3,7 +3,8 @@ import React, {
   ReactElement,
   MouseEvent,
   forwardRef,
-  ElementType
+  ElementType,
+  useContext
 } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
@@ -15,6 +16,7 @@ import {
   CompoundedComponentWithRef,
   OverridableComponent
 } from '@toptal/picasso-shared'
+import { RootContext } from '@toptal/picasso-shared/src/Picasso'
 
 import Loader from '../Loader'
 import Container from '../Container'
@@ -78,6 +80,8 @@ export interface Props extends BaseProps, ButtonOrAnchorProps {
   titleCase?: boolean
 }
 
+export type ButtonOverrideProps = 'titleCase'
+
 interface StaticProps {
   Group: typeof Group
 }
@@ -121,6 +125,10 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
   } = props
   const classes = useStyles(props)
 
+  const { overrides } = useContext(RootContext)
+  const titleCaseValue =
+    titleCase === undefined ? overrides?.Button?.titleCase || false : titleCase
+
   const {
     icon: iconClass,
     iconLeft: iconLeftClass,
@@ -131,7 +139,9 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     content: contentClass
   } = classes
 
-  const finalChildren = [titleCase ? transformToTitleCase(children) : children]
+  const finalChildren = [
+    titleCaseValue ? transformToTitleCase(children) : children
+  ]
 
   if (icon) {
     const iconComponent = React.cloneElement(icon, {
@@ -217,8 +227,7 @@ Button.defaultProps = {
   onClick: defaultOnClick,
   size: 'medium',
   type: 'button',
-  variant: 'primary-blue',
-  titleCase: false
+  variant: 'primary-blue'
 }
 
 Button.displayName = 'Button'

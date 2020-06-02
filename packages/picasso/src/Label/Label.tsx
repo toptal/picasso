@@ -2,11 +2,13 @@ import React, {
   forwardRef,
   ReactNode,
   ReactElement,
-  HTMLAttributes
+  HTMLAttributes,
+  useContext
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { BaseProps, CompoundedComponentWithRef } from '@toptal/picasso-shared'
+import { RootContext } from '@toptal/picasso-shared/src/Picasso'
 
 import Chip from '../Chip'
 import { CloseMinor16 } from '../Icon'
@@ -34,6 +36,8 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   titleCase?: boolean
 }
 
+export type LabelOverrideProps = 'titleCase'
+
 interface StaticProps {
   Group: typeof LabelGroup
 }
@@ -60,6 +64,10 @@ export const Label = forwardRef<HTMLDivElement, Props>(function Label(
   const { color, ...htmlAttributes } = rest
   const classes = useStyles(props)
 
+  const { overrides } = useContext(RootContext)
+  const titleCaseValue =
+    titleCase === undefined ? overrides?.Label?.titleCase || false : titleCase
+
   const handleDelete = () => {
     if (disabled) {
       return
@@ -85,7 +93,7 @@ export const Label = forwardRef<HTMLDivElement, Props>(function Label(
       icon={icon}
       label={
         <span className={classes.innerLabel}>
-          {titleCase ? transformToTitleCase(children) : children}
+          {titleCaseValue ? transformToTitleCase(children) : children}
         </span>
       }
       deleteIcon={
@@ -104,8 +112,7 @@ export const Label = forwardRef<HTMLDivElement, Props>(function Label(
 
 Label.defaultProps = {
   children: '',
-  variant: 'grey',
-  titleCase: false
+  variant: 'grey'
 }
 
 Label.displayName = 'Label'

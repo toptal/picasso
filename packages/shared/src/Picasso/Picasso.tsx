@@ -40,7 +40,7 @@ import NotificationsProvider from './NotificationsProvider'
 import globalStyles from './styles'
 import Favicon from '../Favicon'
 import { generateRandomStringOrGetEmptyInTest } from './utils'
-import { EnvironmentType } from './types'
+import { EnvironmentType, PicassoOverrides } from './types'
 
 const picasso = {
   palette,
@@ -74,10 +74,11 @@ interface RootContextProps {
   hasPageHeader: boolean
   setHasPageHeader: (value: boolean) => void
   environment: EnvironmentType<'test' | 'temploy'>
+  overrides?: PicassoOverrides
   hasDrawer: boolean
   setHasDrawer: (value: boolean) => void
 }
-const RootContext = React.createContext<RootContextProps>({
+export const RootContext = React.createContext<RootContextProps>({
   hasPageHeader: false,
   setHasPageHeader: () => {},
   environment: 'development',
@@ -119,6 +120,7 @@ export const useAppConfig = () => {
 
 interface PicassoGlobalStylesProviderProps {
   children?: ReactNode
+  overrides?: PicassoOverrides
   RootComponent: ForwardRefExoticComponent<
     PicassoRootNodeProps & RefAttributes<HTMLDivElement>
   >
@@ -150,7 +152,7 @@ const PicassoRootNode = forwardRef<HTMLDivElement, PicassoRootNodeProps>(
 const PicassoGlobalStylesProvider = (
   props: PicassoGlobalStylesProviderProps
 ) => {
-  const { children, RootComponent, environment } = props
+  const { children, RootComponent, environment, overrides } = props
 
   const rootRef = useRef<HTMLDivElement>(null)
   const [contextValue, setContextValue] = useState({
@@ -162,6 +164,7 @@ const PicassoGlobalStylesProvider = (
         hasPageHeader
       })
     },
+    overrides,
     environment,
     hasDrawer: false,
     setHasDrawer: (hasDrawer: boolean) => {
@@ -229,6 +232,8 @@ interface PicassoProps {
   notificationContainer?: HTMLElement
   /** Component that is used to render root node  */
   RootComponent?: PicassoGlobalStylesProviderProps['RootComponent']
+  /** Overriding default properties of components */
+  overrides?: PicassoOverrides
   theme?: ThemeOptions
 }
 
@@ -242,6 +247,7 @@ const Picasso: FunctionComponent<PicassoProps> = ({
   fixViewport,
   notificationContainer,
   RootComponent,
+  overrides,
   theme
 }) => {
   if (theme) {
@@ -265,6 +271,7 @@ const Picasso: FunctionComponent<PicassoProps> = ({
         <PicassoGlobalStylesProvider
           RootComponent={RootComponent!}
           environment={environment!}
+          overrides={overrides}
         >
           {fixViewport && <Viewport />}
           {loadFonts && <FontsLoader />}

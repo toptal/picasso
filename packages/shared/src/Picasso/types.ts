@@ -10,6 +10,9 @@ import {
 } from 'react'
 
 import { Classes } from '../styles/types'
+import { ButtonOverrideProps } from '../../../picasso/src/Button'
+import { FormLabelOverrideProps } from '../../../picasso/src/FormLabel'
+import { LabelOverrideProps } from '../../../picasso/src/Label'
 
 export interface BaseProps {
   /** Classnames applied to root element */
@@ -105,3 +108,15 @@ export type ColorType =
   | 'dark-grey'
   | 'black'
   | 'inherit'
+
+interface ComponentNameToOverrideProps {
+  Button: ButtonOverrideProps
+  FormLabel: FormLabelOverrideProps
+  Label: LabelOverrideProps
+}
+
+export type PicassoOverrides = {
+  [Name in keyof ComponentNameToOverrideProps]?: Partial<
+    Record<ComponentNameToOverrideProps[Name], unknown>
+  >
+}

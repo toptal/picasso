@@ -1,7 +1,8 @@
-import React, { forwardRef, HTMLAttributes, ReactNode } from 'react'
+import React, { forwardRef, HTMLAttributes, ReactNode, useContext } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { StandardProps } from '@toptal/picasso-shared'
+import { RootContext } from '@toptal/picasso-shared/src/Picasso'
 
 import styles from './styles'
 import { transformToTitleCase } from '../utils'
@@ -27,6 +28,8 @@ export interface Props
   titleCase?: boolean
 }
 
+export type FormLabelOverrideProps = 'titleCase'
+
 export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
   {
     children,
@@ -44,6 +47,12 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
   ref
 ) {
   const isInline = inline || Component === 'span'
+
+  const { overrides } = useContext(RootContext)
+  const titleCaseValue =
+    titleCase === undefined
+      ? overrides?.FormLabel?.titleCase || false
+      : titleCase
 
   return (
     <Component
@@ -63,7 +72,7 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
     >
       {required && <span className={classes.asterisk}>*</span>}
       <span className={classes.text}>
-        {titleCase ? transformToTitleCase(children) : children}
+        {titleCaseValue ? transformToTitleCase(children) : children}
       </span>
     </Component>
   )
@@ -71,8 +80,7 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
 
 FormLabel.defaultProps = {
   as: 'label',
-  inline: false,
-  titleCase: false
+  inline: false
 }
 
 FormLabel.displayName = 'FormLabel'
