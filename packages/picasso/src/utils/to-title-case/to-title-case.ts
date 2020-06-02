@@ -3,7 +3,7 @@ import { titleCase } from 'title-case'
 
 import isString from '../is-string'
 
-const transformToTitleCase = (node: ReactNode) => {
+const toTitleCase = (node: ReactNode) => {
   if (!node || !isString(node)) {
     return node
   }
@@ -11,4 +11,4 @@ const transformToTitleCase = (node: ReactNode) => {
   return titleCase(node as string)
 }
 
-export default transformToTitleCase
+export default toTitleCase

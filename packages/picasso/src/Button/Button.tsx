@@ -23,7 +23,7 @@ import Container from '../Container'
 import Group from '../ButtonGroup'
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import styles from './styles'
-import { transformToTitleCase } from '../utils'
+import { toTitleCase } from '../utils'
 
 export type VariantType =
   | 'primary-blue'
@@ -139,9 +139,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     content: contentClass
   } = classes
 
-  const finalChildren = [
-    titleCaseValue ? transformToTitleCase(children) : children
-  ]
+  const finalChildren = [titleCaseValue ? toTitleCase(children) : children]
 
   if (icon) {
     const iconComponent = React.cloneElement(icon, {

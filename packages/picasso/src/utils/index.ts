@@ -24,7 +24,7 @@ export { default as isBoolean } from './is-boolean'
 export { default as isSubstring } from './is-substring'
 export { default as getNameInitials } from './get-name-initials'
 export { default as kebabToCamelCase } from './kebab-to-camel-case'
-export { default as transformToTitleCase } from './transform-to-title-case'
+export { default as toTitleCase } from './to-title-case'
 export { default as capitalize } from './capitalize'
 
 export const Transitions = TransitionUtils

@@ -14,7 +14,7 @@ import Chip from '../Chip'
 import { CloseMinor16 } from '../Icon'
 import LabelGroup from '../LabelGroup'
 import styles from './styles'
-import { transformToTitleCase } from '../utils'
+import { toTitleCase } from '../utils'
 
 type VariantType = 'grey' | 'white' | 'green' | 'yellow' | 'red'
 
@@ -93,7 +93,7 @@ export const Label = forwardRef<HTMLDivElement, Props>(function Label(
       icon={icon}
       label={
         <span className={classes.innerLabel}>
-          {titleCaseValue ? transformToTitleCase(children) : children}
+          {titleCaseValue ? toTitleCase(children) : children}
         </span>
       }
       deleteIcon={

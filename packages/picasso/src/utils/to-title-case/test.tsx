@@ -1,13 +1,13 @@
 import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
 
-import transformToTitleCase from './tranform-to-title-case'
+import toTitleCase from './to-title-case'
 
-describe('transformToTitleCase()', () => {
+describe('toTitleCase()', () => {
   test('should transform strings to title case', () => {
     const { getByText } = render(
       <React.Fragment>
-        {transformToTitleCase('convert regular string to the title case')}
+        {toTitleCase('convert regular string to the title case')}
       </React.Fragment>
     )
     expect(
@@ -18,7 +18,7 @@ describe('transformToTitleCase()', () => {
   test('should do nothing with non-strings', () => {
     const { getByText } = render(
       <React.Fragment>
-        {transformToTitleCase(<div>convert React node to the title case</div>)}
+        {toTitleCase(<div>convert React node to the title case</div>)}
       </React.Fragment>
     )
     expect(

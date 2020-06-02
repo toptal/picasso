@@ -5,7 +5,7 @@ import { StandardProps } from '@toptal/picasso-shared'
 import { RootContext } from '@toptal/picasso-shared/src/Picasso'
 
 import styles from './styles'
-import { transformToTitleCase } from '../utils'
+import { toTitleCase } from '../utils'
 
 type ComponentType = 'label' | 'span'
 
@@ -72,7 +72,7 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
     >
       {required && <span className={classes.asterisk}>*</span>}
       <span className={classes.text}>
-        {titleCaseValue ? transformToTitleCase(children) : children}
+        {titleCaseValue ? toTitleCase(children) : children}
       </span>
     </Component>
   )
