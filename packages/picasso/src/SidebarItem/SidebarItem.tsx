@@ -1,7 +1,6 @@
 import React, {
   forwardRef,
   ReactElement,
-  Fragment,
   ElementType,
   ChangeEvent,
   memo
@@ -165,10 +164,10 @@ export const SidebarItem: OverridableComponent<Props> = memo(
     }
 
     return (
-      <Fragment>
+      <>
         {menuItem}
         {hasMenu && <div className={classes.nonCollapsibleMenu}>{menu}</div>}
-      </Fragment>
+      </>
     )
   })
 )

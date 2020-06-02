@@ -3,7 +3,6 @@ import formFieldStory from '../../FormField/story'
 import formHintStory from '../../FormHint/story'
 import formLabelStory from '../../FormLabel/story'
 import formErrorStory from '../../FormError/story'
-
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Forms').createPage(

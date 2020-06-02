@@ -1,6 +1,5 @@
 import overviewBlockGroupStory from '../../OverviewBlockGroup/story'
 import { OverviewBlock } from '../OverviewBlock'
-
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Lab').createPage(

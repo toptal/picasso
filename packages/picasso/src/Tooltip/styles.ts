@@ -12,7 +12,7 @@ const VERTICAL_POSITION = {
   transform: 'translateX(-50%)'
 }
 
-function arrowGenerator(color: string) {
+const arrowGenerator = (color: string) => {
   return {
     '&[x-placement*="bottom"] $arrow': {
       top: `-${ARROW_SIZE}`,

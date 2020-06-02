@@ -55,9 +55,9 @@ export interface Props
   weekStartsOn?: number
 }
 
-function isDateRange(
+const isDateRange = (
   value: Date | SimpleReactCalendarRangeType
-): value is SimpleReactCalendarRangeType {
+): value is SimpleReactCalendarRangeType => {
   return !(value instanceof Date) && Boolean(value.start && value.end)
 }
 

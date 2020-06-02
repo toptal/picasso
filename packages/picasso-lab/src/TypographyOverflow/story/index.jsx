@@ -1,5 +1,4 @@
 import { TypographyOverflow } from '../TypographyOverflow'
-
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Lab').createPage(

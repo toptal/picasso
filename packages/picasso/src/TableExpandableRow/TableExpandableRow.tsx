@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactNode, HTMLAttributes, Fragment } from 'react'
+import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUICollapse from '@material-ui/core/Collapse'
@@ -52,7 +52,7 @@ export const TableExpandableRow = forwardRef<HTMLTableRowElement, Props>(
     )
 
     return (
-      <Fragment>
+      <>
         {row}
         {expanded && (
           <TableRow
@@ -68,7 +68,7 @@ export const TableExpandableRow = forwardRef<HTMLTableRowElement, Props>(
             </TableCell>
           </TableRow>
         )}
-      </Fragment>
+      </>
     )
   }
 )

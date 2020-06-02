@@ -36,7 +36,7 @@ module.exports = {
   }
 }
 
-function cleanupSketch(doc, params, extra) {
+const cleanupSketch = (doc, params, extra) => {
   const fileName = path.basename(extra.path)
   const config = ICON_CONFIG[fileName] || {}
 

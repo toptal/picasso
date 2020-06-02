@@ -1,6 +1,5 @@
 import React, {
   KeyboardEvent,
-  Fragment,
   forwardRef,
   ComponentType,
   InputHTMLAttributes,
@@ -151,7 +150,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       options && options.filter(option => !isIncluded(values, option))
 
     const labels = (
-      <Fragment>
+      <>
         {values.map(item => (
           <Label
             className={classes.label}
@@ -162,7 +161,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
             {getDisplayValue!(item)}
           </Label>
         ))}
-      </Fragment>
+      </>
     )
 
     return (

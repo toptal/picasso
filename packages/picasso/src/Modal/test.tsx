@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { useState } from 'react'
 import { render, fireEvent } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
@@ -172,10 +172,10 @@ test('useModals shows multiple modals at the same time', () => {
     }
 
     return (
-      <Fragment>
+      <>
         <Button onClick={showFirstModalClick}>Show first</Button>
         <Button onClick={showSecondModalClick}>Show second</Button>
-      </Fragment>
+      </>
     )
   }
 

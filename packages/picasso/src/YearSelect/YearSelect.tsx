@@ -23,7 +23,7 @@ export interface Props<Multiple extends boolean>
   to: number
 }
 
-function generateOptions(from: number, to: number) {
+const generateOptions = (from: number, to: number) => {
   const length = Math.abs(to - from) + 1
 
   return Array.from({ length }).map((_, index) => {

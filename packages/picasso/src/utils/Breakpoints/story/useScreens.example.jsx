@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { useScreens } from '@toptal/picasso/utils'
 import { Typography, Button } from '@toptal/picasso'
 
@@ -6,7 +6,7 @@ const Example = () => {
   const screens = useScreens()
 
   return (
-    <Fragment>
+    <>
       <Typography>
         The button below will use:
         <ul>
@@ -40,7 +40,7 @@ const Example = () => {
           'default (primary-blue)'
         )}
       </Button>
-    </Fragment>
+    </>
   )
 }
 

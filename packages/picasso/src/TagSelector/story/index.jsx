@@ -1,5 +1,4 @@
 import { TagSelector } from '../TagSelector'
-
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Forms').createPage(

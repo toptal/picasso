@@ -4,7 +4,7 @@ import { Container, Tabs } from '@toptal/picasso'
 const Example = () => {
   const [value, setValue] = React.useState(false)
 
-  function handleChange(event, newValue) {
+  const handleChange = (event, newValue) => {
     setValue(newValue)
   }
 

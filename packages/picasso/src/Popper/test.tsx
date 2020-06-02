@@ -1,4 +1,4 @@
-import React, { useState, Fragment, FC, ReactNode, forwardRef } from 'react'
+import React, { useState, FC, ReactNode, forwardRef } from 'react'
 import { render, act, fireEvent } from '@toptal/picasso/test-utils'
 import Picasso from '@toptal/picasso-shared'
 
@@ -34,14 +34,14 @@ const PopperRenderer = () => {
   const [popoverIsOpen, setPopoverIsOpen] = useState(false)
 
   return (
-    <Fragment>
+    <>
       <button onClick={() => setPopoverIsOpen(true)} role='action'>
         Click
       </button>
       <Popper open={popoverIsOpen} anchorEl={document.body}>
         some children
       </Popper>
-    </Fragment>
+    </>
   )
 }
 

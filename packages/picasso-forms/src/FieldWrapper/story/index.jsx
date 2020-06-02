@@ -1,5 +1,4 @@
 import FieldWrapper from '../FieldWrapper'
-
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const componentDocs = PicassoBook.createComponentDocs(

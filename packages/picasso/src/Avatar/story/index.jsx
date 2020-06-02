@@ -1,5 +1,4 @@
 import { Avatar } from '../Avatar'
-
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Components').createPage(

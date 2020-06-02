@@ -6,7 +6,6 @@ import React, {
   useRef,
   useState,
   useCallback,
-  Fragment,
   useMemo
 } from 'react'
 import cx from 'classnames'
@@ -594,7 +593,7 @@ export const Select = documentable(
       const readOnlyInput = multiple || allOptions.length <= searchThreshold!
 
       const selectComponent = (
-        <Fragment>
+        <>
           <div
             /* eslint-disable-next-line react/jsx-props-no-spreading */
             {...getRootProps()}
@@ -665,7 +664,7 @@ export const Select = documentable(
                 })}
             </Popper>
           )}
-        </Fragment>
+        </>
       )
 
       return (

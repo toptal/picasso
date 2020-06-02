@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { render, fireEvent } from '@toptal/picasso/test-utils'
 
 import { useNotifications } from './use-notifications'
@@ -8,13 +8,13 @@ const TestComponent = () => {
   const { showError, showInfo, showSuccess } = useNotifications()
 
   return (
-    <Fragment>
+    <>
       <Button onClick={() => showError('Error message')}>Show Error</Button>
       <Button onClick={() => showInfo('Info message')}>Show Info</Button>
       <Button onClick={() => showSuccess('Success message')}>
         Show Success
       </Button>
-    </Fragment>
+    </>
   )
 }
 

@@ -1,6 +1,5 @@
 import gridItemStory from '../../GridItem/story'
 import { Grid } from '../Grid'
-
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Layout').createPage(
