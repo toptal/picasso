@@ -2,7 +2,6 @@ import { Modal } from '../Modal'
 import modalActionsStory from '../../ModalActions/story'
 import modalContentStory from '../../ModalContent/story'
 import modalTitleStory from '../../ModalTitle/story'
-
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Overlays').createPage(

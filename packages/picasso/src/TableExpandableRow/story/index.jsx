@@ -1,5 +1,4 @@
 import { TableExpandableRow } from '../TableExpandableRow'
-
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const componentDocs = PicassoBook.createComponentDocs(

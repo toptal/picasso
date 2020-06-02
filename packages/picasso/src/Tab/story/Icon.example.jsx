@@ -5,7 +5,7 @@ import { Exclamation16 } from '@toptal/picasso/Icon'
 const Example = () => {
   const [value, setValue] = React.useState(0)
 
-  function handleChange(event, newValue) {
+  const handleChange = (event, newValue) => {
     setValue(newValue)
   }
 

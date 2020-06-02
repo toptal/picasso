@@ -1,5 +1,4 @@
 import { Drawer } from '../Drawer'
-
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Lab').createPage(

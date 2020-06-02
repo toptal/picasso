@@ -24,11 +24,11 @@ const PromptModalDefaultExample = () => {
     })
 
   return (
-    <React.Fragment>
+    <>
       <div id='modal-container' style={{ width: '400px', height: '50px' }}>
         <Button onClick={handleClick}>Open prompt</Button>
       </div>
-    </React.Fragment>
+    </>
   )
 }
 

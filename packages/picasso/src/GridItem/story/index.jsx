@@ -1,5 +1,4 @@
 import { GridItem } from '../GridItem'
-
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const chapter = PicassoBook.connectToPage(page =>

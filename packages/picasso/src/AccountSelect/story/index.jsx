@@ -1,5 +1,4 @@
 import { AccountSelect } from '../AccountSelect'
-
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Widgets').createPage('AccountSelect', null)

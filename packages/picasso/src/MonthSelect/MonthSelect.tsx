@@ -38,7 +38,7 @@ const OPTIONS = [
   { value: 12, text: 'December' }
 ]
 
-function getFilteredOptions(from: number, to: number) {
+const getFilteredOptions = (from: number, to: number) => {
   return OPTIONS.slice(from - 1, to)
 }
 

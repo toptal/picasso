@@ -1,5 +1,4 @@
 import { TableRow } from '../TableRow'
-
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const componentDocs = PicassoBook.createComponentDocs(

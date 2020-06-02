@@ -3,7 +3,7 @@ import { Subheader } from '@toptal/picasso-lab'
 
 const BlankExample = () => (
   <Subheader>
-    <Subheader.Main></Subheader.Main>
+    <Subheader.Main />
   </Subheader>
 )
 

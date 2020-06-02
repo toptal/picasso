@@ -1,5 +1,4 @@
 import BreadcrumbsItem from '../BreadcrumbsItem'
-
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const componentDocs = PicassoBook.createComponentDocs(

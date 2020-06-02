@@ -1,5 +1,4 @@
 import { NumberInput } from '../NumberInput'
-
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Forms').createPage(

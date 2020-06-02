@@ -53,13 +53,13 @@ export interface Props extends BaseProps {
 
 const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoPopper' })
 
-function getAnchorEl(
+const getAnchorEl = (
   anchorEl: null | ReferenceObject | (() => ReferenceObject)
-) {
+) => {
   return typeof anchorEl === 'function' ? anchorEl() : anchorEl
 }
 
-function getPopperOptions(popperOptions: PopperOptions) {
+const getPopperOptions = (popperOptions: PopperOptions) => {
   return {
     ...popperOptions,
     modifiers: {

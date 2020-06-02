@@ -128,6 +128,7 @@ const generateReferenceLines = (referenceLines?: ReferenceLineType[]) => {
     return null
   }
 
+  // eslint-disable-next-line id-length
   return referenceLines.map(({ y, color }) => (
     <ReferenceLine
       key={`reference-line-${y}`}

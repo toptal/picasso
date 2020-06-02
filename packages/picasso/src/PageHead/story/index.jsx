@@ -1,5 +1,4 @@
 import { PageHead } from '../PageHead'
-
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const componentDocs = PicassoBook.createComponentDocs(PageHead, 'Page.Head')

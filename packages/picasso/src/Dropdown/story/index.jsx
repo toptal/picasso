@@ -1,6 +1,5 @@
 import dropdownArrowStory from '../../DropdownArrow/story'
 import { Dropdown } from '../Dropdown'
-
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Components').createPage(

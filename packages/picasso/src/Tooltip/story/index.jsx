@@ -1,5 +1,4 @@
 import { Tooltip } from '../Tooltip'
-
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Overlays').createPage(

@@ -26,7 +26,7 @@ export type Props<T = AnyObject> = FinalFormProps<T> & {
   scrollOffsetTop?: number
 }
 
-export function Form<T = AnyObject>(props: Props<T>) {
+export const Form = <T extends any = AnyObject>(props: Props<T>) => {
   const {
     children,
     onSubmit,

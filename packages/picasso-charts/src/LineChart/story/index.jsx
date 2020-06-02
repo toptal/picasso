@@ -1,5 +1,4 @@
 import LineChart from '../LineChart'
-
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Charts').createPage(

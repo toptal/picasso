@@ -1,8 +1,8 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Indicator, Typography, Container } from '@toptal/picasso'
 
 const Example = () => (
-  <Fragment>
+  <>
     <Container bottom='medium'>
       <Container inline right='small'>
         <Indicator color='red' />
@@ -27,7 +27,7 @@ const Example = () => (
     <Typography inline size='medium'>
       Low priority
     </Typography>
-  </Fragment>
+  </>
 )
 
 export default Example

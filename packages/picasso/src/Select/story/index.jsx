@@ -1,5 +1,4 @@
 import Select from '../Select'
-
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Forms').createPage(

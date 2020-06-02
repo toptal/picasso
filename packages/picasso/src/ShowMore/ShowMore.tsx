@@ -45,7 +45,7 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
   const [shownMore, setShownMore] = useState(initialExpanded)
 
   return (
-    <React.Fragment>
+    <>
       <Typography
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
@@ -78,7 +78,7 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
           </div>
         </Link>
       )}
-    </React.Fragment>
+    </>
   )
 })
 

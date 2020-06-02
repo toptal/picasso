@@ -1,5 +1,4 @@
 import { YearSelect } from '../YearSelect'
-
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Components').createPage(

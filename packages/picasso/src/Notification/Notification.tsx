@@ -3,7 +3,6 @@ import React, {
   ReactNode,
   MouseEvent,
   ReactElement,
-  Fragment,
   cloneElement,
   HTMLAttributes
 } from 'react'
@@ -100,7 +99,7 @@ const renderNotificationContent = (props: Props) => {
   } = props
 
   return (
-    <Fragment>
+    <>
       <Container flex alignItems='center' className={iconWrapper}>
         {renderNotificationIcon(props)}
       </Container>
@@ -114,7 +113,7 @@ const renderNotificationContent = (props: Props) => {
         {children}
       </Typography>
       {onClose && renderNotificationCloseButton(props)}
-    </Fragment>
+    </>
   )
 }
 

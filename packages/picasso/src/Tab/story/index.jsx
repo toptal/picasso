@@ -1,5 +1,4 @@
 import { Tab } from '../Tab'
-
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const componentDocs = PicassoBook.createComponentDocs(Tab, 'Tabs.Tab')

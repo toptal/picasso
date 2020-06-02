@@ -65,7 +65,7 @@ interface ContextProps {
 
 const DropdownContext = React.createContext<ContextProps | null>(null)
 
-function useDropdownContext() {
+const useDropdownContext = () => {
   const context = useContext(DropdownContext)
 
   if (!context) {

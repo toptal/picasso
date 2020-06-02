@@ -1,5 +1,4 @@
 import { Paper } from '../Paper'
-
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Layout').createPage(

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { render, fireEvent } from '@toptal/picasso/test-utils'
 
 import Button from '../../Button'
@@ -67,10 +67,10 @@ test('useModal shows multiple modals at the same time', () => {
     )
 
     return (
-      <Fragment>
+      <>
         <Button onClick={() => showModal(FirstModal)}>Show first</Button>
         <Button onClick={() => showModal(SecondModal)}>Show second</Button>
-      </Fragment>
+      </>
     )
   }
 

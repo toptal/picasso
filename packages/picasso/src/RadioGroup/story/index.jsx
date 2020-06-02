@@ -1,5 +1,4 @@
 import RadioGroup from '../RadioGroup'
-
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const componentDocs = PicassoBook.createComponentDocs(

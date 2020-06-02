@@ -1,6 +1,5 @@
 import { Checkbox } from '../Checkbox'
 import checkboxGroupStory from '../../CheckboxGroup/story'
-
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Forms').createPage('Checkbox', null)
