@@ -12,6 +12,7 @@ import Chip from '../Chip'
 import { CloseMinor16 } from '../Icon'
 import LabelGroup from '../LabelGroup'
 import styles from './styles'
+import { transformToTitleCase } from '../utils'
 
 type VariantType = 'grey' | 'white' | 'green' | 'yellow' | 'red'
 
@@ -29,6 +30,8 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   onDelete?: () => void
   /** Variant of the `Label` */
   variant?: VariantType
+  /** Defines if the text should be transformed to title case */
+  titleCase?: boolean
 }
 
 interface StaticProps {
@@ -50,6 +53,7 @@ export const Label = forwardRef<HTMLDivElement, Props>(function Label(
     disabled,
     onDelete,
     variant,
+    titleCase,
     ...rest
   } = props
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -79,7 +83,11 @@ export const Label = forwardRef<HTMLDivElement, Props>(function Label(
       className={className}
       style={style}
       icon={icon}
-      label={<span className={classes.innerLabel}>{children}</span>}
+      label={
+        <span className={classes.innerLabel}>
+          {titleCase ? transformToTitleCase(children) : children}
+        </span>
+      }
       deleteIcon={
         <span
           aria-label='delete icon'
@@ -96,7 +104,8 @@ export const Label = forwardRef<HTMLDivElement, Props>(function Label(
 
 Label.defaultProps = {
   children: '',
-  variant: 'grey'
+  variant: 'grey',
+  titleCase: false
 }
 
 Label.displayName = 'Label'

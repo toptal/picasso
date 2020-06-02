@@ -8,10 +8,15 @@ const renderLabel = (
   children: string,
   props: OmitInternalProps<Props, 'children'>
 ) => {
-  const { onDelete, disabled, variant } = props
+  const { onDelete, disabled, variant, titleCase } = props
 
   return render(
-    <Label onDelete={onDelete} disabled={disabled} variant={variant}>
+    <Label
+      onDelete={onDelete}
+      disabled={disabled}
+      variant={variant}
+      titleCase={titleCase}
+    >
       {children}
     </Label>
   )
@@ -27,6 +32,14 @@ test('renders `white` variant', () => {
   const { container } = renderLabel('Label', { variant: 'white' })
 
   expect(container).toMatchSnapshot()
+})
+
+test('should transform text to title case when titleCase is true', () => {
+  const { getByText } = renderLabel('some text with-the-edge case for TEST', {
+    titleCase: true
+  })
+
+  expect(getByText('Some Text with-the-Edge Case for TEST')).toBeInTheDocument()
 })
 
 describe('dismissable label', () => {

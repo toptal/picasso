@@ -4,6 +4,7 @@ import cx from 'classnames'
 import { StandardProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
+import { transformToTitleCase } from '../utils'
 
 type ComponentType = 'label' | 'span'
 
@@ -22,6 +23,8 @@ export interface Props
   inline?: boolean
   /** Component used for the root node */
   as?: ComponentType
+  /** Defines if the text should be transformed to title case */
+  titleCase?: boolean
 }
 
 export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
@@ -34,6 +37,7 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
     className,
     style,
     inline,
+    titleCase,
     as: Component = 'label',
     ...rest
   },
@@ -58,14 +62,17 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
       style={style}
     >
       {required && <span className={classes.asterisk}>*</span>}
-      <span className={classes.text}>{children}</span>
+      <span className={classes.text}>
+        {titleCase ? transformToTitleCase(children) : children}
+      </span>
     </Component>
   )
 })
 
 FormLabel.defaultProps = {
   as: 'label',
-  inline: false
+  inline: false,
+  titleCase: false
 }
 
 FormLabel.displayName = 'FormLabel'

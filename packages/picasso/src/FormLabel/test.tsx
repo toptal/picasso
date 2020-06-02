@@ -11,7 +11,8 @@ const TestFormLabel: FunctionComponent<OmitInternalProps<Props>> = ({
   required,
   disabled,
   htmlFor,
-  inline
+  inline,
+  titleCase
 }) => (
   <Form>
     <Form.Field>
@@ -20,6 +21,7 @@ const TestFormLabel: FunctionComponent<OmitInternalProps<Props>> = ({
         disabled={disabled}
         htmlFor={htmlFor}
         inline={inline}
+        titleCase={titleCase}
       >
         {children}
       </FormLabel>
@@ -55,5 +57,17 @@ describe('FormLabel', () => {
     )
 
     expect(container).toMatchSnapshot()
+  })
+
+  test('should transform text to title case when titleCase is true', () => {
+    const { getByText } = render(
+      <TestFormLabel titleCase>
+        some text with-the-edge case for TEST
+      </TestFormLabel>
+    )
+
+    expect(
+      getByText('Some Text with-the-Edge Case for TEST')
+    ).toBeInTheDocument()
   })
 })

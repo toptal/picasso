@@ -5,10 +5,15 @@ import { OmitInternalProps } from '@toptal/picasso-shared'
 import Button, { Props } from './Button'
 
 const renderButton = (children: ReactNode, props: OmitInternalProps<Props>) => {
-  const { disabled, loading, onClick } = props
+  const { disabled, loading, onClick, titleCase } = props
 
   return render(
-    <Button disabled={disabled} loading={loading} onClick={onClick}>
+    <Button
+      disabled={disabled}
+      loading={loading}
+      onClick={onClick}
+      titleCase={titleCase}
+    >
       {children}
     </Button>
   )
@@ -30,6 +35,17 @@ test('onClick callback should not be fired when clicked button is in loading sta
   fireEvent.click(getByText('Click me!'))
 
   expect(onClick).toHaveBeenCalledTimes(0)
+})
+
+test('should transform text to title case when titleCase is true', () => {
+  const { getByText } = renderButton(
+    'some text with-the-edge case for TESTING',
+    { onClick: () => {}, titleCase: true }
+  )
+
+  expect(
+    getByText('Some Text with-the-Edge Case for TESTING')
+  ).toBeInTheDocument()
 })
 
 describe('disabled button', () => {

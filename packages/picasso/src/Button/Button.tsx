@@ -21,6 +21,7 @@ import Container from '../Container'
 import Group from '../ButtonGroup'
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import styles from './styles'
+import { transformToTitleCase } from '../utils'
 
 export type VariantType =
   | 'primary-blue'
@@ -73,6 +74,8 @@ export interface Props extends BaseProps, ButtonOrAnchorProps {
   title?: string
   /** HTML type of Button component */
   type?: 'button' | 'reset' | 'submit'
+  /** Defines if the text should be transformed to title case */
+  titleCase?: boolean
 }
 
 interface StaticProps {
@@ -112,6 +115,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     title,
     value,
     type,
+    titleCase,
     as,
     ...rest
   } = props
@@ -127,7 +131,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     content: contentClass
   } = classes
 
-  const finalChildren = [children]
+  const finalChildren = [titleCase ? transformToTitleCase(children) : children]
 
   if (icon) {
     const iconComponent = React.cloneElement(icon, {
@@ -213,7 +217,8 @@ Button.defaultProps = {
   onClick: defaultOnClick,
   size: 'medium',
   type: 'button',
-  variant: 'primary-blue'
+  variant: 'primary-blue',
+  titleCase: false
 }
 
 Button.displayName = 'Button'
