@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.68.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.67.0...@toptal/picasso@4.68.0) (2020-06-03)
+
+
+### Features
+
+* forward all props for Indicator ([#1347](https://github.com/toptal/picasso/issues/1347)) ([331bbd6](https://github.com/toptal/picasso/commit/331bbd6e7ac298cfb90412a5f0ecb70f9523fc78))
+
+
+
+
+
 # [4.67.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.66.1...@toptal/picasso@4.67.0) (2020-06-03)
 
 
