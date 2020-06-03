@@ -34,7 +34,8 @@
     "react-helmet": "^5.2.1",
     "react-modal-hook": "^2.0.0",
     "react-router-dom": "^5.0.1",
-    "react-truncate": "^2.4.0"
+    "react-truncate": "^2.4.0",
+    "title-case": "^3.0.2"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.1.1",

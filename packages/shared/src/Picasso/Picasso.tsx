@@ -74,13 +74,15 @@ interface RootContextProps {
   hasPageHeader: boolean
   setHasPageHeader: (value: boolean) => void
   environment: EnvironmentType<'test' | 'temploy'>
+  titleCase?: boolean
   hasDrawer: boolean
   setHasDrawer: (value: boolean) => void
 }
-const RootContext = React.createContext<RootContextProps>({
+export const RootContext = React.createContext<RootContextProps>({
   hasPageHeader: false,
   setHasPageHeader: () => {},
   environment: 'development',
+  titleCase: false,
   hasDrawer: false,
   setHasDrawer: () => {}
 })
@@ -113,12 +115,14 @@ export const useAppConfig = () => {
   const context = useContext(RootContext)
 
   return {
-    environment: context.environment
+    environment: context.environment,
+    titleCase: context.titleCase
   }
 }
 
 interface PicassoGlobalStylesProviderProps {
   children?: ReactNode
+  titleCase?: boolean
   RootComponent: ForwardRefExoticComponent<
     PicassoRootNodeProps & RefAttributes<HTMLDivElement>
   >
@@ -150,7 +154,7 @@ const PicassoRootNode = forwardRef<HTMLDivElement, PicassoRootNodeProps>(
 const PicassoGlobalStylesProvider = (
   props: PicassoGlobalStylesProviderProps
 ) => {
-  const { children, RootComponent, environment } = props
+  const { children, RootComponent, environment, titleCase } = props
 
   const rootRef = useRef<HTMLDivElement>(null)
   const [contextValue, setContextValue] = useState({
@@ -163,6 +167,7 @@ const PicassoGlobalStylesProvider = (
       })
     },
     environment,
+    titleCase,
     hasDrawer: false,
     setHasDrawer: (hasDrawer: boolean) => {
       setContextValue({
@@ -229,6 +234,8 @@ interface PicassoProps {
   notificationContainer?: HTMLElement
   /** Component that is used to render root node  */
   RootComponent?: PicassoGlobalStylesProviderProps['RootComponent']
+  /** Whether to transform text to titleCase for Button, Label and FormLabel components */
+  titleCase?: boolean
   theme?: ThemeOptions
 }
 
@@ -242,6 +249,7 @@ const Picasso: FunctionComponent<PicassoProps> = ({
   fixViewport,
   notificationContainer,
   RootComponent,
+  titleCase,
   theme
 }) => {
   if (theme) {
@@ -265,6 +273,7 @@ const Picasso: FunctionComponent<PicassoProps> = ({
         <PicassoGlobalStylesProvider
           RootComponent={RootComponent!}
           environment={environment!}
+          titleCase={titleCase}
         >
           {fixViewport && <Viewport />}
           {loadFonts && <FontsLoader />}
