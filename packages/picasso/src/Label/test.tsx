@@ -1,13 +1,16 @@
 import React from 'react'
-import { render, fireEvent } from '@toptal/picasso/test-utils'
+import { render, fireEvent, PicassoConfig } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
+import { titleCase } from 'title-case'
 
 import Label, { Props } from './Label'
+
+jest.mock('title-case')
 
 const renderLabel = (
   children: string,
   props: OmitInternalProps<Props, 'children'>,
-  titleCase?: boolean
+  picassoConfig?: PicassoConfig
 ) => {
   const { onDelete, disabled, variant } = props
 
@@ -16,7 +19,7 @@ const renderLabel = (
       {children}
     </Label>,
     undefined,
-    titleCase
+    picassoConfig
   )
 }
 
@@ -33,13 +36,9 @@ test('renders `white` variant', () => {
 })
 
 test('should transform text to title case when titleCase is true', () => {
-  const { getByText } = renderLabel(
-    'some text with-the-edge case for TEST',
-    {},
-    true
-  )
+  renderLabel('some text with-the-edge case for TEST', {}, { titleCase: true })
 
-  expect(getByText('Some Text with-the-Edge Case for TEST')).toBeInTheDocument()
+  expect(titleCase).toBeCalledTimes(1)
 })
 
 describe('dismissable label', () => {

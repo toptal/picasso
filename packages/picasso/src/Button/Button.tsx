@@ -13,9 +13,9 @@ import {
   SizeType,
   ButtonOrAnchorProps,
   CompoundedComponentWithRef,
-  OverridableComponent
+  OverridableComponent,
+  useAppConfig
 } from '@toptal/picasso-shared'
-import { useAppConfig } from '@toptal/picasso-shared/src/Picasso'
 
 import Loader from '../Loader'
 import Container from '../Container'

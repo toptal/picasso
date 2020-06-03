@@ -6,8 +6,11 @@ import React, {
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { BaseProps, CompoundedComponentWithRef } from '@toptal/picasso-shared'
-import { useAppConfig } from '@toptal/picasso-shared/src/Picasso'
+import {
+  BaseProps,
+  CompoundedComponentWithRef,
+  useAppConfig
+} from '@toptal/picasso-shared'
 
 import Chip from '../Chip'
 import { CloseMinor16 } from '../Icon'

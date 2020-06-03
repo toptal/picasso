@@ -1,8 +1,7 @@
 import React, { forwardRef, HTMLAttributes, ReactNode } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { StandardProps } from '@toptal/picasso-shared'
-import { useAppConfig } from '@toptal/picasso-shared/src/Picasso'
+import { useAppConfig, StandardProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 import { toTitleCase } from '../utils'
