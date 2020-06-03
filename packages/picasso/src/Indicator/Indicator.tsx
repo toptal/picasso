@@ -13,11 +13,13 @@ export interface Props extends StandardProps {
 }
 
 export const Indicator = forwardRef<HTMLDivElement, Props>(function Indicator(
-  { classes, className, color, style },
+  { classes, className, color, style, ...restProps },
   ref
 ) {
   return (
     <div
+      role='img'
+      {...restProps}
       className={cx(classes.root, className, classes[color])}
       style={style}
       ref={ref}
