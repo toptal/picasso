@@ -1,5 +1,4 @@
 import CheckboxGroup from '../CheckboxGroup'
-
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const componentDocs = PicassoBook.createComponentDocs(

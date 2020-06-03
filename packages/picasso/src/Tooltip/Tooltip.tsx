@@ -1,5 +1,4 @@
 import React, {
-  Fragment,
   useState,
   FunctionComponent,
   ReactNode,
@@ -64,10 +63,10 @@ export const Tooltip: FunctionComponent<Props> = ({
   const container = usePicassoRoot()
 
   const title = (
-    <Fragment>
+    <>
       {content}
       {arrow && <span className={classes.arrow} ref={setArrowRef} />}
-    </Fragment>
+    </>
   )
 
   return (

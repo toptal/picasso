@@ -3,8 +3,7 @@ import React, {
   useRef,
   KeyboardEvent,
   useLayoutEffect,
-  ReactNode,
-  Fragment
+  ReactNode
 } from 'react'
 import PopperJs from 'popper.js'
 import formatDate from 'date-fns/format'
@@ -255,7 +254,7 @@ export const DatePicker = (props: Props) => {
   )
 
   return (
-    <Fragment>
+    <>
       <Container inline={width !== 'full'} ref={inputWrapperRef}>
         <Input
           // eslint-disable-next-line react/jsx-props-no-spreading
@@ -298,7 +297,7 @@ export const DatePicker = (props: Props) => {
           />
         </Popper>
       )}
-    </Fragment>
+    </>
   )
 }
 

@@ -6,12 +6,17 @@ import React, {
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { BaseProps, CompoundedComponentWithRef } from '@toptal/picasso-shared'
+import {
+  BaseProps,
+  CompoundedComponentWithRef,
+  useAppConfig
+} from '@toptal/picasso-shared'
 
 import Chip from '../Chip'
 import { CloseMinor16 } from '../Icon'
 import LabelGroup from '../LabelGroup'
 import styles from './styles'
+import { toTitleCase } from '../utils'
 
 type VariantType = 'grey' | 'white' | 'green' | 'yellow' | 'red'
 
@@ -56,6 +61,8 @@ export const Label = forwardRef<HTMLDivElement, Props>(function Label(
   const { color, ...htmlAttributes } = rest
   const classes = useStyles(props)
 
+  const { titleCase } = useAppConfig()
+
   const handleDelete = () => {
     if (disabled) {
       return
@@ -79,7 +86,11 @@ export const Label = forwardRef<HTMLDivElement, Props>(function Label(
       className={className}
       style={style}
       icon={icon}
-      label={<span className={classes.innerLabel}>{children}</span>}
+      label={
+        <span className={classes.innerLabel}>
+          {titleCase ? toTitleCase(children) : children}
+        </span>
+      }
       deleteIcon={
         <span
           aria-label='delete icon'

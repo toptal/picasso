@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Page, Link } from '@toptal/picasso'
 import styled from 'styled-components'
 import { screens } from '@toptal/picasso/utils'
@@ -19,7 +19,7 @@ const Example = () => (
 )
 
 const Links = () => (
-  <Fragment>
+  <>
     <StyledLink href='#' underline='none' color='white'>
       +1.888.604.3188
     </StyledLink>
@@ -39,7 +39,7 @@ const Links = () => (
     <StyledLink href='#' underline='none' color='white'>
       Toptal Training
     </StyledLink>
-  </Fragment>
+  </>
 )
 
 export default Example

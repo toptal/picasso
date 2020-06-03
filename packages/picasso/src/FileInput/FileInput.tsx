@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, Fragment } from 'react'
+import React, { forwardRef, useRef } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { InputBaseComponentProps } from '@material-ui/core/InputBase'
@@ -53,7 +53,7 @@ const FileInputContent = withStyles(styles)(
     }
 
     return (
-      <Fragment>
+      <>
         <Typography
           inline
           color='black'
@@ -72,7 +72,7 @@ const FileInputContent = withStyles(styles)(
           accept={accept}
           onChange={onChange}
         />
-      </Fragment>
+      </>
     )
   }
 )

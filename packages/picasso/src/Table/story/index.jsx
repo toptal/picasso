@@ -5,7 +5,6 @@ import tableHeadStory from '../../TableHead/story'
 import tableRowStory from '../../TableRow/story'
 import tableExpandableRowStory from '../../TableExpandableRow/story'
 import { Table } from '../Table'
-
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Components').createPage(

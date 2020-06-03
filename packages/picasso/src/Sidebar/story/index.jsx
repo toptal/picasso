@@ -2,7 +2,6 @@ import sidebarMenuStory from '../../SidebarMenu/story'
 import sidebarItemStory from '../../SidebarItem/story'
 import sidebarLogoStory from '../../SidebarLogo/story'
 import { Sidebar } from '../Sidebar'
-
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Components').createPage(

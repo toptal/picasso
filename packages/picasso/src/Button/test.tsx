@@ -1,16 +1,30 @@
 import React, { ReactNode } from 'react'
-import { render, fireEvent, RenderResult } from '@toptal/picasso/test-utils'
+import {
+  render,
+  fireEvent,
+  RenderResult,
+  PicassoConfig
+} from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
+import { titleCase } from 'title-case'
 
 import Button, { Props } from './Button'
 
-const renderButton = (children: ReactNode, props: OmitInternalProps<Props>) => {
+jest.mock('title-case')
+
+const renderButton = (
+  children: ReactNode,
+  props: OmitInternalProps<Props>,
+  picassoConfig?: PicassoConfig
+) => {
   const { disabled, loading, onClick } = props
 
   return render(
     <Button disabled={disabled} loading={loading} onClick={onClick}>
       {children}
-    </Button>
+    </Button>,
+    undefined,
+    picassoConfig
   )
 }
 
@@ -30,6 +44,16 @@ test('onClick callback should not be fired when clicked button is in loading sta
   fireEvent.click(getByText('Click me!'))
 
   expect(onClick).toHaveBeenCalledTimes(0)
+})
+
+test('should transform text to title case when titleCase is true', () => {
+  renderButton(
+    'some text with-the-edge case for TESTING',
+    { onClick: () => {} },
+    { titleCase: true }
+  )
+
+  expect(titleCase).toBeCalledTimes(1)
 })
 
 describe('disabled button', () => {

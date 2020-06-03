@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactNode, HTMLAttributes, Fragment } from 'react'
+import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import { StandardProps } from '@toptal/picasso-shared'
@@ -38,7 +38,7 @@ export const PageHeaderMenu = forwardRef<HTMLDivElement, Props>(
       )
 
     const content = isCompactLayout ? (
-      <Fragment>
+      <>
         <UserBadge
           center
           size='xsmall'
@@ -53,7 +53,7 @@ export const PageHeaderMenu = forwardRef<HTMLDivElement, Props>(
           {meta && metaContent}
         </UserBadge>
         {children}
-      </Fragment>
+      </>
     ) : (
       children
     )

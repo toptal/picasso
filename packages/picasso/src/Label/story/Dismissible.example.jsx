@@ -7,7 +7,7 @@ const Example = () => (
   </div>
 )
 
-function handleDelete() {
+const handleDelete = () => {
   window.alert('You clicked the delete icon.')
 }
 

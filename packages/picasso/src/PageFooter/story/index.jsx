@@ -1,5 +1,4 @@
 import { PageFooter } from '../PageFooter'
-
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const componentDocs = PicassoBook.createComponentDocs(PageFooter, 'Page.Footer')

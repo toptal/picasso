@@ -1,5 +1,4 @@
 import { Autocomplete } from '../Autocomplete'
-
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Forms').createPage(

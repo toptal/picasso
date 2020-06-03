@@ -28,12 +28,12 @@ interface Options extends MatchImageSnapshotOptions {
   selector?: string
 }
 
-async function screenshotDOMElement({
+const screenshotDOMElement = async ({
   isFullScreen,
   padding,
   dimensions,
   selector = '#root .chapter-container'
-}: Options) {
+}: Options) => {
   if (isFullScreen) {
     return page.screenshot()
   }
@@ -74,7 +74,7 @@ async function screenshotDOMElement({
   })
 }
 
-async function matchScreenshot(options: Options) {
+const matchScreenshot = async (options: Options) => {
   const image = await screenshotDOMElement(options)
 
   expect(image).toMatchImageSnapshot(options)

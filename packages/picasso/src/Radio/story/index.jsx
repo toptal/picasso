@@ -1,6 +1,5 @@
 import radioGroupStory from '../../RadioGroup/story'
 import { Radio } from '../Radio'
-
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Forms').createPage(

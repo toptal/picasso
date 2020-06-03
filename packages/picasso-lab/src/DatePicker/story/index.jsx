@@ -1,5 +1,4 @@
 import { DatePicker } from '../DatePicker'
-
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Lab').createPage(

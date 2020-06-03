@@ -1,5 +1,4 @@
 import { Subheader } from '../Subheader'
-
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Lab').createPage('Subheader', null)

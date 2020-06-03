@@ -1,9 +1,10 @@
 import React, { forwardRef, HTMLAttributes, ReactNode } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { StandardProps } from '@toptal/picasso-shared'
+import { useAppConfig, StandardProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
+import { toTitleCase } from '../utils'
 
 type ComponentType = 'label' | 'span'
 
@@ -41,6 +42,8 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
 ) {
   const isInline = inline || Component === 'span'
 
+  const { titleCase } = useAppConfig()
+
   return (
     <Component
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -58,7 +61,9 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
       style={style}
     >
       {required && <span className={classes.asterisk}>*</span>}
-      <span className={classes.text}>{children}</span>
+      <span className={classes.text}>
+        {titleCase ? toTitleCase(children) : children}
+      </span>
     </Component>
   )
 })

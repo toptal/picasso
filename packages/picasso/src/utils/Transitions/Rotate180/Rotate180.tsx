@@ -29,11 +29,11 @@ export const Rotate180 = (props: Props) => {
   }
 
   return (
-    <React.Fragment>
+    <>
       {React.Children.map(children, child =>
         React.cloneElement(child as ReactElement, childProps)
       )}
-    </React.Fragment>
+    </>
   )
 }
 

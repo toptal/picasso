@@ -3,8 +3,7 @@ import React, {
   ReactType,
   ReactNode,
   InputHTMLAttributes,
-  forwardRef,
-  Fragment
+  forwardRef
 } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
@@ -122,14 +121,14 @@ const OutlinedInput = forwardRef<HTMLInputElement, Props>(
   ) {
     const shouldShowReset = enableReset && !disabled
     const endAdornment = shouldShowReset ? (
-      <Fragment>
+      <>
         <ResetButton
           classes={classes}
           hasValue={Boolean(value)}
           onClick={onResetClick!}
         />
         {userDefinedEndAdornment}
-      </Fragment>
+      </>
     ) : (
       userDefinedEndAdornment
     )

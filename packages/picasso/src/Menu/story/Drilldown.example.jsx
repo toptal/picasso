@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react'
+import React, { useState } from 'react'
 import {
   Menu,
   Dropdown,
@@ -51,7 +51,7 @@ const Example = () => {
   )
 
   return (
-    <Fragment>
+    <>
       <Container bottom='small'>
         <Button onClick={handleButtonClick}>
           Toggle selected: {selected ? 'true' : 'false'}
@@ -108,7 +108,7 @@ const Example = () => {
           </Dropdown>
         </Grid.Item>
       </Grid>
-    </Fragment>
+    </>
   )
 }
 

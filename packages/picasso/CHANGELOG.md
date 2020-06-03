@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.67.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.66.1...@toptal/picasso@4.67.0) (2020-06-03)
+
+
+### Features
+
+* add titleCase configuration for Picasso ([#1354](https://github.com/toptal/picasso/issues/1354)) ([072add9](https://github.com/toptal/picasso/commit/072add9e2e7a65bc16aabf327136ab6899750503))
+
+
+
+
+
+## [4.66.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.66.0...@toptal/picasso@4.66.1) (2020-06-02)
+
+**Note:** Version bump only for package @toptal/picasso
+
+
+
+
+
 # [4.66.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.65.0...@toptal/picasso@4.66.0) (2020-06-01)
 
 

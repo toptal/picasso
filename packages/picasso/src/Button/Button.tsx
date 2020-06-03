@@ -13,7 +13,8 @@ import {
   SizeType,
   ButtonOrAnchorProps,
   CompoundedComponentWithRef,
-  OverridableComponent
+  OverridableComponent,
+  useAppConfig
 } from '@toptal/picasso-shared'
 
 import Loader from '../Loader'
@@ -21,6 +22,7 @@ import Container from '../Container'
 import Group from '../ButtonGroup'
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import styles from './styles'
+import { toTitleCase } from '../utils'
 
 export type VariantType =
   | 'primary-blue'
@@ -117,6 +119,8 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
   } = props
   const classes = useStyles(props)
 
+  const { titleCase } = useAppConfig()
+
   const {
     icon: iconClass,
     iconLeft: iconLeftClass,
@@ -127,7 +131,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     content: contentClass
   } = classes
 
-  const finalChildren = [children]
+  const finalChildren = [titleCase ? toTitleCase(children) : children]
 
   if (icon) {
     const iconComponent = React.cloneElement(icon, {

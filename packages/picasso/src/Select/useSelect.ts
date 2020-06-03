@@ -20,7 +20,7 @@ export type ItemProps = {
 
 export const EMPTY_INPUT_VALUE = ''
 
-function normalizeArrowKey(event: KeyboardEvent<HTMLInputElement>) {
+const normalizeArrowKey = (event: KeyboardEvent<HTMLInputElement>) => {
   const { key, keyCode } = event
 
   // compatibility for older browsers
@@ -40,11 +40,11 @@ function normalizeArrowKey(event: KeyboardEvent<HTMLInputElement>) {
  * @param {number} itemCount The total number of items.
  * @returns {number} The new index after the move.
  */
-function getNextWrappingIndex(
+const getNextWrappingIndex = (
   moveAmount: number,
   initialIndex: number | null,
   itemCount: number
-) {
+) => {
   const itemsLastIndex = itemCount - 1
 
   if (

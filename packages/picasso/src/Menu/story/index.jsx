@@ -1,6 +1,5 @@
 import menuItemStory from '../../MenuItem/story'
 import { Menu } from '../Menu'
-
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Components').createPage('Menu', 'Menu list.')

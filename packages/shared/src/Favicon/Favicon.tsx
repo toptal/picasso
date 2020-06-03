@@ -30,7 +30,7 @@ export const Favicon = ({ environment }: Props) => {
   useEffect(() => {
     if (resolvedEnvironment === 'test') return
 
-    async function loadIcons() {
+    const loadIcons = async () => {
       try {
         const loadedIcons = await getIcons(
           resolvedEnvironment as EnvironmentType

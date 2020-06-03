@@ -3,7 +3,7 @@ const types = require('@babel/types')
 /**
  * Add `className={cx(classes.root, className)}` to the svg tag
  */
-function decorateWithClassNameProp(svgElement) {
+const decorateWithClassNameProp = svgElement => {
   svgElement.attributes = [
     ...svgElement.attributes,
     types.jsxAttribute(
@@ -20,7 +20,7 @@ function decorateWithClassNameProp(svgElement) {
 /**
  * Add `name={value}` to the svg tag
  */
-function decorateWithIdentifierProp(svgElement, propName, identifierName) {
+const decorateWithIdentifierProp = (svgElement, propName, identifierName) => {
   svgElement.attributes = [
     ...svgElement.attributes,
     types.jsxAttribute(
@@ -32,7 +32,7 @@ function decorateWithIdentifierProp(svgElement, propName, identifierName) {
 
 const BASE_SIZES = [16, 24, 32]
 
-function getBaseSize(componentName = '') {
+const getBaseSize = (componentName = '') => {
   for (const size of BASE_SIZES) {
     if (componentName.includes(size)) {
       return Number(size)
