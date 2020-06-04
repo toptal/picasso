@@ -13,6 +13,7 @@ import {
   BaseProps,
   CompoundedComponentWithRef,
   usePicassoRoot,
+  useBreakpoint,
   SizeType
 } from '@toptal/picasso-shared'
 
@@ -170,6 +171,8 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
     }
   }, [open])
 
+  const isSmall = useBreakpoint('small')
+
   return (
     <Dialog
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -182,6 +185,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
       }}
       className={className}
       style={style}
+      fullScreen={isSmall}
       container={container || picassoRootContainer}
       PaperProps={{ ...paperProps, elevation: 2 }}
       hideBackdrop={hideBackdrop}
