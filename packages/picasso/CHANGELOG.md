@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.69.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.68.0...@toptal/picasso@4.69.0) (2020-06-04)
+
+
+### Features
+
+* add company icon ([#1356](https://github.com/toptal/picasso/issues/1356)) ([3e6fad0](https://github.com/toptal/picasso/commit/3e6fad00f6227fed72a8a6a9b382aa7e8817b353))
+
+
+
+
+
 # [4.68.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.67.0...@toptal/picasso@4.68.0) (2020-06-03)
 
 
