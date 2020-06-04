@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 59 (101010) - https://sketch.com -->
+    <title>20b0493e-35ac-44e0-8f97-4d0e02b3bfcb@1.00x</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M12,1 L12,14 L23,14 L23,23 L1,23 L1,1 L12,1 Z M11,2 L2,2 L2,22 L11,22 L11,2 Z M22,15 L12,15 L12,22 L22,22 L22,15 Z M9,18 L9,19 L4,19 L4,18 L9,18 Z M20,18 L20,19 L14,19 L14,18 L20,18 Z M9,14 L9,15 L4,15 L4,14 L9,14 Z M9,10 L9,11 L4,11 L4,10 L9,10 Z M9,6 L9,7 L4,7 L4,6 L9,6 Z" id="path-1"></path>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons-/-General-/-24-/-Company">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Combined-Shape" fill="#455065" fill-rule="nonzero" xlink:href="#path-1"></use>
+            <g id="Colors-/-305-Dark-Grey" mask="url(#mask-2)" fill="#455065">
+                <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+            </g>
+        </g>
+    </g>
+</svg>
