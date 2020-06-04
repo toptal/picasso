@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.69.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.69.0...@toptal/picasso@4.69.1) (2020-06-04)
+
+
+### Bug Fixes
+
+* **modal:** fix modal height on iPhone ([#1353](https://github.com/toptal/picasso/issues/1353)) ([9724ba8](https://github.com/toptal/picasso/commit/9724ba89200964c72710f7b571bb45430ce923e6))
+
+
+
+
+
 # [4.69.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.68.0...@toptal/picasso@4.69.0) (2020-06-04)
 
 
