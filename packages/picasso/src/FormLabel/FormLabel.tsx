@@ -1,10 +1,10 @@
 import React, { forwardRef, HTMLAttributes, ReactNode } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { useAppConfig, StandardProps } from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
-import { toTitleCase } from '../utils'
+import { toTitleCase, withGlobalProps } from '../utils'
 
 type ComponentType = 'label' | 'span'
 
@@ -13,7 +13,7 @@ export interface Props
     HTMLAttributes<HTMLLabelElement | HTMLSpanElement> {
   /** Content of the label */
   children: ReactNode
-  /** Adds asteriks if true */
+  /** Adds asterisk if true */
   required?: boolean
   /** Is this label for disabled input or not */
   disabled?: boolean
@@ -23,6 +23,8 @@ export interface Props
   inline?: boolean
   /** Component used for the root node */
   as?: ComponentType
+  /** Defines if the text should be transformed to title case */
+  titleCase?: boolean
 }
 
 export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
@@ -35,14 +37,13 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
     className,
     style,
     inline,
+    titleCase,
     as: Component = 'label',
     ...rest
   },
   ref
 ) {
   const isInline = inline || Component === 'span'
-
-  const { titleCase } = useAppConfig()
 
   return (
     <Component
@@ -75,4 +76,4 @@ FormLabel.defaultProps = {
 
 FormLabel.displayName = 'FormLabel'
 
-export default withStyles(styles)(FormLabel)
+export default withStyles(styles)(withGlobalProps<Props>(FormLabel))

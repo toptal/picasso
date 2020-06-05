@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react'
 import { render, RenderOptions, RenderResult } from '@testing-library/react'
+import { PicassoDefaultProps } from '@toptal/picasso-shared'
 
 import TestingPicasso from './TestingPicasso'
 
@@ -10,10 +11,10 @@ export type PicassoConfig = {
 const customRender = (
   ui: ReactElement,
   options?: Omit<RenderOptions, 'queries'>,
-  picassoConfig?: PicassoConfig
+  defaultProps?: PicassoDefaultProps
 ): RenderResult =>
   render(
-    <TestingPicasso titleCase={picassoConfig?.titleCase}>{ui}</TestingPicasso>,
+    <TestingPicasso defaultProps={defaultProps}>{ui}</TestingPicasso>,
     options
   )
 

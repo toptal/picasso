@@ -6,20 +6,17 @@ import React, {
   AnchorHTMLAttributes,
   ElementType,
   MouseEvent
+  FunctionComponent
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import {
-  BaseProps,
-  CompoundedComponentWithRef,
-  useAppConfig
-} from '@toptal/picasso-shared'
+import { BaseProps, CompoundedComponentWithRef } from '@toptal/picasso-shared'
 
 import Chip from '../Chip'
 import { CloseMinor16 } from '../Icon'
 import LabelGroup from '../LabelGroup'
 import styles from './styles'
-import { toTitleCase } from '../utils'
+import { toTitleCase, withGlobalProps } from '../utils'
 
 type VariantType = 'grey' | 'white' | 'green' | 'yellow' | 'red'
 
@@ -42,6 +39,8 @@ export interface Props extends BaseProps, DivOrAnchorProps {
   onDelete?: () => void
   /** Variant of the `Label` */
   variant?: VariantType
+  /** Defines if the text should be transformed to title case */
+  titleCase?: boolean
 }
 
 interface StaticProps {
@@ -64,6 +63,7 @@ export const Label = forwardRef<HTMLDivElement, Props>(function Label(
     onDelete,
     variant,
     as,
+    titleCase,
     ...rest
   } = props
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -126,4 +126,6 @@ Label.displayName = 'Label'
 
 Label.Group = LabelGroup
 
-export default Label
+export default (withGlobalProps(
+  Label as FunctionComponent
+) as unknown) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>

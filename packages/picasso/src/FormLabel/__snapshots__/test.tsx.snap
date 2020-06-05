@@ -149,7 +149,7 @@ exports[`FormLabel required 1`] = `
 </div>
 `;
 
-exports[`FormLabel requried and disabled 1`] = `
+exports[`FormLabel required and disabled 1`] = `
 <div>
   <div
     class="Picasso-root"

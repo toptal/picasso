@@ -12,17 +12,15 @@ import {
   BaseProps,
   SizeType,
   ButtonOrAnchorProps,
-  CompoundedComponentWithRef,
-  OverridableComponent,
-  useAppConfig
+  CompoundedComponentWithRef
 } from '@toptal/picasso-shared'
 
 import Loader from '../Loader'
 import Container from '../Container'
 import Group from '../ButtonGroup'
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
-import toTitleCase from '../utils/to-title-case'
 import styles from './styles'
+import { toTitleCase, withGlobalProps } from '../utils'
 
 export type VariantType =
   | 'primary-blue'
@@ -75,6 +73,8 @@ export interface Props extends BaseProps, ButtonOrAnchorProps {
   title?: string
   /** HTML type of Button component */
   type?: 'button' | 'reset' | 'submit'
+  /** Defines if the text should be transformed to title case */
+  titleCase?: boolean
 }
 
 interface StaticProps {
@@ -87,7 +87,9 @@ const getVariantType = (variant: VariantType) => {
   return type
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoButton' })
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'PicassoButton'
+})
 
 const defaultOnClick = () => {}
 
@@ -114,12 +116,11 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     title,
     value,
     type,
+    titleCase,
     as,
     ...rest
   } = props
   const classes = useStyles(props)
-
-  const { titleCase } = useAppConfig()
 
   const {
     icon: iconClass,
@@ -224,4 +225,8 @@ Button.displayName = 'Button'
 
 Button.Group = Group
 
-export default Button as OverridableComponent<Props> & StaticProps
+export default withGlobalProps<Props>(Button) as CompoundedComponentWithRef<
+  Props,
+  HTMLButtonElement,
+  StaticProps
+>

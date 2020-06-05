@@ -25,6 +25,7 @@ export { default as isSubstring } from './is-substring'
 export { default as getNameInitials } from './get-name-initials'
 export { default as kebabToCamelCase } from './kebab-to-camel-case'
 export { default as toTitleCase } from './to-title-case'
+export { default as withGlobalProps } from './with-global-props'
 export { capitalize } from './capitalize'
 
 export const Transitions = TransitionUtils

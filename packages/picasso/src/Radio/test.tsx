@@ -1,14 +1,33 @@
 import React from 'react'
 import { render, fireEvent, RenderResult } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import { OmitInternalProps, PicassoDefaultProps } from '@toptal/picasso-shared'
+import { titleCase } from 'title-case'
 
 import Radio, { Props } from './Radio'
 
-const renderRadio = (props: OmitInternalProps<Props>) => {
-  const { disabled, onChange } = props
+jest.mock('title-case')
 
-  return render(<Radio disabled={disabled} onChange={onChange} />)
+const renderRadio = (
+  props: OmitInternalProps<Props>,
+  picassoDefaultProps?: PicassoDefaultProps
+) => {
+  const { disabled, onChange, label, titleCase } = props
+
+  return render(
+    <Radio
+      disabled={disabled}
+      label={label}
+      titleCase={titleCase}
+      onChange={onChange}
+    />,
+    undefined,
+    picassoDefaultProps
+  )
 }
+
+afterEach(() => {
+  jest.resetAllMocks()
+})
 
 describe('disabled radio button', () => {
   let onChange: () => void
@@ -41,6 +60,27 @@ describe('radio button', () => {
     const { container } = renderRadio({})
 
     expect(container).toMatchSnapshot()
+  })
+
+  test('renders default radio button', () => {
+    const { container } = renderRadio({})
+
+    expect(container).toMatchSnapshot()
+  })
+
+  test('should transform label text to title case when default titleCase property is true', () => {
+    renderRadio({ label: 'test label' }, { Radio: { titleCase: true } })
+
+    expect(titleCase).toBeCalledTimes(1)
+  })
+
+  test('should not transform label text to title case when default titleCase property is true but the component property overrides it', () => {
+    renderRadio(
+      { label: 'test label', titleCase: false },
+      { Radio: { titleCase: true } }
+    )
+
+    expect(titleCase).toBeCalledTimes(0)
   })
 })
 

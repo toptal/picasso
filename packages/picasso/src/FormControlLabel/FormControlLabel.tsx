@@ -11,6 +11,7 @@ import cx from 'classnames'
 
 import styles from './styles'
 import Form from '../Form'
+import { withGlobalProps } from '../utils'
 
 export type FormControlLabelAttributesType = LabelHTMLAttributes<
   HTMLLabelElement
@@ -26,6 +27,8 @@ export interface Props extends StandardProps, FormControlLabelAttributesType {
   disabled?: boolean
   /** Shows whether label is required or not */
   required?: boolean
+  /** Defines if the text should be transformed to title case */
+  titleCase?: boolean
 }
 
 const FormControlLabel: FunctionComponent<Props> = props => {
@@ -37,6 +40,7 @@ const FormControlLabel: FunctionComponent<Props> = props => {
     style,
     disabled,
     required,
+    titleCase,
     ...rest
   } = props
 
@@ -59,6 +63,7 @@ const FormControlLabel: FunctionComponent<Props> = props => {
         as='span'
         required={required}
         disabled={disabled}
+        titleCase={titleCase}
       >
         {label}
       </Form.Label>
@@ -66,4 +71,6 @@ const FormControlLabel: FunctionComponent<Props> = props => {
   )
 }
 
-export default withStyles(styles)(FormControlLabel)
+FormControlLabel.displayName = 'FormControlLabel'
+
+export default withStyles(styles)(withGlobalProps<Props>(FormControlLabel))

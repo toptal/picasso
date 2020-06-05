@@ -13,6 +13,7 @@ const TestFormLabel: FunctionComponent<OmitInternalProps<Props>> = ({
   children,
   required,
   disabled,
+  titleCase,
   htmlFor,
   inline
 }) => (
@@ -21,6 +22,7 @@ const TestFormLabel: FunctionComponent<OmitInternalProps<Props>> = ({
       <FormLabel
         required={required}
         disabled={disabled}
+        titleCase={titleCase}
         htmlFor={htmlFor}
         inline={inline}
       >
@@ -30,6 +32,10 @@ const TestFormLabel: FunctionComponent<OmitInternalProps<Props>> = ({
     </Form.Field>
   </Form>
 )
+
+afterEach(() => {
+  jest.resetAllMocks()
+})
 
 describe('FormLabel', () => {
   test('default render', () => {
@@ -50,7 +56,7 @@ describe('FormLabel', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('requried and disabled', () => {
+  test('required and disabled', () => {
     const { container } = render(
       <TestFormLabel required disabled>
         Label
@@ -60,13 +66,25 @@ describe('FormLabel', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('should transform text to title case when titleCase is true', () => {
+  test('should transform text to title case when default titleCase property is true', () => {
     render(
       <TestFormLabel>some text with-the-edge case for TEST</TestFormLabel>,
       undefined,
-      { titleCase: true }
+      { FormLabel: { titleCase: true } }
     )
 
     expect(titleCase).toBeCalledTimes(1)
+  })
+
+  test('should transform text to title case when default titleCase property is true but the component property overrides it', () => {
+    render(
+      <TestFormLabel titleCase={false}>
+        some text with-the-edge case for TEST
+      </TestFormLabel>,
+      undefined,
+      { FormLabel: { titleCase: true } }
+    )
+
+    expect(titleCase).toBeCalledTimes(0)
   })
 })
