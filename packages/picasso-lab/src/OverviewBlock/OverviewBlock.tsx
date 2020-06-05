@@ -99,9 +99,6 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
         )}
         onClick={onClick}
       >
-        <Typography size='large' weight='semibold' color={color.value}>
-          {value}
-        </Typography>
         <Typography
           size='small'
           weight='semibold'
@@ -109,6 +106,9 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
           color={color.label}
         >
           {label}
+        </Typography>
+        <Typography size='large' weight='semibold' color={color.value}>
+          {value}
         </Typography>
       </Component>
     )
