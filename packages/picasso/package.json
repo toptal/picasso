@@ -31,7 +31,7 @@
     "@toptal/picasso-shared": "^1.14.0",
     "classnames": "^2.2.6",
     "notistack": "^0.9.11",
-    "react-helmet": "^5.2.1",
+    "react-helmet": "^6.1.0",
     "react-modal-hook": "^2.0.0",
     "react-router-dom": "^5.0.1",
     "react-truncate": "^2.4.0",
