@@ -52,12 +52,18 @@ const TagSelectorCustomOptionRendererExample = () => {
         inputValue={inputValue}
         getKey={(item: Item) => (item as Country).code}
         getDisplayValue={getDisplayValue}
-        renderLabel={({ item, displayValue, onDelete }) => {
+        renderLabel={({ item, displayValue, disabled, onDelete }) => {
           const { href, required } = item as Country
 
           return (
-            <TagSelector.Label onDelete={required ? undefined : onDelete}>
-              {href ? <Link href={href}>{displayValue}</Link> : displayValue}
+            <TagSelector.Label
+              disabled={disabled}
+              onDelete={required ? undefined : onDelete}
+              // @ts-ignore
+              href={href}
+              as={Link}
+            >
+              {displayValue}
             </TagSelector.Label>
           )
         }}
