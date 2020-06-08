@@ -4,22 +4,19 @@ import React, {
   ComponentType,
   InputHTMLAttributes,
   ReactNode,
-  FocusEventHandler
+  FocusEventHandler,
+  Fragment
 } from 'react'
-import { makeStyles } from '@material-ui/styles'
-import { BaseProps } from '@toptal/picasso-shared'
+import { BaseProps, CompoundedComponentWithRef } from '@toptal/picasso-shared'
 
-import Label from '../Label'
 import Autocomplete, { Item as AutocompleteItem } from '../Autocomplete'
 import TagSelectorInput from '../TagSelectorInput'
 import { Props as InputProps } from '../Input'
-import styles from './styles'
+import TagSelectorLabel from '../TagSelectorLabel'
 
 export interface Item extends AutocompleteItem {
   value?: string
 }
-
-const useStyles = makeStyles(styles)
 
 const EMPTY_INPUT_VALUE = ''
 
@@ -70,6 +67,17 @@ export interface Props
   getKey?: (item: Item) => string
   /** Callback responsible for rendering the option given the option and its index in the list of options */
   renderOption?: (option: Item, index: number) => ReactNode
+  /** Callback responsible for rendering the label given the option and Label props */
+  renderLabel?: (props: {
+    item: Item
+    displayValue: string
+    onDelete: () => void
+    disabled?: boolean
+  }) => ReactNode
+}
+
+interface StaticProps {
+  Label: typeof TagSelectorLabel
 }
 
 export const TagSelector = forwardRef<HTMLInputElement, Props>(
@@ -93,10 +101,9 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       enableAutofill,
       getKey: customGetKey,
       renderOption,
+      renderLabel: customRenderLabel,
       ...rest
     } = props
-
-    const classes = useStyles(props)
 
     const handleDelete = (value: Item) => {
       if (disabled) return
@@ -149,20 +156,25 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
     const autocompleteOptions: AutocompleteItem[] | null =
       options && options.filter(option => !isIncluded(values, option))
 
-    const labels = (
-      <>
-        {values.map(item => (
-          <Label
-            className={classes.label}
-            key={getKey!(item)}
-            disabled={disabled}
-            onDelete={() => handleDelete(item)}
-          >
-            {getDisplayValue!(item)}
-          </Label>
-        ))}
-      </>
-    )
+    const renderLabel = (item: Item) => {
+      const displayValue = getDisplayValue!(item)
+      const handleItemDelete = () => handleDelete(item)
+
+      if (customRenderLabel) {
+        return customRenderLabel({
+          disabled,
+          item,
+          displayValue,
+          onDelete: handleItemDelete
+        })
+      }
+
+      return (
+        <TagSelectorLabel disabled={disabled} onDelete={handleItemDelete}>
+          {displayValue}
+        </TagSelectorLabel>
+      )
+    }
 
     return (
       <Autocomplete
@@ -178,7 +190,13 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         onKeyDown={handleKeyDown}
         onFocus={onFocus}
         onBlur={onBlur}
-        startAdornment={labels}
+        startAdornment={
+          <>
+            {values.map(item => (
+              <Fragment key={getKey!(item)}>{renderLabel(item)}</Fragment>
+            ))}
+          </>
+        }
         loading={loading}
         disabled={disabled}
         inputComponent={TagSelectorInput as ComponentType<InputProps>}
@@ -193,7 +211,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       />
     )
   }
-)
+) as CompoundedComponentWithRef<Props, HTMLInputElement, StaticProps>
 
 TagSelector.defaultProps = {
   enableAutofill: false,
@@ -209,5 +227,7 @@ TagSelector.defaultProps = {
 }
 
 TagSelector.displayName = 'TagSelector'
+
+TagSelector.Label = TagSelectorLabel
 
 export default TagSelector
