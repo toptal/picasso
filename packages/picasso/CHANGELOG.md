@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.69.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.69.1...@toptal/picasso@4.69.2) (2020-06-08)
+
+
+### Bug Fixes
+
+* **button:** eliminate circular dependency on utils ([#1363](https://github.com/toptal/picasso/issues/1363)) ([8ce21cf](https://github.com/toptal/picasso/commit/8ce21cf8ab6773deb5c8a65e02827df10d091fbc))
+
+
+
+
+
 ## [4.69.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.69.0...@toptal/picasso@4.69.1) (2020-06-04)
 
 
