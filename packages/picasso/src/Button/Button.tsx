@@ -21,8 +21,8 @@ import Loader from '../Loader'
 import Container from '../Container'
 import Group from '../ButtonGroup'
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
+import toTitleCase from '../utils/to-title-case'
 import styles from './styles'
-import { toTitleCase } from '../utils'
 
 export type VariantType =
   | 'primary-blue'
