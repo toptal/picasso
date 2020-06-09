@@ -1,5 +1,6 @@
 import { TagSelector } from '../TagSelector'
 import PicassoBook from '~/.storybook/components/PicassoBook'
+import tagSelectorLabelStory from '../../TagSelectorLabel/story'
 
 const page = PicassoBook.section('Forms').createPage(
   'TagSelector',
@@ -9,6 +10,7 @@ const page = PicassoBook.section('Forms').createPage(
 page
   .createTabChapter('Props')
   .addComponentDocs({ component: TagSelector, name: 'TagSelector' })
+  .addComponentDocs(tagSelectorLabelStory.componentDocs)
 
 page
   .createChapter()
@@ -66,6 +68,10 @@ page
   .addExample(
     'TagSelector/story/CustomOptionRenderer.example.tsx',
     'Custom option rendering'
+  )
+  .addExample(
+    'TagSelector/story/CustomLabelRenderer.example.tsx',
+    'Custom label rendering'
   )
   .addExample('TagSelector/story/Loading.example.jsx', 'Loading')
   .addExample('TagSelector/story/Disabled.example.jsx', 'Disabled')

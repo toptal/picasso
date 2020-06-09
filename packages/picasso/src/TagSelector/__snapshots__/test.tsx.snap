@@ -67,7 +67,7 @@ exports[`TagSelector disabled render 1`] = `
           class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium PicassoTagSelectorInput-inputBase Mui-disabled Mui-disabled MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
         >
           <div
-            class="MuiChip-root PicassoLabel-root PicassoLabel-disabled makeStyles-label MuiChip-deletable"
+            class="MuiChip-root PicassoLabel-root PicassoLabel-disabled PicassoTagSelectorLabel-label MuiChip-deletable"
             role="button"
             tabindex="0"
           >
@@ -147,7 +147,7 @@ exports[`TagSelector preselected value 1`] = `
             class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium PicassoTagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
           >
             <div
-              class="MuiChip-root PicassoLabel-root makeStyles-label MuiChip-deletable"
+              class="MuiChip-root PicassoLabel-root PicassoTagSelectorLabel-label MuiChip-deletable"
               role="button"
               tabindex="0"
             >

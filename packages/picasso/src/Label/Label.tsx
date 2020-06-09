@@ -2,7 +2,10 @@ import React, {
   forwardRef,
   ReactNode,
   ReactElement,
-  HTMLAttributes
+  HTMLAttributes,
+  AnchorHTMLAttributes,
+  ElementType,
+  MouseEvent
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
@@ -20,7 +23,12 @@ import { toTitleCase } from '../utils'
 
 type VariantType = 'grey' | 'white' | 'green' | 'yellow' | 'red'
 
-export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
+export type DivOrAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> &
+  HTMLAttributes<HTMLDivElement>
+
+export interface Props extends BaseProps, DivOrAnchorProps {
+  /** The component used for the root node. Either a string to use a DOM element or a component. */
+  as?: ElementType
   /** Text content of the `Label` component */
   children: ReactNode
   /** Specify the icon which should be rendered inside Label */
@@ -55,6 +63,7 @@ export const Label = forwardRef<HTMLDivElement, Props>(function Label(
     disabled,
     onDelete,
     variant,
+    as,
     ...rest
   } = props
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -63,12 +72,13 @@ export const Label = forwardRef<HTMLDivElement, Props>(function Label(
 
   const { titleCase } = useAppConfig()
 
-  const handleDelete = () => {
+  const handleDelete = (event: MouseEvent) => {
     if (disabled) {
       return
     }
 
     if (onDelete) {
+      event.preventDefault()
       onDelete()
     }
   }
@@ -100,12 +110,14 @@ export const Label = forwardRef<HTMLDivElement, Props>(function Label(
           <CloseMinor16 />
         </span>
       }
+      component={as!}
       onDelete={onDelete ? handleDelete : undefined}
     />
   )
 }) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
 
 Label.defaultProps = {
+  as: 'div',
   children: '',
   variant: 'grey'
 }
