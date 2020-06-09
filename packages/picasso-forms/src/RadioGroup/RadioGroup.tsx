@@ -17,7 +17,7 @@ export const RadioGroup = (props: Props) => {
     <FieldWrapper {...rest} type='radio'>
       {radioGroupProps => {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { error, ...restRadioGroupProps } = radioGroupProps
+        const { error, id, ...restRadioGroupProps } = radioGroupProps
 
         return (
           // eslint-disable-next-line react/jsx-props-no-spreading
