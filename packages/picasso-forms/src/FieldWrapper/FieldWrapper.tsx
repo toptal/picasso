@@ -170,6 +170,7 @@ const FieldWrapper = <
   })
 
   const childProps: Record<string, unknown> = {
+    id,
     ...rest,
     ...input,
     ...getProps({ hideFieldLabel, error, label, required }),
