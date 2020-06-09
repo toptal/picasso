@@ -25,9 +25,25 @@ const allOptions: Country[] = [
     code: 'HR',
     href: 'https://en.wikipedia.org/wiki/Croatia'
   },
-  { country: 'Lithuania', capital: 'Vilnius', code: 'LU' },
-  { country: 'Slovakia', capital: 'Bratislava', code: 'SK' },
-  { country: 'Ukraine', capital: 'Kyiv', code: 'UA' }
+  {
+    country: 'Lithuania',
+    capital: 'Vilnius',
+    code: 'LU',
+    href: 'https://en.wikipedia.org/wiki/Lithuania',
+    required: true
+  },
+  {
+    country: 'Slovakia',
+    capital: 'Bratislava',
+    code: 'SK',
+    href: 'https://en.wikipedia.org/wiki/Slovakia'
+  },
+  {
+    country: 'Ukraine',
+    capital: 'Kyiv',
+    code: 'UA',
+    href: 'https://en.wikipedia.org/wiki/Ukraine'
+  }
 ]
 
 const EMPTY_INPUT_VALUE = ''
@@ -59,7 +75,6 @@ const TagSelectorCustomOptionRendererExample = () => {
             <TagSelector.Label
               disabled={disabled}
               onDelete={required ? undefined : onDelete}
-              // @ts-ignore
               href={href}
               as={Link}
             >

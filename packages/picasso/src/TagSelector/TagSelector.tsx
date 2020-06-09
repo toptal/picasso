@@ -190,13 +190,9 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         onKeyDown={handleKeyDown}
         onFocus={onFocus}
         onBlur={onBlur}
-        startAdornment={
-          <>
-            {values.map(item => (
-              <Fragment key={getKey!(item)}>{renderLabel(item)}</Fragment>
-            ))}
-          </>
-        }
+        startAdornment={values.map(item => (
+          <Fragment key={getKey!(item)}>{renderLabel(item)}</Fragment>
+        ))}
         loading={loading}
         disabled={disabled}
         inputComponent={TagSelectorInput as ComponentType<InputProps>}

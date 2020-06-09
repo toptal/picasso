@@ -3,6 +3,7 @@ import React, {
   ReactNode,
   ReactElement,
   HTMLAttributes,
+  AnchorHTMLAttributes,
   ElementType,
   MouseEvent
 } from 'react'
@@ -22,7 +23,10 @@ import { toTitleCase } from '../utils'
 
 type VariantType = 'grey' | 'white' | 'green' | 'yellow' | 'red'
 
-export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
+export type DivOrAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> &
+  HTMLAttributes<HTMLDivElement>
+
+export interface Props extends BaseProps, DivOrAnchorProps {
   /** The component used for the root node. Either a string to use a DOM element or a component. */
   as?: ElementType
   /** Text content of the `Label` component */
