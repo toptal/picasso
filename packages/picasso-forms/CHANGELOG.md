@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.4](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.17.3...@toptal/picasso-forms@0.17.4) (2020-06-09)
+
+
+### Bug Fixes
+
+* pass id to wrapped form fields ([#1370](https://github.com/toptal/picasso/issues/1370)) ([e9339f8](https://github.com/toptal/picasso/commit/e9339f8c44351c5e768d75dc7ab84e5b3ad9fbb7))
+
+
+
+
+
 ## [0.17.3](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.17.2...@toptal/picasso-forms@0.17.3) (2020-06-08)
 
 
