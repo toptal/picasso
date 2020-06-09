@@ -16,7 +16,8 @@ import Chip from '../Chip'
 import { CloseMinor16 } from '../Icon'
 import LabelGroup from '../LabelGroup'
 import styles from './styles'
-import { toTitleCase, withGlobalProps } from '../utils'
+import toTitleCase from '../utils/to-title-case'
+import withGlobalProps from '../utils/with-global-props'
 
 type VariantType = 'grey' | 'white' | 'green' | 'yellow' | 'red'
 

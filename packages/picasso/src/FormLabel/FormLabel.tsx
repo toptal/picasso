@@ -4,7 +4,8 @@ import cx from 'classnames'
 import { StandardProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
-import { toTitleCase, withGlobalProps } from '../utils'
+import toTitleCase from '../utils/to-title-case'
+import withGlobalProps from '../utils/with-global-props'
 
 type ComponentType = 'label' | 'span'
 

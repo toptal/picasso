@@ -16,7 +16,11 @@ const withGlobalProps = <ComponentProps extends {}>(
   ) {
     const { defaultProps = {} } = useAppConfig()
     if (!Component.displayName) {
-      throw new Error('Unable to get the displayName of the component')
+      console.error(
+        'Unable to get the displayName of the component:',
+        Component
+      )
+      return <Component {...(props as ComponentProps)} ref={ref} /> // eslint-disable-line react/jsx-props-no-spreading
     }
 
     const modifiableProps: KeyValue = {}
