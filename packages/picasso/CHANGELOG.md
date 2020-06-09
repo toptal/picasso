@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.70.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.69.4...@toptal/picasso@4.70.0) (2020-06-09)
+
+
+### Features
+
+* **TagSelector:** add custom label render ([#1367](https://github.com/toptal/picasso/issues/1367)) ([3f2f8fb](https://github.com/toptal/picasso/commit/3f2f8fb3ea08de60ef2bed1b11aa28c798e542b9))
+
+
+
+
+
 ## [4.69.4](https://github.com/toptal/picasso/compare/@toptal/picasso@4.69.3...@toptal/picasso@4.69.4) (2020-06-09)
 
 
