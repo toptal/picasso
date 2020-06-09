@@ -26,6 +26,7 @@ exports[`FormRadio default render 1`] = `
         </label>
         <div
           class="MuiFormGroup-root"
+          id="color"
           role="radiogroup"
           type="radio"
         >
