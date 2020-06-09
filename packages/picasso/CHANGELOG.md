@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.69.4](https://github.com/toptal/picasso/compare/@toptal/picasso@4.69.3...@toptal/picasso@4.69.4) (2020-06-09)
+
+
+### Bug Fixes
+
+* **input:** set background color to white ([#1369](https://github.com/toptal/picasso/issues/1369)) ([9083580](https://github.com/toptal/picasso/commit/90835807bf2ad4a2bb0413dac3984fb4a03c5c69)), closes [#1368](https://github.com/toptal/picasso/issues/1368)
+
+
+
+
+
 ## [4.69.3](https://github.com/toptal/picasso/compare/@toptal/picasso@4.69.2...@toptal/picasso@4.69.3) (2020-06-08)
 
 **Note:** Version bump only for package @toptal/picasso
