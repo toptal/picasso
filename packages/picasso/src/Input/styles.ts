@@ -8,7 +8,8 @@ import '../InputAdornment/styles'
 export default ({ palette }: Theme) =>
   createStyles({
     root: {
-      fontSize: '1rem'
+      fontSize: '1rem',
+      backgroundColor: palette.common.white
     },
     rootMultiline: {
       height: 'auto'
