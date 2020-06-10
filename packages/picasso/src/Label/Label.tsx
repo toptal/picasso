@@ -6,18 +6,20 @@ import React, {
   AnchorHTMLAttributes,
   ElementType,
   MouseEvent
-  FunctionComponent
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { BaseProps, CompoundedComponentWithRef } from '@toptal/picasso-shared'
+import {
+  BaseProps,
+  CompoundedComponentWithRef,
+  useAppConfig
+} from '@toptal/picasso-shared'
 
 import Chip from '../Chip'
 import { CloseMinor16 } from '../Icon'
 import LabelGroup from '../LabelGroup'
 import styles from './styles'
 import toTitleCase from '../utils/to-title-case'
-import withGlobalProps from '../utils/with-global-props'
 
 type VariantType = 'grey' | 'white' | 'green' | 'yellow' | 'red'
 
@@ -71,7 +73,9 @@ export const Label = forwardRef<HTMLDivElement, Props>(function Label(
   const { color, ...htmlAttributes } = rest
   const classes = useStyles(props)
 
-  const { titleCase } = useAppConfig()
+  const { titleCase: picassoTitleCaseConfig } = useAppConfig()
+  const transformToTitleCase =
+    titleCase === undefined ? picassoTitleCaseConfig : titleCase
 
   const handleDelete = (event: MouseEvent) => {
     if (disabled) {
@@ -99,7 +103,7 @@ export const Label = forwardRef<HTMLDivElement, Props>(function Label(
       icon={icon}
       label={
         <span className={classes.innerLabel}>
-          {titleCase ? toTitleCase(children) : children}
+          {transformToTitleCase ? toTitleCase(children) : children}
         </span>
       }
       deleteIcon={
@@ -127,6 +131,4 @@ Label.displayName = 'Label'
 
 Label.Group = LabelGroup
 
-export default (withGlobalProps(
-  Label as FunctionComponent
-) as unknown) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
+export default Label

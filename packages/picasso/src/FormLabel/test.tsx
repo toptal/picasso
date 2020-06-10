@@ -33,10 +33,6 @@ const TestFormLabel: FunctionComponent<OmitInternalProps<Props>> = ({
   </Form>
 )
 
-afterEach(() => {
-  jest.resetAllMocks()
-})
-
 describe('FormLabel', () => {
   test('default render', () => {
     const { container } = render(<TestFormLabel>Label</TestFormLabel>)
@@ -66,25 +62,27 @@ describe('FormLabel', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('should transform text to title case when default titleCase property is true', () => {
+  test('should transform text to title case when Picasso titleCase property is true', () => {
     render(
       <TestFormLabel>some text with-the-edge case for TEST</TestFormLabel>,
       undefined,
-      { FormLabel: { titleCase: true } }
+      { titleCase: true }
     )
 
     expect(titleCase).toBeCalledTimes(1)
+    jest.resetAllMocks()
   })
 
-  test('should transform text to title case when default titleCase property is true but the component property overrides it', () => {
+  test('should transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {
     render(
       <TestFormLabel titleCase={false}>
         some text with-the-edge case for TEST
       </TestFormLabel>,
       undefined,
-      { FormLabel: { titleCase: true } }
+      { titleCase: true }
     )
 
     expect(titleCase).toBeCalledTimes(0)
+    jest.resetAllMocks()
   })
 })

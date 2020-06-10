@@ -1,6 +1,11 @@
 import React, { ReactNode } from 'react'
-import { render, fireEvent, RenderResult } from '@toptal/picasso/test-utils'
-import { OmitInternalProps, PicassoDefaultProps } from '@toptal/picasso-shared'
+import {
+  render,
+  fireEvent,
+  RenderResult,
+  PicassoConfig
+} from '@toptal/picasso/test-utils'
+import { OmitInternalProps } from '@toptal/picasso-shared'
 import { titleCase } from 'title-case'
 
 import Button, { Props } from './Button'
@@ -10,7 +15,7 @@ jest.mock('title-case')
 const renderButton = (
   children: ReactNode,
   props: OmitInternalProps<Props>,
-  picassoDefaultProps?: PicassoDefaultProps
+  picassoConfig?: PicassoConfig
 ) => {
   const { disabled, loading, onClick, titleCase } = props
 
@@ -24,13 +29,9 @@ const renderButton = (
       {children}
     </Button>,
     undefined,
-    picassoDefaultProps
+    picassoConfig
   )
 }
-
-afterEach(() => {
-  jest.resetAllMocks()
-})
 
 test('onClick callback should be fired after clicking the button', () => {
   const onClick = jest.fn()
@@ -50,24 +51,26 @@ test('onClick callback should not be fired when clicked button is in loading sta
   expect(onClick).toHaveBeenCalledTimes(0)
 })
 
-test('should transform text to title case when default titleCase property is true', () => {
+test('should transform text to title case when Picasso titleCase property is true', () => {
   renderButton(
     'some text with-the-edge case for TESTING',
     { onClick: () => {} },
-    { Button: { titleCase: true } }
+    { titleCase: true }
   )
 
   expect(titleCase).toBeCalledTimes(1)
+  jest.resetAllMocks()
 })
 
-test('should not transform text to title case when default titleCase property is true but the component property overrides it', () => {
+test('should not transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {
   renderButton(
     'some text with-the-edge case for TESTING',
     { onClick: () => {}, titleCase: false },
-    { Button: { titleCase: true } }
+    { titleCase: true }
   )
 
   expect(titleCase).toBeCalledTimes(0)
+  jest.resetAllMocks()
 })
 
 describe('disabled button', () => {

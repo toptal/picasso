@@ -12,16 +12,17 @@ import {
   BaseProps,
   SizeType,
   ButtonOrAnchorProps,
-  CompoundedComponentWithRef
+  CompoundedComponentWithRef,
+  OverridableComponent,
+  useAppConfig
 } from '@toptal/picasso-shared'
 
 import Loader from '../Loader'
 import Container from '../Container'
 import Group from '../ButtonGroup'
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
-import styles from './styles'
 import toTitleCase from '../utils/to-title-case'
-import withGlobalProps from '../utils/with-global-props'
+import styles from './styles'
 
 export type VariantType =
   | 'primary-blue'
@@ -88,9 +89,7 @@ const getVariantType = (variant: VariantType) => {
   return type
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoButton'
-})
+const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoButton' })
 
 const defaultOnClick = () => {}
 
@@ -133,7 +132,12 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     content: contentClass
   } = classes
 
-  const finalChildren = [titleCase ? toTitleCase(children) : children]
+  const { titleCase: picassoTitleCaseConfig } = useAppConfig()
+  const transformToTitleCase =
+    titleCase === undefined ? picassoTitleCaseConfig : titleCase
+  const finalChildren = [
+    transformToTitleCase ? toTitleCase(children) : children
+  ]
 
   if (icon) {
     const iconComponent = React.cloneElement(icon, {
@@ -226,8 +230,4 @@ Button.displayName = 'Button'
 
 Button.Group = Group
 
-export default withGlobalProps<Props>(Button) as CompoundedComponentWithRef<
-  Props,
-  HTMLButtonElement,
-  StaticProps
->
+export default Button as OverridableComponent<Props> & StaticProps

@@ -12,7 +12,6 @@ import cx from 'classnames'
 import RadioGroup from '../RadioGroup'
 import FormControlLabel from '../FormControlLabel'
 import styles from './styles'
-import { withGlobalProps } from '../utils'
 
 export interface Props
   extends StandardProps,
@@ -106,6 +105,8 @@ Radio.displayName = 'Radio'
 
 Radio.Group = RadioGroup
 
-export default withStyles(styles)(
-  withGlobalProps<Props>(Radio)
-) as PicassoComponentWithRef<Props, HTMLButtonElement, StaticProps>
+export default withStyles(styles)(Radio) as PicassoComponentWithRef<
+  Props,
+  HTMLButtonElement,
+  StaticProps
+>

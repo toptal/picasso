@@ -1,19 +1,19 @@
 import React, { FunctionComponent } from 'react'
-import Picasso, { PicassoDefaultProps } from '@toptal/picasso-shared'
+import Picasso from '@toptal/picasso-shared'
 
 interface TestingPicassoProps {
-  defaultProps?: PicassoDefaultProps
+  titleCase?: boolean
 }
 
 export const TestingPicasso: FunctionComponent<TestingPicassoProps> = ({
   children,
-  defaultProps
+  titleCase
 }) => (
   <Picasso
     loadFavicon={false}
     loadFonts={false}
     fixViewport={false}
-    defaultProps={defaultProps}
+    titleCase={titleCase}
   >
     {children}
   </Picasso>

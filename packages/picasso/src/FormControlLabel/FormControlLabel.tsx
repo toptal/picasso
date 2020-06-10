@@ -11,7 +11,6 @@ import cx from 'classnames'
 
 import styles from './styles'
 import Form from '../Form'
-import { withGlobalProps } from '../utils'
 
 export type FormControlLabelAttributesType = LabelHTMLAttributes<
   HTMLLabelElement
@@ -73,4 +72,4 @@ const FormControlLabel: FunctionComponent<Props> = props => {
 
 FormControlLabel.displayName = 'FormControlLabel'
 
-export default withStyles(styles)(withGlobalProps<Props>(FormControlLabel))
+export default withStyles(styles)(FormControlLabel)
