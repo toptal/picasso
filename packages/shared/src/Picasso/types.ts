@@ -51,7 +51,7 @@ export type CompoundedComponentWithRef<
   S = {}
 > = ForwardRefExoticComponent<P & RefAttributes<R>> & S
 
-export type PropsWithOverridableAs<T extends ElementType, P> = Omit<P, 'as'> & {
+type PropsWithOverridableAs<T extends ElementType, P> = Omit<P, 'as'> & {
   as?: T
 } & ComponentPropsWithRef<T>
 

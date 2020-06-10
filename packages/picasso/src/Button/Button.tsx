@@ -132,12 +132,10 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     content: contentClass
   } = classes
 
-  const { titleCase: picassoTitleCaseConfig } = useAppConfig()
-  const transformToTitleCase =
-    titleCase === undefined ? picassoTitleCaseConfig : titleCase
-  const finalChildren = [
-    transformToTitleCase ? toTitleCase(children) : children
-  ]
+  const { titleCase: defaultTitleCase } = useAppConfig()
+  const titleCaseIsApplied = titleCase ?? defaultTitleCase
+
+  const finalChildren = [titleCaseIsApplied ? toTitleCase(children) : children]
 
   if (icon) {
     const iconComponent = React.cloneElement(icon, {

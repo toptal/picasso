@@ -1,13 +1,11 @@
 import React, { FunctionComponent } from 'react'
 import { render } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
-import { titleCase } from 'title-case'
+import * as titleCaseModule from 'title-case'
 
 import FormLabel, { Props } from './FormLabel'
 import Form from '../Form'
 import Input from '../Input'
-
-jest.mock('title-case')
 
 const TestFormLabel: FunctionComponent<OmitInternalProps<Props>> = ({
   children,
@@ -32,6 +30,14 @@ const TestFormLabel: FunctionComponent<OmitInternalProps<Props>> = ({
     </Form.Field>
   </Form>
 )
+
+let spiedOnTitleCase: jest.SpyInstance
+beforeEach(() => {
+  spiedOnTitleCase = jest.spyOn(titleCaseModule, 'titleCase')
+})
+afterEach(() => {
+  spiedOnTitleCase.mockReset()
+})
 
 describe('FormLabel', () => {
   test('default render', () => {
@@ -69,8 +75,7 @@ describe('FormLabel', () => {
       { titleCase: true }
     )
 
-    expect(titleCase).toBeCalledTimes(1)
-    jest.resetAllMocks()
+    expect(spiedOnTitleCase).toBeCalledTimes(1)
   })
 
   test('should transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {
@@ -82,7 +87,6 @@ describe('FormLabel', () => {
       { titleCase: true }
     )
 
-    expect(titleCase).toBeCalledTimes(0)
-    jest.resetAllMocks()
+    expect(spiedOnTitleCase).toBeCalledTimes(0)
   })
 })

@@ -1,7 +1,7 @@
 import React, { forwardRef, HTMLAttributes, ReactNode } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { StandardProps, useAppConfig } from '@toptal/picasso-shared'
+import { useAppConfig, StandardProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 import toTitleCase from '../utils/to-title-case'
@@ -45,9 +45,8 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
 ) {
   const isInline = inline || Component === 'span'
 
-  const { titleCase: picassoTitleCaseConfig } = useAppConfig()
-  const transformToTitleCase =
-    titleCase === undefined ? picassoTitleCaseConfig : titleCase
+  const { titleCase: defaultTitleCase } = useAppConfig()
+  const titleCaseIsApplied = titleCase ?? defaultTitleCase
 
   return (
     <Component
@@ -67,7 +66,7 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
     >
       {required && <span className={classes.asterisk}>*</span>}
       <span className={classes.text}>
-        {transformToTitleCase ? toTitleCase(children) : children}
+        {titleCaseIsApplied ? toTitleCase(children) : children}
       </span>
     </Component>
   )

@@ -6,11 +6,9 @@ import {
   PicassoConfig
 } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
-import { titleCase } from 'title-case'
+import * as titleCaseModule from 'title-case'
 
 import Button, { Props } from './Button'
-
-jest.mock('title-case')
 
 const renderButton = (
   children: ReactNode,
@@ -32,6 +30,14 @@ const renderButton = (
     picassoConfig
   )
 }
+
+let spiedOnTitleCase: jest.SpyInstance
+beforeEach(() => {
+  spiedOnTitleCase = jest.spyOn(titleCaseModule, 'titleCase')
+})
+afterEach(() => {
+  spiedOnTitleCase.mockReset()
+})
 
 test('onClick callback should be fired after clicking the button', () => {
   const onClick = jest.fn()
@@ -58,8 +64,7 @@ test('should transform text to title case when Picasso titleCase property is tru
     { titleCase: true }
   )
 
-  expect(titleCase).toBeCalledTimes(1)
-  jest.resetAllMocks()
+  expect(spiedOnTitleCase).toBeCalledTimes(1)
 })
 
 test('should not transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {
@@ -69,8 +74,7 @@ test('should not transform text to title case when Picasso titleCase property is
     { titleCase: true }
   )
 
-  expect(titleCase).toBeCalledTimes(0)
-  jest.resetAllMocks()
+  expect(spiedOnTitleCase).toBeCalledTimes(0)
 })
 
 describe('disabled button', () => {

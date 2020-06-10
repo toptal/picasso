@@ -73,9 +73,8 @@ export const Label = forwardRef<HTMLDivElement, Props>(function Label(
   const { color, ...htmlAttributes } = rest
   const classes = useStyles(props)
 
-  const { titleCase: picassoTitleCaseConfig } = useAppConfig()
-  const transformToTitleCase =
-    titleCase === undefined ? picassoTitleCaseConfig : titleCase
+  const { titleCase: defaultTitleCase } = useAppConfig()
+  const titleCaseIsApplied = titleCase ?? defaultTitleCase
 
   const handleDelete = (event: MouseEvent) => {
     if (disabled) {
@@ -103,7 +102,7 @@ export const Label = forwardRef<HTMLDivElement, Props>(function Label(
       icon={icon}
       label={
         <span className={classes.innerLabel}>
-          {transformToTitleCase ? toTitleCase(children) : children}
+          {titleCaseIsApplied ? toTitleCase(children) : children}
         </span>
       }
       deleteIcon={
