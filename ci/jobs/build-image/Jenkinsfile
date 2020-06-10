@@ -47,7 +47,7 @@ pipeline {
           sh "gcloud auth activate-service-account --key-file=$GCE_ACCOUNT_KEY"
 
           if (!isDockerImagePresentRemotely("gcr.io/toptal-hub/${IMAGE_NAME}", VERSION)) {
-            image = docker.build("toptal-hub/${IMAGE_NAME}:${VERSION}", ".")
+            image = docker.build("gcr.io/toptal-hub/${IMAGE_NAME}:${VERSION}", "--progress=plain .")
             success "== Built image for version ${VERSION} =="
           } else {
             success "== Found image for version ${VERSION} =="
