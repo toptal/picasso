@@ -3857,3 +3857,4 @@ and `secondary` variant.
 #### closed
 
 - [**closed**] Minor design issues with select [#68](https://github.com/toptal/picasso/pull/68)
+
