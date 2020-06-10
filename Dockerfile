@@ -1,7 +1,5 @@
+# syntax=docker/dockerfile:experimental
 FROM node:14-alpine
-
-ARG NPM_TOKEN
-ENV NPM_TOKEN ${NPM_TOKEN}
 
 ARG GIT_SHA
 ENV GIT_SHA ${GIT_SHA}
@@ -29,7 +27,8 @@ RUN apk update && apk upgrade && \
   openssh-client \
   bash \
   sed \
-  shadow
+  shadow \
+  rsync
 
 # Change default 'node' user id to match jenkins CI user id
 # so when we will be running container from CI it would have
@@ -38,15 +37,12 @@ RUN groupmod -g 469 node && usermod -u 469 -g 469 node
 
 WORKDIR /app
 
-# Enables layer caching
-COPY package.json yarn.lock ./
-
-RUN yarn install --frozen-lockfile
-
 COPY . /app
-
-RUN yarn config set workspaces-experimental true
-RUN yarn install --frozen-lockfile && yarn cache clean
+RUN --mount=type=cache,target=/node-modules-cache,id=picasso-node-modules-cache --mount=type=cache,target=/usr/local/share/.cache/yarn/v6,id=yarn-cache echo 'Copying cache...' && \
+   time rsync -az /node-modules-cache/ node_modules && \
+   ls -la node_modules && \
+   yarn install --verbose --frozen-lockfile && \
+   echo 'Saving cache...' && time rsync -az node_modules/ /node-modules-cache
 
 # needs to be +rw for rm and mkdir /build
 RUN chmod a+rw /app && \
