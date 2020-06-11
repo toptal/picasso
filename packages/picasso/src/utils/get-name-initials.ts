@@ -9,4 +9,5 @@ export default (fullName: string) => {
       return word[0]
     })
     .join('')
+    .slice(0, 3)
 }
