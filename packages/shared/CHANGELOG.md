@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.15.0](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.14.0...@toptal/picasso-shared@1.15.0) (2020-06-11)
+
+
+### Features
+
+* add global component props overriding ([#1357](https://github.com/toptal/picasso/issues/1357)) ([c251d5b](https://github.com/toptal/picasso/commit/c251d5b09353d407b2332b177921a0d4dad54470))
+
+
+
+
+
 # [1.14.0](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.13.1...@toptal/picasso-shared@1.14.0) (2020-06-03)
 
 
