@@ -122,11 +122,11 @@ export const useAppConfig = () => {
 
 interface PicassoGlobalStylesProviderProps {
   children?: ReactNode
-  titleCase?: boolean
   RootComponent: ForwardRefExoticComponent<
     PicassoRootNodeProps & RefAttributes<HTMLDivElement>
   >
   environment: EnvironmentType<'test' | 'temploy'>
+  titleCase?: boolean
 }
 
 interface PicassoRootNodeProps {
@@ -234,7 +234,7 @@ interface PicassoProps {
   notificationContainer?: HTMLElement
   /** Component that is used to render root node  */
   RootComponent?: PicassoGlobalStylesProviderProps['RootComponent']
-  /** Whether to transform text to titleCase for Button, Label and FormLabel components */
+  /** Whether to transform text to titleCase for buttons, labels and radio components */
   titleCase?: boolean
   theme?: ThemeOptions
 }

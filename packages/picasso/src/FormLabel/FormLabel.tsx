@@ -4,7 +4,7 @@ import cx from 'classnames'
 import { useAppConfig, StandardProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
-import { toTitleCase } from '../utils'
+import toTitleCase from '../utils/to-title-case'
 
 type ComponentType = 'label' | 'span'
 
@@ -13,7 +13,7 @@ export interface Props
     HTMLAttributes<HTMLLabelElement | HTMLSpanElement> {
   /** Content of the label */
   children: ReactNode
-  /** Adds asteriks if true */
+  /** Adds asterisk if true */
   required?: boolean
   /** Is this label for disabled input or not */
   disabled?: boolean
@@ -23,6 +23,8 @@ export interface Props
   inline?: boolean
   /** Component used for the root node */
   as?: ComponentType
+  /** Defines if the text should be transformed to title case */
+  titleCase?: boolean
 }
 
 export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
@@ -35,6 +37,7 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
     className,
     style,
     inline,
+    titleCase,
     as: Component = 'label',
     ...rest
   },
@@ -42,7 +45,8 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
 ) {
   const isInline = inline || Component === 'span'
 
-  const { titleCase } = useAppConfig()
+  const { titleCase: defaultTitleCase } = useAppConfig()
+  const titleCaseIsApplied = titleCase ?? defaultTitleCase
 
   return (
     <Component
@@ -62,7 +66,7 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
     >
       {required && <span className={classes.asterisk}>*</span>}
       <span className={classes.text}>
-        {titleCase ? toTitleCase(children) : children}
+        {titleCaseIsApplied ? toTitleCase(children) : children}
       </span>
     </Component>
   )

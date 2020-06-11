@@ -127,3 +127,29 @@ exports[`radio button renders default radio button 1`] = `
   </div>
 </div>
 `;
+
+exports[`radio button renders default radio button 2`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <span
+      aria-disabled="false"
+      class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root"
+    >
+      <span
+        class="MuiIconButton-label"
+      >
+        <input
+          class="PrivateSwitchBase-input"
+          type="radio"
+          value=""
+        />
+        <div
+          class="Radio-uncheckedIcon"
+        />
+      </span>
+    </span>
+  </div>
+</div>
+`;

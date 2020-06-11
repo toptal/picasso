@@ -18,7 +18,7 @@ export interface Props
     Omit<ButtonOrAnchorProps, 'onChange' | 'value'> {
   /** Text label for the `Radio` */
   label?: ReactNode
-  /** Value of the `Radio` component used with conjuction of `Radio.Group` */
+  /** Value of the `Radio` component used with conjunction of `Radio.Group` */
   value?: string | number | boolean
   /** Defines if `Radio` is disabled */
   disabled?: boolean
@@ -26,6 +26,8 @@ export interface Props
   checked?: boolean
   /** Callback invoked when `Radio` changes its state */
   onChange?: (event: object, checked: boolean) => void
+  /** Defines if the text should be transformed to title case */
+  titleCase?: boolean
 }
 
 // should be moved to some global interfaces place
@@ -44,6 +46,7 @@ export const Radio = forwardRef<HTMLButtonElement, Props>(function Radio(
     disabled,
     value,
     onChange,
+    titleCase,
     ...rest
   },
   ref
@@ -88,6 +91,7 @@ export const Radio = forwardRef<HTMLButtonElement, Props>(function Radio(
       style={style}
       label={label}
       disabled={disabled}
+      titleCase={titleCase}
     />
   )
 }) as CompoundedComponentWithRef<Props, HTMLButtonElement, StaticProps>

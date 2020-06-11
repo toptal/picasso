@@ -7,7 +7,7 @@ interface TestingPicassoProps {
 
 export const TestingPicasso: FunctionComponent<TestingPicassoProps> = ({
   children,
-  titleCase = false
+  titleCase
 }) => (
   <Picasso
     loadFavicon={false}

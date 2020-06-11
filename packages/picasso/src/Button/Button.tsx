@@ -75,6 +75,8 @@ export interface Props extends BaseProps, ButtonOrAnchorProps {
   title?: string
   /** HTML type of Button component */
   type?: 'button' | 'reset' | 'submit'
+  /** Defines if the text should be transformed to title case */
+  titleCase?: boolean
 }
 
 interface StaticProps {
@@ -114,12 +116,11 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     title,
     value,
     type,
+    titleCase,
     as,
     ...rest
   } = props
   const classes = useStyles(props)
-
-  const { titleCase } = useAppConfig()
 
   const {
     icon: iconClass,
@@ -131,7 +132,10 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     content: contentClass
   } = classes
 
-  const finalChildren = [titleCase ? toTitleCase(children) : children]
+  const { titleCase: defaultTitleCase } = useAppConfig()
+  const titleCaseIsApplied = titleCase ?? defaultTitleCase
+
+  const finalChildren = [titleCaseIsApplied ? toTitleCase(children) : children]
 
   if (icon) {
     const iconComponent = React.cloneElement(icon, {

@@ -1,18 +1,17 @@
 import React, { FunctionComponent } from 'react'
 import { render } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
-import { titleCase } from 'title-case'
+import * as titleCaseModule from 'title-case'
 
 import FormLabel, { Props } from './FormLabel'
 import Form from '../Form'
 import Input from '../Input'
 
-jest.mock('title-case')
-
 const TestFormLabel: FunctionComponent<OmitInternalProps<Props>> = ({
   children,
   required,
   disabled,
+  titleCase,
   htmlFor,
   inline
 }) => (
@@ -21,6 +20,7 @@ const TestFormLabel: FunctionComponent<OmitInternalProps<Props>> = ({
       <FormLabel
         required={required}
         disabled={disabled}
+        titleCase={titleCase}
         htmlFor={htmlFor}
         inline={inline}
       >
@@ -30,6 +30,14 @@ const TestFormLabel: FunctionComponent<OmitInternalProps<Props>> = ({
     </Form.Field>
   </Form>
 )
+
+let spiedOnTitleCase: jest.SpyInstance
+beforeEach(() => {
+  spiedOnTitleCase = jest.spyOn(titleCaseModule, 'titleCase')
+})
+afterEach(() => {
+  spiedOnTitleCase.mockReset()
+})
 
 describe('FormLabel', () => {
   test('default render', () => {
@@ -50,7 +58,7 @@ describe('FormLabel', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('requried and disabled', () => {
+  test('required and disabled', () => {
     const { container } = render(
       <TestFormLabel required disabled>
         Label
@@ -60,13 +68,25 @@ describe('FormLabel', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('should transform text to title case when titleCase is true', () => {
+  test('should transform text to title case when Picasso titleCase property is true', () => {
     render(
       <TestFormLabel>some text with-the-edge case for TEST</TestFormLabel>,
       undefined,
       { titleCase: true }
     )
 
-    expect(titleCase).toBeCalledTimes(1)
+    expect(spiedOnTitleCase).toBeCalledTimes(1)
+  })
+
+  test('should transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {
+    render(
+      <TestFormLabel titleCase={false}>
+        some text with-the-edge case for TEST
+      </TestFormLabel>,
+      undefined,
+      { titleCase: true }
+    )
+
+    expect(spiedOnTitleCase).toBeCalledTimes(0)
   })
 })

@@ -19,7 +19,7 @@ import Chip from '../Chip'
 import { CloseMinor16 } from '../Icon'
 import LabelGroup from '../LabelGroup'
 import styles from './styles'
-import { toTitleCase } from '../utils'
+import toTitleCase from '../utils/to-title-case'
 
 type VariantType = 'grey' | 'white' | 'green' | 'yellow' | 'red'
 
@@ -42,6 +42,8 @@ export interface Props extends BaseProps, DivOrAnchorProps {
   onDelete?: () => void
   /** Variant of the `Label` */
   variant?: VariantType
+  /** Defines if the text should be transformed to title case */
+  titleCase?: boolean
 }
 
 interface StaticProps {
@@ -64,13 +66,15 @@ export const Label = forwardRef<HTMLDivElement, Props>(function Label(
     onDelete,
     variant,
     as,
+    titleCase,
     ...rest
   } = props
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { color, ...htmlAttributes } = rest
   const classes = useStyles(props)
 
-  const { titleCase } = useAppConfig()
+  const { titleCase: defaultTitleCase } = useAppConfig()
+  const titleCaseIsApplied = titleCase ?? defaultTitleCase
 
   const handleDelete = (event: MouseEvent) => {
     if (disabled) {
@@ -98,7 +102,7 @@ export const Label = forwardRef<HTMLDivElement, Props>(function Label(
       icon={icon}
       label={
         <span className={classes.innerLabel}>
-          {titleCase ? toTitleCase(children) : children}
+          {titleCaseIsApplied ? toTitleCase(children) : children}
         </span>
       }
       deleteIcon={
