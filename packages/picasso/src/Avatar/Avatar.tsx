@@ -54,9 +54,16 @@ const renderInitials = ({ classes, src, name }: Partial<Props>) => {
     return null
   }
 
+  const initials = getNameInitials(name)
+
   return (
-    <Typography className={classes!.text} invert>
-      {getNameInitials(name)}
+    <Typography
+      className={cx(classes!.text, {
+        [classes!.textCapLimit]: initials.length >= 3
+      })}
+      invert
+    >
+      {initials}
     </Typography>
   )
 }
@@ -88,6 +95,7 @@ export const Avatar: FunctionComponent<Props> = ({
 }) => {
   const sizeClassName = classes[size!]
   const variantClassName = classes[variant!]
+  console.log('classes', classes)
 
   const InputComponent = isBrowserSupportsObjectFit ? Image : IE11Image
 
