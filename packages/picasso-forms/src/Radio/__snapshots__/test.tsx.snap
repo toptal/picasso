@@ -66,19 +66,20 @@ exports[`FormRadio default render 1`] = `
           >
             <span
               aria-disabled="false"
-              class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel"
+              class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel PrivateSwitchBase-checked Mui-checked"
             >
               <span
                 class="MuiIconButton-label"
               >
                 <input
+                  checked=""
                   class="PrivateSwitchBase-input"
                   name="color"
                   type="radio"
                   value="#ffe4b5"
                 />
                 <div
-                  class="Radio-uncheckedIcon"
+                  class="Radio-checkedIcon"
                 />
               </span>
             </span>

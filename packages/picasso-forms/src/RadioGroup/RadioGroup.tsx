@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 import {
   Radio as PicassoRadio,
   RadioProps,
@@ -22,7 +22,11 @@ export const RadioGroup = (props: Props) => {
         return (
           // eslint-disable-next-line react/jsx-props-no-spreading
           <PicassoRadio.Group {...restRadioGroupProps}>
-            {children}
+            {React.Children.map(children, child =>
+              React.cloneElement(child as ReactElement, {
+                name: props.name
+              })
+            )}
           </PicassoRadio.Group>
         )
       }}

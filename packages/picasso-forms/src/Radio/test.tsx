@@ -5,7 +5,7 @@ import Form from '../Form/Form'
 
 const renderFormRadio = () => {
   return render(
-    <Form onSubmit={() => {}}>
+    <Form onSubmit={() => {}} initialValues={{ color: '#ffe4b5' }}>
       <Form.RadioGroup
         name='color'
         required
