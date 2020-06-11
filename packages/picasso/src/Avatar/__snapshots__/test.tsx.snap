@@ -1,5 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Avatar Avatar with long text names 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="Avatar-root Avatar-xsmall"
+    >
+      <div
+        class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner"
+      />
+      <p
+        class="MuiTypography-root Typography-invert Typography-bodyInherit Avatar-text Avatar-textCapLimit MuiTypography-body1"
+      >
+        JRB
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Avatar avatar with photo render 1`] = `
 <div>
   <div

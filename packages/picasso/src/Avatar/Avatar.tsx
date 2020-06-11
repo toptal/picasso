@@ -95,7 +95,6 @@ export const Avatar: FunctionComponent<Props> = ({
 }) => {
   const sizeClassName = classes[size!]
   const variantClassName = classes[variant!]
-  console.log('classes', classes)
 
   const InputComponent = isBrowserSupportsObjectFit ? Image : IE11Image
 
