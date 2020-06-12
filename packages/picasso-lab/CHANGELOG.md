@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.18.3](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.18.2...@toptal/picasso-lab@2.18.3) (2020-06-12)
+
+
+### Bug Fixes
+
+* documentation for weekStartsOn ([#1375](https://github.com/toptal/picasso/issues/1375)) ([9092018](https://github.com/toptal/picasso/commit/9092018606ddc02bc028ec5177a91d9abb9a7306))
+
+
+
+
+
 ## [2.18.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.18.1...@toptal/picasso-lab@2.18.2) (2020-06-05)
 
 **Note:** Version bump only for package @toptal/picasso-lab
