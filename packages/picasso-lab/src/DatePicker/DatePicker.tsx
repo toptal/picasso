@@ -63,7 +63,7 @@ export interface Props
   /** Function to override default markup to show Date */
   renderDay?: (args: DayProps) => ReactNode
   popperContainer?: HTMLElement
-  /** Index of the first day of the week (0 - Sunday). Default is 0 */
+  /** Index of the first day of the week (0 - Sunday). Default is 1 - Monday */
   weekStartsOn?: number
 }
 
