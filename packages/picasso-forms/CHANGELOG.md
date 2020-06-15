@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.5](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.17.4...@toptal/picasso-forms@0.17.5) (2020-06-15)
+
+
+### Bug Fixes
+
+* **picasso-forms:radio:** show initially checked radio of the group ([#1376](https://github.com/toptal/picasso/issues/1376)) ([9fc22ff](https://github.com/toptal/picasso/commit/9fc22ff2866cc0fe74da67bd08c8f2c73819f93f))
+
+
+
+
+
 ## [0.17.4](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.17.3...@toptal/picasso-forms@0.17.4) (2020-06-09)
 
 
