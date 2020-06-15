@@ -13,6 +13,7 @@ import Logo from '../Logo'
 import Typography from '../Typography'
 import getNameInitials from '../utils/get-name-initials'
 import styles from './styles'
+import { AVATAR_INITIALS_LIMIT } from '../utils/constants'
 
 type VariantType = 'square' | 'portrait' | 'landscape'
 
@@ -54,9 +55,16 @@ const renderInitials = ({ classes, src, name }: Partial<Props>) => {
     return null
   }
 
+  const initials = getNameInitials(name)
+
   return (
-    <Typography className={classes!.text} invert>
-      {getNameInitials(name)}
+    <Typography
+      className={cx(classes!.text, {
+        [classes!.textCapLimit]: initials.length >= AVATAR_INITIALS_LIMIT
+      })}
+      invert
+    >
+      {initials}
     </Typography>
   )
 }

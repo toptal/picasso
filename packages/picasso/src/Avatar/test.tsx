@@ -17,6 +17,13 @@ describe('Avatar', () => {
     expect(container).toMatchSnapshot()
   })
 
+  test('Avatar with long text names', () => {
+    const { container } = renderAvatar({
+      name: 'Jacqueline Roque Bailey Armstrong'
+    })
+    expect(container).toMatchSnapshot()
+  })
+
   test('avatar with photo render', () => {
     const { container } = renderAvatar({
       alt: 'Photo alt text',

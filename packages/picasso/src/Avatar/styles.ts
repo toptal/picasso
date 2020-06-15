@@ -58,6 +58,9 @@ export default ({ palette }: Theme) =>
       transform: 'translate(-50%, -50%)',
       textTransform: 'uppercase'
     },
+    textCapLimit: {
+      fontSize: '0.85em'
+    },
     logoContainer: {
       display: 'flex',
       position: 'absolute',

@@ -31,3 +31,7 @@ page
     title: 'Sizes',
     waitUntilImagesLoaded: true
   })
+  .addExample('Avatar/story/LongName.example.jsx', {
+    title: 'Long Name',
+    waitUntilImagesLoaded: true
+  })
