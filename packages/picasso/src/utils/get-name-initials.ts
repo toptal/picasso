@@ -1,3 +1,5 @@
+import { AVATAR_INITIALS_LIMIT } from './constants'
+
 export default (fullName: string) => {
   return fullName
     .split(' ')
@@ -9,5 +11,5 @@ export default (fullName: string) => {
       return word[0]
     })
     .join('')
-    .slice(0, 3)
+    .slice(0, AVATAR_INITIALS_LIMIT)
 }
