@@ -26,7 +26,10 @@ const DefaultExample = () => {
   const skillOptions = filterOptions(skillInputValue, skills)
 
   return (
-    <Form onSubmit={values => console.log(values)}>
+    <Form
+      onSubmit={values => console.log(values)}
+      initialValues={{ gender: 'female' }}
+    >
       <Form.Input
         enableReset
         onResetClick={(set: (value: string) => void) => {
