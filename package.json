@@ -16,7 +16,6 @@
     "start": "start-storybook -p 9001 -s ./.storybook/public -c .storybook",
     "build:storybook": "build-storybook -s ./.storybook/public -c .storybook -o build/storybook --quiet",
     "build:dist": "lerna run build:dist --stream --parallel",
-    "typecheck": "tsc --noEmit",
     "release": "./bin/release",
     "symlink": "cross-env ./bin/symlink --link",
     "symlink:off": "cross-env ./bin/symlink --unlink",

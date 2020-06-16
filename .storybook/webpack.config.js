@@ -64,9 +64,6 @@ module.exports = ({ config }) => {
 
   config.resolve.alias = {
     ...config.resolve.alias,
-    // TODO: check how to fix a problem with multiple instances of libraries included
-    // e.g. core-js is included 4 times
-    // 'core-js': path.resolve(__dirname, '../node_modules/core-js'),
     '~': path.resolve(__dirname, '..'),
     '@toptal/picasso': path.resolve(__dirname, '../packages/picasso/src'),
     '@toptal/picasso-shared': path.resolve(__dirname, '../packages/shared/src'),
