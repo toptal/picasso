@@ -74,6 +74,10 @@ const setup = function() {
   })
 
   if (yargs.link) {
+    log('Firt build dist versions of all the packages')
+
+    exec('yarn build:dist', { stdio: 'inherit' })
+
     log('Linking process started...')
 
     linkPackages.forEach(({ name, outputDir }) => removeLink(name, outputDir))
@@ -84,7 +88,7 @@ const setup = function() {
     // because we are using yarn workspaces
     // we have default symlinks set up to /src folders of packages
     // so we need to override them and reffer to /build folders
-    linkPackages.forEach(({ name, outputDir }) => link(name))
+    linkPackages.forEach(({ name }) => link(name))
 
     log('Linking process finished.')
   }
@@ -92,7 +96,7 @@ const setup = function() {
   if (yargs.unlink) {
     log('Unlinking process started...')
 
-    linkPackages.forEach(({ name, outputDir }) => unlink(name))
+    linkPackages.forEach(({ name }) => unlink(name))
     linkPackages.forEach(({ name, outputDir }) => removeLink(name, outputDir))
     removeLink('react', './node_modules/react')
 

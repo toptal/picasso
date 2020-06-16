@@ -1,4 +1,4 @@
-import { LineConfig } from '@toptal/picasso-charts/src'
+import { LineConfig } from '@toptal/picasso-charts'
 
 import { ReferenceLine } from './../../AnalyticsChart/AnalyticsChart'
 import generateReferenceKey from '../generate-reference-key'
