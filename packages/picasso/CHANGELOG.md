@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.73.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.72.0...@toptal/picasso@4.73.0) (2020-06-16)
+
+
+### Features
+
+* **Avatar:** limit initials to 3 and fix size ([#1377](https://github.com/toptal/picasso/issues/1377)) ([6a46923](https://github.com/toptal/picasso/commit/6a46923e820024d3949c623444d92f08e345a8fc))
+
+
+
+
+
 # [4.72.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.71.0...@toptal/picasso@4.72.0) (2020-06-12)
 
 
