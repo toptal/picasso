@@ -1,8 +1,8 @@
 import React, { Fragment, FunctionComponent } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
-import { Classes } from '../../../../../packages/shared'
-import { Typography, Tabs } from '../../../../../packages/picasso'
+import { Typography, Tabs } from '@toptal/picasso'
+import { Classes } from '@toptal/picasso-shared'
 
 import { TabOptions } from './TabsSection'
 import styles from './styles'

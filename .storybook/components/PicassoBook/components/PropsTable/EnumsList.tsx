@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
-import { Classes } from '../../../../../packages/shared'
+import { Classes } from '@toptal/picasso-shared'
 import { PropTypeDocumentation } from '~/.storybook/utils/documentation-generator'
 import cx from 'classnames'
 

@@ -1,17 +1,11 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig.build.json",
   "compilerOptions": {
-    "outDir": "./build",
+    "outDir": "build",
     "paths": {
       "@toptal/picasso/*": ["node_modules/@toptal/picasso/src/*"],
-      "@toptal/picasso": ["node_modules/@toptal/picasso/src/index"]
+      "@toptal/*": ["node_modules/@toptal/*/src"]
     }
   },
-  "include": ["./src/**/*"],
-  "exclude": [
-    "**/*.example.jsx",
-    "**/*.example.tsx",
-    "**/test.jsx",
-    "**/test.tsx"
-  ]
+  "include": ["src"]
 }

@@ -5,14 +5,10 @@ const packageRootDir = path.resolve('.')
 
 // script arguments
 const shouldCopyReadme = yargs.copyReadme
-const entry = yargs.entry
 
-const {
-  copyPackageJson,
-  copyReadme,
-} = require('./utils')
+const { copyPackageJson, copyReadme } = require('./utils')
 
-copyPackageJson(packageRootDir, entry)
+copyPackageJson(packageRootDir)
 
 if (shouldCopyReadme) {
   copyReadme(packageRootDir)

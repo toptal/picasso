@@ -66,6 +66,7 @@ module.exports = ({ config }) => {
     ...config.resolve.alias,
     '~': path.resolve(__dirname, '..'),
     '@toptal/picasso': path.resolve(__dirname, '../packages/picasso/src'),
+    '@toptal/picasso-shared': path.resolve(__dirname, '../packages/shared/src'),
     '@toptal/picasso/utils': path.resolve(
       __dirname,
       '../packages/picasso/src/utils'

@@ -111,7 +111,7 @@ After Picasso will be released with your changes you can start using your Icon a
 
    ```
    {
-     "extends": "../../tsconfig.json",
+     "extends": "../../tsconfig.build.json",
      "compilerOptions": {
        "outDir": "./build",
        "paths": {

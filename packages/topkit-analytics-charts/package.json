@@ -4,7 +4,8 @@
   "description": "Charts utilities",
   "author": "Toptal",
   "license": "ISC",
-  "main": "./src/index.ts",
+  "main": "index.js",
+  "module": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/toptal/picasso.git"
@@ -13,8 +14,8 @@
     "access": "public"
   },
   "scripts": {
-    "build:dist": "cross-env NODE_ENV=production ../../bin/build --tsConfig=./tsconfig.build.json --entry=./index.js",
-    "prepublishOnly": "../../bin/prepublish --entry=./index.js"
+    "build:dist": "cross-env NODE_ENV=production ../../bin/build --tsConfig=./tsconfig.build.json",
+    "prepublishOnly": "../../bin/prepublish"
   },
   "bugs": {
     "url": "https://github.com/toptal/picasso/issues"
@@ -23,7 +24,6 @@
     "@toptal/picasso-charts": "^0.4.0"
   },
   "devDependencies": {
-    "cross-env": "^6.0.3",
     "date-fns": "^2.9.0"
   }
 }

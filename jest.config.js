@@ -22,7 +22,10 @@ module.exports = {
     '\\.(jpg|jpeg|png|gif|webp|svg|ttf|woff|woff2)$':
       '<rootDir>/__tests__/fileMock.js',
     '^@toptal/picasso/(.*)$': '<rootDir>/packages/picasso/src/$1',
-    '^@toptal/picasso-lab/(.*)$': '<rootDir>packages/picasso-lab/src/$1'
+    '^@toptal/picasso-lab/(.*)$': '<rootDir>packages/picasso-lab/src/$1',
+    '^@toptal/picasso-shared$': '<rootDir>packages/shared/src/index.ts',
+    '^@toptal/picasso$': '<rootDir>packages/picasso/src/index.ts',
+    '^@toptal/picasso-lab$': '<rootDir>packages/picasso-lab/src/index.ts'
   },
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx']
 }

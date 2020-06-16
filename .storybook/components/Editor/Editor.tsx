@@ -7,7 +7,7 @@ import 'brace/mode/html'
 import 'brace/theme/twilight'
 
 import styles from './styles'
-import { Classes } from '../../../packages/shared'
+import { Classes } from '@toptal/picasso-shared'
 
 interface Props {
   id: string
