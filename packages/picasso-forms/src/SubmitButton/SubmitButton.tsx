@@ -13,7 +13,6 @@ export const SubmitButton = (props: Props) => {
   return (
     <Button
       type='submit'
-      disabled={submitting}
       loading={submitting}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
