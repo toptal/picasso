@@ -76,9 +76,6 @@ const calculateTooltipPosition = debounce(
     const nextX = payload.activeCoordinate?.x
     const nextY = payload.chartY
 
-    // const tooltipElem = getTooltipElement()
-    // const chartElem = getChartElement()
-
     if (!tooltipElem || !chartElem) {
       return
     }
