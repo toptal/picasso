@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, fireEvent } from '@toptal/picasso/test-utils'
+import { render, fireEvent, wait } from '@toptal/picasso/test-utils'
 import { Tooltip } from '@toptal/picasso'
 
 import DatePicker from './DatePicker'
@@ -38,9 +38,16 @@ describe('DatePicker', () => {
     // this line leads to a warning, wrapping into `act` doesn't help
     fireEvent.mouseOver(day15)
 
-    const tooltip = getByText('tooltip content')
-
-    expect(tooltip).toBeInTheDocument()
+    /**
+     * Wait for Tooltips' "enterDelay" of .5 seconds
+     */
+    wait(
+      () => {
+        const tooltip = getByText('tooltip content')
+        expect(tooltip).toBeInTheDocument()
+      },
+      { timeout: 600 }
+    )
   })
 
   test('custom day rendering', () => {

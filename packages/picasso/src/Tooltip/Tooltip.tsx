@@ -69,6 +69,8 @@ export const Tooltip: FunctionComponent<Props> = ({
     </>
   )
 
+  const defaultDelay = 500
+
   return (
     <MUITooltip
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -109,7 +111,8 @@ export const Tooltip: FunctionComponent<Props> = ({
       disableHoverListener={disableListeners}
       disableFocusListener={disableListeners}
       disableTouchListener
-      enterDelay={0}
+      enterDelay={defaultDelay}
+      leaveDelay={defaultDelay}
     >
       {children as ReactElement}
     </MUITooltip>
