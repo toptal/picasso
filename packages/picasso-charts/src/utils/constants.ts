@@ -10,5 +10,8 @@ export default {
   DEFAULT_MARGIN: 16,
   TICK_LINE: false,
   AXIS_LINE: false,
-  IS_ANIMATION_ACTIVE: false
+  IS_ANIMATION_ACTIVE: false,
+  Y_AXIS_WIDTH: 60,
+  TOOLTIP_OFFSET: 10,
+  SCROLL_BAR_WIDTH: 16
 }
