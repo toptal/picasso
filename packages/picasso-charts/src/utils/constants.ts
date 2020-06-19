@@ -1,4 +1,4 @@
-export default {
+const chartConstants = {
   BOTTOM_DOMAIN: 0,
   HIGHLIGHT_BOTTOM_START_POINT: 0,
   HIGHLIGHT_BOTTOM_FILL_OPACITY: 0.1,
@@ -15,3 +15,12 @@ export default {
   TOOLTIP_OFFSET: 10,
   SCROLL_BAR_WIDTH: 16
 }
+
+export const chartMargins = {
+  top: chartConstants.DEFAULT_MARGIN,
+  right: chartConstants.DEFAULT_MARGIN,
+  bottom: chartConstants.DEFAULT_MARGIN,
+  left: 0
+}
+
+export default chartConstants

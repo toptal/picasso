@@ -13,17 +13,15 @@ import {
   Tooltip
 } from 'recharts'
 
-import calculateTooltipPosition, {
-  CoordinatePayload,
-  chartMargins
-} from '../utils/calculate-tooltip-position'
+import calculateTooltipPosition from '../utils/calculate-tooltip-position'
+import { CoordinatePayload } from '../utils/types'
 import {
   findTopDomain,
   getChartTicks,
   toRechartsHighlightFormat,
   orderData
 } from '../utils'
-import CHART_CONSTANTS from '../utils/constants'
+import CHART_CONSTANTS, { chartMargins } from '../utils/constants'
 
 const {
   BOTTOM_DOMAIN,
@@ -205,7 +203,7 @@ export const LineChart = ({
   const getChartElement = () => containerRef?.current || null
 
   const onMouseMovement = (next: RechartsOnMouseMove) => {
-    if (next?.isTooltipActive && allowTooltipEscapeViewBox) {
+    if (allowTooltipEscapeViewBox && next?.isTooltipActive) {
       const tooltipElem = getTooltipElement()
       const chartElem = getChartElement()
       calculateTooltipPosition(next, tooltipElem, chartElem)

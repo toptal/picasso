@@ -1,5 +1,1 @@
-export {
-  default,
-  CoordinatePayload,
-  chartMargins
-} from './calculate-tooltip-position'
+export { default } from './calculate-tooltip-position'

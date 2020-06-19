@@ -1,37 +1,16 @@
 import debounce from 'debounce'
 
-import CHART_CONSTANTS from '../constants'
+import CHART_CONSTANTS, { chartMargins } from '../constants'
+import { CoordinatePayload, PositionTranslate } from '../types'
 
-const {
-  SCROLL_BAR_WIDTH,
-  TOOLTIP_OFFSET,
-  DEFAULT_MARGIN,
-  Y_AXIS_WIDTH
-} = CHART_CONSTANTS
-
-export type CoordinatePayload = {
-  activeCoordinate: { x: number; y: number }
-  activeLabel: number
-  activePayload: object[]
-  activeTooltipIndex: number
-  chartX: number
-  chartY: number
-  isTooltipActive: boolean
-}
-
-export const chartMargins = {
-  top: DEFAULT_MARGIN,
-  right: DEFAULT_MARGIN,
-  bottom: DEFAULT_MARGIN,
-  left: 0
-}
+const { SCROLL_BAR_WIDTH, TOOLTIP_OFFSET, Y_AXIS_WIDTH } = CHART_CONSTANTS
 
 const chartViewbox = {
   x: chartMargins.left + Y_AXIS_WIDTH,
   y: chartMargins.top
 }
 
-const getTooltipTranslate = ({
+export const getTooltipTranslate = ({
   key,
   cursorCoordinate,
   chartScreenOffset,
@@ -39,15 +18,7 @@ const getTooltipTranslate = ({
   screenDimension,
   offset,
   viewbox
-}: {
-  key: 'x' | 'y'
-  cursorCoordinate: number
-  chartScreenOffset: number
-  tooltipDimension: number
-  screenDimension: number
-  offset: number
-  viewbox: { x: number; y: number }
-}) => {
+}: PositionTranslate) => {
   const restricted = cursorCoordinate - tooltipDimension - offset
   const unrestricted = cursorCoordinate + offset
   const tooltipBoundary =
@@ -67,8 +38,8 @@ const getTooltipTranslate = ({
   return unrestricted
 }
 
-const calculateTooltipPosition = debounce(
-  async (
+export const calculateTooltipPosition = debounce(
+  (
     payload: CoordinatePayload,
     tooltipElem: HTMLDivElement | null,
     chartElem: HTMLDivElement | null
