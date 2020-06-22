@@ -68,7 +68,6 @@ page
         description: 'Disables button',
         defaultValue: 'false'
       },
-
       fullWidth: {
         name: 'fullWidth',
         type: 'boolean',
@@ -172,6 +171,11 @@ page
           enums: ['button', 'reset', 'submit']
         },
         defaultValue: 'button'
+      },
+      titleCase: {
+        name: 'titleCase',
+        description: 'Defines if the text should be transformed to title case',
+        type: 'boolean'
       }
     },
     name: 'Button'

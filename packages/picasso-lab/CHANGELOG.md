@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.19.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.18.4...@toptal/picasso-lab@2.19.0) (2020-06-22)
+
+
+### Features
+
+* **treeview:** implement TreeView ([#1379](https://github.com/toptal/picasso/issues/1379)) ([5624bcf](https://github.com/toptal/picasso/commit/5624bcf1b114189d3bf62cb2670fcb55cc636eaf))
+
+
+
+
+
 ## [2.18.4](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.18.3...@toptal/picasso-lab@2.18.4) (2020-06-16)
 
 **Note:** Version bump only for package @toptal/picasso-lab

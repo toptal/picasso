@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.73.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.73.0...@toptal/picasso@4.73.1) (2020-06-22)
+
+
+### Bug Fixes
+
+* documentation for Button ([#1387](https://github.com/toptal/picasso/issues/1387)) ([e53beec](https://github.com/toptal/picasso/commit/e53beec52a02f5ae57a5a46aba46fb9d611bda5e))
+
+
+
+
+
 # [4.73.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.72.0...@toptal/picasso@4.73.0) (2020-06-16)
 
 

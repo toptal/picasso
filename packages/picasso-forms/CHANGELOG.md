@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.1](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.18.0...@toptal/picasso-forms@0.18.1) (2020-06-22)
+
+**Note:** Version bump only for package @toptal/picasso-forms
+
+
+
+
+
+# [0.18.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.17.6...@toptal/picasso-forms@0.18.0) (2020-06-22)
+
+
+### Features
+
+* change Form.SubmitButton to be enabled on submit ([#1383](https://github.com/toptal/picasso/issues/1383)) ([9b25e13](https://github.com/toptal/picasso/commit/9b25e1397df208330306ded78fd7a624cbd74d33))
+
+
+
+
+
 ## [0.17.6](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.17.5...@toptal/picasso-forms@0.17.6) (2020-06-16)
 
 **Note:** Version bump only for package @toptal/picasso-forms
