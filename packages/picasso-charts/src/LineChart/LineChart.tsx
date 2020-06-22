@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from 'react'
+import React, { ReactElement, ReactNode, useRef } from 'react'
 import { palette } from '@toptal/picasso/utils'
 import {
   ComposedChart,
@@ -13,23 +13,27 @@ import {
   Tooltip
 } from 'recharts'
 
+import calculateTooltipPosition from '../utils/calculate-tooltip-position'
+import { CoordinatePayload } from '../utils/types'
 import {
   findTopDomain,
   getChartTicks,
   toRechartsHighlightFormat,
   orderData
 } from '../utils'
-import CHART_CONSTANTS from '../utils/constants'
+import CHART_CONSTANTS, { chartMargins } from '../utils/constants'
 
 const {
   BOTTOM_DOMAIN,
   TICK_MARGIN,
   MIN_TICK_GAP,
-  DEFAULT_MARGIN,
   TICK_LINE,
   AXIS_LINE,
-  IS_ANIMATION_ACTIVE
+  IS_ANIMATION_ACTIVE,
+  Y_AXIS_WIDTH
 } = CHART_CONSTANTS
+
+type RechartsOnMouseMove = CoordinatePayload | null
 
 export type ReferenceLineType = {
   y: number
@@ -37,6 +41,10 @@ export type ReferenceLineType = {
 }
 
 export type ChartDataPoint = Record<string, string | number>
+
+export type TooltipInstance = Tooltip & {
+  wrapperNode: HTMLDivElement
+}
 
 export type HighlightConfig = {
   from: number
@@ -159,6 +167,8 @@ const generateLineGraphs = (
     )
   })
 
+const positionOverride = { x: 0, y: 0 }
+
 export const LineChart = ({
   data,
   lineConfig: lines,
@@ -174,37 +184,48 @@ export const LineChart = ({
 }: Props) => {
   const yKey = Object.keys(lines)[0]
   const isSingleChart = countNonReferenceLines(lines) === 1
-
   const topDomain = findTopDomain(data, xAxisKey!)
   const orderedData = orderData(data)
   const ticks = getChartTicks(orderedData)
-
   const referenceLineList = generateReferenceLines(referenceLines)
   const highlightedAreas = generateHighlightedAreas(
     topDomain,
     orderedData.length - 1,
     highlights
   )
+
   const lineGraphs = generateLineGraphs(lines, orderedData)
 
   const formatTicks = (tick: unknown) =>
     orderedData.find(item => item.order === tick)![xAxisKey!]
 
+  const containerRef = useRef<HTMLDivElement | null>(null)
+  const tooltipRef = useRef<HTMLDivElement | null>(null)
+
+  const getTooltipElement = () => tooltipRef?.current || null
+
+  const getChartElement = () => containerRef?.current || null
+
+  const onMouseMovement = (next: RechartsOnMouseMove) => {
+    if (allowTooltipEscapeViewBox && next?.isTooltipActive) {
+      const tooltipElem = getTooltipElement()
+      const chartElem = getChartElement()
+      calculateTooltipPosition(next, tooltipElem, chartElem)
+    }
+  }
+
   return (
     <div
       // ResponsiveContainer expects a wrapper with a fixed height
       style={{ height }}
+      ref={containerRef}
     >
       <StyleOverrides />
       <ResponsiveContainer>
         <ComposedChart
-          margin={{
-            top: DEFAULT_MARGIN,
-            right: DEFAULT_MARGIN,
-            bottom: DEFAULT_MARGIN,
-            left: 0
-          }}
+          margin={chartMargins}
           data={orderedData}
+          onMouseMove={onMouseMovement}
         >
           <CartesianGrid stroke={palette.grey.lighter} />
 
@@ -232,6 +253,7 @@ export const LineChart = ({
             interval={0}
             minTickGap={MIN_TICK_GAP}
             tickMargin={TICK_MARGIN}
+            width={Y_AXIS_WIDTH}
           />
 
           {referenceLineList}
@@ -255,7 +277,14 @@ export const LineChart = ({
               allowEscapeViewBox={
                 allowTooltipEscapeViewBox ? { x: true, y: true } : undefined
               }
+              // override calculations for tooltip positioning
+              position={
+                allowTooltipEscapeViewBox ? positionOverride : undefined
+              }
               content={customTooltip}
+              ref={(instance: TooltipInstance) =>
+                (tooltipRef.current = instance?.wrapperNode || null)
+              }
             />
           )}
 
