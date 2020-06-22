@@ -42,6 +42,10 @@ export type ReferenceLineType = {
 
 export type ChartDataPoint = Record<string, string | number>
 
+export type TooltipInstance = Tooltip & {
+  wrapperNode: HTMLDivElement
+}
+
 export type HighlightConfig = {
   from: number
   to: number
@@ -278,8 +282,8 @@ export const LineChart = ({
                 allowTooltipEscapeViewBox ? positionOverride : undefined
               }
               content={customTooltip}
-              ref={(instance: any) =>
-                (tooltipRef.current = instance?.wrapperNode)
+              ref={(instance: TooltipInstance) =>
+                (tooltipRef.current = instance?.wrapperNode || null)
               }
             />
           )}
