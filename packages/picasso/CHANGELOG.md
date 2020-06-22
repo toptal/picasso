@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.74.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.73.1...@toptal/picasso@4.74.0) (2020-06-22)
+
+
+### Features
+
+* set default tooltip delay to .5 seconds ([#1386](https://github.com/toptal/picasso/issues/1386)) ([7a5b374](https://github.com/toptal/picasso/commit/7a5b374ee1c97e6242c23574aa57e1d17425e753))
+
+
+
+
+
 ## [4.73.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.73.0...@toptal/picasso@4.73.1) (2020-06-22)
 
 
