@@ -5,6 +5,14 @@ import { Tooltip } from '@toptal/picasso'
 import DatePicker from './DatePicker'
 
 describe('DatePicker', () => {
+  beforeAll(() => {
+    jest.useFakeTimers()
+  })
+
+  afterAll(() => {
+    jest.useRealTimers()
+  })
+
   test('default render', () => {
     const date = new Date('12-12-2019')
 
@@ -38,8 +46,10 @@ describe('DatePicker', () => {
     // this line leads to a warning, wrapping into `act` doesn't help
     fireEvent.mouseOver(day15)
 
-    const tooltip = getByText('tooltip content')
+    // wait for tooltip's "enterDelay"
+    jest.advanceTimersByTime(600)
 
+    const tooltip = getByText('tooltip content')
     expect(tooltip).toBeInTheDocument()
   })
 

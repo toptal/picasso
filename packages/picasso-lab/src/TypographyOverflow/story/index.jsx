@@ -18,7 +18,7 @@ page
     effect: async (testPage, makeScreenshot) => {
       // When ellipsed text is hovered then tooltip should appear
       await testPage.hover('[data-testid="ellipsed-text"]')
-      await testPage.waitFor(100)
+      await testPage.waitFor(600)
       await makeScreenshot()
     }
   })
@@ -27,7 +27,7 @@ page
     effect: async (testPage, makeScreenshot) => {
       // When ellipsed checkbox's label is hovered then tooltip should appear
       await testPage.hover('[data-testid="ellipsed-text"]')
-      await testPage.waitFor(100)
+      await testPage.waitFor(600)
       await makeScreenshot()
     }
   })
