@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@0.4.2...@toptal/picasso-charts@0.5.0) (2020-06-22)
+
+
+### Features
+
+* add custom calculations for tooltip ([#1384](https://github.com/toptal/picasso/issues/1384)) ([a97aaf0](https://github.com/toptal/picasso/commit/a97aaf0e3e46a107ec321ba2b12b54c7ea68c6e8))
+
+
+
+
+
 ## [0.4.2](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@0.4.1...@toptal/picasso-charts@0.4.2) (2020-06-16)
 
 **Note:** Version bump only for package @toptal/picasso-charts
