@@ -38,7 +38,7 @@
     "title-case": "^3.0.2"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.1.1",
+    "@testing-library/jest-dom": "^5.10.1",
     "@types/classnames": "^2.2.9",
     "@types/react-helmet": "^5.0.15",
     "@types/react-router-dom": "^5.1.3"
