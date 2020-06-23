@@ -6,7 +6,7 @@ export default () =>
       fontSize: '1rem',
 
       '& + &': {
-        marginTop: '1em'
+        marginTop: '1.5em'
       },
       '& $error + $hint': {
         marginTop: 0
