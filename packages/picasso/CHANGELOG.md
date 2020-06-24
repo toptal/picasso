@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.74.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.74.1...@toptal/picasso@4.74.2) (2020-06-24)
+
+
+### Bug Fixes
+
+* **FormField:** align the top margin with the base design ([#1391](https://github.com/toptal/picasso/issues/1391)) ([fbd1455](https://github.com/toptal/picasso/commit/fbd14558cf1b12046fffe9168f71146dc0fabf78))
+
+
+
+
+
 ## [4.74.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.74.0...@toptal/picasso@4.74.1) (2020-06-22)
 
 **Note:** Version bump only for package @toptal/picasso
