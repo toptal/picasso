@@ -119,6 +119,9 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
 
           const defaultMarkup = (
             <button
+              data-testid={`day-button-${
+                isSelected ? 'selected' : getDayFormatted(date)
+              }`}
               data-simple-react-calendar-day={ISODate}
               key={key}
               tabIndex={isDisabled || !isSelectable ? -1 : undefined}

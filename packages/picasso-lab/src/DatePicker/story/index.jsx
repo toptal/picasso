@@ -36,4 +36,5 @@ page
   .addExample(
     'DatePicker/story/WithCustomDayRendering.example.tsx',
     'With Custom Day rendering'
-  ) // picasso-skip-visuals
+  )
+  .addExample('DatePicker/story/WithTimezone.example.tsx', 'With Timezone') // picasso-skip-visuals

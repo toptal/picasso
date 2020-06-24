@@ -33,6 +33,7 @@
     "classnames": "^2.2.6",
     "d3": "~5.12.0",
     "date-fns": "^2.3.0",
+    "date-fns-tz": "^1.0.10",
     "simple-react-calendar": "^2.2.1"
   },
   "devDependencies": {
