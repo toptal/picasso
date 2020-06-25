@@ -40,6 +40,7 @@ export type Props<
     type?: string
     hideFieldLabel?: boolean
     fieldType?: string
+    wrapFieldLabel?: boolean
     children: (props: any) => React.ReactNode
   }
 
@@ -110,6 +111,7 @@ const FieldWrapper = <
   const {
     type,
     hideFieldLabel,
+    wrapFieldLabel = true,
     hint,
     label,
     required,
@@ -199,11 +201,15 @@ const FieldWrapper = <
 
   return (
     <PicassoForm.Field error={error} hint={hint}>
-      {!hideFieldLabel && label && (
-        <PicassoForm.Label required={required} htmlFor={id}>
-          {label}
-        </PicassoForm.Label>
-      )}
+      {!hideFieldLabel &&
+        label &&
+        (wrapFieldLabel ? (
+          <PicassoForm.Label required={required} htmlFor={id}>
+            {label}
+          </PicassoForm.Label>
+        ) : (
+          label
+        ))}
       {children(childProps)}
     </PicassoForm.Field>
   )
