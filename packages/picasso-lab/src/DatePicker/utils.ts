@@ -10,7 +10,7 @@ export const timezoneConvert = (
   date: DateOrDateRangeType,
   timeZone?: string
 ): DateOrDateRangeType => {
-  const _convert = (dateToConvert: Date) => {
+  const convert = (dateToConvert: Date) => {
     if (timeZone) {
       /**
        * Prevent invalid IANA timezone error. This is likely to happen
@@ -26,8 +26,8 @@ export const timezoneConvert = (
   }
 
   return Array.isArray(date)
-    ? (date.map(_convert) as DateRangeType)
-    : (_convert(date) as Date)
+    ? (date.map(convert) as DateRangeType)
+    : (convert(date) as Date)
 }
 
 // Format date in given timezone. If timezone is undefined, return given date as is.
@@ -38,6 +38,10 @@ export const timezoneFormat = (date: Date, timeZone?: string) => {
      * when someone is editing properties in a Storybook examples.
      */
     try {
+      /**
+       * Maintain the same date and time, but formatted in the given timezone
+       * so next time the user edits the date it's not recalculated.
+       */
       return new Date(tzFormat(date, 'MMM dd yyyy HH:mm:ss OOOO', { timeZone }))
     } catch {
       return date
