@@ -119,6 +119,7 @@ type Selection = {
 
 type NativePlaceholderProps = Pick<Props, 'placeholder'> & {
   emptySelectValue: string | string[]
+  disabled: boolean
 }
 
 type NativeOptionsProps = Pick<Props, 'options' | 'renderOption'> & {
@@ -139,9 +140,10 @@ const DEFAULT_EMPTY_ARRAY_VALUE: ValueType[] = []
 
 const renderNativePlaceholder = ({
   emptySelectValue,
+  disabled,
   placeholder
 }: NativePlaceholderProps) => (
-  <option disabled value={emptySelectValue}>
+  <option disabled={disabled} value={emptySelectValue}>
     {placeholder}
   </option>
 )
@@ -580,6 +582,7 @@ export const Select = documentable(
         >
           {renderNativePlaceholder({
             emptySelectValue,
+            disabled: !enableReset,
             placeholder
           })}
           {renderNativeOptions({
