@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.21.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.20.0...@toptal/picasso-lab@2.21.0) (2020-06-29)
+
+
+### Features
+
+* add timezone property to DatePicker component ([#1392](https://github.com/toptal/picasso/issues/1392)) ([b5b793e](https://github.com/toptal/picasso/commit/b5b793e5c5704877142b722676b0c08ada6361a0))
+
+
+
+
+
 # [2.20.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.19.0...@toptal/picasso-lab@2.20.0) (2020-06-22)
 
 
