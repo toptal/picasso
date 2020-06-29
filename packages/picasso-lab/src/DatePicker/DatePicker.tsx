@@ -1,13 +1,15 @@
+/* eslint-disable complexity, max-statements */ // Squiggly lines makes code difficult to work with
+
 import React, {
   useState,
   useRef,
   KeyboardEvent,
+  ReactNode,
   useLayoutEffect,
-  ReactNode
+  useCallback
 } from 'react'
 import PopperJs from 'popper.js'
 import formatDate from 'date-fns/format'
-import isValid from 'date-fns/isValid'
 import parse from 'date-fns/parse'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
@@ -21,6 +23,12 @@ import Calendar, {
   DayProps
 } from '../Calendar'
 import styles from './styles'
+import {
+  formatDateRange,
+  timezoneConvert,
+  isDateValid,
+  timezoneFormat
+} from './utils'
 
 export interface Props
   extends BaseProps,
@@ -65,20 +73,13 @@ export interface Props
   popperContainer?: HTMLElement
   /** Index of the first day of the week (0 - Sunday). Default is 1 - Monday */
   weekStartsOn?: number
+  /** IANA timezone to display and edit date(s) */
+  timezone?: string
 }
-
-const formatDateRange = (dates: DateRangeType, format: string) =>
-  dates.map(date => formatDate(date, format)).join(' - ')
 
 const DEFAULT_DISPLAY_DATE_FORMAT = 'MMM d, yyyy'
 const DEFAULT_EDIT_DATE_FORMAT = 'MM-dd-yyyy'
 const EMPTY_INPUT_VALUE = ''
-
-const isDateValid = (date: string, pattern: string) => {
-  return (
-    date.length === pattern.length && isValid(parse(date, pattern, new Date()))
-  )
-}
 
 const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoDatePicker'
@@ -95,14 +96,13 @@ export const DatePicker = (props: Props) => {
     value,
     width,
     icon,
-    autoComplete,
     minDate,
     maxDate,
     disabledIntervals,
-    error,
     popperContainer,
     renderDay,
     weekStartsOn,
+    timezone,
     ...rest
   } = props
   const classes = useStyles(props)
@@ -112,6 +112,10 @@ export const DatePicker = (props: Props) => {
   const [calendarIsShown, setCalendarIsShown] = useState(false)
   const [isInputFocused, setIsInputFocused] = useState(false)
   const [inputValue, setInputValue] = useState(EMPTY_INPUT_VALUE)
+  const [
+    calendarValue,
+    setCalendarValue
+  ] = useState<DateOrDateRangeType | null>(null)
 
   const hideCalendar = () => setCalendarIsShown(false)
   const showCalendar = () => setCalendarIsShown(true)
@@ -121,36 +125,43 @@ export const DatePicker = (props: Props) => {
   const calendarRef = useRef<HTMLDivElement>(null)
   const inputWrapperRef = useRef<HTMLDivElement>(null)
 
+  // Format the input based on its 'focus' state
+  const formatInputValue = useCallback(
+    (valueToFormat: DateOrDateRangeType) => {
+      return Array.isArray(valueToFormat)
+        ? formatDateRange(valueToFormat as DateRangeType, displayDateFormat!)
+        : formatDate(
+            valueToFormat as Date,
+            isInputFocused ? editDateFormat! : displayDateFormat!
+          )
+    },
+    [isInputFocused, editDateFormat, displayDateFormat]
+  )
+
+  // Keep the input format in sync with its 'focus' state
   useLayoutEffect(() => {
-    if (!value) {
-      setInputValue(EMPTY_INPUT_VALUE)
-      return
-    }
+    setInputValue(() => {
+      if (!value) {
+        return EMPTY_INPUT_VALUE
+      }
+      return formatInputValue(timezoneConvert(value, timezone))
+    })
+  }, [value, timezone, formatInputValue])
 
-    if (range) {
-      setInputValue(formatDateRange(value as DateRangeType, displayDateFormat!))
-      return
-    }
-
-    if (isInputFocused) {
-      setInputValue(formatDate(value as Date, editDateFormat!))
-    } else {
-      setInputValue(formatDate(value as Date, displayDateFormat!))
-    }
-  }, [value, isInputFocused, range, displayDateFormat, editDateFormat])
+  // Keep the calendar in sync with the input value
+  useLayoutEffect(() => {
+    setCalendarValue(() => {
+      if (!value) {
+        return null
+      }
+      return timezoneConvert(value, timezone)
+    })
+  }, [value, timezone])
 
   const isInsideDatePicker = (node: Node) => {
-    if (!inputWrapperRef.current) {
-      return
-    }
-
-    if (!popperRef.current) {
-      return
-    }
-
     return (
-      popperRef.current.popper.contains(node) ||
-      inputWrapperRef.current.contains(node)
+      popperRef.current?.popper.contains(node) ||
+      inputWrapperRef.current?.contains(node)
     )
   }
 
@@ -177,15 +188,17 @@ export const DatePicker = (props: Props) => {
     // TODO: change this if manual entering of range is needed
     if (range) return
 
-    const nextInputValue = e.target.value
+    const nextValue = e.target.value
 
     // TODO: add char filtering (only number , `-` or ` ` allowed)
-    setInputValue(nextInputValue)
+    setInputValue(nextValue)
 
-    if (!nextInputValue) {
+    if (!nextValue) {
       onChange(null)
-    } else if (isDateValid(nextInputValue, editDateFormat!)) {
-      onChange(parse(nextInputValue, editDateFormat!, new Date()))
+    } else if (isDateValid(nextValue, editDateFormat!)) {
+      const parsedNextValue = parse(nextValue, editDateFormat!, new Date())
+      const nextTimezoneValue = timezoneFormat(parsedNextValue, timezone)
+      onChange(nextTimezoneValue)
     }
   }
 
@@ -195,8 +208,15 @@ export const DatePicker = (props: Props) => {
     }
   }
 
-  const handleCalendarChange = (value: DateOrDateRangeType) => {
-    onChange(value)
+  const handleCalendarChange = (nextValue: DateOrDateRangeType) => {
+    const nextTimezoneValue = Array.isArray(nextValue)
+      ? (nextValue.map((date: Date) =>
+          timezoneFormat(date, timezone)
+        ) as DateRangeType)
+      : timezoneFormat(nextValue, timezone)
+
+    onChange(nextTimezoneValue)
+    setCalendarValue(nextTimezoneValue)
 
     if (hideOnSelect) {
       focus()
@@ -259,9 +279,7 @@ export const DatePicker = (props: Props) => {
         <Input
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...inputProps}
-          autoComplete={autoComplete}
           ref={inputRef}
-          error={error}
           onKeyDown={handleInputKeydown}
           onClick={handleFocusOrClick}
           onFocus={handleFocusOrClick}
@@ -285,7 +303,7 @@ export const DatePicker = (props: Props) => {
           <Calendar
             ref={calendarRef}
             range={range}
-            value={value ?? undefined}
+            value={calendarValue ?? undefined}
             minDate={minDate}
             maxDate={maxDate}
             disabledIntervals={disabledIntervals}
