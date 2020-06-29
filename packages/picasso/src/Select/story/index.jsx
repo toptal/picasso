@@ -27,7 +27,7 @@ page.createTabChapter('Props').addComponentDocs({
 page
   .createChapter()
   .addExample('Select/story/Default.example.jsx', 'Default')
-  .addExample('Select/story/Native.example.jsx', 'Native')
+  .addExample('Select/story/Native.example.tsx', 'Native')
   .addExample('Select/story/SearchBehavior.example.tsx', {
     title: 'Search behavior',
     description: `

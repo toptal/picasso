@@ -62,11 +62,32 @@ const getSelectedOptions = (element: Element) =>
   Array.from(element.querySelectorAll('[class$="selected"]')) as Element[]
 
 test('renders native select', () => {
-  const { container } = renderSelect({
+  const { container, getByText } = renderSelect({
     native: true,
     options: OPTIONS,
+    placeholder: 'Choose an option...',
     value: 'val1'
   })
+
+  const emptyOption = getByText('Choose an option...')
+
+  expect(emptyOption).toBeDisabled()
+
+  expect(container).toMatchSnapshot()
+})
+
+test('renders native select with the empty option enabled when enableReset is `true`', () => {
+  const { container, getByText } = renderSelect({
+    enableReset: true,
+    native: true,
+    options: OPTIONS,
+    placeholder: 'Choose an option...',
+    value: 'val1'
+  })
+
+  const emptyOption = getByText('Choose an option...')
+
+  expect(emptyOption).not.toBeDisabled()
 
   expect(container).toMatchSnapshot()
 })
