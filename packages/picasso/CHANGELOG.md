@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.74.3](https://github.com/toptal/picasso/compare/@toptal/picasso@4.74.2...@toptal/picasso@4.74.3) (2020-06-29)
+
+
+### Bug Fixes
+
+* enable the first option in NativeSelect if enableReset is true ([#1395](https://github.com/toptal/picasso/issues/1395)) ([1a48eb6](https://github.com/toptal/picasso/commit/1a48eb661a86c14edcf5e4a8a0e99be0427cef1b))
+
+
+
+
+
 ## [4.74.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.74.1...@toptal/picasso@4.74.2) (2020-06-24)
 
 
