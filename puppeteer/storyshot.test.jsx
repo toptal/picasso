@@ -23,14 +23,16 @@ stories.forEach(story => {
   story.tests.forEach(({ exampleFilename, options }) => {
     const humanName = createHumanName(story.name, exampleFilename)
 
-    test(
-      humanName,
-      assertVisuals(story.name, exampleFilename, {
-        customSnapshotsDir: snapShotDir(story.file),
-        customSnapshotIdentifier: `${createSnapshotName(humanName)}`,
-        customDiffDir: outputPath,
-        ...options
-      })
-    )
+    describe(`Component ${story.name}`, () => {
+      test(
+        humanName,
+        assertVisuals(story.name, exampleFilename, {
+          customSnapshotsDir: snapShotDir(story.file),
+          customSnapshotIdentifier: `${createSnapshotName(humanName)}`,
+          customDiffDir: outputPath,
+          ...options
+        })
+      )
+    })
   })
 })
