@@ -16,131 +16,171 @@ const NodeContainer = styled<typeof Container>(Container)<{
     `border: 1px solid ${selected ? palette.blue.main : palette.grey.light};`}
 `
 
-const createTreeNode = (
-  override: Partial<TreeNodeInterface> = {}
+interface DataItem {
+  content: {
+    name: string
+    type: 'card' | 'group'
+    members?: {
+      name: string
+    }[]
+  }
+  children: DataItem[]
+}
+
+const data: DataItem = {
+  content: {
+    name: 'Name Surname 1',
+    type: 'card'
+  },
+  children: [
+    {
+      content: {
+        name: 'Name Surname 2',
+        type: 'card'
+      },
+      children: [
+        {
+          content: {
+            name: 'Name Surname 3',
+            type: 'group',
+            members: [
+              {
+                name: 'Name Surname 4'
+              },
+              {
+                name: 'Name Surname 5'
+              },
+              {
+                name: 'Name Surname 6'
+              },
+              {
+                name: 'Name Surname 7'
+              },
+              {
+                name: 'Name Surname 8'
+              }
+            ]
+          },
+          children: []
+        },
+        {
+          content: {
+            name: 'Name Surname 9',
+            type: 'card'
+          },
+          children: [
+            {
+              content: {
+                name: 'Name Surname 10',
+                type: 'group',
+                members: [
+                  {
+                    name: 'Name Surname 11'
+                  },
+                  {
+                    name: 'Name Surname 12'
+                  },
+                  {
+                    name: 'Name Surname 13'
+                  },
+                  {
+                    name: 'Name Surname 14'
+                  },
+                  {
+                    name: 'Name Surname 15'
+                  }
+                ]
+              },
+              children: []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      content: {
+        name: 'Name Surname 16',
+        type: 'card'
+      },
+      children: [
+        {
+          content: {
+            name: 'Name Surname 17',
+            type: 'group',
+            members: [
+              {
+                name: 'Name Surname 18'
+              },
+              {
+                name: 'Name Surname 19'
+              },
+              {
+                name: 'Name Surname 20'
+              },
+              {
+                name: 'Name Surname 21'
+              },
+              {
+                name: 'Name Surname 22'
+              },
+              {
+                name: 'Name Surname 23'
+              },
+              {
+                name: 'Name Surname 24'
+              },
+              {
+                name: 'Name Surname 25'
+              },
+              {
+                name: 'Name Surname 26'
+              },
+              {
+                name: 'Name Surname 27'
+              },
+              { name: 'Name Surname 28' },
+              { name: 'Name Surname 29' },
+              { name: 'Name Surname 30' },
+              { name: 'Name Surname 31' },
+              { name: 'Name Surname 32' }
+            ]
+          },
+          children: []
+        }
+      ]
+    }
+  ]
+}
+
+const convertToNode = (
+  data: DataItem,
+  selectedId: string
 ): TreeNodeInterface => {
   return {
-    id: '1',
+    id: data.content.name,
+    selected: data.content.name === selectedId,
+    selectedOffset:
+      data.content.type === 'group'
+        ? {
+            y: 150
+          }
+        : undefined,
     disabled: false,
-    selected: false,
-    children: [],
     info: {
-      name: 'NODE+NAME+1'
+      name: data.content.name,
+      type: data.content.type,
+      members: data.content.members
     },
-    ...override
+    children: data.children.map(child => convertToNode(child, selectedId))
   }
 }
 
-const createTree = (seletedId?: string): TreeNodeInterface => {
-  return createTreeNode({
-    id: '1',
-    selected: seletedId === '1',
-    info: {
-      name: 'NODE+1'
-    },
-    children: [
-      createTreeNode({
-        id: '2',
-        selected: seletedId === '2',
-        info: {
-          name: 'NODE+2'
-        },
-        children: [
-          createTreeNode({
-            id: '3',
-            selected: seletedId === '3',
-            info: {
-              name: 'NODE+3'
-            },
-            children: [
-              createTreeNode({
-                id: '3.1',
-                selected: seletedId === '3.1',
-                info: {
-                  name: 'NODE+3.1'
-                },
-                children: [
-                  createTreeNode({
-                    id: '3.1.1',
-                    selected: seletedId === '3.1.1',
-                    info: {
-                      name: 'NODE+3.1.1'
-                    }
-                  }),
-                  createTreeNode({
-                    id: '3.1.2',
-                    selected: seletedId === '3.1.2',
-                    info: {
-                      name: 'NODE+3.1.2'
-                    }
-                  })
-                ]
-              }),
-              createTreeNode({
-                id: '3.2',
-                selected: seletedId === '3.2',
-                info: {
-                  name: 'NODE+3.2'
-                },
-                children: [
-                  createTreeNode({
-                    id: '3.2.1',
-                    selected: seletedId === '3.2.1',
-                    info: {
-                      name: 'NODE+3.2.1'
-                    }
-                  }),
-                  createTreeNode({
-                    id: '3.2.2',
-                    selected: seletedId === '3.2.2',
-                    info: {
-                      name: 'NODE+3.2.2'
-                    }
-                  })
-                ]
-              })
-            ]
-          })
-        ]
-      }),
-      createTreeNode({
-        id: '4',
-        selected: seletedId === '4',
-        info: {
-          name: 'NODE+4'
-        },
-        children: [
-          createTreeNode({
-            id: '4.1',
-            selected: seletedId === '4.1',
-            info: {
-              name: 'NODE+4.1'
-            },
-            children: [
-              createTreeNode({
-                id: '4.1.1',
-                selected: seletedId === '4.1.1',
-                info: {
-                  name: 'NODE+4.1.1'
-                }
-              }),
-              createTreeNode({
-                id: '4.1.2',
-                selected: seletedId === '4.1.2',
-                info: {
-                  name: 'NODE+4.1.2'
-                }
-              })
-            ]
-          })
-        ]
-      })
-    ]
-  })
+const createTree = (selectedId: string): TreeNodeInterface => {
+  return convertToNode(data, selectedId)
 }
 
 const Example = () => {
-  const [selectedId, setSelectedId] = useState('3.1.2')
+  const [selectedId, setSelectedId] = useState('Name Surname 1')
 
   const rootNode = createTree(selectedId)
 
@@ -149,15 +189,13 @@ const Example = () => {
   }
 
   const renderNode = (pointNode: HierarchyPointNode<TreeNodeInterface>) => {
-    if (pointNode.data.id === '2') {
+    if (pointNode.data.info.type === 'group') {
       return (
-        <NodeContainer>
+        <NodeContainer onClick={() => onClick(pointNode.data.id)}>
           <div>
-            <UserBadge name='QQQQQQQQ QQQQQQQQ' />
-            <UserBadge name='QQQQQQQQ QQQQQQQQ' />
-            <UserBadge name='QQQQQQQQ QQQQQQQQ' />
-            <UserBadge name='QQQQQQQQ QQQQQQQQ' />
-            <UserBadge name='QQQQQQQQ QQQQQQQQ' />
+            {pointNode.data.info.members.map((member: { name: string }) => (
+              <UserBadge name={member.name} key={member.name} />
+            ))}
           </div>
         </NodeContainer>
       )

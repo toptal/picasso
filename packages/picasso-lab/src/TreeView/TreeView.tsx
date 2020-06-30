@@ -3,7 +3,8 @@ import React, {
   ReactNode,
   useContext,
   useEffect,
-  useState
+  useState,
+  useMemo
 } from 'react'
 import { HierarchyPointNode } from 'd3' // eslint-disable-line import/no-duplicates
 import { Theme, makeStyles } from '@material-ui/core/styles'
@@ -50,10 +51,18 @@ export const TreeView = (props: Props) => {
   const classes = useStyles(props)
   const rootRef = createRef<SVGSVGElement>()
   const { nodes, links, selectedNode } = useTree({ data })
+  const center = useMemo<{ x: number; y: number }>(() => {
+    const { x: xPosition, y: yPosition, data } = selectedNode || nodes[0]
+
+    return {
+      x: xPosition + (data.selectedOffset?.x || 0),
+      y: yPosition + (data.selectedOffset?.y || 0)
+    }
+  }, [selectedNode, nodes])
   const { handleZoom, zoom } = useZoom<SVGSVGElement>({
     rootRef,
     scaleExtent,
-    center: selectedNode || nodes[0],
+    center,
     initialScale
   })
   const [initialized, setInitialized] = useState(false)

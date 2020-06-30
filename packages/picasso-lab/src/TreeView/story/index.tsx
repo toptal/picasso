@@ -18,7 +18,7 @@ page
   .addExample('TreeView/story/Selected.example.tsx', {
     title: 'With selected node',
     description:
-      "To set the particular node selected, you need to set `node`'s attribute *selected* to `true`"
+      "To set the particular node selected, you need to set `node`'s attribute *selected* to `true`. Also there is additional attribute `selectedOffset` for adding an scroll offset for particular node"
   })
   .addExample('TreeView/story/Modal.example.tsx', 'With Modal')
   .addExample('TreeView/story/CustomZoom.example.tsx', 'Custom Zoom')

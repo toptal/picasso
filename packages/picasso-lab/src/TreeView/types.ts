@@ -11,6 +11,10 @@ export interface TreeViewContextProps {
 export interface TreeNodeInterface {
   id: string
   selected: boolean
+  selectedOffset?: {
+    x?: number
+    y?: number
+  }
   disabled: boolean
   children?: TreeNodeInterface[]
   info: Record<string, any>
