@@ -38,7 +38,7 @@ export interface StaticProps {
 type Menus = Record<string, ReactElement>
 
 const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoMenu'
+  name: 'Menu'
 })
 
 // eslint-disable-next-line react/display-name

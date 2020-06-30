@@ -32,7 +32,7 @@ export interface Props extends BaseProps, Omit<ListNativeProps, 'onSelect'> {
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoAccountSelect'
+  name: 'AccountSelect'
 })
 
 export const AccountSelect = forwardRef<HTMLUListElement, Props>(

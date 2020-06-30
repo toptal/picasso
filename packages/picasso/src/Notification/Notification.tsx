@@ -123,7 +123,7 @@ const renderNotificationContent = (props: Props & JssProps) => {
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoNotification'
+  name: 'Notification'
 })
 
 // eslint-disable-next-line react/display-name

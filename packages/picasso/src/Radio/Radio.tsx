@@ -36,7 +36,7 @@ export interface StaticProps {
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoRadio'
+  name: 'Radio'
 })
 
 // eslint-disable-next-line react/display-name
