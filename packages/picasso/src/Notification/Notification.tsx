@@ -6,12 +6,13 @@ import React, {
   cloneElement,
   HTMLAttributes
 } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import SnackbarContent from '@material-ui/core/SnackbarContent'
 import cx from 'classnames'
 import capitalize from '@material-ui/core/utils/capitalize'
 import {
-  StandardProps,
+  BaseProps,
+  JssProps,
   PicassoComponentWithRef,
   CompoundedComponentWithRef
 } from '@toptal/picasso-shared'
@@ -30,7 +31,7 @@ import NotificationActions from '../NotificationActions'
 
 export type VariantType = 'red' | 'green' | 'white' | 'yellow'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Main content of the Notification */
   children: ReactNode
   /** Callback invoked when close is clicked */
@@ -52,7 +53,7 @@ interface StaticProps {
 const renderNotificationCloseButton = ({
   onClose,
   classes: { close, closeIcon }
-}: Props) => (
+}: Props & JssProps) => (
   <Button
     circular
     onClick={onClose}
@@ -62,7 +63,11 @@ const renderNotificationCloseButton = ({
   />
 )
 
-const renderNotificationIcon = ({ icon, variant, classes }: Props) => {
+const renderNotificationIcon = ({
+  icon,
+  variant,
+  classes
+}: Props & JssProps) => {
   const iconProps = {
     className: classes.icon
   }
@@ -91,7 +96,7 @@ const renderNotificationIcon = ({ icon, variant, classes }: Props) => {
   }
 }
 
-const renderNotificationContent = (props: Props) => {
+const renderNotificationContent = (props: Props & JssProps) => {
   const {
     classes: { iconWrapper, content, contentCloseButton },
     children,
@@ -117,10 +122,15 @@ const renderNotificationContent = (props: Props) => {
   )
 }
 
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'PicassoNotification'
+})
+
 // eslint-disable-next-line react/display-name
 export const Notification = forwardRef<HTMLElement, Props>(
   function Notification(props, ref) {
-    const { className, classes, variant, elevated, fullWidth, ...rest } = props
+    const classes = useStyles(props)
+    const { className, variant, elevated, fullWidth, ...rest } = props
 
     return (
       <SnackbarContent
@@ -135,7 +145,10 @@ export const Notification = forwardRef<HTMLElement, Props>(
           classes.notification,
           className
         )}
-        message={renderNotificationContent(props)}
+        message={renderNotificationContent({
+          ...props,
+          classes
+        })}
         ref={ref}
       />
     )
@@ -152,7 +165,7 @@ Notification.displayName = 'Notification'
 
 Notification.Actions = NotificationActions
 
-export default withStyles(styles)(Notification) as PicassoComponentWithRef<
+export default Notification as PicassoComponentWithRef<
   Props,
   HTMLElement,
   StaticProps

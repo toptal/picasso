@@ -1,10 +1,10 @@
 import React, { forwardRef, ReactNode } from 'react'
 import MUIRadio from '@material-ui/core/Radio'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import {
   PicassoComponentWithRef,
   CompoundedComponentWithRef,
-  StandardProps,
+  BaseProps,
   ButtonOrAnchorProps
 } from '@toptal/picasso-shared'
 import cx from 'classnames'
@@ -14,7 +14,7 @@ import FormControlLabel from '../FormControlLabel'
 import styles from './styles'
 
 export interface Props
-  extends StandardProps,
+  extends BaseProps,
     Omit<ButtonOrAnchorProps, 'onChange' | 'value'> {
   /** Text label for the `Radio` */
   label?: ReactNode
@@ -35,10 +35,17 @@ export interface StaticProps {
   Group: typeof RadioGroup
 }
 
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'PicassoRadio'
+})
+
 // eslint-disable-next-line react/display-name
 export const Radio = forwardRef<HTMLButtonElement, Props>(function Radio(
-  {
-    classes,
+  props,
+  ref
+) {
+  const classes = useStyles(props)
+  const {
     className,
     style,
     label,
@@ -48,9 +55,8 @@ export const Radio = forwardRef<HTMLButtonElement, Props>(function Radio(
     onChange,
     titleCase,
     ...rest
-  },
-  ref
-) {
+  } = props
+
   const rootClasses = {
     root: classes.root,
     disabled: classes.disabled
@@ -97,7 +103,6 @@ export const Radio = forwardRef<HTMLButtonElement, Props>(function Radio(
 }) as CompoundedComponentWithRef<Props, HTMLButtonElement, StaticProps>
 
 Radio.defaultProps = {
-  classes: {},
   disabled: false
 }
 
@@ -105,7 +110,7 @@ Radio.displayName = 'Radio'
 
 Radio.Group = RadioGroup
 
-export default withStyles(styles)(Radio) as PicassoComponentWithRef<
+export default Radio as PicassoComponentWithRef<
   Props,
   HTMLButtonElement,
   StaticProps
