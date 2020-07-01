@@ -124,7 +124,9 @@ export default ({ palette }: Theme) =>
       display: 'inline-block'
     },
 
-    whiteVariant: colorVariant(),
+    whiteVariant: createPropertiesStyles({
+      backgroundColor: palette.common.white
+    }),
 
     redVariant: colorVariant(palette.red),
 
