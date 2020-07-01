@@ -1,5 +1,5 @@
 import React, { ReactNode, forwardRef, HTMLAttributes } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUIGrid, {
   GridSpacing,
   GridItemsAlignment,
@@ -8,7 +8,7 @@ import MUIGrid, {
   GridWrap
 } from '@material-ui/core/Grid'
 import {
-  StandardProps,
+  BaseProps,
   PicassoComponentWithRef,
   CompoundedComponentWithRef
 } from '@toptal/picasso-shared'
@@ -16,7 +16,7 @@ import {
 import GridItem from '../GridItem'
 import styles from './styles'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
+export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   /** Grid content containing Grid.Item */
   children?: ReactNode
   /** Defines amount of space between Grid.Item components (in px) */
@@ -40,22 +40,28 @@ const humanToMUISpacing = (spacing: number) => {
   return (spacing / 8) as GridSpacing
 }
 
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'Grid'
+})
+
 // eslint-disable-next-line react/display-name
 export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(
-  {
+  props,
+  ref
+) {
+  const classes = useStyles(props)
+  const {
     children,
     spacing,
     direction,
     alignItems,
     justifyContent,
     wrap,
-    classes,
     className,
     style,
     ...rest
-  },
-  ref
-) {
+  } = props
+
   return (
     <MUIGrid
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -86,7 +92,7 @@ Grid.defaultProps = {
 
 Grid.Item = GridItem
 
-export default withStyles(styles)(Grid) as PicassoComponentWithRef<
+export default Grid as PicassoComponentWithRef<
   Props,
   HTMLDivElement,
   StaticProps

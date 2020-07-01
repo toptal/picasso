@@ -1,11 +1,11 @@
 import React, { ReactNode, forwardRef, HTMLAttributes } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUIGrid, { GridSize } from '@material-ui/core/Grid'
-import { StandardProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
+export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   /** Content of Grid.Item */
   children?: ReactNode
   /** Defines the number of grids the component is going to use. It's applied for all the screen sizes with the lowest priority */
@@ -16,10 +16,17 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
   large?: GridSize
 }
 
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'GridItem'
+})
+
 export const GridItem = forwardRef<HTMLDivElement, Props>(function GridItem(
-  { children, small, medium, large, classes, className, style, ...rest },
+  props,
   ref
 ) {
+  const classes = useStyles(props)
+  const { children, small, medium, large, className, style, ...rest } = props
+
   return (
     <MUIGrid
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -42,4 +49,4 @@ GridItem.defaultProps = {}
 
 GridItem.displayName = 'GridItem'
 
-export default withStyles(styles)(GridItem)
+export default GridItem
