@@ -41,7 +41,7 @@ export type PicassoComponent<P, S = {}> = FunctionComponent<
   S
 
 export type PicassoComponentWithRef<P, R, S = {}> = FunctionComponent<
-  OmitInternalProps<P> & Partial<JssProps> & RefAttributes<R>
+  P & RefAttributes<R>
 > &
   S
 

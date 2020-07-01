@@ -8,10 +8,11 @@ import React, {
   useCallback
 } from 'react'
 import MUIMenuList, { MenuListProps } from '@material-ui/core/MenuList'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import {
-  StandardProps,
+  BaseProps,
+  JssProps,
   PicassoComponentWithRef,
   CompoundedComponentWithRef
 } from '@toptal/picasso-shared'
@@ -25,7 +26,7 @@ import styles from './styles'
 export type ListNativeProps = HTMLAttributes<HTMLUListElement> &
   Pick<MenuListProps, 'onKeyDown'>
 
-export interface Props extends StandardProps, ListNativeProps {
+export interface Props extends BaseProps, ListNativeProps {
   // whether or not to handle nested navigation
   allowNestedNavigation?: boolean
 }
@@ -36,11 +37,18 @@ export interface StaticProps {
 
 type Menus = Record<string, ReactElement>
 
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'Menu'
+})
+
 // eslint-disable-next-line react/display-name
 export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
-  { children, className, classes, style, allowNestedNavigation, ...rest },
+  props,
   ref
 ) {
+  const classes = useStyles(props)
+  const { children, className, style, allowNestedNavigation, ...rest } = props
+
   const { backButtonIcon, hideMenu, ...restClasses } = classes
   const { pop } = useContext<MenuContextProps>(MenuContext)
 
@@ -149,8 +157,8 @@ Menu.displayName = 'Menu'
 
 Menu.Item = MenuItem
 
-export default withStyles(styles)(Menu) as PicassoComponentWithRef<
-  Props,
+export default Menu as PicassoComponentWithRef<
+  Props & Partial<JssProps>,
   HTMLUListElement,
   StaticProps
 >

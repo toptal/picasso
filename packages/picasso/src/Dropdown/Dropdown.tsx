@@ -12,14 +12,16 @@ import Grow from '@material-ui/core/Grow'
 import { PopperPlacementType } from '@material-ui/core/Popper'
 import { PopperOptions } from 'popper.js'
 import RootRef from '@material-ui/core/RootRef'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import {
   CompoundedComponentWithRef,
   PicassoComponentWithRef,
   spacingToRem,
   SpacingType,
-  StandardProps
+  BaseProps,
+  JssProps,
+  Classes
 } from '@toptal/picasso-shared'
 
 import DropdownArrow from '../DropdownArrow'
@@ -27,7 +29,7 @@ import Popper from '../Popper'
 import Paper from '../Paper'
 import styles from './styles'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Anchor element that opens content on click */
   children: ReactNode
   /** Content element that opens when anchor is clicked */
@@ -76,175 +78,186 @@ const useDropdownContext = () => {
   return context
 }
 
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'Dropdown'
+})
+
 // eslint-disable-next-line react/display-name
-export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
-  {
-    classes,
-    className,
-    style,
-    children,
-    content,
-    offset,
-    placement,
-    disableAutoClose,
-    disableAutoFocus,
-    disablePortal,
-    popperOptions,
-    onOpen,
-    popperContainer,
-    onClose,
-    ...rest
-  },
-  ref
-) {
-  const contentRef = useRef<HTMLElement>()
+export const Dropdown = forwardRef<HTMLDivElement, Props & Partial<JssProps>>(
+  function Dropdown(props, ref) {
+    const {
+      classes: externalClasses,
+      className,
+      style,
+      children,
+      content,
+      offset,
+      placement,
+      disableAutoClose,
+      disableAutoFocus,
+      disablePortal,
+      popperOptions,
+      onOpen,
+      popperContainer,
+      onClose,
+      ...rest
+    } = props
+    const classes = {
+      ...useStyles(props),
+      ...externalClasses
+    } as Classes
 
-  const [anchorEl, setAnchorEl] = useState<HTMLDivElement | undefined>(
-    undefined
-  )
+    const contentRef = useRef<HTMLElement>()
 
-  const [isOpen, setIsOpen] = useState<boolean>(false)
+    const [anchorEl, setAnchorEl] = useState<HTMLDivElement | undefined>(
+      undefined
+    )
 
-  const open = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    setAnchorEl(event.currentTarget)
-    setIsOpen(true)
-    onOpen!()
-  }
+    const [isOpen, setIsOpen] = useState<boolean>(false)
 
-  const toggleOpen = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    if (isOpen) {
-      close()
-    } else {
-      open(event)
-    }
-  }
-
-  const handleContentKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
-    if (event.key === 'Tab') {
-      event.preventDefault()
+    const open = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+      setAnchorEl(event.currentTarget)
+      setIsOpen(true)
+      onOpen!()
     }
 
-    // Always close menu regardless of disableAutoClose
-    if (event.key === 'Escape') {
+    const toggleOpen = (
+      event: React.MouseEvent<HTMLDivElement, MouseEvent>
+    ) => {
+      if (isOpen) {
+        close()
+      } else {
+        open(event)
+      }
+    }
+
+    const handleContentKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
+      if (event.key === 'Tab') {
+        event.preventDefault()
+      }
+
+      // Always close menu regardless of disableAutoClose
+      if (event.key === 'Escape') {
+        forceClose()
+      }
+
+      if (event.key === 'Enter') {
+        close()
+      }
+
+      if (event.key === ' ') {
+        close()
+      }
+    }
+
+    const close = () => {
+      if (disableAutoClose) {
+        return
+      }
       forceClose()
     }
 
-    if (event.key === 'Enter') {
-      close()
+    const forceClose = () => {
+      setAnchorEl(undefined)
+      setIsOpen(false)
+      onClose!()
     }
 
-    if (event.key === ' ') {
-      close()
-    }
-  }
+    const focus = () => {
+      if (disableAutoFocus) {
+        return
+      }
 
-  const close = () => {
-    if (disableAutoClose) {
-      return
-    }
-    forceClose()
-  }
+      if (!contentRef || !contentRef.current) {
+        return
+      }
 
-  const forceClose = () => {
-    setAnchorEl(undefined)
-    setIsOpen(false)
-    onClose!()
-  }
-
-  const focus = () => {
-    if (disableAutoFocus) {
-      return
-    }
-
-    if (!contentRef || !contentRef.current) {
-      return
-    }
-
-    const { firstChild } = contentRef.current
-    // TODO: add focusable interface to Picasso.Menu and other components that expose focus
-    // @ts-ignore
-
-    if (firstChild && firstChild.focus) {
+      const { firstChild } = contentRef.current
+      // TODO: add focusable interface to Picasso.Menu and other components that expose focus
       // @ts-ignore
-      return firstChild.focus()
+
+      if (firstChild && firstChild.focus) {
+        // @ts-ignore
+        return firstChild.focus()
+      }
+
+      if (contentRef.current.focus) {
+        return contentRef.current.focus()
+      }
     }
 
-    if (contentRef.current.focus) {
-      return contentRef.current.focus()
-    }
-  }
+    const paperMargins = useMemo(
+      () => ({
+        ...(offset!.top && { marginTop: spacingToRem(offset!.top) }),
+        ...(offset!.bottom && { marginBottom: spacingToRem(offset!.bottom) }),
+        ...(offset!.left && { marginLeft: spacingToRem(offset!.left) }),
+        ...(offset!.right && { marginRight: spacingToRem(offset!.right) })
+      }),
+      [offset]
+    )
 
-  const paperMargins = useMemo(
-    () => ({
-      ...(offset!.top && { marginTop: spacingToRem(offset!.top) }),
-      ...(offset!.bottom && { marginBottom: spacingToRem(offset!.bottom) }),
-      ...(offset!.left && { marginLeft: spacingToRem(offset!.left) }),
-      ...(offset!.right && { marginRight: spacingToRem(offset!.right) })
-    }),
-    [offset]
-  )
-
-  // here you can expose other methods, states to child components
-  const context = {
-    close: () => forceClose()
-  }
-
-  const handleClickAway = (event: React.MouseEvent<Document>) => {
-    const target = event.target
-    if (anchorEl && target instanceof Node && anchorEl.contains(target)) {
-      return
+    // here you can expose other methods, states to child components
+    const context = {
+      close: () => forceClose()
     }
 
-    forceClose()
-  }
+    const handleClickAway = (event: React.MouseEvent<Document>) => {
+      const target = event.target
+      if (anchorEl && target instanceof Node && anchorEl.contains(target)) {
+        return
+      }
 
-  return (
-    <div
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...rest}
-      ref={ref}
-      className={cx(classes.root, className)}
-      style={style}
-    >
-      <div className={classes.anchor} onClick={toggleOpen}>
-        {children}
+      forceClose()
+    }
+
+    return (
+      <div
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...rest}
+        ref={ref}
+        className={cx(classes.root, className)}
+        style={style}
+      >
+        <div className={classes.anchor} onClick={toggleOpen}>
+          {children}
+        </div>
+
+        {anchorEl && (
+          <Popper
+            className={classes.popper}
+            open={isOpen}
+            anchorEl={anchorEl}
+            popperOptions={{
+              onCreate: focus,
+              ...popperOptions
+            }}
+            placement={placement}
+            style={paperMargins}
+            disablePortal={disablePortal}
+            autoWidth={false}
+            enableCompactMode
+            container={popperContainer}
+          >
+            <ClickAwayListener onClickAway={handleClickAway}>
+              <Grow in={isOpen} appear>
+                <Paper
+                  className={classes.content}
+                  onClick={() => close()}
+                  onKeyDown={handleContentKeyDown}
+                  elevation={2}
+                >
+                  <DropdownContext.Provider value={context}>
+                    <RootRef rootRef={contentRef}>{content}</RootRef>
+                  </DropdownContext.Provider>
+                </Paper>
+              </Grow>
+            </ClickAwayListener>
+          </Popper>
+        )}
       </div>
-
-      {anchorEl && (
-        <Popper
-          className={classes.popper}
-          open={isOpen}
-          anchorEl={anchorEl}
-          popperOptions={{
-            onCreate: focus,
-            ...popperOptions
-          }}
-          placement={placement}
-          style={paperMargins}
-          disablePortal={disablePortal}
-          autoWidth={false}
-          enableCompactMode
-          container={popperContainer}
-        >
-          <ClickAwayListener onClickAway={handleClickAway}>
-            <Grow in={isOpen} appear>
-              <Paper
-                className={classes.content}
-                onClick={() => close()}
-                onKeyDown={handleContentKeyDown}
-                elevation={2}
-              >
-                <DropdownContext.Provider value={context}>
-                  <RootRef rootRef={contentRef}>{content}</RootRef>
-                </DropdownContext.Provider>
-              </Paper>
-            </Grow>
-          </ClickAwayListener>
-        </Popper>
-      )}
-    </div>
-  )
-}) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
+    )
+  }
+) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
 
 Dropdown.defaultProps = {
   disableAutoClose: false,
@@ -262,8 +275,8 @@ Dropdown.displayName = 'Dropdown'
 Dropdown.Arrow = DropdownArrow
 Dropdown.useContext = useDropdownContext
 
-export default withStyles(styles)(Dropdown) as PicassoComponentWithRef<
-  Props,
+export default Dropdown as PicassoComponentWithRef<
+  Props & Partial<JssProps>,
   HTMLDivElement,
   StaticProps
 >
