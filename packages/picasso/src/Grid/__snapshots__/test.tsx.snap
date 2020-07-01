@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Grid default render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="MuiGrid-root MuiGrid-container Grid-container MuiGrid-spacing-xs MuiGrid-align-items-xs-flex"
+    />
+  </div>
+</div>
+`;
