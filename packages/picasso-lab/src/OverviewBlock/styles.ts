@@ -10,7 +10,8 @@ export default ({ palette }: Theme) =>
       padding: '0.5rem 1rem',
       minWidth: rem('150px'),
       border: 'none',
-      textDecoration: 'none'
+      textDecoration: 'none',
+      alignItems: 'flex-start'
     },
     clickable: {
       cursor: 'pointer',
