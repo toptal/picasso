@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.74.4](https://github.com/toptal/picasso/compare/@toptal/picasso@4.74.3...@toptal/picasso@4.74.4) (2020-07-01)
+
+
+### Bug Fixes
+
+* typings in type declarations for picasso-shared ([#1402](https://github.com/toptal/picasso/issues/1402)) ([4129e7c](https://github.com/toptal/picasso/commit/4129e7c04526f7f83a2e1074bd76f9a0ae3d5184))
+
+
+
+
+
 ## [4.74.3](https://github.com/toptal/picasso/compare/@toptal/picasso@4.74.2...@toptal/picasso@4.74.3) (2020-06-29)
 
 

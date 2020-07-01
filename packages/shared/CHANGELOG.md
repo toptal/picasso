@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.15.2](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.15.1...@toptal/picasso-shared@1.15.2) (2020-07-01)
+
+
+### Bug Fixes
+
+* typings in type declarations for picasso-shared ([#1402](https://github.com/toptal/picasso/issues/1402)) ([4129e7c](https://github.com/toptal/picasso/commit/4129e7c04526f7f83a2e1074bd76f9a0ae3d5184))
+
+
+
+
+
 ## [1.15.1](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.15.0...@toptal/picasso-shared@1.15.1) (2020-06-16)
 
 **Note:** Version bump only for package @toptal/picasso-shared
