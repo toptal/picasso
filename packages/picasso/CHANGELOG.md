@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.74.5](https://github.com/toptal/picasso/compare/@toptal/picasso@4.74.4...@toptal/picasso@4.74.5) (2020-07-01)
+
+
+### Bug Fixes
+
+* add white Container variant ([#1405](https://github.com/toptal/picasso/issues/1405)) ([bdd613a](https://github.com/toptal/picasso/commit/bdd613a7b6f315b7ef716e96687d34a76784b2d5))
+
+
+
+
+
 ## [4.74.4](https://github.com/toptal/picasso/compare/@toptal/picasso@4.74.3...@toptal/picasso@4.74.4) (2020-07-01)
 
 
