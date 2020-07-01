@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.74.6](https://github.com/toptal/picasso/compare/@toptal/picasso@4.74.5...@toptal/picasso@4.74.6) (2020-07-01)
+
+
+### Bug Fixes
+
+* **Grid:** fix for classes prop in Grid components ([#1408](https://github.com/toptal/picasso/issues/1408)) ([f6bc2e2](https://github.com/toptal/picasso/commit/f6bc2e2f8f2552f03077500516a3a7c07616113c))
+
+
+
+
+
 ## [4.74.5](https://github.com/toptal/picasso/compare/@toptal/picasso@4.74.4...@toptal/picasso@4.74.5) (2020-07-01)
 
 
