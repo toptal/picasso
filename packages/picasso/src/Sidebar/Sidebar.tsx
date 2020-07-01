@@ -4,10 +4,11 @@ import React, {
   ReactNode,
   FunctionComponent
 } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import {
-  StandardProps,
+  BaseProps,
+  JssProps,
   PicassoComponentWithRef,
   CompoundedComponentWithRef
 } from '@toptal/picasso-shared'
@@ -23,14 +24,12 @@ import SidebarLogo from '../SidebarLogo'
 import styles from './styles'
 import { SidebarContextProps, VariantType } from './types'
 
-export interface SmallScreenSidebarWrapperProps extends StandardProps {
+export interface SmallScreenSidebarWrapperProps extends BaseProps {
   children?: ReactNode
 }
 
-const SmallScreenSidebarWrapper: FunctionComponent<SmallScreenSidebarWrapperProps> = ({
-  classes,
-  children
-}) => {
+const SmallScreenSidebarWrapper: FunctionComponent<SmallScreenSidebarWrapperProps &
+  JssProps> = ({ classes, children }) => {
   const [showSidebar, setShowSidebar] = useState<boolean>(false)
 
   const handleShowSidebar = () => setShowSidebar(true)
@@ -62,7 +61,7 @@ const SmallScreenSidebarWrapper: FunctionComponent<SmallScreenSidebarWrapperProp
   )
 }
 
-export interface Props extends StandardProps {
+export interface Props extends BaseProps {
   /** Style variant of Sidebar and subcomponents */
   variant?: VariantType
 }
@@ -78,11 +77,18 @@ export const SidebarContext = React.createContext<SidebarContextProps>({
   setExpandedItemKey: () => {}
 })
 
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'Sidebar'
+})
+
 // eslint-disable-next-line react/display-name
 export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
-  { children, variant, className, style, classes },
+  props,
   ref
 ) {
+  const classes = useStyles(props)
+  const { children, variant, className, style } = props
+
   const isCompactLayout = useBreakpoint(['small', 'medium'])
   const [expandedItemKey, setExpandedItemKey] = useState<number | null>(null)
 
@@ -128,7 +134,7 @@ Sidebar.Item = SidebarItem
 
 Sidebar.Logo = SidebarLogo
 
-export default withStyles(styles)(Sidebar) as PicassoComponentWithRef<
+export default Sidebar as PicassoComponentWithRef<
   Props,
   HTMLDivElement,
   StaticProps

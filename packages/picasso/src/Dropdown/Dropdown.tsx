@@ -12,14 +12,15 @@ import Grow from '@material-ui/core/Grow'
 import { PopperPlacementType } from '@material-ui/core/Popper'
 import { PopperOptions } from 'popper.js'
 import RootRef from '@material-ui/core/RootRef'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import {
   CompoundedComponentWithRef,
   PicassoComponentWithRef,
   spacingToRem,
   SpacingType,
-  StandardProps
+  BaseProps,
+  JssProps
 } from '@toptal/picasso-shared'
 
 import DropdownArrow from '../DropdownArrow'
@@ -27,7 +28,7 @@ import Popper from '../Popper'
 import Paper from '../Paper'
 import styles from './styles'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Anchor element that opens content on click */
   children: ReactNode
   /** Content element that opens when anchor is clicked */
@@ -76,10 +77,17 @@ const useDropdownContext = () => {
   return context
 }
 
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'Dropdown'
+})
+
 // eslint-disable-next-line react/display-name
 export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
-  {
-    classes,
+  props,
+  ref
+) {
+  const classes = useStyles(props)
+  const {
     className,
     style,
     children,
@@ -94,9 +102,8 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
     popperContainer,
     onClose,
     ...rest
-  },
-  ref
-) {
+  } = props
+
   const contentRef = useRef<HTMLElement>()
 
   const [anchorEl, setAnchorEl] = useState<HTMLDivElement | undefined>(
@@ -262,8 +269,8 @@ Dropdown.displayName = 'Dropdown'
 Dropdown.Arrow = DropdownArrow
 Dropdown.useContext = useDropdownContext
 
-export default withStyles(styles)(Dropdown) as PicassoComponentWithRef<
-  Props,
+export default Dropdown as PicassoComponentWithRef<
+  Props & Partial<JssProps>,
   HTMLDivElement,
   StaticProps
 >

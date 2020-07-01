@@ -1,8 +1,8 @@
 import React, { forwardRef, ReactNode, TableHTMLAttributes } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITable from '@material-ui/core/Table'
 import {
-  StandardProps,
+  BaseProps,
   PicassoComponentWithRef,
   CompoundedComponentWithRef
 } from '@toptal/picasso-shared'
@@ -16,7 +16,7 @@ import TableExpandableRow from '../TableExpandableRow'
 import styles from './styles'
 
 export interface Props
-  extends StandardProps,
+  extends BaseProps,
     TableHTMLAttributes<HTMLTableElement> {
   /** Children components (`Table.Head`, `Table.Body`, `Table.Footer`) */
   children: ReactNode
@@ -31,11 +31,18 @@ interface StaticProps {
   ExpandableRow: typeof TableExpandableRow
 }
 
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'Table'
+})
+
 // eslint-disable-next-line react/display-name
 export const Table = forwardRef<HTMLTableElement, Props>(function Table(
-  { classes, className, style, children, ...rest },
+  props,
   ref
 ) {
+  const classes = useStyles(props)
+  const { className, style, children, ...rest } = props
+
   return (
     <MUITable
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -68,7 +75,7 @@ Table.ExpandableRow = TableExpandableRow
 
 Table.Footer = TableFooter
 
-export default withStyles(styles)(Table) as PicassoComponentWithRef<
+export default Table as PicassoComponentWithRef<
   Props,
   HTMLTableElement,
   StaticProps

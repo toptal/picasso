@@ -1,8 +1,8 @@
 import React, { ReactNode, forwardRef, HTMLAttributes } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import {
-  StandardProps,
+  BaseProps,
   PicassoComponentWithRef,
   CompoundedComponentWithRef
 } from '@toptal/picasso-shared'
@@ -16,7 +16,7 @@ import Button from '../Button'
 import styles from './styles'
 import HelpboxContext from './HelpboxContext'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Children components (`Helpbox.Title`, `Helpbox.Content`, `Hdlpbox.Actions`) */
   children: ReactNode
   /** Color variant of Helpbox */
@@ -31,11 +31,18 @@ interface StaticProps {
   Actions: typeof HelpboxActions
 }
 
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'Helpbox'
+})
+
 // eslint-disable-next-line react/display-name
 export const Helpbox = forwardRef<HTMLDivElement, Props>(function Helpbox(
-  { classes, className, style, children, variant, onClose, ...rest },
+  props,
   ref
 ) {
+  const classes = useStyles(props)
+  const { className, style, children, variant, onClose, ...rest } = props
+
   return (
     <Container
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -72,7 +79,7 @@ Helpbox.Content = HelpboxContent
 
 Helpbox.Actions = HelpboxActions
 
-export default withStyles(styles)(Helpbox) as PicassoComponentWithRef<
+export default Helpbox as PicassoComponentWithRef<
   Props,
   HTMLDivElement,
   StaticProps
