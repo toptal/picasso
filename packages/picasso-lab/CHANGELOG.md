@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.22.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.21.0...@toptal/picasso-lab@2.22.0) (2020-07-01)
+
+
+### Features
+
+* **treeview:** add a scroll offset for each node ([#1403](https://github.com/toptal/picasso/issues/1403)) ([3712d69](https://github.com/toptal/picasso/commit/3712d6969128344b79d0448d2fe0419c89066919))
+
+
+
+
+
 # [2.21.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.20.0...@toptal/picasso-lab@2.21.0) (2020-06-29)
 
 
