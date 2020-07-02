@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.22.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.22.1...@toptal/picasso-lab@2.22.2) (2020-07-02)
+
+
+### Bug Fixes
+
+* recursive picasso-lab dependency ([#1412](https://github.com/toptal/picasso/issues/1412)) ([c3a0f8e](https://github.com/toptal/picasso/commit/c3a0f8e9914b3a556bfc003e8131b857af2aa65b))
+
+
+
+
+
 ## [2.22.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.22.0...@toptal/picasso-lab@2.22.1) (2020-07-02)
 
 
