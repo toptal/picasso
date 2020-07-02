@@ -1,8 +1,7 @@
 import { createRef, useMemo, useLayoutEffect, useState } from 'react'
-import { TreeNodeInterface } from '@toptal/picasso-lab'
 import { HierarchyPointNode } from 'd3-hierarchy'
 
-import { DynamicPointNode } from './types'
+import { DynamicPointNode, TreeNodeInterface } from './types'
 import { VERTICAL_MARGIN } from './variables'
 
 const getDynamicNodes = (
