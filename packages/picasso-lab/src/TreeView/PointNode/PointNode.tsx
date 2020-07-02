@@ -30,15 +30,13 @@ export const PointNode = forwardRef<any, Props>(
 
     useLayoutEffect(() => {
       if (nodeRef.current) {
-        const { scrollWidth, scrollHeight } = nodeRef.current
+        const { offsetWidth: width, offsetHeight: height } = node.ref.current!
+          .firstElementChild!.firstElementChild! as HTMLElement
 
-        if (
-          dimensions.height !== scrollHeight ||
-          dimensions.width !== scrollWidth
-        ) {
+        if (dimensions.height !== height || dimensions.width !== width) {
           setDimensions({
-            width: scrollWidth,
-            height: scrollHeight
+            width,
+            height
           })
         }
       }
