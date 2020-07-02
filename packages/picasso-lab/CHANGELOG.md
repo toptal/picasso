@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.22.3](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.22.2...@toptal/picasso-lab@2.22.3) (2020-07-02)
+
+
+### Bug Fixes
+
+* **treeview:** fix treeview appearance on the FF ([#1410](https://github.com/toptal/picasso/issues/1410)) ([4145575](https://github.com/toptal/picasso/commit/4145575f5e49a26477bd3bb17d5fc40a3a359624))
+
+
+
+
+
 ## [2.22.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.22.1...@toptal/picasso-lab@2.22.2) (2020-07-02)
 
 
