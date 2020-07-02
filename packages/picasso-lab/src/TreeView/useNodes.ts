@@ -26,10 +26,8 @@ const updateNodesYPosition = (
     .map(node => {
       if (!node.ref.current) return node
 
-      const {
-        scrollWidth: width,
-        scrollHeight: height
-      } = node.ref.current!.firstElementChild!
+      const { offsetWidth: width, offsetHeight: height } = node.ref.current!
+        .firstElementChild!.firstElementChild! as HTMLElement
 
       if (!height || !width) {
         return node
