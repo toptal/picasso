@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.22.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.22.0...@toptal/picasso-lab@2.22.1) (2020-07-02)
+
+
+### Bug Fixes
+
+* **OverviewBlock:** alignment on Firefox ([#1404](https://github.com/toptal/picasso/issues/1404)) ([7307554](https://github.com/toptal/picasso/commit/7307554bfb579cc11eaa53abe2fab383f6ee717a))
+
+
+
+
+
 # [2.22.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.21.0...@toptal/picasso-lab@2.22.0) (2020-07-01)
 
 
