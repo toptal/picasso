@@ -11,6 +11,10 @@ ENV APK_BRANCH ${APK_BRANCH}
 
 ENV PATH="${PATH}:/app/node_modules/.bin"
 
+# TODO replace with puppeteer-core
+ARG PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD ${PUPPETEER_SKIP_CHROMIUM_DOWNLOAD}
+
 # Installs Chromium (77) package.
 ENV CHROME_BIN /usr/bin/chromium-browser
 
