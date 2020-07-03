@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.74.7](https://github.com/toptal/picasso/compare/@toptal/picasso@4.74.6...@toptal/picasso@4.74.7) (2020-07-03)
+
+
+### Bug Fixes
+
+* remove tooltip blur delay ([#1413](https://github.com/toptal/picasso/issues/1413)) ([1826f18](https://github.com/toptal/picasso/commit/1826f1858c6c6dbfc793300b062723b247d0ef8e))
+
+
+
+
+
 ## [4.74.6](https://github.com/toptal/picasso/compare/@toptal/picasso@4.74.5...@toptal/picasso@4.74.6) (2020-07-01)
 
 
