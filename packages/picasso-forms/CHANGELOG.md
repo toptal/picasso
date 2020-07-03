@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.2](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.18.1...@toptal/picasso-forms@0.18.2) (2020-07-03)
+
+
+### Bug Fixes
+
+* **picasso-forms:** fix wrong pathname to FieldWrapper ([#1372](https://github.com/toptal/picasso/issues/1372)) ([14e5259](https://github.com/toptal/picasso/commit/14e52593b0af0a29e5e4bb91288e2f11100af7b9))
+
+
+
+
+
 ## [0.18.1](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.18.0...@toptal/picasso-forms@0.18.1) (2020-06-22)
 
 **Note:** Version bump only for package @toptal/picasso-forms
