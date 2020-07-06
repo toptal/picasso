@@ -1,6 +1,10 @@
 import parse from 'date-fns/parse'
 import isValid from 'date-fns/isValid'
 import formatDate from 'date-fns/format'
+import isWithinInterval from 'date-fns/isWithinInterval'
+import isEqual from 'date-fns/isEqual'
+import isBefore from 'date-fns/isBefore'
+import isAfter from 'date-fns/isAfter'
 import { utcToZonedTime, format as tzFormat } from 'date-fns-tz'
 
 import { DateOrDateRangeType, DateRangeType } from '../Calendar'
@@ -56,5 +60,34 @@ export const formatDateRange = (dates: DateRangeType, format: string) =>
 export const isDateValid = (date: string, pattern: string) => {
   return (
     date.length === pattern.length && isValid(parse(date, pattern, new Date()))
+  )
+}
+
+export const isDateAfter = (date: Date, dateToCompare: Date) =>
+  isEqual(date, dateToCompare) || isAfter(date, dateToCompare)
+
+export const isDateBefore = (date: Date, dateToCompare: Date) =>
+  isEqual(date, dateToCompare) || isBefore(date, dateToCompare)
+
+// eslint-disable-next-line complexity
+export const isInInterval = (
+  date: Date,
+  minDate: Date | undefined,
+  maxDate: Date | undefined
+) => {
+  if (!minDate && !maxDate) {
+    return true
+  }
+
+  if (minDate && maxDate) {
+    return isWithinInterval(date, {
+      start: minDate,
+      end: maxDate
+    })
+  }
+
+  return (
+    (minDate && isDateAfter(date, minDate)) ||
+    (maxDate && isDateBefore(date, maxDate))
   )
 }
