@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.22.4](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.22.3...@toptal/picasso-lab@2.22.4) (2020-07-07)
+
+
+### Bug Fixes
+
+* manually typing within a date interval ([#1419](https://github.com/toptal/picasso/issues/1419)) ([21d109a](https://github.com/toptal/picasso/commit/21d109a9b5969317b7918eb394345939b69e50c3))
+
+
+
+
+
 ## [2.22.3](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.22.2...@toptal/picasso-lab@2.22.3) (2020-07-02)
 
 

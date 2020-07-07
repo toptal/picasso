@@ -4,6 +4,7 @@ import { Tooltip } from '@toptal/picasso'
 
 import DatePicker, { Props } from './DatePicker'
 
+// eslint-disable-next-line max-lines-per-function
 describe('DatePicker', () => {
   beforeAll(() => {
     jest.useFakeTimers()
@@ -170,6 +171,87 @@ describe('DatePicker', () => {
         'value',
         `Jul 25, 2020`
       )
+    })
+
+    it('should work within interval', () => {
+      const MIN_DATE = new Date(2020, 6, 10)
+      const MAX_DATE = new Date(2020, 6, 25)
+
+      const handleChange = jest.fn()
+
+      const { getByPlaceholderText } = renderDatePicker({
+        ...defaultProps,
+        minDate: MIN_DATE,
+        maxDate: MAX_DATE,
+        onChange: handleChange
+      })
+
+      const input = getByPlaceholderText(defaultProps.placeholder)
+
+      fireEvent.change(input, { target: { value: '07-09-2020' } })
+      expect(handleChange).not.toBeCalled()
+
+      fireEvent.change(input, { target: { value: '07-26-2020' } })
+      expect(handleChange).not.toBeCalled()
+
+      fireEvent.change(input, { target: { value: '07-22-2020' } })
+      expect(handleChange).toBeCalledWith(new Date(2020, 6, 22))
+
+      // check min edge
+      fireEvent.change(input, { target: { value: '07-10-2020' } })
+      expect(handleChange).toBeCalledWith(new Date(2020, 6, 10))
+
+      // check max edge
+      fireEvent.change(input, { target: { value: '07-25-2020' } })
+      expect(handleChange).toBeCalledWith(new Date(2020, 6, 25))
+    })
+
+    it('should work with minDate only', () => {
+      const MIN_DATE = new Date(2020, 6, 10)
+
+      const handleChange = jest.fn()
+
+      const { getByPlaceholderText } = renderDatePicker({
+        ...defaultProps,
+        minDate: MIN_DATE,
+        onChange: handleChange
+      })
+
+      const input = getByPlaceholderText(defaultProps.placeholder)
+
+      fireEvent.change(input, { target: { value: '07-09-2020' } })
+      expect(handleChange).not.toBeCalled()
+
+      fireEvent.change(input, { target: { value: '07-22-2020' } })
+      expect(handleChange).toBeCalledWith(new Date(2020, 6, 22))
+
+      // check min edge
+      fireEvent.change(input, { target: { value: '07-10-2020' } })
+      expect(handleChange).toBeCalledWith(new Date(2020, 6, 10))
+    })
+
+    it('should work with maxDate', () => {
+      const MAX_DATE = new Date(2020, 6, 25)
+
+      const handleChange = jest.fn()
+
+      const { getByPlaceholderText } = renderDatePicker({
+        ...defaultProps,
+        maxDate: MAX_DATE,
+        onChange: handleChange
+      })
+
+      const input = getByPlaceholderText(defaultProps.placeholder)
+
+      fireEvent.change(input, { target: { value: '07-26-2020' } })
+      expect(handleChange).not.toBeCalled()
+
+      fireEvent.change(input, { target: { value: '07-22-2020' } })
+      expect(handleChange).toBeCalledWith(new Date(2020, 6, 22))
+
+      // check max edge
+      fireEvent.change(input, { target: { value: '07-25-2020' } })
+      expect(handleChange).toBeCalledWith(new Date(2020, 6, 25))
     })
   })
 
