@@ -1,6 +1,7 @@
 import React from 'react'
 import { render, fireEvent } from '@toptal/picasso/test-utils'
 import { Tooltip } from '@toptal/picasso'
+import parseISO from 'date-fns/parseISO'
 
 import DatePicker, { Props } from './DatePicker'
 
@@ -187,22 +188,23 @@ describe('DatePicker', () => {
       })
 
       const input = getByPlaceholderText(defaultProps.placeholder)
+
       fireEvent.change(input, { target: { value: '07-09-2020' } })
-
       expect(handleChange).not.toBeCalled()
+
       fireEvent.change(input, { target: { value: '07-26-2020' } })
-
       expect(handleChange).not.toBeCalled()
+
       fireEvent.change(input, { target: { value: '07-22-2020' } })
-      expect(handleChange).toBeCalled()
+      expect(handleChange).toBeCalledWith(parseISO('2020-07-22'))
 
       // check min edge
       fireEvent.change(input, { target: { value: '07-10-2020' } })
-      expect(handleChange).toBeCalledTimes(2)
+      expect(handleChange).toBeCalledWith(parseISO('2020-07-10'))
 
       // check max edge
       fireEvent.change(input, { target: { value: '07-25-2020' } })
-      expect(handleChange).toBeCalledTimes(3)
+      expect(handleChange).toBeCalledWith(parseISO('2020-07-25'))
     })
 
     it('should work with minDate only', () => {
@@ -217,15 +219,16 @@ describe('DatePicker', () => {
       })
 
       const input = getByPlaceholderText(defaultProps.placeholder)
-      fireEvent.change(input, { target: { value: '07-09-2020' } })
 
+      fireEvent.change(input, { target: { value: '07-09-2020' } })
       expect(handleChange).not.toBeCalled()
+
       fireEvent.change(input, { target: { value: '07-22-2020' } })
-      expect(handleChange).toBeCalledTimes(1)
+      expect(handleChange).toBeCalledWith(parseISO('2020-07-22'))
 
       // check min edge
       fireEvent.change(input, { target: { value: '07-10-2020' } })
-      expect(handleChange).toBeCalledTimes(2)
+      expect(handleChange).toBeCalledWith(parseISO('2020-07-10'))
     })
 
     it('should work with maxDate', () => {
@@ -245,11 +248,11 @@ describe('DatePicker', () => {
       expect(handleChange).not.toBeCalled()
 
       fireEvent.change(input, { target: { value: '07-22-2020' } })
-      expect(handleChange).toBeCalledTimes(1)
+      expect(handleChange).toBeCalledWith(parseISO('2020-07-22'))
 
       // check max edge
       fireEvent.change(input, { target: { value: '07-25-2020' } })
-      expect(handleChange).toBeCalledTimes(2)
+      expect(handleChange).toBeCalledWith(parseISO('2020-07-25'))
     })
   })
 
