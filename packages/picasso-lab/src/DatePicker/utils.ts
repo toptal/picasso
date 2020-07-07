@@ -1,7 +1,7 @@
 import parse from 'date-fns/parse'
 import isValid from 'date-fns/isValid'
 import formatDate from 'date-fns/format'
-import isWithinInterval from 'date-fns/isWithinInterval'
+import checkWithinInterval from 'date-fns/isWithinInterval'
 import isEqual from 'date-fns/isEqual'
 import isBefore from 'date-fns/isBefore'
 import isAfter from 'date-fns/isAfter'
@@ -70,7 +70,7 @@ export const isDateBefore = (date: Date, dateToCompare: Date) =>
   isEqual(date, dateToCompare) || isBefore(date, dateToCompare)
 
 // eslint-disable-next-line complexity
-export const isInInterval = (
+export const isWithinInterval = (
   date: Date,
   minDate: Date | undefined,
   maxDate: Date | undefined
@@ -80,14 +80,19 @@ export const isInInterval = (
   }
 
   if (minDate && maxDate) {
-    return isWithinInterval(date, {
+    return checkWithinInterval(date, {
       start: minDate,
       end: maxDate
     })
   }
 
-  return (
-    (minDate && isDateAfter(date, minDate)) ||
-    (maxDate && isDateBefore(date, maxDate))
-  )
+  if (minDate) {
+    return isDateAfter(date, minDate)
+  }
+
+  if (maxDate) {
+    return isDateBefore(date, maxDate)
+  }
+
+  return false
 }

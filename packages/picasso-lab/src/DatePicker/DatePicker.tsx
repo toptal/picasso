@@ -28,7 +28,7 @@ import {
   timezoneConvert,
   isDateValid,
   timezoneFormat,
-  isInInterval
+  isWithinInterval
 } from './utils'
 
 export interface Props
@@ -200,7 +200,7 @@ export const DatePicker = (props: Props) => {
       const parsedNextValue = parse(nextValue, editDateFormat!, new Date())
       const nextTimezoneValue = timezoneFormat(parsedNextValue, timezone)
 
-      if (!isInInterval(nextTimezoneValue, minDate, maxDate)) {
+      if (!isWithinInterval(nextTimezoneValue, minDate, maxDate)) {
         return
       }
 
