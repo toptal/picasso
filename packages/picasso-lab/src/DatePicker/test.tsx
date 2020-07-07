@@ -1,7 +1,6 @@
 import React from 'react'
 import { render, fireEvent } from '@toptal/picasso/test-utils'
 import { Tooltip } from '@toptal/picasso'
-import parseISO from 'date-fns/parseISO'
 
 import DatePicker, { Props } from './DatePicker'
 
@@ -196,15 +195,15 @@ describe('DatePicker', () => {
       expect(handleChange).not.toBeCalled()
 
       fireEvent.change(input, { target: { value: '07-22-2020' } })
-      expect(handleChange).toBeCalledWith(parseISO('2020-07-22'))
+      expect(handleChange).toBeCalledWith(new Date(2020, 6, 22))
 
       // check min edge
       fireEvent.change(input, { target: { value: '07-10-2020' } })
-      expect(handleChange).toBeCalledWith(parseISO('2020-07-10'))
+      expect(handleChange).toBeCalledWith(new Date(2020, 6, 10))
 
       // check max edge
       fireEvent.change(input, { target: { value: '07-25-2020' } })
-      expect(handleChange).toBeCalledWith(parseISO('2020-07-25'))
+      expect(handleChange).toBeCalledWith(new Date(2020, 6, 25))
     })
 
     it('should work with minDate only', () => {
@@ -224,11 +223,11 @@ describe('DatePicker', () => {
       expect(handleChange).not.toBeCalled()
 
       fireEvent.change(input, { target: { value: '07-22-2020' } })
-      expect(handleChange).toBeCalledWith(parseISO('2020-07-22'))
+      expect(handleChange).toBeCalledWith(new Date(2020, 6, 22))
 
       // check min edge
       fireEvent.change(input, { target: { value: '07-10-2020' } })
-      expect(handleChange).toBeCalledWith(parseISO('2020-07-10'))
+      expect(handleChange).toBeCalledWith(new Date(2020, 6, 10))
     })
 
     it('should work with maxDate', () => {
@@ -248,11 +247,11 @@ describe('DatePicker', () => {
       expect(handleChange).not.toBeCalled()
 
       fireEvent.change(input, { target: { value: '07-22-2020' } })
-      expect(handleChange).toBeCalledWith(parseISO('2020-07-22'))
+      expect(handleChange).toBeCalledWith(new Date(2020, 6, 22))
 
       // check max edge
       fireEvent.change(input, { target: { value: '07-25-2020' } })
-      expect(handleChange).toBeCalledWith(parseISO('2020-07-25'))
+      expect(handleChange).toBeCalledWith(new Date(2020, 6, 25))
     })
   })
 
