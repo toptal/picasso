@@ -18070,10 +18070,10 @@ simple-html-tokenizer@^0.5.7:
   resolved "https://registry.yarnpkg.com/simple-html-tokenizer/-/simple-html-tokenizer-0.5.8.tgz#3417382f75954ee34515cc4fd32d9918e693f173"
   integrity sha512-0Sq4FvLlQEQODVA6PH2MIrc7tzYO0KT2HzzwvaVLYClWgIsuvaNUOrhrAvTi1pZHrcq7GDB4WiI3ukjqBMxcGQ==
 
-simple-react-calendar@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/simple-react-calendar/-/simple-react-calendar-2.2.1.tgz#0bbc06647a7a1bfac0b352ca23fa650973763ce4"
-  integrity sha512-O5ZeAVsYOdVjQoRIdLXW8h9g9GsIlWldu7rkI7p3s0MSst2T7pME/zjfXEZ2P2lmmrM0SLnLx1ksLSKQ9opFgA==
+simple-react-calendar@^2.2.7:
+  version "2.2.7"
+  resolved "https://registry.yarnpkg.com/simple-react-calendar/-/simple-react-calendar-2.2.7.tgz#1bce6899921590e2396cc5ab1f91985df3e1afe9"
+  integrity sha512-ROIOvErc2nw1rusLpMpMJ7I6LlTWjF7GbPMOVQ5ySERTDpYdnXUwOZViyHEk0oa5cQxV7LXgXW7Td8fg5nKrNA==
   dependencies:
     classnames "^2.2.5"
     date-fns "^1.27.2"
