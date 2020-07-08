@@ -34,6 +34,7 @@ const createTreeNode = (
 const createTree = (): TreeNodeInterface => {
   return createTreeNode({
     id: '1',
+    selected: true,
     info: {
       name: 'NODE+1'
     },
