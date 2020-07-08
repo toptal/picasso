@@ -29,8 +29,11 @@ const useMainStyles = makeStyles<Theme>(styles, {
   name: 'PicassoSubheaderMain'
 })
 
-const Title: FunctionComponent = ({ children }) => (
-  <Typography variant='heading' size='large'>
+const Title: FunctionComponent<{ titleCase?: boolean }> = ({
+  titleCase,
+  children
+}) => (
+  <Typography variant='heading' size='large' titleCase={titleCase}>
     {children}
   </Typography>
 )

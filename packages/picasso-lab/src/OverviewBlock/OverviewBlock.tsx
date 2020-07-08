@@ -12,9 +12,11 @@ import {
   CompoundedComponentWithRef,
   OverridableComponent,
   ColorType,
-  BaseProps
+  BaseProps,
+  useAppConfig
 } from '@toptal/picasso-shared'
 import { Typography } from '@toptal/picasso'
+import { toTitleCase } from '@toptal/picasso/utils'
 
 import styles from './styles'
 import OverviewBlockGroup from '../OverviewBlockGroup'
@@ -46,6 +48,8 @@ export type Props = BaseProps &
     as?: ElementType
     /** Callback invoked when component is clicked */
     onClick?: (event: MouseEvent) => void
+    /** Defines if the text should be transformed to title case */
+    titleCase?: boolean
   }
 
 interface StaticProps {
@@ -66,6 +70,7 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
       as: Component = 'button',
       className,
       onClick,
+      titleCase,
       ...rest
     } = props
     const classes = useStyles(props)
@@ -86,6 +91,9 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
 
     const isClickable = Boolean(onClick)
 
+    const { titleCase: defaultTitleCase } = useAppConfig()
+    const titleCaseIsApplied = titleCase ?? defaultTitleCase
+
     return (
       <Component
         // eslint-disable-next-line react/jsx-props-no-spreading
@@ -105,7 +113,7 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
           className={classes.title}
           color={color.label}
         >
-          {label}
+          {titleCaseIsApplied ? toTitleCase(label) : label}
         </Typography>
         <Typography size='large' weight='semibold' color={color.value}>
           {value}

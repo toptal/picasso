@@ -1,28 +1,41 @@
 import React, { FunctionComponent } from 'react'
 import { render } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
+import * as titleCaseModule from 'ap-style-title-case'
 
 import { Candidates16 } from '../Icon'
 import SidebarMenu from '../SidebarMenu'
 import Sidebar from '../Sidebar'
 import SidebarItem, { Props } from './SidebarItem'
 
+jest.mock('ap-style-title-case')
+
 const TestSidebarItem: FunctionComponent<OmitInternalProps<Props>> = ({
   children,
   icon,
   selected,
   collapsible,
+  titleCase,
   menu
 }) => (
   <SidebarItem
     icon={icon}
     selected={selected}
     collapsible={collapsible}
+    titleCase={titleCase}
     menu={menu}
   >
     {children}
   </SidebarItem>
 )
+
+let spiedOnTitleCase: jest.SpyInstance
+beforeEach(() => {
+  spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
+})
+afterEach(() => {
+  spiedOnTitleCase.mockReset()
+})
 
 describe('SidebarItem', () => {
   test('default render', () => {
@@ -100,5 +113,37 @@ describe('SidebarItem', () => {
     )
 
     expect(container).toMatchSnapshot()
+  })
+
+  test('should transform menu items text to title case when Picasso titleCase property is true', () => {
+    const menu = (
+      <SidebarMenu>
+        <SidebarItem>Abc 456</SidebarItem>
+      </SidebarMenu>
+    )
+
+    render(<TestSidebarItem menu={menu}>Abc 123</TestSidebarItem>, undefined, {
+      titleCase: true
+    })
+
+    expect(spiedOnTitleCase).toBeCalledTimes(2)
+  })
+
+  test('should not transform menu items text to title case when Picasso titleCase property is true but the component property overrides it', () => {
+    const menu = (
+      <SidebarMenu>
+        <SidebarItem>Abc 789</SidebarItem>
+      </SidebarMenu>
+    )
+
+    render(
+      <TestSidebarItem menu={menu} titleCase={false}>
+        Abc 012
+      </TestSidebarItem>,
+      undefined,
+      { titleCase: true }
+    )
+
+    expect(spiedOnTitleCase).toBeCalledTimes(1)
   })
 })

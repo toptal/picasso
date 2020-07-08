@@ -5008,6 +5008,11 @@ anymatch@^3.0.3, anymatch@~3.1.1:
     normalize-path "^3.0.0"
     picomatch "^2.0.4"
 
+ap-style-title-case@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/ap-style-title-case/-/ap-style-title-case-1.1.2.tgz#4339cc9adf99b85f21757b58f6e4e54ab12a7acc"
+  integrity sha512-8k5jYIf7b+glU3f16eEw5RLdyhXjVWkLYy7XDYSw77a4CUUfGge5c9M/2Obbft5AhZD3RTkCbf3/LAVguLFMfQ==
+
 app-root-dir@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/app-root-dir/-/app-root-dir-1.0.2.tgz#38187ec2dea7577fff033ffcb12172692ff6e118"
@@ -19246,13 +19251,6 @@ title-case@^2.1.0:
   dependencies:
     no-case "^2.2.0"
     upper-case "^1.0.3"
-
-title-case@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/title-case/-/title-case-3.0.2.tgz#9f926a0a42071366f85470572f312c4b647773ab"
-  integrity sha512-1P5hyjEhJ9Ab0AT8Xbm0z1avwPSgRR6XtFSNCdfo6B7111TTTja+456UZ2ZPkbTbzqBwIpQxp/tazh5UvpJ+fA==
-  dependencies:
-    tslib "^1.10.0"
 
 tmp@0.1.0:
   version "0.1.0"

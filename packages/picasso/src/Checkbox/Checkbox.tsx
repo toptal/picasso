@@ -40,6 +40,8 @@ export interface Props
   ) => void
   /** Value of the `Checkbox` (applicable only for controlled component) */
   value?: string
+  /** Defines if the options text should be transformed to title case */
+  titleCase?: boolean
 }
 
 export const Checkbox = forwardRef<HTMLButtonElement, Props>(function Checkbox(
@@ -57,11 +59,11 @@ export const Checkbox = forwardRef<HTMLButtonElement, Props>(function Checkbox(
     value,
     checked,
     indeterminate,
+    titleCase,
     ...rest
   } = props
 
   const classes = useStyles(props)
-
   const rootClasses = {
     root: classes.root,
     disabled: classes.disabled
@@ -106,6 +108,7 @@ export const Checkbox = forwardRef<HTMLButtonElement, Props>(function Checkbox(
       required={required}
       disabled={disabled}
       label={label}
+      titleCase={titleCase}
       className='picasso-checkbox'
     />
   )

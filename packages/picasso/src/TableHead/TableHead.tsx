@@ -4,6 +4,7 @@ import MUITableHead from '@material-ui/core/TableHead'
 import { StandardProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
+import { TableSectionContext, TableSection } from '../Table'
 
 export interface Props
   extends StandardProps,
@@ -17,16 +18,18 @@ export const TableHead = forwardRef<HTMLElement, Props>(function TableHead(
   ref
 ) {
   return (
-    <MUITableHead
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...rest}
-      ref={ref}
-      classes={classes}
-      className={className}
-      style={style}
-    >
-      {children}
-    </MUITableHead>
+    <TableSectionContext.Provider value={TableSection.HEAD}>
+      <MUITableHead
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...rest}
+        ref={ref}
+        classes={classes}
+        className={className}
+        style={style}
+      >
+        {children}
+      </MUITableHead>
+    </TableSectionContext.Provider>
   )
 })
 

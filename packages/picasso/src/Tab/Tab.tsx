@@ -6,9 +6,10 @@ import React, {
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUITab, { TabProps } from '@material-ui/core/Tab'
-import { StandardProps } from '@toptal/picasso-shared'
+import { StandardProps, useAppConfig } from '@toptal/picasso-shared'
 
 import styles from './styles'
+import toTitleCase from '../utils/to-title-case'
 
 export interface Props
   extends StandardProps,
@@ -27,6 +28,10 @@ export interface Props
 
   /** The Icon element */
   icon?: ReactElement
+
+  /** Defines if the label should be transformed to title case */
+  titleCase?: boolean
+
   // Properties below are managed by Tabs component
 
   selected?: boolean
@@ -35,16 +40,29 @@ export interface Props
 }
 
 export const Tab = forwardRef<HTMLDivElement, Props>(function Tab(
-  { disabled, value, label, icon, selected, onChange, onClick, ...rest },
+  {
+    disabled,
+    value,
+    label,
+    icon,
+    selected,
+    onChange,
+    onClick,
+    titleCase,
+    ...rest
+  },
   ref
 ) {
+  const { titleCase: defaultTitleCase } = useAppConfig()
+  const titleCaseIsApplied = titleCase ?? defaultTitleCase
+
   return (
     <MUITab
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       ref={ref}
       disabled={disabled}
-      label={label}
+      label={titleCaseIsApplied ? toTitleCase(label) : label}
       icon={icon}
       value={value}
       selected={selected}

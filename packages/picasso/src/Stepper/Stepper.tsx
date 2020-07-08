@@ -19,10 +19,22 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   hideLabels?: boolean
   /** Array of the step labels */
   steps: string[]
+  /** Defines if the labels text should be transformed to title case */
+  titleCase?: boolean
 }
 
 export const Stepper = forwardRef<HTMLDivElement, Props>(function Stepper(
-  { active, steps, fullWidth, hideLabels, classes, className, style, ...rest },
+  {
+    active,
+    steps,
+    fullWidth,
+    hideLabels,
+    classes,
+    className,
+    style,
+    titleCase,
+    ...rest
+  },
   ref
 ) {
   return (
@@ -43,7 +55,9 @@ export const Stepper = forwardRef<HTMLDivElement, Props>(function Stepper(
     >
       {steps.map(label => (
         <Step key={label}>
-          <StepLabel hideLabel={hideLabels!}>{label}</StepLabel>
+          <StepLabel hideLabel={hideLabels!} titleCase={titleCase}>
+            {label}
+          </StepLabel>
         </Step>
       ))}
     </MUIStepper>

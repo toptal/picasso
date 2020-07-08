@@ -6,9 +6,11 @@ import {
   PicassoConfig
 } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
-import * as titleCaseModule from 'title-case'
+import * as titleCaseModule from 'ap-style-title-case'
 
 import Button, { Props } from './Button'
+
+jest.mock('ap-style-title-case')
 
 const renderButton = (
   children: ReactNode,
@@ -33,7 +35,7 @@ const renderButton = (
 
 let spiedOnTitleCase: jest.SpyInstance
 beforeEach(() => {
-  spiedOnTitleCase = jest.spyOn(titleCaseModule, 'titleCase')
+  spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
 })
 afterEach(() => {
   spiedOnTitleCase.mockReset()

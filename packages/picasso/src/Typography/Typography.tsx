@@ -8,6 +8,7 @@ import { StandardProps, SizeType, ColorType } from '@toptal/picasso-shared'
 
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import styles from './styles'
+import toTitleCase from '../utils/to-title-case'
 
 type VariantType = 'heading' | 'body'
 
@@ -40,6 +41,8 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
   underline?: UnderlineType
   /** Controls when the Typography should have line through */
   lineThrough?: boolean
+  /** Defines if the text should be transformed to title case */
+  titleCase?: boolean
 }
 
 type VariantsType = {
@@ -81,6 +84,7 @@ export const Typography = forwardRef<HTMLElement, Props>(function Typography(
     noWrap,
     underline,
     lineThrough,
+    titleCase,
     ...rest
   },
   ref
@@ -119,7 +123,7 @@ export const Typography = forwardRef<HTMLElement, Props>(function Typography(
       component={as!}
       noWrap={noWrap}
     >
-      {children}
+      {titleCase ? toTitleCase(children) : children}
     </MUITypography>
   )
 })

@@ -6,9 +6,11 @@ import {
   PicassoConfig
 } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
-import * as titleCaseModule from 'title-case'
+import * as titleCaseModule from 'ap-style-title-case'
 
 import Radio, { Props } from './Radio'
+
+jest.mock('ap-style-title-case')
 
 const renderRadio = (
   props: OmitInternalProps<Props>,
@@ -30,7 +32,7 @@ const renderRadio = (
 
 let spiedOnTitleCase: jest.SpyInstance
 beforeEach(() => {
-  spiedOnTitleCase = jest.spyOn(titleCaseModule, 'titleCase')
+  spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
 })
 afterEach(() => {
   spiedOnTitleCase.mockReset()

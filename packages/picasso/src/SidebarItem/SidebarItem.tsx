@@ -8,7 +8,11 @@ import React, {
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { MenuItemProps } from '@material-ui/core/MenuItem'
-import { BaseProps, OverridableComponent } from '@toptal/picasso-shared'
+import {
+  BaseProps,
+  OverridableComponent,
+  useAppConfig
+} from '@toptal/picasso-shared'
 
 import Container from '../Container'
 import Typography from '../Typography'
@@ -37,6 +41,8 @@ export interface Props extends BaseProps, MenuItemAttributes {
   isExpanded?: boolean
   expand?: (index: number | null) => void
   index?: number | null
+  /** Defines if the text should be transformed to title case */
+  titleCase?: boolean
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
@@ -61,11 +67,15 @@ export const SidebarItem: OverridableComponent<Props> = memo(
       isExpanded,
       expand,
       index,
+      titleCase,
       ...rest
     } = props
 
     const hasIcon = Boolean(icon)
     const hasMenu = Boolean(menu)
+
+    const { titleCase: defaultTitleCase } = useAppConfig()
+    const titleCaseIsApplied = titleCase ?? defaultTitleCase
 
     const handleMenuItemClick = (
       event: React.MouseEvent<HTMLElement, MouseEvent>
@@ -91,6 +101,7 @@ export const SidebarItem: OverridableComponent<Props> = memo(
           className={classes.labelContent}
           color='inherit'
           size='medium'
+          titleCase={titleCaseIsApplied}
           noWrap
         >
           {children}
