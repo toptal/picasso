@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.23.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.22.4...@toptal/picasso-lab@2.23.0) (2020-07-08)
+
+
+### Features
+
+* update simple-react-calendar ([#1418](https://github.com/toptal/picasso/issues/1418)) ([7c9d59c](https://github.com/toptal/picasso/commit/7c9d59cae7840623404298b10ee6eeec50744f06))
+
+
+
+
+
 ## [2.22.4](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.22.3...@toptal/picasso-lab@2.22.4) (2020-07-07)
 
 
