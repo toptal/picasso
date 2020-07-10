@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.75.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.74.7...@toptal/picasso@4.75.0) (2020-07-10)
+
+
+### Features
+
+* **tablesectionhead:** bxfe-486 Implement Table Section Head ([#1423](https://github.com/toptal/picasso/issues/1423)) ([e6dec1c](https://github.com/toptal/picasso/commit/e6dec1c9adb3f8e702bdb5cc3dd5e78d457688fb))
+
+
+
+
+
 ## [4.74.7](https://github.com/toptal/picasso/compare/@toptal/picasso@4.74.6...@toptal/picasso@4.74.7) (2020-07-03)
 
 
