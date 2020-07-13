@@ -5,7 +5,8 @@ import {
   PicassoComponentWithRef,
   CompoundedComponentWithRef,
   BaseProps,
-  ButtonOrAnchorProps
+  ButtonOrAnchorProps,
+  TextLabelProps
 } from '@toptal/picasso-shared'
 import cx from 'classnames'
 
@@ -15,6 +16,7 @@ import styles from './styles'
 
 export interface Props
   extends BaseProps,
+    TextLabelProps,
     Omit<ButtonOrAnchorProps, 'onChange' | 'value'> {
   /** Text label for the `Radio` */
   label?: ReactNode
@@ -26,8 +28,6 @@ export interface Props
   checked?: boolean
   /** Callback invoked when `Radio` changes its state */
   onChange?: (event: object, checked: boolean) => void
-  /** Defines if the text should be transformed to title case */
-  titleCase?: boolean
 }
 
 // should be moved to some global interfaces place

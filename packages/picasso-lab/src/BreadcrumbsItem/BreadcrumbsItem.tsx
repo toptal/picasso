@@ -4,14 +4,23 @@ import React, {
   HTMLAttributes,
   FunctionComponent
 } from 'react'
-import { BaseProps, OverridableComponent } from '@toptal/picasso-shared'
+import {
+  BaseProps,
+  TextLabelProps,
+  OverridableComponent,
+  useTitleCase
+} from '@toptal/picasso-shared'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import { Typography } from '@toptal/picasso'
 import cx from 'classnames'
+import { toTitleCase } from '@toptal/picasso/utils'
 
 import styles from './styles'
 
-export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
+export interface Props
+  extends BaseProps,
+    TextLabelProps,
+    HTMLAttributes<HTMLElement> {
   /** Component name to render the breadcrumbs item as */
   as?: ElementType
   /** Whether the item is active */
@@ -35,10 +44,12 @@ export const BreadcrumbsItem: OverridableComponent<Props> = forwardRef<
   const Component = active ? Active : as || 'span'
   const classes = useStyles(props)
 
+  const titleCase = useTitleCase(rest.titleCase)
+
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
     <Component ref={ref} className={cx(classes.root, className)} {...rest}>
-      {children}
+      {titleCase ? toTitleCase(children) : children}
     </Component>
   )
 })

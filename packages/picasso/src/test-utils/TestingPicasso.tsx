@@ -1,11 +1,7 @@
 import React, { FunctionComponent } from 'react'
-import Picasso from '@toptal/picasso-shared'
+import Picasso, { TextLabelProps } from '@toptal/picasso-shared'
 
-interface TestingPicassoProps {
-  titleCase?: boolean
-}
-
-export const TestingPicasso: FunctionComponent<TestingPicassoProps> = ({
+export const TestingPicasso: FunctionComponent<Partial<TextLabelProps>> = ({
   children,
   titleCase
 }) => (

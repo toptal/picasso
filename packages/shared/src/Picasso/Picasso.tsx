@@ -40,7 +40,7 @@ import NotificationsProvider from './NotificationsProvider'
 import globalStyles from './styles'
 import Favicon from '../Favicon'
 import { generateRandomStringOrGetEmptyInTest } from './utils'
-import { EnvironmentType } from './types'
+import { EnvironmentType, TextLabelProps } from './types'
 
 const picasso = {
   palette,
@@ -69,12 +69,11 @@ const picasso = {
 
 const PicassoProvider = new Provider(createMuiTheme(picasso))
 
-interface RootContextProps {
+interface RootContextProps extends TextLabelProps {
   rootRef?: RefObject<HTMLDivElement>
   hasPageHeader: boolean
   setHasPageHeader: (value: boolean) => void
   environment: EnvironmentType<'test' | 'temploy'>
-  titleCase?: boolean
   hasDrawer: boolean
   setHasDrawer: (value: boolean) => void
 }
@@ -120,13 +119,12 @@ export const useAppConfig = () => {
   }
 }
 
-interface PicassoGlobalStylesProviderProps {
+interface PicassoGlobalStylesProviderProps extends TextLabelProps {
   children?: ReactNode
   RootComponent: ForwardRefExoticComponent<
     PicassoRootNodeProps & RefAttributes<HTMLDivElement>
   >
   environment: EnvironmentType<'test' | 'temploy'>
-  titleCase?: boolean
 }
 
 interface PicassoRootNodeProps {
@@ -216,7 +214,7 @@ const Viewport = () => {
   )
 }
 
-interface PicassoProps {
+interface PicassoProps extends TextLabelProps {
   children?: ReactNode
   /** Whether to load fonts file to the page */
   loadFonts?: boolean
@@ -234,8 +232,6 @@ interface PicassoProps {
   notificationContainer?: HTMLElement
   /** Component that is used to render root node  */
   RootComponent?: PicassoGlobalStylesProviderProps['RootComponent']
-  /** Whether to transform text to titleCase for buttons, labels and radio components */
-  titleCase?: boolean
   theme?: ThemeOptions
 }
 

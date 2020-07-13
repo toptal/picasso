@@ -4,7 +4,8 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import {
   BaseProps,
   ButtonOrAnchorProps,
-  CompoundedComponentWithRef
+  CompoundedComponentWithRef,
+  TextLabelProps
 } from '@toptal/picasso-shared'
 import cx from 'classnames'
 
@@ -20,6 +21,7 @@ const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoCheckbox' })
 
 export interface Props
   extends BaseProps,
+    TextLabelProps,
     Omit<ButtonOrAnchorProps, 'onChange'> {
   /** Show checkbox initially as checked */
   checked?: boolean
@@ -57,11 +59,11 @@ export const Checkbox = forwardRef<HTMLButtonElement, Props>(function Checkbox(
     value,
     checked,
     indeterminate,
+    titleCase,
     ...rest
   } = props
 
   const classes = useStyles(props)
-
   const rootClasses = {
     root: classes.root,
     disabled: classes.disabled
@@ -106,6 +108,7 @@ export const Checkbox = forwardRef<HTMLButtonElement, Props>(function Checkbox(
       required={required}
       disabled={disabled}
       label={label}
+      titleCase={titleCase}
       className='picasso-checkbox'
     />
   )

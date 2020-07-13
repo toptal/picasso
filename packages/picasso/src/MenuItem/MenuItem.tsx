@@ -16,12 +16,15 @@ import MUIMenuItem from '@material-ui/core/MenuItem'
 import {
   StandardProps,
   ButtonOrAnchorProps,
-  SizeType
+  TextLabelProps,
+  SizeType,
+  useTitleCase
 } from '@toptal/picasso-shared'
 
 import { ChevronMinor16, CheckMinor16 } from '../Icon'
 import Container from '../Container'
 import MenuContext, { MenuContextProps } from '../Menu/menuContext'
+import toTitleCase from '../utils/to-title-case'
 import styles from './styles'
 
 export type VariantType = 'light' | 'dark'
@@ -30,7 +33,10 @@ export type MenuItemAttributes = LiHTMLAttributes<HTMLLIElement> &
   HTMLAttributes<HTMLDivElement> &
   ButtonOrAnchorProps
 
-export interface Props extends StandardProps, MenuItemAttributes {
+export interface Props
+  extends StandardProps,
+    TextLabelProps,
+    MenuItemAttributes {
   /** Component name to render the menu item as */
   as?: ElementType
   /** Whether to render disabled item */
@@ -85,6 +91,8 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
   const { push, refresh } = useContext<MenuContextProps>(MenuContext)
   const key = useMemo(generateKey, [])
 
+  const titleCase = useTitleCase(rest.titleCase)
+
   useEffect(() => {
     if (menu && refresh) {
       refresh(key, menu)
@@ -99,7 +107,7 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
         })}
         style={style}
       >
-        {children}
+        {titleCase ? toTitleCase(children) : children}
       </span>
     )
   }
