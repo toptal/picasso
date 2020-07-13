@@ -119,11 +119,6 @@ export const useAppConfig = () => {
   }
 }
 
-export const useTitleCase = (componentTitleCase?: boolean) => {
-  const { titleCase: appTitleCase } = useAppConfig()
-  return componentTitleCase ?? appTitleCase
-}
-
 interface PicassoGlobalStylesProviderProps extends TextLabelProps {
   children?: ReactNode
   RootComponent: ForwardRefExoticComponent<
