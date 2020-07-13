@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.76.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.76.0...@toptal/picasso@4.76.1) (2020-07-13)
+
+
+### Bug Fixes
+
+* **TableSectionHead:** [BXFE-486] Add colspan  ([#1424](https://github.com/toptal/picasso/issues/1424)) ([d2ccdf8](https://github.com/toptal/picasso/commit/d2ccdf85602eb8be5fe092fc3decb6f49bbf1bc6))
+
+
+
+
+
 # [4.76.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.75.0...@toptal/picasso@4.76.0) (2020-07-13)
 
 
