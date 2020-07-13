@@ -2,7 +2,10 @@ import React, { forwardRef, HTMLAttributes } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import MUIStepper from '@material-ui/core/Stepper'
-import { StandardProps } from '@toptal/picasso-shared'
+import {
+  StandardProps,
+  TextCaseTransformationProps
+} from '@toptal/picasso-shared'
 
 import Step from '../Step'
 import StepLabel from '../StepLabel'
@@ -10,7 +13,10 @@ import '../StepIcon'
 import StepConnector from '../StepConnector'
 import styles from './styles'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props
+  extends StandardProps,
+    TextCaseTransformationProps,
+    HTMLAttributes<HTMLDivElement> {
   /** The index of the active step */
   active?: number
   /** The component will take up the full width of its container */
@@ -19,8 +25,6 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   hideLabels?: boolean
   /** Array of the step labels */
   steps: string[]
-  /** Defines if the labels text should be transformed to title case */
-  titleCase?: boolean
 }
 
 export const Stepper = forwardRef<HTMLDivElement, Props>(function Stepper(

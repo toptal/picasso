@@ -58,9 +58,11 @@ describe('Tab', () => {
   })
 
   test('should transform text to title case when Picasso titleCase property is true', () => {
-    renderTab({ label: 'abc dk4' }, { titleCase: true })
+    const LABEL_TEXT = 'Test vh2'
+    renderTab({ label: LABEL_TEXT }, { titleCase: true })
 
     expect(spiedOnTitleCase).toBeCalledTimes(1)
+    expect(spiedOnTitleCase).toBeCalledWith(LABEL_TEXT)
   })
 
   test('should not transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {

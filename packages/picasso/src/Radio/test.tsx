@@ -78,9 +78,11 @@ describe('radio button', () => {
   })
 
   test('should transform label text to title case when Picasso titleCase property is true', () => {
-    renderRadio({ label: 'test label' }, { titleCase: true })
+    const LABEL_TEXT = 'Test bh6'
+    renderRadio({ label: LABEL_TEXT }, { titleCase: true })
 
     expect(spiedOnTitleCase).toBeCalledTimes(1)
+    expect(spiedOnTitleCase).toBeCalledWith(LABEL_TEXT)
   })
 
   test('should not transform label text to title case when Picasso titleCase property is true but the component property overrides it', () => {

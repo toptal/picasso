@@ -60,13 +60,11 @@ test('onClick callback should not be fired when clicked button is in loading sta
 })
 
 test('should transform text to title case when Picasso titleCase property is true', () => {
-  renderButton(
-    'some text with-the-edge case for TESTING',
-    { onClick: () => {} },
-    { titleCase: true }
-  )
+  const TEXT_CONTENT = 'Test bk9'
+  renderButton(TEXT_CONTENT, { onClick: () => {} }, { titleCase: true })
 
   expect(spiedOnTitleCase).toBeCalledTimes(1)
+  expect(spiedOnTitleCase).toBeCalledWith(TEXT_CONTENT)
 })
 
 test('should not transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {

@@ -10,6 +10,7 @@ import cx from 'classnames'
 import { MenuItemProps } from '@material-ui/core/MenuItem'
 import {
   BaseProps,
+  TextCaseTransformationProps,
   OverridableComponent,
   useAppConfig
 } from '@toptal/picasso-shared'
@@ -22,7 +23,10 @@ import { ArrowDropDown16 } from '../Icon'
 import styles from './styles'
 import { VariantType } from '../Sidebar/types'
 
-export interface Props extends BaseProps, MenuItemAttributes {
+export interface Props
+  extends BaseProps,
+    TextCaseTransformationProps,
+    MenuItemAttributes {
   /** Pass icon to be used as part of item */
   icon?: ReactElement
   /** Highlights the item as selected */
@@ -41,8 +45,6 @@ export interface Props extends BaseProps, MenuItemAttributes {
   isExpanded?: boolean
   expand?: (index: number | null) => void
   index?: number | null
-  /** Defines if the text should be transformed to title case */
-  titleCase?: boolean
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
@@ -67,15 +69,15 @@ export const SidebarItem: OverridableComponent<Props> = memo(
       isExpanded,
       expand,
       index,
-      titleCase,
+      titleCase: componentTitleCase,
       ...rest
     } = props
 
     const hasIcon = Boolean(icon)
     const hasMenu = Boolean(menu)
 
-    const { titleCase: defaultTitleCase } = useAppConfig()
-    const titleCaseIsApplied = titleCase ?? defaultTitleCase
+    const { titleCase: appTitleCase } = useAppConfig()
+    const titleCase = componentTitleCase ?? appTitleCase
 
     const handleMenuItemClick = (
       event: React.MouseEvent<HTMLElement, MouseEvent>
@@ -101,7 +103,7 @@ export const SidebarItem: OverridableComponent<Props> = memo(
           className={classes.labelContent}
           color='inherit'
           size='medium'
-          titleCase={titleCaseIsApplied}
+          titleCase={titleCase}
           noWrap
         >
           {children}

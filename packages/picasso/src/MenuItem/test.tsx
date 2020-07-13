@@ -41,9 +41,13 @@ describe('MenuItem', () => {
   })
 
   test('should transform text to title case when Picasso titleCase property is true', () => {
-    render(<TestMenuItem>Item</TestMenuItem>, undefined, { titleCase: true })
+    const TEXT_CONTENT = 'Test pb8'
+    render(<TestMenuItem>{TEXT_CONTENT}</TestMenuItem>, undefined, {
+      titleCase: true
+    })
 
     expect(spiedOnTitleCase).toBeCalledTimes(1)
+    expect(spiedOnTitleCase).toBeCalledWith(TEXT_CONTENT)
   })
 
   test('should not transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {

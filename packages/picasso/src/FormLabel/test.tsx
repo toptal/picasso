@@ -71,13 +71,13 @@ describe('FormLabel', () => {
   })
 
   test('should transform text to title case when Picasso titleCase property is true', () => {
-    render(
-      <TestFormLabel>some text with-the-edge case for TEST</TestFormLabel>,
-      undefined,
-      { titleCase: true }
-    )
+    const TEXT_CONTENT = 'Test kb8'
+    render(<TestFormLabel>{TEXT_CONTENT}</TestFormLabel>, undefined, {
+      titleCase: true
+    })
 
     expect(spiedOnTitleCase).toBeCalledTimes(1)
+    expect(spiedOnTitleCase).toBeCalledWith(TEXT_CONTENT)
   })
 
   test('should not transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {

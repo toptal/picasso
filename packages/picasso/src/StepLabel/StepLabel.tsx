@@ -2,19 +2,24 @@ import React, { FunctionComponent, HTMLAttributes } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import MUIStepLabel from '@material-ui/core/StepLabel'
-import { StandardProps, useAppConfig } from '@toptal/picasso-shared'
+import {
+  StandardProps,
+  TextCaseTransformationProps,
+  useAppConfig
+} from '@toptal/picasso-shared'
 
 import StepIcon from '../StepIcon'
 import styles from './styles'
 import toTitleCase from '../utils/to-title-case'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props
+  extends StandardProps,
+    TextCaseTransformationProps,
+    HTMLAttributes<HTMLDivElement> {
   hideLabel: boolean
   children: string
   active?: boolean
   completed?: boolean
-  /** Defines if the text should be transformed to title case */
-  titleCase?: boolean
 }
 
 export const StepLabel: FunctionComponent<Props> = ({
@@ -25,11 +30,11 @@ export const StepLabel: FunctionComponent<Props> = ({
   completed,
   hideLabel,
   style,
-  titleCase,
+  titleCase: componentTitleCase,
   ...rest
 }) => {
-  const { titleCase: defaultTitleCase } = useAppConfig()
-  const titleCaseIsApplied = titleCase ?? defaultTitleCase
+  const { titleCase: appTitleCase } = useAppConfig()
+  const titleCase = componentTitleCase ?? appTitleCase
   return (
     <MUIStepLabel
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -47,7 +52,7 @@ export const StepLabel: FunctionComponent<Props> = ({
       style={style}
     >
       <span className={classes.label}>
-        {titleCaseIsApplied ? toTitleCase(children) : children}
+        {titleCase ? toTitleCase(children) : children}
       </span>
     </MUIStepLabel>
   )

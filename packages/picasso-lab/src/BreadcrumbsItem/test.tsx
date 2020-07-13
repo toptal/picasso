@@ -1,21 +1,17 @@
 import React from 'react'
 import { render, PicassoConfig } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 
 import BreadcrumbsItem, { Props } from './BreadcrumbsItem'
 
 jest.mock('ap-style-title-case')
 
-const renderBreadcrumbsItem = (
-  props: OmitInternalProps<Props, 'children'>,
-  picassoConfig?: PicassoConfig
-) => {
-  const { active, titleCase } = props
+const renderBreadcrumbsItem = (props: Props, picassoConfig?: PicassoConfig) => {
+  const { active, titleCase, children } = props
 
   return render(
     <BreadcrumbsItem active={active} titleCase={titleCase}>
-      Test
+      {children}
     </BreadcrumbsItem>,
     undefined,
     picassoConfig
@@ -31,9 +27,14 @@ afterEach(() => {
 })
 
 test('should transform text to title case when Picasso titleCase property is true', () => {
-  renderBreadcrumbsItem({ active: false }, { titleCase: true })
+  const TEXT_CONTENT = 'Test ab3'
+  renderBreadcrumbsItem(
+    { active: false, children: TEXT_CONTENT },
+    { titleCase: true }
+  )
 
   expect(spiedOnTitleCase).toBeCalledTimes(1)
+  expect(spiedOnTitleCase).toBeCalledWith(TEXT_CONTENT)
 })
 
 test('should not transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {

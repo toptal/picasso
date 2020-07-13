@@ -116,23 +116,34 @@ describe('SidebarItem', () => {
   })
 
   test('should transform menu items text to title case when Picasso titleCase property is true', () => {
+    const MENU_TEXT_CONTENT = 'Test vh5'
     const menu = (
       <SidebarMenu>
-        <SidebarItem>Abc 456</SidebarItem>
+        <SidebarItem>{MENU_TEXT_CONTENT}</SidebarItem>
       </SidebarMenu>
     )
 
-    render(<TestSidebarItem menu={menu}>Abc 123</TestSidebarItem>, undefined, {
-      titleCase: true
-    })
+    const SIDEBAR_ITEM_TEXT_CONTENT = 'Test by2'
+    render(
+      <TestSidebarItem menu={menu}>
+        {SIDEBAR_ITEM_TEXT_CONTENT}
+      </TestSidebarItem>,
+      undefined,
+      {
+        titleCase: true
+      }
+    )
 
     expect(spiedOnTitleCase).toBeCalledTimes(2)
+    expect(spiedOnTitleCase.mock.calls[0]).toEqual([SIDEBAR_ITEM_TEXT_CONTENT])
+    expect(spiedOnTitleCase.mock.calls[1]).toEqual([MENU_TEXT_CONTENT])
   })
 
   test('should not transform menu items text to title case when Picasso titleCase property is true but the component property overrides it', () => {
+    const TEXT_CONTENT = 'Test vi7'
     const menu = (
       <SidebarMenu>
-        <SidebarItem>Abc 789</SidebarItem>
+        <SidebarItem>{TEXT_CONTENT}</SidebarItem>
       </SidebarMenu>
     )
 
@@ -145,5 +156,6 @@ describe('SidebarItem', () => {
     )
 
     expect(spiedOnTitleCase).toBeCalledTimes(1)
+    expect(spiedOnTitleCase).toBeCalledWith(TEXT_CONTENT)
   })
 })

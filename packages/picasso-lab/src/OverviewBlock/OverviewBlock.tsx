@@ -13,6 +13,7 @@ import {
   OverridableComponent,
   ColorType,
   BaseProps,
+  TextCaseTransformationProps,
   useAppConfig
 } from '@toptal/picasso-shared'
 import { Typography } from '@toptal/picasso'
@@ -37,6 +38,7 @@ type ColorSettings = {
 }
 
 export type Props = BaseProps &
+  TextCaseTransformationProps &
   HTMLAttributes<HTMLButtonElement> & {
     /** Counter value  */
     value: ReactNode
@@ -48,8 +50,6 @@ export type Props = BaseProps &
     as?: ElementType
     /** Callback invoked when component is clicked */
     onClick?: (event: MouseEvent) => void
-    /** Defines if the text should be transformed to title case */
-    titleCase?: boolean
   }
 
 interface StaticProps {
@@ -70,7 +70,7 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
       as: Component = 'button',
       className,
       onClick,
-      titleCase,
+      titleCase: componentTitleCase,
       ...rest
     } = props
     const classes = useStyles(props)
@@ -91,8 +91,8 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
 
     const isClickable = Boolean(onClick)
 
-    const { titleCase: defaultTitleCase } = useAppConfig()
-    const titleCaseIsApplied = titleCase ?? defaultTitleCase
+    const { titleCase: appTitleCase } = useAppConfig()
+    const titleCase = componentTitleCase ?? appTitleCase
 
     return (
       <Component
@@ -113,7 +113,7 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
           className={classes.title}
           color={color.label}
         >
-          {titleCaseIsApplied ? toTitleCase(label) : label}
+          {titleCase ? toTitleCase(label) : label}
         </Typography>
         <Typography size='large' weight='semibold' color={color.value}>
           {value}

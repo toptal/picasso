@@ -4,7 +4,8 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import {
   BaseProps,
   ButtonOrAnchorProps,
-  CompoundedComponentWithRef
+  CompoundedComponentWithRef,
+  TextCaseTransformationProps
 } from '@toptal/picasso-shared'
 import cx from 'classnames'
 
@@ -20,6 +21,7 @@ const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoCheckbox' })
 
 export interface Props
   extends BaseProps,
+    TextCaseTransformationProps,
     Omit<ButtonOrAnchorProps, 'onChange'> {
   /** Show checkbox initially as checked */
   checked?: boolean
@@ -40,8 +42,6 @@ export interface Props
   ) => void
   /** Value of the `Checkbox` (applicable only for controlled component) */
   value?: string
-  /** Defines if the options text should be transformed to title case */
-  titleCase?: boolean
 }
 
 export const Checkbox = forwardRef<HTMLButtonElement, Props>(function Checkbox(

@@ -4,7 +4,12 @@ import { Variant as MUIVariant } from '@material-ui/core/styles/createTypography
 import { PropTypes } from '@material-ui/core'
 import MUITypography from '@material-ui/core/Typography'
 import cx from 'classnames'
-import { StandardProps, SizeType, ColorType } from '@toptal/picasso-shared'
+import {
+  StandardProps,
+  SizeType,
+  ColorType,
+  TextCaseTransformationProps
+} from '@toptal/picasso-shared'
 
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import styles from './styles'
@@ -16,7 +21,10 @@ type WeightType = 'thin' | 'light' | 'regular' | 'semibold'
 
 type UnderlineType = 'solid' | 'dashed'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
+export interface Props
+  extends StandardProps,
+    TextCaseTransformationProps,
+    HTMLAttributes<HTMLElement> {
   /** Font variant for inner text */
   variant?: VariantType
   /** Text content */
@@ -41,8 +49,6 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
   underline?: UnderlineType
   /** Controls when the Typography should have line through */
   lineThrough?: boolean
-  /** Defines if the text should be transformed to title case */
-  titleCase?: boolean
 }
 
 type VariantsType = {

@@ -62,8 +62,10 @@ describe('Typography', () => {
   })
 
   test('should transform text to title case when titleCase property is true', () => {
-    render(<TestTypography titleCase>Abc 123</TestTypography>)
+    const TEXT_CONTENT = 'Test bh6'
+    render(<TestTypography titleCase>{TEXT_CONTENT}</TestTypography>)
 
     expect(spiedOnTitleCase).toBeCalledTimes(1)
+    expect(spiedOnTitleCase).toBeCalledWith(TEXT_CONTENT)
   })
 })

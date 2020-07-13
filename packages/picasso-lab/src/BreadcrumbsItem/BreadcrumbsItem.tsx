@@ -6,6 +6,7 @@ import React, {
 } from 'react'
 import {
   BaseProps,
+  TextCaseTransformationProps,
   OverridableComponent,
   useAppConfig
 } from '@toptal/picasso-shared'
@@ -16,13 +17,14 @@ import { toTitleCase } from '@toptal/picasso/utils'
 
 import styles from './styles'
 
-export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
+export interface Props
+  extends BaseProps,
+    TextCaseTransformationProps,
+    HTMLAttributes<HTMLElement> {
   /** Component name to render the breadcrumbs item as */
   as?: ElementType
   /** Whether the item is active */
   active: boolean
-  /** Defines if the text should be transformed to title case */
-  titleCase?: boolean
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
@@ -38,17 +40,24 @@ export const BreadcrumbsItem: OverridableComponent<Props> = forwardRef<
   HTMLElement,
   Props
 >(function BreadcrumbsItem(props, ref) {
-  const { as, active, children, className, titleCase, ...rest } = props
+  const {
+    as,
+    active,
+    children,
+    className,
+    titleCase: componentTitleCase,
+    ...rest
+  } = props
   const Component = active ? Active : as || 'span'
   const classes = useStyles(props)
 
-  const { titleCase: defaultTitleCase } = useAppConfig()
-  const titleCaseIsApplied = titleCase ?? defaultTitleCase
+  const { titleCase: appTitleCase } = useAppConfig()
+  const titleCase = componentTitleCase ?? appTitleCase
 
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
     <Component ref={ref} className={cx(classes.root, className)} {...rest}>
-      {titleCaseIsApplied ? toTitleCase(children) : children}
+      {titleCase ? toTitleCase(children) : children}
     </Component>
   )
 })

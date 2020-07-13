@@ -16,6 +16,7 @@ import MUIMenuItem from '@material-ui/core/MenuItem'
 import {
   StandardProps,
   ButtonOrAnchorProps,
+  TextCaseTransformationProps,
   SizeType,
   useAppConfig
 } from '@toptal/picasso-shared'
@@ -32,7 +33,10 @@ export type MenuItemAttributes = LiHTMLAttributes<HTMLLIElement> &
   HTMLAttributes<HTMLDivElement> &
   ButtonOrAnchorProps
 
-export interface Props extends StandardProps, MenuItemAttributes {
+export interface Props
+  extends StandardProps,
+    TextCaseTransformationProps,
+    MenuItemAttributes {
   /** Component name to render the menu item as */
   as?: ElementType
   /** Whether to render disabled item */
@@ -56,8 +60,6 @@ export interface Props extends StandardProps, MenuItemAttributes {
    * Size of component
    */
   size?: SizeType<'small' | 'medium'>
-  /** Defines if the text should be transformed to title case */
-  titleCase?: boolean
 }
 
 const generateKey = (() => {
@@ -82,7 +84,7 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
     value,
     variant,
     size,
-    titleCase,
+    titleCase: componentTitleCase,
     ...rest
   },
   ref
@@ -90,8 +92,8 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
   const { push, refresh } = useContext<MenuContextProps>(MenuContext)
   const key = useMemo(generateKey, [])
 
-  const { titleCase: defaultTitleCase } = useAppConfig()
-  const titleCaseIsApplied = titleCase ?? defaultTitleCase
+  const { titleCase: appTitleCase } = useAppConfig()
+  const titleCase = componentTitleCase ?? appTitleCase
 
   useEffect(() => {
     if (menu && refresh) {
@@ -107,7 +109,7 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
         })}
         style={style}
       >
-        {titleCaseIsApplied ? toTitleCase(children) : children}
+        {titleCase ? toTitleCase(children) : children}
       </span>
     )
   }

@@ -76,9 +76,13 @@ describe('Stepper', () => {
   })
 
   test('should transform text to title case when Picasso titleCase property is true', () => {
-    renderStepper({ steps: ['abc ck4', 'abc dr5'] }, { titleCase: true })
+    const STEP_1_TEXT = 'Test pb7'
+    const STEP_2_TEXT = 'Test ap0'
+    renderStepper({ steps: [STEP_1_TEXT, STEP_2_TEXT] }, { titleCase: true })
 
     expect(spiedOnTitleCase).toBeCalledTimes(2)
+    expect(spiedOnTitleCase.mock.calls[0]).toEqual([STEP_1_TEXT])
+    expect(spiedOnTitleCase.mock.calls[1]).toEqual([STEP_2_TEXT])
   })
 
   test('should not transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {

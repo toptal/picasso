@@ -6,7 +6,10 @@ import React, {
 } from 'react'
 import { FormControlLabelProps } from '@material-ui/core/FormControlLabel'
 import { withStyles } from '@material-ui/core/styles'
-import { StandardProps } from '@toptal/picasso-shared'
+import {
+  StandardProps,
+  TextCaseTransformationProps
+} from '@toptal/picasso-shared'
 import cx from 'classnames'
 
 import styles from './styles'
@@ -17,7 +20,10 @@ export type FormControlLabelAttributesType = LabelHTMLAttributes<
 > &
   Pick<FormControlLabelProps, 'onChange'>
 
-export interface Props extends StandardProps, FormControlLabelAttributesType {
+export interface Props
+  extends StandardProps,
+    TextCaseTransformationProps,
+    FormControlLabelAttributesType {
   /** A control element. For instance, it can be be a Radio or a Checkbox */
   control: ReactElement
   /** The text to be used in an enclosing label element */
@@ -26,8 +32,6 @@ export interface Props extends StandardProps, FormControlLabelAttributesType {
   disabled?: boolean
   /** Shows whether label is required or not */
   required?: boolean
-  /** Defines if the text should be transformed to title case */
-  titleCase?: boolean
 }
 
 const FormControlLabel: FunctionComponent<Props> = props => {

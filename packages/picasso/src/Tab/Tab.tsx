@@ -6,13 +6,18 @@ import React, {
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUITab, { TabProps } from '@material-ui/core/Tab'
-import { StandardProps, useAppConfig } from '@toptal/picasso-shared'
+import {
+  StandardProps,
+  TextCaseTransformationProps,
+  useAppConfig
+} from '@toptal/picasso-shared'
 
 import styles from './styles'
 import toTitleCase from '../utils/to-title-case'
 
 export interface Props
   extends StandardProps,
+    TextCaseTransformationProps,
     Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
   /**
    * If true, the tab will be disabled
@@ -28,9 +33,6 @@ export interface Props
 
   /** The Icon element */
   icon?: ReactElement
-
-  /** Defines if the label should be transformed to title case */
-  titleCase?: boolean
 
   // Properties below are managed by Tabs component
 
@@ -48,13 +50,13 @@ export const Tab = forwardRef<HTMLDivElement, Props>(function Tab(
     selected,
     onChange,
     onClick,
-    titleCase,
+    titleCase: componentTitleCase,
     ...rest
   },
   ref
 ) {
-  const { titleCase: defaultTitleCase } = useAppConfig()
-  const titleCaseIsApplied = titleCase ?? defaultTitleCase
+  const { titleCase: appTitleCase } = useAppConfig()
+  const titleCase = componentTitleCase ?? appTitleCase
 
   return (
     <MUITab
@@ -62,7 +64,7 @@ export const Tab = forwardRef<HTMLDivElement, Props>(function Tab(
       {...rest}
       ref={ref}
       disabled={disabled}
-      label={titleCaseIsApplied ? toTitleCase(label) : label}
+      label={titleCase ? toTitleCase(label) : label}
       icon={icon}
       value={value}
       selected={selected}
