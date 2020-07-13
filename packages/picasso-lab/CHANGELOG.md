@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.24.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.23.1...@toptal/picasso-lab@2.24.0) (2020-07-13)
+
+
+### Features
+
+* use AP-style title case for components ([#1422](https://github.com/toptal/picasso/issues/1422)) ([b64ed4c](https://github.com/toptal/picasso/commit/b64ed4cdb50c9d306c1c492332e4db498ab0cb72))
+
+
+
+
+
 ## [2.23.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.23.0...@toptal/picasso-lab@2.23.1) (2020-07-08)
 
 
