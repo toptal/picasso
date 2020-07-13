@@ -16,6 +16,7 @@ exports[`TableSectionHead default render 1`] = `
         >
           <td
             class="MuiTableCell-root TableCell-root MuiTableCell-body TableCell-body"
+            colspan="100"
           >
             Test
           </td>

@@ -3,7 +3,7 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const componentDocs = PicassoBook.createComponentDocs(
   TableSectionHead,
-  'Table.TableSectionHead',
+  'Table.SectionHead',
   'Table section header'
 )
 

@@ -12,9 +12,12 @@ import TableRow from '../TableRow'
 import TableBody from '../TableBody'
 import styles from './styles'
 
+const MAX_COL_SPAN = 100
+
 export interface Props
   extends BaseProps,
     HTMLAttributes<HTMLTableSectionElement> {
+  colSpan?: number
   icon?: ReactElement
 }
 
@@ -26,14 +29,14 @@ export const TableSectionHead: FunctionComponent<Props> = forwardRef<
   HTMLTableSectionElement,
   Props
 >(function TableSectionHead(props, ref) {
-  const { icon, children, style } = props
+  const { colSpan, icon, children, style } = props
 
   const classes = useStyles(props)
 
   return (
     <TableBody ref={ref}>
       <TableRow className={classes.sectionHeaderRow} style={style}>
-        <TableCell>
+        <TableCell colSpan={colSpan}>
           {icon && <span className={classes.iconWrapper}>{icon}</span>}
           {children}
         </TableCell>
@@ -41,6 +44,10 @@ export const TableSectionHead: FunctionComponent<Props> = forwardRef<
     </TableBody>
   )
 })
+
+TableSectionHead.defaultProps = {
+  colSpan: MAX_COL_SPAN
+}
 
 TableSectionHead.displayName = 'TableSectionHead'
 
