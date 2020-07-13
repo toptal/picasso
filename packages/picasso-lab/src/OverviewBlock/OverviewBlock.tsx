@@ -14,7 +14,7 @@ import {
   ColorType,
   BaseProps,
   TextLabelProps,
-  useAppConfig
+  useTitleCase
 } from '@toptal/picasso-shared'
 import { Typography } from '@toptal/picasso'
 import { toTitleCase } from '@toptal/picasso/utils'
@@ -70,7 +70,6 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
       as: Component = 'button',
       className,
       onClick,
-      titleCase: componentTitleCase,
       ...rest
     } = props
     const classes = useStyles(props)
@@ -91,8 +90,7 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
 
     const isClickable = Boolean(onClick)
 
-    const { titleCase: appTitleCase } = useAppConfig()
-    const titleCase = componentTitleCase ?? appTitleCase
+    const titleCase = useTitleCase(rest.titleCase)
 
     return (
       <Component

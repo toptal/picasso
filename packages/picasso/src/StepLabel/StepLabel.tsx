@@ -5,7 +5,7 @@ import MUIStepLabel from '@material-ui/core/StepLabel'
 import {
   StandardProps,
   TextLabelProps,
-  useAppConfig
+  useTitleCase
 } from '@toptal/picasso-shared'
 
 import StepIcon from '../StepIcon'
@@ -30,11 +30,9 @@ export const StepLabel: FunctionComponent<Props> = ({
   completed,
   hideLabel,
   style,
-  titleCase: componentTitleCase,
   ...rest
 }) => {
-  const { titleCase: appTitleCase } = useAppConfig()
-  const titleCase = componentTitleCase ?? appTitleCase
+  const titleCase = useTitleCase(rest.titleCase)
   return (
     <MUIStepLabel
       // eslint-disable-next-line react/jsx-props-no-spreading

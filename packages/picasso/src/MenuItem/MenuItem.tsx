@@ -18,7 +18,7 @@ import {
   ButtonOrAnchorProps,
   TextLabelProps,
   SizeType,
-  useAppConfig
+  useTitleCase
 } from '@toptal/picasso-shared'
 
 import { ChevronMinor16, CheckMinor16 } from '../Icon'
@@ -84,7 +84,6 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
     value,
     variant,
     size,
-    titleCase: componentTitleCase,
     ...rest
   },
   ref
@@ -92,8 +91,7 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
   const { push, refresh } = useContext<MenuContextProps>(MenuContext)
   const key = useMemo(generateKey, [])
 
-  const { titleCase: appTitleCase } = useAppConfig()
-  const titleCase = componentTitleCase ?? appTitleCase
+  const titleCase = useTitleCase(rest.titleCase)
 
   useEffect(() => {
     if (menu && refresh) {

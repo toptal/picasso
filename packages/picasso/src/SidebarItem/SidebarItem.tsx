@@ -12,7 +12,7 @@ import {
   BaseProps,
   TextLabelProps,
   OverridableComponent,
-  useAppConfig
+  useTitleCase
 } from '@toptal/picasso-shared'
 
 import Container from '../Container'
@@ -66,15 +66,13 @@ export const SidebarItem: OverridableComponent<Props> = memo(
       isExpanded,
       expand,
       index,
-      titleCase: componentTitleCase,
       ...rest
     } = props
 
     const hasIcon = Boolean(icon)
     const hasMenu = Boolean(menu)
 
-    const { titleCase: appTitleCase } = useAppConfig()
-    const titleCase = componentTitleCase ?? appTitleCase
+    const titleCase = useTitleCase(props.titleCase)
 
     const handleMenuItemClick = (
       event: React.MouseEvent<HTMLElement, MouseEvent>

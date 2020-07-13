@@ -9,7 +9,7 @@ import MUITab, { TabProps } from '@material-ui/core/Tab'
 import {
   StandardProps,
   TextLabelProps,
-  useAppConfig
+  useTitleCase
 } from '@toptal/picasso-shared'
 
 import styles from './styles'
@@ -42,21 +42,10 @@ export interface Props
 }
 
 export const Tab = forwardRef<HTMLDivElement, Props>(function Tab(
-  {
-    disabled,
-    value,
-    label,
-    icon,
-    selected,
-    onChange,
-    onClick,
-    titleCase: componentTitleCase,
-    ...rest
-  },
+  { disabled, value, label, icon, selected, onChange, onClick, ...rest },
   ref
 ) {
-  const { titleCase: appTitleCase } = useAppConfig()
-  const titleCase = componentTitleCase ?? appTitleCase
+  const titleCase = useTitleCase(rest.titleCase)
 
   return (
     <MUITab

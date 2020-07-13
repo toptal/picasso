@@ -2,7 +2,7 @@ import React, { forwardRef, HTMLAttributes, ReactNode } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import {
-  useAppConfig,
+  useTitleCase,
   StandardProps,
   TextLabelProps
 } from '@toptal/picasso-shared'
@@ -40,7 +40,6 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
     className,
     style,
     inline,
-    titleCase: componentTitleCase,
     as: Component = 'label',
     ...rest
   },
@@ -48,8 +47,7 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
 ) {
   const isInline = inline || Component === 'span'
 
-  const { titleCase: appTitleCase } = useAppConfig()
-  const titleCase = componentTitleCase ?? appTitleCase
+  const titleCase = useTitleCase(rest.titleCase)
 
   return (
     <Component

@@ -8,7 +8,7 @@ import {
   BaseProps,
   TextLabelProps,
   OverridableComponent,
-  useAppConfig
+  useTitleCase
 } from '@toptal/picasso-shared'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import { Typography } from '@toptal/picasso'
@@ -40,19 +40,11 @@ export const BreadcrumbsItem: OverridableComponent<Props> = forwardRef<
   HTMLElement,
   Props
 >(function BreadcrumbsItem(props, ref) {
-  const {
-    as,
-    active,
-    children,
-    className,
-    titleCase: componentTitleCase,
-    ...rest
-  } = props
+  const { as, active, children, className, ...rest } = props
   const Component = active ? Active : as || 'span'
   const classes = useStyles(props)
 
-  const { titleCase: appTitleCase } = useAppConfig()
-  const titleCase = componentTitleCase ?? appTitleCase
+  const titleCase = useTitleCase(rest.titleCase)
 
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading

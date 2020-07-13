@@ -13,7 +13,7 @@ import {
   BaseProps,
   TextLabelProps,
   CompoundedComponentWithRef,
-  useAppConfig
+  useTitleCase
 } from '@toptal/picasso-shared'
 
 import Chip from '../Chip'
@@ -65,15 +65,13 @@ export const Label = forwardRef<HTMLDivElement, Props>(function Label(
     onDelete,
     variant,
     as,
-    titleCase: componentTitleCase,
     ...rest
   } = props
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { color, ...htmlAttributes } = rest
   const classes = useStyles(props)
 
-  const { titleCase: appTitleCase } = useAppConfig()
-  const titleCase = componentTitleCase ?? appTitleCase
+  const titleCase = useTitleCase(rest.titleCase)
 
   const handleDelete = (event: MouseEvent) => {
     if (disabled) {

@@ -4,6 +4,7 @@ export {
   usePicassoRoot,
   usePageHeader,
   useAppConfig,
+  useTitleCase,
   useDrawer,
   RootContext
 } from './Picasso'

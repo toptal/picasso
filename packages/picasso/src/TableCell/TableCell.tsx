@@ -4,7 +4,7 @@ import MUITableCell from '@material-ui/core/TableCell'
 import {
   StandardProps,
   TextLabelProps,
-  useAppConfig
+  useTitleCase
 } from '@toptal/picasso-shared'
 
 import toTitleCase from '../utils/to-title-case'
@@ -26,22 +26,12 @@ export interface Props
 
 export const TableCell = forwardRef<HTMLTableCellElement, Props>(
   function TableCell(
-    {
-      align,
-      classes,
-      className,
-      style,
-      children,
-      colSpan,
-      titleCase: componentTitleCase,
-      ...rest
-    },
+    { align, classes, className, style, children, colSpan, ...rest },
     ref
   ) {
     const tableSection = useContext(TableSectionContext)
 
-    const { titleCase: appTitleCase } = useAppConfig()
-    const titleCase = componentTitleCase ?? appTitleCase
+    const titleCase = useTitleCase(rest.titleCase)
 
     return (
       <MUITableCell

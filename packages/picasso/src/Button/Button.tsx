@@ -14,7 +14,7 @@ import {
   ButtonOrAnchorProps,
   CompoundedComponentWithRef,
   OverridableComponent,
-  useAppConfig,
+  useTitleCase,
   TextLabelProps
 } from '@toptal/picasso-shared'
 
@@ -115,7 +115,6 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     title,
     value,
     type,
-    titleCase: componentTitleCase,
     as,
     ...rest
   } = props
@@ -131,8 +130,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     content: contentClass
   } = classes
 
-  const { titleCase: appTitleCase } = useAppConfig()
-  const titleCase = componentTitleCase ?? appTitleCase
+  const titleCase = useTitleCase(rest.titleCase)
 
   const finalChildren = [titleCase ? toTitleCase(children) : children]
 
