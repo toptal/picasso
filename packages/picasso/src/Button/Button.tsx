@@ -15,7 +15,7 @@ import {
   CompoundedComponentWithRef,
   OverridableComponent,
   useAppConfig,
-  TextCaseTransformationProps
+  TextLabelProps
 } from '@toptal/picasso-shared'
 
 import Loader from '../Loader'
@@ -41,10 +41,7 @@ export type VariantType =
 
 export type IconPositionType = 'left' | 'right'
 
-export interface Props
-  extends BaseProps,
-    TextCaseTransformationProps,
-    ButtonOrAnchorProps {
+export interface Props extends BaseProps, TextLabelProps, ButtonOrAnchorProps {
   /** Show button in the active state (left mouse button down) */
   active?: boolean
   /** The component used for the root node. Either a string to use a DOM element or a component. */

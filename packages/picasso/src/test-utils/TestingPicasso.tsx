@@ -1,9 +1,10 @@
 import React, { FunctionComponent } from 'react'
-import Picasso, { TextCaseTransformationProps } from '@toptal/picasso-shared'
+import Picasso, { TextLabelProps } from '@toptal/picasso-shared'
 
-export const TestingPicasso: FunctionComponent<Partial<
-  TextCaseTransformationProps
->> = ({ children, titleCase }) => (
+export const TestingPicasso: FunctionComponent<Partial<TextLabelProps>> = ({
+  children,
+  titleCase
+}) => (
   <Picasso
     loadFavicon={false}
     loadFonts={false}

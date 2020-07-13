@@ -22,7 +22,7 @@ export interface JssProps {
   classes: Classes
 }
 
-export interface TextCaseTransformationProps {
+export interface TextLabelProps {
   /** Defines if the text should be transformed to title case */
   titleCase?: boolean
 }

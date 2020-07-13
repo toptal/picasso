@@ -40,7 +40,7 @@ import NotificationsProvider from './NotificationsProvider'
 import globalStyles from './styles'
 import Favicon from '../Favicon'
 import { generateRandomStringOrGetEmptyInTest } from './utils'
-import { EnvironmentType, TextCaseTransformationProps } from './types'
+import { EnvironmentType, TextLabelProps } from './types'
 
 const picasso = {
   palette,
@@ -69,7 +69,7 @@ const picasso = {
 
 const PicassoProvider = new Provider(createMuiTheme(picasso))
 
-interface RootContextProps extends TextCaseTransformationProps {
+interface RootContextProps extends TextLabelProps {
   rootRef?: RefObject<HTMLDivElement>
   hasPageHeader: boolean
   setHasPageHeader: (value: boolean) => void
@@ -119,7 +119,7 @@ export const useAppConfig = () => {
   }
 }
 
-interface PicassoGlobalStylesProviderProps extends TextCaseTransformationProps {
+interface PicassoGlobalStylesProviderProps extends TextLabelProps {
   children?: ReactNode
   RootComponent: ForwardRefExoticComponent<
     PicassoRootNodeProps & RefAttributes<HTMLDivElement>
@@ -214,7 +214,7 @@ const Viewport = () => {
   )
 }
 
-interface PicassoProps extends TextCaseTransformationProps {
+interface PicassoProps extends TextLabelProps {
   children?: ReactNode
   /** Whether to load fonts file to the page */
   loadFonts?: boolean

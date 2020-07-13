@@ -46,7 +46,6 @@ describe('MenuItem', () => {
       titleCase: true
     })
 
-    expect(spiedOnTitleCase).toBeCalledTimes(1)
     expect(spiedOnTitleCase).toBeCalledWith(TEXT_CONTENT)
   })
 

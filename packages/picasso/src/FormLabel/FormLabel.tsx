@@ -4,7 +4,7 @@ import cx from 'classnames'
 import {
   useAppConfig,
   StandardProps,
-  TextCaseTransformationProps
+  TextLabelProps
 } from '@toptal/picasso-shared'
 
 import styles from './styles'
@@ -14,7 +14,7 @@ type ComponentType = 'label' | 'span'
 
 export interface Props
   extends StandardProps,
-    TextCaseTransformationProps,
+    TextLabelProps,
     HTMLAttributes<HTMLLabelElement | HTMLSpanElement> {
   /** Content of the label */
   children: ReactNode

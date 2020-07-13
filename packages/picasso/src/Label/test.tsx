@@ -49,9 +49,10 @@ test('renders `white` variant', () => {
 })
 
 test('should transform text to title case when Picasso titleCase property is true', () => {
-  renderLabel('test sk3', {}, { titleCase: true })
+  const TEXT_CONTENT = 'Test bk9'
+  renderLabel(TEXT_CONTENT, {}, { titleCase: true })
 
-  expect(spiedOnTitleCase).toBeCalledTimes(1)
+  expect(spiedOnTitleCase).toBeCalledWith(TEXT_CONTENT)
 })
 
 test('should not transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {

@@ -8,7 +8,7 @@ import { withStyles } from '@material-ui/core/styles'
 import MUITab, { TabProps } from '@material-ui/core/Tab'
 import {
   StandardProps,
-  TextCaseTransformationProps,
+  TextLabelProps,
   useAppConfig
 } from '@toptal/picasso-shared'
 
@@ -17,7 +17,7 @@ import toTitleCase from '../utils/to-title-case'
 
 export interface Props
   extends StandardProps,
-    TextCaseTransformationProps,
+    TextLabelProps,
     Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
   /**
    * If true, the tab will be disabled

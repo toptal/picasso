@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, RenderResult, PicassoConfig } from '@toptal/picasso/test-utils'
 import * as titleCaseModule from 'ap-style-title-case'
-import { TextCaseTransformationProps } from '@toptal/picasso-shared'
+import { TextLabelProps } from '@toptal/picasso-shared'
 
 import Table from '../Table'
 
@@ -9,7 +9,7 @@ jest.mock('ap-style-title-case')
 
 const renderTable = (
   picassoConfig: PicassoConfig = { titleCase: false },
-  cellProps: Partial<TextCaseTransformationProps> = {},
+  cellProps: Partial<TextLabelProps> = {},
   cellsContent: [string, string, string] = [
     'Table test',
     'Table test',
@@ -65,7 +65,6 @@ describe('Table', () => {
     const HEADER_CELL_TEXT = 'Test sr2'
     renderTable({ titleCase: true }, {}, [HEADER_CELL_TEXT, 'a', 'b'])
 
-    expect(spiedOnTitleCase).toBeCalledTimes(1)
     expect(spiedOnTitleCase).toBeCalledWith(HEADER_CELL_TEXT)
   })
 

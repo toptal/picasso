@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles'
 import MUIStepLabel from '@material-ui/core/StepLabel'
 import {
   StandardProps,
-  TextCaseTransformationProps,
+  TextLabelProps,
   useAppConfig
 } from '@toptal/picasso-shared'
 
@@ -14,7 +14,7 @@ import toTitleCase from '../utils/to-title-case'
 
 export interface Props
   extends StandardProps,
-    TextCaseTransformationProps,
+    TextLabelProps,
     HTMLAttributes<HTMLDivElement> {
   hideLabel: boolean
   children: string

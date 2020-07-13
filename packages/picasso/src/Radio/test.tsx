@@ -81,7 +81,6 @@ describe('radio button', () => {
     const LABEL_TEXT = 'Test bh6'
     renderRadio({ label: LABEL_TEXT }, { titleCase: true })
 
-    expect(spiedOnTitleCase).toBeCalledTimes(1)
     expect(spiedOnTitleCase).toBeCalledWith(LABEL_TEXT)
   })
 

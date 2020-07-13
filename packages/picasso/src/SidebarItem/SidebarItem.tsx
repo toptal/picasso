@@ -10,7 +10,7 @@ import cx from 'classnames'
 import { MenuItemProps } from '@material-ui/core/MenuItem'
 import {
   BaseProps,
-  TextCaseTransformationProps,
+  TextLabelProps,
   OverridableComponent,
   useAppConfig
 } from '@toptal/picasso-shared'
@@ -23,10 +23,7 @@ import { ArrowDropDown16 } from '../Icon'
 import styles from './styles'
 import { VariantType } from '../Sidebar/types'
 
-export interface Props
-  extends BaseProps,
-    TextCaseTransformationProps,
-    MenuItemAttributes {
+export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   /** Pass icon to be used as part of item */
   icon?: ReactElement
   /** Highlights the item as selected */

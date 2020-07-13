@@ -3,7 +3,7 @@ import { Theme, makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import {
   CompoundedComponentWithRef,
-  TextCaseTransformationProps,
+  TextLabelProps,
   BaseProps
 } from '@toptal/picasso-shared'
 import { Typography, Container } from '@toptal/picasso'
@@ -33,10 +33,7 @@ const useMainStyles = makeStyles<Theme>(styles, {
   name: 'PicassoSubheaderMain'
 })
 
-const Title: FunctionComponent<TextCaseTransformationProps> = ({
-  titleCase,
-  children
-}) => (
+const Title: FunctionComponent<TextLabelProps> = ({ titleCase, children }) => (
   <Typography variant='heading' size='large' titleCase={titleCase}>
     {children}
   </Typography>

@@ -16,7 +16,7 @@ import MUIMenuItem from '@material-ui/core/MenuItem'
 import {
   StandardProps,
   ButtonOrAnchorProps,
-  TextCaseTransformationProps,
+  TextLabelProps,
   SizeType,
   useAppConfig
 } from '@toptal/picasso-shared'
@@ -35,7 +35,7 @@ export type MenuItemAttributes = LiHTMLAttributes<HTMLLIElement> &
 
 export interface Props
   extends StandardProps,
-    TextCaseTransformationProps,
+    TextLabelProps,
     MenuItemAttributes {
   /** Component name to render the menu item as */
   as?: ElementType

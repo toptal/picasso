@@ -63,7 +63,6 @@ test('should transform text to title case when Picasso titleCase property is tru
   const TEXT_CONTENT = 'Test bk9'
   renderButton(TEXT_CONTENT, { onClick: () => {} }, { titleCase: true })
 
-  expect(spiedOnTitleCase).toBeCalledTimes(1)
   expect(spiedOnTitleCase).toBeCalledWith(TEXT_CONTENT)
 })
 

@@ -8,7 +8,7 @@ import {
   StandardProps,
   SizeType,
   ColorType,
-  TextCaseTransformationProps
+  TextLabelProps
 } from '@toptal/picasso-shared'
 
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
@@ -23,7 +23,7 @@ type UnderlineType = 'solid' | 'dashed'
 
 export interface Props
   extends StandardProps,
-    TextCaseTransformationProps,
+    TextLabelProps,
     HTMLAttributes<HTMLElement> {
   /** Font variant for inner text */
   variant?: VariantType

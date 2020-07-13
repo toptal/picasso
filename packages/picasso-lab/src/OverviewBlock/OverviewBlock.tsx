@@ -13,7 +13,7 @@ import {
   OverridableComponent,
   ColorType,
   BaseProps,
-  TextCaseTransformationProps,
+  TextLabelProps,
   useAppConfig
 } from '@toptal/picasso-shared'
 import { Typography } from '@toptal/picasso'
@@ -38,7 +38,7 @@ type ColorSettings = {
 }
 
 export type Props = BaseProps &
-  TextCaseTransformationProps &
+  TextLabelProps &
   HTMLAttributes<HTMLButtonElement> & {
     /** Counter value  */
     value: ReactNode

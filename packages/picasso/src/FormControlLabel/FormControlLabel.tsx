@@ -6,10 +6,7 @@ import React, {
 } from 'react'
 import { FormControlLabelProps } from '@material-ui/core/FormControlLabel'
 import { withStyles } from '@material-ui/core/styles'
-import {
-  StandardProps,
-  TextCaseTransformationProps
-} from '@toptal/picasso-shared'
+import { StandardProps, TextLabelProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 
 import styles from './styles'
@@ -22,7 +19,7 @@ export type FormControlLabelAttributesType = LabelHTMLAttributes<
 
 export interface Props
   extends StandardProps,
-    TextCaseTransformationProps,
+    TextLabelProps,
     FormControlLabelAttributesType {
   /** A control element. For instance, it can be be a Radio or a Checkbox */
   control: ReactElement

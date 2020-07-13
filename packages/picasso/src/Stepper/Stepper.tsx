@@ -2,10 +2,7 @@ import React, { forwardRef, HTMLAttributes } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import MUIStepper from '@material-ui/core/Stepper'
-import {
-  StandardProps,
-  TextCaseTransformationProps
-} from '@toptal/picasso-shared'
+import { StandardProps, TextLabelProps } from '@toptal/picasso-shared'
 
 import Step from '../Step'
 import StepLabel from '../StepLabel'
@@ -15,7 +12,7 @@ import styles from './styles'
 
 export interface Props
   extends StandardProps,
-    TextCaseTransformationProps,
+    TextLabelProps,
     HTMLAttributes<HTMLDivElement> {
   /** The index of the active step */
   active?: number

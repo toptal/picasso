@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles'
 import MUITableCell from '@material-ui/core/TableCell'
 import {
   StandardProps,
-  TextCaseTransformationProps,
+  TextLabelProps,
   useAppConfig
 } from '@toptal/picasso-shared'
 
@@ -16,7 +16,7 @@ type AlignType = 'inherit' | 'left' | 'center' | 'right' | 'justify'
 
 export interface Props
   extends StandardProps,
-    TextCaseTransformationProps,
+    TextLabelProps,
     HTMLAttributes<HTMLTableCellElement> {
   /** Set the text-align on the table cell content */
   align?: AlignType

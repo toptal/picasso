@@ -39,7 +39,6 @@ test('should transform text to title case when Picasso titleCase property is tru
     { titleCase: true }
   )
 
-  expect(spiedOnTitleCase).toBeCalledTimes(1)
   expect(spiedOnTitleCase).toBeCalledWith(LABEL_TEXT)
 })
 

@@ -6,7 +6,7 @@ import {
   CompoundedComponentWithRef,
   BaseProps,
   ButtonOrAnchorProps,
-  TextCaseTransformationProps
+  TextLabelProps
 } from '@toptal/picasso-shared'
 import cx from 'classnames'
 
@@ -16,7 +16,7 @@ import styles from './styles'
 
 export interface Props
   extends BaseProps,
-    TextCaseTransformationProps,
+    TextLabelProps,
     Omit<ButtonOrAnchorProps, 'onChange' | 'value'> {
   /** Text label for the `Radio` */
   label?: ReactNode

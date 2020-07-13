@@ -5,7 +5,7 @@ import {
   BaseProps,
   ButtonOrAnchorProps,
   CompoundedComponentWithRef,
-  TextCaseTransformationProps
+  TextLabelProps
 } from '@toptal/picasso-shared'
 import cx from 'classnames'
 
@@ -21,7 +21,7 @@ const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoCheckbox' })
 
 export interface Props
   extends BaseProps,
-    TextCaseTransformationProps,
+    TextLabelProps,
     Omit<ButtonOrAnchorProps, 'onChange'> {
   /** Show checkbox initially as checked */
   checked?: boolean

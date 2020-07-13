@@ -11,7 +11,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import {
   BaseProps,
-  TextCaseTransformationProps,
+  TextLabelProps,
   CompoundedComponentWithRef,
   useAppConfig
 } from '@toptal/picasso-shared'
@@ -27,10 +27,7 @@ type VariantType = 'grey' | 'white' | 'green' | 'yellow' | 'red'
 export type DivOrAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> &
   HTMLAttributes<HTMLDivElement>
 
-export interface Props
-  extends BaseProps,
-    TextCaseTransformationProps,
-    DivOrAnchorProps {
+export interface Props extends BaseProps, TextLabelProps, DivOrAnchorProps {
   /** The component used for the root node. Either a string to use a DOM element or a component. */
   as?: ElementType
   /** Text content of the `Label` component */

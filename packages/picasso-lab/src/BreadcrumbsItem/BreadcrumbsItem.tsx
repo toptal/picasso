@@ -6,7 +6,7 @@ import React, {
 } from 'react'
 import {
   BaseProps,
-  TextCaseTransformationProps,
+  TextLabelProps,
   OverridableComponent,
   useAppConfig
 } from '@toptal/picasso-shared'
@@ -19,7 +19,7 @@ import styles from './styles'
 
 export interface Props
   extends BaseProps,
-    TextCaseTransformationProps,
+    TextLabelProps,
     HTMLAttributes<HTMLElement> {
   /** Component name to render the breadcrumbs item as */
   as?: ElementType

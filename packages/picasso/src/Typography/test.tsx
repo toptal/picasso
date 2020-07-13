@@ -65,7 +65,6 @@ describe('Typography', () => {
     const TEXT_CONTENT = 'Test bh6'
     render(<TestTypography titleCase>{TEXT_CONTENT}</TestTypography>)
 
-    expect(spiedOnTitleCase).toBeCalledTimes(1)
     expect(spiedOnTitleCase).toBeCalledWith(TEXT_CONTENT)
   })
 })

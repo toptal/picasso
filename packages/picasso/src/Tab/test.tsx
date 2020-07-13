@@ -61,7 +61,6 @@ describe('Tab', () => {
     const LABEL_TEXT = 'Test vh2'
     renderTab({ label: LABEL_TEXT }, { titleCase: true })
 
-    expect(spiedOnTitleCase).toBeCalledTimes(1)
     expect(spiedOnTitleCase).toBeCalledWith(LABEL_TEXT)
   })
 
