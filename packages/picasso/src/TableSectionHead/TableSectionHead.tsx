@@ -36,7 +36,7 @@ export const TableSectionHead: FunctionComponent<Props> = forwardRef<
   return (
     <TableBody ref={ref}>
       <TableRow className={classes.sectionHeaderRow} style={style}>
-        <TableCell colSpan={colSpan || MAX_COL_SPAN}>
+        <TableCell colSpan={colSpan}>
           {icon && <span className={classes.iconWrapper}>{icon}</span>}
           {children}
         </TableCell>
@@ -44,6 +44,10 @@ export const TableSectionHead: FunctionComponent<Props> = forwardRef<
     </TableBody>
   )
 })
+
+TableSectionHead.defaultProps = {
+  colSpan: MAX_COL_SPAN
+}
 
 TableSectionHead.displayName = 'TableSectionHead'
 
