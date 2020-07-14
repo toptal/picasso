@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.77.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.77.1...@toptal/picasso@4.77.2) (2020-07-14)
+
+
+### Bug Fixes
+
+* ignore titleCase for Autocomplete options ([#1432](https://github.com/toptal/picasso/issues/1432)) ([e35899e](https://github.com/toptal/picasso/commit/e35899e1ecc1148f2b049d24594574af6005125a))
+
+
+
+
+
 ## [4.77.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.77.0...@toptal/picasso@4.77.1) (2020-07-14)
 
 
