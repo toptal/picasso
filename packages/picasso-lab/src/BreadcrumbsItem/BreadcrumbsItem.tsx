@@ -40,11 +40,18 @@ export const BreadcrumbsItem: OverridableComponent<Props> = forwardRef<
   HTMLElement,
   Props
 >(function BreadcrumbsItem(props, ref) {
-  const { as, active, children, className, ...rest } = props
+  const {
+    as,
+    active,
+    children,
+    className,
+    titleCase: propsTitleCase,
+    ...rest
+  } = props
   const Component = active ? Active : as || 'span'
   const classes = useStyles(props)
 
-  const titleCase = useTitleCase(rest.titleCase)
+  const titleCase = useTitleCase(propsTitleCase)
 
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading

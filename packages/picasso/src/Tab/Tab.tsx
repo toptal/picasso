@@ -42,10 +42,20 @@ export interface Props
 }
 
 export const Tab = forwardRef<HTMLDivElement, Props>(function Tab(
-  { disabled, value, label, icon, selected, onChange, onClick, ...rest },
+  {
+    disabled,
+    value,
+    label,
+    icon,
+    selected,
+    onChange,
+    onClick,
+    titleCase: propsTitleCase,
+    ...rest
+  },
   ref
 ) {
-  const titleCase = useTitleCase(rest.titleCase)
+  const titleCase = useTitleCase(propsTitleCase)
 
   return (
     <MUITab

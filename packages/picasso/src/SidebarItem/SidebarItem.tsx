@@ -66,13 +66,14 @@ export const SidebarItem: OverridableComponent<Props> = memo(
       isExpanded,
       expand,
       index,
+      titleCase: propsTitleCase,
       ...rest
     } = props
 
     const hasIcon = Boolean(icon)
     const hasMenu = Boolean(menu)
 
-    const titleCase = useTitleCase(props.titleCase)
+    const titleCase = useTitleCase(propsTitleCase)
 
     const handleMenuItemClick = (
       event: React.MouseEvent<HTMLElement, MouseEvent>

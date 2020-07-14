@@ -220,6 +220,7 @@ const SelectOption = React.memo(
 
           onItemSelect(event, option)
         }}
+        titleCase={false}
       >
         {children}
       </MenuItem>

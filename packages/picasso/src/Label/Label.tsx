@@ -65,13 +65,14 @@ export const Label = forwardRef<HTMLDivElement, Props>(function Label(
     onDelete,
     variant,
     as,
+    titleCase: propsTitleCase,
     ...rest
   } = props
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { color, ...htmlAttributes } = rest
   const classes = useStyles(props)
 
-  const titleCase = useTitleCase(rest.titleCase)
+  const titleCase = useTitleCase(propsTitleCase)
 
   const handleDelete = (event: MouseEvent) => {
     if (disabled) {

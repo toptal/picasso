@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.24.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.24.0...@toptal/picasso-lab@2.24.1) (2020-07-14)
+
+
+### Bug Fixes
+
+* ignore titleCase for Select options ([#1431](https://github.com/toptal/picasso/issues/1431)) ([5b24f3e](https://github.com/toptal/picasso/commit/5b24f3e7c4f5ccfff5400de7d233dedebcaa2002))
+
+
+
+
+
 # [2.24.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.23.1...@toptal/picasso-lab@2.24.0) (2020-07-13)
 
 

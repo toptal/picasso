@@ -171,6 +171,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
             key={getKey(option)}
             /* eslint-disable-next-line react/jsx-props-no-spreading */
             {...getItemProps(index, option)}
+            titleCase={false}
           >
             {renderOption
               ? renderOption(option, index)
@@ -186,6 +187,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
             })}
             /* eslint-disable-next-line react/jsx-props-no-spreading */
             {...getOtherItemProps(optionsLength, value)}
+            titleCase={false}
           >
             <span className={classes.stringContent}>
               <Typography as='span' color='dark-grey'>
@@ -197,7 +199,9 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
         )}
 
         {!optionsLength && !shouldShowOtherOption && (
-          <Menu.Item disabled>{noOptionsText}</Menu.Item>
+          <Menu.Item titleCase={false} disabled>
+            {noOptionsText}
+          </Menu.Item>
         )}
       </ScrollMenu>
     )

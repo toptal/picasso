@@ -84,6 +84,7 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
     value,
     variant,
     size,
+    titleCase: propsTitleCase,
     ...rest
   },
   ref
@@ -91,7 +92,7 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
   const { push, refresh } = useContext<MenuContextProps>(MenuContext)
   const key = useMemo(generateKey, [])
 
-  const titleCase = useTitleCase(rest.titleCase)
+  const titleCase = useTitleCase(propsTitleCase)
 
   useEffect(() => {
     if (menu && refresh) {

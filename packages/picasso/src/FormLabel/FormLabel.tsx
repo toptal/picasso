@@ -41,13 +41,14 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
     style,
     inline,
     as: Component = 'label',
+    titleCase: propsTitleCase,
     ...rest
   },
   ref
 ) {
   const isInline = inline || Component === 'span'
 
-  const titleCase = useTitleCase(rest.titleCase)
+  const titleCase = useTitleCase(propsTitleCase)
 
   return (
     <Component
