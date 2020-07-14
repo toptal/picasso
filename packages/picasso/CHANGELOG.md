@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.77.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.76.1...@toptal/picasso@4.77.0) (2020-07-14)
+
+
+### Features
+
+* add dispute and pause icons ([#1427](https://github.com/toptal/picasso/issues/1427)) ([c06cb46](https://github.com/toptal/picasso/commit/c06cb4645f1205a44e8b370b93664a977bc5ea74))
+
+
+
+
+
 ## [4.76.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.76.0...@toptal/picasso@4.76.1) (2020-07-13)
 
 
