@@ -116,6 +116,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     value,
     type,
     as,
+    titleCase: propsTitleCase,
     ...rest
   } = props
   const classes = useStyles(props)
@@ -130,7 +131,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     content: contentClass
   } = classes
 
-  const titleCase = useTitleCase(rest.titleCase)
+  const titleCase = useTitleCase(propsTitleCase)
 
   const finalChildren = [titleCase ? toTitleCase(children) : children]
 

@@ -30,9 +30,10 @@ export const StepLabel: FunctionComponent<Props> = ({
   completed,
   hideLabel,
   style,
+  titleCase: propsTitleCase,
   ...rest
 }) => {
-  const titleCase = useTitleCase(rest.titleCase)
+  const titleCase = useTitleCase(propsTitleCase)
   return (
     <MUIStepLabel
       // eslint-disable-next-line react/jsx-props-no-spreading

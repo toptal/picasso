@@ -26,12 +26,21 @@ export interface Props
 
 export const TableCell = forwardRef<HTMLTableCellElement, Props>(
   function TableCell(
-    { align, classes, className, style, children, colSpan, ...rest },
+    {
+      align,
+      classes,
+      className,
+      style,
+      children,
+      colSpan,
+      titleCase: propsTitleCase,
+      ...rest
+    },
     ref
   ) {
     const tableSection = useContext(TableSectionContext)
 
-    const titleCase = useTitleCase(rest.titleCase)
+    const titleCase = useTitleCase(propsTitleCase)
 
     return (
       <MUITableCell

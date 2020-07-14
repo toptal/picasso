@@ -1,10 +1,18 @@
+/* eslint-disable max-lines */
+
 import React from 'react'
-import { render, fireEvent } from '@toptal/picasso/test-utils'
+import { render, fireEvent, PicassoConfig } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
+import * as titleCaseModule from 'ap-style-title-case'
 
 import Select, { Props } from './Select'
 
-const renderSelect = (props: OmitInternalProps<Props>) => {
+jest.mock('ap-style-title-case')
+
+const renderSelect = (
+  props: OmitInternalProps<Props>,
+  picassoConfig?: PicassoConfig
+) => {
   const {
     options,
     native,
@@ -31,9 +39,19 @@ const renderSelect = (props: OmitInternalProps<Props>) => {
       placeholder={placeholder}
       multiple={multiple}
       onChange={onChange}
-    />
+    />,
+    undefined,
+    picassoConfig
   )
 }
+
+let spiedOnTitleCase: jest.SpyInstance
+beforeEach(() => {
+  spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
+})
+afterEach(() => {
+  spiedOnTitleCase.mockReset()
+})
 
 const OPTIONS = [
   {
@@ -360,5 +378,24 @@ describe('multiple select', () => {
 
     expect(checkmarkedOptions.length).toBe(1)
     expect(checkmarkedOptions[0].textContent).toMatch(OPTIONS[2].text)
+  })
+
+  test('should not transform options text to title case when Picasso titleCase property is true', () => {
+    const placeholder = 'Choose an option...'
+    const { getByPlaceholderText } = renderSelect(
+      {
+        options: OPTIONS,
+        value: OPTIONS[0].value,
+        placeholder
+      },
+      {
+        titleCase: true
+      }
+    )
+
+    const input = getByPlaceholderText(placeholder)
+    fireEvent.focus(input)
+
+    expect(spiedOnTitleCase).toBeCalledTimes(0)
   })
 })
