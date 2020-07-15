@@ -419,7 +419,14 @@ export const Select = documentable(
         prevValue.current = value
       }
 
-      const handleFocus = () => {
+      const readOnlyInput = multiple || allOptions.length <= searchThreshold!
+
+      const handleFocus = (
+        event: React.FocusEvent<HTMLInputElement | HTMLDivElement>
+      ) => {
+        if (!readOnlyInput && 'select' in event.target) {
+          event.target.select()
+        }
         setFilterOptionsValue(EMPTY_INPUT_VALUE)
       }
 
@@ -593,8 +600,6 @@ export const Select = documentable(
           })}
         </NativeSelect>
       )
-
-      const readOnlyInput = multiple || allOptions.length <= searchThreshold!
 
       const selectComponent = (
         <>
