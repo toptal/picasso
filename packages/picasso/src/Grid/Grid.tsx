@@ -31,7 +31,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   wrap?: GridWrap
 }
 
-interface StaticProps {
+export interface StaticProps {
   Item: typeof GridItem
 }
 

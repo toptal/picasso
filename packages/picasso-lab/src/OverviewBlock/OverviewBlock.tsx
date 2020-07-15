@@ -52,7 +52,7 @@ export type Props = BaseProps &
     onClick?: (event: MouseEvent) => void
   }
 
-interface StaticProps {
+export interface StaticProps {
   Group: FunctionComponent
 }
 

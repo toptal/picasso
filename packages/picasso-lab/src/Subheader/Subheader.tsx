@@ -17,7 +17,7 @@ export interface Props extends BaseProps {
   rightPadding?: boolean
 }
 
-interface StaticProps {
+export interface StaticProps {
   Title: FunctionComponent
   Breadcrumb: FunctionComponent
   Tabs: FunctionComponent

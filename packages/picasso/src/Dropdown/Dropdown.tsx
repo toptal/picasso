@@ -56,7 +56,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   popperContainer?: HTMLElement
 }
 
-interface StaticProps {
+export interface StaticProps {
   Arrow: typeof DropdownArrow
   useContext: () => ContextProps
 }

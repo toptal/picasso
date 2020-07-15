@@ -23,7 +23,7 @@ export interface Props
   children: ReactNode
 }
 
-interface StaticProps {
+export interface StaticProps {
   Head: typeof TableHead
   SectionHead: typeof TableSectionHead
   Body: typeof TableBody

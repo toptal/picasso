@@ -36,7 +36,7 @@ const Details: FunctionComponent<{ className?: string }> = props => {
   return <div className={cx(className, classes.detailsWrapper)}>{children}</div>
 }
 
-interface StaticProps {
+export interface StaticProps {
   Summary: typeof Summary
   Details: typeof Details
 }

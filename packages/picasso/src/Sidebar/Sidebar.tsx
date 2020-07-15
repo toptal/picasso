@@ -66,7 +66,7 @@ export interface Props extends BaseProps {
   variant?: VariantType
 }
 
-interface StaticProps {
+export interface StaticProps {
   Menu: typeof SidebarMenu
   Item: typeof SidebarItem
   Logo: typeof SidebarLogo

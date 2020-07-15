@@ -6,7 +6,7 @@ import { Breadcrumbs as MuiBreadcrumbs } from '@material-ui/core'
 import Item from '../BreadcrumbsItem'
 import './styles'
 
-interface StaticProps {
+export interface StaticProps {
   Item: typeof Item
 }
 

@@ -24,7 +24,7 @@ export interface Props
   value: TabsProps['value']
 }
 
-interface StaticProps {
+export interface StaticProps {
   Tab: typeof Tab
 }
 

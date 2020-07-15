@@ -45,7 +45,7 @@ export interface Props extends BaseProps, TextLabelProps, DivOrAnchorProps {
   variant?: VariantType
 }
 
-interface StaticProps {
+export interface StaticProps {
   Group: typeof LabelGroup
 }
 
