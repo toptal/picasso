@@ -46,7 +46,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   fullWidth?: boolean
 }
 
-interface StaticProps {
+export interface StaticProps {
   Actions: typeof NotificationActions
 }
 

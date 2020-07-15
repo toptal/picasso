@@ -48,7 +48,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   paperProps?: PaperProps
 }
 
-interface StaticProps {
+export interface StaticProps {
   Content: typeof ModalContent
   Actions: typeof ModalActions
   Title: typeof ModalTitle

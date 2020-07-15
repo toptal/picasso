@@ -76,7 +76,7 @@ export interface Props
   }) => ReactNode
 }
 
-interface StaticProps {
+export interface StaticProps {
   Label: typeof TagSelectorLabel
 }
 

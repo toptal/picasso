@@ -78,7 +78,7 @@ export interface Props extends BaseProps, TextLabelProps, ButtonOrAnchorProps {
   type?: 'button' | 'reset' | 'submit'
 }
 
-interface StaticProps {
+export interface StaticProps {
   Group: typeof Group
 }
 

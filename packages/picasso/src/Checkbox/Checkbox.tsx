@@ -13,7 +13,7 @@ import CheckboxGroup from '../CheckboxGroup'
 import FormControlLabel from '../FormControlLabel'
 import styles from './styles'
 
-interface StaticProps {
+export interface StaticProps {
   Group: typeof CheckboxGroup
 }
 
