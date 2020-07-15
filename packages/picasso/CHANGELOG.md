@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.78.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.78.0...@toptal/picasso@4.78.1) (2020-07-15)
+
+
+### Bug Fixes
+
+* export static props to be able to extend via styled ([#1434](https://github.com/toptal/picasso/issues/1434)) ([0aaffd2](https://github.com/toptal/picasso/commit/0aaffd2a0b73c80025028ce76f868d13e3fbd522))
+
+
+
+
+
 # [4.78.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.77.2...@toptal/picasso@4.78.0) (2020-07-15)
 
 
