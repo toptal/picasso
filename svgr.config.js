@@ -11,31 +11,6 @@ const ICON_CONFIG = {
   }
 }
 
-module.exports = {
-  svgoConfig: {
-    plugins: [
-      {
-        cleanupSketch: {
-          type: 'full',
-          description: 'Cleanup svg after export from sketch',
-          fn: cleanupSketch
-        }
-      },
-      {
-        removeAttrs: {
-          attrs: '(stroke|width|height)'
-        }
-      },
-      {
-        removeViewBox: false
-      },
-      {
-        removeDimensions: true
-      }
-    ]
-  }
-}
-
 const cleanupSketch = (doc, params, extra) => {
   const fileName = path.basename(extra.path)
   const config = ICON_CONFIG[fileName] || {}
@@ -74,4 +49,29 @@ const cleanupSketch = (doc, params, extra) => {
   }
 
   return doc
+}
+
+module.exports = {
+  svgoConfig: {
+    plugins: [
+      {
+        cleanupSketch: {
+          type: 'full',
+          description: 'Cleanup svg after export from sketch',
+          fn: cleanupSketch
+        }
+      },
+      {
+        removeAttrs: {
+          attrs: '(stroke|width|height)'
+        }
+      },
+      {
+        removeViewBox: false
+      },
+      {
+        removeDimensions: true
+      }
+    ]
+  }
 }
