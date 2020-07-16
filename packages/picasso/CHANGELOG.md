@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.79.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.78.1...@toptal/picasso@4.79.0) (2020-07-15)
+
+
+### Features
+
+* [TEA-1430] add eye crossed icons ([#1435](https://github.com/toptal/picasso/issues/1435)) ([f57bde6](https://github.com/toptal/picasso/commit/f57bde6a0b1dfae5ae208282aa206295de42c132))
+
+
+
+
+
 ## [4.78.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.78.0...@toptal/picasso@4.78.1) (2020-07-15)
 
 
