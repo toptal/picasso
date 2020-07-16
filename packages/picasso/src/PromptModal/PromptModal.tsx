@@ -97,7 +97,6 @@ export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
           {cancelText}
         </Button>
         <Button
-          disabled={loading}
           loading={loading}
           onClick={handleSubmit}
           variant={`primary-${variant}` as ButtonVariantType}
