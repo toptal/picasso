@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.79.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.79.0...@toptal/picasso@4.79.1) (2020-07-16)
+
+
+### Bug Fixes
+
+* prompt modal submit button when loading is not disabled ([#1430](https://github.com/toptal/picasso/issues/1430)) ([41d0d46](https://github.com/toptal/picasso/commit/41d0d46b5b119e85e05871c830a73dcc12f6bb01))
+
+
+
+
+
 # [4.79.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.78.1...@toptal/picasso@4.79.0) (2020-07-15)
 
 
