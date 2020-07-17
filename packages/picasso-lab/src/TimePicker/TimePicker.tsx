@@ -3,6 +3,8 @@ import { BaseProps } from '@toptal/picasso-shared'
 import { Input, InputProps } from '@toptal/picasso'
 import { Time16 } from '@toptal/picasso/Icon'
 import { Theme, makeStyles } from '@material-ui/core/styles'
+import InputMask from 'react-input-mask'
+import { detect } from 'detect-browser'
 
 import styles from './styles'
 
@@ -42,34 +44,68 @@ export interface Props
 }
 
 export const TimePicker = (props: Props) => {
-  const { onChange, value, ...rest } = props
+  const { onChange, value } = props
   const classes = useStyles(props)
+  const browser = detect()
+  const isSafari = browser?.name === 'safari'
+  const startsWithTwo = value && value[0] === '2'
+
+  const inputMask = [
+    /[0-2]/,
+    startsWithTwo ? /[0-3]/ : /[0-9]/,
+    ':',
+    /[0-5]/,
+    /[0-9]/
+  ]
+
+  const getIcon = () => <Time16 classes={{ root: classes.icon }} />
 
   const handleInputChange = (
     e: React.ChangeEvent<
-      HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
   ) => {
-    const nextValue = e.target.value
-
+    const target = e.target as HTMLInputElement
+    const nextValue = target.value
     onChange(nextValue)
   }
 
+  if (isSafari) {
+    return (
+      <Input
+        type='text'
+        onChange={handleInputChange}
+        readOnly
+        iconPosition='end'
+        icon={getIcon()}
+        inputProps={{
+          className: classes.inputBase
+        }}
+        startAdornment={
+          <InputMask
+            mask={inputMask}
+            alwaysShowMask
+            // @ts-ignore
+            maskPlaceholder='-'
+            value={value}
+            onChange={handleInputChange}
+            className={classes.inputMask}
+          />
+        }
+      />
+    )
+  }
   return (
     <Input
-      id='time'
       type='time'
       onChange={handleInputChange}
       value={value}
       iconPosition='end'
-      className={classes.input}
-      icon={<Time16 classes={{ root: classes.icon }} />}
+      icon={getIcon()}
       inputProps={{
         className: classes.inputBase,
         step: 60 // 1 min
       }}
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...rest}
     />
   )
 }

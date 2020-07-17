@@ -12,9 +12,11 @@ export default ({ palette }: Theme) =>
     inputBase: {
       marginRight: -8 // override default margin for icon position
     },
-    input: {
-      ' & input[type="time"]::-webkit-calendar-picker-indicator': {
-        background: 'none'
-      }
+    inputMask: {
+      fontSize: '0.8125rem',
+      border: 'none',
+      padding: '0',
+      margin: '0',
+      outline: 'none'
     }
   })
