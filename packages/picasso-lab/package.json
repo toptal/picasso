@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-lab",
-  "version": "2.24.2",
+  "version": "2.25.0",
   "description": "Lab components of Picasso",
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-lab#readme",
@@ -34,14 +34,14 @@
     "d3": "~5.12.0",
     "date-fns": "^2.3.0",
     "date-fns-tz": "^1.0.10",
-    "react-input-mask": "^3.0.0-alpha.2",
-    "detect-browser": "^5.1.1"
+    "detect-browser": "^5.1.1",
+    "react-input-mask": "^3.0.0-alpha.2"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.9",
     "@types/d3": "~5.7.2",
-    "@types/react-input-mask": "^2.0.5",
-    "@types/detect-browser": "^4.0.0"
+    "@types/detect-browser": "^4.0.0",
+    "@types/react-input-mask": "^2.0.5"
   },
   "sideEffects": [
     "**/styles.ts",

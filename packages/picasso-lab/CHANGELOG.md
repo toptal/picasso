@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.25.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.24.2...@toptal/picasso-lab@2.25.0) (2020-07-17)
+
+
+### Features
+
+* **labs:** implement TimePicker component ([#1426](https://github.com/toptal/picasso/issues/1426)) ([a3d89f4](https://github.com/toptal/picasso/commit/a3d89f4db5fdb8732397b84b918ecc850a54a9c2))
+
+
+
+
+
 ## [2.24.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.24.1...@toptal/picasso-lab@2.24.2) (2020-07-15)
 
 
