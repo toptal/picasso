@@ -10,7 +10,7 @@ export default ({ palette }: Theme) =>
       margin: 0
     },
     inputBase: {
-      marginRight: -8 // override default margin for icon position
+      marginRight: '-8px' // override default margin for icon position
     },
     inputMask: {
       fontSize: '0.8125rem',
