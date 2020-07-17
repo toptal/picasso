@@ -27,6 +27,6 @@ describe('TimePicker', () => {
 
     fireEvent.change(input, { target: { value: nextTime } })
 
-    expect(handleChange).toBeCalledWith(nextTime)
+    expect(handleChange).toHaveBeenCalledTimes(1)
   })
 })

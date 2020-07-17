@@ -23,7 +23,6 @@ export interface Props
       | 'multiline'
       | 'rows'
       | 'defaultValue'
-      | 'onChange'
       | 'step'
       | 'icon'
       | 'iconPosition'
@@ -39,8 +38,6 @@ export interface Props
     > {
   /** Time value that will be selected in TimePicker */
   value?: string
-  /** Method that will be invoked with selected value */
-  onChange: (value: string) => void
 }
 
 export const TimePicker = (props: Props) => {
@@ -60,21 +57,10 @@ export const TimePicker = (props: Props) => {
 
   const getIcon = () => <Time16 classes={{ root: classes.icon }} />
 
-  const handleInputChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
-  ) => {
-    const target = e.target as HTMLInputElement
-    const nextValue = target.value
-    onChange(nextValue)
-  }
-
   if (isSafari) {
     return (
       <Input
         type='text'
-        onChange={handleInputChange}
         readOnly
         iconPosition='end'
         icon={getIcon()}
@@ -89,7 +75,7 @@ export const TimePicker = (props: Props) => {
             // @ts-ignore
             maskPlaceholder='-'
             value={value}
-            onChange={handleInputChange}
+            onChange={onChange}
             className={classes.inputMask}
           />
         }
@@ -99,8 +85,8 @@ export const TimePicker = (props: Props) => {
   return (
     <Input
       type='time'
-      onChange={handleInputChange}
       value={value}
+      onChange={onChange}
       iconPosition='end'
       icon={getIcon()}
       inputProps={{
