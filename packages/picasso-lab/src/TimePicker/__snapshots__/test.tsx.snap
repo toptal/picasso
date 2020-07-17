@@ -6,12 +6,11 @@ exports[`TimePicker default render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root PicassoInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium PicassoTimePicker-input MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+      class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root PicassoInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
     >
       <input
         autocomplete="none"
         class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium PicassoTimePicker-inputBase MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
-        id="time"
         step="60"
         type="time"
         value="21:00"
