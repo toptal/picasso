@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.3](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.18.2...@toptal/picasso-forms@0.18.3) (2020-07-20)
+
+
+### Bug Fixes
+
+* **radiogroup:** remove invalid elements on clone ([#1436](https://github.com/toptal/picasso/issues/1436)) ([f2b5f8d](https://github.com/toptal/picasso/commit/f2b5f8dc7040f7681c00cf04cd23832160b82272))
+
+
+
+
+
 ## [0.18.2](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.18.1...@toptal/picasso-forms@0.18.2) (2020-07-03)
 
 
