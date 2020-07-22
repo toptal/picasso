@@ -35,7 +35,8 @@
     "date-fns": "^2.3.0",
     "date-fns-tz": "^1.0.10",
     "detect-browser": "^5.1.1",
-    "react-input-mask": "^3.0.0-alpha.2"
+    "react-input-mask": "^3.0.0-alpha.2",
+    "simple-react-calendar": "^2.2.7"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.9",
