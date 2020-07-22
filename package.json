@@ -75,7 +75,7 @@
     "glob": "^7.1.4",
     "hygen": "^4.0.2",
     "jest": "^26.1.0",
-    "jest-canvas-mock": "^2.1.0",
+    "jest-canvas-mock": "^2.2.0",
     "jest-environment-puppeteer": "^4.2.0",
     "jest-image-snapshot": "^2.8.2",
     "jest-puppeteer": "^4.4.0",
