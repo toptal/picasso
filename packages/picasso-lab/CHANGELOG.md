@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.25.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.25.0...@toptal/picasso-lab@2.25.1) (2020-07-22)
+
+
+### Bug Fixes
+
+* revert simple-react-calendar to deps ([#1442](https://github.com/toptal/picasso/issues/1442)) ([9dd7a63](https://github.com/toptal/picasso/commit/9dd7a63f279575ed283ef8ff9297a52f1bf0000d))
+
+
+
+
+
 # [2.25.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.24.2...@toptal/picasso-lab@2.25.0) (2020-07-17)
 
 
