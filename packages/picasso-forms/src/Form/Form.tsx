@@ -14,6 +14,7 @@ import Checkbox from '../Checkbox'
 import NumberInput from '../NumberInput'
 import FileInput from '../FileInput'
 import DatePicker from '../DatePicker'
+import TimePicker from '../TimePicker'
 import TagSelector from '../TagSelector'
 import SubmitButton from '../SubmitButton'
 import { createScrollToErrorDecorator } from '../utils'
@@ -88,6 +89,7 @@ Form.Checkbox = Checkbox
 Form.NumberInput = NumberInput
 Form.FileInput = FileInput
 Form.DatePicker = DatePicker
+Form.TimePicker = TimePicker
 Form.TagSelector = TagSelector
 Form.SubmitButton = SubmitButton
 

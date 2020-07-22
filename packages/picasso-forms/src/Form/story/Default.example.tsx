@@ -58,6 +58,7 @@ const DefaultExample = () => {
         <Form.Radio label='Female' value='female' />
       </Form.RadioGroup>
       <Form.DatePicker name='dateOfBirth' label='Date of birth' />
+      <Form.TimePicker name='timeOfBirth' label='Time of birth' />
       <Form.TagSelector
         name='skills'
         label='Skills'
