@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.79.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.79.1...@toptal/picasso@4.79.2) (2020-07-23)
+
+
+### Bug Fixes
+
+* **Modal:** background moving when modal is open ([#1439](https://github.com/toptal/picasso/issues/1439)) ([1588184](https://github.com/toptal/picasso/commit/1588184f625cfc26edd36074dfb7fb47dcb68279))
+
+
+
+
+
 ## [4.79.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.79.0...@toptal/picasso@4.79.1) (2020-07-16)
 
 
