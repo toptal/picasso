@@ -21,8 +21,6 @@ export const TimePicker = (props: Props) => (
   </FieldWrapper>
 )
 
-TimePicker.defaultProps = {}
-
 TimePicker.displayName = 'TimePicker'
 
 export default TimePicker
