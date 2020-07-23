@@ -50,6 +50,10 @@ export const useZoom = <ZoomRefElement extends ZoomedElementBaseType>({
         .call(zoom)
         .call(zoom.transform, d3.zoomIdentity.scale(initialScale))
 
+      if (center) {
+        d3.select(rootRef.current).call(zoom.translateTo, center.x, center.y)
+      }
+
       setInitialized(true)
     } else if (center) {
       d3.select(rootRef.current)
