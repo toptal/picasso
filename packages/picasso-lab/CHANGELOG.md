@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.26.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.26.0...@toptal/picasso-lab@2.26.1) (2020-07-23)
+
+
+### Bug Fixes
+
+* **treeview:** set the TreeView center by default ([#1444](https://github.com/toptal/picasso/issues/1444)) ([d6ab127](https://github.com/toptal/picasso/commit/d6ab127fa1807f8040d26cbaebe3b87c283f918e))
+
+
+
+
+
 # [2.26.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.25.2...@toptal/picasso-lab@2.26.0) (2020-07-23)
 
 
