@@ -84,7 +84,9 @@ exports[`renders Modal 1`] = `
 `;
 
 exports[`useModals opens and closes modal 1`] = `
-<body>
+<body
+  style="overflow: hidden;"
+>
   <div>
     <div
       class="Picasso-root"
@@ -153,7 +155,9 @@ exports[`useModals opens and closes modal 1`] = `
 `;
 
 exports[`useModals opens and closes modal 2`] = `
-<body>
+<body
+  style=""
+>
   <div>
     <div
       class="Picasso-root"
@@ -176,7 +180,9 @@ exports[`useModals opens and closes modal 2`] = `
 `;
 
 exports[`useModals shows multiple modals at the same time 1`] = `
-<body>
+<body
+  style="overflow: hidden;"
+>
   <div>
     <div
       class="Picasso-root"
