@@ -162,6 +162,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
   const bodyOverflow = useRef<string>(document.body.style.overflow)
   useEffect(() => {
     if (open) {
+      // TODO: to be improved as part of https://toptal-core.atlassian.net/browse/FX-1069
       // Save the overflow value before opening the modal
       // and set it to "hidden"
       bodyOverflow.current = document.body.style.overflow
