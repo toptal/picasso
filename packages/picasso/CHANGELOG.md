@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.79.3](https://github.com/toptal/picasso/compare/@toptal/picasso@4.79.2...@toptal/picasso@4.79.3) (2020-07-23)
+
+
+### Bug Fixes
+
+* **Slider:** add missing field in ValueLabelProps interface ([#1443](https://github.com/toptal/picasso/issues/1443)) ([612fdc5](https://github.com/toptal/picasso/commit/612fdc56a87715cd6f9e601645878e2f5b192e69))
+
+
+
+
+
 ## [4.79.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.79.1...@toptal/picasso@4.79.2) (2020-07-23)
 
 
