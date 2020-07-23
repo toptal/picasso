@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.26.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.25.2...@toptal/picasso-lab@2.26.0) (2020-07-23)
+
+
+### Features
+
+* add timepicker to picasso-forms ([#1441](https://github.com/toptal/picasso/issues/1441)) ([f55db3d](https://github.com/toptal/picasso/commit/f55db3d7974f7a793a05bafbc97f31c2c3eec682))
+
+
+
+
+
 ## [2.25.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.25.1...@toptal/picasso-lab@2.25.2) (2020-07-23)
 
 
