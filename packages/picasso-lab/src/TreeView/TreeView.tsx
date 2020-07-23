@@ -59,7 +59,7 @@ export const TreeView = (props: Props) => {
       x: xPosition + (data.selectedOffset?.x || 0),
       y: yPosition + (data.selectedOffset?.y || 0)
     }
-  }, [selectedNode])
+  }, [selectedNode, selectedNode?.data])
   const { handleZoom, zoom } = useZoom<SVGSVGElement>({
     rootRef,
     scaleExtent,
