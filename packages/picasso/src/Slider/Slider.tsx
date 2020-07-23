@@ -29,8 +29,9 @@ export interface Props extends SliderProps {
   marks?: boolean
   /** Whether component is disabled or not */
   disabled?: boolean
+  // Workaround for https://github.com/mui-org/material-ui/issues/21889
   /** The tooltip component. */
-  TooltipComponent?: React.ElementType<ValueLabelProps>
+  TooltipComponent?: React.ElementType<ValueLabelProps & { index: number }>
   /** Controls when tooltip is displayed:
   - **auto** the value tooltip will display when the thumb is hovered or focused.
   - **on** will display persistently.
@@ -115,7 +116,10 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
             [markTrack]: marks
           })
         }}
-        ValueLabelComponent={ValueLabelComponent}
+        ValueLabelComponent={
+          // From Workaround for https://github.com/mui-org/material-ui/issues/21889
+          ValueLabelComponent as React.ElementType<ValueLabelProps>
+        }
         valueLabelFormat={tooltipFormat}
         valueLabelDisplay={tooltip}
         onChange={onChange}
