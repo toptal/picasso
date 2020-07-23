@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.25.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.25.1...@toptal/picasso-lab@2.25.2) (2020-07-23)
+
+
+### Bug Fixes
+
+* **treeview:** update Tree position when selected node's data is changed ([#1440](https://github.com/toptal/picasso/issues/1440)) ([e150066](https://github.com/toptal/picasso/commit/e1500660775d81dfa4c900bc996a3195c233244e))
+
+
+
+
+
 ## [2.25.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.25.0...@toptal/picasso-lab@2.25.1) (2020-07-22)
 
 
