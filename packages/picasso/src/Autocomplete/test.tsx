@@ -228,6 +228,23 @@ describe('Autocomplete', () => {
     })
   })
 
+  test('should highlight first when `autoHighlightFirstOption` is true', () => {
+    const placeholder = 'Choose an option...'
+
+    const { container, getByPlaceholderText } = renderAutocomplete({
+      placeholder,
+      options: testOptions,
+      autoHighlightFirstOption: true,
+      value: ''
+    })
+
+    fireEvent.focus(getByPlaceholderText(placeholder))
+
+    const highlightedOptions = container.querySelectorAll('[class$="selected"]')
+    expect(highlightedOptions.length).toBe(1)
+    expect(highlightedOptions[0].textContent).toMatch(testOptions[0].text)
+  })
+
   test('with "inputComponent" prop', async () => {
     const { getByPlaceholderText } = renderAutocomplete({
       // eslint-disable-next-line react/display-name

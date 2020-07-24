@@ -28,6 +28,10 @@ page
   .createChapter()
   .addExample('Select/story/Default.example.jsx', 'Default')
   .addExample('Select/story/Native.example.tsx', 'Native')
+  .addExample(
+    'Select/story/AutoHighlightFirstOption.example.jsx',
+    'Auto highlight first option'
+  )
   .addExample('Select/story/SearchBehavior.example.tsx', {
     title: 'Search behavior',
     description: `

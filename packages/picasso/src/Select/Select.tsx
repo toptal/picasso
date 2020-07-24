@@ -56,6 +56,8 @@ export interface Props<
       InputHTMLAttributes<HTMLInputElement>,
       'onChange' | 'size' | 'color' | 'value'
     > {
+  /** If true, it will highlight the first option automatically */
+  autoHighlightFirstOption?: boolean
   /** If true, the 'Select' will be disabled */
   disabled?: boolean
   /** Indicate whether `Select` is in error state */
@@ -340,6 +342,7 @@ export const Select = documentable(
       ref: React.Ref<HTMLInputElement> | null
     ) => {
       const {
+        autoHighlightFirstOption,
         className,
         style,
         width,
@@ -509,6 +512,7 @@ export const Select = documentable(
         getInputProps,
         getRootProps
       } = useSelect({
+        autoHighlightFirstOption,
         value: inputValue,
         options,
         onSelect: handleSelect,
@@ -694,6 +698,7 @@ export const Select = documentable(
 )
 
 Select.defaultProps = {
+  autoHighlightFirstOption: false,
   disabled: false,
   error: false,
   getDisplayValue: getOptionText,

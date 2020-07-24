@@ -66,6 +66,10 @@ page
     'Initially set value'
   )
   .addExample(
+    'TagSelector/story/AutoHighlightFirstOption.example.jsx',
+    'Auto highlight first option'
+  )
+  .addExample(
     'TagSelector/story/CustomOptionRenderer.example.tsx',
     'Custom option rendering'
   )

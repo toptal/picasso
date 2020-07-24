@@ -241,6 +241,22 @@ test('should allow browser autofilling by input name', () => {
   expect(input).not.toHaveAttribute('autocomplete')
 })
 
+test('should highlight first when `autoHighlightFirstOption` is true', () => {
+  const placeholder = 'Choose an option...'
+
+  const { container, getByPlaceholderText } = renderSelect({
+    placeholder,
+    options: OPTIONS,
+    autoHighlightFirstOption: true
+  })
+
+  fireEvent.focus(getByPlaceholderText(placeholder))
+
+  const highlightedOptions = getSelectedOptions(container)
+  expect(highlightedOptions.length).toBe(1)
+  expect(highlightedOptions[0].textContent).toMatch(OPTIONS[0].text)
+})
+
 test('should render selected option customly', async () => {
   const placeholder = 'Choose an option...'
 

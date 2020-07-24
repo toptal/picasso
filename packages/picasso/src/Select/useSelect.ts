@@ -19,6 +19,7 @@ export type ItemProps = {
 }
 
 export const EMPTY_INPUT_VALUE = ''
+export const FIRST_ITEM_INDEX = 0
 
 const normalizeArrowKey = (event: KeyboardEvent<HTMLInputElement>) => {
   const { key, keyCode } = event
@@ -69,6 +70,7 @@ const getNextWrappingIndex = (
 }
 
 interface Props {
+  autoHighlightFirstOption?: boolean
   value: string
   options?: Option[]
   enableAutofill?: boolean
@@ -107,6 +109,7 @@ interface UseSelectOutput {
 }
 
 const useSelect = ({
+  autoHighlightFirstOption,
   value,
   options = [],
   onChange = () => {},
@@ -116,11 +119,13 @@ const useSelect = ({
   onFocus = () => {}
 }: Props): UseSelectOutput => {
   const [isOpen, setOpen] = useState<boolean>(false)
-  const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null)
+  const [highlightedIndex, setHighlightedIndex] = useState<number | null>(
+    autoHighlightFirstOption ? FIRST_ITEM_INDEX : null
+  )
 
   useLayoutEffect(() => {
-    setHighlightedIndex(null)
-  }, [value, isOpen])
+    setHighlightedIndex(autoHighlightFirstOption ? FIRST_ITEM_INDEX : null)
+  }, [value, isOpen, autoHighlightFirstOption])
 
   const handleSelect = (event: React.SyntheticEvent, item: Option | null) => {
     onSelect(event, item)

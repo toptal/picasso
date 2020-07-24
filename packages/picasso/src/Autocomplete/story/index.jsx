@@ -48,6 +48,10 @@ if needed.
     `
   )
   .addExample('Autocomplete/story/Default.example.jsx', 'Default')
+  .addExample(
+    'Autocomplete/story/AutoHighlightFirstOption.example.jsx',
+    'Auto highlight first option'
+  )
   .addExample('Autocomplete/story/OtherOption.example.jsx', {
     title: 'Other option',
     description: `By default Autocomplete allows any entered input value to stay after focus is removed from input,

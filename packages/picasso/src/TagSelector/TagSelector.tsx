@@ -29,6 +29,8 @@ const getItemText = (item: Item | null) =>
 export interface Props
   extends BaseProps,
     Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'> {
+  /** If true, it will highlight the first option automatically */
+  autoHighlightFirstOption?: boolean
   /** Placeholder for value */
   placeholder?: string
   /** Disables `TagSelector` */
