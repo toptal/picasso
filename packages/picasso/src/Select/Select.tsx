@@ -512,6 +512,7 @@ export const Select = documentable(
         getInputProps,
         getRootProps
       } = useSelect({
+        isMultiple: !!multiple,
         autoHighlightFirstOption,
         value: inputValue,
         options,

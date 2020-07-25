@@ -71,6 +71,7 @@ const getNextWrappingIndex = (
 
 interface Props {
   autoHighlightFirstOption?: boolean
+  isMultiple: boolean
   value: string
   options?: Option[]
   enableAutofill?: boolean
@@ -110,6 +111,7 @@ interface UseSelectOutput {
 
 const useSelect = ({
   autoHighlightFirstOption,
+  isMultiple,
   value,
   options = [],
   onChange = () => {},
@@ -124,8 +126,19 @@ const useSelect = ({
   )
 
   useLayoutEffect(() => {
-    setHighlightedIndex(autoHighlightFirstOption ? FIRST_ITEM_INDEX : null)
-  }, [value, isOpen, autoHighlightFirstOption])
+    if (!autoHighlightFirstOption) {
+      setHighlightedIndex(null)
+      return
+    }
+
+    const multipleWithoutSelections = isMultiple && value.length === 0
+
+    if (!isMultiple || multipleWithoutSelections) {
+      setHighlightedIndex(FIRST_ITEM_INDEX)
+    } else {
+      setHighlightedIndex(null)
+    }
+  }, [value, isOpen, autoHighlightFirstOption, isMultiple])
 
   const handleSelect = (event: React.SyntheticEvent, item: Option | null) => {
     onSelect(event, item)

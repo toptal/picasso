@@ -241,20 +241,56 @@ test('should allow browser autofilling by input name', () => {
   expect(input).not.toHaveAttribute('autocomplete')
 })
 
-test('should highlight first when `autoHighlightFirstOption` is true', () => {
-  const placeholder = 'Choose an option...'
+describe('`autoHighlightFirstOption` set to true', () => {
+  test('should highlight first option when it is a simple select', () => {
+    const placeholder = 'Choose an option...'
 
-  const { container, getByPlaceholderText } = renderSelect({
-    placeholder,
-    options: OPTIONS,
-    autoHighlightFirstOption: true
+    const { container, getByPlaceholderText } = renderSelect({
+      placeholder,
+      options: OPTIONS,
+      autoHighlightFirstOption: true
+    })
+
+    fireEvent.focus(getByPlaceholderText(placeholder))
+
+    const highlightedOptions = getSelectedOptions(container)
+    expect(highlightedOptions.length).toBe(1)
+    expect(highlightedOptions[0].textContent).toMatch(OPTIONS[0].text)
   })
 
-  fireEvent.focus(getByPlaceholderText(placeholder))
+  test('should highlight first option when it is a multiple select without selections', () => {
+    const placeholder = 'Choose an option...'
 
-  const highlightedOptions = getSelectedOptions(container)
-  expect(highlightedOptions.length).toBe(1)
-  expect(highlightedOptions[0].textContent).toMatch(OPTIONS[0].text)
+    const { container, getByPlaceholderText } = renderSelect({
+      placeholder,
+      multiple: true,
+      options: OPTIONS,
+      autoHighlightFirstOption: true
+    })
+
+    fireEvent.focus(getByPlaceholderText(placeholder))
+
+    const highlightedOptions = getSelectedOptions(container)
+    expect(highlightedOptions.length).toBe(1)
+    expect(highlightedOptions[0].textContent).toMatch(OPTIONS[0].text)
+  })
+
+  test('should not highlight the first option when it is a multiple select with selections', () => {
+    const placeholder = 'Choose an option...'
+
+    const { container, getByPlaceholderText } = renderSelect({
+      placeholder,
+      multiple: true,
+      options: OPTIONS,
+      value: [OPTIONS[1].value, OPTIONS[2].value],
+      autoHighlightFirstOption: true
+    })
+
+    fireEvent.focus(getByPlaceholderText(placeholder))
+
+    const highlightedOptions = getSelectedOptions(container)
+    expect(highlightedOptions.length).toBe(0)
+  })
 })
 
 test('should render selected option customly', async () => {
