@@ -15,7 +15,6 @@ exports[`renders icon at the beginning 1`] = `
           aria-hidden="true"
           class="MuiSvgIcon-root PicassoInput-icon"
           focusable="false"
-          role="presentation"
           viewBox="0 0 24 24"
         >
           <path
@@ -63,7 +62,6 @@ exports[`renders icon at the end 1`] = `
           aria-hidden="true"
           class="MuiSvgIcon-root PicassoInput-icon"
           focusable="false"
-          role="presentation"
           viewBox="0 0 24 24"
         >
           <path

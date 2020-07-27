@@ -242,13 +242,14 @@ export const Dropdown = forwardRef<HTMLDivElement, Props & Partial<JssProps>>(
               <Grow in={isOpen} appear>
                 <Paper
                   className={classes.content}
-                  onClick={() => close()}
                   onKeyDown={handleContentKeyDown}
                   elevation={2}
                 >
-                  <DropdownContext.Provider value={context}>
-                    <RootRef rootRef={contentRef}>{content}</RootRef>
-                  </DropdownContext.Provider>
+                  <div onClick={() => close()}>
+                    <DropdownContext.Provider value={context}>
+                      <RootRef rootRef={contentRef}>{content}</RootRef>
+                    </DropdownContext.Provider>
+                  </div>
                 </Paper>
               </Grow>
             </ClickAwayListener>

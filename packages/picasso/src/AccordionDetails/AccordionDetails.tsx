@@ -1,6 +1,6 @@
 import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import MUIExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails'
+import MUIAccordionDetails from '@material-ui/core/AccordionDetails'
 import { JssProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
@@ -9,15 +9,15 @@ export interface Props extends JssProps, HTMLAttributes<HTMLDivElement> {
   children?: ReactNode
 }
 
-const ExpansionPanelDetails: FunctionComponent<Props> = ({
+const AccordionDetails: FunctionComponent<Props> = ({
   classes,
   children,
   ...rest
 }) => (
   // eslint-disable-next-line react/jsx-props-no-spreading
-  <MUIExpansionPanelDetails {...rest} classes={classes}>
+  <MUIAccordionDetails {...rest} classes={classes}>
     {children}
-  </MUIExpansionPanelDetails>
+  </MUIAccordionDetails>
 )
 
-export default withStyles(styles)(ExpansionPanelDetails)
+export default withStyles(styles)(AccordionDetails)

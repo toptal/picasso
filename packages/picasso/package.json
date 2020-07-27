@@ -26,7 +26,7 @@
     "react-dom": "^16.12.0"
   },
   "dependencies": {
-    "@material-ui/core": "4.9.4",
+    "@material-ui/core": "4.11.0",
     "@material-ui/icons": "4.9.1",
     "@toptal/picasso-shared": "^1.16.1",
     "ap-style-title-case": "^1.1.2",

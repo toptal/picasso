@@ -62,6 +62,7 @@ export const Tab = forwardRef<HTMLDivElement, Props>(function Tab(
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       ref={ref}
+      tabIndex={0}
       disabled={disabled}
       label={titleCase ? toTitleCase(label) : label}
       icon={icon}

@@ -26,7 +26,7 @@ export interface Props
 
 export const Stepper = forwardRef<HTMLDivElement, Props>(function Stepper(
   {
-    active,
+    active = 0,
     steps,
     fullWidth,
     hideLabels,
@@ -54,9 +54,13 @@ export const Stepper = forwardRef<HTMLDivElement, Props>(function Stepper(
       )}
       style={style}
     >
-      {steps.map(label => (
+      {steps.map((label, stepIndex) => (
         <Step key={label}>
-          <StepLabel hideLabel={hideLabels!} titleCase={titleCase}>
+          <StepLabel
+            active={stepIndex === active}
+            hideLabel={hideLabels!}
+            titleCase={titleCase}
+          >
             {label}
           </StepLabel>
         </Step>

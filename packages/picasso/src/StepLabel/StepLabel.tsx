@@ -38,15 +38,13 @@ export const StepLabel: FunctionComponent<Props> = ({
     <MUIStepLabel
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
-      active={active}
       classes={{
         labelContainer: cx({
           [classes.root]: !hideLabel || active
         }),
-        label: cx({ [classes.hidden]: hideLabel })
+        label: cx({ [classes.hidden]: hideLabel && !active })
       }}
       className={className}
-      completed={completed}
       icon={<StepIcon active={active} completed={completed} />}
       style={style}
     >

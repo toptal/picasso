@@ -21,6 +21,7 @@ exports[`Radio.Group renders radio in group 1`] = `
           >
             <input
               class="PrivateSwitchBase-input"
+              name="my-group"
               type="radio"
               value="VALUE+1"
             />
@@ -51,6 +52,7 @@ exports[`Radio.Group renders radio in group 1`] = `
           >
             <input
               class="PrivateSwitchBase-input"
+              name="my-group"
               type="radio"
               value="VALUE+2"
             />

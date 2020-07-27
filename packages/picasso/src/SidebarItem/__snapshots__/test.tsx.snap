@@ -17,17 +17,17 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
         tabindex="-1"
       >
         <div
-          class="MuiPaper-root MuiExpansionPanel-root makeStyles-root Mui-expanded MuiExpansionPanel-rounded MuiPaper-elevation0 MuiPaper-rounded"
+          class="MuiPaper-root MuiAccordion-root makeStyles-root Mui-expanded MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
         >
           <div
             aria-disabled="false"
             aria-expanded="true"
-            class="MuiButtonBase-root MuiExpansionPanelSummary-root WithStyles(ForwardRef(ExpansionPanelSummary))-root makeStyles-summary PicassoSidebarItem-summary Mui-expanded"
+            class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root makeStyles-summary PicassoSidebarItem-summary Mui-expanded"
             role="button"
             tabindex="0"
           >
             <div
-              class="MuiExpansionPanelSummary-content WithStyles(ForwardRef(ExpansionPanelSummary))-content makeStyles-content PicassoSidebarItem-content Mui-expanded"
+              class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content makeStyles-content PicassoSidebarItem-content Mui-expanded"
             >
               <li
                 aria-disabled="false"
@@ -74,7 +74,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                   role="region"
                 >
                   <div
-                    class="MuiExpansionPanelDetails-root ExpansionPanelDetails-root makeStyles-details PicassoSidebarItem-details"
+                    class="MuiAccordionDetails-root AccordionDetails-root makeStyles-details PicassoSidebarItem-details"
                   >
                     <ul
                       class="MuiList-root SidebarMenu-root"
@@ -255,17 +255,17 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiExpansionPanel-root makeStyles-root MuiExpansionPanel-rounded MuiPaper-elevation0 MuiPaper-rounded"
+      class="MuiPaper-root MuiAccordion-root makeStyles-root MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
     >
       <div
         aria-disabled="false"
         aria-expanded="false"
-        class="MuiButtonBase-root MuiExpansionPanelSummary-root WithStyles(ForwardRef(ExpansionPanelSummary))-root makeStyles-summary PicassoSidebarItem-summary"
+        class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root makeStyles-summary PicassoSidebarItem-summary"
         role="button"
         tabindex="0"
       >
         <div
-          class="MuiExpansionPanelSummary-content WithStyles(ForwardRef(ExpansionPanelSummary))-content makeStyles-content PicassoSidebarItem-content"
+          class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content makeStyles-content PicassoSidebarItem-content"
         >
           <li
             aria-disabled="false"
@@ -321,7 +321,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
               role="region"
             >
               <div
-                class="MuiExpansionPanelDetails-root ExpansionPanelDetails-root makeStyles-details PicassoSidebarItem-details"
+                class="MuiAccordionDetails-root AccordionDetails-root makeStyles-details PicassoSidebarItem-details"
               >
                 <ul
                   class="MuiList-root SidebarMenu-root"
