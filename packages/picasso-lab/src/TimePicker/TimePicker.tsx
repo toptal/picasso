@@ -41,7 +41,7 @@ export interface Props
 }
 
 export const TimePicker = (props: Props) => {
-  const { onChange, value, ...rest } = props
+  const { onChange, value, width, ...rest } = props
   const classes = useStyles(props)
   const browser = detect()
   const isSafari = browser?.name === 'safari'
@@ -64,6 +64,7 @@ export const TimePicker = (props: Props) => {
         readOnly
         iconPosition='end'
         icon={getIcon()}
+        width={width}
         inputProps={{
           className: classes.inputBase,
           ...rest
@@ -89,6 +90,7 @@ export const TimePicker = (props: Props) => {
       onChange={onChange}
       iconPosition='end'
       icon={getIcon()}
+      width={width}
       inputProps={{
         className: classes.inputBase,
         step: 60, // 1 min
