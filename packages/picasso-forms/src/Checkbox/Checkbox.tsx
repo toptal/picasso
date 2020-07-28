@@ -9,17 +9,23 @@ import FieldWrapper, { FieldProps } from '../FieldWrapper'
 
 type CheckboxValue = CheckboxProps['value'] | CheckboxProps['checked']
 
-type CheckboxWithoutGroup = CheckboxProps & FieldProps<CheckboxProps['checked']>
+type CheckboxWithoutGroup = CheckboxProps & FieldProps<CheckboxValue>
 type CheckboxInGroup = CheckboxProps & {
   name?: string
-  inCheckboxGroup: boolean
+  inCheckboxGroup?: boolean
 }
 
 export type Props = CheckboxWithoutGroup | CheckboxInGroup
 
-export const Checkbox = ({ name, value, ...restProps }: Props) => {
-  if ('inCheckboxGroup' in restProps) {
-    const { inCheckboxGroup, ...domProps } = restProps // eslint-disable-line @typescript-eslint/no-unused-vars
+export const Checkbox = ({
+  inCheckboxGroup,
+  name,
+  value,
+  defaultValue,
+  ...restProps
+}: Props) => {
+  // eslint-disable-line @typescript-eslint/no-unused-vars
+  if (inCheckboxGroup) {
     return (
       // eslint-disable-next-line react/jsx-props-no-spreading
       <Field type='checkbox' name={name!} value={value}>
@@ -28,7 +34,7 @@ export const Checkbox = ({ name, value, ...restProps }: Props) => {
         }: FinalFormFieldProps<CheckboxValue>) => {
           // eslint-disable-line @typescript-eslint/no-unused-vars
           // eslint-disable-next-line react/jsx-props-no-spreading
-          return <PicassoCheckbox {...domProps} {...restInput} />
+          return <PicassoCheckbox {...restProps} {...restInput} />
         }}
       </Field>
     )
