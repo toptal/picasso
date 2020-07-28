@@ -1,16 +1,11 @@
 /* eslint-disable complexity, max-statements */ // Squiggly lines makes code difficult to work with
 
-import {
-  KeyboardEvent,
-  useState,
-  ChangeEvent,
-  FocusEventHandler,
-  useLayoutEffect
-} from 'react'
+import { KeyboardEvent, useState, ChangeEvent, FocusEventHandler } from 'react'
 
 import { Item, ChangedOptions } from './types'
 
 export const EMPTY_INPUT_VALUE = ''
+export const FIRST_ITEM_INDEX = 0
 
 const normalizeArrowKey = (event: KeyboardEvent<HTMLInputElement>) => {
   const { key, keyCode } = event
@@ -93,10 +88,6 @@ const useAutocomplete = ({
   const [isOpen, setOpen] = useState<boolean>(false)
   const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null)
 
-  useLayoutEffect(() => {
-    setHighlightedIndex(null)
-  }, [value, isOpen])
-
   const shouldShowOtherOption =
     showOtherOption &&
     value &&
@@ -161,6 +152,7 @@ const useAutocomplete = ({
     }
 
     setOpen(true)
+    setHighlightedIndex(FIRST_ITEM_INDEX)
   }
 
   const handleFocus: FocusEventHandler<HTMLInputElement> = event => {
@@ -219,6 +211,7 @@ const useAutocomplete = ({
         }
 
         setOpen(false)
+        setHighlightedIndex(null)
         handleChange(getDisplayValue(null))
       }
 
@@ -247,6 +240,7 @@ const useAutocomplete = ({
         event.preventDefault()
 
         setOpen(false)
+        setHighlightedIndex(null)
         handleChange(getDisplayValue(null))
       }
     },

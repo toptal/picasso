@@ -3,8 +3,7 @@ import {
   useState,
   ChangeEvent,
   useCallback,
-  HTMLAttributes,
-  useLayoutEffect
+  HTMLAttributes
 } from 'react'
 
 import { Option } from './types'
@@ -19,6 +18,7 @@ export type ItemProps = {
 }
 
 export const EMPTY_INPUT_VALUE = ''
+export const FIRST_ITEM_INDEX = 0
 
 const normalizeArrowKey = (event: KeyboardEvent<HTMLInputElement>) => {
   const { key, keyCode } = event
@@ -118,10 +118,6 @@ const useSelect = ({
   const [isOpen, setOpen] = useState<boolean>(false)
   const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null)
 
-  useLayoutEffect(() => {
-    setHighlightedIndex(null)
-  }, [value, isOpen])
-
   const handleSelect = (event: React.SyntheticEvent, item: Option | null) => {
     onSelect(event, item)
   }
@@ -163,6 +159,7 @@ const useSelect = ({
     if (!isOpen) {
       onFocus(event as React.FocusEvent<HTMLInputElement>)
       setOpen(true)
+      setHighlightedIndex(FIRST_ITEM_INDEX)
     }
   }
 
@@ -183,6 +180,7 @@ const useSelect = ({
       >
     ) => {
       setOpen(true)
+      setHighlightedIndex(FIRST_ITEM_INDEX)
       onChange(event.target.value)
     },
 
@@ -213,6 +211,7 @@ const useSelect = ({
         }
 
         setOpen(false)
+        setHighlightedIndex(null)
       }
 
       if (key === 'Enter') {
@@ -238,6 +237,7 @@ const useSelect = ({
         event.preventDefault()
 
         setOpen(false)
+        setHighlightedIndex(null)
       }
 
       onKeyDown(event, value)
