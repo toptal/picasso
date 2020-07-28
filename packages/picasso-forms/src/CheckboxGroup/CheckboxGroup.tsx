@@ -16,7 +16,6 @@ export const CheckboxGroup = (props: Props) => {
     // eslint-disable-next-line react/jsx-props-no-spreading
     <FieldWrapper {...rest} type='checkbox'>
       {() => {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         return (
           // eslint-disable-next-line react/jsx-props-no-spreading
           <PicassoCheckbox.Group {...rest}>
