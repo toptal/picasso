@@ -21,18 +21,15 @@ export const Checkbox = ({
   inCheckboxGroup,
   name,
   value,
-  defaultValue,
+  defaultValue, // eslint-disable-line @typescript-eslint/no-unused-vars
   ...restProps
 }: Props) => {
-  // eslint-disable-line @typescript-eslint/no-unused-vars
   if (inCheckboxGroup) {
     return (
-      // eslint-disable-next-line react/jsx-props-no-spreading
       <Field type='checkbox' name={name!} value={value}>
         {({
-          input: { value, type, ...restInput }
+          input: { value, type, ...restInput } // eslint-disable-line @typescript-eslint/no-unused-vars
         }: FinalFormFieldProps<CheckboxValue>) => {
-          // eslint-disable-line @typescript-eslint/no-unused-vars
           // eslint-disable-next-line react/jsx-props-no-spreading
           return <PicassoCheckbox {...restProps} {...restInput} />
         }}
