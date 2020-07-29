@@ -72,26 +72,28 @@ export const Checkbox = forwardRef<HTMLButtonElement, Props>(function Checkbox(
   const { color, ...checkboxAttributes } = rest
 
   const muiCheckbox = (
-    <MUICheckbox
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...checkboxAttributes}
-      ref={ref}
-      checked={checked}
-      icon={<div className={classes.uncheckedIcon} />}
-      checkedIcon={<div className={classes.checkedIcon} />}
-      indeterminateIcon={<div className={classes.indeterminateIcon} />}
-      classes={rootClasses}
-      className={cx(className, {
-        [classes.withLabel]: Boolean(label)
-      })}
-      style={style}
-      disabled={disabled}
-      id={id}
-      indeterminate={indeterminate}
-      onChange={onChange}
-      value={value}
-      focusVisibleClassName={classes.focused}
-    />
+    <span className={cx({ [classes.disabledWrapper]: disabled })}>
+      <MUICheckbox
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...checkboxAttributes}
+        ref={ref}
+        checked={checked}
+        icon={<div className={classes.uncheckedIcon} />}
+        checkedIcon={<div className={classes.checkedIcon} />}
+        indeterminateIcon={<div className={classes.indeterminateIcon} />}
+        classes={rootClasses}
+        className={cx(className, {
+          [classes.withLabel]: Boolean(label)
+        })}
+        style={style}
+        disabled={disabled}
+        id={id}
+        indeterminate={indeterminate}
+        onChange={onChange}
+        value={value}
+        focusVisibleClassName={classes.focused}
+      />
+    </span>
   )
 
   if (!label) {

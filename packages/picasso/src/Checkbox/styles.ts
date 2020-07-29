@@ -13,8 +13,7 @@ PicassoProvider.override(() => ({
 
       '&$disabled': {
         opacity: 0.48,
-        cursor: 'not-allowed',
-        pointerEvents: 'auto'
+        cursor: 'not-allowed'
       }
     }
   }
@@ -106,5 +105,8 @@ export default ({ palette, sizes, transitions }: Theme) =>
       // 1px is needed for safari
       maxWidth: `calc(100% - ${controlWidth} - ${labelMargin} + 1px)`
     },
-    labelWithRightSpacing: {}
+    labelWithRightSpacing: {},
+    disabledWrapper: {
+      cursor: 'not-allowed'
+    }
   })
