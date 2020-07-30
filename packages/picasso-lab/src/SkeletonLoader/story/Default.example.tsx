@@ -1,22 +1,22 @@
 import React from 'react'
 import { SkeletonLoader } from '@toptal/picasso-lab'
-import { Typography, Grid } from '@toptal/picasso'
+import { Typography, Container } from '@toptal/picasso'
 
 const Example = () => (
-  <Grid>
-    <Grid.Item small={4}>
-      <Typography>One row</Typography>
+  <>
+    <Container bottom='medium'>
+      <Typography>One row (default)</Typography>
       <SkeletonLoader />
-    </Grid.Item>
-    <Grid.Item small={4}>
+    </Container>
+
+    <Container bottom='medium'>
       <Typography>Two rows</Typography>
       <SkeletonLoader rows={2} />
-    </Grid.Item>
-    <Grid.Item small={4}>
-      <Typography>Three rows</Typography>
-      <SkeletonLoader rows={3} />
-    </Grid.Item>
-  </Grid>
+    </Container>
+
+    <Typography>Three rows</Typography>
+    <SkeletonLoader rows={3} />
+  </>
 )
 
 export default Example
