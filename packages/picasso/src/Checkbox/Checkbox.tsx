@@ -1,4 +1,3 @@
-import React, { forwardRef, ReactNode } from 'react'
 import MUICheckbox from '@material-ui/core/Checkbox'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import {
@@ -8,8 +7,10 @@ import {
   TextLabelProps
 } from '@toptal/picasso-shared'
 import cx from 'classnames'
+import React, { forwardRef, ReactNode } from 'react'
 
 import CheckboxGroup from '../CheckboxGroup'
+import Container from '../Container'
 import FormControlLabel from '../FormControlLabel'
 import styles from './styles'
 
@@ -72,7 +73,14 @@ export const Checkbox = forwardRef<HTMLButtonElement, Props>(function Checkbox(
   const { color, ...checkboxAttributes } = rest
 
   const muiCheckbox = (
-    <span className={cx({ [classes.disabledWrapper]: disabled })}>
+    <Container
+      as='span'
+      flex
+      inline
+      className={cx(classes.checkboxWrapper, {
+        [classes.disabledCheckboxWrapper]: disabled
+      })}
+    >
       <MUICheckbox
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...checkboxAttributes}
@@ -93,7 +101,7 @@ export const Checkbox = forwardRef<HTMLButtonElement, Props>(function Checkbox(
         value={value}
         focusVisibleClassName={classes.focused}
       />
-    </span>
+    </Container>
   )
 
   if (!label) {

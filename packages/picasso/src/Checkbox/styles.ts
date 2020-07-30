@@ -106,7 +106,11 @@ export default ({ palette, sizes, transitions }: Theme) =>
       maxWidth: `calc(100% - ${controlWidth} - ${labelMargin} + 1px)`
     },
     labelWithRightSpacing: {},
-    disabledWrapper: {
+    checkboxWrapper: {
+      alignSelf: 'flex-start',
+      verticalAlign: 'middle'
+    },
+    disabledCheckboxWrapper: {
       cursor: 'not-allowed'
     }
   })
