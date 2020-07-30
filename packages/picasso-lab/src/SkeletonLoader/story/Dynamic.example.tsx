@@ -94,8 +94,8 @@ const Dynamic = () => {
           />
           <Page.Content>
             <SidebarMenu>
-              <Sidebar.Item icon={<Update16 />} onClick={() => reloadData()}>
-                Click me to reload content!
+              <Sidebar.Item icon={<Update16 />} onClick={reloadData}>
+                Click me to reload the content!
               </Sidebar.Item>
             </SidebarMenu>
             <Container
