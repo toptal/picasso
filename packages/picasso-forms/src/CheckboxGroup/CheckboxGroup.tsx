@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { ReactElement } from 'react'
 import {
   Checkbox as PicassoCheckbox,
@@ -6,6 +7,7 @@ import {
 } from '@toptal/picasso'
 
 import FieldWrapper, { FieldProps } from '../FieldWrapper'
+import CheckboxGroupContext from './CheckboxGroupContext'
 
 export type Props = CheckboxGroupProps & FieldProps<CheckboxProps['value']>
 
@@ -13,11 +15,9 @@ export const CheckboxGroup = (props: Props) => {
   const { children, ...rest } = props
 
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <FieldWrapper {...rest} type='checkbox'>
-      {() => {
-        return (
-          // eslint-disable-next-line react/jsx-props-no-spreading
+    <CheckboxGroupContext.Provider value>
+      <FieldWrapper {...rest} type='checkbox'>
+        {() => (
           <PicassoCheckbox.Group {...rest}>
             {React.Children.toArray(children)
               .filter(React.isValidElement)
@@ -28,9 +28,9 @@ export const CheckboxGroup = (props: Props) => {
                 })
               )}
           </PicassoCheckbox.Group>
-        )
-      }}
-    </FieldWrapper>
+        )}
+      </FieldWrapper>
+    </CheckboxGroupContext.Provider>
   )
 }
 

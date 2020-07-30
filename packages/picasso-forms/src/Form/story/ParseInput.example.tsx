@@ -10,8 +10,8 @@ const ParseInputExample = () => (
       </Typography>
     </Container>
     <Form.Input
-      name='myFirstName'
-      label='First name'
+      name='surname'
+      label='Surname'
       placeholder='e.g. Bruce'
       parse={value => value.trim()}
       limit={24}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Checkbox as PicassoCheckbox, CheckboxProps } from '@toptal/picasso'
 import {
   Field,
@@ -6,24 +6,23 @@ import {
 } from 'react-final-form'
 
 import FieldWrapper, { FieldProps } from '../FieldWrapper'
+import { CheckboxGroupContext } from '../CheckboxGroup'
 
 type CheckboxValue = CheckboxProps['value'] | CheckboxProps['checked']
 
 type CheckboxWithoutGroup = CheckboxProps & FieldProps<CheckboxValue>
-type CheckboxInGroup = CheckboxProps & {
-  name?: string
-  inCheckboxGroup?: boolean
-}
+type CheckboxInGroup = CheckboxProps & { name?: string }
 
 export type Props = CheckboxWithoutGroup | CheckboxInGroup
 
 export const Checkbox = ({
-  inCheckboxGroup,
   name,
   value,
   defaultValue, // eslint-disable-line @typescript-eslint/no-unused-vars
   ...restProps
 }: Props) => {
+  const inCheckboxGroup = useContext(CheckboxGroupContext)
+
   if (inCheckboxGroup) {
     return (
       <Field type='checkbox' name={name!} value={value}>
@@ -42,7 +41,7 @@ export const Checkbox = ({
     <FieldWrapper hideFieldLabel type='checkbox' {...restProps} name={name!}>
       {(input: CheckboxProps) => {
         // eslint-disable-next-line react/jsx-props-no-spreading
-        return <PicassoCheckbox checked={!!input.value} {...input} />
+        return <PicassoCheckbox {...input} />
       }}
     </FieldWrapper>
   )
