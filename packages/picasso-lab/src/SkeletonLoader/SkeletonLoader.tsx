@@ -3,6 +3,7 @@ import { BaseProps } from '@toptal/picasso-shared'
 import ContentLoader from 'react-content-loader'
 
 export interface Props extends BaseProps {
+  /** Specify the amount of rows */
   rows?: number
 }
 
