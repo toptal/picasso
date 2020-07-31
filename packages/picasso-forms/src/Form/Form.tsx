@@ -11,6 +11,7 @@ import Select from '../Select'
 import Radio from '../Radio'
 import RadioGroup from '../RadioGroup'
 import Checkbox from '../Checkbox'
+import CheckboxGroup from '../CheckboxGroup'
 import NumberInput from '../NumberInput'
 import FileInput from '../FileInput'
 import DatePicker from '../DatePicker'
@@ -86,6 +87,7 @@ Form.Select = Select
 Form.Radio = Radio
 Form.RadioGroup = RadioGroup
 Form.Checkbox = Checkbox
+Form.CheckboxGroup = CheckboxGroup
 Form.NumberInput = NumberInput
 Form.FileInput = FileInput
 Form.DatePicker = DatePicker

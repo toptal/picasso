@@ -66,6 +66,11 @@ const DefaultExample = () => {
         options={skillOptions}
         onInputChange={setSkillInputValue}
       />
+      <Form.CheckboxGroup name='hobbies' label='Hobbies'>
+        <Form.Checkbox label='Skiing' value='skiing' />
+        <Form.Checkbox label='Free diving' value='freeDiving' />
+        <Form.Checkbox label='Dancing' value='dancing' />
+      </Form.CheckboxGroup>
       <Form.Select
         enableReset
         required
