@@ -9,7 +9,10 @@ const componentDocs = PicassoBook.createComponentDocs(
 const chapter = PicassoBook.connectToPage(page =>
   page
     .createChapter('SkeletonLoader.Header')
-    .addExample('HeaderLoader/story/Default.example.tsx', 'Default')
+    .addExample('HeaderLoader/story/Default.example.tsx', {
+      id: 'HeaderLoader',
+      waitUntilImagesLoaded: true
+    })
 )
 
 export default {

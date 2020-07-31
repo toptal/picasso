@@ -9,7 +9,10 @@ const componentDocs = PicassoBook.createComponentDocs(
 const chapter = PicassoBook.connectToPage(page =>
   page
     .createChapter('SkeletonLoader.Typography')
-    .addExample('TypographyLoader/story/Default.example.tsx', 'Default')
+    .addExample('TypographyLoader/story/Default.example.tsx', {
+      id: 'TypographyLoader',
+      waitUntilImagesLoaded: true
+    })
 )
 
 export default {
