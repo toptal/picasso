@@ -28,7 +28,7 @@ const DefaultExample = () => {
   return (
     <Form
       onSubmit={values => console.log(values)}
-      initialValues={{ gender: 'female', hobbies: ['skiing'] }}
+      initialValues={{ gender: 'female' }}
     >
       <Form.Input
         enableReset
