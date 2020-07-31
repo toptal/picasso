@@ -26,8 +26,6 @@ const useGetData = (): [boolean, () => void] => {
   return [loading, reload]
 }
 
-const handleClick = () => window.alert('Item clicked')
-
 const SidebarMenu = ({ children }: { children: ReactNode }) => (
   <Sidebar>
     <Sidebar.Menu>
@@ -45,8 +43,8 @@ const RightContent = () => (
     avatar='./jacqueline-with-flowers-1954-square.jpg'
   >
     <Menu>
-      <Menu.Item onClick={handleClick}>My Account</Menu.Item>
-      <Menu.Item onClick={handleClick}>Log Out</Menu.Item>
+      <Menu.Item>My Account</Menu.Item>
+      <Menu.Item>Log Out</Menu.Item>
     </Menu>
   </Page.HeaderMenu>
 )
@@ -94,7 +92,7 @@ const Dynamic = () => {
   const [loading, reloadData] = useGetData()
 
   return (
-    <div style={{ height: '30rem' }}>
+    <div style={{ height: '40rem' }}>
       <Page>
         <Page.Header rightContent={<RightContent />} title='Default example' />
         <Page.Content>
