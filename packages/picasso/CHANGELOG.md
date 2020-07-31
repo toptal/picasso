@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.81.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.80.0...@toptal/picasso@4.81.0) (2020-07-31)
+
+
+### Features
+
+* **forms:** add CheckboxGroup ([#1448](https://github.com/toptal/picasso/issues/1448)) ([61e8570](https://github.com/toptal/picasso/commit/61e8570bf0842f3e55dc0ecc8b45cd85a9891bef))
+
+
+
+
+
 # [4.80.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.79.3...@toptal/picasso@4.80.0) (2020-07-24)
 
 
