@@ -1,29 +1,11 @@
-import React from 'react'
-import { BaseProps } from '@toptal/picasso-shared'
-import ContentLoader from 'react-content-loader'
-import { palette } from '@toptal/picasso/utils'
+import HeaderLoader from '../HeaderLoader'
+import TypographyLoader from '../TypographyLoader'
 
-export interface Props extends BaseProps {
-  /** Specify the amount of rows */
-  rows?: number
+export interface StaticProps {
+  Header: typeof HeaderLoader
+  Typography: typeof TypographyLoader
 }
-
-const Row = () => (
-  <ContentLoader viewBox='0 0 400 30' color={palette.grey.main}>
-    <rect x='0' y='0' rx='3' ry='3' width='100' height='3' />
-    <rect x='0' y='8' rx='3' ry='3' width='400' height='3' />
-    <rect x='0' y='16' rx='3' ry='3' width='400' height='3' />
-  </ContentLoader>
-)
-
-export const SkeletonLoader = ({ rows = 1 }: Props) => (
-  <>
-    {[...Array(rows)].map((_, index) => (
-      <Row key={index} />
-    ))}
-  </>
-)
-
-SkeletonLoader.displayName = 'SkeletonLoader'
-
-export default SkeletonLoader
+export default {
+  Header: HeaderLoader,
+  Typography: TypographyLoader
+} as StaticProps
