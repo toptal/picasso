@@ -23,8 +23,7 @@ export const CheckboxGroup = (props: Props) => {
               .filter(React.isValidElement)
               .map(child =>
                 React.cloneElement(child as ReactElement, {
-                  name: props.name,
-                  inCheckboxGroup: true
+                  name: props.name
                 })
               )}
           </PicassoCheckbox.Group>
