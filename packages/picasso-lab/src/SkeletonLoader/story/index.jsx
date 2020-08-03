@@ -20,7 +20,7 @@ page
     Below is a simple example demonstrating how. If you make a reusable skeleton loader - export it to topkit. 
     `,
     waitUntilImagesLoaded: true
-  })
+  }) // picasso-skip-visuals
 
 page.connect(headerLoaderStory.chapter)
 page.connect(typographyLoaderStory.chapter)
