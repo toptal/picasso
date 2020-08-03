@@ -10,7 +10,7 @@ export interface Props extends BaseProps {
 
 const Paragraph = () => (
   <ContentLoader viewBox='0 0 400 10' color={palette.grey.main}>
-    <rect x='0' y='0' rx='3' ry='3' width='400' height='3' />
+    <rect x='0' y='0' rx='1.5' ry='1.5' width='400' height='3' />
   </ContentLoader>
 )
 
