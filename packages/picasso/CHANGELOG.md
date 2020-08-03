@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.82.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.81.0...@toptal/picasso@4.82.0) (2020-08-03)
+
+
+### Features
+
+* **icon:** add gift icon ([#1457](https://github.com/toptal/picasso/issues/1457)) ([f6bcf3b](https://github.com/toptal/picasso/commit/f6bcf3ba767abea464cdff60d86337504a9286b1))
+
+
+
+
+
 # [4.81.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.80.0...@toptal/picasso@4.81.0) (2020-07-31)
 
 
