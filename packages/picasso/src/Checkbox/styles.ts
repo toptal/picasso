@@ -12,8 +12,7 @@ PicassoProvider.override(() => ({
       padding: 0,
 
       '&$disabled': {
-        opacity: 0.48,
-        cursor: 'not-allowed'
+        opacity: 0.48
       }
     }
   }
