@@ -88,7 +88,7 @@ const PageLoader = () => (
   </>
 )
 
-const Dynamic = () => {
+const PageExample = () => {
   const [loading, reloadData] = useGetData()
 
   return (
@@ -117,4 +117,4 @@ const Dynamic = () => {
   )
 }
 
-export default Dynamic
+export default PageExample
