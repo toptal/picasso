@@ -7,9 +7,9 @@
     "packages/*"
   ],
   "scripts": {
-    "test": "TZ=UTC jest",
+    "test": "cross-env TZ=UTC jest",
     "test:watch": "cross-env TZ=UTC jest --watch",
-    "test-ci": "TZ=UTC jest --runInBand --ci",
+    "test-ci": "cross-env TZ=UTC jest --runInBand --ci",
     "test:visual": "./bin/run-in-docker ./bin/test-visual",
     "test-ci:visual": "./bin/test-visual --ci",
     "lint": "davinci syntax lint code .",
