@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.82.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.82.0...@toptal/picasso@4.82.1) (2020-08-03)
+
+
+### Bug Fixes
+
+* show the tooltip for disabled checkbox ([#1456](https://github.com/toptal/picasso/issues/1456)) ([2ede2fb](https://github.com/toptal/picasso/commit/2ede2fbfd703bf73c56c4cc0b2e0ba9c9867ae73))
+
+
+
+
+
 # [4.82.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.81.0...@toptal/picasso@4.82.0) (2020-08-03)
 
 

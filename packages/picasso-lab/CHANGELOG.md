@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.28.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.27.0...@toptal/picasso-lab@2.28.0) (2020-08-03)
+
+
+### Features
+
+* add SkeletonLoader ([#1455](https://github.com/toptal/picasso/issues/1455)) ([da288ad](https://github.com/toptal/picasso/commit/da288ad4105fe225936848efdc5de75c9f808098))
+
+
+
+
+
 # [2.27.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.26.1...@toptal/picasso-lab@2.27.0) (2020-07-31)
 
 
