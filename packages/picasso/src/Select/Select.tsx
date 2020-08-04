@@ -511,6 +511,7 @@ export const Select = documentable(
       } = useSelect({
         value: inputValue,
         options,
+        disabled,
         onSelect: handleSelect,
         onChange: handleChange,
         onBlur: handleBlur,
