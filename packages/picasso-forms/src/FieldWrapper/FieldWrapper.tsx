@@ -177,12 +177,7 @@ const FieldWrapper = <
     id,
     ...rest,
     ...input,
-    ...getProps({
-      hideFieldLabel,
-      error,
-      label,
-      required
-    }),
+    ...getProps({ hideFieldLabel, error, label, required }),
     onChange: (event: ChangeEvent<HTMLElement>) => {
       input.onChange(event)
 
