@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.82.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.82.1...@toptal/picasso@4.82.2) (2020-08-05)
+
+
+### Bug Fixes
+
+* the menu is not visible for disabled select ([#1459](https://github.com/toptal/picasso/issues/1459)) ([b8be7c0](https://github.com/toptal/picasso/commit/b8be7c0e9c11a96c58104499e3ceac35b8819b80))
+
+
+
+
+
 ## [4.82.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.82.0...@toptal/picasso@4.82.1) (2020-08-03)
 
 
