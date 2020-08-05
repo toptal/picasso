@@ -9,6 +9,7 @@ import { Form as PicassoForm } from '@toptal/picasso'
 import { Item } from '@toptal/picasso/Autocomplete'
 import { DateOrDateRangeType } from '@toptal/picasso-lab'
 
+import { useFormConfig, FormConfigProps } from '../FormConfig'
 import { validators } from '../utils'
 
 const { composeValidators, required: requiredValidator } = validators
@@ -47,8 +48,18 @@ type FieldMeta<T> = FieldMetaState<T> & {
   dirtyAfterBlur?: boolean
 }
 
-const getInputError = <T extends ValueType>({ ...meta }: FieldMeta<T>) => {
-  if (!meta.submitFailed && !meta.dirtySinceLastSubmit) {
+const getInputError = <T extends ValueType>({
+  formConfig,
+  meta
+}: {
+  meta: FieldMeta<T>
+  formConfig: FormConfigProps
+}) => {
+  if (
+    formConfig?.validateAfterFirstSubmit &&
+    !meta.submitFailed &&
+    !meta.dirtySinceLastSubmit
+  ) {
     return null
   }
 
@@ -140,7 +151,7 @@ const FieldWrapper = <
     //
     ...rest
   } = props
-
+  const formConfig = useFormConfig()
   const { meta, input } = useField<TInputValue>(name, {
     validate: getValidators(required, validate),
     type,
@@ -170,7 +181,8 @@ const FieldWrapper = <
   }, [input, onResetClick])
 
   const error = getInputError<TInputValue>({
-    ...meta
+    meta,
+    formConfig
   })
 
   const childProps: Record<string, unknown> = {

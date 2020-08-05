@@ -18,6 +18,7 @@ import DatePicker from '../DatePicker'
 import TimePicker from '../TimePicker'
 import TagSelector from '../TagSelector'
 import SubmitButton from '../SubmitButton'
+import { FormConfigContext } from '../FormConfig'
 import { createScrollToErrorDecorator } from '../utils'
 
 type AnyObject = Record<string, any>
@@ -94,5 +95,6 @@ Form.DatePicker = DatePicker
 Form.TimePicker = TimePicker
 Form.TagSelector = TagSelector
 Form.SubmitButton = SubmitButton
+Form.ConfigProvider = FormConfigContext.Provider
 
 export default Form
