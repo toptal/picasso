@@ -21,6 +21,20 @@ enum Direction {
   DOWN
 }
 
+const getMoveDirection = (
+  selectedIndex: number,
+  prevSelectedIndex: number | null | undefined,
+  bottomVisibleItem: number
+) => {
+  if (prevSelectedIndex != null) {
+    return prevSelectedIndex <= selectedIndex ? Direction.DOWN : Direction.UP
+  }
+
+  return selectedIndex === Math.ceil(bottomVisibleItem)
+    ? Direction.DOWN
+    : Direction.UP
+}
+
 const ScrollMenu: FunctionComponent<Props> = ({
   selectedIndex,
   classes,
@@ -52,11 +66,6 @@ const ScrollMenu: FunctionComponent<Props> = ({
     const itemHeight = firstItemRef.current.offsetHeight
     const scrollViewHeight = menuRef.current.offsetHeight
 
-    const moveDirection =
-      prevSelectedIndex != null && prevSelectedIndex <= selectedIndex
-        ? Direction.DOWN
-        : Direction.UP
-
     const countItemsOnScrollView = scrollViewHeight / itemHeight
     const topVisibleItem = currentScrollTop / itemHeight
     const bottomVisibleItem = topVisibleItem + countItemsOnScrollView - 1
@@ -65,6 +74,11 @@ const ScrollMenu: FunctionComponent<Props> = ({
       selectedIndex >= topVisibleItem && selectedIndex <= bottomVisibleItem
 
     if (!isHighlightedItemInScrollView) {
+      const moveDirection = getMoveDirection(
+        selectedIndex,
+        prevSelectedIndex,
+        bottomVisibleItem
+      )
       let scrollTop = 0
 
       if (moveDirection === Direction.UP) {
