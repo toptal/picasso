@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FocusEvent, useCallback, useContext } from 'react'
+import React, { ChangeEvent, FocusEvent, useCallback } from 'react'
 import {
   useField,
   FieldProps as FinalFieldProps,
@@ -10,7 +10,6 @@ import { Item } from '@toptal/picasso/Autocomplete'
 import { DateOrDateRangeType } from '@toptal/picasso-lab'
 
 import { validators } from '../utils'
-import { FormContext } from '../Form/Form'
 
 const { composeValidators, required: requiredValidator } = validators
 
@@ -48,11 +47,8 @@ type FieldMeta<T> = FieldMetaState<T> & {
   dirtyAfterBlur?: boolean
 }
 
-const getInputError = <T extends ValueType>({
-  submitted,
-  ...meta
-}: FieldMeta<T> & { submitted: boolean }) => {
-  if (!submitted) {
+const getInputError = <T extends ValueType>({ ...meta }: FieldMeta<T>) => {
+  if (!meta.submitFailed && !meta.dirtySinceLastSubmit) {
     return null
   }
 
@@ -144,7 +140,6 @@ const FieldWrapper = <
     //
     ...rest
   } = props
-  const { submitted } = useContext(FormContext)
 
   const { meta, input } = useField<TInputValue>(name, {
     validate: getValidators(required, validate),
@@ -175,8 +170,7 @@ const FieldWrapper = <
   }, [input, onResetClick])
 
   const error = getInputError<TInputValue>({
-    ...meta,
-    submitted
+    ...meta
   })
 
   const childProps: Record<string, unknown> = {

@@ -1,12 +1,4 @@
-import React, {
-  useCallback,
-  useMemo,
-  ReactNode,
-  createContext,
-  useState,
-  Dispatch,
-  SetStateAction
-} from 'react'
+import React, { useCallback, useMemo, ReactNode } from 'react'
 import {
   Form as FinalForm,
   FormProps as FinalFormProps
@@ -27,11 +19,6 @@ import TimePicker from '../TimePicker'
 import TagSelector from '../TagSelector'
 import SubmitButton from '../SubmitButton'
 import { createScrollToErrorDecorator } from '../utils'
-
-export const FormContext = createContext<{
-  submitted: boolean
-  setSubmitted?: Dispatch<SetStateAction<boolean>>
-}>({ submitted: false })
 
 type AnyObject = Record<string, any>
 
@@ -78,30 +65,16 @@ export const Form = <T extends any = AnyObject>(props: Props<T>) => {
     ]
   )
 
-  const [submitted, setSubmitted] = useState(false)
-
   return (
-    <FormContext.Provider value={{ submitted, setSubmitted }}>
-      <FinalForm
-        render={({ handleSubmit }) => (
-          <PicassoForm
-            onSubmit={(...args) => {
-              if (!submitted) {
-                setSubmitted(true)
-              }
-
-              return handleSubmit(...args)
-            }}
-          >
-            {children}
-          </PicassoForm>
-        )}
-        onSubmit={handleSubmit}
-        decorators={[...decorators, scrollToErrorDecorator]}
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        {...rest}
-      />
-    </FormContext.Provider>
+    <FinalForm
+      render={({ handleSubmit }) => (
+        <PicassoForm onSubmit={handleSubmit}>{children}</PicassoForm>
+      )}
+      onSubmit={handleSubmit}
+      decorators={[...decorators, scrollToErrorDecorator]}
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
+    />
   )
 }
 
