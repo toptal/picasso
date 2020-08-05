@@ -73,6 +73,7 @@ interface Props {
   options?: Option[]
   enableAutofill?: boolean
   autoComplete?: any
+  disabled?: boolean
   onSelect?: (event: React.SyntheticEvent, item: Option | null) => void
   onChange?: (value: string) => void
   onKeyDown?: (
@@ -109,6 +110,7 @@ interface UseSelectOutput {
 const useSelect = ({
   value,
   options = [],
+  disabled = false,
   onChange = () => {},
   onKeyDown = () => {},
   onSelect = () => {},
@@ -160,7 +162,7 @@ const useSelect = ({
       | React.FocusEvent<HTMLInputElement>
       | React.MouseEvent<HTMLInputElement>
   ) => {
-    if (!isOpen) {
+    if (!isOpen && !disabled) {
       onFocus(event as React.FocusEvent<HTMLInputElement>)
       setOpen(true)
     }
