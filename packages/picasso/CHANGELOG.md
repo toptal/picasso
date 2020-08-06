@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.82.3](https://github.com/toptal/picasso/compare/@toptal/picasso@4.82.2...@toptal/picasso@4.82.3) (2020-08-06)
+
+
+### Bug Fixes
+
+* **Select:** fix scrolling on hover of the bottom element ([#1461](https://github.com/toptal/picasso/issues/1461)) ([908cfe4](https://github.com/toptal/picasso/commit/908cfe40758cb2ed1b819672df0c6b460a2c7072))
+
+
+
+
+
 ## [4.82.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.82.1...@toptal/picasso@4.82.2) (2020-08-05)
 
 
