@@ -8,7 +8,9 @@ import {
   Page,
   Menu,
   Typography,
-  Update16
+  Update16,
+  Button,
+  Grid
 } from '@toptal/picasso'
 import { SkeletonLoader } from '@toptal/picasso-lab'
 
@@ -51,9 +53,13 @@ const RightContent = () => (
 
 const Content = () => (
   <>
-    <Typography align='center' variant='heading' size='large'>
-      Default example
-    </Typography>
+    <Container flex justifyContent='space-between' alignItems='center'>
+      <Typography align='center' variant='heading' size='large'>
+        My Page
+      </Typography>
+      <Button>Read more</Button>
+    </Container>
+
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -64,27 +70,66 @@ const Content = () => (
       est laborum.
     </p>
 
-    <Typography align='center' variant='heading' size='large'>
-      Default example
-    </Typography>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum.
-    </p>
+    <Grid>
+      <Grid.Item small={6}>
+        <Typography align='center' variant='heading'>
+          My section
+        </Typography>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </p>
+      </Grid.Item>
+      <Grid.Item small={6}>
+        <Typography align='center' variant='heading'>
+          My Section
+        </Typography>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </p>
+      </Grid.Item>
+    </Grid>
+  </>
+)
+
+const SectionLoader = () => (
+  <>
+    <Container flex justifyContent='center' bottom='small'>
+      <SkeletonLoader.Header />
+    </Container>
+    <SkeletonLoader.Typography rows={5} />
   </>
 )
 
 const PageLoader = () => (
   <>
-    <SkeletonLoader.Header centered />
-    <SkeletonLoader.Typography rows={4} />
-    <SkeletonLoader.Header centered />
-    <SkeletonLoader.Typography rows={4} />
+    <Container
+      flex
+      justifyContent='space-between'
+      alignItems='center'
+      bottom='small'
+    >
+      <SkeletonLoader.Header />
+      <SkeletonLoader.Button />
+    </Container>
+
+    <Container bottom='small'>
+      <SkeletonLoader.Typography rows={4} />
+    </Container>
+
+    <Grid>
+      <Grid.Item small={6}>
+        <SectionLoader />
+      </Grid.Item>
+      <Grid.Item small={6}>
+        <SectionLoader />
+      </Grid.Item>
+    </Grid>
   </>
 )
 

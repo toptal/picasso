@@ -8,12 +8,29 @@ export interface Props extends BaseProps {
   rows?: number
 }
 
-const Paragraph = () => (
-  <ContentLoader viewBox='0 0 400 10' color={palette.grey.main}>
-    <rect x='0' y='0' rx='1.5' ry='1.5' width='400' height='3' />
+const HEIGHT = 10
+const WIDTH = '1440px'
+const CONTAINER_HEIGHT = HEIGHT * 2
+const VIEW_BOX = `0 0 ${WIDTH} ${CONTAINER_HEIGHT}`
+const BORDER_RADIUS = HEIGHT / 2
+
+export const Paragraph = () => (
+  <ContentLoader
+    viewBox={VIEW_BOX}
+    color={palette.grey.main2}
+    height={CONTAINER_HEIGHT}
+    style={{ width: '100%' }}
+  >
+    <rect
+      x='0'
+      y='0'
+      rx={BORDER_RADIUS}
+      ry={BORDER_RADIUS}
+      width='100%'
+      height={HEIGHT}
+    />
   </ContentLoader>
 )
-
 export const TypographyLoader = ({ rows = 1 }: Props) => {
   return (
     <>
