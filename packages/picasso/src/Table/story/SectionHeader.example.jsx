@@ -13,9 +13,7 @@ const Example = () => (
           <Table.Cell>Country</Table.Cell>
         </Table.Row>
       </Table.Head>
-      <Table.SectionHead icon={ <Calendar16 /> }>
-        Overdue
-      </Table.SectionHead>
+      <Table.SectionHead icon={<Calendar16 />}>Overdue</Table.SectionHead>
       <Table.Body>
         {data.map(row => (
           <Table.Row key={row.id}>
