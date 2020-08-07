@@ -40,6 +40,8 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   disableListeners?: boolean
   /** Allows tooltip to change its placement when it overflows */
   preventOverflow?: boolean
+  /** Disable the portal behavior. The children stay within it's parent */
+  disablePortal?: boolean
 }
 
 export const Tooltip: FunctionComponent<Props> = ({
@@ -57,6 +59,7 @@ export const Tooltip: FunctionComponent<Props> = ({
   variant,
   disableListeners,
   preventOverflow,
+  disablePortal,
   ...rest
 }) => {
   const [arrowRef, setArrowRef] = useState<HTMLSpanElement | null>(null)
@@ -77,6 +80,7 @@ export const Tooltip: FunctionComponent<Props> = ({
       {...rest}
       PopperProps={{
         container,
+        disablePortal,
         popperOptions: {
           modifiers: {
             arrow: {
@@ -122,7 +126,8 @@ Tooltip.defaultProps = {
   arrow: true,
   preventOverflow: false,
   placement: 'top',
-  variant: 'dark'
+  variant: 'dark',
+  disablePortal: false
 }
 
 export default withStyles(styles)(Tooltip)

@@ -40,6 +40,8 @@ export interface Props extends SliderProps {
   tooltip?: ValueLabelDisplay
   /** The format function the value tooltip's value. */
   tooltipFormat?: string | ((value: number, index: number) => React.ReactNode)
+  /** Disable the portal behavior of the tooltip. The children stay within it's parent */
+  disablePortal?: boolean
   /** Callback invoked when slider changes its state. */
   onChange?: (event: ChangeEvent<{}>, value: Value) => void
 }
@@ -50,7 +52,8 @@ type ValueLabelComponentProps = ValueLabelProps & {
 }
 
 const DefaultTooltip = (
-  isTooltipAlwaysVisible: boolean
+  isTooltipAlwaysVisible: boolean,
+  disablePortal?: boolean
 ): React.FunctionComponent<ValueLabelComponentProps> => ({
   children,
   open,
@@ -68,6 +71,7 @@ const DefaultTooltip = (
       open={open || valueLabelDisplay === 'on'}
       placement={isTooltipAlwaysVisible ? 'right' : 'top'}
       preventOverflow={isTooltipAlwaysVisible}
+      disablePortal={disablePortal}
     >
       {children}
     </Tooltip>
@@ -89,13 +93,17 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     TooltipComponent: UserDefinedTooltip,
     step,
     disabled,
+    disablePortal,
     onChange,
     ...rest
   } = props
   const { wrapper, markTrack, ...classes } = useStyles(props)
   const isTooltipAlwaysVisible = tooltip === 'on'
   const ValueLabelComponent = (UserDefinedTooltip ||
-    DefaultTooltip(isTooltipAlwaysVisible)) as typeof UserDefinedTooltip
+    DefaultTooltip(
+      isTooltipAlwaysVisible,
+      disablePortal
+    )) as typeof UserDefinedTooltip
 
   return (
     <div className={wrapper}>
@@ -134,7 +142,8 @@ Slider.defaultProps = {
   defaultValue: 0,
   min: 0,
   max: 100,
-  tooltip: 'off'
+  tooltip: 'off',
+  disablePortal: false
 }
 
 export default Slider
