@@ -3,6 +3,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import {
   BaseProps,
+  SpacingType,
   PicassoComponentWithRef,
   CompoundedComponentWithRef
 } from '@toptal/picasso-shared'
@@ -21,6 +22,8 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   children: ReactNode
   /** Color variant of Helpbox */
   variant?: ContainerVariantType
+  /** padding for the container transformed to `em` */
+  padded?: SpacingType
   /** Callback invoked when close is clicked */
   onClose?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
 }
@@ -41,7 +44,15 @@ export const Helpbox = forwardRef<HTMLDivElement, Props>(function Helpbox(
   ref
 ) {
   const classes = useStyles(props)
-  const { className, style, children, variant, onClose, ...rest } = props
+  const {
+    className,
+    style,
+    children,
+    variant,
+    padded,
+    onClose,
+    ...rest
+  } = props
 
   return (
     <Container
@@ -52,7 +63,7 @@ export const Helpbox = forwardRef<HTMLDivElement, Props>(function Helpbox(
       style={style}
       bordered={!variant || variant === 'white'}
       variant={variant}
-      padded='large'
+      padded={padded}
     >
       <HelpboxContext.Provider value={{ closeable: Boolean(onClose) }}>
         {children}
@@ -69,7 +80,9 @@ export const Helpbox = forwardRef<HTMLDivElement, Props>(function Helpbox(
   )
 }) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
 
-Helpbox.defaultProps = {}
+Helpbox.defaultProps = {
+  padded: 'large'
+}
 
 Helpbox.displayName = 'Helpbox'
 
