@@ -37,6 +37,8 @@ const spacingVariants = [
   'xlarge'
 ] as const
 
+const borderRadius = '8px'
+
 export type AlignItemsType = typeof alignItemsVariants[number]
 export type JustifyContentType = typeof justifyContentVariants[number]
 type Direction = typeof directionVariants[number]
@@ -58,6 +60,7 @@ const colorVariant = (colorOptions?: SimplePaletteColorOptions | Color) => {
 
   return createPropertiesStyles({
     backgroundColor: colorOptions.lighter,
+    borderRadius,
 
     '&$bordered': {
       borderColor: colorOptions.main
@@ -105,7 +108,8 @@ justifyContentVariants.forEach(variant => {
 export default ({ palette }: Theme) =>
   createStyles({
     bordered: {
-      border: `1px solid ${palette.grey.lighter}`
+      border: `1px solid ${palette.grey.lighter}`,
+      borderRadius
     },
 
     flex: {
@@ -125,7 +129,8 @@ export default ({ palette }: Theme) =>
     },
 
     whiteVariant: createPropertiesStyles({
-      backgroundColor: palette.common.white
+      backgroundColor: palette.common.white,
+      borderRadius
     }),
 
     redVariant: colorVariant(palette.red),

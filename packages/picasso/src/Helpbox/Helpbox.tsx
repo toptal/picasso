@@ -52,7 +52,7 @@ export const Helpbox = forwardRef<HTMLDivElement, Props>(function Helpbox(
       style={style}
       bordered={!variant || variant === 'white'}
       variant={variant}
-      padded='large'
+      padded='medium'
     >
       <HelpboxContext.Provider value={{ closeable: Boolean(onClose) }}>
         {children}
