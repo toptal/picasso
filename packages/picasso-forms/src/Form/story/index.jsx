@@ -169,11 +169,11 @@ the results. The form-level results are represented by notifications.
     'picasso-form'
   ) // picasso-skip-visuals
   .addExample(
-    'Form/story/ValidateAfterFirstSubmit.example.tsx',
+    'Form/story/ValidateOnSubmit.example.tsx',
     {
-      title: 'Validate after first submission',
+      title: 'Validate only on submit',
       description: `
-All fields should not show any validation error messages until first submission is made.
+All fields should not show any validation error messages until submission is made.
 `
     },
     'picasso-form'

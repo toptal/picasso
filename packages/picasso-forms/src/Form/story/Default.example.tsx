@@ -26,84 +26,86 @@ const DefaultExample = () => {
   const skillOptions = filterOptions(skillInputValue, skills)
 
   return (
-    <Form
-      onSubmit={values => console.log(values)}
-      initialValues={{ gender: 'female' }}
-    >
-      <Form.Input
-        enableReset
-        onResetClick={(set: (value: string) => void) => {
-          set('')
-        }}
-        required
-        name='firstName'
-        label='First name'
-        placeholder='e.g. Bruce'
-      />
-      <Form.Input
-        required
-        name='lastName'
-        label='Last name'
-        placeholder='e.g. Wayne'
-      />
-      <Form.NumberInput
-        enableReset
-        required
-        name='age'
-        label="What's your age?"
-        placeholder='e.g. 25'
-      />
-      <Form.RadioGroup name='gender' label='Gender'>
-        <Form.Radio label='Male' value='male' />
-        <Form.Radio label='Female' value='female' />
-      </Form.RadioGroup>
-      <Form.DatePicker name='dateOfBirth' label='Date of birth' />
-      <Form.TimePicker name='timeOfBirth' label='Time of birth' />
-      <Form.TagSelector
-        name='skills'
-        label='Skills'
-        inputValue={skillInputValue}
-        options={skillOptions}
-        onInputChange={setSkillInputValue}
-      />
-      <Form.CheckboxGroup name='hobbies' label='Hobbies'>
-        <Form.Checkbox label='Skiing' value='skiing' />
-        <Form.Checkbox label='Free diving' value='freeDiving' />
-        <Form.Checkbox label='Dancing' value='dancing' />
-      </Form.CheckboxGroup>
-      <Form.Select
-        enableReset
-        required
-        name='businessType'
-        label='Business type'
-        width='auto'
-        options={[
-          { value: 0, text: 'Company' },
-          { value: 1, text: 'Individual' }
-        ]}
-      />
-      <Form.Select
-        name='country'
-        label='Country'
-        width='auto'
-        options={options}
-      />
-      <Form.FileInput
-        required
-        name='avatar'
-        label='Avatar'
-        status='No file selected.'
-      />
-      <Form.Checkbox
-        required
-        name='legal'
-        label='I confirm that I have legal permission from the client to feature this project.'
-      />
+    <Form.ConfigProvider value={{ validateOnSubmit: true }}>
+      <Form
+        onSubmit={values => console.log(values)}
+        initialValues={{ gender: 'female' }}
+      >
+        <Form.Input
+          enableReset
+          onResetClick={(set: (value: string) => void) => {
+            set('')
+          }}
+          required
+          name='firstName'
+          label='First name'
+          placeholder='e.g. Bruce'
+        />
+        <Form.Input
+          required
+          name='lastName'
+          label='Last name'
+          placeholder='e.g. Wayne'
+        />
+        <Form.NumberInput
+          enableReset
+          required
+          name='age'
+          label="What's your age?"
+          placeholder='e.g. 25'
+        />
+        <Form.RadioGroup name='gender' label='Gender'>
+          <Form.Radio label='Male' value='male' />
+          <Form.Radio label='Female' value='female' />
+        </Form.RadioGroup>
+        <Form.DatePicker name='dateOfBirth' label='Date of birth' />
+        <Form.TimePicker name='timeOfBirth' label='Time of birth' />
+        <Form.TagSelector
+          name='skills'
+          label='Skills'
+          inputValue={skillInputValue}
+          options={skillOptions}
+          onInputChange={setSkillInputValue}
+        />
+        <Form.CheckboxGroup name='hobbies' label='Hobbies'>
+          <Form.Checkbox label='Skiing' value='skiing' />
+          <Form.Checkbox label='Free diving' value='freeDiving' />
+          <Form.Checkbox label='Dancing' value='dancing' />
+        </Form.CheckboxGroup>
+        <Form.Select
+          enableReset
+          required
+          name='businessType'
+          label='Business type'
+          width='auto'
+          options={[
+            { value: 0, text: 'Company' },
+            { value: 1, text: 'Individual' }
+          ]}
+        />
+        <Form.Select
+          name='country'
+          label='Country'
+          width='auto'
+          options={options}
+        />
+        <Form.FileInput
+          required
+          name='avatar'
+          label='Avatar'
+          status='No file selected.'
+        />
+        <Form.Checkbox
+          required
+          name='legal'
+          label='I confirm that I have legal permission from the client to feature this project.'
+        />
 
-      <Container top='small'>
-        <Form.SubmitButton>Submit</Form.SubmitButton>
-      </Container>
-    </Form>
+        <Container top='small'>
+          <Form.SubmitButton>Submit</Form.SubmitButton>
+        </Container>
+      </Form>
+    </Form.ConfigProvider>
   )
 }
 
