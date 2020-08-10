@@ -20,7 +20,7 @@ import {
 import {
   CloseMinor16,
   Exclamation16 as Alert,
-  CheckMinor16 as Tick,
+  Check16 as Tick,
   Info16 as Info
 } from '../Icon'
 import Container from '../Container'
