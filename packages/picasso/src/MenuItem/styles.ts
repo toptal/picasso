@@ -23,7 +23,7 @@ PicassoProvider.override(() => ({
   }
 }))
 
-export default ({ palette }: Theme) =>
+export default ({ typography, palette }: Theme) =>
   createStyles({
     light: {
       color: palette.common.black,
@@ -90,10 +90,16 @@ export default ({ palette }: Theme) =>
     stringContentMedium: {
       fontSize: '0.8125rem'
     },
+    stringContentSemibold: {
+      fontWeight: typography.fontWeights.semibold
+    },
     guttersSmall: {
       padding: '0.25rem 0.625rem'
     },
     guttersMedium: {
       padding: '0.625rem'
+    },
+    iconContainer: {
+      width: '1rem'
     }
   })

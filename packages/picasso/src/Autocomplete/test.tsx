@@ -177,12 +177,16 @@ describe('Autocomplete', () => {
 
         fireEvent.focus(input)
 
+        expect(
+          getByText('Belarus').parentElement!.getAttribute('aria-selected')
+        ).toBe('true')
+
         fireEvent.keyDown(input, {
           key: 'ArrowDown'
         })
 
         expect(
-          getByText('Belarus').parentElement!.getAttribute('aria-selected')
+          getByText('Croatia').parentElement!.getAttribute('aria-selected')
         ).toBe('true')
       })
 

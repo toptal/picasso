@@ -104,7 +104,8 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
     children = (
       <span
         className={cx(classes.stringContent, {
-          [classes[`stringContent${size && capitalize(size!)}`]]: size
+          [classes[`stringContent${size && capitalize(size!)}`]]: size,
+          [classes.stringContentSemibold]: checkmarked
         })}
         style={style}
       >
@@ -122,24 +123,6 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
     if (onClick) {
       onClick(event)
     }
-  }
-
-  const renderIconIfEligible = () => {
-    if (menu) {
-      return (
-        <Container flex inline left='xsmall'>
-          <ChevronMinor16 />
-        </Container>
-      )
-    }
-    if (checkmarked) {
-      return (
-        <Container flex inline left='xsmall' data-testid='select-checkmark'>
-          <CheckMinor16 />
-        </Container>
-      )
-    }
-    return null
   }
 
   return (
@@ -162,8 +145,17 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
       value={value}
       selected={selected}
     >
+      {checkmarked !== undefined && (
+        <Container className={classes.iconContainer} flex inline right='xsmall'>
+          {checkmarked && <CheckMinor16 />}
+        </Container>
+      )}
       {children}
-      {renderIconIfEligible()}
+      {menu && (
+        <Container flex inline left='xsmall'>
+          <ChevronMinor16 />
+        </Container>
+      )}
     </MUIMenuItem>
   )
 })

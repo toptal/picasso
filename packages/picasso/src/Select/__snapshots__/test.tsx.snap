@@ -1,5 +1,150 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`multiple select should checkmark user selected options 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="makeStyles-root makeStyles-rootFull"
+    >
+      <div
+        class="makeStyles-inputWrapper"
+      >
+        <div
+          aria-autocomplete="list"
+          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootFull OutlinedInput-rootMedium makeStyles-input makeStyles-readOnlyInput MuiInputBase-fullWidth Mui-focused Mui-focused"
+          role="textbox"
+        >
+          <input
+            aria-invalid="false"
+            autocomplete="off"
+            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium makeStyles-readOnlyInput"
+            placeholder="Choose an option..."
+            readonly=""
+            size="1"
+            type="text"
+            value="text1, text3"
+          />
+          <fieldset
+            aria-hidden="true"
+            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+            style="padding-left: 8px;"
+          >
+            <legend
+              class="PrivateNotchedOutline-legend"
+              style="width: 0.01px;"
+            >
+              <span>
+                ​
+              </span>
+            </legend>
+          </fieldset>
+        </div>
+        <svg
+          class="SvgDropdownArrows16-root makeStyles-caret"
+          style="min-width: 16px; min-height: 16px;"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8.429 2.715l2.117 3.528a.5.5 0 01-.43.757H5.884a.5.5 0 01-.429-.757l2.117-3.528a.5.5 0 01.858 0zM8.429 13.285l2.117-3.528a.5.5 0 00-.43-.757H5.884a.5.5 0 00-.429.757l2.117 3.528a.5.5 0 00.858 0z"
+          />
+        </svg>
+      </div>
+    </div>
+    <div
+      class="PicassoPopper-root"
+      role="tooltip"
+      style="width: 0px; position: absolute;"
+      x-placement="bottom-start"
+    >
+      <ul
+        class="MuiList-root ScrollMenu-menu"
+        role="menu"
+        tabindex="-1"
+      >
+        <div
+          class="ScrollMenu-scrollView"
+          tabindex="0"
+        >
+          <li
+            aria-disabled="false"
+            aria-selected="true"
+            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+            role="option"
+            tabindex="-1"
+            value="val1"
+          >
+            <div
+              class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+            >
+              <svg
+                class="SvgCheckMinor16-root"
+                style="min-width: 16px; min-height: 16px;"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M6.5 9.793l4-4 .707.707-4 4-.707.707L3.793 8.5l.707-.707 2 2z"
+                />
+              </svg>
+            </div>
+            <span
+              class="MenuItem-stringContent MenuItem-stringContentMedium MenuItem-stringContentSemibold"
+            >
+              text1
+            </span>
+          </li>
+          <li
+            aria-disabled="false"
+            aria-selected="false"
+            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+            role="option"
+            tabindex="-1"
+            value="val2"
+          >
+            <div
+              class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+            />
+            <span
+              class="MenuItem-stringContent MenuItem-stringContentMedium"
+            >
+              text2
+            </span>
+          </li>
+          <li
+            aria-disabled="false"
+            aria-selected="false"
+            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+            role="option"
+            tabindex="-1"
+            value="val3"
+          >
+            <div
+              class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+            >
+              <svg
+                class="SvgCheckMinor16-root"
+                style="min-width: 16px; min-height: 16px;"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M6.5 9.793l4-4 .707.707-4 4-.707.707L3.793 8.5l.707-.707 2 2z"
+                />
+              </svg>
+            </div>
+            <span
+              class="MenuItem-stringContent MenuItem-stringContentMedium MenuItem-stringContentSemibold"
+            >
+              text3
+            </span>
+          </li>
+        </div>
+      </ul>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`renders native select 1`] = `
 <div>
   <div
@@ -23,7 +168,7 @@ exports[`renders native select 1`] = `
             Choose an option...
           </option>
           <option
-            aria-selected="false"
+            aria-selected="true"
             role="option"
             value="val1"
           >
@@ -95,7 +240,7 @@ exports[`renders native select with the empty option enabled when enableReset is
             Choose an option...
           </option>
           <option
-            aria-selected="false"
+            aria-selected="true"
             role="option"
             value="val1"
           >
@@ -212,12 +357,15 @@ exports[`should filter options based on entered value to the input field 1`] = `
   >
     <li
       aria-disabled="false"
-      aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      aria-selected="true"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
       role="option"
       tabindex="-1"
       value="val2"
     >
+      <div
+        class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+      />
       <span
         class="MenuItem-stringContent MenuItem-stringContentMedium"
       >
@@ -240,12 +388,15 @@ exports[`should open menu when focus on select 1`] = `
   >
     <li
       aria-disabled="false"
-      aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      aria-selected="true"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
       role="option"
       tabindex="-1"
       value="val1"
     >
+      <div
+        class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+      />
       <span
         class="MenuItem-stringContent MenuItem-stringContentMedium"
       >
@@ -260,6 +411,9 @@ exports[`should open menu when focus on select 1`] = `
       tabindex="-1"
       value="val2"
     >
+      <div
+        class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+      />
       <span
         class="MenuItem-stringContent MenuItem-stringContentMedium"
       >
@@ -274,6 +428,9 @@ exports[`should open menu when focus on select 1`] = `
       tabindex="-1"
       value="val3"
     >
+      <div
+        class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+      />
       <span
         class="MenuItem-stringContent MenuItem-stringContentMedium"
       >
@@ -296,12 +453,15 @@ exports[`should render options customly 1`] = `
   >
     <li
       aria-disabled="false"
-      aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      aria-selected="true"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
       role="option"
       tabindex="-1"
       value="val1"
     >
+      <div
+        class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+      />
       <div>
         Custom renderered text1
       </div>
@@ -314,6 +474,9 @@ exports[`should render options customly 1`] = `
       tabindex="-1"
       value="val2"
     >
+      <div
+        class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+      />
       <div>
         Custom renderered text2
       </div>
@@ -326,6 +489,9 @@ exports[`should render options customly 1`] = `
       tabindex="-1"
       value="val3"
     >
+      <div
+        class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+      />
       <div>
         Custom renderered text3
       </div>

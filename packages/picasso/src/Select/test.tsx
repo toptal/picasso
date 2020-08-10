@@ -71,11 +71,6 @@ const OPTIONS = [
   }
 ]
 
-const getCheckmarkedOptions = (element: Element) =>
-  Array.from(element.querySelectorAll('li')).filter((opt: Element) =>
-    opt.querySelector('[data-testid="select-checkmark"]')
-  ) as Element[]
-
 const getSelectedOptions = (element: Element) =>
   Array.from(element.querySelectorAll('[class$="selected"]')) as Element[]
 
@@ -293,23 +288,6 @@ test('should highlight selected option when focus on select', () => {
   expect(selectedOptions[0].textContent).toMatch(OPTIONS[2].text)
 })
 
-test('should not checkmark user selected options', () => {
-  const placeholder = 'Choose an option...'
-  const selectedValue = OPTIONS[1]
-  const { container, getByPlaceholderText } = renderSelect({
-    options: OPTIONS,
-    value: selectedValue.value,
-    placeholder
-  })
-
-  const input = getByPlaceholderText(placeholder)
-  fireEvent.focus(input)
-
-  const checkmarkedOptions = getCheckmarkedOptions(container)
-
-  expect(checkmarkedOptions.length).toBe(0)
-})
-
 describe('multiple select', () => {
   test('should fire onChange event with the value when clicked on option', async () => {
     const onChange = jest.fn(event => event.target.value)
@@ -364,26 +342,66 @@ describe('multiple select', () => {
     expect(inputComponent.value).toBe(`${OPTIONS[0].text}, ${OPTIONS[1].text}`)
   })
 
-  test('should highlight nothing when focus on select', () => {
-    const placeholder = 'Choose an option...'
-    const selectedOptions = [OPTIONS[2]]
-    const { container, getByPlaceholderText } = renderSelect({
-      options: OPTIONS,
-      value: selectedOptions.map(opt => opt.value),
-      placeholder,
-      multiple: true
+  describe('when focus on select', () => {
+    test('should highlight first option if nothing is selected', () => {
+      const placeholder = 'Choose an option...'
+      const { getByText, getByPlaceholderText } = renderSelect({
+        options: OPTIONS,
+        value: [],
+        placeholder,
+        multiple: true
+      })
+
+      const input = getByPlaceholderText(placeholder)
+      fireEvent.focus(input)
+
+      expect(
+        getByText(OPTIONS[0].text).parentElement?.getAttribute('aria-selected')
+      ).toBe('true')
     })
 
-    const input = getByPlaceholderText(placeholder)
-    fireEvent.focus(input)
+    test('should highlight selected option when only one option is selected', () => {
+      const placeholder = 'Choose an option...'
+      const selectedOptions = [OPTIONS[2]]
+      const { getByText, getByPlaceholderText } = renderSelect({
+        options: OPTIONS,
+        value: selectedOptions.map(opt => opt.value),
+        placeholder,
+        multiple: true
+      })
 
-    const selectedItems = container.querySelectorAll('[class$="selected"]')
-    expect(selectedItems.length).toBe(0)
+      const input = getByPlaceholderText(placeholder)
+      fireEvent.focus(input)
+
+      expect(
+        getByText(selectedOptions[0].text).parentElement?.getAttribute(
+          'aria-selected'
+        )
+      ).toBe('true')
+    })
+
+    test('should highlight first option when multiple options are selected', () => {
+      const placeholder = 'Choose an option...'
+      const selectedOptions = [OPTIONS[1], OPTIONS[2]]
+      const { getByText, getByPlaceholderText } = renderSelect({
+        options: OPTIONS,
+        value: selectedOptions.map(opt => opt.value),
+        placeholder,
+        multiple: true
+      })
+
+      const input = getByPlaceholderText(placeholder)
+      fireEvent.focus(input)
+
+      expect(
+        getByText(OPTIONS[0].text).parentElement?.getAttribute('aria-selected')
+      ).toBe('true')
+    })
   })
 
   test('should checkmark user selected options', () => {
     const placeholder = 'Choose an option...'
-    const selectedOptions = [OPTIONS[2]]
+    const selectedOptions = [OPTIONS[0], OPTIONS[2]]
     const { container, getByPlaceholderText } = renderSelect({
       options: OPTIONS,
       value: selectedOptions.map(opt => opt.value),
@@ -394,10 +412,7 @@ describe('multiple select', () => {
     const input = getByPlaceholderText(placeholder)
     fireEvent.focus(input)
 
-    const checkmarkedOptions = getCheckmarkedOptions(container)
-
-    expect(checkmarkedOptions.length).toBe(1)
-    expect(checkmarkedOptions[0].textContent).toMatch(OPTIONS[2].text)
+    expect(container).toMatchSnapshot()
   })
 
   test('should not transform options text to title case when Picasso titleCase property is true', () => {

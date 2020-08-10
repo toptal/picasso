@@ -5,7 +5,8 @@ import {
   useState,
   ChangeEvent,
   FocusEventHandler,
-  useLayoutEffect
+  useEffect,
+  useMemo
 } from 'react'
 
 import { Item, ChangedOptions } from './types'
@@ -93,15 +94,23 @@ const useAutocomplete = ({
   const [isOpen, setOpen] = useState<boolean>(false)
   const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null)
 
-  useLayoutEffect(() => {
-    setHighlightedIndex(null)
-  }, [value, isOpen])
+  const selectedIndex = useMemo(
+    () =>
+      value && Array.isArray(options)
+        ? options.findIndex(option => getDisplayValue!(option) === value)
+        : null,
+    [getDisplayValue, options, value]
+  )
 
-  const shouldShowOtherOption =
-    showOtherOption &&
-    value &&
-    Array.isArray(options) &&
-    options.every(option => getDisplayValue!(option) !== value)
+  useEffect(() => {
+    if (!isOpen) {
+      setHighlightedIndex(
+        selectedIndex && selectedIndex !== -1 ? selectedIndex : 0
+      )
+    }
+  }, [isOpen, selectedIndex])
+
+  const shouldShowOtherOption = showOtherOption && selectedIndex === -1
 
   const handleChange = (newValue: string, isSelected = false) => {
     if (newValue !== value) {
@@ -123,6 +132,7 @@ const useAutocomplete = ({
     role: 'option',
     'aria-selected': highlightedIndex === index,
     selected: highlightedIndex === index,
+    checkmarked: selectedIndex === index,
     onMouseMove: () => {
       if (index === highlightedIndex) {
         return
@@ -224,6 +234,12 @@ const useAutocomplete = ({
 
       if (key === 'Enter') {
         event.preventDefault()
+
+        if (!isOpen) {
+          setOpen(true)
+          return
+        }
+
         setOpen(false)
 
         const findSelectedItemUsingIndex = () =>

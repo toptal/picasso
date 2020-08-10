@@ -12,11 +12,14 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
   >
     <li
       aria-disabled="false"
-      aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      aria-selected="true"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
       role="option"
       tabindex="-1"
     >
+      <div
+        class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+      />
       <span
         class="MenuItem-stringContent"
       >
@@ -30,6 +33,9 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
       role="option"
       tabindex="-1"
     >
+      <div
+        class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+      />
       <span
         class="MenuItem-stringContent"
       >
@@ -43,6 +49,9 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
       role="option"
       tabindex="-1"
     >
+      <div
+        class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+      />
       <span
         class="MenuItem-stringContent"
       >
@@ -56,6 +65,9 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
       role="option"
       tabindex="-1"
     >
+      <div
+        class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+      />
       <span
         class="MenuItem-stringContent"
       >
@@ -69,6 +81,9 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
       role="option"
       tabindex="-1"
     >
+      <div
+        class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+      />
       <span
         class="MenuItem-stringContent"
       >

@@ -66,12 +66,15 @@ exports[`YearSelect render in descending order 1`] = `
   >
     <li
       aria-disabled="false"
-      aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      aria-selected="true"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
       role="option"
       tabindex="-1"
       value="2005"
     >
+      <div
+        class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+      />
       <span
         class="MenuItem-stringContent MenuItem-stringContentMedium"
       >
@@ -86,6 +89,9 @@ exports[`YearSelect render in descending order 1`] = `
       tabindex="-1"
       value="2004"
     >
+      <div
+        class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+      />
       <span
         class="MenuItem-stringContent MenuItem-stringContentMedium"
       >
@@ -100,6 +106,9 @@ exports[`YearSelect render in descending order 1`] = `
       tabindex="-1"
       value="2003"
     >
+      <div
+        class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+      />
       <span
         class="MenuItem-stringContent MenuItem-stringContentMedium"
       >
@@ -114,6 +123,9 @@ exports[`YearSelect render in descending order 1`] = `
       tabindex="-1"
       value="2002"
     >
+      <div
+        class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+      />
       <span
         class="MenuItem-stringContent MenuItem-stringContentMedium"
       >
@@ -128,6 +140,9 @@ exports[`YearSelect render in descending order 1`] = `
       tabindex="-1"
       value="2001"
     >
+      <div
+        class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+      />
       <span
         class="MenuItem-stringContent MenuItem-stringContentMedium"
       >

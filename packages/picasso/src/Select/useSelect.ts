@@ -1,10 +1,11 @@
+/* eslint-disable complexity, max-statements */
 import {
   KeyboardEvent,
   useState,
   ChangeEvent,
   useCallback,
   HTMLAttributes,
-  useLayoutEffect
+  useEffect
 } from 'react'
 
 import { Option } from './types'
@@ -74,6 +75,7 @@ interface Props {
   enableAutofill?: boolean
   autoComplete?: any
   disabled?: boolean
+  selectedIndices?: number[]
   onSelect?: (event: React.SyntheticEvent, item: Option | null) => void
   onChange?: (value: string) => void
   onKeyDown?: (
@@ -103,13 +105,14 @@ interface UseSelectOutput {
   getRootProps: GetRootProps
   getInputProps: GetInputProps
   isOpen: boolean
-  highlightedIndex: number | null
-  setHighlightedIndex: (index: number | null) => void
+  highlightedIndex: number
+  setHighlightedIndex: (index: number) => void
 }
 
 const useSelect = ({
   value,
   options = [],
+  selectedIndices = [],
   disabled = false,
   onChange = () => {},
   onKeyDown = () => {},
@@ -118,11 +121,14 @@ const useSelect = ({
   onFocus = () => {}
 }: Props): UseSelectOutput => {
   const [isOpen, setOpen] = useState<boolean>(false)
-  const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null)
 
-  useLayoutEffect(() => {
-    setHighlightedIndex(null)
-  }, [value, isOpen])
+  useEffect(() => {
+    if (!isOpen) {
+      setHighlightedIndex(selectedIndices.length === 1 ? selectedIndices[0] : 0)
+    }
+  }, [isOpen, selectedIndices])
+
+  const [highlightedIndex, setHighlightedIndex] = useState<number>(0)
 
   const handleSelect = (event: React.SyntheticEvent, item: Option | null) => {
     onSelect(event, item)
@@ -137,7 +143,7 @@ const useSelect = ({
 
   const close = useCallback(() => {
     setOpen(false)
-  }, [])
+  }, [setOpen])
 
   const getItemProps = (index: number, item: Option): ItemProps => ({
     role: 'option',
@@ -191,22 +197,20 @@ const useSelect = ({
     onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => {
       const key = normalizeArrowKey(event)
 
-      if (key === 'ArrowUp') {
+      if (key === 'ArrowUp' || key === 'ArrowDown') {
         event.preventDefault()
 
-        setOpen(true)
-        setHighlightedIndex(
-          getNextWrappingIndex(-1, highlightedIndex, options.length)
-        )
-      }
-
-      if (key === 'ArrowDown') {
-        event.preventDefault()
-
-        setOpen(true)
-        setHighlightedIndex(
-          getNextWrappingIndex(1, highlightedIndex, options.length)
-        )
+        if (isOpen) {
+          setHighlightedIndex(
+            getNextWrappingIndex(
+              key === 'ArrowDown' ? 1 : -1,
+              highlightedIndex,
+              options.length
+            )
+          )
+        } else {
+          setOpen(true)
+        }
       }
 
       if (key === 'Backspace') {
@@ -218,7 +222,8 @@ const useSelect = ({
       }
 
       if (key === 'Enter') {
-        if (!isOpen || highlightedIndex === null) {
+        if (!isOpen) {
+          setOpen(true)
           return
         }
 
@@ -249,7 +254,6 @@ const useSelect = ({
       event.stopPropagation()
 
       setOpen(false)
-      setHighlightedIndex(null)
       handleSelect(event, null)
     }
   })
