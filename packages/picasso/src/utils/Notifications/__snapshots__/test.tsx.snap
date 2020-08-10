@@ -66,12 +66,12 @@ exports[`useNotifications error notification render 1`] = `
                     class="Container-centerAlignItems Container-flex Notification-iconWrapper"
                   >
                     <svg
-                      class="SvgExclamation16-root SvgExclamation16-red"
-                      style="min-width: 16px; min-height: 16px;"
-                      viewBox="0 0 16 16"
+                      class="SvgExclamationSolid24-root SvgExclamationSolid24-red"
+                      style="min-width: 24px; min-height: 24px;"
+                      viewBox="0 0 24 24"
                     >
                       <path
-                        d="M7.5 15a7.5 7.5 0 110-15 7.5 7.5 0 010 15zm0-1a6.5 6.5 0 100-13 6.5 6.5 0 000 13zM7 3h1v6H7V3zm0 8h1v1H7v-1z"
+                        d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zm0 16a1 1 0 100 2 1 1 0 000-2zm0-10a1 1 0 00-1 1v7a1 1 0 002 0V7a1 1 0 00-1-1z"
                       />
                     </svg>
                   </div>
@@ -177,12 +177,12 @@ exports[`useNotifications info notification render 1`] = `
                     class="Container-centerAlignItems Container-flex Notification-iconWrapper"
                   >
                     <svg
-                      class="SvgInfo16-root SvgInfo16-grey"
-                      style="min-width: 16px; min-height: 16px;"
-                      viewBox="0 0 16 16"
+                      class="SvgInfo24-root SvgInfo24-grey"
+                      style="min-width: 24px; min-height: 24px;"
+                      viewBox="0 0 24 24"
                     >
                       <path
-                        d="M7.5 15a7.5 7.5 0 110-15 7.5 7.5 0 010 15zm0-1a6.5 6.5 0 100-13 6.5 6.5 0 000 13zM7 6h1v6H7V6zm0-3h1v1H7V3z"
+                        d="M11.5 22C5.701 22 1 17.299 1 11.5S5.701 1 11.5 1 22 5.701 22 11.5 17.299 22 11.5 22zm0-1a9.5 9.5 0 100-19 9.5 9.5 0 000 19zM11 9h1v8h-1V9zm0-3h1v1h-1V6z"
                       />
                     </svg>
                   </div>
@@ -288,12 +288,12 @@ exports[`useNotifications success notification render 1`] = `
                     class="Container-centerAlignItems Container-flex Notification-iconWrapper"
                   >
                     <svg
-                      class="SvgCheckMinor16-root SvgCheckMinor16-green"
-                      style="min-width: 16px; min-height: 16px;"
-                      viewBox="0 0 16 16"
+                      class="SvgCheckSolid24-root SvgCheckSolid24-green"
+                      style="min-width: 24px; min-height: 24px;"
+                      viewBox="0 0 24 24"
                     >
                       <path
-                        d="M6.5 9.793l4-4 .707.707-4 4-.707.707L3.793 8.5l.707-.707 2 2z"
+                        d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zm4.034 7.667l-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377z"
                       />
                     </svg>
                   </div>

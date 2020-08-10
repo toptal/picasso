@@ -16,12 +16,12 @@ exports[`Notification default render 1`] = `
           class="Container-centerAlignItems Container-flex Notification-iconWrapper"
         >
           <svg
-            class="SvgInfo16-root SvgInfo16-grey"
-            style="min-width: 16px; min-height: 16px;"
-            viewBox="0 0 16 16"
+            class="SvgInfo24-root SvgInfo24-grey"
+            style="min-width: 24px; min-height: 24px;"
+            viewBox="0 0 24 24"
           >
             <path
-              d="M7.5 15a7.5 7.5 0 110-15 7.5 7.5 0 010 15zm0-1a6.5 6.5 0 100-13 6.5 6.5 0 000 13zM7 6h1v6H7V6zm0-3h1v1H7V3z"
+              d="M11.5 22C5.701 22 1 17.299 1 11.5S5.701 1 11.5 1 22 5.701 22 11.5 17.299 22 11.5 22zm0-1a9.5 9.5 0 100-19 9.5 9.5 0 000 19zM11 9h1v8h-1V9zm0-3h1v1h-1V6z"
             />
           </svg>
         </div>

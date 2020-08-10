@@ -19,9 +19,9 @@ import {
 
 import {
   CloseMinor16,
-  Exclamation16 as Alert,
-  CheckMinor16 as Tick,
-  Info16 as Info
+  ExclamationSolid24 as Alert,
+  CheckSolid24 as Tick,
+  Info24 as Info
 } from '../Icon'
 import Container from '../Container'
 import Button from '../Button'
