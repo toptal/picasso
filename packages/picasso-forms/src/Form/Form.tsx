@@ -3,7 +3,7 @@ import {
   Form as FinalForm,
   FormProps as FinalFormProps
 } from 'react-final-form'
-import { FormApi, FieldState } from 'final-form'
+import { FormApi } from 'final-form'
 import { Form as PicassoForm } from '@toptal/picasso'
 import { useNotifications } from '@toptal/picasso/utils'
 
@@ -31,31 +31,30 @@ export type Props<T = AnyObject> = FinalFormProps<T> & {
   scrollOffsetTop?: number
 }
 
-const getSubmitErrors = <T extends any = AnyObject>(
+const getSubmitErrors = (
   validationObject: FormContextProps,
-  formValues: T,
-  form: FormApi<T>
-) => {
-  const errors = Object.entries(validationObject).reduce<
-    Record<string, string> | undefined
-  >((result, entry) => {
-    const [key, validator] = entry
-    const error: string =
-      validator &&
-      validator(
-        formValues[key as keyof T],
-        formValues as object,
-        form.getFieldState(key as keyof T) as FieldState<unknown>
+  formValues: AnyObject,
+  form: FormApi<AnyObject>
+) =>
+  Object.entries(validationObject).reduce<Record<string, string> | undefined>(
+    (result, [key, validator]) => {
+      const error: string = validator?.(
+        formValues[key],
+        formValues,
+        form.getFieldState(key)
       )
-    if (error) {
-      if (!result) result = { [key]: error }
-      else result[key] = error
-    }
-    return result
-  }, undefined)
 
-  return errors
-}
+      if (error) {
+        return {
+          ...result,
+          [key]: error
+        }
+      }
+
+      return result
+    },
+    undefined
+  )
 
 export const Form = <T extends any = AnyObject>(props: Props<T>) => {
   const {
@@ -73,8 +72,20 @@ export const Form = <T extends any = AnyObject>(props: Props<T>) => {
     [scrollOffsetTop]
   )
 
+  const validationObject = useRef<FormContextProps>({})
+
   const handleSubmit = useCallback(
     async (values, form, callback) => {
+      const validationErrors = getSubmitErrors(
+        validationObject.current,
+        values,
+        form
+      )
+
+      if (validationErrors) {
+        return validationErrors
+      }
+
       const errors = await onSubmit(values, form, callback)
 
       if (!errors && successSubmitMessage) {
@@ -94,27 +105,13 @@ export const Form = <T extends any = AnyObject>(props: Props<T>) => {
     ]
   )
 
-  const validationObject = useRef<FormContextProps>({})
-
   return (
     <FormContext.Provider value={validationObject}>
       <FinalForm
         render={({ handleSubmit }) => (
           <PicassoForm onSubmit={handleSubmit}>{children}</PicassoForm>
         )}
-        onSubmit={async (values, form, callback) => {
-          const errors = getSubmitErrors<T>(
-            validationObject.current,
-            values,
-            form
-          )
-
-          if (errors) {
-            return errors
-          }
-
-          return handleSubmit(values, form, callback)
-        }}
+        onSubmit={handleSubmit}
         decorators={[...decorators, scrollToErrorDecorator]}
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
