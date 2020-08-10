@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.29.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.28.0...@toptal/picasso-lab@2.29.0) (2020-08-10)
+
+
+### Features
+
+* button loader ([#1465](https://github.com/toptal/picasso/issues/1465)) ([283ee3a](https://github.com/toptal/picasso/commit/283ee3a931ceab7332b5aee82d0d2166b77b9260))
+
+
+
+
+
 # [2.28.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.27.0...@toptal/picasso-lab@2.28.0) (2020-08-03)
 
 
