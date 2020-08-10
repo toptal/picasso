@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.84.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.83.0...@toptal/picasso@4.84.0) (2020-08-10)
+
+
+### Features
+
+* add disable portal for slider ([#1467](https://github.com/toptal/picasso/issues/1467)) ([08b4460](https://github.com/toptal/picasso/commit/08b4460ba2ebac7b26a82d35bb75e8fd48436c6e))
+
+
+
+
+
 # [4.83.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.82.3...@toptal/picasso@4.83.0) (2020-08-10)
 
 
