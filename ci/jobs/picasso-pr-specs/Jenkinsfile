@@ -15,7 +15,7 @@ pipeline {
   options {
     ansiColor('xterm')
     timestamps()
-    timeout(time: 35, unit: 'MINUTES')
+    timeout(time: 45, unit: 'MINUTES')
     skipDefaultCheckout()
   }
 

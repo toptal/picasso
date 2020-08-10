@@ -6,17 +6,28 @@ const Example = () => (
   <>
     <Container bottom='medium'>
       <Container bottom='xsmall'>
-        <Typography>Default alignment</Typography>
+        <Typography>Default</Typography>
       </Container>
-      <SkeletonLoader.Header />
+      <SkeletonLoader.Button />
     </Container>
 
     <Container bottom='medium'>
       <Container bottom='xsmall'>
-        <Typography>Centered</Typography>
+        <Typography>Align center</Typography>
       </Container>
+
       <Container flex justifyContent='center'>
-        <SkeletonLoader.Header />
+        <SkeletonLoader.Button />
+      </Container>
+    </Container>
+
+    <Container bottom='medium'>
+      <Container bottom='xsmall'>
+        <Typography>Align right</Typography>
+      </Container>
+
+      <Container flex justifyContent='flex-end'>
+        <SkeletonLoader.Button />
       </Container>
     </Container>
   </>

@@ -3,20 +3,20 @@ import { BaseProps } from '@toptal/picasso-shared'
 import ContentLoader from 'react-content-loader'
 import { palette } from '@toptal/picasso/utils'
 
-const HEIGHT = 10
-const WIDTH = 200
-const CONTAINTER_HEIGHT = HEIGHT * 2
-const VIEW_BOX = `0 0 ${WIDTH} ${CONTAINTER_HEIGHT}`
-const BORDER_RADIUS = HEIGHT / 2
+const WIDTH = 80
+const HEIGHT = 32
+const BORDER_RADIUS = 4
+const VIEW_BOX = `0 0 ${WIDTH} ${HEIGHT}`
 
-export const HeaderLoader: FC<BaseProps> = () => (
+export const ButtonLoader: FC<BaseProps> = () => (
   <ContentLoader
     viewBox={VIEW_BOX}
     color={palette.grey.main2}
-    height={CONTAINTER_HEIGHT}
+    width={WIDTH}
+    height={HEIGHT}
   >
     <rect
-      x='0'
+      x={0}
       y='0'
       rx={BORDER_RADIUS}
       ry={BORDER_RADIUS}
@@ -26,6 +26,6 @@ export const HeaderLoader: FC<BaseProps> = () => (
   </ContentLoader>
 )
 
-HeaderLoader.displayName = 'HeaderLoader'
+ButtonLoader.displayName = 'ButtonLoader'
 
-export default HeaderLoader
+export default ButtonLoader
