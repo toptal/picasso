@@ -288,12 +288,12 @@ exports[`useNotifications success notification render 1`] = `
                     class="Container-centerAlignItems Container-flex Notification-iconWrapper"
                   >
                     <svg
-                      class="SvgCheckMinor16-root SvgCheckMinor16-green"
+                      class="SvgCheck16-root SvgCheck16-green"
                       style="min-width: 16px; min-height: 16px;"
                       viewBox="0 0 16 16"
                     >
                       <path
-                        d="M6.5 9.793l4-4 .707.707-4 4-.707.707L3.793 8.5l.707-.707 2 2z"
+                        d="M5.5 11.793l9-9 .707.707-9 9-.707.707L.793 8.5l.707-.707 4 4z"
                       />
                     </svg>
                   </div>
