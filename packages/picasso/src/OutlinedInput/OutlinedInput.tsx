@@ -24,6 +24,10 @@ type ValueType =
   | boolean
   | object
 
+export type BaseInputProps = InputBaseComponentProps & {
+  variant?: 'dark' | 'light'
+}
+
 export interface Props
   extends StandardProps,
     Omit<
@@ -33,7 +37,7 @@ export interface Props
   /** Width of the component */
   width?: 'full' | 'shrink' | 'auto'
   inputComponent?: ReactType<InputBaseComponentProps>
-  inputProps?: InputBaseComponentProps
+  inputProps?: BaseInputProps
   defaultValue?: ValueType
   value?: ValueType
   /** Whether `Input` should be rendered as `TextArea` or not */
@@ -58,6 +62,8 @@ export interface Props
   size?: SizeType<'small' | 'medium'>
   /** Whether to render reset icon when there is a value in the input */
   enableReset?: boolean
+  /** dark */
+  dark?: boolean
   /** Callback invoked when reset button was clicked */
   onResetClick?: () => void
 }
@@ -119,6 +125,7 @@ const OutlinedInput = forwardRef<HTMLInputElement, Props>(
     },
     ref
   ) {
+    const isDark = inputProps?.variant && inputProps?.variant === 'dark'
     const shouldShowReset = enableReset && !disabled
     const endAdornment = shouldShowReset ? (
       <>
@@ -142,10 +149,16 @@ const OutlinedInput = forwardRef<HTMLInputElement, Props>(
             classes.root,
             classes[`root${capitalize(width!)}`],
             classes[`root${capitalize(size!)}`],
-            { [`${classes.hidden}`]: type === 'hidden' }
+            { [`${classes.hidden}`]: type === 'hidden' },
+            { [classes.rootDark]: isDark }
           ),
-          input: cx(classes.input, classes[`input${capitalize(size!)}`]),
-          inputMultiline: classes.inputMultiline
+          input: cx(classes.input, classes[`input${capitalize(size!)}`], {
+            [classes.inputDark]: isDark
+          }),
+          inputMultiline: classes.inputMultiline,
+          notchedOutline: cx({
+            [classes.notchedOutlineDark]: isDark
+          })
         }}
         className={className}
         style={style}

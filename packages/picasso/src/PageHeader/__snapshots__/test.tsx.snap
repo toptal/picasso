@@ -9,7 +9,7 @@ exports[`Page.Header default render 1`] = `
       class="PageHeader-wrapper"
     >
       <header
-        class="mui-fixed PageHeader-root PageHeader-light"
+        class="mui-fixed PageHeader-root PageHeader-dark"
       >
         <div
           class="PageHeader-content"
@@ -71,7 +71,7 @@ exports[`Page.Header render with link 1`] = `
       class="PageHeader-wrapper"
     >
       <header
-        class="mui-fixed PageHeader-root PageHeader-light"
+        class="mui-fixed PageHeader-root PageHeader-dark"
       >
         <div
           class="PageHeader-content"
