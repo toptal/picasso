@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.85.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.84.2...@toptal/picasso@4.85.0) (2020-08-11)
+
+
+### Features
+
+* **TagSelector:** add noOptionText to TagSelector props ([#1466](https://github.com/toptal/picasso/issues/1466)) ([5cf4bfc](https://github.com/toptal/picasso/commit/5cf4bfcade283601dad56f185ada98861454a765))
+
+
+
+
+
 ## [4.84.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.84.1...@toptal/picasso@4.84.2) (2020-08-11)
 
 **Note:** Version bump only for package @toptal/picasso
