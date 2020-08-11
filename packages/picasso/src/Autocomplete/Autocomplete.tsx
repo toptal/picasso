@@ -171,10 +171,12 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       <ScrollMenu selectedIndex={highlightedIndex}>
         {options!.map((option, index) => (
           <Menu.Item
+            size='medium'
             key={getKey(option)}
             /* eslint-disable-next-line react/jsx-props-no-spreading */
             {...getItemProps(index, option)}
             titleCase={false}
+            description={option.description}
           >
             {renderOption
               ? renderOption(option, index)
@@ -184,6 +186,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
 
         {shouldShowOtherOption && (
           <Menu.Item
+            size='medium'
             key='other-option'
             className={cx({
               [classes.otherOption]: true
@@ -202,7 +205,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
         )}
 
         {!optionsLength && !shouldShowOtherOption && (
-          <Menu.Item titleCase={false} disabled>
+          <Menu.Item size='medium' titleCase={false} disabled>
             {noOptionsText}
           </Menu.Item>
         )}

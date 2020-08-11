@@ -68,6 +68,10 @@ if needed.
   .addExample('Autocomplete/story/Error.example.jsx', 'Error')
   .addExample('Autocomplete/story/WithIcons.example.jsx', 'With Icon')
   .addExample(
+    'Autocomplete/story/WithDescription.example.jsx',
+    'With Description'
+  )
+  .addExample(
     'Autocomplete/story/CustomOptionRenderer.example.tsx',
     'Custom options rendering'
   )

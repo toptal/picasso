@@ -178,6 +178,7 @@ const renderNativeOptions = ({
 
 interface SelectOptionProps {
   children?: ReactNode
+  description?: ReactNode
   onMouseDown: (event: React.MouseEvent) => void
   onMouseEnter: () => void
   close: () => void
@@ -199,6 +200,7 @@ const SelectOption = React.memo(
     highlighted,
     onItemSelect,
     multiple,
+    description,
     children,
     close
   }: SelectOptionProps) => {
@@ -220,6 +222,7 @@ const SelectOption = React.memo(
           onItemSelect(event, option)
         }}
         titleCase={false}
+        description={description}
       >
         {children}
       </MenuItem>
@@ -329,6 +332,7 @@ const renderOptions = ({
         multiple={multiple}
         close={close}
         onItemSelect={onItemSelect}
+        description={option.description}
       >
         {renderOption?.(option)}
       </SelectOption>

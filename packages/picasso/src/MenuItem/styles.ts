@@ -1,5 +1,5 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
-import { PicassoProvider } from '@toptal/picasso-shared'
+import { PicassoProvider, rem } from '@toptal/picasso-shared'
 
 PicassoProvider.override(() => ({
   MuiMenuItem: {
@@ -94,12 +94,19 @@ export default ({ typography, palette }: Theme) =>
       fontWeight: typography.fontWeights.semibold
     },
     guttersSmall: {
-      padding: '0.25rem 0.625rem'
+      padding: `0.1875rem 0.5rem`
     },
     guttersMedium: {
-      padding: '0.625rem'
+      padding: '0.375rem 0.5rem'
     },
     iconContainer: {
       width: '1rem'
+    },
+    content: {
+      height: '1.25rem'
+    },
+    description: {
+      fontSize: rem('11px'),
+      color: palette.text.primary
     }
   })

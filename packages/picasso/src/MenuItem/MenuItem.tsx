@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import React, {
   forwardRef,
   ReactNode,
@@ -44,6 +45,7 @@ export interface Props
   /** Whether to render without internal padding */
   disableGutters?: boolean
   children?: ReactNode
+  description?: ReactNode
   /** Nested menu */
   menu?: ReactElement
   /** Callback when menu item is clicked */
@@ -72,6 +74,7 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
   {
     as,
     children,
+    description,
     classes,
     className,
     disabled,
@@ -145,17 +148,31 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
       value={value}
       selected={selected}
     >
-      {checkmarked !== undefined && (
-        <Container className={classes.iconContainer} flex inline right='xsmall'>
-          {checkmarked && <CheckMinor16 />}
+      <Container flex direction='column'>
+        <Container flex alignItems='center' className={classes.content}>
+          {checkmarked !== undefined && (
+            <Container
+              className={classes.iconContainer}
+              flex
+              inline
+              right='xsmall'
+            >
+              {checkmarked && <CheckMinor16 />}
+            </Container>
+          )}
+          {children}
+          {menu && (
+            <Container flex inline left='xsmall'>
+              <ChevronMinor16 />
+            </Container>
+          )}
         </Container>
-      )}
-      {children}
-      {menu && (
-        <Container flex inline left='xsmall'>
-          <ChevronMinor16 />
-        </Container>
-      )}
+        {description && (
+          <Container className={classes.description} left='medium' top={0.25}>
+            {description}
+          </Container>
+        )}
+      </Container>
     </MUIMenuItem>
   )
 })
