@@ -85,6 +85,8 @@ export interface Props<
   ) => void
   /** Callback invoked when filter input changed */
   onSearchChange?: (value: string) => void
+  /** Label to show when no options were found */
+  noOptionsText?: string
   /** List of options to be rendered as `Select` */
   options: Option<T>[]
   /** Callback responsible for rendering the option given the option and its index in the list of options */
@@ -128,9 +130,16 @@ type NativeOptionsProps = Pick<Props, 'options' | 'renderOption'> & {
 
 type OptionsProps = Pick<
   Props,
-  'options' | 'value' | 'multiple' | 'renderOption' | 'getDisplayValue' | 'size'
+  | 'options'
+  | 'value'
+  | 'multiple'
+  | 'renderOption'
+  | 'getDisplayValue'
+  | 'size'
+  | 'noOptionsText'
 > & {
   highlightedIndex: number | null
+  inputValue: string
   setHighlightedIndex: (index: number | null) => void
   getItemProps: (index: number, option: Option) => ItemProps
   onItemSelect: (event: React.MouseEvent, option: Option) => void
@@ -301,8 +310,20 @@ const renderOptions = ({
   getItemProps,
   value,
   multiple,
-  size
+  size,
+  inputValue,
+  noOptionsText
 }: OptionsProps) => {
+  if (!options.length && inputValue) {
+    return (
+      <ScrollMenu>
+        <MenuItem titleCase={false} disabled>
+          {noOptionsText}
+        </MenuItem>
+      </ScrollMenu>
+    )
+  }
+
   const optionComponents = options.map((option, currentIndex) => {
     const { close, onMouseDown } = getItemProps(currentIndex, option)
     const selection = getSelection(options, value)
@@ -351,6 +372,7 @@ export const Select = documentable(
         name,
         native,
         options: allOptions,
+        noOptionsText,
         renderOption,
         placeholder,
         disabled,
@@ -650,7 +672,7 @@ export const Select = documentable(
             />
             {dropDownIcon}
           </div>
-          {Boolean(options.length) && !disabled && (
+          {!disabled && (
             <Popper
               autoWidth
               width={menuWidth}
@@ -660,6 +682,7 @@ export const Select = documentable(
               container={popperContainer}
             >
               {isOpen &&
+                !loading &&
                 renderOptions({
                   options,
                   renderOption,
@@ -670,7 +693,9 @@ export const Select = documentable(
                   value,
                   getDisplayValue,
                   multiple,
-                  size
+                  size,
+                  noOptionsText,
+                  inputValue
                 })}
             </Popper>
           )}
@@ -701,6 +726,7 @@ Select.defaultProps = {
   iconPosition: 'start',
   loading: false,
   native: false,
+  noOptionsText: 'No matches found',
   onChange: () => {},
   onSearchChange: () => {},
   onBlur: () => {},
