@@ -3,7 +3,7 @@ import {
   Form as FinalForm,
   FormProps as FinalFormProps
 } from 'react-final-form'
-import { FormApi } from 'final-form'
+import { FormApi, ValidationErrors } from 'final-form'
 import { Form as PicassoForm } from '@toptal/picasso'
 import { useNotifications } from '@toptal/picasso/utils'
 
@@ -41,7 +41,7 @@ const getSubmitErrors = (
   formValues: AnyObject,
   form: FormApi<AnyObject>
 ) =>
-  Object.entries(validationObject).reduce<Record<string, string> | undefined>(
+  Object.entries(validationObject).reduce<ValidationErrors | undefined>(
     (result, [key, validator]) => {
       const error: string = validator?.(
         formValues[key],
