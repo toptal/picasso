@@ -70,7 +70,7 @@ if needed.
   .addExample('Autocomplete/story/WithDescription.example.jsx', {
     title: 'With Description',
     effect: async (testPage, makeScreenshot) => {
-      await testPage.click('[data-testid="trigger"] input')
+      await testPage.click('input')
       await testPage.waitFor(100)
       await makeScreenshot({
         isFullScreen: true
