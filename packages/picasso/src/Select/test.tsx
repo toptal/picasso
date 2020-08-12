@@ -192,6 +192,26 @@ test('should filter options based on entered value to the input field', () => {
   expect(menu).toMatchSnapshot()
 })
 
+test('should render noOptionText if the value entered does not match any of the options', () => {
+  const placeholder = 'Choose an option...'
+  const noOptionsText = 'No results'
+
+  const { getByPlaceholderText, getByRole } = renderSelect({
+    options: OPTIONS,
+    noOptionsText,
+    placeholder
+  })
+
+  const input = getByPlaceholderText(placeholder)
+
+  fireEvent.focus(input)
+  fireEvent.change(input, { target: { value: 'non-existent value' } })
+
+  const menu = getByRole('menu')
+
+  expect(menu).toHaveTextContent(noOptionsText)
+})
+
 test('should render options customly', async () => {
   const placeholder = 'Choose an option...'
 
