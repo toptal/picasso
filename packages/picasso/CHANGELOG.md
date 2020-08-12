@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.86.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.85.0...@toptal/picasso@4.86.0) (2020-08-12)
+
+
+### Features
+
+* **icon:** add reset icon ([#1477](https://github.com/toptal/picasso/issues/1477)) ([dd48b07](https://github.com/toptal/picasso/commit/dd48b078c8141f0679207a64cd8281ab1f6c7791))
+
+
+
+
+
 # [4.85.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.84.2...@toptal/picasso@4.85.0) (2020-08-11)
 
 
