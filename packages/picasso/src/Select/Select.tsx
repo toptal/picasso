@@ -430,7 +430,7 @@ export const Select = documentable(
         [allOptions, filterOptionsValue, getDisplayValue]
       )
 
-      const selectedIndices = useMemo(
+      const selectedIndexes = useMemo(
         () =>
           options.reduce(
             (selected: number[], option: Option, index: number) =>
@@ -542,7 +542,7 @@ export const Select = documentable(
       } = useSelect({
         value: inputValue,
         options,
-        selectedIndices,
+        selectedIndexes,
         disabled,
         onSelect: handleSelect,
         onChange: handleChange,

@@ -15,6 +15,7 @@ const Example = () => (
       placeholder='Start typing country...'
       options={options}
       value=''
+      data-testid='trigger'
     />
   </div>
 )

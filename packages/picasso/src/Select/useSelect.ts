@@ -1,4 +1,3 @@
-/* eslint-disable complexity, max-statements */
 import {
   KeyboardEvent,
   useState,
@@ -41,6 +40,7 @@ const normalizeArrowKey = (event: KeyboardEvent<HTMLInputElement>) => {
  * @param {number} itemCount The total number of items.
  * @returns {number} The new index after the move.
  */
+// eslint-disable-next-line complexity
 const getNextWrappingIndex = (
   moveAmount: number,
   initialIndex: number | null,
@@ -75,7 +75,7 @@ interface Props {
   enableAutofill?: boolean
   autoComplete?: any
   disabled?: boolean
-  selectedIndices?: number[]
+  selectedIndexes?: number[]
   onSelect?: (event: React.SyntheticEvent, item: Option | null) => void
   onChange?: (value: string) => void
   onKeyDown?: (
@@ -112,7 +112,7 @@ interface UseSelectOutput {
 const useSelect = ({
   value,
   options = [],
-  selectedIndices = [],
+  selectedIndexes = [],
   disabled = false,
   onChange = () => {},
   onKeyDown = () => {},
@@ -124,9 +124,9 @@ const useSelect = ({
 
   useEffect(() => {
     if (!isOpen) {
-      setHighlightedIndex(selectedIndices.length === 1 ? selectedIndices[0] : 0)
+      setHighlightedIndex(selectedIndexes.length === 1 ? selectedIndexes[0] : 0)
     }
-  }, [isOpen, selectedIndices])
+  }, [isOpen, selectedIndexes])
 
   const [highlightedIndex, setHighlightedIndex] = useState<number>(0)
 
@@ -194,6 +194,7 @@ const useSelect = ({
       onChange(event.target.value)
     },
 
+    // eslint-disable-next-line max-statements, complexity
     onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => {
       const key = normalizeArrowKey(event)
 

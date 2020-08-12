@@ -38,7 +38,16 @@ number of options greater than specified in \`searchThreshold\` prop.
   .addExample('Select/story/Disabled.example.jsx', 'Disabled')
   .addExample('Select/story/Error.example.jsx', 'Error')
   .addExample('Select/story/WithIcon.example.jsx', 'With Icon')
-  .addExample('Select/story/WithDescription.example.jsx', 'With Description')
+  .addExample('Select/story/WithDescription.example.jsx', {
+    title: 'With Description',
+    effect: async (testPage, makeScreenshot) => {
+      await testPage.click('[data-testid="trigger"] input')
+      await testPage.waitFor(100)
+      await makeScreenshot({
+        isFullScreen: true
+      })
+    }
+  })
   .addExample('Select/story/Loading.example.jsx', 'Loading')
   .addExample('Select/story/Sizes.example.jsx', 'Sizes')
   .addExample('Select/story/FullWidth.example.jsx', 'Full width')

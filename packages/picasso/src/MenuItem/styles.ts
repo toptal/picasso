@@ -1,5 +1,5 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
-import { PicassoProvider, rem } from '@toptal/picasso-shared'
+import { PicassoProvider } from '@toptal/picasso-shared'
 
 PicassoProvider.override(() => ({
   MuiMenuItem: {
@@ -108,7 +108,7 @@ export default ({ typography, palette }: Theme) =>
       flex: 1
     },
     description: {
-      fontSize: rem('11px'),
+      fontSize: '0.6875em',
       color: palette.text.primary
     }
   })

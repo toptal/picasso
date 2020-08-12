@@ -15,6 +15,7 @@ const Example = () => {
       value={value}
       placeholder='Choose an option...'
       width='auto'
+      data-testid='trigger'
     />
   )
 }
