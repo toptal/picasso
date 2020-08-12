@@ -145,16 +145,20 @@ const FieldWrapper = <
     //
     ...rest
   } = props
+
   const formConfig = useFormConfig()
-  const validationObject = useFormContext()
+  const { setValidators, clearValidators } = useFormContext()
   const validators = getValidators(required, validate)
+
   if (formConfig.validateOnSubmit) {
-    validationObject.current?.setValidators(name, validators)
+    setValidators(name, validators)
   }
 
   useEffect(() => {
     return () => {
-      validationObject.current?.clearValidators(name)
+      if (formConfig.validateOnSubmit) {
+        clearValidators(name)
+      }
     }
   }, [])
 

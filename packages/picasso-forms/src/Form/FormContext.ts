@@ -1,4 +1,4 @@
-import { createContext, useContext, RefObject, createRef } from 'react'
+import { createContext, useContext, MutableRefObject } from 'react'
 import { FieldValidator } from 'final-form'
 
 export type Validators = Record<string, FieldValidator<unknown>>
@@ -23,10 +23,16 @@ export const createFormContext = (): FormContextProps => {
   }
 }
 
-const defaultRef = createRef<FormContextProps>()
+export const FormContext = createContext<MutableRefObject<
+  FormContextProps
+> | null>(null)
 
-export const FormContext = createContext<RefObject<FormContextProps>>(
-  defaultRef
-)
+export const useFormContext = () => {
+  const context = useContext(FormContext)
 
-export const useFormContext = () => useContext(FormContext)
+  if (!context) {
+    throw new Error('Form Field cannot be rendered outside Form component')
+  }
+
+  return context.current
+}
