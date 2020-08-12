@@ -30,25 +30,24 @@ const decorateRows = (children: React.ReactNode) => {
   })
 }
 
-export const TableBody = forwardRef<HTMLElement, Props>(function TableBody(
-  { classes, className, style, children, ...rest },
-  ref
-) {
-  return (
-    <TableSectionContext.Provider value={TableSection.BODY}>
-      <MUITableBody
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        {...rest}
-        ref={ref}
-        classes={classes}
-        className={className}
-        style={style}
-      >
-        {decorateRows(children)}
-      </MUITableBody>
-    </TableSectionContext.Provider>
-  )
-})
+export const TableBody = forwardRef<HTMLTableSectionElement, Props>(
+  function TableBody({ classes, className, style, children, ...rest }, ref) {
+    return (
+      <TableSectionContext.Provider value={TableSection.BODY}>
+        <MUITableBody
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          {...rest}
+          ref={ref}
+          classes={classes}
+          className={className}
+          style={style}
+        >
+          {decorateRows(children)}
+        </MUITableBody>
+      </TableSectionContext.Provider>
+    )
+  }
+)
 
 TableBody.defaultProps = {}
 

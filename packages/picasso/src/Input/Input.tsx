@@ -164,7 +164,8 @@ const IconAdornment = (props: IconAdornmentProps) => {
   const { position, disabled, icon } = props
   const classes = useStyles(props)
   const styledIcon = React.cloneElement(icon as ReactElement, {
-    className: classes.icon
+    className: classes.icon,
+    role: 'presentation'
   })
 
   return (

@@ -13,25 +13,24 @@ export interface Props
   children: ReactNode
 }
 
-export const TableHead = forwardRef<HTMLElement, Props>(function TableHead(
-  { classes, className, style, children, ...rest },
-  ref
-) {
-  return (
-    <TableSectionContext.Provider value={TableSection.HEAD}>
-      <MUITableHead
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        {...rest}
-        ref={ref}
-        classes={classes}
-        className={className}
-        style={style}
-      >
-        {children}
-      </MUITableHead>
-    </TableSectionContext.Provider>
-  )
-})
+export const TableHead = forwardRef<HTMLTableSectionElement, Props>(
+  function TableHead({ classes, className, style, children, ...rest }, ref) {
+    return (
+      <TableSectionContext.Provider value={TableSection.HEAD}>
+        <MUITableHead
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          {...rest}
+          ref={ref}
+          classes={classes}
+          className={className}
+          style={style}
+        >
+          {children}
+        </MUITableHead>
+      </TableSectionContext.Provider>
+    )
+  }
+)
 
 TableHead.defaultProps = {}
 

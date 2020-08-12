@@ -1,9 +1,6 @@
-import React, { forwardRef, ChangeEvent } from 'react'
+import React, { forwardRef, ChangeEvent, ComponentProps } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import MUISlider, {
-  SliderProps,
-  ValueLabelProps
-} from '@material-ui/core/Slider'
+import MUISlider, { ValueLabelProps } from '@material-ui/core/Slider'
 import cx from 'classnames'
 
 import Tooltip from '../Tooltip'
@@ -14,7 +11,7 @@ const useStyles = makeStyles<Theme, Props>(styles)
 type Value = number | number[]
 type ValueLabelDisplay = 'on' | 'auto' | 'off'
 
-export interface Props extends SliderProps {
+export interface Props extends ComponentProps<typeof MUISlider> {
   /** Minimum slider value */
   min?: number
   /** Maximum slider value */
