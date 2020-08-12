@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FocusEvent, useCallback } from 'react'
+import React, { ChangeEvent, FocusEvent, useCallback, useEffect } from 'react'
 import {
   useField,
   FieldProps as FinalFieldProps,
@@ -148,9 +148,15 @@ const FieldWrapper = <
   const formConfig = useFormConfig()
   const validationObject = useFormContext()
   const validators = getValidators(required, validate)
-  if (formConfig.validateOnSubmit && validationObject.current) {
-    validationObject.current[name] = validators
+  if (formConfig.validateOnSubmit) {
+    validationObject.current?.setValidators(name, validators)
   }
+
+  useEffect(() => {
+    return () => {
+      validationObject.current?.clearValidators(name)
+    }
+  }, [])
 
   const { meta, input } = useField<TInputValue>(name, {
     validate: formConfig.validateOnSubmit ? undefined : validators,

@@ -1,10 +1,36 @@
 import React, { useCallback } from 'react'
+import { useField } from 'react-final-form'
 import { Container } from '@toptal/picasso'
 import { Form } from '@toptal/picasso-forms'
 
 type FormType = {
+  hide: boolean
   middleName: string
   consent: boolean
+}
+
+const FormContent = () => {
+  const {
+    input: { value: hide }
+  } = useField('hide')
+  return (
+    <>
+      <Form.Checkbox name='hide' label='Check to hide fields below' />
+
+      {!hide && (
+        <>
+          <Form.Input
+            enableReset
+            required
+            name='middleName'
+            label='Your midden name'
+            placeholder='e.g. Bruce'
+          />
+          <Form.DatePicker required name='hiddenDate' label='DOB' />
+        </>
+      )}
+    </>
+  )
 }
 
 const ValidateOnSubmitExample = () => {
@@ -23,17 +49,7 @@ const ValidateOnSubmitExample = () => {
   return (
     <Form.ConfigProvider value={{ validateOnSubmit: true }}>
       <Form<FormType> onSubmit={handleSubmit}>
-        <Form.Input
-          enableReset
-          required
-          name='middleName'
-          label='Your middle name'
-          placeholder='e.g. Bruce'
-        />
-        <Form.Checkbox
-          name='consent'
-          label='I confirm that I have legal permission from the client to feature this project.'
-        />
+        <FormContent />
 
         <Container top='small'>
           <Form.SubmitButton>Submit</Form.SubmitButton>
@@ -48,7 +64,7 @@ const api = {
   submit: async (values: FormType) =>
     new Promise(resolve =>
       setTimeout(() => {
-        if (values.middleName.toLowerCase() === 'bruce') {
+        if (values.hide || values.middleName.toLowerCase() === 'bruce') {
           resolve('success')
           return
         }

@@ -21,7 +21,12 @@ import TagSelector from '../TagSelector'
 import SubmitButton from '../SubmitButton'
 import { FormConfigContext } from '../FormConfig'
 import { createScrollToErrorDecorator } from '../utils'
-import { FormContext, FormContextProps } from './FormContext'
+import {
+  FormContext,
+  Validators,
+  FormContextProps,
+  createFormContext
+} from './FormContext'
 
 type AnyObject = Record<string, any>
 
@@ -32,7 +37,7 @@ export type Props<T = AnyObject> = FinalFormProps<T> & {
 }
 
 const getSubmitErrors = (
-  validationObject: FormContextProps,
+  validationObject: Validators,
   formValues: AnyObject,
   form: FormApi<AnyObject>
 ) =>
@@ -72,12 +77,12 @@ export const Form = <T extends any = AnyObject>(props: Props<T>) => {
     [scrollOffsetTop]
   )
 
-  const validationObject = useRef<FormContextProps>({})
+  const validationObject = useRef<FormContextProps>(createFormContext())
 
   const handleSubmit = useCallback(
     async (values, form, callback) => {
       const validationErrors = getSubmitErrors(
-        validationObject.current,
+        validationObject.current.getValidators(),
         values,
         form
       )
