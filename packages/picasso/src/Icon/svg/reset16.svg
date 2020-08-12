@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>b0244cf9-5ca5-440d-97aa-9ea65697b6bc@1.00x</title>
+    <defs>
+        <path d="M5.5,6.5 L4.5,6.5 L4.50062738,3.7564183 C3.24843459,4.78920409 2.5,6.33105213 2.5,8 C2.5,11.0375661 4.96243388,13.5 8,13.5 C11.0375661,13.5 13.5,11.0375661 13.5,8 C13.5,5.03652085 11.15622,2.62046086 8.22120714,2.5043672 L8,2.5 L8,1.5 C11.5898509,1.5 14.5,4.41014913 14.5,8 C14.5,11.5898509 11.5898509,14.5 8,14.5 C4.41014913,14.5 1.5,11.5898509 1.5,8 C1.5,6.28864515 2.1666391,4.68941418 3.30973888,3.49915322 L1.5,3.5 L1.5,2.5 L5.5,2.5 L5.5,6.5 Z" id="path-1"></path>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons-/-Arrows-/-16-/-Reset">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Combined-Shape" fill="#979797" fill-rule="nonzero" xlink:href="#path-1"></use>
+            <g id="Group" mask="url(#mask-2)" fill="#455065">
+                <g id="Colors-/-305-Dark-Gray">
+                    <rect id="Rectangle" x="0" y="0" width="16" height="16"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
