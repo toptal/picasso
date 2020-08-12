@@ -148,7 +148,7 @@ const FieldWrapper = <
   const formConfig = useFormConfig()
   const validationObject = useFormContext()
   const validators = getValidators(required, validate)
-  if (validationObject.current) {
+  if (formConfig.validateOnSubmit && validationObject.current) {
     validationObject.current[name] = validators
   }
 
