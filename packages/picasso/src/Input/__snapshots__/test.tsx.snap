@@ -1,5 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ignores limit for multiline input with \`counter: entered\` 1`] = `
+<div
+  class="MuiInputAdornment-root InputAdornment-root PicassoInput-limiterMultiline MuiInputAdornment-positionEnd"
+  data-testid="multiline-label"
+>
+  <span
+    class="PicassoInput-limiter"
+  >
+    2
+     characters entered
+  </span>
+</div>
+`;
+
 exports[`renders icon at the beginning 1`] = `
 <div>
   <div
@@ -202,6 +216,7 @@ exports[`shows counter for multiline input 1`] = `
       />
       <div
         class="MuiInputAdornment-root InputAdornment-root PicassoInput-limiterMultiline MuiInputAdornment-positionEnd"
+        data-testid="multiline-label"
       >
         <span
           class="PicassoInput-limiter"
@@ -245,6 +260,7 @@ exports[`shows counter for regular input 1`] = `
       />
       <div
         class="MuiInputAdornment-root InputAdornment-root MuiInputAdornment-positionEnd"
+        data-testid="multiline-label"
       >
         <span
           class="PicassoInput-limiter"
@@ -268,5 +284,33 @@ exports[`shows counter for regular input 1`] = `
       </fieldset>
     </div>
   </div>
+</div>
+`;
+
+exports[`shows excess chars for multiline input with exceeded limit 1`] = `
+<div
+  class="MuiInputAdornment-root InputAdornment-root PicassoInput-limiterMultiline MuiInputAdornment-positionEnd"
+  data-testid="multiline-label"
+>
+  <span
+    class="PicassoInput-limiter PicassoInput-limiterNegative"
+  >
+    1
+     over the limit
+  </span>
+</div>
+`;
+
+exports[`shows remaining chars for for multiline input with limit 1`] = `
+<div
+  class="MuiInputAdornment-root InputAdornment-root PicassoInput-limiterMultiline MuiInputAdornment-positionEnd"
+  data-testid="multiline-label"
+>
+  <span
+    class="PicassoInput-limiter PicassoInput-limiterNegative"
+  >
+    0
+     characters left
+  </span>
 </div>
 `;

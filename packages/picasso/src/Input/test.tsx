@@ -30,6 +30,26 @@ test('shows counter for multiline input', () => {
   expect(container).toMatchSnapshot()
 })
 
+test('shows remaining chars for for multiline input with limit', () => {
+  const { getByTestId } = render(<Input multiline limit={1} value='A' />)
+
+  expect(getByTestId('multiline-label')).toMatchSnapshot()
+})
+
+test('shows excess chars for multiline input with exceeded limit', () => {
+  const { getByTestId } = render(<Input multiline limit={1} value='AB' />)
+
+  expect(getByTestId('multiline-label')).toMatchSnapshot()
+})
+
+test('ignores limit for multiline input with `counter: entered`', () => {
+  const { getByTestId } = render(
+    <Input multiline counter='entered' limit={1} value='AB' />
+  )
+
+  expect(getByTestId('multiline-label')).toMatchSnapshot()
+})
+
 test('is focused when autoFocus', () => {
   const { getByPlaceholderText } = render(
     <Input autoFocus placeholder='test input' />

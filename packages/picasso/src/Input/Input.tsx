@@ -65,7 +65,7 @@ export interface Props
       HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
     >
   ) => void
-  /** Adds a counter of characters */
+  /** Adds a counter of characters - is ignored in combination with `counter: entered` */
   limit?: number
   /** Type of the counter of characters */
   counter?: CounterType
@@ -107,31 +107,23 @@ const getCounter = (
 ) => {
   if (counter === 'remaining') {
     return {
-      isNegative: charsLength! >= limit!,
-      limitValue: limit! - charsLength!
+      isNegative: charsLength >= limit!,
+      limitValue: limit! - charsLength
     }
   }
 
   return {
     isNegative: false,
-    limitValue: charsLength!
+    limitValue: charsLength
   }
 }
 
-const getMultilineLabel = (
-  isNegative: boolean,
-  multiline?: boolean,
-  limit?: number
-) => {
+const getMultilineLabel = (limitValue: number, multiline?: boolean) => {
   if (!multiline) {
     return null
   }
 
-  if (!limit) {
-    return ' characters entered'
-  }
-
-  return isNegative ? ' over the limit' : ' characters left'
+  return limitValue >= 0 ? ' characters left' : ' over the limit'
 }
 
 const LimitAdornment = (props: LimitAdornmentProps) => {
@@ -139,10 +131,14 @@ const LimitAdornment = (props: LimitAdornmentProps) => {
   const { multiline, charsLength, counter, limit } = props
 
   const { limitValue, isNegative } = getCounter(counter!, charsLength!, limit)
-  const multilineLabel = getMultilineLabel(isNegative, multiline, limit)
+  const multilineLabel =
+    counter === 'remaining' && limit
+      ? getMultilineLabel(limitValue, multiline)
+      : ' characters entered'
 
   return (
     <InputAdornment
+      data-testid='multiline-label'
       position='end'
       className={cx({
         [classes.limiterMultiline]: multiline
