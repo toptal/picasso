@@ -230,12 +230,15 @@ const SelectOption = React.memo(
   }
 )
 
+const isOptionInSelectedValues = (option: Option, value: ValueType[]) =>
+  value.includes(String(option.value))
+
 const getMultipleSelection = (
   options: Option[],
   value: ValueType[]
 ): Selection => {
   const getSelectedOptions = () =>
-    options.filter(option => value.includes(String(option.value)))
+    options.filter(option => isOptionInSelectedValues(option, value))
 
   return {
     display: (getDisplayValue: (option: Option | null) => string) =>
@@ -243,7 +246,7 @@ const getMultipleSelection = (
         .map(getDisplayValue)
         .join(', '),
     isSelected: () => !isEmpty(value),
-    isOptionSelected: option => value.includes(String(option.value))
+    isOptionSelected: option => isOptionInSelectedValues(option, value)
   }
 }
 
@@ -340,7 +343,9 @@ const renderOptions = ({
   })
 
   return (
-    <ScrollMenu selectedIndex={highlightedIndex}>{optionComponents}</ScrollMenu>
+    <ScrollMenu data-testid='select-dropdown' selectedIndex={highlightedIndex}>
+      {optionComponents}
+    </ScrollMenu>
   )
 }
 
@@ -399,7 +404,7 @@ export const Select = documentable(
       const [selectedOptions, setSelectedOptions] = useState(
         allOptions.filter(option =>
           Array.isArray(value)
-            ? value.includes(String(option.value))
+            ? isOptionInSelectedValues(option, value)
             : value === String(option.value)
         )
       )
@@ -488,7 +493,7 @@ export const Select = documentable(
         value: ValueType[],
         option: Option
       ) => {
-        const isInSelectedValues = value.includes(String(option.value))
+        const isInSelectedValues = isOptionInSelectedValues(option, value)
 
         if (isInSelectedValues) {
           return value!.filter(value => value !== option.value)
@@ -510,7 +515,7 @@ export const Select = documentable(
           setSelectedOptions(
             allOptions.filter(option =>
               Array.isArray(newValue)
-                ? newValue.includes(String(option.value))
+                ? isOptionInSelectedValues(option, newValue)
                 : newValue === String(option.value)
             )
           )

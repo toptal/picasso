@@ -3,6 +3,7 @@
 exports[`Autocomplete dynamic behavior on focus 1`] = `
 <ul
   class="MuiList-root ScrollMenu-menu"
+  data-testid="autocomplete-dropdown"
   role="menu"
   tabindex="-1"
 >

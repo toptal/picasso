@@ -26,7 +26,7 @@ describe('YearSelect', () => {
 
   test('render in descending order', () => {
     const placeholder = 'Select year'
-    const { getByPlaceholderText, getByRole } = render(
+    const { getByPlaceholderText, getByTestId } = render(
       <YearSelect
         from={2005}
         to={2001}
@@ -37,7 +37,7 @@ describe('YearSelect', () => {
 
     fireEvent.focus(getByPlaceholderText(placeholder))
 
-    expect(getByRole('menu')).toMatchSnapshot()
+    expect(getByTestId('select-dropdown')).toMatchSnapshot()
   })
 
   test('wrong range', () => {
