@@ -37,8 +37,6 @@ const spacingVariants = [
   'xlarge'
 ] as const
 
-const borderRadius = '8px'
-
 export type AlignItemsType = typeof alignItemsVariants[number]
 export type JustifyContentType = typeof justifyContentVariants[number]
 type Direction = typeof directionVariants[number]
@@ -53,14 +51,17 @@ const paddings = spacingVariants.reduce((acc, variant) => {
   return acc
 }, Object.create(null))
 
-const colorVariant = (colorOptions?: SimplePaletteColorOptions | Color) => {
+const colorVariant = (
+  colorOptions?: SimplePaletteColorOptions | Color,
+  borderRadius?: string
+) => {
   if (!colorOptions) {
     return {}
   }
 
   return createPropertiesStyles({
     backgroundColor: colorOptions.lighter,
-    borderRadius,
+    borderRadius: borderRadius,
 
     '&$bordered': {
       borderColor: colorOptions.main
@@ -105,11 +106,11 @@ justifyContentVariants.forEach(variant => {
   }
 })
 
-export default ({ palette }: Theme) =>
+export default ({ palette, sizes: { borderRadius } }: Theme) =>
   createStyles({
     bordered: {
       border: `1px solid ${palette.grey.lighter}`,
-      borderRadius
+      borderRadius: borderRadius.medium
     },
 
     flex: {
@@ -130,18 +131,18 @@ export default ({ palette }: Theme) =>
 
     whiteVariant: createPropertiesStyles({
       backgroundColor: palette.common.white,
-      borderRadius
+      borderRadius: borderRadius.medium
     }),
 
-    redVariant: colorVariant(palette.red),
+    redVariant: colorVariant(palette.red, borderRadius.medium),
 
-    greenVariant: colorVariant(palette.green),
+    greenVariant: colorVariant(palette.green, borderRadius.medium),
 
-    yellowVariant: colorVariant(palette.yellow),
+    yellowVariant: colorVariant(palette.yellow, borderRadius.medium),
 
-    blueVariant: colorVariant(palette.blue),
+    blueVariant: colorVariant(palette.blue, borderRadius.medium),
 
-    greyVariant: colorVariant(palette.grey),
+    greyVariant: colorVariant(palette.grey, borderRadius.medium),
 
     ...paddings,
     ...margins,

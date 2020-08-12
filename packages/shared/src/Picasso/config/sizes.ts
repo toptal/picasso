@@ -1,6 +1,9 @@
 export interface Sizes {
   borderWidth: string
-  borderRadius: string
+  borderRadius: {
+    small: string
+    medium: string
+  }
   input: {
     height: string
     width: string
@@ -10,7 +13,10 @@ export interface Sizes {
 
 const sizes = {
   borderWidth: '1px',
-  borderRadius: '3px',
+  borderRadius: {
+    small: '3px',
+    medium: '8px'
+  },
   input: {
     height: '2.25rem',
     width: '18.75rem',

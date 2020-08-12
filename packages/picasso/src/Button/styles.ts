@@ -51,7 +51,7 @@ export default ({ palette, sizes, transitions, typography }: Theme) =>
     root: {
       position: 'relative',
       textTransform: 'none',
-      borderRadius: sizes.borderRadius,
+      borderRadius: sizes.borderRadius.small,
       border: `solid ${sizes.borderWidth} ${palette.grey.light}`,
       fontSize: '1rem',
       transition: `all ${transitions.duration.short}ms ${transitions.easing.easeOut}`,
