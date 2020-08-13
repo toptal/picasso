@@ -55,7 +55,7 @@ exports[`multiple select should checkmark user selected options 1`] = `
     <div
       class="PicassoPopper-root"
       role="tooltip"
-      style="width: 0px; position: absolute;"
+      style="position: absolute; top: 0px; left: 0px; width: 0px;"
       x-placement="bottom-start"
     >
       <ul
@@ -76,23 +76,31 @@ exports[`multiple select should checkmark user selected options 1`] = `
             value="val1"
           >
             <div
-              class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+              class="Container-flex Container-column MenuItem-content"
             >
-              <svg
-                class="SvgCheckMinor16-root"
-                style="min-width: 16px; min-height: 16px;"
-                viewBox="0 0 16 16"
+              <div
+                class="Container-centerAlignItems Container-flex"
               >
-                <path
-                  d="M6.5 9.793l4-4 .707.707-4 4-.707.707L3.793 8.5l.707-.707 2 2z"
-                />
-              </svg>
+                <div
+                  class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+                >
+                  <svg
+                    class="SvgCheckMinor16-root"
+                    style="min-width: 16px; min-height: 16px;"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M6.5 9.793l4-4 .707.707-4 4-.707.707L3.793 8.5l.707-.707 2 2z"
+                    />
+                  </svg>
+                </div>
+                <span
+                  class="MenuItem-stringContent MenuItem-stringContentMedium MenuItem-stringContentSemibold"
+                >
+                  text1
+                </span>
+              </div>
             </div>
-            <span
-              class="MenuItem-stringContent MenuItem-stringContentMedium MenuItem-stringContentSemibold"
-            >
-              text1
-            </span>
           </li>
           <li
             aria-disabled="false"
@@ -103,13 +111,21 @@ exports[`multiple select should checkmark user selected options 1`] = `
             value="val2"
           >
             <div
-              class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
-            />
-            <span
-              class="MenuItem-stringContent MenuItem-stringContentMedium"
+              class="Container-flex Container-column MenuItem-content"
             >
-              text2
-            </span>
+              <div
+                class="Container-centerAlignItems Container-flex"
+              >
+                <div
+                  class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+                />
+                <span
+                  class="MenuItem-stringContent MenuItem-stringContentMedium"
+                >
+                  text2
+                </span>
+              </div>
+            </div>
           </li>
           <li
             aria-disabled="false"
@@ -120,23 +136,31 @@ exports[`multiple select should checkmark user selected options 1`] = `
             value="val3"
           >
             <div
-              class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+              class="Container-flex Container-column MenuItem-content"
             >
-              <svg
-                class="SvgCheckMinor16-root"
-                style="min-width: 16px; min-height: 16px;"
-                viewBox="0 0 16 16"
+              <div
+                class="Container-centerAlignItems Container-flex"
               >
-                <path
-                  d="M6.5 9.793l4-4 .707.707-4 4-.707.707L3.793 8.5l.707-.707 2 2z"
-                />
-              </svg>
+                <div
+                  class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+                >
+                  <svg
+                    class="SvgCheckMinor16-root"
+                    style="min-width: 16px; min-height: 16px;"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M6.5 9.793l4-4 .707.707-4 4-.707.707L3.793 8.5l.707-.707 2 2z"
+                    />
+                  </svg>
+                </div>
+                <span
+                  class="MenuItem-stringContent MenuItem-stringContentMedium MenuItem-stringContentSemibold"
+                >
+                  text3
+                </span>
+              </div>
             </div>
-            <span
-              class="MenuItem-stringContent MenuItem-stringContentMedium MenuItem-stringContentSemibold"
-            >
-              text3
-            </span>
           </li>
         </div>
       </ul>
@@ -364,13 +388,21 @@ exports[`should filter options based on entered value to the input field 1`] = `
       value="val2"
     >
       <div
-        class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
-      />
-      <span
-        class="MenuItem-stringContent MenuItem-stringContentMedium"
+        class="Container-flex Container-column MenuItem-content"
       >
-        text2
-      </span>
+        <div
+          class="Container-centerAlignItems Container-flex"
+        >
+          <div
+            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+          />
+          <span
+            class="MenuItem-stringContent MenuItem-stringContentMedium"
+          >
+            text2
+          </span>
+        </div>
+      </div>
     </li>
   </div>
 </ul>
@@ -395,13 +427,21 @@ exports[`should open menu when focus on select 1`] = `
       value="val1"
     >
       <div
-        class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
-      />
-      <span
-        class="MenuItem-stringContent MenuItem-stringContentMedium"
+        class="Container-flex Container-column MenuItem-content"
       >
-        text1
-      </span>
+        <div
+          class="Container-centerAlignItems Container-flex"
+        >
+          <div
+            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+          />
+          <span
+            class="MenuItem-stringContent MenuItem-stringContentMedium"
+          >
+            text1
+          </span>
+        </div>
+      </div>
     </li>
     <li
       aria-disabled="false"
@@ -412,13 +452,21 @@ exports[`should open menu when focus on select 1`] = `
       value="val2"
     >
       <div
-        class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
-      />
-      <span
-        class="MenuItem-stringContent MenuItem-stringContentMedium"
+        class="Container-flex Container-column MenuItem-content"
       >
-        text2
-      </span>
+        <div
+          class="Container-centerAlignItems Container-flex"
+        >
+          <div
+            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+          />
+          <span
+            class="MenuItem-stringContent MenuItem-stringContentMedium"
+          >
+            text2
+          </span>
+        </div>
+      </div>
     </li>
     <li
       aria-disabled="false"
@@ -429,13 +477,128 @@ exports[`should open menu when focus on select 1`] = `
       value="val3"
     >
       <div
-        class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
-      />
-      <span
-        class="MenuItem-stringContent MenuItem-stringContentMedium"
+        class="Container-flex Container-column MenuItem-content"
       >
-        text3
-      </span>
+        <div
+          class="Container-centerAlignItems Container-flex"
+        >
+          <div
+            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+          />
+          <span
+            class="MenuItem-stringContent MenuItem-stringContentMedium"
+          >
+            text3
+          </span>
+        </div>
+      </div>
+    </li>
+  </div>
+</ul>
+`;
+
+exports[`should render description 1`] = `
+<ul
+  class="MuiList-root ScrollMenu-menu"
+  role="menu"
+  tabindex="-1"
+>
+  <div
+    class="ScrollMenu-scrollView"
+    tabindex="0"
+  >
+    <li
+      aria-disabled="false"
+      aria-selected="true"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+      role="option"
+      tabindex="-1"
+      value="val1"
+    >
+      <div
+        class="Container-flex Container-column MenuItem-content"
+      >
+        <div
+          class="Container-centerAlignItems Container-flex"
+        >
+          <div
+            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+          />
+          <span
+            class="MenuItem-stringContent MenuItem-stringContentMedium"
+          >
+            text1
+          </span>
+        </div>
+        <div
+          class="Container-leftmediumMargin MenuItem-description"
+          style="margin-top: 0.25rem;"
+        >
+          description1
+        </div>
+      </div>
+    </li>
+    <li
+      aria-disabled="false"
+      aria-selected="false"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      role="option"
+      tabindex="-1"
+      value="val2"
+    >
+      <div
+        class="Container-flex Container-column MenuItem-content"
+      >
+        <div
+          class="Container-centerAlignItems Container-flex"
+        >
+          <div
+            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+          />
+          <span
+            class="MenuItem-stringContent MenuItem-stringContentMedium"
+          >
+            text2
+          </span>
+        </div>
+        <div
+          class="Container-leftmediumMargin MenuItem-description"
+          style="margin-top: 0.25rem;"
+        >
+          description2
+        </div>
+      </div>
+    </li>
+    <li
+      aria-disabled="false"
+      aria-selected="false"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      role="option"
+      tabindex="-1"
+      value="val3"
+    >
+      <div
+        class="Container-flex Container-column MenuItem-content"
+      >
+        <div
+          class="Container-centerAlignItems Container-flex"
+        >
+          <div
+            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+          />
+          <span
+            class="MenuItem-stringContent MenuItem-stringContentMedium"
+          >
+            text3
+          </span>
+        </div>
+        <div
+          class="Container-leftmediumMargin MenuItem-description"
+          style="margin-top: 0.25rem;"
+        >
+          description3
+        </div>
+      </div>
     </li>
   </div>
 </ul>
@@ -460,10 +623,18 @@ exports[`should render options customly 1`] = `
       value="val1"
     >
       <div
-        class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
-      />
-      <div>
-        Custom renderered text1
+        class="Container-flex Container-column MenuItem-content"
+      >
+        <div
+          class="Container-centerAlignItems Container-flex"
+        >
+          <div
+            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+          />
+          <div>
+            Custom renderered text1
+          </div>
+        </div>
       </div>
     </li>
     <li
@@ -475,10 +646,18 @@ exports[`should render options customly 1`] = `
       value="val2"
     >
       <div
-        class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
-      />
-      <div>
-        Custom renderered text2
+        class="Container-flex Container-column MenuItem-content"
+      >
+        <div
+          class="Container-centerAlignItems Container-flex"
+        >
+          <div
+            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+          />
+          <div>
+            Custom renderered text2
+          </div>
+        </div>
       </div>
     </li>
     <li
@@ -490,10 +669,18 @@ exports[`should render options customly 1`] = `
       value="val3"
     >
       <div
-        class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
-      />
-      <div>
-        Custom renderered text3
+        class="Container-flex Container-column MenuItem-content"
+      >
+        <div
+          class="Container-centerAlignItems Container-flex"
+        >
+          <div
+            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+          />
+          <div>
+            Custom renderered text3
+          </div>
+        </div>
       </div>
     </li>
   </div>

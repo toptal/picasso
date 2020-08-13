@@ -73,13 +73,21 @@ exports[`YearSelect render in descending order 1`] = `
       value="2005"
     >
       <div
-        class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
-      />
-      <span
-        class="MenuItem-stringContent MenuItem-stringContentMedium"
+        class="Container-flex Container-column MenuItem-content"
       >
-        2005
-      </span>
+        <div
+          class="Container-centerAlignItems Container-flex"
+        >
+          <div
+            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+          />
+          <span
+            class="MenuItem-stringContent MenuItem-stringContentMedium"
+          >
+            2005
+          </span>
+        </div>
+      </div>
     </li>
     <li
       aria-disabled="false"
@@ -90,13 +98,21 @@ exports[`YearSelect render in descending order 1`] = `
       value="2004"
     >
       <div
-        class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
-      />
-      <span
-        class="MenuItem-stringContent MenuItem-stringContentMedium"
+        class="Container-flex Container-column MenuItem-content"
       >
-        2004
-      </span>
+        <div
+          class="Container-centerAlignItems Container-flex"
+        >
+          <div
+            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+          />
+          <span
+            class="MenuItem-stringContent MenuItem-stringContentMedium"
+          >
+            2004
+          </span>
+        </div>
+      </div>
     </li>
     <li
       aria-disabled="false"
@@ -107,13 +123,21 @@ exports[`YearSelect render in descending order 1`] = `
       value="2003"
     >
       <div
-        class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
-      />
-      <span
-        class="MenuItem-stringContent MenuItem-stringContentMedium"
+        class="Container-flex Container-column MenuItem-content"
       >
-        2003
-      </span>
+        <div
+          class="Container-centerAlignItems Container-flex"
+        >
+          <div
+            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+          />
+          <span
+            class="MenuItem-stringContent MenuItem-stringContentMedium"
+          >
+            2003
+          </span>
+        </div>
+      </div>
     </li>
     <li
       aria-disabled="false"
@@ -124,13 +148,21 @@ exports[`YearSelect render in descending order 1`] = `
       value="2002"
     >
       <div
-        class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
-      />
-      <span
-        class="MenuItem-stringContent MenuItem-stringContentMedium"
+        class="Container-flex Container-column MenuItem-content"
       >
-        2002
-      </span>
+        <div
+          class="Container-centerAlignItems Container-flex"
+        >
+          <div
+            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+          />
+          <span
+            class="MenuItem-stringContent MenuItem-stringContentMedium"
+          >
+            2002
+          </span>
+        </div>
+      </div>
     </li>
     <li
       aria-disabled="false"
@@ -141,13 +173,21 @@ exports[`YearSelect render in descending order 1`] = `
       value="2001"
     >
       <div
-        class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
-      />
-      <span
-        class="MenuItem-stringContent MenuItem-stringContentMedium"
+        class="Container-flex Container-column MenuItem-content"
       >
-        2001
-      </span>
+        <div
+          class="Container-centerAlignItems Container-flex"
+        >
+          <div
+            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+          />
+          <span
+            class="MenuItem-stringContent MenuItem-stringContentMedium"
+          >
+            2001
+          </span>
+        </div>
+      </div>
     </li>
   </div>
 </ul>

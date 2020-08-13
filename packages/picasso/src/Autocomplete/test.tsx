@@ -178,7 +178,9 @@ describe('Autocomplete', () => {
         fireEvent.focus(input)
 
         expect(
-          getByText('Belarus').parentElement!.getAttribute('aria-selected')
+          getByText('Belarus')
+            .closest('li')
+            ?.getAttribute('aria-selected')
         ).toBe('true')
 
         fireEvent.keyDown(input, {
@@ -186,7 +188,9 @@ describe('Autocomplete', () => {
         })
 
         expect(
-          getByText('Croatia').parentElement!.getAttribute('aria-selected')
+          getByText('Croatia')
+            .closest('li')
+            ?.getAttribute('aria-selected')
         ).toBe('true')
       })
 
@@ -206,7 +210,9 @@ describe('Autocomplete', () => {
         })
 
         expect(
-          getByText('Ukraine').parentElement!.getAttribute('aria-selected')
+          getByText('Ukraine')
+            .closest('li')
+            ?.getAttribute('aria-selected')
         ).toBe('true')
       })
 

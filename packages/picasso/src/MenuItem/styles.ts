@@ -85,16 +85,18 @@ export default ({ typography, palette }: Theme) =>
       fontSize: '0.8125em'
     },
     stringContentSmall: {
-      fontSize: '0.75rem'
+      fontSize: '0.75rem',
+      lineHeight: '1.125rem'
     },
     stringContentMedium: {
-      fontSize: '0.8125rem'
+      fontSize: '0.8125rem',
+      lineHeight: '1.25rem'
     },
     stringContentSemibold: {
       fontWeight: typography.fontWeights.semibold
     },
     guttersSmall: {
-      padding: `0.1875rem 0.5rem`
+      padding: '0.1875rem 0.5rem'
     },
     guttersMedium: {
       padding: '0.375rem 0.5rem'
@@ -103,7 +105,7 @@ export default ({ typography, palette }: Theme) =>
       width: '1rem'
     },
     content: {
-      height: '1.25rem'
+      flex: 1
     },
     description: {
       fontSize: rem('11px'),

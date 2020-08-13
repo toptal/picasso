@@ -148,8 +148,8 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
       value={value}
       selected={selected}
     >
-      <Container flex direction='column'>
-        <Container flex alignItems='center' className={classes.content}>
+      <Container flex direction='column' className={classes.content}>
+        <Container flex alignItems='center'>
           {checkmarked !== undefined && (
             <Container
               className={classes.iconContainer}

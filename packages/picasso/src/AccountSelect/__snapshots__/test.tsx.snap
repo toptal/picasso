@@ -16,57 +16,65 @@ exports[`AccountSelect default render 1`] = `
         role="menuitem"
         tabindex="0"
       >
-        <a
-          class="MuiTypography-root MuiLink-root MuiLink-underlineNone AccountSelect-accountLink MuiTypography-colorPrimary"
+        <div
+          class="Container-flex Container-column MenuItem-content"
         >
           <div
-            class="Container-mediumPadding Container-centerAlignItems Container-spaceBetweenJustifyContent Container-flex"
+            class="Container-centerAlignItems Container-flex"
           >
-            <div
-              class="Container-flexStartAlignItems Container-flex UserBadge-root"
+            <a
+              class="MuiTypography-root MuiLink-root MuiLink-underlineNone AccountSelect-accountLink MuiTypography-colorPrimary"
             >
               <div
-                class="Avatar-root Avatar-xsmall"
+                class="Container-mediumPadding Container-centerAlignItems Container-spaceBetweenJustifyContent Container-flex"
               >
                 <div
-                  class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
-                />
-                <p
-                  class="MuiTypography-root Typography-invert Typography-bodyInherit Avatar-text MuiTypography-body1"
+                  class="Container-flexStartAlignItems Container-flex UserBadge-root"
                 >
-                  PL
-                </p>
-              </div>
-              <div
-                class="Container-leftsmallMargin Container-flex Container-column"
-              >
-                <div
-                  class=""
-                >
-                  <h4
-                    class="MuiTypography-root Typography-headingSmall UserBadge-name MuiTypography-h4 MuiTypography-displayInline"
+                  <div
+                    class="Avatar-root Avatar-xsmall"
                   >
-                    Phil Leif 1
-                  </h4>
+                    <div
+                      class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
+                    />
+                    <p
+                      class="MuiTypography-root Typography-invert Typography-bodyInherit Avatar-text MuiTypography-body1"
+                    >
+                      PL
+                    </p>
+                  </div>
+                  <div
+                    class="Container-leftsmallMargin Container-flex Container-column"
+                  >
+                    <div
+                      class=""
+                    >
+                      <h4
+                        class="MuiTypography-root Typography-headingSmall UserBadge-name MuiTypography-h4 MuiTypography-displayInline"
+                      >
+                        Phil Leif 1
+                      </h4>
+                    </div>
+                    <p
+                      class="MuiTypography-root Typography-bodySmall MuiTypography-body1"
+                    >
+                      Account Owner at Stowaway Cosmetics
+                    </p>
+                  </div>
                 </div>
-                <p
-                  class="MuiTypography-root Typography-bodySmall MuiTypography-body1"
+                <svg
+                  class="SvgChevronRight16-root SvgChevronRight16-darkGrey"
+                  style="min-width: 16px; min-height: 16px;"
+                  viewBox="0 0 16 16"
                 >
-                  Account Owner at Stowaway Cosmetics
-                </p>
+                  <path
+                    d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+                  />
+                </svg>
               </div>
-            </div>
-            <svg
-              class="SvgChevronRight16-root SvgChevronRight16-darkGrey"
-              style="min-width: 16px; min-height: 16px;"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
-              />
-            </svg>
+            </a>
           </div>
-        </a>
+        </div>
       </li>
       <li
         aria-disabled="false"
@@ -74,58 +82,66 @@ exports[`AccountSelect default render 1`] = `
         role="menuitem"
         tabindex="-1"
       >
-        <a
-          class="MuiTypography-root MuiLink-root MuiLink-underlineNone AccountSelect-accountLink MuiTypography-colorPrimary"
-          href="#"
+        <div
+          class="Container-flex Container-column MenuItem-content"
         >
           <div
-            class="Container-mediumPadding Container-centerAlignItems Container-spaceBetweenJustifyContent Container-flex"
+            class="Container-centerAlignItems Container-flex"
           >
-            <div
-              class="Container-flexStartAlignItems Container-flex UserBadge-root"
+            <a
+              class="MuiTypography-root MuiLink-root MuiLink-underlineNone AccountSelect-accountLink MuiTypography-colorPrimary"
+              href="#"
             >
               <div
-                class="Avatar-root Avatar-xsmall"
+                class="Container-mediumPadding Container-centerAlignItems Container-spaceBetweenJustifyContent Container-flex"
               >
                 <div
-                  class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
-                />
-                <p
-                  class="MuiTypography-root Typography-invert Typography-bodyInherit Avatar-text MuiTypography-body1"
+                  class="Container-flexStartAlignItems Container-flex UserBadge-root"
                 >
-                  PL
-                </p>
-              </div>
-              <div
-                class="Container-leftsmallMargin Container-flex Container-column"
-              >
-                <div
-                  class=""
-                >
-                  <h4
-                    class="MuiTypography-root Typography-headingSmall UserBadge-name MuiTypography-h4 MuiTypography-displayInline"
+                  <div
+                    class="Avatar-root Avatar-xsmall"
                   >
-                    Phil Leif 2
-                  </h4>
+                    <div
+                      class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
+                    />
+                    <p
+                      class="MuiTypography-root Typography-invert Typography-bodyInherit Avatar-text MuiTypography-body1"
+                    >
+                      PL
+                    </p>
+                  </div>
+                  <div
+                    class="Container-leftsmallMargin Container-flex Container-column"
+                  >
+                    <div
+                      class=""
+                    >
+                      <h4
+                        class="MuiTypography-root Typography-headingSmall UserBadge-name MuiTypography-h4 MuiTypography-displayInline"
+                      >
+                        Phil Leif 2
+                      </h4>
+                    </div>
+                    <p
+                      class="MuiTypography-root Typography-bodySmall MuiTypography-body1"
+                    >
+                      Company Representative at Marketing Works
+                    </p>
+                  </div>
                 </div>
-                <p
-                  class="MuiTypography-root Typography-bodySmall MuiTypography-body1"
+                <svg
+                  class="SvgChevronRight16-root SvgChevronRight16-darkGrey"
+                  style="min-width: 16px; min-height: 16px;"
+                  viewBox="0 0 16 16"
                 >
-                  Company Representative at Marketing Works
-                </p>
+                  <path
+                    d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+                  />
+                </svg>
               </div>
-            </div>
-            <svg
-              class="SvgChevronRight16-root SvgChevronRight16-darkGrey"
-              style="min-width: 16px; min-height: 16px;"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
-              />
-            </svg>
+            </a>
           </div>
-        </a>
+        </div>
       </li>
       <li
         aria-disabled="false"
@@ -133,55 +149,63 @@ exports[`AccountSelect default render 1`] = `
         role="menuitem"
         tabindex="-1"
       >
-        <a
-          class="MuiTypography-root MuiLink-root MuiLink-underlineNone AccountSelect-accountLink MuiTypography-colorPrimary"
-          href="#"
+        <div
+          class="Container-flex Container-column MenuItem-content"
         >
           <div
-            class="Container-mediumPadding Container-centerAlignItems Container-spaceBetweenJustifyContent Container-flex"
+            class="Container-centerAlignItems Container-flex"
           >
-            <div
-              class="Container-flexStartAlignItems Container-flex UserBadge-root"
+            <a
+              class="MuiTypography-root MuiLink-root MuiLink-underlineNone AccountSelect-accountLink MuiTypography-colorPrimary"
+              href="#"
             >
               <div
-                class="Avatar-root Avatar-xsmall"
-              >
-                <img
-                  alt="Phil Leif 3"
-                  class="Image-root Avatar-image Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
-                  src="./jacqueline-with-flowers-1954-square.jpg"
-                />
-              </div>
-              <div
-                class="Container-leftsmallMargin Container-flex Container-column"
+                class="Container-mediumPadding Container-centerAlignItems Container-spaceBetweenJustifyContent Container-flex"
               >
                 <div
-                  class=""
+                  class="Container-flexStartAlignItems Container-flex UserBadge-root"
                 >
-                  <h4
-                    class="MuiTypography-root Typography-headingSmall UserBadge-name MuiTypography-h4 MuiTypography-displayInline"
+                  <div
+                    class="Avatar-root Avatar-xsmall"
                   >
-                    Phil Leif 3
-                  </h4>
+                    <img
+                      alt="Phil Leif 3"
+                      class="Image-root Avatar-image Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
+                      src="./jacqueline-with-flowers-1954-square.jpg"
+                    />
+                  </div>
+                  <div
+                    class="Container-leftsmallMargin Container-flex Container-column"
+                  >
+                    <div
+                      class=""
+                    >
+                      <h4
+                        class="MuiTypography-root Typography-headingSmall UserBadge-name MuiTypography-h4 MuiTypography-displayInline"
+                      >
+                        Phil Leif 3
+                      </h4>
+                    </div>
+                    <p
+                      class="MuiTypography-root Typography-bodySmall MuiTypography-body1"
+                    >
+                      Talent
+                    </p>
+                  </div>
                 </div>
-                <p
-                  class="MuiTypography-root Typography-bodySmall MuiTypography-body1"
+                <svg
+                  class="SvgChevronRight16-root SvgChevronRight16-darkGrey"
+                  style="min-width: 16px; min-height: 16px;"
+                  viewBox="0 0 16 16"
                 >
-                  Talent
-                </p>
+                  <path
+                    d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
+                  />
+                </svg>
               </div>
-            </div>
-            <svg
-              class="SvgChevronRight16-root SvgChevronRight16-darkGrey"
-              style="min-width: 16px; min-height: 16px;"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
-              />
-            </svg>
+            </a>
           </div>
-        </a>
+        </div>
       </li>
     </ul>
   </div>

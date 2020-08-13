@@ -11,11 +11,19 @@ exports[`MenuItem default render 1`] = `
       role="menuitem"
       tabindex="-1"
     >
-      <span
-        class="MenuItem-stringContent"
+      <div
+        class="Container-flex Container-column MenuItem-content"
       >
-        Item
-      </span>
+        <div
+          class="Container-centerAlignItems Container-flex"
+        >
+          <span
+            class="MenuItem-stringContent"
+          >
+            Item
+          </span>
+        </div>
+      </div>
     </li>
   </div>
 </div>
@@ -32,23 +40,31 @@ exports[`MenuItem has chevron if has nested menu 1`] = `
       role="menuitem"
       tabindex="-1"
     >
-      <span
-        class="MenuItem-stringContent"
-      >
-        Item
-      </span>
       <div
-        class="Container-leftxsmallMargin Container-flex Container-inline"
+        class="Container-flex Container-column MenuItem-content"
       >
-        <svg
-          class="SvgChevronMinor16-root"
-          style="min-width: 16px; min-height: 16px;"
-          viewBox="0 0 16 16"
+        <div
+          class="Container-centerAlignItems Container-flex"
         >
-          <path
-            d="M5.997 3.29l4 4 .707.707-.707.707-4 4-.707-.707 4-4-4-4 .707-.707z"
-          />
-        </svg>
+          <span
+            class="MenuItem-stringContent"
+          >
+            Item
+          </span>
+          <div
+            class="Container-leftxsmallMargin Container-flex Container-inline"
+          >
+            <svg
+              class="SvgChevronMinor16-root"
+              style="min-width: 16px; min-height: 16px;"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M5.997 3.29l4 4 .707.707-.707.707-4 4-.707-.707 4-4-4-4 .707-.707z"
+              />
+            </svg>
+          </div>
+        </div>
       </div>
     </li>
   </div>

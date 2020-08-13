@@ -71,6 +71,27 @@ const OPTIONS = [
   }
 ]
 
+const OPTIONS_WITH_DESCRIPTIONS = [
+  {
+    key: 1,
+    value: 'val1',
+    text: 'text1',
+    description: 'description1'
+  },
+  {
+    key: 2,
+    value: 'val2',
+    text: 'text2',
+    description: 'description2'
+  },
+  {
+    key: 3,
+    value: 'val3',
+    text: 'text3',
+    description: 'description3'
+  }
+]
+
 const getSelectedOptions = (element: Element) =>
   Array.from(element.querySelectorAll('[class$="selected"]')) as Element[]
 
@@ -205,6 +226,22 @@ test('should render noOptionText if the value entered does not match any of the 
   const menu = getByRole('menu')
 
   expect(menu).toHaveTextContent(noOptionsText)
+})
+
+test('should render description', async () => {
+  const placeholder = 'Choose an option...'
+
+  const { getByPlaceholderText, getByRole } = renderSelect({
+    options: OPTIONS_WITH_DESCRIPTIONS,
+    placeholder
+  })
+  const input = getByPlaceholderText(placeholder)
+
+  fireEvent.focus(input)
+
+  const menu = getByRole('menu')
+
+  expect(menu).toMatchSnapshot()
 })
 
 test('should render options customly', async () => {
@@ -356,7 +393,9 @@ describe('multiple select', () => {
       fireEvent.focus(input)
 
       expect(
-        getByText(OPTIONS[0].text).parentElement?.getAttribute('aria-selected')
+        getByText(OPTIONS[0].text)
+          .closest('li')
+          ?.getAttribute('aria-selected')
       ).toBe('true')
     })
 
@@ -374,9 +413,9 @@ describe('multiple select', () => {
       fireEvent.focus(input)
 
       expect(
-        getByText(selectedOptions[0].text).parentElement?.getAttribute(
-          'aria-selected'
-        )
+        getByText(selectedOptions[0].text)
+          .closest('li')
+          ?.getAttribute('aria-selected')
       ).toBe('true')
     })
 
@@ -394,7 +433,9 @@ describe('multiple select', () => {
       fireEvent.focus(input)
 
       expect(
-        getByText(OPTIONS[0].text).parentElement?.getAttribute('aria-selected')
+        getByText(OPTIONS[0].text)
+          .closest('li')
+          ?.getAttribute('aria-selected')
       ).toBe('true')
     })
   })
