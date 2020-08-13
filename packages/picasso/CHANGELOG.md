@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.87.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.86.1...@toptal/picasso@4.87.0) (2020-08-13)
+
+
+### Features
+
+* **Select:** add noOptionText to Select props ([#1473](https://github.com/toptal/picasso/issues/1473)) ([164354a](https://github.com/toptal/picasso/commit/164354a371fd7307a833e3be086863ec8cebcad3))
+
+
+
+
+
 ## [4.86.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.86.0...@toptal/picasso@4.86.1) (2020-08-12)
 
 **Note:** Version bump only for package @toptal/picasso
