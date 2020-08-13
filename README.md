@@ -11,6 +11,7 @@
 [![#-frontend-exp-core](https://img.shields.io/badge/slack-%23--frontend--exp--core-green.svg)](https://slack.com)
 
 ## Installation instructions
+test
 
 ```
 yarn add @toptal/picasso
