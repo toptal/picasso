@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.29.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.29.1...@toptal/picasso-lab@2.29.2) (2020-08-13)
+
+
+### Bug Fixes
+
+* svg warning in dev tools ([#1481](https://github.com/toptal/picasso/issues/1481)) ([7ee8be2](https://github.com/toptal/picasso/commit/7ee8be2f70833c44e648ca7a740fb023607838a2))
+
+
+
+
+
 ## [2.29.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.29.0...@toptal/picasso-lab@2.29.1) (2020-08-12)
 
 **Note:** Version bump only for package @toptal/picasso-lab
