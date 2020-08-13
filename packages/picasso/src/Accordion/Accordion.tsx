@@ -8,7 +8,7 @@ import React, {
   useState
 } from 'react'
 import cx from 'classnames'
-import MUIExpansionPanel from '@material-ui/core/ExpansionPanel'
+import MUIAccordion from '@material-ui/core/Accordion'
 import { makeStyles } from '@material-ui/styles'
 import {
   CompoundedComponentWithRef,
@@ -16,8 +16,8 @@ import {
 } from '@toptal/picasso-shared'
 
 import { ArrowDownMinor16 } from '../Icon'
-import ExpansionPanelSummary from '../ExpansionPanelSummary'
-import ExpansionPanelDetails from '../ExpansionPanelDetails'
+import AccordionSummary from '../AccordionSummary'
+import AccordionDetails from '../AccordionDetails'
 import styles from './styles'
 
 const useStyles = makeStyles(styles)
@@ -63,9 +63,7 @@ export interface Props
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const EmptyExpansionPanelSummary = ({ expanded }: { expanded?: boolean }) => (
-  <div />
-)
+const EmptyAccordionSummary = ({ expanded }: { expanded?: boolean }) => <div />
 
 const decorateWithExpandIconClasses = (
   expandIcon: ReactElement,
@@ -112,7 +110,7 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
   })
 
   return (
-    <MUIExpansionPanel
+    <MUIAccordion
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       ref={ref}
@@ -130,7 +128,7 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
       onChange={onChange}
     >
       {children ? (
-        <ExpansionPanelSummary
+        <AccordionSummary
           classes={{
             root: classes.summary,
             content: classes.content
@@ -146,18 +144,18 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
               <ArrowDownMinor16 className={expandIconClass} />
             </div>
           )}
-        </ExpansionPanelSummary>
+        </AccordionSummary>
       ) : (
-        <EmptyExpansionPanelSummary />
+        <EmptyAccordionSummary />
       )}
-      <ExpansionPanelDetails
+      <AccordionDetails
         classes={{
           root: classes.details
         }}
       >
         {content}
-      </ExpansionPanelDetails>
-    </MUIExpansionPanel>
+      </AccordionDetails>
+    </MUIAccordion>
   )
 }) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
 

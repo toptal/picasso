@@ -239,18 +239,21 @@ export const Dropdown = forwardRef<HTMLDivElement, Props & Partial<JssProps>>(
             container={popperContainer}
           >
             <ClickAwayListener onClickAway={handleClickAway}>
-              <Grow in={isOpen} appear>
-                <Paper
-                  className={classes.content}
-                  onClick={() => close()}
-                  onKeyDown={handleContentKeyDown}
-                  elevation={2}
-                >
-                  <DropdownContext.Provider value={context}>
-                    <RootRef rootRef={contentRef}>{content}</RootRef>
-                  </DropdownContext.Provider>
-                </Paper>
-              </Grow>
+              {/* TODO: Remove this extra markup and put the onClick handler on `Paper` element */}
+              {/* as soon as https://github.com/mui-org/material-ui/issues/22156 gets fixed */}
+              <div onClick={close}>
+                <Grow in={isOpen} appear>
+                  <Paper
+                    className={classes.content}
+                    onKeyDown={handleContentKeyDown}
+                    elevation={2}
+                  >
+                    <DropdownContext.Provider value={context}>
+                      <RootRef rootRef={contentRef}>{content}</RootRef>
+                    </DropdownContext.Provider>
+                  </Paper>
+                </Grow>
+              </div>
             </ClickAwayListener>
           </Popper>
         )}

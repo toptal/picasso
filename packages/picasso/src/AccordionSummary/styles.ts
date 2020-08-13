@@ -2,7 +2,7 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 import { PicassoProvider } from '@toptal/picasso-shared'
 
 PicassoProvider.override(({ typography }: Theme) => ({
-  MuiExpansionPanelSummary: {
+  MuiAccordionSummary: {
     root: {
       fontSize: '1em',
       padding: '0.5625em 0 0.5625em',

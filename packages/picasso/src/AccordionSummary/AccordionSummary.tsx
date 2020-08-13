@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import MUIExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
+import MUIAccordionSummary from '@material-ui/core/AccordionSummary'
 import {
   StandardProps,
   PicassoComponent,
@@ -15,10 +15,10 @@ export interface Props extends StandardProps, ButtonOrAnchorProps {
   onClick?: () => void
 }
 
-// We can't create here intermediate object for ExpansionPanelSummary
+// We can't create here intermediate object for AccordionSummary
 // because MUI ExpansionPanel use type check to set Summary in the
 // correct place of the markdown
 // https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/ExpansionPanel/ExpansionPanel.js#L144
-export default withStyles(styles)(MUIExpansionPanelSummary) as PicassoComponent<
+export default withStyles(styles)(MUIAccordionSummary) as PicassoComponent<
   Props
 >

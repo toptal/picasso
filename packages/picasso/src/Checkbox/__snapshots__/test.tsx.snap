@@ -26,7 +26,6 @@ exports[`checkbox interaction should render checked checkbox 1`] = `
             />
             <div
               class="PicassoCheckbox-checkedIcon"
-              font-size="default"
             />
           </span>
         </span>
@@ -68,7 +67,6 @@ exports[`renders default checkbox without label 1`] = `
           />
           <div
             class="PicassoCheckbox-uncheckedIcon"
-            font-size="default"
           />
         </span>
       </span>
@@ -102,7 +100,6 @@ exports[`renders disabled state 1`] = `
           />
           <div
             class="PicassoCheckbox-uncheckedIcon"
-            font-size="default"
           />
         </span>
       </span>
@@ -134,7 +131,6 @@ exports[`renders indeterminate state 1`] = `
           />
           <div
             class="PicassoCheckbox-indeterminateIcon"
-            font-size="default"
           />
         </span>
       </span>
@@ -169,7 +165,6 @@ exports[`should render default checkbox with label 1`] = `
             />
             <div
               class="PicassoCheckbox-uncheckedIcon"
-              font-size="default"
             />
           </span>
         </span>

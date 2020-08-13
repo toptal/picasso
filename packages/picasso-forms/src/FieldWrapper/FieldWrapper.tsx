@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FocusEvent, useCallback } from 'react'
+import React, { ChangeEvent, FocusEvent, useCallback, useEffect } from 'react'
 import {
   useField,
   FieldProps as FinalFieldProps,
@@ -9,6 +9,8 @@ import { Form as PicassoForm } from '@toptal/picasso'
 import { Item } from '@toptal/picasso/Autocomplete'
 import { DateOrDateRangeType } from '@toptal/picasso-lab'
 
+import { useFormContext } from '../Form/FormContext'
+import { useFormConfig, FormConfigProps } from '../FormConfig'
 import { validators } from '../utils'
 
 const { composeValidators, required: requiredValidator } = validators
@@ -47,7 +49,14 @@ type FieldMeta<T> = FieldMetaState<T> & {
   dirtyAfterBlur?: boolean
 }
 
-const getInputError = <T extends ValueType>(meta: FieldMeta<T>) => {
+const getInputError = <T extends ValueType>(
+  meta: FieldMeta<T>,
+  formConfig: FormConfigProps
+) => {
+  if (formConfig.validateOnSubmit && meta.modifiedSinceLastSubmit) {
+    return null
+  }
+
   if (!meta.error && !meta.submitError) {
     return null
   }
@@ -137,8 +146,24 @@ const FieldWrapper = <
     ...rest
   } = props
 
+  const formConfig = useFormConfig()
+  const { setValidators, clearValidators } = useFormContext()
+  const validators = getValidators(required, validate)
+
+  if (formConfig.validateOnSubmit) {
+    setValidators(name, validators)
+  }
+
+  useEffect(() => {
+    return () => {
+      if (formConfig.validateOnSubmit) {
+        clearValidators(name)
+      }
+    }
+  }, [])
+
   const { meta, input } = useField<TInputValue>(name, {
-    validate: getValidators(required, validate),
+    validate: formConfig.validateOnSubmit ? undefined : validators,
     type,
     afterSubmit,
     allowNull,
@@ -165,9 +190,7 @@ const FieldWrapper = <
     })
   }, [input, onResetClick])
 
-  const error = getInputError<TInputValue>({
-    ...meta
-  })
+  const error = getInputError<TInputValue>(meta, formConfig)
 
   const childProps: Record<string, unknown> = {
     id,
