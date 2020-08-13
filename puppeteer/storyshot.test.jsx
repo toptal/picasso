@@ -12,9 +12,7 @@ const {
 const stories = global.__STORYSHOTS__
 const outputPath = assignOutputDir
 
-// Cleanup current output path
-exec(`rm -rf ${outputPath}`)
-exec(`mkdir -p ${outputPath}`)
+exec(`rm -rf ${outputPath}/*`)
 
 const snapShotDir = storyPath =>
   path.resolve(path.dirname(storyPath), '../', config.storyShotsDirName)
