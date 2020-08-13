@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react'
-import * as d3 from 'd3'
+import * as d3 from 'd3' // eslint-disable-line import/no-duplicates
+import { zoomTransform } from 'd3' // eslint-disable-line import/no-duplicates
 
 import { TreeViewContextProps } from './types'
 
@@ -32,7 +33,21 @@ export const TreeViewContainer: FC = ({ children }) => {
 
     d3.select(state.ref)
       .transition()
-      .call(state.zoom.scaleBy, step)
+      .call(state.zoom.scaleTo, function (
+        this: SVGSVGElement,
+        datum: unknown,
+        index: number,
+        groups: any
+      ) {
+        const defaultExtent = state.zoom!.extent()
+        const k0 = zoomTransform(this).k
+        const extent = defaultExtent.apply(this, [datum, index, groups])
+        const width = extent[1][0]
+        // support backward compatibility for the `step` argument
+        const k1 = step > 1 ? step - 1 : -step
+
+        return (width * k0 + width * k1) / width
+      })
   }
 
   return (
