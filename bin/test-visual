@@ -28,7 +28,7 @@ function run_jest() {
   fi
 
   set -x
-  $BIN_PATH/jest --verbose --runInBand --testEnvironment=$JEST_ENV --config=$JEST_CONFIG $@ || exit 1
+  $BIN_PATH/jest --runInBand --testEnvironment=$JEST_ENV --config=$JEST_CONFIG $@ || exit 1
   set +x
 }
 
