@@ -41,35 +41,15 @@ RUN apk update && apk upgrade && \
 RUN groupmod -g 469 node && usermod -u 469 -g 469 node
 
 WORKDIR /app
+RUN chown -R node /app
+
+USER node
 
 # Enables layer caching
-COPY package.json yarn.lock ./
+COPY --chown=node:node package.json yarn.lock ./
 
 RUN yarn install --frozen-lockfile
 
-COPY . /app
+COPY --chown=node:node . /app
 
-RUN yarn config set workspaces-experimental true
 RUN yarn install --frozen-lockfile && yarn cache clean
-
-# needs to be +rw for rm and mkdir /build
-RUN chmod a+rw /app && \
-  chmod a+rw /app/packages/picasso && \
-  chmod a+rw /app/packages/picasso-lab && \
-  chmod a+rw /app/packages/picasso-forms && \
-  chmod a+rw /app/packages/picasso-charts && \
-  chmod a+rw /app/packages/topkit-analytics-charts && \
-  chmod a+rw /app/packages/shared && \
-  chmod a+rw /app/packages/picasso/CHANGELOG.md && \
-  chmod a+rw /app/packages/picasso-lab/CHANGELOG.md && \
-  chmod a+rw /app/packages/picasso-forms/CHANGELOG.md && \
-  chmod a+rw /app/packages/picasso-charts/CHANGELOG.md && \
-  chmod a+rw /app/packages/topkit-analytics-charts/CHANGELOG.md && \
-  chmod a+rw /app/packages/shared/CHANGELOG.md && \
-  chmod a+rw /app/package.json && \
-  chmod a+rw /app/yarn.lock
-
-COPY bin/entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh
-
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
