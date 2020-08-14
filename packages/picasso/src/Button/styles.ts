@@ -179,6 +179,9 @@ export default ({ palette, sizes, transitions, typography }: Theme) =>
     transparentBlue: {
       ...transparent(palette.primary.main)
     },
+    transparentGreen: {
+      ...transparent(palette.green.main)
+    },
     primaryDisabled: primary(palette.grey.light!, palette.common.white),
     secondaryDisabled: secondary(palette.grey.light!, palette.common.white),
     flatDisabled: {
