@@ -1,5 +1,5 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
-import { PicassoProvider, alpha } from '@toptal/picasso-shared'
+import { PicassoProvider, alpha, darken } from '@toptal/picasso-shared'
 
 PicassoProvider.override(({ palette, sizes: { input } }: Theme) => ({
   MuiOutlinedInput: {
@@ -25,6 +25,7 @@ PicassoProvider.override(({ palette, sizes: { input } }: Theme) => ({
 
       '&$disabled': {
         '& $notchedOutline': {
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           borderColor: alpha(palette.grey.light!, 0.48)
         },
         color: alpha(palette.common.black, 0.48)
@@ -54,6 +55,7 @@ PicassoProvider.override(({ palette, sizes: { input } }: Theme) => ({
 
       '&$disabled': {
         '&::placeholder': {
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           color: alpha(palette.grey.main2!, 0.48),
           opacity: 1
         }
@@ -72,7 +74,7 @@ PicassoProvider.override(({ palette, sizes: { input } }: Theme) => ({
   }
 }))
 
-export default ({ sizes: { input } }: Theme) =>
+export default ({ palette, sizes: { input } }: Theme) =>
   createStyles({
     root: {
       '&:hover $resetButtonDirty': {
@@ -113,5 +115,19 @@ export default ({ sizes: { input } }: Theme) =>
     resetButton: {
       visibility: 'hidden'
     },
-    resetButtonDirty: {}
+    resetButtonDirty: {},
+    rootDark: {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      backgroundColor: `${darken(palette.blue.darker!, 0.5)} !important`
+    },
+    notchedOutlineDark: {
+      border: 'none'
+    },
+    inputDark: {
+      color: palette.common.white,
+      '&::placeholder': {
+        color: palette.common.white,
+        opacity: 0.64
+      }
+    }
   })
