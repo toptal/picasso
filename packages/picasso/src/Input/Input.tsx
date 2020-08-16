@@ -118,23 +118,19 @@ const getCounter = (
   }
 }
 
-const getMultilineLabel = (limitValue: number, multiline?: boolean) => {
-  if (!multiline) {
-    return null
-  }
-
-  return limitValue >= 0 ? ' characters left' : ' over the limit'
-}
+const getMultilineRemainingLabel = (limitValue: number) =>
+  limitValue >= 0 ? ' characters left' : ' over the limit'
 
 const LimitAdornment = (props: LimitAdornmentProps) => {
   const classes = useStyles(props)
   const { multiline, charsLength, counter, limit } = props
 
   const { limitValue, isNegative } = getCounter(counter!, charsLength!, limit)
-  const multilineLabel =
-    counter === 'remaining' && limit
-      ? getMultilineLabel(limitValue, multiline)
+  const multilineLabel = multiline
+    ? counter === 'remaining' && limit
+      ? getMultilineRemainingLabel(limitValue)
       : ' characters entered'
+    : null
 
   return (
     <InputAdornment
