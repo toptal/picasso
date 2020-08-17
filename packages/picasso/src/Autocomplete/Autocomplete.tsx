@@ -86,7 +86,6 @@ export interface Props
   enableReset?: boolean
   /** DOM element that wraps the Popper */
   popperContainer?: HTMLElement
-  /** Props of the text field */
   inputProps?: BaseInputProps
 }
 

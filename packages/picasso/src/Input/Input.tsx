@@ -41,7 +41,6 @@ export interface Props
   iconPosition?: IconPosition
   /** Specify icon which should be rendered inside Input */
   icon?: ReactNode
-  /** props to be based to Input component */
   inputProps?: BaseInputProps
   /** Whether `Input` should be rendered as `TextArea` or not */
   multiline?: boolean
