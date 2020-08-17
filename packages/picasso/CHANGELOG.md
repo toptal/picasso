@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.88.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.87.1...@toptal/picasso@4.88.0) (2020-08-17)
+
+
+### Features
+
+* **indicator:** add green and light-grey Indicator colors ([#1489](https://github.com/toptal/picasso/issues/1489)) ([bb8f72e](https://github.com/toptal/picasso/commit/bb8f72e55ef038e5359ca1b9add7acf1d8e0d5dd))
+
+
+
+
+
 ## [4.87.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.87.0...@toptal/picasso@4.87.1) (2020-08-14)
 
 **Note:** Version bump only for package @toptal/picasso
