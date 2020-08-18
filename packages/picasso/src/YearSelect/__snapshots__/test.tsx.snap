@@ -57,6 +57,7 @@ exports[`YearSelect default render 1`] = `
 exports[`YearSelect render in descending order 1`] = `
 <ul
   class="MuiList-root ScrollMenu-menu"
+  data-testid="select-dropdown"
   role="menu"
   tabindex="-1"
 >
@@ -66,17 +67,28 @@ exports[`YearSelect render in descending order 1`] = `
   >
     <li
       aria-disabled="false"
-      aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      aria-selected="true"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
       role="option"
       tabindex="-1"
       value="2005"
     >
-      <span
-        class="MenuItem-stringContent MenuItem-stringContentMedium"
+      <div
+        class="Container-flex Container-column MenuItem-content"
       >
-        2005
-      </span>
+        <div
+          class="Container-centerAlignItems Container-flex"
+        >
+          <div
+            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+          />
+          <span
+            class="MenuItem-stringContent MenuItem-stringContentMedium"
+          >
+            2005
+          </span>
+        </div>
+      </div>
     </li>
     <li
       aria-disabled="false"
@@ -86,11 +98,22 @@ exports[`YearSelect render in descending order 1`] = `
       tabindex="-1"
       value="2004"
     >
-      <span
-        class="MenuItem-stringContent MenuItem-stringContentMedium"
+      <div
+        class="Container-flex Container-column MenuItem-content"
       >
-        2004
-      </span>
+        <div
+          class="Container-centerAlignItems Container-flex"
+        >
+          <div
+            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+          />
+          <span
+            class="MenuItem-stringContent MenuItem-stringContentMedium"
+          >
+            2004
+          </span>
+        </div>
+      </div>
     </li>
     <li
       aria-disabled="false"
@@ -100,11 +123,22 @@ exports[`YearSelect render in descending order 1`] = `
       tabindex="-1"
       value="2003"
     >
-      <span
-        class="MenuItem-stringContent MenuItem-stringContentMedium"
+      <div
+        class="Container-flex Container-column MenuItem-content"
       >
-        2003
-      </span>
+        <div
+          class="Container-centerAlignItems Container-flex"
+        >
+          <div
+            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+          />
+          <span
+            class="MenuItem-stringContent MenuItem-stringContentMedium"
+          >
+            2003
+          </span>
+        </div>
+      </div>
     </li>
     <li
       aria-disabled="false"
@@ -114,11 +148,22 @@ exports[`YearSelect render in descending order 1`] = `
       tabindex="-1"
       value="2002"
     >
-      <span
-        class="MenuItem-stringContent MenuItem-stringContentMedium"
+      <div
+        class="Container-flex Container-column MenuItem-content"
       >
-        2002
-      </span>
+        <div
+          class="Container-centerAlignItems Container-flex"
+        >
+          <div
+            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+          />
+          <span
+            class="MenuItem-stringContent MenuItem-stringContentMedium"
+          >
+            2002
+          </span>
+        </div>
+      </div>
     </li>
     <li
       aria-disabled="false"
@@ -128,11 +173,22 @@ exports[`YearSelect render in descending order 1`] = `
       tabindex="-1"
       value="2001"
     >
-      <span
-        class="MenuItem-stringContent MenuItem-stringContentMedium"
+      <div
+        class="Container-flex Container-column MenuItem-content"
       >
-        2001
-      </span>
+        <div
+          class="Container-centerAlignItems Container-flex"
+        >
+          <div
+            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+          />
+          <span
+            class="MenuItem-stringContent MenuItem-stringContentMedium"
+          >
+            2001
+          </span>
+        </div>
+      </div>
     </li>
   </div>
 </ul>
