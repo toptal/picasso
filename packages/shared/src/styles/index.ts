@@ -27,7 +27,13 @@ export const alpha = (inputColor: string, amount: number) => {
 export const rem = (px: string, baseFontSize = 16) => {
   const pxNumber = px.replace('px', '')
 
-  return `${Number.parseInt(pxNumber) / baseFontSize}rem`
+  return `${Number.parseFloat(pxNumber) / baseFontSize}rem`
+}
+
+export const remToNumber = (rem: string) => {
+  const remNumber = rem.replace('rem', '')
+
+  return Number.parseFloat(remNumber)
 }
 
 export { default as withClasses } from './withClasses'
