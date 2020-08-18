@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import React, {
   useContext,
   useLayoutEffect,
@@ -64,15 +65,22 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
 
   const { width, fullWidth } = useContext<PageContextProps>(PageContext)
 
+  const isDark = variant === 'dark'
   const logo = (
-    <Logo variant='white' emblem={isCompactLayout} className={classes.logo} />
+    <Logo
+      variant={isDark ? 'white' : 'default'}
+      emblem={isCompactLayout}
+      className={classes.logo}
+    />
   )
 
   const titleComponent = title && (
     <Container left='small' flex alignItems='center'>
-      <div className={classes.divider} />
+      <div
+        className={cx(classes.divider, { [classes.dividerBlue]: !isDark })}
+      />
       <Container left='small'>
-        <Typography invert weight='light'>
+        <Typography invert={isDark} weight='light'>
           {title}
         </Typography>
       </Container>
@@ -120,7 +128,7 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
 })
 
 PageHeader.defaultProps = {
-  variant: 'light'
+  variant: 'dark'
 }
 
 PageHeader.displayName = 'PageHeader'

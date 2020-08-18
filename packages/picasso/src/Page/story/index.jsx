@@ -4,6 +4,7 @@ import pageHeaderMenuStory from '../../PageHeaderMenu/story'
 import pageContentStory from '../../PageContent/story'
 import pageFooterStory from '../../PageFooter/story'
 import pageBannerStory from '../../PageBanner/story'
+import pageAutocompleteStory from '../../PageAutocomplete/story'
 import { Page } from '../Page'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
@@ -21,6 +22,7 @@ page
   .addComponentDocs(pageContentStory.componentDocs)
   .addComponentDocs(pageFooterStory.componentDocs)
   .addComponentDocs(pageBannerStory.componentDocs)
+  .addComponentDocs(pageAutocompleteStory.componentDocs)
 
 page
   .createChapter()
@@ -59,3 +61,5 @@ page.connect(pageContentStory.chapter)
 page.connect(pageFooterStory.chapter)
 
 page.connect(pageBannerStory.chapter)
+
+page.connect(pageAutocompleteStory.chapter)
