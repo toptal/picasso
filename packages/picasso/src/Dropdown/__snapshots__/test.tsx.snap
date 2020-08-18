@@ -61,11 +61,19 @@ exports[`Dropdown should render menu 1`] = `
                 role="menuitem"
                 tabindex="0"
               >
-                <span
-                  class="MenuItem-stringContent"
+                <div
+                  class="Container-flex Container-column MenuItem-content"
                 >
-                  Item1
-                </span>
+                  <div
+                    class="Container-centerAlignItems Container-flex"
+                  >
+                    <span
+                      class="MenuItem-stringContent"
+                    >
+                      Item1
+                    </span>
+                  </div>
+                </div>
               </li>
               <li
                 aria-disabled="false"
@@ -73,11 +81,19 @@ exports[`Dropdown should render menu 1`] = `
                 role="menuitem"
                 tabindex="-1"
               >
-                <span
-                  class="MenuItem-stringContent"
+                <div
+                  class="Container-flex Container-column MenuItem-content"
                 >
-                  Item2
-                </span>
+                  <div
+                    class="Container-centerAlignItems Container-flex"
+                  >
+                    <span
+                      class="MenuItem-stringContent"
+                    >
+                      Item2
+                    </span>
+                  </div>
+                </div>
               </li>
               <li
                 aria-disabled="false"
@@ -85,11 +101,19 @@ exports[`Dropdown should render menu 1`] = `
                 role="menuitem"
                 tabindex="-1"
               >
-                <span
-                  class="MenuItem-stringContent"
+                <div
+                  class="Container-flex Container-column MenuItem-content"
                 >
-                  Item3
-                </span>
+                  <div
+                    class="Container-centerAlignItems Container-flex"
+                  >
+                    <span
+                      class="MenuItem-stringContent"
+                    >
+                      Item3
+                    </span>
+                  </div>
+                </div>
               </li>
             </ul>
           </div>
@@ -144,11 +168,19 @@ exports[`Dropdown should render menu with focus 1`] = `
                 role="menuitem"
                 tabindex="0"
               >
-                <span
-                  class="MenuItem-stringContent"
+                <div
+                  class="Container-flex Container-column MenuItem-content"
                 >
-                  Item1
-                </span>
+                  <div
+                    class="Container-centerAlignItems Container-flex"
+                  >
+                    <span
+                      class="MenuItem-stringContent"
+                    >
+                      Item1
+                    </span>
+                  </div>
+                </div>
               </li>
               <li
                 aria-disabled="false"
@@ -156,11 +188,19 @@ exports[`Dropdown should render menu with focus 1`] = `
                 role="menuitem"
                 tabindex="-1"
               >
-                <span
-                  class="MenuItem-stringContent"
+                <div
+                  class="Container-flex Container-column MenuItem-content"
                 >
-                  Item2
-                </span>
+                  <div
+                    class="Container-centerAlignItems Container-flex"
+                  >
+                    <span
+                      class="MenuItem-stringContent"
+                    >
+                      Item2
+                    </span>
+                  </div>
+                </div>
               </li>
               <li
                 aria-disabled="false"
@@ -168,11 +208,19 @@ exports[`Dropdown should render menu with focus 1`] = `
                 role="menuitem"
                 tabindex="-1"
               >
-                <span
-                  class="MenuItem-stringContent"
+                <div
+                  class="Container-flex Container-column MenuItem-content"
                 >
-                  Item3
-                </span>
+                  <div
+                    class="Container-centerAlignItems Container-flex"
+                  >
+                    <span
+                      class="MenuItem-stringContent"
+                    >
+                      Item3
+                    </span>
+                  </div>
+                </div>
               </li>
             </ul>
           </div>

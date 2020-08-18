@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import React, {
   forwardRef,
   ReactNode,
@@ -44,6 +45,7 @@ export interface Props
   /** Whether to render without internal padding */
   disableGutters?: boolean
   children?: ReactNode
+  description?: ReactNode
   /** Nested menu */
   menu?: ReactElement
   /** Callback when menu item is clicked */
@@ -72,6 +74,7 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
   {
     as,
     children,
+    description,
     classes,
     className,
     disabled,
@@ -104,7 +107,8 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
     children = (
       <span
         className={cx(classes.stringContent, {
-          [classes[`stringContent${size && capitalize(size!)}`]]: size
+          [classes[`stringContent${size && capitalize(size!)}`]]: size,
+          [classes.stringContentSemibold]: checkmarked
         })}
         style={style}
       >
@@ -122,24 +126,6 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
     if (onClick) {
       onClick(event)
     }
-  }
-
-  const renderIconIfEligible = () => {
-    if (menu) {
-      return (
-        <Container flex inline left='xsmall'>
-          <ChevronMinor16 />
-        </Container>
-      )
-    }
-    if (checkmarked) {
-      return (
-        <Container flex inline left='xsmall' data-testid='select-checkmark'>
-          <CheckMinor16 />
-        </Container>
-      )
-    }
-    return null
   }
 
   return (
@@ -162,8 +148,31 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
       value={value}
       selected={selected}
     >
-      {children}
-      {renderIconIfEligible()}
+      <Container flex direction='column' className={classes.content}>
+        <Container flex alignItems='center'>
+          {checkmarked !== undefined && (
+            <Container
+              className={classes.iconContainer}
+              flex
+              inline
+              right='xsmall'
+            >
+              {checkmarked && <CheckMinor16 />}
+            </Container>
+          )}
+          {children}
+          {menu && (
+            <Container flex inline left='xsmall'>
+              <ChevronMinor16 />
+            </Container>
+          )}
+        </Container>
+        {description && (
+          <Container className={classes.description} left='medium' top={0.25}>
+            {description}
+          </Container>
+        )}
+      </Container>
     </MUIMenuItem>
   )
 })
