@@ -7,11 +7,10 @@ import React, {
 } from 'react'
 import cx from 'classnames'
 import { Theme, makeStyles } from '@material-ui/core/styles'
-import { InputBaseComponentProps } from '@material-ui/core/InputBase'
 import { BaseProps, SizeType } from '@toptal/picasso-shared'
 
 import InputAdornment from '../InputAdornment'
-import OutlinedInput from '../OutlinedInput'
+import OutlinedInput, { BaseInputProps } from '../OutlinedInput'
 import { disableUnsupportedProps } from '../utils'
 import { FeatureOptions } from '../utils/disable-unsupported-props'
 import styles from './styles'
@@ -42,7 +41,7 @@ export interface Props
   iconPosition?: IconPosition
   /** Specify icon which should be rendered inside Input */
   icon?: ReactNode
-  inputProps?: InputBaseComponentProps
+  inputProps?: BaseInputProps
   /** Whether `Input` should be rendered as `TextArea` or not */
   multiline?: boolean
   /** Whether a multiline can be manually resized by the user, requires multiline prop to be set to true */

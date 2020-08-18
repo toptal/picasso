@@ -1,5 +1,6 @@
 import React from 'react'
-import { Page, Container, Button, UserBadge, Typography } from '@toptal/picasso'
+import { Page, UserBadge, Typography, Container } from '@toptal/picasso'
+import { Item } from '@toptal/picasso/Autocomplete'
 
 const options = [
   { text: 'Denis Usanov', value: '1' },
@@ -11,8 +12,8 @@ const options = [
   { text: 'Tomislav Hrvoic', value: '7' }
 ]
 
-const renderOption = ({ text }) => (
-  <UserBadge name={text}>
+const renderOption = ({ text }: Item) => (
+  <UserBadge name={text!}>
     <Typography size='small'>CMS (Eng)</Typography>
   </UserBadge>
 )
@@ -20,12 +21,8 @@ const renderOption = ({ text }) => (
 const Example = () => (
   <div style={{ height: '4.5rem' }}>
     <Page.Header
-      title='Onboarding'
-      actionItems={
-        <Container right='medium'>
-          <Button variant='secondary-white'>Create job</Button>
-        </Container>
-      }
+      title='Light variant'
+      variant='light'
       leftContent={
         <Container left='large'>
           <Page.Autocomplete
@@ -33,6 +30,7 @@ const Example = () => (
             placeholder='Users'
             options={options}
             renderOption={renderOption}
+            variant='light'
           />
         </Container>
       }

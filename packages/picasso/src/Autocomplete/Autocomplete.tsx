@@ -25,6 +25,7 @@ import InputAdornment from '../InputAdornment'
 import { Item, ChangedOptions } from './types'
 import useAutocomplete, { EMPTY_INPUT_VALUE } from './useAutocomplete'
 import styles from './styles'
+import { BaseInputProps } from '../OutlinedInput'
 
 export interface Props
   extends StandardProps,
@@ -83,7 +84,9 @@ export interface Props
   enableAutofill?: boolean
   /** Whether to render reset icon when there is a value in the input */
   enableReset?: boolean
+  /** DOM element that wraps the Popper */
   popperContainer?: HTMLElement
+  inputProps?: BaseInputProps
 }
 
 const getItemText = (item: Item | null) =>
@@ -242,6 +245,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
             value={value}
             ref={ref}
             placeholder={placeholder}
+            inputProps={rest.inputProps}
             endAdornment={loading ? loadingComponent : endAdornment}
             width={width}
             name={enableAutofill ? name : undefined}
