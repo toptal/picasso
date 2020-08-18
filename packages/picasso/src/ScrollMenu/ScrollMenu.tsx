@@ -39,7 +39,8 @@ const ScrollMenu: FunctionComponent<Props> = ({
   selectedIndex,
   classes,
   children,
-  style
+  style,
+  ...rest
 }) => {
   const menuRef = useRef<HTMLDivElement | null>(null)
   const firstItemRef = createRef<HTMLElement>()
@@ -94,7 +95,12 @@ const ScrollMenu: FunctionComponent<Props> = ({
   }, [firstItemRef, selectedIndex, prevSelectedIndex])
 
   return (
-    <Menu className={classes.menu} style={style}>
+    <Menu
+      className={classes.menu}
+      style={style}
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
+    >
       <div ref={menuRef} className={classes.scrollView}>
         {renderChildren}
       </div>

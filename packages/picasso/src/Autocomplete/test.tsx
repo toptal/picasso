@@ -67,7 +67,7 @@ describe('Autocomplete', () => {
   describe('dynamic behavior', () => {
     test('on focus', () => {
       const onFocus = jest.fn()
-      const { getByPlaceholderText, getByRole } = renderAutocomplete({
+      const { getByPlaceholderText, getByTestId } = renderAutocomplete({
         placeholder,
         options: testOptions,
         value: '',
@@ -81,7 +81,7 @@ describe('Autocomplete', () => {
       // calls onFocus handler
       expect(onFocus).toHaveBeenCalledTimes(1)
       // menu contains all the options displayed
-      expect(getByRole('menu')).toMatchSnapshot()
+      expect(getByTestId('autocomplete-dropdown')).toMatchSnapshot()
     })
 
     test('on type', () => {
@@ -177,12 +177,20 @@ describe('Autocomplete', () => {
 
         fireEvent.focus(input)
 
+        expect(
+          getByText('Belarus')
+            .closest('li')
+            ?.getAttribute('aria-selected')
+        ).toBe('true')
+
         fireEvent.keyDown(input, {
           key: 'ArrowDown'
         })
 
         expect(
-          getByText('Belarus').parentElement!.getAttribute('aria-selected')
+          getByText('Croatia')
+            .closest('li')
+            ?.getAttribute('aria-selected')
         ).toBe('true')
       })
 
@@ -202,7 +210,9 @@ describe('Autocomplete', () => {
         })
 
         expect(
-          getByText('Ukraine').parentElement!.getAttribute('aria-selected')
+          getByText('Ukraine')
+            .closest('li')
+            ?.getAttribute('aria-selected')
         ).toBe('true')
       })
 

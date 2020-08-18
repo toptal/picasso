@@ -115,7 +115,6 @@ export interface Props<
 type Selection = {
   isSelected(): boolean
   isOptionSelected(option: Option): boolean
-  isOptionCheckmarked(option: Option): boolean
   display(getDisplayValue: (option: Option | null) => string): string
 }
 
@@ -140,7 +139,6 @@ type OptionsProps = Pick<
 > & {
   highlightedIndex: number | null
   inputValue: string
-  setHighlightedIndex: (index: number | null) => void
   getItemProps: (index: number, option: Option) => ItemProps
   onItemSelect: (event: React.MouseEvent, option: Option) => void
 }
@@ -180,14 +178,14 @@ const renderNativeOptions = ({
 
 interface SelectOptionProps {
   children?: ReactNode
+  description?: ReactNode
   onMouseDown: (event: React.MouseEvent) => void
+  onMouseEnter: () => void
   close: () => void
   selected: boolean
-  checkmarked: boolean
+  highlighted: boolean
   multiple?: boolean
   size?: SizeType<'small' | 'medium'>
-  index: number
-  setHighlightedIndex: OptionsProps['setHighlightedIndex']
   onItemSelect: OptionsProps['onItemSelect']
   option: Option
 }
@@ -197,31 +195,25 @@ const SelectOption = React.memo(
     option,
     size,
     onMouseDown,
+    onMouseEnter,
     selected,
-    checkmarked,
-    setHighlightedIndex,
-    index,
+    highlighted,
     onItemSelect,
     multiple,
+    description,
     children,
     close
   }: SelectOptionProps) => {
     return (
       <MenuItem
         role='option'
-        aria-selected={selected}
+        aria-selected={highlighted}
         value={option.value}
         size={size}
-        selected={selected}
-        checkmarked={checkmarked}
+        selected={highlighted}
+        checkmarked={selected}
         onMouseDown={onMouseDown}
-        onMouseEnter={() => {
-          if (selected) {
-            return
-          }
-
-          setHighlightedIndex(index)
-        }}
+        onMouseEnter={onMouseEnter}
         onClick={(event: React.MouseEvent) => {
           if (!multiple) {
             close()
@@ -230,6 +222,7 @@ const SelectOption = React.memo(
           onItemSelect(event, option)
         }}
         titleCase={false}
+        description={description}
       >
         {children}
       </MenuItem>
@@ -237,12 +230,15 @@ const SelectOption = React.memo(
   }
 )
 
+const isOptionInSelectedValues = (option: Option, value: ValueType[]) =>
+  value.includes(String(option.value))
+
 const getMultipleSelection = (
   options: Option[],
   value: ValueType[]
 ): Selection => {
   const getSelectedOptions = () =>
-    options.filter(option => value.includes(String(option.value)))
+    options.filter(option => isOptionInSelectedValues(option, value))
 
   return {
     display: (getDisplayValue: (option: Option | null) => string) =>
@@ -250,8 +246,7 @@ const getMultipleSelection = (
         .map(getDisplayValue)
         .join(', '),
     isSelected: () => !isEmpty(value),
-    isOptionSelected: () => false,
-    isOptionCheckmarked: option => value.includes(String(option.value))
+    isOptionSelected: option => isOptionInSelectedValues(option, value)
   }
 }
 
@@ -266,8 +261,7 @@ const getSingleSelection = (
     display: (getDisplayValue: (option: Option | null) => string) =>
       getDisplayValue(getSelectedOption()),
     isSelected: () => !isEmpty(value),
-    isOptionSelected: option => String(option.value) === value,
-    isOptionCheckmarked: () => false
+    isOptionSelected: option => option.value === value
   }
 }
 
@@ -305,7 +299,6 @@ const renderOptions = ({
   options,
   renderOption,
   highlightedIndex,
-  setHighlightedIndex,
   onItemSelect,
   getItemProps,
   value,
@@ -325,7 +318,10 @@ const renderOptions = ({
   }
 
   const optionComponents = options.map((option, currentIndex) => {
-    const { close, onMouseDown } = getItemProps(currentIndex, option)
+    const { close, onMouseDown, onMouseEnter } = getItemProps(
+      currentIndex,
+      option
+    )
     const selection = getSelection(options, value)
     return (
       <SelectOption
@@ -333,16 +329,13 @@ const renderOptions = ({
         option={option}
         size={size}
         onMouseDown={onMouseDown}
-        selected={
-          selection.isOptionSelected(option) ||
-          highlightedIndex === currentIndex
-        }
-        checkmarked={selection.isOptionCheckmarked(option)}
-        setHighlightedIndex={setHighlightedIndex}
-        index={currentIndex}
+        onMouseEnter={onMouseEnter}
+        selected={selection.isOptionSelected(option)}
+        highlighted={highlightedIndex === currentIndex}
         multiple={multiple}
         close={close}
         onItemSelect={onItemSelect}
+        description={option.description}
       >
         {renderOption?.(option)}
       </SelectOption>
@@ -350,7 +343,9 @@ const renderOptions = ({
   })
 
   return (
-    <ScrollMenu selectedIndex={highlightedIndex}>{optionComponents}</ScrollMenu>
+    <ScrollMenu data-testid='select-dropdown' selectedIndex={highlightedIndex}>
+      {optionComponents}
+    </ScrollMenu>
   )
 }
 
@@ -409,13 +404,17 @@ export const Select = documentable(
       const [selectedOptions, setSelectedOptions] = useState(
         allOptions.filter(option =>
           Array.isArray(value)
-            ? value.includes(String(option.value))
+            ? isOptionInSelectedValues(option, value)
             : value === String(option.value)
         )
       )
-      const select = getSelection(
-        removeDuplicatedOptions([...allOptions, ...selectedOptions]),
-        value
+      const select = useMemo(
+        () =>
+          getSelection(
+            removeDuplicatedOptions([...allOptions, ...selectedOptions]),
+            value
+          ),
+        [allOptions, selectedOptions, value]
       )
       const [inputValue, setInputValue] = useState(
         select.display(getDisplayValue!)
@@ -429,6 +428,16 @@ export const Select = documentable(
             isSubstring(filterOptionsValue, getDisplayValue!(option))
           ),
         [allOptions, filterOptionsValue, getDisplayValue]
+      )
+
+      const selectedIndexes = useMemo(
+        () =>
+          options.reduce(
+            (selected: number[], option: Option, index: number) =>
+              select.isOptionSelected(option) ? [...selected, index] : selected,
+            []
+          ),
+        [options, select]
       )
 
       const prevValue = useRef(value)
@@ -484,7 +493,7 @@ export const Select = documentable(
         value: ValueType[],
         option: Option
       ) => {
-        const isInSelectedValues = value.includes(String(option.value))
+        const isInSelectedValues = isOptionInSelectedValues(option, value)
 
         if (isInSelectedValues) {
           return value!.filter(value => value !== option.value)
@@ -506,10 +515,11 @@ export const Select = documentable(
           setSelectedOptions(
             allOptions.filter(option =>
               Array.isArray(newValue)
-                ? newValue.includes(String(option.value))
+                ? isOptionInSelectedValues(option, newValue)
                 : newValue === String(option.value)
             )
           )
+
           fireOnChangeEvent({ event, value: newValue })
           setFilterOptionsValue(EMPTY_INPUT_VALUE)
         },
@@ -525,7 +535,6 @@ export const Select = documentable(
 
       const {
         highlightedIndex,
-        setHighlightedIndex,
         isOpen,
         getItemProps,
         getInputProps,
@@ -533,6 +542,7 @@ export const Select = documentable(
       } = useSelect({
         value: inputValue,
         options,
+        selectedIndexes,
         disabled,
         onSelect: handleSelect,
         onChange: handleChange,
@@ -687,7 +697,6 @@ export const Select = documentable(
                   options,
                   renderOption,
                   highlightedIndex,
-                  setHighlightedIndex,
                   onItemSelect: handleSelect,
                   getItemProps,
                   value,

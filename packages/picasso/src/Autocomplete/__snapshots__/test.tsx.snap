@@ -3,6 +3,7 @@
 exports[`Autocomplete dynamic behavior on focus 1`] = `
 <ul
   class="MuiList-root ScrollMenu-menu"
+  data-testid="autocomplete-dropdown"
   role="menu"
   tabindex="-1"
 >
@@ -12,68 +13,123 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
   >
     <li
       aria-disabled="false"
-      aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      aria-selected="true"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
       role="option"
       tabindex="-1"
     >
-      <span
-        class="MenuItem-stringContent"
+      <div
+        class="Container-flex Container-column MenuItem-content"
       >
-        Belarus
-      </span>
+        <div
+          class="Container-centerAlignItems Container-flex"
+        >
+          <div
+            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+          />
+          <span
+            class="MenuItem-stringContent MenuItem-stringContentMedium"
+          >
+            Belarus
+          </span>
+        </div>
+      </div>
     </li>
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
     >
-      <span
-        class="MenuItem-stringContent"
+      <div
+        class="Container-flex Container-column MenuItem-content"
       >
-        Croatia
-      </span>
+        <div
+          class="Container-centerAlignItems Container-flex"
+        >
+          <div
+            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+          />
+          <span
+            class="MenuItem-stringContent MenuItem-stringContentMedium"
+          >
+            Croatia
+          </span>
+        </div>
+      </div>
     </li>
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
     >
-      <span
-        class="MenuItem-stringContent"
+      <div
+        class="Container-flex Container-column MenuItem-content"
       >
-        Lithuania
-      </span>
+        <div
+          class="Container-centerAlignItems Container-flex"
+        >
+          <div
+            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+          />
+          <span
+            class="MenuItem-stringContent MenuItem-stringContentMedium"
+          >
+            Lithuania
+          </span>
+        </div>
+      </div>
     </li>
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
     >
-      <span
-        class="MenuItem-stringContent"
+      <div
+        class="Container-flex Container-column MenuItem-content"
       >
-        Slovakia
-      </span>
+        <div
+          class="Container-centerAlignItems Container-flex"
+        >
+          <div
+            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+          />
+          <span
+            class="MenuItem-stringContent MenuItem-stringContentMedium"
+          >
+            Slovakia
+          </span>
+        </div>
+      </div>
     </li>
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
     >
-      <span
-        class="MenuItem-stringContent"
+      <div
+        class="Container-flex Container-column MenuItem-content"
       >
-        Ukraine
-      </span>
+        <div
+          class="Container-centerAlignItems Container-flex"
+        >
+          <div
+            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+          />
+          <span
+            class="MenuItem-stringContent MenuItem-stringContentMedium"
+          >
+            Ukraine
+          </span>
+        </div>
+      </div>
     </li>
   </div>
 </ul>
