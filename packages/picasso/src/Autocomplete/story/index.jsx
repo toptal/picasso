@@ -67,6 +67,16 @@ if needed.
   .addExample('Autocomplete/story/Loading.example.jsx', 'Loading')
   .addExample('Autocomplete/story/Error.example.jsx', 'Error')
   .addExample('Autocomplete/story/WithIcons.example.jsx', 'With Icon')
+  .addExample('Autocomplete/story/WithDescription.example.jsx', {
+    title: 'With Description',
+    effect: async (testPage, makeScreenshot) => {
+      await testPage.click('input')
+      await testPage.waitFor(100)
+      await makeScreenshot({
+        isFullScreen: true
+      })
+    }
+  })
   .addExample(
     'Autocomplete/story/CustomOptionRenderer.example.tsx',
     'Custom options rendering'
