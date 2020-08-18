@@ -14,7 +14,7 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
       zIndex: zIndex.appBar
     },
     light: {
-      backgroundColor: palette.blue.main
+      backgroundColor: palette.common.white
     },
     dark: {
       backgroundColor: palette.blue.darker
@@ -57,6 +57,9 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
       height: '1.75em',
       backgroundColor: palette.common.white,
       opacity: 0.8
+    },
+    dividerBlue: {
+      backgroundColor: palette.blue.darker
     },
     logoContainer: {
       [screens('small', 'medium')]: {
