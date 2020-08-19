@@ -126,7 +126,12 @@ const TableExpandableRowsExample = () => {
 
   return (
     <>
-      <Button onClick={() => toggleTable(!isTableShown)}>Toggle Table</Button>
+      <Button
+        data-testid='expand-table'
+        onClick={() => toggleTable(!isTableShown)}
+      >
+        Toggle Table
+      </Button>
       {isTableShown && (
         <Container top='medium'>
           <TableWithExpandableRows />
