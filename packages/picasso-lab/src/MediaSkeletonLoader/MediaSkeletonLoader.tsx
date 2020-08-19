@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useMemo } from 'react'
 import { palette } from '@toptal/picasso/utils'
 import ContentLoader from 'react-content-loader'
 import { remToNumber } from '@toptal/picasso-shared'
@@ -27,7 +27,7 @@ export type Props = ImageProps | AvatarProps | IconProps
 // all sizes are in pixels
 const WIDTH = 16
 const HEIGHT = 16
-const BORDER_RADIUS = `5px`
+const BORDER_RADIUS = '5px'
 
 const AVATAR_SIZES = {
   xxsmall: 32,
@@ -83,7 +83,7 @@ const getImageAttributes = ({
   borderRadius: circle ? '50%' : BORDER_RADIUS
 })
 
-export const MediaSkeletonLoader: FC<Props> = props => {
+const getAttribute = (props: React.PropsWithChildren<Props>) => {
   let attributes
 
   switch (props.variant) {
@@ -104,7 +104,14 @@ export const MediaSkeletonLoader: FC<Props> = props => {
       }
   }
 
-  const { width, height, borderRadius } = attributes
+  return attributes
+}
+
+export const MediaSkeletonLoader: FC<Props> = props => {
+  const { width, height, borderRadius } = useMemo(() => getAttribute(props), [
+    props
+  ])
+
   const viewBox = `0 0 ${width} ${height}`
 
   return (
