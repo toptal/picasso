@@ -12,8 +12,8 @@ const Example = () => {
       <Slider
         value={value}
         step={10}
-        min={10}
-        max={110}
+        min={0}
+        max={100}
         onChange={handleChange}
         marks
         hideThumbOnEmpty

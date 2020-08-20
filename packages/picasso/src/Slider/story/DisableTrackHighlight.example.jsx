@@ -5,10 +5,10 @@ const Example = () => {
   return (
     <Container>
       <Slider
-        defaultValue={8}
+        defaultValue={20}
         step={10}
-        min={10}
-        max={110}
+        min={0}
+        max={100}
         marks
         disableTrackHighlight
       />

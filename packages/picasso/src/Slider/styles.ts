@@ -60,7 +60,7 @@ export default ({ palette }: Theme) =>
     markTrack: {
       backgroundColor: palette.primary.main
     },
-    ummarkTrack: {
+    unmarkTrack: {
       backgroundColor: palette.grey.lighter
     },
     hideThumb: {

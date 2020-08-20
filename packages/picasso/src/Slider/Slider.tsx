@@ -105,7 +105,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     markTrack,
     hideThumb,
     markInactive,
-    ummarkTrack,
+    unmarkTrack,
     ...classes
   } = useStyles(props)
   const isTooltipAlwaysVisible = tooltip === 'on'
@@ -134,7 +134,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
           ...classes,
           track: cx(classes.track, {
             [markTrack]: marks,
-            [ummarkTrack]: disableTrackHighlight
+            [unmarkTrack]: disableTrackHighlight
           }),
           thumb: cx(classes.thumb, {
             [hideThumb]: isThumbHidden
