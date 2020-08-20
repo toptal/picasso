@@ -29,25 +29,26 @@ export default ({ typography, palette }: Theme) =>
       color: palette.common.black,
 
       '&:hover': {
+        color: palette.common.black,
         backgroundColor: palette.blue.lighter,
 
         '&$selected': {
-          color: palette.blue.main,
+          color: palette.common.black,
           backgroundColor: palette.blue.lighter
         }
       },
 
       '&$selected': {
-        color: palette.blue.main,
+        color: palette.common.black,
         backgroundColor: palette.blue.lighter
       },
 
       '&:focus': {
-        color: palette.blue.main,
+        color: palette.common.black,
         backgroundColor: palette.blue.lighter,
 
         '&$selected': {
-          color: palette.blue.main,
+          color: palette.common.black,
           backgroundColor: palette.blue.lighter
         }
       }
