@@ -12,6 +12,7 @@ const {
 const stories = global.__STORYSHOTS__
 const outputPath = assignOutputDir
 
+exec(`chmod -R 777 ${outputPath}`)
 exec(`rm -rf ${outputPath}/*`)
 
 const snapShotDir = storyPath =>
