@@ -54,7 +54,16 @@ export default ({ palette }: Theme) =>
     markActive: {
       backgroundColor: palette.primary.main
     },
+    markInactive: {
+      backgroundColor: palette.grey.main
+    },
     markTrack: {
       backgroundColor: palette.primary.main
+    },
+    ummarkTrack: {
+      backgroundColor: palette.grey.lighter
+    },
+    hideThumb: {
+      display: 'none'
     }
   })

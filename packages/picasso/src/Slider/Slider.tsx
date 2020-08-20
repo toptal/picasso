@@ -41,6 +41,10 @@ export interface Props extends ComponentProps<typeof MUISlider> {
   disablePortal?: boolean
   /** Callback invoked when slider changes its state. */
   onChange?: (event: ChangeEvent<{}>, value: Value) => void
+  /** Hide thumb when value is undefined or null. Works only when the component is controlled. */
+  hideThumbOnEmpty?: boolean
+  /** Disable track highlight. */
+  disableTrackHighlight?: boolean
 }
 
 // This type is needed because ValueLabelProps does not describe all exposed props
@@ -92,10 +96,21 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     disabled,
     disablePortal,
     onChange,
+    hideThumbOnEmpty,
+    disableTrackHighlight,
     ...rest
   } = props
-  const { wrapper, markTrack, ...classes } = useStyles(props)
+  const {
+    wrapper,
+    markTrack,
+    hideThumb,
+    markInactive,
+    ummarkTrack,
+    ...classes
+  } = useStyles(props)
   const isTooltipAlwaysVisible = tooltip === 'on'
+  const isThumbHidden =
+    hideThumbOnEmpty && (typeof value === 'undefined' || value === null)
   const ValueLabelComponent = (UserDefinedTooltip ||
     DefaultTooltip(
       isTooltipAlwaysVisible,
@@ -118,7 +133,14 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
         classes={{
           ...classes,
           track: cx(classes.track, {
-            [markTrack]: marks
+            [markTrack]: marks,
+            [ummarkTrack]: disableTrackHighlight
+          }),
+          thumb: cx(classes.thumb, {
+            [hideThumb]: isThumbHidden
+          }),
+          markActive: cx(classes.markActive, {
+            [markInactive]: isThumbHidden || disableTrackHighlight
           })
         }}
         ValueLabelComponent={
