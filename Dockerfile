@@ -52,4 +52,6 @@ RUN yarn install --frozen-lockfile
 
 COPY --chown=node:node . /app
 
+RUN rm -r ./__diff_output__
+
 RUN yarn install --frozen-lockfile && yarn cache clean
