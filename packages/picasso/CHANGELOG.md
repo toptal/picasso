@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.89.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.88.0...@toptal/picasso@4.89.0) (2020-08-20)
+
+
+### Features
+
+* **Slider:** add options to hide thumb and track highlight ([#1495](https://github.com/toptal/picasso/issues/1495)) ([adf27e4](https://github.com/toptal/picasso/commit/adf27e426a4dd1c21a133418b9009376cd26caf0))
+
+
+
+
+
 # [4.88.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.87.1...@toptal/picasso@4.88.0) (2020-08-17)
 
 
