@@ -1,5 +1,5 @@
 const path = require('path')
-const exec = require('child_process').execSync
+// const exec = require('child_process').execSync
 
 const { assertVisuals } = require('./index')
 const config = require('./config')
@@ -12,7 +12,7 @@ const {
 const stories = global.__STORYSHOTS__
 const outputPath = assignOutputDir
 
-exec(`rm -rf ${outputPath}/*`)
+// exec(`rm -rf ${outputPath}/*`)
 
 const snapShotDir = storyPath =>
   path.resolve(path.dirname(storyPath), '../', config.storyShotsDirName)
