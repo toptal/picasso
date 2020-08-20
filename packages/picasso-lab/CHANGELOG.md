@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.30.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.30.0...@toptal/picasso-lab@2.30.1) (2020-08-20)
+
+
+### Bug Fixes
+
+* **treeview:** adjust zoom to support linear transition ([#1483](https://github.com/toptal/picasso/issues/1483)) ([2e44458](https://github.com/toptal/picasso/commit/2e44458723a608a37d4fe8daf5f3b35fd7e4a26e))
+
+
+
+
+
 # [2.30.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.29.3...@toptal/picasso-lab@2.30.0) (2020-08-18)
 
 
