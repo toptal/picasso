@@ -83,7 +83,7 @@ exports[`renders Modal 1`] = `
 </div>
 `;
 
-exports[`useModals opens and closes modal 1`] = `
+exports[`useModal opens and closes modal 1`] = `
 <body
   style="overflow: hidden;"
 >
@@ -154,7 +154,7 @@ exports[`useModals opens and closes modal 1`] = `
 </body>
 `;
 
-exports[`useModals opens and closes modal 2`] = `
+exports[`useModal opens and closes modal 2`] = `
 <body
   style=""
 >
@@ -179,7 +179,7 @@ exports[`useModals opens and closes modal 2`] = `
 </body>
 `;
 
-exports[`useModals shows multiple modals at the same time 1`] = `
+exports[`useModal shows multiple modals at the same time 1`] = `
 <body
   style="overflow: hidden;"
 >

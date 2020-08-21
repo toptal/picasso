@@ -34,6 +34,8 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   open: boolean
   /** Width of modal */
   size?: SizeType<'small' | 'medium' | 'large'> | 'full-screen'
+  /** If true, clicking the backdrop will not fire onClose. */
+  disableBackdropClick?: boolean
   /** Callback executed when backdrop was clicked */
   onBackdropClick?: () => void
   /** Callback executed when attempting to close modal */
@@ -111,6 +113,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
     children,
     open,
     size,
+    disableBackdropClick,
     onBackdropClick,
     onClose,
     onOpen,
@@ -202,6 +205,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
       container={container || picassoRootContainer}
       PaperProps={{ ...paperProps, elevation: 2 }}
       hideBackdrop={hideBackdrop}
+      disableBackdropClick={disableBackdropClick}
       onBackdropClick={onBackdropClick}
       onClose={onClose}
       onEnter={onOpen}
@@ -222,6 +226,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
 
 Modal.defaultProps = {
   hideBackdrop: false,
+  disableBackdropClick: true,
   size: 'medium',
   transitionDuration: 300
 }

@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import { TreeView, TreeNodeInterface } from '@toptal/picasso-lab'
 import { Button, Container, Modal, UserBadge } from '@toptal/picasso'
 import { HierarchyPointNode } from 'd3-hierarchy'
-import { useModals, palette } from '@toptal/picasso/utils'
+import { useModal, palette } from '@toptal/picasso/utils'
 import styled from 'styled-components'
 
 const NodeContainer = styled<typeof Container>(Container)<{
@@ -152,14 +152,14 @@ const renderNode = (pointNode: HierarchyPointNode<TreeNodeInterface>) => {
 }
 
 const ModalTreeDialog: FC<{
-  modalId: string
-  hideModal(modalId: string): void
-}> = ({ modalId, hideModal }) => {
+  open: boolean
+  onClose(): void
+}> = ({ open, onClose }) => {
   return (
     <Modal
       container={() => document.getElementById('modal-container')!}
-      onClose={() => hideModal(modalId)}
-      open
+      onClose={onClose}
+      open={open}
       size='full-screen'
     >
       <Modal.Title>Modal Tree View</Modal.Title>
@@ -171,19 +171,14 @@ const ModalTreeDialog: FC<{
 }
 
 const Example = () => {
-  const { showModal, hideModal } = useModals()
-
-  const handleClick = () => {
-    const modalId = showModal(() => (
-      <ModalTreeDialog modalId={modalId} hideModal={hideModal} />
-    ))
-  }
+  const { showModal, hideModal, isOpen } = useModal()
 
   return (
     <div id='modal-container'>
-      <Button data-testid='open' onClick={handleClick}>
+      <Button data-testid='open' onClick={showModal}>
         Open
       </Button>
+      <ModalTreeDialog open={isOpen} onClose={hideModal} />
     </div>
   )
 }
