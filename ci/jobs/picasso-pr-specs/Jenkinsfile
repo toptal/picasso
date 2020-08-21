@@ -224,7 +224,6 @@ pipeline {
 
           def DIR = pwd() // can't be replaced with ${PWD}, because it's pointing to the jenkins_root folder
           sh """
-            mkdir -p ${DIR}/__diff_output__
             docker run --rm -v ${DIR}/__diff_output__:/app/__diff_output__ gcr.io/toptal-hub/${repoName}:${ghprbActualCommit} yarn run test-ci:visual
           """
         }
