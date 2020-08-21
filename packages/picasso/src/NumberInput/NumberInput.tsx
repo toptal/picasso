@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, RefObject } from 'react'
+import React, { forwardRef, useRef, RefObject, ReactElement } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps, OmitInternalProps } from '@toptal/picasso-shared'
 import ButtonBase from '@material-ui/core/ButtonBase'
@@ -154,6 +154,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
       onResetClick,
       enableReset,
       width,
+      startAdornment,
       ...rest
     } = props
 
@@ -175,6 +176,14 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
         disabled={disabled}
       />
     )
+
+    let usedStartAdornment = null
+
+    if (startAdornment) {
+      usedStartAdornment = React.cloneElement(startAdornment as ReactElement, {
+        className: classes.startAdornment
+      })
+    }
 
     return (
       <OutlinedInput
@@ -198,6 +207,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
         disabled={disabled}
         onChange={onChange}
         endAdornment={endAdornment}
+        startAdornment={usedStartAdornment}
       />
     )
   }
