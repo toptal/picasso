@@ -151,7 +151,8 @@ page
             'flat-white',
             'secondary-white',
             'transparent-white',
-            'transparent-blue'
+            'transparent-blue',
+            'transparent-green'
           ]
         }
       },
