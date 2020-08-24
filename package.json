@@ -39,7 +39,7 @@
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/standalone": "^7.10.3",
     "@storybook/addon-viewport": "^5.3.18",
-    "@storybook/react": "^5.3.18",
+    "@storybook/react": "^6.0.16",
     "@storybook/theming": "^5.3.19",
     "@svgr/cli": "^5.4.0",
     "@testing-library/react": "^9.3.2",
