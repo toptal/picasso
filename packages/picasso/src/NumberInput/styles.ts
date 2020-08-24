@@ -49,7 +49,7 @@ export default ({ palette, transitions }: Theme) =>
       transform: 'rotate(180deg)'
     },
 
-    startAdornment: {
+    icon: {
       marginRight: '0.625rem'
     }
   })

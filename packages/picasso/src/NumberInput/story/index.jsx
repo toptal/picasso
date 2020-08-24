@@ -15,4 +15,4 @@ page
   .addExample('NumberInput/story/Default.example.tsx', 'Default')
   .addExample('NumberInput/story/Disabled.example.tsx', 'Disabled')
   .addExample('NumberInput/story/Errored.example.tsx', 'Errored')
-  .addExample('NumberInput/story/Adornment.example.tsx', 'Adornment')
+  .addExample('NumberInput/story/WithIcon.example.tsx', 'With Icon')

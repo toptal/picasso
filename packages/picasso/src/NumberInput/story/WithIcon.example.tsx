@@ -2,7 +2,7 @@ import React, { useState, ChangeEventHandler } from 'react'
 import { NumberInput, Container } from '@toptal/picasso'
 import { ReferralBonus16 } from '@toptal/picasso/Icon'
 
-const AdornmentExample = () => {
+const WithIconExample = () => {
   const [value, setValue] = useState('1')
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = event => {
@@ -17,10 +17,10 @@ const AdornmentExample = () => {
         step='5'
         max='100'
         min='-100'
-        startAdornment={<ReferralBonus16 />}
+        icon={<ReferralBonus16 />}
       />
     </Container>
   )
 }
 
-export default AdornmentExample
+export default WithIconExample

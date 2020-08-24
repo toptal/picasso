@@ -1,4 +1,10 @@
-import React, { forwardRef, useRef, RefObject, ReactElement } from 'react'
+import React, {
+  forwardRef,
+  useRef,
+  RefObject,
+  ReactElement,
+  ReactNode
+} from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps, OmitInternalProps } from '@toptal/picasso-shared'
 import ButtonBase from '@material-ui/core/ButtonBase'
@@ -26,6 +32,8 @@ export interface Props
   step?: number | string
   /** Should controls be hidden or not */
   hideControls?: boolean
+  /** Specify icon which should be rendered inside NumberInput */
+  icon?: ReactNode
   /** Indicates whether component is in error state */
   error?: boolean
   /** Indicates whether component is in disabled state */
@@ -154,11 +162,18 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
       onResetClick,
       enableReset,
       width,
-      startAdornment,
+      icon,
       ...rest
     } = props
 
     const classes = useStyles(props)
+
+    const getIcon = (icon?: ReactNode) =>
+      icon
+        ? React.cloneElement(icon as ReactElement, {
+            className: classes.icon
+          })
+        : null
 
     const inputRef = useCombinedRefs<HTMLInputElement>(
       ref,
@@ -177,13 +192,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
       />
     )
 
-    let usedStartAdornment = null
-
-    if (startAdornment) {
-      usedStartAdornment = React.cloneElement(startAdornment as ReactElement, {
-        className: classes.startAdornment
-      })
-    }
+    const usedIcon = getIcon(icon)
 
     return (
       <OutlinedInput
@@ -207,7 +216,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
         disabled={disabled}
         onChange={onChange}
         endAdornment={endAdornment}
-        startAdornment={usedStartAdornment}
+        startAdornment={usedIcon}
       />
     )
   }
