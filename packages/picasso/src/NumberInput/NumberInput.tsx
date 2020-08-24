@@ -192,7 +192,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
       />
     )
 
-    const usedIcon = getIcon(icon)
+    const startAdornment = getIcon(icon)
 
     return (
       <OutlinedInput
@@ -216,7 +216,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
         disabled={disabled}
         onChange={onChange}
         endAdornment={endAdornment}
-        startAdornment={usedIcon}
+        startAdornment={startAdornment}
       />
     )
   }
