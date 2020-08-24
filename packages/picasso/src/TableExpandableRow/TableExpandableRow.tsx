@@ -1,4 +1,10 @@
-import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
+import React, {
+  forwardRef,
+  ReactNode,
+  HTMLAttributes,
+  useRef,
+  useEffect
+} from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUICollapse from '@material-ui/core/Collapse'
@@ -23,6 +29,8 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLTableRowElement> {
   expanded?: boolean
   /** Set a stripe even background for the row */
   stripeEven?: boolean
+  /** Makes the row appear without transition when it is expanded the very first time */
+  defaultExpanded?: boolean
 }
 
 export const TableExpandableRow = forwardRef<HTMLTableRowElement, Props>(
@@ -32,11 +40,21 @@ export const TableExpandableRow = forwardRef<HTMLTableRowElement, Props>(
       children,
       content,
       expanded,
+      defaultExpanded,
       stripeEven,
       className,
       style,
       ...rest
     } = props
+
+    const wasExpandedOnce = useRef(false)
+    const shouldTransition = !defaultExpanded || wasExpandedOnce.current
+
+    useEffect(() => {
+      if (!wasExpandedOnce.current && expanded) {
+        wasExpandedOnce.current = true
+      }
+    }, [expanded])
 
     const row = (
       <TableRow
@@ -62,7 +80,7 @@ export const TableExpandableRow = forwardRef<HTMLTableRowElement, Props>(
             style={style}
           >
             <TableCell className={classes.noPadding} colSpan={MAX_COL_SPAN}>
-              <MUICollapse appear in>
+              <MUICollapse appear={shouldTransition} in>
                 {content}
               </MUICollapse>
             </TableCell>
