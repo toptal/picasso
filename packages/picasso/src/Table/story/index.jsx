@@ -49,5 +49,16 @@ page
     },
     waitUntilImagesLoaded: true
   })
+  .addExample('Table/story/ExpandableRowsDefaultExpanded.example.tsx', {
+    title: 'Expandable rows, expanded by default',
+    description:
+      "Use `defaultExpanded` prop if you don't want row to have expand animation on the very first expanding.",
+    effect: async (testPage, makeScreenshot) => {
+      await testPage.click('[data-testid="expand-table"]')
+
+      await makeScreenshot()
+    },
+    waitUntilImagesLoaded: true
+  })
 
 page.connect(tableCellStory.chapter)
