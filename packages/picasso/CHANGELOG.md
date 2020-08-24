@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.90.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.89.0...@toptal/picasso@4.90.0) (2020-08-24)
+
+
+### Features
+
+* **ExpandableRow:** allow rendering without initial transition ([#1494](https://github.com/toptal/picasso/issues/1494)) ([603ae31](https://github.com/toptal/picasso/commit/603ae31879765b407be2f3bb826bf3aa764b6fc7))
+
+
+
+
+
 # [4.89.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.88.0...@toptal/picasso@4.89.0) (2020-08-20)
 
 
