@@ -10,7 +10,8 @@ import {
   Typography,
   Update16,
   Button,
-  Grid
+  Grid,
+  Image
 } from '@toptal/picasso'
 import { SkeletonLoader } from '@toptal/picasso-lab'
 
@@ -75,34 +76,35 @@ const Content = () => (
         <Typography align='center' variant='heading'>
           My section
         </Typography>
-        <p>
+        <Container flex justifyContent='center'>
+          <Image
+            src='./jacqueline-with-flowers-1954-square.jpg'
+            alt='Default image'
+            style={{ width: '5rem', height: '5rem' }}
+          />
+        </Container>
+        <Typography>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
           aliquip ex ea commodo consequat.
-        </p>
+        </Typography>
       </Grid.Item>
       <Grid.Item small={6}>
         <Typography align='center' variant='heading'>
           My Section
         </Typography>
-        <p>
+        <Typography>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
-        </p>
+          aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+          labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+          exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </Typography>
       </Grid.Item>
     </Grid>
-  </>
-)
-
-const SectionLoader = () => (
-  <>
-    <Container flex justifyContent='center' bottom='small'>
-      <SkeletonLoader.Header />
-    </Container>
-    <SkeletonLoader.Typography rows={5} />
   </>
 )
 
@@ -124,10 +126,20 @@ const PageLoader = () => (
 
     <Grid>
       <Grid.Item small={6}>
-        <SectionLoader />
+        <Container flex alignItems='center' bottom='small' direction='column'>
+          <SkeletonLoader.Header />
+
+          <SkeletonLoader.Media variant='image' width='5rem' height='5rem' />
+        </Container>
+
+        <SkeletonLoader.Typography rows={5} />
       </Grid.Item>
+
       <Grid.Item small={6}>
-        <SectionLoader />
+        <Container flex justifyContent='center' bottom='small'>
+          <SkeletonLoader.Header />
+        </Container>
+        <SkeletonLoader.Typography rows={8} />
       </Grid.Item>
     </Grid>
   </>

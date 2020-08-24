@@ -29,7 +29,6 @@ RUN apk update && apk upgrade && \
   curl \
   jq \
   chromium \
-  su-exec \
   openssh-client \
   bash \
   sed \

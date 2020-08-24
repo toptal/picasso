@@ -19,3 +19,11 @@ page
   .addExample('Slider/story/Range.example.jsx', 'Range')
   .addExample('Slider/story/Marks.example.jsx', 'Marks')
   .addExample('Slider/story/CustomTooltip.example.jsx', 'Custom Tooltip') // picasso-skip-visuals
+  .addExample(
+    'Slider/story/HideThumb.example.jsx',
+    'Hide thumb when value is null or undefined'
+  )
+  .addExample(
+    'Slider/story/DisableTrackHighlight.example.jsx',
+    'Disable track highlight'
+  )

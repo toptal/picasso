@@ -1,7 +1,12 @@
 import React from 'react'
 import { Button, Container, Typography } from '@toptal/picasso'
 import { palette } from '@toptal/picasso/utils'
-import { Copy24, Twitter24, Linkedin24 } from '@toptal/picasso/Icon'
+import {
+  Copy24,
+  Twitter24,
+  Linkedin24,
+  ReferralBonus24
+} from '@toptal/picasso/Icon'
 
 const Example = () => (
   <div>
@@ -63,6 +68,9 @@ const Example = () => (
       </Container>
       <Container left={0.5} padded={0.5} inline>
         <Button variant='transparent-blue' icon={<Linkedin24 />} />
+      </Container>
+      <Container left={0.5} padded={0.5} inline>
+        <Button variant='transparent-green' icon={<ReferralBonus24 />} />
       </Container>
     </Container>
   </div>
