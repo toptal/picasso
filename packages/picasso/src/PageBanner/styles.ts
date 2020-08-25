@@ -18,6 +18,7 @@ export default ({ layout, palette, typography, screens }: Theme) =>
       fontSize: '0.8125rem',
       width: '100%',
       padding: `${spacingToRem('medium')} ${layout.contentPaddingHorizontal}`,
+      borderRadius: 0,
 
       maxWidth: layout.contentWidth
     },
