@@ -4,7 +4,7 @@ import { render, fireEvent, wait } from '@toptal/picasso/test-utils'
 import Button from '../Button'
 import Input from '../Input'
 import PromptModal from '../PromptModal'
-import { useModals } from '../utils'
+import { useModal } from '../utils'
 
 test('renders PromptModal', () => {
   const { baseElement } = render(
@@ -21,17 +21,19 @@ test('renders PromptModal', () => {
 
 test('showPrompt opens and closes modal on Submit action', async () => {
   const TestComponent = () => {
-    const { showPrompt } = useModals()
+    const { showModal, hideModal, isOpen } = useModal()
 
-    const handleClick = () => {
-      showPrompt({
-        title: 'Test title',
-        message: 'Test message',
-        onSubmit: async () => {}
-      })
-    }
-
-    return <Button onClick={handleClick}>Show</Button>
+    return (
+      <>
+        <Button onClick={showModal}>Show</Button>
+        <PromptModal
+          open={isOpen}
+          title='Test title'
+          message='Test message'
+          onSubmit={hideModal}
+        />
+      </>
+    )
   }
 
   const { getByText, queryByText, baseElement } = render(<TestComponent />)
@@ -63,28 +65,31 @@ test('showPrompt with input returns result on Submit action ', async () => {
   const mockResult = jest.fn(identity)
 
   const TestComponent = () => {
-    const { showPrompt } = useModals()
+    const { showModal, hideModal, isOpen } = useModal()
 
-    const handleClick = async () => {
-      showPrompt({
-        title: 'Test title',
-        message: 'Test message',
-        onSubmit: result => {
-          mockResult(result)
-        },
-        // eslint-disable-next-line react/display-name
-        content: ({ setResult, result }) => (
-          <Input
-            aria-label='test-input'
-            width='full'
-            onChange={event => setResult(event.target.value)}
-            value={String(result)}
-          />
-        )
-      })
-    }
-
-    return <Button onClick={handleClick}>Show</Button>
+    return (
+      <>
+        <Button onClick={showModal}>Show</Button>
+        <PromptModal
+          open={isOpen}
+          title='Test title'
+          message='Test message'
+          onSubmit={result => {
+            mockResult(result)
+          }}
+          onClose={hideModal}
+        >
+          {({ setResult, result }) => (
+            <Input
+              aria-label='test-input'
+              width='full'
+              onChange={event => setResult(event.target.value)}
+              value={String(result)}
+            />
+          )}
+        </PromptModal>
+      </>
+    )
   }
 
   const { getByText, getByLabelText, baseElement } = render(<TestComponent />)
