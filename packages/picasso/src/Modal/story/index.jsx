@@ -21,7 +21,7 @@ page
   .addExample('Modal/story/Default.example.jsx', {
     title: 'Default',
     description: `
-To show the 'Modal' component you should use 'useModals' hook. And if you need
+To show the 'Modal' component you should use 'useModal' hook. And if you need
 any additional logic inside the 'Modal' component you should create a wrapper 
 component and manage the internal state there.
 `,
