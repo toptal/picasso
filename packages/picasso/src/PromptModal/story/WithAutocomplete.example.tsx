@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { Button, Autocomplete } from '@toptal/picasso'
+import { Button, Autocomplete, PromptModal } from '@toptal/picasso'
 import { Item } from '@toptal/picasso/Autocomplete'
-import { useNotifications, isSubstring, useModals } from '@toptal/picasso/utils'
+import { useNotifications, isSubstring, useModal } from '@toptal/picasso/utils'
 
 const allOptions = [
   { text: 'Belarus', value: 'BY' },
@@ -23,47 +23,45 @@ const filterOptions = (str: string) =>
     ? allOptions.filter(option => isSubstring(str, getDisplayValue(option)))
     : allOptions
 
-const PromptModalDefaultExample = () => {
-  const { showPrompt } = useModals()
-  const { showInfo } = useNotifications()
-
-  const Content = ({ setResult }: ContentProps) => {
-    const [value, setValue] = useState(EMPTY_INPUT_VALUE)
-    const [options, setOptions] = useState(allOptions)
-
-    return (
-      <Autocomplete
-        value={value}
-        width='full'
-        getDisplayValue={getDisplayValue}
-        placeholder='Start typing country...'
-        options={options}
-        onChange={newValue => {
-          setOptions(filterOptions(newValue))
-          setValue(newValue)
-        }}
-        onSelect={item => setResult(item.value)}
-      />
-    )
-  }
-
-  const handleClick = () =>
-    showPrompt({
-      title: 'Country',
-      message: 'Select country:',
-      // eslint-disable-next-line react/display-name
-      content: Content,
-      onSubmit: result => showInfo(String(result)),
-      // for purpose of code example
-      container: () => document.getElementById('modal-container')!
-    })
+const Content = ({ setResult }: ContentProps) => {
+  const [value, setValue] = useState(EMPTY_INPUT_VALUE)
+  const [options, setOptions] = useState(allOptions)
 
   return (
-    <>
-      <div id='modal-container' style={{ width: '400px', height: '50px' }}>
-        <Button onClick={handleClick}>Open prompt</Button>
-      </div>
-    </>
+    <Autocomplete
+      value={value}
+      width='full'
+      getDisplayValue={getDisplayValue}
+      placeholder='Start typing country...'
+      options={options}
+      onChange={newValue => {
+        setOptions(filterOptions(newValue))
+        setValue(newValue)
+      }}
+      onSelect={item => setResult(item.value)}
+    />
+  )
+}
+
+const PromptModalDefaultExample = () => {
+  const { showModal, hideModal, isOpen } = useModal()
+  const { showInfo } = useNotifications()
+
+  return (
+    <div id='modal-container' style={{ width: '400px', height: '50px' }}>
+      <Button onClick={showModal}>Open prompt</Button>
+      <PromptModal
+        open={isOpen}
+        onClose={hideModal}
+        title='Country'
+        message='Select country:'
+        onSubmit={result => showInfo(String(result))}
+        // for purpose of code example
+        container={() => document.getElementById('modal-container')!}
+      >
+        {Content}
+      </PromptModal>
+    </div>
   )
 }
 
