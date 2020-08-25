@@ -107,7 +107,7 @@ const Example = () => {
 
   return (
     <div id='modal-container'>
-      <Button data-testid='open' onClick={showModal}>
+      <Button data-testid='trigger' onClick={showModal}>
         Open
       </Button>
       <ModalDialog open={isOpen} onClose={hideModal} />
