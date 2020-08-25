@@ -28,8 +28,7 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "color": "^3.1.1",
-    "notistack": "^0.9.11",
-    "react-modal-hook": "^3.0.0"
+    "notistack": "^0.9.11"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.9",

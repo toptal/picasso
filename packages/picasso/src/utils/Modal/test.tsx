@@ -1,9 +1,13 @@
 import React from 'react'
-import { render, fireEvent } from '@toptal/picasso/test-utils'
+import {
+  render,
+  fireEvent,
+  waitForElementToBeRemoved
+} from '@toptal/picasso/test-utils'
 
 import Button from '../../Button'
 import Modal from '../../Modal'
-import { useModals } from './use-modals'
+import { useModal } from './use-modal'
 
 let modalRoot: HTMLElement
 
@@ -14,38 +18,35 @@ beforeAll(() => {
   document.body.appendChild(modalRoot)
 })
 
-test('useModal opens and closes modal', () => {
+test('useModal opens and closes modal', async () => {
   const TestComponent = () => {
-    const { showModal, hideModal } = useModals()
+    const { showModal, hideModal, isOpen } = useModal()
 
     return (
-      <Button
-        onClick={() => {
-          const modalId = showModal(() => (
-            <Modal open>
-              <p>Modal content</p>
-              <Button onClick={() => hideModal(modalId)}>Hide</Button>
-            </Modal>
-          ))
-        }}
-      >
-        Show
-      </Button>
+      <>
+        <Button onClick={showModal}>Show</Button>
+
+        <Modal open={isOpen}>
+          <p>Modal content</p>
+          <Button onClick={hideModal}>Hide</Button>
+        </Modal>
+      </>
     )
   }
 
   const { getByText, queryByText, baseElement } = render(<TestComponent />)
 
-  const showModal = getByText('Show')
+  const showModalButton = getByText('Show')
 
-  fireEvent.click(showModal)
+  fireEvent.click(showModalButton)
 
   expect(queryByText('Modal content')).toBeTruthy()
   expect(baseElement).toMatchSnapshot()
 
-  const hideModal = getByText('Hide')
+  const hideModalButton = getByText('Hide')
 
-  fireEvent.click(hideModal)
+  fireEvent.click(hideModalButton)
+  await waitForElementToBeRemoved(() => getByText('Hide'))
 
   expect(queryByText('Modal content')).toBeFalsy()
   expect(baseElement).toMatchSnapshot()
@@ -53,23 +54,20 @@ test('useModal opens and closes modal', () => {
 
 test('useModal shows multiple modals at the same time', () => {
   const TestComponent = () => {
-    const { showModal } = useModals()
-
-    const FirstModal = () => (
-      <Modal open>
-        <p>First modal content</p>
-      </Modal>
-    )
-    const SecondModal = () => (
-      <Modal open>
-        <p>Second modal content</p>
-      </Modal>
-    )
+    const { showModal: showModal1, isOpen: isOpen1 } = useModal()
+    const { showModal: showModal2, isOpen: isOpen2 } = useModal()
 
     return (
       <>
-        <Button onClick={() => showModal(FirstModal)}>Show first</Button>
-        <Button onClick={() => showModal(SecondModal)}>Show second</Button>
+        <Button onClick={showModal1}>Show first</Button>
+        <Modal open={isOpen1}>
+          <p>First modal content</p>
+        </Modal>
+
+        <Button onClick={showModal2}>Show second</Button>
+        <Modal open={isOpen2}>
+          <p>Second modal content</p>
+        </Modal>
       </>
     )
   }
