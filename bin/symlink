@@ -1,23 +1,26 @@
 #!/usr/bin/env node
 
 const path = require('path')
-const { readdirSync } = require('fs')
+const { readdirSync, lstatSync } = require('fs')
 const yargs = require('yargs').argv
 const exec = require('child_process').execSync
 
 const { log } = require('./utils')
 
 const PACKAGES_DIR = path.join(__dirname, '../packages/')
+const picassoRoot = __dirname
 
-const link = function(name) {
+const link = function(name, cwd) {
   exec(`yarn link ${name}`, {
+    cwd,
     stdio: 'inherit'
   })
 }
 
-const unlink = function(name) {
+const unlink = function(name, cwd) {
   try {
     exec(`yarn unlink ${name}`, {
+      cwd,
       stdio: 'ignore',
       stderr: 'ignore'
     })
@@ -47,7 +50,17 @@ const removeLink = function(name, cwd) {
   }
 }
 
-const getPicassoPackages = () => readdirSync(PACKAGES_DIR)
+const createReactLinks = function() {
+  createLink('react', './node_modules/react')
+  createLink('@types/react', './node_modules/@types/react')
+}
+
+const removeReactLinks = function() {
+  removeLink('react', './node_modules/react')
+  removeLink('@types/react', './node_modules/@types/react')
+}
+
+const getPicassoPackages = () => readdirSync(PACKAGES_DIR).filter(dir => lstatSync(path.join(PACKAGES_DIR, dir)).isDirectory())
 const getPackageTsConfig = packageName => {
   const tsConfigPath = path.join(PACKAGES_DIR, packageName, './tsconfig.build.json')
   return require(tsConfigPath)
@@ -74,36 +87,63 @@ const setup = function() {
   })
 
   if (yargs.link) {
-    log('Firt build dist versions of all the packages')
+    if (!yargs.link.length || !yargs.link.trim()) {
+      throw new Error('Please specify target project for linking, e.g.: `yarn symlink ~/projects/staff-portal`')
+    }
 
-    exec('yarn build:dist', { stdio: 'inherit' })
+    const destinationDir = yargs.link.trim()
 
-    log('Linking process started...')
+    log('Creating Picasso links...')
 
     linkPackages.forEach(({ name, outputDir }) => removeLink(name, outputDir))
-    removeLink('react', './node_modules/react')
+    removeReactLinks()
 
     linkPackages.forEach(({ name, outputDir }) => createLink(name, outputDir))
-    createLink('react', './node_modules/react')
+    createReactLinks()
+
     // because we are using yarn workspaces
     // we have default symlinks set up to /src folders of packages
     // so we need to override them and reffer to /build folders
-    linkPackages.forEach(({ name }) => link(name))
+    linkPackages.forEach(({ name }) => link(name, picassoRoot))
 
-    log('Linking process finished.')
+    log('Links are created. Linking the target project...')
+
+    const packageNames = linkPackages.map(({ name }) => `"${name}"`);
+    ['react', '@types/react', ...packageNames].forEach(name => link(name, destinationDir))
+
+    log(`Successfully linked ${destinationDir} to local version of Picasso.`)
   }
 
   if (yargs.unlink) {
-    log('Unlinking process started...')
+    if (!yargs.unlink.length || !yargs.unlink.trim()) {
+      throw new Error('Please specify target project for unlinking, e.g.: `yarn symlink:off ~/projects/staff-portal`')
+    }
 
-    linkPackages.forEach(({ name }) => unlink(name))
+    const destinationDir = yargs.unlink.trim()
+
+    log('Unlinking Picasso packages...')
+    linkPackages.forEach(({ name }) => unlink(name, picassoRoot))
+
+    log('Removing links...')
     linkPackages.forEach(({ name, outputDir }) => removeLink(name, outputDir))
-    removeLink('react', './node_modules/react')
+    removeReactLinks()
 
     log('Re-running "yarn install" to restore links for workspaces...')
     exec('yarn install --force')
 
-    log('Unlinking process finished.')
+    log('Unlinking the target project...')
+
+    const packageNames = linkPackages.map(({ name }) => `"${name}"`);
+    ['react', '@types/react', ...packageNames].forEach(name => unlink(name, destinationDir))
+
+    log('Restoring packages on target project...')
+    exec('yarn install --force', {
+      cwd: destinationDir,
+      stderr: 'inherit',
+      stdio: 'inherit'
+    })
+
+    log(`Successfully unlinked ${destinationDir} from local version of Picasso.`)
   }
 }
 

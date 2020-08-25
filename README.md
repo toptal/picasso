@@ -149,37 +149,22 @@ After Picasso will be released with your changes you can start using your Icon a
 ## Linking with other projects
 
 In order to develop or debug Picasso in parallel with your project without the need to publish new Picasso versions, you need to link Picasso to your project. And once finished unlink it.
-You will probably notice that linking process links `@toptal/picasso` and `react`. It is due to React restriction of only once instance used in the project [[1]](https://github.com/facebook/react/issues/14257#issuecomment-439967377) [[2]](https://github.com/facebook/react/issues/13991#issuecomment-463486871), so we link to Picasso's `react` version.
+Please use custom `yarn symlink TARGET_PROJECT_PATH` script that will create links for all Picasso packages, `react` and `@types/react` (**please don't use default `yarn link` script, it is not enough**). React has to be linked due to restriction of only single React instance used in the project [[1]](https://github.com/facebook/react/issues/14257#issuecomment-439967377) [[2]](https://github.com/facebook/react/issues/13991#issuecomment-463486871). React typings are also have to be linked because of the type incompatiblity issues.
 
 ### Link
 
 To link Picasso follow these steps:
 
-In Picasso project directory:
-
 1. Checkout Picasso project from [Github](https://github.com/toptal/picasso)
 2. Install Picasso dependencies with `yarn install`
-3. Build Picasso inside Picasso package folder (`./packages/picasso/`) with `yarn build:dist`
-4. Create a link with running in the root path `yarn symlink` (creates all links to Picasso packages and React link)
+3. Build Picasso with `yarn build:dist`
+4. Link target project to local Picasso by running `yarn symlink TARGET_PROJECT_PATH` from Picasso root folder (e.g. `yarn symlink ~/projects/staff-portal`)
 
-In your project directory:
-
-1. Link Picasso and React with `yarn link @toptal/picasso react`
-2. Start your project and changes in Picasso will be visible in your project!
+From that point you can rebuild local Picasso with `yarn build:dist` and it'll be automatically updated in your target project.
 
 ### Unlink
 
-To unlink Picasso follow these steps:
-
-In your project directory:
-
-1. Unlink Picasso with `yarn unlink @toptal/picasso react`
-2. Re-install dependencies with `yarn install --force`
-
-(Optional) In Picasso project directory:
-
-1. Unlink with `yarn symlink:off`
-2. Re-install dependencies with `yarn install --force`
+To unlink target project from local Picasso use `yarn symlink:off TARGET_PROJECT_PATH` (e.g. `yarn symlink:off ~/projects/staff-portal`)
 
 ### Tree shaking
 
