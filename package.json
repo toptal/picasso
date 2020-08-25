@@ -81,7 +81,7 @@
     "jest-puppeteer": "^4.4.0",
     "jsdom": "^15.1.1",
     "lerna": "^3.19.0",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.20",
     "puppeteer": "1.19.0",
     "raw-loader": "^4.0.1",
     "react": "^16.12.0",

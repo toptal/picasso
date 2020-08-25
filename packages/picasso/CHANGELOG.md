@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.91.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.90.0...@toptal/picasso@4.91.0) (2020-08-25)
+
+
+### Features
+
+* **tooltip:** add delay prop to the Tooltip component ([#1462](https://github.com/toptal/picasso/issues/1462)) ([65a235e](https://github.com/toptal/picasso/commit/65a235e1edc3c158ebab1df89faf6b662c20d087))
+
+
+
+
+
+# [4.90.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.89.0...@toptal/picasso@4.90.0) (2020-08-24)
+
+
+### Features
+
+* **ExpandableRow:** allow rendering without initial transition ([#1494](https://github.com/toptal/picasso/issues/1494)) ([603ae31](https://github.com/toptal/picasso/commit/603ae31879765b407be2f3bb826bf3aa764b6fc7))
+
+
+
+
+
 # [4.89.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.88.0...@toptal/picasso@4.89.0) (2020-08-20)
 
 
