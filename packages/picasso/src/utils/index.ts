@@ -31,5 +31,5 @@ export const Transitions = TransitionUtils
 
 export { Maybe } from './monads'
 export { useNotifications } from './Notifications'
-export { useModals } from './Modal'
+export { useModal } from './Modal'
 export * from './Modal'

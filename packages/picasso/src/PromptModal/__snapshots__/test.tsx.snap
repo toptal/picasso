@@ -202,17 +202,6 @@ exports[`showPrompt opens and closes modal on Submit action 2`] = `
                 </span>
               </button>
             </div>
-            <span>
-              <svg
-                class="SvgClose16-root PicassoModal-closeButton"
-                style="min-width: 16px; min-height: 16px;"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M8.707 8l5.5 5.5-.707.707-5.5-5.5-5.5 5.5-.707-.707 5.5-5.5-5.5-5.5.707-.707 5.5 5.5 5.5-5.5.707.707-5.5 5.5z"
-                />
-              </svg>
-            </span>
           </div>
         </div>
         <div
@@ -232,9 +221,10 @@ exports[`showPrompt opens and closes modal on Submit action 3`] = `
   <div>
     <div
       class="Picasso-root"
-      style=""
+      style="overflow: hidden;"
     >
       <button
+        aria-hidden="true"
         class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
         tabindex="0"
         type="button"
@@ -245,6 +235,81 @@ exports[`showPrompt opens and closes modal on Submit action 3`] = `
           Show
         </span>
       </button>
+      <div
+        class="MuiDialog-root PicassoModal-root"
+        role="presentation"
+        style="position: fixed; z-index: 1300; right: 0px; bottom: 0px; top: 0px; left: 0px;"
+      >
+        <div
+          aria-hidden="true"
+          class="MuiBackdrop-root"
+          style="opacity: 0; webkit-transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+        />
+        <div
+          data-test="sentinelStart"
+          tabindex="0"
+        />
+        <div
+          class="MuiDialog-container PicassoModal-container MuiDialog-scrollPaper"
+          role="none presentation"
+          style="opacity: 0; webkit-transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+          tabindex="-1"
+        >
+          <div
+            class="MuiPaper-root MuiDialog-paper PicassoModal-paper PicassoModal-small MuiDialog-paperScrollPaper MuiDialog-paperWidthFalse MuiPaper-elevation2"
+            role="dialog"
+          >
+            <div
+              class="ModalTitle-root"
+            >
+              <h3
+                class="MuiTypography-root Typography-headingMedium MuiTypography-h3"
+              >
+                Test title
+              </h3>
+            </div>
+            <div
+              class="ModalContent-root"
+            >
+              <p
+                class="MuiTypography-root Typography-bodyMedium MuiTypography-body1"
+              >
+                Test message
+              </p>
+            </div>
+            <div
+              class="ModalActions-root"
+            >
+              <button
+                class="MuiButtonBase-root PicassoButton-medium-8 PicassoButton-flat-17 PicassoButton-root-4"
+                tabindex="0"
+                type="button"
+              >
+                <span
+                  class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+                >
+                  Cancel
+                </span>
+              </button>
+              <button
+                class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryGreen PicassoButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <span
+                  class="Container-centerAlignItems-72 Container-flex-36 Container-inline-38 PicassoButton-content-5"
+                >
+                  Submit
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          data-test="sentinelEnd"
+          tabindex="0"
+        />
+      </div>
     </div>
   </div>
 </body>
@@ -257,9 +322,10 @@ exports[`showPrompt with input returns result on Submit action  1`] = `
   <div>
     <div
       class="Picasso-root"
-      style=""
+      style="overflow: hidden;"
     >
       <button
+        aria-hidden="true"
         class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
         tabindex="0"
         type="button"
@@ -270,6 +336,121 @@ exports[`showPrompt with input returns result on Submit action  1`] = `
           Show
         </span>
       </button>
+      <div
+        class="MuiDialog-root PicassoModal-root"
+        role="presentation"
+        style="position: fixed; z-index: 1300; right: 0px; bottom: 0px; top: 0px; left: 0px;"
+      >
+        <div
+          aria-hidden="true"
+          class="MuiBackdrop-root"
+          style="opacity: 0; webkit-transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+        />
+        <div
+          data-test="sentinelStart"
+          tabindex="0"
+        />
+        <div
+          class="MuiDialog-container PicassoModal-container MuiDialog-scrollPaper"
+          role="none presentation"
+          style="opacity: 0; webkit-transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+          tabindex="-1"
+        >
+          <div
+            class="MuiPaper-root MuiDialog-paper PicassoModal-paper PicassoModal-small MuiDialog-paperScrollPaper MuiDialog-paperWidthFalse MuiPaper-elevation2"
+            role="dialog"
+          >
+            <div
+              class="ModalTitle-root"
+            >
+              <h3
+                class="MuiTypography-root Typography-headingMedium MuiTypography-h3"
+              >
+                Test title
+              </h3>
+            </div>
+            <div
+              class="ModalContent-root"
+            >
+              <p
+                class="MuiTypography-root Typography-bodyMedium MuiTypography-body1"
+              >
+                Test message
+              </p>
+              <div
+                class="Container-topxsmallMargin"
+              >
+                <div
+                  class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root PicassoInput-root OutlinedInput-rootFull OutlinedInput-rootMedium MuiInputBase-fullWidth MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+                >
+                  <input
+                    aria-label="test-input"
+                    autocomplete="none"
+                    class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+                    type="text"
+                    value="undefined"
+                  />
+                  <fieldset
+                    aria-hidden="true"
+                    class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+                    style="padding-left: 8px;"
+                  >
+                    <legend
+                      class="PrivateNotchedOutline-legend"
+                      style="width: 0.01px;"
+                    >
+                      <span>
+                        ​
+                      </span>
+                    </legend>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+            <div
+              class="ModalActions-root"
+            >
+              <button
+                class="MuiButtonBase-root PicassoButton-medium PicassoButton-flat PicassoButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <span
+                  class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+                >
+                  Cancel
+                </span>
+              </button>
+              <button
+                class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryGreen PicassoButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <span
+                  class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+                >
+                  Submit
+                </span>
+              </button>
+            </div>
+            <span>
+              <svg
+                class="SvgClose16-root PicassoModal-closeButton"
+                style="min-width: 16px; min-height: 16px;"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M8.707 8l5.5 5.5-.707.707-5.5-5.5-5.5 5.5-.707-.707 5.5-5.5-5.5-5.5.707-.707 5.5 5.5 5.5-5.5.707.707-5.5 5.5z"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <div
+          data-test="sentinelEnd"
+          tabindex="0"
+        />
+      </div>
     </div>
   </div>
 </body>
