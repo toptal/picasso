@@ -3,7 +3,7 @@ import { Container } from '@toptal/picasso'
 
 const Example = () => (
   <div>
-    <Container bordered padded='large'>
+    <Container bordered rounded padded='large'>
       With default border
     </Container>
   </div>
