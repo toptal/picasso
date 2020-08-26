@@ -5,7 +5,9 @@ import { Form } from '@toptal/picasso-forms'
 
 type FormType = {
   hide: boolean
-  middleName: string
+  test: {
+    middleName: string
+  }
   consent: boolean
 }
 
@@ -22,7 +24,7 @@ const FormContent = () => {
           <Form.Input
             enableReset
             required
-            name='middleName'
+            name='test.middleName'
             label='Your midden name'
             placeholder='e.g. Bruce'
           />
@@ -39,7 +41,9 @@ const ValidateOnSubmitExample = () => {
 
     if (result !== 'success') {
       return {
-        middleName: 'Unknown middle name'
+        test: {
+          middleName: 'Unknown middle name'
+        }
       }
     }
 
@@ -64,7 +68,7 @@ const api = {
   submit: async (values: FormType) =>
     new Promise(resolve =>
       setTimeout(() => {
-        if (values.hide || values.middleName.toLowerCase() === 'bruce') {
+        if (values.hide || values?.test?.middleName.toLowerCase() === 'bruce') {
           resolve('success')
           return
         }
