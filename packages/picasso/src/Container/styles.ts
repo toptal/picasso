@@ -102,10 +102,14 @@ justifyContentVariants.forEach(variant => {
   }
 })
 
-export default ({ palette }: Theme) =>
+export default ({ palette, sizes: { borderRadius } }: Theme) =>
   createStyles({
     bordered: {
       border: `1px solid ${palette.grey.lighter}`
+    },
+
+    rounded: {
+      borderRadius: borderRadius.medium
     },
 
     flex: {

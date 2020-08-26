@@ -297,7 +297,7 @@ exports[`showPrompt opens and closes modal on Submit action 3`] = `
                 type="button"
               >
                 <span
-                  class="Container-centerAlignItems-72 Container-flex-36 Container-inline-38 PicassoButton-content-5"
+                  class="Container-centerAlignItems-73 Container-flex-37 Container-inline-39 PicassoButton-content-5"
                 >
                   Submit
                 </span>
