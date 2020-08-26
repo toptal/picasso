@@ -48,11 +48,12 @@ export const Helpbox = forwardRef<HTMLDivElement, Props>(function Helpbox(
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       ref={ref}
+      rounded
       className={cx(classes.root, className)}
       style={style}
       bordered={!variant || variant === 'white'}
       variant={variant}
-      padded='large'
+      padded='medium'
     >
       <HelpboxContext.Provider value={{ closeable: Boolean(onClose) }}>
         {children}
