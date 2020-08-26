@@ -4,7 +4,7 @@ import { Search16 } from '@toptal/picasso'
 
 const WithTimezoneExample = () => {
   const timezone = 'Asia/Tokyo'
-  const [value, setValue] = useState(new Date('2015-12-12 16:00:00'))
+  const [value, setValue] = useState(new Date('2015-12-12T16:00:00'))
 
   return (
     <div style={{ height: '50vh', width: '100%' }}>

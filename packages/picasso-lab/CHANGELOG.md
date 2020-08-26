@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.30.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.30.1...@toptal/picasso-lab@2.30.2) (2020-08-26)
+
+**Note:** Version bump only for package @toptal/picasso-lab
+
+
+
+
+
+## [2.30.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.30.0...@toptal/picasso-lab@2.30.1) (2020-08-20)
+
+
+### Bug Fixes
+
+* **treeview:** adjust zoom to support linear transition ([#1483](https://github.com/toptal/picasso/issues/1483)) ([2e44458](https://github.com/toptal/picasso/commit/2e44458723a608a37d4fe8daf5f3b35fd7e4a26e))
+
+
+
+
+
+# [2.30.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.29.3...@toptal/picasso-lab@2.30.0) (2020-08-18)
+
+
+### Features
+
+* **skeletonloader:** implement `MediaSkeletonLoader` ([#1488](https://github.com/toptal/picasso/issues/1488)) ([b0932aa](https://github.com/toptal/picasso/commit/b0932aa49ef6c6c3cc34d2cdee293f20b8c1ad22))
+
+
+
+
+
+## [2.29.3](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.29.2...@toptal/picasso-lab@2.29.3) (2020-08-18)
+
+**Note:** Version bump only for package @toptal/picasso-lab
+
+
+
+
+
+## [2.29.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.29.1...@toptal/picasso-lab@2.29.2) (2020-08-13)
+
+
+### Bug Fixes
+
+* svg warning in dev tools ([#1481](https://github.com/toptal/picasso/issues/1481)) ([7ee8be2](https://github.com/toptal/picasso/commit/7ee8be2f70833c44e648ca7a740fb023607838a2))
+
+
+
+
+
 ## [2.29.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.29.0...@toptal/picasso-lab@2.29.1) (2020-08-12)
 
 **Note:** Version bump only for package @toptal/picasso-lab

@@ -3,6 +3,77 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.92.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.92.0...@toptal/picasso@4.92.1) (2020-08-26)
+
+**Note:** Version bump only for package @toptal/picasso
+
+
+
+
+
+# [4.92.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.91.0...@toptal/picasso@4.92.0) (2020-08-26)
+
+
+### Features
+
+* **icon:** add light blue to icon color variants ([#1508](https://github.com/toptal/picasso/issues/1508)) ([b24210a](https://github.com/toptal/picasso/commit/b24210a28318cf3c39307da6f236c1a2dcb933a9))
+
+
+
+
+
+# [4.91.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.90.0...@toptal/picasso@4.91.0) (2020-08-25)
+
+
+### Features
+
+* **tooltip:** add delay prop to the Tooltip component ([#1462](https://github.com/toptal/picasso/issues/1462)) ([65a235e](https://github.com/toptal/picasso/commit/65a235e1edc3c158ebab1df89faf6b662c20d087))
+
+
+
+
+
+# [4.90.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.89.0...@toptal/picasso@4.90.0) (2020-08-24)
+
+
+### Features
+
+* **ExpandableRow:** allow rendering without initial transition ([#1494](https://github.com/toptal/picasso/issues/1494)) ([603ae31](https://github.com/toptal/picasso/commit/603ae31879765b407be2f3bb826bf3aa764b6fc7))
+
+
+
+
+
+# [4.89.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.88.0...@toptal/picasso@4.89.0) (2020-08-20)
+
+
+### Features
+
+* **Slider:** add options to hide thumb and track highlight ([#1495](https://github.com/toptal/picasso/issues/1495)) ([adf27e4](https://github.com/toptal/picasso/commit/adf27e426a4dd1c21a133418b9009376cd26caf0))
+
+
+
+
+
+# [4.88.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.87.1...@toptal/picasso@4.88.0) (2020-08-17)
+
+
+### Features
+
+* **indicator:** add green and light-grey Indicator colors ([#1489](https://github.com/toptal/picasso/issues/1489)) ([bb8f72e](https://github.com/toptal/picasso/commit/bb8f72e55ef038e5359ca1b9add7acf1d8e0d5dd))
+
+
+
+
+
+## [4.87.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.87.0...@toptal/picasso@4.87.1) (2020-08-14)
+
+**Note:** Version bump only for package @toptal/picasso
+
+
+
+
+
 # [4.87.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.86.1...@toptal/picasso@4.87.0) (2020-08-13)
 
 
