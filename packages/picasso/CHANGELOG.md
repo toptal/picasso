@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.92.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.91.0...@toptal/picasso@4.92.0) (2020-08-26)
+
+
+### Features
+
+* **icon:** add light blue to icon color variants ([#1508](https://github.com/toptal/picasso/issues/1508)) ([b24210a](https://github.com/toptal/picasso/commit/b24210a28318cf3c39307da6f236c1a2dcb933a9))
+
+
+
+
+
 # [4.91.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.90.0...@toptal/picasso@4.91.0) (2020-08-25)
 
 
