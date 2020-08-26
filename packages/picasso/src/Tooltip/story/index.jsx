@@ -19,6 +19,10 @@ page
       variant: {
         type: 'enum',
         enums: ['light', 'dark']
+      },
+      delay: {
+        type: 'enum',
+        enums: ['short', 'long']
       }
     }
   })
@@ -41,3 +45,4 @@ page
     'Tooltip/story/DisabledElement.example.tsx',
     'Tooltip on disabled element'
   ) // picasso-skip-visuals
+  .addExample('Tooltip/story/Delay.example.tsx', 'Delay') // picasso-skip-visuals
