@@ -30,13 +30,12 @@ Describe the changes and motivations for the pull request.
 
 List of available commands:
 
-- `@toptal-bot run all` - Run  whole pipeline
+- `@toptal-bot run all` - Run whole pipeline
 - `@toptal-bot run danger` - Danger checks
 - `@toptal-bot run lint` - Run linter
 - `@toptal-bot run test` - Run jest
 - `@toptal-bot run build` - Check build
 - `@toptal-bot run test:visual` or `@toptal-bot run visual` - Run visual tests
 - `@toptal-bot run deploy:documentation` - Deploy documentation
-
 
 </details>
