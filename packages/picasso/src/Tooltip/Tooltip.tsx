@@ -17,6 +17,13 @@ type VariantType = 'light' | 'dark'
 
 type PlacementType = 'bottom' | 'left' | 'right' | 'top'
 
+type DelayType = 'short' | 'long'
+
+const delayDurations: { [k in DelayType]: number } = {
+  short: 200,
+  long: 500
+}
+
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Trigger element for tooltip */
   children: ReactNode
@@ -42,6 +49,8 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   preventOverflow?: boolean
   /** Disable the portal behavior. The children stay within it's parent */
   disablePortal?: boolean
+  /** A delay in showing the tooltip */
+  delay?: DelayType
 }
 
 export const Tooltip: FunctionComponent<Props> = ({
@@ -60,6 +69,7 @@ export const Tooltip: FunctionComponent<Props> = ({
   disableListeners,
   preventOverflow,
   disablePortal,
+  delay = 'short',
   ...rest
 }) => {
   const [arrowRef, setArrowRef] = useState<HTMLSpanElement | null>(null)
@@ -72,7 +82,7 @@ export const Tooltip: FunctionComponent<Props> = ({
     </>
   )
 
-  const defaultDelay = 500
+  const delayDuration = delayDurations[delay]
 
   return (
     <MUITooltip
@@ -115,7 +125,8 @@ export const Tooltip: FunctionComponent<Props> = ({
       disableHoverListener={disableListeners}
       disableFocusListener={disableListeners}
       disableTouchListener
-      enterDelay={defaultDelay}
+      enterDelay={delayDuration}
+      enterNextDelay={delayDuration}
     >
       {children as ReactElement}
     </MUITooltip>
