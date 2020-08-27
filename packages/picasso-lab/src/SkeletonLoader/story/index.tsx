@@ -1,7 +1,12 @@
+// @ts-ignore
 import PicassoBook from '~/.storybook/components/PicassoBook'
+// @ts-ignore
 import typographyLoaderStory from '../../TypographyLoader/story'
+// @ts-ignore
 import headerLoaderStory from '../../HeaderLoader/story'
+// @ts-ignore
 import buttonLoaderStory from '../../ButtonLoader/story'
+// @ts-ignore
 import mediaLoaderStory from '../../MediaSkeletonLoader/story'
 
 const page = PicassoBook.section('Lab').createPage('SkeletonLoader')
