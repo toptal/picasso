@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.30.3](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.30.2...@toptal/picasso-lab@2.30.3) (2020-08-27)
+
+
+### Bug Fixes
+
+* fix input error when size small is passed to date picker ([#1514](https://github.com/toptal/picasso/issues/1514)) ([1849855](https://github.com/toptal/picasso/commit/1849855973a3dbeae65bdb281ce460a8548b80bc))
+
+
+
+
+
 ## [2.30.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.30.1...@toptal/picasso-lab@2.30.2) (2020-08-26)
 
 **Note:** Version bump only for package @toptal/picasso-lab
