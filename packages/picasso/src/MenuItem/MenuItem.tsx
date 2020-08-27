@@ -56,10 +56,10 @@ export interface Props
   value?: string | string[] | number
   /** Variant of colors */
   variant?: VariantType
-  /**
-   * Size of component
-   */
+  /** Size of component */
   size?: SizeType<'small' | 'medium'>
+  /** A link where the user will be redirected to on click */
+  to?: string
 }
 
 const generateKey = (() => {
