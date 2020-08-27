@@ -15,7 +15,7 @@
     "lint": "davinci syntax lint code .",
     "start": "start-storybook -p 9001 -s ./.storybook/public -c .storybook",
     "build:storybook": "build-storybook -s ./.storybook/public -c .storybook -o build/storybook --quiet",
-    "build:dist": "lerna run build:dist --stream --parallel",
+    "build:package": "lerna run build:package --stream --parallel",
     "release": "./bin/release",
     "symlink": "cross-env ./bin/symlink --link",
     "symlink:off": "cross-env ./bin/symlink --unlink",
@@ -44,7 +44,7 @@
     "@svgr/cli": "^5.4.0",
     "@testing-library/react": "^9.3.2",
     "@toptal/browserslist-config": "^0.1.0-alpha.2",
-    "@toptal/davinci": "^0.2.107",
+    "@toptal/davinci": "^0.2.176",
     "@types/debounce": "^1.2.0",
     "@types/esprima": "^4.0.2",
     "@types/jest": "^25.1.4",
@@ -115,8 +115,7 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "davinci syntax lint code",
-      "prettier-standard",
-      "git add"
+      "prettier-standard"
     ]
   },
   "config": {
