@@ -168,13 +168,6 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
 
     const classes = useStyles(props)
 
-    const getIcon = (icon?: ReactNode) =>
-      icon
-        ? React.cloneElement(icon as ReactElement, {
-            className: classes.icon
-          })
-        : null
-
     const inputRef = useCombinedRefs<HTMLInputElement>(
       ref,
       useRef<HTMLInputElement>(null)
@@ -192,7 +185,11 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
       />
     )
 
-    const startAdornment = getIcon(icon)
+    const startAdornment = icon
+      ? React.cloneElement(icon as ReactElement, {
+          className: classes.icon
+        })
+      : null
 
     return (
       <OutlinedInput
