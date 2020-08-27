@@ -13,7 +13,6 @@ page
 page
   .createChapter()
   .addExample('DatePicker/story/Default.example.tsx', 'Default') // picasso-skip-visuals
-  .addExample('DatePicker/story/Sizes.example.tsx', 'Input sizes') // picasso-skip-visuals
   .addExample('DatePicker/story/Range.example.tsx', 'Range Mode') // picasso-skip-visuals
   .addExample('DatePicker/story/WithOnBlurHandler.example.tsx', {
     title: 'With onBlur handler',

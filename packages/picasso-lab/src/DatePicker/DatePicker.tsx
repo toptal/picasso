@@ -275,12 +275,12 @@ export const DatePicker = (props: Props) => {
   }
 
   const startAdornment =
-    size === 'small' ? (
-      undefined
-    ) : (
+    size !== 'small' ? (
       <InputAdornment position='start' disablePointerEvents>
         {icon || <Calendar16 />}
       </InputAdornment>
+    ) : (
+      undefined
     )
 
   return (
