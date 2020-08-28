@@ -9,11 +9,13 @@ const CONTAINTER_HEIGHT = HEIGHT * 2
 const VIEW_BOX = `0 0 ${WIDTH} ${CONTAINTER_HEIGHT}`
 const BORDER_RADIUS = HEIGHT / 2
 
-export const HeaderLoader: FC<BaseProps> = () => (
+export const HeaderLoader: FC<BaseProps> = ({ className, style }) => (
   <ContentLoader
     viewBox={VIEW_BOX}
+    className={className}
     color={palette.grey.main2}
     height={CONTAINTER_HEIGHT}
+    style={style}
   >
     <rect
       x='0'
