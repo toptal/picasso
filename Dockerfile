@@ -47,8 +47,8 @@ USER node
 # Enables layer caching
 COPY --chown=node:node package.json yarn.lock ./
 
-RUN yarn install --frozen-lockfile
+RUN yarn install --frozen-lockfile --cache-folder /tmp/.junk
 
 COPY --chown=node:node . /app
 
-RUN yarn install --frozen-lockfile && yarn cache clean
+RUN yarn install --frozen-lockfile --cache-folder /tmp/.junk; rm -rf /tmp/.junk
