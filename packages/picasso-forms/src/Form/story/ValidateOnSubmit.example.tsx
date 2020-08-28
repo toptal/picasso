@@ -68,7 +68,7 @@ const api = {
   submit: async (values: FormType) =>
     new Promise(resolve =>
       setTimeout(() => {
-        if (values.hide || values?.test?.middleName.toLowerCase() === 'bruce') {
+        if (values.hide || values.test?.middleName.toLowerCase() === 'bruce') {
           resolve('success')
           return
         }
