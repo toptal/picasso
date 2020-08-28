@@ -67,14 +67,13 @@ export const Form = <T extends any = AnyObject>(props: Props<T>) => {
     onSubmit,
     successSubmitMessage,
     failedSubmitMessage,
-    scrollOffsetTop,
     decorators = [],
     ...rest
   } = props
   const { showSuccess, showError } = useNotifications()
   const scrollToErrorDecorator = useMemo(
-    () => createScrollToErrorDecorator({ scrollOffsetTop }),
-    [scrollOffsetTop]
+    () => createScrollToErrorDecorator(),
+    []
   )
 
   const validationObject = useRef<FormContextProps>(createFormContext())
