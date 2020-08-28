@@ -47,5 +47,9 @@ export default ({ palette, transitions }: Theme) =>
 
     arrowDown: {
       transform: 'rotate(180deg)'
+    },
+
+    icon: {
+      marginRight: '0.625rem'
     }
   })
