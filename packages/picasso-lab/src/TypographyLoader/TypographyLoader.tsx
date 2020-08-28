@@ -11,6 +11,7 @@ export interface Props extends BaseProps {
 const WIDTH = '100%'
 const HEIGHT = 10
 const CONTAINER_HEIGHT = HEIGHT * 2
+const VERTICAL_OFFSET = HEIGHT / 2
 const BORDER_RADIUS = HEIGHT / 2
 
 const Paragraph = ({ className, style = {} }: BaseProps) => (
@@ -22,7 +23,7 @@ const Paragraph = ({ className, style = {} }: BaseProps) => (
   >
     <rect
       x='0'
-      y='0'
+      y={VERTICAL_OFFSET}
       rx={BORDER_RADIUS}
       ry={BORDER_RADIUS}
       width={WIDTH}
