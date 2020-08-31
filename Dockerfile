@@ -51,4 +51,4 @@ RUN yarn install --frozen-lockfile
 
 COPY --chown=node:node . /app
 
-RUN yarn install --frozen-lockfile && yarn cache clean
+RUN yarn install --frozen-lockfile
