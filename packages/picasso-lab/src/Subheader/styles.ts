@@ -14,7 +14,7 @@ export default ({ palette }: Theme) =>
         left: 0,
         right: 0,
         height: 1,
-        backgroundColor: palette.grey.main,
+        backgroundColor: palette.grey.lighter,
         zIndex: 0
       }
     },
@@ -22,6 +22,7 @@ export default ({ palette }: Theme) =>
       paddingRight: '2rem'
     },
     main: {
-      padding: '1rem 0'
+      minHeight: '54px',
+      padding: '0.75rem 0'
     }
   })

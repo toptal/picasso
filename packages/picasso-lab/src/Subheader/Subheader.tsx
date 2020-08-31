@@ -19,7 +19,6 @@ export interface Props extends BaseProps {
 
 export interface StaticProps {
   Title: FunctionComponent
-  Breadcrumb: FunctionComponent
   Tabs: FunctionComponent
   Main: FunctionComponent
   Actions: FunctionComponent
@@ -37,17 +36,6 @@ const Title: FunctionComponent<TextLabelProps> = ({ titleCase, children }) => (
   <Typography variant='heading' size='large' titleCase={titleCase}>
     {children}
   </Typography>
-)
-
-// Temporary implementation, to be replaced with real Breadcrumb component when ready
-const Breadcrumb: FunctionComponent = () => (
-  <Container top='small'>
-    <span
-      style={{ fontSize: '14px', fontWeight: 600, color: 'rgb(32, 78, 207)' }}
-    >
-      Label &nbsp; {'>'} &nbsp; Label &nbsp; {'>'} &nbsp; Label
-    </span>
-  </Container>
 )
 
 const Tabs: FunctionComponent = ({ children }) => (
@@ -93,7 +81,6 @@ Subheader.defaultProps = {
 }
 
 Subheader.Title = Title
-Subheader.Breadcrumb = Breadcrumb
 Subheader.Tabs = Tabs
 Subheader.Main = Main
 Subheader.Actions = Actions
