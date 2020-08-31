@@ -34,7 +34,7 @@
     "notistack": "^0.9.11",
     "react-helmet": "^6.1.0",
     "react-modal-hook": "^3.0.0",
-    "react-router-dom": "^5.0.1",
+    "react-router-dom": "^5.2.0",
     "react-truncate": "^2.4.0"
   },
   "devDependencies": {
