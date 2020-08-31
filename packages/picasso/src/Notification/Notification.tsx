@@ -140,6 +140,7 @@ export const Notification = forwardRef<HTMLElement, Props>(
           classes[`notification${capitalize(variant as string)}`],
           {
             [classes.notificationShadow]: elevated,
+            [classes.roundedBorders]: elevated,
             [classes.notificationFullWidth]: fullWidth
           },
           classes.notification,
