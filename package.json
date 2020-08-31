@@ -94,8 +94,6 @@
     "react-source-render": "^3.0.0-5",
     "react-storybook-addon-chapters": "^3.1.7",
     "regenerator-runtime": "^0.13.5",
-    "rimraf": "^3.0.0",
-    "semantic-release": "^15.13.12",
     "shelljs": "^0.8.4",
     "simple-react-calendar": "^2.2.7",
     "storybook-readme": "^5.0.3",
