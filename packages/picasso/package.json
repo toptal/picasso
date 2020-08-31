@@ -8,7 +8,7 @@
   "main": "index.js",
   "module": "index.js",
   "scripts": {
-    "build:dist": "cross-env NODE_ENV=production ../../bin/build --tsConfig=./tsconfig.build.json",
+    "build:package": "cross-env NODE_ENV=production ../../bin/build --tsConfig=./tsconfig.build.json",
     "prepublishOnly": "../../bin/prepublish --copy-readme"
   },
   "repository": {
