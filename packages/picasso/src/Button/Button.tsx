@@ -29,16 +29,10 @@ export type VariantType =
   | 'primary-blue'
   | 'secondary-blue'
   | 'primary-red'
-  | 'secondary-red'
   | 'primary-green'
-  | 'secondary-green'
-  | 'flat'
-  | 'flat-white'
   | 'secondary-white'
+  | 'flat'
   | 'transparent'
-  | 'transparent-white'
-  | 'transparent-blue'
-  | 'transparent-green'
 
 export type IconPositionType = 'left' | 'right'
 
@@ -152,10 +146,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     }
   }
 
-  const variantType = getVariantType(variant!)
-  const variantClassName = disabled
-    ? classes[`${variantType}Disabled`]
-    : classes[kebabToCamelCase(variant!)]
+  const variantClassName = classes[kebabToCamelCase(variant!)]
   const sizeClassName = classes[size!]
 
   const rootClassName = cx(
@@ -164,7 +155,8 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
       [classes.active]: active,
       [classes.focused]: focused,
       [classes.hovered]: hovered,
-      [classes.circular]: circular
+      [classes.circular]: circular,
+      [classes.disabled]: disabled
     },
     sizeClassName,
     variantClassName,

@@ -19,9 +19,14 @@ export const lighten = (inputColor: string, amount: number) => {
 }
 
 export const alpha = (inputColor: string, amount: number) => {
-  return color(inputColor)
-    .alpha(amount)
-    .toString()
+  return color(inputColor).alpha(amount).toString()
+}
+
+export const mix = (baseColor: string, mixColor: string, amount: number) => {
+  const baseColorValue = color(baseColor)
+  const mixColorValue = color(mixColor)
+
+  return baseColorValue.mix(mixColorValue, amount).hex()
 }
 
 export const rem = (px: string, baseFontSize = 16) =>
