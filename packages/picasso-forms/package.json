@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-forms",
-  "version": "0.20.3",
+  "version": "0.20.4",
   "description": "Picasso form components",
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-forms#readme",
@@ -15,7 +15,7 @@
     "url": "git+https://github.com/toptal/picasso.git"
   },
   "scripts": {
-    "build:dist": "cross-env NODE_ENV=production ../../bin/build --tsConfig=./tsconfig.build.json",
+    "build:package": "cross-env NODE_ENV=production ../../bin/build --tsConfig=./tsconfig.build.json",
     "prepublishOnly": "../../bin/prepublish"
   },
   "bugs": {

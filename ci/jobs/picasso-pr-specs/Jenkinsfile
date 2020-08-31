@@ -187,7 +187,7 @@ pipeline {
             script {
               ghHelper.notifyPR('Check build', 'PENDING', 'running', "${ghprbActualCommit}", "${BUILD_URL}", repoName)
 
-              sh "docker run --rm gcr.io/toptal-hub/${repoName}:${ghprbActualCommit} yarn build:dist"
+              sh "docker run --rm gcr.io/toptal-hub/${repoName}:${ghprbActualCommit} yarn build:package"
             }
           } //steps
 

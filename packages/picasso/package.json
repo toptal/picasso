@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso",
-  "version": "4.93.0",
+  "version": "4.93.1",
   "description": "Toptal UI components library",
   "publishConfig": {
     "access": "public"
@@ -8,7 +8,7 @@
   "main": "index.js",
   "module": "index.js",
   "scripts": {
-    "build:dist": "cross-env NODE_ENV=production ../../bin/build --tsConfig=./tsconfig.build.json",
+    "build:package": "cross-env NODE_ENV=production ../../bin/build --tsConfig=./tsconfig.build.json",
     "prepublishOnly": "../../bin/prepublish --copy-readme"
   },
   "repository": {
@@ -28,7 +28,7 @@
   "dependencies": {
     "@material-ui/core": "4.11.0",
     "@material-ui/icons": "4.9.1",
-    "@toptal/picasso-shared": "^1.16.2",
+    "@toptal/picasso-shared": "^1.16.3",
     "ap-style-title-case": "^1.1.2",
     "classnames": "^2.2.6",
     "notistack": "^0.9.11",
