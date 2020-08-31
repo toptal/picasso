@@ -1,49 +1,57 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
-import { lighten, darken, alpha } from '@toptal/picasso-shared'
+import { alpha, mix } from '@toptal/picasso-shared'
 
-const ICON_SPACING = '0.4em'
+const ICON_SPACING = '0.5em'
 
-const primary = (mainColor: string, secondaryColor: string) => ({
+const primary = (
+  mainColor: string,
+  secondaryColor: string,
+  ternaryColor: string
+) => ({
   border: 'none',
   color: secondaryColor,
   backgroundColor: mainColor,
 
-  '&:focus, &focused': {
-    backgroundColor: darken(mainColor, 0.2)
-  },
-
   '&:hover, &$hovered': {
-    backgroundColor: darken(mainColor, 0.2)
+    backgroundColor: mix(mainColor, secondaryColor, 0.152)
   },
 
   '&:active, &$active': {
-    backgroundColor: darken(mainColor, 0.2)
+    backgroundColor: mix(mainColor, 'black', 0.172),
+    boxShadow: 'none'
+  },
+
+  '&$disabled': {
+    backgroundColor: ternaryColor,
+    boxShadow: 'none'
   }
 })
 
-const secondary = (mainColor: string, secondaryColor: string) => ({
+const secondary = (
+  mainColor: string,
+  secondaryColor: string,
+  activeColor: string,
+  disabledColor: string
+) => ({
   color: mainColor,
   backgroundColor: secondaryColor,
 
-  '&:focus, &focused': {
-    backgroundColor: lighten(mainColor, 0.84),
-    borderColor: mainColor
-  },
-
   '&:hover, &$hovered': {
-    backgroundColor: lighten(mainColor, 0.84),
     borderColor: mainColor
   },
 
   '&:active, &$active': {
-    backgroundColor: lighten(mainColor, 0.84),
-    borderColor: mainColor
-  }
-})
+    backgroundColor: activeColor,
+    borderColor: mainColor,
+    boxShadow: 'none'
+  },
 
-const transparent = (color?: string) => ({
-  border: 'none',
-  color
+  '&$disabled': {
+    color: disabledColor,
+    borderColor: disabledColor,
+    backgroundColor: secondaryColor,
+    boxShadow: 'none'
+  }
 })
 
 export default ({ palette, sizes, transitions, typography }: Theme) =>
@@ -56,17 +64,14 @@ export default ({ palette, sizes, transitions, typography }: Theme) =>
       fontSize: '1rem',
       transition: `all ${transitions.duration.short}ms ${transitions.easing.easeOut}`,
       transitionProperty: 'border, color, background',
+      boxShadow: 'none',
 
-      '&:focus, &focused': {
-        textDecoration: 'underline',
-
-        '&:hover, &$hovered, &:active, &$active': {
-          textDecoration: 'none'
-        }
+      '&:focus, &$focused': {
+        boxShadow: `0 0 0 3px ${alpha(palette.primary.main, 0.48)}`
       },
 
       '&+&': {
-        marginLeft: '0.5em'
+        marginLeft: '1rem'
       }
     },
     content: {
@@ -83,6 +88,7 @@ export default ({ palette, sizes, transitions, typography }: Theme) =>
 
     // sizes
     small: {
+      minWidth: '3.5em',
       height: '1.5em',
       padding: '0 0.75em',
 
@@ -92,11 +98,21 @@ export default ({ palette, sizes, transitions, typography }: Theme) =>
       },
 
       '&$circular': {
+        minWidth: 'initial',
         width: '1.5em'
+      },
+
+      '& $iconLeft': {
+        marginLeft: '-0.125em'
+      },
+
+      '& $iconRight': {
+        marginRight: '-0.125em'
       }
     },
     medium: {
-      height: '2.25em',
+      minWidth: '4em',
+      height: '2em',
       padding: '0 1em',
 
       '& $content': {
@@ -105,88 +121,131 @@ export default ({ palette, sizes, transitions, typography }: Theme) =>
       },
 
       '&$circular': {
-        width: '2.25em'
+        minWidth: 'initial',
+        width: '2em'
+      },
+
+      '& $iconLeft': {
+        marginLeft: '-0.25em'
+      },
+
+      '& $iconRight': {
+        marginRight: '-0.25em'
       }
     },
     large: {
+      minWidth: '6em',
       height: '3em',
-      padding: '0 3.625em',
+      padding: '0 2em',
 
       '& $content': {
         fontSize: typography.buttons.fontSizeLarge,
-        lineHeight: typography.buttons.lineHeightLarge,
-        fontWeight: typography.fontWeights.semibold
+        lineHeight: typography.buttons.lineHeightLarge
       },
 
       '&$circular': {
+        minWidth: 'initial',
         width: '3em'
+      },
+
+      '& $iconLeft': {
+        marginLeft: '-0.5em'
+      },
+
+      '& $iconRight': {
+        marginRight: '-0.5em'
       }
     },
 
     // variants
-    primaryBlue: primary(palette.primary.main, palette.common.white),
-    secondaryBlue: secondary(palette.primary.main, palette.common.white),
-    primaryRed: primary(palette.red.main, palette.common.white),
-    secondaryRed: secondary(palette.red.main, palette.common.white),
-    primaryGreen: primary(palette.green.main, palette.common.white),
-    secondaryGreen: secondary(palette.green.main, palette.common.white),
+    primaryBlue: primary(
+      palette.primary.main,
+      palette.common.white,
+      palette.grey.light!
+    ),
+    primaryRed: primary(
+      palette.red.main,
+      palette.common.white,
+      palette.grey.light!
+    ),
+    primaryGreen: primary(
+      palette.green.main,
+      palette.common.white,
+      palette.grey.light!
+    ),
 
+    secondaryBlue: secondary(
+      palette.common.black,
+      palette.common.white,
+      palette.grey.lighter!,
+      palette.grey.main!
+    ),
     secondaryWhite: {
       color: palette.common.white,
-      border: `solid ${sizes.borderWidth} rgba(255, 255, 255, 0.32)`,
+      border: `solid ${sizes.borderWidth} ${alpha(palette.common.white, 0.32)}`,
 
-      '&:focus, &focused': {
-        backgroundColor: alpha(palette.common.white, 0.16),
-        borderColor: palette.common.white
+      '&:focus, &$focused': {
+        // borderColor: palette.common.white,
+        boxShadow: `0 0 0 3px ${alpha(palette.common.white, 0.48)}`
       },
 
       '&:hover, &$hovered': {
-        backgroundColor: alpha(palette.common.white, 0.16),
+        boxShadow: 'none',
         borderColor: palette.common.white
       },
 
       '&:active, &$active': {
+        boxShadow: 'none',
         backgroundColor: alpha(palette.common.white, 0.16),
         borderColor: palette.common.white
+      },
+
+      '&$disabled': {
+        color: alpha(palette.common.white, 0.32),
+        borderColor: alpha(palette.common.white, 0.32),
+        backgroundColor: 'initial',
+        boxShadow: 'none'
       }
     },
+
     flat: {
-      ...secondary(palette.common.black, palette.common.white),
+      ...secondary(
+        palette.grey.dark!,
+        palette.common.white,
+        palette.grey.light!,
+        alpha(palette.grey.dark!, 0.48)
+      ),
+
+      '&:hover, &$hovered': {
+        backgroundColor: palette.grey.lighter
+      },
+
       border: 'none'
     },
-    flatWhite: {
-      color: palette.common.white,
-      border: 'none',
 
-      '&:focus, &focused': {
-        backgroundColor: alpha(palette.common.white, 0.16)
+    transparent: {
+      border: 'none',
+      color: palette.common.white,
+
+      '&:focus, &$focused': {
+        boxShadow: `0 0 0 3px ${alpha(palette.common.white, 0.48)}`
       },
 
       '&:hover, &$hovered': {
-        backgroundColor: alpha(palette.common.white, 0.16)
+        boxShadow: 'none',
+        backgroundColor: alpha(palette.common.white, 0.08)
       },
 
       '&:active, &$active': {
+        boxShadow: 'none',
         backgroundColor: alpha(palette.common.white, 0.16)
+      },
+
+      '&$disabled': {
+        color: alpha(palette.common.white, 0.48),
+        backgroundColor: 'initial',
+        boxShadow: 'none'
       }
-    },
-    transparent: {
-      ...transparent()
-    },
-    transparentWhite: {
-      ...transparent(palette.common.white)
-    },
-    transparentBlue: {
-      ...transparent(palette.primary.main)
-    },
-    transparentGreen: {
-      ...transparent(palette.green.main)
-    },
-    primaryDisabled: primary(palette.grey.light!, palette.common.white),
-    secondaryDisabled: secondary(palette.grey.light!, palette.common.white),
-    flatDisabled: {
-      ...secondary(palette.grey.light!, palette.common.white),
-      border: 'none'
     },
 
     // Other props
@@ -195,11 +254,14 @@ export default ({ palette, sizes, transitions, typography }: Theme) =>
     },
     hovered: {},
     focused: {},
-    active: {},
+    active: {
+      boxShadow: 'none'
+    },
     circular: {
       borderRadius: '50%',
       padding: 0
     },
+    disabled: {},
 
     // Child elements
     icon: {
