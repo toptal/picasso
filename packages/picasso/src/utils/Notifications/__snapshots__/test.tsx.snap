@@ -55,7 +55,7 @@ exports[`useNotifications error notification render 1`] = `
               class="MuiSnackbar-root SnackbarItem-root SnackbarItem-wrappedRoot MuiSnackbar-anchorOriginTopRight SnackbarItem-anchorOriginTopRight"
             >
               <div
-                class="MuiPaper-root MuiSnackbarContent-root Notification-notificationRed Notification-notificationShadow Notification-notification ForwardRef(Notification)-formNotification MuiPaper-elevation6"
+                class="MuiPaper-root MuiSnackbarContent-root Notification-notificationRed Notification-notificationShadow Notification-roundedBorders Notification-notification ForwardRef(Notification)-formNotification MuiPaper-elevation6"
                 role="alert"
                 style="webkit-transform: none; transform: none; webkit-transition: -webkit-transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms; transition: transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;"
               >
@@ -166,7 +166,7 @@ exports[`useNotifications info notification render 1`] = `
               class="MuiSnackbar-root SnackbarItem-root SnackbarItem-wrappedRoot MuiSnackbar-anchorOriginTopRight SnackbarItem-anchorOriginTopRight"
             >
               <div
-                class="MuiPaper-root MuiSnackbarContent-root Notification-notificationWhite Notification-notificationShadow Notification-notification ForwardRef(Notification)-generalNotification MuiPaper-elevation6"
+                class="MuiPaper-root MuiSnackbarContent-root Notification-notificationWhite Notification-notificationShadow Notification-roundedBorders Notification-notification ForwardRef(Notification)-generalNotification MuiPaper-elevation6"
                 role="alert"
                 style="webkit-transform: none; transform: none; webkit-transition: -webkit-transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms; transition: transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;"
               >
@@ -277,7 +277,7 @@ exports[`useNotifications success notification render 1`] = `
               class="MuiSnackbar-root SnackbarItem-root SnackbarItem-wrappedRoot MuiSnackbar-anchorOriginTopRight SnackbarItem-anchorOriginTopRight"
             >
               <div
-                class="MuiPaper-root MuiSnackbarContent-root Notification-notificationGreen Notification-notificationShadow Notification-notification ForwardRef(Notification)-formNotification MuiPaper-elevation6"
+                class="MuiPaper-root MuiSnackbarContent-root Notification-notificationGreen Notification-notificationShadow Notification-roundedBorders Notification-notification ForwardRef(Notification)-formNotification MuiPaper-elevation6"
                 role="alert"
                 style="webkit-transform: none; transform: none; webkit-transition: -webkit-transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms; transition: transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;"
               >
