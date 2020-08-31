@@ -30,6 +30,9 @@ export default ({
     notificationShadow: {
       boxShadow: shadows[3]
     },
+    roundedBorders: {
+      borderRadius: '.25em'
+    },
     notificationRed: {
       background: red.lighter
     },
@@ -59,7 +62,7 @@ export default ({
     // Content Icon
     iconWrapper: {
       flexBasis: '1.5em',
-      marginRight: '1.5em',
+      marginRight: '1em',
       minWidth: '1.5em',
       height: '1.3125em'
     },
