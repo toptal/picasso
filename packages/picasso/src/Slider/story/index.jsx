@@ -15,10 +15,10 @@ page
   .addExample('Slider/story/Default.example.jsx', 'Default')
   .addExample('Slider/story/InitialValue.example.jsx', 'Initial value')
   .addExample('Slider/story/Controlled.example.jsx', 'Controlled value')
-  .addExample('Slider/story/Tooltip.example.jsx', 'Tooltip')
+  .addExample('Slider/story/Tooltip.example.tsx', 'Tooltip')
   .addExample('Slider/story/Range.example.jsx', 'Range')
   .addExample('Slider/story/Marks.example.jsx', 'Marks')
-  .addExample('Slider/story/CustomTooltip.example.jsx', 'Custom Tooltip') // picasso-skip-visuals
+  .addExample('Slider/story/CustomTooltip.example.tsx', 'Custom Tooltip') // picasso-skip-visuals
   .addExample(
     'Slider/story/HideThumb.example.jsx',
     'Hide thumb when value is null or undefined'

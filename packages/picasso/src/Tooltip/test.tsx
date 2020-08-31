@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from '@testing-library/react'
+import { render } from '@toptal/picasso/test-utils'
 
 import Container from '../Container'
 import Tooltip from './Tooltip'

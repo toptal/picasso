@@ -37,6 +37,8 @@ export interface Props extends ComponentProps<typeof MUISlider> {
   tooltip?: ValueLabelDisplay
   /** The format function the value tooltip's value. */
   tooltipFormat?: string | ((value: number, index: number) => React.ReactNode)
+  /** Show a compact tooltip */
+  compact?: boolean
   /** Disable the portal behavior of the tooltip. The children stay within it's parent */
   disablePortal?: boolean
   /** Callback invoked when slider changes its state. */
@@ -54,7 +56,8 @@ type ValueLabelComponentProps = ValueLabelProps & {
 
 const DefaultTooltip = (
   isTooltipAlwaysVisible: boolean,
-  disablePortal?: boolean
+  disablePortal?: boolean,
+  compact?: boolean
 ): React.FunctionComponent<ValueLabelComponentProps> => ({
   children,
   open,
@@ -67,12 +70,13 @@ const DefaultTooltip = (
 
   return (
     <Tooltip
-      arrow
+      arrow={!compact}
       content={value}
       open={open || valueLabelDisplay === 'on'}
       placement={isTooltipAlwaysVisible ? 'right' : 'top'}
       preventOverflow={isTooltipAlwaysVisible}
       disablePortal={disablePortal}
+      compact={compact}
     >
       {children}
     </Tooltip>
@@ -91,6 +95,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     defaultValue = 0,
     tooltip,
     tooltipFormat,
+    compact,
     TooltipComponent: UserDefinedTooltip,
     step,
     disabled,
@@ -114,7 +119,8 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
   const ValueLabelComponent = (UserDefinedTooltip ||
     DefaultTooltip(
       isTooltipAlwaysVisible,
-      disablePortal
+      disablePortal,
+      compact
     )) as typeof UserDefinedTooltip
 
   return (
