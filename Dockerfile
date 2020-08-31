@@ -44,7 +44,7 @@ RUN chown -R node /app
 
 USER node
 
-RUN echo -e '//registry.npmjs.org/:_authToken=${NPM_TOKEN}\nalways-auth=true ' > .npmrc
+RUN printf '//registry.npmjs.org/:_authToken=${NPM_TOKEN}\nalways-auth=true\n' > .npmrc
 
 # Enables layer caching
 COPY --chown=node:node package.json yarn.lock ./
