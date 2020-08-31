@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.3](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.20.2...@toptal/picasso-forms@0.20.3) (2020-08-31)
+
+
+### Bug Fixes
+
+* add support for complex field validation ([#1513](https://github.com/toptal/picasso/issues/1513)) ([ddf80e7](https://github.com/toptal/picasso/commit/ddf80e773f4fae64e420e6931740340e1894fe58))
+
+
+
+
+
 ## [0.20.2](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.20.1...@toptal/picasso-forms@0.20.2) (2020-08-27)
 
 
