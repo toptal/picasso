@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.93.3](https://github.com/toptal/picasso/compare/@toptal/picasso@4.93.2...@toptal/picasso@4.93.3) (2020-09-01)
+
+
+### Bug Fixes
+
+* **OutlinedInput:** add tabIndex -1 to reset button ([#1534](https://github.com/toptal/picasso/issues/1534)) ([c98509f](https://github.com/toptal/picasso/commit/c98509fc72d129c2bcd77a4d45aba09e294c1f86))
+
+
+
+
+
 ## [4.93.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.93.1...@toptal/picasso@4.93.2) (2020-09-01)
 
 **Note:** Version bump only for package @toptal/picasso
