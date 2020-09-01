@@ -1,5 +1,9 @@
 import React, { FC } from 'react'
-import { TreeView, TreeNodeInterface } from '@toptal/picasso-lab'
+import {
+  TreeView,
+  TreeNodeInterface,
+  TreeNodeAvatar
+} from '@toptal/picasso-lab'
 import { Button, Container, Modal, UserBadge } from '@toptal/picasso'
 import { HierarchyPointNode } from 'd3-hierarchy'
 import { useModals, palette } from '@toptal/picasso/utils'
@@ -134,11 +138,31 @@ const renderNode = (pointNode: HierarchyPointNode<TreeNodeInterface>) => {
     return (
       <NodeContainer>
         <div>
-          <UserBadge name='QQQQQQQQ QQQQQQQQ' />
-          <UserBadge name='QQQQQQQQ QQQQQQQQ' />
-          <UserBadge name='QQQQQQQQ QQQQQQQQ' />
-          <UserBadge name='QQQQQQQQ QQQQQQQQ' />
-          <UserBadge name='QQQQQQQQ QQQQQQQQ' />
+          <UserBadge
+            name='QQQQQQQQ QQQQQQQQ'
+            avatar={
+              <TreeNodeAvatar
+                name='QQQQQQQQ QQQQQQQQ'
+                src='https://picasso.toptal.net/jacqueline-with-flowers-1954-square.jpg'
+              />
+            }
+          />
+          <UserBadge
+            name='QQQQQQQQ QQQQQQQQ'
+            avatar={<TreeNodeAvatar name='QQQQQQQQ QQQQQQQQ' />}
+          />
+          <UserBadge
+            name='QQQQQQQQ QQQQQQQQ'
+            avatar={<TreeNodeAvatar name='QQQQQQQQ QQQQQQQQ' />}
+          />
+          <UserBadge
+            name='QQQQQQQQ QQQQQQQQ'
+            avatar={<TreeNodeAvatar name='QQQQQQQQ QQQQQQQQ' />}
+          />
+          <UserBadge
+            name='QQQQQQQQ QQQQQQQQ'
+            avatar={<TreeNodeAvatar name='QQQQQQQQ QQQQQQQQ' />}
+          />
         </div>
       </NodeContainer>
     )
@@ -146,7 +170,10 @@ const renderNode = (pointNode: HierarchyPointNode<TreeNodeInterface>) => {
 
   return (
     <NodeContainer>
-      <UserBadge name={pointNode.data.info.name} />
+      <UserBadge
+        name={pointNode.data.info.name}
+        avatar={<TreeNodeAvatar name={pointNode.data.info.name} />}
+      />
     </NodeContainer>
   )
 }
