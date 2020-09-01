@@ -12,7 +12,6 @@ import { Option } from './types'
 export type ItemProps = {
   role: string
   'aria-selected': boolean
-  onMouseEnter: () => void
   onMouseDown: (event: React.MouseEvent) => void
   close: () => void
   onClick: (event: React.MouseEvent) => void
@@ -142,13 +141,6 @@ const useSelect = ({
   const getItemProps = (index: number, item: Option): ItemProps => ({
     role: 'option',
     'aria-selected': highlightedIndex === index,
-    onMouseEnter: () => {
-      if (index === highlightedIndex) {
-        return
-      }
-
-      setHighlightedIndex(index)
-    },
     onMouseDown,
     close,
     onClick: (event: React.MouseEvent) => {
