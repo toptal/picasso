@@ -104,7 +104,7 @@ page
         name: 'scrollOffsetTop',
         type: 'number',
         description:
-          'Offset from the viewport for inputs to focus on, defaults to the center of the window'
+          'Offset from the viewport for inputs to focus on, defaults to the center of the window (deprecated, will not have any effect)'
       }
     }
   })
