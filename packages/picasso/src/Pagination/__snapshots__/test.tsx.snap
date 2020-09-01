@@ -116,30 +116,30 @@ exports[`renders disabled 1`] = `
     <div
       class="Container-centerAlignItems Container-flex Container-inline"
     >
-      <button
-        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryDisabled PicassoButton-root Mui-disabled"
-        disabled=""
+      <span
+        aria-disabled="true"
+        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryDisabled PicassoButton-root Mui-disabled PicassoButton-disabled"
+        role="button"
         tabindex="-1"
-        type="button"
       >
         <span
           class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
         >
           Prev
         </span>
-      </button>
-      <button
-        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryDisabled PicassoButton-root Pagination-rangeButton Mui-disabled"
-        disabled=""
+      </span>
+      <span
+        aria-disabled="true"
+        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryDisabled PicassoButton-root Pagination-rangeButton Mui-disabled PicassoButton-disabled"
+        role="button"
         tabindex="-1"
-        type="button"
       >
         <span
           class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
         >
           1
         </span>
-      </button>
+      </span>
       <div
         class="Pagination-ellipsis"
       >
@@ -149,42 +149,42 @@ exports[`renders disabled 1`] = `
           ...
         </p>
       </div>
-      <button
-        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryDisabled PicassoButton-root Pagination-rangeButton Mui-disabled"
-        disabled=""
+      <span
+        aria-disabled="true"
+        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryDisabled PicassoButton-root Pagination-rangeButton Mui-disabled PicassoButton-disabled"
+        role="button"
         tabindex="-1"
-        type="button"
       >
         <span
           class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
         >
           4
         </span>
-      </button>
-      <button
-        class="MuiButtonBase-root PicassoButton-small PicassoButton-primaryDisabled PicassoButton-root Pagination-rangeButton Mui-disabled"
-        disabled=""
+      </span>
+      <span
+        aria-disabled="true"
+        class="MuiButtonBase-root PicassoButton-small PicassoButton-primaryDisabled PicassoButton-root Pagination-rangeButton Mui-disabled PicassoButton-disabled"
+        role="button"
         tabindex="-1"
-        type="button"
       >
         <span
           class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
         >
           5
         </span>
-      </button>
-      <button
-        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryDisabled PicassoButton-root Pagination-rangeButton Mui-disabled"
-        disabled=""
+      </span>
+      <span
+        aria-disabled="true"
+        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryDisabled PicassoButton-root Pagination-rangeButton Mui-disabled PicassoButton-disabled"
+        role="button"
         tabindex="-1"
-        type="button"
       >
         <span
           class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
         >
           6
         </span>
-      </button>
+      </span>
       <div
         class="Pagination-ellipsis"
       >
@@ -194,30 +194,30 @@ exports[`renders disabled 1`] = `
           ...
         </p>
       </div>
-      <button
-        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryDisabled PicassoButton-root Pagination-rangeButton Mui-disabled"
-        disabled=""
+      <span
+        aria-disabled="true"
+        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryDisabled PicassoButton-root Pagination-rangeButton Mui-disabled PicassoButton-disabled"
+        role="button"
         tabindex="-1"
-        type="button"
       >
         <span
           class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
         >
           20
         </span>
-      </button>
-      <button
-        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryDisabled PicassoButton-root Mui-disabled"
-        disabled=""
+      </span>
+      <span
+        aria-disabled="true"
+        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryDisabled PicassoButton-root Mui-disabled PicassoButton-disabled"
+        role="button"
         tabindex="-1"
-        type="button"
       >
         <span
           class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
         >
           Next
         </span>
-      </button>
+      </span>
     </div>
   </div>
 </div>

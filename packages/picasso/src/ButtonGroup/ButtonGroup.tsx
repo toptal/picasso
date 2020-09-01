@@ -1,9 +1,15 @@
 import React, { ReactNode, HTMLAttributes, forwardRef } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { StandardProps, withClasses } from '@toptal/picasso-shared'
+import {
+  StandardProps,
+  withClasses,
+  Classes,
+  OverridableComponent
+} from '@toptal/picasso-shared'
 
 import Button from '../Button'
+import Tooltip from '../Tooltip'
 import styles from './styles'
 
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
@@ -35,12 +41,20 @@ ButtonGroup.displayName = 'ButtonGroup'
 
 export default withStyles(styles)(
   withClasses(classes => [
-    [
-      Button,
-      {
+    {
+      componentType: Button,
+      classes: {
+        root: classes.button,
+        active: classes.active
+      } as Classes
+    },
+    {
+      componentType: Tooltip as OverridableComponent,
+      classes: {} as Classes,
+      childrenClasses: {
         root: classes.button,
         active: classes.active
       }
-    ]
+    }
   ])(ButtonGroup)
 )

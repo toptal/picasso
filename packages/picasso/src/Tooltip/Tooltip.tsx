@@ -9,7 +9,12 @@ import React, {
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITooltip from '@material-ui/core/Tooltip'
 import cx from 'classnames'
-import { usePicassoRoot, BaseProps } from '@toptal/picasso-shared'
+import {
+  usePicassoRoot,
+  BaseProps,
+  withClasses,
+  Classes
+} from '@toptal/picasso-shared'
 
 import styles from './styles'
 
@@ -53,6 +58,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   delay?: DelayType
   /** Show a compact tooltip */
   compact?: boolean
+  childrenClasses?: Classes
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoTooltip' })
@@ -64,6 +70,7 @@ export const Tooltip: FunctionComponent<Props> = props => {
     placement,
     interactive,
     className,
+    childrenClasses, // eslint-disable-line @typescript-eslint/no-unused-vars
     style,
     arrow,
     open,
@@ -150,4 +157,10 @@ Tooltip.defaultProps = {
   disablePortal: false
 }
 
-export default Tooltip
+// Forward classes to children if were provided,
+// e.g. from ButtonGroup to Button that is wrapped by the Tooltip
+export default withClasses((_classes, childrenClasses) => [
+  {
+    classes: childrenClasses
+  }
+])(Tooltip) as typeof Tooltip

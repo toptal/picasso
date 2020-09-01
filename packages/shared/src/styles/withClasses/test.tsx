@@ -12,7 +12,7 @@ const TestComponent = (props: { children: ReactElement; classes: Classes }) => {
 }
 
 const DecoratedComponent = withClasses(classes => [
-  [Button, { root: classes.test }]
+  { componentType: Button, classes: { root: classes.test } }
 ])(TestComponent)
 
 const renderComponent = () => {

@@ -188,10 +188,14 @@ page
   .addExample('Button/story/Basic.example.jsx', 'Basic')
   .addExample('Button/story/Variants.example.jsx', 'Variants')
   .addExample('Button/story/States.example.jsx', 'States')
-  .addExample('Button/story/Disabled.example.jsx', {
+  .addExample('Button/story/Disabled.example.tsx', {
     title: 'Disabled',
     description: 'The button shows that currently unable to be interacted with'
   })
+  .addExample(
+    'Button/story/DisabledWithTooltip.example.tsx',
+    'Disabled with tooltip'
+  )
   .addExample('Button/story/Sizes.example.jsx', 'Sizes')
   .addExample('Button/story/FullWidth.example.jsx', 'Full width')
   .addExample('Button/story/IconButtons.example.jsx', 'Button with Icon')

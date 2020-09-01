@@ -84,7 +84,7 @@ export interface StaticProps {
 }
 
 const getVariantType = (variant: VariantType) => {
-  const [type] = variant!.split('-')
+  const [type] = variant!.split('-') // eslint-disable-line @typescript-eslint/no-non-null-assertion
 
   return type
 }
@@ -93,6 +93,7 @@ const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoButton' })
 
 const defaultOnClick = () => {}
 
+// eslint-disable-next-line complexity
 export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
   props,
   ref
@@ -152,11 +153,11 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     }
   }
 
-  const variantType = getVariantType(variant!)
+  const variantType = getVariantType(variant!) // eslint-disable-line @typescript-eslint/no-non-null-assertion
   const variantClassName = disabled
     ? classes[`${variantType}Disabled`]
-    : classes[kebabToCamelCase(variant!)]
-  const sizeClassName = classes[size!]
+    : classes[kebabToCamelCase(variant!)] // eslint-disable-line @typescript-eslint/no-non-null-assertion
+  const sizeClassName = classes[size!] // eslint-disable-line @typescript-eslint/no-non-null-assertion
 
   const rootClassName = cx(
     {
@@ -171,22 +172,25 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     rootClass
   )
 
+  const renderAsSpan = disabled && as === 'button'
+
   return (
     <ButtonBase
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       ref={ref}
       classes={{
-        root: rootClassName
+        root: rootClassName,
+        disabled: classes.disabled
       }}
-      onClick={loading ? defaultOnClick : onClick}
+      onClick={loading || disabled ? defaultOnClick : onClick}
       className={className}
       style={style}
       disabled={disabled}
       title={title}
       value={value}
       type={type}
-      component={as!}
+      component={renderAsSpan ? 'span' : as!} // eslint-disable-line @typescript-eslint/no-non-null-assertion
     >
       <Container
         as='span'

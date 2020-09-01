@@ -5,18 +5,18 @@ exports[`disabled button renders disabled version 1`] = `
   <div
     class="Picasso-root"
   >
-    <button
-      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryDisabled PicassoButton-root Mui-disabled"
-      disabled=""
+    <span
+      aria-disabled="true"
+      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryDisabled PicassoButton-root Mui-disabled PicassoButton-disabled"
+      role="button"
       tabindex="-1"
-      type="button"
     >
       <span
         class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
       >
         Click me!
       </span>
-    </button>
+    </span>
   </div>
 </div>
 `;

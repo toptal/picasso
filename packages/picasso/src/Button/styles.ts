@@ -3,39 +3,47 @@ import { lighten, darken, alpha } from '@toptal/picasso-shared'
 
 const ICON_SPACING = '0.4em'
 
-const primary = (mainColor: string, secondaryColor: string) => ({
+const primary = (
+  mainColor: string,
+  secondaryColor: string,
+  disabled = false
+) => ({
   border: 'none',
   color: secondaryColor,
   backgroundColor: mainColor,
 
-  '&:focus, &focused': {
+  '&:focus, &focused': !disabled && {
     backgroundColor: darken(mainColor, 0.2)
   },
 
-  '&:hover, &$hovered': {
+  '&:hover, &$hovered': !disabled && {
     backgroundColor: darken(mainColor, 0.2)
   },
 
-  '&:active, &$active': {
+  '&:active, &$active': !disabled && {
     backgroundColor: darken(mainColor, 0.2)
   }
 })
 
-const secondary = (mainColor: string, secondaryColor: string) => ({
+const secondary = (
+  mainColor: string,
+  secondaryColor: string,
+  disabled = false
+) => ({
   color: mainColor,
   backgroundColor: secondaryColor,
 
-  '&:focus, &focused': {
+  '&:focus, &focused': !disabled && {
     backgroundColor: lighten(mainColor, 0.84),
     borderColor: mainColor
   },
 
-  '&:hover, &$hovered': {
+  '&:hover, &$hovered': !disabled && {
     backgroundColor: lighten(mainColor, 0.84),
     borderColor: mainColor
   },
 
-  '&:active, &$active': {
+  '&:active, &$active': !disabled && {
     backgroundColor: lighten(mainColor, 0.84),
     borderColor: mainColor
   }
@@ -67,6 +75,15 @@ export default ({ palette, sizes, transitions, typography }: Theme) =>
 
       '&+&': {
         marginLeft: '0.5em'
+      }
+    },
+    disabled: {
+      '&$disabled': {
+        pointerEvents: 'inherit',
+
+        '&:focus, &focused': {
+          textDecoration: 'none'
+        }
       }
     },
     content: {
@@ -182,10 +199,14 @@ export default ({ palette, sizes, transitions, typography }: Theme) =>
     transparentGreen: {
       ...transparent(palette.green.main)
     },
-    primaryDisabled: primary(palette.grey.light!, palette.common.white),
-    secondaryDisabled: secondary(palette.grey.light!, palette.common.white),
+    primaryDisabled: primary(palette.grey.light!, palette.common.white, true),
+    secondaryDisabled: secondary(
+      palette.grey.light!,
+      palette.common.white,
+      true
+    ),
     flatDisabled: {
-      ...secondary(palette.grey.light!, palette.common.white),
+      ...secondary(palette.grey.light!, palette.common.white, true),
       border: 'none'
     },
 
