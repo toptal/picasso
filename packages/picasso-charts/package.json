@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-charts",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Charts components of Picasso",
   "author": "Toptal",
   "license": "ISC",
@@ -14,7 +14,7 @@
     "access": "public"
   },
   "scripts": {
-    "build:dist": "cross-env NODE_ENV=production ../../bin/build --tsConfig=./tsconfig.build.json",
+    "build:package": "cross-env NODE_ENV=production ../../bin/build --tsConfig=./tsconfig.build.json",
     "prepublishOnly": "../../bin/prepublish"
   },
   "bugs": {
