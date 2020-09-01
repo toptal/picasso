@@ -15,7 +15,7 @@
     "lint": "davinci syntax lint code .",
     "start": "start-storybook -p 9001 -s ./.storybook/public -c .storybook",
     "build:storybook": "build-storybook -s ./.storybook/public -c .storybook -o build/storybook --quiet",
-    "build:dist": "lerna run build:dist --stream --parallel",
+    "build:package": "lerna run build:package --stream --parallel",
     "release": "./bin/release",
     "symlink": "cross-env ./bin/symlink --link",
     "symlink:off": "cross-env ./bin/symlink --unlink",
@@ -44,7 +44,7 @@
     "@svgr/cli": "^5.4.0",
     "@testing-library/react": "^9.3.2",
     "@toptal/browserslist-config": "^0.1.0-alpha.2",
-    "@toptal/davinci": "^0.2.107",
+    "@toptal/davinci": "^0.2.179",
     "@types/debounce": "^1.2.0",
     "@types/esprima": "^4.0.2",
     "@types/jest": "^25.1.4",
@@ -69,8 +69,8 @@
     "escodegen": "^1.12.0",
     "esprima": "^4.0.1",
     "esprima-walk": "^0.1.0",
-    "fork-ts-checker-notifier-webpack-plugin": "^1.0.3",
-    "fork-ts-checker-webpack-plugin": "^1.4.3",
+    "fork-ts-checker-notifier-webpack-plugin": "^3.0.0",
+    "fork-ts-checker-webpack-plugin": "^5.1.0",
     "fs-extra": "^8.0.1",
     "glob": "^7.1.4",
     "hygen": "^4.0.2",
@@ -90,7 +90,7 @@
     "react-docgen-typescript-loader": "^3.7.2",
     "react-dom": "^16.12.0",
     "react-markdown": "^4.3.1",
-    "react-router-dom": "^5.0.1",
+    "react-router-dom": "^5.2.0",
     "react-source-render": "^3.0.0-5",
     "react-storybook-addon-chapters": "^3.1.7",
     "regenerator-runtime": "^0.13.5",
@@ -115,8 +115,7 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "davinci syntax lint code",
-      "prettier-standard",
-      "git add"
+      "prettier-standard"
     ]
   },
   "config": {

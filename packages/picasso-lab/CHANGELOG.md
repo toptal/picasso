@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.30.6](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.30.5...@toptal/picasso-lab@2.30.6) (2020-08-31)
+
+
+### Bug Fixes
+
+* add missing Header/TypographyLoader props, center them vertically ([#1522](https://github.com/toptal/picasso/issues/1522)) ([bdb3e4e](https://github.com/toptal/picasso/commit/bdb3e4e7c5f3b43bb3e400f707c995f6f9e3c984))
+
+
+
+
+
+## [2.30.5](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.30.4...@toptal/picasso-lab@2.30.5) (2020-08-31)
+
+**Note:** Version bump only for package @toptal/picasso-lab
+
+
+
+
+
+## [2.30.4](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.30.3...@toptal/picasso-lab@2.30.4) (2020-08-31)
+
+**Note:** Version bump only for package @toptal/picasso-lab
+
+
+
+
+
 ## [2.30.3](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.30.2...@toptal/picasso-lab@2.30.3) (2020-08-27)
 
 

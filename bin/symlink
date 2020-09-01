@@ -49,11 +49,17 @@ const removeLink = function(name, cwd) {
 
 const getPicassoPackages = () => readdirSync(PACKAGES_DIR)
 const getPackageTsConfig = packageName => {
-  const tsConfigPath = path.join(PACKAGES_DIR, packageName, './tsconfig.build.json')
+  const tsConfigPath = path.join(
+    PACKAGES_DIR,
+    packageName,
+    './tsconfig.build.json'
+  )
+
   return require(tsConfigPath)
 }
 const getPackagePackageJson = packageName => {
   const packageJsonPath = path.join(PACKAGES_DIR, packageName, './package.json')
+
   return require(packageJsonPath)
 }
 
@@ -76,7 +82,7 @@ const setup = function() {
   if (yargs.link) {
     log('Firt build dist versions of all the packages')
 
-    exec('yarn build:dist', { stdio: 'inherit' })
+    exec('yarn build:package', { stdio: 'inherit' })
 
     log('Linking process started...')
 
