@@ -17,13 +17,11 @@ const primary = (
   },
 
   '&:active, &$active': {
-    backgroundColor: mix(mainColor, 'black', 0.172),
-    boxShadow: 'none'
+    backgroundColor: mix(mainColor, 'black', 0.172)
   },
 
   '&$disabled': {
-    backgroundColor: ternaryColor,
-    boxShadow: 'none'
+    backgroundColor: ternaryColor
   }
 })
 
@@ -42,15 +40,13 @@ const secondary = (
 
   '&:active, &$active': {
     backgroundColor: activeColor,
-    borderColor: mainColor,
-    boxShadow: 'none'
+    borderColor: mainColor
   },
 
   '&$disabled': {
     color: disabledColor,
     borderColor: disabledColor,
-    backgroundColor: secondaryColor,
-    boxShadow: 'none'
+    backgroundColor: secondaryColor
   }
 })
 
@@ -66,7 +62,7 @@ export default ({ palette, sizes, transitions, typography }: Theme) =>
       transitionProperty: 'border, color, background',
       boxShadow: 'none',
 
-      '&:focus, &$focused': {
+      '&$focusVisible, &$focused': {
         boxShadow: `0 0 0 3px ${alpha(palette.primary.main, 0.48)}`
       },
 
@@ -120,11 +116,6 @@ export default ({ palette, sizes, transitions, typography }: Theme) =>
         lineHeight: typography.buttons.lineHeightMedium
       },
 
-      '&$circular': {
-        minWidth: 'initial',
-        width: '2em'
-      },
-
       '& $iconLeft': {
         marginLeft: '-0.25em'
       },
@@ -141,11 +132,6 @@ export default ({ palette, sizes, transitions, typography }: Theme) =>
       '& $content': {
         fontSize: typography.buttons.fontSizeLarge,
         lineHeight: typography.buttons.lineHeightLarge
-      },
-
-      '&$circular': {
-        minWidth: 'initial',
-        width: '3em'
       },
 
       '& $iconLeft': {
@@ -184,18 +170,16 @@ export default ({ palette, sizes, transitions, typography }: Theme) =>
       color: palette.common.white,
       border: `solid ${sizes.borderWidth} ${alpha(palette.common.white, 0.32)}`,
 
-      '&:focus, &$focused': {
+      '&$focusVisible, &$focused': {
         // borderColor: palette.common.white,
         boxShadow: `0 0 0 3px ${alpha(palette.common.white, 0.48)}`
       },
 
       '&:hover, &$hovered': {
-        boxShadow: 'none',
         borderColor: palette.common.white
       },
 
       '&:active, &$active': {
-        boxShadow: 'none',
         backgroundColor: alpha(palette.common.white, 0.16),
         borderColor: palette.common.white
       },
@@ -203,8 +187,7 @@ export default ({ palette, sizes, transitions, typography }: Theme) =>
       '&$disabled': {
         color: alpha(palette.common.white, 0.32),
         borderColor: alpha(palette.common.white, 0.32),
-        backgroundColor: 'initial',
-        boxShadow: 'none'
+        backgroundColor: 'initial'
       }
     },
 
@@ -227,24 +210,21 @@ export default ({ palette, sizes, transitions, typography }: Theme) =>
       border: 'none',
       color: palette.common.white,
 
-      '&:focus, &$focused': {
+      '&$focusVisible, &$focused': {
         boxShadow: `0 0 0 3px ${alpha(palette.common.white, 0.48)}`
       },
 
       '&:hover, &$hovered': {
-        boxShadow: 'none',
         backgroundColor: alpha(palette.common.white, 0.08)
       },
 
       '&:active, &$active': {
-        boxShadow: 'none',
         backgroundColor: alpha(palette.common.white, 0.16)
       },
 
       '&$disabled': {
         color: alpha(palette.common.white, 0.48),
-        backgroundColor: 'initial',
-        boxShadow: 'none'
+        backgroundColor: 'initial'
       }
     },
 
@@ -262,6 +242,7 @@ export default ({ palette, sizes, transitions, typography }: Theme) =>
       padding: 0
     },
     disabled: {},
+    focusVisible: {},
 
     // Child elements
     icon: {

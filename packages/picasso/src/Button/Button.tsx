@@ -169,7 +169,8 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
       {...rest}
       ref={ref}
       classes={{
-        root: rootClassName
+        root: rootClassName,
+        focusVisible: cx(classes.focusVisible)
       }}
       onClick={loading ? defaultOnClick : onClick}
       className={className}

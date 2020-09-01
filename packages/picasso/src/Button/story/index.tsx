@@ -1,5 +1,6 @@
 import buttonGroupStory from '../../ButtonGroup/story'
 import { Button } from '../Button'
+// @ts-ignore
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Components').createPage(
@@ -185,7 +186,7 @@ page
 
 page
   .createChapter()
-  .addExample('Button/story/Basic.example.jsx', 'Basic')
+  .addExample('Button/story/Basic.example.tsx', 'Basic')
   .addExample('Button/story/Variants.example.jsx', 'Variants')
   .addExample('Button/story/States.example.jsx', 'States')
   .addExample('Button/story/Disabled.example.jsx', {
