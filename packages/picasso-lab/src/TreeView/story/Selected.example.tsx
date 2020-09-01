@@ -1,5 +1,9 @@
 import React, { useState } from 'react'
-import { TreeView, TreeNodeInterface } from '@toptal/picasso-lab'
+import {
+  TreeView,
+  TreeNodeInterface,
+  TreeNodeAvatar
+} from '@toptal/picasso-lab'
 import { Button, Container, UserBadge } from '@toptal/picasso'
 import { HierarchyPointNode } from 'd3-hierarchy'
 import styled from 'styled-components'
@@ -194,7 +198,11 @@ const Example = () => {
         <NodeContainer onClick={() => onClick(pointNode.data.id)}>
           <div>
             {pointNode.data.info.members.map((member: { name: string }) => (
-              <UserBadge name={member.name} key={member.name} />
+              <UserBadge
+                name={member.name}
+                key={member.name}
+                avatar={<TreeNodeAvatar name={member.name} />}
+              />
             ))}
           </div>
         </NodeContainer>
@@ -206,7 +214,10 @@ const Example = () => {
         onClick={() => onClick(pointNode.data.id)}
         selected={pointNode.data.selected}
       >
-        <UserBadge name={pointNode.data.info.name} />
+        <UserBadge
+          name={pointNode.data.info.name}
+          avatar={<TreeNodeAvatar name={pointNode.data.info.name} />}
+        />
       </NodeContainer>
     )
   }
