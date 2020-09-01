@@ -166,7 +166,7 @@ exports[`Autocomplete static behavior default render 1`] = `
             <button
               class="MuiButtonBase-root PicassoButton-circular PicassoButton-small PicassoButton-transparent PicassoButton-root"
               role="reset"
-              tabindex="0"
+              tabindex="-1"
               type="button"
             >
               <span

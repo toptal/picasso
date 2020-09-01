@@ -82,6 +82,7 @@ const ResetButton = ({
     })}
   >
     <Button
+      tabIndex={-1}
       icon={<CloseMinor16 />}
       circular
       variant='transparent'
