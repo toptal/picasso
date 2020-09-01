@@ -5,8 +5,11 @@ import { Form } from '@toptal/picasso-forms'
 
 type FormType = {
   hide: boolean
-  middleName: string
-  consent: boolean
+  name: {
+    first: string
+    last: string
+  }
+  dob: string
 }
 
 const FormContent = () => {
@@ -22,11 +25,18 @@ const FormContent = () => {
           <Form.Input
             enableReset
             required
-            name='middleName'
-            label='Your midden name'
+            name='name.first'
+            label='Your first name'
             placeholder='e.g. Bruce'
           />
-          <Form.DatePicker required name='hiddenDate' label='DOB' />
+          <Form.Input
+            enableReset
+            required
+            name='name.last'
+            label='Your last name'
+            placeholder='e.g. Wayne'
+          />
+          <Form.DatePicker required name='dob' label='DOB' />
         </>
       )}
     </>
@@ -39,7 +49,9 @@ const ValidateOnSubmitExample = () => {
 
     if (result !== 'success') {
       return {
-        middleName: 'Unknown middle name'
+        name: {
+          first: 'Unknown first name'
+        }
       }
     }
 
@@ -64,7 +76,7 @@ const api = {
   submit: async (values: FormType) =>
     new Promise(resolve =>
       setTimeout(() => {
-        if (values.hide || values.middleName.toLowerCase() === 'bruce') {
+        if (values.hide || values.name?.first.toLowerCase() === 'bruce') {
           resolve('success')
           return
         }
