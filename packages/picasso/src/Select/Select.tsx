@@ -186,8 +186,6 @@ interface SelectOptionProps {
   checkmarked: boolean
   multiple?: boolean
   size?: SizeType<'small' | 'medium'>
-  index: number
-  setHighlightedIndex: OptionsProps['setHighlightedIndex']
   onItemSelect: OptionsProps['onItemSelect']
   option: Option
 }
@@ -199,8 +197,6 @@ const SelectOption = React.memo(
     onMouseDown,
     selected,
     checkmarked,
-    setHighlightedIndex,
-    index,
     onItemSelect,
     multiple,
     children,
@@ -215,13 +211,6 @@ const SelectOption = React.memo(
         selected={selected}
         checkmarked={checkmarked}
         onMouseDown={onMouseDown}
-        onMouseEnter={() => {
-          if (selected) {
-            return
-          }
-
-          setHighlightedIndex(index)
-        }}
         onClick={(event: React.MouseEvent) => {
           if (!multiple) {
             close()
@@ -305,7 +294,6 @@ const renderOptions = ({
   options,
   renderOption,
   highlightedIndex,
-  setHighlightedIndex,
   onItemSelect,
   getItemProps,
   value,
@@ -338,8 +326,6 @@ const renderOptions = ({
           highlightedIndex === currentIndex
         }
         checkmarked={selection.isOptionCheckmarked(option)}
-        setHighlightedIndex={setHighlightedIndex}
-        index={currentIndex}
         multiple={multiple}
         close={close}
         onItemSelect={onItemSelect}
