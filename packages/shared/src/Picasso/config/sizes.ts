@@ -14,7 +14,7 @@ export interface Sizes {
 const sizes = {
   borderWidth: '1px',
   borderRadius: {
-    small: '3px',
+    small: '4px',
     medium: '8px'
   },
   input: {

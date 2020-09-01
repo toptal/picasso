@@ -45,6 +45,9 @@ const Example = () => (
             <Label>5</Label>
           </Container>
         </Sidebar.Item>
+        <Sidebar.Item>
+          Menu item with surprisingly long text content
+        </Sidebar.Item>
         <Sidebar.Item
           collapsible
           icon={<Referrals16 />}
