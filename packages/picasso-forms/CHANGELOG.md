@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.2](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.20.1...@toptal/picasso-forms@0.20.2) (2020-08-27)
+
+
+### Bug Fixes
+
+* **Form:** improve form errors scrolling ([#1512](https://github.com/toptal/picasso/issues/1512)) ([16f9dd6](https://github.com/toptal/picasso/commit/16f9dd62fad2979d129fc53993da3e7a66d622cb))
+
+
+
+
+
 ## [0.20.1](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.20.0...@toptal/picasso-forms@0.20.1) (2020-08-13)
 
 

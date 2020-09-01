@@ -9,7 +9,12 @@ const { Logo, LogoEmblem, DropdownArrows16, ...listIcons } = icons
 const Example = () => {
   const [filter, setFilter] = React.useState('')
 
-  const handleFilter = e => setFilter(e.target.value)
+  const handleFilter = (
+    e: React.ChangeEvent<{
+      name?: string
+      value: string
+    }>
+  ) => setFilter(e.target.value)
 
   const iconList = Object.keys(listIcons).filter(iconName =>
     iconName.toLocaleLowerCase().includes(filter.toLowerCase())
@@ -29,7 +34,7 @@ const Example = () => {
           </Container>
         </Grid.Item>
         {iconList.map(iconName => {
-          const Icon = listIcons[iconName]
+          const Icon = listIcons[iconName as keyof typeof listIcons]
 
           return (
             <Grid.Item key={iconName}>

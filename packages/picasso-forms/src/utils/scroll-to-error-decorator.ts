@@ -2,19 +2,6 @@ import { FormApi, getIn } from 'final-form'
 
 import flatMap from './flat-map'
 
-const getDefaultScrollOffsetTop = () => {
-  if (!window) return 0
-  return window.innerHeight / 2 - 50
-}
-
-const scrollTo = (options: ScrollToOptions) => {
-  try {
-    window.scrollTo(options)
-  } catch {
-    window.scrollTo(options.left ?? 0, options.top ?? 0)
-  }
-}
-
 const formInputs = (form: HTMLFormElement) =>
   Array.from(form.elements).filter(
     element =>
@@ -29,21 +16,15 @@ const getInputs = (): HTMLInputElement[] => {
 const findInputWithError = (inputs: HTMLInputElement[], errors: {}) =>
   inputs.find(input => input.name && getIn(errors, input.name))
 
-const scrollToError = (offsetTop: number, errors: object) => {
+const scrollToError = (errors: object) => {
   const firstInput = findInputWithError(getInputs(), errors)
   if (!firstInput) return
 
   firstInput.focus({ preventScroll: true })
-  const top =
-    firstInput.getBoundingClientRect().top + window.pageYOffset - offsetTop
-  scrollTo({ top, behavior: 'smooth' })
+  firstInput.scrollIntoView({ block: 'center', behavior: 'smooth' })
 }
 
-export default ({
-  scrollOffsetTop = getDefaultScrollOffsetTop()
-}: {
-  scrollOffsetTop?: number
-}) => <T>(form: FormApi<T>) => {
+export default () => <T>(form: FormApi<T>) => {
   const originalSubmit = form.submit
   let state: { errors?: object; submitErrors?: object } = {}
 
@@ -57,9 +38,9 @@ export default ({
   const scrollOnErrors = () => {
     const { errors = {}, submitErrors = {} } = state
     if (Object.keys(errors).length) {
-      scrollToError(scrollOffsetTop, errors)
+      scrollToError(errors)
     } else if (Object.keys(submitErrors).length) {
-      scrollToError(scrollOffsetTop, submitErrors)
+      scrollToError(submitErrors)
     }
   }
 
