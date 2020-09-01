@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.93.6](https://github.com/toptal/picasso/compare/@toptal/picasso@4.93.5...@toptal/picasso@4.93.6) (2020-09-01)
+
+
+### Reverts
+
+* Revert "fix: remove onMouseEnter (#1524)" (#1538) ([2bea39a](https://github.com/toptal/picasso/commit/2bea39af37131472484afc3b513a541f1b888407)), closes [#1524](https://github.com/toptal/picasso/issues/1524) [#1538](https://github.com/toptal/picasso/issues/1538)
+
+
+
+
+
 ## [4.93.5](https://github.com/toptal/picasso/compare/@toptal/picasso@4.93.4...@toptal/picasso@4.93.5) (2020-09-01)
 
 
