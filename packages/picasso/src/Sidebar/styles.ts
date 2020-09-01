@@ -4,8 +4,10 @@ export default ({ palette, screens, zIndex }: Theme) =>
   createStyles({
     root: {
       height: '100%',
-      minWidth: '17rem',
-      width: '17rem',
+      // minWidth: '17rem',
+      // width: '17rem',
+      minWidth: '236px',
+      width: '236px',
       boxShadow: `inset -1px 0px 0px 0px ${palette.grey.darker}`,
       padding: '1rem 0',
       fontSize: '1rem',
@@ -44,7 +46,8 @@ export default ({ palette, screens, zIndex }: Theme) =>
       height: '100%'
     },
     light: {
-      boxShadow: `inset -1px 0px 0px 0px ${palette.grey.lighter}`
+      boxShadow: `inset -1px 0px 0px 0px ${palette.grey.lighter}`,
+      backgroundColor: 'rgb(243, 244, 246)'
     },
     dark: {
       boxShadow: `inset -1px 0px 0px 0px ${palette.grey.darker}`,

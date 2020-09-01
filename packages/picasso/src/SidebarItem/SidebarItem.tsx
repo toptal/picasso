@@ -19,7 +19,7 @@ import Container from '../Container'
 import Typography from '../Typography'
 import Accordion from '../Accordion'
 import MenuItem, { MenuItemAttributes } from '../MenuItem'
-import { ArrowDropDown16 } from '../Icon'
+import { ArrowDownMinor16 } from '../Icon'
 import styles from './styles'
 import { VariantType } from '../Sidebar/types'
 
@@ -144,39 +144,41 @@ export const SidebarItem: OverridableComponent<Props> = memo(
 
     if (hasMenu && collapsible) {
       return (
-        <Accordion
-          onChange={handleAccordionChange}
-          classes={{
-            summary: classes.summary,
-            details: classes.details,
-            content: classes.content
-          }}
-          content={menu}
-          bordered={false}
-          disabled={disabled}
-          expanded={isExpanded}
-          expandIcon={
-            <ArrowDropDown16
-              className={cx(
-                classes.expandIcon,
-                classes[`${variant}ExpandIcon`],
-                {
-                  [classes.expandIconDisabled]: disabled
-                }
-              )}
-            />
-          }
-        >
-          {menuItem}
-        </Accordion>
+        <Container left='small' right='small'>
+          <Accordion
+            onChange={handleAccordionChange}
+            classes={{
+              summary: classes.summary,
+              details: classes.details,
+              content: classes.content
+            }}
+            content={menu}
+            bordered={false}
+            disabled={disabled}
+            expanded={isExpanded}
+            expandIcon={
+              <ArrowDownMinor16
+                className={cx(
+                  classes.expandIcon,
+                  classes[`${variant}ExpandIcon`],
+                  {
+                    [classes.expandIconDisabled]: disabled
+                  }
+                )}
+              />
+            }
+          >
+            {menuItem}
+          </Accordion>
+        </Container>
       )
     }
 
     return (
-      <>
+      <Container left='small' right='small'>
         {menuItem}
         {hasMenu && <div className={classes.nonCollapsibleMenu}>{menu}</div>}
-      </>
+      </Container>
     )
   })
 )

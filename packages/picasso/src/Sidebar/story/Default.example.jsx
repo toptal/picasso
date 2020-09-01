@@ -28,7 +28,7 @@ const Example = () => (
       </Sidebar.Logo>
       <Sidebar.Menu>
         <Sidebar.Item icon={<Overview16 />} selected>
-          Overview
+          Menu item with surprisingly long text content
         </Sidebar.Item>
         <Sidebar.Item icon={<Jobs16 />}>Jobs</Sidebar.Item>
         <Sidebar.Item icon={<Candidates16 />}>Candidates</Sidebar.Item>
@@ -55,6 +55,10 @@ const Example = () => (
               <Sidebar.Item>Commisions</Sidebar.Item>
               <Sidebar.Item>Payment Options</Sidebar.Item>
               <Sidebar.Item>Expected Commisions</Sidebar.Item>
+              <Sidebar.Item>
+                No ellipsis - Another menu item with surprisingly long text
+                content
+              </Sidebar.Item>
             </Sidebar.Menu>
           }
         >

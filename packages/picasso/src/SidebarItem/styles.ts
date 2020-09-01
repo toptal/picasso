@@ -4,7 +4,7 @@ export default ({ palette }: Theme) =>
   createStyles({
     root: {
       height: '3em',
-      padding: '0 1.5em',
+      padding: '0 1rem',
 
       '&:hover': {
         backgroundColor: 'initial'
@@ -14,10 +14,10 @@ export default ({ palette }: Theme) =>
         backgroundColor: 'initial'
       },
       '$nonCollapsibleMenu &': {
-        paddingLeft: '3.375em'
+        paddingLeft: '2rem'
       },
       '$details &': {
-        paddingLeft: '3.375em'
+        paddingLeft: '2rem'
       }
     },
     light: {
