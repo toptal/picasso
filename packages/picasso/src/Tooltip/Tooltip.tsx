@@ -135,7 +135,7 @@ export const Tooltip: FunctionComponent<Props> = ({
 
 Tooltip.defaultProps = {
   arrow: true,
-  preventOverflow: false,
+  preventOverflow: true,
   placement: 'top',
   variant: 'dark',
   disablePortal: false
