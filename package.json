@@ -36,7 +36,6 @@
   },
   "homepage": "https://github.com/toptal/picasso#readme",
   "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/standalone": "^7.10.3",
     "@storybook/addon-viewport": "^5.3.18",
     "@storybook/react": "^5.3.18",
