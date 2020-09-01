@@ -8,3 +8,6 @@ __diff_output__
 
 .envrc
 .DS_Store
+
+# CI needs this to publish lerna
+.npmrc

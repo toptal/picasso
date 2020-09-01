@@ -3,6 +3,77 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.93.6](https://github.com/toptal/picasso/compare/@toptal/picasso@4.93.5...@toptal/picasso@4.93.6) (2020-09-01)
+
+
+### Reverts
+
+* Revert "fix: remove onMouseEnter (#1524)" (#1538) ([2bea39a](https://github.com/toptal/picasso/commit/2bea39af37131472484afc3b513a541f1b888407)), closes [#1524](https://github.com/toptal/picasso/issues/1524) [#1538](https://github.com/toptal/picasso/issues/1538)
+
+
+
+
+
+## [4.93.5](https://github.com/toptal/picasso/compare/@toptal/picasso@4.93.4...@toptal/picasso@4.93.5) (2020-09-01)
+
+
+### Bug Fixes
+
+* **treeview:** fix issue with treeView on safari ([#1464](https://github.com/toptal/picasso/issues/1464)) ([3fd7606](https://github.com/toptal/picasso/commit/3fd76064733cf05851f4cf4d161a7f9cb5e61cd5))
+
+
+
+
+
+## [4.93.4](https://github.com/toptal/picasso/compare/@toptal/picasso@4.93.3...@toptal/picasso@4.93.4) (2020-09-01)
+
+
+### Bug Fixes
+
+* remove onMouseEnter ([#1524](https://github.com/toptal/picasso/issues/1524)) ([e75378a](https://github.com/toptal/picasso/commit/e75378a12c21aef9b9a1d01c66b6826fc93d163e))
+
+
+
+
+
+## [4.93.3](https://github.com/toptal/picasso/compare/@toptal/picasso@4.93.2...@toptal/picasso@4.93.3) (2020-09-01)
+
+
+### Bug Fixes
+
+* **OutlinedInput:** add tabIndex -1 to reset button ([#1534](https://github.com/toptal/picasso/issues/1534)) ([c98509f](https://github.com/toptal/picasso/commit/c98509fc72d129c2bcd77a4d45aba09e294c1f86))
+
+
+
+
+
+## [4.93.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.93.1...@toptal/picasso@4.93.2) (2020-09-01)
+
+**Note:** Version bump only for package @toptal/picasso
+
+
+
+
+
+## [4.93.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.93.0...@toptal/picasso@4.93.1) (2020-08-31)
+
+**Note:** Version bump only for package @toptal/picasso
+
+
+
+
+
+# [4.93.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.92.1...@toptal/picasso@4.93.0) (2020-08-27)
+
+
+### Features
+
+* **NumberInput:** add start adornment ([#1501](https://github.com/toptal/picasso/issues/1501)) ([cc0e22a](https://github.com/toptal/picasso/commit/cc0e22a284ba899a0e6a4e8e6927a6305a213373))
+
+
+
+
+
 ## [4.92.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.92.0...@toptal/picasso@4.92.1) (2020-08-26)
 
 **Note:** Version bump only for package @toptal/picasso
