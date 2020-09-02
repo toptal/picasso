@@ -172,7 +172,9 @@ const renderNode = (pointNode: HierarchyPointNode<TreeNodeInterface>) => {
     <NodeContainer>
       <UserBadge
         name={pointNode.data.info.name}
-        avatar={<TreeNodeAvatar name={pointNode.data.info.name} />}
+        avatar={
+          <TreeNodeAvatar name={pointNode.data.info.name} size='xsmall' />
+        }
       />
     </NodeContainer>
   )
