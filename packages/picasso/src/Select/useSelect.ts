@@ -28,7 +28,6 @@ const normalizeArrowKey = (event: KeyboardEvent<HTMLInputElement>) => {
   if (keyCode >= 37 && keyCode <= 40 && key.indexOf('Arrow') !== 0) {
     return `Arrow${key}`
   }
-
   return key
 }
 
@@ -69,8 +68,6 @@ const getNextWrappingIndex = (
   return newIndex
 }
 
-export type FocusEventType = (event: React.FocusEvent<HTMLInputElement>) => void
-
 interface Props {
   value: string
   options?: Option[]
@@ -83,8 +80,8 @@ interface Props {
     event: KeyboardEvent<HTMLInputElement>,
     inputValue: string
   ) => void
-  onBlur?: FocusEventType
-  onFocus?: FocusEventType
+  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void
+  onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void
 }
 
 type GetInputProps = ({
@@ -95,10 +92,10 @@ type GetInputProps = ({
   HTMLAttributes<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
 >
 
-export type GetRootProps = () => {
-  onFocus: FocusEventType
+type GetRootProps = () => {
+  onFocus: (event: React.FocusEvent<HTMLInputElement>) => void
   onClick: (event: React.MouseEvent<HTMLInputElement>) => void
-  onBlur: FocusEventType
+  onBlur: (event: React.FocusEvent<HTMLInputElement>) => void
 }
 
 interface UseSelectOutput {
@@ -172,7 +169,6 @@ const useSelect = ({
   }
 
   const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-    if (event.relatedTarget) return
     setOpen(false)
     onBlur(event)
   }
