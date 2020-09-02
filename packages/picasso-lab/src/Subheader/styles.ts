@@ -22,7 +22,6 @@ export default ({ palette }: Theme) =>
       paddingRight: '2rem'
     },
     main: {
-      minHeight: '54px',
-      padding: '0.75rem 0'
+      height: '3.375em'
     }
   })
