@@ -49,7 +49,7 @@ page
           lastHalfVisibleOptionSelector
         )
 
-        // when you hover this last half hidden option
+        // when you hover this last partially shown option
         const mouseOverEvent = new MouseEvent('mouseover', {
           view: window,
           bubbles: true,
@@ -59,7 +59,7 @@ page
         lastHalfVisibleOption.dispatchEvent(mouseOverEvent)
       })
 
-      // it should slightly scroll the options list to show the hovered option
+      // the options list should slightly scroll to show the hovered option
       await makeScreenshot({
         isFullScreen: true
       })
