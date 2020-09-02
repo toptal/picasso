@@ -18,6 +18,20 @@ type ColorType = 'white' | 'blue' | 'black'
 
 const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoLink' })
 
+const sanitizeRel = (rel: string | undefined, target: string | undefined) => {
+  if (target !== '_blank') {
+    return rel
+  }
+
+  if (!rel) {
+    return 'noopener'
+  }
+
+  const isRelSafe = rel.includes('noreferrer') || rel.includes('noopener')
+
+  return isRelSafe ? rel : rel.concat(' noopener')
+}
+
 export type Props = BaseProps &
   AnchorHTMLAttributes<HTMLAnchorElement> & {
     /** Content of the component */
@@ -56,10 +70,13 @@ export const Link: OverridableComponent<Props> = forwardRef<
     as = 'a',
     variant = 'anchor',
     tabIndex,
+    target,
+    rel,
     ...rest
   } = props
   const nativeHTMLAttributes = rest
   const classes = useStyles(props)
+  const sanitizedRel = sanitizeRel(rel, target)
 
   return (
     <MUILink
@@ -67,6 +84,8 @@ export const Link: OverridableComponent<Props> = forwardRef<
       {...nativeHTMLAttributes}
       ref={ref}
       href={href}
+      target={target}
+      rel={sanitizedRel}
       underline={underline}
       onClick={onClick}
       className={cx(classes.root, className, {

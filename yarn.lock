@@ -3674,21 +3674,21 @@
   resolved "https://registry.yarnpkg.com/@toptal/browserslist-config/-/browserslist-config-0.1.0-alpha.2.tgz#c0acea1a7348799ed38ad6ecebf2a5d4ca3660b4"
   integrity sha512-dSu1+Tf0nCa3qmTvGn+Kg6vwjbuXhZ7QIihax79zJKsXLYjYqny/YZAn3vrdNVGv9H9NvOM4qBVdrPDdVPVEVg==
 
-"@toptal/davinci-bootstrap@^1.1.34":
-  version "1.1.34"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-bootstrap/-/davinci-bootstrap-1.1.34.tgz#ef00331f8cbcbfa733d3dbd37967a7d762627ba3"
-  integrity sha512-Z8fsVl8V6l1ZRnb4L2j7s25cseVDBiLncqRclH7QstXiJHMRCY+l6EsnG0xNtlyLVYjJa9XOvsM3QRY5+o+gpg==
+"@toptal/davinci-bootstrap@^1.1.36":
+  version "1.1.36"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-bootstrap/-/davinci-bootstrap-1.1.36.tgz#bf22d5479759ed4bc8f63e68c4679a2586455426"
+  integrity sha512-Zfhsc1BUrS/qvn854MYD87ZouBXsMjJMaKsJ7mjquiSIRq8ffofY6/QnGq95Nfye5wjGSzlVX8zAlBdPhoBlNw==
   dependencies:
     "@toptal/davinci-cli-shared" "^0.1.0-alpha.12"
-    "@toptal/davinci-skeleton" "^1.1.34"
+    "@toptal/davinci-skeleton" "^1.1.36"
     fs-extra "^8.0.1"
     lodash.kebabcase "^4.1.1"
     ora "^4.0.3"
 
-"@toptal/davinci-ci@^0.1.0-alpha.73":
-  version "0.1.0-alpha.73"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-ci/-/davinci-ci-0.1.0-alpha.73.tgz#fc9ae8f88e857e7adaf3350805b26d6d50151c22"
-  integrity sha512-1W7kXHGUQCyODfKEbPlK7R343bLejpg0B5ouMkVmwdU2SdeCBVXvBqkeoPvE2jU58UYmFiK2tXaECGh8idtyHQ==
+"@toptal/davinci-ci@^0.1.0-alpha.74":
+  version "0.1.0-alpha.74"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-ci/-/davinci-ci-0.1.0-alpha.74.tgz#06a2b37bb92ede880af540054a3a56ce60c442f7"
+  integrity sha512-HOycbaqyZ9s2BiyMMYsFnI2DbVsQj6VebEM1LzSe8hIHyid9It815KxEkS7YBlJ3Ejn32alZFGlZznkiwY3I8Q==
   dependencies:
     "@commitlint/cli" "^8.3.5"
     "@commitlint/config-conventional" "^8.3.4"
@@ -3716,10 +3716,10 @@
     lodash.camelcase "^4.3.0"
     lodash.kebabcase "^4.1.1"
 
-"@toptal/davinci-engine@^0.1.0-alpha.98":
-  version "0.1.0-alpha.98"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-engine/-/davinci-engine-0.1.0-alpha.98.tgz#f7e15ff7a2da55a73dbfb4c2df2686de040eb73d"
-  integrity sha512-/C4bYV9/BpYzJc60BboouQf60INykjYOTm79sh8lqnNAFzkSzh+SyrZQdmpFR+2ygIcSn4nfsiHw7T9PkiEQig==
+"@toptal/davinci-engine@^0.1.0-alpha.99":
+  version "0.1.0-alpha.99"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-engine/-/davinci-engine-0.1.0-alpha.99.tgz#779595df3e939bde152ff3e704d91a6a7b58639e"
+  integrity sha512-sYsoBloSGG2Z8xLQ/5zAUmDZaa4RJv+d7Jx6pAID8zqIrWZ+Yke4ejsT43XTpNGXwrNUp1naDLS+IHnyLVeCLg==
   dependencies:
     "@babel/cli" "^7.10.1"
     "@babel/core" "^7.10.1"
@@ -3781,10 +3781,10 @@
     jsdom "^15.2.1"
     semver "^7.3.2"
 
-"@toptal/davinci-skeleton@^1.1.34":
-  version "1.1.34"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-skeleton/-/davinci-skeleton-1.1.34.tgz#914bec46b2d55a6f9a5849069826d5f5b3ae6ca8"
-  integrity sha512-5gIO8jpEvrSOu441fFPn8pPPuMCXRR8ASEFuN2V1EKPMb0Q3M82Wg8Yk0KfYNasDtFHAKczwtgGfif2eafoqmQ==
+"@toptal/davinci-skeleton@^1.1.36":
+  version "1.1.36"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-skeleton/-/davinci-skeleton-1.1.36.tgz#60d42eb6f7fd48f791c24b98ddd987f2137ca80d"
+  integrity sha512-kQ/Ojdj+3J+VIHvvcosviI6hZogx45cw7UFW7p/z4xPrhWF+zJfCEyk/Yc98X3Luz4Fj2eD49OUMk6Fn8ygRgg==
 
 "@toptal/davinci-syntax@^1.0.0-alpha.0":
   version "1.0.0-alpha.0"
@@ -3813,16 +3813,16 @@
     stylelint-config-styled-components "^0.1.1"
     stylelint-processor-styled-components "^1.8.0"
 
-"@toptal/davinci@^0.2.179":
-  version "0.2.179"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci/-/davinci-0.2.179.tgz#5404b6e76bb6dc571751baeb8e5d1459a4102347"
-  integrity sha512-ex2T0NrBCyAsULz+SJ/d6uQxZBPXTKihoCYo46LRf2XTD3anJuJ58Jr/OZbESJLde/hIZRvpBFjd55GDm7JHOw==
+"@toptal/davinci@^0.2.181":
+  version "0.2.181"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci/-/davinci-0.2.181.tgz#d4a2fa486bd679b867b8ea2375a9c5101b263480"
+  integrity sha512-BuVd94W1xOSILK1qZ2nO2d+fqi4BqAPRntv9Mwv585bZpMqsNl7vdejyd5QG0FPklMJsVyZY3vKcJ7YIxzSQUQ==
   dependencies:
-    "@toptal/davinci-bootstrap" "^1.1.34"
-    "@toptal/davinci-ci" "^0.1.0-alpha.73"
+    "@toptal/davinci-bootstrap" "^1.1.36"
+    "@toptal/davinci-ci" "^0.1.0-alpha.74"
     "@toptal/davinci-cli-shared" "^0.1.0-alpha.12"
     "@toptal/davinci-code" "^0.1.0-alpha.19"
-    "@toptal/davinci-engine" "^0.1.0-alpha.98"
+    "@toptal/davinci-engine" "^0.1.0-alpha.99"
     "@toptal/davinci-qa" "^1.0.6"
     "@toptal/davinci-syntax" "^1.0.0-alpha.0"
     hygen "^5.0.3"
