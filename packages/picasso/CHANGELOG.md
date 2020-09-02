@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.94.3](https://github.com/toptal/picasso/compare/@toptal/picasso@4.94.2...@toptal/picasso@4.94.3) (2020-09-02)
+
+
+### Reverts
+
+* Revert "fix(Select): fix scrolling for Select (#1539)" (#1544) ([5acdaf7](https://github.com/toptal/picasso/commit/5acdaf73aaad6aa2ecca9ed74ed59c700b9ced34)), closes [#1539](https://github.com/toptal/picasso/issues/1539) [#1544](https://github.com/toptal/picasso/issues/1544)
+
+
+
+
+
 ## [4.94.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.94.1...@toptal/picasso@4.94.2) (2020-09-02)
 
 
