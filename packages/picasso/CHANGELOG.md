@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.95.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.94.3...@toptal/picasso@4.95.0) (2020-09-02)
+
+
+### Features
+
+* **tooltip:** add compact size for tooltip component ([#1532](https://github.com/toptal/picasso/issues/1532)) ([3ed94f3](https://github.com/toptal/picasso/commit/3ed94f3fa1cadc33d83652baadb32e69d7becf2b))
+
+
+
+
+
 ## [4.94.3](https://github.com/toptal/picasso/compare/@toptal/picasso@4.94.2...@toptal/picasso@4.94.3) (2020-09-02)
 
 
