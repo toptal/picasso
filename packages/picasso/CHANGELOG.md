@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.94.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.94.1...@toptal/picasso@4.94.2) (2020-09-02)
+
+
+### Bug Fixes
+
+* **Select:** fix scrolling for Select ([#1539](https://github.com/toptal/picasso/issues/1539)) ([e9ba8e4](https://github.com/toptal/picasso/commit/e9ba8e470e258934f71e04eb7962f8c49bb43052))
+
+
+
+
+
 ## [4.94.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.94.0...@toptal/picasso@4.94.1) (2020-09-02)
 
 **Note:** Version bump only for package @toptal/picasso
