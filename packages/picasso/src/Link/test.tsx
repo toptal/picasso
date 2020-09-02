@@ -40,4 +40,24 @@ describe('Link', () => {
 
     expect(container).toMatchSnapshot()
   })
+
+  test('adds rel="noopener" to target="_blank" links in its absence', () => {
+    render(
+      <Link href='http://example.com' target='_blank'>
+        External Link
+      </Link>
+    )
+
+    expect(document.querySelector('a')).toHaveAttribute('rel', 'noopener')
+  })
+
+  test('does not add rel="noopener" to target="_blank" if noreferrer is present', () => {
+    render(
+      <Link href='http://example.com' target='_blank' rel='noreferrer'>
+        External Link
+      </Link>
+    )
+
+    expect(document.querySelector('a')).not.toHaveAttribute('rel', 'noopener')
+  })
 })

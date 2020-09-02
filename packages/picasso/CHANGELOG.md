@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.94.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.93.6...@toptal/picasso@4.94.0) (2020-09-02)
+
+
+### Features
+
+* **Link:** add rel="noopener" to target="_blank" ([#1482](https://github.com/toptal/picasso/issues/1482)) ([2c7729e](https://github.com/toptal/picasso/commit/2c7729eb57d007df3dcfc1f70dbd41f3014febf2))
+
+
+
+
+
 ## [4.93.6](https://github.com/toptal/picasso/compare/@toptal/picasso@4.93.5...@toptal/picasso@4.93.6) (2020-09-01)
 
 
