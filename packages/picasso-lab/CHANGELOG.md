@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.31.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.30.7...@toptal/picasso-lab@2.31.0) (2020-09-03)
+
+
+### Features
+
+* **TreeNodeAvatar:** add size variant to component ([#1545](https://github.com/toptal/picasso/issues/1545)) ([ade299e](https://github.com/toptal/picasso/commit/ade299ed061e1ad6217cc95e9fb9eb51f49c8124))
+
+
+
+
+
 ## [2.30.7](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.30.6...@toptal/picasso-lab@2.30.7) (2020-09-01)
 
 
