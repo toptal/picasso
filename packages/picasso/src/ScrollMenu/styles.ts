@@ -8,6 +8,7 @@ export default ({ palette, screens }: Theme) =>
     scrollView: {
       maxHeight: '14.75rem', // 6.5 lines of menu to show
       overflowY: 'auto',
+      outline: 'none',
 
       [screens('small', 'medium')]: {
         maxHeight: '14.75rem' // 6.5 lines of menu to show
