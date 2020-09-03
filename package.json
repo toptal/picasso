@@ -94,7 +94,6 @@
     "react-storybook-addon-chapters": "^3.1.7",
     "regenerator-runtime": "^0.13.5",
     "shelljs": "^0.8.4",
-    "simple-react-calendar": "^2.2.7",
     "storybook-readme": "^5.0.3",
     "styled-components": "5.0.1",
     "thread-loader": "^2.1.3",
