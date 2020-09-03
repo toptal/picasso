@@ -1,11 +1,12 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
+const greySidebarBackgroundColor = '#f3f4f6'
+
 export default ({ palette, screens, zIndex }: Theme) =>
   createStyles({
     root: {
       height: '100%',
-      minWidth: '17rem',
-      width: '17rem',
+      width: '14.75rem',
       boxShadow: `inset -1px 0px 0px 0px ${palette.grey.darker}`,
       padding: '1rem 0',
       fontSize: '1rem',
@@ -44,7 +45,8 @@ export default ({ palette, screens, zIndex }: Theme) =>
       height: '100%'
     },
     light: {
-      boxShadow: `inset -1px 0px 0px 0px ${palette.grey.lighter}`
+      boxShadow: `inset -1px 0px 0px 0px ${palette.grey.lighter}`,
+      backgroundColor: greySidebarBackgroundColor
     },
     dark: {
       boxShadow: `inset -1px 0px 0px 0px ${palette.grey.darker}`,

@@ -6,7 +6,7 @@ exports[`Menu default render 1`] = `
     class="Picasso-root"
   >
     <ul
-      class="MuiList-root"
+      class="MuiList-root Menu-root"
       role="menu"
       tabindex="-1"
     >
@@ -81,7 +81,7 @@ exports[`Menu has back button when in submenu 1`] = `
     class="Picasso-root"
   >
     <ul
-      class="MuiList-root Menu-hideMenu"
+      class="MuiList-root Menu-root Menu-hideMenu"
       role="menu"
       tabindex="-1"
     >
@@ -120,7 +120,7 @@ exports[`Menu has back button when in submenu 1`] = `
       </li>
     </ul>
     <ul
-      class="MuiList-root"
+      class="MuiList-root Menu-root"
       role="menu"
       tabindex="-1"
     >
