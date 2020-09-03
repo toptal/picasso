@@ -6,6 +6,7 @@ const chapter = PicassoBook.connectToPage((page: any) =>
   page
     .createChapter('Circular Button', 'Circular Style Button.')
     .addExample('ButtonCircular/story/Basic.example.jsx', 'Basic')
+    .addExample('ButtonCircular/story/Variants.example.jsx', 'Variants')
     .addExample('ButtonCircular/story/States.example.jsx', 'States')
 )
 
