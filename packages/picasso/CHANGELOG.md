@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.96.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.95.0...@toptal/picasso@4.96.0) (2020-09-03)
+
+
+### Features
+
+* **icon:** add timesheet icon ([#1546](https://github.com/toptal/picasso/issues/1546)) ([2e0b42c](https://github.com/toptal/picasso/commit/2e0b42c4889ccafd2cdb2d15b7fe692ea3d14ab8))
+
+
+
+
+
 # [4.95.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.94.3...@toptal/picasso@4.95.0) (2020-09-02)
 
 
