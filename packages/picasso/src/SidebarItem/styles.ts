@@ -1,10 +1,12 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
-export default ({ palette }: Theme) =>
+const greyItemBackgroundColor = '#e5e7ea'
+
+export default ({ palette, sizes }: Theme) =>
   createStyles({
     root: {
-      height: '3em',
-      padding: '0 1.5em',
+      height: '2.75em',
+      padding: '0 1rem',
 
       '&:hover': {
         backgroundColor: 'initial'
@@ -14,24 +16,60 @@ export default ({ palette }: Theme) =>
         backgroundColor: 'initial'
       },
       '$nonCollapsibleMenu &': {
-        paddingLeft: '3.375em'
+        paddingLeft: '2rem',
+        marginRight: '0rem'
       },
       '$details &': {
-        paddingLeft: '3.375em'
+        paddingLeft: '2rem',
+        marginRight: '0rem'
       }
+    },
+    roundedBorder: {
+      borderRadius: sizes.borderRadius.small
     },
     light: {
       color: palette.grey.dark,
 
       '&:hover': {
-        color: palette.blue.main
+        color: palette.blue.main,
+        '&$selected': {
+          color: palette.blue.main,
+          backgroundColor: greyItemBackgroundColor
+        }
+      },
+
+      '&$selected': {
+        color: palette.blue.main,
+        backgroundColor: greyItemBackgroundColor
+      },
+
+      '&:focus': {
+        color: palette.blue.main,
+        '&$selected': {
+          color: palette.blue.main,
+          backgroundColor: greyItemBackgroundColor
+        }
       }
     },
     dark: {
-      color: palette.grey.main,
-
       '&:hover': {
-        color: palette.common.white
+        color: palette.common.white,
+        '&$selected': {
+          color: palette.common.white,
+          backgroundColor: palette.grey.dark
+        }
+      },
+      '&$selected': {
+        color: palette.common.white,
+        backgroundColor: palette.grey.dark
+      },
+
+      '&:focus': {
+        color: palette.common.white,
+        '&$selected': {
+          color: palette.common.white,
+          backgroundColor: palette.grey.dark
+        }
       }
     },
     selected: {},
@@ -50,7 +88,6 @@ export default ({ palette }: Theme) =>
       fontSize: 'inherit'
     },
     expandIcon: {
-      margin: '0.8em 1em 0.8em 0.8em',
       fontSize: '1em'
     },
     lightExpandIcon: {

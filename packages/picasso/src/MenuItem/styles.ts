@@ -106,7 +106,8 @@ export default ({ typography, palette }: Theme) =>
       width: '1rem'
     },
     content: {
-      flex: 1
+      flex: 1,
+      minWidth: '0px'
     },
     description: {
       fontSize: '0.6875em',
