@@ -81,7 +81,7 @@ exports[`useNotifications error notification render 1`] = `
                     Error message
                   </div>
                   <button
-                    class="MuiButtonBase-root PicassoButton-circular PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root Notification-close"
+                    class="MuiButtonBase-root PicassoButton-small PicassoButton-primaryBlue PicassoButton-root PicassoButtonCircular-primaryBlue PicassoButtonCircular-root Notification-close"
                     tabindex="0"
                     title="Close Notification"
                     type="button"
@@ -192,7 +192,7 @@ exports[`useNotifications info notification render 1`] = `
                     Info message
                   </div>
                   <button
-                    class="MuiButtonBase-root PicassoButton-circular PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root Notification-close"
+                    class="MuiButtonBase-root PicassoButton-small PicassoButton-primaryBlue PicassoButton-root PicassoButtonCircular-primaryBlue PicassoButtonCircular-root Notification-close"
                     tabindex="0"
                     title="Close Notification"
                     type="button"
@@ -303,7 +303,7 @@ exports[`useNotifications success notification render 1`] = `
                     Success message
                   </div>
                   <button
-                    class="MuiButtonBase-root PicassoButton-circular PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root Notification-close"
+                    class="MuiButtonBase-root PicassoButton-small PicassoButton-primaryBlue PicassoButton-root PicassoButtonCircular-primaryBlue PicassoButtonCircular-root Notification-close"
                     tabindex="0"
                     title="Close Notification"
                     type="button"

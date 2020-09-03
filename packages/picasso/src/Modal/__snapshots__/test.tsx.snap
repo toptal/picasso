@@ -51,7 +51,7 @@ exports[`renders Modal 1`] = `
           class="ModalActions-root"
         >
           <button
-            class="MuiButtonBase-root PicassoButton-medium PicassoButton-flat PicassoButton-root"
+            class="MuiButtonBase-root PicassoButton-medium PicassoButton-secondaryBlue PicassoButton-root"
             tabindex="0"
             type="button"
           >

@@ -57,7 +57,7 @@ exports[`renders PromptModal 1`] = `
           class="ModalActions-root"
         >
           <button
-            class="MuiButtonBase-root PicassoButton-medium PicassoButton-flat PicassoButton-root"
+            class="MuiButtonBase-root PicassoButton-medium PicassoButton-secondaryBlue PicassoButton-root"
             tabindex="0"
             type="button"
           >
@@ -180,7 +180,7 @@ exports[`showPrompt opens and closes modal on Submit action 2`] = `
               class="ModalActions-root"
             >
               <button
-                class="MuiButtonBase-root PicassoButton-medium PicassoButton-flat PicassoButton-root"
+                class="MuiButtonBase-root PicassoButton-medium PicassoButton-secondaryBlue PicassoButton-root"
                 tabindex="0"
                 type="button"
               >
@@ -281,7 +281,7 @@ exports[`showPrompt opens and closes modal on Submit action 3`] = `
               class="ModalActions-root"
             >
               <button
-                class="MuiButtonBase-root PicassoButton-medium-8 PicassoButton-flat-17 PicassoButton-root-4"
+                class="MuiButtonBase-root PicassoButton-medium-8 PicassoButton-secondaryBlue-13 PicassoButton-root-4"
                 tabindex="0"
                 type="button"
               >
@@ -297,7 +297,7 @@ exports[`showPrompt opens and closes modal on Submit action 3`] = `
                 type="button"
               >
                 <span
-                  class="Container-centerAlignItems-73 Container-flex-37 Container-inline-39 PicassoButton-content-5"
+                  class="Container-centerAlignItems-63 Container-flex-27 Container-inline-29 PicassoButton-content-5"
                 >
                   Submit
                 </span>
@@ -411,7 +411,7 @@ exports[`showPrompt with input returns result on Submit action  1`] = `
               class="ModalActions-root"
             >
               <button
-                class="MuiButtonBase-root PicassoButton-medium PicassoButton-flat PicassoButton-root"
+                class="MuiButtonBase-root PicassoButton-medium PicassoButton-secondaryBlue PicassoButton-root"
                 tabindex="0"
                 type="button"
               >
