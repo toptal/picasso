@@ -45,7 +45,7 @@ const ModalDialog = ({ open, onClose, size }) => (
       </Form.Field>
     </Modal.Content>
     <Modal.Actions>
-      <Button data-testid='cancel' variant='flat' onClick={onClose}>
+      <Button data-testid='cancel' variant='secondary-blue' onClick={onClose}>
         Cancel
       </Button>
       <Button onClick={onClose} variant='primary-green'>

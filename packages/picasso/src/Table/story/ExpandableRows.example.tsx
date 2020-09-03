@@ -54,7 +54,7 @@ const ExpandableContent = () => (
           Timeline
         </Button>
         <Button size='small'>Contact Company</Button>
-        <Button circular variant='flat' size='small' icon={<More16 />} />
+        <Button.Circular variant='flat' icon={<More16 />} />
       </Container>
     </Container>
 
@@ -105,11 +105,9 @@ const TableExpandableRowsExample = () => {
             <Table.Cell>{time}</Table.Cell>
             <Table.Cell align='center'>{assignee}</Table.Cell>
             <Table.Cell align='center'>
-              <Button circular variant='flat' size='small' icon={<Star16 />} />
-              <Button
-                circular
+              <Button.Circular variant='flat' icon={<Star16 />} />
+              <Button.Circular
                 variant='flat'
-                size='small'
                 icon={<StyledArrowDownMinor16 expanded={expandedData[id]} />}
                 data-testid={`expand-button-${id}`}
                 onClick={() => handleExpandClick(id)}

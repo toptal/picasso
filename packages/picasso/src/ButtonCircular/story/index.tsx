@@ -1,0 +1,20 @@
+import { ButtonCircular } from '../ButtonCircular'
+// @ts-ignore
+import PicassoBook from '~/.storybook/components/PicassoBook'
+
+const chapter = PicassoBook.connectToPage((page: any) =>
+  page
+    .createChapter('Circular Button', 'Circular Style Button.')
+    .addExample('ButtonCircular/story/Basic.example.jsx', 'Basic')
+    .addExample('ButtonCircular/story/States.example.jsx', 'States')
+)
+
+const componentDocs = PicassoBook.createComponentDocs(
+  ButtonCircular,
+  'Button.Circular'
+)
+
+export default {
+  chapter,
+  componentDocs
+}

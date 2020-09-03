@@ -113,7 +113,11 @@ export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
         )}
       </Modal.Content>
       <Modal.Actions>
-        <Button disabled={loading} variant='flat' onClick={handleCancel}>
+        <Button
+          disabled={loading}
+          variant='secondary-blue'
+          onClick={handleCancel}
+        >
           {cancelText}
         </Button>
         <Button

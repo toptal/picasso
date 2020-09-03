@@ -54,8 +54,7 @@ const renderNotificationCloseButton = ({
   onClose,
   classes: { close, closeIcon }
 }: Props & JssProps) => (
-  <Button
-    circular
+  <Button.Circular
     onClick={onClose}
     className={close}
     title='Close Notification'

@@ -4,10 +4,7 @@ import { Settings16 } from '@toptal/picasso/Icon'
 
 const Example = () => (
   <div>
-    <Button disabled>Disabled</Button>
-    <Button disabled icon={<Settings16 />}>
-      Disabled
-    </Button>
+    <Button.Circular icon={<Settings16 />} />
   </div>
 )
 

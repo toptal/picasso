@@ -59,9 +59,8 @@ export const Helpbox = forwardRef<HTMLDivElement, Props>(function Helpbox(
         {children}
       </HelpboxContext.Provider>
       {onClose && (
-        <Button
+        <Button.Circular
           className={classes.closeButton}
-          circular
           onClick={onClose}
           icon={<Close16 color='dark-grey' />}
         />

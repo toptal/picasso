@@ -1,4 +1,6 @@
+// @ts-ignore
 import buttonGroupStory from '../../ButtonGroup/story'
+import buttonCircularStory from '../../ButtonCircular/story'
 import { Button } from '../Button'
 // @ts-ignore
 import PicassoBook from '~/.storybook/components/PicassoBook'
@@ -141,19 +143,11 @@ page
         type: {
           name: 'enum',
           enums: [
-            'transparent',
-            'flat',
             'primary-blue',
-            'secondary-blue',
-            'primary-red',
-            'secondary-red',
             'primary-green',
-            'secondary-green',
-            'flat-white',
-            'secondary-white',
-            'transparent-white',
-            'transparent-blue',
-            'transparent-green'
+            'primary-red',
+            'secondary-blue',
+            'secondary-white'
           ]
         }
       },
@@ -182,6 +176,7 @@ page
     },
     name: 'Button'
   })
+  .addComponentDocs(buttonCircularStory.componentDocs)
   .addComponentDocs(buttonGroupStory.componentDocs)
 
 page
@@ -197,10 +192,6 @@ page
   .addExample('Button/story/FullWidth.example.jsx', 'Full width')
   .addExample('Button/story/IconButtons.example.jsx', 'Button with Icon')
   .addExample(
-    'Button/story/CircularIconButton.example.jsx',
-    'Circular Style Button'
-  )
-  .addExample(
     'Button/story/IconButtonsWithText.example.jsx',
     'Button with text and Icon'
   )
@@ -211,4 +202,5 @@ page
       'Example show augmentation with Picasso Link component. You can use Link component from react-router-dom or some other custom component.'
   })
 
+page.connect(buttonCircularStory.chapter)
 page.connect(buttonGroupStory.chapter)

@@ -1,17 +1,24 @@
 import React from 'react'
-import { Button, Container } from '@toptal/picasso'
+import { Button, Container, Typography } from '@toptal/picasso'
 import { palette } from '@toptal/picasso/utils'
-import { Settings16 } from '@toptal/picasso/Icon'
 
 const Example = () => (
   <div>
+    <Typography variant='heading' size='small'>
+      Primary-Blue:
+    </Typography>
     <Container top='small' bottom='large'>
       <Button>Normal</Button>
       <Button hovered>Hovered</Button>
       <Button focused>Focused</Button>
       <Button active>Active</Button>
       <Button loading>Loading</Button>
+      <Button disabled>Disabled</Button>
     </Container>
+
+    <Typography variant='heading' size='small'>
+      Primary Red:
+    </Typography>
     <Container top='small' bottom='large'>
       <Button variant='primary-red'>Normal</Button>
       <Button hovered variant='primary-red'>
@@ -26,7 +33,14 @@ const Example = () => (
       <Button loading variant='primary-red'>
         Loading
       </Button>
+      <Button disabled variant='primary-red'>
+        Disabled
+      </Button>
     </Container>
+
+    <Typography variant='heading' size='small'>
+      Secondary Blue:
+    </Typography>
     <Container top='small' bottom='large'>
       <Button variant='secondary-blue'>Normal</Button>
       <Button hovered variant='secondary-blue'>
@@ -41,10 +55,16 @@ const Example = () => (
       <Button loading variant='secondary-blue'>
         Loading
       </Button>
+      <Button disabled variant='secondary-blue'>
+        Disabled
+      </Button>
     </Container>
+
+    <Typography variant='heading' size='small'>
+      Secondary White:
+    </Typography>
     <Container
       top='small'
-      bottom='large'
       style={{ backgroundColor: palette.blue.main }}
       padded={0.5}
     >
@@ -61,103 +81,9 @@ const Example = () => (
       <Button loading variant='secondary-white'>
         Loading
       </Button>
-    </Container>
-
-    <Container top='small' bottom='large'>
-      <Button circular icon={<Settings16 />} size='small' />
-      <Button circular hovered icon={<Settings16 />} size='small' />
-      <Button circular focused icon={<Settings16 />} size='small' />
-      <Button circular active icon={<Settings16 />} size='small' />
-      <Button circular loading icon={<Settings16 />} size='small' />
-      <Button circular disabled icon={<Settings16 />} size='small' />
-    </Container>
-
-    <Container top='small' bottom='large'>
-      <Button variant='flat' circular icon={<Settings16 />} size='small' />
-      <Button
-        variant='flat'
-        circular
-        hovered
-        icon={<Settings16 />}
-        size='small'
-      />
-      <Button
-        variant='flat'
-        circular
-        focused
-        icon={<Settings16 />}
-        size='small'
-      />
-      <Button
-        variant='flat'
-        circular
-        active
-        icon={<Settings16 />}
-        size='small'
-      />
-      <Button
-        variant='flat'
-        circular
-        loading
-        icon={<Settings16 />}
-        size='small'
-      />
-      <Button
-        variant='flat'
-        circular
-        disabled
-        icon={<Settings16 />}
-        size='small'
-      />
-    </Container>
-
-    <Container
-      top='small'
-      bottom='large'
-      style={{ backgroundColor: palette.blue.main }}
-      padded={0.5}
-    >
-      <Button
-        variant='transparent'
-        circular
-        icon={<Settings16 />}
-        size='small'
-      />
-      <Button
-        variant='transparent'
-        circular
-        hovered
-        icon={<Settings16 />}
-        size='small'
-      />
-      <Button
-        variant='transparent'
-        circular
-        focused
-        icon={<Settings16 />}
-        size='small'
-      />
-      <Button
-        variant='transparent'
-        circular
-        active
-        icon={<Settings16 />}
-        size='small'
-      />
-      <Button
-        variant='transparent'
-        circular
-        loading
-        icon={<Settings16 />}
-        size='small'
-      />
-      <Button
-        variant='transparent'
-        circular
-        disabled
-        icon={<Settings16 />}
-        size='small'
-      />
+      <Button disabled variant='secondary-white'>
+        Disabled
+      </Button>
     </Container>
   </div>
 )

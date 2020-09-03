@@ -52,7 +52,7 @@ test('renders Modal', () => {
       <TestModalTitle>Title</TestModalTitle>
       <TestModalContent>Modal test content</TestModalContent>
       <TestModalActions>
-        <Button variant='flat'>Cancel</Button>
+        <Button variant='secondary-blue'>Cancel</Button>
         <Button onClick={() => window.alert('clicked')} variant='primary-green'>
           Update
         </Button>

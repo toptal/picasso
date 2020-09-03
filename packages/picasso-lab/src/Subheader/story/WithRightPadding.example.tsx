@@ -10,7 +10,7 @@ const WithRightPaddingExample = () => (
         <Button size='small' variant='secondary-blue'>
           Button
         </Button>
-        <Button size='small' variant='secondary-red'>
+        <Button size='small' variant='secondary-blue'>
           Reject
         </Button>
         <Button size='small' variant='primary-green'>

@@ -1,57 +1,28 @@
-import { Theme, createStyles } from '@material-ui/core/styles'
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import { alpha, mix } from '@toptal/picasso-shared'
 
 const ICON_SPACING = '0.5em'
 
-const primary = (
-  mainColor: string,
-  secondaryColor: string,
-  ternaryColor: string
-) => ({
-  border: 'none',
-  color: secondaryColor,
-  backgroundColor: mainColor,
+const styles = ({ palette, sizes, transitions, typography }: Theme) => {
+  const createPrimaryVariant = (mainColor: string) => ({
+    border: 'none',
+    color: palette.common.white,
+    backgroundColor: mainColor,
 
-  '&:hover, &$hovered': {
-    backgroundColor: mix(mainColor, secondaryColor, 0.152)
-  },
+    '&:hover, &$hovered': {
+      backgroundColor: mix(mainColor, palette.common.white, 0.152)
+    },
 
-  '&:active, &$active': {
-    backgroundColor: mix(mainColor, 'black', 0.172)
-  },
+    '&:active, &$active': {
+      backgroundColor: mix(mainColor, palette.common.black, 0.172)
+    },
 
-  '&$disabled': {
-    backgroundColor: ternaryColor
-  }
-})
+    '&$disabled': {
+      backgroundColor: palette.grey.light
+    }
+  })
 
-const secondary = (
-  mainColor: string,
-  secondaryColor: string,
-  activeColor: string,
-  disabledColor: string
-) => ({
-  color: mainColor,
-  backgroundColor: secondaryColor,
-
-  '&:hover, &$hovered': {
-    borderColor: mainColor
-  },
-
-  '&:active, &$active': {
-    backgroundColor: activeColor,
-    borderColor: mainColor
-  },
-
-  '&$disabled': {
-    color: disabledColor,
-    borderColor: disabledColor,
-    backgroundColor: secondaryColor
-  }
-})
-
-export default ({ palette, sizes, transitions, typography }: Theme) =>
-  createStyles({
+  return createStyles({
     root: {
       position: 'relative',
       textTransform: 'none',
@@ -91,11 +62,6 @@ export default ({ palette, sizes, transitions, typography }: Theme) =>
       '& $content': {
         fontSize: typography.buttons.fontSizeSmall,
         lineHeight: typography.buttons.lineHeightSmall
-      },
-
-      '&$circular': {
-        minWidth: 'initial',
-        width: '1.5em'
       },
 
       '& $iconLeft': {
@@ -144,28 +110,30 @@ export default ({ palette, sizes, transitions, typography }: Theme) =>
     },
 
     // variants
-    primaryBlue: primary(
-      palette.primary.main,
-      palette.common.white,
-      palette.grey.light!
-    ),
-    primaryRed: primary(
-      palette.red.main,
-      palette.common.white,
-      palette.grey.light!
-    ),
-    primaryGreen: primary(
-      palette.green.main,
-      palette.common.white,
-      palette.grey.light!
-    ),
+    primaryBlue: createPrimaryVariant(palette.primary.main),
+    primaryRed: createPrimaryVariant(palette.red.main),
+    primaryGreen: createPrimaryVariant(palette.green.main),
 
-    secondaryBlue: secondary(
-      palette.common.black,
-      palette.common.white,
-      palette.grey.lighter!,
-      palette.grey.main!
-    ),
+    secondaryBlue: {
+      color: palette.common.black,
+      backgroundColor: palette.common.white,
+
+      '&:hover, &$hovered': {
+        borderColor: palette.common.black
+      },
+
+      '&:active, &$active': {
+        backgroundColor: palette.grey.lighter,
+        borderColor: palette.common.black
+      },
+
+      '&$disabled': {
+        color: palette.grey.main,
+        borderColor: palette.grey.main,
+        backgroundColor: palette.common.white
+      }
+    },
+
     secondaryWhite: {
       color: palette.common.white,
       border: `solid ${sizes.borderWidth} ${alpha(palette.common.white, 0.32)}`,
@@ -191,43 +159,6 @@ export default ({ palette, sizes, transitions, typography }: Theme) =>
       }
     },
 
-    flat: {
-      ...secondary(
-        palette.grey.dark!,
-        palette.common.white,
-        palette.grey.light!,
-        alpha(palette.grey.dark!, 0.48)
-      ),
-
-      '&:hover, &$hovered': {
-        backgroundColor: palette.grey.lighter
-      },
-
-      border: 'none'
-    },
-
-    transparent: {
-      border: 'none',
-      color: palette.common.white,
-
-      '&$focusVisible, &$focused': {
-        boxShadow: `0 0 0 3px ${alpha(palette.common.white, 0.48)}`
-      },
-
-      '&:hover, &$hovered': {
-        backgroundColor: alpha(palette.common.white, 0.08)
-      },
-
-      '&:active, &$active': {
-        backgroundColor: alpha(palette.common.white, 0.16)
-      },
-
-      '&$disabled': {
-        color: alpha(palette.common.white, 0.48),
-        backgroundColor: 'initial'
-      }
-    },
-
     // Other props
     fullWidth: {
       width: '100%'
@@ -236,10 +167,6 @@ export default ({ palette, sizes, transitions, typography }: Theme) =>
     focused: {},
     active: {
       boxShadow: 'none'
-    },
-    circular: {
-      borderRadius: '50%',
-      padding: 0
     },
     disabled: {},
     focusVisible: {},
@@ -259,3 +186,8 @@ export default ({ palette, sizes, transitions, typography }: Theme) =>
       opacity: 0
     }
   })
+}
+
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoButton' })
+
+export default useStyles

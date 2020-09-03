@@ -16,7 +16,7 @@ const Example = () => (
     <Typography variant='heading' size='small'>
       Secondary:
     </Typography>
-    <Container top='small' bottom='large'>
+    <Container top='small'>
       <Button variant='secondary-blue'>Secondary Blue</Button>
       <Container
         left={0.5}
