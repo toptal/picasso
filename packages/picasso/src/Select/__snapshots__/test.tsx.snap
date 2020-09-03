@@ -59,7 +59,7 @@ exports[`multiple select should checkmark user selected options 1`] = `
       x-placement="bottom-start"
     >
       <ul
-        class="MuiList-root ScrollMenu-menu"
+        class="MuiList-root Menu-root ScrollMenu-menu"
         data-testid="select-dropdown"
         role="menu"
         tabindex="-1"
@@ -372,7 +372,7 @@ exports[`renders select 1`] = `
 
 exports[`should filter options based on entered value to the input field 1`] = `
 <ul
-  class="MuiList-root ScrollMenu-menu"
+  class="MuiList-root Menu-root ScrollMenu-menu"
   data-testid="select-dropdown"
   role="menu"
   tabindex="-1"
@@ -412,7 +412,7 @@ exports[`should filter options based on entered value to the input field 1`] = `
 
 exports[`should open menu when focus on select 1`] = `
 <ul
-  class="MuiList-root ScrollMenu-menu"
+  class="MuiList-root Menu-root ScrollMenu-menu"
   data-testid="select-dropdown"
   role="menu"
   tabindex="-1"
@@ -502,7 +502,7 @@ exports[`should open menu when focus on select 1`] = `
 
 exports[`should render description 1`] = `
 <ul
-  class="MuiList-root ScrollMenu-menu"
+  class="MuiList-root Menu-root ScrollMenu-menu"
   data-testid="select-dropdown"
   role="menu"
   tabindex="-1"
@@ -610,7 +610,7 @@ exports[`should render description 1`] = `
 
 exports[`should render options customly 1`] = `
 <ul
-  class="MuiList-root ScrollMenu-menu"
+  class="MuiList-root Menu-root ScrollMenu-menu"
   data-testid="select-dropdown"
   role="menu"
   tabindex="-1"

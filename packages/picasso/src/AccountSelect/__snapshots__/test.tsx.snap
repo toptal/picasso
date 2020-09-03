@@ -6,7 +6,7 @@ exports[`AccountSelect default render 1`] = `
     class="Picasso-root"
   >
     <ul
-      class="MuiList-root"
+      class="MuiList-root Menu-root"
       role="menu"
       tabindex="-1"
     >
