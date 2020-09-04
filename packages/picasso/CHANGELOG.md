@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.97.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.96.0...@toptal/picasso@4.97.0) (2020-09-04)
+
+
+### Features
+
+* **Autocomplete:** pass event in Autocomplete onSelect ([#1549](https://github.com/toptal/picasso/issues/1549)) ([ed47c51](https://github.com/toptal/picasso/commit/ed47c514edfec8023df277a1cb915eb7526959a0))
+
+
+
+
+
 # [4.96.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.95.0...@toptal/picasso@4.96.0) (2020-09-03)
 
 
