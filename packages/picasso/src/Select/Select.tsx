@@ -24,7 +24,11 @@ import { DropdownArrows16 } from '../Icon'
 import { isSubstring, disableUnsupportedProps } from '../utils'
 import { FeatureOptions } from '../utils/disable-unsupported-props'
 import { Option } from './types'
-import useSelect, { EMPTY_INPUT_VALUE, ItemProps } from './useSelect'
+import useSelect, {
+  EMPTY_INPUT_VALUE,
+  ItemProps,
+  FocusEventType
+} from './useSelect'
 import styles from './styles'
 import { documentable, forwardRef } from '../utils/forward-ref'
 
@@ -142,6 +146,7 @@ type OptionsProps = Pick<
   inputValue: string
   setHighlightedIndex: (index: number | null) => void
   getItemProps: (index: number, option: Option) => ItemProps
+  onBlur?: FocusEventType
   onItemSelect: (event: React.MouseEvent, option: Option) => void
 }
 
@@ -281,6 +286,7 @@ const removeDuplicatedOptions = (options: Option[]) =>
     const innerIndex = options.findIndex(
       innerOption => innerOption.value === option.value
     )
+
     return innerIndex === index
   })
 
@@ -308,6 +314,7 @@ const renderOptions = ({
   setHighlightedIndex,
   onItemSelect,
   getItemProps,
+  onBlur,
   value,
   multiple,
   size,
@@ -327,6 +334,7 @@ const renderOptions = ({
   const optionComponents = options.map((option, currentIndex) => {
     const { close, onMouseDown } = getItemProps(currentIndex, option)
     const selection = getSelection(options, value)
+
     return (
       <SelectOption
         key={option.key || option.value}
@@ -350,7 +358,9 @@ const renderOptions = ({
   })
 
   return (
-    <ScrollMenu selectedIndex={highlightedIndex}>{optionComponents}</ScrollMenu>
+    <ScrollMenu onBlur={onBlur} selectedIndex={highlightedIndex}>
+      {optionComponents}
+    </ScrollMenu>
   )
 }
 
@@ -432,11 +442,13 @@ export const Select = documentable(
       )
 
       const prevValue = useRef(value)
+
       if (prevValue.current !== value) {
         const select = getSelection(
           removeDuplicatedOptions([...allOptions, ...selectedOptions]),
           value
         )
+
         setInputValue(select.display(getDisplayValue!))
         prevValue.current = value
       }
@@ -489,6 +501,7 @@ export const Select = documentable(
         if (isInSelectedValues) {
           return value!.filter(value => value !== option.value)
         }
+
         return [...value, String(option.value)]
       }
       const handleSelect = useCallback(
@@ -624,11 +637,13 @@ export const Select = documentable(
         </NativeSelect>
       )
 
+      const rootProps = getRootProps()
+
       const selectComponent = (
         <>
           <div
             /* eslint-disable-next-line react/jsx-props-no-spreading */
-            {...getRootProps()}
+            {...rootProps}
             className={classes.inputWrapper}
           >
             {!enableAutofill && !native && name && (
@@ -688,8 +703,9 @@ export const Select = documentable(
                   renderOption,
                   highlightedIndex,
                   setHighlightedIndex,
-                  onItemSelect: handleSelect,
                   getItemProps,
+                  onItemSelect: handleSelect,
+                  onBlur: rootProps.onBlur,
                   value,
                   getDisplayValue,
                   multiple,
