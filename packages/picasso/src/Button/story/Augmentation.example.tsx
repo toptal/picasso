@@ -12,7 +12,7 @@ const ButtonAugmentationExample = () => (
       Link
     </Button>
 
-    <Button as={Link} href='/#home' variant='secondary-blue'>
+    <Button as={Link} href='/#home' variant='secondary'>
       Link
     </Button>
 

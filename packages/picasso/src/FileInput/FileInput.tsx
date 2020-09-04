@@ -104,7 +104,7 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
     (isNumber(progress) && progress! <= 100) ||
     (isBoolean(progress) && progress)
 
-  const uploadButtonVariant = value || error ? 'secondary-blue' : 'primary-blue'
+  const uploadButtonVariant = value || error ? 'secondary' : 'primary'
   const uploadButtonTitle =
     value || error ? 'Choose different file' : 'Choose File'
 

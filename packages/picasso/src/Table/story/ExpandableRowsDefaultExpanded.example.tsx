@@ -47,10 +47,10 @@ const ExpandableContent = () => (
       </UserBadge>
 
       <Container>
-        <Button variant='secondary-blue' size='small'>
+        <Button variant='secondary' size='small'>
           Q &amp; A
         </Button>
-        <Button variant='secondary-blue' size='small'>
+        <Button variant='secondary' size='small'>
           Timeline
         </Button>
         <Button size='small'>Contact Company</Button>

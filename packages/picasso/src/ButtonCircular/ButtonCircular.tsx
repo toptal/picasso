@@ -7,7 +7,7 @@ import Button from '../Button'
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import styles from './styles'
 
-export type VariantType = 'primary-blue' | 'flat' | 'transparent'
+export type VariantType = 'primary' | 'flat' | 'transparent'
 
 export interface Props extends BaseProps, ButtonOrAnchorProps {
   /** Show button in the active state (left mouse button down) */
@@ -85,7 +85,7 @@ export const ButtonCircular = forwardRef<HTMLButtonElement, Props>(
 )
 
 ButtonCircular.defaultProps = {
-  variant: 'primary-blue'
+  variant: 'primary'
 }
 
 ButtonCircular.displayName = 'ButtonCircular'

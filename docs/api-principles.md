@@ -39,9 +39,9 @@ when building API for new or existing components.
   Example:
 
   ```
-  <Button variant='secondary-blue'>...</Button>
+  <Button variant='secondary'>...</Button>
   ```
 
-  Here `variant='secondary-blue'` - type of the look and feel of the component.
+  Here `variant='secondary'` - type of the look and feel of the component.
 
 </div>

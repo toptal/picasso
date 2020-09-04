@@ -25,15 +25,14 @@ import Loader from '../Loader'
 import Container from '../Container'
 import Group from '../ButtonGroup'
 import Circular from '../ButtonCircular'
-import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import toTitleCase from '../utils/to-title-case'
 
 export type VariantType =
-  | 'primary-blue'
-  | 'primary-red'
-  | 'primary-green'
-  | 'secondary-blue'
-  | 'secondary-white'
+  | 'primary'
+  | 'negative'
+  | 'positive'
+  | 'secondary'
+  | 'transparent'
 
 export type IconPositionType = 'left' | 'right'
 
@@ -156,7 +155,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     }
   }
 
-  const variantClassName = classes[kebabToCamelCase(variant!)]
+  const variantClassName = classes[variant!]
   const sizeClassName = classes[size!]
 
   const rootClassName = cx(
@@ -221,7 +220,7 @@ Button.defaultProps = {
   onClick: defaultOnClick,
   size: 'medium',
   type: 'button',
-  variant: 'primary-blue'
+  variant: 'primary'
 }
 
 Button.displayName = 'Button'

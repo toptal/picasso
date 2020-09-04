@@ -10,7 +10,7 @@ export default ({ palette }: Theme) =>
       width: '1.5em'
     },
 
-    primaryBlue: {},
+    primary: {},
 
     flat: {
       color: palette.grey.dark,

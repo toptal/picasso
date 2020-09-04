@@ -10,14 +10,14 @@ const Example = () => {
     <Container flex>
       <Container right={1}>
         <Button
-          variant='secondary-blue'
+          variant='secondary'
           onClick={() => showInfo('General information message')}
         >
           Show default general notification
         </Button>
       </Container>
       <Button
-        variant='secondary-blue'
+        variant='secondary'
         onClick={() => showInfo('The record was edited', <Pencil16 />)}
       >
         Show general notification with icon

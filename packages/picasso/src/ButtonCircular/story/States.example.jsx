@@ -6,7 +6,7 @@ import { palette } from '@toptal/picasso/utils'
 const Example = () => (
   <div>
     <Typography variant='heading' size='small'>
-      Primary-Blue:
+      Primary
     </Typography>
     <Container top='small' bottom='large'>
       <Button.Circular icon={<Settings16 />} />
@@ -18,7 +18,7 @@ const Example = () => (
     </Container>
 
     <Typography variant='heading' size='small'>
-      Flat:
+      Flat
     </Typography>
     <Container top='small' bottom='large'>
       <Button.Circular variant='flat' icon={<Settings16 />} />
@@ -30,9 +30,10 @@ const Example = () => (
     </Container>
 
     <Typography variant='heading' size='small'>
-      Transparent:
+      Transparent
     </Typography>
     <Container
+      inline
       top='small'
       bottom='large'
       style={{ backgroundColor: palette.blue.main }}

@@ -52,8 +52,8 @@ test('renders Modal', () => {
       <TestModalTitle>Title</TestModalTitle>
       <TestModalContent>Modal test content</TestModalContent>
       <TestModalActions>
-        <Button variant='secondary-blue'>Cancel</Button>
-        <Button onClick={() => window.alert('clicked')} variant='primary-green'>
+        <Button variant='secondary'>Cancel</Button>
+        <Button onClick={() => window.alert('clicked')} variant='positive'>
           Update
         </Button>
       </TestModalActions>
@@ -123,6 +123,7 @@ test('given multiple modals are opened, when navigate from page then all modals 
 
   const TestComponent = () => {
     const [showPageWithModals, setShowPageWithModals] = useState(true)
+
     return (
       <div>
         {showPageWithModals ? <PageWithModals /> : <SimplePage />}
@@ -148,6 +149,7 @@ test('given multiple modals are opened, when navigate from page then all modals 
 
   // Switch to other page
   const switchPages = getByText('Switch pages')
+
   fireEvent.click(switchPages)
 
   // Check all modals were auto-closed

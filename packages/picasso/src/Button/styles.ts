@@ -110,11 +110,11 @@ const styles = ({ palette, sizes, transitions, typography }: Theme) => {
     },
 
     // variants
-    primaryBlue: createPrimaryVariant(palette.primary.main),
-    primaryRed: createPrimaryVariant(palette.red.main),
-    primaryGreen: createPrimaryVariant(palette.green.main),
+    primary: createPrimaryVariant(palette.primary.main),
+    negative: createPrimaryVariant(palette.red.main),
+    positive: createPrimaryVariant(palette.green.main),
 
-    secondaryBlue: {
+    secondary: {
       color: palette.common.black,
       backgroundColor: palette.common.white,
 
@@ -134,7 +134,7 @@ const styles = ({ palette, sizes, transitions, typography }: Theme) => {
       }
     },
 
-    secondaryWhite: {
+    transparent: {
       color: palette.common.white,
       border: `solid ${sizes.borderWidth} ${alpha(palette.common.white, 0.32)}`,
 

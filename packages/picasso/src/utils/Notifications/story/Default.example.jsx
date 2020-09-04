@@ -7,7 +7,7 @@ const Example = () => {
 
   return (
     <Button
-      variant='secondary-blue'
+      variant='secondary'
       onClick={() =>
         showInfo("That's one small step for a man, one giant leap for mankind.")
       }

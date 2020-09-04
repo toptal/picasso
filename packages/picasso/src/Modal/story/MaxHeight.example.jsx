@@ -94,7 +94,7 @@ const ModalDialog = ({ open, onClose }) => {
         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </Modal.Content>
       <Modal.Actions>
-        <Button data-testid='cancel' variant='secondary-blue' onClick={onClose}>
+        <Button data-testid='cancel' variant='secondary' onClick={onClose}>
           Cancel
         </Button>
       </Modal.Actions>

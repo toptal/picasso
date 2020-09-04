@@ -5,29 +5,35 @@ import { palette } from '@toptal/picasso/utils'
 
 const Example = () => (
   <div>
-    <Typography variant='heading' size='small'>
-      Primary Blue:
-    </Typography>
-    <Container top='small' bottom='large'>
-      <Button.Circular icon={<Settings16 />} />
+    <Container inline>
+      <Typography variant='heading' size='small' align='center'>
+        Primary
+      </Typography>
+      <Container padded='small'>
+        <Button.Circular icon={<Settings16 />} />
+      </Container>
     </Container>
 
-    <Typography variant='heading' size='small'>
-      Flat:
-    </Typography>
-    <Container top='small' bottom='large'>
-      <Button.Circular variant='flat' icon={<Settings16 />} />
+    <Container inline left='medium'>
+      <Typography variant='heading' size='small' align='center'>
+        Flat
+      </Typography>
+      <Container padded='small'>
+        <Button.Circular variant='flat' icon={<Settings16 />} />
+      </Container>
     </Container>
 
-    <Typography variant='heading' size='small'>
-      Transparent:
-    </Typography>
-    <Container
-      top='small'
-      style={{ backgroundColor: palette.blue.main }}
-      padded={0.5}
-    >
-      <Button.Circular variant='transparent' icon={<Settings16 />} />
+    <Container inline left='medium'>
+      <Typography variant='heading' size='small' align='center'>
+        Transparent
+      </Typography>
+      <Container
+        style={{ backgroundColor: palette.blue.main }}
+        inline
+        padded='small'
+      >
+        <Button.Circular variant='transparent' icon={<Settings16 />} />
+      </Container>
     </Container>
   </div>
 )

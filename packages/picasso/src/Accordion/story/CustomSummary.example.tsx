@@ -28,7 +28,7 @@ const Summary = ({
     </Typography>
     <Container>
       <Button
-        variant='secondary-blue'
+        variant='secondary'
         icon={
           <Transitions.Rotate180 on={expanded}>
             <ArrowDownMinor16 />

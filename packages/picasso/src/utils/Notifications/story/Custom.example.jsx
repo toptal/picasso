@@ -13,7 +13,7 @@ const Example = () => {
 
   return (
     <Button
-      variant='secondary-blue'
+      variant='secondary'
       onClick={() => {
         const notificationId = showCustomNotification(
           <StyledCustomNotification flex direction='row' padded='small'>

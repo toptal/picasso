@@ -15,7 +15,7 @@ const Example = () => {
           <Grid.Item>
             <Button
               onClick={() => setValue(value - 1)}
-              variant='secondary-blue'
+              variant='secondary'
               size='small'
               icon={<Minus16 />}
             >
@@ -28,7 +28,7 @@ const Example = () => {
           <Grid.Item>
             <Button
               onClick={() => setValue(value + 1)}
-              variant='secondary-blue'
+              variant='secondary'
               size='small'
               icon={<Plus16 />}
             >

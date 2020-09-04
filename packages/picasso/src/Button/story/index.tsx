@@ -138,17 +138,11 @@ page
       },
       variant: {
         name: 'variant',
-        defaultValue: 'primary-blue',
+        defaultValue: 'primary',
         description: 'The variant to use',
         type: {
           name: 'enum',
-          enums: [
-            'primary-blue',
-            'primary-green',
-            'primary-red',
-            'secondary-blue',
-            'secondary-white'
-          ]
+          enums: ['primary', 'positive', 'negative', 'secondary', 'transparent']
         }
       },
       value: {

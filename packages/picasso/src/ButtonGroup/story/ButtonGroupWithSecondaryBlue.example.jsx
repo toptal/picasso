@@ -4,10 +4,10 @@ import { Button } from '@toptal/picasso'
 const Example = () => (
   <div>
     <Button.Group>
-      <Button variant='secondary-blue'>First</Button>
-      <Button variant='secondary-blue'>Second</Button>
-      <Button variant='secondary-blue'>Third</Button>
-      <Button variant='secondary-blue'>Fourth</Button>
+      <Button variant='secondary'>First</Button>
+      <Button variant='secondary'>Second</Button>
+      <Button variant='secondary'>Third</Button>
+      <Button variant='secondary'>Fourth</Button>
     </Button.Group>
   </div>
 )
