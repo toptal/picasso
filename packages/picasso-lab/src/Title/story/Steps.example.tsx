@@ -1,13 +1,13 @@
 import React from 'react'
-import { Subheader } from '@toptal/picasso-lab'
+import { Title } from '@toptal/picasso-lab'
 import { Stepper } from '@toptal/picasso'
 
 const StepsExample = () => (
-  <Subheader>
-    <Subheader.Main>
+  <Title>
+    <Title.Main>
       <Stepper steps={['Label', 'Label', 'Label', 'Label', 'Label']} />
-    </Subheader.Main>
-  </Subheader>
+    </Title.Main>
+  </Title>
 )
 
 export default StepsExample

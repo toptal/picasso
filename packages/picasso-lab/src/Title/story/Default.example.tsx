@@ -1,6 +1,6 @@
 import React from 'react'
 import { Tabs, Button } from '@toptal/picasso'
-import { Subheader } from '@toptal/picasso-lab'
+import { Title } from '@toptal/picasso-lab'
 
 const DefaultExample = () => {
   const [value, setValue] = React.useState(0)
@@ -10,11 +10,11 @@ const DefaultExample = () => {
   }
 
   return (
-    <Subheader>
-      <Subheader.Breadcrumb />
-      <Subheader.Main>
-        <Subheader.Title>Heading Large</Subheader.Title>
-        <Subheader.Actions>
+    <Title>
+      <Title.Breadcrumb />
+      <Title.Main>
+        <Title.Title>Heading Large</Title.Title>
+        <Title.Actions>
           <Button size='small' variant='secondary-blue'>
             Button
           </Button>
@@ -24,16 +24,16 @@ const DefaultExample = () => {
           <Button size='small' variant='secondary-blue'>
             Button
           </Button>
-        </Subheader.Actions>
-      </Subheader.Main>
-      <Subheader.Tabs>
+        </Title.Actions>
+      </Title.Main>
+      <Title.Tabs>
         <Tabs value={value} onChange={handleChange}>
           <Tabs.Tab label='Label' />
           <Tabs.Tab label='Label' />
           <Tabs.Tab label='Label' />
         </Tabs>
-      </Subheader.Tabs>
-    </Subheader>
+      </Title.Tabs>
+    </Title>
   )
 }
 

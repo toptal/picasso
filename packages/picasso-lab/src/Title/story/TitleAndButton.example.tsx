@@ -1,18 +1,18 @@
 import React from 'react'
-import { Subheader } from '@toptal/picasso-lab'
+import { Title } from '@toptal/picasso-lab'
 import { Button } from '@toptal/picasso'
 
 const TitleAndButtonExample = () => (
-  <Subheader>
-    <Subheader.Main>
-      <Subheader.Title>Heading Large</Subheader.Title>
-      <Subheader.Actions>
+  <Title>
+    <Title.Main>
+      <Title.Title>Heading Large</Title.Title>
+      <Title.Actions>
         <Button variant='secondary-blue' size='small'>
           Button
         </Button>
-      </Subheader.Actions>
-    </Subheader.Main>
-  </Subheader>
+      </Title.Actions>
+    </Title.Main>
+  </Title>
 )
 
 export default TitleAndButtonExample

@@ -11,14 +11,14 @@ import { Typography, Container } from '@toptal/picasso'
 import styles from './styles'
 
 export interface Props extends BaseProps {
-  /** Content of Subheader */
+  /** Content of Title */
   children?: React.ReactNode
-  /** Whether Subheader should have right padding */
+  /** Whether Title should have right padding */
   rightPadding?: boolean
 }
 
 export interface StaticProps {
-  Title: FunctionComponent
+  Content: FunctionComponent
   Breadcrumb: FunctionComponent
   Tabs: FunctionComponent
   Main: FunctionComponent
@@ -26,14 +26,17 @@ export interface StaticProps {
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoSubheader'
+  name: 'PicassoTitle'
 })
 
 const useMainStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoSubheaderMain'
+  name: 'PicassoTitleMain'
 })
 
-const Title: FunctionComponent<TextLabelProps> = ({ titleCase, children }) => (
+const Content: FunctionComponent<TextLabelProps> = ({
+  titleCase,
+  children
+}) => (
   <Typography variant='heading' size='large' titleCase={titleCase}>
     {children}
   </Typography>
@@ -56,6 +59,7 @@ const Tabs: FunctionComponent = ({ children }) => (
 
 const Main: FunctionComponent = props => {
   const classes = useMainStyles(props)
+
   return (
     <Container flex justifyContent='space-between' className={classes.main}>
       {props.children}
@@ -69,7 +73,7 @@ const Actions: FunctionComponent = ({ children }) => (
   </Container>
 )
 
-export const Subheader = forwardRef<HTMLDivElement, Props>(function Subheader(
+export const Title = forwardRef<HTMLDivElement, Props>(function Title(
   props,
   ref
 ) {
@@ -88,16 +92,16 @@ export const Subheader = forwardRef<HTMLDivElement, Props>(function Subheader(
   )
 }) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
 
-Subheader.defaultProps = {
+Title.defaultProps = {
   rightPadding: false
 }
 
-Subheader.Title = Title
-Subheader.Breadcrumb = Breadcrumb
-Subheader.Tabs = Tabs
-Subheader.Main = Main
-Subheader.Actions = Actions
+Title.Content = Content
+Title.Breadcrumb = Breadcrumb
+Title.Tabs = Tabs
+Title.Main = Main
+Title.Actions = Actions
 
-Subheader.displayName = 'Subheader'
+Title.displayName = 'Title'
 
-export default Subheader
+export default Title

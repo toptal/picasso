@@ -1,12 +1,12 @@
 import React from 'react'
 import { Button } from '@toptal/picasso'
-import { Subheader } from '@toptal/picasso-lab'
+import { Title } from '@toptal/picasso-lab'
 
 const WithRightPaddingExample = () => (
-  <Subheader rightPadding>
-    <Subheader.Main>
-      <Subheader.Title>Heading Large</Subheader.Title>
-      <Subheader.Actions>
+  <Title rightPadding>
+    <Title.Main>
+      <Title.Title>Heading Large</Title.Title>
+      <Title.Actions>
         <Button size='small' variant='secondary-blue'>
           Button
         </Button>
@@ -16,9 +16,9 @@ const WithRightPaddingExample = () => (
         <Button size='small' variant='primary-green'>
           Accept
         </Button>
-      </Subheader.Actions>
-    </Subheader.Main>
-  </Subheader>
+      </Title.Actions>
+    </Title.Main>
+  </Title>
 )
 
 export default WithRightPaddingExample
