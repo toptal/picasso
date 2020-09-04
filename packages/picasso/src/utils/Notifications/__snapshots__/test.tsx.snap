@@ -6,7 +6,7 @@ exports[`useNotifications error notification render 1`] = `
     class="Picasso-root"
   >
     <button
-      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
+      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
       tabindex="0"
       type="button"
     >
@@ -17,7 +17,7 @@ exports[`useNotifications error notification render 1`] = `
       </span>
     </button>
     <button
-      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
+      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
       tabindex="0"
       type="button"
     >
@@ -28,7 +28,7 @@ exports[`useNotifications error notification render 1`] = `
       </span>
     </button>
     <button
-      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
+      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
       tabindex="0"
       type="button"
     >
@@ -81,7 +81,7 @@ exports[`useNotifications error notification render 1`] = `
                     Error message
                   </div>
                   <button
-                    class="MuiButtonBase-root PicassoButton-small PicassoButton-primaryBlue PicassoButton-root PicassoButtonCircular-primaryBlue PicassoButtonCircular-root Notification-close"
+                    class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-primary PicassoButtonCircular-root Notification-close"
                     tabindex="0"
                     title="Close Notification"
                     type="button"
@@ -117,7 +117,7 @@ exports[`useNotifications info notification render 1`] = `
     class="Picasso-root"
   >
     <button
-      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
+      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
       tabindex="0"
       type="button"
     >
@@ -128,7 +128,7 @@ exports[`useNotifications info notification render 1`] = `
       </span>
     </button>
     <button
-      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
+      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
       tabindex="0"
       type="button"
     >
@@ -139,7 +139,7 @@ exports[`useNotifications info notification render 1`] = `
       </span>
     </button>
     <button
-      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
+      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
       tabindex="0"
       type="button"
     >
@@ -192,7 +192,7 @@ exports[`useNotifications info notification render 1`] = `
                     Info message
                   </div>
                   <button
-                    class="MuiButtonBase-root PicassoButton-small PicassoButton-primaryBlue PicassoButton-root PicassoButtonCircular-primaryBlue PicassoButtonCircular-root Notification-close"
+                    class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-primary PicassoButtonCircular-root Notification-close"
                     tabindex="0"
                     title="Close Notification"
                     type="button"
@@ -228,7 +228,7 @@ exports[`useNotifications success notification render 1`] = `
     class="Picasso-root"
   >
     <button
-      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
+      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
       tabindex="0"
       type="button"
     >
@@ -239,7 +239,7 @@ exports[`useNotifications success notification render 1`] = `
       </span>
     </button>
     <button
-      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
+      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
       tabindex="0"
       type="button"
     >
@@ -250,7 +250,7 @@ exports[`useNotifications success notification render 1`] = `
       </span>
     </button>
     <button
-      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
+      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
       tabindex="0"
       type="button"
     >
@@ -303,7 +303,7 @@ exports[`useNotifications success notification render 1`] = `
                     Success message
                   </div>
                   <button
-                    class="MuiButtonBase-root PicassoButton-small PicassoButton-primaryBlue PicassoButton-root PicassoButtonCircular-primaryBlue PicassoButtonCircular-root Notification-close"
+                    class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-primary PicassoButtonCircular-root Notification-close"
                     tabindex="0"
                     title="Close Notification"
                     type="button"
