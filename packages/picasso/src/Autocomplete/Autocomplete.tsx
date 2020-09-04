@@ -7,7 +7,8 @@ import React, {
   ReactNode,
   ComponentType,
   useRef,
-  FocusEventHandler
+  FocusEventHandler,
+  MouseEvent
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
@@ -37,9 +38,12 @@ export interface Props
   /** The value of the selected option, required for a controlled component. */
   value: string
   /**  Callback invoked when selection changes */
-  onSelect?: (item: Item) => void
+  onSelect?: (item: Item, event: MouseEvent | KeyboardEvent) => void
   /**  Callback invoked when other option selected */
-  onOtherOptionSelect?: (value: string) => void
+  onOtherOptionSelect?: (
+    value: string,
+    event: MouseEvent | KeyboardEvent
+  ) => void
   /** Placeholder for value */
   placeholder?: string
   /** Text prefix for other option */
