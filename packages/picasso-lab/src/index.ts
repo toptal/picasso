@@ -1,5 +1,7 @@
 export { default as Breadcrumbs } from './Breadcrumbs'
 export { default as Calendar } from './Calendar'
+export { default as Badge } from './Badge'
+export type { BadgeProps } from './Badge'
 export type { DateOrDateRangeType } from './Calendar'
 export { default as DatePicker } from './DatePicker'
 export type { DatePickerProps } from './DatePicker'
