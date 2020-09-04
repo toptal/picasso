@@ -49,8 +49,8 @@ RUN printf '//registry.npmjs.org/:_authToken=${NPM_TOKEN}\nalways-auth=true\n' >
 # Enables layer caching
 COPY --chown=node:node package.json yarn.lock ./
 
-RUN yarn install --frozen-lockfile
+RUN yarn install --frozen-lockfile --cache-folder /tmp/.junk
 
 COPY --chown=node:node . /app
 
-RUN yarn install --frozen-lockfile
+RUN yarn install --frozen-lock --cache-folder /tmp/.junk
