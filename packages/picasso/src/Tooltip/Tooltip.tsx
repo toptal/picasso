@@ -9,13 +9,15 @@ import React, {
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITooltip from '@material-ui/core/Tooltip'
 import cx from 'classnames'
-import { usePicassoRoot, BaseProps } from '@toptal/picasso-shared'
+import { usePicassoRoot, BaseProps, omit } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
 type VariantType = 'light' | 'dark'
 
 export type PlacementType = 'bottom' | 'left' | 'right' | 'top'
+
+type MaxWidthType = 'none' | 'default'
 
 type DelayType = 'short' | 'long'
 
@@ -53,6 +55,8 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   delay?: DelayType
   /** Show a compact tooltip */
   compact?: boolean
+  /** Max width of a tooltip */
+  maxWidth?: MaxWidthType
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoTooltip' })
@@ -91,11 +95,12 @@ export const Tooltip: FunctionComponent<Props> = props => {
   )
 
   const delayDuration = delayDurations[delay]
+  const tooltipProps = omit(rest, 'maxWidth')
 
   return (
     <MUITooltip
       // eslint-disable-next-line react/jsx-props-no-spreading
-      {...rest}
+      {...tooltipProps}
       PopperProps={{
         container,
         disablePortal,
@@ -147,7 +152,8 @@ Tooltip.defaultProps = {
   preventOverflow: false,
   placement: 'top',
   variant: 'dark',
-  disablePortal: false
+  disablePortal: false,
+  maxWidth: 'default'
 }
 
 export default Tooltip
