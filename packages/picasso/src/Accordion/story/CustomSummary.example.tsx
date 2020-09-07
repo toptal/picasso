@@ -38,7 +38,7 @@ const Summary = ({
       >
         {expanded ? 'Hide' : 'Show'}
       </Button>
-      <Button.Circular variant='transparent' icon={<Drag16 />} />
+      <Button.Circular variant='flat' icon={<Drag16 />} />
     </Container>
   </Container>
 )
