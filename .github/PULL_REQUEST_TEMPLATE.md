@@ -16,21 +16,32 @@ Describe the changes and motivations for the pull request.
 
 ### Review
 
-- [ ] Read [CONTRIBUTING.md](https://github.com/toptal/picasso/blob/master/CONTRIBUTING.md) and [Component API principles](https://github.com/toptal/picasso/blob/master/docs/api-principles.md)
-- [ ] Make sure you've converted all `js/jsx` file into `ts/tsx` in your PR
-- [ ] Annotate all `props` in component with documentation
-- [ ] Create `examples` for component
+#### For developer
+- [ ] Make sure you understand that your change can affect many other projects, not only yours. If your change breaks something, please ask other teams which use picasso if this change will not break anything in their projects.
+- [ ] Check mobile or make sure mobile version is not needed/working, in case of troubles please check at #-base-core channel or with your product designer.
+- [ ] Annotate all `props` in component with documentation, check existing components for an example e.g. [Button](https://github.com/toptal/picasso/blob/master/packages/picasso/src/Button/Button.tsx#L45-L80)
+- [ ] If you add new component or update existing, add examples at storybook
+- [ ] If you create new examples in storybook, use typescript and `tsx` extension. If you touch `jsx` story, convert it to `tsx`
 - [ ] Ensure that deployed demo has expected results and good examples
-- [ ] Ensure that unit tests pass by running `yarn test`
-- [ ] Ensure that visuals tests pass by running `yarn test:visual`. If not - check the documentation [how to fix visual tests](https://github.com/toptal/picasso/blob/master/docs/contribution/visual-testing.md#fixing-broken-visual-tests-inside-a-pr)
+
+#### For reviewer
+- [ ] Make sure all `js/jsx` files are converted to typescript if needed
+- [ ] Make sure that deployed demo has expected results and good examples
+
+ 
+ If visual tests job failed, please check [this document]((https://github.com/toptal/picasso/blob/master/docs/contribution/visual-testing.md#fixing-broken-visual-tests-inside-a-pr)) and generate new screenshots locally, then check them out.
+ 
+ Sometimes Jenkins job gets stucked, if so, please restart this job with one of the next ways: 
+ 
+ - amend your commit and force push it to github
+ - go to the failed job at jenkins and restart it manually
+ - use github comment to trigger a jenkins job
 
 <details>
-<summary>PR commands</summary>
+<summary>List of available bot commands</summary>
 <br />
 
-List of available commands:
-
-- `@toptal-bot run all` - Run  whole pipeline
+- `@toptal-bot run all` - Run whole pipeline
 - `@toptal-bot run danger` - Danger checks
 - `@toptal-bot run lint` - Run linter
 - `@toptal-bot run test` - Run jest
