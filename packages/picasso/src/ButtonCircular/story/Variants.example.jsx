@@ -7,7 +7,7 @@ const Example = () => (
   <div>
     <Container inline>
       <Typography variant='heading' size='small' align='center'>
-        Primary
+        Primary (Default)
       </Typography>
       <Container padded='small'>
         <Button.Circular icon={<Settings16 />} />

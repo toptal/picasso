@@ -175,7 +175,7 @@ page
 
 page
   .createChapter()
-  .addExample('Button/story/Basic.example.tsx', 'Basic')
+  .addExample('Button/story/Default.example.tsx', 'Default')
   .addExample('Button/story/Variants.example.jsx', 'Variants')
   .addExample('Button/story/States.example.jsx', 'States')
   .addExample('Button/story/Disabled.example.jsx', {

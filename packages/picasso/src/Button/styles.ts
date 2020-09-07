@@ -139,7 +139,6 @@ const styles = ({ palette, sizes, transitions, typography }: Theme) => {
       border: `solid ${sizes.borderWidth} ${alpha(palette.common.white, 0.32)}`,
 
       '&$focusVisible, &$focused': {
-        // borderColor: palette.common.white,
         boxShadow: `0 0 0 3px ${alpha(palette.common.white, 0.48)}`
       },
 

@@ -6,7 +6,7 @@ import { palette } from '@toptal/picasso/utils'
 const Example = () => (
   <div>
     <Typography variant='heading' size='small'>
-      Primary
+      Primary (Default)
     </Typography>
     <Container top='small' bottom='large'>
       <Button.Circular icon={<Settings16 />} />

@@ -4,7 +4,7 @@ import { palette } from '@toptal/picasso/utils'
 
 const Example = () => (
   <div>
-    <Button>Primary</Button>
+    <Button>Primary (Default)</Button>
 
     <Button variant='negative'>Negative</Button>
 

@@ -19,9 +19,12 @@ export const lighten = (inputColor: string, amount: number) => {
 }
 
 export const alpha = (inputColor: string, amount: number) => {
-  return color(inputColor).alpha(amount).toString()
+  return color(inputColor)
+    .alpha(amount)
+    .toString()
 }
 
+// Approximate blending https://github.com/Qix-/color/issues/154
 export const mix = (baseColor: string, mixColor: string, amount: number) => {
   const baseColorValue = color(baseColor)
   const mixColorValue = color(mixColor)
