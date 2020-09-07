@@ -6,11 +6,12 @@ import { StandardProps } from '@toptal/picasso-shared'
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import styles from './styles'
 const BASE_SIZE = 24
+
 type ScaleType = 1 | 2 | 3 | 4
 export interface Props extends StandardProps {
-  scale?: ScaleType
-  color?: string
-  base?: number
+  scale?: ScaleType;
+  color?: string;
+  base?: number;
 }
 const SvgUiGuidelines24 = forwardRef(function SvgUiGuidelines24(
   props: Props,
@@ -37,6 +38,7 @@ const SvgUiGuidelines24 = forwardRef(function SvgUiGuidelines24(
     minHeight: `${scaledSize}px`,
     ...style
   }
+
   return (
     <svg
       viewBox='0 0 24 24'
@@ -48,5 +50,6 @@ const SvgUiGuidelines24 = forwardRef(function SvgUiGuidelines24(
     </svg>
   )
 })
+
 SvgUiGuidelines24.displayName = 'SvgUiGuidelines24'
 export default withStyles(styles)(SvgUiGuidelines24)

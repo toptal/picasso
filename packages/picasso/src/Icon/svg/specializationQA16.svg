@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <style>.cls-1{fill:none;stroke:#204ecf;stroke-linecap:round;stroke-linejoin:round;}</style>
+  </defs>
+  <title>Quality Assurance</title>
+  <path class="cls-1" d="M27.5724,39.5h0A14.1578,14.1578,0,0,1,15.6431,25.5272V15.8265H39.5016v9.7007A14.1578,14.1578,0,0,1,27.5724,39.5Z"/>
+  <polyline class="cls-1" points="12.573 28.005 0.498 28.005 0.498 0.5 30.201 0.5 30.201 12.761"/>
+  <line class="cls-1" x1="6.6385" y1="6.6306" x2="24.061" y2="6.6306"/>
+  <line class="cls-1" x1="6.6385" y1="12.7612" x2="24.061" y2="12.7612"/>
+  <line class="cls-1" x1="6.6385" y1="9.6959" x2="24.061" y2="9.6959"/>
+  <line class="cls-1" x1="6.6385" y1="15.8265" x2="12.573" y2="15.8265"/>
+  <line class="cls-1" x1="6.6385" y1="18.8918" x2="12.573" y2="18.8918"/>
+  <line class="cls-1" x1="6.6385" y1="21.9571" x2="12.573" y2="21.9571"/>
+  <polyline class="cls-1" points="31.602 24.312 26.229 29.789 23.543 27.05"/>
+</svg>

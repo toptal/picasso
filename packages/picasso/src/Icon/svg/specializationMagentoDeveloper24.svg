@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <style>.cls-1{fill:none;stroke:#204ecf;stroke-linecap:round;stroke-linejoin:round;}</style>
+  </defs>
+  <title>Magento Developer</title>
+  <polygon class="cls-1" points="19.838 0 2.5 10.008 2.5 29.997 7.449 32.858 7.414 12.864 19.803 5.714 32.191 12.864 32.191 32.849 37.14 29.997 37.14 9.99 19.838 0"/>
+  <polygon class="cls-1" points="22.293 32.854 19.82 34.291 17.335 32.867 17.335 12.864 12.39 15.721 12.398 35.715 19.816 40 27.242 35.715 27.242 15.721 22.293 12.864 22.293 32.854"/>
+</svg>

@@ -6,11 +6,12 @@ import { StandardProps } from '@toptal/picasso-shared'
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import styles from './styles'
 const BASE_SIZE = 32
+
 type ScaleType = 1 | 2 | 3 | 4
 export interface Props extends StandardProps {
-  scale?: ScaleType
-  color?: string
-  base?: number
+  scale?: ScaleType;
+  color?: string;
+  base?: number;
 }
 const SvgAch32 = forwardRef(function SvgAch32(
   props: Props,
@@ -37,6 +38,7 @@ const SvgAch32 = forwardRef(function SvgAch32(
     minHeight: `${scaledSize}px`,
     ...style
   }
+
   return (
     <svg
       viewBox='0 0 32 32'
@@ -48,5 +50,6 @@ const SvgAch32 = forwardRef(function SvgAch32(
     </svg>
   )
 })
+
 SvgAch32.displayName = 'SvgAch32'
 export default withStyles(styles)(SvgAch32)

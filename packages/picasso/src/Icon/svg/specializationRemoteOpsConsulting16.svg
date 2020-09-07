@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <style>.cls-1{fill:none;stroke:#204ecf;stroke-linecap:round;stroke-linejoin:round;}</style>
+  </defs>
+  <title>Remote Ops Consulting</title>
+  <path class="cls-1" d="M20,27.0169l-5.7114,5.7114a8.077,8.077,0,0,1-11.4228,0h0a8.0772,8.0772,0,0,1,0-11.4228h0a8.0772,8.0772,0,0,1,11.4228,0l3.3465,3.3465"/>
+  <path class="cls-1" d="M20,27.0169l5.7114-5.7114a8.0772,8.0772,0,0,1,11.4228,0h0a8.0772,8.0772,0,0,1,0,11.4228h0a8.077,8.077,0,0,1-11.4228,0l-3.3465-3.3465"/>
+  <path class="cls-1" d="M9.1706,9.3916a15.3151,15.3151,0,0,1,21.6588,0"/>
+  <path class="cls-1" d="M12.5152,12.7355a10.5883,10.5883,0,0,1,14.97,0"/>
+  <path class="cls-1" d="M15.8605,16.08a5.8587,5.8587,0,0,1,8.2807,0"/>
+</svg>

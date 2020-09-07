@@ -9,9 +9,9 @@ const BASE_SIZE = 16
 
 type ScaleType = 1 | 2 | 3 | 4
 export interface Props extends StandardProps {
-  scale?: ScaleType
-  color?: string
-  base?: number
+  scale?: ScaleType;
+  color?: string;
+  base?: number;
 }
 const SvgTimesheet16 = forwardRef(function SvgTimesheet16(
   props: Props,

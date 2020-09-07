@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <style>.cls-1{fill:none;stroke:#204ecf;stroke-linecap:round;stroke-linejoin:round;}</style>
+  </defs>
+  <title>Artificial Intelegence</title>
+  <polyline class="cls-1" points="20 3.714 16.546 0.5 6.645 6.286 6.645 11.429 2.5 14.143 2.5 20 2.5 25.857 6.645 28.571 6.645 33.714 16.546 39.5 20 36.286"/>
+  <polyline class="cls-1" points="10.505 14.143 10.505 20 10.505 25.857"/>
+  <polyline class="cls-1" points="12.04 7.214 15.187 10.143 15.187 20"/>
+  <polyline class="cls-1" points="12.04 32.786 15.187 29.857 15.187 20"/>
+  <line class="cls-1" x1="5.2861" y1="20" x2="10.5054" y2="20"/>
+  <polyline class="cls-1" points="20 16.054 20 3.714 23.454 0.5 33.355 6.286 33.355 11.429 37.5 14.143 37.5 20 37.5 25.857 33.355 28.571 33.355 33.714 23.454 39.5 20 36.286 20 23.946"/>
+  <polyline class="cls-1" points="29.495 14.143 29.495 20 29.495 25.857"/>
+  <polyline class="cls-1" points="27.96 7.214 24.813 10.143 24.813 20"/>
+  <polyline class="cls-1" points="27.96 32.786 24.813 29.857 24.813 20"/>
+  <line class="cls-1" x1="34.7139" y1="20" x2="29.4946" y2="20"/>
+  <line class="cls-1" x1="24.8126" y1="20" x2="15.1874" y2="20"/>
+</svg>

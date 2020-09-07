@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <style>.cls-1{fill:none;stroke:#204ecf;stroke-linecap:round;stroke-linejoin:round;}</style>
+  </defs>
+  <title>DevOps</title>
+  <path class="cls-1" d="M21.2534,23.76l2.685,2.6851a9.1152,9.1152,0,1,0,0-12.89l-2.1246,2.1246L20,17.4932,17.4933,20l-.8713.8713-3.0672,3.0672a5.57,5.57,0,1,1,0-7.877L16.24,18.7466"/>
+  <path class="cls-1" d="M18.7467,16.24l-2.6851-2.6851a9.1156,9.1156,0,1,0,0,12.89L18.84,23.6668l1.16-1.16L22.5068,20l1.5251-1.525,2.4134-2.4135a5.57,5.57,0,1,1,0,7.877L23.76,21.2534"/>
+  <path class="cls-1" d="M37.5248,11.4907A19.4671,19.4671,0,0,0,2.4779,11.485"/>
+  <path class="cls-1" d="M2.4773,28.5139a19.4672,19.4672,0,0,0,35.0449.0009"/>
+</svg>

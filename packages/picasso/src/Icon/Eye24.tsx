@@ -6,11 +6,12 @@ import { StandardProps } from '@toptal/picasso-shared'
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import styles from './styles'
 const BASE_SIZE = 24
+
 type ScaleType = 1 | 2 | 3 | 4
 export interface Props extends StandardProps {
-  scale?: ScaleType
-  color?: string
-  base?: number
+  scale?: ScaleType;
+  color?: string;
+  base?: number;
 }
 const SvgEye24 = forwardRef(function SvgEye24(
   props: Props,
@@ -37,6 +38,7 @@ const SvgEye24 = forwardRef(function SvgEye24(
     minHeight: `${scaledSize}px`,
     ...style
   }
+
   return (
     <svg
       viewBox='0 0 24 24'
@@ -48,5 +50,6 @@ const SvgEye24 = forwardRef(function SvgEye24(
     </svg>
   )
 })
+
 SvgEye24.displayName = 'SvgEye24'
 export default withStyles(styles)(SvgEye24)

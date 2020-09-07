@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <style>.cls-1{fill:none;stroke:#204ecf;stroke-linecap:round;stroke-linejoin:round;}</style>
+  </defs>
+  <title>Finance Specialist</title>
+  <polyline class="cls-1" points="18.452 35.786 18.452 9.167 12.262 9.167 12.262 35.786"/>
+  <polyline class="cls-1" points="7.929 35.786 7.929 17.833 1.738 17.833 1.738 35.786"/>
+  <line class="cls-1" x1="0.5" y1="39.5" x2="23.4048" y2="39.5"/>
+  <polyline class="cls-1" points="22.786 23.915 22.786 0.5 28.976 0.5 28.976 19.895"/>
+  <circle class="cls-1" cx="30.8333" cy="30.8333" r="8.6667"/>
+  <path class="cls-1" d="M32.6905,28.9762h0a1.8572,1.8572,0,0,0-1.8572-1.8572H30.775a1.7988,1.7988,0,0,0-1.7988,1.7988h0a1.7988,1.7988,0,0,0,1.23,1.7065l1.2544.4181a1.7988,1.7988,0,0,1,1.23,1.7065h0a1.7988,1.7988,0,0,1-1.7988,1.7987h-.0584a1.8572,1.8572,0,0,1-1.8571-1.8571h0"/>
+  <line class="cls-1" x1="30.8333" y1="35.7857" x2="30.8333" y2="34.5476"/>
+  <line class="cls-1" x1="30.8333" y1="27.119" x2="30.8333" y2="25.881"/>
+</svg>

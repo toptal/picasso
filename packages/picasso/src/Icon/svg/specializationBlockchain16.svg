@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <style>.cls-1{fill:none;stroke:#204ecf;stroke-linecap:round;stroke-linejoin:round;}</style>
+  </defs>
+  <title>Blockchain Developer</title>
+  <polyline class="cls-1" points="0.5 17.185 5.375 20 10.25 17.185"/>
+  <line class="cls-1" x1="5.375" y1="20" x2="5.375" y2="25.6292"/>
+  <polyline class="cls-1" points="10.25 20.505 10.25 17.185 5.375 14.371 0.5 17.185 0.5 22.815 5.375 25.629 8.25 23.969"/>
+  <line class="cls-1" x1="7.8125" y1="21.4073" x2="13.125" y2="24.4748"/>
+  <polyline class="cls-1" points="39.5 17.185 34.625 20 29.75 17.185"/>
+  <line class="cls-1" x1="34.625" y1="20" x2="34.625" y2="25.6292"/>
+  <polyline class="cls-1" points="31.75 23.969 34.625 25.629 39.5 22.815 39.5 17.185 34.625 14.371 29.75 17.185 29.75 20.505"/>
+  <line class="cls-1" x1="32.1875" y1="21.4073" x2="26.875" y2="24.4748"/>
+  <polyline class="cls-1" points="24.875 8.742 20 11.556 15.125 8.742"/>
+  <line class="cls-1" x1="20" y1="11.5563" x2="20" y2="17.1854"/>
+  <line class="cls-1" x1="17.5625" y1="12.9636" x2="12.6875" y2="15.7781"/>
+  <polygon class="cls-1" points="15.125 31.258 15.125 25.629 20 22.815 24.875 25.629 24.875 31.258 20 34.073 15.125 31.258"/>
+  <polyline class="cls-1" points="24.875 25.629 20 28.444 15.125 25.629"/>
+  <line class="cls-1" x1="20" y1="28.4438" x2="20" y2="34.0729"/>
+  <line class="cls-1" x1="7.8125" y1="18.5927" x2="12.6875" y2="15.7781"/>
+  <polyline class="cls-1" points="24.875 12.062 24.875 8.742 20 5.927 15.125 8.742 15.125 12.062"/>
+  <polyline class="cls-1" points="17.124 15.525 20 17.185 22.876 15.525"/>
+  <line class="cls-1" x1="22.4375" y1="12.9636" x2="27.3125" y2="15.7781"/>
+  <line class="cls-1" x1="27.3125" y1="15.7781" x2="32.1875" y2="18.5927"/>
+  <polyline class="cls-1" points="35 5 35 0.5 5 0.5 5 5"/>
+  <polyline class="cls-1" points="5 35 5 39.5 35 39.5 35 35"/>
+</svg>

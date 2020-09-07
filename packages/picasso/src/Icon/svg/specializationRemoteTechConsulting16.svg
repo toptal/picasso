@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <style>.cls-1{fill:none;stroke:#204ecf;stroke-linecap:round;stroke-linejoin:round;}</style>
+  </defs>
+  <title>Remote Tech Consulting</title>
+  <path class="cls-1" d="M24.7536,34.9465a10.4281,10.4281,0,0,1,14.7475,0"/>
+  <path class="cls-1" d="M27.031,37.2233a7.2094,7.2094,0,0,1,10.1931,0"/>
+  <path class="cls-1" d="M29.3088,39.5a3.9891,3.9891,0,0,1,5.6383,0"/>
+  <polyline class="cls-1" points="8.098 9.886 17.968 9.886 17.968 16.51"/>
+  <polyline class="cls-1" points="20.75 4.454 20.75 14.589 24.062 14.589 24.062 19.292"/>
+  <polyline class="cls-1" points="26.579 6.839 26.579 17.504 31.481 17.504"/>
+  <polyline class="cls-1" points="29.891 24.856 19.757 24.856 19.757 30.222"/>
+  <polyline class="cls-1" points="16.444 31.547 16.444 26.247 7.966 26.247"/>
+  <polyline class="cls-1" points="4.521 18.365 11.543 18.365 11.543 22.803 16.577 22.803"/>
+  <line class="cls-1" x1="4.6536" y1="14.1915" x2="10.814" y2="14.1915"/>
+  <circle class="cls-1" cx="12.0339" cy="14.1915" r="1.2199"/>
+  <circle class="cls-1" cx="17.968" cy="17.7298" r="1.2199"/>
+  <circle class="cls-1" cx="24.0622" cy="20.512" r="1.2199"/>
+  <circle class="cls-1" cx="17.7969" cy="22.8028" r="1.2199"/>
+  <path class="cls-1" d="M31.3354,29.308A17.4851,17.4851,0,1,0,18.0011,35.5a17.168,17.168,0,0,0,3.7122-.4072"/>
+</svg>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <style>.cls-1{fill:none;stroke:#204ecf;stroke-linecap:round;stroke-linejoin:round;}</style>
+  </defs>
+  <title>Data Science</title>
+  <ellipse class="cls-1" cx="20" cy="20" rx="9" ry="19.5"/>
+  <ellipse class="cls-1" cx="20" cy="20" rx="9" ry="19.5" transform="translate(-7.3205 27.3205) rotate(-60)"/>
+  <ellipse class="cls-1" cx="20" cy="20" rx="19.5" ry="9" transform="translate(-7.3205 12.6795) rotate(-30)"/>
+  <path class="cls-1" d="M24,20c0,.5523-1.7909,1-4,1s-4-.4477-4-1"/>
+  <path class="cls-1" d="M16,17v6c0,.5523,1.7909,1,4,1s4-.4477,4-1V17"/>
+  <ellipse class="cls-1" cx="20" cy="17" rx="4" ry="1"/>
+</svg>
