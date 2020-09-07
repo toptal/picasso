@@ -32,7 +32,7 @@
     "react-modal-hook": "^3.0.0"
   },
   "devDependencies": {
-    "@types/classnames": "^2.2.9",
+    "@types/classnames": "^2.2.10",
     "@types/color": "^3.0.1"
   },
   "sideEffects": [
