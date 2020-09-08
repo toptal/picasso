@@ -32,14 +32,8 @@ afterEach(() => {
   spiedOnTitleCase.mockReset()
 })
 
-test('renders `white` variant', () => {
+test('renders Badge', () => {
   const { container } = renderBadge('Badge content', {})
-
-  expect(container).toMatchSnapshot()
-})
-
-test('renders `red` variant', () => {
-  const { container } = renderBadge('Badge content', { variant: 'red' })
 
   expect(container).toMatchSnapshot()
 })

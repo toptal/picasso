@@ -1,25 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders \`red\` variant 1`] = `
-<div>
-  <div
-    class="Picasso-root"
-  >
-    <span
-      class="MuiBadge-root"
-    >
-      abc
-      <span
-        class="MuiBadge-badge MuiBadge-anchorOriginTopRightRectangle PicassoBadge-root PicassoBadge-red PicassoBadge-medium"
-      >
-        Badge content
-      </span>
-    </span>
-  </div>
-</div>
-`;
-
-exports[`renders \`white\` variant 1`] = `
+exports[`renders Badge 1`] = `
 <div>
   <div
     class="Picasso-root"
