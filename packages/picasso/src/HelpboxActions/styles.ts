@@ -4,8 +4,8 @@ export default () =>
   createStyles({
     root: {
       position: 'absolute',
-      right: '2rem',
-      top: '2rem'
+      right: '1.5rem',
+      top: '1.5rem'
     },
     rootCloseable: {
       right: '4rem'

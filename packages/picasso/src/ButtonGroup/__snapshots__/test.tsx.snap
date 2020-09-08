@@ -9,7 +9,7 @@ exports[`ButtonGroup render 1`] = `
       class="ButtonGroup-root"
     >
       <button
-        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root ButtonGroup-button"
+        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root ButtonGroup-button"
         tabindex="0"
         type="button"
       >
@@ -18,7 +18,7 @@ exports[`ButtonGroup render 1`] = `
         />
       </button>
       <button
-        class="MuiButtonBase-root PicassoButton-active ButtonGroup-active PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root ButtonGroup-button"
+        class="MuiButtonBase-root PicassoButton-active ButtonGroup-active PicassoButton-medium PicassoButton-primary PicassoButton-root ButtonGroup-button"
         tabindex="0"
         type="button"
       >
@@ -27,7 +27,7 @@ exports[`ButtonGroup render 1`] = `
         />
       </button>
       <button
-        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root ButtonGroup-button"
+        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root ButtonGroup-button"
         tabindex="0"
         type="button"
       >

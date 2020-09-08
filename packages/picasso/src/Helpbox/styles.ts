@@ -7,8 +7,8 @@ export default () =>
     },
     closeButton: {
       position: 'absolute',
-      top: '0.875em',
-      right: '0.875em',
+      top: '1.5em',
+      right: '1.5em',
       background: 'transparent',
       border: 0,
       padding: 0,

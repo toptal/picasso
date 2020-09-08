@@ -52,10 +52,9 @@ const SmallScreenSidebarWrapper: FunctionComponent<SmallScreenSidebarWrapperProp
       onOpen={handleShowSidebar}
       onClose={handleHideSidebar}
     >
-      <Button
+      <Button.Circular
         icon={showSidebar ? <Close16 /> : <Overview16 />}
-        circular
-        variant='flat-white'
+        variant='transparent'
       />
     </Dropdown>
   )
