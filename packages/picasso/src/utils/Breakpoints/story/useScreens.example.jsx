@@ -11,14 +11,13 @@ const Example = () => {
         The button below will use:
         <ul>
           <li>
-            <strong>secondary-blue</strong> variant on small screens
+            <strong>secondary</strong> variant on small screens
           </li>
           <li>
-            <strong>primary-green</strong> variant on large screens
+            <strong>positive</strong> variant on large screens
           </li>
           <li>
-            <strong>primary-blue</strong> for all other screens (the default
-            value)
+            <strong>primary</strong> for all other screens (the default value)
           </li>
         </ul>
       </Typography>
@@ -26,18 +25,18 @@ const Example = () => {
       <Button
         variant={screens(
           {
-            small: 'secondary-blue',
-            large: 'primary-green'
+            small: 'secondary',
+            large: 'positive'
           },
-          'primary-blue'
+          'primary'
         )}
       >
         {screens(
           {
-            small: 'small (secondary-blue)',
-            large: 'large (primary-green)'
+            small: 'small (secondary)',
+            large: 'large (positive)'
           },
-          'default (primary-blue)'
+          'default (primary)'
         )}
       </Button>
     </>

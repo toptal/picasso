@@ -9,19 +9,22 @@ const Example = () => {
     <Container flex>
       <Container right={1}>
         <Button
-          variant='flat'
+          variant='secondary'
           onClick={() => showError('Some error text is here')}
         >
           Show error notification
         </Button>
       </Container>
       <Container right={1}>
-        <Button variant='flat' onClick={() => showSuccess('Success message')}>
+        <Button
+          variant='secondary'
+          onClick={() => showSuccess('Success message')}
+        >
           Show success notification
         </Button>
       </Container>
       <Button
-        variant='flat'
+        variant='secondary'
         onClick={() =>
           showInfo(
             "That's one small step for a man, one giant leap for mankind."

@@ -39,7 +39,7 @@ exports[`FormInput default render 1`] = `
         </div>
       </div>
       <button
-        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
+        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
         tabindex="0"
         type="submit"
       >

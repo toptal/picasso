@@ -23,7 +23,7 @@ const Example = () => (
       title='Onboarding'
       actionItems={
         <Container right='medium'>
-          <Button variant='secondary-white'>Create job</Button>
+          <Button variant='transparent'>Create job</Button>
         </Container>
       }
       leftContent={
