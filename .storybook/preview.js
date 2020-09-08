@@ -47,7 +47,7 @@ const reqStorybook = require.context(
 const reqPackagesComponents = require.context(
   '~/packages',
   true,
-  /story\/index.(jsx|tsx)$/
+  /\/*\/story\/index.(js|ts)x?$/
 )
 
 const loadStories = () => {
