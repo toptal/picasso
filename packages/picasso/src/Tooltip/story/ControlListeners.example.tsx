@@ -17,7 +17,7 @@ const TooltipControlListenersExample = () => {
 
   return (
     <div style={{ textAlign: 'center' }}>
-      <Button variant='flat' onClick={toggleListeners}>
+      <Button variant='secondary' onClick={toggleListeners}>
         {listenersEnabled ? 'Disable' : 'Enable'} listeners
       </Button>
       <Container top='large' bottom='large' left='large' right='large' inline>

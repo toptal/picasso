@@ -47,14 +47,14 @@ const ExpandableContent = () => (
       </UserBadge>
 
       <Container>
-        <Button variant='secondary-blue' size='small'>
+        <Button variant='secondary' size='small'>
           Q &amp; A
         </Button>
-        <Button variant='secondary-blue' size='small'>
+        <Button variant='secondary' size='small'>
           Timeline
         </Button>
         <Button size='small'>Contact Company</Button>
-        <Button circular variant='flat' size='small' icon={<More16 />} />
+        <Button.Circular variant='flat' icon={<More16 />} />
       </Container>
     </Container>
 
@@ -104,11 +104,9 @@ const TableWithExpandableRows = () => {
             <Table.Cell>{time}</Table.Cell>
             <Table.Cell align='center'>{assignee}</Table.Cell>
             <Table.Cell align='center'>
-              <Button circular variant='flat' size='small' icon={<Star16 />} />
-              <Button
-                circular
+              <Button.Circular variant='flat' icon={<Star16 />} />
+              <Button.Circular
                 variant='flat'
-                size='small'
                 icon={<StyledArrowDownMinor16 expanded={expandedData[id]} />}
                 data-testid={`expand-button-${id}`}
                 onClick={() => handleExpandClick(id)}

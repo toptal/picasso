@@ -6,7 +6,6 @@ import React, {
   ElementType
 } from 'react'
 import cx from 'classnames'
-import { makeStyles, Theme } from '@material-ui/core/styles'
 import ButtonBase from '@material-ui/core/ButtonBase'
 import {
   BaseProps,
@@ -15,30 +14,25 @@ import {
   CompoundedComponentWithRef,
   OverridableComponent,
   useTitleCase,
-  TextLabelProps
+  TextLabelProps,
+  Classes
 } from '@toptal/picasso-shared'
 
+// Keep it above because of order of makeStyles calls
+// https://material-ui.com/styles/advanced/#makestyles-withstyles-styled
+import useStyles from './styles'
 import Loader from '../Loader'
 import Container from '../Container'
 import Group from '../ButtonGroup'
-import kebabToCamelCase from '../utils/kebab-to-camel-case'
+import Circular from '../ButtonCircular'
 import toTitleCase from '../utils/to-title-case'
-import styles from './styles'
 
 export type VariantType =
-  | 'primary-blue'
-  | 'secondary-blue'
-  | 'primary-red'
-  | 'secondary-red'
-  | 'primary-green'
-  | 'secondary-green'
-  | 'flat'
-  | 'flat-white'
-  | 'secondary-white'
+  | 'primary'
+  | 'negative'
+  | 'positive'
+  | 'secondary'
   | 'transparent'
-  | 'transparent-white'
-  | 'transparent-blue'
-  | 'transparent-green'
 
 export type IconPositionType = 'left' | 'right'
 
@@ -71,8 +65,6 @@ export interface Props extends BaseProps, TextLabelProps, ButtonOrAnchorProps {
   variant?: VariantType
   /** HTML Value of Button component */
   value?: string | number
-  /** Circular style of Button component */
-  circular?: boolean
   /** HTML title of Button component */
   title?: string
   /** HTML type of Button component */
@@ -81,17 +73,38 @@ export interface Props extends BaseProps, TextLabelProps, ButtonOrAnchorProps {
 
 export interface StaticProps {
   Group: typeof Group
+  Circular: typeof Circular
 }
-
-const getVariantType = (variant: VariantType) => {
-  const [type] = variant!.split('-')
-
-  return type
-}
-
-const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoButton' })
 
 const defaultOnClick = () => {}
+
+const getClickHandler = (loading?: boolean, handler?: Props['onClick']) =>
+  loading ? defaultOnClick : handler
+
+const getIcon = (
+  classes: Classes,
+  children: ReactNode,
+  icon?: ReactElement,
+  iconPosition?: IconPositionType
+) => {
+  if (!icon) {
+    return null
+  }
+
+  const {
+    icon: iconClass,
+    iconLeft: iconLeftClass,
+    iconRight: iconRightClass
+  } = classes
+
+  return React.cloneElement(icon, {
+    className: cx(iconClass, icon.props.className, {
+      [iconLeftClass]: children && iconPosition === 'left',
+      [iconRightClass]: children && iconPosition === 'right'
+    }),
+    key: 'button-icon'
+  })
+}
 
 export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
   props,
@@ -112,7 +125,6 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     disabled,
     active,
     onClick,
-    circular,
     title,
     value,
     type,
@@ -123,9 +135,6 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
   const classes = useStyles(props)
 
   const {
-    icon: iconClass,
-    iconLeft: iconLeftClass,
-    iconRight: iconRightClass,
     root: rootClass,
     hidden: hiddenClass,
     loader: loaderClass,
@@ -137,13 +146,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
   const finalChildren = [titleCase ? toTitleCase(children) : children]
 
   if (icon) {
-    const iconComponent = React.cloneElement(icon, {
-      className: cx(iconClass, icon.props.className, {
-        [iconLeftClass]: children && iconPosition === 'left',
-        [iconRightClass]: children && iconPosition === 'right'
-      }),
-      key: 'button-icon'
-    })
+    const iconComponent = getIcon(classes, children, icon, iconPosition)
 
     if (iconPosition === 'left') {
       finalChildren.unshift(iconComponent)
@@ -152,10 +155,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     }
   }
 
-  const variantType = getVariantType(variant!)
-  const variantClassName = disabled
-    ? classes[`${variantType}Disabled`]
-    : classes[kebabToCamelCase(variant!)]
+  const variantClassName = classes[variant!]
   const sizeClassName = classes[size!]
 
   const rootClassName = cx(
@@ -164,7 +164,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
       [classes.active]: active,
       [classes.focused]: focused,
       [classes.hovered]: hovered,
-      [classes.circular]: circular
+      [classes.disabled]: disabled
     },
     sizeClassName,
     variantClassName,
@@ -177,9 +177,10 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
       {...rest}
       ref={ref}
       classes={{
-        root: rootClassName
+        root: rootClassName,
+        focusVisible: cx(classes.focusVisible)
       }}
-      onClick={loading ? defaultOnClick : onClick}
+      onClick={getClickHandler(loading, onClick)}
       className={className}
       style={style}
       disabled={disabled}
@@ -210,7 +211,6 @@ Button.defaultProps = {
   active: false,
   as: 'button',
   children: null,
-  circular: false,
   disabled: false,
   focused: false,
   fullWidth: false,
@@ -220,11 +220,12 @@ Button.defaultProps = {
   onClick: defaultOnClick,
   size: 'medium',
   type: 'button',
-  variant: 'primary-blue'
+  variant: 'primary'
 }
 
 Button.displayName = 'Button'
 
 Button.Group = Group
+Button.Circular = Circular
 
 export default Button as OverridableComponent<Props> & StaticProps

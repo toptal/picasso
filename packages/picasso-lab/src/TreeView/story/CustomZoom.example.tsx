@@ -185,18 +185,10 @@ const CustomZoom: FC = () => {
 
   return (
     <Container>
-      <Button
-        size='medium'
-        variant='primary-green'
-        onClick={() => zoomHandler(0.3)}
-      >
+      <Button size='medium' variant='positive' onClick={() => zoomHandler(0.3)}>
         &minus;
       </Button>
-      <Button
-        size='medium'
-        variant='primary-green'
-        onClick={() => zoomHandler(1.3)}
-      >
+      <Button size='medium' variant='positive' onClick={() => zoomHandler(1.3)}>
         +
       </Button>
     </Container>

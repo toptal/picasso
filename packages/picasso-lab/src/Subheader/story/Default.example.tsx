@@ -31,13 +31,13 @@ const DefaultExample = () => {
       <Subheader.Main>
         <Subheader.Title>Heading Large</Subheader.Title>
         <Subheader.Actions>
-          <Button size='small' variant='secondary-blue'>
+          <Button size='small' variant='secondary'>
             Button
           </Button>
-          <Button size='small' variant='secondary-blue'>
+          <Button size='small' variant='secondary'>
             Button
           </Button>
-          <Button size='small' variant='secondary-blue'>
+          <Button size='small' variant='secondary'>
             Button
           </Button>
         </Subheader.Actions>
