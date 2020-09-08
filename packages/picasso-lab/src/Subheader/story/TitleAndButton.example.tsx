@@ -7,7 +7,7 @@ const TitleAndButtonExample = () => (
     <Subheader.Main>
       <Subheader.Title>Heading Large</Subheader.Title>
       <Subheader.Actions>
-        <Button variant='secondary-blue' size='small'>
+        <Button variant='secondary' size='small'>
           Button
         </Button>
       </Subheader.Actions>

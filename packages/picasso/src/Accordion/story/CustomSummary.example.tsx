@@ -28,7 +28,7 @@ const Summary = ({
     </Typography>
     <Container>
       <Button
-        variant='flat'
+        variant='secondary'
         icon={
           <Transitions.Rotate180 on={expanded}>
             <ArrowDownMinor16 />
@@ -38,7 +38,7 @@ const Summary = ({
       >
         {expanded ? 'Hide' : 'Show'}
       </Button>
-      <Button variant='transparent' icon={<Drag16 />} />
+      <Button.Circular variant='flat' icon={<Drag16 />} />
     </Container>
   </Container>
 )

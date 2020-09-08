@@ -81,12 +81,10 @@ const ResetButton = ({
       [classes.resetButtonDirty]: hasValue
     })}
   >
-    <Button
+    <Button.Circular
       tabIndex={-1}
       icon={<CloseMinor16 />}
-      circular
       variant='transparent'
-      size='small'
       role='reset'
       onClick={onClick}
       onFocus={(
