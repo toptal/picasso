@@ -1,6 +1,6 @@
 import React from 'react'
-import { Tabs, Button } from '@toptal/picasso'
-import { Subheader } from '@toptal/picasso-lab'
+import { Tabs, Button, Link } from '@toptal/picasso'
+import { Subheader, Breadcrumbs } from '@toptal/picasso-lab'
 
 const DefaultExample = () => {
   const [value, setValue] = React.useState(0)
@@ -11,7 +11,23 @@ const DefaultExample = () => {
 
   return (
     <Subheader>
-      <Subheader.Breadcrumb />
+      <Breadcrumbs>
+        <Breadcrumbs.Item
+          as={Link}
+          href='https://en.wikipedia.org/wiki/United_States'
+        >
+          USA
+        </Breadcrumbs.Item>
+        <Breadcrumbs.Item
+          as={Link}
+          href='https://en.wikipedia.org/wiki/Software'
+        >
+          Software
+        </Breadcrumbs.Item>
+        <Breadcrumbs.Item as={Link} href='https://toptal.com'>
+          Toptal
+        </Breadcrumbs.Item>
+      </Breadcrumbs>
       <Subheader.Main>
         <Subheader.Title>Heading Large</Subheader.Title>
         <Subheader.Actions>
