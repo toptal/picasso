@@ -57,7 +57,7 @@ exports[`renders PromptModal 1`] = `
           class="ModalActions-root"
         >
           <button
-            class="MuiButtonBase-root PicassoButton-medium PicassoButton-flat PicassoButton-root"
+            class="MuiButtonBase-root PicassoButton-medium PicassoButton-secondary PicassoButton-root"
             tabindex="0"
             type="button"
           >
@@ -68,7 +68,7 @@ exports[`renders PromptModal 1`] = `
             </span>
           </button>
           <button
-            class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryGreen PicassoButton-root"
+            class="MuiButtonBase-root PicassoButton-medium PicassoButton-root"
             tabindex="0"
             type="button"
           >
@@ -98,7 +98,7 @@ exports[`showPrompt opens and closes modal on Submit action 1`] = `
       class="Picasso-root"
     >
       <button
-        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
+        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
         tabindex="0"
         type="button"
       >
@@ -124,7 +124,7 @@ exports[`showPrompt opens and closes modal on Submit action 2`] = `
     >
       <button
         aria-hidden="true"
-        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
+        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
         tabindex="0"
         type="button"
       >
@@ -180,7 +180,7 @@ exports[`showPrompt opens and closes modal on Submit action 2`] = `
               class="ModalActions-root"
             >
               <button
-                class="MuiButtonBase-root PicassoButton-medium PicassoButton-flat PicassoButton-root"
+                class="MuiButtonBase-root PicassoButton-medium PicassoButton-secondary PicassoButton-root"
                 tabindex="0"
                 type="button"
               >
@@ -191,7 +191,7 @@ exports[`showPrompt opens and closes modal on Submit action 2`] = `
                 </span>
               </button>
               <button
-                class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryGreen PicassoButton-root"
+                class="MuiButtonBase-root PicassoButton-medium PicassoButton-root"
                 tabindex="0"
                 type="button"
               >
@@ -225,7 +225,7 @@ exports[`showPrompt opens and closes modal on Submit action 3`] = `
     >
       <button
         aria-hidden="true"
-        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
+        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
         tabindex="0"
         type="button"
       >
@@ -281,7 +281,7 @@ exports[`showPrompt opens and closes modal on Submit action 3`] = `
               class="ModalActions-root"
             >
               <button
-                class="MuiButtonBase-root PicassoButton-medium-8 PicassoButton-flat-17 PicassoButton-root-4"
+                class="MuiButtonBase-root PicassoButton-medium-8 PicassoButton-secondary-13 PicassoButton-root-4"
                 tabindex="0"
                 type="button"
               >
@@ -292,12 +292,12 @@ exports[`showPrompt opens and closes modal on Submit action 3`] = `
                 </span>
               </button>
               <button
-                class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryGreen PicassoButton-root"
+                class="MuiButtonBase-root PicassoButton-medium PicassoButton-root"
                 tabindex="0"
                 type="button"
               >
                 <span
-                  class="Container-centerAlignItems-73 Container-flex-37 Container-inline-39 PicassoButton-content-5"
+                  class="Container-centerAlignItems-63 Container-flex-27 Container-inline-29 PicassoButton-content-5"
                 >
                   Submit
                 </span>
@@ -326,7 +326,7 @@ exports[`showPrompt with input returns result on Submit action  1`] = `
     >
       <button
         aria-hidden="true"
-        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root"
+        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
         tabindex="0"
         type="button"
       >
@@ -411,7 +411,7 @@ exports[`showPrompt with input returns result on Submit action  1`] = `
               class="ModalActions-root"
             >
               <button
-                class="MuiButtonBase-root PicassoButton-medium PicassoButton-flat PicassoButton-root"
+                class="MuiButtonBase-root PicassoButton-medium PicassoButton-secondary PicassoButton-root"
                 tabindex="0"
                 type="button"
               >
@@ -422,7 +422,7 @@ exports[`showPrompt with input returns result on Submit action  1`] = `
                 </span>
               </button>
               <button
-                class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryGreen PicassoButton-root"
+                class="MuiButtonBase-root PicassoButton-medium PicassoButton-root"
                 tabindex="0"
                 type="button"
               >

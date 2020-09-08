@@ -9,12 +9,12 @@ const chapter = PicassoBook.connectToPage(page =>
     )
     .addExample('ButtonGroup/story/ButtonGroup.example.jsx', 'Button group')
     .addExample('ButtonGroup/story/ButtonGroupWithSecondaryBlue.example.jsx', {
-      title: 'Button Group With Secondary Blue'
+      title: 'Button Group With Secondary'
     })
     .addExample(
       'ButtonGroup/story/ButtonGroupWithActiveSecondaryBlue.example.jsx',
       {
-        title: 'Button Group With Active Secondary Blue'
+        title: 'Button Group With Active Secondary'
       }
     )
 )

@@ -7,13 +7,13 @@ const WithRightPaddingExample = () => (
     <Subheader.Main>
       <Subheader.Title>Heading Large</Subheader.Title>
       <Subheader.Actions>
-        <Button size='small' variant='secondary-blue'>
+        <Button size='small' variant='secondary'>
           Button
         </Button>
-        <Button size='small' variant='secondary-red'>
+        <Button size='small' variant='negative'>
           Reject
         </Button>
-        <Button size='small' variant='primary-green'>
+        <Button size='small' variant='positive'>
           Accept
         </Button>
       </Subheader.Actions>

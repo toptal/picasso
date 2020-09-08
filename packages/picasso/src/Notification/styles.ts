@@ -14,7 +14,8 @@ PicassoProvider.override(() => ({
 
 export default ({
   palette: { red, green, yellow, common, text },
-  shadows
+  shadows,
+  sizes: { borderRadius }
 }: Theme) =>
   createStyles({
     notification: {
@@ -31,7 +32,7 @@ export default ({
       boxShadow: shadows[3]
     },
     roundedBorders: {
-      borderRadius: '.25em'
+      borderRadius: borderRadius.small
     },
     notificationRed: {
       background: red.lighter
@@ -69,8 +70,8 @@ export default ({
 
     close: {
       position: 'absolute',
-      right: '.25em',
-      top: '.25em',
+      right: '.75em',
+      top: '.75em',
       background: 'transparent',
       border: 0,
       padding: 0,

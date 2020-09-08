@@ -3,7 +3,15 @@ import { Button } from '@toptal/picasso'
 
 const Example = () => (
   <div>
-    <Button loading>Default</Button>
+    <Button size='small' loading>
+      Button
+    </Button>
+    <Button size='medium' loading>
+      Button
+    </Button>
+    <Button size='large' loading>
+      Button
+    </Button>
   </div>
 )
 
