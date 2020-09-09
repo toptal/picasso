@@ -5,6 +5,7 @@ const renderLabel = val => {
   let formattedVal = String(val)
 
   formattedVal = formattedVal.length === 2 ? formattedVal : '0' + formattedVal
+
   return <Typography color='inherit'>GMT+{formattedVal}:00</Typography>
 }
 
@@ -28,6 +29,7 @@ const Example = () => {
           onChange={handleChange}
           tooltip='on'
           tooltipFormat={renderLabel}
+          compact
         />
       </Container>
     </Container>

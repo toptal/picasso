@@ -30,6 +30,7 @@ const renderAutocomplete = (
 }
 
 let spiedOnTitleCase: jest.SpyInstance
+
 beforeEach(() => {
   spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
 })
@@ -115,13 +116,14 @@ describe('Autocomplete', () => {
       const input = getByPlaceholderText(placeholder) as HTMLInputElement
 
       fireEvent.focus(input)
+
       fireEvent.click(getByText('Slovakia'))
 
       const optionSlovakia = testOptions.find(
         option => option.text === 'Slovakia'
       )
 
-      expect(onSelect).toBeCalledWith(optionSlovakia)
+      expect(onSelect).toBeCalledWith(optionSlovakia, expect.anything())
       expect(onChange).toBeCalledWith('Slovakia', { isSelected: true })
     })
 
@@ -233,7 +235,10 @@ describe('Autocomplete', () => {
           key: 'Enter'
         })
 
-        expect(onOtherOptionSelect).toBeCalledWith('Other option!')
+        expect(onOtherOptionSelect).toBeCalledWith(
+          'Other option!',
+          expect.anything()
+        )
       })
     })
   })
@@ -310,6 +315,7 @@ describe('Autocomplete', () => {
     )
 
     const input = getByPlaceholderText(placeholder)
+
     fireEvent.focus(input)
 
     expect(spiedOnTitleCase).toBeCalledTimes(0)

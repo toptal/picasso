@@ -22,3 +22,4 @@ page
   })
   .addExample('TreeView/story/Modal.example.tsx', 'With Modal')
   .addExample('TreeView/story/CustomZoom.example.tsx', 'Custom Zoom')
+  .addExample('TreeView/story/AvatarSize.example.tsx', 'Avatar Size')
