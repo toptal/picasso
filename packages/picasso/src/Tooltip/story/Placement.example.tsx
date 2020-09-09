@@ -1,6 +1,8 @@
 import React from 'react'
 import { Tooltip, Button, Container } from '@toptal/picasso'
 
+import { PlacementType } from '../Tooltip'
+
 const placements = ['left', 'bottom', 'top', 'right']
 
 const Example = () => (
@@ -14,7 +16,12 @@ const Example = () => (
         right='large'
         inline
       >
-        <Tooltip arrow content='Content' open placement={placement}>
+        <Tooltip
+          arrow
+          content='Content'
+          open
+          placement={placement as PlacementType}
+        >
           <Button>{placement}</Button>
         </Tooltip>
       </Container>
