@@ -36,7 +36,6 @@
   },
   "homepage": "https://github.com/toptal/picasso#readme",
   "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/standalone": "^7.10.3",
     "@storybook/addon-viewport": "^5.3.18",
     "@storybook/react": "^5.3.18",
@@ -94,10 +93,7 @@
     "react-source-render": "^3.0.0-5",
     "react-storybook-addon-chapters": "^3.1.7",
     "regenerator-runtime": "^0.13.5",
-    "rimraf": "^3.0.0",
-    "semantic-release": "^15.13.12",
     "shelljs": "^0.8.4",
-    "simple-react-calendar": "^2.2.7",
     "storybook-readme": "^5.0.3",
     "styled-components": "5.0.1",
     "thread-loader": "^2.1.3",

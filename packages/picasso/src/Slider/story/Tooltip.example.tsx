@@ -1,10 +1,9 @@
 import React from 'react'
 import { Container, Slider, Typography } from '@toptal/picasso'
 
-const formatLabel = val => {
-  let formattedVal = String(val)
+const formatLabel = (val: any) => {
+  const formattedVal = val.length === 2 ? val : '0' + val
 
-  formattedVal = formattedVal.length === 2 ? formattedVal : '0' + formattedVal
   return <Typography color='inherit'>GMT+{formattedVal}:00</Typography>
 }
 
@@ -16,7 +15,7 @@ const Example = () => {
           Display persistently
         </Typography>
         <Container top='large'>
-          <Slider tooltip='on' />
+          <Slider tooltip='on' compact />
         </Container>
       </Container>
       <Container top='large'>
@@ -24,7 +23,7 @@ const Example = () => {
           Display when the thumb is hovered or focused
         </Typography>
         <Container top='large'>
-          <Slider tooltip='auto' />
+          <Slider tooltip='auto' compact />
         </Container>
       </Container>
       <Container top='large'>
@@ -32,7 +31,13 @@ const Example = () => {
           Custom rendered label
         </Typography>
         <Container top='large'>
-          <Slider min={0} max={23} tooltip='on' tooltipFormat={formatLabel} />
+          <Slider
+            min={0}
+            max={23}
+            tooltip='on'
+            tooltipFormat={formatLabel}
+            compact
+          />
         </Container>
       </Container>
     </Container>

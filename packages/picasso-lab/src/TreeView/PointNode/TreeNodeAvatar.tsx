@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import getNameInitials from '@toptal/picasso/utils/get-name-initials'
-import { JssProps } from '@toptal/picasso-shared'
+import { JssProps, SizeType } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
@@ -10,6 +10,8 @@ export interface Props {
   name: string
   /** Photo url */
   src?: string
+  /** A avatar can have different sizes */
+  size?: SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
@@ -35,12 +37,21 @@ const renderInitials = ({ src, name, classes }: Partial<Props> & JssProps) => {
   )
 }
 
+const sizeValues = {
+  xxsmall: '32',
+  xsmall: '40',
+  small: '80',
+  medium: '120',
+  large: '160'
+}
+
 export const TreeNodeAvatar: FC<Props> = props => {
   const classes = useStyles(props)
-  const { name, src } = props
+  const { name, src, size } = props
+  const sizeValue = sizeValues[size!]
 
   return (
-    <svg width='40' height='40'>
+    <svg width={sizeValue} height={sizeValue} viewBox='0 0 40 40'>
       <g>
         {src && (
           <image
@@ -62,3 +73,9 @@ export const TreeNodeAvatar: FC<Props> = props => {
     </svg>
   )
 }
+
+TreeNodeAvatar.defaultProps = {
+  size: 'xxsmall'
+}
+
+TreeNodeAvatar.displayName = 'TreeNodeAvatar'
