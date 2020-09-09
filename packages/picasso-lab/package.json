@@ -40,7 +40,7 @@
     "simple-react-calendar": "^2.2.8"
   },
   "devDependencies": {
-    "@types/classnames": "^2.2.9",
+    "@types/classnames": "^2.2.10",
     "@types/d3": "~5.7.2",
     "@types/detect-browser": "^4.0.0",
     "@types/react-input-mask": "^2.0.5"
