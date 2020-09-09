@@ -28,7 +28,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   children: ReactNode
 }
 
-interface StaticProps {
+export interface StaticProps {
   Head: typeof PageHead
   Header: typeof PageHeader
   HeaderMenu: typeof PageHeaderMenu

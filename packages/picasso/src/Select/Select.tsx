@@ -24,7 +24,11 @@ import { DropdownArrows16 } from '../Icon'
 import { isSubstring, disableUnsupportedProps } from '../utils'
 import { FeatureOptions } from '../utils/disable-unsupported-props'
 import { Option } from './types'
-import useSelect, { EMPTY_INPUT_VALUE, ItemProps } from './useSelect'
+import useSelect, {
+  EMPTY_INPUT_VALUE,
+  ItemProps,
+  FocusEventType
+} from './useSelect'
 import styles from './styles'
 import { documentable, forwardRef } from '../utils/forward-ref'
 
@@ -85,6 +89,8 @@ export interface Props<
   ) => void
   /** Callback invoked when filter input changed */
   onSearchChange?: (value: string) => void
+  /** Label to show when no options were found */
+  noOptionsText?: string
   /** List of options to be rendered as `Select` */
   options: Option<T>[]
   /** Callback responsible for rendering the option given the option and its index in the list of options */
@@ -128,11 +134,19 @@ type NativeOptionsProps = Pick<Props, 'options' | 'renderOption'> & {
 
 type OptionsProps = Pick<
   Props,
-  'options' | 'value' | 'multiple' | 'renderOption' | 'getDisplayValue' | 'size'
+  | 'options'
+  | 'value'
+  | 'multiple'
+  | 'renderOption'
+  | 'getDisplayValue'
+  | 'size'
+  | 'noOptionsText'
 > & {
   highlightedIndex: number | null
+  inputValue: string
   setHighlightedIndex: (index: number | null) => void
   getItemProps: (index: number, option: Option) => ItemProps
+  onBlur?: FocusEventType
   onItemSelect: (event: React.MouseEvent, option: Option) => void
 }
 
@@ -220,6 +234,7 @@ const SelectOption = React.memo(
 
           onItemSelect(event, option)
         }}
+        titleCase={false}
       >
         {children}
       </MenuItem>
@@ -271,6 +286,7 @@ const removeDuplicatedOptions = (options: Option[]) =>
     const innerIndex = options.findIndex(
       innerOption => innerOption.value === option.value
     )
+
     return innerIndex === index
   })
 
@@ -298,13 +314,27 @@ const renderOptions = ({
   setHighlightedIndex,
   onItemSelect,
   getItemProps,
+  onBlur,
   value,
   multiple,
-  size
+  size,
+  inputValue,
+  noOptionsText
 }: OptionsProps) => {
+  if (!options.length && inputValue) {
+    return (
+      <ScrollMenu>
+        <MenuItem titleCase={false} disabled>
+          {noOptionsText}
+        </MenuItem>
+      </ScrollMenu>
+    )
+  }
+
   const optionComponents = options.map((option, currentIndex) => {
     const { close, onMouseDown } = getItemProps(currentIndex, option)
     const selection = getSelection(options, value)
+
     return (
       <SelectOption
         key={option.key || option.value}
@@ -328,7 +358,9 @@ const renderOptions = ({
   })
 
   return (
-    <ScrollMenu selectedIndex={highlightedIndex}>{optionComponents}</ScrollMenu>
+    <ScrollMenu onBlur={onBlur} selectedIndex={highlightedIndex}>
+      {optionComponents}
+    </ScrollMenu>
   )
 }
 
@@ -350,6 +382,7 @@ export const Select = documentable(
         name,
         native,
         options: allOptions,
+        noOptionsText,
         renderOption,
         placeholder,
         disabled,
@@ -409,16 +442,25 @@ export const Select = documentable(
       )
 
       const prevValue = useRef(value)
+
       if (prevValue.current !== value) {
         const select = getSelection(
           removeDuplicatedOptions([...allOptions, ...selectedOptions]),
           value
         )
+
         setInputValue(select.display(getDisplayValue!))
         prevValue.current = value
       }
 
-      const handleFocus = () => {
+      const readOnlyInput = multiple || allOptions.length <= searchThreshold!
+
+      const handleFocus = (
+        event: React.FocusEvent<HTMLInputElement | HTMLDivElement>
+      ) => {
+        if (!readOnlyInput && 'select' in event.target) {
+          event.target.select()
+        }
         setFilterOptionsValue(EMPTY_INPUT_VALUE)
       }
 
@@ -459,6 +501,7 @@ export const Select = documentable(
         if (isInSelectedValues) {
           return value!.filter(value => value !== option.value)
         }
+
         return [...value, String(option.value)]
       }
       const handleSelect = useCallback(
@@ -503,6 +546,7 @@ export const Select = documentable(
       } = useSelect({
         value: inputValue,
         options,
+        disabled,
         onSelect: handleSelect,
         onChange: handleChange,
         onBlur: handleBlur,
@@ -593,13 +637,13 @@ export const Select = documentable(
         </NativeSelect>
       )
 
-      const readOnlyInput = multiple || allOptions.length <= searchThreshold!
+      const rootProps = getRootProps()
 
       const selectComponent = (
         <>
           <div
             /* eslint-disable-next-line react/jsx-props-no-spreading */
-            {...getRootProps()}
+            {...rootProps}
             className={classes.inputWrapper}
           >
             {!enableAutofill && !native && name && (
@@ -643,7 +687,7 @@ export const Select = documentable(
             />
             {dropDownIcon}
           </div>
-          {Boolean(options.length) && !disabled && (
+          {!disabled && (
             <Popper
               autoWidth
               width={menuWidth}
@@ -653,17 +697,21 @@ export const Select = documentable(
               container={popperContainer}
             >
               {isOpen &&
+                !loading &&
                 renderOptions({
                   options,
                   renderOption,
                   highlightedIndex,
                   setHighlightedIndex,
-                  onItemSelect: handleSelect,
                   getItemProps,
+                  onItemSelect: handleSelect,
+                  onBlur: rootProps.onBlur,
                   value,
                   getDisplayValue,
                   multiple,
-                  size
+                  size,
+                  noOptionsText,
+                  inputValue
                 })}
             </Popper>
           )}
@@ -694,6 +742,7 @@ Select.defaultProps = {
   iconPosition: 'start',
   loading: false,
   native: false,
+  noOptionsText: 'No matches found',
   onChange: () => {},
   onSearchChange: () => {},
   onBlur: () => {},

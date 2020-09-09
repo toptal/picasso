@@ -106,7 +106,12 @@ module.exports = ({ config }) => {
       new ForkTsCheckerWebpackPlugin({
         // needed for happyPackMode
         // https://medium.com/webpack/typescript-webpack-super-pursuit-mode-83cc568dea79
-        checkSyntacticErrors: true
+        typescript: {
+          diagnosticOptions: {
+            semantic: true,
+            syntactic: true
+          }
+        }
       }),
       new ForkTsCheckerNotifierWebpackPlugin({
         title: 'Picasso',

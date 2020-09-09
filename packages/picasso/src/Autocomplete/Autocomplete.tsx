@@ -7,7 +7,8 @@ import React, {
   ReactNode,
   ComponentType,
   useRef,
-  FocusEventHandler
+  FocusEventHandler,
+  MouseEvent
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
@@ -37,9 +38,12 @@ export interface Props
   /** The value of the selected option, required for a controlled component. */
   value: string
   /**  Callback invoked when selection changes */
-  onSelect?: (item: Item) => void
+  onSelect?: (item: Item, event: MouseEvent | KeyboardEvent) => void
   /**  Callback invoked when other option selected */
-  onOtherOptionSelect?: (value: string) => void
+  onOtherOptionSelect?: (
+    value: string,
+    event: MouseEvent | KeyboardEvent
+  ) => void
   /** Placeholder for value */
   placeholder?: string
   /** Text prefix for other option */
@@ -171,6 +175,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
             key={getKey(option)}
             /* eslint-disable-next-line react/jsx-props-no-spreading */
             {...getItemProps(index, option)}
+            titleCase={false}
           >
             {renderOption
               ? renderOption(option, index)
@@ -186,6 +191,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
             })}
             /* eslint-disable-next-line react/jsx-props-no-spreading */
             {...getOtherItemProps(optionsLength, value)}
+            titleCase={false}
           >
             <span className={classes.stringContent}>
               <Typography as='span' color='dark-grey'>
@@ -197,7 +203,9 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
         )}
 
         {!optionsLength && !shouldShowOtherOption && (
-          <Menu.Item disabled>{noOptionsText}</Menu.Item>
+          <Menu.Item titleCase={false} disabled>
+            {noOptionsText}
+          </Menu.Item>
         )}
       </ScrollMenu>
     )

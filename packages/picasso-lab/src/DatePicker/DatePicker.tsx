@@ -104,6 +104,7 @@ export const DatePicker = (props: Props) => {
     renderDay,
     weekStartsOn,
     timezone,
+    size,
     ...rest
   } = props
   const classes = useStyles(props)
@@ -273,11 +274,14 @@ export const DatePicker = (props: Props) => {
     setIsInputFocused(true)
   }
 
-  const startAdornment = (
-    <InputAdornment position='start' disablePointerEvents>
-      {icon || <Calendar16 />}
-    </InputAdornment>
-  )
+  const startAdornment =
+    size !== 'small' ? (
+      <InputAdornment position='start' disablePointerEvents>
+        {icon || <Calendar16 />}
+      </InputAdornment>
+    ) : (
+      undefined
+    )
 
   return (
     <>
@@ -292,6 +296,7 @@ export const DatePicker = (props: Props) => {
           onBlur={handleBlur}
           value={inputValue}
           onChange={handleInputChange}
+          size={size}
           startAdornment={startAdornment}
           width={width}
         />

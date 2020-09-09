@@ -18,7 +18,7 @@ export interface Props extends BaseProps, FormHTMLAttributes<HTMLFormElement> {
   onSubmit?: FormEventHandler<HTMLFormElement>
 }
 
-interface StaticProps {
+export interface StaticProps {
   Field: typeof FormField
   Hint: typeof FormHint
   Label: typeof FormLabel

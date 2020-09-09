@@ -2,7 +2,7 @@
 
 exports[`renders PromptModal 1`] = `
 <body
-  style="padding-right: 0px; overflow: hidden;"
+  style="overflow: hidden; padding-right: 0px;"
 >
   <div
     aria-hidden="true"
@@ -91,7 +91,7 @@ exports[`renders PromptModal 1`] = `
 
 exports[`showPrompt opens and closes modal on Submit action 1`] = `
 <body
-  style=""
+  style="overflow: hidden;"
 >
   <div>
     <div
@@ -115,7 +115,7 @@ exports[`showPrompt opens and closes modal on Submit action 1`] = `
 
 exports[`showPrompt opens and closes modal on Submit action 2`] = `
 <body
-  style=""
+  style="overflow: hidden;"
 >
   <div>
     <div
@@ -227,7 +227,7 @@ exports[`showPrompt opens and closes modal on Submit action 2`] = `
 
 exports[`showPrompt opens and closes modal on Submit action 3`] = `
 <body
-  style=""
+  style="overflow: hidden;"
 >
   <div>
     <div
@@ -252,7 +252,7 @@ exports[`showPrompt opens and closes modal on Submit action 3`] = `
 
 exports[`showPrompt with input returns result on Submit action  1`] = `
 <body
-  style=""
+  style="overflow: hidden;"
 >
   <div>
     <div

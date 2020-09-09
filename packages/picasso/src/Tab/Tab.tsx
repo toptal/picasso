@@ -6,12 +6,18 @@ import React, {
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import MUITab, { TabProps } from '@material-ui/core/Tab'
-import { StandardProps } from '@toptal/picasso-shared'
+import {
+  StandardProps,
+  TextLabelProps,
+  useTitleCase
+} from '@toptal/picasso-shared'
 
 import styles from './styles'
+import toTitleCase from '../utils/to-title-case'
 
 export interface Props
   extends StandardProps,
+    TextLabelProps,
     Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
   /**
    * If true, the tab will be disabled
@@ -27,6 +33,7 @@ export interface Props
 
   /** The Icon element */
   icon?: ReactElement
+
   // Properties below are managed by Tabs component
 
   selected?: boolean
@@ -35,16 +42,29 @@ export interface Props
 }
 
 export const Tab = forwardRef<HTMLDivElement, Props>(function Tab(
-  { disabled, value, label, icon, selected, onChange, onClick, ...rest },
+  {
+    disabled,
+    value,
+    label,
+    icon,
+    selected,
+    onChange,
+    onClick,
+    titleCase: propsTitleCase,
+    ...rest
+  },
   ref
 ) {
+  const titleCase = useTitleCase(propsTitleCase)
+
   return (
     <MUITab
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       ref={ref}
+      tabIndex={0}
       disabled={disabled}
-      label={label}
+      label={titleCase ? toTitleCase(label) : label}
       icon={icon}
       value={value}
       selected={selected}

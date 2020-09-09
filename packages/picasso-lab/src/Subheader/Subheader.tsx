@@ -1,7 +1,11 @@
 import React, { forwardRef, FunctionComponent } from 'react'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { CompoundedComponentWithRef, BaseProps } from '@toptal/picasso-shared'
+import {
+  CompoundedComponentWithRef,
+  TextLabelProps,
+  BaseProps
+} from '@toptal/picasso-shared'
 import { Typography, Container } from '@toptal/picasso'
 
 import styles from './styles'
@@ -13,7 +17,7 @@ export interface Props extends BaseProps {
   rightPadding?: boolean
 }
 
-interface StaticProps {
+export interface StaticProps {
   Title: FunctionComponent
   Breadcrumb: FunctionComponent
   Tabs: FunctionComponent
@@ -29,8 +33,8 @@ const useMainStyles = makeStyles<Theme>(styles, {
   name: 'PicassoSubheaderMain'
 })
 
-const Title: FunctionComponent = ({ children }) => (
-  <Typography variant='heading' size='large'>
+const Title: FunctionComponent<TextLabelProps> = ({ titleCase, children }) => (
+  <Typography variant='heading' size='large' titleCase={titleCase}>
     {children}
   </Typography>
 )

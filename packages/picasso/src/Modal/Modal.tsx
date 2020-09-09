@@ -48,7 +48,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   paperProps?: PaperProps
 }
 
-interface StaticProps {
+export interface StaticProps {
   Content: typeof ModalContent
   Actions: typeof ModalActions
   Title: typeof ModalTitle
@@ -159,14 +159,27 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
     }
   }, [open, rootRef])
 
+  const bodyOverflow = useRef<string>(document.body.style.overflow)
   useEffect(() => {
+    const resetBodyOverflow = () => {
+      document.body.style.overflow = bodyOverflow.current
+    }
+
     if (open) {
+      // TODO: to be improved as part of https://toptal-core.atlassian.net/browse/FX-1069
+      bodyOverflow.current = document.body.style.overflow
+      document.body.style.overflow = 'hidden'
+
       defaultManager.add(modalId.current)
     } else {
+      resetBodyOverflow()
+
       defaultManager.remove(modalId.current)
     }
 
     return () => {
+      resetBodyOverflow()
+
       defaultManager.remove(modalId.current)
     }
   }, [open])

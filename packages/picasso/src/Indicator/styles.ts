@@ -15,5 +15,11 @@ export default ({ palette }: Theme) =>
     },
     blue: {
       background: palette.blue.main
+    },
+    green: {
+      background: palette.green.main
+    },
+    'light-grey': {
+      background: palette.grey.light
     }
   })

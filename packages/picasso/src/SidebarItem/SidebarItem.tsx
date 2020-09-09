@@ -8,7 +8,12 @@ import React, {
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { MenuItemProps } from '@material-ui/core/MenuItem'
-import { BaseProps, OverridableComponent } from '@toptal/picasso-shared'
+import {
+  BaseProps,
+  TextLabelProps,
+  OverridableComponent,
+  useTitleCase
+} from '@toptal/picasso-shared'
 
 import Container from '../Container'
 import Typography from '../Typography'
@@ -18,7 +23,7 @@ import { ArrowDropDown16 } from '../Icon'
 import styles from './styles'
 import { VariantType } from '../Sidebar/types'
 
-export interface Props extends BaseProps, MenuItemAttributes {
+export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   /** Pass icon to be used as part of item */
   icon?: ReactElement
   /** Highlights the item as selected */
@@ -61,11 +66,14 @@ export const SidebarItem: OverridableComponent<Props> = memo(
       isExpanded,
       expand,
       index,
+      titleCase: propsTitleCase,
       ...rest
     } = props
 
     const hasIcon = Boolean(icon)
     const hasMenu = Boolean(menu)
+
+    const titleCase = useTitleCase(propsTitleCase)
 
     const handleMenuItemClick = (
       event: React.MouseEvent<HTMLElement, MouseEvent>
@@ -91,6 +99,7 @@ export const SidebarItem: OverridableComponent<Props> = memo(
           className={classes.labelContent}
           color='inherit'
           size='medium'
+          titleCase={titleCase}
           noWrap
         >
           {children}

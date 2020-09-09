@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-lab",
-  "version": "2.22.4",
+  "version": "2.31.1",
   "description": "Lab components of Picasso",
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-lab#readme",
@@ -15,14 +15,14 @@
     "url": "git+https://github.com/toptal/picasso.git"
   },
   "scripts": {
-    "build:dist": "cross-env NODE_ENV=production ../../bin/build --tsConfig=./tsconfig.build.json",
+    "build:package": "cross-env NODE_ENV=production ../../bin/build --tsConfig=./tsconfig.build.json",
     "prepublishOnly": "../../bin/prepublish"
   },
   "bugs": {
     "url": "https://github.com/toptal/picasso/issues"
   },
   "peerDependencies": {
-    "@material-ui/core": "^4.9.0",
+    "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.0",
     "@toptal/picasso": "^4.49.2",
     "@toptal/picasso-shared": "^1.11.1",
@@ -34,11 +34,16 @@
     "d3": "~5.12.0",
     "date-fns": "^2.3.0",
     "date-fns-tz": "^1.0.10",
-    "simple-react-calendar": "^2.2.1"
+    "detect-browser": "^5.1.1",
+    "react-content-loader": "^5.1.0",
+    "react-input-mask": "^3.0.0-alpha.2",
+    "simple-react-calendar": "^2.2.8"
   },
   "devDependencies": {
-    "@types/classnames": "^2.2.9",
-    "@types/d3": "~5.7.2"
+    "@types/classnames": "^2.2.10",
+    "@types/d3": "~5.7.2",
+    "@types/detect-browser": "^4.0.0",
+    "@types/react-input-mask": "^2.0.5"
   },
   "sideEffects": [
     "**/styles.ts",

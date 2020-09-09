@@ -11,6 +11,7 @@ import TableCell from '../TableCell'
 import TableBody from '../TableBody'
 import TableRow from '../TableRow'
 import TableHead from '../TableHead'
+import TableSectionHead from '../TableSectionHead'
 import TableFooter from '../TableFooter'
 import TableExpandableRow from '../TableExpandableRow'
 import styles from './styles'
@@ -22,8 +23,9 @@ export interface Props
   children: ReactNode
 }
 
-interface StaticProps {
+export interface StaticProps {
   Head: typeof TableHead
+  SectionHead: typeof TableSectionHead
   Body: typeof TableBody
   Row: typeof TableRow
   Cell: typeof TableCell
@@ -68,6 +70,8 @@ Table.Cell = TableCell
 Table.Body = TableBody
 
 Table.Head = TableHead
+
+Table.SectionHead = TableSectionHead
 
 Table.Row = TableRow
 

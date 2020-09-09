@@ -15,7 +15,7 @@ pipeline {
   options {
     ansiColor('xterm')
     timestamps()
-    timeout(time: 35, unit: 'MINUTES')
+    timeout(time: 45, unit: 'MINUTES')
     skipDefaultCheckout()
   }
 
@@ -187,7 +187,7 @@ pipeline {
             script {
               ghHelper.notifyPR('Check build', 'PENDING', 'running', "${ghprbActualCommit}", "${BUILD_URL}", repoName)
 
-              sh "docker run --rm gcr.io/toptal-hub/${repoName}:${ghprbActualCommit} yarn build:dist"
+              sh "docker run --rm gcr.io/toptal-hub/${repoName}:${ghprbActualCommit} yarn build:package"
             }
           } //steps
 
@@ -223,7 +223,10 @@ pipeline {
           ghHelper.notifyPR('Visual Tests', 'PENDING', 'running', "${ghprbActualCommit}", "${BUILD_URL}", repoName)
 
           def DIR = pwd() // can't be replaced with ${PWD}, because it's pointing to the jenkins_root folder
-          sh "docker run --rm -v ${DIR}/__diff_output__:/app/__diff_output__ gcr.io/toptal-hub/${repoName}:${ghprbActualCommit} yarn run test-ci:visual"
+          sh """
+            mkdir -p ${DIR}/__diff_output__
+            docker run --rm -v ${DIR}/__diff_output__:/app/__diff_output__ gcr.io/toptal-hub/${repoName}:${ghprbActualCommit} yarn run test-ci:visual
+          """
         }
       } //steps
 

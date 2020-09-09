@@ -22,6 +22,11 @@ export interface JssProps {
   classes: Classes
 }
 
+export interface TextLabelProps {
+  /** Defines if the text should be transformed to title case */
+  titleCase?: boolean
+}
+
 export type StandardProps = BaseProps & JssProps
 
 // Take all props, excluding props from JssProps

@@ -11,3 +11,4 @@ packages/picasso/src/MonthSelect/index.ts
 packages/picasso/src/YearSelect/index.ts
 packages/picasso-lab/src/index.ts
 packages/picasso-lab/src/DatePicker/index.ts
+packages/picasso-lab/src/TimePicker/index.ts

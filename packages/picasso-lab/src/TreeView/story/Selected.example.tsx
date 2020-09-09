@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
-import { TreeView, TreeNodeInterface } from '@toptal/picasso-lab'
-import { Container, UserBadge } from '@toptal/picasso'
+import {
+  TreeView,
+  TreeNodeInterface,
+  TreeNodeAvatar
+} from '@toptal/picasso-lab'
+import { Button, Container, UserBadge } from '@toptal/picasso'
 import { HierarchyPointNode } from 'd3-hierarchy'
 import styled from 'styled-components'
 import { palette } from '@toptal/picasso/utils'
@@ -154,7 +158,7 @@ const data: DataItem = {
 
 const convertToNode = (
   data: DataItem,
-  selectedId: string
+  selectedId: string | null
 ): TreeNodeInterface => {
   return {
     id: data.content.name,
@@ -175,12 +179,12 @@ const convertToNode = (
   }
 }
 
-const createTree = (selectedId: string): TreeNodeInterface => {
+const createTree = (selectedId: string | null): TreeNodeInterface => {
   return convertToNode(data, selectedId)
 }
 
 const Example = () => {
-  const [selectedId, setSelectedId] = useState('Name Surname 1')
+  const [selectedId, setSelectedId] = useState<string | null>('Name Surname 1')
 
   const rootNode = createTree(selectedId)
 
@@ -194,7 +198,11 @@ const Example = () => {
         <NodeContainer onClick={() => onClick(pointNode.data.id)}>
           <div>
             {pointNode.data.info.members.map((member: { name: string }) => (
-              <UserBadge name={member.name} key={member.name} />
+              <UserBadge
+                name={member.name}
+                key={member.name}
+                avatar={<TreeNodeAvatar name={member.name} />}
+              />
             ))}
           </div>
         </NodeContainer>
@@ -206,12 +214,22 @@ const Example = () => {
         onClick={() => onClick(pointNode.data.id)}
         selected={pointNode.data.selected}
       >
-        <UserBadge name={pointNode.data.info.name} />
+        <UserBadge
+          name={pointNode.data.info.name}
+          avatar={<TreeNodeAvatar name={pointNode.data.info.name} />}
+        />
       </NodeContainer>
     )
   }
 
-  return <TreeView data={rootNode} renderNode={renderNode} initialScale={0.5} />
+  return (
+    <Container>
+      <Button size='small' onClick={() => setSelectedId(null)}>
+        Reset selection
+      </Button>
+      <TreeView data={rootNode} renderNode={renderNode} initialScale={0.5} />
+    </Container>
+  )
 }
 
 export default Example

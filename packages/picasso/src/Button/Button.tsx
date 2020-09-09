@@ -14,7 +14,8 @@ import {
   ButtonOrAnchorProps,
   CompoundedComponentWithRef,
   OverridableComponent,
-  useAppConfig
+  useTitleCase,
+  TextLabelProps
 } from '@toptal/picasso-shared'
 
 import Loader from '../Loader'
@@ -37,10 +38,11 @@ export type VariantType =
   | 'transparent'
   | 'transparent-white'
   | 'transparent-blue'
+  | 'transparent-green'
 
 export type IconPositionType = 'left' | 'right'
 
-export interface Props extends BaseProps, ButtonOrAnchorProps {
+export interface Props extends BaseProps, TextLabelProps, ButtonOrAnchorProps {
   /** Show button in the active state (left mouse button down) */
   active?: boolean
   /** The component used for the root node. Either a string to use a DOM element or a component. */
@@ -75,11 +77,9 @@ export interface Props extends BaseProps, ButtonOrAnchorProps {
   title?: string
   /** HTML type of Button component */
   type?: 'button' | 'reset' | 'submit'
-  /** Defines if the text should be transformed to title case */
-  titleCase?: boolean
 }
 
-interface StaticProps {
+export interface StaticProps {
   Group: typeof Group
 }
 
@@ -116,8 +116,8 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     title,
     value,
     type,
-    titleCase,
     as,
+    titleCase: propsTitleCase,
     ...rest
   } = props
   const classes = useStyles(props)
@@ -132,10 +132,9 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     content: contentClass
   } = classes
 
-  const { titleCase: defaultTitleCase } = useAppConfig()
-  const titleCaseIsApplied = titleCase ?? defaultTitleCase
+  const titleCase = useTitleCase(propsTitleCase)
 
-  const finalChildren = [titleCaseIsApplied ? toTitleCase(children) : children]
+  const finalChildren = [titleCase ? toTitleCase(children) : children]
 
   if (icon) {
     const iconComponent = React.cloneElement(icon, {

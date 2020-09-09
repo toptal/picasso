@@ -12,9 +12,7 @@ PicassoProvider.override(() => ({
       padding: 0,
 
       '&$disabled': {
-        opacity: 0.48,
-        cursor: 'not-allowed',
-        pointerEvents: 'auto'
+        opacity: 0.48
       }
     }
   }
@@ -106,5 +104,12 @@ export default ({ palette, sizes, transitions }: Theme) =>
       // 1px is needed for safari
       maxWidth: `calc(100% - ${controlWidth} - ${labelMargin} + 1px)`
     },
-    labelWithRightSpacing: {}
+    labelWithRightSpacing: {},
+    checkboxWrapper: {
+      alignSelf: 'flex-start',
+      verticalAlign: 'middle'
+    },
+    disabledCheckboxWrapper: {
+      cursor: 'not-allowed'
+    }
   })

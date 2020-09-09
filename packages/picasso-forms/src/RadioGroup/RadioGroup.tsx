@@ -22,11 +22,13 @@ export const RadioGroup = (props: Props) => {
         return (
           // eslint-disable-next-line react/jsx-props-no-spreading
           <PicassoRadio.Group {...restRadioGroupProps}>
-            {React.Children.map(children, child =>
-              React.cloneElement(child as ReactElement, {
-                name: props.name
-              })
-            )}
+            {React.Children.toArray(children)
+              .filter(React.isValidElement)
+              .map(child =>
+                React.cloneElement(child as ReactElement, {
+                  name: props.name
+                })
+              )}
           </PicassoRadio.Group>
         )
       }}

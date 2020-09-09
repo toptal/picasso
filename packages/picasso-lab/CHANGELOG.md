@@ -3,6 +3,274 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.31.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.31.0...@toptal/picasso-lab@2.31.1) (2020-09-03)
+
+**Note:** Version bump only for package @toptal/picasso-lab
+
+
+
+
+
+# [2.31.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.30.7...@toptal/picasso-lab@2.31.0) (2020-09-03)
+
+
+### Features
+
+* **TreeNodeAvatar:** add size variant to component ([#1545](https://github.com/toptal/picasso/issues/1545)) ([ade299e](https://github.com/toptal/picasso/commit/ade299ed061e1ad6217cc95e9fb9eb51f49c8124))
+
+
+
+
+
+## [2.30.7](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.30.6...@toptal/picasso-lab@2.30.7) (2020-09-01)
+
+
+### Bug Fixes
+
+* **treeview:** fix issue with treeView on safari ([#1464](https://github.com/toptal/picasso/issues/1464)) ([3fd7606](https://github.com/toptal/picasso/commit/3fd76064733cf05851f4cf4d161a7f9cb5e61cd5))
+
+
+
+
+
+## [2.30.6](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.30.5...@toptal/picasso-lab@2.30.6) (2020-08-31)
+
+
+### Bug Fixes
+
+* add missing Header/TypographyLoader props, center them vertically ([#1522](https://github.com/toptal/picasso/issues/1522)) ([bdb3e4e](https://github.com/toptal/picasso/commit/bdb3e4e7c5f3b43bb3e400f707c995f6f9e3c984))
+
+
+
+
+
+## [2.30.5](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.30.4...@toptal/picasso-lab@2.30.5) (2020-08-31)
+
+**Note:** Version bump only for package @toptal/picasso-lab
+
+
+
+
+
+## [2.30.4](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.30.3...@toptal/picasso-lab@2.30.4) (2020-08-31)
+
+**Note:** Version bump only for package @toptal/picasso-lab
+
+
+
+
+
+## [2.30.3](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.30.2...@toptal/picasso-lab@2.30.3) (2020-08-27)
+
+
+### Bug Fixes
+
+* fix input error when size small is passed to date picker ([#1514](https://github.com/toptal/picasso/issues/1514)) ([1849855](https://github.com/toptal/picasso/commit/1849855973a3dbeae65bdb281ce460a8548b80bc))
+
+
+
+
+
+## [2.30.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.30.1...@toptal/picasso-lab@2.30.2) (2020-08-26)
+
+**Note:** Version bump only for package @toptal/picasso-lab
+
+
+
+
+
+## [2.30.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.30.0...@toptal/picasso-lab@2.30.1) (2020-08-20)
+
+
+### Bug Fixes
+
+* **treeview:** adjust zoom to support linear transition ([#1483](https://github.com/toptal/picasso/issues/1483)) ([2e44458](https://github.com/toptal/picasso/commit/2e44458723a608a37d4fe8daf5f3b35fd7e4a26e))
+
+
+
+
+
+# [2.30.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.29.3...@toptal/picasso-lab@2.30.0) (2020-08-18)
+
+
+### Features
+
+* **skeletonloader:** implement `MediaSkeletonLoader` ([#1488](https://github.com/toptal/picasso/issues/1488)) ([b0932aa](https://github.com/toptal/picasso/commit/b0932aa49ef6c6c3cc34d2cdee293f20b8c1ad22))
+
+
+
+
+
+## [2.29.3](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.29.2...@toptal/picasso-lab@2.29.3) (2020-08-18)
+
+**Note:** Version bump only for package @toptal/picasso-lab
+
+
+
+
+
+## [2.29.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.29.1...@toptal/picasso-lab@2.29.2) (2020-08-13)
+
+
+### Bug Fixes
+
+* svg warning in dev tools ([#1481](https://github.com/toptal/picasso/issues/1481)) ([7ee8be2](https://github.com/toptal/picasso/commit/7ee8be2f70833c44e648ca7a740fb023607838a2))
+
+
+
+
+
+## [2.29.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.29.0...@toptal/picasso-lab@2.29.1) (2020-08-12)
+
+**Note:** Version bump only for package @toptal/picasso-lab
+
+
+
+
+
+# [2.29.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.28.0...@toptal/picasso-lab@2.29.0) (2020-08-10)
+
+
+### Features
+
+* button loader ([#1465](https://github.com/toptal/picasso/issues/1465)) ([283ee3a](https://github.com/toptal/picasso/commit/283ee3a931ceab7332b5aee82d0d2166b77b9260))
+
+
+
+
+
+# [2.28.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.27.0...@toptal/picasso-lab@2.28.0) (2020-08-03)
+
+
+### Features
+
+* add SkeletonLoader ([#1455](https://github.com/toptal/picasso/issues/1455)) ([da288ad](https://github.com/toptal/picasso/commit/da288ad4105fe225936848efdc5de75c9f808098))
+
+
+
+
+
+# [2.27.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.26.1...@toptal/picasso-lab@2.27.0) (2020-07-31)
+
+
+### Features
+
+* **forms:** add CheckboxGroup ([#1448](https://github.com/toptal/picasso/issues/1448)) ([61e8570](https://github.com/toptal/picasso/commit/61e8570bf0842f3e55dc0ecc8b45cd85a9891bef))
+
+
+
+
+
+## [2.26.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.26.0...@toptal/picasso-lab@2.26.1) (2020-07-23)
+
+
+### Bug Fixes
+
+* **treeview:** set the TreeView center by default ([#1444](https://github.com/toptal/picasso/issues/1444)) ([d6ab127](https://github.com/toptal/picasso/commit/d6ab127fa1807f8040d26cbaebe3b87c283f918e))
+
+
+
+
+
+# [2.26.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.25.2...@toptal/picasso-lab@2.26.0) (2020-07-23)
+
+
+### Features
+
+* add timepicker to picasso-forms ([#1441](https://github.com/toptal/picasso/issues/1441)) ([f55db3d](https://github.com/toptal/picasso/commit/f55db3d7974f7a793a05bafbc97f31c2c3eec682))
+
+
+
+
+
+## [2.25.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.25.1...@toptal/picasso-lab@2.25.2) (2020-07-23)
+
+
+### Bug Fixes
+
+* **treeview:** update Tree position when selected node's data is changed ([#1440](https://github.com/toptal/picasso/issues/1440)) ([e150066](https://github.com/toptal/picasso/commit/e1500660775d81dfa4c900bc996a3195c233244e))
+
+
+
+
+
+## [2.25.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.25.0...@toptal/picasso-lab@2.25.1) (2020-07-22)
+
+
+### Bug Fixes
+
+* revert simple-react-calendar to deps ([#1442](https://github.com/toptal/picasso/issues/1442)) ([9dd7a63](https://github.com/toptal/picasso/commit/9dd7a63f279575ed283ef8ff9297a52f1bf0000d))
+
+
+
+
+
+# [2.25.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.24.2...@toptal/picasso-lab@2.25.0) (2020-07-17)
+
+
+### Features
+
+* **labs:** implement TimePicker component ([#1426](https://github.com/toptal/picasso/issues/1426)) ([a3d89f4](https://github.com/toptal/picasso/commit/a3d89f4db5fdb8732397b84b918ecc850a54a9c2))
+
+
+
+
+
+## [2.24.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.24.1...@toptal/picasso-lab@2.24.2) (2020-07-15)
+
+
+### Bug Fixes
+
+* export static props to be able to extend via styled ([#1434](https://github.com/toptal/picasso/issues/1434)) ([0aaffd2](https://github.com/toptal/picasso/commit/0aaffd2a0b73c80025028ce76f868d13e3fbd522))
+
+
+
+
+
+## [2.24.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.24.0...@toptal/picasso-lab@2.24.1) (2020-07-14)
+
+
+### Bug Fixes
+
+* ignore titleCase for Select options ([#1431](https://github.com/toptal/picasso/issues/1431)) ([5b24f3e](https://github.com/toptal/picasso/commit/5b24f3e7c4f5ccfff5400de7d233dedebcaa2002))
+
+
+
+
+
+# [2.24.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.23.1...@toptal/picasso-lab@2.24.0) (2020-07-13)
+
+
+### Features
+
+* use AP-style title case for components ([#1422](https://github.com/toptal/picasso/issues/1422)) ([b64ed4c](https://github.com/toptal/picasso/commit/b64ed4cdb50c9d306c1c492332e4db498ab0cb72))
+
+
+
+
+
+## [2.23.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.23.0...@toptal/picasso-lab@2.23.1) (2020-07-08)
+
+
+### Bug Fixes
+
+* **treeview:** do not scroll to the center by default ([#1421](https://github.com/toptal/picasso/issues/1421)) ([87f05d5](https://github.com/toptal/picasso/commit/87f05d532da906d10e74625cb1ead52354c6363a))
+
+
+
+
+
+# [2.23.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.22.4...@toptal/picasso-lab@2.23.0) (2020-07-08)
+
+
+### Features
+
+* update simple-react-calendar ([#1418](https://github.com/toptal/picasso/issues/1418)) ([7c9d59c](https://github.com/toptal/picasso/commit/7c9d59cae7840623404298b10ee6eeec50744f06))
+
+
+
+
+
 ## [2.22.4](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.22.3...@toptal/picasso-lab@2.22.4) (2020-07-07)
 
 

@@ -2,61 +2,67 @@
 
 exports[`Tab default render 1`] = `
 <div>
-  <button
-    class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit"
-    role="tab"
-    tabindex="0"
-    type="button"
+  <div
+    class="Picasso-root"
   >
-    <span
-      class="MuiTab-wrapper"
+    <button
+      class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit"
+      role="tab"
+      tabindex="0"
+      type="button"
     >
-      Tab Label
-    </span>
-    <span
-      class="MuiTouchRipple-root"
-    />
-  </button>
+      <span
+        class="MuiTab-wrapper"
+      >
+        Tab Label
+      </span>
+    </button>
+  </div>
 </div>
 `;
 
 exports[`Tab disabled tab 1`] = `
 <div>
-  <button
-    class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit Mui-disabled Mui-disabled"
-    disabled=""
-    role="tab"
-    tabindex="-1"
-    type="button"
+  <div
+    class="Picasso-root"
   >
-    <span
-      class="MuiTab-wrapper"
+    <button
+      class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit Mui-disabled Mui-disabled"
+      disabled=""
+      role="tab"
+      tabindex="-1"
+      type="button"
     >
-      Tab Label
-    </span>
-  </button>
+      <span
+        class="MuiTab-wrapper"
+      >
+        Tab Label
+      </span>
+    </button>
+  </div>
 </div>
 `;
 
 exports[`Tab tab with icon 1`] = `
 <div>
-  <button
-    class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-labelIcon"
-    role="tab"
-    tabindex="0"
-    type="button"
+  <div
+    class="Picasso-root"
   >
-    <span
-      class="MuiTab-wrapper"
+    <button
+      class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-labelIcon"
+      role="tab"
+      tabindex="0"
+      type="button"
     >
-      <div
-        id="Icon"
-      />
-      Tab Label
-    </span>
-    <span
-      class="MuiTouchRipple-root"
-    />
-  </button>
+      <span
+        class="MuiTab-wrapper"
+      >
+        <div
+          id="Icon"
+        />
+        Tab Label
+      </span>
+    </button>
+  </div>
 </div>
 `;

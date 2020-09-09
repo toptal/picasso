@@ -9,22 +9,25 @@ exports[`checkbox interaction should render checked checkbox 1`] = `
       class="FormControlLabel-root PicassoCheckbox-root picasso-checkbox"
     >
       <span
-        aria-disabled="false"
-        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiCheckbox-root PicassoCheckbox-root MuiCheckbox-colorSecondary PicassoCheckbox-withLabel PrivateSwitchBase-checked Mui-checked MuiIconButton-colorSecondary"
+        class="Container-flex Container-inline PicassoCheckbox-checkboxWrapper"
       >
         <span
-          class="MuiIconButton-label"
+          aria-disabled="false"
+          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiCheckbox-root PicassoCheckbox-root MuiCheckbox-colorSecondary PicassoCheckbox-withLabel PrivateSwitchBase-checked Mui-checked MuiIconButton-colorSecondary"
         >
-          <input
-            class="PrivateSwitchBase-input"
-            data-indeterminate="false"
-            type="checkbox"
-            value=""
-          />
-          <div
-            class="PicassoCheckbox-checkedIcon"
-            font-size="default"
-          />
+          <span
+            class="MuiIconButton-label"
+          >
+            <input
+              class="PrivateSwitchBase-input"
+              data-indeterminate="false"
+              type="checkbox"
+              value=""
+            />
+            <div
+              class="PicassoCheckbox-checkedIcon"
+            />
+          </span>
         </span>
       </span>
       <span
@@ -47,22 +50,25 @@ exports[`renders default checkbox without label 1`] = `
     class="Picasso-root"
   >
     <span
-      aria-disabled="false"
-      class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiCheckbox-root PicassoCheckbox-root MuiCheckbox-colorSecondary MuiIconButton-colorSecondary"
+      class="Container-flex Container-inline PicassoCheckbox-checkboxWrapper"
     >
       <span
-        class="MuiIconButton-label"
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiCheckbox-root PicassoCheckbox-root MuiCheckbox-colorSecondary MuiIconButton-colorSecondary"
       >
-        <input
-          class="PrivateSwitchBase-input"
-          data-indeterminate="false"
-          type="checkbox"
-          value=""
-        />
-        <div
-          class="PicassoCheckbox-uncheckedIcon"
-          font-size="default"
-        />
+        <span
+          class="MuiIconButton-label"
+        >
+          <input
+            class="PrivateSwitchBase-input"
+            data-indeterminate="false"
+            type="checkbox"
+            value=""
+          />
+          <div
+            class="PicassoCheckbox-uncheckedIcon"
+          />
+        </span>
       </span>
     </span>
   </div>
@@ -75,24 +81,27 @@ exports[`renders disabled state 1`] = `
     class="Picasso-root"
   >
     <span
-      aria-disabled="true"
-      class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiCheckbox-root PicassoCheckbox-root MuiCheckbox-colorSecondary PrivateSwitchBase-disabled Mui-disabled PicassoCheckbox-disabled MuiIconButton-colorSecondary Mui-disabled Mui-disabled"
-      tabindex="-1"
+      class="Container-flex Container-inline PicassoCheckbox-checkboxWrapper PicassoCheckbox-disabledCheckboxWrapper"
     >
       <span
-        class="MuiIconButton-label"
+        aria-disabled="true"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiCheckbox-root PicassoCheckbox-root MuiCheckbox-colorSecondary PrivateSwitchBase-disabled Mui-disabled PicassoCheckbox-disabled MuiIconButton-colorSecondary Mui-disabled Mui-disabled"
+        tabindex="-1"
       >
-        <input
-          class="PrivateSwitchBase-input"
-          data-indeterminate="false"
-          disabled=""
-          type="checkbox"
-          value=""
-        />
-        <div
-          class="PicassoCheckbox-uncheckedIcon"
-          font-size="default"
-        />
+        <span
+          class="MuiIconButton-label"
+        >
+          <input
+            class="PrivateSwitchBase-input"
+            data-indeterminate="false"
+            disabled=""
+            type="checkbox"
+            value=""
+          />
+          <div
+            class="PicassoCheckbox-uncheckedIcon"
+          />
+        </span>
       </span>
     </span>
   </div>
@@ -105,22 +114,25 @@ exports[`renders indeterminate state 1`] = `
     class="Picasso-root"
   >
     <span
-      aria-disabled="false"
-      class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiCheckbox-root PicassoCheckbox-root MuiCheckbox-colorSecondary MuiCheckbox-indeterminate MuiIconButton-colorSecondary"
+      class="Container-flex Container-inline PicassoCheckbox-checkboxWrapper"
     >
       <span
-        class="MuiIconButton-label"
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiCheckbox-root PicassoCheckbox-root MuiCheckbox-colorSecondary MuiCheckbox-indeterminate MuiIconButton-colorSecondary"
       >
-        <input
-          class="PrivateSwitchBase-input"
-          data-indeterminate="true"
-          type="checkbox"
-          value=""
-        />
-        <div
-          class="PicassoCheckbox-indeterminateIcon"
-          font-size="default"
-        />
+        <span
+          class="MuiIconButton-label"
+        >
+          <input
+            class="PrivateSwitchBase-input"
+            data-indeterminate="true"
+            type="checkbox"
+            value=""
+          />
+          <div
+            class="PicassoCheckbox-indeterminateIcon"
+          />
+        </span>
       </span>
     </span>
   </div>
@@ -136,22 +148,25 @@ exports[`should render default checkbox with label 1`] = `
       class="FormControlLabel-root PicassoCheckbox-root picasso-checkbox"
     >
       <span
-        aria-disabled="false"
-        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiCheckbox-root PicassoCheckbox-root MuiCheckbox-colorSecondary PicassoCheckbox-withLabel MuiIconButton-colorSecondary"
+        class="Container-flex Container-inline PicassoCheckbox-checkboxWrapper"
       >
         <span
-          class="MuiIconButton-label"
+          aria-disabled="false"
+          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiCheckbox-root PicassoCheckbox-root MuiCheckbox-colorSecondary PicassoCheckbox-withLabel MuiIconButton-colorSecondary"
         >
-          <input
-            class="PrivateSwitchBase-input"
-            data-indeterminate="false"
-            type="checkbox"
-            value=""
-          />
-          <div
-            class="PicassoCheckbox-uncheckedIcon"
-            font-size="default"
-          />
+          <span
+            class="MuiIconButton-label"
+          >
+            <input
+              class="PrivateSwitchBase-input"
+              data-indeterminate="false"
+              type="checkbox"
+              value=""
+            />
+            <div
+              class="PicassoCheckbox-uncheckedIcon"
+            />
+          </span>
         </span>
       </span>
       <span

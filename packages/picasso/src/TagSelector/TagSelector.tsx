@@ -43,6 +43,8 @@ export interface Props
   onOtherOptionSelect?: (value: string) => void
   /** Allow to show the other option in the list of options */
   showOtherOption?: boolean
+  /** Label to show when no options were found */
+  noOptionsText?: string
   /** List of options with unique labels */
   options?: Item[] | null
   /** The list of values of the selected options, required for a controlled component. */
@@ -76,7 +78,7 @@ export interface Props
   }) => ReactNode
 }
 
-interface StaticProps {
+export interface StaticProps {
   Label: typeof TagSelectorLabel
 }
 
@@ -90,6 +92,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       otherOptionLabel,
       onOtherOptionSelect,
       showOtherOption,
+      noOptionsText,
       value: values = [],
       getDisplayValue,
       onChange,
@@ -199,6 +202,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         width={width}
         showOtherOption={showOtherOption}
         otherOptionText={otherOptionLabel}
+        noOptionsText={noOptionsText}
         enableAutofill={enableAutofill}
         getDisplayValue={getDisplayValue}
         renderOption={renderOption}
@@ -218,6 +222,7 @@ TagSelector.defaultProps = {
   onOtherOptionSelect: () => {},
   options: [],
   otherOptionLabel: 'Add new option: ',
+  noOptionsText: 'No matches found',
   placeholder: '',
   showOtherOption: false
 }

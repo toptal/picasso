@@ -11,8 +11,9 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import {
   BaseProps,
+  TextLabelProps,
   CompoundedComponentWithRef,
-  useAppConfig
+  useTitleCase
 } from '@toptal/picasso-shared'
 
 import Chip from '../Chip'
@@ -26,7 +27,7 @@ type VariantType = 'grey' | 'white' | 'green' | 'yellow' | 'red'
 export type DivOrAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> &
   HTMLAttributes<HTMLDivElement>
 
-export interface Props extends BaseProps, DivOrAnchorProps {
+export interface Props extends BaseProps, TextLabelProps, DivOrAnchorProps {
   /** The component used for the root node. Either a string to use a DOM element or a component. */
   as?: ElementType
   /** Text content of the `Label` component */
@@ -42,11 +43,9 @@ export interface Props extends BaseProps, DivOrAnchorProps {
   onDelete?: () => void
   /** Variant of the `Label` */
   variant?: VariantType
-  /** Defines if the text should be transformed to title case */
-  titleCase?: boolean
 }
 
-interface StaticProps {
+export interface StaticProps {
   Group: typeof LabelGroup
 }
 
@@ -66,15 +65,14 @@ export const Label = forwardRef<HTMLDivElement, Props>(function Label(
     onDelete,
     variant,
     as,
-    titleCase,
+    titleCase: propsTitleCase,
     ...rest
   } = props
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { color, ...htmlAttributes } = rest
   const classes = useStyles(props)
 
-  const { titleCase: defaultTitleCase } = useAppConfig()
-  const titleCaseIsApplied = titleCase ?? defaultTitleCase
+  const titleCase = useTitleCase(propsTitleCase)
 
   const handleDelete = (event: MouseEvent) => {
     if (disabled) {
@@ -102,7 +100,7 @@ export const Label = forwardRef<HTMLDivElement, Props>(function Label(
       icon={icon}
       label={
         <span className={classes.innerLabel}>
-          {titleCaseIsApplied ? toTitleCase(children) : children}
+          {titleCase ? toTitleCase(children) : children}
         </span>
       }
       deleteIcon={

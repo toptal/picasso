@@ -25,7 +25,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   onClose?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
 }
 
-interface StaticProps {
+export interface StaticProps {
   Title: typeof HelpboxTitle
   Content: typeof HelpboxContent
   Actions: typeof HelpboxActions

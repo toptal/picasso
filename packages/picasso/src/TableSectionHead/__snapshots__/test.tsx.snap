@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TableSectionHead default render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <table
+      class="MuiTable-root"
+    >
+      <tbody
+        class="MuiTableBody-root"
+      >
+        <tr
+          class="MuiTableRow-root TableRow-root PicassoTableSectionHead-sectionHeaderRow"
+        >
+          <td
+            class="MuiTableCell-root TableCell-root MuiTableCell-body TableCell-body"
+            colspan="100"
+          >
+            Test
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;

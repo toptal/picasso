@@ -12,9 +12,12 @@ import {
   CompoundedComponentWithRef,
   OverridableComponent,
   ColorType,
-  BaseProps
+  BaseProps,
+  TextLabelProps,
+  useTitleCase
 } from '@toptal/picasso-shared'
 import { Typography } from '@toptal/picasso'
+import { toTitleCase } from '@toptal/picasso/utils'
 
 import styles from './styles'
 import OverviewBlockGroup from '../OverviewBlockGroup'
@@ -35,6 +38,7 @@ type ColorSettings = {
 }
 
 export type Props = BaseProps &
+  TextLabelProps &
   HTMLAttributes<HTMLButtonElement> & {
     /** Counter value  */
     value: ReactNode
@@ -48,7 +52,7 @@ export type Props = BaseProps &
     onClick?: (event: MouseEvent) => void
   }
 
-interface StaticProps {
+export interface StaticProps {
   Group: FunctionComponent
 }
 
@@ -66,6 +70,7 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
       as: Component = 'button',
       className,
       onClick,
+      titleCase: propsTitleCase,
       ...rest
     } = props
     const classes = useStyles(props)
@@ -86,6 +91,8 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
 
     const isClickable = Boolean(onClick)
 
+    const titleCase = useTitleCase(propsTitleCase)
+
     return (
       <Component
         // eslint-disable-next-line react/jsx-props-no-spreading
@@ -105,7 +112,7 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
           className={classes.title}
           color={color.label}
         >
-          {label}
+          {titleCase ? toTitleCase(label) : label}
         </Typography>
         <Typography size='large' weight='semibold' color={color.value}>
           {value}

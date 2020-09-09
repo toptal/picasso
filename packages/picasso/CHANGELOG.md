@@ -3,6 +3,510 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.97.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.97.0...@toptal/picasso@4.97.1) (2020-09-04)
+
+
+### Bug Fixes
+
+* **Select:** fix scrolling for Select ([#1547](https://github.com/toptal/picasso/issues/1547)) ([ee893f5](https://github.com/toptal/picasso/commit/ee893f545fa7679cbc88256900342fdc459fde5b))
+
+
+
+
+
+# [4.97.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.96.0...@toptal/picasso@4.97.0) (2020-09-04)
+
+
+### Features
+
+* **Autocomplete:** pass event in Autocomplete onSelect ([#1549](https://github.com/toptal/picasso/issues/1549)) ([ed47c51](https://github.com/toptal/picasso/commit/ed47c514edfec8023df277a1cb915eb7526959a0))
+
+
+
+
+
+# [4.96.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.95.0...@toptal/picasso@4.96.0) (2020-09-03)
+
+
+### Features
+
+* **icon:** add timesheet icon ([#1546](https://github.com/toptal/picasso/issues/1546)) ([2e0b42c](https://github.com/toptal/picasso/commit/2e0b42c4889ccafd2cdb2d15b7fe692ea3d14ab8))
+
+
+
+
+
+# [4.95.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.94.3...@toptal/picasso@4.95.0) (2020-09-02)
+
+
+### Features
+
+* **tooltip:** add compact size for tooltip component ([#1532](https://github.com/toptal/picasso/issues/1532)) ([3ed94f3](https://github.com/toptal/picasso/commit/3ed94f3fa1cadc33d83652baadb32e69d7becf2b))
+
+
+
+
+
+## [4.94.3](https://github.com/toptal/picasso/compare/@toptal/picasso@4.94.2...@toptal/picasso@4.94.3) (2020-09-02)
+
+
+### Reverts
+
+* Revert "fix(Select): fix scrolling for Select (#1539)" (#1544) ([5acdaf7](https://github.com/toptal/picasso/commit/5acdaf73aaad6aa2ecca9ed74ed59c700b9ced34)), closes [#1539](https://github.com/toptal/picasso/issues/1539) [#1544](https://github.com/toptal/picasso/issues/1544)
+
+
+
+
+
+## [4.94.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.94.1...@toptal/picasso@4.94.2) (2020-09-02)
+
+
+### Bug Fixes
+
+* **Select:** fix scrolling for Select ([#1539](https://github.com/toptal/picasso/issues/1539)) ([e9ba8e4](https://github.com/toptal/picasso/commit/e9ba8e470e258934f71e04eb7962f8c49bb43052))
+
+
+
+
+
+## [4.94.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.94.0...@toptal/picasso@4.94.1) (2020-09-02)
+
+**Note:** Version bump only for package @toptal/picasso
+
+
+
+
+
+# [4.94.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.93.6...@toptal/picasso@4.94.0) (2020-09-02)
+
+
+### Features
+
+* **Link:** add rel="noopener" to target="_blank" ([#1482](https://github.com/toptal/picasso/issues/1482)) ([2c7729e](https://github.com/toptal/picasso/commit/2c7729eb57d007df3dcfc1f70dbd41f3014febf2))
+
+
+
+
+
+## [4.93.6](https://github.com/toptal/picasso/compare/@toptal/picasso@4.93.5...@toptal/picasso@4.93.6) (2020-09-01)
+
+
+### Reverts
+
+* Revert "fix: remove onMouseEnter (#1524)" (#1538) ([2bea39a](https://github.com/toptal/picasso/commit/2bea39af37131472484afc3b513a541f1b888407)), closes [#1524](https://github.com/toptal/picasso/issues/1524) [#1538](https://github.com/toptal/picasso/issues/1538)
+
+
+
+
+
+## [4.93.5](https://github.com/toptal/picasso/compare/@toptal/picasso@4.93.4...@toptal/picasso@4.93.5) (2020-09-01)
+
+
+### Bug Fixes
+
+* **treeview:** fix issue with treeView on safari ([#1464](https://github.com/toptal/picasso/issues/1464)) ([3fd7606](https://github.com/toptal/picasso/commit/3fd76064733cf05851f4cf4d161a7f9cb5e61cd5))
+
+
+
+
+
+## [4.93.4](https://github.com/toptal/picasso/compare/@toptal/picasso@4.93.3...@toptal/picasso@4.93.4) (2020-09-01)
+
+
+### Bug Fixes
+
+* remove onMouseEnter ([#1524](https://github.com/toptal/picasso/issues/1524)) ([e75378a](https://github.com/toptal/picasso/commit/e75378a12c21aef9b9a1d01c66b6826fc93d163e))
+
+
+
+
+
+## [4.93.3](https://github.com/toptal/picasso/compare/@toptal/picasso@4.93.2...@toptal/picasso@4.93.3) (2020-09-01)
+
+
+### Bug Fixes
+
+* **OutlinedInput:** add tabIndex -1 to reset button ([#1534](https://github.com/toptal/picasso/issues/1534)) ([c98509f](https://github.com/toptal/picasso/commit/c98509fc72d129c2bcd77a4d45aba09e294c1f86))
+
+
+
+
+
+## [4.93.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.93.1...@toptal/picasso@4.93.2) (2020-09-01)
+
+**Note:** Version bump only for package @toptal/picasso
+
+
+
+
+
+## [4.93.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.93.0...@toptal/picasso@4.93.1) (2020-08-31)
+
+**Note:** Version bump only for package @toptal/picasso
+
+
+
+
+
+# [4.93.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.92.1...@toptal/picasso@4.93.0) (2020-08-27)
+
+
+### Features
+
+* **NumberInput:** add start adornment ([#1501](https://github.com/toptal/picasso/issues/1501)) ([cc0e22a](https://github.com/toptal/picasso/commit/cc0e22a284ba899a0e6a4e8e6927a6305a213373))
+
+
+
+
+
+## [4.92.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.92.0...@toptal/picasso@4.92.1) (2020-08-26)
+
+**Note:** Version bump only for package @toptal/picasso
+
+
+
+
+
+# [4.92.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.91.0...@toptal/picasso@4.92.0) (2020-08-26)
+
+
+### Features
+
+* **icon:** add light blue to icon color variants ([#1508](https://github.com/toptal/picasso/issues/1508)) ([b24210a](https://github.com/toptal/picasso/commit/b24210a28318cf3c39307da6f236c1a2dcb933a9))
+
+
+
+
+
+# [4.91.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.90.0...@toptal/picasso@4.91.0) (2020-08-25)
+
+
+### Features
+
+* **tooltip:** add delay prop to the Tooltip component ([#1462](https://github.com/toptal/picasso/issues/1462)) ([65a235e](https://github.com/toptal/picasso/commit/65a235e1edc3c158ebab1df89faf6b662c20d087))
+
+
+
+
+
+# [4.90.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.89.0...@toptal/picasso@4.90.0) (2020-08-24)
+
+
+### Features
+
+* **ExpandableRow:** allow rendering without initial transition ([#1494](https://github.com/toptal/picasso/issues/1494)) ([603ae31](https://github.com/toptal/picasso/commit/603ae31879765b407be2f3bb826bf3aa764b6fc7))
+
+
+
+
+
+# [4.89.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.88.0...@toptal/picasso@4.89.0) (2020-08-20)
+
+
+### Features
+
+* **Slider:** add options to hide thumb and track highlight ([#1495](https://github.com/toptal/picasso/issues/1495)) ([adf27e4](https://github.com/toptal/picasso/commit/adf27e426a4dd1c21a133418b9009376cd26caf0))
+
+
+
+
+
+# [4.88.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.87.1...@toptal/picasso@4.88.0) (2020-08-17)
+
+
+### Features
+
+* **indicator:** add green and light-grey Indicator colors ([#1489](https://github.com/toptal/picasso/issues/1489)) ([bb8f72e](https://github.com/toptal/picasso/commit/bb8f72e55ef038e5359ca1b9add7acf1d8e0d5dd))
+
+
+
+
+
+## [4.87.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.87.0...@toptal/picasso@4.87.1) (2020-08-14)
+
+**Note:** Version bump only for package @toptal/picasso
+
+
+
+
+
+# [4.87.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.86.1...@toptal/picasso@4.87.0) (2020-08-13)
+
+
+### Features
+
+* **Select:** add noOptionText to Select props ([#1473](https://github.com/toptal/picasso/issues/1473)) ([164354a](https://github.com/toptal/picasso/commit/164354a371fd7307a833e3be086863ec8cebcad3))
+
+
+
+
+
+## [4.86.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.86.0...@toptal/picasso@4.86.1) (2020-08-12)
+
+**Note:** Version bump only for package @toptal/picasso
+
+
+
+
+
+# [4.86.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.85.0...@toptal/picasso@4.86.0) (2020-08-12)
+
+
+### Features
+
+* **icon:** add reset icon ([#1477](https://github.com/toptal/picasso/issues/1477)) ([dd48b07](https://github.com/toptal/picasso/commit/dd48b078c8141f0679207a64cd8281ab1f6c7791))
+
+
+
+
+
+# [4.85.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.84.2...@toptal/picasso@4.85.0) (2020-08-11)
+
+
+### Features
+
+* **TagSelector:** add noOptionText to TagSelector props ([#1466](https://github.com/toptal/picasso/issues/1466)) ([5cf4bfc](https://github.com/toptal/picasso/commit/5cf4bfcade283601dad56f185ada98861454a765))
+
+
+
+
+
+## [4.84.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.84.1...@toptal/picasso@4.84.2) (2020-08-11)
+
+**Note:** Version bump only for package @toptal/picasso
+
+
+
+
+
+## [4.84.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.84.0...@toptal/picasso@4.84.1) (2020-08-10)
+
+**Note:** Version bump only for package @toptal/picasso
+
+
+
+
+
+# [4.84.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.83.0...@toptal/picasso@4.84.0) (2020-08-10)
+
+
+### Features
+
+* add disable portal for slider ([#1467](https://github.com/toptal/picasso/issues/1467)) ([08b4460](https://github.com/toptal/picasso/commit/08b4460ba2ebac7b26a82d35bb75e8fd48436c6e))
+
+
+
+
+
+# [4.83.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.82.3...@toptal/picasso@4.83.0) (2020-08-10)
+
+
+### Features
+
+* **icon:** add component icon ([#1470](https://github.com/toptal/picasso/issues/1470)) ([b9e8eab](https://github.com/toptal/picasso/commit/b9e8eabf7c6520e32e131b5938db677b06b8b2e9))
+
+
+
+
+
+## [4.82.3](https://github.com/toptal/picasso/compare/@toptal/picasso@4.82.2...@toptal/picasso@4.82.3) (2020-08-06)
+
+
+### Bug Fixes
+
+* **Select:** fix scrolling on hover of the bottom element ([#1461](https://github.com/toptal/picasso/issues/1461)) ([908cfe4](https://github.com/toptal/picasso/commit/908cfe40758cb2ed1b819672df0c6b460a2c7072))
+
+
+
+
+
+## [4.82.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.82.1...@toptal/picasso@4.82.2) (2020-08-05)
+
+
+### Bug Fixes
+
+* the menu is not visible for disabled select ([#1459](https://github.com/toptal/picasso/issues/1459)) ([b8be7c0](https://github.com/toptal/picasso/commit/b8be7c0e9c11a96c58104499e3ceac35b8819b80))
+
+
+
+
+
+## [4.82.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.82.0...@toptal/picasso@4.82.1) (2020-08-03)
+
+
+### Bug Fixes
+
+* show the tooltip for disabled checkbox ([#1456](https://github.com/toptal/picasso/issues/1456)) ([2ede2fb](https://github.com/toptal/picasso/commit/2ede2fbfd703bf73c56c4cc0b2e0ba9c9867ae73))
+
+
+
+
+
+# [4.82.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.81.0...@toptal/picasso@4.82.0) (2020-08-03)
+
+
+### Features
+
+* **icon:** add gift icon ([#1457](https://github.com/toptal/picasso/issues/1457)) ([f6bcf3b](https://github.com/toptal/picasso/commit/f6bcf3ba767abea464cdff60d86337504a9286b1))
+
+
+
+
+
+# [4.81.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.80.0...@toptal/picasso@4.81.0) (2020-07-31)
+
+
+### Features
+
+* **forms:** add CheckboxGroup ([#1448](https://github.com/toptal/picasso/issues/1448)) ([61e8570](https://github.com/toptal/picasso/commit/61e8570bf0842f3e55dc0ecc8b45cd85a9891bef))
+
+
+
+
+
+# [4.80.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.79.3...@toptal/picasso@4.80.0) (2020-07-24)
+
+
+### Features
+
+* **icon:** add link icon ([#1445](https://github.com/toptal/picasso/issues/1445)) ([4248b13](https://github.com/toptal/picasso/commit/4248b139a410de2a6ebd3153a87e24dad993f98f))
+
+
+
+
+
+## [4.79.3](https://github.com/toptal/picasso/compare/@toptal/picasso@4.79.2...@toptal/picasso@4.79.3) (2020-07-23)
+
+
+### Bug Fixes
+
+* **Slider:** add missing field in ValueLabelProps interface ([#1443](https://github.com/toptal/picasso/issues/1443)) ([612fdc5](https://github.com/toptal/picasso/commit/612fdc56a87715cd6f9e601645878e2f5b192e69))
+
+
+
+
+
+## [4.79.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.79.1...@toptal/picasso@4.79.2) (2020-07-23)
+
+
+### Bug Fixes
+
+* **Modal:** background moving when modal is open ([#1439](https://github.com/toptal/picasso/issues/1439)) ([1588184](https://github.com/toptal/picasso/commit/1588184f625cfc26edd36074dfb7fb47dcb68279))
+
+
+
+
+
+## [4.79.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.79.0...@toptal/picasso@4.79.1) (2020-07-16)
+
+
+### Bug Fixes
+
+* prompt modal submit button when loading is not disabled ([#1430](https://github.com/toptal/picasso/issues/1430)) ([41d0d46](https://github.com/toptal/picasso/commit/41d0d46b5b119e85e05871c830a73dcc12f6bb01))
+
+
+
+
+
+# [4.79.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.78.1...@toptal/picasso@4.79.0) (2020-07-15)
+
+
+### Features
+
+* [TEA-1430] add eye crossed icons ([#1435](https://github.com/toptal/picasso/issues/1435)) ([f57bde6](https://github.com/toptal/picasso/commit/f57bde6a0b1dfae5ae208282aa206295de42c132))
+
+
+
+
+
+## [4.78.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.78.0...@toptal/picasso@4.78.1) (2020-07-15)
+
+
+### Bug Fixes
+
+* export static props to be able to extend via styled ([#1434](https://github.com/toptal/picasso/issues/1434)) ([0aaffd2](https://github.com/toptal/picasso/commit/0aaffd2a0b73c80025028ce76f868d13e3fbd522))
+
+
+
+
+
+# [4.78.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.77.2...@toptal/picasso@4.78.0) (2020-07-15)
+
+
+### Features
+
+* add text selection on focus to Select component ([#1433](https://github.com/toptal/picasso/issues/1433)) ([244e17e](https://github.com/toptal/picasso/commit/244e17ecae59a4ba6744effe5f7b088ad9119f62))
+
+
+
+
+
+## [4.77.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.77.1...@toptal/picasso@4.77.2) (2020-07-14)
+
+
+### Bug Fixes
+
+* ignore titleCase for Autocomplete options ([#1432](https://github.com/toptal/picasso/issues/1432)) ([e35899e](https://github.com/toptal/picasso/commit/e35899e1ecc1148f2b049d24594574af6005125a))
+
+
+
+
+
+## [4.77.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.77.0...@toptal/picasso@4.77.1) (2020-07-14)
+
+
+### Bug Fixes
+
+* ignore titleCase for Select options ([#1431](https://github.com/toptal/picasso/issues/1431)) ([5b24f3e](https://github.com/toptal/picasso/commit/5b24f3e7c4f5ccfff5400de7d233dedebcaa2002))
+
+
+
+
+
+# [4.77.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.76.1...@toptal/picasso@4.77.0) (2020-07-14)
+
+
+### Features
+
+* add dispute and pause icons ([#1427](https://github.com/toptal/picasso/issues/1427)) ([c06cb46](https://github.com/toptal/picasso/commit/c06cb4645f1205a44e8b370b93664a977bc5ea74))
+
+
+
+
+
+## [4.76.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.76.0...@toptal/picasso@4.76.1) (2020-07-13)
+
+
+### Bug Fixes
+
+* **TableSectionHead:** [BXFE-486] Add colspan  ([#1424](https://github.com/toptal/picasso/issues/1424)) ([d2ccdf8](https://github.com/toptal/picasso/commit/d2ccdf85602eb8be5fe092fc3decb6f49bbf1bc6))
+
+
+
+
+
+# [4.76.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.75.0...@toptal/picasso@4.76.0) (2020-07-13)
+
+
+### Features
+
+* use AP-style title case for components ([#1422](https://github.com/toptal/picasso/issues/1422)) ([b64ed4c](https://github.com/toptal/picasso/commit/b64ed4cdb50c9d306c1c492332e4db498ab0cb72))
+
+
+
+
+
+# [4.75.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.74.7...@toptal/picasso@4.75.0) (2020-07-10)
+
+
+### Features
+
+* **tablesectionhead:** bxfe-486 Implement Table Section Head ([#1423](https://github.com/toptal/picasso/issues/1423)) ([e6dec1c](https://github.com/toptal/picasso/commit/e6dec1c9adb3f8e702bdb5cc3dd5e78d457688fb))
+
+
+
+
+
 ## [4.74.7](https://github.com/toptal/picasso/compare/@toptal/picasso@4.74.6...@toptal/picasso@4.74.7) (2020-07-03)
 
 

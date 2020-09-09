@@ -10,11 +10,10 @@ export const Step: FunctionComponent<Props> = ({
   active,
   children,
   completed,
-  index,
   ...rest
 }) => (
   // eslint-disable-next-line react/jsx-props-no-spreading
-  <MUIStep {...rest} active={active} completed={completed} index={index}>
+  <MUIStep {...rest} active={active} completed={completed}>
     {children}
   </MUIStep>
 )

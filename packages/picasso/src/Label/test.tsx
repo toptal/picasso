@@ -1,11 +1,11 @@
 import React from 'react'
 import { render, fireEvent, PicassoConfig } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
-import * as titleCaseModule from 'title-case'
+import * as titleCaseModule from 'ap-style-title-case'
 
 import Label, { Props } from './Label'
 
-jest.mock('title-case')
+jest.mock('ap-style-title-case')
 
 const renderLabel = (
   children: string,
@@ -30,7 +30,7 @@ const renderLabel = (
 
 let spiedOnTitleCase: jest.SpyInstance
 beforeEach(() => {
-  spiedOnTitleCase = jest.spyOn(titleCaseModule, 'titleCase')
+  spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
 })
 afterEach(() => {
   spiedOnTitleCase.mockReset()
@@ -49,17 +49,14 @@ test('renders `white` variant', () => {
 })
 
 test('should transform text to title case when Picasso titleCase property is true', () => {
-  renderLabel('some text with-the-edge case for TEST', {}, { titleCase: true })
+  const TEXT_CONTENT = 'Test bk9'
+  renderLabel(TEXT_CONTENT, {}, { titleCase: true })
 
-  expect(spiedOnTitleCase).toBeCalledTimes(1)
+  expect(spiedOnTitleCase).toBeCalledWith(TEXT_CONTENT)
 })
 
 test('should not transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {
-  renderLabel(
-    'some text with-the-edge case for TEST',
-    { titleCase: false },
-    { titleCase: true }
-  )
+  renderLabel('test cl4', { titleCase: false }, { titleCase: true })
 
   expect(spiedOnTitleCase).toBeCalledTimes(0)
 })

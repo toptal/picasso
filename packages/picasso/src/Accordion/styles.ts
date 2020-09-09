@@ -2,7 +2,7 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 import { PicassoProvider, createPropertiesStyles } from '@toptal/picasso-shared'
 
 PicassoProvider.override(() => ({
-  MuiExpansionPanel: {
+  MuiAccordion: {
     root: {
       '&:before': {
         display: 'none'

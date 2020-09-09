@@ -104,7 +104,7 @@ page
         name: 'scrollOffsetTop',
         type: 'number',
         description:
-          'Offset from the viewport for inputs to focus on, defaults to the center of the window'
+          'Offset from the viewport for inputs to focus on, defaults to the center of the window (deprecated, will not have any effect)'
       }
     }
   })
@@ -164,6 +164,16 @@ value.
 The form usually need to send data to backend, so we need to have
 backend communication and display the process of submission and
 the results. The form-level results are represented by notifications.
+`
+    },
+    'picasso-form'
+  ) // picasso-skip-visuals
+  .addExample(
+    'Form/story/ValidateOnSubmit.example.tsx',
+    {
+      title: 'Validate only on submit',
+      description: `
+All fields should not show any validation error messages until submission is made.
 `
     },
     'picasso-form'

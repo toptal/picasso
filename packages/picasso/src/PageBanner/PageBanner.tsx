@@ -24,7 +24,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   icon?: ReactElement
 }
 
-interface StaticProps {
+export interface StaticProps {
   Message: FunctionComponent
   Actions: FunctionComponent
 }

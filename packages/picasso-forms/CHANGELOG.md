@@ -3,6 +3,80 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.4](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.20.3...@toptal/picasso-forms@0.20.4) (2020-08-31)
+
+**Note:** Version bump only for package @toptal/picasso-forms
+
+
+
+
+
+## [0.20.3](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.20.2...@toptal/picasso-forms@0.20.3) (2020-08-31)
+
+
+### Bug Fixes
+
+* add support for complex field validation ([#1513](https://github.com/toptal/picasso/issues/1513)) ([ddf80e7](https://github.com/toptal/picasso/commit/ddf80e773f4fae64e420e6931740340e1894fe58))
+
+
+
+
+
+## [0.20.2](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.20.1...@toptal/picasso-forms@0.20.2) (2020-08-27)
+
+
+### Bug Fixes
+
+* **Form:** improve form errors scrolling ([#1512](https://github.com/toptal/picasso/issues/1512)) ([16f9dd6](https://github.com/toptal/picasso/commit/16f9dd62fad2979d129fc53993da3e7a66d622cb))
+
+
+
+
+
+## [0.20.1](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.20.0...@toptal/picasso-forms@0.20.1) (2020-08-13)
+
+
+### Bug Fixes
+
+* validate form after submit ([#1460](https://github.com/toptal/picasso/issues/1460)) ([37c054c](https://github.com/toptal/picasso/commit/37c054c666f97ef18f9441c0b8b06506df151c60))
+
+
+
+
+
+# [0.20.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.19.0...@toptal/picasso-forms@0.20.0) (2020-07-31)
+
+
+### Features
+
+* **forms:** add CheckboxGroup ([#1448](https://github.com/toptal/picasso/issues/1448)) ([61e8570](https://github.com/toptal/picasso/commit/61e8570bf0842f3e55dc0ecc8b45cd85a9891bef))
+
+
+
+
+
+# [0.19.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.18.3...@toptal/picasso-forms@0.19.0) (2020-07-23)
+
+
+### Features
+
+* add timepicker to picasso-forms ([#1441](https://github.com/toptal/picasso/issues/1441)) ([f55db3d](https://github.com/toptal/picasso/commit/f55db3d7974f7a793a05bafbc97f31c2c3eec682))
+
+
+
+
+
+## [0.18.3](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.18.2...@toptal/picasso-forms@0.18.3) (2020-07-20)
+
+
+### Bug Fixes
+
+* **radiogroup:** remove invalid elements on clone ([#1436](https://github.com/toptal/picasso/issues/1436)) ([f2b5f8d](https://github.com/toptal/picasso/commit/f2b5f8dc7040f7681c00cf04cd23832160b82272))
+
+
+
+
+
 ## [0.18.2](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.18.1...@toptal/picasso-forms@0.18.2) (2020-07-03)
 
 

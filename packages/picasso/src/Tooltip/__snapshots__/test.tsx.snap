@@ -3,14 +3,35 @@
 exports[`Tooltip default render 1`] = `
 <div>
   <div
-    class=""
+    class="Picasso-root"
   >
-    <span
-      aria-describedby="aria-describedby-id-mock"
+    <div
       class=""
     >
-      Test
-    </span>
+      <span
+        aria-describedby="aria-describedby-id-mock"
+        class=""
+      >
+        Test
+      </span>
+    </div>
+    <div
+      class="MuiTooltip-popper PicassoTooltip-arrowPopper"
+      id="aria-describedby-id-mock"
+      role="tooltip"
+      style="position: absolute;"
+      x-placement="top"
+    >
+      <div
+        class="MuiTooltip-tooltip PicassoTooltip-tooltip MuiTooltip-tooltipPlacementTop"
+        style="opacity: 1; transform: scale(1, 1); transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 133ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+      >
+        Content goes here...
+        <span
+          class="PicassoTooltip-arrow"
+        />
+      </div>
+    </div>
   </div>
 </div>
 `;

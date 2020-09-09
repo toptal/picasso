@@ -1,8 +1,11 @@
 import React from 'react'
-import { render, fireEvent } from '@toptal/picasso/test-utils'
+import { render, fireEvent, PicassoConfig } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
+import * as titleCaseModule from 'ap-style-title-case'
 
 import Autocomplete, { Props } from './Autocomplete'
+
+jest.mock('ap-style-title-case')
 
 const testOptions = [
   { text: 'Belarus', value: 'BY' },
@@ -12,14 +15,28 @@ const testOptions = [
   { text: 'Ukraine', value: 'UA' }
 ]
 
-const renderAutocomplete = (props: OmitInternalProps<Props>) => {
+const renderAutocomplete = (
+  props: OmitInternalProps<Props>,
+  picassoConfig?: PicassoConfig
+) => {
   return render(
     <Autocomplete
       /* eslint-disable-next-line react/jsx-props-no-spreading */
       {...props}
-    />
+    />,
+    undefined,
+    picassoConfig
   )
 }
+
+let spiedOnTitleCase: jest.SpyInstance
+
+beforeEach(() => {
+  spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
+})
+afterEach(() => {
+  spiedOnTitleCase.mockReset()
+})
 
 const placeholder = 'Placeholder text'
 
@@ -99,13 +116,14 @@ describe('Autocomplete', () => {
       const input = getByPlaceholderText(placeholder) as HTMLInputElement
 
       fireEvent.focus(input)
+
       fireEvent.click(getByText('Slovakia'))
 
       const optionSlovakia = testOptions.find(
         option => option.text === 'Slovakia'
       )
 
-      expect(onSelect).toBeCalledWith(optionSlovakia)
+      expect(onSelect).toBeCalledWith(optionSlovakia, expect.anything())
       expect(onChange).toBeCalledWith('Slovakia', { isSelected: true })
     })
 
@@ -207,7 +225,10 @@ describe('Autocomplete', () => {
           key: 'Enter'
         })
 
-        expect(onOtherOptionSelect).toBeCalledWith('Other option!')
+        expect(onOtherOptionSelect).toBeCalledWith(
+          'Other option!',
+          expect.anything()
+        )
       })
     })
   })
@@ -268,6 +289,26 @@ describe('Autocomplete', () => {
 
     fireEvent.focus(input)
     expect(api.baseElement.textContent).toContain('Custom renderer')
+  })
+
+  test('should not transform options text to title case when Picasso titleCase property is true', () => {
+    const placeholder = 'Choose an option...'
+    const { getByPlaceholderText } = renderAutocomplete(
+      {
+        options: testOptions,
+        value: '',
+        placeholder
+      },
+      {
+        titleCase: true
+      }
+    )
+
+    const input = getByPlaceholderText(placeholder)
+
+    fireEvent.focus(input)
+
+    expect(spiedOnTitleCase).toBeCalledTimes(0)
   })
 
   describe('Autofill', () => {

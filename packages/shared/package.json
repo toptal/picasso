@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-shared",
-  "version": "1.15.2",
+  "version": "1.16.3",
   "description": "Shared types, utils for Picasso internal usage",
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-shared#readme",
@@ -15,7 +15,7 @@
     "url": "git+https://github.com/toptal/picasso.git"
   },
   "scripts": {
-    "build:dist": "cross-env NODE_ENV=production ./bin/build",
+    "build:package": "cross-env NODE_ENV=production ./bin/build",
     "prepublishOnly": "../../bin/prepublish"
   },
   "bugs": {
@@ -29,10 +29,10 @@
     "classnames": "^2.2.6",
     "color": "^3.1.1",
     "notistack": "^0.9.11",
-    "react-modal-hook": "^2.0.0"
+    "react-modal-hook": "^3.0.0"
   },
   "devDependencies": {
-    "@types/classnames": "^2.2.9",
+    "@types/classnames": "^2.2.10",
     "@types/color": "^3.0.1"
   },
   "sideEffects": [

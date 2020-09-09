@@ -1,11 +1,30 @@
 import React from 'react'
-import { render, fireEvent, RenderResult } from '@toptal/picasso/test-utils'
+import {
+  render,
+  fireEvent,
+  RenderResult,
+  PicassoConfig
+} from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
+import * as titleCaseModule from 'ap-style-title-case'
 
 import Checkbox, { Props } from './Checkbox'
 
-const renderCheckbox = (props: OmitInternalProps<Props>) => {
-  const { label, disabled, indeterminate, onChange } = props
+jest.mock('ap-style-title-case')
+
+let spiedOnTitleCase: jest.SpyInstance
+beforeEach(() => {
+  spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
+})
+afterEach(() => {
+  spiedOnTitleCase.mockReset()
+})
+
+const renderCheckbox = (
+  props: OmitInternalProps<Props>,
+  picassoConfig?: PicassoConfig
+) => {
+  const { label, disabled, titleCase, indeterminate, onChange } = props
 
   return render(
     <Checkbox
@@ -13,7 +32,10 @@ const renderCheckbox = (props: OmitInternalProps<Props>) => {
       label={label}
       indeterminate={indeterminate}
       onChange={onChange}
-    />
+      titleCase={titleCase}
+    />,
+    undefined,
+    picassoConfig
   )
 }
 
@@ -39,6 +61,19 @@ test('renders indeterminate state', () => {
   const { container } = renderCheckbox({ indeterminate: true })
 
   expect(container).toMatchSnapshot()
+})
+
+test('should transform text to title case when Picasso titleCase property is true', () => {
+  const LABEL_TEXT = 'abc ac4'
+  renderCheckbox({ label: LABEL_TEXT }, { titleCase: true })
+
+  expect(spiedOnTitleCase).toBeCalledWith(LABEL_TEXT)
+})
+
+test('should not transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {
+  renderCheckbox({ label: 'abc dp3', titleCase: false }, { titleCase: true })
+
+  expect(spiedOnTitleCase).toBeCalledTimes(0)
 })
 
 describe('checkbox interaction', () => {

@@ -6,18 +6,25 @@ import React, {
   ChangeEvent,
   HTMLAttributes
 } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITooltip from '@material-ui/core/Tooltip'
 import cx from 'classnames'
-import { StandardProps, usePicassoRoot } from '@toptal/picasso-shared'
+import { usePicassoRoot, BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
 type VariantType = 'light' | 'dark'
 
-type PlacementType = 'bottom' | 'left' | 'right' | 'top'
+export type PlacementType = 'bottom' | 'left' | 'right' | 'top'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+type DelayType = 'short' | 'long'
+
+const delayDurations: { [k in DelayType]: number } = {
+  short: 200,
+  long: 500
+}
+
+export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Trigger element for tooltip */
   children: ReactNode
   /** Content to be rendered inside tooltip */
@@ -40,36 +47,50 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   disableListeners?: boolean
   /** Allows tooltip to change its placement when it overflows */
   preventOverflow?: boolean
+  /** Disable the portal behavior. The children stay within it's parent */
+  disablePortal?: boolean
+  /** A delay in showing the tooltip */
+  delay?: DelayType
+  /** Show a compact tooltip */
+  compact?: boolean
 }
 
-export const Tooltip: FunctionComponent<Props> = ({
-  content,
-  children,
-  placement,
-  interactive,
-  classes,
-  className,
-  style,
-  arrow,
-  open,
-  onClose,
-  onOpen,
-  variant,
-  disableListeners,
-  preventOverflow,
-  ...rest
-}) => {
+const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoTooltip' })
+
+export const Tooltip: FunctionComponent<Props> = props => {
+  const {
+    content,
+    children,
+    placement,
+    interactive,
+    className,
+    style,
+    arrow,
+    open,
+    onClose,
+    onOpen,
+    variant,
+    disableListeners,
+    preventOverflow,
+    disablePortal,
+    delay = 'short',
+    compact,
+    ...rest
+  } = props
+  const classes = useStyles(props)
   const [arrowRef, setArrowRef] = useState<HTMLSpanElement | null>(null)
   const container = usePicassoRoot()
 
   const title = (
     <>
       {content}
-      {arrow && <span className={classes.arrow} ref={setArrowRef} />}
+      {arrow && !compact && (
+        <span className={classes.arrow} ref={setArrowRef} />
+      )}
     </>
   )
 
-  const defaultDelay = 500
+  const delayDuration = delayDurations[delay]
 
   return (
     <MUITooltip
@@ -77,6 +98,7 @@ export const Tooltip: FunctionComponent<Props> = ({
       {...rest}
       PopperProps={{
         container,
+        disablePortal,
         popperOptions: {
           modifiers: {
             arrow: {
@@ -97,7 +119,8 @@ export const Tooltip: FunctionComponent<Props> = ({
         popper:
           variant === 'light' ? classes.arrowPopperLight : classes.arrowPopper,
         tooltip: cx(classes.tooltip, {
-          [classes.light]: variant === 'light'
+          [classes.light]: variant === 'light',
+          [classes.compact]: compact
         })
       }}
       className={className}
@@ -111,7 +134,8 @@ export const Tooltip: FunctionComponent<Props> = ({
       disableHoverListener={disableListeners}
       disableFocusListener={disableListeners}
       disableTouchListener
-      enterDelay={defaultDelay}
+      enterDelay={delayDuration}
+      enterNextDelay={delayDuration}
     >
       {children as ReactElement}
     </MUITooltip>
@@ -122,7 +146,8 @@ Tooltip.defaultProps = {
   arrow: true,
   preventOverflow: false,
   placement: 'top',
-  variant: 'dark'
+  variant: 'dark',
+  disablePortal: false
 }
 
-export default withStyles(styles)(Tooltip)
+export default Tooltip

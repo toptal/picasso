@@ -1,18 +1,20 @@
-import React, { forwardRef, ReactNode } from 'react'
 import MUICheckbox from '@material-ui/core/Checkbox'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import {
   BaseProps,
   ButtonOrAnchorProps,
-  CompoundedComponentWithRef
+  CompoundedComponentWithRef,
+  TextLabelProps
 } from '@toptal/picasso-shared'
 import cx from 'classnames'
+import React, { forwardRef, ReactNode } from 'react'
 
 import CheckboxGroup from '../CheckboxGroup'
+import Container from '../Container'
 import FormControlLabel from '../FormControlLabel'
 import styles from './styles'
 
-interface StaticProps {
+export interface StaticProps {
   Group: typeof CheckboxGroup
 }
 
@@ -20,6 +22,7 @@ const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoCheckbox' })
 
 export interface Props
   extends BaseProps,
+    TextLabelProps,
     Omit<ButtonOrAnchorProps, 'onChange'> {
   /** Show checkbox initially as checked */
   checked?: boolean
@@ -57,11 +60,11 @@ export const Checkbox = forwardRef<HTMLButtonElement, Props>(function Checkbox(
     value,
     checked,
     indeterminate,
+    titleCase,
     ...rest
   } = props
 
   const classes = useStyles(props)
-
   const rootClasses = {
     root: classes.root,
     disabled: classes.disabled
@@ -70,26 +73,35 @@ export const Checkbox = forwardRef<HTMLButtonElement, Props>(function Checkbox(
   const { color, ...checkboxAttributes } = rest
 
   const muiCheckbox = (
-    <MUICheckbox
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...checkboxAttributes}
-      ref={ref}
-      checked={checked}
-      icon={<div className={classes.uncheckedIcon} />}
-      checkedIcon={<div className={classes.checkedIcon} />}
-      indeterminateIcon={<div className={classes.indeterminateIcon} />}
-      classes={rootClasses}
-      className={cx(className, {
-        [classes.withLabel]: Boolean(label)
+    <Container
+      as='span'
+      flex
+      inline
+      className={cx(classes.checkboxWrapper, {
+        [classes.disabledCheckboxWrapper]: disabled
       })}
-      style={style}
-      disabled={disabled}
-      id={id}
-      indeterminate={indeterminate}
-      onChange={onChange}
-      value={value}
-      focusVisibleClassName={classes.focused}
-    />
+    >
+      <MUICheckbox
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...checkboxAttributes}
+        ref={ref}
+        checked={checked}
+        icon={<div className={classes.uncheckedIcon} />}
+        checkedIcon={<div className={classes.checkedIcon} />}
+        indeterminateIcon={<div className={classes.indeterminateIcon} />}
+        classes={rootClasses}
+        className={cx(className, {
+          [classes.withLabel]: Boolean(label)
+        })}
+        style={style}
+        disabled={disabled}
+        id={id}
+        indeterminate={indeterminate}
+        onChange={onChange}
+        value={value}
+        focusVisibleClassName={classes.focused}
+      />
+    </Container>
   )
 
   if (!label) {
@@ -106,6 +118,7 @@ export const Checkbox = forwardRef<HTMLButtonElement, Props>(function Checkbox(
       required={required}
       disabled={disabled}
       label={label}
+      titleCase={titleCase}
       className='picasso-checkbox'
     />
   )

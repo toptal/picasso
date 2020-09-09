@@ -16,7 +16,7 @@ always-auth=true ' > .npmrc
 git update-index --assume-unchanged .npmrc
 
 # Build all packages
-npx lerna run build:dist
+npx lerna run build:package
 
 git config user.email "$GIT_COMMITTER_EMAIL"
 git config user.name "$GIT_COMMITTER_NAME"

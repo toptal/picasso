@@ -19,6 +19,10 @@ page
       variant: {
         type: 'enum',
         enums: ['light', 'dark']
+      },
+      delay: {
+        type: 'enum',
+        enums: ['short', 'long']
       }
     }
   })
@@ -30,14 +34,16 @@ page
 
 page
   .createChapter()
-  .addExample('Tooltip/story/Default.example.jsx', 'Default')
-  .addExample('Tooltip/story/Placement.example.jsx', 'Placement')
-  .addExample('Tooltip/story/Arrow.example.jsx', 'Arrow')
-  .addExample('Tooltip/story/Variant.example.jsx', 'Variant')
-  .addExample('Tooltip/story/Trigger.example.jsx', 'Trigger') // picasso-skip-visuals
-  .addExample('Tooltip/story/Interactive.example.jsx', 'Interactive') // picasso-skip-visuals
+  .addExample('Tooltip/story/Default.example.tsx', 'Default')
+  .addExample('Tooltip/story/Placement.example.tsx', 'Placement')
+  .addExample('Tooltip/story/Arrow.example.tsx', 'Arrow')
+  .addExample('Tooltip/story/Variant.example.tsx', 'Variant')
+  .addExample('Tooltip/story/Trigger.example.tsx', 'Trigger') // picasso-skip-visuals
+  .addExample('Tooltip/story/Interactive.example.tsx', 'Interactive') // picasso-skip-visuals
   .addExample('Tooltip/story/ControlListeners.example.tsx', 'Control Listeners') // picasso-skip-visuals
   .addExample(
     'Tooltip/story/DisabledElement.example.tsx',
     'Tooltip on disabled element'
   ) // picasso-skip-visuals
+  .addExample('Tooltip/story/Delay.example.tsx', 'Delay') // picasso-skip-visuals
+  .addExample('Tooltip/story/Compact.example.tsx', 'Compact')

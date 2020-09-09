@@ -6,9 +6,11 @@ import {
   PicassoConfig
 } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
-import * as titleCaseModule from 'title-case'
+import * as titleCaseModule from 'ap-style-title-case'
 
 import Radio, { Props } from './Radio'
+
+jest.mock('ap-style-title-case')
 
 const renderRadio = (
   props: OmitInternalProps<Props>,
@@ -30,7 +32,7 @@ const renderRadio = (
 
 let spiedOnTitleCase: jest.SpyInstance
 beforeEach(() => {
-  spiedOnTitleCase = jest.spyOn(titleCaseModule, 'titleCase')
+  spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
 })
 afterEach(() => {
   spiedOnTitleCase.mockReset()
@@ -76,9 +78,10 @@ describe('radio button', () => {
   })
 
   test('should transform label text to title case when Picasso titleCase property is true', () => {
-    renderRadio({ label: 'test label' }, { titleCase: true })
+    const LABEL_TEXT = 'Test bh6'
+    renderRadio({ label: LABEL_TEXT }, { titleCase: true })
 
-    expect(spiedOnTitleCase).toBeCalledTimes(1)
+    expect(spiedOnTitleCase).toBeCalledWith(LABEL_TEXT)
   })
 
   test('should not transform label text to title case when Picasso titleCase property is true but the component property overrides it', () => {
@@ -91,7 +94,7 @@ describe('radio button', () => {
 describe('Radio.Group', () => {
   test('renders radio in group', () => {
     const { container }: RenderResult = render(
-      <Radio.Group>
+      <Radio.Group name='my-group'>
         <Radio label='LABEL+1' value='VALUE+1' />
         <Radio label='LABEL+2' value='VALUE+2' />
       </Radio.Group>
