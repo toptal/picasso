@@ -4,9 +4,8 @@ import { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 
 import { Candidates16 } from '../Icon'
-import SidebarMenu from '../SidebarMenu'
 import Sidebar from '../Sidebar'
-import SidebarItem, { Props } from './SidebarItem'
+import { Props } from './SidebarItem'
 
 jest.mock('ap-style-title-case')
 
@@ -18,7 +17,7 @@ const TestSidebarItem: FunctionComponent<OmitInternalProps<Props>> = ({
   titleCase,
   menu
 }) => (
-  <SidebarItem
+  <Sidebar.Item
     icon={icon}
     selected={selected}
     collapsible={collapsible}
@@ -26,10 +25,11 @@ const TestSidebarItem: FunctionComponent<OmitInternalProps<Props>> = ({
     menu={menu}
   >
     {children}
-  </SidebarItem>
+  </Sidebar.Item>
 )
 
 let spiedOnTitleCase: jest.SpyInstance
+
 beforeEach(() => {
   spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
 })
@@ -64,9 +64,9 @@ describe('SidebarItem', () => {
 
   test('use accordion for collapsible with menu', () => {
     const menu = (
-      <SidebarMenu>
-        <SidebarItem>Menu item</SidebarItem>
-      </SidebarMenu>
+      <Sidebar.Menu>
+        <Sidebar.Item>Menu item</Sidebar.Item>
+      </Sidebar.Menu>
     )
 
     const { container } = render(
@@ -81,18 +81,18 @@ describe('SidebarItem', () => {
   test('collapsible menu is expanded when one of the children is selected', () => {
     const { container } = render(
       <Sidebar>
-        <SidebarMenu>
-          <SidebarItem
+        <Sidebar.Menu>
+          <Sidebar.Item
             menu={
-              <SidebarMenu>
-                <SidebarItem selected>Menu item</SidebarItem>
-              </SidebarMenu>
+              <Sidebar.Menu>
+                <Sidebar.Item selected>Menu item</Sidebar.Item>
+              </Sidebar.Menu>
             }
             collapsible
           >
             Test item
-          </SidebarItem>
-        </SidebarMenu>
+          </Sidebar.Item>
+        </Sidebar.Menu>
       </Sidebar>
     )
 
@@ -101,9 +101,9 @@ describe('SidebarItem', () => {
 
   test("don't use accordion for non-collapsible with menu", () => {
     const menu = (
-      <SidebarMenu>
-        <SidebarItem>Menu item</SidebarItem>
-      </SidebarMenu>
+      <Sidebar.Menu>
+        <Sidebar.Item>Menu item</Sidebar.Item>
+      </Sidebar.Menu>
     )
 
     const { container } = render(
@@ -118,12 +118,13 @@ describe('SidebarItem', () => {
   test('should transform menu items text to title case when Picasso titleCase property is true', () => {
     const MENU_TEXT_CONTENT = 'Test vh5'
     const menu = (
-      <SidebarMenu>
-        <SidebarItem>{MENU_TEXT_CONTENT}</SidebarItem>
-      </SidebarMenu>
+      <Sidebar.Menu>
+        <Sidebar.Item>{MENU_TEXT_CONTENT}</Sidebar.Item>
+      </Sidebar.Menu>
     )
 
     const SIDEBAR_ITEM_TEXT_CONTENT = 'Test by2'
+
     render(
       <TestSidebarItem menu={menu}>
         {SIDEBAR_ITEM_TEXT_CONTENT}
@@ -142,9 +143,9 @@ describe('SidebarItem', () => {
   test('should not transform menu items text to title case when Picasso titleCase property is true but the component property overrides it', () => {
     const TEXT_CONTENT = 'Test vi7'
     const menu = (
-      <SidebarMenu>
-        <SidebarItem>{TEXT_CONTENT}</SidebarItem>
-      </SidebarMenu>
+      <Sidebar.Menu>
+        <Sidebar.Item>{TEXT_CONTENT}</Sidebar.Item>
+      </Sidebar.Menu>
     )
 
     render(
