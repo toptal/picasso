@@ -12,8 +12,11 @@ import { StandardProps } from '@toptal/picasso-shared'
 import Menu from '../Menu'
 import styles from './styles'
 
+type FocusEventType = (event: React.FocusEvent<HTMLInputElement>) => void
+
 export interface Props extends StandardProps {
   selectedIndex?: number | null
+  onBlur?: FocusEventType
 }
 
 enum Direction {
@@ -37,6 +40,7 @@ const getMoveDirection = (
 
 const ScrollMenu: FunctionComponent<Props> = ({
   selectedIndex,
+  onBlur,
   classes,
   children,
   style,
@@ -101,7 +105,7 @@ const ScrollMenu: FunctionComponent<Props> = ({
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
     >
-      <div ref={menuRef} className={classes.scrollView}>
+      <div ref={menuRef} className={classes.scrollView} onBlur={onBlur}>
         {renderChildren}
       </div>
     </Menu>

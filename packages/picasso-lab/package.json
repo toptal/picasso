@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-lab",
-  "version": "2.30.7",
+  "version": "2.31.1",
   "description": "Lab components of Picasso",
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-lab#readme",
@@ -37,7 +37,7 @@
     "detect-browser": "^5.1.1",
     "react-content-loader": "^5.1.0",
     "react-input-mask": "^3.0.0-alpha.2",
-    "simple-react-calendar": "^2.2.7"
+    "simple-react-calendar": "^2.2.8"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.9",

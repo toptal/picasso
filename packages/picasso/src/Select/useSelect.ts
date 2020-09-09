@@ -28,6 +28,7 @@ const normalizeArrowKey = (event: KeyboardEvent<HTMLInputElement>) => {
   if (keyCode >= 37 && keyCode <= 40 && key.indexOf('Arrow') !== 0) {
     return `Arrow${key}`
   }
+
   return key
 }
 
@@ -69,6 +70,8 @@ const getNextWrappingIndex = (
   return newIndex
 }
 
+export type FocusEventType = (event: React.FocusEvent<HTMLInputElement>) => void
+
 interface Props {
   value: string
   options?: Option[]
@@ -82,8 +85,8 @@ interface Props {
     event: KeyboardEvent<HTMLInputElement>,
     inputValue: string
   ) => void
-  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void
-  onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void
+  onBlur?: FocusEventType
+  onFocus?: FocusEventType
 }
 
 type GetInputProps = ({
@@ -94,10 +97,10 @@ type GetInputProps = ({
   HTMLAttributes<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
 >
 
-type GetRootProps = () => {
-  onFocus: (event: React.FocusEvent<HTMLInputElement>) => void
+export type GetRootProps = () => {
+  onFocus: FocusEventType
   onClick: (event: React.MouseEvent<HTMLInputElement>) => void
-  onBlur: (event: React.FocusEvent<HTMLInputElement>) => void
+  onBlur: FocusEventType
 }
 
 interface UseSelectOutput {
@@ -175,6 +178,7 @@ const useSelect = ({
   }
 
   const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+    if (event.relatedTarget) return
     setOpen(false)
     onBlur(event)
   }
@@ -197,6 +201,10 @@ const useSelect = ({
     // eslint-disable-next-line max-statements, complexity
     onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => {
       const key = normalizeArrowKey(event)
+
+      if (key === 'Tab') {
+        event.currentTarget.blur()
+      }
 
       if (key === 'ArrowUp' || key === 'ArrowDown') {
         event.preventDefault()
@@ -225,6 +233,7 @@ const useSelect = ({
       if (key === 'Enter') {
         if (!isOpen) {
           setOpen(true)
+
           return
         }
 
