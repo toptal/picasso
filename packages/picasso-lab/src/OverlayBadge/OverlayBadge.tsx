@@ -26,7 +26,9 @@ export interface Props extends BaseProps, TextLabelProps {
   size?: SizeType
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoBadge' })
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'PicassoOverlayBadge'
+})
 
 // eslint-disable-next-line react/display-name
 export const OverlayBadge = forwardRef<HTMLDivElement, Props>(

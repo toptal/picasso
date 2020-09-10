@@ -10,7 +10,7 @@ exports[`renders OverlayBadge 1`] = `
     >
       abc
       <span
-        class="MuiBadge-badge MuiBadge-anchorOriginTopRightRectangle PicassoBadge-root PicassoBadge-white PicassoBadge-medium"
+        class="MuiBadge-badge MuiBadge-anchorOriginTopRightRectangle PicassoOverlayBadge-root PicassoOverlayBadge-white PicassoOverlayBadge-medium"
       >
         OverlayBadge content
       </span>
