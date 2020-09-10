@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.32.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.31.2...@toptal/picasso-lab@2.32.0) (2020-09-10)
+
+
+### Features
+
+* **Badge:** add Badge and OverlayBadge components ([#1550](https://github.com/toptal/picasso/issues/1550)) ([834a23f](https://github.com/toptal/picasso/commit/834a23f49fd62915a97ea6c886cf40577442011b))
+
+
+
+
+
 ## [2.31.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.31.1...@toptal/picasso-lab@2.31.2) (2020-09-09)
 
 **Note:** Version bump only for package @toptal/picasso-lab
