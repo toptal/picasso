@@ -1,6 +1,6 @@
 import React from 'react'
-import { Container, Typography } from '@toptal/picasso'
-import { Badge } from '@toptal/picasso-lab'
+import { Avatar, Container, Typography } from '@toptal/picasso'
+import { OverlayBadge } from '@toptal/picasso-lab'
 
 const Example = () => (
   <>
@@ -10,7 +10,9 @@ const Example = () => (
       </Typography>
     </Container>
     <Container top='small' bottom='medium'>
-      <Badge content='2' variant='red' size='small' />
+      <OverlayBadge content='2' variant='red' size='small'>
+        <Avatar size='xxsmall' name='Jacqueline Roque' />
+      </OverlayBadge>
     </Container>
 
     <Container>
@@ -19,7 +21,9 @@ const Example = () => (
       </Typography>
     </Container>
     <Container top='small'>
-      <Badge content='200' variant='red' size='medium' />
+      <OverlayBadge content='200' variant='red' size='medium'>
+        <Avatar size='small' name='Adam Jones' />
+      </OverlayBadge>
     </Container>
   </>
 )

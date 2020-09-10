@@ -3,18 +3,21 @@ import { render, PicassoConfig } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 
-import Badge, { Props } from './Badge'
+import OverlayBadge, { Props } from './OverlayBadge'
 
 jest.mock('ap-style-title-case')
 
-const renderBadge = (
-  props: OmitInternalProps<Props>,
+const renderOverlayBadge = (
+  content: string,
+  props: OmitInternalProps<Props, 'children' | 'content'>,
   picassoConfig?: PicassoConfig
 ) => {
-  const { content, variant, titleCase } = props
+  const { variant, titleCase } = props
 
   return render(
-    <Badge content={content} variant={variant} titleCase={titleCase} />,
+    <OverlayBadge content={content} variant={variant} titleCase={titleCase}>
+      abc
+    </OverlayBadge>,
     undefined,
     picassoConfig
   )
@@ -29,22 +32,22 @@ afterEach(() => {
   spiedOnTitleCase.mockReset()
 })
 
-test('renders Badge', () => {
-  const { container } = renderBadge({ content: 'Badge content' })
+test('renders OverlayBadge', () => {
+  const { container } = renderOverlayBadge('OverlayBadge content', {})
 
   expect(container).toMatchSnapshot()
 })
 
 test('should transform text to title case when Picasso titleCase property is true', () => {
-  const TEXT_CONTENT = 'Test ao4'
+  const TEXT_CONTENT = 'Test as2'
 
-  renderBadge({ content: TEXT_CONTENT }, { titleCase: true })
+  renderOverlayBadge(TEXT_CONTENT, {}, { titleCase: true })
 
   expect(spiedOnTitleCase).toBeCalledWith(TEXT_CONTENT)
 })
 
 test('should not transform text to title case when Picasso titleCase property is true but the component property overrides it', () => {
-  renderBadge({ content: 'test pe2', titleCase: false }, { titleCase: true })
+  renderOverlayBadge('test ap4', { titleCase: false }, { titleCase: true })
 
   expect(spiedOnTitleCase).toBeCalledTimes(0)
 })

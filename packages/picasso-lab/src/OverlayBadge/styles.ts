@@ -2,13 +2,11 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 
 export default ({ palette }: Theme) =>
   createStyles({
-    root: {
-      fontSize: '0.57rem',
-      borderWidth: '1px',
-      borderStyle: 'solid',
-      lineHeight: 'initial'
-    },
     // variants
+    root: {
+      borderWidth: '1px',
+      borderStyle: 'solid'
+    },
     white: {
       background: palette.common.white,
       color: palette.grey.dark,
@@ -21,20 +19,13 @@ export default ({ palette }: Theme) =>
     },
     // sizes
     medium: {
-      fontSize: '0.57rem',
-      height: '1.25rem',
-      minWidth: '1.25rem',
-      borderRadius: '0.625rem',
-      fontWeight: 600
+      fontSize: '0.75rem'
     },
     small: {
       fontSize: '0.57rem',
       height: '0.75rem',
       minWidth: '0.75rem',
       borderRadius: '0.75rem',
-      fontWeight: 600
-    },
-    smallLabel: {
       padding: '0'
     }
   })

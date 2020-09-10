@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactNode } from 'react'
+import React, { forwardRef } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import {
@@ -7,7 +7,7 @@ import {
   CompoundedComponentWithRef,
   useTitleCase
 } from '@toptal/picasso-shared'
-import { Badge as MuiBadge } from '@material-ui/core'
+import { Chip } from '@material-ui/core'
 import { toTitleCase } from '@toptal/picasso/utils'
 
 import styles from './styles'
@@ -18,8 +18,6 @@ type SizeType = 'medium' | 'small'
 export interface Props extends BaseProps, TextLabelProps {
   /** The `Badge` content */
   content: string
-  /** Text content of the `Badge` component */
-  children: ReactNode
   /** Variant of the `Badge` */
   variant?: VariantType
   /** Size of the `Badge` */
@@ -33,33 +31,21 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge(
   props,
   ref
 ) {
-  const {
-    children,
-    style,
-    variant,
-    size,
-    content,
-    titleCase: propsTitleCase
-  } = props
+  const { style, variant, size, content, titleCase: propsTitleCase } = props
   const classes = useStyles(props)
 
   const titleCase = useTitleCase(propsTitleCase)
 
   return (
-    <MuiBadge
+    <Chip
       ref={ref}
       style={style}
-      badgeContent={titleCase ? toTitleCase(content) : content}
+      label={titleCase ? toTitleCase(content) : content}
       classes={{
-        anchorOriginTopRightRectangle: cx(
-          classes.root,
-          classes[variant!],
-          classes[size!]
-        )
+        root: cx(classes.root, classes[variant!], classes[size!]),
+        label: cx(classes[`${size!}Label`])
       }}
-    >
-      {children}
-    </MuiBadge>
+    />
   )
 }) as CompoundedComponentWithRef<Props, HTMLDivElement>
 

@@ -5,16 +5,15 @@ exports[`renders Badge 1`] = `
   <div
     class="Picasso-root"
   >
-    <span
-      class="MuiBadge-root"
+    <div
+      class="MuiChip-root PicassoBadge-root PicassoBadge-white PicassoBadge-medium"
     >
-      abc
       <span
-        class="MuiBadge-badge MuiBadge-anchorOriginTopRightRectangle PicassoBadge-root PicassoBadge-white PicassoBadge-medium"
+        class="MuiChip-label"
       >
         Badge content
       </span>
-    </span>
+    </div>
   </div>
 </div>
 `;

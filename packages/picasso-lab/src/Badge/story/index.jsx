@@ -3,7 +3,7 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Lab').createPage(
   'Badge',
-  'Renders a small badge to the top-right corner of its child component.'
+  'Renders a small badge.'
 )
 
 page.createTabChapter('Props').addComponentDocs({

@@ -1,25 +1,28 @@
 import React from 'react'
-import { Container, Typography } from '@toptal/picasso'
-import { Badge } from '@toptal/picasso-lab'
+import { Avatar, Container, Typography } from '@toptal/picasso'
+import { OverlayBadge } from '@toptal/picasso-lab'
 
 const Example = () => (
   <>
     <Container>
       <Typography variant='heading' size='small'>
-        Small:
+        White:
       </Typography>
     </Container>
     <Container top='small' bottom='medium'>
-      <Badge content='2' variant='red' size='small' />
+      <OverlayBadge content='1' variant='white'>
+        <Avatar name='Jacqueline Roque' />
+      </OverlayBadge>
     </Container>
-
     <Container>
       <Typography variant='heading' size='small'>
-        Medium:
+        Red:
       </Typography>
     </Container>
     <Container top='small'>
-      <Badge content='200' variant='red' size='medium' />
+      <OverlayBadge content='100' variant='red'>
+        <Avatar name='Adam Jones' />
+      </OverlayBadge>
     </Container>
   </>
 )
