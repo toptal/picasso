@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.98.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.97.2...@toptal/picasso@4.98.0) (2020-09-10)
+
+
+### Features
+
+* **icon:** add services icon ([#1562](https://github.com/toptal/picasso/issues/1562)) ([91a39c8](https://github.com/toptal/picasso/commit/91a39c83ff8a8970abffa0fef9c2da24e347bea5))
+
+
+
+
+
 ## [4.97.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.97.1...@toptal/picasso@4.97.2) (2020-09-09)
 
 **Note:** Version bump only for package @toptal/picasso
