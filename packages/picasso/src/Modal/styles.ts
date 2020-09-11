@@ -3,7 +3,7 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 const maxHeight = 'calc(100% - 6rem)'
 const maxWidth = 'calc(100% - 6rem)'
 
-export default ({ palette, screens }: Theme) =>
+export default ({ screens }: Theme) =>
   createStyles({
     root: {
       display: 'flex',
@@ -13,6 +13,7 @@ export default ({ palette, screens }: Theme) =>
     paper: {
       maxHeight,
       maxWidth,
+      borderRadius: '0.5rem',
 
       [screens('small')]: {
         maxWidth: 'none',
@@ -35,14 +36,6 @@ export default ({ palette, screens }: Theme) =>
     closeButton: {
       position: 'absolute',
       right: '2rem',
-      top: '1.875rem',
-      color: palette.grey.dark,
-      fontSize: '1rem',
-      cursor: 'pointer',
-      opacity: 0.3,
-
-      '&:hover': {
-        opacity: 1
-      }
+      top: '1.5rem'
     }
   })
