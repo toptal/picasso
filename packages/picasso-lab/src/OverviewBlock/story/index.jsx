@@ -1,4 +1,5 @@
 import overviewBlockGroupStory from '../../OverviewBlockGroup/story'
+import overviewBlockRowStory from '../../OverviewBlockRow/story'
 import { OverviewBlock } from '../OverviewBlock'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
@@ -47,6 +48,25 @@ page
         },
         description: 'The color variant'
       },
+      align: {
+        name: 'align',
+        type: {
+          name: 'enum',
+          enums: ["'default'", "'center'"]
+        },
+        defaultValue: 'default',
+        description:
+          'Value and label alignment. By default content is aligned to the left.'
+      },
+      width: {
+        name: 'width',
+        type: {
+          name: 'enum',
+          enums: ["'narrow'", "'regular'", "'wide'"]
+        },
+        defaultValue: 'regular',
+        description: 'The width variant'
+      },
       as: {
         name: 'as',
         type: {
@@ -67,6 +87,7 @@ page
     }
   })
   .addComponentDocs(overviewBlockGroupStory.componentDocs)
+  .addComponentDocs(overviewBlockRowStory.componentDocs)
 
 page
   .createChapter()
@@ -75,3 +96,5 @@ page
   .addExample('OverviewBlock/story/Number.example.tsx', 'Number')
   .addExample('OverviewBlock/story/Multiline.example.tsx', 'Multi-line')
   .addExample('OverviewBlock/story/Routing.example.tsx', 'Routing')
+
+page.connect(overviewBlockGroupStory.chapter)

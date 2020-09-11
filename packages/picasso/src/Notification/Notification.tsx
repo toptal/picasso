@@ -31,7 +31,10 @@ import NotificationActions from '../NotificationActions'
 
 export type VariantType = 'red' | 'green' | 'white' | 'yellow'
 
-export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
+/** `variant`, `elevated` and `icon` props are ommited from the public declaration, since they're only for internal use */
+export interface PrivateProps
+  extends BaseProps,
+    HTMLAttributes<HTMLDivElement> {
   /** Main content of the Notification */
   children: ReactNode
   /** Callback invoked when close is clicked */
@@ -46,6 +49,8 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   fullWidth?: boolean
 }
 
+export type PublicProps = Omit<PrivateProps, 'variant' | 'elevated' | 'icon'>
+
 export interface StaticProps {
   Actions: typeof NotificationActions
 }
@@ -53,7 +58,7 @@ export interface StaticProps {
 const renderNotificationCloseButton = ({
   onClose,
   classes: { close, closeIcon }
-}: Props & JssProps) => (
+}: PrivateProps & JssProps) => (
   <Button.Circular
     onClick={onClose}
     className={close}
@@ -66,7 +71,7 @@ const renderNotificationIcon = ({
   icon,
   variant,
   classes
-}: Props & JssProps) => {
+}: PrivateProps & JssProps) => {
   const iconProps = {
     className: classes.icon
   }
@@ -95,7 +100,7 @@ const renderNotificationIcon = ({
   }
 }
 
-const renderNotificationContent = (props: Props & JssProps) => {
+const renderNotificationContent = (props: PrivateProps & JssProps) => {
   const {
     classes: { iconWrapper, content, contentCloseButton },
     children,
@@ -121,12 +126,12 @@ const renderNotificationContent = (props: Props & JssProps) => {
   )
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme, PrivateProps>(styles, {
   name: 'Notification'
 })
 
 // eslint-disable-next-line react/display-name
-export const Notification = forwardRef<HTMLElement, Props>(
+export const Notification = forwardRef<HTMLElement, PrivateProps>(
   function Notification(props, ref) {
     const classes = useStyles(props)
     const { className, variant, elevated, fullWidth, ...rest } = props
@@ -153,12 +158,12 @@ export const Notification = forwardRef<HTMLElement, Props>(
       />
     )
   }
-) as CompoundedComponentWithRef<Props, HTMLElement, StaticProps>
+) as CompoundedComponentWithRef<PrivateProps, HTMLElement, StaticProps>
 
 Notification.defaultProps = {
   elevated: false,
   fullWidth: false,
-  variant: 'white'
+  variant: 'yellow'
 }
 
 Notification.displayName = 'Notification'
@@ -166,7 +171,7 @@ Notification.displayName = 'Notification'
 Notification.Actions = NotificationActions
 
 export default Notification as PicassoComponentWithRef<
-  Props,
+  PublicProps,
   HTMLElement,
   StaticProps
 >
