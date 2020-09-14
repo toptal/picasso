@@ -11,6 +11,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITooltip from '@material-ui/core/Tooltip'
 import cx from 'classnames'
 import { usePicassoRoot, BaseProps } from '@toptal/picasso-shared'
+import { isPointerDevice } from '@toptal/picasso/utils'
 
 import styles from './styles'
 
@@ -23,6 +24,90 @@ type DelayType = 'short' | 'long'
 const delayDurations: { [k in DelayType]: number } = {
   short: 200,
   long: 500
+}
+
+interface UseTooltipHandlersOptions {
+  open?: boolean
+  children: ReactNode
+  disableListeners?: boolean
+  onOpen?(event: ChangeEvent<{}>): void
+  onClose?(event: ChangeEvent<{}>): void
+}
+
+const useTooltipHandlers = ({
+  open: externalOpen,
+  children,
+  disableListeners,
+  onOpen,
+  onClose
+}: UseTooltipHandlersOptions) => {
+  const isTouchScreenDevice = !isPointerDevice()
+  const isHoverableTooltip = externalOpen === undefined
+  const [internalOpen, setInternalOpen] = useState(false)
+
+  const handleClick = (event: ChangeEvent<{}>) => {
+    if (disableListeners) {
+      return
+    }
+
+    if (isHoverableTooltip) {
+      return setInternalOpen(true)
+    }
+
+    onOpen?.(event)
+  }
+
+  const handleOpen = (event: ChangeEvent<{}>) => {
+    if (disableListeners) {
+      return
+    }
+
+    onOpen?.(event)
+
+    if (isHoverableTooltip) {
+      setInternalOpen(true)
+    }
+  }
+
+  const handleClose = (event: ChangeEvent<{}>) => {
+    if (disableListeners) {
+      return
+    }
+
+    onClose?.(event)
+
+    if (isHoverableTooltip) {
+      setInternalOpen(false)
+    }
+  }
+
+  const childrenProps = {
+    ...((children as ReactElement).props ?? {})
+  }
+
+  if (isTouchScreenDevice) {
+    const childrenOnClick = childrenProps.onClick
+
+    childrenProps.onClick = (event: ChangeEvent<{}>) => {
+      if (disableListeners) {
+        return
+      }
+
+      childrenOnClick?.(event)
+
+      if (isHoverableTooltip) {
+        setInternalOpen(true)
+      }
+    }
+  }
+
+  return {
+    childrenProps,
+    isOpen: isHoverableTooltip ? internalOpen : externalOpen,
+    handleOpen,
+    handleClose,
+    handleClick
+  }
 }
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
@@ -67,9 +152,9 @@ export const Tooltip: FunctionComponent<Props> = props => {
     className,
     style,
     arrow,
-    open: externalOpen,
-    onClose: externalOnClose,
-    onOpen: externalOnOpen,
+    open,
+    onClose,
+    onOpen,
     variant,
     disableListeners,
     preventOverflow,
@@ -82,16 +167,20 @@ export const Tooltip: FunctionComponent<Props> = props => {
   const classes = useStyles(props)
   const [arrowRef, setArrowRef] = useState<HTMLSpanElement | null>(null)
   const container = usePicassoRoot()
-  const isTouchDevice = window.matchMedia('(pointer: coarse)').matches
 
-  const isControlled = externalOpen !== undefined
-  const [tooltipOpen, setTooltipOpen] = useState(false)
-
-  const childrenProps = {
-    ...((children as ReactElement)?.props ?? {})
-  }
-
-  const isClickStimulated = !!childrenProps.onClick
+  const {
+    childrenProps,
+    isOpen,
+    handleOpen,
+    handleClose,
+    handleClick
+  } = useTooltipHandlers({
+    open,
+    children,
+    disableListeners,
+    onOpen,
+    onClose
+  })
 
   const title = (
     <>
@@ -103,61 +192,6 @@ export const Tooltip: FunctionComponent<Props> = props => {
   )
 
   const delayDuration = delayDurations[delay]
-
-  const onClick = (event: ChangeEvent<{}>) => {
-    if (disableListeners) {
-      return
-    }
-
-    if (isControlled) {
-      return externalOnOpen?.(event)
-    }
-
-    setTooltipOpen(true)
-  }
-
-  const onOpen = (event: ChangeEvent<{}>) => {
-    if (disableListeners) {
-      return
-    }
-
-    const outsideHandler =
-      externalOnOpen ?? (children as ReactElement)?.props.onClick
-
-    if (outsideHandler && !isClickStimulated) {
-      return outsideHandler(event)
-    }
-
-    setTooltipOpen(true)
-  }
-
-  const onClose = (event: ChangeEvent<{}>) => {
-    if (disableListeners) {
-      return
-    }
-
-    if (isControlled && !isClickStimulated) {
-      return externalOnClose?.(event)
-    }
-
-    setTooltipOpen(false)
-  }
-
-  if (isTouchDevice) {
-    const childrenOnClick = childrenProps.onClick
-
-    childrenProps.onClick = (event: ChangeEvent<{}>) => {
-      if (disableListeners) {
-        return
-      }
-
-      if (isControlled) {
-        return childrenOnClick?.(event)
-      }
-
-      setTooltipOpen(true)
-    }
-  }
 
   return (
     <MUITooltip
@@ -193,18 +227,17 @@ export const Tooltip: FunctionComponent<Props> = props => {
       className={className}
       style={style}
       interactive={interactive}
-      onClose={onClose}
-      onOpen={onOpen}
-      onClick={onClick}
-      open={isControlled ? externalOpen : tooltipOpen}
+      onClose={handleClose}
+      onOpen={handleOpen}
+      onClick={handleClick}
+      open={isOpen}
       placement={placement}
       title={title}
       disableHoverListener={disableListeners}
       disableFocusListener={disableListeners}
-      disableTouchListener
+      disableTouchListener={disableListeners}
       enterDelay={delayDuration}
       enterNextDelay={delayDuration}
-      enterTouchDelay={0}
     >
       {cloneElement(children as ReactElement, childrenProps)}
     </MUITooltip>
