@@ -3,7 +3,7 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 const maxHeight = 'calc(100% - 6rem)'
 const maxWidth = 'calc(100% - 6rem)'
 
-export default ({ screens }: Theme) =>
+export default ({ screens, sizes }: Theme) =>
   createStyles({
     root: {
       display: 'flex',
@@ -13,7 +13,7 @@ export default ({ screens }: Theme) =>
     paper: {
       maxHeight,
       maxWidth,
-      borderRadius: '0.5rem',
+      borderRadius: sizes.borderRadius.medium,
 
       [screens('small')]: {
         maxWidth: 'none',
