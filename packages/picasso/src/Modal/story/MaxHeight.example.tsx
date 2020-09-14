@@ -2,8 +2,14 @@ import React from 'react'
 import { Modal, Button } from '@toptal/picasso'
 import { useModals } from '@toptal/picasso/utils'
 
-const ModalDialog = ({ modalId, hideModal }) => {
-  const container = document.getElementById('modal-container')
+const ModalDialog = ({
+  modalId,
+  hideModal
+}: {
+  modalId: string
+  hideModal: (modalId: string) => void
+}) => {
+  const container = document.getElementById('modal-container')!
 
   return (
     <Modal

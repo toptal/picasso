@@ -82,14 +82,14 @@ const isFocusInsideModal = (modalNode: Element) => {
 }
 
 const isFocusInsideTooltip = () => {
-  const tooltipContainer = document.querySelector(tooltipContainerString)
+  const tooltipContainers = document.querySelectorAll(tooltipContainerString)
 
-  if (!tooltipContainer) {
+  if (tooltipContainers.length === 0) {
     return false
   }
 
-  const tooltipContainsFocusedElement = tooltipContainer.contains(
-    document.activeElement
+  const tooltipContainsFocusedElement = Array.from(tooltipContainers).some(
+    container => container.contains(document.activeElement)
   )
 
   if (tooltipContainsFocusedElement) {
@@ -160,6 +160,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
   }, [open, rootRef])
 
   const bodyOverflow = useRef<string>(document.body.style.overflow)
+
   useEffect(() => {
     const resetBodyOverflow = () => {
       document.body.style.overflow = bodyOverflow.current
