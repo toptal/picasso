@@ -6,7 +6,8 @@ import {
   Select,
   Checkbox,
   Form,
-  Container
+  Container,
+  ModalProps
 } from '@toptal/picasso'
 import { useModal } from '@toptal/picasso/utils'
 

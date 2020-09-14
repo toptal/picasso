@@ -16,11 +16,11 @@ const STATES = [
 
 const ModalDialog = ({ open, onClose }) => {
   const [isLoading, setLoading] = useState(false)
-  const [datepickerValue, setDatepickerValue] = useState()
+  const [datepickerValue, setDatepickerValue] = useState<Date>()
 
   return (
     <Modal
-      container={() => document.getElementById('modal-container')}
+      container={() => document.getElementById('modal-container')!}
       onBackdropClick={() => console.log('Clicked backdrop..')}
       onClose={onClose}
       onOpen={() => console.log('onOpen()')}
@@ -46,7 +46,7 @@ const ModalDialog = ({ open, onClose }) => {
               /* eslint-disable-next-line no-console */
               console.log('selected date is: ', date)
 
-              setDatepickerValue(date)
+              setDatepickerValue(date as Date)
             }}
           />
         </Form.Field>
