@@ -10,11 +10,7 @@ import React, {
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITooltip from '@material-ui/core/Tooltip'
 import cx from 'classnames'
-import {
-  usePicassoRoot,
-  BaseProps,
-  useBreakpoint
-} from '@toptal/picasso-shared'
+import { usePicassoRoot, BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
@@ -82,10 +78,12 @@ export const Tooltip: FunctionComponent<Props> = props => {
     compact,
     ...rest
   } = props
+
   const classes = useStyles(props)
   const [arrowRef, setArrowRef] = useState<HTMLSpanElement | null>(null)
   const container = usePicassoRoot()
-  const isTouchDevice = useBreakpoint(['small', 'medium'])
+  const isTouchDevice = window.matchMedia('(pointer: coarse)').matches
+
   const isControlled = externalOpen !== undefined
   const [tooltipOpen, setTooltipOpen] = useState(false)
 
