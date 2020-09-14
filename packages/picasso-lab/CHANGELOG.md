@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.32.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.32.0...@toptal/picasso-lab@2.32.1) (2020-09-14)
+
+
+### Bug Fixes
+
+* **Modal:** detect focus inside tooltip correctly if there are many ([59ebdff](https://github.com/toptal/picasso/commit/59ebdff726d7d98d5cf944ae8f27f018e928883e))
+
+
+
+
+
 # [2.32.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.31.2...@toptal/picasso-lab@2.32.0) (2020-09-10)
 
 
