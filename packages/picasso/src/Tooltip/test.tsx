@@ -40,7 +40,7 @@ describe('Tooltip', () => {
     test('opens tooltip on touch', async () => {
       const { getByText, queryByText, unmount } = render(
         <Tooltip content='Hello'>
-          <Button>Tap me</Button>
+          <button>Tap me</button>
         </Tooltip>
       )
 
@@ -121,7 +121,7 @@ describe('Tooltip', () => {
                 </Tooltip>
               </div>
             </ClickAwayListener>
-            <Button>SIKE!</Button>
+            <Button>Click outside!</Button>
           </div>
         )
       }
@@ -145,7 +145,7 @@ describe('Tooltip', () => {
       expect(queryByText('Hello')).toBeInTheDocument()
 
       act(() => {
-        fireEvent.click(getByText('SIKE!'))
+        fireEvent.click(getByText('Click outside!'))
         jest.advanceTimersByTime(1500)
       })
 
