@@ -17,12 +17,13 @@ import {
   SizeType
 } from '@toptal/picasso-shared'
 
-import { Close16 } from '../Icon'
+import { CloseMinor16 } from '../Icon'
 import useCombinedRefs from '../utils/use-combined-refs'
 import { ModalManager } from '../utils/Modal'
 import ModalTitle from '../ModalTitle'
 import ModalContent from '../ModalContent'
 import ModalActions from '../ModalActions'
+import Button from '../Button'
 import styles from './styles'
 
 type ContainerValue = HTMLElement | (() => HTMLElement)
@@ -34,8 +35,6 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   open: boolean
   /** Width of modal */
   size?: SizeType<'small' | 'medium' | 'large'> | 'full-screen'
-  /** If true, clicking the backdrop will not fire onClose. */
-  disableBackdropClick?: boolean
   /** Callback executed when backdrop was clicked */
   onBackdropClick?: () => void
   /** Callback executed when attempting to close modal */
@@ -113,7 +112,6 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
     children,
     open,
     size,
-    disableBackdropClick,
     onBackdropClick,
     onClose,
     onOpen,
@@ -163,6 +161,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
   }, [open, rootRef])
 
   const bodyOverflow = useRef<string>(document.body.style.overflow)
+
   useEffect(() => {
     const resetBodyOverflow = () => {
       document.body.style.overflow = bodyOverflow.current
@@ -205,7 +204,6 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
       container={container || picassoRootContainer}
       PaperProps={{ ...paperProps, elevation: 2 }}
       hideBackdrop={hideBackdrop}
-      disableBackdropClick={disableBackdropClick}
       onBackdropClick={onBackdropClick}
       onClose={onClose}
       onEnter={onOpen}
@@ -213,12 +211,17 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
       transitionDuration={transitionDuration}
       maxWidth={false}
       disableEnforceFocus // we need our own mechanism to keep focus inside the Modals
+      disableBackdropClick
     >
       {children}
       {onClose && (
-        <span onClick={onClose}>
-          <Close16 className={classes.closeButton} />
-        </span>
+        <Button.Circular
+          variant='flat'
+          className={classes.closeButton}
+          onClick={onClose}
+        >
+          <CloseMinor16 />
+        </Button.Circular>
       )}
     </Dialog>
   )
@@ -226,7 +229,6 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
 
 Modal.defaultProps = {
   hideBackdrop: false,
-  disableBackdropClick: true,
   size: 'medium',
   transitionDuration: 300
 }
