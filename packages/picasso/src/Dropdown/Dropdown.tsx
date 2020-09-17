@@ -7,7 +7,9 @@ import React, {
   useRef,
   useState
 } from 'react'
-import ClickAwayListener from '@material-ui/core/ClickAwayListener'
+import ClickAwayListener, {
+  ClickAwayListenerProps
+} from '@material-ui/core/ClickAwayListener'
 import Grow from '@material-ui/core/Grow'
 import { PopperPlacementType } from '@material-ui/core/Popper'
 import { PopperOptions } from 'popper.js'
@@ -54,6 +56,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Callback invoked when component is closed */
   onClose?(): void
   popperContainer?: HTMLElement
+  closeEvent: ClickAwayListenerProps['mouseEvent']
 }
 
 export interface StaticProps {
@@ -75,6 +78,7 @@ const useDropdownContext = () => {
       'Dropdown compound components cannot be rendered outside the Dropdown component'
     )
   }
+
   return context
 }
 
@@ -100,6 +104,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props & Partial<JssProps>>(
       onOpen,
       popperContainer,
       onClose,
+      closeEvent,
       ...rest
     } = props
     const classes = {
@@ -203,6 +208,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props & Partial<JssProps>>(
 
     const handleClickAway = (event: React.MouseEvent<Document>) => {
       const target = event.target
+
       if (anchorEl && target instanceof Node && anchorEl.contains(target)) {
         return
       }
@@ -238,7 +244,10 @@ export const Dropdown = forwardRef<HTMLDivElement, Props & Partial<JssProps>>(
             enableCompactMode
             container={popperContainer}
           >
-            <ClickAwayListener onClickAway={handleClickAway}>
+            <ClickAwayListener
+              onClickAway={handleClickAway}
+              mouseEvent={closeEvent}
+            >
               {/* TODO: Remove this extra markup and put the onClick handler on `Paper` element */}
               {/* as soon as https://github.com/mui-org/material-ui/issues/22156 gets fixed */}
               <div onClick={close}>
