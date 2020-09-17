@@ -128,3 +128,14 @@ component and manage the internal state there.
       })
     }
   })
+  .addExample('Modal/story/Alignment.example.tsx', {
+    title: 'Alignment',
+    description: 'Demonstrate how `align` prop works',
+    effect: async (testPage, makeScreenshot) => {
+      await testPage.click('[data-testid="align-top-open"]')
+      await testPage.waitFor(100)
+      await makeScreenshot({
+        isFullScreen: true
+      })
+    }
+  })

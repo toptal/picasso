@@ -27,6 +27,7 @@ import Button from '../Button'
 import styles from './styles'
 
 type ContainerValue = HTMLElement | (() => HTMLElement)
+type Alignment = 'top' | 'centered'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Content of Modal component */
@@ -45,6 +46,8 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   container?: ContainerValue
   /** If `true`, the backdrop is not rendered */
   hideBackdrop?: boolean
+  /** Position of the modal relative to the browser's viewport */
+  align?: Alignment
   transitionDuration?: number
   paperProps?: PaperProps
 }
@@ -121,6 +124,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
     hideBackdrop,
     transitionDuration,
     paperProps,
+    align,
     ...rest
   } = props
   const classes = useStyles(props)
@@ -196,7 +200,9 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
       classes={{
         root: classes.root,
         container: classes.container,
-        paper: cx(classes.paper, classes[size!])
+        paper: cx(classes.paper, classes[size!], {
+          [classes.topAlignedDialog]: align === 'top'
+        })
       }}
       className={className}
       style={style}
@@ -230,7 +236,8 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
 Modal.defaultProps = {
   hideBackdrop: false,
   size: 'medium',
-  transitionDuration: 300
+  transitionDuration: 300,
+  align: 'centered'
 }
 
 Modal.displayName = 'Modal'
