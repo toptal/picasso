@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.99.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.98.1...@toptal/picasso@4.99.0) (2020-09-17)
+
+
+### Bug Fixes
+
+* **tooltip:** fix compact size variant for tooltip component ([#1566](https://github.com/toptal/picasso/issues/1566)) ([93fae41](https://github.com/toptal/picasso/commit/93fae4172fe1695f88d658787ea6f4928255e7e0))
+
+
+### Features
+
+* **Modal:** add alignment prop ([#1568](https://github.com/toptal/picasso/issues/1568)) ([5e37748](https://github.com/toptal/picasso/commit/5e37748d9da5a528ba641348bb4f073e249d0070))
+
+
+
+
+
 ## [4.98.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.98.0...@toptal/picasso@4.98.1) (2020-09-14)
 
 
