@@ -31,7 +31,7 @@ interface UseTooltipHandlersOptions {
   onOpen?(event: ChangeEvent<{}>): void
   onClose?(event: ChangeEvent<{}>): void
   delay: DelayType
-  children: ReactNode
+  children: ReactElement<ChildrenProps>
   disableListeners?: boolean
 }
 
@@ -45,37 +45,36 @@ const useTooltipHandlers = ({
   disableListeners,
   children
 }: UseTooltipHandlersOptions) => {
+  const isTouchScreen = !isPointerDevice()
   const [internalOpen, setInternalOpen] = useState(false)
-  const delayDuration = isPointerDevice() ? delayDurations[delay] : 0
-  const isHoverTriggeredTooltip = externalOpen === undefined
+  const delayDuration = isTouchScreen ? 0 : delayDurations[delay]
+  const isUncontrolledTooltip = externalOpen === undefined
 
-  if (isHoverTriggeredTooltip) {
-    const handleOpen = (event: ChangeEvent<{}>) => {
-      onOpen?.(event)
-      setInternalOpen(true)
-    }
-
+  if (isUncontrolledTooltip && isTouchScreen) {
+    /**
+     * `onClose` is called by MUI when close is requested, for example on click away.
+     * Since we are controlling tooltip here, we have to do actual close on our own.
+     */
     const handleClose = (event: ChangeEvent<{}>) => {
       onClose?.(event)
       setInternalOpen(false)
     }
 
-    const childrenOnClick = (children as ReactElement<ChildrenProps>).props
-      .onClick
+    const handleClick = (event: ChangeEvent<{}>) => {
+      children.props.onClick?.(event)
+
+      if (!disableListeners) {
+        setInternalOpen(true)
+      }
+    }
 
     return {
       isOpen: internalOpen,
-      handleOpen,
+      handleOpen: onOpen,
       handleClose,
       delayDuration,
-      children: cloneElement(children as ReactElement, {
-        onClick: (event: ChangeEvent<{}>) => {
-          childrenOnClick?.(event)
-
-          if (!disableListeners) {
-            setInternalOpen(true)
-          }
-        }
+      children: cloneElement(children, {
+        onClick: handleClick
       })
     }
   }
@@ -155,7 +154,7 @@ export const Tooltip: FunctionComponent<Props> = props => {
     delayDuration
   } = useTooltipHandlers({
     open,
-    children: originalChildren,
+    children: originalChildren as ReactElement<ChildrenProps>,
     disableListeners,
     onOpen,
     onClose,

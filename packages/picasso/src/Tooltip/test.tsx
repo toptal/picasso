@@ -82,7 +82,7 @@ describe('Tooltip', () => {
       unmount()
     })
 
-    test('opens tooltip on hover on long delay then closes it on "blur"', async () => {
+    test('opens tooltip on hover on long delay then closes it on mouse out', async () => {
       const { getByText, queryByText, unmount } = render(
         <Tooltip content='Hello'>
           <Button>Hover me</Button>
