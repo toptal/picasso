@@ -4,7 +4,8 @@ import React, {
   ReactNode,
   ReactElement,
   ChangeEvent,
-  HTMLAttributes
+  HTMLAttributes,
+  cloneElement
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITooltip from '@material-ui/core/Tooltip'
@@ -29,17 +30,23 @@ interface UseTooltipHandlersOptions {
   open?: boolean
   onOpen?(event: ChangeEvent<{}>): void
   onClose?(event: ChangeEvent<{}>): void
-  delay?: DelayType
+  delay: DelayType
+  children: ReactNode
+  disableListeners?: boolean
 }
+
+type ChildrenProps = { onClick?(event: ChangeEvent<{}>): void }
 
 const useTooltipHandlers = ({
   open: externalOpen,
   onClose,
   onOpen,
-  delay
+  delay,
+  disableListeners,
+  children
 }: UseTooltipHandlersOptions) => {
   const [internalOpen, setInternalOpen] = useState(false)
-  const delayDuration = delay && isPointerDevice() ? delayDurations[delay] : 0
+  const delayDuration = isPointerDevice() ? delayDurations[delay] : 0
   const isHoverTriggeredTooltip = externalOpen === undefined
 
   if (isHoverTriggeredTooltip) {
@@ -53,12 +60,23 @@ const useTooltipHandlers = ({
       setInternalOpen(false)
     }
 
+    const childrenOnClick = (children as ReactElement<ChildrenProps>).props
+      .onClick
+
     return {
       isOpen: internalOpen,
       handleOpen,
       handleClose,
-      handleClick: () => setInternalOpen(true),
-      delayDuration
+      delayDuration,
+      children: cloneElement(children as ReactElement, {
+        onClick: (event: ChangeEvent<{}>) => {
+          childrenOnClick?.(event)
+
+          if (!disableListeners) {
+            setInternalOpen(true)
+          }
+        }
+      })
     }
   }
 
@@ -66,7 +84,8 @@ const useTooltipHandlers = ({
     isOpen: externalOpen,
     handleOpen: onOpen,
     handleClose: onClose,
-    delayDuration
+    delayDuration,
+    children
   }
 }
 
@@ -106,7 +125,7 @@ const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoTooltip' })
 export const Tooltip: FunctionComponent<Props> = props => {
   const {
     content,
-    children,
+    children: originalChildren,
     placement,
     interactive,
     className,
@@ -129,13 +148,15 @@ export const Tooltip: FunctionComponent<Props> = props => {
   const container = usePicassoRoot()
 
   const {
+    children,
     isOpen,
     handleOpen,
     handleClose,
-    handleClick,
     delayDuration
   } = useTooltipHandlers({
     open,
+    children: originalChildren,
+    disableListeners,
     onOpen,
     onClose,
     delay
@@ -186,16 +207,14 @@ export const Tooltip: FunctionComponent<Props> = props => {
       interactive={interactive}
       onClose={handleClose}
       onOpen={handleOpen}
-      onClick={handleClick}
       open={isOpen}
       placement={placement}
       title={title}
       disableHoverListener={disableListeners}
       disableFocusListener={disableListeners}
-      disableTouchListener={disableListeners}
+      disableTouchListener
       enterDelay={delayDuration}
       enterNextDelay={delayDuration}
-      enterTouchDelay={0}
     >
       {children as ReactElement}
     </MUITooltip>

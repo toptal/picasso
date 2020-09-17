@@ -40,7 +40,7 @@ describe('Tooltip', () => {
     test('opens tooltip on touch', async () => {
       const { getByText, queryByText, unmount } = render(
         <Tooltip content='Hello'>
-          <button>Tap me</button>
+          <Button>Tap me</Button>
         </Tooltip>
       )
 
