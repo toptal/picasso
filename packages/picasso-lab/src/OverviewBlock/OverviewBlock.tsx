@@ -21,6 +21,7 @@ import { toTitleCase } from '@toptal/picasso/utils'
 
 import styles from './styles'
 import OverviewBlockGroup from '../OverviewBlockGroup'
+import OverviewBlockRow from '../OverviewBlockRow'
 
 type Variant =
   | 'value-red'
@@ -46,6 +47,8 @@ export type Props = BaseProps &
     label: string
     /** The color variant  */
     variant?: Variant
+    /** Value and label alignment. By default content is aligned to the left. */
+    align?: 'default' | 'center'
     /** Component used for the root node. Either a string to use a DOM element or a component. */
     as?: ElementType
     /** Callback invoked when component is clicked */
@@ -54,6 +57,7 @@ export type Props = BaseProps &
 
 export interface StaticProps {
   Group: FunctionComponent
+  Row: FunctionComponent
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
@@ -67,6 +71,7 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
       value,
       label,
       variant,
+      align = 'default',
       as: Component = 'button',
       className,
       onClick,
@@ -101,6 +106,9 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
         className={cx(
           { [classes.clickable]: isClickable },
           { [classes.disableOutline]: !isClickable },
+          {
+            [classes[`${align}Align`]]: align
+          },
           classes.root,
           className
         )}
@@ -122,10 +130,12 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
   }) as CompoundedComponentWithRef<Props, HTMLElement, StaticProps>
 
 OverviewBlock.defaultProps = {
+  align: 'default',
   as: 'button'
 }
 
 OverviewBlock.Group = OverviewBlockGroup
+OverviewBlock.Row = OverviewBlockRow
 OverviewBlock.displayName = 'OverviewBlock'
 
 export default OverviewBlock

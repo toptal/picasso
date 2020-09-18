@@ -1,22 +1,26 @@
 import { createStyles, Theme } from '@material-ui/core/styles'
-import { rem, alpha } from '@toptal/picasso-shared'
+import { rem } from '@toptal/picasso-shared'
 
-export default ({ palette }: Theme) =>
+export default ({ palette, sizes }: Theme) =>
   createStyles({
     root: {
       display: 'flex',
       flexDirection: 'column',
-      backgroundColor: alpha(palette.grey.lighter!, 0.32),
-      padding: '0.5rem 1rem',
+      backgroundColor: palette.common.white,
+      padding: '0.75rem 1.5rem',
+      margin: 0,
       minWidth: rem('150px'),
       border: 'none',
       textDecoration: 'none',
-      alignItems: 'flex-start'
+      '&:not(:first-child)': {
+        borderLeft: `${sizes.borderWidth} solid ${palette.grey.lighter}`
+      }
     },
     clickable: {
       cursor: 'pointer',
+      outline: 'none',
       '&:hover': {
-        backgroundColor: palette.grey.lighter
+        backgroundColor: palette.blue.lighter
       }
     },
     disableOutline: {
@@ -24,5 +28,11 @@ export default ({ palette }: Theme) =>
     },
     title: {
       fontSize: rem('11px')
+    },
+    defaultAlign: {
+      alignItems: 'flex-start'
+    },
+    centerAlign: {
+      alignItems: 'center'
     }
   })
