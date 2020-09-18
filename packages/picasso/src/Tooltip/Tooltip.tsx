@@ -61,6 +61,7 @@ const useTooltipHandlers = ({
     }
 
     const handleClick = (event: ChangeEvent<{}>) => {
+      event.preventDefault()
       children.props.onClick?.(event)
 
       if (!disableListeners) {
