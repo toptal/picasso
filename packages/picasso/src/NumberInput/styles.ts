@@ -45,10 +45,6 @@ export default ({ palette, transitions }: Theme) =>
       opacity: 0.48
     },
 
-    arrowDown: {
-      transform: 'rotate(180deg)'
-    },
-
     icon: {
       marginRight: '0.625rem'
     }
