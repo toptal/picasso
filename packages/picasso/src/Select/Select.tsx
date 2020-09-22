@@ -13,6 +13,7 @@ import NativeSelect from '@material-ui/core/NativeSelect'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
 import { BaseProps, SizeType } from '@toptal/picasso-shared'
+import PopperJs from 'popper.js'
 
 import OutlinedInput from '../OutlinedInput'
 import Popper from '../Popper'
@@ -416,6 +417,7 @@ export const Select = documentable(
       )
 
       const inputWrapperRef = useRef<HTMLDivElement>(null)
+      const popperRef = useRef<PopperJs>(null)
       const [selectedOptions, setSelectedOptions] = useState(
         allOptions.filter(option =>
           Array.isArray(value)
@@ -454,6 +456,14 @@ export const Select = documentable(
       }
 
       const readOnlyInput = multiple || allOptions.length <= searchThreshold!
+
+      const isInsideSelect = (node: Node) => {
+        return (
+          popperRef.current?.popper.contains(node) ||
+          inputWrapperRef.current?.contains(node) ||
+          false
+        )
+      }
 
       const handleFocus = (
         event: React.FocusEvent<HTMLInputElement | HTMLDivElement>
@@ -550,7 +560,8 @@ export const Select = documentable(
         onSelect: handleSelect,
         onChange: handleChange,
         onBlur: handleBlur,
-        onFocus: handleFocus
+        onFocus: handleFocus,
+        isInsideSelect
       })
 
       const iconAdornment = icon ? (
@@ -690,6 +701,7 @@ export const Select = documentable(
           {!disabled && (
             <Popper
               autoWidth
+              ref={popperRef}
               width={menuWidth}
               placement='bottom-start'
               open={isOpen}

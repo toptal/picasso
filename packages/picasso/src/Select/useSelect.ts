@@ -85,6 +85,7 @@ interface Props {
   ) => void
   onBlur?: FocusEventType
   onFocus?: FocusEventType
+  isInsideSelect: (node: Node) => boolean
 }
 
 type GetInputProps = ({
@@ -118,7 +119,8 @@ const useSelect = ({
   onKeyDown = () => {},
   onSelect = () => {},
   onBlur = () => {},
-  onFocus = () => {}
+  onFocus = () => {},
+  isInsideSelect
 }: Props): UseSelectOutput => {
   const [isOpen, setOpen] = useState<boolean>(false)
   const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null)
@@ -172,7 +174,12 @@ const useSelect = ({
   }
 
   const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-    if (event.relatedTarget) return
+    const isFocusedInsideSelect = isInsideSelect(event.relatedTarget as Node)
+
+    if (isFocusedInsideSelect) {
+      return
+    }
+
     setOpen(false)
     onBlur(event)
   }
