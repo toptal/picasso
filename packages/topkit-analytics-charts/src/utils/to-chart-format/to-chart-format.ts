@@ -13,24 +13,39 @@ const toChartFormat = (
   const decoratePointWithRefData = (point: ChartDataPoint, dataKey: string) =>
     referenceLines?.reduce((point, { data }, index) => {
       point[generateReferenceKey(index)] = data[dataKey]
+
       return point
     }, point) || point
 
   data.forEach(({ id, values }) => {
     Object.entries(values).forEach(([key, value]) => {
       const label = formatLabel(key)
+      const isEmptyValue = value === null
+      const nonNullValue = value === null ? 0 : value
+
       const existingItem = formattedData.find(
         ({ [xAxisKey]: existingLabel }) => existingLabel === label
       )
 
       if (existingItem) {
-        existingItem[id] = value
+        existingItem[id] = nonNullValue
+        if (isEmptyValue) {
+          existingItem[`${id}IsEmpty`] = true
+        }
+
         return
       }
 
-      formattedData.push(
-        decoratePointWithRefData({ [xAxisKey]: label, [id]: value }, key)
-      )
+      const dataPoint: ChartDataPoint = {
+        [xAxisKey]: label,
+        [id]: nonNullValue
+      }
+
+      if (isEmptyValue) {
+        dataPoint[`${id}IsEmpty`] = true
+      }
+
+      formattedData.push(decoratePointWithRefData(dataPoint, key))
     })
   })
 
