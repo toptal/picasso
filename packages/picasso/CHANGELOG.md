@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.99.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.99.0...@toptal/picasso@4.99.1) (2020-09-18)
+
+
+### Bug Fixes
+
+* **tooltip:** trigger immediately on touch ([#1565](https://github.com/toptal/picasso/issues/1565)) ([5a8947b](https://github.com/toptal/picasso/commit/5a8947ba13f0217ee9339e3207f8d5aaac021446))
+
+
+
+
+
 # [4.99.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.98.1...@toptal/picasso@4.99.0) (2020-09-17)
 
 
