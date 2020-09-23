@@ -9,7 +9,7 @@ import {
 
 export type Point = {
   id: string
-  values: Record<string, number>
+  values: Record<string, number | null>
 }
 
 export type Highlight = {
