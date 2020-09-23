@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.99.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.99.1...@toptal/picasso@4.99.2) (2020-09-23)
+
+
+### Bug Fixes
+
+* **AccountSelect:** fix grid in the story for mobile ([#1574](https://github.com/toptal/picasso/issues/1574)) ([e9c4458](https://github.com/toptal/picasso/commit/e9c44585987fd2778993819306c265655f3a4146))
+
+
+
+
+
 ## [4.99.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.99.0...@toptal/picasso@4.99.1) (2020-09-18)
 
 

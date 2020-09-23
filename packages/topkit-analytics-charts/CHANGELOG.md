@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.7](https://github.com/toptal/picasso/compare/@topkit/analytics-charts@0.3.6...@topkit/analytics-charts@0.3.7) (2020-09-23)
+
+
+### Bug Fixes
+
+* **AnalyticsChart:** allow passing null values ([#1577](https://github.com/toptal/picasso/issues/1577)) ([68dc4b1](https://github.com/toptal/picasso/commit/68dc4b1b9e607b84c218149c3bc6c675d8108a01))
+
+
+
+
+
 ## [0.3.6](https://github.com/toptal/picasso/compare/@topkit/analytics-charts@0.3.5...@topkit/analytics-charts@0.3.6) (2020-08-31)
 
 **Note:** Version bump only for package @topkit/analytics-charts
