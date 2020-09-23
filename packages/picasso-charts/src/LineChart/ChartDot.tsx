@@ -2,7 +2,7 @@ import React from 'react'
 
 import { ChartDataPoint } from './LineChart'
 
-export const CustomDot = ({
+export const ChartDot = ({
   cx,
   cy,
   dataKey,

@@ -13,7 +13,7 @@ import {
   Tooltip
 } from 'recharts'
 
-import { CustomDot } from './CustomDot'
+import { ChartDot } from './ChartDot'
 import calculateTooltipPosition from '../utils/calculate-tooltip-position'
 import { CoordinatePayload } from '../utils/types'
 import {
@@ -162,7 +162,7 @@ const generateLineGraphs = (
         data={orderedData}
         dataKey={name}
         stroke={line.color}
-        dot={isReferenceLine ? false : <CustomDot color={line.color} />}
+        dot={isReferenceLine ? false : <ChartDot color={line.color} />}
         isAnimationActive={IS_ANIMATION_ACTIVE}
         strokeDasharray={isReferenceLine ? '3 3' : 'none'}
       />

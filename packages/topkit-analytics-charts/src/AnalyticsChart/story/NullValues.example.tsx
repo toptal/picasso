@@ -1,4 +1,5 @@
 import React from 'react'
+import { Container } from '@toptal/picasso'
 import { palette } from '@toptal/picasso/utils'
 import { AnalyticsChart } from '@topkit/analytics-charts'
 
@@ -59,8 +60,37 @@ const CHART_DATA = [
   }
 ]
 
+type Payload = {
+  name: string
+  value: number
+  payload: Record<string, number | boolean>
+}
+
+const CustomTooltip = ({
+  active,
+  payload
+}: {
+  active?: boolean
+  payload?: Payload[]
+}) => {
+  if (!active) return null
+
+  return (
+    <Container style={{ background: '#fff' }}>
+      {payload!.map(({ name, value, payload }) => (
+        <Container key={name}>
+          <b>{name}</b>:{' '}
+          {payload[`${name}IsEmpty`] ? 'No data provided.' : value}
+        </Container>
+      ))}
+    </Container>
+  )
+}
+
 const Example = () => (
   <AnalyticsChart
+    tooltip
+    customTooltip={<CustomTooltip />}
     data={CHART_DATA}
     lineConfig={{
       role: { color: palette.yellow.main },

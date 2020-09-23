@@ -41,6 +41,11 @@ const toChartFormat = (
         [id]: nonNullValue
       }
 
+      // We indicate that value is empty for particular data set with the special flag.
+      // Since single ChartDataPoint may contain values from multiple data sets, we'll may also have multiple number of flags.
+      // Setting those flags will make this information available inside tooltips and other custom elements.
+      // Please refer to this example for more details:
+      // http://picasso.toptal.net/?path=/story/charts-folder--analyticschart#null-values
       if (isEmptyValue) {
         dataPoint[`${id}IsEmpty`] = true
       }
