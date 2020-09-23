@@ -1,6 +1,6 @@
 import React, {
   useState,
-  useEffect,
+  useLayoutEffect,
   useRef,
   createRef,
   FunctionComponent
@@ -57,7 +57,7 @@ const ScrollMenu: FunctionComponent<Props> = ({
     return child
   })
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!menuRef.current || !firstItemRef.current) {
       return
     }
