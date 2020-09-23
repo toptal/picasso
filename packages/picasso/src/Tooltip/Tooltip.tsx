@@ -142,7 +142,7 @@ export const Tooltip: FunctionComponent<Props> = props => {
     disableListeners,
     preventOverflow,
     disablePortal,
-    delay = 'short',
+    delay,
     compact,
     maxWidth,
     ...rest
@@ -233,7 +233,8 @@ Tooltip.defaultProps = {
   placement: 'top',
   variant: 'dark',
   disablePortal: false,
-  maxWidth: 'default'
+  maxWidth: 'default',
+  delay: 'short'
 }
 
 export default Tooltip
