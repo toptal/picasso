@@ -108,5 +108,8 @@ export default ({ palette, shadows, sizes: { borderRadius } }: Theme) =>
       padding: '0.25rem 0.5rem',
       margin: '0.5rem',
       borderRadius: borderRadius.small
+    },
+    noMaxWidth: {
+      maxWidth: 'none'
     }
   })
