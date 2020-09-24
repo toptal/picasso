@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.101.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.100.1...@toptal/picasso@4.101.0) (2020-09-24)
+
+
+### Features
+
+* **Tooltip:** add maxWidth prop ([#1553](https://github.com/toptal/picasso/issues/1553)) ([bc9ad59](https://github.com/toptal/picasso/commit/bc9ad599cd4930dd88bf227205e25c648c1bce69))
+
+
+
+
+
 ## [4.100.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.100.0...@toptal/picasso@4.100.1) (2020-09-24)
 
 
