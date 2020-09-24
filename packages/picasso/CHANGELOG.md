@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.100.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.100.0...@toptal/picasso@4.100.1) (2020-09-24)
+
+
+### Bug Fixes
+
+* **Select:** fix select behavior on-blur ([#1583](https://github.com/toptal/picasso/issues/1583)) ([e381ff2](https://github.com/toptal/picasso/commit/e381ff2cbc478babf81eae1820db7d983685a91d))
+
+
+
+
+
+# [4.100.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.99.2...@toptal/picasso@4.100.0) (2020-09-24)
+
+
+### Features
+
+* **icons:** add rank icons ([#1582](https://github.com/toptal/picasso/issues/1582)) ([2208b74](https://github.com/toptal/picasso/commit/2208b747d988114608bd9a0ebe2c08cdd0282d3d))
+
+
+
+
+
 ## [4.99.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.99.1...@toptal/picasso@4.99.2) (2020-09-23)
 
 

@@ -6,6 +6,7 @@ import { StandardProps } from '@toptal/picasso-shared'
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import styles from './styles'
 const BASE_SIZE = 24
+
 type ScaleType = 1 | 2 | 3 | 4
 export interface Props extends StandardProps {
   scale?: ScaleType
@@ -37,6 +38,7 @@ const SvgMore24 = forwardRef(function SvgMore24(
     minHeight: `${scaledSize}px`,
     ...style
   }
+
   return (
     <svg
       viewBox='0 0 24 24'
@@ -48,5 +50,6 @@ const SvgMore24 = forwardRef(function SvgMore24(
     </svg>
   )
 })
+
 SvgMore24.displayName = 'SvgMore24'
 export default withStyles(styles)(SvgMore24)
