@@ -5,9 +5,16 @@ import React, {
   ReactElement
 } from 'react'
 
+import { Alignment, BlockWidth } from './settings'
+import { OverviewBlockGroupContext } from './OverviewBlockGroupContext'
 import OverviewBlockRow from '../OverviewBlockRow'
 
-type Props = HTMLAttributes<HTMLDivElement>
+type Props = HTMLAttributes<HTMLDivElement> & {
+  /** Value and label alignment for blocks. By default content is aligned to the left. */
+  align?: Alignment
+  /** The block width variant */
+  blockWidth?: BlockWidth
+}
 
 // We need to inject a single row if there is none provided.
 // It allows to skip `OverviewBlock.Row` component for a single-row groups.
@@ -22,22 +29,29 @@ const shouldInjectRow = (children?: ReactNode) => {
 }
 
 const OverviewBlockGroup: FunctionComponent<Props> = props => {
-  const { children, ...rest } = props
+  const { children, align = 'default', blockWidth = 'regular', ...rest } = props
 
   return (
     <section
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
     >
-      {shouldInjectRow(children) ? (
-        <OverviewBlockRow>{children}</OverviewBlockRow>
-      ) : (
-        children
-      )}
+      <OverviewBlockGroupContext.Provider value={{ align, blockWidth }}>
+        {shouldInjectRow(children) ? (
+          <OverviewBlockRow>{children}</OverviewBlockRow>
+        ) : (
+          children
+        )}
+      </OverviewBlockGroupContext.Provider>
     </section>
   )
 }
 
 OverviewBlockGroup.displayName = 'OverviewBlockGroup'
+
+OverviewBlockGroup.defaultProps = {
+  align: 'default',
+  blockWidth: 'regular'
+}
 
 export default OverviewBlockGroup

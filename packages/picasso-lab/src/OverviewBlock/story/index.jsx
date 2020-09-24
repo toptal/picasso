@@ -96,5 +96,5 @@ page
   .addExample('OverviewBlock/story/Number.example.tsx', 'Number')
   .addExample('OverviewBlock/story/Multiline.example.tsx', 'Multi-line')
   .addExample('OverviewBlock/story/Routing.example.tsx', 'Routing')
-  .addExample('OverviewBlock/story/CenterAligned.example.tsx', 'Center Aligned')
-  .addExample('OverviewBlock/story/Width.example.tsx', 'Width')
+
+page.connect(overviewBlockGroupStory.chapter)

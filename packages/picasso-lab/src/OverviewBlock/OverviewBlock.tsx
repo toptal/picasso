@@ -4,7 +4,8 @@ import React, {
   FunctionComponent,
   HTMLAttributes,
   MouseEvent,
-  ReactNode
+  ReactNode,
+  ComponentPropsWithoutRef
 } from 'react'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
@@ -20,6 +21,7 @@ import { Typography } from '@toptal/picasso'
 import { toTitleCase } from '@toptal/picasso/utils'
 
 import styles from './styles'
+import { useOverviewBlockGroupContext } from '../OverviewBlockGroup/OverviewBlockGroupContext'
 import OverviewBlockGroup from '../OverviewBlockGroup'
 import OverviewBlockRow from '../OverviewBlockRow'
 
@@ -32,10 +34,6 @@ type Variant =
   | 'label-green'
   | 'label-blue'
   | 'label-yellow'
-
-type Alignment = 'default' | 'center'
-
-type BlockWidth = 'narrow' | 'regular' | 'wide'
 
 type ColorSettings = {
   value: ColorType
@@ -51,10 +49,6 @@ export type Props = BaseProps &
     label: string
     /** The color variant  */
     variant?: Variant
-    /** Value and label alignment. By default content is aligned to the left. */
-    align?: Alignment
-    /** The width variant */
-    width?: BlockWidth
     /** Component used for the root node. Either a string to use a DOM element or a component. */
     as?: ElementType
     /** Callback invoked when component is clicked */
@@ -62,8 +56,8 @@ export type Props = BaseProps &
   }
 
 export interface StaticProps {
-  Group: FunctionComponent
-  Row: FunctionComponent
+  Group: FunctionComponent<ComponentPropsWithoutRef<typeof OverviewBlockGroup>>
+  Row: FunctionComponent<ComponentPropsWithoutRef<typeof OverviewBlockRow>>
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
@@ -77,8 +71,6 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
       value,
       label,
       variant,
-      align = 'default',
-      width = 'regular',
       as: Component = 'button',
       className,
       onClick,
@@ -86,6 +78,7 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
       ...rest
     } = props
     const classes = useStyles(props)
+    const { align, blockWidth } = useOverviewBlockGroupContext()
 
     const color: ColorSettings = {
       value: 'black',
@@ -114,7 +107,7 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
           { [classes.clickable]: isClickable },
           { [classes.disableOutline]: !isClickable },
           classes[`${align}Align`],
-          classes[`${width}Width`],
+          classes[`${blockWidth}Width`],
           classes.root,
           className
         )}
@@ -136,9 +129,7 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
   }) as CompoundedComponentWithRef<Props, HTMLElement, StaticProps>
 
 OverviewBlock.defaultProps = {
-  align: 'default',
-  as: 'button',
-  width: 'regular'
+  as: 'button'
 }
 
 OverviewBlock.Group = OverviewBlockGroup
