@@ -28,7 +28,7 @@ page
   })
   .addTextSection(
     `
-  Note: On mobile, the tooltip is displayed when the user long-presses the element and hides after a delay of 1500ms.
+  Note: On mobile, the tooltip is immediately displayed when the user presses the element.
   `
   )
 

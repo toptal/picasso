@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.99.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.99.1...@toptal/picasso@4.99.2) (2020-09-23)
+
+
+### Bug Fixes
+
+* **AccountSelect:** fix grid in the story for mobile ([#1574](https://github.com/toptal/picasso/issues/1574)) ([e9c4458](https://github.com/toptal/picasso/commit/e9c44585987fd2778993819306c265655f3a4146))
+
+
+
+
+
+## [4.99.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.99.0...@toptal/picasso@4.99.1) (2020-09-18)
+
+
+### Bug Fixes
+
+* **tooltip:** trigger immediately on touch ([#1565](https://github.com/toptal/picasso/issues/1565)) ([5a8947b](https://github.com/toptal/picasso/commit/5a8947ba13f0217ee9339e3207f8d5aaac021446))
+
+
+
+
+
+# [4.99.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.98.1...@toptal/picasso@4.99.0) (2020-09-17)
+
+
+### Bug Fixes
+
+* **tooltip:** fix compact size variant for tooltip component ([#1566](https://github.com/toptal/picasso/issues/1566)) ([93fae41](https://github.com/toptal/picasso/commit/93fae4172fe1695f88d658787ea6f4928255e7e0))
+
+
+### Features
+
+* **Modal:** add alignment prop ([#1568](https://github.com/toptal/picasso/issues/1568)) ([5e37748](https://github.com/toptal/picasso/commit/5e37748d9da5a528ba641348bb4f073e249d0070))
+
+
+
+
+
 ## [4.98.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.98.0...@toptal/picasso@4.98.1) (2020-09-14)
 
 
