@@ -12,11 +12,8 @@ import { StandardProps } from '@toptal/picasso-shared'
 import Menu from '../Menu'
 import styles from './styles'
 
-type FocusEventType = (event: React.FocusEvent<HTMLInputElement>) => void
-
 export interface Props extends StandardProps {
   selectedIndex?: number | null
-  onBlur?: FocusEventType
 }
 
 enum Direction {
@@ -38,9 +35,12 @@ const getMoveDirection = (
     : Direction.UP
 }
 
+const preventDefault = (
+  event: React.MouseEvent<HTMLUListElement, MouseEvent>
+) => event.preventDefault()
+
 const ScrollMenu: FunctionComponent<Props> = ({
   selectedIndex,
-  onBlur,
   classes,
   children,
   style,
