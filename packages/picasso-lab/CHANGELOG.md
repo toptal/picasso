@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.32.3](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.32.2...@toptal/picasso-lab@2.32.3) (2020-09-23)
+
+
+### Bug Fixes
+
+* add interactive to TypographyOverflow ([#1578](https://github.com/toptal/picasso/issues/1578)) ([0e6564f](https://github.com/toptal/picasso/commit/0e6564fdb5330cd7be937aa9163f5c8dca4e9206))
+
+
+
+
+
 ## [2.32.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.32.1...@toptal/picasso-lab@2.32.2) (2020-09-18)
 
 

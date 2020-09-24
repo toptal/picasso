@@ -13,6 +13,7 @@ import {
   Tooltip
 } from 'recharts'
 
+import { ChartDot } from './ChartDot'
 import calculateTooltipPosition from '../utils/calculate-tooltip-position'
 import { CoordinatePayload } from '../utils/types'
 import {
@@ -40,7 +41,7 @@ export type ReferenceLineType = {
   color: string
 }
 
-export type ChartDataPoint = Record<string, string | number>
+export type ChartDataPoint = Record<string, string | number | boolean>
 
 export type TooltipInstance = Tooltip & {
   wrapperNode: HTMLDivElement
@@ -154,13 +155,14 @@ const generateLineGraphs = (
   Object.keys(lines).map((name, index) => {
     const line = lines[name]
     const isReferenceLine = line.variant === 'reference'
+
     return (
       <Line
         key={`line-${index}`}
         data={orderedData}
         dataKey={name}
         stroke={line.color}
-        dot={isReferenceLine ? false : { fill: line.color }}
+        dot={isReferenceLine ? false : <ChartDot color={line.color} />}
         isAnimationActive={IS_ANIMATION_ACTIVE}
         strokeDasharray={isReferenceLine ? '3 3' : 'none'}
       />
@@ -210,6 +212,7 @@ export const LineChart = ({
     if (allowTooltipEscapeViewBox && next?.isTooltipActive) {
       const tooltipElem = getTooltipElement()
       const chartElem = getChartElement()
+
       calculateTooltipPosition(next, tooltipElem, chartElem)
     }
   }
