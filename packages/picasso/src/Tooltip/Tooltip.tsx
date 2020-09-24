@@ -142,7 +142,7 @@ export const Tooltip: FunctionComponent<Props> = props => {
     disableListeners,
     preventOverflow,
     disablePortal,
-    delay,
+    delay = 'short',
     compact,
     maxWidth,
     ...rest
