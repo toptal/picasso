@@ -35,6 +35,10 @@ const getMoveDirection = (
     : Direction.UP
 }
 
+const preventDefault = (
+  event: React.MouseEvent<HTMLUListElement, MouseEvent>
+) => event.preventDefault()
+
 const ScrollMenu: FunctionComponent<Props> = ({
   selectedIndex,
   classes,
@@ -94,7 +98,7 @@ const ScrollMenu: FunctionComponent<Props> = ({
   }, [firstItemRef, selectedIndex, prevSelectedIndex])
 
   return (
-    <Menu className={classes.menu} style={style}>
+    <Menu className={classes.menu} style={style} onMouseDown={preventDefault}>
       <div ref={menuRef} className={classes.scrollView}>
         {renderChildren}
       </div>
