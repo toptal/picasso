@@ -47,4 +47,4 @@ page
   ) // picasso-skip-visuals
   .addExample('Tooltip/story/Delay.example.tsx', 'Delay') // picasso-skip-visuals
   .addExample('Tooltip/story/Compact.example.tsx', 'Compact')
-  .addExample('Tooltip/story/MaxWidth.example.tsx', 'Max Width') // picasso-skip-visuals
+  .addExample('Tooltip/story/MaxWidth.example.tsx', 'Max Width')
