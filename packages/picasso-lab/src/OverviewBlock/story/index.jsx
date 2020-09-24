@@ -58,6 +58,15 @@ page
         description:
           'Value and label alignment. By default content is aligned to the left.'
       },
+      width: {
+        name: 'width',
+        type: {
+          name: 'enum',
+          enums: ["'narrow'", "'regular'", "'wide'"]
+        },
+        defaultValue: 'regular',
+        description: 'The width variant'
+      },
       as: {
         name: 'as',
         type: {
@@ -88,3 +97,4 @@ page
   .addExample('OverviewBlock/story/Multiline.example.tsx', 'Multi-line')
   .addExample('OverviewBlock/story/Routing.example.tsx', 'Routing')
   .addExample('OverviewBlock/story/CenterAligned.example.tsx', 'Center Aligned')
+  .addExample('OverviewBlock/story/Width.example.tsx', 'Width')

@@ -7,7 +7,6 @@ export default ({ palette, sizes }: Theme) =>
       display: 'flex',
       flexDirection: 'column',
       backgroundColor: palette.common.white,
-      padding: '0.75rem 1.5rem',
       margin: 0,
       minWidth: rem('150px'),
       border: 'none',
@@ -34,5 +33,14 @@ export default ({ palette, sizes }: Theme) =>
     },
     centerAlign: {
       alignItems: 'center'
+    },
+    narrowWidth: {
+      padding: '0.75rem 1rem'
+    },
+    regularWidth: {
+      padding: '0.75rem 1.5rem'
+    },
+    wideWidth: {
+      padding: '0.75rem 2rem'
     }
   })

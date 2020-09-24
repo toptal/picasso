@@ -33,6 +33,10 @@ type Variant =
   | 'label-blue'
   | 'label-yellow'
 
+type Alignment = 'default' | 'center'
+
+type BlockWidth = 'narrow' | 'regular' | 'wide'
+
 type ColorSettings = {
   value: ColorType
   label: ColorType
@@ -48,7 +52,9 @@ export type Props = BaseProps &
     /** The color variant  */
     variant?: Variant
     /** Value and label alignment. By default content is aligned to the left. */
-    align?: 'default' | 'center'
+    align?: Alignment
+    /** The width variant */
+    width?: BlockWidth
     /** Component used for the root node. Either a string to use a DOM element or a component. */
     as?: ElementType
     /** Callback invoked when component is clicked */
@@ -72,6 +78,7 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
       label,
       variant,
       align = 'default',
+      width = 'regular',
       as: Component = 'button',
       className,
       onClick,
@@ -106,9 +113,8 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
         className={cx(
           { [classes.clickable]: isClickable },
           { [classes.disableOutline]: !isClickable },
-          {
-            [classes[`${align}Align`]]: align
-          },
+          classes[`${align}Align`],
+          classes[`${width}Width`],
           classes.root,
           className
         )}
@@ -131,7 +137,8 @@ export const OverviewBlock: OverridableComponent<Props> & StaticProps =
 
 OverviewBlock.defaultProps = {
   align: 'default',
-  as: 'button'
+  as: 'button',
+  width: 'regular'
 }
 
 OverviewBlock.Group = OverviewBlockGroup
