@@ -1,8 +1,6 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 import { rem } from '@toptal/picasso-shared'
 
-import { TooltipProps } from '.'
-
 const shadowColor = 'rgba(0, 0, 0, 0.8)'
 const ARROW_SIZE = '1.25em'
 const HORIZONTAL_POSITION = {
@@ -76,7 +74,7 @@ const arrowGenerator = (color: string) => {
 }
 
 export default ({ palette, shadows, sizes }: Theme) =>
-  createStyles<string, TooltipProps>({
+  createStyles({
     tooltip: {
       backgroundColor: palette.grey.darker,
       color: palette.common.white,
@@ -85,8 +83,7 @@ export default ({ palette, shadows, sizes }: Theme) =>
       lineHeight: '1.5em',
       padding: '1rem',
       borderRadius: 0,
-      position: 'relative',
-      maxWidth: props => (props.maxWidth === 'none' ? 'none' : undefined)
+      position: 'relative'
     },
     arrowPopper: arrowGenerator(palette.grey.darker!),
     arrowPopperLight: arrowGenerator(palette.common.white),
@@ -111,5 +108,8 @@ export default ({ palette, shadows, sizes }: Theme) =>
       padding: '0.25rem 0.5rem',
       margin: '0.5rem',
       borderRadius: sizes.borderRadius
+    },
+    noMaxWidth: {
+      maxWidth: 'none'
     }
   })

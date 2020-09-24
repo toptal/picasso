@@ -9,7 +9,7 @@ import React, {
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITooltip from '@material-ui/core/Tooltip'
 import cx from 'classnames'
-import { usePicassoRoot, BaseProps, omit } from '@toptal/picasso-shared'
+import { usePicassoRoot, BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
@@ -79,6 +79,7 @@ export const Tooltip: FunctionComponent<Props> = props => {
     disablePortal,
     delay = 'short',
     compact,
+    maxWidth,
     ...rest
   } = props
   const classes = useStyles(props)
@@ -95,12 +96,11 @@ export const Tooltip: FunctionComponent<Props> = props => {
   )
 
   const delayDuration = delayDurations[delay]
-  const tooltipProps = omit(rest, 'maxWidth')
 
   return (
     <MUITooltip
       // eslint-disable-next-line react/jsx-props-no-spreading
-      {...tooltipProps}
+      {...rest}
       PopperProps={{
         container,
         disablePortal,
@@ -125,7 +125,8 @@ export const Tooltip: FunctionComponent<Props> = props => {
           variant === 'light' ? classes.arrowPopperLight : classes.arrowPopper,
         tooltip: cx(classes.tooltip, {
           [classes.light]: variant === 'light',
-          [classes.compact]: compact
+          [classes.compact]: compact,
+          [classes.noMaxWidth]: maxWidth === 'none'
         })
       }}
       className={className}
