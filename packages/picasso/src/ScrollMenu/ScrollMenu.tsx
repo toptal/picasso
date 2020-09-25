@@ -1,6 +1,5 @@
 import React, {
-  useState,
-  useEffect,
+  useLayoutEffect,
   useRef,
   createRef,
   FunctionComponent
@@ -47,7 +46,7 @@ const ScrollMenu: FunctionComponent<Props> = ({
 }) => {
   const menuRef = useRef<HTMLDivElement | null>(null)
   const firstItemRef = createRef<HTMLElement>()
-  const [prevSelectedIndex, setPrevSelectedIndex] = useState(selectedIndex)
+  const prevSelectedIndex = useRef(selectedIndex)
 
   const renderChildren = React.Children.map(children, (child, index) => {
     if (index === 0 && child) {
@@ -57,7 +56,7 @@ const ScrollMenu: FunctionComponent<Props> = ({
     return child
   })
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!menuRef.current || !firstItemRef.current) {
       return
     }
@@ -80,7 +79,7 @@ const ScrollMenu: FunctionComponent<Props> = ({
     if (!isHighlightedItemInScrollView) {
       const moveDirection = getMoveDirection(
         selectedIndex,
-        prevSelectedIndex,
+        prevSelectedIndex.current,
         bottomVisibleItem
       )
       let scrollTop = 0
@@ -94,7 +93,7 @@ const ScrollMenu: FunctionComponent<Props> = ({
       menuRef.current.scrollTop = scrollTop
     }
 
-    setPrevSelectedIndex(selectedIndex)
+    prevSelectedIndex.current = selectedIndex
   }, [firstItemRef, selectedIndex, prevSelectedIndex])
 
   return (
