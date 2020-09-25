@@ -57,7 +57,7 @@ const colorVariant = (colorOptions?: SimplePaletteColorOptions | Color) => {
   }
 
   return createPropertiesStyles({
-    backgroundColor: colorOptions.lighter,
+    backgroundColor: colorOptions.lighter2 ?? colorOptions.lighter,
 
     '&$bordered': {
       borderColor: colorOptions.main

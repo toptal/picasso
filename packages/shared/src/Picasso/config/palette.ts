@@ -1,11 +1,16 @@
+interface ColorSwatch {
+  lighter?: string
+  lighter2?: string
+  light?: string
+  light2?: string
+  main?: string
+  main2?: string
+  dark?: string
+  darker?: string
+}
+
 declare module '@material-ui/core/styles/createPalette' {
-  interface SimplePaletteColorOptions {
-    lighter?: string
-    light?: string
-    main: string
-    dark?: string
-    darker?: string
-  }
+  export interface SimplePaletteColorOptions extends ColorSwatch {}
 
   interface Palette {
     blue: SimplePaletteColorOptions
@@ -16,16 +21,7 @@ declare module '@material-ui/core/styles/createPalette' {
 }
 
 declare module '@material-ui/core' {
-  interface Color {
-    lighter?: string
-    lighter2?: string
-    light?: string
-    light2?: string
-    main?: string
-    main2?: string
-    dark?: string
-    darker?: string
-  }
+  export interface Color extends ColorSwatch {}
 }
 
 export const colors = {
