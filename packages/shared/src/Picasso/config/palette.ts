@@ -18,7 +18,9 @@ declare module '@material-ui/core/styles/createPalette' {
 declare module '@material-ui/core' {
   interface Color {
     lighter?: string
+    lighter2?: string
     light?: string
+    light2?: string
     main?: string
     main2?: string
     dark?: string
@@ -28,8 +30,10 @@ declare module '@material-ui/core' {
 
 export const colors = {
   grey: {
-    lighter: '#ebeced',
-    light: '#d8d9dc',
+    lighter: '#f3f4f6',
+    lighter2: '#ebeced',
+    light: '#e5e7ea',
+    light2: '#d8d9dc',
     main: '#c4c6ca',
     main2: '#84888e',
     dark: '#455065',
