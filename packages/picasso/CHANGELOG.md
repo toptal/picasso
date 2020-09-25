@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.101.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.101.0...@toptal/picasso@4.101.1) (2020-09-25)
+
+
+### Bug Fixes
+
+* **ScrollMenu:** calculation in useLayoutEffect ([#1580](https://github.com/toptal/picasso/issues/1580)) ([2186a20](https://github.com/toptal/picasso/commit/2186a206395fad5f8d40d42e601dcc36ca144248))
+
+
+
+
+
 # [4.101.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.100.1...@toptal/picasso@4.101.0) (2020-09-24)
 
 
