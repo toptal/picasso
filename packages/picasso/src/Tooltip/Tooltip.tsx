@@ -19,6 +19,8 @@ type VariantType = 'light' | 'dark'
 
 export type PlacementType = 'bottom' | 'left' | 'right' | 'top'
 
+type MaxWidthType = 'none' | 'default'
+
 type DelayType = 'short' | 'long'
 
 const delayDurations: { [k in DelayType]: number } = {
@@ -118,6 +120,8 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   delay?: DelayType
   /** Show a compact tooltip */
   compact?: boolean
+  /** Max width of a tooltip */
+  maxWidth?: MaxWidthType
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoTooltip' })
@@ -140,6 +144,7 @@ export const Tooltip: FunctionComponent<Props> = props => {
     disablePortal,
     delay = 'short',
     compact,
+    maxWidth,
     ...rest
   } = props
 
@@ -199,7 +204,8 @@ export const Tooltip: FunctionComponent<Props> = props => {
           variant === 'light' ? classes.arrowPopperLight : classes.arrowPopper,
         tooltip: cx(classes.tooltip, {
           [classes.light]: variant === 'light',
-          [classes.compact]: compact
+          [classes.compact]: compact,
+          [classes.noMaxWidth]: maxWidth === 'none'
         })
       }}
       className={className}
@@ -226,7 +232,8 @@ Tooltip.defaultProps = {
   preventOverflow: false,
   placement: 'top',
   variant: 'dark',
-  disablePortal: false
+  disablePortal: false,
+  maxWidth: 'default'
 }
 
 export default Tooltip
