@@ -45,7 +45,7 @@ export default ({ palette, screens, zIndex }: Theme) =>
       height: '100%'
     },
     light: {
-      boxShadow: `inset -1px 0px 0px 0px ${palette.grey.lighter}`,
+      boxShadow: `inset -1px 0px 0px 0px ${palette.grey.lighter2}`,
       backgroundColor: greySidebarBackgroundColor
     },
     dark: {

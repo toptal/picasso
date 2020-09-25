@@ -93,7 +93,7 @@ export default ({ palette, typography }: Theme) =>
       color: palette.yellow.main
     },
     lightGrey: {
-      color: palette.grey.light
+      color: palette.grey.light2
     },
     grey: {
       color: palette.grey.main

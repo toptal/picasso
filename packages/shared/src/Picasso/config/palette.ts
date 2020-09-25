@@ -74,8 +74,8 @@ const palette = {
   primary: JSON.parse(JSON.stringify(colors.blue)),
   error: JSON.parse(JSON.stringify(colors.red)),
   grey: {
-    100: colors.grey.lighter,
-    200: colors.grey.light,
+    100: colors.grey.lighter2,
+    200: colors.grey.light2,
     300: colors.grey.main,
     400: colors.grey.dark,
     500: colors.grey.darker,
