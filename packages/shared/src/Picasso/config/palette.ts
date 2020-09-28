@@ -1,4 +1,4 @@
-interface ColorSwatch {
+interface ColorSample {
   lighter?: string
   lighter2?: string
   light?: string
@@ -10,7 +10,7 @@ interface ColorSwatch {
 }
 
 declare module '@material-ui/core/styles/createPalette' {
-  export interface SimplePaletteColorOptions extends ColorSwatch {}
+  export interface SimplePaletteColorOptions extends ColorSample {}
 
   interface Palette {
     blue: SimplePaletteColorOptions
@@ -21,7 +21,7 @@ declare module '@material-ui/core/styles/createPalette' {
 }
 
 declare module '@material-ui/core' {
-  export interface Color extends ColorSwatch {}
+  export interface Color extends ColorSample {}
 }
 
 export const colors = {
