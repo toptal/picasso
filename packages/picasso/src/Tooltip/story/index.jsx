@@ -10,7 +10,7 @@ page
   .createTabChapter('Props')
   .addComponentDocs({
     component: Tooltip,
-    name: 'Timesheets',
+    name: 'Tooltip',
     additionalDocs: {
       placement: {
         type: 'enum',

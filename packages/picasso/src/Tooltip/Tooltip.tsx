@@ -233,7 +233,8 @@ Tooltip.defaultProps = {
   placement: 'top',
   variant: 'dark',
   disablePortal: false,
-  maxWidth: 'default'
+  maxWidth: 'default',
+  delay: 'short'
 }
 
 export default Tooltip
