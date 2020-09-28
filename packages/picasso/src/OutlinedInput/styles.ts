@@ -18,6 +18,14 @@ PicassoProvider.override(
           }
         },
 
+        '&$focused': {
+          '& $notchedOutline': {
+            borderWidth: '1px',
+            borderColor: palette.blue.main,
+            ...focusRing(palette.primary.main)
+          }
+        },
+
         '&$disabled': {
           '& $notchedOutline': {
             borderColor: palette.grey.lighter2
@@ -32,14 +40,6 @@ PicassoProvider.override(
           },
           '&:not($error)&:not($focused) $notchedOutline': {
             borderColor: palette.grey.light2
-          }
-        },
-
-        '&$focused': {
-          '& $notchedOutline': {
-            borderWidth: '1px',
-            borderColor: palette.blue.main,
-            ...focusRing(palette.primary.main)
           }
         }
       },
