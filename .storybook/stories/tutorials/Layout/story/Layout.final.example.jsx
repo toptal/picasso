@@ -61,7 +61,7 @@ const Example = () => (
 )
 
 const StyledMainContentContainer = styled(Container)`
-  background-color: ${palette.grey.light};
+  background-color: ${palette.grey.light2};
   flex: 1;
 `
 

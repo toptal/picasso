@@ -20,6 +20,6 @@ export default ({ palette }: Theme) =>
       background: palette.green.main
     },
     'light-grey': {
-      background: palette.grey.light
+      background: palette.grey.light2
     }
   })

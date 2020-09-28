@@ -8,7 +8,7 @@ export default ({ palette }: Theme) =>
       fontSize: '1rem'
     },
     disabled: {
-      borderColor: palette.grey.lighter,
+      borderColor: palette.grey.lighter2,
       color: palette.grey.main,
       pointerEvents: 'none'
     },
