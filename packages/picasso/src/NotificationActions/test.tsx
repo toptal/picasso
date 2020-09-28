@@ -5,7 +5,7 @@ import Notification from '../Notification'
 
 const renderNotificationActions = (children: ReactNode) => {
   return render(
-    <Notification variant='green'>
+    <Notification>
       The time zone in your profile is set to (UTC -08:00) America - Los
       <Notification.Actions>{children}</Notification.Actions>
     </Notification>
