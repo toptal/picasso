@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.101.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.101.1...@toptal/picasso@4.101.2) (2020-09-28)
+
+
+### Bug Fixes
+
+* default tooltip delay ([#1579](https://github.com/toptal/picasso/issues/1579)) ([df58e02](https://github.com/toptal/picasso/commit/df58e02abbcc4932ba584b0b8fce135a34152e34))
+
+
+
+
+
 ## [4.101.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.101.0...@toptal/picasso@4.101.1) (2020-09-25)
 
 
