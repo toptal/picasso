@@ -15,7 +15,7 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
     },
     light: {
       backgroundColor: palette.common.white,
-      boxShadow: `0 1px 0 0 ${palette.grey.lighter}`
+      boxShadow: `0 1px 0 0 ${palette.grey.lighter2}`
     },
     dark: {
       backgroundColor: palette.blue.darker

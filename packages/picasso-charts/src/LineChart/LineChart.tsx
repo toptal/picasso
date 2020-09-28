@@ -154,6 +154,7 @@ const generateLineGraphs = (
   Object.keys(lines).map((name, index) => {
     const line = lines[name]
     const isReferenceLine = line.variant === 'reference'
+
     return (
       <Line
         key={`line-${index}`}
@@ -210,6 +211,7 @@ export const LineChart = ({
     if (allowTooltipEscapeViewBox && next?.isTooltipActive) {
       const tooltipElem = getTooltipElement()
       const chartElem = getChartElement()
+
       calculateTooltipPosition(next, tooltipElem, chartElem)
     }
   }
@@ -227,7 +229,7 @@ export const LineChart = ({
           data={orderedData}
           onMouseMove={onMouseMovement}
         >
-          <CartesianGrid stroke={palette.grey.lighter} />
+          <CartesianGrid stroke={palette.grey.lighter2} />
 
           {/* Axis */}
           <XAxis
