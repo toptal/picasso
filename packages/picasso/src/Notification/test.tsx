@@ -2,11 +2,11 @@ import React, { ReactNode } from 'react'
 import { render, RenderResult, fireEvent } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
-import Notification, { Props } from './Notification'
+import Notification, { PublicProps } from './Notification'
 
 const renderNotification = (
   children: ReactNode,
-  props: OmitInternalProps<Props, 'children'>
+  props: OmitInternalProps<PublicProps, 'children'>
 ) => {
   const { onClose } = props
 
