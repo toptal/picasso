@@ -6,7 +6,7 @@ export default ({ palette, sizes }: Theme) =>
       display: 'flex',
       borderRadius: sizes.borderRadius.medium,
       padding: '1rem 0',
-      border: `${sizes.borderWidth} solid ${palette.grey.lighter}`,
+      border: `${sizes.borderWidth} solid ${palette.grey.lighter2}`,
       justifyContent: 'flex-start',
       '& > *': {
         flex: '1 0'

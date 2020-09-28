@@ -14,7 +14,7 @@ export default ({ palette }: Theme) =>
         left: 0,
         right: 0,
         height: 1,
-        backgroundColor: palette.grey.lighter,
+        backgroundColor: palette.grey.lighter2,
         zIndex: 0
       }
     },

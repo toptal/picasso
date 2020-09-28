@@ -17,10 +17,10 @@ export default ({ palette, sizes, transitions }: Theme) =>
       }
     },
     head: {
-      borderBottom: `${sizes.borderWidth} solid ${palette.grey.lighter}`
+      borderBottom: `${sizes.borderWidth} solid ${palette.grey.lighter2}`
     },
     stripeEven: {
-      background: alpha(palette.grey.lighter!, 0.32)
+      background: alpha(palette.grey.lighter2!, 0.32)
     },
     hover: {
       transition: transitions.create('background-color', {

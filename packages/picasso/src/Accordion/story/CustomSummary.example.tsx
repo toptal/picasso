@@ -45,7 +45,7 @@ const Summary = ({
 
 const InterviewCard = () => (
   <Container
-    style={{ flex: 1, border: `1px solid ${palette.grey.light}` }}
+    style={{ flex: 1, border: `1px solid ${palette.grey.light2}` }}
     flex
   >
     <Container
@@ -69,7 +69,7 @@ const InterviewCard = () => (
     <div
       style={{
         width: '1px',
-        backgroundColor: palette.grey.light,
+        backgroundColor: palette.grey.light2,
         margin: '1.5em 0'
       }}
     />
