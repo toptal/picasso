@@ -1,11 +1,16 @@
+interface ColorSample {
+  lighter?: string
+  lighter2?: string
+  light?: string
+  light2?: string
+  main?: string
+  main2?: string
+  dark?: string
+  darker?: string
+}
+
 declare module '@material-ui/core/styles/createPalette' {
-  interface SimplePaletteColorOptions {
-    lighter?: string
-    light?: string
-    main: string
-    dark?: string
-    darker?: string
-  }
+  export interface SimplePaletteColorOptions extends ColorSample {}
 
   interface Palette {
     blue: SimplePaletteColorOptions
@@ -16,20 +21,15 @@ declare module '@material-ui/core/styles/createPalette' {
 }
 
 declare module '@material-ui/core' {
-  interface Color {
-    lighter?: string
-    light?: string
-    main?: string
-    main2?: string
-    dark?: string
-    darker?: string
-  }
+  export interface Color extends ColorSample {}
 }
 
 export const colors = {
   grey: {
-    lighter: '#ebeced',
-    light: '#d8d9dc',
+    lighter: '#f3f4f6',
+    lighter2: '#ebeced',
+    light: '#e5e7ea',
+    light2: '#d8d9dc',
     main: '#c4c6ca',
     main2: '#84888e',
     dark: '#455065',
@@ -70,8 +70,8 @@ const palette = {
   primary: JSON.parse(JSON.stringify(colors.blue)),
   error: JSON.parse(JSON.stringify(colors.red)),
   grey: {
-    100: colors.grey.lighter,
-    200: colors.grey.light,
+    100: colors.grey.lighter2,
+    200: colors.grey.light2,
     300: colors.grey.main,
     400: colors.grey.dark,
     500: colors.grey.darker,
