@@ -17,11 +17,11 @@ export default ({ palette }: Theme) =>
       backgroundColor: palette.common.white,
 
       '&:hover, &$hovered': {
-        backgroundColor: palette.grey.lighter
+        backgroundColor: palette.grey.lighter2
       },
 
       '&:active, &$active': {
-        backgroundColor: palette.grey.light
+        backgroundColor: palette.grey.light2
       },
 
       '&$disabled': {

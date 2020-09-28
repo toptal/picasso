@@ -25,7 +25,7 @@ export default ({ palette, typography }: Theme) => {
     height: '1px',
     content: '""',
     opacity: 1,
-    backgroundColor: palette.grey.light,
+    backgroundColor: palette.grey.light2,
     position: 'absolute'
   })
 
