@@ -1,5 +1,5 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
-import { alpha } from '@toptal/picasso-shared'
+import { alpha, focusRing } from '@toptal/picasso-shared'
 
 export default ({ palette }: Theme) =>
   createStyles({
@@ -39,7 +39,7 @@ export default ({ palette }: Theme) =>
       backgroundColor: 'initial',
 
       '&$focusVisible, &$focused': {
-        boxShadow: `0 0 0 3px ${alpha(palette.common.white, 0.48)}`
+        ...focusRing(palette.common.white)
       },
 
       '&:hover, &$hovered': {
