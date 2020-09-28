@@ -12,7 +12,7 @@ export default ({ palette, sizes }: Theme) =>
       border: 'none',
       textDecoration: 'none',
       '&:not(:first-child)': {
-        borderLeft: `${sizes.borderWidth} solid ${palette.grey.lighter}`
+        borderLeft: `${sizes.borderWidth} solid ${palette.grey.lighter2}`
       }
     },
     clickable: {
