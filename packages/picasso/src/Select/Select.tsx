@@ -281,6 +281,7 @@ const removeDuplicatedOptions = (options: Option[]) =>
     const innerIndex = options.findIndex(
       innerOption => innerOption.value === option.value
     )
+
     return innerIndex === index
   })
 
@@ -300,6 +301,22 @@ const purifyProps = (props: Props<any, any>): Props<ValueType, boolean> => {
 
   return disableUnsupportedProps('Select', props, sizeOptions)
 }
+
+const getSelectedOptions = (
+  options: Option[],
+  value?: ValueType | ValueType[]
+) =>
+  options.filter(option =>
+    Array.isArray(value)
+      ? value.includes(String(option.value))
+      : value === String(option.value)
+  )
+
+const getOptionsStringValue = (options: Option[]) =>
+  options
+    .map(option => option.key ?? option.value)
+    .sort()
+    .join('')
 
 const renderOptions = ({
   options,
@@ -327,6 +344,7 @@ const renderOptions = ({
   const optionComponents = options.map((option, currentIndex) => {
     const { close, onMouseDown } = getItemProps(currentIndex, option)
     const selection = getSelection(options, value)
+
     return (
       <SelectOption
         key={option.key || option.value}
@@ -407,11 +425,7 @@ export const Select = documentable(
 
       const inputWrapperRef = useRef<HTMLDivElement>(null)
       const [selectedOptions, setSelectedOptions] = useState(
-        allOptions.filter(option =>
-          Array.isArray(value)
-            ? value.includes(String(option.value))
-            : value === String(option.value)
-        )
+        getSelectedOptions(allOptions, value)
       )
       const select = getSelection(
         removeDuplicatedOptions([...allOptions, ...selectedOptions]),
@@ -431,15 +445,17 @@ export const Select = documentable(
         [allOptions, filterOptionsValue, getDisplayValue]
       )
 
-      const prevValue = useRef(value)
-      if (prevValue.current !== value) {
-        const select = getSelection(
+      React.useEffect(() => {
+        const newSelect = getSelection(
           removeDuplicatedOptions([...allOptions, ...selectedOptions]),
           value
         )
-        setInputValue(select.display(getDisplayValue!))
-        prevValue.current = value
-      }
+
+        setInputValue(newSelect.display(getDisplayValue!))
+        setSelectedOptions(getSelectedOptions(allOptions, value))
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, [value, getOptionsStringValue(allOptions)])
 
       const readOnlyInput = multiple || allOptions.length <= searchThreshold!
 
@@ -489,6 +505,7 @@ export const Select = documentable(
         if (isInSelectedValues) {
           return value!.filter(value => value !== option.value)
         }
+
         return [...value, String(option.value)]
       }
       const handleSelect = useCallback(
