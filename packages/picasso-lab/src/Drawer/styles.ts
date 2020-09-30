@@ -9,7 +9,7 @@ export default ({ palette }: Theme) =>
       position: 'absolute',
       left: 0,
       right: 0,
-      borderBottom: `1px solid ${palette.grey.lighter}`
+      borderBottom: `1px solid ${palette.grey.lighter2}`
     },
     title: {
       flexGrow: 1

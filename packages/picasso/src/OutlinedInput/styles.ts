@@ -9,7 +9,7 @@ PicassoProvider.override(({ palette, sizes: { input } }: Theme) => ({
       fontSize: '1rem',
 
       '& $notchedOutline': {
-        borderColor: palette.grey.light,
+        borderColor: palette.grey.light2,
         borderRadius: 0,
         top: 0,
         '& legend': {
@@ -26,7 +26,7 @@ PicassoProvider.override(({ palette, sizes: { input } }: Theme) => ({
       '&$disabled': {
         '& $notchedOutline': {
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-          borderColor: alpha(palette.grey.light!, 0.48)
+          borderColor: alpha(palette.grey.light2!, 0.48)
         },
         color: alpha(palette.common.black, 0.48)
       },

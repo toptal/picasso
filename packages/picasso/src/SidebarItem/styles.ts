@@ -1,7 +1,5 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
-const greyItemBackgroundColor = '#e5e7ea'
-
 export default ({ palette, sizes }: Theme) =>
   createStyles({
     root: {
@@ -34,20 +32,20 @@ export default ({ palette, sizes }: Theme) =>
         color: palette.blue.main,
         '&$selected': {
           color: palette.blue.main,
-          backgroundColor: greyItemBackgroundColor
+          backgroundColor: palette.grey.light
         }
       },
 
       '&$selected': {
         color: palette.blue.main,
-        backgroundColor: greyItemBackgroundColor
+        backgroundColor: palette.grey.light
       },
 
       '&:focus': {
         color: palette.blue.main,
         '&$selected': {
           color: palette.blue.main,
-          backgroundColor: greyItemBackgroundColor
+          backgroundColor: palette.grey.light
         }
       }
     },
