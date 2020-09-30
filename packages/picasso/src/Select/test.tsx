@@ -446,20 +446,15 @@ describe('multiple select', () => {
 
     expect(input.value).not.toBe(selectedOption.text)
 
-    await new Promise(resolve => {
-      setTimeout(() => {
-        rerender(
-          <TestingPicasso>
-            <Select
-              options={OPTIONS}
-              value={initialProps.value}
-              placeholder={initialProps.placeholder}
-            />
-          </TestingPicasso>
-        )
-        resolve()
-      }, 1000)
-    })
+    rerender(
+      <TestingPicasso>
+        <Select
+          options={OPTIONS}
+          value={initialProps.value}
+          placeholder={initialProps.placeholder}
+        />
+      </TestingPicasso>
+    )
 
     expect(input.value).toBe(selectedOption.text)
   })
