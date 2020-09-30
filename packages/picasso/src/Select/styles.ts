@@ -25,7 +25,7 @@ export default ({ palette }: Theme) =>
     select: {
       width: '100%',
       zIndex: 1,
-      padding: '0.625rem',
+      padding: '0.5rem',
 
       '&:focus': {
         backgroundColor: 'inherit'
