@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.102.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.101.2...@toptal/picasso@4.102.0) (2020-09-30)
+
+
+### Features
+
+* **icon:** add confluence icon ([#1592](https://github.com/toptal/picasso/issues/1592)) ([efeb5f0](https://github.com/toptal/picasso/commit/efeb5f0ca919b0486f8cd06c4f98e72abcfb1a43))
+
+
+
+
+
 ## [4.101.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.101.1...@toptal/picasso@4.101.2) (2020-09-28)
 
 
