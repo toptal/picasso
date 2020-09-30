@@ -6,7 +6,8 @@ import React, {
   useRef,
   useState,
   useCallback,
-  useMemo
+  useMemo,
+  useEffect
 } from 'react'
 import cx from 'classnames'
 import NativeSelect from '@material-ui/core/NativeSelect'
@@ -312,12 +313,6 @@ const getSelectedOptions = (
       : value === String(option.value)
   )
 
-const getOptionsStringValue = (options: Option[]) =>
-  options
-    .map(option => option.key ?? option.value)
-    .sort()
-    .join('')
-
 const renderOptions = ({
   options,
   renderOption,
@@ -445,7 +440,7 @@ export const Select = documentable(
         [allOptions, filterOptionsValue, getDisplayValue]
       )
 
-      React.useEffect(() => {
+      useEffect(() => {
         const newSelect = getSelection(
           removeDuplicatedOptions([...allOptions, ...selectedOptions]),
           value
@@ -455,7 +450,7 @@ export const Select = documentable(
         setSelectedOptions(getSelectedOptions(allOptions, value))
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-      }, [value, getOptionsStringValue(allOptions), getDisplayValue])
+      }, [value, allOptions, getDisplayValue])
 
       const readOnlyInput = multiple || allOptions.length <= searchThreshold!
 
