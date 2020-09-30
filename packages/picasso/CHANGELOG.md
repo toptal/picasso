@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.103.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.102.0...@toptal/picasso@4.103.0) (2020-09-30)
+
+
+### Features
+
+* **icon:** add abstract icon ([#1594](https://github.com/toptal/picasso/issues/1594)) ([a7cf59a](https://github.com/toptal/picasso/commit/a7cf59a64bdba6195c940e06fbd2943c7b677ba7))
+
+
+
+
+
 # [4.102.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.101.2...@toptal/picasso@4.102.0) (2020-09-30)
 
 
