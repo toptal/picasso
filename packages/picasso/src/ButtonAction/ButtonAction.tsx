@@ -4,10 +4,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps, ButtonOrAnchorProps } from '@toptal/picasso-shared'
 
 import Button from '../Button'
-import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import styles from './styles'
-
-export type VariantType = 'primary' | 'flat' | 'transparent'
 
 export interface Props extends BaseProps, ButtonOrAnchorProps {
   /** Show button in the active state (left mouse button down) */
@@ -26,32 +23,20 @@ export interface Props extends BaseProps, ButtonOrAnchorProps {
   loading?: boolean
   /** Callback invoked when component is clicked */
   onClick?: (event: MouseEvent<HTMLButtonElement & HTMLAnchorElement>) => void
-  /** The variant to use */
-  variant?: VariantType
   /** HTML Value of Button component */
   value?: string | number
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoButtonCircular'
+  name: 'PicassoButtonAction'
 })
 
-export const ButtonCircular = forwardRef<HTMLButtonElement, Props>(
-  function ButtonCircular(props, ref) {
-    const {
-      className,
-      variant,
-      active,
-      focused,
-      hovered,
-      disabled,
-      ...rest
-    } = props
+export const ButtonAction = forwardRef<HTMLButtonElement, Props>(
+  function ButtonAction(props, ref) {
+    const { className, active, focused, hovered, disabled, ...rest } = props
     const classes = useStyles(props)
 
-    const { root: rootClass, focusVisible: focusVisibleClass } = classes
-
-    const variantClassName = classes[kebabToCamelCase(variant!)]
+    const { root: rootClass, content, icon } = classes
 
     const rootClassName = cx(
       {
@@ -60,7 +45,6 @@ export const ButtonCircular = forwardRef<HTMLButtonElement, Props>(
         [classes.hovered]: hovered,
         [classes.disabled]: disabled
       },
-      variantClassName,
       rootClass
     )
 
@@ -69,9 +53,12 @@ export const ButtonCircular = forwardRef<HTMLButtonElement, Props>(
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         ref={ref}
+        iconPosition='left'
+        variant='secondary'
         classes={{
           root: rootClassName,
-          focusVisible: focusVisibleClass
+          content,
+          icon
         }}
         className={className}
         size='small'
@@ -84,10 +71,8 @@ export const ButtonCircular = forwardRef<HTMLButtonElement, Props>(
   }
 )
 
-ButtonCircular.defaultProps = {
-  variant: 'primary'
-}
+ButtonAction.defaultProps = {}
 
-ButtonCircular.displayName = 'ButtonCircular'
+ButtonAction.displayName = 'ButtonAction'
 
-export default ButtonCircular
+export default ButtonAction

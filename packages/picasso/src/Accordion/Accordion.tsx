@@ -19,6 +19,7 @@ import { ArrowDownMinor16 } from '../Icon'
 import AccordionSummary from '../AccordionSummary'
 import AccordionDetails from '../AccordionDetails'
 import styles from './styles'
+import Button from '../Button'
 
 const useStyles = makeStyles(styles)
 
@@ -141,7 +142,9 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
             decorateWithExpandIconClasses(expandIcon, expandIconClass)
           ) : (
             <div className={classes.expandIconAlignTop}>
-              <ArrowDownMinor16 className={expandIconClass} />
+              <Button.Action
+                icon={<ArrowDownMinor16 className={expandIconClass} />}
+              />
             </div>
           )}
         </AccordionSummary>
