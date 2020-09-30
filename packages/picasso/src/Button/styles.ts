@@ -1,5 +1,5 @@
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
-import { alpha, focusRing, mix } from '@toptal/picasso-shared'
+import { alpha, outline, mix } from '@toptal/picasso-shared'
 
 const ICON_SPACING = '0.5em'
 
@@ -34,7 +34,7 @@ const styles = ({ palette, sizes, transitions, typography }: Theme) => {
       boxShadow: 'none',
 
       '&$focusVisible, &$focused': {
-        ...focusRing(palette.primary.main)
+        ...outline(palette.primary.main)
       },
 
       '&+&': {
@@ -139,7 +139,7 @@ const styles = ({ palette, sizes, transitions, typography }: Theme) => {
       border: `solid ${sizes.borderWidth} ${alpha(palette.common.white, 0.32)}`,
 
       '&$focusVisible, &$focused': {
-        ...focusRing(palette.common.white)
+        ...outline(palette.common.white)
       },
 
       '&:hover, &$hovered': {

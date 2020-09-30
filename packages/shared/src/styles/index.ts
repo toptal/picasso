@@ -35,7 +35,7 @@ export const mix = (baseColor: string, mixColor: string, amount: number) => {
 export const rem = (px: string, baseFontSize = 16) =>
   `${Number.parseFloat(px) / baseFontSize}rem`
 
-export const focusRing = (baseColor: string) => ({
+export const outline = (baseColor: string) => ({
   boxShadow: `0 0 0 3px ${alpha(baseColor, 0.48)}`
 })
 

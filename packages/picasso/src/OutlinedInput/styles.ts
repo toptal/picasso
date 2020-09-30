@@ -1,5 +1,5 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
-import { PicassoProvider, darken, focusRing } from '@toptal/picasso-shared'
+import { PicassoProvider, darken, outline } from '@toptal/picasso-shared'
 
 PicassoProvider.override(
   ({ palette, sizes: { input, borderRadius } }: Theme) => ({
@@ -21,7 +21,7 @@ PicassoProvider.override(
           '& $notchedOutline': {
             borderWidth: '1px',
             borderColor: palette.blue.main,
-            ...focusRing(palette.primary.main)
+            ...outline(palette.primary.main)
           }
         },
 
@@ -35,7 +35,7 @@ PicassoProvider.override(
 
         '&:hover:not($disabled)': {
           '& $notchedOutline': {
-            ...focusRing(palette.primary.main)
+            ...outline(palette.primary.main)
           },
           '&:not($error)&:not($focused) $notchedOutline': {
             borderColor: palette.grey.light2
@@ -84,12 +84,12 @@ export default ({ palette, sizes: { input } }: Theme) =>
           visibility: 'visible'
         },
         '& $notchedOutline$notchedOutlineDark': {
-          ...focusRing(palette.common.white)
+          ...outline(palette.common.white)
         }
       },
       '&$focused': {
         '& $notchedOutline$notchedOutlineDark': {
-          ...focusRing(palette.common.white)
+          ...outline(palette.common.white)
         }
       }
     },
