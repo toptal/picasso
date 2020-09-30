@@ -7,7 +7,6 @@ PicassoProvider.override(
       root: {
         width: input.width,
         color: palette.common.black,
-        fontSize: '1rem',
 
         '& $notchedOutline': {
           borderColor: palette.grey.light,
@@ -44,7 +43,6 @@ PicassoProvider.override(
         }
       },
       input: {
-        fontSize: '1rem',
         display: 'flex',
         alignItems: 'center',
         boxSizing: 'border-box',
@@ -120,10 +118,12 @@ export default ({ palette, sizes: { input } }: Theme) =>
       }
     },
     inputSmall: {
-      fontSize: '0.75rem'
+      fontSize: '0.75rem',
+      lineHeight: '1rem'
     },
     inputMedium: {
-      fontSize: '0.875rem'
+      fontSize: '0.875rem',
+      lineHeight: '1rem'
     },
     inputMultiline: {},
     resetButton: {
