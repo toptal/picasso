@@ -27,7 +27,7 @@ exports[`TagSelector default render 1`] = `
           />
           <fieldset
             aria-hidden="true"
-            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
             style="padding-left: 8px;"
           >
             <legend
@@ -106,7 +106,7 @@ exports[`TagSelector disabled render 1`] = `
           />
           <fieldset
             aria-hidden="true"
-            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
             style="padding-left: 8px;"
           >
             <legend
@@ -185,7 +185,7 @@ exports[`TagSelector preselected value 1`] = `
             />
             <fieldset
               aria-hidden="true"
-              class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+              class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
               style="padding-left: 8px;"
             >
               <legend
