@@ -455,7 +455,7 @@ export const Select = documentable(
         setSelectedOptions(getSelectedOptions(allOptions, value))
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-      }, [value, getOptionsStringValue(allOptions)])
+      }, [value, getOptionsStringValue(allOptions), getDisplayValue])
 
       const readOnlyInput = multiple || allOptions.length <= searchThreshold!
 
