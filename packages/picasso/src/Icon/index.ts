@@ -1,5 +1,7 @@
 export { default as CheckSolid16 } from './CheckSolid16'
 export { default as CheckSolid24 } from './CheckSolid24'
+export { default as Abstract16 } from './Abstract16'
+export { default as Abstract24 } from './Abstract24'
 export { default as Ach16 } from './Ach16'
 export { default as Ach32 } from './Ach32'
 export { default as Afternoon16 } from './Afternoon16'
