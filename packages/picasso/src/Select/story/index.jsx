@@ -128,7 +128,3 @@ number of options greater than specified in \`searchThreshold\` prop.
     'Select/story/DynamicOptionsInModal.example.tsx',
     'Dynamic options in Modal'
   ) // picasso-skip-visuals
-  .addExample(
-    'Select/story/DynamicOptionsWithChosenValue.example.tsx',
-    'Dynamic options with chosen value'
-  ) // picasso-skip-visuals
