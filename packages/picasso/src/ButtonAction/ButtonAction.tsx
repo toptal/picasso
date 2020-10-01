@@ -3,8 +3,9 @@ import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps, ButtonOrAnchorProps } from '@toptal/picasso-shared'
 
-import Button from '../Button'
+import Button, { IconPositionType } from '../Button'
 import styles from './styles'
+import Loader from '../Loader'
 
 export interface Props extends BaseProps, ButtonOrAnchorProps {
   /** Show button in the active state (left mouse button down) */
@@ -19,6 +20,8 @@ export interface Props extends BaseProps, ButtonOrAnchorProps {
   hovered?: boolean
   /** Add an `<Icon />` along Button's children */
   icon?: ReactElement
+  /** Icon can be positioned on the left or right */
+  iconPosition?: IconPositionType
   /** Shows a loading indicator and disables click events */
   loading?: boolean
   /** Callback invoked when component is clicked */
@@ -33,10 +36,21 @@ const useStyles = makeStyles<Theme>(styles, {
 
 export const ButtonAction = forwardRef<HTMLButtonElement, Props>(
   function ButtonAction(props, ref) {
-    const { className, active, focused, hovered, disabled, ...rest } = props
+    const {
+      className,
+      active,
+      focused,
+      hovered,
+      disabled,
+      loading,
+      icon,
+      iconPosition,
+      onClick,
+      ...rest
+    } = props
     const classes = useStyles(props)
 
-    const { root: rootClass, content, icon } = classes
+    const { root: rootClass, content, icon: iconClassName } = classes
 
     const rootClassName = cx(
       {
@@ -45,20 +59,27 @@ export const ButtonAction = forwardRef<HTMLButtonElement, Props>(
         [classes.hovered]: hovered,
         [classes.disabled]: disabled
       },
+      {
+        [classes.loading]: loading
+      },
       rootClass
     )
+
+    const usedIcon = loading ? <Loader size='small' variant='inherit' /> : icon
 
     return (
       <Button
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         ref={ref}
-        iconPosition='left'
+        icon={usedIcon}
+        onClick={loading ? undefined : onClick}
+        iconPosition={iconPosition}
         variant='secondary'
         classes={{
           root: rootClassName,
           content,
-          icon
+          icon: iconClassName
         }}
         className={className}
         size='small'
@@ -71,7 +92,9 @@ export const ButtonAction = forwardRef<HTMLButtonElement, Props>(
   }
 )
 
-ButtonAction.defaultProps = {}
+ButtonAction.defaultProps = {
+  iconPosition: 'left'
+}
 
 ButtonAction.displayName = 'ButtonAction'
 
