@@ -1,6 +1,9 @@
 // @ts-ignore
 import buttonGroupStory from '../../ButtonGroup/story'
+// @ts-ignore
 import buttonCircularStory from '../../ButtonCircular/story'
+// @ts-ignore
+import buttonActionStory from '../../ButtonAction/story'
 import { Button } from '../Button'
 // @ts-ignore
 import PicassoBook from '~/.storybook/components/PicassoBook'
@@ -171,6 +174,7 @@ page
     name: 'Button'
   })
   .addComponentDocs(buttonCircularStory.componentDocs)
+  .addComponentDocs(buttonActionStory.componentDocs)
   .addComponentDocs(buttonGroupStory.componentDocs)
 
 page
@@ -197,4 +201,5 @@ page
   })
 
 page.connect(buttonCircularStory.chapter)
+page.connect(buttonActionStory.chapter)
 page.connect(buttonGroupStory.chapter)
