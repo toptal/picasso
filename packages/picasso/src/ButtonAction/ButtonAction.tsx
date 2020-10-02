@@ -3,11 +3,9 @@ import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps, ButtonOrAnchorProps } from '@toptal/picasso-shared'
 
-import Button from '../Button'
-import kebabToCamelCase from '../utils/kebab-to-camel-case'
+import Button, { IconPositionType } from '../Button'
 import styles from './styles'
-
-export type VariantType = 'primary' | 'flat' | 'transparent'
+import Loader from '../Loader'
 
 export interface Props extends BaseProps, ButtonOrAnchorProps {
   /** Show button in the active state (left mouse button down) */
@@ -22,36 +20,37 @@ export interface Props extends BaseProps, ButtonOrAnchorProps {
   hovered?: boolean
   /** Add an `<Icon />` along Button's children */
   icon?: ReactElement
+  /** Icon can be positioned on the left or right */
+  iconPosition?: IconPositionType
   /** Shows a loading indicator and disables click events */
   loading?: boolean
   /** Callback invoked when component is clicked */
   onClick?: (event: MouseEvent<HTMLButtonElement & HTMLAnchorElement>) => void
-  /** The variant to use */
-  variant?: VariantType
   /** HTML Value of Button component */
   value?: string | number
 }
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoButtonCircular'
+  name: 'PicassoButtonAction'
 })
 
-export const ButtonCircular = forwardRef<HTMLButtonElement, Props>(
-  function ButtonCircular(props, ref) {
+export const ButtonAction = forwardRef<HTMLButtonElement, Props>(
+  function ButtonAction(props, ref) {
     const {
       className,
-      variant,
       active,
       focused,
       hovered,
       disabled,
+      loading,
+      icon,
+      iconPosition,
+      onClick,
       ...rest
     } = props
     const classes = useStyles(props)
 
-    const { root: rootClass, focusVisible: focusVisibleClass } = classes
-
-    const variantClassName = classes[kebabToCamelCase(variant!)]
+    const { root: rootClass, content, icon: iconClassName } = classes
 
     const rootClassName = cx(
       {
@@ -60,18 +59,27 @@ export const ButtonCircular = forwardRef<HTMLButtonElement, Props>(
         [classes.hovered]: hovered,
         [classes.disabled]: disabled
       },
-      variantClassName,
+      {
+        [classes.loading]: loading
+      },
       rootClass
     )
+
+    const usedIcon = loading ? <Loader size='small' variant='inherit' /> : icon
 
     return (
       <Button
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         ref={ref}
+        icon={usedIcon}
+        onClick={loading ? undefined : onClick}
+        iconPosition={iconPosition}
+        variant='secondary'
         classes={{
           root: rootClassName,
-          focusVisible: focusVisibleClass
+          content,
+          icon: iconClassName
         }}
         className={className}
         size='small'
@@ -84,10 +92,10 @@ export const ButtonCircular = forwardRef<HTMLButtonElement, Props>(
   }
 )
 
-ButtonCircular.defaultProps = {
-  variant: 'primary'
+ButtonAction.defaultProps = {
+  iconPosition: 'left'
 }
 
-ButtonCircular.displayName = 'ButtonCircular'
+ButtonAction.displayName = 'ButtonAction'
 
-export default ButtonCircular
+export default ButtonAction

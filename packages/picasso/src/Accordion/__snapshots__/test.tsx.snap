@@ -24,15 +24,25 @@ exports[`controlled version should render collapsed version 1`] = `
           <div
             class="makeStyles-expandIconAlignTop"
           >
-            <svg
-              class="SvgArrowDownMinor16-root makeStyles-expandIcon"
-              style="min-width: 16px; min-height: 16px;"
-              viewBox="0 0 16 16"
+            <button
+              class="MuiButtonBase-root PicassoButton-small PicassoButton-secondary PicassoButton-root PicassoButtonAction-root"
+              tabindex="0"
+              type="button"
             >
-              <path
-                d="M11.997 5.29l.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4z"
-              />
-            </svg>
+              <span
+                class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content PicassoButtonAction-content"
+              >
+                <svg
+                  class="SvgArrowDownMinor16-root PicassoButton-icon PicassoButtonAction-icon makeStyles-expandIcon"
+                  style="min-width: 16px; min-height: 16px;"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M11.997 5.29l.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4z"
+                  />
+                </svg>
+              </span>
+            </button>
           </div>
         </div>
       </div>
@@ -89,15 +99,25 @@ exports[`controlled version should render expanded version 1`] = `
           <div
             class="makeStyles-expandIconAlignTop"
           >
-            <svg
-              class="SvgArrowDownMinor16-root makeStyles-expandIcon makeStyles-expandIconExpanded"
-              style="min-width: 16px; min-height: 16px;"
-              viewBox="0 0 16 16"
+            <button
+              class="MuiButtonBase-root PicassoButton-small PicassoButton-secondary PicassoButton-root PicassoButtonAction-root"
+              tabindex="0"
+              type="button"
             >
-              <path
-                d="M11.997 5.29l.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4z"
-              />
-            </svg>
+              <span
+                class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content PicassoButtonAction-content"
+              >
+                <svg
+                  class="SvgArrowDownMinor16-root PicassoButton-icon PicassoButtonAction-icon makeStyles-expandIcon makeStyles-expandIconExpanded"
+                  style="min-width: 16px; min-height: 16px;"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M11.997 5.29l.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4z"
+                  />
+                </svg>
+              </span>
+            </button>
           </div>
         </div>
       </div>
@@ -154,15 +174,25 @@ exports[`default version for sections should render default version 1`] = `
           <div
             class="makeStyles-expandIconAlignTop"
           >
-            <svg
-              class="SvgArrowDownMinor16-root makeStyles-expandIcon"
-              style="min-width: 16px; min-height: 16px;"
-              viewBox="0 0 16 16"
+            <button
+              class="MuiButtonBase-root PicassoButton-small PicassoButton-secondary PicassoButton-root PicassoButtonAction-root"
+              tabindex="0"
+              type="button"
             >
-              <path
-                d="M11.997 5.29l.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4z"
-              />
-            </svg>
+              <span
+                class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content PicassoButtonAction-content"
+              >
+                <svg
+                  class="SvgArrowDownMinor16-root PicassoButton-icon PicassoButtonAction-icon makeStyles-expandIcon"
+                  style="min-width: 16px; min-height: 16px;"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M11.997 5.29l.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4z"
+                  />
+                </svg>
+              </span>
+            </button>
           </div>
         </div>
       </div>
@@ -219,15 +249,25 @@ exports[`default version for sections should render expanded version after click
           <div
             class="makeStyles-expandIconAlignTop"
           >
-            <svg
-              class="SvgArrowDownMinor16-root makeStyles-expandIcon makeStyles-expandIconExpanded"
-              style="min-width: 16px; min-height: 16px;"
-              viewBox="0 0 16 16"
+            <button
+              class="MuiButtonBase-root PicassoButton-small PicassoButton-secondary PicassoButton-root PicassoButtonAction-root"
+              tabindex="0"
+              type="button"
             >
-              <path
-                d="M11.997 5.29l.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4z"
-              />
-            </svg>
+              <span
+                class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content PicassoButtonAction-content"
+              >
+                <svg
+                  class="SvgArrowDownMinor16-root PicassoButton-icon PicassoButtonAction-icon makeStyles-expandIcon makeStyles-expandIconExpanded"
+                  style="min-width: 16px; min-height: 16px;"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M11.997 5.29l.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4z"
+                  />
+                </svg>
+              </span>
+            </button>
           </div>
         </div>
       </div>
