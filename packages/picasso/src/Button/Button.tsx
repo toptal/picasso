@@ -25,6 +25,7 @@ import Loader from '../Loader'
 import Container from '../Container'
 import Group from '../ButtonGroup'
 import Circular from '../ButtonCircular'
+import Action from '../ButtonAction'
 import toTitleCase from '../utils/to-title-case'
 
 export type VariantType =
@@ -74,6 +75,7 @@ export interface Props extends BaseProps, TextLabelProps, ButtonOrAnchorProps {
 export interface StaticProps {
   Group: typeof Group
   Circular: typeof Circular
+  Action: typeof Action
 }
 
 const defaultOnClick = () => {}
@@ -227,5 +229,6 @@ Button.displayName = 'Button'
 
 Button.Group = Group
 Button.Circular = Circular
+Button.Action = Action
 
 export default Button as OverridableComponent<Props> & StaticProps
