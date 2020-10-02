@@ -1,6 +1,8 @@
 // @ts-ignore
 import buttonGroupStory from '../../ButtonGroup/story'
+// @ts-ignore
 import buttonCircularStory from '../../ButtonCircular/story'
+// @ts-ignore
 import buttonActionStory from '../../ButtonAction/story'
 import { Button } from '../Button'
 // @ts-ignore

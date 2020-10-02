@@ -2,7 +2,7 @@ import { ButtonAction } from '../ButtonAction'
 // @ts-ignore
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const chapter = PicassoBook.connectToPage((page: any) =>
+const chapter = PicassoBook.connectToPage(page =>
   page
     .createChapter('Action Button', 'Action Style Button.')
     .addExample('ButtonAction/story/Default.example.jsx', 'Default')
