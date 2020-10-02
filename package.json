@@ -44,7 +44,7 @@
     "@babel/standalone": "^7.10.3",
     "@storybook/addon-viewport": "^5.3.18",
     "@storybook/react": "^5.3.18",
-    "@storybook/theming": "^5.3.19",
+    "@storybook/theming": "^6.0.22",
     "@svgr/cli": "^5.4.0",
     "@testing-library/react": "^9.3.2",
     "@toptal/browserslist-config": "^0.1.0-alpha.2",
