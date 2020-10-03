@@ -9,7 +9,7 @@ PicassoProvider.override(
         color: palette.common.black,
 
         '& $notchedOutline': {
-          borderColor: palette.grey.light,
+          borderColor: palette.grey.light2,
           borderRadius: borderRadius.small,
           top: 0,
           '& legend': {
