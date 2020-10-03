@@ -29,7 +29,7 @@ exports[`FormLabel default render 1`] = `
           />
           <fieldset
             aria-hidden="true"
-            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
             style="padding-left: 8px;"
           >
             <legend
@@ -77,7 +77,7 @@ exports[`FormLabel disabled 1`] = `
           />
           <fieldset
             aria-hidden="true"
-            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
             style="padding-left: 8px;"
           >
             <legend
@@ -130,7 +130,7 @@ exports[`FormLabel required 1`] = `
           />
           <fieldset
             aria-hidden="true"
-            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
             style="padding-left: 8px;"
           >
             <legend
@@ -183,7 +183,7 @@ exports[`FormLabel required and disabled 1`] = `
           />
           <fieldset
             aria-hidden="true"
-            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
             style="padding-left: 8px;"
           >
             <legend
