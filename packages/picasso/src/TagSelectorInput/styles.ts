@@ -21,7 +21,6 @@ export default () =>
         height: rem('24px'),
         paddingLeft: rem('4px'),
         paddingRight: '0',
-        fontSize: '0.8125em',
         marginBottom: TAG_SELECTOR_INPUT_GUTTER_SIZE
       }
     },
