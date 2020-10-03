@@ -9,7 +9,12 @@ const Example = () => {
   }
 
   return (
-    <Input value={value} placeholder='Placeholder' onChange={handleChange} />
+    <Input
+      value={value}
+      placeholder='Placeholder'
+      onChange={handleChange}
+      data-testId='input'
+    />
   )
 }
 

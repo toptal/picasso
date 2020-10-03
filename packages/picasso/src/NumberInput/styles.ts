@@ -15,7 +15,7 @@ export default ({ palette, transitions }: Theme) =>
     },
 
     control: {
-      height: '1.125rem',
+      height: '1rem',
       width: '1.625rem',
       borderLeft: `1px solid ${palette.grey.light2}`,
       borderRight: '1px solid transparent',
