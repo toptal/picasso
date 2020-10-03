@@ -153,9 +153,10 @@ const OutlinedInput = forwardRef<HTMLInputElement, Props>(
             [classes.inputDark]: isDark
           }),
           inputMultiline: classes.inputMultiline,
-          notchedOutline: cx({
+          notchedOutline: cx(classes.notchedOutline, {
             [classes.notchedOutlineDark]: isDark
-          })
+          }),
+          focused: classes.focused
         }}
         className={className}
         style={style}

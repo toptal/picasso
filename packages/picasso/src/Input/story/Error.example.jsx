@@ -11,7 +11,12 @@ const Example = () => {
   return (
     <Container flex inline>
       <Container right='small'>
-        <Input error value={value} onChange={handleChange} />
+        <Input
+          error
+          value={value}
+          onChange={handleChange}
+          data-testid='input'
+        />
       </Container>
       <Input error placeholder='Placeholder' />
     </Container>

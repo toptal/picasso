@@ -13,7 +13,7 @@ exports[`multiple select should checkmark user selected options 1`] = `
       >
         <div
           aria-autocomplete="list"
-          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootFull OutlinedInput-rootMedium makeStyles-input makeStyles-readOnlyInput MuiInputBase-fullWidth Mui-focused Mui-focused"
+          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootFull OutlinedInput-rootMedium makeStyles-input makeStyles-readOnlyInput MuiInputBase-fullWidth Mui-focused Mui-focused OutlinedInput-focused"
           role="textbox"
         >
           <input
@@ -28,7 +28,7 @@ exports[`multiple select should checkmark user selected options 1`] = `
           />
           <fieldset
             aria-hidden="true"
-            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
             style="padding-left: 8px;"
           >
             <legend
@@ -225,7 +225,7 @@ exports[`renders native select 1`] = `
         </svg>
         <fieldset
           aria-hidden="true"
-          class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+          class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
           style="padding-left: 8px;"
         >
           <legend
@@ -297,7 +297,7 @@ exports[`renders native select with the empty option enabled when enableReset is
         </svg>
         <fieldset
           aria-hidden="true"
-          class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+          class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
           style="padding-left: 8px;"
         >
           <legend
@@ -342,7 +342,7 @@ exports[`renders select 1`] = `
           />
           <fieldset
             aria-hidden="true"
-            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
             style="padding-left: 8px;"
           >
             <legend
