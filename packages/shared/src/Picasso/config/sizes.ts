@@ -18,9 +18,9 @@ const sizes = {
     medium: '8px'
   },
   input: {
-    height: '2.25rem',
+    height: '2rem',
     width: '18.75rem',
-    padding: '0.625rem'
+    padding: '0.5rem'
   }
 }
 

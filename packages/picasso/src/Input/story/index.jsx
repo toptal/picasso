@@ -7,6 +7,14 @@ const page = PicassoBook.section('Forms').createPage(
     Input fields should be clearly labeled by the topic to ensure users know exactly what is being asked of them.`
 )
 
+const screenshotHoveredAndFocused = async (testPage, makeScreenshot) => {
+  await testPage.hover('[data-testid="input"]')
+  await makeScreenshot()
+
+  await testPage.click('[data-testid="input"]')
+  await makeScreenshot()
+}
+
 page
   .createChapter()
   .addComponentDocs({
@@ -19,9 +27,15 @@ page
       }
     }
   })
-  .addExample('Input/story/Default.example.jsx', 'Default')
+  .addExample('Input/story/Default.example.jsx', {
+    title: 'Default',
+    effect: screenshotHoveredAndFocused
+  })
   .addExample('Input/story/Disabled.example.jsx', 'Disabled')
-  .addExample('Input/story/Error.example.jsx', 'Error')
+  .addExample('Input/story/Error.example.jsx', {
+    title: 'Error',
+    effect: screenshotHoveredAndFocused
+  })
   .addExample('Input/story/WithIcon.example.jsx', 'With icon')
   .addExample('Input/story/Sizes.example.jsx', 'Sizes')
   .addExample('Input/story/FullWidth.example.jsx', 'Full width')

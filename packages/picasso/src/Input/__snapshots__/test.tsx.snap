@@ -31,7 +31,7 @@ exports[`renders icon at the beginning 1`] = `
       />
       <fieldset
         aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
         style="padding-left: 8px;"
       >
         <legend
@@ -79,7 +79,7 @@ exports[`renders icon at the end 1`] = `
       />
       <fieldset
         aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
         style="padding-left: 8px;"
       >
         <legend
@@ -113,7 +113,7 @@ exports[`should show manual resize handler 1`] = `
       </textarea>
       <fieldset
         aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
         style="padding-left: 8px;"
       >
         <legend
@@ -170,7 +170,7 @@ exports[`should show reset button 1`] = `
       </div>
       <fieldset
         aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
         style="padding-left: 8px;"
       >
         <legend
@@ -212,7 +212,7 @@ exports[`shows counter for multiline input 1`] = `
       </div>
       <fieldset
         aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
         style="padding-left: 8px;"
       >
         <legend
@@ -254,7 +254,7 @@ exports[`shows counter for regular input 1`] = `
       </div>
       <fieldset
         aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
+        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
         style="padding-left: 8px;"
       >
         <legend
