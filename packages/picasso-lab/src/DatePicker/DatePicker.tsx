@@ -146,6 +146,7 @@ export const DatePicker = (props: Props) => {
       if (!value) {
         return EMPTY_INPUT_VALUE
       }
+
       return formatInputValue(timezoneConvert(value, timezone))
     })
   }, [value, timezone, formatInputValue])
@@ -156,6 +157,7 @@ export const DatePicker = (props: Props) => {
       if (!value) {
         return null
       }
+
       return timezoneConvert(value, timezone)
     })
   }, [value, timezone])
@@ -237,6 +239,7 @@ export const DatePicker = (props: Props) => {
     if (key === 'Escape') {
       hideCalendar()
       event.currentTarget.blur()
+
       return
     }
 
@@ -312,6 +315,7 @@ export const DatePicker = (props: Props) => {
           ref={popperRef}
         >
           <Calendar
+            data-testid='calendar'
             ref={calendarRef}
             range={range}
             value={calendarValue ?? undefined}

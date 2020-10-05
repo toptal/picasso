@@ -97,7 +97,7 @@ type GetInputProps = ({
   HTMLAttributes<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
 >
 
-export type GetRootProps = () => {
+type GetRootProps = () => {
   onFocus: FocusEventType
   onClick: (event: React.MouseEvent<HTMLInputElement>) => void
   onBlur: FocusEventType
@@ -178,7 +178,6 @@ const useSelect = ({
   }
 
   const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-    if (event.relatedTarget) return
     setOpen(false)
     onBlur(event)
   }

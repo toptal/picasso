@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders OverlayBadge 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <span
+      class="MuiBadge-root"
+    >
+      abc
+      <span
+        class="MuiBadge-badge MuiBadge-anchorOriginTopRightRectangle PicassoOverlayBadge-root PicassoOverlayBadge-white PicassoOverlayBadge-medium"
+      >
+        OverlayBadge content
+      </span>
+    </span>
+  </div>
+</div>
+`;
