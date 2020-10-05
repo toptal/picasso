@@ -44,6 +44,7 @@ test('convert chart data', () => {
     X_AXIS_KEY,
     label => label
   )
+
   expect(convertedChartData).toEqual(EXPECTED_CHART_DATA)
 })
 
@@ -62,6 +63,58 @@ test('convert chart data with custom label format', () => {
     X_AXIS_KEY,
     label => format(parseISO(label), 'MMM dd')
   )
+
+  expect(convertedChartData).toEqual(EXPECTED_CHART_DATA)
+})
+
+test('convert chart data with null values', () => {
+  const CHART_DATA_WITH_NULLS = [
+    {
+      id: 'projects',
+      values: {
+        '2020-10-20': 1.7,
+        '2020-10-21': null,
+        '2020-10-22': null,
+        '2020-10-23': 2,
+        '2020-10-24': 1.5,
+        '2020-10-25': 1.3
+      }
+    },
+    {
+      id: 'team',
+      values: {
+        '2020-10-20': 1.7,
+        '2020-10-21': 2,
+        '2020-10-22': null,
+        '2020-10-23': 2,
+        '2020-10-24': null,
+        '2020-10-25': 1.3
+      }
+    }
+  ]
+
+  const EXPECTED_CHART_DATA = [
+    { x: '2020-10-20', projects: 1.7, team: 1.7 },
+    { x: '2020-10-21', projects: 0, team: 2, projectsIsEmpty: true },
+    {
+      x: '2020-10-22',
+      projects: 0,
+      team: 0,
+      projectsIsEmpty: true,
+      teamIsEmpty: true
+    },
+    { x: '2020-10-23', projects: 2, team: 2 },
+    { x: '2020-10-24', projects: 1.5, team: 0, teamIsEmpty: true },
+    { x: '2020-10-25', projects: 1.3, team: 1.3 }
+  ]
+
+  const convertedChartData = toChartFormat(
+    CHART_DATA_WITH_NULLS,
+    undefined,
+    X_AXIS_KEY,
+    label => label
+  )
+
   expect(convertedChartData).toEqual(EXPECTED_CHART_DATA)
 })
 
@@ -140,5 +193,6 @@ test('convert chart data with ref data', () => {
     X_AXIS_KEY,
     label => label
   )
+
   expect(convertedChartData).toEqual(EXPECTED_CHART_DATA)
 })

@@ -2,6 +2,7 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 
 const maxHeight = 'calc(100% - 6rem)'
 const maxWidth = 'calc(100% - 6rem)'
+const maxHeightForTopAligned = 'calc(100% - 4rem)'
 
 export default ({ screens, sizes }: Theme) =>
   createStyles({
@@ -32,6 +33,11 @@ export default ({ screens, sizes }: Theme) =>
     'full-screen': {
       height: maxHeight,
       width: maxWidth
+    },
+    topAlignedDialog: {
+      position: 'absolute',
+      top: '0px',
+      maxHeight: maxHeightForTopAligned
     },
     closeButton: {
       position: 'absolute',
