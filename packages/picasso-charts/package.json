@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-charts",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Charts components of Picasso",
   "author": "Toptal",
   "license": "ISC",
@@ -24,7 +24,7 @@
     "@toptal/picasso": "^4.49.2"
   },
   "dependencies": {
-    "@types/recharts": "^1.8.7",
+    "@types/recharts": "^1.8.15",
     "recharts": "^2.0.0-beta.2"
   }
 }

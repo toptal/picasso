@@ -20,7 +20,7 @@ export const TypographyOverflow = ({ children, noWrap, ...rest }: Props) => {
   return (
     <Ellipsis
       renderWhenEllipsis={child => (
-        <Tooltip content={children} placement='top'>
+        <Tooltip content={children} placement='top' interactive>
           {child}
         </Tooltip>
       )}

@@ -6,7 +6,8 @@ import React, {
   useRef,
   useState,
   useCallback,
-  useMemo
+  useMemo,
+  useEffect
 } from 'react'
 import cx from 'classnames'
 import NativeSelect from '@material-ui/core/NativeSelect'
@@ -301,6 +302,16 @@ const purifyProps = (props: Props<any, any>): Props<ValueType, boolean> => {
   return disableUnsupportedProps('Select', props, sizeOptions)
 }
 
+const getSelectedOptions = (
+  options: Option[],
+  value?: ValueType | ValueType[]
+) =>
+  options.filter(option =>
+    Array.isArray(value)
+      ? value.includes(String(option.value))
+      : value === String(option.value)
+  )
+
 const renderOptions = ({
   options,
   renderOption,
@@ -414,11 +425,7 @@ export const Select = documentable(
 
       const inputWrapperRef = useRef<HTMLDivElement>(null)
       const [selectedOptions, setSelectedOptions] = useState(
-        allOptions.filter(option =>
-          Array.isArray(value)
-            ? isOptionInSelectedValues(option, value)
-            : value === String(option.value)
-        )
+        getSelectedOptions(allOptions, value)
       )
       const select = useMemo(
         () =>
@@ -428,6 +435,7 @@ export const Select = documentable(
           ),
         [allOptions, selectedOptions, value]
       )
+
       const [inputValue, setInputValue] = useState(
         select.display(getDisplayValue!)
       )
@@ -452,17 +460,17 @@ export const Select = documentable(
         [options, select]
       )
 
-      const prevValue = useRef(value)
-
-      if (prevValue.current !== value) {
-        const select = getSelection(
+      useEffect(() => {
+        const newSelect = getSelection(
           removeDuplicatedOptions([...allOptions, ...selectedOptions]),
           value
         )
 
-        setInputValue(select.display(getDisplayValue!))
-        prevValue.current = value
-      }
+        setInputValue(newSelect.display(getDisplayValue!))
+        setSelectedOptions(getSelectedOptions(allOptions, value))
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, [value, allOptions, getDisplayValue])
 
       const readOnlyInput = multiple || allOptions.length <= searchThreshold!
 
@@ -655,7 +663,7 @@ export const Select = documentable(
         <>
           <div
             /* eslint-disable-next-line react/jsx-props-no-spreading */
-            {...rootProps}
+            {...getRootProps()}
             className={classes.inputWrapper}
           >
             {!enableAutofill && !native && name && (

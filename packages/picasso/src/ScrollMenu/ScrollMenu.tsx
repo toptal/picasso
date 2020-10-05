@@ -1,6 +1,5 @@
 import React, {
-  useState,
-  useEffect,
+  useLayoutEffect,
   useRef,
   createRef,
   FunctionComponent
@@ -13,7 +12,6 @@ import Menu from '../Menu'
 import styles from './styles'
 
 type FocusEventType = (event: React.FocusEvent<HTMLInputElement>) => void
-
 export interface Props extends StandardProps {
   selectedIndex?: number | null
   onBlur?: FocusEventType
@@ -38,6 +36,10 @@ const getMoveDirection = (
     : Direction.UP
 }
 
+const preventDefault = (
+  event: React.MouseEvent<HTMLUListElement, MouseEvent>
+) => event.preventDefault()
+
 const ScrollMenu: FunctionComponent<Props> = ({
   selectedIndex,
   onBlur,
@@ -48,7 +50,7 @@ const ScrollMenu: FunctionComponent<Props> = ({
 }) => {
   const menuRef = useRef<HTMLDivElement | null>(null)
   const firstItemRef = createRef<HTMLElement>()
-  const [prevSelectedIndex, setPrevSelectedIndex] = useState(selectedIndex)
+  const prevSelectedIndex = useRef(selectedIndex)
 
   const renderChildren = React.Children.map(children, (child, index) => {
     if (index === 0 && child) {
@@ -58,7 +60,7 @@ const ScrollMenu: FunctionComponent<Props> = ({
     return child
   })
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!menuRef.current || !firstItemRef.current) {
       return
     }
@@ -81,7 +83,7 @@ const ScrollMenu: FunctionComponent<Props> = ({
     if (!isHighlightedItemInScrollView) {
       const moveDirection = getMoveDirection(
         selectedIndex,
-        prevSelectedIndex,
+        prevSelectedIndex.current,
         bottomVisibleItem
       )
       let scrollTop = 0
@@ -95,13 +97,14 @@ const ScrollMenu: FunctionComponent<Props> = ({
       menuRef.current.scrollTop = scrollTop
     }
 
-    setPrevSelectedIndex(selectedIndex)
+    prevSelectedIndex.current = selectedIndex
   }, [firstItemRef, selectedIndex, prevSelectedIndex])
 
   return (
     <Menu
       className={classes.menu}
       style={style}
+      onMouseDown={preventDefault}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
     >
