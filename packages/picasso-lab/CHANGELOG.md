@@ -3,6 +3,58 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.32.3](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.32.2...@toptal/picasso-lab@2.32.3) (2020-09-23)
+
+
+### Bug Fixes
+
+* add interactive to TypographyOverflow ([#1578](https://github.com/toptal/picasso/issues/1578)) ([0e6564f](https://github.com/toptal/picasso/commit/0e6564fdb5330cd7be937aa9163f5c8dca4e9206))
+
+
+
+
+
+## [2.32.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.32.1...@toptal/picasso-lab@2.32.2) (2020-09-18)
+
+
+### Bug Fixes
+
+* **tooltip:** trigger immediately on touch ([#1565](https://github.com/toptal/picasso/issues/1565)) ([5a8947b](https://github.com/toptal/picasso/commit/5a8947ba13f0217ee9339e3207f8d5aaac021446))
+
+
+
+
+
+## [2.32.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.32.0...@toptal/picasso-lab@2.32.1) (2020-09-14)
+
+
+### Bug Fixes
+
+* **Modal:** detect focus inside tooltip correctly if there are many ([59ebdff](https://github.com/toptal/picasso/commit/59ebdff726d7d98d5cf944ae8f27f018e928883e))
+
+
+
+
+
+# [2.32.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.31.2...@toptal/picasso-lab@2.32.0) (2020-09-10)
+
+
+### Features
+
+* **Badge:** add Badge and OverlayBadge components ([#1550](https://github.com/toptal/picasso/issues/1550)) ([834a23f](https://github.com/toptal/picasso/commit/834a23f49fd62915a97ea6c886cf40577442011b))
+
+
+
+
+
+## [2.31.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.31.1...@toptal/picasso-lab@2.31.2) (2020-09-09)
+
+**Note:** Version bump only for package @toptal/picasso-lab
+
+
+
+
+
 ## [2.31.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.31.0...@toptal/picasso-lab@2.31.1) (2020-09-03)
 
 **Note:** Version bump only for package @toptal/picasso-lab

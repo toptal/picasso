@@ -2,8 +2,14 @@ import React from 'react'
 import { Modal, Button } from '@toptal/picasso'
 import { useModal } from '@toptal/picasso/utils'
 
-const ModalDialog = ({ open, onClose }) => {
-  const container = document.getElementById('modal-container')
+const ModalDialog = ({
+  open,
+  onClose
+}: {
+  open: boolean
+  onClose: () => void
+}) => {
+  const container = document.getElementById('modal-container')!
 
   return (
     <Modal

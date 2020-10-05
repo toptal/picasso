@@ -6,6 +6,7 @@ import { StandardProps } from '@toptal/picasso-shared'
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import styles from './styles'
 const BASE_SIZE = 32
+
 type ScaleType = 1 | 2 | 3 | 4
 export interface Props extends StandardProps {
   scale?: ScaleType
@@ -37,6 +38,7 @@ const SvgCreditCard32 = forwardRef(function SvgCreditCard32(
     minHeight: `${scaledSize}px`,
     ...style
   }
+
   return (
     <svg
       viewBox='0 0 32 32'
@@ -48,5 +50,6 @@ const SvgCreditCard32 = forwardRef(function SvgCreditCard32(
     </svg>
   )
 })
+
 SvgCreditCard32.displayName = 'SvgCreditCard32'
 export default withStyles(styles)(SvgCreditCard32)
