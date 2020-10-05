@@ -10,7 +10,7 @@ page
   .createTabChapter('Props')
   .addComponentDocs({
     component: Tooltip,
-    name: 'Timesheets',
+    name: 'Tooltip',
     additionalDocs: {
       placement: {
         type: 'enum',
@@ -28,7 +28,7 @@ page
   })
   .addTextSection(
     `
-  Note: On mobile, the tooltip is displayed when the user long-presses the element and hides after a delay of 1500ms.
+  Note: On mobile, the tooltip is immediately displayed when the user presses the element.
   `
   )
 
@@ -47,3 +47,4 @@ page
   ) // picasso-skip-visuals
   .addExample('Tooltip/story/Delay.example.tsx', 'Delay') // picasso-skip-visuals
   .addExample('Tooltip/story/Compact.example.tsx', 'Compact')
+  .addExample('Tooltip/story/MaxWidth.example.tsx', 'Max Width')

@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Badge 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="MuiChip-root PicassoBadge-root PicassoBadge-white PicassoBadge-medium"
+    >
+      <span
+        class="MuiChip-label"
+      >
+        Badge content
+      </span>
+    </div>
+  </div>
+</div>
+`;
