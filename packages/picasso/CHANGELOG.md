@@ -3,6 +3,173 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.104.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.103.1...@toptal/picasso@4.104.0) (2020-10-02)
+
+
+### Features
+
+* **icons:** add RepresentativesSolid icons ([#1596](https://github.com/toptal/picasso/issues/1596)) ([cabc4e6](https://github.com/toptal/picasso/commit/cabc4e61303872674dc89536b24951698bc468c9))
+
+
+
+
+
+## [4.103.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.103.0...@toptal/picasso@4.103.1) (2020-10-01)
+
+
+### Bug Fixes
+
+* fix value is not set when options dynamic ([#1591](https://github.com/toptal/picasso/issues/1591)) ([53a6241](https://github.com/toptal/picasso/commit/53a624192b7df90f5236d83d86cbcfd703055c2d))
+
+
+
+
+
+# [4.103.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.102.0...@toptal/picasso@4.103.0) (2020-09-30)
+
+
+### Features
+
+* **icon:** add abstract icon ([#1594](https://github.com/toptal/picasso/issues/1594)) ([a7cf59a](https://github.com/toptal/picasso/commit/a7cf59a64bdba6195c940e06fbd2943c7b677ba7))
+
+
+
+
+
+# [4.102.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.101.2...@toptal/picasso@4.102.0) (2020-09-30)
+
+
+### Features
+
+* **icon:** add confluence icon ([#1592](https://github.com/toptal/picasso/issues/1592)) ([efeb5f0](https://github.com/toptal/picasso/commit/efeb5f0ca919b0486f8cd06c4f98e72abcfb1a43))
+
+
+
+
+
+## [4.101.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.101.1...@toptal/picasso@4.101.2) (2020-09-28)
+
+
+### Bug Fixes
+
+* default tooltip delay ([#1579](https://github.com/toptal/picasso/issues/1579)) ([df58e02](https://github.com/toptal/picasso/commit/df58e02abbcc4932ba584b0b8fce135a34152e34))
+
+
+
+
+
+## [4.101.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.101.0...@toptal/picasso@4.101.1) (2020-09-25)
+
+
+### Bug Fixes
+
+* **ScrollMenu:** calculation in useLayoutEffect ([#1580](https://github.com/toptal/picasso/issues/1580)) ([2186a20](https://github.com/toptal/picasso/commit/2186a206395fad5f8d40d42e601dcc36ca144248))
+
+
+
+
+
+# [4.101.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.100.1...@toptal/picasso@4.101.0) (2020-09-24)
+
+
+### Features
+
+* **Tooltip:** add maxWidth prop ([#1553](https://github.com/toptal/picasso/issues/1553)) ([bc9ad59](https://github.com/toptal/picasso/commit/bc9ad599cd4930dd88bf227205e25c648c1bce69))
+
+
+
+
+
+## [4.100.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.100.0...@toptal/picasso@4.100.1) (2020-09-24)
+
+
+### Bug Fixes
+
+* **Select:** fix select behavior on-blur ([#1583](https://github.com/toptal/picasso/issues/1583)) ([e381ff2](https://github.com/toptal/picasso/commit/e381ff2cbc478babf81eae1820db7d983685a91d))
+
+
+
+
+
+# [4.100.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.99.2...@toptal/picasso@4.100.0) (2020-09-24)
+
+
+### Features
+
+* **icons:** add rank icons ([#1582](https://github.com/toptal/picasso/issues/1582)) ([2208b74](https://github.com/toptal/picasso/commit/2208b747d988114608bd9a0ebe2c08cdd0282d3d))
+
+
+
+
+
+## [4.99.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.99.1...@toptal/picasso@4.99.2) (2020-09-23)
+
+
+### Bug Fixes
+
+* **AccountSelect:** fix grid in the story for mobile ([#1574](https://github.com/toptal/picasso/issues/1574)) ([e9c4458](https://github.com/toptal/picasso/commit/e9c44585987fd2778993819306c265655f3a4146))
+
+
+
+
+
+## [4.99.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.99.0...@toptal/picasso@4.99.1) (2020-09-18)
+
+
+### Bug Fixes
+
+* **tooltip:** trigger immediately on touch ([#1565](https://github.com/toptal/picasso/issues/1565)) ([5a8947b](https://github.com/toptal/picasso/commit/5a8947ba13f0217ee9339e3207f8d5aaac021446))
+
+
+
+
+
+# [4.99.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.98.1...@toptal/picasso@4.99.0) (2020-09-17)
+
+
+### Bug Fixes
+
+* **tooltip:** fix compact size variant for tooltip component ([#1566](https://github.com/toptal/picasso/issues/1566)) ([93fae41](https://github.com/toptal/picasso/commit/93fae4172fe1695f88d658787ea6f4928255e7e0))
+
+
+### Features
+
+* **Modal:** add alignment prop ([#1568](https://github.com/toptal/picasso/issues/1568)) ([5e37748](https://github.com/toptal/picasso/commit/5e37748d9da5a528ba641348bb4f073e249d0070))
+
+
+
+
+
+## [4.98.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.98.0...@toptal/picasso@4.98.1) (2020-09-14)
+
+
+### Bug Fixes
+
+* **Modal:** detect focus inside tooltip correctly if there are many ([59ebdff](https://github.com/toptal/picasso/commit/59ebdff726d7d98d5cf944ae8f27f018e928883e))
+
+
+
+
+
+# [4.98.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.97.2...@toptal/picasso@4.98.0) (2020-09-10)
+
+
+### Features
+
+* **icon:** add services icon ([#1562](https://github.com/toptal/picasso/issues/1562)) ([91a39c8](https://github.com/toptal/picasso/commit/91a39c83ff8a8970abffa0fef9c2da24e347bea5))
+
+
+
+
+
+## [4.97.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.97.1...@toptal/picasso@4.97.2) (2020-09-09)
+
+**Note:** Version bump only for package @toptal/picasso
+
+
+
+
+
 ## [4.97.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.97.0...@toptal/picasso@4.97.1) (2020-09-04)
 
 

@@ -6,7 +6,8 @@ import React, {
   useRef,
   useState,
   useCallback,
-  useMemo
+  useMemo,
+  useEffect
 } from 'react'
 import cx from 'classnames'
 import NativeSelect from '@material-ui/core/NativeSelect'
@@ -24,11 +25,7 @@ import { DropdownArrows16 } from '../Icon'
 import { isSubstring, disableUnsupportedProps } from '../utils'
 import { FeatureOptions } from '../utils/disable-unsupported-props'
 import { Option } from './types'
-import useSelect, {
-  EMPTY_INPUT_VALUE,
-  ItemProps,
-  FocusEventType
-} from './useSelect'
+import useSelect, { EMPTY_INPUT_VALUE, ItemProps } from './useSelect'
 import styles from './styles'
 import { documentable, forwardRef } from '../utils/forward-ref'
 
@@ -144,7 +141,6 @@ type OptionsProps = Pick<
   highlightedIndex: number | null
   inputValue: string
   getItemProps: (index: number, option: Option) => ItemProps
-  onBlur?: FocusEventType
   onItemSelect: (event: React.MouseEvent, option: Option) => void
 }
 
@@ -301,13 +297,22 @@ const purifyProps = (props: Props<any, any>): Props<ValueType, boolean> => {
   return disableUnsupportedProps('Select', props, sizeOptions)
 }
 
+const getSelectedOptions = (
+  options: Option[],
+  value?: ValueType | ValueType[]
+) =>
+  options.filter(option =>
+    Array.isArray(value)
+      ? value.includes(String(option.value))
+      : value === String(option.value)
+  )
+
 const renderOptions = ({
   options,
   renderOption,
   highlightedIndex,
   onItemSelect,
   getItemProps,
-  onBlur,
   value,
   multiple,
   size,
@@ -460,9 +465,11 @@ export const Select = documentable(
           value
         )
 
-        setInputValue(select.display(getDisplayValue!))
-        prevValue.current = value
-      }
+        setInputValue(newSelect.display(getDisplayValue!))
+        setSelectedOptions(getSelectedOptions(allOptions, value))
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, [value, allOptions, getDisplayValue])
 
       const readOnlyInput = multiple || allOptions.length <= searchThreshold!
 
@@ -649,13 +656,11 @@ export const Select = documentable(
         </NativeSelect>
       )
 
-      const rootProps = getRootProps()
-
       const selectComponent = (
         <>
           <div
             /* eslint-disable-next-line react/jsx-props-no-spreading */
-            {...rootProps}
+            {...getRootProps()}
             className={classes.inputWrapper}
           >
             {!enableAutofill && !native && name && (
