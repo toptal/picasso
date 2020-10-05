@@ -15,7 +15,7 @@ page.createTabChapter('Props').addComponentDocs({
       name: 'data',
       type: {
         name: '[]',
-        description: '{ id: string, values: [key: string]: number }'
+        description: '{ id: string, values: { [key: string]: number | null } }'
       },
       description: 'A record of data points to be rendered as a line chart',
       required: true
@@ -52,6 +52,11 @@ page
   .createChapter()
   .addExample('AnalyticsChart/story/Default.example.tsx', 'Default')
   .addExample('AnalyticsChart/story/Multiple.example.tsx', 'Multiple')
+  .addExample('AnalyticsChart/story/NullValues.example.tsx', {
+    title: 'Null values',
+    description:
+      'You can provide `null` values as part of chart dataset. Those values will be indicated by "empty" dots on the chart. Additionally this information will be passed to custom tooltip component in case you will need it there.'
+  })
   .addExample('AnalyticsChart/story/Highlights.example.tsx', 'Highlights')
   .addExample(
     'AnalyticsChart/story/ReferenceLines.example.tsx',

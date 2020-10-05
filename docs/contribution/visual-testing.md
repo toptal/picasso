@@ -8,7 +8,7 @@ Storing/Updating snapshots has the same logic as `jest` snapshots. Therefore in 
 
 ## Fixing broken visual tests inside a PR
 
-In order to have a good tracking on visual changes which were applied in each PR, we run visual snapshot comparision inside each pull request. `Jenkins` is automatically trying to take snapshot of each component and compare the result to a previous state. Logic behind this is similar as running `jest` snapshots, therefore when your PR has failing visual tests you need to update them.
+In order to have a good tracking on visual changes which were applied in each PR, we run visual snapshot comparison inside each pull request. `Jenkins` is automatically trying to take snapshot of each component and compare the result to a previous state. Logic behind this is similar as running `jest` snapshots, therefore when your PR has failing visual tests you need to update them.
 
 1. Check the report on jenkins which are linked to the PR status.
 2. Manually check the differences by eye and ensure that the current state of the screenshot is the expected state.

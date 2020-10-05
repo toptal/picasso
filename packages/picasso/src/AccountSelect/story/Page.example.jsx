@@ -33,7 +33,7 @@ const Example = () => (
   <Page>
     <Page.Content>
       <Grid justifyContent='center'>
-        <Grid.Item small={5}>
+        <Grid.Item>
           <Container flex direction='column' alignItems='center'>
             <Logo emblem />
             <Typography variant='heading' size='large'>

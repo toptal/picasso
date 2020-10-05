@@ -6,7 +6,8 @@ import {
   Select,
   Checkbox,
   Form,
-  Container
+  Container,
+  ModalProps
 } from '@toptal/picasso'
 import { useModal } from '@toptal/picasso/utils'
 
@@ -21,12 +22,20 @@ const STATES = [
   }
 ]
 
-const ModalDialog = ({ open, onClose, size }) => (
+const ModalDialog = ({
+  open,
+  onClose,
+  size
+}: {
+  open: boolean
+  onClose: () => void
+  size: ModalProps['size']
+}) => (
   <Modal
     open={open}
     size={size}
     onClose={onClose}
-    container={() => document.getElementById('modal-container-sizes')} // Only for demo purposes
+    container={() => document.getElementById('modal-container-sizes')!} // Only for demo purposes
     transitionDuration={0} // Only for demo purposes, should not be used
   >
     <Modal.Title>Edit address details</Modal.Title>

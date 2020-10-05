@@ -38,6 +38,7 @@ const getBaseSize = (componentName = '') => {
       return Number(size)
     }
   }
+
   return 16
 }
 
