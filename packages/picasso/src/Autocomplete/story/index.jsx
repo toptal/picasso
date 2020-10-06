@@ -29,7 +29,7 @@ page
   .addTextSection(
     `
 Autocomplete supports all the default HTML native props, as Input supports.
-    
+
 ### A note about browser autofilling
 
 Standard browser autofilling feature is disabled in this component by default, because it's used pretty rarely.
@@ -54,6 +54,10 @@ if needed.
       you can set \`showOtherOption={true}\` prop to allow also this new item to appear in the suggestions list. Also,
       you can decorate this option with the prefix text by using \`otherOptionText\` and handle selection with
       \`onOtherOptionSelect\` event handler.`
+  }) // picasso-skip-visuals
+  .addExample('Autocomplete/story/OtherOptionTextFunction.example.jsx', {
+    title: 'Other option text',
+    description: `We can also have the \`otherOptionText\` as a function with the current \`value\` as a param so we can customize everything about it`
   }) // picasso-skip-visuals
   .addExample(
     'Autocomplete/story/InitialSetValue.example.jsx',
