@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.105.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.104.0...@toptal/picasso@4.105.0) (2020-10-06)
+
+
+### Features
+
+* **icon:** add phoneDown16 icon ([#1602](https://github.com/toptal/picasso/issues/1602)) ([bd6d7a6](https://github.com/toptal/picasso/commit/bd6d7a68f4bdb5c78e3337852a2b04da2d896c41))
+
+
+
+
+
 # [4.104.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.103.1...@toptal/picasso@4.104.0) (2020-10-02)
 
 
