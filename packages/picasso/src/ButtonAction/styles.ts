@@ -4,6 +4,7 @@ export default ({ palette }: Theme) =>
   createStyles({
     root: {
       border: 'none',
+      minWidth: 'unset',
       paddingLeft: '0',
       paddingRight: '0',
       '&:active, &$active, &:hover, &$hovered': {
