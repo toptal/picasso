@@ -64,7 +64,7 @@
     "cache-loader": "^4.1.0",
     "chalk": "^4.1.0",
     "commitizen": "^4.0.4",
-    "copy-to-clipboard": "^3.2.1",
+    "copy-to-clipboard": "^3.3.1",
     "core-js": "2",
     "cross-env": "^6.0.3",
     "cz-conventional-changelog": "3.2.0",
