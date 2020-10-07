@@ -29,7 +29,7 @@ page
   .addTextSection(
     `
 Autocomplete supports all the default HTML native props, as Input supports.
-    
+
 ### A note about browser autofilling
 
 Standard browser autofilling feature is disabled in this component by default, because it's used pretty rarely.
@@ -52,7 +52,7 @@ if needed.
     title: 'Other option',
     description: `By default Autocomplete allows any entered input value to stay after focus is removed from input,
       you can set \`showOtherOption={true}\` prop to allow also this new item to appear in the suggestions list. Also,
-      you can decorate this option with the prefix text by using \`otherOptionText\` and handle selection with
+      you can decorate this option with the prefix text by using \`otherOptionText\` or fully customize it with \`renderOtherOption\` and handle selection with
       \`onOtherOptionSelect\` event handler.`
   }) // picasso-skip-visuals
   .addExample(
