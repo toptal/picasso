@@ -2,6 +2,12 @@ import React from 'react'
 import { Item } from '@toptal/picasso/Autocomplete'
 import { Typography, Container, Autocomplete } from '@toptal/picasso'
 
+const renderOtherOption = (value: string) => (
+  <Typography size='medium' color='inherit' weight='semibold'>
+    Search for: {value}
+  </Typography>
+)
+
 interface Country extends Item {
   country: string
   capital: string
@@ -40,6 +46,7 @@ const CustomOptionRenderer = () => (
           </Typography>
         </Container>
       )}
+      renderOtherOption={renderOtherOption}
     />
   </div>
 )
