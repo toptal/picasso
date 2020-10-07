@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.105.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.105.1...@toptal/picasso@4.105.2) (2020-10-07)
+
+
+### Bug Fixes
+
+* autocomplete custom render example ([#1605](https://github.com/toptal/picasso/issues/1605)) ([46581fc](https://github.com/toptal/picasso/commit/46581fc40eabed06eea36609e6ceccc3a6b09fc6))
+
+
+
+
+
+## [4.105.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.105.0...@toptal/picasso@4.105.1) (2020-10-07)
+
+**Note:** Version bump only for package @toptal/picasso
+
+
+
+
+
 # [4.105.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.104.0...@toptal/picasso@4.105.0) (2020-10-06)
 
 
