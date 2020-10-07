@@ -46,8 +46,10 @@ export interface Props
   ) => void
   /** Placeholder for value */
   placeholder?: string
-  /** Text prefix for other option or a function returning other option */
-  otherOptionText?: string | ((value: string) => ReactNode)
+  /** Text prefix for other option */
+  otherOptionText?: string
+  /** A function returning other option */
+  renderOtherOption?: (value: string) => ReactNode
   /** Width of the component */
   width?: 'full' | 'shrink' | 'auto'
   /** Shows the loading icon when options are loading */
@@ -105,6 +107,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       loading,
       placeholder,
       otherOptionText,
+      renderOtherOption,
       noOptionsText,
       options,
       getDisplayValue,
@@ -183,7 +186,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
           </Menu.Item>
         ))}
 
-        {shouldShowOtherOption && otherOptionText && (
+        {shouldShowOtherOption && (
           <Menu.Item
             key='other-option'
             className={cx({
@@ -193,16 +196,15 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
             {...getOtherItemProps(optionsLength, value)}
             titleCase={false}
           >
-            {typeof otherOptionText === 'string' ? (
+            {otherOptionText && !renderOtherOption && (
               <span className={classes.stringContent}>
                 <Typography as='span' color='dark-grey'>
                   {otherOptionText}
                 </Typography>
                 {value}
               </span>
-            ) : (
-              otherOptionText(value)
             )}
+            {renderOtherOption?.(value)}
           </Menu.Item>
         )}
 

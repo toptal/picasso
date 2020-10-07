@@ -1,6 +1,15 @@
 import React, { useState } from 'react'
-import { Autocomplete } from '@toptal/picasso'
+import { Autocomplete, Typography } from '@toptal/picasso'
 import { isSubstring } from '@toptal/picasso/utils'
+
+const renderOtherOption = value => (
+  <Typography size='large' color='dark-grey'>
+    Search for:{' '}
+    <Typography as='span' size='inherit' color='inherit' weight='semibold'>
+      {value}
+    </Typography>
+  </Typography>
+)
 
 const allOptions = [
   { text: 'Belarus' },
@@ -49,6 +58,7 @@ const Example = () => {
           setValue(newValue)
         }}
         getDisplayValue={getDisplayValue}
+        renderOtherOption={renderOtherOption}
       />
     </div>
   )

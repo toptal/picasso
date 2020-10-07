@@ -52,12 +52,8 @@ if needed.
     title: 'Other option',
     description: `By default Autocomplete allows any entered input value to stay after focus is removed from input,
       you can set \`showOtherOption={true}\` prop to allow also this new item to appear in the suggestions list. Also,
-      you can decorate this option with the prefix text by using \`otherOptionText\` and handle selection with
+      you can decorate this option with the prefix text by using \`otherOptionText\` or fully customize it with \`renderOtherOption\` and handle selection with
       \`onOtherOptionSelect\` event handler.`
-  }) // picasso-skip-visuals
-  .addExample('Autocomplete/story/OtherOptionTextFunction.example.jsx', {
-    title: 'Other option text',
-    description: `We can also have the \`otherOptionText\` as a function with the current \`value\` as a param so we can customize everything about it`
   }) // picasso-skip-visuals
   .addExample(
     'Autocomplete/story/InitialSetValue.example.jsx',
