@@ -48,7 +48,7 @@ export interface Props
   placeholder?: string
   /** Text prefix for other option */
   otherOptionText?: string
-  /** A function returning other option */
+  /** Callback responsible for rendering the other option given the input's value */
   renderOtherOption?: (value: string) => ReactNode
   /** Width of the component */
   width?: 'full' | 'shrink' | 'auto'
@@ -196,7 +196,9 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
             {...getOtherItemProps(optionsLength, value)}
             titleCase={false}
           >
-            {otherOptionText && !renderOtherOption && (
+            {renderOtherOption ? (
+              renderOtherOption(value)
+            ) : (
               <span className={classes.stringContent}>
                 <Typography as='span' color='dark-grey'>
                   {otherOptionText}
@@ -204,7 +206,6 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
                 {value}
               </span>
             )}
-            {renderOtherOption?.(value)}
           </Menu.Item>
         )}
 
