@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons / Misc / 24 / Subfunction</title>
+    <defs>
+        <path d="M15,1 L15,8 L12,8 L12,12 L20,12 L20,17 L19,17 L19,13 L4,13 L4,17 L7,17 L7,24 L0,24 L0,17 L3,17 L3,12 L11,12 L11,8 L8,8 L8,1 L15,1 Z M19.5,17 C21.4329966,17 23,18.5670034 23,20.5 C23,22.4329966 21.4329966,24 19.5,24 C17.5670034,24 16,22.4329966 16,20.5 C16,18.5670034 17.5670034,17 19.5,17 Z M6,18 L1,18 L1,23 L6,23 L6,18 Z M19.5,18 C18.1192881,18 17,19.1192881 17,20.5 C17,21.8807119 18.1192881,23 19.5,23 C20.8807119,23 22,21.8807119 22,20.5 C22,19.1192881 20.8807119,18 19.5,18 Z M14,2 L9,2 L9,7 L14,7 L14,2 Z" id="path-1"></path>
+    </defs>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-921.000000, -1874.000000)" id="Misc">
+            <g transform="translate(100.000000, 1767.000000)">
+                <g id="24" transform="translate(93.000000, 106.000000)">
+                    <g id="Group" transform="translate(728.000000, 0.000000)">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <use id="Combined-Shape" fill="#262D3D" fill-rule="nonzero" xlink:href="#path-1"></use>
+                        <g mask="url(#mask-2)" fill="#455065" id="Colors-/-307-Gray-Dark">
+                            <g>
+                                <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
