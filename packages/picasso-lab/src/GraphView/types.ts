@@ -10,6 +10,8 @@ export interface GraphNodeData extends SimulationNodeDatum {
 
 export interface GraphLinkData extends SimulationLinkDatum<GraphNodeData> {
   label: string
+  source: GraphNodeId
+  target: GraphNodeId
 }
 
 export interface GraphData {
