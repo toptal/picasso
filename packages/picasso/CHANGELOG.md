@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.106.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.105.2...@toptal/picasso@4.106.0) (2020-10-08)
+
+
+### Features
+
+* **icon:** add org structure icons ([#1607](https://github.com/toptal/picasso/issues/1607)) ([b77d21c](https://github.com/toptal/picasso/commit/b77d21cb04b2464d085de003c1d3bbe5d6b31e2e))
+
+
+
+
+
 ## [4.105.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.105.1...@toptal/picasso@4.105.2) (2020-10-07)
 
 

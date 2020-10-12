@@ -37,6 +37,6 @@ List of available commands:
 - `@toptal-bot run build` - Check build
 - `@toptal-bot run test:visual` or `@toptal-bot run visual` - Run visual tests
 - `@toptal-bot run deploy:documentation` - Deploy documentation
-
+- `@toptal-bot run package:alpha-release` - Release alpha version
 
 </details>
