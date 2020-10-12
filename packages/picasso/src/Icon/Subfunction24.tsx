@@ -46,7 +46,7 @@ const SvgSubfunction24 = forwardRef(function SvgSubfunction24(
       style={svgStyle}
       ref={ref}
     >
-      <path d='M15 1v7h-3v4h8v5h-1v-4H4v4h3v7H0v-7h3v-5h8V8H8V1h7zm4.5 16a3.5 3.5 0 110 7 3.5 3.5 0 010-7zM6 18H1v5h5v-5zm13.5 0a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM14 2H9v5h5V2z' />
+      <path d='M15 1v7h-3v4h8v5.036a3.5 3.5 0 11-1 0V13H4v4h3v7H0v-7h3v-5h8V8H8V1h7zM6 18H1v5h5v-5zm13.5 0a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM14 2H9v5h5V2z' />
     </svg>
   )
 })
