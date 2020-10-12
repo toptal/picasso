@@ -277,6 +277,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
             <Popper
               autoWidth
               width={menuWidth}
+              placement='bottom-start'
               open={isOpen && !loading}
               anchorEl={inputWrapperRef.current}
               container={popperContainer}
