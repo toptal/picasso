@@ -58,7 +58,8 @@ export default ({ palette }: Theme) =>
       fontSize: '1rem'
     },
     caretDisabled: {
-      color: alpha(palette.grey.dark!, 0.48)
+      color: alpha(palette.grey.dark!, 0.48),
+      zIndex: 1
     },
     nativeStartAdornment: {
       position: 'absolute',
