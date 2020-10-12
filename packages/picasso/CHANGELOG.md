@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.107.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.106.0...@toptal/picasso@4.107.0) (2020-10-12)
+
+
+### Features
+
+* **autocomplete:** add menuWidth prop ([#1612](https://github.com/toptal/picasso/issues/1612)) ([2e24c3f](https://github.com/toptal/picasso/commit/2e24c3f1fe149d360108e763ed2c1fe9a6833487))
+
+
+
+
+
 # [4.106.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.105.2...@toptal/picasso@4.106.0) (2020-10-08)
 
 
