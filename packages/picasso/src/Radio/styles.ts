@@ -55,12 +55,12 @@ export default ({ palette, sizes, transitions }: Theme) =>
   createStyles({
     root: {
       fontSize: '1rem',
-      '&:hover $uncheckedIcon:before': {
+      '&:hover $checkedIcon:before, &:hover $uncheckedIcon:before': {
         ...outline(palette.primary.main)
       }
     },
     focused: {
-      '& $checkedIcon:before, $uncheckedIcon:before': {
+      '& $checkedIcon:before, & $uncheckedIcon:before': {
         ...outline(palette.primary.main)
       }
     },

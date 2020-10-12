@@ -26,7 +26,16 @@ page
 
 page
   .createChapter()
-  .addExample('Radio/story/Default.example.jsx', 'Default')
+  .addExample('Radio/story/Default.example.jsx', {
+    title: 'Default',
+    effect: async (testPage, makeScreenshot) => {
+      await testPage.hover('[data-testid="trigger"]')
+      await makeScreenshot()
+
+      await testPage.focus('[data-testid="trigger"]')
+      await makeScreenshot()
+    }
+  })
   .addExample('Radio/story/Disabled.example.jsx', 'Disabled')
   .addExample(
     'Radio/story/RadioGroupVertical.example.jsx',
