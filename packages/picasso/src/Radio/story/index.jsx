@@ -24,8 +24,6 @@ page
   })
   .addComponentDocs(radioGroupStory.componentDocs)
 
-const mouseOut = testPage => testPage.mouse.move(0, 0)
-
 page
   .createChapter()
   .addExample('Radio/story/Default.example.jsx', {
@@ -34,7 +32,7 @@ page
       await testPage.hover('[data-testid="trigger"]')
       await makeScreenshot()
 
-      await mouseOut(testPage)
+      await testPage.mouse.move(0, 0)
 
       await testPage.keyboard.press('Tab')
       await makeScreenshot()
