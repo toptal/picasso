@@ -26,7 +26,19 @@ page
 
 page
   .createChapter()
-  .addExample('Radio/story/Default.example.jsx', 'Default')
+  .addExample('Radio/story/Default.example.jsx', {
+    title: 'Default',
+    effect: async (testPage, makeScreenshot) => {
+      await testPage.hover('[data-testid="trigger"]')
+      await makeScreenshot()
+
+      // Move mouse out not to combine hover and focus
+      await testPage.mouse.move(0, 0)
+
+      await testPage.keyboard.press('Tab')
+      await makeScreenshot()
+    }
+  })
   .addExample('Radio/story/Disabled.example.jsx', 'Disabled')
   .addExample(
     'Radio/story/RadioGroupVertical.example.jsx',
