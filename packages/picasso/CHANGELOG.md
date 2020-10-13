@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.108.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.108.1...@toptal/picasso@4.108.2) (2020-10-13)
+
+
+### Bug Fixes
+
+* **tooltip:** get rid of blinking from interactive tooltips ([#1617](https://github.com/toptal/picasso/issues/1617)) ([91086ee](https://github.com/toptal/picasso/commit/91086eefb89115b5d761d30f4e7cd3bbcd8ada83))
+
+
+
+
+
 ## [4.108.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.108.0...@toptal/picasso@4.108.1) (2020-10-12)
 
 
