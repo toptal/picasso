@@ -60,13 +60,13 @@ export default ({ palette, sizes, transitions }: Theme) =>
       }
     },
     focused: {
-      '& $checkedIcon:before, & $uncheckedIcon:before': {
+      '$checkedIcon:before, & $uncheckedIcon:before': {
         ...outline(palette.primary.main)
       }
     },
     disabled: {
-      '&:hover $uncheckedIcon': {
-        color: palette.grey.main
+      '&:hover $checkedIcon:before, &:hover $uncheckedIcon:before': {
+        boxShadow: 'none'
       }
     },
     withLabel: {
