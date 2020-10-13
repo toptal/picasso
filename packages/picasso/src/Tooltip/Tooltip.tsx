@@ -220,7 +220,7 @@ export const Tooltip: FunctionComponent<Props> = props => {
       disableFocusListener={disableListeners}
       disableTouchListener
       enterDelay={delayDuration}
-      enterNextDelay={interactive ? 0 : delayDuration}
+      enterNextDelay={delayDuration}
     >
       {children as ReactElement}
     </MUITooltip>
