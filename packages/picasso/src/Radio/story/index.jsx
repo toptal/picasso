@@ -32,6 +32,7 @@ page
       await testPage.hover('[data-testid="trigger"]')
       await makeScreenshot()
 
+      // Move mouse out not to combine hover and focus
       await testPage.mouse.move(0, 0)
 
       await testPage.keyboard.press('Tab')
