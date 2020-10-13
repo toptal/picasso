@@ -24,19 +24,19 @@ page
   })
   .addComponentDocs(radioGroupStory.componentDocs)
 
-const hover = testPage => testPage.hover('[data-testid="trigger"]')
 const mouseOut = testPage => testPage.mouse.move(0, 0)
-const focus = testPage => testPage.keyboard.press('Tab')
 
 page
   .createChapter()
   .addExample('Radio/story/Default.example.jsx', {
     title: 'Default',
     effect: async (testPage, makeScreenshot) => {
-      await hover(testPage)
+      await testPage.hover('[data-testid="trigger"]')
       await makeScreenshot()
+
       await mouseOut(testPage)
-      await focus(testPage)
+
+      await testPage.keyboard.press('Tab')
       await makeScreenshot()
     }
   })
