@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.108.3](https://github.com/toptal/picasso/compare/@toptal/picasso@4.108.2...@toptal/picasso@4.108.3) (2020-10-13)
+
+
+### Bug Fixes
+
+* **tooltip:** revert the enter delay changes to interactive tooltip ([#1618](https://github.com/toptal/picasso/issues/1618)) ([b429576](https://github.com/toptal/picasso/commit/b4295769b9cc16eb3e898a28b2ac63da976dac87)), closes [#1617](https://github.com/toptal/picasso/issues/1617)
+
+
+
+
+
 ## [4.108.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.108.1...@toptal/picasso@4.108.2) (2020-10-13)
 
 
