@@ -2,7 +2,8 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 import {
   PicassoProvider,
   createPropertiesStyles,
-  rem
+  rem,
+  outline
 } from '@toptal/picasso-shared'
 
 const controlWidth = '1em'
@@ -54,19 +55,18 @@ export default ({ palette, sizes, transitions }: Theme) =>
   createStyles({
     root: {
       fontSize: '1rem',
-
-      '&:hover $uncheckedIcon': {
-        color: palette.primary.main
+      '&:hover $checkedIcon:before, &:hover $uncheckedIcon:before': {
+        ...outline(palette.primary.main)
       }
     },
     focused: {
-      '& $uncheckedIcon': {
-        color: palette.primary.main
+      '$checkedIcon:before, & $uncheckedIcon:before': {
+        ...outline(palette.primary.main)
       }
     },
     disabled: {
-      '&:hover $uncheckedIcon': {
-        color: palette.grey.main
+      '&:hover $checkedIcon:before, &:hover $uncheckedIcon:before': {
+        boxShadow: 'none'
       }
     },
     withLabel: {
