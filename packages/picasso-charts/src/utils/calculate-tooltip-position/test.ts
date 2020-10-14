@@ -44,6 +44,7 @@ test('should NOT flip the tooltip, keep the cursor position', () => {
   const translateX = getTooltipTranslate(tooltipUnrestricted)
   const { cursorCoordinate, offset } = tooltipUnrestricted
   const expected = cursorCoordinate + offset
+
   expect(translateX).toEqual(expected)
 })
 
@@ -51,6 +52,7 @@ test('should flip the tooltip to the left of the cursor', () => {
   const translateX = getTooltipTranslate(tooltipRestricted)
   const { cursorCoordinate, offset, tooltipDimension } = tooltipRestricted
   const expected = cursorCoordinate - offset - tooltipDimension
+
   expect(translateX).toEqual(expected)
 })
 
@@ -58,5 +60,6 @@ test('should translate the tooltip to the chart (top or left) corner when it fli
   const translateX = getTooltipTranslate(tooltipRestrictedOutside)
   const { viewbox, key } = tooltipRestricted
   const expected = viewbox[key]
+
   expect(translateX).toEqual(expected)
 })

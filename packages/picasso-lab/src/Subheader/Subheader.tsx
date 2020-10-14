@@ -56,6 +56,7 @@ const Tabs: FunctionComponent = ({ children }) => (
 
 const Main: FunctionComponent = props => {
   const classes = useMainStyles(props)
+
   return (
     <Container flex justifyContent='space-between' className={classes.main}>
       {props.children}

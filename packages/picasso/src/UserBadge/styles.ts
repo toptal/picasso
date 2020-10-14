@@ -5,6 +5,9 @@ export default () =>
     root: {
       fontSize: '1rem'
     },
+    infoContainer: {
+      overflow: 'hidden'
+    },
     title: {
       marginLeft: '0.5em'
     },
