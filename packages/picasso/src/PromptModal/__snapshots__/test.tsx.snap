@@ -45,13 +45,20 @@ exports[`renders PromptModal 1`] = `
           </h3>
         </div>
         <div
-          class="ModalContent-root"
+          class="ModalContent-fadedWrapper"
         >
-          <p
-            class="MuiTypography-root Typography-bodyMedium MuiTypography-body1"
+          <div
+            class="ModalContent-fadedWrapperEffect"
+          />
+          <div
+            class="ModalContent-modalContent"
           >
-            Test message
-          </p>
+            <p
+              class="MuiTypography-root Typography-bodyMedium MuiTypography-body1"
+            >
+              Test message
+            </p>
+          </div>
         </div>
         <div
           class="ModalActions-root"
@@ -168,13 +175,20 @@ exports[`showPrompt opens and closes modal on Submit action 2`] = `
               </h3>
             </div>
             <div
-              class="ModalContent-root"
+              class="ModalContent-fadedWrapper"
             >
-              <p
-                class="MuiTypography-root Typography-bodyMedium MuiTypography-body1"
+              <div
+                class="ModalContent-fadedWrapperEffect"
+              />
+              <div
+                class="ModalContent-modalContent"
               >
-                Test message
-              </p>
+                <p
+                  class="MuiTypography-root Typography-bodyMedium MuiTypography-body1"
+                >
+                  Test message
+                </p>
+              </div>
             </div>
             <div
               class="ModalActions-root"
