@@ -1,9 +1,16 @@
-import React, { forwardRef, ChangeEvent, ComponentProps } from 'react'
+// @ts-nocheck
+import React, {
+  forwardRef,
+  ChangeEvent,
+  ComponentProps,
+  RefObject,
+  useRef
+} from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUISlider, { ValueLabelProps } from '@material-ui/core/Slider'
 import cx from 'classnames'
 
-import Tooltip from '../Tooltip'
+import Tooltip from '../Tooltip/BaseTooltip'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme, Props>(styles)
@@ -52,9 +59,11 @@ export interface Props extends ComponentProps<typeof MUISlider> {
 // This type is needed because ValueLabelProps does not describe all exposed props
 type ValueLabelComponentProps = ValueLabelProps & {
   valueLabelDisplay: ValueLabelDisplay
+  index: number
 }
 
 const DefaultTooltip = (
+  boundariesElementRef: RefObject<HTMLElement>,
   isTooltipAlwaysVisible: boolean,
   disablePortal?: boolean,
   compact?: boolean
@@ -62,7 +71,8 @@ const DefaultTooltip = (
   children,
   open,
   value,
-  valueLabelDisplay
+  valueLabelDisplay,
+  index
 }) => {
   if (valueLabelDisplay === 'off') {
     return children
@@ -73,10 +83,17 @@ const DefaultTooltip = (
       arrow={!compact}
       content={value}
       open={open || valueLabelDisplay === 'on'}
-      placement={isTooltipAlwaysVisible ? 'right' : 'top'}
+      placement={
+        isTooltipAlwaysVisible ? (index === 0 ? 'left' : 'right') : 'top'
+      }
       preventOverflow={isTooltipAlwaysVisible}
       disablePortal={disablePortal}
       compact={compact}
+      preventOverflowOptions={{
+        boundariesElement: (boundariesElementRef as RefObject<HTMLElement>)
+          ?.current as HTMLElement,
+        priority: ['left', 'right']
+      }}
     >
       {children}
     </Tooltip>
@@ -113,18 +130,20 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     unmarkTrack,
     ...classes
   } = useStyles(props)
+  const wrapperRef = useRef(null)
   const isTooltipAlwaysVisible = tooltip === 'on'
   const isThumbHidden =
     hideThumbOnEmpty && (typeof value === 'undefined' || value === null)
   const ValueLabelComponent = (UserDefinedTooltip ||
     DefaultTooltip(
+      wrapperRef as RefObject<HTMLElement>,
       isTooltipAlwaysVisible,
       disablePortal,
       compact
     )) as typeof UserDefinedTooltip
 
   return (
-    <div className={wrapper}>
+    <div className={wrapper} ref={wrapperRef}>
       <MUISlider
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}

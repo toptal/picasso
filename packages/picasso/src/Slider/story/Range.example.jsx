@@ -17,7 +17,7 @@ const Example = () => {
   }
 
   return (
-    <Container>
+    <Container style={{ padding: '0 6rem' }}>
       <Typography variant='heading' size='small'>
         Time Zone
       </Typography>
