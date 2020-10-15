@@ -17,7 +17,7 @@ export interface Props extends HTMLAttributes<HTMLDivElement> {
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'EmptyStatePage'
+  name: 'PicassoEmptyStatePage'
 })
 
 export const EmptyStatePage = forwardRef<HTMLDivElement, Props>(
