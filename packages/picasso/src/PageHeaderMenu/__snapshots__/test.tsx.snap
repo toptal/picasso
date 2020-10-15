@@ -24,10 +24,10 @@ exports[`PageHeaderMenu default render 1`] = `
             />
           </div>
           <div
-            class="Container-leftsmallMargin Container-flex Container-column"
+            class="Container-leftsmallMargin Container-flex Container-column UserBadge-infoContainer"
           >
             <div
-              class=""
+              class="Container-centerAlignItems Container-flex"
             >
               <h4
                 class="MuiTypography-root Typography-invert Typography-headingSmall UserBadge-name PageHeaderMenu-name PageHeaderMenu-truncateText MuiTypography-h4 MuiTypography-displayInline"

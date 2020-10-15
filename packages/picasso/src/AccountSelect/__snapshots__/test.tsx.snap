@@ -38,10 +38,10 @@ exports[`AccountSelect default render 1`] = `
                 </p>
               </div>
               <div
-                class="Container-leftsmallMargin Container-flex Container-column"
+                class="Container-leftsmallMargin Container-flex Container-column UserBadge-infoContainer"
               >
                 <div
-                  class=""
+                  class="Container-centerAlignItems Container-flex"
                 >
                   <h4
                     class="MuiTypography-root Typography-headingSmall UserBadge-name MuiTypography-h4 MuiTypography-displayInline"
@@ -97,10 +97,10 @@ exports[`AccountSelect default render 1`] = `
                 </p>
               </div>
               <div
-                class="Container-leftsmallMargin Container-flex Container-column"
+                class="Container-leftsmallMargin Container-flex Container-column UserBadge-infoContainer"
               >
                 <div
-                  class=""
+                  class="Container-centerAlignItems Container-flex"
                 >
                   <h4
                     class="MuiTypography-root Typography-headingSmall UserBadge-name MuiTypography-h4 MuiTypography-displayInline"
@@ -153,10 +153,10 @@ exports[`AccountSelect default render 1`] = `
                 />
               </div>
               <div
-                class="Container-leftsmallMargin Container-flex Container-column"
+                class="Container-leftsmallMargin Container-flex Container-column UserBadge-infoContainer"
               >
                 <div
-                  class=""
+                  class="Container-centerAlignItems Container-flex"
                 >
                   <h4
                     class="MuiTypography-root Typography-headingSmall UserBadge-name MuiTypography-h4 MuiTypography-displayInline"
