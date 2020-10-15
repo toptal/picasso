@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.109.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.108.3...@toptal/picasso@4.109.0) (2020-10-15)
+
+
+### Features
+
+* **UserBadge:** extend `title` by adding `renderTitle` prop ([#1622](https://github.com/toptal/picasso/issues/1622)) ([6011e26](https://github.com/toptal/picasso/commit/6011e26187c46752f868c03b4a4aab7859a29c00))
+
+
+
+
+
 ## [4.108.3](https://github.com/toptal/picasso/compare/@toptal/picasso@4.108.2...@toptal/picasso@4.108.3) (2020-10-13)
 
 
