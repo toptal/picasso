@@ -4,18 +4,22 @@ import React, {
   ReactNode,
   ReactElement,
   ChangeEvent,
-  HTMLAttributes
+  HTMLAttributes,
+  cloneElement
 } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITooltip from '@material-ui/core/Tooltip'
 import cx from 'classnames'
-import { StandardProps, usePicassoRoot } from '@toptal/picasso-shared'
+import { usePicassoRoot, BaseProps } from '@toptal/picasso-shared'
 
+import { isPointerDevice } from '../utils'
 import styles from './styles'
 
 type VariantType = 'light' | 'dark'
 
-type PlacementType = 'bottom' | 'left' | 'right' | 'top'
+export type PlacementType = 'bottom' | 'left' | 'right' | 'top'
+
+type MaxWidthType = 'none' | 'default'
 
 type DelayType = 'short' | 'long'
 
@@ -24,7 +28,70 @@ const delayDurations: { [k in DelayType]: number } = {
   long: 500
 }
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+interface UseTooltipHandlersOptions {
+  open?: boolean
+  onOpen?(event: ChangeEvent<{}>): void
+  onClose?(event: ChangeEvent<{}>): void
+  delay: DelayType
+  children: ReactElement<ChildrenProps>
+  disableListeners?: boolean
+}
+
+type ChildrenProps = { onClick?(event: ChangeEvent<{}>): void }
+
+const useTooltipHandlers = ({
+  open: externalOpen,
+  onClose,
+  onOpen,
+  delay,
+  disableListeners,
+  children
+}: UseTooltipHandlersOptions) => {
+  const isTouchScreen = !isPointerDevice()
+  const [internalOpen, setInternalOpen] = useState(false)
+  const delayDuration = isTouchScreen ? 0 : delayDurations[delay]
+  const isUncontrolledTooltip = externalOpen === undefined
+
+  if (isUncontrolledTooltip && isTouchScreen) {
+    /**
+     * `onClose` is called by MUI when close is requested, for example on click away.
+     * Since we are controlling tooltip here, we have to do actual close on our own.
+     */
+    const handleClose = (event: ChangeEvent<{}>) => {
+      onClose?.(event)
+      setInternalOpen(false)
+    }
+
+    const handleClick = (event: ChangeEvent<{}>) => {
+      event.preventDefault()
+      children.props.onClick?.(event)
+
+      if (!disableListeners) {
+        setInternalOpen(true)
+      }
+    }
+
+    return {
+      isOpen: internalOpen,
+      handleOpen: onOpen,
+      handleClose,
+      delayDuration,
+      children: cloneElement(children, {
+        onClick: handleClick
+      })
+    }
+  }
+
+  return {
+    isOpen: externalOpen,
+    handleOpen: onOpen,
+    handleClose: onClose,
+    delayDuration,
+    children
+  }
+}
+
+export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Trigger element for tooltip */
   children: ReactNode
   /** Content to be rendered inside tooltip */
@@ -51,38 +118,63 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   disablePortal?: boolean
   /** A delay in showing the tooltip */
   delay?: DelayType
+  /** Show a compact tooltip */
+  compact?: boolean
+  /** Max width of a tooltip */
+  maxWidth?: MaxWidthType
 }
 
-export const Tooltip: FunctionComponent<Props> = ({
-  content,
-  children,
-  placement,
-  interactive,
-  classes,
-  className,
-  style,
-  arrow,
-  open,
-  onClose,
-  onOpen,
-  variant,
-  disableListeners,
-  preventOverflow,
-  disablePortal,
-  delay = 'short',
-  ...rest
-}) => {
+const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoTooltip' })
+
+export const Tooltip: FunctionComponent<Props> = props => {
+  const {
+    content,
+    children: originalChildren,
+    placement,
+    interactive,
+    className,
+    style,
+    arrow,
+    open,
+    onClose,
+    onOpen,
+    variant,
+    disableListeners,
+    preventOverflow,
+    disablePortal,
+    delay = 'short',
+    compact,
+    maxWidth,
+    ...rest
+  } = props
+
+  const classes = useStyles(props)
   const [arrowRef, setArrowRef] = useState<HTMLSpanElement | null>(null)
   const container = usePicassoRoot()
+
+  const {
+    children,
+    isOpen,
+    handleOpen,
+    handleClose,
+    delayDuration
+  } = useTooltipHandlers({
+    open,
+    children: originalChildren as ReactElement<ChildrenProps>,
+    disableListeners,
+    onOpen,
+    onClose,
+    delay
+  })
 
   const title = (
     <>
       {content}
-      {arrow && <span className={classes.arrow} ref={setArrowRef} />}
+      {arrow && !compact && (
+        <span className={classes.arrow} ref={setArrowRef} />
+      )}
     </>
   )
-
-  const delayDuration = delayDurations[delay]
 
   return (
     <MUITooltip
@@ -111,15 +203,17 @@ export const Tooltip: FunctionComponent<Props> = ({
         popper:
           variant === 'light' ? classes.arrowPopperLight : classes.arrowPopper,
         tooltip: cx(classes.tooltip, {
-          [classes.light]: variant === 'light'
+          [classes.light]: variant === 'light',
+          [classes.compact]: compact,
+          [classes.noMaxWidth]: maxWidth === 'none'
         })
       }}
       className={className}
       style={style}
       interactive={interactive}
-      onClose={onClose}
-      onOpen={onOpen}
-      open={open}
+      onClose={handleClose}
+      onOpen={handleOpen}
+      open={isOpen}
       placement={placement}
       title={title}
       disableHoverListener={disableListeners}
@@ -138,7 +232,9 @@ Tooltip.defaultProps = {
   preventOverflow: false,
   placement: 'top',
   variant: 'dark',
-  disablePortal: false
+  disablePortal: false,
+  maxWidth: 'default',
+  delay: 'short'
 }
 
-export default withStyles(styles)(Tooltip)
+export default Tooltip

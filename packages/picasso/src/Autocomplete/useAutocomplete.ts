@@ -1,6 +1,7 @@
 /* eslint-disable complexity, max-statements */ // Squiggly lines makes code difficult to work with
 
 import {
+  MouseEvent,
   KeyboardEvent,
   useState,
   ChangeEvent,
@@ -20,6 +21,7 @@ const normalizeArrowKey = (event: KeyboardEvent<HTMLInputElement>) => {
   if (keyCode >= 37 && keyCode <= 40 && key.indexOf('Arrow') !== 0) {
     return `Arrow${key}`
   }
+
   return key
 }
 
@@ -63,8 +65,11 @@ const getNextWrappingIndex = (
 interface Props {
   value: string
   options?: Item[] | null
-  onSelect?: (item: Item) => void
-  onOtherOptionSelect?: (value: string) => void
+  onSelect?: (item: Item, event: MouseEvent | KeyboardEvent) => void
+  onOtherOptionSelect?: (
+    value: string,
+    event: MouseEvent | KeyboardEvent
+  ) => void
   onChange?: (value: string, options: ChangedOptions) => void
   onKeyDown?: (
     event: KeyboardEvent<HTMLInputElement>,
@@ -109,14 +114,17 @@ const useAutocomplete = ({
     }
   }
 
-  const handleSelect = (item: Item | null) => {
+  const handleSelect = (
+    item: Item | null,
+    event: MouseEvent | KeyboardEvent
+  ) => {
     const displayValue = getDisplayValue(item)
 
     if (item === null || displayValue === null) {
       return
     }
 
-    onSelect(item)
+    onSelect(item, event)
   }
 
   const getBaseItemProps = (index: number) => ({
@@ -140,18 +148,18 @@ const useAutocomplete = ({
 
   const getItemProps = (index: number, item: Item) => ({
     ...getBaseItemProps(index),
-    onClick: () => {
+    onClick: (event: MouseEvent) => {
       setOpen(false)
       handleChange(getDisplayValue(item), true)
-      handleSelect(item)
+      handleSelect(item, event)
     }
   })
 
   const getOtherItemProps = (index: number, newValue: string) => ({
     ...getBaseItemProps(index),
-    onClick: () => {
+    onClick: (event: MouseEvent) => {
       setOpen(false)
-      onOtherOptionSelect(newValue)
+      onOtherOptionSelect(newValue, event)
     }
   })
 
@@ -237,9 +245,9 @@ const useAutocomplete = ({
 
         if (selectedItem) {
           handleChange(getDisplayValue(selectedItem), true)
-          handleSelect(selectedItem)
+          handleSelect(selectedItem, event)
         } else if (value) {
-          onOtherOptionSelect(value)
+          onOtherOptionSelect(value, event)
         }
       }
 

@@ -10,7 +10,7 @@ page
   .createTabChapter('Props')
   .addComponentDocs({
     component: Tooltip,
-    name: 'Timesheets',
+    name: 'Tooltip',
     additionalDocs: {
       placement: {
         type: 'enum',
@@ -28,21 +28,23 @@ page
   })
   .addTextSection(
     `
-  Note: On mobile, the tooltip is displayed when the user long-presses the element and hides after a delay of 1500ms.
+  Note: On mobile, the tooltip is immediately displayed when the user presses the element.
   `
   )
 
 page
   .createChapter()
-  .addExample('Tooltip/story/Default.example.jsx', 'Default')
-  .addExample('Tooltip/story/Placement.example.jsx', 'Placement')
-  .addExample('Tooltip/story/Arrow.example.jsx', 'Arrow')
-  .addExample('Tooltip/story/Variant.example.jsx', 'Variant')
-  .addExample('Tooltip/story/Trigger.example.jsx', 'Trigger') // picasso-skip-visuals
-  .addExample('Tooltip/story/Interactive.example.jsx', 'Interactive') // picasso-skip-visuals
+  .addExample('Tooltip/story/Default.example.tsx', 'Default')
+  .addExample('Tooltip/story/Placement.example.tsx', 'Placement')
+  .addExample('Tooltip/story/Arrow.example.tsx', 'Arrow')
+  .addExample('Tooltip/story/Variant.example.tsx', 'Variant')
+  .addExample('Tooltip/story/Trigger.example.tsx', 'Trigger') // picasso-skip-visuals
+  .addExample('Tooltip/story/Interactive.example.tsx', 'Interactive') // picasso-skip-visuals
   .addExample('Tooltip/story/ControlListeners.example.tsx', 'Control Listeners') // picasso-skip-visuals
   .addExample(
     'Tooltip/story/DisabledElement.example.tsx',
     'Tooltip on disabled element'
   ) // picasso-skip-visuals
   .addExample('Tooltip/story/Delay.example.tsx', 'Delay') // picasso-skip-visuals
+  .addExample('Tooltip/story/Compact.example.tsx', 'Compact')
+  .addExample('Tooltip/story/MaxWidth.example.tsx', 'Max Width')

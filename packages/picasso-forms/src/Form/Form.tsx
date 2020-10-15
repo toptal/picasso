@@ -3,7 +3,7 @@ import {
   Form as FinalForm,
   FormProps as FinalFormProps
 } from 'react-final-form'
-import { FormApi, ValidationErrors } from 'final-form'
+import { FormApi, ValidationErrors, getIn, setIn } from 'final-form'
 import { Form as PicassoForm } from '@toptal/picasso'
 import { useNotifications } from '@toptal/picasso/utils'
 
@@ -44,16 +44,13 @@ const getSubmitErrors = (
   Object.entries(validationObject).reduce<ValidationErrors | undefined>(
     (result, [key, validator]) => {
       const error: string = validator?.(
-        formValues[key],
+        getIn(formValues, key),
         formValues,
         form.getFieldState(key)
       )
 
       if (error) {
-        return {
-          ...result,
-          [key]: error
-        }
+        return setIn(result || {}, key, error)
       }
 
       return result
@@ -67,14 +64,13 @@ export const Form = <T extends any = AnyObject>(props: Props<T>) => {
     onSubmit,
     successSubmitMessage,
     failedSubmitMessage,
-    scrollOffsetTop,
     decorators = [],
     ...rest
   } = props
   const { showSuccess, showError } = useNotifications()
   const scrollToErrorDecorator = useMemo(
-    () => createScrollToErrorDecorator({ scrollOffsetTop }),
-    [scrollOffsetTop]
+    () => createScrollToErrorDecorator(),
+    []
   )
 
   const validationObject = useRef<FormContextProps>(createFormContext())

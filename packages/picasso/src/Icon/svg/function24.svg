@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>D4C7E640-6E99-451B-83EF-9256F393CE1F@1x</title>
+    <defs>
+        <path d="M11.5,1 C13.4329966,1 15,2.56700338 15,4.5 C15,6.26290678 13.6966339,7.72139608 12.0009499,7.96441956 L12,12 L20,12 L20,17 L23,17 L23,24 L16,24 L16,17 L19,17 L19,13 L4,13 L4,17 L7,17 L7,24 L0,24 L0,17 L3,17 L3,12 L11,12 L11.0000497,7.96456269 C9.30387842,7.72196926 8,6.26325319 8,4.5 C8,2.56700338 9.56700338,1 11.5,1 Z M22,18 L17,18 L17,23 L22,23 L22,18 Z M6,18 L1,18 L1,23 L6,23 L6,18 Z M11.5,2 C10.1192881,2 9,3.11928813 9,4.5 C9,5.88071187 10.1192881,7 11.5,7 C12.8807119,7 14,5.88071187 14,4.5 C14,3.11928813 12.8807119,2 11.5,2 Z" id="path-1"></path>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons-/-Misc-/-24-/-Function">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Combined-Shape" fill="#262D3D" fill-rule="nonzero" xlink:href="#path-1"></use>
+            <g id="Group" mask="url(#mask-2)" fill="#455065">
+                <g id="Colors-/-307-Gray-Dark">
+                    <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

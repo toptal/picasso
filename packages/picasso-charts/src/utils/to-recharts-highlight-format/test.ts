@@ -25,7 +25,7 @@ const EXPECTED_DATA = [
       fillOpacity: 0.1,
       x1: 5.5,
       x2: 7.5,
-      y1: 1.9,
+      y1: 1.96,
       y2: 2
     }
   ]
@@ -37,5 +37,6 @@ test('convert to rechart highlight format', () => {
     DATA_POINT_COUNT,
     HIGHLIGHTS
   )
+
   expect(highlights).toEqual(EXPECTED_DATA)
 })

@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.2](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@0.5.1...@toptal/picasso-charts@0.5.2) (2020-09-23)
+
+
+### Bug Fixes
+
+* **AnalyticsChart:** allow passing null values ([#1577](https://github.com/toptal/picasso/issues/1577)) ([68dc4b1](https://github.com/toptal/picasso/commit/68dc4b1b9e607b84c218149c3bc6c675d8108a01))
+* **LineChart:** fix highlight header height calculation ([#1576](https://github.com/toptal/picasso/issues/1576)) ([0e8374d](https://github.com/toptal/picasso/commit/0e8374d0bb1169c5fe36501d924daeb0bc06dcda))
+
+
+
+
+
+## [0.5.1](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@0.5.0...@toptal/picasso-charts@0.5.1) (2020-08-31)
+
+**Note:** Version bump only for package @toptal/picasso-charts
+
+
+
+
+
 # [0.5.0](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@0.4.2...@toptal/picasso-charts@0.5.0) (2020-06-22)
 
 

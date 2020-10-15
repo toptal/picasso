@@ -104,6 +104,7 @@ export const DatePicker = (props: Props) => {
     renderDay,
     weekStartsOn,
     timezone,
+    size,
     ...rest
   } = props
   const classes = useStyles(props)
@@ -145,6 +146,7 @@ export const DatePicker = (props: Props) => {
       if (!value) {
         return EMPTY_INPUT_VALUE
       }
+
       return formatInputValue(timezoneConvert(value, timezone))
     })
   }, [value, timezone, formatInputValue])
@@ -155,6 +157,7 @@ export const DatePicker = (props: Props) => {
       if (!value) {
         return null
       }
+
       return timezoneConvert(value, timezone)
     })
   }, [value, timezone])
@@ -236,6 +239,7 @@ export const DatePicker = (props: Props) => {
     if (key === 'Escape') {
       hideCalendar()
       event.currentTarget.blur()
+
       return
     }
 
@@ -273,11 +277,14 @@ export const DatePicker = (props: Props) => {
     setIsInputFocused(true)
   }
 
-  const startAdornment = (
-    <InputAdornment position='start' disablePointerEvents>
-      {icon || <Calendar16 />}
-    </InputAdornment>
-  )
+  const startAdornment =
+    size !== 'small' ? (
+      <InputAdornment position='start' disablePointerEvents>
+        {icon || <Calendar16 />}
+      </InputAdornment>
+    ) : (
+      undefined
+    )
 
   return (
     <>
@@ -292,6 +299,7 @@ export const DatePicker = (props: Props) => {
           onBlur={handleBlur}
           value={inputValue}
           onChange={handleInputChange}
+          size={size}
           startAdornment={startAdornment}
           width={width}
         />
@@ -307,6 +315,7 @@ export const DatePicker = (props: Props) => {
           ref={popperRef}
         >
           <Calendar
+            data-testid='calendar'
             ref={calendarRef}
             range={range}
             value={calendarValue ?? undefined}

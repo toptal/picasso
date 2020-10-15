@@ -18,13 +18,13 @@ page
 
 page
   .createChapter()
-  .addExample('Modal/story/Default.example.jsx', {
+  .addExample('Modal/story/Default.example.tsx', {
     title: 'Default',
     description: `
-To show the 'Modal' component you should use 'useModals' hook. And if you need
-any additional logic inside the 'Modal' component you should create a wrapper 
-component and manage the internal state there.
-`,
+  To show the 'Modal' component you should use 'useModals' hook. And if you need
+  any additional logic inside the 'Modal' component you should create a wrapper
+  component and manage the internal state there.
+  `,
     effect: async (testPage, makeScreenshot) => {
       await testPage.click('[data-testid="open"]')
       await testPage.waitFor(100)
@@ -42,7 +42,7 @@ component and manage the internal state there.
       await makeScreenshot()
     }
   })
-  .addExample('Modal/story/Sizes.example.jsx', {
+  .addExample('Modal/story/Sizes.example.tsx', {
     title: 'Sizes',
     effect: async (testPage, makeScreenshot) => {
       await testPage.click('[data-testid="trigger-small"]')
@@ -76,11 +76,64 @@ component and manage the internal state there.
       })
     }
   })
-  .addExample('Modal/story/MaxHeight.example.jsx', {
+  .addExample('Modal/story/MaxHeight.example.tsx', {
     title: 'Max Height',
     effect: async (testPage, makeScreenshot) => {
       await testPage.click('[data-testid="trigger"]')
       await testPage.waitFor('[data-testid="cancel"]')
+      await makeScreenshot({
+        isFullScreen: true
+      })
+    }
+  })
+  // TODO: this example should be replaced with cypress test
+  // https://toptal-core.atlassian.net/browse/FX-1219
+  .addExample('Modal/story/Tooltips.example.tsx', {
+    title: 'Two tooltips on the page',
+    effect: async (testPage, makeScreenshot) => {
+      // Remove carrent symbol
+      const hideInputCaretStyle = `
+        input {
+          caret-color: transparent !important;
+        }
+      `
+
+      await testPage.addStyleTag({ content: hideInputCaretStyle })
+
+      // open modal
+      await testPage.click('[data-testid="trigger"]')
+      await testPage.waitFor('[data-testid="datepicker"]')
+
+      // clear input value
+      await testPage.evaluate(() => {
+        const input = document.querySelector('[data-testid="datepicker"]')
+
+        input.value = ''
+      })
+
+      const input = await testPage.$('[data-testid="datepicker"]')
+
+      // open calendar
+      await input.click()
+
+      await testPage.waitFor('[data-testid="calendar"]')
+
+      const buttons = await testPage.$$('[data-testid="calendar"] button')
+      const button3rdNovember = buttons[10]
+
+      await button3rdNovember.click()
+
+      await makeScreenshot({
+        isFullScreen: true
+      })
+    }
+  })
+  .addExample('Modal/story/Alignment.example.tsx', {
+    title: 'Alignment',
+    description: 'Demonstrate how `align` prop works',
+    effect: async (testPage, makeScreenshot) => {
+      await testPage.click('[data-testid="align-top-open"]')
+      await testPage.waitFor(100)
       await makeScreenshot({
         isFullScreen: true
       })

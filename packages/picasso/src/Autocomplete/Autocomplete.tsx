@@ -7,7 +7,8 @@ import React, {
   ReactNode,
   ComponentType,
   useRef,
-  FocusEventHandler
+  FocusEventHandler,
+  MouseEvent
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
@@ -37,15 +38,22 @@ export interface Props
   /** The value of the selected option, required for a controlled component. */
   value: string
   /**  Callback invoked when selection changes */
-  onSelect?: (item: Item) => void
+  onSelect?: (item: Item, event: MouseEvent | KeyboardEvent) => void
   /**  Callback invoked when other option selected */
-  onOtherOptionSelect?: (value: string) => void
+  onOtherOptionSelect?: (
+    value: string,
+    event: MouseEvent | KeyboardEvent
+  ) => void
   /** Placeholder for value */
   placeholder?: string
   /** Text prefix for other option */
   otherOptionText?: string
+  /** Callback responsible for rendering the other option given the input's value */
+  renderOtherOption?: (value: string) => ReactNode
   /** Width of the component */
   width?: 'full' | 'shrink' | 'auto'
+  /** Width of the menu */
+  menuWidth?: string
   /** Shows the loading icon when options are loading */
   loading?: boolean
   /** Allow to show the other option in the list of options */
@@ -101,10 +109,12 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       loading,
       placeholder,
       otherOptionText,
+      renderOtherOption,
       noOptionsText,
       options,
       getDisplayValue,
       style,
+      menuWidth,
       width,
       showOtherOption,
       onKeyDown,
@@ -189,12 +199,16 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
             {...getOtherItemProps(optionsLength, value)}
             titleCase={false}
           >
-            <span className={classes.stringContent}>
-              <Typography as='span' color='dark-grey'>
-                {otherOptionText}
-              </Typography>
-              {value}
-            </span>
+            {renderOtherOption ? (
+              renderOtherOption(value)
+            ) : (
+              <span className={classes.stringContent}>
+                <Typography as='span' color='dark-grey'>
+                  {otherOptionText}
+                </Typography>
+                {value}
+              </span>
+            )}
           </Menu.Item>
         )}
 
@@ -252,6 +266,8 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
           {isOpen && inputWrapperRef.current && optionsMenu && (
             <Popper
               autoWidth
+              width={menuWidth}
+              placement='bottom-start'
               open={isOpen && !loading}
               anchorEl={inputWrapperRef.current}
               container={popperContainer}

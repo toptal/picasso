@@ -49,6 +49,7 @@ const Example = () => {
           setValue(newValue)
         }}
         getDisplayValue={getDisplayValue}
+        otherOptionText='Search for: '
       />
     </div>
   )

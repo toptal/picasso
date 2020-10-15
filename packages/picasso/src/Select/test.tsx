@@ -1,7 +1,12 @@
 /* eslint-disable max-lines */
 
 import React from 'react'
-import { render, fireEvent, PicassoConfig } from '@toptal/picasso/test-utils'
+import {
+  render,
+  fireEvent,
+  PicassoConfig,
+  TestingPicasso
+} from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 
@@ -46,6 +51,7 @@ const renderSelect = (
 }
 
 let spiedOnTitleCase: jest.SpyInstance
+
 beforeEach(() => {
   spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
 })
@@ -286,9 +292,11 @@ test('should highlight selected option when focus on select', () => {
   })
 
   const input = getByPlaceholderText(placeholder)
+
   fireEvent.focus(input)
 
   const selectedOptions = getSelectedOptions(container)
+
   expect(selectedOptions.length).toBe(1)
   expect(selectedOptions[0].textContent).toMatch(OPTIONS[2].text)
 })
@@ -303,6 +311,7 @@ test('should not checkmark user selected options', () => {
   })
 
   const input = getByPlaceholderText(placeholder)
+
   fireEvent.focus(input)
 
   const checkmarkedOptions = getCheckmarkedOptions(container)
@@ -375,9 +384,11 @@ describe('multiple select', () => {
     })
 
     const input = getByPlaceholderText(placeholder)
+
     fireEvent.focus(input)
 
     const selectedItems = container.querySelectorAll('[class$="selected"]')
+
     expect(selectedItems.length).toBe(0)
   })
 
@@ -392,6 +403,7 @@ describe('multiple select', () => {
     })
 
     const input = getByPlaceholderText(placeholder)
+
     fireEvent.focus(input)
 
     const checkmarkedOptions = getCheckmarkedOptions(container)
@@ -414,8 +426,36 @@ describe('multiple select', () => {
     )
 
     const input = getByPlaceholderText(placeholder)
+
     fireEvent.focus(input)
 
     expect(spiedOnTitleCase).toBeCalledTimes(0)
+  })
+
+  test('renders selected option when options set dynamically', async () => {
+    const placeholder = 'Choose an option...'
+    const selectedOption = OPTIONS[0]
+    const initialProps = {
+      placeholder,
+      options: [],
+      value: selectedOption.value
+    }
+    const { rerender, getByPlaceholderText } = renderSelect(initialProps)
+
+    const input = getByPlaceholderText(placeholder) as HTMLInputElement
+
+    expect(input.value).not.toBe(selectedOption.text)
+
+    rerender(
+      <TestingPicasso>
+        <Select
+          options={OPTIONS}
+          value={initialProps.value}
+          placeholder={initialProps.placeholder}
+        />
+      </TestingPicasso>
+    )
+
+    expect(input.value).toBe(selectedOption.text)
   })
 })

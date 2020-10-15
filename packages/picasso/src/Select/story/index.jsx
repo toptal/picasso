@@ -26,7 +26,45 @@ page.createTabChapter('Props').addComponentDocs({
 
 page
   .createChapter()
-  .addExample('Select/story/Default.example.jsx', 'Default')
+  .addExample('Select/story/Default.example.jsx', {
+    title: 'Default',
+    effect: async (testPage, makeScreenshot) => {
+      const hideInputCaretStyle = `
+        input {
+          caret-color: transparent !important;
+        }
+      `
+
+      await testPage.addStyleTag({ content: hideInputCaretStyle })
+
+      // open options list
+      await testPage.click('input')
+      await testPage.waitFor('div[role=tooltip]')
+
+      await testPage.evaluate(() => {
+        // select the last option in the list
+        // which is half hidden by the scroll
+        const lastHalfVisibleOptionSelector = 'li:nth-of-type(7)' // Option 7
+        const lastHalfVisibleOption = document.querySelector(
+          lastHalfVisibleOptionSelector
+        )
+
+        // when you hover this last partially shown option
+        const mouseOverEvent = new MouseEvent('mouseover', {
+          view: window,
+          bubbles: true,
+          cancelable: true
+        })
+
+        lastHalfVisibleOption.dispatchEvent(mouseOverEvent)
+      })
+
+      // the options list should slightly scroll to show the hovered option
+      await makeScreenshot({
+        isFullScreen: true
+      })
+    }
+  })
   .addExample('Select/story/Native.example.tsx', 'Native')
   .addExample('Select/story/SearchBehavior.example.tsx', {
     title: 'Search behavior',
@@ -86,3 +124,7 @@ number of options greater than specified in \`searchThreshold\` prop.
   .addExample('Select/story/ResetButton.example.jsx', 'With reset button') // picasso-skip-visuals
   .addExample('Select/story/Autofill.example.tsx', 'Disabling autofilling') // picasso-skip-visuals
   .addExample('Select/story/DynamicOptions.example.tsx', 'Dynamic options') // picasso-skip-visuals
+  .addExample(
+    'Select/story/DynamicOptionsInModal.example.tsx',
+    'Dynamic options in Modal'
+  ) // picasso-skip-visuals

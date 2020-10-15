@@ -8,31 +8,34 @@ export interface Props extends BaseProps {
   rows?: number
 }
 
+const WIDTH = '100%'
 const HEIGHT = 10
 const CONTAINER_HEIGHT = HEIGHT * 2
+const VERTICAL_OFFSET = HEIGHT / 2
 const BORDER_RADIUS = HEIGHT / 2
 
-const Paragraph = () => (
+const Paragraph = ({ className, style = {} }: BaseProps) => (
   <ContentLoader
+    className={className}
     color={palette.grey.main2}
     height={CONTAINER_HEIGHT}
-    style={{ width: '100%' }}
+    style={{ width: WIDTH, ...style }}
   >
     <rect
       x='0'
-      y='0'
+      y={VERTICAL_OFFSET}
       rx={BORDER_RADIUS}
       ry={BORDER_RADIUS}
-      width='100%'
+      width={WIDTH}
       height={HEIGHT}
     />
   </ContentLoader>
 )
 
-export const TypographyLoader = ({ rows = 1 }: Props) => (
+export const TypographyLoader = ({ className, rows = 1, style }: Props) => (
   <>
     {Array.from({ length: rows }).map((_, index) => (
-      <Paragraph key={index} />
+      <Paragraph className={className} key={index} style={style} />
     ))}
   </>
 )

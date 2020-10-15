@@ -159,7 +159,7 @@ In Picasso project directory:
 
 1. Checkout Picasso project from [Github](https://github.com/toptal/picasso)
 2. Install Picasso dependencies with `yarn install`
-3. Build Picasso inside Picasso package folder (`./packages/picasso/`) with `yarn build:dist`
+3. Build Picasso inside Picasso package folder (`./packages/picasso/`) with `yarn build:package`
 4. Create a link with running in the root path `yarn symlink` (creates all links to Picasso packages and React link)
 
 In your project directory:
