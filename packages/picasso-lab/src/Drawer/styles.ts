@@ -3,7 +3,8 @@ import { createStyles, Theme } from '@material-ui/core/styles'
 export default ({ palette }: Theme) =>
   createStyles({
     drawer: {
-      width: '27.5rem'
+      maxWidth: '27.5rem',
+      width: '100%'
     },
     header: {
       position: 'absolute',
