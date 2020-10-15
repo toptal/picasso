@@ -42,14 +42,15 @@ test('shows excess chars for multiline input with exceeded limit', () => {
   expect(getByTestId('limit-adornment-multiline-label')).toMatchSnapshot()
 })
 
-test('shows entered characters for multiline input with `counter: entered`', () => {
+test('shows entered characters for multiline input with `counter: entered`, ignoring the limit', () => {
   const { getByTestId } = render(
     <Input multiline counter='entered' limit={1} value='AB' />
   )
 
-  expect(getByTestId('limit-adornment-multiline-label').textContent).toContain(
-    '2 characters entered'
-  )
+  const inputText = getByTestId('limit-adornment-multiline-label').textContent
+
+  expect(inputText).toContain('2 characters entered')
+  expect(inputText).not.toContain('limit')
 })
 
 test('is focused when autoFocus', () => {
