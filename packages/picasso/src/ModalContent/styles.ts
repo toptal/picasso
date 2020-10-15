@@ -23,12 +23,12 @@ export default () =>
       pointerEvents: 'none'
     },
     topShade: {
-      background: 'linear-gradient(180deg, white 0%, rgba(255,255,255,0) 3rem)'
+      background: 'linear-gradient(180deg, white 0%, rgba(255,255,255,0) 5rem)'
     },
     bottomShade: {
-      background: 'linear-gradient(0deg, white 0%, rgba(255,255,255,0) 3rem)'
+      background: 'linear-gradient(0deg, white 0%, rgba(255,255,255,0) 5rem)'
     },
     topBottomShades: {
-      background: `linear-gradient( 0deg,white 0%,rgba(255,255,255,0) 3rem,rgba(255,255,255,0) calc(100% - 3rem),white 100% )`
+      background: `linear-gradient(0deg, white 0%, rgba(255,255,255,0) 5rem, rgba(255,255,255,0) calc(100% - 5rem), white 100%)`
     }
   })

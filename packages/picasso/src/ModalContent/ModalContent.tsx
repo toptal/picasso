@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactNode, HTMLAttributes, useRef } from 'react'
+import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import { StandardProps } from '@toptal/picasso-shared'
@@ -14,10 +14,11 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
 
 export const ModalContent = forwardRef<HTMLDivElement, Props>(
   function ModalContent({ children, classes, className, style, ...rest }, ref) {
-    const modalContentRef = useCombinedRefs<HTMLDivElement>(
-      ref,
-      useRef<HTMLDivElement>(null)
-    )
+    /**
+     * This is necessary to ensure if ref is not passed in, there's still a ref to calculate
+     * when to show the scrollable shades or not.
+     */
+    const modalContentRef = useCombinedRefs<HTMLDivElement>(ref)
 
     const { top, bottom } = useScrollableShades(modalContentRef)
 
