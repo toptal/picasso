@@ -3,7 +3,7 @@ import { EmptyState } from '@toptal/picasso-lab'
 import { Container, Image } from '@toptal/picasso'
 
 const DefaultExample = () => (
-  <Container bottom='medium'>
+  <Container>
     <EmptyState.Page
       title='Memorandums page is empty'
       image={
