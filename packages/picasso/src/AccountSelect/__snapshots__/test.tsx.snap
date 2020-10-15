@@ -31,8 +31,17 @@ exports[`AccountSelect default render 1`] = `
                 <div
                   class="Container-flexStartAlignItems Container-flex UserBadge-root"
                 >
-                  <div
-                    class="Avatar-root Avatar-xsmall"
+                  PL
+                </p>
+              </div>
+              <div
+                class="Container-leftsmallMargin Container-flex Container-column UserBadge-infoContainer"
+              >
+                <div
+                  class="Container-centerAlignItems Container-flex"
+                >
+                  <h4
+                    class="MuiTypography-root Typography-headingSmall UserBadge-name MuiTypography-h4 MuiTypography-displayInline"
                   >
                     <div
                       class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
@@ -98,20 +107,17 @@ exports[`AccountSelect default render 1`] = `
                 <div
                   class="Container-flexStartAlignItems Container-flex UserBadge-root"
                 >
-                  <div
-                    class="Avatar-root Avatar-xsmall"
-                  >
-                    <div
-                      class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
-                    />
-                    <p
-                      class="MuiTypography-root Typography-invert Typography-bodyInherit Avatar-text MuiTypography-body1"
-                    >
-                      PL
-                    </p>
-                  </div>
-                  <div
-                    class="Container-leftsmallMargin Container-flex Container-column"
+                  PL
+                </p>
+              </div>
+              <div
+                class="Container-leftsmallMargin Container-flex Container-column UserBadge-infoContainer"
+              >
+                <div
+                  class="Container-centerAlignItems Container-flex"
+                >
+                  <h4
+                    class="MuiTypography-root Typography-headingSmall UserBadge-name MuiTypography-h4 MuiTypography-displayInline"
                   >
                     <div
                       class=""
@@ -160,10 +166,19 @@ exports[`AccountSelect default render 1`] = `
               href="#"
             >
               <div
-                class="Container-mediumPadding Container-centerAlignItems Container-spaceBetweenJustifyContent Container-flex"
+                class="Avatar-root Avatar-xsmall"
+              >
+                <img
+                  alt="Phil Leif 3"
+                  class="Image-root Avatar-image Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
+                  src="./jacqueline-with-flowers-1954-square.jpg"
+                />
+              </div>
+              <div
+                class="Container-leftsmallMargin Container-flex Container-column UserBadge-infoContainer"
               >
                 <div
-                  class="Container-flexStartAlignItems Container-flex UserBadge-root"
+                  class="Container-centerAlignItems Container-flex"
                 >
                   <div
                     class="Avatar-root Avatar-xsmall"
