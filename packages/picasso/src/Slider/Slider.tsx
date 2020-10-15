@@ -89,8 +89,7 @@ const DefaultTooltip = (
       disablePortal={disablePortal}
       compact={compact}
       preventOverflowOptions={{
-        boundariesElement: (boundariesElementRef as RefObject<HTMLElement>)
-          ?.current as HTMLElement,
+        boundariesElement: boundariesElementRef?.current,
         priority: ['left', 'right']
       }}
     >
@@ -135,7 +134,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     hideThumbOnEmpty && (typeof value === 'undefined' || value === null)
   const ValueLabelComponent = (UserDefinedTooltip ||
     DefaultTooltip(
-      wrapperRef as RefObject<HTMLElement>,
+      wrapperRef,
       isTooltipAlwaysVisible,
       disablePortal,
       compact
