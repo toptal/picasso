@@ -1,9 +1,11 @@
-import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import React, { forwardRef, ReactNode, HTMLAttributes, useRef } from 'react'
 import cx from 'classnames'
+import { withStyles } from '@material-ui/core/styles'
 import { StandardProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
+import { useCombinedRefs } from '../utils'
+import useScrollableShades from './use-scrollable-shades'
 
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Content of Modal */
@@ -12,13 +14,26 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
 
 export const ModalContent = forwardRef<HTMLDivElement, Props>(
   function ModalContent({ children, classes, className, style, ...rest }, ref) {
+    const modalContentRef = useCombinedRefs<HTMLDivElement>(
+      ref,
+      useRef<HTMLDivElement>(null)
+    )
+
+    const { top, bottom } = useScrollableShades(modalContentRef)
+
     return (
-      <div className={cx(classes.fadedWrapper)}>
-        <div className={cx(classes.fadedWrapperEffect)} />
+      <div className={cx(classes.shadedWrapper)}>
+        <div
+          className={cx(classes.shadedWrapperEffect, {
+            [classes.topShade]: top && !bottom,
+            [classes.bottomShade]: bottom && !top,
+            [classes.topBottomShades]: top && bottom
+          })}
+        />
         <div // eslint-disable-next-line react/jsx-props-no-spreading
           {...rest}
-          ref={ref}
           style={style}
+          ref={modalContentRef}
           className={cx(classes.modalContent, className)}
         >
           {children}

@@ -3,24 +3,32 @@ import { createStyles } from '@material-ui/core'
 export default () =>
   createStyles({
     modalContent: {
-      padding: '2rem',
+      padding: '1rem 2rem',
       flex: '1 1 auto',
       overflowY: 'auto'
     },
-    fadedWrapper: {
+    shadedWrapper: {
       display: 'flex',
       position: 'relative',
       flex: '1 1 auto',
       overflowY: 'hidden'
     },
-    fadedWrapperEffect: {
+    shadedWrapperEffect: {
       top: 0,
       left: 0,
       right: 0,
       bottom: 0,
       zIndex: 1,
       position: 'absolute',
-      pointerEvents: 'none',
-      background: `linear-gradient( 0deg,white 0%,rgba(255,255,255,0) 2rem,rgba(255,255,255,0) calc(100% - 2rem),white 100% )`
+      pointerEvents: 'none'
+    },
+    topShade: {
+      background: 'linear-gradient(180deg, white 0%, rgba(255,255,255,0) 3rem)'
+    },
+    bottomShade: {
+      background: 'linear-gradient(0deg, white 0%, rgba(255,255,255,0) 3rem)'
+    },
+    topBottomShades: {
+      background: `linear-gradient( 0deg,white 0%,rgba(255,255,255,0) 3rem,rgba(255,255,255,0) calc(100% - 3rem),white 100% )`
     }
   })
