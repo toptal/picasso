@@ -1,8 +1,8 @@
 import React, { FC } from 'react'
 
-import BaseTooltip, { Props as BaseProps } from '../BaseTooltip'
+import TooltipBase, { Props as BaseProps } from '../TooltipBase'
 
-export { PlacementType } from '../BaseTooltip'
+export { PlacementType } from '../TooltipBase'
 
 export type Props = Omit<BaseProps, 'preventOverflowOptions'> & {
   /** Allows tooltip to change its placement when it overflows */
@@ -10,7 +10,7 @@ export type Props = Omit<BaseProps, 'preventOverflowOptions'> & {
 }
 
 export const Tooltip: FC<Props> = ({ preventOverflow, ...props }) => (
-  <BaseTooltip
+  <TooltipBase
     preventOverflowOptions={{ enabled: preventOverflow }}
     {...props} // eslint-disable-line react/jsx-props-no-spreading
   />

@@ -130,7 +130,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
 
 const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoTooltip' })
 
-export const BaseTooltip: FunctionComponent<Props> = props => {
+export const TooltipBase: FunctionComponent<Props> = props => {
   const {
     content,
     children: originalChildren,
@@ -231,7 +231,7 @@ export const BaseTooltip: FunctionComponent<Props> = props => {
   )
 }
 
-BaseTooltip.defaultProps = {
+TooltipBase.defaultProps = {
   arrow: true,
   placement: 'top',
   variant: 'dark',
@@ -240,4 +240,4 @@ BaseTooltip.defaultProps = {
   delay: 'short'
 }
 
-export default BaseTooltip
+export default TooltipBase

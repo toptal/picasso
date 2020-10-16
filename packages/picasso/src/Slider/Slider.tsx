@@ -4,13 +4,15 @@ import React, {
   ComponentProps,
   RefObject,
   useRef,
-  useMemo
+  useMemo,
+  useState,
+  useEffect
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUISlider, { ValueLabelProps } from '@material-ui/core/Slider'
 import cx from 'classnames'
 
-import Tooltip from '../BaseTooltip'
+import Tooltip from '../TooltipBase'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme, Props>(styles)
@@ -130,24 +132,34 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     ...classes
   } = useStyles(props)
   const wrapperRef = useRef(null)
+  const [shouldRenderLabel, setShouldRenderLabel] = useState(false)
+
+  useEffect(() => {
+    if (wrapperRef?.current) {
+      setShouldRenderLabel(true)
+    }
+  }, [])
+
   const isTooltipAlwaysVisible = tooltip === 'on'
   const isThumbHidden =
     hideThumbOnEmpty && (typeof value === 'undefined' || value === null)
   const ValueLabelComponent = useMemo(
     () =>
-      (UserDefinedTooltip ||
-        DefaultTooltip(
-          wrapperRef,
-          isTooltipAlwaysVisible,
-          disablePortal,
-          compact
-        )) as typeof UserDefinedTooltip,
+      shouldRenderLabel
+        ? ((UserDefinedTooltip ||
+            DefaultTooltip(
+              wrapperRef,
+              isTooltipAlwaysVisible,
+              disablePortal,
+              compact
+            )) as typeof UserDefinedTooltip)
+        : undefined,
     [
-      wrapperRef,
       isTooltipAlwaysVisible,
       disablePortal,
       compact,
-      UserDefinedTooltip
+      UserDefinedTooltip,
+      shouldRenderLabel
     ]
   )
 
