@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.33.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.32.3...@toptal/picasso-lab@2.33.0) (2020-10-16)
+
+
+### Features
+
+* **EmptyState:** add Page and List empty components  ([#1556](https://github.com/toptal/picasso/issues/1556)) ([76e76b3](https://github.com/toptal/picasso/commit/76e76b3f1682ffe7a79553d5a59e85cdab3dc2ef))
+
+
+
+
+
 ## [2.32.3](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.32.2...@toptal/picasso-lab@2.32.3) (2020-09-23)
 
 
