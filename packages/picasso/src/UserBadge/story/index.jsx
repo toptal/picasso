@@ -32,7 +32,7 @@ page
     title: 'Custom',
     waitUntilImagesLoaded: true
   })
-  .addExample('UserBadge/story/Title.example.jsx', {
+  .addExample('UserBadge/story/Title.example.tsx', {
     title: 'With Title',
     waitUntilImagesLoaded: true
   })
