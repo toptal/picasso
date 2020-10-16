@@ -21,13 +21,23 @@ export default ({ palette }: Theme) =>
       }
     },
     content: {
-      fontSize: '0.875rem',
-      lineHeight: '1.375em',
+      fontSize: '0.875rem !important',
+      lineHeight: '1.375rem !important',
       fontWeight: 'normal',
       color: palette.blue.main
     },
     icon: {
+      width: '1rem',
+      height: '1rem',
       color: palette.grey.dark
+    },
+    iconLeft: {
+      marginLeft: '0 !important',
+      marginRight: '0.5rem'
+    },
+    iconRight: {
+      marginRight: '0 !important',
+      marginLeft: '0.5rem'
     },
     active: {},
     disabled: {},
