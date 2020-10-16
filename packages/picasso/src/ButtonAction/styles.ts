@@ -1,6 +1,6 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
-export default ({ palette }: Theme) =>
+export default ({ palette, typography }: Theme) =>
   createStyles({
     root: {
       border: 'none',
@@ -21,10 +21,23 @@ export default ({ palette }: Theme) =>
       }
     },
     content: {
-      fontSize: '0.875rem !important',
-      lineHeight: '1.375rem !important',
       fontWeight: 'normal',
       color: palette.blue.main
+    },
+    small: {
+      '& $content': {
+        fontSize: '0.875rem',
+        lineHeight: '1.375rem'
+      },
+      '& $iconLeft': {
+        marginLeft: 0
+      },
+      '& $iconRight': {
+        marginRight: 0
+      }
+    },
+    contentWithoutIcons: {
+      fontWeight: typography.fontWeights.semibold
     },
     icon: {
       width: '1rem',
@@ -32,11 +45,9 @@ export default ({ palette }: Theme) =>
       color: palette.grey.dark
     },
     iconLeft: {
-      marginLeft: '0 !important',
       marginRight: '0.5rem'
     },
     iconRight: {
-      marginRight: '0 !important',
       marginLeft: '0.5rem'
     },
     active: {},

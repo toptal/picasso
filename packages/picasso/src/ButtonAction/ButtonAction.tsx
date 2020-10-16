@@ -57,7 +57,8 @@ export const ButtonAction = forwardRef<HTMLButtonElement, Props>(
       content,
       icon: iconClassName,
       iconLeft,
-      iconRight
+      iconRight,
+      small
     } = classes
 
     const rootClassName = cx(
@@ -71,6 +72,13 @@ export const ButtonAction = forwardRef<HTMLButtonElement, Props>(
         [classes.loading]: loading
       },
       rootClass
+    )
+
+    const contentClassName = cx(
+      {
+        [classes.contentWithoutIcons]: !icon
+      },
+      content
     )
 
     const usedIcon = loading ? loaderIcon : icon
@@ -87,10 +95,11 @@ export const ButtonAction = forwardRef<HTMLButtonElement, Props>(
         variant='secondary'
         classes={{
           root: rootClassName,
-          content,
+          content: contentClassName,
           icon: iconClassName,
           iconLeft,
-          iconRight
+          iconRight,
+          small
         }}
         className={className}
         size='small'
