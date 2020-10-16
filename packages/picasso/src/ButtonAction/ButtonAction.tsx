@@ -34,6 +34,8 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoButtonAction'
 })
 
+const loaderIcon = <Loader size='small' variant='inherit' />
+
 export const ButtonAction = forwardRef<HTMLButtonElement, Props>(
   function ButtonAction(props, ref) {
     const {
@@ -50,7 +52,13 @@ export const ButtonAction = forwardRef<HTMLButtonElement, Props>(
     } = props
     const classes = useStyles(props)
 
-    const { root: rootClass, content, icon: iconClassName } = classes
+    const {
+      root: rootClass,
+      content,
+      icon: iconClassName,
+      iconLeft,
+      iconRight
+    } = classes
 
     const rootClassName = cx(
       {
@@ -65,7 +73,8 @@ export const ButtonAction = forwardRef<HTMLButtonElement, Props>(
       rootClass
     )
 
-    const usedIcon = loading ? <Loader size='small' variant='inherit' /> : icon
+    const usedIcon = loading ? loaderIcon : icon
+    const usedIconPosition = icon ? iconPosition : 'right'
 
     return (
       <Button
@@ -73,13 +82,15 @@ export const ButtonAction = forwardRef<HTMLButtonElement, Props>(
         {...rest}
         ref={ref}
         icon={usedIcon}
+        iconPosition={usedIconPosition}
         onClick={loading ? undefined : onClick}
-        iconPosition={iconPosition}
         variant='secondary'
         classes={{
           root: rootClassName,
           content,
-          icon: iconClassName
+          icon: iconClassName,
+          iconLeft,
+          iconRight
         }}
         className={className}
         size='small'
