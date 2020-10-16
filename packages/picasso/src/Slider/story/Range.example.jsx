@@ -10,7 +10,7 @@ const renderLabel = val => {
 }
 
 const Example = () => {
-  const [value, setValue] = React.useState([10, 20])
+  const [value, setValue] = React.useState([0, 23])
 
   const handleChange = (_, newValue) => {
     setValue(newValue)

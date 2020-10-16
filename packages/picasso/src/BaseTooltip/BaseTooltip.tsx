@@ -112,10 +112,9 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   open?: boolean
   /** Disables all listener */
   disableListeners?: boolean
-  /** Allows tooltip to change its placement when it overflows */
-  preventOverflow?: boolean
   /** Interal: Allows tooltip to change its placement when it overflows */
   preventOverflowOptions?: {
+    enabled?: boolean
     boundariesElement?: string | HTMLElement | null
     priority?: string[]
   }
@@ -145,7 +144,6 @@ export const BaseTooltip: FunctionComponent<Props> = props => {
     onOpen,
     variant,
     disableListeners,
-    preventOverflow,
     preventOverflowOptions,
     disablePortal,
     delay = 'short',
@@ -196,12 +194,11 @@ export const BaseTooltip: FunctionComponent<Props> = props => {
               element: arrowRef
             },
             preventOverflow: {
-              enabled: preventOverflow,
               boundariesElement: 'scrollParent',
               ...preventOverflowOptions
             },
             hide: {
-              enabled: preventOverflow
+              enabled: preventOverflowOptions?.enabled
             }
           }
         }
@@ -236,7 +233,6 @@ export const BaseTooltip: FunctionComponent<Props> = props => {
 
 BaseTooltip.defaultProps = {
   arrow: true,
-  preventOverflow: false,
   placement: 'top',
   variant: 'dark',
   disablePortal: false,

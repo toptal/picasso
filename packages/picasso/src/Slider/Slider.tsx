@@ -3,13 +3,14 @@ import React, {
   ChangeEvent,
   ComponentProps,
   RefObject,
-  useRef
+  useRef,
+  useMemo
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUISlider, { ValueLabelProps } from '@material-ui/core/Slider'
 import cx from 'classnames'
 
-import Tooltip from '../Tooltip/BaseTooltip'
+import Tooltip from '../BaseTooltip'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme, Props>(styles)
@@ -85,10 +86,10 @@ const DefaultTooltip = (
       placement={
         isTooltipAlwaysVisible ? (index === 0 ? 'left' : 'right') : 'top'
       }
-      preventOverflow={isTooltipAlwaysVisible}
       disablePortal={disablePortal}
       compact={compact}
       preventOverflowOptions={{
+        enabled: isTooltipAlwaysVisible,
         boundariesElement: boundariesElementRef?.current,
         priority: ['left', 'right']
       }}
@@ -132,13 +133,23 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
   const isTooltipAlwaysVisible = tooltip === 'on'
   const isThumbHidden =
     hideThumbOnEmpty && (typeof value === 'undefined' || value === null)
-  const ValueLabelComponent = (UserDefinedTooltip ||
-    DefaultTooltip(
+  const ValueLabelComponent = useMemo(
+    () =>
+      (UserDefinedTooltip ||
+        DefaultTooltip(
+          wrapperRef,
+          isTooltipAlwaysVisible,
+          disablePortal,
+          compact
+        )) as typeof UserDefinedTooltip,
+    [
       wrapperRef,
       isTooltipAlwaysVisible,
       disablePortal,
-      compact
-    )) as typeof UserDefinedTooltip
+      compact,
+      UserDefinedTooltip
+    ]
+  )
 
   return (
     <div className={wrapper} ref={wrapperRef}>
