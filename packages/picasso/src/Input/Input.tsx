@@ -128,10 +128,10 @@ const getMultilineLabel = (
   }
 
   if (hasRemainingCounter) {
-    return limitValue >= 0 ? ' characters left' : ' over the limit'
+    return limitValue >= 0 ? 'characters left' : 'over the limit'
   }
 
-  return ' characters entered'
+  return 'characters entered'
 }
 
 const LimitAdornment = (props: LimitAdornmentProps) => {
@@ -159,8 +159,7 @@ const LimitAdornment = (props: LimitAdornmentProps) => {
           [classes.limiterNegative]: isNegative
         })}
       >
-        {multiline ? Math.abs(limitValue) : limitValue}
-        {multilineLabel}
+        {multiline ? Math.abs(limitValue) : limitValue} {multilineLabel}
       </span>
     </InputAdornment>
   )
