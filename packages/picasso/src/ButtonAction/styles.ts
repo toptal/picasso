@@ -36,8 +36,10 @@ export default ({ palette, typography }: Theme) =>
         marginRight: 0
       }
     },
-    contentWithoutIcons: {
-      fontWeight: typography.fontWeights.semibold
+    iconless: {
+      '& $content': {
+        fontWeight: typography.fontWeights.semibold
+      }
     },
     icon: {
       width: '1rem',
