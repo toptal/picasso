@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 
 import TooltipBase, { Props as BaseProps } from '../TooltipBase'
 
-export { PlacementType } from '../TooltipBase'
+export * from '../TooltipBase'
 
 export type Props = Omit<BaseProps, 'preventOverflowOptions'> & {
   /** Allows tooltip to change its placement when it overflows */
