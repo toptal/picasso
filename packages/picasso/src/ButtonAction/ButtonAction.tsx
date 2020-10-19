@@ -57,7 +57,8 @@ export const ButtonAction = forwardRef<HTMLButtonElement, Props>(
       content,
       icon: iconClassName,
       iconLeft,
-      iconRight
+      iconRight,
+      small
     } = classes
 
     const rootClassName = cx(
@@ -65,10 +66,9 @@ export const ButtonAction = forwardRef<HTMLButtonElement, Props>(
         [classes.active]: active,
         [classes.focused]: focused,
         [classes.hovered]: hovered,
-        [classes.disabled]: disabled
-      },
-      {
-        [classes.loading]: loading
+        [classes.disabled]: disabled,
+        [classes.loading]: loading,
+        [classes.iconless]: !icon
       },
       rootClass
     )
@@ -90,7 +90,8 @@ export const ButtonAction = forwardRef<HTMLButtonElement, Props>(
           content,
           icon: iconClassName,
           iconLeft,
-          iconRight
+          iconRight,
+          small
         }}
         className={className}
         size='small'
