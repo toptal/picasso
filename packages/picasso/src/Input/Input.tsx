@@ -215,7 +215,7 @@ const EndAdornment = (props: EndAdornmentProps) => {
     return (
       <LimitAdornment
         charsLength={charsLength}
-        multiline={Boolean(multiline)}
+        multiline={multiline}
         counter={counter!}
         limit={limit}
       />
