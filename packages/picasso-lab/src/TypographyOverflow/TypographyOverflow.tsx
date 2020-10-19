@@ -7,7 +7,7 @@ import Ellipsis from '../Ellipsis'
 export interface Props extends BaseProps, TypographyProps {
   /** A typography which can possibly overflow */
   children?: ReactText
-  /** A content to show in tooltip when typography overflows. TypographyOverflow's children by default. */
+  /** A content to show in tooltip when typography overflows. By default, TypographyOverflow's children are used. */
   tooltipContent?: ReactNode
 }
 
