@@ -43,9 +43,16 @@ exports[`renders Modal 1`] = `
           </h3>
         </div>
         <div
-          class="ModalContent-root"
+          class="ModalContent-shadedWrapper"
         >
-          Modal test content
+          <div
+            class="ModalContent-shadedWrapperEffect"
+          />
+          <div
+            class="ModalContent-modalContent"
+          >
+            Modal test content
+          </div>
         </div>
         <div
           class="ModalActions-root"
