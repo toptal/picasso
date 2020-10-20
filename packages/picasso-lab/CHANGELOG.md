@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.34.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.33.0...@toptal/picasso-lab@2.34.0) (2020-10-20)
+
+
+### Features
+
+* **TypographyOverflow:**  add custom tooltipContent ([#1632](https://github.com/toptal/picasso/issues/1632)) ([c06f9f7](https://github.com/toptal/picasso/commit/c06f9f7855186dc13bb6addd9f087337c571e9a8))
+
+
+
+
+
 # [2.33.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.32.3...@toptal/picasso-lab@2.33.0) (2020-10-16)
 
 
