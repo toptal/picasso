@@ -45,13 +45,20 @@ exports[`renders PromptModal 1`] = `
           </h3>
         </div>
         <div
-          class="ModalContent-root"
+          class="ModalContent-shadedWrapper"
         >
-          <p
-            class="MuiTypography-root Typography-bodyMedium MuiTypography-body1"
+          <div
+            class="ModalContent-shadedWrapperEffect"
+          />
+          <div
+            class="ModalContent-modalContent"
           >
-            Test message
-          </p>
+            <p
+              class="MuiTypography-root Typography-bodyMedium MuiTypography-body1"
+            >
+              Test message
+            </p>
+          </div>
         </div>
         <div
           class="ModalActions-root"
@@ -168,13 +175,20 @@ exports[`showPrompt opens and closes modal on Submit action 2`] = `
               </h3>
             </div>
             <div
-              class="ModalContent-root"
+              class="ModalContent-shadedWrapper"
             >
-              <p
-                class="MuiTypography-root Typography-bodyMedium MuiTypography-body1"
+              <div
+                class="ModalContent-shadedWrapperEffect"
+              />
+              <div
+                class="ModalContent-modalContent"
               >
-                Test message
-              </p>
+                <p
+                  class="MuiTypography-root Typography-bodyMedium MuiTypography-body1"
+                >
+                  Test message
+                </p>
+              </div>
             </div>
             <div
               class="ModalActions-root"
@@ -269,13 +283,20 @@ exports[`showPrompt opens and closes modal on Submit action 3`] = `
               </h3>
             </div>
             <div
-              class="ModalContent-root"
+              class="ModalContent-shadedWrapper"
             >
-              <p
-                class="MuiTypography-root Typography-bodyMedium MuiTypography-body1"
+              <div
+                class="ModalContent-shadedWrapperEffect"
+              />
+              <div
+                class="ModalContent-modalContent"
               >
-                Test message
-              </p>
+                <p
+                  class="MuiTypography-root Typography-bodyMedium MuiTypography-body1"
+                >
+                  Test message
+                </p>
+              </div>
             </div>
             <div
               class="ModalActions-root"
@@ -370,40 +391,47 @@ exports[`showPrompt with input returns result on Submit action  1`] = `
               </h3>
             </div>
             <div
-              class="ModalContent-root"
+              class="ModalContent-shadedWrapper"
             >
-              <p
-                class="MuiTypography-root Typography-bodyMedium MuiTypography-body1"
-              >
-                Test message
-              </p>
               <div
-                class="Container-topxsmallMargin"
+                class="ModalContent-shadedWrapperEffect"
+              />
+              <div
+                class="ModalContent-modalContent"
               >
-                <div
-                  class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root PicassoInput-root OutlinedInput-rootFull OutlinedInput-rootMedium MuiInputBase-fullWidth MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+                <p
+                  class="MuiTypography-root Typography-bodyMedium MuiTypography-body1"
                 >
-                  <input
-                    aria-label="test-input"
-                    autocomplete="none"
-                    class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
-                    type="text"
-                    value="undefined"
-                  />
-                  <fieldset
-                    aria-hidden="true"
-                    class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
-                    style="padding-left: 8px;"
+                  Test message
+                </p>
+                <div
+                  class="Container-topxsmallMargin"
+                >
+                  <div
+                    class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root PicassoInput-root OutlinedInput-rootFull OutlinedInput-rootMedium MuiInputBase-fullWidth MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
                   >
-                    <legend
-                      class="PrivateNotchedOutline-legend"
-                      style="width: 0.01px;"
+                    <input
+                      aria-label="test-input"
+                      autocomplete="none"
+                      class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+                      type="text"
+                      value="undefined"
+                    />
+                    <fieldset
+                      aria-hidden="true"
+                      class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
+                      style="padding-left: 8px;"
                     >
-                      <span>
-                        ​
-                      </span>
-                    </legend>
-                  </fieldset>
+                      <legend
+                        class="PrivateNotchedOutline-legend"
+                        style="width: 0.01px;"
+                      >
+                        <span>
+                          ​
+                        </span>
+                      </legend>
+                    </fieldset>
+                  </div>
                 </div>
               </div>
             </div>
