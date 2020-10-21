@@ -23,7 +23,6 @@
   },
   "peerDependencies": {
     "@material-ui/core": "^4.11.0",
-    "@material-ui/icons": "^4.9.0",
     "@toptal/picasso": "^4.49.2",
     "@toptal/picasso-shared": "^1.11.1",
     "react": "^16.12.0",
