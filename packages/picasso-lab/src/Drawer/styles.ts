@@ -9,13 +9,12 @@ export default ({ palette }: Theme) =>
       position: 'absolute',
       left: 0,
       right: 0,
-      borderBottom: `1px solid ${palette.grey.lighter2}`
+      borderBottom: `1px solid ${palette.grey.lighter}`,
+      paddingLeft: '1.5rem',
+      paddingRight: '1.5rem'
     },
     title: {
       flexGrow: 1
-    },
-    closeButton: {
-      paddingRight: 0
     },
     content: {
       paddingTop: '4.3125rem'
