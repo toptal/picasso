@@ -1,4 +1,4 @@
-FROM node:14-alpine
+FROM node:15-alpine
 
 ARG NPM_TOKEN
 ENV NPM_TOKEN ${NPM_TOKEN}
