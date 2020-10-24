@@ -54,7 +54,7 @@
     "@types/jest": "^25.1.4",
     "@types/jest-image-snapshot": "^3.1.0",
     "@types/lodash": "^4.14.133",
-    "@types/puppeteer": "^1.19.0",
+    "@types/puppeteer": "^3.0.2",
     "@types/react-truncate": "^2.3.3",
     "@types/storybook__react": "^4.0.0",
     "@types/styled-components": "5.1.0",
