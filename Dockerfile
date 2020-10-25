@@ -48,10 +48,14 @@ RUN printf '//registry.npmjs.org/:_authToken=${NPM_TOKEN}\nalways-auth=true\n' >
 
 # Enables layer caching
 COPY --chown=node:node package.json yarn.lock ./
+# I know it's not optimal, will be optimized later
+COPY --chown=node:node packages/picasso/package.json ./packages/picasso/package.json
+COPY --chown=node:node packages/picasso-lab/package.json ./packages/picasso-lab/package.json
+COPY --chown=node:node packages/picasso-charts/package.json ./packages/picasso-charts/package.json
+COPY --chown=node:node packages/picasso-forms/package.json ./packages/picasso-forms/package.json
+COPY --chown=node:node packages/shared/package.json ./packages/shared/package.json
+COPY --chown=node:node packages/topkit-analytics-charts/package.json ./packages/topkit-analytics-charts/package.json
 
 RUN yarn install --frozen-lockfile
 
 COPY --chown=node:node . /app
-
-# restore symlinks if yarn install was cached
-RUN yarn install --frozen-lockfile --ignore-scripts
