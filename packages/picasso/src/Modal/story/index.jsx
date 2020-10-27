@@ -86,48 +86,10 @@ page
       })
     }
   })
-  // TODO: this example should be replaced with cypress test
-  // https://toptal-core.atlassian.net/browse/FX-1219
   .addExample('Modal/story/Tooltips.example.tsx', {
-    title: 'Two tooltips on the page',
-    effect: async (testPage, makeScreenshot) => {
-      // Remove carrent symbol
-      const hideInputCaretStyle = `
-        input {
-          caret-color: transparent !important;
-        }
-      `
-
-      await testPage.addStyleTag({ content: hideInputCaretStyle })
-
-      // open modal
-      await testPage.click('[data-testid="trigger"]')
-      await testPage.waitFor('[data-testid="datepicker"]')
-
-      // clear input value
-      await testPage.evaluate(() => {
-        const input = document.querySelector('[data-testid="datepicker"]')
-
-        input.value = ''
-      })
-
-      const input = await testPage.$('[data-testid="datepicker"]')
-
-      // open calendar
-      await input.click()
-
-      await testPage.waitFor('[data-testid="calendar"]')
-
-      const buttons = await testPage.$$('[data-testid="calendar"] button')
-      const button3rdNovember = buttons[10]
-
-      await button3rdNovember.click()
-
-      await makeScreenshot({
-        isFullScreen: true
-      })
-    }
-  })
+    // TODO title should be 1-2 words, title -> descripion
+    title: 'Two tooltips on the page'
+  }) // picasso-skip-visuals
   .addExample('Modal/story/Alignment.example.tsx', {
     title: 'Alignment',
     description: 'Demonstrate how `align` prop works',
