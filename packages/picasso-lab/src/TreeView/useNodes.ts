@@ -62,6 +62,7 @@ export const useNodes = (
   }, [])
   const dynamicNodes = useMemo(() => {
     const latestNodes = rootNode.descendants()
+
     return initialNodes.map<DynamicPointNode>(node => {
       const foundNode = latestNodes.find(
         (latestNode: HierarchyPointNode<TreeNodeInterface>) =>

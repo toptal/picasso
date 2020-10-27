@@ -88,6 +88,7 @@ const screenSizeToBreakpointKey = (size: number): BreakpointKeys => {
   } else if (size >= md && size < lg) {
     return 'large'
   }
+
   return 'extra-large'
 }
 

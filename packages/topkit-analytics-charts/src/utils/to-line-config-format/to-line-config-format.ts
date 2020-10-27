@@ -10,6 +10,7 @@ const toLineConfigFormat = (
   referenceLines.reduce(
     (lineConfig, { color }, index) => {
       lineConfig[generateReferenceKey(index)] = { variant: 'reference', color }
+
       return lineConfig
     },
     { ...lineConfig }

@@ -21,6 +21,7 @@ describe('Avatar', () => {
     const { container } = renderAvatar({
       name: 'Jacqueline Roque Bailey Armstrong'
     })
+
     expect(container).toMatchSnapshot()
   })
 
