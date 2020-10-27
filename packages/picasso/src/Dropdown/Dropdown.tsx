@@ -75,6 +75,7 @@ const useDropdownContext = () => {
       'Dropdown compound components cannot be rendered outside the Dropdown component'
     )
   }
+
   return context
 }
 
@@ -203,6 +204,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props & Partial<JssProps>>(
 
     const handleClickAway = (event: React.MouseEvent<Document>) => {
       const target = event.target
+
       if (anchorEl && target instanceof Node && anchorEl.contains(target)) {
         return
       }

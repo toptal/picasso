@@ -139,6 +139,7 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
         </Container>
       )
     }
+
     return null
   }
 

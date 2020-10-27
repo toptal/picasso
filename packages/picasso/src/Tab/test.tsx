@@ -22,6 +22,7 @@ const renderTab = (
 }
 
 let spiedOnTitleCase: jest.SpyInstance
+
 beforeEach(() => {
   spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
 })
@@ -59,6 +60,7 @@ describe('Tab', () => {
 
   test('should transform text to title case when Picasso titleCase property is true', () => {
     const LABEL_TEXT = 'Test vh2'
+
     renderTab({ label: LABEL_TEXT }, { titleCase: true })
 
     expect(spiedOnTitleCase).toBeCalledWith(LABEL_TEXT)

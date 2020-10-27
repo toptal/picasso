@@ -16,6 +16,7 @@ const FormContent = () => {
   const {
     input: { value: hide }
   } = useField('hide')
+
   return (
     <>
       <Form.Checkbox name='hide' label='Check to hide fields below' />
@@ -78,6 +79,7 @@ const api = {
       setTimeout(() => {
         if (values.hide || values.name?.first.toLowerCase() === 'bruce') {
           resolve('success')
+
           return
         }
 

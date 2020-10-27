@@ -13,6 +13,7 @@ import Checkbox, { Props } from './Checkbox'
 jest.mock('ap-style-title-case')
 
 let spiedOnTitleCase: jest.SpyInstance
+
 beforeEach(() => {
   spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
 })
@@ -65,6 +66,7 @@ test('renders indeterminate state', () => {
 
 test('should transform text to title case when Picasso titleCase property is true', () => {
   const LABEL_TEXT = 'abc ac4'
+
   renderCheckbox({ label: LABEL_TEXT }, { titleCase: true })
 
   expect(spiedOnTitleCase).toBeCalledWith(LABEL_TEXT)

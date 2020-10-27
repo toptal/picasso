@@ -15,6 +15,7 @@ const useEllipsis = () => {
 
   React.useEffect(() => {
     window.addEventListener('resize', measure)
+
     return () => {
       window.removeEventListener('resize', measure)
     }

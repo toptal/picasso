@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 
 const Example = () => {
   const [open, setOpen] = useState(false)
+
   return (
     <div>
       <Button data-testid='trigger' onClick={() => setOpen(!open)}>

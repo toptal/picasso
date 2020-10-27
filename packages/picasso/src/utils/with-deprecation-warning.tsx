@@ -14,6 +14,7 @@ const withDeprecationWarning = (oldName: string, newName?: string) =>
                     `.trim()
         )
       }, [])
+
       // eslint-disable-next-line react/jsx-props-no-spreading
       return <NewComponent {...props} />
     }
