@@ -1,10 +1,7 @@
 {
   "extends": "../../tsconfig.build.json",
   "compilerOptions": {
-    "outDir": "build",
-    "paths": {
-      "@toptal/*": ["node_modules/@toptal/*/src"]
-    }
+    "outDir": "build"
   },
   "include": ["src"]
 }
