@@ -9,7 +9,7 @@ const PACKAGES_COMPONENT_DECLARATION_FILE_REGEXP = /packages\/.*\/src\/(.*)\/\1.
 const { env } = process
 const isDevelopment = env.NODE_ENV !== 'production' && env.NODE_ENV !== 'test'
 
-const tsConfigFile = path.join(process.cwd(), './.storybook/tsconfig.json')
+const tsConfigFile = path.join(__dirname, './tsconfig.json')
 const threadLoaders = [{ loader: 'cache-loader' }, { loader: 'thread-loader' }]
 
 module.exports = {
@@ -23,11 +23,8 @@ module.exports = {
   typescript: {
     check: isDevelopment,
     checkOptions: {
-      configFile: tsConfigFile,
-      diagnosticOptions: {
-        semantic: true,
-        syntactic: true
-      }
+      tsconfig: tsConfigFile,
+      checkSyntacticErrors: true
     },
     reactDocgen: 'react-docgen-typescript',
     reactDocgenTypescriptOptions: {

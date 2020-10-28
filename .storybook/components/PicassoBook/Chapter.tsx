@@ -63,7 +63,7 @@ class Chapter extends Base {
     return section
   }
 
-  addTextSection = (text: string, options: Record<string, string>) => {
+  addTextSection = (text: string, options: Record<string, string> = {}) => {
     if (TEST_ENV === 'visual') {
       return this
     }

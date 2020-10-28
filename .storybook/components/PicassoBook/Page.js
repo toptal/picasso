@@ -33,14 +33,14 @@ class Page extends Base {
     return this
   }
 
-  createChapter = (title, info, options = {}) => {
+  createChapter = (title = undefined, info = undefined, options = {}) => {
     const chapter = new Chapter({ title, info, page: this, ...options })
     this.collection.push(chapter)
 
     return chapter
   }
 
-  createTabChapter = (title, info, options = {}) => {
+  createTabChapter = (title, info = undefined, options = {}) => {
     const chapter = new TabChapter({ title, info, page: this, ...options })
     this.collection.push(chapter)
 

@@ -27,8 +27,9 @@
       "@toptal/picasso-charts/*": ["packages/picasso-charts/src/*"],
       "*": ["@types/*"],
       "~/*": ["./*"]
-    }
+    },
+    "types": ["jest", "@testing-library/jest-dom"]
   },
-  "include": ["packages/*/src", "./cypress/integration", "./node_modules/cypress"],
+  "include": ["packages/*/src"],
   "exclude": ["packages/*/build"]
 }
