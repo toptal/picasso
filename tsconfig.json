@@ -28,7 +28,7 @@
       "*": ["@types/*"],
       "~/*": ["./*"]
     },
-    "types": ["jest", "@testing-library/jest-dom"]
+    "types": ["node", "jest", "@testing-library/jest-dom"]
   },
   "include": ["packages/*/src"],
   "exclude": ["packages/*/build"]
