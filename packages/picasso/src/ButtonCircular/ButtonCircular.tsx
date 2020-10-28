@@ -1,10 +1,8 @@
 import React, { ReactElement, MouseEvent, forwardRef, ElementType } from 'react'
-import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps, ButtonOrAnchorProps } from '@toptal/picasso-shared'
+import ButtonBase from '@material-ui/core/ButtonBase'
 
-import Button from '../Button'
-import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import styles from './styles'
 
 export type VariantType = 'primary' | 'flat' | 'transparent'
@@ -47,40 +45,18 @@ export const ButtonCircular = forwardRef<HTMLButtonElement, Props>(
       disabled,
       ...rest
     } = props
-    const classes = useStyles(props)
 
-    const { root: rootClass, focusVisible: focusVisibleClass } = classes
-
-    const variantClassName = classes[kebabToCamelCase(variant!)]
-
-    const rootClassName = cx(
-      {
-        [classes.active]: active,
-        [classes.focused]: focused,
-        [classes.hovered]: hovered,
-        [classes.disabled]: disabled
-      },
-      variantClassName,
-      rootClass
-    )
-
-    return (
-      <Button
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        {...rest}
-        ref={ref}
-        classes={{
-          root: rootClassName,
-          focusVisible: focusVisibleClass
-        }}
-        className={className}
-        size='small'
-        active={active}
-        hovered={hovered}
-        focused={focused}
-        disabled={disabled}
-      />
-    )
+return (
+    <ButtonBase
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
+      ref={ref}
+      className={className}
+      disabled={disabled}
+    >
+      T
+    </ButtonBase>
+)
   }
 )
 
