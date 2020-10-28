@@ -8,6 +8,7 @@ const findTopDomain = (chartData: ChartDataPoint[], xAxisKey: string) =>
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     chartData.reduce((acc, { [xAxisKey]: _, ...yValues }) => {
       const maxY = Math.max(...(Object.values(yValues) as number[]))
+
       return maxY >= acc ? maxY : acc
     }, BOTTOM_DOMAIN) + TOP_DOMAIN_OFFSET
   )

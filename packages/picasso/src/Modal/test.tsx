@@ -119,6 +119,7 @@ test('given multiple modals are opened, when navigate from page then all modals 
 
   const TestComponent = () => {
     const [showPageWithModals, setShowPageWithModals] = useState(true)
+
     return (
       <div>
         {showPageWithModals ? <PageWithModals /> : <SimplePage />}
@@ -144,6 +145,7 @@ test('given multiple modals are opened, when navigate from page then all modals 
 
   // Switch to other page
   const switchPages = getByText('Switch pages')
+
   fireEvent.click(switchPages)
 
   // Check all modals were auto-closed

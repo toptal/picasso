@@ -166,7 +166,7 @@ class Chapter extends Base {
     const sectionLinkId = normalize(sectionId)
     const permanentLink = generateUrl({
       host: getHost(),
-      kind: this.page.getPicassoSection(this.page.section),
+      kind: this.page.section,
       type: this.page.title,
       section: sectionId
     })

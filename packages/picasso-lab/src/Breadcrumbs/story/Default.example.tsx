@@ -30,6 +30,7 @@ const ExampleLink: typeof Link = props => <Link as={RouterLink} {...props} />
 const Nav = () => {
   const location = useLocation()
   const activeIndex = items.map(item => item.to).indexOf(location.pathname)
+
   return (
     <Breadcrumbs>
       {items.map((item, itemIndex) => (

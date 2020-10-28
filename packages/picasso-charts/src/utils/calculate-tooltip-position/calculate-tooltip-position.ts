@@ -35,6 +35,7 @@ export const getTooltipTranslate = ({
 
     return isInsideScreen ? restricted : viewbox[key]
   }
+
   return unrestricted
 }
 
@@ -73,6 +74,7 @@ export const calculateTooltipPosition = debounce(
     })
 
     const translateQuery = `translate(${translationX}px, ${translationY}px)`
+
     tooltipElem.style.transform = translateQuery
   },
   15

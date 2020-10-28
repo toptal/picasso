@@ -55,6 +55,7 @@ describe('DatePicker', () => {
     jest.advanceTimersByTime(600)
 
     const tooltip = getByText('tooltip content')
+
     expect(tooltip).toBeInTheDocument()
   })
 
@@ -76,6 +77,7 @@ describe('DatePicker', () => {
   describe('Input', () => {
     it('should display date in default displayDateFormat', () => {
       const { getByPlaceholderText } = renderDatePicker()
+
       expect(getByPlaceholderText(defaultProps.placeholder)).toHaveAttribute(
         'value',
         'Dec 24, 2020'
@@ -100,6 +102,7 @@ describe('DatePicker', () => {
         range: true,
         value: [new Date(2020, 11, 24), new Date(2020, 11, 27)]
       })
+
       expect(getByPlaceholderText(defaultProps.placeholder)).toHaveAttribute(
         'value',
         'Dec 24, 2020 - Dec 27, 2020'
@@ -143,6 +146,7 @@ describe('DatePicker', () => {
 
     it('should turn autoComplete off by default', () => {
       const { getByPlaceholderText } = renderDatePicker()
+
       expect(getByPlaceholderText(defaultProps.placeholder)).toHaveAttribute(
         'autocomplete',
         'off'
@@ -154,6 +158,7 @@ describe('DatePicker', () => {
         ...defaultProps,
         autoComplete: 'on'
       })
+
       expect(getByPlaceholderText(defaultProps.placeholder)).toHaveAttribute(
         'autocomplete',
         'on'

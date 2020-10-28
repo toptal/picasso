@@ -8,6 +8,7 @@ import Stepper, { Props } from './Stepper'
 jest.mock('ap-style-title-case')
 
 let spiedOnTitleCase: jest.SpyInstance
+
 beforeEach(() => {
   spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
 })
@@ -78,6 +79,7 @@ describe('Stepper', () => {
   test('should transform text to title case when Picasso titleCase property is true', () => {
     const STEP_1_TEXT = 'Test pb7'
     const STEP_2_TEXT = 'Test ap0'
+
     renderStepper({ steps: [STEP_1_TEXT, STEP_2_TEXT] }, { titleCase: true })
 
     expect(spiedOnTitleCase).toBeCalledTimes(2)

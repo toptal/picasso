@@ -64,14 +64,10 @@ class Page extends Base {
     }
   }
 
-  getPicassoSection(section) {
-    return section + '|Folder'
-  }
-
   generateHumanStories() {
     const page = this.toStoryBook()
-    const section = this.getPicassoSection(page.section)
-    const stories = storiesOf(section, module)
+    storiesOf(page.section, module)
+    const stories = storiesOf(`${page.section}/${page.title}`, module)
     stories.addWithChapters(page.title, page)
   }
 

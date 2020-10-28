@@ -19,6 +19,7 @@ const renderBreadcrumbsItem = (props: Props, picassoConfig?: PicassoConfig) => {
 }
 
 let spiedOnTitleCase: jest.SpyInstance
+
 beforeEach(() => {
   spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
 })
@@ -28,6 +29,7 @@ afterEach(() => {
 
 test('should transform text to title case when Picasso titleCase property is true', () => {
   const TEXT_CONTENT = 'Test ab3'
+
   renderBreadcrumbsItem(
     { active: false, children: TEXT_CONTENT },
     { titleCase: true }

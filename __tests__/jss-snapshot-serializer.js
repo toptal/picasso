@@ -43,6 +43,7 @@ const setClassName = (element, className) => {
   // eslint-disable-next-line no-undef
   if (element.className instanceof SVGAnimatedString) {
     element.className.baseVal = className
+
     return
   }
 
@@ -90,6 +91,7 @@ module.exports = {
 
     markElementsProcessed(elements)
     removeNonDeterministicClassParts(elements)
+
     return serialize(value)
   }
 }

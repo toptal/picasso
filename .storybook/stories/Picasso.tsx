@@ -13,7 +13,7 @@ import SUPPORT from '../../docs/SUPPORT.md'
 // @ts-ignore
 import API_PRINCIPLES from '../../docs/api-principles.md'
 
-storiesOf('Picasso|Folder', module)
+storiesOf('Picasso', module)
   .add('Readme', doc(README))
   .add('Changelog', doc(CHANGELOG))
   .add('Lab Changelog', doc(LAB_CHANGELOG))
