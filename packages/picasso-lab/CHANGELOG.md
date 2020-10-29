@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.35.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.34.2...@toptal/picasso-lab@2.35.0) (2020-10-29)
+
+
+### Features
+
+* accept node instead only text ([#1647](https://github.com/toptal/picasso/issues/1647)) ([48c830b](https://github.com/toptal/picasso/commit/48c830b94f23915b2946df00c50fd70fb722d937))
+
+
+
+
+
 ## [2.34.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.34.1...@toptal/picasso-lab@2.34.2) (2020-10-27)
 
 **Note:** Version bump only for package @toptal/picasso-lab
