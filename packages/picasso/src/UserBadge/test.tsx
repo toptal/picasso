@@ -9,15 +9,17 @@ const renderUserBadge = (
   children: React.ReactNode,
   props: OmitInternalProps<Props>
 ) => {
-  const { size, center, name, invert, renderName } = props
+  const { size, center, name, title, invert, renderName, renderTitle } = props
 
   return render(
     <UserBadge
       name={name}
+      title={title}
       size={size}
       center={center}
       invert={invert}
       renderName={renderName}
+      renderTitle={renderTitle}
     >
       {children}
     </UserBadge>
@@ -80,8 +82,17 @@ describe('UserBadge', () => {
   test('custom name', () => {
     const { container } = renderUserBadge(<Typography>QA tester</Typography>, {
       name: 'Joe Doe',
-      // eslint-disable-next-line react/display-name
       renderName: name => <div>{name}</div>
+    })
+
+    expect(container).toMatchSnapshot()
+  })
+
+  test('custom title', () => {
+    const { container } = renderUserBadge(<Typography>QA tester</Typography>, {
+      name: 'Joe Doe',
+      title: 'Custom Title',
+      renderTitle: title => <div>{title}</div>
     })
 
     expect(container).toMatchSnapshot()

@@ -10,6 +10,7 @@ const formInputs = (form: HTMLFormElement) =>
 
 const getInputs = (): HTMLInputElement[] => {
   if (typeof document === 'undefined') return []
+
   return flatMap(Array.from(document.forms), formInputs)
 }
 
@@ -18,6 +19,7 @@ const findInputWithError = (inputs: HTMLInputElement[], errors: {}) =>
 
 const scrollToError = (errors: object) => {
   const firstInput = findInputWithError(getInputs(), errors)
+
   if (!firstInput) return
 
   firstInput.focus({ preventScroll: true })
@@ -37,6 +39,7 @@ export default () => <T>(form: FormApi<T>) => {
 
   const scrollOnErrors = () => {
     const { errors = {}, submitErrors = {} } = state
+
     if (Object.keys(errors).length) {
       scrollToError(errors)
     } else if (Object.keys(submitErrors).length) {
@@ -47,11 +50,13 @@ export default () => <T>(form: FormApi<T>) => {
   // Rewrite submit function
   form.submit = () => {
     const result = originalSubmit.call(form)
+
     if (result && typeof result.then === 'function') {
       result.then(scrollOnErrors).catch(() => {})
     } else {
       scrollOnErrors()
     }
+
     return result
   }
 
