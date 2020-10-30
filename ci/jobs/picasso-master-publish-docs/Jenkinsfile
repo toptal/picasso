@@ -72,12 +72,16 @@ pipeline {
     stage('Sync docs to docs server') {
       steps {
         script {
-          targetBranch = params.BRANCH.replaceAll('/', '-')
+          // normalize branch name from feature/feat(icon)-blabla
+          targetBranch = params.BRANCH
+                          .replaceAll(/\/|\(/, '-')
+                          .replaceAll(/\)/, '')
+
 
           sh """
-                rsync -avz --delete -e ssh ${WORKSPACE}/deploy-docs/ docs@docs.staging.toptal.net:~/docs/picasso/${targetBranch} && \\
+                rsync -avz --delete -e ssh '${WORKSPACE}/deploy-docs/' 'docs@docs.staging.toptal.net:~/docs/picasso/${targetBranch}' && \\
                 rm -rf ./build
-                rm -rf ${WORKSPACE}/deploy-docs
+                rm -rf '${WORKSPACE}/deploy-docs'
               """
 
           if (targetBranch != 'master') {

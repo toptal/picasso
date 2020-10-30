@@ -29,6 +29,7 @@ const renderLabel = (
 }
 
 let spiedOnTitleCase: jest.SpyInstance
+
 beforeEach(() => {
   spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
 })
@@ -50,6 +51,7 @@ test('renders `white` variant', () => {
 
 test('should transform text to title case when Picasso titleCase property is true', () => {
   const TEXT_CONTENT = 'Test bk9'
+
   renderLabel(TEXT_CONTENT, {}, { titleCase: true })
 
   expect(spiedOnTitleCase).toBeCalledWith(TEXT_CONTENT)

@@ -9,5 +9,6 @@ const CHART_DATA = [
 
 test('get chart ticks', () => {
   const chartTicks = getChartTicks(CHART_DATA)
+
   expect(chartTicks).toEqual([0, 1, 2, 3])
 })

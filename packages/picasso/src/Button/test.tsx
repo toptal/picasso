@@ -34,6 +34,7 @@ const renderButton = (
 }
 
 let spiedOnTitleCase: jest.SpyInstance
+
 beforeEach(() => {
   spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
 })
@@ -61,6 +62,7 @@ test('onClick callback should not be fired when clicked button is in loading sta
 
 test('should transform text to title case when Picasso titleCase property is true', () => {
   const TEXT_CONTENT = 'Test bk9'
+
   renderButton(TEXT_CONTENT, { onClick: () => {} }, { titleCase: true })
 
   expect(spiedOnTitleCase).toBeCalledWith(TEXT_CONTENT)

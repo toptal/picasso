@@ -39,7 +39,16 @@ page
       await makeScreenshot()
     }
   })
-  .addExample(
-    'TypographyOverflow/story/GridWithControls.example.tsx',
-    'Grid With Controls'
-  ) // picasso-skip-visuals
+  .addExample('TypographyOverflow/story/CustomTooltip.example.tsx', {
+    title: 'Custom tooltip content',
+    effect: async (testPage, makeScreenshot) => {
+      /**
+       * TODO: Revert to testPage.hover once the issue below is fixed
+       * https://github.com/puppeteer/puppeteer/issues/4820
+       */
+      // When ellipsed checkbox's label is hovered then tooltip should appear
+      await testPage.click('[data-testid="ellipsed-text"]')
+      await testPage.waitFor(600)
+      await makeScreenshot()
+    }
+  })

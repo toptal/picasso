@@ -53,4 +53,5 @@ RUN yarn install --frozen-lockfile
 
 COPY --chown=node:node . /app
 
-RUN yarn install --frozen-lockfile
+# restore symlinks if yarn install was cached
+RUN yarn install --frozen-lockfile --ignore-scripts
