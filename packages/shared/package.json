@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-shared",
-  "version": "1.16.4",
+  "version": "1.16.5",
   "description": "Shared types, utils for Picasso internal usage",
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-shared#readme",

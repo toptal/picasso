@@ -37,5 +37,5 @@ page
       use 'as' property.
     `
   })
-  .addExample('Typography/story/Underline.example.jsx', 'Underline')
+  .addExample('Typography/story/Decoration.example.tsx', 'Decoration')
   .addExample('Typography/story/LineThrough.example.jsx', 'Line through')

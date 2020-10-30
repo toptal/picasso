@@ -42,5 +42,6 @@ test('convert line config', () => {
   }
 
   const convertedLineConfig = toLineConfigFormat(LINE_CONFIG, REF_DATA)
+
   expect(convertedLineConfig).toEqual(EXPECTED_LINE_CONFIG)
 })

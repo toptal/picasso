@@ -34,6 +34,7 @@ let id = 0
 
 const createData = (name, talentType, company, role, country) => {
   id += 1
+
   return { id, name, talentType, company, role, country }
 }
 
