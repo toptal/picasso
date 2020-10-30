@@ -18,6 +18,7 @@ export const Ellipsis: FunctionComponent<Props> = ({
 }: Props) => {
   let typography = React.Children.only(children) as ReactElement
   const { ref, isEllipsis } = useEllipsis()
+
   typography = React.cloneElement(typography, {
     ref
   })

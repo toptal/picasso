@@ -64,6 +64,24 @@ if needed.
     'Controlled selection'
   )
   .addExample('Autocomplete/story/FullWidth.example.jsx', 'Full width')
+  .addExample('Autocomplete/story/MenuWidth.example.jsx', {
+    title: 'Menu width',
+    effect: async (testPage, makeScreenshot) => {
+      const hideInputCaretStyle = `
+        input {
+          caret-color: transparent !important;
+        }
+      `
+
+      await testPage.addStyleTag({ content: hideInputCaretStyle })
+
+      await testPage.click('[role="combobox"]')
+      await testPage.waitFor(50)
+      await makeScreenshot({
+        isFullScreen: true
+      })
+    }
+  })
   .addExample('Autocomplete/story/Loading.example.jsx', 'Loading')
   .addExample('Autocomplete/story/Error.example.jsx', 'Error')
   .addExample('Autocomplete/story/WithIcons.example.jsx', 'With Icon')

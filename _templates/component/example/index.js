@@ -16,6 +16,7 @@ module.exports = {
         example: args.example
       })
     }
+
     return prompter.prompt([
       {
         type: 'input',

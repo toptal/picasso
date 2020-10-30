@@ -16,5 +16,6 @@ const ORDERED_CHART_DATA = [
 
 test('order chart data', () => {
   const ordered = orderData(CHART_DATA)
+
   expect(ordered).toEqual(ORDERED_CHART_DATA)
 })

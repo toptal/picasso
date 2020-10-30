@@ -54,6 +54,7 @@ const api = {
       setTimeout(() => {
         if (values.name.toLowerCase() === 'bruce') {
           resolve('success')
+
           return
         }
 
