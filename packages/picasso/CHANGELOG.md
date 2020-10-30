@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.109.5](https://github.com/toptal/picasso/compare/@toptal/picasso@4.109.4...@toptal/picasso@4.109.5) (2020-10-29)
+
+
+### Bug Fixes
+
+* **button:** add styles for transparent disabled button ([#1650](https://github.com/toptal/picasso/issues/1650)) ([3b5b170](https://github.com/toptal/picasso/commit/3b5b1704d4a2431f702e40469f2346944b0de195))
+
+
+
+
+
 ## [4.109.4](https://github.com/toptal/picasso/compare/@toptal/picasso@4.109.3...@toptal/picasso@4.109.4) (2020-10-27)
 
 **Note:** Version bump only for package @toptal/picasso

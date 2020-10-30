@@ -1,4 +1,4 @@
-import React, { ReactNode, ReactText } from 'react'
+import React, { ReactNode } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
 import { Tooltip, Typography, TypographyProps } from '@toptal/picasso'
 
@@ -6,7 +6,7 @@ import Ellipsis from '../Ellipsis'
 
 export interface Props extends BaseProps, TypographyProps {
   /** A typography which can possibly overflow */
-  children?: ReactText
+  children?: ReactNode
   /** A content to show in tooltip when typography overflows. By default, TypographyOverflow's children are used. */
   tooltipContent?: ReactNode
 }

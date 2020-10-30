@@ -66,8 +66,7 @@ class Page extends Base {
 
   generateHumanStories() {
     const page = this.toStoryBook()
-    storiesOf(page.section, module)
-    const stories = storiesOf(`${page.section}/${page.title}`, module)
+    const stories = storiesOf(page.section, module)
     stories.addWithChapters(page.title, page)
   }
 

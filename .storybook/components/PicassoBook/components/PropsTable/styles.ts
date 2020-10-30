@@ -64,11 +64,6 @@ export default ({ palette }: Theme) =>
       marginRight: '0.2em',
       marginBottom: '0.2em'
     },
-    tooltip: {
-      fontWeight: 600,
-      fontSize: '0.9em',
-      maxWidth: 'none'
-    },
     markdown: {
       '& code': {
         backgroundColor: 'rgb(236, 236, 236, 0.5)',

@@ -1,9 +1,6 @@
 import { waitForElements } from '../helpers'
 
 const disableClickHandlers = item => {
-  item.style = 'pointer-events: none; padding-left: 10px'
-
-  // forbid event click handlers
   item.addEventListener('click', e => {
     e.stopPropagation()
     e.preventDefault()
@@ -11,7 +8,8 @@ const disableClickHandlers = item => {
 }
 
 const removeCaret = item => {
-  item.children[0].querySelector('span').remove()
+  item.querySelector('.sidebar-expander').remove()
+  item.querySelector('.sidebar-svg-icon').remove()
 }
 
 const applyChildrenStyling = child => {
@@ -19,34 +17,54 @@ const applyChildrenStyling = child => {
 }
 
 const applyCategoryStyling = item => {
-  item.style = 'text-transform: uppercase;'
+  item.style = `
+    text-transform: uppercase;
+    color: rgba(51,51,51,0.5);
+    letter-spacing: 0.35em;
+    line-height: 24px;
+    padding-left: 20px;
+    pointer-events:none;
+    font-weight: 900;
+    font-size: 11px;
+  `
 }
 
-const autoExpandMenu = menuItems => {
-  const componentChildren = []
+const expandAll = (menuItems, api) => {
+  /*
+  In v5 there is an api.expandAll() method. It emits STORIES_EXPAND_ALL event.
+  The Treeview component is listening for this event and expands on event emit.
+  Code: https://github.com/atanasster/storybook/blob/1112cd1e76c6fc73425342f2c5c8bfc621a4fe33/lib/ui/src/components/sidebar/treeview/treeview.js#L313
+
+  In v6 there is still such a method. However, it's not listened by the new useExpanded hook.
+  Code: https://github.com/storybookjs/storybook/blob/d7dd6588cab918914409d443a4c09f156ea5c4e8/lib/ui/src/components/sidebar/useExpanded.ts#L43
+
+  That's why we need to click every item on by one and return to the initial one at the end.
+  */
+
+  const { path: initialPath } = api.getUrlState()
+
   menuItems.forEach(item => {
+    item.click()
+
     removeCaret(item)
 
     if (item.nextSibling && item.nextSibling.nodeName == 'DIV') {
-      componentChildren.push(item.nextSibling)
+      applyChildrenStyling(item.nextSibling)
     }
 
     applyCategoryStyling(item)
-    disableClickHandlers(item) // for future reference if we decide to get back to previous structure
-    item.remove()
+    disableClickHandlers(item)
   })
 
-  componentChildren.forEach(child => applyChildrenStyling(child))
+  api.navigate(initialPath)
 }
 
 export const scheduleWork = api => async () => {
   try {
-    // wait for Sidebar menu to be rendered
-    await waitForElements('section > a')
-    await api.expandAll()
+    const sidebarLinksSelector = 'section > a'
+    const menuItems = await waitForElements(sidebarLinksSelector)
 
-    const menuItems = await waitForElements('section > a')
-    autoExpandMenu(menuItems)
+    expandAll(menuItems, api)
   } catch (e) {
     console.warn('Can not find Picasso menu section items. Error: ', e)
   }
