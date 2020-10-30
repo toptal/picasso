@@ -105,6 +105,7 @@ const getProps = ({
       required
     }
   }
+
   return {
     error: Boolean(error)
   }

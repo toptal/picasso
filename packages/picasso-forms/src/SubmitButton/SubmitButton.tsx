@@ -10,6 +10,7 @@ export type Props = Omit<ButtonProps, 'type'> & {
 
 export const SubmitButton = (props: Props) => {
   const { submitting } = useFormState({ subscription: { submitting: true } })
+
   return (
     <Button
       type='submit'

@@ -22,6 +22,8 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   size?: SizeType<'xsmall' | 'small'>
   /** Title that is rendered on the right of name */
   title?: string
+  /** Function responsible for rendering the user's title with a custom component */
+  renderTitle?: (title: string, invert?: boolean) => ReactNode
   /** Invert color */
   invert?: boolean
   /**
@@ -42,6 +44,7 @@ export const UserBadge = forwardRef<HTMLDivElement, Props>(function UserBadge(
     renderName,
     size,
     title,
+    renderTitle,
     invert,
     center,
     children,
@@ -66,12 +69,22 @@ export const UserBadge = forwardRef<HTMLDivElement, Props>(function UserBadge(
   // if 'auto' then center if children are null
   const shouldCenter = center === true || (center === 'auto' && !children)
   const alignItems = shouldCenter ? 'center' : 'flex-start'
+  let userTitle
 
-  const userTitle = title && (
-    <Typography inline invert={invert} className={classes.title} size='medium'>
-      {title}
-    </Typography>
-  )
+  if (title) {
+    userTitle = renderTitle ? (
+      renderTitle(title, invert)
+    ) : (
+      <Typography
+        inline
+        invert={invert}
+        className={classes.title}
+        size='medium'
+      >
+        {title}
+      </Typography>
+    )
+  }
 
   const userName = renderName ? (
     renderName(name, invert)
@@ -98,8 +111,13 @@ export const UserBadge = forwardRef<HTMLDivElement, Props>(function UserBadge(
       style={style}
     >
       {UserBadgeAvatar}
-      <Container flex direction='column' left='small'>
-        <Container>
+      <Container
+        flex
+        direction='column'
+        left='small'
+        className={classes.infoContainer}
+      >
+        <Container flex alignItems='center'>
           {userName}
           {userTitle}
         </Container>

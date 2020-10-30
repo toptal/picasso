@@ -1,5 +1,4 @@
 import React, { forwardRef, ReactNode } from 'react'
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import SimpleReactCalendar from 'simple-react-calendar'
 import cx from 'classnames'

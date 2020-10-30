@@ -24,6 +24,7 @@ const renderOverviewBlock = (
 }
 
 let spiedOnTitleCase: jest.SpyInstance
+
 beforeEach(() => {
   spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
 })
@@ -33,6 +34,7 @@ afterEach(() => {
 
 test('should transform text to title case when Picasso titleCase property is true', () => {
   const LABEL_TEXT = 'abc dj4'
+
   renderOverviewBlock(
     'test abc123',
     { value: 'abc co5', label: LABEL_TEXT },
