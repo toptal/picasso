@@ -29,20 +29,15 @@ const applyCategoryStyling = item => {
   `
 }
 
-const expandAll = (menuItems, api) => {
-  /*
-  In v5 there is an api.expandAll() method. It emits STORIES_EXPAND_ALL event.
-  The Treeview component is listening for this event and expands on event emit.
-  Code: https://github.com/atanasster/storybook/blob/1112cd1e76c6fc73425342f2c5c8bfc621a4fe33/lib/ui/src/components/sidebar/treeview/treeview.js#L313
+const withSavingInitialPath = (cb, api) => {
+  const { path } = api.getUrlState()
+  const { hash } = window.location
+  const intitialPath = `${path}${hash ?? ''}`
+  cb()
+  api.navigate(intitialPath)
+}
 
-  In v6 there is still such a method. However, it's not listened by the new useExpanded hook.
-  Code: https://github.com/storybookjs/storybook/blob/d7dd6588cab918914409d443a4c09f156ea5c4e8/lib/ui/src/components/sidebar/useExpanded.ts#L43
-
-  That's why we need to click every item on by one and return to the initial one at the end.
-  */
-
-  const { path: initialPath } = api.getUrlState()
-
+const expandAll = menuItems => {
   menuItems.forEach(item => {
     item.click()
 
@@ -55,8 +50,6 @@ const expandAll = (menuItems, api) => {
     applyCategoryStyling(item)
     disableClickHandlers(item)
   })
-
-  api.navigate(initialPath)
 }
 
 export const scheduleWork = api => async () => {
@@ -64,7 +57,17 @@ export const scheduleWork = api => async () => {
     const sidebarLinksSelector = 'section > a'
     const menuItems = await waitForElements(sidebarLinksSelector)
 
-    expandAll(menuItems, api)
+    /*
+    In v5 there is an api.expandAll() method. It emits STORIES_EXPAND_ALL event.
+    The Treeview component is listening for this event and expands on event emit.
+    Code: https://github.com/atanasster/storybook/blob/1112cd1e76c6fc73425342f2c5c8bfc621a4fe33/lib/ui/src/components/sidebar/treeview/treeview.js#L313
+
+    In v6 there is still such a method. However, it's not listened by the new useExpanded hook.
+    Code: https://github.com/storybookjs/storybook/blob/d7dd6588cab918914409d443a4c09f156ea5c4e8/lib/ui/src/components/sidebar/useExpanded.ts#L43
+
+    That's why we need to click every item on by one and return to the initial one at the end.
+    */
+    withSavingInitialPath(() => expandAll(menuItems), api)
   } catch (e) {
     console.warn('Can not find Picasso menu section items. Error: ', e)
   }
