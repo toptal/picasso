@@ -27,6 +27,7 @@ const TestTypography: FunctionComponent<OmitInternalProps<Props>> = ({
 )
 
 let spiedOnTitleCase: jest.SpyInstance
+
 beforeEach(() => {
   spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
 })
@@ -63,6 +64,7 @@ describe('Typography', () => {
 
   test('should transform text to title case when titleCase property is true', () => {
     const TEXT_CONTENT = 'Test bh6'
+
     render(<TestTypography titleCase>{TEXT_CONTENT}</TestTypography>)
 
     expect(spiedOnTitleCase).toBeCalledWith(TEXT_CONTENT)

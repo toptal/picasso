@@ -3,6 +3,126 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.109.5](https://github.com/toptal/picasso/compare/@toptal/picasso@4.109.4...@toptal/picasso@4.109.5) (2020-10-29)
+
+
+### Bug Fixes
+
+* **button:** add styles for transparent disabled button ([#1650](https://github.com/toptal/picasso/issues/1650)) ([3b5b170](https://github.com/toptal/picasso/commit/3b5b1704d4a2431f702e40469f2346944b0de195))
+
+
+
+
+
+## [4.109.4](https://github.com/toptal/picasso/compare/@toptal/picasso@4.109.3...@toptal/picasso@4.109.4) (2020-10-27)
+
+**Note:** Version bump only for package @toptal/picasso
+
+
+
+
+
+## [4.109.3](https://github.com/toptal/picasso/compare/@toptal/picasso@4.109.2...@toptal/picasso@4.109.3) (2020-10-27)
+
+**Note:** Version bump only for package @toptal/picasso
+
+
+
+
+
+## [4.109.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.109.1...@toptal/picasso@4.109.2) (2020-10-21)
+
+**Note:** Version bump only for package @toptal/picasso
+
+
+
+
+
+## [4.109.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.109.0...@toptal/picasso@4.109.1) (2020-10-21)
+
+**Note:** Version bump only for package @toptal/picasso
+
+
+
+
+
+# [4.109.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.108.3...@toptal/picasso@4.109.0) (2020-10-15)
+
+
+### Features
+
+* **UserBadge:** extend `title` by adding `renderTitle` prop ([#1622](https://github.com/toptal/picasso/issues/1622)) ([6011e26](https://github.com/toptal/picasso/commit/6011e26187c46752f868c03b4a4aab7859a29c00))
+
+
+
+
+
+## [4.108.3](https://github.com/toptal/picasso/compare/@toptal/picasso@4.108.2...@toptal/picasso@4.108.3) (2020-10-13)
+
+
+### Bug Fixes
+
+* **tooltip:** revert the enter delay changes to interactive tooltip ([#1618](https://github.com/toptal/picasso/issues/1618)) ([b429576](https://github.com/toptal/picasso/commit/b4295769b9cc16eb3e898a28b2ac63da976dac87)), closes [#1617](https://github.com/toptal/picasso/issues/1617)
+
+
+
+
+
+## [4.108.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.108.1...@toptal/picasso@4.108.2) (2020-10-13)
+
+
+### Bug Fixes
+
+* **tooltip:** get rid of blinking from interactive tooltips ([#1617](https://github.com/toptal/picasso/issues/1617)) ([91086ee](https://github.com/toptal/picasso/commit/91086eefb89115b5d761d30f4e7cd3bbcd8ada83))
+
+
+
+
+
+## [4.108.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.108.0...@toptal/picasso@4.108.1) (2020-10-12)
+
+
+### Bug Fixes
+
+* **Autocomplete:** fixed menu placement for custom width ([#1615](https://github.com/toptal/picasso/issues/1615)) ([e7fb696](https://github.com/toptal/picasso/commit/e7fb6967700e145e75d9ebcad8e0ef68d986b32e))
+
+
+
+
+
+# [4.108.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.107.0...@toptal/picasso@4.108.0) (2020-10-12)
+
+
+### Features
+
+* **icons:** update org structure icons, add pod ([#1614](https://github.com/toptal/picasso/issues/1614)) ([d01a5a0](https://github.com/toptal/picasso/commit/d01a5a0dd523759f661edbd2e5b8395a01b51851))
+
+
+
+
+
+# [4.107.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.106.0...@toptal/picasso@4.107.0) (2020-10-12)
+
+
+### Features
+
+* **autocomplete:** add menuWidth prop ([#1612](https://github.com/toptal/picasso/issues/1612)) ([2e24c3f](https://github.com/toptal/picasso/commit/2e24c3f1fe149d360108e763ed2c1fe9a6833487))
+
+
+
+
+
+# [4.106.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.105.2...@toptal/picasso@4.106.0) (2020-10-08)
+
+
+### Features
+
+* **icon:** add org structure icons ([#1607](https://github.com/toptal/picasso/issues/1607)) ([b77d21c](https://github.com/toptal/picasso/commit/b77d21cb04b2464d085de003c1d3bbe5d6b31e2e))
+
+
+
+
+
 ## [4.105.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.105.1...@toptal/picasso@4.105.2) (2020-10-07)
 
 

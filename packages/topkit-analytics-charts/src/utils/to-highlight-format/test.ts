@@ -25,6 +25,7 @@ test('convert highlight data', () => {
     X_AXIS_KEY,
     label => label
   )
+
   expect(convertedHighlightsData).toEqual([
     { color: 'red', from: 0, to: 1 },
     { color: 'red', from: 3, to: 4 }
@@ -45,6 +46,7 @@ test('convert highlight data with label format', () => {
     X_AXIS_KEY,
     (label: string) => format(parseISO(label), 'MMM dd')
   )
+
   expect(convertedHighlightsData).toEqual([
     { color: 'red', from: 0, to: 1 },
     { color: 'red', from: 3, to: 4 }

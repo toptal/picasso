@@ -17,6 +17,7 @@ const renderTable = (
   ]
 ) => {
   const { titleCase } = cellProps
+
   return render(
     <Table>
       <Table.Head>
@@ -41,6 +42,7 @@ const renderTable = (
 }
 
 let spiedOnTitleCase: jest.SpyInstance
+
 beforeEach(() => {
   spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
 })
@@ -63,6 +65,7 @@ describe('Table', () => {
 
   test('should transform table header text to title case when Picasso titleCase property is true', () => {
     const HEADER_CELL_TEXT = 'Test sr2'
+
     renderTable({ titleCase: true }, {}, [HEADER_CELL_TEXT, 'a', 'b'])
 
     expect(spiedOnTitleCase).toBeCalledWith(HEADER_CELL_TEXT)
