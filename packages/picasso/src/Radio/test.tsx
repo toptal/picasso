@@ -31,6 +31,7 @@ const renderRadio = (
 }
 
 let spiedOnTitleCase: jest.SpyInstance
+
 beforeEach(() => {
   spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
 })
@@ -79,6 +80,7 @@ describe('radio button', () => {
 
   test('should transform label text to title case when Picasso titleCase property is true', () => {
     const LABEL_TEXT = 'Test bh6'
+
     renderRadio({ label: LABEL_TEXT }, { titleCase: true })
 
     expect(spiedOnTitleCase).toBeCalledWith(LABEL_TEXT)

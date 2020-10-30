@@ -34,6 +34,7 @@ const TestFormLabel: FunctionComponent<OmitInternalProps<Props>> = ({
 )
 
 let spiedOnTitleCase: jest.SpyInstance
+
 beforeEach(() => {
   spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
 })
@@ -72,6 +73,7 @@ describe('FormLabel', () => {
 
   test('should transform text to title case when Picasso titleCase property is true', () => {
     const TEXT_CONTENT = 'Test kb8'
+
     render(<TestFormLabel>{TEXT_CONTENT}</TestFormLabel>, undefined, {
       titleCase: true
     })

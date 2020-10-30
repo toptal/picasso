@@ -142,6 +142,7 @@ const CustomTooltip = ({ active, payload }: any) => {
   if (active) {
     // eslint-disable-next-line id-length
     const { x, infected, recovered, died } = payload[0].payload
+
     return (
       <Paper>
         <Container padded='xsmall'>

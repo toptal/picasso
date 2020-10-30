@@ -28,6 +28,7 @@ const normalizeArrowKey = (event: KeyboardEvent<HTMLInputElement>) => {
   if (keyCode >= 37 && keyCode <= 40 && key.indexOf('Arrow') !== 0) {
     return `Arrow${key}`
   }
+
   return key
 }
 

@@ -53,6 +53,8 @@ export interface Props
   renderOtherOption?: (value: string) => ReactNode
   /** Width of the component */
   width?: 'full' | 'shrink' | 'auto'
+  /** Width of the menu */
+  menuWidth?: string
   /** Shows the loading icon when options are loading */
   loading?: boolean
   /** Allow to show the other option in the list of options */
@@ -115,6 +117,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       options,
       getDisplayValue,
       style,
+      menuWidth,
       width,
       showOtherOption,
       onKeyDown,
@@ -273,6 +276,8 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
           {isOpen && inputWrapperRef.current && optionsMenu && (
             <Popper
               autoWidth
+              width={menuWidth}
+              placement='bottom-start'
               open={isOpen && !loading}
               anchorEl={inputWrapperRef.current}
               container={popperContainer}
