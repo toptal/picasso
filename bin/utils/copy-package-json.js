@@ -6,7 +6,9 @@ const { BUILD_FOLDER } = require('./constants')
 
 const copyPackageJson = packageRootDir => {
   log('')
-  log(`Copying package.json to build folder of the package: ${packageRootDir}`)
+  log(
+    `Copying package.json to build folder "${BUILD_FOLDER}" of the package: ${packageRootDir}`
+  )
 
   const rootPackageJson = path.resolve(packageRootDir, './package.json')
 

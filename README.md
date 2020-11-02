@@ -72,7 +72,7 @@ In order to run `yarn` commands we need to mount current `components` directory 
 | **yarn release:pre**        | Bump pre-release version in `package.json` and create new version git tag |
 | **yarn generate:component** | Generate a new component template                                         |
 | **yarn generate:example**   | Generate a new component component code example                           |
-| **yarn build**              | Build the library                                                         |
+| **yarn build:package**      | Build the packages                                                        |
 | **yarn build:storybook**    | Build Storybook as static website                                         |
 | **yarn symlink**            | Symlink current version of library for development                        |
 | **yarn symlink:off**        | Un-symlink current version of library for development                     |
