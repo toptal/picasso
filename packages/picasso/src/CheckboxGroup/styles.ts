@@ -7,7 +7,7 @@ export default () =>
       marginBottom: '-0.5em',
 
       '& > .picasso-checkbox': {
-        marginRight: '0.5em',
+        marginRight: '1em',
         marginBottom: '0.5em'
       }
     },
