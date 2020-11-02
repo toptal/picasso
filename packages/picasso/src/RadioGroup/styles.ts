@@ -7,6 +7,6 @@ export default () =>
     },
 
     labelWithRightSpacing: {
-      marginRight: '0.5em'
+      marginRight: '1em'
     }
   })
