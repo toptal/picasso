@@ -58,6 +58,8 @@ export const scheduleWork = api => async () => {
     const menuItems = await waitForElements(sidebarLinksSelector)
 
     /*
+    TODO: replace with api.expandAll when https://github.com/storybookjs/storybook/pull/12980 is merged.
+
     In v5 there is an api.expandAll() method. It emits STORIES_EXPAND_ALL event.
     The Treeview component is listening for this event and expands on event emit.
     Code: https://github.com/atanasster/storybook/blob/1112cd1e76c6fc73425342f2c5c8bfc621a4fe33/lib/ui/src/components/sidebar/treeview/treeview.js#L313
