@@ -6,11 +6,11 @@ exports[`Alert default render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Container-yellowVariant Container-smallPadding Container-rounded Container-flex"
+      class="Container-yellowVariant Container-smallPadding Container-spaceBetweenJustifyContent Container-rounded Container-flex"
       role="alert"
     >
       <div
-        class="Container-flex"
+        class="Container-flex Container-inline"
       >
         <div
           class="Container-rightsmallMargin"
