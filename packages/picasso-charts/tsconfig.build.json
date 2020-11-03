@@ -1,7 +1,7 @@
 {
   "extends": "../../tsconfig.build.json",
   "compilerOptions": {
-    "outDir": "build",
+    "outDir": "dist-package",
     "paths": {
       "@toptal/picasso/*": ["node_modules/@toptal/picasso/src/*"],
       "@toptal/*": ["node_modules/@toptal/*/src"]
