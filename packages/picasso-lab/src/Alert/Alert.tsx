@@ -1,7 +1,5 @@
 import React, { forwardRef, ReactNode, HTMLAttributes, MouseEvent } from 'react'
-import cx from 'classnames'
-import { BaseProps, JssProps } from '@toptal/picasso-shared'
-import { capitalize, makeStyles, Theme } from '@material-ui/core'
+import { BaseProps } from '@toptal/picasso-shared'
 import {
   CloseMinor16,
   Exclamation16 as AlertIcon,
@@ -9,10 +7,12 @@ import {
   Info16 as Info
 } from '@toptal/picasso/Icon'
 import { Button, Container, Typography } from '@toptal/picasso'
+import { VariantType as ContainerVariants } from '@toptal/picasso/Container'
 
-import styles from './styles'
-
-export type VariantType = 'red' | 'green' | 'blue' | 'yellow'
+export type VariantType = Extract<
+  'red' | 'green' | 'yellow' | 'blue',
+  ContainerVariants
+>
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Main content of the Alert */
@@ -23,89 +23,64 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   variant?: VariantType
 }
 
-const renderAlertIcon = (props: Props & JssProps) => {
-  const {
-    variant,
-    classes: { icon }
-  } = props
-
+const renderAlertIcon = (variant: Props['variant']) => {
   switch (variant) {
     case 'red':
-      return <AlertIcon color='red' className={icon} />
+      return <AlertIcon color='red' />
 
     case 'green':
-      return <Tick color='green' className={icon} />
+      return <Tick color='green' />
 
     case 'blue':
-      return <Info color='light-blue' className={icon} />
+      return <Info color='light-blue' />
 
     case 'yellow':
-      return <AlertIcon color='yellow' className={icon} />
+      return <AlertIcon color='yellow' />
   }
 }
 
-const renderAlertCloseButton = ({
-  onClose,
-  classes: { close, closeIcon }
-}: Props & JssProps) => (
-  <Button.Circular
-    onClick={onClose}
-    className={close}
-    title='Close alert'
-    icon={<CloseMinor16 className={closeIcon} />}
-  />
+const renderAlertCloseButton = (onClose: Props['onClose']) => (
+  <Container left='small'>
+    <Button.Circular
+      variant='transparent'
+      onClick={onClose}
+      title='Close alert'
+      icon={<CloseMinor16 color='dark-grey' />}
+    />
+  </Container>
 )
 
-const renderAlertContent = (props: Props & JssProps) => {
-  const {
-    children,
-    onClose,
-    classes: { content, contentWithCloseButton, iconWrapper }
-  } = props
+const renderAlertContent = (props: Props) => {
+  const { children, variant, onClose } = props
 
   return (
-    <>
-      <Container flex alignItems='center' className={iconWrapper}>
-        {renderAlertIcon(props)}
-      </Container>
-      <Typography
-        size='medium'
-        as='div'
-        color='black'
-        className={cx(content, {
-          [contentWithCloseButton]: onClose
-        })}
-      >
+    <Container flex>
+      <Container right='small'>{renderAlertIcon(variant)}</Container>
+      <Typography size='medium' as='div' color='black'>
         {children}
       </Typography>
-      {onClose && renderAlertCloseButton(props)}
-    </>
+      {onClose && renderAlertCloseButton(onClose)}
+    </Container>
   )
 }
-
-const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'Alert'
-})
 
 export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
   props,
   ref
 ) {
-  const classes = useStyles(props)
   const { variant, className } = props
 
   return (
     <Container
       flex
-      className={cx(
-        classes[`alert${capitalize(variant as string)}`],
-        classes.alert,
-        className
-      )}
+      rounded
+      padded='small'
       role='alert'
       ref={ref}
+      variant={variant}
+      className={className}
     >
-      {renderAlertContent({ ...props, classes })}
+      {renderAlertContent(props)}
     </Container>
   )
 })
