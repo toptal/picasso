@@ -161,8 +161,8 @@ const LimitAdornment = (props: LimitAdornmentProps) => {
       })}
     >
       <span
-        className={cx(classes.limiter, {
-          [classes.limiterNegative]: charsTillLimit < 0
+        className={cx(classes.limiterLabel, {
+          [classes.limiterLabelError]: charsTillLimit <= 0
         })}
       >
         {multiline ? Math.abs(charsTillLimit) : charsTillLimit} {multilineLabel}
@@ -291,7 +291,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
         root: cx(classes.root, {
           [classes.rootMultiline]: multiline,
           [classes.rootMultilineLimiter]:
-            multiline && hasCounter(counter!, limit)
+            multiline && hasCounter({ counter, limit })
         }),
         input: cx(classes.input, {
           [classes.inputMultilineResizable]: multiline && multilineResizable
