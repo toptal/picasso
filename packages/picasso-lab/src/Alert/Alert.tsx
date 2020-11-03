@@ -1,5 +1,5 @@
 import React, { forwardRef, ReactNode, HTMLAttributes, MouseEvent } from 'react'
-import { BaseProps } from '@toptal/picasso-shared'
+import { BaseProps, JssProps } from '@toptal/picasso-shared'
 import {
   CloseMinor16,
   Exclamation16 as AlertIcon,
@@ -8,6 +8,9 @@ import {
 } from '@toptal/picasso/Icon'
 import { Button, Container, Typography } from '@toptal/picasso'
 import { VariantType as ContainerVariants } from '@toptal/picasso/Container'
+import { makeStyles, Theme } from '@material-ui/core'
+
+import styles from './styles'
 
 export type VariantType = Extract<
   'red' | 'green' | 'yellow' | 'blue',
@@ -22,6 +25,10 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Style variant of Alert */
   variant?: VariantType
 }
+
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'Alert'
+})
 
 const renderAlertIcon = (variant: Props['variant']) => {
   switch (variant) {
@@ -50,13 +57,18 @@ const renderAlertCloseButton = (onClose: Props['onClose']) => (
   </Container>
 )
 
-const renderAlertContent = (props: Props) => {
-  const { children, variant, onClose } = props
+const renderAlertContent = (props: Props & JssProps) => {
+  const { children, variant, onClose, classes } = props
 
   return (
     <Container flex>
       <Container right='small'>{renderAlertIcon(variant)}</Container>
-      <Typography size='medium' as='div' color='black'>
+      <Typography
+        size='medium'
+        as='div'
+        color='black'
+        className={classes.content}
+      >
         {children}
       </Typography>
       {onClose && renderAlertCloseButton(onClose)}
@@ -68,6 +80,7 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
   props,
   ref
 ) {
+  const classes = useStyles(props)
   const { variant, className } = props
 
   return (
@@ -80,7 +93,7 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
       variant={variant}
       className={className}
     >
-      {renderAlertContent(props)}
+      {renderAlertContent({ ...props, classes })}
     </Container>
   )
 })
