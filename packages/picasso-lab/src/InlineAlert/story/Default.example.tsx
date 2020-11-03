@@ -1,40 +1,45 @@
 import React from 'react'
 import { Container, Typography } from '@toptal/picasso'
-import { Alert } from '@toptal/picasso-lab'
+import { InlineAlert } from '@toptal/picasso-lab'
 
 const Example = () => (
   <div>
     <Container bottom={1}>
       <Container bottom={1}>
         <Typography variant='heading' size='small'>
-          Red
+          Yellow (default)
         </Typography>
       </Container>
-      <Alert variant='red'>This is a critical warning alert.</Alert>
+      <InlineAlert>This is a warning inline alert.</InlineAlert>
     </Container>
+
     <Container bottom={1}>
       <Container bottom={1}>
         <Typography variant='heading' size='small'>
-          Yellow
+          Red
         </Typography>
       </Container>
-      <Alert variant='yellow'>This is a warning alert.</Alert>
+      <InlineAlert variant='red'>
+        This is a critical warning inline alert.
+      </InlineAlert>
     </Container>
+
     <Container bottom={1}>
       <Container bottom={1}>
         <Typography variant='heading' size='small'>
           Blue
         </Typography>
       </Container>
-      <Alert variant='blue'>This is a info alert.</Alert>
+      <InlineAlert variant='blue'>This is a info inline alert.</InlineAlert>
     </Container>
+
     <Container bottom={1}>
       <Container bottom={1}>
         <Typography variant='heading' size='small'>
           Green
         </Typography>
       </Container>
-      <Alert variant='green'>This is a success alert.</Alert>
+      <InlineAlert variant='green'>This is a success inline alert.</InlineAlert>
     </Container>
   </div>
 )
