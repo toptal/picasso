@@ -3,6 +3,63 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.36.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.36.0...@toptal/picasso-lab@2.36.1) (2020-11-02)
+
+**Note:** Version bump only for package @toptal/picasso-lab
+
+
+
+
+
+# [2.36.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.35.0...@toptal/picasso-lab@2.36.0) (2020-11-02)
+
+
+### Features
+
+* alert ([#1649](https://github.com/toptal/picasso/issues/1649)) ([f0d8ca2](https://github.com/toptal/picasso/commit/f0d8ca233254f29c7d1dda0a9f3c6c32e71bf295))
+
+
+
+
+
+# [2.35.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.34.2...@toptal/picasso-lab@2.35.0) (2020-10-29)
+
+
+### Features
+
+* accept node instead only text ([#1647](https://github.com/toptal/picasso/issues/1647)) ([48c830b](https://github.com/toptal/picasso/commit/48c830b94f23915b2946df00c50fd70fb722d937))
+
+
+
+
+
+## [2.34.2](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.34.1...@toptal/picasso-lab@2.34.2) (2020-10-27)
+
+**Note:** Version bump only for package @toptal/picasso-lab
+
+
+
+
+
+## [2.34.1](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.34.0...@toptal/picasso-lab@2.34.1) (2020-10-21)
+
+**Note:** Version bump only for package @toptal/picasso-lab
+
+
+
+
+
+# [2.34.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.33.0...@toptal/picasso-lab@2.34.0) (2020-10-20)
+
+
+### Features
+
+* **TypographyOverflow:**  add custom tooltipContent ([#1632](https://github.com/toptal/picasso/issues/1632)) ([c06f9f7](https://github.com/toptal/picasso/commit/c06f9f7855186dc13bb6addd9f087337c571e9a8))
+
+
+
+
+
 # [2.33.0](https://github.com/toptal/picasso/compare/@toptal/picasso-lab@2.32.3...@toptal/picasso-lab@2.33.0) (2020-10-16)
 
 

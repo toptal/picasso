@@ -18,6 +18,7 @@ const TestMenuItem: FunctionComponent<OmitInternalProps<Props>> = ({
 )
 
 let spiedOnTitleCase: jest.SpyInstance
+
 beforeEach(() => {
   spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
 })
@@ -42,6 +43,7 @@ describe('MenuItem', () => {
 
   test('should transform text to title case when Picasso titleCase property is true', () => {
     const TEXT_CONTENT = 'Test pb8'
+
     render(<TestMenuItem>{TEXT_CONTENT}</TestMenuItem>, undefined, {
       titleCase: true
     })

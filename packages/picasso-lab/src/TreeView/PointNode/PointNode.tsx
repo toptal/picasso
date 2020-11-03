@@ -25,6 +25,7 @@ export const PointNode = forwardRef<any, Props>(
     }>({})
     const transform = useMemo(() => {
       const xPosition = node.x - nodeWidth / 2
+
       return `translate(${xPosition},${node.y})`
     }, [node.x, node.y])
 

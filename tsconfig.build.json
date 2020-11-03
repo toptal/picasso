@@ -5,6 +5,9 @@
     "**/*.example.tsx",
     "**/test.jsx",
     "**/test.tsx",
-    "**/story/index.jsx"
+    "**/*.spec.js",
+    "**/*.spec.ts",
+    "**/story/index.jsx",
+    "**/story/index.tsx"
   ]
 }

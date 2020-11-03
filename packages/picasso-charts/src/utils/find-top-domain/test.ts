@@ -36,5 +36,6 @@ const CHART_DATA = [
 
 test('find top domain', () => {
   const topDomain = findTopDomain(CHART_DATA, 'x')
+
   expect(topDomain).toEqual(5)
 })

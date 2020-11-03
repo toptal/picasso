@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "./build",
+    "outDir": "dist-package",
     "module": "ESNext",
     "moduleResolution": "node",
     "target": "es2015",
@@ -29,6 +29,6 @@
       "~/*": ["./*"]
     }
   },
-  "include": ["packages/*/src"],
-  "exclude": ["packages/*/build"]
+  "include": ["packages/*/src", "./cypress/integration", "./node_modules/cypress"],
+  "exclude": ["packages/*/dist-package"]
 }
