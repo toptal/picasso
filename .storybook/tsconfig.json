@@ -8,6 +8,6 @@
   "exclude": [
     "../packages/*/src/**/test.jsx",
     "../packages/*/src/**/test.tsx",
-    "../packages/*/build"
+    "../packages/*/dist-package"
   ]
 }
