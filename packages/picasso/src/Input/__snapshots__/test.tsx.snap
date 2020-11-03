@@ -196,17 +196,6 @@ exports[`shows counter for multiline input 1`] = `
         class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputMultiline MuiOutlinedInput-inputMultiline OutlinedInput-inputMultiline MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
         rows="4"
       />
-      <div
-        class="MuiInputAdornment-root InputAdornment-root PicassoInput-limiterMultiline MuiInputAdornment-positionEnd"
-        data-testid="limit-adornment-multiline-label"
-      >
-        <span
-          class="PicassoInput-limiter"
-        >
-          10
-           characters left
-        </span>
-      </div>
       <fieldset
         aria-hidden="true"
         class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
@@ -240,16 +229,6 @@ exports[`shows counter for regular input 1`] = `
         type="text"
         value=""
       />
-      <div
-        class="MuiInputAdornment-root InputAdornment-root MuiInputAdornment-positionEnd"
-        data-testid="limit-adornment-multiline-label"
-      >
-        <span
-          class="PicassoInput-limiter"
-        >
-          10
-        </span>
-      </div>
       <fieldset
         aria-hidden="true"
         class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline"
@@ -275,10 +254,11 @@ exports[`shows excess chars for multiline input with exceeded limit 1`] = `
   data-testid="limit-adornment-multiline-label"
 >
   <span
-    class="PicassoInput-limiter PicassoInput-limiterNegative"
+    class="PicassoInput-limiterLabel PicassoInput-limiterLabelError"
   >
     1
-     over the limit
+     
+    over the limit
   </span>
 </div>
 `;
@@ -289,10 +269,11 @@ exports[`shows remaining chars for for multiline input with limit 1`] = `
   data-testid="limit-adornment-multiline-label"
 >
   <span
-    class="PicassoInput-limiter PicassoInput-limiterNegative"
+    class="PicassoInput-limiterLabel PicassoInput-limiterLabelError"
   >
     0
-     characters left
+     
+    characters left
   </span>
 </div>
 `;
