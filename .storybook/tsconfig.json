@@ -7,6 +7,6 @@
   "include": ["../packages", "components"],
   "exclude": [
     "../packages/*/src/**/test.@(tsx|jsx|ts|js)",
-    "../packages/*/build"
+    "../packages/*/dist-package"
   ]
 }

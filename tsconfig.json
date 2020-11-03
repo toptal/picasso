@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "./build",
+    "outDir": "dist-package",
     "module": "ESNext",
     "moduleResolution": "node",
     "target": "es2015",
@@ -31,5 +31,5 @@
     "types": ["node", "jest", "@testing-library/jest-dom"]
   },
   "include": ["packages/*/src"],
-  "exclude": ["packages/*/build"]
+  "exclude": ["packages/*/dist-package"]
 }
