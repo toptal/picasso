@@ -3593,13 +3593,13 @@
   resolved "https://registry.yarnpkg.com/@toptal/browserslist-config/-/browserslist-config-0.1.0-alpha.2.tgz#c0acea1a7348799ed38ad6ecebf2a5d4ca3660b4"
   integrity sha512-dSu1+Tf0nCa3qmTvGn+Kg6vwjbuXhZ7QIihax79zJKsXLYjYqny/YZAn3vrdNVGv9H9NvOM4qBVdrPDdVPVEVg==
 
-"@toptal/davinci-bootstrap@^2.1.3":
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-bootstrap/-/davinci-bootstrap-2.1.3.tgz#485d4e01513bf19b5efe87efd6adf7b2f10591e0"
-  integrity sha512-EScV74dOWyXbzPE6M6t+FhYbQ4BV1bFC5kba5u0gnI2Ou0bpxCZxuaeO9uc2keuD1+iQGVV4Dm6q1hYQcqxJHw==
+"@toptal/davinci-bootstrap@^2.1.7":
+  version "2.1.7"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-bootstrap/-/davinci-bootstrap-2.1.7.tgz#21a2949b6223971272b1e126304d25454283f36a"
+  integrity sha512-5BxNdgswV38nmbfBkJwR0htrY0f9uaEvlzYC9d1S7xuQgbjz5Kfe+A0ntdYGALNA/GtU9X2wKuArQXiw6dziKA==
   dependencies:
     "@toptal/davinci-cli-shared" "^1.0.1"
-    "@toptal/davinci-skeleton" "^1.4.29"
+    "@toptal/davinci-skeleton" "^1.4.33"
     fs-extra "^8.0.1"
     lodash.kebabcase "^4.1.1"
     ora "^4.0.3"
@@ -3635,10 +3635,10 @@
     lodash.camelcase "^4.3.0"
     lodash.kebabcase "^4.1.1"
 
-"@toptal/davinci-engine@^1.4.0":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-engine/-/davinci-engine-1.4.0.tgz#120a99ed3e89109f0602d33a1159ad03c87665ed"
-  integrity sha512-S5ZglnN+9p66kdRbOVUSXGG47lsCykWfWFaYcLzoNbWgHZtBJIBeEsaSAr4kB6Mzw9BpzboITEYIW2qgDT8PfQ==
+"@toptal/davinci-engine@^1.4.3":
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-engine/-/davinci-engine-1.4.3.tgz#48c3a3f222002829ab8007dcde38f9f55f8cffc9"
+  integrity sha512-qKLMEyze5chmreNIVWkHyooq6bhSfyzOvC1Ap79oxzj5itUuBwtoc2AqiUvsbWQWxDr2OWo4MIjAsy7OS9tECg==
   dependencies:
     "@babel/cli" "^7.10.1"
     "@babel/core" "^7.10.1"
@@ -3673,7 +3673,6 @@
     package-json "^6.5.0"
     react-dev-utils "^10.1.0"
     react-hot-loader "^4.12.21"
-    resolve "^1.15.1"
     resolve-ts-aliases "^1.0.1"
     semver "^7.3.2"
     size-limit "^4.5.0"
@@ -3710,15 +3709,15 @@
     matchmedia-polyfill "^0.3.2"
     semver "^7.3.2"
 
-"@toptal/davinci-skeleton@^1.4.29":
-  version "1.4.29"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-skeleton/-/davinci-skeleton-1.4.29.tgz#3b6678215befae2779ab384a89b180c40241f696"
-  integrity sha512-pAndhf2U1ZT0++pnOIMlmoX9xFEwGozFJw7Yjix6ISHDhw/guFQV7JrW+dwQ77UG69NMjktQzmEH7i9GIuO3ow==
+"@toptal/davinci-skeleton@^1.4.33":
+  version "1.4.33"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-skeleton/-/davinci-skeleton-1.4.33.tgz#81f5c6e6d946d69ce8de67ebfcf849a6eb6a24ad"
+  integrity sha512-uw/oBxfdzcFhakpNh4rxSTbxiBoQE3PJ9jTpdXkbuDlNkpDXDThvxNhKzTs7dc6fptrqCkyy1cTJ82+byMAsIg==
 
-"@toptal/davinci-syntax@^2.0.3":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-syntax/-/davinci-syntax-2.0.3.tgz#14ef098bfcbce0d6a374b9f00de403ee8d9fe200"
-  integrity sha512-kWzNV1t6TX/qIVeiKIKKV/pRELW5M6KXlLskFfXnwQCrJ39W1epv7uuYF7cUjHYm+1qgFwWpm2AtVzAwe9Hq4Q==
+"@toptal/davinci-syntax@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-syntax/-/davinci-syntax-2.1.0.tgz#de2ecd7870cdcab849e944265f21a22790cb8ed2"
+  integrity sha512-e3j4CxMM5t5rdATcTd+in7MVKdH7+yhDzRItkxnDE96i2ZJcynrVZySNUJ5SdXVSz6XRzqvHx2K/tkfk+iA4DQ==
   dependencies:
     "@toptal/davinci-cli-shared" "^1.0.1"
     "@toptal/eslint-plugin-davinci" "^1.1.6"
@@ -3729,7 +3728,7 @@
     eslint-config-standard-jsx "^8.1.0"
     eslint-plugin-cypress "^2.11.2"
     eslint-plugin-import "^2.22.0"
-    eslint-plugin-node "^10.0.0"
+    eslint-plugin-node "^11.1.0"
     eslint-plugin-promise "^4.2.1"
     eslint-plugin-react "^7.21.3"
     eslint-plugin-react-hooks "^4.1.0"
@@ -3742,18 +3741,18 @@
     stylelint-config-styled-components "^0.1.1"
     stylelint-processor-styled-components "^1.8.0"
 
-"@toptal/davinci@0.2.225":
-  version "0.2.225"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci/-/davinci-0.2.225.tgz#be75075561c7b37aacd7dcf5997a0bf3799c0220"
-  integrity sha512-AMxA4Y8XQm4L8xtmn3WLgoP4/J4ajjs8K66tboj+64sewZ7Vb0My8q4pyFcPFkvUf1egBigCvtlPSQ5xEzaXOA==
+"@toptal/davinci@^0.2.229":
+  version "0.2.229"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci/-/davinci-0.2.229.tgz#733208c17ec11f9985a9b8da8af402096a8056c2"
+  integrity sha512-UdtK1CP7hf307k22+WxZKNiin3jd14m55DRG24pYakX6t+Mj8hvCx9KeFp+UdsDKvcvlebA+oKbpZCcWtKDbXQ==
   dependencies:
-    "@toptal/davinci-bootstrap" "^2.1.3"
+    "@toptal/davinci-bootstrap" "^2.1.7"
     "@toptal/davinci-ci" "^1.2.0"
     "@toptal/davinci-cli-shared" "^1.0.1"
     "@toptal/davinci-code" "^0.1.3"
-    "@toptal/davinci-engine" "^1.4.0"
+    "@toptal/davinci-engine" "^1.4.3"
     "@toptal/davinci-qa" "^1.3.0"
-    "@toptal/davinci-syntax" "^2.0.3"
+    "@toptal/davinci-syntax" "^2.1.0"
     hygen "^6.0.4"
     lodash.camelcase "^4.3.0"
     lodash.kebabcase "^4.1.1"
@@ -8734,12 +8733,12 @@ eslint-plugin-cypress@^2.11.2:
   dependencies:
     globals "^11.12.0"
 
-eslint-plugin-es@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-es/-/eslint-plugin-es-2.0.0.tgz#0f5f5da5f18aa21989feebe8a73eadefb3432976"
-  integrity sha512-f6fceVtg27BR02EYnBhgWLFQfK6bN4Ll0nQFrBHOlCsAyxeZkn0NHns5O0YZOPrV1B3ramd6cgFwaoFLcSkwEQ==
+eslint-plugin-es@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-es/-/eslint-plugin-es-3.0.1.tgz#75a7cdfdccddc0589934aeeb384175f221c57893"
+  integrity sha512-GUmAsJaN4Fc7Gbtl8uOBlayo2DqhwWvEzykMHSCZHU3XdJ+NSzzZcVhXh3VxX5icqQ+oQdIEawXX8xkR3mIFmQ==
   dependencies:
-    eslint-utils "^1.4.2"
+    eslint-utils "^2.0.0"
     regexpp "^3.0.0"
 
 eslint-plugin-import@^2.22.0:
@@ -8768,13 +8767,13 @@ eslint-plugin-jest@^23.8.2:
   dependencies:
     "@typescript-eslint/experimental-utils" "^2.5.0"
 
-eslint-plugin-node@^10.0.0:
-  version "10.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-node/-/eslint-plugin-node-10.0.0.tgz#fd1adbc7a300cf7eb6ac55cf4b0b6fc6e577f5a6"
-  integrity sha512-1CSyM/QCjs6PXaT18+zuAXsjXGIGo5Rw630rSKwokSs2jrYURQc4R5JZpoanNCqwNmepg+0eZ9L7YiRUJb8jiQ==
+eslint-plugin-node@^11.1.0:
+  version "11.1.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-node/-/eslint-plugin-node-11.1.0.tgz#c95544416ee4ada26740a30474eefc5402dc671d"
+  integrity sha512-oUwtPJ1W0SKD0Tr+wqu92c5xuCeQqB3hSCHasn/ZgjFdA9iDGNkNf2Zi9ztY7X+hNuMib23LNGRm6+uN+KLE3g==
   dependencies:
-    eslint-plugin-es "^2.0.0"
-    eslint-utils "^1.4.2"
+    eslint-plugin-es "^3.0.0"
+    eslint-utils "^2.0.0"
     ignore "^5.1.1"
     minimatch "^3.0.4"
     resolve "^1.10.1"
@@ -8835,7 +8834,7 @@ eslint-scope@^5.0.0, eslint-scope@^5.1.0:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-eslint-utils@^1.4.2, eslint-utils@^1.4.3:
+eslint-utils@^1.4.3:
   version "1.4.3"
   resolved "https://registry.yarnpkg.com/eslint-utils/-/eslint-utils-1.4.3.tgz#74fec7c54d0776b6f67e0251040b5806564e981f"
   integrity sha512-fbBN5W2xdY45KulGXmLHZ3c3FHfVYmKg0IrAKGOkT/464PQsx2UeIzfz1RmEci+KLm1bBaAzZAh8+/E+XAeZ8Q==
@@ -17238,7 +17237,7 @@ resolve@1.15.1:
   dependencies:
     path-parse "^1.0.6"
 
-resolve@^1.1.6, resolve@^1.10.0, resolve@^1.10.1, resolve@^1.11.0, resolve@^1.12.0, resolve@^1.13.1, resolve@^1.15.1, resolve@^1.17.0, resolve@^1.18.1, resolve@^1.3.2, resolve@^1.8.1:
+resolve@^1.1.6, resolve@^1.10.0, resolve@^1.10.1, resolve@^1.11.0, resolve@^1.12.0, resolve@^1.13.1, resolve@^1.17.0, resolve@^1.18.1, resolve@^1.3.2, resolve@^1.8.1:
   version "1.18.1"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.18.1.tgz#018fcb2c5b207d2a6424aee361c5a266da8f4130"
   integrity sha512-lDfCPaMKfOJXjy0dPayzPdF1phampNWr3qFCjAu+rw/qbQmr5jWH5xN2hwh9QKfw9E5v4hwV7A+jrCmL8yjjqA==
