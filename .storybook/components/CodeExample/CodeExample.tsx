@@ -11,13 +11,12 @@ import React, {
 import debounce from 'debounce'
 import styled from 'styled-components'
 import { withStyles } from '@material-ui/core/styles'
-import IconLink from '@material-ui/icons/Link'
 import SourceRender, { RenderResult } from 'react-source-render'
 import copy from 'copy-to-clipboard'
 
 import { Typography, Button, Accordion, Container } from '@toptal/picasso'
 import Picasso, { useScreenSize, Classes } from '@toptal/picasso-shared'
-import { Code16 } from '@toptal/picasso/Icon'
+import { Code16, Link16 } from '@toptal/picasso/Icon'
 
 import Editor from '../Editor'
 import purifyFixedPosition from '../../utils/purify-fixed-position'
@@ -256,7 +255,7 @@ class CodeExample extends Component<Props> {
                 <Button
                   variant='flat'
                   size='small'
-                  icon={<IconLink />}
+                  icon={<Link16 />}
                   onClick={this.handleCopyLink}
                 >
                   {copyLinkButtonText}

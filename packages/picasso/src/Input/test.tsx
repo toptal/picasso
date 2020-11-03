@@ -1,18 +1,18 @@
 import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
-import SearchIcon from '@material-ui/icons/Search'
 
 import Input from './Input'
+import Search16 from '../Icon/Search16'
 
-test('renders icon at the end', () => {
-  const { container } = render(<Input icon={<SearchIcon />} />)
+test('renders icon in the end', () => {
+  const { container } = render(<Input icon={<Search16 />} />)
 
   expect(container).toMatchSnapshot()
 })
 
-test('renders icon at the beginning', () => {
+test('renders icon in the beginning', () => {
   const { container } = render(
-    <Input icon={<SearchIcon />} iconPosition='start' />
+    <Input icon={<Search16 />} iconPosition='start' />
   )
 
   expect(container).toMatchSnapshot()

@@ -26,6 +26,7 @@ export const timezoneConvert = (
         return dateToConvert
       }
     }
+
     return dateToConvert
   }
 
@@ -51,6 +52,7 @@ export const timezoneFormat = (date: Date, timeZone?: string) => {
       return date
     }
   }
+
   return date
 }
 

@@ -52,6 +52,7 @@ const useModals = () => {
     }
 
     const key = generateModalKey()
+
     openedModalKeys.current.add(key)
 
     context.showModal(key, modal)
@@ -61,6 +62,7 @@ const useModals = () => {
 
   const hideAllModals = useCallback(() => {
     const keys = [...openedModalKeys.current]
+
     keys.forEach(hideModal)
   }, [hideModal])
 

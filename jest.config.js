@@ -4,7 +4,7 @@ module.exports = {
   },
   setupFiles: ['jest-canvas-mock', './jest-setup-dom.js'],
   testMatch: ['**/(test).(js|jsx|ts|tsx)'],
-  testPathIgnorePatterns: ['/node_modules/', '/build'],
+  testPathIgnorePatterns: ['/node_modules/', '/dist-package', '/build'],
 
   setupFilesAfterEnv: ['./jest-setup.ts'],
 

@@ -1,6 +1,7 @@
 .idea
 node_modules
 yarn-error.log
+dist-package/
 build/
 
 # Ignore visual regression tests diff output
