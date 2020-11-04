@@ -1,14 +1,18 @@
-import { AlertInline } from '@toptal/picasso-lab'
-
+import { AlertInline } from '../AlertInline'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.section('Lab').createPage('AlertInline')
+const componentDocs = PicassoBook.createComponentDocs(
+  AlertInline,
+  'Alert.Inline'
+)
 
-page.createTabChapter('Props').addComponentDocs({
-  component: AlertInline,
-  name: 'AlertInline'
-})
+const chapter = PicassoBook.connectToPage(page =>
+  page
+    .createChapter('Alert.Inline')
+    .addExample('AlertInline/story/Default.example.tsx', { id: 'Default' })
+)
 
-page
-  .createChapter()
-  .addExample('AlertInline/story/Default.example.tsx', 'Default')
+export default {
+  componentDocs,
+  chapter
+}

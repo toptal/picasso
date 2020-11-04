@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Typography } from '@toptal/picasso'
-import { AlertInline } from '@toptal/picasso-lab'
+import { Alert } from '@toptal/picasso-lab'
 
 const Example = () => (
   <div>
@@ -10,7 +10,7 @@ const Example = () => (
           Yellow (default)
         </Typography>
       </Container>
-      <AlertInline>This is a warning inline alert.</AlertInline>
+      <Alert.Inline>This is a warning inline alert.</Alert.Inline>
     </Container>
 
     <Container bottom={1}>
@@ -19,9 +19,9 @@ const Example = () => (
           Red
         </Typography>
       </Container>
-      <AlertInline variant='red'>
+      <Alert.Inline variant='red'>
         This is a critical warning inline alert.
-      </AlertInline>
+      </Alert.Inline>
     </Container>
 
     <Container bottom={1}>
@@ -30,7 +30,7 @@ const Example = () => (
           Blue
         </Typography>
       </Container>
-      <AlertInline variant='blue'>This is a info inline alert.</AlertInline>
+      <Alert.Inline variant='blue'>This is a info inline alert.</Alert.Inline>
     </Container>
 
     <Container bottom={1}>
@@ -39,7 +39,9 @@ const Example = () => (
           Green
         </Typography>
       </Container>
-      <AlertInline variant='green'>This is a success inline alert.</AlertInline>
+      <Alert.Inline variant='green'>
+        This is a success inline alert.
+      </Alert.Inline>
     </Container>
   </div>
 )
