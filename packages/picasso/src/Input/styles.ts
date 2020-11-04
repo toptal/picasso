@@ -24,12 +24,12 @@ export default ({ palette }: Theme) =>
     icon: {
       flex: '1 1 0%' // fix for IE11
     },
-    limiter: {
+    limiterLabel: {
       color: palette.grey.main2,
       fontSize: '0.625rem',
       lineHeight: '1rem'
     },
-    limiterNegative: {
+    limiterLabelError: {
       color: palette.red.main
     },
     limiterMultiline: {
