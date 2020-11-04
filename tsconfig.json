@@ -28,8 +28,8 @@
       "*": ["@types/*"],
       "~/*": ["./*"]
     },
-    "types": ["node", "jest", "@testing-library/jest-dom"]
+    "types": ["node", "jest", "@testing-library/jest-dom", "cypress"]
   },
-  "include": ["packages/*/src"],
+  "include": ["packages/*/src", "cypress/integration/*"],
   "exclude": ["packages/*/dist-package"]
 }
