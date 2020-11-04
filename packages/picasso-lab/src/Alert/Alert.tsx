@@ -1,8 +1,12 @@
 import React, { forwardRef, MouseEvent } from 'react'
-import { CloseMinor16 } from '@toptal/picasso/Icon'
-import { Button, Container } from '@toptal/picasso'
+import { Button, Container, CloseMinor16 } from '@toptal/picasso'
+import { CompoundedComponentWithRef } from '@toptal/picasso-shared'
 
 import AlertInline, { AlertInlineProps } from '../AlertInline'
+
+export interface StaticProps {
+  Inline: typeof AlertInline
+}
 
 export interface Props extends AlertInlineProps {
   /** Callback invoked when close is clicked */
@@ -41,12 +45,14 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
       {onClose && renderAlertCloseButton(onClose)}
     </Container>
   )
-})
+}) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
 
 Alert.defaultProps = {
   variant: 'yellow'
 }
 
 Alert.displayName = 'Alert'
+
+Alert.Inline = AlertInline
 
 export default Alert
