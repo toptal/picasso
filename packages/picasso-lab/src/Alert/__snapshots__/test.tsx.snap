@@ -26,7 +26,7 @@ exports[`Alert default render 1`] = `
           </svg>
         </div>
         <div
-          class="MuiTypography-root Typography-bodyMedium Typography-black Alert-content MuiTypography-body1"
+          class="MuiTypography-root Typography-bodyMedium Typography-black PicassoAlertInline-content MuiTypography-body1"
         >
           test example string
         </div>
