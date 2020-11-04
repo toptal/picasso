@@ -3,7 +3,7 @@ import { createStyles } from '@material-ui/core'
 export default () =>
   createStyles({
     modalContent: {
-      padding: '1rem 2rem',
+      padding: '1.5em 2em 0',
       overflow: 'auto',
       flex: '1 1 auto'
     },
