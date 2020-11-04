@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.109.8](https://github.com/toptal/picasso/compare/@toptal/picasso@4.109.7...@toptal/picasso@4.109.8) (2020-11-04)
+
+
+### Bug Fixes
+
+* **Input:** update multiline limit text ([#1475](https://github.com/toptal/picasso/issues/1475)) ([f1d7f50](https://github.com/toptal/picasso/commit/f1d7f50bbe2bddf991b8a4e955895a2638aaafba))
+
+
+
+
+
 ## [4.109.7](https://github.com/toptal/picasso/compare/@toptal/picasso@4.109.6...@toptal/picasso@4.109.7) (2020-11-02)
 
 **Note:** Version bump only for package @toptal/picasso
