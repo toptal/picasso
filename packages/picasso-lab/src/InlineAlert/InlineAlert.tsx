@@ -44,7 +44,7 @@ export const renderAlertIcon = (variant: Props['variant']) => {
   }
 }
 
-export const InlineAlert = forwardRef<HTMLDivElement, Props>(function Alert(
+export const AlertInline = forwardRef<HTMLDivElement, Props>(function Alert(
   props,
   ref
 ) {
@@ -66,10 +66,10 @@ export const InlineAlert = forwardRef<HTMLDivElement, Props>(function Alert(
   )
 })
 
-InlineAlert.defaultProps = {
+AlertInline.defaultProps = {
   variant: 'yellow'
 }
 
-InlineAlert.displayName = 'InlineAlert'
+AlertInline.displayName = 'AlertInline'
 
-export default InlineAlert
+export default AlertInline

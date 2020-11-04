@@ -2,9 +2,9 @@ import React, { forwardRef, MouseEvent } from 'react'
 import { CloseMinor16 } from '@toptal/picasso/Icon'
 import { Button, Container } from '@toptal/picasso'
 
-import InlineAlert, { InlineAlertProps } from '../InlineAlert'
+import AlertInline, { AlertInlineProps } from '../AlertInline'
 
-export interface Props extends InlineAlertProps {
+export interface Props extends AlertInlineProps {
   /** Callback invoked when close is clicked */
   onClose?: (event: MouseEvent<HTMLButtonElement>) => void
 }
@@ -37,7 +37,7 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
       variant={variant}
       className={className}
     >
-      <InlineAlert variant={variant}>{children}</InlineAlert>
+      <AlertInline variant={variant}>{children}</AlertInline>
       {onClose && renderAlertCloseButton(onClose)}
     </Container>
   )

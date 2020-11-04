@@ -1,14 +1,14 @@
 import React, { ReactNode } from 'react'
 import { render } from '@toptal/picasso/test-utils'
 
-import InlineAlert from './InlineAlert'
+import AlertInline from './AlertInline'
 
-const renderInlineAlert = (children: ReactNode) =>
-  render(<InlineAlert>{children}</InlineAlert>)
+const renderAlertInline = (children: ReactNode) =>
+  render(<AlertInline>{children}</AlertInline>)
 
 describe('Alert', () => {
   test('default render', () => {
-    const { container } = renderInlineAlert('test example string')
+    const { container } = renderAlertInline('test example string')
 
     expect(container).toMatchSnapshot()
   })
