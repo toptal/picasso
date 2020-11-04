@@ -13,7 +13,7 @@ export interface Props extends AlertInlineProps {
   onClose?: (event: MouseEvent<HTMLButtonElement>) => void
 }
 
-const renderAlertCloseButton = (onClose: Props['onClose']) => (
+const renderAlertCloseButton = ({ onClose }: Pick<Props, 'onClose'>) => (
   <Container left='small'>
     <Button.Circular
       variant='transparent'
@@ -42,7 +42,7 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
       className={className}
     >
       <AlertInline variant={variant}>{children}</AlertInline>
-      {onClose && renderAlertCloseButton(onClose)}
+      {onClose && renderAlertCloseButton({ onClose })}
     </Container>
   )
 }) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>

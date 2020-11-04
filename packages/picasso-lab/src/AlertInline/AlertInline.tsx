@@ -1,20 +1,17 @@
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
+import cx from 'classnames'
 import { BaseProps } from '@toptal/picasso-shared'
 import {
-  Exclamation16 as AlertIcon,
-  Done16 as Tick,
-  Info16 as Info
-} from '@toptal/picasso/Icon'
-import { Container, Typography } from '@toptal/picasso'
+  Container,
+  Typography,
+  Exclamation16,
+  Done16,
+  Info16
+} from '@toptal/picasso'
 import { VariantType as ContainerVariants } from '@toptal/picasso/Container'
 import { makeStyles, Theme } from '@material-ui/core'
-import cx from 'classnames'
 
 import styles from './styles'
-
-const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'Alert'
-})
 
 export type VariantType = Extract<
   'red' | 'green' | 'yellow' | 'blue',
@@ -31,18 +28,22 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
 export const renderAlertIcon = (variant: Props['variant']) => {
   switch (variant) {
     case 'red':
-      return <AlertIcon color='red' />
+      return <Exclamation16 color='red' />
 
     case 'green':
-      return <Tick color='green' />
+      return <Done16 color='green' />
 
     case 'blue':
-      return <Info color='light-blue' />
+      return <Info16 color='light-blue' />
 
     case 'yellow':
-      return <AlertIcon color='yellow' />
+      return <Exclamation16 color='yellow' />
   }
 }
+
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'PicassoAlertInline'
+})
 
 export const AlertInline = forwardRef<HTMLDivElement, Props>(function Alert(
   props,
