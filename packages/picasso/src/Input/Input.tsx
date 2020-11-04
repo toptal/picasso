@@ -65,7 +65,7 @@ export interface Props
       HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
     >
   ) => void
-  /** Adds a counter of characters */
+  /** Adds a counter of characters (ignored in combination with `counter: entered`) */
   limit?: number
   /** Type of the counter of characters */
   counter?: CounterType
@@ -80,7 +80,8 @@ export interface Props
   onResetClick?: () => void
 }
 
-type LimitAdornmentProps = Pick<Props, 'multiline' | 'limit' | 'counter'> & {
+type LimitAdornmentProps = Pick<Props, 'multiline' | 'limit'> & {
+  counter: NonNullable<Props['counter']>
   charsLength: number
 }
 
@@ -97,64 +98,74 @@ type EndAdornmentProps = Pick<
 
 const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoInput' })
 
-const hasCounter = (counter: CounterType, limit?: number) =>
-  limit || counter === 'entered'
+const hasRemainingCounter = ({
+  counter,
+  limit
+}: Pick<Props, 'counter' | 'limit'>) =>
+  Boolean(counter === 'remaining' && limit)
 
-const getCounter = (
-  counter: CounterType,
-  charsLength: number,
-  limit?: number
-) => {
-  if (counter === 'remaining') {
-    return {
-      isNegative: charsLength! >= limit!,
-      limitValue: limit! - charsLength!
-    }
-  }
+const hasEnteredCounter = ({ counter }: Pick<Props, 'counter'>) =>
+  counter === 'entered'
 
-  return {
-    isNegative: false,
-    limitValue: charsLength!
-  }
-}
+const hasCounter = ({ counter, limit }: Pick<Props, 'counter' | 'limit'>) =>
+  hasRemainingCounter({ counter, limit }) || hasEnteredCounter({ counter })
 
-const getMultilineLabel = (
-  isNegative: boolean,
-  multiline?: boolean,
-  limit?: number
-) => {
+const getCharsTillLimit = ({
+  charsLength,
+  limit,
+  counter
+}: Pick<LimitAdornmentProps, 'charsLength' | 'limit' | 'counter'>) =>
+  hasRemainingCounter({ counter, limit }) ? limit! - charsLength : charsLength
+
+const getMultilineLabel = ({
+  multiline,
+  charsTillLimit,
+  counter,
+  limit
+}: Pick<LimitAdornmentProps, 'multiline' | 'counter' | 'limit'> & {
+  charsTillLimit: number
+}) => {
   if (!multiline) {
     return null
   }
 
-  if (!limit) {
-    return ' characters entered'
+  if (hasRemainingCounter({ counter, limit })) {
+    return charsTillLimit >= 0 ? 'characters left' : 'over the limit'
   }
 
-  return isNegative ? ' over the limit' : ' characters left'
+  return 'characters entered'
 }
 
 const LimitAdornment = (props: LimitAdornmentProps) => {
   const classes = useStyles(props)
   const { multiline, charsLength, counter, limit } = props
 
-  const { limitValue, isNegative } = getCounter(counter!, charsLength!, limit)
-  const multilineLabel = getMultilineLabel(isNegative, multiline, limit)
+  const charsTillLimit = getCharsTillLimit({
+    counter,
+    limit,
+    charsLength
+  })
+  const multilineLabel = getMultilineLabel({
+    multiline,
+    counter,
+    limit,
+    charsTillLimit
+  })
 
   return (
     <InputAdornment
+      data-testid='limit-adornment-multiline-label'
       position='end'
       className={cx({
         [classes.limiterMultiline]: multiline
       })}
     >
       <span
-        className={cx(classes.limiter, {
-          [classes.limiterNegative]: isNegative
+        className={cx(classes.limiterLabel, {
+          [classes.limiterLabelError]: charsTillLimit <= 0
         })}
       >
-        {multiline ? Math.abs(limitValue) : limitValue}
-        {multilineLabel}
+        {multiline ? Math.abs(charsTillLimit) : charsTillLimit} {multilineLabel}
       </span>
     </InputAdornment>
   )
@@ -200,12 +211,12 @@ const EndAdornment = (props: EndAdornmentProps) => {
     return <IconAdornment disabled={disabled} position='end' icon={icon} />
   }
 
-  if (hasCounter(counter!, limit)) {
+  if (charsLength && hasCounter({ counter, limit })) {
     return (
       <LimitAdornment
-        charsLength={charsLength!}
+        charsLength={charsLength}
         multiline={multiline}
-        counter={counter}
+        counter={counter!}
         limit={limit}
       />
     )
@@ -280,7 +291,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
         root: cx(classes.root, {
           [classes.rootMultiline]: multiline,
           [classes.rootMultilineLimiter]:
-            multiline && hasCounter(counter!, limit)
+            multiline && hasCounter({ counter, limit })
         }),
         input: cx(classes.input, {
           [classes.inputMultilineResizable]: multiline && multilineResizable
