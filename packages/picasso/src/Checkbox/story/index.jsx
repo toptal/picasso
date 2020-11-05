@@ -50,4 +50,5 @@ page
     title: 'Indeterminate'
   })
   .addExample('Checkbox/story/Required.example.jsx', 'Required')
+  .addExample('Checkbox/story/Optional.example.jsx', 'Optional')
   .addExample('Checkbox/story/CustomLabel.example.tsx', 'Custom label')

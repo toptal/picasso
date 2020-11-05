@@ -44,9 +44,10 @@ afterEach(() => {
 
 describe('FormLabel', () => {
   test('default render', () => {
-    const { container } = render(<TestFormLabel>Label</TestFormLabel>)
+    const { queryByText } = render(<TestFormLabel>Label</TestFormLabel>)
 
-    expect(container).toMatchSnapshot()
+    expect(queryByText('Label')).toBeInTheDocument()
+    expect(queryByText('Label (optional)')).not.toBeInTheDocument()
   })
 
   test('disabled', () => {
@@ -56,9 +57,20 @@ describe('FormLabel', () => {
   })
 
   test('required', () => {
-    const { container } = render(<TestFormLabel required>Label</TestFormLabel>)
+    const { queryByText } = render(
+      <TestFormLabel required>Label</TestFormLabel>
+    )
 
-    expect(container).toMatchSnapshot()
+    expect(queryByText('Label')).toBeInTheDocument()
+    expect(queryByText('Label (optional)')).not.toBeInTheDocument()
+  })
+
+  test('optional is displayed', () => {
+    const { queryByText } = render(
+      <TestFormLabel required={false}>Label</TestFormLabel>
+    )
+
+    expect(queryByText('Label (optional)')).toBeInTheDocument()
   })
 
   test('required and disabled', () => {

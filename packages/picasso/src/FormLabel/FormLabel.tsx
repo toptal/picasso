@@ -18,7 +18,7 @@ export interface Props
     HTMLAttributes<HTMLLabelElement | HTMLSpanElement> {
   /** Content of the label */
   children: ReactNode
-  /** Adds asterisk if true */
+  /** Adds (optional) suffix if explicitly false */
   required?: boolean
   /** Is this label for disabled input or not */
   disabled?: boolean
@@ -66,9 +66,9 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
       )}
       style={style}
     >
-      {required && <span className={classes.asterisk}>*</span>}
       <span className={classes.text}>
         {titleCase ? toTitleCase(children) : children}
+        {required === false && ' (optional)'}
       </span>
     </Component>
   )
