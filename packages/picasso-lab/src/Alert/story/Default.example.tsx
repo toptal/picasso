@@ -7,7 +7,7 @@ const Example = () => (
     <Container bottom={1}>
       <Container bottom={1}>
         <Typography variant='heading' size='small'>
-          Yellow (default)
+          Yellow
         </Typography>
       </Container>
       <Alert>This is a warning alert.</Alert>
