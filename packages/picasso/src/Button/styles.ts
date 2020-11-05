@@ -32,6 +32,7 @@ const styles = ({ palette, sizes, transitions, typography }: Theme) => {
       transition: `all ${transitions.duration.short}ms ${transitions.easing.easeOut}`,
       transitionProperty: 'border, color, background',
       boxShadow: 'none',
+      flexShrink: 0,
 
       '&$focusVisible, &$focused': {
         ...outline(palette.primary.main)
