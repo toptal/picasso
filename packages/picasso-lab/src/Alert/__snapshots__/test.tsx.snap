@@ -6,26 +6,30 @@ exports[`Alert default render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Container-flex Alert-alertYellow Alert-alert"
+      class="Container-yellowVariant Container-smallPadding Container-spaceBetweenJustifyContent Container-rounded Container-flex"
       role="alert"
     >
       <div
-        class="Container-centerAlignItems Container-flex Alert-iconWrapper"
+        class="Container-flex Container-inline"
       >
-        <svg
-          class="SvgExclamation16-root Alert-icon SvgExclamation16-yellow"
-          style="min-width: 16px; min-height: 16px;"
-          viewBox="0 0 16 16"
+        <div
+          class="Container-rightsmallMargin"
         >
-          <path
-            d="M7.5 15a7.5 7.5 0 110-15 7.5 7.5 0 010 15zm0-1a6.5 6.5 0 100-13 6.5 6.5 0 000 13zM7 3h1v6H7V3zm0 8h1v1H7v-1z"
-          />
-        </svg>
-      </div>
-      <div
-        class="MuiTypography-root Typography-bodyMedium Typography-black Alert-content MuiTypography-body1"
-      >
-        test example string
+          <svg
+            class="SvgExclamation16-root SvgExclamation16-yellow"
+            style="min-width: 16px; min-height: 16px;"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M7.5 15a7.5 7.5 0 110-15 7.5 7.5 0 010 15zm0-1a6.5 6.5 0 100-13 6.5 6.5 0 000 13zM7 3h1v6H7V3zm0 8h1v1H7v-1z"
+            />
+          </svg>
+        </div>
+        <div
+          class="MuiTypography-root Typography-bodyMedium Typography-black PicassoAlertInline-content MuiTypography-body1"
+        >
+          test example string
+        </div>
       </div>
     </div>
   </div>
