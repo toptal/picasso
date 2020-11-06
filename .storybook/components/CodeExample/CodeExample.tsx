@@ -31,6 +31,7 @@ interface Props {
   permanentLink: string
   src: string
   showEditCode?: boolean
+  module?: string
 }
 
 const imports: Record<string, object> = {
