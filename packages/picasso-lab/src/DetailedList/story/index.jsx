@@ -2,7 +2,7 @@ import { DetailedList } from '../DetailedList'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 import detailedListItemStory from '../../DetailedListItem/story'
 
-const page = PicassoBook.section('Components').createPage('DetailedList')
+const page = PicassoBook.section('Lab').createPage('DetailedList')
 
 page
   .createTabChapter('Props')
@@ -12,12 +12,7 @@ page
   })
   .addComponentDocs(detailedListItemStory.componentDocs)
 
-page.createChapter().addExample('DetailedList/story/Default.example.jsx', {
-  title: 'Default',
-  effect: async (testPage, makeScreenshot) => {
-    await testPage.click('[data-testid="trigger"]')
-    await makeScreenshot({
-      isFullScreen: true
-    })
-  }
-})
+page
+  .createChapter()
+  .addExample('DetailedList/story/Default.example.jsx', 'Default')
+  .addExample('DetailedList/story/Stripped.example.jsx', 'Stripped')

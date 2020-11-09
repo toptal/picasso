@@ -54,6 +54,7 @@ const Example = () => {
             )
           }
         ]}
+        stripped
       />
     </div>
   )
