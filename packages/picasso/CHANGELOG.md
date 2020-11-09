@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.110.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.109.9...@toptal/picasso@4.110.0) (2020-11-09)
+
+
+### Features
+
+* **icons:** add award icon ([#1666](https://github.com/toptal/picasso/issues/1666)) ([03bb25d](https://github.com/toptal/picasso/commit/03bb25d545b6a9f9c64ab6559652b86275001e12))
+
+
+
+
+
 ## [4.109.9](https://github.com/toptal/picasso/compare/@toptal/picasso@4.109.8...@toptal/picasso@4.109.9) (2020-11-06)
 
 **Note:** Version bump only for package @toptal/picasso
