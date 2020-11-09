@@ -8,7 +8,7 @@ export interface Props {
   /** List item value */
   value: ReactNode
   /** Shows list item in fullwidth mode */
-  fullWidth?: boolean
+  ratio?: 'half' | 'quarter'
 }
 
 const renderValue = (value: ReactNode) =>
@@ -22,16 +22,20 @@ const renderValue = (value: ReactNode) =>
     </Typography>
   )
 
-export const DetailedListItem = ({ label, value, fullWidth }: Props) => (
+export const DetailedListItem = ({ label, value, ratio }: Props) => (
   <Grid spacing={16}>
-    <Grid.Item small={fullWidth ? 3 : 6}>
+    <Grid.Item small={ratio === 'quarter' ? 3 : 6}>
       <Typography size='medium'>{label}</Typography>
     </Grid.Item>
-    <Grid.Item small={fullWidth ? 9 : 6}>{renderValue(value)}</Grid.Item>
+    <Grid.Item small={ratio === 'quarter' ? 9 : 6}>
+      {renderValue(value)}
+    </Grid.Item>
   </Grid>
 )
 
-DetailedListItem.defaultProps = {}
+DetailedListItem.defaultProps = {
+  ratio: 'half'
+}
 DetailedListItem.displayName = 'DetailedListItem'
 
 export default DetailedListItem

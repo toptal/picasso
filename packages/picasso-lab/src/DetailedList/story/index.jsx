@@ -19,6 +19,12 @@ page
   })
   .addComponentDocs(detailedListItemStory.componentDocs)
 
-page
-  .createChapter()
-  .addExample('DetailedList/story/Default.example.jsx', 'Default')
+page.createChapter().addExample('DetailedList/story/Default.example.jsx', {
+  title: 'Default',
+  effect: async (testPage, makeScreenshot) => {
+    await testPage.click('[data-testid="trigger"]')
+    await makeScreenshot({
+      isFullScreen: true
+    })
+  }
+})
