@@ -1,41 +1,43 @@
 import React, { ReactNode } from 'react'
-import Grid from '@toptal/picasso/Grid'
-import Typography from '@toptal/picasso/Typography'
+import { Typography } from '@toptal/picasso'
+import { makeStyles } from '@material-ui/core'
+
+import styles from './styles'
 
 export interface Props {
-  /** List item label */
   label: string
-  /** List item value */
   value: ReactNode
-  /** Shows list item in fullwidth mode */
-  ratio?: 'half' | 'quarter'
+  fullWidth?: boolean
 }
-
 const renderValue = (value: ReactNode) =>
   typeof value === 'string' ? (
     <Typography size='medium' weight='semibold' color='black' noWrap>
       {value}
     </Typography>
   ) : (
-    <Typography as='div' size='medium'>
-      {value}
-    </Typography>
+    value
   )
 
-export const DetailedListItem = ({ label, value, ratio }: Props) => (
-  <Grid spacing={16}>
-    <Grid.Item small={ratio === 'quarter' ? 3 : 6}>
-      <Typography size='medium'>{label}</Typography>
-    </Grid.Item>
-    <Grid.Item small={ratio === 'quarter' ? 9 : 6}>
-      {renderValue(value)}
-    </Grid.Item>
-  </Grid>
-)
+const useStyles = makeStyles(styles, { name: 'DetailedListItem' })
 
-DetailedListItem.defaultProps = {
-  ratio: 'half'
+export const DetailedListItem = ({ label, value, fullWidth }: Props) => {
+  const classes = useStyles()
+
+  return (
+    <>
+      <td className={classes.cell}>
+        <Typography size='medium' noWrap>
+          {label}
+        </Typography>
+      </td>
+      <td className={classes.cell} colSpan={fullWidth ? 3 : 1}>
+        {renderValue(value)}
+      </td>
+    </>
+  )
 }
+
+DetailedListItem.defaultProps = {}
 DetailedListItem.displayName = 'DetailedListItem'
 
 export default DetailedListItem

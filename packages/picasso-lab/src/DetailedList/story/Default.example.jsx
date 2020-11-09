@@ -9,47 +9,64 @@ const Example = () => {
     <div>
       <Container left={0.5} bottom={1}>
         <Checkbox
-          data-test-id='trigger'
+          data-testid='trigger'
           onChange={() => setStripped(!stripped)}
           label='Stripped'
           checked={stripped}
         />
       </Container>
 
-      <DetailedList stripped={stripped}>
-        <DetailedList.Item label='Profile Type' value='Product Manager' />
-        <DetailedList.Item
-          label='Toptal email'
-          value='rana-a576d349769a1e76@toptal.io'
-        />
-        <DetailedList.Item
-          label='Email'
-          value={<Link variant='action'>rana-20a360a07ac9b7af@toptal.io</Link>}
-        />
-        <DetailedList.Item
-          label='Slack'
-          value={<Link variant='action'>Queen Donnely</Link>}
-        />
-        <DetailedList.Item
-          label='Phone'
-          value={<Link variant='action'>680-938-5745</Link>}
-        />
-        <DetailedList.Item
-          label='Skype'
-          value={<Link variant='action'>queen_donnelly147061</Link>}
-        />
-        <DetailedList.Item label='Working status' value='Not working' />
-        <DetailedList.Item label='Allocated hours' value='40 hours/week' />
-        <DetailedList.Item
-          label='Availability'
-          value={
-            <Typography color='green' weight='semibold'>
-              Product Manager Full-time (40 hours/week available out of 40
-              hours/week) updated 1 day ago
-            </Typography>
+      <DetailedList
+        items={[
+          { label: 'Profile Type', value: 'Product Manager' },
+          { label: 'Toptal email', value: 'rana-a576d349769a1e76@toptal.io' },
+          {
+            label: 'Email',
+            value: (
+              <Typography size='medium' noWrap>
+                <Link variant='action'>rana-20a360a07ac9b7af@toptal.io</Link>
+              </Typography>
+            )
+          },
+          {
+            label: 'Slack',
+            value: (
+              <Typography size='medium' noWrap>
+                {' '}
+                <Link variant='action'>Queen Donnely</Link>
+              </Typography>
+            )
+          },
+          {
+            label: 'Phone',
+            value: (
+              <Typography size='medium' noWrap>
+                <Link variant='action'>680-938-5745</Link>
+              </Typography>
+            )
+          },
+          {
+            label: 'Skype',
+            value: (
+              <Typography size='medium' noWrap>
+                <Link variant='action'>queen_donnelly147061</Link>
+              </Typography>
+            )
+          },
+          { label: 'Working status', value: 'Not working' },
+          { label: 'Allocated hours', value: '40 hours/week' },
+          {
+            label: 'Availability',
+            value: (
+              <Typography color='green' weight='semibold' size='medium'>
+                Product Manager Full-time (40 hours/week available out of 40
+                hours/week) updated 1 day ago
+              </Typography>
+            )
           }
-        />
-      </DetailedList>
+        ]}
+        stripped={stripped}
+      />
     </div>
   )
 }

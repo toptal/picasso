@@ -8,14 +8,7 @@ page
   .createTabChapter('Props')
   .addComponentDocs({
     component: DetailedList,
-    name: 'DetailedList',
-    additionalDocs: {
-      children: {
-        type: {
-          name: 'ReactElement<DetailedListItemProps>[]'
-        }
-      }
-    }
+    name: 'DetailedList'
   })
   .addComponentDocs(detailedListItemStory.componentDocs)
 
