@@ -10,8 +10,7 @@ export default ({ palette }: Theme) =>
       }
     },
     row: {
-      backgroundColor: 'transparent',
-      padding: '1em 0'
+      backgroundColor: 'transparent'
     },
     striped: {}
   })
