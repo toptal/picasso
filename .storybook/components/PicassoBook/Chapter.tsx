@@ -63,7 +63,7 @@ class Chapter extends Base {
     return section
   }
 
-  addTextSection = (text: string, options: Record<string, string>) => {
+  addTextSection = (text: string, options: Record<string, string> = {}) => {
     if (TEST_ENV === 'visual') {
       return this
     }
@@ -166,7 +166,7 @@ class Chapter extends Base {
     const sectionLinkId = normalize(sectionId)
     const permanentLink = generateUrl({
       host: getHost(),
-      kind: this.page.getPicassoSection(this.page.section),
+      kind: this.page.section,
       type: this.page.title,
       section: sectionId
     })

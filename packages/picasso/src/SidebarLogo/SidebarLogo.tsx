@@ -14,6 +14,8 @@ export interface Props
 
 export const SidebarLogo = forwardRef<HTMLDivElement, Props>(
   function SidebarLogo({ children, className, classes, style, ...rest }, ref) {
+    const { root: rootClass, ...restClasses } = classes
+
     return (
       <Container
         // eslint-disable-next-line react/jsx-props-no-spreading
@@ -24,8 +26,8 @@ export const SidebarLogo = forwardRef<HTMLDivElement, Props>(
         left='medium'
         alignItems='center'
         style={style}
-        classes={classes}
-        className={cx(classes.root, className)}
+        classes={restClasses}
+        className={cx(rootClass, className)}
       >
         {children}
       </Container>
