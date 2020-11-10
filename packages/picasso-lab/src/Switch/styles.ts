@@ -1,0 +1,85 @@
+import { createStyles } from '@material-ui/core/styles'
+import { PicassoProvider } from '@toptal/picasso-shared'
+
+const controlWidth = '1em'
+const labelMargin = '0.5em'
+const boxShadow =
+  '0px 0px 0px 4px rgba(32, 78, 207, 0.48), 0px 1px 3px 0px rgba(0, 0, 0, 0.24)'
+const THUMB_SIZE = 22
+const TRACK_HEIGHT = THUMB_SIZE + 2
+const TRACK_WIDTH = 40
+
+PicassoProvider.override(({ palette, transitions }) => ({
+  MuiSwitch: {
+    root: {
+      width: TRACK_WIDTH,
+      height: TRACK_HEIGHT,
+      padding: 0,
+      overflow: 'visible'
+    },
+    switchBase: {
+      top: 1,
+      left: 1,
+      padding: 0,
+      color: palette.common.white,
+      '&$checked': {
+        transform: 'translateX(16px)',
+        color: palette.common.white,
+        '& + $track': {
+          backgroundColor: palette.primary.main,
+          borderColor: palette.primary.main,
+          opacity: 1
+        },
+        '&$disabled + $track': {
+          opacity: 0.4,
+          backgroundColor: palette.primary.main,
+          borderColor: palette.primary.main
+        }
+      },
+      '&:hover, &.Mui-focusVisible': {
+        boxShadow
+      },
+      '&$disabled': {
+        '& + $track': {
+          opacity: 0.4,
+          backgroundColor: palette.grey.main2,
+          borderColor: palette.grey.main2
+        }
+      }
+    },
+    thumb: {
+      width: THUMB_SIZE,
+      height: THUMB_SIZE,
+      color: palette.common.white,
+      // fix for bad subpixel rendering on 150% displays
+      '@media (-webkit-min-device-pixel-ratio: 1.5) and (-webkit-max-device-pixel-ratio: 1.5)': {
+        transform: 'translate(-0.2px, -0.3px)'
+      }
+    },
+    track: {
+      borderRadius: TRACK_HEIGHT / 2,
+      border: `1px solid ${palette.grey.main2}`,
+      backgroundColor: palette.grey.main2,
+      borderColor: palette.grey.main2,
+      opacity: 1,
+      transition: transitions.create(['background-color', 'border'])
+    },
+    disabled: {
+      '& + $track': {
+        opacity: 0.4
+      }
+    }
+  }
+}))
+
+export default () =>
+  createStyles({
+    label: {
+      marginLeft: labelMargin,
+      // 1px is needed for safari
+      maxWidth: `calc(100% - ${controlWidth} - ${labelMargin} + 1px)`
+    },
+    disabled: {
+      cursor: 'not-allowed'
+    }
+  })
