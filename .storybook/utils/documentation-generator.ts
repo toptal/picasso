@@ -23,8 +23,8 @@ export interface PropDocumentationMap {
 }
 
 export interface Documentable {
-  displayName: string
-  __docgenInfo: any
+  displayName?: string
+  __docgenInfo?: any
 }
 
 const FUNCTION_TYPE_REGEX = /.+ => .+/

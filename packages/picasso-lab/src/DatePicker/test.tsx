@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, fireEvent } from '@toptal/picasso/test-utils'
+import { render, fireEvent, act } from '@toptal/picasso/test-utils'
 import { Tooltip } from '@toptal/picasso'
 
 import DatePicker, { Props } from './DatePicker'
@@ -32,13 +32,11 @@ describe('DatePicker', () => {
         placeholder='dateInput'
         value={date}
         onChange={() => {}}
-        renderDay={({ key, children }) => {
-          return (
-            <Tooltip key={key} content='tooltip content'>
-              {children}
-            </Tooltip>
-          )
-        }}
+        renderDay={({ key, children }) => (
+          <Tooltip key={key} content='tooltip content'>
+            {children}
+          </Tooltip>
+        )}
       />
     )
 
@@ -48,11 +46,12 @@ describe('DatePicker', () => {
 
     const day15 = getByText(/15/)
 
-    // this line leads to a warning, wrapping into `act` doesn't help
     fireEvent.mouseOver(day15)
 
-    // wait for tooltip's "enterDelay"
-    jest.advanceTimersByTime(600)
+    act(() => {
+      // wait for tooltip's "enterDelay"
+      jest.advanceTimersByTime(600)
+    })
 
     const tooltip = getByText('tooltip content')
 
