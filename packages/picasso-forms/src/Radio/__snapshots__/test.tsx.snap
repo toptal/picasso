@@ -14,11 +14,6 @@ exports[`FormRadio default render 1`] = `
           for="color"
         >
           <span
-            class="FormLabel-asterisk"
-          >
-            *
-          </span>
-          <span
             class="FormLabel-text"
           >
             What's your favorite color?
