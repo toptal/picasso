@@ -1,15 +1,11 @@
 import React from 'react'
-import {
-  configure,
-  setAddon,
-  addDecorator,
-  addParameters
-} from '@storybook/react'
+import { configure, setAddon, addDecorator } from '@storybook/react'
 import chaptersAddon from 'react-storybook-addon-chapters'
-import { create } from '@storybook/theming'
 
 import Picasso from '@toptal/picasso-shared'
 import PicassoBook from './components/PicassoBook'
+
+export const parameters = { layout: 'padded' }
 
 const loadFonts = TEST_ENV !== 'visual'
 const withPicasso = story => (
@@ -18,20 +14,7 @@ const withPicasso = story => (
   </Picasso>
 )
 
-addParameters({
-  options: {
-    theme: create({
-      base: 'light',
-      brandTitle: 'Picasso',
-      brandImage:
-        'https://user-images.githubusercontent.com/437214/54037817-b4da1800-41c7-11e9-81f5-59ed43e38500.png'
-    }),
-    showPanel: false
-  }
-})
-
 const DECORATORS = [withPicasso]
-
 const ADDONS = [chaptersAddon]
 
 DECORATORS.forEach(decorator => addDecorator(decorator))
