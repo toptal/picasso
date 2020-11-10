@@ -54,7 +54,7 @@ const items = [
 const Example = () => {
   return (
     <div>
-      <DetailedList columns={1} items={items} />
+      <DetailedList columnsCount={1} items={items} />
     </div>
   )
 }

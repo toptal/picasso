@@ -16,7 +16,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLTableElement> {
   /** Set a stripe background */
   striped?: boolean
   /** Columns count */
-  columns?: 1 | 2
+  columnsCount?: 1 | 2
   /** Fixed table width */
   fixedWidth?: number | string
 }
@@ -32,7 +32,7 @@ export const DetailedList = forwardRef<HTMLTableElement, Props>(
       items,
       striped,
       className,
-      columns,
+      columnsCount,
       fixedWidth,
       style,
       ...rest
@@ -88,7 +88,9 @@ export const DetailedList = forwardRef<HTMLTableElement, Props>(
         style={tableStyle}
       >
         <Table.Body>
-          {isSmall || columns === 1 ? renderSingleColumn() : renderTwoColumns()}
+          {isSmall || columnsCount === 1
+            ? renderSingleColumn()
+            : renderTwoColumns()}
         </Table.Body>
       </Table>
     )
@@ -96,7 +98,7 @@ export const DetailedList = forwardRef<HTMLTableElement, Props>(
 )
 
 DetailedList.defaultProps = {
-  columns: 2,
+  columnsCount: 2,
   striped: false
 }
 DetailedList.displayName = 'DetailedList'
