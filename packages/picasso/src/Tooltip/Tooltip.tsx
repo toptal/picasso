@@ -17,7 +17,7 @@ import styles from './styles'
 
 type VariantType = 'light' | 'dark'
 
-export type PlacementType = 'bottom' | 'left' | 'right' | 'top'
+export type PlacementType = 'bottom-end' | 'bottom' | 'left' | 'right' | 'top'
 
 type MaxWidthType = 'none' | 'default'
 
