@@ -1,5 +1,14 @@
 {
   "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist-package",
+    "paths": {
+      "*": ["@types/*"],
+      "~/*": ["./*"],
+      "@toptal/picasso/*": ["node_modules/@toptal/picasso/src/*"],
+      "@toptal/*": ["node_modules/@toptal/*/src"]
+    }
+  },
   "exclude": [
     "**/*.example.jsx",
     "**/*.example.tsx",

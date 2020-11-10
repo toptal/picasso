@@ -111,3 +111,9 @@ Start typing "Mongolia" letter by letter to see this example in action.`
 when it makes sense to have autofill enabled.
     `
   }) // picasso-skip-visuals
+  .addExample('Autocomplete/story/PoweredByGoogle.example.jsx', {
+    title: 'Powered By Google label',
+    description: 'There are situations when we use options in the Autocomplete component from the Google API and ' +
+      'to meet their requirements https://developers.google.com/places/web-service/policies in such cases ' +
+      'we have to show the "Powered By Google" label.'
+  }) // picasso-skip-visuals
