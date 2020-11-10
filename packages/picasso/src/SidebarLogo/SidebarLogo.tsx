@@ -1,6 +1,7 @@
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import { StandardProps } from '@toptal/picasso-shared'
+import cx from 'classnames'
 
 import Container from '../Container'
 import styles from './styles'
@@ -13,6 +14,8 @@ export interface Props
 
 export const SidebarLogo = forwardRef<HTMLDivElement, Props>(
   function SidebarLogo({ children, className, classes, style, ...rest }, ref) {
+    const { root: rootClass, ...restClasses } = classes
+
     return (
       <Container
         // eslint-disable-next-line react/jsx-props-no-spreading
@@ -22,9 +25,9 @@ export const SidebarLogo = forwardRef<HTMLDivElement, Props>(
         bottom='small'
         left='medium'
         alignItems='center'
-        className={className}
         style={style}
-        classes={classes}
+        classes={restClasses}
+        className={cx(rootClass, className)}
       >
         {children}
       </Container>
