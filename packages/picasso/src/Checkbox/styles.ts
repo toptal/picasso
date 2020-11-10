@@ -1,5 +1,5 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
-import { PicassoProvider } from '@toptal/picasso-shared'
+import { outline, PicassoProvider } from '@toptal/picasso-shared'
 
 const controlWidth = '1em'
 const labelMargin = '0.5em'
@@ -23,7 +23,15 @@ export default ({ palette, sizes, transitions }: Theme) =>
     root: {
       fontSize: '1rem',
       '&:hover $uncheckedIcon': {
-        border: `${sizes.borderWidth} solid ${palette.primary.main}`
+        border: `${sizes.borderWidth} solid ${palette.grey.main2}`
+      },
+      '&:hover $checkedIcon': {
+        background: palette.primary.dark,
+        border: `${sizes.borderWidth} solid ${palette.primary.dark}`
+      },
+      '&:hover $indeterminateIcon': {
+        background: palette.primary.dark,
+        border: `${sizes.borderWidth} solid ${palette.primary.dark}`
       }
     },
     withLabel: {
@@ -32,11 +40,20 @@ export default ({ palette, sizes, transitions }: Theme) =>
     disabled: {
       '&:hover $uncheckedIcon': {
         border: `${sizes.borderWidth} solid ${palette.grey.main}`
+      },
+      '& $label': {
+        color: palette.grey.main
       }
     },
     focused: {
       '& $uncheckedIcon': {
-        border: `${sizes.borderWidth} solid ${palette.primary.main}`
+        ...outline(palette.primary.main)
+      },
+      '& $checkedIcon': {
+        ...outline(palette.primary.main)
+      },
+      '& $indeterminateIcon': {
+        ...outline(palette.primary.main)
       }
     },
     checkedIcon: {
@@ -45,29 +62,27 @@ export default ({ palette, sizes, transitions }: Theme) =>
       transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`,
       background: palette.primary.main,
       border: `${sizes.borderWidth} solid ${palette.primary.main}`,
+      borderRadius: sizes.borderRadius.small,
       color: palette.common.white,
-
       '&:before': {
         top: '0.5em',
-        left: '0.2em',
-        width: '0.3em',
-        height: '0.15em',
+        left: '0.1875em',
+        width: '0.1875em',
+        height: '0.125em',
         content: '""',
         position: 'absolute',
         transform: 'rotate(45deg)',
-        background: 'white',
-        borderRadius: '0.1em'
+        background: 'white'
       },
       '&:after': {
-        top: '0.45em',
-        left: '0.3em',
-        width: '0.55em',
-        height: '0.15em',
+        top: '0.4375em',
+        left: '0.25em',
+        width: '0.5625em',
+        height: '0.125em',
         content: '""',
         position: 'absolute',
         transform: 'rotate(-45deg)',
-        background: 'white',
-        borderRadius: '0.1em'
+        background: 'white'
       }
     },
     uncheckedIcon: {
@@ -75,7 +90,8 @@ export default ({ palette, sizes, transitions }: Theme) =>
       width: '1em',
       transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`,
       background: palette.common.white,
-      border: `${sizes.borderWidth} solid ${palette.grey.main}`
+      border: `${sizes.borderWidth} solid ${palette.grey.main}`,
+      borderRadius: sizes.borderRadius.small
     },
 
     indeterminateIcon: {
@@ -85,18 +101,18 @@ export default ({ palette, sizes, transitions }: Theme) =>
       transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`,
       background: palette.primary.main,
       border: `${sizes.borderWidth} solid ${palette.primary.main}`,
+      borderRadius: sizes.borderRadius.small,
       color: palette.common.white,
 
       '&:before': {
         content: '""',
         position: 'absolute',
         background: 'white',
-        width: '0.5em',
+        width: '0.625em',
         height: '0.125em',
         top: '50%',
         left: '50%',
-        transform: 'translate(-50%, -50%)',
-        borderRadius: '0.1em'
+        transform: 'translate(-50%, -50%)'
       }
     },
     label: {
