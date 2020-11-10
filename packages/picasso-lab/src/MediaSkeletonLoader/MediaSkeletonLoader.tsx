@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import { palette } from '@toptal/picasso/utils'
 import ContentLoader from 'react-content-loader'
 import { remToNumber } from '@toptal/picasso-shared'
@@ -107,7 +107,7 @@ const getAttribute = (props: React.PropsWithChildren<Props>) => {
   return attributes
 }
 
-export const MediaSkeletonLoader: FC<Props> = props => {
+export const MediaSkeletonLoader = (props: Props) => {
   const { width, height, borderRadius } = useMemo(() => getAttribute(props), [
     props
   ])

@@ -15,7 +15,7 @@ import CREATING_EXAMPLES from '../../docs/contribution/creating-examples.md'
 // @ts-ignore
 import VISUAL_SNAPSHOTS from '../../docs/contribution/visual-testing.md'
 
-storiesOf('Contribution|Folder', module)
+storiesOf('Contribution', module)
   .add('GitHub workflow', doc(GITHUB_WORKFLOW))
   .add('CSS naming', doc(CSS_NAMING))
   .add('JSS onboarding', doc(JSS_ONBOARDING))
