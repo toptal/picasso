@@ -15,6 +15,10 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLTableElement> {
   items: Item[]
   /** Set a stripe background */
   striped?: boolean
+  /** Columns count */
+  columns?: 1 | 2
+  /** Fixed table width */
+  fixedWidth?: number | string
 }
 
 const useStyles = makeStyles(styles, { name: 'DetailedList' })
@@ -24,11 +28,19 @@ const generateSequence = (length: number) =>
 
 export const DetailedList = forwardRef<HTMLTableElement, Props>(
   function DetailedList(props, ref) {
-    const { items, striped, className, ...rest } = props
+    const {
+      items,
+      striped,
+      className,
+      columns,
+      fixedWidth,
+      style,
+      ...rest
+    } = props
 
     const isSmall = useBreakpoint('small')
 
-    const classes = useStyles()
+    const classes = useStyles(props)
     const rowsCount = Math.round(items.length / 2)
 
     const renderSingleColumn = () =>
@@ -60,6 +72,11 @@ export const DetailedList = forwardRef<HTMLTableElement, Props>(
       })
     }
 
+    const tableStyle =
+      typeof fixedWidth !== 'undefined'
+        ? { ...style, tableLayout: 'fixed' as const, width: fixedWidth }
+        : style
+
     return (
       <Table
         // eslint-disable-next-line react/jsx-props-no-spreading
@@ -68,16 +85,20 @@ export const DetailedList = forwardRef<HTMLTableElement, Props>(
         className={cx(className, classes.root, {
           [classes.striped]: striped
         })}
+        style={tableStyle}
       >
         <Table.Body>
-          {isSmall ? renderSingleColumn() : renderTwoColumns()}
+          {isSmall || columns === 1 ? renderSingleColumn() : renderTwoColumns()}
         </Table.Body>
       </Table>
     )
   }
 )
 
-DetailedList.defaultProps = {}
+DetailedList.defaultProps = {
+  columns: 2,
+  striped: false
+}
 DetailedList.displayName = 'DetailedList'
 
 export default DetailedList

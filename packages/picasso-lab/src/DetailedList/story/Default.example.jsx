@@ -43,7 +43,7 @@ const items = [
   {
     label: 'Availability',
     value: (
-      <Typography color='green' weight='semibold' size='medium'>
+      <Typography color='green' weight='semibold' size='medium' noWrap>
         Product Manager Full-time (40 hours/week available out of 40 hours/week)
         updated 1 day ago
       </Typography>

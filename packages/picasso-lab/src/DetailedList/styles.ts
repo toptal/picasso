@@ -1,7 +1,9 @@
 import { createStyles, Theme } from '@material-ui/core'
 
-export default ({ palette }: Theme) =>
-  createStyles({
+export default ({ palette, ...rest }: Theme) => {
+  console.log(rest)
+
+  return createStyles({
     root: {
       width: 'auto',
 
@@ -12,5 +14,7 @@ export default ({ palette }: Theme) =>
     row: {
       backgroundColor: 'transparent'
     },
-    striped: {}
+    striped: {},
+    fixed: {}
   })
+}

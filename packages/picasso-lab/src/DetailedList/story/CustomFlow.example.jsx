@@ -44,17 +44,35 @@ const items = [
     label: 'Availability',
     value: (
       <Typography color='green' weight='semibold' size='medium' noWrap>
-        Product Manager Full-time (40 hours/week available out of 40 hours/week)
-        updated 1 day ago
+        Full-time (40 hours/week available out of 40 hours/week) updated 1 day
+        ago
       </Typography>
     )
   }
 ]
 
+const aggregateItems = itemsToAggregate => {
+  const pivot = Math.round(itemsToAggregate.length / 2)
+  const firstColItems = itemsToAggregate.slice(0, pivot)
+  const secondColItems = itemsToAggregate.slice(pivot)
+
+  return itemsToAggregate.reduce(
+    (acc, _, index) => [
+      ...acc,
+      index % 2 === 0
+        ? firstColItems[index / 2]
+        : secondColItems[Math.floor(index / 2)]
+    ],
+    []
+  )
+}
+
 const Example = () => {
+  const customFlowItems = aggregateItems(items)
+
   return (
     <div>
-      <DetailedList items={items} striped />
+      <DetailedList items={customFlowItems} fixedWidth='40%' />
     </div>
   )
 }

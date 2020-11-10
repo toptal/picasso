@@ -54,7 +54,7 @@ const items = [
 const Example = () => {
   return (
     <div>
-      <DetailedList items={items} striped />
+      <DetailedList columns={1} items={items} />
     </div>
   )
 }
