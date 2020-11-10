@@ -39,7 +39,7 @@ page
       name: 'scale',
       type: 'enum',
       description: 'scale of the icon',
-      enums: [1, 2, 3, 4]
+      enums: ['1', '2', '3', '4']
     }
   ])
   .addTextSection(

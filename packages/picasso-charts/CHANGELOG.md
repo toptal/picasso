@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.5](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@0.5.4...@toptal/picasso-charts@0.5.5) (2020-11-06)
+
+**Note:** Version bump only for package @toptal/picasso-charts
+
+
+
+
+
 ## [0.5.4](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@0.5.3...@toptal/picasso-charts@0.5.4) (2020-11-02)
 
 **Note:** Version bump only for package @toptal/picasso-charts
