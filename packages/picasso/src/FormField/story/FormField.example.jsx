@@ -6,7 +6,7 @@ const Example = () => (
     <Grid.Item small={5}>
       <Form>
         <Form.Field>
-          <Form.Label>Country</Form.Label>
+          <Form.Label required={false}>Country</Form.Label>
           <Select placeholder='e.g., Spain' options={OPTIONS} />
         </Form.Field>
 
@@ -34,7 +34,9 @@ const Example = () => (
         </Form.Field>
 
         <Form.Field>
-          <Form.Label required>Choose one of the following skills</Form.Label>
+          <Form.Label required={false}>
+            Choose one of the following skills
+          </Form.Label>
           <Radio.Group name='skills'>
             <Radio label='Front-End' value='front-end' />
             <Radio label='Back-End' value='back-end' />
