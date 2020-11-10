@@ -24,11 +24,7 @@ const PropTypeTableCell: FunctionComponent<Props> = props => {
   if (type.description) {
     return (
       <Table.Cell className={className}>
-        <Tooltip
-          content={<Markdown>{type.description}</Markdown>}
-          classes={{ tooltip: classes.tooltip }}
-          interactive
-        >
+        <Tooltip content={<Markdown>{type.description}</Markdown>} interactive>
           <div>
             <span className={classes.tooltipTarget}>{type.name}</span>
             <sup>?</sup>

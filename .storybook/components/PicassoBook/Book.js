@@ -30,7 +30,7 @@ in '.storybook/config.js'.
     }
 
     return {
-      createPage: (title, info) => {
+      createPage: (title, info = undefined) => {
         const page = new Page({ title, info, section: name })
         this.collection.push(page)
         return page
