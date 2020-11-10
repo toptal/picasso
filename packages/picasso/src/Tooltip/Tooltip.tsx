@@ -8,7 +8,7 @@ import React, {
   cloneElement
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import MUITooltip from '@material-ui/core/Tooltip'
+import MUITooltip, { TooltipProps } from '@material-ui/core/Tooltip'
 import cx from 'classnames'
 import { usePicassoRoot, BaseProps } from '@toptal/picasso-shared'
 
@@ -17,7 +17,7 @@ import styles from './styles'
 
 type VariantType = 'light' | 'dark'
 
-export type PlacementType = 'bottom' | 'left' | 'right' | 'top'
+export type PlacementType = TooltipProps['placement']
 
 type MaxWidthType = 'none' | 'default'
 
