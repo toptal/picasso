@@ -75,7 +75,7 @@ exports[`renders PromptModal 1`] = `
             </span>
           </button>
           <button
-            class="MuiButtonBase-root PicassoButton-medium PicassoButton-root"
+            class="MuiButtonBase-root PicassoButton-medium PicassoButton-positive PicassoButton-root"
             tabindex="0"
             type="button"
           >
@@ -205,7 +205,7 @@ exports[`showPrompt opens and closes modal on Submit action 2`] = `
                 </span>
               </button>
               <button
-                class="MuiButtonBase-root PicassoButton-medium PicassoButton-root"
+                class="MuiButtonBase-root PicassoButton-medium PicassoButton-positive PicassoButton-root"
                 tabindex="0"
                 type="button"
               >
@@ -313,7 +313,7 @@ exports[`showPrompt opens and closes modal on Submit action 3`] = `
                 </span>
               </button>
               <button
-                class="MuiButtonBase-root PicassoButton-medium PicassoButton-root"
+                class="MuiButtonBase-root PicassoButton-medium PicassoButton-positive PicassoButton-root"
                 tabindex="0"
                 type="button"
               >
@@ -450,7 +450,7 @@ exports[`showPrompt with input returns result on Submit action  1`] = `
                 </span>
               </button>
               <button
-                class="MuiButtonBase-root PicassoButton-medium PicassoButton-root"
+                class="MuiButtonBase-root PicassoButton-medium PicassoButton-positive PicassoButton-root"
                 tabindex="0"
                 type="button"
               >
