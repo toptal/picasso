@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import { Typography } from '@toptal/picasso'
+import { Typography, Table } from '@toptal/picasso'
 import { makeStyles } from '@material-ui/core'
 
 import styles from './styles'
@@ -25,14 +25,14 @@ export const DetailedListItem = ({ label, value, fullWidth }: Props) => {
 
   return (
     <>
-      <td className={classes.cell}>
+      <Table.Cell className={classes.cell}>
         <Typography size='medium' noWrap>
           {label}
         </Typography>
-      </td>
-      <td className={classes.cell} colSpan={fullWidth ? 3 : 1}>
+      </Table.Cell>
+      <Table.Cell className={classes.cell} colSpan={fullWidth ? 3 : 1}>
         {renderValue(value)}
-      </td>
+      </Table.Cell>
     </>
   )
 }

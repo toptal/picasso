@@ -4,7 +4,7 @@ export default () =>
   createStyles({
     cell: {
       width: 1,
-      padding: '8px 24px 8px 8px',
+      padding: '0.5em 1.5em 0.5em 0.5em',
       border: 'none'
     }
   })

@@ -11,4 +11,4 @@ page.createTabChapter('Props').addComponentDocs({
 page
   .createChapter()
   .addExample('DetailedList/story/Default.example.jsx', 'Default')
-  .addExample('DetailedList/story/Stripped.example.jsx', 'Stripped')
+  .addExample('DetailedList/story/Striped.example.jsx', 'Striped')

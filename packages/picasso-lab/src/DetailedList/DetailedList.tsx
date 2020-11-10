@@ -2,6 +2,7 @@
 
 import React, { HTMLAttributes, forwardRef } from 'react'
 import { BaseProps, useBreakpoint } from '@toptal/picasso-shared'
+import { Table } from '@toptal/picasso'
 import { makeStyles } from '@material-ui/core'
 import cx from 'classnames'
 
@@ -12,8 +13,8 @@ import DetailedListItem from '../DetailedListItem'
 export interface Props extends BaseProps, HTMLAttributes<HTMLTableElement> {
   /** List items */
   items: Item[]
-  /** Colors every second row */
-  stripped?: boolean
+  /** Set a stripe background */
+  striped?: boolean
 }
 
 const useStyles = makeStyles(styles, { name: 'DetailedList' })
@@ -23,7 +24,7 @@ const generateSequence = (length: number) =>
 
 export const DetailedList = forwardRef<HTMLTableElement, Props>(
   function DetailedList(props, ref) {
-    const { items, stripped, className, ...rest } = props
+    const { items, striped, className, ...rest } = props
 
     const isSmall = useBreakpoint('small')
 
@@ -32,9 +33,9 @@ export const DetailedList = forwardRef<HTMLTableElement, Props>(
 
     const renderSingleColumn = () =>
       items.map(item => (
-        <tr key={item.label} className={classes.row}>
+        <Table.Row key={item.label} className={classes.row}>
           <DetailedListItem label={item.label} value={item.value} />
-        </tr>
+        </Table.Row>
       ))
 
     const renderTwoColumns = () => {
@@ -45,7 +46,7 @@ export const DetailedList = forwardRef<HTMLTableElement, Props>(
         const nextItem = items[rowIndex * 2 + 1]
 
         return (
-          <tr key={item.label} className={classes.row}>
+          <Table.Row key={item.label} className={classes.row}>
             <DetailedListItem
               label={item.label}
               value={item.value}
@@ -54,22 +55,24 @@ export const DetailedList = forwardRef<HTMLTableElement, Props>(
             {nextItem && (
               <DetailedListItem label={nextItem.label} value={nextItem.value} />
             )}
-          </tr>
+          </Table.Row>
         )
       })
     }
 
     return (
-      <table
+      <Table
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         ref={ref}
         className={cx(className, classes.root, {
-          [classes.stripped]: stripped
+          [classes.striped]: striped
         })}
       >
-        <tbody>{isSmall ? renderSingleColumn() : renderTwoColumns()}</tbody>
-      </table>
+        <Table.Body>
+          {isSmall ? renderSingleColumn() : renderTwoColumns()}
+        </Table.Body>
+      </Table>
     )
   }
 )

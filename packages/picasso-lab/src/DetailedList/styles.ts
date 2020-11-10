@@ -3,14 +3,15 @@ import { createStyles, Theme } from '@material-ui/core'
 export default ({ palette }: Theme) =>
   createStyles({
     root: {
-      borderSpacing: 0,
+      width: 'auto',
 
-      '&$stripped $row:nth-child(2n)': {
+      '&$striped $row:nth-child(2n)': {
         backgroundColor: palette.grey.lighter
       }
     },
     row: {
-      padding: '16px 0'
+      backgroundColor: 'transparent',
+      padding: '1em 0'
     },
-    stripped: {}
+    striped: {}
   })
