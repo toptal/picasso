@@ -117,7 +117,7 @@ export const Form = <T extends any = AnyObject>(props: Props<T>) => {
       if (!errors && successSubmitMessage) {
         showSuccess(successSubmitMessage)
       } else if (errors && !hasFormLevelError && failedSubmitMessage) {
-        showError(failedSubmitMessage)
+        showError(failedSubmitMessage, undefined, { persist: true })
       }
 
       return errors
