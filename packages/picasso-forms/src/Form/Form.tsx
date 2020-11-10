@@ -106,7 +106,7 @@ export const Form = <T extends any = AnyObject>(props: Props<T>) => {
       const errors = await onSubmit(values, form, callback)
 
       if (typeof errors === 'string') {
-        showError(errors)
+        showError(errors, undefined, { persist: true })
 
         return errors
       }
