@@ -23,6 +23,7 @@ import ScrollMenu from '../ScrollMenu'
 import Typography from '../Typography'
 import Popper from '../Popper'
 import InputAdornment from '../InputAdornment'
+import PoweredByGoogle from './PoweredByGoogle'
 import { Item, ChangedOptions } from './types'
 import useAutocomplete, { EMPTY_INPUT_VALUE } from './useAutocomplete'
 import styles from './styles'
@@ -92,6 +93,8 @@ export interface Props
   /** Whether to render reset icon when there is a value in the input */
   enableReset?: boolean
   popperContainer?: HTMLElement
+  /** Show the "Powered By Google" label */
+  poweredByGoogle?: boolean
 }
 
 const getItemText = (item: Item | null) =>
@@ -131,6 +134,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       getKey: customGetKey,
       enableReset,
       name,
+      poweredByGoogle,
       ...rest
     },
     ref
@@ -217,6 +221,12 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
             {noOptionsText}
           </Menu.Item>
         )}
+
+        {optionsLength > 0 && poweredByGoogle && (
+          <Container flex justifyContent='flex-end' padded='xsmall'>
+            <PoweredByGoogle />
+          </Container>
+        )}
       </ScrollMenu>
     )
 
@@ -296,7 +306,8 @@ Autocomplete.defaultProps = {
   otherOptionText: 'Other option: ',
   showOtherOption: false,
   width: 'auto',
-  enableReset: true
+  enableReset: true,
+  poweredByGoogle: false
 }
 
 Autocomplete.displayName = 'Autocomplete'
