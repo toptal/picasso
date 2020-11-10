@@ -3,10 +3,18 @@ import {
   Form as FinalForm,
   FormProps as FinalFormProps
 } from 'react-final-form'
-import { FormApi, ValidationErrors, getIn, setIn } from 'final-form'
-import { Form as PicassoForm } from '@toptal/picasso'
+import {
+  FormApi,
+  ValidationErrors,
+  SubmissionErrors,
+  getIn,
+  setIn
+} from 'final-form'
+import { Form as PicassoForm, Container } from '@toptal/picasso'
+import { Alert } from '@toptal/picasso-lab'
 import { useNotifications } from '@toptal/picasso/utils'
 
+import { FORM_ERROR } from '../index'
 import Input from '../Input'
 import Select from '../Select'
 import Radio from '../Radio'
@@ -36,7 +44,7 @@ export type Props<T = AnyObject> = FinalFormProps<T> & {
   scrollOffsetTop?: number
 }
 
-const getSubmitErrors = (
+const getValidationErrorsOnSubmit = (
   validationObject: Validators,
   formValues: AnyObject,
   form: FormApi<AnyObject>
@@ -58,6 +66,14 @@ const getSubmitErrors = (
     undefined
   )
 
+const getFormError = (errors: SubmissionErrors | void | undefined) => {
+  if (!errors) {
+    return undefined
+  }
+
+  return errors[FORM_ERROR]
+}
+
 export const Form = <T extends any = AnyObject>(props: Props<T>) => {
   const {
     children,
@@ -77,7 +93,7 @@ export const Form = <T extends any = AnyObject>(props: Props<T>) => {
 
   const handleSubmit = useCallback(
     async (values, form, callback) => {
-      const validationErrors = getSubmitErrors(
+      const validationErrors = getValidationErrorsOnSubmit(
         validationObject.current.getValidators(),
         values,
         form
@@ -89,9 +105,18 @@ export const Form = <T extends any = AnyObject>(props: Props<T>) => {
 
       const errors = await onSubmit(values, form, callback)
 
+      if (typeof errors === 'string') {
+        showError(errors)
+
+        return errors
+      }
+
+      const formError = getFormError(errors)
+      const hasFormLevelError = Boolean(formError)
+
       if (!errors && successSubmitMessage) {
         showSuccess(successSubmitMessage)
-      } else if (errors && failedSubmitMessage) {
+      } else if (errors && !hasFormLevelError && failedSubmitMessage) {
         showError(failedSubmitMessage)
       }
 
@@ -109,9 +134,23 @@ export const Form = <T extends any = AnyObject>(props: Props<T>) => {
   return (
     <FormContext.Provider value={validationObject}>
       <FinalForm
-        render={({ handleSubmit }) => (
-          <PicassoForm onSubmit={handleSubmit}>{children}</PicassoForm>
-        )}
+        render={({ handleSubmit, form }) => {
+          const formState = form.getState()
+          const formError = getFormError(formState.submitErrors)
+
+          const formErrorAlert = formError ? (
+            <Container bottom='medium'>
+              <Alert variant='red'>{formError}</Alert>
+            </Container>
+          ) : null
+
+          return (
+            <Container>
+              {formErrorAlert}
+              <PicassoForm onSubmit={handleSubmit}>{children}</PicassoForm>
+            </Container>
+          )
+        }}
         onSubmit={handleSubmit}
         decorators={[...decorators, scrollToErrorDecorator]}
         // eslint-disable-next-line react/jsx-props-no-spreading
