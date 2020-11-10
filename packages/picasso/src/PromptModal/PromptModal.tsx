@@ -7,7 +7,7 @@ import Modal, { Props as ModalProps } from '../Modal'
 import Button, { VariantType as ButtonVariantType } from '../Button'
 import styles from './styles'
 
-export type VariantType = 'red' | 'blue' | 'green'
+export type VariantType = 'positive' | 'negative'
 
 export type PromptOptions = {
   setResult: (newResult: unknown) => void
@@ -25,7 +25,7 @@ export interface Props extends Omit<ModalProps, 'children' | 'onSubmit'> {
   title: string
   /** Prompt message */
   message: string
-  /** Different Prompt variants used for differnt intention */
+  /** Different Prompt variants used for different intention */
   variant?: VariantType
   /** Text on Submit button */
   submitText?: string
@@ -119,7 +119,7 @@ export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
         <Button
           loading={loading}
           onClick={handleSubmit}
-          variant={`primary-${variant}` as ButtonVariantType}
+          variant={`${variant}` as ButtonVariantType}
         >
           {submitText}
         </Button>
@@ -133,7 +133,7 @@ PromptModal.defaultProps = {
   onCancel: () => {},
   size: 'small',
   submitText: 'Submit',
-  variant: 'green',
+  variant: 'positive',
   onAfterSubmit: () => {}
 }
 
