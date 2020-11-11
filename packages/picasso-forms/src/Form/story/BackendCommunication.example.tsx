@@ -38,12 +38,14 @@ const BackendCommunicationExample = () => {
           name='successName'
           label='First name'
           placeholder='e.g. Bruce'
+          width='full'
         />
         <Form.Input
           required
           name='successSurname'
           label='Last name'
           placeholder='e.g. Wayne'
+          width='full'
         />
 
         <Container top='small'>
@@ -62,12 +64,14 @@ const BackendCommunicationExample = () => {
           name='inlineErrorName'
           label='First name'
           placeholder='e.g. Bruce'
+          width='full'
         />
         <Form.Input
           required
           name='inlineErrorSurname'
           label='Last name'
           placeholder='e.g. Wayne'
+          width='full'
         />
 
         <Container top='small'>
@@ -86,12 +90,14 @@ const BackendCommunicationExample = () => {
           name='formErrorName'
           label='First name'
           placeholder='e.g. Bruce'
+          width='full'
         />
         <Form.Input
           required
           name='formErrorSurname'
           label='Last name'
           placeholder='e.g. Wayne'
+          width='full'
         />
 
         <Container top='small'>
@@ -107,12 +113,14 @@ const BackendCommunicationExample = () => {
           name='customNotificationErrorName'
           label='First name'
           placeholder='e.g. Bruce'
+          width='full'
         />
         <Form.Input
           required
           name='customNotificationErrorSurname'
           label='Last name'
           placeholder='e.g. Wayne'
+          width='full'
         />
 
         <Container top='small'>
