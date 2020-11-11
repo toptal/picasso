@@ -146,6 +146,16 @@ class Chapter extends Base {
     return this
   }
 
+  addDesignDocs = (abstract: string) => {
+    this.createSection({
+      sectionFn: () => (
+        <iframe src={abstract} width='1000' height='1200' frameBorder='0' />
+      ),
+      title: 'Design Documentation'
+    })
+
+    return this
+  }
   addExample = (source: string, options: Options | string, module?: string) => {
     const finalOptions: Options =
       typeof options === 'string'

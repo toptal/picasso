@@ -20,6 +20,9 @@ page.createTabChapter('Props').addComponentDocs({
 
 page
   .createChapter()
+  .addDesignDocs(
+    'https://app.abstract.com/embed/636e68ee-2ef4-483d-bdaf-83aef2340477?collectionLayerId=aa49cc2c-6e4e-4d8d-aa3a-3def89e1837f&mode=build'
+  )
 
   .addExample('Accordion/story/Default.example.jsx', {
     title: 'Default',
