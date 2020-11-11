@@ -1,11 +1,8 @@
 import React, { Fragment, FunctionComponent } from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import { sortBy } from 'lodash'
-
 import { Table } from '@toptal/picasso'
-import cx from 'classnames'
-
 import { Classes } from '@toptal/picasso-shared'
+
 import {
   PropDocumentation,
   PropTypeDocumentation
@@ -14,6 +11,7 @@ import PropTypeTableCell from './PropTypeTableCell'
 import EnumsList from './EnumsList'
 import Description from './Description'
 import styles from './styles'
+import { sortBy } from './utils'
 
 interface Props {
   documentation: PropDocumentation[]
@@ -62,14 +60,10 @@ const PropsTable: FunctionComponent<Props> = props => {
       <Table className={classes.table}>
         <Table.Head>
           <Table.Row>
-            <Table.Cell className={cx(classes.name)}>Name</Table.Cell>
-            <Table.Cell className={cx(classes.type)}>Type</Table.Cell>
-            <Table.Cell className={cx(classes.defaultValue)}>
-              Default
-            </Table.Cell>
-            <Table.Cell className={cx(classes.description)}>
-              Description
-            </Table.Cell>
+            <Table.Cell className={classes.name}>Name</Table.Cell>
+            <Table.Cell className={classes.type}>Type</Table.Cell>
+            <Table.Cell className={classes.defaultValue}>Default</Table.Cell>
+            <Table.Cell className={classes.description}>Description</Table.Cell>
           </Table.Row>
         </Table.Head>
         <Table.Body>{renderRows(props)}</Table.Body>

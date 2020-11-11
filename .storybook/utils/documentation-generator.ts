@@ -1,5 +1,5 @@
-import _ from 'lodash'
 import { ComponentDoc, PropItemType } from 'react-docgen-typescript/lib/parser'
+import { merge, mapValues } from './fns'
 
 export interface PropTypeDocumentation {
   name: string
@@ -18,9 +18,8 @@ export interface PropDocumentation {
   value?: any[]
 }
 
-export interface PropDocumentationMap {
-  [propName: string]: PropDocumentation
-}
+export interface PropDocumentationMap
+  extends Record<string, PropDocumentation> {}
 
 export interface Documentable {
   displayName?: string
@@ -55,7 +54,7 @@ class DocumentationGenerator {
     if (typeName.match(ENUM_TYPE_REGEX)) {
       let baseShape = {}
 
-      if (type.value && _.isArray(type.value)) {
+      if (type.value && Array.isArray(type.value)) {
         baseShape = {
           enums: type.value.map(({ value }: any) => value)
         }
@@ -129,7 +128,7 @@ class DocumentationGenerator {
 |                 |         |
 | ----            | ------  |
 ${propsTable}
-    
+
 }`
     } else {
       return objectType
@@ -144,14 +143,14 @@ ${propsTable}
     return defaultValue.value
   }
 
-  merge(...sources: PropDocumentationMap[]): PropDocumentationMap {
-    return _.merge({} as PropDocumentationMap, ...sources)
+  merge(docs: PropDocumentationMap, additionalDocs?: PropDocumentationMap) {
+    return merge(docs, additionalDocs)
   }
 
   transform(generatedDocumentation: ComponentDoc): PropDocumentationMap {
     const { props: propDocs } = generatedDocumentation
 
-    return _.mapValues(propDocs, (propDoc, propName) => {
+    return mapValues(propDocs, (propDoc, propName) => {
       const { type, description, required, defaultValue } = propDoc
 
       return {
@@ -161,7 +160,7 @@ ${propsTable}
         description,
         required
       }
-    })
+    }) as PropDocumentationMap
   }
 }
 
