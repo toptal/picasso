@@ -1,13 +1,6 @@
 import React, { useCallback } from 'react'
-import styled from 'styled-components'
 import { Container } from '@toptal/picasso'
 import { Form, FORM_ERROR } from '@toptal/picasso-forms'
-
-const StyledContainer = styled(Container)`
-  display: grid;
-  gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-`
 
 const BackendCommunicationExample = () => {
   const handleSuccessSubmit = useCallback(
@@ -28,7 +21,13 @@ const BackendCommunicationExample = () => {
   )
 
   return (
-    <StyledContainer>
+    <Container
+      style={{
+        display: 'grid',
+        gap: '2rem',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))'
+      }}
+    >
       <Form
         onSubmit={handleSuccessSubmit}
         successSubmitMessage='Login successful!'
@@ -49,7 +48,10 @@ const BackendCommunicationExample = () => {
         />
 
         <Container top='small'>
-          <Form.SubmitButton variant='positive'>
+          <Form.SubmitButton
+            variant='positive'
+            data-testid='success-submit-button'
+          >
             Login Success
           </Form.SubmitButton>
         </Container>
@@ -75,7 +77,10 @@ const BackendCommunicationExample = () => {
         />
 
         <Container top='small'>
-          <Form.SubmitButton variant='negative'>
+          <Form.SubmitButton
+            variant='negative'
+            data-testid='submit-with-inline-error-button'
+          >
             Login with Inline Error
           </Form.SubmitButton>
         </Container>
@@ -101,7 +106,10 @@ const BackendCommunicationExample = () => {
         />
 
         <Container top='small'>
-          <Form.SubmitButton variant='negative'>
+          <Form.SubmitButton
+            variant='negative'
+            data-testid='submit-with-form-error-button'
+          >
             Login with Form Error
           </Form.SubmitButton>
         </Container>
@@ -124,12 +132,15 @@ const BackendCommunicationExample = () => {
         />
 
         <Container top='small'>
-          <Form.SubmitButton variant='negative'>
+          <Form.SubmitButton
+            variant='negative'
+            data-testid='submit-with-custom-notification-button'
+          >
             Login with Custom Notification Error
           </Form.SubmitButton>
         </Container>
       </Form>
-    </StyledContainer>
+    </Container>
   )
 }
 
