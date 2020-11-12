@@ -31,31 +31,53 @@ interface StaticProps {
   Item: typeof DetailedListItem
 }
 
-const useResponsiveChildren = (children: Props['children']) => {
+const useChildrenToColumns = (
+  children: Props['children']
+): ReactElement<DetailedListColumnProps>[] => {
   const isSmall = useBreakpoint('small')
 
-  if (!isSmall) return children
+  if (!isSmall) return React.Children.toArray(children)
 
   const childrenArray = React.Children.toArray(
     Array.isArray(children) ? children : [children]
   )
-  const allItems = childrenArray.reduce(
+  const allCells = childrenArray.reduce(
     (acc, child) => [...acc, ...child.props.children],
     [] as ReactElement<DetailedListItemProps>[]
   )
 
-  return <DetailedListColumn>{allItems}</DetailedListColumn>
+  return [
+    <DetailedListColumn key='smallScreenColumn'>{allCells}</DetailedListColumn>
+  ]
 }
 
 export const DetailedList = forwardRef<HTMLDivElement, Props>(
   function DetailedList({ className, children, striped, ...rest }, ref) {
     const classes = useStyles()
 
-    const responsiveChildren = useResponsiveChildren(children)
+    const columns = useChildrenToColumns(children)
+
+    const renderColumns = () =>
+      columns.map((column, index) => {
+        const nextColumn = columns[index + 1]
+
+        const isFirstColumn = index === 0
+        const columnSize = React.Children.count(column.props.children)
+        const nextColumnSize = nextColumn
+          ? React.Children.count(nextColumn.props.children)
+          : 0
+
+        // The last cell of the first column should take the full width
+        // if there is no same-index cell in the next column
+        const allowLastCellOverflow =
+          isFirstColumn && columnSize > nextColumnSize
+
+        return React.cloneElement(column, { allowLastCellOverflow })
+      })
 
     return (
       <DetailedListContext.Provider
-        value={{ size: React.Children.count(responsiveChildren), striped }}
+        value={{ size: React.Children.count(columns), striped }}
       >
         <Container
           // eslint-disable-next-line react/jsx-props-no-spreading
@@ -64,7 +86,7 @@ export const DetailedList = forwardRef<HTMLDivElement, Props>(
           className={cx(className, classes.root)}
           flex
         >
-          {responsiveChildren}
+          {renderColumns()}
         </Container>
       </DetailedListContext.Provider>
     )

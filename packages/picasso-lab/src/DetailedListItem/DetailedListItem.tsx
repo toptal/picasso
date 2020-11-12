@@ -4,13 +4,10 @@ export interface Props {
   /** Item label */
   label: string
   /** Item value */
-  value: ReactNode
+  children: ReactNode
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const DetailedListItem = (props: Props) => {
-  return null
-}
+export const DetailedListItem = ({ children }: Props) => children
 
 DetailedListItem.defaultProps = {}
 DetailedListItem.displayName = 'DetailedListItem'

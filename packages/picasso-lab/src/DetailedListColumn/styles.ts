@@ -7,5 +7,10 @@ export default ({ palette }: Theme) =>
     },
     cellStriped: {
       backgroundColor: palette.grey.lighter
+    },
+    cellOverflow: {
+      position: 'absolute',
+      maxWidth: '70%',
+      bottom: 0
     }
   })

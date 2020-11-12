@@ -14,6 +14,8 @@ const useStyles = makeStyles(styles, { name: 'PicassoDetailedListColumn' })
 export interface Props {
   /** List of items */
   children: ReactElement<DetailedListItemProps>[]
+  /** Allows last cell to overflow horizontally */
+  allowLastCellOverflow?: boolean
 }
 
 const useColumnStyle = () => {
@@ -33,24 +35,27 @@ const useShouldStripeCell = () => {
   return (rowIndex: number) => striped && rowIndex % 2 !== 0
 }
 
-export const DetailedListColumn = ({ children }: Props) => {
+export const DetailedListColumn = ({
+  children,
+  allowLastCellOverflow
+}: Props) => {
   const classes = useStyles()
   const columnStyle = useColumnStyle()
   const shouldStripeCell = useShouldStripeCell()
 
-  const items = React.Children.map(children, child => child.props)
+  const cellsCount = React.Children.count(children)
 
   const renderLabelsColumn = () => (
     <Container flex inline direction='column' style={columnStyle}>
-      {items.map((item, index) => (
+      {React.Children.map(children, (child, index) => (
         <Container
-          key={item.label}
+          key={child.props.label}
           className={cx(classes.cell, {
             [classes.cellStriped]: shouldStripeCell(index)
           })}
         >
           <Typography size='medium' noWrap>
-            {item.label}
+            {child.props.label}
           </Typography>
         </Container>
       ))}
@@ -59,19 +64,21 @@ export const DetailedListColumn = ({ children }: Props) => {
 
   const renderValuesColumn = () => (
     <Container flex inline direction='column' style={columnStyle}>
-      {items.map((item, index) => (
+      {React.Children.map(children, (child, index) => (
         <Container
-          key={item.label}
+          key={child.props.label}
           className={cx(classes.cell, {
-            [classes.cellStriped]: shouldStripeCell(index)
+            [classes.cellStriped]: shouldStripeCell(index),
+            [classes.cellOverflow]:
+              index === cellsCount - 1 && allowLastCellOverflow
           })}
         >
-          {typeof item.value === 'string' ? (
+          {typeof child.props.children === 'string' ? (
             <Typography size='medium' weight='semibold' color='black' noWrap>
-              {item.value}
+              {child}
             </Typography>
           ) : (
-            item.value
+            child
           )}
         </Container>
       ))}
