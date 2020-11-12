@@ -1,5 +1,4 @@
 import TreeView from '../TreeView'
-// @ts-ignore
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Lab').createPage(
