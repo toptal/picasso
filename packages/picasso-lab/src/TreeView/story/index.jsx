@@ -20,7 +20,7 @@ page
       "To set the particular node selected, you need to set `node`'s attribute *selected* to `true`. Also there is additional attribute `selectedOffset` for adding an scroll offset for particular node"
   })
   .addExample('TreeView/story/Modal.example.tsx', {
-    title: 'tree',
+    title: 'With Modal',
     effect: async (testPage, makeScreenshot) => {
       await testPage.click('[data-testid="open"]')
       await testPage.waitFor('[data-testid="tree-dialog-content"]')
