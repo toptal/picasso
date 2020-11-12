@@ -2,6 +2,7 @@ import { PageAutocomplete } from '../PageAutocomplete'
 // @ts-ignore
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
+// @ts-ignore
 const componentDocs = PicassoBook.createComponentDocs(
   PageAutocomplete,
   'Page.Autocomplete'
