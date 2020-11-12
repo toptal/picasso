@@ -15,7 +15,15 @@ const getInputs = (): HTMLInputElement[] => {
 }
 
 const findInputWithError = (inputs: HTMLInputElement[], errors: {}) =>
-  inputs.find(input => input.name && getIn(errors, input.name))
+  inputs.find(input => {
+    if (!input.name) {
+      return false
+    }
+
+    const error = getIn(errors, input.name)
+
+    return error && typeof error === 'string'
+  })
 
 const scrollToError = (errors: object) => {
   const firstInput = findInputWithError(getInputs(), errors)

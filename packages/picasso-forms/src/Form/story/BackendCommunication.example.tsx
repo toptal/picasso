@@ -1,46 +1,143 @@
 import React, { useCallback } from 'react'
-import { Container, Typography } from '@toptal/picasso'
-import { Form } from '@toptal/picasso-forms'
+import { Container } from '@toptal/picasso'
+import { Form, FORM_ERROR } from '@toptal/picasso-forms'
 
 const BackendCommunicationExample = () => {
-  const handleSubmit = useCallback(async (values: any) => {
-    const result = await api.submit(values)
-
-    if (result !== 'success') {
-      return {
-        name: 'Unknown first name'
-      }
-    }
-  }, [])
+  const handleSuccessSubmit = useCallback(
+    (values: any) => api.successSubmit(values),
+    []
+  )
+  const handleSubmitWithInlineError = useCallback(
+    (values: any) => api.submitWithInlineError(values),
+    []
+  )
+  const handleSubmitWithFormError = useCallback(
+    (values: any) => api.submitWithFormError(values),
+    []
+  )
+  const handleSubmitWithCustomNotificationError = useCallback(
+    (values: any) => api.submitWithCustomNotificationError(values),
+    []
+  )
 
   return (
-    <Container>
-      <Container bottom='medium'>
-        <Typography>
-          To emulate successful login use &apos;Bruce&apos; as a first name. For
-          other values login process will fail.
-        </Typography>
-      </Container>
+    <Container
+      style={{
+        display: 'grid',
+        gap: '2rem',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))'
+      }}
+    >
       <Form
-        onSubmit={handleSubmit}
+        onSubmit={handleSuccessSubmit}
         successSubmitMessage='Login successful!'
+      >
+        <Form.Input
+          required
+          name='successName'
+          label='First name'
+          placeholder='e.g. Bruce'
+          width='full'
+        />
+        <Form.Input
+          required
+          name='successSurname'
+          label='Last name'
+          placeholder='e.g. Wayne'
+          width='full'
+        />
+
+        <Container top='small'>
+          <Form.SubmitButton
+            variant='positive'
+            data-testid='success-submit-button'
+          >
+            Login Success
+          </Form.SubmitButton>
+        </Container>
+      </Form>
+
+      <Form
+        onSubmit={handleSubmitWithInlineError}
         failedSubmitMessage='Login failed! Please try another combination of first and last names.'
       >
         <Form.Input
           required
-          name='name'
+          name='inlineErrorName'
           label='First name'
           placeholder='e.g. Bruce'
+          width='full'
         />
         <Form.Input
           required
-          name='surname'
+          name='inlineErrorSurname'
           label='Last name'
           placeholder='e.g. Wayne'
+          width='full'
         />
 
         <Container top='small'>
-          <Form.SubmitButton>Login</Form.SubmitButton>
+          <Form.SubmitButton
+            variant='negative'
+            data-testid='submit-with-inline-error-button'
+          >
+            Login with Inline Error
+          </Form.SubmitButton>
+        </Container>
+      </Form>
+
+      <Form
+        onSubmit={handleSubmitWithFormError}
+        failedSubmitMessage='Login failed! Please try another combination of first and last names.'
+      >
+        <Form.Input
+          required
+          name='formErrorName'
+          label='First name'
+          placeholder='e.g. Bruce'
+          width='full'
+        />
+        <Form.Input
+          required
+          name='formErrorSurname'
+          label='Last name'
+          placeholder='e.g. Wayne'
+          width='full'
+        />
+
+        <Container top='small'>
+          <Form.SubmitButton
+            variant='negative'
+            data-testid='submit-with-form-error-button'
+          >
+            Login with Form Error
+          </Form.SubmitButton>
+        </Container>
+      </Form>
+
+      <Form onSubmit={handleSubmitWithCustomNotificationError}>
+        <Form.Input
+          required
+          name='customNotificationErrorName'
+          label='First name'
+          placeholder='e.g. Bruce'
+          width='full'
+        />
+        <Form.Input
+          required
+          name='customNotificationErrorSurname'
+          label='Last name'
+          placeholder='e.g. Wayne'
+          width='full'
+        />
+
+        <Container top='small'>
+          <Form.SubmitButton
+            variant='negative'
+            data-testid='submit-with-custom-notification-button'
+          >
+            Login with Custom Notification Error
+          </Form.SubmitButton>
         </Container>
       </Form>
     </Container>
@@ -48,19 +145,35 @@ const BackendCommunicationExample = () => {
 }
 
 // the emulation of the api call
+const responseWithDelay = async (response: any) =>
+  new Promise(resolve => setTimeout(() => resolve(response), 2000))
+
 const api = {
-  submit: async (values: any) =>
-    new Promise(resolve =>
-      setTimeout(() => {
-        if (values.name.toLowerCase() === 'bruce') {
-          resolve('success')
+  successSubmit: (values: any) => {
+    // do something with received values
+    console.log('Success submit. Form values:', values)
 
-          return
-        }
+    return responseWithDelay(undefined)
+  },
+  submitWithInlineError: (values: any) => {
+    console.log('Submit with Inline Errors. Form values:', values)
 
-        resolve('fail')
-      }, 2000)
-    )
+    return responseWithDelay({
+      inlineErrorName: 'Unknown first name'
+    })
+  },
+  submitWithFormError: (values: any) => {
+    console.log('Submit with Form Errors. Form values:', values)
+
+    return responseWithDelay({
+      [FORM_ERROR]: "The user don't have a permission to log in."
+    })
+  },
+  submitWithCustomNotificationError: (values: any) => {
+    console.log('Submit with Custom Notification Errors. Form values:', values)
+
+    return responseWithDelay('Custom Notification Message!')
+  }
 }
 
 export default BackendCommunicationExample
