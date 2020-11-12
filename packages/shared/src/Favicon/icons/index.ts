@@ -1,6 +1,10 @@
 import { EnvironmentType } from '../../Picasso'
 
-const getIcons = (environment: EnvironmentType) => {
+const getIcons = (environment: EnvironmentType<'temploy'>) => {
+  if (environment === 'temploy') {
+    return import('./temploy')
+  }
+
   if (environment === 'staging') {
     return import('./staging')
   }
