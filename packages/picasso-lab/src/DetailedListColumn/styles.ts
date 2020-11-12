@@ -3,7 +3,7 @@ import { createStyles, Theme } from '@material-ui/core'
 export default ({ palette }: Theme) =>
   createStyles({
     cell: {
-      padding: '8px 24px 8px 8px'
+      padding: '0.5rem 1.5rem 0.5rem 0.5rem'
     },
     cellStriped: {
       backgroundColor: palette.grey.lighter

@@ -9,7 +9,7 @@ import { DetailedListItemProps } from '../DetailedListItem'
 import styles from './styles'
 import { DetailedListContext } from '../DetailedList/DetailedListContext'
 
-const useStyles = makeStyles(styles, { name: 'DetailedListColumn' })
+const useStyles = makeStyles(styles, { name: 'PicassoDetailedListColumn' })
 
 export interface Props {
   /** List of items */
@@ -59,26 +59,22 @@ export const DetailedListColumn = ({ children }: Props) => {
 
   const renderValuesColumn = () => (
     <Container flex inline direction='column' style={columnStyle}>
-      {items.map((item, index) => {
-        // const isLastOddItem = index === items.length - 1 && index % 2 === 0
-
-        return (
-          <Container
-            key={item.label}
-            className={cx(classes.cell, {
-              [classes.cellStriped]: shouldStripeCell(index)
-            })}
-          >
-            {typeof item.value === 'string' ? (
-              <Typography size='medium' weight='semibold' color='black' noWrap>
-                {item.value}
-              </Typography>
-            ) : (
-              item.value
-            )}
-          </Container>
-        )
-      })}
+      {items.map((item, index) => (
+        <Container
+          key={item.label}
+          className={cx(classes.cell, {
+            [classes.cellStriped]: shouldStripeCell(index)
+          })}
+        >
+          {typeof item.value === 'string' ? (
+            <Typography size='medium' weight='semibold' color='black' noWrap>
+              {item.value}
+            </Typography>
+          ) : (
+            item.value
+          )}
+        </Container>
+      ))}
     </Container>
   )
 

@@ -24,7 +24,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   striped?: boolean
 }
 
-const useStyles = makeStyles(styles, { name: 'DetailedList' })
+const useStyles = makeStyles(styles, { name: 'PicassoDetailedList' })
 
 interface StaticProps {
   Column: typeof DetailedListColumn
