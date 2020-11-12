@@ -45,23 +45,15 @@ const FormContent = () => {
 }
 
 const ValidateOnSubmitExample = () => {
-  const handleSubmit = useCallback(async (values: FormType) => {
-    const result = await api.submit(values)
-
-    if (result !== 'success') {
-      return {
-        name: {
-          first: 'Unknown first name'
-        }
-      }
-    }
-
-    console.log('success')
-  }, [])
+  const handleSubmit = useCallback((values: FormType) => api.submit(values), [])
 
   return (
     <Form.ConfigProvider value={{ validateOnSubmit: true }}>
-      <Form<FormType> onSubmit={handleSubmit}>
+      <Form<FormType>
+        onSubmit={handleSubmit}
+        successSubmitMessage='Success!'
+        failedSubmitMessage='Failure!'
+      >
         <FormContent />
 
         <Container top='small'>
@@ -73,19 +65,21 @@ const ValidateOnSubmitExample = () => {
 }
 
 // the emulation of the api call
+const responseWithDelay = async (response: any) =>
+  new Promise(resolve => setTimeout(() => resolve(response), 2000))
+
 const api = {
-  submit: async (values: FormType) =>
-    new Promise(resolve =>
-      setTimeout(() => {
-        if (values.hide || values.name?.first.toLowerCase() === 'bruce') {
-          resolve('success')
+  submit: async (values: FormType) => {
+    if (values.hide || values.name?.first.toLowerCase() === 'bruce') {
+      return responseWithDelay(undefined)
+    }
 
-          return
-        }
-
-        resolve('fail')
-      }, 2000)
-    )
+    return responseWithDelay({
+      name: {
+        first: 'Unknown first name'
+      }
+    })
+  }
 }
 
 export default ValidateOnSubmitExample
