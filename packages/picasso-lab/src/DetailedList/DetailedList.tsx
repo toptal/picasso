@@ -1,106 +1,80 @@
-/* eslint-disable complexity */
-
-import React, { HTMLAttributes, forwardRef } from 'react'
-import { BaseProps, useBreakpoint } from '@toptal/picasso-shared'
-import { Table } from '@toptal/picasso'
+import React, { HTMLAttributes, forwardRef, ReactElement } from 'react'
+import {
+  BaseProps,
+  CompoundedComponentWithRef,
+  useBreakpoint
+} from '@toptal/picasso-shared'
 import { makeStyles } from '@material-ui/core'
+import { Container } from '@toptal/picasso'
 import cx from 'classnames'
 
-import { Item } from './types'
+import DetailedListItem, { DetailedListItemProps } from '../DetailedListItem'
+import DetailedListColumn, {
+  DetailedListColumnProps
+} from '../DetailedListColumn'
 import styles from './styles'
-import DetailedListItem from '../DetailedListItem'
+import { DetailedListContext } from './DetailedListContext'
 
-export interface Props extends BaseProps, HTMLAttributes<HTMLTableElement> {
-  /** List items */
-  items: Item[]
+export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
+  /** List of columns */
+  children:
+    | ReactElement<DetailedListColumnProps>
+    | ReactElement<DetailedListColumnProps>[]
   /** Set a stripe background */
   striped?: boolean
-  /** Columns count */
-  columnsCount?: 1 | 2
-  /** Fixed table width */
-  fixedWidth?: number | string
 }
 
 const useStyles = makeStyles(styles, { name: 'DetailedList' })
 
-const generateSequence = (length: number) =>
-  Array.from(new Array(length).keys())
+interface StaticProps {
+  Column: typeof DetailedListColumn
+  Item: typeof DetailedListItem
+}
 
-export const DetailedList = forwardRef<HTMLTableElement, Props>(
-  function DetailedList(props, ref) {
-    const {
-      items,
-      striped,
-      className,
-      columnsCount,
-      fixedWidth,
-      style,
-      ...rest
-    } = props
+const useResponsiveChildren = (children: Props['children']) => {
+  const isSmall = useBreakpoint('small')
 
-    const isSmall = useBreakpoint('small')
+  if (!isSmall) return children
 
-    const classes = useStyles(props)
-    const rowsCount = Math.round(items.length / 2)
+  const childrenArray = React.Children.toArray(
+    Array.isArray(children) ? children : [children]
+  )
+  const allItems = childrenArray.reduce(
+    (acc, child) => [...acc, ...child.props.children],
+    [] as ReactElement<DetailedListItemProps>[]
+  )
 
-    const renderSingleColumn = () =>
-      items.map(item => (
-        <Table.Row key={item.label} className={classes.row}>
-          <DetailedListItem label={item.label} value={item.value} />
-        </Table.Row>
-      ))
+  return <DetailedListColumn>{allItems}</DetailedListColumn>
+}
 
-    const renderTwoColumns = () => {
-      const rowsIndices = generateSequence(rowsCount)
+export const DetailedList = forwardRef<HTMLDivElement, Props>(
+  function DetailedList({ className, children, striped, ...rest }, ref) {
+    const classes = useStyles()
 
-      return rowsIndices.map(rowIndex => {
-        const item = items[rowIndex * 2]
-        const nextItem = items[rowIndex * 2 + 1]
-
-        return (
-          <Table.Row key={item.label} className={classes.row}>
-            <DetailedListItem
-              label={item.label}
-              value={item.value}
-              fullWidth={!nextItem}
-            />
-            {nextItem && (
-              <DetailedListItem label={nextItem.label} value={nextItem.value} />
-            )}
-          </Table.Row>
-        )
-      })
-    }
-
-    const tableStyle =
-      typeof fixedWidth !== 'undefined'
-        ? { ...style, tableLayout: 'fixed' as const, width: fixedWidth }
-        : style
+    const responsiveChildren = useResponsiveChildren(children)
 
     return (
-      <Table
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        {...rest}
-        ref={ref}
-        className={cx(className, classes.root, {
-          [classes.striped]: striped
-        })}
-        style={tableStyle}
+      <DetailedListContext.Provider
+        value={{ size: React.Children.count(responsiveChildren), striped }}
       >
-        <Table.Body>
-          {isSmall || columnsCount === 1
-            ? renderSingleColumn()
-            : renderTwoColumns()}
-        </Table.Body>
-      </Table>
+        <Container
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          {...rest}
+          ref={ref}
+          className={cx(className, classes.root)}
+          flex
+        >
+          {responsiveChildren}
+        </Container>
+      </DetailedListContext.Provider>
     )
   }
-)
+) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
 
-DetailedList.defaultProps = {
-  columnsCount: 2,
-  striped: false
-}
+DetailedList.defaultProps = {}
 DetailedList.displayName = 'DetailedList'
+
+DetailedList.Column = DetailedListColumn
+DetailedList.Item = DetailedListItem
 
 export default DetailedList

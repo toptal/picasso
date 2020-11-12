@@ -1,40 +1,15 @@
-import React, { ReactNode } from 'react'
-import { Typography, Table } from '@toptal/picasso'
-import { makeStyles } from '@material-ui/core'
-
-import styles from './styles'
+import { ReactNode } from 'react'
 
 export interface Props {
+  /** Item label */
   label: string
+  /** Item value */
   value: ReactNode
-  fullWidth?: boolean
 }
-const renderValue = (value: ReactNode) =>
-  typeof value === 'string' ? (
-    <Typography size='medium' weight='semibold' color='black' noWrap>
-      {value}
-    </Typography>
-  ) : (
-    value
-  )
 
-const useStyles = makeStyles(styles, { name: 'DetailedListItem' })
-
-export const DetailedListItem = ({ label, value, fullWidth }: Props) => {
-  const classes = useStyles()
-
-  return (
-    <>
-      <Table.Cell className={classes.cell}>
-        <Typography size='medium' noWrap>
-          {label}
-        </Typography>
-      </Table.Cell>
-      <Table.Cell className={classes.cell} colSpan={fullWidth ? 3 : 1}>
-        {renderValue(value)}
-      </Table.Cell>
-    </>
-  )
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const DetailedListItem = (props: Props) => {
+  return null
 }
 
 DetailedListItem.defaultProps = {}
