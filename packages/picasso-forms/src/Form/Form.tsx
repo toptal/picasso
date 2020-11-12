@@ -86,6 +86,35 @@ export const Form = <T extends any = Record<string, any>>(props: Props<T>) => {
 
   const validationObject = useRef<FormContextProps>(createFormContext())
 
+  const showSuccessNotification = () => {
+    if (!successSubmitMessage) {
+      return
+    }
+
+    showSuccess(successSubmitMessage)
+  }
+
+  const showErrorNotification = (errors: SubmissionErrors) => {
+    if (typeof errors === 'string') {
+      showError(errors, undefined, { persist: true })
+
+      return
+    }
+
+    const formError = getFormError(errors)
+    const hasFormLevelError = Boolean(formError)
+
+    if (hasFormLevelError) {
+      return
+    }
+
+    if (!failedSubmitMessage) {
+      return
+    }
+
+    showError(failedSubmitMessage, undefined, { persist: true })
+  }
+
   const handleSubmit = useCallback(
     async (values, form, callback) => {
       const validationErrors = getValidationErrors(
@@ -100,23 +129,10 @@ export const Form = <T extends any = Record<string, any>>(props: Props<T>) => {
 
       const submissionErrors = await onSubmit(values, form, callback)
 
-      if (typeof submissionErrors === 'string') {
-        showError(submissionErrors, undefined, { persist: true })
-
-        return submissionErrors
-      }
-
-      const formError = getFormError(submissionErrors)
-      const hasFormLevelError = Boolean(formError)
-
-      if (!submissionErrors && successSubmitMessage) {
-        showSuccess(successSubmitMessage)
-      } else if (
-        submissionErrors &&
-        !hasFormLevelError &&
-        failedSubmitMessage
-      ) {
-        showError(failedSubmitMessage, undefined, { persist: true })
+      if (!submissionErrors) {
+        showSuccessNotification()
+      } else {
+        showErrorNotification(submissionErrors)
       }
 
       return submissionErrors
