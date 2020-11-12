@@ -13,6 +13,7 @@ import {
   ResponsiveContainer,
   Tooltip
 } from 'recharts'
+import { ticks as getD3Ticks } from 'd3-array'
 import { makeStyles, Theme } from '@material-ui/core'
 
 import { ChartDot } from './ChartDot'
@@ -25,7 +26,6 @@ import {
   orderData
 } from '../utils'
 import CHART_CONSTANTS, { chartMargins } from '../utils/constants'
-import { getD3Ticks } from './utils'
 import styles from './styles'
 
 const {
