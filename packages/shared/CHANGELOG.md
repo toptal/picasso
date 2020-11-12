@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.17.0](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.16.7...@toptal/picasso-shared@1.17.0) (2020-11-10)
+
+
+### Features
+
+* update staging banner color and favicon ([#1668](https://github.com/toptal/picasso/issues/1668)) ([432915d](https://github.com/toptal/picasso/commit/432915dcddf320cd0554a283316a86839fb637da))
+
+
+
+
+
 ## [1.16.7](https://github.com/toptal/picasso/compare/@toptal/picasso-shared@1.16.6...@toptal/picasso-shared@1.16.7) (2020-11-06)
 
 **Note:** Version bump only for package @toptal/picasso-shared

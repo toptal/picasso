@@ -14,7 +14,7 @@ export type EnvironmentTypes = EnvironmentType<'temploy' | 'test'>
 export interface Props extends BaseProps {
   /** Name of the current environment */
   environment: EnvironmentTypes
-  /** Name of the product to be rendered alongside enviroment (i.e. Blackfish, Talent, Portal, Billing) */
+  /** Name of the product to be rendered alongside environment (i.e. Blackfish, Talent, Portal, Billing) */
   productName: string
 }
 
