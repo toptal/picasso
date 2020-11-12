@@ -1,7 +1,5 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
 
-const bannerOrgange = '#c65523'
-
 export default ({ palette, zIndex }: Theme) =>
   createStyles({
     root: {
@@ -18,7 +16,7 @@ export default ({ palette, zIndex }: Theme) =>
       borderTop: `0.4rem solid ${palette.green.main}`
     },
     rootStaging: {
-      borderTop: `0.4rem solid ${bannerOrgange}`
+      borderTop: `0.4rem solid ${palette.red.main}`
     },
     rootTemploy: {
       borderTop: `0.4rem solid ${palette.yellow.main}`
@@ -38,7 +36,7 @@ export default ({ palette, zIndex }: Theme) =>
       backgroundColor: palette.green.main
     },
     labelStaging: {
-      backgroundColor: bannerOrgange
+      backgroundColor: palette.red.main
     },
     labelTemploy: {
       backgroundColor: palette.yellow.main
