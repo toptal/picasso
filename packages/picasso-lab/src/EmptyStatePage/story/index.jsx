@@ -1,5 +1,4 @@
 import { EmptyStatePage } from '../EmptyStatePage'
-// @ts-ignore
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const componentDocs = PicassoBook.createComponentDocs(

@@ -1,5 +1,4 @@
 import { MediaSkeletonLoader } from '../MediaSkeletonLoader'
-// @ts-ignore
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const componentDocs = {
