@@ -1,5 +1,3 @@
-import { isEmpty } from 'lodash'
-
 export const waitForElements = (
   selector,
   waitFor = 1000,
@@ -17,7 +15,7 @@ export const waitForElements = (
       return reject(resolvedElements)
     }
 
-    if (isEmpty(resolvedElements)) {
+    if (resolvedElements.length === 0) {
       requestAnimationFrame(() => checkElement(resolve, reject))
     } else {
       return resolve(resolvedElements)
