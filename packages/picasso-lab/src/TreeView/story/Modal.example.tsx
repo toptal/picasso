@@ -190,7 +190,7 @@ const ModalTreeDialog: FC<{
       size='full-screen'
     >
       <Modal.Title>Modal Tree View</Modal.Title>
-      <Modal.Content>
+      <Modal.Content data-testid='tree-dialog-content'>
         <TreeView data={rootNode} renderNode={renderNode} />
       </Modal.Content>
     </Modal>
