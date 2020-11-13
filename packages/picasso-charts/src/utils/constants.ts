@@ -13,7 +13,8 @@ const chartConstants = {
   IS_ANIMATION_ACTIVE: false,
   Y_AXIS_WIDTH: 60,
   TOOLTIP_OFFSET: 10,
-  SCROLL_BAR_WIDTH: 16
+  SCROLL_BAR_WIDTH: 16,
+  NUMBER_OF_TICKS: 4
 }
 
 export const chartMargins = {

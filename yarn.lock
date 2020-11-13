@@ -4312,6 +4312,11 @@
   resolved "https://registry.yarnpkg.com/@types/d3-array/-/d3-array-2.0.0.tgz#a0d63a296a2d8435a9ec59393dcac746c6174a96"
   integrity sha512-rGqfPVowNDTszSFvwoZIXvrPG7s/qKzm9piCRIH6xwTTRu7pPZ3ootULFnPkTt74B6i5lN0FpLQL24qGOw1uZA==
 
+"@types/d3-array@2.7.0":
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/@types/d3-array/-/d3-array-2.7.0.tgz#031400c606734e8420d4e874e4860dc3cd284c81"
+  integrity sha512-RGZkT8r6+dS5vcImIJbna3HdRbDABiAxaIFoy07SQTK3hyzSgUgM+LbWcGuGEkCvtJ1RJK2KwrEtFC6ibD51uA==
+
 "@types/d3-array@^1":
   version "1.2.7"
   resolved "https://registry.yarnpkg.com/@types/d3-array/-/d3-array-1.2.7.tgz#34dc654d34fc058c41c31dbca1ed68071a8fcc17"
@@ -8107,6 +8112,11 @@ d3-array@1, d3-array@^1.1.1, d3-array@^1.2.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/d3-array/-/d3-array-2.4.0.tgz#87f8b9ad11088769c82b5ea846bcb1cc9393f242"
   integrity sha512-KQ41bAF2BMakf/HdKT865ALd4cgND6VcIztVQZUTt0+BH3RWy6ZYnHghVXf6NFjt2ritLr8H1T8LreAAlfiNcw==
+
+d3-array@2.8.0:
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/d3-array/-/d3-array-2.8.0.tgz#f76e10ad47f1f4f75f33db5fc322eb9ffde5ef23"
+  integrity sha512-6V272gsOeg7+9pTW1jSYOR1QE37g95I3my1hBmY+vOUNHRrk9yt4OTz/gK7PMkVAVDrYYq4mq3grTiZ8iJdNIw==
 
 d3-axis@1:
   version "1.0.12"
