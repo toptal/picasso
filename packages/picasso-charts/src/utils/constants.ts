@@ -14,7 +14,6 @@ const chartConstants = {
   Y_AXIS_WIDTH: 60,
   TOOLTIP_OFFSET: 10,
   SCROLL_BAR_WIDTH: 16,
-  // Taken from https://github.com/toptal/platform/blob/aa7f30b28b2a913381b4ac17f88bdd709efa0117/app/assets/features/platform/analytics/js/components/charts/views/date_chart.js#L282
   NUMBER_OF_TICKS: 4
 }
 
