@@ -1,5 +1,6 @@
 import React, { ReactElement, ReactNode, useRef } from 'react'
 import { palette } from '@toptal/picasso/utils'
+import cx from 'classnames'
 import {
   ComposedChart,
   XAxis,
@@ -12,6 +13,8 @@ import {
   ResponsiveContainer,
   Tooltip
 } from 'recharts'
+import { ticks as getD3Ticks } from 'd3-array'
+import { makeStyles, Theme } from '@material-ui/core'
 
 import { ChartDot } from './ChartDot'
 import calculateTooltipPosition from '../utils/calculate-tooltip-position'
@@ -23,6 +26,7 @@ import {
   orderData
 } from '../utils'
 import CHART_CONSTANTS, { chartMargins } from '../utils/constants'
+import styles from './styles'
 
 const {
   BOTTOM_DOMAIN,
@@ -31,7 +35,8 @@ const {
   TICK_LINE,
   AXIS_LINE,
   IS_ANIMATION_ACTIVE,
-  Y_AXIS_WIDTH
+  Y_AXIS_WIDTH,
+  NUMBER_OF_TICKS
 } = CHART_CONSTANTS
 
 type RechartsOnMouseMove = CoordinatePayload | null
@@ -71,6 +76,8 @@ export type BaseChartProps = {
   customTooltip?: ReactElement
   allowTooltipEscapeViewBox?: boolean
   className?: string
+  showBottomYAxisLabel?: boolean
+  showEvenYAxisTicks?: boolean
   children?: ReactNode
 }
 
@@ -91,13 +98,7 @@ const StyleOverrides = () => (
             font-size: 11px;
             fill: ${palette.grey.dark};
           }
-          .recharts-wrapper
-            .recharts-yAxis
-            .recharts-cartesian-axis-ticks
-            .recharts-cartesian-axis-tick:first-child {
-            display: none;
-          }
-    `
+      `
     }}
   />
 )
@@ -171,19 +172,28 @@ const generateLineGraphs = (
 
 const positionOverride = { x: 0, y: 0 }
 
-export const LineChart = ({
-  data,
-  lineConfig: lines,
-  unit,
-  xAxisKey,
-  height,
-  tooltip,
-  customTooltip,
-  allowTooltipEscapeViewBox,
-  highlights,
-  referenceLines,
-  children
-}: Props) => {
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'LineChart'
+})
+
+export const LineChart = (props: Props) => {
+  const classes = useStyles(props)
+  const {
+    data,
+    lineConfig: lines,
+    unit,
+    xAxisKey,
+    height,
+    tooltip,
+    customTooltip,
+    allowTooltipEscapeViewBox,
+    highlights,
+    referenceLines,
+    showBottomYAxisLabel,
+    showEvenYAxisTicks,
+    children
+  } = props
+
   const yKey = Object.keys(lines)[0]
   const isSingleChart = countNonReferenceLines(lines) === 1
   const topDomain = findTopDomain(data, xAxisKey!)
@@ -229,6 +239,9 @@ export const LineChart = ({
           margin={chartMargins}
           data={orderedData}
           onMouseMove={onMouseMovement}
+          className={cx({
+            [classes.hideBottomYAxisLabel]: !showBottomYAxisLabel
+          })}
         >
           <CartesianGrid stroke={palette.grey.lighter} />
 
@@ -254,6 +267,11 @@ export const LineChart = ({
             tickLine={TICK_LINE}
             axisLine={AXIS_LINE}
             interval={0}
+            ticks={
+              showEvenYAxisTicks
+                ? getD3Ticks(BOTTOM_DOMAIN, topDomain, NUMBER_OF_TICKS)
+                : undefined
+            }
             minTickGap={MIN_TICK_GAP}
             tickMargin={TICK_MARGIN}
             width={Y_AXIS_WIDTH}
@@ -303,7 +321,9 @@ LineChart.defaultProps = {
   unit: 'd',
   tooltip: false,
   allowTooltipEscapeViewBox: false,
-  xAxisKey: 'x'
+  xAxisKey: 'x',
+  showBottomYAxisLabel: false,
+  showEvenYAxisTicks: false
 }
 
 LineChart.displayName = 'LineChart'
