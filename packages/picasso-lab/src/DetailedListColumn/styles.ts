@@ -10,7 +10,7 @@ export default ({ palette }: Theme) =>
     },
     cellOverflow: {
       position: 'absolute',
-      maxWidth: '70%',
+      maxWidth: 'calc(75% - 1.5rem)',
       bottom: 0
     }
   })

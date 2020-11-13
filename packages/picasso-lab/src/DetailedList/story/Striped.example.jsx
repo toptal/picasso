@@ -4,7 +4,7 @@ import { DetailedList } from '@toptal/picasso-lab'
 
 const Example = () => {
   return (
-    <Container>
+    <Container style={{ maxWidth: 600 }}>
       <DetailedList striped>
         <DetailedList.Column>
           <DetailedList.Item label='Profile Type'>
