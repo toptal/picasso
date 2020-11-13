@@ -5,13 +5,13 @@ import { Classes } from '@toptal/picasso-shared'
 
 import {
   PropDocumentation,
-  PropTypeDocumentation
-} from '~/.storybook/utils/documentation-generator'
+  PropTypeDocumentation,
+  sortBy
+} from '~/.storybook/utils'
 import PropTypeTableCell from './PropTypeTableCell'
 import EnumsList from './EnumsList'
 import Description from './Description'
 import styles from './styles'
-import { sortBy } from './utils'
 
 interface Props {
   documentation: PropDocumentation[]
