@@ -1,29 +1,29 @@
 import React, { forwardRef } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
-import Label from '../Label'
-import { Props as LabelProps } from '../Label/Label'
+import Tag from '../Tag'
+import { Props as TagProps } from '../Tag/Tag'
 import styles from './styles'
 
-const useStyles = makeStyles<Theme, LabelProps>(styles, {
+const useStyles = makeStyles<Theme, TagProps>(styles, {
   name: 'PicassoTagSelectorLabel'
 })
 
-export const TagSelectorLabel = forwardRef<HTMLDivElement, LabelProps>(
+export const TagSelectorLabel = forwardRef<HTMLDivElement, TagProps>(
   function TagSelectorLabel(props, ref) {
     const { children, ...rest } = props
 
     const classes = useStyles(props)
 
     return (
-      <Label
+      <Tag
         ref={ref}
         className={classes.label}
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
       >
         {children}
-      </Label>
+      </Tag>
     )
   }
 )

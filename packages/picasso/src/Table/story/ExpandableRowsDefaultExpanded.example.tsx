@@ -7,7 +7,7 @@ import {
   Tabs,
   UserBadge,
   Typography,
-  Label,
+  Tag,
   Container
 } from '@toptal/picasso'
 import { Star16, ArrowDownMinor16, More16 } from '@toptal/picasso/Icon'
@@ -59,7 +59,7 @@ const ExpandableContent = () => (
     </Container>
 
     <Container top='small'>
-      <Label>$2k Design Credit</Label>
+      <Tag>$2k Design Credit</Tag>
     </Container>
   </Container>
 )
