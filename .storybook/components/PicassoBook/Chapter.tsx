@@ -1,7 +1,6 @@
 declare var TEST_ENV: string // defined by ENV
 
 import React, { Fragment, ReactNode } from 'react'
-import { toArray } from 'lodash'
 
 import DocumentationGenerator, {
   PropDocumentation,
@@ -128,7 +127,7 @@ class Chapter extends Base {
       additionalDocs!
     )
 
-    const documentationArray = toArray(documentation)
+    const documentationArray = Object.values(documentation)
 
     const render = () =>
       documentationArray.length > 0 ? (

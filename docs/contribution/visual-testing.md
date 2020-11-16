@@ -1,8 +1,8 @@
 # Visual Testing
 
-To maintain stability between versions we’ve introduced snapshotting tool with the help of puppeteer to browse storybook of all components, creating screenshot of the page and comparing the diff with [jest-image-snapshot](https://github.com/americanexpress/jest-image-snapshot) 
+To maintain stability between versions we’ve introduced snapshotting tool with the help of puppeteer to browse storybook of all components, creating screenshot of the page and comparing the diff with [jest-image-snapshot](https://github.com/americanexpress/jest-image-snapshot)
 
-All necessary logic resides inside [/puppeteer](https://github.com/toptal/picasso/tree/master/puppeteer) directory.  It walks through all components and check all `story/index.jsx` files, read it as AST transformation tree and tries to generate all necessary examples which need to be saved as screenshots. 
+All necessary logic resides inside [/puppeteer](https://github.com/toptal/picasso/tree/master/puppeteer) directory. It walks through all components and check all `story/index.jsx` files, read it as AST transformation tree and tries to generate all necessary examples which need to be saved as screenshots.
 
 Storing/Updating snapshots has the same logic as `jest` snapshots. Therefore in the repository we store the `correct` state of the components. If during implementation there is any visual change, image diff will reports this error to a report and Developer needs to manually check if the current state is expected, then developer marks current state as expected one.
 
@@ -20,6 +20,7 @@ In order to have a good tracking on visual changes which were applied in each PR
 `yarn test:visual -u` - Updating to current snapshots
 
 If you want to update only some snapshots with the specific names, run:
+
 ```bash
 yarn test:visual -u -t *snapshot_name_pattern*
 
@@ -31,7 +32,7 @@ yarn test:visual -u -t Colors
 
 Also, right now visual tests are using docker images from `gcr.io/toptal-hub`, so to use them you need to have `docker` authenticated with `gcloud`. How to make it you can read [here](https://toptal-core.atlassian.net/wiki/spaces/IE/pages/337838085/Docker#Docker-docker-loginLogintoToptal'sprivateregistry). As well, if you want to build your own local image you can use `--build-image` argument:
 
-```
+```bash
 yarn test:visual --build-image -u -t Colors
 ```
 

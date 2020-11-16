@@ -5,16 +5,18 @@ import { palette } from '@toptal/picasso/utils'
 
 const HEIGHT = 10
 const WIDTH = 200
-const CONTAINTER_HEIGHT = HEIGHT * 2
+const CONTAINER_HEIGHT = HEIGHT * 2
 const VERTICAL_OFFSET = HEIGHT / 2
 const BORDER_RADIUS = HEIGHT / 2
 
-export const HeaderLoader: FC<BaseProps> = ({ className, style }) => (
+export type Props = BaseProps
+
+export const HeaderLoader: FC<Props> = ({ className, style }) => (
   <ContentLoader
     className={className}
     color={palette.grey.main2}
     width={WIDTH}
-    height={CONTAINTER_HEIGHT}
+    height={CONTAINER_HEIGHT}
     style={style}
   >
     <rect
