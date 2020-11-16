@@ -1,9 +1,9 @@
 import { createStyles } from '@material-ui/core/styles'
 import { PicassoProvider } from '@toptal/picasso-shared'
 
-const controlWidth = '1em'
-const labelMargin = '0.5em'
-const boxShadow =
+const CONTROL_WIDTH = '1em'
+const LABEL_MARGIN = '0.5em'
+const BOX_SHADOW =
   '0px 0px 0px 4px rgba(32, 78, 207, 0.48), 0px 1px 3px 0px rgba(0, 0, 0, 0.24)'
 const THUMB_SIZE = 22
 const TRACK_HEIGHT = THUMB_SIZE + 2
@@ -37,7 +37,7 @@ PicassoProvider.override(({ palette, transitions }) => ({
         }
       },
       '&:hover, &.Mui-focusVisible': {
-        boxShadow
+        boxShadow: BOX_SHADOW
       },
       '&$disabled': {
         '& + $track': {
@@ -75,9 +75,9 @@ PicassoProvider.override(({ palette, transitions }) => ({
 export default () =>
   createStyles({
     label: {
-      marginLeft: labelMargin,
+      marginLeft: LABEL_MARGIN,
       // 1px is needed for safari
-      maxWidth: `calc(100% - ${controlWidth} - ${labelMargin} + 1px)`
+      maxWidth: `calc(100% - ${CONTROL_WIDTH} - ${LABEL_MARGIN} + 1px)`
     },
     disabled: {
       cursor: 'not-allowed'

@@ -16,7 +16,7 @@ const renderSwitch = (
       label={label}
       onChange={onChange}
       titleCase={titleCase}
-      data-testid='Switch'
+      data-testid='switch'
     />,
     undefined,
     picassoConfig
@@ -26,13 +26,13 @@ const renderSwitch = (
 it('renders default Switch without label', () => {
   const { queryByTestId } = renderSwitch({})
 
-  expect(queryByTestId('Switch')).toBeInTheDocument()
+  expect(queryByTestId('switch')).toBeInTheDocument()
 })
 
 it('renders default Switch with label', () => {
   const { queryByTestId, queryByText } = renderSwitch({ label: 'A Switch' })
 
-  expect(queryByTestId('Switch')).toBeInTheDocument()
+  expect(queryByTestId('switch')).toBeInTheDocument()
   expect(queryByText('A Switch')).toBeInTheDocument()
 })
 
@@ -42,16 +42,17 @@ it('renders disabled state', () => {
     label: 'Disabled'
   })
 
-  expect(queryByTestId('Switch')).toBeInTheDocument()
-  expect(/Mui-disabled/.test(queryByTestId('Switch')?.className)).toBe(true)
+  const Switch = queryByTestId('switch')
+  const className = Switch?.className || ''
+
+  expect(Switch).toBeInTheDocument()
+  expect(/Mui-disabled/.test(className)).toBe(true)
   expect(queryByText('Disabled')).toBeInTheDocument()
 })
 
 it('transforms text to title case when Picasso titleCase property is true', () => {
-  const LABEL_TEXT = 'abc ac4'
-
   const { queryByText } = renderSwitch(
-    { label: LABEL_TEXT },
+    { label: 'abc ac4' },
     { titleCase: true }
   )
 
@@ -72,12 +73,12 @@ it('behaves correctly when interacting', () => {
   const label = 'Switch'
 
   const { getByLabelText, getByTestId } = renderSwitch({ onChange, label })
-  const SwitchLabel = getByLabelText(label)
+  const switchLabel = getByLabelText(label)
 
-  expect(SwitchLabel).toBeInTheDocument()
+  expect(switchLabel).toBeInTheDocument()
 
-  fireEvent.click(SwitchLabel)
+  fireEvent.click(switchLabel)
   expect(onChange).toHaveBeenCalled()
 
-  expect(/Mui-checked/.test(getByTestId('Switch').className)).toBe(true)
+  expect(/Mui-checked/.test(getByTestId('switch').className)).toBe(true)
 })

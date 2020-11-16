@@ -13,7 +13,6 @@ const Example = () => {
       <Switch
         checked={checked}
         onChange={handleChange}
-        id='Switch-unchecked'
         name='checkedA'
         label={checked ? 'Checked' : 'Unchecked'}
       />

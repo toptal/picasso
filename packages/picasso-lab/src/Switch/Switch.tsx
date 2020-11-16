@@ -1,10 +1,6 @@
 import MUISwitch from '@material-ui/core/Switch'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import {
-  BaseProps,
-  CompoundedComponentWithRef,
-  TextLabelProps
-} from '@toptal/picasso-shared'
+import { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import React, { ButtonHTMLAttributes, forwardRef, ReactNode } from 'react'
 import FormControlLabel from '@toptal/picasso/FormControlLabel'
@@ -23,10 +19,6 @@ export interface Props
   disabled?: boolean
   /** Text label for the `Switch` */
   label?: ReactNode
-  /** The id of the input element */
-  id?: string
-  /** Mark field as required */
-  required?: boolean
   /** Callback invoked when `Switch` changed its value */
   onChange?: (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -46,26 +38,22 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
     className,
     style,
     disabled,
-    required,
     onChange,
     value,
     checked,
     titleCase,
+    color, // eslint-disable-line
     ...rest
   } = props
 
   const classes = useStyles(props)
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { color, ...SwitchAttributes } = rest
-
   const muiSwitch = (
     <MUISwitch
       // eslint-disable-next-line react/jsx-props-no-spreading
-      {...SwitchAttributes}
+      {...rest}
       color='primary'
       ref={ref}
-      required={required}
       checked={checked}
       className={cx(className, {
         [classes.disabled]: disabled
@@ -88,14 +76,12 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
         label: classes.label
       }}
       control={muiSwitch}
-      required={required}
       disabled={disabled}
       label={label}
       titleCase={titleCase}
-      className='picasso-Switch'
     />
   )
-}) as CompoundedComponentWithRef<Props, HTMLButtonElement>
+})
 
 Switch.defaultProps = {
   disabled: false,
