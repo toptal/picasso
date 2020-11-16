@@ -223,7 +223,7 @@ const Example = () => {
   }
 
   return (
-    <Container>
+    <Container style={{ height: '25em' }}>
       <Button size='small' onClick={() => setSelectedId(null)}>
         Reset selection
       </Button>
