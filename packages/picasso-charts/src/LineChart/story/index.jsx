@@ -52,6 +52,18 @@ export const sharedChartDocs = {
     type: 'boolean',
     description:
       'Allows the tooltip to extend beyond the viewBox of the chart itself'
+  },
+  showBottomYAxisLabel: {
+    name: 'showBottomYAxisLabel',
+    type: 'boolean',
+    description: 'Shows the bottom Y axis label',
+    defaultValue: false
+  },
+  showEvenYAxisTicks: {
+    name: 'showEvenYAxisTicks',
+    type: 'boolean',
+    description: 'Shows even Y ticks',
+    defaultValue: false
   }
 }
 
@@ -92,3 +104,8 @@ page
   .createChapter()
   .addExample('LineChart/story/Default.example.tsx', 'Default')
   .addExample('LineChart/story/Multiple.example.tsx', 'Multiple Lines')
+  .addExample('LineChart/story/EvenYAxisTicks.example.tsx', 'Even Y axis ticks')
+  .addExample(
+    'LineChart/story/BottomYAxisLabel.example.tsx',
+    'Show bottom Y axis label'
+  )
