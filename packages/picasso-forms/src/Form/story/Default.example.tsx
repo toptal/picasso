@@ -99,6 +99,7 @@ const DefaultExample = () => {
         name='legal'
         label='I confirm that I have legal permission from the client to feature this project.'
       />
+      <Form.Switch name='publicProfile' label='Public Profile' width='auto' />
 
       <Container top='small'>
         <Form.SubmitButton>Submit</Form.SubmitButton>

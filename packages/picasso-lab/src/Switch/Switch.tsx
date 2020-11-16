@@ -48,7 +48,7 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
 
   const classes = useStyles(props)
 
-  const muiSwitch = (
+  const switchElement = (
     <MUISwitch
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
@@ -67,7 +67,7 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
   )
 
   if (!label) {
-    return muiSwitch
+    return switchElement
   }
 
   return (
@@ -75,7 +75,7 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
       classes={{
         label: classes.label
       }}
-      control={muiSwitch}
+      control={switchElement}
       disabled={disabled}
       label={label}
       titleCase={titleCase}
