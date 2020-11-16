@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import { ComponentDoc, PropItemType } from 'react-docgen-typescript/lib/parser'
 
 export interface PropTypeDocumentation {
@@ -18,9 +17,8 @@ export interface PropDocumentation {
   value?: any[]
 }
 
-export interface PropDocumentationMap {
-  [propName: string]: PropDocumentation
-}
+export interface PropDocumentationMap
+  extends Record<string, PropDocumentation> {}
 
 export interface Documentable {
   displayName?: string
@@ -34,6 +32,32 @@ const ARRAY_REGEX = /.*\[\]/
 const OBJECT_REGEX = /\{.*\}/
 
 const escapeType = (typeName: string) => typeName.replace('| undefined', '')
+
+const merge = <T extends { [key: string]: unknown }>(
+  o1: T,
+  o2: T | undefined
+) => {
+  if (!o2) return o1
+
+  const destination = Object.assign({}, o1)
+
+  Object.keys(o2).forEach(key => {
+    if (destination[key]) {
+      Object.assign(destination[key], o2[key])
+    }
+  })
+
+  return destination
+}
+
+const mapValues = <T>(
+  map: Record<string, T>,
+  callback: (value: T, key: string) => unknown
+) => {
+  return Object.fromEntries(
+    Object.entries(map).map(([key, value]) => [key, callback(value, key)])
+  )
+}
 
 class DocumentationGenerator {
   resolveType(type: PropItemType): PropTypeDocumentation {
@@ -55,7 +79,7 @@ class DocumentationGenerator {
     if (typeName.match(ENUM_TYPE_REGEX)) {
       let baseShape = {}
 
-      if (type.value && _.isArray(type.value)) {
+      if (type.value && Array.isArray(type.value)) {
         baseShape = {
           enums: type.value.map(({ value }: any) => value)
         }
@@ -129,7 +153,7 @@ class DocumentationGenerator {
 |                 |         |
 | ----            | ------  |
 ${propsTable}
-    
+
 }`
     } else {
       return objectType
@@ -144,14 +168,14 @@ ${propsTable}
     return defaultValue.value
   }
 
-  merge(...sources: PropDocumentationMap[]): PropDocumentationMap {
-    return _.merge({} as PropDocumentationMap, ...sources)
+  merge(docs: PropDocumentationMap, additionalDocs?: PropDocumentationMap) {
+    return merge(docs, additionalDocs)
   }
 
   transform(generatedDocumentation: ComponentDoc): PropDocumentationMap {
     const { props: propDocs } = generatedDocumentation
 
-    return _.mapValues(propDocs, (propDoc, propName) => {
+    return mapValues(propDocs, (propDoc, propName) => {
       const { type, description, required, defaultValue } = propDoc
 
       return {
@@ -161,7 +185,7 @@ ${propsTable}
         description,
         required
       }
-    })
+    }) as PropDocumentationMap
   }
 }
 
