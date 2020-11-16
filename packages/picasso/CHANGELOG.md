@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.112.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.111.0...@toptal/picasso@4.112.0) (2020-11-12)
+
+
+### Features
+
+* **Tooltip:** add new placement variants ([#1678](https://github.com/toptal/picasso/issues/1678)) ([649b2f6](https://github.com/toptal/picasso/commit/649b2f6e27841cbecd1d14a5dc6566b5b827586e))
+
+
+
+
+
+# [4.111.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.110.2...@toptal/picasso@4.111.0) (2020-11-10)
+
+
+### Features
+
+* update staging banner color and favicon ([#1668](https://github.com/toptal/picasso/issues/1668)) ([432915d](https://github.com/toptal/picasso/commit/432915dcddf320cd0554a283316a86839fb637da))
+
+
+
+
+
 ## [4.110.2](https://github.com/toptal/picasso/compare/@toptal/picasso@4.110.1...@toptal/picasso@4.110.2) (2020-11-10)
 
 **Note:** Version bump only for package @toptal/picasso

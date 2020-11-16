@@ -20,12 +20,7 @@ export const Favicon = ({ environment }: Props) => {
 
   const { environment: configEnvironment } = useAppConfig()
 
-  let resolvedEnvironment = environment || configEnvironment
-
-  // temploy === staging
-  if (resolvedEnvironment === 'temploy') {
-    resolvedEnvironment = 'staging'
-  }
+  const resolvedEnvironment = environment || configEnvironment
 
   useEffect(() => {
     if (resolvedEnvironment === 'test') return

@@ -12,10 +12,6 @@ page
     component: Tooltip,
     name: 'Tooltip',
     additionalDocs: {
-      placement: {
-        type: 'enum',
-        enums: ['bottom', 'left', 'right', 'top']
-      },
       variant: {
         type: 'enum',
         enums: ['light', 'dark']
