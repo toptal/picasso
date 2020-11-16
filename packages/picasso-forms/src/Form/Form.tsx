@@ -7,6 +7,7 @@ import { FormApi, ValidationErrors, getIn, setIn } from 'final-form'
 import { Form as PicassoForm } from '@toptal/picasso'
 import { useNotifications } from '@toptal/picasso/utils'
 
+import Autocomplete from '../Autocomplete'
 import Input from '../Input'
 import Select from '../Select'
 import Radio from '../Radio'
@@ -31,6 +32,7 @@ import {
 type AnyObject = Record<string, any>
 
 export type Props<T = AnyObject> = FinalFormProps<T> & {
+  autoComplete?: HTMLFormElement['autocomplete']
   successSubmitMessage?: ReactNode
   failedSubmitMessage?: ReactNode
   scrollOffsetTop?: number
@@ -61,6 +63,7 @@ const getSubmitErrors = (
 export const Form = <T extends any = AnyObject>(props: Props<T>) => {
   const {
     children,
+    autoComplete,
     onSubmit,
     successSubmitMessage,
     failedSubmitMessage,
@@ -110,7 +113,9 @@ export const Form = <T extends any = AnyObject>(props: Props<T>) => {
     <FormContext.Provider value={validationObject}>
       <FinalForm
         render={({ handleSubmit }) => (
-          <PicassoForm onSubmit={handleSubmit}>{children}</PicassoForm>
+          <PicassoForm autoComplete={autoComplete} onSubmit={handleSubmit}>
+            {children}
+          </PicassoForm>
         )}
         onSubmit={handleSubmit}
         decorators={[...decorators, scrollToErrorDecorator]}
@@ -125,6 +130,7 @@ Form.defaultProps = {}
 
 Form.displayName = 'Form'
 
+Form.Autocomplete = Autocomplete
 Form.Input = Input
 Form.Select = Select
 Form.Radio = Radio
