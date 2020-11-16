@@ -21,7 +21,7 @@
     "url": "https://github.com/toptal/picasso/issues"
   },
   "peerDependencies": {
-    "@toptal/picasso": "^4.49.2"
+    "@toptal/picasso": "^4.x"
   },
   "devDependencies": {
     "@types/d3-array": "2.7.0"
