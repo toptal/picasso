@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@0.5.5...@toptal/picasso-charts@0.6.0) (2020-11-13)
+
+
+### Features
+
+* add Y axis ticks configuration for charts ([#1676](https://github.com/toptal/picasso/issues/1676)) ([d9b6b3d](https://github.com/toptal/picasso/commit/d9b6b3d7207a033625956a7838a8d8f5a087c5d8))
+
+
+
+
+
 ## [0.5.5](https://github.com/toptal/picasso/compare/@toptal/picasso-charts@0.5.4...@toptal/picasso-charts@0.5.5) (2020-11-06)
 
 **Note:** Version bump only for package @toptal/picasso-charts
