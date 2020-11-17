@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import React, {
   ReactNode,
   ReactElement,
@@ -78,6 +79,8 @@ export interface Props
   enableReset?: boolean
   /** Callback invoked when reset button was clicked */
   onResetClick?: () => void
+  /** Ref of the input outline */
+  outlineRef?: React.Ref<HTMLElement>
 }
 
 type LimitAdornmentProps = Pick<Props, 'multiline' | 'limit'> & {
@@ -275,6 +278,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
     size,
     enableReset,
     onResetClick,
+    outlineRef,
     ...rest
   } = purifyProps(props)
 
@@ -284,7 +288,8 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
 
   return (
     <OutlinedInput
-      ref={ref}
+      ref={outlineRef}
+      inputRef={ref}
       className={className}
       style={style}
       classes={{

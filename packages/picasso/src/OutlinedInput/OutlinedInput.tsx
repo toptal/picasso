@@ -60,6 +60,8 @@ export interface Props
   enableReset?: boolean
   /** Callback invoked when reset button was clicked */
   onResetClick?: () => void
+  /** Ref of the input element */
+  inputRef?: React.Ref<HTMLInputElement>
 }
 
 const ResetButton = ({
@@ -92,85 +94,85 @@ const ResetButton = ({
   </InputAdornment>
 )
 
-const OutlinedInput = forwardRef<HTMLInputElement, Props>(
-  function OutlinedInput(
-    {
-      classes,
-      className,
-      style,
-      multiline,
-      autoFocus,
-      rows,
-      rowsMax,
-      width,
-      inputComponent,
-      inputProps,
-      defaultValue,
-      value,
-      type,
-      error,
-      startAdornment,
-      endAdornment: userDefinedEndAdornment,
-      onChange,
-      size,
-      enableReset,
-      disabled,
-      onResetClick,
-      ...rest
-    },
-    ref
-  ) {
-    const shouldShowReset = enableReset && !disabled
-    const endAdornment = shouldShowReset ? (
-      <>
-        <ResetButton
-          classes={classes}
-          hasValue={Boolean(value)}
-          onClick={onResetClick!}
-        />
-        {userDefinedEndAdornment}
-      </>
-    ) : (
-      userDefinedEndAdornment
-    )
-
-    return (
-      <MUIOutlinedInput
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        {...rest}
-        classes={{
-          root: cx(
-            classes.root,
-            classes[`root${capitalize(width!)}`],
-            classes[`root${capitalize(size!)}`],
-            { [`${classes.hidden}`]: type === 'hidden' }
-          ),
-          input: cx(classes.input, classes[`input${capitalize(size!)}`]),
-          inputMultiline: classes.inputMultiline
-        }}
-        className={className}
-        style={style}
-        labelWidth={0}
-        fullWidth={width === 'full'}
-        error={error}
-        inputComponent={inputComponent}
-        inputProps={inputProps}
-        inputRef={ref}
-        defaultValue={defaultValue}
-        value={value}
-        type={type}
-        startAdornment={startAdornment}
-        endAdornment={endAdornment}
-        multiline={multiline}
-        autoFocus={autoFocus}
-        rows={rows}
-        rowsMax={rowsMax}
-        onChange={onChange}
-        disabled={disabled}
+const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
+  {
+    classes,
+    className,
+    style,
+    multiline,
+    autoFocus,
+    rows,
+    rowsMax,
+    width,
+    inputComponent,
+    inputProps,
+    defaultValue,
+    value,
+    type,
+    error,
+    startAdornment,
+    endAdornment: userDefinedEndAdornment,
+    onChange,
+    size,
+    enableReset,
+    disabled,
+    onResetClick,
+    inputRef,
+    ...rest
+  },
+  ref
+) {
+  const shouldShowReset = enableReset && !disabled
+  const endAdornment = shouldShowReset ? (
+    <>
+      <ResetButton
+        classes={classes}
+        hasValue={Boolean(value)}
+        onClick={onResetClick!}
       />
-    )
-  }
-)
+      {userDefinedEndAdornment}
+    </>
+  ) : (
+    userDefinedEndAdornment
+  )
+
+  return (
+    <MUIOutlinedInput
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
+      classes={{
+        root: cx(
+          classes.root,
+          classes[`root${capitalize(width!)}`],
+          classes[`root${capitalize(size!)}`],
+          { [`${classes.hidden}`]: type === 'hidden' }
+        ),
+        input: cx(classes.input, classes[`input${capitalize(size!)}`]),
+        inputMultiline: classes.inputMultiline
+      }}
+      className={className}
+      style={style}
+      labelWidth={0}
+      fullWidth={width === 'full'}
+      error={error}
+      inputComponent={inputComponent}
+      inputProps={inputProps}
+      ref={ref}
+      inputRef={inputRef}
+      defaultValue={defaultValue}
+      value={value}
+      type={type}
+      startAdornment={startAdornment}
+      endAdornment={endAdornment}
+      multiline={multiline}
+      autoFocus={autoFocus}
+      rows={rows}
+      rowsMax={rowsMax}
+      onChange={onChange}
+      disabled={disabled}
+    />
+  )
+})
 
 OutlinedInput.defaultProps = {
   width: 'auto',
