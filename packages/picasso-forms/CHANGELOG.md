@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.21.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.20.9...@toptal/picasso-forms@0.21.0) (2020-11-17)
+
+
+### Features
+
+* **Forms:** add Picasso forms Autocomplete ([#1691](https://github.com/toptal/picasso/issues/1691)) ([914a181](https://github.com/toptal/picasso/commit/914a18107200b86a6e1015028714301bceafc6a7))
+
+
+
+
+
 ## [0.20.9](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.20.8...@toptal/picasso-forms@0.20.9) (2020-11-06)
 
 **Note:** Version bump only for package @toptal/picasso-forms
