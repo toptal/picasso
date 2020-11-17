@@ -192,6 +192,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
             {...getItemProps(index, option)}
             titleCase={false}
             description={option.description}
+            className={classes.option}
           >
             {renderOption
               ? renderOption(option, index)
@@ -203,9 +204,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
           <Menu.Item
             size='medium'
             key='other-option'
-            className={cx({
-              [classes.otherOption]: true
-            })}
+            className={`${classes.option} ${classes.otherOption}`}
             /* eslint-disable-next-line react/jsx-props-no-spreading */
             {...getOtherItemProps(optionsLength, value)}
             titleCase={false}
