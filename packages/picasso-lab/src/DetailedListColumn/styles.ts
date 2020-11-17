@@ -1,0 +1,16 @@
+import { createStyles, Theme } from '@material-ui/core'
+
+export default ({ palette }: Theme) =>
+  createStyles({
+    cell: {
+      padding: '0.5rem 1.5rem 0.5rem 0.5rem'
+    },
+    cellStriped: {
+      backgroundColor: palette.grey.lighter
+    },
+    cellOverflow: {
+      position: 'absolute',
+      maxWidth: 'calc(75% - 1.5rem)',
+      bottom: 0
+    }
+  })
