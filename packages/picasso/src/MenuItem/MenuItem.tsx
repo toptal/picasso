@@ -168,7 +168,11 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
           )}
         </Container>
         {description && (
-          <Container className={classes.description} left='medium' top={0.25}>
+          <Container
+            className={classes.description}
+            left={checkmarked === undefined ? undefined : 'medium'}
+            top={0.25}
+          >
             {description}
           </Container>
         )}
