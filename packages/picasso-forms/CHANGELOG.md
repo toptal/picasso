@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.22.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.21.0...@toptal/picasso-forms@0.22.0) (2020-11-17)
+
+
+### Features
+
+* [PRO-1604] Expose input outline ref prop ([#1682](https://github.com/toptal/picasso/issues/1682)) ([b3250ce](https://github.com/toptal/picasso/commit/b3250ce5f2372230844fec5310b3cb2262187241))
+
+
+
+
+
 # [0.21.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.20.9...@toptal/picasso-forms@0.21.0) (2020-11-17)
 
 
