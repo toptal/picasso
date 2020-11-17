@@ -1,10 +1,9 @@
 import { createStyles } from '@material-ui/core/styles'
-import { PicassoProvider } from '@toptal/picasso-shared'
+import { outline, PicassoProvider } from '@toptal/picasso-shared'
 
 const CONTROL_WIDTH = '1em'
 const LABEL_MARGIN = '0.5em'
-const BOX_SHADOW =
-  '0px 0px 0px 4px rgba(32, 78, 207, 0.48), 0px 1px 3px 0px rgba(0, 0, 0, 0.24)'
+
 const THUMB_SIZE = 22
 const TRACK_HEIGHT = THUMB_SIZE + 2
 const TRACK_WIDTH = 40
@@ -37,7 +36,7 @@ PicassoProvider.override(({ palette, transitions }) => ({
         }
       },
       '&:hover, &.Mui-focusVisible': {
-        boxShadow: BOX_SHADOW
+        ...outline(palette.primary.main, 4)
       },
       '&$disabled': {
         '& + $track': {
