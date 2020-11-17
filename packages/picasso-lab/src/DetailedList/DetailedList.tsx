@@ -8,7 +8,7 @@ import { makeStyles } from '@material-ui/core'
 import { Container } from '@toptal/picasso'
 import cx from 'classnames'
 
-import DetailedListItem, { DetailedListItemProps } from '../DetailedListItem'
+import DetailedListItem from '../DetailedListItem'
 import DetailedListColumn, {
   DetailedListColumnProps
 } from '../DetailedListColumn'
@@ -41,10 +41,7 @@ const useChildrenToColumns = (
   const childrenArray = React.Children.toArray(
     Array.isArray(children) ? children : [children]
   )
-  const allCells = childrenArray.reduce(
-    (acc, child) => [...acc, ...child.props.children],
-    [] as ReactElement<DetailedListItemProps>[]
-  )
+  const allCells = childrenArray.flatMap(child => child.props.children)
 
   return [
     <DetailedListColumn key='smallScreenColumn'>{allCells}</DetailedListColumn>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, Typography, Container } from '@toptal/picasso'
+import { CheckMinor16 } from '@toptal/picasso/Icon'
 import { DetailedList } from '@toptal/picasso-lab'
 
 const Example = () => {
@@ -23,7 +24,13 @@ const Example = () => {
           <DetailedList.Item label='Working status'>
             Not working
           </DetailedList.Item>
-          <DetailedList.Item label='Availability'>
+          <DetailedList.Item
+            label={
+              <Typography size='medium' noWrap>
+                Availability <CheckMinor16 />
+              </Typography>
+            }
+          >
             <Typography color='green' weight='semibold' size='medium' noWrap>
               Product Manager Full-time (40 hours/week available out of 40
               hours/week) updated 1 day ago

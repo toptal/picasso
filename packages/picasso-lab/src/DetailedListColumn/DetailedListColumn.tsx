@@ -35,6 +35,24 @@ const useShouldStripeCell = () => {
   return (rowIndex: number) => striped && rowIndex % 2 !== 0
 }
 
+const renderLabel = (child: ReactElement<DetailedListItemProps>) =>
+  typeof child.props.label === 'string' ? (
+    <Typography size='medium' noWrap>
+      {child.props.label}
+    </Typography>
+  ) : (
+    child.props.label
+  )
+
+const renderValue = (child: ReactElement<DetailedListItemProps>) =>
+  typeof child.props.children === 'string' ? (
+    <Typography size='medium' weight='semibold' color='black' noWrap>
+      {child}
+    </Typography>
+  ) : (
+    child
+  )
+
 export const DetailedListColumn = ({
   children,
   allowLastCellOverflow
@@ -49,14 +67,12 @@ export const DetailedListColumn = ({
     <Container flex inline direction='column' style={columnStyle}>
       {React.Children.map(children, (child, index) => (
         <Container
-          key={child.props.label}
+          key={index}
           className={cx(classes.cell, {
             [classes.cellStriped]: shouldStripeCell(index)
           })}
         >
-          <Typography size='medium' noWrap>
-            {child.props.label}
-          </Typography>
+          {renderLabel(child)}
         </Container>
       ))}
     </Container>
@@ -66,20 +82,14 @@ export const DetailedListColumn = ({
     <Container flex inline direction='column' style={columnStyle}>
       {React.Children.map(children, (child, index) => (
         <Container
-          key={child.props.label}
+          key={index}
           className={cx(classes.cell, {
             [classes.cellStriped]: shouldStripeCell(index),
             [classes.cellOverflow]:
               index === cellsCount - 1 && allowLastCellOverflow
           })}
         >
-          {typeof child.props.children === 'string' ? (
-            <Typography size='medium' weight='semibold' color='black' noWrap>
-              {child}
-            </Typography>
-          ) : (
-            child
-          )}
+          {renderValue(child)}
         </Container>
       ))}
     </Container>

@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 
 export interface Props {
   /** Item label */
-  label: string
+  label: ReactNode
   /** Item value */
   children: ReactNode
 }
