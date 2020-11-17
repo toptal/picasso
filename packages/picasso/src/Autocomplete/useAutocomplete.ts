@@ -140,7 +140,6 @@ const useAutocomplete = ({
     role: 'option',
     'aria-selected': highlightedIndex === index,
     selected: highlightedIndex === index,
-    checkmarked: selectedIndex === index,
     onMouseMove: () => {
       if (index === highlightedIndex) {
         return
