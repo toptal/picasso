@@ -1,12 +1,12 @@
 import React from 'react'
-import { Label } from '@toptal/picasso'
+import { Tag } from '@toptal/picasso'
 import { Settings16 } from '@toptal/picasso/Icon'
 
 const Example = () => (
   <div>
-    <Label disabled icon={<Settings16 />} onDelete={handleDelete}>
-      Label
-    </Label>
+    <Tag disabled icon={<Settings16 />} onDelete={handleDelete}>
+      Tag
+    </Tag>
   </div>
 )
 
