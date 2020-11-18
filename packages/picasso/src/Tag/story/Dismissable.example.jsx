@@ -1,9 +1,9 @@
 import React from 'react'
-import { Label } from '@toptal/picasso'
+import { Tag } from '@toptal/picasso'
 
 const Example = () => (
   <div>
-    <Label onDelete={handleDelete}>Label</Label>
+    <Tag onDelete={handleDelete}>Tag</Tag>
   </div>
 )
 
