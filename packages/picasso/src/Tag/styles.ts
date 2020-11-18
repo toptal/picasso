@@ -12,9 +12,9 @@ export default ({ palette }: Theme) =>
       color: palette.grey.main,
       pointerEvents: 'none'
     },
-    white: {
-      background: 'none',
-      color: palette.common.white
+    blue: {
+      color: palette.blue.main,
+      borderColor: palette.blue.main
     },
     green: {
       color: palette.green.main,
