@@ -16,7 +16,7 @@ exports[`dismissable label should render dismissable label 1`] = `
         <span
           class="PicassoLabel-innerLabel"
         >
-          Label
+          Tag
         </span>
       </span>
       <span
@@ -39,6 +39,28 @@ exports[`dismissable label should render dismissable label 1`] = `
 </div>
 `;
 
+exports[`renders \`blue\` variant 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="MuiChip-root PicassoLabel-root PicassoLabel-blue"
+    >
+      <span
+        class="MuiChip-label"
+      >
+        <span
+          class="PicassoLabel-innerLabel"
+        >
+          Tag
+        </span>
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`renders \`grey\` variant 1`] = `
 <div>
   <div
@@ -53,29 +75,7 @@ exports[`renders \`grey\` variant 1`] = `
         <span
           class="PicassoLabel-innerLabel"
         >
-          Label
-        </span>
-      </span>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`renders \`white\` variant 1`] = `
-<div>
-  <div
-    class="Picasso-root"
-  >
-    <div
-      class="MuiChip-root PicassoLabel-root PicassoLabel-white"
-    >
-      <span
-        class="MuiChip-label"
-      >
-        <span
-          class="PicassoLabel-innerLabel"
-        >
-          Label
+          Tag
         </span>
       </span>
     </div>
