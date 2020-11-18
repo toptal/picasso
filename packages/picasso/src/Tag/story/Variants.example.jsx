@@ -1,18 +1,14 @@
 import React from 'react'
-import { Container, Tag, Settings16 } from '@toptal/picasso'
+import { Container, Tag } from '@toptal/picasso'
 
 const Example = () => (
   <Container flex>
     <Container right='small' top={0.5}>
-      <Tag icon={<Settings16 />} variant='grey'>
-        Grey
-      </Tag>
+      <Tag variant='grey'>Grey</Tag>
     </Container>
 
     <Container right='small' top={0.5}>
-      <Tag icon={<Settings16 />} variant='blue'>
-        Blue
-      </Tag>
+      <Tag variant='blue'>Blue</Tag>
     </Container>
 
     <Container right='small' top={0.5}>
