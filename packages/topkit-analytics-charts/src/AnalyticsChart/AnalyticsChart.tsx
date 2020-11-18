@@ -59,6 +59,11 @@ export const AnalyticsChart = ({
       data={chartData}
       highlights={highlightsData || null}
       lineConfig={lineConfig}
+      getXAxisTicks={orderedData =>
+        orderedData
+          .filter(({ order }) => order % 2 === 0)
+          .map(({ order }) => order)
+      }
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
     />
