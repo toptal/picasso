@@ -3,7 +3,7 @@ import { render, fireEvent, PicassoConfig } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 
-import Label, { Props } from './Label'
+import Tag, { Props } from './Tag'
 
 jest.mock('ap-style-title-case')
 
@@ -15,14 +15,14 @@ const renderLabel = (
   const { onDelete, disabled, variant, titleCase } = props
 
   return render(
-    <Label
+    <Tag
       onDelete={onDelete}
       disabled={disabled}
       variant={variant}
       titleCase={titleCase}
     >
       {children}
-    </Label>,
+    </Tag>,
     undefined,
     picassoConfig
   )
@@ -38,13 +38,13 @@ afterEach(() => {
 })
 
 test('renders `grey` variant', () => {
-  const { container } = renderLabel('Label', {})
+  const { container } = renderLabel('Tag', {})
 
   expect(container).toMatchSnapshot()
 })
 
-test('renders `white` variant', () => {
-  const { container } = renderLabel('Label', { variant: 'white' })
+test('renders `blue` variant', () => {
+  const { container } = renderLabel('Tag', { variant: 'blue' })
 
   expect(container).toMatchSnapshot()
 })
@@ -70,13 +70,13 @@ describe('dismissable label', () => {
     onDelete = jest.fn()
   })
   test('should render dismissable label', () => {
-    const { container } = renderLabel('Label', { onDelete })
+    const { container } = renderLabel('Tag', { onDelete })
 
     expect(container).toMatchSnapshot()
   })
 
   test('should fire onDelete event on dismiss action', () => {
-    const { getByLabelText } = renderLabel('Label', { onDelete })
+    const { getByLabelText } = renderLabel('Tag', { onDelete })
     const deleteIcon = getByLabelText('delete icon')
 
     fireEvent.click(deleteIcon)
