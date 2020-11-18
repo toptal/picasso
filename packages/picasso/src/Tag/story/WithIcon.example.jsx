@@ -1,10 +1,10 @@
 import React from 'react'
-import { Label } from '@toptal/picasso'
+import { Tag } from '@toptal/picasso'
 import { Settings16 } from '@toptal/picasso/Icon'
 
 const Example = () => (
   <div>
-    <Label icon={<Settings16 />}>Label</Label>
+    <Tag icon={<Settings16 />}>Tag</Tag>
   </div>
 )
 
