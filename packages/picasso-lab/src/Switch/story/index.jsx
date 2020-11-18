@@ -1,5 +1,4 @@
 import { Switch } from '../Switch'
-// @ts-ignore
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Lab').createPage('Switch', null)
