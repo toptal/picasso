@@ -18,11 +18,11 @@ import {
 
 import Chip from '../Chip'
 import { CloseMinor16 } from '../Icon'
-import LabelGroup from '../LabelGroup'
+import TagGroup from '../TagGroup'
 import styles from './styles'
 import toTitleCase from '../utils/to-title-case'
 
-type VariantType = 'grey' | 'white' | 'green' | 'yellow' | 'red'
+type VariantType = 'grey' | 'blue' | 'green' | 'yellow' | 'red'
 
 export type DivOrAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> &
   HTMLAttributes<HTMLDivElement>
@@ -30,32 +30,29 @@ export type DivOrAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> &
 export interface Props extends BaseProps, TextLabelProps, DivOrAnchorProps {
   /** The component used for the root node. Either a string to use a DOM element or a component. */
   as?: ElementType
-  /** Text content of the `Label` component */
+  /** Text content of the `Tag` component */
   children: ReactNode
-  /** Specify the icon which should be rendered inside Label */
+  /** Specify the icon which should be rendered inside Tag */
   icon?: ReactElement
-  /** Defines if `Label` is disabled */
+  /** Defines if `Tag` is disabled */
   disabled?: boolean
   /** A callback which is invoked after remove `Icon` is clicked
    *
-   * Please note that specifying this callback automatically adds remove `Icon` as children of the `Label`
+   * Please note that specifying this callback automatically adds remove `Icon` as children of the `Tag`
    */
   onDelete?: () => void
-  /** Variant of the `Label` */
+  /** Variant of the `Tag` */
   variant?: VariantType
 }
 
 export interface StaticProps {
-  Group: typeof LabelGroup
+  Group: typeof TagGroup
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoLabel' })
 
 // eslint-disable-next-line react/display-name
-export const Label = forwardRef<HTMLDivElement, Props>(function Label(
-  props,
-  ref
-) {
+export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
   const {
     children,
     style,
@@ -118,14 +115,14 @@ export const Label = forwardRef<HTMLDivElement, Props>(function Label(
   )
 }) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
 
-Label.defaultProps = {
+Tag.defaultProps = {
   as: 'div',
   children: '',
   variant: 'grey'
 }
 
-Label.displayName = 'Label'
+Tag.displayName = 'Tag'
 
-Label.Group = LabelGroup
+Tag.Group = TagGroup
 
-export default Label
+export default Tag
