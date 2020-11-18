@@ -3,13 +3,27 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Picasso Forms').createPage(
   'SubmitButton',
-  'SubmitButton'
+  'SubmitButton reacts to the submission state of the form.'
 )
 
 page.createTabChapter('Props').addComponentDocs({
   component: SubmitButton,
   name: 'SubmitButton',
-  description: 'SubmitButton reacts to the submission state of the form.'
+  additionalDocs: {
+    buttonType: {
+      name: 'buttonType',
+      type: 'string',
+      description: 'The button type to use',
+      defaultValue: 'rectangular',
+      enums: ['rectangular', 'circular', 'action']
+    },
+    variant: {
+      name: 'variant',
+      type: 'string',
+      description:
+        'The variant to use. Depending on the "buttonType" property value, the "variant" property accepts circular or action button "variant" property values.'
+    }
+  }
 })
 
 page

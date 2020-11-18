@@ -3,17 +3,26 @@ import { Button, ButtonProps } from '@toptal/picasso'
 import { useFormState } from 'react-final-form'
 import { ButtonCircularProps } from '@toptal/picasso/ButtonCircular'
 
-type ButtonType = 'rectangular' | 'circular' | 'action'
+type ButtonTypeProps = {
+  buttonType: 'rectangular'
+  variant?: ButtonProps['variant']
+}
+
+type CircularButtonTypeProps = {
+  buttonType: 'circular'
+  variant?: ButtonCircularProps['variant']
+}
+
+type ActionButtonTypeProps = {
+  buttonType: 'action'
+  variant?: null
+}
 
 // Intersection with the type { id?: string } is needed here because of
 // TS compiler issue https://github.com/microsoft/TypeScript/issues/34793
 export type Props = Omit<ButtonProps, 'type' | 'variant'> & {
   id?: string
-  /** The variant to use. Depending on the "buttonType" property value, the "variant" property accepts circular or action button "variant" property values. */
-  variant?: (ButtonProps | ButtonCircularProps)['variant']
-  /** The button type to use */
-  buttonType?: ButtonType
-}
+} & (CircularButtonTypeProps | ActionButtonTypeProps | ButtonTypeProps)
 
 export const SubmitButton = ({
   buttonType,
