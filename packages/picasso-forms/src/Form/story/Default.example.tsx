@@ -4,11 +4,27 @@ import { Item } from '@toptal/picasso/Autocomplete'
 import { isSubstring } from '@toptal/picasso/utils'
 import { Form } from '@toptal/picasso-forms'
 
+const countries = [
+  { value: 'Afghanistan', text: 'Afghanistan' },
+  { value: 'Albania', text: 'Albania' },
+  { value: 'Algeria', text: 'Algeria' },
+  { value: 'Belarus', text: 'Belarus' },
+  { value: 'Croatia', text: 'Croatia' },
+  { value: 'Lithuania', text: 'Lithuania' },
+  { value: 'Slovakia', text: 'Slovakia' },
+  { value: 'Spain', text: 'Spain' },
+  { value: 'Ukraine', text: 'Ukraine' }
+]
+
 const skills = [
   { value: 0, text: 'HTML' },
   { value: 1, text: 'CSS' },
   { value: 2, text: 'Javascript' }
 ]
+
+const EMPTY_INPUT_VALUE = ''
+const getAutocompleteDisplayValue = (item: Item | null) =>
+  item?.text || EMPTY_INPUT_VALUE
 
 const filterOptions = (str = '', options: Item[] = []): Item[] | null => {
   if (!str) {
@@ -22,11 +38,21 @@ const filterOptions = (str = '', options: Item[] = []): Item[] | null => {
 }
 
 const DefaultExample = () => {
-  const [skillInputValue, setSkillInputValue] = useState<string>('')
+  const [skillInputValue, setSkillInputValue] = useState<string>(
+    EMPTY_INPUT_VALUE
+  )
   const skillOptions = filterOptions(skillInputValue, skills)
+
+  const [autocompleteValue, setAutocompleteValue] = useState<string>(
+    EMPTY_INPUT_VALUE
+  )
+  const [autocompleteOptions, setAutocompleteOptions] = useState<Item[] | null>(
+    countries
+  )
 
   return (
     <Form
+      autoComplete='off'
       onSubmit={values => console.log(values)}
       initialValues={{ gender: 'female' }}
     >
@@ -83,10 +109,34 @@ const DefaultExample = () => {
         ]}
       />
       <Form.Select
-        name='country'
-        label='Country'
+        name='origin_country'
+        label='Origin country'
         width='auto'
-        options={options}
+        options={countries}
+      />
+      <Form.Autocomplete
+        name='current_country'
+        label='Current country'
+        placeholder='Start typing country...'
+        width='auto'
+        value={autocompleteValue}
+        options={autocompleteOptions}
+        onSelect={(item: Item) => {
+          console.log('onSelect returns item object:', item)
+
+          const itemValue = getAutocompleteDisplayValue(item)
+
+          if (autocompleteValue !== itemValue) {
+            setAutocompleteValue(itemValue)
+          }
+        }}
+        onChange={(newValue: string) => {
+          console.log('onChange returns just item value:', newValue)
+
+          setAutocompleteOptions(filterOptions(newValue, countries))
+          setAutocompleteValue(newValue)
+        }}
+        getDisplayValue={getAutocompleteDisplayValue}
       />
       <Form.FileInput
         required
@@ -107,17 +157,5 @@ const DefaultExample = () => {
     </Form>
   )
 }
-
-const options = [
-  { value: 'Afghanistan', text: 'Afghanistan' },
-  { value: 'Albania', text: 'Albania' },
-  { value: 'Algeria', text: 'Algeria' },
-  { value: 'Belarus', text: 'Belarus' },
-  { value: 'Croatia', text: 'Croatia' },
-  { value: 'Lithuania', text: 'Lithuania' },
-  { value: 'Slovakia', text: 'Slovakia' },
-  { value: 'Spain', text: 'Spain' },
-  { value: 'Ukraine', text: 'Ukraine' }
-]
 
 export default DefaultExample

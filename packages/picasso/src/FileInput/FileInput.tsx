@@ -147,7 +147,7 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
 
   return (
     <OutlinedInput
-      ref={inputRef}
+      inputRef={inputRef}
       className={className}
       style={style}
       classes={{
