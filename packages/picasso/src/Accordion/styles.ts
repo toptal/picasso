@@ -4,11 +4,11 @@ import { PicassoProvider, createPropertiesStyles } from '@toptal/picasso-shared'
 PicassoProvider.override(() => ({
   MuiAccordion: {
     root: {
-      '&:before': {
-        display: 'none'
-      },
       '&$expanded': {
-        margin: 0
+        margin: 0,
+        '&:before': {
+          opacity: 1
+        }
       },
       '&$disabled': {
         backgroundColor: 'unset'
@@ -33,25 +33,30 @@ export default ({ palette, typography }: Theme) => {
     root: {
       background: 'transparent',
       fontSize: '1rem',
-
-      '&:before': {
+      '&:before, &:after': {
+        ...separatorStyles
+      },
+      '& + $root:before': {
         display: 'none'
       }
     },
-    bordered: {
+    'borders-all': {
       '&:first-child:before': {
-        ...separatorStyles
+        display: 'block'
+      }
+    },
+    'borders-middle': {
+      '&:before, &:after': {
+        display: 'none'
       },
-      '&:before': {
-        background: 'transparent'
-      },
-      '&:after': {
-        ...separatorStyles
-      },
-      '&:nth-child(1):nth-last-child(1)': {
-        '&:before, &:after': {
-          display: 'none'
-        }
+      '&$root + $root:before': {
+        display: 'block',
+        transform: 'translateY(1px)'
+      }
+    },
+    'borders-none': {
+      '&:before, &:after': {
+        display: 'none'
       }
     },
 
