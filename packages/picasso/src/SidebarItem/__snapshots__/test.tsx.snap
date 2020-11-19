@@ -20,7 +20,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
           class="Container-leftsmallMargin Container-rightsmallMargin"
         >
           <div
-            class="MuiPaper-root MuiAccordion-root makeStyles-root Mui-expanded MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
+            class="MuiPaper-root MuiAccordion-root makeStyles-root makeStyles-borders-none Mui-expanded MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
           >
             <div
               aria-disabled="false"
@@ -330,7 +330,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
       class="Container-leftsmallMargin Container-rightsmallMargin"
     >
       <div
-        class="MuiPaper-root MuiAccordion-root makeStyles-root MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
+        class="MuiPaper-root MuiAccordion-root makeStyles-root makeStyles-borders-none MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
       >
         <div
           aria-disabled="false"
