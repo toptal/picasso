@@ -10,6 +10,17 @@ page
     component: Form,
     name: 'Form',
     additionalDocs: {
+      autoComplete: {
+        name: 'autoComplete',
+        type: {
+          name: 'string',
+          enums: ['on', 'off']
+        },
+        description: `HTML Form autocomplete attribute.\n
+          The autocomplete attribute specifies whether a form should have autocomplete 'on' or 'off'.
+          When autocomplete is 'on', the browser automatically complete values based on values that the user has entered before.
+          Tip: It is possible to have autocomplete 'on' for the form, and 'off' for specific input fields, or vice versa.`
+      },
       debug: {
         name: 'debug',
         type: {
@@ -98,7 +109,7 @@ page
         name: 'failedSubmitMessage',
         type: 'ReactNode',
         description:
-          'Message to display in a tooltip when form submittion failed'
+          'Message to display in a tooltip when form submission failed'
       },
       scrollOffsetTop: {
         name: 'scrollOffsetTop',
