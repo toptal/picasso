@@ -9,6 +9,7 @@ import { Alert } from '@toptal/picasso-lab'
 import { useNotifications } from '@toptal/picasso/utils'
 
 import { FORM_ERROR } from '../index'
+import Autocomplete from '../Autocomplete'
 import Input from '../Input'
 import Select from '../Select'
 import Radio from '../Radio'
@@ -31,7 +32,10 @@ import {
   createFormContext
 } from './FormContext'
 
-export type Props<T = Record<string, any>> = FinalFormProps<T> & {
+type AnyObject = Record<string, any>
+
+export type Props<T = AnyObject> = FinalFormProps<T> & {
+  autoComplete?: HTMLFormElement['autocomplete']
   successSubmitMessage?: ReactNode
   failedSubmitMessage?: ReactNode
   scrollOffsetTop?: number
@@ -73,6 +77,7 @@ const getFormError = (errors: SubmissionErrors | void | undefined) => {
 export const Form = <T extends any = Record<string, any>>(props: Props<T>) => {
   const {
     children,
+    autoComplete,
     onSubmit,
     successSubmitMessage,
     failedSubmitMessage,
@@ -163,7 +168,9 @@ export const Form = <T extends any = Record<string, any>>(props: Props<T>) => {
           return (
             <Container>
               {formErrorAlert}
-              <PicassoForm onSubmit={handleSubmit}>{children}</PicassoForm>
+              <PicassoForm autoComplete={autoComplete} onSubmit={handleSubmit}>
+                {children}
+              </PicassoForm>
             </Container>
           )
         }}
@@ -180,6 +187,7 @@ Form.defaultProps = {}
 
 Form.displayName = 'Form'
 
+Form.Autocomplete = Autocomplete
 Form.Input = Input
 Form.Select = Select
 Form.Radio = Radio

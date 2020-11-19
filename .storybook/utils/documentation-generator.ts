@@ -44,6 +44,8 @@ const merge = <T extends { [key: string]: unknown }>(
   Object.keys(o2).forEach(key => {
     if (destination[key]) {
       Object.assign(destination[key], o2[key])
+    } else {
+      destination[key] = o2[key]
     }
   })
 

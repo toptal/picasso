@@ -669,7 +669,7 @@ export const Select = documentable(
             <OutlinedInput
               // eslint-disable-next-line react/jsx-props-no-spreading
               {...rest}
-              ref={ref}
+              inputRef={ref}
               error={error}
               disabled={disabled}
               id={id}
