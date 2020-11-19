@@ -51,7 +51,7 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
 
     return (
       <OutlinedInput
-        ref={ref}
+        inputRef={ref}
         style={style}
         className={cx(classes.inputBase, {
           [classes.withEndAdornment]: Boolean(endAdornment)

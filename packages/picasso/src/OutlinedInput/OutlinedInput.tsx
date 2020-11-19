@@ -64,6 +64,8 @@ export interface Props
   enableReset?: boolean
   /** Callback invoked when reset button was clicked */
   onResetClick?: () => void
+  /** Ref of the input element */
+  inputRef?: React.Ref<HTMLInputElement>
 }
 
 const ResetButton = ({
