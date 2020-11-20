@@ -24,7 +24,6 @@ export default ({ palette }: Theme) =>
     rootAuto: {},
     select: {
       width: '100%',
-      zIndex: 1,
       padding: '0.625rem',
 
       '&:focus': {
@@ -36,8 +35,7 @@ export default ({ palette }: Theme) =>
       outline: 0
     },
     input: {
-      zIndex: 1,
-      paddingRight: 'calc(0.625rem + 1rem)'
+      paddingRight: '1.625rem'
     },
     readOnlyInput: {
       cursor: 'pointer'
