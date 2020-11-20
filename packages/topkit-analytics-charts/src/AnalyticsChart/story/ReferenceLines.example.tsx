@@ -99,7 +99,6 @@ const Example = () => (
     lineConfig={{
       team: { color: palette.blue.main }
     }}
-    granularity='day'
   />
 )
 
