@@ -1,7 +1,7 @@
 import React from 'react'
 import {
   Sidebar,
-  Label,
+  Tag,
   Logo,
   Container,
   Typography,
@@ -47,7 +47,7 @@ const Example = () => (
               Legal Info
             </Typography>
             <Container left='medium'>
-              <Label>5</Label>
+              <Tag>5</Tag>
             </Container>
           </Sidebar.Item>
           <Sidebar.Item
@@ -100,7 +100,7 @@ const Example = () => (
               Legal Info
             </Typography>
             <Container left='medium'>
-              <Label>5</Label>
+              <Tag>5</Tag>
             </Container>
           </Sidebar.Item>
           <Sidebar.Item
