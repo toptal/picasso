@@ -14,7 +14,7 @@ const ParseInputExample = () => (
         name='parseInput.firstName'
         label='First name'
         placeholder='e.g. Bruce'
-        parse={value => value.trim()}
+        parse={(value: string) => value.trim()}
         limit={24}
       />
 
