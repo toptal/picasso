@@ -39,7 +39,7 @@ const merge = <T extends { [key: string]: unknown }>(
 ) => {
   if (!o2) return o1
 
-  const destination = Object.assign({}, o1)
+  const destination: Record<string, unknown> = Object.assign({}, o1)
 
   Object.keys(o2).forEach(key => {
     if (destination[key]) {
@@ -171,7 +171,7 @@ ${propsTable}
   }
 
   merge(docs: PropDocumentationMap, additionalDocs?: PropDocumentationMap) {
-    return merge(docs, additionalDocs)
+    return merge(docs, additionalDocs) as PropDocumentationMap
   }
 
   transform(generatedDocumentation: ComponentDoc): PropDocumentationMap {
