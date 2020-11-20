@@ -34,11 +34,8 @@ PicassoProvider.override(
         },
 
         '&:hover:not($disabled)': {
-          '& $notchedOutline': {
-            ...outline(palette.primary.main)
-          },
           '&:not($error)&:not($focused) $notchedOutline': {
-            borderColor: palette.grey.light2
+            borderColor: palette.grey.main2
           }
         }
       },
