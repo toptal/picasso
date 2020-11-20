@@ -58,10 +58,10 @@ export interface Props
   value?: string | string[] | number
   /** Variant of colors */
   variant?: VariantType
-  /**
-   * Size of component
-   */
+  /** Size of component */
   size?: SizeType<'small' | 'medium'>
+  /** Enables changing colors on hover */
+  hover?: boolean
 }
 
 const generateKey = (() => {
@@ -88,6 +88,7 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
     variant,
     size,
     titleCase: propsTitleCase,
+    hover,
     ...rest
   },
   ref
@@ -136,7 +137,8 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
       component={as!}
       classes={{
         root: cx({
-          [classes[`gutters${size && capitalize(size!)}`]]: size
+          [classes[`gutters${size && capitalize(size!)}`]]: size,
+          [classes.hover]: hover
         }),
         selected: classes.selected
       }}
@@ -147,6 +149,9 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
       style={style}
       value={value}
       selected={selected}
+      ListItemClasses={{
+        focusVisible: classes.focusVisible
+      }}
     >
       <Container flex direction='column' className={classes.content}>
         <Container flex alignItems='center'>
@@ -184,7 +189,8 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
 MenuItem.defaultProps = {
   as: 'li',
   onClick: () => {},
-  variant: 'light'
+  variant: 'light',
+  hover: true
 }
 
 MenuItem.displayName = 'MenuItem'

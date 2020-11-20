@@ -6,6 +6,7 @@ import {
   HTMLAttributes,
   useEffect
 } from 'react'
+import PopperJs from 'popper.js'
 
 import { Option } from './types'
 
@@ -73,9 +74,12 @@ const getNextWrappingIndex = (
 export type FocusEventType = (event: React.FocusEvent<HTMLInputElement>) => void
 
 interface Props {
+  selectRef: React.Ref<HTMLInputElement>
+  popperRef: React.Ref<PopperJs>
   value: string
   options?: Option[]
   enableAutofill?: boolean
+  closeOnEnter?: boolean
   autoComplete?: any
   disabled?: boolean
   selectedIndexes?: number[]
@@ -89,30 +93,24 @@ interface Props {
   onFocus?: FocusEventType
 }
 
-type GetInputProps = ({
-  canCloseOnEnter
-}: {
-  canCloseOnEnter: boolean
-}) => Partial<
-  HTMLAttributes<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
->
+type GetSelectInputProps = () => Partial<HTMLAttributes<HTMLInputElement>>
 
-type GetRootProps = () => {
-  onFocus: FocusEventType
-  onClick: (event: React.MouseEvent<HTMLInputElement>) => void
-  onBlur: FocusEventType
-}
+type GetSearchInputProps = () => Partial<HTMLAttributes<HTMLInputElement>>
 
 interface UseSelectOutput {
   getItemProps: (index: number, item: Option) => ItemProps
-  getRootProps: GetRootProps
-  getInputProps: GetInputProps
+  getSelectInputProps: GetSelectInputProps
+  getSearchInputProps: GetSearchInputProps
   isOpen: boolean
   highlightedIndex: number
   setHighlightedIndex: (index: number) => void
 }
 
+// eslint-disable-next-line max-lines-per-function
 const useSelect = ({
+  selectRef,
+  popperRef,
+  closeOnEnter,
   value,
   options = [],
   selectedIndexes = [],
@@ -137,7 +135,7 @@ const useSelect = ({
     onSelect(event, item)
   }
 
-  const onMouseDown = useCallback((event: React.MouseEvent) => {
+  const handleItemOnMouseDown = useCallback((event: React.MouseEvent) => {
     // This prevents the activeElement from being changed
     // to the item so it can remain with the current activeElement
     // which is a more common use case.
@@ -158,125 +156,132 @@ const useSelect = ({
 
       setHighlightedIndex(index)
     },
-    onMouseDown,
+    onMouseDown: handleItemOnMouseDown,
     close,
     onClick: (event: React.MouseEvent) => {
-      setOpen(false)
+      close()
       handleSelect(event, item)
     }
   })
 
-  const handleFocusOrClick = (
-    event:
-      | React.FocusEvent<HTMLInputElement>
-      | React.MouseEvent<HTMLInputElement>
-  ) => {
+  const handleSelectFocus = (event: React.FocusEvent<HTMLInputElement>) => {
     if (!isOpen && !disabled) {
-      onFocus(event as React.FocusEvent<HTMLInputElement>)
+      onFocus(event)
       setOpen(true)
     }
   }
 
-  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-    setOpen(false)
+  const handleSelectClick = () => {
+    if (!isOpen && !disabled) {
+      setOpen(true)
+    }
+  }
+
+  const isRelatedTargetInsidePopper = (event: React.FocusEvent) =>
+    typeof popperRef === 'object' &&
+    popperRef?.current &&
+    popperRef.current.popper.contains(event.relatedTarget as Node)
+
+  const handleSelectBlur = (event: React.FocusEvent<HTMLInputElement>) => {
     onBlur(event)
+
+    if (!isRelatedTargetInsidePopper(event)) {
+      close()
+    }
   }
 
-  const getInputProps = ({
-    canCloseOnEnter
-  }: {
-    canCloseOnEnter: boolean
-  }) => ({
-    'aria-autocomplete': 'list' as React.AriaAttributes['aria-autocomplete'],
-    onChange: (
-      event: ChangeEvent<
-        HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
-      >
-    ) => {
-      setOpen(true)
-      onChange(event.target.value)
-    },
-
-    // eslint-disable-next-line max-statements, complexity
-    onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => {
-      const key = normalizeArrowKey(event)
-
-      if (key === 'Tab') {
-        event.currentTarget.blur()
-      }
-
-      if (key === 'ArrowUp' || key === 'ArrowDown') {
-        event.preventDefault()
-
-        if (isOpen) {
-          setHighlightedIndex(
-            getNextWrappingIndex(
-              key === 'ArrowDown' ? 1 : -1,
-              highlightedIndex,
-              options.length
-            )
-          )
-        } else {
-          setOpen(true)
-        }
-      }
-
-      if (key === 'Backspace') {
-        if (value !== EMPTY_INPUT_VALUE) {
-          return
-        }
-
-        setOpen(false)
-      }
-
-      if (key === 'Enter') {
-        if (!isOpen) {
-          setOpen(true)
-
-          return
-        }
-
-        event.preventDefault()
-
-        const item = options[highlightedIndex]
-
-        if (item == null) {
-          return
-        }
-
-        if (canCloseOnEnter) {
-          setOpen(false)
-        }
-        handleSelect(event, item)
-      }
-
-      if (key === 'Escape') {
-        event.preventDefault()
-
-        setOpen(false)
-      }
-
-      onKeyDown(event, value)
-    },
-    onResetClick: (event: React.MouseEvent<HTMLInputElement>) => {
-      // keep select options closed
-      event.stopPropagation()
-
-      setOpen(false)
-      handleSelect(event, null)
+  const handleSearchBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+    if (
+      isRelatedTargetInsidePopper(event) &&
+      typeof selectRef === 'object' &&
+      selectRef?.current
+    ) {
+      selectRef.current.focus()
+    } else {
+      close()
     }
+  }
+
+  // eslint-disable-next-line max-lines-per-function
+  // eslint-disable-next-line complexity
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    const key = normalizeArrowKey(event)
+
+    if (key === 'Tab') {
+      event.currentTarget.blur()
+    }
+
+    if (key === 'ArrowUp' || key === 'ArrowDown') {
+      event.preventDefault()
+
+      if (isOpen) {
+        setHighlightedIndex(
+          getNextWrappingIndex(
+            key === 'ArrowDown' ? 1 : -1,
+            highlightedIndex,
+            options.length
+          )
+        )
+      } else {
+        setOpen(true)
+      }
+    }
+
+    if (key === 'Enter') {
+      event.preventDefault()
+
+      const item = options[highlightedIndex]
+
+      if (item == null) {
+        return
+      }
+
+      if (closeOnEnter) {
+        close()
+      }
+      handleSelect(event, item)
+    }
+
+    if (key === 'Escape') {
+      event.preventDefault()
+
+      close()
+    }
+
+    onKeyDown(event, value)
+  }
+
+  const handleResetClick = (event: React.MouseEvent<HTMLInputElement>) => {
+    // keep select options closed
+    event.stopPropagation()
+
+    close()
+    handleSelect(event, null)
+  }
+
+  const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
+    onChange(event.target.value)
+  }
+
+  const getSelectInputProps = () => ({
+    onKeyDown: handleKeyDown,
+    onResetClick: handleResetClick,
+    onClick: handleSelectClick,
+    onFocus: handleSelectFocus,
+    onBlur: handleSelectBlur
   })
 
-  const getRootProps = () => ({
-    onFocus: handleFocusOrClick,
-    onClick: handleFocusOrClick,
-    onBlur: handleBlur
+  const getSearchInputProps = () => ({
+    'aria-autocomplete': 'list' as React.AriaAttributes['aria-autocomplete'],
+    onChange: handleSearchChange,
+    onKeyDown: handleKeyDown,
+    onBlur: handleSearchBlur
   })
 
   return {
     getItemProps,
-    getRootProps,
-    getInputProps,
+    getSelectInputProps,
+    getSearchInputProps,
     isOpen,
     highlightedIndex,
     setHighlightedIndex

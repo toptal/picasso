@@ -28,7 +28,7 @@ export default ({ typography, palette }: Theme) =>
     light: {
       color: palette.common.black,
 
-      '&:hover': {
+      '&$hover:hover': {
         color: palette.common.black,
         backgroundColor: palette.blue.lighter,
 
@@ -36,6 +36,10 @@ export default ({ typography, palette }: Theme) =>
           color: palette.common.black,
           backgroundColor: palette.blue.lighter
         }
+      },
+
+      '&:not($hover):hover': {
+        backgroundColor: palette.common.white
       },
 
       '&$selected': {
@@ -56,13 +60,17 @@ export default ({ typography, palette }: Theme) =>
     dark: {
       color: palette.grey.main,
 
-      '&:hover': {
+      '&$hover:hover': {
         backgroundColor: palette.grey.dark,
 
         '&$selected': {
           color: palette.common.white,
           backgroundColor: palette.grey.dark
         }
+      },
+
+      '&:not($hover):hover': {
+        backgroundColor: palette.grey.main
       },
 
       '&$selected': {
@@ -80,7 +88,11 @@ export default ({ typography, palette }: Theme) =>
         }
       }
     },
+    focusVisible: {
+      backgroundColor: 'unset !important'
+    },
     selected: {},
+    hover: {},
     stringContent: {
       flex: 1,
       fontSize: '0.8125em'

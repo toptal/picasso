@@ -14,6 +14,8 @@ import NativeSelect from '@material-ui/core/NativeSelect'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
 import { BaseProps, SizeType } from '@toptal/picasso-shared'
+import { Search16 } from '@toptal/picasso/Icon'
+import PopperJs from 'popper.js'
 
 import OutlinedInput from '../OutlinedInput'
 import Popper from '../Popper'
@@ -22,7 +24,7 @@ import InputAdornment from '../InputAdornment'
 import MenuItem from '../MenuItem'
 import Loader from '../Loader'
 import { DropdownArrows16 } from '../Icon'
-import { isSubstring, disableUnsupportedProps } from '../utils'
+import { isSubstring, disableUnsupportedProps, useCombinedRefs } from '../utils'
 import { FeatureOptions } from '../utils/disable-unsupported-props'
 import { Option } from './types'
 import useSelect, {
@@ -147,6 +149,7 @@ type OptionsProps = Pick<
   getItemProps: (index: number, option: Option) => ItemProps
   onBlur?: FocusEventType
   onItemSelect: (event: React.MouseEvent, option: Option) => void
+  fixedHeader?: ReactNode
 }
 
 const DEFAULT_EMPTY_ARRAY_VALUE: ValueType[] = []
@@ -323,11 +326,12 @@ const renderOptions = ({
   multiple,
   size,
   inputValue,
-  noOptionsText
+  noOptionsText,
+  fixedHeader
 }: OptionsProps) => {
   if (!options.length && inputValue) {
     return (
-      <ScrollMenu>
+      <ScrollMenu fixedHeader={fixedHeader}>
         <MenuItem titleCase={false} disabled>
           {noOptionsText}
         </MenuItem>
@@ -363,6 +367,7 @@ const renderOptions = ({
 
   return (
     <ScrollMenu
+      fixedHeader={fixedHeader}
       data-testid='select-dropdown'
       onBlur={onBlur}
       selectedIndex={highlightedIndex}
@@ -410,6 +415,11 @@ export const Select = documentable(
         ...rest
       } = purifyProps(props)
 
+      const selectRef = useCombinedRefs<HTMLInputElement>(
+        ref,
+        useRef<HTMLInputElement>(null)
+      )
+
       const classes = useStyles(props)
 
       const emptySelectValue: string | string[] = multiple ? [] : ''
@@ -423,6 +433,7 @@ export const Select = documentable(
         [name, onChange]
       )
 
+      const popperRef = useRef<PopperJs>(null)
       const inputWrapperRef = useRef<HTMLDivElement>(null)
       const [selectedOptions, setSelectedOptions] = useState(
         getSelectedOptions(allOptions, value)
@@ -472,12 +483,12 @@ export const Select = documentable(
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [value, allOptions, getDisplayValue])
 
-      const readOnlyInput = multiple || allOptions.length <= searchThreshold!
+      const showSearch = allOptions.length <= searchThreshold!
 
       const handleFocus = (
         event: React.FocusEvent<HTMLInputElement | HTMLDivElement>
       ) => {
-        if (!readOnlyInput && 'select' in event.target) {
+        if ('select' in event.target) {
           event.target.select()
         }
         setFilterOptionsValue(EMPTY_INPUT_VALUE)
@@ -506,7 +517,6 @@ export const Select = documentable(
       }
 
       const handleChange = (newValue: string) => {
-        setInputValue(newValue)
         onSearchChange!(newValue)
         setFilterOptionsValue(newValue)
       }
@@ -560,13 +570,16 @@ export const Select = documentable(
         highlightedIndex,
         isOpen,
         getItemProps,
-        getInputProps,
-        getRootProps
+        getSelectInputProps,
+        getSearchInputProps
       } = useSelect({
+        selectRef,
+        popperRef,
         value: inputValue,
         options,
         selectedIndexes,
         disabled,
+        closeOnEnter: !multiple,
         onSelect: handleSelect,
         onChange: handleChange,
         onBlur: handleBlur,
@@ -605,11 +618,13 @@ export const Select = documentable(
         <div className={classes.nativeEndAdornment}>{endAdornment}</div>
       )
 
+      const selectInputProps = getSelectInputProps()
+
       const nativeSelectComponent = (
         <NativeSelect
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...rest}
-          ref={ref}
+          ref={selectRef}
           error={error}
           disabled={disabled}
           name={name}
@@ -624,9 +639,7 @@ export const Select = documentable(
               size={size}
               className={classes.nativeInput}
               // eslint-disable-next-line react/jsx-props-no-spreading
-              {...getInputProps({
-                canCloseOnEnter: !multiple
-              })}
+              {...selectInputProps}
             />
           }
           value={value}
@@ -657,13 +670,22 @@ export const Select = documentable(
         </NativeSelect>
       )
 
-      const rootProps = getRootProps()
+      const searchInput = showSearch ? (
+        <MenuItem as='div' size={size} hover={false}>
+          <OutlinedInput
+            className={classes.searchOutlinedInput}
+            startAdornment={<Search16 className={classes.searchInputIcon} />}
+            placeholder='Search'
+            /* eslint-disable-next-line react/jsx-props-no-spreading */
+            {...getSearchInputProps()}
+          />
+        </MenuItem>
+      ) : null
 
       const selectComponent = (
         <>
           <div
             /* eslint-disable-next-line react/jsx-props-no-spreading */
-            {...getRootProps()}
             className={classes.inputWrapper}
           >
             {!enableAutofill && !native && name && (
@@ -672,7 +694,7 @@ export const Select = documentable(
             <OutlinedInput
               // eslint-disable-next-line react/jsx-props-no-spreading
               {...rest}
-              ref={ref}
+              ref={selectRef}
               error={error}
               disabled={disabled}
               id={id}
@@ -681,20 +703,14 @@ export const Select = documentable(
               // Input specific props
               value={inputValue}
               /* eslint-disable-next-line react/jsx-props-no-spreading */
-              {...getInputProps({
-                canCloseOnEnter: !multiple
-              })}
+              {...selectInputProps}
               placeholder={placeholder}
               width={width}
-              readOnly={readOnlyInput}
+              readOnly
               defaultValue={undefined}
-              className={cx(classes.input, {
-                [classes.readOnlyInput]: readOnlyInput
-              })}
+              className={classes.outlinedInput}
               inputProps={{
-                className: cx({
-                  [classes.readOnlyInput]: readOnlyInput
-                }),
+                className: classes.input,
                 size: 1 // let input to have smallest width by default for width:'shrink'
               }}
               size={size}
@@ -709,6 +725,7 @@ export const Select = documentable(
           </div>
           {!disabled && (
             <Popper
+              ref={popperRef}
               autoWidth
               width={menuWidth}
               placement='bottom-start'
@@ -717,20 +734,20 @@ export const Select = documentable(
               container={popperContainer}
             >
               {isOpen &&
-                !loading &&
                 renderOptions({
                   options,
                   renderOption,
                   highlightedIndex,
                   onItemSelect: handleSelect,
                   getItemProps,
-                  onBlur: rootProps.onBlur,
+                  onBlur: selectInputProps.onBlur,
                   value,
                   getDisplayValue,
                   multiple,
                   size,
                   noOptionsText,
-                  inputValue
+                  inputValue,
+                  fixedHeader: searchInput
                 })}
             </Popper>
           )}
