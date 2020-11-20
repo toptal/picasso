@@ -40,6 +40,7 @@ const Example = () => (
       role: { color: palette.blue.main }
     }}
     formatXAxisLabel={(label: string) => format(parseISO(label), 'MMM dd')}
+    granularity='day'
   />
 )
 

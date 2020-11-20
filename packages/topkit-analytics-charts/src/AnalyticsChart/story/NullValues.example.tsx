@@ -96,6 +96,7 @@ const Example = () => (
       role: { color: palette.yellow.main },
       team: { color: palette.blue.main }
     }}
+    granularity='day'
   />
 )
 

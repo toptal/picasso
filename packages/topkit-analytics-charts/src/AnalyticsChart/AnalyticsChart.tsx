@@ -1,11 +1,14 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useCallback } from 'react'
 import { BaseChartProps, LineChart } from '@toptal/picasso-charts'
 
 import {
   toChartFormat,
   toHighlightFormat,
-  toLineConfigFormat
+  toLineConfigFormat,
+  getXAxisTicks
 } from './../utils'
+
+export type ChartGranularity = 'month' | 'week' | 'day' | 'hour'
 
 export type Point = {
   id: string
@@ -27,6 +30,7 @@ export type Props = BaseChartProps & {
   highlights?: Highlight[]
   referenceLines?: ReferenceLine[]
   formatXAxisLabel?: (label: string) => string
+  granularity?: ChartGranularity
 }
 
 export const AnalyticsChart = ({
@@ -36,6 +40,7 @@ export const AnalyticsChart = ({
   xAxisKey,
   lineConfig: lines,
   formatXAxisLabel,
+  granularity,
   ...rest
 }: Props) => {
   const chartData = useMemo(
@@ -52,6 +57,12 @@ export const AnalyticsChart = ({
       toHighlightFormat(chartData, highlights, xAxisKey!, formatXAxisLabel!),
     [chartData, formatXAxisLabel, highlights, xAxisKey]
   )
+  const getXTicks = useCallback(
+    orderedData => {
+      return getXAxisTicks(orderedData, granularity)
+    },
+    [granularity]
+  )
 
   return (
     <LineChart
@@ -59,11 +70,7 @@ export const AnalyticsChart = ({
       data={chartData}
       highlights={highlightsData || null}
       lineConfig={lineConfig}
-      getXAxisTicks={orderedData =>
-        orderedData
-          .filter(({ order }) => order % 2 === 0)
-          .map(({ order }) => order)
-      }
+      getXAxisTicks={getXTicks}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
     />
