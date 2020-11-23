@@ -46,8 +46,7 @@ describe('FormLabel', () => {
   test('default render', () => {
     const { queryByText } = render(<TestFormLabel>Label</TestFormLabel>)
 
-    expect(queryByText('Label')).toBeInTheDocument()
-    expect(queryByText('Label (optional)')).not.toBeInTheDocument()
+    expect(queryByText('Label (optional)')).toBeInTheDocument()
   })
 
   test('disabled', () => {

@@ -16,6 +16,7 @@ exports[`FormLabel disabled 1`] = `
             class="FormLabel-text"
           >
             Label
+             (optional)
           </span>
         </label>
         <div
