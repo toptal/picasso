@@ -51,8 +51,9 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
   ref
 ) {
   const isInline = inline || Component === 'span'
-
   const titleCase = useTitleCase(propsTitleCase)
+  const showAsterisk = requiredVariant === 'asterisk' && required
+  const showOptional = requiredVariant === 'optional' && required === false
 
   return (
     <Component
@@ -70,12 +71,10 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
       )}
       style={style}
     >
-      {requiredVariant === 'asterisk' && required && (
-        <span className={classes.asterisk}>*</span>
-      )}
+      {showAsterisk && <span className={classes.asterisk}>*</span>}
       <span className={classes.text}>
         {titleCase ? toTitleCase(children) : children}
-        {requiredVariant === 'optional' && required === false && ' (optional)'}
+        {showOptional && ' (optional)'}
       </span>
     </Component>
   )
