@@ -10,10 +10,11 @@ export default () =>
         marginLeft: '-1px'
       }
     },
+
     button: {
       transitionProperty: 'color, background',
 
-      '&:first-child': {
+      '&:first-child:not(:last-child)': {
         borderTopRightRadius: 0,
         borderBottomRightRadius: 0
       },
@@ -22,7 +23,7 @@ export default () =>
         borderRadius: 0
       },
 
-      '&:last-child': {
+      '&:last-child:not(:first-child)': {
         borderTopLeftRadius: 0,
         borderBottomLeftRadius: 0
       },
