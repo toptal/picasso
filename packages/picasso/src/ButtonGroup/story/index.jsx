@@ -8,6 +8,10 @@ const chapter = PicassoBook.connectToPage(page =>
       'You can combine multiple buttons into a single container.'
     )
     .addExample('ButtonGroup/story/ButtonGroup.example.tsx', 'Button group')
+    .addExample(
+      'ButtonGroup/story/ButtonGroupNested.example.jsx',
+      'Nested Button group'
+    )
 )
 
 const componentDocs = PicassoBook.createComponentDocs(

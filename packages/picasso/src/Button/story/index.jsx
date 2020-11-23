@@ -1,4 +1,5 @@
 import buttonGroupStory from '../../ButtonGroup/story'
+import buttonGroupItemStory from '../../ButtonGroupItem/story'
 import buttonCircularStory from '../../ButtonCircular/story'
 import buttonActionStory from '../../ButtonAction/story'
 import { Button } from '../Button'
@@ -172,6 +173,7 @@ page
   .addComponentDocs(buttonCircularStory.componentDocs)
   .addComponentDocs(buttonActionStory.componentDocs)
   .addComponentDocs(buttonGroupStory.componentDocs)
+  .addComponentDocs(buttonGroupItemStory.componentDocs)
 
 page
   .createChapter()
