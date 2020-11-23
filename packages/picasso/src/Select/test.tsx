@@ -216,7 +216,8 @@ test('should render noOptionText if the value entered does not match any of the 
     options: OPTIONS,
     noOptionsText,
     placeholder,
-    searchPlaceholder
+    searchPlaceholder,
+    searchThreshold: -1
   })
 
   const selectInput = getByPlaceholderText(placeholder)
