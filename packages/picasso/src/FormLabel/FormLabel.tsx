@@ -21,7 +21,7 @@ export interface Props
   children: ReactNode
   /** Whether field is required */
   required?: boolean
-  /** Uses asterisk to mark a required field or (optional) suffix if required explicitly false */
+  /** Uses asterisk to mark a required field or (optional) suffix for non-required fields */
   requiredVariant?: RequiredVariant
   /** Is this label for disabled input or not */
   disabled?: boolean
@@ -53,7 +53,7 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
   const isInline = inline || Component === 'span'
   const titleCase = useTitleCase(propsTitleCase)
   const showAsterisk = requiredVariant === 'asterisk' && required
-  const showOptional = requiredVariant === 'optional' && required === false
+  const showOptional = requiredVariant === 'optional' && !required
 
   return (
     <Component

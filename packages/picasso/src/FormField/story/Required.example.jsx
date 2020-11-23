@@ -11,7 +11,7 @@ const Example = () => (
   >
     <Form style={{ maxWidth: '350px' }}>
       <Container bottom={3}>
-        <Typography>New school:</Typography>
+        <Typography weight='semibold'>Recommended:</Typography>
       </Container>
       <Form.Field>
         <Form.Label htmlFor='district' required>
@@ -21,16 +21,14 @@ const Example = () => (
       </Form.Field>
 
       <Form.Field>
-        <Form.Label htmlFor='city' required={false}>
-          City
-        </Form.Label>
+        <Form.Label htmlFor='city'>City</Form.Label>
         <Input id='city' width='full' placeholder='e.g., Barcelona' />
       </Form.Field>
     </Form>
 
     <Form style={{ maxWidth: '350px' }}>
       <Container bottom={3}>
-        <Typography>Old school:</Typography>
+        <Typography weight='semibold'>Deprecated:</Typography>
       </Container>
       <Form.Field>
         <Form.Label htmlFor='district' required requiredVariant='asterisk'>
@@ -40,7 +38,9 @@ const Example = () => (
       </Form.Field>
 
       <Form.Field>
-        <Form.Label htmlFor='city'>City</Form.Label>
+        <Form.Label htmlFor='city' requiredVariant='asterisk'>
+          City
+        </Form.Label>
         <Input id='city' width='full' placeholder='e.g., Barcelona' />
       </Form.Field>
     </Form>
