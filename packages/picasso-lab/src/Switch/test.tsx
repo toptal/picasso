@@ -24,61 +24,52 @@ const renderSwitch = (
 }
 
 it('renders default Switch without label', () => {
-  const { queryByTestId } = renderSwitch({})
+  const { container } = renderSwitch({})
 
-  expect(queryByTestId('switch')).toBeInTheDocument()
+  expect(container).toMatchSnapshot()
 })
 
 it('renders default Switch with label', () => {
-  const { queryByTestId, queryByText } = renderSwitch({ label: 'A Switch' })
+  const { getByTestId } = renderSwitch({ label: 'A Switch' })
 
-  expect(queryByTestId('switch')).toBeInTheDocument()
-  expect(queryByText('A Switch')).toBeInTheDocument()
+  expect(getByTestId('switch')).toHaveTextContent('A Switch')
 })
 
 it('renders disabled state', () => {
-  const { queryByTestId, queryByText } = renderSwitch({
+  const { getByTestId } = renderSwitch({
     disabled: true,
     label: 'Disabled'
   })
 
-  const Switch = queryByTestId('switch')
-  const className = Switch?.className || ''
-
-  expect(Switch).toBeInTheDocument()
-  expect(/Mui-disabled/.test(className)).toBe(true)
-  expect(queryByText('Disabled')).toBeInTheDocument()
+  expect(getByTestId('switch')).toMatchSnapshot()
 })
 
 it('transforms text to title case when Picasso titleCase property is true', () => {
-  const { queryByText } = renderSwitch(
+  const { getByTestId } = renderSwitch(
     { label: 'abc ac4' },
     { titleCase: true }
   )
 
-  expect(queryByText('Abc Ac4')).toBeInTheDocument()
+  expect(getByTestId('switch')).toHaveTextContent('Abc Ac4')
 })
 
 it('transforms text to title case when Picasso titleCase property is true but the component property overrides it', () => {
-  const { queryByText } = renderSwitch(
+  const { getByTestId } = renderSwitch(
     { label: 'abc dp3', titleCase: false },
     { titleCase: true }
   )
 
-  expect(queryByText('abc dp3')).toBeInTheDocument()
+  expect(getByTestId('switch')).toHaveTextContent('abc dp3')
 })
 
 it('behaves correctly when interacting', () => {
   const onChange = jest.fn()
   const label = 'Switch'
 
-  const { getByLabelText, getByTestId } = renderSwitch({ onChange, label })
-  const switchLabel = getByLabelText(label)
+  const { getByTestId } = renderSwitch({ onChange, label })
 
-  expect(switchLabel).toBeInTheDocument()
+  fireEvent.click(getByTestId('switch'))
 
-  fireEvent.click(switchLabel)
   expect(onChange).toHaveBeenCalled()
-
-  expect(/Mui-checked/.test(getByTestId('switch').className)).toBe(true)
+  expect(getByTestId('switch')).toMatchSnapshot()
 })

@@ -43,6 +43,7 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
     checked,
     titleCase,
     color, // eslint-disable-line
+    'data-testid': dataTestId,
     ...rest
   } = props
 
@@ -79,6 +80,7 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
       disabled={disabled}
       label={label}
       titleCase={titleCase}
+      data-testid={dataTestId}
     />
   )
 })

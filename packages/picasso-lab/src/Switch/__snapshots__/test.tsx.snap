@@ -1,0 +1,120 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`behaves correctly when interacting 1`] = `
+<label
+  class="FormControlLabel-root"
+  data-testid="switch"
+>
+  <span
+    class="MuiSwitch-root"
+  >
+    <span
+      aria-disabled="false"
+      class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-checked Mui-checked"
+    >
+      <span
+        class="MuiIconButton-label"
+      >
+        <input
+          class="PrivateSwitchBase-input MuiSwitch-input"
+          type="checkbox"
+          value=""
+        />
+        <span
+          class="MuiSwitch-thumb"
+        />
+      </span>
+    </span>
+    <span
+      class="MuiSwitch-track"
+    />
+  </span>
+  <span
+    class="FormLabel-root FormLabel-inline FormControlLabel-label PicassoSwitch-label"
+  >
+    <span
+      class="FormLabel-text"
+    >
+      Switch
+       (optional)
+    </span>
+  </span>
+</label>
+`;
+
+exports[`renders default Switch without label 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <span
+      class="MuiSwitch-root"
+    >
+      <span
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <input
+            class="PrivateSwitchBase-input MuiSwitch-input"
+            type="checkbox"
+            value=""
+          />
+          <span
+            class="MuiSwitch-thumb"
+          />
+        </span>
+      </span>
+      <span
+        class="MuiSwitch-track"
+      />
+    </span>
+  </div>
+</div>
+`;
+
+exports[`renders disabled state 1`] = `
+<label
+  class="FormControlLabel-root FormControlLabel-disabled"
+  data-testid="switch"
+>
+  <span
+    class="MuiSwitch-root PicassoSwitch-disabled"
+  >
+    <span
+      aria-disabled="true"
+      class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-disabled Mui-disabled Mui-disabled Mui-disabled"
+      tabindex="-1"
+    >
+      <span
+        class="MuiIconButton-label"
+      >
+        <input
+          class="PrivateSwitchBase-input MuiSwitch-input"
+          disabled=""
+          type="checkbox"
+          value=""
+        />
+        <span
+          class="MuiSwitch-thumb"
+        />
+      </span>
+    </span>
+    <span
+      class="MuiSwitch-track"
+    />
+  </span>
+  <span
+    class="FormLabel-root FormLabel-disabled FormLabel-inline FormControlLabel-label PicassoSwitch-label"
+  >
+    <span
+      class="FormLabel-text"
+    >
+      Disabled
+       (optional)
+    </span>
+  </span>
+</label>
+`;
