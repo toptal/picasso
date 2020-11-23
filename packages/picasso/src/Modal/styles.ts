@@ -41,7 +41,7 @@ export default ({ screens, sizes }: Theme) =>
     },
     closeButton: {
       position: 'absolute',
-      right: '2rem',
-      top: '1.5rem'
+      right: '2em',
+      top: '2em'
     }
   })
