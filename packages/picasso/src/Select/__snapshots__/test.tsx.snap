@@ -12,14 +12,13 @@ exports[`multiple select should checkmark user selected options 1`] = `
         class="makeStyles-inputWrapper"
       >
         <div
-          aria-autocomplete="list"
-          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootFull OutlinedInput-rootMedium makeStyles-input makeStyles-readOnlyInput MuiInputBase-fullWidth Mui-focused Mui-focused OutlinedInput-focused"
+          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootFull OutlinedInput-rootMedium makeStyles-outlinedInput MuiInputBase-fullWidth Mui-focused Mui-focused OutlinedInput-focused"
           role="textbox"
         >
           <input
             aria-invalid="false"
             autocomplete="off"
-            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium makeStyles-readOnlyInput"
+            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium makeStyles-input"
             placeholder="Choose an option..."
             readonly=""
             size="1"
@@ -65,13 +64,60 @@ exports[`multiple select should checkmark user selected options 1`] = `
         tabindex="-1"
       >
         <div
-          class="ScrollMenu-scrollView"
+          aria-disabled="false"
+          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+          role="menuitem"
           tabindex="0"
+        >
+          <div
+            class="Container-flex Container-column MenuItem-content"
+          >
+            <div
+              class="Container-centerAlignItems Container-flex"
+            >
+              <div
+                aria-autocomplete="list"
+                class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium makeStyles-searchOutlinedInput MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+              >
+                <svg
+                  class="SvgSearch16-root makeStyles-searchInputIcon"
+                  style="min-width: 16px; min-height: 16px;"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M10.582 9.874l4.625 4.626-.707.707-4.626-4.625a6 6 0 11.707-.707zM6 11A5 5 0 106 1a5 5 0 000 10z"
+                  />
+                </svg>
+                <input
+                  class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+                  type="text"
+                  value=""
+                />
+                <fieldset
+                  aria-hidden="true"
+                  class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
+                  style="padding-left: 8px;"
+                >
+                  <legend
+                    class="PrivateNotchedOutline-legend"
+                    style="width: 0.01px;"
+                  >
+                    <span>
+                      ​
+                    </span>
+                  </legend>
+                </fieldset>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ScrollMenu-scrollView"
         >
           <li
             aria-disabled="false"
             aria-selected="true"
-            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-hover MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
             role="option"
             tabindex="-1"
             value="val1"
@@ -106,7 +152,7 @@ exports[`multiple select should checkmark user selected options 1`] = `
           <li
             aria-disabled="false"
             aria-selected="false"
-            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-hover MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
             role="option"
             tabindex="-1"
             value="val2"
@@ -131,7 +177,7 @@ exports[`multiple select should checkmark user selected options 1`] = `
           <li
             aria-disabled="false"
             aria-selected="false"
-            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-hover MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
             role="option"
             tabindex="-1"
             value="val3"
@@ -179,7 +225,6 @@ exports[`renders native select 1`] = `
       class="makeStyles-root makeStyles-rootFull"
     >
       <div
-        aria-autocomplete="list"
         class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootFull OutlinedInput-rootMedium makeStyles-nativeInput MuiInputBase-fullWidth"
       >
         <select
@@ -252,7 +297,6 @@ exports[`renders native select with the empty option enabled when enableReset is
       class="makeStyles-root makeStyles-rootFull"
     >
       <div
-        aria-autocomplete="list"
         class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootFull OutlinedInput-rootMedium makeStyles-nativeInput MuiInputBase-fullWidth"
       >
         <select
@@ -327,14 +371,13 @@ exports[`renders select 1`] = `
         class="makeStyles-inputWrapper"
       >
         <div
-          aria-autocomplete="list"
-          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootFull OutlinedInput-rootMedium makeStyles-input makeStyles-readOnlyInput MuiInputBase-fullWidth"
+          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootFull OutlinedInput-rootMedium makeStyles-outlinedInput MuiInputBase-fullWidth"
           role="textbox"
         >
           <input
             aria-invalid="false"
             autocomplete="off"
-            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium makeStyles-readOnlyInput"
+            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium makeStyles-input"
             readonly=""
             size="1"
             type="text"
@@ -378,53 +421,61 @@ exports[`should filter options based on entered value to the input field 1`] = `
   tabindex="-1"
 >
   <div
-    class="ScrollMenu-scrollView"
+    aria-disabled="false"
+    class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+    role="menuitem"
     tabindex="0"
   >
-    <li
-      aria-disabled="false"
-      aria-selected="true"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
-      role="option"
-      tabindex="-1"
-      value="val2"
+    <div
+      class="Container-flex Container-column MenuItem-content"
     >
       <div
-        class="Container-flex Container-column MenuItem-content"
+        class="Container-centerAlignItems Container-flex"
       >
         <div
-          class="Container-centerAlignItems Container-flex"
+          aria-autocomplete="list"
+          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium makeStyles-searchOutlinedInput MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
         >
-          <div
-            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
-          />
-          <span
-            class="MenuItem-stringContent MenuItem-stringContentMedium"
+          <svg
+            class="SvgSearch16-root makeStyles-searchInputIcon"
+            style="min-width: 16px; min-height: 16px;"
+            viewBox="0 0 16 16"
           >
-            text2
-          </span>
+            <path
+              d="M10.582 9.874l4.625 4.626-.707.707-4.626-4.625a6 6 0 11.707-.707zM6 11A5 5 0 106 1a5 5 0 000 10z"
+            />
+          </svg>
+          <input
+            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+            placeholder="Search for an option"
+            type="text"
+            value=""
+          />
+          <fieldset
+            aria-hidden="true"
+            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
+            style="padding-left: 8px;"
+          >
+            <legend
+              class="PrivateNotchedOutline-legend"
+              style="width: 0.01px;"
+            >
+              <span>
+                ​
+              </span>
+            </legend>
+          </fieldset>
         </div>
       </div>
-    </li>
+    </div>
   </div>
-</ul>
-`;
-
-exports[`should open menu when focus on select 1`] = `
-<ul
-  class="MuiList-root Menu-root ScrollMenu-menu"
-  data-testid="select-dropdown"
-  role="menu"
-  tabindex="-1"
->
   <div
     class="ScrollMenu-scrollView"
-    tabindex="0"
   >
     <li
       aria-disabled="false"
       aria-selected="true"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-hover MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
       role="option"
       tabindex="-1"
       value="val1"
@@ -449,7 +500,7 @@ exports[`should open menu when focus on select 1`] = `
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-hover MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
       value="val2"
@@ -474,7 +525,144 @@ exports[`should open menu when focus on select 1`] = `
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-hover MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      role="option"
+      tabindex="-1"
+      value="val3"
+    >
+      <div
+        class="Container-flex Container-column MenuItem-content"
+      >
+        <div
+          class="Container-centerAlignItems Container-flex"
+        >
+          <div
+            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+          />
+          <span
+            class="MenuItem-stringContent MenuItem-stringContentMedium"
+          >
+            text3
+          </span>
+        </div>
+      </div>
+    </li>
+  </div>
+</ul>
+`;
+
+exports[`should open menu when focus on select 1`] = `
+<ul
+  class="MuiList-root Menu-root ScrollMenu-menu"
+  data-testid="select-dropdown"
+  role="menu"
+  tabindex="-1"
+>
+  <div
+    aria-disabled="false"
+    class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+    role="menuitem"
+    tabindex="0"
+  >
+    <div
+      class="Container-flex Container-column MenuItem-content"
+    >
+      <div
+        class="Container-centerAlignItems Container-flex"
+      >
+        <div
+          aria-autocomplete="list"
+          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium makeStyles-searchOutlinedInput MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+        >
+          <svg
+            class="SvgSearch16-root makeStyles-searchInputIcon"
+            style="min-width: 16px; min-height: 16px;"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M10.582 9.874l4.625 4.626-.707.707-4.626-4.625a6 6 0 11.707-.707zM6 11A5 5 0 106 1a5 5 0 000 10z"
+            />
+          </svg>
+          <input
+            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+            type="text"
+            value=""
+          />
+          <fieldset
+            aria-hidden="true"
+            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
+            style="padding-left: 8px;"
+          >
+            <legend
+              class="PrivateNotchedOutline-legend"
+              style="width: 0.01px;"
+            >
+              <span>
+                ​
+              </span>
+            </legend>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="ScrollMenu-scrollView"
+  >
+    <li
+      aria-disabled="false"
+      aria-selected="true"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-hover MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+      role="option"
+      tabindex="-1"
+      value="val1"
+    >
+      <div
+        class="Container-flex Container-column MenuItem-content"
+      >
+        <div
+          class="Container-centerAlignItems Container-flex"
+        >
+          <div
+            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+          />
+          <span
+            class="MenuItem-stringContent MenuItem-stringContentMedium"
+          >
+            text1
+          </span>
+        </div>
+      </div>
+    </li>
+    <li
+      aria-disabled="false"
+      aria-selected="false"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-hover MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      role="option"
+      tabindex="-1"
+      value="val2"
+    >
+      <div
+        class="Container-flex Container-column MenuItem-content"
+      >
+        <div
+          class="Container-centerAlignItems Container-flex"
+        >
+          <div
+            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
+          />
+          <span
+            class="MenuItem-stringContent MenuItem-stringContentMedium"
+          >
+            text2
+          </span>
+        </div>
+      </div>
+    </li>
+    <li
+      aria-disabled="false"
+      aria-selected="false"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-hover MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
       value="val3"
@@ -508,13 +696,60 @@ exports[`should render description 1`] = `
   tabindex="-1"
 >
   <div
-    class="ScrollMenu-scrollView"
+    aria-disabled="false"
+    class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+    role="menuitem"
     tabindex="0"
+  >
+    <div
+      class="Container-flex Container-column MenuItem-content"
+    >
+      <div
+        class="Container-centerAlignItems Container-flex"
+      >
+        <div
+          aria-autocomplete="list"
+          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium makeStyles-searchOutlinedInput MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+        >
+          <svg
+            class="SvgSearch16-root makeStyles-searchInputIcon"
+            style="min-width: 16px; min-height: 16px;"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M10.582 9.874l4.625 4.626-.707.707-4.626-4.625a6 6 0 11.707-.707zM6 11A5 5 0 106 1a5 5 0 000 10z"
+            />
+          </svg>
+          <input
+            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+            type="text"
+            value=""
+          />
+          <fieldset
+            aria-hidden="true"
+            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
+            style="padding-left: 8px;"
+          >
+            <legend
+              class="PrivateNotchedOutline-legend"
+              style="width: 0.01px;"
+            >
+              <span>
+                ​
+              </span>
+            </legend>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="ScrollMenu-scrollView"
   >
     <li
       aria-disabled="false"
       aria-selected="true"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-hover MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
       role="option"
       tabindex="-1"
       value="val1"
@@ -545,7 +780,7 @@ exports[`should render description 1`] = `
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-hover MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
       value="val2"
@@ -576,7 +811,7 @@ exports[`should render description 1`] = `
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-hover MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
       value="val3"
@@ -616,13 +851,60 @@ exports[`should render options customly 1`] = `
   tabindex="-1"
 >
   <div
-    class="ScrollMenu-scrollView"
+    aria-disabled="false"
+    class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+    role="menuitem"
     tabindex="0"
+  >
+    <div
+      class="Container-flex Container-column MenuItem-content"
+    >
+      <div
+        class="Container-centerAlignItems Container-flex"
+      >
+        <div
+          aria-autocomplete="list"
+          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium makeStyles-searchOutlinedInput MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+        >
+          <svg
+            class="SvgSearch16-root makeStyles-searchInputIcon"
+            style="min-width: 16px; min-height: 16px;"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M10.582 9.874l4.625 4.626-.707.707-4.626-4.625a6 6 0 11.707-.707zM6 11A5 5 0 106 1a5 5 0 000 10z"
+            />
+          </svg>
+          <input
+            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+            type="text"
+            value=""
+          />
+          <fieldset
+            aria-hidden="true"
+            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
+            style="padding-left: 8px;"
+          >
+            <legend
+              class="PrivateNotchedOutline-legend"
+              style="width: 0.01px;"
+            >
+              <span>
+                ​
+              </span>
+            </legend>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="ScrollMenu-scrollView"
   >
     <li
       aria-disabled="false"
       aria-selected="true"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-hover MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
       role="option"
       tabindex="-1"
       value="val1"
@@ -645,7 +927,7 @@ exports[`should render options customly 1`] = `
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-hover MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
       value="val2"
@@ -668,7 +950,7 @@ exports[`should render options customly 1`] = `
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-hover MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
       value="val3"

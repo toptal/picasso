@@ -143,6 +143,7 @@ test('renders select', () => {
 
 test('should open menu when focus on select', () => {
   const placeholder = 'Choose an option...'
+
   const { getByPlaceholderText, getByTestId } = renderSelect({
     options: OPTIONS,
     placeholder
@@ -160,54 +161,46 @@ test('should open menu when focus on select', () => {
 test('should return back selected value when input value is edited', () => {
   const placeholder = 'Choose an option...'
   const expectedText = OPTIONS[1].text
-
-  const { getByPlaceholderText } = renderSelect({
-    options: OPTIONS,
-    placeholder,
-    value: [OPTIONS[1].value]
-  })
-
-  const input = getByPlaceholderText(placeholder) as HTMLInputElement
-
-  fireEvent.focus(input)
-  fireEvent.change(input, { target: { value: 'some text' } })
-  fireEvent.blur(input)
-
-  expect(input.value).toBe(expectedText)
-})
-
-test('should reset selected value when input is wiped', () => {
-  const placeholder = 'Choose an option...'
-  const onChange = jest.fn(event => event.target.value)
+  const searchPlaceholder = 'Search for an option'
 
   const { getByPlaceholderText } = renderSelect({
     options: OPTIONS,
     placeholder,
     value: [OPTIONS[1].value],
-    onChange
+    searchPlaceholder
   })
 
-  const input = getByPlaceholderText(placeholder)
+  const input = getByPlaceholderText(placeholder) as HTMLInputElement
 
   fireEvent.focus(input)
-  fireEvent.change(input, { target: { value: '' } })
-  fireEvent.blur(input)
 
-  expect(onChange).toHaveReturnedWith('')
+  const selectInput = getByPlaceholderText(placeholder)
+
+  fireEvent.focus(selectInput)
+  fireEvent.change(selectInput, { target: { value: 'some text' } })
+  fireEvent.blur(selectInput)
+
+  expect(input.value).toBe(expectedText)
 })
 
 test('should filter options based on entered value to the input field', () => {
   const placeholder = 'Choose an option...'
+  const searchPlaceholder = 'Search for an option'
 
   const { getByPlaceholderText, getByTestId } = renderSelect({
     options: OPTIONS,
-    placeholder
+    placeholder,
+    searchPlaceholder
   })
 
-  const input = getByPlaceholderText(placeholder)
+  const input = getByPlaceholderText(placeholder) as HTMLInputElement
 
   fireEvent.focus(input)
-  fireEvent.change(input, { target: { value: '2' } })
+
+  const selectInput = getByPlaceholderText(placeholder)
+
+  fireEvent.focus(selectInput)
+  fireEvent.change(selectInput, { target: { value: '2' } })
 
   const menu = getByTestId('select-dropdown')
 
@@ -217,19 +210,27 @@ test('should filter options based on entered value to the input field', () => {
 test('should render noOptionText if the value entered does not match any of the options', () => {
   const placeholder = 'Choose an option...'
   const noOptionsText = 'No results'
+  const searchPlaceholder = 'Search for an option'
 
   const { getByPlaceholderText, getByRole } = renderSelect({
     options: OPTIONS,
     noOptionsText,
-    placeholder
+    placeholder,
+    searchPlaceholder
   })
 
-  const input = getByPlaceholderText(placeholder)
+  const selectInput = getByPlaceholderText(placeholder)
 
-  fireEvent.focus(input)
-  fireEvent.change(input, { target: { value: 'non-existent value' } })
+  fireEvent.focus(selectInput)
+
+  const searchInput = getByPlaceholderText(searchPlaceholder)
+
+  fireEvent.focus(searchInput)
+  fireEvent.change(searchInput, { target: { value: 'non-existent value' } })
 
   const menu = getByRole('menu')
+
+  console.log(menu.textContent)
 
   expect(menu).toHaveTextContent(noOptionsText)
 })

@@ -86,7 +86,7 @@ const ResetButton = ({
     <Button.Circular
       tabIndex={-1}
       icon={<CloseMinor16 />}
-      variant='transparent'
+      variant='flat'
       role='reset'
       onClick={onClick}
       onFocus={(

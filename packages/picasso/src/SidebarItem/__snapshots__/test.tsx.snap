@@ -34,7 +34,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
               >
                 <li
                   aria-disabled="false"
-                  class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+                  class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-hover MenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
                   role="menuitem"
                   tabindex="0"
                 >
@@ -97,7 +97,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                         >
                           <li
                             aria-disabled="false"
-                            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-light PicassoSidebarItem-selected Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+                            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-hover MenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-light PicassoSidebarItem-selected Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
                             role="menuitem"
                             tabindex="0"
                           >
@@ -148,7 +148,7 @@ exports[`SidebarItem default render 1`] = `
     >
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-hover MenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
         tabindex="-1"
       >
@@ -189,7 +189,7 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
     >
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-hover MenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
         tabindex="-1"
       >
@@ -237,7 +237,7 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
           >
             <li
               aria-disabled="false"
-              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-hover MenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
               role="menuitem"
               tabindex="0"
             >
@@ -281,7 +281,7 @@ exports[`SidebarItem is selected 1`] = `
     >
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-selected Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-hover MenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder PicassoSidebarItem-selected Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
         role="menuitem"
         tabindex="-1"
       >
@@ -344,7 +344,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
           >
             <li
               aria-disabled="false"
-              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+              class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-hover MenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
               role="menuitem"
               tabindex="-1"
             >
@@ -416,7 +416,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
                     >
                       <li
                         aria-disabled="false"
-                        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+                        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-hover MenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
                         role="menuitem"
                         tabindex="0"
                       >
@@ -465,7 +465,7 @@ exports[`SidebarItem with icon 1`] = `
     >
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-hover MenuItem-light PicassoSidebarItem-root PicassoSidebarItem-noWrap PicassoSidebarItem-roundedBorder MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
         tabindex="-1"
       >

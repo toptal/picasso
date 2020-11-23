@@ -77,6 +77,8 @@ export interface Props<
   loading?: boolean
   /** Placeholder option which is selected by default */
   placeholder?: string
+  /** Placeholder for search input */
+  searchPlaceholder?: string
   /** Whether icon should be placed at the beginning or end of the `Input` */
   iconPosition?: IconPosition
   /** Specify icon which should be rendered inside Input */
@@ -136,16 +138,10 @@ type NativeOptionsProps = Pick<Props, 'options' | 'renderOption'> & {
 
 type OptionsProps = Pick<
   Props,
-  | 'options'
-  | 'value'
-  | 'multiple'
-  | 'renderOption'
-  | 'getDisplayValue'
-  | 'size'
-  | 'noOptionsText'
+  'options' | 'value' | 'multiple' | 'renderOption' | 'size' | 'noOptionsText'
 > & {
   highlightedIndex: number | null
-  inputValue: string
+  filterOptionsValue: string
   getItemProps: (index: number, option: Option) => ItemProps
   onBlur?: FocusEventType
   onItemSelect: (event: React.MouseEvent, option: Option) => void
@@ -325,11 +321,11 @@ const renderOptions = ({
   value,
   multiple,
   size,
-  inputValue,
+  filterOptionsValue,
   noOptionsText,
   fixedHeader
 }: OptionsProps) => {
-  if (!options.length && inputValue) {
+  if (!options.length && filterOptionsValue) {
     return (
       <ScrollMenu fixedHeader={fixedHeader}>
         <MenuItem titleCase={false} disabled>
@@ -412,6 +408,7 @@ export const Select = documentable(
         searchThreshold,
         enableAutofill,
         autoComplete,
+        searchPlaceholder,
         ...rest
       } = purifyProps(props)
 
@@ -438,7 +435,7 @@ export const Select = documentable(
       const [selectedOptions, setSelectedOptions] = useState(
         getSelectedOptions(allOptions, value)
       )
-      const select = useMemo(
+      const selection = useMemo(
         () =>
           getSelection(
             removeDuplicatedOptions([...allOptions, ...selectedOptions]),
@@ -447,8 +444,8 @@ export const Select = documentable(
         [allOptions, selectedOptions, value]
       )
 
-      const [inputValue, setInputValue] = useState(
-        select.display(getDisplayValue!)
+      const [displayValue, setDisplayValue] = useState(
+        selection.display(getDisplayValue!)
       )
       const [filterOptionsValue, setFilterOptionsValue] = useState(
         EMPTY_INPUT_VALUE
@@ -465,10 +462,12 @@ export const Select = documentable(
         () =>
           options.reduce(
             (selected: number[], option: Option, index: number) =>
-              select.isOptionSelected(option) ? [...selected, index] : selected,
+              selection.isOptionSelected(option)
+                ? [...selected, index]
+                : selected,
             []
           ),
-        [options, select]
+        [options, selection]
       )
 
       useEffect(() => {
@@ -477,7 +476,7 @@ export const Select = documentable(
           value
         )
 
-        setInputValue(newSelect.display(getDisplayValue!))
+        setDisplayValue(newSelect.display(getDisplayValue!))
         setSelectedOptions(getSelectedOptions(allOptions, value))
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -496,19 +495,19 @@ export const Select = documentable(
 
       const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
         if (!multiple) {
-          const hasValue = inputValue !== EMPTY_INPUT_VALUE
+          const hasValue = displayValue !== EMPTY_INPUT_VALUE
           const isInputCleaned = !hasValue && !isEmpty(value)
 
           if (isInputCleaned) {
             fireOnChangeEvent({ event, value: EMPTY_INPUT_VALUE })
-            setInputValue(EMPTY_INPUT_VALUE)
+            setDisplayValue(EMPTY_INPUT_VALUE)
           } else {
             const select = getSelection(
               removeDuplicatedOptions([...allOptions, ...selectedOptions]),
               value
             )
 
-            setInputValue(select.display(getDisplayValue!))
+            setDisplayValue(select.display(getDisplayValue!))
           }
         }
 
@@ -575,7 +574,7 @@ export const Select = documentable(
       } = useSelect({
         selectRef,
         popperRef,
-        value: inputValue,
+        value: displayValue,
         options,
         selectedIndexes,
         disabled,
@@ -647,7 +646,7 @@ export const Select = documentable(
           IconComponent={() => dropDownIcon}
           classes={{
             root: cx(classes.select, {
-              [classes.placeholder]: !select.isSelected()
+              [classes.placeholder]: !selection.isSelected()
             }),
             select: cx({
               [classes.nativeStartAdornmentPadding]: Boolean(
@@ -675,7 +674,7 @@ export const Select = documentable(
           <OutlinedInput
             className={classes.searchOutlinedInput}
             startAdornment={<Search16 className={classes.searchInputIcon} />}
-            placeholder='Search'
+            placeholder={searchPlaceholder}
             /* eslint-disable-next-line react/jsx-props-no-spreading */
             {...getSearchInputProps()}
           />
@@ -689,7 +688,7 @@ export const Select = documentable(
             className={classes.inputWrapper}
           >
             {!enableAutofill && !native && name && (
-              <input type='hidden' value={inputValue} name={name} />
+              <input type='hidden' value={displayValue} name={name} />
             )}
             <OutlinedInput
               // eslint-disable-next-line react/jsx-props-no-spreading
@@ -701,7 +700,7 @@ export const Select = documentable(
               startAdornment={startAdornment}
               endAdornment={endAdornment}
               // Input specific props
-              value={inputValue}
+              value={displayValue}
               /* eslint-disable-next-line react/jsx-props-no-spreading */
               {...selectInputProps}
               placeholder={placeholder}
@@ -715,7 +714,7 @@ export const Select = documentable(
               }}
               size={size}
               role='textbox'
-              enableReset={enableReset ? select.isSelected() : false}
+              enableReset={enableReset ? selection.isSelected() : false}
               autoComplete={
                 enableAutofill ? autoComplete : autoComplete || 'off'
               }
@@ -742,11 +741,10 @@ export const Select = documentable(
                   getItemProps,
                   onBlur: selectInputProps.onBlur,
                   value,
-                  getDisplayValue,
+                  filterOptionsValue,
                   multiple,
                   size,
                   noOptionsText,
-                  inputValue,
                   fixedHeader: searchInput
                 })}
             </Popper>
