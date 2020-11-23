@@ -118,6 +118,8 @@ export interface Props<
   searchThreshold?: number
   /** Specifies whether the autofill enabled or not, disabled by default */
   enableAutofill?: boolean
+  /** Specifies whether the search is available */
+  search?: boolean
   ref?: React.Ref<HTMLInputElement>
 }
 
@@ -409,6 +411,7 @@ export const Select = documentable(
         enableAutofill,
         autoComplete,
         searchPlaceholder,
+        search,
         ...rest
       } = purifyProps(props)
 
@@ -482,7 +485,7 @@ export const Select = documentable(
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [value, allOptions, getDisplayValue])
 
-      const showSearch = allOptions.length <= searchThreshold!
+      const showSearch = search && allOptions.length > searchThreshold!
 
       const handleFocus = (
         event: React.FocusEvent<HTMLInputElement | HTMLDivElement>
@@ -675,6 +678,7 @@ export const Select = documentable(
             className={classes.searchOutlinedInput}
             startAdornment={<Search16 className={classes.searchInputIcon} />}
             placeholder={searchPlaceholder}
+            size={size}
             /* eslint-disable-next-line react/jsx-props-no-spreading */
             {...getSearchInputProps()}
           />
@@ -783,8 +787,9 @@ Select.defaultProps = {
   renderOption: (option: Option) => option.text,
   size: 'medium',
   width: 'full',
-  searchThreshold: 4,
-  enableAutofill: false
+  searchThreshold: 10,
+  enableAutofill: false,
+  search: true
 }
 
 Select.displayName = 'Select'

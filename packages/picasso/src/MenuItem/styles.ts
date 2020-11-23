@@ -38,8 +38,8 @@ export default ({ typography, palette }: Theme) =>
         }
       },
 
-      '&:not($hover):hover': {
-        backgroundColor: palette.common.white
+      '&:not($hover):hover, &:not($hover):focus': {
+        backgroundColor: 'initial'
       },
 
       '&$selected': {
@@ -69,8 +69,8 @@ export default ({ typography, palette }: Theme) =>
         }
       },
 
-      '&:not($hover):hover': {
-        backgroundColor: palette.grey.main
+      '&:not($hover):hover, &:not($hover):focus': {
+        backgroundColor: 'initial'
       },
 
       '&$selected': {
@@ -89,6 +89,7 @@ export default ({ typography, palette }: Theme) =>
       }
     },
     focusVisible: {
+      // MUI has a default focus background for focusable items. This rule disables it.
       backgroundColor: 'unset !important'
     },
     selected: {},

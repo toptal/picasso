@@ -60,7 +60,7 @@ export interface Props
   variant?: VariantType
   /** Size of component */
   size?: SizeType<'small' | 'medium'>
-  /** Enables changing colors on hover */
+  /** Enables changing colors on hover/focus */
   hover?: boolean
 }
 
