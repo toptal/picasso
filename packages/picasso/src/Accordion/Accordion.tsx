@@ -21,7 +21,7 @@ import AccordionDetails from '../AccordionDetails'
 import styles from './styles'
 import Button from '../Button'
 
-export type BordersType = 'all' | 'middle' | 'none'
+export type Borders = 'all' | 'middle' | 'none'
 
 const useStyles = makeStyles(styles)
 
@@ -60,7 +60,7 @@ export interface Props
   /** Customize icon indicating expanded status */
   expandIcon?: ReactElement
   /** Defines where the horizontal borders show */
-  borders?: BordersType
+  borders?: Borders
   /** Callback invoked when `Accordion` item is toggled */
   onChange?: (event: ChangeEvent<{}>, expanded: boolean) => void
 }
@@ -96,10 +96,10 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
   } = props
 
   const classes = useStyles(props)
-  const borderClasses: { [key in BordersType]: string } = {
-    all: classes['borders-all'],
-    middle: classes['borders-middle'],
-    none: classes['borders-none']
+  const borderClasses: { [key in Borders]: string } = {
+    all: classes.bordersAll,
+    middle: classes.bordersMiddle,
+    none: classes.bordersNone
   }
 
   const [summaryExpanded, setSummaryExpanded] = useState(defaultExpanded)
@@ -119,8 +119,7 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
     [classes.expandIconExpanded]: summaryExpanded
   })
 
-  const appliedBorders =
-    children || expanded ? (borders as BordersType) : 'none'
+  const appliedBorders = children || expanded ? (borders as Borders) : 'none'
 
   return (
     <MUIAccordion

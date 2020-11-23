@@ -32,34 +32,34 @@ export default ({ palette, typography }: Theme) => {
   return createStyles({
     root: {
       background: 'transparent',
-      fontSize: '1rem',
+      fontSize: '1rem'
+    },
+    bordersAll: {
       '&:before, &:after': {
         ...separatorStyles
+      },
+      '&:first-child:before': {
+        display: 'block'
       },
       '& + $root:before': {
         display: 'none'
       }
     },
-    'borders-all': {
-      '&:first-child:before': {
-        display: 'block'
-      }
-    },
-    'borders-middle': {
-      '&:before, &:after': {
+    bordersMiddle: {
+      '&:before': {
         display: 'none'
       },
       '&$root + $root:before': {
+        ...separatorStyles,
         display: 'block',
         transform: 'translateY(1px)'
       }
     },
-    'borders-none': {
+    bordersNone: {
       '&:before, &:after': {
         display: 'none'
       }
     },
-
     summaryFontWeightInherit: createPropertiesStyles({
       fontWeight: 'inherit'
     }),

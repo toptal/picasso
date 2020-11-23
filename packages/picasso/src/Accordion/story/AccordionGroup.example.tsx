@@ -1,39 +1,33 @@
-import React, { useState } from 'react'
-import { Accordion, Button, Typography } from '@toptal/picasso'
+import React from 'react'
+import { Accordion, Container, Typography } from '@toptal/picasso'
 
-import { BordersType } from '../Accordion'
+import { Borders } from '../Accordion'
 
 const Example = () => {
-  const [borders, setBorders] = useState<BordersType>('all')
-  const borderTypes: BordersType[] = ['all', 'middle', 'none']
+  const borders: Borders[] = ['all', 'middle', 'none']
 
   return (
-    <div style={{ width: '430px' }}>
-      <Typography variant='heading' size='small'>
-        Border Type:
-      </Typography>
-      <Button.Group style={{ marginBottom: 16 }}>
-        {borderTypes.map(borderType => (
-          <Button
-            key={borderType}
-            variant='secondary'
-            active={borders === borderType}
-            onClick={() => setBorders(borderType)}
-          >
-            {borderType}
-          </Button>
-        ))}
-      </Button.Group>
-      <Accordion content={<DetailsDogDefinitionPanel />} borders={borders}>
-        <Accordion.Summary>What is a dog?</Accordion.Summary>
-      </Accordion>
-      <Accordion content={<DetailsDogKindPanel />} borders={borders}>
-        <Accordion.Summary>What kinds of dogs are there?</Accordion.Summary>
-      </Accordion>
-      <Accordion content={<DetailsDogAcquirePanel />} borders={borders}>
-        <Accordion.Summary>How do you acquire a dog?</Accordion.Summary>
-      </Accordion>
-    </div>
+    <Container flex>
+      {borders.map(border => (
+        <Container key={border} style={{ width: '250px' }} right='large'>
+          <Container bottom='medium'>
+            <Typography variant='heading' size='small' titleCase>
+              Border {border}
+            </Typography>
+          </Container>
+
+          <Accordion content={<DetailsDogDefinitionPanel />} borders={border}>
+            <Accordion.Summary>What is a dog?</Accordion.Summary>
+          </Accordion>
+          <Accordion content={<DetailsDogKindPanel />} borders={border}>
+            <Accordion.Summary>What kinds of dogs are there?</Accordion.Summary>
+          </Accordion>
+          <Accordion content={<DetailsDogAcquirePanel />} borders={border}>
+            <Accordion.Summary>How do you acquire a dog?</Accordion.Summary>
+          </Accordion>
+        </Container>
+      ))}
+    </Container>
   )
 }
 
