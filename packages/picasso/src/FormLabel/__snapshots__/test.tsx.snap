@@ -16,7 +16,6 @@ exports[`FormLabel default render 1`] = `
             class="FormLabel-text"
           >
             Label
-             (optional)
           </span>
         </label>
       </div>
@@ -26,31 +25,6 @@ exports[`FormLabel default render 1`] = `
 `;
 
 exports[`FormLabel disabled 1`] = `
-<div>
-  <div
-    class="Picasso-root"
-  >
-    <form>
-      <div
-        class="FormField-root"
-      >
-        <label
-          class="FormLabel-root FormLabel-disabled"
-        >
-          <span
-            class="FormLabel-text"
-          >
-            Label
-             (optional)
-          </span>
-        </label>
-      </div>
-    </form>
-  </div>
-</div>
-`;
-
-exports[`FormLabel required and disabled 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -90,6 +64,7 @@ exports[`FormLabel required with (optional) 1`] = `
             class="FormLabel-text"
           >
             Label
+             (optional)
           </span>
         </label>
       </div>

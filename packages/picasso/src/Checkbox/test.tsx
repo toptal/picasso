@@ -25,7 +25,15 @@ const renderCheckbox = (
   props: OmitInternalProps<Props>,
   picassoConfig?: PicassoConfig
 ) => {
-  const { label, disabled, titleCase, indeterminate, onChange } = props
+  const {
+    label,
+    disabled,
+    titleCase,
+    indeterminate,
+    onChange,
+    showAsterisk,
+    showOptional
+  } = props
 
   return render(
     <Checkbox
@@ -34,6 +42,8 @@ const renderCheckbox = (
       indeterminate={indeterminate}
       onChange={onChange}
       titleCase={titleCase}
+      showAsterisk={showAsterisk}
+      showOptional={showOptional}
     />,
     undefined,
     picassoConfig
@@ -60,6 +70,18 @@ test('renders disabled state', () => {
 
 test('renders indeterminate state', () => {
   const { container } = renderCheckbox({ indeterminate: true })
+
+  expect(container).toMatchSnapshot()
+})
+
+test('renders with asterisk', () => {
+  const { container } = renderCheckbox({ showAsterisk: true })
+
+  expect(container).toMatchSnapshot()
+})
+
+test('renders with (optional)', () => {
+  const { container } = renderCheckbox({ showOptional: true })
 
   expect(container).toMatchSnapshot()
 })

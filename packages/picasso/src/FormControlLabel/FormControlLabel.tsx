@@ -27,8 +27,10 @@ export interface Props
   label?: ReactNode
   /** Shows whether label is disabled or not */
   disabled?: boolean
-  /** Shows whether label is required or not */
-  required?: boolean
+  /** Whether to show asterisk for the label */
+  showAsterisk?: boolean
+  /** Whether to show (optional) postfix for the label */
+  showOptional?: boolean
 }
 
 const FormControlLabel: FunctionComponent<Props> = props => {
@@ -39,7 +41,8 @@ const FormControlLabel: FunctionComponent<Props> = props => {
     className,
     style,
     disabled,
-    required,
+    showAsterisk,
+    showOptional,
     titleCase,
     ...rest
   } = props
@@ -61,7 +64,8 @@ const FormControlLabel: FunctionComponent<Props> = props => {
       <Form.Label
         className={classes.label}
         as='span'
-        required={required}
+        showAsterisk={showAsterisk}
+        showOptional={showOptional}
         disabled={disabled}
         titleCase={titleCase}
       >

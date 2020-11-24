@@ -7,21 +7,30 @@ import {
 
 import FieldWrapper, { FieldProps } from '../FieldWrapper'
 import { CheckboxGroupContext } from '../CheckboxGroup'
+import { useFormConfig } from '../FormConfig'
 
 type CheckboxValue = CheckboxProps['value'] | CheckboxProps['checked']
 
-type CheckboxWithoutGroup = CheckboxProps & FieldProps<CheckboxValue>
-type CheckboxInGroup = CheckboxProps & { name?: string }
+type CheckboxFormProps = Omit<
+  CheckboxProps,
+  'showAsterisk' | 'showOptional'
+> & {
+  required?: boolean
+}
+type CheckboxWithoutGroup = CheckboxFormProps & FieldProps<CheckboxValue>
+type CheckboxInGroup = CheckboxFormProps & { name?: string }
 
 export type Props = CheckboxWithoutGroup | CheckboxInGroup
 
 export const Checkbox = ({
   name,
   value,
+  required,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   defaultValue,
   ...restProps
 }: Props) => {
+  const formConfig = useFormConfig()
   const groupName = useContext(CheckboxGroupContext)
   const isCheckboxInGroup = Boolean(groupName)
 
@@ -40,13 +49,24 @@ export const Checkbox = ({
     )
   }
 
+  const showAsterisk = required && formConfig.requiredVariant === 'asterisk'
+
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <FieldWrapper hideFieldLabel type='checkbox' {...restProps} name={name!}>
-      {(input: CheckboxProps) => {
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        return <PicassoCheckbox {...input} />
-      }}
+    <FieldWrapper
+      type='checkbox'
+      hideFieldLabel
+      required={required}
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...restProps}
+      name={name!}
+    >
+      {(input: CheckboxProps) => (
+        <PicassoCheckbox
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          {...input}
+          showAsterisk={showAsterisk}
+        />
+      )}
     </FieldWrapper>
   )
 }

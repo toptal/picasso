@@ -34,8 +34,10 @@ export interface Props
   label?: ReactNode
   /** The id of the input element */
   id?: string
-  /** Mark field as required */
-  required?: boolean
+  /** Whether to show asterisk for the label */
+  showAsterisk?: boolean
+  /** Whether to show (optional) postfix for the label */
+  showOptional?: boolean
   /** Callback invoked when `Checkbox` changed its value */
   onChange?: (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -55,7 +57,8 @@ export const Checkbox = forwardRef<HTMLButtonElement, Props>(function Checkbox(
     className,
     style,
     disabled,
-    required,
+    showAsterisk,
+    showOptional,
     onChange,
     value,
     checked,
@@ -115,7 +118,8 @@ export const Checkbox = forwardRef<HTMLButtonElement, Props>(function Checkbox(
         label: classes.label
       }}
       control={muiCheckbox}
-      required={required}
+      showAsterisk={showAsterisk}
+      showOptional={showOptional}
       disabled={disabled}
       label={label}
       titleCase={titleCase}

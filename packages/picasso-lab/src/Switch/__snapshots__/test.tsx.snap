@@ -36,7 +36,6 @@ exports[`behaves correctly when interacting 1`] = `
       class="FormLabel-text"
     >
       Switch
-       (optional)
     </span>
   </span>
 </label>
@@ -113,7 +112,6 @@ exports[`renders disabled state 1`] = `
       class="FormLabel-text"
     >
       Disabled
-       (optional)
     </span>
   </span>
 </label>

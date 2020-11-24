@@ -125,6 +125,7 @@ const FieldWrapper = <
     required,
     enableReset,
     onResetClick,
+    'data-testid': dataTestId,
     // FieldProps - https://final-form.org/docs/react-final-form/types/FieldProps
     afterSubmit,
     allowNull,
@@ -221,10 +222,19 @@ const FieldWrapper = <
     childProps.enableReset = enableReset
   }
 
+  const showAsterisk = required && formConfig.requiredVariant === 'asterisk'
+  const showOptional =
+    !required &&
+    (!formConfig.requiredVariant || formConfig.requiredVariant === 'optional')
+
   return (
-    <PicassoForm.Field error={error} hint={hint}>
+    <PicassoForm.Field error={error} hint={hint} data-testid={dataTestId}>
       {!hideFieldLabel && label && (
-        <PicassoForm.Label required={required} htmlFor={id}>
+        <PicassoForm.Label
+          showAsterisk={showAsterisk}
+          showOptional={showOptional}
+          htmlFor={id}
+        >
           {label}
         </PicassoForm.Label>
       )}

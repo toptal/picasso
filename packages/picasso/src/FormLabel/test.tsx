@@ -10,8 +10,8 @@ jest.mock('ap-style-title-case')
 
 const TestFormLabel: FunctionComponent<OmitInternalProps<Props>> = ({
   children,
-  required,
-  requiredVariant,
+  showAsterisk,
+  showOptional,
   disabled,
   titleCase,
   htmlFor,
@@ -20,8 +20,8 @@ const TestFormLabel: FunctionComponent<OmitInternalProps<Props>> = ({
   <Form>
     <Form.Field>
       <FormLabel
-        required={required}
-        requiredVariant={requiredVariant}
+        showAsterisk={showAsterisk}
+        showOptional={showOptional}
         disabled={disabled}
         titleCase={titleCase}
         htmlFor={htmlFor}
@@ -56,26 +56,16 @@ describe('FormLabel', () => {
   })
 
   test('required with (optional)', () => {
-    const { container } = render(<TestFormLabel required>Label</TestFormLabel>)
+    const { container } = render(
+      <TestFormLabel showOptional>Label</TestFormLabel>
+    )
 
     expect(container).toMatchSnapshot()
   })
 
   test('required with asterisk', () => {
     const { container } = render(
-      <TestFormLabel required requiredVariant='asterisk'>
-        Label
-      </TestFormLabel>
-    )
-
-    expect(container).toMatchSnapshot()
-  })
-
-  test('required and disabled', () => {
-    const { container } = render(
-      <TestFormLabel required disabled>
-        Label
-      </TestFormLabel>
+      <TestFormLabel showAsterisk>Label</TestFormLabel>
     )
 
     expect(container).toMatchSnapshot()
