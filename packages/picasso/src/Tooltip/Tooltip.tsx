@@ -84,7 +84,9 @@ const useTooltipHandlers = ({
       children.props.onClick?.(event)
 
       if (internalOpen) {
-        return closeTooltip()
+        closeTooltip()
+
+        return
       }
       if (isPristine) {
         openTooltip()
