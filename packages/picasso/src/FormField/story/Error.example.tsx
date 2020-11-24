@@ -6,9 +6,7 @@ const Example = () => (
     <Grid.Item small={5}>
       <Form>
         <Form.Field error='This field is required'>
-          <Form.Label htmlFor='district' required>
-            District
-          </Form.Label>
+          <Form.Label htmlFor='district'>District</Form.Label>
           <Input
             error
             id='district'
