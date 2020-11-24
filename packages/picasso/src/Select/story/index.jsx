@@ -24,6 +24,12 @@ page.createTabChapter('Props').addComponentDocs({
   }
 })
 
+const hoverEffect = async (testPage, makeScreenshot) => {
+  await testPage.hiver('input')
+
+  await makeScreenshot()
+}
+
 page
   .createChapter()
   .addExample('Select/story/Default.example.jsx', {
@@ -131,7 +137,10 @@ number of options greater than specified in \`searchThreshold\` prop.
     description:
       'Demonstrate auto focus capability by switching visibility of Select'
   }) // picasso-skip-visuals
-  .addExample('Select/story/ResetButton.example.jsx', 'With reset button') // picasso-skip-visuals
+  .addExample('Select/story/ResetButton.example.jsx', {
+    title: 'With reset button',
+    effect: hoverEffect
+  })
   .addExample('Select/story/Autofill.example.tsx', 'Disabling autofilling') // picasso-skip-visuals
   .addExample('Select/story/DynamicOptions.example.tsx', 'Dynamic options') // picasso-skip-visuals
   .addExample(
