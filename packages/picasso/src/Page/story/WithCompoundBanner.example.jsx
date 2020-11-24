@@ -40,7 +40,7 @@ const Example = () => (
 const handleClick = () => window.alert('Item clicked')
 
 const RightContent = () => (
-  <Page.HeaderMenu
+  <Page.TopBarMenu
     name='Jacqueline Roque'
     avatar='./jacqueline-with-flowers-1954-square.jpg'
   >
@@ -48,7 +48,7 @@ const RightContent = () => (
       <Menu.Item onClick={handleClick}>My Account</Menu.Item>
       <Menu.Item onClick={handleClick}>Log Out</Menu.Item>
     </Menu>
-  </Page.HeaderMenu>
+  </Page.TopBarMenu>
 )
 
 const Content = () => (

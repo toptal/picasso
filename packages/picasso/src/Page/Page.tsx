@@ -9,7 +9,7 @@ import {
 
 import PageHead from '../PageHead'
 import TopBar from '../TopBar'
-import PageHeaderMenu from '../PageHeaderMenu'
+import TopBarMenu from '../TopBarMenu'
 import PageFooter from '../PageFooter'
 import PageContent from '../PageContent'
 import PageSidebar from '../Sidebar'
@@ -32,7 +32,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
 export interface StaticProps {
   Head: typeof PageHead
   TopBar: typeof TopBar
-  HeaderMenu: typeof PageHeaderMenu
+  HeaderMenu: typeof TopBarMenu
   Content: typeof PageContent
   Footer: typeof PageFooter
   Sidebar: typeof PageSidebar
@@ -73,7 +73,7 @@ Page.displayName = 'Page'
 
 Page.TopBar = TopBar
 
-Page.HeaderMenu = PageHeaderMenu
+Page.TopBarMenu = TopBarMenu
 
 Page.Content = PageContent
 
