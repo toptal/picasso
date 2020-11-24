@@ -223,14 +223,16 @@ test('should focus search input when a character is entered', () => {
   const selectInput = getByPlaceholderText(placeholder)
 
   fireEvent.focus(selectInput)
+  fireEvent.keyPress(selectInput, {
+    key: '2',
+    code: 'Digit2'
+  })
 
   const searchInput = getByPlaceholderText(
     searchPlaceholder
   ) as HTMLInputElement
 
-  fireEvent.keyDown(searchInput, { target: { value: '2' } })
-
-  expect(searchInput.value).toEqual('2')
+  expect(searchInput).toEqual(document.activeElement)
 })
 
 test('should render noOptionText if the value entered does not match any of the options', () => {

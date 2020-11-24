@@ -9,7 +9,6 @@ import {
 import PopperJs from 'popper.js'
 
 import { Option } from './types'
-import isCharacterKeyPress from '../utils/is-character-key-press'
 
 export type ItemProps = {
   role: string
@@ -207,16 +206,8 @@ const useSelect = ({
 
   // eslint-disable-next-line max-lines-per-function
   // eslint-disable-next-line complexity
-  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+  const handleSearchKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     const key = normalizeArrowKey(event)
-
-    if (
-      isCharacterKeyPress(event) &&
-      typeof searchInputRef === 'object' &&
-      searchInputRef?.current
-    ) {
-      searchInputRef.current.focus()
-    }
 
     if (key === 'Tab') {
       event.currentTarget.blur()
@@ -262,6 +253,20 @@ const useSelect = ({
     onKeyDown(event, value)
   }
 
+  const handleSelectKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    const isValidInputValue = Boolean(event.key.match(/^[A-z\d]$/))
+
+    if (
+      isValidInputValue &&
+      typeof searchInputRef === 'object' &&
+      searchInputRef?.current
+    ) {
+      searchInputRef.current.focus()
+    }
+
+    handleSearchKeyDown(event)
+  }
+
   const handleResetClick = (event: React.MouseEvent<HTMLInputElement>) => {
     // keep select options closed
     event.stopPropagation()
@@ -275,7 +280,7 @@ const useSelect = ({
   }
 
   const getSelectInputProps = () => ({
-    onKeyDown: handleKeyDown,
+    onKeyDown: handleSelectKeyDown,
     onResetClick: handleResetClick,
     onClick: handleSelectClick,
     onFocus: handleSelectFocus,
@@ -285,7 +290,7 @@ const useSelect = ({
   const getSearchInputProps = () => ({
     'aria-autocomplete': 'list' as React.AriaAttributes['aria-autocomplete'],
     onChange: handleSearchChange,
-    onKeyDown: handleKeyDown,
+    onKeyDown: handleSearchKeyDown,
     onBlur: handleSearchBlur
   })
 
