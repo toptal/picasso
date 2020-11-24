@@ -36,7 +36,7 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
   variant?: VariantType
 }
 
-export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
+export const TopBar = forwardRef<HTMLElement, Props>(function TopBar(
   {
     classes,
     className,
@@ -127,10 +127,10 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
   )
 })
 
-PageHeader.defaultProps = {
+TopBar.defaultProps = {
   variant: 'dark'
 }
 
-PageHeader.displayName = 'PageHeader'
+TopBar.displayName = 'PageHeader'
 
-export default withStyles(styles)(PageHeader)
+export default withStyles(styles)(TopBar)
