@@ -52,6 +52,7 @@ exports[`renders default Switch without label 1`] = `
       <span
         aria-disabled="false"
         class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary"
+        data-testid="switch"
       >
         <span
           class="MuiIconButton-label"
