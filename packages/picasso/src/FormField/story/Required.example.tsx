@@ -14,14 +14,14 @@ const Example = () => (
         <Typography weight='semibold'>Recommended:</Typography>
       </Container>
       <Form.Field>
-        <Form.Label htmlFor='district' showOptional>
-          District
-        </Form.Label>
+        <Form.Label htmlFor='district'>District</Form.Label>
         <Input id='district' width='full' placeholder='e.g., Sant Marti' />
       </Form.Field>
 
       <Form.Field>
-        <Form.Label htmlFor='city'>City</Form.Label>
+        <Form.Label htmlFor='city' showOptional>
+          City
+        </Form.Label>
         <Input id='city' width='full' placeholder='e.g., Barcelona' />
       </Form.Field>
     </Form>
