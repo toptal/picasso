@@ -223,7 +223,7 @@ test('should focus search input when a character is entered', () => {
   const selectInput = getByPlaceholderText(placeholder)
 
   fireEvent.focus(selectInput)
-  fireEvent.keyPress(selectInput, {
+  fireEvent.keyDown(selectInput, {
     key: '2',
     code: 'Digit2'
   })
