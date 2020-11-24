@@ -24,12 +24,6 @@ page.createTabChapter('Props').addComponentDocs({
   }
 })
 
-const hoverEffect = async (testPage, makeScreenshot) => {
-  await testPage.hiver('input')
-
-  await makeScreenshot()
-}
-
 page
   .createChapter()
   .addExample('Select/story/Default.example.jsx', {
@@ -139,7 +133,11 @@ number of options greater than specified in \`searchThreshold\` prop.
   }) // picasso-skip-visuals
   .addExample('Select/story/ResetButton.example.jsx', {
     title: 'With reset button',
-    effect: hoverEffect
+    effect: async (testPage, makeScreenshot) => {
+      await testPage.keyboard.press('Tab')
+
+      await makeScreenshot()
+    }
   })
   .addExample('Select/story/Autofill.example.tsx', 'Disabling autofilling') // picasso-skip-visuals
   .addExample('Select/story/DynamicOptions.example.tsx', 'Dynamic options') // picasso-skip-visuals
