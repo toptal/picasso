@@ -32,7 +32,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
 export interface StaticProps {
   Head: typeof PageHead
   TopBar: typeof TopBar
-  HeaderMenu: typeof TopBarMenu
+  TopBarMenu: typeof TopBarMenu
   Content: typeof PageContent
   Footer: typeof PageFooter
   Sidebar: typeof PageSidebar
