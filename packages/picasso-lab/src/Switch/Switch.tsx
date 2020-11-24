@@ -64,6 +64,7 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
       id={id}
       onChange={onChange}
       value={value}
+      data-testid={dataTestId}
     />
   )
 
