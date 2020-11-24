@@ -12,4 +12,6 @@ packages/picasso/src/YearSelect/index.ts
 packages/picasso-lab/src/index.ts
 packages/picasso-lab/src/DatePicker/index.ts
 packages/picasso-lab/src/TimePicker/index.ts
+packages/picasso-forms/src/index.ts
+packages/picasso-forms/src/CheckboxGroup/index.ts
 packages/picasso-forms/src/RadioGroup/index.ts
