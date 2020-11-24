@@ -416,22 +416,12 @@ export const Select = documentable(
         ref,
         useRef<HTMLInputElement>(null)
       )
+      const searchInputRef = useRef<HTMLInputElement>(null)
+      const popperRef = useRef<PopperJs>(null)
+      const inputWrapperRef = useRef<HTMLDivElement>(null)
 
       const classes = useStyles(props)
 
-      const emptySelectValue: string | string[] = multiple ? [] : ''
-
-      const fireOnChangeEvent = useCallback(
-        ({ event, value }: { event: any; value: ValueType | ValueType[] }) => {
-          event.persist()
-          event.target = { value, name }
-          onChange!(event)
-        },
-        [name, onChange]
-      )
-
-      const popperRef = useRef<PopperJs>(null)
-      const inputWrapperRef = useRef<HTMLDivElement>(null)
       const [selectedOptions, setSelectedOptions] = useState(
         getSelectedOptions(allOptions, value)
       )
@@ -468,6 +458,17 @@ export const Select = documentable(
             []
           ),
         [options, selection]
+      )
+
+      const emptySelectValue: string | string[] = multiple ? [] : ''
+
+      const fireOnChangeEvent = useCallback(
+        ({ event, value }: { event: any; value: ValueType | ValueType[] }) => {
+          event.persist()
+          event.target = { value, name }
+          onChange!(event)
+        },
+        [name, onChange]
       )
 
       useEffect(() => {
@@ -532,6 +533,7 @@ export const Select = documentable(
 
         return [...value, String(option.value)]
       }
+
       const handleSelect = useCallback(
         (event: React.SyntheticEvent, option: Option | null) => {
           let newValue: ValueType | ValueType[]
@@ -572,6 +574,7 @@ export const Select = documentable(
         getSelectInputProps,
         getSearchInputProps
       } = useSelect({
+        searchInputRef,
         selectRef,
         popperRef,
         value: displayValue,
@@ -591,7 +594,7 @@ export const Select = documentable(
         </InputAdornment>
       ) : null
 
-      const loadingComponent = (
+      const loadingAdornment = (
         <InputAdornment position='end'>
           <Loader size='small' />
         </InputAdornment>
@@ -607,7 +610,7 @@ export const Select = documentable(
 
       const startAdornment = iconPosition === 'start' && iconAdornment
       const endAdornment = loading
-        ? loadingComponent
+        ? loadingAdornment
         : iconPosition === 'end' && iconAdornment
 
       const nativeStartAdornment = startAdornment && (
@@ -672,6 +675,7 @@ export const Select = documentable(
       const searchInput = showSearch ? (
         <MenuItem as='div' size={size} hover={false}>
           <OutlinedInput
+            inputRef={searchInputRef}
             className={classes.searchOutlinedInput}
             startAdornment={<Search16 className={classes.searchInputIcon} />}
             placeholder={searchPlaceholder}

@@ -374,63 +374,61 @@ exports[`should filter options based on entered value to the input field 1`] = `
   tabindex="-1"
 >
   <div
-    class="ScrollMenu-scrollView"
+    aria-disabled="false"
+    class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-focusVisible Mui-focusVisible MenuItem-focusVisible"
+    role="menuitem"
     tabindex="0"
+  >
+    <div
+      class="Container-flex Container-column MenuItem-content"
+    >
+      <div
+        class="Container-centerAlignItems Container-flex"
+      >
+        <div
+          aria-autocomplete="list"
+          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium makeStyles-searchOutlinedInput Mui-focused Mui-focused OutlinedInput-focused MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+        >
+          <svg
+            class="SvgSearch16-root makeStyles-searchInputIcon"
+            style="min-width: 16px; min-height: 16px;"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M10.582 9.874l4.625 4.626-.707.707-4.626-4.625a6 6 0 11.707-.707zM6 11A5 5 0 106 1a5 5 0 000 10z"
+            />
+          </svg>
+          <input
+            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+            placeholder="Search for an option"
+            type="text"
+            value=""
+          />
+          <fieldset
+            aria-hidden="true"
+            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
+            style="padding-left: 8px;"
+          >
+            <legend
+              class="PrivateNotchedOutline-legend"
+              style="width: 0.01px;"
+            >
+              <span>
+                ​
+              </span>
+            </legend>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="ScrollMenu-scrollView"
   >
     <li
       aria-disabled="false"
       aria-selected="true"
       class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-hover MenuItem-light Mui-selected MenuItem-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
-      role="option"
-      tabindex="-1"
-      value="val1"
-    >
-      <div
-        class="Container-flex Container-column MenuItem-content"
-      >
-        <div
-          class="Container-centerAlignItems Container-flex"
-        >
-          <div
-            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
-          />
-          <span
-            class="MenuItem-stringContent MenuItem-stringContentMedium"
-          >
-            text1
-          </span>
-        </div>
-      </div>
-    </li>
-    <li
-      aria-disabled="false"
-      aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-hover MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-      role="option"
-      tabindex="-1"
-      value="val2"
-    >
-      <div
-        class="Container-flex Container-column MenuItem-content"
-      >
-        <div
-          class="Container-centerAlignItems Container-flex"
-        >
-          <div
-            class="Container-rightxsmallMargin Container-flex Container-inline MenuItem-iconContainer"
-          />
-          <span
-            class="MenuItem-stringContent MenuItem-stringContentMedium"
-          >
-            text2
-          </span>
-        </div>
-      </div>
-    </li>
-    <li
-      aria-disabled="false"
-      aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-hover MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
       value="val3"

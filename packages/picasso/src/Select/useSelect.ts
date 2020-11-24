@@ -9,6 +9,7 @@ import {
 import PopperJs from 'popper.js'
 
 import { Option } from './types'
+import isCharacterKeyPress from '../utils/is-character-key-press'
 
 export type ItemProps = {
   role: string
@@ -74,6 +75,7 @@ const getNextWrappingIndex = (
 export type FocusEventType = (event: React.FocusEvent<HTMLInputElement>) => void
 
 interface Props {
+  searchInputRef: React.Ref<HTMLInputElement>
   selectRef: React.Ref<HTMLInputElement>
   popperRef: React.Ref<PopperJs>
   value: string
@@ -110,6 +112,7 @@ interface UseSelectOutput {
 const useSelect = ({
   selectRef,
   popperRef,
+  searchInputRef,
   closeOnEnter,
   value,
   options = [],
@@ -206,6 +209,14 @@ const useSelect = ({
   // eslint-disable-next-line complexity
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     const key = normalizeArrowKey(event)
+
+    if (
+      isCharacterKeyPress(event) &&
+      typeof searchInputRef === 'object' &&
+      searchInputRef?.current
+    ) {
+      searchInputRef.current.focus()
+    }
 
     if (key === 'Tab') {
       event.currentTarget.blur()
