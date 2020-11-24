@@ -40,6 +40,7 @@ interface UseTooltipHandlersOptions {
 type ChildrenProps = {
   onClick?(event: ChangeEvent<{}>): void
   onMouseOver?(event: MouseEvent): void
+  onMouseLeave?(event: MouseEvent): void
 }
 
 const useTooltipHandlers = ({
@@ -52,6 +53,7 @@ const useTooltipHandlers = ({
 }: UseTooltipHandlersOptions) => {
   const isTouchScreen = !isPointerDevice()
   const [internalOpen, setInternalOpen] = useState(false)
+  const [isPristine, setIsPristine] = useState(true)
   const delayDuration = isTouchScreen ? 0 : delayDurations[delay]
   const isUncontrolledTooltip = externalOpen === undefined
 
@@ -64,6 +66,7 @@ const useTooltipHandlers = ({
     const openTooltip = () => {
       if (!disableListeners) {
         setInternalOpen(true)
+        setIsPristine(false)
       }
     }
 
@@ -83,15 +86,21 @@ const useTooltipHandlers = ({
       if (internalOpen) {
         return closeTooltip()
       }
-
-      openTooltip()
+      if (isPristine) {
+        openTooltip()
+      }
     }
 
     const handleOnMouseOver = (event: MouseEvent) => {
       event.preventDefault()
-      if (!isTouchScreen && !internalOpen) {
+      if (!isTouchScreen && !internalOpen && isPristine) {
         openTooltip()
       }
+    }
+
+    const handleOnMouseLeave = (event: MouseEvent) => {
+      event.preventDefault()
+      setIsPristine(true)
     }
 
     return {
@@ -101,7 +110,8 @@ const useTooltipHandlers = ({
       delayDuration,
       children: cloneElement(children, {
         onClick: handleClick,
-        onMouseOver: handleOnMouseOver
+        onMouseOver: handleOnMouseOver,
+        onMouseLeave: handleOnMouseLeave
       })
     }
   }
