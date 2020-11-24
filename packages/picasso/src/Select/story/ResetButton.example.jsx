@@ -9,7 +9,7 @@ const OPTIONS = [
 ]
 
 const Example = () => {
-  const [values, setValues] = useState([])
+  const [values, setValues] = useState([OPTIONS[1].value])
 
   const handleChange = event => {
     setValues(event.target.value)
