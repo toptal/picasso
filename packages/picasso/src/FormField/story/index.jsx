@@ -9,10 +9,10 @@ const chapter = PicassoBook.connectToPage(page =>
     to add margins around and make it following 
     the form structure`
     )
-    .addExample('FormField/story/Default.example.jsx', 'Default')
-    .addExample('FormField/story/Required.example.jsx', 'Required')
-    .addExample('FormField/story/Error.example.jsx', 'Error')
-    .addExample('FormField/story/Hint.example.jsx', 'Hint')
+    .addExample('FormField/story/Default.example.tsx', 'Default')
+    .addExample('FormField/story/Required.example.tsx', 'Required')
+    .addExample('FormField/story/Error.example.tsx', 'Error')
+    .addExample('FormField/story/Hint.example.tsx', 'Hint')
 )
 
 const componentDocs = PicassoBook.createComponentDocs(FormField, 'Form.Field')
