@@ -44,3 +44,4 @@ page
   .addExample('Tooltip/story/Delay.example.tsx', 'Delay') // picasso-skip-visuals
   .addExample('Tooltip/story/Compact.example.tsx', 'Compact')
   .addExample('Tooltip/story/MaxWidth.example.tsx', 'Max Width')
+  .addExample('Tooltip/story/Dropdown.example.tsx', 'Inside of a Dropdown')
