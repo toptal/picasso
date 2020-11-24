@@ -37,7 +37,10 @@ interface UseTooltipHandlersOptions {
   disableListeners?: boolean
 }
 
-type ChildrenProps = { onClick?(event: ChangeEvent<{}>): void }
+type ChildrenProps = {
+  onClick?(event: ChangeEvent<{}>): void
+  onMouseOver?(event: MouseEvent): void
+}
 
 const useTooltipHandlers = ({
   open: externalOpen,
@@ -52,22 +55,42 @@ const useTooltipHandlers = ({
   const delayDuration = isTouchScreen ? 0 : delayDurations[delay]
   const isUncontrolledTooltip = externalOpen === undefined
 
-  if (isUncontrolledTooltip && isTouchScreen) {
+  if (isUncontrolledTooltip) {
     /**
      * `onClose` is called by MUI when close is requested, for example on click away.
      * Since we are controlling tooltip here, we have to do actual close on our own.
      */
+
+    const openTooltip = () => {
+      if (!disableListeners) {
+        setInternalOpen(true)
+      }
+    }
+
+    const closeTooltip = () => {
+      setInternalOpen(false)
+    }
+
     const handleClose = (event: ChangeEvent<{}>) => {
       onClose?.(event)
-      setInternalOpen(false)
+      closeTooltip()
     }
 
     const handleClick = (event: ChangeEvent<{}>) => {
       event.preventDefault()
       children.props.onClick?.(event)
 
-      if (!disableListeners) {
-        setInternalOpen(true)
+      if (internalOpen) {
+        return closeTooltip()
+      }
+
+      openTooltip()
+    }
+
+    const handleOnMouseOver = (event: MouseEvent) => {
+      event.preventDefault()
+      if (!isTouchScreen && !internalOpen) {
+        openTooltip()
       }
     }
 
@@ -77,7 +100,8 @@ const useTooltipHandlers = ({
       handleClose,
       delayDuration,
       children: cloneElement(children, {
-        onClick: handleClick
+        onClick: handleClick,
+        onMouseOver: handleOnMouseOver
       })
     }
   }
