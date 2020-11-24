@@ -5,15 +5,6 @@ const Example = () => (
   <>
     <Container bottom='medium'>
       <Container inline right='small'>
-        <Indicator color='light-grey' />
-      </Container>
-      <Typography inline size='medium'>
-        Pending item
-      </Typography>
-    </Container>
-
-    <Container bottom='medium'>
-      <Container inline right='small'>
         <Indicator color='green' />
       </Container>
       <Typography inline size='medium'>
