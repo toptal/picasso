@@ -6,6 +6,9 @@ export default ({ palette }: Theme) =>
     stripeEven: {
       background: alpha(palette.grey.lighter2!, 0.32)
     },
+    noHeight: {
+      height: 'auto'
+    },
     noPadding: {
       padding: 0,
       '&:last-child': {
