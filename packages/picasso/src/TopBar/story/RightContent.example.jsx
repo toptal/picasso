@@ -3,7 +3,7 @@ import { Page, Menu, Container, Button } from '@toptal/picasso'
 
 const Example = () => (
   <div style={{ height: '4.5rem' }}>
-    <Page.Header
+    <Page.TopBar
       actionItems={
         <Container right='medium'>
           <Button variant='transparent'>Create job</Button>

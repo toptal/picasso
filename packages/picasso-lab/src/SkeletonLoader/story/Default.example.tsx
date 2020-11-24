@@ -151,7 +151,7 @@ const PageExample = () => {
   return (
     <div style={{ height: '40rem' }}>
       <Page>
-        <Page.Header rightContent={<RightContent />} title='Default example' />
+        <Page.TopBar rightContent={<RightContent />} title='Default example' />
         <Page.Content>
           <SidebarMenu>
             <Sidebar.Item icon={<Update16 />} onClick={reloadData}>

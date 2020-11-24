@@ -10,7 +10,7 @@ const StyledMainContentContainer = styled(Container)`
 const Example = () => (
   <div style={{ maxHeight: '30rem' }}>
     <Page>
-      <Page.Header rightContent={<RightContent />} title='Default example' />
+      <Page.TopBar rightContent={<RightContent />} title='Default example' />
       <Page.Banner icon={<Time16 />}>
         We are now in the process of reviewing your profile. After your profile
         has been checked, we will reach to you via email about next steps.

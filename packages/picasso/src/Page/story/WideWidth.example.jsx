@@ -4,7 +4,7 @@ import { Page, Container, Menu, Typography } from '@toptal/picasso'
 const Example = () => (
   <div style={{ height: '30rem' }}>
     <Page width='wide'>
-      <Page.Header rightContent={<RightContent />} title='Wide width example' />
+      <Page.TopBar rightContent={<RightContent />} title='Wide width example' />
       <Page.Content>
         <Content />
       </Page.Content>

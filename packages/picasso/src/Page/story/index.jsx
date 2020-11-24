@@ -1,4 +1,4 @@
-import pageHeaderStory from '../../PageHeader/story'
+import topBarStory from '../../TopBar/story'
 import pageHeadStory from '../../PageHead/story'
 import pageHeaderMenuStory from '../../PageHeaderMenu/story'
 import pageContentStory from '../../PageContent/story'
@@ -16,7 +16,7 @@ const page = PicassoBook.section('Layout').createPage(
 page
   .createTabChapter('Props')
   .addComponentDocs({ component: Page, name: 'Page' })
-  .addComponentDocs(pageHeaderStory.componentDocs)
+  .addComponentDocs(topBarStory.componentDocs)
   .addComponentDocs(pageHeadStory.componentDocs)
   .addComponentDocs(pageHeaderMenuStory.componentDocs)
   .addComponentDocs(pageContentStory.componentDocs)
@@ -52,7 +52,7 @@ page
     waitUntilImagesLoaded: true
   })
 
-page.connect(pageHeaderStory.chapter)
+page.connect(topBarStory.chapter)
 
 page.connect(pageHeadStory.chapter)
 

@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react'
 import { SnackbarProvider } from 'notistack'
 import { usePageHeader } from '@toptal/picasso-shared'
 
-import { headerHeight } from '../../PageHeader/styles'
+import { headerHeight } from '../../TopBar/styles'
 
 const MAX_NOTIFICATION_MESSAGES = 5
 

@@ -15,7 +15,7 @@ import {
 const Example = () => (
   <div style={{ height: '30rem' }}>
     <Page>
-      <Page.Header rightContent={<RightContent />} title='Default example' />
+      <Page.TopBar rightContent={<RightContent />} title='Default example' />
       <Page.Content>
         <SidebarMenu />
         <Content />

@@ -3,7 +3,7 @@ import { Page, Menu, Container, Button, Tag } from '@toptal/picasso'
 
 const Example = () => (
   <div style={{ height: '4.5rem' }}>
-    <Page.Header
+    <Page.TopBar
       rightContent={<RightContent />}
       actionItems={
         <Container right='medium'>

@@ -19,7 +19,7 @@ const renderOption = ({ text }) => (
 
 const Example = () => (
   <div style={{ height: '4.5rem' }}>
-    <Page.Header
+    <Page.TopBar
       title='Onboarding'
       actionItems={
         <Container right='medium'>

@@ -11,7 +11,7 @@ const StyledMainContentContainer = styled(Container)`
 const Example = () => (
   <div style={{ maxHeight: '30rem' }}>
     <Page>
-      <Page.Header rightContent={<RightContent />} title='Default example' />
+      <Page.TopBar rightContent={<RightContent />} title='Default example' />
       <Banner icon={<ExclamationSolid16 color='yellow' />}>
         <Banner.Message>
           You need to sign STA agreement in order to be able to hire talent.

@@ -131,6 +131,6 @@ TopBar.defaultProps = {
   variant: 'dark'
 }
 
-TopBar.displayName = 'PageHeader'
+TopBar.displayName = 'TopBar'
 
 export default withStyles(styles)(TopBar)

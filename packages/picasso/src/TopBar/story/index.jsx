@@ -1,4 +1,4 @@
-import { TopBar } from '../PageHeader'
+import { TopBar } from '../TopBar'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const componentDocs = PicassoBook.createComponentDocs(TopBar, 'Page.TopBar')
