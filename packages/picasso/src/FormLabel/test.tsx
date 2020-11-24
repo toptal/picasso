@@ -5,13 +5,13 @@ import * as titleCaseModule from 'ap-style-title-case'
 
 import FormLabel, { Props } from './FormLabel'
 import Form from '../Form'
-import Input from '../Input'
 
 jest.mock('ap-style-title-case')
 
 const TestFormLabel: FunctionComponent<OmitInternalProps<Props>> = ({
   children,
   required,
+  requiredVariant,
   disabled,
   titleCase,
   htmlFor,
@@ -21,6 +21,7 @@ const TestFormLabel: FunctionComponent<OmitInternalProps<Props>> = ({
     <Form.Field>
       <FormLabel
         required={required}
+        requiredVariant={requiredVariant}
         disabled={disabled}
         titleCase={titleCase}
         htmlFor={htmlFor}
@@ -28,7 +29,6 @@ const TestFormLabel: FunctionComponent<OmitInternalProps<Props>> = ({
       >
         {children}
       </FormLabel>
-      <Input />
     </Form.Field>
   </Form>
 )
@@ -44,9 +44,9 @@ afterEach(() => {
 
 describe('FormLabel', () => {
   test('default render', () => {
-    const { queryByText } = render(<TestFormLabel>Label</TestFormLabel>)
+    const { container } = render(<TestFormLabel>Label</TestFormLabel>)
 
-    expect(queryByText('Label (optional)')).toBeInTheDocument()
+    expect(container).toMatchSnapshot()
   })
 
   test('disabled', () => {
@@ -55,21 +55,20 @@ describe('FormLabel', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('required', () => {
-    const { queryByText } = render(
-      <TestFormLabel required>Label</TestFormLabel>
-    )
+  test('required with (optional)', () => {
+    const { container } = render(<TestFormLabel required>Label</TestFormLabel>)
 
-    expect(queryByText('Label')).toBeInTheDocument()
-    expect(queryByText('Label (optional)')).not.toBeInTheDocument()
+    expect(container).toMatchSnapshot()
   })
 
-  test('optional is displayed', () => {
-    const { queryByText } = render(
-      <TestFormLabel required={false}>Label</TestFormLabel>
+  test('required with asterisk', () => {
+    const { container } = render(
+      <TestFormLabel required requiredVariant='asterisk'>
+        Label
+      </TestFormLabel>
     )
 
-    expect(queryByText('Label (optional)')).toBeInTheDocument()
+    expect(container).toMatchSnapshot()
   })
 
   test('required and disabled', () => {
