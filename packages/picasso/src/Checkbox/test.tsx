@@ -31,8 +31,7 @@ const renderCheckbox = (
     titleCase,
     indeterminate,
     onChange,
-    showAsterisk,
-    showOptional
+    requiredDecoration
   } = props
 
   return render(
@@ -42,8 +41,7 @@ const renderCheckbox = (
       indeterminate={indeterminate}
       onChange={onChange}
       titleCase={titleCase}
-      showAsterisk={showAsterisk}
-      showOptional={showOptional}
+      requiredDecoration={requiredDecoration}
     />,
     undefined,
     picassoConfig
@@ -75,13 +73,13 @@ test('renders indeterminate state', () => {
 })
 
 test('renders with asterisk', () => {
-  const { container } = renderCheckbox({ showAsterisk: true })
+  const { container } = renderCheckbox({ requiredDecoration: 'asterisk' })
 
   expect(container).toMatchSnapshot()
 })
 
 test('renders with (optional)', () => {
-  const { container } = renderCheckbox({ showOptional: true })
+  const { container } = renderCheckbox({ requiredDecoration: 'optional' })
 
   expect(container).toMatchSnapshot()
 })

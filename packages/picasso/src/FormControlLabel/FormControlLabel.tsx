@@ -9,6 +9,7 @@ import { withStyles } from '@material-ui/core/styles'
 import { StandardProps, TextLabelProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 
+import { RequiredVariant } from '../FormLabel'
 import styles from './styles'
 import Form from '../Form'
 
@@ -27,10 +28,8 @@ export interface Props
   label?: ReactNode
   /** Shows whether label is disabled or not */
   disabled?: boolean
-  /** Whether to show asterisk for the label */
-  showAsterisk?: boolean
-  /** Whether to show (optional) postfix for the label */
-  showOptional?: boolean
+  /** Whether to show asterisk or (optional) postfix as a 'required' decoration */
+  requiredDecoration?: RequiredVariant
 }
 
 const FormControlLabel: FunctionComponent<Props> = props => {
@@ -41,8 +40,7 @@ const FormControlLabel: FunctionComponent<Props> = props => {
     className,
     style,
     disabled,
-    showAsterisk,
-    showOptional,
+    requiredDecoration,
     titleCase,
     ...rest
   } = props
@@ -64,8 +62,7 @@ const FormControlLabel: FunctionComponent<Props> = props => {
       <Form.Label
         className={classes.label}
         as='span'
-        showAsterisk={showAsterisk}
-        showOptional={showOptional}
+        requiredDecoration={requiredDecoration}
         disabled={disabled}
         titleCase={titleCase}
       >

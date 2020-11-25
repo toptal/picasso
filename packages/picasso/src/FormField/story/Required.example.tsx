@@ -19,7 +19,7 @@ const Example = () => (
       </Form.Field>
 
       <Form.Field>
-        <Form.Label htmlFor='city' showOptional>
+        <Form.Label htmlFor='city' requiredDecoration='optional'>
           City
         </Form.Label>
         <Input id='city' width='full' placeholder='e.g., Barcelona' />
@@ -31,7 +31,7 @@ const Example = () => (
         <Typography weight='semibold'>Deprecated:</Typography>
       </Container>
       <Form.Field>
-        <Form.Label htmlFor='district' showAsterisk>
+        <Form.Label htmlFor='district' requiredDecoration='asterisk'>
           District
         </Form.Label>
         <Input id='district' width='full' placeholder='e.g., Sant Marti' />

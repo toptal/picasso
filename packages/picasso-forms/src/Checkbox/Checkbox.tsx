@@ -11,10 +11,7 @@ import { useFormConfig } from '../FormConfig'
 
 type CheckboxValue = CheckboxProps['value'] | CheckboxProps['checked']
 
-type CheckboxFormProps = Omit<
-  CheckboxProps,
-  'showAsterisk' | 'showOptional'
-> & {
+type CheckboxFormProps = Omit<CheckboxProps, 'requiredDecoration'> & {
   required?: boolean
 }
 type CheckboxWithoutGroup = CheckboxFormProps & FieldProps<CheckboxValue>
@@ -50,6 +47,7 @@ export const Checkbox = ({
   }
 
   const showAsterisk = required && formConfig.requiredVariant === 'asterisk'
+  const requiredDecoration = (showAsterisk && 'asterisk') || undefined
 
   return (
     <FieldWrapper
@@ -64,7 +62,7 @@ export const Checkbox = ({
         <PicassoCheckbox
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...input}
-          showAsterisk={showAsterisk}
+          requiredDecoration={requiredDecoration}
         />
       )}
     </FieldWrapper>

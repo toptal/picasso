@@ -226,15 +226,13 @@ const FieldWrapper = <
   const showOptional =
     !required &&
     (!formConfig.requiredVariant || formConfig.requiredVariant === 'optional')
+  const requiredDecoration =
+    (showAsterisk && 'asterisk') || (showOptional && 'optional') || undefined
 
   return (
     <PicassoForm.Field error={error} hint={hint} data-testid={dataTestId}>
       {!hideFieldLabel && label && (
-        <PicassoForm.Label
-          showAsterisk={showAsterisk}
-          showOptional={showOptional}
-          htmlFor={id}
-        >
+        <PicassoForm.Label requiredDecoration={requiredDecoration} htmlFor={id}>
           {label}
         </PicassoForm.Label>
       )}
