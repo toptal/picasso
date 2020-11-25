@@ -154,7 +154,7 @@ export const SidebarItem: OverridableComponent<Props> = memo(
               content: classes.content
             }}
             content={menu}
-            bordered={false}
+            borders='none'
             disabled={disabled}
             expanded={isExpanded}
             expandIcon={
