@@ -8,7 +8,7 @@ const summaryHeaderText = 'Fryderyk Chopin'
 const Summary = () => <div>{summaryHeaderText}</div>
 
 const Details = () => (
-  <div>
+  <div id='details'>
     Fryderyk Chopin was born in Żelazowa Wola, 46 kilometres west of Warsaw, in
     what was then the Duchy of Warsaw, a Polish state established by Napoleon.
     The parish baptismal record gives his birthday as 22 February 1810, and
@@ -20,17 +20,20 @@ const Details = () => (
 
 describe('default version for sections', () => {
   test('should render default version', () => {
-    const { container } = render(
+    const { queryByText, container } = render(
       <Accordion content={<Details />}>
         <Summary />
       </Accordion>
     )
 
-    expect(container).toMatchSnapshot()
+    expect(queryByText(summaryHeaderText)).toBeInTheDocument()
+    expect(container.querySelector('.MuiCollapse-container')).toHaveClass(
+      'MuiCollapse-hidden'
+    )
   })
 
   test('should render expanded version after click on summary', () => {
-    const { container, getByText } = render(
+    const { queryByText, getByText, container } = render(
       <Accordion content={<Details />}>
         <Summary />
       </Accordion>
@@ -39,28 +42,37 @@ describe('default version for sections', () => {
 
     fireEvent.click(summary)
 
-    expect(container).toMatchSnapshot()
+    expect(queryByText(summaryHeaderText)).toBeInTheDocument()
+    expect(container.querySelector('.MuiCollapse-container')).not.toHaveClass(
+      'MuiCollapse-hidden'
+    )
   })
 })
 
 describe('controlled version', () => {
   test('should render expanded version', () => {
-    const { container } = render(
+    const { container, queryByText } = render(
       <Accordion content={<Details />} expanded>
         <Summary />
       </Accordion>
     )
 
-    expect(container).toMatchSnapshot()
+    expect(queryByText(summaryHeaderText)).toBeInTheDocument()
+    expect(container.querySelector('.MuiCollapse-container')).not.toHaveClass(
+      'MuiCollapse-hidden'
+    )
   })
 
   test('should render collapsed version', () => {
-    const { container } = render(
+    const { container, queryByText } = render(
       <Accordion content={<Details />} expanded={false}>
         <Summary />
       </Accordion>
     )
 
-    expect(container).toMatchSnapshot()
+    expect(queryByText(summaryHeaderText)).toBeInTheDocument()
+    expect(container.querySelector('.MuiCollapse-container')).toHaveClass(
+      'MuiCollapse-hidden'
+    )
   })
 })
