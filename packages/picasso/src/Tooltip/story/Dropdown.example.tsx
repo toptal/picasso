@@ -1,16 +1,17 @@
-import { Container, Dropdown, Menu, Tooltip } from '@toptal/picasso'
+import { Dropdown, Menu, Tooltip } from '@toptal/picasso'
 import React from 'react'
 
 const Example = () => (
   <div>
     <Dropdown
       content={
-        <Menu data-testid='menu'>
+        <Menu>
           <Menu.Item>Option 1</Menu.Item>
-          <Tooltip content='Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolores, quidem! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolores, quidem!'>
-            <Container data-testid='option'>
-              <Menu.Item disabled>Option 2</Menu.Item>
-            </Container>
+          <Tooltip
+            open
+            content='Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolores, quidem! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolores, quidem!'
+          >
+            <Menu.Item>Option 2</Menu.Item>
           </Tooltip>
           <Menu.Item>Option 3</Menu.Item>
         </Menu>

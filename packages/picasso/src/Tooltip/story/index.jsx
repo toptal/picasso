@@ -48,9 +48,6 @@ page
     title: 'Inside of a Dropdown',
     effect: async (testPage, makeScreenshot) => {
       await testPage.click('[data-testid="trigger"]')
-      await testPage.waitFor('[data-testid="menu"]')
-
-      await testPage.hover('[data-testid="option"]')
 
       await makeScreenshot({ isFullScreen: true })
     }
