@@ -15,7 +15,7 @@ when building API for new or existing components.
   Example:
 
   ```
-  <Label>...</Label>
+  <Tag>...</Tag>
   ```
 
 - _Nested component_
