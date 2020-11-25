@@ -8,7 +8,6 @@ const Example = () => (
     <Button disabled icon={<Settings16 />}>
       Disabled
     </Button>
-    <Button disabled variant='transparent-green' icon={<Trash24 />} />
   </div>
 )
 
