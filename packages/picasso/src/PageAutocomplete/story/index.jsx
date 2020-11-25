@@ -1,14 +1,12 @@
 import { PageAutocomplete } from '../PageAutocomplete'
-// @ts-ignore
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-// @ts-ignore
 const componentDocs = PicassoBook.createComponentDocs(
   PageAutocomplete,
   'Page.Autocomplete'
 )
 
-const chapter = PicassoBook.connectToPage((page: any) =>
+const chapter = PicassoBook.connectToPage(page =>
   page
     .createChapter(
       'Page.Autocomplete',
