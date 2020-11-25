@@ -18,16 +18,18 @@ export type Props = CheckboxWithoutGroup | CheckboxInGroup
 export const Checkbox = ({
   name,
   value,
-  defaultValue, // eslint-disable-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  defaultValue,
   ...restProps
 }: Props) => {
-  const inCheckboxGroup = useContext(CheckboxGroupContext)
+  const groupName = useContext(CheckboxGroupContext)
 
-  if (inCheckboxGroup) {
+  if (groupName) {
     return (
-      <Field type='checkbox' name={name!} value={value}>
+      <Field type='checkbox' name={name || groupName} value={value}>
         {({
-          input: { value, type, ...restInput } // eslint-disable-line @typescript-eslint/no-unused-vars
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          input: { value: inputValue, type, ...restInput }
         }: FinalFormFieldProps<CheckboxValue>) => {
           // eslint-disable-next-line react/jsx-props-no-spreading
           return <PicassoCheckbox {...restProps} {...restInput} />
