@@ -8,7 +8,7 @@ const Example = () => (
         <Menu data-testid='menu'>
           <Menu.Item>Option 1</Menu.Item>
           <Tooltip content='Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolores, quidem! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolores, quidem!'>
-            <Container>
+            <Container data-testid='option'>
               <Menu.Item disabled>Option 2</Menu.Item>
             </Container>
           </Tooltip>
