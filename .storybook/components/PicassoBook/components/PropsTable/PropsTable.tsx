@@ -1,6 +1,6 @@
 import React, { Fragment, FunctionComponent } from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import { Table } from '@toptal/picasso'
+import { Table, Typography } from '@toptal/picasso'
 import { Classes } from '@toptal/picasso-shared'
 
 import {
@@ -29,11 +29,31 @@ function renderRows({ documentation, classes }: Props): JSX.Element {
   return (
     <Fragment>
       {sortedProps.map(
-        ({ name, type, defaultValue, description, enums, required }) => (
+        ({
+          name,
+          type,
+          defaultValue,
+          description,
+          enums,
+          required,
+          deprecated
+        }) => (
           <Table.Row key={name}>
             <Table.Cell>
-              <span className={classes.propName}>{name}</span>
-              {required && <span className={classes.requiredTag}>*</span>}
+              {deprecated && (
+                <Typography color='red' weight='semibold'>
+                  @deprecated
+                </Typography>
+              )}
+              <Typography weight='semibold' inline>
+                {name}
+              </Typography>
+              {required && (
+                <Typography color='red' inline>
+                  {' '}
+                  *
+                </Typography>
+              )}
             </Table.Cell>
             <PropTypeTableCell className={classes.typeCell} type={type} />
             <Table.Cell className={classes.defaultValueCell}>
