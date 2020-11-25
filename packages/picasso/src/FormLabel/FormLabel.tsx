@@ -11,7 +11,7 @@ import styles from './styles'
 import toTitleCase from '../utils/to-title-case'
 
 type ComponentType = 'label' | 'span'
-export type RequiredVariant = 'asterisk' | 'optional'
+export type RequiredDecoration = 'asterisk' | 'optional'
 
 export interface Props
   extends StandardProps,
@@ -20,7 +20,7 @@ export interface Props
   /** Content of the label */
   children: ReactNode
   /** Whether to show asterisk or (optional) postfix as a 'required' decoration */
-  requiredDecoration?: RequiredVariant
+  requiredDecoration?: RequiredDecoration
   /** Is this label for disabled input or not */
   disabled?: boolean
   /** Specifies an id of the input */

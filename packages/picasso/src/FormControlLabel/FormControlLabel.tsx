@@ -9,7 +9,7 @@ import { withStyles } from '@material-ui/core/styles'
 import { StandardProps, TextLabelProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 
-import { RequiredVariant } from '../FormLabel'
+import { RequiredDecoration } from '../FormLabel'
 import styles from './styles'
 import Form from '../Form'
 
@@ -29,7 +29,7 @@ export interface Props
   /** Shows whether label is disabled or not */
   disabled?: boolean
   /** Whether to show asterisk or (optional) postfix as a 'required' decoration */
-  requiredDecoration?: RequiredVariant
+  requiredDecoration?: RequiredDecoration
 }
 
 const FormControlLabel: FunctionComponent<Props> = props => {

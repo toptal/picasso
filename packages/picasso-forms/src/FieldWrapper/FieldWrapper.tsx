@@ -227,7 +227,7 @@ const FieldWrapper = <
   const showAsterisk = required && formConfig.requiredVariant === 'asterisk'
   const showOptional =
     !required &&
-    (!formConfig.requiredVariant || formConfig.requiredVariant === 'optional')
+    (!formConfig.requiredVariant || formConfig.requiredVariant === 'default')
   const requiredDecoration = hideLabelRequiredDecoration
     ? undefined
     : (showAsterisk && 'asterisk') || (showOptional && 'optional') || undefined

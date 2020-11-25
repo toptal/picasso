@@ -9,7 +9,7 @@ import {
 import cx from 'classnames'
 import React, { forwardRef, ReactNode } from 'react'
 
-import { RequiredVariant } from '../FormLabel'
+import { RequiredDecoration } from '../FormLabel'
 import CheckboxGroup from '../CheckboxGroup'
 import Container from '../Container'
 import FormControlLabel from '../FormControlLabel'
@@ -36,7 +36,7 @@ export interface Props
   /** The id of the input element */
   id?: string
   /** Whether to show asterisk or (optional) postfix for the label as a 'required' decoration */
-  requiredDecoration?: RequiredVariant
+  requiredDecoration?: RequiredDecoration
   /** Callback invoked when `Checkbox` changed its value */
   onChange?: (
     event: React.ChangeEvent<HTMLInputElement>,

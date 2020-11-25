@@ -1,5 +1,6 @@
 import { createContext, useContext } from 'react'
-import { RequiredVariant } from '@toptal/picasso'
+
+export type RequiredVariant = 'default' | 'asterisk'
 
 export interface FormConfigProps {
   validateOnSubmit?: boolean
