@@ -22,7 +22,7 @@ page
     title: 'Default',
     description: `
 To show the 'Modal' component you should use 'useModal' hook. And if you need
-any additional logic inside the 'Modal' component you should create a wrapper 
+any additional logic inside the 'Modal' component you should create a wrapper
 component and manage the internal state there.
 `,
     effect: async (testPage, makeScreenshot) => {
@@ -95,6 +95,17 @@ component and manage the internal state there.
     description: 'Demonstrate how `align` prop works',
     effect: async (testPage, makeScreenshot) => {
       await testPage.click('[data-testid="align-top-open"]')
+      await testPage.waitFor(100)
+      await makeScreenshot({
+        isFullScreen: true
+      })
+    }
+  })
+  .addExample('Modal/story/Form.example.tsx', {
+    title: 'Form in a modal',
+    description: 'Demonstrate how form fields look in a modal',
+    effect: async (testPage, makeScreenshot) => {
+      await testPage.click('[data-testid="open-modal-with-form"]')
       await testPage.waitFor(100)
       await makeScreenshot({
         isFullScreen: true

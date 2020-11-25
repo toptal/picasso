@@ -22,6 +22,7 @@ import DatePicker from '../DatePicker'
 import TimePicker from '../TimePicker'
 import TagSelector from '../TagSelector'
 import SubmitButton from '../SubmitButton'
+import FormSubtitle from '../FormSubtitle'
 import Switch from '../Switch'
 import { FormConfigContext } from '../FormConfig'
 import { createScrollToErrorDecorator } from '../utils'
@@ -202,5 +203,6 @@ Form.TagSelector = TagSelector
 Form.SubmitButton = SubmitButton
 Form.ConfigProvider = FormConfigContext.Provider
 Form.Switch = Switch
+Form.Subtitle = FormSubtitle
 
 export default Form

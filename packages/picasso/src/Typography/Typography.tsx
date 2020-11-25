@@ -8,7 +8,8 @@ import {
   StandardProps,
   SizeType,
   ColorType,
-  TextLabelProps
+  TextLabelProps,
+  WeightType
 } from '@toptal/picasso-shared'
 
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
@@ -16,8 +17,6 @@ import styles from './styles'
 import toTitleCase from '../utils/to-title-case'
 
 type VariantType = 'heading' | 'body'
-
-type WeightType = 'thin' | 'light' | 'regular' | 'semibold'
 
 type UnderlineType = 'solid' | 'dashed'
 
