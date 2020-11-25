@@ -144,7 +144,7 @@ test('renders select', () => {
 test('should open menu when focus on select', () => {
   const placeholder = 'Choose an option...'
 
-  const { getByPlaceholderText, getByTestId } = renderSelect({
+  const { getByPlaceholderText, getByRole } = renderSelect({
     options: OPTIONS,
     placeholder
   })
@@ -153,7 +153,7 @@ test('should open menu when focus on select', () => {
 
   fireEvent.focus(selectInput)
 
-  const menu = getByTestId('select-dropdown')
+  const menu = getByRole('menu')
 
   expect(menu).toMatchSnapshot()
 })
@@ -188,7 +188,7 @@ test('should filter options based on entered value to the input field', () => {
   const placeholder = 'Choose an option...'
   const searchPlaceholder = 'Search for an option'
 
-  const { getByPlaceholderText, getByTestId } = renderSelect({
+  const { getByPlaceholderText, getByRole } = renderSelect({
     options: OPTIONS,
     placeholder,
     searchPlaceholder,
@@ -204,7 +204,7 @@ test('should filter options based on entered value to the input field', () => {
   fireEvent.focus(searchInput)
   fireEvent.change(searchInput, { target: { value: '3' } })
 
-  const menu = getByTestId('select-dropdown')
+  const menu = getByRole('menu')
 
   expect(menu).toMatchSnapshot()
 })
@@ -265,7 +265,7 @@ test('should render noOptionText if the value entered does not match any of the 
 test('should render description', () => {
   const placeholder = 'Choose an option...'
 
-  const { getByPlaceholderText, getByTestId } = renderSelect({
+  const { getByPlaceholderText, getByRole } = renderSelect({
     options: OPTIONS_WITH_DESCRIPTIONS,
     placeholder
   })
@@ -273,7 +273,7 @@ test('should render description', () => {
 
   fireEvent.focus(selectInput)
 
-  const menu = getByTestId('select-dropdown')
+  const menu = getByRole('menu')
 
   expect(menu).toMatchSnapshot()
 })
@@ -281,7 +281,7 @@ test('should render description', () => {
 test('should render options customly', async () => {
   const placeholder = 'Choose an option...'
 
-  const { getByPlaceholderText, getByTestId } = renderSelect({
+  const { getByPlaceholderText, getByRole } = renderSelect({
     options: OPTIONS,
     placeholder,
     // eslint-disable-next-line react/display-name
@@ -291,7 +291,7 @@ test('should render options customly', async () => {
 
   fireEvent.focus(selectInput)
 
-  const menu = getByTestId('select-dropdown')
+  const menu = getByRole('menu')
 
   expect(menu).toMatchSnapshot()
 })

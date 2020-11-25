@@ -364,7 +364,6 @@ const renderOptions = ({
   return (
     <ScrollMenu
       fixedHeader={fixedHeader}
-      data-testid='select-dropdown'
       onBlur={onBlur}
       selectedIndex={highlightedIndex}
     >
@@ -789,7 +788,8 @@ Select.defaultProps = {
   size: 'medium',
   width: 'full',
   searchThreshold: 10,
-  enableAutofill: false
+  enableAutofill: false,
+  searchPlaceholder: 'Search'
 }
 
 Select.displayName = 'Select'

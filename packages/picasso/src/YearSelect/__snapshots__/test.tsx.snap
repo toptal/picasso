@@ -57,7 +57,6 @@ exports[`YearSelect default render 1`] = `
 exports[`YearSelect render in descending order 1`] = `
 <ul
   class="MuiList-root Menu-root ScrollMenu-menu"
-  data-testid="select-dropdown"
   role="menu"
   tabindex="-1"
 >
