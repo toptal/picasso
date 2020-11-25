@@ -144,7 +144,7 @@ const Example = () => {
       <Accordion
         content={<InterviewCard />}
         expanded={expanded}
-        bordered={false}
+        borders='none'
       />
     </div>
   )
