@@ -41,6 +41,7 @@ export type Props<
     name: string
     type?: string
     hideFieldLabel?: boolean
+    hideLabelRequiredDecoration?: boolean
     fieldType?: string
     children: (props: any) => React.ReactNode
   }
@@ -120,6 +121,7 @@ const FieldWrapper = <
   const {
     type,
     hideFieldLabel,
+    hideLabelRequiredDecoration,
     hint,
     label,
     required,
@@ -226,8 +228,9 @@ const FieldWrapper = <
   const showOptional =
     !required &&
     (!formConfig.requiredVariant || formConfig.requiredVariant === 'optional')
-  const requiredDecoration =
-    (showAsterisk && 'asterisk') || (showOptional && 'optional') || undefined
+  const requiredDecoration = hideLabelRequiredDecoration
+    ? undefined
+    : (showAsterisk && 'asterisk') || (showOptional && 'optional') || undefined
 
   return (
     <PicassoForm.Field error={error} hint={hint} data-testid={dataTestId}>
