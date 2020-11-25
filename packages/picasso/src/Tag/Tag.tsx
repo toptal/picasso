@@ -19,6 +19,7 @@ import {
 import Chip from '../Chip'
 import { CloseMinor16 } from '../Icon'
 import TagGroup from '../TagGroup'
+import TagRectangular from '../TagRectangular'
 import styles from './styles'
 import toTitleCase from '../utils/to-title-case'
 
@@ -47,6 +48,7 @@ export interface Props extends BaseProps, TextLabelProps, DivOrAnchorProps {
 
 export interface StaticProps {
   Group: typeof TagGroup
+  Rectangular: typeof TagRectangular
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoLabel' })
@@ -124,5 +126,6 @@ Tag.defaultProps = {
 Tag.displayName = 'Tag'
 
 Tag.Group = TagGroup
+Tag.Rectangular = TagRectangular
 
 export default Tag

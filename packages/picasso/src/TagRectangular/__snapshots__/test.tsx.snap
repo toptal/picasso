@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TagRectangular renders rectangular Tag 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="MuiChip-root PicassoTagRectangular-root TagRectangular-root PicassoTagRectangular-light-grey TagRectangular-light-grey"
+    >
+      <span
+        class="MuiChip-label PicassoTagRectangular-label TagRectangular-label"
+      >
+        <span
+          class="PicassoTagRectangular-innerLabel TagRectangular-innerLabel PicassoTagRectangular-innerLabelDarkText TagRectangular-innerLabelDarkText"
+        >
+          Reactangular Tag
+        </span>
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TagRectangular renders rectangular Tag with indicator 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="MuiChip-root PicassoTagRectangular-root TagRectangular-root PicassoTagRectangular-light-grey TagRectangular-light-grey"
+    >
+      <div
+        class="Indicator-root MuiChip-icon PicassoTagRectangular-icon TagRectangular-icon Indicator-blue"
+        role="img"
+      />
+      <span
+        class="MuiChip-label PicassoTagRectangular-label TagRectangular-label"
+      >
+        <span
+          class="PicassoTagRectangular-innerLabel TagRectangular-innerLabel PicassoTagRectangular-innerLabelDarkText TagRectangular-innerLabelDarkText"
+        >
+          Reactangular Tag
+        </span>
+      </span>
+    </div>
+  </div>
+</div>
+`;
