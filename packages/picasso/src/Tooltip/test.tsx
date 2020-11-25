@@ -49,6 +49,33 @@ describe('Tooltip', () => {
 
       unmount()
     })
+
+    test('closes tooltip on second touch', async () => {
+      jest.useFakeTimers()
+
+      const { getByText, queryByText, unmount } = render(
+        <Tooltip content='Hello'>
+          <Button>Tap me</Button>
+        </Tooltip>
+      )
+
+      act(() => {
+        fireEvent.click(getByText('Tap me'))
+      })
+
+      expect(queryByText('Hello')).toBeInTheDocument()
+
+      act(() => {
+        fireEvent.click(getByText('Tap me'))
+        jest.advanceTimersByTime(1500)
+      })
+
+      expect(queryByText('Hello')).not.toBeInTheDocument()
+
+      jest.useRealTimers()
+
+      unmount()
+    })
   })
 
   describe('on fine pointer devices', () => {
@@ -123,7 +150,7 @@ describe('Tooltip', () => {
         )
       }
 
-      const { getByText, queryByText } = render(<Component />)
+      const { getByText, queryByText, unmount } = render(<Component />)
 
       const handler = getByText('Hover then click me')
 
@@ -147,6 +174,31 @@ describe('Tooltip', () => {
       })
 
       expect(queryByText('Hello')).not.toBeInTheDocument()
+
+      unmount()
+    })
+
+    test('closes uncontrolled tooltip on inside click', async () => {
+      const { getByText, queryByText, unmount } = render(
+        <Tooltip content='Hello'>
+          <Button>Hover me</Button>
+        </Tooltip>
+      )
+
+      act(() => {
+        fireEvent.mouseEnter(getByText('Hover me'))
+        jest.advanceTimersByTime(500)
+      })
+
+      expect(queryByText('Hello')).toBeInTheDocument()
+
+      act(() => {
+        fireEvent.click(getByText('Hover me'))
+        jest.advanceTimersByTime(1500)
+      })
+      expect(queryByText('Hello')).not.toBeInTheDocument()
+
+      unmount()
     })
   })
 })
