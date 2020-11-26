@@ -23,10 +23,12 @@ export const Checkbox = ({
   ...restProps
 }: Props) => {
   const groupName = useContext(CheckboxGroupContext)
+  const isCheckboxInGroup = Boolean(groupName)
 
-  if (groupName) {
+  if (isCheckboxInGroup) {
     return (
-      <Field type='checkbox' name={name || groupName} value={value}>
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      <Field type='checkbox' name={name || groupName!} value={value}>
         {({
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           input: { value: inputValue, type, ...restInput }
