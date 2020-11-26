@@ -384,7 +384,8 @@ export const Select = documentable(
         props,
         name: 'onSearchChange',
         componentName: 'Select',
-        description: 'Use Autocomplete component to control the search.'
+        description:
+          'Use the Autocomplete component if you require dynamic options.'
       })
 
       const {
