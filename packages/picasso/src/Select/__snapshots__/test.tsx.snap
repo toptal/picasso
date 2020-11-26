@@ -400,7 +400,7 @@ exports[`should filter options based on entered value to the input field 1`] = `
             class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
             placeholder="Search for an option"
             type="text"
-            value=""
+            value="3"
           />
           <fieldset
             aria-hidden="true"
