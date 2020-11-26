@@ -28,7 +28,7 @@ export default ({ typography, palette }: Theme) =>
     light: {
       color: palette.common.black,
 
-      '&$hover:hover': {
+      '&:hover': {
         color: palette.common.black,
         backgroundColor: palette.blue.lighter,
 
@@ -38,8 +38,8 @@ export default ({ typography, palette }: Theme) =>
         }
       },
 
-      '&:not($hover):hover, &:not($hover):focus': {
-        backgroundColor: 'initial'
+      '&$nonSelectable:hover, &$nonSelectable:focus': {
+        backgroundColor: 'unset !important'
       },
 
       '&$selected': {
@@ -60,7 +60,7 @@ export default ({ typography, palette }: Theme) =>
     dark: {
       color: palette.grey.main,
 
-      '&$hover:hover': {
+      '&:hover': {
         backgroundColor: palette.grey.dark,
 
         '&$selected': {
@@ -69,8 +69,8 @@ export default ({ typography, palette }: Theme) =>
         }
       },
 
-      '&:not($hover):hover, &:not($hover):focus': {
-        backgroundColor: 'initial'
+      '&:nonSelectable:hover, &:nonSelectable:focus': {
+        backgroundColor: 'unset !important'
       },
 
       '&$selected': {
@@ -88,12 +88,11 @@ export default ({ typography, palette }: Theme) =>
         }
       }
     },
-    focusVisible: {
-      // MUI has a default focus background for focusable items. This rule disables it.
+    listItemNonSelectable: {
       backgroundColor: 'unset !important'
     },
     selected: {},
-    hover: {},
+    nonSelectable: {},
     stringContent: {
       flex: 1,
       fontSize: '0.8125em'

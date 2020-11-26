@@ -12,7 +12,7 @@ exports[`Menu default render 1`] = `
     >
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-hover MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
         tabindex="0"
       >
@@ -32,7 +32,7 @@ exports[`Menu default render 1`] = `
       </li>
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-hover MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
         tabindex="-1"
       >
@@ -52,7 +52,7 @@ exports[`Menu default render 1`] = `
       </li>
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-hover MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
         tabindex="-1"
       >
@@ -87,7 +87,7 @@ exports[`Menu has back button when in submenu 1`] = `
     >
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-hover MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
         tabindex="0"
       >
@@ -126,7 +126,7 @@ exports[`Menu has back button when in submenu 1`] = `
     >
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-hover MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
         tabindex="0"
       >
@@ -155,7 +155,7 @@ exports[`Menu has back button when in submenu 1`] = `
       </li>
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-hover MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
         tabindex="-1"
       >

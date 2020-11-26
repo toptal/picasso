@@ -61,7 +61,7 @@ export interface Props
   /** Size of component */
   size?: SizeType<'small' | 'medium'>
   /** Enables changing colors on hover/focus */
-  hover?: boolean
+  nonSelectable?: boolean
 }
 
 const generateKey = (() => {
@@ -88,7 +88,7 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
     variant,
     size,
     titleCase: propsTitleCase,
-    hover,
+    nonSelectable,
     ...rest
   },
   ref
@@ -138,7 +138,7 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
       classes={{
         root: cx({
           [classes[`gutters${size && capitalize(size!)}`]]: size,
-          [classes.hover]: hover
+          [classes.nonSelectable]: nonSelectable
         }),
         selected: classes.selected
       }}
@@ -150,7 +150,8 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
       value={value}
       selected={selected}
       ListItemClasses={{
-        focusVisible: classes.focusVisible
+        // MUI has a background for focusable items. We need to disable it for non-selectable items.
+        focusVisible: nonSelectable ? classes.listItemNonSelectable : undefined
       }}
     >
       <Container flex direction='column' className={classes.content}>
@@ -190,7 +191,7 @@ MenuItem.defaultProps = {
   as: 'li',
   onClick: () => {},
   variant: 'light',
-  hover: true
+  nonSelectable: false
 }
 
 MenuItem.displayName = 'MenuItem'

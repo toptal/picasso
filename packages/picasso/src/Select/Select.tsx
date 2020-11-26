@@ -672,7 +672,7 @@ export const Select = documentable(
       )
 
       const searchInput = showSearch ? (
-        <MenuItem as='div' size={size} hover={false}>
+        <MenuItem as='div' size={size} nonSelectable>
           <OutlinedInput
             inputRef={searchInputRef}
             className={classes.searchOutlinedInput}

@@ -127,7 +127,7 @@ export const SidebarItem: OverridableComponent<Props> = memo(
         selected={!hasMenu && selected}
         disabled={disabled}
         variant={variant}
-        hover={false}
+        nonSelectable
       >
         <Container className={classes.noWrap} inline flex alignItems='center'>
           {icon}
