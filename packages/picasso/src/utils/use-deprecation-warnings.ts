@@ -11,11 +11,10 @@ const useDeprecationWarning = ({
   name,
   newName
 }: UseDeprecationWarningArgs) => {
-  const message = `
-      '${name}' component is deprecated and will be removed in the next major release of Picasso.
-      ${newName ? ` Please use '${newName}' instead.` : ''}
-      ${description ? `\n${description}` : ''}
-    `.trim()
+  const message =
+    `'${name}' component is deprecated and will be removed in the next major release of Picasso.'` +
+    `${newName ? ` Please use '${newName}' instead.` : ''}` +
+    `${description ? `\n${description}` : ''}`
 
   React.useEffect(() => {
     console.warn(message)
@@ -37,11 +36,11 @@ const usePropDeprecationWarning = <P>({
   name,
   newName
 }: UsePropDeprecationWarningArgs<P>) => {
-  const message = `
-    ${componentName}'s '${name}' prop is deprecated and will be removed in the next major release of Picasso.
-    ${newName ? `Please use '${newName}' instead.` : ''}
-    ${description ? `${description}` : ''}
-  `.trim()
+  const message =
+    `${componentName}'s '${name}' prop is deprecated and will be removed in the next major release of Picasso.` +
+    `${newName ? ` Please use '${newName}' instead.` : ''}` +
+    `${description ? `\n${description}` : ''}`
+
   const isDeprecatedPropUsed = name in props
 
   React.useEffect(() => {
