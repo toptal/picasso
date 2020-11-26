@@ -9,27 +9,29 @@ jest.mock('ap-style-title-case')
 
 const renderTag = (
   children: string,
-  props: OmitInternalProps<Props, 'children'>,
+  { color, indicator, titleCase }: OmitInternalProps<Props, 'children'>,
   picassoConfig?: PicassoConfig
-) => {
-  const { indicator, titleCase } = props
-
-  return render(
-    <TagRectangular indicator={indicator} titleCase={titleCase}>
+) =>
+  render(
+    <TagRectangular color={color} indicator={indicator} titleCase={titleCase}>
       {children}
     </TagRectangular>,
     undefined,
     picassoConfig
   )
-}
 
+// Mock console error since toThrow() outputs the error message with stacktrace
+let mockedConsoleError: jest.SpyInstance
 let spiedOnTitleCase: jest.SpyInstance
 
 beforeEach(() => {
   spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
+  mockedConsoleError = jest.spyOn(console, 'error')
+  mockedConsoleError.mockImplementation(() => {})
 })
 afterEach(() => {
   spiedOnTitleCase.mockReset()
+  mockedConsoleError.mockRestore()
 })
 
 describe('TagRectangular', () => {
@@ -43,6 +45,17 @@ describe('TagRectangular', () => {
     const { container } = renderTag('Reactangular Tag', { indicator: 'blue' })
 
     expect(container).toMatchSnapshot()
+  })
+
+  describe('when "indicator" and "color" (not equal to "light-grey") properties are provided at the same time', () => {
+    it('throws an error', () => {
+      const ERROR_MESSAGE =
+        '"indicator" and "color" properties should not be specified at the same time'
+      const tryRender = () =>
+        renderTag('Reactangular Tag', { indicator: 'blue', color: 'red' })
+
+      expect(tryRender).toThrow(ERROR_MESSAGE)
+    })
   })
 
   describe('when Picasso titleCase property is true', () => {

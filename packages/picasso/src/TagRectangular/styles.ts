@@ -24,7 +24,7 @@ export default ({ palette }: Theme) =>
       borderColor: palette.grey.lighter2
     },
     label: {
-      padding: '0.125em 0.25em 0px 0.25em'
+      padding: '0.125em 0.25em 0 0.25em'
     },
     innerLabel: {
       fontSize: '11px',

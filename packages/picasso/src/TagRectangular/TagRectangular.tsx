@@ -21,9 +21,9 @@ export type DivOrAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> &
 export interface Props extends BaseProps, TextLabelProps, DivOrAnchorProps {
   /** The component used for the root node. Either a string to use, a DOM element or a component. */
   as?: ElementType
-  /** Color of the rectangular `Tag` */
+  /** Color of the rectangular `Tag`, can not be used with the `indicator` property at the same time. */
   color?: ColorType
-  /** Indicator color. The Tag's `color` property is automatically set to `light-grey` when indicator color is set. */
+  /** Indicator color, can not be used with the `color` property at the same time. The Tag's `color` property is automatically set to `light-grey` when indicator color is set. */
   indicator?: IndicatorProps['color']
 }
 
@@ -43,9 +43,15 @@ export const TagRectangular = forwardRef<HTMLDivElement, Props>(
     } = props
 
     const { color, indicator, ...htmlAttributes } = rest
+
+    if (indicator && color !== 'light-grey') {
+      throw new Error(
+        '"indicator" and "color" properties should not be specified at the same time'
+      )
+    }
+
     const classes = useStyles(props)
     const titleCase = useTitleCase(propsTitleCase)
-    const tagColor = indicator ? 'light-grey' : color
 
     return (
       <Chip
@@ -53,7 +59,7 @@ export const TagRectangular = forwardRef<HTMLDivElement, Props>(
         {...htmlAttributes}
         ref={ref}
         classes={{
-          root: cx(classes.root, classes[tagColor!]),
+          root: cx(classes.root, classes[color!]),
           label: classes.label,
           icon: classes.icon
         }}
@@ -63,7 +69,7 @@ export const TagRectangular = forwardRef<HTMLDivElement, Props>(
         label={
           <span
             className={cx(classes.innerLabel, {
-              [classes.innerLabelDarkText]: tagColor === 'light-grey'
+              [classes.innerLabelDarkText]: color === 'light-grey'
             })}
           >
             {titleCase ? toTitleCase(children) : children}
