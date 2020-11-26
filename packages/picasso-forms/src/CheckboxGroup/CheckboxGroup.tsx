@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { ReactElement } from 'react'
+import React from 'react'
 import {
   Checkbox as PicassoCheckbox,
   CheckboxProps,
@@ -15,18 +15,10 @@ export const CheckboxGroup = (props: Props) => {
   const { children, ...rest } = props
 
   return (
-    <CheckboxGroupContext.Provider value>
+    <CheckboxGroupContext.Provider value={props.name}>
       <FieldWrapper {...rest} type='checkbox'>
         {() => (
-          <PicassoCheckbox.Group {...rest}>
-            {React.Children.toArray(children)
-              .filter(React.isValidElement)
-              .map(child =>
-                React.cloneElement(child as ReactElement, {
-                  name: props.name
-                })
-              )}
-          </PicassoCheckbox.Group>
+          <PicassoCheckbox.Group {...rest}>{children}</PicassoCheckbox.Group>
         )}
       </FieldWrapper>
     </CheckboxGroupContext.Provider>
