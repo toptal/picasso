@@ -265,12 +265,7 @@ pipeline {
           reportName: 'Visual Regression Tests', 
           reportTitles: 'All files'
         ])
-      }
-    }
-  }
-  post {
-    always {
-      script {
+
         sendBuildData(currentBuild)
       }
     }
