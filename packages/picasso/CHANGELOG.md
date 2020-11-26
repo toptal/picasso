@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.114.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.113.1...@toptal/picasso@4.114.0) (2020-11-26)
+
+
+### Features
+
+* **icon:** new icon scheduledPayment ([#1725](https://github.com/toptal/picasso/issues/1725)) ([9b1e461](https://github.com/toptal/picasso/commit/9b1e461036dcec851d6daf3910d0e3ef473f0b1c))
+
+
+
+
+
 ## [4.113.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.113.0...@toptal/picasso@4.113.1) (2020-11-20)
 
 
