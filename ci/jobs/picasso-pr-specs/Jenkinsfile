@@ -268,4 +268,11 @@ pipeline {
       }
     }
   }
+  post {
+    always {
+      script {
+        sendBuildData(currentBuild)
+      }
+    }
+  }
 }//pipeline
