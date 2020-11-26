@@ -39,8 +39,8 @@ const usePropDeprecationWarning = <P>({
 }: UsePropDeprecationWarningArgs<P>) => {
   const message = `
     ${componentName}'s '${name}' prop is deprecated and will be removed in the next major release of Picasso.
-    ${newName ? `\nPlease use '${newName}' instead.` : ''}
-    ${description ? `\n${description}` : ''}
+    ${newName ? `Please use '${newName}' instead.` : ''}
+    ${description ? `${description}` : ''}
   `.trim()
   const isDeprecatedPropUsed = name in props
 
