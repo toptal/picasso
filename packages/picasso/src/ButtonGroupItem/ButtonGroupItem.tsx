@@ -9,7 +9,9 @@ import styles from './styles'
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** List of `Button` components which you want to render as `ButtonGroupItem` */
   children: ReactNode
+  /** Defines style for first item in group, same as :first-child  */
   first?: boolean
+  /** Defines style for last item in group, same as :last-child  */
   last?: boolean
 }
 
