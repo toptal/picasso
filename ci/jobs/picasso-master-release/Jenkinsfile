@@ -153,6 +153,11 @@ pipeline {
   }//stages
 
   post {
+      always {
+          script {
+            sendBuildData(currentBuild)
+          }
+      }
       success {
           script {
             build job: 'picasso-docs', propagate: false, wait: false
@@ -239,12 +244,5 @@ pipeline {
         slackSend color: 'good', channel: '-frontend-exp-team', attachments: attachments
         }
       }
-  }
-  post {
-    always {
-      script {
-        sendBuildData(currentBuild)
-      }
-    }
   }
 }//pipeline
