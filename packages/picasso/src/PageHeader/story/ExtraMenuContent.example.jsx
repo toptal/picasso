@@ -1,5 +1,5 @@
 import React from 'react'
-import { Page, Menu, Container, Button, Label } from '@toptal/picasso'
+import { Page, Menu, Container, Button, Tag } from '@toptal/picasso'
 
 const Example = () => (
   <div style={{ height: '4.5rem' }}>
@@ -20,7 +20,7 @@ const handleClick = () => window.alert('Item clicked')
 const RightContent = () => (
   <Page.HeaderMenu
     name='Pablo Diego José Francisco de Paula Juan Nepomuceno María de los Remedios Cipriano de la Santísima Trinidad Ruiz y Picasso'
-    meta={<Label>Extra content</Label>}
+    meta={<Tag>Extra content</Tag>}
     avatar='./jacqueline-with-flowers-1954-square.jpg'
   >
     <Menu>
