@@ -58,9 +58,7 @@ export const AnalyticsChart = ({
     [chartData, formatXAxisLabel, highlights, xAxisKey]
   )
   const getXTicks = useCallback(
-    orderedData => {
-      return getXAxisTicks(orderedData, granularity)
-    },
+    orderedData => getXAxisTicks(orderedData, granularity),
     [granularity]
   )
 
