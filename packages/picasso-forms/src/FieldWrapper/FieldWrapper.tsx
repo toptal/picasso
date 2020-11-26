@@ -10,7 +10,7 @@ import { Item } from '@toptal/picasso/Autocomplete'
 import { DateOrDateRangeType } from '@toptal/picasso-lab'
 
 import { useFormContext } from '../Form/FormContext'
-import { useFormConfig, FormConfigProps } from '../FormConfig'
+import { useFormConfig, FormConfigProps, RequiredVariant } from '../FormConfig'
 import { validators } from '../utils'
 
 const { composeValidators, required: requiredValidator } = validators
@@ -110,6 +110,20 @@ const getProps = ({
   return {
     error: Boolean(error)
   }
+}
+
+const getRequiredDecoration = (
+  hideLabelRequiredDecoration?: boolean,
+  required?: boolean,
+  requiredVariant?: RequiredVariant
+) => {
+  const showAsterisk = required && requiredVariant === 'asterisk'
+  const showOptional =
+    !required && (!requiredVariant || requiredVariant === 'default')
+
+  return hideLabelRequiredDecoration
+    ? undefined
+    : (showAsterisk && 'asterisk') || (showOptional && 'optional') || undefined
 }
 
 const FieldWrapper = <
@@ -224,13 +238,11 @@ const FieldWrapper = <
     childProps.enableReset = enableReset
   }
 
-  const showAsterisk = required && formConfig.requiredVariant === 'asterisk'
-  const showOptional =
-    !required &&
-    (!formConfig.requiredVariant || formConfig.requiredVariant === 'default')
-  const requiredDecoration = hideLabelRequiredDecoration
-    ? undefined
-    : (showAsterisk && 'asterisk') || (showOptional && 'optional') || undefined
+  const requiredDecoration = getRequiredDecoration(
+    hideLabelRequiredDecoration,
+    required,
+    formConfig.requiredVariant
+  )
 
   return (
     <PicassoForm.Field error={error} hint={hint} data-testid={dataTestId}>
