@@ -1,30 +1,52 @@
 import React from 'react'
 
-const useDeprecationWarning = (oldName: string, newName?: string) => {
+interface UseDeprecationWarningArgs {
+  description?: string
+  name: string
+  newName?: string
+}
+
+const useDeprecationWarning = ({
+  description,
+  name,
+  newName
+}: UseDeprecationWarningArgs) => {
   const message = `
-      '${oldName}' component is deprecated and will be removed in the next major release of Picasso.
+      '${name}' component is deprecated and will be removed in the next major release of Picasso.
       ${newName ? ` Please use '${newName}' instead.` : ''}
+      ${description ? `\n${description}` : ''}
     `.trim()
 
   React.useEffect(() => {
-    window.console.warn(message)
+    console.warn(message)
   }, [message])
 }
 
-const usePropDeprecationWarning = <P>(
-  props: P,
-  oldName: string,
+interface UsePropDeprecationWarningArgs<P> {
+  props: P
+  componentName: string
+  description?: string
+  name: string
   newName?: string
-) => {
+}
+
+const usePropDeprecationWarning = <P>({
+  props,
+  componentName,
+  description,
+  name,
+  newName
+}: UsePropDeprecationWarningArgs<P>) => {
   const message = `
-    Prop '${oldName}' is deprecated and will be removed in the next major release of Picasso.
-    ${newName ? ` Please use '${newName}' instead.` : ''}
+    ${componentName}'s '${name}' prop is deprecated and will be removed in the next major release of Picasso.
+    ${newName ? `\nPlease use '${newName}' instead.` : ''}
+    ${description ? `\n${description}` : ''}
   `.trim()
-  const isDeprecatedPropUsed = oldName in props
+  const isDeprecatedPropUsed = name in props
 
   React.useEffect(() => {
     if (isDeprecatedPropUsed) {
-      window.console.warn(message)
+      console.warn(message)
     }
   }, [isDeprecatedPropUsed, message])
 }

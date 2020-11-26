@@ -380,7 +380,12 @@ export const Select = documentable(
       props: Props<T, M>,
       ref: React.Ref<HTMLInputElement> | null
     ) => {
-      usePropDeprecationWarning(props, 'onSearchChange')
+      usePropDeprecationWarning({
+        props,
+        name: 'onSearchChange',
+        componentName: 'Select',
+        description: 'Use Autocomplete component to control the search.'
+      })
 
       const {
         className,
