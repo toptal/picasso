@@ -1,5 +1,3 @@
-/* eslint-disable complexity */
-
 import React, { ReactElement, useContext } from 'react'
 import { Typography, Container } from '@toptal/picasso'
 import { makeStyles } from '@material-ui/core'
@@ -22,9 +20,15 @@ const useColumnStyle = () => {
   const context = useContext(DetailedListContext)
 
   const size = context ? context.size : 1
-  const columnCount = size * 2
+  const labelWidth = context?.labelColumnWidth ?? 50
 
-  return { maxWidth: `${100 / columnCount}%` }
+  return {
+    columnStyle: { width: `${100 / size}%` },
+    valueStyle: { width: `${100 - labelWidth}%` },
+    labelStyle: (hasOverflow = false) => ({
+      width: hasOverflow ? `${labelWidth / size}%` : `${labelWidth}%`
+    })
+  }
 }
 
 const useShouldStripeCell = () => {
@@ -34,6 +38,11 @@ const useShouldStripeCell = () => {
 
   return (rowIndex: number) => striped && rowIndex % 2 !== 0
 }
+
+const shouldOverflowCell = (
+  cellsCount: number,
+  allowLastCellOverflow = false
+) => (rowIndex: number) => allowLastCellOverflow && rowIndex + 1 === cellsCount
 
 const renderLabel = (child: ReactElement<DetailedListItemProps>) =>
   typeof child.props.label === 'string' ? (
@@ -58,48 +67,50 @@ export const DetailedListColumn = ({
   allowLastCellOverflow
 }: Props) => {
   const classes = useStyles()
-  const columnStyle = useColumnStyle()
+  const { columnStyle, valueStyle, labelStyle } = useColumnStyle()
   const shouldStripeCell = useShouldStripeCell()
 
   const cellsCount = React.Children.count(children)
+  const shouldOverflow = shouldOverflowCell(cellsCount, allowLastCellOverflow)
 
-  const renderLabelsColumn = () => (
-    <Container flex inline direction='column' style={columnStyle}>
-      {React.Children.map(children, (child, index) => (
-        <Container
-          key={index}
-          className={cx(classes.cell, {
-            [classes.cellStriped]: shouldStripeCell(index)
-          })}
-        >
-          {renderLabel(child)}
-        </Container>
-      ))}
+  const renderLabelColumn = (child: ReactElement, index: number) => (
+    <Container
+      style={labelStyle(shouldOverflow(index))}
+      className={cx(classes.cell, {
+        [classes.cellStriped]: shouldStripeCell(index)
+      })}
+    >
+      {renderLabel(child)}
     </Container>
   )
 
-  const renderValuesColumn = () => (
-    <Container flex inline direction='column' style={columnStyle}>
-      {React.Children.map(children, (child, index) => (
-        <Container
-          key={index}
-          className={cx(classes.cell, {
-            [classes.cellStriped]: shouldStripeCell(index),
-            [classes.cellOverflow]:
-              index === cellsCount - 1 && allowLastCellOverflow
-          })}
-        >
-          {renderValue(child)}
-        </Container>
-      ))}
+  const renderValueColumn = (child: ReactElement, index: number) => (
+    <Container
+      style={valueStyle}
+      className={cx(classes.cell, {
+        [classes.cellStriped]: shouldStripeCell(index),
+        [classes.cellOverflow]: shouldOverflow(index)
+      })}
+    >
+      {renderValue(child)}
     </Container>
   )
 
   return (
-    <>
-      {renderLabelsColumn()}
-      {renderValuesColumn()}
-    </>
+    <Container flex direction='column' style={columnStyle}>
+      {React.Children.map(children, (child, index) => (
+        <Container
+          key={index}
+          flex
+          className={cx({
+            [classes.rowOverflow]: shouldOverflow(index)
+          })}
+        >
+          {renderLabelColumn(child, index)}
+          {renderValueColumn(child, index)}
+        </Container>
+      ))}
+    </Container>
   )
 }
 

@@ -22,6 +22,8 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
     | ReactElement<DetailedListColumnProps>[]
   /** Set a stripe background */
   striped?: boolean
+  /** Width of the label column in percent (%) */
+  labelColumnWidth?: number
 }
 
 const useStyles = makeStyles(styles, { name: 'PicassoDetailedList' })
@@ -49,7 +51,10 @@ const useChildrenToColumns = (
 }
 
 export const DetailedList = forwardRef<HTMLDivElement, Props>(
-  function DetailedList({ className, children, striped, ...rest }, ref) {
+  function DetailedList(
+    { className, children, striped, labelColumnWidth, ...rest },
+    ref
+  ) {
     const classes = useStyles()
 
     const columns = useChildrenToColumns(children)
@@ -67,14 +72,18 @@ export const DetailedList = forwardRef<HTMLDivElement, Props>(
         // The last cell of the first column should take the full width
         // if there is no same-index cell in the next column
         const allowLastCellOverflow =
-          isFirstColumn && columnSize > nextColumnSize
+          isFirstColumn && nextColumn && columnSize > nextColumnSize
 
         return React.cloneElement(column, { allowLastCellOverflow })
       })
 
     return (
       <DetailedListContext.Provider
-        value={{ size: React.Children.count(columns), striped }}
+        value={{
+          size: React.Children.count(columns),
+          striped,
+          labelColumnWidth
+        }}
       >
         <Container
           // eslint-disable-next-line react/jsx-props-no-spreading
