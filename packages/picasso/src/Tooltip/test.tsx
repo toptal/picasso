@@ -28,10 +28,12 @@ describe('Tooltip', () => {
   describe('on touch screens', () => {
     beforeEach(() => {
       mockedIsPointerDevice.mockReturnValue(false)
+      jest.useFakeTimers()
     })
 
     afterEach(() => {
       mockedIsPointerDevice.mockClear()
+      jest.useRealTimers()
     })
 
     test('opens tooltip on touch', async () => {
@@ -51,8 +53,6 @@ describe('Tooltip', () => {
     })
 
     test('closes tooltip on second touch', async () => {
-      jest.useFakeTimers()
-
       const { getByText, queryByText, unmount } = render(
         <Tooltip content='Hello'>
           <Button>Tap me</Button>
@@ -71,8 +71,6 @@ describe('Tooltip', () => {
       })
 
       expect(queryByText('Hello')).not.toBeInTheDocument()
-
-      jest.useRealTimers()
 
       unmount()
     })
@@ -178,7 +176,7 @@ describe('Tooltip', () => {
       unmount()
     })
 
-    test('closes uncontrolled tooltip on inside click', async () => {
+    test('closes uncontrolled tooltip on button click', async () => {
       const { getByText, queryByText, unmount } = render(
         <Tooltip content='Hello'>
           <Button>Hover me</Button>
