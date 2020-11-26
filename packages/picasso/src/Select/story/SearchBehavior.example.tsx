@@ -3,7 +3,7 @@ import { Select, Form, Container, NumberInput } from '@toptal/picasso'
 
 const SelectSearchBehaviourExample = () => {
   const [value, setValue] = useState<string>()
-  const [treshold, setTreshold] = useState(4)
+  const [threshold, setTreshold] = useState(4)
 
   const handleChange = (
     event: ChangeEvent<{
@@ -30,14 +30,14 @@ const SelectSearchBehaviourExample = () => {
             options={OPTIONS}
             placeholder='Choose an option...'
             width='auto'
-            searchThreshold={treshold}
+            searchThreshold={threshold}
           />
         </Form.Field>
       </Container>
       <Container>
         <Form.Field>
-          <Form.Label>Search treshold</Form.Label>
-          <NumberInput value={treshold} onChange={handleTresholdChange} />
+          <Form.Label>Search threshold</Form.Label>
+          <NumberInput value={threshold} onChange={handleTresholdChange} />
         </Form.Field>
       </Container>
     </Container>

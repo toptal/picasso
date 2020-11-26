@@ -108,6 +108,7 @@ interface UseSelectOutput {
 }
 
 // eslint-disable-next-line max-lines-per-function
+// eslint-disable-next-line max-statements
 const useSelect = ({
   selectRef,
   popperRef,
@@ -185,23 +186,67 @@ const useSelect = ({
     popperRef.current.popper.contains(event.relatedTarget as Node)
 
   const handleSelectBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-    onBlur(event)
-
     if (!isRelatedTargetInsidePopper(event)) {
+      onBlur(event)
       close()
     }
   }
 
-  const handleSearchBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-    if (
-      isRelatedTargetInsidePopper(event) &&
-      typeof selectRef === 'object' &&
-      selectRef?.current
-    ) {
+  const focusSelect = () => {
+    if (typeof selectRef === 'object' && selectRef?.current) {
       selectRef.current.focus()
+    }
+  }
+
+  const handleSearchBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+    if (isRelatedTargetInsidePopper(event)) {
+      focusSelect()
     } else {
       close()
     }
+  }
+
+  const handleEscapeKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    event.preventDefault()
+    close()
+  }
+
+  const handleEnterKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    event.preventDefault()
+
+    const item = options[highlightedIndex]
+
+    if (item == null) {
+      return
+    }
+
+    if (closeOnEnter) {
+      close()
+    }
+    handleSelect(event, item)
+  }
+
+  const handleArrowsKeyDown = (
+    key: string,
+    event: KeyboardEvent<HTMLInputElement>
+  ) => {
+    event.preventDefault()
+
+    if (isOpen) {
+      setHighlightedIndex(
+        getNextWrappingIndex(
+          key === 'ArrowDown' ? 1 : -1,
+          highlightedIndex,
+          options.length
+        )
+      )
+    } else {
+      setOpen(true)
+    }
+  }
+
+  const handleTabKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    event.currentTarget.blur()
   }
 
   // eslint-disable-next-line max-lines-per-function
@@ -210,51 +255,23 @@ const useSelect = ({
     const key = normalizeArrowKey(event)
 
     if (key === 'Tab') {
-      event.currentTarget.blur()
-    }
-
-    if (key === 'ArrowUp' || key === 'ArrowDown') {
       event.preventDefault()
-
-      if (isOpen) {
-        setHighlightedIndex(
-          getNextWrappingIndex(
-            key === 'ArrowDown' ? 1 : -1,
-            highlightedIndex,
-            options.length
-          )
-        )
-      } else {
-        setOpen(true)
-      }
-    }
-
-    if (key === 'Enter') {
-      event.preventDefault()
-
-      const item = options[highlightedIndex]
-
-      if (item == null) {
-        return
-      }
-
-      if (closeOnEnter) {
-        close()
-      }
-      handleSelect(event, item)
-    }
-
-    if (key === 'Escape') {
-      event.preventDefault()
-
-      close()
+      focusSelect()
+    } else if (key === 'ArrowUp' || key === 'ArrowDown') {
+      handleArrowsKeyDown(key, event)
+    } else if (key === 'Enter') {
+      handleEnterKeyDown(event)
+    } else if (key === 'Escape') {
+      handleEscapeKeyDown(event)
     }
 
     onKeyDown(event, value)
   }
 
+  // eslint-disable-next-line complexity
   const handleSelectKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-    const isValidInputValue = Boolean(event.key.match(/^[A-z\d]$/))
+    const isValidInputValue =
+      Boolean(event.key.match(/^[A-z\d]$/)) || event.key === 'Backspace'
 
     if (
       isValidInputValue &&
@@ -264,7 +281,19 @@ const useSelect = ({
       searchInputRef.current.focus()
     }
 
-    handleSearchKeyDown(event)
+    const key = normalizeArrowKey(event)
+
+    if (key === 'Tab') {
+      handleTabKeyDown(event)
+    } else if (key === 'ArrowUp' || key === 'ArrowDown') {
+      handleArrowsKeyDown(key, event)
+    } else if (key === 'Enter') {
+      handleEnterKeyDown(event)
+    } else if (key === 'Escape') {
+      handleEscapeKeyDown(event)
+    }
+
+    onKeyDown(event, value)
   }
 
   const handleResetClick = (event: React.MouseEvent<HTMLInputElement>) => {

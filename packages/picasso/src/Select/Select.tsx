@@ -679,6 +679,7 @@ export const Select = documentable(
             startAdornment={<Search16 className={classes.searchInputIcon} />}
             placeholder={searchPlaceholder}
             size={size}
+            value={filterOptionsValue}
             /* eslint-disable-next-line react/jsx-props-no-spreading */
             {...getSearchInputProps()}
           />
