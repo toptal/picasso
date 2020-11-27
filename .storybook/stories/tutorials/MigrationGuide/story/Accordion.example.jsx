@@ -1,45 +1,63 @@
 import React from 'react'
-import { Accordion, Container, Typography, Table } from '@toptal/picasso'
+import { Container, Typography } from '@toptal/picasso'
+import { List } from '@toptal/picasso-lab'
 
-const Example = () => {
-  return (
-    <div style={{ width: '430px' }}>
-      <Typography variant='heading'>API changes</Typography>
-      <Container top='small' bottom='small'>
-        <Table bordered>
-          <Table.Head>
-            <Table.Row>
-              <Table.Cell>Component</Table.Cell>
-              <Table.Cell>Prop</Table.Cell>
-              <Table.Cell>Change description</Table.Cell>
-            </Table.Row>
-          </Table.Head>
-          <Table.Body>
-            <Table.Row>
-              <Table.Cell>Accordion.Group</Table.Cell>
-              <Table.Cell>bordered</Table.Cell>
-              <Table.Cell>New addition</Table.Cell>
-            </Table.Row>
-          </Table.Body>
-        </Table>
-      </Container>
+const Codemod = ({ children }) => (
+  <strong
+    style={{
+      // display: 'block',
+      backgroundColor: 'rgb(236, 236, 236, 0.5)',
+      borderRadius: '0.4em',
+      padding: '0.3em 0.7em',
+      // marginBottom: '0.3em',
+      fontWeight: 600
+    }}
+  >
+    {children}
+  </strong>
+)
 
-      <Typography variant='heading'>Visual changes</Typography>
-      <Container top='small'>
-        <Accordion content={<DetailsDogDefinitionPanel />}>
-          <Accordion.Summary> What is a dog?</Accordion.Summary>
-        </Accordion>
-      </Container>
-    </div>
-  )
-}
+const MigrationDoc = ({ changes, componentName, codemods }) => (
+  <div>
+    <Container bottom='small'>
+      <Typography variant='heading'>{componentName}</Typography>
+    </Container>
+    <List variant='unordered'>
+      {changes.map(change => (
+        <List.Item>{change}</List.Item>
+      ))}
+    </List>
 
-const DetailsDogDefinitionPanel = () => (
-  <Accordion.Details>
-    A dog is a type of domesticated animal. Known for its loyalty and
-    faithfulness, it can be found as a welcome guest in many households across
-    the world.
-  </Accordion.Details>
+    {codemods && (
+      <>
+        <Container top='small' bottom='xsmall'>
+          <Typography>Codemods</Typography>
+        </Container>
+        <List variant='unordered'>
+          {codemods.map(codemod => (
+            <List.Item>
+              <Codemod>{codemod}</Codemod>
+            </List.Item>
+          ))}
+        </List>
+      </>
+    )}
+  </div>
+)
+
+const Example = () => (
+  <MigrationDoc
+    componentName='Subheader'
+    changes={[
+      'Height reduced to 54px',
+      'Changed color of the divider',
+      'Renamed to PageHead'
+    ]}
+    codemods={[
+      'toptal/picasso/codemods/accordion',
+      'toptal/picasso/codemods/accordion2'
+    ]}
+  />
 )
 
 export default Example

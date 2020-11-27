@@ -8,13 +8,6 @@ const migrationGuidePage = PicassoBook.section('Tutorials').createPage(
 
 const chapter = migrationGuidePage.createChapter()
 
-chapter
-  .addTextSection(
-    `No breaking changes, small styling changes. The component uses borders more heavily and its API was expanded to allow  control over them.`,
-    {
-      title: 'Accordion'
-    }
-  )
-  .addExample('tutorials/MigrationGuide/story/Accordion.example.jsx', {
-    id: 'accordion'
-  }) // picasso-skip-visuals
+chapter.addExample('tutorials/MigrationGuide/story/Accordion.example.jsx', {
+  title: 'Accordion'
+}) // picasso-skip-visuals
