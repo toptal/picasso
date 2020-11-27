@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.114.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.113.1...@toptal/picasso@4.114.0) (2020-11-26)
+
+
+### Features
+
+* **icon:** new icon scheduledPayment ([#1725](https://github.com/toptal/picasso/issues/1725)) ([9b1e461](https://github.com/toptal/picasso/commit/9b1e461036dcec851d6daf3910d0e3ef473f0b1c))
+
+
+
+
+
+## [4.113.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.113.0...@toptal/picasso@4.113.1) (2020-11-20)
+
+
+### Bug Fixes
+
+* **Select:** use white background for input ([#1697](https://github.com/toptal/picasso/issues/1697)) ([12627ad](https://github.com/toptal/picasso/commit/12627adaf2f807a241b31da03fcf219569bbffea))
+
+
+
+
+
 # [4.113.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.112.1...@toptal/picasso@4.113.0) (2020-11-17)
 
 
