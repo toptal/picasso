@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 
 export interface Props {
   /** Item label */
@@ -7,7 +7,7 @@ export interface Props {
   children: ReactNode
 }
 
-export const DetailedListItem = ({ children }: Props) => children
+export const DetailedListItem = ({ children }: Props) => <>{children}</>
 
 DetailedListItem.defaultProps = {}
 DetailedListItem.displayName = 'DetailedListItem'

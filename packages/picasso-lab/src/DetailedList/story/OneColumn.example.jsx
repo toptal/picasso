@@ -5,7 +5,7 @@ import { DetailedList } from '@toptal/picasso-lab'
 const Example = () => {
   return (
     <Container>
-      <DetailedList>
+      <DetailedList striped labelColumnWidth={25}>
         <DetailedList.Column>
           <DetailedList.Item label='Profile Type'>
             Product Manager
@@ -44,6 +44,14 @@ const Example = () => {
           </DetailedList.Item>
           <DetailedList.Item label='Allocated hours'>
             40 hours/week
+          </DetailedList.Item>
+          <DetailedList.Item label='Additional Information'>
+            <Typography size='medium' weight='semibold'>
+              Quisque lectus purus, blandit eget massa non, viverra accumsan
+              turpis. Mauris lorem nec ex convallis sodales. Nulla ultricies
+              massa non lacus sodales tempor. Consectetur venenatis erat, nec
+              eleifend enim ullamcorper vitae.
+            </Typography>
           </DetailedList.Item>
         </DetailedList.Column>
       </DetailedList>
