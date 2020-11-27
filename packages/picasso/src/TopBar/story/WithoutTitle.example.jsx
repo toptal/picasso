@@ -3,7 +3,7 @@ import { Page } from '@toptal/picasso'
 
 const Example = () => (
   <div style={{ height: '4.5rem' }}>
-    <Page.Header title='Onboarding' />
+    <Page.TopBar />
   </div>
 )
 

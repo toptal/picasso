@@ -4,7 +4,7 @@ import { Page, Container, Stepper, Button } from '@toptal/picasso'
 const Example = () => (
   <div>
     <Container style={{ position: 'relative', height: '6rem' }}>
-      <Page.Header
+      <Page.TopBar
         variant='light'
         title='Light'
         actionItems={
@@ -18,7 +18,7 @@ const Example = () => (
     </Container>
 
     <Container style={{ position: 'relative', height: '6rem' }}>
-      <Page.Header
+      <Page.TopBar
         variant='dark'
         title='Dark'
         actionItems={

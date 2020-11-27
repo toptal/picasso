@@ -20,7 +20,7 @@ const renderOption = ({ text }: Item) => (
 
 const Example = () => (
   <div style={{ height: '4.5rem' }}>
-    <Page.Header
+    <Page.TopBar
       title='Light variant'
       variant='light'
       leftContent={

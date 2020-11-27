@@ -10,7 +10,7 @@ const chapter = PicassoBook.connectToPage(page =>
   page
     .createChapter(
       'Page.Autocomplete',
-      'Autocomplete to be used in Page.Header'
+      'Autocomplete to be used in Page.TopBar'
     )
     .addExample(
       'PageAutocomplete/story/Default.example.tsx',
