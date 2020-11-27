@@ -9,8 +9,9 @@ export default ({ palette }: Theme) =>
       backgroundColor: palette.grey.lighter
     },
     cellOverflow: {
-      position: 'absolute',
-      maxWidth: 'calc(75% - 1.5rem)',
-      bottom: 0
+      flexGrow: 1
+    },
+    rowOverflow: {
+      width: '200%'
     }
   })
