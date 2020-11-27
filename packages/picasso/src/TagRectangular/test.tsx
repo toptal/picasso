@@ -35,18 +35,6 @@ afterEach(() => {
 })
 
 describe('TagRectangular', () => {
-  it('renders rectangular Tag', () => {
-    const { container } = renderTag('Reactangular Tag', {})
-
-    expect(container).toMatchSnapshot()
-  })
-
-  it('renders rectangular Tag with indicator', () => {
-    const { container } = renderTag('Reactangular Tag', { indicator: 'blue' })
-
-    expect(container).toMatchSnapshot()
-  })
-
   describe('when "indicator" and "color" (not equal to "light-grey") properties are provided at the same time', () => {
     it('throws an error', () => {
       const ERROR_MESSAGE =

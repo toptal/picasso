@@ -5,23 +5,20 @@ export default ({ palette }: Theme) =>
     root: {
       fontSize: '1rem',
       borderRadius: '0.25rem',
-      height: '1rem'
+      height: '1rem',
+      border: '0'
     },
     red: {
-      backgroundColor: palette.red.main,
-      borderColor: palette.red.main
+      backgroundColor: palette.red.main
     },
     yellow: {
-      backgroundColor: palette.yellow.main,
-      borderColor: palette.yellow.main
+      backgroundColor: palette.yellow.main
     },
     'dark-grey': {
-      backgroundColor: palette.grey.darker,
-      borderColor: palette.grey.darker
+      backgroundColor: palette.grey.darker
     },
     'light-grey': {
-      backgroundColor: palette.grey.lighter2,
-      borderColor: palette.grey.lighter2
+      backgroundColor: palette.grey.lighter2
     },
     label: {
       padding: '0.125em 0.25em 0 0.25em'

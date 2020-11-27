@@ -1,9 +1,4 @@
-import React, {
-  forwardRef,
-  ElementType,
-  HTMLAttributes,
-  AnchorHTMLAttributes
-} from 'react'
+import React, { forwardRef, HTMLAttributes, AnchorHTMLAttributes } from 'react'
 import { withStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { BaseProps, TextLabelProps, useTitleCase } from '@toptal/picasso-shared'
@@ -19,8 +14,6 @@ export type DivOrAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> &
   HTMLAttributes<HTMLDivElement>
 
 export interface Props extends BaseProps, TextLabelProps, DivOrAnchorProps {
-  /** The component used for the root node. Either a string to use, a DOM element or a component. */
-  as?: ElementType
   /** Color of the rectangular `Tag`, can not be used with the `indicator` property at the same time. */
   color?: ColorType
   /** Indicator color, can not be used with the `color` property at the same time. The Tag's `color` property is automatically set to `light-grey` when indicator color is set. */
@@ -37,12 +30,11 @@ export const TagRectangular = forwardRef<HTMLDivElement, Props>(
       children,
       style,
       className,
-      as,
       titleCase: propsTitleCase,
+      color,
+      indicator,
       ...rest
     } = props
-
-    const { color, indicator, ...htmlAttributes } = rest
 
     if (indicator && color !== 'light-grey') {
       throw new Error(
@@ -56,7 +48,7 @@ export const TagRectangular = forwardRef<HTMLDivElement, Props>(
     return (
       <Chip
         // eslint-disable-next-line react/jsx-props-no-spreading
-        {...htmlAttributes}
+        {...rest}
         ref={ref}
         classes={{
           root: cx(classes.root, classes[color!]),
@@ -75,7 +67,6 @@ export const TagRectangular = forwardRef<HTMLDivElement, Props>(
             {titleCase ? toTitleCase(children) : children}
           </span>
         }
-        component={as!}
       />
     )
   }
