@@ -12,8 +12,8 @@ const useStyles = makeStyles(styles, { name: 'PicassoDetailedListColumn' })
 export interface Props {
   /** List of items */
   children: ReactElement<DetailedListItemProps>[]
-  /** Allows last cell to overflow horizontally */
-  allowLastCellOverflow?: boolean
+  /** Specify if the last cell should overflow horizontally */
+  hasLastCellOverflowed?: boolean
 }
 
 const useColumnStyle = () => {
@@ -41,8 +41,8 @@ const useShouldStripeCell = () => {
 
 const shouldOverflowCell = (
   cellsCount: number,
-  allowLastCellOverflow = false
-) => (rowIndex: number) => allowLastCellOverflow && rowIndex + 1 === cellsCount
+  hasLastCellOverflowed = false
+) => (rowIndex: number) => hasLastCellOverflowed && rowIndex + 1 === cellsCount
 
 const renderLabel = (child: ReactElement<DetailedListItemProps>) =>
   typeof child.props.label === 'string' ? (
@@ -64,14 +64,14 @@ const renderValue = (child: ReactElement<DetailedListItemProps>) =>
 
 export const DetailedListColumn = ({
   children,
-  allowLastCellOverflow
+  hasLastCellOverflowed
 }: Props) => {
   const classes = useStyles()
   const { columnStyle, valueStyle, labelStyle } = useColumnStyle()
   const shouldStripeCell = useShouldStripeCell()
 
   const cellsCount = React.Children.count(children)
-  const shouldOverflow = shouldOverflowCell(cellsCount, allowLastCellOverflow)
+  const shouldOverflow = shouldOverflowCell(cellsCount, hasLastCellOverflowed)
 
   const renderLabelColumn = (child: ReactElement, index: number) => (
     <Container

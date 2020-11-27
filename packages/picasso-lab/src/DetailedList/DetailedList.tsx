@@ -15,8 +15,6 @@ import DetailedListColumn, {
 import styles from './styles'
 import { DetailedListContext } from './DetailedListContext'
 
-type WidthType = 'full' | 'auto'
-
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** List of columns */
   children:
@@ -26,8 +24,8 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   striped?: boolean
   /** Width of the label column in percent (%) */
   labelColumnWidth?: number
-  /** Configure last option width */
-  width?: WidthType
+  /** Allows last cell to overflow horizontally */
+  allowLastCellOverflow?: boolean
 }
 
 const useStyles = makeStyles(styles, { name: 'PicassoDetailedList' })
@@ -56,7 +54,14 @@ const useChildrenToColumns = (
 
 export const DetailedList = forwardRef<HTMLDivElement, Props>(
   function DetailedList(
-    { className, children, striped, width, labelColumnWidth, ...rest },
+    {
+      className,
+      children,
+      striped,
+      allowLastCellOverflow,
+      labelColumnWidth,
+      ...rest
+    },
     ref
   ) {
     const classes = useStyles()
@@ -75,13 +80,13 @@ export const DetailedList = forwardRef<HTMLDivElement, Props>(
 
         // The last cell of the first column should take the full width
         // if there is no same-index cell in the next column
-        const allowLastCellOverflow =
-          width === 'full' &&
+        const hasLastCellOverflowed =
+          allowLastCellOverflow &&
           isFirstColumn &&
           nextColumn &&
           columnSize > nextColumnSize
 
-        return React.cloneElement(column, { allowLastCellOverflow })
+        return React.cloneElement(column, { hasLastCellOverflowed })
       })
 
     return (
@@ -107,7 +112,7 @@ export const DetailedList = forwardRef<HTMLDivElement, Props>(
 ) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
 
 DetailedList.defaultProps = {
-  width: 'full'
+  allowLastCellOverflow: false
 }
 DetailedList.displayName = 'DetailedList'
 
