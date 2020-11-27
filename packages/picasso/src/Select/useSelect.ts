@@ -92,6 +92,7 @@ interface Props {
   ) => void
   onBlur?: FocusEventType
   onFocus?: FocusEventType
+  showSearch: boolean
 }
 
 type GetSelectInputProps = () => Partial<HTMLAttributes<HTMLInputElement>>
@@ -124,6 +125,7 @@ const useSelect = ({
   options = [],
   selectedIndexes = [],
   disabled = false,
+  showSearch,
   onChange = () => {},
   onKeyDown = () => {},
   onSelect = () => {},
@@ -275,7 +277,7 @@ const useSelect = ({
 
     const key = normalizeArrowKey(event)
 
-    if (key === 'Tab' && isOpen) {
+    if (key === 'Tab' && isOpen && showSearch) {
       event.preventDefault()
       focusRef(searchInputRef)
     } else if (key === 'ArrowUp' || key === 'ArrowDown') {

@@ -35,12 +35,10 @@ export default ({ palette }: Theme) =>
       outline: 0
     },
     input: {
-      cursor: 'pointer',
-      paddingRight: '1.625rem'
+      cursor: 'pointer'
     },
     outlinedInput: {
-      zIndex: 1,
-      paddingRight: 'calc(0.625rem + 1rem)',
+      paddingRight: '1.625rem',
       cursor: 'pointer'
     },
     searchOutlinedInput: {

@@ -581,6 +581,7 @@ export const Select = documentable(
         selectedIndexes,
         disabled,
         closeOnEnter: !multiple,
+        showSearch,
         onSelect: handleSelect,
         onChange: handleChange,
         onBlur: handleBlur,
