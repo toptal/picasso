@@ -1,3 +1,5 @@
 import { createContext } from 'react'
 
-export default createContext<string | undefined>(undefined)
+export type ButtonGroupOrder = 'first' | 'middle' | 'last' | 'single'
+
+export default createContext<ButtonGroupOrder | undefined>(undefined)

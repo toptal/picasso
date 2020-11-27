@@ -1,9 +1,4 @@
-import React, {
-  ReactNode,
-  ButtonHTMLAttributes,
-  forwardRef,
-  useContext
-} from 'react'
+import React, { ButtonHTMLAttributes, forwardRef, useContext } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { StandardProps } from '@toptal/picasso-shared'
@@ -13,10 +8,7 @@ import styles from './styles'
 
 export interface Props
   extends StandardProps,
-    ButtonHTMLAttributes<HTMLButtonElement> {
-  /** List of `Button` components which you want to render as `ButtonGroupItem` */
-  children: ReactNode
-}
+    ButtonHTMLAttributes<HTMLButtonElement> {}
 
 export const ButtonGroupItem = forwardRef<HTMLButtonElement, Props>(
   function ButtonGroupItem({ classes, className, ...rest }, ref) {
@@ -38,9 +30,9 @@ export const ButtonGroupItem = forwardRef<HTMLButtonElement, Props>(
         className={cx(
           rootClassName,
           {
-            [classes.first]: order === 'first',
-            [classes.middle]: !order,
-            [classes.last]: order === 'last'
+            [classes.first]: order === 'first' || order === 'single',
+            [classes.middle]: !order || order === 'middle',
+            [classes.last]: order === 'last' || order === 'single'
           },
           className
         )}
