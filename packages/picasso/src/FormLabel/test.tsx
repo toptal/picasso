@@ -5,13 +5,12 @@ import * as titleCaseModule from 'ap-style-title-case'
 
 import FormLabel, { Props } from './FormLabel'
 import Form from '../Form'
-import Input from '../Input'
 
 jest.mock('ap-style-title-case')
 
 const TestFormLabel: FunctionComponent<OmitInternalProps<Props>> = ({
   children,
-  required,
+  requiredDecoration,
   disabled,
   titleCase,
   htmlFor,
@@ -20,7 +19,7 @@ const TestFormLabel: FunctionComponent<OmitInternalProps<Props>> = ({
   <Form>
     <Form.Field>
       <FormLabel
-        required={required}
+        requiredDecoration={requiredDecoration}
         disabled={disabled}
         titleCase={titleCase}
         htmlFor={htmlFor}
@@ -28,7 +27,6 @@ const TestFormLabel: FunctionComponent<OmitInternalProps<Props>> = ({
       >
         {children}
       </FormLabel>
-      <Input />
     </Form.Field>
   </Form>
 )
@@ -44,10 +42,9 @@ afterEach(() => {
 
 describe('FormLabel', () => {
   test('default render', () => {
-    const { queryByText } = render(<TestFormLabel>Label</TestFormLabel>)
+    const { container } = render(<TestFormLabel>Label</TestFormLabel>)
 
-    expect(queryByText('Label')).toBeInTheDocument()
-    expect(queryByText('Label (optional)')).not.toBeInTheDocument()
+    expect(container).toMatchSnapshot()
   })
 
   test('disabled', () => {
@@ -56,28 +53,17 @@ describe('FormLabel', () => {
     expect(container).toMatchSnapshot()
   })
 
-  test('required', () => {
-    const { queryByText } = render(
-      <TestFormLabel required>Label</TestFormLabel>
-    )
-
-    expect(queryByText('Label')).toBeInTheDocument()
-    expect(queryByText('Label (optional)')).not.toBeInTheDocument()
-  })
-
-  test('optional is displayed', () => {
-    const { queryByText } = render(
-      <TestFormLabel required={false}>Label</TestFormLabel>
-    )
-
-    expect(queryByText('Label (optional)')).toBeInTheDocument()
-  })
-
-  test('required and disabled', () => {
+  test('required with (optional)', () => {
     const { container } = render(
-      <TestFormLabel required disabled>
-        Label
-      </TestFormLabel>
+      <TestFormLabel requiredDecoration='optional'>Label</TestFormLabel>
+    )
+
+    expect(container).toMatchSnapshot()
+  })
+
+  test('required with asterisk', () => {
+    const { container } = render(
+      <TestFormLabel requiredDecoration='asterisk'>Label</TestFormLabel>
     )
 
     expect(container).toMatchSnapshot()
