@@ -8,6 +8,6 @@ const migrationGuidePage = PicassoBook.section('Tutorials').createPage(
 
 const chapter = migrationGuidePage.createChapter()
 
-chapter.addExample('tutorials/MigrationGuide/story/Accordion.example.jsx', {
-  title: 'Accordion'
+chapter.addExample('tutorials/MigrationGuide/story/Subheader.example.jsx', {
+  title: 'Subheader'
 }) // picasso-skip-visuals

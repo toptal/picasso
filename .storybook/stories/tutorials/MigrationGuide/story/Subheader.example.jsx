@@ -54,8 +54,8 @@ const Example = () => (
       'Renamed to PageHead'
     ]}
     codemods={[
-      'toptal/picasso/codemods/accordion',
-      'toptal/picasso/codemods/accordion2'
+      'toptal/picasso/codemods/subheader1',
+      'toptal/picasso/codemods/subheader2'
     ]}
   />
 )
