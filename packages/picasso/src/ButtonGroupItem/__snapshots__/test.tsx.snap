@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonGroup render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="ButtonGroup-root"
+    >
+      <div
+        class=""
+      >
+        <button
+          aria-disabled="false"
+          class="ButtonGroupItem-root ButtonGroupItem-first MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+          role="button"
+          tabindex="0"
+        >
+          <span
+            class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+          />
+        </button>
+      </div>
+      <div
+        class=""
+      >
+        <button
+          aria-disabled="false"
+          class="ButtonGroupItem-root ButtonGroupItem-middle MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+          role="button"
+          tabindex="0"
+        >
+          <span
+            class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+          />
+        </button>
+      </div>
+      <div
+        class=""
+      >
+        <button
+          aria-disabled="false"
+          class="ButtonGroupItem-root ButtonGroupItem-last MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+          role="button"
+          tabindex="0"
+        >
+          <span
+            class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
