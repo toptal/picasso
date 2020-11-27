@@ -6,13 +6,6 @@ export default ({ palette, sizes }: Theme) =>
       height: '2.75em',
       padding: '0 1rem',
 
-      '&:hover': {
-        backgroundColor: 'initial'
-      },
-
-      '&:focus': {
-        backgroundColor: 'initial'
-      },
       '$nonCollapsibleMenu &': {
         paddingLeft: '2rem',
         marginRight: '0rem'
