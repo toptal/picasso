@@ -58,10 +58,10 @@ export interface Props
   value?: string | string[] | number
   /** Variant of colors */
   variant?: VariantType
-  /**
-   * Size of component
-   */
+  /** Size of component */
   size?: SizeType<'small' | 'medium'>
+  /** Disables changing colors on hover/focus */
+  nonSelectable?: boolean
 }
 
 const generateKey = (() => {
@@ -88,6 +88,7 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
     variant,
     size,
     titleCase: propsTitleCase,
+    nonSelectable,
     ...rest
   },
   ref
@@ -140,7 +141,9 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
         }),
         selected: classes.selected
       }}
-      className={cx(classes[variant!], className)}
+      className={cx(classes.root, classes[variant!], className, {
+        [classes.nonSelectable]: nonSelectable
+      })}
       disabled={disabled}
       disableGutters={disableGutters}
       onClick={handleClick}
@@ -184,7 +187,8 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
 MenuItem.defaultProps = {
   as: 'li',
   onClick: () => {},
-  variant: 'light'
+  variant: 'light',
+  nonSelectable: false
 }
 
 MenuItem.displayName = 'MenuItem'

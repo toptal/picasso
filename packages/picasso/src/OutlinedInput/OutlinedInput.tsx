@@ -54,7 +54,7 @@ export interface Props
   error?: boolean
   startAdornment?: ReactNode
   endAdornment?: ReactNode
-  onChange?: ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>
+  onChange?: ChangeEventHandler<HTMLInputElement>
   /**
    * Size of component
    * @default medium
