@@ -1,5 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`FormLabel default render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <form>
+      <div
+        class="FormField-root"
+      >
+        <label
+          class="FormLabel-root"
+        >
+          <span
+            class="FormLabel-text"
+          >
+            Label
+          </span>
+        </label>
+      </div>
+    </form>
+  </div>
+</div>
+`;
+
 exports[`FormLabel disabled 1`] = `
 <div>
   <div
@@ -18,37 +42,13 @@ exports[`FormLabel disabled 1`] = `
             Label
           </span>
         </label>
-        <div
-          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root PicassoInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
-        >
-          <input
-            autocomplete="none"
-            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
-            type="text"
-            value=""
-          />
-          <fieldset
-            aria-hidden="true"
-            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
-            style="padding-left: 8px;"
-          >
-            <legend
-              class="PrivateNotchedOutline-legend"
-              style="width: 0.01px;"
-            >
-              <span>
-                ​
-              </span>
-            </legend>
-          </fieldset>
-        </div>
       </div>
     </form>
   </div>
 </div>
 `;
 
-exports[`FormLabel required and disabled 1`] = `
+exports[`FormLabel required with (optional) 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -58,38 +58,44 @@ exports[`FormLabel required and disabled 1`] = `
         class="FormField-root"
       >
         <label
-          class="FormLabel-root FormLabel-disabled"
+          class="FormLabel-root"
         >
+          <span
+            class="FormLabel-text"
+          >
+            Label
+             (optional)
+          </span>
+        </label>
+      </div>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`FormLabel required with asterisk 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <form>
+      <div
+        class="FormField-root"
+      >
+        <label
+          class="FormLabel-root"
+        >
+          <span
+            class="FormLabel-asterisk"
+          >
+            *
+          </span>
           <span
             class="FormLabel-text"
           >
             Label
           </span>
         </label>
-        <div
-          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root PicassoInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
-        >
-          <input
-            autocomplete="none"
-            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
-            type="text"
-            value=""
-          />
-          <fieldset
-            aria-hidden="true"
-            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline OutlinedInput-notchedOutline"
-            style="padding-left: 8px;"
-          >
-            <legend
-              class="PrivateNotchedOutline-legend"
-              style="width: 0.01px;"
-            >
-              <span>
-                ​
-              </span>
-            </legend>
-          </fieldset>
-        </div>
       </div>
     </form>
   </div>

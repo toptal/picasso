@@ -1,4 +1,4 @@
-import { SET_STORIES, SELECT_STORY } from '@storybook/core-events'
+import { SET_STORIES } from '@storybook/core-events'
 import addons from '@storybook/addons'
 
 import { scheduleWork } from './index'
