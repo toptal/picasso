@@ -17,9 +17,9 @@ page
           enums: ['on', 'off']
         },
         description: `HTML Form autocomplete attribute.\n
-          The autocomplete attribute specifies whether a form should have autocomplete 'on' or 'off'.
-          When autocomplete is 'on', the browser automatically complete values based on values that the user has entered before.
-          Tip: It is possible to have autocomplete 'on' for the form, and 'off' for specific input fields, or vice versa.`
+The autocomplete attribute specifies whether a form should have autocomplete 'on' or 'off'.
+When autocomplete is 'on', the browser automatically complete values based on values that the user has entered before.\n
+Tip: It is possible to have autocomplete 'on' for the form, and 'off' for specific input fields, or vice versa.`
       },
       debug: {
         name: 'debug',
@@ -179,6 +179,11 @@ the results. The form-level results are represented by notifications.
     },
     'picasso-form'
   ) // picasso-skip-visuals
+  .addExample(
+    'Form/story/CustomFormLevelConfiguration.example.tsx',
+    'Form Level Configurations',
+    'picasso-form'
+  )
   .addExample(
     'Form/story/ValidateOnSubmit.example.tsx',
     {

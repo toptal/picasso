@@ -139,6 +139,68 @@ exports[`renders indeterminate state 1`] = `
 </div>
 `;
 
+exports[`renders with (optional) 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <span
+      class="Container-flex Container-inline PicassoCheckbox-checkboxWrapper"
+    >
+      <span
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiCheckbox-root PicassoCheckbox-root MuiCheckbox-colorSecondary MuiIconButton-colorSecondary"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <input
+            class="PrivateSwitchBase-input"
+            data-indeterminate="false"
+            type="checkbox"
+            value=""
+          />
+          <div
+            class="PicassoCheckbox-uncheckedIcon"
+          />
+        </span>
+      </span>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`renders with asterisk 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <span
+      class="Container-flex Container-inline PicassoCheckbox-checkboxWrapper"
+    >
+      <span
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiCheckbox-root PicassoCheckbox-root MuiCheckbox-colorSecondary MuiIconButton-colorSecondary"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <input
+            class="PrivateSwitchBase-input"
+            data-indeterminate="false"
+            type="checkbox"
+            value=""
+          />
+          <div
+            class="PicassoCheckbox-uncheckedIcon"
+          />
+        </span>
+      </span>
+    </span>
+  </div>
+</div>
+`;
+
 exports[`should render default checkbox with label 1`] = `
 <div>
   <div

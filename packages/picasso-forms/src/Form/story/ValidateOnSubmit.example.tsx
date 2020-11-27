@@ -44,7 +44,7 @@ const FormContent = () => {
   )
 }
 
-const ValidateOnSubmitExample = () => {
+const Example = () => {
   const handleSubmit = useCallback((values: FormType) => api.submit(values), [])
 
   return (
@@ -82,4 +82,4 @@ const api = {
   }
 }
 
-export default ValidateOnSubmitExample
+export default Example

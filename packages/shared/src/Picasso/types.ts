@@ -16,6 +16,7 @@ export interface BaseProps {
   className?: string
   /** Style applied to root element */
   style?: CSSProperties
+  'data-testid'?: string
 }
 
 export interface JssProps {
