@@ -1,6 +1,6 @@
 import { createStyles, Theme } from '@material-ui/core/styles'
 
-import { headerHeight } from '../PageHeader/styles'
+import { headerHeight } from '../TopBar/styles'
 
 export default ({ screens, layout }: Theme) =>
   createStyles({
