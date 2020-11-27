@@ -52,7 +52,7 @@ export default ({
 
     // Content
     content: {
-      color: text.primary,
+      color: common.black,
       overflowWrap: 'break-word',
       minWidth: 0
     },
