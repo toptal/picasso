@@ -3,7 +3,7 @@ import { Grid, Page, Typography } from '@toptal/picasso'
 
 const Example = () => (
   <Page>
-    <Page.Header title='Onboarding' />
+    <Page.TopBar title='Onboarding' />
     <Page.Content>
       <Grid justifyContent='center'>
         <Grid.Item small={8}>
