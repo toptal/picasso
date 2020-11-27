@@ -5,7 +5,7 @@ import {
   FieldMetaState,
   FieldRenderProps
 } from 'react-final-form'
-import { Form as PicassoForm } from '@toptal/picasso'
+import { Form as PicassoForm, RequiredDecoration } from '@toptal/picasso'
 import { Item } from '@toptal/picasso/Autocomplete'
 import { DateOrDateRangeType } from '@toptal/picasso-lab'
 
@@ -116,14 +116,23 @@ const getRequiredDecoration = (
   hideLabelRequiredDecoration?: boolean,
   required?: boolean,
   requiredVariant?: RequiredVariant
-) => {
+): RequiredDecoration | undefined => {
+  if (hideLabelRequiredDecoration) {
+    return
+  }
+
   const showAsterisk = required && requiredVariant === 'asterisk'
+
+  if (showAsterisk) {
+    return 'asterisk'
+  }
+
   const showOptional =
     !required && (!requiredVariant || requiredVariant === 'default')
 
-  return hideLabelRequiredDecoration
-    ? undefined
-    : (showAsterisk && 'asterisk') || (showOptional && 'optional') || undefined
+  if (showOptional) {
+    return 'optional'
+  }
 }
 
 const FieldWrapper = <

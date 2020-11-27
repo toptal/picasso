@@ -47,7 +47,7 @@ export const Checkbox = ({
   }
 
   const showAsterisk = required && formConfig.requiredVariant === 'asterisk'
-  const requiredDecoration = (showAsterisk && 'asterisk') || undefined
+  const requiredDecoration = showAsterisk ? 'asterisk' : undefined
 
   return (
     <FieldWrapper
