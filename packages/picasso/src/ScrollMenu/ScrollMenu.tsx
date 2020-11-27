@@ -2,7 +2,8 @@ import React, {
   useLayoutEffect,
   useRef,
   createRef,
-  FunctionComponent
+  FunctionComponent,
+  ReactNode
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import RootRef from '@material-ui/core/RootRef'
@@ -34,15 +35,12 @@ const getMoveDirection = (
     : Direction.UP
 }
 
-const preventDefault = (
-  event: React.MouseEvent<HTMLUListElement, MouseEvent>
-) => event.preventDefault()
-
 const ScrollMenu: FunctionComponent<Props> = ({
   selectedIndex,
   classes,
   children,
   style,
+  fixedHeader,
   ...rest
 }) => {
   const menuRef = useRef<HTMLDivElement | null>(null)
@@ -104,6 +102,7 @@ const ScrollMenu: FunctionComponent<Props> = ({
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
     >
+      {fixedHeader}
       <div ref={menuRef} className={classes.scrollView} onBlur={onBlur}>
         {renderChildren}
       </div>

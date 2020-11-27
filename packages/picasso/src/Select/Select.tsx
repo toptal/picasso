@@ -14,6 +14,8 @@ import NativeSelect from '@material-ui/core/NativeSelect'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
 import { BaseProps, SizeType } from '@toptal/picasso-shared'
+import { Search16 } from '@toptal/picasso/Icon'
+import PopperJs from 'popper.js'
 
 import OutlinedInput from '../OutlinedInput'
 import Popper from '../Popper'
@@ -22,7 +24,7 @@ import InputAdornment from '../InputAdornment'
 import MenuItem from '../MenuItem'
 import Loader from '../Loader'
 import { DropdownArrows16 } from '../Icon'
-import { isSubstring, disableUnsupportedProps } from '../utils'
+import { isSubstring, disableUnsupportedProps, useCombinedRefs } from '../utils'
 import { FeatureOptions } from '../utils/disable-unsupported-props'
 import { Option } from './types'
 import useSelect, { EMPTY_INPUT_VALUE, ItemProps } from './useSelect'
@@ -71,6 +73,8 @@ export interface Props<
   loading?: boolean
   /** Placeholder option which is selected by default */
   placeholder?: string
+  /** Placeholder for search input */
+  searchPlaceholder?: string
   /** Whether icon should be placed at the beginning or end of the `Input` */
   iconPosition?: IconPosition
   /** Specify icon which should be rendered inside Input */
@@ -130,18 +134,13 @@ type NativeOptionsProps = Pick<Props, 'options' | 'renderOption'> & {
 
 type OptionsProps = Pick<
   Props,
-  | 'options'
-  | 'value'
-  | 'multiple'
-  | 'renderOption'
-  | 'getDisplayValue'
-  | 'size'
-  | 'noOptionsText'
+  'options' | 'value' | 'multiple' | 'renderOption' | 'size' | 'noOptionsText'
 > & {
   highlightedIndex: number | null
-  inputValue: string
+  filterOptionsValue: string
   getItemProps: (index: number, option: Option) => ItemProps
   onItemSelect: (event: React.MouseEvent, option: Option) => void
+  fixedHeader?: ReactNode
 }
 
 const DEFAULT_EMPTY_ARRAY_VALUE: ValueType[] = []
@@ -316,12 +315,13 @@ const renderOptions = ({
   value,
   multiple,
   size,
-  inputValue,
-  noOptionsText
+  filterOptionsValue,
+  noOptionsText,
+  fixedHeader
 }: OptionsProps) => {
-  if (!options.length && inputValue) {
+  if (!options.length && filterOptionsValue) {
     return (
-      <ScrollMenu>
+      <ScrollMenu fixedHeader={fixedHeader}>
         <MenuItem titleCase={false} disabled>
           {noOptionsText}
         </MenuItem>
@@ -357,7 +357,7 @@ const renderOptions = ({
 
   return (
     <ScrollMenu
-      data-testid='select-dropdown'
+      fixedHeader={fixedHeader}
       onBlur={onBlur}
       selectedIndex={highlightedIndex}
     >
@@ -401,23 +401,20 @@ export const Select = documentable(
         searchThreshold,
         enableAutofill,
         autoComplete,
+        searchPlaceholder,
         ...rest
       } = purifyProps(props)
 
+      const selectRef = useCombinedRefs<HTMLInputElement>(
+        ref,
+        useRef<HTMLInputElement>(null)
+      )
+      const searchInputRef = useRef<HTMLInputElement>(null)
+      const popperRef = useRef<PopperJs>(null)
+      const inputWrapperRef = useRef<HTMLDivElement>(null)
+
       const classes = useStyles(props)
 
-      const emptySelectValue: string | string[] = multiple ? [] : ''
-
-      const fireOnChangeEvent = useCallback(
-        ({ event, value }: { event: any; value: ValueType | ValueType[] }) => {
-          event.persist()
-          event.target = { value, name }
-          onChange!(event)
-        },
-        [name, onChange]
-      )
-
-      const inputWrapperRef = useRef<HTMLDivElement>(null)
       const [selectedOptions, setSelectedOptions] = useState(
         allOptions.filter(option =>
           Array.isArray(value)
@@ -425,7 +422,7 @@ export const Select = documentable(
             : value === String(option.value)
         )
       )
-      const select = useMemo(
+      const selection = useMemo(
         () =>
           getSelection(
             removeDuplicatedOptions([...allOptions, ...selectedOptions]),
@@ -451,10 +448,23 @@ export const Select = documentable(
         () =>
           options.reduce(
             (selected: number[], option: Option, index: number) =>
-              select.isOptionSelected(option) ? [...selected, index] : selected,
+              selection.isOptionSelected(option)
+                ? [...selected, index]
+                : selected,
             []
           ),
-        [options, select]
+        [options, selection]
+      )
+
+      const emptySelectValue: string | string[] = multiple ? [] : ''
+
+      const fireOnChangeEvent = useCallback(
+        ({ event, value }: { event: any; value: ValueType | ValueType[] }) => {
+          event.persist()
+          event.target = { value, name }
+          onChange!(event)
+        },
+        [name, onChange]
       )
 
       const prevValue = useRef(value)
@@ -465,18 +475,18 @@ export const Select = documentable(
           value
         )
 
-        setInputValue(newSelect.display(getDisplayValue!))
+        setDisplayValue(newSelect.display(getDisplayValue!))
         setSelectedOptions(getSelectedOptions(allOptions, value))
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [value, allOptions, getDisplayValue])
 
-      const readOnlyInput = multiple || allOptions.length <= searchThreshold!
+      const showSearch = allOptions.length >= searchThreshold!
 
       const handleFocus = (
         event: React.FocusEvent<HTMLInputElement | HTMLDivElement>
       ) => {
-        if (!readOnlyInput && 'select' in event.target) {
+        if ('select' in event.target) {
           event.target.select()
         }
         setFilterOptionsValue(EMPTY_INPUT_VALUE)
@@ -484,19 +494,19 @@ export const Select = documentable(
 
       const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
         if (!multiple) {
-          const hasValue = inputValue !== EMPTY_INPUT_VALUE
+          const hasValue = displayValue !== EMPTY_INPUT_VALUE
           const isInputCleaned = !hasValue && !isEmpty(value)
 
           if (isInputCleaned) {
             fireOnChangeEvent({ event, value: EMPTY_INPUT_VALUE })
-            setInputValue(EMPTY_INPUT_VALUE)
+            setDisplayValue(EMPTY_INPUT_VALUE)
           } else {
             const select = getSelection(
               removeDuplicatedOptions([...allOptions, ...selectedOptions]),
               value
             )
 
-            setInputValue(select.display(getDisplayValue!))
+            setDisplayValue(select.display(getDisplayValue!))
           }
         }
 
@@ -505,7 +515,6 @@ export const Select = documentable(
       }
 
       const handleChange = (newValue: string) => {
-        setInputValue(newValue)
         onSearchChange!(newValue)
         setFilterOptionsValue(newValue)
       }
@@ -522,6 +531,7 @@ export const Select = documentable(
 
         return [...value, String(option.value)]
       }
+
       const handleSelect = useCallback(
         (event: React.SyntheticEvent, option: Option | null) => {
           let newValue: ValueType | ValueType[]
@@ -559,13 +569,18 @@ export const Select = documentable(
         highlightedIndex,
         isOpen,
         getItemProps,
-        getInputProps,
-        getRootProps
+        getSelectInputProps,
+        getSearchInputProps
       } = useSelect({
-        value: inputValue,
+        searchInputRef,
+        selectRef,
+        popperRef,
+        value: displayValue,
         options,
         selectedIndexes,
         disabled,
+        closeOnEnter: !multiple,
+        showSearch,
         onSelect: handleSelect,
         onChange: handleChange,
         onBlur: handleBlur,
@@ -578,7 +593,7 @@ export const Select = documentable(
         </InputAdornment>
       ) : null
 
-      const loadingComponent = (
+      const loadingAdornment = (
         <InputAdornment position='end'>
           <Loader size='small' />
         </InputAdornment>
@@ -594,7 +609,7 @@ export const Select = documentable(
 
       const startAdornment = iconPosition === 'start' && iconAdornment
       const endAdornment = loading
-        ? loadingComponent
+        ? loadingAdornment
         : iconPosition === 'end' && iconAdornment
 
       const nativeStartAdornment = startAdornment && (
@@ -604,11 +619,13 @@ export const Select = documentable(
         <div className={classes.nativeEndAdornment}>{endAdornment}</div>
       )
 
+      const selectInputProps = getSelectInputProps()
+
       const nativeSelectComponent = (
         <NativeSelect
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...rest}
-          ref={ref}
+          ref={selectRef}
           error={error}
           disabled={disabled}
           name={name}
@@ -623,9 +640,7 @@ export const Select = documentable(
               size={size}
               className={classes.nativeInput}
               // eslint-disable-next-line react/jsx-props-no-spreading
-              {...getInputProps({
-                canCloseOnEnter: !multiple
-              })}
+              {...selectInputProps}
             />
           }
           value={value}
@@ -633,7 +648,7 @@ export const Select = documentable(
           IconComponent={() => dropDownIcon}
           classes={{
             root: cx(classes.select, {
-              [classes.placeholder]: !select.isSelected()
+              [classes.placeholder]: !selection.isSelected()
             }),
             select: cx({
               [classes.nativeStartAdornmentPadding]: Boolean(
@@ -660,43 +675,36 @@ export const Select = documentable(
         <>
           <div
             /* eslint-disable-next-line react/jsx-props-no-spreading */
-            {...getRootProps()}
             className={classes.inputWrapper}
           >
             {!enableAutofill && !native && name && (
-              <input type='hidden' value={inputValue} name={name} />
+              <input type='hidden' value={displayValue} name={name} />
             )}
             <OutlinedInput
               // eslint-disable-next-line react/jsx-props-no-spreading
               {...rest}
-              inputRef={ref}
+              inputRef={selectRef}
               error={error}
               disabled={disabled}
               id={id}
               startAdornment={startAdornment}
               endAdornment={endAdornment}
               // Input specific props
-              value={inputValue}
+              value={displayValue}
               /* eslint-disable-next-line react/jsx-props-no-spreading */
-              {...getInputProps({
-                canCloseOnEnter: !multiple
-              })}
+              {...selectInputProps}
               placeholder={placeholder}
               width={width}
-              readOnly={readOnlyInput}
+              readOnly
               defaultValue={undefined}
-              className={cx(classes.input, {
-                [classes.readOnlyInput]: readOnlyInput
-              })}
+              className={classes.outlinedInput}
               inputProps={{
-                className: cx({
-                  [classes.readOnlyInput]: readOnlyInput
-                }),
+                className: classes.input,
                 size: 1 // let input to have smallest width by default for width:'shrink'
               }}
               size={size}
               role='textbox'
-              enableReset={enableReset ? select.isSelected() : false}
+              enableReset={enableReset ? selection.isSelected() : false}
               autoComplete={
                 enableAutofill ? autoComplete : autoComplete || 'off'
               }
@@ -706,6 +714,7 @@ export const Select = documentable(
           </div>
           {!disabled && (
             <Popper
+              ref={popperRef}
               autoWidth
               width={menuWidth}
               placement='bottom-start'
@@ -714,20 +723,19 @@ export const Select = documentable(
               container={popperContainer}
             >
               {isOpen &&
-                !loading &&
                 renderOptions({
                   options,
                   renderOption,
                   highlightedIndex,
                   onItemSelect: handleSelect,
                   getItemProps,
-                  onBlur: rootProps.onBlur,
+                  onBlur: selectInputProps.onBlur,
                   value,
-                  getDisplayValue,
+                  filterOptionsValue,
                   multiple,
                   size,
                   noOptionsText,
-                  inputValue
+                  fixedHeader: searchInput
                 })}
             </Popper>
           )}
@@ -765,8 +773,9 @@ Select.defaultProps = {
   renderOption: (option: Option) => option.text,
   size: 'medium',
   width: 'full',
-  searchThreshold: 4,
-  enableAutofill: false
+  searchThreshold: 10,
+  enableAutofill: false,
+  searchPlaceholder: 'Search'
 }
 
 Select.displayName = 'Select'

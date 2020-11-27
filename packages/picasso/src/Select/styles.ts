@@ -36,10 +36,17 @@ export default ({ palette }: Theme) =>
       outline: 0
     },
     input: {
-      paddingRight: '1.625rem'
-    },
-    readOnlyInput: {
       cursor: 'pointer'
+    },
+    outlinedInput: {
+      paddingRight: '1.625rem',
+      cursor: 'pointer'
+    },
+    searchOutlinedInput: {
+      width: '100%'
+    },
+    searchInputIcon: {
+      marginRight: '0.5rem'
     },
     nativeInput: {
       padding: 0
