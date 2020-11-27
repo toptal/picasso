@@ -1,27 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Page.Header default render 1`] = `
+exports[`Page.TopBar default render 1`] = `
 <div>
   <div
     class="Picasso-root"
   >
     <div
-      class="PageHeader-wrapper"
+      class="TopBar-wrapper"
     >
       <header
-        class="mui-fixed PageHeader-root PageHeader-dark"
+        class="mui-fixed TopBar-root TopBar-dark"
       >
         <div
-          class="PageHeader-content"
+          class="TopBar-content"
         >
           <div
-            class="PageHeader-left"
+            class="TopBar-left"
           >
             <div
-              class="Container-centerAlignItems Container-flex PageHeader-logoContainer"
+              class="Container-centerAlignItems Container-flex TopBar-logoContainer"
             >
               <svg
-                class="SvgLogo-root Logo-root Logo-white PageHeader-logo"
+                class="SvgLogo-root Logo-root Logo-white TopBar-logo"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 109 30"
               >
@@ -39,7 +39,7 @@ exports[`Page.Header default render 1`] = `
               class="Container-leftsmallMargin Container-centerAlignItems Container-flex"
             >
               <div
-                class="PageHeader-divider"
+                class="TopBar-divider"
               />
               <div
                 class="Container-leftsmallMargin"
@@ -53,7 +53,7 @@ exports[`Page.Header default render 1`] = `
             </div>
           </div>
           <div
-            class="PageHeader-right"
+            class="TopBar-right"
           />
         </div>
       </header>
@@ -62,32 +62,32 @@ exports[`Page.Header default render 1`] = `
 </div>
 `;
 
-exports[`Page.Header render with link 1`] = `
+exports[`Page.TopBar render with link 1`] = `
 <div>
   <div
     class="Picasso-root"
   >
     <div
-      class="PageHeader-wrapper"
+      class="TopBar-wrapper"
     >
       <header
-        class="mui-fixed PageHeader-root PageHeader-dark"
+        class="mui-fixed TopBar-root TopBar-dark"
       >
         <div
-          class="PageHeader-content"
+          class="TopBar-content"
         >
           <div
-            class="PageHeader-left"
+            class="TopBar-left"
           >
             <div
-              class="Container-centerAlignItems Container-flex PageHeader-logoContainer"
+              class="Container-centerAlignItems Container-flex TopBar-logoContainer"
             >
               <a
                 class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
                 href="https://www.toptal.com"
               >
                 <svg
-                  class="SvgLogo-root Logo-root Logo-white PageHeader-logo"
+                  class="SvgLogo-root Logo-root Logo-white TopBar-logo"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 109 30"
                 >
@@ -106,7 +106,7 @@ exports[`Page.Header render with link 1`] = `
               class="Container-leftsmallMargin Container-centerAlignItems Container-flex"
             >
               <div
-                class="PageHeader-divider"
+                class="TopBar-divider"
               />
               <div
                 class="Container-leftsmallMargin"
@@ -120,7 +120,7 @@ exports[`Page.Header render with link 1`] = `
             </div>
           </div>
           <div
-            class="PageHeader-right"
+            class="TopBar-right"
           />
         </div>
       </header>

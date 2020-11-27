@@ -8,8 +8,8 @@ import {
 } from '@toptal/picasso-shared'
 
 import PageHead from '../PageHead'
-import PageHeader from '../PageHeader'
-import PageHeaderMenu from '../PageHeaderMenu'
+import TopBar from '../TopBar'
+import TopBarMenu from '../TopBarMenu'
 import PageFooter from '../PageFooter'
 import PageContent from '../PageContent'
 import PageSidebar from '../Sidebar'
@@ -25,14 +25,14 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   width?: ViewportWidthType
   /** Horizontally centers the content */
   centered?: boolean
-  /** Children components (`Page.Header`, `Page.Content`, `Page.Footer`) */
+  /** Children components (`Page.TopBar`, `Page.Content`, `Page.Footer`) */
   children: ReactNode
 }
 
 export interface StaticProps {
   Head: typeof PageHead
-  Header: typeof PageHeader
-  HeaderMenu: typeof PageHeaderMenu
+  TopBar: typeof TopBar
+  TopBarMenu: typeof TopBarMenu
   Content: typeof PageContent
   Footer: typeof PageFooter
   Sidebar: typeof PageSidebar
@@ -71,9 +71,9 @@ export const Page = forwardRef<HTMLDivElement, Props>(function Page(
 
 Page.displayName = 'Page'
 
-Page.Header = PageHeader
+Page.TopBar = TopBar
 
-Page.HeaderMenu = PageHeaderMenu
+Page.TopBarMenu = TopBarMenu
 
 Page.Content = PageContent
 

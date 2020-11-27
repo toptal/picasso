@@ -11,7 +11,7 @@ const StyledMainContentContainer = styled(Container)`
 const Example = () => (
   <div style={{ maxHeight: '30rem' }}>
     <Page>
-      <Page.Header rightContent={<RightContent />} title='Default example' />
+      <Page.TopBar rightContent={<RightContent />} title='Default example' />
       <Banner icon={<ExclamationSolid16 color='yellow' />}>
         <Banner.Message>
           You need to sign STA agreement in order to be able to hire talent.
@@ -40,7 +40,7 @@ const Example = () => (
 const handleClick = () => window.alert('Item clicked')
 
 const RightContent = () => (
-  <Page.HeaderMenu
+  <Page.TopBarMenu
     name='Jacqueline Roque'
     avatar='./jacqueline-with-flowers-1954-square.jpg'
   >
@@ -48,7 +48,7 @@ const RightContent = () => (
       <Menu.Item onClick={handleClick}>My Account</Menu.Item>
       <Menu.Item onClick={handleClick}>Log Out</Menu.Item>
     </Menu>
-  </Page.HeaderMenu>
+  </Page.TopBarMenu>
 )
 
 const Content = () => (

@@ -4,7 +4,7 @@ import { Page, Container, Typography } from '@toptal/picasso'
 const Example = () => (
   <div style={{ maxHeight: '30rem', overflowY: 'scroll' }}>
     <Page>
-      <Page.Header title='Scrollable example' />
+      <Page.TopBar title='Scrollable example' />
       <Page.Content>
         <Content />
       </Page.Content>
