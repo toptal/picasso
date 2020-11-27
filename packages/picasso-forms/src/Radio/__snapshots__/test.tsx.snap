@@ -20,6 +20,113 @@ exports[`FormRadio default render 1`] = `
               class="FormLabel-text"
             >
               What's your favorite color?
+               (optional)
+            </span>
+          </label>
+          <div
+            class="MuiFormGroup-root"
+            id="color"
+            role="radiogroup"
+            type="radio"
+          >
+            <label
+              class="FormControlLabel-root Radio-root Radio-labelWithRightSpacing"
+            >
+              <span
+                aria-disabled="false"
+                class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel"
+                data-testid="trigger"
+              >
+                <span
+                  class="MuiIconButton-label"
+                >
+                  <input
+                    class="PrivateSwitchBase-input"
+                    name="color"
+                    type="radio"
+                    value="#ed143d"
+                  />
+                  <div
+                    class="Radio-uncheckedIcon"
+                  />
+                </span>
+              </span>
+              <span
+                class="FormLabel-root FormLabel-inline FormControlLabel-label Radio-label"
+              >
+                <span
+                  class="FormLabel-text"
+                >
+                  Crimson
+                </span>
+              </span>
+            </label>
+            <label
+              class="FormControlLabel-root Radio-root Radio-labelWithRightSpacing"
+            >
+              <span
+                aria-disabled="false"
+                class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel PrivateSwitchBase-checked Mui-checked"
+                data-testid="trigger"
+              >
+                <span
+                  class="MuiIconButton-label"
+                >
+                  <input
+                    checked=""
+                    class="PrivateSwitchBase-input"
+                    name="color"
+                    type="radio"
+                    value="#ffe4b5"
+                  />
+                  <div
+                    class="Radio-checkedIcon"
+                  />
+                </span>
+              </span>
+              <span
+                class="FormLabel-root FormLabel-inline FormControlLabel-label Radio-label"
+              >
+                <span
+                  class="FormLabel-text"
+                >
+                  Moccasin
+                </span>
+              </span>
+            </label>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FormRadio required with asterisk 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class=""
+    >
+      <form>
+        <div
+          class="FormField-root"
+        >
+          <label
+            class="FormLabel-root"
+            for="color"
+          >
+            <span
+              class="FormLabel-asterisk"
+            >
+              *
+            </span>
+            <span
+              class="FormLabel-text"
+            >
+              What's your favorite color?
             </span>
           </label>
           <div
