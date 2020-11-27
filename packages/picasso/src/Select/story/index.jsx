@@ -146,8 +146,3 @@ number of options greater than specified in \`searchThreshold\` prop.
     }
   })
   .addExample('Select/story/Autofill.example.tsx', 'Disabling autofilling') // picasso-skip-visuals
-  .addExample('Select/story/DynamicOptions.example.tsx', 'Dynamic options') // picasso-skip-visuals
-  .addExample(
-    'Select/story/DynamicOptionsInModal.example.tsx',
-    'Dynamic options in Modal'
-  ) // picasso-skip-visuals
