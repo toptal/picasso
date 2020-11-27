@@ -1,4 +1,13 @@
 import { createStyles } from '@material-ui/core/styles'
+import { PicassoProvider } from '@toptal/picasso-shared'
+
+PicassoProvider.override(() => ({
+  MuiListItem: {
+    focusVisible: {
+      backgroundColor: 'unset'
+    }
+  }
+}))
 
 export default () =>
   createStyles({

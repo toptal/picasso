@@ -26,7 +26,7 @@ PicassoProvider.override(() => ({
 export default ({ typography, palette }: Theme) =>
   createStyles({
     root: {
-      '&$nonSelectable:hover, &$nonSelectable:focus, &.Mui-focusVisible': {
+      '&$nonSelectable:hover, &$nonSelectable:focus': {
         backgroundColor: 'unset'
       }
     },
@@ -84,9 +84,6 @@ export default ({ typography, palette }: Theme) =>
           backgroundColor: palette.grey.dark
         }
       }
-    },
-    listItemNonSelectable: {
-      backgroundColor: 'unset'
     },
     selected: {},
     nonSelectable: {},

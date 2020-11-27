@@ -482,7 +482,7 @@ export const Select = documentable(
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [value, allOptions, getDisplayValue])
 
-      const showSearch = allOptions.length > searchThreshold!
+      const showSearch = allOptions.length >= searchThreshold!
 
       const handleFocus = (
         event: React.FocusEvent<HTMLInputElement | HTMLDivElement>
