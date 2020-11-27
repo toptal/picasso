@@ -25,6 +25,11 @@ PicassoProvider.override(() => ({
 
 export default ({ typography, palette }: Theme) =>
   createStyles({
+    root: {
+      '&$nonSelectable:hover, &$nonSelectable:focus': {
+        backgroundColor: 'unset'
+      }
+    },
     light: {
       color: palette.common.black,
 
@@ -81,6 +86,7 @@ export default ({ typography, palette }: Theme) =>
       }
     },
     selected: {},
+    nonSelectable: {},
     stringContent: {
       flex: 1,
       fontSize: '0.8125em'
