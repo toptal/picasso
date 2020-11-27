@@ -44,6 +44,11 @@ page.createTabChapter('Props').addComponentDocs({
         description: `(label: string) => string`
       },
       description: 'A function to custom format the X axis label'
+    },
+    granularity: {
+      name: 'granularity',
+      type: "'month' | 'week' | 'day' | 'hour'",
+      description: 'A value that helps formatting the chart'
     }
   })
 })
@@ -66,3 +71,4 @@ page
     'AnalyticsChart/story/FormatLabel.example.tsx',
     'Custom Format xAxis Label'
   )
+  .addExample('AnalyticsChart/story/Granularity.example.tsx', 'Granularity')
