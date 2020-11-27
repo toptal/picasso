@@ -42,4 +42,11 @@ pipeline {
         }//steps
     }//stage
   }//stages
+  post {
+    always {
+      script {
+        sendBuildData(currentBuild)
+      }
+    }
+  }
 }//pipeline
