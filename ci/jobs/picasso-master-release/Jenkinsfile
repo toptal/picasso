@@ -153,6 +153,11 @@ pipeline {
   }//stages
 
   post {
+      always {
+          script {
+            sendBuildData(currentBuild)
+          }
+      }
       success {
           script {
             build job: 'picasso-docs', propagate: false, wait: false

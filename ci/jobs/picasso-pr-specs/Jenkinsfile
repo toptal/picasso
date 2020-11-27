@@ -265,6 +265,8 @@ pipeline {
           reportName: 'Visual Regression Tests', 
           reportTitles: 'All files'
         ])
+
+        sendBuildData(currentBuild)
       }
     }
   }
