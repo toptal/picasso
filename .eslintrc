@@ -10,10 +10,11 @@
         "no-console": 0
       }
     },
+    // Generated files
     {
-      "files": ["src/components/**/*[!example].tsx"],
+      "files": ["packages/picasso/src/Icon/index.ts"],
       "rules": {
-        "no-restricted-imports": [2, "styled-components"]
+        "max-lines": 0
       }
     }
   ]

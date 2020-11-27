@@ -102,6 +102,8 @@ We want to make these examples as clean and as nice as possible, their purpose i
 * Pay attention to code styling
 * Create examples for all possible states inherited from props, they are not only used for the documentation but also for visual tests
 * Try to avoid using stateful components, use hooks if you need to have state
+* Try to show only one meaningful feature per example
+* The `Default` example is needed to show the minimum component setup to be used
 
 #### DON’Ts
 * Don’t introduce crazy helpers inside examples instead list all implementation variants by hand
