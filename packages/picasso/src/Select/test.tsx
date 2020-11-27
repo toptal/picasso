@@ -213,6 +213,30 @@ test('should filter options based on entered value to the input field', () => {
   expect(menu.querySelectorAll('li')).toHaveLength(OPTIONS.length)
 })
 
+test('should focus search input when tab is pressed', () => {
+  const placeholder = 'Choose an option...'
+  const searchPlaceholder = 'Search for an option'
+
+  const { getByPlaceholderText } = renderSelect({
+    options: OPTIONS,
+    placeholder,
+    searchPlaceholder,
+    searchThreshold: -1
+  })
+
+  const selectInput = getByPlaceholderText(placeholder)
+
+  fireEvent.focus(selectInput)
+  fireEvent.keyDown(selectInput, {
+    key: 'Tab',
+    code: 'Tab'
+  })
+
+  const searchInput = getByPlaceholderText(searchPlaceholder)
+
+  expect(searchInput).toEqual(document.activeElement)
+})
+
 test('should focus search input when a character is entered', () => {
   const placeholder = 'Choose an option...'
   const searchPlaceholder = 'Search for an option'

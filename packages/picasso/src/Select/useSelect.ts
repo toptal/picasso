@@ -107,6 +107,12 @@ interface UseSelectOutput {
   setHighlightedIndex: (index: number) => void
 }
 
+const focusRef = <T extends HTMLElement>(ref: React.Ref<T>) => {
+  if (typeof ref === 'object' && ref?.current) {
+    ref.current.focus()
+  }
+}
+
 // eslint-disable-next-line max-lines-per-function
 // eslint-disable-next-line max-statements
 const useSelect = ({
@@ -192,15 +198,9 @@ const useSelect = ({
     }
   }
 
-  const focusSelect = () => {
-    if (typeof selectRef === 'object' && selectRef?.current) {
-      selectRef.current.focus()
-    }
-  }
-
   const handleSearchBlur = (event: React.FocusEvent<HTMLInputElement>) => {
     if (isRelatedTargetInsidePopper(event)) {
-      focusSelect()
+      focusRef(selectRef)
     } else {
       close()
     }
@@ -245,18 +245,14 @@ const useSelect = ({
     }
   }
 
-  const handleTabKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-    event.currentTarget.blur()
-  }
-
   // eslint-disable-next-line max-lines-per-function
   // eslint-disable-next-line complexity
   const handleSearchKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     const key = normalizeArrowKey(event)
 
     if (key === 'Tab') {
+      focusRef(selectRef)
       event.preventDefault()
-      focusSelect()
     } else if (key === 'ArrowUp' || key === 'ArrowDown') {
       handleArrowsKeyDown(key, event)
     } else if (key === 'Enter') {
@@ -273,18 +269,15 @@ const useSelect = ({
     const isValidInputValue =
       Boolean(event.key.match(/^[A-z\d]$/)) || event.key === 'Backspace'
 
-    if (
-      isValidInputValue &&
-      typeof searchInputRef === 'object' &&
-      searchInputRef?.current
-    ) {
-      searchInputRef.current.focus()
+    if (isValidInputValue) {
+      focusRef(searchInputRef)
     }
 
     const key = normalizeArrowKey(event)
 
-    if (key === 'Tab') {
-      handleTabKeyDown(event)
+    if (key === 'Tab' && isOpen) {
+      event.preventDefault()
+      focusRef(searchInputRef)
     } else if (key === 'ArrowUp' || key === 'ArrowDown') {
       handleArrowsKeyDown(key, event)
     } else if (key === 'Enter') {
