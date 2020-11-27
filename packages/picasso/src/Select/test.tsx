@@ -206,7 +206,11 @@ test('should filter options based on entered value to the input field', () => {
 
   const menu = getByRole('menu')
 
-  expect(menu).toMatchSnapshot()
+  expect(menu.querySelectorAll('li')).toHaveLength(1)
+
+  fireEvent.change(searchInput, { target: { value: '' } })
+
+  expect(menu.querySelectorAll('li')).toHaveLength(OPTIONS.length)
 })
 
 test('should focus search input when a character is entered', () => {
