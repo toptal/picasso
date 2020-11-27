@@ -79,6 +79,7 @@ export type BaseChartProps = {
   showBottomYAxisLabel?: boolean
   showEvenYAxisTicks?: boolean
   children?: ReactNode
+  getXAxisTicks?: (orderedChartData: OrderedChartDataPoint[]) => any[]
 }
 
 export type Props = BaseChartProps & {
@@ -191,14 +192,15 @@ export const LineChart = (props: Props) => {
     referenceLines,
     showBottomYAxisLabel,
     showEvenYAxisTicks,
-    children
+    children,
+    getXAxisTicks = getChartTicks
   } = props
 
   const yKey = Object.keys(lines)[0]
   const isSingleChart = countNonReferenceLines(lines) === 1
   const topDomain = findTopDomain(data, xAxisKey!)
   const orderedData = orderData(data)
-  const ticks = getChartTicks(orderedData)
+  const xAxisTicks = getXAxisTicks(orderedData)
   const referenceLineList = generateReferenceLines(referenceLines)
   const highlightedAreas = generateHighlightedAreas(
     topDomain,
@@ -253,7 +255,7 @@ export const LineChart = (props: Props) => {
             tickLine={TICK_LINE}
             axisLine={AXIS_LINE}
             interval='preserveStartEnd'
-            ticks={ticks}
+            ticks={xAxisTicks}
             minTickGap={MIN_TICK_GAP}
             tickMargin={TICK_MARGIN}
             tickFormatter={formatTicks}
