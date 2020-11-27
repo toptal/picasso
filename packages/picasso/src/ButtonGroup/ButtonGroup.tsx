@@ -17,7 +17,7 @@ const getButtonGroupOrder = (
   length: number
 ): ButtonGroupOrder => {
   if (length <= 1) {
-    return 'single'
+    return undefined
   }
 
   if (index === 0) {
