@@ -43,7 +43,7 @@ need is imported in the same way:
 import { Page } from '@toptal/picasso'
 ~~~
 
-\`Page\` consists of \`Page.Header\`, \`Page.Footer\` and \`Page.Content\` so when we import it we
+\`Page\` consists of \`Page.TopBar\`, \`Page.Footer\` and \`Page.Content\` so when we import it we
 automatically have all necessary components to define our base page layout. Idea is to use composition
 pattern and pass props to each component to define e.g. page title, footer links or in most cases
 content in \`Page.Content\`.

@@ -21,7 +21,7 @@ const renderOption = ({ text }: Item) => (
 const Example = () => (
   <>
     <div style={{ height: '4.5rem' }}>
-      <Page.Header
+      <Page.TopBar
         title='Dark variant'
         leftContent={
           <Container left='large'>

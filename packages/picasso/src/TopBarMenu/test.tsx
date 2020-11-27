@@ -4,22 +4,22 @@ import { render } from '@toptal/picasso/test-utils'
 import { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Menu from '../Menu'
-import PageHeaderMenu, { Props } from './PageHeaderMenu'
+import TopBarMenu, { Props } from './TopBarMenu'
 
-const TestPageHeaderMenu: FunctionComponent<OmitInternalProps<Props>> = ({
+const TestTopBarMenu: FunctionComponent<OmitInternalProps<Props>> = ({
   children,
   name,
   avatar
 }) => (
-  <PageHeaderMenu name={name} avatar={avatar}>
+  <TopBarMenu name={name} avatar={avatar}>
     {children}
-  </PageHeaderMenu>
+  </TopBarMenu>
 )
 
-describe('PageHeaderMenu', () => {
+describe('TopBarMenu', () => {
   test('default render', () => {
     const { container } = render(
-      <TestPageHeaderMenu
+      <TestTopBarMenu
         name='Jacqueline Roque'
         avatar='./jacqueline-with-flowers-1954-square.jpg'
       >
@@ -27,7 +27,7 @@ describe('PageHeaderMenu', () => {
           <Menu.Item>My Account</Menu.Item>
           <Menu.Item>Log Out</Menu.Item>
         </Menu>
-      </TestPageHeaderMenu>
+      </TestTopBarMenu>
     )
 
     expect(container).toMatchSnapshot()
