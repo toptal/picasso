@@ -30,6 +30,8 @@ import { Option } from './types'
 import useSelect, { EMPTY_INPUT_VALUE, ItemProps } from './useSelect'
 import styles from './styles'
 import { documentable, forwardRef } from '../utils/forward-ref'
+import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
+import noop from '../utils/noop'
 
 type IconPosition = 'start' | 'end'
 export type ValueType = string | number
@@ -88,7 +90,7 @@ export interface Props<
       value: V
     }>
   ) => void
-  /** Callback invoked when filter input changed */
+  /** @deprecated Callback invoked when search value changes */
   onSearchChange?: (value: string) => void
   /** Label to show when no options were found */
   noOptionsText?: string
@@ -372,6 +374,14 @@ export const Select = documentable(
       props: Props<T, M>,
       ref: React.Ref<HTMLInputElement> | null
     ) => {
+      usePropDeprecationWarning({
+        props,
+        name: 'onSearchChange',
+        componentName: 'Select',
+        description:
+          'Use the Autocomplete component if you require dynamic options.'
+      })
+
       const {
         className,
         style,
@@ -390,7 +400,7 @@ export const Select = documentable(
         disabled,
         error,
         onChange,
-        onSearchChange,
+        onSearchChange = noop,
         onBlur,
         multiple,
         value = multiple ? DEFAULT_EMPTY_ARRAY_VALUE : '',
@@ -767,9 +777,8 @@ Select.defaultProps = {
   loading: false,
   native: false,
   noOptionsText: 'No matches found',
-  onChange: () => {},
-  onSearchChange: () => {},
-  onBlur: () => {},
+  onChange: noop,
+  onBlur: noop,
   renderOption: (option: Option) => option.text,
   size: 'medium',
   width: 'full',

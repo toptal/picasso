@@ -13,6 +13,7 @@ export interface PropDocumentation {
   required?: boolean
   defaultValue?: string
   description: string
+  deprecated?: boolean
   enums?: string[]
   value?: any[]
 }
@@ -30,6 +31,8 @@ const ENUM_TYPE_REGEX = /enum/
 const ENUM_VALUES_REGEX = /.*\|.*/
 const ARRAY_REGEX = /.*\[\]/
 const OBJECT_REGEX = /\{.*\}/
+
+const DEPRECATED_KEYWORD = '@deprecated'
 
 const escapeType = (typeName: string) => typeName.replace('| undefined', '')
 
@@ -184,7 +187,8 @@ ${propsTable}
         name: propName,
         type: this.resolveType(type),
         defaultValue: this.resolveDefaultValue(defaultValue),
-        description,
+        description: description.replace(DEPRECATED_KEYWORD, ''),
+        deprecated: description.startsWith(DEPRECATED_KEYWORD),
         required
       }
     }) as PropDocumentationMap
