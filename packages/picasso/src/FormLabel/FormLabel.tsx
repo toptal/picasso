@@ -11,6 +11,7 @@ import styles from './styles'
 import toTitleCase from '../utils/to-title-case'
 
 type ComponentType = 'label' | 'span'
+export type RequiredDecoration = 'asterisk' | 'optional'
 
 export interface Props
   extends StandardProps,
@@ -18,8 +19,8 @@ export interface Props
     HTMLAttributes<HTMLLabelElement | HTMLSpanElement> {
   /** Content of the label */
   children: ReactNode
-  /** Adds (optional) suffix if explicitly false */
-  required?: boolean
+  /** Whether to show asterisk or (optional) postfix as a 'required' decoration */
+  requiredDecoration?: RequiredDecoration
   /** Is this label for disabled input or not */
   disabled?: boolean
   /** Specifies an id of the input */
@@ -33,7 +34,6 @@ export interface Props
 export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
   {
     children,
-    required,
     disabled,
     htmlFor,
     classes,
@@ -42,12 +42,12 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
     inline,
     as: Component = 'label',
     titleCase: propsTitleCase,
+    requiredDecoration,
     ...rest
   },
   ref
 ) {
   const isInline = inline || Component === 'span'
-
   const titleCase = useTitleCase(propsTitleCase)
 
   return (
@@ -66,9 +66,12 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
       )}
       style={style}
     >
+      {requiredDecoration === 'asterisk' && (
+        <span className={classes.asterisk}>*</span>
+      )}
       <span className={classes.text}>
         {titleCase ? toTitleCase(children) : children}
-        {required === false && ' (optional)'}
+        {requiredDecoration === 'optional' && ' (optional)'}
       </span>
     </Component>
   )

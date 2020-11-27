@@ -37,7 +37,7 @@ const filterOptions = (str = '', options: Item[] = []): Item[] | null => {
   return result.length > 0 ? result : null
 }
 
-const DefaultExample = () => {
+const Example = () => {
   const [skillInputValue, setSkillInputValue] = useState<string>(
     EMPTY_INPUT_VALUE
   )
@@ -158,4 +158,4 @@ const DefaultExample = () => {
   )
 }
 
-export default DefaultExample
+export default Example
