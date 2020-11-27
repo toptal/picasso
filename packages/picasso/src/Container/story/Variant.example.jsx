@@ -8,28 +8,34 @@ const Example = () => (
         Bordered
       </Typography>
 
-      <Container bordered rounded padded='large' bottom='small' top='small'>
+      <Container bordered rounded padded='medium' bottom='small' top='small'>
         White
       </Container>
-      <Container bordered rounded variant='red' padded='large' bottom='small'>
+      <Container bordered rounded variant='red' padded='medium' bottom='small'>
         Red
       </Container>
       <Container
         bordered
         rounded
         variant='yellow'
-        padded='large'
+        padded='medium'
         bottom='small'
       >
         Yellow
       </Container>
-      <Container bordered rounded variant='green' padded='large' bottom='small'>
+      <Container
+        bordered
+        rounded
+        variant='green'
+        padded='medium'
+        bottom='small'
+      >
         Green
       </Container>
-      <Container bordered rounded variant='blue' padded='large' bottom='small'>
+      <Container bordered rounded variant='blue' padded='medium' bottom='small'>
         Blue
       </Container>
-      <Container bordered rounded variant='grey' padded='large'>
+      <Container bordered rounded variant='grey' padded='medium'>
         Grey
       </Container>
     </Container>
@@ -39,22 +45,22 @@ const Example = () => (
         Non-bordered
       </Typography>
 
-      <Container rounded padded='large' bottom='small' top='small'>
+      <Container rounded padded='medium' bottom='small' top='small'>
         White
       </Container>
-      <Container rounded variant='red' padded='large' bottom='small'>
+      <Container rounded variant='red' padded='medium' bottom='small'>
         Red
       </Container>
-      <Container rounded variant='yellow' padded='large' bottom='small'>
+      <Container rounded variant='yellow' padded='medium' bottom='small'>
         Yellow
       </Container>
-      <Container rounded variant='green' padded='large' bottom='small'>
+      <Container rounded variant='green' padded='medium' bottom='small'>
         Green
       </Container>
-      <Container rounded variant='blue' padded='large' bottom='small'>
+      <Container rounded variant='blue' padded='medium' bottom='small'>
         Blue
       </Container>
-      <Container rounded variant='grey' padded='large'>
+      <Container rounded variant='grey' padded='medium'>
         Grey
       </Container>
     </Container>
