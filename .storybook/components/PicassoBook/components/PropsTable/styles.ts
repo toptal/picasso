@@ -20,18 +20,10 @@ export default ({ palette }: Theme) =>
     defaultValue: {
       width: '1%'
     },
-    propName: {
-      fontWeight: 600
-    },
     tooltipTarget: {
       borderBottom: '1px dotted',
       fontWeight: 600,
       cursor: 'help'
-    },
-    requiredTag: {
-      fontWeight: 600,
-      color: palette.red.main,
-      paddingLeft: '0.25em'
     },
     highlight: {
       backgroundColor: 'rgb(236, 236, 236, 0.5)',
