@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TopBarMenu default render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="Dropdown-root"
+    >
+      <div
+        class="Dropdown-anchor"
+      >
+        <div
+          class="Container-centerAlignItems Container-flex UserBadge-root"
+        >
+          <div
+            class="Avatar-root Avatar-xsmall"
+          >
+            <img
+              alt="Jacqueline Roque"
+              class="Image-root Avatar-image Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar TopBarMenu-avatar"
+              src="./jacqueline-with-flowers-1954-square.jpg"
+            />
+          </div>
+          <div
+            class="Container-leftsmallMargin Container-flex Container-column UserBadge-infoContainer"
+          >
+            <div
+              class="Container-centerAlignItems Container-flex"
+            >
+              <h4
+                class="MuiTypography-root Typography-invert Typography-headingSmall UserBadge-name TopBarMenu-name TopBarMenu-truncateText MuiTypography-h4 MuiTypography-displayInline"
+              >
+                Jacqueline Roque
+              </h4>
+            </div>
+          </div>
+        </div>
+        <span
+          class="DropdownArrow-root TopBarMenu-arrow DropdownArrow-medium"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

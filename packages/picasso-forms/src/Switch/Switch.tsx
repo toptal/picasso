@@ -10,7 +10,7 @@ export type Props = FormSwitchProps & FieldProps<SwitchProps['value']>
 
 export const Switch = (props: Props) => (
   // eslint-disable-next-line react/jsx-props-no-spreading
-  <FieldWrapper<FormSwitchProps> {...props}>
+  <FieldWrapper<FormSwitchProps> hideLabelRequiredDecoration {...props}>
     {(inputProps: SwitchProps) => {
       // eslint-disable-next-line react/jsx-props-no-spreading
       return <PicassoSwitch {...inputProps} />

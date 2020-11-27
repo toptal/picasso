@@ -50,7 +50,7 @@ const MainContent = () => (
 const Example = () => (
   <div style={{ height: '40rem' }}>
     <Page>
-      <Page.Header title='How to layout a page' />
+      <Page.TopBar title='How to layout a page' />
       <Page.Content>
         <SidebarMenu />
         <MainContent />

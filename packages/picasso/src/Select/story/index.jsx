@@ -13,12 +13,18 @@ page.createTabChapter('Props').addComponentDocs({
   additionalDocs: {
     options: {
       type: {
+        name: 'Option',
         description: `
 {\n
   value: string\n
   text: string\n
-}: Option
-        `
+}
+          `
+      }
+    },
+    multiple: {
+      type: {
+        name: 'boolean'
       }
     }
   }

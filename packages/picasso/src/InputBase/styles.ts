@@ -4,7 +4,8 @@ import { PicassoProvider } from '@toptal/picasso-shared'
 PicassoProvider.override(({ typography, palette }: Theme) => ({
   MuiInputBase: {
     root: {
-      fontSize: 'unset'
+      fontSize: 'unset',
+      backgroundColor: palette.common.white
     },
     input: {
       fontSize: typography.inputSize,

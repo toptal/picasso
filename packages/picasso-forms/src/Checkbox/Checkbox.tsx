@@ -7,27 +7,37 @@ import {
 
 import FieldWrapper, { FieldProps } from '../FieldWrapper'
 import { CheckboxGroupContext } from '../CheckboxGroup'
+import { useFormConfig } from '../FormConfig'
 
 type CheckboxValue = CheckboxProps['value'] | CheckboxProps['checked']
 
-type CheckboxWithoutGroup = CheckboxProps & FieldProps<CheckboxValue>
-type CheckboxInGroup = CheckboxProps & { name?: string }
+type CheckboxFormProps = Omit<CheckboxProps, 'requiredDecoration'> & {
+  required?: boolean
+}
+type CheckboxWithoutGroup = CheckboxFormProps & FieldProps<CheckboxValue>
+type CheckboxInGroup = CheckboxFormProps & { name?: string }
 
 export type Props = CheckboxWithoutGroup | CheckboxInGroup
 
 export const Checkbox = ({
   name,
   value,
-  defaultValue, // eslint-disable-line @typescript-eslint/no-unused-vars
+  required,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  defaultValue,
   ...restProps
 }: Props) => {
-  const inCheckboxGroup = useContext(CheckboxGroupContext)
+  const formConfig = useFormConfig()
+  const groupName = useContext(CheckboxGroupContext)
+  const isCheckboxInGroup = Boolean(groupName)
 
-  if (inCheckboxGroup) {
+  if (isCheckboxInGroup) {
     return (
-      <Field type='checkbox' name={name!} value={value}>
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      <Field type='checkbox' name={name || groupName!} value={value}>
         {({
-          input: { value, type, ...restInput } // eslint-disable-line @typescript-eslint/no-unused-vars
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          input: { value: inputValue, type, ...restInput }
         }: FinalFormFieldProps<CheckboxValue>) => {
           // eslint-disable-next-line react/jsx-props-no-spreading
           return <PicassoCheckbox {...restProps} {...restInput} />
@@ -36,13 +46,25 @@ export const Checkbox = ({
     )
   }
 
+  const showAsterisk = required && formConfig.requiredVariant === 'asterisk'
+  const requiredDecoration = showAsterisk ? 'asterisk' : undefined
+
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <FieldWrapper hideFieldLabel type='checkbox' {...restProps} name={name!}>
-      {(input: CheckboxProps) => {
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        return <PicassoCheckbox {...input} />
-      }}
+    <FieldWrapper
+      type='checkbox'
+      hideFieldLabel
+      required={required}
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...restProps}
+      name={name!}
+    >
+      {(input: CheckboxProps) => (
+        <PicassoCheckbox
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          {...input}
+          requiredDecoration={requiredDecoration}
+        />
+      )}
     </FieldWrapper>
   )
 }
