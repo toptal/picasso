@@ -42,7 +42,7 @@ function renderRows({ documentation, classes }: Props): JSX.Element {
             <Table.Cell>
               {deprecated && (
                 <Typography color='red' weight='semibold'>
-                  @deprecated
+                  deprecated
                 </Typography>
               )}
               <Typography weight='semibold' inline>

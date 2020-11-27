@@ -183,16 +183,12 @@ ${propsTable}
     return mapValues(propDocs, (propDoc, propName) => {
       const { type, description, required, defaultValue } = propDoc
 
-      const deprecated = description.startsWith(DEPRECATED_KEYWORD)
-
       return {
         name: propName,
         type: this.resolveType(type),
         defaultValue: this.resolveDefaultValue(defaultValue),
-        description: deprecated
-          ? description.replace(DEPRECATED_KEYWORD, '')
-          : description,
-        deprecated,
+        description: description.replace(DEPRECATED_KEYWORD, ''),
+        deprecated: description.startsWith(DEPRECATED_KEYWORD),
         required
       }
     }) as PropDocumentationMap
