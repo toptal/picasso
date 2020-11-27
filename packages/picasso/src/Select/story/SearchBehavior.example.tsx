@@ -1,9 +1,18 @@
 import React, { useState, ChangeEvent } from 'react'
-import { Select, Button, Container } from '@toptal/picasso'
+import { Select, Typography, Container, Checkbox } from '@toptal/picasso'
+
+const OPTIONS = new Array(40).fill(0).map((_zero, index) => {
+  return {
+    value: `${index + 1}`,
+    text: Math.random()
+      .toString(10)
+      .substring(5)
+  }
+})
 
 const SelectSearchBehaviourExample = () => {
-  const [value, setValue] = useState<string>()
-  const [options, setOptions] = useState(OPTIONS_WHEN_SEARCH_DISABLED)
+  const [value, setValue] = useState<string>('1')
+  const [useTimeout, setUseTimeout] = useState(false)
 
   const handleChange = (
     event: ChangeEvent<{
@@ -12,49 +21,40 @@ const SelectSearchBehaviourExample = () => {
     }>
   ) => {
     console.log('Select value:', event.target.value)
-    setValue(event.target.value)
-  }
-
-  const handleAddOptionsClick = () => {
-    setValue(undefined)
-    setOptions(OPTIONS_WHEN_SEARCH_ENABLED)
-  }
-
-  const handleRemoveOptionsClick = () => {
-    setValue(undefined)
-    setOptions(OPTIONS_WHEN_SEARCH_DISABLED)
+    if (event.target.value) {
+      setValue(event.target.value)
+    } else {
+      if (useTimeout) {
+        setValue('')
+        setTimeout(() => {
+          setValue(value)
+        })
+      }
+    }
   }
 
   return (
-    <Container flex>
+    <Container>
       <Select
         onChange={handleChange}
-        options={options}
+        options={OPTIONS}
         value={value}
         placeholder='Choose an option...'
         width='auto'
         searchThreshold={4}
       />
-      <Container left='small'>
-        <Button onClick={handleAddOptionsClick}>Add options</Button>
+      <Container>
+        <Typography>ACTUAL VALUE {value}</Typography>
       </Container>
-      <Container left='small'>
-        <Button onClick={handleRemoveOptionsClick}>Remove options</Button>
-      </Container>
+      <Checkbox
+        label='Use timeout hack --- press this to hack the behavior and try again'
+        checked={useTimeout}
+        onChange={(event, checked) => setUseTimeout(checked)}
+      >
+        {' '}
+      </Checkbox>
     </Container>
   )
 }
-
-const OPTIONS_WHEN_SEARCH_DISABLED = [
-  { value: '1', text: 'Option 1' },
-  { value: '2', text: 'Option 2' },
-  { value: '3', text: 'Option 3' },
-  { value: '4', text: 'Option 4' }
-]
-
-const OPTIONS_WHEN_SEARCH_ENABLED = [
-  ...OPTIONS_WHEN_SEARCH_DISABLED,
-  { value: '5', text: 'Option 5' }
-]
 
 export default SelectSearchBehaviourExample
