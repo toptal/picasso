@@ -69,4 +69,11 @@ pipeline {
       }
     } //push image
   }
+  post {
+    always {
+      script {
+        sendBuildData(currentBuild)
+      }
+    }
+  }
 }

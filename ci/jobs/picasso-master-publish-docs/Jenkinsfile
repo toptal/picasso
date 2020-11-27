@@ -105,4 +105,11 @@ pipeline {
     }//stage
 
   }//stages
+  post {
+    always {
+      script {
+        sendBuildData(currentBuild)
+      }
+    }
+  }
 }//pipeline

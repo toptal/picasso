@@ -36,8 +36,7 @@ export default ({ palette }: Theme) =>
       outline: 0
     },
     input: {
-      zIndex: 1,
-      paddingRight: 'calc(0.625rem + 1rem)'
+      paddingRight: '1.625rem'
     },
     readOnlyInput: {
       cursor: 'pointer'
