@@ -188,7 +188,7 @@ test('should filter options based on entered value to the input field', () => {
   const placeholder = 'Choose an option...'
   const searchPlaceholder = 'Search for an option'
 
-  const { getByPlaceholderText, getByRole } = renderSelect({
+  const { getByPlaceholderText, getAllByRole } = renderSelect({
     options: OPTIONS,
     placeholder,
     searchPlaceholder,
@@ -204,13 +204,31 @@ test('should filter options based on entered value to the input field', () => {
   fireEvent.focus(searchInput)
   fireEvent.change(searchInput, { target: { value: '3' } })
 
-  const menu = getByRole('menu')
+  expect(getAllByRole('option').length).toBe(1)
+})
 
-  expect(menu.querySelectorAll('li')).toHaveLength(1)
+test('should show all options when input value is wiped', () => {
+  const placeholder = 'Choose an option...'
+  const searchPlaceholder = 'Search for an option'
 
+  const { getByPlaceholderText, getAllByRole } = renderSelect({
+    options: OPTIONS,
+    placeholder,
+    searchPlaceholder,
+    searchThreshold: -1
+  })
+
+  const selectInput = getByPlaceholderText(placeholder) as HTMLInputElement
+
+  fireEvent.focus(selectInput)
+
+  const searchInput = getByPlaceholderText(searchPlaceholder)
+
+  fireEvent.focus(searchInput)
+  fireEvent.change(searchInput, { target: { value: '3' } })
   fireEvent.change(searchInput, { target: { value: '' } })
 
-  expect(menu.querySelectorAll('li')).toHaveLength(OPTIONS.length)
+  expect(getAllByRole('option').length).toBe(OPTIONS.length)
 })
 
 test('should focus search input when tab is pressed', () => {

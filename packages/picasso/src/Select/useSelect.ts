@@ -146,12 +146,16 @@ const useSelect = ({
     onSelect(event, item)
   }
 
-  const handleItemOnMouseDown = useCallback((event: React.MouseEvent) => {
-    // This prevents the activeElement from being changed
-    // to the item so it can remain with the current activeElement
-    // which is a more common use case.
-    event.preventDefault()
-  }, [])
+  const handleItemOnMouseDown = useCallback(
+    (event: React.MouseEvent) => {
+      // This prevents the activeElement from being changed
+      // to the item so it can remain with the current activeElement
+      // which is a more common use case.
+      event.preventDefault()
+      focusRef(selectRef)
+    },
+    [selectRef]
+  )
 
   const close = useCallback(() => {
     setOpen(false)
