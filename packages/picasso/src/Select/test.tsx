@@ -143,16 +143,17 @@ test('renders select', () => {
 
 test('should open menu when focus on select', () => {
   const placeholder = 'Choose an option...'
-  const { getByPlaceholderText, getByTestId } = renderSelect({
+
+  const { getByPlaceholderText, getByRole } = renderSelect({
     options: OPTIONS,
     placeholder
   })
 
-  const input = getByPlaceholderText(placeholder)
+  const selectInput = getByPlaceholderText(placeholder)
 
-  fireEvent.focus(input)
+  fireEvent.focus(selectInput)
 
-  const menu = getByTestId('select-dropdown')
+  const menu = getByRole('menu')
 
   expect(menu).toMatchSnapshot()
 })
@@ -160,74 +161,147 @@ test('should open menu when focus on select', () => {
 test('should return back selected value when input value is edited', () => {
   const placeholder = 'Choose an option...'
   const expectedText = OPTIONS[1].text
-
-  const { getByPlaceholderText } = renderSelect({
-    options: OPTIONS,
-    placeholder,
-    value: [OPTIONS[1].value]
-  })
-
-  const input = getByPlaceholderText(placeholder) as HTMLInputElement
-
-  fireEvent.focus(input)
-  fireEvent.change(input, { target: { value: 'some text' } })
-  fireEvent.blur(input)
-
-  expect(input.value).toBe(expectedText)
-})
-
-test('should reset selected value when input is wiped', () => {
-  const placeholder = 'Choose an option...'
-  const onChange = jest.fn(event => event.target.value)
+  const searchPlaceholder = 'Search for an option'
 
   const { getByPlaceholderText } = renderSelect({
     options: OPTIONS,
     placeholder,
     value: [OPTIONS[1].value],
-    onChange
+    searchPlaceholder,
+    searchThreshold: -1
   })
 
-  const input = getByPlaceholderText(placeholder)
+  const selectInput = getByPlaceholderText(placeholder) as HTMLInputElement
 
-  fireEvent.focus(input)
-  fireEvent.change(input, { target: { value: '' } })
-  fireEvent.blur(input)
+  fireEvent.focus(selectInput)
 
-  expect(onChange).toHaveReturnedWith('')
+  const searchInput = getByPlaceholderText(searchPlaceholder)
+
+  fireEvent.focus(searchInput)
+  fireEvent.change(searchInput, { target: { value: 'some text' } })
+  fireEvent.blur(searchInput)
+
+  expect(selectInput.value).toBe(expectedText)
 })
 
 test('should filter options based on entered value to the input field', () => {
   const placeholder = 'Choose an option...'
+  const searchPlaceholder = 'Search for an option'
 
-  const { getByPlaceholderText, getByTestId } = renderSelect({
+  const { getByPlaceholderText, getAllByRole } = renderSelect({
     options: OPTIONS,
-    placeholder
+    placeholder,
+    searchPlaceholder,
+    searchThreshold: -1
   })
 
-  const input = getByPlaceholderText(placeholder)
+  const selectInput = getByPlaceholderText(placeholder) as HTMLInputElement
 
-  fireEvent.focus(input)
-  fireEvent.change(input, { target: { value: '2' } })
+  fireEvent.focus(selectInput)
 
-  const menu = getByTestId('select-dropdown')
+  const searchInput = getByPlaceholderText(searchPlaceholder)
 
-  expect(menu).toMatchSnapshot()
+  fireEvent.focus(searchInput)
+  fireEvent.change(searchInput, { target: { value: '3' } })
+
+  expect(getAllByRole('option').length).toBe(1)
+})
+
+test('should show all options when input value is wiped', () => {
+  const placeholder = 'Choose an option...'
+  const searchPlaceholder = 'Search for an option'
+
+  const { getByPlaceholderText, getAllByRole } = renderSelect({
+    options: OPTIONS,
+    placeholder,
+    searchPlaceholder,
+    searchThreshold: -1
+  })
+
+  const selectInput = getByPlaceholderText(placeholder) as HTMLInputElement
+
+  fireEvent.focus(selectInput)
+
+  const searchInput = getByPlaceholderText(searchPlaceholder)
+
+  fireEvent.focus(searchInput)
+  fireEvent.change(searchInput, { target: { value: '3' } })
+  fireEvent.change(searchInput, { target: { value: '' } })
+
+  expect(getAllByRole('option').length).toBe(OPTIONS.length)
+})
+
+test('should focus search input when tab is pressed', () => {
+  const placeholder = 'Choose an option...'
+  const searchPlaceholder = 'Search for an option'
+
+  const { getByPlaceholderText } = renderSelect({
+    options: OPTIONS,
+    placeholder,
+    searchPlaceholder,
+    searchThreshold: -1
+  })
+
+  const selectInput = getByPlaceholderText(placeholder)
+
+  fireEvent.focus(selectInput)
+  fireEvent.keyDown(selectInput, {
+    key: 'Tab',
+    code: 'Tab'
+  })
+
+  const searchInput = getByPlaceholderText(searchPlaceholder)
+
+  expect(searchInput).toEqual(document.activeElement)
+})
+
+test('should focus search input when a character is entered', () => {
+  const placeholder = 'Choose an option...'
+  const searchPlaceholder = 'Search for an option'
+
+  const { getByPlaceholderText } = renderSelect({
+    options: OPTIONS,
+    placeholder,
+    searchPlaceholder,
+    searchThreshold: -1
+  })
+
+  const selectInput = getByPlaceholderText(placeholder)
+
+  fireEvent.focus(selectInput)
+  fireEvent.keyDown(selectInput, {
+    key: '2',
+    code: 'Digit2'
+  })
+
+  const searchInput = getByPlaceholderText(
+    searchPlaceholder
+  ) as HTMLInputElement
+
+  expect(searchInput).toEqual(document.activeElement)
 })
 
 test('should render noOptionText if the value entered does not match any of the options', () => {
   const placeholder = 'Choose an option...'
   const noOptionsText = 'No results'
+  const searchPlaceholder = 'Search for an option'
 
   const { getByPlaceholderText, getByRole } = renderSelect({
     options: OPTIONS,
     noOptionsText,
-    placeholder
+    placeholder,
+    searchPlaceholder,
+    searchThreshold: -1
   })
 
-  const input = getByPlaceholderText(placeholder)
+  const selectInput = getByPlaceholderText(placeholder)
 
-  fireEvent.focus(input)
-  fireEvent.change(input, { target: { value: 'non-existent value' } })
+  fireEvent.focus(selectInput)
+
+  const searchInput = getByPlaceholderText(searchPlaceholder)
+
+  fireEvent.focus(searchInput)
+  fireEvent.change(searchInput, { target: { value: 'non-existent value' } })
 
   const menu = getByRole('menu')
 
@@ -237,15 +311,15 @@ test('should render noOptionText if the value entered does not match any of the 
 test('should render description', () => {
   const placeholder = 'Choose an option...'
 
-  const { getByPlaceholderText, getByTestId } = renderSelect({
+  const { getByPlaceholderText, getByRole } = renderSelect({
     options: OPTIONS_WITH_DESCRIPTIONS,
     placeholder
   })
-  const input = getByPlaceholderText(placeholder)
+  const selectInput = getByPlaceholderText(placeholder)
 
-  fireEvent.focus(input)
+  fireEvent.focus(selectInput)
 
-  const menu = getByTestId('select-dropdown')
+  const menu = getByRole('menu')
 
   expect(menu).toMatchSnapshot()
 })
@@ -253,17 +327,17 @@ test('should render description', () => {
 test('should render options customly', async () => {
   const placeholder = 'Choose an option...'
 
-  const { getByPlaceholderText, getByTestId } = renderSelect({
+  const { getByPlaceholderText, getByRole } = renderSelect({
     options: OPTIONS,
     placeholder,
     // eslint-disable-next-line react/display-name
     renderOption: ({ text }) => <div>{`Custom renderered ${text}`}</div>
   })
-  const input = getByPlaceholderText(placeholder)
+  const selectInput = getByPlaceholderText(placeholder)
 
-  fireEvent.focus(input)
+  fireEvent.focus(selectInput)
 
-  const menu = getByTestId('select-dropdown')
+  const menu = getByRole('menu')
 
   expect(menu).toMatchSnapshot()
 })
@@ -277,10 +351,10 @@ test('should keep value in the hidden input when autofill is not enabled explici
     name: 'country'
   })
 
-  const input = getByPlaceholderText(placeholder)
+  const selectInput = getByPlaceholderText(placeholder)
 
-  expect(input).not.toHaveAttribute('name')
-  expect(input).toHaveAttribute('autocomplete', 'off')
+  expect(selectInput).not.toHaveAttribute('name')
+  expect(selectInput).toHaveAttribute('autocomplete', 'off')
 })
 
 test('should allow browser autofilling by input name', () => {
@@ -293,10 +367,10 @@ test('should allow browser autofilling by input name', () => {
     enableAutofill: true
   })
 
-  const input = getByPlaceholderText(placeholder)
+  const selectInput = getByPlaceholderText(placeholder)
 
-  expect(input).toHaveAttribute('name', 'country')
-  expect(input).not.toHaveAttribute('autocomplete')
+  expect(selectInput).toHaveAttribute('name', 'country')
+  expect(selectInput).not.toHaveAttribute('autocomplete')
 })
 
 test('should render selected option customly', async () => {
@@ -323,9 +397,9 @@ test('should highlight selected option when focus on select', () => {
     placeholder
   })
 
-  const input = getByPlaceholderText(placeholder)
+  const selectInput = getByPlaceholderText(placeholder)
 
-  fireEvent.focus(input)
+  fireEvent.focus(selectInput)
 
   const selectedOptions = getSelectedOptions(container)
 
@@ -397,9 +471,9 @@ describe('multiple select', () => {
         multiple: true
       })
 
-      const input = getByPlaceholderText(placeholder)
+      const selectInput = getByPlaceholderText(placeholder)
 
-      fireEvent.focus(input)
+      fireEvent.focus(selectInput)
 
       expect(
         getByText(OPTIONS[0].text)
@@ -418,9 +492,9 @@ describe('multiple select', () => {
         multiple: true
       })
 
-      const input = getByPlaceholderText(placeholder)
+      const selectInput = getByPlaceholderText(placeholder)
 
-      fireEvent.focus(input)
+      fireEvent.focus(selectInput)
 
       expect(
         getByText(selectedOptions[0].text)
@@ -439,9 +513,9 @@ describe('multiple select', () => {
         multiple: true
       })
 
-      const input = getByPlaceholderText(placeholder)
+      const selectInput = getByPlaceholderText(placeholder)
 
-      fireEvent.focus(input)
+      fireEvent.focus(selectInput)
 
       expect(
         getByText(OPTIONS[0].text)
@@ -461,9 +535,9 @@ describe('multiple select', () => {
       multiple: true
     })
 
-    const input = getByPlaceholderText(placeholder)
+    const selectInput = getByPlaceholderText(placeholder)
 
-    fireEvent.focus(input)
+    fireEvent.focus(selectInput)
 
     expect(container).toMatchSnapshot()
   })
@@ -481,9 +555,9 @@ describe('multiple select', () => {
       }
     )
 
-    const input = getByPlaceholderText(placeholder)
+    const selectInput = getByPlaceholderText(placeholder)
 
-    fireEvent.focus(input)
+    fireEvent.focus(selectInput)
 
     expect(spiedOnTitleCase).toBeCalledTimes(0)
   })
@@ -498,9 +572,9 @@ describe('multiple select', () => {
     }
     const { rerender, getByPlaceholderText } = renderSelect(initialProps)
 
-    const input = getByPlaceholderText(placeholder) as HTMLInputElement
+    const selectInput = getByPlaceholderText(placeholder) as HTMLInputElement
 
-    expect(input.value).not.toBe(selectedOption.text)
+    expect(selectInput.value).not.toBe(selectedOption.text)
 
     rerender(
       <TestingPicasso>
@@ -512,6 +586,6 @@ describe('multiple select', () => {
       </TestingPicasso>
     )
 
-    expect(input.value).toBe(selectedOption.text)
+    expect(selectInput.value).toBe(selectedOption.text)
   })
 })

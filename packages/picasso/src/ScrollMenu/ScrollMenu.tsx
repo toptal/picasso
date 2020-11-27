@@ -2,7 +2,8 @@ import React, {
   useLayoutEffect,
   useRef,
   createRef,
-  FunctionComponent
+  FunctionComponent,
+  ReactNode
 } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import RootRef from '@material-ui/core/RootRef'
@@ -15,6 +16,7 @@ type FocusEventType = (event: React.FocusEvent<HTMLInputElement>) => void
 export interface Props extends StandardProps {
   selectedIndex?: number | null
   onBlur?: FocusEventType
+  fixedHeader?: ReactNode
 }
 
 enum Direction {
@@ -36,16 +38,13 @@ const getMoveDirection = (
     : Direction.UP
 }
 
-const preventDefault = (
-  event: React.MouseEvent<HTMLUListElement, MouseEvent>
-) => event.preventDefault()
-
 const ScrollMenu: FunctionComponent<Props> = ({
   selectedIndex,
   onBlur,
   classes,
   children,
   style,
+  fixedHeader,
   ...rest
 }) => {
   const menuRef = useRef<HTMLDivElement | null>(null)
@@ -104,10 +103,10 @@ const ScrollMenu: FunctionComponent<Props> = ({
     <Menu
       className={classes.menu}
       style={style}
-      onMouseDown={preventDefault}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
     >
+      {fixedHeader}
       <div ref={menuRef} className={classes.scrollView} onBlur={onBlur}>
         {renderChildren}
       </div>
