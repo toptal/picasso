@@ -20,20 +20,17 @@ const Details = () => (
 
 describe('default version for sections', () => {
   test('should render default version', () => {
-    const { queryByText, container } = render(
+    const { container } = render(
       <Accordion content={<Details />}>
         <Summary />
       </Accordion>
     )
 
-    expect(queryByText(summaryHeaderText)).toBeInTheDocument()
-    expect(container.querySelector('.MuiCollapse-container')).toHaveClass(
-      'MuiCollapse-hidden'
-    )
+    expect(container).toMatchSnapshot()
   })
 
   test('should render expanded version after click on summary', () => {
-    const { queryByText, getByText, container } = render(
+    const { getByText, container } = render(
       <Accordion content={<Details />}>
         <Summary />
       </Accordion>
@@ -42,37 +39,28 @@ describe('default version for sections', () => {
 
     fireEvent.click(summary)
 
-    expect(queryByText(summaryHeaderText)).toBeInTheDocument()
-    expect(container.querySelector('.MuiCollapse-container')).not.toHaveClass(
-      'MuiCollapse-hidden'
-    )
+    expect(container).toMatchSnapshot()
   })
 })
 
 describe('controlled version', () => {
   test('should render expanded version', () => {
-    const { container, queryByText } = render(
+    const { container } = render(
       <Accordion content={<Details />} expanded>
         <Summary />
       </Accordion>
     )
 
-    expect(queryByText(summaryHeaderText)).toBeInTheDocument()
-    expect(container.querySelector('.MuiCollapse-container')).not.toHaveClass(
-      'MuiCollapse-hidden'
-    )
+    expect(container).toMatchSnapshot()
   })
 
   test('should render collapsed version', () => {
-    const { container, queryByText } = render(
+    const { container } = render(
       <Accordion content={<Details />} expanded={false}>
         <Summary />
       </Accordion>
     )
 
-    expect(queryByText(summaryHeaderText)).toBeInTheDocument()
-    expect(container.querySelector('.MuiCollapse-container')).toHaveClass(
-      'MuiCollapse-hidden'
-    )
+    expect(container).toMatchSnapshot()
   })
 })
