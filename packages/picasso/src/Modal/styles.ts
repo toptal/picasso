@@ -21,13 +21,13 @@ export default ({ palette, screens }: Theme) =>
       }
     },
     small: {
-      width: '32.5em'
+      width: '32.5rem'
     },
     medium: {
-      width: '40.625em'
+      width: '40.625rem'
     },
     large: {
-      width: '50em'
+      width: '50rem'
     },
     'full-screen': {
       height: maxHeight,

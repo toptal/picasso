@@ -44,7 +44,7 @@ page
   })
   .addExample('Modal/story/Sizes.example.tsx', {
     title: 'Sizes',
-    effect: async (testPage, makeScreenshot) => {
+    effect: async (testPage, makeScreenshot, compareScreenshots) => {
       await testPage.click('[data-testid="trigger-small"]')
       await testPage.waitFor('[data-testid="cancel"]')
       await makeScreenshot({
@@ -63,7 +63,7 @@ page
 
       await testPage.click('[data-testid="trigger-large"]')
       await testPage.waitFor('[data-testid="cancel"]')
-      await makeScreenshot({
+      const largeModalImage = await makeScreenshot({
         isFullScreen: true
       })
 
@@ -74,6 +74,23 @@ page
       await makeScreenshot({
         isFullScreen: true
       })
+
+      await testPage.click('[data-testid="cancel"]')
+
+      await testPage.addStyleTag({
+        content: `#modal-container-sizes { font-size: 8px; }`
+      })
+      await testPage.click('[data-testid="trigger-large"]')
+      await testPage.waitFor('[data-testid="cancel"]')
+      const largeModalImageWithinDifferentFontSize = await makeScreenshot({
+        isFullScreen: true
+      })
+
+      // modal width should be the same no matter what font size specified outside
+      compareScreenshots(
+        largeModalImage,
+        largeModalImageWithinDifferentFontSize
+      )
     }
   })
   .addExample('Modal/story/MaxHeight.example.tsx', {

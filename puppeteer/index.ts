@@ -15,12 +15,15 @@ interface Dimensions {
   height: number
 }
 
+type Screenshot = string | Buffer
+
 interface Options extends MatchImageSnapshotOptions {
   delay?: number
   waitUntilImagesLoaded?: boolean
   effect?: (
     page: Page,
-    makeScreenShot: (options: Options) => void
+    makeScreenShot: (options: Options) => Promise<Screenshot>,
+    compareScreenshots: (image1: Screenshot, image2: Screenshot) => void
   ) => Promise<unknown>
   isFullScreen?: boolean
   padding?: number
@@ -74,10 +77,16 @@ const screenshotDOMElement = async ({
   })
 }
 
+const compareScreenshots = async (image1: Screenshot, image2: Screenshot) => {
+  expect(image1).toEqual(image2)
+}
+
 const matchScreenshot = async (options: Options) => {
   const image = await screenshotDOMElement(options)
 
   expect(image).toMatchImageSnapshot(options)
+
+  return image
 }
 
 // TODO: Make this more universal when we add more components and their variations
@@ -112,14 +121,14 @@ export const assertVisuals = function (
       let effectSnapshotId = 0
 
       const makeEffectScreenshot = async (effectOptions: Options) => {
-        await matchScreenshot({
+        return matchScreenshot({
           ...options,
           ...effectOptions,
           customSnapshotIdentifier: `${customSnapshotIdentifier}-effect-${++effectSnapshotId}`
         })
       }
 
-      await effect(page, makeEffectScreenshot)
+      await effect(page, makeEffectScreenshot, compareScreenshots)
     }
   }
 }
