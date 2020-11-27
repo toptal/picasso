@@ -13,7 +13,7 @@ const Example = () => {
       value={value}
       placeholder='Placeholder'
       onChange={handleChange}
-      data-testId='input'
+      data-testid='input'
     />
   )
 }
