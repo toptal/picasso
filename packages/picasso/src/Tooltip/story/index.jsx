@@ -44,3 +44,11 @@ page
   .addExample('Tooltip/story/Delay.example.tsx', 'Delay') // picasso-skip-visuals
   .addExample('Tooltip/story/Compact.example.tsx', 'Compact')
   .addExample('Tooltip/story/MaxWidth.example.tsx', 'Max Width')
+  .addExample('Tooltip/story/Dropdown.example.tsx', {
+    title: 'Inside of a Dropdown',
+    effect: async (testPage, makeScreenshot) => {
+      await testPage.click('[data-testid="trigger"]')
+
+      await makeScreenshot({ isFullScreen: true })
+    }
+  })
