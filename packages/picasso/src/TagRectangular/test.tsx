@@ -9,13 +9,11 @@ jest.mock('ap-style-title-case')
 
 const renderTag = (
   children: string,
-  { color, indicator, titleCase }: OmitInternalProps<Props, 'children'>,
+  { titleCase }: OmitInternalProps<Props, 'children'>,
   picassoConfig?: PicassoConfig
 ) =>
   render(
-    <TagRectangular color={color} indicator={indicator} titleCase={titleCase}>
-      {children}
-    </TagRectangular>,
+    <TagRectangular titleCase={titleCase}>{children}</TagRectangular>,
     undefined,
     picassoConfig
   )
@@ -35,17 +33,6 @@ afterEach(() => {
 })
 
 describe('TagRectangular', () => {
-  describe('when "indicator" and "color" (not equal to "light-grey") properties are provided at the same time', () => {
-    it('throws an error', () => {
-      const ERROR_MESSAGE =
-        '"indicator" and "color" properties should not be specified at the same time'
-      const tryRender = () =>
-        renderTag('Reactangular Tag', { indicator: 'blue', color: 'red' })
-
-      expect(tryRender).toThrow(ERROR_MESSAGE)
-    })
-  })
-
   describe('when Picasso titleCase property is true', () => {
     it('transforms text to title case', () => {
       const TEXT_CONTENT = 'Test ld7'

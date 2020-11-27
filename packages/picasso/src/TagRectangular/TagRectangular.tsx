@@ -1,5 +1,5 @@
 import React, { forwardRef, HTMLAttributes, AnchorHTMLAttributes } from 'react'
-import { withStyles, makeStyles, Theme } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { BaseProps, TextLabelProps, useTitleCase } from '@toptal/picasso-shared'
 
@@ -7,18 +7,29 @@ import Indicator, { IndicatorProps } from '../Indicator'
 import Chip from '../Chip'
 import toTitleCase from '../utils/to-title-case'
 import styles from './styles'
+import { dashToCamelCase } from '../utils'
 
 export type ColorType = 'red' | 'yellow' | 'dark-grey' | 'light-grey'
 
 export type DivOrAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> &
   HTMLAttributes<HTMLDivElement>
 
-export interface Props extends BaseProps, TextLabelProps, DivOrAnchorProps {
+interface ColorOnlyProps extends BaseProps, TextLabelProps, DivOrAnchorProps {
   /** Color of the rectangular `Tag`, can not be used with the `indicator` property at the same time. */
   color?: ColorType
   /** Indicator color, can not be used with the `color` property at the same time. The Tag's `color` property is automatically set to `light-grey` when indicator color is set. */
-  indicator?: IndicatorProps['color']
+  indicator?: never
 }
+
+interface IndicatorOnlyProps
+  extends BaseProps,
+    TextLabelProps,
+    DivOrAnchorProps {
+  color?: never
+  indicator: IndicatorProps['color']
+}
+
+export type Props = ColorOnlyProps | IndicatorOnlyProps
 
 const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoTagRectangular'
@@ -36,12 +47,6 @@ export const TagRectangular = forwardRef<HTMLDivElement, Props>(
       ...rest
     } = props
 
-    if (indicator && color !== 'light-grey') {
-      throw new Error(
-        '"indicator" and "color" properties should not be specified at the same time'
-      )
-    }
-
     const classes = useStyles(props)
     const titleCase = useTitleCase(propsTitleCase)
 
@@ -51,7 +56,7 @@ export const TagRectangular = forwardRef<HTMLDivElement, Props>(
         {...rest}
         ref={ref}
         classes={{
-          root: cx(classes.root, classes[color!]),
+          root: cx(classes.root, classes[dashToCamelCase(color!)]),
           label: classes.label,
           icon: classes.icon
         }}
@@ -78,4 +83,4 @@ TagRectangular.defaultProps = {
 
 TagRectangular.displayName = 'TagRectangular'
 
-export default withStyles(styles)(TagRectangular)
+export default TagRectangular

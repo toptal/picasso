@@ -14,14 +14,14 @@ export default ({ palette }: Theme) =>
     yellow: {
       backgroundColor: palette.yellow.main
     },
-    'dark-grey': {
+    darkGrey: {
       backgroundColor: palette.grey.darker
     },
-    'light-grey': {
+    lightGrey: {
       backgroundColor: palette.grey.lighter2
     },
     label: {
-      padding: '0.125em 0.25em 0 0.25em'
+      padding: '0 0.25em'
     },
     innerLabel: {
       fontSize: '11px',
