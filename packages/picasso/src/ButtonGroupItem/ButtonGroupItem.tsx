@@ -30,9 +30,9 @@ export const ButtonGroupItem = forwardRef<HTMLButtonElement, Props>(
         className={cx(
           rootClassName,
           {
-            [classes.first]: order === 'first' || order === 'single',
-            [classes.middle]: !order || order === 'middle',
-            [classes.last]: order === 'last' || order === 'single'
+            [classes.first]: order === 'first',
+            [classes.middle]: order === 'middle',
+            [classes.last]: order === 'last'
           },
           className
         )}
