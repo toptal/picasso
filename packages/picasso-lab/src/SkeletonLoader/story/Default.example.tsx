@@ -41,7 +41,7 @@ const SidebarMenu = ({ children }: { children: ReactNode }) => (
 )
 
 const RightContent = () => (
-  <Page.HeaderMenu
+  <Page.TopBarMenu
     name='Jacqueline Roque'
     avatar='./jacqueline-with-flowers-1954-square.jpg'
   >
@@ -49,7 +49,7 @@ const RightContent = () => (
       <Menu.Item>My Account</Menu.Item>
       <Menu.Item>Log Out</Menu.Item>
     </Menu>
-  </Page.HeaderMenu>
+  </Page.TopBarMenu>
 )
 
 const Content = () => (
@@ -151,7 +151,7 @@ const PageExample = () => {
   return (
     <div style={{ height: '40rem' }}>
       <Page>
-        <Page.Header rightContent={<RightContent />} title='Default example' />
+        <Page.TopBar rightContent={<RightContent />} title='Default example' />
         <Page.Content>
           <SidebarMenu>
             <Sidebar.Item icon={<Update16 />} onClick={reloadData}>
