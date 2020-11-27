@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Page, Container, Menu, Typography, Link } from '@toptal/picasso'
-import { ExclamationSolid16 } from '@toptal/picasso/Icon'
 const { Banner } = Page
 
 const StyledMainContentContainer = styled(Container)`
@@ -12,19 +11,15 @@ const Example = () => (
   <div style={{ maxHeight: '30rem' }}>
     <Page>
       <Page.TopBar rightContent={<RightContent />} title='Default example' />
-      <Banner icon={<ExclamationSolid16 color='yellow' />}>
-        <Banner.Message>
-          You need to sign STA agreement in order to be able to hire talent.
-        </Banner.Message>
+      <Banner>
+        You need to sign STA agreement in order to be able to hire talent.
         <Banner.Actions>
           <Link>Sign STA Agreement</Link>
         </Banner.Actions>
       </Banner>
-      <Banner icon={<ExclamationSolid16 color='yellow' />}>
-        <Banner.Message>
-          It looks like your credit card or ACH payment method is not working.
-          Please update your payment information.
-        </Banner.Message>
+      <Banner>
+        It looks like your credit card or ACH payment method is not working.
+        Please update your payment information.
         <Banner.Actions>
           <Link>Update Billing Details</Link>
         </Banner.Actions>
