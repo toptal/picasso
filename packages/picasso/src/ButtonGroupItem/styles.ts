@@ -3,24 +3,21 @@ import { createStyles } from '@material-ui/core/styles'
 export default () =>
   createStyles({
     first: {
-      '& $button': {
-        borderTopRightRadius: 0,
-        borderBottomRightRadius: 0
-      }
+      borderTopRightRadius: 0,
+      borderBottomRightRadius: 0,
+      marginLeft: '0 !important'
     },
     last: {
-      '& $button': {
-        borderTopLeftRadius: 0,
-        borderBottomLeftRadius: 0
-      }
+      borderTopLeftRadius: 0,
+      borderBottomLeftRadius: 0,
+      marginLeft: '-1px !important'
     },
     middle: {
-      '& $button': {
-        borderRadius: 0
-      }
+      borderRadius: 0,
+      marginLeft: '-1px !important'
     },
 
-    button: {
+    root: {
       transitionProperty: 'color, background',
 
       '&:active, &$active, &:hover': {

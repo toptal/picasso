@@ -4,6 +4,7 @@ import cx from 'classnames'
 import { StandardProps, withClasses } from '@toptal/picasso-shared'
 
 import Button from '../Button'
+import ButtonGroupContext from './ButtonGroupContext'
 import styles from './styles'
 
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
@@ -21,7 +22,22 @@ export const ButtonGroup = forwardRef<HTMLDivElement, Props>(
         className={cx(classes.root, className)}
         style={style}
       >
-        {children}
+        {React.Children.toArray(children)
+          .filter(React.isValidElement)
+          .map((child, index) => (
+            <ButtonGroupContext.Provider
+              key={index}
+              value={
+                index === 0
+                  ? 'first'
+                  : index === React.Children.toArray(children).length - 1
+                  ? 'last'
+                  : undefined
+              }
+            >
+              {child}
+            </ButtonGroupContext.Provider>
+          ))}
       </div>
     )
   }

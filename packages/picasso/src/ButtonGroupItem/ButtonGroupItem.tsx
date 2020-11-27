@@ -1,62 +1,58 @@
-import React, { ReactNode, HTMLAttributes, forwardRef } from 'react'
+import React, {
+  ReactNode,
+  ButtonHTMLAttributes,
+  forwardRef,
+  useContext
+} from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { StandardProps, withClasses } from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 
-import Button from '../Button'
+import { ButtonGroupContext } from '../ButtonGroup'
 import styles from './styles'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props
+  extends StandardProps,
+    ButtonHTMLAttributes<HTMLButtonElement> {
   /** List of `Button` components which you want to render as `ButtonGroupItem` */
   children: ReactNode
-  /** Defines style for first item in group, same as :first-child  */
-  first?: boolean
-  /** Defines style for last item in group, same as :last-child  */
-  last?: boolean
 }
 
-export const ButtonGroupItem = forwardRef<HTMLDivElement, Props>(
-  function ButtonGroupItem(
-    { children, classes, className, style, first, last, ...rest },
-    ref
-  ) {
+export const ButtonGroupItem = forwardRef<HTMLButtonElement, Props>(
+  function ButtonGroupItem({ classes, className, ...rest }, ref) {
+    const rootClassName = cx(
+      {
+        // @ts-ignore
+        [classes.active]: rest.active
+      },
+      classes.root
+    )
+
+    const order = useContext(ButtonGroupContext)
+
     return (
-      <div
+      <button
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         ref={ref}
         className={cx(
+          rootClassName,
           {
-            [classes.first]: first && !last,
-            [classes.middle]: !first && !last,
-            [classes.last]: last && !first
+            [classes.first]: order === 'first',
+            [classes.middle]: !order,
+            [classes.last]: order === 'last'
           },
           className
         )}
-        style={style}
-      >
-        {children}
-      </div>
+      />
     )
   }
 )
 
 ButtonGroupItem.defaultProps = {
-  classes: {},
-  first: false,
-  last: false
+  classes: {}
 }
 
 ButtonGroupItem.displayName = 'ButtonGroupItem'
 
-export default withStyles(styles)(
-  withClasses(classes => [
-    [
-      Button,
-      {
-        root: classes.button,
-        active: classes.active
-      }
-    ]
-  ])(ButtonGroupItem)
-)
+export default withStyles(styles)(ButtonGroupItem)
