@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/toptal/picasso/compare/@topkit/analytics-charts@0.3.10...@topkit/analytics-charts@0.4.0) (2020-11-27)
+
+
+### Features
+
+* add logic for rendering x axis in day and hour granularity ([#1696](https://github.com/toptal/picasso/issues/1696)) ([4bd3439](https://github.com/toptal/picasso/commit/4bd3439a9b37b10916325731f3b5c0bb4dafdd21))
+
+
+
+
+
 ## [0.3.10](https://github.com/toptal/picasso/compare/@topkit/analytics-charts@0.3.9...@topkit/analytics-charts@0.3.10) (2020-11-06)
 
 **Note:** Version bump only for package @topkit/analytics-charts
