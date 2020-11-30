@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.115.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.114.0...@toptal/picasso@4.115.0) (2020-11-30)
+
+
+### Features
+
+* **icons:** add TriangleLeftMinorSolid and TriangleRightMinorSolid16 ([#1707](https://github.com/toptal/picasso/issues/1707)) ([b4324bc](https://github.com/toptal/picasso/commit/b4324bcc441c55b9d3f20e9edbf00cb4191fd8b7))
+
+
+
+
+
 # [4.114.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.113.1...@toptal/picasso@4.114.0) (2020-11-26)
 
 
