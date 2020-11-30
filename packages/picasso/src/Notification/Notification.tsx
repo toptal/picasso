@@ -31,7 +31,7 @@ import NotificationActions from '../NotificationActions'
 
 export type VariantType = 'red' | 'green' | 'white' | 'yellow'
 
-/** `variant`, `elevated` and `icon` props are ommited from the public declaration, since they're only for internal use */
+/** `variant`, `elevated` and `icon` props are omitted from the public declaration, since they're only for internal use */
 export interface PrivateProps
   extends BaseProps,
     HTMLAttributes<HTMLDivElement> {
@@ -45,11 +45,9 @@ export interface PrivateProps
   icon?: ReactElement
   /** Enable elevated appearance for Notification */
   elevated?: boolean
-  /** Take the full width of a container */
-  fullWidth?: boolean
 }
 
-export type PublicProps = Omit<PrivateProps, 'variant' | 'elevated' | 'icon'>
+export type PublicProps = Omit<PrivateProps, 'variant' | 'icon'>
 
 export interface StaticProps {
   Actions: typeof NotificationActions
@@ -134,7 +132,7 @@ const useStyles = makeStyles<Theme, PrivateProps>(styles, {
 export const Notification = forwardRef<HTMLElement, PrivateProps>(
   function Notification(props, ref) {
     const classes = useStyles(props)
-    const { className, variant, elevated, fullWidth, ...rest } = props
+    const { className, variant, elevated, ...rest } = props
 
     return (
       <SnackbarContent
@@ -144,8 +142,7 @@ export const Notification = forwardRef<HTMLElement, PrivateProps>(
           classes[`notification${capitalize(variant as string)}`],
           {
             [classes.notificationShadow]: elevated,
-            [classes.roundedBorders]: elevated,
-            [classes.notificationFullWidth]: fullWidth
+            [classes.roundedBorders]: elevated
           },
           classes.notification,
           className
@@ -162,7 +159,6 @@ export const Notification = forwardRef<HTMLElement, PrivateProps>(
 
 Notification.defaultProps = {
   elevated: false,
-  fullWidth: false,
   variant: 'yellow'
 }
 
