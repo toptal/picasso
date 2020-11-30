@@ -19,4 +19,5 @@ const Example = () => (
     />
   </div>
 )
+
 export default Example
