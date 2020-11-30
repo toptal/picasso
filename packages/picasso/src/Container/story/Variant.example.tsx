@@ -41,7 +41,7 @@ const Example = () => (
     </Container>
 
     <Container>
-      <Typography bottom='medium' variant='heading' size='medium'>
+      <Typography variant='heading' size='medium'>
         Non-bordered
       </Typography>
 
