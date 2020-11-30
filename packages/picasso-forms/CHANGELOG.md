@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.23.0](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.22.1...@toptal/picasso-forms@0.23.0) (2020-11-27)
+
+
+### Features
+
+* **Form:** [FX-1408] add disabled styles for labels ([381b0f3](https://github.com/toptal/picasso/commit/381b0f358d88cd5f6a67f7e1f1b4dbc415a6e6f2))
+
+
+
+
+
 ## [0.22.1](https://github.com/toptal/picasso/compare/@toptal/picasso-forms@0.22.0...@toptal/picasso-forms@0.22.1) (2020-11-20)
 
 **Note:** Version bump only for package @toptal/picasso-forms
