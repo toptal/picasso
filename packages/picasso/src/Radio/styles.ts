@@ -110,8 +110,8 @@ export default ({ palette, sizes, transitions }: Theme) =>
 
       '&:hover $checkedIcon:before': iconBeforeStyles({
         borderWidth: sizes.borderWidth,
-        borderColor: mix(palette.primary.dark, palette.common.white, 0.152),
-        backgroundColor: mix(palette.primary.dark, palette.common.white, 0.152)
+        borderColor: mix(palette.primary.main, palette.common.white, 0.16),
+        backgroundColor: mix(palette.primary.main, palette.common.white, 0.16)
       })
     },
     focused: {
