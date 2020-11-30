@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { Container } from '@toptal/picasso'
-import { Form, FORM_ERROR } from '@toptal/picasso-forms'
+import { Form } from '@toptal/picasso-forms'
 
 const BackendCommunicationExample = () => {
   const handleSuccessSubmit = useCallback(
@@ -9,10 +9,6 @@ const BackendCommunicationExample = () => {
   )
   const handleSubmitWithInlineError = useCallback(
     (values: any) => api.submitWithInlineError(values),
-    []
-  )
-  const handleSubmitWithFormError = useCallback(
-    (values: any) => api.submitWithFormError(values),
     []
   )
   const handleSubmitWithCustomNotificationError = useCallback(
@@ -86,35 +82,6 @@ const BackendCommunicationExample = () => {
         </Container>
       </Form>
 
-      <Form
-        onSubmit={handleSubmitWithFormError}
-        failedSubmitMessage='Login failed! Please try another combination of first and last names.'
-      >
-        <Form.Input
-          required
-          name='formErrorName'
-          label='First name'
-          placeholder='e.g. Bruce'
-          width='full'
-        />
-        <Form.Input
-          required
-          name='formErrorSurname'
-          label='Last name'
-          placeholder='e.g. Wayne'
-          width='full'
-        />
-
-        <Container top='small'>
-          <Form.SubmitButton
-            variant='negative'
-            data-testid='submit-with-form-error-button'
-          >
-            Login with Form Error
-          </Form.SubmitButton>
-        </Container>
-      </Form>
-
       <Form onSubmit={handleSubmitWithCustomNotificationError}>
         <Form.Input
           required
@@ -160,13 +127,6 @@ const api = {
 
     return responseWithDelay({
       inlineErrorName: 'Unknown first name'
-    })
-  },
-  submitWithFormError: (values: any) => {
-    console.log('Submit with Form Errors. Form values:', values)
-
-    return responseWithDelay({
-      [FORM_ERROR]: "The user don't have a permission to log in."
     })
   },
   submitWithCustomNotificationError: (values: any) => {
