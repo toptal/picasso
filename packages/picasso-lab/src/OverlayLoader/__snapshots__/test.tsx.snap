@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OverlayLoader default render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="Container-smallPadding Container-flex PicassoOverlayLoader-root PicassoOverlayLoader-root"
+    >
+      <div
+        class="Loader-root"
+      >
+        <div
+          class="MuiCircularProgress-root CircularProgress-root Loader-spinnerBlue MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
+          role="progressbar"
+          style="width: 16px; height: 16px;"
+        >
+          <svg
+            class="MuiCircularProgress-svg"
+            viewBox="22 22 44 44"
+          >
+            <circle
+              class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
+              cx="44"
+              cy="44"
+              fill="none"
+              r="20.2"
+              stroke-width="3.6"
+            />
+          </svg>
+        </div>
+        <div
+          class="Loader-label"
+        >
+          Loading data...
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
