@@ -132,8 +132,5 @@ export default ({ palette, sizes, transitions }: Theme) =>
     checkboxWrapper: {
       alignSelf: 'flex-start',
       verticalAlign: 'middle'
-    },
-    disabledCheckboxWrapper: {
-      cursor: 'not-allowed'
     }
   })

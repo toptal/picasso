@@ -24,7 +24,6 @@ PicassoProvider.override(({ palette, transitions }) => ({
 
       '&$disabled': {
         opacity: 0.48,
-        cursor: 'not-allowed',
         pointerEvents: 'auto'
       }
     },
