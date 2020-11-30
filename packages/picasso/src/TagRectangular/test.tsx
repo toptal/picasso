@@ -33,6 +33,12 @@ afterEach(() => {
 })
 
 describe('TagRectangular', () => {
+  it('renders rectangular Tag', () => {
+    const { container } = renderTag('Reactangular Tag', {})
+
+    expect(container).toMatchSnapshot()
+  })
+
   describe('when Picasso titleCase property is true', () => {
     it('transforms text to title case', () => {
       const TEXT_CONTENT = 'Test ld7'

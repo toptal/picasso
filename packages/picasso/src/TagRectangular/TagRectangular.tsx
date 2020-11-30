@@ -9,15 +9,15 @@ import toTitleCase from '../utils/to-title-case'
 import styles from './styles'
 import { dashToCamelCase } from '../utils'
 
-export type ColorType = 'red' | 'yellow' | 'dark-grey' | 'light-grey'
+export type VariantType = 'red' | 'yellow' | 'dark-grey' | 'light-grey'
 
 export type DivOrAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> &
   HTMLAttributes<HTMLDivElement>
 
 interface ColorOnlyProps extends BaseProps, TextLabelProps, DivOrAnchorProps {
-  /** Color of the rectangular `Tag`, can not be used with the `indicator` property at the same time. */
-  color?: ColorType
-  /** Indicator color, can not be used with the `color` property at the same time. The Tag's `color` property is automatically set to `light-grey` when indicator color is set. */
+  /** Variant of the rectangular `Tag`, can not be used with the `indicator` property at the same time. */
+  variant?: VariantType
+  /** Indicator color, can not be used with the `variant` property at the same time. The Tag's `variant` property is automatically set to `light-grey` when indicator color is set. */
   indicator?: never
 }
 
@@ -25,7 +25,7 @@ interface IndicatorOnlyProps
   extends BaseProps,
     TextLabelProps,
     DivOrAnchorProps {
-  color?: never
+  variant?: never
   indicator: IndicatorProps['color']
 }
 
@@ -42,7 +42,7 @@ export const TagRectangular = forwardRef<HTMLDivElement, Props>(
       style,
       className,
       titleCase: propsTitleCase,
-      color,
+      variant,
       indicator,
       ...rest
     } = props
@@ -56,7 +56,7 @@ export const TagRectangular = forwardRef<HTMLDivElement, Props>(
         {...rest}
         ref={ref}
         classes={{
-          root: cx(classes.root, classes[dashToCamelCase(color!)]),
+          root: cx(classes.root, classes[dashToCamelCase(variant!)]),
           label: classes.label,
           icon: classes.icon
         }}
@@ -66,7 +66,7 @@ export const TagRectangular = forwardRef<HTMLDivElement, Props>(
         label={
           <span
             className={cx(classes.innerLabel, {
-              [classes.innerLabelDarkText]: color === 'light-grey'
+              [classes.innerLabelDarkText]: variant === 'light-grey'
             })}
           >
             {titleCase ? toTitleCase(children) : children}
@@ -78,7 +78,7 @@ export const TagRectangular = forwardRef<HTMLDivElement, Props>(
 )
 
 TagRectangular.defaultProps = {
-  color: 'light-grey'
+  variant: 'light-grey'
 }
 
 TagRectangular.displayName = 'TagRectangular'
