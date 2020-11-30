@@ -19,6 +19,7 @@ export { default as ClickAwayListener } from '@material-ui/core/ClickAwayListene
 
 export { default as isString } from './is-string'
 export { default as disableUnsupportedProps } from './disable-unsupported-props'
+export { dashToCamelCase } from './dash-to-camel-case'
 export { default as isNumber } from './is-number'
 export { default as isBoolean } from './is-boolean'
 export { default as isPointerDevice } from './is-pointer-device'
