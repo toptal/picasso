@@ -256,7 +256,11 @@ const FieldWrapper = <
   return (
     <PicassoForm.Field error={error} hint={hint} data-testid={dataTestId}>
       {!hideFieldLabel && label && (
-        <PicassoForm.Label requiredDecoration={requiredDecoration} htmlFor={id}>
+        <PicassoForm.Label
+          requiredDecoration={requiredDecoration}
+          htmlFor={id}
+          disabled={rest.disabled}
+        >
           {label}
         </PicassoForm.Label>
       )}
