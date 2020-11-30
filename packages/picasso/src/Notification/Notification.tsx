@@ -31,7 +31,7 @@ import NotificationActions from '../NotificationActions'
 
 export type VariantType = 'red' | 'green' | 'white' | 'yellow'
 
-/** `variant`, `elevated` and `icon` props are ommitted from the public declaration, since they're only for internal use */
+/** `variant`, `elevated` and `icon` props are omitted from the public declaration, since they're only for internal use */
 export interface PrivateProps
   extends BaseProps,
     HTMLAttributes<HTMLDivElement> {
