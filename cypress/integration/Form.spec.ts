@@ -29,23 +29,6 @@ describe('Form', () => {
       )
   })
 
-  it('submits the form with the alert error', () => {
-    cy.visit('iframe.html?id=form--backend-communication')
-
-    cy.get('#formErrorName').type('name')
-    cy.get('#formErrorSurname').type('surname')
-
-    cy.get('[data-testid=submit-with-form-error-button]').click()
-
-    cy.get('[role=alert]')
-      .should('be.visible')
-      .and('contain', "The user don't have a permission to log in.")
-
-    cy.contains(
-      'Login failed! Please try another combination of first and last names.'
-    ).should('not.be.visible')
-  })
-
   it('submits the form and return a string from onSubmit, which should be shown as a notification', () => {
     cy.visit('iframe.html?id=form--backend-communication')
 
