@@ -5,10 +5,8 @@ import {
 } from 'react-final-form'
 import { FormApi, SubmissionErrors, getIn, setIn } from 'final-form'
 import { Form as PicassoForm, Container } from '@toptal/picasso'
-import { Alert } from '@toptal/picasso-lab'
 import { useNotifications } from '@toptal/picasso/utils'
 
-import { FORM_ERROR } from '../index'
 import Autocomplete from '../Autocomplete'
 import Input from '../Input'
 import Select from '../Select'
@@ -66,14 +64,6 @@ const getValidationErrors = (
   return errors
 }
 
-const getFormError = (errors: SubmissionErrors | void | undefined) => {
-  if (!errors) {
-    return undefined
-  }
-
-  return errors[FORM_ERROR]
-}
-
 export const Form = <T extends any = Record<string, any>>(props: Props<T>) => {
   const {
     children,
@@ -104,13 +94,6 @@ export const Form = <T extends any = Record<string, any>>(props: Props<T>) => {
     if (typeof errors === 'string') {
       showError(errors, undefined, { persist: true })
 
-      return
-    }
-
-    const formError = getFormError(errors)
-    const hasFormLevelError = Boolean(formError)
-
-    if (hasFormLevelError) {
       return
     }
 
@@ -155,25 +138,13 @@ export const Form = <T extends any = Record<string, any>>(props: Props<T>) => {
   return (
     <FormContext.Provider value={validationObject}>
       <FinalForm
-        render={({ handleSubmit, form }) => {
-          const formState = form.getState()
-          const formError = getFormError(formState.submitErrors)
-
-          const formErrorAlert = formError ? (
-            <Container bottom='medium'>
-              <Alert variant='red'>{formError}</Alert>
-            </Container>
-          ) : null
-
-          return (
-            <Container>
-              {formErrorAlert}
-              <PicassoForm autoComplete={autoComplete} onSubmit={handleSubmit}>
-                {children}
-              </PicassoForm>
-            </Container>
-          )
-        }}
+        render={({ handleSubmit }) => (
+          <Container>
+            <PicassoForm autoComplete={autoComplete} onSubmit={handleSubmit}>
+              {children}
+            </PicassoForm>
+          </Container>
+        )}
         onSubmit={handleSubmit}
         decorators={[...decorators, scrollToErrorDecorator]}
         // eslint-disable-next-line react/jsx-props-no-spreading
