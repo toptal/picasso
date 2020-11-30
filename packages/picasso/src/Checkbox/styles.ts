@@ -26,19 +26,19 @@ export default ({ palette, sizes, transitions }: Theme) =>
         border: `${sizes.borderWidth} solid ${palette.grey.main2}`
       },
       '&:hover $checkedIcon': {
-        background: mix(palette.primary.dark, palette.common.white, 0.152),
+        background: mix(palette.primary.main, palette.common.white, 0.16),
         border: `${sizes.borderWidth} solid ${mix(
-          palette.primary.dark,
+          palette.primary.main,
           palette.common.white,
-          0.152
+          0.16
         )}`
       },
       '&:hover $indeterminateIcon': {
-        background: mix(palette.primary.dark, palette.common.white, 0.152),
+        background: mix(palette.primary.main, palette.common.white, 0.16),
         border: `${sizes.borderWidth} solid ${mix(
-          palette.primary.dark,
+          palette.primary.main,
           palette.common.white,
-          0.152
+          0.16
         )}`
       }
     },
