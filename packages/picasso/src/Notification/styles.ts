@@ -6,8 +6,10 @@ PicassoProvider.override(() => ({
     message: {
       display: 'flex',
       padding: 0,
-      maxWidth: '72.5em',
-      minWidth: 0
+      maxWidth: '73.75em',
+      width: '100%',
+      minWidth: 0,
+      margin: '0 auto'
     }
   }
 }))
@@ -45,9 +47,6 @@ export default ({
     },
     notificationYellow: {
       background: yellow.lighter
-    },
-    notificationFullWidth: {
-      justifyContent: 'center'
     },
 
     // Content
