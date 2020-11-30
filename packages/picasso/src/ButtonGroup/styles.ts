@@ -27,9 +27,11 @@ export default () =>
         marginLeft: '-1px'
       },
 
-      '&:active, &$active, &:hover': {
+      '&:active, &$active, &:hover, &$hovered, &:focus, &$focused': {
         zIndex: 1
       }
     },
-    active: {}
+    active: {},
+    focused: {},
+    hovered: {}
   })
