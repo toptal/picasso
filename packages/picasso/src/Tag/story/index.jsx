@@ -1,4 +1,5 @@
 import tagGroupStory from '../../TagGroup/story'
+import tagRectangularStory from '../../TagRectangular/story'
 import { Tag } from '../Tag'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
@@ -24,6 +25,7 @@ page
     name: 'Tag'
   })
   .addComponentDocs(tagGroupStory.componentDocs)
+  .addComponentDocs(tagRectangularStory.componentDocs)
 
 page
   .createChapter()
@@ -33,3 +35,4 @@ page
   .addExample('Tag/story/Disabled.example.jsx', 'Disabled')
 
 page.connect(tagGroupStory.chapter)
+page.connect(tagRectangularStory.chapter)
