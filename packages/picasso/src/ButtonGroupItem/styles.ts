@@ -20,9 +20,8 @@ export default () =>
     root: {
       transitionProperty: 'color, background',
 
-      '&:active, &$active, &:hover': {
+      '&:active, &:hover, &:focus': {
         zIndex: 1
       }
-    },
-    active: {}
+    }
   })

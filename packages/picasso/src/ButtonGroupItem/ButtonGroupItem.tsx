@@ -1,9 +1,9 @@
-import React, { ButtonHTMLAttributes, forwardRef, useContext } from 'react'
+import React, { ButtonHTMLAttributes, forwardRef } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { StandardProps } from '@toptal/picasso-shared'
 
-import { ButtonGroupContext } from '../ButtonGroup'
+import { useButtonGroupOrder } from '../ButtonGroup'
 import styles from './styles'
 
 export interface Props
@@ -12,15 +12,7 @@ export interface Props
 
 export const ButtonGroupItem = forwardRef<HTMLButtonElement, Props>(
   function ButtonGroupItem({ classes, className, ...rest }, ref) {
-    const rootClassName = cx(
-      {
-        // @ts-ignore
-        [classes.active]: rest.active
-      },
-      classes.root
-    )
-
-    const order = useContext(ButtonGroupContext)
+    const order = useButtonGroupOrder()
 
     return (
       <button
@@ -28,7 +20,7 @@ export const ButtonGroupItem = forwardRef<HTMLButtonElement, Props>(
         {...rest}
         ref={ref}
         className={cx(
-          rootClassName,
+          classes.root,
           {
             [classes.first]: order === 'first',
             [classes.middle]: order === 'middle',
