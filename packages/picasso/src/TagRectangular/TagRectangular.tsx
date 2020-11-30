@@ -14,7 +14,7 @@ export type VariantType = 'red' | 'yellow' | 'dark-grey' | 'light-grey'
 export type DivOrAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> &
   HTMLAttributes<HTMLDivElement>
 
-interface ColorOnlyProps extends BaseProps, TextLabelProps, DivOrAnchorProps {
+interface VariantOnlyProps extends BaseProps, TextLabelProps, DivOrAnchorProps {
   /** Variant of the rectangular `Tag`, can not be used with the `indicator` property at the same time. */
   variant?: VariantType
   /** Indicator color, can not be used with the `variant` property at the same time. The Tag's `variant` property is automatically set to `light-grey` when indicator color is set. */
@@ -29,7 +29,7 @@ interface IndicatorOnlyProps
   indicator: IndicatorProps['color']
 }
 
-export type Props = ColorOnlyProps | IndicatorOnlyProps
+export type Props = VariantOnlyProps | IndicatorOnlyProps
 
 const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoTagRectangular'
@@ -38,6 +38,8 @@ const useStyles = makeStyles<Theme, Props>(styles, {
 export const TagRectangular = forwardRef<HTMLDivElement, Props>(
   function TagRectangular(props, ref) {
     const {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      color,
       children,
       style,
       className,
