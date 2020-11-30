@@ -24,7 +24,7 @@
     "@toptal/picasso": "^4.49.2"
   },
   "devDependencies": {
-    "@types/d3-array": "2.7.0"
+    "@types/d3-array": "2.8.0"
   },
   "dependencies": {
     "@types/recharts": "^1.8.15",
