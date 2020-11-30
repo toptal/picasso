@@ -16,8 +16,6 @@ page
 page
   .createChapter()
   .addExample('Notification/story/Default.example.tsx', 'Default')
-  .addExample('Notification/story/Close.example.tsx', 'Closable notification')
-  .addExample('Notification/story/FullWidth.example.tsx', 'Full width')
   .addExample('Notification/story/Actions.example.tsx', 'With Action')
 
 page.connect(notificationsStreamStory.chapter)
