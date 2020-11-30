@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.115.1](https://github.com/toptal/picasso/compare/@toptal/picasso@4.115.0...@toptal/picasso@4.115.1) (2020-11-30)
+
+
+### Bug Fixes
+
+* **Modal:** change Modal width size em to rem ([#1744](https://github.com/toptal/picasso/issues/1744)) ([4ec467a](https://github.com/toptal/picasso/commit/4ec467ad98729452577db02f45ccd989f531406e))
+
+
+
+
+
 # [4.115.0](https://github.com/toptal/picasso/compare/@toptal/picasso@4.114.0...@toptal/picasso@4.115.0) (2020-11-30)
 
 
