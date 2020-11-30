@@ -47,16 +47,11 @@ const RightContent = () => (
 )
 
 const Content = () => (
-  <StyledMainContentContainer
-    top='small'
-    bottom='small'
-    left='small'
-    right='small'
-  >
+  <StyledMainContentContainer>
     <Typography align='center' variant='heading' size='large'>
       With compound banner example
     </Typography>
-    <p>
+    <Typography>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
       veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
@@ -64,7 +59,7 @@ const Content = () => (
       velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
       est laborum.
-    </p>
+    </Typography>
   </StyledMainContentContainer>
 )
 

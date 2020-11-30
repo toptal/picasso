@@ -1,12 +1,12 @@
 import { createStyles, Theme } from '@material-ui/core/styles'
 import { PicassoProvider } from '@toptal/picasso-shared'
 
-PicassoProvider.override(() => ({
+PicassoProvider.override(({ layout }: Theme) => ({
   MuiSnackbarContent: {
     message: {
       display: 'flex',
-      padding: 0,
-      maxWidth: '73.75em',
+      maxWidth: layout.contentWidth,
+      padding: `0 ${layout.contentPaddingHorizontal}`,
       width: '100%',
       minWidth: 0,
       margin: '0 auto'
@@ -17,7 +17,8 @@ PicassoProvider.override(() => ({
 export default ({
   palette: { red, green, yellow, common, text },
   shadows,
-  sizes: { borderRadius }
+  sizes: { borderRadius },
+  layout
 }: Theme) =>
   createStyles({
     notification: {
@@ -25,7 +26,8 @@ export default ({
       borderRadius: 0,
       flexWrap: 'nowrap',
       maxWidth: 'initial',
-      padding: '1.5em',
+      padding: `1.5em calc(1.5em - ${layout.contentPaddingHorizontal})`,
+      // padding: 0,
       position: 'relative',
       width: '100%',
       boxShadow: 'none'

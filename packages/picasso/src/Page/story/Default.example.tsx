@@ -25,7 +25,9 @@ const handleClick = () => window.alert('Item clicked')
 const SidebarMenu = () => (
   <Sidebar>
     <Sidebar.Menu>
-      <Sidebar.Item icon={<PortfolioDesigner16 />}>Home</Sidebar.Item>
+      <Sidebar.Item selected icon={<PortfolioDesigner16 />}>
+        Home
+      </Sidebar.Item>
       <Sidebar.Item icon={<Profile16 />}>Contacts</Sidebar.Item>
       <Sidebar.Item icon={<Globe16 />}>Team</Sidebar.Item>
     </Sidebar.Menu>
@@ -54,7 +56,7 @@ const Content = () => (
     <Typography align='center' variant='heading' size='large'>
       Default example
     </Typography>
-    <p>
+    <Typography>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
       veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
@@ -62,7 +64,7 @@ const Content = () => (
       velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
       est laborum.
-    </p>
+    </Typography>
   </StyledMainContentContainer>
 )
 
