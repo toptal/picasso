@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TagRectangular renders rectangular Tag 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="MuiChip-root PicassoTagRectangular-root PicassoTagRectangular-lightGrey"
+    >
+      <span
+        class="MuiChip-label PicassoTagRectangular-label"
+      >
+        <span
+          class="PicassoTagRectangular-innerLabel PicassoTagRectangular-innerLabelDarkText"
+        >
+          Reactangular Tag
+        </span>
+      </span>
+    </div>
+  </div>
+</div>
+`;
