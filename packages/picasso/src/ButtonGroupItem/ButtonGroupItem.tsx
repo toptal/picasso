@@ -1,17 +1,24 @@
 import React, { ButtonHTMLAttributes, forwardRef } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { StandardProps } from '@toptal/picasso-shared'
+import { BaseProps } from '@toptal/picasso-shared'
 
 import { useButtonGroupOrder } from '../ButtonGroup'
 import styles from './styles'
 
 export interface Props
-  extends StandardProps,
+  extends BaseProps,
     ButtonHTMLAttributes<HTMLButtonElement> {}
 
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'PicassoButtonGroupItem'
+})
+
 export const ButtonGroupItem = forwardRef<HTMLButtonElement, Props>(
-  function ButtonGroupItem({ classes, className, ...rest }, ref) {
+  function ButtonGroupItem(props, ref) {
+    const { className, ...rest } = props
+
+    const classes = useStyles(props)
     const order = useButtonGroupOrder()
 
     return (
@@ -33,10 +40,8 @@ export const ButtonGroupItem = forwardRef<HTMLButtonElement, Props>(
   }
 )
 
-ButtonGroupItem.defaultProps = {
-  classes: {}
-}
+ButtonGroupItem.defaultProps = {}
 
 ButtonGroupItem.displayName = 'ButtonGroupItem'
 
-export default withStyles(styles)(ButtonGroupItem)
+export default ButtonGroupItem
