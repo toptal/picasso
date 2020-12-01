@@ -1,7 +1,5 @@
 import { createStyles } from '@material-ui/core/styles'
 
-import { COMPONENT_TYPE_DATA_ATTRIBUTE_KEY } from '../utils/constants'
-
 const baseButtonProps = {
   transitionProperty: 'color, background',
 
@@ -27,15 +25,13 @@ const lastButtonProps = {
   marginLeft: '-1px'
 }
 
-const BUTTON_SELECTOR = `[${COMPONENT_TYPE_DATA_ATTRIBUTE_KEY}="button"]`
-
 export default () =>
   createStyles({
     root: {
       display: 'flex',
       justifyContent: 'flex-start',
 
-      [`& ${BUTTON_SELECTOR}`]: {
+      '& [data-component-type="button"]': {
         ...baseButtonProps,
 
         '&:first-child:not(:last-child)': firstButtonProps,
@@ -43,17 +39,17 @@ export default () =>
         '&:last-child:not(:first-child)': lastButtonProps
       },
 
-      [`& :first-child:not(:last-child) ${BUTTON_SELECTOR}`]: {
+      '& :first-child:not(:last-child) [data-component-type="button"]': {
         ...baseButtonProps,
         ...firstButtonProps
       },
 
-      [`& :not(:first-child):not(:last-child) ${BUTTON_SELECTOR}`]: {
+      '& :not(:first-child):not(:last-child) [data-component-type="button"]': {
         ...baseButtonProps,
         ...middleButtonProps
       },
 
-      [`& :last-child:not(:first-child) ${BUTTON_SELECTOR}`]: {
+      '& :last-child:not(:first-child) [data-component-type="button"]': {
         ...baseButtonProps,
         ...lastButtonProps
       }
