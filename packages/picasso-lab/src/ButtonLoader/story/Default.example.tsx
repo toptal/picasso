@@ -6,28 +6,31 @@ const Example = () => (
   <>
     <Container bottom='medium'>
       <Container bottom='xsmall'>
-        <Typography>Default</Typography>
+        <Typography variant='heading'>Sizes</Typography>
       </Container>
-      <SkeletonLoader.Button />
-    </Container>
-
-    <Container bottom='medium'>
-      <Container bottom='xsmall'>
-        <Typography>Align center</Typography>
+      <Container inline>
+        <SkeletonLoader.Button size='small' />
       </Container>
-
-      <Container flex justifyContent='center'>
-        <SkeletonLoader.Button />
+      <Container inline left='small'>
+        <SkeletonLoader.Button size='medium' />
+      </Container>
+      <Container inline left='small'>
+        <SkeletonLoader.Button size='large' />
       </Container>
     </Container>
 
     <Container bottom='medium'>
       <Container bottom='xsmall'>
-        <Typography>Align right</Typography>
+        <Typography variant='heading'>Circular</Typography>
       </Container>
-
-      <Container flex justifyContent='flex-end'>
-        <SkeletonLoader.Button />
+      <Container inline>
+        <SkeletonLoader.Button circular size='small' />
+      </Container>
+      <Container inline left='small'>
+        <SkeletonLoader.Button circular size='medium' />
+      </Container>
+      <Container inline left='small'>
+        <SkeletonLoader.Button circular size='large' />
       </Container>
     </Container>
   </>
