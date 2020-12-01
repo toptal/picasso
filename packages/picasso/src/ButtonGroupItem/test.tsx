@@ -9,13 +9,13 @@ describe('ButtonGroup', () => {
     const { container } = render(
       <Button.Group>
         <Container>
-          <Button as={Button.GroupItem} key='1' />
+          <Button as={Button.GroupItem} />
         </Container>
         <Container>
-          <Button as={Button.GroupItem} key='2' />
+          <Button as={Button.GroupItem} />
         </Container>
         <Container>
-          <Button as={Button.GroupItem} key='3' />
+          <Button as={Button.GroupItem} />
         </Container>
       </Button.Group>
     )
