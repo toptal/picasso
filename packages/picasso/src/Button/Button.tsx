@@ -24,7 +24,6 @@ import useStyles from './styles'
 import Loader from '../Loader'
 import Container from '../Container'
 import Group from '../ButtonGroup'
-import GroupItem from '../ButtonGroupItem'
 import Circular from '../ButtonCircular'
 import Action from '../ButtonAction'
 import toTitleCase from '../utils/to-title-case'
@@ -75,7 +74,6 @@ export interface Props extends BaseProps, TextLabelProps, ButtonOrAnchorProps {
 
 export interface StaticProps {
   Group: typeof Group
-  GroupItem: typeof GroupItem
   Circular: typeof Circular
   Action: typeof Action
 }
@@ -230,7 +228,6 @@ Button.defaultProps = {
 Button.displayName = 'Button'
 
 Button.Group = Group
-Button.GroupItem = GroupItem
 Button.Circular = Circular
 Button.Action = Action
 

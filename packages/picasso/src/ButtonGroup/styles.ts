@@ -1,34 +1,57 @@
 import { createStyles } from '@material-ui/core/styles'
 
+const baseButtonProps = {
+  transitionProperty: 'color, background',
+
+  '&:active, &$active, &:hover, &$hovered, &:focus, &$focused': {
+    zIndex: 1
+  }
+}
+
+const firstButtonProps = {
+  borderTopRightRadius: 0,
+  borderBottomRightRadius: 0,
+  marginLeft: '0rem'
+}
+
+const middleButtonProps = {
+  borderRadius: 0,
+  marginLeft: '-1px'
+}
+
+const lastButtonProps = {
+  borderTopLeftRadius: 0,
+  borderBottomLeftRadius: 0,
+  marginLeft: '-1px'
+}
+
 export default () =>
   createStyles({
     root: {
       display: 'flex',
-      justifyContent: 'flex-start'
-    },
+      justifyContent: 'flex-start',
 
-    button: {
-      transitionProperty: 'color, background',
+      '& [class*="MuiButtonBase-root"]': {
+        ...baseButtonProps,
 
-      '&:first-child:not(:last-child)': {
-        borderTopRightRadius: 0,
-        borderBottomRightRadius: 0,
-        marginLeft: '0rem'
+        '&:first-child:not(:last-child)': firstButtonProps,
+        '&:not(:first-child):not(:last-child)': middleButtonProps,
+        '&:last-child:not(:first-child)': lastButtonProps
       },
 
-      '&:not(:first-child):not(:last-child)': {
-        borderRadius: 0,
-        marginLeft: '-1px'
+      '& :first-child:not(:last-child) [class*="MuiButtonBase-root"]': {
+        ...baseButtonProps,
+        ...firstButtonProps
       },
 
-      '&:last-child:not(:first-child)': {
-        borderTopLeftRadius: 0,
-        borderBottomLeftRadius: 0,
-        marginLeft: '-1px'
+      '& :not(:first-child):not(:last-child) [class*="MuiButtonBase-root"]': {
+        ...baseButtonProps,
+        ...middleButtonProps
       },
 
-      '&:active, &$active, &:hover, &$hovered, &:focus, &$focused': {
-        zIndex: 1
+      '& :last-child:not(:first-child) [class*="MuiButtonBase-root"]': {
+        ...baseButtonProps,
+        ...lastButtonProps
       }
     },
     active: {},
