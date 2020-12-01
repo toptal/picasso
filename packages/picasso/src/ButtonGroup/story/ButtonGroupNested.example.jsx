@@ -16,8 +16,12 @@ const Example = () => (
           content={
             <Menu>
               <Menu.Item>First item</Menu.Item>
-              <Menu.Item>Second item</Menu.Item>
-              <Menu.Item>Third item</Menu.Item>
+              <Menu.Item>
+                <Button as={Button.GroupItem}>Third</Button>
+              </Menu.Item>
+              <Menu.Item>
+                <Button>Third</Button>
+              </Menu.Item>
             </Menu>
           }
         >

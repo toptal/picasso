@@ -3,7 +3,6 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { BaseProps } from '@toptal/picasso-shared'
 
-import { useButtonGroupOrder } from '../ButtonGroup'
 import styles from './styles'
 
 export interface Props
@@ -19,22 +18,13 @@ export const ButtonGroupItem = forwardRef<HTMLButtonElement, Props>(
     const { className, ...rest } = props
 
     const classes = useStyles(props)
-    const order = useButtonGroupOrder()
 
     return (
       <button
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         ref={ref}
-        className={cx(
-          classes.root,
-          {
-            [classes.first]: order === 'first',
-            [classes.middle]: order === 'middle',
-            [classes.last]: order === 'last'
-          },
-          className
-        )}
+        className={cx(classes.root, className)}
       />
     )
   }

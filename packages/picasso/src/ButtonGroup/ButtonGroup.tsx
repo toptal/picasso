@@ -1,16 +1,22 @@
-import React, { ReactNode, HTMLAttributes, forwardRef } from 'react'
+import React, {
+  ReactNode,
+  ReactElement,
+  HTMLAttributes,
+  forwardRef
+} from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { StandardProps, withClasses } from '@toptal/picasso-shared'
 
 import Button from '../Button'
-import ButtonGroupContext, { ButtonGroupOrder } from './ButtonGroupContext'
 import styles from './styles'
 
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** List of `Button` components which you want to render as `ButtonGroup` */
   children: ReactNode
 }
+
+export type ButtonGroupOrder = 'first' | 'middle' | 'last' | undefined
 
 const getButtonGroupOrder = (
   index: number,
@@ -33,7 +39,7 @@ const getButtonGroupOrder = (
 
 export const ButtonGroup = forwardRef<HTMLDivElement, Props>(
   function ButtonGroup({ children, classes, className, style, ...rest }, ref) {
-    const childrenArray = React.Children.toArray(children)
+    const childrenLength = React.Children.toArray(children).length
 
     return (
       <div
@@ -43,14 +49,11 @@ export const ButtonGroup = forwardRef<HTMLDivElement, Props>(
         className={cx(classes.root, className)}
         style={style}
       >
-        {childrenArray.filter(React.isValidElement).map((child, index) => (
-          <ButtonGroupContext.Provider
-            key={index}
-            value={getButtonGroupOrder(index, childrenArray.length)}
-          >
-            {child}
-          </ButtonGroupContext.Provider>
-        ))}
+        {React.Children.map(children, (child, index) =>
+          React.cloneElement(child as ReactElement, {
+            'data-button-group': getButtonGroupOrder(index, childrenLength)
+          })
+        )}
       </div>
     )
   }

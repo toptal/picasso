@@ -10,10 +10,11 @@ exports[`ButtonGroup render 1`] = `
     >
       <div
         class=""
+        data-button-group="first"
       >
         <button
           aria-disabled="false"
-          class="PicassoButtonGroupItem-root PicassoButtonGroupItem-first MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+          class="PicassoButtonGroupItem-root MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
           role="button"
           tabindex="0"
         >
@@ -24,10 +25,11 @@ exports[`ButtonGroup render 1`] = `
       </div>
       <div
         class=""
+        data-button-group="middle"
       >
         <button
           aria-disabled="false"
-          class="PicassoButtonGroupItem-root PicassoButtonGroupItem-middle MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+          class="PicassoButtonGroupItem-root MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
           role="button"
           tabindex="0"
         >
@@ -38,10 +40,11 @@ exports[`ButtonGroup render 1`] = `
       </div>
       <div
         class=""
+        data-button-group="last"
       >
         <button
           aria-disabled="false"
-          class="PicassoButtonGroupItem-root PicassoButtonGroupItem-last MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+          class="PicassoButtonGroupItem-root MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
           role="button"
           tabindex="0"
         >
