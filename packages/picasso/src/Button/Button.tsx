@@ -27,6 +27,7 @@ import Group from '../ButtonGroup'
 import Circular from '../ButtonCircular'
 import Action from '../ButtonAction'
 import toTitleCase from '../utils/to-title-case'
+import { COMPONENT_TYPE_DATA_ATTRIBUTE_KEY } from '../utils/constants'
 
 export type VariantType =
   | 'primary'
@@ -176,7 +177,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
   return (
     <ButtonBase
       // eslint-disable-next-line react/jsx-props-no-spreading
-      {...rest}
+      {...{ ...rest, [COMPONENT_TYPE_DATA_ATTRIBUTE_KEY]: 'button' }}
       ref={ref}
       classes={{
         root: rootClassName,
