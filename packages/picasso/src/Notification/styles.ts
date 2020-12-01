@@ -27,7 +27,6 @@ export default ({
       flexWrap: 'nowrap',
       maxWidth: 'initial',
       padding: `1.5em calc(1.5em - ${layout.contentPaddingHorizontal})`,
-      // padding: 0,
       position: 'relative',
       width: '100%',
       boxShadow: 'none'
