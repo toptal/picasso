@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>D1C275C5-3E59-4A85-8D76-68CD610F7836@1x</title>
+  <defs>
+    <polygon id="path-1" points="17 4 7 12 17 20"></polygon>
+  </defs>
+  <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="Icons-/-Arrows-/-24-/-Triangle-Left-Minor-Solid">
+      <mask id="mask-2" fill="white">
+        <use xlink:href="#path-1"></use>
+      </mask>
+      <use id="Rectangle" fill="#D8D8D8" xlink:href="#path-1"></use>
+      <g id="Group" mask="url(#mask-2)" fill="#455065">
+        <g id="Colors-/-307-Gray-Dark">
+          <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
