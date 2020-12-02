@@ -53,9 +53,11 @@ const Content = () => (
     left='small'
     right='small'
   >
-    <Typography align='center' variant='heading' size='large'>
-      Default example
-    </Typography>
+    <Container bottom='small'>
+      <Typography align='center' variant='heading' size='large'>
+        Default example
+      </Typography>
+    </Container>
     <Typography>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim

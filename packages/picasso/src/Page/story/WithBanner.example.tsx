@@ -37,10 +37,12 @@ const RightContent = () => (
 )
 
 const Content = () => (
-  <StyledMainContentContainer>
-    <Typography align='center' variant='heading' size='large'>
-      With banner example
-    </Typography>
+  <StyledMainContentContainer top='small'>
+    <Container bottom='small'>
+      <Typography align='center' variant='heading' size='large'>
+        Banner example
+      </Typography>
+    </Container>
     <Typography>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim

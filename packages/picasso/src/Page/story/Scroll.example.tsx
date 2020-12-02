@@ -14,10 +14,12 @@ const Example = () => (
 )
 
 const Content = () => (
-  <Container>
-    <Typography align='center' variant='heading' size='large'>
-      Scrollable example
-    </Typography>
+  <Container top='small'>
+    <Container bottom='small'>
+      <Typography align='center' variant='heading' size='large'>
+        Scrollable example
+      </Typography>
+    </Container>
     <Typography>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Sollicitudin ac orci
