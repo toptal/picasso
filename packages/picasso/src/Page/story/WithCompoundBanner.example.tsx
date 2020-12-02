@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Page, Container, Menu, Typography, Link } from '@toptal/picasso'
-import { ExclamationSolid16 } from '@toptal/picasso/Icon'
 const { Banner } = Page
 
 const StyledMainContentContainer = styled(Container)`
@@ -12,19 +11,15 @@ const Example = () => (
   <div style={{ maxHeight: '30rem' }}>
     <Page>
       <Page.TopBar rightContent={<RightContent />} title='Default example' />
-      <Banner icon={<ExclamationSolid16 color='yellow' />}>
-        <Banner.Message>
-          You need to sign STA agreement in order to be able to hire talent.
-        </Banner.Message>
+      <Banner>
+        You need to sign STA agreement in order to be able to hire talent.
         <Banner.Actions>
           <Link>Sign STA Agreement</Link>
         </Banner.Actions>
       </Banner>
-      <Banner icon={<ExclamationSolid16 color='yellow' />}>
-        <Banner.Message>
-          It looks like your credit card or ACH payment method is not working.
-          Please update your payment information.
-        </Banner.Message>
+      <Banner>
+        It looks like your credit card or ACH payment method is not working.
+        Please update your payment information.
         <Banner.Actions>
           <Link>Update Billing Details</Link>
         </Banner.Actions>
@@ -52,16 +47,13 @@ const RightContent = () => (
 )
 
 const Content = () => (
-  <StyledMainContentContainer
-    top='small'
-    bottom='small'
-    left='small'
-    right='small'
-  >
-    <Typography align='center' variant='heading' size='large'>
-      With compound banner example
-    </Typography>
-    <p>
+  <StyledMainContentContainer top='small'>
+    <Container bottom='small'>
+      <Typography align='center' variant='heading' size='large'>
+        Compound banner example
+      </Typography>
+    </Container>
+    <Typography>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
       veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
@@ -69,7 +61,7 @@ const Content = () => (
       velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
       est laborum.
-    </p>
+    </Typography>
   </StyledMainContentContainer>
 )
 
