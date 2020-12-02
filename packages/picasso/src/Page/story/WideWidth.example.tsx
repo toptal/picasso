@@ -28,11 +28,14 @@ const RightContent = () => (
 )
 
 const Content = () => (
-  <Container top='small' bottom='small' left='small' right='small'>
-    <Typography align='center' variant='heading' size='large'>
-      Wide width example
-    </Typography>
-    <p>
+  <Container top='small'>
+    <Container bottom='small'>
+      <Typography align='center' variant='heading' size='large'>
+        Wide width example
+      </Typography>
+    </Container>
+
+    <Typography>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
       veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
@@ -40,7 +43,7 @@ const Content = () => (
       velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
       est laborum.
-    </p>
+    </Typography>
   </Container>
 )
 

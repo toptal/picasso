@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Page, Container, Menu, Typography } from '@toptal/picasso'
-import { Time16 } from '@toptal/picasso/Icon'
 
 const StyledMainContentContainer = styled(Container)`
   flex: 1;
@@ -11,7 +10,7 @@ const Example = () => (
   <div style={{ maxHeight: '30rem' }}>
     <Page>
       <Page.TopBar rightContent={<RightContent />} title='Default example' />
-      <Page.Banner icon={<Time16 />}>
+      <Page.Banner>
         We are now in the process of reviewing your profile. After your profile
         has been checked, we will reach to you via email about next steps.
       </Page.Banner>
@@ -38,16 +37,13 @@ const RightContent = () => (
 )
 
 const Content = () => (
-  <StyledMainContentContainer
-    top='small'
-    bottom='small'
-    left='small'
-    right='small'
-  >
-    <Typography align='center' variant='heading' size='large'>
-      With banner example
-    </Typography>
-    <p>
+  <StyledMainContentContainer top='small'>
+    <Container bottom='small'>
+      <Typography align='center' variant='heading' size='large'>
+        Banner example
+      </Typography>
+    </Container>
+    <Typography>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
       veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
@@ -55,7 +51,7 @@ const Content = () => (
       velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
       est laborum.
-    </p>
+    </Typography>
   </StyledMainContentContainer>
 )
 

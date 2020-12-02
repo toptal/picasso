@@ -17,7 +17,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
         tabindex="-1"
       >
         <div
-          class="Container-leftsmallMargin Container-rightsmallMargin"
+          class="Container-rightsmallMargin"
         >
           <div
             class="MuiPaper-root MuiAccordion-root makeStyles-root makeStyles-bordersNone Mui-expanded MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
@@ -93,7 +93,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                         tabindex="-1"
                       >
                         <div
-                          class="Container-leftsmallMargin Container-rightsmallMargin"
+                          class="Container-rightsmallMargin"
                         >
                           <li
                             aria-disabled="false"
@@ -144,7 +144,7 @@ exports[`SidebarItem default render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Container-leftsmallMargin Container-rightsmallMargin"
+      class="Container-rightsmallMargin"
     >
       <li
         aria-disabled="false"
@@ -185,7 +185,7 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Container-leftsmallMargin Container-rightsmallMargin"
+      class="Container-rightsmallMargin"
     >
       <li
         aria-disabled="false"
@@ -233,7 +233,7 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
           tabindex="-1"
         >
           <div
-            class="Container-leftsmallMargin Container-rightsmallMargin"
+            class="Container-rightsmallMargin"
           >
             <li
               aria-disabled="false"
@@ -277,7 +277,7 @@ exports[`SidebarItem is selected 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Container-leftsmallMargin Container-rightsmallMargin"
+      class="Container-rightsmallMargin"
     >
       <li
         aria-disabled="false"
@@ -327,7 +327,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Container-leftsmallMargin Container-rightsmallMargin"
+      class="Container-rightsmallMargin"
     >
       <div
         class="MuiPaper-root MuiAccordion-root makeStyles-root makeStyles-bordersNone MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
@@ -412,7 +412,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
                     tabindex="-1"
                   >
                     <div
-                      class="Container-leftsmallMargin Container-rightsmallMargin"
+                      class="Container-rightsmallMargin"
                     >
                       <li
                         aria-disabled="false"
@@ -461,7 +461,7 @@ exports[`SidebarItem with icon 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Container-leftsmallMargin Container-rightsmallMargin"
+      class="Container-rightsmallMargin"
     >
       <li
         aria-disabled="false"
