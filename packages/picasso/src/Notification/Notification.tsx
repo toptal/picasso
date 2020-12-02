@@ -100,13 +100,13 @@ const renderNotificationIcon = ({
 
 const renderNotificationContent = (props: PrivateProps & JssProps) => {
   const {
-    classes: { iconWrapper, content, contentCloseButton },
+    classes: { iconWrapper, content, contentWrapper, contentCloseButton },
     children,
     onClose
   } = props
 
   return (
-    <>
+    <Container flex className={contentWrapper}>
       <Container flex alignItems='center' className={iconWrapper}>
         {renderNotificationIcon(props)}
       </Container>
@@ -120,7 +120,7 @@ const renderNotificationContent = (props: PrivateProps & JssProps) => {
         {children}
       </Typography>
       {onClose && renderNotificationCloseButton(props)}
-    </>
+    </Container>
   )
 }
 

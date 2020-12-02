@@ -13,22 +13,26 @@ exports[`Notification default render 1`] = `
         class="MuiSnackbarContent-message"
       >
         <div
-          class="Container-centerAlignItems Container-flex Notification-iconWrapper"
+          class="Container-flex"
         >
-          <svg
-            class="SvgExclamationSolid24-root SvgExclamationSolid24-yellow"
-            style="min-width: 24px; min-height: 24px;"
-            viewBox="0 0 24 24"
+          <div
+            class="Container-centerAlignItems Container-flex Notification-iconWrapper"
           >
-            <path
-              d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zm0 16a1 1 0 100 2 1 1 0 000-2zm0-10a1 1 0 00-1 1v7a1 1 0 002 0V7a1 1 0 00-1-1z"
-            />
-          </svg>
-        </div>
-        <div
-          class="MuiTypography-root Typography-bodyMedium Notification-content MuiTypography-body1"
-        >
-          test example string
+            <svg
+              class="SvgExclamationSolid24-root SvgExclamationSolid24-yellow"
+              style="min-width: 24px; min-height: 24px;"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zm0 16a1 1 0 100 2 1 1 0 000-2zm0-10a1 1 0 00-1 1v7a1 1 0 002 0V7a1 1 0 00-1-1z"
+              />
+            </svg>
+          </div>
+          <div
+            class="MuiTypography-root Typography-bodyMedium Notification-content MuiTypography-body1"
+          >
+            test example string
+          </div>
         </div>
       </div>
     </div>
