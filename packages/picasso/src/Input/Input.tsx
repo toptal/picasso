@@ -161,6 +161,7 @@ const LimitAdornment = (props: LimitAdornmentProps) => {
       className={cx({
         [classes.limiterMultiline]: multiline
       })}
+      disablePointerEvents
     >
       <span
         className={cx(classes.limiterLabel, {
@@ -182,7 +183,11 @@ const IconAdornment = (props: IconAdornmentProps) => {
   })
 
   return (
-    <InputAdornment position={position!} disabled={disabled}>
+    <InputAdornment
+      position={position!}
+      disabled={disabled}
+      disablePointerEvents
+    >
       {styledIcon}
     </InputAdornment>
   )

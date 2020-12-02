@@ -9,7 +9,7 @@ exports[`renders icon in the beginning 1`] = `
       class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root PicassoInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
     >
       <div
-        class="MuiInputAdornment-root InputAdornment-root MuiInputAdornment-positionStart"
+        class="MuiInputAdornment-root InputAdornment-root MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionStart"
       >
         <svg
           class="SvgSearch16-root PicassoInput-icon"
@@ -55,7 +55,7 @@ exports[`renders icon in the end 1`] = `
       class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root PicassoInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
     >
       <div
-        class="MuiInputAdornment-root InputAdornment-root MuiInputAdornment-positionStart"
+        class="MuiInputAdornment-root InputAdornment-root MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionStart"
       >
         <svg
           class="SvgSearch16-root PicassoInput-icon"
@@ -250,7 +250,7 @@ exports[`shows counter for regular input 1`] = `
 
 exports[`shows excess chars for multiline input with exceeded limit 1`] = `
 <div
-  class="MuiInputAdornment-root InputAdornment-root PicassoInput-limiterMultiline MuiInputAdornment-positionEnd"
+  class="MuiInputAdornment-root InputAdornment-root PicassoInput-limiterMultiline MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
   data-testid="limit-adornment-multiline-label"
 >
   <span
@@ -265,7 +265,7 @@ exports[`shows excess chars for multiline input with exceeded limit 1`] = `
 
 exports[`shows remaining chars for for multiline input with limit 1`] = `
 <div
-  class="MuiInputAdornment-root InputAdornment-root PicassoInput-limiterMultiline MuiInputAdornment-positionEnd"
+  class="MuiInputAdornment-root InputAdornment-root PicassoInput-limiterMultiline MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
   data-testid="limit-adornment-multiline-label"
 >
   <span
