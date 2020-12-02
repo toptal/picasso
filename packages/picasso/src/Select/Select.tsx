@@ -494,12 +494,7 @@ export const Select = documentable(
 
       const showSearch = allOptions.length >= searchThreshold!
 
-      const handleFocus = (
-        event: React.FocusEvent<HTMLInputElement | HTMLDivElement>
-      ) => {
-        if ('select' in event.target) {
-          event.target.select()
-        }
+      const handleFocus = () => {
         setFilterOptionsValue(EMPTY_INPUT_VALUE)
       }
 
@@ -580,7 +575,8 @@ export const Select = documentable(
         highlightedIndex,
         isOpen,
         getItemProps,
-        getSelectInputProps,
+        getRootProps,
+        getInputProps,
         getSearchInputProps
       } = useSelect({
         searchInputRef,
@@ -599,13 +595,17 @@ export const Select = documentable(
       })
 
       const iconAdornment = icon ? (
-        <InputAdornment disabled={disabled} position={iconPosition!}>
+        <InputAdornment
+          disabled={disabled}
+          position={iconPosition!}
+          disablePointerEvents
+        >
           {icon}
         </InputAdornment>
       ) : null
 
       const loadingAdornment = (
-        <InputAdornment position='end'>
+        <InputAdornment position='end' disablePointerEvents>
           <Loader size='small' />
         </InputAdornment>
       )
@@ -630,8 +630,6 @@ export const Select = documentable(
         <div className={classes.nativeEndAdornment}>{endAdornment}</div>
       )
 
-      const selectInputProps = getSelectInputProps()
-
       const nativeSelectComponent = (
         <NativeSelect
           // eslint-disable-next-line react/jsx-props-no-spreading
@@ -651,7 +649,7 @@ export const Select = documentable(
               size={size}
               className={classes.nativeInput}
               // eslint-disable-next-line react/jsx-props-no-spreading
-              {...selectInputProps}
+              {...getInputProps()}
             />
           }
           value={value}
@@ -697,10 +695,13 @@ export const Select = documentable(
         </MenuItem>
       ) : null
 
+      const rootProps = getRootProps()
+
       const selectComponent = (
         <>
           <div
             /* eslint-disable-next-line react/jsx-props-no-spreading */
+            {...rootProps}
             className={classes.inputWrapper}
           >
             {!enableAutofill && !native && name && (
@@ -718,14 +719,13 @@ export const Select = documentable(
               // Input specific props
               value={displayValue}
               /* eslint-disable-next-line react/jsx-props-no-spreading */
-              {...selectInputProps}
+              {...getInputProps()}
               placeholder={placeholder}
               width={width}
               readOnly
               defaultValue={undefined}
               className={classes.outlinedInput}
               inputProps={{
-                className: classes.input,
                 size: 1 // let input to have smallest width by default for width:'shrink'
               }}
               size={size}
@@ -755,7 +755,7 @@ export const Select = documentable(
                   highlightedIndex,
                   onItemSelect: handleSelect,
                   getItemProps,
-                  onBlur: selectInputProps.onBlur,
+                  onBlur: rootProps.onBlur,
                   value,
                   filterOptionsValue,
                   multiple,
@@ -773,7 +773,10 @@ export const Select = documentable(
           className={cx(
             classes.root,
             className,
-            classes[`root${capitalize(width!)}`]
+            classes[`root${capitalize(width!)}`],
+            {
+              [classes.rootDisabled]: disabled
+            }
           )}
           style={style}
           ref={inputWrapperRef}

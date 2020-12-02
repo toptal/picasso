@@ -114,6 +114,7 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
       className={classes.adornmentStart}
       disabled={disabled}
       position='start'
+      disablePointerEvents
     >
       {value ? (
         <Check16 color={!disabled ? 'green' : undefined} />
@@ -124,7 +125,7 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
   )
 
   const endAdornment = (
-    <InputAdornment position='end'>
+    <InputAdornment position='end' disablePointerEvents>
       {inProgress ? (
         <Loader
           className={classes.loader}

@@ -18,7 +18,7 @@ exports[`multiple select should checkmark user selected options 1`] = `
           <input
             aria-invalid="false"
             autocomplete="off"
-            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium makeStyles-input"
+            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium"
             placeholder="Choose an option..."
             readonly=""
             size="1"
@@ -329,7 +329,7 @@ exports[`renders select 1`] = `
           <input
             aria-invalid="false"
             autocomplete="off"
-            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium makeStyles-input"
+            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium"
             readonly=""
             size="1"
             type="text"

@@ -9,7 +9,7 @@ exports[`FileInput default render 1`] = `
       class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root FileInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
     >
       <div
-        class="MuiInputAdornment-root InputAdornment-root FileInput-adornmentStart MuiInputAdornment-positionStart"
+        class="MuiInputAdornment-root InputAdornment-root FileInput-adornmentStart MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionStart"
       >
         <svg
           class="SvgUploadDocument16-root"
@@ -29,7 +29,7 @@ exports[`FileInput default render 1`] = `
         type="file"
       />
       <div
-        class="MuiInputAdornment-root InputAdornment-root MuiInputAdornment-positionEnd"
+        class="MuiInputAdornment-root InputAdornment-root MuiInputAdornment-disablePointerEvents MuiInputAdornment-positionEnd"
       >
         <button
           class="MuiButtonBase-root PicassoButton-small PicassoButton-secondary PicassoButton-root FileInput-button"
