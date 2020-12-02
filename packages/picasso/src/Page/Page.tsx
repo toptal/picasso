@@ -15,6 +15,7 @@ import PageContent from '../PageContent'
 import PageSidebar from '../Sidebar'
 import PageBanner from '../PageBanner'
 import PageAutocomplete from '../PageAutocomplete'
+import PageArticle from '../PageArticle'
 import { PageContextProps, ViewportWidthType } from './types'
 import styles from './styles'
 
@@ -38,6 +39,7 @@ export interface StaticProps {
   Sidebar: typeof PageSidebar
   Banner: typeof PageBanner
   Autocomplete: typeof PageAutocomplete
+  Article: typeof PageArticle
 }
 
 export const PageContext = React.createContext<PageContextProps>({})
@@ -86,5 +88,7 @@ Page.Banner = PageBanner
 Page.Head = PageHead
 
 Page.Autocomplete = PageAutocomplete
+
+Page.Article = PageArticle
 
 export default Page as PicassoComponentWithRef<Props, HTMLElement, StaticProps>
