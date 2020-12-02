@@ -43,9 +43,5 @@ export default ({ palette, transitions }: Theme) =>
 
     controlDisabled: {
       opacity: 0.48
-    },
-
-    icon: {
-      marginRight: '0.625rem'
     }
   })

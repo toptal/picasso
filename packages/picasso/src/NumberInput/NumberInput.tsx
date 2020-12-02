@@ -1,10 +1,4 @@
-import React, {
-  forwardRef,
-  useRef,
-  RefObject,
-  ReactElement,
-  ReactNode
-} from 'react'
+import React, { forwardRef, useRef, RefObject, ReactNode } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps, OmitInternalProps } from '@toptal/picasso-shared'
 import ButtonBase from '@material-ui/core/ButtonBase'
@@ -187,9 +181,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
 
     const startAdornment = icon ? (
       <InputAdornment position='start' disablePointerEvents>
-        {React.cloneElement(icon as ReactElement, {
-          className: classes.icon
-        })}
+        {icon}
       </InputAdornment>
     ) : null
 
