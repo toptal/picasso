@@ -146,7 +146,7 @@ export const SidebarItem: OverridableComponent<Props> = memo(
 
     if (hasMenu && collapsible) {
       return (
-        <Container left='small' right='small'>
+        <Container right='small'>
           <Accordion
             onChange={handleAccordionChange}
             classes={{
@@ -177,7 +177,7 @@ export const SidebarItem: OverridableComponent<Props> = memo(
     }
 
     return (
-      <Container left='small' right='small'>
+      <Container right='small'>
         {menuItem}
         {hasMenu && <div className={classes.nonCollapsibleMenu}>{menu}</div>}
       </Container>

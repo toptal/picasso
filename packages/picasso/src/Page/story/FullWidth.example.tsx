@@ -1,18 +1,11 @@
 import React from 'react'
-import styled from 'styled-components'
-import { Page, Container, Menu, Typography, Sidebar } from '@toptal/picasso'
-import { Globe16, Profile16, PortfolioDesigner16 } from '@toptal/picasso/Icon'
-
-const StyledMainContentContainer = styled(Container)`
-  flex: 1;
-`
+import { Page, Container, Menu, Typography } from '@toptal/picasso'
 
 const Example = () => (
   <div style={{ height: '30rem' }}>
-    <Page>
-      <Page.TopBar rightContent={<RightContent />} title='Default example' />
+    <Page width='full'>
+      <Page.TopBar rightContent={<RightContent />} title='Full width example' />
       <Page.Content>
-        <SidebarMenu />
         <Content />
       </Page.Content>
       <Page.Footer />
@@ -21,16 +14,6 @@ const Example = () => (
 )
 
 const handleClick = () => window.alert('Item clicked')
-
-const SidebarMenu = () => (
-  <Sidebar>
-    <Sidebar.Menu>
-      <Sidebar.Item icon={<PortfolioDesigner16 />}>Home</Sidebar.Item>
-      <Sidebar.Item icon={<Profile16 />}>Contacts</Sidebar.Item>
-      <Sidebar.Item icon={<Globe16 />}>Team</Sidebar.Item>
-    </Sidebar.Menu>
-  </Sidebar>
-)
 
 const RightContent = () => (
   <Page.TopBarMenu
@@ -45,16 +28,13 @@ const RightContent = () => (
 )
 
 const Content = () => (
-  <StyledMainContentContainer
-    top='small'
-    bottom='small'
-    left='small'
-    right='small'
-  >
-    <Typography align='center' variant='heading' size='large'>
-      Default example
-    </Typography>
-    <p>
+  <Container top='small'>
+    <Container bottom='small'>
+      <Typography align='center' variant='heading' size='large'>
+        Full width example
+      </Typography>
+    </Container>
+    <Typography>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
       veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
@@ -62,8 +42,8 @@ const Content = () => (
       velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
       est laborum.
-    </p>
-  </StyledMainContentContainer>
+    </Typography>
+  </Container>
 )
 
 export default Example

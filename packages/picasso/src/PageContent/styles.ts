@@ -12,7 +12,7 @@ export default ({ layout }: Theme) =>
       height: '100%',
       flexGrow: 1,
       maxWidth: layout.contentWidth,
-      padding: '0 1rem'
+      padding: `0 ${layout.contentPaddingHorizontal}`
     },
     wide: {
       maxWidth: layout.contentWidthWide

@@ -14,11 +14,13 @@ const Example = () => (
 )
 
 const Content = () => (
-  <Container top='small' bottom='small' left='small' right='small'>
-    <Typography align='center' variant='heading' size='large'>
-      Scrollable example
-    </Typography>
-    <p>
+  <Container top='small'>
+    <Container bottom='small'>
+      <Typography align='center' variant='heading' size='large'>
+        Scrollable example
+      </Typography>
+    </Container>
+    <Typography>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Sollicitudin ac orci
       phasellus egestas tellus rutrum tellus pellentesque eu. Elementum
@@ -53,7 +55,7 @@ const Content = () => (
       lobortis feugiat vivamus. Consequat mauris nunc congue nisi vitae. Fusce
       ut placerat orci nulla. Sit amet nisl suscipit adipiscing bibendum est.
       Nibh tortor id aliquet lectus proin.
-    </p>
+    </Typography>
   </Container>
 )
 

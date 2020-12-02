@@ -26,28 +26,28 @@ page
 
 page
   .createChapter()
-  .addExample('Page/story/Default.example.jsx', {
+  .addExample('Page/story/Default.example.tsx', {
     title: 'Default',
     description:
       'Page has centered content and restricted width of 1200px or 75rem',
     waitUntilImagesLoaded: true
   })
-  .addExample('Page/story/WideWidth.example.jsx', {
+  .addExample('Page/story/WideWidth.example.tsx', {
     title: 'Wide width',
     description:
       'Page has centered content and restricted width of 1440px or 90rem',
     waitUntilImagesLoaded: true
   })
-  .addExample('Page/story/FullWidth.example.jsx', {
+  .addExample('Page/story/FullWidth.example.tsx', {
     title: 'Full width',
     waitUntilImagesLoaded: true
   })
-  .addExample('Page/story/Scroll.example.jsx', 'Scroll with overflow')
-  .addExample('Page/story/WithBanner.example.jsx', {
+  .addExample('Page/story/Scroll.example.tsx', 'Scroll with overflow')
+  .addExample('Page/story/WithBanner.example.tsx', {
     title: 'With Banner',
     waitUntilImagesLoaded: true
   })
-  .addExample('Page/story/WithCompoundBanner.example.jsx', {
+  .addExample('Page/story/WithCompoundBanner.example.tsx', {
     title: 'With Compound Banner',
     waitUntilImagesLoaded: true
   })
