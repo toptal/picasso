@@ -213,53 +213,54 @@ export const Dropdown = forwardRef<HTMLDivElement, Props & Partial<JssProps>>(
     }
 
     return (
-      <div
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        {...rest}
-        ref={ref}
-        className={cx(classes.root, className)}
-        style={style}
-      >
+      <>
         <div className={classes.anchor} onClick={toggleOpen}>
           {children}
         </div>
-
-        {anchorEl && (
-          <Popper
-            className={classes.popper}
-            open={isOpen}
-            anchorEl={anchorEl}
-            popperOptions={{
-              onCreate: focus,
-              ...popperOptions
-            }}
-            placement={placement}
-            style={paperMargins}
-            disablePortal={disablePortal}
-            autoWidth={false}
-            enableCompactMode
-            container={popperContainer}
-          >
-            <ClickAwayListener onClickAway={handleClickAway}>
-              {/* TODO: Remove this extra markup and put the onClick handler on `Paper` element */}
-              {/* as soon as https://github.com/mui-org/material-ui/issues/22156 gets fixed */}
-              <div onClick={close}>
-                <Grow in={isOpen} appear>
-                  <Paper
-                    className={classes.content}
-                    onKeyDown={handleContentKeyDown}
-                    elevation={2}
-                  >
-                    <DropdownContext.Provider value={context}>
-                      <RootRef rootRef={contentRef}>{content}</RootRef>
-                    </DropdownContext.Provider>
-                  </Paper>
-                </Grow>
-              </div>
-            </ClickAwayListener>
-          </Popper>
-        )}
-      </div>
+        <div
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          {...rest}
+          ref={ref}
+          className={cx(classes.root, className)}
+          style={style}
+        >
+          {anchorEl && (
+            <Popper
+              className={classes.popper}
+              open={isOpen}
+              anchorEl={anchorEl}
+              popperOptions={{
+                onCreate: focus,
+                ...popperOptions
+              }}
+              placement={placement}
+              style={paperMargins}
+              disablePortal={disablePortal}
+              autoWidth={false}
+              enableCompactMode
+              container={popperContainer}
+            >
+              <ClickAwayListener onClickAway={handleClickAway}>
+                {/* TODO: Remove this extra markup and put the onClick handler on `Paper` element */}
+                {/* as soon as https://github.com/mui-org/material-ui/issues/22156 gets fixed */}
+                <div onClick={close}>
+                  <Grow in={isOpen} appear>
+                    <Paper
+                      className={classes.content}
+                      onKeyDown={handleContentKeyDown}
+                      elevation={2}
+                    >
+                      <DropdownContext.Provider value={context}>
+                        <RootRef rootRef={contentRef}>{content}</RootRef>
+                      </DropdownContext.Provider>
+                    </Paper>
+                  </Grow>
+                </div>
+              </ClickAwayListener>
+            </Popper>
+          )}
+        </div>
+      </>
     )
   }
 ) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
