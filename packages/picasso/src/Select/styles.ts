@@ -13,7 +13,8 @@ export default ({ palette }: Theme) =>
     root: {
       position: 'relative',
       display: 'inline-flex',
-      fontSize: '1rem'
+      fontSize: '1rem',
+      cursor: 'pointer'
     },
     rootFull: {
       width: '100%'
@@ -22,6 +23,9 @@ export default ({ palette }: Theme) =>
       width: 'auto'
     },
     rootAuto: {},
+    rootDisabled: {
+      cursor: 'default'
+    },
     select: {
       width: '100%',
       zIndex: 1,
@@ -35,12 +39,8 @@ export default ({ palette }: Theme) =>
       width: 'inherit',
       outline: 0
     },
-    input: {
-      cursor: 'pointer'
-    },
     outlinedInput: {
-      paddingRight: '1.625rem',
-      cursor: 'pointer'
+      paddingRight: '1.625rem'
     },
     searchOutlinedInput: {
       width: '100%'
@@ -61,7 +61,9 @@ export default ({ palette }: Theme) =>
       // so 5px are left instead of 10px when we use wider icon.
       right: '0.3125rem',
       color: palette.grey.dark,
-      fontSize: '1rem'
+      fontSize: '1rem',
+      cursor: 'inherit',
+      pointerEvents: 'none'
     },
     caretDisabled: {
       color: alpha(palette.grey.dark!, 0.48),
