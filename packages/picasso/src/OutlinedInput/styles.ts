@@ -76,6 +76,8 @@ PicassoProvider.override(
 export default ({ palette, sizes: { input } }: Theme) =>
   createStyles({
     root: {
+      cursor: 'inherit',
+
       '&:hover': {
         '& $resetButtonDirty': {
           visibility: 'visible'
@@ -110,6 +112,8 @@ export default ({ palette, sizes: { input } }: Theme) =>
     rootAuto: {},
     focused: {},
     input: {
+      cursor: 'inherit',
+
       '&:focus + $resetButtonDirty': {
         visibility: 'visible'
       }

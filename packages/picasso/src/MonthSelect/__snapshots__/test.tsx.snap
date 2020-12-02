@@ -18,7 +18,7 @@ exports[`MonthSelect default render 1`] = `
           <input
             aria-invalid="false"
             autocomplete="off"
-            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium makeStyles-input"
+            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium"
             readonly=""
             size="1"
             type="text"

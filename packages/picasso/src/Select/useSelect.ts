@@ -95,13 +95,18 @@ interface Props {
   showSearch: boolean
 }
 
-type GetSelectInputProps = () => Partial<HTMLAttributes<HTMLInputElement>>
-
+type GetRootProps = () => {
+  onFocus: FocusEventType
+  onClick: (event: React.MouseEvent<HTMLInputElement>) => void
+  onBlur: FocusEventType
+}
+type GetInputProps = () => Partial<HTMLAttributes<HTMLInputElement>>
 type GetSearchInputProps = () => Partial<HTMLAttributes<HTMLInputElement>>
 
 interface UseSelectOutput {
   getItemProps: (index: number, item: Option) => ItemProps
-  getSelectInputProps: GetSelectInputProps
+  getRootProps: GetRootProps
+  getInputProps: GetInputProps
   getSearchInputProps: GetSearchInputProps
   isOpen: boolean
   highlightedIndex: number
@@ -179,15 +184,13 @@ const useSelect = ({
     }
   })
 
-  const handleSelectFocus = (event: React.FocusEvent<HTMLInputElement>) => {
+  const handleFocusOrClick = (
+    event:
+      | React.FocusEvent<HTMLInputElement>
+      | React.MouseEvent<HTMLInputElement>
+  ) => {
     if (!isOpen && !disabled) {
-      onFocus(event)
-      setOpen(true)
-    }
-  }
-
-  const handleSelectClick = () => {
-    if (!isOpen && !disabled) {
+      onFocus(event as React.FocusEvent<HTMLInputElement>)
       setOpen(true)
     }
   }
@@ -307,12 +310,15 @@ const useSelect = ({
     onChange(event.target.value)
   }
 
-  const getSelectInputProps = () => ({
-    onKeyDown: handleSelectKeyDown,
-    onResetClick: handleResetClick,
-    onClick: handleSelectClick,
-    onFocus: handleSelectFocus,
+  const getRootProps = () => ({
+    onFocus: handleFocusOrClick,
+    onClick: handleFocusOrClick,
     onBlur: handleSelectBlur
+  })
+
+  const getInputProps = () => ({
+    onKeyDown: handleSelectKeyDown,
+    onResetClick: handleResetClick
   })
 
   const getSearchInputProps = () => ({
@@ -324,7 +330,8 @@ const useSelect = ({
 
   return {
     getItemProps,
-    getSelectInputProps,
+    getRootProps,
+    getInputProps,
     getSearchInputProps,
     isOpen,
     highlightedIndex,
