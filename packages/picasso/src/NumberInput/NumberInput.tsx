@@ -185,11 +185,13 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
       />
     )
 
-    const startAdornment = icon
-      ? React.cloneElement(icon as ReactElement, {
+    const startAdornment = icon ? (
+      <InputAdornment position='start' disablePointerEvents>
+        {React.cloneElement(icon as ReactElement, {
           className: classes.icon
-        })
-      : null
+        })}
+      </InputAdornment>
+    ) : null
 
     return (
       <OutlinedInput
