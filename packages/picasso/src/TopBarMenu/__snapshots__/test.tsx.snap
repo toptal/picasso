@@ -6,42 +6,41 @@ exports[`TopBarMenu default render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Dropdown-root"
+      class="Dropdown-anchor"
     >
       <div
-        class="Dropdown-anchor"
+        class="Container-centerAlignItems Container-flex UserBadge-root"
       >
         <div
-          class="Container-centerAlignItems Container-flex UserBadge-root"
+          class="Avatar-root Avatar-xsmall"
+        >
+          <img
+            alt="Jacqueline Roque"
+            class="Image-root Avatar-image Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar TopBarMenu-avatar"
+            src="./jacqueline-with-flowers-1954-square.jpg"
+          />
+        </div>
+        <div
+          class="Container-leftsmallMargin Container-flex Container-column UserBadge-infoContainer"
         >
           <div
-            class="Avatar-root Avatar-xsmall"
+            class="Container-centerAlignItems Container-flex"
           >
-            <img
-              alt="Jacqueline Roque"
-              class="Image-root Avatar-image Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar TopBarMenu-avatar"
-              src="./jacqueline-with-flowers-1954-square.jpg"
-            />
-          </div>
-          <div
-            class="Container-leftsmallMargin Container-flex Container-column UserBadge-infoContainer"
-          >
-            <div
-              class="Container-centerAlignItems Container-flex"
+            <h4
+              class="MuiTypography-root Typography-invert Typography-headingSmall UserBadge-name TopBarMenu-name TopBarMenu-truncateText MuiTypography-h4 MuiTypography-displayInline"
             >
-              <h4
-                class="MuiTypography-root Typography-invert Typography-headingSmall UserBadge-name TopBarMenu-name TopBarMenu-truncateText MuiTypography-h4 MuiTypography-displayInline"
-              >
-                Jacqueline Roque
-              </h4>
-            </div>
+              Jacqueline Roque
+            </h4>
           </div>
         </div>
-        <span
-          class="DropdownArrow-root TopBarMenu-arrow DropdownArrow-medium"
-        />
       </div>
+      <span
+        class="DropdownArrow-root TopBarMenu-arrow DropdownArrow-medium"
+      />
     </div>
+    <div
+      class="Dropdown-root"
+    />
   </div>
 </div>
 `;

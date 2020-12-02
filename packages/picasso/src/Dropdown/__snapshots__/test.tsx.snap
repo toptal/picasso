@@ -6,17 +6,16 @@ exports[`Dropdown default render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Dropdown-root"
+      class="Dropdown-anchor"
     >
-      <div
-        class="Dropdown-anchor"
-      >
-        Open Dropdown 
-        <span
-          class="DropdownArrow-root DropdownArrow-medium"
-        />
-      </div>
+      Open Dropdown 
+      <span
+        class="DropdownArrow-root DropdownArrow-medium"
+      />
     </div>
+    <div
+      class="Dropdown-root"
+    />
   </div>
 </div>
 `;
@@ -28,17 +27,16 @@ exports[`Dropdown should render menu 1`] = `
       class="Picasso-root"
     >
       <div
-        class="Dropdown-root"
+        class="Dropdown-anchor"
       >
-        <div
-          class="Dropdown-anchor"
-        >
-          Open Dropdown 
-          <span
-            class="DropdownArrow-root DropdownArrow-medium"
-          />
-        </div>
+        Open Dropdown 
+        <span
+          class="DropdownArrow-root DropdownArrow-medium"
+        />
       </div>
+      <div
+        class="Dropdown-root"
+      />
       <div
         class="PicassoPopper-root Dropdown-popper"
         role="tooltip"
@@ -134,17 +132,16 @@ exports[`Dropdown should render menu with focus 1`] = `
         class=""
       >
         <div
-          class="Dropdown-root"
+          class="Dropdown-anchor"
         >
-          <div
-            class="Dropdown-anchor"
-          >
-            Open Dropdown 
-            <span
-              class="DropdownArrow-root DropdownArrow-medium"
-            />
-          </div>
+          Open Dropdown 
+          <span
+            class="DropdownArrow-root DropdownArrow-medium"
+          />
         </div>
+        <div
+          class="Dropdown-root"
+        />
       </div>
       <div
         class="PicassoPopper-root Dropdown-popper"
