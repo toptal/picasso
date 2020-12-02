@@ -5,6 +5,9 @@ import { palette } from '@toptal/picasso/utils'
 const Example = () => (
   <div>
     <Container bottom={1}>
+      <Typography color='light-blue'>Light Blue</Typography>
+    </Container>
+    <Container bottom={1}>
       <Typography color='blue'>Blue</Typography>
     </Container>
     <Container bottom={1}>

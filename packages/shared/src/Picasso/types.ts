@@ -101,6 +101,7 @@ export type ButtonOrAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> &
   ButtonHTMLAttributes<HTMLButtonElement>
 
 export type ColorType =
+  | 'light-blue'
   | 'blue'
   | 'green'
   | 'red'
