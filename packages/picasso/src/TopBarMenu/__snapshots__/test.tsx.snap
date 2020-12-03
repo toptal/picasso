@@ -15,16 +15,16 @@ exports[`TopBarMenu default render 1`] = `
           class="Container-centerAlignItems Container-flex UserBadge-root"
         >
           <div
-            class="Avatar-root Avatar-xsmall"
+            class="Avatar-root Avatar-xxsmall"
           >
             <img
               alt="Jacqueline Roque"
-              class="Image-root Avatar-image Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar TopBarMenu-avatar"
+              class="Image-root Avatar-image Avatar-square Avatar-xxsmall Avatar-clippedCorner UserBadge-avatar"
               src="./jacqueline-with-flowers-1954-square.jpg"
             />
           </div>
           <div
-            class="Container-leftsmallMargin Container-flex Container-column UserBadge-infoContainer"
+            class="Container-flex Container-column UserBadge-infoContainer"
           >
             <div
               class="Container-centerAlignItems Container-flex"

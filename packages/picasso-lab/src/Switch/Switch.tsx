@@ -1,7 +1,6 @@
 import MUISwitch from '@material-ui/core/Switch'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
-import cx from 'classnames'
 import React, { ButtonHTMLAttributes, forwardRef, ReactNode } from 'react'
 import FormControlLabel from '@toptal/picasso/FormControlLabel'
 
@@ -56,9 +55,7 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
       color='primary'
       ref={ref}
       checked={checked}
-      className={cx(className, {
-        [classes.disabled]: disabled
-      })}
+      className={className}
       style={style}
       disabled={disabled}
       id={id}
