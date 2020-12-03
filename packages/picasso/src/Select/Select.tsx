@@ -13,7 +13,7 @@ import cx from 'classnames'
 import NativeSelect from '@material-ui/core/NativeSelect'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
-import { BaseProps, SizeType } from '@toptal/picasso-shared'
+import { StandardProps, mergeClasses, SizeType } from '@toptal/picasso-shared'
 
 import OutlinedInput from '../OutlinedInput'
 import Popper from '../Popper'
@@ -52,7 +52,7 @@ export interface Props<
   M extends boolean = boolean,
   V = M extends true ? T[] : T
 >
-  extends BaseProps,
+  extends StandardProps,
     Omit<
       InputHTMLAttributes<HTMLInputElement>,
       'onChange' | 'size' | 'color' | 'value'
@@ -402,10 +402,11 @@ export const Select = documentable(
         searchThreshold,
         enableAutofill,
         autoComplete,
+        classes: externalClasses,
         ...rest
       } = purifyProps(props)
 
-      const classes = useStyles(props)
+      const classes = mergeClasses(useStyles(props), externalClasses)
 
       const emptySelectValue: string | string[] = multiple ? [] : ''
 

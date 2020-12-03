@@ -12,10 +12,10 @@ exports[`TableSectionHead default render 1`] = `
         class="MuiTableBody-root"
       >
         <tr
-          class="MuiTableRow-root TableRow-root PicassoTableSectionHead-sectionHeaderRow"
+          class="MuiTableRow-root PicassoTableRow-root PicassoTableSectionHead-sectionHeaderRow"
         >
           <td
-            class="MuiTableCell-root TableCell-root MuiTableCell-body TableCell-body"
+            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body PicassoTableCell-body"
             colspan="100"
           >
             Test

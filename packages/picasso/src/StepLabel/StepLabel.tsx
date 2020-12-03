@@ -1,11 +1,12 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react'
 import cx from 'classnames'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUIStepLabel from '@material-ui/core/StepLabel'
 import {
   StandardProps,
   TextLabelProps,
-  useTitleCase
+  useTitleCase,
+  mergeClasses
 } from '@toptal/picasso-shared'
 
 import StepIcon from '../StepIcon'
@@ -22,18 +23,22 @@ export interface Props
   completed?: boolean
 }
 
-export const StepLabel: FunctionComponent<Props> = ({
-  active,
-  classes,
-  className,
-  children,
-  completed,
-  hideLabel,
-  style,
-  titleCase: propsTitleCase,
-  ...rest
-}) => {
+const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoStepLabel' })
+
+export const StepLabel: FunctionComponent<Props> = props => {
+  const {
+    active,
+    classes: externalClasses,
+    className,
+    children,
+    completed,
+    hideLabel,
+    style,
+    titleCase: propsTitleCase,
+    ...rest
+  } = props
   const titleCase = useTitleCase(propsTitleCase)
+  const classes = mergeClasses(useStyles(props), externalClasses)
 
   return (
     <MUIStepLabel
@@ -62,4 +67,4 @@ StepLabel.defaultProps = {
 
 StepLabel.displayName = 'StepLabel'
 
-export default withStyles(styles)(StepLabel)
+export default StepLabel

@@ -1,7 +1,8 @@
 import React, { forwardRef, HTMLAttributes, useContext } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITableCell from '@material-ui/core/TableCell'
 import {
+  mergeClasses,
   StandardProps,
   TextLabelProps,
   useTitleCase
@@ -24,22 +25,24 @@ export interface Props
   colSpan?: number
 }
 
+const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoTableCell' })
+
 export const TableCell = forwardRef<HTMLTableCellElement, Props>(
-  function TableCell(
-    {
+  function TableCell(props, ref) {
+    const {
       align,
-      classes,
+      classes: externalClasses,
       className,
       style,
       children,
       colSpan,
       titleCase: propsTitleCase,
       ...rest
-    },
-    ref
-  ) {
-    const tableSection = useContext(TableSectionContext)
+    } = props
 
+    const classes = mergeClasses(useStyles(props), externalClasses)
+
+    const tableSection = useContext(TableSectionContext)
     const titleCase = useTitleCase(propsTitleCase)
 
     return (
@@ -67,4 +70,4 @@ TableCell.defaultProps = {
 
 TableCell.displayName = 'TableCell'
 
-export default withStyles(styles)(TableCell)
+export default TableCell

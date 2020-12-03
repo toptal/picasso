@@ -1,7 +1,7 @@
 import React, { useContext, forwardRef, ReactNode, HTMLAttributes } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { StandardProps } from '@toptal/picasso-shared'
+import { mergeClasses, StandardProps } from '@toptal/picasso-shared'
 
 import { PageContext } from '../Page'
 import { PageContextProps } from '../Page/types'
@@ -14,11 +14,22 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   flex?: boolean
 }
 
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'PicassoPageContent'
+})
+
 export const PageContent = forwardRef<HTMLDivElement, Props>(
-  function PageContent(
-    { children, classes, className, style, flex, ...rest },
-    ref
-  ) {
+  function PageContent(props, ref) {
+    const {
+      children,
+      classes: externalClasses,
+      className,
+      style,
+      flex,
+      ...rest
+    } = props
+
+    const classes = mergeClasses(useStyles(props), externalClasses)
     const { width, fullWidth } = useContext<PageContextProps>(PageContext)
 
     const innerClassName = cx(
@@ -50,4 +61,4 @@ PageContent.defaultProps = {
 
 PageContent.displayName = 'PageContent'
 
-export default withStyles(styles)(PageContent)
+export default PageContent

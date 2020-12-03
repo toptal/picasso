@@ -7,10 +7,11 @@ import React, {
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import {
-  BaseProps,
   JssProps,
+  StandardProps,
   PicassoComponentWithRef,
-  CompoundedComponentWithRef
+  CompoundedComponentWithRef,
+  mergeClasses
 } from '@toptal/picasso-shared'
 
 import Button from '../Button'
@@ -24,12 +25,14 @@ import SidebarLogo from '../SidebarLogo'
 import styles from './styles'
 import { SidebarContextProps, VariantType } from './types'
 
-export interface SmallScreenSidebarWrapperProps extends BaseProps {
+export interface SmallScreenSidebarWrapperProps extends JssProps {
   children?: ReactNode
 }
 
-const SmallScreenSidebarWrapper: FunctionComponent<SmallScreenSidebarWrapperProps &
-  JssProps> = ({ classes, children }) => {
+const SmallScreenSidebarWrapper: FunctionComponent<SmallScreenSidebarWrapperProps> = ({
+  classes,
+  children
+}) => {
   const [showSidebar, setShowSidebar] = useState<boolean>(false)
 
   const handleShowSidebar = () => setShowSidebar(true)
@@ -61,7 +64,7 @@ const SmallScreenSidebarWrapper: FunctionComponent<SmallScreenSidebarWrapperProp
   )
 }
 
-export interface Props extends BaseProps {
+export interface Props extends StandardProps {
   /** Style variant of Sidebar and subcomponents */
   variant?: VariantType
 }
@@ -86,8 +89,14 @@ export const Sidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
   props,
   ref
 ) {
-  const classes = useStyles(props)
-  const { children, variant, className, style } = props
+  const {
+    children,
+    variant,
+    className,
+    style,
+    classes: externalClasses
+  } = props
+  const classes = mergeClasses(useStyles(props), externalClasses)
 
   const isCompactLayout = useBreakpoint(['small', 'medium'])
   const [expandedItemKey, setExpandedItemKey] = useState<number | null>(null)

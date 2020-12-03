@@ -6,7 +6,7 @@ exports[`renders default 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Container-centerAlignItems Container-flex Container-inline"
+      class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline"
     >
       <button
         class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryBlue PicassoButton-root"
@@ -14,80 +14,80 @@ exports[`renders default 1`] = `
         type="button"
       >
         <span
-          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
         >
           Prev
         </span>
       </button>
       <button
-        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryBlue PicassoButton-root Pagination-rangeButton"
+        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryBlue PicassoButton-root PicassoPagination-rangeButton PicassoPagination-rangeButton"
         tabindex="0"
         type="button"
       >
         <span
-          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
         >
           1
         </span>
       </button>
       <div
-        class="Pagination-ellipsis"
+        class="PicassoPagination-ellipsis"
       >
         <p
-          class="MuiTypography-root Typography-bodySmall Typography-semibold Typography-black MuiTypography-body1"
+          class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-semibold PicassoTypography-black MuiTypography-body1"
         >
           ...
         </p>
       </div>
       <button
-        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryBlue PicassoButton-root Pagination-rangeButton"
+        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryBlue PicassoButton-root PicassoPagination-rangeButton PicassoPagination-rangeButton"
         tabindex="0"
         type="button"
       >
         <span
-          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
         >
           4
         </span>
       </button>
       <button
-        class="MuiButtonBase-root PicassoButton-small PicassoButton-primaryBlue PicassoButton-root Pagination-rangeButton"
+        class="MuiButtonBase-root PicassoButton-small PicassoButton-primaryBlue PicassoButton-root PicassoPagination-rangeButton PicassoPagination-rangeButton"
         tabindex="0"
         type="button"
       >
         <span
-          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
         >
           5
         </span>
       </button>
       <button
-        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryBlue PicassoButton-root Pagination-rangeButton"
+        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryBlue PicassoButton-root PicassoPagination-rangeButton PicassoPagination-rangeButton"
         tabindex="0"
         type="button"
       >
         <span
-          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
         >
           6
         </span>
       </button>
       <div
-        class="Pagination-ellipsis"
+        class="PicassoPagination-ellipsis"
       >
         <p
-          class="MuiTypography-root Typography-bodySmall Typography-semibold Typography-black MuiTypography-body1"
+          class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-semibold PicassoTypography-black MuiTypography-body1"
         >
           ...
         </p>
       </div>
       <button
-        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryBlue PicassoButton-root Pagination-rangeButton"
+        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryBlue PicassoButton-root PicassoPagination-rangeButton PicassoPagination-rangeButton"
         tabindex="0"
         type="button"
       >
         <span
-          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
         >
           20
         </span>
@@ -98,7 +98,7 @@ exports[`renders default 1`] = `
         type="button"
       >
         <span
-          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
         >
           Next
         </span>
@@ -114,7 +114,7 @@ exports[`renders disabled 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Container-centerAlignItems Container-flex Container-inline"
+      class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline"
     >
       <button
         class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryDisabled PicassoButton-root Mui-disabled"
@@ -123,85 +123,85 @@ exports[`renders disabled 1`] = `
         type="button"
       >
         <span
-          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
         >
           Prev
         </span>
       </button>
       <button
-        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryDisabled PicassoButton-root Pagination-rangeButton Mui-disabled"
+        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryDisabled PicassoButton-root PicassoPagination-rangeButton PicassoPagination-rangeButton Mui-disabled"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <span
-          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
         >
           1
         </span>
       </button>
       <div
-        class="Pagination-ellipsis"
+        class="PicassoPagination-ellipsis"
       >
         <p
-          class="MuiTypography-root Typography-bodySmall Typography-semibold Typography-black MuiTypography-body1"
+          class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-semibold PicassoTypography-black MuiTypography-body1"
         >
           ...
         </p>
       </div>
       <button
-        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryDisabled PicassoButton-root Pagination-rangeButton Mui-disabled"
+        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryDisabled PicassoButton-root PicassoPagination-rangeButton PicassoPagination-rangeButton Mui-disabled"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <span
-          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
         >
           4
         </span>
       </button>
       <button
-        class="MuiButtonBase-root PicassoButton-small PicassoButton-primaryDisabled PicassoButton-root Pagination-rangeButton Mui-disabled"
+        class="MuiButtonBase-root PicassoButton-small PicassoButton-primaryDisabled PicassoButton-root PicassoPagination-rangeButton PicassoPagination-rangeButton Mui-disabled"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <span
-          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
         >
           5
         </span>
       </button>
       <button
-        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryDisabled PicassoButton-root Pagination-rangeButton Mui-disabled"
+        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryDisabled PicassoButton-root PicassoPagination-rangeButton PicassoPagination-rangeButton Mui-disabled"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <span
-          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
         >
           6
         </span>
       </button>
       <div
-        class="Pagination-ellipsis"
+        class="PicassoPagination-ellipsis"
       >
         <p
-          class="MuiTypography-root Typography-bodySmall Typography-semibold Typography-black MuiTypography-body1"
+          class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-semibold PicassoTypography-black MuiTypography-body1"
         >
           ...
         </p>
       </div>
       <button
-        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryDisabled PicassoButton-root Pagination-rangeButton Mui-disabled"
+        class="MuiButtonBase-root PicassoButton-small PicassoButton-secondaryDisabled PicassoButton-root PicassoPagination-rangeButton PicassoPagination-rangeButton Mui-disabled"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <span
-          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
         >
           20
         </span>
@@ -213,7 +213,7 @@ exports[`renders disabled 1`] = `
         type="button"
       >
         <span
-          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
         >
           Next
         </span>

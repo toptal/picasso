@@ -7,23 +7,23 @@ exports[`FormError default render 1`] = `
   >
     <form>
       <div
-        class="FormField-root"
+        class="PicassoFormField-root"
       >
         <label
-          class="FormLabel-root"
+          class="PicassoFormLabel-root"
         >
           <span
-            class="FormLabel-text"
+            class="PicassoFormLabel-text"
           >
             Label:
           </span>
         </label>
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root PicassoInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+          class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoInput-root PicassoInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
         >
           <input
             autocomplete="none"
-            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+            class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
             type="text"
             value=""
           />
@@ -43,10 +43,10 @@ exports[`FormError default render 1`] = `
           </fieldset>
         </div>
         <div
-          class="FormError-root"
+          class="PicassoFormError-root"
         >
           <p
-            class="MuiTypography-root Typography-bodyInherit FormError-error MuiTypography-body1"
+            class="MuiTypography-root PicassoTypography-bodyInherit PicassoFormError-error MuiTypography-body1"
           >
             My Error
           </p>
@@ -55,7 +55,7 @@ exports[`FormError default render 1`] = `
           class="FormHint-root"
         >
           <p
-            class="MuiTypography-root Typography-bodyInherit FormHint-hint MuiTypography-body1"
+            class="MuiTypography-root PicassoTypography-bodyInherit FormHint-hint MuiTypography-body1"
           >
             This is a hint
           </p>

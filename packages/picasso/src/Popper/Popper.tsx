@@ -3,7 +3,11 @@ import cx from 'classnames'
 import MUIPopper from '@material-ui/core/Popper'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import PopperJs, { ReferenceObject, PopperOptions } from 'popper.js'
-import { BaseProps, usePicassoRoot } from '@toptal/picasso-shared'
+import {
+  StandardProps,
+  mergeClasses,
+  usePicassoRoot
+} from '@toptal/picasso-shared'
 
 import { useBreakpoint, useWidthOf } from '../utils'
 import styles from './styles'
@@ -22,7 +26,7 @@ export type PopperPlacementType =
   | 'top-start'
   | 'top'
 
-export interface Props extends BaseProps {
+export interface Props extends StandardProps {
   children?: ReactNode
   /** if true, the popper is visible */
   open: boolean
@@ -110,12 +114,13 @@ export const Popper = forwardRef<PopperJs, Props>(function Popper(props, ref) {
     enableCompactMode,
     disablePortal,
     style,
+    classes: externalClasses,
     ...rest
   } = props
 
   const picassoRootContainer = usePicassoRoot()
 
-  const classes = useStyles(props)
+  const classes = mergeClasses(useStyles(props), externalClasses)
   const isCompactLayoutResolution = useBreakpoint(['small', 'medium'])
   const isCompactLayout = enableCompactMode && isCompactLayoutResolution
   const widthStyle = useWidthStyle({ autoWidth, width, anchorEl })

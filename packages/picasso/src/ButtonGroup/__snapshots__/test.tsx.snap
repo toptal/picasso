@@ -6,33 +6,33 @@ exports[`ButtonGroup render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="ButtonGroup-root"
+      class="PicassoButtonGroup-root"
     >
       <button
-        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root ButtonGroup-button"
+        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root PicassoButtonGroup-button PicassoButtonGroup-button"
         tabindex="0"
         type="button"
       >
         <span
-          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
         />
       </button>
       <button
-        class="MuiButtonBase-root PicassoButton-active ButtonGroup-active PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root ButtonGroup-button"
+        class="MuiButtonBase-root PicassoButton-active PicassoButtonGroup-active PicassoButtonGroup-active PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root PicassoButtonGroup-button PicassoButtonGroup-button"
         tabindex="0"
         type="button"
       >
         <span
-          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
         />
       </button>
       <button
-        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root ButtonGroup-button"
+        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primaryBlue PicassoButton-root PicassoButtonGroup-button PicassoButtonGroup-button"
         tabindex="0"
         type="button"
       >
         <span
-          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
         />
       </button>
     </div>

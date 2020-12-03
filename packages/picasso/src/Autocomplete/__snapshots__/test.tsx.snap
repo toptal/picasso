@@ -2,23 +2,23 @@
 
 exports[`Autocomplete dynamic behavior on focus 1`] = `
 <ul
-  class="MuiList-root ScrollMenu-menu"
+  class="MuiList-root PicassoScrollMenu-menu"
   role="menu"
   tabindex="-1"
 >
   <div
-    class="ScrollMenu-scrollView"
+    class="PicassoScrollMenu-scrollView"
     tabindex="0"
   >
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
     >
       <span
-        class="MenuItem-stringContent"
+        class="PicassoMenuItem-stringContent"
       >
         Belarus
       </span>
@@ -26,12 +26,12 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
     >
       <span
-        class="MenuItem-stringContent"
+        class="PicassoMenuItem-stringContent"
       >
         Croatia
       </span>
@@ -39,12 +39,12 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
     >
       <span
-        class="MenuItem-stringContent"
+        class="PicassoMenuItem-stringContent"
       >
         Lithuania
       </span>
@@ -52,12 +52,12 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
     >
       <span
-        class="MenuItem-stringContent"
+        class="PicassoMenuItem-stringContent"
       >
         Slovakia
       </span>
@@ -65,12 +65,12 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
     >
       <span
-        class="MenuItem-stringContent"
+        class="PicassoMenuItem-stringContent"
       >
         Ukraine
       </span>
@@ -87,25 +87,25 @@ exports[`Autocomplete static behavior default render 1`] = `
     <div
       aria-expanded="false"
       aria-haspopup="listbox"
-      class="Autocomplete-root Autocomplete-rootAuto"
+      class="PicassoAutocomplete-root PicassoAutocomplete-rootAuto"
       role="combobox"
     >
       <div
-        class="Container-flex"
+        class="PicassoContainer-flex"
       >
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root PicassoInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+          class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoInput-root PicassoInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
         >
           <input
             aria-autocomplete="list"
             autocomplete="off"
-            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+            class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
             placeholder="Start typing here..."
             type="text"
             value=""
           />
           <div
-            class="MuiInputAdornment-root InputAdornment-root OutlinedInput-resetButton MuiInputAdornment-positionEnd"
+            class="MuiInputAdornment-root PicassoInputAdornment-root PicassoOutlinedInput-resetButton MuiInputAdornment-positionEnd"
           >
             <button
               class="MuiButtonBase-root PicassoButton-circular PicassoButton-small PicassoButton-transparent PicassoButton-root"
@@ -114,12 +114,14 @@ exports[`Autocomplete static behavior default render 1`] = `
               type="button"
             >
               <span
-                class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
               >
                 <svg
-                  class="SvgCloseMinor16-root PicassoButton-icon"
+                  class="PicassoSvgCloseMinor16-root PicassoButton-icon"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 16 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
                 >
                   <path
                     d="M8.707 8l3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5z"

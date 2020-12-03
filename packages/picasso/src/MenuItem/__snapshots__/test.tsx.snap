@@ -7,12 +7,12 @@ exports[`MenuItem default render 1`] = `
   >
     <li
       aria-disabled="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="menuitem"
       tabindex="-1"
     >
       <span
-        class="MenuItem-stringContent"
+        class="PicassoMenuItem-stringContent"
       >
         Item
       </span>
@@ -28,22 +28,24 @@ exports[`MenuItem has chevron if has nested menu 1`] = `
   >
     <li
       aria-disabled="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="menuitem"
       tabindex="-1"
     >
       <span
-        class="MenuItem-stringContent"
+        class="PicassoMenuItem-stringContent"
       >
         Item
       </span>
       <div
-        class="Container-leftxsmallMargin Container-flex Container-inline"
+        class="PicassoContainer-leftxsmallMargin PicassoContainer-flex PicassoContainer-inline"
       >
         <svg
-          class="SvgChevronMinor16-root"
+          class="PicassoSvgChevronMinor16-root"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
         >
           <path
             d="M5.997 3.29l4 4 .707.707-.707.707-4 4-.707-.707 4-4-4-4 .707-.707z"

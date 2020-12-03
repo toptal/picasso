@@ -29,7 +29,9 @@ export const rem = (px: string, baseFontSize = 16) =>
 
 export const remToNumber = (value: string): number => Number.parseFloat(value)
 
-export { default as withClasses } from './withClasses'
+export { default as useChildrenWithClasses } from './useChildrenWithClasses'
+
+export { default as mergeClasses } from './mergeClasses'
 
 export { createPropertiesStyles } from './createPropertiesStyles'
 

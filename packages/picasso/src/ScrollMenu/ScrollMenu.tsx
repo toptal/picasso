@@ -4,9 +4,9 @@ import React, {
   createRef,
   FunctionComponent
 } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import RootRef from '@material-ui/core/RootRef'
-import { StandardProps } from '@toptal/picasso-shared'
+import { mergeClasses, StandardProps } from '@toptal/picasso-shared'
 
 import Menu from '../Menu'
 import styles from './styles'
@@ -38,12 +38,14 @@ const preventDefault = (
   event: React.MouseEvent<HTMLUListElement, MouseEvent>
 ) => event.preventDefault()
 
-const ScrollMenu: FunctionComponent<Props> = ({
-  selectedIndex,
-  classes,
-  children,
-  style
-}) => {
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'PicassoScrollMenu'
+})
+
+const ScrollMenu: FunctionComponent<Props> = props => {
+  const { selectedIndex, classes: externalClasses, children, style } = props
+  const classes = mergeClasses(useStyles(props), externalClasses)
+
   const menuRef = useRef<HTMLDivElement | null>(null)
   const firstItemRef = createRef<HTMLElement>()
   const prevSelectedIndex = useRef(selectedIndex)
@@ -105,4 +107,4 @@ const ScrollMenu: FunctionComponent<Props> = ({
   )
 }
 
-export default withStyles(styles)(ScrollMenu)
+export default ScrollMenu

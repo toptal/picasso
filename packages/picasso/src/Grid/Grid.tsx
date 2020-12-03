@@ -8,15 +8,16 @@ import MUIGrid, {
   GridWrap
 } from '@material-ui/core/Grid'
 import {
-  BaseProps,
+  StandardProps,
   PicassoComponentWithRef,
-  CompoundedComponentWithRef
+  CompoundedComponentWithRef,
+  mergeClasses
 } from '@toptal/picasso-shared'
 
 import GridItem from '../GridItem'
 import styles from './styles'
 
-export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
+export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
   /** Grid content containing Grid.Item */
   children?: ReactNode
   /** Defines amount of space between Grid.Item components (in px) */
@@ -41,7 +42,7 @@ const humanToMUISpacing = (spacing: number) => {
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'Grid'
+  name: 'PicassoGrid'
 })
 
 // eslint-disable-next-line react/display-name
@@ -49,7 +50,6 @@ export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(
   props,
   ref
 ) {
-  const classes = useStyles(props)
   const {
     children,
     spacing,
@@ -59,8 +59,10 @@ export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(
     wrap,
     className,
     style,
+    classes: externalClasses,
     ...rest
   } = props
+  const classes = mergeClasses(useStyles(props), externalClasses)
 
   return (
     <MUIGrid

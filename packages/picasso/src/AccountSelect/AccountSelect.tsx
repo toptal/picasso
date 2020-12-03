@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { BaseProps } from '@toptal/picasso-shared'
+import { mergeClasses, StandardProps } from '@toptal/picasso-shared'
 
 import UserBadge from '../UserBadge'
 import Typography from '../Typography'
@@ -24,7 +24,9 @@ type Account = {
   avatar?: string
 }
 
-export interface Props extends BaseProps, Omit<ListNativeProps, 'onSelect'> {
+export interface Props
+  extends StandardProps,
+    Omit<ListNativeProps, 'onSelect'> {
   /** List of available accounts */
   accounts: Account[]
   /** Callback invoked when specific role record is clicked in the list */
@@ -32,13 +34,20 @@ export interface Props extends BaseProps, Omit<ListNativeProps, 'onSelect'> {
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'AccountSelect'
+  name: 'PicassoAccountSelect'
 })
 
 export const AccountSelect = forwardRef<HTMLUListElement, Props>(
   function AccountSelect(props, ref) {
-    const classes = useStyles(props)
-    const { className, accounts, onSelect, style, ...rest } = props
+    const {
+      className,
+      accounts,
+      onSelect,
+      style,
+      classes: externalClasses,
+      ...rest
+    } = props
+    const classes = mergeClasses(useStyles(props), externalClasses)
 
     const {
       accountItem: accountItemClass,

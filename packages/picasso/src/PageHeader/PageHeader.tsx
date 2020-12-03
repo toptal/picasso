@@ -6,9 +6,13 @@ import React, {
   ReactElement,
   HTMLAttributes
 } from 'react'
-import { withStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { StandardProps, usePageHeader } from '@toptal/picasso-shared'
+import {
+  mergeClasses,
+  StandardProps,
+  usePageHeader
+} from '@toptal/picasso-shared'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import Logo from '../Logo'
 import Container from '../Container'
@@ -35,9 +39,16 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLElement> {
   variant?: VariantType
 }
 
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'PicassoPageHeader'
+})
+
 export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
-  {
-    classes,
+  props,
+  ref
+) {
+  const {
+    classes: externalClasses,
     className,
     style,
     title,
@@ -47,9 +58,8 @@ export const PageHeader = forwardRef<HTMLElement, Props>(function PageHeader(
     actionItems,
     variant,
     ...rest
-  },
-  ref
-) {
+  } = props
+  const classes = mergeClasses(useStyles(props), externalClasses)
   const isCompactLayout = useBreakpoint(['small', 'medium'])
 
   const { setHasPageHeader } = usePageHeader()
@@ -125,4 +135,4 @@ PageHeader.defaultProps = {
 
 PageHeader.displayName = 'PageHeader'
 
-export default withStyles(styles)(PageHeader)
+export default PageHeader

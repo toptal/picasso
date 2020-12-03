@@ -4,8 +4,8 @@ import React, {
   useMemo,
   HTMLAttributes
 } from 'react'
-import { withStyles } from '@material-ui/core/styles'
-import { StandardProps, JssProps } from '@toptal/picasso-shared'
+import { makeStyles, Theme } from '@material-ui/core/styles'
+import { StandardProps, JssProps, mergeClasses } from '@toptal/picasso-shared'
 
 import Button from '../Button'
 import Container from '../Container'
@@ -34,13 +34,19 @@ export interface PaginationPageProps extends JssProps {
   onClick: (page: NavigationType) => void
 }
 
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'PicassoPagination'
+})
+
 const PaginationPage: FunctionComponent<PaginationPageProps> = ({
   page,
   activePage,
   disabled,
-  classes,
+  classes: externalClasses,
   onClick
 }) => {
+  const classes = mergeClasses(useStyles(), externalClasses)
+
   return (
     <Button
       className={classes.rangeButton}
@@ -66,9 +72,19 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
 }
 
 export const Pagination = forwardRef<HTMLDivElement, Props>(function Pagination(
-  { activePage, classes, disabled, totalPages, onPageChange, ...rest },
+  props,
   ref
 ) {
+  const {
+    activePage,
+    classes: externalClasses,
+    disabled,
+    totalPages,
+    onPageChange,
+    ...rest
+  } = props
+  const classes = mergeClasses(useStyles(props), externalClasses)
+
   const pages = useMemo(() => getRange(activePage, totalPages, SIBLING_COUNT), [
     activePage,
     totalPages
@@ -155,4 +171,4 @@ Pagination.defaultProps = {
 
 Pagination.displayName = 'Pagination'
 
-export default withStyles(styles)(Pagination)
+export default Pagination

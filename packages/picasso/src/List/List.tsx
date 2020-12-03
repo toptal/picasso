@@ -1,20 +1,25 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUIList from '@material-ui/core/List'
-import { StandardProps } from '@toptal/picasso-shared'
+import { mergeClasses, StandardProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLUListElement> { }
+export interface Props
+  extends StandardProps,
+    HTMLAttributes<HTMLUListElement> {}
 
-const List: FunctionComponent<Props> = ({
-  classes,
-  className,
-  style,
-  ...rest
-}) => (
+const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoList' })
+
+const List: FunctionComponent<Props> = props => {
+  const { classes: externalClasses, className, style, ...rest } = props
+
+  const classes = mergeClasses(useStyles(props), externalClasses)
+
+  return (
     // eslint-disable-next-line react/jsx-props-no-spreading
     <MUIList {...rest} classes={classes} className={className} style={style} />
   )
+}
 
-export default withStyles(styles)(List)
+export default List

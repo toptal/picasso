@@ -2,16 +2,17 @@ import React, { forwardRef, useState } from 'react'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import {
-  BaseProps,
   useAppConfig,
-  EnvironmentType
+  EnvironmentType,
+  StandardProps,
+  mergeClasses
 } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
 export type EnvironmentTypes = EnvironmentType<'temploy' | 'test'>
 
-export interface Props extends BaseProps {
+export interface Props extends StandardProps {
   /** Name of the current environment */
   environment: EnvironmentTypes
   /** Name of the product to be rendered alongside environment (i.e. Blackfish, Talent, Portal, Billing) */
@@ -25,8 +26,8 @@ const useStyles = makeStyles<Theme, Props>(styles, {
 export const EnvironmentBanner = forwardRef<HTMLDivElement, Props>(
   function EnvironmentBanner(props, ref) {
     const { environment: configEnvironment } = useAppConfig()
-    const { environment, productName } = props
-    const classes = useStyles(props)
+    const { environment, productName, classes: externalClasses } = props
+    const classes = mergeClasses(useStyles(props), externalClasses)
 
     const [isShown, setIsShown] = useState(true)
 

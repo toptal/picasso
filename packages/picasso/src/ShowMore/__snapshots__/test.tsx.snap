@@ -6,7 +6,7 @@ exports[`ShowMore default render 1`] = `
     class="Picasso-root"
   >
     <p
-      class="MuiTypography-root Typography-bodyMedium Typography-darkGrey MuiTypography-body1"
+      class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-darkGrey MuiTypography-body1"
     >
       <span
         width="0"
@@ -23,20 +23,22 @@ exports[`ShowMore default render 1`] = `
       </span>
     </p>
     <a
-      class="MuiTypography-root MuiLink-root MuiLink-underlineNone ShowMore-toggleText MuiTypography-colorPrimary"
+      class="MuiTypography-root MuiLink-root MuiLink-underlineNone PicassoShowMore-toggleText MuiTypography-colorPrimary"
     >
       <p
-        class="MuiTypography-root Typography-bodyMedium Typography-blue MuiTypography-body1"
+        class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-blue MuiTypography-body1"
       >
         Show more
       </p>
       <div
-        class="ShowMore-iconWrapper"
+        class="PicassoShowMore-iconWrapper"
       >
         <svg
-          class="SvgChevronRight16-root ShowMore-icon"
+          class="PicassoSvgChevronRight16-root PicassoShowMore-icon"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
         >
           <path
             d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
@@ -54,7 +56,7 @@ exports[`ShowMore when custom lessText text is specified should render with cust
     class="Picasso-root"
   >
     <p
-      class="MuiTypography-root Typography-bodyMedium Typography-darkGrey MuiTypography-body1"
+      class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-darkGrey MuiTypography-body1"
     >
       <span
         width="0"
@@ -71,20 +73,22 @@ exports[`ShowMore when custom lessText text is specified should render with cust
       </span>
     </p>
     <a
-      class="MuiTypography-root MuiLink-root MuiLink-underlineNone ShowMore-toggleText MuiTypography-colorPrimary"
+      class="MuiTypography-root MuiLink-root MuiLink-underlineNone PicassoShowMore-toggleText MuiTypography-colorPrimary"
     >
       <p
-        class="MuiTypography-root Typography-bodyMedium Typography-blue MuiTypography-body1"
+        class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-blue MuiTypography-body1"
       >
         Show more
       </p>
       <div
-        class="ShowMore-iconWrapper"
+        class="PicassoShowMore-iconWrapper"
       >
         <svg
-          class="SvgChevronRight16-root ShowMore-icon"
+          class="PicassoSvgChevronRight16-root PicassoShowMore-icon"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
         >
           <path
             d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
@@ -102,7 +106,7 @@ exports[`ShowMore when custom showMore text is specified should render with cust
     class="Picasso-root"
   >
     <p
-      class="MuiTypography-root Typography-bodyMedium Typography-darkGrey MuiTypography-body1"
+      class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-darkGrey MuiTypography-body1"
     >
       <span
         width="0"
@@ -119,20 +123,22 @@ exports[`ShowMore when custom showMore text is specified should render with cust
       </span>
     </p>
     <a
-      class="MuiTypography-root MuiLink-root MuiLink-underlineNone ShowMore-toggleText MuiTypography-colorPrimary"
+      class="MuiTypography-root MuiLink-root MuiLink-underlineNone PicassoShowMore-toggleText MuiTypography-colorPrimary"
     >
       <p
-        class="MuiTypography-root Typography-bodyMedium Typography-blue MuiTypography-body1"
+        class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-blue MuiTypography-body1"
       >
         Display everything
       </p>
       <div
-        class="ShowMore-iconWrapper"
+        class="PicassoShowMore-iconWrapper"
       >
         <svg
-          class="SvgChevronRight16-root ShowMore-icon"
+          class="PicassoSvgChevronRight16-root PicassoShowMore-icon"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
         >
           <path
             d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
@@ -150,7 +156,7 @@ exports[`ShowMore when disableToggle prop is true should render version without 
     class="Picasso-root"
   >
     <p
-      class="MuiTypography-root Typography-bodyMedium Typography-darkGrey MuiTypography-body1"
+      class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-darkGrey MuiTypography-body1"
     >
       <span
         width="0"
@@ -176,7 +182,7 @@ exports[`ShowMore when initialExpanded prop is true should render expanded versi
     class="Picasso-root"
   >
     <p
-      class="MuiTypography-root Typography-bodyMedium Typography-darkGrey MuiTypography-body1"
+      class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-darkGrey MuiTypography-body1"
     >
       <span
         width="0"
@@ -193,20 +199,22 @@ exports[`ShowMore when initialExpanded prop is true should render expanded versi
       </span>
     </p>
     <a
-      class="MuiTypography-root MuiLink-root MuiLink-underlineNone ShowMore-toggleText MuiTypography-colorPrimary"
+      class="MuiTypography-root MuiLink-root MuiLink-underlineNone PicassoShowMore-toggleText MuiTypography-colorPrimary"
     >
       <p
-        class="MuiTypography-root Typography-bodyMedium Typography-blue MuiTypography-body1"
+        class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-blue MuiTypography-body1"
       >
         Show less
       </p>
       <div
-        class="ShowMore-iconWrapper"
+        class="PicassoShowMore-iconWrapper"
       >
         <svg
-          class="SvgChevronRight16-root ShowMore-icon ShowMore-expandedIcon"
+          class="PicassoSvgChevronRight16-root PicassoShowMore-icon PicassoShowMore-expandedIcon"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
         >
           <path
             d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
@@ -224,7 +232,7 @@ exports[`ShowMore when initialExpanded prop is true when show less link is click
     class="Picasso-root"
   >
     <p
-      class="MuiTypography-root Typography-bodyMedium Typography-darkGrey MuiTypography-body1"
+      class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-darkGrey MuiTypography-body1"
     >
       <span
         width="0"
@@ -241,20 +249,22 @@ exports[`ShowMore when initialExpanded prop is true when show less link is click
       </span>
     </p>
     <a
-      class="MuiTypography-root MuiLink-root MuiLink-underlineNone ShowMore-toggleText MuiTypography-colorPrimary"
+      class="MuiTypography-root MuiLink-root MuiLink-underlineNone PicassoShowMore-toggleText MuiTypography-colorPrimary"
     >
       <p
-        class="MuiTypography-root Typography-bodyMedium Typography-blue MuiTypography-body1"
+        class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-blue MuiTypography-body1"
       >
         Show more
       </p>
       <div
-        class="ShowMore-iconWrapper"
+        class="PicassoShowMore-iconWrapper"
       >
         <svg
-          class="SvgChevronRight16-root ShowMore-icon"
+          class="PicassoSvgChevronRight16-root PicassoShowMore-icon"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
         >
           <path
             d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
@@ -272,7 +282,7 @@ exports[`ShowMore when show more link is clicked should render expanded version 
     class="Picasso-root"
   >
     <p
-      class="MuiTypography-root Typography-bodyMedium Typography-darkGrey MuiTypography-body1"
+      class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-darkGrey MuiTypography-body1"
     >
       <span
         width="0"
@@ -289,20 +299,22 @@ exports[`ShowMore when show more link is clicked should render expanded version 
       </span>
     </p>
     <a
-      class="MuiTypography-root MuiLink-root MuiLink-underlineNone ShowMore-toggleText MuiTypography-colorPrimary"
+      class="MuiTypography-root MuiLink-root MuiLink-underlineNone PicassoShowMore-toggleText MuiTypography-colorPrimary"
     >
       <p
-        class="MuiTypography-root Typography-bodyMedium Typography-blue MuiTypography-body1"
+        class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-blue MuiTypography-body1"
       >
         Show less
       </p>
       <div
-        class="ShowMore-iconWrapper"
+        class="PicassoShowMore-iconWrapper"
       >
         <svg
-          class="SvgChevronRight16-root ShowMore-icon ShowMore-expandedIcon"
+          class="PicassoSvgChevronRight16-root PicassoShowMore-icon PicassoShowMore-expandedIcon"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
         >
           <path
             d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"

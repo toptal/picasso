@@ -10,7 +10,11 @@ import React, {
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITooltip, { TooltipProps } from '@material-ui/core/Tooltip'
 import cx from 'classnames'
-import { usePicassoRoot, BaseProps } from '@toptal/picasso-shared'
+import {
+  usePicassoRoot,
+  StandardProps,
+  mergeClasses
+} from '@toptal/picasso-shared'
 
 import { isPointerDevice } from '../utils'
 import styles from './styles'
@@ -91,7 +95,7 @@ const useTooltipHandlers = ({
   }
 }
 
-export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Trigger element for tooltip */
   children: ReactNode
   /** Content to be rendered inside tooltip */
@@ -145,10 +149,11 @@ export const Tooltip: FunctionComponent<Props> = props => {
     delay = 'short',
     compact,
     maxWidth,
+    classes: externalClasses,
     ...rest
   } = props
 
-  const classes = useStyles(props)
+  const classes = mergeClasses(useStyles(props), externalClasses)
   const [arrowRef, setArrowRef] = useState<HTMLSpanElement | null>(null)
   const container = usePicassoRoot()
 

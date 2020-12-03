@@ -1,7 +1,7 @@
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITableBody from '@material-ui/core/TableBody'
-import { StandardProps } from '@toptal/picasso-shared'
+import { mergeClasses, StandardProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 import { TableSectionContext, TableSection } from '../Table'
@@ -30,8 +30,19 @@ const decorateRows = (children: React.ReactNode) => {
   })
 }
 
+const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoTableBody' })
+
 export const TableBody = forwardRef<HTMLTableSectionElement, Props>(
-  function TableBody({ classes, className, style, children, ...rest }, ref) {
+  function TableBody(props, ref) {
+    const {
+      classes: externalClasses,
+      className,
+      style,
+      children,
+      ...rest
+    } = props
+    const classes = mergeClasses(useStyles(props), externalClasses)
+
     return (
       <TableSectionContext.Provider value={TableSection.BODY}>
         <MUITableBody
@@ -53,4 +64,4 @@ TableBody.defaultProps = {}
 
 TableBody.displayName = 'TableBody'
 
-export default withStyles(styles)(TableBody)
+export default TableBody

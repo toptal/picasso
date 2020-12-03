@@ -5,8 +5,12 @@ import React, {
   LabelHTMLAttributes
 } from 'react'
 import { FormControlLabelProps } from '@material-ui/core/FormControlLabel'
-import { withStyles } from '@material-ui/core/styles'
-import { StandardProps, TextLabelProps } from '@toptal/picasso-shared'
+import { makeStyles, Theme } from '@material-ui/core/styles'
+import {
+  mergeClasses,
+  StandardProps,
+  TextLabelProps
+} from '@toptal/picasso-shared'
 import cx from 'classnames'
 
 import styles from './styles'
@@ -31,11 +35,15 @@ export interface Props
   required?: boolean
 }
 
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'PicassoFormControlLabel'
+})
+
 const FormControlLabel: FunctionComponent<Props> = props => {
   const {
     control,
     label,
-    classes,
+    classes: externalClasses,
     className,
     style,
     disabled,
@@ -43,6 +51,8 @@ const FormControlLabel: FunctionComponent<Props> = props => {
     titleCase,
     ...rest
   } = props
+
+  const classes = mergeClasses(useStyles(props), externalClasses)
 
   return (
     <label
@@ -73,4 +83,4 @@ const FormControlLabel: FunctionComponent<Props> = props => {
 
 FormControlLabel.displayName = 'FormControlLabel'
 
-export default withStyles(styles)(FormControlLabel)
+export default FormControlLabel

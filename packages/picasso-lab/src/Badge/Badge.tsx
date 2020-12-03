@@ -2,10 +2,11 @@ import React, { forwardRef } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import {
-  BaseProps,
+  StandardProps,
   TextLabelProps,
   CompoundedComponentWithRef,
-  useTitleCase
+  useTitleCase,
+  mergeClasses
 } from '@toptal/picasso-shared'
 import { Chip } from '@material-ui/core'
 import { toTitleCase } from '@toptal/picasso/utils'
@@ -15,7 +16,7 @@ import styles from './styles'
 type VariantType = 'white' | 'red'
 type SizeType = 'medium' | 'small'
 
-export interface Props extends BaseProps, TextLabelProps {
+export interface Props extends StandardProps, TextLabelProps {
   /** The `Badge` content */
   content: string
   /** Variant of the `Badge` */
@@ -31,8 +32,15 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge(
   props,
   ref
 ) {
-  const { style, variant, size, content, titleCase: propsTitleCase } = props
-  const classes = useStyles(props)
+  const {
+    style,
+    variant,
+    size,
+    content,
+    titleCase: propsTitleCase,
+    classes: externalClasses
+  } = props
+  const classes = mergeClasses(useStyles(props), externalClasses)
 
   const titleCase = useTitleCase(propsTitleCase)
 

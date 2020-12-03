@@ -1,8 +1,8 @@
 import React, { ReactNode, FunctionComponent, HTMLAttributes } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUIInputAdornment from '@material-ui/core/InputAdornment'
 import cx from 'classnames'
-import { StandardProps } from '@toptal/picasso-shared'
+import { mergeClasses, StandardProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
@@ -15,16 +15,24 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   disablePointerEvents?: boolean
 }
 
-const InputAdornment: FunctionComponent<Props> = ({
-  classes,
-  className,
-  style,
-  children,
-  position,
-  disabled,
-  disablePointerEvents,
-  ...rest
-}) => {
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'PicassoInputAdornment'
+})
+
+const InputAdornment: FunctionComponent<Props> = props => {
+  const {
+    classes: externalClasses,
+    className,
+    style,
+    children,
+    position,
+    disabled,
+    disablePointerEvents,
+    ...rest
+  } = props
+
+  const classes = mergeClasses(useStyles(props), externalClasses)
+
   return (
     <MUIInputAdornment
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -44,4 +52,4 @@ const InputAdornment: FunctionComponent<Props> = ({
   )
 }
 
-export default withStyles(styles)(InputAdornment)
+export default InputAdornment

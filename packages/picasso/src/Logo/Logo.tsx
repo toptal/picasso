@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
-import { withStyles } from '@material-ui/core/styles'
-import { StandardProps } from '@toptal/picasso-shared'
+import { makeStyles, Theme } from '@material-ui/core/styles'
+import { mergeClasses, StandardProps } from '@toptal/picasso-shared'
 
 import { Logo as LogoIcon, LogoEmblem as LogoEmblemIcon } from '../Icon'
 import styles from './styles'
@@ -15,10 +15,19 @@ export interface Props extends StandardProps {
   variant?: VariantType
 }
 
-export const Logo = forwardRef<SVGSVGElement, Props>(function Logo(
-  { classes, emblem, variant = 'default', style, className },
-  ref
-) {
+const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoLogo' })
+
+export const Logo = forwardRef<SVGSVGElement, Props>(function Logo(props, ref) {
+  const {
+    classes: externalClasses,
+    emblem,
+    variant = 'default',
+    style,
+    className
+  } = props
+
+  const classes = mergeClasses(useStyles(props), externalClasses)
+
   const rootClass = emblem ? classes.rootEmblem : classes.root
   const colorClass = classes[variant!]
   const LogoComponent = emblem ? LogoEmblemIcon : LogoIcon
@@ -38,4 +47,4 @@ Logo.defaultProps = {
 
 Logo.displayName = 'Logo'
 
-export default withStyles(styles)(Logo)
+export default Logo

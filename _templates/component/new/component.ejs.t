@@ -5,15 +5,21 @@ to: src/components/<%= h.changeCase.pascalCase(name) %>/<%= h.changeCase.pascalC
   Name = h.changeCase.pascalCase(name)
 -%>
 import React, { forwardRef } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 
-import { StandardProps } from '../Picasso'
+import { StandardProps, mergeStyles } from '@toptal/picasso-shared'
 import styles from './styles'
 
 export interface Props extends StandardProps {
 }
 
+const useStyles = makeStyles<Theme, Props>(styles)
+
 export const <%= Name %> = forwardRef<HTMLElement, Props>(function <%= Name %>(props, ref) {
+  const { classes: externalClasses } = props
+
+  const classes = mergeStyles(useStyles(props), externalClasses)
+
   return null
 })
 
@@ -22,4 +28,4 @@ export const <%= Name %> = forwardRef<HTMLElement, Props>(function <%= Name %>(p
 
 <%= Name %>.displayName = '<%= Name %>'
 
-export default withStyles(styles)(<%= Name %>)
+export default <%= Name %>

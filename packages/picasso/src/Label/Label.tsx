@@ -10,10 +10,11 @@ import React, {
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import {
-  BaseProps,
+  StandardProps,
   TextLabelProps,
   CompoundedComponentWithRef,
-  useTitleCase
+  useTitleCase,
+  mergeClasses
 } from '@toptal/picasso-shared'
 
 import Chip from '../Chip'
@@ -27,7 +28,7 @@ type VariantType = 'grey' | 'white' | 'green' | 'yellow' | 'red'
 export type DivOrAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> &
   HTMLAttributes<HTMLDivElement>
 
-export interface Props extends BaseProps, TextLabelProps, DivOrAnchorProps {
+export interface Props extends StandardProps, TextLabelProps, DivOrAnchorProps {
   /** The component used for the root node. Either a string to use a DOM element or a component. */
   as?: ElementType
   /** Text content of the `Label` component */
@@ -66,11 +67,12 @@ export const Label = forwardRef<HTMLDivElement, Props>(function Label(
     variant,
     as,
     titleCase: propsTitleCase,
+    classes: externalClasses,
     ...rest
   } = props
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { color, ...htmlAttributes } = rest
-  const classes = useStyles(props)
+  const classes = mergeClasses(useStyles(props), externalClasses)
 
   const titleCase = useTitleCase(propsTitleCase)
 

@@ -19,7 +19,7 @@ exports[`useModal opens and closes modal 1`] = `
         type="button"
       >
         <span
-          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
         >
           Show
         </span>
@@ -57,7 +57,7 @@ exports[`useModal opens and closes modal 1`] = `
               type="button"
             >
               <span
-                class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
               >
                 Hide
               </span>
@@ -92,7 +92,7 @@ exports[`useModal opens and closes modal 2`] = `
         type="button"
       >
         <span
-          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
         >
           Show
         </span>
@@ -121,7 +121,7 @@ exports[`useModal shows multiple modals at the same time 1`] = `
         type="button"
       >
         <span
-          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
         >
           Show first
         </span>
@@ -133,7 +133,7 @@ exports[`useModal shows multiple modals at the same time 1`] = `
         type="button"
       >
         <span
-          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
         >
           Show second
         </span>

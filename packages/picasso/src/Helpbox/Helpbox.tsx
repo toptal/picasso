@@ -2,9 +2,10 @@ import React, { ReactNode, forwardRef, HTMLAttributes } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import {
-  BaseProps,
+  StandardProps,
   PicassoComponentWithRef,
-  CompoundedComponentWithRef
+  CompoundedComponentWithRef,
+  mergeClasses
 } from '@toptal/picasso-shared'
 
 import Container, { VariantType as ContainerVariantType } from '../Container'
@@ -16,7 +17,7 @@ import Button from '../Button'
 import styles from './styles'
 import HelpboxContext from './HelpboxContext'
 
-export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Children components (`Helpbox.Title`, `Helpbox.Content`, `Hdlpbox.Actions`) */
   children: ReactNode
   /** Color variant of Helpbox */
@@ -32,7 +33,7 @@ export interface StaticProps {
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'Helpbox'
+  name: 'PicassoHelpbox'
 })
 
 // eslint-disable-next-line react/display-name
@@ -40,8 +41,16 @@ export const Helpbox = forwardRef<HTMLDivElement, Props>(function Helpbox(
   props,
   ref
 ) {
-  const classes = useStyles(props)
-  const { className, style, children, variant, onClose, ...rest } = props
+  const {
+    className,
+    style,
+    children,
+    variant,
+    onClose,
+    classes: externalClasses,
+    ...rest
+  } = props
+  const classes = mergeClasses(useStyles(props), externalClasses)
 
   return (
     <Container

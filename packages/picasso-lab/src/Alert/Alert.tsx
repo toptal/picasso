@@ -1,6 +1,6 @@
 import React, { forwardRef, ReactNode, HTMLAttributes, MouseEvent } from 'react'
 import cx from 'classnames'
-import { BaseProps, JssProps } from '@toptal/picasso-shared'
+import { StandardProps, JssProps, mergeClasses } from '@toptal/picasso-shared'
 import { capitalize, makeStyles, Theme } from '@material-ui/core'
 import {
   CloseMinor16,
@@ -14,7 +14,7 @@ import styles from './styles'
 
 export type VariantType = 'red' | 'green' | 'blue' | 'yellow'
 
-export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Main content of the Alert */
   children?: ReactNode
   /** Callback invoked when close is clicked */
@@ -92,8 +92,8 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
   props,
   ref
 ) {
-  const classes = useStyles(props)
-  const { variant, className } = props
+  const { variant, className, classes: externalClasses } = props
+  const classes = mergeClasses(useStyles(props), externalClasses)
 
   return (
     <Container

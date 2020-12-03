@@ -1,22 +1,26 @@
 import React, { FunctionComponent } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
+import { mergeClasses, StandardProps } from '@toptal/picasso-shared'
 
-import { Classes } from '@toptal/picasso-shared'
 import { PropTypeDocumentation } from '~/.storybook/utils/documentation-generator'
 import cx from 'classnames'
 
 import styles from './styles'
 
-interface Props {
+interface Props extends StandardProps {
   enums?: string[]
-  classes: Classes
   type: string | PropTypeDocumentation
 }
 
 const trim = (value: string) => String(value).replace(/\'|\"/gi, '')
 
+const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoEnumsList' })
+
 const EnumsList: FunctionComponent<Props> = props => {
-  const { enums, classes, type } = props
+  const { enums, type, classes: externalClasses } = props
+
+  const classes = mergeClasses(useStyles(props), externalClasses)
+
   let enumList = enums
 
   if (!Array.isArray(enums)) {
@@ -42,4 +46,4 @@ const EnumsList: FunctionComponent<Props> = props => {
 
 EnumsList.displayName = 'EnumsList'
 
-export default withStyles(styles)(EnumsList)
+export default EnumsList

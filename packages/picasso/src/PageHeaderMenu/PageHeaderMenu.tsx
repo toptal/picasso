@@ -1,7 +1,7 @@
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import cx from 'classnames'
-import { withStyles } from '@material-ui/core/styles'
-import { StandardProps } from '@toptal/picasso-shared'
+import { makeStyles, Theme } from '@material-ui/core/styles'
+import { mergeClasses, StandardProps } from '@toptal/picasso-shared'
 
 import { useBreakpoint } from '../utils'
 import UserBadge from '../UserBadge'
@@ -21,11 +21,23 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   children: ReactNode
 }
 
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'PicassoPageHeaderMenu'
+})
+
 export const PageHeaderMenu = forwardRef<HTMLDivElement, Props>(
-  function PageHeaderMenu(
-    { name, meta, avatar, classes, className, style, children, ...rest },
-    ref
-  ) {
+  function PageHeaderMenu(props, ref) {
+    const {
+      name,
+      meta,
+      avatar,
+      classes: externalClasses,
+      className,
+      style,
+      children,
+      ...rest
+    } = props
+    const classes = mergeClasses(useStyles(props), externalClasses)
     const isCompactLayout = useBreakpoint(['small', 'medium'])
 
     const metaContent =
@@ -114,4 +126,4 @@ PageHeaderMenu.defaultProps = {}
 
 PageHeaderMenu.displayName = 'PageHeaderMenu'
 
-export default withStyles(styles)(PageHeaderMenu)
+export default PageHeaderMenu

@@ -6,7 +6,11 @@ import React, {
   ReactNode
 } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import { BaseProps, OmitInternalProps } from '@toptal/picasso-shared'
+import {
+  StandardProps,
+  mergeClasses,
+  OmitInternalProps
+} from '@toptal/picasso-shared'
 import ButtonBase from '@material-ui/core/ButtonBase'
 
 import OutlinedInput, { Props as OutlinedInputProps } from '../OutlinedInput'
@@ -21,7 +25,7 @@ export interface Props
       OmitInternalProps<OutlinedInputProps>,
       'defaultValue' | 'type' | 'multiline' | 'rows'
     >,
-    BaseProps {
+    StandardProps {
   /** Value of the `input` element. */
   value?: string | number
   /** Minimum value for the `input` element */
@@ -163,10 +167,11 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
       enableReset,
       width,
       icon,
+      classes: externalClasses,
       ...rest
     } = props
 
-    const classes = useStyles(props)
+    const classes = mergeClasses(useStyles(props), externalClasses)
 
     const inputRef = useCombinedRefs<HTMLInputElement>(
       ref,

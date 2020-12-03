@@ -9,10 +9,11 @@ import React, {
 } from 'react'
 import cx from 'classnames'
 import MUIAccordion from '@material-ui/core/Accordion'
-import { makeStyles } from '@material-ui/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import {
   CompoundedComponentWithRef,
-  StandardProps
+  StandardProps,
+  mergeClasses
 } from '@toptal/picasso-shared'
 
 import { ArrowDownMinor16 } from '../Icon'
@@ -20,18 +21,18 @@ import AccordionSummary from '../AccordionSummary'
 import AccordionDetails from '../AccordionDetails'
 import styles from './styles'
 
-const useStyles = makeStyles(styles)
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoAccordion' })
 
-const Summary: FunctionComponent = props => {
-  const { children } = props
-  const classes = useStyles(props)
+const Summary: FunctionComponent<StandardProps> = props => {
+  const { children, classes: externalClasses } = props
+  const classes = mergeClasses(useStyles(), externalClasses)
 
   return <div className={classes.summaryWrapper}>{children}</div>
 }
 
-const Details: FunctionComponent<{ className?: string }> = props => {
-  const { children, className } = props
-  const classes = useStyles(props)
+const Details: FunctionComponent<StandardProps> = props => {
+  const { children, classes: externalClasses, className } = props
+  const classes = mergeClasses(useStyles(), externalClasses)
 
   return <div className={cx(className, classes.detailsWrapper)}>{children}</div>
 }
@@ -88,10 +89,11 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
     className,
     style,
     onChange,
+    classes: externalClasses,
     ...rest
   } = props
 
-  const classes = useStyles(props)
+  const classes = mergeClasses(useStyles(props), externalClasses)
   const [summaryExpanded, setSummaryExpanded] = useState(defaultExpanded)
   const [prevExpanded, setPrevExpanded] = useState(defaultExpanded)
 

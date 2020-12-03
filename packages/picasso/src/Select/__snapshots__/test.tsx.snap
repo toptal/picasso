@@ -10,11 +10,11 @@ exports[`renders native select 1`] = `
     >
       <div
         aria-autocomplete="list"
-        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootFull OutlinedInput-rootMedium makeStyles-nativeInput MuiInputBase-fullWidth"
+        class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium makeStyles-nativeInput MuiInputBase-fullWidth"
       >
         <select
           aria-invalid="false"
-          class="MuiNativeSelect-root makeStyles-select MuiNativeSelect-select MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium"
+          class="MuiNativeSelect-root makeStyles-select MuiNativeSelect-select MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium"
         >
           <option
             disabled=""
@@ -45,9 +45,10 @@ exports[`renders native select 1`] = `
           </option>
         </select>
         <svg
-          class="SvgDropdownArrows16-root makeStyles-caret"
+          class="PicassoSvgDropdownArrows16-root makeStyles-caret"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
+          xmlns="http://www.w3.org/2000/svg"
         >
           <path
             d="M8.429 2.715l2.117 3.528a.5.5 0 01-.43.757H5.884a.5.5 0 01-.429-.757l2.117-3.528a.5.5 0 01.858 0zM8.429 13.285l2.117-3.528a.5.5 0 00-.43-.757H5.884a.5.5 0 00-.429.757l2.117 3.528a.5.5 0 00.858 0z"
@@ -83,11 +84,11 @@ exports[`renders native select with the empty option enabled when enableReset is
     >
       <div
         aria-autocomplete="list"
-        class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootFull OutlinedInput-rootMedium makeStyles-nativeInput MuiInputBase-fullWidth"
+        class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium makeStyles-nativeInput MuiInputBase-fullWidth"
       >
         <select
           aria-invalid="false"
-          class="MuiNativeSelect-root makeStyles-select MuiNativeSelect-select MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium"
+          class="MuiNativeSelect-root makeStyles-select MuiNativeSelect-select MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium"
         >
           <option
             value=""
@@ -117,9 +118,10 @@ exports[`renders native select with the empty option enabled when enableReset is
           </option>
         </select>
         <svg
-          class="SvgDropdownArrows16-root makeStyles-caret"
+          class="PicassoSvgDropdownArrows16-root makeStyles-caret"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
+          xmlns="http://www.w3.org/2000/svg"
         >
           <path
             d="M8.429 2.715l2.117 3.528a.5.5 0 01-.43.757H5.884a.5.5 0 01-.429-.757l2.117-3.528a.5.5 0 01.858 0zM8.429 13.285l2.117-3.528a.5.5 0 00-.43-.757H5.884a.5.5 0 00-.429.757l2.117 3.528a.5.5 0 00.858 0z"
@@ -158,13 +160,13 @@ exports[`renders select 1`] = `
       >
         <div
           aria-autocomplete="list"
-          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootFull OutlinedInput-rootMedium makeStyles-input makeStyles-readOnlyInput MuiInputBase-fullWidth"
+          class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium makeStyles-input makeStyles-readOnlyInput MuiInputBase-fullWidth"
           role="textbox"
         >
           <input
             aria-invalid="false"
             autocomplete="off"
-            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium makeStyles-readOnlyInput"
+            class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium makeStyles-readOnlyInput"
             readonly=""
             size="1"
             type="text"
@@ -186,9 +188,10 @@ exports[`renders select 1`] = `
           </fieldset>
         </div>
         <svg
-          class="SvgDropdownArrows16-root makeStyles-caret"
+          class="PicassoSvgDropdownArrows16-root makeStyles-caret"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
+          xmlns="http://www.w3.org/2000/svg"
         >
           <path
             d="M8.429 2.715l2.117 3.528a.5.5 0 01-.43.757H5.884a.5.5 0 01-.429-.757l2.117-3.528a.5.5 0 01.858 0zM8.429 13.285l2.117-3.528a.5.5 0 00-.43-.757H5.884a.5.5 0 00-.429.757l2.117 3.528a.5.5 0 00.858 0z"
@@ -202,24 +205,24 @@ exports[`renders select 1`] = `
 
 exports[`should filter options based on entered value to the input field 1`] = `
 <ul
-  class="MuiList-root ScrollMenu-menu"
+  class="MuiList-root PicassoScrollMenu-menu"
   role="menu"
   tabindex="-1"
 >
   <div
-    class="ScrollMenu-scrollView"
+    class="PicassoScrollMenu-scrollView"
     tabindex="0"
   >
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
       value="val2"
     >
       <span
-        class="MenuItem-stringContent MenuItem-stringContentMedium"
+        class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
       >
         text2
       </span>
@@ -230,24 +233,24 @@ exports[`should filter options based on entered value to the input field 1`] = `
 
 exports[`should open menu when focus on select 1`] = `
 <ul
-  class="MuiList-root ScrollMenu-menu"
+  class="MuiList-root PicassoScrollMenu-menu"
   role="menu"
   tabindex="-1"
 >
   <div
-    class="ScrollMenu-scrollView"
+    class="PicassoScrollMenu-scrollView"
     tabindex="0"
   >
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
       value="val1"
     >
       <span
-        class="MenuItem-stringContent MenuItem-stringContentMedium"
+        class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
       >
         text1
       </span>
@@ -255,13 +258,13 @@ exports[`should open menu when focus on select 1`] = `
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
       value="val2"
     >
       <span
-        class="MenuItem-stringContent MenuItem-stringContentMedium"
+        class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
       >
         text2
       </span>
@@ -269,13 +272,13 @@ exports[`should open menu when focus on select 1`] = `
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
       value="val3"
     >
       <span
-        class="MenuItem-stringContent MenuItem-stringContentMedium"
+        class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentMedium"
       >
         text3
       </span>
@@ -286,18 +289,18 @@ exports[`should open menu when focus on select 1`] = `
 
 exports[`should render options customly 1`] = `
 <ul
-  class="MuiList-root ScrollMenu-menu"
+  class="MuiList-root PicassoScrollMenu-menu"
   role="menu"
   tabindex="-1"
 >
   <div
-    class="ScrollMenu-scrollView"
+    class="PicassoScrollMenu-scrollView"
     tabindex="0"
   >
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
       value="val1"
@@ -309,7 +312,7 @@ exports[`should render options customly 1`] = `
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
       value="val2"
@@ -321,7 +324,7 @@ exports[`should render options customly 1`] = `
     <li
       aria-disabled="false"
       aria-selected="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-guttersMedium MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-guttersMedium PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
       role="option"
       tabindex="-1"
       value="val3"

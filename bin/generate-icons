@@ -11,6 +11,7 @@ echo "Converting svg icons into react components ..."
 svgr \
 --out-dir $ICON_PATH \
 --ext tsx \
+--typescript \
 --template $ICON_PATH/_generatorTemplate.js \
 --expand-props none $ICON_PATH/svg
 
@@ -19,5 +20,5 @@ mv $ICON_FULL_PATH/index.tsx $ICON_FULL_PATH/index.ts
 
 # format all generated code with prettier and eslint
 davinci syntax lint code $ICON_FULL_PATH
-yarn prettier-standard $ICON_FULL_PATH/**/*.tsx
-yarn prettier-standard $ICON_FULL_PATH/index.ts
+prettier-standard $ICON_FULL_PATH/**/*.tsx
+prettier-standard $ICON_FULL_PATH/index.ts

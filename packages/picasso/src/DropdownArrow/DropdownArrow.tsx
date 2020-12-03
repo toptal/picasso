@@ -1,7 +1,7 @@
 import React, { forwardRef, HTMLAttributes } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { StandardProps, SizeType } from '@toptal/picasso-shared'
+import { StandardProps, SizeType, mergeClasses } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
@@ -10,8 +10,16 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLSpanElement> {
   size?: SizeType<'small' | 'medium'>
 }
 
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'PicassoDropdownArrow'
+})
+
 export const DropdownArrow = forwardRef<HTMLSpanElement, Props>(
-  function DropdownArrow({ classes, className, style, size, ...rest }, ref) {
+  function DropdownArrow(props, ref) {
+    const { classes: externalClasses, className, style, size, ...rest } = props
+
+    const classes = mergeClasses(useStyles(props), externalClasses)
+
     return (
       <span
         // eslint-disable-next-line react/jsx-props-no-spreading
@@ -30,4 +38,4 @@ DropdownArrow.defaultProps = {
   size: 'medium'
 }
 
-export default withStyles(styles)(DropdownArrow)
+export default DropdownArrow

@@ -8,14 +8,18 @@ import React, {
 } from 'react'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { BaseProps, CompoundedComponentWithRef } from '@toptal/picasso-shared'
+import {
+  StandardProps,
+  CompoundedComponentWithRef,
+  mergeClasses
+} from '@toptal/picasso-shared'
 
 import Container, { VariantType } from '../Container'
 import styles from './styles'
 import { PageContextProps } from '../Page/types'
 import { PageContext } from '../Page/Page'
 
-export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Children components */
   children: ReactNode
   /** Color variant of Banner */
@@ -48,8 +52,16 @@ export const PageBanner = forwardRef<HTMLDivElement, Props>(function PageBanner(
   props,
   ref
 ) {
-  const { className, style, children, variant, icon, ...rest } = props
-  const classes = useStyles(props)
+  const {
+    className,
+    style,
+    children,
+    variant,
+    icon,
+    classes: externalClasses,
+    ...rest
+  } = props
+  const classes = mergeClasses(useStyles(props), externalClasses)
   const { width, fullWidth } = useContext<PageContextProps>(PageContext)
 
   const innerClassName = cx(

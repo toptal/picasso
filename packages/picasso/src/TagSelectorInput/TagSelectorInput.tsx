@@ -1,6 +1,7 @@
 import React, { forwardRef, ReactElement } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
+import { mergeClasses } from '@toptal/picasso-shared'
 
 import { Props as InputProps } from '../Input/Input'
 import OutlinedInput from '../OutlinedInput'
@@ -37,10 +38,11 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       enableReset,
       inputProps,
+      classes: externalClasses,
       ...rest
     } = props
 
-    const classes = useStyles(props)
+    const classes = mergeClasses(useStyles(props), externalClasses)
     let usedEndAdornment = null
 
     if (endAdornment) {

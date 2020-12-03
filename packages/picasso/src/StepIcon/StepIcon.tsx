@@ -1,7 +1,7 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react'
 import cx from 'classnames'
-import { withStyles } from '@material-ui/core/styles'
-import { StandardProps } from '@toptal/picasso-shared'
+import { makeStyles, Theme } from '@material-ui/core/styles'
+import { mergeClasses, StandardProps } from '@toptal/picasso-shared'
 
 import { CheckMinor24 as TickIcon } from '../Icon'
 import styles from './styles'
@@ -11,12 +11,12 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   completed?: boolean
 }
 
-export const StepIcon: FunctionComponent<Props> = ({
-  active,
-  completed,
-  classes,
-  ...rest
-}) => {
+const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoStepIcon' })
+
+export const StepIcon: FunctionComponent<Props> = props => {
+  const { active, completed, classes: externalClasses, ...rest } = props
+  const classes = mergeClasses(useStyles(props), externalClasses)
+
   return (
     <div
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -33,4 +33,4 @@ export const StepIcon: FunctionComponent<Props> = ({
 
 StepIcon.displayName = 'StepIcon'
 
-export default withStyles(styles)(StepIcon)
+export default StepIcon

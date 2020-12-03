@@ -7,9 +7,9 @@ import React, {
 } from 'react'
 import cx from 'classnames'
 import { useSnackbar, OptionsObject } from 'notistack'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import { SnackbarOrigin } from '@material-ui/core/Snackbar'
-import { Classes } from '@toptal/picasso-shared'
+import { StandardProps, mergeClasses } from '@toptal/picasso-shared'
 
 import PicassoNotification, { VariantType } from '../../Notification'
 import styles from './styles'
@@ -19,21 +19,31 @@ const defaultPosition: SnackbarOrigin = {
   horizontal: 'right'
 }
 
-interface Props {
+interface Props extends StandardProps {
   key: string
   content: ReactNode
   icon?: ReactElement
-  classes: Classes
   onClose?: () => void
   variant?: VariantType
 }
 
-const StyledNotification = withStyles(styles)(
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'PicassoNotification'
+})
+
+const StyledNotification =
   // eslint-disable-next-line react/display-name
-  forwardRef<HTMLElement, Props>(function Notification(
-    { content, icon, key, onClose, variant = 'white', classes },
-    ref
-  ) {
+  forwardRef<HTMLElement, Props>(function Notification(props, ref) {
+    const {
+      content,
+      icon,
+      key,
+      onClose,
+      variant = 'white',
+      classes: externalClasses
+    } = props
+    const classes = mergeClasses(useStyles(props), externalClasses)
+
     return (
       <PicassoNotification
         variant={variant}
@@ -51,7 +61,6 @@ const StyledNotification = withStyles(styles)(
       </PicassoNotification>
     )
   })
-)
 
 export const useNotifications = () => {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()

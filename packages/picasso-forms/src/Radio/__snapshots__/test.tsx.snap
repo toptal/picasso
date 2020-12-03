@@ -7,19 +7,19 @@ exports[`FormRadio default render 1`] = `
   >
     <form>
       <div
-        class="FormField-root"
+        class="PicassoFormField-root"
       >
         <label
-          class="FormLabel-root"
+          class="PicassoFormLabel-root"
           for="color"
         >
           <span
-            class="FormLabel-asterisk"
+            class="PicassoFormLabel-asterisk"
           >
             *
           </span>
           <span
-            class="FormLabel-text"
+            class="PicassoFormLabel-text"
           >
             What's your favorite color?
           </span>
@@ -31,7 +31,7 @@ exports[`FormRadio default render 1`] = `
           type="radio"
         >
           <label
-            class="FormControlLabel-root Radio-root Radio-labelWithRightSpacing"
+            class="PicassoFormControlLabel-root Radio-root Radio-root Radio-labelWithRightSpacing"
           >
             <span
               aria-disabled="false"
@@ -52,17 +52,17 @@ exports[`FormRadio default render 1`] = `
               </span>
             </span>
             <span
-              class="FormLabel-root FormLabel-inline FormControlLabel-label Radio-label"
+              class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label Radio-label"
             >
               <span
-                class="FormLabel-text"
+                class="PicassoFormLabel-text"
               >
                 Crimson
               </span>
             </span>
           </label>
           <label
-            class="FormControlLabel-root Radio-root Radio-labelWithRightSpacing"
+            class="PicassoFormControlLabel-root Radio-root Radio-root Radio-labelWithRightSpacing"
           >
             <span
               aria-disabled="false"
@@ -84,10 +84,10 @@ exports[`FormRadio default render 1`] = `
               </span>
             </span>
             <span
-              class="FormLabel-root FormLabel-inline FormControlLabel-label Radio-label"
+              class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label Radio-label"
             >
               <span
-                class="FormLabel-text"
+                class="PicassoFormLabel-text"
               >
                 Moccasin
               </span>

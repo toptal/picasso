@@ -1,11 +1,9 @@
 import React, { forwardRef, ReactNode, useState } from 'react'
-import { withStyles } from '@material-ui/core/styles'
 
 import Container from '../Container'
 import Typography from '../Typography'
 import Modal, { Props as ModalProps } from '../Modal'
 import Button, { VariantType as ButtonVariantType } from '../Button'
-import styles from './styles'
 
 export type VariantType = 'red' | 'blue' | 'green'
 
@@ -119,4 +117,4 @@ PromptModal.defaultProps = {
 
 PromptModal.displayName = 'PromptModal'
 
-export default withStyles(styles)(PromptModal)
+export default PromptModal

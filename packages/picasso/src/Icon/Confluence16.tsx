@@ -1,7 +1,7 @@
 import React, { forwardRef, Ref } from 'react'
 import cx from 'classnames'
-import { withStyles } from '@material-ui/core/styles'
-import { StandardProps } from '@toptal/picasso-shared'
+import { makeStyles } from '@material-ui/core/styles'
+import { StandardProps, mergeClasses } from '@toptal/picasso-shared'
 
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import styles from './styles'
@@ -13,24 +13,29 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
+const useStyles = makeStyles(styles, { name: 'PicassoSvgConfluence16' })
 const SvgConfluence16 = forwardRef(function SvgConfluence16(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {
   const {
-    classes: availableClasses,
+    classes: externalClasses,
     className,
     style = {},
     color,
     scale,
     base
   } = props
-  const classes = [availableClasses.root, className]
+  const classes: Record<string, string> = mergeClasses(
+    useStyles(props),
+    externalClasses
+  )
+  const classNames = [classes.root, className]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
   const colorClassName = kebabToCamelCase(`${color}`)
 
-  if (availableClasses[colorClassName]) {
-    classes.push(availableClasses[colorClassName])
+  if (classes[colorClassName]) {
+    classNames.push(classes[colorClassName])
   }
 
   const svgStyle = {
@@ -42,7 +47,8 @@ const SvgConfluence16 = forwardRef(function SvgConfluence16(
   return (
     <svg
       viewBox='0 0 16 16'
-      className={cx(...classes)}
+      xmlns='http://www.w3.org/2000/svg'
+      className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
     >
@@ -52,4 +58,4 @@ const SvgConfluence16 = forwardRef(function SvgConfluence16(
 })
 
 SvgConfluence16.displayName = 'SvgConfluence16'
-export default withStyles(styles)(SvgConfluence16)
+export default SvgConfluence16

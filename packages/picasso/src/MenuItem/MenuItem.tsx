@@ -10,7 +10,7 @@ import React, {
   useMemo
 } from 'react'
 import cx from 'classnames'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
 import MUIMenuItem from '@material-ui/core/MenuItem'
 import {
@@ -18,7 +18,8 @@ import {
   ButtonOrAnchorProps,
   TextLabelProps,
   SizeType,
-  useTitleCase
+  useTitleCase,
+  mergeClasses
 } from '@toptal/picasso-shared'
 
 import { ChevronMinor16, CheckMinor16 } from '../Icon'
@@ -68,11 +69,16 @@ const generateKey = (() => {
   return () => String(++count)
 })()
 
+const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoMenuItem' })
+
 export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
-  {
+  props,
+  ref
+) {
+  const {
     as,
     children,
-    classes,
+    classes: externalClasses,
     className,
     disabled,
     disableGutters,
@@ -86,9 +92,9 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
     size,
     titleCase: propsTitleCase,
     ...rest
-  },
-  ref
-) {
+  } = props
+
+  const classes = mergeClasses(useStyles(props), externalClasses)
   const { push, refresh } = useContext<MenuContextProps>(MenuContext)
   const key = useMemo(generateKey, [])
 
@@ -100,8 +106,8 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
     }
   }, [key, menu, refresh])
 
-  if (typeof children === 'string') {
-    children = (
+  const renderChildren = () =>
+    typeof children === 'string' ? (
       <span
         className={cx(classes.stringContent, {
           [classes[`stringContent${size && capitalize(size!)}`]]: size
@@ -110,8 +116,9 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
       >
         {titleCase ? toTitleCase(children) : children}
       </span>
+    ) : (
+      children
     )
-  }
 
   const handleClick = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
     if (menu && push) {
@@ -163,7 +170,7 @@ export const MenuItem = forwardRef<HTMLElement, Props>(function MenuItem(
       value={value}
       selected={selected}
     >
-      {children}
+      {renderChildren()}
       {renderIconIfEligible()}
     </MUIMenuItem>
   )
@@ -177,4 +184,4 @@ MenuItem.defaultProps = {
 
 MenuItem.displayName = 'MenuItem'
 
-export default withStyles(styles)(MenuItem)
+export default MenuItem

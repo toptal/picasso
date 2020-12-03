@@ -1,11 +1,11 @@
 import React, { ReactElement, ReactNode } from 'react'
 import cx from 'classnames'
-import { BaseProps } from '@toptal/picasso-shared'
+import { StandardProps, mergeClasses } from '@toptal/picasso-shared'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import styles from './styles'
 
-export interface Props extends BaseProps {
+export interface Props extends StandardProps {
   /** Flag for transition execution. */
   on: boolean
   /** Element to apply transitions. */
@@ -17,8 +17,15 @@ const useStyles = makeStyles<Theme, Props>(styles, {
 })
 
 export const Rotate180 = (props: Props) => {
-  const { children, style, className, on, ...rest } = props
-  const classes = useStyles(props)
+  const {
+    children,
+    style,
+    className,
+    on,
+    classes: externalClasses,
+    ...rest
+  } = props
+  const classes = mergeClasses(useStyles(props), externalClasses)
 
   const childProps = {
     className: cx(className, classes.transition, {

@@ -1,7 +1,7 @@
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { StandardProps } from '@toptal/picasso-shared'
+import { mergeClasses, StandardProps } from '@toptal/picasso-shared'
 
 import FormHint from '../FormHint'
 import FormError from '../FormError'
@@ -16,10 +16,24 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   children: ReactNode
 }
 
+const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoFormField' })
+
 export const FormField = forwardRef<HTMLDivElement, Props>(function FormField(
-  { classes, className, style, hint, children, error, ...rest },
+  props,
   ref
 ) {
+  const {
+    classes: externalClasses,
+    className,
+    style,
+    hint,
+    children,
+    error,
+    ...rest
+  } = props
+
+  const classes = mergeClasses(useStyles(props), externalClasses)
+
   return (
     <div
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -39,4 +53,4 @@ FormField.defaultProps = {}
 
 FormField.displayName = 'FormField'
 
-export default withStyles(styles)(FormField)
+export default FormField

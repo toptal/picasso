@@ -1,8 +1,8 @@
 import React, { forwardRef, useState } from 'react'
 import cx from 'classnames'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import Truncate from 'react-truncate'
-import { StandardProps } from '@toptal/picasso-shared'
+import { mergeClasses, StandardProps } from '@toptal/picasso-shared'
 
 import ChevronRightIcon16 from '../Icon/ChevronRight16'
 import Typography from '../Typography'
@@ -26,22 +26,26 @@ export interface Props extends StandardProps {
   onToggle?: () => void
 }
 
+const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoShowMore' })
+
 export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
-  {
+  props,
+  ref
+) {
+  const {
     children,
     rows = 4,
     initialExpanded = false,
     disableToggle = false,
-    classes: { expandedIcon, icon, toggleText, iconWrapper },
+    classes: externalClasses,
     moreText = 'Show more',
     lessText = 'Show less',
     onToggle = () => {},
     className,
     style,
     ...rest
-  },
-  ref
-) {
+  } = props
+  const classes = mergeClasses(useStyles(props), externalClasses)
   const [shownMore, setShownMore] = useState(initialExpanded)
 
   return (
@@ -63,16 +67,16 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
             setShownMore(!shownMore)
             onToggle()
           }}
-          className={toggleText}
+          className={classes.toggleText}
           underline='none'
         >
           <Typography size='medium' color='blue'>
             {shownMore ? lessText : moreText}
           </Typography>
-          <div className={iconWrapper}>
+          <div className={classes.iconWrapper}>
             <ChevronRightIcon16
-              className={cx(icon, {
-                [expandedIcon]: shownMore
+              className={cx(classes.icon, {
+                [classes.expandedIcon]: shownMore
               })}
             />
           </div>
@@ -84,4 +88,4 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
 
 ShowMore.displayName = 'ShowMore'
 
-export default withStyles(styles)(ShowMore)
+export default ShowMore

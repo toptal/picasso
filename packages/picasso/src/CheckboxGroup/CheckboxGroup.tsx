@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react'
 import FormGroup, { FormGroupProps } from '@material-ui/core/FormGroup'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
+import { mergeClasses } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
@@ -10,15 +11,18 @@ export interface Props extends FormGroupProps {
   horizontal?: boolean
 }
 
-const useStyles = makeStyles<Theme, Props>(styles)
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'PicassoCheckboxGroup'
+})
 
 const CheckboxGroup: FunctionComponent<Props> = props => {
-  const { horizontal, className, ...rest } = props
+  const { horizontal, className, classes: externalClasses, ...rest } = props
+
   const {
     horizontal: horizontalClass,
     vertical: verticalClass,
     ...classes
-  } = useStyles(props)
+  } = mergeClasses(useStyles(props), externalClasses as Record<string, string>)
 
   return (
     <FormGroup

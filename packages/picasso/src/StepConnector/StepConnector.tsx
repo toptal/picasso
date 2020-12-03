@@ -1,18 +1,25 @@
 import React, { FunctionComponent } from 'react'
-import { withStyles } from '@material-ui/core/styles'
-import { Classes } from '@toptal/picasso-shared'
+import { makeStyles, Theme } from '@material-ui/core/styles'
+import { Classes, mergeClasses } from '@toptal/picasso-shared'
 
 import { ChevronRight16 as ChevronRightIcon } from '../Icon'
 import styles from './styles'
 
 export interface Props {
-  classes: Classes
+  classes?: Classes
 }
 
-export const StepConnector: FunctionComponent<Props> = ({ classes }) => {
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'PicassoStepConnector'
+})
+
+export const StepConnector: FunctionComponent<Props> = props => {
+  const { classes: externalClasses } = props
+  const classes = mergeClasses(useStyles(props), externalClasses)
+
   return <ChevronRightIcon className={classes.connectorIcon} />
 }
 
 StepConnector.displayName = 'StepConnector'
 
-export default withStyles(styles)(StepConnector)
+export default StepConnector

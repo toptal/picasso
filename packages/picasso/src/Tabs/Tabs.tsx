@@ -3,16 +3,17 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITabs, { TabsProps } from '@material-ui/core/Tabs'
 import {
   ButtonOrAnchorProps,
-  BaseProps,
+  StandardProps,
   PicassoComponentWithRef,
-  CompoundedComponentWithRef
+  CompoundedComponentWithRef,
+  mergeClasses
 } from '@toptal/picasso-shared'
 
 import Tab from '../Tab'
 import styles from './styles'
 
 export interface Props
-  extends BaseProps,
+  extends StandardProps,
     Omit<ButtonOrAnchorProps, 'onChange'> {
   /** Tabs content containing Tab components */
   children: ReactNode
@@ -37,8 +38,8 @@ export const Tabs = forwardRef<HTMLButtonElement, Props>(function Tabs(
   props,
   ref
 ) {
-  const classes = useStyles(props)
-  const { children, onChange, value, ...rest } = props
+  const { children, onChange, value, classes: externalClasses, ...rest } = props
+  const classes = mergeClasses(useStyles(props), externalClasses)
 
   return (
     <MUITabs

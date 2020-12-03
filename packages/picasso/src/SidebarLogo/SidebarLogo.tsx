@@ -1,6 +1,6 @@
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
-import { withStyles } from '@material-ui/core/styles'
-import { StandardProps } from '@toptal/picasso-shared'
+import { makeStyles, Theme } from '@material-ui/core/styles'
+import { mergeClasses, StandardProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 
 import Container from '../Container'
@@ -12,9 +12,23 @@ export interface Props
   children: ReactNode
 }
 
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'PicassoSidebarLogo'
+})
+
 export const SidebarLogo = forwardRef<HTMLDivElement, Props>(
-  function SidebarLogo({ children, className, classes, style, ...rest }, ref) {
-    const { root: rootClass, ...restClasses } = classes
+  function SidebarLogo(props, ref) {
+    const {
+      children,
+      className,
+      classes: externalClasses,
+      style,
+      ...rest
+    } = props
+    const { root: rootClass, ...restClasses } = mergeClasses(
+      useStyles(props),
+      externalClasses
+    )
 
     return (
       <Container
@@ -39,4 +53,4 @@ SidebarLogo.defaultProps = {}
 
 SidebarLogo.displayName = 'SidebarLogo'
 
-export default withStyles(styles)(SidebarLogo)
+export default SidebarLogo

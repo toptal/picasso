@@ -1,7 +1,7 @@
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { StandardProps } from '@toptal/picasso-shared'
+import { mergeClasses, StandardProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 import Typography from '../Typography'
@@ -11,10 +11,22 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   children: ReactNode
 }
 
+const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoFormError' })
+
 export const FormError = forwardRef<HTMLDivElement, Props>(function FormError(
-  { children, classes, className, style, ...rest },
+  props,
   ref
 ) {
+  const {
+    children,
+    classes: externalClasses,
+    className,
+    style,
+    ...rest
+  } = props
+
+  const classes = mergeClasses(useStyles(props), externalClasses)
+
   return (
     <div
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -30,4 +42,4 @@ export const FormError = forwardRef<HTMLDivElement, Props>(function FormError(
 
 FormError.displayName = 'FormError'
 
-export default withStyles(styles)(FormError)
+export default FormError

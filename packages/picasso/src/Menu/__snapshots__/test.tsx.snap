@@ -12,36 +12,36 @@ exports[`Menu default render 1`] = `
     >
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
         tabindex="0"
       >
         <span
-          class="MenuItem-stringContent"
+          class="PicassoMenuItem-stringContent"
         >
           Item 1
         </span>
       </li>
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
         tabindex="-1"
       >
         <span
-          class="MenuItem-stringContent"
+          class="PicassoMenuItem-stringContent"
         >
           Item 2
         </span>
       </li>
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
         tabindex="-1"
       >
         <span
-          class="MenuItem-stringContent"
+          class="PicassoMenuItem-stringContent"
         >
           Item 3
         </span>
@@ -63,22 +63,24 @@ exports[`Menu has back button when in submenu 1`] = `
     >
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
         tabindex="0"
       >
         <span
-          class="MenuItem-stringContent"
+          class="PicassoMenuItem-stringContent"
         >
           Item 1
         </span>
         <div
-          class="Container-leftxsmallMargin Container-flex Container-inline"
+          class="PicassoContainer-leftxsmallMargin PicassoContainer-flex PicassoContainer-inline"
         >
           <svg
-            class="SvgChevronMinor16-root"
+            class="PicassoSvgChevronMinor16-root"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
           >
             <path
               d="M5.997 3.29l4 4 .707.707-.707.707-4 4-.707-.707 4-4-4-4 .707-.707z"
@@ -94,17 +96,19 @@ exports[`Menu has back button when in submenu 1`] = `
     >
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
         tabindex="0"
       >
         <p
-          class="MuiTypography-root Typography-bodySmall Typography-darkGrey MuiTypography-body1"
+          class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-darkGrey MuiTypography-body1"
         >
           <svg
-            class="SvgBackMinor16-root Menu-backButtonIcon"
+            class="PicassoSvgBackMinor16-root Menu-backButtonIcon"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
           >
             <path
               d="M9.997 3.29l.707.707-4 4 4 4-.707.707L5.29 7.997l.707-.707 4-4z"
@@ -115,12 +119,12 @@ exports[`Menu has back button when in submenu 1`] = `
       </li>
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
         role="menuitem"
         tabindex="-1"
       >
         <span
-          class="MenuItem-stringContent"
+          class="PicassoMenuItem-stringContent"
         >
           Submenu Item
         </span>

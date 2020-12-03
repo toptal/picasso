@@ -36,25 +36,25 @@ exports[`renders PromptModal 1`] = `
         role="dialog"
       >
         <div
-          class="ModalTitle-root"
+          class="PicassoModalTitle-root"
         >
           <h3
-            class="MuiTypography-root Typography-headingMedium MuiTypography-h3"
+            class="MuiTypography-root PicassoTypography-headingMedium MuiTypography-h3"
           >
             Test title
           </h3>
         </div>
         <div
-          class="ModalContent-root"
+          class="PicassoModalContent-root"
         >
           <p
-            class="MuiTypography-root Typography-bodyMedium MuiTypography-body1"
+            class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
           >
             Test message
           </p>
         </div>
         <div
-          class="ModalActions-root"
+          class="PicassoModalAction-root"
         >
           <button
             class="MuiButtonBase-root PicassoButton-medium PicassoButton-flat PicassoButton-root"
@@ -62,7 +62,7 @@ exports[`renders PromptModal 1`] = `
             type="button"
           >
             <span
-              class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
             >
               Cancel
             </span>
@@ -73,7 +73,7 @@ exports[`renders PromptModal 1`] = `
             type="button"
           >
             <span
-              class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
             >
               Submit
             </span>
@@ -103,7 +103,7 @@ exports[`showPrompt opens and closes modal on Submit action 1`] = `
         type="button"
       >
         <span
-          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
         >
           Show
         </span>
@@ -129,7 +129,7 @@ exports[`showPrompt opens and closes modal on Submit action 2`] = `
         type="button"
       >
         <span
-          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
         >
           Show
         </span>
@@ -159,25 +159,25 @@ exports[`showPrompt opens and closes modal on Submit action 2`] = `
             role="dialog"
           >
             <div
-              class="ModalTitle-root"
+              class="PicassoModalTitle-root"
             >
               <h3
-                class="MuiTypography-root Typography-headingMedium MuiTypography-h3"
+                class="MuiTypography-root PicassoTypography-headingMedium MuiTypography-h3"
               >
                 Test title
               </h3>
             </div>
             <div
-              class="ModalContent-root"
+              class="PicassoModalContent-root"
             >
               <p
-                class="MuiTypography-root Typography-bodyMedium MuiTypography-body1"
+                class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
               >
                 Test message
               </p>
             </div>
             <div
-              class="ModalActions-root"
+              class="PicassoModalAction-root"
             >
               <button
                 class="MuiButtonBase-root PicassoButton-medium PicassoButton-flat PicassoButton-root"
@@ -185,7 +185,7 @@ exports[`showPrompt opens and closes modal on Submit action 2`] = `
                 type="button"
               >
                 <span
-                  class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+                  class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
                 >
                   Cancel
                 </span>
@@ -196,7 +196,7 @@ exports[`showPrompt opens and closes modal on Submit action 2`] = `
                 type="button"
               >
                 <span
-                  class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+                  class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
                 >
                   Submit
                 </span>
@@ -204,9 +204,11 @@ exports[`showPrompt opens and closes modal on Submit action 2`] = `
             </div>
             <span>
               <svg
-                class="SvgClose16-root PicassoModal-closeButton"
+                class="PicassoSvgClose16-root PicassoModal-closeButton"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
               >
                 <path
                   d="M8.707 8l5.5 5.5-.707.707-5.5-5.5-5.5 5.5-.707-.707 5.5-5.5-5.5-5.5.707-.707 5.5 5.5 5.5-5.5.707.707-5.5 5.5z"
@@ -240,7 +242,7 @@ exports[`showPrompt opens and closes modal on Submit action 3`] = `
         type="button"
       >
         <span
-          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
         >
           Show
         </span>
@@ -265,7 +267,7 @@ exports[`showPrompt with input returns result on Submit action  1`] = `
         type="button"
       >
         <span
-          class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
         >
           Show
         </span>

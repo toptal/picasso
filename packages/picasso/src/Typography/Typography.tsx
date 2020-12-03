@@ -1,10 +1,11 @@
 import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import { Variant as MUIVariant } from '@material-ui/core/styles/createTypography'
 import { PropTypes } from '@material-ui/core'
 import MUITypography from '@material-ui/core/Typography'
 import cx from 'classnames'
 import {
+  mergeClasses,
   StandardProps,
   SizeType,
   ColorType,
@@ -73,14 +74,21 @@ const VARIANTS: VariantsType = {
   }
 }
 
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'PicassoTypography'
+})
+
 export const Typography = forwardRef<HTMLElement, Props>(function Typography(
-  {
+  props,
+  ref
+) {
+  const {
     variant,
     children,
     size,
     align,
     className,
-    classes,
+    classes: externalClasses,
     style,
     inline,
     as,
@@ -92,9 +100,9 @@ export const Typography = forwardRef<HTMLElement, Props>(function Typography(
     lineThrough,
     titleCase,
     ...rest
-  },
-  ref
-) {
+  } = props
+  const classes = mergeClasses(useStyles(props), externalClasses)
+
   const resolvedVariant = VARIANTS[variant!][size!]
   const variantClassName = kebabToCamelCase(`${variant}-${size}`)
   const colorClassName = kebabToCamelCase(`${color}`)
@@ -143,4 +151,4 @@ Typography.defaultProps = {
 
 Typography.displayName = 'Typography'
 
-export default withStyles(styles)(Typography)
+export default Typography

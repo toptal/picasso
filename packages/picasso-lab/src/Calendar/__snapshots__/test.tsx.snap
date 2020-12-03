@@ -21,12 +21,14 @@ exports[`Calendar default render 1`] = `
             type="button"
           >
             <span
-              class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
             >
               <svg
-                class="SvgBackMinor16-root"
+                class="PicassoSvgBackMinor16-root"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
               >
                 <path
                   d="M9.997 3.29l.707.707-4 4 4 4-.707.707L5.29 7.997l.707-.707 4-4z"
@@ -35,7 +37,7 @@ exports[`Calendar default render 1`] = `
             </span>
           </button>
           <h3
-            class="MuiTypography-root Typography-headingMedium MuiTypography-h3"
+            class="MuiTypography-root PicassoTypography-headingMedium MuiTypography-h3"
           >
             February 2019
           </h3>
@@ -46,12 +48,14 @@ exports[`Calendar default render 1`] = `
             type="button"
           >
             <span
-              class="Container-centerAlignItems Container-flex Container-inline PicassoButton-content"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
             >
               <svg
-                class="SvgChevronMinor16-root"
+                class="PicassoSvgChevronMinor16-root"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
               >
                 <path
                   d="M5.997 3.29l4 4 .707.707-.707.707-4 4-.707-.707 4-4-4-4 .707-.707z"

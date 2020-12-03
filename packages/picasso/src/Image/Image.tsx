@@ -1,7 +1,7 @@
 import React, { forwardRef, ImgHTMLAttributes } from 'react'
 import cx from 'classnames'
-import { withStyles } from '@material-ui/core/styles'
-import { StandardProps } from '@toptal/picasso-shared'
+import { makeStyles, Theme } from '@material-ui/core/styles'
+import { mergeClasses, StandardProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
@@ -20,19 +20,25 @@ export interface Props
   variant?: VariantType
 }
 
+const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoImage' })
+
 export const Image = forwardRef<HTMLImageElement, Props>(function Image(
-  {
+  props,
+  ref
+) {
+  const {
     src,
     srcSet,
     alt,
-    classes,
+    classes: externalClasses,
     className,
     variant = 'rectangle',
     style,
     ...rest
-  },
-  ref
-) {
+  } = props
+
+  const classes = mergeClasses(useStyles(props), externalClasses)
+
   return (
     <img
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -59,4 +65,4 @@ Image.defaultProps = {
 
 Image.displayName = 'Image'
 
-export default withStyles(styles)(Image)
+export default Image

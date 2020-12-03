@@ -11,10 +11,11 @@ import SnackbarContent from '@material-ui/core/SnackbarContent'
 import cx from 'classnames'
 import capitalize from '@material-ui/core/utils/capitalize'
 import {
-  BaseProps,
+  StandardProps,
   JssProps,
   PicassoComponentWithRef,
-  CompoundedComponentWithRef
+  CompoundedComponentWithRef,
+  mergeClasses
 } from '@toptal/picasso-shared'
 
 import {
@@ -31,7 +32,7 @@ import NotificationActions from '../NotificationActions'
 
 export type VariantType = 'red' | 'green' | 'white' | 'yellow'
 
-export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Main content of the Notification */
   children: ReactNode
   /** Callback invoked when close is clicked */
@@ -52,14 +53,14 @@ export interface StaticProps {
 
 const renderNotificationCloseButton = ({
   onClose,
-  classes: { close, closeIcon }
+  classes
 }: Props & JssProps) => (
   <Button
     circular
     onClick={onClose}
-    className={close}
+    className={classes.close}
     title='Close Notification'
-    icon={<CloseMinor16 className={closeIcon} />}
+    icon={<CloseMinor16 className={classes.closeIcon} />}
   />
 )
 
@@ -97,21 +98,17 @@ const renderNotificationIcon = ({
 }
 
 const renderNotificationContent = (props: Props & JssProps) => {
-  const {
-    classes: { iconWrapper, content, contentCloseButton },
-    children,
-    onClose
-  } = props
+  const { classes, children, onClose } = props
 
   return (
     <>
-      <Container flex alignItems='center' className={iconWrapper}>
+      <Container flex alignItems='center' className={classes.iconWrapper}>
         {renderNotificationIcon(props)}
       </Container>
       <Typography
         size='medium'
-        className={cx(content, {
-          [contentCloseButton]: onClose
+        className={cx(classes.content, {
+          [classes.contentCloseButton]: onClose
         })}
         as='div'
       >
@@ -129,8 +126,16 @@ const useStyles = makeStyles<Theme, Props>(styles, {
 // eslint-disable-next-line react/display-name
 export const Notification = forwardRef<HTMLElement, Props>(
   function Notification(props, ref) {
-    const classes = useStyles(props)
-    const { className, variant, elevated, fullWidth, ...rest } = props
+    const {
+      className,
+      variant,
+      elevated,
+      fullWidth,
+      classes: externalClasses,
+      ...rest
+    } = props
+
+    const classes = mergeClasses(useStyles(props), externalClasses)
 
     return (
       <SnackbarContent

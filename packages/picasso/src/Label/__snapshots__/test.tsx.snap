@@ -25,9 +25,11 @@ exports[`dismissable label should render dismissable label 1`] = `
         role="button"
       >
         <svg
-          class="SvgCloseMinor16-root"
+          class="PicassoSvgCloseMinor16-root"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
         >
           <path
             d="M8.707 8l3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5z"

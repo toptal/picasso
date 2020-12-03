@@ -6,7 +6,7 @@ exports[`Sidebar default render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Container-flex Container-column Sidebar-root Sidebar-light"
+      class="PicassoContainer-flex PicassoContainer-column Sidebar-root Sidebar-light"
     >
       <div
         class="Sidebar-spacer"
@@ -22,13 +22,13 @@ exports[`Sidebar with menu  1`] = `
     class="Picasso-root"
   >
     <div
-      class="Container-flex Container-column Sidebar-root Sidebar-light"
+      class="PicassoContainer-flex PicassoContainer-column Sidebar-root Sidebar-light"
     >
       <div
         class="Sidebar-spacer"
       />
       <ul
-        class="MuiList-root SidebarMenu-root"
+        class="MuiList-root PicassoSidebarMenu-root"
         role="menu"
         tabindex="-1"
       />
@@ -43,18 +43,18 @@ exports[`Sidebar with one normal and one bottom menu  1`] = `
     class="Picasso-root"
   >
     <div
-      class="Container-flex Container-column Sidebar-root Sidebar-light"
+      class="PicassoContainer-flex PicassoContainer-column Sidebar-root Sidebar-light"
     >
       <div
         class="Sidebar-spacer"
       />
       <ul
-        class="MuiList-root SidebarMenu-root"
+        class="MuiList-root PicassoSidebarMenu-root"
         role="menu"
         tabindex="-1"
       />
       <ul
-        class="MuiList-root SidebarMenu-root SidebarMenu-bottom"
+        class="MuiList-root PicassoSidebarMenu-root PicassoSidebarMenu-bottom"
         role="menu"
         tabindex="-1"
       />

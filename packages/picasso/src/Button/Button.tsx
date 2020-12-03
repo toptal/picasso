@@ -9,13 +9,14 @@ import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import ButtonBase from '@material-ui/core/ButtonBase'
 import {
-  BaseProps,
+  StandardProps,
   SizeType,
   ButtonOrAnchorProps,
   CompoundedComponentWithRef,
   OverridableComponent,
   useTitleCase,
-  TextLabelProps
+  TextLabelProps,
+  mergeClasses
 } from '@toptal/picasso-shared'
 
 import Loader from '../Loader'
@@ -42,7 +43,10 @@ export type VariantType =
 
 export type IconPositionType = 'left' | 'right'
 
-export interface Props extends BaseProps, TextLabelProps, ButtonOrAnchorProps {
+export interface Props
+  extends StandardProps,
+    TextLabelProps,
+    ButtonOrAnchorProps {
   /** Show button in the active state (left mouse button down) */
   active?: boolean
   /** The component used for the root node. Either a string to use a DOM element or a component. */
@@ -118,9 +122,10 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     type,
     as,
     titleCase: propsTitleCase,
+    classes: externalClasses,
     ...rest
   } = props
-  const classes = useStyles(props)
+  const classes = mergeClasses(useStyles(props), externalClasses)
 
   const {
     icon: iconClass,

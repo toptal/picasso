@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
+import { mergeClasses } from '@toptal/picasso-shared'
 
 import Label from '../Label'
 import { Props as LabelProps } from '../Label/Label'
@@ -11,9 +12,9 @@ const useStyles = makeStyles<Theme, LabelProps>(styles, {
 
 export const TagSelectorLabel = forwardRef<HTMLDivElement, LabelProps>(
   function TagSelectorLabel(props, ref) {
-    const { children, ...rest } = props
+    const { children, classes: externalClasses, ...rest } = props
 
-    const classes = useStyles(props)
+    const classes = mergeClasses(useStyles(props), externalClasses)
 
     return (
       <Label

@@ -9,7 +9,7 @@ import React, {
 import cx from 'classnames'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import { InputBaseComponentProps } from '@material-ui/core/InputBase'
-import { BaseProps, SizeType } from '@toptal/picasso-shared'
+import { StandardProps, SizeType, mergeClasses } from '@toptal/picasso-shared'
 
 import InputAdornment from '../InputAdornment'
 import OutlinedInput from '../OutlinedInput'
@@ -21,7 +21,7 @@ type IconPosition = 'start' | 'end'
 type CounterType = 'remaining' | 'entered'
 
 export interface Props
-  extends BaseProps,
+  extends StandardProps,
     Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
   /** The id of the `input` element. */
   id?: string
@@ -279,12 +279,13 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
     enableReset,
     onResetClick,
     outlineRef,
+    classes: externalClasses,
     ...rest
   } = purifyProps(props)
 
   const charsLength = value ? value.length : 0
 
-  const classes = useStyles(props)
+  const classes = mergeClasses(useStyles(props), externalClasses)
 
   return (
     <OutlinedInput

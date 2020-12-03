@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react'
 import MUIRadioGroup, { RadioGroupProps } from '@material-ui/core/RadioGroup'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
+import { mergeClasses } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
@@ -15,12 +16,12 @@ const useStyles = makeStyles<Theme, Props>(styles, {
 })
 
 const RadioGroup: FunctionComponent<Props> = props => {
-  const { horizontal, className, ...rest } = props
+  const { horizontal, className, classes: externalClasses, ...rest } = props
   const {
     horizontal: horizontalClass,
     labelWithRightSpacing,
     ...classes
-  } = useStyles(props)
+  } = mergeClasses(useStyles(props), externalClasses as Record<string, string>)
 
   const children = React.Children.toArray(rest.children)
 

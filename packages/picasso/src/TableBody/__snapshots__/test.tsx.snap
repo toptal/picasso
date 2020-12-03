@@ -12,10 +12,10 @@ exports[`TableCell default render 1`] = `
         class="MuiTableBody-root"
       >
         <tr
-          class="MuiTableRow-root TableRow-root"
+          class="MuiTableRow-root PicassoTableRow-root"
         >
           <td
-            class="MuiTableCell-root TableCell-root MuiTableCell-body TableCell-body"
+            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body PicassoTableCell-body"
           >
             Body test
           </td>

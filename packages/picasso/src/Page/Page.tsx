@@ -2,9 +2,10 @@ import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import {
-  BaseProps,
+  StandardProps,
   PicassoComponentWithRef,
-  CompoundedComponentWithRef
+  CompoundedComponentWithRef,
+  mergeClasses
 } from '@toptal/picasso-shared'
 
 import PageHead from '../PageHead'
@@ -17,7 +18,7 @@ import PageBanner from '../PageBanner'
 import { PageContextProps, ViewportWidthType } from './types'
 import styles from './styles'
 
-export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** DEPRECATED! Component becomes responsive with width 100% and overrides width prop */
   fullWidth?: boolean
   /** Define container width `wide` | `full` */
@@ -49,8 +50,16 @@ export const Page = forwardRef<HTMLDivElement, Props>(function Page(
   props,
   ref
 ) {
-  const classes = useStyles(props)
-  const { children, className, style, width, fullWidth, ...rest } = props
+  const {
+    children,
+    className,
+    style,
+    width,
+    fullWidth,
+    classes: externalClasses,
+    ...rest
+  } = props
+  const classes = mergeClasses(useStyles(props), externalClasses)
 
   return (
     <div

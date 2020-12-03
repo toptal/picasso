@@ -1,8 +1,8 @@
 import React, { forwardRef, ReactNode, MouseEvent, HTMLAttributes } from 'react'
 import cx from 'classnames'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUITableRow from '@material-ui/core/TableRow'
-import { StandardProps } from '@toptal/picasso-shared'
+import { mergeClasses, StandardProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 
@@ -21,10 +21,12 @@ export interface Props
   stripeEven?: boolean
 }
 
+const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoTableRow' })
+
 export const TableRow = forwardRef<HTMLTableRowElement, Props>(
-  function TableRow(
-    {
-      classes,
+  function TableRow(props, ref) {
+    const {
+      classes: externalClasses,
       className,
       style,
       children,
@@ -33,9 +35,8 @@ export const TableRow = forwardRef<HTMLTableRowElement, Props>(
       stripeEven,
       onClick,
       ...rest
-    },
-    ref
-  ) {
+    } = props
+    const classes = mergeClasses(useStyles(props), externalClasses)
     const { stripeEven: stripeEvenClass, ...restClasses } = classes
 
     return (
@@ -66,4 +67,4 @@ TableRow.defaultProps = {
 
 TableRow.displayName = 'TableRow'
 
-export default withStyles(styles)(TableRow)
+export default TableRow

@@ -10,7 +10,7 @@ const decorateWithClassNameProp = svgElement => {
       types.jsxIdentifier('className'),
       types.jsxExpressionContainer(
         types.callExpression(types.identifier('cx'), [
-          types.identifier('...classes')
+          types.identifier('...classNames')
         ])
       )
     )
@@ -57,11 +57,13 @@ const iconTemplate = ({ template }, opts, { componentName, jsx }) => {
 
   const typeScriptTpl = template.smart({ plugins: ['typescript'] })
 
+  const makeStylesHook = `const useStyles = makeStyles(styles, { name: 'Picasso${componentName.name}' })`
+
   return typeScriptTpl.ast`
     import React, { forwardRef, Ref } from 'react'
     import cx from 'classnames'
-    import { withStyles } from '@material-ui/core/styles'
-    import { StandardProps } from '@toptal/picasso-shared'
+    import { makeStyles } from '@material-ui/core/styles'
+    import { StandardProps, mergeClasses } from '@toptal/picasso-shared'
 
     import kebabToCamelCase from '../utils/kebab-to-camel-case'
     import styles from './styles'
@@ -79,19 +81,21 @@ const iconTemplate = ({ template }, opts, { componentName, jsx }) => {
       color?: string
       base?: number
     }
-
+    ${makeStylesHook}
     const ${componentName} = forwardRef(function ${componentName}(
       props: Props,
       ref: Ref<SVGSVGElement>
     ) {
-      const { classes: availableClasses, className, style = {}, color, scale, base } = props
-      const classes = [availableClasses.root, className]
+      const { classes: externalClasses, className, style = {}, color, scale, base } = props
+
+      const classes: Record<string, string> = mergeClasses(useStyles(props), externalClasses)
+      const classNames = [classes.root, className]
 
       const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
       const colorClassName = kebabToCamelCase(\`\${color}\`)
 
-      if (availableClasses[colorClassName]) {
-        classes.push(availableClasses[colorClassName])
+      if (classes[colorClassName]) {
+        classNames.push(classes[colorClassName])
       }
 
       const svgStyle = {
@@ -107,7 +111,7 @@ const iconTemplate = ({ template }, opts, { componentName, jsx }) => {
 
     ${componentName}.displayName = ${displayName}
 
-    export default withStyles(styles)(${componentName})
+    export default ${componentName}
   `
 }
 

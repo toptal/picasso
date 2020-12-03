@@ -6,7 +6,7 @@ exports[`Indicator default render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Indicator-root Indicator-red"
+      class="PicassoIndicator-root PicassoIndicator-red"
       role="img"
     />
   </div>

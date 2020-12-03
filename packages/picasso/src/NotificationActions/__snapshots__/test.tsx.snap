@@ -13,12 +13,14 @@ exports[`NotificationActions default render 1`] = `
         class="MuiSnackbarContent-message"
       >
         <div
-          class="Container-centerAlignItems Container-flex Notification-iconWrapper"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex Notification-iconWrapper"
         >
           <svg
-            class="SvgCheckSolid24-root SvgCheckSolid24-green"
+            class="PicassoSvgCheckSolid24-root PicassoSvgCheckSolid24-green"
             style="min-width: 24px; min-height: 24px;"
             viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
           >
             <path
               d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zm4.034 7.667l-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377z"
@@ -26,11 +28,11 @@ exports[`NotificationActions default render 1`] = `
           </svg>
         </div>
         <div
-          class="MuiTypography-root Typography-bodyMedium Notification-content MuiTypography-body1"
+          class="MuiTypography-root PicassoTypography-bodyMedium Notification-content MuiTypography-body1"
         >
           The time zone in your profile is set to (UTC -08:00) America - Los
           <div
-            class="Container-topxsmallMargin Container-flex"
+            class="PicassoContainer-topxsmallMargin PicassoContainer-flex"
           >
             Test
           </div>

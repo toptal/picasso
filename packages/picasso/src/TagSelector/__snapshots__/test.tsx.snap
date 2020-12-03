@@ -8,19 +8,19 @@ exports[`TagSelector default render 1`] = `
     <div
       aria-expanded="false"
       aria-haspopup="listbox"
-      class="Autocomplete-root Autocomplete-rootAuto"
+      class="PicassoAutocomplete-root PicassoAutocomplete-rootAuto"
       role="combobox"
     >
       <div
-        class="Container-flex"
+        class="PicassoContainer-flex"
       >
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium PicassoTagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+          class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium PicassoTagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
         >
           <input
             aria-autocomplete="list"
             autocomplete="off"
-            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+            class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
             placeholder="Please select..."
             type="text"
             value=""
@@ -57,14 +57,14 @@ exports[`TagSelector disabled render 1`] = `
     <div
       aria-expanded="false"
       aria-haspopup="listbox"
-      class="Autocomplete-root Autocomplete-rootAuto"
+      class="PicassoAutocomplete-root PicassoAutocomplete-rootAuto"
       role="combobox"
     >
       <div
-        class="Container-flex"
+        class="PicassoContainer-flex"
       >
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium PicassoTagSelectorInput-inputBase Mui-disabled Mui-disabled MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+          class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium PicassoTagSelectorInput-inputBase Mui-disabled Mui-disabled MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
         >
           <div
             class="MuiChip-root PicassoLabel-root PicassoLabel-disabled PicassoTagSelectorLabel-label MuiChip-deletable"
@@ -86,9 +86,11 @@ exports[`TagSelector disabled render 1`] = `
               role="button"
             >
               <svg
-                class="SvgCloseMinor16-root"
+                class="PicassoSvgCloseMinor16-root"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
               >
                 <path
                   d="M8.707 8l3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5z"
@@ -99,7 +101,7 @@ exports[`TagSelector disabled render 1`] = `
           <input
             aria-autocomplete="list"
             autocomplete="off"
-            class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium Mui-disabled Mui-disabled MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+            class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium Mui-disabled Mui-disabled MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
             disabled=""
             type="text"
             value=""
@@ -137,14 +139,14 @@ exports[`TagSelector preselected value 1`] = `
       <div
         aria-expanded="false"
         aria-haspopup="listbox"
-        class="Autocomplete-root Autocomplete-rootAuto"
+        class="PicassoAutocomplete-root PicassoAutocomplete-rootAuto"
         role="combobox"
       >
         <div
-          class="Container-flex"
+          class="PicassoContainer-flex"
         >
           <div
-            class="MuiInputBase-root MuiOutlinedInput-root OutlinedInput-root OutlinedInput-rootAuto OutlinedInput-rootMedium PicassoTagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+            class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium PicassoTagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
           >
             <div
               class="MuiChip-root PicassoLabel-root PicassoTagSelectorLabel-label MuiChip-deletable"
@@ -166,9 +168,11 @@ exports[`TagSelector preselected value 1`] = `
                 role="button"
               >
                 <svg
-                  class="SvgCloseMinor16-root"
+                  class="PicassoSvgCloseMinor16-root"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 16 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
                 >
                   <path
                     d="M8.707 8l3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5z"
@@ -179,7 +183,7 @@ exports[`TagSelector preselected value 1`] = `
             <input
               aria-autocomplete="list"
               autocomplete="off"
-              class="MuiInputBase-input MuiOutlinedInput-input OutlinedInput-input OutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+              class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
               type="text"
               value=""
             />

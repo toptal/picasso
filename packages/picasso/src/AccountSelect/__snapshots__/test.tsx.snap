@@ -12,54 +12,56 @@ exports[`AccountSelect default render 1`] = `
     >
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light AccountSelect-accountItem MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-light PicassoAccountSelect-accountItem MuiListItem-button"
         role="menuitem"
         tabindex="0"
       >
         <a
-          class="MuiTypography-root MuiLink-root MuiLink-underlineNone AccountSelect-accountLink MuiTypography-colorPrimary"
+          class="MuiTypography-root MuiLink-root MuiLink-underlineNone PicassoAccountSelect-accountLink MuiTypography-colorPrimary"
         >
           <div
-            class="Container-mediumPadding Container-centerAlignItems Container-spaceBetweenJustifyContent Container-flex"
+            class="PicassoContainer-mediumPadding PicassoContainer-centerAlignItems PicassoContainer-spaceBetweenJustifyContent PicassoContainer-flex"
           >
             <div
-              class="Container-flexStartAlignItems Container-flex UserBadge-root"
+              class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
             >
               <div
-                class="Avatar-root Avatar-xsmall"
+                class="PicassoAvatar-root PicassoAvatar-xsmall"
               >
                 <div
-                  class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
+                  class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner PicassoUserBadge-avatar"
                 />
                 <p
-                  class="MuiTypography-root Typography-invert Typography-bodyInherit Avatar-text MuiTypography-body1"
+                  class="MuiTypography-root PicassoTypography-invert PicassoTypography-bodyInherit PicassoAvatar-text MuiTypography-body1"
                 >
                   PL
                 </p>
               </div>
               <div
-                class="Container-leftsmallMargin Container-flex Container-column UserBadge-infoContainer"
+                class="PicassoContainer-leftsmallMargin PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
               >
                 <div
-                  class="Container-centerAlignItems Container-flex"
+                  class="PicassoContainer-centerAlignItems PicassoContainer-flex"
                 >
                   <h4
-                    class="MuiTypography-root Typography-headingSmall UserBadge-name MuiTypography-h4 MuiTypography-displayInline"
+                    class="MuiTypography-root PicassoTypography-headingSmall PicassoUserBadge-name MuiTypography-h4 MuiTypography-displayInline"
                   >
                     Phil Leif 1
                   </h4>
                 </div>
                 <p
-                  class="MuiTypography-root Typography-bodySmall MuiTypography-body1"
+                  class="MuiTypography-root PicassoTypography-bodySmall MuiTypography-body1"
                 >
                   Account Owner at Stowaway Cosmetics
                 </p>
               </div>
             </div>
             <svg
-              class="SvgChevronRight16-root SvgChevronRight16-darkGrey"
+              class="PicassoSvgChevronRight16-root PicassoSvgChevronRight16-darkGrey"
               style="min-width: 16px; min-height: 16px;"
               viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
             >
               <path
                 d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
@@ -70,55 +72,57 @@ exports[`AccountSelect default render 1`] = `
       </li>
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light AccountSelect-accountItem MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-light PicassoAccountSelect-accountItem MuiListItem-button"
         role="menuitem"
         tabindex="-1"
       >
         <a
-          class="MuiTypography-root MuiLink-root MuiLink-underlineNone AccountSelect-accountLink MuiTypography-colorPrimary"
+          class="MuiTypography-root MuiLink-root MuiLink-underlineNone PicassoAccountSelect-accountLink MuiTypography-colorPrimary"
           href="#"
         >
           <div
-            class="Container-mediumPadding Container-centerAlignItems Container-spaceBetweenJustifyContent Container-flex"
+            class="PicassoContainer-mediumPadding PicassoContainer-centerAlignItems PicassoContainer-spaceBetweenJustifyContent PicassoContainer-flex"
           >
             <div
-              class="Container-flexStartAlignItems Container-flex UserBadge-root"
+              class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
             >
               <div
-                class="Avatar-root Avatar-xsmall"
+                class="PicassoAvatar-root PicassoAvatar-xsmall"
               >
                 <div
-                  class="Avatar-textContainer Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
+                  class="PicassoAvatar-textContainer PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner PicassoUserBadge-avatar"
                 />
                 <p
-                  class="MuiTypography-root Typography-invert Typography-bodyInherit Avatar-text MuiTypography-body1"
+                  class="MuiTypography-root PicassoTypography-invert PicassoTypography-bodyInherit PicassoAvatar-text MuiTypography-body1"
                 >
                   PL
                 </p>
               </div>
               <div
-                class="Container-leftsmallMargin Container-flex Container-column UserBadge-infoContainer"
+                class="PicassoContainer-leftsmallMargin PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
               >
                 <div
-                  class="Container-centerAlignItems Container-flex"
+                  class="PicassoContainer-centerAlignItems PicassoContainer-flex"
                 >
                   <h4
-                    class="MuiTypography-root Typography-headingSmall UserBadge-name MuiTypography-h4 MuiTypography-displayInline"
+                    class="MuiTypography-root PicassoTypography-headingSmall PicassoUserBadge-name MuiTypography-h4 MuiTypography-displayInline"
                   >
                     Phil Leif 2
                   </h4>
                 </div>
                 <p
-                  class="MuiTypography-root Typography-bodySmall MuiTypography-body1"
+                  class="MuiTypography-root PicassoTypography-bodySmall MuiTypography-body1"
                 >
                   Company Representative at Marketing Works
                 </p>
               </div>
             </div>
             <svg
-              class="SvgChevronRight16-root SvgChevronRight16-darkGrey"
+              class="PicassoSvgChevronRight16-root PicassoSvgChevronRight16-darkGrey"
               style="min-width: 16px; min-height: 16px;"
               viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
             >
               <path
                 d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"
@@ -129,52 +133,54 @@ exports[`AccountSelect default render 1`] = `
       </li>
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MenuItem-light AccountSelect-accountItem MuiListItem-button"
+        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-light PicassoAccountSelect-accountItem MuiListItem-button"
         role="menuitem"
         tabindex="-1"
       >
         <a
-          class="MuiTypography-root MuiLink-root MuiLink-underlineNone AccountSelect-accountLink MuiTypography-colorPrimary"
+          class="MuiTypography-root MuiLink-root MuiLink-underlineNone PicassoAccountSelect-accountLink MuiTypography-colorPrimary"
           href="#"
         >
           <div
-            class="Container-mediumPadding Container-centerAlignItems Container-spaceBetweenJustifyContent Container-flex"
+            class="PicassoContainer-mediumPadding PicassoContainer-centerAlignItems PicassoContainer-spaceBetweenJustifyContent PicassoContainer-flex"
           >
             <div
-              class="Container-flexStartAlignItems Container-flex UserBadge-root"
+              class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
             >
               <div
-                class="Avatar-root Avatar-xsmall"
+                class="PicassoAvatar-root PicassoAvatar-xsmall"
               >
                 <img
                   alt="Phil Leif 3"
-                  class="Image-root Avatar-image Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar"
+                  class="PicassoImage-root PicassoAvatar-image PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner PicassoUserBadge-avatar"
                   src="./jacqueline-with-flowers-1954-square.jpg"
                 />
               </div>
               <div
-                class="Container-leftsmallMargin Container-flex Container-column UserBadge-infoContainer"
+                class="PicassoContainer-leftsmallMargin PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
               >
                 <div
-                  class="Container-centerAlignItems Container-flex"
+                  class="PicassoContainer-centerAlignItems PicassoContainer-flex"
                 >
                   <h4
-                    class="MuiTypography-root Typography-headingSmall UserBadge-name MuiTypography-h4 MuiTypography-displayInline"
+                    class="MuiTypography-root PicassoTypography-headingSmall PicassoUserBadge-name MuiTypography-h4 MuiTypography-displayInline"
                   >
                     Phil Leif 3
                   </h4>
                 </div>
                 <p
-                  class="MuiTypography-root Typography-bodySmall MuiTypography-body1"
+                  class="MuiTypography-root PicassoTypography-bodySmall MuiTypography-body1"
                 >
                   Talent
                 </p>
               </div>
             </div>
             <svg
-              class="SvgChevronRight16-root SvgChevronRight16-darkGrey"
+              class="PicassoSvgChevronRight16-root PicassoSvgChevronRight16-darkGrey"
               style="min-width: 16px; min-height: 16px;"
               viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
             >
               <path
                 d="M10.5 6.793l.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4z"

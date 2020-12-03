@@ -32,7 +32,7 @@ Every MUI component has specific JSS classes map which could be overridden from 
 
 Every component has those available listed keys in the bottom of the docs [Button API - Material-UI](https://material-ui.com/api/button/#css) where you can see which keys are support and picked from the `classes` property on **EVERY** component. This behavior is global and applied to all core components.
 
-The easiest example for a button could be found at [Overrides - Material-UI](https://material-ui.com/customization/overrides/#overriding-with-class-names) which shows how you can wrap core `Button` component with HoC `withStyles` and it will pass `classes` property to your component so you can override the core styling provided by Material-UI.
+The easiest example for a button could be found at [Overriding styles - Material-UI](https://material-ui.com/styles/advanced/#overriding-styles-classes-prop) which shows how you can override default styles with a React hook.
 
 ## Adding additional classes to our components
 
@@ -57,10 +57,17 @@ export default createStyles({
 ```jsx
 import React from 'react'
 import cx from 'classnames'
+import { makeStyles } from '@material-ui/styles'
 
 import styles from './styles'
 
-const Button = ({ classes, variant }) => {
+const useStyles = makeStyles(styles)
+
+const Button = (props) => {
+  const classes = useStyles(props)
+
+  const { variant } = props
+
   return (
     <Button
       classes={{
@@ -70,7 +77,7 @@ const Button = ({ classes, variant }) => {
   )
 }
 
-export default withStyles(styles)(Button)
+export default Button
 ```
 
 With this approach we will conditionally attach generate classes for either `.root .red` or `.root .green` based on `variant` prop.
@@ -104,10 +111,17 @@ You can notice `& $title` notation which simply means: “Target this.title rule
 ```jsx
 import React from 'react'
 import cx from 'classnames'
+import { makeStyles } from '@material-ui/styles'
 
 import styles from './styles'
 
-const Hero = ({ classes, variant }) => {
+const useStyles = makeStyles(styles)
+
+const Hero = (props) => {
+  const classes = useStyles(props)
+
+  const { variant } = props
+
   return (
     <div className={cx(classes.root, classes[variant])}>
       <h1 className={classes.title}>Title</h1>
@@ -116,7 +130,7 @@ const Hero = ({ classes, variant }) => {
   )
 }
 
-export default withStyles(styles)(Hero)
+export default Hero
 ```
 
 In this way, you will affect only `<h1>` element and its font size, not all children in the tree.

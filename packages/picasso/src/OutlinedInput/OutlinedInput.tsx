@@ -6,11 +6,16 @@ import React, {
   forwardRef
 } from 'react'
 import cx from 'classnames'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import MUIOutlinedInput from '@material-ui/core/OutlinedInput'
 import { InputBaseComponentProps } from '@material-ui/core/InputBase'
 import capitalize from '@material-ui/core/utils/capitalize'
-import { StandardProps, SizeType, Classes } from '@toptal/picasso-shared'
+import {
+  StandardProps,
+  SizeType,
+  Classes,
+  mergeClasses
+} from '@toptal/picasso-shared'
 
 import InputAdornment from '../InputAdornment'
 import Button from '../Button'
@@ -64,6 +69,10 @@ export interface Props
   inputRef?: React.Ref<HTMLInputElement>
 }
 
+const useStyles = makeStyles<Theme, Props>(styles, {
+  name: 'PicassoOutlinedInput'
+})
+
 const ResetButton = ({
   classes,
   hasValue,
@@ -95,8 +104,11 @@ const ResetButton = ({
 )
 
 const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
-  {
-    classes,
+  props,
+  ref
+) {
+  const {
+    classes: externalClasses,
     className,
     style,
     multiline,
@@ -119,9 +131,9 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
     onResetClick,
     inputRef,
     ...rest
-  },
-  ref
-) {
+  } = props
+
+  const classes = mergeClasses(useStyles(props), externalClasses)
   const shouldShowReset = enableReset && !disabled
   const endAdornment = shouldShowReset ? (
     <>
@@ -182,4 +194,4 @@ OutlinedInput.defaultProps = {
 
 OutlinedInput.displayName = 'OutlinedInput'
 
-export default withStyles(styles)(OutlinedInput)
+export default OutlinedInput

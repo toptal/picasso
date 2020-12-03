@@ -1,10 +1,11 @@
 import React, { forwardRef, HTMLAttributes, ReactNode } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import {
   useTitleCase,
   StandardProps,
-  TextLabelProps
+  TextLabelProps,
+  mergeClasses
 } from '@toptal/picasso-shared'
 
 import styles from './styles'
@@ -30,22 +31,28 @@ export interface Props
   as?: ComponentType
 }
 
+const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoFormLabel' })
+
 export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
-  {
+  props,
+  ref
+) {
+  const {
     children,
     required,
     disabled,
     htmlFor,
-    classes,
+    classes: externalClasses,
     className,
     style,
     inline,
     as: Component = 'label',
     titleCase: propsTitleCase,
     ...rest
-  },
-  ref
-) {
+  } = props
+
+  const classes = mergeClasses(useStyles(props), externalClasses)
+
   const isInline = inline || Component === 'span'
 
   const titleCase = useTitleCase(propsTitleCase)
@@ -81,4 +88,4 @@ FormLabel.defaultProps = {
 
 FormLabel.displayName = 'FormLabel'
 
-export default withStyles(styles)(FormLabel)
+export default FormLabel

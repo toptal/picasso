@@ -4,7 +4,7 @@ import React, {
   forwardRef,
   FunctionComponent
 } from 'react'
-import { BaseProps } from '@toptal/picasso-shared'
+import { StandardProps, mergeClasses } from '@toptal/picasso-shared'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import TableCell from '../TableCell'
@@ -15,7 +15,7 @@ import styles from './styles'
 const MAX_COL_SPAN = 100
 
 export interface Props
-  extends BaseProps,
+  extends StandardProps,
     HTMLAttributes<HTMLTableSectionElement> {
   colSpan?: number
   icon?: ReactElement
@@ -29,9 +29,9 @@ export const TableSectionHead: FunctionComponent<Props> = forwardRef<
   HTMLTableSectionElement,
   Props
 >(function TableSectionHead(props, ref) {
-  const { colSpan, icon, children, style } = props
+  const { colSpan, icon, children, style, classes: externalClasses } = props
 
-  const classes = useStyles(props)
+  const classes = mergeClasses(useStyles(props), externalClasses)
 
   return (
     <TableBody ref={ref}>

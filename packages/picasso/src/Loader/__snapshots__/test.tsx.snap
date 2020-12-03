@@ -3,10 +3,10 @@
 exports[`props combo 1`] = `
 <div>
   <div
-    class="Loader-root Loader-inline"
+    class="PicassoLoader-root PicassoLoader-inline"
   >
     <div
-      class="MuiCircularProgress-root CircularProgress-root Loader-spinnerBlue MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
+      class="MuiCircularProgress-root PicassoCircularProgress-root PicassoLoader-spinnerBlue PicassoLoader-spinnerBlue MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
       role="progressbar"
       style="width: 64px; height: 64px;"
     >
@@ -25,7 +25,7 @@ exports[`props combo 1`] = `
       </svg>
     </div>
     <div
-      class="Loader-label"
+      class="PicassoLoader-label"
     >
       Testing
     </div>

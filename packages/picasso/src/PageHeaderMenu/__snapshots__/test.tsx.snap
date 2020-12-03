@@ -6,31 +6,31 @@ exports[`PageHeaderMenu default render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Dropdown-root"
+      class="PicassoDropdown-root"
     >
       <div
-        class="Dropdown-anchor"
+        class="PicassoDropdown-anchor"
       >
         <div
-          class="Container-centerAlignItems Container-flex UserBadge-root"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoUserBadge-root"
         >
           <div
-            class="Avatar-root Avatar-xsmall"
+            class="PicassoAvatar-root PicassoAvatar-xsmall"
           >
             <img
               alt="Jacqueline Roque"
-              class="Image-root Avatar-image Avatar-square Avatar-xsmall Avatar-clippedCorner UserBadge-avatar PageHeaderMenu-avatar"
+              class="PicassoImage-root PicassoAvatar-image PicassoAvatar-square PicassoAvatar-xsmall PicassoAvatar-clippedCorner PicassoUserBadge-avatar PicassoPageHeaderMenu-avatar PicassoPageHeaderMenu-avatar"
               src="./jacqueline-with-flowers-1954-square.jpg"
             />
           </div>
           <div
-            class="Container-leftsmallMargin Container-flex Container-column UserBadge-infoContainer"
+            class="PicassoContainer-leftsmallMargin PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
           >
             <div
-              class="Container-centerAlignItems Container-flex"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
               <h4
-                class="MuiTypography-root Typography-invert Typography-headingSmall UserBadge-name PageHeaderMenu-name PageHeaderMenu-truncateText MuiTypography-h4 MuiTypography-displayInline"
+                class="MuiTypography-root PicassoTypography-invert PicassoTypography-headingSmall PicassoUserBadge-name PicassoPageHeaderMenu-name PicassoPageHeaderMenu-truncateText PicassoPageHeaderMenu-name PicassoPageHeaderMenu-truncateText MuiTypography-h4 MuiTypography-displayInline"
               >
                 Jacqueline Roque
               </h4>
@@ -38,7 +38,7 @@ exports[`PageHeaderMenu default render 1`] = `
           </div>
         </div>
         <span
-          class="DropdownArrow-root PageHeaderMenu-arrow DropdownArrow-medium"
+          class="PicassoDropdownArrow-root PicassoPageHeaderMenu-arrow PicassoDropdownArrow-medium"
         />
       </div>
     </div>

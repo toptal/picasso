@@ -6,7 +6,7 @@ exports[`should render label group with 4 labels 1`] = `
     class="Picasso-root"
   >
     <div
-      class="LabelGroup-root"
+      class="PicassoLabelGroup-root"
     >
       <div
         class="MuiChip-root PicassoLabel-root"

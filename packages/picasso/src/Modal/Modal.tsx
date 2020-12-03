@@ -10,11 +10,12 @@ import Dialog from '@material-ui/core/Dialog'
 import { PaperProps } from '@material-ui/core/Paper'
 import cx from 'classnames'
 import {
-  BaseProps,
+  StandardProps,
   CompoundedComponentWithRef,
   usePicassoRoot,
   useBreakpoint,
-  SizeType
+  SizeType,
+  mergeClasses
 } from '@toptal/picasso-shared'
 
 import { Close16 } from '../Icon'
@@ -28,7 +29,7 @@ import styles from './styles'
 type ContainerValue = HTMLElement | (() => HTMLElement)
 type Alignment = 'top' | 'centered'
 
-export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Content of Modal component */
   children: ReactNode
   /** Whether modal should be displayed */
@@ -124,9 +125,10 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
     transitionDuration,
     paperProps,
     align,
+    classes: externalClasses,
     ...rest
   } = props
-  const classes = useStyles(props)
+  const classes = mergeClasses(useStyles(props), externalClasses)
   const picassoRootContainer = usePicassoRoot()
   const rootRef = useCombinedRefs<HTMLElement>(ref, useRef<HTMLElement>(null))
   const modalId = useRef(generateKey())

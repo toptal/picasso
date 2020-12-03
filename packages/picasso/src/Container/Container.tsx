@@ -1,12 +1,13 @@
 /* eslint-disable complexity */
 
 import React, { ReactNode, HTMLAttributes, forwardRef } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import {
   StandardProps,
   SpacingType,
-  spacingToRem
+  spacingToRem,
+  mergeClasses
 } from '@toptal/picasso-shared'
 
 import styles, { AlignItemsType, JustifyContentType } from './styles'
@@ -17,6 +18,8 @@ type ContainerType = 'div' | 'span'
 type DirectionType = 'row' | 'column'
 
 export type VariantType = 'red' | 'green' | 'white' | 'yellow' | 'blue' | 'grey'
+
+const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoContainer' })
 
 export interface Props
   extends StandardProps,
@@ -55,7 +58,10 @@ export interface Props
  * Container component used for spacing 2 elements
  */
 export const Container = forwardRef<HTMLDivElement, Props>(function Container(
-  {
+  props,
+  ref
+) {
+  const {
     children,
     className,
     top,
@@ -71,12 +77,13 @@ export const Container = forwardRef<HTMLDivElement, Props>(function Container(
     style,
     bordered = false,
     variant,
-    classes,
+    classes: externalClasses,
     as: Component = inline ? 'span' : 'div',
     ...rest
-  },
-  ref
-) {
+  } = props
+
+  const classes = mergeClasses(useStyles(props), externalClasses)
+
   const margins = {
     ...(typeof top === 'number' && { marginTop: spacingToRem(top) }),
     ...(typeof bottom === 'number' && { marginBottom: spacingToRem(bottom) }),
@@ -132,4 +139,4 @@ Container.defaultProps = {
   inline: false
 }
 
-export default withStyles(styles)(Container)
+export default Container

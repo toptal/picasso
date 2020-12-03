@@ -6,24 +6,25 @@ exports[`Page.Header default render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PageHeader-wrapper"
+      class="PicassoPageHeader-wrapper"
     >
       <header
-        class="mui-fixed PageHeader-root PageHeader-light"
+        class="mui-fixed PicassoPageHeader-root PicassoPageHeader-light"
       >
         <div
-          class="PageHeader-content"
+          class="PicassoPageHeader-content"
         >
           <div
-            class="PageHeader-left"
+            class="PicassoPageHeader-left"
           >
             <div
-              class="Container-centerAlignItems Container-flex PageHeader-logoContainer"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoPageHeader-logoContainer"
             >
               <svg
-                class="SvgLogo-root Logo-root Logo-white PageHeader-logo"
+                class="PicassoSvgLogo-root PicassoLogo-root PicassoLogo-white PicassoPageHeader-logo"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 109 30"
+                xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   d="M8.065 0l6.664 6.664c.048.043.097.092.15.145l5.814 5.816-9.455 9.405 4.331 4.332-2.898 2.88-6.621-6.621c-.076-.07-.156-.15-.237-.231L0 16.58l9.422-9.368L5.13 2.918 8.065 0zm4.218 10.442a.425.425 0 00-.259 0c-.086.022-.161.065-.312.215L6.33 16.016c-.156.156-.194.225-.22.311a.422.422 0 000 .258c.026.086.07.162.22.312l1.708 1.71c.156.155.226.193.312.22a.425.425 0 00.259 0c.086-.027.161-.065.307-.215l5.382-5.359c.156-.156.194-.225.22-.311a.422.422 0 000-.258c-.02-.086-.064-.162-.215-.312l-1.708-1.71c-.156-.155-.226-.193-.312-.22z"
@@ -36,16 +37,16 @@ exports[`Page.Header default render 1`] = `
               </svg>
             </div>
             <div
-              class="Container-leftsmallMargin Container-centerAlignItems Container-flex"
+              class="PicassoContainer-leftsmallMargin PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
               <div
-                class="PageHeader-divider"
+                class="PicassoPageHeader-divider"
               />
               <div
-                class="Container-leftsmallMargin"
+                class="PicassoContainer-leftsmallMargin"
               >
                 <p
-                  class="MuiTypography-root Typography-invert Typography-bodyInherit Typography-light MuiTypography-body1"
+                  class="MuiTypography-root PicassoTypography-invert PicassoTypography-bodyInherit PicassoTypography-light MuiTypography-body1"
                 >
                   Default
                 </p>
@@ -53,7 +54,7 @@ exports[`Page.Header default render 1`] = `
             </div>
           </div>
           <div
-            class="PageHeader-right"
+            class="PicassoPageHeader-right"
           />
         </div>
       </header>
@@ -68,28 +69,29 @@ exports[`Page.Header render with link 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PageHeader-wrapper"
+      class="PicassoPageHeader-wrapper"
     >
       <header
-        class="mui-fixed PageHeader-root PageHeader-light"
+        class="mui-fixed PicassoPageHeader-root PicassoPageHeader-light"
       >
         <div
-          class="PageHeader-content"
+          class="PicassoPageHeader-content"
         >
           <div
-            class="PageHeader-left"
+            class="PicassoPageHeader-left"
           >
             <div
-              class="Container-centerAlignItems Container-flex PageHeader-logoContainer"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoPageHeader-logoContainer"
             >
               <a
                 class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
                 href="https://www.toptal.com"
               >
                 <svg
-                  class="SvgLogo-root Logo-root Logo-white PageHeader-logo"
+                  class="PicassoSvgLogo-root PicassoLogo-root PicassoLogo-white PicassoPageHeader-logo"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 109 30"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
                     d="M8.065 0l6.664 6.664c.048.043.097.092.15.145l5.814 5.816-9.455 9.405 4.331 4.332-2.898 2.88-6.621-6.621c-.076-.07-.156-.15-.237-.231L0 16.58l9.422-9.368L5.13 2.918 8.065 0zm4.218 10.442a.425.425 0 00-.259 0c-.086.022-.161.065-.312.215L6.33 16.016c-.156.156-.194.225-.22.311a.422.422 0 000 .258c.026.086.07.162.22.312l1.708 1.71c.156.155.226.193.312.22a.425.425 0 00.259 0c.086-.027.161-.065.307-.215l5.382-5.359c.156-.156.194-.225.22-.311a.422.422 0 000-.258c-.02-.086-.064-.162-.215-.312l-1.708-1.71c-.156-.155-.226-.193-.312-.22z"
@@ -103,16 +105,16 @@ exports[`Page.Header render with link 1`] = `
               </a>
             </div>
             <div
-              class="Container-leftsmallMargin Container-centerAlignItems Container-flex"
+              class="PicassoContainer-leftsmallMargin PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
               <div
-                class="PageHeader-divider"
+                class="PicassoPageHeader-divider"
               />
               <div
-                class="Container-leftsmallMargin"
+                class="PicassoContainer-leftsmallMargin"
               >
                 <p
-                  class="MuiTypography-root Typography-invert Typography-bodyInherit Typography-light MuiTypography-body1"
+                  class="MuiTypography-root PicassoTypography-invert PicassoTypography-bodyInherit PicassoTypography-light MuiTypography-body1"
                 >
                   Something
                 </p>
@@ -120,7 +122,7 @@ exports[`Page.Header render with link 1`] = `
             </div>
           </div>
           <div
-            class="PageHeader-right"
+            class="PicassoPageHeader-right"
           />
         </div>
       </header>
