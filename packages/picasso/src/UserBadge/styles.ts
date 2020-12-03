@@ -1,5 +1,4 @@
 import { createStyles } from '@material-ui/core/styles'
-import { rem } from '@toptal/picasso-shared'
 
 export default () =>
   createStyles({
@@ -8,7 +7,7 @@ export default () =>
     },
     infoContainer: {
       minWidth: 0,
-      marginLeft: rem('12px')
+      marginLeft: '0.75em'
     },
     title: {
       marginLeft: '0.5em'
