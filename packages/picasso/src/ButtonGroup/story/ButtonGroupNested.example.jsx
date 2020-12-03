@@ -6,11 +6,11 @@ const Example = () => (
     <Container bottom='small'>
       <Button.Group>
         <Tooltip content='First...'>
-          <Button as={Button.GroupItem}>First</Button>
+          <Button>First</Button>
         </Tooltip>
         <Button>Second</Button>
         <Tooltip content='Third...'>
-          <Button as={Button.GroupItem}>Third</Button>
+          <Button>Third</Button>
         </Tooltip>
         <Dropdown
           content={
@@ -22,7 +22,7 @@ const Example = () => (
           }
         >
           <Tooltip content='Forth...'>
-            <Button as={Button.GroupItem}>
+            <Button>
               Fourth
               <Dropdown.Arrow />
             </Button>
@@ -30,22 +30,20 @@ const Example = () => (
         </Dropdown>
         <Button>Fifth</Button>
         <Tooltip content='Sixth...'>
-          <Button as={Button.GroupItem}>Sixth</Button>
+          <span>
+            <Button>Disabled</Button>
+          </span>
         </Tooltip>
       </Button.Group>
     </Container>
 
     <Button.Group>
       <Tooltip content='First...'>
-        <Button as={Button.GroupItem} variant='secondary'>
-          First
-        </Button>
+        <Button variant='secondary'>First</Button>
       </Tooltip>
       <Button variant='secondary'>Second</Button>
       <Tooltip content='Third...'>
-        <Button as={Button.GroupItem} variant='secondary'>
-          Third
-        </Button>
+        <Button variant='secondary'>Third</Button>
       </Tooltip>
       <Dropdown
         content={
@@ -57,7 +55,7 @@ const Example = () => (
         }
       >
         <Tooltip content='Forth...'>
-          <Button as={Button.GroupItem} variant='secondary'>
+          <Button variant='secondary'>
             Fourth
             <Dropdown.Arrow />
           </Button>
@@ -65,9 +63,9 @@ const Example = () => (
       </Dropdown>
       <Button variant='secondary'>Fifth</Button>
       <Tooltip content='Sixth...'>
-        <Button as={Button.GroupItem} variant='secondary'>
-          Sixth
-        </Button>
+        <span>
+          <Button variant='secondary'>Disabled</Button>
+        </span>
       </Tooltip>
     </Button.Group>
   </div>
