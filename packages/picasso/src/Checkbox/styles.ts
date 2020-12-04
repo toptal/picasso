@@ -1,5 +1,5 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
-import { outline, PicassoProvider } from '@toptal/picasso-shared'
+import { mix, outline, PicassoProvider } from '@toptal/picasso-shared'
 
 const controlWidth = '1em'
 const labelMargin = '0.5em'
@@ -26,12 +26,20 @@ export default ({ palette, sizes, transitions }: Theme) =>
         border: `${sizes.borderWidth} solid ${palette.grey.main2}`
       },
       '&:hover $checkedIcon': {
-        background: palette.primary.dark,
-        border: `${sizes.borderWidth} solid ${palette.primary.dark}`
+        background: mix(palette.primary.main, palette.common.white, 0.16),
+        border: `${sizes.borderWidth} solid ${mix(
+          palette.primary.main,
+          palette.common.white,
+          0.16
+        )}`
       },
       '&:hover $indeterminateIcon': {
-        background: palette.primary.dark,
-        border: `${sizes.borderWidth} solid ${palette.primary.dark}`
+        background: mix(palette.primary.main, palette.common.white, 0.16),
+        border: `${sizes.borderWidth} solid ${mix(
+          palette.primary.main,
+          palette.common.white,
+          0.16
+        )}`
       }
     },
     withLabel: {
@@ -124,8 +132,5 @@ export default ({ palette, sizes, transitions }: Theme) =>
     checkboxWrapper: {
       alignSelf: 'flex-start',
       verticalAlign: 'middle'
-    },
-    disabledCheckboxWrapper: {
-      cursor: 'not-allowed'
     }
   })

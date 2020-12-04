@@ -44,7 +44,7 @@ exports[`AccountSelect default render 1`] = `
                     </p>
                   </div>
                   <div
-                    class="Container-leftsmallMargin Container-flex Container-column UserBadge-infoContainer"
+                    class="Container-flex Container-column UserBadge-infoContainer"
                   >
                     <div
                       class="Container-centerAlignItems Container-flex"
@@ -111,7 +111,7 @@ exports[`AccountSelect default render 1`] = `
                     </p>
                   </div>
                   <div
-                    class="Container-leftsmallMargin Container-flex Container-column UserBadge-infoContainer"
+                    class="Container-flex Container-column UserBadge-infoContainer"
                   >
                     <div
                       class="Container-centerAlignItems Container-flex"
@@ -175,7 +175,7 @@ exports[`AccountSelect default render 1`] = `
                     />
                   </div>
                   <div
-                    class="Container-leftsmallMargin Container-flex Container-column UserBadge-infoContainer"
+                    class="Container-flex Container-column UserBadge-infoContainer"
                   >
                     <div
                       class="Container-centerAlignItems Container-flex"

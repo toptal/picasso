@@ -1,15 +1,13 @@
 import React from 'react'
 import { Subheader } from '@toptal/picasso-lab'
-import { Button } from '@toptal/picasso'
+import { Button, Settings16 } from '@toptal/picasso'
 
 const TitleAndButtonExample = () => (
   <Subheader>
     <Subheader.Main>
       <Subheader.Title>Heading Large</Subheader.Title>
       <Subheader.Actions>
-        <Button variant='secondary' size='small'>
-          Button
-        </Button>
+        <Button.Circular variant='flat' icon={<Settings16 />} />
       </Subheader.Actions>
     </Subheader.Main>
   </Subheader>
