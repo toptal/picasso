@@ -3,9 +3,8 @@ import { Container } from '@toptal/picasso'
 
 const Example = () => (
   <div>
-    <Container bordered rounded padded='large'>
-      With default border
-    </Container>
+    <Container bottom='large'>Some text</Container>
+    <Container left='small'>Some more text with a small margin</Container>
   </div>
 )
 

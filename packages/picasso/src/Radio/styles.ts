@@ -3,7 +3,8 @@ import {
   PicassoProvider,
   createPropertiesStyles,
   rem,
-  outline
+  outline,
+  mix
 } from '@toptal/picasso-shared'
 
 const controlWidth = '1em'
@@ -23,7 +24,6 @@ PicassoProvider.override(({ palette, transitions }) => ({
 
       '&$disabled': {
         opacity: 0.48,
-        cursor: 'not-allowed',
         pointerEvents: 'auto'
       }
     },
@@ -110,8 +110,8 @@ export default ({ palette, sizes, transitions }: Theme) =>
 
       '&:hover $checkedIcon:before': iconBeforeStyles({
         borderWidth: sizes.borderWidth,
-        borderColor: palette.primary.dark,
-        backgroundColor: palette.primary.dark
+        borderColor: mix(palette.primary.main, palette.common.white, 0.16),
+        backgroundColor: mix(palette.primary.main, palette.common.white, 0.16)
       })
     },
     focused: {

@@ -19,7 +19,6 @@ PicassoProvider.override(({ palette, typography }: Theme) => ({
       userSelect: 'none',
 
       '&$disabled': {
-        cursor: 'not-allowed',
         pointerEvents: 'auto'
       }
     }
@@ -45,7 +44,6 @@ export default () =>
     },
     label: {
       '&$disabled': {
-        cursor: 'not-allowed',
         pointerEvents: 'auto'
       }
     },
