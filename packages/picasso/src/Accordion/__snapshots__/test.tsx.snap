@@ -26,6 +26,7 @@ exports[`controlled version should render collapsed version 1`] = `
           >
             <button
               class="MuiButtonBase-root PicassoButton-small PicassoButtonAction-small PicassoButton-secondary PicassoButton-root PicassoButtonAction-root"
+              data-component-type="button"
               tabindex="0"
               type="button"
             >
@@ -103,6 +104,7 @@ exports[`controlled version should render expanded version 1`] = `
           >
             <button
               class="MuiButtonBase-root PicassoButton-small PicassoButtonAction-small PicassoButton-secondary PicassoButton-root PicassoButtonAction-root"
+              data-component-type="button"
               tabindex="0"
               type="button"
             >
@@ -180,6 +182,7 @@ exports[`default version for sections should render default version 1`] = `
           >
             <button
               class="MuiButtonBase-root PicassoButton-small PicassoButtonAction-small PicassoButton-secondary PicassoButton-root PicassoButtonAction-root"
+              data-component-type="button"
               tabindex="0"
               type="button"
             >
@@ -257,6 +260,7 @@ exports[`default version for sections should render expanded version after click
           >
             <button
               class="MuiButtonBase-root PicassoButton-small PicassoButtonAction-small PicassoButton-secondary PicassoButton-root PicassoButtonAction-root"
+              data-component-type="button"
               tabindex="0"
               type="button"
             >
