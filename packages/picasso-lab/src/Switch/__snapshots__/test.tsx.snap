@@ -81,7 +81,7 @@ exports[`renders disabled state 1`] = `
   data-testid="switch"
 >
   <span
-    class="MuiSwitch-root PicassoSwitch-disabled"
+    class="MuiSwitch-root"
   >
     <span
       aria-disabled="true"

@@ -12,11 +12,11 @@ page
 
 page
   .createChapter()
-  .addExample('Container/story/Default.example.jsx', 'Default')
-  .addExample('Container/story/Inline.example.jsx', 'Inline')
-  .addExample('Container/story/Bordered.example.jsx', 'With border')
-  .addExample('Container/story/Variant.example.jsx', 'Variants')
-  .addExample('Container/story/Spacing.example.jsx', {
+  .addExample('Container/story/Default.example.tsx', 'Default')
+  .addExample('Container/story/Inline.example.tsx', 'Inline')
+  .addExample('Container/story/Bordered.example.tsx', 'With border')
+  .addExample('Container/story/Variant.example.tsx', 'Variants')
+  .addExample('Container/story/Spacing.example.tsx', {
     title: 'Spacing',
     description: 'Creating inner and outer space for component',
     extra: `
