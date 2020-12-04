@@ -65,6 +65,7 @@ exports[`renders PromptModal 1`] = `
         >
           <button
             class="MuiButtonBase-root PicassoButton-medium PicassoButton-secondary PicassoButton-root"
+            data-component-type="button"
             tabindex="0"
             type="button"
           >
@@ -76,6 +77,7 @@ exports[`renders PromptModal 1`] = `
           </button>
           <button
             class="MuiButtonBase-root PicassoButton-medium PicassoButton-positive PicassoButton-root"
+            data-component-type="button"
             tabindex="0"
             type="button"
           >
@@ -106,6 +108,7 @@ exports[`showPrompt opens and closes modal on Submit action 1`] = `
     >
       <button
         class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+        data-component-type="button"
         tabindex="0"
         type="button"
       >
@@ -132,6 +135,7 @@ exports[`showPrompt opens and closes modal on Submit action 2`] = `
       <button
         aria-hidden="true"
         class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+        data-component-type="button"
         tabindex="0"
         type="button"
       >
@@ -195,6 +199,7 @@ exports[`showPrompt opens and closes modal on Submit action 2`] = `
             >
               <button
                 class="MuiButtonBase-root PicassoButton-medium PicassoButton-secondary PicassoButton-root"
+                data-component-type="button"
                 tabindex="0"
                 type="button"
               >
@@ -206,6 +211,7 @@ exports[`showPrompt opens and closes modal on Submit action 2`] = `
               </button>
               <button
                 class="MuiButtonBase-root PicassoButton-medium PicassoButton-positive PicassoButton-root"
+                data-component-type="button"
                 tabindex="0"
                 type="button"
               >
@@ -240,6 +246,7 @@ exports[`showPrompt opens and closes modal on Submit action 3`] = `
       <button
         aria-hidden="true"
         class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+        data-component-type="button"
         tabindex="0"
         type="button"
       >
@@ -303,6 +310,7 @@ exports[`showPrompt opens and closes modal on Submit action 3`] = `
             >
               <button
                 class="MuiButtonBase-root PicassoButton-medium-8 PicassoButton-secondary-13 PicassoButton-root-4"
+                data-component-type="button"
                 tabindex="0"
                 type="button"
               >
@@ -314,6 +322,7 @@ exports[`showPrompt opens and closes modal on Submit action 3`] = `
               </button>
               <button
                 class="MuiButtonBase-root PicassoButton-medium PicassoButton-positive PicassoButton-root"
+                data-component-type="button"
                 tabindex="0"
                 type="button"
               >
@@ -348,6 +357,7 @@ exports[`showPrompt with input returns result on Submit action  1`] = `
       <button
         aria-hidden="true"
         class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+        data-component-type="button"
         tabindex="0"
         type="button"
       >
@@ -440,6 +450,7 @@ exports[`showPrompt with input returns result on Submit action  1`] = `
             >
               <button
                 class="MuiButtonBase-root PicassoButton-medium PicassoButton-secondary PicassoButton-root"
+                data-component-type="button"
                 tabindex="0"
                 type="button"
               >
@@ -451,6 +462,7 @@ exports[`showPrompt with input returns result on Submit action  1`] = `
               </button>
               <button
                 class="MuiButtonBase-root PicassoButton-medium PicassoButton-positive PicassoButton-root"
+                data-component-type="button"
                 tabindex="0"
                 type="button"
               >
@@ -463,6 +475,7 @@ exports[`showPrompt with input returns result on Submit action  1`] = `
             </div>
             <button
               class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-flat PicassoButtonCircular-root PicassoModal-closeButton"
+              data-component-type="button"
               tabindex="0"
               type="button"
             >

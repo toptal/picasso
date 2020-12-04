@@ -190,6 +190,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
       value={value}
       type={type}
       component={as!}
+      data-component-type='button'
     >
       <Container
         as='span'
