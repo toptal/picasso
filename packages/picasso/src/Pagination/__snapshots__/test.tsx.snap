@@ -10,6 +10,7 @@ exports[`renders default 1`] = `
     >
       <button
         class="MuiButtonBase-root PicassoButton-small PicassoButton-secondary PicassoButton-root"
+        data-component-type="button"
         tabindex="0"
         type="button"
       >
@@ -21,6 +22,7 @@ exports[`renders default 1`] = `
       </button>
       <button
         class="MuiButtonBase-root PicassoButton-small PicassoButton-secondary PicassoButton-root Pagination-rangeButton"
+        data-component-type="button"
         tabindex="0"
         type="button"
       >
@@ -41,6 +43,7 @@ exports[`renders default 1`] = `
       </div>
       <button
         class="MuiButtonBase-root PicassoButton-small PicassoButton-secondary PicassoButton-root Pagination-rangeButton"
+        data-component-type="button"
         tabindex="0"
         type="button"
       >
@@ -52,6 +55,7 @@ exports[`renders default 1`] = `
       </button>
       <button
         class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root Pagination-rangeButton"
+        data-component-type="button"
         tabindex="0"
         type="button"
       >
@@ -63,6 +67,7 @@ exports[`renders default 1`] = `
       </button>
       <button
         class="MuiButtonBase-root PicassoButton-small PicassoButton-secondary PicassoButton-root Pagination-rangeButton"
+        data-component-type="button"
         tabindex="0"
         type="button"
       >
@@ -83,6 +88,7 @@ exports[`renders default 1`] = `
       </div>
       <button
         class="MuiButtonBase-root PicassoButton-small PicassoButton-secondary PicassoButton-root Pagination-rangeButton"
+        data-component-type="button"
         tabindex="0"
         type="button"
       >
@@ -94,6 +100,7 @@ exports[`renders default 1`] = `
       </button>
       <button
         class="MuiButtonBase-root PicassoButton-small PicassoButton-secondary PicassoButton-root"
+        data-component-type="button"
         tabindex="0"
         type="button"
       >
@@ -118,6 +125,7 @@ exports[`renders disabled 1`] = `
     >
       <button
         class="MuiButtonBase-root PicassoButton-disabled PicassoButton-small PicassoButton-secondary PicassoButton-root Mui-disabled"
+        data-component-type="button"
         disabled=""
         tabindex="-1"
         type="button"
@@ -130,6 +138,7 @@ exports[`renders disabled 1`] = `
       </button>
       <button
         class="MuiButtonBase-root PicassoButton-disabled PicassoButton-small PicassoButton-secondary PicassoButton-root Pagination-rangeButton Mui-disabled"
+        data-component-type="button"
         disabled=""
         tabindex="-1"
         type="button"
@@ -151,6 +160,7 @@ exports[`renders disabled 1`] = `
       </div>
       <button
         class="MuiButtonBase-root PicassoButton-disabled PicassoButton-small PicassoButton-secondary PicassoButton-root Pagination-rangeButton Mui-disabled"
+        data-component-type="button"
         disabled=""
         tabindex="-1"
         type="button"
@@ -163,6 +173,7 @@ exports[`renders disabled 1`] = `
       </button>
       <button
         class="MuiButtonBase-root PicassoButton-disabled PicassoButton-small PicassoButton-primary PicassoButton-root Pagination-rangeButton Mui-disabled"
+        data-component-type="button"
         disabled=""
         tabindex="-1"
         type="button"
@@ -175,6 +186,7 @@ exports[`renders disabled 1`] = `
       </button>
       <button
         class="MuiButtonBase-root PicassoButton-disabled PicassoButton-small PicassoButton-secondary PicassoButton-root Pagination-rangeButton Mui-disabled"
+        data-component-type="button"
         disabled=""
         tabindex="-1"
         type="button"
@@ -196,6 +208,7 @@ exports[`renders disabled 1`] = `
       </div>
       <button
         class="MuiButtonBase-root PicassoButton-disabled PicassoButton-small PicassoButton-secondary PicassoButton-root Pagination-rangeButton Mui-disabled"
+        data-component-type="button"
         disabled=""
         tabindex="-1"
         type="button"
@@ -208,6 +221,7 @@ exports[`renders disabled 1`] = `
       </button>
       <button
         class="MuiButtonBase-root PicassoButton-disabled PicassoButton-small PicassoButton-secondary PicassoButton-root Mui-disabled"
+        data-component-type="button"
         disabled=""
         tabindex="-1"
         type="button"
