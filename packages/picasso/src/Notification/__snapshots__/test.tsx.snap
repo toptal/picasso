@@ -19,12 +19,12 @@ exports[`Notification default render 1`] = `
             class="Container-centerAlignItems Container-flex Notification-iconWrapper"
           >
             <svg
-              class="SvgExclamationSolid24-root SvgExclamationSolid24-yellow"
-              style="min-width: 24px; min-height: 24px;"
-              viewBox="0 0 24 24"
+              class="SvgExclamationSolid16-root SvgExclamationSolid16-yellow"
+              style="min-width: 16px; min-height: 16px;"
+              viewBox="0 0 16 16"
             >
               <path
-                d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zm0 16a1 1 0 100 2 1 1 0 000-2zm0-10a1 1 0 00-1 1v7a1 1 0 002 0V7a1 1 0 00-1-1z"
+                d="M8 0a8 8 0 110 16A8 8 0 018 0zm0 11a1 1 0 100 2 1 1 0 000-2zm0-8a1 1 0 00-1 1v5a1 1 0 102 0V4a1 1 0 00-1-1z"
               />
             </svg>
           </div>

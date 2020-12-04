@@ -19,9 +19,10 @@ import {
 
 import {
   CloseMinor16,
-  ExclamationSolid24 as Alert,
-  CheckSolid24 as Tick,
-  Info24 as Info
+  ExclamationSolid16,
+  ExclamationSolid24,
+  CheckSolid24,
+  Info24
 } from '../Icon'
 import Container from '../Container'
 import Button from '../Button'
@@ -79,21 +80,21 @@ const renderNotificationIcon = ({
   switch (variant) {
     case 'red':
       // eslint-disable-next-line react/jsx-props-no-spreading
-      return <Alert {...iconProps} color='red' />
+      return <ExclamationSolid24 {...iconProps} color='red' />
 
     case 'yellow':
       // eslint-disable-next-line react/jsx-props-no-spreading
-      return <Alert {...iconProps} color='yellow' />
+      return <ExclamationSolid16 {...iconProps} color='yellow' />
 
     case 'green':
       // eslint-disable-next-line react/jsx-props-no-spreading
-      return <Tick {...iconProps} color='green' />
+      return <CheckSolid24 {...iconProps} color='green' />
 
     default: {
       const infoProps = { ...iconProps, color: 'grey' as const }
 
       // eslint-disable-next-line react/jsx-props-no-spreading
-      return icon ? cloneElement(icon, infoProps) : <Info {...infoProps} />
+      return icon ? cloneElement(icon, infoProps) : <Info24 {...infoProps} />
     }
   }
 }

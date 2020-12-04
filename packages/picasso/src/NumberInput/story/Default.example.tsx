@@ -13,7 +13,7 @@ const DefaultExample = () => {
       <NumberInput
         value={value}
         onChange={handleChange}
-        step='5'
+        step='1'
         max='100'
         min='-100'
       />
