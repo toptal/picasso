@@ -27,6 +27,7 @@ exports[`Helpbox default render 1`] = `
       >
         <button
           class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+          data-component-type="button"
           tabindex="0"
           type="button"
         >
