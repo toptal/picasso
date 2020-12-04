@@ -16,6 +16,7 @@ exports[`Calendar default render 1`] = `
         >
           <button
             class="MuiButtonBase-root PicassoButton-small PicassoButton-secondary PicassoButton-root"
+            data-component-type="button"
             tabindex="0"
             title="Previous month"
             type="button"
@@ -41,6 +42,7 @@ exports[`Calendar default render 1`] = `
           </h3>
           <button
             class="MuiButtonBase-root PicassoButton-small PicassoButton-secondary PicassoButton-root"
+            data-component-type="button"
             tabindex="0"
             title="Next month"
             type="button"

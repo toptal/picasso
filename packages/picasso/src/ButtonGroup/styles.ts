@@ -1,35 +1,71 @@
 import { createStyles } from '@material-ui/core/styles'
 
+const baseButtonProps = {
+  transitionProperty: 'color, background',
+
+  '&:active, &$active, &:hover, &$hovered, &:focus, &$focused': {
+    // border overlap to keep proper border width, but on state change
+    // we need to move up overlapped border
+    zIndex: 1
+  }
+}
+
+const firstButtonProps = {
+  borderTopRightRadius: 0,
+  borderBottomRightRadius: 0,
+  marginLeft: '0rem'
+}
+
+const middleButtonProps = {
+  borderRadius: 0,
+  // prevents border between 2 buttons to be wider then specified
+  marginLeft: '-1px'
+}
+
+const lastButtonProps = {
+  borderTopLeftRadius: 0,
+  borderBottomLeftRadius: 0,
+  // prevents border between 2 buttons to be wider then specified
+  marginLeft: '-1px'
+}
+
 export default () =>
   createStyles({
     root: {
       display: 'flex',
       justifyContent: 'flex-start',
 
-      '& $button + $button': {
-        marginLeft: '-1px'
+      // default case
+      '& [data-component-type="button"]': {
+        ...baseButtonProps,
+
+        // first item
+        '&:first-child:not(:last-child)': firstButtonProps,
+        // middle item
+        '&:not(:first-child):not(:last-child)': middleButtonProps,
+        // last item
+        '&:last-child:not(:first-child)': lastButtonProps
+      },
+
+      // nested case when button is nested in first item in ButtonGroup
+      '& :first-child:not(:last-child) [data-component-type="button"]': {
+        ...baseButtonProps,
+        ...firstButtonProps
+      },
+
+      // nested case when button is nested in middle item in ButtonGroup
+      '& :not(:first-child):not(:last-child) [data-component-type="button"]': {
+        ...baseButtonProps,
+        ...middleButtonProps
+      },
+
+      // nested case when button is nested in last item in ButtonGroup
+      '& :last-child:not(:first-child) [data-component-type="button"]': {
+        ...baseButtonProps,
+        ...lastButtonProps
       }
     },
-    button: {
-      transitionProperty: 'color, background',
-
-      '&:first-child': {
-        borderTopRightRadius: 0,
-        borderBottomRightRadius: 0
-      },
-
-      '&:not(:first-child):not(:last-child)': {
-        borderRadius: 0
-      },
-
-      '&:last-child': {
-        borderTopLeftRadius: 0,
-        borderBottomLeftRadius: 0
-      },
-
-      '&:active, &$active, &:hover': {
-        zIndex: 1
-      }
-    },
-    active: {}
+    active: {},
+    focused: {},
+    hovered: {}
   })

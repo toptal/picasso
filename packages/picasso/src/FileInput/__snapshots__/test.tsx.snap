@@ -33,6 +33,7 @@ exports[`FileInput default render 1`] = `
       >
         <button
           class="MuiButtonBase-root PicassoButton-small PicassoButton-secondary PicassoButton-root FileInput-button"
+          data-component-type="button"
           tabindex="0"
           type="button"
         >
