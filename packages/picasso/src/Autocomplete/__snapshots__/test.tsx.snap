@@ -150,6 +150,7 @@ exports[`Autocomplete static behavior default render 1`] = `
           >
             <button
               class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-flat PicassoButtonCircular-root"
+              data-component-type="button"
               role="reset"
               tabindex="-1"
               type="button"

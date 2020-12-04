@@ -7,6 +7,7 @@ exports[`disabled button renders disabled version 1`] = `
   >
     <button
       class="MuiButtonBase-root PicassoButton-disabled PicassoButton-medium PicassoButton-primary PicassoButton-root Mui-disabled"
+      data-component-type="button"
       disabled=""
       tabindex="-1"
       type="button"
