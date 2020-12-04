@@ -15,6 +15,7 @@ exports[`useModal opens and closes modal 1`] = `
       <button
         aria-hidden="true"
         class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+        data-component-type="button"
         tabindex="0"
         type="button"
       >
@@ -53,6 +54,7 @@ exports[`useModal opens and closes modal 1`] = `
             </p>
             <button
               class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+              data-component-type="button"
               tabindex="0"
               type="button"
             >
@@ -88,6 +90,7 @@ exports[`useModal opens and closes modal 2`] = `
     >
       <button
         class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+        data-component-type="button"
         tabindex="0"
         type="button"
       >
@@ -117,6 +120,7 @@ exports[`useModal shows multiple modals at the same time 1`] = `
       <button
         aria-hidden="true"
         class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+        data-component-type="button"
         tabindex="0"
         type="button"
       >
@@ -129,6 +133,7 @@ exports[`useModal shows multiple modals at the same time 1`] = `
       <button
         aria-hidden="true"
         class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+        data-component-type="button"
         tabindex="0"
         type="button"
       >
