@@ -40,7 +40,7 @@ export const TopBarMenu = forwardRef<HTMLDivElement, Props>(function TopBarMenu(
     <>
       <UserBadge
         center
-        size='xsmall'
+        size='xxsmall'
         classes={{
           root: classes.contentUserBadge,
           avatar: classes.avatar,
@@ -59,9 +59,8 @@ export const TopBarMenu = forwardRef<HTMLDivElement, Props>(function TopBarMenu(
 
   const trigger = isCompactLayout ? (
     <Avatar
-      size='xsmall'
+      size='xxsmall'
       classes={{
-        root: classes.avatar,
         xsmall: classes.xsmall
       }}
       name={name}
@@ -71,9 +70,8 @@ export const TopBarMenu = forwardRef<HTMLDivElement, Props>(function TopBarMenu(
     <UserBadge
       invert
       center
-      size='xsmall'
+      size='xxsmall'
       classes={{
-        avatar: classes.avatar,
         name: cx(classes.name, classes.truncateText)
       }}
       name={name}

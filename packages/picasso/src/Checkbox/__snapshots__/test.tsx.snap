@@ -81,7 +81,7 @@ exports[`renders disabled state 1`] = `
     class="Picasso-root"
   >
     <span
-      class="Container-flex Container-inline PicassoCheckbox-checkboxWrapper PicassoCheckbox-disabledCheckboxWrapper"
+      class="Container-flex Container-inline PicassoCheckbox-checkboxWrapper"
     >
       <span
         aria-disabled="true"

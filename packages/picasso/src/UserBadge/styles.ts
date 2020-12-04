@@ -6,7 +6,8 @@ export default () =>
       fontSize: '1rem'
     },
     infoContainer: {
-      minWidth: 0
+      minWidth: 0,
+      marginLeft: '0.75em'
     },
     title: {
       marginLeft: '0.5em'

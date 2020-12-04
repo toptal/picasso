@@ -77,8 +77,5 @@ export default () =>
       marginLeft: LABEL_MARGIN,
       // 1px is needed for safari
       maxWidth: `calc(100% - ${CONTROL_WIDTH} - ${LABEL_MARGIN} + 1px)`
-    },
-    disabled: {
-      cursor: 'not-allowed'
     }
   })
