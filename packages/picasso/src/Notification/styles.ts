@@ -52,7 +52,7 @@ export default ({
 
     // Content
     content: {
-      color: text.primary,
+      color: common.black,
       overflowWrap: 'break-word',
       minWidth: 0
     },
@@ -70,8 +70,8 @@ export default ({
 
     close: {
       position: 'absolute',
-      right: '.75em',
-      top: '.75em',
+      right: '1.4em',
+      top: '1.4em',
       background: 'transparent',
       border: 0,
       padding: 0,
