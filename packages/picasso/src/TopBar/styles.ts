@@ -55,7 +55,7 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
     },
     divider: {
       width: '1px',
-      height: '1.75em',
+      height: '1.5em',
       backgroundColor: palette.common.white,
       opacity: 0.8
     },
