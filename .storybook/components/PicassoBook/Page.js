@@ -1,4 +1,5 @@
 import { storiesOf } from '@storybook/react'
+import chaptersAddon from 'react-storybook-addon-chapters'
 
 import Base from './Base'
 import Chapter from './Chapter'
@@ -67,7 +68,7 @@ class Page extends Base {
   generateHumanStories() {
     const page = this.toStoryBook()
     const stories = storiesOf(page.section, module)
-    stories.addWithChapters(page.title, page)
+    chaptersAddon.addWithChapters.call(stories, page.title, page)
   }
 
   generateVisualStories() {

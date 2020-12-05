@@ -24,3 +24,8 @@ export const waitForElements = (
 
   return new Promise(checkElement)
 }
+
+export const executeInDistinctLoop = async fn => {
+  await new Promise(resolve => setTimeout(resolve))
+  fn()
+}
