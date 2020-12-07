@@ -1,4 +1,4 @@
-import { waitForElements, executeInDistinctLoop } from '../helpers'
+import { waitForElements } from '../helpers'
 
 const SIDEBAR_ITEM_SELECTOR = 'button.sidebar-item'
 const SIDEBAR_ITEM_ICON_SELECTOR = `${SIDEBAR_ITEM_SELECTOR} > span`
