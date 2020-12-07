@@ -91,7 +91,7 @@ interface Props {
     inputValue: string
   ) => void
   onBlur?: FocusEventType
-  onFocus?: FocusEventType
+  onFocus?: () => void
   showSearch: boolean
 }
 
@@ -138,6 +138,7 @@ const useSelect = ({
   onFocus = () => {}
 }: Props): UseSelectOutput => {
   const [isOpen, setOpen] = useState<boolean>(false)
+  const canOpen = !isOpen && !disabled
 
   useEffect(() => {
     if (!isOpen) {
@@ -184,13 +185,16 @@ const useSelect = ({
     }
   })
 
-  const handleFocusOrClick = (
-    event:
-      | React.FocusEvent<HTMLInputElement>
-      | React.MouseEvent<HTMLInputElement>
-  ) => {
-    if (!isOpen && !disabled) {
-      onFocus(event as React.FocusEvent<HTMLInputElement>)
+  const handleFocus = () => {
+    if (showSearch && canOpen) {
+      onFocus()
+      setOpen(true)
+    }
+  }
+
+  const handleClick = () => {
+    if (canOpen) {
+      onFocus()
       setOpen(true)
     }
   }
@@ -220,8 +224,16 @@ const useSelect = ({
     close()
   }
 
-  const handleEnterKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+  const handleEnterOrSpaceKeyDown = (
+    event: KeyboardEvent<HTMLInputElement>
+  ) => {
     event.preventDefault()
+
+    if (canOpen) {
+      setOpen(true)
+
+      return
+    }
 
     const item = options[highlightedIndex]
 
@@ -265,7 +277,7 @@ const useSelect = ({
     } else if (key === 'ArrowUp' || key === 'ArrowDown') {
       handleArrowsKeyDown(key, event)
     } else if (key === 'Enter') {
-      handleEnterKeyDown(event)
+      handleEnterOrSpaceKeyDown(event)
     } else if (key === 'Escape') {
       handleEscapeKeyDown(event)
     }
@@ -289,8 +301,8 @@ const useSelect = ({
       focusRef(searchInputRef)
     } else if (key === 'ArrowUp' || key === 'ArrowDown') {
       handleArrowsKeyDown(key, event)
-    } else if (key === 'Enter') {
-      handleEnterKeyDown(event)
+    } else if (key === 'Enter' || key === ' ') {
+      handleEnterOrSpaceKeyDown(event)
     } else if (key === 'Escape') {
       handleEscapeKeyDown(event)
     }
@@ -311,8 +323,8 @@ const useSelect = ({
   }
 
   const getRootProps = () => ({
-    onFocus: handleFocusOrClick,
-    onClick: handleFocusOrClick,
+    onFocus: handleFocus,
+    onClick: handleClick,
     onBlur: handleSelectBlur
   })
 
