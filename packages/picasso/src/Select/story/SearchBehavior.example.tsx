@@ -31,13 +31,18 @@ const SelectSearchBehaviourExample = () => {
             placeholder='Choose an option...'
             width='auto'
             searchThreshold={threshold}
+            data-testid='select'
           />
         </Form.Field>
       </Container>
       <Container>
         <Form.Field>
           <Form.Label>Search threshold</Form.Label>
-          <NumberInput value={threshold} onChange={handleTresholdChange} />
+          <NumberInput
+            value={threshold}
+            onChange={handleTresholdChange}
+            data-testid='input-threshold'
+          />
         </Form.Field>
       </Container>
     </Container>
