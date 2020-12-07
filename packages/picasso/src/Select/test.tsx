@@ -141,21 +141,55 @@ test('renders select', () => {
   expect(container).toMatchSnapshot()
 })
 
-test('should open menu when focus on select', () => {
+test('should NOT open menu when focus on select if there is NO search', () => {
   const placeholder = 'Choose an option...'
+  const searchThreshold = OPTIONS.length + 1
 
-  const { getByPlaceholderText, getByRole } = renderSelect({
+  const { getByPlaceholderText, queryByRole } = renderSelect({
     options: OPTIONS,
-    placeholder
+    placeholder,
+    searchThreshold
   })
 
   const selectInput = getByPlaceholderText(placeholder)
 
   fireEvent.focus(selectInput)
 
-  const menu = getByRole('menu')
+  expect(queryByRole('menu')).not.toBeInTheDocument()
+})
 
-  expect(menu).toMatchSnapshot()
+test('should open menu when click on select if there is NO search', () => {
+  const placeholder = 'Choose an option...'
+  const searchThreshold = OPTIONS.length + 1
+
+  const { getByPlaceholderText, getByRole } = renderSelect({
+    options: OPTIONS,
+    placeholder,
+    searchThreshold
+  })
+
+  const selectInput = getByPlaceholderText(placeholder)
+
+  fireEvent.click(selectInput)
+
+  expect(getByRole('menu')).toBeInTheDocument()
+})
+
+test('should open menu when focus on select if there is a search', () => {
+  const placeholder = 'Choose an option...'
+  const searchThreshold = OPTIONS.length - 1
+
+  const { getByPlaceholderText, getByRole } = renderSelect({
+    options: OPTIONS,
+    placeholder,
+    searchThreshold
+  })
+
+  const selectInput = getByPlaceholderText(placeholder)
+
+  fireEvent.focus(selectInput)
+
+  expect(getByRole('menu')).toMatchSnapshot()
 })
 
 test('should return back selected value when input value is edited', () => {
@@ -317,7 +351,7 @@ test('should render description', () => {
   })
   const selectInput = getByPlaceholderText(placeholder)
 
-  fireEvent.focus(selectInput)
+  fireEvent.click(selectInput)
 
   const menu = getByRole('menu')
 
@@ -335,7 +369,7 @@ test('should render options customly', async () => {
   })
   const selectInput = getByPlaceholderText(placeholder)
 
-  fireEvent.focus(selectInput)
+  fireEvent.click(selectInput)
 
   const menu = getByRole('menu')
 
@@ -388,7 +422,7 @@ test('should render selected option customly', async () => {
   expect(inputComponent.value).toBe(`${OPTIONS[0].text} is selected`)
 })
 
-test('should highlight selected option when focus on select', () => {
+test('should highlight selected option when open select options menu', () => {
   const placeholder = 'Choose an option...'
   const selectedValue = OPTIONS[2]
   const { container, getByPlaceholderText } = renderSelect({
@@ -399,7 +433,7 @@ test('should highlight selected option when focus on select', () => {
 
   const selectInput = getByPlaceholderText(placeholder)
 
-  fireEvent.focus(selectInput)
+  fireEvent.click(selectInput)
 
   const selectedOptions = getSelectedOptions(container)
 
@@ -461,7 +495,7 @@ describe('multiple select', () => {
     expect(inputComponent.value).toBe(`${OPTIONS[0].text}, ${OPTIONS[1].text}`)
   })
 
-  describe('when focus on select', () => {
+  describe('when open select', () => {
     test('should highlight first option if nothing is selected', () => {
       const placeholder = 'Choose an option...'
       const { getByText, getByPlaceholderText } = renderSelect({
@@ -473,7 +507,7 @@ describe('multiple select', () => {
 
       const selectInput = getByPlaceholderText(placeholder)
 
-      fireEvent.focus(selectInput)
+      fireEvent.click(selectInput)
 
       expect(
         getByText(OPTIONS[0].text)
@@ -494,7 +528,7 @@ describe('multiple select', () => {
 
       const selectInput = getByPlaceholderText(placeholder)
 
-      fireEvent.focus(selectInput)
+      fireEvent.click(selectInput)
 
       expect(
         getByText(selectedOptions[0].text)
@@ -515,7 +549,7 @@ describe('multiple select', () => {
 
       const selectInput = getByPlaceholderText(placeholder)
 
-      fireEvent.focus(selectInput)
+      fireEvent.click(selectInput)
 
       expect(
         getByText(OPTIONS[0].text)
@@ -537,7 +571,7 @@ describe('multiple select', () => {
 
     const selectInput = getByPlaceholderText(placeholder)
 
-    fireEvent.focus(selectInput)
+    fireEvent.click(selectInput)
 
     expect(container).toMatchSnapshot()
   })
