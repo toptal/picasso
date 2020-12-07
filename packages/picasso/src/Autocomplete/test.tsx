@@ -68,7 +68,7 @@ describe('Autocomplete', () => {
   describe('dynamic behavior', () => {
     test('on focus', () => {
       const onFocus = jest.fn()
-      const { getByPlaceholderText, getByTestId } = renderAutocomplete({
+      const { getByPlaceholderText, getByRole } = renderAutocomplete({
         placeholder,
         options: testOptions,
         value: '',
@@ -82,7 +82,7 @@ describe('Autocomplete', () => {
       // calls onFocus handler
       expect(onFocus).toHaveBeenCalledTimes(1)
       // menu contains all the options displayed
-      expect(getByTestId('autocomplete-dropdown')).toMatchSnapshot()
+      expect(getByRole('menu')).toMatchSnapshot()
     })
 
     test('on type', () => {
