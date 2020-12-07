@@ -9,7 +9,7 @@
   "scripts": {
     "test": "cross-env TZ=UTC jest",
     "test:watch": "cross-env TZ=UTC jest --watch",
-    "e2e:start": "start-server-and-test start:ci http://localhost:9001 cy:open",
+    "cypress:start": "start-server-and-test start:ci http://localhost:9001 cy:open",
     "cy:open": "cypress open",
     "test-ci": "cross-env TZ=UTC jest --maxWorkers=4 --ci",
     "test:visual": "./bin/run-in-docker ./bin/test-visual",
@@ -70,6 +70,7 @@
     "core-js": "^3.6.5",
     "cross-env": "^6.0.3",
     "cypress": "^5.4.0",
+    "cypress-plugin-tab": "^1.0.5",
     "cz-conventional-changelog": "3.2.0",
     "date-fns": "^2.9.0",
     "debounce": "^1.2.0",
