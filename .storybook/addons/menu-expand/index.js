@@ -3,6 +3,7 @@ import { waitForElements, executeInDistinctLoop } from '../helpers'
 const SIDEBAR_ITEM_SELECTOR = 'button.sidebar-item'
 const SIDEBAR_ITEM_ICON_SELECTOR = `${SIDEBAR_ITEM_SELECTOR} > span`
 const SIDEBAR_ITEM_EXPAND_ICON_SELECTOR = `${SIDEBAR_ITEM_SELECTOR} > svg`
+const SIDEBAR_ITEM_EXPAND_ALL_ICON_SELECTOR = `button[data-action="expand-all"]`
 
 const disableClickHandlers = item => {
   item.addEventListener('click', e => {
@@ -15,10 +16,14 @@ const removeIcons = item => {
   const icon = item.querySelector(SIDEBAR_ITEM_ICON_SELECTOR)
   icon && icon.remove()
 
-  const expandIcon = item
-    .querySelector(SIDEBAR_ITEM_EXPAND_ICON_SELECTOR)
-    .remove()
+  const expandIcon = item.querySelector(SIDEBAR_ITEM_EXPAND_ICON_SELECTOR)
   expandIcon && expandIcon.remove()
+
+  const expandAllIcons = document.querySelectorAll(
+    SIDEBAR_ITEM_EXPAND_ALL_ICON_SELECTOR
+  )
+  console.log(expandAllIcons)
+  expandAllIcons.forEach(expandAllIcon => expandAllIcon.remove())
 }
 
 const applyChildrenStyles = child => {
@@ -51,9 +56,11 @@ const applyStyles = menuItems => {
   })
 }
 
-export const scheduleWork = api => () =>
-  executeInDistinctLoop(async () => {
-    const menuItems = await waitForElements(SIDEBAR_ITEM_SELECTOR)
-    api.expandAll()
-    applyStyles(menuItems)
-  })
+export const scheduleWork = api => async () => {
+  // Menu items can't be expanded in the current loop
+  await new Promise(resolve => setTimeout(resolve))
+
+  const menuItems = await waitForElements(SIDEBAR_ITEM_SELECTOR)
+  api.expandAll()
+  applyStyles(menuItems)
+}
