@@ -176,12 +176,7 @@ export const SidebarItem: OverridableComponent<Props> = memo(
       )
     }
 
-    return (
-      <Container right='small'>
-        {menuItem}
-        {hasMenu && <div className={classes.nonCollapsibleMenu}>{menu}</div>}
-      </Container>
-    )
+    return menuItem
   })
 )
 

@@ -18,9 +18,9 @@ const Example = () => (
               <Sidebar.Menu>
                 <Sidebar.Item>Share Online</Sidebar.Item>
                 <Sidebar.Item>Referred Users</Sidebar.Item>
-                <Sidebar.Item>Commisions</Sidebar.Item>
+                <Sidebar.Item selected>Commissions</Sidebar.Item>
                 <Sidebar.Item>Payment Options</Sidebar.Item>
-                <Sidebar.Item>Expected Commisions</Sidebar.Item>
+                <Sidebar.Item>Expected Commissions</Sidebar.Item>
               </Sidebar.Menu>
             }
           >
@@ -30,7 +30,7 @@ const Example = () => (
             collapsible
             menu={
               <Sidebar.Menu>
-                <Sidebar.Item selected>Community Leader</Sidebar.Item>
+                <Sidebar.Item>Community Leader</Sidebar.Item>
                 <Sidebar.Item>Speakers Network</Sidebar.Item>
               </Sidebar.Menu>
             }
@@ -55,62 +55,25 @@ const Example = () => (
               <Sidebar.Menu>
                 <Sidebar.Item>Share Online</Sidebar.Item>
                 <Sidebar.Item>Referred Users</Sidebar.Item>
-                <Sidebar.Item>Commisions</Sidebar.Item>
+                <Sidebar.Item>Commissions</Sidebar.Item>
                 <Sidebar.Item>Payment Options</Sidebar.Item>
-                <Sidebar.Item>Expected Commisions</Sidebar.Item>
+                <Sidebar.Item>Expected Commissions</Sidebar.Item>
               </Sidebar.Menu>
             }
           >
-            Referrals
+            Collapsible with icon
           </Sidebar.Item>
-        </Sidebar.Menu>
-      </Sidebar>
-    </Grid.Item>
-
-    <Grid.Item style={{ height: '30rem' }}>
-      <Typography variant='heading' size='small'>
-        Non-collapsible:
-      </Typography>
-      <Sidebar>
-        <Sidebar.Menu>
           <Sidebar.Item
-            icon={<Referrals16 />}
-            menu={
-              <Sidebar.Menu>
-                <Sidebar.Item>Share Online</Sidebar.Item>
-                <Sidebar.Item>Referred Users</Sidebar.Item>
-                <Sidebar.Item>Commisions</Sidebar.Item>
-                <Sidebar.Item>Payment Options</Sidebar.Item>
-                <Sidebar.Item>Expected Commisions</Sidebar.Item>
-              </Sidebar.Menu>
-            }
-          >
-            Referrals
-          </Sidebar.Item>
-        </Sidebar.Menu>
-      </Sidebar>
-    </Grid.Item>
-
-    <Grid.Item style={{ height: '30rem' }}>
-      <Typography variant='heading' size='small'>
-        Non-collapsible (disabled):
-      </Typography>
-      <Sidebar>
-        <Sidebar.Menu>
-          <Sidebar.Item
+            collapsible
             disabled
-            icon={<Referrals16 />}
             menu={
               <Sidebar.Menu>
-                <Sidebar.Item disabled>Share Online</Sidebar.Item>
-                <Sidebar.Item disabled>Referred Users</Sidebar.Item>
-                <Sidebar.Item disabled>Commisions</Sidebar.Item>
-                <Sidebar.Item disabled>Payment Options</Sidebar.Item>
-                <Sidebar.Item disabled>Expected Commisions</Sidebar.Item>
+                <Sidebar.Item>Community Leader</Sidebar.Item>
+                <Sidebar.Item>Speakers Network</Sidebar.Item>
               </Sidebar.Menu>
             }
           >
-            Referrals
+            Collapsible without icon
           </Sidebar.Item>
         </Sidebar.Menu>
       </Sidebar>

@@ -6,12 +6,8 @@ export default ({ palette, sizes }: Theme) =>
       height: '2.75em',
       padding: '0 1rem',
 
-      '$nonCollapsibleMenu &': {
-        paddingLeft: '2rem',
-        marginRight: '0rem'
-      },
       '$details &': {
-        paddingLeft: '2rem',
+        paddingLeft: '3rem',
         marginRight: '0rem'
       }
     },
@@ -93,6 +89,5 @@ export default ({ palette, sizes }: Theme) =>
     noWrap: {
       flex: 1,
       minWidth: 0
-    },
-    nonCollapsibleMenu: {}
+    }
   })

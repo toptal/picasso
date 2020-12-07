@@ -18,16 +18,9 @@ page
 
 page
   .createChapter()
-  .addExample('Sidebar/story/Default.example.jsx', 'Default')
-  .addExample(
-    'Sidebar/story/DefaultExpanded.example.jsx',
-    'Expanded By Default'
-  )
-  .addExample('Sidebar/story/Links.example.tsx', 'With Links')
-  .addExample('Sidebar/story/WithoutIcons.example.jsx', 'Without Icons')
-  .addExample('Sidebar/story/Variants.example.jsx', 'Variants')
-  .addExample('Sidebar/story/Menu.example.jsx', {
-    title: 'Item Menu',
+  .addExample('Sidebar/story/Default.example.tsx', 'Default')
+  .addExample('Sidebar/story/Menu.example.tsx', {
+    title: 'Collapsible',
     description:
       'Sidebar.Item has capability to render nested Sidebar.Menu with collapsible prop',
     effect: async (testPage, makeScreenshot) => {
@@ -36,3 +29,11 @@ page
       await makeScreenshot()
     }
   })
+  .addExample('Sidebar/story/DefaultExpanded.example.tsx', {
+    title: 'Expanded By Default',
+    description:
+      'When a nested Sidebar.Item is selected, it automatically expands the menu.'
+  })
+  .addExample('Sidebar/story/Links.example.tsx', 'With Links')
+  .addExample('Sidebar/story/Icons.example.tsx', 'Icons')
+  .addExample('Sidebar/story/Variants.example.tsx', 'Variants')

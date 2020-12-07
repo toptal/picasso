@@ -57,9 +57,9 @@ const Example = () => (
               <Sidebar.Menu>
                 <Sidebar.Item>Share Online</Sidebar.Item>
                 <Sidebar.Item>Referred Users</Sidebar.Item>
-                <Sidebar.Item>Commisions</Sidebar.Item>
+                <Sidebar.Item>Commissions</Sidebar.Item>
                 <Sidebar.Item>Payment Options</Sidebar.Item>
-                <Sidebar.Item>Expected Commisions</Sidebar.Item>
+                <Sidebar.Item>Expected Commissions</Sidebar.Item>
               </Sidebar.Menu>
             }
           >
@@ -110,9 +110,9 @@ const Example = () => (
               <Sidebar.Menu>
                 <Sidebar.Item>Share Online</Sidebar.Item>
                 <Sidebar.Item>Referred Users</Sidebar.Item>
-                <Sidebar.Item>Commisions</Sidebar.Item>
+                <Sidebar.Item>Commissions</Sidebar.Item>
                 <Sidebar.Item>Payment Options</Sidebar.Item>
-                <Sidebar.Item>Expected Commisions</Sidebar.Item>
+                <Sidebar.Item>Expected Commissions</Sidebar.Item>
               </Sidebar.Menu>
             }
           >
