@@ -96,7 +96,7 @@ Main content can have various layouts, but for this tutorial, we choose to have 
 showing us talent details. We use [\`Container\`](..?path=/story/utils-folder--container) component
 to define inner spacings of the talent details container. Also, it's very important to use use
 \`Page.Article\` component, because we use a flexbox wrapper
-around the page and we need to make MainContent grow and fill all available space.
+around the page and we need to make \`MainContent\` grow and fill all available space.
 
 Picasso defines standard BASE [colors](..?path=/story/utils-folder--colors) so we can
 easily set color of containers by using \`palette\`.
