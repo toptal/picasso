@@ -182,10 +182,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
     const optionsLength = options ? options!.length : 0
 
     const optionsMenu = options && (
-      <ScrollMenu
-        data-testid='autocomplete-dropdown'
-        selectedIndex={highlightedIndex}
-      >
+      <ScrollMenu selectedIndex={highlightedIndex}>
         {options!.map((option, index) => (
           <Menu.Item
             size='medium'
