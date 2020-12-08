@@ -22,7 +22,6 @@ const removeIcons = item => {
   const expandAllIcons = document.querySelectorAll(
     SIDEBAR_ITEM_EXPAND_ALL_ICON_SELECTOR
   )
-  console.log(expandAllIcons)
   expandAllIcons.forEach(expandAllIcon => expandAllIcon.remove())
 }
 
