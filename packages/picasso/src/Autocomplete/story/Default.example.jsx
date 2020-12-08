@@ -51,6 +51,7 @@ const Example = () => {
             setValue(newValue)
           }}
           getDisplayValue={getDisplayValue}
+          data-testid='autocomplete'
         />
       </Form>
     </div>
