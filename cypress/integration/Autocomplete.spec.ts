@@ -20,6 +20,7 @@ describe('Autocomplete', () => {
 
     cy.get('[data-testid=autocomplete]').blur()
     openAutocompleteWithTab()
+
     cy.get('[role=menu]').should('not.be.visible')
   })
 
@@ -35,6 +36,7 @@ describe('Autocomplete', () => {
 
     cy.get('[data-testid=autocomplete]').blur()
     openAutocompleteWithTab()
+
     cy.get('[role=menu]').should('be.visible')
   })
 })
