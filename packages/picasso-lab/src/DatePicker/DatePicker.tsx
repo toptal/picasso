@@ -171,7 +171,7 @@ export const DatePicker = (props: Props) => {
 
   const handleBlur = (event: React.FocusEvent<HTMLDivElement>) => {
     const isFocusedInsideDatePicker = isInsideDatePicker(
-      event.relatedTarget as Node
+      (event.relatedTarget || document.activeElement) as Node
     )
 
     if (isFocusedInsideDatePicker) {
