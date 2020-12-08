@@ -65,15 +65,20 @@ const Example = () => {
     }
   }
 
+  const handleFocus = () => {
+    setOptions(null)
+  }
+
   return (
     <div>
       <Autocomplete
         value={value}
         onChange={handleChange}
+        onFocus={handleFocus}
         options={options}
         loading={loading}
-        minLength={MIN_CHARS}
         placeholder='Start typing Mongolia...'
+        data-testid='autocomplete'
       />
     </div>
   )
