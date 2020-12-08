@@ -63,8 +63,7 @@ tutorialChapter
 Great, now that we have basic layout let's divide content part of the page into a left sidebar and main content sections.
 We will use [\`Container\`](..?path=/story/layout-folder--container) component for placing them side by side by using \`flex\` property.
 
-Because this is a specific case we need to define some styling for wrapper container component to give it full height. We are doing this using \`styled-components\`.
-Also, for demonstration purposes, it's been added additional padding for Sidebar and the Main Content.
+For demonstration purposes, it's been added additional padding for Sidebar and the Main Content.
   `,
     {
       title: 'Second step: Implement sidebar and main content layout'
@@ -95,8 +94,9 @@ tutorialChapter
     `
 Main content can have various layouts, but for this tutorial, we choose to have simple item
 showing us talent details. We use [\`Container\`](..?path=/story/utils-folder--container) component
-to define inner spacings of the root and talent details container. Also, because we use a flexbox wrapper
-around the page, we need to make MainContent grow and fill all available space.
+to define inner spacings of the talent details container. Also, it's very important to use use
+\`Page.Article\` component, because we use a flexbox wrapper
+around the page and we need to make MainContent grow and fill all available space.
 
 Picasso defines standard BASE [colors](..?path=/story/utils-folder--colors) so we can
 easily set color of containers by using \`palette\`.
