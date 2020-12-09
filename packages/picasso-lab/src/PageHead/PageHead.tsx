@@ -1,5 +1,5 @@
-import React, { forwardRef, FunctionComponent } from 'react'
-import { Theme, makeStyles } from '@material-ui/core/styles'
+import React, { forwardRef, FunctionComponent, ReactNode } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import {
   CompoundedComponentWithRef,
@@ -11,9 +11,9 @@ import { Typography, Container } from '@toptal/picasso'
 import styles from './styles'
 
 export interface Props extends BaseProps {
-  /** Content of Subheader */
-  children?: React.ReactNode
-  /** Whether Subheader should have right padding */
+  /** Content */
+  children?: ReactNode
+  /** Whether it should have right padding */
   rightPadding?: boolean
 }
 
@@ -24,12 +24,12 @@ export interface StaticProps {
   Actions: FunctionComponent
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoSubheader'
+const useStyles = makeStyles(styles, {
+  name: 'PicassoPageHead'
 })
 
-const useMainStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoSubheaderMain'
+const useMainStyles = makeStyles(styles, {
+  name: 'PicassoPageHeadMain'
 })
 
 const Title: FunctionComponent<TextLabelProps> = ({ titleCase, children }) => (
@@ -63,7 +63,7 @@ const Actions: FunctionComponent = ({ children }) => (
   </Container>
 )
 
-export const Subheader = forwardRef<HTMLDivElement, Props>(function Subheader(
+export const PageHead = forwardRef<HTMLDivElement, Props>(function PageHead(
   props,
   ref
 ) {
@@ -82,15 +82,15 @@ export const Subheader = forwardRef<HTMLDivElement, Props>(function Subheader(
   )
 }) as CompoundedComponentWithRef<Props, HTMLDivElement, StaticProps>
 
-Subheader.defaultProps = {
+PageHead.defaultProps = {
   rightPadding: false
 }
 
-Subheader.Title = Title
-Subheader.Tabs = Tabs
-Subheader.Main = Main
-Subheader.Actions = Actions
+PageHead.Title = Title
+PageHead.Tabs = Tabs
+PageHead.Main = Main
+PageHead.Actions = Actions
 
-Subheader.displayName = 'Subheader'
+PageHead.displayName = 'PageHead'
 
-export default Subheader
+export default PageHead
