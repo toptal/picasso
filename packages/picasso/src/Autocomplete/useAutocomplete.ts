@@ -180,11 +180,6 @@ const useAutocomplete = ({
     setOpen(true)
   }
 
-  const handleFocus: FocusEventHandler<HTMLInputElement> = event => {
-    handleClick()
-    onFocus(event)
-  }
-
   const handleBlur: FocusEventHandler<HTMLInputElement> = event => {
     setOpen(false)
     onBlur(event)
@@ -192,7 +187,7 @@ const useAutocomplete = ({
 
   const getInputProps = () => ({
     'aria-autocomplete': 'list' as React.AriaAttributes['aria-autocomplete'],
-    onFocus: handleFocus,
+    onFocus,
     onClick: handleClick,
     onChange: (
       event: ChangeEvent<
