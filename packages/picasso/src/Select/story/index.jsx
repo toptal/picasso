@@ -75,8 +75,7 @@ page
   .addExample('Select/story/SearchBehavior.example.tsx', {
     title: 'Search behavior',
     description: `
-Search started to be enabled when Select component has the
-number of options greater than specified in \`searchThreshold\` prop.
+    Search is enabled when the number of options is greater or equal to \`searchThreshold\`.
       `
   }) // picasso-skip-visuals
   .addExample('Select/story/Disabled.example.jsx', 'Disabled')
