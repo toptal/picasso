@@ -93,6 +93,7 @@ interface Props {
   onBlur?: FocusEventType
   onFocus?: () => void
   showSearch: boolean
+  native?: boolean
 }
 
 type GetRootProps = () => {
@@ -135,7 +136,8 @@ const useSelect = ({
   onKeyDown = () => {},
   onSelect = () => {},
   onBlur = () => {},
-  onFocus = () => {}
+  onFocus = () => {},
+  native
 }: Props): UseSelectOutput => {
   const [isOpen, setOpen] = useState<boolean>(false)
   const canOpen = !isOpen && !disabled
@@ -280,6 +282,14 @@ const useSelect = ({
 
   // eslint-disable-next-line complexity
   const handleSelectKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (native) {
+      onKeyDown(event, value)
+
+      // for the native select we don't want to prevent defaults for the event
+      // and don't need any manual operations for keydown event
+      return
+    }
+
     const isValidInputValue =
       Boolean(event.key.match(/^[A-z\d]$/)) || event.key === 'Backspace'
 
