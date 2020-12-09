@@ -590,7 +590,8 @@ export const Select = documentable(
         onSelect: handleSelect,
         onChange: handleChange,
         onBlur: handleBlur,
-        onFocus: handleFocus
+        onFocus: handleFocus,
+        native
       })
 
       const iconAdornment = icon ? (
