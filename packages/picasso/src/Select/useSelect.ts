@@ -285,6 +285,8 @@ const useSelect = ({
     if (native) {
       onKeyDown(event, value)
 
+      // for the native select we don't want to prevent defaults for the event
+      // and don't need any manual operations for keydown event
       return
     }
 
