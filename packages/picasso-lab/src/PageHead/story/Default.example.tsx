@@ -1,6 +1,6 @@
 import React from 'react'
 import { Tabs, Button, Link } from '@toptal/picasso'
-import { Subheader, Breadcrumbs } from '@toptal/picasso-lab'
+import { PageHead, Breadcrumbs } from '@toptal/picasso-lab'
 
 const DefaultExample = () => {
   const [value, setValue] = React.useState(0)
@@ -10,7 +10,7 @@ const DefaultExample = () => {
   }
 
   return (
-    <Subheader>
+    <PageHead>
       <Breadcrumbs>
         <Breadcrumbs.Item
           as={Link}
@@ -28,9 +28,9 @@ const DefaultExample = () => {
           Toptal
         </Breadcrumbs.Item>
       </Breadcrumbs>
-      <Subheader.Main>
-        <Subheader.Title>Heading Large</Subheader.Title>
-        <Subheader.Actions>
+      <PageHead.Main>
+        <PageHead.Title>Heading Large</PageHead.Title>
+        <PageHead.Actions>
           <Button size='small' variant='secondary'>
             Button
           </Button>
@@ -40,16 +40,16 @@ const DefaultExample = () => {
           <Button size='small' variant='secondary'>
             Button
           </Button>
-        </Subheader.Actions>
-      </Subheader.Main>
-      <Subheader.Tabs>
+        </PageHead.Actions>
+      </PageHead.Main>
+      <PageHead.Tabs>
         <Tabs value={value} onChange={handleChange}>
           <Tabs.Tab label='Label' />
           <Tabs.Tab label='Label' />
           <Tabs.Tab label='Label' />
         </Tabs>
-      </Subheader.Tabs>
-    </Subheader>
+      </PageHead.Tabs>
+    </PageHead>
   )
 }
 
