@@ -10,8 +10,10 @@ export interface Props extends RadioGroupProps {
   horizontal?: boolean
 }
 
+// Using { index: -1 } to keep the correct CSS injection order (https://toptal-core.atlassian.net/browse/FX-1520)
 const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoRadioGroup'
+  name: 'PicassoRadioGroup',
+  index: -1
 })
 
 const RadioGroup: FunctionComponent<Props> = props => {

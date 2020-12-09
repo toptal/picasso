@@ -73,5 +73,4 @@ const FormControlLabel: FunctionComponent<Props> = props => {
 
 FormControlLabel.displayName = 'FormControlLabel'
 
-// Using { index: -1 } to keep the correct CSS injection order (https://toptal-core.atlassian.net/browse/FX-1520)
-export default withStyles(styles, { index: -1 })(FormControlLabel)
+export default withStyles(styles)(FormControlLabel)
