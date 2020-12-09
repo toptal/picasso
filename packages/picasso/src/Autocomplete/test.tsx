@@ -68,7 +68,7 @@ describe('Autocomplete', () => {
   describe('dynamic behavior', () => {
     test('on focus', () => {
       const onFocus = jest.fn()
-      const { getByPlaceholderText, getByRole } = renderAutocomplete({
+      const { getByPlaceholderText, queryByRole } = renderAutocomplete({
         placeholder,
         options: testOptions,
         value: '',
@@ -81,8 +81,10 @@ describe('Autocomplete', () => {
 
       // calls onFocus handler
       expect(onFocus).toHaveBeenCalledTimes(1)
-      // menu contains all the options displayed
-      expect(getByRole('menu')).toMatchSnapshot()
+      expect(queryByRole('menu')).not.toBeInTheDocument()
+
+      fireEvent.click(input)
+      expect(queryByRole('menu')).toMatchSnapshot()
     })
 
     test('on type', () => {
@@ -115,7 +117,7 @@ describe('Autocomplete', () => {
 
       const input = getByPlaceholderText(placeholder) as HTMLInputElement
 
-      fireEvent.focus(input)
+      fireEvent.click(input)
 
       fireEvent.click(getByText('Slovakia'))
 
@@ -177,7 +179,7 @@ describe('Autocomplete', () => {
 
         const input = getByPlaceholderText(placeholder) as HTMLInputElement
 
-        fireEvent.focus(input)
+        fireEvent.click(input)
 
         expect(
           getByText('Belarus')
@@ -230,6 +232,7 @@ describe('Autocomplete', () => {
         const input = getByPlaceholderText(placeholder) as HTMLInputElement
 
         fireEvent.focus(input)
+        fireEvent.keyDown(input, { key: 'ArrowDown', code: 'ArrowDown' })
 
         fireEvent.keyDown(input, {
           key: 'Enter'
@@ -266,6 +269,7 @@ describe('Autocomplete', () => {
     const input = getByPlaceholderText(placeholder) as HTMLInputElement
 
     fireEvent.focus(input)
+    fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' })
 
     expect(getByText(noOptionsText)).not.toBeNull()
   })
@@ -297,7 +301,7 @@ describe('Autocomplete', () => {
     })
     const input = api.getByPlaceholderText('Start typing here...')
 
-    fireEvent.focus(input)
+    fireEvent.click(input)
     expect(api.baseElement.textContent).toContain('Custom renderer')
   })
 
